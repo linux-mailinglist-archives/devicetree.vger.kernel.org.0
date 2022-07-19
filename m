@@ -2,111 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A3357976C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 12:16:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C90E57977F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 12:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233681AbiGSKQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 06:16:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41426 "EHLO
+        id S235133AbiGSKSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 06:18:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233381AbiGSKQu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 06:16:50 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 891DA1758C
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 03:16:49 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id y11so23957138lfs.6
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 03:16:49 -0700 (PDT)
+        with ESMTP id S235263AbiGSKSu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 06:18:50 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED64223BE5
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 03:18:48 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id e28so23914340lfj.4
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 03:18:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LW9NCKO2QYnmA54Na2mGEFFYmsEB487StfUpSsbPyvQ=;
-        b=WIL+Zq4W91rUT+WDhQbGYjI0iyNQfcNCaHTNDAUuYos8t117vwGE/jMCG2TUWhvuUH
-         Mx3JzolW1dINYBDQpo0MFZFMT7P9mgXkj4rBQXd/oOXQ1OwnS358LCrYaFm/q9jeg+W/
-         pcJYPflB4QGSJxXB1to3h0wjtiExYoAh1MWvAhcbsfTX3AxPYv9JX/LvkUQTt1wdfYMl
-         nKhznAz2B846RBF/2B4OX3+OFNyrU/i12jSrDUSx4EqJHC6rcFiu81jjx3YwkjwrpE+H
-         3U6YYRaVajnhlac7H6M7Uwz3oBOBbHmXm5vR+b3SpAp3sqbDtaJkAuw2IAT0d2HHNJfp
-         8pNA==
+        bh=Yhp40Fa8dIbWLUYQgUZLu34l1mYT1p2F4FG3i88o/a0=;
+        b=YdB/5QY2IMSi4iu67sdHg01+fHyTTjIyNd++A0oIojzG3sOw+aBnKPPjGgWO3gaTEN
+         E0VfXsbXzmmM4D3sY3iX+Ka7B85t/7bdOidi41PqOSY3LeCTV1ASF4GKkBLxE0v43QuS
+         a3N+TYhsAA3gibWJPyG/WX+JpgH+2ef6K60J/Mil2twm8R/IrB/d3w+jyjIhdjbyw85p
+         Vn/beV7b6XNf80Y8MU9L5TkeiByD7U3ICjNYiN+CGn4XQDItCIkRAoWw2y7oeMW/N/Fu
+         bZPaoeENUcZxdcAuJSCeLi4uKX+3FKvAXItS/QSIX7S/4Y1HJy3n7F7LxUWumnVVSqr5
+         veOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=LW9NCKO2QYnmA54Na2mGEFFYmsEB487StfUpSsbPyvQ=;
-        b=NfjeAIX1X9lGjM30erws4ZyTx9//WyxRBiwYTX2MfyM1UbYv4P7434nq6/RWQ8UL6x
-         rf9xLfReocxodQsoG79QUUIuq1EOkWDlYh4HMMsSCYKAwIq6pOjzGMBq84mx+1CtlQ+7
-         4nmBxXBryVwakBhlgGPeE5cEwxTYnW+sdktlmOG3U5TjVPWzLqFrsmp+e+2xzmdD8j6K
-         T9WDa6NqA9iPmTwqmuWBCkKrQakdzXt8YJS6WG6H0KzbX1KoqhxVL6Ys7PuvjiKafSqZ
-         MuJ2tZoSonki/IJdNpwC9qdpYyKrGZ5RhsEpSNc9MbEYCj3eGO73mp7YeCiuRJxAgMrb
-         6Z+g==
-X-Gm-Message-State: AJIora+NpYn7GWudHvxYdOQsAi8XhRBSLd9VN1SfzCn6MLJqEsBB5xpA
-        pXbf3ZhhlYYwRPbWqKeTg0jsc1CSLIc1Kpe6
-X-Google-Smtp-Source: AGRyM1vU9LJ6G8ivP4wDHbLuhVisV/7UBTFM9nIXb3Gso6xsV6QpqbYZ767YcfmCZ7wRhMl4muJP7g==
-X-Received: by 2002:a05:6512:3d92:b0:487:5cea:a68b with SMTP id k18-20020a0565123d9200b004875ceaa68bmr16183559lfv.21.1658225807944;
-        Tue, 19 Jul 2022 03:16:47 -0700 (PDT)
+        bh=Yhp40Fa8dIbWLUYQgUZLu34l1mYT1p2F4FG3i88o/a0=;
+        b=Nw4gXoB8008sZlYDtDUTHx/1cVVN3Zx2fTFmtidfmILv24SHU4UjARHDfW8pwQ5q8A
+         fmDIDwTnEk1t5Qfcs4BObHzHPY+4h/frurdR1j1/9s8QYXnaxBF+4qNsT9Fg31+ilxE+
+         EQri3UbsiIBKbmNyk8VPygbJsN16Oh2+mwABKAbH3ctiJt2gvOV/9YHYtG9kq75/7nrf
+         WpCVvnP0W0pvY1u5od/l9QAvz7kivzMCJvPf89zAmNfS1cjZxJKAUIoprr9my0CjnJfD
+         9eysLfxrK3DDf+p2v0S0eUK0MS7Np2UuL7RBBQS3OuYOeAHlXj0sQfJaiR4gc2vy5H6f
+         DeuQ==
+X-Gm-Message-State: AJIora/z2igxQhlKMfA4N+Jj/EaMo9VZ/MppdMWBjLcINz8jRZ/ngfa2
+        k46Ph5vmhCNdyIvDrKf71MdtsQ==
+X-Google-Smtp-Source: AGRyM1s8HgTuaZJ6SpD6cl0+QVA5btQeNUibFBZWLlyB0luN//n9+1IhA3B2PQI+96AApneuoLUUpw==
+X-Received: by 2002:a05:6512:12c2:b0:489:c921:552e with SMTP id p2-20020a05651212c200b00489c921552emr18510784lfg.391.1658225927362;
+        Tue, 19 Jul 2022 03:18:47 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id z5-20020a19f705000000b0048646c0af5csm3104545lfe.263.2022.07.19.03.16.46
+        by smtp.gmail.com with ESMTPSA id s10-20020a2e2c0a000000b0025d70efeaaasm2606935ljs.75.2022.07.19.03.18.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 03:16:47 -0700 (PDT)
-Message-ID: <78230095-6b45-4536-f41d-12bb23308d34@linaro.org>
-Date:   Tue, 19 Jul 2022 12:16:46 +0200
+        Tue, 19 Jul 2022 03:18:46 -0700 (PDT)
+Message-ID: <895e7df5-65e5-7b26-81d6-864e68957ab6@linaro.org>
+Date:   Tue, 19 Jul 2022 12:18:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: ipq8064: reorganize node order and
- sort them
+Subject: Re: [PATCH] arm64: dts: Add device trees for MSC SM2S-IMX8PLUS SoM
+ and carrier board
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Christian Marangi <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Francesco Dolcini <francesco@dolcini.it>
+Cc:     Martyn Welch <martyn.welch@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220718153815.29414-1-ansuelsmth@gmail.com>
- <7f2a4f21-5e07-9320-8f7b-573ccc562f43@linaro.org>
- <CAA8EJppCxrcQOtCDZvUX-CThGV7aZXYv__gz3KRBf28TCRTBEg@mail.gmail.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+References: <20220718152310.1937899-1-martyn.welch@collabora.com>
+ <4473378f-1c14-3ec7-5380-12f49f3b1e3b@linaro.org>
+ <YtaEUvP4jpO5Dggg@gaggiata.pivistrello.it>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJppCxrcQOtCDZvUX-CThGV7aZXYv__gz3KRBf28TCRTBEg@mail.gmail.com>
+In-Reply-To: <YtaEUvP4jpO5Dggg@gaggiata.pivistrello.it>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2022 11:59, Dmitry Baryshkov wrote:
-> On Tue, 19 Jul 2022 at 12:56, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 18/07/2022 17:38, Christian Marangi wrote:
->>> Reorganize node order and sort them by address.
->>>
->>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->>> ---
->>>
->>> This was picked from for-next qcom branch [1]. Reorganize dtsi as requested.
->>>
->>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/?h=for-next
->>
->> If this is picked by qcom branch, no need to resend it.
->>
->> I don't see value in such reshuffle. Reviewing is not possible and you
->> did not mention tests (results should be equal).
+On 19/07/2022 12:15, Francesco Dolcini wrote:
+> Hello Krzysztof,
 > 
-> The value is usual for all the cleanups: make it follow the
-> established practice.
+> On Tue, Jul 19, 2022 at 12:01:34PM +0200, Krzysztof Kozlowski wrote:
+>> On 18/07/2022 17:23, Martyn Welch wrote:
+>>> +	tca6424: gpio@22 {
+>>> +		compatible = "ti,tca6424";
+>>> +		pinctrl-names = "default";
+>>> +		pinctrl-0 = <&pinctrl_tca6424>;
+>>> +		reg = <0x22>;
+>>
+>> compatible, then reg, then all other properties. This applies everywhere.
+> 
+> Is this documented somewhere? It would be easier to enable new people to
+> contribute, if it was.
 
-Are you sure this is established practice? New DTSI files (see SC8280XP,
-sm8450 although sc7280 looked ordered) do not always follow it, so why
-imposing it for existing code? Such reshuffle can cause conflicts thus
-stops parallel development. Review is close to impossible...
+Unfortunately it's not documented. It's a common practice - most
+popular, but of course you will find other examples. There is reasoning
+behind - compatible is the most important property. Reg is useful to
+have at the top as it must match unit address.
 
+> Anyway, I would add to this list status as last, when present, 
+
+Yes, this as well in some trees is recommended/enforced although not
+documented.
+
+> and I do
+> try to order alphabetically all the other properties.
 Best regards,
 Krzysztof
