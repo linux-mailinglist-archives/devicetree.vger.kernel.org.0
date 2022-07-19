@@ -2,124 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1480C579524
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 069A057952E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:25:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232925AbiGSIUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 04:20:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35164 "EHLO
+        id S236847AbiGSIZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 04:25:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230483AbiGSIUx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:20:53 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4CA2AE3D
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:20:51 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id bu1so20419772wrb.9
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:20:51 -0700 (PDT)
+        with ESMTP id S236795AbiGSIZX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:25:23 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF8366456
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:25:21 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id r6so18563487edd.7
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:25:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xd0Nc+zNCPBmUNJaS2OhYDDTwIO4yuqtAZex5tQXAwY=;
-        b=KKTnV56L2I48XJSkwd71YzfFHWnJ6hVS7EBPHqF7YAFYqcpiMOZAdj7w4WkyPSVlhM
-         PVOdyHwoltehxoPYDPltF8QL2MpdK1M8V8GoLAWsJd6K8QTwtftTjpCKfHyCQi74aE3u
-         9E148AQz5DJmXBhRwyTFUmmek6rKToMgbu0yA1zs6BvYlEe+t3KE43G3dMQc2oPtx8nq
-         +5yG81pEmqTyg17UU0vND6WRzQNghnQiliz1+2+fhinspiE8KW4eTocRjEJ8ze7ppgQc
-         UeemB2I2f6bnsznb1t5K5s16J5Tt4ZbOI9BQK/VV0dEADnYWdBeh3jB4NEuZT3RUlGK8
-         qYjw==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=0Bx1R2Q+QF2P7tkGM2MKWEw3+rYL23IE8pFzoPZ9ico=;
+        b=6hRcrdCJ2BshcOCbYbe2sRHcqlivkYOUKRE84I+rX41yRyrvRQEK1XIK1HlJYruEkv
+         INRDvJcb8qFVqYqWqyjzaSjix4VOwkqzR0rSH8VLpU6uGw5Q7TheEZmmQp+0NFfy7BZU
+         /0VAY1N8UHLevRO0WAJotK4G+8idOGuGfcKqSPD4VFSgoDoS1B4PE3AyCQdJO4cPf0S3
+         o2CEs/zOR0Mn+671sWr3uuWQb6/jD1NFbJcObX9OTzA+g7riPHkzdwDxnVAlOlw/UDM3
+         yYwOF/EZ02Zs9rAJU2lSS68Ak8f3palKQfiglqmB+HAAZ+nGJTmoSMod/6wmhTxKkRLG
+         b29Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xd0Nc+zNCPBmUNJaS2OhYDDTwIO4yuqtAZex5tQXAwY=;
-        b=SHdQbKPsvkpARHU9FwP9cvl8ldQvm2uNSQmffSiDKJI+T+QKoVziK38jbHSraEF2B3
-         XncVWux4bcFjP59mOE9h35xdM/Uz6ARqP967UaHZ0UJXcFJ8a8kARQwmRHu9EnFCPSI6
-         hkQ9GCfSqTzIIXb/Fk2kOXFONQgs1GkkHetplQl1mj/VUiiuV6kO6LfPiAtsuF3ls6PN
-         DPxgu/7YJzXr0LZ+Bhuvt6CKLIBERUSlco5PiQ+RCFW9q28IJdWydGKJR1jTjdPDIV4I
-         o1wqCmH2zBjZczXmLASwK49CQGQAdmc0C7BqxoZoTRv8ZA3c3FTE6NJ+dQtCIUT2vIub
-         GxGA==
-X-Gm-Message-State: AJIora+cDLYpxTvXKWcp4f/bL5BAkTR5n96b7hL+9czKmvq5szM5G987
-        WhoZkDJIRCIy/+MeFd6BjlkFRw==
-X-Google-Smtp-Source: AGRyM1uRPrVhXybr+/OpVvs2JrvOxXfHp6ae4STNmjP1jNiXbtdo4HafHXzI9Q6EnMnSbvPw6pDYhQ==
-X-Received: by 2002:a05:6000:156b:b0:21d:9daf:3cdb with SMTP id 11-20020a056000156b00b0021d9daf3cdbmr25978919wrz.492.1658218850304;
-        Tue, 19 Jul 2022 01:20:50 -0700 (PDT)
-Received: from [10.35.4.171] ([167.98.27.226])
-        by smtp.gmail.com with ESMTPSA id h24-20020adfa4d8000000b0021d83eed0e9sm12490145wrb.30.2022.07.19.01.20.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 01:20:49 -0700 (PDT)
-Message-ID: <b318df5a-bf11-bfb8-aa7a-59d719081f8b@sifive.com>
-Date:   Tue, 19 Jul 2022 09:20:48 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=0Bx1R2Q+QF2P7tkGM2MKWEw3+rYL23IE8pFzoPZ9ico=;
+        b=mRcZgNY7LvhClC9p7mkXoPmamWbIi+CLjs47RRNWtwQpKXtlIIogDXfwVGwrAiaP2j
+         SnEo1HuCJ42A7lJuVO7keKXBcNn6M0E52Gx4Fj3BZkJlPUjowp3BEB/M+oPiht+HEpC+
+         KOGOsEkqgLHknxW0YKsBmskv+n1Qq6JY/kJL4+nC47mF+fj0cCx4/YLt/2aOPiHSMtaX
+         5D1qGX8WissIOSjv03NAywqN486GYxMRGVubQsb0toNW5I/VZ2AO3ljcsgjb5sACUsc5
+         2MaSgFo/MZ+qRODArCNCeLrcrTeI7KZP9tfClXumw3dTycWr8nTLRhU3sk/bG1nvtkB0
+         Njkg==
+X-Gm-Message-State: AJIora+ZYX1D51T1YGSGgKfrIwKl6GPzI7qnpThx25CUGLjTWl/6fzBg
+        /zbcFrmJuH9uKk+1kQJHWmdVSVLe22+ZPC85jNdRpQ==
+X-Google-Smtp-Source: AGRyM1vU1xwjz1SfwM44SYQkgwe8ke45JUbb6IETgCphk3Y4YooIsTzECQ56OEJIjeBIYNUTQcXYhmMF5sC/VjWZhHc=
+X-Received: by 2002:a05:6402:4c3:b0:43a:f612:179d with SMTP id
+ n3-20020a05640204c300b0043af612179dmr42549702edw.422.1658219120252; Tue, 19
+ Jul 2022 01:25:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 7/7] pwm: dwc: add snps,pwm-number to limit pwm count
-Content-Language: en-GB
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
+References: <20220713131421.1527179-1-nuno.sa@analog.com>
+In-Reply-To: <20220713131421.1527179-1-nuno.sa@analog.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 19 Jul 2022 10:25:09 +0200
+Message-ID: <CAMRc=Mf1w7DCGMAku0wPHAhTtDWoWkWOfvxkx=_b1pKp8U8yOg@mail.gmail.com>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+To:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
+Cc:     ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        Sudip Mukherjee <sudip.mukherjee@sifive.com>,
-        William Salmon <william.salmon@sifive.com>,
-        Adnan Chowdhury <adnan.chowdhury@sifive.com>
-References: <20220712100113.569042-1-ben.dooks@sifive.com>
- <20220712100113.569042-8-ben.dooks@sifive.com>
- <20220718200828.GA3453680-robh@kernel.org>
-From:   Ben Dooks <ben.dooks@sifive.com>
-In-Reply-To: <20220718200828.GA3453680-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2022 21:08, Rob Herring wrote:
-> On Tue, Jul 12, 2022 at 11:01:13AM +0100, Ben Dooks wrote:
->> Add snps,pwm-number property to indicate if the block does not have
->> all 8 of the PWM blocks.
->>
->> Not sure if this should be a general PWM property consider optional
->> for all PWM types, so have added a specific one here (there is only
->> one other controller with a property for PWM count at the moment)
->>
->> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
->> ---
->>   Documentation/devicetree/bindings/pwm/pwm-synposys.yaml | 5 +++++
->>   drivers/pwm/pwm-dwc.c                                   | 8 ++++++++
->>   2 files changed, 13 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml b/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
->> index 38ac0da75272..15bdf764b46a 100644
->> --- a/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
->> +++ b/Documentation/devicetree/bindings/pwm/pwm-synposys.yaml
->> @@ -30,11 +30,16 @@ properties:
->>         - items:
->>           - const: snps,pwm
->>   
->> +  snps,pwm-number:
->> +    $ref: '/schemas/types.yaml#/definitions/uint32'
->> +    description: u32 value representing the number of PWM devices
-> 
-> Why do we need to know this? Are you going to have a consumer to a
-> non-existent PWM? If you do need to know how many, it should be implied
-> by the compatible string.
+On Wed, Jul 13, 2022 at 3:13 PM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
+>
+> The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of calling the
+> gpiochip 'set_config()' hook. However, AFAICT, there's no way that this
+> flag is set because there's no support for it in firwmare code. Moreover,
+> in 'gpiod_configure_flags()', only pull-ups and pull-downs are being
+> handled.
+>
+> On top of this, there are some users that are looking at
+> 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So, unless I'm
+> missing something, it looks like this was never working for these chips.
+>
+> Note that the ACPI case is only compiled tested. At first glance, it seem=
+s
+> the current patch is enough but i'm not really sure...
+>
+> As a side note, this came to my attention during this patchset [1]
+> (and, ofr OF,  was tested with it).
+>
+> [1]: https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@a=
+nalog.com/
+>
+> Nuno S=C3=A1 (4):
+>   gpiolib: add support for bias pull disable
+>   gpiolib: of: support bias pull disable
+>   gpiolib: acpi: support bias pull disable
+>   dt-bindings: gpio: add pull-disable flag
+>
+>  drivers/gpio/gpiolib-acpi.c     | 3 +++
+>  drivers/gpio/gpiolib-of.c       | 7 +++++++
+>  drivers/gpio/gpiolib.c          | 8 ++++++--
+>  include/dt-bindings/gpio/gpio.h | 3 +++
+>  include/linux/gpio/machine.h    | 1 +
+>  include/linux/of_gpio.h         | 1 +
+>  6 files changed, 21 insertions(+), 2 deletions(-)
+>
+> --
+> 2.37.0
+>
 
-For this IP block it is a build time option for 1..8 timers
-so I thought it best we don't register non-existant timers
+Series applied, thanks!
 
-
-The system we are working on only has 1 PWM timer per block.
-
--- 
-Ben
-
+Bart
