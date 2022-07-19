@@ -2,121 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8AD757A040
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 16:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56DD557A05B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 16:05:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237990AbiGSOAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 10:00:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32822 "EHLO
+        id S231222AbiGSOFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 10:05:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238027AbiGSOAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 10:00:09 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD394B489;
-        Tue, 19 Jul 2022 06:11:37 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-119-232.nat.spd-mgts.ru [109.252.119.232])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: dmitry.osipenko)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E28C36601A83;
-        Tue, 19 Jul 2022 14:11:34 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658236295;
-        bh=8YDDjVdTJy5mlkoOKTkV47AAUAvRSJpwczvJ6O253Ug=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=fFWWIHzE8lrYlDyV7WugJd5eGY+haNHF8l4lYALSoUHf5K5/hYSIijforx3Fg7zQX
-         KbrJzMFDQ2sBB/8ptL4RB6Ky+ZasiSzJDCteKgKhPNHMvR4v5uCJrh3Rl916aOOoWJ
-         tEHzbMgO53Yyz2k1jtZEh3tJRMq2C8wMmX2p4wMKgmhdBcEXQI4iFi57acSoD7l1eg
-         PeEGnNK68FUro/zBlGtq5n23dF8MQZf29bZEjjCIt+UP++zxmqrPImKJsHRDJJYx3N
-         7qQgaSNklFplRfHmE66mp0CvT7shUYfYPMlRMlHbD/aA14DN67MPz35Q4ZqYW3PXGz
-         0XYYI2XkO/exA==
-Message-ID: <07452438-f7e7-70d7-7a38-567f0f224fa1@collabora.com>
-Date:   Tue, 19 Jul 2022 16:11:31 +0300
+        with ESMTP id S237831AbiGSOEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 10:04:50 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19488528B3;
+        Tue, 19 Jul 2022 06:17:52 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 26JDHYjX121476;
+        Tue, 19 Jul 2022 08:17:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1658236654;
+        bh=aPX5TwnWSboRHZlPa+mgL6xIPZGuuYIuLSH6mihWqWs=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=VHoxAvcwfJxh3IbBn0YZGId/qEIjPohwZZMwX8Mknup56z3DkLWCK4PHub8OZ9i92
+         kyjfqzG1SC9Lkc6tCG205KrFtZ+rNxecBtxuiqC8WibyZIgj2TM2vgaUDH97OypI01
+         CHWqI7Z92xHlSPO+ywCjl5+weF7m9uiTAN96gimw=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 26JDHYuQ119962
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 19 Jul 2022 08:17:34 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 19
+ Jul 2022 08:17:33 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 19 Jul 2022 08:17:33 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 26JDHYKB070254;
+        Tue, 19 Jul 2022 08:17:34 -0500
+Date:   Tue, 19 Jul 2022 08:17:34 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     =?iso-8859-1?B?Suly9G1l?= Neanne <jneanne@baylibre.com>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        <j-keerthy@ti.com>, <lee.jones@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v1 11/14] arm64: dts: ti: Add TI TPS65219 PMIC support
+ for AM642 SK board.
+Message-ID: <20220719131734.q7c62fgqmja4ugjv@subduing>
+References: <20220719091742.3221-1-jneanne@baylibre.com>
+ <20220719091742.3221-12-jneanne@baylibre.com>
+ <20220719130049.hxn3bmhd3lmxxzgt@overview>
+ <CAOP-2kHgEhm+Ym8o7A49qP-oabO0i+89PGoWO0c9_2xz7oU89w@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v9 2/2] iio: light: Add support for ltrf216a sensor
-Content-Language: en-US
-To:     Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-Cc:     Shreeya Patel <shreeya.patel@collabora.com>, lars@metafoo.de,
-        robh+dt@kernel.org, Zhigang.Shi@liteon.com, krisman@collabora.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        alvaro.soliverez@collabora.com, andy.shevchenko@gmail.com
-References: <20220715111626.1066513-1-shreeya.patel@collabora.com>
- <20220715111626.1066513-3-shreeya.patel@collabora.com>
- <20220718182547.360e5cf2@jic23-huawei>
- <1e880d3f-758b-56a8-d468-dcb06f4cbc18@collabora.com>
- <20220719131808.7899acd4@jic23-huawei>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220719131808.7899acd4@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOP-2kHgEhm+Ym8o7A49qP-oabO0i+89PGoWO0c9_2xz7oU89w@mail.gmail.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/19/22 15:19, Jonathan Cameron wrote:
-> On Tue, 19 Jul 2022 14:56:51 +0300
-> Dmitry Osipenko <dmitry.osipenko@collabora.com> wrote:
+On 15:11-20220719, Jérôme Neanne wrote:
+> > > +&main_i2c0 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&main_i2c0_pins_default>;
+> > > +     clock-frequency = <400000>;
+> > > +     status = "okay";
+> > > +
+> > > +     tps65219: pmic@30 {
+> >
+> > Am I missing something?
+> > https://www.ti.com/tool/SK-AM64#design-files
+> > https://www.ti.com/lit/df/sprr432/sprr432.pdf
+> > Page 11:
+> > I see TPS6521815 at address 0x24, nothing in 0x30?
+> >
+> TI provides me a preliminary spec for TPS65219 where it is stated:
+> "7.3.8 I 2 C Serial Interface (SDA and SCL)
+> The TPS65219 hosts a slave I2C interface that supports I2C-bus data
+> transfers in Standard-mode (100 kbit/s),
+> Fast-mode (400 kbit/s) and Fast-mode plus (1 Mbit/s).
+> The default I2C-adress is 0x30, but can be changed if needed, e.g. for
+> multi-PMIC-operation."
 > 
->> On 7/18/22 20:25, Jonathan Cameron wrote:
->>> What turns this off again?  I'd expect to see a devm_add_action_or_reset()
->>> to do that in the !CONFIG_PM case.
->>>
->>> This is also an unusual pattern. As far as I can tell it works.
->>> Normal trick for ensuring !CONFIG_PM works is to:
->>>
->>> 1) Unconditionally turn device on.
->>> 2) Register unconditional device off devm_callback. Very rarely harmful even if device already off
->>>    due to runtime pm.  
->>
->> If CONFIG_PM is disabled, do we really need to care about the power
->> management on removal?
->>
+> Don't know when the spec will be released publically
 > 
-> Best effort + in general if we do something probe(), we want to do the
-> reverse in remove().  Sure it's not super important, but it's a nice
-> to have.  This tends to get 'fixed' by people revisiting the driver
-> after it has merged.
-> 
->>> 3) Then call pm_runtime_set_active() so the state tracking matches.  
->>
->> We can add pm_runtime_set_active() before h/w is touched for more
->> consistency. On Steam Deck supplies are always enabled, but this may be
->> not true for other devices.
-> 
-> Generally set it wherever you 'enable' the device as you are indicating
-> the state after that has happened. That might be really early though.
-> 
->>
->>> 4) Call 	
->>>   pm_runtime_mark_last_busy(dev);
->>>   pm_runtime_put_autosuspend(dev);
->>>   (here you have a function to do this anyway)
->>>   to let runtime_pm use same path as normal to autosuspend
->>>
->>> the upshot of this is that if !CONFIG_PM 3 and 4 do nothing and device
->>> is left turned on.  Is there something I'm missing that makes that cycle
->>> inappropriate here?  The main reason to do this is it then looks exactly
->>> like any other runtime_pm calls elsewhere in the driver, so easier to review.  
->>
->> It's appropriate, although caring about PM when it's disabled in kernel
->> config could be unnecessary, IMO. It was my suggestion to keep the h/w
->> enabled on driver's removal with !CONFIG_PM, minimizing the code.
->>
-> For the cost of about 4-8 lines of code, I think it's worth having, but can
-> also see why you decided against.
 
-Alright, thank you for the review. Shreeya will address it all and
-prepare the v10.
+Please do not top post.
+
+https://www.ti.com/product/TPS65219 - the PMIC is public for sure. I am
+not complaining about that.
+
+What the I was commenting is that the AM64-SK device tree you are
+modifying does'nt have the said PMIC. If this is a custom board, then
+lets not upstream such a board. If another board is supposed to contain
+it, lets enable the PMIC in the corresponding board.
+
+That does'nt negate the entire series, just the device tree patches as
+provided in this series is invalid - I have no intent of picking up
+patches that will break everyone's am64-sk boards.
 
 -- 
-Best regards,
-Dmitry
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
