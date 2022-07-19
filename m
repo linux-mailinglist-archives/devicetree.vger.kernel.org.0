@@ -2,128 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F3AA579840
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 13:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 501E7579854
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 13:24:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233538AbiGSLPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 07:15:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56096 "EHLO
+        id S234995AbiGSLYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 07:24:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234736AbiGSLPg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 07:15:36 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43CA565AF
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 04:15:35 -0700 (PDT)
-Received: from [192.168.1.101] (abxj77.neoplus.adsl.tpnet.pl [83.9.3.77])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id CAF0E3F78F;
-        Tue, 19 Jul 2022 13:15:31 +0200 (CEST)
-Message-ID: <343bd10e-bdcb-d097-e40b-a93dde586d14@somainline.org>
-Date:   Tue, 19 Jul 2022 13:15:31 +0200
+        with ESMTP id S234546AbiGSLYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 07:24:23 -0400
+Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39E4D1EC66;
+        Tue, 19 Jul 2022 04:24:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+        d=metrotek.ru; s=mail;
+        h=from:subject:date:message-id:to:cc:mime-version:content-transfer-encoding;
+        bh=MVGcC/DTzfP8ZGucES1+UZ9Ncni0QnWl0/Uq2QzEjHM=;
+        b=HPWPWY8ZohaXc8X4cikOm9D9XVeNpckywpAY/ZxCe98IPWrnEnMjiGVMOqRotGPJqvrli5S4lo7yi
+         qVrAU5OWGSXtc8tZVHHK2Lh4+b3UsehSuHcv507t0EszLxDTZw8RNoACw3rONPWH7rlFDyEVaWlKSA
+         ucHiyf13YAxiHTV+dCzRy5V3ap7sI/x47GjdGzvXZ5NrB7x/yGmR3bVr+wlp2/ZsJX9uBeijFjMj/O
+         dq39Eg85EYLDPv/LyLuoAyGajM8zXWYytete9ZQrmWYWz0uUn/CX/fIog1ZPJWiunx1NoFUOkFspn3
+         kxvoDt1gjoZE+MHMLNX/ixX+IzBAnBg==
+X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000008,0.008705)], BW: [Enabled, t: (0.000022,0.000002)], RTDA: [Enabled, t: (0.075079), Hit: No, Details: v2.40.0; Id: 15.52kd5h.1g8b36t0c.79k; mclb], total: 0(700)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Level: 
+X-Footer: bWV0cm90ZWsucnU=
+Received: from h-e2.ddg ([85.143.252.66])
+        (authenticated user i.bornyakov@metrotek.ru)
+        by mail.pr-group.ru with ESMTPSA
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
+        Tue, 19 Jul 2022 14:24:04 +0300
+From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
+To:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, system@metrotek.ru
+Subject: [PATCH v5 0/2] Lattice ECP5 FPGA manager
+Date:   Tue, 19 Jul 2022 14:23:33 +0300
+Message-Id: <20220719112335.9528-1-i.bornyakov@metrotek.ru>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] ARM: dts: qcom: ipq8064: reorganize node order and
- sort them
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220718153815.29414-1-ansuelsmth@gmail.com>
- <7f2a4f21-5e07-9320-8f7b-573ccc562f43@linaro.org>
- <CAA8EJppCxrcQOtCDZvUX-CThGV7aZXYv__gz3KRBf28TCRTBEg@mail.gmail.com>
- <78230095-6b45-4536-f41d-12bb23308d34@linaro.org>
- <f625ccde-8ecd-c06d-e8b2-ecb51c9ac9b8@somainline.org>
- <62d686c0.1c69fb81.4a957.bf03@mx.google.com>
- <26b43f6d-2b35-aab7-f906-31458c1b824b@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <26b43f6d-2b35-aab7-f906-31458c1b824b@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support to the FPGA manager for programming Lattice ECP5 FPGA over
+slave SPI interface with .bit formatted uncompressed bitstream image.
+
+ChangeLog:
+  v1 -> v2:
+    * remove "spi" from compatible string
+    * reword description in dt-bindings doc
+    * add reference to spi-peripheral-props.yaml in dt-binding doc
+    * fix DTS example in dt-bindings doc: 4-spaces indentations, no
+      undersores in node names.
+  v2 -> v3:
+    * fix typo "##size-cells" -> "#size-cells" in dt-bindings example
+  v3 -> v4:
+    * dt-bindings: reword description
+    * dt-bindings: revert props order
+  v4 -> v5:
+    * dt-bindings: remove trailing dot from title
+    * dt-bindings: reword description to avoid driver reference
+    * dt-bindings: add "Reviewed-by: Krzysztof Kozlowski" tag
+
+Ivan Bornyakov (2):
+  fpga: ecp5-spi: add Lattice ECP5 FPGA manager
+  dt-bindings: fpga: add binding doc for ecp5-spi fpga mgr
+
+ .../bindings/fpga/lattice,ecp5-fpga-mgr.yaml  |  74 +++++
+ drivers/fpga/Kconfig                          |   7 +
+ drivers/fpga/Makefile                         |   1 +
+ drivers/fpga/ecp5-spi.c                       | 275 ++++++++++++++++++
+ 4 files changed, 357 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
+ create mode 100644 drivers/fpga/ecp5-spi.c
+
+-- 
+2.37.1
 
 
-On 19.07.2022 12:56, Krzysztof Kozlowski wrote:
-> On 19/07/2022 10:19, Christian Marangi wrote:
->> On Tue, Jul 19, 2022 at 12:22:24PM +0200, Konrad Dybcio wrote:
->>>
->>>
->>> On 19.07.2022 12:16, Krzysztof Kozlowski wrote:
->>>> On 19/07/2022 11:59, Dmitry Baryshkov wrote:
->>>>> On Tue, 19 Jul 2022 at 12:56, Krzysztof Kozlowski
->>>>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>>>
->>>>>> On 18/07/2022 17:38, Christian Marangi wrote:
->>>>>>> Reorganize node order and sort them by address.
->>>>>>>
->>>>>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->>>>>>> ---
->>>>>>>
->>>>>>> This was picked from for-next qcom branch [1]. Reorganize dtsi as requested.
->>>>>>>
->>>>>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/?h=for-next
->>>>>>
->>>>>> If this is picked by qcom branch, no need to resend it.
->>>>>>
->>>>>> I don't see value in such reshuffle. Reviewing is not possible and you
->>>>>> did not mention tests (results should be equal).
->>>>>
->>>>> The value is usual for all the cleanups: make it follow the
->>>>> established practice.
->>>>
->>>> Are you sure this is established practice?
->>> Yes.
->>>
->>>  New DTSI files (see SC8280XP,
->>>> sm8450 although sc7280 looked ordered) do not always follow it, so why
->>>> imposing it for existing code?
->>> Perhaps it slipped through review.. Partially my bad.
->>>
->>>
->>> Such reshuffle can cause conflicts thus
->>>> stops parallel development. Review is close to impossible...
->>> Almost any addition or removal also causes conflicts, because git is
->>> not as smart as we would like it to be. If the commit is structured
->>> properly (i.e. it *only* changes the order and nothing else),
->>> decompiling the dtbs before and after applying it and using a tool
->>> like meld that can find similar chunks of text at different offsets
->>> review is definitely possible, though not very pleasant (you can't
->>> just diff them, as order is preserved & phandles change due to that)
->>> as you have to look at it manually and can't tell much by just taking
->>> a look at the email.
->>>
->>
->> Can you give me an example of such tool? So I can put these data in the
->> commit description. I have to rebase this anyway as more changes got
->> merged so it might be a good idea to add more info about how this won't
->> make actualy changes.
->>
-> 
-> scripts/dtc/dtx_diff
-> fdtdump + diff
-Thanks for sharing this.. way better than my crude method..
-
-Konrad
-> 
-> There should be an empty diff from at least one of methods above. If you
-> have a difference, I am not sure how can we verify this.
-> 
-> 
-> Best regards,
-> Krzysztof
