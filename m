@@ -2,96 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A1AE57911F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 05:07:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3422A5791A1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 06:07:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233441AbiGSDHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 23:07:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50788 "EHLO
+        id S236731AbiGSEHT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 00:07:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231645AbiGSDHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 23:07:32 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8153925587;
-        Mon, 18 Jul 2022 20:07:31 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id q13-20020a17090a304d00b001f1af9a18a2so5931714pjl.5;
-        Mon, 18 Jul 2022 20:07:31 -0700 (PDT)
+        with ESMTP id S236723AbiGSEHS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 00:07:18 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8CD432EF9;
+        Mon, 18 Jul 2022 21:07:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BpsIYGCJRtvbx2TcIK1tJ0iVgorLSfDv+9DFPy2DSN4=;
-        b=DpCSYVK482KEJwYyLtyS4b1uh6RM9EObs1tmhkHPrDPWN47UsQFBicetHG/hWMjU/j
-         Vqm8QLr5s4Z1ffsShixACwkoMGWcHMMGY1KJcRZtCD9WLDCESSGjGmQLyuL6OnXct7pU
-         qWMdN8+cGedeOBgwjCQjuJnPHhR6CY0kprKSBjIzfHHOuRV1lw/n3gSPOlv+YYxdFP5d
-         OKb9mWjeibKzKd3/+7qvV2Ib2kDsmrhcQsg1WjYV2kWTGEaIBroB0iTA8dAOjH4cjAh6
-         s9RqRtcbk3a2n2Wb7DdZ1QzMa9b5SilisJAbcHBO0kpS87LSAAFRA+NRiQGSe1KMNpzf
-         PBcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=BpsIYGCJRtvbx2TcIK1tJ0iVgorLSfDv+9DFPy2DSN4=;
-        b=pqNShbdwAntZp06VCYEEOjB5RwG5N3uvao0H5fN0Tq2BrR066s1LFICIelv87PVzwY
-         okxXxHORW/6Q47I6agIyZNzgX9LDsZ0GzdoxAcYi1k7exPyHIzPSdcn+2AhlaKdE65BM
-         sKLWtXsJC2CFtCRs7RAuLgdFWbnoxl2sh2RXV7+P107gAU5LmFFDaWMKyE6s6dDuy2Wn
-         DtAuAnDO3fDOS6Ex2TPHl+zsZtQk9663rEBY28ZB4cZpkKMnK0qUwMSRbdWZYle7MsrJ
-         6AGuaEabeDfOTaXc3yjBQvRfP1m2HnNfna4JWiubaUPQtFzdoe8XPLD6yf51jy2VCqbs
-         Qr+w==
-X-Gm-Message-State: AJIora+0YY7mqsyDqyin2Qa59XHhwP/KKuvinHyPdfFLfpNx1CDh2oNj
-        yauUyhiIfqLwAh3XnHWRC4M=
-X-Google-Smtp-Source: AGRyM1tQzZAiyZf1SK2+bmxzGqHUtXuR/IFD4oodzTgNL8yVoDtRiJHrLtpli7/2d4Kmuh+RSMayHA==
-X-Received: by 2002:a17:902:ab53:b0:16b:ecde:3dfc with SMTP id ij19-20020a170902ab5300b0016becde3dfcmr30761503plb.131.1658200051014;
-        Mon, 18 Jul 2022 20:07:31 -0700 (PDT)
-Received: from debian.moxa.com ([123.51.145.104])
-        by smtp.gmail.com with ESMTPSA id i6-20020a62c106000000b0052594a3ba89sm10096857pfg.65.2022.07.18.20.07.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 20:07:30 -0700 (PDT)
-From:   Jimmy Chen <u7702045@gmail.com>
-X-Google-Original-From: Jimmy Chen <jimmy.chen@moxa.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>
-Cc:     Jimmy Chen <jimmy.chen@moxa.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] dt-bindings: arm: fsl: Add Moxa UC8210/8220 series
-Date:   Tue, 19 Jul 2022 11:07:16 +0800
-Message-Id: <20220719030718.28826-2-jimmy.chen@moxa.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20220719030718.28826-1-jimmy.chen@moxa.com>
-References: <20220719030718.28826-1-jimmy.chen@moxa.com>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1658203637; x=1689739637;
+  h=message-id:date:mime-version:subject:from:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=jU56txNrlLvbYZzZ6gj0i6vcpYygudkLhnYlO1eIeYw=;
+  b=PVEn2N6NhanL20A8FTCfn+OaN8DHZGIE4JEY9hy+2O37VBe19HPk5XS+
+   s74j7Q0vVBcYn52sX1UVl3Ah2Y3hA6cF2hAYuV6+I2cEih8LLoWZnnckt
+   WlAQVhg/bgNwVquaByonXU04FHGmAZKWxkOFgLIzN1TpgD9zlFPsJbMgP
+   0=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 18 Jul 2022 21:07:17 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2022 21:07:17 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 18 Jul 2022 21:07:16 -0700
+Received: from [10.216.42.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 18 Jul
+ 2022 21:07:10 -0700
+Message-ID: <e4dcdd8d-18a9-8da3-7ac3-6cc792139f70@quicinc.com>
+Date:   Tue, 19 Jul 2022 09:37:05 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [Freedreno] [PATCH v2 5/7] arm64: dts: qcom: sc7280: Update gpu
+ register list
+Content-Language: en-US
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+To:     Doug Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Taniya Das <quic_tdas@quicinc.com>, <quic_rjendra@quicinc.com>
+CC:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <1657346375-1461-1-git-send-email-quic_akhilpo@quicinc.com>
+ <20220709112837.v2.5.I7291c830ace04fce07e6bd95a11de4ba91410f7b@changeid>
+ <CAD=FV=XzvcjS51q78BZ=FPCEVUDMD+VKJ70ksCm5V4qwHN_wRg@mail.gmail.com>
+ <c022538d-c616-8f1a-e1c2-c11b5f0de670@quicinc.com>
+In-Reply-To: <c022538d-c616-8f1a-e1c2-c11b5f0de670@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT compatible string for Moxa UC8210/8220 i.MX7D board.
+On 7/14/2022 11:10 AM, Akhil P Oommen wrote:
+> On 7/12/2022 4:57 AM, Doug Anderson wrote:
+>> Hi,
+>>
+>> On Fri, Jul 8, 2022 at 11:00 PM Akhil P Oommen 
+>> <quic_akhilpo@quicinc.com> wrote:
+>>> Update gpu register array with gpucc memory region.
+>>>
+>>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>>> ---
+>>>
+>>> (no changes since v1)
+>>>
+>>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++--
+>>>   1 file changed, 4 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> index e66fc67..defdb25 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> @@ -2228,10 +2228,12 @@
+>>>                          compatible = "qcom,adreno-635.0", 
+>>> "qcom,adreno";
+>>>                          reg = <0 0x03d00000 0 0x40000>,
+>>>                                <0 0x03d9e000 0 0x1000>,
+>>> -                             <0 0x03d61000 0 0x800>;
+>>> +                             <0 0x03d61000 0 0x800>,
+>>> +                             <0 0x03d90000 0 0x2000>;
+>>>                          reg-names = "kgsl_3d0_reg_memory",
+>>>                                      "cx_mem",
+>>> -                                   "cx_dbgc";
+>>> +                                   "cx_dbgc",
+>>> +                                   "gpucc";
+>> This doesn't seem right. Shouldn't you be coordinating with the
+>> existing gpucc instead of reaching into its registers?
+>>
+>> -Doug
+> IIUC, qcom gdsc driver doesn't ensure hardware is collapsed since they 
+> are vote-able switches. Ideally, we should ensure that the hw has 
+> collapsed for gpu recovery because there could be transient votes from 
+> other subsystems like hypervisor using their vote register.
+> 
+> I am not sure how complex the plumbing to gpucc driver would be to allow 
+> gpu driver to check hw status. OTOH, with this patch, gpu driver does a 
+> read operation on a gpucc register which is in always-on domain. That 
+> means we don't need to vote any resource to access this register.
+> 
+> Stephen/Rajendra/Taniya, any suggestion?
+> 
+> -Akhil.
+> 
+> 
+Gentle ping.
 
-Signed-off-by: Jimmy Chen <jimmy.chen@moxa.com>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index ef524378d449..fd26b93b4388 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -756,6 +756,8 @@ properties:
-               - fsl,imx7d-sdb-reva        # i.MX7 SabreSD Rev-A Board
-               - kam,imx7d-flex-concentrator       # Kamstrup OMNIA Flex Concentrator
-               - kam,imx7d-flex-concentrator-mfg   # Kamstrup OMNIA Flex Concentrator in manufacturing mode
-+              - moxa,uc-8210              # MOXA UC-8210 board
-+              - moxa,uc-8220              # MOXA UC-8220 board
-               - novtech,imx7d-meerkat96   # i.MX7 Meerkat96 Board
-               - remarkable,imx7d-remarkable2  # i.MX7D ReMarkable 2 E-Ink Tablet
-               - storopack,imx7d-smegw01       # Storopack i.MX7D SMEGW01
--- 
-2.20.1
+-Akhil
 
