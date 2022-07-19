@@ -2,62 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 229DE57A7DC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 22:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AD0F57A806
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 22:08:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240177AbiGSUAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 16:00:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44712 "EHLO
+        id S240079AbiGSUIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 16:08:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240196AbiGST76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 15:59:58 -0400
+        with ESMTP id S240032AbiGSUIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 16:08:32 -0400
 Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B611760507;
-        Tue, 19 Jul 2022 12:59:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CEAB2E9E9;
+        Tue, 19 Jul 2022 13:08:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1658260780; x=1689796780;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=12QZEh3TZoEV6JwFURckp8JLCMGijDlJVCRZdBkz9d0=;
-  b=iBDtDX66txv2H2AhxtrYmv620y18PNANcXsh6NmgtUovp+/vy6yb9Ayb
-   0U30v9pUimjLiZskZzRqhyU8u8EQo6Q2Jlpe4+Zqhy+RUuI8mL1qx2pXm
-   ONouHz3s8QY8lPj/zqx+KAceTT1ZgPeMna9gxQ+d1ymDmOb+mUMak3RQJ
-   hmfH3cfXxDSnSwR+uUTs9afeNfANBEJpU7UjpaC20TVrrLxzHs23R3tBx
-   804aUx8vHrZfUNTF0evajGJ8V6/LPBV+fGDFSs5/jDv9LVeKp1m4l1+pq
-   R+6VgSakA/QFOG7p2FH1gA3MQElGLr7/C1cUVgJUcAZcowUYqI8UinOg2
+  t=1658261312; x=1689797312;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=H4Em/iwwd25hKva9PCNGk5oU/inwRkCYwVBNUE0lh9A=;
+  b=uy3pG49f6vt7iHq5PUNIVD0LgEt+LhbyC1+B37S74OsaeAVy1AJi47dc
+   681dKygv6Gt3Mv9un5e6ST5i4UVOhq3LRORLKoPJxA91PKQK4Dl0kabg1
+   zfcmprJ79xaDNHRZlxzb03oatHNpdt5betfKO5jYqjUIvwML4Wi8Xiq/T
+   OAOyuK+8FDKcYvIIbgl3v1+aJhZg8X5uXbO4IvRfXv8X9/Z8iVcSJLB4r
+   c4zxVQ6Q26mF2uV+CJ3E9rYcOf9IC137QbIu9zzD4YZqr5pMqNDwaZYK+
+   yyUcFOV36MnL27m5ZgMcUJjKIHRLD9zshl/OYwZBaBvyM5P1mCCEVBl3f
    Q==;
 X-IronPort-AV: E=Sophos;i="5.92,285,1650956400"; 
-   d="scan'208";a="168592447"
+   d="scan'208";a="165488397"
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Jul 2022 12:59:39 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Jul 2022 13:08:31 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 19 Jul 2022 12:59:39 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Tue, 19 Jul 2022 12:59:38 -0700
-Date:   Tue, 19 Jul 2022 22:03:45 +0200
-From:   Horatiu Vultur - M31836 <Horatiu.Vultur@microchip.com>
-To:     Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>,
-        UNGLinuxDriver <UNGLinuxDriver@microchip.com>,
-        "maxime.chevallier@bootlin.com" <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH 3/3] ARM: dts: lan966x: Enable network driver on pcb8291
-Message-ID: <20220719200345.pr3gkljjae52vnqw@soft-dev3-1.localhost>
-References: <20220718212921.1506984-1-horatiu.vultur@microchip.com>
- <20220718212921.1506984-4-horatiu.vultur@microchip.com>
- <cfbe269b-998d-018a-2de9-824ef309301e@microchip.com>
+ 15.1.2375.17; Tue, 19 Jul 2022 13:08:29 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Tue, 19 Jul 2022 13:08:27 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <claudiu.beznea@microchip.com>, <nicolas.ferre@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <maxime.chevallier@bootlin.com>,
+        "Horatiu Vultur" <horatiu.vultur@microchip.com>
+Subject: [PATCH v2 0/3] ARM: dts: lan966x: Extend pcb8291
+Date:   Tue, 19 Jul 2022 22:11:55 +0200
+Message-ID: <20220719201158.1696168-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <cfbe269b-998d-018a-2de9-824ef309301e@microchip.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -67,81 +60,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 07/19/2022 07:58, Claudiu Beznea - M18063 wrote:
-> On 19.07.2022 00:29, Horatiu Vultur wrote:
-> > The pcb8291 has 2 ports that are connected to the internal ports of the
-> > switch. Enable them in DT.
-> > 
-> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > ---
-> >  arch/arm/boot/dts/lan966x-pcb8291.dts | 35 +++++++++++++++++++++++++++
-> >  1 file changed, 35 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts b/arch/arm/boot/dts/lan966x-pcb8291.dts
-> > index 2cb532aa33f0..d890e6fcdbae 100644
-> > --- a/arch/arm/boot/dts/lan966x-pcb8291.dts
-> > +++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
-> > @@ -4,6 +4,7 @@
-> >   */
-> >  /dts-v1/;
-> >  #include "lan966x.dtsi"
-> > +#include "dt-bindings/phy/phy-lan966x-serdes.h"
-> >  
-> >  / {
-> >  	model = "Microchip EVB - LAN9662";
-> > @@ -32,6 +33,40 @@ fc3_b_pins: fc3-b-pins {
-> >  	};
-> >  };
-> >  
-> > +&mdio1 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&phy0 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&phy1 {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&switch {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&serdes {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&port0 {
-> > +	status = "okay";
-> > +	phy-handle = <&phy0>;
-> > +	phy-mode = "gmii";
-> > +	phys = <&serdes 0 CU(0)>;
-> > +};
-> > +
-> > +&port1 {
-> > +	status = "okay";
-> > +	phy-handle = <&phy1>;
-> > +	phy-mode = "gmii";
-> > +	phys = <&serdes 1 CU(1)>;
-> > +};
-> > +
-> 
-> Although gpio node is not places where it should be we tend to keep all the
-> nodes sorted alphabetically. Could you place follow this rule for these new
-> nodes?
+Extend pcb8291 with different features like, add support to reset the board
+using GPIO and add network support.
 
-Yes, I will update in the next version.
+v1->v2:
+- instead of removing the can0 node, just disable and add a comment
+- reorder the nodes to be alphabetical
 
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> >  &flx3 {
-> >  	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
-> >  	status = "okay";
-> 
+Horatiu Vultur (3):
+  ARM: dts: lan966x: Add gpio-restart
+  ARM: dts: lan966x: Disable can0 on pcb8291
+  ARM: dts: lan966x: Enable network driver on pcb8291
+
+ arch/arm/boot/dts/lan966x-pcb8291.dts | 43 ++++++++++++++++++++++++++-
+ 1 file changed, 42 insertions(+), 1 deletion(-)
 
 -- 
-/Horatiu
+2.33.0
+
