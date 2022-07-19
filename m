@@ -2,140 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B43B9579590
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2EE657959E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 10:54:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237053AbiGSIvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 04:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
+        id S237138AbiGSIy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 04:54:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235935AbiGSIvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:51:09 -0400
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCF5260EF;
-        Tue, 19 Jul 2022 01:51:08 -0700 (PDT)
-Received: by mail-qv1-xf2e.google.com with SMTP id m10so6692492qvu.4;
-        Tue, 19 Jul 2022 01:51:08 -0700 (PDT)
+        with ESMTP id S237134AbiGSIyY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 04:54:24 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5009110561
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:54:22 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id bf9so23567149lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 01:54:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :content-transfer-encoding:user-agent:mime-version;
-        bh=E6lM1chF28a0Zk3AHgaEtJ0vFiuldQCbVsy6yH3hEqc=;
-        b=UmZrt4bq2Pq1GzNsMdv30nN312q78u9rNLLL46w2mAv3oeKz29rRNkzuFKzea1NthY
-         DuyxnvXn2RwZ+RR+bWGOdp2ZZgu6EWkX+jzOhudklQIbP7Tx4Fa8ZZFcfS/DvKcPjVDH
-         grK1cYnCkW+xFFfx5/KlSMPz2GLH0KbKilzSSZSTfh1eXI7yyRqvokWn0jqZQqbq10Fl
-         K+4QRRkaKJq695sQbSKUecegLs/0pwI8v2gpuOH/XH2pSHGzhtqB+vt0FaQUPIK1XE85
-         nQhbbl1cRjjNS+4EeaKyZJeLAUVFhoEXD6EiINZyiZ1NzV0LIFsxm+EhcE7+HF4LjmKb
-         NRFA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vu4stz+fuSmOp6sGp1lfY6dqmQDUvzlEQelIzH953Ro=;
+        b=P9E2ibieMmjblioAaNzzru0QVhTGyyQlrkU0ErbnMhxlO7/Nx0VWrzSI4dDIEvCZ9B
+         dNUtA5+oamIzNU9PkPTd/+A6TeBB/FT7RoYrEADv028nATxe18auEloI2MLAlE7w+iE5
+         t1seI8pRN3aUvJfjSUj1Lr5MowtRV4rwL4qDUt6INm4THmRFZzZsHPFs8/L+MRUE1f5m
+         bZUZ3kndy5JCq3FdiYwxJsKV1qxBtdXcLHSpoU9rItXRZQ3wsQ1gKhr8RDEFcosMhq9A
+         Mr3lJ7RA7UMgjC7qVOBzfk6qlIzGCxwLmsqZFCQgAMjpufa8uRQBHioVmTpKJNFLO37b
+         0Lng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:content-transfer-encoding:user-agent:mime-version;
-        bh=E6lM1chF28a0Zk3AHgaEtJ0vFiuldQCbVsy6yH3hEqc=;
-        b=QgxB53yV8W3ZjjfDzN6RtbiquekCeHS+1IN95jQBsXMer5sn0remrdHhPaGdqZWT5D
-         CcXg89qjpl/MJCyAKSH8PIry2hq0boVqNvrUfZZpMgzq5fL2CU3TD5j6bjnn5xGNw5mn
-         UbKqbS3okWnhaz5CjV3k1zP2gRyw4sdIBaO/SJH4O5QJU+88+SFdJItzwdCCB0LNOKse
-         N3KSruObZCcPQPfyV2ft7eAacoJm71kxyqjv4JpT331H00DjmFRdzIDWJa8PY5GOtHMP
-         t54/xg5Cg//HUmVjOALV/TmEAUItr+UxjYUlwU5/Ll9NnKMgxYnRAAx3/o36SUs+udsP
-         VpUg==
-X-Gm-Message-State: AJIora9xzZYaiRJEfq3h19jS7VuSDaNlNB85UKgMiHpL2024/H2UDSzw
-        4JBp9y3s/JOKlei/Xr9Jubc=
-X-Google-Smtp-Source: AGRyM1u+49dGx2fFB4Gtqc/9zoYMu2f8ZbfFh6pDAAzYJZyrrVb+ekA4umc1NfD/jFy0R7d3Ov4TqQ==
-X-Received: by 2002:a05:6214:246f:b0:473:4eba:93fb with SMTP id im15-20020a056214246f00b004734eba93fbmr23273971qvb.15.1658220667907;
-        Tue, 19 Jul 2022 01:51:07 -0700 (PDT)
-Received: from p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de (p200300f6ef036f005de6a4d0d791ed01.dip0.t-ipconnect.de. [2003:f6:ef03:6f00:5de6:a4d0:d791:ed01])
-        by smtp.gmail.com with ESMTPSA id w18-20020a05620a0e9200b006b5ed1eccc5sm4375957qkm.44.2022.07.19.01.51.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jul 2022 01:51:07 -0700 (PDT)
-Message-ID: <14af555c630654d0a780dc3bf9ecca6f29dcf61a.camel@gmail.com>
-Subject: Re: [PATCH 0/4] add support for bias pull-disable
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 19 Jul 2022 10:52:09 +0200
-In-Reply-To: <CAMRc=Mf1w7DCGMAku0wPHAhTtDWoWkWOfvxkx=_b1pKp8U8yOg@mail.gmail.com>
-References: <20220713131421.1527179-1-nuno.sa@analog.com>
-         <CAMRc=Mf1w7DCGMAku0wPHAhTtDWoWkWOfvxkx=_b1pKp8U8yOg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.3 
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vu4stz+fuSmOp6sGp1lfY6dqmQDUvzlEQelIzH953Ro=;
+        b=BoEK/aYp2PJq1/zimPdVe3FT4kWcu8lqPVCkpSqXaTrnSih4j9dQoXlVRWKXwPtiFq
+         4XsrPbjwTMClwlRSTUVzD/keu0uxviGFH0VYIaFOlAjK3kxXLZK/wohY7nJOa3cpNpgS
+         h+HObkwyUXaNLOHWp2N9XBlojl/vzmaGTLQtgdj4uqKgcPGQRm4yIpZWVTODFgKG6qHC
+         FX75qBf4Oj0Sy/UyiqHbrtjw1exWlwkJWcc4H0Q3dAur1KFFXSx8QBiw3v2yNmBxx6w+
+         Z8JR+Gov7zxksW14/iujjs7FqIWrl9PlMqaE77GyXyMrgm9yk4UPlR471//QUBRrv6qn
+         fe1g==
+X-Gm-Message-State: AJIora/qrZVNWSqWiyeMHQLsh00TEqo3tR3L/A2rL15r+sGzksW2sJGQ
+        YjJ7Tm+yqLyQlQ4Af7AsvNwdD3m/MOIZ/N8xaHqZcw==
+X-Google-Smtp-Source: AGRyM1vFdxdlH3EwO+KJoXeD1iS3DW2TuNEoZO2UxCep3BkFyKW9KlKVEOa46vx5VNh3yc3NX7zivQIrQil4nKWlyZk=
+X-Received: by 2002:a05:6512:2522:b0:489:daa9:467 with SMTP id
+ be34-20020a056512252200b00489daa90467mr17398085lfb.71.1658220860631; Tue, 19
+ Jul 2022 01:54:20 -0700 (PDT)
 MIME-Version: 1.0
+References: <20220718210302.674897-1-martin.kepplinger@puri.sm>
+In-Reply-To: <20220718210302.674897-1-martin.kepplinger@puri.sm>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 19 Jul 2022 10:53:44 +0200
+Message-ID: <CAPDyKFrkwKrvEsPHjfXUhGPcRg8z7J4OkOKq8KDp_0xj78Gudg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] power: domain: handle power supplies that need interrupts
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     rafael@kernel.org, khilman@kernel.org, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz,
+        kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
+        l.stach@pengutronix.de, aford173@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-07-19 at 10:25 +0200, Bartosz Golaszewski wrote:
-> On Wed, Jul 13, 2022 at 3:13 PM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
-> >=20
-> > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
-> > calling the
-> > gpiochip 'set_config()' hook. However, AFAICT, there's no way that
-> > this
-> > flag is set because there's no support for it in firwmare code.
-> > Moreover,
-> > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
-> > being
-> > handled.
-> >=20
-> > On top of this, there are some users that are looking at
-> > 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So, unless
-> > I'm
-> > missing something, it looks like this was never working for these
-> > chips.
-> >=20
-> > Note that the ACPI case is only compiled tested. At first glance,
-> > it seems
-> > the current patch is enough but i'm not really sure...
-> >=20
-> > As a side note, this came to my attention during this patchset [1]
-> > (and, ofr OF,=C2=A0 was tested with it).
-> >=20
-> > [1]:
-> > https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@anal=
-og.com/
-> >=20
-> > Nuno S=C3=A1 (4):
-> > =C2=A0 gpiolib: add support for bias pull disable
-> > =C2=A0 gpiolib: of: support bias pull disable
-> > =C2=A0 gpiolib: acpi: support bias pull disable
-> > =C2=A0 dt-bindings: gpio: add pull-disable flag
-> >=20
-> > =C2=A0drivers/gpio/gpiolib-acpi.c=C2=A0=C2=A0=C2=A0=C2=A0 | 3 +++
-> > =C2=A0drivers/gpio/gpiolib-of.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 7=
- +++++++
-> > =C2=A0drivers/gpio/gpiolib.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 8 ++++++--
-> > =C2=A0include/dt-bindings/gpio/gpio.h | 3 +++
-> > =C2=A0include/linux/gpio/machine.h=C2=A0=C2=A0=C2=A0 | 1 +
-> > =C2=A0include/linux/of_gpio.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 1 +
-> > =C2=A06 files changed, 21 insertions(+), 2 deletions(-)
-> >=20
-> > --
-> > 2.37.0
-> >=20
->=20
-> Series applied, thanks!
+On Mon, 18 Jul 2022 at 23:04, Martin Kepplinger
+<martin.kepplinger@puri.sm> wrote:
+>
+> If the power-domains' power-supply node (regulator) needs
+> interrupts to work, the current setup with noirq callbacks cannot
+> work; for example a pmic regulator on i2c, when suspending, usually already
+> times out during suspend_noirq:
+>
+> [   41.024193] buck4: failed to disable: -ETIMEDOUT
+>
+> So fix system suspend and resume for these power-domains by using the
+> "outer" suspend/resume callbacks instead. Tested on the imx8mq-librem5 board,
+> but by looking at the dts, this will fix imx8mq-evk and possibly other boards
+> too.
+>
+> Possibly one can find more changes than suspend/resume for this case. They
+> can be added later when testing them: This is designed so that genpd
+> providers just say "this power-supply" needs interrupts - without implying
+> what exactly should be configured in genpd.
+>
+> Initially system suspend problems had been discussed at
+> https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
+> which led to discussing the pmic that contains the regulators which
+> serve as power-domain power-supplies:
+> https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
+>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>
+> revision history
+> ----------------
+> v3: (thank you Ulf)
+> * move DT parsing to gpcv2 and create a genpd flag that gets set
+>
+> v2: (thank you Krzysztof)
+> * rewrite: find possible regulators' interrupts property in parents
+>   instead of inventing a new property.
+> https://lore.kernel.org/linux-arm-kernel/20220712121832.3659769-1-martin.kepplinger@puri.sm/
+>
+> v1: (initial idea)
+> https://lore.kernel.org/linux-arm-kernel/20220711094549.3445566-1-martin.kepplinger@puri.sm/T/#t
+>
+>
+>  drivers/base/power/domain.c | 19 +++++++++++++++++++
+>  drivers/soc/imx/gpcv2.c     |  9 +++++++++
+>  include/linux/pm_domain.h   |  6 ++++++
+>  3 files changed, 34 insertions(+)
+>
+> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+> index 739e52cd4aba..1437476c9086 100644
+> --- a/drivers/base/power/domain.c
+> +++ b/drivers/base/power/domain.c
+> @@ -130,6 +130,7 @@ static const struct genpd_lock_ops genpd_spin_ops = {
+>  #define genpd_is_active_wakeup(genpd)  (genpd->flags & GENPD_FLAG_ACTIVE_WAKEUP)
+>  #define genpd_is_cpu_domain(genpd)     (genpd->flags & GENPD_FLAG_CPU_DOMAIN)
+>  #define genpd_is_rpm_always_on(genpd)  (genpd->flags & GENPD_FLAG_RPM_ALWAYS_ON)
+> +#define genpd_ps_needs_irq(genpd)      (genpd->flags & GENPD_FLAG_IRQ_POWER_SUPPLY)
+>
+>  static inline bool irq_safe_dev_in_sleep_domain(struct device *dev,
+>                 const struct generic_pm_domain *genpd)
+> @@ -2298,6 +2299,20 @@ static bool genpd_present(const struct generic_pm_domain *genpd)
+>         return ret;
+>  }
+>
+> +/**
+> + * of_genpd_get_power_supply_irq() - Adjust if power-supply needs interrupts
+> + * @genpd: Pointer to PM domain associated with the PM domain provider.
+> + */
+> +static void of_genpd_config_power_supply_irq(struct generic_pm_domain *pd)
 
-Hi Bart,=20
+This isn't an "of" function. Moreover, I think we just skip the
+function all together and have the code in pm_genpd_init() instead.
 
-I was actually planning to spin a v2 with your suggestion for the
-naming of the new define... Did you changed it while applying or should
-I still send it? Or (last option), we just leave it like this :)?
+> +{
+> +       if (genpd_ps_needs_irq(pd)) {
+> +               pd->domain.ops.suspend = genpd_suspend_noirq;
+> +               pd->domain.ops.resume = genpd_resume_noirq;
+> +               pd->domain.ops.suspend_noirq = NULL;
+> +               pd->domain.ops.resume_noirq = NULL;
+> +       }
+> +}
+> +
+>  /**
+>   * of_genpd_add_provider_simple() - Register a simple PM domain provider
+>   * @np: Device node pointer associated with the PM domain provider.
+> @@ -2343,6 +2358,8 @@ int of_genpd_add_provider_simple(struct device_node *np,
+>         genpd->provider = &np->fwnode;
+>         genpd->has_provider = true;
+>
+> +       of_genpd_config_power_supply_irq(genpd);
 
-- Nuno S=C3=A1
+Drop this. As stated above, I think the code belongs in pm_genpd_init().
+
+> +
+>         return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(of_genpd_add_provider_simple);
+> @@ -2394,6 +2411,8 @@ int of_genpd_add_provider_onecell(struct device_node *np,
+>
+>                 genpd->provider = &np->fwnode;
+>                 genpd->has_provider = true;
+> +
+> +               of_genpd_config_power_supply_irq(genpd);
+
+Ditto.
+
+>         }
+>
+>         ret = genpd_add_provider(np, data->xlate, data);
+> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> index 85aa86e1338a..3a22bad07534 100644
+> --- a/drivers/soc/imx/gpcv2.c
+> +++ b/drivers/soc/imx/gpcv2.c
+> @@ -1303,6 +1303,7 @@ static const struct imx_pgc_domain_data imx8mn_pgc_domain_data = {
+>  static int imx_pgc_domain_probe(struct platform_device *pdev)
+>  {
+>         struct imx_pgc_domain *domain = pdev->dev.platform_data;
+> +       struct device_node *dn;
+>         int ret;
+>
+>         domain->dev = &pdev->dev;
+> @@ -1333,6 +1334,14 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+>                 regmap_update_bits(domain->regmap, domain->regs->map,
+>                                    domain->bits.map, domain->bits.map);
+>
+> +       dn = of_parse_phandle(domain->dev->of_node, "power-supply", 0);
+> +       if (dn) {
+> +               while ((dn = of_get_next_parent(dn))) {
+> +                       if (of_get_property(dn, "interrupts", NULL))
+> +                               domain->genpd.flags |= GENPD_FLAG_IRQ_POWER_SUPPLY;
+> +               }
+> +       }
+> +
+>         ret = pm_genpd_init(&domain->genpd, NULL, true);
+>         if (ret) {
+>                 dev_err(domain->dev, "Failed to init power domain\n");
+> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+> index ebc351698090..bcceaf376f36 100644
+> --- a/include/linux/pm_domain.h
+> +++ b/include/linux/pm_domain.h
+> @@ -60,6 +60,11 @@
+>   * GENPD_FLAG_MIN_RESIDENCY:   Enable the genpd governor to consider its
+>   *                             components' next wakeup when determining the
+>   *                             optimal idle state.
+> + *
+> + * GENPD_FLAG_IRQ_POWER_SUPPLY:        The power-domains' power-supply (regulator)
+> + *                             needs interrupts to work. Adjust accordingly.
+> + *                             Use the outer suspend/resume callbacks instead
+> + *                             of noirq for example.
+
+I prefer a more generic name. How about GENPD_FLAG_IRQ_ON.
+
+For the description, I would rather state that the genpd needs irqs to
+stay on to be able to manage power on/off. Or something along those
+lines.
+
+>   */
+>  #define GENPD_FLAG_PM_CLK       (1U << 0)
+>  #define GENPD_FLAG_IRQ_SAFE     (1U << 1)
+> @@ -68,6 +73,7 @@
+>  #define GENPD_FLAG_CPU_DOMAIN   (1U << 4)
+>  #define GENPD_FLAG_RPM_ALWAYS_ON (1U << 5)
+>  #define GENPD_FLAG_MIN_RESIDENCY (1U << 6)
+> +#define GENPD_FLAG_IRQ_POWER_SUPPLY (1U << 7)
+>
+>  enum gpd_status {
+>         GENPD_STATE_ON = 0,     /* PM domain is on */
+> --
+> 2.30.2
+>
+
+BTW, a more generic question. If you move away from using the *noirq
+callbacks to the other suspend/resume callbacks in genpd to solve this
+problem, that requires all devices that is attached to the PM domain
+(genpd) to also *not* be managed with the "late/early" or the "noirq"
+callbacks too. In other case, we may power off the PM domain while
+some devices may still rely on it to be on.
+
+Are you sure that this is the case?
+
+Kind regards
+Uffe
