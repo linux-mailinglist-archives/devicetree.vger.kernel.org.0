@@ -2,137 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A91E5794AB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 09:57:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EED55794B0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 09:57:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235352AbiGSH5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 03:57:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46032 "EHLO
+        id S237047AbiGSH5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 03:57:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233249AbiGSH5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 03:57:17 -0400
-Received: from mailrelay1-1.pub.mailoutpod1-cph3.one.com (mailrelay1-1.pub.mailoutpod1-cph3.one.com [46.30.210.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE08C24F31
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 00:57:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=2cIAQ8Q87Su0xZjwFvxWnDl7yaVEuz+orMsRxOWQtYs=;
-        b=A9TzvSRl9qa2gKDkZ7WTu/eJU9KIqJ4YckBWNGrnnbkd0WWETmYLn9/hpUxq2tLMoNWw0zf4yZDRw
-         gnZIpUFk57ynNZw2Qj5ydTQfpDrwEgKj2xndN9bWGfd76nHAL9C1olbZblsWM3qVXBIcJaFhXrwCZP
-         TP+BgeLM3xL09ajysK1R1okSt96o6C/jbdd4Zmxn//yk7c7AB9M17lsfRXLtrmTY+JzHgHlkwxSahH
-         KVKyfbdAnNz4j3ueJuzPHXwxdh1l8sTdOKWSc9kf8stZN0T7TPaQKw/G2vd35xXaa5MLDDfL6FYkB5
-         8MkwwssYPsQquP+qoV7ETWXW418du/Q==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=2cIAQ8Q87Su0xZjwFvxWnDl7yaVEuz+orMsRxOWQtYs=;
-        b=Ckq/4EfNAN8crPZdNPERFvfDyFnaOOKE8TbiBV33dgGS410bjTk0YIy/DNH+aJ+P2sHF0MpiOAfNw
-         v3EpcsTCA==
-X-HalOne-Cookie: 45e94343b7d45f836c1765849a42fe61463e522e
-X-HalOne-ID: 65e9548c-0738-11ed-a6c8-d0431ea8a283
-Received: from mailproxy1.cst.dirpod3-cph3.one.com (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay1.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-        id 65e9548c-0738-11ed-a6c8-d0431ea8a283;
-        Tue, 19 Jul 2022 07:57:13 +0000 (UTC)
-Date:   Tue, 19 Jul 2022 09:57:11 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Caleb Connolly <caleb@connolly.tech>
-Cc:     devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-arm-msm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        dri-devel@lists.freedesktop.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        phone-devel@vger.kernel.org,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 3/4] dt-bindings: panel: Add LG SW43408 MIPI-DSI panel
-Message-ID: <YtZj1yV3blLOJH62@ravnborg.org>
-References: <20220718213051.1475108-1-caleb@connolly.tech>
- <20220718213051.1475108-4-caleb@connolly.tech>
- <YtZKylMu4jEa/oDp@ravnborg.org>
+        with ESMTP id S236498AbiGSH5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 03:57:48 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F0FE31DDE;
+        Tue, 19 Jul 2022 00:57:48 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id F22E366019EC;
+        Tue, 19 Jul 2022 08:57:45 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658217466;
+        bh=nji9qQO/Fe2O7nOAQY8VO3ZafgMoj4sz1HhYEJVZAdc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ix8B24hH/TZI+YEepZqG05xijSJuRWOhrlSEX0WY4I3lJdsjFh1eEHKyftYjvPiPB
+         /6Yu9riUXYes7hcmonRoEMV7YX2CMSP4YLVsy8pqWs7EagsVHAKd7G+lrV3n1SX9tr
+         DRZFEuvuYYro2MpOuWRYPPfHCxo/fklVffK8hgTrgpQZtih7zTSgbkH28aEbWtSuEf
+         6Yz3pAXouf3ILg8LN1P331ibvFHYAJZpBljZnCfFlDritTt+mKhf9OGutCAu5nLxrz
+         YBoeRUTkSkS2K9QQa14SLvasvprvi/mhzBmMylNg6TP668V92PDkG88XCd4UcfCFEO
+         ovDLCLcCoa2vA==
+Message-ID: <26dc9eac-752d-4357-a793-be16554dcff6@collabora.com>
+Date:   Tue, 19 Jul 2022 09:57:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YtZKylMu4jEa/oDp@ravnborg.org>
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,URIBL_BLACK autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/3] dt-bindings: power: mediatek: Update example to use
+ phandle to syscon
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        chun-jie.chen@mediatek.com, weiyi.lu@mediatek.com,
+        mbrugger@suse.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, kernel@collabora.com,
+        nfraprado@collabora.com
+References: <20220711122503.286743-1-angelogioacchino.delregno@collabora.com>
+ <20220711122503.286743-3-angelogioacchino.delregno@collabora.com>
+ <20220718180654.GA3260460-robh@kernel.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220718180654.GA3260460-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Caleb,
-
-On Tue, Jul 19, 2022 at 08:10:18AM +0200, Sam Ravnborg wrote:
-> Hi Caleb,
+Il 18/07/22 20:06, Rob Herring ha scritto:
+> On Mon, Jul 11, 2022 at 02:25:02PM +0200, AngeloGioacchino Del Regno wrote:
+>> The preferred way of declaring this node is by using a phandle to
+>> syscon: update the example to reflect that.
 > 
-> On Mon, Jul 18, 2022 at 10:30:50PM +0100, Caleb Connolly wrote:
-> > From: Sumit Semwal <sumit.semwal@linaro.org>
-> > 
-> > LG SW43408 is 1080x2160, 4-lane MIPI-DSI panel.
-> A few things to improve to this binding.
+> Preferred by who? Not me.
+>   
+> What problem are you trying to solve? Better be a good reason for
+> breaking compatibility.
 > 
-> 	Sam
-> > 
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-> > [caleb: convert to yaml]
-> > Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> > ---
-> >  .../bindings/display/panel/lg,43408.yaml      | 41 +++++++++++++++++++
-> >  .../display/panel/panel-simple-dsi.yaml       |  2 +
-> >  2 files changed, 43 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/lg,43408.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/panel/lg,43408.yaml b/Documentation/devicetree/bindings/display/panel/lg,43408.yaml
-> > new file mode 100644
-> > index 000000000000..0529a3aa2692
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/lg,43408.yaml
-> > @@ -0,0 +1,41 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: LG SW43408 1080x2160 DSI panel
-> > +
-> > +maintainers:
-> > +  - Caleb Connolly <caleb@connolly.tech>
-> > +
-> > +description: |
-> > +  This panel is used on the Pixel 3, it is a 60hz OLED panel which
-> > +  required DSC (Display Stream Compression) and has rounded corners.
-> > +
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: lg,sw43408
-> > +
-> > +  vddi-supply: true
-> > +  vpnl-supply: true
-> > +  reset-gpios: true
-> > +
-> > +  backlight: false
-> > +  power-supply: false
-> No need to say anything is false, this is covered by the statement below.
-> Also, the driver uses backlight, so it should be true?
-The driver do not use backlight from the DT so disregard the last
-comment.
+> 
 
-	Sam
+Hello Rob,
+
+I've produced this series after a misunderstanding with Krzysztof (entirely my
+bad!), then the discussion [1] went on and I'm handing it to MediaTek to resolve.
+
+Please ignore this series.
+
+
+[1]: 
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220704100028.19932-9-tinghan.shen@mediatek.com/
+
+Regards,
+Angelo
+
