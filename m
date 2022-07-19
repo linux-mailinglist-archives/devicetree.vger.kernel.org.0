@@ -2,144 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 702C2578E6E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 01:44:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F357578EB0
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 02:02:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233025AbiGRXo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 18 Jul 2022 19:44:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54388 "EHLO
+        id S235065AbiGSABB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 18 Jul 2022 20:01:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233050AbiGRXo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 19:44:28 -0400
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C7A3192D;
-        Mon, 18 Jul 2022 16:44:27 -0700 (PDT)
-Received: by mail-io1-xd2e.google.com with SMTP id p81so10630119iod.2;
-        Mon, 18 Jul 2022 16:44:27 -0700 (PDT)
+        with ESMTP id S230182AbiGSABA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 18 Jul 2022 20:01:00 -0400
+Received: from mail-oa1-x2d.google.com (mail-oa1-x2d.google.com [IPv6:2001:4860:4864:20::2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7645810A
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 17:00:59 -0700 (PDT)
+Received: by mail-oa1-x2d.google.com with SMTP id 586e51a60fabf-10c0430e27dso28208648fac.4
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 17:00:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=bTJywUAqX3j6iJePWZLrUnkk/lwpRK52+zopJgYfdMg=;
-        b=ZzrnIuDDrStWpWKXGlfYH8jwB3wRvf5cbTYA/+IqCifYOJM1S0j1Uy4vcTgCMGKwzP
-         dSHtSWqJmEUgT1q+1BeoeC97j7KFCz57ZinZS72qvtDSG7ThxZr5PCG6a2peCH8Ku0Mz
-         jjobKwUZhocDwX16bBRY5Vwp2KwxfDMxqklKpkG4SKuPlZvMsrn8WNhjFDuFsmPp86MF
-         /EjD7KB5DEsTmDMab14aecaw9FDpfISMOd2blQ+rXiPfjq03OIvDLHqVIa1YyYOus8sn
-         4/7zHja54HzEsODNv+vINWVaQ6TuFoZm7l9BMGSpYxW/zgAPcc8UrmOiAyp9UgQzkXGv
-         N7Bw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1FnYzVMiek+SlAzgVB4w6TNdP3JBRcRzdvMKcgUPF7Y=;
+        b=CYO0h1QjLiXX58sLhGBr/WMWfMcMp7XUUC3E71/2erVeeB3PEq7HzlgPmXcaqDqqB9
+         27ouDs23+xD+E8CseNTLTteZtqNesuoef3yokyaex7SFQUy/+Dii5yvhMciK+YE+k8Pr
+         zbD9yvwhtXUhPUHRUBQCpHSAXaRUDOaDjnwwrckZGwt6sZZaKeFkQd2vJErDX737FA7l
+         0W6zLgGJIGAAdqG8ifYHsCFwNoxM9nCb6+q+R5L2yfGMeaysgoWQrHRfe2v2Di6beOwO
+         Ga1tP6bc+mipfETjtiJ9SffLSCQVuXYfWfa5ya0QhVjyifEt/e1o+GaZW5Ih7haT2P/U
+         Ve3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=bTJywUAqX3j6iJePWZLrUnkk/lwpRK52+zopJgYfdMg=;
-        b=DqP8U98vd7fnolMj11hBaWXzh/S2PYnWvkGAmG/UIGv/CVI4AhsaesnQuao8JKEtBe
-         nvIK2aw04XT/35qJtiKpHu5PAEJ7UOMmWgJ7hTH2s9seslJsWmaHNG4RcAUB72IbrgMS
-         0iw2qMST+tONgKH/UDZaC3qTq9qzeNQbNQlEBB4pPPD71X/yF6cvCfKk9ykLgqTY8XdJ
-         O1KRt2GU+IEtLI6lYwy2VPcvrOQ5+U1tfy5jtS6ltTLczNlP6aATx/DrOiznHtUBUt6y
-         Nf6taAihdXts1zFkpT4yaQuAwQ6R9E4HowHbTEC1ljS47ikUCDclAAidXZ/8cRhM9fnt
-         QesQ==
-X-Gm-Message-State: AJIora8AP7BXTpGn+W1vsQfupc6T9YKDeo/Je5Q/Kxg4P7I7XtofKq34
-        hJVGC8H3jDLv0XO1vYu8HNE=
-X-Google-Smtp-Source: AGRyM1ttUhenzTJiVmVOnzL8/ifpXfD1MqX6UtPYQTK96Gt2UOwRrC6FhJ0GfovX6/AxhVd4rwNyXw==
-X-Received: by 2002:a6b:c30c:0:b0:67b:963a:c6ef with SMTP id t12-20020a6bc30c000000b0067b963ac6efmr14712469iof.137.1658187866695;
-        Mon, 18 Jul 2022 16:44:26 -0700 (PDT)
-Received: from ?IPV6:2600:1700:2442:6db0:71f7:9f7:a010:d581? ([2600:1700:2442:6db0:71f7:9f7:a010:d581])
-        by smtp.gmail.com with ESMTPSA id y2-20020a926402000000b002dc0ccc4cafsm5191201ilb.49.2022.07.18.16.44.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 18 Jul 2022 16:44:26 -0700 (PDT)
-Message-ID: <725f870b-b927-352d-85ab-675b91b7c75a@gmail.com>
-Date:   Mon, 18 Jul 2022 18:44:24 -0500
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1FnYzVMiek+SlAzgVB4w6TNdP3JBRcRzdvMKcgUPF7Y=;
+        b=T448OrJGb9kaA7toDMrd3eh9MOsV0jKbBbHo9GuDSySeHw9hbDnUcf8mgeGgDps/b9
+         SIgzn9HER6TlPvJ/SB8DWwmvR4SsNiKQ3uOJGg2f8uIyTpqjQKP+NPqreULbHNaKqkZd
+         QEmJcd1XhmlPPbKEF+jbhc5W7cq0HZ1F9oHM2zmZtSCxW/swhsRtm7dfCI/ilW6ajGUV
+         f3F+c7v+g2bl3NIGeBn3sG4DfhYU/8vQ0+gI3Ycb6OELvmXoNeTfJGlDh35AoFaYyRif
+         ep9cunBruI+kgyG05MBpOZj1PQhWkiYUphnVvQRqV3aofCmuZq9H2YU2gvQJRNVUcjwT
+         7Twg==
+X-Gm-Message-State: AJIora9DNub5P1vKCIphEEXJguWR5li/q1j+iiZ2DveIt3McbrGXVaVM
+        W6Xn2/P2AM8V7P8bmcOGAW4U2w==
+X-Google-Smtp-Source: AGRyM1s8zLIArx9kCVPBZrk37/t/2i6H01CV57jyxV4+CuXkMf6keiVbJTEX2CdHL/jrA5GmrZa2IQ==
+X-Received: by 2002:a05:6808:d4f:b0:339:afb0:ccce with SMTP id w15-20020a0568080d4f00b00339afb0cccemr14400991oik.53.1658188858777;
+        Mon, 18 Jul 2022 17:00:58 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id z15-20020a056808064f00b0033a422b39b4sm4480419oih.49.2022.07.18.17.00.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Jul 2022 17:00:58 -0700 (PDT)
+Date:   Mon, 18 Jul 2022 19:00:56 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>
+Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        dianders@chromium.org, vkoul@kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        quic_abhinavk@quicinc.com, quic_aravindh@quicinc.com,
+        quic_sbillaka@quicinc.com, quic_mkrishn@quicinc.com,
+        quic_kalyant@quicinc.coml, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dta: qcom: sc7280: delete vdda-1p2 and
+ vdda-0p9 from both dp and edp
+Message-ID: <YtX0OP2EprFRJ/wx@builder.lan>
+References: <1657556603-15024-1-git-send-email-quic_khsieh@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/1] of: overlay: rename overlay source files from .dts
- to .dtso
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Pantelis Antoniou <pantelis.antoniou@konsulko.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        Alex Marginean <alexandru.marginean@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Jason Liu <jason.hui.liu@nxp.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-pci <linux-pci@vger.kernel.org>
-References: <20220503211954.1428919-1-frowand.list@gmail.com>
- <CAMuHMdWhn8cY4usyqao-osEcSCcmkU+NYg21co+GxVfvg5+dhw@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-In-Reply-To: <CAMuHMdWhn8cY4usyqao-osEcSCcmkU+NYg21co+GxVfvg5+dhw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1657556603-15024-1-git-send-email-quic_khsieh@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/7/22 02:21, Geert Uytterhoeven wrote:
-> Hi Frank,
-> 
-> On Tue, May 3, 2022 at 11:20 PM <frowand.list@gmail.com> wrote:
->> From: Frank Rowand <frank.rowand@sony.com>
->>
->> In drivers/of/unittest-data/:
->>    - Rename .dts overlay source files to use .dtso suffix.
->>    - Add Makefile rule to build .dtbo.o assembly file from overlay
->>      .dtso source file.
->>    - Update Makefile to build .dtbo.o objects instead of .dtb.o from
->>      unittest overlay source files.
->>
->> Modify driver/of/unitest.c to use .dtbo.o based symbols instead of
->> .dtb.o
->>
->> Modify scripts/Makefile.lib %.dtbo rule to depend upon %.dtso instead
->> of %.dts
->>
->> Rename .dts overlay source files to use .dtso suffix in:
->>    arch/arm64/boot/dts/freescale/
->>    arch/arm64/boot/dts/xilinx/
->>
->> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
-> 
-> What is the status of this work?
-> Thanks!
+On Mon 11 Jul 11:23 CDT 2022, Kuogee Hsieh wrote:
 
-I'll work on this tomorrow after I test your overlay improvement patches.
+Please double check that the subject prefix matches existing changes
+next time.
 
--Frank
+Thanks,
+Bjorn
 
+> Both vdda-1p2-supply and vdda-0p9-supply regulators are controlled
+> by dp combo phy. Therefore remove them from dp controller.
 > 
-> Gr{oetje,eeting}s,
+> Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 2 --
+>  arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi     | 3 ---
+>  2 files changed, 5 deletions(-)
 > 
->                         Geert
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> index ed800817..3f8996c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
+> @@ -435,8 +435,6 @@ ap_i2c_tpm: &i2c14 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&dp_hot_plug_det>;
+>  	data-lanes = <0 1>;
+> -	vdda-1p2-supply = <&vdd_a_usbssdp_0_1p2>;
+> -	vdda-0p9-supply = <&vdd_a_usbssdp_0_core>;
+>  };
+>  
+>  &mdss_mdp {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+> index 4c25ffc..7adf31b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-qcard.dtsi
+> @@ -311,9 +311,6 @@
+>  
+>  /* NOTE: Not all Qcards have eDP connector stuffed */
+>  &mdss_edp {
+> -	vdda-0p9-supply = <&vdd_a_edp_0_0p9>;
+> -	vdda-1p2-supply = <&vdd_a_edp_0_1p2>;
+> -
+>  	aux-bus {
+>  		edp_panel: panel {
+>  			compatible = "edp-panel";
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
 > 
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-
