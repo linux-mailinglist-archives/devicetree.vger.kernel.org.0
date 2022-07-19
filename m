@@ -2,189 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 157B757A40F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 18:17:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46E5E57A43C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 18:37:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235119AbiGSQRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 12:17:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52024 "EHLO
+        id S231881AbiGSQhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 12:37:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234286AbiGSQRw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 12:17:52 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF44D4F676
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 09:17:49 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id g126so14019849pfb.3
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 09:17:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=j99v33ldlK2FlKWV4TdK79PiQjRVPI8FTWxxa1tOtzg=;
-        b=xyAHcPPkHVBNE/JfV8PykfXY21OGJO3tYb8jOvOdDWvKZ3n6FFrvFYly2ZDsyG47aq
-         LDQBdEnk2K9xm+YjB4uVZCbVDVu29dvWKW2IVRXnEiDaocXiyXdlDLMW6CXLIcz/kR81
-         nIDPKMWeMsTFjMSNMkLWDiTZTjJ3DSoEcakCVhvmMk0l5E0wQiCEkhHW8hlnI+jiVirF
-         Lx1fvZoAUDWnzq8elL8JxetYAqHgAH0KmeajbeP97UWhhZjqeGWM/KtuX9UcbStGUlXh
-         jEJVuSnIxIC7xB+ZC8a2XzNp/qRUdWGjoM19E5dj5SUjYXEOig0vb5TgH4ajeON2SD6q
-         8cQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=j99v33ldlK2FlKWV4TdK79PiQjRVPI8FTWxxa1tOtzg=;
-        b=bqC/nP2dP4LsdhYmZP6zWCWmVGnTU+c468w6KrFH78Uu9qyCF1LHE3L7Awforzgfw1
-         LabxKOZNcLCVirn09Xf7UcRLCuven0VucIVUMHRNjQ21EEJqnDYpLd95Odbm4cprl1Gh
-         fYNm5oGqL1JN9YI3GZLSohrGyIXk026idU0LZhVtl9a9Aao9o+21wayuFfXEGNFQj8GZ
-         yAZ1x2y5fbKGA6G24Dqo5HCLU2/9A9+PjNQqm3CwCv5FsabvLkiSBMyrRuI6rWgsKS5h
-         t0gUvt68BuuxrfiCcHVr+GRxLqLVx3Q1Vfc0GW5+o47Ud3rRmouG/Q7rofwZWz83aRC0
-         Z9Fg==
-X-Gm-Message-State: AJIora90uFyXB/CCr/v6dOW6j+HtBmk0ZLWWEnMdHWwFU+MMY0jKtdP7
-        qIuqY4CKQ6pqo/qgmiIPbv8+Uw==
-X-Google-Smtp-Source: AGRyM1uDNXtAFgSgT5rk5Rv6dIC3uv0YhISGtimtbCkCl2vkoNFU0onmeUEBjPOSoO32fjDz7J8wow==
-X-Received: by 2002:a63:3fcc:0:b0:408:c856:dd6d with SMTP id m195-20020a633fcc000000b00408c856dd6dmr29959582pga.354.1658247469226;
-        Tue, 19 Jul 2022 09:17:49 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id g26-20020aa796ba000000b0052ab5a740aesm11675817pfk.162.2022.07.19.09.17.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jul 2022 09:17:48 -0700 (PDT)
-Date:   Tue, 19 Jul 2022 10:17:46 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Puranjay Mohan <p-mohan@ti.com>
-Cc:     linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        nm@ti.com, ssantosh@kernel.org, s-anna@ti.com,
-        linux-arm-kernel@lists.infradead.org, rogerq@kernel.org,
-        grygorii.strashko@ti.com, vigneshr@ti.com, kishon@ti.com,
-        robh@kernel.org
-Subject: Re: [PATCH v5 1/6] dt-bindings: remoteproc: Add PRU consumer bindings
-Message-ID: <20220719161746.GC3393732@p14s>
-References: <20220607045650.4999-1-p-mohan@ti.com>
- <20220607045650.4999-2-p-mohan@ti.com>
+        with ESMTP id S230171AbiGSQhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 12:37:53 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B28CA326F8;
+        Tue, 19 Jul 2022 09:37:52 -0700 (PDT)
+Received: from [IPv6:2a00:23c6:c30a:1501:8302:3eab:dcff:989c] (unknown [IPv6:2a00:23c6:c30a:1501:8302:3eab:dcff:989c])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: martyn)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D153D6601955;
+        Tue, 19 Jul 2022 17:37:50 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658248671;
+        bh=11/5f3QiTrKxQeGlw8XCXzuwEMJEiL9GlI4UH76Eh1A=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=U9qK059OU1UzCPkdqK4IU2O3ZAq+ElkbtBUVAzt1Mf2tJZQorzdXzH89bLB0n0SnN
+         r1/TPY+7LZ0Ie7xYtr76uWSZ33DATOp13fjx1CsqsABcK+qpOruyVFfbYut0n/CMio
+         9SyTz7ILy1ysZHGjMXvgNM9ZzLzo3KwZ7QRzQfRYUZKxVI0rzPo54iRx40M4PzYsS/
+         8fU0FmM2XhoTlG1sM75go7xaTJ/wCoOw6eRvgbnbBozgd9SrKCve/iu8QcFSBilXfQ
+         1s9cx7FAXtvVMWJiDmjCiHnlyh6BnIEWohsr9jgUvT/j4n7a+WWqtzMA451msl/VYe
+         E2lqCVufxwe7w==
+Message-ID: <abd2e9affdc3e4001f9fc6f036516ddfa6654bdd.camel@collabora.com>
+Subject: Re: [PATCH] arm64: dts: Add device trees for MSC SM2S-IMX8PLUS SoM
+ and carrier board
+From:   Martyn Welch <martyn.welch@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Date:   Tue, 19 Jul 2022 17:37:48 +0100
+In-Reply-To: <4473378f-1c14-3ec7-5380-12f49f3b1e3b@linaro.org>
+References: <20220718152310.1937899-1-martyn.welch@collabora.com>
+         <4473378f-1c14-3ec7-5380-12f49f3b1e3b@linaro.org>
+Organization: Collabora Ltd.
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220607045650.4999-2-p-mohan@ti.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 07, 2022 at 10:26:45AM +0530, Puranjay Mohan wrote:
-> From: Suman Anna <s-anna@ti.com>
-> 
-> Add a YAML binding document for PRU consumers. The binding includes
-> all the common properties that can be used by different PRU consumer
-> or application nodes and supported by the PRU remoteproc driver.
-> These are used to configure the PRU hardware for specific user
-> applications.
-> 
-> The application nodes themselves should define their own bindings.
-> 
-> Co-developed-by: Tero Kristo <t-kristo@ti.com>
-> Signed-off-by: Tero Kristo <t-kristo@ti.com>
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> Signed-off-by: Puranjay Mohan <p-mohan@ti.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> V3->V4:
-> * Addressed Rob's comments regarding max and min Items.
-> * removed the dependencies tag as it was redundant.
-> ---
->  .../bindings/remoteproc/ti,pru-consumer.yaml  | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> new file mode 100644
-> index 000000000000..df384b44259b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common TI PRU Consumer Binding
-> +
-> +maintainers:
-> +  - Suman Anna <s-anna@ti.com>
-> +
-> +description: |
-> +  A PRU application/consumer/user node typically uses one or more PRU device
-> +  nodes to implement a PRU application/functionality. Each application/client
-> +  node would need a reference to at least a PRU node, and optionally define
-> +  some properties needed for hardware/firmware configuration. The below
-> +  properties are a list of common properties supported by the PRU remoteproc
-> +  infrastructure.
-> +
-> +  The application nodes shall define their own bindings like regular platform
-> +  devices, so below are in addition to each node's bindings.
-> +
-> +properties:
-> +  ti,prus:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description: phandles to the PRU, RTU or Tx_PRU nodes used
-> +    minItems: 1
-> +    maxItems: 6
-> +    items:
-> +      maxItems: 1
-> +
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    minItems: 1
-> +    maxItems: 6
-> +    description: |
-> +      firmwares for the PRU cores, the default firmware for the core from
-> +      the PRU node will be used if not provided. The firmware names should
-> +      correspond to the PRU cores listed in the 'ti,prus' property
-> +
-> +  ti,pruss-gp-mux-sel:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 6
-> +    items:
-> +      enum: [0, 1, 2, 3, 4]
-> +    description: |
-> +      array of values for the GP_MUX_SEL under PRUSS_GPCFG register for a PRU.
-> +      This selects the internal muxing scheme for the PRU instance. Values
-> +      should correspond to the PRU cores listed in the 'ti,prus' property. The
-> +      GP_MUX_SEL setting is a per-slice setting (one setting for PRU0, RTU0,
-> +      and Tx_PRU0 on K3 SoCs). Use the same value for all cores within the
-> +      same slice in the associative array. If the array size is smaller than
-> +      the size of 'ti,prus' property, the default out-of-reset value (0) for the
-> +      PRU core is used.
-> +
-> +required:
-> +  - ti,prus
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    /* PRU application node example */
-> +    pru-app {
-> +        ti,prus = <&pru0>, <&pru1>;
-> +        firmware-name = "pruss-app-fw0", "pruss-app-fw1";
-> +        ti,pruss-gp-mux-sel = <2>, <1>;
-> +    };
+On Tue, 2022-07-19 at 12:01 +0200, Krzysztof Kozlowski wrote:
+> On 18/07/2022 17:23, Martyn Welch wrote:
+> > Add device trees for one of a number of MSCs variants of the SM2S-
+> > IMX8PLUS
+> > system on module along with the compatible SM2S-SK-AL-EP1 carrier
+> > board.
+> > As the name suggests, this family of SoMs use the NXP i.MX8MP SoC
+> > and
+> > provide the SMARC module interface.
+> >=20
+> > Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+>=20
+> Use subject prefix matching subsystem. I expect other folks in
+> Collabora
+> help you in that, so you do not need our advices for such trivial
+> stuff. :)
+>=20
 
-It would be nice to have a full example in order to provide more context.
+Hi Krzysztof,
 
-I am done reviewing this set.
+Thanks for the review.
 
-Thanks,
-Mathieu
+I picked that based on the last 20-30 commits under
+arch/arm64/boot/dts/. Would you prefer something starting "arm64: dts:
+freescale: "? I see that "arm64: dts: imx8mp: " is typically being used
+for changes to the more generic imx8mp device trees...
 
-> -- 
-> 2.17.1
-> 
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0extcon_usb0: extcon_usb0 {
+>=20
+> No underscores, extcon is Linux term, so use node name describing
+> device.
+>=20
+
+I note that the device binding file lists an example using
+"extcon_usb1". I also note that existing users seem to broadly use a
+variation of "extcon-XXXX", would "extcon-usb0" be acceptable in this
+case?
+
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0dsi_lvds_bridge: sn65dsi84@2=
+d {
+>=20
+> Node names should be generic.
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-device=
+tree-basics.html#generic-names-recommendation
+>=20
+
+My apologies - I thought I'd got all of these...
+
+
+>=20
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0qspi_flash: qspi_flash@0 {
+>=20
+> You didn't test the bindings (dtbs_check), did you? There is no way
+> this
+> passess...
+>=20
+
+No, despite having written device tree bindings on and off for
+something approaching 18 years (though admittedly more off than on), I
+was unaware of this tool. I'll run this before resubmitting.
+
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0reg =3D <0>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "jedec,spi-nor";
+>=20
+> Eh? Now compatible in the middle? Sorry, this are trivial code
+> quality
+> comments. Please use internal review or base your work on some
+> upstreamed existing board.
+>=20
+
+Sorry - I missed that one. I'd moved most of the compatible strings to
+the top of nodes.
+
+Martyn
+
+> Best regards,
+> Krzysztof
+
