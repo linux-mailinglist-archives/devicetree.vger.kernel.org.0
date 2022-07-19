@@ -2,98 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA24A57A194
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 16:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D9BD57A20C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 16:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233997AbiGSOcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 10:32:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52376 "EHLO
+        id S238550AbiGSOoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 10:44:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238710AbiGSObw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 10:31:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0F1664DA;
-        Tue, 19 Jul 2022 07:21:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CCC296179A;
-        Tue, 19 Jul 2022 14:21:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F37A7C341CF;
-        Tue, 19 Jul 2022 14:21:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658240461;
-        bh=vCkPQvxXooMW9Jt2ErhKtlqIYXoDpb743ceTSV240Mk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MWdPVbOMRgCQSnh4EnPjuMxedb0MTVypnArvwhukRZ48C+mZqbuQ3OXLOqOyWbiTN
-         fUtf1W1BCAL1tAmphXbBElvB7QqXH7Upitiq4FUdIadHgHEjrYcVWJSho0+lucZ2Z8
-         YMCLdDXp8g7UzP6IQGnqRwcPFDvcVBunsF2bEt7OZsUANQrBO/Tvl4ynd9s6ZF5Nhw
-         EXhMdczORCpax1WiUYZPaZB+hs5tx7xPGZ9OGdFyXIE+tJrH0X5kq4EFEEiK8h/x2p
-         K8Ab+mrF5f66Du7c89HE+GXDj/Xz2J2ctcMuPZOhpUxoLlb+R0YyQu+I/xDz4eUcZI
-         OMzreFaugD1qw==
-Received: by mail-vs1-f46.google.com with SMTP id t127so13514541vsb.8;
-        Tue, 19 Jul 2022 07:21:00 -0700 (PDT)
-X-Gm-Message-State: AJIora8P6iCcY2t3QlKLhAni53aX52SUazXo88qn+wkx7M52fnutsjX9
-        At4Wxvm4OUF8j1/ElJgaqiVqChaV1YHIMamGYw==
-X-Google-Smtp-Source: AGRyM1ucY0eDl9SH7mktv57iGcrF+8x0sgPXu3I6aBLdZATjdulxEFv2/bX6DDQMBv8GWpBiy+fAQXoiZuO908Pmp8A=
-X-Received: by 2002:a67:d194:0:b0:357:8ea:5554 with SMTP id
- w20-20020a67d194000000b0035708ea5554mr11899285vsi.0.1658240459942; Tue, 19
- Jul 2022 07:20:59 -0700 (PDT)
+        with ESMTP id S239727AbiGSOoD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 10:44:03 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46851422FA;
+        Tue, 19 Jul 2022 07:42:09 -0700 (PDT)
+Received: from mail-ua1-f43.google.com ([209.85.222.43]) by
+ mrelayeu.kundenserver.de (mreue009 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1Mr9OA-1nhHPV1uOE-00oJkN; Tue, 19 Jul 2022 16:42:07 +0200
+Received: by mail-ua1-f43.google.com with SMTP id g12so2945884uan.6;
+        Tue, 19 Jul 2022 07:42:06 -0700 (PDT)
+X-Gm-Message-State: AJIora+RwN51PRsMVLOiKxs3M4VkEGy8el/EcQJ5Mw2oskYMEGFHbKoG
+        fqxQQABAc4cxxFWfdYt7sNzFXzIBKnO3JPmRUW4=
+X-Google-Smtp-Source: AGRyM1sQikcKoGgAT6yV2vJ17SN926DE+GHt8PDGByKcXd/T2/q6CdAznJd8BVDLz6eMRl5ZCzsdNoH8O58apFp22kQ=
+X-Received: by 2002:a25:808c:0:b0:670:7d94:f2a with SMTP id
+ n12-20020a25808c000000b006707d940f2amr4885533ybk.452.1658241714958; Tue, 19
+ Jul 2022 07:41:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <1658223939-25478-1-git-send-email-hongxing.zhu@nxp.com>
- <1658223939-25478-2-git-send-email-hongxing.zhu@nxp.com> <1658239860.449467.1153347.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1658239860.449467.1153347.nullmailer@robh.at.kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 19 Jul 2022 08:20:48 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+H+ffmmpowHqjknfJ1XavUGpW-rgiUGpCQ=+r0=MVUig@mail.gmail.com>
-Message-ID: <CAL_Jsq+H+ffmmpowHqjknfJ1XavUGpW-rgiUGpCQ=+r0=MVUig@mail.gmail.com>
-Subject: Re: [PATCH v1 01/10] dt-bindings: imx6q-pcie: Add iMX8MM PCIe EP mode
- compatible string
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Wilczynski <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+References: <20220706165406.117349-1-tmaimon77@gmail.com> <CACPK8Xd0n5cpsCJ6guPzEj8JfXkz_ERzU3VdXW-Xx2QX8ssNKg@mail.gmail.com>
+ <CAK8P3a0Ojf1hm5Q2FJZEGLygku+qkPmKnKpBD8eAZPeRZtb=gw@mail.gmail.com>
+ <CAK8P3a3Dh+wTyPYhvv5c-wsqMK24ZgqPWHw2C7xuFh9vL53XfA@mail.gmail.com> <CAP6Zq1iCai5hSWVyeMg+xcgBXj0mdq7mcQrQfNmDFh15Q2y_-g@mail.gmail.com>
+In-Reply-To: <CAP6Zq1iCai5hSWVyeMg+xcgBXj0mdq7mcQrQfNmDFh15Q2y_-g@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 19 Jul 2022 16:41:37 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0N5J+jc2xL+J6bc-GD5R4f1aY3n+GMAq_7Cejc4w5Opg@mail.gmail.com>
+Message-ID: <CAK8P3a0N5J+jc2xL+J6bc-GD5R4f1aY3n+GMAq_7Cejc4w5Opg@mail.gmail.com>
+Subject: Re: [PATCH v7 00/16] Introduce Nuvoton Arbel NPCM8XX BMC SoC
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Joel Stanley <joel@jms.id.au>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org, Frank Li <frank.li@nxp.com>,
-        PCI <linux-pci@vger.kernel.org>
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Robert Hancock <robert.hancock@calian.com>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Qin Jian <qinjian@cqplus1.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:PNYrzzlDmg3qAHx8zGYAEK2JcwcgSuFZf2gzdx0wVncnRCBaCkM
+ i8Oy58GX+zBIh9UlXw/YuQTnGkNX3PqKxyyhNwZjBqNdpW8c/XYVFp6LRnmdhIvcw4fxOv8
+ 6pCe9yjPDDrqVVdaJCsbegjBe4kA9hsNEh82Ei3NytAlCTiVRwQarJwawn+eJKgidQK7+QF
+ HIOKs/OCh0JImqjVkb/IA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:hX3CbiXRCL8=:Nsay3/HZRmMYxdmQwIxQhK
+ ar20KniwvKgK7Q/nZD+LShJRpNy5MNJJAPF0YFQuMzyIKu/Ti5hVK5UHqH6JeYOVP7HDwrI6C
+ ecP0LYMr4d5OqKeq1L/NP1SOvlb907saKiXkXE2uJRIYBzocNlEnMcocAP1uYODInW6vr4uvK
+ v7XioEm5tzvpRkob2IBJBowMRlmJeWptBL8PLYAUOl35MUyXU0THvzjla0iu5zJ8ygSLhXJBY
+ V6V1AiB80wjh8LQJvSYlD4QCOy1kCbeGn2s1utNgutMFkihNKmAPslXOKTqvJne9+hleP5bYD
+ O2lsvv/qJTbxy0T4TM1SKs3Z/Zu3EIDsWQc7+Vxqf+epy7X39+h1b7D256PL+W3LR2lz1O6ns
+ Sm++uMsdkVu03ELjtEQF2JabFbHt4U7GyhkXEfjNhQaewOKu4H7UwerPL8oA48HWkEa/324BY
+ nAHS7fnvgN8YISvFFXxoouNA2r8j2QbjbuxjSecO2SDED7moz5ODqZAYGyj5coONoEyo/oZ5n
+ jhO/0vrd5rFJnz9m4Z1sYtji0KLD8mT6IDu4IVLbxZCzOdumgW7nq4PY0I5P7ZBmYHw2K4s/L
+ qYcVeAojxOzf8JcusRoeBHwnHoxUBV9bHhRo7/+Y/uRHHVFt/vRziCqFeepmg1LVJDMV1wKt1
+ qNJpGLa9uyl4at6Nm7GWA1vpFeV2fBzc9ZFPu01MrSkBI0bZc9+FvwljGTIqxqBMl08UDpvfB
+ OW0K6UCzp30OW1jAz/oi+3Z063Kid5F6oT9EwVNuSB3UKAFeIKlOBDNcEQyot1xcGCDcERRi8
+ CR+RWRfkrcTdcHen7wx5eNcP3ykejiaKJQJgIJXSXDgjzq8qjZX0g/b2X7wTDB29HLCOoQNXQ
+ l2rFZJVXDvv6ikv8ZbJQ==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 19, 2022 at 8:11 AM Rob Herring <robh@kernel.org> wrote:
+On Mon, Jul 18, 2022 at 3:12 PM Tomer Maimon <tmaimon77@gmail.com> wrote:
 >
-> On Tue, 19 Jul 2022 17:45:30 +0800, Richard Zhu wrote:
-> > Add i.MX8MM PCIe endpoint mode compatible string.
-> >
-> > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
+> Hi Arnd,
 >
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
+> Appreciate you taking care of this!
 >
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
+> Are these questions direct to me or Joel?
+>
+> On our side we will be happy that you will start to merge Arbel
+> NPCM8XX without the clock driver, hopefully the NPCM8XX clock driver
+> will ACK soon and maybe you can merge it as well.
+>
+> What do you say Joel?
 
-These are obviously not caused by this change, but it's a long list of
-warnings and many look like the schema needs to be changed. For
-example, this one is obviously a schema problem:
+As discussed off-list, I have now merged the series into the soc tree
+as part of the arm/newsoc branch directly, with the exception of the
+clk driver. No need to resend the patches I merged for future versions,
+if any changes are required before the merge window, please send
+them directly to soc@kernel.org.
 
-> pcie@33800000: clock-names:3: 'pcie_inbound_axi for imx6sx-pcie, pcie_aux for imx8mq-pcie' was expected
+After that, it's best to continue working with Joel so he can merge
+and forward future patches.
 
-Rob
+Regarding the clk driver, please make sure this applies cleanly
+on top of what I just merged. This can be applied to either
+the soc tree at the moment, or the common-clk tree in the
+future if it misses the merge window.
+
+      Arnd
