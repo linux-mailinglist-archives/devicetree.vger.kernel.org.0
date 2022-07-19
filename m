@@ -2,108 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B237457A712
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 21:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4402457A71B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 21:18:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236053AbiGSTSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 15:18:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40246 "EHLO
+        id S239327AbiGSTSu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 15:18:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234436AbiGSTSM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 15:18:12 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7185712ABD;
-        Tue, 19 Jul 2022 12:18:11 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id sz17so29015386ejc.9;
-        Tue, 19 Jul 2022 12:18:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Xqxh4Olbzf8gcHkRUg+aEa9829Q5AonJVqC/i9t2rQw=;
-        b=bgSAqdILFPi4PfkKnFOG7lPQs8M+V0k2dhLHL7VXvzunlKh8JOfM9ZPTfBkD3HdjJP
-         sAuVsHfd0dbRsNMl9I0BDcyIdqmq7HSCwdZlQs7U5aLBpDn9/hQZ5RvvchSKOE+8d0mA
-         DLuJlZjxrcZvhXstn0sZSaq7M7MdSZmceBD3d9nf08uPlNepbygRLI0yPs2h1yxbD/k/
-         /uN210O8pwBxArWSuiI3CfB6Dk+TJ4dFqVrtj9Uhcw/xRLsGV3EXxRgpP6wGvHOkawco
-         YY5j7hEUgOfoaxiyhNgsckJyV72Q3i/UEEwMlkNrfFQl4NzoqNz6SW93KdcR4enKPg0P
-         0tdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Xqxh4Olbzf8gcHkRUg+aEa9829Q5AonJVqC/i9t2rQw=;
-        b=YLMivuptHdxIpn+/kJcpufJfamePoF7HbRysOg5HrAB7ASpMJ+DfdlybYsPa9+vw47
-         ci5KLHgakX/w3mU54Il1jWgq4Yzz/OZ0kH3GtgPU/U/GOQqZJIlKECVHG9z8Rl2OpM12
-         v7ClcE5bQr2R0Ymqti35Ejg/TuzEja7II3SoyYrrkwLTw8sjUGR6e8zLErOoMmBVQ3OT
-         msOSkfXcUmtScr5QV6Gp0IJwxr3fN2fPEEvBqmISW5LD2uL2E8/CR2A1sGMLVNeDkwYm
-         tohR5P0N0hMN0kKTl2yeKG1XlVwwx9MscknNMs8FQeK780K+rq7awq1DNagD6gkl78tG
-         3duA==
-X-Gm-Message-State: AJIora9llImInI3JxnCv3PuH6krTI9DpHH1H0mmsbEeND6w8ApSTiSwJ
-        +9/KpKOxO4OOlOVdyNpwsNFZbzjtbAM9uByatcE=
-X-Google-Smtp-Source: AGRyM1vyCCHUwPB/NQH9l/gyKkdjLrwOuphUl+PollGTiEOLSNU594kNYPkucqK4ubOHDUExEk9cMizBb+s/Gj/Br6k=
-X-Received: by 2002:a17:907:2724:b0:72b:496c:568a with SMTP id
- d4-20020a170907272400b0072b496c568amr33098724ejl.305.1658258289873; Tue, 19
- Jul 2022 12:18:09 -0700 (PDT)
+        with ESMTP id S239095AbiGSTSm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 15:18:42 -0400
+Received: from smtpout1.mo3004.mail-out.ovh.net (smtpout1.mo3004.mail-out.ovh.net [79.137.123.219])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F2854665;
+        Tue, 19 Jul 2022 12:18:38 -0700 (PDT)
+Received: from pro2.mail.ovh.net (unknown [10.109.156.240])
+        by mo3004.mail-out.ovh.net (Postfix) with ESMTPS id 50088243167;
+        Tue, 19 Jul 2022 19:18:37 +0000 (UTC)
+Received: from localhost.localdomain (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.9; Tue, 19 Jul
+ 2022 21:18:36 +0200
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+To:     <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <sven.schwermer@disruptive-technologies.com>,
+        <krzysztof.kozlowski+dt@linaro.org>
+CC:     <johan+linaro@kernel.org>, <marijn.suijten@somainline.org>,
+        <bjorn.andersson@linaro.org>, <andy.shevchenko@gmail.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Subject: [PATCH v2 2/4] leds: class: store the color index in struct led_classdev
+Date:   Tue, 19 Jul 2022 21:17:59 +0200
+Message-ID: <20220719191801.345773-3-jjhiblot@traphandler.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220719191801.345773-1-jjhiblot@traphandler.com>
+References: <20220719191801.345773-1-jjhiblot@traphandler.com>
 MIME-Version: 1.0
-References: <20220717181000.1186373-1-aford173@gmail.com> <20220717181000.1186373-2-aford173@gmail.com>
- <d346f18a-d82c-4408-98d7-f5295f51907a@pengutronix.de>
-In-Reply-To: <d346f18a-d82c-4408-98d7-f5295f51907a@pengutronix.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Tue, 19 Jul 2022 14:17:58 -0500
-Message-ID: <CAHCN7xLbDWC2yZmNvOUc=AK7z8V1sGjNdQAXQLPa8SgTWYU3hQ@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: dts: imx8mn-beacon: Enable Digitial Microphone
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: DAG2EX1.emp2.local (172.16.2.11) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 255860757752134107
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudeltddgudefiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhephffvvefufffkofgjfhgggfgtihesthekredtredttdenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepudetveelveevgffgvdeuffffjefhheehueeitdegtdejgefhheeuuddugeeffeeunecukfhppedtrddtrddtrddtpdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehprhhovddrmhgrihhlrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomhdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhofedttdeg
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,
+        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 19, 2022 at 12:57 AM Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
->
-> Hello Adam,
->
-> On 17.07.22 20:09, Adam Ford wrote:
-> > +
-> > +     sound-micfil {
-> > +             compatible = "fsl,imx-audio-card";
-> > +             model = "imx-audio-micfil";
-> > +             pri-dai-link {
-> > +                     link-name = "micfil hifi";
-> > +                     format = "i2s";
->
-> Given that MICFIL and mic speak PDM with each other,
-> is i2s the correct format here?
+This information might be useful for more than only deriving the led's
+name.
 
-I was basing this off some references from some NXP stuff in their
-downstream kernel.  I know the audio I record with the PDM microphone
-worked and sounded like I expected when I tested it.
+Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+---
+ drivers/leds/led-class.c | 7 +++++++
+ include/linux/leds.h     | 1 +
+ 2 files changed, 8 insertions(+)
 
-adam
+diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
+index 2c0d979d0c8a..537379f09801 100644
+--- a/drivers/leds/led-class.c
++++ b/drivers/leds/led-class.c
+@@ -350,6 +350,10 @@ int led_classdev_register_ext(struct device *parent,
+ 			if (fwnode_property_present(init_data->fwnode,
+ 						    "retain-state-shutdown"))
+ 				led_cdev->flags |= LED_RETAIN_AT_SHUTDOWN;
++
++			if (fwnode_property_present(init_data->fwnode, "color"))
++				fwnode_property_read_u32(init_data->fwnode, "color",
++							 &led_cdev->color);
+ 		}
+ 	} else {
+ 		proposed_name = led_cdev->name;
+@@ -359,6 +363,9 @@ int led_classdev_register_ext(struct device *parent,
+ 	if (ret < 0)
+ 		return ret;
+ 
++	if (led_cdev->color >= LED_COLOR_ID_MAX)
++		dev_warn(parent, "LED %s color identifier out of range\n", final_name);
++
+ 	mutex_init(&led_cdev->led_access);
+ 	mutex_lock(&led_cdev->led_access);
+ 	led_cdev->dev = device_create_with_groups(leds_class, parent, 0,
+diff --git a/include/linux/leds.h b/include/linux/leds.h
+index ba4861ec73d3..fe6346604e36 100644
+--- a/include/linux/leds.h
++++ b/include/linux/leds.h
+@@ -71,6 +71,7 @@ struct led_classdev {
+ 	const char		*name;
+ 	unsigned int brightness;
+ 	unsigned int max_brightness;
++	unsigned int color;
+ 	int			 flags;
+ 
+ 	/* Lower 16 bits reflect status */
+-- 
+2.25.1
 
->
-> Cheers,
-> Ahmad
->
-> --
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
