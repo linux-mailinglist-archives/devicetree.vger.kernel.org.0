@@ -2,199 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FE3557A341
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 17:35:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E701A57A352
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 17:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbiGSPfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 11:35:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39722 "EHLO
+        id S233767AbiGSPiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 11:38:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234397AbiGSPfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 11:35:23 -0400
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BCD740BF2;
-        Tue, 19 Jul 2022 08:35:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658244922; x=1689780922;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=slNsAnv73rh7k63fJkfuz8WxKg3qN3zZXLtoht3yI+Q=;
-  b=GTK/fMIeUatQcCxFC/I5cGpcm0VK4d4X4QcS5uL4SlnReRv/7ur6RAd7
-   oRXD171j63UtLIQPvwvpE9cERKBsn6e4x8HWtqwXThEw1LLaefTirh5wu
-   mONG9r13yyeb8OGKqkv621B3v1TMvJGdh/6CNhcEtQuzulrA48P7aAaiF
-   lbeCyvpv6shBSQMyf0S+VEKpmXaa4WjiS3gko6qCjM/eddG9fABATYy12
-   wQ5ecsBSPa9d7D9+NXgryiFVjUmTW2i301s1tCQaqFwsP1upNkxIcRqJp
-   dOFspcNC/12Le7Jzw+xgtNPu1XC2em6CYS0kgNHq4U6PD25VTx00f0cIW
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10413"; a="372823947"
-X-IronPort-AV: E=Sophos;i="5.92,284,1650956400"; 
-   d="scan'208";a="372823947"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2022 08:35:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,284,1650956400"; 
-   d="scan'208";a="739919684"
-Received: from lkp-server02.sh.intel.com (HELO ff137eb26ff1) ([10.239.97.151])
-  by fmsmga001.fm.intel.com with ESMTP; 19 Jul 2022 08:35:17 -0700
-Received: from kbuild by ff137eb26ff1 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1oDpFl-0005mz-AZ;
-        Tue, 19 Jul 2022 15:35:17 +0000
-Date:   Tue, 19 Jul 2022 23:34:23 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, l.stach@pengutronix.de
-Cc:     kbuild-all@lists.01.org, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
-        marex@denx.de, paul.elder@ideasonboard.com, aford173@gmail.com,
-        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
+        with ESMTP id S230253AbiGSPiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 11:38:18 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EA8D599FB;
+        Tue, 19 Jul 2022 08:38:17 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id j22so27940641ejs.2;
+        Tue, 19 Jul 2022 08:38:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qnD9woDxfn+LSOscfoHzvBXGTCCBlK5kWUK/hmrm5mc=;
+        b=Fk80keQB94yN1hbOFQ/8Ik5Dn9qiQizXFjlxyiFnOIDjj72zZryknDAIRwKat35COn
+         +g0IvgCMxP7p10jhYIzT40U5BaoqkG0DTfQu17WaQl7LSW8FbPLWr5beE0bClHN7vfI5
+         QX0wRoDtYjxJn3mp/8Utao5/XI+8/wOB29nWOvd5Mof/UnO/Pv3D4ytDzD2qfzp0Kbe8
+         aDhWld/Pid6oLQ2LEXnCXrybVDU0psRQKzsCromDxv98lw1l2FKTcgPkGgRuG7QQhIW1
+         kfs6zo4Tzg+qSTSQep4w+4prkaQm2Lx2E3nx4DiI6udE/ynQaH1Hc7VAfFKu8qGrudA3
+         jygA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qnD9woDxfn+LSOscfoHzvBXGTCCBlK5kWUK/hmrm5mc=;
+        b=wPhu2T+vExN/awRsYHO8jSNcEAw4MfldknNk0YS8kgBpqmxZ40Adpx4uNtSECfrF97
+         xsAMpHmCeMO4SWd8bAshbZe/M60PsTBxnSSmmD4SWbaHESFPtwphKntgp9k6rBoXkXm0
+         y438r2ZZ6tQjSF1yXFSE8ApkbyMDlNAlGKYF3wYl2A1L9dllQM/GssxHaBcyidGSeDXa
+         4hKUjLFYXp32iURqWmuGohbTLAVymeUmQumOGpb1WlieBb4yF+bqVlj609EkFhgNcWZk
+         cMk6nhMqIf5V2jCAzlUfnRZLpD8szyAUdCCGS6gfN5ir8/2m2CQONxL4StrU01lYsalk
+         Tacg==
+X-Gm-Message-State: AJIora+yEjypIFwJYLsC/6eyXvBwpGAh7V69c7LbLT8jqtFZw8Ndkhlb
+        LMCcRDus7f/GV3pNPfBKhPw=
+X-Google-Smtp-Source: AGRyM1sF+tywVSO3QfunBktfmfaVi0fddzmm/dxFRUi3UiykwFMhU7B4f2YxJkBqXVs7l0XmJXPUNw==
+X-Received: by 2002:a17:907:16ab:b0:72c:7533:7262 with SMTP id hc43-20020a17090716ab00b0072c75337262mr29330300ejc.288.1658245095723;
+        Tue, 19 Jul 2022 08:38:15 -0700 (PDT)
+Received: from skbuf ([188.27.185.104])
+        by smtp.gmail.com with ESMTPSA id s9-20020a170906a18900b00722e5b234basm6939832ejy.179.2022.07.19.08.38.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Jul 2022 08:38:14 -0700 (PDT)
+Date:   Tue, 19 Jul 2022 18:38:11 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linux-kernel@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Shawn Guo <shawnguo@kernel.org>, UNGLinuxDriver@microchip.com,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V3 4/7] soc: imx: add i.MX8MP HDMI blk ctrl HDCP/HRV
-Message-ID: <202207192320.p1W4jEjD-lkp@intel.com>
-References: <20220719055054.3855979-5-peng.fan@oss.nxp.com>
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [RFC PATCH net-next 0/9] net: pcs: Add support for devices
+ probed in the "usual" manner
+Message-ID: <20220719153811.izue2q7qff7fjyru@skbuf>
+References: <20220711160519.741990-1-sean.anderson@seco.com>
+ <20220719152539.i43kdp7nolbp2vnp@skbuf>
+ <bec4c9c3-e51b-5623-3cae-6df1a8ce898f@seco.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220719055054.3855979-5-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <bec4c9c3-e51b-5623-3cae-6df1a8ce898f@seco.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Peng,
+On Tue, Jul 19, 2022 at 11:28:42AM -0400, Sean Anderson wrote:
+> Hi Vladimir,
+> 
+> On 7/19/22 11:25 AM, Vladimir Oltean wrote:
+> > Hi Sean,
+> > 
+> > On Mon, Jul 11, 2022 at 12:05:10PM -0400, Sean Anderson wrote:
+> >> For a long time, PCSs have been tightly coupled with their MACs. For
+> >> this reason, the MAC creates the "phy" or mdio device, and then passes
+> >> it to the PCS to initialize. This has a few disadvantages:
+> >> 
+> >> - Each MAC must re-implement the same steps to look up/create a PCS
+> >> - The PCS cannot use functions tied to device lifetime, such as devm_*.
+> >> - Generally, the PCS does not have easy access to its device tree node
+> >> 
+> >> I'm not sure if these are terribly large disadvantages. In fact, I'm not
+> >> sure if this series provides any benefit which could not be achieved
+> >> with judicious use of helper functions. In any case, here it is.
+> >> 
+> >> NB: Several (later) patches in this series should not be applied. See
+> >> the notes in each commit for details on when they can be applied.
+> > 
+> > Sorry to burst your bubble, but the networking drivers on NXP LS1028A
+> > (device tree at arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi, drivers
+> > at drivers/net/ethernet/freescale/enetc/ and drivers/net/dsa/ocelot/)
+> > do not use the Lynx PCS through a pcs-handle, because the Lynx PCS in
+> > fact has no backing OF node there, nor do the internal MDIO buses of the
+> > ENETC and of the switch.
+> > 
+> > It seems that I need to point this out explicitly: you need to provide
+> > at least a working migration path to your PCS driver model. Currently
+> > there isn't one, and as a result, networking is broken on the LS1028A
+> > with this patch set.
+> > 
+> 
+> Please refer to patches 4, 5, and 6.
 
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on shawnguo/for-next]
-[also build test WARNING on linus/master v5.19-rc7 next-20220719]
-[cannot apply to robh/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220719-135352
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-config: microblaze-allmodconfig (https://download.01.org/0day-ci/archive/20220719/202207192320.p1W4jEjD-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/328924f29e2ab1b6667c1be9578a9e17a7824c71
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220719-135352
-        git checkout 328924f29e2ab1b6667c1be9578a9e17a7824c71
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/soc/imx/ sound/soc/sof/imx/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/soc/imx/imx8mp-blk-ctrl.c:375:18: error: 'const struct imx8mp_blk_ctrl_domain_data' has no member named 'path_names'
-     375 |                 .path_names = (const char *[]){"hrv"},
-         |                  ^~~~~~~~~~
->> drivers/soc/imx/imx8mp-blk-ctrl.c:375:31: warning: excess elements in struct initializer
-     375 |                 .path_names = (const char *[]){"hrv"},
-         |                               ^
-   drivers/soc/imx/imx8mp-blk-ctrl.c:375:31: note: (near initialization for 'imx8mp_hdmi_domain_data[8]')
-   drivers/soc/imx/imx8mp-blk-ctrl.c:376:18: error: 'const struct imx8mp_blk_ctrl_domain_data' has no member named 'num_paths'
-     376 |                 .num_paths = 1,
-         |                  ^~~~~~~~~
-   drivers/soc/imx/imx8mp-blk-ctrl.c:376:30: warning: excess elements in struct initializer
-     376 |                 .num_paths = 1,
-         |                              ^
-   drivers/soc/imx/imx8mp-blk-ctrl.c:376:30: note: (near initialization for 'imx8mp_hdmi_domain_data[8]')
-   drivers/soc/imx/imx8mp-blk-ctrl.c:383:18: error: 'const struct imx8mp_blk_ctrl_domain_data' has no member named 'path_names'
-     383 |                 .path_names = (const char *[]){"hdcp"},
-         |                  ^~~~~~~~~~
-   drivers/soc/imx/imx8mp-blk-ctrl.c:383:31: warning: excess elements in struct initializer
-     383 |                 .path_names = (const char *[]){"hdcp"},
-         |                               ^
-   drivers/soc/imx/imx8mp-blk-ctrl.c:383:31: note: (near initialization for 'imx8mp_hdmi_domain_data[7]')
-   drivers/soc/imx/imx8mp-blk-ctrl.c:384:18: error: 'const struct imx8mp_blk_ctrl_domain_data' has no member named 'num_paths'
-     384 |                 .num_paths = 1,
-         |                  ^~~~~~~~~
-   drivers/soc/imx/imx8mp-blk-ctrl.c:384:30: warning: excess elements in struct initializer
-     384 |                 .num_paths = 1,
-         |                              ^
-   drivers/soc/imx/imx8mp-blk-ctrl.c:384:30: note: (near initialization for 'imx8mp_hdmi_domain_data[7]')
-
-
-vim +375 drivers/soc/imx/imx8mp-blk-ctrl.c
-
-   326	
-   327	static const struct imx8mp_blk_ctrl_domain_data imx8mp_hdmi_domain_data[] = {
-   328		[IMX8MP_HDMIBLK_PD_IRQSTEER] = {
-   329			.name = "hdmiblk-irqsteer",
-   330			.clk_names = (const char *[]){ "apb" },
-   331			.num_clks = 1,
-   332			.gpc_name = "irqsteer",
-   333		},
-   334		[IMX8MP_HDMIBLK_PD_LCDIF] = {
-   335			.name = "hdmiblk-lcdif",
-   336			.clk_names = (const char *[]){ "axi", "apb" },
-   337			.num_clks = 2,
-   338			.gpc_name = "lcdif",
-   339		},
-   340		[IMX8MP_HDMIBLK_PD_PAI] = {
-   341			.name = "hdmiblk-pai",
-   342			.clk_names = (const char *[]){ "apb" },
-   343			.num_clks = 1,
-   344			.gpc_name = "pai",
-   345		},
-   346		[IMX8MP_HDMIBLK_PD_PVI] = {
-   347			.name = "hdmiblk-pvi",
-   348			.clk_names = (const char *[]){ "apb" },
-   349			.num_clks = 1,
-   350			.gpc_name = "pvi",
-   351		},
-   352		[IMX8MP_HDMIBLK_PD_TRNG] = {
-   353			.name = "hdmiblk-trng",
-   354			.clk_names = (const char *[]){ "apb" },
-   355			.num_clks = 1,
-   356			.gpc_name = "trng",
-   357		},
-   358		[IMX8MP_HDMIBLK_PD_HDMI_TX] = {
-   359			.name = "hdmiblk-hdmi-tx",
-   360			.clk_names = (const char *[]){ "apb", "ref_266m" },
-   361			.num_clks = 2,
-   362			.gpc_name = "hdmi-tx",
-   363		},
-   364		[IMX8MP_HDMIBLK_PD_HDMI_TX_PHY] = {
-   365			.name = "hdmiblk-hdmi-tx-phy",
-   366			.clk_names = (const char *[]){ "apb", "ref_24m" },
-   367			.num_clks = 2,
-   368			.gpc_name = "hdmi-tx-phy",
-   369		},
-   370		[IMX8MP_HDMIBLK_PD_HRV] = {
-   371			.name = "hdmiblk-hrv",
-   372			.clk_names = (const char *[]){ "axi", "apb" },
-   373			.num_clks = 2,
-   374			.gpc_name = "hrv",
- > 375			.path_names = (const char *[]){"hrv"},
-   376			.num_paths = 1,
-   377		},
-   378		[IMX8MP_HDMIBLK_PD_HDCP] = {
-   379			.name = "hdmiblk-hdcp",
-   380			.clk_names = (const char *[]){ "axi", "apb" },
-   381			.num_clks = 2,
-   382			.gpc_name = "hdcp",
-   383			.path_names = (const char *[]){"hdcp"},
-   384			.num_paths = 1,
-   385		},
-   386	};
-   387	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+I don't understand, could you be more clear? Are you saying that I
+shouldn't have applied patch 9 while testing? When would be a good
+moment to apply patch 9?
