@@ -2,56 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27F25579FEA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 15:45:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6611E579FF5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 15:47:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235541AbiGSNpZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 09:45:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46476 "EHLO
+        id S238235AbiGSNra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 09:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235926AbiGSNpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 09:45:07 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D63B39B19A;
-        Tue, 19 Jul 2022 05:58:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 519F5CE1C0A;
-        Tue, 19 Jul 2022 12:58:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 817ADC341C6;
-        Tue, 19 Jul 2022 12:58:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658235498;
-        bh=cd3iDI2EaD0soZM4kdNoeMySuIe0jizK6RWp/s4z+oY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h1QMcnERnO1oFIfNx2LCKyNG6SgpAjHk9rn9PD3H/MPJ5mIaPseLEidwwJ6Gh98fQ
-         don2/Rwo2BNT0VqCKdR5ONaJzTNFASCyNmCFG9nyAiqHiuyfa8Hkv5gKam9KQG6cHh
-         B1ixsxdvyp6MLqn4ot0lMxw8DovY/9Vsk6/Q9O7/pV5WHDB2KsBoVQJ0Ket/I3xVLr
-         FBDcLA0R0grrD5jKG8BUX+nrEu5VFAipW0aJ2J39sgkjgrZR8WK2NHdIsS5BC6L4kg
-         BkHaHe9SOdKYbgoL+ZCUT1BjH6jLBV2Q0f4T1Wj1Hj2duyYTKDmacVA35CYj4fh43s
-         944G8nkSz3Ilg==
-Date:   Tue, 19 Jul 2022 13:58:12 +0100
-From:   Mark Brown <broonie@kernel.org>
+        with ESMTP id S238035AbiGSNrL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 09:47:11 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD30361105;
+        Tue, 19 Jul 2022 06:01:11 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 26JD0nAp102382;
+        Tue, 19 Jul 2022 08:00:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1658235649;
+        bh=PdYC9co3rb9An2cXn3KXskKqp+Hm0SksGJgYZQ31/Ts=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=eqnTf2kn3N4o6EdtlaOCc/nj9rONR9yqNc6lSKngxIxoeiFvJQjSnXfK3epw3jHzX
+         5+3bscZWA3k8UzlmxJzYCxUlVbTJi40Bwy2lRcjBBkp67qGVFGBbI4FxnHVBL7YH1W
+         pBKce9Rgl4CNwNXIuqIZCQUOCKUTQgAHjb/1+VKg=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 26JD0n3o110344
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 19 Jul 2022 08:00:49 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 19
+ Jul 2022 08:00:49 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 19 Jul 2022 08:00:49 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 26JD0nF2102202;
+        Tue, 19 Jul 2022 08:00:49 -0500
+Date:   Tue, 19 Jul 2022 08:00:49 -0500
+From:   Nishanth Menon <nm@ti.com>
 To:     Jerome Neanne <jneanne@baylibre.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, nm@ti.com,
-        kristo@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
-        msp@baylibre.com, j-keerthy@ti.c, lee.jones@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 03/14] regulator: dt-bindings: Add interrupts support
- to TPS65219 PMIC bindings
-Message-ID: <YtaqZPwCKknz5uUT@sirena.org.uk>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <khilman@baylibre.com>,
+        <narmstrong@baylibre.com>, <msp@baylibre.com>, <j-keerthy@ti.c>,
+        <lee.jones@linaro.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v1 11/14] arm64: dts: ti: Add TI TPS65219 PMIC support
+ for AM642 SK board.
+Message-ID: <20220719130049.hxn3bmhd3lmxxzgt@overview>
 References: <20220719091742.3221-1-jneanne@baylibre.com>
- <20220719091742.3221-4-jneanne@baylibre.com>
+ <20220719091742.3221-12-jneanne@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="36iGOHhGe96zj8wk"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20220719091742.3221-4-jneanne@baylibre.com>
-X-Cookie: We have ears, earther...FOUR OF THEM!
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20220719091742.3221-12-jneanne@baylibre.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,37 +68,164 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---36iGOHhGe96zj8wk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jul 19, 2022 at 11:17:31AM +0200, Jerome Neanne wrote:
-> Add interrupt properties in PMIC TPS65219 bindings
->=20
+On 11:17-20220719, Jerome Neanne wrote:
+> Add support fot the TI Power Management IC TPS65219
+> on the AM642 SKEVM board
+> 
 > Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
 > ---
->  .../bindings/regulator/ti,tps65219.yaml       | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
 
-The entire binding document should probably be in MFD if it's going to
-have properties for other functions added to it (which is perfectly
-reasonable).
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts | 104 +++++++++++++++++++++++++
+>  1 file changed, 104 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> index 59f506cbd275..4daf55b9d61a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+> @@ -150,6 +150,20 @@
+>  		vin-supply = <&com8_ls_en>;
+>  		gpio = <&main_gpio0 48 GPIO_ACTIVE_HIGH>;
+>  	};
+> +
+> +	vsel_sd_nddr: gpio-regulator {
+> +		compatible = "regulator-gpio";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vsel_sd_nddr_pins_default>;
+> +		regulator-name = "tps65219-LDO1-SEL-SD";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		vin-supply = <&ldo1_reg>;
+> +		gpios = <&main_gpio0 45 GPIO_ACTIVE_HIGH>;
+> +		states = <1800000 0x0>,
+> +			 <3300000 0x1>;
+> +	};
+>  };
+>  
+>  &main_pmx0 {
+> @@ -172,6 +186,13 @@
+>  		>;
+>  	};
+>  
+> +	main_i2c0_pins_default: main-i2c0-pins-default {
+> +		pinctrl-single,pins = <
+> +			AM64X_IOPAD(0x0260, PIN_INPUT_PULLUP, 0) /* (A18) I2C0_SCL */
+> +			AM64X_IOPAD(0x0264, PIN_INPUT_PULLUP, 0) /* (B18) I2C0_SDA */
+> +		>;
+> +	};
+> +
+>  	main_i2c1_pins_default: main-i2c1-pins-default {
+>  		pinctrl-single,pins = <
+>  			AM64X_IOPAD(0x0268, PIN_INPUT_PULLUP, 0) /* (C18) I2C1_SCL */
+> @@ -258,6 +279,12 @@
+>  			AM64X_IOPAD(0x00bc, PIN_INPUT, 7) /* (U8) GPIO0_46 */
+>  		>;
+>  	};
+> +
+> +	vsel_sd_nddr_pins_default: vsel-sd-nddr-pins-default {
+> +		pinctrl-single,pins = <
+> +			AM64X_IOPAD(0x00b8, PIN_INPUT, 7) /* (Y7) PRG1_PRU0_GPO0.GPIO0_45 */
+> +		>;
+> +	};
+>  };
+>  
+>  &mcu_uart0 {
+> @@ -301,6 +328,83 @@
+>  	status = "disabled";
+>  };
+>  
+> +&main_i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_i2c0_pins_default>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	tps65219: pmic@30 {
 
---36iGOHhGe96zj8wk
-Content-Type: application/pgp-signature; name="signature.asc"
+Am I missing something?
+https://www.ti.com/tool/SK-AM64#design-files
+https://www.ti.com/lit/df/sprr432/sprr432.pdf
+Page 11: 
+I see TPS6521815 at address 0x24, nothing in 0x30?
 
------BEGIN PGP SIGNATURE-----
+> +		compatible = "ti,tps65219";
+> +		reg = <0x30>;
+> +		system-power-controller;
+> +
+> +		buck1-supply = <&vcc_3v3_sys>;
+> +		buck2-supply = <&vcc_3v3_sys>;
+> +		buck3-supply = <&vcc_3v3_sys>;
+> +		ldo1-supply = <&vcc_3v3_sys>;
+> +		ldo2-supply = <&buck2_reg>;
+> +		ldo3-supply = <&vcc_3v3_sys>;
+> +		ldo4-supply = <&vcc_3v3_sys>;
+> +
+> +		regulators {
+> +			buck1_reg: buck1 {
+> +				regulator-name = "VDD_CORE";
+> +				regulator-min-microvolt = <750000>;
+> +				regulator-max-microvolt = <1000000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck2_reg: buck2 {
+> +				regulator-name = "VCC1V8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			buck3_reg: buck3 {
+> +				regulator-name = "VDD_LPDDR4";
+> +				regulator-min-microvolt = <1100000>;
+> +				regulator-max-microvolt = <1100000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo1_reg: ldo1 {
+> +				regulator-name = "VDDSHV_SD_IO_PMIC";
+> +				regulator-min-microvolt = <1000000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-allow-bypass;
+> +			};
+> +
+> +			ldo2_reg: ldo2 {
+> +				regulator-name = "VDDAR_CORE";
+> +				regulator-min-microvolt = <850000>;
+> +				regulator-max-microvolt = <850000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo3_reg: ldo3 {
+> +				regulator-name = "VDDA_1V8";
+> +				regulator-min-microvolt = <1800000>;
+> +				regulator-max-microvolt = <1800000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +
+> +			ldo4_reg: ldo4 {
+> +				regulator-name = "VDD_PHY_2V5";
+> +				regulator-min-microvolt = <2500000>;
+> +				regulator-max-microvolt = <2500000>;
+> +				regulator-boot-on;
+> +				regulator-always-on;
+> +			};
+> +		};
+> +	};
+> +};
+>  &main_i2c1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&main_i2c1_pins_default>;
+> -- 
+> 2.17.1
+> 
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLWqmMACgkQJNaLcl1U
-h9DmNQgAhD4Qme33mjkVeL+5oikrWaIXpUpPA/kInQYaBWLZtPhXEsmzc2aady9o
-7/xbNKouihroI3jZU8f8cMmRs9i9VSz79bXjVUNNTcl4YW8JxYaRzh9WsRkAWMm3
-PvOCz02OEpoDpyIo3yr3aDcNCB8OZWwFLcBZMUlzIpTP37MN3YRYXGEWa/81R96z
-J2+mIxvNrOjedPzmssvA8CZlnUZL2SaWwUfn4x07yts7ZEYwjMGqSG91vhBt9CaR
-uWb1d5roWNNIPvMoJDAHOj9dCWbKoky8RuvQQtLjrmoeCjEeQvplRvLnu2akKVtS
-ntP0E4A/pXgRlZKRNqPFzIY2JjPhfQ==
-=N7/y
------END PGP SIGNATURE-----
-
---36iGOHhGe96zj8wk--
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
