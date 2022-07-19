@@ -2,90 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DB8057921A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 06:48:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72F7657921D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 06:48:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233880AbiGSEsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 00:48:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47758 "EHLO
+        id S229784AbiGSEsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 00:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231407AbiGSEsK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 00:48:10 -0400
-Received: from mail-oa1-x34.google.com (mail-oa1-x34.google.com [IPv6:2001:4860:4864:20::34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E57C33E0B
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:48:09 -0700 (PDT)
-Received: by mail-oa1-x34.google.com with SMTP id 586e51a60fabf-10bd4812c29so29282626fac.11
-        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:48:09 -0700 (PDT)
+        with ESMTP id S233445AbiGSEsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 00:48:11 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CE9D2A401
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:48:10 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id o16-20020a9d4110000000b0061cac66bd6dso2451797ote.11
+        for <devicetree@vger.kernel.org>; Mon, 18 Jul 2022 21:48:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=3Miz9syEFJn7QliOMjPkvrAypLemtj44SeEriFNdhzo=;
-        b=EMagCCNx42JY9bLMeQky5VTtCcgB5ZIrZc/o2b5Nd47Z2D/lqhLpuJYt3iK7C8fz2Z
-         +huY50jkXhQi0LVOT4MCbDSIdMsg4hzwOuL9WzcN+d1tG8b4OVvCoWZnall6qRNtCv2T
-         jJ4o7zyk1yvwW+Wzby8QFUH17cw3B5CH7cAVYGVSwBw/yWp2eaPh0eDHGiQOQKvNoTXo
-         QyENe8OrA+yYZXK6BMadEZ29xnOUubaDDQREGm3iIPQ7ac0TSkxYkUmOrbo4AGgWZYL/
-         vDoRSQEHcWoJ1AR3IJsbuPJXCQhKtmxeqCeCeTTFvESkppnYldc5i1tGBZmq39j1m0iZ
-         CqJA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=p1EQHxW5HiBjIRLOc1pgsFcEs6hW1MGSi37sxjV9CgQ=;
+        b=PiJitFQdiOzDbtMiLV1650eyucqzC/C24v7d1oUvXT7MR1yGS9cf3lPXnlHbiW4sRW
+         pyk7M1gXjGyF81rCHVnwjenj21nkXtlcNWFGsDGxcWTQXXTEClW56A/HtTWKtCYOO6wq
+         LvyKsbHs9NDUtBmXFWITLXhklTKojaf/IxaLKeIjsa5t+3OA0u77Q0cZKoKZydQei9Co
+         W3Q9Z4mfHp7JpZHxX3damwl2lfc/3Grg9B3PGd3NYCdEa7P609WgXzXNuWolkStQMjr/
+         XM9gHp4RXs5/BK3749t0PqPraEOUcb0KFBmR3rYxbkfRmN0eTuwaXJjfh1IuJNOXkRFx
+         sXcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=3Miz9syEFJn7QliOMjPkvrAypLemtj44SeEriFNdhzo=;
-        b=n2g2VNcBZMFQ39CgqVUviVsDN64DRSQOx2wUDxaUauN7MemCELD2ioy46pm8s8obzn
-         qHrKTKpFYTrBSBqxfwtjCGWgoaWzNXXtAdsLyOs+pvwuyHIoXzjYIkL2WEPdaHB/jvCS
-         e0MMBgEh1Kv/SxxqVyE/9TA9zOsnExmKjbVv+tGl3ugRTE5oOp4GbrNsVBK8zFkVGlIH
-         0fElA/qGN6C4m1+OuNWMQyrl5xfbZsnU6X12aadeFEsfO1KFaeN/c3g0n+UEhF696pA1
-         gDb31Lf0nfMLxUpl2nbOO8/5hSfVbOiVyC59Yp1ACUrm+xxXINnqVdOXrkoBKXqqxGMf
-         pCXA==
-X-Gm-Message-State: AJIora8uWV/hDiMQj0sSBsZxWbwKbESZvR8t/GOQeVs6fsLEY+a4bTyU
-        pmdk9uMd7b6pgAgS8cKMcmtcQw==
-X-Google-Smtp-Source: AGRyM1tsSjfRTUVstZHZ6U28OsKodWt1hi4Twskm2X3hpdboUZvvg/D8U0Smg+fRxOLk2pe41UjoCQ==
-X-Received: by 2002:a05:6870:231d:b0:10b:7a0e:1be6 with SMTP id w29-20020a056870231d00b0010b7a0e1be6mr16000377oao.114.1658206088532;
-        Mon, 18 Jul 2022 21:48:08 -0700 (PDT)
+        bh=p1EQHxW5HiBjIRLOc1pgsFcEs6hW1MGSi37sxjV9CgQ=;
+        b=EJo7qntbHInABJXL2oVJ0hhcd5lVVBsXkM6We57q7bWHLW92/0QPpq78SBPimw3vjX
+         DpaSBlZbLQO79oKmpFaUu16fGrVHkQExTiDR4fULevNzV03Z2AyiBxnFXSB1/H0QpDao
+         CI6g0ea1zcvIE7cxSVoIkLimQir9fnrNnEGgQer4C28tmHuXMJxkXMnzMrki5ZM7243S
+         pfB/qqk9j1g4tz7NpkQJctL8zSoS4AkfjnGAZmZ0Qpfb+koeIMtFqfyfT47pNm+yuaTA
+         BZ03TIY+Dyc4064GcDJmuAItM7c0B60v/RuFi+HHsyouuIzoc8v6ODjKtIZyI2ojEHoH
+         nBOg==
+X-Gm-Message-State: AJIora8XViNVngCWpD8iUIJWNdDva2tpqIXAG5ZzW7p884PaBnIZI3TV
+        g+wDvoSVnudXZOjw/3aH2RZUiNby7xhWAQ==
+X-Google-Smtp-Source: AGRyM1vzcX/fQTwrXbwNclc5ZTOa20AKos2MIs53u/Bg9zR9a1KTY1yIQpw8OvpfYfG6z6uFswBYqg==
+X-Received: by 2002:a9d:6e84:0:b0:61c:8fdc:de7c with SMTP id a4-20020a9d6e84000000b0061c8fdcde7cmr6587805otr.334.1658206089570;
+        Mon, 18 Jul 2022 21:48:09 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w9-20020a9d70c9000000b0061c9bbac1f9sm2803209otj.16.2022.07.18.21.48.07
+        by smtp.gmail.com with ESMTPSA id w9-20020a9d70c9000000b0061c9bbac1f9sm2803209otj.16.2022.07.18.21.48.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Jul 2022 21:48:08 -0700 (PDT)
+        Mon, 18 Jul 2022 21:48:09 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, linux-kernel@vger.kernel.org,
-        sboyd@kernel.org, mturquette@baylibre.com, ansuelsmth@gmail.com,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        krzysztof.kozlowski+dt@linaro.org
-Subject: Re: (subset) [PATCH v2 0/4] clk: qcom: Drop use of pxo/cxo_board for rpm devices
-Date:   Mon, 18 Jul 2022 23:47:56 -0500
-Message-Id: <165820608074.1955453.9110920777524045791.b4-ty@linaro.org>
+To:     bjorn.andersson@linaro.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     robh+dt@kernel.org, vinod.koul@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH 0/3] arm64: dts: qcom: sdm845-db845: Some i2c fixes
+Date:   Mon, 18 Jul 2022 23:47:57 -0500
+Message-Id: <165820608075.1955453.14421522069664540577.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220706225321.26215-1-ansuelsmth@gmail.com>
-References: <20220706225321.26215-1-ansuelsmth@gmail.com>
+In-Reply-To: <20220717034403.2135027-1-bjorn.andersson@linaro.org>
+References: <20220717034403.2135027-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 7 Jul 2022 00:53:17 +0200, Christian Marangi wrote:
-> Trying to convert every driver used by ipq806x to parent_data api, I notice
-> RPM was still using pxo_board clk.
+On Sat, 16 Jul 2022 20:44:00 -0700, Bjorn Andersson wrote:
+> On my db845c (perhaps old firmware?) i2c14 is using GPI, so this enables that.
+> And while I'm touching it I added dma properties to all the geni i2c and spi
+> nodes and specified a default clock to avoid two warnings in the log during
+> boot.
 > 
-> pxo and pxo_board are the same clock and are defined just to handle old
-> clock definition. It was discovered that rpm is the last driver using
-> pxo_board instead of pxo.
+> Bjorn Andersson (3):
+>   arm64: dts: qcom: sdm845: Fill in GENI DMA references
+>   arm64: dts: qcom: sdm845-db845c: Enable gpi_dma1
+>   arm64: dts: qcom: sdm845-db845c: Specify a i2c bus clocks
 > 
 > [...]
 
 Applied, thanks!
 
-[2/4] ARM: DTS: qcom: add rpmcc missing clocks for apq/ipq8064 and msm8660
-      commit: aa7fd3bb6017b343585e97a909f9b7d2fe174018
+[1/3] arm64: dts: qcom: sdm845: Fill in GENI DMA references
+      commit: 0f064ae7cf703b0527de3a0608ef88548fdb5d9d
+[2/3] arm64: dts: qcom: sdm845-db845c: Enable gpi_dma1
+      commit: 79cfb1124af9b55e082d9d3efbefa4d3fc8b3cdc
+[3/3] arm64: dts: qcom: sdm845-db845c: Specify a i2c bus clocks
+      commit: 746ff2bfcec78cfd522b2a490e7207c3fe836634
 
 Best regards,
 -- 
