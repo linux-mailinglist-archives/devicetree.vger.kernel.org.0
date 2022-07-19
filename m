@@ -2,833 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 071E9579482
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 09:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97073579493
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 09:52:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236879AbiGSHsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 03:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38850 "EHLO
+        id S236919AbiGSHwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 03:52:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236677AbiGSHsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 03:48:14 -0400
-Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com (mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C1B22BD4
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 00:48:10 -0700 (PDT)
+        with ESMTP id S234348AbiGSHwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 03:52:38 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D9E61DA47;
+        Tue, 19 Jul 2022 00:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1658217157; x=1689753157;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=xCveIQ8/JG/ookDlbO7I3u59hP8R61D0NHE4QEoCLpk=;
+  b=P50Lwuwsa4N4yBySlBq6gRNcYPBVgz9fVpbNpUkqA0YEJoPTb1kKtPDR
+   /t4DN+HTk0ObjT3T6vyEUzrSzUGeQ+GdgkJrh8ITNbnacpqWb0TaGIOBr
+   vWoLJAbHf7JAkI8NtFN+vvNDKTyTN0Gb2qANIpek5Gj0CT0ch6giTV4UF
+   Y+neh7bo71KuSHy7c30P0vXX5RbbbaXowbxMLbujNnpYX48Ml1rQPtED0
+   zKbj1Sh/J8sOdPafQ2UsDJYwUeesVrY69YGm7ITpl7PUTLnVKohmohIFI
+   My58ujBM444MfAaECw8XPRxzkjrQwPeHWgfje6oefbnzx7MlYytbXmOIl
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; 
+   d="scan'208";a="105086134"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Jul 2022 00:52:36 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 19 Jul 2022 00:52:36 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
+ Transport; Tue, 19 Jul 2022 00:52:35 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PKfhkeUHFcTrbipruZ8XkiQEgLjDY7f4Iz7Xg0ftXvrZz87nTcqmzr/0INqqxRdKL8pF6blcwsFkYC4N2DgTzF4cAijCeMImwZXzuCinZ0VxSBHc4fHhOHqvihHZ1jSBmub9e4Uu2zLaYZzW5ZdpTTZdo3vzsRqvmHwt0CbkR+BVKRyQuCzJHXo8yzXezAU1cbvG5I7QRu/i2leAryWCc9h+6ey5Qc95iOKb0+u1659QAObO7lXiOcdIBG++Zy6h5SNpf59OYDkdXn4EGzFSyaXTsoA8yUfdNd3iW+DpvaZ37Gag1O4Hgxg5CcjKBeyL6zn8fsX0hx3IC+3Y3BCyqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xCveIQ8/JG/ookDlbO7I3u59hP8R61D0NHE4QEoCLpk=;
+ b=YDz7bNGWLSrdRVeAE+LLx2XKbA0GXCXdI8HQpedWoykkDy5l56cqS+ARj0QxBdFHZ+d3QvcFrlw2KgK63UhJplzXflu8G81MDNV5Jlq1N04cQ8dzefXHNu3ELur4DL7CaAKfOt7Eml4yH4MZKrhn+nROqfSYoeOdovYMPf5iwoCZwNWJAx3XopPQdGY9tqj5wFRbXGCu8CIqWeEr3t5k3qLCY1nKoCrUUYLWxrttRS9ROCBjYYdzUDrCyIYWgqrNHjLrrABqeXXnAvqTNjZQwFnCJYdM2UBcwvEIczI84IiOr1m6k+OQw4whbcNtgaaZQJeX5V1aJkU0fdZa8XcjVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=C4F4WGBewy3IFDuXIs+84+5dLcBG0y+XHqQ3xY3zFrQ=;
-        b=Px3xu8ZigB4DJj7DUssvr2bKp8MMUZFAyRrbsCkotYIugU39khbYbvecCSLoNC85qLIftP0JmBj6e
-         VpKfrUoKtu6DaP6DuAVjoco3A+29rh5cW+noOc1giCdOvk/APBRAZqjBguA7Cj4DafnTmZPmBK+8HW
-         7yrtcnWEsR8lbETeZhzYi/fhPrMDv3d9Y+iG47kR6OcqoTxnXRHc9Bad32pc69Gtv9m76GqD9dQvxg
-         6Q0kmiuRxpiwyVH/jAIcCZGTkcisP60p37qOmpmd7Ysu8MPmBRZlPxNwd2+hI2A5GZcJl/GMidobvC
-         qAQc7/Wvs4yYzqMRe2HHHI6s7hPYwrg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=C4F4WGBewy3IFDuXIs+84+5dLcBG0y+XHqQ3xY3zFrQ=;
-        b=0yhUG6sd7RShnC5L10c/b5jT0Yz3VVlgimcOQNk1D2CgVkhfspt4YccUBQ3XiM1spIkndM/cOks9G
-         jXSSiOfCA==
-X-HalOne-Cookie: c967bcf06dec7844145b72c8c1af2837e0281fa7
-X-HalOne-ID: 2028499c-0737-11ed-823f-d0431ea8bb10
-Received: from mailproxy3.cst.dirpod3-cph3.one.com (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-        id 2028499c-0737-11ed-823f-d0431ea8bb10;
-        Tue, 19 Jul 2022 07:48:06 +0000 (UTC)
-Date:   Tue, 19 Jul 2022 09:48:04 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH 4/4] drm: panel: Add lg sw43408 panel driver
-Message-ID: <YtZhtH/dhc2J7urb@ravnborg.org>
-References: <20220718213051.1475108-1-caleb@connolly.tech>
- <20220718213051.1475108-5-caleb@connolly.tech>
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xCveIQ8/JG/ookDlbO7I3u59hP8R61D0NHE4QEoCLpk=;
+ b=jqYNdlFLDx6GmNVYUklNoQCYCFUuX90gea1CqcjE6C+fpenmUvq7tZraLHU1rpK5TyWn46nw3mk+G/CH1n/eFs7h4W5HEbh+8rbBdedk35Kjd+0PSdbphUeVP+lyb9yK81Xp5sGbLzkXAclHkDNbsqrmSpWT+rhgrbACGPJ9mWc=
+Received: from BN6PR11MB1953.namprd11.prod.outlook.com (2603:10b6:404:105::14)
+ by DM5PR1101MB2156.namprd11.prod.outlook.com (2603:10b6:4:51::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.17; Tue, 19 Jul
+ 2022 07:52:30 +0000
+Received: from BN6PR11MB1953.namprd11.prod.outlook.com
+ ([fe80::5c8c:c31f:454d:824c]) by BN6PR11MB1953.namprd11.prod.outlook.com
+ ([fe80::5c8c:c31f:454d:824c%8]) with mapi id 15.20.5438.023; Tue, 19 Jul 2022
+ 07:52:29 +0000
+From:   <Claudiu.Beznea@microchip.com>
+To:     <Horatiu.Vultur@microchip.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <Nicolas.Ferre@microchip.com>, <UNGLinuxDriver@microchip.com>,
+        <maxime.chevallier@bootlin.com>
+Subject: Re: [PATCH 1/3] ARM: dts: lan966x: Add gpio-restart
+Thread-Topic: [PATCH 1/3] ARM: dts: lan966x: Add gpio-restart
+Thread-Index: AQHYm0R+zLj/0xqhjU+WeLkBtZOTmA==
+Date:   Tue, 19 Jul 2022 07:52:29 +0000
+Message-ID: <3e0b7137-08d1-fef2-86b5-a48419dd2101@microchip.com>
+References: <20220718212921.1506984-1-horatiu.vultur@microchip.com>
+ <20220718212921.1506984-2-horatiu.vultur@microchip.com>
+In-Reply-To: <20220718212921.1506984-2-horatiu.vultur@microchip.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2d4f294a-3fad-415a-b87f-08da695ba160
+x-ms-traffictypediagnostic: DM5PR1101MB2156:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: sP719cSjENCWaANcCjS8cjCdmvnVX2am4djn6StpmknZqbUiWp5K2kG0g5Ae8e9o0u1lQ6KIydsHxKdLkIr4H1oRl400/4p73R3xtI8XcMP21SHMVC2mO5n2kXQIrGUXD6B/8s3x3VDhtRlp0SIQb5qGLWivBjzXP/sXHt1O5uL0zREy3VBrXreBgkLEES1qROJG0j7/hkdU/1VEudAWi6hIDD0mufzZ+oJLxZppjGOKukS9a9rRBjNtsq6Tqd+3Q3uNifkAvAdpAB6Sl3OenhxZH8pUCqemGpc9+7zaT5kfBRuhCPBi073EEbknzsdUz4mJnZ68hgYZ+2navxDTfhh/d4gBjrqaVV4U27glCDwb+swTiPhfqsrptHZa6l+PKAwSSlHbcR0x15hkoy7qw6ZJjpQtHhLANm2qWe+WWkZkL2Kjy0DTkE/g0jQCzSL9zk6RdP078f/vb1L2ja7hwtzwkfl3vF7KkL31fOBSI4WmGhisKvQx1AiJ1SUQmg0PPeEKhFggrhrlhALdyQ6ntZHTRb8tVM1hwLhU6CI1LJY+rF0jtsTFVe1IKf9XJbj2/6NJuNwLjhpT8mxx17AeGRAKXYpd/xrjbgLlPyU3+nQIZKQfzZZ8pjxHv1WTMGe86LUlBKvnXM9LV/yF+2D5Khk/wR/hYF6DBf94eVdzQG7k69H/IN1v1Vyfn6njw9SGrjtJBud9YN2cKQVqaYktzXLRLbyvqzDLodWh5d2r24sJkdgcWNxrw+AqMLydUwecMQpm7nxzsxWJ+IiGkwbswM/6mNrEUbfN1IfjqBP3D6hHVH3J0feOYo82CQdSyNL7qBWxn9ex7RIrJHf5j/MvWIb+PCDecABAC6/6r/RRYhEHgBKthZ/fBnWbK5AZ2RGr
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR11MB1953.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(376002)(136003)(346002)(366004)(396003)(39860400002)(4326008)(8676002)(76116006)(66946007)(66556008)(8936002)(64756008)(66446008)(66476007)(316002)(38070700005)(54906003)(122000001)(86362001)(110136005)(31686004)(38100700002)(36756003)(2906002)(91956017)(186003)(26005)(6486002)(5660300002)(53546011)(6506007)(41300700001)(71200400001)(478600001)(31696002)(2616005)(6512007)(4744005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TTEyM0hjVDFhUS90MHdudjlNUGxEdVMyL2YvK050emtIc1lkS3BlM0xlR3VU?=
+ =?utf-8?B?VkROdXJMeFNab3lNc1RIdXRTWUt5K3ZVZ2VNOHNuV0lBV3dGaWk2UHJWV3k0?=
+ =?utf-8?B?R3hNc1NiT0FtY3RpTTVUQ3VUc21uTGVrTkp4b3JhOUJ0UDRCNkk3eG5oQ2h6?=
+ =?utf-8?B?OXJCbXZQbTI2dG9hWk1wL1pMZDdYQXhibFBVdjhYcW5IK0FyK0U2ZkZucnBk?=
+ =?utf-8?B?bnJPY2FwMkFsK2FYQjlwam1tL2ZncTZ2VVRKckx0ZFNCbkpndDQ1eHBJMU0r?=
+ =?utf-8?B?djVQVnFJYlJaV3N1cTJqRHBWNU5JajN2aktST3NMWkJIaFBMOVhvdHhSenVw?=
+ =?utf-8?B?SWtIS054a0xVeVNHMzVRWGxKSTNxMXREUEhiOHl1TGZKa3c0b2tockZhWVJx?=
+ =?utf-8?B?NXVoSXhyak15REdJcCtMZmhRTDB6ZjZONmx2WTQ5SGpSbHpsZ2tIT25rVnA1?=
+ =?utf-8?B?emk2TGxCTUk5RnQ5MnpKUmU0aUJLNzFGZkpGU0hxWjNHLzNLVk05b3dIdXR1?=
+ =?utf-8?B?MWF0Q3IvMnZmVWhwRVVVMzE4L3M1elFBTEJOWjNVdjkrZ2hIVVVjK3ErMTV6?=
+ =?utf-8?B?UXhjZnAyTDM3eHp3YWFVS2NCbDFqd0pYSTViZVY5RVZIOW9hck0yYWVidHFH?=
+ =?utf-8?B?alhsK1N2bHh6UTh6RHlIdmRzbWFXVSt4T1BxYkhEcWpybXBHOG5XdlFSRDZE?=
+ =?utf-8?B?dEFoNVFWWnJYc2VPa3ZyNks0aFF2cnZhK3dIVmJZMU5WUk0zS0t0WkF5Rmd3?=
+ =?utf-8?B?VkhNMUpPbHR0ZVVST3lySDVnSHNyK2pKdTVhU0k1Ty84MGkvZzg5SHJEQzVl?=
+ =?utf-8?B?SnJjb0crNm5ZeG9jRzVjOElZcFVBVVRKV1lBU01nSVRXUDNTVTZ5SmJoMnds?=
+ =?utf-8?B?RVhEUjFrY005a29TaXNVck1OOHNFTElmSW9majdLMm1UVkpnaFNzcFEwVzdm?=
+ =?utf-8?B?U1pDT0RweG1ES3V5YmRsTUROVHBXSjEyME9UeVdIVmZrTmtveGZCekt2NnZs?=
+ =?utf-8?B?Sk5aSHhUUExCN0Z5Rlk5c1htRWViWXVvRmk0YW1uR3lGT3hzYWJVQ0YwZThm?=
+ =?utf-8?B?blFLS3ZaT1JUU0NGUXJGOUFZWFEybGdXVXh4R0NHSTkwNjliUFptdFhUdWN3?=
+ =?utf-8?B?aDI1Y2YxcUU2bHpUaHQ4L29YY0w5QmVOc2MwNnVFSHAxTG1Gbnd0Y2dFS283?=
+ =?utf-8?B?RVpER29PZHBnU2JXNmJ3blZldTNIVmpBbWhnUUhGRW9pYnNPdVVEMHZHZFVL?=
+ =?utf-8?B?NUNwQk5MR0ZSTkZlcUtVckppNzV6WVoyZFlqcjV2TWJuQ3VjUDI2eFJ1bDd3?=
+ =?utf-8?B?ZzJyTjZlQ3JiOEh3Z2x5c01oUlJjTE1ZeUEvd0RVb2lBZ1VZbHRkM0hSTzNM?=
+ =?utf-8?B?bnlHWTgxRkZRRzMweG9iS045WVZ6VW96UWZvdmVhejd6L3ZKamQxellTS0Yv?=
+ =?utf-8?B?Y2ZOd05DbTBsc1pvOFV2cTRYaTZWMmJlYURabTcrZTJ2eDlEMkRHQ2xHSVox?=
+ =?utf-8?B?YUFBa3N3dW5HTWtDRHZySm9ibDBVdDVSTUo4dXFLM1luSkdJYkg0c2hQNXhw?=
+ =?utf-8?B?eXN3enVTMVRUck5MNFVEVC84cUdFY1VRUGUwdVVMVlZKMW4wa01uSWpPL0gy?=
+ =?utf-8?B?WjQ1N3VSRWJ2Mkd6VkJ6c0VUM2w0ZWluZ0JBdzNyYmI0QVdXUmhaR2N2dXA5?=
+ =?utf-8?B?c2Q2M1F4SWFKSytFRlRrNlVYSXNXZmJLOFdETnNSUiswRGhnRnZnRzBZQUVr?=
+ =?utf-8?B?d21yR3VVYlljMXRWWEtYQldaa1c4R3FQYkhhRkVGc2dkd010Nng4TWdUeDlH?=
+ =?utf-8?B?NGhsVmJlcnkrVHVpWk5NaXdaWXh4Vi9WVFRwSitqdE1UWWxxdnB2QlZqSmZa?=
+ =?utf-8?B?dVNENm1PdlQ1RzdhS1VMalNhSy9DdXhaZThpNnBtWkhjVFlGQWJJN0tiMGpy?=
+ =?utf-8?B?QThoSnM5TzFZcUpQWWlVZGpKbjBwaVRJNElPVnFIR1NTaFNzRkFDK2NrK0w2?=
+ =?utf-8?B?TjJxOTZ6QUtBeHQzUUVoc3JvU0ZKenI5UkhvaUlUbkJCeHNjK0svSUcwMzFY?=
+ =?utf-8?B?ekNaZEpjd2pIWWRIakdYeDJHckxpVlhEcXBLdS8vcnp4SmFsU2lDR2VJRzFJ?=
+ =?utf-8?B?N21kR3NzbGU1Ui9ST00wZFB2cGN1VlFscWVrYVdSZXpadTBpZS9tZithcmJP?=
+ =?utf-8?B?RHc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <2D0806A26371EC4EA441024CF650B6C1@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220718213051.1475108-5-caleb@connolly.tech>
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,URIBL_BLACK autolearn=no autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB1953.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2d4f294a-3fad-415a-b87f-08da695ba160
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2022 07:52:29.6601
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9WQwmntOfZcEVLUf3xLoQkzyMMsWvKtzH4bjOMf9TtnFiGHHDAz8RaZMUf2LDu2IsN1vnKKvij19jMNGIliqXeJNpQYxtuAomkI+bMeDHYw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1101MB2156
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Caleb,
-
-On Mon, Jul 18, 2022 at 10:30:51PM +0100, Caleb Connolly wrote:
-> From: Sumit Semwal <sumit.semwal@linaro.org>
-> 
-> LG SW43408 is 1080x2160, 4-lane MIPI-DSI panel, used in some Pixel3
-> phones.
-
-Thanks for submitting this.
-
-When reading the code it is obvious that this was based on an older
-panel and there is a few things to improve to get it on on same level as
-the other panel drivers today.
-
-I will comment in the following.
-
-	Sam
-
-> 
-> Whatever init sequence we have for this panel isn't capable of
-> initialising it completely, toggling the reset gpio ever causes the
-> panel to die. Until this is resolved we avoid resetting the panel. The
-> disable/unprepare functions only put the panel to sleep mode and
-> disable the backlight.
-> 
-> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-> [vinod: Add DSC support]
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> [caleb: cleanup and support turning off the panel]
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
-> ---
->  MAINTAINERS                              |   8 +
->  drivers/gpu/drm/panel/Kconfig            |  11 +
->  drivers/gpu/drm/panel/Makefile           |   1 +
->  drivers/gpu/drm/panel/panel-lg-sw43408.c | 586 +++++++++++++++++++++++
->  4 files changed, 606 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-lg-sw43408.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f679152bdbad..8a2b954ad140 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6376,6 +6376,14 @@ S:	Orphan / Obsolete
->  F:	drivers/gpu/drm/i810/
->  F:	include/uapi/drm/i810_drm.h
->  
-> +DRM DRIVER FOR LG SW43408 PANELS
-> +M:	Sumit Semwal <sumit.semwal@linaro.org>
-> +M:	Caleb Connolly <caleb@connolly.tech>
-> +S:	Maintained
-m +T:	git git://anongit.freedesktop.org/drm/drm-misc
-> +F:	Documentation/devicetree/bindings/display/panel/lg,sw43408-panel.txt
-> +F:	drivers/gpu/drm/panel/panel-lg-sw43408.c
-> +
->  DRM DRIVER FOR LVDS PANELS
->  M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->  L:	dri-devel@lists.freedesktop.org
-> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-> index 38799effd00a..706b112794b9 100644
-> --- a/drivers/gpu/drm/panel/Kconfig
-> +++ b/drivers/gpu/drm/panel/Kconfig
-> @@ -256,6 +256,17 @@ config DRM_PANEL_LEADTEK_LTK500HD1829
->  	  24 bit RGB per pixel. It provides a MIPI DSI interface to
->  	  the host and has a built-in LED backlight.
->  
-> +config DRM_PANEL_LG_SW43408
-> +	tristate "LG SW43408 panel"
-> +	depends on OF
-> +	depends on DRM_MIPI_DSI
-> +	depends on BACKLIGHT_CLASS_DEVICE
-> +	help
-> +	  Say Y here if you want to enable support for LG sw43408 panel.
-> +	  The panel has a 1080x2160 resolution and uses
-> +	  24 bit RGB per pixel. It provides a MIPI DSI interface to
-> +	  the host and has a built-in LED backlight.
-> +
-
-Hrmpf, the DRM_PANEL_SAMSUNG_LD9040 config entry is not placed in
-alphabetic order. Can you move it or put you config optiosn with the
-other LG config options?
-
->  config DRM_PANEL_SAMSUNG_LD9040
->  	tristate "Samsung LD9040 RGB/SPI panel"
->  	depends on OF && SPI
-> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-> index 42a7ab54234b..ba26a69b74e7 100644
-> --- a/drivers/gpu/drm/panel/Makefile
-> +++ b/drivers/gpu/drm/panel/Makefile
-> @@ -25,6 +25,7 @@ obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK050H3146W) += panel-leadtek-ltk050h3146w.o
->  obj-$(CONFIG_DRM_PANEL_LEADTEK_LTK500HD1829) += panel-leadtek-ltk500hd1829.o
->  obj-$(CONFIG_DRM_PANEL_LG_LB035Q02) += panel-lg-lb035q02.o
->  obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
-> +obj-$(CONFIG_DRM_PANEL_LG_SW43408) += panel-lg-sw43408.o
->  obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
->  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3052C) += panel-newvision-nv3052c.o
->  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35510) += panel-novatek-nt35510.o
-> diff --git a/drivers/gpu/drm/panel/panel-lg-sw43408.c b/drivers/gpu/drm/panel/panel-lg-sw43408.c
-> new file mode 100644
-> index 000000000000..c7b8ec7b970d
-> --- /dev/null
-> +++ b/drivers/gpu/drm/panel/panel-lg-sw43408.c
-> @@ -0,0 +1,586 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright (C) 2019 Linaro Ltd
-Update to 2022?
-
-> + * Author: Sumit Semwal <sumit.semwal@linaro.org>
-> + */
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/delay.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/regulator/consumer.h>
-> +
-> +#include <drm/drm_device.h>
-> +#include <drm/drm_mipi_dsi.h>
-> +#include <drm/drm_modes.h>
-> +#include <drm/drm_panel.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/display/drm_dsc.h>
-> +#include <drm/display/drm_dsc_helper.h>
-> +
-> +#include <video/mipi_display.h>
-> +
-> +struct panel_cmd {
-> +	size_t len;
-> +	const char *data;
-> +};
-> +
-> +#define _INIT_CMD(...)                                                   \
-> +	{                                                                \
-> +		.len = sizeof((char[]){ __VA_ARGS__ }), .data = (char[]) \
-> +		{                                                        \
-> +			__VA_ARGS__                                      \
-> +		}                                                        \
-> +	}
-Other panel drivers do:
-#define _INIT_DCS_CMD(...) { \
-        .type = INIT_DCS_CMD, \
-        .len = sizeof((char[]){__VA_ARGS__}), \
-        .data = (char[]){__VA_ARGS__} }
-
-See for example panel-boe-tv101wum-nl6.c
-This makes the init sequences a tad more readable.
-
-
-> +
-> +static const char *const regulator_names[] = {
-> +	"vddi",
-> +	"vpnl",
-> +};
-> +
-> +static const unsigned long regulator_enable_loads[] = {
-> +	62000,
-> +	857000,
-> +};
-> +
-> +static const unsigned long regulator_disable_loads[] = {
-> +	80,
-> +	0,
-> +};
-> +
-> +struct sw43408_panel {
-> +	struct drm_panel base;
-> +	struct mipi_dsi_device *link;
-This is often named "dsi"
-
-> +
-> +	const struct drm_display_mode *mode;
-> +	struct backlight_device *backlight;
-Unless there are specific needs, use the drm_panel provided backlight.
-
-> +
-> +	struct regulator_bulk_data supplies[ARRAY_SIZE(regulator_names)];
-> +
-> +	struct gpio_desc *reset_gpio;
-> +
-> +	bool prepared;
-> +	bool enabled;
-> +};
-> +
-> +static const struct panel_cmd lg_sw43408_on_cmds_1[] = {
-> +	_INIT_CMD(0x00, 0x53, 0x0C, 0x30),
-> +	_INIT_CMD(0x00, 0x55, 0x00, 0x70, 0xDF, 0x00, 0x70, 0xDF),
-> +	_INIT_CMD(0x00, 0xF7, 0x01, 0x49, 0x0C),
-> +
-> +	{},
-> +};
-> +
-> +static const struct panel_cmd lg_sw43408_on_cmds_2[] = {
-> +	_INIT_CMD(0x00, 0xB0, 0xAC),
-> +	_INIT_CMD(0x00, 0xCD, 0x00, 0x00, 0x00, 0x19, 0x19, 0x19, 0x19, 0x19,
-> +		  0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x16, 0x16),
-> +	_INIT_CMD(0x00, 0xCB, 0x80, 0x5C, 0x07, 0x03, 0x28),
-> +	_INIT_CMD(0x00, 0xC0, 0x02, 0x02, 0x0F),
-> +	_INIT_CMD(0x00, 0xE5, 0x00, 0x3A, 0x00, 0x3A, 0x00, 0x0E, 0x10),
-> +	_INIT_CMD(0x00, 0xB5, 0x75, 0x60, 0x2D, 0x5D, 0x80, 0x00, 0x0A, 0x0B,
-> +		  0x00, 0x05, 0x0B, 0x00, 0x80, 0x0D, 0x0E, 0x40, 0x00, 0x0C,
-> +		  0x00, 0x16, 0x00, 0xB8, 0x00, 0x80, 0x0D, 0x0E, 0x40, 0x00,
-> +		  0x0C, 0x00, 0x16, 0x00, 0xB8, 0x00, 0x81, 0x00, 0x03, 0x03,
-> +		  0x03, 0x01, 0x01),
-> +	_INIT_CMD(0x00, 0x55, 0x04, 0x61, 0xDB, 0x04, 0x70, 0xDB),
-> +	_INIT_CMD(0x00, 0xB0, 0xCA),
-> +
-> +	{},
-> +};
-> +
-> +static inline struct sw43408_panel *to_panel_info(struct drm_panel *panel)
-> +{
-> +	return container_of(panel, struct sw43408_panel, base);
-> +}
-> +
-> +/*
-> + * Currently unable to bring up the panel after resetting, must be missing
-> + * some init commands somewhere.
-> + */
-> +static __always_unused int panel_reset(struct sw43408_panel *ctx)
-> +{
-> +	int ret = 0, i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ctx->supplies); i++) {
-> +		ret = regulator_set_load(ctx->supplies[i].consumer,
-> +					 regulator_enable_loads[i]);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ctx->supplies); i++) {
-> +		ret = regulator_set_load(ctx->supplies[i].consumer,
-> +					 regulator_disable_loads[i]);
-> +		if (ret) {
-> +			DRM_DEV_ERROR(ctx->base.dev,
-> +				      "regulator_set_load failed %d\n", ret);
-panels do not use DRM_DEV_ERROR() these days. Use dev_err() or pr_err().
-
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	gpiod_set_value(ctx->reset_gpio, 0);
-> +	usleep_range(9000, 10000);
-> +	gpiod_set_value(ctx->reset_gpio, 1);
-> +	usleep_range(1000, 2000);
-> +	gpiod_set_value(ctx->reset_gpio, 0);
-> +	usleep_range(9000, 10000);
-> +
-> +	return 0;
-> +}
-> +
-> +static int send_mipi_cmds(struct drm_panel *panel, const struct panel_cmd *cmds)
-> +{
-> +	struct sw43408_panel *ctx = to_panel_info(panel);
-> +	unsigned int i = 0;
-> +	int err;
-> +
-> +	if (!cmds)
-> +		return -EFAULT;
-> +
-> +	for (i = 0; cmds[i].len != 0; i++) {
-> +		const struct panel_cmd *cmd = &cmds[i];
-> +
-> +		if (cmd->len == 2)
-> +			err = mipi_dsi_dcs_write(ctx->link, cmd->data[1], NULL,
-> +						 0);
-Do not wrap lines like this, up to 100 chars is ok.
-
-There is no use of len == 2 - as there is none with this length. Maybe
-error out there is one as this is likely a bug?
-
-> +		else
-> +			err = mipi_dsi_dcs_write(ctx->link, cmd->data[1],
-> +						 cmd->data + 2, cmd->len - 2);
-> +
-Consider to use mipi_dsi_dcs_write_buffer
-
-> +		if (err < 0)
-> +			return err;
-> +
-> +		usleep_range((cmd->data[0]) * 1000, (1 + cmd->data[0]) * 1000);
-So there is always a usleep_range(0, 1000) after each write - is this
-really required?
-Also, it is non-obvious that the first byte in the arry is a delay
-parameter, this can be done better. See panel-boe-tv101wum-nl6.c as one
-example - there may be betters ways to do it.
-
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int lg_panel_disable(struct drm_panel *panel)
-> +{
-> +	struct sw43408_panel *ctx = to_panel_info(panel);
-> +
-> +	backlight_disable(ctx->backlight);
-> +	ctx->enabled = false;
-> +
-> +	return 0;
-> +}
-Let drm_panel handle backlight, then you can drop the disable method.
-
-> +
-> +/*
-> + * We can't currently re-initialise the panel properly after powering off.
-> + * This function will be used when this is resolved.
-> + */
-> +static __always_unused int lg_panel_power_off(struct drm_panel *panel)
-> +{
-> +	struct sw43408_panel *ctx = to_panel_info(panel);
-> +	int i, ret = 0;
-> +
-> +	gpiod_set_value(ctx->reset_gpio, 1);
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ctx->supplies); i++) {
-> +		ret = regulator_set_load(ctx->supplies[i].consumer,
-> +					 regulator_disable_loads[i]);
-> +		if (ret) {
-> +			DRM_DEV_ERROR(panel->dev,
-> +				      "regulator_set_load failed %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(panel->dev, "regulator_bulk_disable failed %d\n",
-> +			      ret);
-> +	}
-> +	return ret;
-> +}
-> +
-> +static int lg_panel_unprepare(struct drm_panel *panel)
-> +{
-> +	struct sw43408_panel *ctx = to_panel_info(panel);
-> +	int ret, i;
-> +
-> +	if (!ctx->prepared)
-> +		return 0;
-> +
-> +	ret = mipi_dsi_dcs_set_display_off(ctx->link);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(panel->dev,
-> +			      "set_display_off cmd failed ret = %d\n", ret);
-> +	}
-> +
-> +	msleep(120);
-> +
-> +	ret = mipi_dsi_dcs_enter_sleep_mode(ctx->link);
-> +	if (ret < 0) {
-> +		DRM_DEV_ERROR(panel->dev, "enter_sleep cmd failed ret = %d\n",
-> +			      ret);
-> +	}
-> +
-> +	/* Would call panel_power_off() */
-And please do so.
-If the reset code is not OK then comment it out in power_off(),
-but do not duplicate all the regulator handling - it is very confusing
-to read.
-Same with the other commented out functions.
-
-I did not look at the unprepare code - this will wait until next
-iteration of the driver where the power supply stuff is cleaned up.
-
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ctx->supplies); i++) {
-> +		ret = regulator_set_load(ctx->supplies[i].consumer,
-> +					 regulator_disable_loads[i]);
-> +		if (ret) {
-> +			DRM_DEV_ERROR(panel->dev,
-> +				      "regulator_set_load failed %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ctx->prepared = false;
-> +
-> +	return ret;
-> +}
-> +
-> +static int lg_panel_prepare(struct drm_panel *panel)
-> +{
-> +	struct sw43408_panel *ctx = to_panel_info(panel);
-> +	int err, i;
-> +
-> +	if (ctx->prepared)
-> +		return 0;
-> +
-> +	/* Would call panel_reset() */
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ctx->supplies); i++) {
-> +		err = regulator_set_load(ctx->supplies[i].consumer,
-> +					 regulator_enable_loads[i]);
-> +		if (err)
-> +			return err;
-> +	}
-> +
-> +	err = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	usleep_range(9000, 10000);
-> +
-> +	err = mipi_dsi_dcs_write(ctx->link, MIPI_DCS_SET_GAMMA_CURVE,
-> +				 (u8[]){ 0x02 }, 1);
-> +	if (err < 0) {
-> +		DRM_DEV_ERROR(panel->dev, "failed to set gamma curve: %d\n",
-> +			      err);
-> +		goto poweroff;
-> +	}
-> +
-> +	err = mipi_dsi_dcs_set_tear_on(ctx->link,
-> +				       MIPI_DSI_DCS_TEAR_MODE_VBLANK);
-> +	if (err < 0) {
-> +		DRM_DEV_ERROR(panel->dev, "failed to set tear on: %d\n", err);
-> +		goto poweroff;
-> +	}
-> +
-> +	err = send_mipi_cmds(panel, &lg_sw43408_on_cmds_1[0]);
-> +
-> +	if (err < 0) {
-> +		DRM_DEV_ERROR(panel->dev,
-> +			      "failed to send DCS Init 1st Code: %d\n", err);
-> +		goto poweroff;
-> +	}
-> +
-> +	err = mipi_dsi_dcs_exit_sleep_mode(ctx->link);
-> +	if (err < 0) {
-> +		DRM_DEV_ERROR(panel->dev, "failed to exit sleep mode: %d\n",
-> +			      err);
-> +		goto poweroff;
-> +	}
-> +
-> +	msleep(135);
-> +
-> +	err = mipi_dsi_dcs_write(ctx->link, MIPI_DSI_COMPRESSION_MODE,
-> +				 (u8[]){ 0x11 }, 0);
-> +	if (err < 0) {
-> +		DRM_DEV_ERROR(panel->dev,
-> +			      "failed to set compression mode: %d\n", err);
-> +		goto poweroff;
-> +	}
-> +
-> +	err = send_mipi_cmds(panel, &lg_sw43408_on_cmds_2[0]);
-> +
-> +	if (err < 0) {
-> +		DRM_DEV_ERROR(panel->dev,
-> +			      "failed to send DCS Init 2nd Code: %d\n", err);
-> +		goto poweroff;
-> +	}
-> +
-> +	err = mipi_dsi_dcs_set_display_on(ctx->link);
-> +	if (err < 0) {
-> +		DRM_DEV_ERROR(panel->dev, "failed to Set Display ON: %d\n",
-> +			      err);
-> +		goto poweroff;
-> +	}
-> +
-> +	msleep(120);
-> +
-> +	ctx->prepared = true;
-> +
-> +	return 0;
-> +
-> +poweroff:
-> +	gpiod_set_value(ctx->reset_gpio, 1);
-> +	regulator_bulk_disable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	return err;
-> +}
-> +
-> +static int lg_panel_enable(struct drm_panel *panel)
-> +{
-> +	struct sw43408_panel *ctx = to_panel_info(panel);
-> +	struct drm_dsc_picture_parameter_set pps;
-> +	int ret;
-> +
-> +	if (ctx->enabled)
-> +		return 0;
-> +
-> +	ret = backlight_enable(ctx->backlight);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(panel->dev, "Failed to enable backlight %d\n",
-> +			      ret);
-> +		return ret;
-> +	}
-> +
-> +	if (!panel->dsc) {
-> +		DRM_DEV_ERROR(panel->dev, "Can't find DSC\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	drm_dsc_pps_payload_pack(&pps, panel->dsc);
-There is nothing in disable about pps_payload - so they are not
-symmetrical. Check if this is OK.
-
-> +
-> +	ctx->enabled = true;
-> +
-> +	return 0;
-> +}
-> +
-> +static int lg_panel_get_modes(struct drm_panel *panel,
-> +			      struct drm_connector *connector)
-> +{
-> +	struct sw43408_panel *ctx = to_panel_info(panel);
-> +	const struct drm_display_mode *m = ctx->mode;
-> +	struct drm_display_mode *mode;
-> +
-> +	mode = drm_mode_duplicate(connector->dev, m);
-> +	if (!mode) {
-> +		DRM_DEV_ERROR(panel->dev, "failed to add mode %ux%u\n",
-> +			      m->hdisplay, m->vdisplay);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	connector->display_info.width_mm = m->width_mm;
-> +	connector->display_info.height_mm = m->height_mm;
-> +
-> +	drm_mode_set_name(mode);
-> +	drm_mode_probed_add(connector, mode);
-> +
-> +	return 1;
-> +}
-> +
-> +static int lg_panel_backlight_update_status(struct backlight_device *bl)
-> +{
-> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
-> +	int ret = 0;
-> +	uint16_t brightness;
-> +
-> +	brightness = (uint16_t)backlight_get_brightness(bl);
-> +	/* Brightness is sent in big-endian */
-> +	brightness = cpu_to_be16(brightness);
-This cpu_to_be16() looks wrong - the mipi_dsi_dcs_set_display_brightness() takes care.
-
-
-> +
-> +	ret = mipi_dsi_dcs_set_display_brightness(dsi, brightness);
-> +	return ret;
-> +}
-> +
-> +static int lg_panel_backlight_get_brightness(struct backlight_device *bl)
-> +{
-> +	struct mipi_dsi_device *dsi = bl_get_data(bl);
-> +	int ret = 0;
-> +	u16 brightness = 0;
-> +
-> +	ret = mipi_dsi_dcs_get_display_brightness(dsi, &brightness);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return brightness & 0xff;
-The truncation to 8 bit is not needed unless the HW is buggy.
-And since the brightness value is not adjusted, there is no need to add
-the get_brightness() method, it will just return what was written
-earlier anyway. Most panels get away without it.
-
-> +}
-> +
-> +const struct backlight_ops lg_panel_backlight_ops = {
-> +	.update_status = lg_panel_backlight_update_status,
-> +	.get_brightness = lg_panel_backlight_get_brightness,
-> +};
-> +
-> +static int lg_panel_backlight_init(struct sw43408_panel *ctx)
-> +{
-> +	struct device *dev = &ctx->link->dev;
-> +	const struct backlight_properties props = {
-> +		.type = BACKLIGHT_PLATFORM,
-This is not a PLATFORM backlight, RAW it the right choice here.
-
-> +		.brightness = 255,
-> +		.max_brightness = 255,
-Is 255 the correct max here? Check the HW specs.
-> +	};
-> +
-> +	ctx->backlight = devm_backlight_device_register(dev, dev_name(dev), dev,
-> +							ctx->link,
-> +							&lg_panel_backlight_ops,
-> +							&props);
-Use panel->backlight here.
-
-> +
-> +	if (IS_ERR(ctx->backlight))
-> +		return dev_err_probe(dev, PTR_ERR(ctx->backlight),
-> +				     "Failed to create backlight\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_panel_funcs panel_funcs = {
-> +	.disable = lg_panel_disable,
-> +	.unprepare = lg_panel_unprepare,
-> +	.prepare = lg_panel_prepare,
-> +	.enable = lg_panel_enable,
-> +	.get_modes = lg_panel_get_modes,
-> +};
-> +
-> +static const struct drm_display_mode sw43408_default_mode = {
-> +	.clock = 152340,
-> +
-> +	.hdisplay = 1080,
-> +	.hsync_start = 1080 + 20,
-> +	.hsync_end = 1080 + 20 + 32,
-> +	.htotal = 1080 + 20 + 32 + 20,
-> +
-> +	.vdisplay = 2160,
-> +	.vsync_start = 2160 + 20,
-> +	.vsync_end = 2160 + 20 + 4,
-> +	.vtotal = 2160 + 20 + 4 + 20,
-> +
-> +	.width_mm = 62,
-> +	.height_mm = 124,
-> +
-> +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-> +};
-> +
-> +static const struct of_device_id panel_of_match[] = {
-> +	{ .compatible = "lg,sw43408", .data = &sw43408_default_mode },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, panel_of_match);
-> +
-> +static int panel_add(struct sw43408_panel *ctx)
-> +{
-> +	struct device *dev = &ctx->link->dev;
-> +	int i, ret;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ctx->supplies); i++)
-> +		ctx->supplies[i].supply = regulator_names[i];
-> +
-> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(ctx->supplies),
-> +				      ctx->supplies);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(ctx->reset_gpio)) {
-> +		DRM_DEV_ERROR(dev, "cannot get reset gpio %ld\n",
-> +			      PTR_ERR(ctx->reset_gpio));
-> +		return PTR_ERR(ctx->reset_gpio);
-> +	}
-Use dev_err_probe() here.
-
-> +
-> +	ret = lg_panel_backlight_init(ctx);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	drm_panel_init(&ctx->base, dev, &panel_funcs, DRM_MODE_CONNECTOR_DSI);
-Init backlight after panel init.
-
-> +
-> +	drm_panel_add(&ctx->base);
-> +	return ret;
-> +}
-> +
-> +static int panel_probe(struct mipi_dsi_device *dsi)
-> +{
-> +	struct sw43408_panel *ctx;
-> +	struct drm_dsc_config *dsc;
-> +	int err;
-> +
-> +	ctx = devm_kzalloc(&dsi->dev, sizeof(*ctx), GFP_KERNEL);
-> +	if (!ctx)
-> +		return -ENOMEM;
-> +
-> +	ctx->mode = of_device_get_match_data(&dsi->dev);
-> +	dsi->mode_flags = MIPI_DSI_MODE_LPM;
-> +	dsi->format = MIPI_DSI_FMT_RGB888;
-> +	dsi->lanes = 4;
-> +
-> +	ctx->link = dsi;
-> +	mipi_dsi_set_drvdata(dsi, ctx);
-> +
-> +	err = panel_add(ctx);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	/* The panel is DSC panel only, set the dsc params */
-> +	dsc = devm_kzalloc(&dsi->dev, sizeof(*dsc), GFP_KERNEL);
-> +	if (!dsc)
-> +		return -ENOMEM;
-The drm_dsc_config could be embedded in sw43408_panel, so there was not
-two allocations to track but with devm_kzalloc this is not a big win.
-
-> +
-> +	dsc->dsc_version_major = 0x1;
-> +	dsc->dsc_version_minor = 0x1;
-> +
-> +	dsc->slice_height = 16;
-> +	dsc->slice_width = 540;
-> +	dsc->slice_count = 1;
-> +	dsc->bits_per_component = 8;
-> +	dsc->bits_per_pixel = 8;
-> +	dsc->block_pred_enable = true;
-> +
-> +	ctx->base.dsc = dsc;
-> +
-> +	return mipi_dsi_attach(dsi);
-> +}
-> +
-> +static int panel_remove(struct mipi_dsi_device *dsi)
-> +{
-> +	struct sw43408_panel *ctx = mipi_dsi_get_drvdata(dsi);
-> +	int err;
-> +
-> +	err = lg_panel_unprepare(&ctx->base);
-> +	if (err < 0)
-> +		DRM_DEV_ERROR(&dsi->dev, "failed to unprepare panel: %d\n",
-> +			      err);
-Use the drm_panel() functions here, do not call your own.
-See for example: y030xx067a_remove()
-
-> +
-> +	err = lg_panel_disable(&ctx->base);
-> +	if (err < 0)
-> +		DRM_DEV_ERROR(&dsi->dev, "failed to disable panel: %d\n", err);
-> +
-> +	err = mipi_dsi_detach(dsi);
-> +	if (err < 0)
-> +		DRM_DEV_ERROR(&dsi->dev, "failed to detach from DSI host: %d\n",
-> +			      err);
-mipi_dsi_detach() is needed here.
-
-> +
-> +	if (ctx->base.dev)
-No need to check, the pointer must be valid.
-> +		drm_panel_remove(&ctx->base);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct mipi_dsi_driver panel_driver = {
-> +	.driver = {
-> +		.name = "panel-lg-sw43408",
-> +		.of_match_table = panel_of_match,
-> +	},
-> +	.probe = panel_probe,
-> +	.remove = panel_remove,
-> +};
-> +module_mipi_dsi_driver(panel_driver);
-> +
-> +MODULE_AUTHOR("Sumit Semwal <sumit.semwal@linaro.org>");
-> +MODULE_DESCRIPTION("LG SW436408 MIPI-DSI LED panel");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.36.1
+T24gMTkuMDcuMjAyMiAwMDoyOSwgSG9yYXRpdSBWdWx0dXIgd3JvdGU6DQo+IFRoZSBwY2I4Mjkx
+IGNhbiBiZSByZWJvb3RlZCBieSB0b2dnbGluZyB0aGUgR1BJTyA1Ni4gVGhlcmVmb3JlIGVuYWJs
+ZQ0KPiB0aGlzIGluIERULg0KPiANCj4gU2lnbmVkLW9mZi1ieTogSG9yYXRpdSBWdWx0dXIgPGhv
+cmF0aXUudnVsdHVyQG1pY3JvY2hpcC5jb20+DQo+IC0tLQ0KPiAgYXJjaC9hcm0vYm9vdC9kdHMv
+bGFuOTY2eC1wY2I4MjkxLmR0cyB8IDYgKysrKysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgNiBpbnNl
+cnRpb25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvbGFuOTY2eC1w
+Y2I4MjkxLmR0cyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2xhbjk2NngtcGNiODI5MS5kdHMNCj4gaW5k
+ZXggZDU2ZDIwNTRjMzhkLi4wMmZiZjczNzFhOGQgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jv
+b3QvZHRzL2xhbjk2NngtcGNiODI5MS5kdHMNCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvbGFu
+OTY2eC1wY2I4MjkxLmR0cw0KPiBAQCAtMTYsNiArMTYsMTIgQEAgY2hvc2VuIHsNCj4gIAlhbGlh
+c2VzIHsNCj4gIAkJc2VyaWFsMCA9ICZ1c2FydDM7DQo+ICAJfTsNCj4gKw0KPiArCWdwaW8tcmVz
+dGFydCB7DQo+ICsJCWNvbXBhdGlibGUgPSAiZ3Bpby1yZXN0YXJ0IjsNCj4gKwkJZ3Bpb3MgPSA8
+JmdwaW8gNTYgR1BJT19BQ1RJVkVfTE9XPjsNCg0KQ291bGQgeW91LCBwbGVhc2UsIGFkZCBhbHNv
+IHBpbmN0cmwtbmFtZXMsIHBpbmN0cmwtMCBmb3IgdGhpcyBncGlvPw0KDQo+ICsJCXByaW9yaXR5
+ID0gPDIwMD47DQo+ICsJfTsNCj4gIH07DQo+ICANCj4gICZncGlvIHsNCg0K
