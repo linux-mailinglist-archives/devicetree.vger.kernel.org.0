@@ -2,142 +2,506 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A23D57A58C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 19:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1946257A5B8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 19:49:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbiGSRkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 13:40:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39898 "EHLO
+        id S238035AbiGSRtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 13:49:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229658AbiGSRkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 13:40:20 -0400
-Received: from smtp-out3.electric.net (smtp-out3.electric.net [208.70.128.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B7548CB5;
-        Tue, 19 Jul 2022 10:40:18 -0700 (PDT)
-Received: from 1oDrCb-0007Qu-VJ by out3b.electric.net with emc1-ok (Exim 4.94.2)
-        (envelope-from <kris@embeddedTS.com>)
-        id 1oDrCf-0007de-TI; Tue, 19 Jul 2022 10:40:13 -0700
-Received: by emcmailer; Tue, 19 Jul 2022 10:40:13 -0700
-Received: from [66.210.251.27] (helo=mail.embeddedts.com)
-        by out3b.electric.net with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <kris@embeddedTS.com>)
-        id 1oDrCb-0007Qu-VJ; Tue, 19 Jul 2022 10:40:09 -0700
-Received: from tsdebian (97-120-89-198.ptld.qwest.net [97.120.89.198])
-        by mail.embeddedts.com (Postfix) with ESMTPSA id 972732A68;
-        Tue, 19 Jul 2022 10:40:08 -0700 (MST)
-Message-ID: <1658252354.3157.1.camel@embeddedTS.com>
-Subject: Re: [RFC PATCH v2] ARM: dts: Add TS-7553-V2 support
-From:   Kris Bahnsen <kris@embeddedTS.com>
-Reply-To: kris@embeddedTS.com
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S238254AbiGSRtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 13:49:13 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2126.outbound.protection.outlook.com [40.107.92.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA4BB54AC7;
+        Tue, 19 Jul 2022 10:49:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=muANlnVVu1K6OmzgtFBnTS5uSMiK4e1Fi1Acb0f4nSNb9UKoP3tRWTOV1KQ9/RUMbtU9Gcbqhu1o+oJlqkTSruOcHRtOct4vn3kCEJSkkgNhmnDlPFrhFern9/5kE1DUUBkcgPvIPlb/UBXY+Qy+1fuJ1+d3twudn94Dt4FEFUEOFMUe/tOTKnb/697QqpHnG5+DMYHIvYYXpnuL5cAj9CASwjqzKfL5WyOfV0uDbe2YvV69gu6pmtxWf9JVFsOSyg76Lu5Z9+eMZoYDnPfkjwN3CM8/QzNOXtYNpiSH0pIQu0oVDAYdEUPMRwaFLEoGaBPgzZ6CcxSoxQVEZGQ0Ug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MOOdx8i7OJZEpkAmlQX6dRyv1uptdBTzGeWQSNeBhYA=;
+ b=KgPr6dIj+uOVoTezI9kDMmuIGcv1i332hEW4CYEwyDJMHHNM/bjSNc3Uz1lIWvUfDYU6GRtPr19VPb9Aq0rP+P6xJzWPzzrTPaC+LjTpJV6niHLqt1zI0qiVICMAALCnwR2pRynF+k1c/8hjXpUdPiXT2cjAEz7KZSFqa9nsxi9RMCA2bkqqvRU3mScnGLppgn/ajC9zA9ujfjIe/z0sLIayD64VBnbmMpCSzQF/miDT9KfPRwYgBrHYduqAkjNsCsjew0am0MroA3/3ASNi/s2NMA8ex8oKU589yjo8g+ILysqoKstO4IIDx0TA4cUozDkxKu1DzlFhINS57ChAOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MOOdx8i7OJZEpkAmlQX6dRyv1uptdBTzGeWQSNeBhYA=;
+ b=BIQGTonxE4uQ2zzpBlmvut6Z6/ajYFbbfwLZJriiNQ2Cs3Gik13qST5eHxHZ4TnMy9VoMRd0pcDpRHbOjowrseeidD9M7S3C4cg5aS0wioMDE/KNCRyta/B1X1YkjJf+WifI83kEM48CNwiE9EKKNynD9CLhmnWKv4f7vcFdsbQ=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by BN0PR10MB4982.namprd10.prod.outlook.com
+ (2603:10b6:408:12c::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.17; Tue, 19 Jul
+ 2022 17:49:08 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::7451:2903:45de:3912]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::7451:2903:45de:3912%7]) with mapi id 15.20.5438.023; Tue, 19 Jul 2022
+ 17:49:08 +0000
+Date:   Tue, 19 Jul 2022 10:49:03 -0700
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Mark Featherston <mark@embeddedTS.com>
-Date:   Tue, 19 Jul 2022 10:39:14 -0700
-In-Reply-To: <add23ad7-2539-cef3-8684-10ec8e680483@linaro.org>
-References: <20220713221233.8486-1-kris@embeddedTS.com>
-         <55dccabb-41e9-dc45-f404-c333f5472e75@linaro.org>
-         <1657833995.2979.1.camel@embeddedTS.com>
-         <eb993f8d-e72f-aba3-e7a4-1bbd2ac00f6c@linaro.org>
-         <1657907657.2829.1.camel@embeddedTS.com>
-         <add23ad7-2539-cef3-8684-10ec8e680483@linaro.org>
-Organization: embeddedTS
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Outbound-IP: 66.210.251.27
-X-Env-From: kris@embeddedTS.com
-X-Proto: esmtps
-X-Revdns: wsip-66-210-251-27.ph.ph.cox.net
-X-HELO: mail.embeddedts.com
-X-TLS:  TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256
-X-Authenticated_ID: 
-X-Virus-Status: Scanned by VirusSMART (c)
-X-Virus-Status: Scanned by VirusSMART (b)
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=embeddedTS.com; s=mailanyone20220121;h=Mime-Version:References:In-Reply-To:Date:To:From:Message-ID; bh=RhpSBJFkOCIu0dCkr5jpiAMxUqj3C2Nse+f6TCsQVrY=;b=MtFXuJ1yQgpbpe6iQi5V3UjWWJ3dYyIGfVBFa7pFhP1AbOJ4uZ0HfzyYn6g1T57BImVva+iRME67VjvRh1jsrvwRU/J286A/fqOQFT5hNcxygl9ibLqFdfl4xXnaPW7ikLJ5L64omlBUnyMWsRyhUd27SA6CFwCCFW1OVWTaC7UpqMWuNxcLxItFIQbVCLFFPfpxZfg1XUI4KjAoMzUrOhQpcNoa3nAWIhRABx2VDn1LK7WtGyEZDZL2XHUzwG626H/bnqTMGXB6yj3zTEqlsBmK+OnTtnKPg2pzzhGASBS/ztkJgzyiYeacFQ6mvMmg0nsgiG2OYW5oVy3Rd9/BuA==;
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-FM-Delivery-Delay: 15749372,23518412
-X-PolicySMART: 13164782, 15749372, 26810492
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        katie.morris@in-advantage.com
+Subject: Re: [PATCH v13 net-next 9/9] mfd: ocelot: add support for the
+ vsc7512 chip via spi
+Message-ID: <Ytbuj6qfUj1NOitS@euler>
+References: <20220705204743.3224692-1-colin.foster@in-advantage.com>
+ <20220705204743.3224692-10-colin.foster@in-advantage.com>
+ <YtVrtOHy3lAeKCRH@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YtVrtOHy3lAeKCRH@google.com>
+X-ClientProxiedBy: SJ0PR05CA0096.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::11) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 397b0d79-35bb-4d03-f385-08da69aefad4
+X-MS-TrafficTypeDiagnostic: BN0PR10MB4982:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: v/cM2ONAVSB+XhsBCSphIyzGHq53YaN6nKpA4fBE3CzlFYrHzFi0s3z0WY+yUGq3pRXozKSFvXMOv90VFCCZOCRGmqZi4xsgfb/HrivJLtxCKWQvq9uCl0ovkz9BxBifEBBTCSkrlgcoNZpm0CNMoBIxn0IukGdC9nd/bseE7dcq8tIsjrtATN3ehfCROmyjk0tiV1qEUoBLV470a37LkLk0R877/LDED1yHEyQKf+s/ZEGPY04KSStP2OZIm5gYjwyIrFSKyUTHFculmCpAnBMPECgiQKk9CL04nVQb43mfzREX17xTVYgCuyioIbrJIePbvZ4Zk7iidBZnaYrVOPhDfcnLux/FK2LJn6nrSXhAA7lrKEToQaA+ghdRfYncoWGQiVyHg5AhHroL8zpZe8rP65fSXfk+cKqfqMerVlkId7JV+ByydFkVLx7vxlD1O429e+n1PucOwCncMgxMWUbQt+guGejZYxwLkghlUJebpFe9NdfC0x0lErEY2XarM8l8LYbJb9aV/ljfwu2wQNy1K6HOqtJwKNpWln9ETln14tsoaybrtblLSJP+Rb08m0RXhrMo5kwvwlKm9abc8JJWSNBt7Y8AIqkD69VOF+2rjWpiKIyxBlgIk1Nc8sTIovBLhsYGK3nZvwoLKlfiEMnE5f8wYqbVIfYBgTxLk/ZRJdAPiK5SDsMGrgkRBMhEE/bf4AgIcmXuDvqxUtz6QlKSmFOugzoOUXn281t6cOjyyq5Ztt5Jtfh+enZGPlcdm4NZAs41teeADXMw0n40WQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(39830400003)(396003)(376002)(366004)(136003)(346002)(86362001)(66476007)(38100700002)(66556008)(54906003)(316002)(66946007)(8676002)(2906002)(4326008)(6916009)(30864003)(8936002)(186003)(107886003)(5660300002)(33716001)(7416002)(9686003)(6486002)(966005)(478600001)(6512007)(83380400001)(26005)(6666004)(41300700001)(6506007)(44832011);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RmhZSk1KTDVxQUpEemxlZEc4bkIraDVCNGJWK1R2MEs3NkRIbVRNQVo2Y25a?=
+ =?utf-8?B?ajZCcm1vNXEyTHkrQmp6dTZrN0F5c1FSVGh4V0I4QlJaUnhjQnNJU2hFckJT?=
+ =?utf-8?B?dHA4SjYrb1lKWS80ZklCWU5XTTIxM0hjM1dzMnNEVmw4LzRaTUNvMVEzRmh3?=
+ =?utf-8?B?Y3N3VWsrNU4vWXhmQVJZVGE3ekhnamRBOUd6ai93TUFuTm1aVjA4UGpwTTg4?=
+ =?utf-8?B?UUNwNFJPWDNIMGdjWjh2aXRQSjlvdjdST2drNDdSWXpTKzIwa0dBQjI4d0dR?=
+ =?utf-8?B?dG5zNUh6YVBCRmk0cXpVR1gyOXlXWUZZRG1Td2pkb0hnRHVKUlAxRlpDdXV4?=
+ =?utf-8?B?R1h0U0VCZkQraEYrY3JzdkhCK1hOL1dOVjZuaWFQZVNjWlRkL0lJRFVBQnYx?=
+ =?utf-8?B?bUZjaEYxRGpzZTVQMjJQUGN3N25xMkRleTlmNzBEOGRJdHJKZEoydHUvaCtv?=
+ =?utf-8?B?TmlqandpeGFxQUhidDFNdVR6ZlMyTWhVRXg2RjQ1OFFsTW1xdTdTV3B3Wkp3?=
+ =?utf-8?B?NktuaHFNeHV1K2ZjWUtMbE5jVXFnVHBkNjB1Z3YzOXFuaWFuSE96YzJqV3Zu?=
+ =?utf-8?B?TUxCUkxGb28vbXhvamQ0STNzVE1mUDc5Z2VyQk5mQmJOdlZ6MTYwcmtPRkJt?=
+ =?utf-8?B?b1Z3OGlhRjdBMk9XZUdXSWE1UkFCb2ZjeUYzbXZYL3BDQmJPTkc4MzBkOVdj?=
+ =?utf-8?B?RnVTM0xOOW0waHd5OE9tYmpTdkUwazJkanhPd1pveFB6WTFvamJEclduVUZE?=
+ =?utf-8?B?eFJwK1VmSHlvbmlmYVZtamN4OXpJTnhrN284Q0lmYXdZMG5jaTl5cU1BYlNs?=
+ =?utf-8?B?UUtPODZYV1FkNS9XMjlYV2pWcy9ON0hLVkQ2KzNVQjlUUVlkeEZuMVVlQStx?=
+ =?utf-8?B?eU5oMkpwK0pCUkZ6VEFnVGc3NUkyVC8zQTZnVFhGTUNLN3JGQ0VYNEN6TnJO?=
+ =?utf-8?B?b2dGbWpRamZibnZJMGZNbGdWeTRTRHlDNGVUeWp6MlpyYmJYc1pUaEdtT2xz?=
+ =?utf-8?B?WWJvVHpqaFY3NzhZbHdvVklrYTVKYXRrajNUNEZIY2hGVURNelFnUUlaOFdh?=
+ =?utf-8?B?c0NmSVJUT05IRVJVYk9zdXUyMTRIOVdoUUwvVHZZaUdxNFZRcFdlUCt0S0pZ?=
+ =?utf-8?B?RXRJcktRaXQ1ZlRUNllRK1h6U3ZWMjVxWmYxZmxOTFFQdnFZb2lUMTV1elhW?=
+ =?utf-8?B?Vjh1eUhWZFhVbmRoMEdTMUN0b2xMTHYwMitjNlozWGxaRXYrUlBsSGNzcUMx?=
+ =?utf-8?B?UGt6bEF2R3p1TnZxMk1aMGhxR2F6dUZhNCs5d08zNVl1S2ZyVi9HUTkra2Jr?=
+ =?utf-8?B?ZldSR2NyV3kvUjFNR2oxbFUxajZMVTZ4SjQxN0tIRVNncDV3WnRMUStMS214?=
+ =?utf-8?B?MXRVbHhXN3V6MjNVYjdDN1czejhmL2ZEYUQ0YzQ2UlgwUmIvQlB5bkFKMGpR?=
+ =?utf-8?B?bitIK0tVTnNYQjlJdUtxWXBGWm5nNitydjhVSmtCYkw1RU9RL2h0MkFLQXNI?=
+ =?utf-8?B?RDBzQkVQN2xuVTEzTnYybVBrWWgzQ1d4V29FSjQwOUUyZzd5MmM5NWtGSkE2?=
+ =?utf-8?B?OHUxNmxEVHdmUFY2NXpEb1pDaDhsYnZFYU5iSUsrbTN1Q012bkVHWlBIZWt5?=
+ =?utf-8?B?NGpwLzdXUzZmQktGcVlWcXRpMU1nRW05eS82MjJhUG9CYmxYdlY2aUFJSVZW?=
+ =?utf-8?B?a25tWEhQcFdHMWpNYnRXNGNxK2ZQUkErSUNxMy9VdkI3OEZWSEhGczRhVWkr?=
+ =?utf-8?B?alg3N0Nxd1pTcGl1OGFMRTJyYjAxSlk2YWlFSHF5T1J5TU1HUUFFSER2dXM3?=
+ =?utf-8?B?UlNjYTcxUnlpdTNXU2N3MGdLQUVwQUc2UFJYUW9EUjVhUER2UUxXc1ZPVXR2?=
+ =?utf-8?B?YnY1S0FDR1ZPYmNGUkRNOGdtV1kvck1nZjFiTVhBdHRkVUlHckFGT3lScWZH?=
+ =?utf-8?B?aEJPR2VrRmNxQmo0bzJKQlhkQlQ4WTRpTWJhb1JaSlVGYkc2NkRxc3BGUHNF?=
+ =?utf-8?B?bW9HbVJ5NXZqMGphVldxSlZwamVocUZuOXBxbzFvb1VienpBNHM4Mi80NUd5?=
+ =?utf-8?B?eXkyckRwNzY4UDRoZ3NBeWJlWUtPY29YRlM2U0VuKzUxQlkrT0lMZzFUbGps?=
+ =?utf-8?B?YmRZTzBxU1M1UHJCMXBYNm5SMHdzTVAxVXRHNWZJejBDMk96dHF0bGNQSlB6?=
+ =?utf-8?B?UVE9PQ==?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 397b0d79-35bb-4d03-f385-08da69aefad4
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jul 2022 17:49:08.3113
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: FUsaNOn8pBPCGmA1YLbanZ5QeNloMz7lMfSW3wGoW+P0ZJV9+EluY5Kn+WntbPilBeAhq4HBAxGT2utgJeVEraq0upWZGLjkgfJ7AjJh6N4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB4982
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-07-18 at 14:49 +0200, Krzysztof Kozlowski wrote:
-> On 15/07/2022 19:54, Kris Bahnsen wrote:
-> > On Fri, 2022-07-15 at 08:42 +0200, Krzysztof Kozlowski wrote:
-> > > On 14/07/2022 23:26, Kris Bahnsen wrote:
-> > > > On Thu, 2022-07-14 at 10:34 +0200, Krzysztof Kozlowski wrote:
-> > > > > On 14/07/2022 00:12, Kris Bahnsen wrote:
-> > > > > > Add initial support of the i.MX6UL based TS-7553-V2 platform.
-> > > > > 
-> > > > > Use subject prefix matching the subsystem. git log --oneline --
-> > > > 
-> > > > Can you please elaborate? The subject prefix is "ARM: dts:", I'm not
-> > > > sure what is missing. Should it be something like
-> > > > "ARM: dts: imx6ul-ts7553v2:" in this case?
-> > > 
-> > > Run the command, you will see.
-> > 
-> > I had previously run the command and the output of it did not make sense in
-> > the context of your prior comment. Forgive my ignorance, but I'd like to
-> > understand specifically what you mean here so we can do the correct thing
-> > in the future.
-> > 
-> > $ git log --oneline -- | head -n 20
+On Mon, Jul 18, 2022 at 03:18:28PM +0100, Lee Jones wrote:
+> On Tue, 05 Jul 2022, Colin Foster wrote:
 > 
-> This obviously does not make sense. -- as you can read in git log help
-> and several other Unix/Linux commands is marking path arguments. You
-> want to run it on specific subsystem, don't you?
+> > +MODULE_IMPORT_NS(MFD_OCELOT_SPI);
+> > diff --git a/drivers/mfd/ocelot-spi.c b/drivers/mfd/ocelot-spi.c
+> > new file mode 100644
+> > index 000000000000..0c1c5215c706
+> > --- /dev/null
+> > +++ b/drivers/mfd/ocelot-spi.c
+> > @@ -0,0 +1,317 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * SPI core driver for the Ocelot chip family.
+> > + *
+> > + * This driver will handle everything necessary to allow for communication over
+> > + * SPI to the VSC7511, VSC7512, VSC7513 and VSC7514 chips. The main functions
+> > + * are to prepare the chip's SPI interface for a specific bus speed, and a host
+> > + * processor's endianness. This will create and distribute regmaps for any
+> > + * children.
+> > + *
+> > + * Copyright 2021, 2022 Innovative Advantage Inc.
+> > + *
+> > + * Author: Colin Foster <colin.foster@in-advantage.com>
+> > + */
+> > +
+> > +#include <linux/ioport.h>
+> > +#include <linux/kconfig.h>
+> > +#include <linux/module.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/spi/spi.h>
+> > +
+> > +#include <asm/byteorder.h>
+> > +
+> > +#include "ocelot.h"
+> > +
+> > +#define REG_DEV_CPUORG_IF_CTRL		0x0000
+> > +#define REG_DEV_CPUORG_IF_CFGSTAT	0x0004
+> > +
+> > +#define CFGSTAT_IF_NUM_VCORE		(0 << 24)
+> > +#define CFGSTAT_IF_NUM_VRAP		(1 << 24)
+> > +#define CFGSTAT_IF_NUM_SI		(2 << 24)
+> > +#define CFGSTAT_IF_NUM_MIIM		(3 << 24)
+> > +
+> > +#define VSC7512_DEVCPU_ORG_RES_START	0x71000000
+> > +#define VSC7512_DEVCPU_ORG_RES_SIZE	0x38
+> > +
+> > +#define VSC7512_CHIP_REGS_RES_START	0x71070000
+> > +#define VSC7512_CHIP_REGS_RES_SIZE	0x14
+> > +
+> > +struct spi_device;
+> 
+> Why not just #include?
 
-I've looked at commits for imx6ul-* devicetree files and that was how
-I derived this commit/subject. I see a number of different patterns
-and if one is preferred over the other I would appreciate the
-clarification.
+I mis-understood this to mean drivers/mfd/ocelot-spi.c when it meant
+drivers/mfd/ocelot.h. Thanks.
 
-e.g. looking at commits of imx6ul-*
-"ARM: dts:" is used for a number of initial devicetree commits
-"ARM: dts: imx6ul: <board>:" is used a few times
-"ARM: dts: imx6ul-<board>:" is also used a few times
+https://patchwork.kernel.org/project/netdevbpf/patch/20220701192609.3970317-10-colin.foster@in-advantage.com/#24921057
 
-For initial commits of a devicetree, or modifications of a devicetree,
-what is the preferred pattern moving forward?
+"""
+You missed a lot of forward declarations that are used in this file.
 
-Thank you for your continued support.
+Like
+
+struct spi_device;
+"""
+
+
+> > +static int ocelot_spi_regmap_bus_read(void *context,
+> > +				      const void *reg, size_t reg_size,
+> > +				      void *val, size_t val_size)
+> > +{
+> > +	struct ocelot_ddata *ddata = context;
+> > +	struct spi_transfer tx, padding, rx;
+> > +	struct spi_device *spi = ddata->spi;
+> > +	struct spi_message msg;
+> > +
+> > +	spi = ddata->spi;
+> 
+> Drop this line.
+
+Yes - and actually since I'm removing ddata->spi altogether it'll become
+to_spi_device(ddata->dev)  (obviously without the double-assignment that
+you're pointing out here)
 
 > 
-> Best regards,
-> Krzysztof
+> > +	spi_message_init(&msg);
+> > +
+> > +	memset(&tx, 0, sizeof(tx));
+> > +
+> > +	tx.tx_buf = reg;
+> > +	tx.len = reg_size;
+> > +
+> > +	spi_message_add_tail(&tx, &msg);
+> > +
+> > +	if (ddata->spi_padding_bytes) {
+> > +		memset(&padding, 0, sizeof(padding));
+> > +
+> > +		padding.len = ddata->spi_padding_bytes;
+> > +		padding.tx_buf = ddata->dummy_buf;
+> > +		padding.dummy_data = 1;
+> > +
+> > +		spi_message_add_tail(&padding, &msg);
+> > +	}
+> > +
+> > +	memset(&rx, 0, sizeof(rx));
+> > +	rx.rx_buf = val;
+> > +	rx.len = val_size;
+> > +
+> > +	spi_message_add_tail(&rx, &msg);
+> > +
+> > +	return spi_sync(spi, &msg);
+> > +}
+> > +
+> > +static int ocelot_spi_regmap_bus_write(void *context, const void *data,
+> > +				       size_t count)
+> > +{
+> > +	struct ocelot_ddata *ddata = context;
+> > +	struct spi_device *spi = ddata->spi;
+
+As above, I'm changing to to_spi_device(ddata->dev)
+
+> > +
+> > +	return spi_write(spi, data, count);
+> > +}
+> > +
+> > +static const struct regmap_bus ocelot_spi_regmap_bus = {
+> > +	.write = ocelot_spi_regmap_bus_write,
+> > +	.read = ocelot_spi_regmap_bus_read,
+> > +};
+> > +
+> > +struct regmap *
+> > +ocelot_spi_init_regmap(struct device *dev, const struct resource *res)
 > 
+> One line, along with all the others.
+> 
+> > +{
+> > +	struct ocelot_ddata *ddata = dev_get_drvdata(dev);
+> > +	struct regmap_config regmap_config;
+> > +
+> > +	memcpy(&regmap_config, &ocelot_spi_regmap_config,
+> > +	       sizeof(regmap_config));
+> > +
+> > +	regmap_config.name = res->name;
+> > +	regmap_config.max_register = res->end - res->start;
+> > +	regmap_config.reg_base = res->start;
+> > +
+> > +	return devm_regmap_init(dev, &ocelot_spi_regmap_bus, ddata,
+> > +				&regmap_config);
+> > +}
+> > +EXPORT_SYMBOL_NS(ocelot_spi_init_regmap, MFD_OCELOT_SPI);
+> > +
+> > +static int ocelot_spi_probe(struct spi_device *spi)
+> > +{
+> > +	struct device *dev = &spi->dev;
+> > +	struct ocelot_ddata *ddata;
+> > +	struct regmap *r;
+> > +	int err;
+> > +
+> > +	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
+> > +	if (!ddata)
+> > +		return -ENOMEM;
+> > +
+> > +	ddata->dev = dev;
+> 
+> How are you fetching ddata if you don't already have 'dev'?
+
+I don't think I fully understand this question...
+
+
+Are you saying ddata doesn't need a dev instance? So instead of:
+
+devm_regmap_init(dev, &bus, ddata, &regmap_config);
+
+It could be:
+
+devm_regmap_init(dev, &bus, dev, &regmap_config);
+
+
+In that case, the context into ocelot_spi_regmap_bus_{read,write} would
+be dev, instead of ddata.
+
+Then I get ddata from device via:
+
+static int ocelot_spi_regmap_bus_write(void *context,...)
+{
+    struct device *dev = context;
+    struct ocelot_ddata *ddata = dev_get_drvdata(dev);
+    struct spi_device *spi = to_spi_device(dev);
+
+    /* ddata isn't actually needed for bus_write, just making a point */
+    ...
+}
+
+
+I haven't tested this yet, but I think this is what you're suggesting.
+So now I've removed both spi and dev from the ddata struct (as I mention
+below). Cool.
+
+> 
+> > +	dev_set_drvdata(dev, ddata);
+> 
+> This should use the spi_* variant.
+
+Agreed.
+
+> 
+> > +	if (spi->max_speed_hz <= 500000) {
+> > +		ddata->spi_padding_bytes = 0;
+> > +	} else {
+> > +		/*
+> > +		 * Calculation taken from the manual for IF_CFGSTAT:IF_CFG.
+> > +		 * Register access time is 1us, so we need to configure and send
+> > +		 * out enough padding bytes between the read request and data
+> > +		 * transmission that lasts at least 1 microsecond.
+> > +		 */
+> > +		ddata->spi_padding_bytes = 1 +
+> > +			(spi->max_speed_hz / 1000000 + 2) / 8;
+> > +
+> > +		ddata->dummy_buf = devm_kzalloc(dev, ddata->spi_padding_bytes,
+> > +						GFP_KERNEL);
+> > +		if (!ddata->dummy_buf)
+> > +			return -ENOMEM;
+> > +	}
+> > +
+> > +	ddata->spi = spi;
+> 
+> If you have 'spi' you definitely do not need 'dev'.
+> 
+> You can derive one from the other.
+
+Good point. As I implied above, I'm dropping "spi" from the ddata struct
+and will recover spi from to_spi_device(dev)
+
+That does some nice things like removes "struct spi_device" from
+drivers/mfd/ocelot.h
+
+> > +	spi->bits_per_word = 8;
+> > +
+> > +	err = spi_setup(spi);
+> > +	if (err < 0)
+> > +		return dev_err_probe(&spi->dev, err,
+> > +				     "Error performing SPI setup\n");
+> > +
+> > +	r = ocelot_spi_init_regmap(dev, &vsc7512_dev_cpuorg_resource);
+> > +	if (IS_ERR(r))
+> > +		return PTR_ERR(r);
+> > +
+> > +	ddata->cpuorg_regmap = r;
+> > +
+> > +	r = ocelot_spi_init_regmap(dev, &vsc7512_gcb_resource);
+> > +	if (IS_ERR(r))
+> > +		return PTR_ERR(r);
+> > +
+> > +	ddata->gcb_regmap = r;
+> > +
+> > +	/*
+> > +	 * The chip must be set up for SPI before it gets initialized and reset.
+> > +	 * This must be done before calling init, and after a chip reset is
+> > +	 * performed.
+> > +	 */
+> > +	err = ocelot_spi_initialize(dev);
+> > +	if (err)
+> > +		return dev_err_probe(dev, err, "Error initializing SPI bus\n");
+> > +
+> > +	err = ocelot_chip_reset(dev);
+> > +	if (err)
+> > +		return dev_err_probe(dev, err, "Error resetting device\n");
+> > +
+> > +	/*
+> > +	 * A chip reset will clear the SPI configuration, so it needs to be done
+> > +	 * again before we can access any registers
+> > +	 */
+> > +	err = ocelot_spi_initialize(dev);
+> > +	if (err)
+> > +		return dev_err_probe(dev, err,
+> > +				     "Error initializing SPI bus after reset\n");
+> > +
+> > +	err = ocelot_core_init(dev);
+> > +	if (err < 0)
+> > +		return dev_err_probe(dev, err,
+> > +				     "Error initializing Ocelot core\n");
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct spi_device_id ocelot_spi_ids[] = {
+> > +	{ "vsc7512", 0 },
+> > +	{ }
+> > +};
+> > +
+> > +static const struct of_device_id ocelot_spi_of_match[] = {
+> > +	{ .compatible = "mscc,vsc7512" },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, ocelot_spi_of_match);
+> > +
+> > +static struct spi_driver ocelot_spi_driver = {
+> > +	.driver = {
+> > +		.name = "ocelot-soc",
+> > +		.of_match_table = ocelot_spi_of_match,
+> > +	},
+> > +	.id_table = ocelot_spi_ids,
+> > +	.probe = ocelot_spi_probe,
+> > +};
+> > +module_spi_driver(ocelot_spi_driver);
+> > +
+> > +MODULE_DESCRIPTION("SPI Controlled Ocelot Chip Driver");
+> > +MODULE_AUTHOR("Colin Foster <colin.foster@in-advantage.com>");
+> > +MODULE_LICENSE("Dual MIT/GPL");
+> > +MODULE_IMPORT_NS(MFD_OCELOT);
+> > diff --git a/drivers/mfd/ocelot.h b/drivers/mfd/ocelot.h
+> > new file mode 100644
+> > index 000000000000..c86bd6990a3c
+> > --- /dev/null
+> > +++ b/drivers/mfd/ocelot.h
+> > @@ -0,0 +1,34 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> > +/* Copyright 2021, 2022 Innovative Advantage Inc. */
+> > +
+> > +#include <asm/byteorder.h>
+> > +
+> > +struct device;
+> > +struct spi_device;
+> > +struct regmap;
+> > +struct resource;
+> > +
+> > +struct ocelot_ddata {
+> > +	struct device *dev;
+> > +	struct regmap *gcb_regmap;
+> > +	struct regmap *cpuorg_regmap;
+> > +	int spi_padding_bytes;
+> > +	struct spi_device *spi;
+> > +	void *dummy_buf;
+> > +};
+> 
+> This looks like it deserves a doc header.
+
+Will do!
+
+> 
+> > +int ocelot_chip_reset(struct device *dev);
+> > +int ocelot_core_init(struct device *dev);
+> > +
+> > +/* SPI-specific routines that won't be necessary for other interfaces */
+> > +struct regmap *ocelot_spi_init_regmap(struct device *dev,
+> > +				      const struct resource *res);
+> > +
+> > +#define OCELOT_SPI_BYTE_ORDER_LE 0x00000000
+> > +#define OCELOT_SPI_BYTE_ORDER_BE 0x81818181
+> > +
+> > +#ifdef __LITTLE_ENDIAN
+> > +#define OCELOT_SPI_BYTE_ORDER OCELOT_SPI_BYTE_ORDER_LE
+> > +#else
+> > +#define OCELOT_SPI_BYTE_ORDER OCELOT_SPI_BYTE_ORDER_BE
+> > +#endif
+> 
+> -- 
+> Lee Jones [李琼斯]
+> Principal Technical Lead - Developer Services
+> Linaro.org │ Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
