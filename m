@@ -2,164 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F21CE5795DD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:13:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 542C05795E7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 11:14:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235808AbiGSJN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 05:13:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43558 "EHLO
+        id S236631AbiGSJO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 05:14:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235939AbiGSJN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:13:56 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E8DC24957
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:13:55 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id u14so8645278lju.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:13:55 -0700 (PDT)
+        with ESMTP id S236560AbiGSJOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 05:14:50 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA2FA2558F
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:14:48 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id m16so18689984edb.11
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 02:14:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xPkeUGGqljFl4AGytjlDSXuCv7RrjwY2aVYb7ItSxZ0=;
-        b=IydC834PfqL2kCcRnxI/9nfLkcNwE37+P2J5ZqRKY7HJU1ernPxh3kCDUELR4n984t
-         ikZZx//IY6fzzLJ/CN2MufjsfIPY9ie/vP1p9UG1nSdseXCsHA5oPYEF7egAkeDacUfU
-         lD1VYCbiop+tQ1ZT17HaF/XGDZdcYUugkdZhCJej1c3o9duvd2ca5gq8DPvTvDPzwu4d
-         Cjmi+Q8K+YdL/wri8xfonUn0zGO1Tj6Ual3GLigbXo/6zbuRq95Q5zSt30cC0MD6RlqE
-         Dy3JzbvcqGyOZzjQhZXHB1zpukuxynao7EqG/lCkZyXJ1MfvIgNfBSQLhJo6f9AnjpKs
-         vaBg==
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=/ACTSpTsTqX7A3W4uLC3rV5eMlRf/qILnDAzAz4VXdI=;
+        b=d5D7ElkUQFzhtHOaEl/PtsmXs1fpH23EV43d/mkA4zlsjs4qkUl1933urX2GBWN35F
+         nXKg+moRX3k/RiKRqaAFbhrxekFy+2o210oBH0kl+YEAcKpWU60pcdcImFxDbd5WoOHl
+         MUySqWRBTNsIuvAsJgN6ZyQ8KflPOA3xWrNDw9O5cBMKzZJM+YwLX9HbSGzerb+1BmSI
+         bbEgATU5tfLrfsgQ1OHoDuZS3UrI7TMAJ+S9CAW51DqZA/YnBkKavHAA9wgyqfflFvKZ
+         MFtiD3Co16DqDhFDa2+BExkCZ5CgxCMtwZQXC1FMSAx8NCglskgyBOaH4kFoT63nyd4E
+         L1vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xPkeUGGqljFl4AGytjlDSXuCv7RrjwY2aVYb7ItSxZ0=;
-        b=DLhFaC2oh1ut/RuxjKllJXceql2rFifbgwRVOaupM9KNm9LRcy9m+517lQ0dIzR5VG
-         XADbc+KuQfuqYyfxk9oQiyT4itC5CTywe27srK/OhBnUwBay0kfoiyHRGL/Jwn3ccfEe
-         yLBGQXcxB5E2TV+BPoKno9jKKpHpCmEdvlXSwiUvGiJbGHB+PPyFTKDDmoKxc0YFa4vh
-         JlL4N9xMe+mvglsBpiDisE9bQsOoLIrSYsDcEq737SMtj3RBZU0b55mIZry40EkDwq49
-         EhhW+fzNXuI13ll6URG98DeaGyNLrSOZYp8JdmygwMsIfmsrJsIbRjiwjRWD1XMOVOyk
-         CMoA==
-X-Gm-Message-State: AJIora8fyg4yw6kFB+GIvpoow/EJdHqflJ1c/NldHtGHoCjWSRBWlVjI
-        YrT9/C9sSxQABeWyb4+oY1PrvA==
-X-Google-Smtp-Source: AGRyM1teRK3yNuFe+WsSAguuqc0wfWpdBC+zgUhTnBCubi8bMgrfs/0fzb4kS4r7Uc5Gc2PQuJZ5/g==
-X-Received: by 2002:a05:651c:1587:b0:25d:7844:5910 with SMTP id h7-20020a05651c158700b0025d78445910mr15413016ljq.325.1658222033840;
-        Tue, 19 Jul 2022 02:13:53 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id p4-20020a2ea4c4000000b0025d6c8cfafcsm2562736ljm.93.2022.07.19.02.13.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 02:13:53 -0700 (PDT)
-Message-ID: <16a53bbd-beed-2290-e9ca-e9a9e8146488@linaro.org>
-Date:   Tue, 19 Jul 2022 11:13:51 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/ACTSpTsTqX7A3W4uLC3rV5eMlRf/qILnDAzAz4VXdI=;
+        b=JmoUK97GU5+7iOz5AkHcJyhpyi+mlmMlUQ2Z9oWc8a7ZYK3whlKrdNth+7KfqVF4R7
+         M4ag+5iKQ3LHWC3RP7cfRoceHt1yxdloVmAj/C5iuAtYtyZiktjMkExSFpzxOt4hT44R
+         sLL1eD44BhkQnurqCA5XvTIRtvWAN8kd8tAT/SC4z1yUIBe6/v/9kPfyulr0az2r3+KF
+         PSjpza+zizCF9OWWPxZlOCquQqStbgYip05DZtMbBtvaO/gKkf2zeVC/KFwNj8ZHx0P5
+         iOii+z1DuThbmJ8a5GK2fNp+7g4tQ966f2ZcXHF8ksv//m+9DzMzakfJLnfzri+Tnv7L
+         Of+g==
+X-Gm-Message-State: AJIora9zFFMpGaDZiXmNCdZ40Rf8NPzA1iS2KRDxewjyv5WQW+tSGdcS
+        QWUSWGhcsvJD96C1YmkI0iR8EMp3RrD6QgI53nzyuA==
+X-Google-Smtp-Source: AGRyM1t15DGxlnJ8KDfBuNALNYBrQ/tIiuIFbbjsarwTCSGbhSYa64cau9lXmZT0YGKYCk+FR/ArnEPt0iEB0wCL5po=
+X-Received: by 2002:a05:6402:4c3:b0:43a:f612:179d with SMTP id
+ n3-20020a05640204c300b0043af612179dmr42764636edw.422.1658222087537; Tue, 19
+ Jul 2022 02:14:47 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: usb: renesas, usb3-peri: Document RZ/V2M
- r9a09g011 support
-Content-Language: en-US
-To:     Phil Edworthy <phil.edworthy@renesas.com>,
+References: <20220713131421.1527179-1-nuno.sa@analog.com> <CAMRc=Mf1w7DCGMAku0wPHAhTtDWoWkWOfvxkx=_b1pKp8U8yOg@mail.gmail.com>
+ <14af555c630654d0a780dc3bf9ecca6f29dcf61a.camel@gmail.com>
+In-Reply-To: <14af555c630654d0a780dc3bf9ecca6f29dcf61a.camel@gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Tue, 19 Jul 2022 11:14:36 +0200
+Message-ID: <CAMRc=Mcgydibw_GXNS_S6=gFZuojo5bBb8ELUc1tTQhbQ2V7hA@mail.gmail.com>
+Subject: Re: [PATCH 0/4] add support for bias pull-disable
+To:     =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220718134458.19137-1-phil.edworthy@renesas.com>
- <20220718134458.19137-2-phil.edworthy@renesas.com>
- <40224cd7-0e71-7f5a-47c8-142539312f21@linaro.org>
- <TYYPR01MB70868B846CAB2F7124148771F58C9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
- <b26f2353-c5f3-16f4-11c8-63068baeada5@linaro.org>
- <TYYPR01MB70865ABE033AAA53FB228FFDF58F9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <TYYPR01MB70865ABE033AAA53FB228FFDF58F9@TYYPR01MB7086.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/07/2022 11:01, Phil Edworthy wrote:
-> Hi Krzysztof,
-> 
-> On 19 July 2022 07:38 Krzysztof Kozlowski wrote:
->> On 18/07/2022 17:24, Phil Edworthy wrote:
->>>>>    phys:
->>>>>      maxItems: 1
->>>>> @@ -43,7 +65,15 @@ properties:
->>>>>      maxItems: 1
->>>>>
->>>>>    resets:
->>>>> -    maxItems: 1
->>>>> +    minItems: 1
->>>>> +    items:
->>>>> +      - description: Peripheral reset
->>>>> +      - description: DRD reset
->>>>> +
->>>>> +  reset-names:
->>>>> +    items:
->>>>> +      - const: aresetn_p
->>>>> +      - const: drd_reset
->>>>>
->>>>>    usb-role-switch:
->>>>>      $ref: /schemas/types.yaml#/definitions/flag
->>>>> @@ -78,6 +108,27 @@ required:
->>>>>    - interrupts
->>>>>    - clocks
->>>>>
->>>>> +allOf:
->>>>> +  - if:
->>>>> +      properties:
->>>>> +        compatible:
->>>>> +          contains:
->>>>> +            enum:
->>>>> +              - renesas,rzv2m-usb3-peri
->>>>> +    then:
->>>>> +      properties:
->>>>> +        clocks:
->>>>> +          minItems: 2
-> +        clock-names:
-> +          minItems: 2
-> (See below)
-> 
->>>>> +        interrupts:
->>>>> +          minItems: 2
-> +        interrupt-names:
-> +          minItems: 2
-> (See below)
-> 
->>>>> +        resets:
->>>>> +          minItems: 2
->>>>> +      required:
->>>>> +        - clock-names
->>>>> +        - interrupt-names
->>>>> +        - resets
->>>>> +        - reset-names
->>>>
->>>> else:
->>>> narrow the number of items
->>> Sorry, I don't understand why we need minItems: 1 for
->>> interrupt-names/clock-names, but then I'm easily confused!
->>>
->>> None of the existing users have any interrupt-names/clock-names
->>> hence they are not in required. The rzv2m is the only device
->>> that needs them so the driver can get them by name, and hence
->>> it sets minItems: 2
->>
->> They are not required but they can appear. Nothing prevents it, based on
->> your patch.
-> 
-> Ok, but instead of 'else: narrow the number of items', shouldn't I
-> set the clock-names/interrupt-names 'minItems: 2' for rzv2m as above?
+On Tue, Jul 19, 2022 at 10:51 AM Nuno S=C3=A1 <noname.nuno@gmail.com> wrote=
+:
+>
+> On Tue, 2022-07-19 at 10:25 +0200, Bartosz Golaszewski wrote:
+> > On Wed, Jul 13, 2022 at 3:13 PM Nuno S=C3=A1 <nuno.sa@analog.com> wrote=
+:
+> > >
+> > > The gpio core looks at 'FLAG_BIAS_DISABLE' in preparation of
+> > > calling the
+> > > gpiochip 'set_config()' hook. However, AFAICT, there's no way that
+> > > this
+> > > flag is set because there's no support for it in firwmare code.
+> > > Moreover,
+> > > in 'gpiod_configure_flags()', only pull-ups and pull-downs are
+> > > being
+> > > handled.
+> > >
+> > > On top of this, there are some users that are looking at
+> > > 'PIN_CONFIG_BIAS_DISABLE' in the 'set_config()' hook. So, unless
+> > > I'm
+> > > missing something, it looks like this was never working for these
+> > > chips.
+> > >
+> > > Note that the ACPI case is only compiled tested. At first glance,
+> > > it seems
+> > > the current patch is enough but i'm not really sure...
+> > >
+> > > As a side note, this came to my attention during this patchset [1]
+> > > (and, ofr OF,  was tested with it).
+> > >
+> > > [1]:
+> > > https://lore.kernel.org/linux-input/20220708093448.42617-5-nuno.sa@an=
+alog.com/
+> > >
+> > > Nuno S=C3=A1 (4):
+> > >   gpiolib: add support for bias pull disable
+> > >   gpiolib: of: support bias pull disable
+> > >   gpiolib: acpi: support bias pull disable
+> > >   dt-bindings: gpio: add pull-disable flag
+> > >
+> > >  drivers/gpio/gpiolib-acpi.c     | 3 +++
+> > >  drivers/gpio/gpiolib-of.c       | 7 +++++++
+> > >  drivers/gpio/gpiolib.c          | 8 ++++++--
+> > >  include/dt-bindings/gpio/gpio.h | 3 +++
+> > >  include/linux/gpio/machine.h    | 1 +
+> > >  include/linux/of_gpio.h         | 1 +
+> > >  6 files changed, 21 insertions(+), 2 deletions(-)
+> > >
+> > > --
+> > > 2.37.0
+> > >
+> >
+> > Series applied, thanks!
+>
+> Hi Bart,
+>
+> I was actually planning to spin a v2 with your suggestion for the
+> naming of the new define... Did you changed it while applying or should
+> I still send it? Or (last option), we just leave it like this :)?
+>
+> - Nuno S=C3=A1
 
-Yes.
+Yeah, I'm alright with it how it is after a second though: uAPI uses
+the BIAS_PULL_UP/DOWN/DISABLE notation while the in-kernel API uses
+the same scheme but without the BIAS prefix. Unless you want to change
+something else - let's keep it as you first submitted it.
 
-Best regards,
-Krzysztof
+Bart
