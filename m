@@ -2,252 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CFE957A2D5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 17:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A44D57A2DD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 17:23:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236131AbiGSPVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 11:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51454 "EHLO
+        id S239125AbiGSPXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 11:23:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229690AbiGSPVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 11:21:01 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A5BBF4B;
-        Tue, 19 Jul 2022 08:20:59 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26J9n0Kj030955;
-        Tue, 19 Jul 2022 17:20:44 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=9GTt4yL28KX7LS6uCKFOBGWmS3araz/qYitQwLWlyAk=;
- b=wGTE8DsDAlJzbWTdWOJRh4NvGqAgqOJnLsJyia5Vq4zWv0CLU7joU/P/BAOkf7/B/tJN
- 4XxjphqEBVsHNc4qx+jocrmSvop/07wF5SUlDPfwUXVFehDznrSXeNQooIP8rpuTQOXo
- 4TMLN+9euFuHnO0IVAAdocMdk02CY8xZqSdv4bOyLEH2UHoBvNGSrX3+I6wtDTPks2+m
- iZaBgmbPBa5TQo6T/EFS3jAjak4fvDqBRuSY/kypbSSRdFBit+gEEH2k86eTwyfImWAb
- C4H9khcR3IJVupdI8W/qeOn+Rex8B4WQ9XGo+83B3UAkxGgcKmCiyLvZ5YZZ4hi/+DKl Ow== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3hbnhy0hwd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 19 Jul 2022 17:20:44 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 619A310002A;
-        Tue, 19 Jul 2022 17:20:43 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 543D222A6E8;
-        Tue, 19 Jul 2022 17:20:43 +0200 (CEST)
-Received: from [10.0.2.15] (10.75.127.50) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 19 Jul
- 2022 17:20:40 +0200
-Subject: Re: [PATCH v2 4/6] media: uapi: Add mlx7502x header file
-To:     Volodymyr Kharuk <vkh@melexis.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     <linux-media@vger.kernel.org>, Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S230527AbiGSPXW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 11:23:22 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F342564E5
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 08:23:20 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id r14so3033425ljp.2
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 08:23:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=pqhYCDa4k7BSkOT4b1kC76TRKt393t/siOxiGVNN+FI=;
+        b=PIMjyrgrsG9g6DN8NQgtQqvQkaB19xb7Eb7e1Ts+N+rZ+Iy6q9lnejF08vOwSza2Wl
+         hL5vNVFdOf52quFtQeKwD7f7Lz4l03nnu1jC1CRMkeRkMFLhYuwQyskBgA2p2wT1THmS
+         9h3ubm2WjQLxeQ0OyEFv4zLVWZa/5/9Mg64XNd0lNWXyJPfOFMqGtKtDPe9mDao1nNH2
+         bUlkbK9rwt7yFiDn2nObmO2aOpp1ti2VrPKLYxw/pSyvF2yfU36fVDnGHT8447EcmpB6
+         sI+opxU/rIGM4Fp+vsjrRibeVlx19ph4M4/tXxx91xHHQ0mjH4NTAFWD/F10drlqwX5j
+         9/3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pqhYCDa4k7BSkOT4b1kC76TRKt393t/siOxiGVNN+FI=;
+        b=GVJY8Lsd84l0avC5My67zI4Vv0/DPgEkRzS7bgj1Y/A6girz7WaX1rO566/zoEJLeu
+         UPNqy7QxT8HXXbrLMvaX9VoAY3vRNmtDsvpT0TsI7weiRfcaSq8ZEMxcYhOryHUTpu+w
+         39+tfGUXm2GFGYrw/rlDQQGjXqdNOFy8dtA7khLdrqco/0O58rcoxURzzr0CPYHv4sfR
+         Z33lkKZViSuCkhIqhc4croJ+EePzxg3PlzkJX4wn+aECcjJ9p/vhd/DwLeTPP3+yrwYJ
+         SImblB1biIherqqaQ5yJYtSkzHBCXV4c6UfqdyBoDbSKx9atwKVLYiUJY+6eQkjSGCg4
+         CoRA==
+X-Gm-Message-State: AJIora+qGRFGk+mOXPGcwx9r+jQ/zzcljkCC5ULM59JzqQrJqb1cvWYh
+        MHSLEYZ0YTDExkSl/iIupCh2AA==
+X-Google-Smtp-Source: AGRyM1tOCKexAFz+e+zGasNjbn1CaiiOB7LbcNcKmkcqU8xiVvgvWs/GGve6vLW44dGoc3R2fu9D/w==
+X-Received: by 2002:a2e:9e48:0:b0:258:fc8b:491f with SMTP id g8-20020a2e9e48000000b00258fc8b491fmr15527456ljk.36.1658244198777;
+        Tue, 19 Jul 2022 08:23:18 -0700 (PDT)
+Received: from [192.168.43.7] ([188.162.64.163])
+        by smtp.gmail.com with ESMTPSA id d1-20020a056512368100b0047f4291a118sm3270528lfs.192.2022.07.19.08.23.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Jul 2022 08:23:18 -0700 (PDT)
+Message-ID: <0eda5492-c933-c977-e0db-3bc92749afda@linaro.org>
+Date:   Tue, 19 Jul 2022 18:23:14 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v5 3/3] clk: qcom: lcc-ipq806x: convert to parent data
+Content-Language: en-GB
+To:     Christian Marangi <ansuelsmth@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        <devicetree@vger.kernel.org>
-References: <cover.1657786765.git.vkh@melexis.com>
- <0765b2ef8eea43dce67232a109e9f8b338aa06bd.1657786765.git.vkh@melexis.com>
- <Ys/wh1wUvQlmpHrg@pendragon.ideasonboard.com>
- <20220715085720.GA2295@vkh-ThinkPad-T490>
- <YtE1EgvDpfLdbWnD@pendragon.ideasonboard.com>
- <20220715150329.GA14041@vkh-ThinkPad-T490>
-From:   Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-Message-ID: <d8868819-9807-f880-db9b-f2631c3ff5d3@foss.st.com>
-Date:   Tue, 19 Jul 2022 17:20:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20220715150329.GA14041@vkh-ThinkPad-T490>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220708000338.26572-1-ansuelsmth@gmail.com>
+ <20220708000338.26572-3-ansuelsmth@gmail.com> <YtY2NWYq3Xbxu2pc@builder.lan>
+ <62d6a229.1c69fb81.d5d0b.ac4a@mx.google.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <62d6a229.1c69fb81.d5d0b.ac4a@mx.google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-19_04,2022-07-19_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Volodymyr,
-
-
-On 15/07/2022 17:03, Volodymyr Kharuk wrote:
-> On Fri, Jul 15, 2022 at 12:36:18PM +0300, Laurent Pinchart wrote:
->> Hello,
+On 19/07/2022 15:23, Christian Marangi wrote:
+> On Mon, Jul 18, 2022 at 11:42:29PM -0500, Bjorn Andersson wrote:
+>> On Thu 07 Jul 19:03 CDT 2022, Christian Marangi wrote:
 >>
->> CC'ing Benjamin Mugnier who I recall expressed an interest in ToF
->> sensors (if I recall incorrectly, my apologies).
-
-I am indeed very interested. Thank you :)
-
->>
->> On Fri, Jul 15, 2022 at 11:57:20AM +0300, Volodymyr Kharuk wrote:
->>> On Thu, Jul 14, 2022 at 01:31:35PM +0300, Laurent Pinchart wrote:
->>>> On Thu, Jul 14, 2022 at 11:34:46AM +0300, Volodymyr Kharuk wrote:
->>>>> Define user controls for mlx7502x driver and update MAINTAINERS
->>>>>
->>>>> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
->>>>> ---
->>>>>  MAINTAINERS                   |  7 +++++++
->>>>>  include/uapi/linux/mlx7502x.h | 31 +++++++++++++++++++++++++++++++
->>>>>  2 files changed, 38 insertions(+)
->>>>>  create mode 100644 include/uapi/linux/mlx7502x.h
->>>>>
->>>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>>> index ef3ec334fae9..1a68d888ee14 100644
->>>>> --- a/MAINTAINERS
->>>>> +++ b/MAINTAINERS
->>>>> @@ -12673,6 +12673,13 @@ S:	Supported
->>>>>  W:	http://www.melexis.com
->>>>>  F:	drivers/iio/temperature/mlx90632.c
->>>>>  
->>>>> +MELEXIS MLX7502X DRIVER
->>>>> +M:	Volodymyr Kharuk <vkh@melexis.com>
->>>>> +L:	linux-media@vger.kernel.org
->>>>> +S:	Supported
->>>>> +W:	http://www.melexis.com
->>>>> +F:	include/uapi/linux/mlx7502x.h
->>>>> +
->>>>>  MELFAS MIP4 TOUCHSCREEN DRIVER
->>>>>  M:	Sangwon Jee <jeesw@melfas.com>
->>>>>  S:	Supported
->>>>> diff --git a/include/uapi/linux/mlx7502x.h b/include/uapi/linux/mlx7502x.h
->>>>> new file mode 100644
->>>>> index 000000000000..44386f3d6f5a
->>>>> --- /dev/null
->>>>> +++ b/include/uapi/linux/mlx7502x.h
->>>>> @@ -0,0 +1,31 @@
->>>>> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
->>>>> +/*
->>>>> + * Melexis 7502x ToF cameras driver.
->>>>> + *
->>>>> + * Copyright (C) 2021 Melexis N.V.
->>>>> + *
->>>>> + */
->>>>> +
->>>>> +#ifndef __UAPI_MLX7502X_H_
->>>>> +#define __UAPI_MLX7502X_H_
->>>>> +
->>>>> +#include <linux/v4l2-controls.h>
->>>>> +
->>>>
->>>> These controls should be documented, in
->>>> Documentation/userspace-api/media/drivers/.
+>>> Convert lcc-ipq806x driver to parent_data API.
 >>>
->>> Ok, will do in v3
+>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+>>> ---
+>>> v5:
+>>> - Fix the same compilation error (don't know what the hell happen
+>>>    to my buildroot)
+>>> v4:
+>>> - Fix compilation error
+>>> v3:
+>>>   - Inline pxo pll4 parent
+>>>   - Change .name from pxo to pxo_board
 >>>
->>>>> +/* number of phases per frame: 1..8 */
->>>>> +#define V4L2_CID_MLX7502X_PHASE_NUMBER  (V4L2_CID_USER_MLX7502X_BASE + 0)
->>>>> +/* shift of each phase in frame, this is an array of 8 elements, each 16bits */
->>>>> +#define V4L2_CID_MLX7502X_PHASE_SEQ	(V4L2_CID_USER_MLX7502X_BASE + 1)
->>>>> +/* frequency modulation in MHz */
->>>>> +#define V4L2_CID_MLX7502X_FMOD		(V4L2_CID_USER_MLX7502X_BASE + 2)
->>>>> +/* time integration of each phase in us */
->>>>> +#define V4L2_CID_MLX7502X_TINT		(V4L2_CID_USER_MLX7502X_BASE + 3)
->>>>
->>>> Are these control very device-specific, or are they concept that apply
->>>> in general to ToF sensors ? Same for V4L2_CID_MLX7502X_OUTPUT_MODE.
+>>>   drivers/clk/qcom/lcc-ipq806x.c | 77 ++++++++++++++++++----------------
+>>>   1 file changed, 42 insertions(+), 35 deletions(-)
 >>>
->>> These controls(except V4L2_CID_MLX7502X_OUTPUT_MODE) are general for ToF
->>> sensors. Do you think we should standardize them?
+>>> diff --git a/drivers/clk/qcom/lcc-ipq806x.c b/drivers/clk/qcom/lcc-ipq806x.c
+>>> index ba90bebba597..72d6aea5be30 100644
+>>> --- a/drivers/clk/qcom/lcc-ipq806x.c
+>>> +++ b/drivers/clk/qcom/lcc-ipq806x.c
+>>> @@ -34,7 +34,9 @@ static struct clk_pll pll4 = {
+>>>   	.status_bit = 16,
+>>>   	.clkr.hw.init = &(struct clk_init_data){
+>>>   		.name = "pll4",
+>>> -		.parent_names = (const char *[]){ "pxo" },
+>>> +		.parent_data = &(const struct clk_parent_data) {
+>>> +			.fw_name = "pxo", .name = "pxo_board",
 >>
->> I would really really like to see control standardization for ToF
->> sensors, yes :-)
-> Sounds great :)
-
-Thanks a lot for your efforts in standardizing these controls. This is pretty close to what I expected :)
-
-Sensors may require multiple fmod from the user, and may not be able to deduce them from a single one.
-Subframes may be acquired for each fmod (composed themselves of acquisitions for each phase), and then generate a frame from these.
-Here is a quick drawing example with 2 fmod and 2 phases. Hope this makes sense.
-
-|-------------------------------------------------------------------------> time
-|FMOD1 PHASE1|FMOD1 PHASE2|FMOD2 PHASE1|FMOD2 PHASE2|FMOD1 PHASE1|...
-|         SUBFRAME1       |         SUBFRAME2       |
-|                       FRAME1                      |
-
-This allows greater ranges.
-I suggest changing V4L2_CID_MLX7502X_FMOD to an array, if it suits you.
-I'm curious how are you doing this? Are you using only one fmod or do you compute some others from the first one? Either in the driver or the sensor.
-
+>> This changes the behavior from looking for the globally named "pxo" to
+>> look for the globally named "pxo_board", in the event that no
+>> clock-names of "pxo" was found (based on the .fw_name).
 >>
->> Do you know of any public litterature that explains the operating
->> principles of ToF sensors ? I don't expect most of the V4L2 developers
->> to be familiar with the concept, so something that could bring us up to
->> speed on ToF would be useful for the discussion.
+>> So you probably want to keep this as .fw_name = "pxo", .name = "pxo".
+>>
 > 
-> Here what I have:
-> 1. ToF Basics from Melexis
-> https://media.melexis.com/-/media/files/documents/application-notes/time-of-flight-basics-application-note-melexis.pdf
-> 2. ToF Basics from TI
-> https://www.ti.com/lit/wp/sloa190b/sloa190b.pdf?ts=1657842732275&ref_url=https%253A%252F%252Fwww.google.com%252F
-> 2. ToF systems from TI
-> https://www.ti.com/lit/ug/sbau219d/sbau219d.pdf
-> 4. This more related to ToF algorithms
-> https://hal.inria.fr/hal-00725654/document
+> Hi,
+> I will make this change but just for reference, I could be wrong by
+> Dimitry pointed out that the pattern is .fw_name pxo .name pxo_board.
+> The original patch had both set to pxo and it was asked to be changed.
+
+We are generally trying to get rid of manually registered 'pxo' clock, 
+thus all parent_names = pxo/cxo/xo entries are converted to .fw_name = 
+"pxo/cxo/xo", .name = "pxo_board/cxo_board/xo_board" clocks. This has 
+been done previously for all converted drivers w/o any questions. May be 
+it's worth it mentioning pxo_board in the commit message.
+
 > 
-> I hope it helps.
+>>> +		},
+>>>   		.num_parents = 1,
+>>>   		.ops = &clk_pll_ops,
+>>>   	},
+>>> @@ -64,9 +66,9 @@ static const struct parent_map lcc_pxo_pll4_map[] = {
+>>>   	{ P_PLL4, 2 }
+>>>   };
+>>>   
+>>> -static const char * const lcc_pxo_pll4[] = {
+>>> -	"pxo",
+>>> -	"pll4_vote",
+>>> +static const struct clk_parent_data lcc_pxo_pll4[] = {
+>>> +	{ .fw_name = "pxo", .name = "pxo" },
+>>> +	{ .fw_name = "pll4_vote", .name = "pll4_vote" },
 >>
->>> Note that the control V4L2_CID_MLX7502X_TINT is similar to
->>> V4L2_CID_EXPOSURE, but the way it is done in ToF is different. They don't
->>> have a shutter. So I gave a separate control name. Is it ok?
+>> This is a reference to a clock defined in this same driver, so you can
+>> use { .hw = &pll4_vote.clkr.hw } to avoid the lookup all together.
 >>
->> Yes, I think that's fine.
+> 
+> Eh... pll4_vote is defined in gcc (for some reason) the one we have here
+> is pll4.
+> 
+> I asked if this could be fixed in some way but it was said that it's
+> better to not complicate things too much.
+
+The chain is:
+pxo -> pll4 @ lcc -> pll4_vote @ gcc -> i2s clocks @ lcc.
+
+
+> 
+>>>   };
+>>>   
+>>>   static struct freq_tbl clk_tbl_aif_mi2s[] = {
+>>> @@ -131,18 +133,14 @@ static struct clk_rcg mi2s_osr_src = {
+>>>   		.enable_mask = BIT(9),
+>>>   		.hw.init = &(struct clk_init_data){
+>>>   			.name = "mi2s_osr_src",
+>>> -			.parent_names = lcc_pxo_pll4,
+>>> -			.num_parents = 2,
+>>> +			.parent_data = lcc_pxo_pll4,
+>>> +			.num_parents = ARRAY_SIZE(lcc_pxo_pll4),
+>>>   			.ops = &clk_rcg_ops,
+>>>   			.flags = CLK_SET_RATE_GATE,
+>>>   		},
+>>>   	},
+>>>   };
+>>>   
+>>> -static const char * const lcc_mi2s_parents[] = {
+>>> -	"mi2s_osr_src",
+>>> -};
+>>> -
+>>>   static struct clk_branch mi2s_osr_clk = {
+>>>   	.halt_reg = 0x50,
+>>>   	.halt_bit = 1,
+>>> @@ -152,7 +150,9 @@ static struct clk_branch mi2s_osr_clk = {
+>>>   		.enable_mask = BIT(17),
+>>>   		.hw.init = &(struct clk_init_data){
+>>>   			.name = "mi2s_osr_clk",
+>>> -			.parent_names = lcc_mi2s_parents,
+>>> +			.parent_hws = (const struct clk_hw*[]){
+>>> +				&mi2s_osr_src.clkr.hw,
+>>> +			},
+>>>   			.num_parents = 1,
+>>>   			.ops = &clk_branch_ops,
+>>>   			.flags = CLK_SET_RATE_PARENT,
+>>> @@ -167,7 +167,9 @@ static struct clk_regmap_div mi2s_div_clk = {
+>>>   	.clkr = {
+>>>   		.hw.init = &(struct clk_init_data){
+>>>   			.name = "mi2s_div_clk",
+>>> -			.parent_names = lcc_mi2s_parents,
+>>> +			.parent_hws = (const struct clk_hw*[]){
 >>
-
-Having only one integration time control is problematic for HDR sensors as they require both a short and long integration time setting.
-I have the same issue for the vgxy61 camera with V4L2_CID_EXPOSURE and ended up defining 2 custom controls for both short and long exposure, but I understand this is not ideal. Maybe Laurent have an idea on this?
-
->>>>> +/* mode could sw(sending i2c packet), hw(pin triggering), and continuous(self triggering) */
->>>>> +#define V4L2_CID_MLX7502X_TRIGGER_MODE	(V4L2_CID_USER_MLX7502X_BASE + 4)
->>>>> +/* in case sw or hw trigger mode is used */
->>>>> +#define V4L2_CID_MLX7502X_TRIGGER	(V4L2_CID_USER_MLX7502X_BASE + 5)
->>>>
->>>> Trigger control is likely something we need to standardize at the V4L2
->>>> level.
->>>
->>> Ok, then I'll remove these controls for now and I will back with this as
->>> a separate patch.
->>>
->>>>> +/* this is related to the taps in ToF cameras, usually A minus B is the best option */
->>>>> +#define V4L2_CID_MLX7502X_OUTPUT_MODE	(V4L2_CID_USER_MLX7502X_BASE + 6)
->>>>> +/* ToF camers has its own temperature sensor, which can be read out only during streaming */
->>>>> +#define V4L2_CID_MLX7502X_TEMPERATURE	(V4L2_CID_USER_MLX7502X_BASE + 7)
->>>>
->>>> This should probably use the proposed temperature control from
->>>> https://lore.kernel.org/linux-media/20220415111845.27130-3-benjamin.mugnier@foss.st.com/
->>>
->>> Ok, then I'll remove these controls for now.
->>>
-
-We discussed the standardization of the temperature control with linux-hwmon subsystem team [1].
-As this happened to be a trickier problem than I thought, I decided to remove the temperature control I initially proposed. You can find the v3 of the vgxy61 without the temperature control [2].
-
-So no temperature control for now. I plan on giving it another go after the vgxy61 is accepted, but for now the simpler the better.
-Of course feel free to do it, I'll gratefully rebase on your work ;)
-
-[1] https://lore.kernel.org/linux-media/d4c868d5ef05f338bdc2237d9b9304077d268c8b.camel@ndufresne.ca/
-[2] https://lore.kernel.org/all/20220512074037.3829926-1-benjamin.mugnier@foss.st.com/
-
->>>>> +
->>>>> +#endif /* __UAPI_MLX7502X_H_ */
+>> It would be wonderful if you could keep a space between ) and { in
+>> these.
 >>
->> -- 
+> 
+> You mean only here or in the entire patch? I assume the latter.
+> 
+>>> +				&mi2s_osr_src.clkr.hw,
+>>> +			},
+>>>   			.num_parents = 1,
+>>>   			.ops = &clk_regmap_div_ops,
+>>>   		},
+>>> @@ -183,7 +185,9 @@ static struct clk_branch mi2s_bit_div_clk = {
+>>>   		.enable_mask = BIT(15),
+>>>   		.hw.init = &(struct clk_init_data){
+>>>   			.name = "mi2s_bit_div_clk",
+>>> -			.parent_names = (const char *[]){ "mi2s_div_clk" },
+>>> +			.parent_hws = (const struct clk_hw*[]){
+>>> +				&mi2s_div_clk.clkr.hw,
+>>> +			},
+>>>   			.num_parents = 1,
+>>>   			.ops = &clk_branch_ops,
+>>>   			.flags = CLK_SET_RATE_PARENT,
+>>> @@ -191,6 +195,10 @@ static struct clk_branch mi2s_bit_div_clk = {
+>>>   	},
+>>>   };
+>>>   
+>>> +static const struct clk_parent_data lcc_mi2s_bit_div_codec_clk[] = {
+>>> +	{ .hw = &mi2s_bit_div_clk.clkr.hw, },
+>>> +	{ .fw_name = "mi2s_codec_clk", .name = "mi2s_codec_clk" },
+>>
+>> Is mi2s_codec_clk and external clock? I don't see it documented in the
+>> DT binding. And if we're introducing new clock-names, perhaps we could
+>> skip the _clk suffix - because obviously it's a clock :)
+>>
 >> Regards,
+>> Bjorn
 >>
->> Laurent Pinchart
 > 
+> I also didn't find where is mi2s_codec_clk... but yes I will change the
+> fw_name with the clock with _clk stripped.
+
+Downstream seems not to use _codec_clk, it just always uses the 
+bit_div_clk as the codec's bit_clk. Maybe Srini knows additional 
+details, as APQ8064 has more or less the same structure of clocks.
+
+> 
+> Will send v6 with the other question clarified.
+> 
+
+
+-- 
+With best wishes
+Dmitry
