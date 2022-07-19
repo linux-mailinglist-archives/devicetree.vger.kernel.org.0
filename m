@@ -2,169 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEE7E57985B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 13:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9A945798AA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Jul 2022 13:41:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234587AbiGSLZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 07:25:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33686 "EHLO
+        id S235987AbiGSLl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 19 Jul 2022 07:41:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234546AbiGSLZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 07:25:43 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A5C7DEEF;
-        Tue, 19 Jul 2022 04:25:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658229942; x=1689765942;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ndkgKEe4xEhufL1VbtNDAZ1EDUCVZK8z8B35R5zLA7E=;
-  b=PsfF756aDKATpAWdAKh4RDyzUtRmFLm0CELrPDQwyGF3Yt8mcZ1oQE6C
-   8PR15tgRP3vSPBofATb0SlXNwjkiRKLOx1ClLLExvPBuoGYaNxVXIIZiB
-   KcY3aVISTAmCLv1Alc+gvDA+tXT1BUD2i6BVmv0Cm/U3q9bunb6T2ZMmP
-   f3LOC9+Yh63iBMKiq/816vTH0jfwcG0i5PWDyG38S6B6U1WfwZ6wKW2Q1
-   ZTvQeMpBCir/98p2C4ZhbT50XUBRi9M8foVALSOvIOAJf7LCWyZf2MdIJ
-   vJiwvTrQ4RxNEI2wNuw9g2N3iqwhxXeo1nQHYUMMGdQ+YONpp6cP4rAgM
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10412"; a="312152373"
-X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; 
-   d="scan'208";a="312152373"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2022 04:25:41 -0700
-X-IronPort-AV: E=Sophos;i="5.92,283,1650956400"; 
-   d="scan'208";a="597626946"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jul 2022 04:25:36 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 5DB25202EA;
-        Tue, 19 Jul 2022 14:25:34 +0300 (EEST)
-Date:   Tue, 19 Jul 2022 11:25:34 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v5 1/6] dt-bindings: media: Add Allwinner A31 ISP
- bindings documentation
-Message-ID: <YtaUrvkAmCQI50z+@paasikivi.fi.intel.com>
-References: <20220704173523.76729-1-paul.kocialkowski@bootlin.com>
- <20220704173523.76729-2-paul.kocialkowski@bootlin.com>
- <YtP0YfPteyzsBWn3@paasikivi.fi.intel.com>
- <YtaBr3B5JMrdFVgV@aptenodytes>
+        with ESMTP id S235080AbiGSLl4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 07:41:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587EF3F304;
+        Tue, 19 Jul 2022 04:41:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DE9A8615F4;
+        Tue, 19 Jul 2022 11:41:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87CE0C341C6;
+        Tue, 19 Jul 2022 11:41:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658230915;
+        bh=v8PeHN2Ygs1u/dbSFwAhEUja3BF2PY9zOYVkyVdHkxM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=o6MNwPLlI3Ub9l2pHHovhTKP+I7WcOFoGXkzad+taoDaiJCfuEfnzALN3hRxXABao
+         wozsBjs/4s2UdYn/+F4uOg84mWsIwPC8xTVVc7twH3IFUy37Qiv1jws9GJlfvBfYkG
+         i2WYhyLJgVuRtB0rYLIEfPradMwFDelXJJAas0nWDA6qORk8BuvCGUnk7PORrJTAOl
+         7vQWOKbMwF7YSPp4DLuL8byoxNFiNt6yM67UDQ8w3aU7ujvnQvB2gPGSfcKGxKXPUp
+         +Hb6lI/2dCiiUunzHRCzVa9uJzZ0rV0VRMIZdZx2JE0M4/UPfWJk81CfhT+Uxsu70y
+         YwH+wXFjBgAoA==
+Date:   Tue, 19 Jul 2022 12:41:47 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     pierre-louis.bossart@linux.intel.com, lgirdwood@gmail.com,
+        peter.ujfalusi@linux.intel.com, yung-chuan.liao@linux.intel.com,
+        ranjani.sridharan@linux.intel.com, kai.vehmanen@linux.intel.com,
+        daniel.baluta@nxp.com, perex@perex.cz, tiwai@suse.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        shengjiu.wang@gmail.com, linux-kernel@vger.kernel.org,
+        sound-open-firmware@alsa-project.org, alsa-devel@alsa-project.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] ASoC: SOF: imx: Add i.MX8ULP HW support
+Message-ID: <YtaYe58xS4ynZ+A4@sirena.org.uk>
+References: <1658208367-24376-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Gfkuz1LFkvb5qJgu"
 Content-Disposition: inline
-In-Reply-To: <YtaBr3B5JMrdFVgV@aptenodytes>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1658208367-24376-1-git-send-email-shengjiu.wang@nxp.com>
+X-Cookie: We have ears, earther...FOUR OF THEM!
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
 
-On Tue, Jul 19, 2022 at 12:04:31PM +0200, Paul Kocialkowski wrote:
-> Hi Sakari,
-> 
-> On Sun 17 Jul 22, 11:37, Sakari Ailus wrote:
-> > Hi Paul,
-> > 
-> > On Mon, Jul 04, 2022 at 07:35:18PM +0200, Paul Kocialkowski wrote:
-> > > This introduces YAML bindings documentation for the Allwinner A31 Image
-> > > Signal Processor (ISP).
-> > > 
-> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  .../media/allwinner,sun6i-a31-isp.yaml        | 97 +++++++++++++++++++
-> > >  1 file changed, 97 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
-> > > new file mode 100644
-> > > index 000000000000..2fda6e05e16c
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
-> > > @@ -0,0 +1,97 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - allwinner,sun6i-a31-isp
-> > > +      - allwinner,sun8i-v3s-isp
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: Bus Clock
-> > > +      - description: Module Clock
-> > > +      - description: DRAM Clock
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: bus
-> > > +      - const: mod
-> > > +      - const: ram
-> > > +
-> > > +  resets:
-> > > +    maxItems: 1
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: CSI0 input port
-> > > +
-> > > +      port@1:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: CSI1 input port
-> > 
-> > Do both support a single PHY with a single data only? If multiple data lanes
-> > are supported, please require data-lanes property (on endpoint).
-> 
-> There's actually no PHY involved here: the ISP drivers gets its video stream
-> from these CSI controllers which are the ones interfacing with a MIPI CSI-2
-> receiver (on A31/V3 it uses an external D-PHY, on A83T the D-PHY is collocated
-> with the controller).
-> 
-> So I think the data-lanes property is not relevant here.
-> 
-> What do you think?
+--Gfkuz1LFkvb5qJgu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Ah, indeed, if it's an internal bus, then data-lanes isn't relevant.
+On Tue, Jul 19, 2022 at 01:26:06PM +0800, Shengjiu Wang wrote:
 
--- 
-Sakari Ailus
+Not a thorough review, just a few nitpicks:
+
+> +#define MBOX_SIZE		0x1000
+> +
+> +struct arm_smccc_res		smc_resource;
+
+This should be static shouldn't it?
+
+> +static void imx8ulp_dsp_handle_reply(struct imx_dsp_ipc *ipc)
+> +{
+> +	struct imx8ulp_priv *priv = imx_dsp_get_data(ipc);
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&priv->sdev->ipc_lock, flags);
+> +
+> +	imx8ulp_get_reply(priv->sdev);
+> +	snd_sof_ipc_reply(priv->sdev, 0);
+> +	spin_unlock_irqrestore(&priv->sdev->ipc_lock, flags);
+
+Minor nitpick but a blank line before the unlock to match the one after
+the lock would be a bit easier to read.
+
+> +	regmap_update_bits(priv->regmap, SYSCTRL0, EXECUTE_BIT, EXECUTE_BIT);
+> +	usleep_range(1, 2);
+> +
+> +	arm_smccc_smc(FSL_SIP_HIFI_XRDC, 0, 0, 0, 0, 0, 0, 0, &smc_resource);
+
+You need linux/arm-smccc.h for this (as 0day said).
+
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "failed to init reserved memory region %d\n", ret);
+> +		goto exit_pdev_unregister;
+> +	}
+> +
+> +	priv->clks->dsp_clks = imx8ulp_dsp_clks;
+> +	priv->clks->num_dsp_clks = ARRAY_SIZE(imx8ulp_dsp_clks);
+> +
+> +	ret = imx8_parse_clocks(sdev, priv->clks);
+> +	if (ret < 0)
+> +		goto exit_pdev_unregister;
+> +
+> +	ret = imx8_enable_clocks(sdev, priv->clks);
+> +	if (ret < 0)
+> +		goto exit_pdev_unregister;
+
+We're registering the platform device before we enable the clocks - is
+that safe?
+
+> +static int imx8ulp_remove(struct snd_sof_dev *sdev)
+> +{
+> +	struct imx8ulp_priv *priv = sdev->pdata->hw_pdata;
+> +
+> +	platform_device_unregister(priv->ipc_dev);
+> +
+> +	return 0;
+> +}
+
+Could we just use devm?  I'm not seeing an ordering issue but I might be
+missing something.
+
+--Gfkuz1LFkvb5qJgu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLWmHoACgkQJNaLcl1U
+h9C2gQf/cgh8vX+NSAVJKcFpo8TGYQkH6ILglXaaVQyN7G9PGgvBvaMK7gyCH2PS
+eidTok4O5f6KCB3wDcLc9wIzO7M6K6iAlU/HTphK0wCizWtpEMZ+N9Hv20w141kx
+O77/69rr687IfYRekqkka1438ED2L1AMYz/4bt3mDD/9XxuxLmKkZCvcCfyzgn8q
+WyhbDCKNOgswfgyxEwMJecQ8wCS1amf99hx103P0xAejrT4V2uwdqptJ1AOz9dL0
+iEp79naTEpE0uBX/4LM3bOTLaim1AOMOk3yPPaCBOIX8lu0QmapcXgigVt8iaQCM
+PhxtfFs93bcc32VrmeqIXvWsCRF9fw==
+=RXwS
+-----END PGP SIGNATURE-----
+
+--Gfkuz1LFkvb5qJgu--
