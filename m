@@ -2,102 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 830DF57B0DF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 08:16:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EFBA57B0F1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 08:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230057AbiGTGQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 02:16:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52232 "EHLO
+        id S239452AbiGTGS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 02:18:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230237AbiGTGP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 02:15:59 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7CB360CF
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:15:57 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id by8so16341455ljb.13
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:15:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=OII/ZMXQYRhSnRZ7xevuDpwyV3yoiR0qjBhGmHs/dKE=;
-        b=yMKZ7ItChMBdHLMjfBRuxV/AGScn03nfaaxcknWwvqIe4WY709VmCXbMyEnJ78kPLQ
-         ieieno11v5bQIGKB3Nzi0hWJCJ8VVvhKjg7UkyPFKbqt2xHjyGg51ULZ2UggxOqUaZBm
-         1ptFA3+JYa6WX/FumnizkowRBDKE30c5hcSirEqnt2RPopj+lMg5RzdU2PxGIYDo4W+p
-         JCr2e5obo74ANhZo4nKKWL5SJaXWpy46FbRBQ/HQE7g9AMlQy7XY0PNidpUG2BwoRQqb
-         Gea0e+XMCDbBDm18klr8sO10qEHyDbH02FWR3RS0XimrmP/+kATzAEtbty5PMHluhVPQ
-         LRlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=OII/ZMXQYRhSnRZ7xevuDpwyV3yoiR0qjBhGmHs/dKE=;
-        b=Fhgsd+e+OJp8mT3bTm5r/s6yc1zZv0SnaG3aVQm4NmCsTjGS2f+LV4kpHuiPat+f2m
-         N45sunJ0Y5VNEJD11fbOTj6hO/+2q0nYlbsVmzpX/GcIzCiIx6PLHx0Me9ztuUv/+otM
-         aUMmkjZ0RiMNudfixN0Nt2gbYwifezwoeUI47XKrYAsf1ekK1ujEvAoWppFgnXt/WJeu
-         GRrqqckaLwWx8up6n4X1ISQskHb0olasaWzTFo1VrCSsBVtPjK0DlKONf+vmVqd4xADc
-         PyBbvHmLj7/bmbPGFc8qKzx1/wsBf2wA7j+rLXs8d2Vn9T+grxK/gehoDGYPz2vaJSRa
-         y4uQ==
-X-Gm-Message-State: AJIora/BwU9xgLqT7ENZkHfMcpOmfmJFNGfgf2q+FllC5Ad0gMHaQd+w
-        k3unwDIIJ0/dq5669O1ewrssEQiCx+8tQDe5
-X-Google-Smtp-Source: AGRyM1s2lFzMWvhRRUe9XV42SiotKNRSzspZThlV2UQ8Y/uQT+LCKj+ihrywgxCU4qk4dcI71EbNNw==
-X-Received: by 2002:a2e:a788:0:b0:25d:93bb:d006 with SMTP id c8-20020a2ea788000000b0025d93bbd006mr14762256ljf.447.1658297757437;
-        Tue, 19 Jul 2022 23:15:57 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id o20-20020ac24bd4000000b00482ba723195sm3593080lfq.253.2022.07.19.23.15.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 23:15:56 -0700 (PDT)
-Message-ID: <77e8433f-6cb8-eb32-63d5-414a92d3b874@linaro.org>
-Date:   Wed, 20 Jul 2022 08:15:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 3/4] dt-bindings: misc: tmr-inject: Add device-tree
- binding for TMR Inject
-Content-Language: en-US
-To:     Appana Durga Kedareswara rao 
-        <appana.durga.kedareswara.rao@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com, arnd@arndb.de,
-        gregkh@linuxfoundation.org
-Cc:     appanad@amd.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        git@amd.com, git@xilinx.com,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-References: <20220720060016.1646317-1-appana.durga.kedareswara.rao@amd.com>
- <20220720060016.1646317-4-appana.durga.kedareswara.rao@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220720060016.1646317-4-appana.durga.kedareswara.rao@amd.com>
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S239421AbiGTGSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 02:18:25 -0400
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C70962A61
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:18:23 -0700 (PDT)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220720061821epoutp0253cd30796953bb47ec01d81724424ca0~DdSfA45T51014910149epoutp02V
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 06:18:21 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220720061821epoutp0253cd30796953bb47ec01d81724424ca0~DdSfA45T51014910149epoutp02V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1658297901;
+        bh=3r2pbWvirGByjB+v0MQEPuj3WAwHhq1rsruPh5OW+3I=;
+        h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
+        b=tRScmwnc3RsmnI9WiqsCNaML+bzCREY00i9aJP81URn5xQweklWuryzGnv6HYPIiM
+         D8LjouROTQJh2yQX390el9rTIrQgl2pp3WH21LAqpWic6c3/7U3wiutn84iefKtHGx
+         2iOkJEZfdHyAUCHkjDnaoTAJ6y6EVCXigXv0lJlA=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+        20220720061820epcas2p25cfc6bf201ff238eda734135791994be~DdSdvZjyH2579125791epcas2p25;
+        Wed, 20 Jul 2022 06:18:20 +0000 (GMT)
+Received: from epsmges2p3.samsung.com (unknown [182.195.36.68]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4LnlrC3Qm4z4x9Q9; Wed, 20 Jul
+        2022 06:18:19 +0000 (GMT)
+X-AuditID: b6c32a47-5f7ff700000025aa-ba-62d79e2b3363
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        63.9E.09642.B2E97D26; Wed, 20 Jul 2022 15:18:19 +0900 (KST)
+Mime-Version: 1.0
+Subject: [PATCH v4 5/5] MAINTAINERS: Add Axis ARTPEC-8 PCIe PHY maintainers
+Reply-To: wangseok.lee@samsung.com
+Sender: Wangseok Lee <wangseok.lee@samsung.com>
+From:   Wangseok Lee <wangseok.lee@samsung.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "kw@linux.com" <kw@linux.com>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
+        "kernel@axis.com" <kernel@axis.com>
+CC:     Moon-Ki Jun <moonki.jun@samsung.com>,
+        Sang Min Kim <hypmean.kim@samsung.com>,
+        Dongjin Yang <dj76.yang@samsung.com>,
+        Yeeun Kim <yeeun119.kim@samsung.com>
+X-Priority: 3
+X-Content-Kind-Code: NORMAL
+In-Reply-To: <20220720055108epcms2p563c65b3de6333ccbc68386aa2471a800@epcms2p5>
+X-CPGS-Detection: blocking_info_exchange
+X-Drm-Type: N,general
+X-Msg-Generator: Mail
+X-Msg-Type: PERSONAL
+X-Reply-Demand: N
+Message-ID: <20220720061818epcms2p55e9dc4d71232cc37bef0fd1ff525ded5@epcms2p5>
+Date:   Wed, 20 Jul 2022 15:18:18 +0900
+X-CMS-MailID: 20220720061818epcms2p55e9dc4d71232cc37bef0fd1ff525ded5
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+X-CPGSPASS: Y
+X-CPGSPASS: Y
+CMS-TYPE: 102P
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAJsWRmVeSWpSXmKPExsWy7bCmma72vOtJBp3nxS2WNGVYvDykaTH/
+        yDlWi90zljNZzJx6htni+aFZzBafWlQtLjztYbN4Oesem0VDz29WiyNvPjJb7D++ksni8q45
+        bBZn5x1ns5iw6huLxZvfL9gtzi3OtGjde4TdYuedE8wWv7b+YXIQ8Vgzbw2jx/V1AR4LNpV6
+        bFrVyebx5Mp0Jo/NS+o9+rasYvQ4fmM7k8fnTXIBnFHZNhmpiSmpRQqpecn5KZl56bZK3sHx
+        zvGmZgaGuoaWFuZKCnmJuam2Si4+AbpumTlATykplCXmlAKFAhKLi5X07WyK8ktLUhUy8otL
+        bJVSC1JyCswL9IoTc4tL89L18lJLrAwNDIxMgQoTsjNWzDvBUtDDVfH78S+2BsZ7HF2MHBwS
+        AiYSdzaFdjFycggJ7GCU+LbWGyTMKyAo8XeHMEhYWMBb4tPlZnaIEiWJHWvmMUPE9SWur+hm
+        BbHZBHQl/i1+yQZiiwh8ZpW4vkewi5GLg1lgAaPE/t/7GEESEgK8EjPan7JA2NIS25dvZQTZ
+        xSngJ/G2zQEirCHxY1kvM4QtKnFz9Vt2GPv9sflQY0QkWu+dhaoRlHjwczdUXEpiwZNDrBB2
+        tcT+v7+ZIOwGRon++6kQ3+pL7LhuDBLmFfCVuDLzJNgYFgFViRk3lkCNcZG4vf4d2BhmAXmJ
+        7W/nMIO0MgtoSqzfpQ8xRVniyC0WmJ8aNv5mR2czC/BJdBz+CxffMe8J1DFqEvNW7mSewKg8
+        CxHMs5DsmoWwawEj8ypGsdSC4tz01GKjAmN4vCbn525iBCdtLfcdjDPeftA7xMjEwXiIUYKD
+        WUmE92nh9SQh3pTEyqrUovz4otKc1OJDjKZAX05klhJNzgfmjbySeEMTSwMTMzNDcyNTA3Ml
+        cV6vlA2JQgLpiSWp2ampBalFMH1MHJxSDUy+fuvKt95YuPDQ98kW27e/kxR4mGUZ3yod9+xw
+        PffR6JiQiEXK+9OjWq5bi3ec1xV5N22BekrW2ieO7b3PHm3aU+TMIvWa6fe6vDfl1Uc2qoR5
+        H3mivj9YYGpiUVCYxy8jQ4ZjC1JqbaMLp0r39y93753wlT9J5ne5gGrEy82XLu7jXW3714WL
+        I99Lea9F+vOD+/baGhmePPi/+OHP4gkre/vs71dl9b0SKrM8uC1xmcjPZEeVoiePsueaXYt+
+        ZqNryy5Z83/OzL9sM44tzJn0NGSPj9YWjx7PvGjRnonu65vvqCQyCF9cznXDYdOtIqYv7tY7
+        kjy6lF9nFxRNDTWNspl55d6VzG6p2zptIUosxRmJhlrMRcWJADNwa7JjBAAA
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220720055108epcms2p563c65b3de6333ccbc68386aa2471a800
+References: <20220720055108epcms2p563c65b3de6333ccbc68386aa2471a800@epcms2p5>
+        <CGME20220720055108epcms2p563c65b3de6333ccbc68386aa2471a800@epcms2p5>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2022 08:00, Appana Durga Kedareswara rao wrote:
-> From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-> 
-> The Triple Modular Redundancy(TMR) Inject core provides functional fault
-> injection by changing selected MicroBlaze instructions, which provides the
-> possibility to verify that the TMR subsystem error detection and fault
-> recovery logic is working properly.
-> 
-> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
-> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+Add maintainer for Axis ARTPEC-8 PCIe PHY. Add Jesper Nilsson
+<jesper.nilsson@axis.com> and Lars Persson <lars.persson@axis.com>
+as maintainer for these files. ARTPEC-8 is the SoC platform of Axis
+Communications and PCIe PHY is designed based on Samsung PHY.
 
-Keep only one SoB.
+Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
+---
+v3->v4 :
+-Add axis,artpec8-pcie.yaml and axis,artpec8-pcie-ep.yaml
+-Change file path to axis from artpec
+---
+ MAINTAINERS | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> ---
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 264e7a7..e4a0635 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1897,12 +1897,16 @@ M:	Jesper Nilsson <jesper.nilsson@axis.com>
+ M:	Lars Persson <lars.persson@axis.com>
+ L:	linux-arm-kernel@axis.com
+ S:	Maintained
++F:	Documentation/devicetree/bindings/pci/axis,artpec8-pcie-ep.yaml
++F:	Documentation/devicetree/bindings/pci/axis,artpec8-pcie.yaml
++F:	Documentation/devicetree/bindings/phy/axis,artpec8-pcie-phy.yaml
+ F:	Documentation/devicetree/bindings/pinctrl/axis,artpec6-pinctrl.txt
+ F:	arch/arm/boot/dts/artpec6*
+ F:	arch/arm/mach-artpec
+ F:	drivers/clk/axis
+ F:	drivers/crypto/axis
+ F:	drivers/mmc/host/usdhi6rol0.c
++F:	drivers/phy/axis/phy-artpec*
+ F:	drivers/pinctrl/pinctrl-artpec*
+ 
+ ARM/ASPEED I2C DRIVER
+-- 
+2.9.5
