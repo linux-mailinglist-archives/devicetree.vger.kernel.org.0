@@ -2,195 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3225B57B8F6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79B7B57B90A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240949AbiGTOyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 10:54:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60454 "EHLO
+        id S240466AbiGTO7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 10:59:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235267AbiGTOyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:54:22 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 881D11ADBA
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:54:21 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id m9so18758700ljp.9
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:54:21 -0700 (PDT)
+        with ESMTP id S240865AbiGTO7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:59:39 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7BFC52442
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:59:38 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id s204so11168152oif.5
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:59:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melexis.com; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=GBxaS+Rw2Vle09T/tMIK9azudirhVy9SOHc5cji6SFY=;
-        b=hv5cO9rW4bNcbgTVTCp7Dfd3dDf1ImSk1AhDwzKs5IJwS912EW+ziRAwuoyPFh49Ip
-         Zd3SOyCflYYjtj+agjFDP5BHOcwNmbHJzqKP1DMNQQCIbt8ForGSFJN2RIP+TJs83m9A
-         kYoI2xM5AqwvGrTinLsH75+CkE/QrHALu8wQTKt5u0hWfgFfjvJyv9CPUzJ/c7gnZMSq
-         zex+lLkXCvGkdNZTCcaUN+mLgNwD81RR3t7WGgtMnvWTNQfab/DmF+JJ5xoAXbIgOaoQ
-         4D7zaEdGgsRAZOAFVE3h8H7ODashQcvNuU6Aq8K3VC+JM3LyeG/1PkgutwqqdSVktzLr
-         9ldw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=TvmCMcvB/AQLSDyyk2y4pjMIoqRBDrfZeqPEyK/hmJ0=;
+        b=QVxsFy3kJlbhszY4TNk1sZzCHzD034fBJdifXc7DLEiok9mVC1Nmavyc6BHrVmP+wp
+         hLHbXgcspKEeSAkOg9sD6CO4cCENplrMyWUXu5yPQJELztbO4n6XNolW6B/oga68oC1x
+         8PONDs6/GYEzhzSE+926BVcLIY2G1CK7lYd4jWjEmzwhSgqCeRo5vf0uqUf/RfiqJegS
+         dFULnr+5PFtrmoSRcUjQ3XcqmTltq217hY1QxLFgNRvF1L8llivVEeHGshfhs0sqHt6y
+         S6qDBfi76RBSkIXnyfGdIs/QphPTWfa0lu/gEoe1zQkj1ADIV/pYqFx38jXW//W/TkRd
+         oa0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GBxaS+Rw2Vle09T/tMIK9azudirhVy9SOHc5cji6SFY=;
-        b=w/TuTRZ6tvleKDEsd0grGu9QD8GPffmjdBgwrzjIhNX+OgkthvzZu1N2W2j/bPa1SJ
-         nUlMkxjQy/3IIg3JobeBgdNrkPCSAz4BkFhgpmqcoFn6Q8NUehIy+9uzoPHiRhqQe4nK
-         7g/GJTh5FHJ8LZ6PVrZyFeO2M8EDW5Do3fHLYPp0RLRFpitIa88EV/GCM+dpiruKCTXq
-         rA73ajs8pTy48WVOHgVH4LYuhHDdfstOfuErBslmiIQuK6tO/aR0bjDlj1De0j0BcgtR
-         ml7fjc9kC3cyVPdoIMUENDuHFJ6P/9k7K2jRnl4t2sTo6dvhD8SX+FvtrEM2qiLsYMGU
-         PCMw==
-X-Gm-Message-State: AJIora9NK084dggHiE2k2SLYJQo7+3TQDFBDAzMTXy9IrL4Hq2qT8dYY
-        ia41oiSr8VQsMEmorbv6EYws4w==
-X-Google-Smtp-Source: AGRyM1uzAE4k+thS1qLyza6m0G3HldGXVrimf6Dvao33IjMoftpCb9gHbr17bHWAcnZ0I0Vn0CFOdg==
-X-Received: by 2002:a05:651c:2c1:b0:25d:79be:766a with SMTP id f1-20020a05651c02c100b0025d79be766amr16729111ljo.225.1658328859867;
-        Wed, 20 Jul 2022 07:54:19 -0700 (PDT)
-Received: from melexis.com ([194.44.50.51])
-        by smtp.gmail.com with ESMTPSA id b15-20020a2eb90f000000b0025dd70ecbaasm362202ljb.63.2022.07.20.07.54.18
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=TvmCMcvB/AQLSDyyk2y4pjMIoqRBDrfZeqPEyK/hmJ0=;
+        b=ZMYSwrJZSft7CcUK5VGfDeP5jFx5VkXTKPTkDoEVaAgK+nEdkxZuHniFzLEexifyRl
+         2HlKzb+dPcA3plQrLGcY0M3C5/7fN/sg5xTogfr4kP9zgSPy8lnmwLPQtEZAYFvh1jjp
+         QWUFmVzoF+dvMro3ElZFHf80gqizlxdumVM0SmfCMbPshYxXo43hd/Q6nlIC9Sx4NZfS
+         yImyDELW1i7S88wnR9ONe22M+P96G2oOAWGdBO9KayjhNjNpQ85gyVB9LbU14OVDVIEJ
+         nVEmH19e5YRKhNehNsGh/DmXQL8MN0bWXdea42P+1yDAdEU58wPvRCZq6YxUpu96DsKo
+         P5uA==
+X-Gm-Message-State: AJIora/yqmKnOY5oN0+JYiiuV5ESj8I808D9CAdzNj2HXrEw4B16XDMk
+        ubqb6BG8k66K1N5OAmjFjRji3Q==
+X-Google-Smtp-Source: AGRyM1uTA6q9Pb8g7Ft79aTK48JPXo1IE67FiP/bUIX4qNug68HwmPUpe1AGHDfMv+ZFlzqqTuBROg==
+X-Received: by 2002:a05:6808:1313:b0:335:cad6:715c with SMTP id y19-20020a056808131300b00335cad6715cmr2593756oiv.130.1658329178091;
+        Wed, 20 Jul 2022 07:59:38 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id x18-20020a056870331200b0010c7487aa73sm9262100oae.50.2022.07.20.07.59.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 07:54:19 -0700 (PDT)
-Date:   Wed, 20 Jul 2022 17:54:16 +0300
-From:   Volodymyr Kharuk <vkh@melexis.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Hyun Kwon <hyun.kwon@xilinx.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
- camera sensor binding
-Message-ID: <20220720145416.GA46182@melexis.com>
-References: <cover.1657786765.git.vkh@melexis.com>
- <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
- <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
- <c87132c4-5801-2f1f-8ef9-3997474cf7a5@linaro.org>
- <Ys/zvH3ICr4zpTLH@pendragon.ideasonboard.com>
- <7e362d83-36c2-00ed-6525-37197ee8e5d7@linaro.org>
- <Ys/6O2H/eDEWYHei@pendragon.ideasonboard.com>
- <20a88191-0c4e-710f-e6ab-4087e5980533@linaro.org>
- <Ys/+KaNltkZZmRE4@pendragon.ideasonboard.com>
- <85cb8f2d-5d8b-ffa9-9f53-0e8bc1233e69@linaro.org>
+        Wed, 20 Jul 2022 07:59:37 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, bhupesh.sharma@linaro.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        pavel@ucw.cz, bhupesh.linux@gmail.com, robh@kernel.org,
+        linux-leds@vger.kernel.org
+Subject: Re: (subset) [PATCH 1/3] arm64: dts: qcom: Fix 'dtbs_check' errors for pm8350c & sc8280xp pwm nodes
+Date:   Wed, 20 Jul 2022 09:59:36 -0500
+Message-Id: <165832916913.2078047.694864679825238718.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220719205058.1004942-1-bhupesh.sharma@linaro.org>
+References: <20220719205058.1004942-1-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <85cb8f2d-5d8b-ffa9-9f53-0e8bc1233e69@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Wed, 20 Jul 2022 02:20:56 +0530, Bhupesh Sharma wrote:
+> make dtbs_check currently reports the following errors
+> with pm8350c & sc8280xp pwm nodes:
+> 
+> arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb:
+>  pwm@e800: 'reg' does not match any of the regexes:
+>  '^led@[0-9a-f]$', 'pinctrl-[0-9]+'
+> 
+> [...]
 
-On Thu, Jul 14, 2022 at 01:56:13PM +0200, Krzysztof Kozlowski wrote:
-> On 14/07/2022 13:29, Laurent Pinchart wrote:
-> > On Thu, Jul 14, 2022 at 01:23:41PM +0200, Krzysztof Kozlowski wrote:
-> >> On 14/07/2022 13:12, Laurent Pinchart wrote:
-> >>>>>>> One option would be to support the following three compatible values:
-> >>>>>>>
-> >>>>>>> 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
-> >>>>>>> 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
-> >>>>>>> 	compatible = "melexis,mlx7502x";
-> >>>>>>>
-> >>>>>>> The last one only would trigger autodetection. I'm still not sure how to
-> >>>>>>> document that properly in bindings though.
-> >>>>>>
-> >>>>>> I missed that part of binding.
-> >>>>>>
-> >>>>>> Wildcards are not allowed in compatible, so mlx7502x has to go.
-> >>>>>
-> >>>>> Really ? We've had fallback generic compatible strings since the
-> >>>>> beginning.
-> >>>>
-> >>>> Fallback generic compatibles are allowed. Wildcards not. Wildcards were
-> >>>> actually never explicitly allowed, they just slipped in to many
-> >>>> bindings... We have several discussions on this on mailing list, so no
-> >>>> real point to repeat the arguments.
-> >>>>
-> >>>> There is a difference between generic fallback. If the device follows
-> >>>> clear specification and version, e.g. "foo-bar-v4", you can use it for
-> >>>> generic compatible. This is more common in SoC components. Requirement -
-> >>>> there is a clear mapping between versions and SoCs.
-> >>>
-> >>> I'm not sure to see a clear difference between the two concepts.
-> >>
-> >> The clear difference is that you have a versioned and re-usable hardware
-> >> block plus clear mapping which version goes to which SoC. Version
-> >> numbers usually start with 1, not with 75025. 75025 is a model name.
-> > 
-> > How about Documentation/devicetree/bindings/serial/renesas,scif.yaml for
-> > instance, where the version number isn't known and the SoC name is used
-> > instead ? Is that acceptable ?
-> 
-> This is the second case I mentioned - family of devices where the family
-> fallback is not allowed to be alone. You cannot use just "renesas,scif"
-> in DTS.
-> 
-> > 
-> > How should we deal with devices that have different models, where the
-> > model is irrelevant to the kernel driver, but relevant to userspace ?
-> > Imagine, for instance, a light sensor with 10 models than only differ by
-> > the filter they use to tune the sensitivity to different light spectrums
-> > ? They are all "compatible" from a software point of view, would the
-> > driver need to list all 10 compatible strings ?
-> 
-> I don't understand that example, I mean, what's the problem here? If
-> they are all compatible, you can use only one comaptible, e.g.
-> melexis,mlx75026.
-> 
-> If you ever need to differentiate it for user-space, you add specific
-> compatible for the model and you have:
-> 
-> melexis,mlx75027, melexis,mlx75026
-> 
-> If user-space needs dedicated compatibles - add them, no one here argues
-> to not to use specific compatibles.
-Thanks for explanation. Now I understand the device tree better and
-the whole idea behind it. I'll remove wildcard and autodetect.
-Instead I will use of_match_table only.
-> 
-> 
-> >>> For cameras, we often deal with complex pipelines with multiple external
-> >>> devices and multiple IP cores, with drivers that need to communicate
-> >>> with each other to initialize the complete camera system. For instance,
-> >>> each camera-related component in the system registers itself in a media
-> >>> graph that can be queried from userspace and exposes information about
-> >>> all devices, including their model. There's no power up of any device
-> >>> when this query is being performed from userspace. It could possibly be
-> >>> changed (and maybe it should, for reasons unrelated to this discussion),
-> >>> but we're looking at pretty much a complete redesign of V4L2 and MC
-> >>> then.
-> >>
-> >> Is then autodetection a real use case since you have to power up the
-> >> sensor each time system boots and this violates privacy? Several I2C
-> >> sensors do not care about this and they always do it on power up, so
-> >> aren't we solving here something unimportant?
-> > 
-> > In a laptop or tablet with a camera sensor, you likely don't want
-> > autodetection. In an industrial device, you don't care, and having the
-> > ability to auto-detect the exact sensor model when booting saves cost in
-> > the production chain as a single image can work across different models.
-> 
-> We talk about the case here, not generic. Do you want to have
-> autodetection possible here or not?
-> 
-> Best regards,
-> Krzysztof
+Applied, thanks!
 
+[2/3] arm64: dts: qcom: qrb5165-rb5: Fix 'dtbs_check' error for lpg nodes
+      commit: 1282fa32d71633bce5330a592db6e53cf73d2c28
+[3/3] arm64: dts: qcom: qrb5165-rb5: Fix 'dtbs_check' error for led nodes
+      commit: 360d9526761270f2497893946bb48de468a229cc
+
+Best regards,
 -- 
---
-Volodymyr Kharuk
-Embedded Software Engineer
-Melexis-Ukraine
-Mykhaila Kotel'nykova St, 4, Kyiv
-Mobile phone: +38 050 346 5527
-www.melexis.com
----
-The contents of this e-mail are CONFIDENTIAL AND PROPRIETARY. Please read
-our disclaimer at http://www.melexis.com/mailpolicy
-
+Bjorn Andersson <bjorn.andersson@linaro.org>
