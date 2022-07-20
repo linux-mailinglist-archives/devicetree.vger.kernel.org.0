@@ -2,139 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 026F657B108
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 08:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A28357B113
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 08:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239785AbiGTGZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 02:25:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60040 "EHLO
+        id S239846AbiGTG1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 02:27:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231855AbiGTGZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 02:25:11 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2644A261B;
-        Tue, 19 Jul 2022 23:25:08 -0700 (PDT)
+        with ESMTP id S239812AbiGTG1a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 02:27:30 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C92343338
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:27:28 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id u14so11976190lju.0
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:27:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1658298309; x=1689834309;
-  h=subject:from:to:cc:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=9fMBUYBQ6Nrvmz4yHYqzLSOHfp4ZNWCyYFk+3uuzu2M=;
-  b=lSD0UpT0+kNIQe8XGvwT7+OEGWEJJEwnEo0noZ+P84uYXnysUC2aPIDQ
-   kYXBGXiyJu8bm6TfdECqJKv79UAIlYn4MSNnoXpVWziaQLTW8hj2e7fww
-   wox0+Nk8zav1+QJj6eJgN6J4i2hyJfBp+Kwz/Z73E3Zxq0tfMOeoS74jv
-   Da/ewZSsfgw+Ap/iSy0btjbIW2aw7exos7k6efC79qsiOnL1awNtlGgy1
-   s5xD5x/9d5GsruwVue1QPeM5JIG/Ly56fTK+xLbNviprrksSdqWF3DM3x
-   JQdFjci5A/i2mAp6GCYSy6Pxv+cf27dTBIV5u/qyHgQebEcjiR0hcN6xN
-   A==;
-X-IronPort-AV: E=Sophos;i="5.92,286,1650924000"; 
-   d="scan'208";a="25147044"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 20 Jul 2022 08:25:07 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 20 Jul 2022 08:25:07 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 20 Jul 2022 08:25:07 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1658298307; x=1689834307;
-  h=from:to:cc:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=9fMBUYBQ6Nrvmz4yHYqzLSOHfp4ZNWCyYFk+3uuzu2M=;
-  b=HWmvKm967HfTgH98QDXy5rLJsdrmDEG33OErpJluWqFtTDfr7j6WiATE
-   y1DcVIN/Svn0GGSWyuXZaM+aDqaDIcjs0SmnydS40rs6tWoaEP+WTfoW4
-   uKavOLamEdX0LqM/2axQzjdHt1d9/HLH72/F0YNounsm82ybDWTTHKxRH
-   MeFnerljCB8Eo+rIgrIF1nTH7potW39typUMtCrKLTsxV7oBkiVEBSkEa
-   aPEcwYaGbZa2rfGHZztlv7QXboiFya7AmJwX+XCZuEf9w9s8UUAb0fPmQ
-   4k+HccAxMSq9TfmOSr3CvLxrWgrPKkNOTCvXg+kua4lI1B7h6DUl5fHO8
-   w==;
-X-IronPort-AV: E=Sophos;i="5.92,286,1650924000"; 
-   d="scan'208";a="25147043"
-Subject: Re: Re: [PATCH v2 1/1] dt-bindings: net: fsl,
- fec: Add nvmem-cells / nvmem-cell-names properties
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 20 Jul 2022 08:25:06 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C2B33280056;
-        Wed, 20 Jul 2022 08:25:06 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Joakim Zhang <qiangqing.zhang@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Date:   Wed, 20 Jul 2022 08:25:04 +0200
-Message-ID: <1924174.PYKUYFuaPT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220718215016.GA3615606-robh@kernel.org>
-References: <20220715080640.881316-1-alexander.stein@ew.tq-group.com> <20220718215016.GA3615606-robh@kernel.org>
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=2RWe/5etiM/Atur64WJRybmJIj56BMtUZj35fRxxeJU=;
+        b=hC0C815XFlatblvHaHA3D/3JwyDCc0lWVZUUvkD1fi4EARD8mXH7BX7uQtEVI5qriz
+         6CgE98OSwz6vx0Zgg18GIU7wJ6MEWxBtXI0z/JJfQIYK0M4GK019WwEJ2NoFmpCVvRV0
+         EKcdO7I3zU2/DbAl0CIgYeDLdiduo0N5BAHne3fxltLKypi8pmTJRWaMbFV/nPVU+k7b
+         E8RT1MoLn6eV0WAEUvpnA/ecF0HsD6uIdSaTkwsj9PP8g4hUxhCP12ivCFFfLxPBAfF4
+         w0r9DCDMszTHWdGc5Bj+Rull8zb/LAwN0wp47OVURvr7j/PQafq+nlXPzQVcYWJidwU0
+         ZSMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2RWe/5etiM/Atur64WJRybmJIj56BMtUZj35fRxxeJU=;
+        b=79quYc8DZZX2C6/7sPFqipbFtXM++RMLvwh5BXjvxqG2y65g9gD6P7/EVW+EZ4x+up
+         +6Jp/muKn+qjbsNv+/eplUzJMgNY96e8MpKaUXQufZPcGDf2dWH8DG37EFA4rY04ntsa
+         iH6lDgKk8icdK1lT+kAMtdYDQzAphJql3qIXZf1rlrkLHiGf1BLEV59183A8Zw8wJLzG
+         Xtp8MamTRpsmks5mIJ0OBYzBBRNq6p6GA8GioQvgEoh0EZd9D7temuhbuVw3xt5gfQi9
+         VdyZ16JpUtmS+YDmDic6aTnRyGF1RyGw1IAaYnE5oQ0TIfzNX36STy4/f9xU+xfljzk1
+         ohKQ==
+X-Gm-Message-State: AJIora+fkPjbXfxAeYkfRE8Gq2y61cY6NC24wdaJMGuZzntWoHnMp+YU
+        kRVsk0gtSfbPP9Uinf9TOCy1Zw==
+X-Google-Smtp-Source: AGRyM1tsEpxIQZ9kT4ftSsfNFNs1JlZSItCy24gOE7mBFnUqo/n9Mj/HB/KCURSz4serspeZznlkGg==
+X-Received: by 2002:a2e:2d09:0:b0:25a:816a:2e62 with SMTP id t9-20020a2e2d09000000b0025a816a2e62mr15449635ljt.147.1658298446484;
+        Tue, 19 Jul 2022 23:27:26 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id p18-20020ac24ed2000000b0047255d210d6sm3617731lfr.5.2022.07.19.23.27.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 19 Jul 2022 23:27:26 -0700 (PDT)
+Message-ID: <11cc46d8-ae01-f3d2-b9c6-c366c6e4afc9@linaro.org>
+Date:   Wed, 20 Jul 2022 08:27:24 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: add SM6375 QCOM global clock
+ bindings
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220719115756.32231-1-konrad.dybcio@somainline.org>
+ <20220719115756.32231-2-konrad.dybcio@somainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220719115756.32231-2-konrad.dybcio@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 18. Juli 2022, 23:50:16 CEST schrieb Rob Herring:
-> On Fri, Jul 15, 2022 at 10:06:40AM +0200, Alexander Stein wrote:
-> > These properties are inherited from ethernet-controller.yaml.
-> > This fixes the dt_binding_check warning:
-> > imx8mm-tqma8mqml-mba8mx.dt.yaml: ethernet@30be0000: 'nvmem-cell-names',
-> > 'nvmem-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > Changes in v2:
-> > * Add amount and names of nvmem-cells (copied from
-> > ethernet-controller.yaml)> 
-> >  Documentation/devicetree/bindings/net/fsl,fec.yaml | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml
-> > b/Documentation/devicetree/bindings/net/fsl,fec.yaml index
-> > daa2f79a294f..b5b55dca08cb 100644
-> > --- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
-> > +++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
-> > 
-> > @@ -121,6 +121,14 @@ properties:
-> >    mac-address: true
-> > 
-> > +  nvmem-cells:
-> > +    maxItems: 1
-> > +    description:
-> > +      Reference to an nvmem node for the MAC address
-> > +
-> > +  nvmem-cell-names:
-> > +    const: mac-address
+On 19/07/2022 13:57, Konrad Dybcio wrote:
+> Add device tree bindings for global clock controller for SM6375 SoCs.
 > 
-> Sorry, steered you wrong on this. I didn't realize
-> ethernet-controller.yaml already defined these. You just need
-> 'unevaluatedProperties: false' instead additionalProperties.
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> ---
+> Changes since v1:
+> - dropped clock-names (switched to .index)
+> 
+>  .../bindings/clock/qcom,sm6375-gcc.yaml       |  65 +++++
+>  include/dt-bindings/clock/qcom,sm6375-gcc.h   | 234 ++++++++++++++++++
+>  2 files changed, 299 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sm6375-gcc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
+> new file mode 100644
+> index 000000000000..2e43cd75d3d4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,sm6375-gcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Global Clock & Reset Controller Binding for SM6375
+> +
+> +maintainers:
+> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
+> +
+> +description: |
+> +  Qualcomm global clock control module which supports the clocks, resets and
+> +  power domains on SM6375
+> +
+> +  See also:
+> +  - dt-bindings/clock/qcom,sm6375-gcc.h
+> +
 
-Ok, will come up with a new version.
+Why you are not referencing qcom,gcc.yaml?
 
-> I'm not sure what the FIXME for the additionalProperties is all about
-> though.
+> +properties:
+> +  compatible:
+> +    const: qcom,sm6375-gcc
+> +
+> +  clocks:
+> +    items:
+> +      - description: Board XO source
+> +      - description: Board XO Active-Only source
+> +      - description: Sleep clock source
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  '#power-domain-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +  - '#power-domain-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,rpmcc.h>
+> +    clock-controller@1400000 {
+> +      compatible = "qcom,sm6375-gcc";
+> +      reg = <0x01400000 0x1f0000>;
+> +      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+> +               <&rpmcc RPM_SMD_XO_A_CLK_SRC>,
+> +               <&sleep_clk>;
+> +      #clock-cells = <1>;
+> +      #reset-cells = <1>;
+> +      #power-domain-cells = <1>;
+> +    };
+> +
+> +...
+> diff --git a/include/dt-bindings/clock/qcom,sm6375-gcc.h b/include/dt-bindings/clock/qcom,sm6375-gcc.h
+> new file mode 100644
+> index 000000000000..1e9801e1cedf
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,sm6375-gcc.h
+> @@ -0,0 +1,234 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
 
-I guess this is about the deprecated properties (phy-reset-gpios, phy-reset-
-duration, phy-reset-active-high, phy-reset-post-delay), which you can see in 
-the example. There is e.g. phy-reset-gpios and put to MAC node, but nowadays 
-this should be reset-gpios property in PHY node (see ethernet-phy.yaml)
-Unfortunately you can't get rid of it until a single, common MDIO bus is 
-supported by multiple fec instances, see [1].
+Hm, Qualcomm gave permission to relicense bindings to dual-license,
+although I am not sure how this works with files where copyrights were
+transferred to Linux Foundation...
+
+> +/*
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2022, Konrad Dybcio <konrad.dybcio@somainline.org>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_CLK_QCOM_GCC_SM6375_H
+> +#define _DT_BINDINGS_CLK_QCOM_GCC_SM6375_H
+> +
+
 
 Best regards,
-Alexander
-
-[1] https://www.spinics.net/lists/kernel/msg4110563.html
-
-
-
+Krzysztof
