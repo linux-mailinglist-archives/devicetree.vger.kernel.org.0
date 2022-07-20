@@ -2,289 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC20F57BED4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 21:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C88B57BF0B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 22:11:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230438AbiGTTqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 15:46:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50874 "EHLO
+        id S230091AbiGTULT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 16:11:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230073AbiGTTqE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 15:46:04 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75EB954CAB;
-        Wed, 20 Jul 2022 12:46:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1658346364; x=1689882364;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ZDGmeIC5wAWph6fx9zzOtxX1lbFu5oe4nSte9/EaAZI=;
-  b=znbhDTBjJgdN8Ekr/ZQlzAx/CtnxTUuPB557q6x9Lvi1FjQjWhkeazmv
-   /aafmI37NR2f091rqgN6d4hqJM14gJN5riZ56i3vWeGddaR0Xh0ZaVjrI
-   HnquwBAXKrDUr/x9wJ48sd9pWod1mSP7LcBtKmB7aOr9KdkQO15zx4Zft
-   BICOaHRy17UzTFYrj0ct+GrimrtvOdSy2zYpjYnzgzLZdi9IzkApguVCX
-   CB/RiGqrTfuvR1VytMRvYhrxXow6ecsaocsYU9W/tPV1lbm76vFtGjq4E
-   yauvJoK/Ao0zI9duBXi/clAJiBNfUigb+qCqXGteAW55pReLkTvXE6ki9
-   g==;
-X-IronPort-AV: E=Sophos;i="5.92,287,1650956400"; 
-   d="scan'208";a="165677162"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Jul 2022 12:45:58 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 20 Jul 2022 12:45:56 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Wed, 20 Jul 2022 12:45:53 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <claudiu.beznea@microchip.com>, <arnd@arndb.de>, <olof@lixom.net>,
-        <soc@kernel.org>, <UNGLinuxDriver@microchip.com>,
-        <maxime.chevallier@bootlin.com>,
-        Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH 2/2] ARM: dts: lan966x: add support for pcb8309
-Date:   Wed, 20 Jul 2022 21:49:04 +0200
-Message-ID: <20220720194904.2025384-3-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20220720194904.2025384-1-horatiu.vultur@microchip.com>
-References: <20220720194904.2025384-1-horatiu.vultur@microchip.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230025AbiGTULR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 16:11:17 -0400
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D643138D;
+        Wed, 20 Jul 2022 13:11:15 -0700 (PDT)
+Received: from pps.filterd (m0134423.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26KJq9ri001534;
+        Wed, 20 Jul 2022 20:10:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id; s=pps0720;
+ bh=tBXv1RN/QxUEA3fvWqFQRswjLYubC9wBxdrrvuT2QNs=;
+ b=dVcce2w28B9/gLrmpvtHfdkEDFnSK7C8l8R5dLacOIZHX/1JZd2D9FLdY4vfckAoU1X3
+ rtdMn2x9jBEX7W93XZFULTQIlDQS5ajHLdtfrgaJsgRY758NwWRnlVNsZCMlA4si25qX
+ zvMAdoCU6c832e56N1czngBTStiyV9I9AywqapJI6Sw46MR4tKsuCGvFzvTQK+Mpdddp
+ Mqgbgox1wJj4qNrmasMquMOe3kU7HxKXeAGOhACib1/TlHnd7wP3wYWaNIQuesMbdekU
+ fOT+F4/EUWQMfEhxvg5GyYfS+kHr04H68GMBo0E3AoBPX4vwO8coXxnZ8eRIwT4hqWDD 2A== 
+Received: from p1lg14879.it.hpe.com (p1lg14879.it.hpe.com [16.230.97.200])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3hen90sn0f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 20 Jul 2022 20:10:49 +0000
+Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by p1lg14879.it.hpe.com (Postfix) with ESMTPS id E96BDD2CF;
+        Wed, 20 Jul 2022 20:10:47 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.36])
+        by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 82B5780906E;
+        Wed, 20 Jul 2022 20:10:46 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     nick.hawkins@hpe.com
+Cc:     broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com,
+        linux@armlinux.org.uk, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, arnd@arndb.de, joel@jms.id.au
+Subject: [PATCH v1 0/5] Add SPI Driver to HPE GXP Architecture
+Date:   Wed, 20 Jul 2022 15:11:53 -0500
+Message-Id: <20220720201158.78068-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-GUID: ofamtHPacx6DKFeTSXTLVx9qnGQtnxcE
+X-Proofpoint-ORIG-GUID: ofamtHPacx6DKFeTSXTLVx9qnGQtnxcE
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-20_12,2022-07-20_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ spamscore=0 mlxlogscore=688 clxscore=1011 bulkscore=0 lowpriorityscore=0
+ adultscore=0 priorityscore=1501 impostorscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2206140000 definitions=main-2207200081
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for pcb8309. It is similar with pcb8291 with one big
-difference that is having 2 SFP cages. Therefore it has 4 network ports.
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- arch/arm/boot/dts/Makefile            |   3 +-
- arch/arm/boot/dts/lan966x-pcb8309.dts | 189 ++++++++++++++++++++++++++
- 2 files changed, 191 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/lan966x-pcb8309.dts
+The GXP supports 3 separate SPI interfaces to accommodate the system
+flash, core flash, and other functions. The SPI engine supports variable
+clock frequency, selectable 3-byte or 4-byte addressing and a
+configurable x1, x2, and x4 command/address/data modes. The memory
+buffer for reading and writing ranges between 256 bytes and 8KB. This
+driver supports access to the core flash and bios part.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 184899808ee7..6a6166e3a405 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -772,7 +772,8 @@ dtb-$(CONFIG_SOC_IMXRT) += \
- dtb-$(CONFIG_SOC_LAN966) += \
- 	lan966x-pcb8291.dtb \
- 	lan966x-kontron-kswitch-d10-mmt-6g-2gs.dtb \
--	lan966x-kontron-kswitch-d10-mmt-8g.dtb
-+	lan966x-kontron-kswitch-d10-mmt-8g.dtb \
-+	lan966x-pcb8309.dtb
- dtb-$(CONFIG_SOC_LS1021A) += \
- 	ls1021a-iot.dtb \
- 	ls1021a-moxa-uc-8410a.dtb \
-diff --git a/arch/arm/boot/dts/lan966x-pcb8309.dts b/arch/arm/boot/dts/lan966x-pcb8309.dts
-new file mode 100644
-index 000000000000..ef441195e8c1
---- /dev/null
-+++ b/arch/arm/boot/dts/lan966x-pcb8309.dts
-@@ -0,0 +1,189 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * lan966x_pcb8309.dts - Device Tree file for PCB8309
-+ */
-+/dts-v1/;
-+#include "lan966x.dtsi"
-+#include "dt-bindings/phy/phy-lan966x-serdes.h"
-+
-+/ {
-+	model = "Microchip EVB - LAN9662";
-+	compatible = "microchip,lan9662-pcb8309", "microchip,lan9662", "microchip,lan966";
-+
-+	aliases {
-+		serial0 = &usart3;
-+		i2c102 = &i2c102;
-+		i2c103 = &i2c103;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-restart {
-+		compatible = "gpio-restart";
-+		gpios = <&gpio 56 GPIO_ACTIVE_LOW>;
-+		priority = <200>;
-+	};
-+
-+	i2c-mux {
-+		compatible = "i2c-mux";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		mux-controls = <&mux>;
-+		i2c-parent = <&i2c4>;
-+
-+		i2c102: i2c-sfp@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c103: i2c-sfp@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+
-+	mux: mux-controller {
-+		compatible = "gpio-mux";
-+		#mux-control-cells = <0>;
-+
-+		mux-gpios = <&sgpio_out 11 0 GPIO_ACTIVE_HIGH>, /* p11b0 */
-+			    <&sgpio_out 11 1 GPIO_ACTIVE_HIGH>; /* p11b1 */
-+	};
-+
-+	sfp2: sfp2 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c102>;
-+		tx-disable-gpios = <&sgpio_out 10 0 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in  2 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in  2 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in  1 0 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp3: sfp3 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c103>;
-+		tx-disable-gpios = <&sgpio_out 10 1 GPIO_ACTIVE_LOW>;
-+		los-gpios = <&sgpio_in  3 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in  3 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in  1 1 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&flx3 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
-+	status = "okay";
-+
-+	usart3: serial@200 {
-+		pinctrl-0 = <&fc3_b_pins>;
-+		pinctrl-names = "default";
-+		status = "okay";
-+	};
-+};
-+
-+&flx4 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+};
-+
-+&gpio {
-+	fc3_b_pins: fc3-b-pins {
-+		/* RXD, TXD */
-+		pins = "GPIO_52", "GPIO_53";
-+		function = "fc3_b";
-+	};
-+
-+	fc4_b_pins: fc4-b-pins {
-+		/* SCL, SDA */
-+		pins = "GPIO_57", "GPIO_58";
-+		function = "fc4_b";
-+	};
-+
-+	sgpio_a_pins: sgpio-a-pins {
-+		/* SCK, D0, D1, LD */
-+		pins = "GPIO_32", "GPIO_33", "GPIO_34", "GPIO_35";
-+		function = "sgpio_a";
-+	};
-+};
-+
-+&i2c4 {
-+	compatible = "microchip,sam9x60-i2c";
-+	reg = <0x600 0x200>;
-+	interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clocks = <&nic_clk>;
-+	pinctrl-0 = <&fc4_b_pins>;
-+	pinctrl-names = "default";
-+	i2c-analog-filter;
-+	i2c-digital-filter;
-+	i2c-digital-filter-width-ns = <35>;
-+	i2c-sda-hold-time-ns = <1500>;
-+	status = "okay";
-+};
-+
-+&mdio1 {
-+	status = "okay";
-+};
-+
-+&phy0 {
-+	status = "okay";
-+};
-+
-+&phy1 {
-+	status = "okay";
-+};
-+
-+&port0 {
-+	status = "okay";
-+	phy-handle = <&phy0>;
-+	phy-mode = "gmii";
-+	phys = <&serdes 0 CU(0)>;
-+};
-+
-+&port1 {
-+	status = "okay";
-+	phy-handle = <&phy1>;
-+	phy-mode = "gmii";
-+	phys = <&serdes 1 CU(1)>;
-+};
-+
-+&port2 {
-+	status = "okay";
-+	sfp = <&sfp2>;
-+	managed = "in-band-status";
-+	phy-mode = "sgmii";
-+	phys = <&serdes 2 SERDES6G(0)>;
-+};
-+
-+&port3 {
-+	status = "okay";
-+	sfp = <&sfp3>;
-+	managed = "in-band-status";
-+	phy-mode = "sgmii";
-+	phys = <&serdes 3 SERDES6G(1)>;
-+};
-+
-+&serdes {
-+	status = "okay";
-+};
-+
-+&sgpio {
-+	status = "okay";
-+	pinctrl-0 = <&sgpio_a_pins>;
-+	pinctrl-names = "default";
-+	microchip,sgpio-port-ranges = <0 3>, <8 11>;
-+	gpio@0 {
-+		ngpios = <64>;
-+	};
-+	gpio@1 {
-+		ngpios = <64>;
-+	};
-+};
-+
-+&switch {
-+	status = "okay";
-+};
+Nick Hawkins (5):
+  spi: spi-gxp: Add support for HPE GXP SoCs
+  spi: dt-bindings: add documentation for hpe,gxp-spifi
+  ARM: dts: hpe: Add spi driver node
+  ARM: configs: multi_v7_defconfig: Enable HPE GXP SPI driver
+  MAINTAINERS: add spi support to GXP
+
+ .../bindings/spi/hpe,gxp-spifi.yaml           |  56 +++
+ MAINTAINERS                                   |   2 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts      |  58 +++
+ arch/arm/boot/dts/hpe-gxp.dtsi                |  21 +-
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ drivers/spi/Kconfig                           |   7 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-gxp.c                         | 355 ++++++++++++++++++
+ 8 files changed, 500 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
+ create mode 100644 drivers/spi/spi-gxp.c
+
 -- 
-2.33.0
+2.17.1
 
