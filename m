@@ -2,98 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EC7D57BF39
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 22:32:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C64A257BF66
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 23:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229503AbiGTUcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 16:32:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50634 "EHLO
+        id S229484AbiGTVD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 17:03:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiGTUcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 16:32:15 -0400
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B50B14A811;
-        Wed, 20 Jul 2022 13:32:14 -0700 (PDT)
-Received: by mail-il1-f181.google.com with SMTP id n13so1340816ilk.1;
-        Wed, 20 Jul 2022 13:32:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=IARPxdpRl8tz+zWVsX1n/ZXaygmNXEXGZkFMJF6ObAk=;
-        b=3s/ug4kRghrVQ77VgjY2w2bhkFl9X+u+J/t3udsyXJUpSp7aMJN6DTeykDaCBqYg+L
-         /LBl7UGevDEj2Vez8sgnLv5Vo5575KAuQ/qhLdCes1T9/9DjkWfiC+euzjhb4D/pCey4
-         kacbonkFWNUXL1irmyaMCkthHc7k+94my/n/vTLgovjG/7lzo0kMGksMji5QrMtRdBD6
-         H0AyiO6jYJ6jn/Mt9o7AG9ntN0GwfOvBskOjiVJLja4Wd9wyWI9j9Z0jyY7o0aEaYrsw
-         iae17KPxsjn7+Cfm0OrJlcF8Grt/3FxqEGta/pk0MqTtLddMf4s6v0xXpEz6xoYO8YDH
-         FrIw==
-X-Gm-Message-State: AJIora+tuZQr8IYqDOz3TAy1h42NNSGUgGlny5o4wXtiXctbO2rhZnng
-        IyZLPwLhVHQ5GOz+3MAl+g==
-X-Google-Smtp-Source: AGRyM1ubB+OJB0nt41EjvMvcdSWrDY1/E3SjI6HEuFBiYbtv0MUvmMFunSkSNpIDqTK5Qp3I+frGTg==
-X-Received: by 2002:a05:6e02:1708:b0:2dc:8201:c2c8 with SMTP id u8-20020a056e02170800b002dc8201c2c8mr19150968ill.185.1658349133716;
-        Wed, 20 Jul 2022 13:32:13 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id z20-20020a05663822b400b00331598832besm8146977jas.25.2022.07.20.13.32.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 13:32:13 -0700 (PDT)
-Received: (nullmailer pid 3925125 invoked by uid 1000);
-        Wed, 20 Jul 2022 20:32:12 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Martyn Welch <martyn.welch@collabora.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Rob Herring <robh+dt@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-In-Reply-To: <20220720150007.2168051-2-martyn.welch@collabora.com>
-References: <20220720150007.2168051-1-martyn.welch@collabora.com> <20220720150007.2168051-2-martyn.welch@collabora.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: fsl: Add MSC SM2S-IMX8PLUS SoM and SM2-MB-EP1 Carrier
-Date:   Wed, 20 Jul 2022 14:32:12 -0600
-Message-Id: <1658349132.217422.3925124.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S229505AbiGTVD0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 17:03:26 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02D7C545F2;
+        Wed, 20 Jul 2022 14:03:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AF3EFB821E4;
+        Wed, 20 Jul 2022 21:03:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05165C3411E;
+        Wed, 20 Jul 2022 21:03:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658351003;
+        bh=aj6UO8Ihws6az1SxXTAlGhE4lWZvJVkqKcmBOdaQF20=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=QEDt7d99a8MFNFKgEj6etFQiTj6aOfNWFIaLKOc/jqnyK+DuxY5uLfKuNfrn8n+pa
+         NABaEwgPSNdbJrSlCxVczWDvvy/8Kqy8ucsI9XPqbtllR7guo2FMNZBBlJphmopEov
+         N+1HSEoUjMXLMCvN5wzZcDB/Vbdl7pDkTLcQsl++40WxD8wKZm+Wzs8EL8NIaptHDJ
+         r6JKfTgl/J+iE1zJvqG1RVasieSnG0ckSoJnBva8hRQ1IjrApETA/Ci2FIJM421BeA
+         XY7iDTRoxDrjZVRqpb6N8NOX9W8fQoDKlew8/Ls8wm8j9wedHH10rX5atE3bn08djy
+         WNA6uwo2Yw80g==
+Date:   Wed, 20 Jul 2022 16:03:21 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Hongxing Zhu <hongxing.zhu@nxp.com>
+Cc:     "robh@kernel.org" <robh@kernel.org>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "galak@kernel.crashing.org" <galak@kernel.crashing.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: imx6: convert the imx pcie
+ controller to dtschema
+Message-ID: <20220720210321.GA1656074@bhelgaas>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AS8PR04MB8676C863CEDCCE1C0D1B04578C8E9@AS8PR04MB8676.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jul 2022 16:00:04 +0100, Martyn Welch wrote:
-> Add DT compatible strings for a combination of the 14N0600E variant of
-> the MSC SM2S-IMX8PLUS SoM in combination with the SM2-MB-EP1 carrier
-> board.
-> 
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-> ---
-> 
-> Changes in v2:
->   - New addition
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+On Wed, Jul 20, 2022 at 01:16:45AM +0000, Hongxing Zhu wrote:
+> > -----Original Message-----
+> > From: Bjorn Helgaas <helgaas@kernel.org>
+> > Sent: 2022年7月20日 2:00
+> > To: Hongxing Zhu <hongxing.zhu@nxp.com>
+> > Cc: robh@kernel.org; l.stach@pengutronix.de; galak@kernel.crashing.org;
+> > shawnguo@kernel.org; devicetree@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+> > dl-linux-imx <linux-imx@nxp.com>; kernel@pengutronix.de
+> > Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: imx6: convert the imx pcie
+> > controller to dtschema
+> > 
+> > On Fri, Aug 27, 2021 at 02:42:58PM +0800, Richard Zhu wrote:
+> > > Convert the fsl,imx6q-pcie.txt into a schema.
+> > > - ranges property should be grouped by region, with no functional
+> > >   changes.
+> > > - only one propert is allowed in the compatible string, remove
+> > >   "snps,dw-pcie".
+> > >
+> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > ---
+> > >  .../bindings/pci/fsl,imx6q-pcie.txt           | 100 ---------
+> > >  .../bindings/pci/fsl,imx6q-pcie.yaml          | 202
+> > ++++++++++++++++++
+> > >  MAINTAINERS                                   |   2 +-
+> > >  3 files changed, 203 insertions(+), 101 deletions(-)  delete mode
+> > > 100644 Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> > > b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> > 
+> > > -Optional properties:
+> > > -- fsl,tx-deemph-gen1: Gen1 De-emphasis value. Default: 0
+> > > -- fsl,tx-deemph-gen2-3p5db: Gen2 (3.5db) De-emphasis value. Default:
+> > > 0
+> > 
+> > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > 
+> > > +  fsl,tx-deemph-gen1:
+> > > +    description: Gen1 De-emphasis value (optional required).
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    default: 0
+> > > +
+> > > +  fsl,tx-deemph-gen2-3p5db:
+> > > +    description: Gen2 (3.5db) De-emphasis value (optional required).
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    default: 0
+> > 
+> > What does "optional required" mean in all these properties?
+> > "Optional" is the opposite of "required."
+>
+> Regarding my understands, the "optional required" means that these properties
+>  are not mandatory required. The default values are used if there are no such
+>  kind of properties. If HW board designers want to shape their PCIe signals
+>  (E.X eye diagram), they should define these properties.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+That sounds like "optional" to me.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/arm/fsl.yaml:933:111: [warning] line too long (118 > 110 characters) (line-length)
+"Optional required" is meaningless.  A property can be either optional
+OR required, but not both at the same time.
 
-dtschema/dtc warnings/errors:
+If the driver can function without these properties, they are
+optional.  If designers can use these properties to optimize signal
+characteristics, the properties are still optional.
 
-doc reference errors (make refcheckdocs):
+The properties you describe as "optional required" are:
 
-See https://patchwork.ozlabs.org/patch/
+  fsl,tx-deemph-gen1
+  fsl,tx-deemph-gen2-3p5db
+  fsl,tx-deemph-gen2-6db
+  fsl,tx-swing-full
+  fsl,tx-swing-low
+  fsl,max-link-speed
+  reset-gpio
+  reset-gpio-active-high
+  vpcie-supply
+  vph-supply
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+From reading the code, the driver uses default values for all the
+"fsl," properties if they don't exist.  And the driver always checks
+whether the others exist before using them.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+So I think you should describe all these as "optional".
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Bjorn
