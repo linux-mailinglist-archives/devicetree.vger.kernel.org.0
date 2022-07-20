@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 794A557B940
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 17:12:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E07757B95B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 17:14:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232933AbiGTPMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 11:12:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47502 "EHLO
+        id S232891AbiGTPOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 11:14:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbiGTPMI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 11:12:08 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 183A956BAA
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:12:07 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id l23so33625254ejr.5
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:12:07 -0700 (PDT)
+        with ESMTP id S241171AbiGTPOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 11:14:05 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 485C257277
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:14:04 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id t3so24209766edd.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:14:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=11rz+JYqlvtFNaz848/ywMV3WKlyEeWTOPJoIhEg7l0=;
-        b=axp8CEyArBd2gp/VntDKi5fRS3SHOMbd5Ibbk50UObxhktGhuxOVTKctQdl4U58siE
-         YsCugznl9jaGkMgtO2FuHOcEVfXzdAZLxFP0RL3lVdM6xfhoH91ep9Kp83blQ4mhR0qC
-         Q413WH4qWJCxehLVlqGAr9HtjoO3BfsrCSdkI=
+        bh=lYFr7W/TB3/Ge01WvDEcFFO3MPdvM4AewhxOk12JihE=;
+        b=NYEJaqBE0dq70riib/CJZNibK32KtA1ArsXU+Lmhye2iKLvxy6n1jMwFEBApp4cWBH
+         opUSurPSBd2q2OYyJb9UQwbXXL/IQzMA41/uOqGxuhsPJ4BBFLa+nYgYO/uZiCIoxHwv
+         9fXUwXVx3WkP/Yi3kObsfDZUz1wL/YvWK8L50=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=11rz+JYqlvtFNaz848/ywMV3WKlyEeWTOPJoIhEg7l0=;
-        b=20BCfmCYdk0pBkxPSjnIU9uim54pqqDWY1q5rfZYyZwvm//pQ6is9OCbtGqD+gp5Yg
-         F5fiS7RGZAv0cdptKg7ua/dLVyjgDLQlfL1lc2a7L35acijbX5bvWYGglzP7PY9lPazb
-         s/6QWXuHoXGTyq6x8SL2iOD56MRFRctqK63Fs6UHW3uYCU3q6w1xL8z/7caxA+oUsk9/
-         dqtkYOztpXMiU4FloEYHwBP2lN7gPStrk7+YJY79AaBpM6FQdKfu7HhUpmmZVWvnUNNJ
-         1egNVjtTUfOAoj8Q509i0wNT+hSSclj4yNfmxg8nwla28a8uBwqIif8o0mpv/TVzuWOu
-         m3GA==
-X-Gm-Message-State: AJIora/35RENv+43aEhPSRl4kZc/nkSqfCvxLSCNaQkVhaXXXVecWpCr
-        ZLx7KWIFFN9Jwr3CmpMv6Y+z3w1NG7l6np4P/oM=
-X-Google-Smtp-Source: AGRyM1tax/bTBfLXdH+YY75qs0LZTMqyEVAraegiazGic/R6tRjQ/s29ikt7jY58VMxMl3BjGBRwHA==
-X-Received: by 2002:a17:906:8a4a:b0:72b:5b23:3065 with SMTP id gx10-20020a1709068a4a00b0072b5b233065mr37018256ejc.557.1658329925443;
-        Wed, 20 Jul 2022 08:12:05 -0700 (PDT)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com. [209.85.221.41])
-        by smtp.gmail.com with ESMTPSA id w23-20020a1709060a1700b0072b2378027csm7951613ejf.26.2022.07.20.08.12.03
+        bh=lYFr7W/TB3/Ge01WvDEcFFO3MPdvM4AewhxOk12JihE=;
+        b=71KBcZ/vcM+m2P9d8hwaE0U/D2UieIrPklIHWFRtDDqExuDJceEvf49sAGwkUwIE/c
+         lfkrs2U+mC7QYkeLZ6bqng8oGKDYr1He2kAdpdnEyLUC5rgDtC+i4vDrVAqavaYlnJBR
+         U24JDiPAYlVUl4yDtiYzystkomjRuUkUs9vB/fdQS3FPswn7uxGnG9NBZRSKwdilPFNA
+         HAkMhd+5lwyqtcKdPqomg+uAR7VsN4EdTgHr4L1m+RkeYuvAkzt8YEk2VBJ/vxP0R8aq
+         ma6D6mLexzKXbvLm+uUnVVLifrgjR66sDGMrdlBphnk7VI/1mybbPt5hoDO0ykjp3Ygm
+         3NrA==
+X-Gm-Message-State: AJIora8o2GJImEHowkuFx+bwOnlUfzKa0MSGz/R/fhgP5F6Ddrq5zicH
+        VMVteGTyKPgUj1AWL/hwGNcPI/rPMetruEOU+ZI=
+X-Google-Smtp-Source: AGRyM1tCnP8hHn7xq8ROHUijL6+hbNMaxUlnYtZpoQh0O27HXOUbbnPVguH6VuBNqP6VNaihhy4UlQ==
+X-Received: by 2002:a05:6402:46:b0:43a:f611:5992 with SMTP id f6-20020a056402004600b0043af6115992mr52196145edu.18.1658330042680;
+        Wed, 20 Jul 2022 08:14:02 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
+        by smtp.gmail.com with ESMTPSA id b1-20020aa7df81000000b0043a8286a18csm12521259edy.30.2022.07.20.08.14.01
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jul 2022 08:12:03 -0700 (PDT)
-Received: by mail-wr1-f41.google.com with SMTP id h9so1487253wrm.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:12:03 -0700 (PDT)
-X-Received: by 2002:adf:ead2:0:b0:21d:8b49:6138 with SMTP id
- o18-20020adfead2000000b0021d8b496138mr31641595wrn.138.1658329923136; Wed, 20
- Jul 2022 08:12:03 -0700 (PDT)
+        Wed, 20 Jul 2022 08:14:01 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id bu1so26557858wrb.9
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:14:01 -0700 (PDT)
+X-Received: by 2002:a5d:5889:0:b0:21d:bccd:38e3 with SMTP id
+ n9-20020a5d5889000000b0021dbccd38e3mr30328783wrf.659.1658330040897; Wed, 20
+ Jul 2022 08:14:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220720073604.1.I249596c011ff05da5a95d72fc321e115ef859803@changeid>
-In-Reply-To: <20220720073604.1.I249596c011ff05da5a95d72fc321e115ef859803@changeid>
+References: <20220720025058.1.I5bfba8857ea0d43c747ecdc3a950875abd56927f@changeid>
+ <7a04c9af-0ccb-7711-249f-73908fe7ec36@linaro.org>
+In-Reply-To: <7a04c9af-0ccb-7711-249f-73908fe7ec36@linaro.org>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 20 Jul 2022 08:11:50 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XaDTJp+JLrwW7Hh5-7g0y_Vhqqtiv01quBh6wZZWQgmw@mail.gmail.com>
-Message-ID: <CAD=FV=XaDTJp+JLrwW7Hh5-7g0y_Vhqqtiv01quBh6wZZWQgmw@mail.gmail.com>
+Date:   Wed, 20 Jul 2022 08:13:48 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V1MqQzNxq_L8sGtu2JwAAL_FWKXkw9bhCHcD0DycFMUw@mail.gmail.com>
+Message-ID: <CAD=FV=V1MqQzNxq_L8sGtu2JwAAL_FWKXkw9bhCHcD0DycFMUw@mail.gmail.com>
 Subject: Re: [PATCH] arm64: dts: qcom: Add SKU6 for sc7180-trogdor-pazquel-lte-parade
-To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
         Henry Sun <henrysun@google.com>,
         Bob Moragues <moragues@chromium.org>,
         Andy Gross <agross@kernel.org>,
@@ -73,8 +75,7 @@ Cc:     LKML <linux-kernel@vger.kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,52 +84,36 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Wed, Jul 20, 2022 at 12:37 AM Yunlong Jia
-<yunlong.jia@ecs.corp-partner.google.com> wrote:
+On Tue, Jul 19, 2022 at 11:10 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> SKU6 is LTE(w/o eSIM)+WIFI+Parade
+> On 20/07/2022 04:51, Yunlong Jia wrote:
+> > SKU6 is LTE(w/o eSIM)+WIFI+Parade
+> >
+> > Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+> > ---
+> >
+> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
+> > index 764c451c1a857..4649eaec6318d 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
+> > @@ -14,7 +14,7 @@
+> >
+> >  / {
+> >       model = "Google Pazquel (Parade,LTE)";
+> > -     compatible = "google,pazquel-sku4", "qcom,sc7180";
+> > +     compatible = "google,pazquel-sku4", "google,pazquel-sku6", "qcom,sc7180";
 >
-> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-> ---
->
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> index 764c451c1a857..767cb7450c0d8 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> @@ -14,7 +14,7 @@
->
->  / {
->         model = "Google Pazquel (Parade,LTE)";
-> -       compatible = "google,pazquel-sku4", "qcom,sc7180";
-> +       compatible = "google,pazquel-sku6", "google,pazquel-sku4", "qcom,sc7180";
+> You miss binding change and sku6 should be rather added before sku4 as
+> it is more specific, isn't it?
 
-Now this doesn't match the bindings. The bindings list 4 first and
-then 6. You are listing 6 first then 4. The order doesn't really
-matter, but the two places need to match.
-
-As Krzysztof says, you should be incrementing the version of your
-patches, adding some history, and you should also put the two patches
-in one series.
-
-I believe you're using patman, so something like this and have _both_
-changes applied and send them out.
-
-In patch #1 (the bindings):
-
-Series-changes: 3
-- Bindings and dts in the same series.
-
-In patch #2 (the dts):
-
-Series-version: 3
-
-Series-changes: 2
-- Put sku6 before sku4
-
-Series-changes: 3
-- Bindings and dts in the same series.
+Just to close the loop: the order doesn't matter at all. Neither sku4
+nor sku6 is "more specific". One has the eSIM stuffed and one doesn't.
+I don't personally care about what order these are listed in, though,
+so if Krzysztof is happier with "sku6" being first then I'm OK w/ it
+as long as it matches the bindings.
 
 -Doug
