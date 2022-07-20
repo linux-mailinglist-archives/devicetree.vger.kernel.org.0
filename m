@@ -2,67 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E346857C0E4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 01:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F9DB57C0F4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 01:37:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231441AbiGTXcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 19:32:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46728 "EHLO
+        id S229532AbiGTXhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 19:37:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbiGTXcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 19:32:39 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2BA42AF4;
-        Wed, 20 Jul 2022 16:32:39 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id n138so145770iod.4;
-        Wed, 20 Jul 2022 16:32:39 -0700 (PDT)
+        with ESMTP id S229504AbiGTXhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 19:37:31 -0400
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 524FB49B42;
+        Wed, 20 Jul 2022 16:37:30 -0700 (PDT)
+Received: by mail-il1-f177.google.com with SMTP id i5so2783447ila.6;
+        Wed, 20 Jul 2022 16:37:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uTw5TM8NIkj7Y2Npa+S/jOHSj+YeoroLMLD1j/HNVQw=;
-        b=PI4WccehixOnYESOB01nuhZUIpyLiNfwd0IZu6dRV7PC4p6Kkn1gBYbQDVO0uKlt7C
-         vRyDsLZhsrwWbN9+HR8peXkZhgGQSLQJpSddmW51SybtZFI1ZiENXnNUQEdMZMWKZCoE
-         2ASjMes3qUash/vXpJOjmHNjGidXilvQX834BRGxIHxr3kT8driLF+xDxNFrCa+UJjNC
-         QRgOPwa5OEyiJZyo2oxC90S5XZOkEKIsPmhLdopptz7VkdQhTEORNA36nBw4X9LqEkYK
-         KI2zYvHFa0wkWAezKf+FeSnQB/2tLbx69pQWKpLjJa1lqPurptTRHNoz6z5K+LsI4a1e
-         mP2Q==
-X-Gm-Message-State: AJIora8+8GCvY4YxTCZgE2p/Wz6pG3jM8aqEeWFg9Tsns2j0XzkJRffg
-        NR2JBU3fOTAGRwbTp6ieXQ==
-X-Google-Smtp-Source: AGRyM1ufbECga9pyQXyTVMLdTt5n/U5W3j3M1T/W2MXkulykIVZgEBZMlc66M25vXLcty1OcHT8LiA==
-X-Received: by 2002:a05:6602:2b8a:b0:67b:c57f:b4bc with SMTP id r10-20020a0566022b8a00b0067bc57fb4bcmr17058794iov.55.1658359958428;
-        Wed, 20 Jul 2022 16:32:38 -0700 (PDT)
+        bh=Vcm1I9F6UV+nxAjMuSeIzBn7nWIliBqrkqSbC4OfyaE=;
+        b=Hulu2HDgfLVqLadeeDRJLnmXwyU+XVjqtIQ/BayDoLivlAxhORkKOweKMsOnqlsySy
+         HntmdSPSEZHQ8luQW6kDUYLxrgE6wdVVn7DMBxj4iWGAXBxgJHZSP0ZPq5UZJfXPL5bj
+         dVnCld+28usxBW+aA52sX9Q7RTEHI2fg8qGB04FkYSpmI0ePaSSAlQKkNUR8y4E8jEbP
+         TkR2sLxBXYx3BDYUGv1ijA5Xv/lqNvLjVqWuyKuC/kIUEz7z1Yus/B5m1PFtUvSteasC
+         DJAv+PyjJWLNBQGWBeBXHBG8MHw2uTp2gW3P9fW2TQY+JKCM1z6f/lkvpgc63f3lVhQk
+         OfVg==
+X-Gm-Message-State: AJIora9VOT1q0kDW/LIfUqR2p364mbC9c4lv2jl+It6cuxuiWic/y5zT
+        tv82Ips8B5LGyhkTrtSTIkUU5nAncQ==
+X-Google-Smtp-Source: AGRyM1uUZ6cX+VLuuemFeSA0ieh+ZbKT8Q+Y8t9HnKvOFst/xH04uKBAPb183viJoDECYVW0FkErag==
+X-Received: by 2002:a05:6e02:180d:b0:2dc:2561:4b81 with SMTP id a13-20020a056e02180d00b002dc25614b81mr20466483ilv.149.1658360249560;
+        Wed, 20 Jul 2022 16:37:29 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f19-20020a022413000000b0033efe711a37sm117507jaa.35.2022.07.20.16.32.36
+        by smtp.gmail.com with ESMTPSA id j71-20020a02634a000000b003417ba4f66asm119873jac.41.2022.07.20.16.37.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 16:32:37 -0700 (PDT)
-Received: (nullmailer pid 4185445 invoked by uid 1000);
-        Wed, 20 Jul 2022 23:32:35 -0000
-Date:   Wed, 20 Jul 2022 17:32:35 -0600
+        Wed, 20 Jul 2022 16:37:29 -0700 (PDT)
+Received: (nullmailer pid 4192799 invoked by uid 1000);
+        Wed, 20 Jul 2022 23:37:25 -0000
+Date:   Wed, 20 Jul 2022 17:37:25 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-Cc:     Tomi Valkeinen <tomba@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Darren Etheridge <detheridge@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Krunal Bhargav <k-bhargav@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/8] dt-bindings: display: ti,am65x-dss: Add IO CTRL
- property for AM625 OLDI
-Message-ID: <20220720233235.GA4180021-robh@kernel.org>
-References: <20220719080845.22122-1-a-bhatia1@ti.com>
- <20220719080845.22122-3-a-bhatia1@ti.com>
+To:     Jerome Neanne <jneanne@baylibre.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, nm@ti.com,
+        kristo@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
+        msp@baylibre.com, j-keerthy@ti.c, lee.jones@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 03/14] regulator: dt-bindings: Add interrupts support
+ to TPS65219 PMIC bindings
+Message-ID: <20220720233725.GA4187584-robh@kernel.org>
+References: <20220719091742.3221-1-jneanne@baylibre.com>
+ <20220719091742.3221-4-jneanne@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220719080845.22122-3-a-bhatia1@ti.com>
+In-Reply-To: <20220719091742.3221-4-jneanne@baylibre.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -73,66 +65,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 19, 2022 at 01:38:39PM +0530, Aradhya Bhatia wrote:
-> Add am625-io-ctrl dt property to provide access to the control MMR
-> registers for the OLDI TXes.
+On Tue, Jul 19, 2022 at 11:17:31AM +0200, Jerome Neanne wrote:
+> Add interrupt properties in PMIC TPS65219 bindings
+
+Why is this a separate patch? Please make your binding complete. Where 
+do these interrupts go to?
+
 > 
-> These registers are used to control the power input to the OLDI TXes as
-> well as to configure them in the Loopback test mode.
-> 
-> The MMR IO controller device has been updated since the AM65x SoC and
-> hence a newer property is needed to describe the one in AM625 SoC.
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
 > ---
->  .../bindings/display/ti/ti,am65x-dss.yaml     | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
+>  .../bindings/regulator/ti,tps65219.yaml       | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> index 11d9b3821409..672765ad1f30 100644
-> --- a/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> +++ b/Documentation/devicetree/bindings/display/ti/ti,am65x-dss.yaml
-> @@ -118,12 +118,33 @@ properties:
->        and OLDI_CLK_IO_CTRL registers. This property is needed for OLDI
->        interface to work.
+> diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+> index 2c655432b889..6a60e62a313c 100644
+> --- a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+> @@ -25,6 +25,17 @@ properties:
+>      description: Optional property that indicates that this device is
+>        controlling system power.
 >  
-> +  ti,am625-oldi-io-ctrl:
-> +    $ref: "/schemas/types.yaml#/definitions/phandle"
-> +    description:
-> +      phandle to syscon device node mapping OLDI IO_CTRL registers, for
-> +      AM625 SoC. The mapped range should point to OLDI0_DAT0_IO_CTRL,
-> +      and map the registers up till OLDI_LB_CTRL. This property allows
-> +      the driver to control the power delivery to the OLDI TXes and
-> +      their loopback control as well.
-
-What's wrong with the existing ti,am65x-oldi-io-ctrl other than the less 
-than ideal naming? And you just continued with the same issue so the 
-next part will need yet another property. Sorry, no. Just use the 
-existing property.
-
+> +  interrupts:
+> +    description: Short-circuit, over-current, under-voltage for regulators, PB interrupts.
+> +    maxItems: 1
 > +
->    max-memory-bandwidth:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description:
->        Input memory (from main memory to dispc) bandwidth limit in
->        bytes per second
->  
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: ti,am65x-dss
-> +then:
-> +  properties:
-> +    ti,am625-oldi-io-ctrl: false
-> +else:
-> +  properties:
-> +    ti,am65x-oldi-io-ctrl: false
+> +  interrupt-controller: true
 > +
+> +  '#interrupt-cells':
+> +    description: Specifies the PIN numbers and Flags, as defined in
+> +      include/dt-bindings/interrupt-controller/irq.h
+> +    const: 1
+> +
+>  patternProperties:
+>    "^buck[1-3]-supply$":
+>      description: Input supply phandle of one regulator.
+> @@ -71,12 +82,16 @@ patternProperties:
 >  required:
 >    - compatible
 >    - reg
+> +  - interrupts
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
+>    - regulators
+>  
+>  additionalProperties: false
+>  
+>  examples:
+>    - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      i2c {
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> @@ -92,6 +107,13 @@ examples:
+>              ldo3-supply = <&vcc_3v3_sys>;
+>              ldo4-supply = <&vcc_3v3_sys>;
+>  
+> +            pinctrl-0 = <&pmic_irq_pins_default>;
+> +
+> +            interrupt-parent = <&gic500>;
+> +            interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <1>;
+> +
+>              regulators {
+>                  buck1_reg: buck1 {
+>                      regulator-name = "VDD_CORE";
 > -- 
-> 2.37.0
+> 2.17.1
 > 
 > 
