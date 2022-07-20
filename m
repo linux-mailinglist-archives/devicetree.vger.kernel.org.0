@@ -2,69 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6D5157AFA6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 05:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5C657B009
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 06:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238773AbiGTDxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 19 Jul 2022 23:53:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48496 "EHLO
+        id S233278AbiGTEgE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 00:36:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238740AbiGTDxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 19 Jul 2022 23:53:17 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C89646D567
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 20:53:16 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id w7so13817303ply.12
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 20:53:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=u6f/TW2lK+Z6PHiB8sDnRQTHwsczaRjv5MXneVlIaMQ=;
-        b=juPVXMrbS2z9kh47D+ilwcQvWmxqKyFy59QnQEXlFPHErQANIDdmkJ94pEKszs7LVH
-         11McA5QwlW5m2hXr13BzNjONzrdE6PdeJoZHz08lYGEFnuPta0iNv4spyN1rUKMhtAAY
-         jZqJLx2jvAnjyUN6gl+G3WS+7B6zdt5+gyU5s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=u6f/TW2lK+Z6PHiB8sDnRQTHwsczaRjv5MXneVlIaMQ=;
-        b=roFElyYU0gtapBYPG22gz+35Q38MARFB0BkCbjomg6mOHJoqPqCP9wRk9SI89w7JRM
-         K365grlqHvWCV/3t0M8Nq6toGldi+70HcfqtZTIMMjzh9k6YMLhZJDljhz2SANv1XwEj
-         bLz/48O781EikTUrwS2IbrhOlQtdvP27o471/yIs/YxgNG15tmOn2tS9jwGTMpSBEPBU
-         z83iree1UIUMRCO+kAi4n9QpLc8F6mZv9AfOYpdXTwedBMrTxRCBvvEkFYH0W/+HxLHm
-         9gsry0+rxjDqnulmMNaqUrBnk1AK7YlOpsXx82wSgao05So5+d2ebgAJAdDrcJJaY2Wp
-         tlAw==
-X-Gm-Message-State: AJIora+3uJ0AirDdxjcNFvWUlEo/qOIux5iZIWZ8qJsmSGBUan4w1n1j
-        EQowcjaSQujVl8BZKjX2q//MHQ==
-X-Google-Smtp-Source: AGRyM1vgdgXehQ06PxCM+weN+8/HaGoYpCkfAjzpKaTH6W4CMVSaGfq/8M0BZ3ghFgv3Wzj1zbzX/Q==
-X-Received: by 2002:a17:902:b08a:b0:16c:68b6:311 with SMTP id p10-20020a170902b08a00b0016c68b60311mr34874711plr.166.1658289196255;
-        Tue, 19 Jul 2022 20:53:16 -0700 (PDT)
-Received: from judyhsiao0523.c.googlers.com.com (0.223.81.34.bc.googleusercontent.com. [34.81.223.0])
-        by smtp.gmail.com with ESMTPSA id t11-20020a170902d14b00b0016648412514sm12378346plt.188.2022.07.19.20.53.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Jul 2022 20:53:15 -0700 (PDT)
-From:   Judy Hsiao <judyhsiao@chromium.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
-        judyhsiao@google.com, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: sc7280: include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1
-Date:   Wed, 20 Jul 2022 03:52:54 +0000
-Message-Id: <20220720035254.1411959-4-judyhsiao@chromium.org>
-X-Mailer: git-send-email 2.37.0.170.g444d1eabd0-goog
-In-Reply-To: <20220720035254.1411959-1-judyhsiao@chromium.org>
-References: <20220720035254.1411959-1-judyhsiao@chromium.org>
+        with ESMTP id S229446AbiGTEgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 00:36:04 -0400
+Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5B5920F7B;
+        Tue, 19 Jul 2022 21:36:03 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id A7160DF476;
+        Tue, 19 Jul 2022 21:35:33 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id EsG6Ij7e3Hjh; Tue, 19 Jul 2022 21:35:32 -0700 (PDT)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
+        t=1658291732; bh=Z395XdMnc9/hxp6HWecS680NJldQ34bRG9DAfW63U9Q=;
+        h=From:To:Cc:Subject:Date:From;
+        b=sizWD/b4xrs4MtrW1YRj/Mo4yhbLDlLLBhDjl14d0uv1ru2YgnUOI0vQAR9OMurqr
+         9MJN37bGSLCdNacbzfyYOZpfCOE7xlN74zP0D0hMtLTyDUGl2QliTH+u94lfqzVIBR
+         2SbtQTro1rImKW3WICY0M4fb2LcbdmVT8+SKE3OHz1VE3XlQT22vCO5aEPHyAL+x0/
+         oi/WFenzLS01SfiToNADfE0hl+HyGEaEXjX3V6pRYws1T+d+lZlBRAyb9p86HZJGbx
+         ZWM3To6DHKO9oPyJWpXNk952fiNbBNyD+hArpWPkcuRtiSq1/oEAqhg3SNe2NjeEnH
+         g5EZM0eVT6bSQ==
+To:     rafael@kernel.org, khilman@kernel.org, ulf.hansson@linaro.org,
+        robh@kernel.org, krzysztof.kozlowski@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        pavel@ucw.cz
+Cc:     kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
+        l.stach@pengutronix.de, aford173@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [PATCH v4 0/3] power: domain: handle power supplies that need interrupts
+Date:   Wed, 20 Jul 2022 06:34:41 +0200
+Message-Id: <20220720043444.1289952-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,29 +53,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1
-as it uses rt5682 codec.
+hi Ulf, Lucas and all interested,
 
-Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Change-Id: I53e237add854fadd51a748a7ca13e4cc88440306
----
- arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts | 1 +
- 1 file changed, 1 insertion(+)
+This (after a cleanup patch) makes available a new genpd flag
+GENPD_FLAG_IRQ_ON in a relatively generic way: genpd providers can set
+it when irqs are needed to manage power on/off. Since the main goal
+here has been to fix systemd suspend/resume, adjusting these callbacks
+is all that's being done when this flag gets set.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-index c1647a85a371..98280436813d 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-@@ -8,6 +8,7 @@
- /dts-v1/;
- 
- #include "sc7280-herobrine.dtsi"
-+#include "sc7280-herobrine-audio-rt5682.dtsi"
- 
- / {
- 	model = "Google Herobrine (rev1+)";
+And since I'm working on imx8mq, the 3rd patch makes gpcv2 set this new
+flag when any power-supply's parent DT node has "interrupts" described.
+For i.MX8M* platforms, this should be ok. For other platforms this might
+be useful too but needs to be tested.
+
+
+revision history
+----------------
+v4: (thank you Ulf and Lucas)
+* split up genpd core and gpcv2 changes
+* set callbacks inside of pm_genpd_init()
+* make flag name and description a bit more generic
+* print an error in __genpd_dev_pm_attach() if there a "mismatch"
+
+v3: (thank you Ulf)
+* move DT parsing to gpcv2 and create a genpd flag that gets set
+https://lore.kernel.org/linux-arm-kernel/20220718210302.674897-1-martin.kepplinger@puri.sm/
+
+v2: (thank you Krzysztof)
+* rewrite: find possible regulators' interrupts property in parents
+  instead of inventing a new property.
+https://lore.kernel.org/linux-arm-kernel/20220712121832.3659769-1-martin.kepplinger@puri.sm/
+
+v1: (initial idea)
+https://lore.kernel.org/linux-arm-kernel/20220711094549.3445566-1-martin.kepplinger@puri.sm/T/#t
+
+
+Martin Kepplinger (3):
+  PM: domain: fix indentation and use BIT macro for flags
+  power: domain: handle genpd correctly when needing interrupts
+  soc: imx: gpcv2: fix suspend/resume by setting GENPD_FLAG_IRQ_ON
+
+ drivers/base/power/domain.c | 13 +++++++++++++
+ drivers/soc/imx/gpcv2.c     |  9 +++++++++
+ include/linux/pm_domain.h   | 20 +++++++++++++-------
+ 3 files changed, 35 insertions(+), 7 deletions(-)
+
 -- 
-2.37.0.170.g444d1eabd0-goog
+2.30.2
 
