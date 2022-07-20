@@ -2,237 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4AF557B2CB
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 10:22:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2604D57B2DA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 10:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237865AbiGTIWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 04:22:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35690 "EHLO
+        id S240138AbiGTI0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 04:26:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239946AbiGTIWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 04:22:44 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F8446BC2B
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 01:22:42 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id b26so25042700wrc.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 01:22:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=zNztUh6p8QlexvR3ymKoFnbrTntENcC8FNn5qsdnr04=;
-        b=jpxh+1Joi2LXODFXFO27Ji9zy+L9BrEv9z2MH4aI8OofyOaJ8DBWYfNVqLAfsDy9wF
-         VhNKlohUWkkIiDi6LXlOUf4IvQuAXix13q8FoJJiu4OD+5gp8o2qOMQ7cFykGEdv8Xmo
-         794t9IcX/cC08ErPDP9G1+sfMvxq6pNuvESQ2jCKZMPA0S3PShrEnp7wjUpR+P7hZR6h
-         sdkxeKJS0WW2bMH0SEEabzTrCTSj0L4wZ3gIOoV7C5VsjOnBt0GIFJqV1LoYVG5dlWwm
-         McUDUmyJ4+3RuGNEler94/CLHXcZcRVk5CuW8Y7X+klqjrXseBZSrDOHn87ttqNJ51l+
-         tioQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=zNztUh6p8QlexvR3ymKoFnbrTntENcC8FNn5qsdnr04=;
-        b=snIzrz/Z9lAdMBKiHFLfzwY/P1YKJyyEGxjZdV9yTrg8JxhP1vLJ9qaKSYMfHDIqor
-         3A/y314VfmXJunHA6an56w42MB3YzDslf2ZNPVW5outhf1a6hUULt2Vi1eBMM6tDm2E1
-         HmirySFXtnGH6axm4DzyYuOErywJOyMpsVXmRKhA+xOJ946olEUsjU9qsPu0A6i3+rTD
-         Gf2Gl+jZBWj0WwqDw/q66rjj5ZmA7t39Z3TTX1JsPhg8RjypFSd3YR9g/JbT96NONMtL
-         q4pAXsJza61O/MfQv+ho0YepasWVpjHivqEFuWD1f74b7H73h8cWJdyskUgGkc6S4ii5
-         0e8Q==
-X-Gm-Message-State: AJIora8b8K8OOgbXYcMUfFLuKu5RQuRzou6ZkZwjCQYqeRSYjOuDfVwQ
-        0IFEhuAn0vvsynR3GDaglZ0JGg==
-X-Google-Smtp-Source: AGRyM1vVWdYXwzYj15yVGb0oLrG8ROtJxu5aOUmyxArxI+j1STpgDzT2Rlfx3Hd11V92QdZNicdH7g==
-X-Received: by 2002:a5d:58ef:0:b0:21d:9fc8:302e with SMTP id f15-20020a5d58ef000000b0021d9fc8302emr28758844wrd.22.1658305360419;
-        Wed, 20 Jul 2022 01:22:40 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id z12-20020adfdf8c000000b0021e4cf58155sm410748wrl.17.2022.07.20.01.22.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 01:22:39 -0700 (PDT)
-Date:   Wed, 20 Jul 2022 09:22:38 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Markuss Broks <markuss.broks@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/5] mfd: sm5703: Add support for SM5703 MFD
-Message-ID: <Yte7Tgq3w8fowTYA@google.com>
-References: <20220423085319.483524-1-markuss.broks@gmail.com>
- <20220423085319.483524-5-markuss.broks@gmail.com>
- <Yqj+aUNLC00Tcu49@google.com>
- <5498bf71-66a5-957e-ed3d-13e68b982562@gmail.com>
- <YtUXFTx1+vSrXx70@google.com>
- <295e1809-f6f2-ca31-5c36-be133ffdc93b@gmail.com>
+        with ESMTP id S239673AbiGTI0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 04:26:52 -0400
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2079.outbound.protection.outlook.com [40.107.237.79])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4201467CAF;
+        Wed, 20 Jul 2022 01:26:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e3C8t4XeoN/0VkdGf27geeF5Z+lDt7ksmzGoD+RB1TUIoYR3e6bSU+DLeRbp4lVXxCs2Kg5M91nCdgXd85TdYR0cXJOEKOYTavT+bEYRvNKg5v5ww9ud+6fZOM4O84UXMjD8cofVEUejzxbYGUlGsMesGGWEqHf3+Ivd/Mwkh+OsT2QkldrnRFSYxy7hluDwIyDb24ErttnGcbXbAx98RBhQEFMcqxKKcvXGgB7V5rs+JwCqveDCoDXgJBC+aGlfrhb4RJDP1tmUauMGjy7kCH6mTZE7tR3yRxfA7erKXGrUMqVpML8LwjAjUmFsm0SIliP05WG8B/rq0wnkJMSqhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7xBCNcW2WzPcFBhr8fpAT6bi8jfXH9rZ3ePkWdO3lWY=;
+ b=M/82lowmDk9hFohFuyEMxmstjWwOT3vgfKLEJFSuizBGXUuavEsyaKstfSvSEQxa3w47vRjXQ0jkg6MFCDFRHTd1zw8/X5s2ul5HQ9XLqz1TWVqhfzqRX0PlXZSTTZR18bOeYnxYEw0Xo61idmS5d3JNgVft9lzzFPCFrTUer0ywYFjWz88XUpP9UIEf5z464OKcZNCtMHh/wi0mq8puw8XmUtpX26zhPD+wJmpyop05wYKgZUbVJQnkC7J40CBL9e3YtOl+GzPAwWXJT+OyhBAf9NaQARUaScAvZIReHGyjY8Sjrvjo+WWoboBQ6JRf9QwcXzY/t3UGT/8A1As5RQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7xBCNcW2WzPcFBhr8fpAT6bi8jfXH9rZ3ePkWdO3lWY=;
+ b=Fm8r61vaOewcIH4P02VCnK7BW6oxVwQJul2WerQyeF9FuWqlO9jzOOgLAeHA2IkhQTIK+mK0yhlgd4dUZWtOvaQnoAIxRKRzDlm9W43vP4VRXW+haLyYggai7ibCwbKPyR22MqIly1iTzITaYOHIRaB9Tae87JV/pj5mIXkzty4=
+Received: from BN0PR03CA0049.namprd03.prod.outlook.com (2603:10b6:408:e7::24)
+ by CY4PR12MB1350.namprd12.prod.outlook.com (2603:10b6:903:41::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.20; Wed, 20 Jul
+ 2022 08:26:48 +0000
+Received: from BN8NAM11FT024.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e7:cafe::96) by BN0PR03CA0049.outlook.office365.com
+ (2603:10b6:408:e7::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.18 via Frontend
+ Transport; Wed, 20 Jul 2022 08:26:48 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ BN8NAM11FT024.mail.protection.outlook.com (10.13.177.38) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5458.17 via Frontend Transport; Wed, 20 Jul 2022 08:26:47 +0000
+Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 20 Jul
+ 2022 03:26:42 -0500
+Message-ID: <f45fccec-4496-19af-0e14-bd626e14c7bd@amd.com>
+Date:   Wed, 20 Jul 2022 10:26:40 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <295e1809-f6f2-ca31-5c36-be133ffdc93b@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 3/4] dt-bindings: misc: tmr-inject: Add device-tree
+ binding for TMR Inject
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "Appana Durga Kedareswara rao" <appana.durga.kedareswara.rao@amd.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <michal.simek@xilinx.com>, <derek.kiernan@xilinx.com>,
+        <dragan.cvetic@xilinx.com>, <arnd@arndb.de>,
+        <gregkh@linuxfoundation.org>
+CC:     <appanad@amd.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <git@amd.com>,
+        <git@xilinx.com>,
+        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+References: <20220720060016.1646317-1-appana.durga.kedareswara.rao@amd.com>
+ <20220720060016.1646317-4-appana.durga.kedareswara.rao@amd.com>
+ <77e8433f-6cb8-eb32-63d5-414a92d3b874@linaro.org>
+From:   Michal Simek <michal.simek@amd.com>
+In-Reply-To: <77e8433f-6cb8-eb32-63d5-414a92d3b874@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB04.amd.com (10.181.40.145) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ee66ade0-5782-475f-2022-08da6a2996aa
+X-MS-TrafficTypeDiagnostic: CY4PR12MB1350:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LyxqfYnI/9TOaA2cMdqsR7dcRBW/GNaAjV2XuVRBqBrD112BIkLYltmwGA0b4aYkxi85LDeTGBXieeUP3nerHyEsahEzpRiG6I3hYCOzz34lCpse7lkTvpAOXqZ+LaloWv5uo16XFeD08DXjnFPDsVcEBrgxW6ETo52YUpiyv7VB+B/g3HzgcA9X47hDDSDYzCPfkICBrK3WnxgEhrRIMTR+qg5uQti1S+1lBsF+kdoAZW2q2pOotT54gpgaDY8/8uSv6eDMBaU4PUVpjgBQhr2SuIfCZR+AyRw2Uf9l6IrX3/4xSwtw/IxuqSrxqjF5c4VH+at0SEXq1OPOf6iFFepMtlLtxBIGjA7io3dtLcjEsVmOZqKIcWck4MHL5MG6AVY/U1lNsIznpfNDsYaRScEhGHhARppTHVqmJW7rvfSon2QGbmUdNXlW3N7yKzGX/FX2GKNdXaJQNvWFfJIrFSoqHHcd4ILGwQ31tcFWiAUVCYDNZ4bjbGjm2fQX2KbuQTayKRH58BDjL2n3EQFBEK2NBvVTPlW3r/PM4wIqTuWxFrZQRxyk9PuJ0fLR9GIiNCvMRmkvmck1AUivwMiK1cSm9eZUh8+3aSbDPR9WAyD05iW4cFbi4cNrJGVRSwMSmHgxwwiskZ0K21GwUBA5tzWPKSZqxdY63sTxB/sJ+0T3BV3C66lmESLQtCX633a2b2CKS1SWNjLLGOCtLITp6cJfJQujS87mPD2SdGsapjqcX49TuiLHLYDp1DSuBz6UChMeZnIrdLDLoFtFr730C0Fkt/JmsOI8qlscCEzsz+gl46J3LbOH1fX8xNva1xwr1a4Efy+5aRcDvaYAdl4l6nyWqiUOE/CJQ6MgMdAGm/yXsHJlU0Qh/EZOGj8DWT0Z
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(136003)(376002)(396003)(346002)(39860400002)(40470700004)(46966006)(36840700001)(4326008)(110136005)(53546011)(2616005)(26005)(478600001)(41300700001)(2906002)(54906003)(40480700001)(82310400005)(8676002)(316002)(5660300002)(44832011)(16576012)(82740400003)(36860700001)(83380400001)(356005)(36756003)(86362001)(31686004)(8936002)(81166007)(47076005)(107886003)(426003)(16526019)(40460700003)(186003)(336012)(70206006)(31696002)(70586007)(36900700001)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2022 08:26:47.9500
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ee66ade0-5782-475f-2022-08da6a2996aa
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT024.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1350
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jul 2022, Markuss Broks wrote:
 
-> Hi Lee,
+
+On 7/20/22 08:15, Krzysztof Kozlowski wrote:
+> On 20/07/2022 08:00, Appana Durga Kedareswara rao wrote:
+>> From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+>>
+>> The Triple Modular Redundancy(TMR) Inject core provides functional fault
+>> injection by changing selected MicroBlaze instructions, which provides the
+>> possibility to verify that the TMR subsystem error detection and fault
+>> recovery logic is working properly.
+>>
+>> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
+>> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
 > 
-> On 7/18/22 11:17, Lee Jones wrote:
-> > On Fri, 15 Jul 2022, Markuss Broks wrote:
-> > 
-> > > Hi Lee,
-> > > 
-> > > Sorry to bother you again, but I've got additional questions while I was
-> > > preparing the next version of the series:
-> > > 
-> > > On 6/15/22 00:32, Lee Jones wrote:
-> > > > On Sat, 23 Apr 2022, Markuss Broks wrote:
-> > > > 
-> > > > > Silicon Mitus SM5703 is a multi-function device, meant to be
-> > > > Please avoid using the term MFD.
-> > > > 
-> > > > How is the device described in the data-sheet?
-> > > > 
-> > > > What do you mean by "meant to be"?
-> > > > 
-> > > > > used in mobile devices. It has several modules: LDO, BUCK regulators,
-> > > > Modules or functions?
-> > > > 
-> > > > > charger circuit, flash LED driver, a fuel gauge for monitoring the battery
-> > > > > and a MUIC USB switcher. The MUIC and fuel gauge parts are separate in that
-> > > > > they use separate i2c lines to communicate with the device, while charger
-> > > > "I2C"
-> > > > 
-> > > > > circuit, LED driver and regulators are on the main i2c line the device is
-> > > > > controlled with.
-> > > > > 
-> > > > > Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> > > > > ---
-> > > > >    MAINTAINERS                |   8 +++
-> > > > >    drivers/mfd/Kconfig        |  13 +++++
-> > > > >    drivers/mfd/Makefile       |   1 +
-> > > > >    drivers/mfd/sm5703.c       |  78 +++++++++++++++++++++++++++
-> > > > >    include/linux/mfd/sm5703.h | 105 +++++++++++++++++++++++++++++++++++++
-> > > > >    5 files changed, 205 insertions(+)
-> > > > >    create mode 100644 drivers/mfd/sm5703.c
-> > > > >    create mode 100644 include/linux/mfd/sm5703.h
-> > > > > 
-> > > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > > index 6157e706ed02..6125ed1a3be4 100644
-> > > > > --- a/MAINTAINERS
-> > > > > +++ b/MAINTAINERS
-> > > > > @@ -18172,6 +18172,14 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu.git dev
-> > > > >    F:	include/linux/srcu*.h
-> > > > >    F:	kernel/rcu/srcu*.c
-> > > > > +SM5703 MFD DRIVER
-> > > > > +M:	Markuss Broks <markuss.broks@gmail.com>
-> > > > > +S:	Maintained
-> > > > > +F:	Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-> > > > > +F:	Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
-> > > > > +F:	drivers/mfd/sm5703.c
-> > > > > +F:	drivers/regulator/sm5703-regulator.c
-> > > > > +
-> > > > >    SMACK SECURITY MODULE
-> > > > >    M:	Casey Schaufler <casey@schaufler-ca.com>
-> > > > >    L:	linux-security-module@vger.kernel.org
-> > > > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > > > > index 3b59456f5545..c13a99ceae99 100644
-> > > > > --- a/drivers/mfd/Kconfig
-> > > > > +++ b/drivers/mfd/Kconfig
-> > > > > @@ -1237,6 +1237,19 @@ config MFD_SM501
-> > > > >    	  interface. The device may be connected by PCI or local bus with
-> > > > >    	  varying functions enabled.
-> > > > > +config MFD_SM5703
-> > > > > +	tristate "Silicon Mitus SM5703 MFD"
-> > > > > +	depends on I2C
-> > > > > +	depends on OF
-> > > > > +	select MFD_CORE
-> > > > > +	select REGMAP_I2C
-> > > > > +	help
-> > > > > +	  This is the core driver for the Silicon Mitus SM5703 multi-function
-> > > > Please drop the MFD term, as above.
-> > > > 
-> > > > > +	  device. This device is meant to be used in phones and it has numerous
-> > > > "meant to be"?
-> > > > 
-> > > > > +	  modules, including LED controller, regulators, fuel gauge, MUIC and
-> > > > Either "an LED controller" or "LED controllers"
-> > > > 
-> > > > Same with "charger circuit" below.
-> > > > 
-> > > > > +	  charger circuit. It also support muxing a serial interface over USB
-> > > > "supports"
-> > > > 
-> > > > What kind of serial?
-> > > > 
-> > > > > +	  data lines.
-> > > > > +
-> > > > >    config MFD_SM501_GPIO
-> > > > >    	bool "Export GPIO via GPIO layer"
-> > > > >    	depends on MFD_SM501 && GPIOLIB
-> > > > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > > > > index 858cacf659d6..ca8b86736a36 100644
-> > > > > --- a/drivers/mfd/Makefile
-> > > > > +++ b/drivers/mfd/Makefile
-> > > > > @@ -275,3 +275,4 @@ rsmu-i2c-objs			:= rsmu_core.o rsmu_i2c.o
-> > > > >    rsmu-spi-objs			:= rsmu_core.o rsmu_spi.o
-> > > > >    obj-$(CONFIG_MFD_RSMU_I2C)	+= rsmu-i2c.o
-> > > > >    obj-$(CONFIG_MFD_RSMU_SPI)	+= rsmu-spi.o
-> > > > > +obj-$(CONFIG_MFD_SM5703)	+= sm5703.o
-> > > > > diff --git a/drivers/mfd/sm5703.c b/drivers/mfd/sm5703.c
-> > > > > new file mode 100644
-> > > > > index 000000000000..7f9838149051
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/mfd/sm5703.c
-> > > > > @@ -0,0 +1,78 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > > +
-> > > > > +#include <linux/err.h>
-> > > > > +#include <linux/delay.h>
-> > > > > +#include <linux/gpio/consumer.h>
-> > > > > +#include <linux/i2c.h>
-> > > > > +#include <linux/mfd/core.h>
-> > > > > +#include <linux/mfd/sm5703.h>
-> > > > > +#include <linux/module.h>
-> > > > > +#include <linux/of_device.h>
-> > > > > +#include <linux/regmap.h>
-> > > > > +
-> > > > > +static const struct mfd_cell sm5703_devs[] = {
-> > > > > +	{ .name = "sm5703-regulator", },
-> > > > > +};
-> > > > Where are the rest of the child drivers?
-> > > Should those devices still be present even though there's no driver for them
-> > > (yet) ? I have a WIP version of driver for almost every function, but I
-> > > currently lack time to get them done.
-> > Without them the driver-set is useless, no?
-> > 
-> > We try to refrain from applying dead code.
-> > 
-> > A lot of it has a tendency to stay that way.
-> Well, in my opinion, having just the regulator driver is already useful
-> enough: my board (Samsung Galaxy J5 (2015) ) uses one of LDO outputs for
-> powering the touchscreen. Touchscreen is kind of vital functionality for a
-> phone so I decided to upstream parts that are necessary for it first and
-> finish up other stuff later. It's not the only board that uses SM5703's
-> regulators for supplying all different kinds of hardware, either.
+> Keep only one SoB.
 
-Upstreaming functionality which is useful on its own is fine, but that 
-doesn't tick all of the boxes to justify an MFD.  This is a lot of
-code which is hard to justify if it only registers a Regulator driver.
+nit: First of all it is from xilinx.com that's why xilinx.com should be the first.
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Just for my understanding about guidance here.
+Code was developed by Xilinx before acquisition with AMD. And because it was 
+picked from vendor tree origin xilinx.com was there to keep origin author there. 
+And upstreaming is done by new company. I can't see nothing wrong on keeping 
+both emails there but that's why my opinion. Definitely not a problem to remove 
+one of them but wanted to make sure that we do it properly for all our submissions.
+
+Thanks,
+Michal
