@@ -2,106 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACDE857BD45
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 19:55:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11FE857BD65
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 20:07:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237820AbiGTRzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 13:55:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49524 "EHLO
+        id S230477AbiGTSHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 14:07:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237815AbiGTRzN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 13:55:13 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587966380
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:55:12 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id u19so22717146lfs.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:55:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=SbRJ4Pjfsm8LrOT/Xil2d+bMfNBGw/19k+yDI8UKBW8=;
-        b=ZWqCQRfGBGBMunlhZpNm78e1j4poAYODmP81Ui+BrWqtTK///sr+A2CZUjpK0jMGV5
-         PVM8su0HHmqBpGFmFcNVYqwQRtSm5Mqemx5b7wbiLiephByfm+Fq/2QpCxFmE4vgXsLO
-         qHdQLsVfeZjnqKxT9X8+vmQ4iVKlRichL5JUB45JvpLeREN3+WADwM4n2yNHMwHboJwB
-         gUXy36s/Yd+suWnu6EgBKzjuiUydIBdYDhouvJ6GFo5OYSm1a1ticXhvAABSAn1FOKGm
-         7plPFpamXLstJabNU02Sx86oFlPcRQ5digRrN/sNJBBkcMuTWuhOY0t3uJ0iqF1mKO0x
-         1Xkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=SbRJ4Pjfsm8LrOT/Xil2d+bMfNBGw/19k+yDI8UKBW8=;
-        b=bu2uAoSTnMOZ19AhB3DpT5p/NwXmpN35GUmTVA3DQnHxFBrJWsBln/Itcy6uwwojDm
-         XHqiHwquRDd8fEfjMxD1dv0OtRjTeWFsQD6+u2gkglP1gEHAaKayj8sJcqUyNkWQTHkG
-         /8ROToXrEuknBWc0r6fD+eCJImLwEaWNNRTKvAIVs8/xI//fVFD4riMOJR+7q9kFTnkn
-         OEZ/1LaZK9gALvDsIoHwdexe0I08mJV6qnHk0cgZmnuWkB/YG2vc+HByyapLNIW2qptj
-         P62nogwg66HRktd5NDSwatpG2t/v8ojgqbbP3H1xmzInigcge4J0GXlwnodiZMH96Val
-         ANfw==
-X-Gm-Message-State: AJIora8ymt6Gn8YwO9cXtkM1SH1/Gb0/iaM7o6QbuDkhClTV6TDyPJdI
-        uy2RHsQuW2AAYyycZpv1hpegfw==
-X-Google-Smtp-Source: AGRyM1sBHotd8BveUpOcwz+eBVh5w31a9LXZrwZ/UtTwD42US9+BLaYtcY9jEyZ6OFeBV4Kc7+PHew==
-X-Received: by 2002:ac2:4a86:0:b0:489:c5eb:3403 with SMTP id l6-20020ac24a86000000b00489c5eb3403mr19763715lfp.603.1658339710742;
-        Wed, 20 Jul 2022 10:55:10 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id g5-20020a2ea4a5000000b0025a885a135csm3341410ljm.119.2022.07.20.10.55.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jul 2022 10:55:10 -0700 (PDT)
-Message-ID: <acecf7a8-7bf1-718f-d990-54a10e92ba1f@linaro.org>
-Date:   Wed, 20 Jul 2022 19:55:08 +0200
+        with ESMTP id S229906AbiGTSHO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 14:07:14 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC63A3AE57;
+        Wed, 20 Jul 2022 11:07:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 0787FCE227F;
+        Wed, 20 Jul 2022 18:07:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 946FFC3411E;
+        Wed, 20 Jul 2022 18:07:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658340430;
+        bh=JWV/F2msIyQc/Z1zlF2MD+qGz260XB+/zEVQWxqmxog=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=uXkfeYZp43MO82SDOYFRwLWvkmFoAHgV3P211bZ3qZzJai5UtdSlv+xg1NwIehJpT
+         Gb0mtHOQbP/iQ0dQ8aR90KtrFopGbwZKcWjtVGI9lXcRo/crwxx7FJVnrRmw+jm8PB
+         MIfen/dpIzvFj1KcsPdvooxvqV/xIUe2F5NE1ranFPjbxX0kMsGMoKjjrtPLY60V1E
+         dTzxy7JVw9oxI/LU7YHRPxFB3Uw4EgS+BNs0MoktWfNEHrVPEV7yt9C/XtHdCujCZN
+         3nVT6Cca5DeWs2ITNmRClzjg3p4hzNm2KZrQbfET8COtUuJHEZTl0OQoI2wzedwiB5
+         RDPvZNO87Zl0w==
+From:   Mark Brown <broonie@kernel.org>
+To:     benjaminfair@google.com, tali.perry1@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, venture@google.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, yuenn@google.com,
+        joel@jms.id.au
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, linux-spi@vger.kernel.org
+In-Reply-To: <20220718081146.256070-1-tmaimon77@gmail.com>
+References: <20220718081146.256070-1-tmaimon77@gmail.com>
+Subject: Re: [PATCH v1 0/3] spi: npcm-fiu: add Arbel NPCM8XX support
+Message-Id: <165834042733.589042.2864906716831607368.b4-ty@kernel.org>
+Date:   Wed, 20 Jul 2022 19:07:07 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: Add SKU6 for
- sc7180-trogdor-pazquel-lte-parade
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Henry Sun <henrysun@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20220720025058.1.I5bfba8857ea0d43c747ecdc3a950875abd56927f@changeid>
- <7a04c9af-0ccb-7711-249f-73908fe7ec36@linaro.org>
- <CAD=FV=V1MqQzNxq_L8sGtu2JwAAL_FWKXkw9bhCHcD0DycFMUw@mail.gmail.com>
- <bcbca05e-2b75-a405-b1ea-21b276931a90@linaro.org>
- <CAD=FV=UEt4fcVaFvS8nr7Z0GNYM1T=mz7iUhwg+bBkWtbO4c1g@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=UEt4fcVaFvS8nr7Z0GNYM1T=mz7iUhwg+bBkWtbO4c1g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2022 19:53, Doug Anderson wrote:
+On Mon, 18 Jul 2022 11:11:43 +0300, Tomer Maimon wrote:
+> This patch set adds Arbel NPCM8XX Flash Interface Unit (FIU) support to FIU NPCM
+> driver and modify direct read dummy configuration.
 > 
-> Yeah. I guess it makes more sense with the background knowledge that
-> the different SKUs are:
+> NPCM8XX FIU supports four controllers.
 > 
-> LTE with physical SIM _and_ eSIM
-> LTE with only a physical SIM
-> WiFi only
+> The NPCM FIU driver tested on NPCM845 evaluation board.
 > 
-> ...so both sku4 and sku6 are LTE SKUs. One has the eSIM stuffed and
-> one doesn't. There is a single shared device tree for the two.
+> [...]
 
-Above in commit msg would solve all my questions, I guess. :)
+Applied to
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-Best regards,
-Krzysztof
+Thanks!
+
+[1/3] spi: npcm-fiu: Modify direct read dummy configuration
+      commit: 7c3193f7890a03fc1b5b979f3f8dc8750ef47b13
+[2/3] dt-binding: spi: Add npcm845 compatible to npcm-fiu document
+      commit: d50fef8ae939c2b50431fe6a11457e7ff85aea55
+[3/3] spi: npcm-fiu: Add NPCM8XX support
+      commit: 650b014facca5238e25399f28da1e59747bddb99
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
