@@ -2,251 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBFE557B784
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 15:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC95257B78B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 15:31:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236518AbiGTNaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 09:30:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55550 "EHLO
+        id S229493AbiGTNbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 09:31:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237447AbiGTNaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 09:30:03 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F126664E05
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 06:29:49 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id i132-20020a1c3b8a000000b003a2fa488efdso1347019wma.4
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 06:29:49 -0700 (PDT)
+        with ESMTP id S232744AbiGTNbp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 09:31:45 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79EF63E0
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 06:31:43 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id u5so3104341wrm.4
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 06:31:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=DK1JQpkmSmLaPYH2VON507TntVLKPJOm+v6NeqoLJWM=;
-        b=NbQT+2v4JM6NlAKDlXu8hnf2t6kvTJUAF6wCxYAR7cgqyxTdWVQzCbYhx7/BMdCByy
-         ln8U64JRNkIz/AZZc2+xeMmCzYiHhuC2B3t2efDBv7sLKZWuEmQppFmDVbXC7y+XAdRw
-         J7S1l7rXQDoR3d8PRqglLlAjbe2c8RPy6kv9PXj3nxmTrMTCGoA2lNtxry4PuaFUi8wT
-         lIp5muDMKkr9jm0Ta0Q8OhTvjHuKHuhS9Y6p/V5ZKYZTP0Wi6ZP5pz4dOVebwcRLLPyV
-         T5bmH20bTYQEjZf6Q5oksYmDdZvrM738FVURukBLjJPaSHHgV2xtH7bdArOmA1ZHksnt
-         /X4w==
+        bh=jXWsCDJZbVRxP7xR4C+U6rZt5JnCuCWDrPBReQRj/tw=;
+        b=fnqIuK/upZAzWSdv8c4Xn98IfAXMtNBC8vAlR5vrMj/2du3XqOPwte1qjMrWLuHE0i
+         LIep0Sv1eq7e349LCymGOYm4TUYeyyoDRHZRsmdkOAZeb9iaBgagQLzmDiHToHZAfxRM
+         ihx0hQHCepa1CFN2KrYqjfkjfgJACbdUXcIN+5R0y+Lj61RFQK78ZqtbhybUgIgpuG2J
+         q+P6QZS4cDKhCHBcdADaCSc47eHksNAsFQlFoJw1+5UU4S7r0y39wr3Pb3wbazLMlntE
+         5V5mPFz7By2zGpfa7PTaOGWO23THWYxm8j3qEuzs9U0r//i84t+1A7L6lM7C0McnNL2C
+         BdCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=DK1JQpkmSmLaPYH2VON507TntVLKPJOm+v6NeqoLJWM=;
-        b=6KLZiSbkQwL3ERRUM02Qggg4tBJeuIVFZFfEhnRQC4vFI4xd4T5AEO1jeol3W1zsGp
-         OFoYY2FFHb0GfBdqB57TSWivN4GI4ymO393wBVjiIzWXP3i2q33J2Aqkhp/e+y3+2B8P
-         vYh8BnZEGhmp6yoATx0HBHg6htpnA1QCp0zQAXVSGSneXw4kVfaXCb+rtXnd8pdowiZT
-         f+G0KIwr2dJ/Bp9trtK2WsqBMMGbjGEUqfaXaD3/N1XYIjM30tlS58/DS5gDmAoluERL
-         pk247ijYVdEW1YRtgKmDqQKWnbKBhTVJoeTkB8WyjDBFvq0FttnGfAhTuztGzYzDXp70
-         YzyA==
-X-Gm-Message-State: AJIora9GnQlDpBNO/GNw7HaCezcQmaJNuL/CYOWxTsb1I0xJBq2v4X0Q
-        IFpEIIib7gY5mkfPG7lPvfubs1bYMtVciA==
-X-Google-Smtp-Source: AGRyM1sw+SHCwJS/cMVhYgkOZ7Jkh8g5qCEQsE4blkm+DE0L1zRJRaOicmhj9zlyoyKY52uI83rD2g==
-X-Received: by 2002:a7b:c401:0:b0:3a2:ca58:85bc with SMTP id k1-20020a7bc401000000b003a2ca5885bcmr3942374wmi.156.1658323787988;
-        Wed, 20 Jul 2022 06:29:47 -0700 (PDT)
+        bh=jXWsCDJZbVRxP7xR4C+U6rZt5JnCuCWDrPBReQRj/tw=;
+        b=EsfPjlpQhlwFUWU0EXhN6lJC6TaAPd20BSTQtrqF7nH7h3aJZqO/ee9l6jRG+5Sj87
+         bRbWiauWvnsjFgmHoKDRhpggzqORiFkX1Bw8r66BSdIxgdwQErYCWJlgEjOJNiVLVOkb
+         LxnxGAz/E8uAyGMbbBzv7Ue4LRQZ1jDKe6NnvfJ8LUrZMGApV787ZDVJd/5i9vpqIbnQ
+         5d704wNDTpbPgRMTJpV5LIHD4fSFTk0BVFNKRuONjClaHNSwNXM4D+uTcIsharWFXBrv
+         XxOJT3T7rSFqDt4T0qrXNgx4UpRKCnNrGJdkZ81zeTFiFVell3Qis8seWXLqtLPO2is9
+         rmgA==
+X-Gm-Message-State: AJIora9teXiOnVa1jaWbTe+/oumikhdWvSgqLsJpWDgyWULNqalE1Pir
+        STuyWM6Dj4tZu5Eci1uJGWPApw==
+X-Google-Smtp-Source: AGRyM1tyvKXKdPUtTzvOARCZKmziYzkJtcJwILxnHRLAiFVCrIOmOWmx0ChdTjh6M2BY6gcYj8q5AA==
+X-Received: by 2002:a5d:4447:0:b0:21d:6b84:4678 with SMTP id x7-20020a5d4447000000b0021d6b844678mr28881929wrr.668.1658323902346;
+        Wed, 20 Jul 2022 06:31:42 -0700 (PDT)
 Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id u4-20020a05600c00c400b0039c454067ddsm2456381wmm.15.2022.07.20.06.29.46
+        by smtp.gmail.com with ESMTPSA id k20-20020a05600c1c9400b003a31fd05e0fsm9520548wms.2.2022.07.20.06.31.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 06:29:47 -0700 (PDT)
-Date:   Wed, 20 Jul 2022 14:29:45 +0100
+        Wed, 20 Jul 2022 06:31:41 -0700 (PDT)
+Date:   Wed, 20 Jul 2022 14:31:39 +0100
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Markuss Broks <markuss.broks@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/5] mfd: sm5703: Add support for SM5703 MFD
-Message-ID: <YtgDSelfobu/a/be@google.com>
-References: <20220423085319.483524-1-markuss.broks@gmail.com>
- <20220423085319.483524-5-markuss.broks@gmail.com>
- <Yqj+aUNLC00Tcu49@google.com>
- <5498bf71-66a5-957e-ed3d-13e68b982562@gmail.com>
- <YtUXFTx1+vSrXx70@google.com>
- <295e1809-f6f2-ca31-5c36-be133ffdc93b@gmail.com>
- <Yte7Tgq3w8fowTYA@google.com>
- <4be15cff-b0af-8671-57aa-6567c0206715@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        MandyJH Liu <mandyjh.liu@mediatek.com>, iommu@lists.linux.dev,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v3 06/21] dt-bindings: power: mediatek: Add bindings for
+ MediaTek SCPSYS
+Message-ID: <YtgDu70Lpl/uPOkf@google.com>
+References: <20220720123023.13500-1-tinghan.shen@mediatek.com>
+ <20220720123023.13500-7-tinghan.shen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4be15cff-b0af-8671-57aa-6567c0206715@gmail.com>
+In-Reply-To: <20220720123023.13500-7-tinghan.shen@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jul 2022, Markuss Broks wrote:
+On Wed, 20 Jul 2022, Tinghan Shen wrote:
 
-> Hi Lee,
+> The System Control Processor System (SCPSYS) has several power
+> management related tasks in the system. Add the bindings for it.
 > 
-> On 7/20/22 11:22, Lee Jones wrote:
-> > On Tue, 19 Jul 2022, Markuss Broks wrote:
-> > 
-> > > Hi Lee,
-> > > 
-> > > On 7/18/22 11:17, Lee Jones wrote:
-> > > > On Fri, 15 Jul 2022, Markuss Broks wrote:
-> > > > 
-> > > > > Hi Lee,
-> > > > > 
-> > > > > Sorry to bother you again, but I've got additional questions while I was
-> > > > > preparing the next version of the series:
-> > > > > 
-> > > > > On 6/15/22 00:32, Lee Jones wrote:
-> > > > > > On Sat, 23 Apr 2022, Markuss Broks wrote:
-> > > > > > 
-> > > > > > > Silicon Mitus SM5703 is a multi-function device, meant to be
-> > > > > > Please avoid using the term MFD.
-> > > > > > 
-> > > > > > How is the device described in the data-sheet?
-> > > > > > 
-> > > > > > What do you mean by "meant to be"?
-> > > > > > 
-> > > > > > > used in mobile devices. It has several modules: LDO, BUCK regulators,
-> > > > > > Modules or functions?
-> > > > > > 
-> > > > > > > charger circuit, flash LED driver, a fuel gauge for monitoring the battery
-> > > > > > > and a MUIC USB switcher. The MUIC and fuel gauge parts are separate in that
-> > > > > > > they use separate i2c lines to communicate with the device, while charger
-> > > > > > "I2C"
-> > > > > > 
-> > > > > > > circuit, LED driver and regulators are on the main i2c line the device is
-> > > > > > > controlled with.
-> > > > > > > 
-> > > > > > > Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
-> > > > > > > ---
-> > > > > > >     MAINTAINERS                |   8 +++
-> > > > > > >     drivers/mfd/Kconfig        |  13 +++++
-> > > > > > >     drivers/mfd/Makefile       |   1 +
-> > > > > > >     drivers/mfd/sm5703.c       |  78 +++++++++++++++++++++++++++
-> > > > > > >     include/linux/mfd/sm5703.h | 105 +++++++++++++++++++++++++++++++++++++
-> > > > > > >     5 files changed, 205 insertions(+)
-> > > > > > >     create mode 100644 drivers/mfd/sm5703.c
-> > > > > > >     create mode 100644 include/linux/mfd/sm5703.h
-> > > > > > > 
-> > > > > > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > > > > > index 6157e706ed02..6125ed1a3be4 100644
-> > > > > > > --- a/MAINTAINERS
-> > > > > > > +++ b/MAINTAINERS
-> > > > > > > @@ -18172,6 +18172,14 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/linux-rcu.git dev
-> > > > > > >     F:	include/linux/srcu*.h
-> > > > > > >     F:	kernel/rcu/srcu*.c
-> > > > > > > +SM5703 MFD DRIVER
-> > > > > > > +M:	Markuss Broks <markuss.broks@gmail.com>
-> > > > > > > +S:	Maintained
-> > > > > > > +F:	Documentation/devicetree/bindings/mfd/siliconmitus,sm5703.yaml
-> > > > > > > +F:	Documentation/devicetree/bindings/regulator/siliconmitus,sm5703-regulator.yaml
-> > > > > > > +F:	drivers/mfd/sm5703.c
-> > > > > > > +F:	drivers/regulator/sm5703-regulator.c
-> > > > > > > +
-> > > > > > >     SMACK SECURITY MODULE
-> > > > > > >     M:	Casey Schaufler <casey@schaufler-ca.com>
-> > > > > > >     L:	linux-security-module@vger.kernel.org
-> > > > > > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > > > > > > index 3b59456f5545..c13a99ceae99 100644
-> > > > > > > --- a/drivers/mfd/Kconfig
-> > > > > > > +++ b/drivers/mfd/Kconfig
-> > > > > > > @@ -1237,6 +1237,19 @@ config MFD_SM501
-> > > > > > >     	  interface. The device may be connected by PCI or local bus with
-> > > > > > >     	  varying functions enabled.
-> > > > > > > +config MFD_SM5703
-> > > > > > > +	tristate "Silicon Mitus SM5703 MFD"
-> > > > > > > +	depends on I2C
-> > > > > > > +	depends on OF
-> > > > > > > +	select MFD_CORE
-> > > > > > > +	select REGMAP_I2C
-> > > > > > > +	help
-> > > > > > > +	  This is the core driver for the Silicon Mitus SM5703 multi-function
-> > > > > > Please drop the MFD term, as above.
-> > > > > > 
-> > > > > > > +	  device. This device is meant to be used in phones and it has numerous
-> > > > > > "meant to be"?
-> > > > > > 
-> > > > > > > +	  modules, including LED controller, regulators, fuel gauge, MUIC and
-> > > > > > Either "an LED controller" or "LED controllers"
-> > > > > > 
-> > > > > > Same with "charger circuit" below.
-> > > > > > 
-> > > > > > > +	  charger circuit. It also support muxing a serial interface over USB
-> > > > > > "supports"
-> > > > > > 
-> > > > > > What kind of serial?
-> > > > > > 
-> > > > > > > +	  data lines.
-> > > > > > > +
-> > > > > > >     config MFD_SM501_GPIO
-> > > > > > >     	bool "Export GPIO via GPIO layer"
-> > > > > > >     	depends on MFD_SM501 && GPIOLIB
-> > > > > > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > > > > > > index 858cacf659d6..ca8b86736a36 100644
-> > > > > > > --- a/drivers/mfd/Makefile
-> > > > > > > +++ b/drivers/mfd/Makefile
-> > > > > > > @@ -275,3 +275,4 @@ rsmu-i2c-objs			:= rsmu_core.o rsmu_i2c.o
-> > > > > > >     rsmu-spi-objs			:= rsmu_core.o rsmu_spi.o
-> > > > > > >     obj-$(CONFIG_MFD_RSMU_I2C)	+= rsmu-i2c.o
-> > > > > > >     obj-$(CONFIG_MFD_RSMU_SPI)	+= rsmu-spi.o
-> > > > > > > +obj-$(CONFIG_MFD_SM5703)	+= sm5703.o
-> > > > > > > diff --git a/drivers/mfd/sm5703.c b/drivers/mfd/sm5703.c
-> > > > > > > new file mode 100644
-> > > > > > > index 000000000000..7f9838149051
-> > > > > > > --- /dev/null
-> > > > > > > +++ b/drivers/mfd/sm5703.c
-> > > > > > > @@ -0,0 +1,78 @@
-> > > > > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > > > > +
-> > > > > > > +#include <linux/err.h>
-> > > > > > > +#include <linux/delay.h>
-> > > > > > > +#include <linux/gpio/consumer.h>
-> > > > > > > +#include <linux/i2c.h>
-> > > > > > > +#include <linux/mfd/core.h>
-> > > > > > > +#include <linux/mfd/sm5703.h>
-> > > > > > > +#include <linux/module.h>
-> > > > > > > +#include <linux/of_device.h>
-> > > > > > > +#include <linux/regmap.h>
-> > > > > > > +
-> > > > > > > +static const struct mfd_cell sm5703_devs[] = {
-> > > > > > > +	{ .name = "sm5703-regulator", },
-> > > > > > > +};
-> > > > > > Where are the rest of the child drivers?
-> > > > > Should those devices still be present even though there's no driver for them
-> > > > > (yet) ? I have a WIP version of driver for almost every function, but I
-> > > > > currently lack time to get them done.
-> > > > Without them the driver-set is useless, no?
-> > > > 
-> > > > We try to refrain from applying dead code.
-> > > > 
-> > > > A lot of it has a tendency to stay that way.
-> > > Well, in my opinion, having just the regulator driver is already useful
-> > > enough: my board (Samsung Galaxy J5 (2015) ) uses one of LDO outputs for
-> > > powering the touchscreen. Touchscreen is kind of vital functionality for a
-> > > phone so I decided to upstream parts that are necessary for it first and
-> > > finish up other stuff later. It's not the only board that uses SM5703's
-> > > regulators for supplying all different kinds of hardware, either.
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 
-> > Upstreaming functionality which is useful on its own is fine, but that
-> > doesn't tick all of the boxes to justify an MFD.  This is a lot of
-> > code which is hard to justify if it only registers a Regulator driver.
+Why have you ignored my review comments from v2?
 
-> Do you think I should hold on this series until I have other things done?
-> Alternatively, I could make the regulator driver standalone, dedicated, but
-> then when I'd add other functionality I'd have to redo it and add the MFD
-> driver back, that I believe would be quite annoying from maintainers' and
-> sanity perspective. The other functions left on the main control I2C are
-> also not really "vital" to device's functionality (Flash LED and charger),
-> so the regulator function makes the most sense to be available first, which
-> was my motivation behind upstreaming that first.
-
-What's the reason for this being an MFD in the first place?
+> ---
+>  .../bindings/mfd/mediatek,mt8195-scpsys.yaml  | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
+> new file mode 100644
+> index 000000000000..4117a6dbc19c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/mediatek,mt8195-scpsys.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek System Control Processor System
+> +
+> +maintainers:
+> +  - MandyJH Liu <mandyjh.liu@mediatek.com>
+> +
+> +description:
+> +  MediaTek System Control Processor System (SCPSYS) has several
+> +  power management tasks. The tasks include MTCMOS power
+> +  domain control, thermal measurement, DVFS, etc.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt8167-scpsys
+> +          - mediatek,mt8173-scpsys
+> +          - mediatek,mt8183-scpsys
+> +          - mediatek,mt8192-scpsys
+> +          - mediatek,mt8195-scpsys
+> +      - const: syscon
+> +      - const: simple-mfd
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^power-controller(@[0-9a-f]+)?$":
+> +    $ref: /schemas/power/mediatek,power-controller.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/power/mt8195-power.h>
+> +
+> +    syscon@10006000 {
+> +        compatible = "mediatek,mt8195-scpsys", "syscon", "simple-mfd";
+> +        reg = <0x10006000 0x100>;
+> +
+> +        spm: power-controller {
+> +            compatible = "mediatek,mt8195-power-controller";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            #power-domain-cells = <1>;
+> +
+> +            /* sample of power domain nodes */
+> +            power-domain@MT8195_POWER_DOMAIN_PCIE_PHY {
+> +                    reg = <MT8195_POWER_DOMAIN_PCIE_PHY>;
+> +                    #power-domain-cells = <0>;
+> +            };
+> +
+> +            power-domain@MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY {
+> +                    reg = <MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY>;
+> +                    #power-domain-cells = <0>;
+> +            };
+> +        };
+> +    };
 
 -- 
 Lee Jones [李琼斯]
