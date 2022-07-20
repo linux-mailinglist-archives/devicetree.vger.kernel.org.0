@@ -2,119 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6D8457B8F2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8AC057B8EF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:53:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239908AbiGTOxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 10:53:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59304 "EHLO
+        id S240876AbiGTOxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 10:53:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240938AbiGTOxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:53:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D63AE67;
-        Wed, 20 Jul 2022 07:53:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 96A7461B1C;
-        Wed, 20 Jul 2022 14:53:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01E10C3411E;
-        Wed, 20 Jul 2022 14:53:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658328796;
-        bh=tScgr9tRlcamDWJp71+BgOJ65erdpbh5MP7W0rey/5w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Nu0idpSBhUbEKMKJ53NoycKIG9XW2cs/kQ2pjCNscP8QIptsSOxEWz5knz66H2iF6
-         SnA5I4f+8Fs3WpOVo1AY7aYB1hnYf2UVr9KuSY8uecYj2w0666qOmWsRw6jstgg4ko
-         PlE9TupWADd86v920RQDeITX+r7j0E54NkEcGPczU9ni1g9tQgm3I028/A8Uw2ZR26
-         79GppCOC4m82hPptzj9+Vbb+7orJMdZnVfpHdacq+V/2fijMk2vUZBoO/toj8rS6S6
-         pbbG6vFpPr8JUxEbNt/9IfdDC66wmynyLsM/kqYNoHnsPhOgEE4Vh4tyr3bpeC6h4J
-         bh37Tux0cKmDA==
-Received: by mail-vk1-f173.google.com with SMTP id o10so1923895vkl.3;
-        Wed, 20 Jul 2022 07:53:15 -0700 (PDT)
-X-Gm-Message-State: AJIora/S1bpBxOvn2b0vYI81N1b88gHwJhmsLWvkMVre87eGnI7EUq8j
-        Jh7Lj1/UELw0MJSzcY4YMIS4cNEKRwv/nOdrXw==
-X-Google-Smtp-Source: AGRyM1s8adI2JDtHYge+QXHHiB2ZX2bfJ9llTgMW8aVq77rINPpnTdzS+C7Byb5flb4zFPN3/iYQ8eV5zeJnMHuJFlY=
-X-Received: by 2002:a1f:2049:0:b0:374:866b:6dd8 with SMTP id
- g70-20020a1f2049000000b00374866b6dd8mr13961998vkg.15.1658328794928; Wed, 20
- Jul 2022 07:53:14 -0700 (PDT)
+        with ESMTP id S239908AbiGTOxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:53:15 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2D0DF11;
+        Wed, 20 Jul 2022 07:53:14 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id a11so4885467wmq.3;
+        Wed, 20 Jul 2022 07:53:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Y0wRoxXm0lXLU9vHgb65mx+sz5ayh2XUgm6rcM2W0Os=;
+        b=DCcOQ/6pIyGvxCWOmJS1gJrYpFkWZT89oAWW0Ux6OQizF5MPa99CCwIX4LOJsPsX9B
+         MIKDMfkNt7ahoBFEKs3Cca9tYTgh0BpStVWPIVr6tOfeV3GfP1kpCzT0RRsJrHIJUp0r
+         sRoX0fzGoazOGVCzJrnwjsVm4Via8f/Wr3+oWYaKBgzplZRoO71GGex4cHaaTh3xaVw/
+         LgAW498v1nQwVPf6cQNcoN6cFKGNKFh8JQX09MJLKHIIKIT4+d4/qLRHmYRL7gSUHNqi
+         jsQb2kEubx44zU0PxxCYt8SXu6RRT4jRT3mGdWW8qIHIPprKiUnwt2ZlN0uxCqY1gRvq
+         8YJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Y0wRoxXm0lXLU9vHgb65mx+sz5ayh2XUgm6rcM2W0Os=;
+        b=IGCyHFOpL/7MoMI+2cGiCQx6rXDzuAja2q3Yr0WiJ4oFbi4/RMRFeP4q8xCVPdcN2x
+         R3AZ9GKOtdAOWzYpVOXHY7NDE9kX+SFoOm54/jJklYjEBRJowc7k4DtEICEE7+k1Uiee
+         Aq58/J3MwKKmfXf2xPutH/jaKTQj6rbibKltE8l9PiNO8cztmhR2ClLKvWDlRMH4NSjh
+         TlUhmcPhwIdOVY8KhpyygxXtUBiPCwdll1RSoke5cDRGbzpyyUJMyEGmR35j6UwcUDpP
+         4UBhUROTGlb81Bll/MAexGoNWWf5GKXzUvmUFjII27d+sOJnOYcJ2Ejf/HE05eRFQKMB
+         NnCg==
+X-Gm-Message-State: AJIora/O9St4duBM5cXB3e999a9yCR5IwpSTko235MhYehsnwgAUbf6z
+        WT2PqdOHyc+P+jxzl3gWqOI=
+X-Google-Smtp-Source: AGRyM1uWeUcffW8kDxoO+pUpEnNIyYERqP2oY3ASBFUAIzEgdBIasCmxz4OGqCxwoBCLupGt21noHw==
+X-Received: by 2002:a05:600c:3553:b0:3a3:2b65:299e with SMTP id i19-20020a05600c355300b003a32b65299emr2373091wmq.145.1658328792662;
+        Wed, 20 Jul 2022 07:53:12 -0700 (PDT)
+Received: from [192.168.2.177] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id bg42-20020a05600c3caa00b003a31b79dc0esm11233827wmb.1.2022.07.20.07.53.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Jul 2022 07:53:11 -0700 (PDT)
+Message-ID: <43acea66-78e1-b7da-8d1c-3a60a5ddf4b6@gmail.com>
+Date:   Wed, 20 Jul 2022 16:53:10 +0200
 MIME-Version: 1.0
-References: <20220720142612.19779-1-shubhrajyoti.datta@xilinx.com> <20220720142612.19779-2-shubhrajyoti.datta@xilinx.com>
-In-Reply-To: <20220720142612.19779-2-shubhrajyoti.datta@xilinx.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 20 Jul 2022 08:53:03 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJz9CwEDwQhcax9L0MkiGzm5zzqxf_Nmp878TtbLt7wzg@mail.gmail.com>
-Message-ID: <CAL_JsqJz9CwEDwQhcax9L0MkiGzm5zzqxf_Nmp878TtbLt7wzg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        git <git@xilinx.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v1 4/6] Input: mt6779-keypad - support double keys matrix
+Content-Language: en-US
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
+ <20220720-mt8183-keypad-v1-4-ef9fc29dbff4@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220720-mt8183-keypad-v1-4-ef9fc29dbff4@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 20, 2022 at 8:26 AM Shubhrajyoti Datta
-<shubhrajyoti.datta@xilinx.com> wrote:
->
-> The Xilinx Versal board uses the arm,pl011 ip. However the
 
-s/ip/IP/
 
-> axi port that it is connected to has a limitation that it allows
-> only 32-bit accesses. So to differentiate we add a compatible.
+On 20/07/2022 16:48, Mattijs Korpershoek wrote:
+> MediaTek keypad has 2 modes of detecting key events:
+> - single key: each (row, column) can detect one key
+> - double key: each (row, column) is a group of 2 keys
+> 
+> Double key support exists to minimize cost, since it reduces the number
+> of pins required for physical keys.
+> 
+> Double key is configured by setting BIT(0) of the KP_SEL register.
+> 
+> Enable double key matrix support based on the mediatek,double-keys
+> device tree property.
+> 
+> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
-Why not just use the standard 'reg-io-width' property?
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
-> Add support for Uart used in Xilinx Versal SOCs as a platform
-> device.
-
-What's a platform device? Don't include Linuxisms in your bindings.
-
->
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-> ---
->  Documentation/devicetree/bindings/serial/pl011.yaml | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/serial/pl011.yaml b/Documentation/devicetree/bindings/serial/pl011.yaml
-> index d8aed84abcd3..bf094ab93086 100644
-> --- a/Documentation/devicetree/bindings/serial/pl011.yaml
-> +++ b/Documentation/devicetree/bindings/serial/pl011.yaml
-> @@ -24,9 +24,13 @@ select:
->
->  properties:
->    compatible:
-> -    items:
-> -      - const: arm,pl011
-> -      - const: arm,primecell
-> +    oneOf:
-> +      - items:
-> +          - const: arm,pl011
-> +          - const: arm,primecell
-> +      - items:
-> +          - const: arm,pl011
-> +          - const: arm,xlnx-uart # xilinx uart as platform device
-
-First, this is backwards. compatible is most specific to least
-specific. In your case Arm is not the vendor and just 'xlnx-uart' is
-not very specific. You said this is for Versal SoC, so something like
-'xlnx,versal-pl011' would be more appropriate. But again, I think
-reg-io-width is all you need here.
-
-The IP is still a Primecell block, so it should have 'arm,primecell'
-still as the definition of 'arm,primecell' is that it has the ID
-registers. Yes, that means Linux will create an amba_device instead,
-but you can't be designing your binding to work-around Linux.
-
-Rob
+> 
+> diff --git a/drivers/input/keyboard/mt6779-keypad.c b/drivers/input/keyboard/mt6779-keypad.c
+> index bf447bf598fb..9a5dbd415dac 100644
+> --- a/drivers/input/keyboard/mt6779-keypad.c
+> +++ b/drivers/input/keyboard/mt6779-keypad.c
+> @@ -18,6 +18,7 @@
+>   #define MTK_KPD_DEBOUNCE_MASK	GENMASK(13, 0)
+>   #define MTK_KPD_DEBOUNCE_MAX_MS	256
+>   #define MTK_KPD_SEL		0x0020
+> +#define MTK_KPD_SEL_DOUBLE_KP_MODE	BIT(0)
+>   #define MTK_KPD_SEL_COL	GENMASK(15, 10)
+>   #define MTK_KPD_SEL_ROW	GENMASK(9, 4)
+>   #define MTK_KPD_SEL_COLMASK(c)	GENMASK((c) + 9, 10)
+> @@ -31,6 +32,7 @@ struct mt6779_keypad {
+>   	struct clk *clk;
+>   	u32 n_rows;
+>   	u32 n_cols;
+> +	bool double_keys;
+>   	DECLARE_BITMAP(keymap_state, MTK_KPD_NUM_BITS);
+>   };
+>   
+> @@ -67,8 +69,13 @@ static irqreturn_t mt6779_keypad_irq_handler(int irq, void *dev_id)
+>   			continue;
+>   
+>   		key = bit_nr / 32 * 16 + bit_nr % 32;
+> -		row = key / 9;
+> -		col = key % 9;
+> +		if (keypad->double_keys) {
+> +			row = key / 13;
+> +			col = (key % 13) / 2;
+> +		} else {
+> +			row = key / 9;
+> +			col = key % 9;
+> +		}
+>   
+>   		scancode = MATRIX_SCAN_CODE(row, col, row_shift);
+>   		/* 1: not pressed, 0: pressed */
+> @@ -150,6 +157,8 @@ static int mt6779_keypad_pdrv_probe(struct platform_device *pdev)
+>   
+>   	wakeup = device_property_read_bool(&pdev->dev, "wakeup-source");
+>   
+> +	keypad->double_keys = device_property_read_bool(&pdev->dev, "mediatek,double-keys");
+> +
+>   	dev_dbg(&pdev->dev, "n_row=%d n_col=%d debounce=%d\n",
+>   		keypad->n_rows, keypad->n_cols, debounce);
+>   
+> @@ -166,6 +175,10 @@ static int mt6779_keypad_pdrv_probe(struct platform_device *pdev)
+>   	regmap_write(keypad->regmap, MTK_KPD_DEBOUNCE,
+>   		     (debounce * (1 << 5)) & MTK_KPD_DEBOUNCE_MASK);
+>   
+> +	if (keypad->double_keys)
+> +		regmap_update_bits(keypad->regmap, MTK_KPD_SEL,
+> +				   MTK_KPD_SEL_DOUBLE_KP_MODE, MTK_KPD_SEL_DOUBLE_KP_MODE);
+> +
+>   	regmap_update_bits(keypad->regmap, MTK_KPD_SEL, MTK_KPD_SEL_ROW,
+>   			   MTK_KPD_SEL_ROWMASK(keypad->n_rows));
+>   	regmap_update_bits(keypad->regmap, MTK_KPD_SEL, MTK_KPD_SEL_COL,
+> 
