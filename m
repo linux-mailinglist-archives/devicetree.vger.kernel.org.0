@@ -2,78 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EC1A57BC15
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 18:55:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D607157BC51
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 19:07:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235586AbiGTQzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 12:55:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54986 "EHLO
+        id S229670AbiGTRHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 13:07:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235484AbiGTQzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 12:55:31 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A41B5B49E
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 09:55:30 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id r9so31228009lfp.10
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 09:55:30 -0700 (PDT)
+        with ESMTP id S229661AbiGTRHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 13:07:47 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A7A6A9C0
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:07:46 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id k19so3757085lji.10
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:07:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ghsRIl9JuEUAT7RkLvrtAJh5nIX2+4oeY+8sAkTqUi8=;
-        b=rrij9HiBkRbqiSHMRbuOYeDYl/1QDqdjMLDsMCllht89qyWj039D33oBZUzR62CBuK
-         WdSRzgXyO41YyPlFU5drYbYssIzqcYVDxLSaBjArT9IX8nBPC5bOrphbtCbi1OHsZwRV
-         ZpjYuDIhJbF9axDINZh6UiTHADnes0C+A4XibyzgKZ35/LoEpNphQlZh5SXgLvrt0A2C
-         m2z9n52ly2xSKbbnUIQXocBNzuyi0/he/66ipoZrJ5fj7hRYLYMSzgz8IP07hyknjazv
-         Ax/KB3y2KjPO1xHiJj0m/lGt6q3fCSEeIsAJEE5cm+B/NBsJQrxxN3bjkZlFwCac17Ss
-         LN8A==
+        bh=nF82CbSzjB4MC9wpaiQHIZyp0ZgcCOKfhBJIGXNa9bA=;
+        b=VgMxapGwYUwEykbln/Ma9xEWCj8W9oq8F1ll3h3azeOIofeVNXnlWinr2ECbzWKNfK
+         SbmsnBPA3ZPgHlmvK+uI1Wa7L/OSGUBHDzbWt5SBxRWYrvi2x4nvyqwf9GfmpwGzmKJY
+         m8d4fxNDMG6swC3unwWBDE1ONxxgk8YQewPKla8B1xpOg7WIh5JlvHLQ0raF44sDFS56
+         lzfwuqT2Cbf21oRDRMyok3TfjZ8QQj1eXoa1IUzymhL8gAwOK6c5wj72BY/LhvA3jZ+2
+         bRgI8/dXd6wpkjhG8vP47IQm8EFchOqyDWYBY1J79/khr8cYGXL1du6yMLiYpu5Qm2E9
+         +G1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ghsRIl9JuEUAT7RkLvrtAJh5nIX2+4oeY+8sAkTqUi8=;
-        b=ZGi/0uP2OnpzjtZa5Va96qu2FNki20ACKh0+/l20H/A/jxt1uJa1Y/3epheZOF3RlC
-         NQrjDkmvCIG5vCxVvUDkEWe4qzDa7l8BgyPc46Znc6lRRhJ2Ludzc5bRcLnG2G+KgUOB
-         67bAgdArsd8kuuC1M38ZhgdXVRCi4Ey4Cbpj6Nuaymo0O1DM801PIGHFJvsLefSjlfbD
-         BPfuiN3zIeQNcBFK0A5KXRWJBssotFgvP9IHclv40/txY4Hjo/6bWQ6iNs91j3Rf0Abu
-         Vb6pnGaqX/4MQg/pCrK5tCWqPnVUvyTpOlzx/k5UKnMSx+3uEKJNMon+mjiCU9UPFU91
-         jeeA==
-X-Gm-Message-State: AJIora/TxF1bNNaB73MIYpUAC+kSxE3EljKQKs1ew8kgNWOr2gSEQ01n
-        NeVIb8iMZlHZm8WKp4K1SaN+Gg==
-X-Google-Smtp-Source: AGRyM1vBII7bdjh9XymGuoIsbKTl3kq4QQ2UANvX7Rp6zTPRF7Oz9vGJ+aKWRqdUofgP5Ddq2mFV/Q==
-X-Received: by 2002:a05:6512:3d15:b0:489:d97d:8927 with SMTP id d21-20020a0565123d1500b00489d97d8927mr21395907lfv.80.1658336129030;
-        Wed, 20 Jul 2022 09:55:29 -0700 (PDT)
+        bh=nF82CbSzjB4MC9wpaiQHIZyp0ZgcCOKfhBJIGXNa9bA=;
+        b=CL7XQRsYb5KMCbOurH9MDnTr5s8gJxtFNo/RvJVFAUwt7Pba3Gde4HZSxeGIDBT1XW
+         8tzTNBEooBwM2oFvoNcEoJoQxUE8kSZEtQG8+C6itoWnuZs/uwFMWXAbUg7/ey55Urxn
+         +fHXmwYS2v1HAZ4Z2eDeK8EzSTXmGOCObi+d+JHzgb52Xsyt5XjKrNypMqFvoza1lL1g
+         DuPROSTQzoTLJrPLyaO29M5ejrZm8IPfauG+1R5JQzSoJuaDcZKTc8ay/4ChM7nyinOj
+         ZPiK1Z3JUqfqR20d/FkQ8sNcaVfKqUSvkH2eLki02IRaqDkY/6asEvMp8J0NIsj3U7AL
+         7vLQ==
+X-Gm-Message-State: AJIora8pHA8njLm+xKhYbAwa5CHvjUu/k6jonm577HcXHTZs2Yrs7LSG
+        qWLL6ABnqJ0VBDsp0iutoJdc6vw/IAX1RM6J
+X-Google-Smtp-Source: AGRyM1t0cefk6MLwhVq0hDuIoMkoIoRaFwVpce73Q4Cdi1YynQTyz1YKCigu5bvy0UQLy/JsS1cpKw==
+X-Received: by 2002:a2e:8814:0:b0:25d:6833:655d with SMTP id x20-20020a2e8814000000b0025d6833655dmr16845259ljh.172.1658336864412;
+        Wed, 20 Jul 2022 10:07:44 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id h24-20020a0565123c9800b004855e979abcsm3894307lfv.99.2022.07.20.09.55.27
+        by smtp.gmail.com with ESMTPSA id m2-20020a056512358200b00486d8a63c07sm3916674lfr.121.2022.07.20.10.07.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jul 2022 09:55:28 -0700 (PDT)
-Message-ID: <bcbca05e-2b75-a405-b1ea-21b276931a90@linaro.org>
-Date:   Wed, 20 Jul 2022 18:55:27 +0200
+        Wed, 20 Jul 2022 10:07:43 -0700 (PDT)
+Message-ID: <abd47815-c84b-115b-f6f2-b6ec0dbf1bef@linaro.org>
+Date:   Wed, 20 Jul 2022 19:07:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: Add SKU6 for
- sc7180-trogdor-pazquel-lte-parade
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add MSC Technologies
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Henry Sun <henrysun@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Martyn Welch <martyn.welch@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20220720025058.1.I5bfba8857ea0d43c747ecdc3a950875abd56927f@changeid>
- <7a04c9af-0ccb-7711-249f-73908fe7ec36@linaro.org>
- <CAD=FV=V1MqQzNxq_L8sGtu2JwAAL_FWKXkw9bhCHcD0DycFMUw@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     kernel@collabora.com, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220720150007.2168051-1-martyn.welch@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=V1MqQzNxq_L8sGtu2JwAAL_FWKXkw9bhCHcD0DycFMUw@mail.gmail.com>
+In-Reply-To: <20220720150007.2168051-1-martyn.welch@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,42 +74,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2022 17:13, Doug Anderson wrote:
-> Hi,
-> 
-> On Tue, Jul 19, 2022 at 11:10 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 20/07/2022 04:51, Yunlong Jia wrote:
->>> SKU6 is LTE(w/o eSIM)+WIFI+Parade
->>>
->>> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
->>> ---
->>>
->>>  arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
->>> index 764c451c1a857..4649eaec6318d 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
->>> @@ -14,7 +14,7 @@
->>>
->>>  / {
->>>       model = "Google Pazquel (Parade,LTE)";
->>> -     compatible = "google,pazquel-sku4", "qcom,sc7180";
->>> +     compatible = "google,pazquel-sku4", "google,pazquel-sku6", "qcom,sc7180";
->>
->> You miss binding change and sku6 should be rather added before sku4 as
->> it is more specific, isn't it?
-> 
-> Just to close the loop: the order doesn't matter at all. Neither sku4
-> nor sku6 is "more specific". One has the eSIM stuffed and one doesn't.
+On 20/07/2022 17:00, Martyn Welch wrote:
+> Add "msc" vendor prefix for MSC Technologies GmbH
+> (https://www.msc-technologies.eu).
 
-Thanks Doug. Then the commit description could be improved, so reviewer
-does not have to ask such questions. Otherwise it is confusing to see a
-board which says it is for LTE version but it is actually not for LTE
-version (or whatever combination you have).
+Does not really work - leads to Avnet, so there is no MSC anymore?
+
+> 
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> ---
+> 
+> Changes in v2:
+>   - New addition
+> 
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 0496773a3c4d..1658357bc1c4 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -816,6 +816,8 @@ patternProperties:
+>    "^mrvl,.*":
+>      description: Marvell Technology Group Ltd.
+>      deprecated: true
+> +  "^msc,.*":
+> +    description: MSC Technologies GmbH.
+
+This should be rather msct or msctech, but anyway in fact you maybe
+should use avnet?
+
+>    "^mscc,.*":
+>      description: Microsemi Corporation
+>    "^msi,.*":
+
 
 Best regards,
 Krzysztof
