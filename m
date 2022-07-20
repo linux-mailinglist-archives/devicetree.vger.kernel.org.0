@@ -2,65 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C3357BD3F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 19:54:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACDE857BD45
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 19:55:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236024AbiGTRyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 13:54:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48444 "EHLO
+        id S237820AbiGTRzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 13:55:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237876AbiGTRyM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 13:54:12 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56935D59B
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:54:10 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id l23so34431176ejr.5
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:54:10 -0700 (PDT)
+        with ESMTP id S237815AbiGTRzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 13:55:13 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 587966380
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:55:12 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id u19so22717146lfs.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:55:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ctz6Bj/1tsBk5/T9SJKUKyY4+CIziBZQwdo01hjp3G8=;
-        b=lWkIFnYQD7yxdJ57mymN1bcXuzrHSYZCACCxSHvSeafJkvzxKZlV017M9cIEtJXSv5
-         +ZFDy3IT9RrVDw6hsr/wUNGKWtnZ+YcKjdx++Ity5lrfjq6zIlz36my/ku9QrfAPnGMW
-         p79Zo6qOUcw0VhLATLslDn3XqfD9hxLIWL+Po=
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=SbRJ4Pjfsm8LrOT/Xil2d+bMfNBGw/19k+yDI8UKBW8=;
+        b=ZWqCQRfGBGBMunlhZpNm78e1j4poAYODmP81Ui+BrWqtTK///sr+A2CZUjpK0jMGV5
+         PVM8su0HHmqBpGFmFcNVYqwQRtSm5Mqemx5b7wbiLiephByfm+Fq/2QpCxFmE4vgXsLO
+         qHdQLsVfeZjnqKxT9X8+vmQ4iVKlRichL5JUB45JvpLeREN3+WADwM4n2yNHMwHboJwB
+         gUXy36s/Yd+suWnu6EgBKzjuiUydIBdYDhouvJ6GFo5OYSm1a1ticXhvAABSAn1FOKGm
+         7plPFpamXLstJabNU02Sx86oFlPcRQ5digRrN/sNJBBkcMuTWuhOY0t3uJ0iqF1mKO0x
+         1Xkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ctz6Bj/1tsBk5/T9SJKUKyY4+CIziBZQwdo01hjp3G8=;
-        b=uJ9yXRfaEswXXBNHvOQ/HqI0rsK3dBg4NCRg0G8hFfM56UhDzv/cpsOuFn8yPVm2Up
-         MxG3KK5m6ONKvHteMmtJBJsfwPrDUMFEepLdFYtshQFJMtgQx38eBQuuFTW9RXn52WGD
-         dqaVdeSQnmc9ksN+y8vlaSXuTzMzoa48/up1vaW0mcCRzi8xLqlUbQB/KeJEn62vFkST
-         eETBLvcAtU7B4L2663ldPmh1iIa+YsZdERYwhoxIvSvOfgtxh5yoCTFDen7h44nqIqxu
-         eA99T0uZyczlQPOe5nKRYnnEPBUKRmDwDDgYM2S8oGTW4kuIxfn5HxUCM2QKFoi0nMJz
-         CMKw==
-X-Gm-Message-State: AJIora/yKCQ71oK8VwNK4miBSscFZ41Bf8WuzCWdSa3v0AkIWrGtk0//
-        dDYYrV7jJS2BgR5H6UZYhwdCPnEKhfmy1M8f
-X-Google-Smtp-Source: AGRyM1uI3BgknupYkvpPCyQBufRVyhVZDWisQ8cxJOBvt0UwM60LBtJcAS7TEjiLJDshtxx6YN50Yw==
-X-Received: by 2002:a17:906:4fd5:b0:72e:ce13:2438 with SMTP id i21-20020a1709064fd500b0072ece132438mr34811656ejw.175.1658339649018;
-        Wed, 20 Jul 2022 10:54:09 -0700 (PDT)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
-        by smtp.gmail.com with ESMTPSA id b7-20020aa7dc07000000b0043bbd133358sm482644edu.37.2022.07.20.10.54.08
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=SbRJ4Pjfsm8LrOT/Xil2d+bMfNBGw/19k+yDI8UKBW8=;
+        b=bu2uAoSTnMOZ19AhB3DpT5p/NwXmpN35GUmTVA3DQnHxFBrJWsBln/Itcy6uwwojDm
+         XHqiHwquRDd8fEfjMxD1dv0OtRjTeWFsQD6+u2gkglP1gEHAaKayj8sJcqUyNkWQTHkG
+         /8ROToXrEuknBWc0r6fD+eCJImLwEaWNNRTKvAIVs8/xI//fVFD4riMOJR+7q9kFTnkn
+         OEZ/1LaZK9gALvDsIoHwdexe0I08mJV6qnHk0cgZmnuWkB/YG2vc+HByyapLNIW2qptj
+         P62nogwg66HRktd5NDSwatpG2t/v8ojgqbbP3H1xmzInigcge4J0GXlwnodiZMH96Val
+         ANfw==
+X-Gm-Message-State: AJIora8ymt6Gn8YwO9cXtkM1SH1/Gb0/iaM7o6QbuDkhClTV6TDyPJdI
+        uy2RHsQuW2AAYyycZpv1hpegfw==
+X-Google-Smtp-Source: AGRyM1sBHotd8BveUpOcwz+eBVh5w31a9LXZrwZ/UtTwD42US9+BLaYtcY9jEyZ6OFeBV4Kc7+PHew==
+X-Received: by 2002:ac2:4a86:0:b0:489:c5eb:3403 with SMTP id l6-20020ac24a86000000b00489c5eb3403mr19763715lfp.603.1658339710742;
+        Wed, 20 Jul 2022 10:55:10 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id g5-20020a2ea4a5000000b0025a885a135csm3341410ljm.119.2022.07.20.10.55.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jul 2022 10:54:08 -0700 (PDT)
-Received: by mail-wr1-f48.google.com with SMTP id bk26so27187931wrb.11
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:54:08 -0700 (PDT)
-X-Received: by 2002:a5d:5889:0:b0:21d:bccd:38e3 with SMTP id
- n9-20020a5d5889000000b0021dbccd38e3mr30862732wrf.659.1658339647846; Wed, 20
- Jul 2022 10:54:07 -0700 (PDT)
+        Wed, 20 Jul 2022 10:55:10 -0700 (PDT)
+Message-ID: <acecf7a8-7bf1-718f-d990-54a10e92ba1f@linaro.org>
+Date:   Wed, 20 Jul 2022 19:55:08 +0200
 MIME-Version: 1.0
-References: <20220720025058.1.I5bfba8857ea0d43c747ecdc3a950875abd56927f@changeid>
- <7a04c9af-0ccb-7711-249f-73908fe7ec36@linaro.org> <CAD=FV=V1MqQzNxq_L8sGtu2JwAAL_FWKXkw9bhCHcD0DycFMUw@mail.gmail.com>
- <bcbca05e-2b75-a405-b1ea-21b276931a90@linaro.org>
-In-Reply-To: <bcbca05e-2b75-a405-b1ea-21b276931a90@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 20 Jul 2022 10:53:54 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UEt4fcVaFvS8nr7Z0GNYM1T=mz7iUhwg+bBkWtbO4c1g@mail.gmail.com>
-Message-ID: <CAD=FV=UEt4fcVaFvS8nr7Z0GNYM1T=mz7iUhwg+bBkWtbO4c1g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: Add SKU6 for sc7180-trogdor-pazquel-lte-parade
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] arm64: dts: qcom: Add SKU6 for
+ sc7180-trogdor-pazquel-lte-parade
+Content-Language: en-US
+To:     Doug Anderson <dianders@chromium.org>
 Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
         LKML <linux-kernel@vger.kernel.org>,
         Henry Sun <henrysun@google.com>,
@@ -73,9 +69,17 @@ Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <20220720025058.1.I5bfba8857ea0d43c747ecdc3a950875abd56927f@changeid>
+ <7a04c9af-0ccb-7711-249f-73908fe7ec36@linaro.org>
+ <CAD=FV=V1MqQzNxq_L8sGtu2JwAAL_FWKXkw9bhCHcD0DycFMUw@mail.gmail.com>
+ <bcbca05e-2b75-a405-b1ea-21b276931a90@linaro.org>
+ <CAD=FV=UEt4fcVaFvS8nr7Z0GNYM1T=mz7iUhwg+bBkWtbO4c1g@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=UEt4fcVaFvS8nr7Z0GNYM1T=mz7iUhwg+bBkWtbO4c1g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -84,56 +88,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 20/07/2022 19:53, Doug Anderson wrote:
+> 
+> Yeah. I guess it makes more sense with the background knowledge that
+> the different SKUs are:
+> 
+> LTE with physical SIM _and_ eSIM
+> LTE with only a physical SIM
+> WiFi only
+> 
+> ...so both sku4 and sku6 are LTE SKUs. One has the eSIM stuffed and
+> one doesn't. There is a single shared device tree for the two.
 
-On Wed, Jul 20, 2022 at 9:55 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/07/2022 17:13, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Tue, Jul 19, 2022 at 11:10 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 20/07/2022 04:51, Yunlong Jia wrote:
-> >>> SKU6 is LTE(w/o eSIM)+WIFI+Parade
-> >>>
-> >>> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-> >>> ---
-> >>>
-> >>>  arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts | 2 +-
-> >>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> >>> index 764c451c1a857..4649eaec6318d 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> >>> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> >>> @@ -14,7 +14,7 @@
-> >>>
-> >>>  / {
-> >>>       model = "Google Pazquel (Parade,LTE)";
-> >>> -     compatible = "google,pazquel-sku4", "qcom,sc7180";
-> >>> +     compatible = "google,pazquel-sku4", "google,pazquel-sku6", "qcom,sc7180";
-> >>
-> >> You miss binding change and sku6 should be rather added before sku4 as
-> >> it is more specific, isn't it?
-> >
-> > Just to close the loop: the order doesn't matter at all. Neither sku4
-> > nor sku6 is "more specific". One has the eSIM stuffed and one doesn't.
->
-> Thanks Doug. Then the commit description could be improved, so reviewer
-> does not have to ask such questions. Otherwise it is confusing to see a
-> board which says it is for LTE version but it is actually not for LTE
-> version (or whatever combination you have).
+Above in commit msg would solve all my questions, I guess. :)
 
-Yeah. I guess it makes more sense with the background knowledge that
-the different SKUs are:
 
-LTE with physical SIM _and_ eSIM
-LTE with only a physical SIM
-WiFi only
-
-...so both sku4 and sku6 are LTE SKUs. One has the eSIM stuffed and
-one doesn't. There is a single shared device tree for the two.
-
--Doug
+Best regards,
+Krzysztof
