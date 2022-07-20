@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DC6757B202
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 09:46:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2931E57B212
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 09:48:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232123AbiGTHqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 03:46:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33586 "EHLO
+        id S240212AbiGTHsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 03:48:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240206AbiGTHqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 03:46:34 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FF7C691C0
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 00:46:30 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id bf9so28810776lfb.13
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 00:46:30 -0700 (PDT)
+        with ESMTP id S239987AbiGTHso (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 03:48:44 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A022D68DFA
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 00:48:41 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id n12so12061948wrc.8
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 00:48:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yDflIxoarjB5o8BktCyGSkrFxpci5KW41k5dQXOh/OM=;
-        b=F/g5Mnv5Fn54CNkdIskc5A1G8ON5CauuUvtrWNo43pDn9FibqAnLuNDsO8LDpOJug6
-         lA+F8nqDtIGwr2NK2M9Ff3DkixcwpqVCST+6aL9qSJKVGHjhrxWzwBdvObmdTg4MS7B9
-         8xLStuvcJP5X8pKS/I6ewgdheN9BeCyuJDcjCJg7dCuH9adQDRSB5qo20IazBG+Lt3Jq
-         kcEghAtC51KkqZTrvKmor3gsExW40GKuEGpKjPrNZNfEePoxMIoXdrllD1H/Jvd28iyU
-         xjIupL+wCFLPPmZ6tPekONz2/D2pBSWBLxWwPmsXgsB7/khhYd1w2FEI7eKL7hLzFb3w
-         vAlQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=9ElSeSk614sHvQ21Olszx7/fOD72S3pdEjMKoWVvV70=;
+        b=vhSEKJmVmMARaRWH0xaA2l+kCtoc5Zx/reprZlY45YpxW3DQg9C4qONfodIx8+o4FZ
+         158sB+03Rej/8Yf3e7gYSweZ3QyCmBdBh0VytqYAKE+oZyQSUaBygJar2jiBAzoEkfDm
+         Xy7z/6IV1uZa5/UMmF0q2rzbG46hJGLHu0glLNe/8bl6J3YbSzA9dXRv9XD4fKfjMchv
+         ndvMvmrncYAgprfLQrycI45wKDPfJwlwoaICFQ+hwF1gknT6bSptzTNKEdB+SKsj12Tg
+         LRCrO1tXEf1JQAWFoFemlZHgH/7yuZxocrMVCc5L3QF30Q1OI+1IHZ05vmaUDeusjeDV
+         n+1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yDflIxoarjB5o8BktCyGSkrFxpci5KW41k5dQXOh/OM=;
-        b=uhIU3RTq3ZQjrnoG0k7ZJyyK54/cF1bAGZvNrKz8gCtAc122tTkJwzPYjhXeSY5EmM
-         On4I4YIHQghMarx3ABfnBYspghDwAq5/onSI69BvvWsq4Wotl/AKle4G+YnCUMD8qYPh
-         l2vEfluSPZPw2MtxjBce8vn6CxaVv/gy894pxw9DHjYDnYkHDzlSYpG+mBCyhBc/2jVj
-         yuquUjf6U5nD8ZYoX9dTCwbgB0xzuW8Nsr5o5sBUdeWEFVH8yjWEdfBmigk1jxjMdauc
-         c8i5/8tvs3mviRZVFuWeDAKUuoLs9A9IXSbUPVB6oAuUR2mNn8nhQ03XHU9UB8E6Ka0D
-         elIg==
-X-Gm-Message-State: AJIora/uGKnKTN+Pi3uoHJ6gDg8REIEnTCFggkGwKL/tAkCFo9JfJ7hR
-        4s2Fj/wH4ZysIjEQ7HWcTcPTew==
-X-Google-Smtp-Source: AGRyM1sT5bgHDxy8DSYTlUWHlh221BK9GLwPQVyzaqyJP5TiqJi8GlzJc1JuCB1ahJiW5hFyfMImjw==
-X-Received: by 2002:a05:6512:3b0a:b0:489:da13:180a with SMTP id f10-20020a0565123b0a00b00489da13180amr19808084lfv.489.1658303188829;
-        Wed, 20 Jul 2022 00:46:28 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id c11-20020a056512074b00b004866226ea34sm3635722lfs.215.2022.07.20.00.46.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jul 2022 00:46:28 -0700 (PDT)
-Message-ID: <4cc6a276-4cbe-506a-6425-677c56469645@linaro.org>
-Date:   Wed, 20 Jul 2022 09:46:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: arm: qcom: Document additional sku6 for
- sc7180 pazquel
-Content-Language: en-US
-To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Henry Sun <henrysun@google.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=9ElSeSk614sHvQ21Olszx7/fOD72S3pdEjMKoWVvV70=;
+        b=uOK2Ppr6Wq/eykswdTXw6hwoRmr0WLb7OaxbnS7wfW8B1M0uWKbx3j40UQGFxeKW09
+         tbH5fPsTG/55cFkSp83/EkwrI5uAKYLP9pEFh6MYFBt8r3qOpMxr30xjweaEv0kexAGH
+         Dw8EWgl7iEae+zAJNCs7uBd8h/NM3aK97Bsw1N/SQIX4YeQlfIcBlG+7KZW+7E9KsNxY
+         516SAIosItVMAEEukBh5F5wb4ENY2XO6SDnIeb2xVty+3TCxBhXexlS4WbVVmZkOZerA
+         82sg2SstRWg2YO/G/a94fPz34/OmwztETez5vmw5lrUvPJm+U3AQsy93fvGlp1ehd+sm
+         tVPw==
+X-Gm-Message-State: AJIora/wRdLbP96tRSW0fdX9I772I0Ww+9IOo4aVBeTQZcWVd1oWrTum
+        Qup7FXIayG475/mPH9ohGpE7Nw==
+X-Google-Smtp-Source: AGRyM1vuPStHxI48eylnYSZO/6tJTXBaSbjnGnKmJlNTa/CBji3je23kXPmhNPY4cFUIPz3Fu06IOQ==
+X-Received: by 2002:a5d:4e49:0:b0:21d:6e8a:fa3 with SMTP id r9-20020a5d4e49000000b0021d6e8a0fa3mr28469922wrt.528.1658303320157;
+        Wed, 20 Jul 2022 00:48:40 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id a20-20020a05600c225400b003a32167b8d4sm1444891wmm.13.2022.07.20.00.48.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jul 2022 00:48:39 -0700 (PDT)
+Date:   Wed, 20 Jul 2022 08:48:37 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220720073755.1.Ifab936517646b3876dd31b6e9b1b58a858529e57@changeid>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220720073755.1.Ifab936517646b3876dd31b6e9b1b58a858529e57@changeid>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: st,stm32-timers: Correct 'resets'
+ property name
+Message-ID: <YtezVaZGhEZ1ZEKL@google.com>
+References: <20220719215125.1877138-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220719215125.1877138-1-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,26 +77,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2022 09:38, Yunlong Jia wrote:
-> The difference between sku6 and sku4 is that there is no esim
+On Tue, 19 Jul 2022, Rob Herring wrote:
+
+> The correct property name for the reset binding is 'resets', not 'reset'.
+> Fix the name.
 > 
-> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 4dd18fbf20b6..aebeefdab27f 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -410,6 +410,7 @@ properties:
->        - description: Google Pazquel with LTE and Parade (newest rev)
->          items:
->            - const: google,pazquel-sku4
-> +          - const: google,pazquel-sku6
+>  Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-This looks wrong, did you test it?
+Applied, thanks.
 
-Best regards,
-Krzysztof
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
