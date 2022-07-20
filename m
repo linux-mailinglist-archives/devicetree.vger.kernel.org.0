@@ -2,183 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0179257B7A1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 15:42:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEAE857B7A6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 15:43:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231751AbiGTNmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 09:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35250 "EHLO
+        id S231668AbiGTNnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 09:43:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231668AbiGTNmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 09:42:06 -0400
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2048.outbound.protection.outlook.com [40.107.102.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CF950044;
-        Wed, 20 Jul 2022 06:42:05 -0700 (PDT)
+        with ESMTP id S230479AbiGTNnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 09:43:09 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B9551A33;
+        Wed, 20 Jul 2022 06:43:08 -0700 (PDT)
+Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26KDWCFF023218;
+        Wed, 20 Jul 2022 13:43:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=0Z3PgzzNKO+ECJ6LxRKdBn5sBDda1/Bdh67Az7ggE0M=;
+ b=TtMaag3oKfhP77pKfpHytxQE5qlqLTge+FQXbHR/LgKacgL0ixA8CLWTY2ZlQbHbeAtB
+ DM/Ssd7biLZMunddlbOdaurPyOCHjG9gpLRlxXHmaRhwUROifEeqtHNn4XL614xJqXj9
+ /eTX0VRJEMRXNoCBXzC4gsZaLTry2EYwZt2DKNURm7BxqVtdLQh1JCWHB/ZIEgpDVlNK
+ erS3R6nhmTQjluQIr3j09a8sZvmF6g8J0tVkaHwRssIn85hsOGu+kttu47J4poGc7zTn
+ hWQbAXJuELgsA6ADxdZaFiJTmyF7PvVOTyEI4BfJdZ5UP5iNBhxJmljBkDwESy3oOj7s 6g== 
+Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2109.outbound.protection.outlook.com [104.47.55.109])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3hejp30h6k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 20 Jul 2022 13:42:59 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DmoONUD1IFw2amh7l3uUK/tg0z6mKdZyN0k918bopTD/1MyI0wa+aPBG9vuJxughNYa5oH1ca4RDG3ciWIOgyHfu8B0NeaJ6IBxADnWejfDrSset9KFKUWNgzDGG3DoN5vkENV+6IXiLYmKoZCdjU9PoWXfTq2uGUdNozDFbQi8MH7R1ka9b+5dOXfdmyIP/2g47V9zcfn/lol5mC4LQKrVZHoG5v4/p7+5Kh2F/KRT12nROO/M7c6BMGTi/v9v9id7hIDEM2eqT53TxuD4RayDOlyh7zXKBnvrCmb8RKepY+aj2vISxJNOVP4+xAa4NMk03qPlokuXwmB2erdMMxw==
+ b=oVaaZc6vHY2iOQIGAG0Kl1Sfq84z/UFLD33xWH2oKSjd9uBWISJwA56EysIg8B8hX9UIC38AMkMzilSj6VSnq7A0N1KY43GxFWAm15Sto/ZN+0qYHar7/hZK/Dl3sijMNe2Y+qqLTiZfrEXKAE8p0e3U3NCx+XBy7Twg5/XLQ5PW2TiTd7+ayN6AvoWZ8tmj4R8kBV/+EdtO9MZlM8vRzmEqzZ2ENsLMUB5vai9dNdXbECH2ClqzwB8UBxo8f35R7zX2xsHZ5o1RBnHEsaChXuDpvB6oWePol9GS7LzmGWzcgQRVRkUt4R/CXXxluceKiPhzBdBUa1viWOnFROK8/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/SQkklVtruLcEMsVPjCIaLhqMObTzhTmBZ9rY6z1HEk=;
- b=OeG0BhxNIS3jbRfjQsvYCi//jXTCF4Vi4OpjYHNXNbGqaD1u+T6tfyHyF1CuWAwJxmcvL1sYMpZWGPl3CTbt9Ia/1j2oPWkbm7UtIxav6CF4130s7S5BY81iIqEXUVFMowJCkv75Saw5g9x6GqKlTGgbiVnI7DlaiBaS7o2wwAooj8anyCPCXlAIhGA6UboFP01eOeof4EIbYelWVy+yVFTMafaR34WDF6bCqlXZF6sL6Bei54pF2zTQoCWUeVBZUTzrmCO6l7umKonBN+USlHq8PXaE7/FO2d3DOAe3NFgmmzeoQMjQ6fKkmzzJkLA3yhlAoj78NqLLbvaT4YEL7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/SQkklVtruLcEMsVPjCIaLhqMObTzhTmBZ9rY6z1HEk=;
- b=BHz2KTuBbtrhxUxwaAEkNoD3Gn5BrbGYAYQ6UmcQkk/TR9pzcba7lYm5txYJ7Nt4ipyVYrsZcE5/9AYRLLGEgeKo1KOoprXT4j7MmlOYYG10j+S4Hcka3QCc4m6IOUOYQhh2PHyJphwdYgOSccU3TmjkmmAk3lRH34fyV2hIDwM=
-Received: from DS7PR03CA0331.namprd03.prod.outlook.com (2603:10b6:8:55::26) by
- BL1PR12MB5112.namprd12.prod.outlook.com (2603:10b6:208:316::16) with
+ bh=0Z3PgzzNKO+ECJ6LxRKdBn5sBDda1/Bdh67Az7ggE0M=;
+ b=cNuYLrQ7N8Ng/X3OrcgJFWq/soQwHn86c1FRtGIusADwcjavCrJ77omaXDNHi3DeBw8fGseBphlom+3TpuM1Z596r6l/ODjU7aSTEAdyhj4qHN1gelP97N9+Q6m8zH4PyJy6O10zBKxL1ORAHit47rDzuGKoqNg0fPFxuEe8YYqWqavPcQePePH90AZxB/OW7DiU8ZCMkton9T4Tv3zf5ZCqxbi0eHTevFJxiBmDh+PIgCqbiPZd3DqXSspk2MHTUMKDlj8tjSlDAd1e6fAtWt97eY38ieS9VaJtHybTjRbxLKVJ503nTGHdJaefDW1EJcFyRbAlb7mem2lp4TEl0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in.ibm.com; dmarc=pass action=none header.from=in.ibm.com;
+ dkim=pass header.d=in.ibm.com; arc=none
+Received: from MWHPR15MB1150.namprd15.prod.outlook.com (2603:10b6:320:2f::8)
+ by BYAPR15MB3175.namprd15.prod.outlook.com (2603:10b6:a03:105::27) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.15; Wed, 20 Jul
- 2022 13:42:01 +0000
-Received: from DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
- (2603:10b6:8:55:cafe::98) by DS7PR03CA0331.outlook.office365.com
- (2603:10b6:8:55::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5417.26 via Frontend
- Transport; Wed, 20 Jul 2022 13:42:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT015.mail.protection.outlook.com (10.13.172.133) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5458.17 via Frontend Transport; Wed, 20 Jul 2022 13:42:01 +0000
-Received: from [10.254.241.52] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.28; Wed, 20 Jul
- 2022 08:41:56 -0500
-Message-ID: <0168318c-02b0-c591-190e-770035879b4b@amd.com>
-Date:   Wed, 20 Jul 2022 15:41:54 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
-Content-Language: en-US
-To:     "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Shubhrajyoti Datta <shubhraj@xilinx.com>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.18; Wed, 20 Jul
+ 2022 13:42:56 +0000
+Received: from MWHPR15MB1150.namprd15.prod.outlook.com
+ ([fe80::1024:8a31:a334:d02f]) by MWHPR15MB1150.namprd15.prod.outlook.com
+ ([fe80::1024:8a31:a334:d02f%5]) with mapi id 15.20.5458.018; Wed, 20 Jul 2022
+ 13:42:56 +0000
+From:   Nageswara R Sastry <nasastry@in.ibm.com>
+To:     Stefan Berger <stefanb@linux.ibm.com>,
+        "kexec@lists.infradead.org" <kexec@lists.infradead.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        Srinivas Goud <sgoud@xilinx.com>
-References: <cover.1637061057.git.shubhrajyoti.datta@xilinx.com>
- <e1d6913bfe5ce023d7f6ea106d0359142063e694.1637061057.git.shubhrajyoti.datta@xilinx.com>
- <YaVPYiGmDsqY+1at@robh.at.kernel.org>
- <DM6PR02MB663589B3489C53A34DC25A31AA719@DM6PR02MB6635.namprd02.prod.outlook.com>
- <MN2PR02MB6640017950EFB0FD21D2AD91AA339@MN2PR02MB6640.namprd02.prod.outlook.com>
- <DM6PR02MB66352597DBF172ACC5307274AA179@DM6PR02MB6635.namprd02.prod.outlook.com>
- <CAL_JsqLV3De0O2WDq=w_CQbvAiJVvQ-=V9XuC1tJyZNLyneDZw@mail.gmail.com>
- <CAKfKVtGrdh-iQP7YKUBe37HVeZcU-UV3A3BHKjcnggBFR94eNA@mail.gmail.com>
- <50bfd52b-6fe0-546f-9121-0145aac91289@xilinx.com>
- <9d9067f3-5b2d-6434-ec2f-93b4a97a6588@linaro.org>
- <BY5PR12MB49022C7A09F42E8B5A1F868881889@BY5PR12MB4902.namprd12.prod.outlook.com>
-From:   Michal Simek <michal.simek@amd.com>
-In-Reply-To: <BY5PR12MB49022C7A09F42E8B5A1F868881889@BY5PR12MB4902.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: eebc1913-f51e-42e2-230d-08da6a559fdc
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5112:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qCiWcXjYPA88BdrwXmAFBggEobnynYsapeN1ZtV6/UI463yqzKw2Qh0wCBez4fQuEUT0pgZxOZBS2c3rg2Ew/pjlDbXmYHlbs44uRYD+TKQrTgWqaaXP72MPhp0wFGNtVW+sLvfM3/Q209Sxkj03NsVtMi9+Jrg8tbb2QQMVKPQOPacveqbPrhR5Hwiep92hPv2i0NwNh+czFYvhVA4/yKbY/me44eRXwl4s6O+2qyHWQoK2gBWWJDG5YqMYMi5Y6c/BxfJtQu+/yAVptpdIhKhqp1SGawWfX44DXPdJGJK7pZ4FEKm3pj339lNhMq7qjRE2Ide8yw4Me6tWEFWQ1R+S1J/pafRIyO6wrMGjhRsDHAIUGjB7kOfTIQ5lPKBLVaWFe+DxBZaWbaxHijmt6IdvN5QnH1CmOOd7+MyZtrs9sBdgDX/CV2YTLLAb6oupS9yASKL7CIh/mTDK5vVHA2ThZRaqznuCVFgyej6YOjglFXvTBDfM/Wwf6Y0u/vzGYSyKjgfDw7QPRQOQK05XSofPVCRBztFS33XTUoSooK1vPjQI8SEDSK7DtoSsO10kmuSd304vEEkQkJyA0uqPwFp+oqUPs3x0Y7ryT/+54vggxnmrNxQj64VKRg4KClc1L420qlN7lKp9x+cFHaIjo+6+XX40FMOMnfGbjBIzAOXPQy8Y6f/x2yhWuirBdU42kxkiPS5y74y8UVgMDNOf7N2jQiz+EzehCh0AxNxBoxUnDhrYx26J8NyXWwnuUzCirxCcverxSLFmLfkAQWZZmwc4KTCg3tZyolDDpUI0eWv0uRGYbpbfyo9MRIr6q3/vd0eHieWV4liLanncZqAm/bWhDUTU13aHV6g/XQbQcA6n/eRB0O5lxPRTrZZP24jL
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230016)(4636009)(376002)(346002)(39860400002)(396003)(136003)(36840700001)(40470700004)(46966006)(356005)(2906002)(16526019)(82740400003)(41300700001)(40480700001)(107886003)(426003)(110136005)(83380400001)(47076005)(336012)(82310400005)(53546011)(81166007)(316002)(54906003)(186003)(31696002)(26005)(86362001)(8676002)(8936002)(478600001)(2616005)(40460700003)(70586007)(5660300002)(70206006)(4326008)(36860700001)(16576012)(31686004)(36756003)(44832011)(36900700001)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2022 13:42:01.2021
+        "linux-integrity@vger.kernel.org" <linux-integrity@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+CC:     "nayna@linux.ibm.com" <nayna@linux.ibm.com>,
+        "mpe@ellerman.id.au" <mpe@ellerman.id.au>,
+        Palmer Dabbelt <palmer@rivosinc.com>,
+        Rob Herring <robh@kernel.org>, Mimi Zohar <zohar@linux.ibm.com>
+Subject: Re: [PATCH v6 2/6] drivers: of: kexec ima: Support 32-bit platforms
+Thread-Topic: [PATCH v6 2/6] drivers: of: kexec ima: Support 32-bit platforms
+Thread-Index: AQHYkiXj22Dwly2W0U6QW94fZDqKFK2HWMHw
+Date:   Wed, 20 Jul 2022 13:42:55 +0000
+Message-ID: <MWHPR15MB1150F33F8C0E17420E0B18C1EB8E9@MWHPR15MB1150.namprd15.prod.outlook.com>
+References: <20220707172026.831614-1-stefanb@linux.ibm.com>
+ <20220707172026.831614-3-stefanb@linux.ibm.com>
+In-Reply-To: <20220707172026.831614-3-stefanb@linux.ibm.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fa9bfcca-5f69-4a5d-a3dc-08da6a55c07b
+x-ms-traffictypediagnostic: BYAPR15MB3175:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: at65ZWWy0P1nUGGNgN/SS+OElgClNrc7jWa2AIY6h0TZCAYVqzO0GKANLbtRWn1YX2TEpgReBfmgZZ1N8Uq5YYN0UNxWh+lEMF5HiKBU2KS7lX8OfFQnPYMAXRxbOgV/4JLxIsTniD9N1T8k9H2Xr5lJ0j31+M0AEnzdcMuXI+wMd5Sn9+XfRV9w4voEfS7xIWK5RsBk5pcFp/DXwbTUawBIRCZJXsu44GcZ38iy4owJ1kgMc/z7HxGRWKmbTL25UwnsMkbCq3Qu8dMdk+Ky+t+aVppgI3/clz5o81JRbgn2zzH3jxG53r0p+1HiFCLS68Nw3M+PI7KvPYjWqarHmhj1+KuaKyAeXYKB9n6RdygXwqSbKNOJOHQHHXk8sjlDl/jvpcNeObbjLOHkHViqfOnWwbl6XRtAS+VG6YNhrqeQSXyl0xXAKhxVt/hVlqoeQtE5aTDTmEUiyI+c5r2NNBFDKnvLyf6Dc0b4S7nbkXocP6KKhAShPkxUbuIVazbSoieU+7a/ZU7aCoJW0salZASnAvclc/yX63/WsasQPm2U5tiEZbcbJVWCEwNU4ShS+cgpHvP6dozb/q/Y6g/2VLN1qtyJWSMa2CBvzi+z/QY5mfQP7dNZX251qA6RZ18H/Sp77wlN4gxSNQ/OvbhKGP01cI2+YPo8SZO4xCZgv/N9hIrSXb0wXUDgFFoNTGzDbhmsCfz0nGE4eCdDrCw/PszJKeTWiT95anWNC0BuQXYKrRYwk/Kevjnql9j1PGEDu3F5j/+zi1BQa5L3CynfysH/RNS2T/YmyUM8fAZ5a201Yq6WEhlJwIoM71UFKXx+
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR15MB1150.namprd15.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(366004)(346002)(376002)(136003)(39860400002)(41300700001)(71200400001)(2906002)(4744005)(86362001)(52536014)(38070700005)(478600001)(7416002)(8936002)(5660300002)(122000001)(38100700002)(186003)(33656002)(110136005)(91956017)(316002)(54906003)(26005)(53546011)(55236004)(66946007)(6506007)(8676002)(66446008)(64756008)(4326008)(66556008)(66476007)(76116006)(83380400001)(9686003)(55016003)(7696005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?j9KRlAal3UPruzg56UaraeAYSf5tSKYJ7crG0grMp0+lY1pBt/xOsoIR6S?=
+ =?iso-8859-1?Q?YTE3KmQf+TOrVMwEjVGO1F4SiJ04vawy6VwRIowPCXDDsejgFzCwmZ1eyq?=
+ =?iso-8859-1?Q?qgbp+qhp2anrDUmJp/KpaAZJV5txYY1o0J7DOO1IPW8RRmIsomIP0HxFQw?=
+ =?iso-8859-1?Q?v1vQ6iJ7YONV+LYNRv5rAJ6/4rC+cqmlVzdSZ1bJ2jky0LlHK3f9fR5fia?=
+ =?iso-8859-1?Q?tdv7NPXTIq7p81sA5QItItlurD+ZVN6ydx8yZbeywxw2Jcntf+whTcvZ2W?=
+ =?iso-8859-1?Q?SHTxY/MulQbsaJTtDV1HzJizgqxf2bjn65oqOm1cML/WTjbhPeZktKBURA?=
+ =?iso-8859-1?Q?qvpagtXe87Jpp54nt+O2pOV5ESclLYWbSFyCOxV534B+1/iQA9LVgKFiTE?=
+ =?iso-8859-1?Q?X8TOdDYl1WdmSm5hNxgOsHYDNHkZqDghrGAamhtIcMy7y8A51KQ83Pu3no?=
+ =?iso-8859-1?Q?8pgUzEYiPWkD2LVVRj157Ah+c4M4QkSnC/yjmdtGLdjlghKZ4TggnS8PR4?=
+ =?iso-8859-1?Q?0Bwhy8hGf+xflzXoU7Uq7C2k+zSAaqTe8prhH7IcgPzTx/BMDzId90qrrD?=
+ =?iso-8859-1?Q?PwR2WPOOEpySkrPc3kbuNFZw5Dg7gD3SQVaNUNFWv+zhfGUJxP8FIkCoHc?=
+ =?iso-8859-1?Q?1ZvHlcE6qqIbkCYLDPqc3lptjMiTbrzzJ9h2Rw9TOmAJnuJq/tj1aM609Q?=
+ =?iso-8859-1?Q?D887rfn/T2zPWdHPFnl7+PdjZlQHgTTRbrlejhwRUANqrF/8iKH4yXC7e+?=
+ =?iso-8859-1?Q?Yfez6+YgF0u0DFAoVoLm+knQVQi6BkSjB2gjZ5p9UbSlqGMtf8kkN1ADPT?=
+ =?iso-8859-1?Q?ebbvO0F2XOAMyjqxOErYW+Z5/LpWUWhrrTZzCnLcbExlMP0dLdNr5Dyklx?=
+ =?iso-8859-1?Q?LQHYGgtTbjgBDkEUUikIhh+gs8GXPWHJ9b1t44UAm2YbdnzoMkLAJ6nPs3?=
+ =?iso-8859-1?Q?99HFxITpsHfl5iS5NMoFS+26QVLFGn1qtm/UVchWNYDOuvVvKdpKk+m5J5?=
+ =?iso-8859-1?Q?XLX75GIiULnIQeitRDw7Vhf5bMdv9VrXPGXPJxsIr3LWR1SBOykvfI/3yT?=
+ =?iso-8859-1?Q?GnRtO853dctwyFs/CgIXQoLN/hWw7JuFEWt+2KHxlro0R/z6DB2bFDHxht?=
+ =?iso-8859-1?Q?JX9hhI+wp/bljyOn7pk8djW22FfG3QQiBcqjRPYk+5duDQy2b/Jynx0Baw?=
+ =?iso-8859-1?Q?7BIGa8m6d+mVmPJ1AKA9wEz+9Dlu3glq18qStCb24K25l5ZTg+mKDvv0/9?=
+ =?iso-8859-1?Q?+/udJ6vwjRbKqX7ZP4F3XKNRQu2DqHRGbgxNqBn5+EJqEWzPqR7vKYKnJG?=
+ =?iso-8859-1?Q?8R71KqQs/qwbmcZ5V4yjfylBdqGDhj4Z+Nu1WbvYts1Jqyb66aZM8o7R7I?=
+ =?iso-8859-1?Q?EKWIoFxBszIFJh18caCKCFB7wzX54O6LtKFdExSkX09XBqDb0M8NzPVlK1?=
+ =?iso-8859-1?Q?HOlMCJuCtwaU9ajD0pZbnnMVlpFl6SDJsGgzQMHY27z0CDwkn2M8xASSJo?=
+ =?iso-8859-1?Q?p00aj64fp6O7drscp/BOEqclC+u9Vc/diM/7uFeUQMDLlTt33YGoXBxGEf?=
+ =?iso-8859-1?Q?64dDy2GMpxYOSIXnfanaWmXtV1rxFACJF7y+IhwuFxboBbOcN/5c031YWK?=
+ =?iso-8859-1?Q?4gaB+X3vlvA6FQ4paFZ8/nHKOZ7Qtm5Nwk?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: in.ibm.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR15MB1150.namprd15.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa9bfcca-5f69-4a5d-a3dc-08da6a55c07b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jul 2022 13:42:55.9970
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: eebc1913-f51e-42e2-230d-08da6a559fdc
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT015.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5112
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fcf67057-50c9-4ad4-98f3-ffca64add9e9
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IzILBG2zOHPJpjj/vxJoBtx7IOiMEc2Ok8ZK/jcRDLMKMIR9ER9sMZhoihIwQGAU1WWUxlJOgY03XJDx2B5wTw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR15MB3175
+X-Proofpoint-GUID: k92eigvukG86VXH9sPMspgT6CuFwZApl
+X-Proofpoint-ORIG-GUID: k92eigvukG86VXH9sPMspgT6CuFwZApl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-20_07,2022-07-20_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ lowpriorityscore=0 impostorscore=0 spamscore=0 mlxscore=0 malwarescore=0
+ clxscore=1011 priorityscore=1501 mlxlogscore=999 bulkscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
+ definitions=main-2207200056
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/14/22 14:14, Datta, Shubhrajyoti wrote:
-> [AMD Official Use Only - General]
-> 
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Thursday, July 14, 2022 5:29 PM
->> To: Michal Simek <michal.simek@xilinx.com>; Shubhrajyoti Datta
->> <shubhrajyoti.datta@gmail.com>; Rob Herring <robh@kernel.org>; Krzysztof
->> Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Shubhrajyoti Datta <shubhraj@xilinx.com>; linux-serial@vger.kernel.org;
->> devicetree@vger.kernel.org; gregkh@linuxfoundation.org; Srinivas Goud
->> <sgoud@xilinx.com>
->> Subject: Re: [PATCH 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
->>
->> CAUTION: This message has originated from an External Source. Please use
->> proper judgment and caution when opening attachments, clicking links, or
->> responding to this email.
->>
->>
->> On 14/07/2022 12:55, Michal Simek wrote:
->>> Hi Rob and Krzysztof,
->>>
->>> On 6/14/22 14:21, Shubhrajyoti Datta wrote:
->>>>>>
->>>>    <snip>
->>>>
->>>>>
->>>>> No, I don't know what the differences are in your h/w. You have ID
->>>>> registers, but changed the IP and didn't change the ID registers?
->>>>> How has the IP changed?
->>>>>
->>>>
->>>> The IP is not changed and the ID registers are not updated.
->>>> The limitation is coming from the AXI  port that the IP is connected to.
->>>> The axi port is allowing only the 32 bit access.
->>>> The same information will be updated in the Versal TRM.
->>>
->>> Can you please give us your recommendation how to process with this?
->>
->> Unfortunately I don't think that anyone remembers context from last year,
->> especially me who was not Cced. Rob responded at end of March and it took
->> two months to get back any answer. Such slow response time from submitter
->> does not help to stay in the context. :(
-> 
-> I had to contact the hardware team and get the details on the issue it took me sometime to get a response.
-> 
-> I will summarize
-> 
-> We are using the ip from ARM but the AXI port that we hooked has a limitation that it allows only 32 bit accesses.
-> 
-> So to tide over the and differentiate  I am adding a new compatible arm,xlnx-uart.
-
-ok.
-
-Shubhrajyoti: Please send this series again with updated commit message in 1/2 
-which contains information you provided here. That means it will be v2 version.
-
-Thanks,
-Michal
-
+=0A=
+=0A=
+________________________________________=0A=
+> From: Stefan Berger <stefanb@linux.ibm.com>=0A=
+> Sent: 07 July 2022 10:50 PM=0A=
+> To: kexec@lists.infradead.org; devicetree@vger.kernel.org; linux-integrit=
+y@vger.kernel.org; linux-kernel@vger.kernel.org; linuxppc-dev@lists.ozlabs.=
+org=0A=
+> Cc: nayna@linux.ibm.com; Nageswara R Sastry; mpe@ellerman.id.au; Palmer D=
+abbelt; Rob Herring; Mimi Zohar=0A=
+> Subject: [PATCH v6 2/6] drivers: of: kexec ima: Support 32-bit platforms=
+=0A=
+=0A=
+> From: Palmer Dabbelt <palmer@rivosinc.com>=0A=
+=0A=
+> RISC-V recently added kexec_file() support, which uses enables kexec=0A=
+> IMA.  We're the first 32-bit platform to support this, so we found a=0A=
+> build bug.=0A=
+=0A=
+> Acked-by: Rob Herring <robh@kernel.org>=0A=
+> Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>=0A=
+> Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>=0A=
+> ---=0A=
+=0A=
+Tested-by: Nageswara R Sastry <rnsastry@linux.ibm.com>=
