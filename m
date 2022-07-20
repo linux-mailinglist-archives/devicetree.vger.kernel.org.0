@@ -2,167 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2291F57B194
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 09:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2C5357B1BE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 09:28:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235258AbiGTHS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 03:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38798 "EHLO
+        id S230180AbiGTH2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 03:28:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234048AbiGTHSy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 03:18:54 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A22766BB3;
-        Wed, 20 Jul 2022 00:18:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1658301532; x=1689837532;
-  h=subject:from:to:cc:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=zUPz/jNHWKV/ruP+0EbV2srSIJLyNRaeKOLx7V5MVtI=;
-  b=q5ANMqFxelHqChsVD/XZF5U3fk/9MpH/rD5kklZvx+AfUi1qOUCVrYWk
-   3rn2aWI6k73hDx0/BgfZEtQGTNOI8Xa5iD3PuA4ac+tn0F1gXoHC7JgF4
-   wblUfASk0me/jsAEjTfV2SZeWpGLYM/JxsdmArBk7k+1+G3bKBElMkfQI
-   W0jckgZXpkcggaVwTMlJxcWsy0oTeibWqXqLKUPDGuXzWoLupKbbbT09o
-   geGlhHqBL2i2P5roxT1tQ16c1erjklRwt7rB4BvWcwCwsoANTNALOJyKY
-   jnvLcWa3UnwUPJAeyD8+kYRxQcOikNpu3JeBbra1u8qbc/zEuNX1pLGrF
-   A==;
-X-IronPort-AV: E=Sophos;i="5.92,286,1650924000"; 
-   d="scan'208";a="25149610"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 20 Jul 2022 09:18:50 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Wed, 20 Jul 2022 09:18:51 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Wed, 20 Jul 2022 09:18:51 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1658301530; x=1689837530;
-  h=from:to:cc:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=zUPz/jNHWKV/ruP+0EbV2srSIJLyNRaeKOLx7V5MVtI=;
-  b=V4mmg62R7nkoZyURncAhv3CgJQA3DCzJBLpMwdTv9ZEJnPqMO+wJcP+e
-   h0BBf+YHhXiSdtU+OsdjO9oCTIVvFKH/iwkJZ/VyGG4DZ/qj+zil66Zjk
-   +kiqkq+mNl4Blod7uVz1BYXlVmwxgcuVnVIXPxyt4sll77QtT+Y7DQtrU
-   PGDExyCuJJcQShGMvmxyeF5/oFupQaygwiUL4Rp9a8mCa6Qpu0B6UEVqT
-   ZWxF2AU6myp5TJREwoMB9KnfSFcStOA7zGqqsCRS4g6DlJtitt18zBk4/
-   0Fnj+lY3yd9NhsEU6uQYvrqSxu1JsFgi5JaMqlaA6yGgf8tu7DvOQ90Z4
-   A==;
-X-IronPort-AV: E=Sophos;i="5.92,286,1650924000"; 
-   d="scan'208";a="25149609"
-Subject: Re: Re: [PATCH v2 3/3] usb: misc: onboard_usb_hub: Add TI USB8041 hub support
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 20 Jul 2022 09:18:50 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 911B4280056;
-        Wed, 20 Jul 2022 09:18:50 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Date:   Wed, 20 Jul 2022 09:18:50 +0200
-Message-ID: <3525334.R56niFO833@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <YtHFEY+iAipCROPl@google.com>
-References: <20220715073300.868087-1-alexander.stein@ew.tq-group.com> <20220715073300.868087-3-alexander.stein@ew.tq-group.com> <YtHFEY+iAipCROPl@google.com>
+        with ESMTP id S229686AbiGTH2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 03:28:23 -0400
+Received: from smtp.smtpout.orange.fr (smtp09.smtpout.orange.fr [80.12.242.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3ABA54CAF
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 00:28:21 -0700 (PDT)
+Received: from [192.168.1.18] ([90.11.190.129])
+        by smtp.orange.fr with ESMTPA
+        id E481onGS9kootE481oqtP3; Wed, 20 Jul 2022 09:28:20 +0200
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
+X-ME-Date: Wed, 20 Jul 2022 09:28:20 +0200
+X-ME-IP: 90.11.190.129
+Message-ID: <afdbabde-50e4-19f4-122c-dd2571523fdb@wanadoo.fr>
+Date:   Wed, 20 Jul 2022 09:28:17 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 4/4] leds: Add a multicolor LED driver to group
+ monochromatic LEDs
+Content-Language: fr
+To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>, pavel@ucw.cz,
+        robh+dt@kernel.org, sven.schwermer@disruptive-technologies.com,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     johan+linaro@kernel.org, marijn.suijten@somainline.org,
+        bjorn.andersson@linaro.org, andy.shevchenko@gmail.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220719191801.345773-1-jjhiblot@traphandler.com>
+ <20220719191801.345773-5-jjhiblot@traphandler.com>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20220719191801.345773-5-jjhiblot@traphandler.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 15. Juli 2022, 21:50:41 CEST schrieb Matthias Kaehlcke:
-> On Fri, Jul 15, 2022 at 09:33:00AM +0200, Alexander Stein wrote:
-> > This is a 4-port 3.0 USB hub.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > Changes in v2:
-> > * Add devtype data containing waiting times
-> > 
-> >  drivers/usb/misc/onboard_usb_hub.c | 3 +++
-> >  drivers/usb/misc/onboard_usb_hub.h | 7 +++++++
-> >  2 files changed, 10 insertions(+)
-> > 
-> > diff --git a/drivers/usb/misc/onboard_usb_hub.c
-> > b/drivers/usb/misc/onboard_usb_hub.c index 1dd7f4767def..319b4b1748fb
-> > 100644
-> > --- a/drivers/usb/misc/onboard_usb_hub.c
-> > +++ b/drivers/usb/misc/onboard_usb_hub.c
-> > @@ -339,6 +339,7 @@ static struct platform_driver onboard_hub_driver = {
-> > 
-> >  /************************** USB driver **************************/
-> >  
-> >  #define VENDOR_ID_REALTEK	0x0bda
-> > 
-> > +#define VENDOR_ID_TI		0x0451
-> > 
-> >  /*
-> >  
-> >   * Returns the onboard_hub platform device that is associated with the
-> >   USB
-> > 
-> > @@ -416,6 +417,8 @@ static const struct usb_device_id
-> > onboard_hub_id_table[] = {> 
-> >  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 */
-> >  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0414) }, /* RTS5414 USB 3.2 */
-> >  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5414) }, /* RTS5414 USB 2.1 */
-> > 
-> > +	{ USB_DEVICE(VENDOR_ID_TI, 0x8140) }, /* TI USB8041 3.0 */
-> > +	{ USB_DEVICE(VENDOR_ID_TI, 0x8142) }, /* TI USB8041 2.0 */
-> > 
-> >  	{}
-> >  
-> >  };
-> >  MODULE_DEVICE_TABLE(usb, onboard_hub_id_table);
-> > 
-> > diff --git a/drivers/usb/misc/onboard_usb_hub.h
-> > b/drivers/usb/misc/onboard_usb_hub.h index 7e743f4c8aaa..fcb6a9024bbd
-> > 100644
-> > --- a/drivers/usb/misc/onboard_usb_hub.h
-> > +++ b/drivers/usb/misc/onboard_usb_hub.h
-> > @@ -11,7 +11,14 @@ struct onboard_hub_devtype_data {
-> > 
-> >  	unsigned long reset_duration;		/* reset pulse width in 
-us */
-> >  
-> >  };
-> > 
-> > +static const struct onboard_hub_devtype_data ti_tusb8041_data = {
-> > +	.power_stable_time = 3000,
-> > +	.reset_duration = 3000,
-> 
-> Aren't these two values actually the same thing, i.e. the minimum
-> duration of the reset?
-> 
-> From the data sheet:
-> 
->   A minimum reset duration of 3 ms is required
-> 
->   td2: VDD and VDD33 stable before de-assertion of GRSTz (>= 3ms)
-> 
-> My understanding is that td2 is just another expression of the first
-> requirement.
+Hi,
 
-They may have the same values, but IMHO they are applied differently.
-'power_stable_time' (or power_stable_us now) applies after supplying power, 
-while 'reset_duration' (or reset_us now) applies when you deassert the reset 
-line. 
-For that reason I would like to keep them separated.
-
-Thanks and best regards,
-Alexander
+a few nitpick below.
 
 
+Le 19/07/2022 à 21:18, Jean-Jacques Hiblot a écrit :
+> By allowing to group multiple monochrome LED into multicolor LEDs,
+> all involved LEDs can be controlled in-sync. This enables using effects
+> using triggers, etc.
+> 
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> ---
+>   drivers/leds/rgb/Kconfig                 |   6 +
+>   drivers/leds/rgb/Makefile                |   1 +
+>   drivers/leds/rgb/leds-group-multicolor.c | 153 +++++++++++++++++++++++
+>   3 files changed, 160 insertions(+)
+>   create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
+> 
+> diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
+> index 204cf470beae..70b157d1fdca 100644
+> --- a/drivers/leds/rgb/Kconfig
+> +++ b/drivers/leds/rgb/Kconfig
+> @@ -2,6 +2,12 @@
+>   
+>   if LEDS_CLASS_MULTICOLOR
+>   
+> +config LEDS_GRP_MULTICOLOR
+> +	tristate "multi-color LED grouping Support"
+
+Why "Support" and not "support"?
+
+> +	help
+> +	  This option enables support for monochrome LEDs that are
+> +	  grouped into multicolor LEDs.
+> +
+>   config LEDS_PWM_MULTICOLOR
+>   	tristate "PWM driven multi-color LED Support"
+>   	depends on PWM
+> diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
+> index 0675bc0f6e18..4de087ad79bc 100644
+> --- a/drivers/leds/rgb/Makefile
+> +++ b/drivers/leds/rgb/Makefile
+> @@ -1,4 +1,5 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   
+> +obj-$(CONFIG_LEDS_GRP_MULTICOLOR)	+= leds-group-multicolor.o
+>   obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
+>   obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
+> diff --git a/drivers/leds/rgb/leds-group-multicolor.c b/drivers/leds/rgb/leds-group-multicolor.c
+> new file mode 100644
+> index 000000000000..be71b85edfb5
+> --- /dev/null
+> +++ b/drivers/leds/rgb/leds-group-multicolor.c
+> @@ -0,0 +1,153 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * multi-color LED built with monochromatic LED devices
+> + *
+> + * Copyright 2022 Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/led-class-multicolor.h>
+> +#include <linux/leds.h>
+> +#include <linux/math.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +
+> +struct led_mcg_priv {
+> +	struct led_classdev_mc mc_cdev;
+> +	struct led_classdev **monochromatics;
+> +};
+> +
+> +static int led_mcg_set(struct led_classdev *cdev,
+> +			  enum led_brightness brightness)
+> +{
+> +	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
+> +	struct led_mcg_priv *priv =
+> +		container_of(mc_cdev, struct led_mcg_priv, mc_cdev);
+> +	int i;
+> +
+> +	led_mc_calc_color_components(mc_cdev, brightness);
+> +
+> +	for (i = 0; i < mc_cdev->num_colors; i++) {
+> +		struct led_classdev *mono = priv->monochromatics[i];
+> +		int actual_led_brightness;
+> +
+> +		/*
+> +		 * Scale the intensity according the max brightness of the
+> +		 * monochromatic LED
+> +		 */
+> +		actual_led_brightness = DIV_ROUND_CLOSEST(
+> +			mono->max_brightness * mc_cdev->subled_info[i].brightness,
+> +			mc_cdev->led_cdev.max_brightness);
+> +
+> +		led_set_brightness(mono, actual_led_brightness);
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int led_mcg_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct led_init_data init_data = {};
+> +	struct led_classdev *cdev;
+> +	struct mc_subled *subled;
+> +	struct led_mcg_priv *priv;
+> +	int i, count, ret;
+> +	unsigned int max_brightness;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return  -ENOMEM;
+
+Extra space between "return" and "-ENOMEM".
+
+> +
+> +	dev_set_drvdata(&pdev->dev, priv);
+
+Is it needed?
+(apparently, there is no dev_get_drvdata())
+
+> +
+> +
+
+One empty line is enough.
+
+> +	count = 0;
+> +	max_brightness = 0;
+
+Could be initialized when the variable are declared, as already done 
+with "init_data". I guess it is a matter of taste.
+
+> +	for (;;) {
+> +		struct led_classdev *led_cdev;
+> +
+> +		led_cdev = devm_of_led_get(dev, count);
+> +		if (IS_ERR(led_cdev)) {
+> +			/* Reached the end of the list ? */
+> +			if (PTR_ERR(led_cdev) == -ENOENT)
+> +				break;
+> +			return dev_err_probe(dev, PTR_ERR(led_cdev),
+> +					     "Unable to get led #%d", i);
+
+"i" is not used yet. "count"?
+
+> +		}
+> +		count++;
+> +
+> +		/* Make the sysfs of the monochromatic LED read-only */
+> +		led_cdev->flags |= LED_SYSFS_DISABLE;
+> +
+> +		priv->monochromatics = devm_krealloc(dev, priv->monochromatics,
+> +					count * sizeof(*priv->monochromatics),
+> +					GFP_KERNEL);
+> +		if (!priv->monochromatics)
+> +			return -ENOMEM;
+> +
+> +		priv->monochromatics[count - 1] = led_cdev;
+> +
+> +		max_brightness = max(max_brightness, led_cdev->max_brightness);
+> +	}
+> +
+> +	subled = devm_kzalloc(dev, count * sizeof(*subled), GFP_KERNEL);
+> +	if (!subled)
+> +		return -ENOMEM;
+> +	priv->mc_cdev.subled_info = subled;
+> +
+> +	for (i = 0; i < count; i++) {
+> +		struct led_classdev *led_cdev = priv->monochromatics[i];
+> +
+> +		subled[i].color_index = led_cdev->color;
+> +		/* by default all LEDs have full intensity */
+> +		subled[i].intensity = max_brightness;
+> +
+
+Uneeded empty line.
+
+> +	}
+> +
+> +	/* init the multicolor's LED class device */
+> +	cdev = &priv->mc_cdev.led_cdev;
+> +	cdev->flags = LED_CORE_SUSPENDRESUME;
+> +	cdev->brightness_set_blocking = led_mcg_set;
+> +	cdev->max_brightness = max_brightness;
+> +	cdev->color = LED_COLOR_ID_MULTI;
+> +	priv->mc_cdev.num_colors = count;
+> +
+> +	init_data.fwnode = of_fwnode_handle(dev_of_node(dev));
+> +	ret = devm_led_classdev_multicolor_register_ext(dev, &priv->mc_cdev,
+> +							&init_data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +			"failed to register multicolor led for %s: %d\n",
+> +			cdev->name, ret);
+
+No need to add 'ret' in the message, dev_err_probe() already display it.
+
+> +
+> +	ret = led_mcg_set(cdev, cdev->brightness);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to set led value for %s: %d",
+> +				     cdev->name, ret);
+
+same here.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id of_led_mcg_match[] = {
+> +	{ .compatible = "leds-group-multicolor" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, of_led_mcg_match);
+> +
+> +static struct platform_driver led_mcg_driver = {
+> +	.probe		= led_mcg_probe,
+> +	.driver		= {
+> +		.name	= "leds_group_multicolor",
+> +		.of_match_table = of_led_mcg_match,
+> +	}
+> +};
+> +module_platform_driver(led_mcg_driver);
+> +
+> +MODULE_AUTHOR("Jean-Jacques Hiblot <jjhiblot@traphandler.com>");
+> +MODULE_DESCRIPTION("multi-color LED group driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_ALIAS("platform:leds-group-multicolor");
 
