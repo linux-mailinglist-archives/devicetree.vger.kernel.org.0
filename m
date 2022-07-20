@@ -2,213 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6F057B86A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DECF57B8B1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:44:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232744AbiGTO0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 10:26:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41278 "EHLO
+        id S231152AbiGTOoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 10:44:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234372AbiGTO0Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:26:25 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2080.outbound.protection.outlook.com [40.107.92.80])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6B2118B16;
-        Wed, 20 Jul 2022 07:26:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=esLUyrYhbCPwqVlxFLA4dysmce2IcQtXCaDm5YW4oMPCnWb4yVbk/5s8qBWSDwU3yAHrPjVYTj2SbaRCpbpEjGW/E/CqEJSnbhgc1/EzodJVDrndO6hfJJXSzPyPQudeorAi+sPEoj+mkOpM+Tg42GjpNbqIIEqutXiEKcP9nf6xeE8IcuN6HA8jAtaLseMxI74ieCiyC5hFto0hQkDb5cglgy+IHC/shc1uN/pH7897Bt5+Ap5+D09j818AnWcSCdQapducUWRvYPT1sFYF+joezv+9WLBhOm9rnYJ/9ZvWrzboC4wh+vl/liCuEyhNZkrDW8qQVzXjaas4I2CmWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iLc0Bigpsyk6pzFgqGGXXuFvXixJ4mMfmAr3UlDDqtg=;
- b=EBA9O63uFuCFUMPAzbyUwgpcg6oJr/XGMHGdVo1n4t6X6/cKp6y5qV8jbDThGABGpQLmxHbWHlmOwCMqfeaM0YmftqUVDnYzdxtzDZF7AtMe/7VgOe1NjWujUT1vUU2Wzj5sFHXNFZyEqI0HjOSeongTfcNfmoxAuP3fszVzWK4Ee+DUHZ5E0WljzuyKHC2nQ5VwYE7Y76uu2a30jfJkKlKOC8XIKL73dmS6/h5pbKlZJIy/sg/uD6Y+yOi6Vjzdl7vtjlfqyhOwM1HnP0y0VCb1Myoakhq5CiwT8PHV4zqVa2kpCSOz0NueF6UzQx2P28sIY9oSHS2Lua6d0OHF5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        with ESMTP id S229458AbiGTOoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:44:15 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE8454F18E
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:44:12 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id d12so30600144lfq.12
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:44:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iLc0Bigpsyk6pzFgqGGXXuFvXixJ4mMfmAr3UlDDqtg=;
- b=GhZRMgAk3Upc6oQk3OosPo8KDRWTC+FCNnSUmtb8yzjkXQrVJ+9C+k3VPjNRpWvBIPVziLQE/B3SqQ0HbSiY0SWaHVX3wEiro4RGsr6sD8toqWAFXNbN8jfMHU70gDdF2SGi+hpn+0YwRXodLNPzv3cMxkoO461f78t+2h6nQfM=
-Received: from DM6PR02CA0134.namprd02.prod.outlook.com (2603:10b6:5:1b4::36)
- by SA0PR02MB7418.namprd02.prod.outlook.com (2603:10b6:806:e0::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.18; Wed, 20 Jul
- 2022 14:26:22 +0000
-Received: from DM3NAM02FT030.eop-nam02.prod.protection.outlook.com
- (2603:10b6:5:1b4:cafe::1a) by DM6PR02CA0134.outlook.office365.com
- (2603:10b6:5:1b4::36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.21 via Frontend
- Transport; Wed, 20 Jul 2022 14:26:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com; pr=C
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT030.mail.protection.outlook.com (10.13.4.160) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5458.17 via Frontend Transport; Wed, 20 Jul 2022 14:26:22 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 20 Jul 2022 07:26:20 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 20 Jul 2022 07:26:20 -0700
-Envelope-to: git@xilinx.com,
- linux-serial@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org,
- gregkh@linuxfoundation.org,
- robh+dt@kernel.org,
- devicetree@vger.kernel.org
-Received: from [10.140.6.59] (port=55844 helo=xhdshubhraj40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <shubhrajyoti.datta@xilinx.com>)
-        id 1oEAeZ-0000jg-V7; Wed, 20 Jul 2022 07:26:20 -0700
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-To:     <linux-serial@vger.kernel.org>
-CC:     <git@xilinx.com>, <shubhrajyoti.datta@xilinx.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v2 2/2] serial: pl011: Add support for Xilinx Uart
-Date:   Wed, 20 Jul 2022 19:56:12 +0530
-Message-ID: <20220720142612.19779-3-shubhrajyoti.datta@xilinx.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220720142612.19779-1-shubhrajyoti.datta@xilinx.com>
-References: <20220720142612.19779-1-shubhrajyoti.datta@xilinx.com>
+        d=melexis.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qYop0Q3YsZPRiQBkv4mH/kYdEP3zP/NhYxYEW6Hu8u0=;
+        b=LhL+06RLWqB+zcRKVLljz5Cxxy9rs027CUfHw0JoxBK9GBVCysu6sVzMOgZ+tdS1i3
+         IL+kp8bOSX10hN9ZWnA76H5+U12zpJ2aXbefBxVGTcmDoBYOk9FLWgw68ji18H48uQ1k
+         koSQLddg4+v4mdQGaZooJYT+DkzIgxWO5C5WNR/zRwEGYIgumbLjsNaM+ggmarRljmti
+         ith3soJTg15K0pPCXjcyTiPCB6Ij3hqCQN5A8dEL/12G32H02ImIDUYpFFlpSEuuWosV
+         fyvhmojdYFKvh9INnftjp+QbG6FicBBJzYlMNGP2v5SyQtZ4kzbzMyjrATkGf/dRpCZV
+         Nqew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qYop0Q3YsZPRiQBkv4mH/kYdEP3zP/NhYxYEW6Hu8u0=;
+        b=0EfrlOCZuzDOzqOIYoVWg3ojHgj702l2LijLG+UV+hZ1oEBHNUbhSmYrJA2q1G3lFF
+         5koG2gBDCVtqwGChZ8a/N/DoIrR5EEryQ3PlN3FP8XVnqNS6fDdYaZpSSAGNq49rZkQ/
+         CbToCYbPi4o8eYSHJpo9T6Ib4YAVre2vJcA2LtpM2qJGna8JbSMq28hB2K1GV+BStynz
+         9bzWBrckSCNiCkqnin3hyVBhx13Cem4w23TAsQ6g85qMuAkTv7aWbY0RQwDxrVg71lwJ
+         f0mN3bBd183jfJ0euh9k3vogHI5ZLeMWV5R1XBOTt9nnWmLBeYz3E08KW9E98K8le4J2
+         rmQA==
+X-Gm-Message-State: AJIora8+d5hMERnm5WhbV/glrvFPsH7KJ01Y2tLWaQ/nkBJfaw0jrFVy
+        dwYuSGTRuunCgpzZShxuzn4zlA==
+X-Google-Smtp-Source: AGRyM1vOALFdKXhLuw23vq4VaTxl8MbuuhTUcFMG18pPRoyfz/Yw4jAuTHlpp5pZScWpyNxL8kZ2Kg==
+X-Received: by 2002:a05:6512:39cc:b0:48a:2c31:8feb with SMTP id k12-20020a05651239cc00b0048a2c318febmr11642658lfu.660.1658328251083;
+        Wed, 20 Jul 2022 07:44:11 -0700 (PDT)
+Received: from melexis.com ([194.44.50.51])
+        by smtp.gmail.com with ESMTPSA id r28-20020ac25c1c000000b0048910301774sm3824817lfp.307.2022.07.20.07.44.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jul 2022 07:44:10 -0700 (PDT)
+Date:   Wed, 20 Jul 2022 17:44:05 +0300
+From:   Volodymyr Kharuk <vkh@melexis.com>
+To:     Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] media: uapi: Add mlx7502x header file
+Message-ID: <20220720144405.GA45183@melexis.com>
+References: <cover.1657786765.git.vkh@melexis.com>
+ <0765b2ef8eea43dce67232a109e9f8b338aa06bd.1657786765.git.vkh@melexis.com>
+ <Ys/wh1wUvQlmpHrg@pendragon.ideasonboard.com>
+ <20220715085720.GA2295@vkh-ThinkPad-T490>
+ <YtE1EgvDpfLdbWnD@pendragon.ideasonboard.com>
+ <20220715150329.GA14041@vkh-ThinkPad-T490>
+ <d8868819-9807-f880-db9b-f2631c3ff5d3@foss.st.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 95942d39-92d2-4fb9-b71e-08da6a5bd218
-X-MS-TrafficTypeDiagnostic: SA0PR02MB7418:EE_
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: q7LTyMfJ8D6RL/fO/R9S6ECCwszlvNl5iXR3ORTT1d5FMnEvJSbEscUQiZ18pKDPL70nXy+P73dH711CqvyOryA4WbCdPAYLDUXqJEPjhEYWGE74WJoukOHgQuCZJlhDMcSnSwnEPmcZ7uQ0lmixh2YmhTjQJZVzHM9+v+v/nOvQQAOCFoF9710T8Jv23ZrZtkLMdWS71Dt433J1/M949TQDYjXzIMvLI6maZjVFmu8c04T09XWpp3kv/Oh8Z4QjTQ0Kl6tBhmuXCImI1mJEYV0g0DnHJFc3HRNEUxGj45erSTgh7Xp6AIIO06STKDC0tFyPuZ1kwFVjDyr8SPrJUJVRbApK2THw+KiyySAuyBAzayHaH+WYetC8vIpeGSxsacZts6UBzt1NgYRmrvKzoIJkWgtLlNEwpGsepCBB3MO4TWaTeTwVLz55LnsNKE3aRtOaifbLnYVPBml3JYzmTfUAL2ISZ1SaKkSFglnYmW71TtpMfRSZ+IURvdtzOafurOwPNWVptmkYD5O0kZvO1OZHv4d9fVEz8hqKSC1BqSkLJxr6Ibr7XL8TR09QXm7i2v3/So3/KGqV2nL0r5u9qFzDC+1ofqf7OJ+b7O02GacPumLOBx38/gKIh4jiG7c/mpvNhlBJ2GEP/qatlmCvzzuHGiDkQx0sszYkuveYo70WUdpseEne2wTxJqdtRqb+nvMA7Ei11BjNq2/f2XZ4rLqPRa75ShmLm1Nz33xs6Mv/bujR5oAbIU1kBmJhKjMa6UOE4sqCH4UbaYy2d5aE2K7t77FzNXPXJjgKcHaMe885PMikME4hEmCPn1MxTwagtXAmSB+LjmFeLwMLx/6VMQ==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230016)(4636009)(376002)(136003)(39860400002)(396003)(346002)(40470700004)(46966006)(36840700001)(70206006)(40460700003)(54906003)(316002)(336012)(6916009)(26005)(36860700001)(426003)(8676002)(47076005)(83380400001)(70586007)(82310400005)(36756003)(40480700001)(4326008)(44832011)(2906002)(186003)(6666004)(9786002)(8936002)(7696005)(41300700001)(478600001)(1076003)(2616005)(7636003)(82740400003)(356005)(5660300002)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2022 14:26:22.4812
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95942d39-92d2-4fb9-b71e-08da6a5bd218
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT030.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR02MB7418
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d8868819-9807-f880-db9b-f2631c3ff5d3@foss.st.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
+Hi Benjamin,
 
-The xilinx uart used in Versal SOC follows arm pl011 implementation
-with just a minor change in data bus width. The minimum data
-transaction width in Versal SOC is 32-bit as specified in the
-TRM (Chapter 39: Transaction attributes). Pl011 defaults to 16-bit
-in the driver.
-So, add the xilinx uart as platform device with properties specified
-in 'vendor_data' structure.
+On Tue, Jul 19, 2022 at 05:20:40PM +0200, Benjamin Mugnier wrote:
+> Hi Volodymyr,
+> 
+> 
+> On 15/07/2022 17:03, Volodymyr Kharuk wrote:
+> > On Fri, Jul 15, 2022 at 12:36:18PM +0300, Laurent Pinchart wrote:
+> >> Hello,
+> >>
+> >> CC'ing Benjamin Mugnier who I recall expressed an interest in ToF
+> >> sensors (if I recall incorrectly, my apologies).
+> 
+> I am indeed very interested. Thank you :)
+> 
+> >>
+> >> On Fri, Jul 15, 2022 at 11:57:20AM +0300, Volodymyr Kharuk wrote:
+> >>> On Thu, Jul 14, 2022 at 01:31:35PM +0300, Laurent Pinchart wrote:
+> >>>> On Thu, Jul 14, 2022 at 11:34:46AM +0300, Volodymyr Kharuk wrote:
+> >>>>> Define user controls for mlx7502x driver and update MAINTAINERS
+> >>>>>
+> >>>>> Signed-off-by: Volodymyr Kharuk <vkh@melexis.com>
+> >>>>> ---
+> >>>>>  MAINTAINERS                   |  7 +++++++
+> >>>>>  include/uapi/linux/mlx7502x.h | 31 +++++++++++++++++++++++++++++++
+> >>>>>  2 files changed, 38 insertions(+)
+> >>>>>  create mode 100644 include/uapi/linux/mlx7502x.h
+> >>>>>
+> >>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+> >>>>> index ef3ec334fae9..1a68d888ee14 100644
+> >>>>> --- a/MAINTAINERS
+> >>>>> +++ b/MAINTAINERS
+> >>>>> @@ -12673,6 +12673,13 @@ S:	Supported
+> >>>>>  W:	http://www.melexis.com
+> >>>>>  F:	drivers/iio/temperature/mlx90632.c
+> >>>>>  
+> >>>>> +MELEXIS MLX7502X DRIVER
+> >>>>> +M:	Volodymyr Kharuk <vkh@melexis.com>
+> >>>>> +L:	linux-media@vger.kernel.org
+> >>>>> +S:	Supported
+> >>>>> +W:	http://www.melexis.com
+> >>>>> +F:	include/uapi/linux/mlx7502x.h
+> >>>>> +
+> >>>>>  MELFAS MIP4 TOUCHSCREEN DRIVER
+> >>>>>  M:	Sangwon Jee <jeesw@melfas.com>
+> >>>>>  S:	Supported
+> >>>>> diff --git a/include/uapi/linux/mlx7502x.h b/include/uapi/linux/mlx7502x.h
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..44386f3d6f5a
+> >>>>> --- /dev/null
+> >>>>> +++ b/include/uapi/linux/mlx7502x.h
+> >>>>> @@ -0,0 +1,31 @@
+> >>>>> +/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+> >>>>> +/*
+> >>>>> + * Melexis 7502x ToF cameras driver.
+> >>>>> + *
+> >>>>> + * Copyright (C) 2021 Melexis N.V.
+> >>>>> + *
+> >>>>> + */
+> >>>>> +
+> >>>>> +#ifndef __UAPI_MLX7502X_H_
+> >>>>> +#define __UAPI_MLX7502X_H_
+> >>>>> +
+> >>>>> +#include <linux/v4l2-controls.h>
+> >>>>> +
+> >>>>
+> >>>> These controls should be documented, in
+> >>>> Documentation/userspace-api/media/drivers/.
+> >>>
+> >>> Ok, will do in v3
+> >>>
+> >>>>> +/* number of phases per frame: 1..8 */
+> >>>>> +#define V4L2_CID_MLX7502X_PHASE_NUMBER  (V4L2_CID_USER_MLX7502X_BASE + 0)
+> >>>>> +/* shift of each phase in frame, this is an array of 8 elements, each 16bits */
+> >>>>> +#define V4L2_CID_MLX7502X_PHASE_SEQ	(V4L2_CID_USER_MLX7502X_BASE + 1)
+> >>>>> +/* frequency modulation in MHz */
+> >>>>> +#define V4L2_CID_MLX7502X_FMOD		(V4L2_CID_USER_MLX7502X_BASE + 2)
+> >>>>> +/* time integration of each phase in us */
+> >>>>> +#define V4L2_CID_MLX7502X_TINT		(V4L2_CID_USER_MLX7502X_BASE + 3)
+> >>>>
+> >>>> Are these control very device-specific, or are they concept that apply
+> >>>> in general to ToF sensors ? Same for V4L2_CID_MLX7502X_OUTPUT_MODE.
+> >>>
+> >>> These controls(except V4L2_CID_MLX7502X_OUTPUT_MODE) are general for ToF
+> >>> sensors. Do you think we should standardize them?
+> >>
+> >> I would really really like to see control standardization for ToF
+> >> sensors, yes :-)
+> > Sounds great :)
+> 
+> Thanks a lot for your efforts in standardizing these controls. This is pretty close to what I expected :)
+> 
+> Sensors may require multiple fmod from the user, and may not be able to deduce them from a single one.
+> Subframes may be acquired for each fmod (composed themselves of acquisitions for each phase), and then generate a frame from these.
+> Here is a quick drawing example with 2 fmod and 2 phases. Hope this makes sense.
+> 
+> |-------------------------------------------------------------------------> time
+> |FMOD1 PHASE1|FMOD1 PHASE2|FMOD2 PHASE1|FMOD2 PHASE2|FMOD1 PHASE1|...
+> |         SUBFRAME1       |         SUBFRAME2       |
+> |                       FRAME1                      |
+Just to be clear: one camera trigger generates one frame.
+The number of subframes can be configured via register.
+One phase generates one image. Do we have the same understanding?
+> 
+> This allows greater ranges.
+> I suggest changing V4L2_CID_MLX7502X_FMOD to an array, if it suits you.
+> I'm curious how are you doing this? Are you using only one fmod or do you compute some others from the first one? Either in the driver or the sensor.
+The mlx7502x supports only one fmod per frame. Instead it is possible to use
+a few phase shifts(V4L2_CID_MLX7502X_PHASE_SEQ) per one frame. Using
+cross-correlation it is possible to calculate the distance from received images.
+> 
+> >>
+> >> Do you know of any public litterature that explains the operating
+> >> principles of ToF sensors ? I don't expect most of the V4L2 developers
+> >> to be familiar with the concept, so something that could bring us up to
+> >> speed on ToF would be useful for the discussion.
+> > 
+> > Here what I have:
+> > 1. ToF Basics from Melexis
+> > https://media.melexis.com/-/media/files/documents/application-notes/time-of-flight-basics-application-note-melexis.pdf
+> > 2. ToF Basics from TI
+> > https://www.ti.com/lit/wp/sloa190b/sloa190b.pdf?ts=1657842732275&ref_url=https%253A%252F%252Fwww.google.com%252F
+> > 2. ToF systems from TI
+> > https://www.ti.com/lit/ug/sbau219d/sbau219d.pdf
+> > 4. This more related to ToF algorithms
+> > https://hal.inria.fr/hal-00725654/document
+> > 
+> > I hope it helps.
+> >>
+> >>> Note that the control V4L2_CID_MLX7502X_TINT is similar to
+> >>> V4L2_CID_EXPOSURE, but the way it is done in ToF is different. They don't
+> >>> have a shutter. So I gave a separate control name. Is it ok?
+> >>
+> >> Yes, I think that's fine.
+> >>
+> 
+> Having only one integration time control is problematic for HDR sensors as they require both a short and long integration time setting.
+> I have the same issue for the vgxy61 camera with V4L2_CID_EXPOSURE and ended up defining 2 custom controls for both short and long exposure, but I understand this is not ideal. Maybe Laurent have an idea on this?
+It is possible to have integration time per phase. For now I just copy tint into all phase registers.
+> 
+> >>>>> +/* mode could sw(sending i2c packet), hw(pin triggering), and continuous(self triggering) */
+> >>>>> +#define V4L2_CID_MLX7502X_TRIGGER_MODE	(V4L2_CID_USER_MLX7502X_BASE + 4)
+> >>>>> +/* in case sw or hw trigger mode is used */
+> >>>>> +#define V4L2_CID_MLX7502X_TRIGGER	(V4L2_CID_USER_MLX7502X_BASE + 5)
+> >>>>
+> >>>> Trigger control is likely something we need to standardize at the V4L2
+> >>>> level.
+> >>>
+> >>> Ok, then I'll remove these controls for now and I will back with this as
+> >>> a separate patch.
+> >>>
+> >>>>> +/* this is related to the taps in ToF cameras, usually A minus B is the best option */
+> >>>>> +#define V4L2_CID_MLX7502X_OUTPUT_MODE	(V4L2_CID_USER_MLX7502X_BASE + 6)
+> >>>>> +/* ToF camers has its own temperature sensor, which can be read out only during streaming */
+> >>>>> +#define V4L2_CID_MLX7502X_TEMPERATURE	(V4L2_CID_USER_MLX7502X_BASE + 7)
+> >>>>
+> >>>> This should probably use the proposed temperature control from
+> >>>> https://lore.kernel.org/linux-media/20220415111845.27130-3-benjamin.mugnier@foss.st.com/
+> >>>
+> >>> Ok, then I'll remove these controls for now.
+> >>>
+> 
+> We discussed the standardization of the temperature control with linux-hwmon subsystem team [1].
+> As this happened to be a trickier problem than I thought, I decided to remove the temperature control I initially proposed. You can find the v3 of the vgxy61 without the temperature control [2].
+> 
+> So no temperature control for now. I plan on giving it another go after the vgxy61 is accepted, but for now the simpler the better.
+> Of course feel free to do it, I'll gratefully rebase on your work ;)
+> 
+> [1] https://lore.kernel.org/linux-media/d4c868d5ef05f338bdc2237d9b9304077d268c8b.camel@ndufresne.ca/
+> [2] https://lore.kernel.org/all/20220512074037.3829926-1-benjamin.mugnier@foss.st.com/
+> 
+> >>>>> +
+> >>>>> +#endif /* __UAPI_MLX7502X_H_ */
+> >>
+> >> -- 
+> >> Regards,
+> >>
+> >> Laurent Pinchart
+> > 
 
-Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
----
- drivers/tty/serial/amba-pl011.c | 33 +++++++++++++++++++++++++++++++--
- 1 file changed, 31 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/tty/serial/amba-pl011.c b/drivers/tty/serial/amba-pl011.c
-index 97ef41cb2721..096a56f64d17 100644
---- a/drivers/tty/serial/amba-pl011.c
-+++ b/drivers/tty/serial/amba-pl011.c
-@@ -152,6 +152,21 @@ static const struct vendor_data vendor_sbsa = {
- 	.fixed_options		= true,
- };
- 
-+static const struct vendor_data vendor_xlnx = {
-+	.reg_offset             = pl011_std_offsets,
-+	.ifls                   = UART011_IFLS_RX4_8 | UART011_IFLS_TX4_8,
-+	.fr_busy                = UART01x_FR_BUSY,
-+	.fr_dsr                 = UART01x_FR_DSR,
-+	.fr_cts                 = UART01x_FR_CTS,
-+	.fr_ri                  = UART011_FR_RI,
-+	.access_32b             = true,
-+	.oversampling           = false,
-+	.dma_threshold          = false,
-+	.cts_event_workaround   = false,
-+	.always_enabled         = true,
-+	.fixed_options          = false,
-+};
-+
- #ifdef CONFIG_ACPI_SPCR_TABLE
- static const struct vendor_data vendor_qdt_qdf2400_e44 = {
- 	.reg_offset		= pl011_std_offsets,
-@@ -2581,6 +2596,7 @@ static int __init pl011_early_console_setup(struct earlycon_device *device,
- }
- OF_EARLYCON_DECLARE(pl011, "arm,pl011", pl011_early_console_setup);
- OF_EARLYCON_DECLARE(pl011, "arm,sbsa-uart", pl011_early_console_setup);
-+OF_EARLYCON_DECLARE(pl011, "arm,xlnx-uart", pl011_early_console_setup);
- 
- /*
-  * On Qualcomm Datacenter Technologies QDF2400 SOCs affected by
-@@ -2824,6 +2840,7 @@ static int sbsa_uart_probe(struct platform_device *pdev)
- {
- 	struct uart_amba_port *uap;
- 	struct resource *r;
-+	int xlnx_uart = 0;
- 	int portnr, ret;
- 	int baudrate;
- 
-@@ -2834,6 +2851,7 @@ static int sbsa_uart_probe(struct platform_device *pdev)
- 	if (pdev->dev.of_node) {
- 		struct device_node *np = pdev->dev.of_node;
- 
-+		xlnx_uart = of_device_is_compatible(np, "arm,xlnx-uart");
- 		ret = of_property_read_u32(np, "current-speed", &baudrate);
- 		if (ret)
- 			return ret;
-@@ -2863,13 +2881,23 @@ static int sbsa_uart_probe(struct platform_device *pdev)
- #endif
- 		uap->vendor = &vendor_sbsa;
- 
-+	uap->port.ops   = &sbsa_uart_pops;
-+
-+	if (xlnx_uart) {
-+		uap->vendor = &vendor_xlnx;
-+		uap->clk = devm_clk_get(&pdev->dev, NULL);
-+		if (IS_ERR(uap->clk))
-+			return PTR_ERR(uap->clk);
-+
-+		uap->port.ops = &amba_pl011_pops;
-+	}
-+
- 	uap->reg_offset	= uap->vendor->reg_offset;
- 	uap->fifosize	= 32;
- 	uap->port.iotype = uap->vendor->access_32b ? UPIO_MEM32 : UPIO_MEM;
--	uap->port.ops	= &sbsa_uart_pops;
- 	uap->fixed_baud = baudrate;
- 
--	snprintf(uap->type, sizeof(uap->type), "SBSA");
-+	snprintf(uap->type, sizeof(uap->type), "%s\n", (xlnx_uart ? "xlnx_uart" : "SBSA"));
- 
- 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 
-@@ -2893,6 +2921,7 @@ static int sbsa_uart_remove(struct platform_device *pdev)
- 
- static const struct of_device_id sbsa_uart_of_match[] = {
- 	{ .compatible = "arm,sbsa-uart", },
-+	{ .compatible = "arm,xlnx-uart", },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, sbsa_uart_of_match);
 -- 
-2.17.1
-
+--
+BR,
+Volodymyr Kharuk
