@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F36E57B9C1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 17:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6257957BB26
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 18:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240841AbiGTPc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 11:32:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39788 "EHLO
+        id S229458AbiGTQNW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 12:13:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235145AbiGTPcJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 11:32:09 -0400
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6620864E05
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:32:00 -0700 (PDT)
-Received: by mail-ot1-x334.google.com with SMTP id y10-20020a9d634a000000b006167f7ce0c5so14414034otk.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:32:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5Gts3SkxMfRCeWEaR7qTqMqrF0wVdIlYu4fKNG/TUSM=;
-        b=RWelVE9974bNp9m3pFJz7791s7qoOt7Jl8NIyojioJBSM44T6k9DYtVLZdEpF79fvf
-         9WBHIkxYFDpQCod0LhpSuEfsmJsILwiLfuQ+GTYvWcONHkmyITEXGppb9z2HaRQ2XKa5
-         XDlYq5W5mdjT3Suj6UcWe2AokuSqgUiPLV9rXTHMsARWI+UzXDV6kIj2dw3YVu4wPAdL
-         a8P3LGSXRZHfb0EikLtkZFFepteNeYn1yzbBO/PgykZlPj0fPhbGDeTG/LfnQwDi/l6x
-         rUVwt9g05KqGPa/ogBT2XmGnp/M1zr1rx+PGrMQyBInm/g+k0mZXhlrRUsnWq8Fq25Wx
-         gL1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5Gts3SkxMfRCeWEaR7qTqMqrF0wVdIlYu4fKNG/TUSM=;
-        b=0K82MqG8JU71/F6FnIe9kWSFaBro9NcoPDs0k1SCiYqFsX39eHBq4xnziHQ++Ar+az
-         eHKL3tLhKF2YQMhRL9BTEhWg32gBqkG/Jy7UkTDnTQFtsklWy1MtR6JnZeh90Kmza7vA
-         +gHM+0OBkrQ3yHn2R1d15p9R3JewNOGBfmGxQ816YEEVmVtf2BX1zvHuI88umHnByS5z
-         pnAA3AvBDJwocj3gFAuo9FQnnlvE8euRYf9et8sizP8QLi/rUHZ8m6yxWtZd8r3yu9J6
-         5JK9wO/P76QgeJW4GnzfzFOY3JoV16/xeBjHuBi6Rpj1A6njbGsjEHK/urmJPj4AZbQB
-         b7uw==
-X-Gm-Message-State: AJIora+ekiCsy1GFMRVg0TZOKWn34JSN/iNAXWpfl9AkykpROJ5kV87E
-        g2UMLtp5tT5uoRjs27dvARaBhQSjfiFDnA==
-X-Google-Smtp-Source: AGRyM1sX7inWVCmOmXT72qY6COXELb48tpYUrB37O+9QgSQs/whECkwaW6oNpLLcvHmTkIgkUs+MkA==
-X-Received: by 2002:a05:6830:2906:b0:60c:2d64:976 with SMTP id z6-20020a056830290600b0060c2d640976mr16226529otu.320.1658331119551;
-        Wed, 20 Jul 2022 08:31:59 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l35-20020a0568302b2300b0061ca7aa0cc8sm3053964otv.50.2022.07.20.08.31.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 08:31:59 -0700 (PDT)
-Date:   Wed, 20 Jul 2022 10:31:57 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [GIT PULL] dt-bindings: qcom for v5.20, version 2
-Message-ID: <Ytgf7ejB/2usK4uW@builder.lan>
-References: <20220628092253.21905-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229663AbiGTQNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 12:13:21 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F8A952FCF;
+        Wed, 20 Jul 2022 09:13:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 05C1161D3F;
+        Wed, 20 Jul 2022 16:13:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1155AC3411E;
+        Wed, 20 Jul 2022 16:13:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658333599;
+        bh=azV4rh1tEUOtwWZ2k2aBfyGO80U70CDuAQhKmnY7ZKk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EeYPcSugudjlBWfAxIxhS/y+sDO1CCygJN/OTX4NYpdkO48bFcLdvojgNscHQtdmO
+         KIGkv7FqwfAXkiElizH3BulePE15ai1LQkaJ57QKace1gYbv3URSk4hXk5mQpP5xuA
+         NyW50165+EVAxLaMbxviS7xK6t23lI17H2vGPHV0h5w3omqUPqsl6mWWd4i+bMKxjh
+         Lvfl2QitS6R6rVZFkC5KjyqUOgeukl15ePHNOaKUbpQmOjEWZ/7byJkg5AnkZ1K6+8
+         M3DDpv38cQiqO+h1kdj3sGhphMwlWpPemE83Y3oFVZ7oFXVhTtxozaHUyyMj7Gq0jJ
+         Fsp2oyO1xweXA==
+Received: by pali.im (Postfix)
+        id E1729797; Wed, 20 Jul 2022 18:13:15 +0200 (CEST)
+Date:   Wed, 20 Jul 2022 18:13:15 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Mauri Sandberg <maukka@ext.kapsi.fi>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/2] PCI: mvebu: add support for orion5x
+Message-ID: <20220720161315.rr4ujakl7akm7pur@pali>
+References: <20220718202843.6766-1-maukka@ext.kapsi.fi>
+ <20220718202843.6766-4-maukka@ext.kapsi.fi>
+ <CAK8P3a042yoLR0eqt4Bm0KH4X9SJhUsjKDh1S9M+MF6mU1mPNw@mail.gmail.com>
+ <20220719094649.pzyrqdvm3fm5fqh2@pali>
+ <CAK8P3a1RpMQ5zdiH_jkydxDOCm6WyD7qqdN+5T+503tN4SnOqw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220628092253.21905-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAK8P3a1RpMQ5zdiH_jkydxDOCm6WyD7qqdN+5T+503tN4SnOqw@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,70 +73,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 28 Jun 04:22 CDT 2022, Krzysztof Kozlowski wrote:
-[..]
-> The following changes since commit f2906aa863381afb0015a9eb7fefad885d4e5a56:
+On Tuesday 19 July 2022 12:16:34 Arnd Bergmann wrote:
+> On Tue, Jul 19, 2022 at 11:46 AM Pali Rohár <pali@kernel.org> wrote:
+> > On Tuesday 19 July 2022 10:05:28 Arnd Bergmann wrote:
+> > > > +/* Relevant only for Orion-1/Orion-NAS */
+> > > > +#define ORION5X_PCIE_WA_PHYS_BASE      0xf0000000
+> > > > +#define ORION5X_PCIE_WA_VIRT_BASE      IOMEM(0xfd000000)
+> > >
+> > > You should not need to hardcode these here. The ORION5X_PCIE_WA_PHYS_BASE
+> > > should already be part of the DT binding.
+> >
+> > Of course! But the issue is that we do not know how to do this DT
+> > binding. I have already wrote email with asking for help in which
+> > property and which format should be this config range defined, but no
+> > answer yet: https://lore.kernel.org/linux-pci/20220710225108.bgedria6igtqpz5l@pali/
 > 
->   Linux 5.19-rc1 (2022-06-05 17:18:54 -0700)
+> Ah, I had not seen that email. Quoting from there:
 > 
-> are available in the Git repository at:
+> > So my question is: How to properly define config space range in device
+> > tree file? In which device tree property and in which format? Please
+> > note that this memory range of config space is PCIe root port specific
+> > and it requires its own MBUS_ID() like memory range of PCIe MEM and PCIe
+> > IO mapping. Please look e.g. at armada-385.dtsi how are MBUS_ID() used:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/armada-385.dtsi
 > 
->   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git tags/dt-bindings-qcom-5.20-2
+> This is probably a question for Rob as the mvebu driver is a rather special
+> case. Normally this would just be a 'reg' property of the host bridge,
+> but I think
+> in your case the root device is imaginary, and the ports under it are the
+> actual hardware devices
+
+yes
+
+> so you'll probably have to do the same thing as
+> the armada-385, translating the mbus ranges for the config space in the
+> "ranges" property of the parent
+
+Problem is that "ranges" in PCIe are used for specifying MEM and IO
+mappings and kernel PCI code does not allow any other type.
+
+> and then referring to them by PCI
+> MMIO addresses using the assigned-addresses property to pass the
+> config-space registers as a second set of registers in addition to the
+> first set.
+
+It is more complicated. PCIe MEM and IO memory ranges are defined in
+"soc" node in "pcie-mem-aperture" and "pcie-io-aperture" properties.
+These ranges are shared across all PCIe controllers and assigning slices
+of these ranges to specific devices is done later by dynamic allocation.
+"soc" node is bind to mbus driver (which parse these properties) and
+provides API for other kernel drivers for dynamic allocation of memory
+from pcie aperture. In pcie node is just indirect reference to PCIe MEM
+and IO via MBUS_ID() macro and it is pci-mvebu.c driver who ask mbus
+driver for PCIe MEM and IO dynamic allocation.
+
+So because PCIe config space is not of type PCIe MEM nor PCIe IO
+(obviously) it cannot use "ranges" property. Because DT pcie nodes use
+"reg" property for specifying BDF address, we cannot use neither "reg"
+property for specifying memory range of PCIe config space.
+
+And here I'm lost.
+
+My guess is that proper way is to define "pcie-cfg-aperture" in "soc"
+node where would be defined physical address range without any binding
+to controller, then extend mbus driver to export API also for PCIe CFG
+and add code which dynamically assign slice of this range to some
+controller. And then use this new API by pci-mvebu.c to access config
+space. But pci-mvebu.c needs to know MBUS_ID() attributes which needs to
+be defined somewhere in pcie DT node...
+
+> > > There is little practical difference
+> > > here, but I see no value in taking the shortcut here either.
+> > >
+> > > For the ORION5X_PCIE_WA_VIRT_BASE, you rely on this to match the
+> > > definition in arch/arm/mach-orion5x/common.c, and this is rather fragile.
+> > >
+> > > Instead, please use ioremap() to create a mapping at runtime. The ioremap()
+> > > implementation on ARM is smart enough to reuse the address from the static
+> > > mapping in common.c, but will also keep working if that should go away.
+> >
+> > I'm planning to work with Mauri on this, but current blocker is DT.
 > 
-> for you to fetch changes up to 062529700fdb843eee921961eb3cbc6a51419491:
+> Ok. It should not be hard to do this first, as you just need to pass the
+> same physical address that you pass in the mbus setup, but I agree
+> it's easier to do this afterwards to avoid having to rewrite it again.
 > 
->   dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example (2022-06-28 10:28:50 +0200)
+> > > This is probably good enough here, though I think you could also use
+> > > the trick from drivers/pci/ecam.c and map each bus at a time.
+> > >
+> > Yes, there are also helper functions like map bus and etc. which could
+> > simplify this code. I'm planning to do cleanups once we have fully
+> > working driver for Orion.
 > 
-> ----------------------------------------------------------------
-> Devicetree bindings for Qualcomm for v5.20
+> Ok. This is probably not worth the effort if the old driver doesn't already
+> do provide access to the high registers.
 > 
-> Cleanup, fixes and additions of missing pieces for Qualcomm bindings.
-> These are address dtbs_check warnings and do not bring new hardware
-> (new compatibles are added for existing boards/hardware).
-> 
-> ----------------------------------------------------------------
-> Krzysztof Kozlowski (25):
+>       Arnd
 
-Many thanks for gathering these patches in a pull request!
+If we have free 256MB in physical address space, then we can implement
+it easily. It is just changing _size_ argument. I'm not sure how much
+DDR RAM has Orion, but if only 2GB then we should be fine (remaining 2GB
+should be enough for all peripherals + 256MB for PCIe config space).
 
->       dt-bindings: soc: qcom,rpmh-rsc: simplify qcom,tcs-config
->       spi: dt-bindings: qcom,spi-geni-qcom: allow three interconnects
+Main issue is that there is no Orion documentation which would describe
+how direct mapping of PCIe config space is working.
+(see also https://lore.kernel.org/linux-doc/20220719080807.16729-1-pali@kernel.org/)
 
-This,
+So we can only set "size" of the physical config space mapping and if we
+choose smaller size then we cannot access upper registers. I do not see
+any option how to specify "offset" for physical config space to allow
+mapping just one PCI bus.
 
->       dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
->       dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
->       dt-bindings: nvmem: qfprom: add IPQ8064 and SDM630 compatibles
-
-this,
-
->       dt-bindings: leds: qcom-wled: fix number of addresses
-
-this
-
->       dt-bindings: arm: qcom: fix Alcatel OneTouch Idol 3 compatibles
->       dt-bindings: arm: qcom: fix Longcheer L8150 compatibles
->       dt-bindings: arm: qcom: fix MSM8916 MTP compatibles
->       dt-bindings: arm: qcom: fix MSM8994 boards compatibles
->       dt-bindings: arm: qcom: add missing MSM8916 board compatibles
->       dt-bindings: arm: qcom: add missing MSM8994 board compatibles
->       dt-bindings: arm: qcom: add missing SM8150 board compatibles
->       dt-bindings: arm: qcom: add missing SM8250 board compatibles
->       dt-bindings: arm: qcom: add missing SM8350 board compatibles
->       dt-bindings: vendor-prefixes: add Shift GmbH
->       dt-bindings: arm: qcom: add missing MSM8998 board compatibles
->       dt-bindings: arm: qcom: add missing MSM8992 board compatibles
->       dt-bindings: arm: qcom: add missing QCS404 board compatibles
->       dt-bindings: arm: qcom: add missing SDM630 board compatibles
->       dt-bindings: arm: qcom: add missing SDM636 board compatibles
->       dt-bindings: arm: qcom: add missing SDM845 board compatibles
->       dt-bindings: arm: qcom: add missing SM6125 board compatibles
->       dt-bindings: arm: qcom: add missing SM6350 board compatibles
->       dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example
-
-and this does however need to go through respective maintainers' trees.
-
-I've incorporated the rest in my trees now.
-
-Thanks,
-Bjorn
+What we have under full control is virtual address space mapping, so we
+can just map only one PCI bus to virtual address space from large 256MB
+physical config address space.
