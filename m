@@ -2,60 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 788D557BFD8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 23:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60B4A57BFF6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 00:17:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbiGTVyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 17:54:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41096 "EHLO
+        id S230234AbiGTWRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 18:17:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229871AbiGTVyx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 17:54:53 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 931DA4BD2E;
-        Wed, 20 Jul 2022 14:54:52 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id x64so7060087iof.1;
-        Wed, 20 Jul 2022 14:54:52 -0700 (PDT)
+        with ESMTP id S229595AbiGTWRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 18:17:08 -0400
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A8A630F7A;
+        Wed, 20 Jul 2022 15:17:07 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id n13so1492310ilk.1;
+        Wed, 20 Jul 2022 15:17:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9VtPYe9lxt2UYt12yH0kPTLc+/Ee0+kkWogkf/Ga1mw=;
-        b=i8rqcZV6XQkXW4YfuOGgNNIpBX9QBmwyKY6ddOmZTvpZXYukb/Wyw54uUEVbzx5cFZ
-         umfB39SzK1RIykPakiwkrMwx61224GuiiOpZTjC5aMzq8iDFg9szCiwXFEj3EX1DeU+S
-         rahT/FZCXOBsDb6JbQEY0PFIDfUvGfr+LqpZCknytTJSLtOHWTtyrVnxEAvHqQQ2QEHp
-         mexAae4nSs2CC09HpBGIpgsFQgx0lDd1GeB8SvTOJ/1t09+LHduk8brgaCe1cX12fn/x
-         q4VHpVhvBwwPpWBoRrnZD7Q+VSzjSLqzFvZPAckR8HzOJ69O5zHnn6G76S5Xp+1F8WdO
-         5s5w==
-X-Gm-Message-State: AJIora88Jy94Fvj/oFbvLut+L4bqJqVpmJscUpiTmN5/t7DfRCgFW3dQ
-        thGqEggmoQBBd7UjvJshYb2aGr/vQQ==
-X-Google-Smtp-Source: AGRyM1upcvDTAAL1zmHltREfx75k37wJhs626FQ2HRpFiNYFrVvR0kPJ3xCx+8W6U72I7S1mnTDAdg==
-X-Received: by 2002:a02:9426:0:b0:33f:14ad:6931 with SMTP id a35-20020a029426000000b0033f14ad6931mr20260682jai.62.1658354091655;
-        Wed, 20 Jul 2022 14:54:51 -0700 (PDT)
+        bh=aUlOd+EpVilq1LbBbOdnAUUakZ1pmB0C8nlxw1tK264=;
+        b=2xyvQ5tJJa0CJ9cI3IvK8C2mOUeGw4BsVcC4PD6iFNlGpDqx/vVJT/IOfu3FHjak0v
+         VP2C3aObrY+yOz02miz2pR/qglSbUQUqcYPX/PDZRy7rX9aTxY/F6Dyd28YEQFeN0W3E
+         ydWAH0tIompTQPWjbJDRL2VJ6A0dT11jh/C9dW2ql51trSI9XHqCB5SXw9m0C2cezJSq
+         8G95ak8kaj/dqIXojoWSEyONFkaqwR/a1FXFtcZEsD/3+ooBQtu7tY4lzM8wSMyyMpTB
+         ePY9gbhU/IjIYcMLXuXegTNoP9tYkxGIvjaUsDVVNsXIyL+HLjlNcvcDOBkd44rpK2Jb
+         /PJg==
+X-Gm-Message-State: AJIora/bq3PVJWLZExy27H+GR/qktEiQLQ+1y0r9iz+RWV9j7hNgLPCs
+        e+tJDphg3e8rJE2sIJs85g==
+X-Google-Smtp-Source: AGRyM1ucGxMPK6PIuTcVoOD7WoI7SmAzmBLBAjid9V6pCEpsJf5qwJh8tZ+HnYsW8k3BoW2u51OOiQ==
+X-Received: by 2002:a05:6e02:1a6e:b0:2dc:ff0b:3e3e with SMTP id w14-20020a056e021a6e00b002dcff0b3e3emr4972041ilv.219.1658355426542;
+        Wed, 20 Jul 2022 15:17:06 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id l19-20020a056e02067300b002dc616d93acsm77966ilt.28.2022.07.20.14.54.50
+        by smtp.gmail.com with ESMTPSA id o14-20020a02740e000000b00331b9a3c5adsm24659jac.170.2022.07.20.15.17.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 14:54:51 -0700 (PDT)
-Received: (nullmailer pid 4049317 invoked by uid 1000);
-        Wed, 20 Jul 2022 21:54:49 -0000
-Date:   Wed, 20 Jul 2022 15:54:49 -0600
+        Wed, 20 Jul 2022 15:17:06 -0700 (PDT)
+Received: (nullmailer pid 4079078 invoked by uid 1000);
+        Wed, 20 Jul 2022 22:17:04 -0000
+Date:   Wed, 20 Jul 2022 16:17:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Max Buchholz <max.buchholz@gmx.de>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>,
-        David Heidelberg <david@ixit.cz>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: nvidia,tegra20-kbc: Convert to
- json-schema
-Message-ID: <20220720215449.GA4031847-robh@kernel.org>
-References: <20220715131422.51143-1-max.buchholz@gmx.de>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>, netdev@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Russell King <linux@armlinux.org.uk>,
+        linux-kernel@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: Re: [PATCH net-next v3 01/47] dt-bindings: phy: Add Lynx 10G phy
+ binding
+Message-ID: <20220720221704.GA4049520-robh@kernel.org>
+References: <20220715215954.1449214-1-sean.anderson@seco.com>
+ <20220715215954.1449214-2-sean.anderson@seco.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220715131422.51143-1-max.buchholz@gmx.de>
+In-Reply-To: <20220715215954.1449214-2-sean.anderson@seco.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,240 +72,408 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 03:14:21PM +0200, Max Buchholz wrote:
-> From: Max Buchholz <Max.Buchholz@gmx.de>
+On Fri, Jul 15, 2022 at 05:59:08PM -0400, Sean Anderson wrote:
+> This adds a binding for the SerDes module found on QorIQ processors. The
+> phy reference has two cells, one for the first lane and one for the
+> last. This should allow for good support of multi-lane protocols when
+> (if) they are added. There is no protocol option, because the driver is
+> designed to be able to completely reconfigure lanes at runtime.
+> Generally, the phy consumer can select the appropriate protocol using
+> set_mode. For the most part there is only one protocol controller
+> (consumer) per lane/protocol combination. The exception to this is the
+> B4860 processor, which has some lanes which can be connected to
+> multiple MACs. For that processor, I anticipate the easiest way to
+> resolve this will be to add an additional cell with a "protocol
+> controller instance" property.
 > 
-> This converts the Nvidia Tegra keyboard controller bindings to YAML
-> and fix them up a bit.
+> Each serdes has a unique set of supported protocols (and lanes). The
+> support matrix is configured in the device tree. The format of each
+> PCCR (protocol configuration register) is modeled. Although the general
+> format is typically the same across different SoCs, the specific
+> supported protocols (and the values necessary to select them) are
+> particular to individual SerDes. A nested structure is used to reduce
+> duplication of data.
 > 
-> Reviewed-by: David Heidelberg <david@ixit.cz>
-> Signed-off-by: Max Buchholz <max.buchholz@gmx.de>
+> There are two PLLs, each of which can be used as the master clock for
+> each lane. Each PLL has its own reference. For the moment they are
+> required, because it simplifies the driver implementation. Absent
+> reference clocks can be modeled by a fixed-clock with a rate of 0.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
-> v3:
->  - fixed maxItems for array properties
-> v2:
->  - rework the file according to the feedback
 > 
->  .../bindings/input/nvidia,tegra20-kbc.txt     |  55 ---------
->  .../bindings/input/nvidia,tegra20-kbc.yaml    | 111 ++++++++++++++++++
->  .../bindings/power/wakeup-source.txt          |   2 +-
->  3 files changed, 112 insertions(+), 56 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
->  create mode 100644 Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.yaml
+> Changes in v3:
+> - Manually expand yaml references
+> - Add mode configuration to device tree
 > 
-> diff --git a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
-> deleted file mode 100644
-> index 1faa7292e21f..000000000000
-> --- a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
-> +++ /dev/null
-> @@ -1,55 +0,0 @@
-> -* Tegra keyboard controller
-> -The key controller has maximum 24 pins to make matrix keypad. Any pin
-> -can be configured as row or column. The maximum column pin can be 8
-> -and maximum row pins can be 16 for Tegra20/Tegra30.
-> -
-> -Required properties:
-> -- compatible: "nvidia,tegra20-kbc"
-> -- reg: Register base address of KBC.
-> -- interrupts: Interrupt number for the KBC.
-> -- nvidia,kbc-row-pins: The KBC pins which are configured as row. This is an
-> -  array of pin numbers which is used as rows.
-> -- nvidia,kbc-col-pins: The KBC pins which are configured as column. This is an
-> -  array of pin numbers which is used as column.
-> -- linux,keymap: The keymap for keys as described in the binding document
-> -  devicetree/bindings/input/matrix-keymap.txt.
-> -- clocks: Must contain one entry, for the module clock.
-> -  See ../clocks/clock-bindings.txt for details.
-> -- resets: Must contain an entry for each entry in reset-names.
-> -  See ../reset/reset.txt for details.
-> -- reset-names: Must include the following entries:
-> -  - kbc
-> -
-> -Optional properties, in addition to those specified by the shared
-> -matrix-keyboard bindings:
-> -
-> -- linux,fn-keymap: a second keymap, same specification as the
-> -  matrix-keyboard-controller spec but to be used when the KEY_FN modifier
-> -  key is pressed.
-> -- nvidia,debounce-delay-ms: delay in milliseconds per row scan for debouncing
-> -- nvidia,repeat-delay-ms: delay in milliseconds before repeat starts
-> -- nvidia,ghost-filter: enable ghost filtering for this device
-> -- wakeup-source: configure keyboard as a wakeup source for suspend/resume
-> -		 (Legacy property supported: "nvidia,wakeup-source")
-> -
-> -Example:
-> -
-> -keyboard: keyboard {
-> -	compatible = "nvidia,tegra20-kbc";
-> -	reg = <0x7000e200 0x100>;
-> -	interrupts = <0 85 0x04>;
-> -	clocks = <&tegra_car 36>;
-> -	resets = <&tegra_car 36>;
-> -	reset-names = "kbc";
-> -	nvidia,ghost-filter;
-> -	nvidia,debounce-delay-ms = <640>;
-> -	nvidia,kbc-row-pins = <0 1 2>;    /* pin 0, 1, 2 as rows */
-> -	nvidia,kbc-col-pins = <11 12 13>; /* pin 11, 12, 13 as columns */
-> -	linux,keymap = <0x00000074
-> -			0x00010067
-> -			0x00020066
-> -			0x01010068
-> -			0x02000069
-> -			0x02010070
-> -			0x02020071>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.yaml b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.yaml
+> Changes in v2:
+> - Rename to fsl,lynx-10g.yaml
+> - Refer to the device in the documentation, rather than the binding
+> - Move compatible first
+> - Document phy cells in the description
+> - Allow a value of 1 for phy-cells. This allows for compatibility with
+>   the similar (but according to Ioana Ciornei different enough) lynx-28g
+>   binding.
+> - Remove minItems
+> - Use list for clock-names
+> - Fix example binding having too many cells in regs
+> - Add #clock-cells. This will allow using assigned-clocks* to configure
+>   the PLLs.
+> - Document the structure of the compatible strings
+> 
+>  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 311 ++++++++++++++++++
+>  1 file changed, 311 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
 > new file mode 100644
-> index 000000000000..8e1eaad2fdc1
+> index 000000000000..a2c37225bb67
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.yaml
-> @@ -0,0 +1,111 @@
+> +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+> @@ -0,0 +1,311 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/input/nvidia,tegra20-kbc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/phy/fsl,lynx-10g.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Nvidia Tegra keyboard controller
+> +title: NXP Lynx 10G SerDes
 > +
 > +maintainers:
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +  - Sameer Pujar <spujar@nvidia.com>
+> +  - Sean Anderson <sean.anderson@seco.com>
 > +
-> +description: The key controller has maximum 24 pins to make matrix keypad. Any pin
-> +  can be configured as row or column.
+> +description: |
+> +  These Lynx "SerDes" devices are found in NXP's QorIQ line of processors. The
+> +  SerDes provides up to eight lanes. Each lane may be configured individually,
+> +  or may be combined with adjacent lanes for a multi-lane protocol. The SerDes
+> +  supports a variety of protocols, including up to 10G Ethernet, PCIe, SATA, and
+> +  others. The specific protocols supported for each lane depend on the
+> +  particular SoC.
 > +
-> +allOf:
-> +  - $ref: "/schemas/input/matrix-keymap.yaml#"
+> +definitions:
+
+$defs:
+
+> +  fsl,cfg:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    description: |
+> +      The configuration value to program into the field.
+
+What field?
+
+> +
+> +  fsl,first-lane:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 7
+> +    description: |
+> +      The first lane in the group configured by fsl,cfg. This lane will have
+> +      the FIRST_LANE bit set in GCR0. The reset direction will also be set
+> +      based on whether this property is less than or greater than
+> +      fsl,last-lane.
+> +
+> +  fsl,last-lane:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 7
+> +    description: |
+> +      The last lane configured by fsl,cfg. If this property is absent,
+> +      then it will default to the value of fsl,first-lane.
 > +
 > +properties:
 > +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: nvidia,tegra30-kbc
-> +          - const: nvidia,tegra20-kbc
-> +      - items:
-> +          - const: nvidia,tegra20-kbc
+> +    items:
+> +      - enum:
+> +          - fsl,ls1046a-serdes
+> +          - fsl,ls1088a-serdes
+> +      - const: fsl,lynx-10g
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +    description: |
+> +      The cell contains the index of the PLL, starting from 0. Note that when
+> +      assigning a rate to a PLL, the PLLs' rates are divided by 1000 to avoid
+> +      overflow. A rate of 5000000 corresponds to 5GHz.
+> +
+> +  "#phy-cells":
+> +    minimum: 1
+> +    maximum: 2
+> +    description: |
+> +      The cells contain the following arguments:
+> +      - The first lane in the group. Lanes are numbered based on the register
+> +        offsets, not the I/O ports. This corresponds to the letter-based ("Lane
+> +        A") naming scheme, and not the number-based ("Lane 0") naming scheme. On
+> +        most SoCs, "Lane A" is "Lane 0", but not always.
+> +      - Last lane. For single-lane protocols, this should be the same as the
+> +        first lane.
+
+Perhaps a single cell with a lane mask would be simpler.
+
+> +      If no lanes in a SerDes can be grouped, then #phy-cells may be 1, and the
+> +      first cell will specify the only lane in the group.
+
+It is generally easier to have a fixed number of cells.
+
+> +
+> +  clocks:
+> +    maxItems: 2
+> +    description: |
+> +      Clock for each PLL reference clock input.
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - ref0
+> +        - ref1
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +patternProperties:
+> +  '^pccr-':
+> +    type: object
 > +
-> +  nvidia,kbc-row-pins:
-> +    minItems: 1
-> +    maxItems: 16
-> +    description: KBC pins which are configured as row
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: |
+> +      One of the protocol configuration registers (PCCRs). These contains
+> +      several fields, each of which mux a particular protocol onto a particular
+> +      lane.
+> +
+> +    properties:
+> +      fsl,pccr:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: |
+> +          The index of the PCCR. This is the same as the register name suffix.
+> +          For example, a node for PCCRB would use a value of '0xb' for an
+> +          offset of 0x22C (0x200 + 4 * 0xb).
+> +
+> +    patternProperties:
+> +      '^(q?sgmii|xfi|pcie|sata)-':
+> +        type: object
+> +
+> +        description: |
+> +          A configuration field within a PCCR. Each field configures one
+> +          protocol controller. The value of the field determines the lanes the
+> +          controller is connected to, if any.
+> +
+> +        properties:
+> +          fsl,index:
 
-items:
-  maximum: 24 (or 23?)
+indexes are generally a red flag in binding. What is the index, how does 
+it correspond to the h/w and why do you need it. If we do end up needing 
+it, 'reg' is generally how we address some component.
 
-Also, put 'description' either first or last, not in the middle of 
-constraints.
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: |
+> +              The index of the field. This corresponds to the suffix in the
+
+What field?
+
+> +              documentation. For example, PEXa would be 0, PEXb 1, etc.
+> +              Generally, higher fields occupy lower bits.
+> +
+> +              If there are any subnodes present, they will be preferred over
+> +              fsl,cfg et. al.
+> +
+> +          fsl,cfg:
+> +            $ref: "#/definitions/fsl,cfg"
+> +
+> +          fsl,first-lane:
+> +            $ref: "#/definitions/fsl,first-lane"
+> +
+> +          fsl,last-lane:
+> +            $ref: "#/definitions/fsl,last-lane"
+
+Why do you have lane assignments here and in the phy cells?
 
 > +
-> +  nvidia,kbc-col-pins:
-> +    minItems: 1
-> +    maxItems: 8
-> +    description: KBC pins which are configured as column
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +          fsl,proto:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            enum:
+> +              - sgmii
+> +              - sgmii25
+> +              - qsgmii
+> +              - xfi
+> +              - pcie
+> +              - sata
 
-Same here.
+We have standard phy modes already for at least most of these types. 
+Generally the mode is set in the phy cells.
+
+> +            description: |
+> +              Indicates the basic group protocols supported by this field.
+> +              Individual protocols are selected by configuring the protocol
+> +              controller.
+> +
+> +              - sgmii: 1000BASE-X, SGMII, and 1000BASE-KX (depending on the
+> +                       SoC)
+> +              - sgmii25: 2500BASE-X, 1000BASE-X, SGMII, and 1000BASE-KX
+> +                         (depending on the SoC)
+> +              - qsgmii: QSGMII
+> +              - xfi: 10GBASE-R and 10GBASE-KR (depending on the SoC)
+> +              - pcie: PCIe
+> +              - sata: SATA
+> +
+> +        patternProperties:
+> +          '^cfg-':
+> +            type: object
+> +
+> +            description: |
+> +              A single field may have multiple values which, when programmed,
+> +              connect the protocol controller to different lanes. If this is the
+> +              case, multiple sub-nodes may be provided, each describing a
+> +              single muxing.
+> +
+> +            properties:
+> +              fsl,cfg:
+> +                $ref: "#/definitions/fsl,cfg"
+> +
+> +              fsl,first-lane:
+> +                $ref: "#/definitions/fsl,first-lane"
+> +
+> +              fsl,last-lane:
+> +                $ref: "#/definitions/fsl,last-lane"
+> +
+> +            required:
+> +              - fsl,cfg
+> +              - fsl,first-lane
+> +
+> +            dependencies:
+> +              fsl,last-lane:
+> +                - fsl,first-lane
+> +
+> +            additionalProperties: false
+> +
+> +        required:
+> +          - fsl,index
+> +          - fsl,proto
+> +
+> +        dependencies:
+> +          fsl,last-lane:
+> +            - fsl,first-lane
+> +          fsl,cfg:
+> +            - fsl,first-lane
+> +          fsl,first-lane:
+> +            - fsl,cfg
+> +
+> +        # I would like to require either a config subnode or the config
+> +        # properties (and not both), but from what I can tell that can't be
+> +        # expressed in json schema. In particular, it is not possible to
+> +        # require a pattern property.
+
+Indeed, it is not. There's been some proposals.
 
 > +
-> +  clocks:
-> +    maxItems: 1
+> +        additionalProperties: false
 > +
-> +  resets:
-> +    maxItems: 1
+> +    required:
+> +      - fsl,pccr
 > +
-> +  reset-names:
-> +    const: kbc
-> +
-> +  linux,fn-keymap:
-
-While mentioned in matrix-keymap.yaml, it is not defined as a schema 
-anywhere. It needs a type. I guess here is fine as this doesn't seem 
-to be used much.
-
-> +    description: a secondary keymap to be used when the KEY_FN modifier key is pressed
-> +
-> +  nvidia,debounce-delay-ms:
-> +    description: delay in milliseconds per row scan for debouncing
-> +
-> +  nvidia,repeat-delay-ms:
-> +    description: delay in milliseconds before repeat starts
-> +
-> +  nvidia,ghost-filter:
-> +    description: enable ghost filtering for this device
-> +    type: boolean
-> +
-> +  wakeup-source:
-> +    description: configure keyboard as a wakeup source for suspend/resume
-> +
-> +  nvidia,wakeup-source:
-> +    description: configure keyboard as a wakeup source for suspend/resume
-> +    deprecated: true
-> +    type: boolean
-
-Deprecated for 7 years. Could be dropped?
-
+> +    additionalProperties: false
 > +
 > +required:
+> +  - "#clock-cells"
+> +  - "#phy-cells"
 > +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - nvidia,kbc-row-pins
-> +  - nvidia,kbc-col-pins
-> +  - linux,keymap
 > +  - clocks
-> +  - resets
-> +  - reset-names
+> +  - clock-names
+> +  - reg
 > +
-> +unevaluatedProperties: false
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    serdes1: phy@1ea0000 {
+> +      #clock-cells = <1>;
+> +      #phy-cells = <2>;
+> +      compatible = "fsl,ls1088a-serdes", "fsl,lynx-10g";
+> +      reg = <0x1ea0000 0x2000>;
+> +      clocks = <&clk_100mhz>, <&clk_156_mhz>;
+> +      clock-names = "ref0", "ref1";
+> +      assigned-clocks = <&serdes1 0>;
+> +      assigned-clock-rates = <5000000>;
 > +
-> +    kbc@7000e200 {
-
-keyboard@...
-
-> +        compatible = "nvidia,tegra20-kbc";
-> +        reg = <0x7000e200 0x100>;
-> +        interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&tegra_car 36>;
-> +        resets = <&tegra_car 36>;
-> +        reset-names = "kbc";
-> +        nvidia,ghost-filter;
-> +        nvidia,debounce-delay-ms = <640>;
-> +        nvidia,kbc-row-pins = <0 1 2>;    /* pin 0, 1, 2 as rows */
-> +        nvidia,kbc-col-pins = <11 12 13>; /* pin 11, 12, 13 as columns */
-> +        linux,keymap = <0x00000074
-> +                        0x00010067
-> +                        0x00020066
-> +                        0x01010068
-> +                        0x02000069
-> +                        0x02010070
-> +                        0x02020071>;
+> +      pccr-8 {
+> +        fsl,pccr = <0x8>;
+> +
+> +        sgmii-0 {
+> +          fsl,index = <0>;
+> +          fsl,cfg = <0x1>;
+> +          fsl,first-lane = <3>;
+> +          fsl,proto = "sgmii";
+> +        };
+> +
+> +        sgmii-1 {
+> +          fsl,index = <1>;
+> +          fsl,cfg = <0x1>;
+> +          fsl,first-lane = <2>;
+> +          fsl,proto = "sgmii";
+> +        };
+> +
+> +        sgmii-2 {
+> +          fsl,index = <2>;
+> +          fsl,cfg = <0x1>;
+> +          fsl,first-lane = <1>;
+> +          fsl,proto = "sgmii25";
+> +        };
+> +
+> +        sgmii-3 {
+> +          fsl,index = <3>;
+> +          fsl,cfg = <0x1>;
+> +          fsl,first-lane = <0>;
+> +          fsl,proto = "sgmii25";
+> +        };
+> +      };
+> +
+> +      pccr-9 {
+> +        fsl,pccr = <0x9>;
+> +
+> +        qsgmii-0 {
+> +          fsl,index = <0>;
+> +          fsl,cfg = <0x1>;
+> +          fsl,first-lane = <3>;
+> +          fsl,proto = "qsgmii";
+> +        };
+> +
+> +        qsgmii-1 {
+> +          fsl,index = <1>;
+> +          fsl,proto = "qsgmii";
+> +
+> +          cfg-1 {
+> +            fsl,cfg = <0x1>;
+> +            fsl,first-lane = <2>;
+> +          };
+> +
+> +          cfg-2 {
+> +            fsl,cfg = <0x2>;
+> +            fsl,first-lane = <0>;
+> +          };
+> +        };
+> +      };
+> +
+> +      pccr-b {
+> +        fsl,pccr = <0xb>;
+> +
+> +        xfi-0 {
+> +          fsl,index = <0>;
+> +          fsl,cfg = <0x1>;
+> +          fsl,first-lane = <1>;
+> +          fsl,proto = "xfi";
+> +        };
+> +
+> +        xfi-1 {
+> +          fsl,index = <1>;
+> +          fsl,cfg = <0x1>;
+> +          fsl,first-lane = <0>;
+> +          fsl,proto = "xfi";
+> +        };
+> +      };
 > +    };
-> diff --git a/Documentation/devicetree/bindings/power/wakeup-source.txt b/Documentation/devicetree/bindings/power/wakeup-source.txt
-> index cfd74659fbed..728f88de371d 100644
-> --- a/Documentation/devicetree/bindings/power/wakeup-source.txt
-> +++ b/Documentation/devicetree/bindings/power/wakeup-source.txt
-> @@ -25,7 +25,7 @@ List of legacy properties and respective binding document
->  				Documentation/devicetree/bindings/input/touchscreen/ads7846.txt
->  5. "linux,keypad-wakeup"	Documentation/devicetree/bindings/input/qcom,pm8xxx-keypad.txt
->  6. "linux,input-wakeup"		Documentation/devicetree/bindings/input/samsung-keypad.txt
-> -7. "nvidia,wakeup-source"	Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.txt
-> +7. "nvidia,wakeup-source"	Documentation/devicetree/bindings/input/nvidia,tegra20-kbc.yaml
-> 
->  Examples
->  --------
-> --
-> 2.37.0
-> 
-> 
+
+Other than lane assignments and modes, I don't really understand what 
+you are trying to do. It all looks too complex and I don't see any other 
+phy bindings needing something this complex.
+
+Rob
