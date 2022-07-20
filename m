@@ -2,56 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 625E157B241
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 10:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C94B257B246
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 10:08:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234048AbiGTIGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 04:06:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47558 "EHLO
+        id S231920AbiGTIIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 04:08:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231364AbiGTIGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 04:06:40 -0400
-Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F7140BDC;
-        Wed, 20 Jul 2022 01:06:38 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 8670ADFEEB;
-        Wed, 20 Jul 2022 01:06:08 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id jy-yr_GXHRZu; Wed, 20 Jul 2022 01:06:04 -0700 (PDT)
-Message-ID: <5a6bfd6827f8ad838bdab8dfb208753ad258b1ec.camel@puri.sm>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
-        t=1658304364; bh=W7oFWT03XGGKOHW68rUNi/F6WDaxeRdYnn8x89UH2q4=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=tgShpVNJhE4DH6cDe9LhF9t8ZZg9HXaPlW8oWfyhGAcHv8s3NwE9jbyTJHxMhFg22
-         6ElNPXOH4RXR2EGuIsvXkdAdNMoxN5trZEXQlHzXH6q7IQQhdKTvd4/+bFz1TWrZge
-         RMvnaNYzed+5RDRKbE6aJo7bZZo3ROTkunoclenpcuTrB4O2HXbtDLkXGvVxUPNQwP
-         cthdfqn00Oad/ePytXnfQRnXRKbcmclvTAxObe4BE3zrJpuDpcIaXI5o9Mmjo5D2mK
-         ZIKwjwFHmCKoZY5fObJV3F6a7ew+qkzJnUWVkw+Fzsp44ySZ9Buh9gzrat0Ebts0F6
-         nl99fXMXnPEFw==
-Subject: Re: [PATCH v4 3/3] soc: imx: gpcv2: fix suspend/resume by setting
- GENPD_FLAG_IRQ_ON
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Lucas Stach <l.stach@pengutronix.de>, rafael@kernel.org,
-        khilman@kernel.org, ulf.hansson@linaro.org, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz
-Cc:     kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
-        aford173@gmail.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Wed, 20 Jul 2022 10:05:57 +0200
-In-Reply-To: <a7d51c154693881523e5d96c443a7dc9b3cc216d.camel@pengutronix.de>
-References: <20220720043444.1289952-1-martin.kepplinger@puri.sm>
-         <20220720043444.1289952-4-martin.kepplinger@puri.sm>
-         <a7d51c154693881523e5d96c443a7dc9b3cc216d.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S229511AbiGTIIM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 04:08:12 -0400
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2627D31398
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 01:08:11 -0700 (PDT)
+Received: from ramsan.of.borg ([84.195.186.194])
+        by albert.telenet-ops.be with bizsmtp
+        id xL89270064C55Sk06L89n8; Wed, 20 Jul 2022 10:08:09 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1oE4ka-004RZz-On; Wed, 20 Jul 2022 10:08:08 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1oE4ka-00EsMb-2c; Wed, 20 Jul 2022 10:08:08 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Magnus Damm <magnus.damm@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/6] arm64: dts: renesas: Add support for R-Car H3Ne-1.7G
+Date:   Wed, 20 Jul 2022 10:08:01 +0200
+Message-Id: <cover.1656072871.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,90 +47,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 20.07.2022 um 09:53 +0200 schrieb Lucas Stach:
-> Am Mittwoch, dem 20.07.2022 um 06:34 +0200 schrieb Martin Kepplinger:
-> > For boards that use power-domains' power-supplies that need
-> > interrupts
-> > to work (like regulator over i2c), set GENPD_FLAG_IRQ_ON.
-> > This will tell genpd to adjust accordingly. Currently it "only"
-> > sets the
-> > correct suspend/resume callbacks.
-> > 
-> > This fixes suspend/resume on imx8mq-librem5 boards (tested) and
-> > imx8mq-evk (by looking at dts) and possibly more.
-> > 
-> > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > ---
-> >  drivers/soc/imx/gpcv2.c | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> > index 85aa86e1338a..46d2ead2352b 100644
-> > --- a/drivers/soc/imx/gpcv2.c
-> > +++ b/drivers/soc/imx/gpcv2.c
-> > @@ -1303,6 +1303,7 @@ static const struct imx_pgc_domain_data
-> > imx8mn_pgc_domain_data = {
-> >  static int imx_pgc_domain_probe(struct platform_device *pdev)
-> >  {
-> >         struct imx_pgc_domain *domain = pdev->dev.platform_data;
-> > +       struct device_node *dn;
-> >         int ret;
-> >  
-> >         domain->dev = &pdev->dev;
-> > @@ -1333,6 +1334,14 @@ static int imx_pgc_domain_probe(struct
-> > platform_device *pdev)
-> >                 regmap_update_bits(domain->regmap, domain->regs-
-> > >map,
-> >                                    domain->bits.map, domain-
-> > >bits.map);
-> >  
-> > +       dn = of_parse_phandle(domain->dev->of_node, "power-supply",
-> > 0);
-> > +       if (dn) {
-> > +               while ((dn = of_get_next_parent(dn))) {
-> > +                       if (of_get_property(dn, "interrupts",
-> > NULL))
-> > +                               domain->genpd.flags |=
-> > GENPD_FLAG_IRQ_ON;
-> > +               }
-> > +       }
-> > +
-> While I understand the intention, I think the DT walking is overkill.
-> I
-> believe that there are no cases where we have a external regulator
-> attached to the PD and the devices in the domain needing noirq
-> support.
-> I think it's sufficient to simply set the IRQ_ON flag based on
-> presence
-> of the power-supply property on the domain DT node.
+	Hi all,
 
-Are you sure? Can't boards just *describe* a power-supply that doesn't
-really do much, where noirq would work? looking for "interrupts" in any
-parent feels very stable and makes sure we only change behaviour when
-really needed. But for the boards I'm looking at, I have to admit it
-wouldn't change anything afaik. So if you insist, I'll happily remove
-that.
+This patch series adds support for the R-Car H3Ne-1.7G SoC (R8A779MB),
+which is a different grading of the R-Car H3-N (R8A77951) SoC.  Board
+support includes the Salvator-XS and H3ULCB development boards, and the
+H3ULCB+Kingfisher board combo.  Note that unlike R-Car H3Ne (R8A779M8),
+R-Car H3Ne-1.7G does support running the Cortex-A57 CPU cores at 1.7
+GHz[1].
 
-Also, I forgot to say earlier: We could even add "if not regulator-
-always-on" to the DT parsing above, because in that case noirq is fine
-even for external regulators. Should I add that? I'd like as little
-runtime change as possible so I would add that (and keep the
-"interrupts" search above for the same reason). 
+The last 3 patches are marked RFC, as I do not know which boards
+will actually be produced with this SoC.
 
-thanks for looking at this,
+This has been prototyped and tested on Salvator-XS with R-Car H3 ES2.0.
 
-                             martin
+I plan to queue (most) of this in renesas-devel for v5.21.
 
+Thanks for your comments!
 
-> 
-> Regards,
-> Lucas
-> 
-> >         ret = pm_genpd_init(&domain->genpd, NULL, true);
-> >         if (ret) {
-> >                 dev_err(domain->dev, "Failed to init power
-> > domain\n");
-> 
-> 
+[1] [PATCH] arm64: dts: renesas: r8a779m8: Drop operating points above 1.5 GHz
+    https://lore.kernel.org/r/aeb4530f7fbac8329b334dcb169382c836a5f32d.1655458564.git.geert+renesas@glider.be/
 
+Geert Uytterhoeven (6):
+  dt-bindings: arm: renesas: Document R-Car H3Ne-1.7G SoC and boards
+  soc: renesas: Identify R-Car H3Ne-1.7G
+  arm64: dts: renesas: Add Renesas R8A779MB SoC support
+  arm64: dts: renesas: Add support for Salvator-XS with R-Car H3Ne-1.7G
+  arm64: dts: renesas: Add support for H3ULCB with R-Car H3Ne-1.7G
+  arm64: dts: renesas: Add support for H3ULCB+Kingfisher with R-Car
+    H3Ne-1.7G
 
+ .../devicetree/bindings/arm/renesas.yaml      |  9 ++++
+ arch/arm64/boot/dts/renesas/Makefile          |  4 ++
+ .../boot/dts/renesas/r8a779mb-salvator-xs.dts | 53 +++++++++++++++++++
+ .../boot/dts/renesas/r8a779mb-ulcb-kf.dts     | 19 +++++++
+ arch/arm64/boot/dts/renesas/r8a779mb-ulcb.dts | 53 +++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a779mb.dtsi     | 12 +++++
+ drivers/soc/renesas/renesas-soc.c             |  1 +
+ 7 files changed, 151 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb-salvator-xs.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb-ulcb-kf.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb-ulcb.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb.dtsi
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
