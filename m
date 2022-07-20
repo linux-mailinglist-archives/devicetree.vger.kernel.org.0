@@ -2,95 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38F4C57BB3F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 18:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEFFC57BB6F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 18:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235326AbiGTQUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 12:20:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50168 "EHLO
+        id S240885AbiGTQdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 12:33:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233552AbiGTQUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 12:20:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64255DE99;
-        Wed, 20 Jul 2022 09:20:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0052161D7C;
-        Wed, 20 Jul 2022 16:20:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 54604C341D0;
-        Wed, 20 Jul 2022 16:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658334017;
-        bh=BYcsMcijnL0pP/PiWG5nGWH7n3G0OWC2Q7MrG+Nlvj0=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=gGZxmosbDLlniOH0n0Z2mWELtNt2g2Yiu+vasUz2lXZoC6r/ND4Sbm53IyTN1fQiQ
-         JFwzRSYKrt/j8Rfmxy79FGrFD5NSE+QXn6FENpSmvcoIjCDn6AsSXtfSCBibNnJwDJ
-         HANbFFlCSR8f5wTlKRtoOS82U9Yfdf5Q+lWjhuIKej98CQX5dvq8YUcvisl8pPAOPE
-         jz9fGU8Xy0q756JqdSWbMpSbKJXH3tcntD7DMl5HkTXaEtg42McVoBjOI5cQCgKY7N
-         gK11foWL6nbBGyeJoFZf8Mm9bNznXk45XXdKN0ogumzNkygmvv4ZCZ0Wf/tkRAoBBe
-         KvRisABq9/xzA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 3CF98E451BD;
-        Wed, 20 Jul 2022 16:20:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S240780AbiGTQdl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 12:33:41 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9EF34D140
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 09:33:38 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id y11so31161664lfs.6
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 09:33:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Iai1eytOrQZlCvAc0K2WrCmPc3ieYaIb+taHkGUkP1A=;
+        b=Q8Msrl8vduLlwvBtAT7aZgB7Pk3L38LfUPyL0t+24MK90ZbhzFzgWdlO0fnBm353mp
+         anSSnaQXlBcAhGhVLYu2E/l+is9kW47xecmpQDxpIrxPBafOJry3Z1Rk00+qi9BTb7ME
+         5nPG9sRAT6olaLhsz93dB7KiI+mhevivKZ+SgBxeT0+d7GzCtneAbVuV+Bj2+ZDtUTtm
+         H4J7yEl7iIoNZcToQXSibNnJCR4/q56m4O64fBk7DAyvZhbucJD3VfyUexQlu04xDg3Y
+         eQQ4THSqlte583HQyP3RL/Le+3ZDgxJ3tP9QV87s1d92gk2J3V5/cz22cOlLkMV7Bhs3
+         Gwjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Iai1eytOrQZlCvAc0K2WrCmPc3ieYaIb+taHkGUkP1A=;
+        b=LFmUV58cGr/XxeTWfnfZSkbIN/1Misgy+yR/r7l/YZxMmk7G79vV1hUhBAU4KDbFEj
+         q02JbK7aZlSrRB6yDTUryjHd4DrDyXwn51lO5nsf4SCeoUAp2vAqyXauzG86FWEXV/yK
+         2e6XC2MUALUCMpB0lzwhf/qr9VUYmFk17unQSRMlknx52dKt7YOZPJtUxbehbOPs4/J3
+         IV9xSSXGUTAxnnIkjogCUrKTDltixkyhHUHjHpz7ig/U7SXDEnTuLykUPQDcFw8WAh5d
+         7mtrq0oi1mCO1njxmM5PTZzxYguR/gZxPLU8NMCbKSBQslcauxODEcKsOCHTlImaKgXI
+         tDXg==
+X-Gm-Message-State: AJIora9VUBlM0zazQVYsxBVg8rtt3i/G8wsQHE3LFKJ60ouWu/tdc1ni
+        l+B6OWpV09J48bEvhNy+VHvQkQ==
+X-Google-Smtp-Source: AGRyM1uw8E4tMjJdAZWZjxB7WZIYF/SOSXF+hiufu0KrGm1hBrl+U1q9pEbSaEb3tLYjTKtKB4jIHw==
+X-Received: by 2002:a05:6512:10d3:b0:489:cc6f:f7fe with SMTP id k19-20020a05651210d300b00489cc6ff7femr20488878lfg.384.1658334817046;
+        Wed, 20 Jul 2022 09:33:37 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id f19-20020a056512361300b00489d485ace3sm3895682lfs.62.2022.07.20.09.33.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Jul 2022 09:33:36 -0700 (PDT)
+Message-ID: <5229adbc-ec5f-259f-0fd1-1df6e979c9bb@linaro.org>
+Date:   Wed, 20 Jul 2022 18:33:35 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 0/5] Bluetooth: hci_bcm: Improve FW load time on CYW55572
-From:   patchwork-bot+bluetooth@kernel.org
-Message-Id: <165833401724.6265.284056488301192508.git-patchwork-notify@kernel.org>
-Date:   Wed, 20 Jul 2022 16:20:17 +0000
-References: <cover.1656583541.git.hakan.jansson@infineon.com>
-In-Reply-To: <cover.1656583541.git.hakan.jansson@infineon.com>
-To:     Hakan Jansson <hakan.jansson@infineon.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, marcel@holtmann.org,
-        johan.hedberg@gmail.com, luiz.dentz@gmail.com,
-        linux-bluetooth@vger.kernel.org
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [GIT PULL] dt-bindings: qcom for v5.20, version 2
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-msm@vger.kernel.org
+References: <20220628092253.21905-1-krzysztof.kozlowski@linaro.org>
+ <Ytgf7ejB/2usK4uW@builder.lan>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Ytgf7ejB/2usK4uW@builder.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
-
-This series was applied to bluetooth/bluetooth-next.git (master)
-by Luiz Augusto von Dentz <luiz.von.dentz@intel.com>:
-
-On Thu, 30 Jun 2022 14:45:19 +0200 you wrote:
-> These patches add an optional device specific data member to specify max
-> baudrate of a device when in autobaud mode. This allows the host to set a
-> first baudrate higher than "init speed" to improve FW load time.
+On 20/07/2022 17:31, Bjorn Andersson wrote:
+> On Tue 28 Jun 04:22 CDT 2022, Krzysztof Kozlowski wrote:
+> [..]
+>> The following changes since commit f2906aa863381afb0015a9eb7fefad885d4e5a56:
+>>
+>>   Linux 5.19-rc1 (2022-06-05 17:18:54 -0700)
+>>
+>> are available in the Git repository at:
+>>
+>>   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git tags/dt-bindings-qcom-5.20-2
+>>
+>> for you to fetch changes up to 062529700fdb843eee921961eb3cbc6a51419491:
+>>
+>>   dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example (2022-06-28 10:28:50 +0200)
+>>
+>> ----------------------------------------------------------------
+>> Devicetree bindings for Qualcomm for v5.20
+>>
+>> Cleanup, fixes and additions of missing pieces for Qualcomm bindings.
+>> These are address dtbs_check warnings and do not bring new hardware
+>> (new compatibles are added for existing boards/hardware).
+>>
+>> ----------------------------------------------------------------
+>> Krzysztof Kozlowski (25):
 > 
-> The host baudrate will later be changed to "init speed" (as usual) once FW
-> loading is complete and the device has been reset to begin normal
-> operation.
+> Many thanks for gathering these patches in a pull request!
 > 
-> [...]
-
-Here is the summary with links:
-  - [v2,1/5] dt-bindings: net: broadcom-bluetooth: Add CYW55572 DT binding
-    https://git.kernel.org/bluetooth/bluetooth-next/c/c6480829cda7
-  - [v2,2/5] dt-bindings: net: broadcom-bluetooth: Add conditional constraints
-    https://git.kernel.org/bluetooth/bluetooth-next/c/f5d25901c5cc
-  - [v2,3/5] Bluetooth: hci_bcm: Add DT compatible for CYW55572
-    https://git.kernel.org/bluetooth/bluetooth-next/c/7386459d24b3
-  - [v2,4/5] Bluetooth: hci_bcm: Prevent early baudrate setting in autobaud mode
-    https://git.kernel.org/bluetooth/bluetooth-next/c/31e65c6d44a2
-  - [v2,5/5] Bluetooth: hci_bcm: Increase host baudrate for CYW55572 in autobaud mode
-    https://git.kernel.org/bluetooth/bluetooth-next/c/719a11a62d19
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+>>       dt-bindings: soc: qcom,rpmh-rsc: simplify qcom,tcs-config
+>>       spi: dt-bindings: qcom,spi-geni-qcom: allow three interconnects
+> 
+> This,
+> 
+>>       dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
+>>       dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
+>>       dt-bindings: nvmem: qfprom: add IPQ8064 and SDM630 compatibles
+> 
+> this,
+> 
+>>       dt-bindings: leds: qcom-wled: fix number of addresses
+> 
+> this
 
 
+Although it is preferred that such subsystem patches go via subsystem
+trees, but subsystem maintainers sometimes do not pick up DT binding
+patches. Maybe they expect Rob will pick them up or sub-arch maintainer.
+I don't know. I just see the result that they wait for months (like [1]
+was waiting for ~1.5 months)
+
+If you don't want to take them, even though these are fixes, I will try
+to poke the maintainers.
+
+> 
+>>       dt-bindings: arm: qcom: fix Alcatel OneTouch Idol 3 compatibles
+>>       dt-bindings: arm: qcom: fix Longcheer L8150 compatibles
+>>       dt-bindings: arm: qcom: fix MSM8916 MTP compatibles
+>>       dt-bindings: arm: qcom: fix MSM8994 boards compatibles
+>>       dt-bindings: arm: qcom: add missing MSM8916 board compatibles
+>>       dt-bindings: arm: qcom: add missing MSM8994 board compatibles
+>>       dt-bindings: arm: qcom: add missing SM8150 board compatibles
+>>       dt-bindings: arm: qcom: add missing SM8250 board compatibles
+>>       dt-bindings: arm: qcom: add missing SM8350 board compatibles
+>>       dt-bindings: vendor-prefixes: add Shift GmbH
+>>       dt-bindings: arm: qcom: add missing MSM8998 board compatibles
+>>       dt-bindings: arm: qcom: add missing MSM8992 board compatibles
+>>       dt-bindings: arm: qcom: add missing QCS404 board compatibles
+>>       dt-bindings: arm: qcom: add missing SDM630 board compatibles
+>>       dt-bindings: arm: qcom: add missing SDM636 board compatibles
+>>       dt-bindings: arm: qcom: add missing SDM845 board compatibles
+>>       dt-bindings: arm: qcom: add missing SM6125 board compatibles
+>>       dt-bindings: arm: qcom: add missing SM6350 board compatibles
+>>       dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example
+> 
+> and this does however need to go through respective maintainers' trees.
+
+However this one last should go via your tree, as expressed by Rob (and
+acked by Viresh) in [2]. It fixes the issue which is exposed by
+dt-bindings/arm/qcom change (not caused by visible because of).
+
+[1]
+https://lore.kernel.org/all/20220505154702.422108-1-krzysztof.kozlowski@linaro.org/
+
+[2] https://lore.kernel.org/all/20220627195040.GA2840123-robh@kernel.org/
+
+
+Best regards,
+Krzysztof
