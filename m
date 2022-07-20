@@ -2,196 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFD9157B1D1
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 09:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CF0D57B1D5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 09:36:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239747AbiGTHdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 03:33:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52246 "EHLO
+        id S239906AbiGTHg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 03:36:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239688AbiGTHdf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 03:33:35 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4CEA67C9B
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 00:33:33 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id a10so20130485ljj.5
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 00:33:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yFHqm8LK5q9e9AM50wknJiUgH9ZSVdccKeaSxOT6p7U=;
-        b=MC+i+3maH27etmdXK5VZeEK9Jt3HYbRxwe7KhGdIx5Pw3prLoIu50ECVMDRqYHREI5
-         KS1s5OSOvfxOMEa7h4WhAwwKGH+XT+nUonGxwNnepyMhGoqZy5TGz9XeMbx5jSOUOR8c
-         O5MXtld9Ch1CfFsUSlK26q5DXWOBX113P49vxMzvNRBktwBnR1Uyn0T7D+PpHYs1ekoV
-         iMm+EQJhF+ggpISnc8D+l2CG/vEUX3MX2e/Xv0vJEG+G5Bqih/au6u9C+w17QyQ+TN9Z
-         /eLE+S0z5GS56iiEbrP53P9wHghMEMa84m+DGgOd6lrtNzW4px+UJEnZff9de2esXAWf
-         rrEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yFHqm8LK5q9e9AM50wknJiUgH9ZSVdccKeaSxOT6p7U=;
-        b=gA95+CKWjT2LlwzIObBDsE/PDAEUPdnvl8zMnlZAci2bR5VCYQM4Korbbe3v8mju2v
-         Smg7V97bZ9OiMF1dhYPgqJdKPIkp42wIQ4/hO+zlu/6aSCiepY7wT3PF9jyRINrYplWu
-         f9gO/i/mIcA8GZ1ssorHRl1iH0SvUJl8BGgTQqYFcBjnd9UcyqC4P58MtyCeE8jYF+hQ
-         kt4E0qRHVttLNTZGwMUiLeO1bMz8D8hpq8Rpgl2XE3ptE5BFf5Y4xf2upmjA4nH97uwI
-         5hZzr/IrvpzFzq0mZ3A6MKNHutoin1nmSRjfWnk3gSjkfMHMNxxvIHkdGGYapbEKHZb9
-         cGyg==
-X-Gm-Message-State: AJIora9dKAMoNqLMoWNlrDYk9eOVU20zn3aEAY1MnWc22yFuXwT73NIA
-        NCjSTUr9s0PVu/UA6HjD0PicRw==
-X-Google-Smtp-Source: AGRyM1tMAPO2SAQlLw6viF5ZFG3cCvo2nU2eOp7XalUwZV40NplyUAGZ/xfqZuH5O0/V3pDrqmZwxA==
-X-Received: by 2002:a2e:bf27:0:b0:25d:b90b:c487 with SMTP id c39-20020a2ebf27000000b0025db90bc487mr6696076ljr.372.1658302412016;
-        Wed, 20 Jul 2022 00:33:32 -0700 (PDT)
-Received: from krzk-bin.. (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id m2-20020a056512114200b0047f7a390b30sm3627287lfg.76.2022.07.20.00.33.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 00:33:31 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S231389AbiGTHg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 03:36:26 -0400
+Received: from smtp.smtpout.orange.fr (smtp05.smtpout.orange.fr [80.12.242.127])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB38E31DDA
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 00:36:25 -0700 (PDT)
+Received: from [192.168.1.18] ([90.11.190.129])
+        by smtp.orange.fr with ESMTPA
+        id E4FpoOQ7fAZYmE4FpoFLhi; Wed, 20 Jul 2022 09:36:23 +0200
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
+X-ME-Date: Wed, 20 Jul 2022 09:36:23 +0200
+X-ME-IP: 90.11.190.129
+Message-ID: <772469b0-c279-6762-091d-821c58717941@wanadoo.fr>
+Date:   Wed, 20 Jul 2022 09:36:21 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 3/3] media: i2c: ak7375: Add regulator management
+Content-Language: fr
+To:     Jacopo Mondi <jacopo@jmondi.org>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Tianshu Qiu <tian.shu.qiu@intel.com>,
+        Bingbu Cao <bingbu.cao@intel.com>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Alex Elder <elder@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Subject: [PATCH v5] dt-bindings: qcom: document preferred compatible naming
-Date:   Wed, 20 Jul 2022 09:33:26 +0200
-Message-Id: <20220720073326.19591-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
+References: <20220711144039.232196-1-y.oudjana@protonmail.com>
+ <20220711144039.232196-4-y.oudjana@protonmail.com>
+ <20220711173123.55abjsli3tmqgegj@uno.localdomain>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20220711173123.55abjsli3tmqgegj@uno.localdomain>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Compatibles can come in two formats.  Either "vendor,ip-soc" or
-"vendor,soc-ip".  Qualcomm bindings were mixing both of usages, so add a
-DT schema file documenting preferred policy and enforcing it for all new
-compatibles, except few existing patterns.
+Le 11/07/2022 à 19:31, Jacopo Mondi a écrit :
+> Hi Yassine,
+> 
+> On Mon, Jul 11, 2022 at 06:40:39PM +0400, Yassine Oudjana wrote:
+>> From: Yassine Oudjana <y.oudjana@protonmail.com>
+>>
+>> Make the driver get needed regulators on probe and enable/disable
+>> them on runtime PM callbacks.
+>>
+>> Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>> ---
+>> Changes since v1:
+>>    - Reorganize variable declaration
+>>    - Change the power-on delay range to 3000-3500 microseconds.
+>>
+>>   drivers/media/i2c/ak7375.c | 39 ++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 39 insertions(+)
+>>
+>> diff --git a/drivers/media/i2c/ak7375.c b/drivers/media/i2c/ak7375.c
+>> index 40b1a4aa846c..c2b2542a0056 100644
+>> --- a/drivers/media/i2c/ak7375.c
+>> +++ b/drivers/media/i2c/ak7375.c
+>> @@ -6,6 +6,7 @@
+>>   #include <linux/i2c.h>
+>>   #include <linux/module.h>
+>>   #include <linux/pm_runtime.h>
+>> +#include <linux/regulator/consumer.h>
+>>   #include <media/v4l2-ctrls.h>
+>>   #include <media/v4l2-device.h>
+>>
+>> @@ -23,17 +24,32 @@
+>>    */
+>>   #define AK7375_CTRL_STEPS	64
+>>   #define AK7375_CTRL_DELAY_US	1000
+>> +/*
+>> + * The vcm takes around 3 ms to power on and start taking
+>> + * I2C messages. This value was found experimentally due to
+>> + * lack of documentation.
+>> + */
+>> +#define AK7375_POWER_DELAY_US	3000
+>>
+>>   #define AK7375_REG_POSITION	0x0
+>>   #define AK7375_REG_CONT		0x2
+>>   #define AK7375_MODE_ACTIVE	0x0
+>>   #define AK7375_MODE_STANDBY	0x40
+>>
+>> +static const char * const ak7375_supply_names[] = {
+>> +	"vdd",
+>> +	"vio",
+>> +};
+>> +
+>> +#define AK7375_NUM_SUPPLIES ARRAY_SIZE(ak7375_supply_names)
+>> +
+>>   /* ak7375 device structure */
+>>   struct ak7375_device {
+>>   	struct v4l2_ctrl_handler ctrls_vcm;
+>>   	struct v4l2_subdev sd;
+>>   	struct v4l2_ctrl *focus;
+>> +	struct regulator_bulk_data supplies[AK7375_NUM_SUPPLIES];
+>> +
+>>   	/* active or standby mode */
+>>   	bool active;
+>>   };
+>> @@ -133,12 +149,24 @@ static int ak7375_probe(struct i2c_client *client)
+>>   {
+>>   	struct ak7375_device *ak7375_dev;
+>>   	int ret;
+>> +	int i;
+>>
+>>   	ak7375_dev = devm_kzalloc(&client->dev, sizeof(*ak7375_dev),
+>>   				  GFP_KERNEL);
+>>   	if (!ak7375_dev)
+>>   		return -ENOMEM;
+>>
+>> +	for (i = 0; i < AK7375_NUM_SUPPLIES; i++)
+>> +		ak7375_dev->supplies[i].supply = ak7375_supply_names[i];
+>> +
+>> +	ret = devm_regulator_bulk_get(&client->dev, AK7375_NUM_SUPPLIES,
+>> +				      ak7375_dev->supplies);
+>> +	if (ret) {
+>> +		dev_err(&client->dev, "Failed to get regulators: %pe",
+>> +			ERR_PTR(ret));
+> 
+> Why are you using %pe here ? Your return value is not a pointer
+> (Also, missing \n at the end of the string)
+> 
+>  From Documentation/core-api/printk-formats.rst:
+> 	%pe	-ENOSPC
+> 
+> For printing error pointers (i.e. a pointer for which IS_ERR() is true)
+> as a symbolic error name. Error values for which no symbolic name is
+> known are printed in decimal, while a non-ERR_PTR passed as the
+> argument to %pe gets treated as ordinary %p.
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Nit: using:
++		return dev_err_probe(&client->dev, ret, "Failed to get regulators);
 
----
+would be even simpler.
 
-Depends on:
-https://lore.kernel.org/all/20220627143340.477120-1-krzysztof.kozlowski@linaro.org/
-https://lore.kernel.org/all/20220628092253.21905-1-krzysztof.kozlowski@linaro.org/
+CJ
 
-Changes since v4:
-1. Add qcm.
-2. Add more qcom,ipq806x exceptions.
-3. Add Rob's tag.
 
-Changes since v3:
-1. Add qcom,kpss-wdt-xxx to pattern for exceptions.
-2. Add ipq806x entries to list of exceptions.
-
-Changes since v2:
-1. Narrow the expected pattern to be followed by dash '-' after model
-   number (msm8996-) or by two letters and a dash (sc8280xp-).
-2. Add qcom,apss-wdt-xxx to list of exceptions.
-3. Use comment instead of description in the oneOf list.
-
-Changes since v1:
-1. Add schema instead of readme (Rob).
-
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>
-Cc: Alex Elder <elder@linaro.org>
-Cc: Robert Foss <robert.foss@linaro.org>
-Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- .../devicetree/bindings/arm/qcom-soc.yaml     | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/qcom-soc.yaml
-
-diff --git a/Documentation/devicetree/bindings/arm/qcom-soc.yaml b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
-new file mode 100644
-index 000000000000..9918b20e4478
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/qcom-soc.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/qcom-soc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SoC compatibles naming convention
-+
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
-+
-+description: |
-+  Guidelines for new compatibles for SoC blocks/components.
-+  When adding new compatibles in new bindings, use the format::
-+    qcom,SoC-IP
-+
-+  For example::
-+   qcom,sdm845-llcc-bwmon
-+
-+  When adding new compatibles to existing bindings, use the format in the
-+  existing binding, even if it contradicts the above.
-+
-+select:
-+  properties:
-+    compatible:
-+      pattern: "^qcom,.*(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      # Preferred naming style for compatibles of SoC components:
-+      - pattern: "^qcom,(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+-.*$"
-+      - pattern: "^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$"
-+
-+      # Legacy namings - variations of existing patterns/compatibles are OK,
-+      # but do not add completely new entries to these:
-+      - pattern: "^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - pattern: "^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|sa|sc|sdm|sdx|sm)[0-9]+.*$"
-+      - enum:
-+          - qcom,gpucc-sdm630
-+          - qcom,gpucc-sdm660
-+          - qcom,lcc-apq8064
-+          - qcom,lcc-ipq8064
-+          - qcom,lcc-mdm9615
-+          - qcom,lcc-msm8960
-+          - qcom,lpass-cpu-apq8016
-+          - qcom,usb-ss-ipq4019-phy
-+          - qcom,usb-hs-ipq4019-phy
-+          - qcom,vqmmc-ipq4019-regulator
-+
-+      # Legacy compatibles with wild-cards - list cannot grow with new bindings:
-+      - enum:
-+          - qcom,ipq806x-gmac
-+          - qcom,ipq806x-nand
-+          - qcom,ipq806x-sata-phy
-+          - qcom,ipq806x-usb-phy-ss
-+          - qcom,ipq806x-usb-phy-hs
-+
-+additionalProperties: true
--- 
-2.34.1
+>> +		return ret;
+>> +	}
+>> +
+>>   	v4l2_i2c_subdev_init(&ak7375_dev->sd, client, &ak7375_ops);
+>>   	ak7375_dev->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+>>   	ak7375_dev->sd.internal_ops = &ak7375_int_ops;
+>> @@ -210,6 +238,10 @@ static int __maybe_unused ak7375_vcm_suspend(struct device *dev)
+>>   	if (ret)
+>>   		dev_err(dev, "%s I2C failure: %d\n", __func__, ret);
+>>
+>> +	ret = regulator_bulk_disable(AK7375_NUM_SUPPLIES, ak7375_dev->supplies);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>>   	ak7375_dev->active = false;
+>>
+>>   	return 0;
+>> @@ -230,6 +262,13 @@ static int __maybe_unused ak7375_vcm_resume(struct device *dev)
+>>   	if (ak7375_dev->active)
+>>   		return 0;
+>>
+>> +	ret = regulator_bulk_enable(AK7375_NUM_SUPPLIES, ak7375_dev->supplies);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/* Wait for vcm to become ready */
+>> +	usleep_range(AK7375_POWER_DELAY_US, AK7375_POWER_DELAY_US + 500);
+>> +
+>>   	ret = ak7375_i2c_write(ak7375_dev, AK7375_REG_CONT,
+>>   		AK7375_MODE_ACTIVE, 1);
+>>   	if (ret) {
+>> --
+>> 2.37.0
+>>
+> 
 
