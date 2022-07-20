@@ -2,158 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8AC057B8EF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3225B57B8F6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:54:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240876AbiGTOxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 10:53:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59290 "EHLO
+        id S240949AbiGTOyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 10:54:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239908AbiGTOxP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:53:15 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2D0DF11;
-        Wed, 20 Jul 2022 07:53:14 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id a11so4885467wmq.3;
-        Wed, 20 Jul 2022 07:53:14 -0700 (PDT)
+        with ESMTP id S235267AbiGTOyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:54:22 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 881D11ADBA
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:54:21 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id m9so18758700ljp.9
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:54:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Y0wRoxXm0lXLU9vHgb65mx+sz5ayh2XUgm6rcM2W0Os=;
-        b=DCcOQ/6pIyGvxCWOmJS1gJrYpFkWZT89oAWW0Ux6OQizF5MPa99CCwIX4LOJsPsX9B
-         MIKDMfkNt7ahoBFEKs3Cca9tYTgh0BpStVWPIVr6tOfeV3GfP1kpCzT0RRsJrHIJUp0r
-         sRoX0fzGoazOGVCzJrnwjsVm4Via8f/Wr3+oWYaKBgzplZRoO71GGex4cHaaTh3xaVw/
-         LgAW498v1nQwVPf6cQNcoN6cFKGNKFh8JQX09MJLKHIIKIT4+d4/qLRHmYRL7gSUHNqi
-         jsQb2kEubx44zU0PxxCYt8SXu6RRT4jRT3mGdWW8qIHIPprKiUnwt2ZlN0uxCqY1gRvq
-         8YJA==
+        d=melexis.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=GBxaS+Rw2Vle09T/tMIK9azudirhVy9SOHc5cji6SFY=;
+        b=hv5cO9rW4bNcbgTVTCp7Dfd3dDf1ImSk1AhDwzKs5IJwS912EW+ziRAwuoyPFh49Ip
+         Zd3SOyCflYYjtj+agjFDP5BHOcwNmbHJzqKP1DMNQQCIbt8ForGSFJN2RIP+TJs83m9A
+         kYoI2xM5AqwvGrTinLsH75+CkE/QrHALu8wQTKt5u0hWfgFfjvJyv9CPUzJ/c7gnZMSq
+         zex+lLkXCvGkdNZTCcaUN+mLgNwD81RR3t7WGgtMnvWTNQfab/DmF+JJ5xoAXbIgOaoQ
+         4D7zaEdGgsRAZOAFVE3h8H7ODashQcvNuU6Aq8K3VC+JM3LyeG/1PkgutwqqdSVktzLr
+         9ldw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Y0wRoxXm0lXLU9vHgb65mx+sz5ayh2XUgm6rcM2W0Os=;
-        b=IGCyHFOpL/7MoMI+2cGiCQx6rXDzuAja2q3Yr0WiJ4oFbi4/RMRFeP4q8xCVPdcN2x
-         R3AZ9GKOtdAOWzYpVOXHY7NDE9kX+SFoOm54/jJklYjEBRJowc7k4DtEICEE7+k1Uiee
-         Aq58/J3MwKKmfXf2xPutH/jaKTQj6rbibKltE8l9PiNO8cztmhR2ClLKvWDlRMH4NSjh
-         TlUhmcPhwIdOVY8KhpyygxXtUBiPCwdll1RSoke5cDRGbzpyyUJMyEGmR35j6UwcUDpP
-         4UBhUROTGlb81Bll/MAexGoNWWf5GKXzUvmUFjII27d+sOJnOYcJ2Ejf/HE05eRFQKMB
-         NnCg==
-X-Gm-Message-State: AJIora/O9St4duBM5cXB3e999a9yCR5IwpSTko235MhYehsnwgAUbf6z
-        WT2PqdOHyc+P+jxzl3gWqOI=
-X-Google-Smtp-Source: AGRyM1uWeUcffW8kDxoO+pUpEnNIyYERqP2oY3ASBFUAIzEgdBIasCmxz4OGqCxwoBCLupGt21noHw==
-X-Received: by 2002:a05:600c:3553:b0:3a3:2b65:299e with SMTP id i19-20020a05600c355300b003a32b65299emr2373091wmq.145.1658328792662;
-        Wed, 20 Jul 2022 07:53:12 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id bg42-20020a05600c3caa00b003a31b79dc0esm11233827wmb.1.2022.07.20.07.53.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jul 2022 07:53:11 -0700 (PDT)
-Message-ID: <43acea66-78e1-b7da-8d1c-3a60a5ddf4b6@gmail.com>
-Date:   Wed, 20 Jul 2022 16:53:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 4/6] Input: mt6779-keypad - support double keys matrix
-Content-Language: en-US
-To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GBxaS+Rw2Vle09T/tMIK9azudirhVy9SOHc5cji6SFY=;
+        b=w/TuTRZ6tvleKDEsd0grGu9QD8GPffmjdBgwrzjIhNX+OgkthvzZu1N2W2j/bPa1SJ
+         nUlMkxjQy/3IIg3JobeBgdNrkPCSAz4BkFhgpmqcoFn6Q8NUehIy+9uzoPHiRhqQe4nK
+         7g/GJTh5FHJ8LZ6PVrZyFeO2M8EDW5Do3fHLYPp0RLRFpitIa88EV/GCM+dpiruKCTXq
+         rA73ajs8pTy48WVOHgVH4LYuhHDdfstOfuErBslmiIQuK6tO/aR0bjDlj1De0j0BcgtR
+         ml7fjc9kC3cyVPdoIMUENDuHFJ6P/9k7K2jRnl4t2sTo6dvhD8SX+FvtrEM2qiLsYMGU
+         PCMw==
+X-Gm-Message-State: AJIora9NK084dggHiE2k2SLYJQo7+3TQDFBDAzMTXy9IrL4Hq2qT8dYY
+        ia41oiSr8VQsMEmorbv6EYws4w==
+X-Google-Smtp-Source: AGRyM1uzAE4k+thS1qLyza6m0G3HldGXVrimf6Dvao33IjMoftpCb9gHbr17bHWAcnZ0I0Vn0CFOdg==
+X-Received: by 2002:a05:651c:2c1:b0:25d:79be:766a with SMTP id f1-20020a05651c02c100b0025d79be766amr16729111ljo.225.1658328859867;
+        Wed, 20 Jul 2022 07:54:19 -0700 (PDT)
+Received: from melexis.com ([194.44.50.51])
+        by smtp.gmail.com with ESMTPSA id b15-20020a2eb90f000000b0025dd70ecbaasm362202ljb.63.2022.07.20.07.54.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jul 2022 07:54:19 -0700 (PDT)
+Date:   Wed, 20 Jul 2022 17:54:16 +0300
+From:   Volodymyr Kharuk <vkh@melexis.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, Andrii Kyselov <ays@melexis.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
- <20220720-mt8183-keypad-v1-4-ef9fc29dbff4@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220720-mt8183-keypad-v1-4-ef9fc29dbff4@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Hyun Kwon <hyun.kwon@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] media: dt-bindings: media: i2c: Add mlx7502x
+ camera sensor binding
+Message-ID: <20220720145416.GA46182@melexis.com>
+References: <cover.1657786765.git.vkh@melexis.com>
+ <712c1acff963238e685cbd5c4a1b91f0ec7f9061.1657786765.git.vkh@melexis.com>
+ <Ys/qq4hIQ25KXB2/@pendragon.ideasonboard.com>
+ <c87132c4-5801-2f1f-8ef9-3997474cf7a5@linaro.org>
+ <Ys/zvH3ICr4zpTLH@pendragon.ideasonboard.com>
+ <7e362d83-36c2-00ed-6525-37197ee8e5d7@linaro.org>
+ <Ys/6O2H/eDEWYHei@pendragon.ideasonboard.com>
+ <20a88191-0c4e-710f-e6ab-4087e5980533@linaro.org>
+ <Ys/+KaNltkZZmRE4@pendragon.ideasonboard.com>
+ <85cb8f2d-5d8b-ffa9-9f53-0e8bc1233e69@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <85cb8f2d-5d8b-ffa9-9f53-0e8bc1233e69@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
+On Thu, Jul 14, 2022 at 01:56:13PM +0200, Krzysztof Kozlowski wrote:
+> On 14/07/2022 13:29, Laurent Pinchart wrote:
+> > On Thu, Jul 14, 2022 at 01:23:41PM +0200, Krzysztof Kozlowski wrote:
+> >> On 14/07/2022 13:12, Laurent Pinchart wrote:
+> >>>>>>> One option would be to support the following three compatible values:
+> >>>>>>>
+> >>>>>>> 	compatible = "melexis,mlx75026", "melexis,mlx7502x";
+> >>>>>>> 	compatible = "melexis,mlx75027", "melexis,mlx7502x";
+> >>>>>>> 	compatible = "melexis,mlx7502x";
+> >>>>>>>
+> >>>>>>> The last one only would trigger autodetection. I'm still not sure how to
+> >>>>>>> document that properly in bindings though.
+> >>>>>>
+> >>>>>> I missed that part of binding.
+> >>>>>>
+> >>>>>> Wildcards are not allowed in compatible, so mlx7502x has to go.
+> >>>>>
+> >>>>> Really ? We've had fallback generic compatible strings since the
+> >>>>> beginning.
+> >>>>
+> >>>> Fallback generic compatibles are allowed. Wildcards not. Wildcards were
+> >>>> actually never explicitly allowed, they just slipped in to many
+> >>>> bindings... We have several discussions on this on mailing list, so no
+> >>>> real point to repeat the arguments.
+> >>>>
+> >>>> There is a difference between generic fallback. If the device follows
+> >>>> clear specification and version, e.g. "foo-bar-v4", you can use it for
+> >>>> generic compatible. This is more common in SoC components. Requirement -
+> >>>> there is a clear mapping between versions and SoCs.
+> >>>
+> >>> I'm not sure to see a clear difference between the two concepts.
+> >>
+> >> The clear difference is that you have a versioned and re-usable hardware
+> >> block plus clear mapping which version goes to which SoC. Version
+> >> numbers usually start with 1, not with 75025. 75025 is a model name.
+> > 
+> > How about Documentation/devicetree/bindings/serial/renesas,scif.yaml for
+> > instance, where the version number isn't known and the SoC name is used
+> > instead ? Is that acceptable ?
+> 
+> This is the second case I mentioned - family of devices where the family
+> fallback is not allowed to be alone. You cannot use just "renesas,scif"
+> in DTS.
+> 
+> > 
+> > How should we deal with devices that have different models, where the
+> > model is irrelevant to the kernel driver, but relevant to userspace ?
+> > Imagine, for instance, a light sensor with 10 models than only differ by
+> > the filter they use to tune the sensitivity to different light spectrums
+> > ? They are all "compatible" from a software point of view, would the
+> > driver need to list all 10 compatible strings ?
+> 
+> I don't understand that example, I mean, what's the problem here? If
+> they are all compatible, you can use only one comaptible, e.g.
+> melexis,mlx75026.
+> 
+> If you ever need to differentiate it for user-space, you add specific
+> compatible for the model and you have:
+> 
+> melexis,mlx75027, melexis,mlx75026
+> 
+> If user-space needs dedicated compatibles - add them, no one here argues
+> to not to use specific compatibles.
+Thanks for explanation. Now I understand the device tree better and
+the whole idea behind it. I'll remove wildcard and autodetect.
+Instead I will use of_match_table only.
+> 
+> 
+> >>> For cameras, we often deal with complex pipelines with multiple external
+> >>> devices and multiple IP cores, with drivers that need to communicate
+> >>> with each other to initialize the complete camera system. For instance,
+> >>> each camera-related component in the system registers itself in a media
+> >>> graph that can be queried from userspace and exposes information about
+> >>> all devices, including their model. There's no power up of any device
+> >>> when this query is being performed from userspace. It could possibly be
+> >>> changed (and maybe it should, for reasons unrelated to this discussion),
+> >>> but we're looking at pretty much a complete redesign of V4L2 and MC
+> >>> then.
+> >>
+> >> Is then autodetection a real use case since you have to power up the
+> >> sensor each time system boots and this violates privacy? Several I2C
+> >> sensors do not care about this and they always do it on power up, so
+> >> aren't we solving here something unimportant?
+> > 
+> > In a laptop or tablet with a camera sensor, you likely don't want
+> > autodetection. In an industrial device, you don't care, and having the
+> > ability to auto-detect the exact sensor model when booting saves cost in
+> > the production chain as a single image can work across different models.
+> 
+> We talk about the case here, not generic. Do you want to have
+> autodetection possible here or not?
+> 
+> Best regards,
+> Krzysztof
 
-On 20/07/2022 16:48, Mattijs Korpershoek wrote:
-> MediaTek keypad has 2 modes of detecting key events:
-> - single key: each (row, column) can detect one key
-> - double key: each (row, column) is a group of 2 keys
-> 
-> Double key support exists to minimize cost, since it reduces the number
-> of pins required for physical keys.
-> 
-> Double key is configured by setting BIT(0) of the KP_SEL register.
-> 
-> Enable double key matrix support based on the mediatek,double-keys
-> device tree property.
-> 
-> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+-- 
+--
+Volodymyr Kharuk
+Embedded Software Engineer
+Melexis-Ukraine
+Mykhaila Kotel'nykova St, 4, Kyiv
+Mobile phone: +38 050 346 5527
+www.melexis.com
+---
+The contents of this e-mail are CONFIDENTIAL AND PROPRIETARY. Please read
+our disclaimer at http://www.melexis.com/mailpolicy
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> 
-> diff --git a/drivers/input/keyboard/mt6779-keypad.c b/drivers/input/keyboard/mt6779-keypad.c
-> index bf447bf598fb..9a5dbd415dac 100644
-> --- a/drivers/input/keyboard/mt6779-keypad.c
-> +++ b/drivers/input/keyboard/mt6779-keypad.c
-> @@ -18,6 +18,7 @@
->   #define MTK_KPD_DEBOUNCE_MASK	GENMASK(13, 0)
->   #define MTK_KPD_DEBOUNCE_MAX_MS	256
->   #define MTK_KPD_SEL		0x0020
-> +#define MTK_KPD_SEL_DOUBLE_KP_MODE	BIT(0)
->   #define MTK_KPD_SEL_COL	GENMASK(15, 10)
->   #define MTK_KPD_SEL_ROW	GENMASK(9, 4)
->   #define MTK_KPD_SEL_COLMASK(c)	GENMASK((c) + 9, 10)
-> @@ -31,6 +32,7 @@ struct mt6779_keypad {
->   	struct clk *clk;
->   	u32 n_rows;
->   	u32 n_cols;
-> +	bool double_keys;
->   	DECLARE_BITMAP(keymap_state, MTK_KPD_NUM_BITS);
->   };
->   
-> @@ -67,8 +69,13 @@ static irqreturn_t mt6779_keypad_irq_handler(int irq, void *dev_id)
->   			continue;
->   
->   		key = bit_nr / 32 * 16 + bit_nr % 32;
-> -		row = key / 9;
-> -		col = key % 9;
-> +		if (keypad->double_keys) {
-> +			row = key / 13;
-> +			col = (key % 13) / 2;
-> +		} else {
-> +			row = key / 9;
-> +			col = key % 9;
-> +		}
->   
->   		scancode = MATRIX_SCAN_CODE(row, col, row_shift);
->   		/* 1: not pressed, 0: pressed */
-> @@ -150,6 +157,8 @@ static int mt6779_keypad_pdrv_probe(struct platform_device *pdev)
->   
->   	wakeup = device_property_read_bool(&pdev->dev, "wakeup-source");
->   
-> +	keypad->double_keys = device_property_read_bool(&pdev->dev, "mediatek,double-keys");
-> +
->   	dev_dbg(&pdev->dev, "n_row=%d n_col=%d debounce=%d\n",
->   		keypad->n_rows, keypad->n_cols, debounce);
->   
-> @@ -166,6 +175,10 @@ static int mt6779_keypad_pdrv_probe(struct platform_device *pdev)
->   	regmap_write(keypad->regmap, MTK_KPD_DEBOUNCE,
->   		     (debounce * (1 << 5)) & MTK_KPD_DEBOUNCE_MASK);
->   
-> +	if (keypad->double_keys)
-> +		regmap_update_bits(keypad->regmap, MTK_KPD_SEL,
-> +				   MTK_KPD_SEL_DOUBLE_KP_MODE, MTK_KPD_SEL_DOUBLE_KP_MODE);
-> +
->   	regmap_update_bits(keypad->regmap, MTK_KPD_SEL, MTK_KPD_SEL_ROW,
->   			   MTK_KPD_SEL_ROWMASK(keypad->n_rows));
->   	regmap_update_bits(keypad->regmap, MTK_KPD_SEL, MTK_KPD_SEL_COL,
-> 
