@@ -2,111 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B68D57B6FA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 15:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 457C057B706
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 15:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238398AbiGTNGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 09:06:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37254 "EHLO
+        id S231712AbiGTNKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 09:10:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235179AbiGTNGP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 09:06:15 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C1265288A;
-        Wed, 20 Jul 2022 06:06:13 -0700 (PDT)
-X-UUID: 55a089cfd7f5432780d34ea347874e36-20220720
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:778fec47-90c9-46d5-b7d3-a5188c2d933f,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:90
-X-CID-INFO: VERSION:1.1.8,REQID:778fec47-90c9-46d5-b7d3-a5188c2d933f,OB:0,LOB:
-        0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
-        TION:quarantine,TS:90
-X-CID-META: VersionHash:0f94e32,CLOUDID:8e9000d8-5d6d-4eaf-a635-828a3ee48b7c,C
-        OID:6d3e904289c2,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 55a089cfd7f5432780d34ea347874e36-20220720
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 925497398; Wed, 20 Jul 2022 21:06:07 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Wed, 20 Jul 2022 21:06:06 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.3 via Frontend Transport; Wed, 20 Jul 2022 21:06:06 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
-CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <hsinyi@chromium.org>,
-        <fparent@baylibre.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH v2 1/1] dt-bindings: display: mediatek: dpi: add power-domains property
-Date:   Wed, 20 Jul 2022 21:06:04 +0800
-Message-ID: <20220720130604.14113-2-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220720130604.14113-1-allen-kh.cheng@mediatek.com>
-References: <20220720130604.14113-1-allen-kh.cheng@mediatek.com>
+        with ESMTP id S230496AbiGTNKg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 09:10:36 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D65253D01;
+        Wed, 20 Jul 2022 06:10:35 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3CF996601A88;
+        Wed, 20 Jul 2022 14:10:33 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658322633;
+        bh=jeqvqgxO7A/6sT1qqpmHd9fisrNBZJEFg3LINFIwS7Q=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OilSlXJ8lGmJdbXTdLM/ZW+CXHjEwbXiW84uU0jghgqXV/kadvEKWj58iEza6Izdf
+         RpU9SJaBmnWeLZONnxIFWfDuDDaPtdgpJRFcm4qM6a9+Ejv9wERp3gXld2lC4qwREX
+         uqEZwtmz4m1aEgMcnzqbv+L2iObZMPf/+67hv3DyOukeUqtPfPydIbxt01FiteMCEc
+         nSiexE2qz29S22Z5/i71JezrcAy1JQr4JDqPMuOWMThzp7BAiJxAQONNxksrH1OJeY
+         1uERup10s+iJLE76Pqm20H1NYYISsrbqmLWk47ZeHfVDgRUuQTPLZaoWktSGet1zqm
+         fjPFaXiELCmAA==
+Message-ID: <4c75be1e-d1d9-f70f-5d84-3e32c8e757e7@collabora.com>
+Date:   Wed, 20 Jul 2022 15:10:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v3 1/4] dt-binding: mediatek: watchdog: Fix compatible
+ fallbacks and example
+Content-Language: en-US
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20220720125015.13797-1-allen-kh.cheng@mediatek.com>
+ <20220720125015.13797-2-allen-kh.cheng@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220720125015.13797-2-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DPI is part of the display / multimedia block in MediaTek SoCs
-and is managed using power controller in some platforms. We add
-the power-domains property to the binding documentation.
+Il 20/07/22 14:50, Allen-KH Cheng ha scritto:
+> The watchdog timer of mt8186. mt8195 and mt7986 have their DT data.
+> We should not use 'mediatek,mt6589-wdt' as fallback.
+> 
+> For mediatek,wdt example of mt8183, We remove mediatek,mt6589-wdt fallback.
+> 
+> Fixes:a45b408a020b("dt-bindings: watchdog: Add compatible for MediaTek MT8186")
+> Fixes:b326f2c85f3d("dt-bindings: watchdog: Add compatible for Mediatek MT8195")
+> Fixes:41e73feb1024("dt-bindings: watchdog: Add compatible for Mediatek MT7986")
+> Fixes:f43f97a0fc0e("dt-bindings: mediatek: mt8183: Add #reset-cells")
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 
-Fixes:9273cf7d3942("dt-bindings: display: mediatek: convert the dpi bindings to yaml")
+Please fix the commit title: dt-binding: => dt-bindings:
 
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+After which....
+
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml   | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-index 5bb23e97cf33..9f012afdf19b 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-@@ -58,6 +58,9 @@ properties:
-       Output port node. This port should be connected to the input port of an
-       attached HDMI, LVDS or DisplayPort encoder chip.
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-@@ -72,11 +75,13 @@ examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/clock/mt8173-clk.h>
-+    #include <dt-bindings/power/mt8173-power.h>
- 
-     dpi0: dpi@1401d000 {
-         compatible = "mediatek,mt8173-dpi";
-         reg = <0x1401d000 0x1000>;
-         interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_LOW>;
-+        power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-         clocks = <&mmsys CLK_MM_DPI_PIXEL>,
-              <&mmsys CLK_MM_DPI_ENGINE>,
-              <&apmixedsys CLK_APMIXED_TVDPLL>;
--- 
-2.18.0
 
