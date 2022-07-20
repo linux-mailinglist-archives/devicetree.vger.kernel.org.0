@@ -2,180 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1444F57B91C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 17:02:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EBC057B92C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 17:07:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231772AbiGTPCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 11:02:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39986 "EHLO
+        id S232429AbiGTPHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 11:07:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbiGTPC3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 11:02:29 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC94F53D0B;
-        Wed, 20 Jul 2022 08:02:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 62CAEB8202A;
-        Wed, 20 Jul 2022 15:02:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEB88C341CB;
-        Wed, 20 Jul 2022 15:02:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658329346;
-        bh=YtXNC0/HbHYd73S2MobPGIYi5L9P9glepVHyLjo+yIE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WeS2QTCfdwxKUm2Er62+u2E95wrofLc1yybYMswFHp+dmQrUiVQBwIosgsXsPshzR
-         jzgW5Rup6xg+AjB29uFeFNMvj+5+92NYhLGzFumjtIEBqUUfSmkJ7mjeckEmvKg9ch
-         Ab0u0GqcnDcGYjeskkdr0Xvitv7QSCGnSXsuYk5knmzkF8HQFpPtdg0v2rYkfff+QI
-         qh1HIxmTG1e6Sgg/2lmhnzisZBsjuiKwN/oXF2h66/iaaT6U/kfPs1qSm18/X8W5mI
-         jAfJUhciK/zABb2FduQ4o/v3x+QFIM7PhMRKW3+UeP3yCaGhHLZCnxnU3IS4i7lpuO
-         1quOQ4/YMlycQ==
-Received: by mail-ua1-f46.google.com with SMTP id e19so714319uaa.0;
-        Wed, 20 Jul 2022 08:02:25 -0700 (PDT)
-X-Gm-Message-State: AJIora+20BbG7wzpqa8l0YlXe/7H01rZRYKck7LfMmhslbqKtJfl9joe
-        yamQMwZ/71NUaRP1r/HKaQG1HN2YUPVXsKnWcw==
-X-Google-Smtp-Source: AGRyM1u2rvqON7In/cjBTV1BEYMObzvukL/7uaEqk3luqEFv5gH/ltfpcdvrVdJNgSqhpGcgP0J7P/PCo3+FieGYmTM=
-X-Received: by 2002:a05:6130:291:b0:383:3b9:7024 with SMTP id
- q17-20020a056130029100b0038303b97024mr14187591uac.43.1658329344829; Wed, 20
- Jul 2022 08:02:24 -0700 (PDT)
+        with ESMTP id S240385AbiGTPHd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 11:07:33 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B15DB237D6
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:07:32 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id x91so24176496ede.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:07:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QLkLqL61DDqJ9IAVUdmTVDocJg5pLEqlAURJ5AHPPUk=;
+        b=jwiuRcsVxReYTQwzNleS0OK+pJTpyysxB+6naxh1/qIV3RDFn0d/Gah6qlvxG7mYR0
+         +Ae6/nMY7OPLolxegD4LWlydgrTVuRzzVTAiuQHwCiE+AkUiVyb3/6ZBLWYAN2A6T8iR
+         nsCrclsH10l+1H/sy8X2ZWmsfqB6oGWuSZZdQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QLkLqL61DDqJ9IAVUdmTVDocJg5pLEqlAURJ5AHPPUk=;
+        b=kEas6oBuinKYkO38u9lgLxxHhvOsFskGpVLDxo4I4TWYZ5Yd5CUe9pRLhzi5UNNgdG
+         plAkRWABzNp18jLJcVAyS2z+UW6wUAtlxYWQp7J5d75a/9z61Nx4z9Koj8L9wx2fj4be
+         xFMZN9QyvTRLe2tGXIwZBFuuXdUYkK/stU3b0HVh7TpH1ilDMjz/ijHxjrSDbeHF3dT5
+         Wp0QocWUe5VsgxjZbqcc911MfKOOfKBTKvCpBcF25ic/wHIsPYygUh8gFWjor7ngQtm2
+         pNx/yu8exwaE3+MVVMl5AEdvjl5R48aDGSIe5otNfEyPGV//1+alnes0aK8ym/3UIlqb
+         gWRA==
+X-Gm-Message-State: AJIora9oAzJU/WdhQwTBUM0I3jIAfI9SRXsrv066FZt01JfjQvBbpyZ9
+        RBkBBnWE0TguUVixlOyPAxA9lArlkMP5A+mU128=
+X-Google-Smtp-Source: AGRyM1snARHX7a5YibuzLgOrsTpdQPQKCBbHXz5OeTVTfDgJED6L0D3hzNpu7KPvpS2AP9/Qj7UNaw==
+X-Received: by 2002:a50:ec99:0:b0:43b:b6ca:ba13 with SMTP id e25-20020a50ec99000000b0043bb6caba13mr6199398edr.360.1658329651163;
+        Wed, 20 Jul 2022 08:07:31 -0700 (PDT)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
+        by smtp.gmail.com with ESMTPSA id ee55-20020a056402293700b0043ba51a84f2sm2194968edb.14.2022.07.20.08.07.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Jul 2022 08:07:29 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id a11so4912663wmq.3
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:07:28 -0700 (PDT)
+X-Received: by 2002:a05:600c:1549:b0:3a3:2aa2:6f60 with SMTP id
+ f9-20020a05600c154900b003a32aa26f60mr2807595wmg.57.1658329648175; Wed, 20 Jul
+ 2022 08:07:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220720142612.19779-1-shubhrajyoti.datta@xilinx.com> <20220720142612.19779-3-shubhrajyoti.datta@xilinx.com>
-In-Reply-To: <20220720142612.19779-3-shubhrajyoti.datta@xilinx.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 20 Jul 2022 09:02:13 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLP-vKMPvKLt3PXDeW+rTOAKVX68Wo8tGyezFgJ+VTYjA@mail.gmail.com>
-Message-ID: <CAL_JsqLP-vKMPvKLt3PXDeW+rTOAKVX68Wo8tGyezFgJ+VTYjA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] serial: pl011: Add support for Xilinx Uart
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        git <git@xilinx.com>,
+References: <20220720073755.1.Ifab936517646b3876dd31b6e9b1b58a858529e57@changeid>
+ <4cc6a276-4cbe-506a-6425-677c56469645@linaro.org>
+In-Reply-To: <4cc6a276-4cbe-506a-6425-677c56469645@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 20 Jul 2022 08:07:14 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WP22g2ZhyeGeYJcGtQTBeKjinxQRCXicHxeVh-ziC8iA@mail.gmail.com>
+Message-ID: <CAD=FV=WP22g2ZhyeGeYJcGtQTBeKjinxQRCXicHxeVh-ziC8iA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: qcom: Document additional sku6 for
+ sc7180 pazquel
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Henry Sun <henrysun@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 20, 2022 at 8:26 AM Shubhrajyoti Datta
-<shubhrajyoti.datta@xilinx.com> wrote:
->
-> From: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
->
-> The xilinx uart used in Versal SOC follows arm pl011 implementation
-> with just a minor change in data bus width. The minimum data
-> transaction width in Versal SOC is 32-bit as specified in the
-> TRM (Chapter 39: Transaction attributes). Pl011 defaults to 16-bit
-> in the driver.
-> So, add the xilinx uart as platform device with properties specified
-> in 'vendor_data' structure.
->
-> Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> ---
->  drivers/tty/serial/amba-pl011.c | 33 +++++++++++++++++++++++++++++++--
->  1 file changed, 31 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/tty/serial/amba-pl011.c b/drivers/tty/serial/amba-pl011.c
-> index 97ef41cb2721..096a56f64d17 100644
-> --- a/drivers/tty/serial/amba-pl011.c
-> +++ b/drivers/tty/serial/amba-pl011.c
-> @@ -152,6 +152,21 @@ static const struct vendor_data vendor_sbsa = {
->         .fixed_options          = true,
->  };
->
-> +static const struct vendor_data vendor_xlnx = {
-> +       .reg_offset             = pl011_std_offsets,
-> +       .ifls                   = UART011_IFLS_RX4_8 | UART011_IFLS_TX4_8,
-> +       .fr_busy                = UART01x_FR_BUSY,
-> +       .fr_dsr                 = UART01x_FR_DSR,
-> +       .fr_cts                 = UART01x_FR_CTS,
-> +       .fr_ri                  = UART011_FR_RI,
-> +       .access_32b             = true,
-> +       .oversampling           = false,
-> +       .dma_threshold          = false,
-> +       .cts_event_workaround   = false,
-> +       .always_enabled         = true,
-> +       .fixed_options          = false,
-> +};
-> +
->  #ifdef CONFIG_ACPI_SPCR_TABLE
->  static const struct vendor_data vendor_qdt_qdf2400_e44 = {
->         .reg_offset             = pl011_std_offsets,
-> @@ -2581,6 +2596,7 @@ static int __init pl011_early_console_setup(struct earlycon_device *device,
->  }
->  OF_EARLYCON_DECLARE(pl011, "arm,pl011", pl011_early_console_setup);
->  OF_EARLYCON_DECLARE(pl011, "arm,sbsa-uart", pl011_early_console_setup);
-> +OF_EARLYCON_DECLARE(pl011, "arm,xlnx-uart", pl011_early_console_setup);
->
->  /*
->   * On Qualcomm Datacenter Technologies QDF2400 SOCs affected by
-> @@ -2824,6 +2840,7 @@ static int sbsa_uart_probe(struct platform_device *pdev)
->  {
->         struct uart_amba_port *uap;
->         struct resource *r;
-> +       int xlnx_uart = 0;
->         int portnr, ret;
->         int baudrate;
->
-> @@ -2834,6 +2851,7 @@ static int sbsa_uart_probe(struct platform_device *pdev)
->         if (pdev->dev.of_node) {
->                 struct device_node *np = pdev->dev.of_node;
->
-> +               xlnx_uart = of_device_is_compatible(np, "arm,xlnx-uart");
->                 ret = of_property_read_u32(np, "current-speed", &baudrate);
->                 if (ret)
->                         return ret;
-> @@ -2863,13 +2881,23 @@ static int sbsa_uart_probe(struct platform_device *pdev)
->  #endif
->                 uap->vendor = &vendor_sbsa;
->
-> +       uap->port.ops   = &sbsa_uart_pops;
+Hi,
 
-SBSA is only a subset of PL011 functionality. I don't think you want
-to use that. Is there some reason you can't set uap->port.iotype to
-UPIO_MEM32 based on 'reg-io-width' in pl011_probe()? The console setup
-would need something too, but it should be the same as 8250 setup
-IIRC.
+On Wed, Jul 20, 2022 at 12:46 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 20/07/2022 09:38, Yunlong Jia wrote:
+> > The difference between sku6 and sku4 is that there is no esim
+> >
+> > Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
+> > ---
+> >
+> >  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > index 4dd18fbf20b6..aebeefdab27f 100644
+> > --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> > @@ -410,6 +410,7 @@ properties:
+> >        - description: Google Pazquel with LTE and Parade (newest rev)
+> >          items:
+> >            - const: google,pazquel-sku4
+> > +          - const: google,pazquel-sku6
+>
+> This looks wrong, did you test it?
 
-> +
-> +       if (xlnx_uart) {
-> +               uap->vendor = &vendor_xlnx;
-> +               uap->clk = devm_clk_get(&pdev->dev, NULL);
-> +               if (IS_ERR(uap->clk))
-> +                       return PTR_ERR(uap->clk);
-> +
-> +               uap->port.ops = &amba_pl011_pops;
+Why do you think it's wrong? This patch is adding a second compatible
+string to an existing dts. The only difference between SKU4 and SKU6
+is that one of them has the eSIM component stuffed and the other one
+doesn't. This need not be represented in the dts since the eSIM is
+automatically detected, but it was still stuffed as a SKU strapping so
+the factory could tell whether the missing eSIM was an error or
+intentional.
 
-None of this would be needed either.
+This is just like the SKU0 vs. SKU2 difference.
 
-> +       }
-> +
->         uap->reg_offset = uap->vendor->reg_offset;
->         uap->fifosize   = 32;
->         uap->port.iotype = uap->vendor->access_32b ? UPIO_MEM32 : UPIO_MEM;
-> -       uap->port.ops   = &sbsa_uart_pops;
->         uap->fixed_baud = baudrate;
->
-> -       snprintf(uap->type, sizeof(uap->type), "SBSA");
-> +       snprintf(uap->type, sizeof(uap->type), "%s\n", (xlnx_uart ? "xlnx_uart" : "SBSA"));
->
->         r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->
-> @@ -2893,6 +2921,7 @@ static int sbsa_uart_remove(struct platform_device *pdev)
->
->  static const struct of_device_id sbsa_uart_of_match[] = {
->         { .compatible = "arm,sbsa-uart", },
-> +       { .compatible = "arm,xlnx-uart", },
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, sbsa_uart_of_match);
-> --
-> 2.17.1
->
+Other than the fact that this should be together in one series with
+the dts patch:
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
