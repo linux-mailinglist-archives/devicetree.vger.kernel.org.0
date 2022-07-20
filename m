@@ -2,309 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F222B57B428
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 11:48:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8C6C57B43B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 11:59:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235316AbiGTJsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 05:48:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47892 "EHLO
+        id S230496AbiGTJ7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 05:59:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231826AbiGTJst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 05:48:49 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E39655AF;
-        Wed, 20 Jul 2022 02:48:48 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id z13so5771235wro.13;
-        Wed, 20 Jul 2022 02:48:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=c+pvmwXxIE3jKXaJBEBBqNcZCeI+2ftzet1Ejv5LXxE=;
-        b=Bl/Uxa8xKm77kppS+zbyPUqMX6ThytrscVsgl1YNbRNeKe8x3wNYy9xN2LJQgC4b+m
-         CVtxDHN3+NlCmmeGfSPK3c/2bgbcIaqjyJ8UOOrc7fgYnHXVJpL9/jlthv7pWdx9kOH1
-         LZ8Ke+TTociEGnkw6Kb2NrqYVzWsyeo9vazoQxsfc7PDfRMUmtJMmZ2JjxhubAt8pfFH
-         oIQiGQ/fJdWsK3BswigHb/+Qw2e86Dg2TDS2EAHuCLGkXQC7NROzCqqyLHBKgPM7Xxl8
-         znyAJjdKjHqrO6ONRWcA3n3b8veOJmnjbOX7I+MBtOPTMpYlt0dx+flde0eKnhS9oZA+
-         5LkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=c+pvmwXxIE3jKXaJBEBBqNcZCeI+2ftzet1Ejv5LXxE=;
-        b=zm/QX45d+Mq9PhohE71568aOFJBPpbFe7wxDQk34r2O2J8cCArx5iVOiwWhmnBxQWz
-         e+9/7NCWMYxGOdb450CFH13Xs8+wD2HvMjZk/aK6teRylv4EcO6sf9FL9nfI9X+GuljY
-         t3TApFUPaqbN8SzVKt7cmA4B+ge5/uDhjLKArCJBjIARuUMM0OnGD230e8JujxssWXpA
-         ncDZooT4JZLS1TApVC5i7jHiDNBp1TW4MU3h9OFf49Gg4IiBfOETKvmE0V1KGvqOUt7G
-         Yn46NBlMQ32/2eWQpyrnkCg/4ajf4fEUizgM/0V6jqmusoQFIMh9PPQDNirhY47+Mo8D
-         azwA==
-X-Gm-Message-State: AJIora9Nws0kRDpeOhHskrMn3R+TY5xMg7/PGShiCuaPk8hajCH7cOxJ
-        VllcfJuzXjYnrG+pFKpJr8H1BNSdRGiwZA+0bTU=
-X-Google-Smtp-Source: AGRyM1s8IpIYDGuU/DLqKsFdsmyV+rKVmTfi/oduAoH5rNHnTn85/TiMyb4eENWpu+Y5Z15JoqFBASYG/TlH/hH8hGo=
-X-Received: by 2002:a05:6000:98b:b0:21d:b70f:2726 with SMTP id
- by11-20020a056000098b00b0021db70f2726mr29986145wrb.237.1658310526656; Wed, 20
- Jul 2022 02:48:46 -0700 (PDT)
+        with ESMTP id S229492AbiGTJ7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 05:59:30 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B92412A84;
+        Wed, 20 Jul 2022 02:59:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1658311169; x=1689847169;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SOFujLqVQ8IM/zPTiPh1M18yqXiEmqEQFOTKQq34x6g=;
+  b=WQQWZDgNC/FEb4yK0CwPjjx2V6w2cokOp1YOqvrLdGuLKTln9FP1uuw9
+   qs1DYQVrLTQvjyph+HVVGVAoxwF0t1c/pRib27gH5d/64YxabZV2Snb3D
+   74ZAeG1UWpwBQzwyI5TmehwsQIm81kyuvPWEkNG0wW/rUfRztgyJHt7NK
+   RA/V2BsuQoFoF31RgWJ/R6bGLhzJIA7ThP8Rz7ToK/zcOu6Hdqxpt37Eh
+   L5cv7TOImxXlerO+tePFEHDPdQCVVbXwDSQY+MyfxnyvVxLEb763f8yR1
+   pdCLzjxpdd2FlziY0owTgav6h/jtFdLtGMKKhdK9fkMcJtVQ+tJ3O6zqr
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10413"; a="285498281"
+X-IronPort-AV: E=Sophos;i="5.92,286,1650956400"; 
+   d="scan'208";a="285498281"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jul 2022 02:59:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.92,286,1650956400"; 
+   d="scan'208";a="740228895"
+Received: from lkp-server01.sh.intel.com (HELO 7dfbdc7c7900) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 20 Jul 2022 02:59:24 -0700
+Received: from kbuild by 7dfbdc7c7900 with local (Exim 4.95)
+        (envelope-from <lkp@intel.com>)
+        id 1oE6UF-0000MV-Nz;
+        Wed, 20 Jul 2022 09:59:23 +0000
+Date:   Wed, 20 Jul 2022 17:58:57 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, l.stach@pengutronix.de
+Cc:     kbuild-all@lists.01.org, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
+        marex@denx.de, paul.elder@ideasonboard.com, aford173@gmail.com,
+        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V3 5/7] soc: imx: imx8m-blk-ctrl: add i.MX8MP VPU blk ctrl
+Message-ID: <202207201734.DwWC33xs-lkp@intel.com>
+References: <20220719055054.3855979-6-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-References: <20220715112607.591-1-peterwu.pub@gmail.com> <20220715112607.591-12-peterwu.pub@gmail.com>
- <CAHp75VfyVufzf7CK38BVu_j0B4ax_d1gLAGYDE3H1zaKkuUB=A@mail.gmail.com> <20220720094510.GA29755@cyhuang-hp-elitebook-840-g3.rt>
-In-Reply-To: <20220720094510.GA29755@cyhuang-hp-elitebook-840-g3.rt>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Wed, 20 Jul 2022 17:48:34 +0800
-Message-ID: <CADiBU3_rtVXFX3qdSoc=F-zs9CYiNRmNPOa3RffRJD1Qc5N-bA@mail.gmail.com>
-Subject: Re: [PATCH v5 11/13] leds: mt6370: Add MediaTek MT6370 current sink
- type LED Indicator support
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Alice Chen <alice_chen@richtek.com>,
-        cy_huang <cy_huang@richtek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        szuni chen <szunichen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220719055054.3855979-6-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=8820=E6=
-=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:45=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Fri, Jul 15, 2022 at 08:29:42PM +0200, Andy Shevchenko wrote:
-> > On Fri, Jul 15, 2022 at 1:29 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote=
-:
-> > >
-> > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > >
-> > > The MediaTek MT6370 is a highly-integrated smart power management IC,
-> > > which includes a single cell Li-Ion/Li-Polymer switching battery
-> > > charger, a USB Type-C & Power Delivery (PD) controller, dual
-> > > Flash LED current sources, a RGB LED driver, a backlight WLED driver,
-> > > a display bias driver and a general LDO for portable devices.
-> > >
-> > > In MediaTek MT6370, there are four channel current-sink RGB LEDs that
-> > > support hardware pattern for constant current, PWM, and breath mode.
-> > > Isink4 channel can also be used as a CHG_VIN power good indicator.
-> >
-> > ...
-> >
-> > > +         This driver can also be built as a module. If so the module
-> >
-> > so, the
-> >
-> > > +         will be called "leds-mt6370.ko".
-> >
-> > No ".ko".
-> >
-> > Why did you ignore these comments? Please go and fix _everywhere_ in
-> > your series.
-> > It's basically the rule of thumb, if the reviewer gives a comment
-> > against an occurrence of something, go through entire series and check
-> > if there are other places like commented one and address them all.
-> >
-> > ...
-> >
-> > > + * Author: Alice Chen <alice_chen@richtek.com>
-> >
-> > Strange, the commit message doesn't have a corresponding SoB, why?
-> >
-> Yes, there're two authors Alice and me.
-> I'll correct it in next.
-> > ...
-> >
-> > > +#define MT6370_PWM_DUTY                                31
-> > > +#define MT6372_PMW_DUTY                                255
-> >
-> > Looks like these are limits by hardware?
-> > Check with the datasheet if (BIT(x) - 1) makes more sense here.
-> >
-> > ...
-> >
-> > > +       switch (led_no) {
-> > > +       case MT6370_LED_ISNK1:
-> > > +               sel_field =3D F_LED1_DUTY;
-> > > +               break;
-> > > +       case MT6370_LED_ISNK2:
-> > > +               sel_field =3D F_LED2_DUTY;
-> > > +               break;
-> > > +       case MT6370_LED_ISNK3:
-> > > +               sel_field =3D F_LED3_DUTY;
-> > > +               break;
-> > > +       default:
-> > > +               sel_field =3D F_LED4_DUTY;
-> >
-> > Missed break;
-> >
-> > > +       }
-> >
-> > ...
-> >
-> > > +       switch (led_no) {
-> > > +       case MT6370_LED_ISNK1:
-> > > +               sel_field =3D F_LED1_FREQ;
-> > > +               break;
-> > > +       case MT6370_LED_ISNK2:
-> > > +               sel_field =3D F_LED2_FREQ;
-> > > +               break;
-> > > +       case MT6370_LED_ISNK3:
-> > > +               sel_field =3D F_LED3_FREQ;
-> > > +               break;
-> > > +       default:
-> > > +               sel_field =3D F_LED4_FREQ;
-> >
-> > Ditto.
-> >
-> > > +       }
-> >
-> > ...
-> >
-> > > +       switch (led_no) {
-> > > +       case MT6370_LED_ISNK1:
-> > > +       case MT6370_LED_ISNK2:
-> > > +       case MT6370_LED_ISNK3:
-> > > +               *base =3D MT6370_REG_RGB1_TR + led_no * 3;
-> > > +               break;
-> > > +       default:
-> > > +               *base =3D MT6370_REG_RGB_CHRIND_TR;
-> >
-> > Ditto.
-> > It seems you dropped them for all switch-cases. It's not goot, please
-> > restore them back.
-> >
-> > > +       }
-> >
-> > ...
-> >
-> > > +       u8 val[P_MAX_PATTERNS / 2] =3D {0};
-> >
-> > { } should suffice
-> >
-> >
-> In the above range selector, we use the 'logic or' to generate the
-typo, it's 'below'.
-> pattern values.
->
-> If to change it from '{0} to '{ }', is it correct?
-> > > +       /*
-> > > +        * Pattern list
-> > > +        * tr1: byte 0, b'[7: 4]
-> > > +        * tr2: byte 0, b'[3: 0]
-> > > +        * tf1: byte 1, b'[7: 4]
-> > > +        * tf2: byte 1, b'[3: 0]
-> > > +        * ton: byte 2, b'[7: 4]
-> > > +        * toff: byte 2, b'[3: 0]
-> > > +        */
-> > > +       for (i =3D 0; i < P_MAX_PATTERNS; i++) {
-> > > +               curr =3D pattern + i;
-> > > +
-> > > +               sel_range =3D i =3D=3D P_LED_TOFF ? R_LED_TOFF : R_LE=
-D_TRFON;
-> > > +
-> > > +               linear_range_get_selector_within(priv->ranges + sel_r=
-ange,
-> > > +                                                curr->delta_t, &sel)=
-;
-> > > +
-> > > +               val[i / 2] |=3D sel << (4 * ((i + 1) % 2));
-> > > +       }
-> > > +
-> > > +       memcpy(pattern_val, val, 3);
-> > > +       return 0;
-> > > +}
-> >
-> > ...
-> >
-> > > +out:
-> >
-> > out_unlock:
-> >
-> > > +       mutex_unlock(&priv->lock);
-> > > +
-> > > +       return ret;
-> >
-> > ...
-> >
-> > > +out:
-> >
-> > Ditto. And so on.
-> >
-> > > +       mutex_unlock(&priv->lock);
-> > > +
-> > > +       return ret;
-> >
-> > ...
-> >
-> > > +               sub_led =3D devm_kzalloc(priv->dev,
-> > > +                                      sizeof(*sub_led) * MC_CHANNEL_=
-NUM,
-> > > +                                      GFP_KERNEL);
-> >
-> > NIH devm_kcalloc(). Also check if you really need zeroed data.
-> >
-> Ok, and after the check, I also need to add one line to set the intensity=
- to 0.
-> > > +               if (!sub_led)
-> > > +                       return -ENOMEM;
-> >
-> > ...
-> >
-> > > +                       ret =3D fwnode_property_read_u32(child, "colo=
-r", &color);
-> > > +                       if (ret) {
-> > > +                               dev_err(priv->dev,
-> > > +                                       "led %d, no color specified\n=
-",
-> > > +                                       led->index);
-> > > +                               return ret;
-> >
-> > return dev_err_probe(...) ; ?
-> >
-> > Ditto for many places in your entire series.
-> >
-> > > +                       }
-> >
-> > ...
-> >
-> > > +       priv =3D devm_kzalloc(&pdev->dev,
-> > > +                           struct_size(priv, leds, count), GFP_KERNE=
-L);
-> >
-> > At least one parameter can be placed on the previous line.
-> >
-> > > +       if (!priv)
-> > > +               return -ENOMEM;
-> >
-> > --
-> > With Best Regards,
-> > Andy Shevchenko
+Hi "Peng,
+
+Thank you for the patch! Perhaps something to improve:
+
+[auto build test WARNING on shawnguo/for-next]
+[also build test WARNING on linus/master v5.19-rc7 next-20220719]
+[cannot apply to robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220719-135352
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+config: microblaze-allmodconfig (https://download.01.org/0day-ci/archive/20220720/202207201734.DwWC33xs-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/73728b6c4380e24d833b690b7ead261e1fcdcbc2
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220719-135352
+        git checkout 73728b6c4380e24d833b690b7ead261e1fcdcbc2
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/soc/imx/ sound/soc/sof/imx/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/soc/imx/imx8m-blk-ctrl.c:466:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'path_names'
+     466 |                 .path_names = (const char *[]){"g1"},
+         |                  ^~~~~~~~~~
+>> drivers/soc/imx/imx8m-blk-ctrl.c:466:31: warning: initialization of 'unsigned int' from 'const char **' makes integer from pointer without a cast [-Wint-conversion]
+     466 |                 .path_names = (const char *[]){"g1"},
+         |                               ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:466:31: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[0].mipi_phy_rst_mask')
+   drivers/soc/imx/imx8m-blk-ctrl.c:467:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'num_paths'
+     467 |                 .num_paths = 1,
+         |                  ^~~~~~~~~
+>> drivers/soc/imx/imx8m-blk-ctrl.c:467:30: warning: excess elements in struct initializer
+     467 |                 .num_paths = 1,
+         |                              ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:467:30: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[0]')
+   drivers/soc/imx/imx8m-blk-ctrl.c:476:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'path_names'
+     476 |                 .path_names = (const char *[]){"g2"},
+         |                  ^~~~~~~~~~
+   drivers/soc/imx/imx8m-blk-ctrl.c:476:31: warning: initialization of 'unsigned int' from 'const char **' makes integer from pointer without a cast [-Wint-conversion]
+     476 |                 .path_names = (const char *[]){"g2"},
+         |                               ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:476:31: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[1].mipi_phy_rst_mask')
+   drivers/soc/imx/imx8m-blk-ctrl.c:477:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'num_paths'
+     477 |                 .num_paths = 1,
+         |                  ^~~~~~~~~
+   drivers/soc/imx/imx8m-blk-ctrl.c:477:30: warning: excess elements in struct initializer
+     477 |                 .num_paths = 1,
+         |                              ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:477:30: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[1]')
+   drivers/soc/imx/imx8m-blk-ctrl.c:486:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'path_names'
+     486 |                 .path_names = (const char *[]){"vc8000e"},
+         |                  ^~~~~~~~~~
+   drivers/soc/imx/imx8m-blk-ctrl.c:486:31: warning: initialization of 'unsigned int' from 'const char **' makes integer from pointer without a cast [-Wint-conversion]
+     486 |                 .path_names = (const char *[]){"vc8000e"},
+         |                               ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:486:31: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[2].mipi_phy_rst_mask')
+   drivers/soc/imx/imx8m-blk-ctrl.c:487:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'num_paths'
+     487 |                 .num_paths = 1,
+         |                  ^~~~~~~~~
+   drivers/soc/imx/imx8m-blk-ctrl.c:487:30: warning: excess elements in struct initializer
+     487 |                 .num_paths = 1,
+         |                              ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:487:30: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[2]')
+
+
+vim +466 drivers/soc/imx/imx8m-blk-ctrl.c
+
+   457	
+   458	static const struct imx8m_blk_ctrl_domain_data imx8mp_vpu_blk_ctl_domain_data[] = {
+   459		[IMX8MP_VPUBLK_PD_G1] = {
+   460			.name = "vpublk-g1",
+   461			.clk_names = (const char *[]){ "g1", },
+   462			.num_clks = 1,
+   463			.gpc_name = "g1",
+   464			.rst_mask = BIT(1),
+   465			.clk_mask = BIT(1),
+ > 466			.path_names = (const char *[]){"g1"},
+ > 467			.num_paths = 1,
+   468		},
+   469		[IMX8MP_VPUBLK_PD_G2] = {
+   470			.name = "vpublk-g2",
+   471			.clk_names = (const char *[]){ "g2", },
+   472			.num_clks = 1,
+   473			.gpc_name = "g2",
+   474			.rst_mask = BIT(0),
+   475			.clk_mask = BIT(0),
+   476			.path_names = (const char *[]){"g2"},
+   477			.num_paths = 1,
+   478		},
+   479		[IMX8MP_VPUBLK_PD_VC8000E] = {
+   480			.name = "vpublk-vc8000e",
+   481			.clk_names = (const char *[]){ "vc8000e", },
+   482			.num_clks = 1,
+   483			.gpc_name = "vc8000e",
+   484			.rst_mask = BIT(2),
+   485			.clk_mask = BIT(2),
+   486			.path_names = (const char *[]){"vc8000e"},
+   487			.num_paths = 1,
+   488		},
+   489	};
+   490	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
