@@ -2,67 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D607157BC51
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 19:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74BFD57BC5F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 19:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiGTRHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 13:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36780 "EHLO
+        id S230477AbiGTRLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 13:11:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbiGTRHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 13:07:47 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11A7A6A9C0
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:07:46 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id k19so3757085lji.10
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:07:45 -0700 (PDT)
+        with ESMTP id S229485AbiGTRLd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 13:11:33 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E4904B49C
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:11:32 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id x10so21422170ljj.11
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 10:11:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=nF82CbSzjB4MC9wpaiQHIZyp0ZgcCOKfhBJIGXNa9bA=;
-        b=VgMxapGwYUwEykbln/Ma9xEWCj8W9oq8F1ll3h3azeOIofeVNXnlWinr2ECbzWKNfK
-         SbmsnBPA3ZPgHlmvK+uI1Wa7L/OSGUBHDzbWt5SBxRWYrvi2x4nvyqwf9GfmpwGzmKJY
-         m8d4fxNDMG6swC3unwWBDE1ONxxgk8YQewPKla8B1xpOg7WIh5JlvHLQ0raF44sDFS56
-         lzfwuqT2Cbf21oRDRMyok3TfjZ8QQj1eXoa1IUzymhL8gAwOK6c5wj72BY/LhvA3jZ+2
-         bRgI8/dXd6wpkjhG8vP47IQm8EFchOqyDWYBY1J79/khr8cYGXL1du6yMLiYpu5Qm2E9
-         +G1w==
+        bh=5lmHob9Luoc/cXzJquW++NsCeK2hCMlRzDN8YwkRgeA=;
+        b=jvZ+h4TFU0W3bVQR1pDxqWqH0Bb9eP0bFR84YBTzcgHM411q2Q0eY0vXWSmgaxIh1F
+         Ex8m4hTCbcxMROxTnPOjyDHd4KbBTiIPzR9O8Di4XP1renI38WiJ/dcFCnlI3R0VmiCH
+         G4yVm2XHQr1ZkferHjxGFFy0F+7iezeUOtFsRh7WPHfvhJYlTEY274+1dV195qrtIbuP
+         i/U4gK0oM9dky2zuAAMG73TWaQFF6y6HNevjzOhjMDCs25dthUnac13z9lHcwuIzRYel
+         6VLy70TlqpYOosA2Wj5FMWxWq5w+4jrTgEJx+myBDVyK6YUN2vsQzDaRX9cq89AgiCPB
+         n/dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=nF82CbSzjB4MC9wpaiQHIZyp0ZgcCOKfhBJIGXNa9bA=;
-        b=CL7XQRsYb5KMCbOurH9MDnTr5s8gJxtFNo/RvJVFAUwt7Pba3Gde4HZSxeGIDBT1XW
-         8tzTNBEooBwM2oFvoNcEoJoQxUE8kSZEtQG8+C6itoWnuZs/uwFMWXAbUg7/ey55Urxn
-         +fHXmwYS2v1HAZ4Z2eDeK8EzSTXmGOCObi+d+JHzgb52Xsyt5XjKrNypMqFvoza1lL1g
-         DuPROSTQzoTLJrPLyaO29M5ejrZm8IPfauG+1R5JQzSoJuaDcZKTc8ay/4ChM7nyinOj
-         ZPiK1Z3JUqfqR20d/FkQ8sNcaVfKqUSvkH2eLki02IRaqDkY/6asEvMp8J0NIsj3U7AL
-         7vLQ==
-X-Gm-Message-State: AJIora8pHA8njLm+xKhYbAwa5CHvjUu/k6jonm577HcXHTZs2Yrs7LSG
-        qWLL6ABnqJ0VBDsp0iutoJdc6vw/IAX1RM6J
-X-Google-Smtp-Source: AGRyM1t0cefk6MLwhVq0hDuIoMkoIoRaFwVpce73Q4Cdi1YynQTyz1YKCigu5bvy0UQLy/JsS1cpKw==
-X-Received: by 2002:a2e:8814:0:b0:25d:6833:655d with SMTP id x20-20020a2e8814000000b0025d6833655dmr16845259ljh.172.1658336864412;
-        Wed, 20 Jul 2022 10:07:44 -0700 (PDT)
+        bh=5lmHob9Luoc/cXzJquW++NsCeK2hCMlRzDN8YwkRgeA=;
+        b=2gL2MjrJ7zu0U+/wlnu7MGEjCMpzPz89eHaJt68k9KwP30rSeZLEsr/NrnQAtHdOR7
+         KEvaZdXDXjezaeseG8g5sqLVz9azcsHhzuErI7bU5oIpvyglCJgzYG+tDjOmuwlLMJL3
+         EU+WkX/NgLcK8VzkeOh0WsZabnMlDgBHDhnX/Qi49QSeNuptGGd1hoFCnbp1Wzl107ae
+         mgreYoqvXgB4ivrOTVuKp806f2QJ+ISx842m2Znjb2kdHbCdlQFK0+/ngsn5e5anfFK5
+         MYWby8e5iL3ODZoy32QYqp1wiLz37NT7aMHP+XFkGjSMVlXVWLzCCbViWbxmHrV/oFSG
+         SrVw==
+X-Gm-Message-State: AJIora8Lh+Lygu3rmMT0Tzmb7bKygaO1TKrpABp237spJWFy/Am5Rlz4
+        4TzGzRl6F7HLwqVhr40ByAlGrw==
+X-Google-Smtp-Source: AGRyM1vm+804neFdMYoD9qGgWYMR4sru/4qnJWGHt6k7KPSzC5ItpHv15kOlKjl3to+hIqfJXh4kKQ==
+X-Received: by 2002:a05:651c:b11:b0:25d:6a40:4ad3 with SMTP id b17-20020a05651c0b1100b0025d6a404ad3mr16839579ljr.349.1658337090842;
+        Wed, 20 Jul 2022 10:11:30 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id m2-20020a056512358200b00486d8a63c07sm3916674lfr.121.2022.07.20.10.07.43
+        by smtp.gmail.com with ESMTPSA id q7-20020a056512210700b00489dfb5d622sm1031425lfr.257.2022.07.20.10.11.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jul 2022 10:07:43 -0700 (PDT)
-Message-ID: <abd47815-c84b-115b-f6f2-b6ec0dbf1bef@linaro.org>
-Date:   Wed, 20 Jul 2022 19:07:42 +0200
+        Wed, 20 Jul 2022 10:11:30 -0700 (PDT)
+Message-ID: <8bc1d085-eb81-c50c-ec66-3f0a621a9a9c@linaro.org>
+Date:   Wed, 20 Jul 2022 19:11:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add MSC Technologies
+Subject: Re: [PATCH v2 3/3] arm64: dts: sm2s-imx8mp: Add device trees for MSC
+ SM2S-IMX8PLUS SoM and carrier board
 Content-Language: en-US
 To:     Martyn Welch <martyn.welch@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     kernel@collabora.com, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20220720150007.2168051-1-martyn.welch@collabora.com>
+ <20220720150007.2168051-3-martyn.welch@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220720150007.2168051-1-martyn.welch@collabora.com>
+In-Reply-To: <20220720150007.2168051-3-martyn.welch@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,39 +82,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/07/2022 17:00, Martyn Welch wrote:
-> Add "msc" vendor prefix for MSC Technologies GmbH
-> (https://www.msc-technologies.eu).
-
-Does not really work - leads to Avnet, so there is no MSC anymore?
-
+> Add device trees for one of a number of MSCs variants of the SM2S-IMX8PLUS
+> system on module along with the compatible SM2S-SK-AL-EP1 carrier board.
+> As the name suggests, this family of SoMs use the NXP i.MX8MP SoC and
+> provide the SMARC module interface.
 > 
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-> ---
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>> ---
 > 
-> Changes in v2:
->   - New addition
+> Changes in v2
+>   - Added compatibles
+>   - Removed underscores from node names
+>   - Make node names more generic
+>   - Reorder properties
+>   - Fix issues found by dtbs_check in these files
 > 
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 0496773a3c4d..1658357bc1c4 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -816,6 +816,8 @@ patternProperties:
->    "^mrvl,.*":
->      description: Marvell Technology Group Ltd.
->      deprecated: true
-> +  "^msc,.*":
-> +    description: MSC Technologies GmbH.
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../freescale/imx8mp-msc-sm2s-14N0600E.dts    |  72 ++
+>  .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     |  52 ++
 
-This should be rather msct or msctech, but anyway in fact you maybe
-should use avnet?
+Subject prefix is somehow reversed. sm2s is not a SoC.
 
->    "^mscc,.*":
->      description: Microsemi Corporation
->    "^msi,.*":
+arm64: dts: imx8mp-msc-sm2s:
 
+Rest looks ok, except the discussion about actual company prefix.
 
 Best regards,
 Krzysztof
