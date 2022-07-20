@@ -2,137 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C535C57B8D0
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6D8457B8F2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:53:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239237AbiGTOsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 10:48:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53588 "EHLO
+        id S239908AbiGTOxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 10:53:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236901AbiGTOst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:48:49 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4915152E45
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:48:45 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id id17so3921784wmb.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:48:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:date:subject:mime-version:content-transfer-encoding:message-id
-         :references:in-reply-to:to:cc;
-        bh=o7NWJMKmrg5UzWFssb9UC6+9fr3X64sVc8zqbdDmg/4=;
-        b=35Q7aaLTpf6XHFiAk3xPyLuE7i3lVuBjTEOr4YEtua/WiSxQNGV5E7wgmPYZvrXdMz
-         cb8+kgykVVSkEBD2kqKYw3w87eRLhTkDH4ekVHbv6Ct3OZOx8qIPGI9GE+lXGbLcXKa5
-         677DZ1rDcZ1/vIdTs1a+kY5+jO4kbzxHXkF7rp3f8V3OVj2+AbMMjUcF0WPkDlQaJkN+
-         lGn1dr92MXwPIn5iTDypPp9qq3tn8ZCYf9mlO7foOBdNrj85JwjhbuitB1nUgnvX8WM/
-         txABYDNzMJXhCuTSuSUzbZHYOmgX7XUJbgn9PnY/mM1+iErCmsEpGi3f36wb/3TcvYFL
-         4QiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:date:subject:mime-version
-         :content-transfer-encoding:message-id:references:in-reply-to:to:cc;
-        bh=o7NWJMKmrg5UzWFssb9UC6+9fr3X64sVc8zqbdDmg/4=;
-        b=QKlOv4qnMAvl23h3lb5VakbTmuclPsdfCT5uiSXKqdzJzusz09Htc3CKsiMUB+GfZ8
-         cRdA9Gy2TSlmdZuU2tOp6pI83D02j+Rt9aqwIawAPYEyJIzJ4KUdrPFrknXYfFn1pXhU
-         txJucWsCev6ioPL/3ccCRs8V2EaR6tOx8q5gwtBsVF1/0jU3ZDjgJSHiEkLkjmj71Ese
-         4wOYEbAK+o4LiO4rTVKm/TywCBcEc3rSxnSHbCeUzFxgrsiAZGTqLLR09ZsHr2E1g2w4
-         6GQ52KrhdJc1qVzGlxyTGluvK1UEXjlLpRTVA7eAacTbEM7TL1/fipkaxdtN7mGd046a
-         W9FA==
-X-Gm-Message-State: AJIora9HRXxpCFJh7BynBV2GJNDH+TzZmz1cwGGjVCwkaTQpQnyS59h+
-        5OL1M34HCysRueSmEecMWXNamA==
-X-Google-Smtp-Source: AGRyM1ucwB2vU/aGRAvjhlYFu9788qVNYbD0PNW11PcdfR+3DHacpm9xpneOLojFxCjqxsBH2JlD1w==
-X-Received: by 2002:a05:600c:cd:b0:3a3:f40:8776 with SMTP id u13-20020a05600c00cd00b003a30f408776mr4254459wmm.9.1658328523535;
-        Wed, 20 Jul 2022 07:48:43 -0700 (PDT)
-Received: from [127.0.1.1] ([2a01:cb19:85e6:1900:c639:22f8:bed9:44dd])
-        by smtp.gmail.com with ESMTPSA id f8-20020a05600c4e8800b003a31673515bsm3321121wmq.7.2022.07.20.07.48.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 07:48:43 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Date:   Wed, 20 Jul 2022 16:48:42 +0200
-Subject: [PATCH v1 6/6] arm64: dts: mediatek: mt8183-pumpkin: add keypad support
+        with ESMTP id S240938AbiGTOxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:53:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D63AE67;
+        Wed, 20 Jul 2022 07:53:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 96A7461B1C;
+        Wed, 20 Jul 2022 14:53:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01E10C3411E;
+        Wed, 20 Jul 2022 14:53:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658328796;
+        bh=tScgr9tRlcamDWJp71+BgOJ65erdpbh5MP7W0rey/5w=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Nu0idpSBhUbEKMKJ53NoycKIG9XW2cs/kQ2pjCNscP8QIptsSOxEWz5knz66H2iF6
+         SnA5I4f+8Fs3WpOVo1AY7aYB1hnYf2UVr9KuSY8uecYj2w0666qOmWsRw6jstgg4ko
+         PlE9TupWADd86v920RQDeITX+r7j0E54NkEcGPczU9ni1g9tQgm3I028/A8Uw2ZR26
+         79GppCOC4m82hPptzj9+Vbb+7orJMdZnVfpHdacq+V/2fijMk2vUZBoO/toj8rS6S6
+         pbbG6vFpPr8JUxEbNt/9IfdDC66wmynyLsM/kqYNoHnsPhOgEE4Vh4tyr3bpeC6h4J
+         bh37Tux0cKmDA==
+Received: by mail-vk1-f173.google.com with SMTP id o10so1923895vkl.3;
+        Wed, 20 Jul 2022 07:53:15 -0700 (PDT)
+X-Gm-Message-State: AJIora/S1bpBxOvn2b0vYI81N1b88gHwJhmsLWvkMVre87eGnI7EUq8j
+        Jh7Lj1/UELw0MJSzcY4YMIS4cNEKRwv/nOdrXw==
+X-Google-Smtp-Source: AGRyM1s8adI2JDtHYge+QXHHiB2ZX2bfJ9llTgMW8aVq77rINPpnTdzS+C7Byb5flb4zFPN3/iYQ8eV5zeJnMHuJFlY=
+X-Received: by 2002:a1f:2049:0:b0:374:866b:6dd8 with SMTP id
+ g70-20020a1f2049000000b00374866b6dd8mr13961998vkg.15.1658328794928; Wed, 20
+ Jul 2022 07:53:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20220720-mt8183-keypad-v1-6-ef9fc29dbff4@baylibre.com>
-References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
-In-Reply-To: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+References: <20220720142612.19779-1-shubhrajyoti.datta@xilinx.com> <20220720142612.19779-2-shubhrajyoti.datta@xilinx.com>
+In-Reply-To: <20220720142612.19779-2-shubhrajyoti.datta@xilinx.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 20 Jul 2022 08:53:03 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJz9CwEDwQhcax9L0MkiGzm5zzqxf_Nmp878TtbLt7wzg@mail.gmail.com>
+Message-ID: <CAL_JsqJz9CwEDwQhcax9L0MkiGzm5zzqxf_Nmp878TtbLt7wzg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Cc:     "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        git <git@xilinx.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.10.0-dev-54fef
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabien Parent <fparent@baylibre.com>
+On Wed, Jul 20, 2022 at 8:26 AM Shubhrajyoti Datta
+<shubhrajyoti.datta@xilinx.com> wrote:
+>
+> The Xilinx Versal board uses the arm,pl011 ip. However the
 
-Add device-tree bindings for the keypad driver on the MT8183 Pumpkin
-board.
+s/ip/IP/
 
-The MT8183 Pumpkin board has 2 buttons connected using: KPROW0,
-KPROW1 and KPCOL0.
+> axi port that it is connected to has a limitation that it allows
+> only 32-bit accesses. So to differentiate we add a compatible.
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Why not just use the standard 'reg-io-width' property?
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-index 530e0c9ce0c9..add697c94b05 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-@@ -7,6 +7,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
- #include "mt8183.dtsi"
- #include "mt6358.dtsi"
- 
-@@ -122,6 +123,18 @@ &i2c6 {
- 	clock-frequency = <100000>;
- };
- 
-+&keyboard {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&keyboard_pins>;
-+	status = "okay";
-+	linux,keymap = <MATRIX_KEY(0x00, 0x00, KEY_VOLUMEDOWN)
-+			MATRIX_KEY(0x01, 0x00, KEY_VOLUMEUP)>;
-+	keypad,num-rows = <2>;
-+	keypad,num-columns = <1>;
-+	debounce-delay-ms = <32>;
-+	mediatek,double-keys;
-+};
-+
- &mmc0 {
- 	status = "okay";
- 	pinctrl-names = "default", "state_uhs";
-@@ -226,6 +239,14 @@ pins_cmd_dat {
- 		};
- 	};
- 
-+	keyboard_pins: keyboard {
-+		pins_keyboard {
-+			pinmux = <PINMUX_GPIO91__FUNC_KPROW1>,
-+				 <PINMUX_GPIO92__FUNC_KPROW0>,
-+				 <PINMUX_GPIO93__FUNC_KPCOL0>;
-+		};
-+	};
-+
- 	mmc0_pins_default: mmc0-pins-default {
- 		pins_cmd_dat {
- 			pinmux = <PINMUX_GPIO123__FUNC_MSDC0_DAT0>,
+> Add support for Uart used in Xilinx Versal SOCs as a platform
+> device.
 
--- 
-b4 0.10.0-dev-54fef
+What's a platform device? Don't include Linuxisms in your bindings.
+
+>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
+> ---
+>  Documentation/devicetree/bindings/serial/pl011.yaml | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/serial/pl011.yaml b/Documentation/devicetree/bindings/serial/pl011.yaml
+> index d8aed84abcd3..bf094ab93086 100644
+> --- a/Documentation/devicetree/bindings/serial/pl011.yaml
+> +++ b/Documentation/devicetree/bindings/serial/pl011.yaml
+> @@ -24,9 +24,13 @@ select:
+>
+>  properties:
+>    compatible:
+> -    items:
+> -      - const: arm,pl011
+> -      - const: arm,primecell
+> +    oneOf:
+> +      - items:
+> +          - const: arm,pl011
+> +          - const: arm,primecell
+> +      - items:
+> +          - const: arm,pl011
+> +          - const: arm,xlnx-uart # xilinx uart as platform device
+
+First, this is backwards. compatible is most specific to least
+specific. In your case Arm is not the vendor and just 'xlnx-uart' is
+not very specific. You said this is for Versal SoC, so something like
+'xlnx,versal-pl011' would be more appropriate. But again, I think
+reg-io-width is all you need here.
+
+The IP is still a Primecell block, so it should have 'arm,primecell'
+still as the definition of 'arm,primecell' is that it has the ID
+registers. Yes, that means Linux will create an amba_device instead,
+but you can't be designing your binding to work-around Linux.
+
+Rob
