@@ -2,90 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8971E57B2B6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 10:19:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48CFB57B2C4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 10:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238215AbiGTITs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 04:19:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60478 "EHLO
+        id S233836AbiGTIWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 04:22:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236253AbiGTITr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 04:19:47 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5EBC6A9E7
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 01:19:45 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id a5so24988847wrx.12
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 01:19:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=H3cfWCLBlBYx1Erw4k3ViEzQD+OSmuEO+WWt3HWcPoA=;
-        b=rR6JZ+S7IixgYfovd+L1INMwl+54Px8Y0e+3XmVtikQZpCf5s9gkH9XepDR74CWKOZ
-         9JLTcSPGceYWc1eOO1jx2oXTj8YqOvqS+wG9p4hW9xU9asnbOrl0muhhwwYVM34sKjyS
-         rGNKO6m3k8yyWwgDgA44/wk7ypQ69ZOBiVbJOXplDd3cyZ4R2JYioguX7H/tVjlI2fGM
-         q7p8VdQq0WofPlTG8vZcUCZqagSXzBP8TgIbaBoy52M3B4BtUM57AKJhWQroXQr2u/Ik
-         Q2rYGF/IHqCPOuX/qRNGSq9ICsXBurc2g1nYPIlCV4spj2cX1em/XfRo3bW2bZ0s+rWq
-         tK5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=H3cfWCLBlBYx1Erw4k3ViEzQD+OSmuEO+WWt3HWcPoA=;
-        b=1B0QJ7AEIKVa++5gMiUgLB8n9RrRF9XfmRdCugMbF0CvTxUNDFnIWTGN3eYCqv7S/M
-         shb/p+dJtB51d4vvoJzrztwtY9Sq0Z0c3GoPzPz+Zkq7o8A0EzHEuobQF6xpZKAmPipw
-         gEntvGenPdEBPNXeMQSPeGWyzjniVlrfQ5sRBVAgnEryIhBdD2n7XPW4gJO864bX43bd
-         NhBFfZ/IxMbIxSqlWJ+S8O9IAzyAV+qON1Fg0jtUHgegHChjQdCh49RUA69enQVroGck
-         MeSxXKlDPJWAAUua2Oc9a7G02sUYQoYMcbDrnmCluPQIBa6vfBowAl3gIPzWMWz72PkT
-         CJow==
-X-Gm-Message-State: AJIora9MvGd6Z5+fjtxgwyuBTfbLy7W810yhouTPDGZpmYuYLypss6/4
-        Tt17DimHlQ2YOKUbDrT2YomaZg==
-X-Google-Smtp-Source: AGRyM1tKM9yWRqu/6hb5ToXfPCjx8kO+ohEW+UULtwcZ7Bj7hyGH5XdN95owydZj/Z9UEhfe392XnQ==
-X-Received: by 2002:a5d:64c8:0:b0:21d:9873:bbf0 with SMTP id f8-20020a5d64c8000000b0021d9873bbf0mr29529081wri.150.1658305184429;
-        Wed, 20 Jul 2022 01:19:44 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id bg42-20020a05600c3caa00b003a31b79dc0esm8936892wmb.1.2022.07.20.01.19.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 01:19:43 -0700 (PDT)
-Date:   Wed, 20 Jul 2022 09:19:41 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        katie.morris@in-advantage.com
-Subject: Re: [PATCH v13 net-next 9/9] mfd: ocelot: add support for the
- vsc7512 chip via spi
-Message-ID: <Yte6nTJ3IMJhdLAp@google.com>
-References: <20220705204743.3224692-1-colin.foster@in-advantage.com>
- <20220705204743.3224692-10-colin.foster@in-advantage.com>
- <YtVrtOHy3lAeKCRH@google.com>
- <Ytbuj6qfUj1NOitS@euler>
+        with ESMTP id S229686AbiGTIV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 04:21:59 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF4E6B275
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 01:21:58 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1oE4xj-0003c1-JD; Wed, 20 Jul 2022 10:21:43 +0200
+Message-ID: <5b4019dc8f3f797941037ebbbafb30b8541b2b4b.camel@pengutronix.de>
+Subject: Re: [PATCH v4 3/3] soc: imx: gpcv2: fix suspend/resume by setting
+ GENPD_FLAG_IRQ_ON
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>, rafael@kernel.org,
+        khilman@kernel.org, ulf.hansson@linaro.org, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz
+Cc:     kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
+        aford173@gmail.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Date:   Wed, 20 Jul 2022 10:21:42 +0200
+In-Reply-To: <5a6bfd6827f8ad838bdab8dfb208753ad258b1ec.camel@puri.sm>
+References: <20220720043444.1289952-1-martin.kepplinger@puri.sm>
+         <20220720043444.1289952-4-martin.kepplinger@puri.sm>
+         <a7d51c154693881523e5d96c443a7dc9b3cc216d.camel@pengutronix.de>
+         <5a6bfd6827f8ad838bdab8dfb208753ad258b1ec.camel@puri.sm>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Ytbuj6qfUj1NOitS@euler>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -94,80 +54,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jul 2022, Colin Foster wrote:
+Am Mittwoch, dem 20.07.2022 um 10:05 +0200 schrieb Martin Kepplinger:
+> Am Mittwoch, dem 20.07.2022 um 09:53 +0200 schrieb Lucas Stach:
+> > Am Mittwoch, dem 20.07.2022 um 06:34 +0200 schrieb Martin Kepplinger:
+> > > For boards that use power-domains' power-supplies that need
+> > > interrupts
+> > > to work (like regulator over i2c), set GENPD_FLAG_IRQ_ON.
+> > > This will tell genpd to adjust accordingly. Currently it "only"
+> > > sets the
+> > > correct suspend/resume callbacks.
+> > > 
+> > > This fixes suspend/resume on imx8mq-librem5 boards (tested) and
+> > > imx8mq-evk (by looking at dts) and possibly more.
+> > > 
+> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > ---
+> > >  drivers/soc/imx/gpcv2.c | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > > 
+> > > diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> > > index 85aa86e1338a..46d2ead2352b 100644
+> > > --- a/drivers/soc/imx/gpcv2.c
+> > > +++ b/drivers/soc/imx/gpcv2.c
+> > > @@ -1303,6 +1303,7 @@ static const struct imx_pgc_domain_data
+> > > imx8mn_pgc_domain_data = {
+> > >  static int imx_pgc_domain_probe(struct platform_device *pdev)
+> > >  {
+> > >         struct imx_pgc_domain *domain = pdev->dev.platform_data;
+> > > +       struct device_node *dn;
+> > >         int ret;
+> > >  
+> > >         domain->dev = &pdev->dev;
+> > > @@ -1333,6 +1334,14 @@ static int imx_pgc_domain_probe(struct
+> > > platform_device *pdev)
+> > >                 regmap_update_bits(domain->regmap, domain->regs-
+> > > > map,
+> > >                                    domain->bits.map, domain-
+> > > > bits.map);
+> > >  
+> > > +       dn = of_parse_phandle(domain->dev->of_node, "power-supply",
+> > > 0);
+> > > +       if (dn) {
+> > > +               while ((dn = of_get_next_parent(dn))) {
+> > > +                       if (of_get_property(dn, "interrupts",
+> > > NULL))
+> > > +                               domain->genpd.flags |=
+> > > GENPD_FLAG_IRQ_ON;
+> > > +               }
+> > > +       }
+> > > +
+> > While I understand the intention, I think the DT walking is overkill.
+> > I
+> > believe that there are no cases where we have a external regulator
+> > attached to the PD and the devices in the domain needing noirq
+> > support.
+> > I think it's sufficient to simply set the IRQ_ON flag based on
+> > presence
+> > of the power-supply property on the domain DT node.
+> 
+> Are you sure? Can't boards just *describe* a power-supply that doesn't
+> really do much, where noirq would work? looking for "interrupts" in any
+> parent feels very stable and makes sure we only change behaviour when
+> really needed. But for the boards I'm looking at, I have to admit it
+> wouldn't change anything afaik. So if you insist, I'll happily remove
+> that.
+> 
+I'm pretty sure that this holds for all boards. Yes, it might introduce
+some more runtime changes than your option, but it will be more
+consistent.
 
-> On Mon, Jul 18, 2022 at 03:18:28PM +0100, Lee Jones wrote:
-> > On Tue, 05 Jul 2022, Colin Foster wrote:
+One could possibly have a simple GPIO regulator, which could work in
+noirq if the GPIO is internal MMIO, but it already breaks when the GPIO
+is from an i2c attached GPIO expander. This might even be a good
+example where your DT parsing breaks: a GPIO regulator is not
+necessarily a child device of the i2c GPIO expander, so the DT walking
+will miss that IRQs need to be functional in order to toggle the GPIO.
+
+Just keying the IRQ_ON flag on the presence of the power-supply
+property will have less surprises, I think.
+
+> 
+> 
+> Also, I forgot to say earlier: We could even add "if not regulator-
+> always-on" to the DT parsing above, because in that case noirq is fine
+> even for external regulators. Should I add that? I'd like as little
+> runtime change as possible so I would add that (and keep the
+> "interrupts" search above for the same reason). 
+> 
+Yea, one could make this even more complex to preserve the current
+behavior as much as possible, but I just don't think that the current
+behavior is relevant enough to warrant the complexity and possible
+inconsistent behavior on different systems.
+
+Thanks for working on this!
+
+Regards,
+Lucas
+
+> thanks for looking at this,
+> 
+>                              martin
+> 
+> 
 > > 
-> > > +MODULE_IMPORT_NS(MFD_OCELOT_SPI);
-> > > diff --git a/drivers/mfd/ocelot-spi.c b/drivers/mfd/ocelot-spi.c
-> > > new file mode 100644
-> > > index 000000000000..0c1c5215c706
-> > > --- /dev/null
-> > > +++ b/drivers/mfd/ocelot-spi.c
-> > > @@ -0,0 +1,317 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > > +/*
-> > > + * SPI core driver for the Ocelot chip family.
-> > > + *
-> > > + * This driver will handle everything necessary to allow for communication over
-> > > + * SPI to the VSC7511, VSC7512, VSC7513 and VSC7514 chips. The main functions
-> > > + * are to prepare the chip's SPI interface for a specific bus speed, and a host
-> > > + * processor's endianness. This will create and distribute regmaps for any
-> > > + * children.
-> > > + *
-> > > + * Copyright 2021, 2022 Innovative Advantage Inc.
-> > > + *
-> > > + * Author: Colin Foster <colin.foster@in-advantage.com>
-> > > + */
-> > > +
-> > > +#include <linux/ioport.h>
-> > > +#include <linux/kconfig.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/regmap.h>
-> > > +#include <linux/spi/spi.h>
-> > > +
-> > > +#include <asm/byteorder.h>
-> > > +
-> > > +#include "ocelot.h"
-> > > +
-> > > +#define REG_DEV_CPUORG_IF_CTRL		0x0000
-> > > +#define REG_DEV_CPUORG_IF_CFGSTAT	0x0004
-> > > +
-> > > +#define CFGSTAT_IF_NUM_VCORE		(0 << 24)
-> > > +#define CFGSTAT_IF_NUM_VRAP		(1 << 24)
-> > > +#define CFGSTAT_IF_NUM_SI		(2 << 24)
-> > > +#define CFGSTAT_IF_NUM_MIIM		(3 << 24)
-> > > +
-> > > +#define VSC7512_DEVCPU_ORG_RES_START	0x71000000
-> > > +#define VSC7512_DEVCPU_ORG_RES_SIZE	0x38
-> > > +
-> > > +#define VSC7512_CHIP_REGS_RES_START	0x71070000
-> > > +#define VSC7512_CHIP_REGS_RES_SIZE	0x14
-> > > +
-> > > +struct spi_device;
+> > Regards,
+> > Lucas
 > > 
-> > Why not just #include?
+> > >         ret = pm_genpd_init(&domain->genpd, NULL, true);
+> > >         if (ret) {
+> > >                 dev_err(domain->dev, "Failed to init power
+> > > domain\n");
+> > 
+> > 
 > 
-> I mis-understood this to mean drivers/mfd/ocelot-spi.c when it meant
-> drivers/mfd/ocelot.h. Thanks.
 > 
-> https://patchwork.kernel.org/project/netdevbpf/patch/20220701192609.3970317-10-colin.foster@in-advantage.com/#24921057
-> 
-> """
-> You missed a lot of forward declarations that are used in this file.
-> 
-> Like
-> 
-> struct spi_device;
-> """
 
-spi_device is used in *this* file.
 
-You should explicitly add the include file.
-
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
