@@ -2,79 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E07757B95B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 17:14:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F36E57B9C1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 17:32:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232891AbiGTPOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 11:14:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48388 "EHLO
+        id S240841AbiGTPc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 11:32:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241171AbiGTPOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 11:14:05 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 485C257277
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:14:04 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id t3so24209766edd.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:14:04 -0700 (PDT)
+        with ESMTP id S235145AbiGTPcJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 11:32:09 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6620864E05
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:32:00 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id y10-20020a9d634a000000b006167f7ce0c5so14414034otk.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:32:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lYFr7W/TB3/Ge01WvDEcFFO3MPdvM4AewhxOk12JihE=;
-        b=NYEJaqBE0dq70riib/CJZNibK32KtA1ArsXU+Lmhye2iKLvxy6n1jMwFEBApp4cWBH
-         opUSurPSBd2q2OYyJb9UQwbXXL/IQzMA41/uOqGxuhsPJ4BBFLa+nYgYO/uZiCIoxHwv
-         9fXUwXVx3WkP/Yi3kObsfDZUz1wL/YvWK8L50=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5Gts3SkxMfRCeWEaR7qTqMqrF0wVdIlYu4fKNG/TUSM=;
+        b=RWelVE9974bNp9m3pFJz7791s7qoOt7Jl8NIyojioJBSM44T6k9DYtVLZdEpF79fvf
+         9WBHIkxYFDpQCod0LhpSuEfsmJsILwiLfuQ+GTYvWcONHkmyITEXGppb9z2HaRQ2XKa5
+         XDlYq5W5mdjT3Suj6UcWe2AokuSqgUiPLV9rXTHMsARWI+UzXDV6kIj2dw3YVu4wPAdL
+         a8P3LGSXRZHfb0EikLtkZFFepteNeYn1yzbBO/PgykZlPj0fPhbGDeTG/LfnQwDi/l6x
+         rUVwt9g05KqGPa/ogBT2XmGnp/M1zr1rx+PGrMQyBInm/g+k0mZXhlrRUsnWq8Fq25Wx
+         gL1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lYFr7W/TB3/Ge01WvDEcFFO3MPdvM4AewhxOk12JihE=;
-        b=71KBcZ/vcM+m2P9d8hwaE0U/D2UieIrPklIHWFRtDDqExuDJceEvf49sAGwkUwIE/c
-         lfkrs2U+mC7QYkeLZ6bqng8oGKDYr1He2kAdpdnEyLUC5rgDtC+i4vDrVAqavaYlnJBR
-         U24JDiPAYlVUl4yDtiYzystkomjRuUkUs9vB/fdQS3FPswn7uxGnG9NBZRSKwdilPFNA
-         HAkMhd+5lwyqtcKdPqomg+uAR7VsN4EdTgHr4L1m+RkeYuvAkzt8YEk2VBJ/vxP0R8aq
-         ma6D6mLexzKXbvLm+uUnVVLifrgjR66sDGMrdlBphnk7VI/1mybbPt5hoDO0ykjp3Ygm
-         3NrA==
-X-Gm-Message-State: AJIora8o2GJImEHowkuFx+bwOnlUfzKa0MSGz/R/fhgP5F6Ddrq5zicH
-        VMVteGTyKPgUj1AWL/hwGNcPI/rPMetruEOU+ZI=
-X-Google-Smtp-Source: AGRyM1tCnP8hHn7xq8ROHUijL6+hbNMaxUlnYtZpoQh0O27HXOUbbnPVguH6VuBNqP6VNaihhy4UlQ==
-X-Received: by 2002:a05:6402:46:b0:43a:f611:5992 with SMTP id f6-20020a056402004600b0043af6115992mr52196145edu.18.1658330042680;
-        Wed, 20 Jul 2022 08:14:02 -0700 (PDT)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
-        by smtp.gmail.com with ESMTPSA id b1-20020aa7df81000000b0043a8286a18csm12521259edy.30.2022.07.20.08.14.01
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jul 2022 08:14:01 -0700 (PDT)
-Received: by mail-wr1-f51.google.com with SMTP id bu1so26557858wrb.9
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 08:14:01 -0700 (PDT)
-X-Received: by 2002:a5d:5889:0:b0:21d:bccd:38e3 with SMTP id
- n9-20020a5d5889000000b0021dbccd38e3mr30328783wrf.659.1658330040897; Wed, 20
- Jul 2022 08:14:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220720025058.1.I5bfba8857ea0d43c747ecdc3a950875abd56927f@changeid>
- <7a04c9af-0ccb-7711-249f-73908fe7ec36@linaro.org>
-In-Reply-To: <7a04c9af-0ccb-7711-249f-73908fe7ec36@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 20 Jul 2022 08:13:48 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V1MqQzNxq_L8sGtu2JwAAL_FWKXkw9bhCHcD0DycFMUw@mail.gmail.com>
-Message-ID: <CAD=FV=V1MqQzNxq_L8sGtu2JwAAL_FWKXkw9bhCHcD0DycFMUw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: Add SKU6 for sc7180-trogdor-pazquel-lte-parade
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5Gts3SkxMfRCeWEaR7qTqMqrF0wVdIlYu4fKNG/TUSM=;
+        b=0K82MqG8JU71/F6FnIe9kWSFaBro9NcoPDs0k1SCiYqFsX39eHBq4xnziHQ++Ar+az
+         eHKL3tLhKF2YQMhRL9BTEhWg32gBqkG/Jy7UkTDnTQFtsklWy1MtR6JnZeh90Kmza7vA
+         +gHM+0OBkrQ3yHn2R1d15p9R3JewNOGBfmGxQ816YEEVmVtf2BX1zvHuI88umHnByS5z
+         pnAA3AvBDJwocj3gFAuo9FQnnlvE8euRYf9et8sizP8QLi/rUHZ8m6yxWtZd8r3yu9J6
+         5JK9wO/P76QgeJW4GnzfzFOY3JoV16/xeBjHuBi6Rpj1A6njbGsjEHK/urmJPj4AZbQB
+         b7uw==
+X-Gm-Message-State: AJIora+ekiCsy1GFMRVg0TZOKWn34JSN/iNAXWpfl9AkykpROJ5kV87E
+        g2UMLtp5tT5uoRjs27dvARaBhQSjfiFDnA==
+X-Google-Smtp-Source: AGRyM1sX7inWVCmOmXT72qY6COXELb48tpYUrB37O+9QgSQs/whECkwaW6oNpLLcvHmTkIgkUs+MkA==
+X-Received: by 2002:a05:6830:2906:b0:60c:2d64:976 with SMTP id z6-20020a056830290600b0060c2d640976mr16226529otu.320.1658331119551;
+        Wed, 20 Jul 2022 08:31:59 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id l35-20020a0568302b2300b0061ca7aa0cc8sm3053964otv.50.2022.07.20.08.31.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jul 2022 08:31:59 -0700 (PDT)
+Date:   Wed, 20 Jul 2022 10:31:57 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Henry Sun <henrysun@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [GIT PULL] dt-bindings: qcom for v5.20, version 2
+Message-ID: <Ytgf7ejB/2usK4uW@builder.lan>
+References: <20220628092253.21905-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220628092253.21905-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,38 +70,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue 28 Jun 04:22 CDT 2022, Krzysztof Kozlowski wrote:
+[..]
+> The following changes since commit f2906aa863381afb0015a9eb7fefad885d4e5a56:
+> 
+>   Linux 5.19-rc1 (2022-06-05 17:18:54 -0700)
+> 
+> are available in the Git repository at:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt.git tags/dt-bindings-qcom-5.20-2
+> 
+> for you to fetch changes up to 062529700fdb843eee921961eb3cbc6a51419491:
+> 
+>   dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example (2022-06-28 10:28:50 +0200)
+> 
+> ----------------------------------------------------------------
+> Devicetree bindings for Qualcomm for v5.20
+> 
+> Cleanup, fixes and additions of missing pieces for Qualcomm bindings.
+> These are address dtbs_check warnings and do not bring new hardware
+> (new compatibles are added for existing boards/hardware).
+> 
+> ----------------------------------------------------------------
+> Krzysztof Kozlowski (25):
 
-On Tue, Jul 19, 2022 at 11:10 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 20/07/2022 04:51, Yunlong Jia wrote:
-> > SKU6 is LTE(w/o eSIM)+WIFI+Parade
-> >
-> > Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-> > ---
-> >
-> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> > index 764c451c1a857..4649eaec6318d 100644
-> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> > @@ -14,7 +14,7 @@
-> >
-> >  / {
-> >       model = "Google Pazquel (Parade,LTE)";
-> > -     compatible = "google,pazquel-sku4", "qcom,sc7180";
-> > +     compatible = "google,pazquel-sku4", "google,pazquel-sku6", "qcom,sc7180";
->
-> You miss binding change and sku6 should be rather added before sku4 as
-> it is more specific, isn't it?
+Many thanks for gathering these patches in a pull request!
 
-Just to close the loop: the order doesn't matter at all. Neither sku4
-nor sku6 is "more specific". One has the eSIM stuffed and one doesn't.
-I don't personally care about what order these are listed in, though,
-so if Krzysztof is happier with "sku6" being first then I'm OK w/ it
-as long as it matches the bindings.
+>       dt-bindings: soc: qcom,rpmh-rsc: simplify qcom,tcs-config
+>       spi: dt-bindings: qcom,spi-geni-qcom: allow three interconnects
 
--Doug
+This,
+
+>       dt-bindings: soc: qcom: aoss: document qcom,sm8450-aoss-qmp
+>       dt-bindings: soc: qcom: qcom,smd-rpm: add power-controller
+>       dt-bindings: nvmem: qfprom: add IPQ8064 and SDM630 compatibles
+
+this,
+
+>       dt-bindings: leds: qcom-wled: fix number of addresses
+
+this
+
+>       dt-bindings: arm: qcom: fix Alcatel OneTouch Idol 3 compatibles
+>       dt-bindings: arm: qcom: fix Longcheer L8150 compatibles
+>       dt-bindings: arm: qcom: fix MSM8916 MTP compatibles
+>       dt-bindings: arm: qcom: fix MSM8994 boards compatibles
+>       dt-bindings: arm: qcom: add missing MSM8916 board compatibles
+>       dt-bindings: arm: qcom: add missing MSM8994 board compatibles
+>       dt-bindings: arm: qcom: add missing SM8150 board compatibles
+>       dt-bindings: arm: qcom: add missing SM8250 board compatibles
+>       dt-bindings: arm: qcom: add missing SM8350 board compatibles
+>       dt-bindings: vendor-prefixes: add Shift GmbH
+>       dt-bindings: arm: qcom: add missing MSM8998 board compatibles
+>       dt-bindings: arm: qcom: add missing MSM8992 board compatibles
+>       dt-bindings: arm: qcom: add missing QCS404 board compatibles
+>       dt-bindings: arm: qcom: add missing SDM630 board compatibles
+>       dt-bindings: arm: qcom: add missing SDM636 board compatibles
+>       dt-bindings: arm: qcom: add missing SDM845 board compatibles
+>       dt-bindings: arm: qcom: add missing SM6125 board compatibles
+>       dt-bindings: arm: qcom: add missing SM6350 board compatibles
+>       dt-bindings: cpufreq: qcom-cpufreq-nvmem: fix board compatible in example
+
+and this does however need to go through respective maintainers' trees.
+
+I've incorporated the rest in my trees now.
+
+Thanks,
+Bjorn
