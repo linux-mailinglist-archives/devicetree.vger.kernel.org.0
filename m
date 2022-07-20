@@ -2,146 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB3E57B850
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A47B57B867
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 16:26:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231936AbiGTOTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 10:19:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36164 "EHLO
+        id S232679AbiGTO0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 10:26:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232289AbiGTOTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:19:17 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BEDD4B496
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:19:16 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id h9so1269747wrm.0
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 07:19:16 -0700 (PDT)
+        with ESMTP id S230285AbiGTO0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 10:26:23 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 974AB3A488;
+        Wed, 20 Jul 2022 07:26:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PS+2NDdew2BUG1ILktHu+OihAwQUb2v2nMovr6mkLon+vA+o4hbT+zWMBM7zKqwhslOkzuiPiPESgaDJ05Wd9dbYyvq+bxxFQWGq8Ycb7OvafL0pZVdywNqox1o5gKLDZ0UvIfwM+ZwIkE8OJgx7rv8Goi5ELosLIbEL+bbU6/2J23SAD/BFO91SPfssRGYR5ZwmCGWB7AtFWjvkm/UBuqnKtou1LRCyaygCcQqCJUDeO9M5xAH/zAI8k++40Jo2NU5mziNj/3V/6lVGdWNIe4IjWFVYI61t5OqLZ/exCK02pk9XqI6bzp/JY05X6ohnQ7EJN7I8hDgUUb59DxG4dw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pb4cM63m45JrwZId0nr/zqGXW/4GoV4GCAACaLcVhG4=;
+ b=Utt7TZuV370VU12YMf7RiQJxXm05lWNFZBkT2NIccMOwV767GbYhEBGoBb4wGhMAEptd92gRXq0JT3VlO+yUd0eIym9TcCiR/i8JxLecFlAGsqlcyHXvv/jM44iZ0bCltFNao37CaJW8Q7YwmSNUgDoo28tLDhGfp8cWg7tXoDJaje9USjemrG4RW/jJusweH3sqlgvO1KLvHi3w7j2Ah+wgFVM+72l/1L0tvIOcr39bA5hj+/mOyHvE/Gj66dO4jUnW+NajKRGpBmRSEPKzFHXqQlwhXFzgq4b5Yrk7iA+BJhEavZd97L9Z+hQBE4J3GMUMO8QcteBhnk2/t47hRg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=p8rOXBXAqTpS6LdE3L0fRHyfdqOg9ZbjmkVTT9tGMWw=;
-        b=d4bbDHUQ2rBWarQ+0J1tXvnF2xaIa1au5YpleFcaycUd31nqCGRvq2+AmvnPYHniYv
-         w8E0a+ugnLBxRYfcEv3euDpLm5UR5rUE6MTVibSCXWNf7DHU/fkgNYYudkYnBRozMk0b
-         MXXUFe+RNk0MnSYmtKMaAJ/TjPD0x+plvEAeJNPTXCtkIur8T+M/+ZJou8IGbZAEpXwL
-         26me4PvZPpU1wsw91N2yakdCQ6BD4G9Ki+HSRhS+FXKoa0T6uf1Z6dwAZ7o8tdPcS0ME
-         bAWen/5r5lEMMYGE+vMsff+EZHJKtFfxmw6jKsqtqWhtua9F2MPZoKfl00cHk/0AAsId
-         rnyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=p8rOXBXAqTpS6LdE3L0fRHyfdqOg9ZbjmkVTT9tGMWw=;
-        b=iAZfAcuyRsQAwNWLOLfMpRxe54ZKDlNhvCUReALPr8j7mTCVW4aldrESHt1HgWMSFF
-         q7vhuMNs7CNPRcgGWn45LSjLfYG9aP/RL+4LNm0EhEnQfdTWrnSiyJgdWMtPomGWSK5t
-         h735v9P3vXdL61/H5eckGgh+VSgn+s3niRXFT9PHAsYyJ3q+OYhTpC5HXve0kXrZ1z74
-         zoojn5v2pcPsEA96bSfp7kvSCSIiHffqIJn3fUAUbilZNmpTIlet+wFM2GNRf9df5Z58
-         BDvhm0aCpIAYhpS+Dt4MuBG8Qhf47GGySFcNJnGENFwf49L4bT4NJ2Vllc7GTwgerMku
-         oukQ==
-X-Gm-Message-State: AJIora+l7xxf0Z8ViLkkSldzaGn27lv8gkD5cYdc7fUoWyd9WW2MQDYJ
-        yB1Dvq9q+5rpvV+nW+DpDU/ktw==
-X-Google-Smtp-Source: AGRyM1vfd/AlkTBCkW/ehFWCDJ8txqZSJ32LBYwBoD2v9GjFNv8uyGg6xnaibGoIVJ5ik8w08YzLIQ==
-X-Received: by 2002:adf:e6c9:0:b0:21d:7f65:f1e7 with SMTP id y9-20020adfe6c9000000b0021d7f65f1e7mr29955063wrm.151.1658326754737;
-        Wed, 20 Jul 2022 07:19:14 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id bv3-20020a0560001f0300b0021e3e73dec6sm4875210wrb.72.2022.07.20.07.19.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 07:19:14 -0700 (PDT)
-Date:   Wed, 20 Jul 2022 15:19:12 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Markuss Broks <markuss.broks@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Matti Vaittinen <mazziesaccount@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/5] mfd: sm5703: Add support for SM5703 MFD
-Message-ID: <YtgO4J8BBqRnKPKs@google.com>
-References: <20220423085319.483524-1-markuss.broks@gmail.com>
- <20220423085319.483524-5-markuss.broks@gmail.com>
- <Yqj+aUNLC00Tcu49@google.com>
- <5498bf71-66a5-957e-ed3d-13e68b982562@gmail.com>
- <YtUXFTx1+vSrXx70@google.com>
- <295e1809-f6f2-ca31-5c36-be133ffdc93b@gmail.com>
- <Yte7Tgq3w8fowTYA@google.com>
- <4be15cff-b0af-8671-57aa-6567c0206715@gmail.com>
- <YtgDSelfobu/a/be@google.com>
- <c14698f3-8f70-4cd7-1653-ed51630806c3@gmail.com>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pb4cM63m45JrwZId0nr/zqGXW/4GoV4GCAACaLcVhG4=;
+ b=WZiPvC26gFUNnrHueCMpCSQTWJDuV0QGbY2UVD0pCk1G8ypWUqzK/wz7WmYS5o9KwXQ9ygfnv6UF/lP2bEzdoxSsuvmro92K/USyrzBcthNYrFLhURiJDRhuTkt7O0arlZI50q8sQrBRJzxbvsGiZHvsXBRKpvU2lesBh8bd7bY=
+Received: from SN4PR0501CA0001.namprd05.prod.outlook.com
+ (2603:10b6:803:40::14) by DM6PR02MB4459.namprd02.prod.outlook.com
+ (2603:10b6:5:29::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.15; Wed, 20 Jul
+ 2022 14:26:17 +0000
+Received: from SN1NAM02FT0060.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:40:cafe::5) by SN4PR0501CA0001.outlook.office365.com
+ (2603:10b6:803:40::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.11 via Frontend
+ Transport; Wed, 20 Jul 2022 14:26:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com; pr=C
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0060.mail.protection.outlook.com (10.97.4.134) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5458.17 via Frontend Transport; Wed, 20 Jul 2022 14:26:17 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 20 Jul 2022 07:26:16 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 20 Jul 2022 07:26:16 -0700
+Envelope-to: git@xilinx.com,
+ linux-serial@vger.kernel.org,
+ krzysztof.kozlowski+dt@linaro.org,
+ gregkh@linuxfoundation.org,
+ robh+dt@kernel.org,
+ devicetree@vger.kernel.org
+Received: from [10.140.6.59] (port=55844 helo=xhdshubhraj40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1oEAeV-0000jg-BZ; Wed, 20 Jul 2022 07:26:15 -0700
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+To:     <linux-serial@vger.kernel.org>
+CC:     <git@xilinx.com>, <shubhrajyoti.datta@xilinx.com>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/2] serial: pl011: Add xilinx uart
+Date:   Wed, 20 Jul 2022 19:56:10 +0530
+Message-ID: <20220720142612.19779-1-shubhrajyoti.datta@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c14698f3-8f70-4cd7-1653-ed51630806c3@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2b577f6e-0f16-4426-8b6c-08da6a5bcf23
+X-MS-TrafficTypeDiagnostic: DM6PR02MB4459:EE_
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: PbXxSUy5UYpL51nf4h5Ji+yYRLeEvms50gC8FG95eyXSnylZ5J0ZzxIn7Yf+tS5ynMQrxDfC6uK/Bcrw6mBEpv/6Ebxy1kCDKqjXU2NgprQpnK1RCikeMDImGnPaeLH8HtZ4uz13S722RxmJBQV2hFRimI0zbjHQolSkyvddAai2WvfqEBnWKrPQeu/OaIZ102L1u0bftNfdOril3bX8WiOM0RxffTy+ekbVPMosKfE9bVL77ldg8xzUXwes4fZQD0ZZgajXIISnkp9l8ktpUikKPPGIHWBs4qkk9nqmycKf5W1XTMhBhUuFf2Dzc6mzwx25o6aZi5+KoAn9R8WRhTClDDh4mb3U2cdSrT9z9T8p6G7+6aYic1+XOoxilWb19c9QF06ksHyUaty5+6Uvi00Gy6XMOoLm93JA7Dff5eeu0+8IAXCQE4evm0BAhUKcwwDwlSUNEc4XaHNZ78GcAdO951WSF2Fcu++ot2dEApE5ZnYwMw5rvyb7ejWyy1Gf0DxorTIM5jWohFRBLHpC3lC68W/hheDlQSX92PqOSZ51VnV9Mc2TCPaQeEk1dl3yke9Fmo/skCqlvdzsDNm1zLF4jr6jd/VvQP5WApbuPZC2MsCVBUxTFQ9/uUh1yekY7GcVW/hMQGw1/0YjOyvoLsQFjwUf8yl2jMZHmEaplk9tvCmkW8TPlHsQHQkYBqXVGRsg9sinxUc4PWxtB4KyyNsLKhicDGUAdTC8BRlx6rk/3WXFY+Nd+6F3AylizOZT5MpPEa3NbxqMka6+QC9xZZYuD/0Oqy2n5P366lQfGZRrol5xSaAwoD8PRPTU4QQKPK5Tw6Q45P4+akL3OrfkPQ==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230016)(4636009)(376002)(136003)(346002)(396003)(39860400002)(36840700001)(46966006)(40470700004)(8676002)(70206006)(70586007)(9786002)(8936002)(4326008)(356005)(316002)(54906003)(4744005)(6916009)(36860700001)(7636003)(36756003)(2906002)(82740400003)(5660300002)(26005)(40480700001)(7696005)(47076005)(41300700001)(6666004)(186003)(2616005)(40460700003)(44832011)(426003)(478600001)(83380400001)(82310400005)(1076003)(336012)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jul 2022 14:26:17.5346
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b577f6e-0f16-4426-8b6c-08da6a5bcf23
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0060.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB4459
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jul 2022, Markuss Broks wrote:
+-Support uart peripheral in Xilinx Versal SOC.
+Add the dt-binding for the same
 
-> On 7/20/22 16:29, Lee Jones wrote:
-> > On Wed, 20 Jul 2022, Markuss Broks wrote:
-> > > > > > > > > +static const struct mfd_cell sm5703_devs[] = {
-> > > > > > > > > +	{ .name = "sm5703-regulator", },
-> > > > > > > > > +};
-> > > > > > > > Where are the rest of the child drivers?
-> > > > > > > Should those devices still be present even though there's no driver for them
-> > > > > > > (yet) ? I have a WIP version of driver for almost every function, but I
-> > > > > > > currently lack time to get them done.
-> > > > > > Without them the driver-set is useless, no?
-> > > > > > 
-> > > > > > We try to refrain from applying dead code.
-> > > > > > 
-> > > > > > A lot of it has a tendency to stay that way.
-> > > > > Well, in my opinion, having just the regulator driver is already useful
-> > > > > enough: my board (Samsung Galaxy J5 (2015) ) uses one of LDO outputs for
-> > > > > powering the touchscreen. Touchscreen is kind of vital functionality for a
-> > > > > phone so I decided to upstream parts that are necessary for it first and
-> > > > > finish up other stuff later. It's not the only board that uses SM5703's
-> > > > > regulators for supplying all different kinds of hardware, either.
-> > > > Upstreaming functionality which is useful on its own is fine, but that
-> > > > doesn't tick all of the boxes to justify an MFD.  This is a lot of
-> > > > code which is hard to justify if it only registers a Regulator driver.
-> > > Do you think I should hold on this series until I have other things done?
-> > > Alternatively, I could make the regulator driver standalone, dedicated, but
-> > > then when I'd add other functionality I'd have to redo it and add the MFD
-> > > driver back, that I believe would be quite annoying from maintainers' and
-> > > sanity perspective. The other functions left on the main control I2C are
-> > > also not really "vital" to device's functionality (Flash LED and charger),
-> > > so the regulator function makes the most sense to be available first, which
-> > > was my motivation behind upstreaming that first.
+v2: 
+Update the commit message to reflect the AXI limitation.
 
-Can you configure your mailer to stop removing the space between
-messages please?
+Raviteja Narayanam (1):
+  serial: pl011: Add support for Xilinx Uart
 
-> > What's the reason for this being an MFD in the first place?
+Shubhrajyoti Datta (1):
+  dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
 
-> Well, the "main" I2C interface is shared between three functions:
-> regulators, Flash LED and charger. I call this one the "main" one because
-> the device is controlled with it: you can select internal clock rate, enable
-> or disable the PMIC and do other things that more of apply to the whole
-> PMIC, not just the separate functions (as is the case with fuel gauge and
-> MUIC I2C) . That's the reason for this being an MFD: those three functions
-> share one I2C interface. While they might not be implemented at the moment,
-> this places a foundation for adding future support.
-
-Okay, so the functions cannot be controlled separately?  That's fine.
-
-For acceptance into MFD, you need to enable more than one function.
+ .../devicetree/bindings/serial/pl011.yaml     | 10 ++++--
+ drivers/tty/serial/amba-pl011.c               | 33 +++++++++++++++++--
+ 2 files changed, 38 insertions(+), 5 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.17.1
+
