@@ -2,185 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8C6C57B43B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 11:59:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FB4057B479
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 12:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230496AbiGTJ7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 05:59:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54480 "EHLO
+        id S235990AbiGTK2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 06:28:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiGTJ7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 05:59:30 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B92412A84;
-        Wed, 20 Jul 2022 02:59:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658311169; x=1689847169;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SOFujLqVQ8IM/zPTiPh1M18yqXiEmqEQFOTKQq34x6g=;
-  b=WQQWZDgNC/FEb4yK0CwPjjx2V6w2cokOp1YOqvrLdGuLKTln9FP1uuw9
-   qs1DYQVrLTQvjyph+HVVGVAoxwF0t1c/pRib27gH5d/64YxabZV2Snb3D
-   74ZAeG1UWpwBQzwyI5TmehwsQIm81kyuvPWEkNG0wW/rUfRztgyJHt7NK
-   RA/V2BsuQoFoF31RgWJ/R6bGLhzJIA7ThP8Rz7ToK/zcOu6Hdqxpt37Eh
-   L5cv7TOImxXlerO+tePFEHDPdQCVVbXwDSQY+MyfxnyvVxLEb763f8yR1
-   pdCLzjxpdd2FlziY0owTgav6h/jtFdLtGMKKhdK9fkMcJtVQ+tJ3O6zqr
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10413"; a="285498281"
-X-IronPort-AV: E=Sophos;i="5.92,286,1650956400"; 
-   d="scan'208";a="285498281"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jul 2022 02:59:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,286,1650956400"; 
-   d="scan'208";a="740228895"
-Received: from lkp-server01.sh.intel.com (HELO 7dfbdc7c7900) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 20 Jul 2022 02:59:24 -0700
-Received: from kbuild by 7dfbdc7c7900 with local (Exim 4.95)
-        (envelope-from <lkp@intel.com>)
-        id 1oE6UF-0000MV-Nz;
-        Wed, 20 Jul 2022 09:59:23 +0000
-Date:   Wed, 20 Jul 2022 17:58:57 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, l.stach@pengutronix.de
-Cc:     kbuild-all@lists.01.org, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
-        marex@denx.de, paul.elder@ideasonboard.com, aford173@gmail.com,
-        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V3 5/7] soc: imx: imx8m-blk-ctrl: add i.MX8MP VPU blk ctrl
-Message-ID: <202207201734.DwWC33xs-lkp@intel.com>
-References: <20220719055054.3855979-6-peng.fan@oss.nxp.com>
+        with ESMTP id S234732AbiGTK2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 06:28:05 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06302CCBE
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 03:28:02 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id h9so406008wrm.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 03:28:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=HDPGW+0VbU3HlGqsVgCK1SSNUaqROvFzsq51vzca6Qw=;
+        b=KrPJmTtMuvZR7p6XRqQ/OrPLQA7Zzg3FcZINYhW2sciW/ZPl/VlBV5i6Wg1VVk1KMb
+         6lFWLqiLIcmuXtIwXaDp8Cy7prJnf303iyzNVbmvvLCl0RHLIalMJxeycb7UhFk4PTsL
+         PbWa+gwT+nfPXG+BHHgGrBgE859UslhzNc0d4nVszRb7+ClQRwS/ycBKtbkmw1hB8vNf
+         +ONm+9s1+1m5MpwvOs5sphs8g83uJc4c6hlKENogyJ5Do+rDBAHjV4JtoZ6njYaO7m7a
+         zjq04NqUOr/uL1gmTlnszNwIoGYruLGFM3ti+dsKGC9EhWtkt+/gnbrDcRaEeez3gGSd
+         HHow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HDPGW+0VbU3HlGqsVgCK1SSNUaqROvFzsq51vzca6Qw=;
+        b=TUOO/iLkbzn9iQpvVs6RJpE2FPMFbjz3sq9X8NXJL4Km/wQNad8ikaEiphBVqL8Bey
+         PcZ1oJhlYXM4ONOuxaFCNImHPIXwgJdOwJdJbdAo1IoJMRux1W1km7R80AwkDyaz3a0Q
+         zL8zGsXE8fBxmEsotRAxz2XXZusqCCoC5BoeCYAp+WS618odscj1FXCgDS1WQ6AYK442
+         gdr9LwjXnCxt+SmYAKMHgy3IIWjXdElDdQVO1MEZ5sFvtlREpWfvGKDp2XkQI1IFuXBT
+         dVA2ClqEXCgC+jaTtRMVFYKtNL/zt2Hw7eY0PJ3k4Xs479AV2Kirl1TsCdKkRYXxK6dF
+         ZOog==
+X-Gm-Message-State: AJIora9B1ZrDLAqmfvXvI+ffASivNeCbAcb2APEkcqRHSLd4QTke/lH/
+        Plzu6J+wGmJkjuWR1JWy5xUgkQ==
+X-Google-Smtp-Source: AGRyM1vh2LF8NITrJVM5B8R6LREdsrVgV6SJqBUhJgCSK1MiAprdXWFnFxJAT4Imf0CwVtLf+pQQsQ==
+X-Received: by 2002:a5d:56d1:0:b0:21d:78ad:c8bf with SMTP id m17-20020a5d56d1000000b0021d78adc8bfmr30739964wrw.175.1658312880843;
+        Wed, 20 Jul 2022 03:28:00 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:b579:e7b5:219d:267c? ([2a05:6e02:1041:c10:b579:e7b5:219d:267c])
+        by smtp.googlemail.com with ESMTPSA id v130-20020a1cac88000000b003a03be171b1sm1980057wme.43.2022.07.20.03.27.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Jul 2022 03:28:00 -0700 (PDT)
+Message-ID: <0861a79e-f2b0-143e-b09e-9b088a4568a7@linaro.org>
+Date:   Wed, 20 Jul 2022 12:27:58 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220719055054.3855979-6-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v6 2/5] drivers: thermal: tsens: Add support for combined
+ interrupt
+Content-Language: en-US
+To:     Robert Marko <robimarko@gmail.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, konrad.dybcio@somainline.org,
+        amitk@kernel.org, thara.gopinath@gmail.com, rafael@kernel.org,
+        rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220714101451.198211-1-robimarko@gmail.com>
+ <20220714101451.198211-2-robimarko@gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20220714101451.198211-2-robimarko@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Peng,
 
-Thank you for the patch! Perhaps something to improve:
+Hi,
 
-[auto build test WARNING on shawnguo/for-next]
-[also build test WARNING on linus/master v5.19-rc7 next-20220719]
-[cannot apply to robh/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On 14/07/2022 12:14, Robert Marko wrote:
+> Despite using tsens v2.3 IP, IPQ8074 and IPQ6018 only have one IRQ for
+> signaling both up/low and critical trips.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220719-135352
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-config: microblaze-allmodconfig (https://download.01.org/0day-ci/archive/20220720/202207201734.DwWC33xs-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/73728b6c4380e24d833b690b7ead261e1fcdcbc2
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220719-135352
-        git checkout 73728b6c4380e24d833b690b7ead261e1fcdcbc2
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=microblaze SHELL=/bin/bash drivers/soc/imx/ sound/soc/sof/imx/
+Bjorn, are these changes ok for you ?
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+> ---
+> Changes in v6:
+> * Check critical IRQ handler return, simplify up/low return
+> ---
+>   drivers/thermal/qcom/tsens-8960.c |  1 +
+>   drivers/thermal/qcom/tsens-v0_1.c |  1 +
+>   drivers/thermal/qcom/tsens-v1.c   |  1 +
+>   drivers/thermal/qcom/tsens-v2.c   |  1 +
+>   drivers/thermal/qcom/tsens.c      | 38 ++++++++++++++++++++++++++-----
+>   drivers/thermal/qcom/tsens.h      |  2 ++
+>   6 files changed, 38 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/thermal/qcom/tsens-8960.c b/drivers/thermal/qcom/tsens-8960.c
+> index 67c1748cdf73..ee584e5b07e5 100644
+> --- a/drivers/thermal/qcom/tsens-8960.c
+> +++ b/drivers/thermal/qcom/tsens-8960.c
+> @@ -269,6 +269,7 @@ static const struct tsens_ops ops_8960 = {
+>   static struct tsens_features tsens_8960_feat = {
+>   	.ver_major	= VER_0,
+>   	.crit_int	= 0,
+> +	.combo_int	= 0,
+>   	.adc		= 1,
+>   	.srot_split	= 0,
+>   	.max_sensors	= 11,
+> diff --git a/drivers/thermal/qcom/tsens-v0_1.c b/drivers/thermal/qcom/tsens-v0_1.c
+> index f136cb350238..6effb822bf3c 100644
+> --- a/drivers/thermal/qcom/tsens-v0_1.c
+> +++ b/drivers/thermal/qcom/tsens-v0_1.c
+> @@ -539,6 +539,7 @@ static int calibrate_9607(struct tsens_priv *priv)
+>   static struct tsens_features tsens_v0_1_feat = {
+>   	.ver_major	= VER_0_1,
+>   	.crit_int	= 0,
+> +	.combo_int	= 0,
+>   	.adc		= 1,
+>   	.srot_split	= 1,
+>   	.max_sensors	= 11,
+> diff --git a/drivers/thermal/qcom/tsens-v1.c b/drivers/thermal/qcom/tsens-v1.c
+> index 573e261ccca7..a4f561a6e582 100644
+> --- a/drivers/thermal/qcom/tsens-v1.c
+> +++ b/drivers/thermal/qcom/tsens-v1.c
+> @@ -302,6 +302,7 @@ static int calibrate_8976(struct tsens_priv *priv)
+>   static struct tsens_features tsens_v1_feat = {
+>   	.ver_major	= VER_1_X,
+>   	.crit_int	= 0,
+> +	.combo_int	= 0,
+>   	.adc		= 1,
+>   	.srot_split	= 1,
+>   	.max_sensors	= 11,
+> diff --git a/drivers/thermal/qcom/tsens-v2.c b/drivers/thermal/qcom/tsens-v2.c
+> index b293ed32174b..129cdb247381 100644
+> --- a/drivers/thermal/qcom/tsens-v2.c
+> +++ b/drivers/thermal/qcom/tsens-v2.c
+> @@ -31,6 +31,7 @@
+>   static struct tsens_features tsens_v2_feat = {
+>   	.ver_major	= VER_2_X,
+>   	.crit_int	= 1,
+> +	.combo_int	= 0,
+>   	.adc		= 0,
+>   	.srot_split	= 1,
+>   	.max_sensors	= 16,
+> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> index 7963ee33bf75..5c7f9ec6ab1c 100644
+> --- a/drivers/thermal/qcom/tsens.c
+> +++ b/drivers/thermal/qcom/tsens.c
+> @@ -532,6 +532,27 @@ static irqreturn_t tsens_irq_thread(int irq, void *data)
+>   	return IRQ_HANDLED;
+>   }
+>   
+> +/**
+> + * tsens_combined_irq_thread - Threaded interrupt handler for combined interrupts
+> + * @irq: irq number
+> + * @data: tsens controller private data
+> + *
+> + * Handle the combined interrupt as if it were 2 separate interrupts, so call the
+> + * critical handler first and then the up/low one.
+> + *
+> + * Return: IRQ_HANDLED
+> + */
+> +static irqreturn_t tsens_combined_irq_thread(int irq, void *data)
+> +{
+> +	irqreturn_t ret;
+> +
+> +	ret = tsens_critical_irq_thread(irq, data);
+> +	if (ret != IRQ_HANDLED)
+> +		return ret;
+> +
+> +	return tsens_irq_thread(irq, data);
+> +}
+> +
+>   static int tsens_set_trips(void *_sensor, int low, int high)
+>   {
+>   	struct tsens_sensor *s = _sensor;
+> @@ -1083,13 +1104,18 @@ static int tsens_register(struct tsens_priv *priv)
+>   				   tsens_mC_to_hw(priv->sensor, 0));
+>   	}
+>   
+> -	ret = tsens_register_irq(priv, "uplow", tsens_irq_thread);
+> -	if (ret < 0)
+> -		return ret;
+> +	if (priv->feat->combo_int) {
+> +		ret = tsens_register_irq(priv, "combined",
+> +					 tsens_combined_irq_thread);
+> +	} else {
+> +		ret = tsens_register_irq(priv, "uplow", tsens_irq_thread);
+> +		if (ret < 0)
+> +			return ret;
+>   
+> -	if (priv->feat->crit_int)
+> -		ret = tsens_register_irq(priv, "critical",
+> -					 tsens_critical_irq_thread);
+> +		if (priv->feat->crit_int)
+> +			ret = tsens_register_irq(priv, "critical",
+> +						 tsens_critical_irq_thread);
+> +	}
+>   
+>   	return ret;
+>   }
+> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
+> index 1471a2c00f15..4614177944d6 100644
+> --- a/drivers/thermal/qcom/tsens.h
+> +++ b/drivers/thermal/qcom/tsens.h
+> @@ -495,6 +495,7 @@ enum regfield_ids {
+>    * struct tsens_features - Features supported by the IP
+>    * @ver_major: Major number of IP version
+>    * @crit_int: does the IP support critical interrupts?
+> + * @combo_int: does the IP use one IRQ for up, low and critical thresholds?
+>    * @adc:      do the sensors only output adc code (instead of temperature)?
+>    * @srot_split: does the IP neatly splits the register space into SROT and TM,
+>    *              with SROT only being available to secure boot firmware?
+> @@ -504,6 +505,7 @@ enum regfield_ids {
+>   struct tsens_features {
+>   	unsigned int ver_major;
+>   	unsigned int crit_int:1;
+> +	unsigned int combo_int:1;
+>   	unsigned int adc:1;
+>   	unsigned int srot_split:1;
+>   	unsigned int has_watchdog:1;
 
-All warnings (new ones prefixed by >>):
-
-   drivers/soc/imx/imx8m-blk-ctrl.c:466:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'path_names'
-     466 |                 .path_names = (const char *[]){"g1"},
-         |                  ^~~~~~~~~~
->> drivers/soc/imx/imx8m-blk-ctrl.c:466:31: warning: initialization of 'unsigned int' from 'const char **' makes integer from pointer without a cast [-Wint-conversion]
-     466 |                 .path_names = (const char *[]){"g1"},
-         |                               ^
-   drivers/soc/imx/imx8m-blk-ctrl.c:466:31: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[0].mipi_phy_rst_mask')
-   drivers/soc/imx/imx8m-blk-ctrl.c:467:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'num_paths'
-     467 |                 .num_paths = 1,
-         |                  ^~~~~~~~~
->> drivers/soc/imx/imx8m-blk-ctrl.c:467:30: warning: excess elements in struct initializer
-     467 |                 .num_paths = 1,
-         |                              ^
-   drivers/soc/imx/imx8m-blk-ctrl.c:467:30: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[0]')
-   drivers/soc/imx/imx8m-blk-ctrl.c:476:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'path_names'
-     476 |                 .path_names = (const char *[]){"g2"},
-         |                  ^~~~~~~~~~
-   drivers/soc/imx/imx8m-blk-ctrl.c:476:31: warning: initialization of 'unsigned int' from 'const char **' makes integer from pointer without a cast [-Wint-conversion]
-     476 |                 .path_names = (const char *[]){"g2"},
-         |                               ^
-   drivers/soc/imx/imx8m-blk-ctrl.c:476:31: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[1].mipi_phy_rst_mask')
-   drivers/soc/imx/imx8m-blk-ctrl.c:477:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'num_paths'
-     477 |                 .num_paths = 1,
-         |                  ^~~~~~~~~
-   drivers/soc/imx/imx8m-blk-ctrl.c:477:30: warning: excess elements in struct initializer
-     477 |                 .num_paths = 1,
-         |                              ^
-   drivers/soc/imx/imx8m-blk-ctrl.c:477:30: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[1]')
-   drivers/soc/imx/imx8m-blk-ctrl.c:486:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'path_names'
-     486 |                 .path_names = (const char *[]){"vc8000e"},
-         |                  ^~~~~~~~~~
-   drivers/soc/imx/imx8m-blk-ctrl.c:486:31: warning: initialization of 'unsigned int' from 'const char **' makes integer from pointer without a cast [-Wint-conversion]
-     486 |                 .path_names = (const char *[]){"vc8000e"},
-         |                               ^
-   drivers/soc/imx/imx8m-blk-ctrl.c:486:31: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[2].mipi_phy_rst_mask')
-   drivers/soc/imx/imx8m-blk-ctrl.c:487:18: error: 'const struct imx8m_blk_ctrl_domain_data' has no member named 'num_paths'
-     487 |                 .num_paths = 1,
-         |                  ^~~~~~~~~
-   drivers/soc/imx/imx8m-blk-ctrl.c:487:30: warning: excess elements in struct initializer
-     487 |                 .num_paths = 1,
-         |                              ^
-   drivers/soc/imx/imx8m-blk-ctrl.c:487:30: note: (near initialization for 'imx8mp_vpu_blk_ctl_domain_data[2]')
-
-
-vim +466 drivers/soc/imx/imx8m-blk-ctrl.c
-
-   457	
-   458	static const struct imx8m_blk_ctrl_domain_data imx8mp_vpu_blk_ctl_domain_data[] = {
-   459		[IMX8MP_VPUBLK_PD_G1] = {
-   460			.name = "vpublk-g1",
-   461			.clk_names = (const char *[]){ "g1", },
-   462			.num_clks = 1,
-   463			.gpc_name = "g1",
-   464			.rst_mask = BIT(1),
-   465			.clk_mask = BIT(1),
- > 466			.path_names = (const char *[]){"g1"},
- > 467			.num_paths = 1,
-   468		},
-   469		[IMX8MP_VPUBLK_PD_G2] = {
-   470			.name = "vpublk-g2",
-   471			.clk_names = (const char *[]){ "g2", },
-   472			.num_clks = 1,
-   473			.gpc_name = "g2",
-   474			.rst_mask = BIT(0),
-   475			.clk_mask = BIT(0),
-   476			.path_names = (const char *[]){"g2"},
-   477			.num_paths = 1,
-   478		},
-   479		[IMX8MP_VPUBLK_PD_VC8000E] = {
-   480			.name = "vpublk-vc8000e",
-   481			.clk_names = (const char *[]){ "vc8000e", },
-   482			.num_clks = 1,
-   483			.gpc_name = "vc8000e",
-   484			.rst_mask = BIT(2),
-   485			.clk_mask = BIT(2),
-   486			.path_names = (const char *[]){"vc8000e"},
-   487			.num_paths = 1,
-   488		},
-   489	};
-   490	
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
