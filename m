@@ -2,107 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 326F057B0D6
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 08:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B05857B0DC
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 08:15:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229736AbiGTGK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 02:10:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48848 "EHLO
+        id S230095AbiGTGPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 02:15:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234888AbiGTGK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 02:10:58 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98E13491FA
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:10:56 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id q7so19903684lji.12
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:10:56 -0700 (PDT)
+        with ESMTP id S229992AbiGTGPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 02:15:31 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109DA2CCA6
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:15:30 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id by8so16340283ljb.13
+        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:15:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=R724gXzbsAes7qqV9vmgsnDK2zNWLN0xtkY5GrfADYc=;
-        b=dKF3Gni2mdRt3jsXRwkxlKFvWbGSErW4PONf3JI+seKboTnKaEP1LKMZc2V2Yf0mCX
-         Xq9qhYogXQ/xM95ueLCzbwh7u0zjURJaAyMWouojT5GE7tSy6r9YmXzHcn/grBKIg/py
-         Yem9FHhoUFtffdyMuSvfVsDHsQCiqWF52J+fLWjedr6aKNoAtWdRj1eWGbgHOJbIpQkr
-         5FAnT/saqAtNXyOUbtBJP18NoCKNn2SMEul0Fg5VD2nQddV1oid1XrlZZ6nQDz2quCfW
-         xBntlBx5NW5M6g62SABxrKTjGgF5fwECiCPaBTM+qoS5vACF93uMwVeAeabk3OaRXy3j
-         S28g==
+        bh=tXE548Ck2Ie+d7x6mhU9K/Ck4K3DClRihhNx2H7HDqo=;
+        b=ooXRdgOWqxmz8XVGgBZgIdj7/7XZ+8am+8YsGikyMxw0dtER0vJAhF/lVH/NX1TLsS
+         W56RPhxBYKGU0xWef4P6+1TcXixSkBHWTIimzbdyTVztukDO5j1e02PUZ6a5HX5HTsrh
+         JZYjzkeG4hv1qqQsqyM/VZ8utZBzKSMGvoRoBbAJ/fKU0oR/i5NWMrlpiM8rbz66WelK
+         cVw9aqdQC16jU1UD16je6Bw5Vh/nfsKJ/3oQxuSFTCCUdlzBCyxYrvR4rF9d+9/+II1s
+         aelM2f9Sg6WkwwCfdUG4g7G7KLhf+0TDdYsT29Aort0jDoct2y00qfQ85zFkzIABftkT
+         uFwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=R724gXzbsAes7qqV9vmgsnDK2zNWLN0xtkY5GrfADYc=;
-        b=c6ShTw5Tu2dX97oAMdMCFXPqQmGOeWULg7EndUc/jxqn1ZJqlzlHxTjOP92uxBYaQl
-         ptwIUjTrFJl+zHHu3Nx1vLzABHXbEJ/mKgzegkVWbjZFYiVQXD6E/Tru3TVtdJm+rza8
-         n7NW/1ZelX6se7IZWfvaln6HVeGO6ZVacDAs2hulKE/VsqoN68RDEtARkfyfcoXD+Pe/
-         WVE5+q3MO3W7iN7JMxZLNKSQxohye6pwjKySuTBW2fmJ6mMuJOFVnesDIE7jlON/h1fj
-         Px403HxmXYYYz/SP2N542c/H/WGZQ5McRWMqgZ7Ey3CFD5caIQ7x83pktDhKoHB65dL2
-         b70w==
-X-Gm-Message-State: AJIora9XJIwnHBQCEwzaY++qCS8F+VuPBhypbX/gvn0ZuwkN/wEyA2SU
-        hENXaSdH2ssheCu/pg472Eq8Tg==
-X-Google-Smtp-Source: AGRyM1sqMk/IxWNdfO/ZrAP8MTy5lfGn6Ymb6DxouAFaqjIbx2YNSH3cIx2gJo6fAJyUsVlKMcg7Dw==
-X-Received: by 2002:a2e:9917:0:b0:25d:a469:75da with SMTP id v23-20020a2e9917000000b0025da46975damr10463914lji.55.1658297455004;
-        Tue, 19 Jul 2022 23:10:55 -0700 (PDT)
+        bh=tXE548Ck2Ie+d7x6mhU9K/Ck4K3DClRihhNx2H7HDqo=;
+        b=D6KQ5syqjHPaI/3i4QmKo2vKkPEPNKEzmqVbOesXVFXu+cCd5l9je+0AEak3nDPZRk
+         mlXrsq6PBeU5lnjzEgDN8jNjbiNCq0j7OU92DKUTZhtBQVeJmaH8q/uHBbsLcdzmzriF
+         ac3/3n0/HwbCnBt+o41rmvQMuprTijCnbw1y7Ht7rtOdfGl+LxsrnDq8NZlDNmAejTpj
+         GYKAMj3qrYtHITKS1dSZv8gYLkIVly5vkXYoFg0CDiql1prIGxZUSB6xlX4shOPFL0xx
+         WQdxzepKN7SwSblIODHdL6RMJ5IDPV0VvaPzDksQlpSoFgl7HcKwk+R5nFlsNL13/4DZ
+         fsTQ==
+X-Gm-Message-State: AJIora+8uwy+czN/FT/R1RZ2LdaWGcI4HnLuAxTuvOOoIzaW5F7f6epy
+        MGz5+kJKH2Dr7s5hhxmUL6ZjAg==
+X-Google-Smtp-Source: AGRyM1utNqgAaKCZA2ZalNHL1Km0tdkASa2QZLPj5OBvb96KlXyPXI88nz4ox0xmaR6NlBBNO3AAhg==
+X-Received: by 2002:a2e:a317:0:b0:25d:83e8:ce60 with SMTP id l23-20020a2ea317000000b0025d83e8ce60mr16860005lje.111.1658297728369;
+        Tue, 19 Jul 2022 23:15:28 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id k7-20020ac24f07000000b0048602d54471sm3584486lfr.156.2022.07.19.23.10.53
+        by smtp.gmail.com with ESMTPSA id r13-20020ac25f8d000000b0047f6e07ded3sm3577313lfe.152.2022.07.19.23.15.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 23:10:54 -0700 (PDT)
-Message-ID: <7a04c9af-0ccb-7711-249f-73908fe7ec36@linaro.org>
-Date:   Wed, 20 Jul 2022 08:10:52 +0200
+        Tue, 19 Jul 2022 23:15:27 -0700 (PDT)
+Message-ID: <0bc494bc-8788-46e6-a485-cdefdb8682a4@linaro.org>
+Date:   Wed, 20 Jul 2022 08:15:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: Add SKU6 for
- sc7180-trogdor-pazquel-lte-parade
+Subject: Re: [PATCH v2 1/4] dt-bindings: misc: tmr-manager: Add device-tree
+ binding for TMR Manager
 Content-Language: en-US
-To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Henry Sun <henrysun@google.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220720025058.1.I5bfba8857ea0d43c747ecdc3a950875abd56927f@changeid>
+To:     Appana Durga Kedareswara rao 
+        <appana.durga.kedareswara.rao@amd.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
+        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org
+Cc:     appanad@amd.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        git@amd.com, git@xilinx.com,
+        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
+References: <20220720060016.1646317-1-appana.durga.kedareswara.rao@amd.com>
+ <20220720060016.1646317-2-appana.durga.kedareswara.rao@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220720025058.1.I5bfba8857ea0d43c747ecdc3a950875abd56927f@changeid>
+In-Reply-To: <20220720060016.1646317-2-appana.durga.kedareswara.rao@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2022 04:51, Yunlong Jia wrote:
-> SKU6 is LTE(w/o eSIM)+WIFI+Parade
+On 20/07/2022 08:00, Appana Durga Kedareswara rao wrote:
+> From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
 > 
-> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-> ---
+> Triple Modular Redundancy(TMR) subsystem contains three microblaze cores,
+> subsystem is fault-tolerant and continues to operate nominally after
+> encountering an error. Together with the capability to detect and recover
+> from errors, the implementation ensures the reliability of the entire
+> subsystem.  TMR Manager is responsible for performing recovery of the
+> subsystem detects the fault via a break signal it invokes microblaze
+> software break handler which calls the tmr manager driver api to
+> update the error count and status.
 > 
->  arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> index 764c451c1a857..4649eaec6318d 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts
-> @@ -14,7 +14,7 @@
->  
->  / {
->  	model = "Google Pazquel (Parade,LTE)";
-> -	compatible = "google,pazquel-sku4", "qcom,sc7180";
-> +	compatible = "google,pazquel-sku4", "google,pazquel-sku6", "qcom,sc7180";
+> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
+> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
 
-You miss binding change and sku6 should be rather added before sku4 as
-it is more specific, isn't it?
+Use one identity, not two.
+
+> ---
+> Changes for v2:
+> --> Improved description for xlnx,magic1 property as suggested by Krzysztof.
+> --> Fixed style issues (indentation of example node title description
+> etc..)
+>  .../bindings/misc/xlnx,tmr-manager.yaml       | 47 +++++++++++++++++++
+
+It's a pity it was put into misc, but since we did not reach consensus
+during last discussion and there is no fault-handler-like subsystem yet,
+we might move it there later:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
