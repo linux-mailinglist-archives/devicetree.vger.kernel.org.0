@@ -2,178 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC95257B78B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 15:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 813DA57B7A2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 15:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229493AbiGTNbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 09:31:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57270 "EHLO
+        id S235771AbiGTNmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 09:42:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232744AbiGTNbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 09:31:45 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79EF63E0
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 06:31:43 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id u5so3104341wrm.4
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 06:31:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=jXWsCDJZbVRxP7xR4C+U6rZt5JnCuCWDrPBReQRj/tw=;
-        b=fnqIuK/upZAzWSdv8c4Xn98IfAXMtNBC8vAlR5vrMj/2du3XqOPwte1qjMrWLuHE0i
-         LIep0Sv1eq7e349LCymGOYm4TUYeyyoDRHZRsmdkOAZeb9iaBgagQLzmDiHToHZAfxRM
-         ihx0hQHCepa1CFN2KrYqjfkjfgJACbdUXcIN+5R0y+Lj61RFQK78ZqtbhybUgIgpuG2J
-         q+P6QZS4cDKhCHBcdADaCSc47eHksNAsFQlFoJw1+5UU4S7r0y39wr3Pb3wbazLMlntE
-         5V5mPFz7By2zGpfa7PTaOGWO23THWYxm8j3qEuzs9U0r//i84t+1A7L6lM7C0McnNL2C
-         BdCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=jXWsCDJZbVRxP7xR4C+U6rZt5JnCuCWDrPBReQRj/tw=;
-        b=EsfPjlpQhlwFUWU0EXhN6lJC6TaAPd20BSTQtrqF7nH7h3aJZqO/ee9l6jRG+5Sj87
-         bRbWiauWvnsjFgmHoKDRhpggzqORiFkX1Bw8r66BSdIxgdwQErYCWJlgEjOJNiVLVOkb
-         LxnxGAz/E8uAyGMbbBzv7Ue4LRQZ1jDKe6NnvfJ8LUrZMGApV787ZDVJd/5i9vpqIbnQ
-         5d704wNDTpbPgRMTJpV5LIHD4fSFTk0BVFNKRuONjClaHNSwNXM4D+uTcIsharWFXBrv
-         XxOJT3T7rSFqDt4T0qrXNgx4UpRKCnNrGJdkZ81zeTFiFVell3Qis8seWXLqtLPO2is9
-         rmgA==
-X-Gm-Message-State: AJIora9teXiOnVa1jaWbTe+/oumikhdWvSgqLsJpWDgyWULNqalE1Pir
-        STuyWM6Dj4tZu5Eci1uJGWPApw==
-X-Google-Smtp-Source: AGRyM1tyvKXKdPUtTzvOARCZKmziYzkJtcJwILxnHRLAiFVCrIOmOWmx0ChdTjh6M2BY6gcYj8q5AA==
-X-Received: by 2002:a5d:4447:0:b0:21d:6b84:4678 with SMTP id x7-20020a5d4447000000b0021d6b844678mr28881929wrr.668.1658323902346;
-        Wed, 20 Jul 2022 06:31:42 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id k20-20020a05600c1c9400b003a31fd05e0fsm9520548wms.2.2022.07.20.06.31.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 06:31:41 -0700 (PDT)
-Date:   Wed, 20 Jul 2022 14:31:39 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>, iommu@lists.linux.dev,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v3 06/21] dt-bindings: power: mediatek: Add bindings for
- MediaTek SCPSYS
-Message-ID: <YtgDu70Lpl/uPOkf@google.com>
-References: <20220720123023.13500-1-tinghan.shen@mediatek.com>
- <20220720123023.13500-7-tinghan.shen@mediatek.com>
+        with ESMTP id S231668AbiGTNmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 09:42:12 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94AF250044;
+        Wed, 20 Jul 2022 06:42:11 -0700 (PDT)
+Received: from pps.filterd (m0098404.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26KDTooT003951;
+        Wed, 20 Jul 2022 13:41:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=ceae2RFmF5KznbMBiZv8OUYGP49kcO0YzT3TQXSYO+w=;
+ b=SXAOlAbJKmWdKEYRPLAuQfFyVkUMdm3VBIO4vNEHzzZjCfTCgNHYpR4EsvCSnhDL4xAT
+ G8mMqkYJEsShTTSDJJMo+gOuYyXJ6vpFSBAiSv3WPw0WXARpbGSMoXDl14iedNxEMP3L
+ 1+Cgp+Ne6bbYbgXPDSU6d3+mEozlt6hdwLj6yhB6UzlGMfQMjNsqLVZCXSaYaBIBFdGK
+ GsMPlwUISnaTRXiO9BVJeBNNpT7AMq0LqZuRdl38nLeDsUHqzgTAuh0nFs/wI4QZOCQI
+ GQbYHJ1VgMs+b+N7g0l+unYTaazv8C3QPFFZidfZ3LreRIQt8kygJigbL97lBl6F8qsj 2Q== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3hejn2ghc3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 20 Jul 2022 13:41:50 +0000
+Received: from m0098404.ppops.net (m0098404.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 26KDTq7d004207;
+        Wed, 20 Jul 2022 13:41:49 GMT
+Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2104.outbound.protection.outlook.com [104.47.55.104])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3hejn2ghbd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 20 Jul 2022 13:41:49 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bngAT2SIJIaUowCLsXtOzjvU00nsYHtYnzJfNIEkI7mDfoi2pYDIAeNlTPOw1YQpi6CSxUJfOzg7TGZudF/zGt0wD6Enb7ZAfNMu0WhGXD+RyyYdP1L5SVrqlclxHCK3fjmyxh/UNPA4jCuWCiQnKouPK7LXgxSGfpx9H1MBVQNk456MVpfLlD7iQo3JFV98tOI6Nru6TVOiiLZ9H85qaLxwprLcaYADnRFW1bsbNsd41tD1vVEUwuO6y8+td/xAaoNF6DJEz2o/R+Y9DJ0LcoT25UbINld0sqoFpHSxIxT+jAGeifYsTwJx2bbdCn9KM4mE2fyvmna+iieNF3bTgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t6IIZehMPnx+JOAb1VuZZg7T4R2iW1WxUrEYhTFuTjI=;
+ b=hWEn5ZFkKFjcAXIyNTff9ZcRVT6OAY6gVJwBYbAPRMicM/AFbbEKxby6H0UG4Q2Fu2o70IljKWjTxvn5VtUsYapESEjzzHkNqWn9Drq/Tx+TUQqmHbiEeWS5vkp79AA1D7gtCPXmpUCNZqN7lZXmDShhCA0QK3dUHBRLUDy/TtIPjtunx2EDEjHOSY1T0wY2CRRiWIe5g9NhydMgOWT5ssG8r58+hsp1vld/zv8IY6evhFsDH66LoZ2VT6DNInh60CI2yVgpCnqSaHCrhLpUHxQWw3ykLrCN1RLKt9sClirtslcSgsCXXnZQ+5OnR7T8gf3KSbekyB8oo0znM5iuGw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in.ibm.com; dmarc=pass action=none header.from=in.ibm.com;
+ dkim=pass header.d=in.ibm.com; arc=none
+Received: from MWHPR15MB1150.namprd15.prod.outlook.com (2603:10b6:320:2f::8)
+ by BYAPR15MB3175.namprd15.prod.outlook.com (2603:10b6:a03:105::27) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.18; Wed, 20 Jul
+ 2022 13:41:47 +0000
+Received: from MWHPR15MB1150.namprd15.prod.outlook.com
+ ([fe80::1024:8a31:a334:d02f]) by MWHPR15MB1150.namprd15.prod.outlook.com
+ ([fe80::1024:8a31:a334:d02f%5]) with mapi id 15.20.5458.018; Wed, 20 Jul 2022
+ 13:41:47 +0000
+From:   Nageswara R Sastry <nasastry@in.ibm.com>
+To:     Stefan Berger <stefanb@linux.ibm.com>,
+        "kexec@lists.infradead.org" <kexec@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-integrity@vger.kernel.org" <linux-integrity@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+CC:     "nayna@linux.ibm.com" <nayna@linux.ibm.com>,
+        "mpe@ellerman.id.au" <mpe@ellerman.id.au>,
+        Vaibhav Jain <vaibhav@linux.ibm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        Rob Herring <robh@kernel.org>,
+        Ritesh Harjani <ritesh.list@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v6 1/6] of: check previous kernel's ima-kexec-buffer
+ against memory bounds
+Thread-Topic: [PATCH v6 1/6] of: check previous kernel's ima-kexec-buffer
+ against memory bounds
+Thread-Index: AQHYkiXjWJEZuDUJsU+IRCFzgEiaGq2HWCz2
+Date:   Wed, 20 Jul 2022 13:41:47 +0000
+Message-ID: <MWHPR15MB11506BA4D2AE5E3F5B4D608CEB8E9@MWHPR15MB1150.namprd15.prod.outlook.com>
+References: <20220707172026.831614-1-stefanb@linux.ibm.com>
+ <20220707172026.831614-2-stefanb@linux.ibm.com>
+In-Reply-To: <20220707172026.831614-2-stefanb@linux.ibm.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 577a60fb-84ae-4274-1e13-08da6a5597a8
+x-ms-traffictypediagnostic: BYAPR15MB3175:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Bg6nhpXXB+W1CU8fTiMG+M8wwwCjxmmeuKMNy1dKO4WV4hCoa+jMK6V+vay7A6BfbHvrK0QWG8MiNcIjaCBTgEuD0RAfs1UjiXkEAVW4+BKpE7ng3nb6OHhFOD4UeR7GVJqVcewPdAhZdT4Mb5ivVJgQ2kmVRSugYbQzwxPFy4AjkyZb6r3yAabQO7pOcITCBLc5a+3araIaHFzpU8+sxDSL2PLF2n1JqV7Vm91kCEbrpd6pyHVonCzMwly0zoD4mFy6Lcb8cHZmPtjN5xkSaAUKGkfpCvqOaVlcgBPme4c3vQggvTZmv/OaScFST+3g4MIn5/FuDnWv8jXoheLNbaqw+58cw35MmumB4boSXuwX2TI9QkBPM0ryAk/r0/CAOblgSEZu2c1c5q0msO1mzSamB6TgBWeV/YIojC1kIq5ddvznJjKzkOTE80VxL3ClaOOvrIAHxn+izAkZq9eehIXWL5CpGURXc0VnW58VvYN1ApqdCgQ+BtKNjh2LWQWpv10kN39h6+DoNpc3kPJp0vCLKe0YJ086vo4eR+Nbjw4CBfEUEPIjcLTrH0rbTxN6exQ5zyCIWgzOVMhjyFBjqebEHMXTVs1shEExOdylA9sJNFVx6AD82A7dFo2gEqw8Je/Z5yYA2pb14a0QDzaRYn4I6zgbBH2jkYsNJYwbq9MNJjdp9Oj1vfDvUZddwUu3TzXKEeutCaEwN5CVwf/7a+grBMVZKRRAsjFAUb0jXwRyOLXYqIjlzaztQIG38GE1UEQwO6QiKDPlEmx9yvC3DryINh15FUo+kFQV/cb406IqObCyo0XKVDqi8Kkx6sq3MU7N1oSfPSp3aJ/j9uSKXg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR15MB1150.namprd15.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(366004)(346002)(376002)(136003)(39860400002)(41300700001)(71200400001)(2906002)(4744005)(86362001)(52536014)(38070700005)(478600001)(7416002)(8936002)(5660300002)(122000001)(38100700002)(966005)(186003)(33656002)(110136005)(91956017)(316002)(54906003)(26005)(53546011)(55236004)(66946007)(6506007)(8676002)(66446008)(64756008)(4326008)(66556008)(66476007)(76116006)(83380400001)(9686003)(55016003)(7696005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?BKBfC6HDGP6mstRdWJVNA0Bvz6ml2WIY/craY4Od6k2x1dPg4cyTLi+uXT?=
+ =?iso-8859-1?Q?iK/F7e6t8GsA3chyOP6CRjWuIv5gBkP8moSrby82ODa4bjL5hhAWX39Mv4?=
+ =?iso-8859-1?Q?UBqGltrohR9hwqkWCtU8V7rnWhhR0yFrwkJUVC2jhYIWmNDATea+Q9DcYK?=
+ =?iso-8859-1?Q?jL8PNL1fwWS0T+udfwyxXl2PC1kc/VT32HG3LN1IHFE91S4CN+e6tec954?=
+ =?iso-8859-1?Q?SbF5MawSA65417wPvjYpMiZZyWHATHAR/bsdGkMApowZ3fZWhg8Eg5aKiV?=
+ =?iso-8859-1?Q?Pu2zRi5mwfBwq2cJa0wiSy1iFOeTO8O+HJbcCSnf9F/09vPWuecHpddpZO?=
+ =?iso-8859-1?Q?KUayiOZPqWDvW7jg8HfxRllGIGbQuN8Z0XQ2YQksYJCNNhsQ1iXOhspVYs?=
+ =?iso-8859-1?Q?qtOozvdoqxyPdIe9/Lq7hwmlDu0sb00j4HSGlKv+UAWObcF1CziEvfoZ65?=
+ =?iso-8859-1?Q?QqAhR1gv2G2v4lvT3RHIUyLIEaoBJHnYEN4EddttYoXBrl3vBvzzmHIVsU?=
+ =?iso-8859-1?Q?CefETNnN+NHGFBOp1KCnXnWIn+WlcU+qgQrplKfzx8+7oFy7E0eqoB9lzv?=
+ =?iso-8859-1?Q?C6iK/QZjTbeUfO1UkrctYCU+tQzohpWBerq1N2o7UlOyMipcIiMXGhDqG0?=
+ =?iso-8859-1?Q?FtVbsk1km6wDZooFqTCETSgLfudHYCOH4mvuq67+oEuOz7luJ337y28OBZ?=
+ =?iso-8859-1?Q?PRdxsQS49JeR2D4QTULxiwmB/2cyk2dadc578+GxPK+O/v6fWd2K0bdhmS?=
+ =?iso-8859-1?Q?cWg4GjMwl7gAb5v/OEc6QtDriscenCkvgGf3WYUP+o8F6RwTnSEAFwNG1H?=
+ =?iso-8859-1?Q?/+Cw/v2bQScvdvEsF7gdiEJt56fss14ZhayQnk2GHG6b+a2q89aoPqkvdy?=
+ =?iso-8859-1?Q?J4kVONkwYzzvkDuwEbidjcIFK501PxpEJcw1/gSBlybkz1rtc7Dn8OIB4x?=
+ =?iso-8859-1?Q?O3QUb3rwqt1wMoB8gcQOfPROGNtJzdkGxUTyXDNLPcKCNlwOwnydMCEb++?=
+ =?iso-8859-1?Q?AbKUkB8KtJe//PhiOZGmYGe/+ehYm2o3tx4nxILG8iGuIRFloocEYYUlDW?=
+ =?iso-8859-1?Q?GktcISjizdKoS5kpqP+MpftIBSowqQxfPsUOaH1ZAk8XdC7fS5w7JRbmpH?=
+ =?iso-8859-1?Q?so8q2v+uI1a6covtMptujki9hRZlLQJraLYLQ4zRV1xN7lUEcB/letUuHz?=
+ =?iso-8859-1?Q?iHCI/SE8NvruMTvJ6VxehTatDAuYDU5Q3lQRK0VA6HD30HsyDpZKFukBJg?=
+ =?iso-8859-1?Q?YL0FnLBAIH3imB1ZyW6Omi9xkKUCxbJ4lUSjTwghjuAjGiGmkxyfH/30cv?=
+ =?iso-8859-1?Q?N5Ka7tKD1pCKgwqcx3pCHz1Zaoue1LnpKgAfdeLD1QOHZfn3AsJNhL+gjB?=
+ =?iso-8859-1?Q?f0LoMesFV2NED2w+6Ukh8l4bweIscjD+I8IPdhH1Ze6YAm3ehCCIo6iUNu?=
+ =?iso-8859-1?Q?SNmDg+2AAXv3Wurm9qs3yH/EF932EXVkKUUA1VD5pDDu8fzFDmcoLJaWuP?=
+ =?iso-8859-1?Q?lgcjCkjLoB7PQK4ezNTRUicG7QG6xoGa3R3pJftJZI536FV1LLuJwTRXTy?=
+ =?iso-8859-1?Q?BxnQfWlJpNMTEodGxS0/A7IhXWbHDvkL8sfyZlBdmS5c4e2OKzcZmIIyI2?=
+ =?iso-8859-1?Q?JcPaOJy2AHLNTMTJOXnS3ELGDdBQPxXSlr?=
+Content-Type: text/plain; charset="iso-8859-1"
+X-OriginatorOrg: in.ibm.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR15MB1150.namprd15.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 577a60fb-84ae-4274-1e13-08da6a5597a8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jul 2022 13:41:47.5332
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fcf67057-50c9-4ad4-98f3-ffca64add9e9
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dUf+FJ0km9khTXK6BmuVe1GijAC1ACQjQw6bZxIjaAp+UFb2PQ5S3QFsEJyty0Qk8M+PqC+UzgGst2niAKzo6A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR15MB3175
+X-Proofpoint-GUID: H5xuyK7f5NT5RTWAoT7E-BZUMi5-Nt44
+X-Proofpoint-ORIG-GUID: xkkELs9ZHme4F-PHSqiZfyZJboTOXc7B
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220720123023.13500-7-tinghan.shen@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-20_07,2022-07-20_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=932 spamscore=0
+ malwarescore=0 priorityscore=1501 impostorscore=0 suspectscore=0
+ adultscore=0 clxscore=1011 phishscore=0 bulkscore=0 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2206140000 definitions=main-2207200056
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jul 2022, Tinghan Shen wrote:
 
-> The System Control Processor System (SCPSYS) has several power
-> management related tasks in the system. Add the bindings for it.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
 
-Why have you ignored my review comments from v2?
+________________________________________
+> From: Stefan Berger <stefanb@linux.ibm.com>
+> Sent: 07 July 2022 10:50 PM
+> To: kexec@lists.infradead.org; devicetree@vger.kernel.org; linux-integrit=
+y@vger.kernel.org; linux-kernel@vger.kernel.org; linuxppc-dev@lists.ozlabs.=
+org
+> Cc: nayna@linux.ibm.com; Nageswara R Sastry; mpe@ellerman.id.au; Vaibhav =
+Jain; Frank Rowand; Prakhar Srivastava; Lakshmi Ramasubramanian; Thiago Jun=
+g Bauermann; Rob Herring; Ritesh Harjani; Robin Murphy
+> Subject: [PATCH v6 1/6] of: check previous kernel's ima-kexec-buffer agai=
+nst memory bounds
 
+> From: Vaibhav Jain <vaibhav@linux.ibm.com>
+
+...
+
+> Fixes: 467d27824920 ("powerpc: ima: get the kexec buffer passed by the pr=
+evious kernel")
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Prakhar Srivastava <prsriva@linux.microsoft.com>
+> Cc: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+> Cc: Thiago Jung Bauermann <bauerman@linux.ibm.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Ritesh Harjani <ritesh.list@gmail.com>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Vaibhav Jain <vaibhav@linux.ibm.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> Link: https://lore.kernel.org/r/20220531041446.3334259-1-vaibhav@linux.ib=
+m.com
 > ---
->  .../bindings/mfd/mediatek,mt8195-scpsys.yaml  | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-> new file mode 100644
-> index 000000000000..4117a6dbc19c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/mediatek,mt8195-scpsys.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek System Control Processor System
-> +
-> +maintainers:
-> +  - MandyJH Liu <mandyjh.liu@mediatek.com>
-> +
-> +description:
-> +  MediaTek System Control Processor System (SCPSYS) has several
-> +  power management tasks. The tasks include MTCMOS power
-> +  domain control, thermal measurement, DVFS, etc.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - mediatek,mt8167-scpsys
-> +          - mediatek,mt8173-scpsys
-> +          - mediatek,mt8183-scpsys
-> +          - mediatek,mt8192-scpsys
-> +          - mediatek,mt8195-scpsys
-> +      - const: syscon
-> +      - const: simple-mfd
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^power-controller(@[0-9a-f]+)?$":
-> +    $ref: /schemas/power/mediatek,power-controller.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt8195-clk.h>
-> +    #include <dt-bindings/power/mt8195-power.h>
-> +
-> +    syscon@10006000 {
-> +        compatible = "mediatek,mt8195-scpsys", "syscon", "simple-mfd";
-> +        reg = <0x10006000 0x100>;
-> +
-> +        spm: power-controller {
-> +            compatible = "mediatek,mt8195-power-controller";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            #power-domain-cells = <1>;
-> +
-> +            /* sample of power domain nodes */
-> +            power-domain@MT8195_POWER_DOMAIN_PCIE_PHY {
-> +                    reg = <MT8195_POWER_DOMAIN_PCIE_PHY>;
-> +                    #power-domain-cells = <0>;
-> +            };
-> +
-> +            power-domain@MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY {
-> +                    reg = <MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY>;
-> +                    #power-domain-cells = <0>;
-> +            };
-> +        };
-> +    };
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Tested-by: Nageswara R Sastry <rnsastry@linux.ibm.com>=
