@@ -2,112 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B854557B120
-	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 08:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA33C57B12C
+	for <lists+devicetree@lfdr.de>; Wed, 20 Jul 2022 08:39:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229514AbiGTGaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 02:30:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35998 "EHLO
+        id S229898AbiGTGjc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 02:39:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231202AbiGTGaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 02:30:19 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A4D811A18
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:30:17 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id u14so11982714lju.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Jul 2022 23:30:17 -0700 (PDT)
+        with ESMTP id S229607AbiGTGjb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 02:39:31 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF85402F4;
+        Tue, 19 Jul 2022 23:39:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=svwBknUY50fmzabnEaICrZK9R0fh/lr5fpPdH5SEovs=;
-        b=wgDaRIzqN/pGdLypgVO3Z8tD5NNE8KvD2Y8qC6/d3+Y5wuR7re/gdIJdrz7BEuOt05
-         UeEi17qiQgHByTtOofLXN+0/nZ52q8ZsQxCZLoDMMORjyv8pRY4nJCR4H9wnOTjb7ROF
-         pA1nSB/JxV/dkVNM24j+K8UMoMd+vuAWpdtlJ78byHtlN2h89B5gKmeuASp/pY7pOa5v
-         v36NW56+nptXuHi0W4Rs2RCgxbu+UvCqehoSw/HtvEHRAzRVX0uVgyYRRfhdciF5oXWO
-         31bcAtekwx1NDiDsaGGnBT0DsH4uL8dkbk4+IQUB90Rnj3Y/8x7TW/Xo+Jok1AWMufru
-         JsTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=svwBknUY50fmzabnEaICrZK9R0fh/lr5fpPdH5SEovs=;
-        b=10GkUwQ8mS9bmvwU417/wzgVWDcZdTsRod2Q5hWmYQfA8PFLTi797+jFrxeU1WIjX8
-         FEIVmHFuxZQ+mf7SBTYkEseqqK/klqHVaoVMZXdfM3/1HdOGZIfwDmJ3Mk7ZQHtzVHbk
-         40TauUFL2Pl+DrWJobtcs0PZT7yYfmkQ0TZiPJwVb1+cz2uRczM5T49iKFka+0EmcVMy
-         nPc+X33M/wbYI8/z3o1UK5mG/dM0r9kVBYr5TQVeO2ahGPFy7Zw4jY4eZtWTUdLiVk7L
-         BDKv9kx3AzUqHSRiMEePgcegPHIVc+0Y9EQvA9AOKN6T07iCzbFpMbw2iQxFUqbofTwX
-         rjXw==
-X-Gm-Message-State: AJIora/09/ILLqbLZJFzNz2jNmrgN0y9y4W/JK12nloAYdaE87H59OyD
-        ZxDdnM3IlF9SuHV5MEaaO0qILw==
-X-Google-Smtp-Source: AGRyM1vf7GN6vgL/2J3B+G/GpAG/sQuS7t5m8lyVqk+/jaLOs9tVA7KN2osw6Zf6G8PB2ZE7mExing==
-X-Received: by 2002:a05:651c:204e:b0:25d:4798:9776 with SMTP id t14-20020a05651c204e00b0025d47989776mr16630931ljo.86.1658298615813;
-        Tue, 19 Jul 2022 23:30:15 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id a25-20020a194f59000000b004896b58f2fasm3618062lfk.270.2022.07.19.23.30.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Jul 2022 23:30:15 -0700 (PDT)
-Message-ID: <991f085e-ae79-bf67-d063-51484a0ba344@linaro.org>
-Date:   Wed, 20 Jul 2022 08:30:13 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1658299170; x=1689835170;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=I6SdapWfhcN5YzSovhTu3AGuzmo8W2cQvh1AYyIQ9cQ=;
+  b=eXSCg4XOgci4SJ/gt0u0FTcP4d67/B58zaF3EjOU9uY+VeqQKwbQ9VdN
+   nVYs27JxUnfZOSP1QrtPwNJVG0sw2W6BLwdIeKeAHycaoV53Ye3FahmZQ
+   xu+HLlX6NijbrieRdZw2rpnc0UHrKQgjR/5NkcFqNNZ9c2X49QGEX3H7R
+   7J2pMeio351Ocbr99wKWpP5VWxXitweW+k6HtQ/kRJz4O7E9KYbkO1kBR
+   oRcNmt9LXZL/dxGb6go19mNSdNjOkyONX7ka5DSn5kTgk5mU0IXuZqMRm
+   r3DJqfSLsjnYp6bf0AK7+1a021FzQ1FLUo0+sWKiDC6M0oT45rWZ+qpn1
+   w==;
+X-IronPort-AV: E=Sophos;i="5.92,286,1650924000"; 
+   d="scan'208";a="25147499"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 20 Jul 2022 08:39:28 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 20 Jul 2022 08:39:28 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 20 Jul 2022 08:39:28 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1658299168; x=1689835168;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=I6SdapWfhcN5YzSovhTu3AGuzmo8W2cQvh1AYyIQ9cQ=;
+  b=q+fQEiXHeB4zqVXP6cXjTux/RAidBx5pkbTHIordvKQtNb6y4jxsA3YN
+   XBzEIgd2jSSShpCwJiUhZN/dUhW83Ku3LBJ6PtwMhpLKYOYh1XQHFnWVu
+   T5q3Ltk5WBdLFU8PEhi+UWAV/jNR1O+eTAgyK4oC3/XQfvhT3bQ2cQrF6
+   qH5bfHsn9yHgy+0P7sYnm8A+wKU5lONCwp98aVjo7rfBMhk25/6a0r3EL
+   tGl4/QRz0NwwvMuR18kME+cDXmvX+Fa/4jmyeDBx2qihYiYJ0chW9gP4X
+   Ma5DVZNYTmkC3x0MfUIhahwyOd1qB1H3UlfSmi7gAjAET+05Yaxcf4r/W
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,286,1650924000"; 
+   d="scan'208";a="25147498"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 20 Jul 2022 08:39:28 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 17865280056;
+        Wed, 20 Jul 2022 08:39:28 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 1/1] dt-bindings: net: fsl,fec: Add nvmem-cells / nvmem-cell-names properties
+Date:   Wed, 20 Jul 2022 08:39:24 +0200
+Message-Id: <20220720063924.1412799-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom,rpmcc: Add compatible for
- SM6375
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220716192714.454031-1-konrad.dybcio@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220716192714.454031-1-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/07/2022 21:27, Konrad Dybcio wrote:
-> Add a compatible for RPMCC on SM6375.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
-> index 9d296b89a8d0..f22febdfdce7 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,rpmcc.yaml
-> @@ -43,6 +43,7 @@ properties:
->            - qcom,rpmcc-sdm660
->            - qcom,rpmcc-sm6115
->            - qcom,rpmcc-sm6125
-> +          - qcom,sm6375-rpmcc
+These properties are inherited from ethernet-controller.yaml.
+This fixes the dt_binding_check warning:
+imx8mm-tqma8mqml-mba8mx.dt.yaml: ethernet@30be0000: 'nvmem-cell-names',
+'nvmem-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-I am fine with it, although this contradicts a bit
-https://lore.kernel.org/all/20220705161301.493364-1-krzysztof.kozlowski@linaro.org/
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Changes in v3:
+* Use nvmem-cells/nvmem-cell-names properties from ethernet-controller.yaml
+* Set unevaluatedProperties instead of additionalProperties
 
-Would be nice to get Bjorn's opinion/preference on this.
+Changes in v2:
+* Add amount and names of nvmem-cells (copied from ethernet-controller.yaml)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ Documentation/devicetree/bindings/net/fsl,fec.yaml | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+index daa2f79a294f..85a8d8fb6b8f 100644
+--- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
++++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
+@@ -121,6 +121,10 @@ properties:
+ 
+   mac-address: true
+ 
++  nvmem-cells: true
++
++  nvmem-cell-names: true
++
+   tx-internal-delay-ps:
+     enum: [0, 2000]
+ 
+@@ -213,7 +217,7 @@ required:
+ # least undocumented properties. However, PHY may have a deprecated option to
+ # place PHY OF properties in the MAC node, such as Micrel PHY, and we can find
+ # these boards which is based on i.MX6QDL.
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+-- 
+2.25.1
 
-Best regards,
-Krzysztof
