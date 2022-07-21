@@ -2,166 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB9A857D191
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8847257D18C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:31:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231524AbiGUQcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 12:32:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37644 "EHLO
+        id S232529AbiGUQbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:31:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbiGUQcQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:32:16 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C32EA474DB
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:32:14 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id y11so3620216lfs.6
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:32:14 -0700 (PDT)
+        with ESMTP id S231766AbiGUQbK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:31:10 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57BF3474DB
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:31:09 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id bp17so3639737lfb.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:31:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+oK+pOh8MGs7bFdJqgWR+kgnOKb6pAhLXHsdjc9P39M=;
-        b=jeV22coreGgshD+gkAquxb7fsVo72DB+o/dKajf74blBq9YB1jI8G2Y2ZB46jiDhlh
-         OgKUwryyrOPuim6TUIMc1PaoRQm3dZ6VD3Zz3BekL80J9HFLZy9pGf2V9yMM1M2wV0Mm
-         kQ5/WBt8kFGAyKSjg99cd9dytVdNLTTbl9SFYJpWmUifgVJ60aocAV0zJYWNwA/+YBlt
-         NSK8G8hafDTjjC7VYw+bMzLf8C5Na5B0BnXQ23Gw140mJN5gCLCBGHARM/zpaBL6mxeJ
-         kuJkDnJ5QaYXGSqGRirp4uHlRtnbvqh8/f+FAqWyEQUAZx62bM/9OdyLltpBWfSz1LxU
-         V3sw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=XqCXjyJcNo4bie6L272k55caJWyGzFA3DVChKjwNgtE=;
+        b=tRoneYgywBVCnzHLV9n9uXSIbBepv52PjAWkI9DzIETo+rlEqYWrYWPDGk9nc4IDZb
+         QFUHJu8BeJs0ONDUKrEKztuS6vY040n5VOpmEZSNXsowneQlBCz+t2tgMgXyrrKzlkFK
+         VIep1T9/QPctONrz76ADyRs7656G5Ry1riRsTMGa5NOTrojTY/gK/j0kxyoqam24d/6O
+         oOPOHRBtwPplRJx3TAFOowgQ3Aa1TwgIofC7iru5/c5Rs68cwayLby+oXGdocPDuAEKd
+         ojLflHFmZEspqpo7BYOL1a+6G8hDdt96JxtUBA2DUPjtmQzUhBWdYohG34FHwvp+acKe
+         bBOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=+oK+pOh8MGs7bFdJqgWR+kgnOKb6pAhLXHsdjc9P39M=;
-        b=xG+r6201buoCov6MDQCkK25k6QonZVckiGBnvRlO/pIPokFfA7gFKKuJSF62x2a/hM
-         nEXFqXSyOwXbgHMvES7DnVJl5RHj0u9B2s8M7cOZsKGpsnwZc8hD/EMBFlVf/x1Rv44K
-         X8BcKs598Xp5EkF3fh9FTMvQFASUsQR1GpfvVNNDLrmBy63tA+U7Fvex4suNzK2L3zS+
-         GNHOVtxp/3+eKP/fENc8UACKSS8HKhUxanuPoWRLH3DoNRB6exsMR0i8Bz+ajFbmduB6
-         vB4AqJDhH0fOufGynXCjk+vtGeq+hL/fzH3lS8FkWSYDniluU3AM0NZUfsAEncR16UDK
-         riOQ==
-X-Gm-Message-State: AJIora8DhkQmTpWN5J7Zuze5RLtUnoEVDLK+nNv6S3I5TiIWogFCVwfz
-        plXt3zJuVYmuTAGaSg9rC0TTjw==
-X-Google-Smtp-Source: AGRyM1tnVCiYtipecpPF2+nlfxAx4GIakxxmeBxEAhUT2vxG/jCChsvmPA2jWxbrvW3SMCP0Uf4Ahw==
-X-Received: by 2002:a05:6512:2611:b0:478:da8f:e2d8 with SMTP id bt17-20020a056512261100b00478da8fe2d8mr21957614lfb.460.1658421132859;
-        Thu, 21 Jul 2022 09:32:12 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id b5-20020a056512070500b0047da6e495b1sm536580lfs.4.2022.07.21.09.32.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 09:32:12 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     linux-crypto@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>
-Cc:     phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org,
-        Lionel Debieve <lionel.debieve@foss.st.com>
-Subject: [PATCH] dt-bindings: crypto: Add ST-Ericsson Ux500 CRYP
-Date:   Thu, 21 Jul 2022 18:30:10 +0200
-Message-Id: <20220721163010.1060062-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.36.1
+        bh=XqCXjyJcNo4bie6L272k55caJWyGzFA3DVChKjwNgtE=;
+        b=AOvPefiWO9+nGldNOP8A+M/O2X9s16rlrufqX8aGzCeaheBZdnQiB5Lh29ePNI8Cyg
+         milzuv3B4XXPVziRdBpnG9U99JbVu20bpk2ShFhUutrZaICR6ffHGBXmXbCZ1c/CJYun
+         Jm/GFpuht8wtcLxotYUbcj2Q+11ESP9amP66GvdY0YUY3ndwYNF7/uDnPe8TGQ6fC+n0
+         QdoCyDdYHrUCgtx39wF70EN9QqJAxKnfgRIpMBUr2VDK2m+VFvTY7Y/SAPJsASGbyyDB
+         vHJ1gG0MPBcuAiMHoEEbxTq+8yzhHOFf/3Z5U7fbnr68s70TdpEYBtBqyuajhiTZZJ/9
+         iUwA==
+X-Gm-Message-State: AJIora9bbidMYonTLEpJzODyqkTVJNnCP88fYKhKX1toHN91wf2mR+na
+        FQTp+5N9qacvTaufwObqnmkYnA==
+X-Google-Smtp-Source: AGRyM1sAaKr+9841XSwWQICd1ngfgvPUx3MtSz1Ek4ds5LmEuxk5ZZuHueYR18476IaPXWqQE4OVrg==
+X-Received: by 2002:a05:6512:605:b0:489:ce37:df0f with SMTP id b5-20020a056512060500b00489ce37df0fmr21884270lfe.364.1658421067657;
+        Thu, 21 Jul 2022 09:31:07 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id t4-20020a192d44000000b0048a751c966dsm45802lft.224.2022.07.21.09.31.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jul 2022 09:31:07 -0700 (PDT)
+Message-ID: <63e972f1-3410-1ce3-ee9c-71fa98304f34@linaro.org>
+Date:   Thu, 21 Jul 2022 18:31:06 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: introduce sa8540p-ride dts
+Content-Language: en-US
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220721154057.15276-1-quic_ppareek@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220721154057.15276-1-quic_ppareek@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Ux500 CRYP block.
+On 21/07/2022 17:40, Parikshit Pareek wrote:
+> Create new dts file specific for Qdrive board based on sa8540p chipset.
 
-This has been used for ages in the kernel device tree for
-Ux500 but was never documented, so fill in the gap.
+s/dts/DTS/
+s/sa8450p/SA8450P/
 
-Cc: devicetree@vger.kernel.org
-Cc: Lionel Debieve <lionel.debieve@foss.st.com>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-The relationship to the existing STM32 CRYP block is pretty
-obvious when looking at the register map. If preferred, I
-can just extend the STM32 bindings with these extra
-(generic) properties and compatibles as well.
----
- .../crypto/stericsson,ux500-cryp.yaml         | 67 +++++++++++++++++++
- 1 file changed, 67 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml
+> Introduce common dtsi file sa8295p-adp.dtsi, to be included for adp and
+> Qdrive board.
 
-diff --git a/Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml b/Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml
-new file mode 100644
-index 000000000000..9653776007a0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/crypto/stericsson,ux500-cryp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST Microelectronics and ST-Ericsson Ux500 CRYP bindings
-+
-+description: The Ux500 CRYP block is identical to the one found in
-+  STn8820 introduced in 2007. It seems to also be a related ancestor to the
-+  STM32 CRYP block.
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - st,stn8820-cryp
-+      - stericsson,ux500-cryp
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  dmas:
-+    items:
-+      - description: mem2cryp DMA channel
-+      - description: cryp2mem DMA channel
-+
-+  dma-names:
-+    items:
-+      - const: mem2cryp
-+      - const: cryp2mem
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/reset/stericsson,db8500-prcc-reset.h>
-+    #include <dt-bindings/arm/ux500_pm_domains.h>
-+    cryp@a03cb000 {
-+      compatible = "stericsson,ux500-cryp";
-+      reg = <0xa03cb000 0x1000>;
-+      interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&prcc_pclk 6 2>;
-+      power-domains = <&pm_domains DOMAIN_VAPE>;
-+    };
--- 
-2.36.1
+Thank you for your patch. There is something to discuss/improve.
 
+> 
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      | 378 +----------------
+>  arch/arm64/boot/dts/qcom/sa8295p-adp.dtsi     | 385 ++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sa8540p-adp-ride.dts |  15 +
+>  4 files changed, 403 insertions(+), 376 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sa8295p-adp.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/sa8540p-adp-ride.dts
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 9e2a13d75f9d..fa0abcf7660b 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
+> +dtb-$(CONFIG_ARCH_QCOM) += sa8540p-adp-ride.dtb
+
+Align formatting with the rest.
+
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> index 9398f0349944..adb6637117bc 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
+> @@ -2,388 +2,14 @@
+>  /*
+>   * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+>   * Copyright (c) 2022, Linaro Limited
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+>  
+>  /dts-v1/;
+>  
+> -#include <dt-bindings/gpio/gpio.h>
+> -#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> -#include <dt-bindings/spmi/spmi.h>
+> -
+> -#include "sa8540p.dtsi"
+> +#include "sa8295p-adp.dtsi"
+>  
+>  / {
+>  	model = "Qualcomm SA8295P ADP";
+>  	compatible = "qcom,sa8295p-adp", "qcom,sa8540p";
+> -
+> -	aliases {
+> -		serial0 = &qup2_uart17;
+> -	};
+> -
+> -	chosen {
+> -		stdout-path = "serial0:115200n8";
+> -	};
+> -};
+> -
+
+You need to split the patch. First into DTSI split, so we can easily
+compare the diffs. Then add new board.
+
+
+Best regards,
+Krzysztof
