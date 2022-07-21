@@ -2,198 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C45E57C189
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 02:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6E3E57C1E1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 03:35:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229898AbiGUAYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 20:24:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56120 "EHLO
+        id S229508AbiGUBfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 21:35:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbiGUAYL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 20:24:11 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2132.outbound.protection.outlook.com [40.107.114.132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CD784F1A6;
-        Wed, 20 Jul 2022 17:24:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AmtVYOlvfKMMZ4H+Xp3Z+xnG3ROU2IjVCLI8jXaEf9WhH0i8V9clXZ09N/IesRh0VvQViO4l3EyVTlNQLoV2ij1fg+u7HGhBGtbDG8XUgm5ZokTpxDg3VqVq/SEPYi739+6Bf2y5CI4JchAKKs3wjQ1bSGO2pDL6jQ4Zo5smMDo3WYxgCKb7Aix52rrlHkBGIG7vhRIlc9uOjF7uYC1/uTozFc3VtowM6FlYADJP79vI1mIxjTktw4srjZC2QCPfmmm6Eelld7szxhE7wUWq9v/Of2okB651l2DDnBEXYGLap1yQpg7IUH24CpUTW5xwy26K1erC02YjZIO8YvfYYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sLX/dIga/QzPRZxwyS+jCimsbNXJsLPR0Kf4kav+7ys=;
- b=PEaCdmDZsjzpypc5YzGmqpPzzAf9+1zX2CCynsr2cj9s5JxXl6QgIb6d94ZXISTOe+lGqgUr4sC5exuJ8v334pwuX16C9xoVgjnIHf0TPXvdGY+fanvDQP7dbQ25sjPDuh2ReyM2vLJaeLJ0CmoFOTa1WAGe4eCuORc5aNbyHQRQEA7UMiXAk4WXNxnnOUc3nLii60p2HUXoKo3oTiRkG+SBy+egi5ZW5wLnSJ0JKyt+ZmhP6Zar+FLTz/lgLPWdgg6S2h08Y0lusRGFscLqkUeJRlGYfcUwa0CRkP2j+1RQhUAHdtPV3uqHQ4qoMgbDpxBjkNSxz9LlHJijZ044EQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sLX/dIga/QzPRZxwyS+jCimsbNXJsLPR0Kf4kav+7ys=;
- b=WZVkxiGJEXwO9xZA0oSzDpPpSdobxu5nLgJ5PwTpLuAtn/d4iqfyrjNHOINyv2E4zps4+HREzl+6t1sIEZ1BX2b7cCLQtvisMj3TG8ey3cj11uS6vK0lkkyU8pAXsizh/qnl5NdZXd92hCKVeniXda4DGI4PCeHXl/Odnsi/WDY=
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- (2603:1096:404:8028::13) by TYCPR01MB8440.jpnprd01.prod.outlook.com
- (2603:1096:400:15d::5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19; Thu, 21 Jul
- 2022 00:24:07 +0000
-Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::307d:7cc:2021:f45f]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
- ([fe80::307d:7cc:2021:f45f%7]) with mapi id 15.20.5438.024; Thu, 21 Jul 2022
- 00:24:07 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH 0/6] arm64: dts: renesas: Add support for R-Car H3Ne-1.7G
-Thread-Topic: [PATCH 0/6] arm64: dts: renesas: Add support for R-Car H3Ne-1.7G
-Thread-Index: AQHYnA/exUX6k3GRwkCPjZNDXJ8pEa2H9Y+A
-Date:   Thu, 21 Jul 2022 00:24:07 +0000
-Message-ID: <TYBPR01MB5341FE860C3BCC8D6E764854D8919@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-References: <cover.1656072871.git.geert+renesas@glider.be>
-In-Reply-To: <cover.1656072871.git.geert+renesas@glider.be>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 74e029de-b119-433c-45c2-08da6aaf5319
-x-ms-traffictypediagnostic: TYCPR01MB8440:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: EzVYx64zkoCYLtrU40MmmZDR0oJDADHFt86BwhOkUlzZ2FHI1EXEnlozYRpO26WNLgM5mkuO0+4f2/qMybBIfgaGd1C9f2dnPgCLlRvMIdD/F+aC91ZKyQlkbsUYaUywC2PQ/W46ACvm/v6yJjUAFlZloIbacsI/C6QKnXeppMFm0QShNO62sKlQ60N831u7xD7SlBzMzLuPM1+hsZezH5dMLHFMcfBBiCnKSHCvJg5ED1od+w7dIYnaAFtFWvTIJ+0+e0VV7IezHTBVMYYwG4or/plaZ9PwaqwVfdmg2C8GaKqoHYOZ10xvrbZifIp2r/0d50GHLRzWRV3GfAlVBV1orivv66PScz65enp7pyvvPRKp8ecp9rH7CAQEV++fai975zR7vGnZ09QqCb+dd0xD9NzdmPkDUv6KhAY76Nzf+IMQp2QXzru+cgcbkJivOPTRyeNRSF9fgXTSiitpYJ8wdrLtti2wy+Lf3DvjjoM5X4iuGUyIi2DhqcLfO3FbRcRbTkZuUrsZV9dI4/il9qv7HMjD9fCO4fiAnxaSB1prjKx87kVLPRtJDbFIe6fV9SirPqpRAmbQhtjUkZGuUmnlKg0BSj9vdk5Rd+zjJmHAbiPc6Cy/JFwutcuHwwxLw1zXIERscuZAaHipLsxN7fwD7N1CS1+V6oYkOed3ImK32QfeenSq2sKh56IHzhd8jr1b5Uif2UWldUOMMPgkFUofkdukV9d1sWD2tMb+BTHz1fukl81wWkC1SKe5AMeTT/bsOZSGa/f3R+FnYX1sRCXMSowZz0eoaHGy6AkKAP9W7A3eQZtRQIqeZT2QYXztnQFUHA9Oye7HnqNkS1q2Yg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(366004)(396003)(376002)(136003)(346002)(7696005)(6506007)(9686003)(66946007)(66556008)(76116006)(478600001)(8676002)(64756008)(66476007)(66446008)(4326008)(2906002)(8936002)(54906003)(86362001)(316002)(52536014)(110136005)(33656002)(41300700001)(5660300002)(38070700005)(55016003)(186003)(71200400001)(38100700002)(122000001)(32563001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?VFx9gH0uvY6FB+zGuA7S9jsWPWsHg0bnmnPoDk2BuOC8RVrK7ezFr7d1NzMC?=
- =?us-ascii?Q?BpjNwCcIACUGTvout9jKDS5KyCD5aVlrwIe6LY5pgz4r3HPF3o2DmjMYwVkc?=
- =?us-ascii?Q?bpBn0Vr2j5H3BnrbH5VXPGVoqhLZH7rmd9zsI6FqB3aM0wH1RGysgeSmCoB9?=
- =?us-ascii?Q?Sd3BDVMZ/nVdzdmn8JtlAZfBYJKngEOULBOLhTAOK4mXNiZbqBv4+KO0MyJB?=
- =?us-ascii?Q?QtDo2wXBwQrIc8vw/9JxL07UoqR0KX0nTIrtUGWayHRiw182yevlVeuHYXZ9?=
- =?us-ascii?Q?EUziaYQo5ongTlKiJZ3lqkMHxYq+5y3xPP/0Ya7zZZj6QEj8SOYemoxdE/6b?=
- =?us-ascii?Q?ReKG71lyfegLM7GPNii7dVTzQQts7/ReyHjHA+igdUuDG7ri7h5WbzWbide/?=
- =?us-ascii?Q?i3MtMBmLRQnR0jUI5siBRYgB0rpPO0nWLVAf+9SJrYEijwFzp5sd+8TGNPLS?=
- =?us-ascii?Q?TSNBqmFYWmxSK4mso87DyVN5QO8sbf2IOzOAvorDLApih2YnALMBoMpBZl+j?=
- =?us-ascii?Q?vFGZVI8RfVwu8hNom4NLabq3Ae7pF+ew4Qm0YovFhD930x3g5A5+fJVrdgyB?=
- =?us-ascii?Q?cAdz9CYdwbgBzfo9AGG0/N6o9AMqOgq6sxdH1CQULhrvwFQuD+1v/btFto+u?=
- =?us-ascii?Q?qf2cAG2ZPGjtmQyCSdFCYY9CLegvcWsYLT5lgs0RKiw9LRYu9RpiM/7yjfHM?=
- =?us-ascii?Q?Xw0nEcwxVH6akkJdBLFK2VC6WWx4NDHuPDrpSAtv/dl5T74gEb5P+VcFtW07?=
- =?us-ascii?Q?6T69ixJV0wEA90pLPdVLaiqUViL+wKo7uIt1PZ9RBNhMHr4XncAYaLvYwaps?=
- =?us-ascii?Q?360ka9WhN4nWYaO3Sa62PQmdQp34UcwHsS9QNkRFRPU/1eFVbVznNiqQHhVx?=
- =?us-ascii?Q?LiJPKD69UED0faurTF3lb6FBTCSPfxOSn5WTgF6Q/aFX+0hW5Tv1Z40QCf83?=
- =?us-ascii?Q?YJxfJlk16Bejz2I8/yAvE9zyyWTNaEpfaSRWibTawlMsfgldS2JgP7seGw41?=
- =?us-ascii?Q?06ZXf6xQnpcQMIMxwwLAmdAfa8g/w5lbI2UThcN78P/J8OsD/fUrSOB8pEZx?=
- =?us-ascii?Q?JMxiXfzxq1Uv3SzOs2fHOFT6NZVtF+eYnOnCbuu3z7wlq6Lb/iQz1pWkyWoL?=
- =?us-ascii?Q?pfapT6dm02tPzCFFBllOTTsMLtptbDhnQntb9FREOMPQ2UDGrn9EcgaWOLnn?=
- =?us-ascii?Q?yYzq8Z0/qNeUXGXJpgjvl6BdcA0AUcS9e02ZHXABT8E+ySoKbOayC90FVu8L?=
- =?us-ascii?Q?90VdskDFHofV19uzHRGMD2I3Q5h5U037+7JcOOD1Ngf/d9OfvNfaWmyO7dXe?=
- =?us-ascii?Q?rfaojICCkiR0QSYZbND6TNMA6x8n6GZjpJsXj6hu3zcv0IdU9Ftjgomgs0+P?=
- =?us-ascii?Q?7N2r2SqkyAvywdqjVwU69+dS40kJMDutyIb7pNEeWswTdFlEHBRNsN9bfNBe?=
- =?us-ascii?Q?7DzzJjDokhexgYMp9Cu+1FU+xQu/pP4vn6h9k9rVhdcJd6xzBcDxjDZVBXqL?=
- =?us-ascii?Q?5/w8IOgy7Zeq+vE/DxsGidDhy/XdVOJ+toEH4hYJv0tDzOLRP8Eh8mepucai?=
- =?us-ascii?Q?4M2Jiod2FnpEqFiankkDoNa/B274lXquy70quEK3WG3YfghXeiIBcbKnxbMQ?=
- =?us-ascii?Q?u0/AAukjnIGWG7u7cchD3IKrns5d4zBA7PdgU+mYY8kdcDxMPjT/qvIbytv5?=
- =?us-ascii?Q?iat/Rg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229701AbiGUBfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 21:35:41 -0400
+Received: from m12-12.163.com (m12-12.163.com [220.181.12.12])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 948E813DE4;
+        Wed, 20 Jul 2022 18:35:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+        s=s110527; h=From:Subject:Date:Message-Id:MIME-Version; bh=ESAWJ
+        /S/cXA/l1Ah8Rii0T8fNMmH+ZT8ypZAQnXsvyI=; b=RS214l1v7TSc5bi1nAiQ2
+        5s2aCQ+i15MafQ0N+yqXTb3WxTDE1B59bn6mTcKQBT5kCOBGXG2QMYIlSkHBf8pu
+        51TfhGEFgPeXoUe5GcfeymYTc/WnX7g2aaBfIIqmzKprUcgAIQL/lLrS5qYpQq7M
+        FKWfDYV9ZiSqkPipjrj2yI=
+Received: from localhost.localdomain (unknown [223.104.68.243])
+        by smtp8 (Coremail) with SMTP id DMCowABXyvhSqdhi53mCOg--.10010S2;
+        Thu, 21 Jul 2022 09:18:13 +0800 (CST)
+From:   Slark Xiao <slark_xiao@163.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        david@lechnology.com, mturquette@baylibre.com, sboyd@kernel.org,
+        mdf@kernel.org, yilun.xu@intel.com, linus.walleij@linaro.org,
+        brgl@bgdev.pl, agross@kernel.org, bjorn.andersson@linaro.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, narmstrong@baylibre.com, khilman@baylibre.com,
+        mathieu.poirier@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Slark Xiao <slark_xiao@163.com>
+Subject: [PATCH v2] dt-bindings: Fix typo in comment
+Date:   Thu, 21 Jul 2022 09:17:46 +0800
+Message-Id: <20220721011746.19663-1-slark_xiao@163.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 74e029de-b119-433c-45c2-08da6aaf5319
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jul 2022 00:24:07.2163
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ytj8r4kIxNXWJUg2Wxn0cuIz9ivIIdZU83A6VYAOI8YEGVsA1pGF9KZzba+WIfDgPILy+Rdc9jsm8ySUkz93Kdh6j7P71EDZqwq0aErklCtZZQgZBQz3UzvFuqIQdYYJ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8440
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: DMCowABXyvhSqdhi53mCOg--.10010S2
+X-Coremail-Antispam: 1Uf129KBjvAXoW3ZF1kJw1xZw4xtF4UJFW8JFb_yoW8GF45Wo
+        ZakF42yw17K3y7ArZYkwnrGF1kAry7GFn7Za17Kwn8tw4IqrZI93sxZa1jqF9rtF4xGFWf
+        JryxCa18WFs8K3Wkn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+        AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjTiK0P3UUUUU
+X-Originating-IP: [223.104.68.243]
+X-CM-SenderInfo: xvod2y5b0lt0i6rwjhhfrp/1tbiRxZFZFc7Yv75tAAAsN
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert-san,
+Fix typo in the comment
 
-Thank you for the patches!
+Signed-off-by: Slark Xiao <slark_xiao@163.com>
+---
+v2: Add all changes in one subsystem into 1 patch
+---
+ Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt       | 2 +-
+ Documentation/devicetree/bindings/clock/ti/davinci/pll.txt    | 2 +-
+ Documentation/devicetree/bindings/fpga/fpga-region.txt        | 2 +-
+ Documentation/devicetree/bindings/gpio/gpio-pisosr.txt        | 2 +-
+ Documentation/devicetree/bindings/net/qcom-emac.txt           | 2 +-
+ .../bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml      | 2 +-
+ .../devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml   | 2 +-
+ .../devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml   | 2 +-
+ .../devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml   | 2 +-
+ .../devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml      | 2 +-
+ Documentation/devicetree/bindings/powerpc/fsl/cpus.txt        | 2 +-
+ Documentation/devicetree/bindings/powerpc/opal/power-mgt.txt  | 2 +-
+ Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt    | 2 +-
+ Documentation/devicetree/bindings/sound/tlv320adcx140.yaml    | 4 ++--
+ .../devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml      | 2 +-
+ .../devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt  | 2 +-
+ Documentation/devicetree/bindings/thermal/rcar-thermal.yaml   | 2 +-
+ 17 files changed, 18 insertions(+), 18 deletions(-)
 
-> From: Geert Uytterhoeven, Sent: Wednesday, July 20, 2022 5:08 PM
-=20
-> 	Hi all,
->=20
-> This patch series adds support for the R-Car H3Ne-1.7G SoC (R8A779MB),
-> which is a different grading of the R-Car H3-N (R8A77951) SoC.  Board
-> support includes the Salvator-XS and H3ULCB development boards, and the
-> H3ULCB+Kingfisher board combo.  Note that unlike R-Car H3Ne (R8A779M8),
-> R-Car H3Ne-1.7G does support running the Cortex-A57 CPU cores at 1.7
-> GHz[1].
->=20
-> The last 3 patches are marked RFC, as I do not know which boards
-> will actually be produced with this SoC.
+diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+index 94d50a949be1..c0e3c3a42bea 100644
+--- a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
++++ b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
+@@ -10,7 +10,7 @@ system, notifying them when a low power state is entered or exited.
+ Multiple revisions of the SAW hardware are supported using these Device Nodes.
+ SAW2 revisions differ in the register offset and configuration data. Also, the
+ same revision of the SAW in different SoCs may have different configuration
+-data due the the differences in hardware capabilities. Hence the SoC name, the
++data due the differences in hardware capabilities. Hence the SoC name, the
+ version of the SAW hardware in that SoC and the distinction between cpu (big
+ or Little) or cache, may be needed to uniquely identify the SAW register
+ configuration and initialization data. The compatible string is used to
+diff --git a/Documentation/devicetree/bindings/clock/ti/davinci/pll.txt b/Documentation/devicetree/bindings/clock/ti/davinci/pll.txt
+index 36998e184821..c9894538315b 100644
+--- a/Documentation/devicetree/bindings/clock/ti/davinci/pll.txt
++++ b/Documentation/devicetree/bindings/clock/ti/davinci/pll.txt
+@@ -15,7 +15,7 @@ Required properties:
+ 	- for "ti,da850-pll1", shall be "clksrc"
+ 
+ Optional properties:
+-- ti,clkmode-square-wave: Indicates that the the board is supplying a square
++- ti,clkmode-square-wave: Indicates that the board is supplying a square
+ 	wave input on the OSCIN pin instead of using a crystal oscillator.
+ 	This property is only valid when compatible = "ti,da850-pll0".
+ 
+diff --git a/Documentation/devicetree/bindings/fpga/fpga-region.txt b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+index 7d3515264838..6694ef29a267 100644
+--- a/Documentation/devicetree/bindings/fpga/fpga-region.txt
++++ b/Documentation/devicetree/bindings/fpga/fpga-region.txt
+@@ -330,7 +330,7 @@ succeeded.
+ 
+ The Device Tree Overlay will contain:
+  * "target-path" or "target"
+-   The insertion point where the the contents of the overlay will go into the
++   The insertion point where the contents of the overlay will go into the
+    live tree.  target-path is a full path, while target is a phandle.
+  * "ranges"
+     The address space mapping from processor to FPGA bus(ses).
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-pisosr.txt b/Documentation/devicetree/bindings/gpio/gpio-pisosr.txt
+index 414a01cdf715..fba3c61f6a5b 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio-pisosr.txt
++++ b/Documentation/devicetree/bindings/gpio/gpio-pisosr.txt
+@@ -14,7 +14,7 @@ Optional properties:
+  - ngpios		: Number of used GPIO lines (0..n-1), default is 8.
+  - load-gpios		: GPIO pin specifier attached to load enable, this
+ 			  pin is pulsed before reading from the device to
+-			  load input pin values into the the device.
++			  load input pin values into the device.
+ 
+ For other required and optional properties of SPI slave
+ nodes please refer to ../spi/spi-bus.txt.
+diff --git a/Documentation/devicetree/bindings/net/qcom-emac.txt b/Documentation/devicetree/bindings/net/qcom-emac.txt
+index 346e6c7f47b7..e6cb2291471c 100644
+--- a/Documentation/devicetree/bindings/net/qcom-emac.txt
++++ b/Documentation/devicetree/bindings/net/qcom-emac.txt
+@@ -14,7 +14,7 @@ MAC node:
+ - mac-address : The 6-byte MAC address. If present, it is the default
+ 	MAC address.
+ - internal-phy : phandle to the internal PHY node
+-- phy-handle : phandle the the external PHY node
++- phy-handle : phandle the external PHY node
+ 
+ Internal PHY node:
+ - compatible : Should be "qcom,fsm9900-emac-sgmii" or "qcom,qdf2432-emac-sgmii".
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+index 4d01f3124e1c..a90fa1baadab 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+@@ -16,7 +16,7 @@ description: |+
+   - compatible: Should be the following:
+                 "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon"
+ 
+-  Refer to the the bindings described in
++  Refer to the bindings described in
+   Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
+index c689bea7ce6e..d3a8911728d0 100644
+--- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
+@@ -16,7 +16,7 @@ description: |+
+   - compatible:     Should be one of the following:
+                     "aspeed,ast2400-scu", "syscon", "simple-mfd"
+ 
+-  Refer to the the bindings described in
++  Refer to the bindings described in
+   Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
+index 9db904a528ee..5d2c1b1fb7fd 100644
+--- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
+@@ -17,7 +17,7 @@ description: |+
+   			"aspeed,ast2500-scu", "syscon", "simple-mfd"
+   			"aspeed,g5-scu", "syscon", "simple-mfd"
+ 
+-  Refer to the the bindings described in
++  Refer to the bindings described in
+   Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
+index 3666ac5b6518..e92686d2f062 100644
+--- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
+@@ -16,7 +16,7 @@ description: |+
+   - compatible: Should be one of the following:
+                 "aspeed,ast2600-scu", "syscon", "simple-mfd"
+ 
+-  Refer to the the bindings described in
++  Refer to the bindings described in
+   Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+index f005abac7079..4e52ef33a986 100644
+--- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+@@ -17,7 +17,7 @@ description: |+
+   - compatible: Should be the following:
+                 "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon"
+ 
+-  Refer to the the bindings described in
++  Refer to the bindings described in
+   Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/powerpc/fsl/cpus.txt b/Documentation/devicetree/bindings/powerpc/fsl/cpus.txt
+index d63ab1dec16d..801c66069121 100644
+--- a/Documentation/devicetree/bindings/powerpc/fsl/cpus.txt
++++ b/Documentation/devicetree/bindings/powerpc/fsl/cpus.txt
+@@ -5,7 +5,7 @@ Copyright 2013 Freescale Semiconductor Inc.
+ Power Architecture CPUs in Freescale SOCs are represented in device trees as
+ per the definition in the Devicetree Specification.
+ 
+-In addition to the the Devicetree Specification definitions, the properties
++In addition to the Devicetree Specification definitions, the properties
+ defined below may be present on CPU nodes.
+ 
+ PROPERTIES
+diff --git a/Documentation/devicetree/bindings/powerpc/opal/power-mgt.txt b/Documentation/devicetree/bindings/powerpc/opal/power-mgt.txt
+index 9d619e955576..d6658d3dd15e 100644
+--- a/Documentation/devicetree/bindings/powerpc/opal/power-mgt.txt
++++ b/Documentation/devicetree/bindings/powerpc/opal/power-mgt.txt
+@@ -39,7 +39,7 @@ otherwise. The length of all the property arrays must be the same.
+ 
+ - ibm,cpu-idle-state-flags:
+ 	Array of unsigned 32-bit values containing the values of the
+-	flags associated with the the aforementioned idle-states. The
++	flags associated with the aforementioned idle-states. The
+ 	flag bits are as follows:
+ 		0x00000001 /* Decrementer would stop */
+ 		0x00000002 /* Needs timebase restore */
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
+index f861862b9770..526e8f110d5c 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
+@@ -37,7 +37,7 @@ on the Qualcomm Hexagon core.
+ - interrupt-names:
+ 	Usage: required
+ 	Value type: <stringlist>
+-	Definition: The interrupts needed depends on the the compatible
++	Definition: The interrupts needed depends on the compatible
+ 		    string:
+ 	qcom,q6v5-pil:
+ 	qcom,ipq8074-wcss-pil:
+diff --git a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+index 2ad17b361db0..bc2fb1a80ed7 100644
+--- a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
++++ b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+@@ -68,9 +68,9 @@ properties:
+        array is defined as <PDMIN1 PDMIN2 PDMIN3 PDMIN4>.
+ 
+        0 - (default) Odd channel is latched on the negative edge and even
+-       channel is latched on the the positive edge.
++       channel is latched on the positive edge.
+        1 - Odd channel is latched on the positive edge and even channel is
+-       latched on the the negative edge.
++       latched on the negative edge.
+ 
+        PDMIN1 - PDMCLK latching edge used for channel 1 and 2 data
+        PDMIN2 - PDMCLK latching edge used for channel 3 and 4 data
+diff --git a/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
+index 1ab5070c751d..89a2c32c0ab2 100644
+--- a/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.yaml
+@@ -16,7 +16,7 @@ description: |+
+   - compatible: Should be one of the following:
+                 "brcm,bcm2711-avs-monitor", "syscon", "simple-mfd"
+ 
+-  Refer to the the bindings described in
++  Refer to the bindings described in
+   Documentation/devicetree/bindings/mfd/syscon.yaml
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt
+index db880e7ed713..aea4a2a178b9 100644
+--- a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt
++++ b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.txt
+@@ -96,7 +96,7 @@ critical trip point is reported back to the thermal framework to implement
+ software shutdown.
+ 
+ - the "hot" type trip points will be set to SOC_THERM hardware as the throttle
+-temperature. Once the the temperature of this thermal zone is higher
++temperature. Once the temperature of this thermal zone is higher
+ than it, it will trigger the HW throttle event.
+ 
+ Example :
+diff --git a/Documentation/devicetree/bindings/thermal/rcar-thermal.yaml b/Documentation/devicetree/bindings/thermal/rcar-thermal.yaml
+index 927de79ab4b5..00dcbdd36144 100644
+--- a/Documentation/devicetree/bindings/thermal/rcar-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/rcar-thermal.yaml
+@@ -42,7 +42,7 @@ properties:
+     description:
+       Address ranges of the thermal registers. If more then one range is given
+       the first one must be the common registers followed by each sensor
+-      according the the datasheet.
++      according the datasheet.
+     minItems: 1
+     maxItems: 4
+ 
+-- 
+2.25.1
 
-I'm sorry I should have informed you about this topic before.
-Like r8a779m8 (R-Car H3Ne), we don't have any actual board for now.
-So, please drop these supports.
-
-Best regards,
-Yoshihiro Shimoda
-
-> This has been prototyped and tested on Salvator-XS with R-Car H3 ES2.0.
->=20
-> I plan to queue (most) of this in renesas-devel for v5.21.
->=20
-> Thanks for your comments!
->=20
-> [1] [PATCH] arm64: dts: renesas: r8a779m8: Drop operating points above 1.=
-5 GHz
->=20
-<snip URL>
->=20
-> Geert Uytterhoeven (6):
->   dt-bindings: arm: renesas: Document R-Car H3Ne-1.7G SoC and boards
->   soc: renesas: Identify R-Car H3Ne-1.7G
->   arm64: dts: renesas: Add Renesas R8A779MB SoC support
->   arm64: dts: renesas: Add support for Salvator-XS with R-Car H3Ne-1.7G
->   arm64: dts: renesas: Add support for H3ULCB with R-Car H3Ne-1.7G
->   arm64: dts: renesas: Add support for H3ULCB+Kingfisher with R-Car
->     H3Ne-1.7G
->=20
->  .../devicetree/bindings/arm/renesas.yaml      |  9 ++++
->  arch/arm64/boot/dts/renesas/Makefile          |  4 ++
->  .../boot/dts/renesas/r8a779mb-salvator-xs.dts | 53 +++++++++++++++++++
->  .../boot/dts/renesas/r8a779mb-ulcb-kf.dts     | 19 +++++++
->  arch/arm64/boot/dts/renesas/r8a779mb-ulcb.dts | 53 +++++++++++++++++++
->  arch/arm64/boot/dts/renesas/r8a779mb.dtsi     | 12 +++++
->  drivers/soc/renesas/renesas-soc.c             |  1 +
->  7 files changed, 151 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb-salvator-xs.dts
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb-ulcb-kf.dts
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb-ulcb.dts
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb.dtsi
->=20
-> --
-> 2.25.1
->=20
-> Gr{oetje,eeting}s,
->=20
-> 						Geert
->=20
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->=20
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
-> 							    -- Linus Torvalds
