@@ -2,57 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3899757D5EC
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 23:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 498EA57D5F4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 23:30:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233886AbiGUV1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 17:27:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45544 "EHLO
+        id S229505AbiGUVaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 17:30:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbiGUV1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 17:27:46 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3369285D;
-        Thu, 21 Jul 2022 14:27:45 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id x64so2389491iof.1;
-        Thu, 21 Jul 2022 14:27:45 -0700 (PDT)
+        with ESMTP id S233591AbiGUVaU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 17:30:20 -0400
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A43D27B11;
+        Thu, 21 Jul 2022 14:30:19 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id h16so1467413ilc.10;
+        Thu, 21 Jul 2022 14:30:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JIOd09IsCLkkz0R0g/f3vsUbwuWE429fl7X8V0X7KFU=;
-        b=S+V1nXyQlB3D+q9pa9dFVDO23+tzM8kBSnCiqC5VPCQV+sVjTz7KQYI0BUzYkuBXRp
-         g8pfgomNcDAnfalGnmTRwkJyLq8qnNHUdjRcPOOac7E7jW9qAHI/iEBrDCw7FCdMV5Ai
-         xQOTUVRSCIuH9tIWvn8dGrwGtVwK4clslqZgr+Se2QXJtN5yhMKAY7rUsOPi38qbTvcz
-         VUWnvX7j4ZoG7Fmlc4lwQuiFXQX+I/xba6d0kExUYcTWXtEooMs9sbHu/+nALz08qENr
-         qACBD8AE9IK54kjqLO7Qr3xAVLH03XnCWA1+7xZzTYg2riCrSAddH3wKOJFKfXoJor4L
-         es8A==
-X-Gm-Message-State: AJIora9qWXTbzRWWiLc1J3l66cJyGOACYQRiJgvheyy2a8AByfA6I2pZ
-        kxgtxqcepeBZMsmGStydTw==
-X-Google-Smtp-Source: AGRyM1sHh6EMw+CzWVb3mUQlXlPlqrr85rzuYjaxydZ6Ep4VAHBlwBUshbCF5t75FbvVlUPNFXlL9g==
-X-Received: by 2002:a05:6638:50:b0:33f:17b9:be63 with SMTP id a16-20020a056638005000b0033f17b9be63mr251290jap.92.1658438865054;
-        Thu, 21 Jul 2022 14:27:45 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Q4CuC/WYjQM/RT96qg2sYj3aPg2iiARQl9OFgHF9MtE=;
+        b=LI559kmkLUDtOYMo65KazC/YcWhd4zx5wdizVkLGhNCc1lZoU5P35u/oykDuTwCoY6
+         Be8NaWwCPN6dD2ERIl4OjpWB7GBN2F1g2LFE3jegtpzzpLycrWefMdL4Mu3mzObEPgKN
+         MOF6jdCSPmRoT6TzNcbr5SS6vwtUmgo2tGmWynH1rtqQny7cUm2m3NapacQQClnZzzgd
+         hhh2moCExtGyrOC4H3K913I72S/uLwr3Y1wCK6ulXSvtQPP5xtwAJlyE06w96A92+FW1
+         eMKlgP8foVLLnCQ/+w6a+9lKAAEvoUcXZ2DM7UPzqIb7Ehz7sTNJsr9T6qC3c6mIEFlf
+         y7NA==
+X-Gm-Message-State: AJIora/WEYSoAROoxF2ZLOt7VXBakp4NqbGi6e7tePftT30s8b1dpLoJ
+        F5kTyo43rK0E2q55asfOtw==
+X-Google-Smtp-Source: AGRyM1sjispE0yfxZ6N5fmn3vErNnDMnKf5YChwThWvCKcWIphbObaSgwNMYwJhrlMnKw4MDdOAUpA==
+X-Received: by 2002:a05:6e02:1645:b0:2da:e6be:3dfc with SMTP id v5-20020a056e02164500b002dae6be3dfcmr192299ilu.116.1658439018245;
+        Thu, 21 Jul 2022 14:30:18 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.248])
-        by smtp.googlemail.com with ESMTPSA id h6-20020a05660208c600b0067bf99ea25bsm1285859ioz.44.2022.07.21.14.27.43
+        by smtp.googlemail.com with ESMTPSA id c1-20020a0566022d0100b0067b7966553fsm1297539iow.20.2022.07.21.14.30.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 14:27:44 -0700 (PDT)
+        Thu, 21 Jul 2022 14:30:17 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 2/2] dt-bindings: arm: coresight-tmc: Add 'iommu' property
-Date:   Thu, 21 Jul 2022 15:27:15 -0600
-Message-Id: <20220721212718.1980905-2-robh@kernel.org>
+To:     Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: arm: juno: Remove legacy Coresight 'slave-mode' property
+Date:   Thu, 21 Jul 2022 15:29:52 -0600
+Message-Id: <20220721212952.1984382-1-robh@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220721212718.1980905-1-robh@kernel.org>
-References: <20220721212718.1980905-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
@@ -65,29 +61,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Coresight TMC component may be behind an IOMMU which is the case for
-the Arm Juno SoC and some Qualcomm SoCs. Add 'iommus' property to the
-binding.
+The 'slave-mode' property is not valid under 'in-ports' as it was the
+legacy way to find input ports. Warnings are generated from the Coresight
+schema:
+
+arch/arm64/boot/dts/arm/juno-r1.dtb: funnel@20150000: in-ports:port@0:endpoint: Unevaluated properties are not allowed ('slave-mode' was unexpected)
+        From schema: Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-index e0b88a71356a..cb8dceaca70e 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
-@@ -55,6 +55,9 @@ properties:
-       - const: apb_pclk
-       - const: atclk
- 
-+  iommus:
-+    maxItems: 1
-+
-   power-domains:
-     maxItems: 1
- 
+diff --git a/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi b/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
+index 2e43f4531308..fbcdf63ad56d 100644
+--- a/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
++++ b/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
+@@ -67,7 +67,6 @@ in-ports {
+ 			port@0 {
+ 				reg = <0>;
+ 				csys2_funnel_in_port0: endpoint {
+-					slave-mode;
+ 					remote-endpoint = <&etf0_out_port>;
+ 				};
+ 			};
+@@ -75,7 +74,6 @@ csys2_funnel_in_port0: endpoint {
+ 			port@1 {
+ 				reg = <1>;
+ 				csys2_funnel_in_port1: endpoint {
+-					slave-mode;
+ 					remote-endpoint = <&etf1_out_port>;
+ 				};
+ 			};
 -- 
 2.34.1
 
