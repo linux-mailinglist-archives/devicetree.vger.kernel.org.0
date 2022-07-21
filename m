@@ -2,109 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8509657C312
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 05:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D6E757C393
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 06:38:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbiGUD70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 23:59:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40996 "EHLO
+        id S231964AbiGUEhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 00:37:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231470AbiGUD7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 23:59:20 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB58378DD7
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 20:59:19 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id k16so647997pls.8
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 20:59:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ecs-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=6/RJ44c6WPJhfmO9ma5Gldiq3CilNd56Qp91tJ0wDiE=;
-        b=m6CLRDADXWr8qmRx38QTrVaf4Hcahnf7dFT+Gf0x5qWCdivOgqvUfCk5aAXn7bTDG0
-         sZeoZi5pFp3VbMIj/xqlb5cxPwB3PUpBid9KXy7G7zroMs2n2RmCZ09V0fpJCYIgu83q
-         iZGZj7fz+/wieYaMRV0p8cP1CHnN/mDts+KPfhqyNdnzWeBiyApByuCKj+WiWlzP57NN
-         TqSSB6n7o+zdNaU1b+VjUAhP7QOqHKBGXAlU1RXfp1OSkZZMcTfOeIHZzT7T+Gszm24r
-         B0zW9bwk6bSprKZVKXME1R92IyWCKdiCWO5k1tdH9722kbNvaYkkn0QYNL+cAy1UmZK9
-         lSMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=6/RJ44c6WPJhfmO9ma5Gldiq3CilNd56Qp91tJ0wDiE=;
-        b=2YkEG7fKws5L7hOUwVSSBjdXshK3klvQaeqWVXfPg1jdvE3l9Yq27LVFpc/MD8k/Ye
-         HpQrf4xBMWEJFEHMCcE31NGAKM1sd6u6KbJf4ThdLSty3PLgfdvfQnHbSRd4KIxy6OKw
-         SN1zIK1diFV+rf6cDqxO2FsYFyASW4FM1d+yA+bOeCRZsEvzVHn3SS+FyDeFnVs0R3dL
-         XSQlDf1FLe7PchhTa2q0woOK7c8BzqsbKEXvR/+yUpcMbRzoeCL3LCMmrtJqIB8LTVYR
-         0NrhB0CkQ+O281EQN2e0Wzr0ch771GP19RNsLr0+2ofZjUVZ/DbG52raHPedQJUcMXkU
-         p6CQ==
-X-Gm-Message-State: AJIora+YF4cOCf3WI6ezH9h6PI10+xrYvTgDpfZIrvzk1P0eP93SALnL
-        3dDL1ijxLkFb0xxJdBSVeCeh2g==
-X-Google-Smtp-Source: AGRyM1vldKoZ9UAp5CvzfWmc31vlDWTZ5J/Arh6lXNh72F3Xynhjd21RyLXFt6K0AJtfxdEx626hHg==
-X-Received: by 2002:a17:903:32c3:b0:16d:328f:8988 with SMTP id i3-20020a17090332c300b0016d328f8988mr647850plr.108.1658375959153;
-        Wed, 20 Jul 2022 20:59:19 -0700 (PDT)
-Received: from localhost.localdomain ([103.150.184.130])
-        by smtp.gmail.com with ESMTPSA id z15-20020a17090abd8f00b001f21f7821e0sm299956pjr.2.2022.07.20.20.59.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 20:59:18 -0700 (PDT)
-From:   Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Henry Sun <henrysun@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: arm: qcom: Document additional sku6 for sc7180 pazquel
-Date:   Thu, 21 Jul 2022 03:58:43 +0000
-Message-Id: <20220721033918.v3.2.I7ecbb7eeb58c5e6a33e32a3abf4d6874e6cb725c@changeid>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
-References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231803AbiGUEhh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 00:37:37 -0400
+Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 199487AB2F;
+        Wed, 20 Jul 2022 21:37:15 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 59FF4DFFA0;
+        Wed, 20 Jul 2022 21:36:43 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id UzK8WlnFj0S6; Wed, 20 Jul 2022 21:36:42 -0700 (PDT)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
+        t=1658378202; bh=ZFOL7yrrCkugJn9Il2E109WmveIIj3yyKsNUvMgVJ00=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ss1B0T8D/3eORrO1Ag26DhqWwnbHiNjI0bf4aN488AHkWj1xkaiLmT2YytfJMeubL
+         RZ7Z4aiLqxGbNXAE5CDyeyUIGcyX0K7l0xUW5VQPZNV5HE0eX8AyYml/1nZF5BH4cf
+         jpcJomFhayN6ifhCYRuQyzqDy0qvnLkBThvJopwDOw6ARdJ1t+fRxQpT8RRt2fkNHP
+         c78ViuMjkRAflZKDV3p5iJ9ybcRGKzEQoBcZVI4nYxCXl0hhXxqVwUG4DKW9NitRay
+         +7kYuHmXqFvnroSaeVkZanLZw9JI6CxI8zYhMCBJIA9bfGiW0QBWFsC6jo1YxijyAP
+         tGwshl5C0WYQA==
+To:     rafael@kernel.org, khilman@kernel.org, ulf.hansson@linaro.org,
+        robh@kernel.org, krzysztof.kozlowski@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        pavel@ucw.cz
+Cc:     kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
+        l.stach@pengutronix.de, aford173@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [PATCH v5 0/3] power: domain: handle power supplies that need interrupts
+Date:   Thu, 21 Jul 2022 06:36:05 +0200
+Message-Id: <20220721043608.1527686-1-martin.kepplinger@puri.sm>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The difference between sku6 and sku4 is that there is no esim
+hi Ulf, Lucas and all interested,
 
- The different SKUs are:
+This (after a cleanup patch) makes available a new genpd flag
+GENPD_FLAG_IRQ_ON in a relatively generic way: genpd providers can set
+it when irqs are needed to manage power on/off. Since the main goal
+here has been to fix systemd suspend/resume, adjusting these callbacks
+is all that's being done when this flag gets set.
 
-   LTE with physical SIM _and_ eSIM
-   LTE with only a physical SIM
-   WiFi only
- Both sku4 and sku6 are LTE SKUs.
- One has the eSIM stuffed and one doesn't.
- There is a single shared device tree for the two.
+And since I'm working on imx8mq, the 3rd patch makes gpcv2 set this new
+flag when a power domain has a power-supply descirbed in DT.
+For i.MX8M* platforms, this should be ok. For other platforms this might
+be useful too but needs to be tested.
 
-Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
----
 
-Changes in v3:
-- Bindings and dts in the same series.
+revision history
+----------------
+v5: (thank you Lucas)
+* simplify gpcv2 code: just set GENPD_FLAG_IRQ_ON when a power-supply is present
 
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+v4: (thank you Ulf and Lucas)
+* split up genpd core and gpcv2 changes
+* set callbacks inside of pm_genpd_init()
+* make flag name and description a bit more generic
+* print an error in __genpd_dev_pm_attach() if there a "mismatch"
+https://lore.kernel.org/linux-arm-kernel/20220720043444.1289952-1-martin.kepplinger@puri.sm/T/#t
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index fb1d00bcc847..ff0ed8d4d232 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -450,6 +450,7 @@ properties:
- 
-       - description: Google Pazquel with LTE and Parade (newest rev)
-         items:
-+          - const: google,pazquel-sku6
-           - const: google,pazquel-sku4
-           - const: qcom,sc7180
- 
+v3: (thank you Ulf)
+* move DT parsing to gpcv2 and create a genpd flag that gets set
+https://lore.kernel.org/linux-arm-kernel/20220718210302.674897-1-martin.kepplinger@puri.sm/
+
+v2: (thank you Krzysztof)
+* rewrite: find possible regulators' interrupts property in parents
+  instead of inventing a new property.
+https://lore.kernel.org/linux-arm-kernel/20220712121832.3659769-1-martin.kepplinger@puri.sm/
+
+v1: (initial idea)
+https://lore.kernel.org/linux-arm-kernel/20220711094549.3445566-1-martin.kepplinger@puri.sm/T/#t
+
+Martin Kepplinger (3):
+  PM: domain: fix indentation and use BIT macro for flags
+  power: domain: handle genpd correctly when needing interrupts
+  soc: imx: gpcv2: fix suspend/resume by setting GENPD_FLAG_IRQ_ON
+
+ drivers/base/power/domain.c | 13 +++++++++++++
+ drivers/soc/imx/gpcv2.c     |  3 +++
+ include/linux/pm_domain.h   | 20 +++++++++++++-------
+ 3 files changed, 29 insertions(+), 7 deletions(-)
+
 -- 
-2.17.1
+2.30.2
 
