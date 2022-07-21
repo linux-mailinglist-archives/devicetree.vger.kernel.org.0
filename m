@@ -2,110 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB8B157C58C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 09:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22CBD57C585
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 09:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230506AbiGUHxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 03:53:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58844 "EHLO
+        id S230085AbiGUHu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 03:50:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbiGUHxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 03:53:13 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3A77CB6B;
-        Thu, 21 Jul 2022 00:53:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658389992; x=1689925992;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=F/IFKPNNCoSx3pRfE5e/uwKggWX4TPWvNE5TXI91sQ0=;
-  b=H4atNDE37CFGv1CLo43aHD9hoL86ky7eqCTN1Z5t9lOfQ8r22dOhML14
-   sLbp23ve3hpXlhNtaXjMFm0jYEth1dL593I6S0woHFb1Chhwh1J5GNMX9
-   hV5xhPqcZ1KUvpX8wGF7mPeQhs+NsL2uWcp9b2IZPUEAE+Zy86XxE/NVQ
-   0iq6InVs5IA8wtAvGYmylOzusLJCI7HlPX6iGHBP6MbuaV2gHZm/jpe0S
-   mrlln9UG9FNgal0MwW1th84S26Y/D1u1k/rSqJuYLvdqSCDuvFBv8MMvB
-   i5jHbdHi5Nr7r3Ts45GMtyjaH9wyyhW9t+KxYLjCQLr3Az2e/4KMOsjut
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10414"; a="288143430"
-X-IronPort-AV: E=Sophos;i="5.92,288,1650956400"; 
-   d="scan'208";a="288143430"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2022 00:53:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,288,1650956400"; 
-   d="scan'208";a="626009740"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orsmga008.jf.intel.com with ESMTP; 21 Jul 2022 00:53:09 -0700
-Date:   Thu, 21 Jul 2022 15:44:31 +0800
-From:   Xu Yilun <yilun.xu@intel.com>
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, trix@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, system@metrotek.ru
-Subject: Re: [PATCH v5 0/2] Lattice ECP5 FPGA manager
-Message-ID: <20220721074431.GA1712998@yilunxu-OptiPlex-7050>
-References: <20220719112335.9528-1-i.bornyakov@metrotek.ru>
+        with ESMTP id S229672AbiGUHuZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 03:50:25 -0400
+X-Greylist: delayed 2560 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 21 Jul 2022 00:50:24 PDT
+Received: from 10.mo581.mail-out.ovh.net (10.mo581.mail-out.ovh.net [178.33.250.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467D33DF2C
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 00:50:23 -0700 (PDT)
+Received: from player761.ha.ovh.net (unknown [10.111.172.186])
+        by mo581.mail-out.ovh.net (Postfix) with ESMTP id 5CE822464F
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:50:22 +0000 (UTC)
+Received: from RCM-web2.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player761.ha.ovh.net (Postfix) with ESMTPSA id 292062CD894E0;
+        Thu, 21 Jul 2022 07:50:09 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220719112335.9528-1-i.bornyakov@metrotek.ru>
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Date:   Thu, 21 Jul 2022 09:50:09 +0200
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     William Zhang <william.zhang@broadcom.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [RESEND PATCH 2/9] dt-bindings: arm64: bcmbca: Update BCM4908
+ description
+In-Reply-To: <c5b37e68-dc1f-cdae-83e4-23aa0216db69@linaro.org>
+References: <20220721000658.29537-1-william.zhang@broadcom.com>
+ <a635754e-bf41-4058-5fbb-57ead36b7128@linaro.org>
+ <883c2ad4c36220b488519a8902ad72bc@milecki.pl>
+ <193845cb-6149-1ae6-5eb6-6b01ffcf763b@linaro.org>
+ <4b5100e4a6e9e581f4b8ab58e5ca4927@milecki.pl>
+ <c5b37e68-dc1f-cdae-83e4-23aa0216db69@linaro.org>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <1d39bbba3f267086eb2884ffcbf4807b@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 194.187.74.233
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 377739420184194011
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudelkedgvdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtkehjtddtreejnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeegheefkeffffelvdfflefhfefhgeffleeihfdvgeehvdeuhfehueetteelkeevffenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrjeeiuddrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheekud
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 19, 2022 at 02:23:33PM +0300, Ivan Bornyakov wrote:
-> Add support to the FPGA manager for programming Lattice ECP5 FPGA over
-> slave SPI interface with .bit formatted uncompressed bitstream image.
-
-I didn't have time to looking into the patches yet, but I have some quick
-question.
-
-Where is the bitstream data writing to? To the FPGA active region or the
-backup nvmem like flash?
-
-After reconfiguration, how to re-enumerate the hardware devices in the
-newly programmed FPGA region?
-
-Thanks,
-Yilun
-
+On 2022-07-21 09:36, Krzysztof Kozlowski wrote:
+> On 21/07/2022 09:13, Rafał Miłecki wrote:
+>>> That's better argument. But what's the benefit of adding generic
+>>> compatible? Devices cannot bind to it (it is too generic). Does it
+>>> describe the device anyhow? Imagine someone adding compatible
+>>> "brcm,all-soc-of-broadcom" - does it make any sense?
+>> 
+>> OK, I see it now. I can't think of any case of handling all devices
+>> covered with suc a wide brcm,bcmbca binding.
 > 
-> ChangeLog:
->   v1 -> v2:
->     * remove "spi" from compatible string
->     * reword description in dt-bindings doc
->     * add reference to spi-peripheral-props.yaml in dt-binding doc
->     * fix DTS example in dt-bindings doc: 4-spaces indentations, no
->       undersores in node names.
->   v2 -> v3:
->     * fix typo "##size-cells" -> "#size-cells" in dt-bindings example
->   v3 -> v4:
->     * dt-bindings: reword description
->     * dt-bindings: revert props order
->   v4 -> v5:
->     * dt-bindings: remove trailing dot from title
->     * dt-bindings: reword description to avoid driver reference
->     * dt-bindings: add "Reviewed-by: Krzysztof Kozlowski" tag
+> Maybe there is some common part of a SoC which that generic compatible
+> would express?
 > 
-> Ivan Bornyakov (2):
->   fpga: ecp5-spi: add Lattice ECP5 FPGA manager
->   dt-bindings: fpga: add binding doc for ecp5-spi fpga mgr
+> Most archs don't use soc-wide generic compatible, because of reasons I
+> mentioned - no actual benefits for anyone from such compatible.
 > 
->  .../bindings/fpga/lattice,ecp5-fpga-mgr.yaml  |  74 +++++
->  drivers/fpga/Kconfig                          |   7 +
->  drivers/fpga/Makefile                         |   1 +
->  drivers/fpga/ecp5-spi.c                       | 275 ++++++++++++++++++
->  4 files changed, 357 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/fpga/lattice,ecp5-fpga-mgr.yaml
->  create mode 100644 drivers/fpga/ecp5-spi.c
+> But there are exceptions. I fouun socfpga and apple. The apple sounds 
+> as
+> mistake to me, because the generic "apple,arm-platform" compatible 
+> looks
+> like covering all possible Apple ARM platforms. I think Apple ARM
+> designs in 20 years will not be compatible at all with current design,
+> so such broad compatible is not useful... but that's only my opinion.
+
+Let's see if William / Broadcom guys can provide a valid argument for
+the brcm,bcmbca.
+
+
+>> This leads me to another question if we should actually totally drop
+>> brcm,bcmbca from other SoCs bindings, see linux-next's
+>> Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
 > 
-> -- 
-> 2.37.1
-> 
+> This would be tricky as it was already accepted, unless all sit in
+> linux-next and did not make to v5.19-rc1.
+
+5.19-rc7 has only 1 case with brcm,bcmbca, see ff6992735ade7
+("Linux 5.19-rc7"):
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml?id=ff6992735ade75aae3e35d16b17da1008d753d28
+
+So we can still clean it up for the 5.20-rc1 or 5.20-rc2.
