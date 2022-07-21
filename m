@@ -2,91 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B8457CAF3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 14:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9AC157CB8D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:11:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232453AbiGUMzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 08:55:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55792 "EHLO
+        id S234071AbiGUNLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 09:11:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230451AbiGUMzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 08:55:23 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D939D2712;
-        Thu, 21 Jul 2022 05:55:20 -0700 (PDT)
-Received: from mail-yw1-f181.google.com ([209.85.128.181]) by
- mrelayeu.kundenserver.de (mreue012 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1My6xz-1nIZ691wX1-00zVmt; Thu, 21 Jul 2022 14:55:18 +0200
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-31e7c4b593fso15759467b3.13;
-        Thu, 21 Jul 2022 05:55:18 -0700 (PDT)
-X-Gm-Message-State: AJIora/r39fSxqUauWawf2AA4LKXGvj/nnBpRGhRtjm8Z7ONj43DknkE
-        Pu7GtVwvdoxUeIanujkgkV16U0LJ2aFZGH1X2Kw=
-X-Google-Smtp-Source: AGRyM1viYGlLryja/5f/h+YZGqrEBl07fhm4RYssoWdw+dgSQElSnDMEgUoIgmmN+X2tZwirCrjFYbJdyF9Tq6ztqcQ=
-X-Received: by 2002:a81:6742:0:b0:31e:7064:9205 with SMTP id
- b63-20020a816742000000b0031e70649205mr6722307ywc.249.1658408117110; Thu, 21
- Jul 2022 05:55:17 -0700 (PDT)
+        with ESMTP id S233214AbiGUNLd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:11:33 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4420929838
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:11:24 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id b26so2225610wrc.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:11:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=2GDU2IRydfXQkfqrUDMU1D/n3Z3JpQ7CUV8m7kZHOXo=;
+        b=zM6uqqJD0zUpxrXvqvUJTtgzK7C8wI0w7+NobGNxJFW/oU2rftvyIufnMzzsksbQfo
+         UPL6bIwDPZSX2erGUifThY2H1sG1qGDQM31W5Umj8L55JPcbgUJ+cO+aXCfAaeSJxRc3
+         myUrxdjxtk9d5svXSSZra335QyPA3OCo5I+I3Hnp+g+6il7yE8imHH9KCq0lfrM3YMEg
+         HRzpljYsgy8TtyJV8zSBIpAxN9W5F+b4p9vLrSp75U1Jufzo1WbGPolvsp4cUx6Pn5cD
+         DsCs0sYDiem6ZuqbEt1ZrQFRxc5RhdUk5wrtjJo5b9rf5hw4s7m0p7UieJO7pPFlbwCz
+         wHng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=2GDU2IRydfXQkfqrUDMU1D/n3Z3JpQ7CUV8m7kZHOXo=;
+        b=XoxyAVIaPpa8KyRMQhRQm8egpMsnpYmWrX/AvAPPexGteev6zHauSIhaQJtI4l6tNS
+         57GrSI2PN5G+psPffsZZyrXrOr4/uB11R0GbxVhLVOYZG7VUslYWXMSzOqBUFTxfIa7M
+         GC5L5NDKfWaKM4Zf8kRXZVUdP7IhhOlkE4AmOAQrD4v/an4CRtg4bK8KoP0+AHoX4wss
+         uFs6emJuIIYFqLGHMSClOrKnNz+lWt6M5rRCxqzQIoibrrC1CCxBiUXjDMNaw2iEXWet
+         m2LkwvZkJlbnVQ+31jAusY/0w/SdsQnC9D+t4m+YtaOnCA0U2P764+iG9q225P5KrhS5
+         JvJA==
+X-Gm-Message-State: AJIora+kPBwIeynRFc3nP96jQpGB95qmKh3G3QdvEM4/CXbxjwgSWF/H
+        0zV7h2/M7Vq49S6TSZAQHdeYFg==
+X-Google-Smtp-Source: AGRyM1vMWJglV7kWdNrjYZOUhLc5gsJSA6p5P1/egh9annTDsloDA+h8irZ0fOR8tFshFQMxXCNoOQ==
+X-Received: by 2002:a05:6000:1d9c:b0:21e:4a6d:664d with SMTP id bk28-20020a0560001d9c00b0021e4a6d664dmr6415826wrb.673.1658409082764;
+        Thu, 21 Jul 2022 06:11:22 -0700 (PDT)
+Received: from localhost ([82.66.159.240])
+        by smtp.gmail.com with ESMTPSA id l37-20020a05600c1d2500b003a33227e49bsm1635651wms.4.2022.07.21.06.11.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jul 2022 06:11:22 -0700 (PDT)
+From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 2/6] dt-bindings: mediatek,mt6779-keypad: use
+ unevaluatedProperties
+In-Reply-To: <734ed3cf-1461-6067-e718-663ca4be47a6@linaro.org>
+References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
+ <20220720-mt8183-keypad-v1-2-ef9fc29dbff4@baylibre.com>
+ <e1ec8511-d1dd-faa5-031f-50c4e55062cd@linaro.org>
+ <874jzaj0m5.fsf@baylibre.com>
+ <734ed3cf-1461-6067-e718-663ca4be47a6@linaro.org>
+Date:   Thu, 21 Jul 2022 15:11:21 +0200
+Message-ID: <87tu7ahapy.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20220721072415.11424-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220721072415.11424-1-krzysztof.kozlowski@linaro.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 21 Jul 2022 14:55:00 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1j=WUq8=VZz9aY5zkPeEMaF11w4PJF7evmY_JTsFoFZQ@mail.gmail.com>
-Message-ID: <CAK8P3a1j=WUq8=VZz9aY5zkPeEMaF11w4PJF7evmY_JTsFoFZQ@mail.gmail.com>
-Subject: Re: [GIT PULL] ARM: dt-bindings: aspeed for v5.20
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        arm-soc <arm@kernel.org>, SoC Team <soc@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Rob Herring <robh@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:CpcZVuRv3+W2TewzspBVX2apb0q9d/q4lC/3bF2YTTL79D8Xkcw
- O1LeDhxHB9PtzYxcqeTnVf4Q66eZvPYgcIYZebT+abii5pd3BwJglC0NP+EEoohfIqNt/jp
- 4pGq/aaoI/P8BhTLvHXeBPCpzSLtA3eTEpaWPdjdJ92o+kGzMZC6LGq4UU+e31XQ6Rd15b5
- xRCljTkwnAmzxrwckBQ6Q==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:lpwBCSfNDjw=:l7QwgNmiBRRnl1+N4NNucS
- ZcL+eQR1+EVdY+UnJ0dUnFjBkPbscHWjcAUbPC3qcyhU8zwykp+5TgkUKAk8m1jv1gR1Kgo58
- sjBrkx5KvoBTqySGMEQ6CGFyPuT70WZR6LvocrjOUgh6OSv4PObHa5/++GzzuMxX0yFAwy5WV
- RAXWYQ+HjGruLU0ITHisCJR2m04jtcbDKq4Usp8oTrjCVzq4iB31s/tmec5wQXbz8qQ8OjE2m
- qnUcQtfiCExds5oH8yE8AcpGDigE4fJU+T7LgQuWmPrEflOzYghi/9nzOibOwVQpbEmMMIX54
- iA9sSTNfw4Ki9W7z1PucWFcrfnOTYZqwpxGOBR+WjpM0mKkaI22y0888LDGiyQYmG0kMJe8AW
- Y6hqrejiAQYGYvglAaHdjDOK/mmrpWq+PTv8NPaE+T7Z2dwywJJBktuJD6euukpRlBIzL47HX
- UibQI2CFF5xJ8LP4LN2WWL563i6aDn5zpxUFHNQIMUdBr2/5vOlLaub11AzR717iG5sTUeTTT
- CCv4ow1rgNBEXOeNulwUAIf6dRJ3m9JPlR5jS780ycsGQKRs/iquKzj5azy5qkJ9l+9mhXEEB
- FWCzRgnKNcz1n8tKJufMYwDhwXlgIzwzEytZWPzfePIzxxLOJfYn1fSul9ZCnPtiZjq8P8F3Z
- q0u9w5Jyf9j+3wrthfDvZHICrgOedPUqEf3FghJ/7+UxXrNIEwAoIFRKfEULhTga+M24p5GEQ
- 7TyeqbzB3V3Mc6AmQ+PTiaKXF1NnwpumJudC8xxMf+A4cP/rBBZAJ/i8BXyKissHCXZNku8gP
- o4xVHcZnMJmByTP8DXnpBTLDobN/TAcOKw4jrd7SyBQT1xqE59DnYuvZCxvP67X67e4AvjwrE
- ehovvGnB5+wskXVJhJJw==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 21, 2022 at 9:24 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> Hi Arnd and Olof,
->
-> My two patches documenting existing Aspeed board compatibles were waiting for
-> some time, so a month ago I decided to pick them up and include in the
-> linux-next, so other developers - like David - can base their work on these.
-> Unfortunately the responsibility for the patches was not cleared as I was
-> waiting for some replies Joel and Andrew, so I also did not push them out to
-> you. And then rc7 appeared and it is quite late now. That's my mistake, I
-> should sort it out earlier.
->
-> But anyway these were for a month in linux-next and other work [1] will need it.
->
-> Can you grab them last minute? If not, could you queue it for v5.21?
+On Thu, Jul 21, 2022 at 11:16, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Merged into arm/dt for 5.20 now.
+> On 21/07/2022 11:06, Mattijs Korpershoek wrote:
+>> On Wed, Jul 20, 2022 at 19:14, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>> 
+>>> On 20/07/2022 16:48, Mattijs Korpershoek wrote:
+>>>> writing-bindings.rst states:
+>>>>> - If schema includes other schema (e.g. /schemas/i2c/i2c-controller.yaml) use
+>>>>>   "unevaluatedProperties:false". In other cases, usually use
+>>>>>   "additionalProperties:false".
+>>>>
+>>>> mt6779-keypad includes matrix-keymap.yaml so replace additionalProperties:false
+>>>> by unevaluatedProperties:false.
+>>>
+>>> This is not sufficient explanation. You now allow all properties from
+>>> matrix-keymap.yaml, which might be desired or might be not (e.g. they
+>>> are not valid for this device). Please investigate it and mention the
+>>> outcome.
+>> 
+>> Hi Krzysztof,
+>> 
+>> Thank you for your prompt review.
+>> 
+>> In mt6779_keypad_pdrv_probe(), we call
+>> * matrix_keypad_parse_properties() which requires keypad,num-rows and keypad,num-cols.
+>> * matrix_keypad_build_keymap() which uses linux,keymap
+>> 
+>> Therefore, all properties from matrix-keymap.yaml are
+>> required by the mt6779-keypad 
+> Better to mention the device, not driver.
 
-      Arnd
+I mixed up driver versus device (hardware). Sorry about that.
+
+For successful key detection, the hardware (called MediaTek keypad) 
+requires that we program rows/columns via the KP_SEL register.
+So num-rows and num-cols are valid properties for this device.
+
+The MediaTek keypad has a set of bits representing keys, from KEY0 to KEY77. 
+These keys are organized in a 8x8 hardware matrix.
+Therefore, linux,keymap is also a valid property for this device.
+>
+>> 
+>> In v2, I will add the above justification and also add all 3 properties
+>> in the "required" list.
+>> 
+>> Initially, I did not do this because from a dts/code perspective it seemed
+>> interesting to split out SoC specific keyboard node vs board specific key configuration:
+>> * [PATCH v1 5/6] arm64: dts: mediatek: mt8183: add keyboard node # SoC specific
+>> * [PATCH v1 6/6] arm64: dts: mediatek: mt8183-pumpkin: add keypad support # board specific
+>> 
+>> What would be the recommend approach for above?
+>> I see at least 2:
+>> * "move the whole keyboard node into the board file (mt8183-pumpkin.dts)" even if it generates
+>>   duplication between boards using the same SoC.
+>> * "add a "dummy keymap,row,cols" properties in the soc node which can be overriden in board file.
+>>   For example, use rows and cols = 0 which would have the driver early exit.
+>> 
+> SoC DTSI should have only SoC properties. The keyboard module is part of
+> SoC. The keys and how it is wired to them - not.
+
+Indeed. So the split I send in v1 is "valid", from a device(hardware)
+point of view.
+In that case i'll not make the properties from matrix-keymap.yaml
+*required* in v2.
+
+Thanks again for your feedback.
+
+Mattijs
+
+>
+> Best regards,
+> Krzysztof
