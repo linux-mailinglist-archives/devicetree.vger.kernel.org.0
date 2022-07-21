@@ -2,55 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCECC57CA89
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 14:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94BA957CA97
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 14:25:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230399AbiGUMTc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 08:19:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58540 "EHLO
+        id S229497AbiGUMZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 08:25:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229497AbiGUMTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 08:19:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA637FE53;
-        Thu, 21 Jul 2022 05:19:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S232158AbiGUMZD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 08:25:03 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 642226EE99
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 05:25:01 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BFF2761D99;
-        Thu, 21 Jul 2022 12:19:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61BA7C3411E;
-        Thu, 21 Jul 2022 12:19:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658405970;
-        bh=90w2BUPeykw3L6eLJY+/iA8CSo+mOdpNtZFfyxQV4f0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tWtei2IC7LLKMGuWx7OGmZgtYIVw4sviob/MPlLdZgzbvwsFiP/8QcIl4G3V+Jvho
-         EMkotHCrFkkBqURuWz6tyy4e0rBs0ijIZBiOy8NOcA5fZk0JYz28r2x1Y/qTJs8dFi
-         48859ytlpZ9sB6o4XpUx8xz42gNEGucfsNaeKrenBeK0gckaR9rJ4SC8jN2B/BHIsp
-         dvdcJzDw70LRng0iclAuYiZiVmOXJz0hG9jlFrmhJ89tzmsojekCLxUayku0d+EkVp
-         TBUnYrXukoA1iQ2z0YnXsXC/B6KVtUgOtbTL/zQr/bc7now+6sRMymqX1AjdcSlqab
-         RM2EviGUa5vlw==
-Date:   Thu, 21 Jul 2022 13:19:23 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        openbmc@lists.ozlabs.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 0/2] spi: npcm-pspi: add Arbel NPCM8XX and full duplex
- support
-Message-ID: <YtlES7MX6nJr8l+L@sirena.org.uk>
-References: <20220721101556.118568-1-tmaimon77@gmail.com>
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 19C178410E;
+        Thu, 21 Jul 2022 14:24:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1658406298;
+        bh=kVU3LCCaFqk6ZRlu2YlBGkJm43796tQBABKUWsWvgyA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=lJkhS2z7Eay4/EyRmaOHPrcAmsRzW+H24EaW0OW7JTXB5xPoHL0TGkOuNd1HkQ3iE
+         GKymbc3rQpwjYXgxpX7KAmxt7OPO8cX577qQo/ejqrfn6NVSKqLGfgxyXJb+gydH8m
+         jGkNH18g4hh2R05CZd2J9ow3ML7zUuT3n2XVWHirD8PGT1/rumVJFpT2MEL+Z7yhAG
+         Af9mEGUWTEW4xI22ijSJNwmhHsO4MtdQuxj7z7PeHhdPCH51xdmMGhS0379ZQi6BfK
+         Xf+sI9a6msiHxzrnN/S+dP5Jc0rRaLG8j9+F6fv+jNuaS1R3G7NgKzF7W8XQk8bpa7
+         upX0ONPqIgF8g==
+Message-ID: <0b4927f7-f1e4-60a8-1eaf-6d4cbc38daec@denx.de>
+Date:   Thu, 21 Jul 2022 14:24:57 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="O7bov1l8TjWxvFne"
-Content-Disposition: inline
-In-Reply-To: <20220721101556.118568-1-tmaimon77@gmail.com>
-X-Cookie: Exercise caution in your daily affairs.
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add Densitron
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, robert.foss@linaro.org,
+        dri-devel@lists.freedesktop.org,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+References: <20220721030327.210950-1-marex@denx.de>
+ <YtjnFxA66V6bMePa@pendragon.ideasonboard.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <YtjnFxA66V6bMePa@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,42 +63,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 7/21/22 07:41, Laurent Pinchart wrote:
+> Hi Marek,
+> 
+> Thank you for the patch.
+> 
+> On Thu, Jul 21, 2022 at 05:03:27AM +0200, Marek Vasut wrote:
+>> Densitron is a manufacturer of LCD panels.
+>> https://www.densitron.com
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> Cc: Guido Günther <agx@sigxcpu.org>
+>> Cc: Jagan Teki <jagan@amarulasolutions.com>
+>> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> Cc: Linus Walleij <linus.walleij@linaro.org>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Sam Ravnborg <sam@ravnborg.org>
+>> Cc: Thierry Reding <thierry.reding@gmail.com>
+>> ---
+>>   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> index 88859dd4040ee..6277240536b44 100644
+>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>> @@ -312,6 +312,8 @@ patternProperties:
+>>       description: Dell Inc.
+>>     "^delta,.*":
+>>       description: Delta Electronics, Inc.
+>> +  "^densitron,.*":
+> 
+> How about "dsn", to follow the practice of using stock names as vendor
+> prefixes ?
 
---O7bov1l8TjWxvFne
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Thu, Jul 21, 2022 at 01:15:54PM +0300, Tomer Maimon wrote:
-
-> Tomer Maimon (2):
->   spi: npcm-pspi: add full duplex support
->   dt-binding: spi: npcm-pspi: Add npcm845 compatible
-
-It is not obvious why these are a series, they appear to be entirely
-orthogonal.  If there's no relationship between patches it's generally
-better to send them separately, that way problems with one patch won't
-hold up unrelated patches and reviewers aren't left wondering about why
-things are grouped.
-
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
-
---O7bov1l8TjWxvFne
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLZREsACgkQJNaLcl1U
-h9DmJQf+M5sCikLx8XCc5AhzopEJBxC42hfe5IBR6mlpIWp/dv3JYI8Q+8rvNl/F
-7lXeQgGxQHJoFGE0RihkSSZYdEFw6Rb8OXhyodqQbyI8iukuiSTL8NzA0JbpzCTu
-tZm+JRU3zWu39jyFdRGST22mgJHxfrSWxEdAm0T+0AOYY4GNAn4cquIHVH9wwU/g
-bPqOsc+nDa0B0aZrDrdrndq2iBFKuHkKt+Ig8vGmsn/U1eyIFK6Rr+SXEqS6zQnS
-mEdWhyIyEWkz9+61h+bzkTvtmlaLgIAoWjA+Kc/3droutXOp9BK9inOEcgA0u1Av
-P3IrCNU8vqB0vHqWtrNU+S3lXuOolA==
-=wHf8
------END PGP SIGNATURE-----
-
---O7bov1l8TjWxvFne--
+Is there any benefit to that ? All I can see is that it's making DTS 
+less clear and more difficult to read. It is easy to map "densitron" to 
+"densitron" when it is spelled out like so in the DT, but it sure isn't 
+immediately obvious that "dsn" means "densitron" without extra look up. 
+And even that extra look up of "dsn" does not return densitron, but some 
+woodworking company and other totally unrelated results.
