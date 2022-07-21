@@ -2,75 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 566C857D178
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:27:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB9A857D191
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:32:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232927AbiGUQ1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 12:27:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60894 "EHLO
+        id S231524AbiGUQcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:32:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233278AbiGUQ1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:27:13 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A4D89662
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:27:11 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id e11so2444104ljl.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:27:11 -0700 (PDT)
+        with ESMTP id S230089AbiGUQcQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:32:16 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C32EA474DB
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:32:14 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id y11so3620216lfs.6
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:32:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=FLbfIeGPl3ebIvxR+FhS5IYK8eJ7yeE22mxLZOIlFUU=;
-        b=U6l6aOANx5uddaMQey1eQns8gozs/zKGcQWTos2MIO4pITPQ1baZHsi6NUB3LNg6ee
-         CcQVWsRIigCmsDLxbY36TN8T8wZpgW/mf5OPjWI6ImfUHbkfDtIWZMCHCyjtEeA+lNCn
-         ngGQ/OGK6rhHfhrSi+7Wkdg8ZZXKmFQtzq+m1C0rM/v3UjGfdGKWGnzFXhGL2oLTaYqx
-         9jmAnc/3pAnOi8B43V04m8RMFvePKLh8hP848f2h2PfZOqwGRQvVfyMyzxOpYJR3XZZI
-         4npKo+DmibiH6KyD19juFqkIb8G3+4ly6O7/gX0/4WvFT5tGWiimYw9mFyJN0liaFEI7
-         fxeA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+oK+pOh8MGs7bFdJqgWR+kgnOKb6pAhLXHsdjc9P39M=;
+        b=jeV22coreGgshD+gkAquxb7fsVo72DB+o/dKajf74blBq9YB1jI8G2Y2ZB46jiDhlh
+         OgKUwryyrOPuim6TUIMc1PaoRQm3dZ6VD3Zz3BekL80J9HFLZy9pGf2V9yMM1M2wV0Mm
+         kQ5/WBt8kFGAyKSjg99cd9dytVdNLTTbl9SFYJpWmUifgVJ60aocAV0zJYWNwA/+YBlt
+         NSK8G8hafDTjjC7VYw+bMzLf8C5Na5B0BnXQ23Gw140mJN5gCLCBGHARM/zpaBL6mxeJ
+         kuJkDnJ5QaYXGSqGRirp4uHlRtnbvqh8/f+FAqWyEQUAZx62bM/9OdyLltpBWfSz1LxU
+         V3sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=FLbfIeGPl3ebIvxR+FhS5IYK8eJ7yeE22mxLZOIlFUU=;
-        b=jZIAa5hQe+P0Ls0Nk3al1XHuQVNflxp+WHv6IZYiyIypttwV4jkg7bBPZJZpUSkPMn
-         rNIZM6e50bd5VXAWR/gr3Xi96K/z1GCwbbSRD6um/DlXgqe9h9UZFDH6uIQfzbGGoBq6
-         dEzMhcLX7XqSq2vyFX15sBJd2o3Rkcq6FRBEEP1HoXUN66+cK65YiDiTI8VeG4dKiLcw
-         JVCXzmXHKzLuws8qYPoTwuuJmypiQTP0QREn03O3axBgo2jCaB8zqDQJiXn0GoH851R5
-         ZWjinSnKsnLvLiR6wjnX2knSb7tWv+vE422zpZ/xoBVFfL2nWRWvZIPsFeyRJTOsdv/K
-         uhhQ==
-X-Gm-Message-State: AJIora9LTpKdPC5PSNvKpLvN5DJDU5vPk+UCW1SoyAvQRHatJJQ112/c
-        HlHVkdw68gJmOaRky2VV/wTBFw==
-X-Google-Smtp-Source: AGRyM1vh5UhRH2Jeh1nka+6MLdlCVT81CpwzvziFjK0WNqKXr+aUHvh6UKvkd7bDG4LBmQffiNbWsA==
-X-Received: by 2002:a05:651c:385:b0:25d:d821:e0e with SMTP id e5-20020a05651c038500b0025dd8210e0emr3256866ljp.56.1658420829932;
-        Thu, 21 Jul 2022 09:27:09 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id e26-20020a19691a000000b00489da512f5asm532641lfc.86.2022.07.21.09.27.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 09:27:09 -0700 (PDT)
-Message-ID: <e75f1cec-f1ab-7f3f-720c-afa6aa2af611@linaro.org>
-Date:   Thu, 21 Jul 2022 18:27:08 +0200
+        bh=+oK+pOh8MGs7bFdJqgWR+kgnOKb6pAhLXHsdjc9P39M=;
+        b=xG+r6201buoCov6MDQCkK25k6QonZVckiGBnvRlO/pIPokFfA7gFKKuJSF62x2a/hM
+         nEXFqXSyOwXbgHMvES7DnVJl5RHj0u9B2s8M7cOZsKGpsnwZc8hD/EMBFlVf/x1Rv44K
+         X8BcKs598Xp5EkF3fh9FTMvQFASUsQR1GpfvVNNDLrmBy63tA+U7Fvex4suNzK2L3zS+
+         GNHOVtxp/3+eKP/fENc8UACKSS8HKhUxanuPoWRLH3DoNRB6exsMR0i8Bz+ajFbmduB6
+         vB4AqJDhH0fOufGynXCjk+vtGeq+hL/fzH3lS8FkWSYDniluU3AM0NZUfsAEncR16UDK
+         riOQ==
+X-Gm-Message-State: AJIora8DhkQmTpWN5J7Zuze5RLtUnoEVDLK+nNv6S3I5TiIWogFCVwfz
+        plXt3zJuVYmuTAGaSg9rC0TTjw==
+X-Google-Smtp-Source: AGRyM1tnVCiYtipecpPF2+nlfxAx4GIakxxmeBxEAhUT2vxG/jCChsvmPA2jWxbrvW3SMCP0Uf4Ahw==
+X-Received: by 2002:a05:6512:2611:b0:478:da8f:e2d8 with SMTP id bt17-20020a056512261100b00478da8fe2d8mr21957614lfb.460.1658421132859;
+        Thu, 21 Jul 2022 09:32:12 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id b5-20020a056512070500b0047da6e495b1sm536580lfs.4.2022.07.21.09.32.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jul 2022 09:32:12 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     linux-crypto@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>
+Cc:     phone-devel@vger.kernel.org, Stefan Hansson <newbyte@disroot.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org,
+        Lionel Debieve <lionel.debieve@foss.st.com>
+Subject: [PATCH] dt-bindings: crypto: Add ST-Ericsson Ux500 CRYP
+Date:   Thu, 21 Jul 2022 18:30:10 +0200
+Message-Id: <20220721163010.1060062-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/2] dt-bindings: arm: qcom: Document additional sa8540p
- device
-Content-Language: en-US
-To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220721154413.15578-1-quic_ppareek@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220721154413.15578-1-quic_ppareek@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,15 +71,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 17:44, Parikshit Pareek wrote:
-> Add the ADP ride device to the valid device compatibles found on the
-> sa8540p platform.
-> 
-> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+This adds device tree bindings for the Ux500 CRYP block.
 
+This has been used for ages in the kernel device tree for
+Ux500 but was never documented, so fill in the gap.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: devicetree@vger.kernel.org
+Cc: Lionel Debieve <lionel.debieve@foss.st.com>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+The relationship to the existing STM32 CRYP block is pretty
+obvious when looking at the register map. If preferred, I
+can just extend the STM32 bindings with these extra
+(generic) properties and compatibles as well.
+---
+ .../crypto/stericsson,ux500-cryp.yaml         | 67 +++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml
 
+diff --git a/Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml b/Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml
+new file mode 100644
+index 000000000000..9653776007a0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/crypto/stericsson,ux500-cryp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ST Microelectronics and ST-Ericsson Ux500 CRYP bindings
++
++description: The Ux500 CRYP block is identical to the one found in
++  STn8820 introduced in 2007. It seems to also be a related ancestor to the
++  STM32 CRYP block.
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++properties:
++  compatible:
++    enum:
++      - st,stn8820-cryp
++      - stericsson,ux500-cryp
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  dmas:
++    items:
++      - description: mem2cryp DMA channel
++      - description: cryp2mem DMA channel
++
++  dma-names:
++    items:
++      - const: mem2cryp
++      - const: cryp2mem
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/reset/stericsson,db8500-prcc-reset.h>
++    #include <dt-bindings/arm/ux500_pm_domains.h>
++    cryp@a03cb000 {
++      compatible = "stericsson,ux500-cryp";
++      reg = <0xa03cb000 0x1000>;
++      interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
++      clocks = <&prcc_pclk 6 2>;
++      power-domains = <&pm_domains DOMAIN_VAPE>;
++    };
+-- 
+2.36.1
 
-Best regards,
-Krzysztof
