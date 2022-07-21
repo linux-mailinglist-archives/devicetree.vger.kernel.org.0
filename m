@@ -2,64 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AACE57C9A3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05CD357C9CB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:37:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233079AbiGULR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 07:17:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39082 "EHLO
+        id S233171AbiGULg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 07:36:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229747AbiGULR1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:17:27 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55B3581B1C
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 04:17:26 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id z25so2259158lfr.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 04:17:26 -0700 (PDT)
+        with ESMTP id S233183AbiGULg6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:36:58 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A695407A
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 04:36:56 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id b26so1865157wrc.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 04:36:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+Gnykwqd+vC3rtS/nAL/QcRf2AMrtCwB3O4EvfAVjzA=;
-        b=SsWd2HFWk3HD7Vve3jWvBMiFYz2xlV1iuCcNI1hf1Pe3eQbCY9fQ6y7s2p7dtloGaW
-         K4KbTs3WKfikTRIKNZ+c8UE9rh+Ynrqla9S2D4c+Vii0LGxdgvElm3SIgY73d7fC5Hw+
-         Faov0A3TvfEWzaTXZzYFobBNw1zCI07mvWpShuCzlXHOzPyb5LOU37S7KEQybaXfnSph
-         ob/sxUFS8ezn1s5fLLEZQ+0MPEDfRhXJ/uIjm63zIsywl1Z90Z3CvfRG5xxNn80j/42a
-         iWOddqGBdLUFKgWlOFOGqeV7NixO73OVyVZSdN17uhfhC/8p2XPCoCst9b4MeM1mXiPH
-         +EEA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=3dGL++LPAmS2eym62mLHBoZzYDfysbltWj55S2SeBfY=;
+        b=OHDVersEmMfP4wtrsESwOSLR0aXXXw6yByDlyUpqK4xliNb3B7DOAzxYpfWP2/eeOd
+         FwQhuWP/+lA8XforgHtSjTZswnB5XirsvXBoHyLx/KQDRYyM0PwywNGlhp7U5gPIbdtT
+         Ew5EFum/cqwspvE8JKTDPDmYYPeS7kMdkG2b5MaB1zyrdW6Y8Pu4iK6hMS5NaGEPaG7c
+         q3DqmtqYJbb1NHptUKaKSkzlUfjaNYcLayRBwgGPUhPsZhN9VPegQWrfe1zmsBT7FT9f
+         bVwJ5nheZYjKGhAnvcLyZXAdreOVxU08zCrQ32KargN2WtmgUzm3lPn0oepQ4+cNyCqX
+         uybw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+Gnykwqd+vC3rtS/nAL/QcRf2AMrtCwB3O4EvfAVjzA=;
-        b=zR4wOWH3TkECwlk3F9fy/oOia+3NMm6lrYPGH11zMou5mU2Xb+8UI8fDZvIQ4Y5Cwo
-         vlK+D6hvH5qg1qkyCWQueF7PHkYlwDd3BPWUdJxgIGXD5ET9CQe9UZKbDVd+0ffawePw
-         Oo/ALcA1KbzNLjjVds58vgcyhulF6mvH7uPdDepuowVchRIl/7O2GX8ICNLgCO3MkTMM
-         G2rK8jgHUnIIr0Ye0l7Syy18HqWaobDLJQLEin0/CIcfbCqT5t5AvssUnHKs9nF5CjNM
-         YogMNC5844//lxMHSr7+2gnDT9NM1MQVhrPPs7g928HNilLfhAvXGBFbcBXRTYhf05nr
-         vy4g==
-X-Gm-Message-State: AJIora/lW8NqqT6Kr4SevM8GYwM6xBoFnjVzevynr0wMIdIXKYAbAs4U
-        vFmMx1DccnwwBAEeX2XFKS9qV5h/cyqbrqG8wbnFmg==
-X-Google-Smtp-Source: AGRyM1u4WCa5dVOpwiSGbwj5+e4+HoZPSzrKuwLqe3XWV/GuvfojaqnCF6tjyW1ACqqbj1qL8pgL9f4sBUpYR3ASWo0=
-X-Received: by 2002:a05:6512:32c6:b0:48a:18a1:2d2b with SMTP id
- f6-20020a05651232c600b0048a18a12d2bmr19594098lfg.373.1658402244436; Thu, 21
- Jul 2022 04:17:24 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=3dGL++LPAmS2eym62mLHBoZzYDfysbltWj55S2SeBfY=;
+        b=OVsb5Ff6xcR5M4H1p/FynpDfNwdQOaFAD5Aho0nJMxpgfBw0LFhJ6FVYMN6Wy8ugiX
+         VDUDs4ZzOIrNOeS9EKIQIRtU4I8cA+xM+2ZDru7vWyJteuV88d2iwd+nOQUz6kUy/Y6i
+         UimqEXRPn9SVy+YczUbhp1ZNgECA316fmqgYGPaF6Wu8ZMtD5so6+hWidBUYfryYjTWj
+         9dKg0QU5wTRuZBh78fgLn975YVbFplc0zOVctuG6wJjwH3f39URYOXPYcYs4xw3gOHoU
+         J7Qg/k5Gt8589A+Oo6jwq0miOceKfz2Oe1tnQM89vmT+aqXovI0Pnwjm4IkmYWcAaGhh
+         8Hkw==
+X-Gm-Message-State: AJIora99redcc0q8OrKynsXPPEEjTW38GcoOroR1V0Pz7T3wk9S3XBfN
+        4FYoqaQIyI72DAgI2dpIPy6fmQ==
+X-Google-Smtp-Source: AGRyM1viD12dLSWjZcRDX0xi2VY77xaUB6/V11P01gxqkWTXqVJej7u3/DmQVUgKdZEduGu4KbPfHw==
+X-Received: by 2002:a5d:45c5:0:b0:21e:5755:d443 with SMTP id b5-20020a5d45c5000000b0021e5755d443mr1440971wrs.45.1658403414416;
+        Thu, 21 Jul 2022 04:36:54 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id j22-20020a05600c485600b003a2c7bf0497sm1685064wmo.16.2022.07.21.04.36.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jul 2022 04:36:53 -0700 (PDT)
+Date:   Thu, 21 Jul 2022 12:36:51 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        MandyJH Liu <mandyjh.liu@mediatek.com>, iommu@lists.linux.dev,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v3 06/21] dt-bindings: power: mediatek: Add bindings for
+ MediaTek SCPSYS
+Message-ID: <Ytk6U4fncRJOaAq3@google.com>
+References: <20220720123023.13500-1-tinghan.shen@mediatek.com>
+ <20220720123023.13500-7-tinghan.shen@mediatek.com>
+ <YtgDu70Lpl/uPOkf@google.com>
+ <68a30bbd-5f9d-17d2-59fa-7b0da06ee877@linaro.org>
 MIME-Version: 1.0
-References: <20220721043608.1527686-1-martin.kepplinger@puri.sm> <20220721043608.1527686-3-martin.kepplinger@puri.sm>
-In-Reply-To: <20220721043608.1527686-3-martin.kepplinger@puri.sm>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 21 Jul 2022 13:16:47 +0200
-Message-ID: <CAPDyKFouWMVcbDyrs=KgC+R4E61nb45Y0yOjt3PZ3JfcRyY9dA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] power: domain: handle genpd correctly when needing interrupts
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     rafael@kernel.org, khilman@kernel.org, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz,
-        kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
-        l.stach@pengutronix.de, aford173@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <68a30bbd-5f9d-17d2-59fa-7b0da06ee877@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -69,116 +85,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Jul 2022 at 06:37, Martin Kepplinger
-<martin.kepplinger@puri.sm> wrote:
->
-> If for example the power-domains' power-supply node (regulator) needs
-> interrupts to work, the current setup with noirq callbacks cannot
-> work; for example a pmic regulator on i2c, when suspending, usually already
-> times out during suspend_noirq:
->
-> [   41.024193] buck4: failed to disable: -ETIMEDOUT
->
-> So fix system suspend and resume for these power-domains by using the
-> "outer" suspend/resume callbacks instead. Tested on the imx8mq-librem5 board,
-> but by looking at the dts, this will fix imx8mq-evk and possibly many other
-> boards too.
->
-> This is designed so that genpd providers just say "this genpd needs
-> interrupts" (by setting the flag) - without implying an implementation.
->
-> Initially system suspend problems had been discussed at
-> https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
-> which led to discussing the pmic that contains the regulators which
-> serve as power-domain power-supplies:
-> https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
->
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  drivers/base/power/domain.c | 13 +++++++++++++
->  include/linux/pm_domain.h   |  5 +++++
->  2 files changed, 18 insertions(+)
->
-> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
-> index 5a2e0232862e..ef77700e0def 100644
-> --- a/drivers/base/power/domain.c
-> +++ b/drivers/base/power/domain.c
-> @@ -130,6 +130,7 @@ static const struct genpd_lock_ops genpd_spin_ops = {
->  #define genpd_is_active_wakeup(genpd)  (genpd->flags & GENPD_FLAG_ACTIVE_WAKEUP)
->  #define genpd_is_cpu_domain(genpd)     (genpd->flags & GENPD_FLAG_CPU_DOMAIN)
->  #define genpd_is_rpm_always_on(genpd)  (genpd->flags & GENPD_FLAG_RPM_ALWAYS_ON)
-> +#define genpd_irq_on(genpd)            (genpd->flags & GENPD_FLAG_IRQ_ON)
->
->  static inline bool irq_safe_dev_in_sleep_domain(struct device *dev,
->                 const struct generic_pm_domain *genpd)
-> @@ -2079,6 +2080,13 @@ int pm_genpd_init(struct generic_pm_domain *genpd,
->                 genpd->dev_ops.start = pm_clk_resume;
->         }
->
-> +       if (genpd_irq_on(genpd)) {
-> +               genpd->domain.ops.suspend = genpd_suspend_noirq;
-> +               genpd->domain.ops.resume = genpd_resume_noirq;
-> +               genpd->domain.ops.suspend_noirq = NULL;
-> +               genpd->domain.ops.resume_noirq = NULL;
+On Wed, 20 Jul 2022, Krzysztof Kozlowski wrote:
 
-Please move this a few lines above, just before we assign the _*noirq
-callbacks. In this way you don't need to reset thosepointers.
+> On 20/07/2022 15:31, Lee Jones wrote:
+> > On Wed, 20 Jul 2022, Tinghan Shen wrote:
+> > 
+> >> The System Control Processor System (SCPSYS) has several power
+> >> management related tasks in the system. Add the bindings for it.
+> >>
+> >> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> > 
+> > Why have you ignored my review comments from v2?
+> 
+> If you refer whether the binding is needed at all, then the answer is
+> yes, because this is not simple syscons but a device with children,
+> which we want to parse/match.
 
-> +       }
-> +
->         /* The always-on governor works better with the corresponding flag. */
->         if (gov == &pm_domain_always_on_gov)
->                 genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
-> @@ -2769,6 +2777,11 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
->                         goto err;
->                 dev_gpd_data(dev)->default_pstate = pstate;
->         }
-> +
-> +       if (pd->domain.ops.suspend_noirq && (pd->flags & GENPD_FLAG_IRQ_ON))
-> +               dev_err(dev, "PM domain %s needs irqs but uses noirq suspend\n",
-> +                       pd->name);
-> +
+This part is fine.
 
-This doesn't make sense, as it can never happen according to what we
-do in pm_genpd_init().
+> Anyway Tinghan should respond to you about way how he proceeds...
 
-What Lucas suggested in the other thread was to log a warning if a
-device's (that gets attached to genpd) bus/driver has _*noirq
-callbacks. That would make sense.
+This would be nice, yes.
 
-Thinking more about this, perhaps we should move to use the
-_*late/early callbacks instead for genpd. This would decrease the
-window of potential problematic consumers users (drivers/buses).
+I was referring to the submit line, which nearly made me miss it, again.
 
->         return 1;
->
->  err:
-> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
-> index 76bc9e3ef5ff..03bb86e43550 100644
-> --- a/include/linux/pm_domain.h
-> +++ b/include/linux/pm_domain.h
-> @@ -61,6 +61,10 @@
->   * GENPD_FLAG_MIN_RESIDENCY:   Enable the genpd governor to consider its
->   *                             components' next wakeup when determining the
->   *                             optimal idle state.
-> + *
-> + * GENPD_FLAG_IRQ_ON:          genpd needs irqs to be able to manage power
-> + *                             on/off. Use the outer suspend/resume callbacks
-> + *                             instead of noirq for example.
->   */
->  #define GENPD_FLAG_PM_CLK              BIT(0)
->  #define GENPD_FLAG_IRQ_SAFE            BIT(1)
-> @@ -69,6 +73,7 @@
->  #define GENPD_FLAG_CPU_DOMAIN          BIT(4)
->  #define GENPD_FLAG_RPM_ALWAYS_ON       BIT(5)
->  #define GENPD_FLAG_MIN_RESIDENCY       BIT(6)
-> +#define GENPD_FLAG_IRQ_ON              BIT(7)
->
->  enum gpd_status {
->         GENPD_STATE_ON = 0,     /* PM domain is on */
-> --
-> 2.30.2
->
-
-Kind regards
-Uffe
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
