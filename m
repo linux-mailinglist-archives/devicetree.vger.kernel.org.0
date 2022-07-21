@@ -2,166 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AB7557CD9F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E416C57CDAC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:30:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231926AbiGUO2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 10:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44266 "EHLO
+        id S229508AbiGUOa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 10:30:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231421AbiGUO2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:28:41 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F8481B2D;
-        Thu, 21 Jul 2022 07:28:40 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id gq7so1788470pjb.1;
-        Thu, 21 Jul 2022 07:28:40 -0700 (PDT)
+        with ESMTP id S229461AbiGUOa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:30:27 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 634B12BB01
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:30:25 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id bk26so2525089wrb.11
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:30:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=OfcldsUYcrOEyIt2CLImgPg5DvswWpgg66XsCaqPrOU=;
-        b=BdGgRiU2u06go9lOoa4UL9FGbgOqkBa3Murk2hDohnWrYk0/t+9zylUNrTbq8otAO+
-         HwDFdceVCL2WbzsUSshaR3BY4CeQrkMvaOBuboYh9jh8I5RRdsRgTE8YvWT/fPN3R6+M
-         C3OChpVo3fitN8wZ8etszjerJ7dckSbaNDtcf2zQCkmHylzp80kndK2QsXGDlC1jyKJg
-         AG+MzMuYKXiqITnIJ6IRbcJhiz/gkj4bX6lgT3AclWXMbLAS3YezIkJmXjQiQOPa++cO
-         S/U2ncvcxpJyvZ3jQBfEB4BY/1rlWQy0A34YyxZtwpymyvN/bCZQaeimi0z749dhZ/C/
-         tAuQ==
+        d=conchuod.ie; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=XhhMsY9RfWRqTmpaxcMmlEuk/6JY2Q0sFPTnxJuSH/c=;
+        b=HF/GiANUG1tbwXOkMqbonr5uqgeDDqKXeHrpOGj9X1YCLcgJ31NlFsLSr19G+Us9iB
+         fje0mIeU4RN4HWR/+C1BatWkzkD/Cylb//dKW0uio4/xskDi7YQBjPIcNnhBgkbOV6fq
+         cz3WwLwdCrtnco6bL63SgRQ+LFIrLEeVdrNP0RRdcf76IGydcR4HYfLgo9tel4+DH2QI
+         JeHWn8SsvVabE2yEQKwfRToTepvHML+GqcfARbnjBlMIaMQlZv5gxMdz9lK0EmltBh1A
+         8Tk9OVCAkTsnvvLX1Fen9dReiGaKEXmKgJ26gzi0HuWd2GiYsq0GPBQy3SqgYxJf49ul
+         MCJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :subject:content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=OfcldsUYcrOEyIt2CLImgPg5DvswWpgg66XsCaqPrOU=;
-        b=fCuQQ26tSpg4qvoZgs+SmP4sru3FItFQK3L5D6rbqnIIek2PJiAPEEUKthZkJT9NPZ
-         8VFmiv191vd/eFTXBrce7RyCtUgJNnP8xr6Jj7VOaiqacPjhBwskqiP/q4dQJF+gB2gl
-         ZrTsVK2KUdAoc8kGgKK+MwhrP4i+VJQvQjmJf5VnXmxvGnIWUbfg4B2IhtFmhzDBGxrF
-         u+ncoq02omDSXBPQ9fB/+Z3GzccBZo6kpMQlFUxtsKDTr9z/EVHvxEc1CRqI0XIVSVl5
-         qCndWO+6f7VT4o2AEkm6nZgUxUT3GyJYlZiEW6yhM4wHMSQhUz6rik7NiBqvySVeeGv7
-         D+9Q==
-X-Gm-Message-State: AJIora9+yNVN17EFKQ+81XoaclaCfoEoW0lDwuEsgRmxRYSXwIcwq2AY
-        SrReAbZ/b5EElUMKZapWb4ZblxE6paL0dw==
-X-Google-Smtp-Source: AGRyM1vPJfRySFOgRa+GTX0iM4ghXVTP2cdzllDRWEGiyMeBm9pHRQvGi4EDBOHMgQ0eZBX3CN4dZg==
-X-Received: by 2002:a17:902:a516:b0:16c:ef6f:fec7 with SMTP id s22-20020a170902a51600b0016cef6ffec7mr21377569plq.140.1658413719898;
-        Thu, 21 Jul 2022 07:28:39 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id s4-20020a170903200400b0016c67a3b7d0sm1733039pla.61.2022.07.21.07.28.37
+        bh=XhhMsY9RfWRqTmpaxcMmlEuk/6JY2Q0sFPTnxJuSH/c=;
+        b=z3k9Vct/5zDNfYydiAjPDeL6ygXDcyPEQJT62/0/JlkrRgG48ln/QLy4Q8EH4D7Kzb
+         fZph9ZXfp/oqoXjjX74ZVGDeybyHQmFCFi1jAkLFYQF6lq4tnP9E+un4pjNXKCNw7nIT
+         9B+7EqkC+o5+Sbydn4zWQE5CyHMdooKFV+PQLZP20q/+vSEtOwWe1BCsil0pN1uM1dW3
+         xTvkKUisJCpI+j2Aakl0HjKB1pOuUIEWeTouAaQM/Ai9eBaO3w2poDTtXkFxMNsXMP7j
+         qB1OrklypC+mOby9E/XxQYWwh3G3c2CNqloNQsyYBn/Me92uNWOuqWRIJeQaVRd7TC70
+         eROA==
+X-Gm-Message-State: AJIora9t66Z+zvOb/nc6gOrH06DjjibOwJfIAJ9pAMZLJqLtHfHyi4cL
+        JE19muDb1F7v70r6IXXqSHbM0g==
+X-Google-Smtp-Source: AGRyM1tSv2LRbOsioc1gUtCnwKFEXIgzbpBFTfyM17uLvH/QU77KYxhHSkynSfcLTg2qDA6NtYC+Xw==
+X-Received: by 2002:a5d:59a2:0:b0:21d:a96b:b3dd with SMTP id p2-20020a5d59a2000000b0021da96bb3ddmr32689302wrr.128.1658413823838;
+        Thu, 21 Jul 2022 07:30:23 -0700 (PDT)
+Received: from [10.205.160.53] ([95.83.233.54])
+        by smtp.gmail.com with ESMTPSA id j6-20020a5d4486000000b0021e47fb24a2sm2138817wrq.19.2022.07.21.07.30.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 07:28:38 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <0675b483-9d51-30bc-a51d-9b9f2a0acb51@roeck-us.net>
-Date:   Thu, 21 Jul 2022 07:28:36 -0700
+        Thu, 21 Jul 2022 07:30:23 -0700 (PDT)
+Message-ID: <157e8ae8-2456-dca3-ab2e-5f60a5223ca2@conchuod.ie>
+Date:   Thu, 21 Jul 2022 15:30:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 3/6] usb: typec: tcpci_rt1711h: Add regulator support
- when source vbus
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v6 3/4] pwm: add microchip soft ip corePWM driver
 Content-Language: en-US
-To:     Gene Chen <gene.chen.richtek@gmail.com>,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, gene_chen@richtek.com,
-        cy_huang@richtek.com
-References: <20220721061144.35139-1-gene.chen.richtek@gmail.com>
- <20220721061144.35139-4-gene.chen.richtek@gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-In-Reply-To: <20220721061144.35139-4-gene.chen.richtek@gmail.com>
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Conor.Dooley@microchip.com
+Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Daire.McNamara@microchip.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20220712142557.1773075-1-conor.dooley@microchip.com>
+ <20220712142557.1773075-4-conor.dooley@microchip.com>
+ <c49776c2-4807-91c1-010a-a33bd98b68b7@microchip.com>
+ <ee05749f-c33f-3505-4309-f4d036de92a1@microchip.com>
+ <20220721142030.yh7x3ebr2b4fcunc@pengutronix.de>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <20220721142030.yh7x3ebr2b4fcunc@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/20/22 23:11, Gene Chen wrote:
-> From: Gene Chen <gene_chen@richtek.com>
+On 21/07/2022 15:20, Uwe Kleine-König wrote:
+> Hello,
 > 
-> Add regulator support when source vbus
+> On Thu, Jul 21, 2022 at 11:05:54AM +0000, Conor.Dooley@microchip.com wrote:
+>> Should I resubmit now with the warnings fixed?
+>> It is a pair of unused-result on the mutexes & a unused-variable so
+>> they should not have much of an impact on any review you would give
+>> for this version.
 > 
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> ---
->   drivers/usb/typec/tcpm/tcpci_rt1711h.c | 28 ++++++++++++++++++++++++++
->   1 file changed, 28 insertions(+)
+> Don't wait for me to find the time to look. If you have some pending
+> changes I prefer not to look at the series with known drawbacks.
 > 
-> diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> index 3309ceace2b2..52c9594e531d 100644
-> --- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> +++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> @@ -10,6 +10,7 @@
->   #include <linux/i2c.h>
->   #include <linux/interrupt.h>
->   #include <linux/gpio/consumer.h>
-> +#include <linux/regulator/consumer.h>
->   #include <linux/usb/tcpm.h>
->   #include <linux/regmap.h>
->   #include "tcpci.h"
-> @@ -40,6 +41,8 @@ struct rt1711h_chip {
->   	struct tcpci_data data;
->   	struct tcpci *tcpci;
->   	struct device *dev;
-> +	struct regulator *vbus;
-> +	bool src_en;
->   };
->   
->   static int rt1711h_read16(struct rt1711h_chip *chip, unsigned int reg, u16 *val)
-> @@ -103,6 +106,26 @@ static int rt1711h_init(struct tcpci *tcpci, struct tcpci_data *tdata)
->   
->   	/* dcSRC.DRP : 33% */
->   	return rt1711h_write16(chip, RT1711H_RTCTRL16, 330);
-> +
-> +}
-> +
-> +static int rt1711h_set_vbus(struct tcpci *tcpci, struct tcpci_data *tdata,
-> +			    bool src, bool snk)
-> +{
-> +	struct rt1711h_chip *chip = tdata_to_rt1711h(tdata);
-> +	int ret;
-> +
-> +	if (chip->src_en == src)
-> +		return 1;
-> +
-> +	if (src)
-> +		ret = regulator_enable(chip->vbus);
-> +	else
-> +		ret = regulator_disable(chip->vbus);
-> +
-> +	if (!ret)
-> +		chip->src_en = src;
-> +	return ret ? ret : 1;
+> So fire at will.
 
-Are you sure this is what you want ? Returning 1 bypasses the code setting
-the vbus registers in tcpci.c. If that is on purpose it might make sense
-to explain it.
+Cool, didn't want to send a revision if you could've been in the
+process of looking at it. I'll send the fixed version so that if
+you do get a chance to look it'll at least be a better one than
+v6.
 
->   }
->   
->   static int rt1711h_set_vconn(struct tcpci *tcpci, struct tcpci_data *tdata,
-> @@ -246,7 +269,12 @@ static int rt1711h_probe(struct i2c_client *client,
->   	if (ret < 0)
->   		return ret;
->   
-> +	chip->vbus = devm_regulator_get(&client->dev, "vbus");
-> +	if (IS_ERR(chip->vbus))
-> +		return PTR_ERR(chip->vbus);
-> +
-
-This makes regulator support mandatory, which so far was not the case.
-That warrants an explanation why it is not a problem for existing users.
-
-Thanks,
-Guenter
-
->   	chip->data.init = rt1711h_init;
-> +	chip->data.set_vbus = rt1711h_set_vbus;
->   	chip->data.set_vconn = rt1711h_set_vconn;
->   	chip->data.start_drp_toggling = rt1711h_start_drp_toggling;
->   	chip->tcpci = tcpci_register_port(chip->dev, &chip->data);
-
+Thanks!
