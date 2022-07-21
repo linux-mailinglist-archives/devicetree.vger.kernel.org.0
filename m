@@ -2,203 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A98A557C778
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 11:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D6D57C784
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 11:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232866AbiGUJXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 05:23:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55054 "EHLO
+        id S229723AbiGUJZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 05:25:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232672AbiGUJXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 05:23:01 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818737F52F
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 02:23:00 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id a3so1786743lfr.12
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 02:23:00 -0700 (PDT)
+        with ESMTP id S232693AbiGUJZe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 05:25:34 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AAA2186C3
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 02:25:32 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id bf9so1786912lfb.13
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 02:25:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rSVG5RXgIgM5NvFYOzp6NmV4cF2lN0/Ef9ot41gAaRs=;
-        b=B4LLzm60t1rlt4QV36ZL3Qy4hANoL2STwfayVbO6iAwK/p2NlSCys/OGU/QYeDxGNR
-         faW/V/w1CXEK4qlqeYgputuTIGDFaQWHM0lCALr16CAd8cqhajRhBSZOWYvO9ajgtcCU
-         kf2mag4LqDklhmQC2sDqC+ZUbYbQzLla6QuiJif28PodirPI9qY8XNCvBpG7gmJdRskG
-         b30/3AOtn8paAvktFrCVh2M4rbTe+TY29Jiugt9liWHCHSCo7AxWOq1RKUFDZrEpvSaG
-         /0UU2a/h0ISQAFmY34OfhYd4UWi8GkbcJ+ltl1F8c8fcgVoxYo0Q9U6mHODrGxDLQUQM
-         mBgQ==
+        bh=n96RspemHv4TX65Onfw5EgIeU668Xeh3IJ491ButWDA=;
+        b=aGUJ8Wwql3nBndT7r92NSLtZoQUn0/fNuBuA222WSsO2c8VIx5qTqRivY9R6SoTnHY
+         fwJ5Rh9ppUze5NxxfJ1rElwXXc2nSbzr3Mj7jcpBgfDCMFlZF5YkrREmzZzs9IzWSFzA
+         1UZ0tfryvJwlBgwY5O0Nw+O+HwlNlsmAhw9PWZ44SP6Zkvqe4wihFgJIuvp3Nph1e7Ix
+         AcMbF9PHYxzq75P89IlZT5UMaGq8rNjQ/guySEc2s4cmEoFe0aydwOnJrqJj8pZnMoL5
+         wODjhAxsNJBmqzlIIHvKCWwF5dmM6zLNrJADeGU08F8ntkUmVHz36ZfzN+UGhF1HnQYj
+         SzlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=rSVG5RXgIgM5NvFYOzp6NmV4cF2lN0/Ef9ot41gAaRs=;
-        b=XuYtUtVUwuRBywYJgc5TBV943D4G0tqy054VirWw9wm3TTLZcGA2y6dIwqEvPC5Lez
-         CIp491e2X5mgXBCTKa9xs+moG6qUclfucdgVqxHIAiscpGsbXepxhD2hU1E+fJSStpNd
-         Cj/4ljhy6XNjWgMGHGoGKR9FziuifueZx0CyZdn7bQ1l+4bV8781yg1E5HacTO984O1T
-         7PDLwy3B/qsoTrYEsZJSG+8c9Z8VNySWQ6OifCjJ9PE9QvxptkUgQfS/FwAKDz+vC60s
-         R4wDAe8YllB3pPYjs1wAA78R5PWOY+WaxjEQipLNvWCRJTEKT6DaeQ4C2MF1TlNxDnWt
-         VKFg==
-X-Gm-Message-State: AJIora+h7Wz6L+YnaiEZYYqMTbC5aO/oNi7JwF6dTQJjocLr426RVlNm
-        mBsSiDsQMl5MnJ94C4DX52ANQA==
-X-Google-Smtp-Source: AGRyM1u7eazfJf+qhDvnqRuzjsgcpGetJIrfeJnZOZ1R+WaUrZnXTWFfJyCPPnz6568ACBugGP8L4A==
-X-Received: by 2002:a05:6512:e83:b0:489:e7de:56ea with SMTP id bi3-20020a0565120e8300b00489e7de56eamr23820154lfb.591.1658395378678;
-        Thu, 21 Jul 2022 02:22:58 -0700 (PDT)
+        bh=n96RspemHv4TX65Onfw5EgIeU668Xeh3IJ491ButWDA=;
+        b=HejImjYtZupQHLJU+EJULlyvCP/DlL2qz++7uR7yDTVuUnFANWU3FxHSDHnGiyhja1
+         B9rq53HU0ScfK4HipQV2pLYfJ+iSbCGaJIepub4t96wnEb0iEHvaIDk/5iWEgtB0Hnjj
+         kdXmp/JX1gMUrWcP2Vlohjk3xN8a+GYcIyZ2Xv2mcDtTPZWAMeYiWTCICpeohZidITLa
+         VdArkkv8W/yQhxWIEDM2khaGHTbHhY/pgPzKVzvjMg+PUV4OIxPXQyCYOv6OaHJM4Dxn
+         YraHGDyDuXlfWMatIWhqoIQajmIOLYEIf10+kaLTyXErN2fJjS9x+iy9LWye2DBeHexU
+         5Kuw==
+X-Gm-Message-State: AJIora+ujk8bQUbRpgB4X6gD9mvAOx1PPWKHcIqREgEtFugUKXuXSfDY
+        4kPkQv8SkSY3F0B1wwZdktyPMA==
+X-Google-Smtp-Source: AGRyM1sQnHRfTHcPmZmra8mx6Bo0N5OMSaNYFB8TJDTyOp/6lIJ4d9p50U6fT4RliWE31XApjfyHYA==
+X-Received: by 2002:a05:6512:10c4:b0:489:de26:cef7 with SMTP id k4-20020a05651210c400b00489de26cef7mr23654431lfg.216.1658395530472;
+        Thu, 21 Jul 2022 02:25:30 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id g19-20020a2eb5d3000000b0025a739ce2b8sm373440ljn.29.2022.07.21.02.22.55
+        by smtp.gmail.com with ESMTPSA id q8-20020a056512210800b00488e50527e0sm323037lfr.112.2022.07.21.02.25.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 02:22:57 -0700 (PDT)
-Message-ID: <3b51e8c3-6ab4-373e-2c7d-29c02ffddfed@linaro.org>
-Date:   Thu, 21 Jul 2022 11:22:55 +0200
+        Thu, 21 Jul 2022 02:25:29 -0700 (PDT)
+Message-ID: <995c7d48-68d1-6c61-4f86-cdd2968b5156@linaro.org>
+Date:   Thu, 21 Jul 2022 11:25:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
- binding
+Subject: Re: [PATCH 3/3] ARM: dts: qcom: Add support for Samsung Galaxy Tab 4
+ 10.1 (SM-T530)
 Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220713135528.1386594-1-biju.das.jz@bp.renesas.com>
- <20220713135528.1386594-2-biju.das.jz@bp.renesas.com>
- <24903621-358d-d380-76f4-6515c6313bbd@linaro.org>
- <OS0PR01MB5922CE20E15959AEF89C36D4868B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <1c96a873-81f7-02c4-56cc-f33a283329eb@linaro.org>
- <OS0PR01MB5922CD0716DF83F92BA63B5F868C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
+        linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220717213432.134486-1-matti.lehtimaki@gmail.com>
+ <20220717213432.134486-4-matti.lehtimaki@gmail.com>
+ <dc19c084-633d-9777-6dfd-b9633ac9c4ae@linaro.org>
+ <YtWiMP2O9BymNG7/@gerhold.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB5922CD0716DF83F92BA63B5F868C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <YtWiMP2O9BymNG7/@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2022 15:13, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
-> 
->> Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
->> binding
+On 18/07/2022 20:10, Stephan Gerhold wrote:
+> On Mon, Jul 18, 2022 at 03:51:54PM +0200, Krzysztof Kozlowski wrote:
+>> On 17/07/2022 23:34, Matti Lehtimäki wrote:
+>>> Add a device tree for the Samsung Galaxy Tab 4 10.1 (SM-T530) wifi tablet
+>>> based on the apq8026 platform.
+>>>
+>>> Currently supported are accelerometer sensor, hall sensor, internal storage, physical
+>>> buttons (power & volume), screen (based on simple-framebuffer set up by
+>>> the bootloader) sdcard, touchscreen and USB.
+>>>
+>>> Signed-off-by: Matti LehtimÃ¤ki <matti.lehtimaki@gmail.com>
 >>
->> On 15/07/2022 12:17, Biju Das wrote:
->>> Hi Krzysztof Kozlowski,
->>>
->>> Thanks for the feedback.
->>>
->>>> Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L
->>>> POEG binding
->>>>
->>>> On 13/07/2022 15:55, Biju Das wrote:
->>>>> Add device tree bindings for the RZ/G2L Port Output Enable for GPT
->>>> (POEG).
->>>>>
->>>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
->>>>> ---
->>>>> REF->v1:
->>>>>  * Modelled as pincontrol as most of its configuration is intended
->>>>> to
->>>> be
->>>>>    static.
->>>>>  * Updated reg size in example.
->>>>> ---
->>>>>  .../bindings/pinctrl/renesas,rzg2l-poeg.yaml  | 65
->>>>> +++++++++++++++++++
->>>>>  1 file changed, 65 insertions(+)
->>>>>  create mode 100644
->>>>> Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
->>>>>
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
->>>>> b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..7607dd87fa68
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.y
->>>>> +++ am
->>>>> +++ l
->>>>> @@ -0,0 +1,65 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>>>> +---
->>>>> +$id:
->>>>> +
->>>>> +title: Renesas RZ/G2L Port Output Enable for GPT (POEG)
->>>>> +
->>>>> +maintainers:
->>>>> +  - Biju Das <biju.das.jz@bp.renesas.com>
->>>>> +
->>>>> +description: |
->>>>> +  The output pins of the general PWM timer (GPT) can be disabled by
->>>>> +using
->>>>> +  the port output enabling function for the GPT (POEG).
->>>>> +Specifically,
->>>>> +  either of the following ways can be used.
->>>>> +  * Input level detection of the GTETRGA to GTETRGD pins.
->>>>> +  * Output-disable request from the GPT.
->>>>
->>>> Shouldn't this all be part of GPT? Is this a real separate device in
->>>> the SoC?
->>>
->>> No, It is separate IP block, having its own register block, interrupts
->> and resets.
->>>
->>> Please see RFC discussion here[1]
->>>
->>> [1]
->>>
->>>>
->>>>> +  * Register settings.
->>>>
->>>> This is confusing... so you can use POEG to mess up registers of GPT
->>>> independently, so GPT does not know it?
->>>
->>> POEG does not mess up registers of GPT. It is basically for protection.
->>>
->>> Using POEG register, it is possible to disable GPT output without the
->> knowledge of GPT, after configuring the Output disable source select in
->> the GTINTAD (General PWM Timer Interrupt Output Setting Register)
->> register present in GPT.
+>> Thank you for your patch. There is something to discuss/improve.
 >>
->> Then what does it mean:
->> "...following ways can be used. Register settings."
->> I cannot parse it.
+>>> ---
+>>>  arch/arm/boot/dts/Makefile                    |   1 +
+>>>  .../dts/qcom-apq8026-samsung-matissewifi.dts  | 475 ++++++++++++++++++
+>>>  2 files changed, 476 insertions(+)
+>>>  create mode 100644 arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
+>>>
+>>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>>> index 5112f493f494..4d02a1740079 100644
+>>> --- a/arch/arm/boot/dts/Makefile
+>>> +++ b/arch/arm/boot/dts/Makefile
+>>> @@ -1010,6 +1010,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+>>>  	qcom-apq8016-sbc.dtb \
+>>>  	qcom-apq8026-asus-sparrow.dtb \
+>>>  	qcom-apq8026-lg-lenok.dtb \
+>>> +	qcom-apq8026-samsung-matissewifi.dtb \
+>>>  	qcom-apq8060-dragonboard.dtb \
+>>>  	qcom-apq8064-cm-qs600.dtb \
+>>>  	qcom-apq8064-ifc6410.dtb \
+>>> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts b/arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
+>>> new file mode 100644
+>>> index 000000000000..f4c5eb9db11c
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matissewifi.dts
+>>> @@ -0,0 +1,475 @@
+>>> +// SPDX-License-Identifier: BSD-3-Clause
+>>> +/*
+>>> + * Copyright (c) 2022, Matti LehtimÃ¤ki <matti.lehtimaki@gmail.com>
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "qcom-msm8226.dtsi"
+>>> +#include "qcom-pm8226.dtsi"
+>>> +#include <dt-bindings/input/input.h>
+>>> +
+>>> +/delete-node/ &smem_region;
+>>> +
+>>> +/ {
+>>> +	model = "Samsung Galaxy Tab 4 10.1";
+>>> +	compatible = "samsung,matissewifi", "qcom,apq8026";
+>>> +	chassis-type = "tablet";
+>>> +
+>>> +	qcom,msm-id = <0xC708FF01 0 0x20000>,
+>>> +		      <0xC708FF01 1 0x20000>,
+>>> +		      <0xC708FF01 2 0x20000>,
+>>> +		      <0xC708FF01 3 0x20000>;
+>>
+>> Lower case hex and does not match bindings.
+>> https://lore.kernel.org/all/20220705130300.100882-2-krzysztof.kozlowski@linaro.org/
+>>
+>> This would need detailed explanation because it really does not look
+>> correct.
+>>
 > 
-> Threre 3 methods mentioned in chapter 19.3 of RZ/G2L HW manual for Output-Disable Control Operation. 
-> "Register settings" referred to the 3rd method as mentioned below.
+> Just to give the explanation for reference: In general, qcom,msm-id with
+> three elements is something Qualcomm used for some old platforms before
+> introducing qcom,board-id.
 > 
-> 19.3 Output-Disable Control Operation
-> The output of the GTIOCxA and GTIOCxB pins can be disabled when any of the following conditions are satisfied.
+> qcom,msm-id = <X Y Z> should be equivalent to:
+>   qcom,msm-id = <X Z>;
+>   qcom,board-id = <Y 0>;
 > 
-> 1) Input level or edge detection of the GTETRGn pins
-> 	When POEGGn.PIDE is 1, the POEGGn.PIDF flag is set to 1.
+> e.g. for apq8026-v2-mtp.dts Qualcomm used:
+>    qcom,msm-id = <199 8 0x20000>;
+>  = qcom,msm-id = <QCOM_ID_MSM8026 QCOM_BOARD_ID_MTP 0x20000>;
+>  = qcom,msm-id = <QCOM_ID_MSM8026 0x20000>;
+>    qcom,board-id = <QCOM_BOARD_ID_MTP 0>;
 > 
-> 2) Output-disable request from the GPT
-> When POEGGn.IOCE is 1, the POEGGn.IOCF flag is set to 1.
-> The output-disable requests enabled by GRPDTE, GRPABH, and GRPABL bits of the GTINTAD register in the
-> GPT are applied to the group selected by GRP[1:0] bits of the GTINTAD register.
+> I guess old bootloaders may or may not accept the new form, depending on
+> the age of their code base.
 > 
-> 3) SSF bit setting
-> When POEGGn.SSF is set to 1.
+> Then Samsung took this and made it a lot worse, by replacing the SoC ID
+> with some random magic number (the 0xC708FF01). And what's even worse is
+> that all devices with the same SoC from Samsung use the same magic number
+> there. It is completely useless for dynamically matching the device.
 > 
-> The state of the GTIOCxA and the GTIOCxB pins when the output is disabled is controlled by the GPT module.
+> In this case, I suggest just dropping the property because the device is
+> supported by lk2nd [1] which can be loaded as intermediary bootloader to
+> have a more standard boot process for mainline Linux. When booting
+> through lk2nd no qcom,msm-id/qcom,board-id is required, and it also adds
+> MAC addresses for WiFi/Bluetooth etc etc. :-)
 > 
-> Please let me know if you need any info.
+> [1]: https://github.com/msm8916-mainline/lk2nd
+> 
+>> [...]
+>>> +	reserved-memory {
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <1>;
+>>> +		ranges;
+>>> +
+>>> +		framebuffer@3200000 {
+>>
+>> Generic node names, so memory@
+>>
+> 
+> Rob specifically mentioned at some point that memory@ should not be used
+> in reserved-memory [1]. The device tree specification actually recommends
+> doing it like it is done here (at least for "framebuffer"):
+> 
+>> 3.5.2 /reserved-memory/ child nodes
+>> Following the generic-names recommended practice, node names should
+>> reflect the purpose of the node (ie. “framebuffer” or “dma-pool”).
+> 
+> [1]: https://lore.kernel.org/linux-arm-msm/CAL_Jsq+66j8Y5y+PQ+mezkaxN1pfHFKz524YUF4Lz_OU5E-mZQ@mail.gmail.com/
 
-Yes, more info is needed in your patch. The "...following ways can be
-used. (...) Register settings." does not explain anything.
+Thanks, makes sense a lot!
 
 Best regards,
 Krzysztof
