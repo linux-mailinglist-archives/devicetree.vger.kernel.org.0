@@ -2,170 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D011E57C98C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AACE57C9A3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:17:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232881AbiGULH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 07:07:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60710 "EHLO
+        id S233079AbiGULR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 07:17:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232411AbiGULHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:07:25 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C5F82F97;
-        Thu, 21 Jul 2022 04:07:24 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id 7so2234733ybw.0;
-        Thu, 21 Jul 2022 04:07:24 -0700 (PDT)
+        with ESMTP id S229747AbiGULR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:17:27 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55B3581B1C
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 04:17:26 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id z25so2259158lfr.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 04:17:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=5mro53eIOes0RXW0prFbxemaCXmpb/aOLLa0hQCmy08=;
-        b=TGQ+2X7BFMGJRNO80GY1luuDbJo5ce+mctyZY04Tn+bn0eBWPnSRow0Dla5/Esak3N
-         yRVED71u8otXRdDI1RreBFKJJMqVsVHPgJnBO1N6O+iPsW0s8y9kyF1s2qnevhYxJQjj
-         8JfiqSWG6SfnNkkIBS8sa+u0KtHIgvBw2vPdOnQCe7rpCjA2MgvJ5YsPUyCOzudzmrzN
-         bEZmj0s9AZxIZLZ5VeL0VhMyx1NqrcgYddQ8M9Xk143zXwRYbg/m13Tsn22X8SABb/vt
-         kWVP9FhRvHj1vzGLH/6EaMoy8spdPYLABqTIvlN4jCcfcy1GSKCcrsHBcR0DRPPoHq1F
-         epxQ==
+        bh=+Gnykwqd+vC3rtS/nAL/QcRf2AMrtCwB3O4EvfAVjzA=;
+        b=SsWd2HFWk3HD7Vve3jWvBMiFYz2xlV1iuCcNI1hf1Pe3eQbCY9fQ6y7s2p7dtloGaW
+         K4KbTs3WKfikTRIKNZ+c8UE9rh+Ynrqla9S2D4c+Vii0LGxdgvElm3SIgY73d7fC5Hw+
+         Faov0A3TvfEWzaTXZzYFobBNw1zCI07mvWpShuCzlXHOzPyb5LOU37S7KEQybaXfnSph
+         ob/sxUFS8ezn1s5fLLEZQ+0MPEDfRhXJ/uIjm63zIsywl1Z90Z3CvfRG5xxNn80j/42a
+         iWOddqGBdLUFKgWlOFOGqeV7NixO73OVyVZSdN17uhfhC/8p2XPCoCst9b4MeM1mXiPH
+         +EEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=5mro53eIOes0RXW0prFbxemaCXmpb/aOLLa0hQCmy08=;
-        b=Ae652mE2O4m9Zg4PeJOkXUaSJ4N7++A6TF5e0PwRFMYcc1JQ3EMRZxAzpNJLHZovd2
-         DXIDY428x2L5k49xF70lNESTmtho/QDcSKg7Vw7Ad2RLkcTcxJl+t7FH9+p3Sj9E4IDk
-         VcT+1aefX+wwe1KVwu+9wlTyaTvX+ZBAjOxdIVkCw1cbLuYwsUoE35EieTGWidvDEdVJ
-         JN/OcCokIDp+YLrZEocGB+zZUF1hGTGxjOAEeDVltmvE4Xo6n5y/bhQC0wGrx2KZ6AWx
-         YDTNpceszine+eH9xpmytI6y+hcQcjpj69NXZgLx0QXxCl3C0mAr5dHdij3qaNBBrVOm
-         BxJg==
-X-Gm-Message-State: AJIora82ssVbY8T3ZQkmrDyBdxUpRxHQqE0H1w5+9+dBTmPTTDUy6hXR
-        HsGgBr+2a/36ayF0MxPGZ+yxAXvVHVvIO/TbuU0=
-X-Google-Smtp-Source: AGRyM1uNhi6JqOtUV7rz5Sib7uydLDy+F4oP4tJI5TWWwnh3/+PPPbgApVrOHmfik36wx39uyP1FRckNTbDUFiOqfvs=
-X-Received: by 2002:a25:830f:0:b0:66f:cc60:c740 with SMTP id
- s15-20020a25830f000000b0066fcc60c740mr35450510ybk.117.1658401643785; Thu, 21
- Jul 2022 04:07:23 -0700 (PDT)
+        bh=+Gnykwqd+vC3rtS/nAL/QcRf2AMrtCwB3O4EvfAVjzA=;
+        b=zR4wOWH3TkECwlk3F9fy/oOia+3NMm6lrYPGH11zMou5mU2Xb+8UI8fDZvIQ4Y5Cwo
+         vlK+D6hvH5qg1qkyCWQueF7PHkYlwDd3BPWUdJxgIGXD5ET9CQe9UZKbDVd+0ffawePw
+         Oo/ALcA1KbzNLjjVds58vgcyhulF6mvH7uPdDepuowVchRIl/7O2GX8ICNLgCO3MkTMM
+         G2rK8jgHUnIIr0Ye0l7Syy18HqWaobDLJQLEin0/CIcfbCqT5t5AvssUnHKs9nF5CjNM
+         YogMNC5844//lxMHSr7+2gnDT9NM1MQVhrPPs7g928HNilLfhAvXGBFbcBXRTYhf05nr
+         vy4g==
+X-Gm-Message-State: AJIora/lW8NqqT6Kr4SevM8GYwM6xBoFnjVzevynr0wMIdIXKYAbAs4U
+        vFmMx1DccnwwBAEeX2XFKS9qV5h/cyqbrqG8wbnFmg==
+X-Google-Smtp-Source: AGRyM1u4WCa5dVOpwiSGbwj5+e4+HoZPSzrKuwLqe3XWV/GuvfojaqnCF6tjyW1ACqqbj1qL8pgL9f4sBUpYR3ASWo0=
+X-Received: by 2002:a05:6512:32c6:b0:48a:18a1:2d2b with SMTP id
+ f6-20020a05651232c600b0048a18a12d2bmr19594098lfg.373.1658402244436; Thu, 21
+ Jul 2022 04:17:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220718195651.7711-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220718195651.7711-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdV5s-q13pWXs-ki6o5h8=ZMPL11o08YQx1pawe9EUySBA@mail.gmail.com>
-In-Reply-To: <CAMuHMdV5s-q13pWXs-ki6o5h8=ZMPL11o08YQx1pawe9EUySBA@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 21 Jul 2022 12:06:56 +0100
-Message-ID: <CA+V-a8tqhiO+WBOzAD40A10K+qtVQ4HE87C9PKVpoFgWkkS54w@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: renesas: rzg2l-smarc-som: Add PHY
- interrupt support for ETH{0/1}
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220721043608.1527686-1-martin.kepplinger@puri.sm> <20220721043608.1527686-3-martin.kepplinger@puri.sm>
+In-Reply-To: <20220721043608.1527686-3-martin.kepplinger@puri.sm>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 21 Jul 2022 13:16:47 +0200
+Message-ID: <CAPDyKFouWMVcbDyrs=KgC+R4E61nb45Y0yOjt3PZ3JfcRyY9dA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] power: domain: handle genpd correctly when needing interrupts
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     rafael@kernel.org, khilman@kernel.org, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz,
+        kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
+        l.stach@pengutronix.de, aford173@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On Thu, 21 Jul 2022 at 06:37, Martin Kepplinger
+<martin.kepplinger@puri.sm> wrote:
+>
+> If for example the power-domains' power-supply node (regulator) needs
+> interrupts to work, the current setup with noirq callbacks cannot
+> work; for example a pmic regulator on i2c, when suspending, usually already
+> times out during suspend_noirq:
+>
+> [   41.024193] buck4: failed to disable: -ETIMEDOUT
+>
+> So fix system suspend and resume for these power-domains by using the
+> "outer" suspend/resume callbacks instead. Tested on the imx8mq-librem5 board,
+> but by looking at the dts, this will fix imx8mq-evk and possibly many other
+> boards too.
+>
+> This is designed so that genpd providers just say "this genpd needs
+> interrupts" (by setting the flag) - without implying an implementation.
+>
+> Initially system suspend problems had been discussed at
+> https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
+> which led to discussing the pmic that contains the regulators which
+> serve as power-domain power-supplies:
+> https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
+>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>  drivers/base/power/domain.c | 13 +++++++++++++
+>  include/linux/pm_domain.h   |  5 +++++
+>  2 files changed, 18 insertions(+)
+>
+> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
+> index 5a2e0232862e..ef77700e0def 100644
+> --- a/drivers/base/power/domain.c
+> +++ b/drivers/base/power/domain.c
+> @@ -130,6 +130,7 @@ static const struct genpd_lock_ops genpd_spin_ops = {
+>  #define genpd_is_active_wakeup(genpd)  (genpd->flags & GENPD_FLAG_ACTIVE_WAKEUP)
+>  #define genpd_is_cpu_domain(genpd)     (genpd->flags & GENPD_FLAG_CPU_DOMAIN)
+>  #define genpd_is_rpm_always_on(genpd)  (genpd->flags & GENPD_FLAG_RPM_ALWAYS_ON)
+> +#define genpd_irq_on(genpd)            (genpd->flags & GENPD_FLAG_IRQ_ON)
+>
+>  static inline bool irq_safe_dev_in_sleep_domain(struct device *dev,
+>                 const struct generic_pm_domain *genpd)
+> @@ -2079,6 +2080,13 @@ int pm_genpd_init(struct generic_pm_domain *genpd,
+>                 genpd->dev_ops.start = pm_clk_resume;
+>         }
+>
+> +       if (genpd_irq_on(genpd)) {
+> +               genpd->domain.ops.suspend = genpd_suspend_noirq;
+> +               genpd->domain.ops.resume = genpd_resume_noirq;
+> +               genpd->domain.ops.suspend_noirq = NULL;
+> +               genpd->domain.ops.resume_noirq = NULL;
 
-Thank you for the review.
+Please move this a few lines above, just before we assign the _*noirq
+callbacks. In this way you don't need to reset thosepointers.
 
-On Thu, Jul 21, 2022 at 11:47 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Mon, Jul 18, 2022 at 9:57 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > The PHY interrupt (INT_N) pin is connected to IRQ2 and IRQ3 for ETH0
-> > and ETH1 respectively.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-> > @@ -94,6 +94,8 @@ phy0: ethernet-phy@7 {
-> >                 compatible = "ethernet-phy-id0022.1640",
-> >                              "ethernet-phy-ieee802.3-c22";
-> >                 reg = <7>;
-> > +               interrupt-parent = <&irqc>;
-> > +               interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->
-> 2?
->
-IRQ2 = SPI 3, the driver expects the SPI number and is used as index
-[0] to map the interrupt in the GIC.
+> +       }
+> +
+>         /* The always-on governor works better with the corresponding flag. */
+>         if (gov == &pm_domain_always_on_gov)
+>                 genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
+> @@ -2769,6 +2777,11 @@ static int __genpd_dev_pm_attach(struct device *dev, struct device *base_dev,
+>                         goto err;
+>                 dev_gpd_data(dev)->default_pstate = pstate;
+>         }
+> +
+> +       if (pd->domain.ops.suspend_noirq && (pd->flags & GENPD_FLAG_IRQ_ON))
+> +               dev_err(dev, "PM domain %s needs irqs but uses noirq suspend\n",
+> +                       pd->name);
+> +
 
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/irqchip/irq-renesas-rzg2l.c?h=next-20220720#n291
+This doesn't make sense, as it can never happen according to what we
+do in pm_genpd_init().
 
-> "The first cell should contain external interrupt number (IRQ0-7)"
->
-Probably I need to reword this to "The first cell should contain the
-SPI number for IRQ0-7/NMI interrupt lines" ?
+What Lucas suggested in the other thread was to log a warning if a
+device's (that gets attached to genpd) bus/driver has _*noirq
+callbacks. That would make sense.
 
+Thinking more about this, perhaps we should move to use the
+_*late/early callbacks instead for genpd. This would decrease the
+window of potential problematic consumers users (drivers/buses).
 
-> >                 rxc-skew-psec = <2400>;
-> >                 txc-skew-psec = <2400>;
-> >                 rxdv-skew-psec = <0>;
-> > @@ -120,6 +122,8 @@ phy1: ethernet-phy@7 {
-> >                 compatible = "ethernet-phy-id0022.1640",
-> >                              "ethernet-phy-ieee802.3-c22";
-> >                 reg = <7>;
-> > +               interrupt-parent = <&irqc>;
-> > +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
+>         return 1;
 >
-> 3?
+>  err:
+> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
+> index 76bc9e3ef5ff..03bb86e43550 100644
+> --- a/include/linux/pm_domain.h
+> +++ b/include/linux/pm_domain.h
+> @@ -61,6 +61,10 @@
+>   * GENPD_FLAG_MIN_RESIDENCY:   Enable the genpd governor to consider its
+>   *                             components' next wakeup when determining the
+>   *                             optimal idle state.
+> + *
+> + * GENPD_FLAG_IRQ_ON:          genpd needs irqs to be able to manage power
+> + *                             on/off. Use the outer suspend/resume callbacks
+> + *                             instead of noirq for example.
+>   */
+>  #define GENPD_FLAG_PM_CLK              BIT(0)
+>  #define GENPD_FLAG_IRQ_SAFE            BIT(1)
+> @@ -69,6 +73,7 @@
+>  #define GENPD_FLAG_CPU_DOMAIN          BIT(4)
+>  #define GENPD_FLAG_RPM_ALWAYS_ON       BIT(5)
+>  #define GENPD_FLAG_MIN_RESIDENCY       BIT(6)
+> +#define GENPD_FLAG_IRQ_ON              BIT(7)
 >
-IRQ3 = SPI 4
-
-Cheers,
-Prabhakar
-> >                 rxc-skew-psec = <2400>;
-> >                 txc-skew-psec = <2400>;
-> >                 rxdv-skew-psec = <0>;
-> > @@ -171,7 +175,8 @@ eth0_pins: eth0 {
-> >                          <RZG2L_PORT_PINMUX(25, 0, 1)>, /* ET0_RXD0 */
-> >                          <RZG2L_PORT_PINMUX(25, 1, 1)>, /* ET0_RXD1 */
-> >                          <RZG2L_PORT_PINMUX(26, 0, 1)>, /* ET0_RXD2 */
-> > -                        <RZG2L_PORT_PINMUX(26, 1, 1)>; /* ET0_RXD3 */
-> > +                        <RZG2L_PORT_PINMUX(26, 1, 1)>, /* ET0_RXD3 */
-> > +                        <RZG2L_PORT_PINMUX(1, 0, 1)>;  /* IRQ2 */
-> >         };
-> >
-> >         eth1_pins: eth1 {
-> > @@ -189,7 +194,8 @@ eth1_pins: eth1 {
-> >                          <RZG2L_PORT_PINMUX(34, 1, 1)>, /* ET1_RXD0 */
-> >                          <RZG2L_PORT_PINMUX(35, 0, 1)>, /* ET1_RXD1 */
-> >                          <RZG2L_PORT_PINMUX(35, 1, 1)>, /* ET1_RXD2 */
-> > -                        <RZG2L_PORT_PINMUX(36, 0, 1)>; /* ET1_RXD3 */
-> > +                        <RZG2L_PORT_PINMUX(36, 0, 1)>, /* ET1_RXD3 */
-> > +                        <RZG2L_PORT_PINMUX(1, 1, 1)>;  /* IRQ3 */
-> >         };
-> >
-> >         gpio-sd0-pwr-en-hog {
-> > --
-> > 2.25.1
-> >
->
->
+>  enum gpd_status {
+>         GENPD_STATE_ON = 0,     /* PM domain is on */
 > --
-> Gr{oetje,eeting}s,
+> 2.30.2
 >
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+
+Kind regards
+Uffe
