@@ -2,100 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9E9257C398
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 06:43:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 772C857C3CE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 07:41:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229849AbiGUEn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 00:43:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38890 "EHLO
+        id S229758AbiGUFlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 01:41:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229778AbiGUEn1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 00:43:27 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B52B074379;
-        Wed, 20 Jul 2022 21:43:24 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id l23so1120577ejr.5;
-        Wed, 20 Jul 2022 21:43:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7lkbSCl4WMVF6PyAIugGhujYGS6F9o1+Rht1abC9LWI=;
-        b=IKRYc7LfN4GhVKTKzErBqYb7m8h6Ng81Ugm728RiNIz3q23m9Octz3Zf6PPs6fFZvL
-         ln2/6eQqsc27Z7BuqGWq0aLdViASTIWZe+GSdt+jfxKF0DOjyzjQyW8UFbfh5f84KqQx
-         Wvrbk8ePrZDvJoE2HwkC4rN1W7Tg4TzWNd0FHhFgg7DcxvVRl/UIXdlvRcMu7TT5Vgw8
-         5RNGDDhpOWJS/Y9p0Ow/ex/E8ZlaMT4E+QcqTeHjSGHsixld+GAlmd/rsyctjk0RtrW5
-         +ys+yPZ8HjQJboTMPhclEB43fQFM1TwP4LuUzXvcjQLl9zZ34op/ZO2hZm6I/OVvsC2P
-         1JVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7lkbSCl4WMVF6PyAIugGhujYGS6F9o1+Rht1abC9LWI=;
-        b=Zie7gwF73Kp5jlFdvwPSCh8ZUZiiYwE9+KrPA4SAK4TzNMdguDd5kZUWuAhNhUK2jj
-         RprpIvCy8TWwMGYOwi9e0ywrEPJOYTXESQWK8O4PUBhCT0LjK/BCvG5gMCBLUrHIgeuB
-         sbMw7Q71lu61PGkTN3kQRS6QG5iu8cqrEN8ZNDLhbUmTs2952ji1i0dn8YDznrlzH/+h
-         hNXiUGbpkMjnOtI0IvIG2CVsEiT9bGrRbpbIq+OTl0nb9euDfPuJZ0t9Nr+ltUun0z+r
-         e5oglXLIBXdF05khHSjbvnvNkePUVjDYT7lFpqX62RJ7DzT6iaaVzDmyiNVYYpPZ4s1N
-         Me9Q==
-X-Gm-Message-State: AJIora8ozyEv8dUCUTIrVi7z/bzNxO+g+DsjHo5R+P4fgF+NhFcIvDvT
-        ViKrft2qAANFDaub+f3EKa8=
-X-Google-Smtp-Source: AGRyM1sM/rYuTMl9+p0TqfNhZ8iyCI/Gk2d1yYw0EQj2ga4lxAw3AQPVNPIbEqreVwJRGoIeAGTexg==
-X-Received: by 2002:a17:907:1def:b0:72b:33e6:46d6 with SMTP id og47-20020a1709071def00b0072b33e646d6mr37885988ejc.414.1658378603202;
-        Wed, 20 Jul 2022 21:43:23 -0700 (PDT)
-Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id p8-20020a17090653c800b00726c0e60940sm379575ejo.100.2022.07.20.21.43.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 21:43:22 -0700 (PDT)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Lower sd speed on quartz64-b
-Date:   Thu, 21 Jul 2022 06:43:06 +0200
-Message-Id: <20220721044307.48641-1-frattaroli.nicolas@gmail.com>
-X-Mailer: git-send-email 2.37.1
+        with ESMTP id S230461AbiGUFls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 01:41:48 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E6754BD04
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 22:41:47 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D033A496;
+        Thu, 21 Jul 2022 07:41:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1658382105;
+        bh=Ve0iRggg/q9Wh+Ur+r1w+1hnS4BcG/iP/efNI4rRoHg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AzAI9PrcwXbGbsXw4SOK1hMkH5WHoMH0QUBX2gTQhrEpZ0Y2iCXjzasILT2tZd6CY
+         uI0gHDRT1DDhFGUxMAGkkVBwahEvQJvn4gGMG9Vx/TYexihYEf2dX6tHbEAjFFydy6
+         kaYEvGJKmKX8dbAsDiW0YEHP2i0LSlDjTK7m9wXo=
+Date:   Thu, 21 Jul 2022 08:41:43 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org, robert.foss@linaro.org,
+        dri-devel@lists.freedesktop.org,
+        Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add Densitron
+Message-ID: <YtjnFxA66V6bMePa@pendragon.ideasonboard.com>
+References: <20220721030327.210950-1-marex@denx.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220721030327.210950-1-marex@denx.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The previously stated speed of sdr-104 is too high for the hardware
-to reliably communicate with some fast SD cards.
+Hi Marek,
 
-Lower this to sd-uhs-sdr50 to fix this.
+Thank you for the patch.
 
-Fixes: dcc8c66bef79 ("arm64: dts: rockchip: add Pine64 Quartz64-B device tree")
+On Thu, Jul 21, 2022 at 05:03:27AM +0200, Marek Vasut wrote:
+> Densitron is a manufacturer of LCD panels.
+> https://www.densitron.com
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Guido Günther <agx@sigxcpu.org>
+> Cc: Jagan Teki <jagan@amarulasolutions.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 88859dd4040ee..6277240536b44 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -312,6 +312,8 @@ patternProperties:
+>      description: Dell Inc.
+>    "^delta,.*":
+>      description: Delta Electronics, Inc.
+> +  "^densitron,.*":
 
-Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+How about "dsn", to follow the practice of using stock names as vendor
+prefixes ?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-index 02d5f5a8ca03..528bb4e8ac77 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-@@ -506,7 +506,7 @@ &sdmmc0 {
- 	disable-wp;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
--	sd-uhs-sdr104;
-+	sd-uhs-sdr50;
- 	vmmc-supply = <&vcc3v3_sd>;
- 	vqmmc-supply = <&vccio_sd>;
- 	status = "okay";
+> +    description: Densitron Technologies Ltd
+>    "^denx,.*":
+>      description: Denx Software Engineering
+>    "^devantech,.*":
+
 -- 
-2.37.1
+Regards,
 
+Laurent Pinchart
