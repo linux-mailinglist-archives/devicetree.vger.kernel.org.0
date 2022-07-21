@@ -2,69 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEFC757C289
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 05:06:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D32A257C2AD
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 05:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231317AbiGUDGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 23:06:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35862 "EHLO
+        id S231474AbiGUDc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 23:32:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231703AbiGUDGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 23:06:07 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B17D13C;
-        Wed, 20 Jul 2022 20:06:02 -0700 (PDT)
-X-UUID: cac5e9ea882b41ceb2d9e69b9651768f-20220721
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:367f56b9-ddfa-4a76-b32c-813601af4475,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:3c1f8a33-b9e4-42b8-b28a-6364427c76bb,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: cac5e9ea882b41ceb2d9e69b9651768f-20220721
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1690676264; Thu, 21 Jul 2022 11:05:58 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Thu, 21 Jul 2022 11:05:56 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 21 Jul 2022 11:05:56 +0800
-Message-ID: <00bc3a146f39feb1a83213fc8503ad1b52cda9f9.camel@mediatek.com>
-Subject: Re: [PATCH v3 06/21] dt-bindings: power: mediatek: Add bindings for
- MediaTek SCPSYS
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
+        with ESMTP id S229461AbiGUDc1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 23:32:27 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 704257754C;
+        Wed, 20 Jul 2022 20:32:26 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id g12so596655pfb.3;
+        Wed, 20 Jul 2022 20:32:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=A8HrmDvRv1JakyZpN804KG9pBcPVPRqNbucKySDvZx8=;
+        b=DeydGXUokqbTAfkMTdhkxGIMSYPy7nK8D5QqnmYkaXYJEW7hS/wMNKa3uAVcH7gM7V
+         gnKP1RGFKgrePwa5YfAxymhfcVJn/vYjWx/KUv6kJNYgDdO2Q9NG9LfxtliBJjwfGm9l
+         6mgBhFQeTUCC7xn9/vAVWB9dJTh9vjZ/k2t2fdRsRMeMHtS9V+YkL+HwmtVka7H8CL6U
+         LUDHQjIcR3tjXSnubP9KZNCODXRr8aLKLOMG1SzYOG2i0yJMTkVy0CkVE90TIdTg7RSG
+         Z4O4MrUdDJvbrIARuuuH1hD42TxMMgltX5uUBZzwF8BpY7H93D8ItgsQFe83b7w4/9H4
+         qo3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=A8HrmDvRv1JakyZpN804KG9pBcPVPRqNbucKySDvZx8=;
+        b=r52GN6K2k3tfe4L++TVmsHCDx65wvwTns8QoycYwaiGWnkazjJxj6LtySf48mXOw/c
+         1cVrF5ZO6GUrsllvMdmMjvWISwO5bEI7JBUeKXJLiw838GiR0+Aesdtho6Xo5wKx90Y7
+         26FKUCOdb4/pfP5BZaBp7Y+yEg4NmBOxzoua4EI9cZ7Tyxg21nQpsg4lYQVJHY/Qz41v
+         pqDtxVJncSTDzDXnOKdTDeYeqpYZQdADJuUxafhA86G5Y5e+vuu1putuHlDO3VNhZtVQ
+         /QgussU+GvrlYc6pQRugWX/nOvjHsgtSQYbVE5qg80/sQnyPAiOLSbSJ0DRH089GHmag
+         CvIw==
+X-Gm-Message-State: AJIora/KZn65neO+xtBTe5Vga4j7RSFva3gvmK7/rC7c+qn7PHzayqe1
+        rje84E6IvND/rb9jHvxDhLGRgY28VFg=
+X-Google-Smtp-Source: AGRyM1s2c7kx2CPskFMkXV18L/Cpvzm04GClJp5KDYPz6G2bzxDd1OK62cNrHq1IAkl8WxsajAq4EA==
+X-Received: by 2002:a05:6a00:1386:b0:52a:d5f9:2837 with SMTP id t6-20020a056a00138600b0052ad5f92837mr42945885pfg.5.1658374345861;
+        Wed, 20 Jul 2022 20:32:25 -0700 (PDT)
+Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
+        by smtp.gmail.com with ESMTPSA id gm17-20020a17090b101100b001f200eabc65sm246533pjb.41.2022.07.20.20.32.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Jul 2022 20:32:25 -0700 (PDT)
+Message-ID: <40cec207-9463-d999-5fc9-8a7514e24b91@gmail.com>
+Date:   Wed, 20 Jul 2022 20:32:23 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0.3
+Subject: Re: [RESEND PATCH 0/9] arm64: bcmbca: Move BCM4908 SoC support under
+ ARCH_BCMBCA
+Content-Language: en-US
+To:     William Zhang <william.zhang@broadcom.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-CC:     <iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 21 Jul 2022 11:05:56 +0800
-In-Reply-To: <57b0cf62-0312-05cf-31ff-d38f83a35578@linaro.org>
-References: <20220720123023.13500-1-tinghan.shen@mediatek.com>
-         <20220720123023.13500-7-tinghan.shen@mediatek.com>
-         <57b0cf62-0312-05cf-31ff-d38f83a35578@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+        "open list:MEMORY TECHNOLOGY DEVICES (MTD)" 
+        <linux-mtd@lists.infradead.org>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        "open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" 
+        <linux-pci@vger.kernel.org>,
+        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+        "open list:PIN CONTROL SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:BROADCOM BMIPS MIPS ARCHITECTURE" 
+        <linux-mips@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:WATCHDOG DEVICE DRIVERS" <linux-watchdog@vger.kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20220721000626.29497-1-william.zhang@broadcom.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220721000626.29497-1-william.zhang@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,106 +98,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-07-20 at 19:35 +0200, Krzysztof Kozlowski wrote:
-> On 20/07/2022 14:30, Tinghan Shen wrote:
-> > The System Control Processor System (SCPSYS) has several power
-> > management related tasks in the system. Add the bindings for it.
-> > 
-> > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> > ---
-> >  .../bindings/mfd/mediatek,mt8195-scpsys.yaml  | 68 +++++++++++++++++++
-> >  1 file changed, 68 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-> > b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-> > new file mode 100644
-> > index 000000000000..4117a6dbc19c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
-> > @@ -0,0 +1,68 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> > https://urldefense.com/v3/__http://devicetree.org/schemas/mfd/mediatek,mt8195-scpsys.yaml*__;Iw!!CTRNKA9wMg0ARbw!y63E-9qbCW_vyn8RrsCCs7YvZ7NxKqFT7l8C0ZZirEW95Ec0ce3lwegsSq51wrjtz8GjVSpkK-omCBP5CKx1l0WESQ$
-> >  
-> > +$schema: 
-> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!y63E-9qbCW_vyn8RrsCCs7YvZ7NxKqFT7l8C0ZZirEW95Ec0ce3lwegsSq51wrjtz8GjVSpkK-omCBP5CKzzr9p82Q$
-> >  
-> > +
-> > +title: MediaTek System Control Processor System
-> > +
-> > +maintainers:
-> > +  - MandyJH Liu <mandyjh.liu@mediatek.com>
-> > +
-> > +description:
-> > +  MediaTek System Control Processor System (SCPSYS) has several
-> > +  power management tasks. The tasks include MTCMOS power
-> > +  domain control, thermal measurement, DVFS, etc.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - mediatek,mt8167-scpsys
-> > +          - mediatek,mt8173-scpsys
-> > +          - mediatek,mt8183-scpsys
-> > +          - mediatek,mt8192-scpsys
-> > +          - mediatek,mt8195-scpsys
-> > +      - const: syscon
-> > +      - const: simple-mfd
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +patternProperties:
-> > +  "^power-controller(@[0-9a-f]+)?$":
-> > +    $ref: /schemas/power/mediatek,power-controller.yaml#
+
+
+On 7/20/2022 5:06 PM, William Zhang wrote:
+> RESEND to include linux arm kernel mailing list.
 > 
-> We talked that unit address might be useful but it was with an
-> assumption that you will actually use it. I think you don't use it, so
-> it is kind of meaningless now... unless you plan to use it?
+> Now that Broadcom Broadband arch ARCH_BCMBCA is in the kernel, this change
+> set migrates the existing broadband chip BCM4908 support to ARCH_BCMBCA.
 
-I tried to add the offset in the node name, but the binding check reports this message.
- 	
-    power-controller@0: node has a unit name, but no reg or ranges property
+Looks like only 1, 2 4 and 5 made it to bcm-kernel-feedback-list meaning 
+that our patchwork instance did not pick them all up.
 
-After considering the fact of mt8195 power controller HW resides in scpsys and the current power
-domain driver doesn't support parsing the register address seperated from scpsys, I decide to
-keep the power controller node as in v2 to pass the binding check and compatible with driver.
-
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/mt8195-clk.h>
-> > +    #include <dt-bindings/power/mt8195-power.h>
-> > +
-> > +    syscon@10006000 {
-> > +        compatible = "mediatek,mt8195-scpsys", "syscon", "simple-mfd";
-> > +        reg = <0x10006000 0x100>;
-> > +
-> > +        spm: power-controller {
-> > +            compatible = "mediatek,mt8195-power-controller";
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +            #power-domain-cells = <1>;
-> > +
-> > +            /* sample of power domain nodes */
-> > +            power-domain@MT8195_POWER_DOMAIN_PCIE_PHY {
-> > +                    reg = <MT8195_POWER_DOMAIN_PCIE_PHY>;
-> 
-> Wrong indentation.
-
-I missed checking this. I'll udpate in the next version.
-
-Thanks,
-TingHan
-
+Did you use patman to send these patches? If so, you might still need to 
+make sure that the final CC list includes the now (ex) BCM4908 
+maintainer and the ARM SoC maintainer for Broadcom changes.
+-- 
+Florian
