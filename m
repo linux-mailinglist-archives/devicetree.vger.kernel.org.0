@@ -2,180 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6311157C6AD
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:44:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B56957C6C3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:46:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232511AbiGUIoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 04:44:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45304 "EHLO
+        id S230149AbiGUIqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 04:46:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232493AbiGUIoX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:44:23 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F27C07E83D;
-        Thu, 21 Jul 2022 01:44:15 -0700 (PDT)
-X-UUID: 9534c6f209ec44d5969eaadb28c68965-20220721
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:c9883684-0d3a-4178-b20a-97f88d358bd2,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:5
-X-CID-META: VersionHash:0f94e32,CLOUDID:3bf49333-b9e4-42b8-b28a-6364427c76bb,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 9534c6f209ec44d5969eaadb28c68965-20220721
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 36381845; Thu, 21 Jul 2022 16:44:10 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 21 Jul 2022 16:44:09 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 21 Jul 2022 16:44:08 +0800
-Message-ID: <0f02af3abf6895ae89f735d849a1873e61ca502a.camel@mediatek.com>
-Subject: Re: [PATCH 2/2] dt-bindings: PCI: mediatek-gen3: Add new clock name
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Ryder Lee <ryder.lee@mediatek.com>, <Rex-BC.Chen@mediatek.com>,
-        <TingHan.Shen@mediatek.com>, <Liju-clr.Chen@mediatek.com>,
-        <Jian.Yang@mediatek.com>
-Date:   Thu, 21 Jul 2022 16:44:08 +0800
-In-Reply-To: <20220720222448.GA4083816-robh@kernel.org>
-References: <20220716074349.28655-1-jianjun.wang@mediatek.com>
-         <20220716074349.28655-3-jianjun.wang@mediatek.com>
-         <20220720222448.GA4083816-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229697AbiGUIq3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:46:29 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21B919C30
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:46:25 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id o7so1670059lfq.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:46:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=9DFC7DURCYpRYFYZYkyppLob9xkCwy+AEFcaVaYPfs8=;
+        b=euTx6iihA4na02hBm19yonYXxMNvIx3Ol6Uv+9lmbcNSZ/9vb2mqV6dtCG72Oh2UA1
+         kate/d954NuSI3iDXm+t5XnRkJoiWGK38sL83L+xyWZNXGpoZ3W9schn2a3cAtfSQpGx
+         8FNDXt82/3yUs0TSrc/Fed+73RA9Ft2nhwzDa4yNsP0UTRDShNH7TxykViGUgpeumskj
+         HRvGRqVme3LZPMYne/DPsDaR6X/ArzSw24+E0qs8BeIT4Va97odlVrMIDbFWWbRY/BAJ
+         wimcNfmKdrLL+s8IjRdOjnNRTvzBr7M82hlc3olmIbSvusme5U9tl7fejhlZxrbkQQIo
+         LXHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=9DFC7DURCYpRYFYZYkyppLob9xkCwy+AEFcaVaYPfs8=;
+        b=JvxYbmrEcHZ77rgA4QaWwEdmXy/sUoNyo/aaeykGZGTYs0w61AXetz1c6umSBPe61d
+         m+MsnhUtcD2kFw9EP8brEVKFFEBbY7C2QXzOkquZoMm9rE0OTLK4963mRSXRcSp1ZZtA
+         ko3h8xTwjlY9j7j7pp+WXUf5wC28Yy2dkWTzQfrWkVHguxxWKTrjuaFEDQUw0Hx3t5po
+         PN8OTJa+n3wnOxrb2OlOdxfA4ulCU3nWyqBpn9FflKmSRWrj9nV09AIUSOHDZkPi2CS6
+         76FZ9LGTYrbpiMpcjiklqrX1rhPmAFt+UEnQ+9ZggCr2MDgcmwtHB3g4Q4Z/75MCQ6IR
+         a0BA==
+X-Gm-Message-State: AJIora8sZUDyqO74NW1GJfHpLCxJvlp5mz/B0IwN/JE6KyraW05L7uIu
+        ilBxdnVHaebJlDcuaVHRD7OeMw==
+X-Google-Smtp-Source: AGRyM1tOI+u3IonFCcBXlF2yOgxTJjNZ569ISXB7y6CJ2aWXrdfhLu5zMFy7KSt5m+lJ0hmX9XnbHA==
+X-Received: by 2002:a05:6512:2285:b0:487:2538:f0e0 with SMTP id f5-20020a056512228500b004872538f0e0mr23613079lfu.614.1658393182475;
+        Thu, 21 Jul 2022 01:46:22 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id i19-20020a056512341300b0047968606114sm303969lfr.111.2022.07.21.01.46.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jul 2022 01:46:21 -0700 (PDT)
+Message-ID: <9645b7cb-2a43-3085-4caa-f6527cbc2b21@linaro.org>
+Date:   Thu, 21 Jul 2022 10:46:20 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add MSC Technologies
+Content-Language: en-US
+To:     Martyn Welch <martyn.welch@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     kernel@collabora.com, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220720150007.2168051-1-martyn.welch@collabora.com>
+ <abd47815-c84b-115b-f6f2-b6ec0dbf1bef@linaro.org>
+ <86de8ba0157c451fcce4ca92b6cad835e3f1e4d9.camel@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <86de8ba0157c451fcce4ca92b6cad835e3f1e4d9.camel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thanks for your comment.
-
-On Wed, 2022-07-20 at 16:24 -0600, Rob Herring wrote:
-> On Sat, Jul 16, 2022 at 03:43:49PM +0800, Jianjun Wang wrote:
-> > MT8188 and MT8195 use clock "peri_mem" instead of "top_133m", add
-> > new
-> > clock name "peri_mem" for MT8188 and MT8195.
+On 21/07/2022 10:03, Martyn Welch wrote:
+> On Wed, 2022-07-20 at 19:07 +0200, Krzysztof Kozlowski wrote:
+>> On 20/07/2022 17:00, Martyn Welch wrote:
+>>> Add "msc" vendor prefix for MSC Technologies GmbH
+>>> (https://www.msc-technologies.eu).
+>>
+>> Does not really work - leads to Avnet, so there is no MSC anymore?
+>>
 > 
-> This should be part of patch 1.
-
-Sure, I'll merge these two patches into one in the next version.
-
+> It still seems to be used as branding by Avnet.
 > 
-> Clock names for IP blocks should be local to the IP block. IOW,
-> named 
-> after the input name for the clocks or what their function is if you 
-> don't know that. Neither the old names nor the new name seem to
-> follow 
-> this. At least make the new name follow that convention.
-
-Sorry, I'm not sure if I understand correctly, would you mind providing
-an example of this change?
-
-Thanks.
-
+>>>
+>>> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+>>> ---
+>>>
+>>> Changes in v2:
+>>>   - New addition
+>>>
+>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>>  1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> index 0496773a3c4d..1658357bc1c4 100644
+>>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+>>> @@ -816,6 +816,8 @@ patternProperties:
+>>>    "^mrvl,.*":
+>>>      description: Marvell Technology Group Ltd.
+>>>      deprecated: true
+>>> +  "^msc,.*":
+>>> +    description: MSC Technologies GmbH.
+>>
+>> This should be rather msct or msctech, but anyway in fact you maybe
+>> should use avnet?
+>>
 > 
-> > 
-> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> > ---
-> >  .../bindings/pci/mediatek-pcie-gen3.yaml      | 42 ++++++++++++++-
-> > ----
-> >  1 file changed, 32 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-
-> > gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-
-> > gen3.yaml
-> > index 67d2ba25e336..038e25ae0be7 100644
-> > --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> > @@ -43,9 +43,6 @@ description: |+
-> >    each set has its own address for MSI message, and supports 32
-> > MSI vectors
-> >    to generate interrupt.
-> >  
-> > -allOf:
-> > -  - $ref: /schemas/pci/pci-bus.yaml#
-> > -
-> >  properties:
-> >    compatible:
-> >      oneOf:
-> > @@ -85,13 +82,7 @@ properties:
-> >      maxItems: 6
-> >  
-> >    clock-names:
-> > -    items:
-> > -      - const: pl_250m
-> > -      - const: tl_26m
-> > -      - const: tl_96m
-> > -      - const: tl_32k
-> > -      - const: peri_26m
-> > -      - const: top_133m
-> > +    maxItems: 6
-> >  
-> >    assigned-clocks:
-> >      maxItems: 1
-> > @@ -133,9 +124,40 @@ required:
-> >    - interrupts
-> >    - ranges
-> >    - clocks
-> > +  - clock-names
-> >    - '#interrupt-cells'
-> >    - interrupt-controller
-> >  
-> > +allOf:
-> > +  - $ref: /schemas/pci/pci-bus.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - mediatek,mt8188-pcie
-> > +              - mediatek,mt8195-pcie
-> > +    then:
-> > +      properties:
-> > +        clock-names:
-> > +          items:
-> > +            - const: pl_250m
-> > +            - const: tl_26m
-> > +            - const: tl_96m
-> > +            - const: tl_32k
-> > +            - const: peri_26m
-> > +            - const: peri_mem
-> > +    else:
-> > +      properties:
-> > +        clock-names:
-> > +          items:
-> > +            - const: pl_250m
-> > +            - const: tl_26m
-> > +            - const: tl_96m
-> > +            - const: tl_32k
-> > +            - const: peri_26m
-> > +            - const: top_133m
-> > +
-> >  unevaluatedProperties: false
-> >  
-> >  examples:
-> > -- 
-> > 2.18.0
-> > 
-> > 
+> My rationale for using MSC Technologies is that is how the device is
+> described on the website as being a MSC device. I think the
+> amalgamation of the MSC website into Avnet's has happened in the last
+> year or so. I assume a new device released in the near future would be
+> branded more directly as an Avnet device, or maybe not, I see that the
+> i.MX 9 is being described as "MSC SM2S-IMX93".
+> 
+> I'll switch to msctech unless there are objections to that.
+> 
 
+We still have prefixes (and compatibles) from entities which disappeared
+(e.g. Freescale) but these were added probably before the
+merge/acquisition happened. In this case, I do not see a benefit of
+adding a vendor prefix of non-existing vendor.
+
+Therefore use avnet as vendor in compatible. The model name of course
+can stay MSC or whatever you prefer.
+
+Best regards,
+Krzysztof
