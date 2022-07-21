@@ -2,118 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 909C157D044
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 17:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6016657D0A7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:04:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232658AbiGUPub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 11:50:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47450 "EHLO
+        id S229552AbiGUQEt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:04:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232197AbiGUPua (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 11:50:30 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6C8423BFD;
-        Thu, 21 Jul 2022 08:50:29 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id va17so3945058ejb.0;
-        Thu, 21 Jul 2022 08:50:29 -0700 (PDT)
+        with ESMTP id S229588AbiGUQEs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:04:48 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B0D387C1C;
+        Thu, 21 Jul 2022 09:04:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6c3wcMiJrn1UM/DKa9aWRLXTa5crPxp/oNNs3aCcNXs=;
-        b=AgcBH8UQYsZTIG65ZlYzGrtH6Ga+wem2ScqqwmgfJfNlywpwzuyTaO+63CL1Qbz/pC
-         2vgRUsqJZ++f80NwPsYFZpkQYJ5pIy1yCJjNMgu7VJ7KF5Gfcl2ZssdyWEELCjFRu8r1
-         EFZS3ytryXuvgSBNc8y07JJ6a/8QGjg24FoWxltjtXZhA7x9bRJVCHGezFu4SGl85PBj
-         HWzszl5i1RlE5OkfvXvdLDDQ4hcILVv3CF8MXKDU/VsauRaxj4l7BMdfE3IMtAwXFo+s
-         LEV5pohe8tJHblEZSUqgi7qSN7TSCgn3x4bukuvoMAzuF8pyQiAPVeJOIyu5/lFUZM4p
-         zU7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6c3wcMiJrn1UM/DKa9aWRLXTa5crPxp/oNNs3aCcNXs=;
-        b=ocPYpl/BHcsJZ7dPoN3oY5++AgZYUT3HqulFvwIxP/680BloE4O/CzQIsYl76TZe1W
-         zQU5EO+0/bxxJi1/rFDbIF+qmvZVTbu0sKcoIZ1DMAeKWMlKN2JIAJ8HtESdCbZqqJpf
-         AXqC5s5z/lj7sQx3ciMH4ep1+I9uiWmTBjfUdI95ZAro4FL3h0bkkXEHqBXchs3TM/E7
-         EJSHtWxEDOAeRryuVZcPjvw/QXvTmpBn5a0S4uG3obR/lee4x08iLTS68h8FNf42zh1M
-         BYd17evg6bK4guRiKh1H205WSvc56sJWnXAdL6YEROG+i/jDlRWe8QNHXXdXaBOrnJXu
-         l87Q==
-X-Gm-Message-State: AJIora+nzn1w2GgaDI8ET+54raX0wRkqej9jGX/sHktlx0jioVRoKp0z
-        fgfUP9CzfgwL+kdIo0WikdE=
-X-Google-Smtp-Source: AGRyM1urL56xv/AChL16dVfmWB8ytt3oLC4MBYWwwMzMMEMwjiOuq0lKW67mS3sCGTi9n5Pdw0ZC3g==
-X-Received: by 2002:a17:907:60d1:b0:72f:42a0:f3f9 with SMTP id hv17-20020a17090760d100b0072f42a0f3f9mr17538751ejc.727.1658418627918;
-        Thu, 21 Jul 2022 08:50:27 -0700 (PDT)
-Received: from [192.168.0.104] (p5b3f6fa3.dip0.t-ipconnect.de. [91.63.111.163])
-        by smtp.gmail.com with ESMTPSA id k7-20020aa7c047000000b0043a85d7d15esm1174731edo.12.2022.07.21.08.50.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 08:50:27 -0700 (PDT)
-Message-ID: <7d20978f-e17c-9bea-1436-68bcf4bd8524@gmail.com>
-Date:   Thu, 21 Jul 2022 17:50:26 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1658419488; x=1689955488;
+  h=message-id:date:mime-version:subject:from:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=yb4FZU2sS2ec3vg0Ki3FrlpdsmD+gWNYDrl+E3MSovU=;
+  b=ZY3aB3P2f9yuLoBzPsOSM/gdwBrHbzoU3YApNen2ILyNBmk0DnUPjG+K
+   wO7PheNIFU9ANpdZU5oGAwZprYOlDDKQCJhymZWm3Z1TQV3jvT5+stLQu
+   fiQFQzWU6YYBTjXWjKVe6XhLw+RUT5x4t7l9yg6W+ysfPoue6HM1W3esh
+   A=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 21 Jul 2022 09:04:47 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2022 09:04:45 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 21 Jul 2022 09:04:45 -0700
+Received: from [10.216.44.13] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 21 Jul
+ 2022 09:04:39 -0700
+Message-ID: <1e39d008-f8e5-eea5-90f4-78293bf2c580@quicinc.com>
+Date:   Thu, 21 Jul 2022 21:34:35 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 0/6] Add support for mp2733 battery charger
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [Freedreno] [PATCH v2 5/7] arm64: dts: qcom: sc7280: Update gpu
+ register list
 Content-Language: en-US
-To:     lee.jones@linaro.org
-Cc:     sre@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        lars@metafoo.de, krzysztof.kozlowski+dt@linaro.org,
-        andy.shevchenko@gmail.com, robh+dt@kernel.org, jic23@kernel.org
-References: <20220615145357.2370044-1-sravanhome@gmail.com>
-From:   saravanan sekar <sravanhome@gmail.com>
-In-Reply-To: <20220615145357.2370044-1-sravanhome@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
+To:     Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <devicetree@vger.kernel.org>, Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <1657346375-1461-1-git-send-email-quic_akhilpo@quicinc.com>
+ <20220709112837.v2.5.I7291c830ace04fce07e6bd95a11de4ba91410f7b@changeid>
+ <CAD=FV=XzvcjS51q78BZ=FPCEVUDMD+VKJ70ksCm5V4qwHN_wRg@mail.gmail.com>
+ <c022538d-c616-8f1a-e1c2-c11b5f0de670@quicinc.com>
+ <e4dcdd8d-18a9-8da3-7ac3-6cc792139f70@quicinc.com>
+ <CAE-0n52TG3hsytN5nRU7W=S6PffSj8yQDmuicN0-qxoW-jxiZQ@mail.gmail.com>
+ <0c050434-27ca-1099-d93d-8ad6ace3396e@quicinc.com>
+ <CAE-0n53J=dADDTrydVuNZzw38dW_-+Baf8cfn0Q6DSVX_6cLNg@mail.gmail.com>
+ <b6ab023b-601d-1df2-b04b-af5961b73bea@quicinc.com>
+ <698d3279-6a02-9b1e-a3bd-627b6afbc57e@quicinc.com>
+In-Reply-To: <698d3279-6a02-9b1e-a3bd-627b6afbc57e@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Lee,
+On 7/20/2022 11:34 AM, Akhil P Oommen wrote:
+> On 7/19/2022 3:26 PM, Rajendra Nayak wrote:
+>>
+>>
+>> On 7/19/2022 12:49 PM, Stephen Boyd wrote:
+>>> Quoting Akhil P Oommen (2022-07-18 23:37:16)
+>>>> On 7/19/2022 11:19 AM, Stephen Boyd wrote:
+>>>>> Quoting Akhil P Oommen (2022-07-18 21:07:05)
+>>>>>> On 7/14/2022 11:10 AM, Akhil P Oommen wrote:
+>>>>>>> IIUC, qcom gdsc driver doesn't ensure hardware is collapsed 
+>>>>>>> since they
+>>>>>>> are vote-able switches. Ideally, we should ensure that the hw has
+>>>>>>> collapsed for gpu recovery because there could be transient 
+>>>>>>> votes from
+>>>>>>> other subsystems like hypervisor using their vote register.
+>>>>>>>
+>>>>>>> I am not sure how complex the plumbing to gpucc driver would be 
+>>>>>>> to allow
+>>>>>>> gpu driver to check hw status. OTOH, with this patch, gpu driver 
+>>>>>>> does a
+>>>>>>> read operation on a gpucc register which is in always-on domain. 
+>>>>>>> That
+>>>>>>> means we don't need to vote any resource to access this register.
+>>>
+>>> Reading between the lines here, you're saying that you have to read the
+>>> gdsc register to make sure that the gdsc is in some state? Can you
+>>> clarify exactly what you're doing? And how do you know that something
+>>> else in the kernel can't cause the register to change after it is read?
+>>> It certainly seems like we can't be certain because there is voting
+>>> involved.
+> From gpu driver, cx_gdscr.bit[31] (power off status) register can be 
+> polled to ensure that it *collapsed at least once*. We don't need to 
+> care if something turns ON gdsc after that.
+>
+>>
+>> yes, this looks like the best case effort to get the gpu to recover, but
+>> the kernel driver really has no control to make sure this condition can
+>> always be met (because it depends on other entities like hyp, 
+>> trustzone etc right?)
+>> Why not just put a worst case polling delay?
+>
+> I didn't get you entirely. Where do you mean to keep the polling delay?
+>>
+>>>
+>>>>>>>
+>>>>>>> Stephen/Rajendra/Taniya, any suggestion?
+>>>>> Why can't you assert a gpu reset signal with the reset APIs? This 
+>>>>> series
+>>>>> seems to jump through a bunch of hoops to get the gdsc and power 
+>>>>> domain
+>>>>> to "reset" when I don't know why any of that is necessary. Can't we
+>>>>> simply assert a reset to the hardware after recovery completes so the
+>>>>> device is back into a good known POR (power on reset) state?
+>>>> That is because there is no register interface to reset GPU CX domain.
+>>>> The recommended sequence from HW design folks is to collapse both 
+>>>> cx and
+>>>> gx gdsc to properly reset gpu/gmu.
+>>>>
+>>>
+>>> Ok. One knee jerk reaction is to treat the gdsc as a reset then and
+>>> possibly mux that request along with any power domain on/off so that if
+>>> the reset is requested and the power domain is off nothing happens.
+>>> Otherwise if the power domain is on then it manually sequences and
+>>> controls the two gdscs so that the GPU is reset and then restores the
+>>> enable state of the power domain.
+> It would be fatal to asynchronously pull the plug on CX gdsc 
+> forcefully because there might be another gpu/smmu driver thread 
+> accessing registers in cx domain.
+>
+> -Akhil.
+>
+But, we can move the cx collapse polling to gpucc and expose it to gpu 
+driver using 'reset' framework. I am not very familiar with clk driver, 
+but I did a rough prototype here (untested): 
+https://zerobin.net/?d34b5f958be3b9b8#NKGzdPy9fgcuOqXZ/XqjI7b8JWcivqe+oSTf4yWHSOU=
 
-May I know what is the plan for merge this change-set !
+If this approach is acceptable, I will send it out as a separate series.
 
-On 15/06/22 16:53, Saravanan Sekar wrote:
-> changes in v3:
->   - fixed dt_binding_check error
->   - fixed spelling usb->USB
-> 
-> changes in v2:
->   - fixed spelling
->   - revert back probe to probe_new in mfd driver
-> 
-> I do not see a cover letter, but FWIW,
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> for all patches except DT binding
-> Note, some of the comments regarding spelling were given, I believe
-> you are going to address them in v3.
-> 
-> 
-> add support for mp2733 Battery charger control driver for Monolithic
-> Power System's MP2733 chipset
-> 
-> Saravanan Sekar (6):
->    iio: adc: mp2629: fix wrong comparison of channel
->    dt-bindings: mfd: Add mp2733 compatible
->    mfd: mp2629: Add support for mps mp2733 battery charger
->    iio: adc: mp2629: restrict input voltage mask for mp2629
->    power: supply: Add support for mp2733 battery charger
->    power: supply: mp2629: Add USB fast charge settings
-> 
->   .../ABI/testing/sysfs-class-power-mp2629      |  16 ++
->   .../devicetree/bindings/mfd/mps,mp2629.yaml   |   4 +-
->   drivers/iio/adc/mp2629_adc.c                  |   5 +-
->   drivers/mfd/mp2629.c                          |   5 +-
->   drivers/power/supply/mp2629_charger.c         | 208 +++++++++++++++---
->   include/linux/mfd/mp2629.h                    |   6 +
->   6 files changed, 212 insertions(+), 32 deletions(-)
-> 
-
-Thanks,
-Saravanan
+-Akhil.
