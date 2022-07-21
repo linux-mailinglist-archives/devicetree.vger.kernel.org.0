@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 498EA57D5F4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 23:30:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE8C757D627
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 23:37:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbiGUVaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 17:30:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48142 "EHLO
+        id S233919AbiGUVhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 17:37:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233591AbiGUVaU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 17:30:20 -0400
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A43D27B11;
-        Thu, 21 Jul 2022 14:30:19 -0700 (PDT)
-Received: by mail-il1-f170.google.com with SMTP id h16so1467413ilc.10;
-        Thu, 21 Jul 2022 14:30:19 -0700 (PDT)
+        with ESMTP id S233433AbiGUVhf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 17:37:35 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E3393630;
+        Thu, 21 Jul 2022 14:37:34 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id u20so2380436iob.8;
+        Thu, 21 Jul 2022 14:37:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Q4CuC/WYjQM/RT96qg2sYj3aPg2iiARQl9OFgHF9MtE=;
-        b=LI559kmkLUDtOYMo65KazC/YcWhd4zx5wdizVkLGhNCc1lZoU5P35u/oykDuTwCoY6
-         Be8NaWwCPN6dD2ERIl4OjpWB7GBN2F1g2LFE3jegtpzzpLycrWefMdL4Mu3mzObEPgKN
-         MOF6jdCSPmRoT6TzNcbr5SS6vwtUmgo2tGmWynH1rtqQny7cUm2m3NapacQQClnZzzgd
-         hhh2moCExtGyrOC4H3K913I72S/uLwr3Y1wCK6ulXSvtQPP5xtwAJlyE06w96A92+FW1
-         eMKlgP8foVLLnCQ/+w6a+9lKAAEvoUcXZ2DM7UPzqIb7Ehz7sTNJsr9T6qC3c6mIEFlf
-         y7NA==
-X-Gm-Message-State: AJIora/WEYSoAROoxF2ZLOt7VXBakp4NqbGi6e7tePftT30s8b1dpLoJ
-        F5kTyo43rK0E2q55asfOtw==
-X-Google-Smtp-Source: AGRyM1sjispE0yfxZ6N5fmn3vErNnDMnKf5YChwThWvCKcWIphbObaSgwNMYwJhrlMnKw4MDdOAUpA==
-X-Received: by 2002:a05:6e02:1645:b0:2da:e6be:3dfc with SMTP id v5-20020a056e02164500b002dae6be3dfcmr192299ilu.116.1658439018245;
-        Thu, 21 Jul 2022 14:30:18 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.248])
-        by smtp.googlemail.com with ESMTPSA id c1-20020a0566022d0100b0067b7966553fsm1297539iow.20.2022.07.21.14.30.17
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+0HdgmCZ+Rln6MS1n8RXhMBDElcjUol5xkuMakNkAN4=;
+        b=GAm5qqlDI+YXkaAZKkKFiHmcHQbusTWeciw0PqBamc5ZfyyOuACg6pIYcV5OyKIDx5
+         HJyJJBf3kUpP7WAPJ2mAC1YJv37zfVgchEHeY7Ut3YL8OGCKhsNhfvx58kQ6jOFvcw6/
+         uyYE9lriuwM/4ONaHhFxXo7UVo2BGC9wznnDzQoThO33fgNyY5sfN/yHZc1J13OhA8Yq
+         9C7HdrgtPagpCxMqEIG3CmL3jpI7Udvl8hDNUfGSPQAMcLNWxde07+ROfDNsiuLYn1+g
+         zXpPP0m3IWRmGRvsXK0e1fECpZ8c8CiEBrY/dAaeuf4LLgPXPNeH/rMdpXwX9Mik7F7a
+         zp3Q==
+X-Gm-Message-State: AJIora+Fyi1vNiTi7lRpVDvs8UFQ5K6ESxacz4trPhV97yrARvoWetxZ
+        2H6ZSXd1/BWiTItpYrvf15HIF2GftQ==
+X-Google-Smtp-Source: AGRyM1tW45Lc/rpN/g5qpyrJC/pQA3Y5vk6C4+J0XnxZmoG7s2P2KyKAwpFNwXEyhBXFax/JrozEKg==
+X-Received: by 2002:a02:9705:0:b0:341:468c:7724 with SMTP id x5-20020a029705000000b00341468c7724mr225657jai.143.1658439454145;
+        Thu, 21 Jul 2022 14:37:34 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id q12-20020a92d40c000000b002dd0f4b440fsm1081352ilm.67.2022.07.21.14.37.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 14:30:17 -0700 (PDT)
+        Thu, 21 Jul 2022 14:37:33 -0700 (PDT)
+Received: (nullmailer pid 1994823 invoked by uid 1000);
+        Thu, 21 Jul 2022 21:37:32 -0000
+Date:   Thu, 21 Jul 2022 15:37:32 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: arm: juno: Remove legacy Coresight 'slave-mode' property
-Date:   Thu, 21 Jul 2022 15:29:52 -0600
-Message-Id: <20220721212952.1984382-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: ds1307: Convert to json-schema
+Message-ID: <20220721213732.GA1993841-robh@kernel.org>
+References: <20220617114420.1398259-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220617114420.1398259-1-thierry.reding@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -61,38 +62,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'slave-mode' property is not valid under 'in-ports' as it was the
-legacy way to find input ports. Warnings are generated from the Coresight
-schema:
+On Fri, 17 Jun 2022 13:44:19 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Convert the DS1307 (and compatible) RTC bindings from the free-form text
+> format to json-schema.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+> Changes in v2:
+> - add compatible string list for [ st,m41t00, dallas,ds1338 ]
+> - allow second interrupt and interrupt-names
+> - remove commented-out section
+> - allow vcc-supply
+> 
+>  .../devicetree/bindings/rtc/rtc-ds1307.txt    |  52 ---------
+>  .../devicetree/bindings/rtc/rtc-ds1307.yaml   | 102 ++++++++++++++++++
+>  2 files changed, 102 insertions(+), 52 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+> 
 
-arch/arm64/boot/dts/arm/juno-r1.dtb: funnel@20150000: in-ports:port@0:endpoint: Unevaluated properties are not allowed ('slave-mode' was unexpected)
-        From schema: Documentation/devicetree/bindings/arm/arm,coresight-dynamic-funnel.yaml
+Looks like this hasn't been picked up so I've applied both patches, 
+thanks!
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi b/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
-index 2e43f4531308..fbcdf63ad56d 100644
---- a/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
-+++ b/arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi
-@@ -67,7 +67,6 @@ in-ports {
- 			port@0 {
- 				reg = <0>;
- 				csys2_funnel_in_port0: endpoint {
--					slave-mode;
- 					remote-endpoint = <&etf0_out_port>;
- 				};
- 			};
-@@ -75,7 +74,6 @@ csys2_funnel_in_port0: endpoint {
- 			port@1 {
- 				reg = <1>;
- 				csys2_funnel_in_port1: endpoint {
--					slave-mode;
- 					remote-endpoint = <&etf1_out_port>;
- 				};
- 			};
--- 
-2.34.1
+Rob
 
