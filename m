@@ -2,103 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C9A657C53D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 09:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2869B57C554
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 09:31:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232310AbiGUHZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 03:25:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40570 "EHLO
+        id S229780AbiGUHbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 03:31:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbiGUHZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 03:25:11 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41161E22
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 00:25:08 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id z13so391558ljj.6
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 00:25:08 -0700 (PDT)
+        with ESMTP id S229604AbiGUHbt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 03:31:49 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCD0B4A826;
+        Thu, 21 Jul 2022 00:31:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=2mcFMkdFlegyaGlkJRzck9ynacBYIr8JIQrrqE1QtHQ=;
-        b=tYHFkxpwdcnUQpnCYyayLPi5CzFc6YrNc6lB9ARelLymRoQOmIWGwVOVMw2fjkrtXg
-         hkFHzRYZ2NTtDe++JKiaEJHGTXMIUmMtFZLi16uOUJoXlZIQAi26VkO0noApt5cdeI02
-         TN8Cgk23ccoqT5IrgxpzlzXMxyK7vcQ4FwIYkWjAOofT9KHpghFf2IC0JD2uoAaT9ZiQ
-         Bj1QYc7F9vgpXSK4LdEPm+FSiK8rm9m37EgvtUXHCj2ud4oqkhb3w3NKeNo/uMnpMTms
-         E19aZ0ZQwbR5WsIHGfvcS446TUH+d2xVbUEQT7iMldQU0GmiZFrbAViKmk6OnQ2ux3Sj
-         Si9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=2mcFMkdFlegyaGlkJRzck9ynacBYIr8JIQrrqE1QtHQ=;
-        b=ct5A9RoTRiyXIuOKUPJn/tqfLtpr3nCW9Q5huCq02sVh6WTUl7RvDAxrlmBrO+0E0R
-         DHV+co5FgbEG1poUK8Z9QXio3WFEKE1Oqtb9osKJwjVvuRVNpadBxSArFqZlqYH6umRi
-         L6YCE89/UO4lAPFP5iLOHANi55/5WuzncupZu+9UuGLapUMH4igm1tSoR1ogb3Smsgh9
-         FeaSKXuGEdJRYNnlvadbD1u3O3h5FkWffJG8aPg4nS2+narnf33Izz9HlkWJTtA9pX8Z
-         kmO4H6v6lyXHGJcXftVfiPgZG31eLS9LUuvWnEIcxb1kpx2NLNTzEewcK2vKsqmwQxLG
-         cRlg==
-X-Gm-Message-State: AJIora9QToiqgnrCVbXSp0/1N4/2VqCLLUbx0nZmtjVUHUZk9DWDSkTA
-        LXKI0dJjoax0Qqkhr/FC6uwDMw==
-X-Google-Smtp-Source: AGRyM1swyaJylpQW1HUAs/YKi2zAEaOv5XArks69BMBBv+GjPdFriuSjdzcx9tFrEZcjg8uQ4H+/9w==
-X-Received: by 2002:a2e:9c5a:0:b0:25d:dad5:1e04 with SMTP id t26-20020a2e9c5a000000b0025ddad51e04mr1198656ljj.428.1658388307218;
-        Thu, 21 Jul 2022 00:25:07 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id r26-20020ac252ba000000b00489e011bad7sm260305lfm.218.2022.07.21.00.25.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 00:25:06 -0700 (PDT)
-Message-ID: <1f0f2083-3100-a2d4-d513-52869b5aa706@linaro.org>
-Date:   Thu, 21 Jul 2022 09:25:05 +0200
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1658388708; x=1689924708;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=SLMwd2A0TMOCUQShsl7NPdbyQGyeZ5aGV5O58Fvg310=;
+  b=LsCrr4ziHsFgqPD1kJpf1Wu2gIZh0QWOTQH/hWPaQP3sDcENrJA8TabR
+   2mC1K2EwW3KPMoSNz+Z54spbq5rHcGjNlACUY/1FoEeXFarvnUArJMXI6
+   09B0hfr2y+yOFxtCYiNU/7QFmTGHWKTmmnxlsPt93XWD7MUHlcp/ILjpk
+   INfc+jp07QA0eHvjW0ERHxCftu0Z4h4+dvPMwx5fvig3EGicL/ngM9+Mk
+   8Lugvh6vy1Keq3bTtwoP8L5kj9srs5pnx8Fm/UxYhgTdaf0XPq4q6j0Qi
+   25yqem0Vk/rSV9dJx73F89goYnfeGBnwYAJkg3CbOpDIvt3rGteqFt0pn
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.92,288,1650924000"; 
+   d="scan'208";a="25175232"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 21 Jul 2022 09:31:46 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 21 Jul 2022 09:31:46 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 21 Jul 2022 09:31:46 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1658388706; x=1689924706;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=SLMwd2A0TMOCUQShsl7NPdbyQGyeZ5aGV5O58Fvg310=;
+  b=JncCOSmdxeddjnf7W80x7BHQ2D6enapGvBm256i0CLNC2fhOJv/ma0CH
+   FU6XfaJ7D0Ff7VANbVRQ7E4fYwzgATlcRT0on4DX7tC9nLM9lppN7Ztwk
+   OaxlOJ7FMmTLv/iyYVnhq5uhAi3QhnU/PoAAYmOoOPAKQZCKthfozMPs5
+   NtCFb9a+dApUSkdfz99NBfAxRCDEEKeS5ih0BI5xMqX+2sZf0KuqwiQND
+   25/ZelE5SoR1U1+cGLSYvC/JJ56kOExSQzi4l7MJLwckwMImFgmFM+Tl+
+   l3VruTkIBTfLilB2B36pb1r5DZ3uDzjQF64YQiiGa8aK3Ng5QAl+jv0pz
+   A==;
+X-IronPort-AV: E=Sophos;i="5.92,288,1650924000"; 
+   d="scan'208";a="25175231"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 21 Jul 2022 09:31:45 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C5CC3280056;
+        Thu, 21 Jul 2022 09:31:45 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/1] dt-bindings: rtc: nxp,pcf85063: Convert to DT schema
+Date:   Thu, 21 Jul 2022 09:31:41 +0200
+Message-Id: <20220721073141.1746700-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/7] dt-bindings: vendor-prefixes: document several
- vendors for Aspeed BMC boards
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andrew Jeffery <andrew@aj.id.au>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, Arnd Bergmann <arnd@arndb.de>,
-        Steven Lee <steven_lee@aspeedtech.com>,
-        Ken Chen <chen.kenyy@inventec.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     David Wang <David_Wang6097@jabil.com>
-References: <20220529104928.79636-1-krzysztof.kozlowski@linaro.org>
- <c86be8e0-8350-5d73-8055-e04a4e88f3b6@linaro.org>
- <42fb4884-e2c3-4d7f-9049-f14c19701b20@www.fastmail.com>
- <fb1b5eed-41ed-2c4b-c984-235ec4b3b0f6@linaro.org>
-In-Reply-To: <fb1b5eed-41ed-2c4b-c984-235ec4b3b0f6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 08:30, Krzysztof Kozlowski wrote:
-> On 21/07/2022 04:34, Andrew Jeffery wrote:
->>> Any comments on this patchset? Are you going to pick it up? If you
->>> prefer me taking it, I can, but new boards depend on the bindings, so
->>> this should rather go via your tree.
->>
->> Apologies for not getting to this earlier, but I see Rob's applied it.
-> 
-> Rob took only the first patch - vendor-prefix. The DTS patches I sent to
-> arm-soc.
-> 
-> However the second bindings patch [1] will miss merge window as I did
-> not send it to arm-soc. I have it in my tree but I am not planning to
-> push it out before merge window.
-> 
+Convert the NXP PCF85063 RTC binding to DT schema format.
 
-I sent pull with the bindings now.
+Add 'interrupts' and 'wakeup-source' as this device has an interrupt
+which was not documented, but is in use.
 
-Best regards,
-Krzysztof
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+checkpath.pl warns about:
+WARNING: DT binding docs and includes should be a separate patch. See:
+Documentation/devicetree/bindings/submitting-patches.rst
+
+But this seems to be a false positive to me. Includes are not touched at
+all.
+
+ .../devicetree/bindings/rtc/nxp,pcf85063.txt  | 32 --------
+ .../devicetree/bindings/rtc/nxp,pcf85063.yaml | 76 +++++++++++++++++++
+ 2 files changed, 76 insertions(+), 32 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
+
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+deleted file mode 100644
+index 217b7cd06c11..000000000000
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
++++ /dev/null
+@@ -1,32 +0,0 @@
+-* NXP PCF85063 Real Time Clock
+-
+-Required properties:
+-- compatible: Should one of contain:
+-	"nxp,pca85073a",
+-	"nxp,pcf85063",
+-	"nxp,pcf85063a",
+-	"nxp,pcf85063tp",
+-	"microcrystal,rv8263"
+-- reg: I2C address for chip.
+-
+-Optional property:
+-- quartz-load-femtofarads: The capacitive load of the quartz(x-tal),
+-  expressed in femto Farad (fF). Valid values are 7000 and 12500.
+-  Default value (if no value is specified) is 7000fF.
+-
+-Optional child node:
+-- clock: Provide this if the square wave pin is used as boot-enabled fixed clock.
+-
+-Example:
+-
+-pcf85063: rtc@51 {
+-	compatible = "nxp,pcf85063";
+-	reg = <0x51>;
+-	quartz-load-femtofarads = <12500>;
+-
+-		clock {
+-			compatible = "fixed-clock";
+-			#clock-cells = <0>;
+-			clock-frequency = <32768>;
+-		};
+-};
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
+new file mode 100644
+index 000000000000..f46c7e5378e1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/nxp,pcf85063.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PCF85063 Real Time Clock
++
++maintainers:
++  - Alexander Stein <alexander.stein@ew.tq-group.com>
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    enum:
++      - nxp,pca85073a
++      - nxp,pcf85063
++      - nxp,pcf85063a
++      - nxp,pcf85063tp
++      - microcrystal,rv8263
++
++  reg:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 0
++
++  clock-output-names:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-names:
++    const: irq
++
++  quartz-load-femtofarads:
++    description:
++      The capacitive load of the quartz(x-tal),
++      expressed in femto Farad (fF). Valid values are 7000 and 12500.
++      Default value (if no value is specified) is 7000fF.
++
++  clock:
++    $ref: /schemas/clock/fixed-clock.yaml
++    description:
++      Provide this if the square wave pin is used as boot-enabled
++      fixed clock.
++
++  wakeup-source: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@51 {
++          compatible = "nxp,pcf85063";
++          reg = <0x51>;
++          quartz-load-femtofarads = <12500>;
++
++          clock {
++            compatible = "fixed-clock";
++            #clock-cells = <0>;
++            clock-frequency = <32768>;
++          };
++        };
++      };
+-- 
+2.25.1
+
