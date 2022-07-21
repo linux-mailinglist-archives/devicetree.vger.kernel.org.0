@@ -2,171 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1095057D4C2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 22:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0451357D4DC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 22:38:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231330AbiGUUZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 16:25:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55964 "EHLO
+        id S230043AbiGUUie (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 16:38:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230135AbiGUUZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 16:25:44 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAE3B8967C
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 13:25:42 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id w185so2778268pfb.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 13:25:42 -0700 (PDT)
+        with ESMTP id S229750AbiGUUid (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 16:38:33 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D9215C9F1
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 13:38:33 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id t3-20020a17090a3b4300b001f21eb7e8b0so5789304pjf.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 13:38:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=ZRsmDW5YJGlx28xHhwmp3cHg6otmQzb2gBaROJiExEc=;
-        b=ItjJFWNdPkTlsLhuPv9hyk19dMwhdbI+Dj4gJzZka7YEErgKFdU1YkvyB68PSfIKgj
-         dMXNqBEiIoQI528ZoELr2lwX0lUDB6+KuZ5Wndo48DSuuwpPMUZM3eh+XKVmjVaIJk+s
-         L2do6xnhCbAA2Kh41YfkJAmpdrYOso1cTRyow=
+        bh=vhEL2n63GIy3eV3gH7ovdwJvKRxWR52rbSmn5hmY09I=;
+        b=Qs9HdCOCWOl3BXayEijkkBfHIf60AhHqHYwbQ8EspPQAYOLN56GhibRA3Acl6djZqL
+         isVqGTgLdID0N3a5qld44Vgm2NkZvvXcglh1zL9A7DL8viMi8Hxw3aHxnbL1r5+a0SbG
+         wNHrsary3Y2CEZXy3DR413dxsPjkbtkrkbdIE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ZRsmDW5YJGlx28xHhwmp3cHg6otmQzb2gBaROJiExEc=;
-        b=0JGRyVI/toGw8FiTCYzNiLv4t9BOAV4ExU+498OHsT8ONZmIP044HMokqrGfPjA/oQ
-         b6aSgtmeKNL6HvQmrqIfBCfecjPe4u4lrle269sLPo6AQ5kQLbafqvD6CQliQJByLRDP
-         rRth9GTUxVGbblDoTs9ou2Qh0nGDb1TS7WRlJWuXm51EGpy9E7QhbGiikFhccq892fO+
-         j0Ej4myqicVuUd1w79g6LoCdJIIwEpV7IjbmdDQiKUjCSH0AK7tRK+ZW1vzxaslkED8T
-         pHYxrI14jalzgzJZ7LuVGWRUFJeOtaJrqIViNBNLONb9emlQWjnW/1RUdGHmSGvNvciG
-         KMpg==
-X-Gm-Message-State: AJIora9nieEwfh8zciGp5cYX0q8uWd+DLvAHCNWR4yYhAfou/rrZtLdb
-        RSB7oYzbq39YjGPKs4GxGJ3kRQ==
-X-Google-Smtp-Source: AGRyM1vEcuaNC2i1/ChfRa3DTbn9BZk2+FA8OxMRRs6Mj2d/y9GjG/3xvvC+LAjcjvLLkqX9JGvGGQ==
-X-Received: by 2002:a63:5a1b:0:b0:41a:64d4:9643 with SMTP id o27-20020a635a1b000000b0041a64d49643mr124611pgb.126.1658435142076;
-        Thu, 21 Jul 2022 13:25:42 -0700 (PDT)
+        bh=vhEL2n63GIy3eV3gH7ovdwJvKRxWR52rbSmn5hmY09I=;
+        b=pJCJJZxnOa2dYj4uQ62uEE2fNNehQwgxg/2eMHyvCG9IqTxohCIhxLge+XRARCjn+E
+         Hkya524UmUlUkRGtxGXgi7ofPxziQ2eA7avl72N4DsQU3937QgyVmfTdSrVhOEuUFdtR
+         kol4h1DMyrbGZjEUhJ0OV+PRbWOjwBW8M4Y/qdAcl7idaQWeOxeWq1ehzQIE9RsEwHcS
+         57om61ZAXH/bek7JfO7cmxLo5PS3vacouVI811RkPK1iPcPlDw2IUOHPsP1k5gpT+HHb
+         vQfcFfPsMwNFyqRAhQYp0nZkSFd9OissOMlGVwEqU/5ZEslKprmpOdaGq/yjjHcqZFpP
+         4x0g==
+X-Gm-Message-State: AJIora+3Ssw3EzgH+McZoQcVwZ1rNPZuTlTQBfAaMyMjE45M/ciKYpXu
+        kmAj9EiYhYF1FQebzO59hUcGZQ==
+X-Google-Smtp-Source: AGRyM1uZAAUHbSnyka57V3ux6i4PTbKitXwoEiAXBdds16ilM3cjJdbrs4NYN+e1yI90fmwxaMvbyA==
+X-Received: by 2002:a17:90b:38c8:b0:1f1:ea33:455e with SMTP id nn8-20020a17090b38c800b001f1ea33455emr13424130pjb.219.1658435912462;
+        Thu, 21 Jul 2022 13:38:32 -0700 (PDT)
 Received: from localhost ([2620:15c:11a:202:e11e:767b:e6fb:8f36])
-        by smtp.gmail.com with UTF8SMTPSA id g2-20020a655942000000b00419fc2c27d8sm1908544pgu.43.2022.07.21.13.25.41
+        by smtp.gmail.com with UTF8SMTPSA id i1-20020aa796e1000000b0052ab54a4711sm2205552pfq.150.2022.07.21.13.38.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 13:25:41 -0700 (PDT)
-Date:   Thu, 21 Jul 2022 13:25:39 -0700
+        Thu, 21 Jul 2022 13:38:32 -0700 (PDT)
+Date:   Thu, 21 Jul 2022 13:38:30 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] usb: misc: onboard_usb_hub: Add reset-gpio support
-Message-ID: <Ytm2Q1gqbRggpqDK@google.com>
+Subject: Re: [PATCH v2 3/3] usb: misc: onboard_usb_hub: Add TI USB8041 hub
+ support
+Message-ID: <Ytm5RrXYaKtwEg23@google.com>
 References: <20220715073300.868087-1-alexander.stein@ew.tq-group.com>
- <20220715073300.868087-2-alexander.stein@ew.tq-group.com>
- <YtHDjF8HPUGdMWlE@google.com>
- <2543198.Lt9SDvczpP@steina-w>
+ <20220715073300.868087-3-alexander.stein@ew.tq-group.com>
+ <YtHFEY+iAipCROPl@google.com>
+ <3525334.R56niFO833@steina-w>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <2543198.Lt9SDvczpP@steina-w>
+In-Reply-To: <3525334.R56niFO833@steina-w>
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 20, 2022 at 09:15:12AM +0200, Alexander Stein wrote:
-> Hi Matthias,
-> 
-> Am Freitag, 15. Juli 2022, 21:44:12 CEST schrieb Matthias Kaehlcke:
-> > On Fri, Jul 15, 2022 at 09:32:59AM +0200, Alexander Stein wrote:
-> > > Despite default reset upon probe, release reset line after powering up
-> > > the hub and assert reset again before powering down.
+On Wed, Jul 20, 2022 at 09:18:50AM +0200, Alexander Stein wrote:
+> Am Freitag, 15. Juli 2022, 21:50:41 CEST schrieb Matthias Kaehlcke:
+> > On Fri, Jul 15, 2022 at 09:33:00AM +0200, Alexander Stein wrote:
+> > > This is a 4-port 3.0 USB hub.
 > > > 
 > > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > > > ---
 > > > Changes in v2:
-> > > * Use device specific sleep times, if present
-> > > * Use fsleep instead of usleep_range
+> > > * Add devtype data containing waiting times
 > > > 
-> > >  drivers/usb/misc/onboard_usb_hub.c | 29 +++++++++++++++++++++++++++++
-> > >  drivers/usb/misc/onboard_usb_hub.h |  5 +++++
-> > >  2 files changed, 34 insertions(+)
+> > >  drivers/usb/misc/onboard_usb_hub.c | 3 +++
+> > >  drivers/usb/misc/onboard_usb_hub.h | 7 +++++++
+> > >  2 files changed, 10 insertions(+)
 > > > 
 > > > diff --git a/drivers/usb/misc/onboard_usb_hub.c
-> > > b/drivers/usb/misc/onboard_usb_hub.c index 6b9b949d17d3..1dd7f4767def
+> > > b/drivers/usb/misc/onboard_usb_hub.c index 1dd7f4767def..319b4b1748fb
 > > > 100644
 > > > --- a/drivers/usb/misc/onboard_usb_hub.c
 > > > +++ b/drivers/usb/misc/onboard_usb_hub.c
-> > > @@ -7,6 +7,7 @@
+> > > @@ -339,6 +339,7 @@ static struct platform_driver onboard_hub_driver = {
 > > > 
-> > >  #include <linux/device.h>
-> > >  #include <linux/export.h>
-> > > 
-> > > +#include <linux/gpio/consumer.h>
-> > > 
-> > >  #include <linux/init.h>
-> > >  #include <linux/kernel.h>
-> > >  #include <linux/list.h>
-> > > 
-> > > @@ -38,6 +39,8 @@ struct usbdev_node {
-> > > 
-> > >  struct onboard_hub {
+> > >  /************************** USB driver **************************/
 > > >  
-> > >  	struct regulator *vdd;
-> > >  	struct device *dev;
+> > >  #define VENDOR_ID_REALTEK	0x0bda
 > > > 
-> > > +	const struct onboard_hub_devtype_data *devtype_data;
-> > 
-> > This kind of device specific data is often call platform data, let's
-> > call the struct 'onboard_hub_pdata' and the field 'pdata'?
-> 
-> I took flexcan as a reference, but I do not mind using other names if that is 
-> preferred.
-> 
-> > > +	struct gpio_desc *reset_gpio;
+> > > +#define VENDOR_ID_TI		0x0451
 > > > 
-> > >  	bool always_powered_in_suspend;
-> > >  	bool is_powered_on;
-> > >  	bool going_away;
+> > >  /*
+> > >  
+> > >   * Returns the onboard_hub platform device that is associated with the
+> > >   USB
 > > > 
-> > > @@ -56,6 +59,11 @@ static int onboard_hub_power_on(struct onboard_hub
-> > > *hub)
+> > > @@ -416,6 +417,8 @@ static const struct usb_device_id
+> > > onboard_hub_id_table[] = {> 
+> > >  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5411) }, /* RTS5411 USB 2.1 */
+> > >  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x0414) }, /* RTS5414 USB 3.2 */
+> > >  	{ USB_DEVICE(VENDOR_ID_REALTEK, 0x5414) }, /* RTS5414 USB 2.1 */
 > > > 
-> > >  		return err;
-> > >  	
-> > >  	}
+> > > +	{ USB_DEVICE(VENDOR_ID_TI, 0x8140) }, /* TI USB8041 3.0 */
+> > > +	{ USB_DEVICE(VENDOR_ID_TI, 0x8142) }, /* TI USB8041 2.0 */
 > > > 
-> > > +	if (hub->devtype_data)
+> > >  	{}
+> > >  
+> > >  };
+> > >  MODULE_DEVICE_TABLE(usb, onboard_hub_id_table);
+> > > 
+> > > diff --git a/drivers/usb/misc/onboard_usb_hub.h
+> > > b/drivers/usb/misc/onboard_usb_hub.h index 7e743f4c8aaa..fcb6a9024bbd
+> > > 100644
+> > > --- a/drivers/usb/misc/onboard_usb_hub.h
+> > > +++ b/drivers/usb/misc/onboard_usb_hub.h
+> > > @@ -11,7 +11,14 @@ struct onboard_hub_devtype_data {
+> > > 
+> > >  	unsigned long reset_duration;		/* reset pulse width in 
+> us */
+> > >  
+> > >  };
+> > > 
+> > > +static const struct onboard_hub_devtype_data ti_tusb8041_data = {
+> > > +	.power_stable_time = 3000,
+> > > +	.reset_duration = 3000,
 > > 
-> > Instead of these checks let's make sure all hubs have pdata. Actually your
-> > onboard_hub_probe() already esnures that the field is assigned.
+> > Aren't these two values actually the same thing, i.e. the minimum
+> > duration of the reset?
+> > 
+> > From the data sheet:
+> > 
+> >   A minimum reset duration of 3 ms is required
+> > 
+> >   td2: VDD and VDD33 stable before de-assertion of GRSTz (>= 3ms)
+> > 
+> > My understanding is that td2 is just another expression of the first
+> > requirement.
 > 
-> For Realtek hubs (no platform data yet), of_id->data therefore hub-
-> >devtype_data is NULL.
-> But I agree that providing platformdata for all hubs seems reasonable to get 
-> rid of these checks.
-> 
-> > > +		fsleep(hub->devtype_data->power_stable_time);
-> > > +	if (hub->reset_gpio)
-> > > +		gpiod_set_value_cansleep(hub->reset_gpio, 0);
-> > 
-> > I would have expected:
-> > 
-> >   	if (hub->reset_gpio) {
-> > 		fsleep(hub->devtype_data->power_stable_time);
-> > 		gpiod_set_value_cansleep(hub->reset_gpio, 0);
-> > 	}
-> > 
-> > For the TUSB8041 the 'power_stable_time' (td2 in the datasheet) is "VDD and
-> > VDD33 stable before de-assertion of GRSTz", so no delay without reset.
-> 
-> Your suggestion only works if you control the reset line (GRSTz) by GPIO. If 
-> this line is controlled by hardware using RC circuits this waiting time still 
-> has to be respected when power is supplied.
-> I prefer that the USB hub is properly reset once this function exits. Without 
-> waiting time the hardware controlled GRSTz might not yet be at a proper level.
+> They may have the same values, but IMHO they are applied differently.
+> 'power_stable_time' (or power_stable_us now) applies after supplying power, 
+> while 'reset_duration' (or reset_us now) applies when you deassert the reset 
+> line. 
+> For that reason I would like to keep them separated.
 
-Ok, in that case let's omit the check for 'hub->reset_gpio' and just do:
+In both cases the datasheet talks about the reset duration of 3 ms in
+relation with the power supplies:
 
-	fsleep(hub->devtype_data->power_stable_time);
-	gpiod_set_value_cansleep(hub->reset_gpio, 0);
+  7.6 Timing Requirements, Power-Up
 
-The point of adding the check was to skip the delay when no reset GPIO is
-specified, but apparently that's not what we actually want.
+  td2: VDD and VDD33 stable before de-assertion of GRSTz
+
+
+  8.3.7 Power-Up and Reset
+
+  A minimum reset duration of 3 ms is required. This is defined as the time when
+  the power supplies are in the recommended operating range to the de-assertion
+  of GRSTz.
+
+At this point I see no good reason for having two different values. If it turns
+out later that it is really needed for other hubs another fiels like
+'power_stable_us' can still be added.
