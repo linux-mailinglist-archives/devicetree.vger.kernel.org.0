@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C8B857D74C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 01:16:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24C4B57D751
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 01:18:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbiGUXQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 19:16:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40706 "EHLO
+        id S229739AbiGUXSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 19:18:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232938AbiGUXQU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 19:16:20 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477938E4EA
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 16:16:20 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id o5-20020a17090a3d4500b001ef76490983so2735253pjf.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 16:16:20 -0700 (PDT)
+        with ESMTP id S229645AbiGUXSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 19:18:16 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393EB8E4EC
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 16:18:16 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id o18so2995852pgu.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 16:18:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gU99uR0QQWxROvzrLz98bXRxkP+CXicxeIxwz7Z5Q3s=;
-        b=Fkh2wC/fsRUcPDxB4uVMGjMk7W034fGudVIelq77kXW/r+fwX29KlxFArB/VlRmnZY
-         EbtDIFYhuDh9Ba/rr8A+PDZkxSfTb88B8raP6P5jIq0Rg6skEK9xiIGsygK9eCkGLFEX
-         g51tueCsTVeIcf7a26vrucbl9/q9KLYuEsqot2cXrLHZV2JAcrlJwnj7BhmqTsvCuhcE
-         KE14xKP6N8rtPwOKQWXhW2OzdGbz8kE6aKHE4MyQHQl87dvK82d6iF3ZWGB80i30PC8F
-         H/1LHwAK7XDVFTVSbkkC+fVVhj6DHbFAGlydZIZOZ3OhG2yy3zBCzYZHD83+izA/jcU1
-         OreA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=KFSCKIsuoD/3pql9z0tFsV5fJwnsY1GfAI928SDrUBY=;
+        b=FzOtCRs5+Gza35+TVc7VzfcR19Z9TV8ea/GzzSeDvilTv3G1foiY+idmK3csj9f5Fj
+         VRKGCC6oPboTn5hFZuwqrJUKeHSbYEN8o1tdUand7ovXgrAnpMJ2zwbrQvzCbRo1hPV+
+         PJ6O5qj9uAArgU6vUZ5XKPq2LBnJ5wstY/QRsvmG8LOuhcA6vfKDMUehyTJKPg/5/iBV
+         T8R8+VkKSja8nrXBPefvhv+zhH73Mu/zDrHSogRHpHX0knL/8HVEFTN3/eEVC/uYjpL0
+         hCTLuG4Dhhw6KR39eN/z0tBO9AAkFQWh0uee6fP1M1DdbB+b1G8WG++pqv3gYDanT+AG
+         Vj4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gU99uR0QQWxROvzrLz98bXRxkP+CXicxeIxwz7Z5Q3s=;
-        b=WOGQN5S7ROTu6Szi+KH89JGzHpU6a3gFZdMDxUns0i7AqDrSqv1NNT4OfaAohrZQoF
-         HXvz2W1aQcr0F0W8NYeki/ZBm5jRsAlaFTdx6pbZnkaIi9Q+eT08egsPEo76jW+SykHn
-         qsOTrOqwH7AOTHIijS1cu7FeQpkCkF0fX6vMgYqMWBeP/65/xRD4HpL9v5xMdgyZlyve
-         LIymIaMWE6vqK+RybwqqRBMi+0Lwin+mh+D7ve0y3APupKI1lHkm0Uf973O4DUN/9lbx
-         CmSh+dYxgXt7TO4uIabBu0AoeGQTMpQAZm0MTCdQa6ZE/MuwCvExzffYGreOJp+Lhn0M
-         lvbA==
-X-Gm-Message-State: AJIora9oFeNB4r4TabMWHyQYEQt35cGODJhn6LdAmSYuAjK+8snrQGsk
-        oXbX+JlRfh5li1sczkL04rU=
-X-Google-Smtp-Source: AGRyM1tepu5zKkdx7jNNfdqY2CoNd3ux5DHAUGlWbfXZ8wM+NPg4fefeBD+yngIypg4C4bOVnnAtkg==
-X-Received: by 2002:a17:903:2442:b0:16c:52f1:d29 with SMTP id l2-20020a170903244200b0016c52f10d29mr617996pls.46.1658445379693;
-        Thu, 21 Jul 2022 16:16:19 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id i134-20020a62878c000000b00527bb6fff6csm2331299pfe.119.2022.07.21.16.16.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 16:16:15 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2 3/3] arm64: dts: broadcom: bcm4908: add Asus GT-AC5300 LEDs
-Date:   Thu, 21 Jul 2022 16:16:14 -0700
-Message-Id: <20220721231614.2571219-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220718132100.13277-3-zajec5@gmail.com>
-References: <20220718132100.13277-1-zajec5@gmail.com> <20220718132100.13277-3-zajec5@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=KFSCKIsuoD/3pql9z0tFsV5fJwnsY1GfAI928SDrUBY=;
+        b=ZCq5nY41jGm+Au8fWBh8Bp0v8EOjiQbV44Pply1MGSi3IUrtC//hzQp2JBoh6WYLmN
+         KdC3j4ilEXv54J+H6lUJ9qJOGmKdA7kdO0IdvLTJ06LYiIGMD1fqLmgXkfAWsPNSwN2A
+         lVIRV15ksb9KvXNuWIG8C0HVGYCTqaJCopwA6LsXRrDGs66RqBMUDyvzPdvaitfzZZTU
+         r4DZR/4IZRWRbckerl/NszXmnkaw2ZCS7we7iaiHYOS8UcU347xLSQ6xSzLuK51zEi4V
+         pMyUlSNz7SqJIiJ/yi+GaFCxcJoKqLiscop//4OmJg2zHgDUDkyXzah6tg5TCFYn3BLw
+         9ULA==
+X-Gm-Message-State: AJIora8ckRp+7DbnKPNGDsVXL3hhxl+qJGMXUfgShPScxJS+dY2Cln4X
+        JJR7VcXJ0mPTht0gTtDm7Lg=
+X-Google-Smtp-Source: AGRyM1vxwB3nKh/odH8lrNccp72/5zx8I9zC0teVpdNXmEB9+Eq2vtbAa6RxcSd6bJqS5K+8kc/sFA==
+X-Received: by 2002:a62:d103:0:b0:528:c6c7:bd74 with SMTP id z3-20020a62d103000000b00528c6c7bd74mr788648pfg.68.1658445495660;
+        Thu, 21 Jul 2022 16:18:15 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id r7-20020a635d07000000b003fdc16f5de2sm1992243pgb.15.2022.07.21.16.18.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jul 2022 16:18:15 -0700 (PDT)
+Message-ID: <56b4015c-1d95-ef0d-69ed-f036d0102523@gmail.com>
+Date:   Thu, 21 Jul 2022 16:18:13 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Add basic PCI controller properties
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20220721091509.27725-1-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220721091509.27725-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,14 +78,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Jul 2022 15:21:00 +0200, Rafał Miłecki <zajec5@gmail.com> wrote:
+On 7/21/22 02:15, Rafał Miłecki wrote:
 > From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> There are 5 software-controllable LEDs on PCB.
+> This fixes:
+> arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: pcie@12000: 'device_type' is a required property
+>         From schema: /lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: pcie@12000: '#address-cells' is a required property
+>         From schema: /lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: pcie@12000: '#size-cells' is a required property
+>         From schema: /lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: pcie@13000: 'device_type' is a required property
+>         From schema: /lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: pcie@13000: '#address-cells' is a required property
+>         From schema: /lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: pcie@13000: '#size-cells' is a required property
+>         From schema: /lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: pcie@14000: 'device_type' is a required property
+>         From schema: /lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: pcie@14000: '#address-cells' is a required property
+>         From schema: /lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dtb: pcie@14000: '#size-cells' is a required property
+>         From schema: /lib/python3.9/site-packages/dtschema/schemas/pci/pci-bus.yaml
+> 
+> What remains missing is "ranges" property. I currently don't know its
+> correct value for Northstar SoC.
 > 
 > Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
---
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+-- 
 Florian
