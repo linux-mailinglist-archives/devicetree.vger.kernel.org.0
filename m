@@ -2,135 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCC5657D154
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 566C857D178
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:27:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230439AbiGUQSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 12:18:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43212 "EHLO
+        id S232927AbiGUQ1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234034AbiGUQSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:18:16 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 976B78AB1D;
-        Thu, 21 Jul 2022 09:17:38 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id u9so2536607oiv.12;
-        Thu, 21 Jul 2022 09:17:38 -0700 (PDT)
+        with ESMTP id S233278AbiGUQ1N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:27:13 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A4D89662
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:27:11 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id e11so2444104ljl.4
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:27:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vAncHnLBpOlRUc0OOfu8cfX5QtgUJCxxL9tQZFajpgg=;
-        b=Bnit3RnvVApAb0BMEMNLC5rf9A3SmIziFUfAu9GLA+7b5ZtGCSodLw6p2A1aI+nDs1
-         u15wB+GGv2DJzAQh5lNIe7ldxuTcYUMiCf6ZLx2hBSbbA/qb7+f7XFLkvoMTEkxaFeA1
-         DQ9V+ZfTZByF2zWCQcSYIJLVjQ5hnzDbgqtaWdDcikmCxfhoigw8FVqUQonK1FMa6XgN
-         6ezVSfLYqk249M9aR1BMA5vya53fXyUeNynnGMM0pNAuhWX7Vfc0P98jjzfgS7TmEXoj
-         A/D0MeJAG46M3aWVE/bzMDoW3i8/96akDLz07ziXeeW8wGhPwuegfgr7+LrRIQUssJjI
-         ZHvQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=FLbfIeGPl3ebIvxR+FhS5IYK8eJ7yeE22mxLZOIlFUU=;
+        b=U6l6aOANx5uddaMQey1eQns8gozs/zKGcQWTos2MIO4pITPQ1baZHsi6NUB3LNg6ee
+         CcQVWsRIigCmsDLxbY36TN8T8wZpgW/mf5OPjWI6ImfUHbkfDtIWZMCHCyjtEeA+lNCn
+         ngGQ/OGK6rhHfhrSi+7Wkdg8ZZXKmFQtzq+m1C0rM/v3UjGfdGKWGnzFXhGL2oLTaYqx
+         9jmAnc/3pAnOi8B43V04m8RMFvePKLh8hP848f2h2PfZOqwGRQvVfyMyzxOpYJR3XZZI
+         4npKo+DmibiH6KyD19juFqkIb8G3+4ly6O7/gX0/4WvFT5tGWiimYw9mFyJN0liaFEI7
+         fxeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vAncHnLBpOlRUc0OOfu8cfX5QtgUJCxxL9tQZFajpgg=;
-        b=56rOTmamQCgBq2anXBhU5hKQMQWjW4qN6dsNhYIwtl8P96Ogq3hOWpUzJ2sEFl15qS
-         YN0hno7vXPuhfPpEEL/zVG/cbDM8KLMoH53ak3eMFrWGujss24NI3fCeahZuOZX0bIVz
-         j1SFUW8dV64pSf+o0faw38klvSNomeO7whUXlRun5GO+JNPzuCyFEKjQJM0yduF1eecW
-         pBrZlVzpfbTAn3NkbUFp1nai5N4/rrxm5IVF/7ReOOAVlYGAh7OpKZYmhpVNjsUW4bTR
-         IGVMw+sthKatwrhq2i3vxuSvqNnnAuHWO6Fw2C0SD3XJK4wJso7HDIxQaLjqfFI/e42d
-         jk3A==
-X-Gm-Message-State: AJIora98uZg+mAMMBfbCWFoBkZvccHl3oFYA9pVb67h8DobUqwSV2j6h
-        ZDDA9ZjrUzTdsyVfqopq3rQcwKOxqA0=
-X-Google-Smtp-Source: AGRyM1v6n8kqlO/5xGGVPCCoaBUta9NonqGVhE2EvR9sUgVPEj0oKX+iaCKC0K5Tt2G8nXOCkMDePQ==
-X-Received: by 2002:aca:5e82:0:b0:33a:5c00:49e2 with SMTP id s124-20020aca5e82000000b0033a5c0049e2mr4944590oib.167.1658420257560;
-        Thu, 21 Jul 2022 09:17:37 -0700 (PDT)
-Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id cy18-20020a056830699200b0061cc06a886csm951732otb.9.2022.07.21.09.17.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 09:17:37 -0700 (PDT)
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     linux-pm@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        zhangqing@rock-chips.com, zyw@rock-chips.com,
-        jon.lin@rock-chips.com, sre@kernel.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, Chris Morgan <macromorgan@hotmail.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-Subject: [RESEND 4/4 v7] arm64: dts: rockchip: add rk817 chg to Odroid Go Advance
-Date:   Thu, 21 Jul 2022 11:17:18 -0500
-Message-Id: <20220721161718.29800-5-macroalpha82@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220721161718.29800-1-macroalpha82@gmail.com>
-References: <20220721161718.29800-1-macroalpha82@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=FLbfIeGPl3ebIvxR+FhS5IYK8eJ7yeE22mxLZOIlFUU=;
+        b=jZIAa5hQe+P0Ls0Nk3al1XHuQVNflxp+WHv6IZYiyIypttwV4jkg7bBPZJZpUSkPMn
+         rNIZM6e50bd5VXAWR/gr3Xi96K/z1GCwbbSRD6um/DlXgqe9h9UZFDH6uIQfzbGGoBq6
+         dEzMhcLX7XqSq2vyFX15sBJd2o3Rkcq6FRBEEP1HoXUN66+cK65YiDiTI8VeG4dKiLcw
+         JVCXzmXHKzLuws8qYPoTwuuJmypiQTP0QREn03O3axBgo2jCaB8zqDQJiXn0GoH851R5
+         ZWjinSnKsnLvLiR6wjnX2knSb7tWv+vE422zpZ/xoBVFfL2nWRWvZIPsFeyRJTOsdv/K
+         uhhQ==
+X-Gm-Message-State: AJIora9LTpKdPC5PSNvKpLvN5DJDU5vPk+UCW1SoyAvQRHatJJQ112/c
+        HlHVkdw68gJmOaRky2VV/wTBFw==
+X-Google-Smtp-Source: AGRyM1vh5UhRH2Jeh1nka+6MLdlCVT81CpwzvziFjK0WNqKXr+aUHvh6UKvkd7bDG4LBmQffiNbWsA==
+X-Received: by 2002:a05:651c:385:b0:25d:d821:e0e with SMTP id e5-20020a05651c038500b0025dd8210e0emr3256866ljp.56.1658420829932;
+        Thu, 21 Jul 2022 09:27:09 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id e26-20020a19691a000000b00489da512f5asm532641lfc.86.2022.07.21.09.27.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jul 2022 09:27:09 -0700 (PDT)
+Message-ID: <e75f1cec-f1ab-7f3f-720c-afa6aa2af611@linaro.org>
+Date:   Thu, 21 Jul 2022 18:27:08 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/2] dt-bindings: arm: qcom: Document additional sa8540p
+ device
+Content-Language: en-US
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220721154413.15578-1-quic_ppareek@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220721154413.15578-1-quic_ppareek@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+On 21/07/2022 17:44, Parikshit Pareek wrote:
+> Add the ADP ride device to the valid device compatibles found on the
+> sa8540p platform.
+> 
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
 
-Add the new rk817 charger driver to the Odroid Go Advance. Create a
-monitored battery node as well for the charger to use. All values
-from monitored battery are gathered from the BSP kernel for the
-Odroid Go Advance provided by HardKernel.
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
----
- .../boot/dts/rockchip/rk3326-odroid-go2.dts   | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index ea0695b51ecd..ba72e6716e8c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -52,6 +52,25 @@ backlight: backlight {
- 		pwms = <&pwm1 0 25000 0>;
- 	};
- 
-+	battery: battery {
-+		compatible = "simple-battery";
-+		charge-full-design-microamp-hours = <3000000>;
-+		charge-term-current-microamp = <300000>;
-+		constant-charge-current-max-microamp = <2000000>;
-+		constant-charge-voltage-max-microvolt = <4200000>;
-+		factory-internal-resistance-micro-ohms = <180000>;
-+		voltage-max-design-microvolt = <4100000>;
-+		voltage-min-design-microvolt = <3500000>;
-+
-+		ocv-capacity-celsius = <20>;
-+		ocv-capacity-table-0 =	<4046950 100>, <4001920 95>, <3967900 90>, <3919950 85>,
-+					<3888450 80>, <3861850 75>, <3831540 70>, <3799130 65>,
-+					<3768190 60>, <3745650 55>, <3726610 50>, <3711630 45>,
-+					<3696720 40>, <3685660 35>, <3674950 30>, <3663050 25>,
-+					<3649470 20>, <3635260 15>, <3616920 10>, <3592440 5>,
-+					<3574170 0>;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
-@@ -472,6 +491,13 @@ usb_midu: BOOST {
- 			};
- 		};
- 
-+		rk817_charger: charger {
-+			monitored-battery = <&battery>;
-+			rockchip,resistor-sense-micro-ohms = <10000>;
-+			rockchip,sleep-enter-current-microamp = <300000>;
-+			rockchip,sleep-filter-current-microamp = <100000>;
-+		};
-+
- 		rk817_codec: codec {
- 			rockchip,mic-in-differential;
- 		};
--- 
-2.25.1
 
+Best regards,
+Krzysztof
