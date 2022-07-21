@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D2457D198
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4666C57D19C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:34:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232227AbiGUQdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 12:33:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38258 "EHLO
+        id S229913AbiGUQd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:33:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231758AbiGUQdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:33:06 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7807289A9A
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:33:05 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id u14so2490153lju.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:33:05 -0700 (PDT)
+        with ESMTP id S229640AbiGUQd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:33:58 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9630689A97
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:33:57 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id d17so1475141lfa.12
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:33:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=iffrYTg3sVIuxqKWRtih1r3YonbBoKOkVbMWdzc2ePA=;
-        b=HO2NDBYcrHDja8jnRvrZq6eaXrJz9BIby8hzuMJq+F0sddvo7BSyLaXpzAFonEzQI4
-         N4Xnr5bFs49BpgIup9//yM80iYMw2P2MVlKRUvVNKmy/3Shmh7akaN6p2CYDZ363WoS5
-         mxAH6QqzmMCg91Gol4qp3CMCqxcaJJFGpOH/EX9XSwHsGO3NPvuiy/JlHVP2lXCQKw/o
-         wM9sCMnl0CE+bcliu2x3+uaefhr8sgJ1irJSM/WEcN8pZ0OG2ShczZFrUGrHYza7edUx
-         QmXCAbDhSs6aHFS531H5YgkMMnHYMX3cu0bMCWeSU4OHNV77JpFpAAodxp8+KyM3G0XG
-         obbw==
+        bh=0wZNg+3wPANTd0lRPHXLuv+xpAninwLRTERLUu9/iV0=;
+        b=VqMex1M6FRxuAjOX5PnC/HKTSGZJlg9F3Xl1Th8veis9ZwLc8vDjULvKc5W7mKvdei
+         UyrqTs0MSVXnYDpTkaQCjk6dltKKxb6E2AF6xC+d5WuPbwawbs0EBXOxhCHwO0IlvNvj
+         Lg5NQUECCQiifIcnY8aAspgN4O2OZEyflkzfZVOQP4vKZGU3InFxkg//fNB6eRZaqlHq
+         47czCUSM+Jwy36BP2/ikS4zshHQLPrXSTsEittrTRMFEdvUs6wPCpSC2H2UEyT38Zx/k
+         LE7UBa+JvuYxgC4J04LfAt9mBh9YwO6MgSHmEHRmbuekLhdo38DM3YVXtXJkCJ4BYhpz
+         ertQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=iffrYTg3sVIuxqKWRtih1r3YonbBoKOkVbMWdzc2ePA=;
-        b=wlwo0WOcK69WQCLIpSygns0cA4SpDX4+HmGd2Aybc/t7OSWwZMMNwswoZEUtE7i4jO
-         1xtTMvrTyVogKYZLBQsBBg3O460R+E4b3SLM4m/qBwESGofrIPkConrTNF7n3zz5oEdd
-         8P53mmwVUMnqQJe6/Lq0M9UfkiHawGxzCTLPNh0H2gCbXc/5//1pVhaatOHszU4cpAea
-         WJZmtideBN+UXyvQdlJIBmz5TdSfXh4azFBVcifutBCIBP35RR4h0pGRX6jTTpu3t4fc
-         W2Ey+G935+APFeDH5so7jWKwLrVWaUQuevwPyi8uBA4KrCi74lW/qJmIFBRolMymbV9o
-         SJ9w==
-X-Gm-Message-State: AJIora+jDDIv9sJrwHnwmI2n4gFddvy25BjwMCDi3OVaU9lYbYYnDix3
-        Me3RjhCKYSMU1LOm4Nhc8DshtQ==
-X-Google-Smtp-Source: AGRyM1vAOzyzzseNyUORZqR4bh2b8onS6sl5MywASjqL55Y6ugmGl6zxZAApdoAeR9EQE4lavDjMRQ==
-X-Received: by 2002:a2e:94ce:0:b0:25d:82c6:37fd with SMTP id r14-20020a2e94ce000000b0025d82c637fdmr18280437ljh.15.1658421182140;
-        Thu, 21 Jul 2022 09:33:02 -0700 (PDT)
+        bh=0wZNg+3wPANTd0lRPHXLuv+xpAninwLRTERLUu9/iV0=;
+        b=x9HLp1LGkrad+h/aB7GJcZE+p0eRiCLK4sAfsiBOaVhjc/s4mCXT/I+kg66oQrtB+L
+         dX07kCzYLv8DwrlvatJEPuGaEfifmlNWyVGSc+ccXm2prZvhR2t1/x/l59US1AdEr1mg
+         dyPx3ZdxXC2GRxhZZiqIbD72Q4MoloUCTKiFjqVRgDU63QXhV0A9gb9YCcSjU9AAmCJH
+         GQczcTSNe1VthcKP0MLi2rIIhIo49hVsTTvYpdKumufk7c64/EHXDdd0qA7d/VqIq/W8
+         65beh4tfNpsede5yQmcvwMPl3MAAUcWUTdXFCEtbD8CgNzTXpOf8+my/FVjG/qz4jksS
+         FKew==
+X-Gm-Message-State: AJIora8DF+q69wT5DBS80ePtZjqVZHpm4fAIlzFwIUab+aIhmvaa6ZIY
+        10vu8IXKailD2HXaCf/EBOQ7/Q==
+X-Google-Smtp-Source: AGRyM1suwpWeDcSxhta8Meu7xyqrPbrBgRqfzDYdr1Ot0b9fitq1x465Kq3zXTHaFYc9Em7plvJk4Q==
+X-Received: by 2002:a05:6512:6d4:b0:48a:2aaf:1d93 with SMTP id u20-20020a05651206d400b0048a2aaf1d93mr15556923lff.457.1658421235985;
+        Thu, 21 Jul 2022 09:33:55 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id i4-20020a2ea364000000b0025dec0c29bcsm31125ljn.26.2022.07.21.09.33.00
+        by smtp.gmail.com with ESMTPSA id t14-20020a056512208e00b00488bef659d2sm526769lfr.234.2022.07.21.09.33.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 09:33:01 -0700 (PDT)
-Message-ID: <4b2fe9d0-f590-0fac-79fa-bb05da1d61df@linaro.org>
-Date:   Thu, 21 Jul 2022 18:33:00 +0200
+        Thu, 21 Jul 2022 09:33:55 -0700 (PDT)
+Message-ID: <05ad5e68-7ff2-b1b5-fa49-0e48c7cc313f@linaro.org>
+Date:   Thu, 21 Jul 2022 18:33:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v3 2/2] dt-bindings: arm: qcom: Document additional sku6
- for sc7180 pazquel
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: fsl: Add MSC SM2S-IMX8PLUS SoM
+ and SM2-MB-EP1 Carrier
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>,
-        Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Henry Sun <henrysun@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Martyn Welch <martyn.welch@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
- <20220721033918.v3.2.I7ecbb7eeb58c5e6a33e32a3abf4d6874e6cb725c@changeid>
- <CAD=FV=WSBgupLFMCZgianck6uTkAyqrG0WK2ChSbNbJdhOPdLA@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>
+Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220721101050.2362811-1-martyn.welch@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=WSBgupLFMCZgianck6uTkAyqrG0WK2ChSbNbJdhOPdLA@mail.gmail.com>
+In-Reply-To: <20220721101050.2362811-1-martyn.welch@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,15 +76,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 15:37, Doug Anderson wrote:
+On 21/07/2022 12:10, Martyn Welch wrote:
+> Add DT compatible strings for a combination of the 14N0600E variant of
+> the Avnet (MSC branded) SM2S-IMX8PLUS SoM on it's own and in combination
+> with the SM2-MB-EP1 carrier board.
 > 
-> Not worth sending a new version for, but normally I expect the
-> bindings to be patch #1 and the dts change to be patch #2. In any
-> case:
-> 
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
 
-I would say worth v4, because otherwise patches is not bisectable.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
