@@ -2,139 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D91DD57D2C4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 19:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33BA157D2CF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 19:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231811AbiGURvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 13:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44166 "EHLO
+        id S229715AbiGURyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 13:54:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231805AbiGURvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 13:51:17 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2066.outbound.protection.outlook.com [40.107.22.66])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69F8D820CF;
-        Thu, 21 Jul 2022 10:51:15 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tnp0S3oSbNYSEvwjPtKF81mgwYiKhr/00nlF1+YVUyeIsgeRRlaV25g116q8nDABAsM6KJtM1HrWloGPJUGrP4ku1nkntgf8ZGrwbIKmP7yeY0Yj/AhspxUGrajmxj6t+E4CrV4T3KEPcQeqbQYn2K4Jd3WV6WiQR+qY2bUb9ikJp2GP3/h4hL6YFdDQYE659o9eHohK4By6+rZvv73MlAuWxV2o+3Pq9OQJMdIZQfQL5FrFpXNb5gzUN20VMpAiYjlecMthgPLcMrw0JHus7wWs4uHejoicWgwHUhl33fiWoEOEwfDsTUgKwpXVBPjasSs+ZmDMIQ20xOH2T529Aw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2hqncOF98Bg50ygL/6Z0tNuDX4jxdqJrvDCWsrWjTvo=;
- b=U+64W+dC0OgsZlrjHmbnKU/5mkZDnBlJimSz2YSPrtCJVU5Eb4B4Ew5pS1kdYu7V/FwhkxXGeSaRCi0q+z8XYB5JwjtgDf6NsL5i38BrD7oyDn7gm1a5ZjAUrN6D1qVNrHl0aKGkkV7yW7usCcIKDEJOzOK6vIaJPHMwGpLKImfqy0Sut0c47rGTypG9r6AjkAjUUaoupU3Ru/c6gmqmvNeGSyAoZvZ+fwv0Xv6z1mv+RR0q0MVlQ77ZoroSJUT69YMPwLxLQxiuU5d4T/E2VKOWeShM8ClkbcPoqOQ8gQjMBf9sUPvyKk49+IuC4eZOS/X6tUZ12sdCjrtfKs7HJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2hqncOF98Bg50ygL/6Z0tNuDX4jxdqJrvDCWsrWjTvo=;
- b=oMqU1mE61XvxWnxoGIHIzwWfVx5DYLnrgk86uGx9wMsJ1GmsGgZB1p5qxn81+rw3yJzcrNJ9MRh/8lVw+K5UumXhyXX6XuZiZGKS419SiN/1A7SXSmkxOgOw5IwR1C5rf/RcTa2QdX3J0lQ3vxCwohceSbwuiSUX9GnmPze78qeEsBauK2lhrSxdddXJiIxJ/v5jHd1pQnmcPWMmTYAzJCXCmCTRzM2V2JQhwhhdHOWVHOAwu3QUruguqsFiee4Pp7iB23lDTA02d8r0EbFA1F1XQY1vWsTNNXcM9YBmrQSLzdeQH22ibFnGqWfVQe6kjfbDTZhopljOADge2lA5bw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
- by DBAPR03MB6664.eurprd03.prod.outlook.com (2603:10a6:10:17d::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19; Thu, 21 Jul
- 2022 17:51:11 +0000
-Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::59ef:35d2:2f27:e98b]) by DB7PR03MB4972.eurprd03.prod.outlook.com
- ([fe80::59ef:35d2:2f27:e98b%4]) with mapi id 15.20.5458.018; Thu, 21 Jul 2022
- 17:51:11 +0000
-Subject: Re: [PATCH net-next v3 42/47] powerpc: dts: qoriq: Add nodes for
- QSGMII PCSs
-To:     Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        Russell King <linux@armlinux.org.uk>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
+        with ESMTP id S229505AbiGURyW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 13:54:22 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2043E87216
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 10:54:22 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id l124so2410769pfl.8
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 10:54:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to;
+        bh=NTo9TX/tDGhrEKHuLSFQxSEDDqZA5Q0N5b0O4nEZzBY=;
+        b=FC0ClZz4L7VROR7xw4s24X+NcxKGdLOD/1KrjVcKspKEudp3TbwJ4rjaakZ1Ez+Xtm
+         IXk/PbGKRxeH2r2ku2qmWlQPdFrZDTFOBDlTGb3PMeuXZiPGzihjrcm1xr56gzq8/2F2
+         k6cn4C/07lwONHXtIgKu507uub/lbdIDv2JnE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to;
+        bh=NTo9TX/tDGhrEKHuLSFQxSEDDqZA5Q0N5b0O4nEZzBY=;
+        b=DZ/F/aPm4EYrxo3T8UxpNF7MYAWBoNBGHkkEY8RzKnv5nomFRoe/AK52PWCfJLyFKF
+         8C/ugT+PxS9mVDsg+H4YJD5VBqoTmDnWjPIIZjScOnW+v331aErxo6RnzRvbzmeEOt72
+         DNtQuj6hP8FnKo0sIQuX1iEYPGyOhXXVKgis0LmzDWtdeOG5nAyaIVCFgmNGH0avWN9M
+         iGNmnn6IXILGdayeHRFm8x5OehK6A+wAfIvZ3f98XbHWtFLtPhwzRi/2xdb2bMAmRi22
+         4S751FbIBqQhIBbhN6xKp82L6E98wtNQcbJJav+NxEzhp22XvAT3D+O1e+sX1OpJ3lWR
+         BpVA==
+X-Gm-Message-State: AJIora8LnJiYfK0pFguFLhkUw+4a8BPnPrA82wfqioFHnPSXZ0yGAdL1
+        ve2FM106wqChrUH6Bj7ygKQxyR+pmUxcyA==
+X-Google-Smtp-Source: AGRyM1ub0NIgEn3RjZTSnlDQ4XF6OpmrgJLTmcOTQ/DZHT6plXxGSxAOIphOjRK4bcZ0dbivv3E3RQ==
+X-Received: by 2002:a63:c158:0:b0:41a:6685:59de with SMTP id p24-20020a63c158000000b0041a668559demr8139294pgi.95.1658426061390;
+        Thu, 21 Jul 2022 10:54:21 -0700 (PDT)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id w1-20020a17090a028100b001f216a9d021sm3918909pja.40.2022.07.21.10.54.19
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 21 Jul 2022 10:54:20 -0700 (PDT)
+Subject: Re: [RESEND PATCH 3/9] arm64: dts: bcmbca: update BCM4908 board dts
+ files
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Mackerras <paulus@samba.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220715215954.1449214-1-sean.anderson@seco.com>
- <20220715215954.1449214-43-sean.anderson@seco.com>
- <VI1PR04MB58079B0A71B13CC3B6D1D289F2919@VI1PR04MB5807.eurprd04.prod.outlook.com>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <bc2209bd-6b04-1ec1-24e4-5cc095b5df52@seco.com>
-Date:   Thu, 21 Jul 2022 13:51:07 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <VI1PR04MB58079B0A71B13CC3B6D1D289F2919@VI1PR04MB5807.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL0PR03CA0024.namprd03.prod.outlook.com
- (2603:10b6:208:2d::37) To DB7PR03MB4972.eurprd03.prod.outlook.com
- (2603:10a6:10:7d::22)
+        Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220721000707.29557-1-william.zhang@broadcom.com>
+ <07a566d45cf48baff70f027e52264aa8@milecki.pl>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <62efc265-aeea-4394-2844-d54fdb0e05b7@broadcom.com>
+Date:   Thu, 21 Jul 2022 10:54:19 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7fa02d9b-8053-48bd-abac-08da6b419925
-X-MS-TrafficTypeDiagnostic: DBAPR03MB6664:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MQo0jFWt3syZASmgtysfKlXet0zhuZYexnJ0jiSqMYQGWH8Ypp3n6igqxEOqYfZSBfnjwgnaugQKVYXGpi6iPDHtFMkHUcUuwe4hSpUNRmnR7FVZty/fIR3lG7QIfnBkI04EGgxq9Kgq4+n9GpaTUeeJ/oR0ccT6xO7ufnEy+QCYHOG7wceqYnoxDZe1Xua3naowNGnSYDkfbsnHVy+QW3UpCBG3e7IlOc1uqK40JlCvBzpvNzL1YmOGIwRbCB4WpC8SxYx18TKLnDewiJ0iQeSKdeyw+WgeoftE6yDuGMayMMkWsENUXeHC9amKzaAbEK10QPNWjHc5yZ8zUOOFjHhPyr7uywaRXTS/WXcY8WBrjedvwTNsr5ZBWCcgUxpVWCllvq/wtzoDBonMTS8HZh9VHGT371L+moaCU9wh9OeKDe/ntEGuW+EzqSZTW2hAYBf3v7DfSL6aNktEjJcSCuECiY/snU18cy4pf7OBj59w/XCAGNOsgXdFWQpmSDJj0emMoqkXnhtTTf4aPsSGX89wOceCyY1x/Dz3ZySwNOs+o/maPuEd5l/wbGzTeJ8iDaYMmc+C5esmWuC64lgHd52TfiHhhl5Rx8qtgcLslWCLZKQw1wmTkfFDMBBJ28XButQUFrTRcwCECmxKfesl5VlOQMO7jSdUN3nLcyDfoMIbfL/N5mJ5EUP5dKxNZWA2yj98/c4f050ve8akfeWWQT9Km9dcVuUNQSkEcsSi6RNomB01xezC1TywfnuKNVCpKeL5bXSoOKwWWl09SfbcElQkwstlT5+hWGk8y6t0MwzsJCAA7uwWWWKIIx+iJcJsxbulNqqokjFVzeHcEXjBxW13q06kpTCJg4ziuzxjt9I=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(136003)(396003)(366004)(346002)(376002)(39850400004)(44832011)(30864003)(6666004)(6506007)(7416002)(2906002)(41300700001)(5660300002)(86362001)(31696002)(2616005)(6486002)(52116002)(53546011)(8936002)(186003)(478600001)(54906003)(26005)(6512007)(110136005)(38100700002)(38350700002)(316002)(31686004)(36756003)(83380400001)(66556008)(66946007)(66476007)(8676002)(4326008)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmN3RFNsK3pVV0t2aEc4NmV1MS8veGgraUpZWWhhSy9RMFFhUithbEVRcnNK?=
- =?utf-8?B?VG1lWkgyaXpJYUhkcHhSbGt1UnAyaG1tWE0vUTY5SVBHTHhNVWRKWjVVbU9O?=
- =?utf-8?B?ZEhHSHRmMWxOYmUvdkppeEVGZGxyMUVNZHR0WGdOR1lRU3VOcmVNVUNML2Fa?=
- =?utf-8?B?MXNZVnFEVm5Jam1aZkpFTkh3ZlR1c2p2QmM5ODRnbFBsRm9PTWNGYkF1MXlh?=
- =?utf-8?B?ZlBrNDR2VkNIakV4NE81cG1FRTNaK0xVNTVjMW1qbWFDUDVBaDJhUTZQa1dv?=
- =?utf-8?B?bGM0dTFMb0NrcEFFeFdCbXRkQTFXMHExbmlLV3dETzlCRWh4c09XMHluSitx?=
- =?utf-8?B?NEhnVEhiTCs5ck5zSXNJUThLU1hua24yckJDaVRwQ0dkOE5DOWpaV1NEb1Iv?=
- =?utf-8?B?cm1xQjVDck9ZOEhOa2xGdUVHVjFSNkhqMGNkSndOZEx0TlhrNE1nMGxSdk5N?=
- =?utf-8?B?UkxtYWpmNnJRU3o0T1BOd01nWHdaZ1AyRGlBdjVEeEZYL2FyREd1MDc2dW5T?=
- =?utf-8?B?RU1KTFUwbm9CeVpUemdXK04wZDhOVEJHYUFvaTE5RHIwQU1NWTJDZFhNN09j?=
- =?utf-8?B?QmdDSWxBczRKUVJSb3l3d2RQT09ENVdFR2wxZ2RLcExOMG1UWklpWDlBMldN?=
- =?utf-8?B?WWRmK2FFZTV0dXAzUkFvcXNHbm9pOUwxNVo3SjVCVHdHMVRiak5LbmVLa0lV?=
- =?utf-8?B?bzIxSTZVbkJYU2NodFlzdmc4SmdkV1RFdnB1aHIrUjlKaFdmbkR6SmJZOHlV?=
- =?utf-8?B?QW40NkFpSHJKNTd4bVRYSERmRm1WYzNVd2hKZjl4dXdRMWZVa25SaFB1M0wr?=
- =?utf-8?B?MTREV3VuY0twSjVRUTV6N2gySVF2bGdXRzRFN2tPS3hBdmZ4a1VZazRYdlZo?=
- =?utf-8?B?SmUrOEpNR09qbXpCcHZmSCs2VTJubDArcUNuNGlQKzdsZXJUdXNBMTBTbXFE?=
- =?utf-8?B?bEJGck8xeFlpL2JpQmZmdVQ5NXJ6aTBpTlVNaFRQVDRMUFF2ODZBajFMTlZV?=
- =?utf-8?B?WUFLbjRBQlFkRlBHblRKOC9GV3VtUitGd1FLRFpOaFAyYTYycFBPS0JTSVdz?=
- =?utf-8?B?WU1JbWxveWNIQ2FXS1RZRzNna2xDZUNBeVpZSFlOaWdlbElsYnpoUm8rVnU0?=
- =?utf-8?B?ZTVqckZLR0VCdlgxaWIwOFFkZGpZWlhFRWRQM0FHTE9MelcyNTBHcWkySTZQ?=
- =?utf-8?B?eHZ5ejR2QmZza2xrWmx3WWN5cUtmS1d0MmZpYllzd0lZTlNZWG05b3ZVNmow?=
- =?utf-8?B?eWZhWk9hbXkrM1Fqc09GNTR6alpkZnZxYlhVeFRRMXYyamNreHl0cDlNams0?=
- =?utf-8?B?WVhLRlE2c1lqRll3YkIxaGh0M0N6ZmhObEJ4QUtBVTVJK3ZsQktyUkdKZmc1?=
- =?utf-8?B?MEZjWS9XcWh1VGxic1FzTWlzRXNHL3BqT0JnZ2s5YzFXTmkyRFNNT2FyQTFD?=
- =?utf-8?B?c3paWkdzNmFvLzV5dVlxNFMvamVtL2VYVVhoQmJQUk5EYVdvdTZYU2E0SE4w?=
- =?utf-8?B?bys0SHBTelVJREpBMkR2dlhaQkZXZ3NBRFF0MWJ6MDlPS3Q1UWF5M0ZxQXJ4?=
- =?utf-8?B?N0ZRaVRYVHcrYkg1M1dBNDJ5WlhRR0N6Um5idEQra0pVUEFLWWd0ZTcwREFk?=
- =?utf-8?B?RkQ1MityMmhZaVQxdlBVTEw5Nk9kZktaeUhJQ3U3aWdDNTZCSFRqYlFVOHJ3?=
- =?utf-8?B?TjQ5Z1lwVTBIbUs2enlERlNXbWpwcW4zL1VFbTRFUnZQV3pCWXJlTW5OUlc3?=
- =?utf-8?B?V0N3Y3N4bmhXK3RaMnU5VUxpY3d3MExBejI1SGk3amJ0ck12c01BOEs3K1Qy?=
- =?utf-8?B?MVVQVnpBK2pPS3g3Z2tiblZLSVdwdENDY2I1V3d4L1U1dmNYRG1EVnYvTnZB?=
- =?utf-8?B?Q2gzeXZ2Lzc3YklhTXJNV1l4NDdlaEcydHBWVkZodTdhZHJiSUs5NS9OWjc5?=
- =?utf-8?B?SC9oV3dsYWI1dm9vMW1QdWUxZWRmR2NEN1d1Q3NVUXhDcTJLZWFVWlNTOTc4?=
- =?utf-8?B?TjA0OWE5U0tTdHMwcEdXN3o1eVptY2VZalVhYVVlL0JHQXVLcnM4eXpSempV?=
- =?utf-8?B?dEh6eE5tYmxTZSs3Q1VFb0NFSUZIZy81c2ZOYmxnMjF2ek9rUnkrOFBVaFk2?=
- =?utf-8?B?ckJ0ZmFRMVhheEhoamsxVS9wZjFBOVpCS3ljZld1Nlo2Mng3aHdva0E3Nmkv?=
- =?utf-8?B?M0E9PQ==?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fa02d9b-8053-48bd-abac-08da6b419925
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2022 17:51:11.5431
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: N04/tEHdEezRh8GZt0JWl/ty4cJM5YD/3vWQmR1PrZKFKsnd19w0uXacC6dSEANSe6ADzNt9MBJwtPICIZW6hg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR03MB6664
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+In-Reply-To: <07a566d45cf48baff70f027e52264aa8@milecki.pl>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000004e24eb05e45468c8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -142,450 +74,189 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--0000000000004e24eb05e45468c8
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
 
-On 7/21/22 9:48 AM, Camelia Alexandra Groza wrote:
->> -----Original Message-----
->> From: Linuxppc-dev <linuxppc-dev-
->> bounces+camelia.groza=nxp.com@lists.ozlabs.org> On Behalf Of Sean
->> Anderson
->> Sent: Saturday, July 16, 2022 1:00
->> To: David S . Miller <davem@davemloft.net>; Jakub Kicinski
->> <kuba@kernel.org>; Madalin Bucur <madalin.bucur@nxp.com>;
->> netdev@vger.kernel.org
->> Cc: devicetree@vger.kernel.org; Leo Li <leoyang.li@nxp.com>; Sean
->> Anderson <sean.anderson@seco.com>; linuxppc-dev@lists.ozlabs.org;
->> Russell King <linux@armlinux.org.uk>; linux-kernel@vger.kernel.org; Eric
->> Dumazet <edumazet@google.com>; Rob Herring <robh+dt@kernel.org>;
->> Paul Mackerras <paulus@samba.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; Paolo Abeni <pabeni@redhat.com>;
->> Shawn Guo <shawnguo@kernel.org>; linux-arm-kernel@lists.infradead.org
->> Subject: [PATCH net-next v3 42/47] powerpc: dts: qoriq: Add nodes for
->> QSGMII PCSs
->> 
->> Now that we actually read registers from QSGMII PCSs, it's important
->> that we have the correct address (instead of hoping that we're the MAC
->> with all the QSGMII PCSs on its bus). This adds nodes for the QSGMII
->> PCSs. They have the same addresses on all SoCs (e.g. if QSGMIIA is
->> present it's used for MACs 1 through 4).
->> 
->> Since the first QSGMII PCSs share an address with the SGMII and XFI
->> PCSs, we only add new nodes for PCSs 2-4. This avoids address conflicts
->> on the bus.
->> 
->> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+
+On 07/20/2022 11:15 PM, Rafał Miłecki wrote:
+> On 2022-07-21 02:07, William Zhang wrote:
+>> Append "brcm,bcmbca" to compatible strings based on the new bcmbca
+>> binding rule for BCM4908 family based boards. This will break drivers
+>> that use the old compatible string for binding. Fortunately there is no
+>> such usage in linux and u-boot.
 > 
-> MAC1 and MAC2 can be XFI on T2080. This needs to be reflected in qoriq-fman3-0-1g-0.dtsi
-> and qoriq-fman3-0-1g-1.dtsi
+> Why should an extra "compatible" value break anything? I don't think it
+> will happen unless some driver does some really crazy stuff (like
+> checking full list of "compatible" values).
 > 
-> The two associated netdevs fail to probe on a T2080RDB without "xfi" added to the pcs-names:
-> fsl_dpaa_mac ffe4e0000.ethernet (unnamed net_device) (uninitialized): failed to validate link configuration for in-band status
-> fsl_dpaa_mac ffe4e0000.ethernet: error -EINVAL: Could not create phylink
-> fsl_dpa: probe of dpaa-ethernet.0 failed with error -22
+Yes anything along those lines will break. But there is no such 
+craziness in linux and u-boot(wouldn't be accepted in first place).  But 
+Krzysztof suggested to add that to the commit message.  I would prefer 
+not to add that either.
 
-Ah, I missed that this SoC had 10G on MAC1/MAC2. Going with the existing
-naming scheme, these MACs should probably go in DTSs named
-qoriq-fman3-0-1g-2.dtsi and qoriq-fman3-0-1g-3.dtsi. Alternatively, this
-could be done in t2081si-post.dtsi, since it is only for one SoC. I don't
-want to add these to qoriq-fman3-0-1g-0.dtsi and qoriq-fman3-0-1g-1.dtsi
-because they are used on other SoCs which don't have 10G.
-
---Sean
-
+> 
+>> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+> 
+> Other than confusing commit message:
+> 
+> Acked-by: Rafał Miłecki <rafal@milecki.pl>
+> 
+> 
 >> ---
->> 
->> Changes in v3:
->> - Add compatibles for QSGMII PCSs
->> - Split arm and powerpcs dts updates
->> 
->> Changes in v2:
->> - New
->> 
->>  .../boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi  |  3 ++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi     | 10 +++++++++-
->>  .../boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi  | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi     | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi      |  3 ++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi      | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi      | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi      | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi      |  3 ++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi      | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi     | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi     | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi      |  3 ++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi      | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi      | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi      | 10 +++++++++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi      |  3 ++-
->>  arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi      | 10 +++++++++-
->>  18 files changed, 127 insertions(+), 18 deletions(-)
->> 
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi
->> index baa0c503e741..db169d630db3 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0-best-effort.dtsi
->> @@ -55,7 +55,8 @@ ethernet@e0000 {
->>  		reg = <0xe0000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x08 &fman0_tx_0x28>;
->>  		ptp-timer = <&ptp_timer0>;
->> -		pcsphy-handle = <&pcsphy0>;
->> +		pcsphy-handle = <&pcsphy0>, <&pcsphy0>;
->> +		pcs-names = "sgmii", "qsgmii";
->>  	};
->> 
->>  	mdio@e1000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi
->> index 93095600e808..e80ad8675be8 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi
->> @@ -52,7 +52,15 @@ ethernet@f0000 {
->>  		compatible = "fsl,fman-memac";
->>  		reg = <0xf0000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x10 &fman0_tx_0x30>;
->> -		pcsphy-handle = <&pcsphy6>;
->> +		pcsphy-handle = <&pcsphy6>, <&qsgmiib_pcs2>,
->> <&pcsphy6>;
->> +		pcs-names = "sgmii", "qsgmii", "xfi";
->> +	};
->> +
->> +	mdio@e9000 {
->> +		qsgmiib_pcs2: ethernet-pcs@2 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <2>;
->> +		};
->>  	};
->> 
->>  	mdio@f1000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi
->> index ff4bd38f0645..6a6f51842ad5 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1-best-effort.dtsi
->> @@ -55,7 +55,15 @@ ethernet@e2000 {
->>  		reg = <0xe2000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x09 &fman0_tx_0x29>;
->>  		ptp-timer = <&ptp_timer0>;
->> -		pcsphy-handle = <&pcsphy1>;
->> +		pcsphy-handle = <&pcsphy1>, <&qsgmiia_pcs1>;
->> +		pcs-names = "sgmii", "qsgmii";
->> +	};
->> +
->> +	mdio@e1000 {
->> +		qsgmiia_pcs1: ethernet-pcs@1 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <1>;
->> +		};
->>  	};
->> 
->>  	mdio@e3000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi
->> index 1fa38ed6f59e..543da5493e40 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi
->> @@ -52,7 +52,15 @@ ethernet@f2000 {
->>  		compatible = "fsl,fman-memac";
->>  		reg = <0xf2000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x11 &fman0_tx_0x31>;
->> -		pcsphy-handle = <&pcsphy7>;
->> +		pcsphy-handle = <&pcsphy7>, <&qsgmiib_pcs3>,
->> <&pcsphy7>;
->> +		pcs-names = "sgmii", "qsgmii", "xfi";
->> +	};
->> +
->> +	mdio@e9000 {
->> +		qsgmiib_pcs3: ethernet-pcs@3 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <3>;
->> +		};
->>  	};
->> 
->>  	mdio@f3000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi
->> index a8cc9780c0c4..ce76725e6eb2 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi
->> @@ -51,7 +51,8 @@ ethernet@e0000 {
->>  		reg = <0xe0000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x08 &fman0_tx_0x28>;
->>  		ptp-timer = <&ptp_timer0>;
->> -		pcsphy-handle = <&pcsphy0>;
->> +		pcsphy-handle = <&pcsphy0>, <&pcsphy0>;
->> +		pcs-names = "sgmii", "qsgmii";
->>  	};
->> 
->>  	mdio@e1000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi
->> index 8b8bd70c9382..f3af67df4767 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi
->> @@ -51,7 +51,15 @@ ethernet@e2000 {
->>  		reg = <0xe2000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x09 &fman0_tx_0x29>;
->>  		ptp-timer = <&ptp_timer0>;
->> -		pcsphy-handle = <&pcsphy1>;
->> +		pcsphy-handle = <&pcsphy1>, <&qsgmiia_pcs1>;
->> +		pcs-names = "sgmii", "qsgmii";
->> +	};
->> +
->> +	mdio@e1000 {
->> +		qsgmiia_pcs1: ethernet-pcs@1 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <1>;
->> +		};
->>  	};
->> 
->>  	mdio@e3000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi
->> index 619c880b54d8..f6d74de84bfe 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi
->> @@ -51,7 +51,15 @@ ethernet@e4000 {
->>  		reg = <0xe4000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x0a &fman0_tx_0x2a>;
->>  		ptp-timer = <&ptp_timer0>;
->> -		pcsphy-handle = <&pcsphy2>;
->> +		pcsphy-handle = <&pcsphy2>, <&qsgmiia_pcs2>;
->> +		pcs-names = "sgmii", "qsgmii";
->> +	};
->> +
->> +	mdio@e1000 {
->> +		qsgmiia_pcs2: ethernet-pcs@2 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <2>;
->> +		};
->>  	};
->> 
->>  	mdio@e5000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi
->> index d7ebb73a400d..6e091d8ae9e2 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi
->> @@ -51,7 +51,15 @@ ethernet@e6000 {
->>  		reg = <0xe6000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x0b &fman0_tx_0x2b>;
->>  		ptp-timer = <&ptp_timer0>;
->> -		pcsphy-handle = <&pcsphy3>;
->> +		pcsphy-handle = <&pcsphy3>, <&qsgmiia_pcs3>;
->> +		pcs-names = "sgmii", "qsgmii";
->> +	};
->> +
->> +	mdio@e1000 {
->> +		qsgmiia_pcs3: ethernet-pcs@3 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <3>;
->> +		};
->>  	};
->> 
->>  	mdio@e7000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi
->> index b151d696a069..e2174c0fc841 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi
->> @@ -51,7 +51,8 @@ ethernet@e8000 {
->>  		reg = <0xe8000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x0c &fman0_tx_0x2c>;
->>  		ptp-timer = <&ptp_timer0>;
->> -		pcsphy-handle = <&pcsphy4>;
->> +		pcsphy-handle = <&pcsphy4>, <&pcsphy4>;
->> +		pcs-names = "sgmii", "qsgmii";
->>  	};
->> 
->>  	mdio@e9000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi
->> index adc0ae0013a3..9106815bd63e 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi
->> @@ -51,7 +51,15 @@ ethernet@ea000 {
->>  		reg = <0xea000 0x1000>;
->>  		fsl,fman-ports = <&fman0_rx_0x0d &fman0_tx_0x2d>;
->>  		ptp-timer = <&ptp_timer0>;
->> -		pcsphy-handle = <&pcsphy5>;
->> +		pcsphy-handle = <&pcsphy5>, <&qsgmiib_pcs1>;
->> +		pcs-names = "sgmii", "qsgmii";
->> +	};
->> +
->> +	mdio@e9000 {
->> +		qsgmiib_pcs1: ethernet-pcs@1 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <1>;
->> +		};
->>  	};
->> 
->>  	mdio@eb000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi
->> index 435047e0e250..a3c1538dfda1 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi
->> @@ -52,7 +52,15 @@ ethernet@f0000 {
->>  		compatible = "fsl,fman-memac";
->>  		reg = <0xf0000 0x1000>;
->>  		fsl,fman-ports = <&fman1_rx_0x10 &fman1_tx_0x30>;
->> -		pcsphy-handle = <&pcsphy14>;
->> +		pcsphy-handle = <&pcsphy14>, <&qsgmiid_pcs2>,
->> <&pcsphy14>;
->> +		pcs-names = "sgmii", "qsgmii", "xfi";
->> +	};
->> +
->> +	mdio@e9000 {
->> +		qsgmiid_pcs2: ethernet-pcs@2 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <2>;
->> +		};
->>  	};
->> 
->>  	mdio@f1000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi
->> index c098657cca0a..c024517e70d6 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi
->> @@ -52,7 +52,15 @@ ethernet@f2000 {
->>  		compatible = "fsl,fman-memac";
->>  		reg = <0xf2000 0x1000>;
->>  		fsl,fman-ports = <&fman1_rx_0x11 &fman1_tx_0x31>;
->> -		pcsphy-handle = <&pcsphy15>;
->> +		pcsphy-handle = <&pcsphy15>, <&qsgmiid_pcs3>,
->> <&pcsphy15>;
->> +		pcs-names = "sgmii", "qsgmii", "xfi";
->> +	};
->> +
->> +	mdio@e9000 {
->> +		qsgmiid_pcs3: ethernet-pcs@3 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <3>;
->> +		};
->>  	};
->> 
->>  	mdio@f3000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi
->> index 9d06824815f3..16fb299f615a 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi
->> @@ -51,7 +51,8 @@ ethernet@e0000 {
->>  		reg = <0xe0000 0x1000>;
->>  		fsl,fman-ports = <&fman1_rx_0x08 &fman1_tx_0x28>;
->>  		ptp-timer = <&ptp_timer1>;
->> -		pcsphy-handle = <&pcsphy8>;
->> +		pcsphy-handle = <&pcsphy8>, <&pcsphy8>;
->> +		pcs-names = "sgmii", "qsgmii";
->>  	};
->> 
->>  	mdio@e1000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi
->> index 70e947730c4b..75cecbef8469 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi
->> @@ -51,7 +51,15 @@ ethernet@e2000 {
->>  		reg = <0xe2000 0x1000>;
->>  		fsl,fman-ports = <&fman1_rx_0x09 &fman1_tx_0x29>;
->>  		ptp-timer = <&ptp_timer1>;
->> -		pcsphy-handle = <&pcsphy9>;
->> +		pcsphy-handle = <&pcsphy9>, <&qsgmiic_pcs1>;
->> +		pcs-names = "sgmii", "qsgmii";
->> +	};
->> +
->> +	mdio@e1000 {
->> +		qsgmiic_pcs1: ethernet-pcs@1 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <1>;
->> +		};
->>  	};
->> 
->>  	mdio@e3000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi
->> index ad96e6529595..98c1d27f17e7 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi
->> @@ -51,7 +51,15 @@ ethernet@e4000 {
->>  		reg = <0xe4000 0x1000>;
->>  		fsl,fman-ports = <&fman1_rx_0x0a &fman1_tx_0x2a>;
->>  		ptp-timer = <&ptp_timer1>;
->> -		pcsphy-handle = <&pcsphy10>;
->> +		pcsphy-handle = <&pcsphy10>, <&qsgmiic_pcs2>;
->> +		pcs-names = "sgmii", "qsgmii";
->> +	};
->> +
->> +	mdio@e1000 {
->> +		qsgmiic_pcs2: ethernet-pcs@2 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <2>;
->> +		};
->>  	};
->> 
->>  	mdio@e5000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi
->> index 034bc4b71f7a..203a00036f17 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi
->> @@ -51,7 +51,15 @@ ethernet@e6000 {
->>  		reg = <0xe6000 0x1000>;
->>  		fsl,fman-ports = <&fman1_rx_0x0b &fman1_tx_0x2b>;
->>  		ptp-timer = <&ptp_timer1>;
->> -		pcsphy-handle = <&pcsphy11>;
->> +		pcsphy-handle = <&pcsphy11>, <&qsgmiic_pcs3>;
->> +		pcs-names = "sgmii", "qsgmii";
->> +	};
->> +
->> +	mdio@e1000 {
->> +		qsgmiic_pcs3: ethernet-pcs@3 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <3>;
->> +		};
->>  	};
->> 
->>  	mdio@e7000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi
->> index 93ca23d82b39..9366935ebc02 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi
->> @@ -51,7 +51,8 @@ ethernet@e8000 {
->>  		reg = <0xe8000 0x1000>;
->>  		fsl,fman-ports = <&fman1_rx_0x0c &fman1_tx_0x2c>;
->>  		ptp-timer = <&ptp_timer1>;
->> -		pcsphy-handle = <&pcsphy12>;
->> +		pcsphy-handle = <&pcsphy12>, <&pcsphy12>;
->> +		pcs-names = "sgmii", "qsgmii";
->>  	};
->> 
->>  	mdio@e9000 {
->> diff --git a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi
->> b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi
->> index 23b3117a2fd2..39f7c6133017 100644
->> --- a/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi
->> +++ b/arch/powerpc/boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi
->> @@ -51,7 +51,15 @@ ethernet@ea000 {
->>  		reg = <0xea000 0x1000>;
->>  		fsl,fman-ports = <&fman1_rx_0x0d &fman1_tx_0x2d>;
->>  		ptp-timer = <&ptp_timer1>;
->> -		pcsphy-handle = <&pcsphy13>;
->> +		pcsphy-handle = <&pcsphy13>, <&qsgmiid_pcs1>;
->> +		pcs-names = "sgmii", "qsgmii";
->> +	};
->> +
->> +	mdio@e9000 {
->> +		qsgmiid_pcs1: ethernet-pcs@1 {
->> +			compatible = "fsl,lynx-pcs";
->> +			reg = <1>;
->> +		};
->>  	};
->> 
->>  	mdio@eb000 {
->> --
->> 2.35.1.1320.gc452695387.dirty
-> 
+>>
+>>  arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts | 2 +-
+>>  .../dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts     | 2 +-
+>>  arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts | 2 +-
+>>  .../arm64/boot/dts/broadcom/bcm4908/bcm4908-netgear-raxe500.dts | 2 +-
+>>  4 files changed, 4 insertions(+), 4 deletions(-)
+>>
+>> diff --git
+>> a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
+>> b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
+>> index 2dd028438c22..d8b60575eb4f 100644
+>> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
+>> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-netgear-r8000p.dts
+>> @@ -7,7 +7,7 @@
+>>  #include "bcm4906.dtsi"
+>>
+>>  / {
+>> -    compatible = "netgear,r8000p", "brcm,bcm4906", "brcm,bcm4908";
+>> +    compatible = "netgear,r8000p", "brcm,bcm4906", "brcm,bcm4908", 
+>> "brcm,bcmbca";
+>>      model = "Netgear R8000P";
+>>
+>>      memory@0 {
+>> diff --git
+>> a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
+>> b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
+>> index 064f7f549665..296393d4aaab 100644
+>> --- 
+>> a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
+>> +++ 
+>> b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4906-tplink-archer-c2300-v1.dts
+>> @@ -7,7 +7,7 @@
+>>  #include "bcm4906.dtsi"
+>>
+>>  / {
+>> -    compatible = "tplink,archer-c2300-v1", "brcm,bcm4906", 
+>> "brcm,bcm4908";
+>> +    compatible = "tplink,archer-c2300-v1", "brcm,bcm4906",
+>> "brcm,bcm4908", "brcm,bcmbca";
+>>      model = "TP-Link Archer C2300 V1";
+>>
+>>      memory@0 {
+>> diff --git
+>> a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+>> b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+>> index 04f8524b5335..787c7ddf9102 100644
+>> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+>> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dts
+>> @@ -6,7 +6,7 @@
+>>  #include "bcm4908.dtsi"
+>>
+>>  / {
+>> -    compatible = "asus,gt-ac5300", "brcm,bcm4908";
+>> +    compatible = "asus,gt-ac5300", "brcm,bcm4908", "brcm,bcmbca";
+>>      model = "Asus GT-AC5300";
+>>
+>>      memory@0 {
+>> diff --git
+>> a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-netgear-raxe500.dts
+>> b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-netgear-raxe500.dts
+>> index 3c2cf2d238b6..23b96c663239 100644
+>> --- a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-netgear-raxe500.dts
+>> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-netgear-raxe500.dts
+>> @@ -3,7 +3,7 @@
+>>  #include "bcm4908.dtsi"
+>>
+>>  / {
+>> -    compatible = "netgear,raxe500", "brcm,bcm4908";
+>> +    compatible = "netgear,raxe500", "brcm,bcm4908", "brcm,bcmbca";
+>>      model = "Netgear RAXE500";
+>>
+>>      memory@0 {
+
+--0000000000004e24eb05e45468c8
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIP4ibY+gCLHmsTqykum3flxGixic
+3d2unqCFgIzrQ1PGMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDcyMTE3NTQyMVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQAeIt7mfmIbkmApi8eAzhEp6Gw2z+ZSR1mEaPLBDcGRp6dh
+/EbdJnDGpLNaZWgHe2bVqZ8mhHSb4yWeUtd9x68/7ITCaE09QDpOVtGn1KNWfVWegekGTvgYfpzk
+5De2ODKi9hxtj+B9snjFVcNI1atFjykh5VMXKel3Uzst9uEJ7EuHPsnDWBOtWAq+ZOwRmMPaywI9
+5J9GFodLOaBd8xHT8SqJzYOWReZhHV86k/QlZ0AkbPiDlnWqBybJQnY6LHQJ37Q7UqDFalkC+9/Z
+hW2H7VO9CdJFr5XQ5Hy2J5iGR9pIwzPKELn58qb6h4vuQIgKLrF7KUDhqivPQ270ZeTW
+--0000000000004e24eb05e45468c8--
