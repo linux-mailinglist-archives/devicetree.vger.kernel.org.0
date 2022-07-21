@@ -2,173 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B898C57CE3D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E17757CE49
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232170AbiGUOxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 10:53:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39662 "EHLO
+        id S232346AbiGUOzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 10:55:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231209AbiGUOxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:53:14 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D39BB286EF
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:53:12 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id d17so1028475lfa.12
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:53:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cLo9fM7F+1waINGkNKaUX3n5snX3YK8Uq0FRboZsXyw=;
-        b=KdwEzNqwKe7/xPp05UA/JD41rUsNR9gdR6EIXYm1Lu2Qyq27M16YcsDkjo7yK7U35c
-         nmfjUAgxn0tHHcTJk5DhqZddD/SE7M1c5XukrO4krlGoJaqBwdF9oT42R+AK5mowEyoA
-         Mliz8l6lbNp2ABFYjYbUiGOPbkhmvfh5DAAeZi6nbaeMFSvwrV4QtDCnXUH63fCFaegS
-         442vJXtpxj86HGYmhnJkDFuelywiKhh2SRzUFDL7MGIlEGJUh7C6rA7fg2EAM9ER200s
-         XTyZW/+zDDHLBpwWLVZpRExOIfCLNIWLOYNVpVUbMz0v327ncQl6d7/UJurckbP/DJR1
-         1QGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cLo9fM7F+1waINGkNKaUX3n5snX3YK8Uq0FRboZsXyw=;
-        b=13fXhyH+IhjSkChJ+vaGFgYw5ohssF947X5WII/JdluFz5rNgUzCcdLlvXuEd5wQGS
-         xbcPZVOTtaNM351RVNzVxqZ5lUG7uJhEgn8J+8B3WVqC/XLAZSsiElcYFLYdXvwTIfMf
-         BKxjwHTfzcSDYf18qQqu1eTR9CiK1ymZvEaHvH7OXHdDkulmBvR9h+MzWvuhym1ng1jm
-         eAZu6sc7jp2xqyhuEoHg+da3kvKzoPJWk/gWZyLVL8cqwgCrzHOUKtMv6B/Y6iR1S7d4
-         XpNpQE75kNO8foWOglguquY1qwSdQVFBAMdbSJPdABfYSWlbblH1JMNwgvmkdI58weNS
-         QQ2w==
-X-Gm-Message-State: AJIora/Ptw5v8c8xX1OLGMO2+SXG+vt5EakxAqtFAX7vmUpC6ApyZNLF
-        pP5SgpPdG20hwWGSkRDWw5hq1g==
-X-Google-Smtp-Source: AGRyM1tM7l1nHejhj+ruxIHCF/akXifvLXeu6qiHgvMQ8WFVm7vntLxeuszZhHnthUI6uDvgxhWssA==
-X-Received: by 2002:ac2:4ec4:0:b0:48a:7144:c0ce with SMTP id p4-20020ac24ec4000000b0048a7144c0cemr1034831lfr.406.1658415191129;
-        Thu, 21 Jul 2022 07:53:11 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id g1-20020a056512118100b004811bf4999csm479112lfr.290.2022.07.21.07.53.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 07:53:10 -0700 (PDT)
-Message-ID: <66e94a45-d5b8-ead2-ef76-89bb680ca00f@linaro.org>
-Date:   Thu, 21 Jul 2022 16:53:08 +0200
+        with ESMTP id S232334AbiGUOzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:55:15 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F5E05F5E;
+        Thu, 21 Jul 2022 07:55:10 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C86916601AAA;
+        Thu, 21 Jul 2022 15:55:08 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658415309;
+        bh=EyTW2qzfSr+AZwVRWnf0cfBClBBVk9mIXqcmwKrTY2s=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=aSEK3wBJW5ZfYWmPNlbU0sePZNNXqwE5AWAY0mJjsvUxtxBli+P/UKHnuJANoPXq7
+         i6YchppxsUCeAkZabMD3HcUnpaKhjWb8sHCBVZys24FUwLxG+uctouTt7zv/etPMVS
+         nolBLYYTQL+7sIBdXza+ndbUjXIo3MfypvJenbXhmDIFaxKNIH+DUA/zTkJ0sU2q+E
+         gG6FhfvlzqcTG3tjE9UfPG4RjFNhti5Z9yx/7arp0+aq0e2WejNFtNxiMZHhMF6i31
+         l11Wi9NEOqihzUURMuI23vmri2Ffz90BVG7OgT75M5Hf/vi33Nr+hpCpwVi1lFUhCy
+         AyJ2RTNWhDHFg==
+Message-ID: <1eed6877-8868-6b29-b7c9-90986d230f36@collabora.com>
+Date:   Thu, 21 Jul 2022 16:55:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v1 1/5] spi: spi-gxp: Add support for HPE GXP SoCs
+Subject: Re: [PATCH v1 4/6] Input: mt6779-keypad - support double keys matrix
 Content-Language: en-US
-To:     nick.hawkins@hpe.com
-Cc:     broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com,
-        linux@armlinux.org.uk, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, arnd@arndb.de, joel@jms.id.au
-References: <20220720201158.78068-1-nick.hawkins@hpe.com>
- <20220720201158.78068-2-nick.hawkins@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220720201158.78068-2-nick.hawkins@hpe.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
+ <20220720-mt8183-keypad-v1-4-ef9fc29dbff4@baylibre.com>
+ <b2676b5c-14b3-2058-9fb8-d6d78cc5d29c@collabora.com>
+ <87ilnqh632.fsf@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <87ilnqh632.fsf@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2022 22:11, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+Il 21/07/22 16:51, Mattijs Korpershoek ha scritto:
+> On Thu, Jul 21, 2022 at 10:34, AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> wrote:
 > 
-> The GXP supports 3 separate SPI interfaces to accommodate the system
-> flash, core flash, and other functions. The SPI engine supports variable
-> clock frequency, selectable 3-byte or 4-byte addressing and a
-> configurable x1, x2, and x4 command/address/data modes. The memory
-> buffer for reading and writing ranges between 256 bytes and 8KB. This
-> driver supports access to the core flash and bios part.
+>> Il 20/07/22 16:48, Mattijs Korpershoek ha scritto:
+>>> MediaTek keypad has 2 modes of detecting key events:
+>>> - single key: each (row, column) can detect one key
+>>> - double key: each (row, column) is a group of 2 keys
+>>>
+>>> Double key support exists to minimize cost, since it reduces the number
+>>> of pins required for physical keys.
+>>>
+>>> Double key is configured by setting BIT(0) of the KP_SEL register.
+>>>
+>>> Enable double key matrix support based on the mediatek,double-keys
+>>> device tree property.
+>>>
+>>> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+>>> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+>>>
+>>> diff --git a/drivers/input/keyboard/mt6779-keypad.c b/drivers/input/keyboard/mt6779-keypad.c
+>>> index bf447bf598fb..9a5dbd415dac 100644
+>>> --- a/drivers/input/keyboard/mt6779-keypad.c
+>>> +++ b/drivers/input/keyboard/mt6779-keypad.c
+>>> @@ -18,6 +18,7 @@
+>>>    #define MTK_KPD_DEBOUNCE_MASK	GENMASK(13, 0)
+>>>    #define MTK_KPD_DEBOUNCE_MAX_MS	256
+>>>    #define MTK_KPD_SEL		0x0020
+>>> +#define MTK_KPD_SEL_DOUBLE_KP_MODE	BIT(0)
+>>>    #define MTK_KPD_SEL_COL	GENMASK(15, 10)
+>>>    #define MTK_KPD_SEL_ROW	GENMASK(9, 4)
+>>>    #define MTK_KPD_SEL_COLMASK(c)	GENMASK((c) + 9, 10)
+>>> @@ -31,6 +32,7 @@ struct mt6779_keypad {
+>>>    	struct clk *clk;
+>>>    	u32 n_rows;
+>>>    	u32 n_cols;
+>>> +	bool double_keys;
+>>>    	DECLARE_BITMAP(keymap_state, MTK_KPD_NUM_BITS);
+>>>    };
+>>>    
+>>> @@ -67,8 +69,13 @@ static irqreturn_t mt6779_keypad_irq_handler(int irq, void *dev_id)
+>>>    			continue;
+>>>    
+>>>    		key = bit_nr / 32 * 16 + bit_nr % 32;
+>>> -		row = key / 9;
+>>> -		col = key % 9;
+>>> +		if (keypad->double_keys) {
+>>> +			row = key / 13;
+>>> +			col = (key % 13) / 2;
+>>> +		} else {
+>>> +			row = key / 9;
+>>> +			col = key % 9;
+>>> +		}
+>>
+>> I don't fully like this if branch permanently evaluating true or false, as no
+>> runtime can actually change this result...
+>>
+>> In practice, it's fine, but I was wondering if anyone would disagree with the
+>> following proposal...
+>>
+>> struct mt6779_keypad {
+>> 	.......
+>> 	void (*calc_row_col)(unsigned int *row, unsigned int *col);
+>> };
+>>
+>> In mt6779_keypad_irq_handler:
+>>
+>> 	key = bit_nr / 32 * 16 + bit_nr % 32;
+>> 	keypad->calc_row_col(&row, &col);
+>>
+>> and below...
+>>
+>>>    
+>>>    		scancode = MATRIX_SCAN_CODE(row, col, row_shift);
+>>>    		/* 1: not pressed, 0: pressed */
+>>> @@ -150,6 +157,8 @@ static int mt6779_keypad_pdrv_probe(struct platform_device *pdev)
+>>>    
+>>>    	wakeup = device_property_read_bool(&pdev->dev, "wakeup-source");
+>>>    
+>>> +	keypad->double_keys = device_property_read_bool(&pdev->dev, "mediatek,double-keys");
+>>> +
+>>>    	dev_dbg(&pdev->dev, "n_row=%d n_col=%d debounce=%d\n",
+>>>    		keypad->n_rows, keypad->n_cols, debounce);
+>>>    
+>>> @@ -166,6 +175,10 @@ static int mt6779_keypad_pdrv_probe(struct platform_device *pdev)
+>>>    	regmap_write(keypad->regmap, MTK_KPD_DEBOUNCE,
+>>>    		     (debounce * (1 << 5)) & MTK_KPD_DEBOUNCE_MASK);
+>>>    
+>>> +	if (keypad->double_keys)
+>>
+>> 		keypad->calc_row_col = mt6779_keypad_calc_row_col_double_kp;
+>>
+>>> +		regmap_update_bits(keypad->regmap, MTK_KPD_SEL,
+>>> +				   MTK_KPD_SEL_DOUBLE_KP_MODE, MTK_KPD_SEL_DOUBLE_KP_MODE);
+>>> +
+>>
+>> 	} else {
+>> 		keypad->calc_row_col = mt6779_keypad_calc_row_col_single_kp;
+>> 	}
+>>
+>>>    	regmap_update_bits(keypad->regmap, MTK_KPD_SEL, MTK_KPD_SEL_ROW,
+>>>    			   MTK_KPD_SEL_ROWMASK(keypad->n_rows));
+>>>    	regmap_update_bits(keypad->regmap, MTK_KPD_SEL, MTK_KPD_SEL_COL,
+>>
+>> what do you think?
+> 
+> Hi Angelo,
+> 
+> Thank you for your detailed suggestion. I like it and since I have to
+> resend a v2 anyways, I will consider implementing it.
+> On the other hand, I'm a little reluctant because it means that I'll
+> have to remove Matthias's reviewed-by :(
 > 
 
-(...)
+Yes, you will have to. In that case:
 
-> +static int gxp_spifi_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	const struct gxp_spi_data *data;
-> +	struct spi_controller *ctlr;
-> +	struct gxp_spi *spifi;
-> +	struct resource *res;
-> +	int ret;
-> +
-> +	data = of_device_get_match_data(&pdev->dev);
-> +	if (!data) {
-> +		dev_err(&pdev->dev, "of_dev_get_match_data failed\n");
+Matthias, any considerations about this idea? :)))
 
-Is it even possible to happen? I don't think so, so definitely not worth
-log message.
-
-> +		return -ENOMEM;
-> +	}
-> +
-> +	ctlr = devm_spi_alloc_master(dev, sizeof(*spifi));
-> +	if (!ctlr) {
-> +		dev_err(&pdev->dev, "spi_alloc_master failed\n");
-
-Aren't you duplicating core messages?
-
-> +		return -ENOMEM;
-> +	}
-> +
-> +	spifi = spi_controller_get_devdata(ctlr);
-> +	if (!spifi) {
-
-Is it even possible?
-
-> +		dev_err(&pdev->dev, "spi_controller_get_data failed\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, spifi);
-> +	spifi->data = data;
-> +	spifi->dev = dev;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	spifi->reg_base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(spifi->reg_base))
-> +		return PTR_ERR(spifi->reg_base);
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +	spifi->dat_base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(spifi->dat_base))
-> +		return PTR_ERR(spifi->dat_base);
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 2);
-> +	spifi->dir_base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(spifi->dir_base))
-> +		return PTR_ERR(spifi->dir_base);
-> +
-> +	ctlr->mode_bits = data->mode_bits;
-> +	ctlr->bus_num = pdev->id;
-> +	ctlr->mem_ops = &gxp_spi_mem_ops;
-> +	ctlr->setup = gxp_spi_setup;
-> +	ctlr->num_chipselect = data->max_cs;
-> +	ctlr->dev.of_node = dev->of_node;
-> +
-> +	ret = devm_spi_register_controller(dev, ctlr);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "spi_register_controller failed\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int gxp_spifi_remove(struct platform_device *pdev)
-> +{
-> +	return 0;
-> +}
-
-It's empty, why do you need it?
+>>
+>> Cheers,
+>> Angelo
 
 
-Best regards,
-Krzysztof
