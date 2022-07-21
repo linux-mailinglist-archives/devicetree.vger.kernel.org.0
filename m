@@ -2,158 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12EA257D2D1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 19:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A22457D347
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 20:29:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbiGURzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 13:55:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47322 "EHLO
+        id S229485AbiGUS3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 14:29:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbiGURzM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 13:55:12 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58D61183C
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 10:55:10 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id d16so3319118wrv.10
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 10:55:10 -0700 (PDT)
+        with ESMTP id S231670AbiGUS3i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 14:29:38 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A66068C8C8
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 11:29:35 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id m8so3204146edd.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 11:29:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=i4cDjf1Cjd0yOw7f6RDaSHI7QfV0U03RCOe+RqMOiHM=;
-        b=3qp8L6iiIFbNgY8Rq98TiLMJtgEeK9PLQueSkCCCniUVIFRzRd3VeBgwjF2ImnbvUe
-         EjJR2YZjDpOWrBDJDiOt8F7sl31tDvPqK5i7IukZn/PjA9ReRA49ZFS9/9nDSke6h+be
-         6bAsjgLFoydTT9tMfVavkXWZKxoN17M/rRz7M40i+XyR/cJGlO0kqvNOYiEmtdqtmkl7
-         3YrZU1P7uYpor6t7vdI7R4eBuBigOAj+QdP/KoDFeXsa+AhjSBbGHGSr2t9bFOgwYRvx
-         cQ9am5xCxqAWtUyXHTwmqF8N/ofbev+U0BD+Fzfyp73vn0PCYywygtDefUOFSFDS83NC
-         9P9w==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HwUsGLRpMv31IoKhe6aFZhAJeU1EkSbKNMjO7y+3gIo=;
+        b=aLmdooI7aEU3//m4BQ6o/XXcpWaZ5+5a6zyCBNi3zi0O0NiHxICF6FpCTsdkxf2h+1
+         dfUoYQT30805peQUM3uo5AZCSrMFbQjucVADyl4eDrvayM07weIpS36apUqMeqC2mSEW
+         KM8R1cyxxOqmhN7DpLwKFicbiErjwJfyQYBbs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=i4cDjf1Cjd0yOw7f6RDaSHI7QfV0U03RCOe+RqMOiHM=;
-        b=foWkDWh+VYtuow3l4a6YCj6Vn9M8JekBmnL8rqhUNTspilP+JP9h23doLgao42A05G
-         mTeIt2zA0LGCo1O7EoA1hnT+PeOJ0bH+nRkMisedF7eB9IHQaYGnpKUmDSkYcUatQlM6
-         ARY0Ihz8FW/nnyY9sXDM4yhO+b6uhKoZu6dln86Y3V47r/K2FpUk4foQH+ciANpSxmPv
-         4z5pxeFBm/dh4MfxjD85z7eCvkGDRpc6G+hA+d2Lhqjqdv0IwiTC8p2B+VWGEZHwiPo/
-         HvYv7mAtmEIAQHUVhDdtDgLGu57Lu2+49Yz2r6yunp8E3gDKc/QROJUL9sOfGYaKXtmY
-         dzwg==
-X-Gm-Message-State: AJIora8mKafyriqLbO8oswPbxA+byodO4YEI8MPoaCVYXReJpex6uJ0+
-        3u8SW2dZIy450Jz5FN8Uh91li5p2mwJ6xw==
-X-Google-Smtp-Source: AGRyM1uOfbxXgRLwmkYBzhfykIJonAAq54TnBmhDotxBZ3VtXs9L7VXTSL/Xz0+Yps7lwWlsRIooHw==
-X-Received: by 2002:a5d:47aa:0:b0:216:9eff:342b with SMTP id 10-20020a5d47aa000000b002169eff342bmr37601684wrb.356.1658426109168;
-        Thu, 21 Jul 2022 10:55:09 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4c23:a5d2:f5f6:4cd7? ([2a01:e0a:982:cbb0:4c23:a5d2:f5f6:4cd7])
-        by smtp.gmail.com with ESMTPSA id r13-20020a05600c35cd00b003a046549a85sm6804613wmq.37.2022.07.21.10.55.03
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HwUsGLRpMv31IoKhe6aFZhAJeU1EkSbKNMjO7y+3gIo=;
+        b=E5Bv/z+095GpE93rWkE518D7V5rApWZoGqOzraY4QDZHDf/4UF10m9PXHzaTNFaoUk
+         YPSODv1PFFlmlFxhLOralBB+EwpCKna4pawNbyUyPbEyHw89EtsaIFxvGKINNjHryWYt
+         ChDN6kwS+yO/WTp7dp9ito1gF5tgsaG9/bmkmrWadI9/GdLtEybSfwaTzPyDFJdoPLaq
+         kubaGzdju3a4xyBiNK1DTctBO2zR9E5gnq1JvqTNUWGV/ixfB5RBBsREi1qySicT4YZ3
+         XGFqryc7HHgjMIG9XMzukyKkfgBkFcej5VUWuZxgOeJj8RfNWdUOimkdPrj4fUWDL6FT
+         uG6w==
+X-Gm-Message-State: AJIora8V6riabXaeWV0kHVP8rq5haUjpudpeQIjFpQvzvIUmw/pF69/D
+        Sq7y0myGQuTzRQvhBA6E1byFLXeu+3F7W5vGNWY=
+X-Google-Smtp-Source: AGRyM1uaXJ5RuLNQT1NCFr6FvfZkd5NXLB9trsdnkJeCnBy4QsEjmDdM+6f+aX7aisLUTsf56ospzQ==
+X-Received: by 2002:a05:6402:f2a:b0:43a:9d53:e0e6 with SMTP id i42-20020a0564020f2a00b0043a9d53e0e6mr59359124eda.394.1658428174037;
+        Thu, 21 Jul 2022 11:29:34 -0700 (PDT)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
+        by smtp.gmail.com with ESMTPSA id w8-20020a17090649c800b0072b2378027csm1114743ejv.26.2022.07.21.11.29.28
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 10:55:04 -0700 (PDT)
-Message-ID: <44f1117c-3e9a-e9d0-6d88-0f4a233f19e1@baylibre.com>
-Date:   Thu, 21 Jul 2022 19:55:03 +0200
+        Thu, 21 Jul 2022 11:29:30 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id a18-20020a05600c349200b003a30de68697so4156250wmq.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 11:29:28 -0700 (PDT)
+X-Received: by 2002:a05:600c:2e48:b0:3a3:1ce3:3036 with SMTP id
+ q8-20020a05600c2e4800b003a31ce33036mr8955194wmf.188.1658428168451; Thu, 21
+ Jul 2022 11:29:28 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] Add MagicBox M16S support
-Content-Language: en-US
-To:     Zhang Ning <zhangn1985@qq.com>
-Cc:     robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <tencent_5FC75850BB8ECD9374E98461C38C41CAC506@qq.com>
- <050c3f94-5c65-d745-ffe7-6035e55a372f@baylibre.com>
- <tencent_C06302ED0F3660D25A133B0D4506EC17B908@qq.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <tencent_C06302ED0F3660D25A133B0D4506EC17B908@qq.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
+ <20220721033918.v3.2.I7ecbb7eeb58c5e6a33e32a3abf4d6874e6cb725c@changeid>
+ <CAD=FV=WSBgupLFMCZgianck6uTkAyqrG0WK2ChSbNbJdhOPdLA@mail.gmail.com>
+ <4b2fe9d0-f590-0fac-79fa-bb05da1d61df@linaro.org> <CAD=FV=XmaNdc9k98vAwbcN-sm0w_WeqhRsK_AUm3h4LZ5-egmQ@mail.gmail.com>
+ <c2b03863-2249-13e6-98e0-731c1b40d0a9@linaro.org>
+In-Reply-To: <c2b03863-2249-13e6-98e0-731c1b40d0a9@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 21 Jul 2022 11:29:13 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XKC_fbBzna8TgiPRmPH_=AQ3ckv2EEjoNvayKQ83Uciw@mail.gmail.com>
+Message-ID: <CAD=FV=XKC_fbBzna8TgiPRmPH_=AQ3ckv2EEjoNvayKQ83Uciw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: arm: qcom: Document additional sku6
+ for sc7180 pazquel
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Henry Sun <henrysun@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 16:37, Zhang Ning wrote:
-> On Mon, Jul 18, 2022 at 10:02:32AM +0200, Neil Armstrong wrote:
-> 
-> Thank you for review.
->> Hi,
->>
->> On 12/07/2022 16:24, Zhang Ning wrote:
->>> MagicBox M16S or MagicBox 3Pro is popular Tv box in China.
->>>
->>> it's gxm_q201_v1 according u-boot log.
->>> and it's almost same as Q201 reference design.
->>>
->>> add a simple dts to support this Tv box.
->>>
->>> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
->>> ---
->>>    arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->>>    .../dts/amlogic/meson-gxm-magicbox-m16s.dts   | 20 +++++++++++++++++++
->>>    2 files changed, 21 insertions(+)
->>>    create mode 100644 arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
->>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->>> index 8773211df50e..e0907fb41829 100644
->>> --- a/arch/arm64/boot/dts/amlogic/Makefile
->>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->>> @@ -44,6 +44,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-libretech-cc.dtb
->>>    dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-nexbox-a95x.dtb
->>>    dtb-$(CONFIG_ARCH_MESON) += meson-gxl-s905x-p212.dtb
->>>    dtb-$(CONFIG_ARCH_MESON) += meson-gxm-khadas-vim2.dtb
->>> +dtb-$(CONFIG_ARCH_MESON) += meson-gxm-magicbox-m16s.dtb
->>>    dtb-$(CONFIG_ARCH_MESON) += meson-gxm-mecool-kiii-pro.dtb
->>>    dtb-$(CONFIG_ARCH_MESON) += meson-gxm-minix-neo-u9h.dtb
->>>    dtb-$(CONFIG_ARCH_MESON) += meson-gxm-nexbox-a1.dtb
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
->>> new file mode 100644
->>> index 000000000000..be543d65a529
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-magicbox-m16s.dts
->>> @@ -0,0 +1,20 @@
->>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>> +/*
->>> + * Copyright (c) 2022 Zhang Ning <zhangn1985@qq.com>
->>> + */
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "meson-gxm.dtsi"
->>> +#include "meson-gx-p23x-q20x.dtsi"
->>> +#include <dt-bindings/input/input.h>
->>> +#include <dt-bindings/leds/common.h>
->>> +
->>> +/ {
->>> +	compatible = "magicbox,m16s", "amlogic,s912", "amlogic,meson-gxm";
->>> +	model = "MagicBox M16S";
->>> +};
->>
->> The compatible should be documented in the DT bindings in:
->> Documentation/devicetree/bindings/arm/amlogic.yaml
-> 
-> I will update this part next version.
->>
->>> +&ethmac {
->>> +        phy-mode = "rmii";
->>> +        phy-handle = <&internal_phy>;
->>> +};
->>
->> Is the sd_emmc_a change incompatible with the M16S ?
-> 
-> sd_emmc_a is used as SDIO for wifi/bt. and wifi/bt works with this dtb.
-> I checked mrvl-sd8997 DT bindings,  missing a lot of properties need
-> by mrvl-sd8997.
-> 
-> I don't have schematics to fill these properties, need more time to
-> check vendor OS or try each GPIO.
+Hi,
 
-Ok fine no problem, you can push it later when you figure out the properties.
+On Thu, Jul 21, 2022 at 9:52 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 21/07/2022 18:43, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Thu, Jul 21, 2022 at 9:33 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 21/07/2022 15:37, Doug Anderson wrote:
+> >>>
+> >>> Not worth sending a new version for, but normally I expect the
+> >>> bindings to be patch #1 and the dts change to be patch #2. In any
+> >>> case:
+> >>>
+> >>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> >>
+> >> I would say worth v4, because otherwise patches is not bisectable.
+> >
+> > You're saying because `dtbs_check` will fail between the two?
+>
+> Yes
 
->>
->> Neil
+OK. Then I assume you agree that reversing the order of the patches
+won't help, only combining the two patches into one.
 
-Neil
+
+> > How does
+> > flipping the order help? If `dtbs_check` needs to be bisectable then
+> > these two need to be one patch, but I was always under the impression
+> > that we wanted bindings patches separate from dts patches.
+>
+> I don't think anyone said that bindings patches must be separate from
+> DTS. The only restriction is DTS cannot go with drivers.
+
+I have always heard that best practice is to have bindings in a patch
+by themselves. If I've misunderstood and/or folks have changed their
+minds, that's fine, but historically I've been told to keep them
+separate.
+
+
+> Bindings for boards go pretty often with DTS (subarch). This is exactly
+> what maintainers do, e.g.:
+> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/log/?h=arm64-for-5.20
+> Bindings for hardware should go via subsystem maintainer (drivers).
+
+OK, fair that in this case both the bindings and the yaml will land
+through the Qualcomm tree. I guess it's really up to Bjorn and whether
+he'd prefer "make dtbs_check" to be bisectable or whether he'd prefer
+the bindings and dts change to be in separate patches from each other.
+
+-Doug
