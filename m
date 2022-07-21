@@ -2,134 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2B1F57CF47
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 17:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1977D57D00C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 17:43:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229608AbiGUPgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 11:36:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49820 "EHLO
+        id S233215AbiGUPnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 11:43:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiGUPgE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 11:36:04 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80049.outbound.protection.outlook.com [40.107.8.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99CCE82FA7;
-        Thu, 21 Jul 2022 08:35:39 -0700 (PDT)
+        with ESMTP id S230291AbiGUPnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 11:43:23 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70057.outbound.protection.outlook.com [40.107.7.57])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4538988F0B;
+        Thu, 21 Jul 2022 08:39:18 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E2PMzXhVQOoGOhuCTqqgGdytg75A7jqlQCZucW7+RvhImFhURKrYmHR5RGIus45wgLA+BRarfWzDuLuqlWgUq2+1snAgTxEt627sAeK3BTJpRisybz8X7Xtr4IJ4Eojz5gERo3cllrN4OFH4Tpb/kpBAQDRF7XKTwVnUOTpIghGqB5YyWsnZrn8clUcOzJHcNlLs5RADarVS3vYe5/W/cTdLPCEA7GdGDwFIGep6xywYbIUlUaDWRmavLehdHhnBIRbeCDkR8JfKzoizSQ54vHLeOaH9526LUEuEWC863KPEvUktWPxk7dhE2KFY7SIcDNwPZ60t0WHezDf3GxlVdQ==
+ b=LS3kCtJVQGI5Rov6oz6A7g/z7P1DPlGEgzc7SFGWVLC2Z2bdm8uinjHzEsuNA/ZJxZLqPpPxY9Fryu5w4gYSoibUdBCmcs98j/3PG9QqgwyFM0P3LiEr7PnI8ICZ5pmqp0xfCI6JsjWmdCyNNxkqoNvNppJgxHOdKW7bq3lRQh4eWHJ1mk8oIy/0fhY+7xW4vRo4wTQy9UyhAd04/RR2mMMa0G1EOwe+p5Q/Thu6aP44G1bq4hvZPFHR1eHI4LV4X5Ig2hBAfWoqqIDgU+bjc1EKOQBMqGogxZWD2tM5L2v12tYHkvWHq0edLTv2wWgQvn2FAHKhxSfTWTfyjMMgGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q87A6sZe5ky0mEkPPqSRKCtSZfxgFYQ0ZS8yL0jDqes=;
- b=lSEMeHlIDW8JW0gcu/zFevmX0DIn0+UP28EtoNAj+H1/vkOm0fhhNCbymHEr8mA9CHKj1baji+9+NcTLkGoBbyz710NapZu91W54Td7XZ3mIQvcFFezue/S/W6MfghdkZwOXjLCCmlAFokxji6x8xAxEXXHbnnzLuAP5JTI3F/2GgMC1Jz0cLrM0D30ajIycpkuaIgYenFtQlCYtCDKd3ATlPW7rulzdeu40dpREaTzoN4FaWCbzkydlQwEpHD8K30PCW1+Qn2TtSdKbTrGjki/oCzatzs2Q29ryfyNOowhW9/cG058PkDs49cKBW/jUrEpZ2LqA84h0g/lzExe21A==
+ bh=hOlq98c+xkxD3rKU5H8w750qcGTz3dFQV0ojgQwbWUI=;
+ b=YPRg0AMBXCLsjLOZceEs4rQuSfYAbJDOfCo+92sYeF4B7WQHCYip45iK+2Xxl2t9TmR+BMFpNTgzAA9MCyjnD34NA93b7eFcnP04eGjZcYKINip5yf0bSX0MN90RD66a448zzKtFUyFToyKVdqzo1yQYVr/byWRe0wVdGY/jTWGeLtY/4wMmN9CrqEUgUHVZeFUiCjCvk6lSwOLN6DN1Jc3SqXRJN5rmu6eK3vnef5ssvteSqiBokUsofv3hmOuReU3OMQdJiPoVlrgZHbIVqij/SFdhbaZ9L5F02OAR3ymHKjrA6lwMXuHTxVuF7H3xV7BNNSZDsmtykNCZOIvjdg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q87A6sZe5ky0mEkPPqSRKCtSZfxgFYQ0ZS8yL0jDqes=;
- b=A+/fE/u4FlTFB+TR/UMGdidl/Tw7aKLE9uWnaS2NboT3JQySbLBMaGDxKsTkMgoQuCYDLRkdTjyMl/gIPFRg1/1OfRy8wq5eKtMciTQHUGndudDKCPqaLbu44mfQuA/8l0uBy9cesqJp6aXO96eFLHnFUOg65Nh1EZqjS09CvV8=
-Received: from PAXPR04MB9186.eurprd04.prod.outlook.com (2603:10a6:102:232::18)
- by DU2PR04MB9052.eurprd04.prod.outlook.com (2603:10a6:10:2e7::12) with
+ bh=hOlq98c+xkxD3rKU5H8w750qcGTz3dFQV0ojgQwbWUI=;
+ b=H7aqYSSuwec1xBA9iGFQ49l/ReAbSdCdPl1UId29T0S6Juynp3kj0yp5tkJ/9RjY/Isaqpqj5HYwfjn4Gy2k+ciOWI5iUFMNKyx90Lz3hIGsC4RZEjyHsdbo13fyX9VhM4FjosCFQp6yOyVgk+qQzlCvxlnJBOqV8Ynjt5gpTnluZsIrC2kpMlMH89bJGvpohT7s1Ytvp/5+sgYvjdC7+utQ8Bj2j/BL+CZrDAyVPTgnpRcPKL0Xcd1ENHkfAJkbjtVN82cMJhmm2e4Vti5VAfzaRc5yQmhoPoUWBXWFg57hieSrQcYmCzcEgbMgQnbg6/t2S/iBp21g7bap1UsYzA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
+ by VI1PR0302MB3280.eurprd03.prod.outlook.com (2603:10a6:803:21::22) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.18; Thu, 21 Jul
- 2022 15:35:36 +0000
-Received: from PAXPR04MB9186.eurprd04.prod.outlook.com
- ([fe80::54aa:b7cb:a13c:66ab]) by PAXPR04MB9186.eurprd04.prod.outlook.com
- ([fe80::54aa:b7cb:a13c:66ab%9]) with mapi id 15.20.5438.023; Thu, 21 Jul 2022
- 15:35:36 +0000
-From:   Frank Li <frank.li@nxp.com>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     "jdmason@kudzu.us" <jdmason@kudzu.us>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "kernel@vger.kernel.org" <kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19; Thu, 21 Jul
+ 2022 15:39:15 +0000
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::59ef:35d2:2f27:e98b]) by DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::59ef:35d2:2f27:e98b%4]) with mapi id 15.20.5458.018; Thu, 21 Jul 2022
+ 15:39:15 +0000
+Subject: Re: [PATCH net-next v3 00/47] [RFT] net: dpaa: Convert to phylink
+To:     Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Cc:     Paolo Abeni <pabeni@redhat.com>,
+        Eric Dumazet <edumazet@google.com>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "ntb@lists.linux.dev" <ntb@lists.linux.dev>
-Subject: RE: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi controller
-Thread-Topic: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi
- controller
-Thread-Index: AQHYnIAGRldFRqOr4kOZ1c4K3zYfO62IdfUAgAB4j7CAAAWJAIAAAUWA
-Date:   Thu, 21 Jul 2022 15:35:26 +0000
-Message-ID: <PAXPR04MB91865AD14BD2BE33A4A9445E88919@PAXPR04MB9186.eurprd04.prod.outlook.com>
-References: <20220720213036.1738628-1-Frank.Li@nxp.com>
-        <20220720213036.1738628-3-Frank.Li@nxp.com>     <874jza525l.wl-maz@kernel.org>
-        <PAXPR04MB9186A1D283ACE8BD6954039288919@PAXPR04MB9186.eurprd04.prod.outlook.com>
- <87wnc6xz6r.wl-maz@kernel.org>
-In-Reply-To: <87wnc6xz6r.wl-maz@kernel.org>
-Accept-Language: en-US
+        Russell King <linux@armlinux.org.uk>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Alexandru Marginean <alexandru.marginean@nxp.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Mackerras <paulus@samba.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+References: <20220715215954.1449214-1-sean.anderson@seco.com>
+ <VI1PR04MB5807612C5CD9C5976FC92C4EF2919@VI1PR04MB5807.eurprd04.prod.outlook.com>
+From:   Sean Anderson <sean.anderson@seco.com>
+Message-ID: <7a3556b7-606e-a1ce-e52a-2b3bc9effeb8@seco.com>
+Date:   Thu, 21 Jul 2022 11:39:08 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <VI1PR04MB5807612C5CD9C5976FC92C4EF2919@VI1PR04MB5807.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7efa949b-7f05-43a4-f189-08da6b2ea802
-x-ms-traffictypediagnostic: DU2PR04MB9052:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 9ME/sNHB4SEobl4toyrjlwFyobFuSZO/2Xot7wIg/vstVxWgmeGFbPELpjRs+JDKO2ZERJcGOpX1urVIT7CxEv8Oh7vdE9htXuAjaTTjIL5jGaNPddIqij6zDyi4r3LrBTh4UHy0aP5CIsHzLQdU/OwvrIyXm4fp+jAv1Zyldf6VyT14hwMcAPeA9v7dHq1uBuU+jAiGnEGiHU+L8AXwQ8E3fZ2McDvFailavuBH59H81jii6eegped5t3YDpcG++zHPW0KeNPIRf133b9KeACrjiu21u/ivxhM2jELs9NsWPJvwUVlfORzgnlQBmrRznWTE+TQH4LLtAyR7b/tzcdDg2jowg+dcLP2rwBWGB7Q/DzDDlOzKN8iqpn5ttkF/PXKZ3EMaVZWook08ec2hcA2P+8dCJ+/D2Ndq4muzOGVndsiX7yDQ2Tl2hIoB9R5Zc+jp6N60kMutAX2+oU6aD1bHfpy4aJBHy8eVPQRjTQLpQ5mUyvVPgklRbHTCI/cpFM/QiLIhlxcOlDb4mL3hALNOQa/oYkytP4IPavA7TXP7QC0rgNSf7XA9jSCqaZ7w4gWx+HxfcIGes84TQCWg60knix4H2KwkVvgKp7oiCIvOgrk+977e8JyrBLrgQCqK5hJ+5uklP5pi5gmOPEdvs3LrHvq3J2u4FwU6Kh+4gyzOhMUA7ttBSo3ykXd96hOWBrTE1472unsq1IYUCRDXnfv2bseOxb2s6Z0ICGsh/lVesP99xNi2uFLKDpUBH9CNf9zcf4Sn5fAMWLJZWNmV/NRFyRIzt33iCxINTLGXGfLEconY5Pp6LF645v49OjPW
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9186.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(136003)(396003)(366004)(39860400002)(376002)(71200400001)(38070700005)(122000001)(26005)(38100700002)(7696005)(33656002)(86362001)(9686003)(6916009)(41300700001)(6506007)(186003)(55236004)(316002)(6666004)(478600001)(66476007)(5660300002)(8676002)(55016003)(4326008)(8936002)(7416002)(76116006)(30864003)(52536014)(66556008)(66946007)(66446008)(64756008)(2906002)(53546011)(83380400001)(54906003)(44832011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?2Q+6q1Ujts5Te2fR2ioOTzlKbhqG0TU0htpTgjSp347Q8PmK9dW9DI8cuzkP?=
- =?us-ascii?Q?5GVSfLFPHRpxHOwYpm3GqkY7k7BmdpLfAnGe6hoawBFnjq3uxmg4NoJlN93j?=
- =?us-ascii?Q?Sh6hxo9aMti0lxztMEKVZhXV7McOlNU/JP3NyH1JQz4QlXY1CnGO3uTd8z5f?=
- =?us-ascii?Q?vGBuSRZwHZu1ZNAu1Ut4xj1F/HAPwlbXCheoKeU2O6g5P6Mf7INbIX3Iu3za?=
- =?us-ascii?Q?zM49GlwVTaPm322yDr6ApPcejhUZWUtcu+Bkk6MiZ75BczRTgSw78+SLRjxq?=
- =?us-ascii?Q?zTJaLh2KzsU/XJRiadgoz+F5tDY6aNAb0if/COyMn/rxoVbXsLE8I0Ubj+Lh?=
- =?us-ascii?Q?geOYDrGXmuIAwpAInAOYtGaHgydhaviyMJWdkjxYmaODVdKt0KQw3bLdgpw3?=
- =?us-ascii?Q?IbVmBewDoGZft3a0fotghCwNrMZi0+lud6zWhBzrllH13Noubw5MKbmPkilQ?=
- =?us-ascii?Q?zPGd62CUFIpIYDo/bkfywMORLNocgnrN5rVhqtePPngJPZrtG1pBSZKRAwHl?=
- =?us-ascii?Q?+YI6IWs67OmtrPdlaWQ+RLAhXgeW+7i9hT+M7y3rv1ceCSSzNerv4Fc0b25h?=
- =?us-ascii?Q?7seehr+1FCd/dalg/wqXYhIBffvtkHekOvU/dwvNXj486x7V2a1p2GpUYDz9?=
- =?us-ascii?Q?d9HCEM7qWmj6CPGstlae984M6dfRRbmrQQQ3MGfATVwPULuqC2iDYRoFEGI2?=
- =?us-ascii?Q?cYWhm3mow1l5+rgvP9O41RwSb3ABnqhVaRKqS7Kp7zKyZflYqKht1IcZp46x?=
- =?us-ascii?Q?GasvZU4irMOAVygf9k4MTsBoG0yWt5dun1idKO+PVUl6im0umtifadOkTsxq?=
- =?us-ascii?Q?tkIRoIHZfBKN2Wvcs5jto8raUc7zuA9GF3pKuPcXmaZR6Znkgg/04xFFjuO7?=
- =?us-ascii?Q?pH1dNVQPeLnVzxV6nw/72lSb86kWyCarDatjmfynUUzC2FMfuz4FVMk+wIlx?=
- =?us-ascii?Q?kZyCBh4F3Rsj+7FzBKCSLVofq45yLZCOT+NVZ8Rc3eUGqhqjTbrCPymHJ4iH?=
- =?us-ascii?Q?wMkKK33beHXO6A7CuCI+Yi0FYFT/uLO52na/AGYduOaVUK0QQHN6zOTNkaD0?=
- =?us-ascii?Q?z5+C/nXcC8Gk+0/ivZdxV71fvjwQMMmv9DssgzdV8Cfy0+UVjbcqDm6l2O7b?=
- =?us-ascii?Q?ttjtsKWyCkpw6P8UXiK+4AByskOtTZqg/ekBMmcuFQhYCl2Cxha81F+xcWDo?=
- =?us-ascii?Q?soEq0XE9B8R1gf8Lq+qlty7RVk1swdusDaTq5PjaQ74F7LbiNiqj5hoaD8uJ?=
- =?us-ascii?Q?HXv+WRitpio0q2wA+41URlQ/r2rJgKPju9DFRHCPKatJiJbiyt59RH1+WW3c?=
- =?us-ascii?Q?EThqaKrYyuPYoBMUxQUS3P/0pshAr9xSuuA45NAPP8w5BIctRe1eiIKhYXkA?=
- =?us-ascii?Q?BcqUNWPipZhcdET4NIZveZ/ktvqA6/U1OVmYF0JGXATcLEqfllSZgXNEo8o2?=
- =?us-ascii?Q?YbKU5bbwnLuNeq4LuR5SHwsWAzpY/lEWeGrHaaNHxGEkzAM9G7LVNSVqy26/?=
- =?us-ascii?Q?ILygnXRb59E8kWAjkSq9+7AFmZ2r+Bu7o397tDrqUSEBnSK7tkFzznrxRsCp?=
- =?us-ascii?Q?roDXOJTtN18JQX0MXN0=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MN2PR04CA0013.namprd04.prod.outlook.com
+ (2603:10b6:208:d4::26) To DB7PR03MB4972.eurprd03.prod.outlook.com
+ (2603:10a6:10:7d::22)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7b18ead1-ca3e-4498-629c-08da6b2f2a72
+X-MS-TrafficTypeDiagnostic: VI1PR0302MB3280:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hum1FrEVSGcEkxr+3vifaUbyALQI3G+8P+p1osN2Au3WkieLZ8HZ7qVTzzbTdOe/YFJAEIBEfheIKbKS61mQW3fbXTLObioRF8tBER9XfhjLmDVNvksYIDiYRfQgC0x0UKZDvHNdO1xTBBpArwsgOd61A90liYjNnNPazHtaclHbW1ww70tEaBJtD0EyOjHv+t2pxGjd6Zke8T+g0Yos8t8vdHcuGpC+X37yihf4YhxEGyBCLgpohyXmzL1w81Rg/H0PwmgIcnnD7FebVZVlasWMmLylDugZjPfQMnRYPCVQiPbN0UlKmVfjtKYjfk4DXZ5AoDBFGJBpe2G0BRETc04DjqbMC5ceTSZpjcibP8SnV57RmwSle4LQ+pjKFrUvm4zPBoyO/MFVDmTorxBK2AvkkgK4fKi+lXVmlayR/9EQ9IGiSoq+FPLb+UJ5cdmCkvofRYqwaAHj3bLuC/7AXBPtivYHARoT4UsK/YOhu9zpPfd/oMzLeCBpdSicYxgMrn3z1Pa3oQm+gfBTnYtkg6I5TiAED/Y86w9Oj8WcxGqo3vn/KXsiy58k+sGyFYcp1A0Vko93H0TZycNNmYST9oZ9ASofYawD+8mnGgeLluNRedL3VBEcEGocf5AWOSJuZ01vXWuO0O8auliV+A8cXqjhU0Ij6TBXYxt6nY5gujvdVV91PmJPQ8Wftaw3c3Kr07a0DTHuRSQf/J2TGV6c9LRXcmwqgIngv+DYrezpSif8a9x7dpC02DqgJgGDBYXrnbE2H/fwZqu5JaEry6Zx7H10+QCEc4V4nDcCFN0c1ovX36yt0+A/M7vQZWBJXHKTWvOEq0MFsYaf+HaOr5UmM7ck2PT7+HK4+n6yxkq57R38bCMf++0Fv51XBtikws8vQ2CQOa7ExxoxmFjokDoGkw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(346002)(366004)(396003)(39850400004)(376002)(136003)(38350700002)(6506007)(52116002)(36756003)(53546011)(8936002)(5660300002)(7416002)(30864003)(44832011)(6486002)(316002)(26005)(31686004)(966005)(478600001)(2616005)(41300700001)(6666004)(6512007)(31696002)(86362001)(83380400001)(186003)(2906002)(110136005)(66556008)(66476007)(8676002)(66946007)(4326008)(38100700002)(54906003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXJEL0ppT3NDTTl3TG1oUkhYRHdCcDhOSEpXZjk1NDUreDEyQ3F5N09QR0R0?=
+ =?utf-8?B?SXdvMTBFblVQUDBlb2puRTBycnJoK3VFRmMwWW50eTgyS1FFbXVIK2hCa0pt?=
+ =?utf-8?B?TTVHcUhrWUV2RVBlbU5BM2VJdUJiWFl1djEwN21kMWRDYjU4QXFQbkR5U3dL?=
+ =?utf-8?B?cTdKaUx5TDFnUXMwRGJqNnVpWkh0d0hLdURvM0VQczUrYVFGdnBaVW1jbGc5?=
+ =?utf-8?B?eks0R0ZVWlJxRVJUQXI5UGJLNjZFMzlWM3Azc3pYSmpPbkR3c09tdlpnMWpP?=
+ =?utf-8?B?RFdQeWRNZTdtVG5QQ2VHNGZOUVNVZCt0QWhiNU9WRHBDck9hL0t3cncrckJC?=
+ =?utf-8?B?ekVrN2o3RnNCSVZVaDBZWVFqQUp4YUxYTTRtQVZDSGFGK3VRZzNDNUZTYnda?=
+ =?utf-8?B?cmxRcm9GUTRvZ0Q4blNKUU9TaytRY2tTLzlVNld5djRaeWpVQTV0RFlCOE5T?=
+ =?utf-8?B?NFpBT0psSVR2ZkcvU3FKWmhKQ3BycTJHSjNQSFdVc0NyQWUybjZwV25BLzVD?=
+ =?utf-8?B?clFySS83Qk5zTkRxZDUxMnNjNTZhNFlnU0VFeFYvb2JlR3dKZWIrUW5lM0ph?=
+ =?utf-8?B?ZkhWaWVFMkxrcHNGSlZZTldvSlJpRk1uSXB3TlRwVXZuVnpjRmhTUE1kbEp0?=
+ =?utf-8?B?V3RPTDM0SkdvN1hLTmJOd3R5K3dNOSthaDNDNktGbHY2TjFKN3RSR0VFZHdZ?=
+ =?utf-8?B?b0piRno2N256WW9acGpvKzh5am1zM0llU0wzekFqa1VCMWpLVDRmazB0cVV5?=
+ =?utf-8?B?aldlQ1l2M2ZZMVBkM0tZWnZPeWd0VGIva1d6Rm8zSjk0d1plUmlMeDMwVDhh?=
+ =?utf-8?B?NmZmb0Mxd3JnamYvYWUwaXZ3ZGV0dGhaY29XZzdYY25ocmVZYzNDL2V5b3JY?=
+ =?utf-8?B?VndSaVFYQ1JvWWFZemZxcTZjQ1NvdGU2Z0p5N1ZyUGU5K1ZROG5rOUJPd0tr?=
+ =?utf-8?B?NDR4emwyVURCZWZRN0ZLSUV6SjhFRTNRdm5uQWw0Tkd2MFUrYU95WG16RVl2?=
+ =?utf-8?B?RUlDdlFEcHgyTFBiUlVRdnJwQTkrbWIySVdsNVhjMXRucmkxWTdwc0tiamV1?=
+ =?utf-8?B?VnpsL05PdXFWNDBQS3B3UDI4Y3Jkb1VPa2J1N3Y5OGRMNGFZUjVqTnUrTE1P?=
+ =?utf-8?B?NXhBYlVwZ2EyaXNld2FmYWE2RXFQbHY3OGZsa0lQdnhPVUFZVk1kZ2xEMitr?=
+ =?utf-8?B?Q082eVlaY1ZiV2VlNmRXUkRLb0p4Y01ubmIxMDlrN1h6ZWJWa3MzWUljQkR1?=
+ =?utf-8?B?eURrZEVhbXI5anNMZHR2NzI4Mjd0bm11TkFtWkFqUUdDaWZlWEVOWGF5Rll3?=
+ =?utf-8?B?cW1MZXFTblIrSm1BTHdUYXA3STlPZG9BR3hENG5lUFZ6bTh1a1FxSlJLYm5w?=
+ =?utf-8?B?WWV4SjlweXpvTm1CcnZSSlF5bnJNR0ltWEJmK3lTS3ZYY1VtUXB6TnRrdDFX?=
+ =?utf-8?B?dENCQWExUEZVbkMrNHZXeFdqd1VhZHlicHRMMUJHS3NlY3J5VVV1aHFpeUxp?=
+ =?utf-8?B?cXFWMk9YN0Nxa0pMa0pTSm51c2lpRG4zZ0ZzYmY5QzlTSU1UaThsU09JdTZE?=
+ =?utf-8?B?VnRZdlpOZXNZcmU3SWdHblI1YStnZmhNWWJ0c2FPSVdVcG1mQ2hKWXBNOTFS?=
+ =?utf-8?B?bWFXM2N4ekc0RjVISkFwc1R1NDdNYytXN2Jlb1NEMTVBUVdIM21mZlZaOGdp?=
+ =?utf-8?B?K0tISUVZZUlNMTJVSUpLSFQ0b0xuVDdiSDFFblpHMDFBNFh2aG5yaWl6OFRS?=
+ =?utf-8?B?ZHA0bWU0WnhHRDlVZjBqNE51N3RRTUljZENKdzBaaUxUV2pzNFd6Z1pCS3Vn?=
+ =?utf-8?B?dHRwQnM4UG10ZW5TQ2lnUjJrT3pJVmR0UWQrejRhUkZsbk9PUUg4RFNGQVBJ?=
+ =?utf-8?B?RkpvMDJqKzVDK1phbWQwQ3Z2NlZHeUh6RWNTNGhKN04yU0lwdSs2YWlFKzNZ?=
+ =?utf-8?B?RjJtaUF5cDM4dURGQmlIZXFFbW00UEFrcXZ6YzFYcE93djFOWEFaRElVZEJC?=
+ =?utf-8?B?WlZESWdlcFE1c3NxZWVUOFo2Rk90UVMvR255ay9lTGkzUEZSMU91OC9xbXZk?=
+ =?utf-8?B?TXpMT1pKZTR5bzJxZi9SdHZBNFVCUnpRc0w0cmgzdm5JR0FXRmNRQVc5VHl6?=
+ =?utf-8?B?UWhJNk9hdjZ5K3hyakRBY3QzKzMvbWRMNFVHbVpwaHNTQ1JPbnJtNVhDNDRB?=
+ =?utf-8?B?cXc9PQ==?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b18ead1-ca3e-4498-629c-08da6b2f2a72
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9186.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7efa949b-7f05-43a4-f189-08da6b2ea802
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jul 2022 15:35:35.7310
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2022 15:39:14.9089
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oYaQj1e4W/qax3luKk+gKGGQTAt22xFp5sP3gj1TdXDBkZLD/YBnXJJ/QbudwMonHU8nglGJry4+iE9HPe+icQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9052
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dOFlf9a8p3244IykKD+MQJ1yCl7TUn9m623ytxiEBiAOEXfaHCgExwtqg1f7MGCkdk0dPdSsFvNI4RHJceiSVw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0302MB3280
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -140,437 +153,302 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-> -----Original Message-----
-> From: Marc Zyngier <maz@kernel.org>
-> Sent: Thursday, July 21, 2022 10:28 AM
-> To: Frank Li <frank.li@nxp.com>
-> Cc: jdmason@kudzu.us; tglx@linutronix.de; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
-> s.hauer@pengutronix.de; kw@linux.com; bhelgaas@google.com;
-> kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-pci@vger.kernel.org; Peng Fan
-> <peng.fan@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
-> kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx <linux-
-> imx@nxp.com>; kishon@ti.com; lorenzo.pieralisi@arm.com;
-> ntb@lists.linux.dev
-> Subject: Re: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi
-> controller
->=20
-> Caution: EXT Email
->=20
-> On Thu, 21 Jul 2022 16:22:08 +0100,
-> Frank Li <frank.li@nxp.com> wrote:
-> >
-> >
-> >
-> > > -----Original Message-----
-> > > From: Marc Zyngier <maz@kernel.org>
-> > > Sent: Thursday, July 21, 2022 2:57 AM
-> > > To: Frank Li <frank.li@nxp.com>
-> > > Cc: jdmason@kudzu.us; tglx@linutronix.de; robh+dt@kernel.org;
-> > > krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
-> > > s.hauer@pengutronix.de; kw@linux.com; bhelgaas@google.com;
-> > > kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> > > kernel@lists.infradead.org; linux-pci@vger.kernel.org; Peng Fan
-> > > <peng.fan@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
-> > > kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx <linux-
-> > > imx@nxp.com>; kishon@ti.com; lorenzo.pieralisi@arm.com;
-> > > ntb@lists.linux.dev
-> > > Subject: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi
-> controller
-> > >
-> > > Caution: EXT Email
-> > >
-> > > On Wed, 20 Jul 2022 22:30:34 +0100,
-> > > Frank Li <Frank.Li@nxp.com> wrote:
-> > > >
-> > > > MU support generate irq by write data to a register.
-> > > > This patch make mu worked as msi controller.
-> > > > So MU can do doorbell by using standard msi api.
-> > > >
-> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > ---
-> > > >  drivers/irqchip/Kconfig          |   7 +
-> > > >  drivers/irqchip/Makefile         |   1 +
-> > > >  drivers/irqchip/irq-imx-mu-msi.c | 462
-> > > +++++++++++++++++++++++++++++++
-> > > >  3 files changed, 470 insertions(+)
-> > > >  create mode 100644 drivers/irqchip/irq-imx-mu-msi.c
-> > > >
-> > > > diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> > > > index 5e4e50122777d..4599471d880c0 100644
-> > > > --- a/drivers/irqchip/Kconfig
-> > > > +++ b/drivers/irqchip/Kconfig
-> > > > @@ -470,6 +470,13 @@ config IMX_INTMUX
-> > > >       help
-> > > >         Support for the i.MX INTMUX interrupt multiplexer.
-> > > >
-> > > > +config IMX_MU_MSI
-> > > > +     bool "i.MX MU work as MSI controller"
-> > > > +     default y if ARCH_MXC
-> > > > +     select IRQ_DOMAIN
-> > > > +     help
-> > > > +       MU work as MSI controller to do general doorbell
-> > > > +
-> > > >  config LS1X_IRQ
-> > > >       bool "Loongson-1 Interrupt Controller"
-> > > >       depends on MACH_LOONGSON32
-> > > > diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> > > > index 5d8e21d3dc6d8..870423746c783 100644
-> > > > --- a/drivers/irqchip/Makefile
-> > > > +++ b/drivers/irqchip/Makefile
-> > > > @@ -98,6 +98,7 @@ obj-$(CONFIG_RISCV_INTC)            +=3D irq-risc=
-v-
-> intc.o
-> > > >  obj-$(CONFIG_SIFIVE_PLIC)            +=3D irq-sifive-plic.o
-> > > >  obj-$(CONFIG_IMX_IRQSTEER)           +=3D irq-imx-irqsteer.o
-> > > >  obj-$(CONFIG_IMX_INTMUX)             +=3D irq-imx-intmux.o
-> > > > +obj-$(CONFIG_IMX_MU_MSI)             +=3D irq-imx-mu-msi.o
-> > > >  obj-$(CONFIG_MADERA_IRQ)             +=3D irq-madera.o
-> > > >  obj-$(CONFIG_LS1X_IRQ)                       +=3D irq-ls1x.o
-> > > >  obj-$(CONFIG_TI_SCI_INTR_IRQCHIP)    +=3D irq-ti-sci-intr.o
-> > > > diff --git a/drivers/irqchip/irq-imx-mu-msi.c b/drivers/irqchip/irq=
--imx-
-> mu-
-> > > msi.c
-> > > > new file mode 100644
-> > > > index 0000000000000..8277dba857759
-> > > > --- /dev/null
-> > > > +++ b/drivers/irqchip/irq-imx-mu-msi.c
-> > > > @@ -0,0 +1,462 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > +/*
-> > > > + * NXP MU worked as MSI controller
-> > > > + *
-> > > > + * Copyright (c) 2018 Pengutronix, Oleksij Rempel
-> > > <o.rempel@pengutronix.de>
-> > > > + * Copyright 2022 NXP
-> > > > + *   Frank Li <Frank.Li@nxp.com>
-> > > > + *   Peng Fan <peng.fan@nxp.com>
-> > > > + *
-> > > > + * Based on drivers/mailbox/imx-mailbox.c
-> > > > + */
-> > > > +#include <linux/clk.h>
-> > > > +#include <linux/kernel.h>
-> > > > +#include <linux/module.h>
-> > > > +#include <linux/msi.h>
-> > > > +#include <linux/interrupt.h>
-> > > > +#include <linux/irq.h>
-> > > > +#include <linux/irqchip/chained_irq.h>
-> > > > +#include <linux/irqchip.h>
-> > > > +#include <linux/irqdomain.h>
-> > > > +#include <linux/of_irq.h>
-> > > > +#include <linux/of_pci.h>
-> > > > +#include <linux/of_platform.h>
-> > > > +#include <linux/spinlock.h>
-> > > > +#include <linux/dma-iommu.h>
-> > > > +#include <linux/pm_runtime.h>
-> > > > +#include <linux/pm_domain.h>
-> > > > +
-> > > > +
-> > > > +#define IMX_MU_CHANS            4
-> > > > +
-> > > > +enum imx_mu_xcr {
-> > > > +     IMX_MU_GIER,
-> > > > +     IMX_MU_GCR,
-> > > > +     IMX_MU_TCR,
-> > > > +     IMX_MU_RCR,
-> > > > +     IMX_MU_xCR_MAX,
-> > > > +};
-> > > > +
-> > > > +enum imx_mu_xsr {
-> > > > +     IMX_MU_SR,
-> > > > +     IMX_MU_GSR,
-> > > > +     IMX_MU_TSR,
-> > > > +     IMX_MU_RSR,
-> > > > +};
-> > > > +
-> > > > +enum imx_mu_type {
-> > > > +     IMX_MU_V1 =3D BIT(0),
-> > > > +     IMX_MU_V2 =3D BIT(1),
-> > > > +     IMX_MU_V2_S4 =3D BIT(15),
-> > > > +};
-> > > > +
-> > > > +/* Receive Interrupt Enable */
-> > > > +#define IMX_MU_xCR_RIEn(type, x) (type & IMX_MU_V2 ? BIT(x) :
-> BIT(24
-> > > + (3 - (x))))
-> > > > +#define IMX_MU_xSR_RFn(type, x) (type & IMX_MU_V2 ? BIT(x) :
-> BIT(24 +
-> > > (3 - (x))))
-> > > > +
-> > > > +struct imx_mu_dcfg {
-> > > > +     enum imx_mu_type type;
-> > > > +     u32     xTR;            /* Transmit Register0 */
-> > > > +     u32     xRR;            /* Receive Register0 */
-> > > > +     u32     xSR[4];         /* Status Registers */
-> > > > +     u32     xCR[4];         /* Control Registers */
-> > > > +};
-> > > > +
-> > > > +struct imx_mu_msi {
-> > > > +     spinlock_t                      lock;
-> > > > +     struct platform_device          *pdev;
-> > > > +     struct irq_domain               *parent;
-> > > > +     struct irq_domain               *msi_domain;
-> > > > +     void __iomem                    *regs;
-> > > > +     phys_addr_t                     msiir_addr;
-> > > > +     const struct imx_mu_dcfg        *cfg;
-> > > > +     unsigned long                   used;
-> > > > +     u32                             gic_irq;
-> > > > +     struct clk                      *clk;
-> > > > +     struct device                   *pd_a;
-> > > > +     struct device                   *pd_b;
-> > > > +     struct device_link              *pd_link_a;
-> > > > +     struct device_link              *pd_link_b;
-> > > > +};
-> > > > +
-> > > > +static void imx_mu_write(struct imx_mu_msi *msi_data, u32 val, u32
-> offs)
-> > > > +{
-> > > > +     iowrite32(val, msi_data->regs + offs);
-> > > > +}
-> > > > +
-> > > > +static u32 imx_mu_read(struct imx_mu_msi *msi_data, u32 offs)
-> > > > +{
-> > > > +     return ioread32(msi_data->regs + offs);
-> > > > +}
-> > > > +
-> > > > +static u32 imx_mu_xcr_rmw(struct imx_mu_msi *msi_data, enum
-> > > imx_mu_xcr type, u32 set, u32 clr)
-> > > > +{
-> > > > +     unsigned long flags;
-> > > > +     u32 val;
-> > > > +
-> > > > +     spin_lock_irqsave(&msi_data->lock, flags);
-> > > > +     val =3D imx_mu_read(msi_data, msi_data->cfg->xCR[type]);
-> > > > +     val &=3D ~clr;
-> > > > +     val |=3D set;
-> > > > +     imx_mu_write(msi_data, val, msi_data->cfg->xCR[type]);
-> > > > +     spin_unlock_irqrestore(&msi_data->lock, flags);
-> > > > +
-> > > > +     return val;
-> > > > +}
-> > > > +
-> > > > +static void imx_mu_msi_mask_irq(struct irq_data *data)
-> > > > +{
-> > > > +     struct imx_mu_msi *msi_data =3D irq_data_get_irq_chip_data(da=
-ta-
-> > > >parent_data);
-> > >
-> > > Urgh... No. Please don't go poking into the *parent* stuff. Implement
-> > > the masking at the parent level, and use irq_chip_mask_parent() for
-> > > this level, unless you can explain why you can't do otherwise.
-> > >
-> > > > +
-> > > > +     imx_mu_xcr_rmw(msi_data, IMX_MU_RCR, 0,
-> > > IMX_MU_xCR_RIEn(msi_data->cfg->type, data->hwirq));
-> > >
-> > > How about making this readable and move the dereference inside the
-> macro?
-> > >
-> > > > +}
-> > > > +
-> > > > +static void imx_mu_msi_unmask_irq(struct irq_data *data)
-> > > > +{
-> > > > +     struct imx_mu_msi *msi_data =3D irq_data_get_irq_chip_data(da=
-ta-
-> > > >parent_data);
-> > > > +
-> > > > +     imx_mu_xcr_rmw(msi_data, IMX_MU_RCR,
-> > > IMX_MU_xCR_RIEn(msi_data->cfg->type, data->hwirq), 0);
-> > > > +}
-> > > > +
-> > > > +static struct irq_chip imx_mu_msi_irq_chip =3D {
-> > > > +     .name =3D "MU-MSI",
-> > > > +     .irq_mask       =3D imx_mu_msi_mask_irq,
-> > > > +     .irq_unmask     =3D imx_mu_msi_unmask_irq,
-> > > > +};
-> > > > +
-> > > > +static struct msi_domain_ops its_pmsi_ops =3D {
-> > > > +};
-> > >
-> > > What does this have to do with the ITS?
-> >
-> > Without this, it will be crashed as access 0 address.
->=20
-> Because the *name* of the structure has an influence on the behaviour
-> of the kernel?????
+On 7/21/22 10:26 AM, Camelia Alexandra Groza wrote:
+>> -----Original Message-----
+>> From: Sean Anderson <sean.anderson@seco.com>
+>> Sent: Saturday, July 16, 2022 0:59
+>> To: David S . Miller <davem@davemloft.net>; Jakub Kicinski
+>> <kuba@kernel.org>; Madalin Bucur <madalin.bucur@nxp.com>;
+>> netdev@vger.kernel.org
+>> Cc: Paolo Abeni <pabeni@redhat.com>; Eric Dumazet
+>> <edumazet@google.com>; linux-arm-kernel@lists.infradead.org; Russell
+>> King <linux@armlinux.org.uk>; linux-kernel@vger.kernel.org; Sean Anderson
+>> <sean.anderson@seco.com>; Alexandru Marginean
+>> <alexandru.marginean@nxp.com>; Andrew Lunn <andrew@lunn.ch>;
+>> Benjamin Herrenschmidt <benh@kernel.crashing.org>; Heiner Kallweit
+>> <hkallweit1@gmail.com>; Ioana Ciornei <ioana.ciornei@nxp.com>; Jonathan
+>> Corbet <corbet@lwn.net>; Kishon Vijay Abraham I <kishon@ti.com>;
+>> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Leo Li
+>> <leoyang.li@nxp.com>; Michael Ellerman <mpe@ellerman.id.au>; Paul
+>> Mackerras <paulus@samba.org>; Rob Herring <robh+dt@kernel.org>;
+>> Shawn Guo <shawnguo@kernel.org>; Vinod Koul <vkoul@kernel.org>;
+>> Vladimir Oltean <olteanv@gmail.com>; devicetree@vger.kernel.org; linux-
+>> doc@vger.kernel.org; linux-phy@lists.infradead.org; linuxppc-
+>> dev@lists.ozlabs.org
+>> Subject: [PATCH net-next v3 00/47] [RFT] net: dpaa: Convert to phylink
+>> 
+>> This series converts the DPAA driver to phylink. Additionally,
+>> it also adds a serdes driver to allow for dynamic reconfiguration
+>> between 1g and 10g interfaces (such as in an SFP+ slot). These changes
+>> are submitted together for this RFT, but they will eventually be
+>> submitted separately to the appropriate subsystem maintainers.
+>> 
+>> I have tried to maintain backwards compatibility with existing device
+>> trees whereever possible. However, one area where I was unable to
+>> achieve this was with QSGMII. Please refer to patch 4 for details.
+>> 
+>> All mac drivers have now been converted. I would greatly appreciate if
+>> anyone has QorIQ boards they can test/debug this series on. I only have an
+>> LS1046ARDB. Everything but QSGMII should work without breakage; QSGMII
+>> needs patches 42 and 43.
+>> 
+>> The serdes driver is mostly functional (except for XFI). This series
+>> only adds support for the LS1046ARDB SerDes (and untested LS1088ARDB),
+>> but it should be fairly straightforward to add support for other SoCs
+>> and boards (see Documentation/driver-api/phy/qoriq.rst).
+>> 
+>> This is the last spin of this series with all patches included. After next
+>> week (depending on feedback) I will resend the patches broken up as
+>> follows:
+>> - 5: 1000BASE-KX support
+>> - 1, 6, 44, 45: Lynx 10G support
+>> - 7-10, 12-14: Phy rate adaptation support
+>> - 2-4, 15-43, 46, 47: DPAA phylink conversion
+> 
+> Please also send patches 15-38 separately from the DPAA1 SerDes and phylink set for easier review
 
-I understand your means now.  The name "its_pmsi_ops" is wrong.=20
-Not ask why empty structure here. =20
+OK.
 
->=20
-> >
-> > >
-> > > > +
-> > > > +static struct msi_domain_info imx_mu_msi_domain_info =3D {
-> > > > +     .flags  =3D (MSI_FLAG_USE_DEF_DOM_OPS |
-> > > > +                MSI_FLAG_USE_DEF_CHIP_OPS |
-> > > > +                MSI_FLAG_PCI_MSIX),
-> > >
-> > > What does PCI_MSIX mean in this context? I really wish you used
-> > > copy/paste a bit more carefully.
-> > >
-> > > > +     .ops    =3D &its_pmsi_ops,
-> > > > +     .chip   =3D &imx_mu_msi_irq_chip,
-> > > > +};
-> > > > +
-> > > > +static void imx_mu_msi_compose_msg(struct irq_data *data, struct
-> > > msi_msg *msg)
-> > > > +{
-> > > > +     struct imx_mu_msi *msi_data =3D irq_data_get_irq_chip_data(da=
-ta);
-> > > > +
-> > > > +     msg->address_hi =3D upper_32_bits(msi_data->msiir_addr);
-> > > > +     msg->address_lo =3D lower_32_bits(msi_data->msiir_addr + 4 * =
-data-
-> > > >hwirq);
-> > >
-> > > This is a horrible way of writing this. you should compute the addres=
-s
-> > > first, and then apply the address split.
-> > >
-> > > > +     msg->data =3D data->hwirq;
-> > > > +
-> > > > +     iommu_dma_compose_msi_msg(irq_data_get_msi_desc(data),
-> msg);
-> > > > +}
-> > > > +
-> > > > +static int imx_mu_msi_set_affinity(struct irq_data *irq_data,
-> > > > +                                const struct cpumask *mask, bool f=
-orce)
-> > > > +
-> > > > +{
-> > > > +     return IRQ_SET_MASK_OK;
-> > > > +}
-> > >
-> > > Err... What effect does this have if you don't do anything?
-> >
-> > [Frank Li] Without this, it will be crashed as access 0 address.
->=20
-> Then you should fix that bug, because what you have here makes
-> absolutely no sense.
->=20
-> >
-> > >
-> > > > +
-> > > > +static struct irq_chip imx_mu_msi_parent_chip =3D {
-> > > > +     .name                   =3D "MU",
-> > > > +     .irq_compose_msi_msg    =3D imx_mu_msi_compose_msg,
-> > > > +     .irq_set_affinity =3D imx_mu_msi_set_affinity,
-> > > > +};
-> > > > +
-> > > > +static int imx_mu_msi_domain_irq_alloc(struct irq_domain *domain,
-> > > > +                                     unsigned int virq,
-> > > > +                                     unsigned int nr_irqs,
-> > > > +                                     void *args)
-> > > > +{
-> > > > +     struct imx_mu_msi *msi_data =3D domain->host_data;
-> > > > +     msi_alloc_info_t *info =3D args;
-> > > > +     int pos, err =3D 0;
-> > > > +
-> > > > +     WARN_ON(nr_irqs !=3D 1);
-> > > > +
-> > > > +     spin_lock(&msi_data->lock);
-> > >
-> > > Interrupt fires after lock acquisition, handler masks the interrupt.
-> > > Deadlock.
-> >
-> > [Frank Li] you are right, it should be spin_lock_irqsave.
-> >
-> > >
-> > > > +     pos =3D find_first_zero_bit(&msi_data->used, IMX_MU_CHANS);
-> > > > +     if (pos < IMX_MU_CHANS)
-> > > > +             __set_bit(pos, &msi_data->used);
-> > > > +     else
-> > > > +             err =3D -ENOSPC;
-> > > > +     spin_unlock(&msi_data->lock);
-> > > > +
-> > > > +     if (err)
-> > > > +             return err;
-> > > > +
-> > > > +     err =3D iommu_dma_prepare_msi(info->desc, msi_data->msiir_add=
-r
-> +
-> > > pos * 4);
-> > >
-> > > Does this HW even have an IOMMU?
-> >
-> > [Frank Li] we have a platform with iommu.
-> >
-> > >
-> > > > +     if (err)
-> > > > +             return err;
-> > > > +
-> > > > +     irq_domain_set_info(domain, virq, pos,
-> > > > +                         &imx_mu_msi_parent_chip, msi_data,
-> > > > +                         handle_simple_irq, NULL, NULL);
-> > >
-> > > This is an edge interrupt. Please handle it like one.
-> >
-> > [Frank Li]  Not sure what your means?
->=20
-> A MSI is an edge interrupt. Use handle_edge_irq.
->=20
-> >
-> > >
-> > > > +     return 0;
-> > > > +}
-> > > > +
-> > > > +static void imx_mu_msi_domain_irq_free(struct irq_domain *domain,
-> > > > +                                    unsigned int virq, unsigned in=
-t nr_irqs)
-> > > > +{
-> > > > +     struct irq_data *d =3D irq_domain_get_irq_data(domain, virq);
-> > > > +     struct imx_mu_msi *msi_data =3D irq_data_get_irq_chip_data(d)=
-;
-> > > > +
-> > > > +     spin_lock(&msi_data->lock);
-> > >
-> > > Same problem.
-> > >
-> > > > +     __clear_bit(d->hwirq, &msi_data->used);
-> > > > +     spin_unlock(&msi_data->lock);
-> > > > +}
-> > > > +
-> > > > +static const struct irq_domain_ops imx_mu_msi_domain_ops =3D {
-> > > > +     .alloc  =3D imx_mu_msi_domain_irq_alloc,
-> > > > +     .free   =3D imx_mu_msi_domain_irq_free,
-> > > > +};
-> > > > +
-> > > > +static void imx_mu_msi_irq_handler(struct irq_desc *desc)
-> > > > +{
-> > > > +     struct imx_mu_msi *msi_data =3D irq_desc_get_handler_data(des=
-c);
-> > > > +     u32 status;
-> > > > +     int i;
-> > > > +
-> > > > +     status =3D imx_mu_read(msi_data, msi_data->cfg-
-> >xSR[IMX_MU_RSR]);
-> > > > +
-> > > > +     chained_irq_enter(irq_desc_get_chip(desc), desc);
-> > > > +     for (i =3D 0; i < IMX_MU_CHANS; i++) {
-> > > > +             if (status & IMX_MU_xSR_RFn(msi_data->cfg->type, i)) =
-{
-> > > > +                     imx_mu_read(msi_data, msi_data->cfg->xRR + i =
-* 4);
-> > > > +                     generic_handle_domain_irq(msi_data->parent, i=
-);
-> > >
-> > > Why the parent? You must start at the top of the hierarchy.
-> > >
-> > > > +             }
-> > > > +     }
-> > > > +     chained_irq_exit(irq_desc_get_chip(desc), desc);
-> > >
-> > > If your MSIs are a chained interrupt, why do you even provide an
-> > > affinity setting callback?
-> >
-> > [Frank Li]  it will be crash if no affinity setting callback.
->=20
-> Then you have to fix your driver.
->=20
->         M.
->=20
-> --
-> Without deviation from the norm, progress is not possible.
+--Sean
+
+>> Patches 15-19 were first submitted as [1].
+>> 
+>> [1] https://lore.kernel.org/netdev/20220531195851.1592220-1-sean.anderson@seco.com/
+>> 
+>> Changes in v3:
+>> - Manually expand yaml references
+>> - Add mode configuration to device tree
+>> - Expand pcs-handle to an array
+>> - Incorperate some minor changes into the first FMan binding commit
+>> - Add vendor prefix 'fsl,' to rgmii and mii properties.
+>> - Set maxItems for pcs-names
+>> - Remove phy-* properties from example because dt-schema complains and
+>> I
+>>   can't be bothered to figure out how to make it work.
+>> - Add pcs-handle as a preferred version of pcsphy-handle
+>> - Deprecate pcsphy-handle
+>> - Remove mii/rmii properties
+>> - Add 1000BASE-KX interface mode
+>> - Rename remaining references to QorIQ SerDes to Lynx 10G
+>> - Fix PLL enable sequence by waiting for our reset request to be cleared
+>>   before continuing. Do the same for the lock, even though it isn't as
+>>   critical. Because we will delay for 1.5ms on average, use prepare
+>>   instead of enable so we can sleep.
+>> - Document the status of each protocol
+>> - Fix offset of several bitfields in RECR0
+>> - Take into account PLLRST_B, SDRST_B, and SDEN when considering whether
+>>   a PLL is "enabled."
+>> - Only power off unused lanes.
+>> - Split mode lane mask into first/last lane (like group)
+>> - Read modes from device tree
+>> - Use caps to determine whether KX/KR are supported
+>> - Move modes to lynx_priv
+>> - Ensure that the protocol controller is not already in-use when we try
+>>   to configure a new mode. This should only occur if the device tree is
+>>   misconfigured (e.g. when QSGMII is selected on two lanes but there is
+>>   only one QSGMII controller).
+>> - Split PLL drivers off into their own file
+>> - Add clock for "ext_dly" instead of writing the bit directly (and
+>>   racing with any clock code).
+>> - Use kasprintf instead of open-coding the snprintf dance
+>> - Support 1000BASE-KX in lynx_lookup_proto. This still requires PCS
+>>   support, so nothing is truly "enabled" yet.
+>> - Add support for phy rate adaptation
+>> - Support differing link speeds and interface speeds
+>> - Adjust advertisement based on rate adaptation
+>> - Adjust link settings based on rate adaptation
+>> - Add support for CRS-based rate adaptation
+>> - Add support for AQR115
+>> - Add some additional phy interfaces
+>> - Add support for aquantia rate adaptation
+>> - Put the PCS mdiodev only after we are done with it (since the PCS
+>>   does not perform a get itself).
+>> - Remove _return label from memac_initialization in favor of returning
+>>   directly
+>> - Fix grabbing the default PCS not checking for -ENODATA from
+>>   of_property_match_string
+>> - Set DTSEC_ECNTRL_R100M in dtsec_link_up instead of dtsec_mac_config
+>> - Remove rmii/mii properties
+>> - Replace 1000Base... with 1000BASE... to match IEEE capitalization
+>> - Add compatibles for QSGMII PCSs
+>> - Split arm and powerpcs dts updates
+>> - Describe modes in device tree
+>> - ls1088a: Add serdes bindings
+>> 
+>> Changes in v2:
+>> - Rename to fsl,lynx-10g.yaml
+>> - Refer to the device in the documentation, rather than the binding
+>> - Move compatible first
+>> - Document phy cells in the description
+>> - Allow a value of 1 for phy-cells. This allows for compatibility with
+>>   the similar (but according to Ioana Ciornei different enough) lynx-28g
+>>   binding.
+>> - Remove minItems
+>> - Use list for clock-names
+>> - Fix example binding having too many cells in regs
+>> - Add #clock-cells. This will allow using assigned-clocks* to configure
+>>   the PLLs.
+>> - Document the structure of the compatible strings
+>> - Convert FMan MAC bindings to yaml
+>> - Better document how we select which PCS to use in the default case
+>> - Rename driver to Lynx 10G (etc.)
+>> - Fix not clearing group->pll after disabling it
+>> - Support 1 and 2 phy-cells
+>> - Power off lanes during probe
+>> - Clear SGMIIaCR1_PCS_EN during probe
+>> - Rename LYNX_PROTO_UNKNOWN to LYNX_PROTO_NONE
+>> - Handle 1000BASE-KX in lynx_proto_mode_prep
+>> - Remove some unused variables
+>> - Fix prototype for dtsec_initialization
+>> - Fix warning if sizeof(void *) != sizeof(resource_size_t)
+>> - Specify type of mac_dev for exception_cb
+>> - Add helper for sanity checking cgr ops
+>> - Add CGR update function
+>> - Adjust queue depth on rate change
+>> - Move PCS_LYNX dependency to fman Kconfig
+>> - Remove unused variable slow_10g_if
+>> - Restrict valid link modes based on the phy interface. This is easier
+>>   to set up, and mostly captures what I intended to do the first time.
+>>   We now have a custom validate which restricts half-duplex for some SoCs
+>>   for RGMII, but generally just uses the default phylink validate.
+>> - Configure the SerDes in enable/disable
+>> - Properly implement all ethtool ops and ioctls. These were mostly
+>>   stubbed out just enough to compile last time.
+>> - Convert 10GEC and dTSEC as well
+>> - Fix capitalization of mEMAC in commit messages
+>> - Add nodes for QSGMII PCSs
+>> - Add nodes for QSGMII PCSs
+>> - Use one phy cell for SerDes1, since no lanes can be grouped
+>> - Disable SerDes by default to prevent breaking boards inadvertently.
+>> 
+>> Sean Anderson (47):
+>>   dt-bindings: phy: Add Lynx 10G phy binding
+>>   dt-bindings: net: Expand pcs-handle to an array
+>>   dt-bindings: net: Convert FMan MAC bindings to yaml
+>>   dt-bindings: net: fman: Add additional interface properties
+>>   net: phy: Add 1000BASE-KX interface mode
+>>   [RFT] phy: fsl: Add Lynx 10G SerDes driver
+>>   net: phy: Add support for rate adaptation
+>>   net: phylink: Support differing link speeds and interface speeds
+>>   net: phylink: Adjust advertisement based on rate adaptation
+>>   net: phylink: Adjust link settings based on rate adaptation
+>>   [RFC] net: phylink: Add support for CRS-based rate adaptation
+>>   net: phy: aquantia: Add support for AQR115
+>>   net: phy: aquantia: Add some additional phy interfaces
+>>   net: phy: aquantia: Add support for rate adaptation
+>>   net: fman: Convert to SPDX identifiers
+>>   net: fman: Don't pass comm_mode to enable/disable
+>>   net: fman: Store en/disable in mac_device instead of mac_priv_s
+>>   net: fman: dtsec: Always gracefully stop/start
+>>   net: fman: Get PCS node in per-mac init
+>>   net: fman: Store initialization function in match data
+>>   net: fman: Move struct dev to mac_device
+>>   net: fman: Configure fixed link in memac_initialization
+>>   net: fman: Export/rename some common functions
+>>   net: fman: memac: Use params instead of priv for max_speed
+>>   net: fman: Move initialization to mac-specific files
+>>   net: fman: Mark mac methods static
+>>   net: fman: Inline several functions into initialization
+>>   net: fman: Remove internal_phy_node from params
+>>   net: fman: Map the base address once
+>>   net: fman: Pass params directly to mac init
+>>   net: fman: Use mac_dev for some params
+>>   net: fman: Specify type of mac_dev for exception_cb
+>>   net: fman: Clean up error handling
+>>   net: fman: Change return type of disable to void
+>>   net: dpaa: Use mac_dev variable in dpaa_netdev_init
+>>   soc: fsl: qbman: Add helper for sanity checking cgr ops
+>>   soc: fsl: qbman: Add CGR update function
+>>   net: dpaa: Adjust queue depth on rate change
+>>   net: fman: memac: Add serdes support
+>>   net: fman: memac: Use lynx pcs driver
+>>   [RFT] net: dpaa: Convert to phylink
+>>   powerpc: dts: qoriq: Add nodes for QSGMII PCSs
+>>   arm64: dts: layerscape: Add nodes for QSGMII PCSs
+>>   arm64: dts: ls1046a: Add serdes bindings
+>>   arm64: dts: ls1088a: Add serdes bindings
+>>   arm64: dts: ls1046ardb: Add serdes bindings
+>>   [WIP] arm64: dts: ls1088ardb: Add serdes bindings
+>> 
+>>  .../bindings/net/dsa/renesas,rzn1-a5psw.yaml  |    1 +
+>>  .../bindings/net/ethernet-controller.yaml     |   10 +-
+>>  .../bindings/net/fsl,fman-dtsec.yaml          |  172 +++
+>>  .../bindings/net/fsl,qoriq-mc-dpmac.yaml      |    2 +-
+>>  .../devicetree/bindings/net/fsl-fman.txt      |  133 +-
+>>  .../devicetree/bindings/phy/fsl,lynx-10g.yaml |  311 ++++
+>>  Documentation/driver-api/phy/index.rst        |    1 +
+>>  Documentation/driver-api/phy/lynx_10g.rst     |   73 +
+>>  MAINTAINERS                                   |    6 +
+>>  .../boot/dts/freescale/fsl-ls1043-post.dtsi   |   24 +
+>>  .../boot/dts/freescale/fsl-ls1046-post.dtsi   |   25 +
+>>  .../boot/dts/freescale/fsl-ls1046a-rdb.dts    |   34 +
+>>  .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi |  179 +++
+>>  .../boot/dts/freescale/fsl-ls1088a-rdb.dts    |   87 ++
+>>  .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |   96 ++
+>>  .../fsl/qoriq-fman3-0-10g-0-best-effort.dtsi  |    3 +-
+>>  .../boot/dts/fsl/qoriq-fman3-0-10g-0.dtsi     |   10 +-
+>>  .../fsl/qoriq-fman3-0-10g-1-best-effort.dtsi  |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-0-10g-1.dtsi     |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-0-1g-0.dtsi      |    3 +-
+>>  .../boot/dts/fsl/qoriq-fman3-0-1g-1.dtsi      |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-0-1g-2.dtsi      |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-0-1g-3.dtsi      |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-0-1g-4.dtsi      |    3 +-
+>>  .../boot/dts/fsl/qoriq-fman3-0-1g-5.dtsi      |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-1-10g-0.dtsi     |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-1-10g-1.dtsi     |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-1-1g-0.dtsi      |    3 +-
+>>  .../boot/dts/fsl/qoriq-fman3-1-1g-1.dtsi      |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-1-1g-2.dtsi      |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-1-1g-3.dtsi      |   10 +-
+>>  .../boot/dts/fsl/qoriq-fman3-1-1g-4.dtsi      |    3 +-
+>>  .../boot/dts/fsl/qoriq-fman3-1-1g-5.dtsi      |   10 +-
+>>  drivers/net/ethernet/freescale/dpaa/Kconfig   |    4 +-
+>>  .../net/ethernet/freescale/dpaa/dpaa_eth.c    |  132 +-
+>>  .../ethernet/freescale/dpaa/dpaa_eth_sysfs.c  |    2 +-
+>>  .../ethernet/freescale/dpaa/dpaa_ethtool.c    |   90 +-
+>>  drivers/net/ethernet/freescale/fman/Kconfig   |    4 +-
+>>  drivers/net/ethernet/freescale/fman/fman.c    |   31 +-
+>>  drivers/net/ethernet/freescale/fman/fman.h    |   31 +-
+>>  .../net/ethernet/freescale/fman/fman_dtsec.c  |  674 ++++-----
+>>  .../net/ethernet/freescale/fman/fman_dtsec.h  |   58 +-
+>>  .../net/ethernet/freescale/fman/fman_keygen.c |   29 +-
+>>  .../net/ethernet/freescale/fman/fman_keygen.h |   29 +-
+>>  .../net/ethernet/freescale/fman/fman_mac.h    |   34 +-
+>>  .../net/ethernet/freescale/fman/fman_memac.c  |  864 +++++------
+>>  .../net/ethernet/freescale/fman/fman_memac.h  |   57 +-
+>>  .../net/ethernet/freescale/fman/fman_muram.c  |   31 +-
+>>  .../net/ethernet/freescale/fman/fman_muram.h  |   32 +-
+>>  .../net/ethernet/freescale/fman/fman_port.c   |   29 +-
+>>  .../net/ethernet/freescale/fman/fman_port.h   |   29 +-
+>>  drivers/net/ethernet/freescale/fman/fman_sp.c |   29 +-
+>>  drivers/net/ethernet/freescale/fman/fman_sp.h |   28 +-
+>>  .../net/ethernet/freescale/fman/fman_tgec.c   |  274 ++--
+>>  .../net/ethernet/freescale/fman/fman_tgec.h   |   54 +-
+>>  drivers/net/ethernet/freescale/fman/mac.c     |  653 +--------
+>>  drivers/net/ethernet/freescale/fman/mac.h     |   66 +-
+>>  drivers/net/phy/aquantia_main.c               |   86 +-
+>>  drivers/net/phy/phy.c                         |   21 +
+>>  drivers/net/phy/phylink.c                     |  161 +-
+>>  drivers/phy/freescale/Kconfig                 |   20 +
+>>  drivers/phy/freescale/Makefile                |    3 +
+>>  drivers/phy/freescale/lynx-10g.h              |   36 +
+>>  drivers/phy/freescale/phy-fsl-lynx-10g-clk.c  |  438 ++++++
+>>  drivers/phy/freescale/phy-fsl-lynx-10g.c      | 1297 +++++++++++++++++
+>>  drivers/soc/fsl/qbman/qman.c                  |   76 +-
+>>  include/linux/phy.h                           |   42 +
+>>  include/linux/phylink.h                       |   12 +-
+>>  include/soc/fsl/qman.h                        |    9 +
+>>  69 files changed, 4408 insertions(+), 2356 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-
+>> dtsec.yaml
+>>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-
+>> 10g.yaml
+>>  create mode 100644 Documentation/driver-api/phy/lynx_10g.rst
+>>  create mode 100644 drivers/phy/freescale/lynx-10g.h
+>>  create mode 100644 drivers/phy/freescale/phy-fsl-lynx-10g-clk.c
+>>  create mode 100644 drivers/phy/freescale/phy-fsl-lynx-10g.c
+>> 
+>> --
+>> 2.35.1.1320.gc452695387.dirty
+> 
