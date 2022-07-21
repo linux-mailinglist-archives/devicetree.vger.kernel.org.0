@@ -2,140 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DFA657D1B1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B064D57D1C6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:42:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbiGUQkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 12:40:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45444 "EHLO
+        id S231577AbiGUQma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:42:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbiGUQky (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:40:54 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2614220D8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:40:51 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id u13so3666361lfn.5
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:40:51 -0700 (PDT)
+        with ESMTP id S231472AbiGUQma (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:42:30 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3167571BC1
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:42:29 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id a13so2307524ljr.11
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:42:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VQ7eOrI6FIZwDaocmq454OANKIbrFQPFfq7eOf2JtIw=;
-        b=BDQmRTlsWdzM7ha06GNX77q/tKZ0XTEo9fJIbCJldo2c1MlEd4Cj96Aq8ofFupXvmm
-         LwwtzSyQK9F6cWGK2OgkIaLHxqqluHEz/5IKQolhL1fshzKoipro7gf4RymDLM/hiLWH
-         l6tXUE3LWZHLMhZDYFxrPe4Q86mEtzivN6uqZVCGeya38tQ4GPAxzX4RAGsznEWHpRyI
-         xV89H4gFPiR1rOdt436tpogKCt2nAzQBp2xdvWUzr68uyNXtqwQGJJQG65Kh5zvErPjW
-         ZcowdcjTLZ/rwBC7wBoQPHOv46iBBnJtMv1fTYchDJpTEuts61DOfDMI+BkO9KqR/7w3
-         4jwg==
+        bh=QwbR0un4sxn5vSzlSp+6P02uSZkTlMkJ8tMJt7IV6kQ=;
+        b=nVUfHL4iSOBNm987zRPh0ZOiblifeAm2GjJAE6SiGX8pGFxAhUqB746EXBDqIgcGXq
+         oSlx8BUtATFMVqXSGNVPqmeCCWh0JNKzIxOuZ2rtvlULAJvSH+tM3hX+cMSG40quAz8h
+         9CDD03PRJ9rGsoK7vgnFQfa5fLXugZpHZwgqhlsdgo5xABUWVGRj45krZm/HLcNFUuwN
+         NzpNoBq4jg1IgD7vNFRaYclwWHvO0ppr2dqa1MqxT1Nekc4BqzEBYbPQygghXArvdLW6
+         dQL2MxFwa1uOEaRab/C8zm43JeZAhx/JdqHi/YvnxcMmnj0jAqr3gCw9Bwi6V5MUARzP
+         ouSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=VQ7eOrI6FIZwDaocmq454OANKIbrFQPFfq7eOf2JtIw=;
-        b=qX/aO0dnlzI4jz0khy0aFjOHBSOnkPaESZ6DGAWP5ZLhhSJV1q6523XfndQrhktPtc
-         sJ+S7sSqbdx9Y1+MWGaLE2mI7uAbLx7Xf5yeHhx8qz50izBj55rrGnYEsWHCz2rBDelI
-         DoB8NJsSt/NlDWciVnADwlJmCR4d5P9gf/19ERTjP5k9MIYLcp7Rfze/WLAmhd/kL4zz
-         uxXcbTdRWjcE1bjNz1wOQ55Q9P4CiEIAD6tvpqkv1Qrqqv6l+N5TE8zU2pc7vYA020G/
-         xpZPk5hfQk1whASqioajLfpp69fIUJzD1EIqHIGf1JTXnwko1R34esbeF76qJrWqA+Bw
-         0z9g==
-X-Gm-Message-State: AJIora9ZRuqMRCwVSvqWMn/Pt+6LWsBDYaz8o2W8u0HBlsCK5d0HbvXL
-        dwSyKOzDwcuzv9vIeYU5e9lYYg==
-X-Google-Smtp-Source: AGRyM1vfHkvSll1Vf5naVbcFaiTWlBdlvn27d6kKY+yCpav3hSTxEtd3L6HpE0apL2mqZLBUxlockw==
-X-Received: by 2002:a05:6512:3192:b0:48a:50a0:e0f1 with SMTP id i18-20020a056512319200b0048a50a0e0f1mr6672900lfe.301.1658421650132;
-        Thu, 21 Jul 2022 09:40:50 -0700 (PDT)
+        bh=QwbR0un4sxn5vSzlSp+6P02uSZkTlMkJ8tMJt7IV6kQ=;
+        b=AhwOxXSSH0h4T/6ljdt2dmDGVGZ4T2o9g2e7Ft0qUH8jyS4gjjw6vktvW3eV0t6EyZ
+         CfcBUO56SP1XRFy18JN3qSjr2gtCyXEtx0efsltDoNg1JtpvEsedXt906likm7sZQCqY
+         vPrDudt5I+2RXl+x88fbUasOvCSPCHglGfjgIOK4P+fSd69nhGRE6yJLKnR0WvuFqHTw
+         4C7YKiOG47HSX5ng2lNS3isG5zglMS2NEOBpdFO5YLbUQdXVeEIjr9gzoT9q/km15hL6
+         kASylO7gYDYkvtKT/JmSuezZXrw8uXPvbAWZ2Vow3OMBsdn25AzETxafCc/CxtgMDxLt
+         Em8A==
+X-Gm-Message-State: AJIora+0aVkJ0+TUTZxcPgA3QNiv4S/gh0wFpInuX9iXqQo+8Pgcquyb
+        Ucq+cX8jWpUvf2b4wNcQvdoLmg==
+X-Google-Smtp-Source: AGRyM1uFzos/A5/g2s3woS8FwhO3fIGnF0n24Ur8OHhsXAlgHadMD65zx1KxOEeLV5R+1EdDQWuNxQ==
+X-Received: by 2002:a2e:8551:0:b0:25d:e969:3dcd with SMTP id u17-20020a2e8551000000b0025de9693dcdmr1039476ljj.531.1658421747582;
+        Thu, 21 Jul 2022 09:42:27 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id p20-20020ac24ed4000000b00489c54859a5sm530202lfr.287.2022.07.21.09.40.48
+        by smtp.gmail.com with ESMTPSA id bf39-20020a2eaa27000000b0025d75b27fb7sm622512ljb.27.2022.07.21.09.42.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 09:40:49 -0700 (PDT)
-Message-ID: <1e0df4bd-0184-d373-b290-128714b2dc53@linaro.org>
-Date:   Thu, 21 Jul 2022 18:40:48 +0200
+        Thu, 21 Jul 2022 09:42:27 -0700 (PDT)
+Message-ID: <5d6c94f9-9618-55cc-c715-1931275ff087@linaro.org>
+Date:   Thu, 21 Jul 2022 18:42:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: add SM6375 QCOM global clock
- bindings
+Subject: Re: [PATCH v4 2/2] dt-bindings: arm: fsl: Add Moxa UC8210/8220 series
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Jimmy Chen <u7702045@gmail.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220719115756.32231-1-konrad.dybcio@somainline.org>
- <20220719115756.32231-2-konrad.dybcio@somainline.org>
- <11cc46d8-ae01-f3d2-b9c6-c366c6e4afc9@linaro.org>
- <887b005d-750d-39f2-73b7-851aa0e461f4@somainline.org>
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>
+Cc:     Jimmy Chen <jimmy.chen@moxa.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220719030718.28826-1-jimmy.chen@moxa.com>
+ <20220719030718.28826-2-jimmy.chen@moxa.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <887b005d-750d-39f2-73b7-851aa0e461f4@somainline.org>
+In-Reply-To: <20220719030718.28826-2-jimmy.chen@moxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2022 21:36, Konrad Dybcio wrote:
+On 19/07/2022 05:07, Jimmy Chen wrote:
+> Add DT compatible string for Moxa UC8210/8220 i.MX7D board.
 > 
-> 
-> On 20.07.2022 08:27, Krzysztof Kozlowski wrote:
->> On 19/07/2022 13:57, Konrad Dybcio wrote:
->>> Add device tree bindings for global clock controller for SM6375 SoCs.
->>>
->>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->>> ---
->>> Changes since v1:
->>> - dropped clock-names (switched to .index)
->>>
->>>  .../bindings/clock/qcom,sm6375-gcc.yaml       |  65 +++++
->>>  include/dt-bindings/clock/qcom,sm6375-gcc.h   | 234 ++++++++++++++++++
->>>  2 files changed, 299 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
->>>  create mode 100644 include/dt-bindings/clock/qcom,sm6375-gcc.h
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
->>> new file mode 100644
->>> index 000000000000..2e43cd75d3d4
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
->>> @@ -0,0 +1,65 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/qcom,sm6375-gcc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm Global Clock & Reset Controller Binding for SM6375
->>> +
->>> +maintainers:
->>> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
->>> +
->>> +description: |
->>> +  Qualcomm global clock control module which supports the clocks, resets and
->>> +  power domains on SM6375
->>> +
->>> +  See also:
->>> +  - dt-bindings/clock/qcom,sm6375-gcc.h
->>> +
->>
->> Why you are not referencing qcom,gcc.yaml?
-> Hm.. Out of all the SoCs we support, only apq8084 and apq/ipq8064 reference it..
-> Should I add that?
+> Signed-off-by: Jimmy Chen <jimmy.chen@moxa.com>
 
-Yes. There was a patchset adding references everywhere, so new code for
-sure must have it.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+
+If a tag was not added on purpose, please state why and what changed.
+
 
 
 Best regards,
