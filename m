@@ -2,128 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69BF457D472
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 21:58:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7DA857D492
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 22:06:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231970AbiGUT6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 15:58:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36570 "EHLO
+        id S233143AbiGUUGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 16:06:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229693AbiGUT6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 15:58:37 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8379D6371
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 12:58:36 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id ss3so4910425ejc.11
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 12:58:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mHKWUmFgUfuZc36J9hbJA8Kke1gZwOYkNn4MmRRQ64Q=;
-        b=beAHVgvfeXkhJLLqR7EMnPg46bA2u+iFLwngja2Te+ki3gsPMJlt+qGKCn63WN9SLp
-         1XWqRoiVTca7Vy9/skOyyqzKasfEB7HFvZsfS6SAcEzZf6jVN4Yu1IcuE4qWWnMHFjBC
-         fPVcDvyptwdijAuWxXrvk1ONHaad+BKsTmbTo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mHKWUmFgUfuZc36J9hbJA8Kke1gZwOYkNn4MmRRQ64Q=;
-        b=P6UShti/arZDDeOttZMtQltwr5SGDM0onJNFVtwu6tRj2YYHLjHQi3vjvNgxpqjPBu
-         VHEX+w3SA+0JOoOJLM9P7WqcM8VyDbFkF1YrNGX4Co4ZHyWkEE5awV87KH9kGl0WNqfB
-         RJMG63L4coXal+v4J0HARHy/jfB+S1tKm2ZKTFzn3iOph8FaO3/WvqbmRZjLmb7HfJ6L
-         r31slgNkL5kMV9p7MH2BIoJEj2nrLSgqZC6349g7zZx3qVHsV2UvsRoBwA8fSDsi81D7
-         +YYbfn3PPc4+PRz5d3iLJI1cK8QmGCvpPVW0Sa8Oxfii9lIRJTvM6W9PqFHA5abQbqJW
-         4JOg==
-X-Gm-Message-State: AJIora9RcZGiY1XomuwtsgQarvWSdBugiO1MpoMsECHV5FieEx9rWl3b
-        iKTF/Fwhe1p4ZxwPujeMxNKIs+6BR3+oJR7c5rU=
-X-Google-Smtp-Source: AGRyM1tn6r0d3ssenLXQQG0cGSzIVzItLqR5SmxD/loSmiSfRfqqfpO8GKhRcy7YwReheALfD3Iuqg==
-X-Received: by 2002:a17:907:9613:b0:72b:68df:8ada with SMTP id gb19-20020a170907961300b0072b68df8adamr173991ejc.31.1658433514679;
-        Thu, 21 Jul 2022 12:58:34 -0700 (PDT)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
-        by smtp.gmail.com with ESMTPSA id ku8-20020a170907788800b007262a5e2204sm1152915ejc.153.2022.07.21.12.58.33
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 12:58:34 -0700 (PDT)
-Received: by mail-wr1-f51.google.com with SMTP id bk26so3743458wrb.11
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 12:58:33 -0700 (PDT)
-X-Received: by 2002:a05:6000:2c9:b0:21d:bd7d:3af6 with SMTP id
- o9-20020a05600002c900b0021dbd7d3af6mr34835wry.405.1658433513568; Thu, 21 Jul
- 2022 12:58:33 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220718073104.146985-1-jinghung.chen3@hotmail.com> <SG2PR03MB5006A2ADC6ED22199D8C88D9CC8C9@SG2PR03MB5006.apcprd03.prod.outlook.com>
-In-Reply-To: <SG2PR03MB5006A2ADC6ED22199D8C88D9CC8C9@SG2PR03MB5006.apcprd03.prod.outlook.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 21 Jul 2022 12:58:21 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WTe0ArnF2U43Nmy8Ri-CnqMCssVGcWiPUiLaHzS8zVUQ@mail.gmail.com>
-Message-ID: <CAD=FV=WTe0ArnF2U43Nmy8Ri-CnqMCssVGcWiPUiLaHzS8zVUQ@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: Add LTE SKUs for sc7280-villager family
-To:     Jimmy Chen <jinghung.chen3@hotmail.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S233435AbiGUUFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 16:05:52 -0400
+X-Greylist: delayed 320 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 21 Jul 2022 13:05:50 PDT
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4C8C74379;
+        Thu, 21 Jul 2022 13:05:48 -0700 (PDT)
+Received: from toolbox.int.toradex.com ([81.221.243.92]) by mrelay.perfora.net
+ (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1MdMsu-1nfHaT43lo-00ZNSc;
+ Thu, 21 Jul 2022 22:00:02 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alan Huang <alan-huang@quanta.corp-partner.google.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Lucas Stach <dev@lynxeye.de>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 00/12] ARM: arm64: dts/clk: imx8mm: indentation whitespace cleanup
+Date:   Thu, 21 Jul 2022 21:59:23 +0200
+Message-Id: <20220721195936.1082422-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:5cw2TNpGLkkb0Jw3PfQw0Tkjd8MMdgaenIjXAMyu+FXNft96YWP
+ ZUDHH45QL/jHX9Q/xAvWhDGHoH7ZS/7SDLGnZiNbjnJDw5KCwZxZxJT12/KkI+429VRBTvf
+ mXJ19nuSXUE58zgHThjab++sFKtwUmCAZAbuD29OAgU1KSFsfSdKlCumecn6Iwe4FdQ6utI
+ WitXLQReaxlkxKbHl75Jg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:n/cnUxcV+a4=:5PrEH83s6KBtqKUsL0XvUR
+ DIqYgkaYxZOntGChikF4zFzODNSUSqXcWHCpCRSadpRBb9S4y6CySmcBL1t8D0wrcjhitxd8E
+ 2TZTZnYc6Yd10dHl135H9FZNq644Wu8s6SrUBeiivtRejYbJAjqzHqvKesZBQuNmsCvVZzxET
+ vrMq2vbR8/zLGrl7DE1djBu2zpcOyHBXSOAZsYqS3Foh65VIIMKb+Hdy35aLtIjfABXLPNIZW
+ tZ//xoGocTdtJ3y9pu/ScQB+FJdmqgkB/RasVX+tv7HwN59s7MwMTcLFTSjSNtXByBVP+xQqw
+ JzAgXsZbv6xbp85WELN2xMtAZOg1+THoB4KEXVzqUWYS8ulnGeyPruLnThEDaFxyP5e5XSrYB
+ eS/NxPvjQBFLYBAG2FrPRCkeCm93sOpH0miQwFM6rCd/PC+c2GD6Xy79TBfqcXg4j4lERokdL
+ s74ZAhg15MXuy0KsvIChR5gpb9EB/9jt4N6IoV7JzVBolRKokiKwn5+Esg07L3LHlHWyHmUe8
+ j9qR/tbHO1STWc0TwwXsb7FvzMSDGC29KKsA7BEg3CL+gEKg4fk4t+Ycyxtjrdd+ue05ZqhOz
+ 45Wk/zxbgyP60bg6VEyWcnbHpCqL8jViuuhDVpnonZt5b+JAHAL3Fx4Bpg9UUGv1kodNWSfXT
+ /aEhaVjv/tmIvHmLKVZrs5wXk38xmJODXm6JdQbp25NVPlHw+3zVV5dDFWiwCuSyf6e3F77UO
+ lLvWGIp++TUlCYEBsUwGdgvhZUXnH6ro3f69aIXaUh6abmI9Nk6VedBfKGE=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-On Mon, Jul 18, 2022 at 12:31 AM Jimmy Chen <jinghung.chen3@hotmail.com> wrote:
->
-> This adds LTE skus for villager device tree files.
->
-> Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
-> ---
->
-> Changes in v6:
-> - Remove v5 accidentally added sc7280-herobrine-herobrine-r1-lte.dts
->
-> Changes in v5:
-> - Reorder '.dtb' in Makefile
-> - Put the "interconnects" line back
->
-> Changes in v4:
-> - Reorder 'status' last
->
->  arch/arm64/boot/dts/qcom/Makefile               |  2 ++
->  .../boot/dts/qcom/sc7280-chrome-common.dtsi     | 11 -----------
->  .../boot/dts/qcom/sc7280-herobrine-crd.dts      |  1 +
->  .../dts/qcom/sc7280-herobrine-herobrine-r1.dts  |  1 +
->  .../boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 17 +++++++++++++++++
->  .../qcom/sc7280-herobrine-villager-r0-lte.dts   | 14 ++++++++++++++
->  .../qcom/sc7280-herobrine-villager-r1-lte.dts   | 14 ++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts         |  1 +
->  8 files changed, 50 insertions(+), 11 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
->
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 7e6a4d7ef3266..bd43d984f69fc 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -103,7 +103,9 @@ dtb-$(CONFIG_ARCH_QCOM)     += sc7180-trogdor-r1-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-herobrine-r1.dtb
->  dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-villager-r0.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-villager-r0-lte.dtb
->  dtb-$(CONFIG_ARCG_QCOM)        += sc7280-herobrine-villager-r1.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-villager-r1-lte.dtb
 
-Whoops! Looks like you'll need a v7. There's a subtle typo above.
-"ARCH" doesn't end with a "G".
+While synchronising them imx device trees with U-Boot I stumbled over
+various checkpatch warnings. This series addresses those trivial
+indentation and/or whitespace cleanups.
 
--Doug
+
+Marcel Ziswiler (12):
+  ARM: dts: imx6-sabrelite: change to use SPDX identifiers
+  ARM: dts: imx6qdl-mba6: don't use multiple blank lines
+  ARM: dts: imx6qdl: phytec: no spaces at start of line, indent use tabs
+  ARM: dts: imx6qdl-sabre: change to use SPDX identifiers
+  ARM: dts: imx7d-pico: indent use tabs, no spaces at start of line
+  ARM: dts: vf610: no spaces in indent but tabs
+  ARM: dts: vf610-twr: indent use tabs, no spaces at start of line
+  ARM: dts: vf610: don't use multiple blank lines
+  arm64: dts: imx8mm-venice-gw72xx-0x: blank line at end of file
+  arm64: dts: imx8mp-verdin: don't use multiple blank lines
+  arm64: dts: mnt-reform2: don't use multiple blank lines
+  clk: imx8mm: don't use multiple blank lines
+
+ arch/arm/boot/dts/imx6q-sabrelite.dts         | 37 +------------------
+ arch/arm/boot/dts/imx6qdl-mba6.dtsi           |  1 -
+ .../dts/imx6qdl-phytec-mira-peb-av-02.dtsi    |  2 +-
+ arch/arm/boot/dts/imx6qdl-sabrelite.dtsi      | 37 +------------------
+ arch/arm/boot/dts/imx7d-pico.dtsi             | 10 ++---
+ arch/arm/boot/dts/vf610-pinfunc.h             |  2 +-
+ arch/arm/boot/dts/vf610-twr.dts               |  2 +-
+ arch/arm/boot/dts/vf610.dtsi                  |  1 -
+ .../dts/freescale/imx8mm-venice-gw72xx-0x.dts |  1 -
+ .../boot/dts/freescale/imx8mp-verdin.dtsi     |  1 -
+ .../boot/dts/freescale/imx8mq-mnt-reform2.dts |  1 -
+ include/dt-bindings/clock/imx8mm-clock.h      |  1 -
+ 12 files changed, 10 insertions(+), 86 deletions(-)
+
+-- 
+2.35.1
+
