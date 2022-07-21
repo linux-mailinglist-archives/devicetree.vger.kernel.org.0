@@ -2,284 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17E3057D0B0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A828357D14E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:18:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230008AbiGUQGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 12:06:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35046 "EHLO
+        id S231371AbiGUQSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:18:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230245AbiGUQGS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:06:18 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C7EA32BBB
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:06:16 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id w2so2372588ljj.7
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:06:16 -0700 (PDT)
+        with ESMTP id S231514AbiGUQSJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:18:09 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E01689A73;
+        Thu, 21 Jul 2022 09:17:33 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id o133so2531926oig.13;
+        Thu, 21 Jul 2022 09:17:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=bOAD0WaXsD+JG0JF1mCsUCytEFM/ny7YDKpLSwYvJzw=;
-        b=KwMyPMPbKbXkjxL+uTj15OnFAIiUv/+VHaeyhgGJ41oSthr9EFoxwuMi3d+sQGMTSz
-         FNqmFEb9D+N/xww/HobSo9uGKWDT4FVhC3c8HSSYCIc2wdBPagpaulpxuSE21DC7M+69
-         sbHUR8UKkuY81Fdc3y+SFU7/s3wfh8GX45g1RfcJZQPmjDb9ouTb8GJxka1m1sGV20o3
-         JzX1VJczogIgyS129FHesh5pe/+gkFq1NPQpoVrk4kAs+r4xk6kPkJ3mkh80hj7Vv7FT
-         d3dEUL1FXLMCrFYhvGEFpJAdepfYkXEByi4F84bPppa62UyP31TsIot/7k0oCaDNPKxH
-         iRHg==
+        bh=CrienpmK/JKb5On59DyVnzISjRJ+QMGVIPqHV8+Bi4Q=;
+        b=dYF9wX2oQ+ldXB4tLLYM//Lkd5iPcHecBMElWfyevCQdOvjwUaBC9Kmx0UbGQ6xhp9
+         1cwRiNGqNlKoEI23LvoT0cFoTWauMidgaMdYpo/eGAoK9trl9OXXIAE3Dut4YgFRDHZI
+         juicmpduQTgt+SA6DZT2+y6lqMiGjCp8tH/bDBIdDW0y+WbQx3tkTMCdhXgr059E2LPd
+         oBtuw0KDNxopqaWi76N9i+7kQ9tuh1zYYnnT6ygSO/naAbmksw3a529vI8Pzk1v5NG8f
+         QKENjDWch5XhUMoqwQJmNJXkgw8oXSQOeMHZ5vcW3lrbNujcb3TmvURXiasTxtDyXMWq
+         wK5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=bOAD0WaXsD+JG0JF1mCsUCytEFM/ny7YDKpLSwYvJzw=;
-        b=nPy0c0Q3VNdjWFYptiWxLNukb6Po/HjfVSiZafkKoEIXf+DOidZBJks4UbokZYXZoR
-         0icM3NU365i+lK0FdbDomvOZFouUTEs2ttc4APfC+Ryz052AD2XHoFm1sNsRSrJtc5Ge
-         JY+ImsoGNOuNM/D44IZUS6SyxdYyB5iQUL2qdPh0M3kbzlW+apIowtoNlkycjJIHreRq
-         2EGcjcCnubKBLGSsW6WcxY4WUBAcykRRqvBkAoFnxU1+UwxbiTJ5vDSg2vyKAGa+AFrD
-         Lv1/vThKN01jE7pzxTL6tJcRsgKPSxhjDfj7wwbZbIOO3GtnXKyGnDgj/N5jDj9odT5E
-         fogw==
-X-Gm-Message-State: AJIora/zt1nKY0Vcd1vGkXSLWkV0wrVVv0aRoGexBkejknsBtM7Ved6I
-        41GH/Whtux/zEPU71o+7SE4wvQ==
-X-Google-Smtp-Source: AGRyM1tKdUEyiXgh7nWkXj/5n2r75XTsJnX4oy9eT8joUGvGn03QNWbTxnwlN9zWpozfFN4bD8gvgw==
-X-Received: by 2002:a05:651c:238b:b0:25d:eabe:225a with SMTP id bk11-20020a05651c238b00b0025deabe225amr504758ljb.28.1658419574658;
-        Thu, 21 Jul 2022 09:06:14 -0700 (PDT)
-Received: from krzk-bin.. (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac25f08000000b0048a6bb9418esm511171lfq.295.2022.07.21.09.06.13
+        bh=CrienpmK/JKb5On59DyVnzISjRJ+QMGVIPqHV8+Bi4Q=;
+        b=jQ0+rc36bO8N5bmD5M6/Q+80EIBcRjPVGQ2CQSOLQwmney2ln76uGkdI9ufxHVt3Fx
+         KC5Gb53GjMlytKk1prX2s2kE04r3S6qsQsIGQDVlYTQHv68mBYN736RM4Nes+FSBtIE1
+         vFADxNWgsaHkHxBtM/jLe0gs1t+0b1qwxDcD4Jqks8eVWBR5rV3CsF7pb/ZxqJObIx6G
+         n5JVUDcG3whrTjnhk4chMTsXd4pOSmlJzXfW/GVOuriAzEokewwIDBgDLvCKEJIVZss3
+         I3ahMIwht5/w4kkEamv0VbHKYvLJflyYdjILgM4Oqa1IDgVIkJ5x8L/tWkeX5XsTHO+t
+         QvAA==
+X-Gm-Message-State: AJIora/J3rUv0j7O+O53yJmZ47BcltcemzAdAY/B8GBtLmE4oxEhq+P6
+        PP0v52Fn00FVAe32bB+jkEcW1U1FtPk=
+X-Google-Smtp-Source: AGRyM1tHbJ4+ofYcRKxSdc0KNBOCFnPuletJT8RsffzqLtINpk0XtbpgjU74DFe2TWs1gpeHLHw9vg==
+X-Received: by 2002:a05:6808:18a2:b0:33a:afa5:9f71 with SMTP id bi34-20020a05680818a200b0033aafa59f71mr1134393oib.45.1658420252341;
+        Thu, 21 Jul 2022 09:17:32 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id cy18-20020a056830699200b0061cc06a886csm951732otb.9.2022.07.21.09.17.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 09:06:14 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH v2] dt-bindings: leds: skyworks,aat1290: convert to dtschema
-Date:   Thu, 21 Jul 2022 18:06:11 +0200
-Message-Id: <20220721160611.250274-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Thu, 21 Jul 2022 09:17:31 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-pm@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        zhangqing@rock-chips.com, zyw@rock-chips.com,
+        jon.lin@rock-chips.com, sre@kernel.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        lee.jones@linaro.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: [RESEND 0/4 v7] power: supply: Add Support for RK817 Charger
+Date:   Thu, 21 Jul 2022 11:17:14 -0500
+Message-Id: <20220721161718.29800-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Skyworks Solutions, Inc. AAT1290 Current Regulator bindings
-to DT Schema.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Resending as remaining prerequisite patches are now mainlined.
 
----
+This series is to add support for the Rockchip rk817 battery charger
+which is present in all Rockchip RK817 PMICs. The driver was written
+as a joint effort by Maya Matuszczyk <maccraft123mc@gmail.com> and
+myself Chris Morgan <macromorgan@hotmail.com>.
 
-Hi,
+The driver requires some basic parameters be described about the
+battery in the devicetree such as the maximum capacity, the minimum
+and maximum voltage for the battery, the maximum charge current, the
+maximum charge voltage, and the value of sample resistors and sleep
+currents.
 
-This is waiting on the lists for a month:
-https://lore.kernel.org/all/20220620175033.130468-2-krzysztof.kozlowski@linaro.org/
+The hardware itself contains an ADC capable of measuring the voltage,
+current, and temperature of the battery (though my implementation of an
+Odroid Go Advance lacks a thermistor for temperature). It also contains
+a columb counter, registers for tracking the measured voltage and
+current at boot, and a few bytes of nvram for storing data.
 
-so maybe it could be merged via LED or DT binding tree?
+Changes from V6:
+ - Updated devicetree binding patch to reference the required
+   prerequisite patch in the correct manner (relocated it below the ---
+   and pointed it to lore.kernel.org).
 
-Best regards,
-Krzysztof
----
- .../devicetree/bindings/leds/leds-aat1290.txt | 77 ---------------
- .../bindings/leds/skyworks,aat1290.yaml       | 95 +++++++++++++++++++
- 2 files changed, 95 insertions(+), 77 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/leds/leds-aat1290.txt
- create mode 100644 Documentation/devicetree/bindings/leds/skyworks,aat1290.yaml
+Changes from V5:
+ - Renamed mfd-cell from "battery" to "charger".
+ - Added note for devicetree binding documentation that it requires
+   application of an additional pending patch (to convert documentation
+   to yaml).
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-aat1290.txt b/Documentation/devicetree/bindings/leds/leds-aat1290.txt
-deleted file mode 100644
-index 62ed17ec075b..000000000000
---- a/Documentation/devicetree/bindings/leds/leds-aat1290.txt
-+++ /dev/null
-@@ -1,77 +0,0 @@
--* Skyworks Solutions, Inc. AAT1290 Current Regulator for Flash LEDs
--
--The device is controlled through two pins: FL_EN and EN_SET. The pins when,
--asserted high, enable flash strobe and movie mode (max 1/2 of flash current)
--respectively. In order to add a capability of selecting the strobe signal source
--(e.g. CPU or camera sensor) there is an additional switch required, independent
--of the flash chip. The switch is controlled with pin control.
--
--Required properties:
--
--- compatible : Must be "skyworks,aat1290".
--- flen-gpios : Must be device tree identifier of the flash device FL_EN pin.
--- enset-gpios : Must be device tree identifier of the flash device EN_SET pin.
--
--Optional properties:
--- pinctrl-names : Must contain entries: "default", "host", "isp". Entries
--		"default" and "host" must refer to the same pin configuration
--		node, which sets the host as a strobe signal provider. Entry
--		"isp" must refer to the pin configuration node, which sets the
--		ISP as a strobe signal provider.
--
--A discrete LED element connected to the device must be represented by a child
--node - see Documentation/devicetree/bindings/leds/common.txt.
--
--Required properties of the LED child node:
--- led-max-microamp : see Documentation/devicetree/bindings/leds/common.txt
--- flash-max-microamp : see Documentation/devicetree/bindings/leds/common.txt
--                       Maximum flash LED supply current can be calculated using
--                       following formula: I = 1A * 162kohm / Rset.
--- flash-max-timeout-us : see Documentation/devicetree/bindings/leds/common.txt
--                         Maximum flash timeout can be calculated using following
--                         formula: T = 8.82 * 10^9 * Ct.
--
--Optional properties of the LED child node:
--- function : see Documentation/devicetree/bindings/leds/common.txt
--- color : see Documentation/devicetree/bindings/leds/common.txt
--- label : see Documentation/devicetree/bindings/leds/common.txt (deprecated)
--
--Example (by Ct = 220nF, Rset = 160kohm and exynos4412-trats2 board with
--a switch that allows for routing strobe signal either from the host or from
--the camera sensor):
--
--#include "exynos4412.dtsi"
--#include <dt-bindings/leds/common.h>
--
--led-controller {
--	compatible = "skyworks,aat1290";
--	flen-gpios = <&gpj1 1 GPIO_ACTIVE_HIGH>;
--	enset-gpios = <&gpj1 2 GPIO_ACTIVE_HIGH>;
--
--	pinctrl-names = "default", "host", "isp";
--	pinctrl-0 = <&camera_flash_host>;
--	pinctrl-1 = <&camera_flash_host>;
--	pinctrl-2 = <&camera_flash_isp>;
--
--	camera_flash: led {
--		function = LED_FUNCTION_FLASH;
--		color = <LED_COLOR_ID_WHITE>;
--		led-max-microamp = <520833>;
--		flash-max-microamp = <1012500>;
--		flash-max-timeout-us = <1940000>;
--	};
--};
--
--&pinctrl_0 {
--	camera_flash_host: camera-flash-host {
--		samsung,pins = "gpj1-0";
--		samsung,pin-function = <1>;
--		samsung,pin-val = <0>;
--	};
--
--	camera_flash_isp: camera-flash-isp {
--		samsung,pins = "gpj1-0";
--		samsung,pin-function = <1>;
--		samsung,pin-val = <1>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/leds/skyworks,aat1290.yaml b/Documentation/devicetree/bindings/leds/skyworks,aat1290.yaml
-new file mode 100644
-index 000000000000..a6aaa92dbccd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/skyworks,aat1290.yaml
-@@ -0,0 +1,95 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/skyworks,aat1290.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Skyworks Solutions, Inc. AAT1290 Current Regulator for Flash LEDs
-+
-+maintainers:
-+  - Jacek Anaszewski <jacek.anaszewski@gmail.com>
-+  - Krzysztof Kozlowski <krzk@kernel.org>
-+
-+description: |
-+  The device is controlled through two pins:: FL_EN and EN_SET. The pins when,
-+  asserted high, enable flash strobe and movie mode (max 1/2 of flash current)
-+  respectively. In order to add a capability of selecting the strobe signal
-+  source (e.g. CPU or camera sensor) there is an additional switch required,
-+  independent of the flash chip. The switch is controlled with pin control.
-+
-+properties:
-+  compatible:
-+    const: skyworks,aat1290
-+
-+  enset-gpios:
-+    maxItems: 1
-+    description: EN_SET pin
-+
-+  flen-gpios:
-+    maxItems: 1
-+    description: FL_EN pin
-+
-+  led:
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      led-max-microamp: true
-+
-+      flash-max-microamp:
-+        description: |
-+          Maximum flash LED supply current can be calculated using following
-+          formula:: I = 1A * 162 kOhm / Rset.
-+
-+      flash-max-timeout-us:
-+        description: |
-+          Maximum flash timeout can be calculated using following formula::
-+            T = 8.82 * 10^9 * Ct.
-+
-+    required:
-+      - flash-max-microamp
-+      - flash-max-timeout-us
-+      - led-max-microamp
-+
-+  pinctrl-names:
-+    items:
-+      - const: default
-+      - const: host
-+      - const: isp
-+
-+  pinctrl-0: true
-+  pinctrl-1: true
-+  pinctrl-2: true
-+
-+required:
-+  - compatible
-+  - enset-gpios
-+  - flen-gpios
-+  - led
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/leds/common.h>
-+
-+    // Ct = 220 nF, Rset = 160 kOhm
-+    led-controller {
-+        compatible = "skyworks,aat1290";
-+        flen-gpios = <&gpj1 1 GPIO_ACTIVE_HIGH>;
-+        enset-gpios = <&gpj1 2 GPIO_ACTIVE_HIGH>;
-+
-+        pinctrl-names = "default", "host", "isp";
-+        pinctrl-0 = <&camera_flash_host>;
-+        pinctrl-1 = <&camera_flash_host>;
-+        pinctrl-2 = <&camera_flash_isp>;
-+
-+        led {
-+            function = LED_FUNCTION_FLASH;
-+            color = <LED_COLOR_ID_WHITE>;
-+            led-max-microamp = <520833>;
-+            flash-max-microamp = <1012500>;
-+            flash-max-timeout-us = <1940000>;
-+        };
-+    };
+Changes from V4:
+ - Massively redesigned the battery driver to improve measurement
+   accuracy and reliability. Driver now checks values every 8
+   seconds (mimicking BSP driver behavior), or whenever a plug event
+   is detected.
+ - Removed OCV, boot voltage, and boot current as values were found
+   to be unreliable.
+ - Updated first-boot behavior to perform a "best guess" at capacity.
+ - Added ability to calibrate columb counter to full state of charge
+   when charger reports full, and added ability calibrate full charge
+   capacity when battery discharges from full charge to minimum
+   voltage.
+ - Expose state of charge as capacity (in percents).
+ - Updated storing of values to nvram to preserve compatibility with
+   BSP kernel.
+
+Changes from V3:
+
+ - Corrected issues in device tree documentation.
+ - Added additional logic to battery to correct for columb counter
+   drift when the device stays plugged in at a full charge state.
+
+Changes from V2:
+
+ - Updated devicetree bindings to use common property units.
+ - Removed unneeded includes.
+ - Updated rk817_chg_cur_to_reg to make more legible.
+ - Simplified formula for displaying calibrated voltage.
+ - Updated power supply type to POWER_SUPPLY_TYPE_USB.
+ - Implemented get/put_unaligned macros for bulk reads and writes.
+ - Changed numerous dev_err() to dev_err_probe().
+ - Call power_supply_put_battery_info() at end of probe function.
+ - Removed unneeded whitespace.
+
+Changes from V1:
+
+ - Fixed a CLANG warning regarding an uninitalized variable.
+ - Fixed a CLANG warning regarding a pointer as a bool value always
+   returning as true.
+ - Added Maya Matuszczyk to the Signed-off-by.
+
+Chris Morgan (4):
+  dt-bindings: Add Rockchip rk817 battery charger support
+  mfd: Add Rockchip rk817 battery charger support
+  power: supply: Add charger driver for Rockchip RK817
+  arm64: dts: rockchip: add rk817 chg to Odroid Go Advance
+
+ .../bindings/mfd/rockchip,rk817.yaml          |   48 +
+ .../boot/dts/rockchip/rk3326-odroid-go2.dts   |   26 +
+ drivers/mfd/rk808.c                           |   16 +-
+ drivers/power/supply/Kconfig                  |    6 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/rk817_charger.c          | 1157 +++++++++++++++++
+ include/linux/mfd/rk808.h                     |   91 ++
+ 7 files changed, 1344 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/power/supply/rk817_charger.c
+
 -- 
-2.34.1
+2.25.1
 
