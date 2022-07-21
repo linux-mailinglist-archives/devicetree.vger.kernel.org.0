@@ -2,78 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABFAB57C6A2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6311157C6AD
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:44:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232391AbiGUIlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 04:41:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42546 "EHLO
+        id S232511AbiGUIoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 04:44:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232508AbiGUIl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:41:29 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3CD3FE3;
-        Thu, 21 Jul 2022 01:41:28 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id F009466019C1;
-        Thu, 21 Jul 2022 09:41:26 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658392887;
-        bh=DgHftiCEhCQJ15Wj0pfslx32ViPF5o7q5eIFrCJ9Eys=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=cgPJfcrRWP5XcReCy6+E6h3yIgSJNMxdS7TenuM2bsD0EBVO2hxzKP3CZVyleS9QS
-         /QE4Tf1wXjQ+gweV+kBgRKPRxbmEHvdIVZ3nQ9SRp6fZ5OBCGaoEmBE+dcFF/DEefO
-         FNjvhELXOl2tiOiVrlLBo5nBUkTqR6+opAVfssV7WHl7TjyDHkee7VrFP1Z4imAiP5
-         +NwVhrY4LyXpE2Dzp99JhV7jvLY67pZpqFphoK83GbU9397MN1/3B7a2w8bhom92NH
-         YxLdk6YKeqx5UI3CAB4F+vChZHNz6tbm+MMXNB3CzN6nnOSUpUAa8kJ0tjVL2i1rJJ
-         8p/x5ma5cCMuQ==
-Message-ID: <ff169a88-250c-1e21-b65d-bc92fad20f79@collabora.com>
-Date:   Thu, 21 Jul 2022 10:41:23 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 5/6] arm64: dts: mediatek: mt8183: add keyboard node
-Content-Language: en-US
-To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232493AbiGUIoX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:44:23 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F27C07E83D;
+        Thu, 21 Jul 2022 01:44:15 -0700 (PDT)
+X-UUID: 9534c6f209ec44d5969eaadb28c68965-20220721
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:c9883684-0d3a-4178-b20a-97f88d358bd2,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:5
+X-CID-META: VersionHash:0f94e32,CLOUDID:3bf49333-b9e4-42b8-b28a-6364427c76bb,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 9534c6f209ec44d5969eaadb28c68965-20220721
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 36381845; Thu, 21 Jul 2022 16:44:10 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 21 Jul 2022 16:44:09 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 21 Jul 2022 16:44:08 +0800
+Message-ID: <0f02af3abf6895ae89f735d849a1873e61ca502a.camel@mediatek.com>
+Subject: Re: [PATCH 2/2] dt-bindings: PCI: mediatek-gen3: Add new clock name
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
- <20220720-mt8183-keypad-v1-5-ef9fc29dbff4@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220720-mt8183-keypad-v1-5-ef9fc29dbff4@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Ryder Lee <ryder.lee@mediatek.com>, <Rex-BC.Chen@mediatek.com>,
+        <TingHan.Shen@mediatek.com>, <Liju-clr.Chen@mediatek.com>,
+        <Jian.Yang@mediatek.com>
+Date:   Thu, 21 Jul 2022 16:44:08 +0800
+In-Reply-To: <20220720222448.GA4083816-robh@kernel.org>
+References: <20220716074349.28655-1-jianjun.wang@mediatek.com>
+         <20220716074349.28655-3-jianjun.wang@mediatek.com>
+         <20220720222448.GA4083816-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 20/07/22 16:48, Mattijs Korpershoek ha scritto:
-> From: Fabien Parent <fparent@baylibre.com>
-> 
-> MT8183 has an on-SoC keyboard controller commonly used for volume
-> up/down buttons.
-> 
-> List it in the SoC dts so that boards can enable/use it.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+Hi Rob,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Thanks for your comment.
+
+On Wed, 2022-07-20 at 16:24 -0600, Rob Herring wrote:
+> On Sat, Jul 16, 2022 at 03:43:49PM +0800, Jianjun Wang wrote:
+> > MT8188 and MT8195 use clock "peri_mem" instead of "top_133m", add
+> > new
+> > clock name "peri_mem" for MT8188 and MT8195.
+> 
+> This should be part of patch 1.
+
+Sure, I'll merge these two patches into one in the next version.
+
+> 
+> Clock names for IP blocks should be local to the IP block. IOW,
+> named 
+> after the input name for the clocks or what their function is if you 
+> don't know that. Neither the old names nor the new name seem to
+> follow 
+> this. At least make the new name follow that convention.
+
+Sorry, I'm not sure if I understand correctly, would you mind providing
+an example of this change?
+
+Thanks.
+
+> 
+> > 
+> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > ---
+> >  .../bindings/pci/mediatek-pcie-gen3.yaml      | 42 ++++++++++++++-
+> > ----
+> >  1 file changed, 32 insertions(+), 10 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-
+> > gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-
+> > gen3.yaml
+> > index 67d2ba25e336..038e25ae0be7 100644
+> > --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+> > @@ -43,9 +43,6 @@ description: |+
+> >    each set has its own address for MSI message, and supports 32
+> > MSI vectors
+> >    to generate interrupt.
+> >  
+> > -allOf:
+> > -  - $ref: /schemas/pci/pci-bus.yaml#
+> > -
+> >  properties:
+> >    compatible:
+> >      oneOf:
+> > @@ -85,13 +82,7 @@ properties:
+> >      maxItems: 6
+> >  
+> >    clock-names:
+> > -    items:
+> > -      - const: pl_250m
+> > -      - const: tl_26m
+> > -      - const: tl_96m
+> > -      - const: tl_32k
+> > -      - const: peri_26m
+> > -      - const: top_133m
+> > +    maxItems: 6
+> >  
+> >    assigned-clocks:
+> >      maxItems: 1
+> > @@ -133,9 +124,40 @@ required:
+> >    - interrupts
+> >    - ranges
+> >    - clocks
+> > +  - clock-names
+> >    - '#interrupt-cells'
+> >    - interrupt-controller
+> >  
+> > +allOf:
+> > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt8188-pcie
+> > +              - mediatek,mt8195-pcie
+> > +    then:
+> > +      properties:
+> > +        clock-names:
+> > +          items:
+> > +            - const: pl_250m
+> > +            - const: tl_26m
+> > +            - const: tl_96m
+> > +            - const: tl_32k
+> > +            - const: peri_26m
+> > +            - const: peri_mem
+> > +    else:
+> > +      properties:
+> > +        clock-names:
+> > +          items:
+> > +            - const: pl_250m
+> > +            - const: tl_26m
+> > +            - const: tl_96m
+> > +            - const: tl_32k
+> > +            - const: peri_26m
+> > +            - const: top_133m
+> > +
+> >  unevaluatedProperties: false
+> >  
+> >  examples:
+> > -- 
+> > 2.18.0
+> > 
+> > 
 
