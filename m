@@ -2,114 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 889F257C5C8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:04:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53C1C57C5A9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231981AbiGUIEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 04:04:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38348 "EHLO
+        id S229883AbiGUIDq convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 21 Jul 2022 04:03:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231278AbiGUIED (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:04:03 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F4F796A8;
-        Thu, 21 Jul 2022 01:04:01 -0700 (PDT)
-Received: from [IPv6:2a00:23c6:c30a:1501:427e:206e:3eb7:267d] (unknown [IPv6:2a00:23c6:c30a:1501:427e:206e:3eb7:267d])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: martyn)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id BDF2F66019C1;
-        Thu, 21 Jul 2022 09:03:59 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658390640;
-        bh=fs3O49CtwD+yyqy9aNqBLmpgxY/wLTliwXWOK4mYbl8=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=HGnRR4MoeYzwZ7nuD8zWv09oTda5dNBZxtWI1ZlRSAXYOUoInlKoLLoJEW09Gz6MH
-         YHrBJtS3ffRwz1SJukzWh5R8chpRRPauzXIEYNgMGPY1U6QBhnsySEPhSJbsSdA2EK
-         acSuXIqZujzKznKLTXlBJrx8CoYIVogUzHdOTNYBQgKBT4VhM/Nehzn4QWBlojq971
-         2tXjhrr1w0mfnFYzE0ASggX82GGaJbBb8C01yt4lWRkVT+KB3kCZDksFmbjF1gg0Bv
-         O2pzVeS498Ryw7IIs1eERQP5VqssOZ1TavbaT70ua/p0Lz37Zifl6ahsmhtpH0okyC
-         vA1IezgxwBGqQ==
-Message-ID: <86de8ba0157c451fcce4ca92b6cad835e3f1e4d9.camel@collabora.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add MSC
- Technologies
-From:   Martyn Welch <martyn.welch@collabora.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229703AbiGUIDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:03:45 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9CFD40BF3;
+        Thu, 21 Jul 2022 01:03:44 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26L6DCdo008132;
+        Thu, 21 Jul 2022 04:03:34 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3hbq679e45-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 21 Jul 2022 04:03:33 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 26L83WPR039479
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 21 Jul 2022 04:03:32 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Thu, 21 Jul
+ 2022 04:03:31 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 21 Jul 2022 04:03:31 -0400
+Received: from nsa.ad.analog.com ([10.44.3.68])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 26L83GIh028313;
+        Thu, 21 Jul 2022 04:03:19 -0400
+From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
+To:     <linux-input@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     kernel@collabora.com, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date:   Thu, 21 Jul 2022 09:03:56 +0100
-In-Reply-To: <abd47815-c84b-115b-f6f2-b6ec0dbf1bef@linaro.org>
-References: <20220720150007.2168051-1-martyn.welch@collabora.com>
-         <abd47815-c84b-115b-f6f2-b6ec0dbf1bef@linaro.org>
-Organization: Collabora Ltd.
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.2-1 
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: [PATCH v3 00/10] adp5588-keys refactor and fw properties support
+Date:   Thu, 21 Jul 2022 10:04:13 +0200
+Message-ID: <20220721080423.156151-1-nuno.sa@analog.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8BIT
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: UykDncHgrQGJbgE_fNcdt2FoKxxoXaK1
+X-Proofpoint-ORIG-GUID: UykDncHgrQGJbgE_fNcdt2FoKxxoXaK1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-20_12,2022-07-20_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 spamscore=0
+ clxscore=1015 mlxscore=0 mlxlogscore=999 phishscore=0 priorityscore=1501
+ bulkscore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2206140000 definitions=main-2207210031
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-07-20 at 19:07 +0200, Krzysztof Kozlowski wrote:
-> On 20/07/2022 17:00, Martyn Welch wrote:
-> > Add "msc" vendor prefix for MSC Technologies GmbH
-> > (https://www.msc-technologies.eu).
->=20
-> Does not really work - leads to Avnet, so there is no MSC anymore?
->=20
+The main goal of this patchset is to remove platform data and replace it by
+firmware properties. Original discussion in [1].
 
-It still seems to be used as branding by Avnet.
+While in here, some refactor was done to the driver. The most noticeable one
+is to replace the GPIs events handling by irqchip support so that this gpi
+keys can be "consumed" by the gpio-keys driver (also as suggested in [1]).
+With this, the gpio-adp5588 can be removed. This change comes first so that
+we can already remove some platform data variables making it easier to
+completly replace it by firmware properties further down in the series.
 
-> >=20
-> > Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-> > ---
-> >=20
-> > Changes in v2:
-> > =C2=A0 - New addition
-> >=20
-> > =C2=A0Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> > =C2=A01 file changed, 2 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > index 0496773a3c4d..1658357bc1c4 100644
-> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > @@ -816,6 +816,8 @@ patternProperties:
-> > =C2=A0=C2=A0 "^mrvl,.*":
-> > =C2=A0=C2=A0=C2=A0=C2=A0 description: Marvell Technology Group Ltd.
-> > =C2=A0=C2=A0=C2=A0=C2=A0 deprecated: true
-> > +=C2=A0 "^msc,.*":
-> > +=C2=A0=C2=A0=C2=A0 description: MSC Technologies GmbH.
->=20
-> This should be rather msct or msctech, but anyway in fact you maybe
-> should use avnet?
->=20
+As there's no users of the platform data, I just replace it in a single
+patch as there's no point in having support for both (even though it might
+be harder to review the patch as-is).
 
-My rationale for using MSC Technologies is that is how the device is
-described on the website as being a MSC device. I think the
-amalgamation of the MSC website into Avnet's has happened in the last
-year or so. I assume a new device released in the near future would be
-branded more directly as an Avnet device, or maybe not, I see that the
-i.MX 9 is being described as "MSC SM2S-IMX93".
+Special note to the gpio-adp5588 driver removal. I'm aware of some changes
+to the driver in [2]. These changes are in the gpio tree and this patchset
+is naturally based on the input tree which means that patch 2 will
+not apply. So, I'm not really sure how to handle this. I guess in this
+case the conflict is easy to handle :) but just let me know on how to
+proceed in here if there's anything for me to do.
 
-I'll switch to msctech unless there are objections to that.
+[1]: https://lore.kernel.org/linux-input/20220504084617.36844-1-u.kleine-koenig@pengutronix.de/
+[2]: https://lore.kernel.org/linux-gpio/20220628193906.36350-3-andriy.shevchenko@linux.intel.com/
 
-Martyn
+v2 changes:
 
-> > =C2=A0=C2=A0 "^mscc,.*":
-> > =C2=A0=C2=A0=C2=A0=C2=A0 description: Microsemi Corporation
-> > =C2=A0=C2=A0 "^msi,.*":
->=20
->=20
-> Best regards,
-> Krzysztof
+[1/10]
+ * Turn hwirq signed so we can compare < 0;
+ * Replace WARN_ON with dev_warn();
+ * Do not set of_node on gpiochip;
+ * Moved to use a const irqchip within the gpiochip;
+ * Set default handler to 'handle_bad_irq()' and change it
+in irq_set_type;
+
+[4/10]
+ * Dropped "-keys" from compatible and added vendor prefix;
+ * Fix -Wformat complains;
+ * Don't use abbrev in comments (fw -> Firmware).
+
+[5/10]
+ * Be consistent on $refs;
+ * Drop "-keys" from compatible.
+
+[7/10]
+ * Include bits.h;
+ * Use GENMASK();
+ * Use BIT() in KP_SEL();
+ * Reflect code changes in the commit message.
+
+[9/10]
+ * One line for regulator_disable action.
+
+v3 changes:
+
+[1/10]
+ * Use 'irqd_to_hwirq()' helper;
+ * Use INVALID_HWIRQ to signal hwirq not found;
+ * Just compare irq against 0 in 'irq_find_mapping()';
+ * Renamed irq_data *desc to *irqd to avoid confusion.
+
+[5/10]
+ * Dropped the -keys suffix on the filename;
+ * Compatible enum in alphabetical order;
+ * Improved 'adi,unlock-keys' description;
+ * 4 spaces indentation for dts example;
+ * Renamed device node to a generic name and fixed the
+compatible property in the example.
+
+Nuno Sá (10):
+  input: keyboard: adp5588-keys: support gpi key events as 'gpio keys'
+  gpio: gpio-adp5588: drop the driver
+  input: keyboard: adp5588-keys: bail out on returned error
+  input: keyboard: adp5588-keys: add support for fw properties
+  dt-bindings: input: adp5588: add bindings
+  input: keyboard: adp5588-keys: do not check for irq presence
+  input: keyboard: adp5588-keys: fix coding style warnings
+  input: keyboard: adp5588-keys: add optional reset gpio
+  input: keyboard: adp5588-keys: add regulator support
+  input: keyboard: adp5588-keys: Use new PM macros
+
+ .../bindings/input/adi,adp5588.yaml           | 111 +++
+ MAINTAINERS                                   |   2 +-
+ drivers/gpio/Kconfig                          |  14 -
+ drivers/gpio/Makefile                         |   1 -
+ drivers/gpio/gpio-adp5588.c                   | 452 -----------
+ drivers/input/keyboard/Kconfig                |   3 +
+ drivers/input/keyboard/adp5588-keys.c         | 719 ++++++++++++------
+ include/linux/platform_data/adp5588.h         | 171 -----
+ 8 files changed, 589 insertions(+), 884 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/adi,adp5588.yaml
+ delete mode 100644 drivers/gpio/gpio-adp5588.c
+ delete mode 100644 include/linux/platform_data/adp5588.h
+
+-- 
+2.37.1
 
