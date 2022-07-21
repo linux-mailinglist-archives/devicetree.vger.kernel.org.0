@@ -2,135 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B56957C6C3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE0C57C6E9
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:54:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230149AbiGUIqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 04:46:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49420 "EHLO
+        id S232648AbiGUIyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 04:54:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbiGUIq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:46:29 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21B919C30
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:46:25 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id o7so1670059lfq.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:46:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9DFC7DURCYpRYFYZYkyppLob9xkCwy+AEFcaVaYPfs8=;
-        b=euTx6iihA4na02hBm19yonYXxMNvIx3Ol6Uv+9lmbcNSZ/9vb2mqV6dtCG72Oh2UA1
-         kate/d954NuSI3iDXm+t5XnRkJoiWGK38sL83L+xyWZNXGpoZ3W9schn2a3cAtfSQpGx
-         8FNDXt82/3yUs0TSrc/Fed+73RA9Ft2nhwzDa4yNsP0UTRDShNH7TxykViGUgpeumskj
-         HRvGRqVme3LZPMYne/DPsDaR6X/ArzSw24+E0qs8BeIT4Va97odlVrMIDbFWWbRY/BAJ
-         wimcNfmKdrLL+s8IjRdOjnNRTvzBr7M82hlc3olmIbSvusme5U9tl7fejhlZxrbkQQIo
-         LXHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=9DFC7DURCYpRYFYZYkyppLob9xkCwy+AEFcaVaYPfs8=;
-        b=JvxYbmrEcHZ77rgA4QaWwEdmXy/sUoNyo/aaeykGZGTYs0w61AXetz1c6umSBPe61d
-         m+MsnhUtcD2kFw9EP8brEVKFFEBbY7C2QXzOkquZoMm9rE0OTLK4963mRSXRcSp1ZZtA
-         ko3h8xTwjlY9j7j7pp+WXUf5wC28Yy2dkWTzQfrWkVHguxxWKTrjuaFEDQUw0Hx3t5po
-         PN8OTJa+n3wnOxrb2OlOdxfA4ulCU3nWyqBpn9FflKmSRWrj9nV09AIUSOHDZkPi2CS6
-         76FZ9LGTYrbpiMpcjiklqrX1rhPmAFt+UEnQ+9ZggCr2MDgcmwtHB3g4Q4Z/75MCQ6IR
-         a0BA==
-X-Gm-Message-State: AJIora8sZUDyqO74NW1GJfHpLCxJvlp5mz/B0IwN/JE6KyraW05L7uIu
-        ilBxdnVHaebJlDcuaVHRD7OeMw==
-X-Google-Smtp-Source: AGRyM1tOI+u3IonFCcBXlF2yOgxTJjNZ569ISXB7y6CJ2aWXrdfhLu5zMFy7KSt5m+lJ0hmX9XnbHA==
-X-Received: by 2002:a05:6512:2285:b0:487:2538:f0e0 with SMTP id f5-20020a056512228500b004872538f0e0mr23613079lfu.614.1658393182475;
-        Thu, 21 Jul 2022 01:46:22 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id i19-20020a056512341300b0047968606114sm303969lfr.111.2022.07.21.01.46.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 01:46:21 -0700 (PDT)
-Message-ID: <9645b7cb-2a43-3085-4caa-f6527cbc2b21@linaro.org>
-Date:   Thu, 21 Jul 2022 10:46:20 +0200
+        with ESMTP id S232651AbiGUIyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:54:00 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40B127FE4B;
+        Thu, 21 Jul 2022 01:53:59 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 53B1D66019C1;
+        Thu, 21 Jul 2022 09:53:56 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658393637;
+        bh=PWaD409ygy+Er3xoqJTY1NemC1LqQPgB8DQibUFvffo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=HFOn3jmV7jaLw7oD5M8TZqbVkyn5IY9/ekzUHdGUjK/NHL0uQjPZSsNphdJQoNF7r
+         KaYZk9/u1Inf/eei+TdvpOSTrp043auyfH1Mz92Z3tjnig+WQbj+BguEmG8NKpBByH
+         QXf9Jx4YBsQqBLdTKYBevHn0R7FB5FkaS0JWgai+EsUO/RTwYieoqVdeVJID3ehKMq
+         UIaXr6YLUR7zVEqt/ngzQ2UFcUi81uo6pWD2ggbRKqxjfsUOFW/laJAvAP//4+Cv23
+         nMYwM7s/NdsuIdKpiDI35PzXW+ymxuN7ejOJ8RPT/P5VjWE/urap5HmsruvVVrXCoY
+         gKam2qjT/QF6g==
+Message-ID: <45ff2e82-caeb-9575-ce73-1bd43c37c0c5@collabora.com>
+Date:   Thu, 21 Jul 2022 10:53:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: add MSC Technologies
+Subject: Re: [PATCH v5 0/7] MediaTek Helio X10 MT6795 - Clock drivers
 Content-Language: en-US
-To:     Martyn Welch <martyn.welch@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     kernel@collabora.com, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220720150007.2168051-1-martyn.welch@collabora.com>
- <abd47815-c84b-115b-f6f2-b6ec0dbf1bef@linaro.org>
- <86de8ba0157c451fcce4ca92b6cad835e3f1e4d9.camel@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <86de8ba0157c451fcce4ca92b6cad835e3f1e4d9.camel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To:     robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
+        y.oudjana@protonmail.com, jason-jh.lin@mediatek.com,
+        ck.hu@mediatek.com, fparent@baylibre.com, rex-bc.chen@mediatek.com,
+        tinghan.shen@mediatek.com, chun-jie.chen@mediatek.com,
+        weiyi.lu@mediatek.com, ikjn@chromium.org, miles.chen@mediatek.com,
+        sam.shih@mediatek.com, wenst@chromium.org,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        kernel@collabora.com
+References: <20220629110254.184213-1-angelogioacchino.delregno@collabora.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220629110254.184213-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 10:03, Martyn Welch wrote:
-> On Wed, 2022-07-20 at 19:07 +0200, Krzysztof Kozlowski wrote:
->> On 20/07/2022 17:00, Martyn Welch wrote:
->>> Add "msc" vendor prefix for MSC Technologies GmbH
->>> (https://www.msc-technologies.eu).
->>
->> Does not really work - leads to Avnet, so there is no MSC anymore?
->>
+Il 29/06/22 13:02, AngeloGioacchino Del Regno ha scritto:
+> In an effort to give some love to the apparently forgotten MT6795 SoC,
+> I am upstreaming more components that are necessary to support platforms
+> powered by this one apart from a simple boot to serial console.
 > 
-> It still seems to be used as branding by Avnet.
+> This (very big) series introduces system clock, multimedia clock drivers
+> (including resets) for this SoC.
 > 
->>>
->>> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
->>> ---
->>>
->>> Changes in v2:
->>>   - New addition
->>>
->>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> index 0496773a3c4d..1658357bc1c4 100644
->>> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
->>> @@ -816,6 +816,8 @@ patternProperties:
->>>    "^mrvl,.*":
->>>      description: Marvell Technology Group Ltd.
->>>      deprecated: true
->>> +  "^msc,.*":
->>> +    description: MSC Technologies GmbH.
->>
->> This should be rather msct or msctech, but anyway in fact you maybe
->> should use avnet?
->>
+> Tested on a MT6795 Sony Xperia M5 (codename "Holly") smartphone.
 > 
-> My rationale for using MSC Technologies is that is how the device is
-> described on the website as being a MSC device. I think the
-> amalgamation of the MSC website into Avnet's has happened in the last
-> year or so. I assume a new device released in the near future would be
-> branded more directly as an Avnet device, or maybe not, I see that the
-> i.MX 9 is being described as "MSC SM2S-IMX93".
-> 
-> I'll switch to msctech unless there are objections to that.
+> This series depends on, and can be merged on top of:
+> [1]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=640122
+> [2]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=637849
 > 
 
-We still have prefixes (and compatibles) from entities which disappeared
-(e.g. Freescale) but these were added probably before the
-merge/acquisition happened. In this case, I do not see a benefit of
-adding a vendor prefix of non-existing vendor.
+Gentle ping for this series...
+...I've got a lot of commits to send that depend on this one...
 
-Therefore use avnet as vendor in compatible. The model name of course
-can stay MSC or whatever you prefer.
+P.S.: The dependencies in [1] and [2] are already upstream.
 
-Best regards,
-Krzysztof
+Cheers,
+Angelo
+
+
+> Changes in v5:
+>   - Renamed clock/reset header filenames to add vendor prefix
+>   - Removed quotes for $id, $schema in commit [4/7]
+> 
+> Changes in v4:
+>   - Removed unnecessary examples for clock controllers in commit [4/7]
+>   - Fixed one instance of 88 columns line wrap in commit [4/7]
+> 
+> Changes in v3:
+>   - Fixed typo in commit [4/7]
+> 
+> Changes in v2:
+>   - Fixed yaml clock bindings as per Rob's review
+>   - Added ability to compile all MT6795 clock drivers as modules
+>   - Added commits to export some symbols, required to compile as module
+> AngeloGioacchino Del Regno (7):
+>    dt-bindings: mediatek: Document MT6795 system controllers bindings
+>    dt-bindings: clock: Add MediaTek Helio X10 MT6795 clock bindings
+>    dt-bindings: reset: Add bindings for MT6795 Helio X10 reset
+>      controllers
+>    dt-bindings: clock: mediatek: Add clock driver bindings for MT6795
+>    clk: mediatek: clk-apmixed: Remove unneeded __init annotation
+>    clk: mediatek: Export required symbols to compile clk drivers as
+>      module
+>    clk: mediatek: Add MediaTek Helio X10 MT6795 clock drivers
+> 
+>   .../arm/mediatek/mediatek,infracfg.yaml       |   2 +
+>   .../bindings/arm/mediatek/mediatek,mmsys.yaml |   1 +
+>   .../arm/mediatek/mediatek,pericfg.yaml        |   1 +
+>   .../bindings/clock/mediatek,apmixedsys.yaml   |   1 +
+>   .../bindings/clock/mediatek,mt6795-clock.yaml |  66 ++
+>   .../clock/mediatek,mt6795-sys-clock.yaml      |  54 ++
+>   .../bindings/clock/mediatek,topckgen.yaml     |   1 +
+>   drivers/clk/mediatek/Kconfig                  |  37 ++
+>   drivers/clk/mediatek/Makefile                 |   6 +
+>   drivers/clk/mediatek/clk-apmixed.c            |   3 +-
+>   drivers/clk/mediatek/clk-cpumux.c             |   2 +
+>   drivers/clk/mediatek/clk-mt6795-apmixedsys.c  | 157 +++++
+>   drivers/clk/mediatek/clk-mt6795-infracfg.c    | 148 +++++
+>   drivers/clk/mediatek/clk-mt6795-mfg.c         |  50 ++
+>   drivers/clk/mediatek/clk-mt6795-mm.c          | 106 +++
+>   drivers/clk/mediatek/clk-mt6795-pericfg.c     | 160 +++++
+>   drivers/clk/mediatek/clk-mt6795-topckgen.c    | 610 ++++++++++++++++++
+>   drivers/clk/mediatek/clk-mt6795-vdecsys.c     |  55 ++
+>   drivers/clk/mediatek/clk-mt6795-vencsys.c     |  50 ++
+>   drivers/clk/mediatek/clk-mtk.c                |   2 +
+>   drivers/clk/mediatek/reset.c                  |   1 +
+>   .../dt-bindings/clock/mediatek,mt6795-clk.h   | 275 ++++++++
+>   .../reset/mediatek,mt6795-resets.h            |  50 ++
+>   23 files changed, 1837 insertions(+), 1 deletion(-)
+>   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
+>   create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
+>   create mode 100644 drivers/clk/mediatek/clk-mt6795-apmixedsys.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6795-infracfg.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6795-mfg.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6795-mm.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6795-pericfg.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6795-topckgen.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6795-vdecsys.c
+>   create mode 100644 drivers/clk/mediatek/clk-mt6795-vencsys.c
+>   create mode 100644 include/dt-bindings/clock/mediatek,mt6795-clk.h
+>   create mode 100644 include/dt-bindings/reset/mediatek,mt6795-resets.h
+> 
+
+
