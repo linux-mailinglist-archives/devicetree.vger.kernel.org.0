@@ -2,92 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01C8457D1D6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:45:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 553C957D203
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:52:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229819AbiGUQpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 12:45:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49938 "EHLO
+        id S232648AbiGUQwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:52:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbiGUQpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:45:09 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72BA6233
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:45:05 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id p6so2483995ljc.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:45:05 -0700 (PDT)
+        with ESMTP id S232642AbiGUQwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:52:16 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D565D8BABE
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:52:14 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id a13so2337347ljr.11
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:52:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uLpnLpELmGe+yW4fk7cGq1x4Clkl1m4lKrfogbkISGs=;
-        b=y/N//J9OncWfwmp594eRgx7W8jbGgyhSim7LGCZTPur/VLGskrYmihhXMi6hjynqzf
-         PrjkxNwWHMeXlYB7s4578SVe5tddiUAIcHmgColnaYF3X0srb99o9rQ5f2FVYwSIm1TG
-         mCvEhwtMoq26Qi9P2i8MPzm/cr2Dyaio28inHKV1dLEStl83ufY5GB/fRwwSTG+d0dbE
-         6BdU0fTczo8pXN4eFsbnYvhknNVkKON10U+wZrDHqBo8wfNEHYadZkYQpDFdcy/SIG0S
-         pHfO573+ChPSbgHqFglo8qCTXeIvYEM9ge6ZOk6SjP4Us7SAGwmncGKLXQCh8elimy+u
-         Mzyg==
+        bh=eZWePtkmW38ghd0Ghj4mqIdKzqnUwv6l+PWxC4PR9Fo=;
+        b=xIqk2NDONVGSt9CFDj74RXp3+ZhVTqdS38QUbdoe4QPu+U55MQTbtXruHio+rZkGeR
+         JhJkHIMD4STN9fefcql3MRiZERzo0EJvviBKQbafQmj8+wu7B+0xyCKVVgRP2LVsWODz
+         ObofyXcSbFP6eeQAaqC7rU7QT0xCdwL+y7cyZG/rDVKZAXb0iKJJEgXCZBunpx2XcUJz
+         uOtd/d9kysS88KAO6okDLe/0WWPcSLI6tyNrXmGvlV0u92LrkY9LVFjwB0OGrWDbavt7
+         L6g0Xoz9ffMmXBYezMDBjIYfl6iZgLumW4RRNIASfYRBr8rLWMK78A0zGzYF37n8260t
+         gyWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=uLpnLpELmGe+yW4fk7cGq1x4Clkl1m4lKrfogbkISGs=;
-        b=dBi0PMb+6wacXZFYj4GKuqwucpadkfhuKGNCZnXRcXiLW6OfRhSRqZvgNTYWPHfE0q
-         meqAvorLBNhNKgzQbb61OHK66IOhqobXXHsCIn2VGm6k9Igo935AXkIWvxCTG2zMdfz/
-         AJH527JbMhzjSa2K0HdRWXhpmaczkHVDf7K0BpQd8vVX5AiigWiHabDObEls0KeJ9WAB
-         lwjH4VQWoT5o8ixOJ3/5Likrb+0eVV+QW1VMuo0VJ8LOr6sPmMkiOClU+3EeDKXXKYxa
-         tTFDV0TXeX54kSHhIkbRDOXyERuBFjiXGQJE395FU11UoaJcyr07h6FT68KM3egNZFsa
-         Ps5g==
-X-Gm-Message-State: AJIora9V1Nof7rkJeo4vNHAECKwdAwlpMboQvBE/+JxKPVtBBq9xEdp9
-        UyyxtFntCVQKWoSSij5FXq2GKA==
-X-Google-Smtp-Source: AGRyM1ufnNopFhtdPylk7dscYQmUDCYnzxosLQ4ObPtS3j36bW3vf1kRStON1rNbR09cdEcuszHqwg==
-X-Received: by 2002:a2e:bc17:0:b0:25d:50b7:74fa with SMTP id b23-20020a2ebc17000000b0025d50b774famr19322030ljf.444.1658421903829;
-        Thu, 21 Jul 2022 09:45:03 -0700 (PDT)
+        bh=eZWePtkmW38ghd0Ghj4mqIdKzqnUwv6l+PWxC4PR9Fo=;
+        b=Eg1LOmxoeI98K55OpBcIZ+pzR+7oM1tBqXq6xnH8h0uGgHWKN6Wd2q4KvoA/4mjcmA
+         naZvIeiWX0126eA27r+Qr120M4W+X0f4pofHXS8sWfy9uPe4zZJ1TXkwAD2juqRoVTUp
+         JjDVYNy+qDnpPB3DT7dEtTRU7rXu3DnLYEiReuy9/6kfD0V3+WUGvyY8exRyNfPZ7WYW
+         W02Oka7gut9+tB0AvD5hQ+2IdMtZ9VyqVeK271SY7FKI2sqrzWCbfFVtOf3czniXCZ5l
+         hT6tKOQphMUoxaudI58F5QRJ/hSRkEO9qKzFXdaz/fTfbyFsGRZAo7cs+zDK5wGm1LEy
+         D9Cw==
+X-Gm-Message-State: AJIora8lZryN9+5DJPJrsfz91vX8cUXxSL7JDX2txBOAVAkkbky4GUgw
+        MKDrBMF0e1tpatNQSFPE5igNOQ==
+X-Google-Smtp-Source: AGRyM1sLupBygsiOlOL5jneEivZDUqHn/Fu625JHyf7f6wLB6zZW09v4ma4/XP/dJfkD+HSowAvxNg==
+X-Received: by 2002:a05:651c:12c6:b0:25b:cab8:cc2a with SMTP id 6-20020a05651c12c600b0025bcab8cc2amr21022982lje.110.1658422332971;
+        Thu, 21 Jul 2022 09:52:12 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id u3-20020a197903000000b004833caeb8bdsm538861lfc.101.2022.07.21.09.45.02
+        by smtp.gmail.com with ESMTPSA id b9-20020ac24109000000b004870f517c89sm543394lfi.33.2022.07.21.09.52.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 09:45:03 -0700 (PDT)
-Message-ID: <0fbc4db2-76bf-f25f-e7a0-13838762a439@linaro.org>
-Date:   Thu, 21 Jul 2022 18:45:01 +0200
+        Thu, 21 Jul 2022 09:52:12 -0700 (PDT)
+Message-ID: <c2b03863-2249-13e6-98e0-731c1b40d0a9@linaro.org>
+Date:   Thu, 21 Jul 2022 18:52:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2] dt-bindings: Fix typo in comment
+Subject: Re: [PATCH v3 2/2] dt-bindings: arm: qcom: Document additional sku6
+ for sc7180 pazquel
 Content-Language: en-US
-To:     Slark Xiao <slark_xiao@163.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, david@lechnology.com,
-        mturquette@baylibre.com, sboyd@kernel.org, mdf@kernel.org,
-        yilun.xu@intel.com, linus.walleij@linaro.org, brgl@bgdev.pl,
-        agross@kernel.org, bjorn.andersson@linaro.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        narmstrong@baylibre.com, khilman@baylibre.com,
-        mathieu.poirier@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220721011746.19663-1-slark_xiao@163.com>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Henry Sun <henrysun@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
+ <20220721033918.v3.2.I7ecbb7eeb58c5e6a33e32a3abf4d6874e6cb725c@changeid>
+ <CAD=FV=WSBgupLFMCZgianck6uTkAyqrG0WK2ChSbNbJdhOPdLA@mail.gmail.com>
+ <4b2fe9d0-f590-0fac-79fa-bb05da1d61df@linaro.org>
+ <CAD=FV=XmaNdc9k98vAwbcN-sm0w_WeqhRsK_AUm3h4LZ5-egmQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220721011746.19663-1-slark_xiao@163.com>
+In-Reply-To: <CAD=FV=XmaNdc9k98vAwbcN-sm0w_WeqhRsK_AUm3h4LZ5-egmQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 03:17, Slark Xiao wrote:
-> Fix typo in the comment
+On 21/07/2022 18:43, Doug Anderson wrote:
+> Hi,
 > 
-> Signed-off-by: Slark Xiao <slark_xiao@163.com>
-> ---
-> v2: Add all changes in one subsystem into 1 patch
+> On Thu, Jul 21, 2022 at 9:33 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 21/07/2022 15:37, Doug Anderson wrote:
+>>>
+>>> Not worth sending a new version for, but normally I expect the
+>>> bindings to be patch #1 and the dts change to be patch #2. In any
+>>> case:
+>>>
+>>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>>
+>> I would say worth v4, because otherwise patches is not bisectable.
+> 
+> You're saying because `dtbs_check` will fail between the two?
 
+Yes
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> How does
+> flipping the order help? If `dtbs_check` needs to be bisectable then
+> these two need to be one patch, but I was always under the impression
+> that we wanted bindings patches separate from dts patches.
 
+I don't think anyone said that bindings patches must be separate from
+DTS. The only restriction is DTS cannot go with drivers.
+
+Bindings for boards go pretty often with DTS (subarch). This is exactly
+what maintainers do, e.g.:
+https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/log/?h=arm64-for-5.20
+Bindings for hardware should go via subsystem maintainer (drivers).
 
 Best regards,
 Krzysztof
