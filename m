@@ -2,102 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 859C757D21A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E463B57D21D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:57:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233029AbiGUQ5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 12:57:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60512 "EHLO
+        id S233318AbiGUQ5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:57:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232862AbiGUQ5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:57:25 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DCAA489EB4;
-        Thu, 21 Jul 2022 09:57:22 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,183,1654527600"; 
-   d="scan'208";a="126927675"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 22 Jul 2022 01:57:21 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E89414011419;
-        Fri, 22 Jul 2022 01:57:18 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233157AbiGUQ5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:57:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 214E58C3FB
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:57:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7DE1861E54
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 16:57:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE4A6C3411E
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 16:57:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658422651;
+        bh=P7inDxpx8PnKVpkHb+dwNqslJ1VcvFvQpI2pWLOhR/I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=r7AqaFxap0S9z3dy6BJzzweLdqihbxRiiB8INluFRA9f5CGDUOSY41RPMsmKhNxZI
+         06QqQWg1UvIn6Jt1rquhXb7/3bZ2j8s/dkbptictOzUKg0QCT3lxWgKVc8vrFxt7Fo
+         JLMrBupmvDbf7RNG5y5Lcv3i7fI8F2iVqH8+AlbvIi5Qr6Nvf9xZ4ojloTmfaq8d7v
+         ow12cUcGyt3JadPCkQzCjN/qfrENoS5tRoLB0DoF4/gRojFROggiiV3dtY1Vogen4O
+         G/u4itThXfM41Jpngs+9Ncj/bKvXLO44QVPWsJ1k/QWE/YoJFDnBLmN5hsF+PP1C1O
+         plcDwKSHr+lPQ==
+Received: by mail-vs1-f53.google.com with SMTP id a66so2111341vsc.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:57:31 -0700 (PDT)
+X-Gm-Message-State: AJIora8GsmEJzkakDzVTUDnKEB9iT+XD0DLqjLr2NroMvU3ApIhW7zeN
+        Hs8hSrTg5L9iy8SQtBMoovVJcos8Asd0Uv2JIg==
+X-Google-Smtp-Source: AGRyM1tv+7rtCkNTyLex5hxRAWvutRSRreuxF9YKb4dhwym2vNwAf+nsZVaCR21/WxWk7VZ1Arcl8s9ZV5+OKaWyULo=
+X-Received: by 2002:a67:c088:0:b0:358:bb1:fdf7 with SMTP id
+ x8-20020a67c088000000b003580bb1fdf7mr4769708vsi.85.1658422650937; Thu, 21 Jul
+ 2022 09:57:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <CA+V-a8uBSDOqcgqfO2YWNKwoRsKdMcK+yi5DzFEWrP0gJOMWig@mail.gmail.com>
+ <5c9db23e-1706-a638-360e-46c8cb4b5f9a@linaro.org> <CA+V-a8vp7agGmHEJyLSLm973ddOs-cD21jRbwFnjSfc7DxrjrQ@mail.gmail.com>
+In-Reply-To: <CA+V-a8vp7agGmHEJyLSLm973ddOs-cD21jRbwFnjSfc7DxrjrQ@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 21 Jul 2022 10:57:16 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJCKDdUoBtiC7bLAstTHFP_gdHtCf+NWKy2zbXG_Z153w@mail.gmail.com>
+Message-ID: <CAL_JsqJCKDdUoBtiC7bLAstTHFP_gdHtCf+NWKy2zbXG_Z153w@mail.gmail.com>
+Subject: Re: dtbs_check issue
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 2/2] arm64: dts: renesas: rzg2l-smarc-som: Add PHY interrupt support for ETH{0/1}
-Date:   Thu, 21 Jul 2022 17:57:01 +0100
-Message-Id: <20220721165701.17888-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220721165701.17888-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220721165701.17888-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PHY interrupt (INT_N) pin is connected to IRQ2 and IRQ3 for ETH0
-and ETH1 respectively.
+On Thu, Jul 21, 2022 at 9:23 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+>
+> Hi Krzysztof,
+>
+> On Thu, Jul 21, 2022 at 4:12 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 21/07/2022 17:07, Lad, Prabhakar wrote:
+> > > Fyi keeping even a single SMARC board in arm renesas.yaml schema I see
+> > > dtbs_check failures.
+> > >
+> > > Any pointers on how I can get around this issue?
+> >
+> > Few months ago:
+> > https://lore.kernel.org/linux-devicetree/cf7728fd-b5c8-cd3d-6074-d27f38f86545@linaro.org/
+> >
+> Thanks for the link.
+>
+> > Although Rob admitted in the thread this is in general allowed
+> > configuration, to me it is still confusing - the left-most compatible is
+> > not the most specific. Non obvious, confusing and it seems dtschema does
+> > not support it?
+> >
+> It looks like dtschema does not support it.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2
-* Used macros of IRQ numbers
----
- arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+The issue is the same as licensed IP where we have a generic
+compatible and per licensee compatibles in separate schemas. The
+solution anytime a compatible exists in more than 1 schema is a custom
+'select' which excludes that compatible. That would be messy here
+though due to the large number of compatibles. Perhaps we could
+instead merge a custom select with the default generated one. Then the
+schema would just need:
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-index 9410796c8ad6..3ffda0d3fa01 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-@@ -94,6 +94,8 @@ phy0: ethernet-phy@7 {
- 		compatible = "ethernet-phy-id0022.1640",
- 			     "ethernet-phy-ieee802.3-c22";
- 		reg = <7>;
-+		interrupt-parent = <&irqc>;
-+		interrupts = <RZG2L_IRQ2 IRQ_TYPE_LEVEL_LOW>;
- 		rxc-skew-psec = <2400>;
- 		txc-skew-psec = <2400>;
- 		rxdv-skew-psec = <0>;
-@@ -120,6 +122,8 @@ phy1: ethernet-phy@7 {
- 		compatible = "ethernet-phy-id0022.1640",
- 			     "ethernet-phy-ieee802.3-c22";
- 		reg = <7>;
-+		interrupt-parent = <&irqc>;
-+		interrupts = <RZG2L_IRQ3 IRQ_TYPE_LEVEL_LOW>;
- 		rxc-skew-psec = <2400>;
- 		txc-skew-psec = <2400>;
- 		rxdv-skew-psec = <0>;
-@@ -171,7 +175,8 @@ eth0_pins: eth0 {
- 			 <RZG2L_PORT_PINMUX(25, 0, 1)>, /* ET0_RXD0 */
- 			 <RZG2L_PORT_PINMUX(25, 1, 1)>, /* ET0_RXD1 */
- 			 <RZG2L_PORT_PINMUX(26, 0, 1)>, /* ET0_RXD2 */
--			 <RZG2L_PORT_PINMUX(26, 1, 1)>; /* ET0_RXD3 */
-+			 <RZG2L_PORT_PINMUX(26, 1, 1)>, /* ET0_RXD3 */
-+			 <RZG2L_PORT_PINMUX(1, 0, 1)>;  /* IRQ2 */
- 	};
- 
- 	eth1_pins: eth1 {
-@@ -189,7 +194,8 @@ eth1_pins: eth1 {
- 			 <RZG2L_PORT_PINMUX(34, 1, 1)>, /* ET1_RXD0 */
- 			 <RZG2L_PORT_PINMUX(35, 0, 1)>, /* ET1_RXD1 */
- 			 <RZG2L_PORT_PINMUX(35, 1, 1)>, /* ET1_RXD2 */
--			 <RZG2L_PORT_PINMUX(36, 0, 1)>; /* ET1_RXD3 */
-+			 <RZG2L_PORT_PINMUX(36, 0, 1)>, /* ET1_RXD3 */
-+			 <RZG2L_PORT_PINMUX(1, 1, 1)>;  /* IRQ3 */
- 	};
- 
- 	gpio-sd0-pwr-en-hog {
--- 
-2.25.1
+select:
+  not:
+    properties:
+      contains:
+        const: renesas,smarc-evk
 
+We'd have to figure out when to merge or not merge. Maybe only merge a
+'not' schema.
+
+
+The other way to solve this is simply not having 2 schema files. Why
+do we have SoC/board schemas under a CPU arch directory? There's
+nothing architecture specific about them (I have the same opinion on
+.dts files too). So I'd be in favor of putting all root node schemas
+in one directory.
+
+Rob
