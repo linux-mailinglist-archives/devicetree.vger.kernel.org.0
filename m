@@ -2,107 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D14957CCB5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:51:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3C2B57CD38
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231185AbiGUNvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 09:51:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
+        id S230140AbiGUOVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 10:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231250AbiGUNvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:51:24 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB539868A9
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:51:13 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id o7so2876622lfq.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:51:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kecr5i+5DLqDAmpCrXdI3okGZBctpe1q4C972GZbARg=;
-        b=t+T9FmxDSET1eznoCZFy5FwJ1ygGlaE91MHfg567RS5eq0HIIhoshGcZqgbcPUTPs0
-         DML/HMp9i7WzlYCUCDXr/j8xjWMaPLeurgwe0nr3WvKcjnX6/D3dqvvNQ530f0OMBeKD
-         Ql4RQyM4kGU+93SJTClpPoh0X3m7iukKfp3+3Fv5gZdgA+XwE5bZsJujIfQ3Z4hRXFX3
-         FRsPzQZsR9BDjhLvA2c0rI1gMapeAJgxaVhFRh1OlyTS2mnwbQO/NbyuNfYm13Y1c+PQ
-         RFfFE+z5+1QfwTc9GMQq4q/jCF5DHw8DGJKfssxwJiWHg+vVpfY9HsFL22Mp0enGyREU
-         Yfkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kecr5i+5DLqDAmpCrXdI3okGZBctpe1q4C972GZbARg=;
-        b=ThFgpPdxBqXQlslFJREUy0fCQyGys2Bgh0zHbYDa7+cJTBguLexbaV3pd5/1yJMDD7
-         l07GDo8/7lwyEBqaHWalDjUPRREiEtEVynS3j2j8qhKVUq7CSOmr02WouPG0e3sZS6bA
-         pO2Rx6350RE5Z7kr7dLy3M1uoqfYZiB2QhHvF6/RED8uZ9U3Y3h5GEZ46PUXUdhIa2kw
-         /+PHtjgtG469cHY2Spq7JF63+fEE9VCoWS4wURigo0Pd0sa1pYF6IOG8jkzOiHpdgZRs
-         MqlnT1nRB08hR8XDafHjrS9Why2steG06ZWVOcqzg+gNqHk2Xg/v1Wg50pH6L4RHngnw
-         zu+A==
-X-Gm-Message-State: AJIora8CCAshc8QFOisQoDB4VMltmYq6latvQCxqoR239rpc4Q5YU16e
-        5WgNtPo0eJHy+UyG8U2hPnXBgA==
-X-Google-Smtp-Source: AGRyM1skXS9BzdqmFA82kATV7e6ORmNPtgRU6LtaPvd+9FfzbJu0HXQ5nPVqtz0xd98CkqRG+GjCRw==
-X-Received: by 2002:ac2:4bc1:0:b0:48a:ad3:f1af with SMTP id o1-20020ac24bc1000000b0048a0ad3f1afmr21039314lfq.240.1658411472064;
-        Thu, 21 Jul 2022 06:51:12 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id s4-20020a056512314400b00488333b6515sm448587lfi.305.2022.07.21.06.51.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 06:51:11 -0700 (PDT)
-Message-ID: <4084d7e6-e722-a4a7-1a34-c50983f7d93a@linaro.org>
-Date:   Thu, 21 Jul 2022 15:51:09 +0200
+        with ESMTP id S231235AbiGUOVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:21:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D3AA237C5
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:21:04 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oEX2p-0008Lg-Er; Thu, 21 Jul 2022 16:20:51 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oEX2o-002Kis-3x; Thu, 21 Jul 2022 16:20:50 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oEX2m-006bNr-RQ; Thu, 21 Jul 2022 16:20:48 +0200
+Date:   Thu, 21 Jul 2022 16:20:30 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Conor.Dooley@microchip.com
+Cc:     thierry.reding@gmail.com, lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Daire.McNamara@microchip.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v6 3/4] pwm: add microchip soft ip corePWM driver
+Message-ID: <20220721142030.yh7x3ebr2b4fcunc@pengutronix.de>
+References: <20220712142557.1773075-1-conor.dooley@microchip.com>
+ <20220712142557.1773075-4-conor.dooley@microchip.com>
+ <c49776c2-4807-91c1-010a-a33bd98b68b7@microchip.com>
+ <ee05749f-c33f-3505-4309-f4d036de92a1@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v1 3/6] dt-bindings: mediatek,mt6779-keypad: add
- mediatek,double-keys
-Content-Language: en-US
-To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
- <20220720-mt8183-keypad-v1-3-ef9fc29dbff4@baylibre.com>
- <98ec7967-d007-46d7-ef54-aa41426b5f9f@linaro.org>
- <87r12eh9qe.fsf@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <87r12eh9qe.fsf@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4suvbrt6oxi7xwmi"
+Content-Disposition: inline
+In-Reply-To: <ee05749f-c33f-3505-4309-f4d036de92a1@microchip.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 15:32, Mattijs Korpershoek wrote:
->>> diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
->>> index ca8ae40a73f7..03c9555849e5 100644
->>> --- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
->>> +++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
->>> @@ -49,6 +49,12 @@ properties:
->>>      maximum: 256
->>>      default: 16
->>>  
->>> +  mediatek,double-keys:
->>
->> Do you think there could be another MT keypad version with triple-keys?
-> 
-> Of all the SoC's i've worked on (MT8167, MT8183, MT8365, MT8195) I've
-> never seen a "triple-keys" keypad.
 
-OK, but the binding you create now would be poor if MT comes with such
-tripe-key feature later...
+--4suvbrt6oxi7xwmi
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hello,
 
-Best regards,
-Krzysztof
+On Thu, Jul 21, 2022 at 11:05:54AM +0000, Conor.Dooley@microchip.com wrote:
+> Should I resubmit now with the warnings fixed?
+> It is a pair of unused-result on the mutexes & a unused-variable so
+> they should not have much of an impact on any review you would give
+> for this version.
+
+Don't wait for me to find the time to look. If you have some pending
+changes I prefer not to look at the series with known drawbacks.
+
+So fire at will.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--4suvbrt6oxi7xwmi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLZYKUACgkQwfwUeK3K
+7AkxQQf8CGigHoaGeRlvc6ke1AQFqpgAqUiMm4kG+jUXB8lI6Y445+UNkGE+UGgB
+Vzg1MpwRfqXPyOgCpA4BKA1iQRL9D1qk/nwtzb0slAUS0nBscMOSLb5Qd78JQvuJ
+x/8JKAQ0ivFmPk9CxGK4RkFqczhCZtP5zfHNd6HEA6DNSEebfDnnUTuO0yj5vfnF
+UTjccjTv3ziVf2k6d0oyv9gpgtAzFEanFoUTSI3dV26+C+8xubZKKfAqVPuXny+8
+eA712nmjtz5f5RPyxSsPHeytpE+kRNVG4InAI5m8FcOGkMhoM4mHGWQNxfn7O4mR
+g4YP+IGhny0+Panxk5OvAZ69xSHUGw==
+=7gkN
+-----END PGP SIGNATURE-----
+
+--4suvbrt6oxi7xwmi--
