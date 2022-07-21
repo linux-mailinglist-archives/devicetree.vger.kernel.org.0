@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4666C57D19C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:34:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7113857D19E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 18:34:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229913AbiGUQd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 12:33:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39100 "EHLO
+        id S229794AbiGUQet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 12:34:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbiGUQd6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:33:58 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9630689A97
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:33:57 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id d17so1475141lfa.12
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:33:57 -0700 (PDT)
+        with ESMTP id S229485AbiGUQet (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 12:34:49 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3544F89E9F
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:34:48 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id o12so2475304ljc.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 09:34:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0wZNg+3wPANTd0lRPHXLuv+xpAninwLRTERLUu9/iV0=;
-        b=VqMex1M6FRxuAjOX5PnC/HKTSGZJlg9F3Xl1Th8veis9ZwLc8vDjULvKc5W7mKvdei
-         UyrqTs0MSVXnYDpTkaQCjk6dltKKxb6E2AF6xC+d5WuPbwawbs0EBXOxhCHwO0IlvNvj
-         Lg5NQUECCQiifIcnY8aAspgN4O2OZEyflkzfZVOQP4vKZGU3InFxkg//fNB6eRZaqlHq
-         47czCUSM+Jwy36BP2/ikS4zshHQLPrXSTsEittrTRMFEdvUs6wPCpSC2H2UEyT38Zx/k
-         LE7UBa+JvuYxgC4J04LfAt9mBh9YwO6MgSHmEHRmbuekLhdo38DM3YVXtXJkCJ4BYhpz
-         ertQ==
+        bh=lbuWDvRgQP4kS+kKYZcZnG6rgbl3Nz3ODL+tqYR0a+w=;
+        b=X4ImQQbgcJD4ln76H14MOkiKXMWf0KMiM+ZyMKQKKGVK7F/kOc1uUwrm7gNcnPQynq
+         A4eDf63m5PjOaCuw0lGveOz+XhwzW3JgjywlgaQYcjDVhXY88DsjEKzI3nP4tdSphk2R
+         aLum8Un1MjfF1F/sL2JrZIMkVaUAOCBBPShHoS9htJ89g2x2Ga0f+I5oskzPwaSr9sRi
+         Vrsl2Imji372q3UZuhrVL6lKwnnh1dieSUDbhsDoquBtfgl0nA2Qj/+FvzBBXNjxten5
+         EHR+Ew7/4EGnTxShtIT0mrDY62Pwn2eYYJl2NEao5fQ36gXzESGhazPiCg8Oj1P8Yd6A
+         N8wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=0wZNg+3wPANTd0lRPHXLuv+xpAninwLRTERLUu9/iV0=;
-        b=x9HLp1LGkrad+h/aB7GJcZE+p0eRiCLK4sAfsiBOaVhjc/s4mCXT/I+kg66oQrtB+L
-         dX07kCzYLv8DwrlvatJEPuGaEfifmlNWyVGSc+ccXm2prZvhR2t1/x/l59US1AdEr1mg
-         dyPx3ZdxXC2GRxhZZiqIbD72Q4MoloUCTKiFjqVRgDU63QXhV0A9gb9YCcSjU9AAmCJH
-         GQczcTSNe1VthcKP0MLi2rIIhIo49hVsTTvYpdKumufk7c64/EHXDdd0qA7d/VqIq/W8
-         65beh4tfNpsede5yQmcvwMPl3MAAUcWUTdXFCEtbD8CgNzTXpOf8+my/FVjG/qz4jksS
-         FKew==
-X-Gm-Message-State: AJIora8DF+q69wT5DBS80ePtZjqVZHpm4fAIlzFwIUab+aIhmvaa6ZIY
-        10vu8IXKailD2HXaCf/EBOQ7/Q==
-X-Google-Smtp-Source: AGRyM1suwpWeDcSxhta8Meu7xyqrPbrBgRqfzDYdr1Ot0b9fitq1x465Kq3zXTHaFYc9Em7plvJk4Q==
-X-Received: by 2002:a05:6512:6d4:b0:48a:2aaf:1d93 with SMTP id u20-20020a05651206d400b0048a2aaf1d93mr15556923lff.457.1658421235985;
-        Thu, 21 Jul 2022 09:33:55 -0700 (PDT)
+        bh=lbuWDvRgQP4kS+kKYZcZnG6rgbl3Nz3ODL+tqYR0a+w=;
+        b=M1KdcxC9vwD+YjEviPqIXDGm9mzqWHvw5HgOZJVaWzK5hOOEl+45ljfv7v/hLiu48n
+         YzrXmDHceAucuHEoIllVV9He3rkqZhGhZ09GKBtN+OGmJw3xPEXHggn5xf6llcRA+Hh/
+         70eL7a0toQ/ZJun2W2Q5/yt2s4f8spOstK96CpmL9ZJL0m+LjyiQbZMJLH3pHJbA5TGo
+         PbVT38aqgyNThErepIbbV+QP7o3FhkTNpE5996BKuDB2Svy2gOG+7ceHou7wt0JIGPFe
+         TzDZEVeL9Wbj4AscBERQG/YPxkrnKBs/nqF7yOVuHSkg8pGtl2Q+rOiXFLAS+zao48U1
+         LTYA==
+X-Gm-Message-State: AJIora9Y6wBQKKojq1eGmjU9cYoT7mxwxWwnQKzQobiuOlz7G/ih2z6u
+        iRbTv5w6sDV/GyLaobi2TtlGuA==
+X-Google-Smtp-Source: AGRyM1ssWyd9nCaaxXHuoqoTVZDwZhxv1f/lGGVSTBUiA8DEf4ZQ7fA6FySYKIH3oU6z4G1PWtC9jg==
+X-Received: by 2002:a05:651c:12c4:b0:25d:d71c:e249 with SMTP id 4-20020a05651c12c400b0025dd71ce249mr3397475lje.17.1658421286595;
+        Thu, 21 Jul 2022 09:34:46 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id t14-20020a056512208e00b00488bef659d2sm526769lfr.234.2022.07.21.09.33.54
+        by smtp.gmail.com with ESMTPSA id 20-20020ac25f54000000b0047f68e0ca8fsm538022lfz.49.2022.07.21.09.34.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 09:33:55 -0700 (PDT)
-Message-ID: <05ad5e68-7ff2-b1b5-fa49-0e48c7cc313f@linaro.org>
-Date:   Thu, 21 Jul 2022 18:33:54 +0200
+        Thu, 21 Jul 2022 09:34:46 -0700 (PDT)
+Message-ID: <eade56c1-bf4e-0ece-9b67-02f01a95c741@linaro.org>
+Date:   Thu, 21 Jul 2022 18:34:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: fsl: Add MSC SM2S-IMX8PLUS SoM
- and SM2-MB-EP1 Carrier
+Subject: Re: [PATCH v3 2/2] arm64: dts: imx8mp-msc-sm2s: Add device trees for
+ MSC SM2S-IMX8PLUS SoM and carrier board
 Content-Language: en-US
 To:     Martyn Welch <martyn.welch@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
 Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20220721101050.2362811-1-martyn.welch@collabora.com>
+ <20220721101050.2362811-2-martyn.welch@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220721101050.2362811-1-martyn.welch@collabora.com>
+In-Reply-To: <20220721101050.2362811-2-martyn.welch@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,11 +82,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/07/2022 12:10, Martyn Welch wrote:
-> Add DT compatible strings for a combination of the 14N0600E variant of
-> the Avnet (MSC branded) SM2S-IMX8PLUS SoM on it's own and in combination
-> with the SM2-MB-EP1 carrier board.
+> Add device trees for one of a number of MSC's (parent company, Avnet)
+> variants of the SM2S-IMX8PLUS system on module along with the compatible
+> SM2S-SK-AL-EP1 carrier board. As the name suggests, this family of SoMs use
+> the NXP i.MX8MP SoC and provide the SMARC module interface.
 > 
 > Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> ---
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
