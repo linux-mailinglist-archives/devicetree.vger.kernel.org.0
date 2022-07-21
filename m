@@ -2,191 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FDF357CC28
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:42:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 116BB57CC70
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:45:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229735AbiGUNmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 09:42:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48512 "EHLO
+        id S229854AbiGUNpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 09:45:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbiGUNmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:42:38 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 971946FA02;
-        Thu, 21 Jul 2022 06:42:37 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 138A46601AB2;
-        Thu, 21 Jul 2022 14:42:36 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658410956;
-        bh=wMIiEPoxAhEiKY22jDJpVVBvPTPTcpvE8DsrxOXPpJ0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QiekTYt7ct2roixZMYW/tBDip+jdYZ4dfA5pHkwJqsU9TFI+kQxFNdiRy6JGdS2/A
-         crpVrzx4emlQvlmqKYw6P6JBhuUoX8XCQ0DgJ+vBuF/uz5Ut9yZ6ACTTubUEsddTzz
-         N0ihjwbCfIiTFP0Vdo+ln3COjCzfmuAGJIXjvfL8whuSEXYNkNL35lMatyW282ufIb
-         LVE2JwdLGu6V/1deaF2+yNeo0mdsf9cZlBmJabmz4UhcFEQrwwlt8mTFnhDcWZAmeC
-         qxVCKZXXIhrcl65bAVt2O/EHep1/Tm0Dc0/ahlD7sKzUJaCs5wkBpsm3UglDRXG4iy
-         gxqHYKyDDCj+w==
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH 8/8] arm64: dts: mediatek: cherry: Enable MT6315 regulators on SPMI bus
-Date:   Thu, 21 Jul 2022 15:42:28 +0200
-Message-Id: <20220721134228.310178-9-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220721134228.310178-1-angelogioacchino.delregno@collabora.com>
-References: <20220721134228.310178-1-angelogioacchino.delregno@collabora.com>
+        with ESMTP id S229703AbiGUNos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:44:48 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9509A85FA1
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:43:17 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id k19so1856044lji.10
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:43:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Ugu9+BQebh8oUbesVLf90yINOUSbCYM1Wph6Cxi19ho=;
+        b=hXxAmCBBdRcBuuUkQLQSHKPd2ik/hT1YZYCeZmSJk9huBTf3a0arBXeFb7bF9Rn7VF
+         VrjIii7a8o32Dq2yKaDvkYj9KnRI0RD19vZeFvwWTQzF/HOomGFPZJoAGmXeju6DLfL/
+         WfQia+PqLMj0RaxGoDlWsQLm+b5sTBLKDmQK991mcjTMi7/tsRSjKsiNuVeitNaYOObe
+         Buyb+plCaEy46IjVmktGsm6cj6WflDn6xHbMD43Qxl2UsUhF630e7GhjhKtxil2BLMb1
+         rJgP0d95lcJI76Fwo831+3CzFQXiSfcdajFnGz4N/f1KLDTk1fmfgXxrIdeXrluvc27R
+         lk+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Ugu9+BQebh8oUbesVLf90yINOUSbCYM1Wph6Cxi19ho=;
+        b=0m4LytMUjeZJNkNxOfqT7FKJylcwq0RsSyTUhhTtgrjYaBXFv+GOg+qCakXh6+SIxK
+         KNzoQYXHckbsYRcU9oH5OPeDulqoA7P0Gqwf8SfIPHm77NIq8rZYiZLskFVwJXtPOPpT
+         8eWW5s2H6E3e+3ntW17uH/+EKmJSy6wP/rXJKUUC0hgKU8tJgzXpBQhau9pLKd/ctq4u
+         A7qdaSG3OasqIMIe+dNJLKbY9VJ1Od7xhYFXW0c0LCdBVgxp+RzJW5PLAuzZsCe6ACwh
+         lvt0nLvapV+vk50xy8oKnG4pEHGlHe+l16FRiUO0wOAoHmu5tMGEquxQlkQARQb29T9x
+         wF2Q==
+X-Gm-Message-State: AJIora/0ivli+SQViynDCJkpBdy6TSOfNlnLsyyxdOeCpprUctHN6TBY
+        GBpDHeQVx0az6dHeQG81rzby6A==
+X-Google-Smtp-Source: AGRyM1sk6Lk3HTpTVzJJhaufs5oRoDVVpjxoq9YhDCd6efuK2WP78J5IE1t7GiZ0he9gOf6PkljFhg==
+X-Received: by 2002:a2e:b74e:0:b0:25d:d62a:9033 with SMTP id k14-20020a2eb74e000000b0025dd62a9033mr3370071ljo.105.1658410996048;
+        Thu, 21 Jul 2022 06:43:16 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id a21-20020ac25e75000000b0048a6fba9d77sm443202lfr.177.2022.07.21.06.43.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jul 2022 06:43:15 -0700 (PDT)
+Message-ID: <5c90ef96-969c-728a-3987-5793956c5224@linaro.org>
+Date:   Thu, 21 Jul 2022 15:43:13 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/1] dt-bindings: rtc: nxp,pcf85063: Convert to DT
+ schema
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220721133303.1998356-1-alexander.stein@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220721133303.1998356-1-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All machines in the Cherry platform use MT6315 over SPMI: add the
-two instances, providing Vbcpu and Vgpu regulators.
+On 21/07/2022 15:33, Alexander Stein wrote:
+> Convert the NXP PCF85063 RTC binding to DT schema format.
+> 
+> Add 'interrupts' and 'wakeup-source' as this device has an interrupt
+> which was not documented, but is in use.
+> 'clock-output-names' and '#clock-cells' are added as well, those were
+> probably missed when adding clkout support in commit 8c229ab6048b
+> ("rtc: pcf85063: Add pcf85063 clkout control to common clock framework")
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/Makefile         | 52 +------------------
- .../boot/dts/mediatek/mt8195-cherry.dtsi      | 42 +++++++++++++++
- 2 files changed, 44 insertions(+), 50 deletions(-)
+Thanks for adding it here, this sounds fine but brought my attention to
+interrupts and quartz-load. It seems that only rv8263 supports
+interrupts. In the same time rv8263 work only with 7000
+quartz-load-femtofarads.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 04597ffc4286..ede7b208c882 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -1,54 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt2712-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt6755-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt6779-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt6795-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana-rev7.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-burnet.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-cozmo.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-damu.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-fennel-sku1.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-fennel-sku6.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-fennel-sku7.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-fennel14.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-fennel14-sku2.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-juniper-sku16.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kappa.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-kenzo.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku0.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-jacuzzi-willow-sku1.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kakadu-sku22.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku16.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku272.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku288.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-kodama-sku32.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku0.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-kukui-krane-sku176.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8183-pumpkin.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-kingler.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-krabby.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131072.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-rusty-sku196608.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-rusty-sku196609.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-hayato-r1.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-asurada-spherion-r0.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8192-evb.dtb
-+
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r1.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r2.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-cherry-tomato-r3.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
--dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
-+
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index 9086a440a995..6219544e9912 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/leds/common.h>
-+#include <dt-bindings/spmi/spmi.h>
- #include "mt8195.dtsi"
- #include "mt6359.dtsi"
- 
-@@ -979,6 +980,47 @@ usb_c1: connector@1 {
- 	};
- };
- 
-+&spmi {
-+	#address-cells = <2>;
-+	#size-cells = <0>;
-+
-+	mt6315@6 {
-+		compatible = "mediatek,mt6315-regulator";
-+		reg = <0x6 SPMI_USID>;
-+
-+		regulators {
-+			mt6315_6_vbuck1: vbuck1 {
-+				regulator-compatible = "vbuck1";
-+				regulator-name = "Vbcpu";
-+				regulator-min-microvolt = <300000>;
-+				regulator-max-microvolt = <1193750>;
-+				regulator-enable-ramp-delay = <256>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-allowed-modes = <0 1 2>;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+
-+	mt6315@7 {
-+		compatible = "mediatek,mt6315-regulator";
-+		reg = <0x7 SPMI_USID>;
-+
-+		regulators {
-+			mt6315_7_vbuck1: vbuck1 {
-+				regulator-compatible = "vbuck1";
-+				regulator-name = "Vgpu";
-+				regulator-min-microvolt = <625000>;
-+				regulator-max-microvolt = <1193750>;
-+				regulator-enable-ramp-delay = <256>;
-+				regulator-ramp-delay = <6250>;
-+				regulator-allowed-modes = <0 1 2>;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+};
-+
- &u3phy0 {
- 	status = "okay";
- };
--- 
-2.35.1
+If that's correct, you need to put "allOf" after "required" and inside
+"if:then:" restricting it. For rv8263 interrupts:true and quartz as
+const 7000, for else: interrupts:false.
 
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Krzysztof, thanks for your review.
+> 
+> Changes in v2:
+> * Sorted compatible list
+> * Mentioned new #clock-cells and clock-output-names properties in commit message
+> * Removed 'interrupt-names', not needed/used anyway
+> * Fixed quartz-load-femtofarads defintion/description
+> 
+>  .../devicetree/bindings/rtc/nxp,pcf85063.txt  | 32 --------
+>  .../devicetree/bindings/rtc/nxp,pcf85063.yaml | 73 +++++++++++++++++++
+>  2 files changed, 73 insertions(+), 32 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
+> 
+
+Best regards,
+Krzysztof
