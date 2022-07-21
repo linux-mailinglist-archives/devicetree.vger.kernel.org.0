@@ -2,90 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFCD557CC8A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D14957CCB5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230480AbiGUNtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 09:49:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58168 "EHLO
+        id S231185AbiGUNvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 09:51:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230470AbiGUNtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:49:40 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E346342
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:49:38 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id m9so1880447ljp.9
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:49:38 -0700 (PDT)
+        with ESMTP id S231250AbiGUNvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:51:24 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB539868A9
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:51:13 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id o7so2876622lfq.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:51:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Df5PaXBQvWi3ElHoTsEdWiLtMQ6HsSl/JnMKyaUxUZw=;
-        b=u/jvunMnyd49xDidrkd2IjPWAeumQ8e8y/ZLGpFdZyEHxSJEMo2CR8SUicSbdC74NE
-         JMb7LSsarT5VL72kvSyrJo9Nv5G9/KfHABcXTLUO7U6qIMBfWsJa4I91DCLXglTvcafB
-         fNp40vmMAN5kmvqf1PzUVuQHws+ep/jtnM/oswkgfBbOXM8pihXM81a9zOatRFYovNkp
-         nxkqdts7DyqcEMvNwIk6EtaHnV40krQtd8xHHxqt+HKytqXQsTa1soVCwJXesGyXdmKW
-         /p/4P4PvZ/Qc4YH2R0uSC6ECgSR1yStB8saq+ayFfYAKxkBsFySs77mV6/ouRJjO/aSs
-         NCyg==
+        bh=kecr5i+5DLqDAmpCrXdI3okGZBctpe1q4C972GZbARg=;
+        b=t+T9FmxDSET1eznoCZFy5FwJ1ygGlaE91MHfg567RS5eq0HIIhoshGcZqgbcPUTPs0
+         DML/HMp9i7WzlYCUCDXr/j8xjWMaPLeurgwe0nr3WvKcjnX6/D3dqvvNQ530f0OMBeKD
+         Ql4RQyM4kGU+93SJTClpPoh0X3m7iukKfp3+3Fv5gZdgA+XwE5bZsJujIfQ3Z4hRXFX3
+         FRsPzQZsR9BDjhLvA2c0rI1gMapeAJgxaVhFRh1OlyTS2mnwbQO/NbyuNfYm13Y1c+PQ
+         RFfFE+z5+1QfwTc9GMQq4q/jCF5DHw8DGJKfssxwJiWHg+vVpfY9HsFL22Mp0enGyREU
+         Yfkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Df5PaXBQvWi3ElHoTsEdWiLtMQ6HsSl/JnMKyaUxUZw=;
-        b=Uxrs0lnR3IEASgfwwtrYuIsrOhpGh/fGAqOXBa4OMiCP6iLzvjTLQ60U7NgiOqYjaS
-         ilquvt1vfvhuio5ItOeR81d/gUwNZpjofDvC1PgYdoDhbug8kO9xL72MsVaA55GMzBJ5
-         QRxVTe9QK1yk7zo91zKpgKdorV68vQo/GpqP8ZyvJUAqRqV9r/GWbaEOjsG7cAHunF12
-         +3ALK/XVEqKKV4EekJLKRhtqxluEQnRxJUZCeILTisTR/1TJvup6uOlUPRvbf6MuCqvw
-         Glr1gL9MWt+qlTapCpNRL5nMJUlCXuv4KoUxWG1UI4nS8MjDSElQsyT7XEDe9CB0OLP0
-         VQnA==
-X-Gm-Message-State: AJIora+t4ATHkAtyp5rw8zTN6I+N+k0YR3sPOZ7rWEI2GDjmZUYeY2Og
-        JJQ9OJuiDftY+5atdL/RvOcqDw==
-X-Google-Smtp-Source: AGRyM1thiRH/aj+PE2hEZO3seebses8tiG7Wdmeu6aB+i44xAKChmd5OawfeBgmZpsvVxmmTUcXReg==
-X-Received: by 2002:a2e:a591:0:b0:25d:7366:3344 with SMTP id m17-20020a2ea591000000b0025d73663344mr19932544ljp.242.1658411376877;
-        Thu, 21 Jul 2022 06:49:36 -0700 (PDT)
+        bh=kecr5i+5DLqDAmpCrXdI3okGZBctpe1q4C972GZbARg=;
+        b=ThFgpPdxBqXQlslFJREUy0fCQyGys2Bgh0zHbYDa7+cJTBguLexbaV3pd5/1yJMDD7
+         l07GDo8/7lwyEBqaHWalDjUPRREiEtEVynS3j2j8qhKVUq7CSOmr02WouPG0e3sZS6bA
+         pO2Rx6350RE5Z7kr7dLy3M1uoqfYZiB2QhHvF6/RED8uZ9U3Y3h5GEZ46PUXUdhIa2kw
+         /+PHtjgtG469cHY2Spq7JF63+fEE9VCoWS4wURigo0Pd0sa1pYF6IOG8jkzOiHpdgZRs
+         MqlnT1nRB08hR8XDafHjrS9Why2steG06ZWVOcqzg+gNqHk2Xg/v1Wg50pH6L4RHngnw
+         zu+A==
+X-Gm-Message-State: AJIora8CCAshc8QFOisQoDB4VMltmYq6latvQCxqoR239rpc4Q5YU16e
+        5WgNtPo0eJHy+UyG8U2hPnXBgA==
+X-Google-Smtp-Source: AGRyM1skXS9BzdqmFA82kATV7e6ORmNPtgRU6LtaPvd+9FfzbJu0HXQ5nPVqtz0xd98CkqRG+GjCRw==
+X-Received: by 2002:ac2:4bc1:0:b0:48a:ad3:f1af with SMTP id o1-20020ac24bc1000000b0048a0ad3f1afmr21039314lfq.240.1658411472064;
+        Thu, 21 Jul 2022 06:51:12 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id a8-20020a2eb548000000b0025a6e47056csm518302ljn.124.2022.07.21.06.49.35
+        by smtp.gmail.com with ESMTPSA id s4-20020a056512314400b00488333b6515sm448587lfi.305.2022.07.21.06.51.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 06:49:36 -0700 (PDT)
-Message-ID: <b0f7dadc-fa40-c192-9c37-c8150c0d6929@linaro.org>
-Date:   Thu, 21 Jul 2022 15:49:34 +0200
+        Thu, 21 Jul 2022 06:51:11 -0700 (PDT)
+Message-ID: <4084d7e6-e722-a4a7-1a34-c50983f7d93a@linaro.org>
+Date:   Thu, 21 Jul 2022 15:51:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH V3 3/7] dt-bindings: soc: imx: add i.MX8MP vpu blk ctrl
+Subject: Re: [PATCH v1 3/6] dt-bindings: mediatek,mt6779-keypad: add
+ mediatek,double-keys
 Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        "marex@denx.de" <marex@denx.de>,
-        "paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
-        "aford173@gmail.com" <aford173@gmail.com>,
-        "Markus.Niebel@ew.tq-group.com" <Markus.Niebel@ew.tq-group.com>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>
-References: <20220719055054.3855979-1-peng.fan@oss.nxp.com>
- <20220719055054.3855979-4-peng.fan@oss.nxp.com>
- <27ab24ec-61c7-cafb-6665-a16c58808649@linaro.org>
- <DU0PR04MB941796A54DC4932E5A58F4B0888F9@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <9c1735bf-3f29-4bf1-f7cf-f9e211c505ac@linaro.org>
- <DU0PR04MB94172A78F8E9E74FC842F22B88919@DU0PR04MB9417.eurprd04.prod.outlook.com>
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
+ <20220720-mt8183-keypad-v1-3-ef9fc29dbff4@baylibre.com>
+ <98ec7967-d007-46d7-ef54-aa41426b5f9f@linaro.org>
+ <87r12eh9qe.fsf@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB94172A78F8E9E74FC842F22B88919@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <87r12eh9qe.fsf@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -98,82 +84,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 12:38, Peng Fan wrote:
->> Subject: Re: [PATCH V3 3/7] dt-bindings: soc: imx: add i.MX8MP vpu blk ctrl
+On 21/07/2022 15:32, Mattijs Korpershoek wrote:
+>>> diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+>>> index ca8ae40a73f7..03c9555849e5 100644
+>>> --- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+>>> +++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+>>> @@ -49,6 +49,12 @@ properties:
+>>>      maximum: 256
+>>>      default: 16
+>>>  
+>>> +  mediatek,double-keys:
 >>
->> On 19/07/2022 11:58, Peng Fan wrote:
->>>>> +        interconnects:
->>>>> +          items:
->>>>> +            - description: G1 decoder interconnect
->>>>> +            - description: G2 decoder interconnect
->>>>> +            - description: VC8000E encoder interconnect
->>>>> +
->>>>> +        interconnect-names:
->>>>> +          items:
->>>>> +            - const: g1
->>>>> +            - const: g2
->>>>> +            - const: vc8000e
->>>>
->>>> Include interconnects+names in list of all properties and disallow
->>>> them for other variants.
->>>
->>> I not understand well about
->>> " Include interconnects+names in list of all properties ", could you
->>> please explain a bit more?
->>>
->>> And there is already an "if" to check whether the compatible contains
->>> " fsl,imx8mp-vpu-blk-ctrl" to make sure the interconnect valid for
->>> i.MX8MP, so it is not valid to other variants.
->>
->> Defining properties in some if: clause is not really readable and
->> maintainable. The properties should be defined in top-level properties:.
+>> Do you think there could be another MT keypad version with triple-keys?
 > 
-> Maybe I should also include i.MX8MM interconnect and make it
-> a separate patch, then i.MX8MP/i.MX8MM just use their own
-> names just like other properities. In final, as below:
-> 
-> Tow patch:
->   1. Add interconnect property for i.MX8MM VPU BLK CTRL
->   2. Add i.MX8MP VPU BLK CTRL dt bindings
-> 
-> In top-level:
-> + interconnects:
-> +    maxItems: 3
->  
-> +   interconnect-names:
-> +      maxItems: 3
-> 
-> For i.MX8MM
-> +        interconnects:
-> +          items:
-> +            - description: G1 decoder interconnect
-> +            - description: G2 decoder interconnect
-> +            - description: H1 encoder interconnect
-> +
-> +        interconnect-names:
-> +          items:
-> +            - const: g1
-> +            - const: g2
-> +            - const: h1
-> 
-> For i.MX8MP:
-> +        interconnects:
-> +          items:
-> +            - description: G1 decoder interconnect
-> +            - description: G2 decoder interconnect
-> +            - description: VC8000E encoder interconnect
-> +
-> +        interconnect-names:
-> +          items:
-> +            - const: g1
-> +            - const: g2
-> +            - const: vc8000e
-> 
-> How do you think?
+> Of all the SoC's i've worked on (MT8167, MT8183, MT8365, MT8195) I've
+> never seen a "triple-keys" keypad.
 
-I don't understand what is the question here to me. Shall I tell you
-what to do or not to do with iMX 8MM? I don't know. I am not a
-maintainer of that SoC.
+OK, but the binding you create now would be poor if MT comes with such
+tripe-key feature later...
 
 
 Best regards,
