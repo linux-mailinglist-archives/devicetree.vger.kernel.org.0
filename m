@@ -2,241 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ECBF57C6F3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:55:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B09D57C6FC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232679AbiGUIzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 04:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59318 "EHLO
+        id S232704AbiGUI6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 04:58:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232699AbiGUIzi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:55:38 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CFA2F010
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:55:36 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id p6so1015114ljc.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:55:36 -0700 (PDT)
+        with ESMTP id S232543AbiGUI6j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:58:39 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C867145F7F;
+        Thu, 21 Jul 2022 01:58:37 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id bu1so1267472wrb.9;
+        Thu, 21 Jul 2022 01:58:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4GeLyV51uYj8j4S4aBve635E01r+lvLx2pbTjxK4lWY=;
-        b=r7/Jn5fBFKJaOhtb44Dkjir5D0my9GI5ryjs+mFVridMBGrA31diU16QC2UbpL167X
-         eWcY8H3uvQu/abRABlzE4W9nzhLybMEhXsBOdE58UnvdATo2x6OEIbQqKhZdpU3IPFRs
-         OuFHTLK8S75Bpltb/aEvT2UawF69arCPTyn/s7/V7R2GFzZEHjUXqM1Lj6ZVHtKihRFk
-         L6sMUxXH+LKkm7F5trbtBIN0gM93PTfJSox5aFPGm5Igsp6ejwaOqGtyDZL+eaFLO406
-         pFblBNMt5JH4n1C5KILz8CDIoS9kmWbFwlGYo0UEgw77xnYXHEGzBawWEW4cymTG2oO0
-         GEig==
+        bh=syQ+VpJJB2LIQAUZnYA/zT0AD9MDsCzAI/fzicls730=;
+        b=Z2qfSOhdmzD1A8erF2JN5h5MRBchlMjqkznwx2R2kmbyZTKzy68/SBv1VIU55Fq13A
+         7pwyP6jI86y7bWlaNTInynXOr6icU/W6sWdD9ZdXSSlBEFiIY6LAdVNqEYNAPiB8wIts
+         a66/b/tgTMCk5O1mX4b9o6Y5BYuKADxMpKp2wS44fQVtmOmMcculT4DvgUUt3XeaWQHM
+         sr33WKKRdFe/Dh2bz48Xlk/NSIog827Zncr6fWgT3Z9MHwz4z9Y4aiPlJYZYgkEJc2vf
+         5V2nxOCtOf1vQqLjgZ78Ey8rFXK8UokfAxj5FcMX2bRZQdac1OE+ycD9ZFiGLBf1K57j
+         HTeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=4GeLyV51uYj8j4S4aBve635E01r+lvLx2pbTjxK4lWY=;
-        b=ze/kCwzGKpgte0/wcbl1pMfuvxzIlwiFSLy5IZr2bOvp3A1ilCVmx3+dtA96JHu6c8
-         PWNAfIyGwY/s1JBLAbxrIhXRPcs9hjR0HKedfJKh8WRo4mUZgaDKB1uT9imOt2fHoZ1B
-         xwNgVvJAgK2oFisxMPTxIsUIreggLBcLc2BHYwXiZ8Uk6wL3+Thes4h2dAs/4i+9SQzd
-         u9eMFwhgTAl1YTspLbfQGZhimMFQv4rp4vgXIaB4A9SSSc8KOQd/uC5fQU402H9jG1xr
-         fWXk7dRCgCLSeQL7nPNwtzLh1aQspqy8T0GLlVUCA6Sv1dk+wAPexn02CZ1udFN5FpyS
-         Jyeg==
-X-Gm-Message-State: AJIora9A0vpciArOuiCCyplICNKeH4uCWaJy5HbXTM4RgbmCtvdA0vdk
-        ogSNuxuJ50Eh88TJj56ojwpU0A==
-X-Google-Smtp-Source: AGRyM1t+1EDHj6uDmmwBE6CgTZopBYct95p34fYs4E202hjjQ4LPh6wl3Vozu3ATNCFfiaswEwGWyw==
-X-Received: by 2002:a2e:8852:0:b0:25d:4ab5:593b with SMTP id z18-20020a2e8852000000b0025d4ab5593bmr17501577ljj.261.1658393735136;
-        Thu, 21 Jul 2022 01:55:35 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id bp25-20020a056512159900b0047f76a935a5sm308444lfb.137.2022.07.21.01.55.32
+        bh=syQ+VpJJB2LIQAUZnYA/zT0AD9MDsCzAI/fzicls730=;
+        b=5sez+VLehN4tc7Rcesec7aAeMXrhXTM5XEWHGiOII3U5e0mZIcuw9syfnp1/gzspWF
+         uJcDdz2fw7NI18NtqQZ2LMP3rIMNzC4A2zDwzBmSai8X0facPxUABS10o3f6lCoZHZi7
+         CXGgq7DlCR0jkJt9WIIuGaCpXRcFa4IrPEXI5rTv2rF57DlmUNzH/aAl9O538mn+8GJG
+         hjHtZhR+ArfhbAjGa59mMvJUmSqAfBAHqLbLrPa8ry5J/63tHSvkPOxvHQ/mxhLu2DYB
+         oHed4+QEMGTHNHOMXCdDF095jPp3UyuARgLEc0Khr2XJwvfov49jTU/EiZ4vXg/smdGc
+         ow8g==
+X-Gm-Message-State: AJIora8ZpqRizbO7AiGw8C/X6mZCLuVayWQWJebwcGn8enOFozRRnaKY
+        DSq5FVJU/bxNSjYcNA/XRmU=
+X-Google-Smtp-Source: AGRyM1tOOvMJab+4e1PYs08SdqeCBd+Bl9zzhquyW+88isndfbUjZAJT+iZUKX6XSMHa42tjYZoOSg==
+X-Received: by 2002:a5d:5a9d:0:b0:21b:8247:7ec4 with SMTP id bp29-20020a5d5a9d000000b0021b82477ec4mr33511036wrb.561.1658393916178;
+        Thu, 21 Jul 2022 01:58:36 -0700 (PDT)
+Received: from [192.168.1.145] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id x5-20020adfdcc5000000b0021d887f9468sm1258931wrm.25.2022.07.21.01.58.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 01:55:33 -0700 (PDT)
-Message-ID: <19ccf775-cc1d-37de-bf4e-7745f0943851@linaro.org>
-Date:   Thu, 21 Jul 2022 10:55:32 +0200
+        Thu, 21 Jul 2022 01:58:34 -0700 (PDT)
+Message-ID: <f8cb0af1-96e2-36e8-474f-421d152117fb@gmail.com>
+Date:   Thu, 21 Jul 2022 10:57:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v4 1/5] dt-bindings: pci: Add ARTPEC-8 PCIe controller
+Subject: Re: [PATCH v2 3/4] thermal: mediatek: control buffer enablement
+ tweaks
 Content-Language: en-US
-To:     wangseok.lee@samsung.com,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
-        "lars.persson@axis.com" <lars.persson@axis.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
-        "kernel@axis.com" <kernel@axis.com>
-Cc:     Moon-Ki Jun <moonki.jun@samsung.com>,
-        Sang Min Kim <hypmean.kim@samsung.com>,
-        Dongjin Yang <dj76.yang@samsung.com>,
-        Yeeun Kim <yeeun119.kim@samsung.com>
-References: <20220720055108epcms2p563c65b3de6333ccbc68386aa2471a800@epcms2p5>
- <CGME20220720055108epcms2p563c65b3de6333ccbc68386aa2471a800@epcms2p6>
- <20220720055436epcms2p63896ebe4e2131e3844044d0112288570@epcms2p6>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220720055436epcms2p63896ebe4e2131e3844044d0112288570@epcms2p6>
-Content-Type: text/plain; charset=UTF-8
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>
+Cc:     rafael@kernel.org, fparent@baylibre.com, amitk@kernel.org,
+        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+        robh+dt@kernel.org, rui.zhang@intel.com,
+        Markus Schneider-Pargmann <msp@baylibre.com>
+References: <20220720181854.547881-1-aouledameur@baylibre.com>
+ <20220720181854.547881-4-aouledameur@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220720181854.547881-4-aouledameur@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2022 07:54, Wangseok Lee wrote:
-> Add description to support Axis, ARTPEC-8 SoC. ARTPEC-8 is the SoC platform
-> of Axis Communications and PCIe controller is designed based on Design-Ware
-> PCIe controller.
+
+
+On 20/07/2022 20:18, Amjad Ouled-Ameur wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 > 
-> Signed-off-by: Wangseok Lee <wangseok.lee@samsung.com>
+> Add logic in order to be able to turn on the control buffer on MT8365.
+> This change now allows to have control buffer support for MTK_THERMAL_V1,
+> and it allows to define the register offset, and mask used to enable it.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Reviewed-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+> Tested-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
+
+Here we will need your Signed-off-by as you are sending the patch :)
+
+Regards,
+Matthias
+
 > ---
-> v3->v4 :
-> -Add missing properties
+>   drivers/thermal/mtk_thermal.c | 23 +++++++++++++++++------
+>   1 file changed, 17 insertions(+), 6 deletions(-)
 > 
-> v2->v3 :
-> -Modify version history to fit the linux commit rule
-> -Remove 'Device Tree Bindings' on title
-> -Remove clock-names entries
-> -Change node name to soc from artpec8 on excamples
-
-Please rebase on newest Linux kernel or linux-next and use
-get_maintainers.pl script.
-
-> 
-> v1->v2 :
-> -'make dt_binding_check' result improvement
-> -Add the missing property list
-> -Align the indentation of continued lines/entries
-> ---
->  .../bindings/pci/axis,artpec8-pcie-ep.yaml         | 138 +++++++++++++++++++
->  .../devicetree/bindings/pci/axis,artpec8-pcie.yaml | 148 +++++++++++++++++++++
->  2 files changed, 286 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/axis,artpec8-pcie-ep.yaml
->  create mode 100644 Documentation/devicetree/bindings/pci/axis,artpec8-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/axis,artpec8-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/axis,artpec8-pcie-ep.yaml
-> new file mode 100644
-> index 0000000..435e86f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/axis,artpec8-pcie-ep.yaml
-> @@ -0,0 +1,138 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/axis,artpec8-pcie-ep.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
+> index 216eb0d61c5b..1dc276f8c4f1 100644
+> --- a/drivers/thermal/mtk_thermal.c
+> +++ b/drivers/thermal/mtk_thermal.c
+> @@ -283,6 +283,9 @@ struct mtk_thermal_data {
+>   	bool need_switch_bank;
+>   	struct thermal_bank_cfg bank_data[MAX_NUM_ZONES];
+>   	enum mtk_thermal_version version;
+> +	u32 apmixed_buffer_ctl_reg;
+> +	u32 apmixed_buffer_ctl_mask;
+> +	u32 apmixed_buffer_ctl_set;
+>   };
+>   
+>   struct mtk_thermal {
+> @@ -578,6 +581,9 @@ static const struct mtk_thermal_data mt7622_thermal_data = {
+>   	.adcpnp = mt7622_adcpnp,
+>   	.sensor_mux_values = mt7622_mux_values,
+>   	.version = MTK_THERMAL_V2,
+> +	.apmixed_buffer_ctl_reg = APMIXED_SYS_TS_CON1,
+> +	.apmixed_buffer_ctl_mask = ~0x37,
+> +	.apmixed_buffer_ctl_set = 0x1,
+>   };
+>   
+>   /*
+> @@ -1031,14 +1037,18 @@ static const struct of_device_id mtk_thermal_of_match[] = {
+>   };
+>   MODULE_DEVICE_TABLE(of, mtk_thermal_of_match);
+>   
+> -static void mtk_thermal_turn_on_buffer(void __iomem *apmixed_base)
+> +static void mtk_thermal_turn_on_buffer(struct mtk_thermal *mt,
+> +				       void __iomem *apmixed_base)
+>   {
+>   	int tmp;
+>   
+> -	tmp = readl(apmixed_base + APMIXED_SYS_TS_CON1);
+> -	tmp &= ~(0x37);
+> -	tmp |= 0x1;
+> -	writel(tmp, apmixed_base + APMIXED_SYS_TS_CON1);
+> +	if (!mt->conf->apmixed_buffer_ctl_reg)
+> +		return;
 > +
-> +title: ARTPEC-8 SoC PCIe Controller
+> +	tmp = readl(apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
+> +	tmp &= mt->conf->apmixed_buffer_ctl_mask;
+> +	tmp |= mt->conf->apmixed_buffer_ctl_set;
+> +	writel(tmp, apmixed_base + mt->conf->apmixed_buffer_ctl_reg);
+>   	udelay(200);
+>   }
+>   
+> @@ -1138,8 +1148,9 @@ static int mtk_thermal_probe(struct platform_device *pdev)
+>   		goto err_disable_clk_auxadc;
+>   	}
+>   
+> +	mtk_thermal_turn_on_buffer(mt, apmixed_base);
 > +
-> +maintainers:
-> +  - Jesper Nilsson <jesper.nilsson@axis.com>
-> +
-> +description: |+
-> +  This PCIe end-point controller is based on the Synopsys DesignWare PCIe IP
-> +  and thus inherits all the common properties defined in snps,dw-pcie-ep.yaml.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: axis,artpec8-pcie-ep
-> +
-> +  reg:
-> +    items:
-> +      - description: Data Bus Interface (DBI) registers.
-> +      - description: Data Bus Interface (DBI2) registers.
-> +      - description: PCIe address space region.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: dbi2
-> +      - const: addr_space
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: PIPE clock, used by the controller to clock the PIPE
-> +      - description: PCIe dbi clock, ungated version
-> +      - description: PCIe master clock, ungated version
-> +      - description: PCIe slave clock, ungated version
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pipe
-> +      - const: dbi
-> +      - const: mstr
-> +      - const: slv
-> +
-> +  samsung,fsys-sysreg:
-> +    description:
-> +      Phandle to system register of fsys block.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-
-Since you wrote this is one register, I expect offset:
-https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
-
-
-> +
-> +  samsung,syscon-phandle:
-> +    description:
-> +      Phandle to the PMU system controller node.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  samsung,fsys-bus-s:
-> +    description:
-> +      Phandle to bus-s of fsys block, this register
-> +      is additional control sysreg in fsys block and
-> +      this is used for pcie slave control setting.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-
-Ditto
-
-> +
-> +  samsung,fsys-bus-p:
-> +    description:
-> +      Phandle to bus-p of fsys block, this register
-> +      is additional control sysreg in fsys block and
-> +      this is used for pcie dbi control setting.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-
-Ditto
-
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    items:
-> +      - const: pcie_phy
-> +
-> +  num-lanes:
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - samsung,fsys-sysreg
-> +  - samsung,syscon-phandle
-> +  - samsung,syscon-bus-s-fsys
-
-This does not match what you wrote in properties.
-
-Best regards,
-Krzysztof
+>   	if (mt->conf->version == MTK_THERMAL_V2) {
+> -		mtk_thermal_turn_on_buffer(apmixed_base);
+>   		mtk_thermal_release_periodic_ts(mt, auxadc_base);
+>   	}
+>   
