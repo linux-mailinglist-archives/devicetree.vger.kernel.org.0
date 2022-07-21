@@ -2,81 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C942E57C8F3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 12:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F08A57C881
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 12:03:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233272AbiGUK1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 06:27:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55032 "EHLO
+        id S233004AbiGUKDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 06:03:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233250AbiGUK1n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 06:27:43 -0400
-Received: from 19.mo581.mail-out.ovh.net (19.mo581.mail-out.ovh.net [178.33.251.118])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE13747AA
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 03:27:41 -0700 (PDT)
-Received: from player697.ha.ovh.net (unknown [10.108.4.72])
-        by mo581.mail-out.ovh.net (Postfix) with ESMTP id B344C24211
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:51:21 +0000 (UTC)
-Received: from RCM-web2.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player697.ha.ovh.net (Postfix) with ESMTPSA id 65D0E2CD2F359;
-        Thu, 21 Jul 2022 06:51:09 +0000 (UTC)
+        with ESMTP id S229945AbiGUKDm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 06:03:42 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89FA27145
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 03:03:41 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id o12so1222101ljc.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 03:03:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ud+C26ftZa8Rjz2cAIccHjrt/I9qI0gljR2yYnoWRkQ=;
+        b=ZCTvTZvRn0VmeOXuCxr1aekjZ9egVJ37VVbflZ/+7uPXHfd//QVDshqRxWteSpAohk
+         kztzMWMxyarvNzTNImqHPcuYrXBqOJrais30YJEMEPNUAaboPWk6sCrVRYykmRuP5T/3
+         c+jMJv/1uBrLaeXl9AxiDfvkK7xRsh61QjAJ7yNgxHi7vdTuEB3cWBUuUwPB3qsZev/E
+         s8QF3xJpMMBw0wW7/gu5ysMSqlwIGJW67C8VreBm/qzb4GnFb2jhbdKNdoYdhn6FIEgJ
+         C9OI9NHvDkSo2J8So913fOF/oRRFiVhUSSW1LhVxeo94w89EOK2oogomVwodkxaOtDsY
+         1qSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ud+C26ftZa8Rjz2cAIccHjrt/I9qI0gljR2yYnoWRkQ=;
+        b=aRbH1CWMDp1hxcVaWcoreay3C8Ne9Q8XeH+khOI1RTAMtj6oWETUVxGRh/yYlHAXjE
+         +XXTqjX0qd964MzIp9upukdSGuLLZ1nqZdhcg2sfbyKIqUNvyqSFiW1kdvRNoLqBAPzM
+         tytP0EC9OrbXX6gHcaWqjpJwPWmx8OeMNuf6EP3NyuJP+zb69inrVHNIFOpYREsluZao
+         uFRJiyMnXKfcBhEb1/scT0uZTth2Cm2pxzFufKReic7PE5TyEmTfii1lsbG5GqqS+7v6
+         ZYQJ9hm3xC8OyA5RNyDpgYErB85oYpvPZlYbX+Xn5AwC8bXam3suNC7FjlnqxFn6af9N
+         nu6A==
+X-Gm-Message-State: AJIora9eyoZP593zkfvOCs6pPhULCoAS5+tWLmMn7W4qdmXOfUEKqxq/
+        69B7v2pdewd/LY4IvQoi7gcUQg==
+X-Google-Smtp-Source: AGRyM1sAtAw6jE5W/RlytvzZwARbxPwr67MRRb7HkXSh2iwahMPMd+mQxDNtQB8+L9mH/jg0RrKsAg==
+X-Received: by 2002:a05:651c:109:b0:25d:5889:cfe6 with SMTP id a9-20020a05651c010900b0025d5889cfe6mr17777290ljb.184.1658397820158;
+        Thu, 21 Jul 2022 03:03:40 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id k1-20020ac257c1000000b0047255d211c7sm339564lfo.246.2022.07.21.03.03.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jul 2022 03:03:39 -0700 (PDT)
+Message-ID: <9448dcb4-7eac-7efa-0062-bcc1797fa09d@linaro.org>
+Date:   Thu, 21 Jul 2022 12:03:37 +0200
 MIME-Version: 1.0
-Date:   Thu, 21 Jul 2022 08:51:09 +0200
-From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     William Zhang <william.zhang@broadcom.com>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/2] dt-bindings: gpio: fairchild,74hc595: add
+ strobe-gpios property
+Content-Language: en-US
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [RESEND PATCH 2/9] dt-bindings: arm64: bcmbca: Update BCM4908
- description
-In-Reply-To: <a635754e-bf41-4058-5fbb-57ead36b7128@linaro.org>
-References: <20220721000658.29537-1-william.zhang@broadcom.com>
- <a635754e-bf41-4058-5fbb-57ead36b7128@linaro.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <883c2ad4c36220b488519a8902ad72bc@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 194.187.74.233
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+        Maxime Ripard <mripard@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
+ <20220721093422.2173982-2-marcus.folkesson@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220721093422.2173982-2-marcus.folkesson@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Ovh-Tracer-Id: 17827780602349661147
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudelkedgudeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtjehjtddtredvnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeegvdffjeelvdeggeetheegveejieetgeeiiefggeelveejffehieekhfduueelhfenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehplhgrhigvrheileejrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkedu
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-07-21 08:44, Krzysztof Kozlowski wrote:
-> On 21/07/2022 02:06, William Zhang wrote:
->> Append "brcm,bcmbca" to BCM4908 chip family compatible strings. Add
->> generic 4908 board entry.
+On 21/07/2022 11:34, Marcus Folkesson wrote:
+> Some shift registers (74hc4094 for example) has a strobe signal to latch
+> data from the serial input to the parallel output.
 > 
-> This does not explain at all why you are doing it. Improve your commit
-> messages.
+> Add an optional strobe-gpios property to support those chips.
+> 
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> ---
+>  .../devicetree/bindings/gpio/fairchild,74hc595.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
+> index a99e7842ca17..9893df9ae22c 100644
+> --- a/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml
+> @@ -14,6 +14,8 @@ properties:
+>      enum:
+>        - fairchild,74hc595
+>        - nxp,74lvc594
+> +      - ti,cd54hc4094
+> +      - ti,cd74hc4094
+>  
+>    reg:
+>      maxItems: 1
+> @@ -33,6 +35,10 @@ properties:
+>      description: GPIO connected to the OE (Output Enable) pin.
+>      maxItems: 1
+>  
+> +  strobe-gpios:
+> +    description: GPIO connected to the STROBE pin
+> +    maxItems: 1
 
-To clarify it from my side (and maybe help a bit):
+This should be disallowed (in allOf:if:then) for variants which do not
+support it (or do not have even STROBE pin).
 
-1. As I understand it BCMBCA is a one big family of SoCs.
-2. BCM4908 is a subset of that family (a subfamily?) designed for a
-    specific group of devices.
 
-If that's correct I think William it's what you should describe in your
-commit message. That would make binding more accurate and should be a
-good argument for your change (I believe).
+Best regards,
+Krzysztof
