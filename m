@@ -2,126 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D03D257D6AF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 00:14:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B70F657D6C1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 00:18:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234184AbiGUWNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 18:13:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52738 "EHLO
+        id S233499AbiGUWSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 18:18:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234244AbiGUWNJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 18:13:09 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 74F9695C11;
-        Thu, 21 Jul 2022 15:12:30 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,183,1654527600"; 
-   d="scan'208";a="126944331"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 22 Jul 2022 07:12:29 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 8B7EA4010DFB;
-        Fri, 22 Jul 2022 07:12:26 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230304AbiGUWSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 18:18:38 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AD7315A3B
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 15:18:37 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id i206so5186332ybc.5
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 15:18:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DoVu+GNim7WfDGl7EL9GmGSwcmjPUItdFSgEFsrpvf0=;
+        b=CaMSIsE6E5yGSyhFkpet95MpC0cQH0jdZrBq2kKrT+Z/jQeUetiz5Aqnjry5FBLzH1
+         YjacVNW6lLRpW4gBm8I3mSu5/f4K+GbKwUMdNFL4jlKt9T4k0jEf98lt6/AUwVdbikMm
+         LxRReCSj2gkM23SlHcLbK/GHAA2uCKcjhJlGj0Ng7ilY3VX8UxiYJfD+jcvLAtZRijkt
+         9N1CP/0TNwfodFFagWLPnRlXw1FB4wCPiON+Z1MCsxqayHpbJczhgJ+j/XhPI9OLSsmn
+         9OcLf9ZSX97vAfEZELD770Qd5kDWxgkQ2c8NvdiqD/y43YcRq05Vfg9LPXH9vbQnb3Ta
+         Z+ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DoVu+GNim7WfDGl7EL9GmGSwcmjPUItdFSgEFsrpvf0=;
+        b=iYdlBlFi+AolI2AJrVpT2D7Df1SNYVKHh1IRZKZnhgNED22ZtjxZHcTNxFpRpzkwQS
+         buPjeAYo96R0XrQpeE3Ts2CMUojPobb/wVjwbkkmVxi6Y8kT4sM7W0tQRWsPhaOI1aDQ
+         e8VR6piYV7b8NFjSnRw2t1eostfdi4N0+Q0pUWF+cA8SfwFxKwPejFoY84qRSxx+FFKr
+         Z+Qq5B3IHtJHqjrNmrmeiq2S478BZkuf9c9nq53mheMywLV1GeOgjrLYGlsAlHc3+EjV
+         a3Xky5q1uDshBboGKHn/fdfcWFAcMVO0qOHW6N3FQrkJuY6oVnP/XLIHhGAsWNe1jOJ+
+         YOXg==
+X-Gm-Message-State: AJIora8Q84mQYLeT3s3ZvLLJInR6lujJk280MMND348siiktKcICve5/
+        1A3x/CZukGp+9KlQJ/W3YbzMEOcRcvJb16et/28=
+X-Google-Smtp-Source: AGRyM1vabTXPRNqYFHcBDwleMXugms62UUDBwPwkA5MHJVFVuMXNqde0bPuVX5MMfE2IF13SyrMbIOXTg3YbCyQ71vY=
+X-Received: by 2002:a05:6902:20a:b0:670:c563:9180 with SMTP id
+ j10-20020a056902020a00b00670c5639180mr606446ybs.401.1658441916571; Thu, 21
+ Jul 2022 15:18:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <CA+V-a8uBSDOqcgqfO2YWNKwoRsKdMcK+yi5DzFEWrP0gJOMWig@mail.gmail.com>
+ <5c9db23e-1706-a638-360e-46c8cb4b5f9a@linaro.org> <CA+V-a8vp7agGmHEJyLSLm973ddOs-cD21jRbwFnjSfc7DxrjrQ@mail.gmail.com>
+ <CAL_JsqJCKDdUoBtiC7bLAstTHFP_gdHtCf+NWKy2zbXG_Z153w@mail.gmail.com>
+In-Reply-To: <CAL_JsqJCKDdUoBtiC7bLAstTHFP_gdHtCf+NWKy2zbXG_Z153w@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 21 Jul 2022 23:18:10 +0100
+Message-ID: <CA+V-a8tYNvQk19ZP_oq=OeV2K5X=7E+Mq6Cin5ZVT6cBt=_yBw@mail.gmail.com>
+Subject: Re: dtbs_check issue
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] soc: renesas: Identify RZ/Five SoC
-Date:   Thu, 21 Jul 2022 23:12:12 +0100
-Message-Id: <20220721221212.18491-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220721221212.18491-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220721221212.18491-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for identifying the (R9A07G043) RZ/Five SoC.
+Hi Rob,
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- drivers/soc/renesas/Kconfig       | 10 ++++++++++
- drivers/soc/renesas/renesas-soc.c | 14 ++++++++++++++
- 2 files changed, 24 insertions(+)
+On Thu, Jul 21, 2022 at 5:57 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, Jul 21, 2022 at 9:23 AM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> >
+> > Hi Krzysztof,
+> >
+> > On Thu, Jul 21, 2022 at 4:12 PM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> > >
+> > > On 21/07/2022 17:07, Lad, Prabhakar wrote:
+> > > > Fyi keeping even a single SMARC board in arm renesas.yaml schema I see
+> > > > dtbs_check failures.
+> > > >
+> > > > Any pointers on how I can get around this issue?
+> > >
+> > > Few months ago:
+> > > https://lore.kernel.org/linux-devicetree/cf7728fd-b5c8-cd3d-6074-d27f38f86545@linaro.org/
+> > >
+> > Thanks for the link.
+> >
+> > > Although Rob admitted in the thread this is in general allowed
+> > > configuration, to me it is still confusing - the left-most compatible is
+> > > not the most specific. Non obvious, confusing and it seems dtschema does
+> > > not support it?
+> > >
+> > It looks like dtschema does not support it.
+>
+> The issue is the same as licensed IP where we have a generic
+> compatible and per licensee compatibles in separate schemas. The
+> solution anytime a compatible exists in more than 1 schema is a custom
+> 'select' which excludes that compatible. That would be messy here
+> though due to the large number of compatibles. Perhaps we could
+> instead merge a custom select with the default generated one. Then the
+> schema would just need:
+>
+> select:
+>   not:
+>     properties:
+>       contains:
+>         const: renesas,smarc-evk
+>
+> We'd have to figure out when to merge or not merge. Maybe only merge a
+> 'not' schema.
+>
+Agreed with this approach the select list might keep growing.
 
-diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
-index 390f52109cb7..2e3508fbae53 100644
---- a/drivers/soc/renesas/Kconfig
-+++ b/drivers/soc/renesas/Kconfig
-@@ -333,6 +333,16 @@ config ARCH_R9A09G011
- 
- endif # ARM64
- 
-+if RISCV
-+
-+config ARCH_R9A07G043
-+	bool "RISCV Platform support for RZ/Five"
-+	select ARCH_RZG2L
-+	help
-+	  This enables support for the Renesas RZ/Five SoC.
-+
-+endif # RISCV
-+
- config RST_RCAR
- 	bool "Reset Controller support for R-Car" if COMPILE_TEST
- 
-diff --git a/drivers/soc/renesas/renesas-soc.c b/drivers/soc/renesas/renesas-soc.c
-index d171f1b635c7..1a31692fc884 100644
---- a/drivers/soc/renesas/renesas-soc.c
-+++ b/drivers/soc/renesas/renesas-soc.c
-@@ -50,6 +50,10 @@ static const struct renesas_family fam_rza2 __initconst __maybe_unused = {
- 	.name	= "RZ/A2",
- };
- 
-+static const struct renesas_family fam_rzfive __initconst __maybe_unused = {
-+	.name	= "RZ/Five",
-+};
-+
- static const struct renesas_family fam_rzg1 __initconst __maybe_unused = {
- 	.name	= "RZ/G1",
- 	.reg	= 0xff000044,		/* PRR (Product Register) */
-@@ -102,6 +106,11 @@ static const struct renesas_soc soc_rmobile_a1 __initconst __maybe_unused = {
- 	.id	= 0x40,
- };
- 
-+static const struct renesas_soc soc_rz_five __initconst __maybe_unused = {
-+	.family = &fam_rzfive,
-+	.id     = 0x847c447,
-+};
-+
- static const struct renesas_soc soc_rz_g1h __initconst __maybe_unused = {
- 	.family	= &fam_rzg1,
- 	.id	= 0x45,
-@@ -358,8 +367,12 @@ static const struct of_device_id renesas_socs[] __initconst = {
- 	{ .compatible = "renesas,r8a779g0",	.data = &soc_rcar_v4h },
- #endif
- #if defined(CONFIG_ARCH_R9A07G043)
-+#ifdef CONFIG_RISCV
-+	{ .compatible = "renesas,r9a07g043",	.data = &soc_rz_five },
-+#else
- 	{ .compatible = "renesas,r9a07g043",	.data = &soc_rz_g2ul },
- #endif
-+#endif
- #if defined(CONFIG_ARCH_R9A07G044)
- 	{ .compatible = "renesas,r9a07g044",	.data = &soc_rz_g2l },
- #endif
-@@ -398,6 +411,7 @@ static const struct renesas_id id_prr __initconst = {
- 
- static const struct of_device_id renesas_ids[] __initconst = {
- 	{ .compatible = "renesas,bsid",			.data = &id_bsid },
-+	{ .compatible = "renesas,r9a07g043-rzfive-sysc", .data = &id_rzg2l },
- 	{ .compatible = "renesas,r9a07g043-sysc",	.data = &id_rzg2l },
- 	{ .compatible = "renesas,r9a07g044-sysc",	.data = &id_rzg2l },
- 	{ .compatible = "renesas,r9a07g054-sysc",	.data = &id_rzg2l },
--- 
-2.25.1
+>
+> The other way to solve this is simply not having 2 schema files. Why
+> do we have SoC/board schemas under a CPU arch directory? There's
+> nothing architecture specific about them (I have the same opinion on
+> .dts files too). So I'd be in favor of putting all root node schemas
+> in one directory.
+>
+Agreed, but what do we name the directory which has root node schemas?
 
+Geert, are you ok with moving the schema out and having a single file
+for all the Renesas SoC'/Boards?
+
+Cheers,
+Prabhakar
