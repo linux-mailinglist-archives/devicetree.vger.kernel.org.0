@@ -2,130 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77D1C57CDE7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC1D657CDFF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229624AbiGUOmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 10:42:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56254 "EHLO
+        id S229972AbiGUOoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 10:44:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiGUOmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:42:16 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F85083F3F
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:42:15 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id t1so3120760lft.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:42:15 -0700 (PDT)
+        with ESMTP id S229976AbiGUOoV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:44:21 -0400
+Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150E586C15;
+        Thu, 21 Jul 2022 07:44:20 -0700 (PDT)
+Received: by mail-pl1-x634.google.com with SMTP id g17so2033641plh.2;
+        Thu, 21 Jul 2022 07:44:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=thNzHvCp6cjZHmJ/ovw3Dji38lKPQpENV9BvGaehLGw=;
-        b=NEZzqSvG0pj+3+chsobD6C3nUdZDNwikBSErN2n+2h0WF2IzB2BBF8wP9rjYipkOpP
-         EUirwoSfLaOlLLI1mtfNgI7zcK0bJPumnB5rzX1tPJq6KdmfWhMoAUTm4gNAhkZNzl3f
-         VqvvbIGu2iy9d8y8qJlnM5MAcoKqIQE69h0W5NfEEA5VIbx5CNpKr4vLpFNdgit5SkPv
-         HAcZXXHXEAyVK0r0G5JPCkjPygot2GWZ3kA3NHnKinO/gx3ePADnTbIZRujbzwLyHE4s
-         61LB/wrUs18f6S7al3vk74QwWQMRAhXeHt9/dqYpXrr8m6739TmAL14/6DbG8Rv+5qi5
-         0kGQ==
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:content-language:to
+         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=PL2NOwhSUxvDxVYa9q7qCYtyC6Q9CWqNVnClkpcPwTs=;
+        b=SQSKH9J5rQiUiT2qEAZzRiEZX72NJ92376Szx/E1DEwrdsQ66tmg850qb8nLbGLjkF
+         fCBK1GDHv5wzLahfVYLm5f48LqkGY3iRlGAISRqsJYkAUbTqXm8k3M72be21lJCoxIak
+         3wRNwRm1P4AtUtPoDLwJona363ilUrhHpteAROgJgLrnDqaKkBtuFvCSdWA73kk2XWKj
+         oc0tHmbXu3ViF0nBYp/jsN7I5MRGbvBNKuLhnihYQCY4NByCtR2U7BREM1vFzPo6IOvU
+         f9ZtI9KwjNhT0/sxEklyuGRUe4J/YL6qnmZQqEmC2viLCrT4OZabFJr9wfhyyrE/NwDp
+         pKcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
          :content-transfer-encoding;
-        bh=thNzHvCp6cjZHmJ/ovw3Dji38lKPQpENV9BvGaehLGw=;
-        b=HdA7jWSQXgWofiWJNe9xFYo7EE/LuWzz/AFrHmpIyc8aJxBM68bMPH31MEXbstlgK6
-         dWYh8Wlsc0Xk6PZh/upxd1XCfLUiR4kbVh/1/jGOZv9bGWN+57mnuiL0jelpAdryQ2Nn
-         r1gPFeK/QS43mIlOUiOVPnQG8LK5bx+aiLv3lT72CAUcurpCgGa/19yRpwUaJ2z8ybib
-         yOMev84k8dFTS2/L/A6GxvgEpkYBwa9zfJxhKFMNE1EQyChW0GpZquM4GAw+J2ztGaZP
-         tE1HiUeTVCXkjFdTRynOTeoFx5//Z6AvFaui3kN1yqNoqK8PFoWzVt5P3jlwJ01ODu/K
-         6kBw==
-X-Gm-Message-State: AJIora8EGGeR0OY7dNPgBruRCITCXdqIWUxJ8rDwX/+FDBT1Yxt4a/Vr
-        tMj8lr7fc2IWIoyubdP0ZaD57b+byxqbqZr7
-X-Google-Smtp-Source: AGRyM1uIljE0KwtqdtHRfg15leMXg4zhq3dLayvmUALbiIqC47x9oo2th7HQ2mKA6TYbjXKCJ8GXuA==
-X-Received: by 2002:a05:6512:23a5:b0:489:d513:55a9 with SMTP id c37-20020a05651223a500b00489d51355a9mr21566452lfv.409.1658414533637;
-        Thu, 21 Jul 2022 07:42:13 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id h24-20020a05651c125800b0025bc79181b4sm558765ljh.36.2022.07.21.07.42.11
+        bh=PL2NOwhSUxvDxVYa9q7qCYtyC6Q9CWqNVnClkpcPwTs=;
+        b=dgVehysmHXft+ORiDfUvuKkq+nqB9ck0MdTnMaA+2o9uyI8p+xODJqCmEIAb/nA3DK
+         P8uqdn4sOTUYXWn5vZC72DCK3tTnLUCLm9aH5zGE+LeBjcejYskEJbIJB5413fIePrBc
+         aCzY5JdUxEe9AFaG2cKFLSyxrws1OuLZV0xuEcZrve3t4jKKyFlVoFGJd0N3agIGgYZu
+         oa9kpvcld4o9aE+qhDGE+2xToK4DY3ANf/6NGBTEY+ngCQkja7tTYupLB0s6goEVuWip
+         r1SwInkE1DDfPijP7ILuXC1jAiFPzgIOChGLiGK04bui3LrKKpj65G9WYp2i//LIx5eV
+         4wcw==
+X-Gm-Message-State: AJIora+WJHf2wYxOytFp7OOXNo8jVOkUOALUGc+HaD55xSVGTCJvXGkx
+        FcrQZOP/lAvsYm0XNwxkDxI=
+X-Google-Smtp-Source: AGRyM1u67V3jZaKvRpwW2/XRCa2FYrhUHEn30Kv9k6oHkdcsc7OiTunYtrZo+KIgxv9I9DjYG7ZHGg==
+X-Received: by 2002:a17:902:c702:b0:16d:21db:e9aa with SMTP id p2-20020a170902c70200b0016d21dbe9aamr8010254plp.6.1658414659379;
+        Thu, 21 Jul 2022 07:44:19 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id p16-20020a170903249000b0016bfa097927sm1731950plw.249.2022.07.21.07.44.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 07:42:12 -0700 (PDT)
-Message-ID: <e1a8e417-3c4d-a11b-efce-e66bc170d92c@linaro.org>
-Date:   Thu, 21 Jul 2022 16:42:11 +0200
+        Thu, 21 Jul 2022 07:44:18 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <0eb24b16-7837-cc79-fbb9-da8ceec72e63@roeck-us.net>
+Date:   Thu, 21 Jul 2022 07:44:16 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH net-next v3 03/47] dt-bindings: net: Convert FMan MAC
- bindings to yaml
+ Thunderbird/91.9.1
 Content-Language: en-US
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220715215954.1449214-1-sean.anderson@seco.com>
- <20220715215954.1449214-4-sean.anderson@seco.com>
- <1657926388.246596.1631478.nullmailer@robh.at.kernel.org>
- <1b694d96-5ea8-e4eb-65bf-0ad7ffefa8eb@seco.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1b694d96-5ea8-e4eb-65bf-0ad7ffefa8eb@seco.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Gene Chen <gene.chen.richtek@gmail.com>,
+        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, gene_chen@richtek.com,
+        cy_huang@richtek.com
+References: <20220721061144.35139-1-gene.chen.richtek@gmail.com>
+ <20220721061144.35139-6-gene.chen.richtek@gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v2 5/6] usb: typec: tcpci_rt1711h: Add compatible id with
+ rt1715
+In-Reply-To: <20220721061144.35139-6-gene.chen.richtek@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/07/2022 00:47, Sean Anderson wrote:
-> On 7/15/22 7:06 PM, Rob Herring wrote:
->> On Fri, 15 Jul 2022 17:59:10 -0400, Sean Anderson wrote:
->>> This converts the MAC portion of the FMan MAC bindings to yaml.
->>>
->>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>> ---
->>>
->>> Changes in v3:
->>> - Incorporate some minor changes into the first FMan binding commit
->>>
->>> Changes in v2:
->>> - New
->>>
->>>   .../bindings/net/fsl,fman-dtsec.yaml          | 145 ++++++++++++++++++
->>>   .../devicetree/bindings/net/fsl-fman.txt      | 128 +---------------
->>>   2 files changed, 146 insertions(+), 127 deletions(-)
->>>   create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
->>>
->>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/fsl,fman-dtsec.example.dtb: ethernet@e8000: 'phy-connection-type', 'phy-handle' do not match any of the regexes: 'pinctrl-[0-9]+'
->> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
->>
->> doc reference errors (make refcheckdocs):
+On 7/20/22 23:11, Gene Chen wrote:
+> From: Gene Chen <gene_chen@richtek.com>
 > 
-> What's the correct way to do this? I have '$ref: ethernet-controller.yaml#'
-> under allOf, but it doesn't seem to apply. IIRC this doesn't occur for actual dts files.
+> Add compatible id with rt1715, and add initial setting for
+> specific support PD30 command.
+> 
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> ---
+>   drivers/usb/typec/tcpm/tcpci_rt1711h.c | 24 ++++++++++++++++++++++--
+>   1 file changed, 22 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
+> index e65b568959e9..3316dfaeee0d 100644
+> --- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
+> +++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
+> @@ -17,6 +17,7 @@
+>   
+>   #define RT1711H_VID		0x29CF
+>   #define RT1711H_PID		0x1711
+> +#define RT1715_DID		0x2173
+>   
+>   #define RT1711H_PHYCTRL1	0x80
+>   #define RT1711H_PHYCTRL2	0x81
+> @@ -28,6 +29,7 @@
+>   			    (((ck300) << 7) | ((ship_off) << 5) | \
+>   			    ((auto_idle) << 3) | ((tout) & 0x07))
+>   #define RT1711H_AUTOIDLEEN_MASK	BIT(3)
+> +#define RT1711H_ENEXTMSG_MASK	BIT(4)
 
-You do not allow any other properties than explicitly listed
-(additionalProp:false). If you want to apply all properties from other
-schema you need to use unevaluated.
+I would suggest to drop _MASK.
 
-https://elixir.bootlin.com/linux/v5.19-rc7/source/Documentation/devicetree/bindings/writing-bindings.rst#L75
+>   
+>   #define RT1711H_RTCTRL11	0x9E
+>   
+> @@ -46,6 +48,7 @@ struct rt1711h_chip {
+>   	struct device *dev;
+>   	struct regulator *vbus;
+>   	bool src_en;
+> +	u16 did;
+>   };
+>   
+>   static int rt1711h_read16(struct rt1711h_chip *chip, unsigned int reg, u16 *val)
+> @@ -82,8 +85,9 @@ static struct rt1711h_chip *tdata_to_rt1711h(struct tcpci_data *tdata)
+>   
+>   static int rt1711h_init(struct tcpci *tcpci, struct tcpci_data *tdata)
+>   {
+> -	int ret;
+>   	struct rt1711h_chip *chip = tdata_to_rt1711h(tdata);
+> +	struct regmap *regmap = chip->data.regmap;
+> +	int ret;
+>   
+>   	/* CK 300K from 320K, shipping off, auto_idle enable, tout = 32ms */
+>   	ret = rt1711h_write8(chip, RT1711H_RTCTRL8,
+> @@ -91,6 +95,14 @@ static int rt1711h_init(struct tcpci *tcpci, struct tcpci_data *tdata)
+>   	if (ret < 0)
+>   		return ret;
+>   
+> +	/* Enable PD30 extended message for RT1715 */
+> +	if (chip->did == RT1715_DID) {
+> +		ret = regmap_update_bits(regmap, RT1711H_RTCTRL8,
+> +					 RT1711H_ENEXTMSG_MASK, 0xFF);
 
+0xFF -> RT1711H_ENEXTMSG
 
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+>   	/* I2C reset : (val + 1) * 12.5ms */
+>   	ret = rt1711h_write8(chip, RT1711H_RTCTRL11,
+>   			     RT1711H_RTCTRL11_SET(1, 0x0F));
+> @@ -246,7 +258,11 @@ static int rt1711h_check_revision(struct i2c_client *i2c)
+>   		dev_err(&i2c->dev, "pid is not correct, 0x%04x\n", ret);
+>   		return -ENODEV;
+>   	}
+> -	return 0;
+> +	ret = i2c_smbus_read_word_data(i2c, TCPC_BCD_DEV);
+> +	if (ret < 0)
+> +		return ret;
+> +	dev_info(&i2c->dev, "did is 0x%04x\n", ret);
 
-Best regards,
-Krzysztof
+Unnecessary noise. If needed for testing, please make it dev_dbg.
+
+> +	return ret;
+
+I think it would make sense to pass chip as parameter and set chip->did here.
+
+Also, validation is missing. This function is supposed to check/validate
+revision data, but it just accepts all DIDs. Then later DID values are used
+to distinguish functionality. At the same time, the new device ID and OF
+compatible strings are not used for that purpose and thus have no real value.
+
+Since there can be chips with different DIDs which require different functionality,
+DID values should be validated, and only chips with supported DIDs should be
+accepted. Also, since there are separate device IDs and devicetree compatible
+properties, the DIDs associated with supported chips should be referenced there.
+
+Thanks,
+Guenter
+
+>   }
+>   
+>   static int rt1711h_probe(struct i2c_client *client,
+> @@ -265,6 +281,8 @@ static int rt1711h_probe(struct i2c_client *client,
+>   	if (!chip)
+>   		return -ENOMEM;
+>   
+> +	chip->did = ret;
+> +
+>   	chip->data.regmap = devm_regmap_init_i2c(client,
+>   						 &rt1711h_regmap_config);
+>   	if (IS_ERR(chip->data.regmap))
+> @@ -315,6 +333,7 @@ static int rt1711h_remove(struct i2c_client *client)
+>   
+>   static const struct i2c_device_id rt1711h_id[] = {
+>   	{ "rt1711h", 0 },
+> +	{ "rt1715", 0 },
+>   	{ }
+>   };
+>   MODULE_DEVICE_TABLE(i2c, rt1711h_id);
+> @@ -322,6 +341,7 @@ MODULE_DEVICE_TABLE(i2c, rt1711h_id);
+>   #ifdef CONFIG_OF
+>   static const struct of_device_id rt1711h_of_match[] = {
+>   	{ .compatible = "richtek,rt1711h", },
+> +	{ .compatible = "richtek,rt1715", },
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, rt1711h_of_match);
+
