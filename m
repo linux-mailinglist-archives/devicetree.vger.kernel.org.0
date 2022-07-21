@@ -2,115 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05CD357C9CB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:37:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1506657C9D4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:39:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233171AbiGULg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 07:36:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49850 "EHLO
+        id S229661AbiGULjP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 07:39:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233183AbiGULg6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:36:58 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A695407A
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 04:36:56 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id b26so1865157wrc.2
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 04:36:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=3dGL++LPAmS2eym62mLHBoZzYDfysbltWj55S2SeBfY=;
-        b=OHDVersEmMfP4wtrsESwOSLR0aXXXw6yByDlyUpqK4xliNb3B7DOAzxYpfWP2/eeOd
-         FwQhuWP/+lA8XforgHtSjTZswnB5XirsvXBoHyLx/KQDRYyM0PwywNGlhp7U5gPIbdtT
-         Ew5EFum/cqwspvE8JKTDPDmYYPeS7kMdkG2b5MaB1zyrdW6Y8Pu4iK6hMS5NaGEPaG7c
-         q3DqmtqYJbb1NHptUKaKSkzlUfjaNYcLayRBwgGPUhPsZhN9VPegQWrfe1zmsBT7FT9f
-         bVwJ5nheZYjKGhAnvcLyZXAdreOVxU08zCrQ32KargN2WtmgUzm3lPn0oepQ4+cNyCqX
-         uybw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=3dGL++LPAmS2eym62mLHBoZzYDfysbltWj55S2SeBfY=;
-        b=OVsb5Ff6xcR5M4H1p/FynpDfNwdQOaFAD5Aho0nJMxpgfBw0LFhJ6FVYMN6Wy8ugiX
-         VDUDs4ZzOIrNOeS9EKIQIRtU4I8cA+xM+2ZDru7vWyJteuV88d2iwd+nOQUz6kUy/Y6i
-         UimqEXRPn9SVy+YczUbhp1ZNgECA316fmqgYGPaF6Wu8ZMtD5so6+hWidBUYfryYjTWj
-         9dKg0QU5wTRuZBh78fgLn975YVbFplc0zOVctuG6wJjwH3f39URYOXPYcYs4xw3gOHoU
-         J7Qg/k5Gt8589A+Oo6jwq0miOceKfz2Oe1tnQM89vmT+aqXovI0Pnwjm4IkmYWcAaGhh
-         8Hkw==
-X-Gm-Message-State: AJIora99redcc0q8OrKynsXPPEEjTW38GcoOroR1V0Pz7T3wk9S3XBfN
-        4FYoqaQIyI72DAgI2dpIPy6fmQ==
-X-Google-Smtp-Source: AGRyM1viD12dLSWjZcRDX0xi2VY77xaUB6/V11P01gxqkWTXqVJej7u3/DmQVUgKdZEduGu4KbPfHw==
-X-Received: by 2002:a5d:45c5:0:b0:21e:5755:d443 with SMTP id b5-20020a5d45c5000000b0021e5755d443mr1440971wrs.45.1658403414416;
-        Thu, 21 Jul 2022 04:36:54 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id j22-20020a05600c485600b003a2c7bf0497sm1685064wmo.16.2022.07.21.04.36.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 04:36:53 -0700 (PDT)
-Date:   Thu, 21 Jul 2022 12:36:51 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>, iommu@lists.linux.dev,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v3 06/21] dt-bindings: power: mediatek: Add bindings for
- MediaTek SCPSYS
-Message-ID: <Ytk6U4fncRJOaAq3@google.com>
-References: <20220720123023.13500-1-tinghan.shen@mediatek.com>
- <20220720123023.13500-7-tinghan.shen@mediatek.com>
- <YtgDu70Lpl/uPOkf@google.com>
- <68a30bbd-5f9d-17d2-59fa-7b0da06ee877@linaro.org>
+        with ESMTP id S233236AbiGULjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:39:11 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 125026BC39;
+        Thu, 21 Jul 2022 04:39:08 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26L9SOxG006786;
+        Thu, 21 Jul 2022 13:38:59 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=mun7AZ9mBpMtmwmdeDuU6tzJo0p9u8X+NgiClxdhchc=;
+ b=WMETRdaps0rSi2PR91l7eUocWhrCGLyygeKc9rNQmTDR/Li+TbturBDJq4THsbLjRE7I
+ BYmb4+8Va8+1E4NuxfOQeX1VqFQQCa1RFWxUXFgvvfX4y/5EcUr+57wwsGFKKe9ptPsr
+ lUaEVsgrh6K66hf4CSt6bPI/sG/BIQnv6en00hnKye9RGqizxTQNVrfscm/UfLVW5vu2
+ srSpaUQNKQkwnkHzIvfC4l7V9EhDkIbo8PXcXeoitwYUkKAF3/X1ICKjZ4LzW3uC8ODc
+ vmdxiZvI4yDibrvIiRN1T/Q44WocE9+h1SilO8OxnkhUP7lJBXje4LYVTEfxDerkBjvI aA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3hbnp6cpwk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 21 Jul 2022 13:38:59 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 11DD510002A;
+        Thu, 21 Jul 2022 13:38:57 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0B23E217B9E;
+        Thu, 21 Jul 2022 13:38:57 +0200 (CEST)
+Received: from [10.0.2.15] (10.75.127.51) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Thu, 21 Jul
+ 2022 13:38:56 +0200
+Subject: Re: [PATCH v2 0/4] Switch on IMX577 on RB5 with a new CCI fix
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        <robert.foss@linaro.org>, <todor.too@gmail.com>,
+        <agross@kernel.org>, <bjorn.andersson@linaro.org>
+CC:     <vladimir.zapolskiy@linaro.org>, <mchehab@kernel.org>,
+        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <mmitkov@quicinc.com>,
+        <jgrahsl@snap.com>, <hfink@snap.com>
+References: <20220524140207.2758605-1-bryan.odonoghue@linaro.org>
+From:   Benjamin Mugnier <benjamin.mugnier@foss.st.com>
+Message-ID: <1c596650-177c-e3be-feb0-4c5f00196589@foss.st.com>
+Date:   Thu, 21 Jul 2022 13:38:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <68a30bbd-5f9d-17d2-59fa-7b0da06ee877@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220524140207.2758605-1-bryan.odonoghue@linaro.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-21_16,2022-07-20_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jul 2022, Krzysztof Kozlowski wrote:
+Hi Bryan,
 
-> On 20/07/2022 15:31, Lee Jones wrote:
-> > On Wed, 20 Jul 2022, Tinghan Shen wrote:
-> > 
-> >> The System Control Processor System (SCPSYS) has several power
-> >> management related tasks in the system. Add the bindings for it.
-> >>
-> >> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> > 
-> > Why have you ignored my review comments from v2?
+On 24/05/2022 16:02, Bryan O'Donoghue wrote:
+> V2:
 > 
-> If you refer whether the binding is needed at all, then the answer is
-> yes, because this is not simple syscons but a device with children,
-> which we want to parse/match.
+> - Adds fix for bug identified by Vladimir
+>   The CCI i2c_adapter_add() and pm_runtime_enable() are racy.
+>   This is a generic problem not related to the rb5/imx577 but, for the sake
+>   of our conversation/review's context I'll add it into this series.
+> - Include Vladimir's camcc patch
+>   I've also opted to include Vladimir's disable of camcc to make the enable
+>   of it in my patchset logical.
+> - Move address/size cells Konrad
+> - Remove newline in pin definitions - Konrad
+> - Remove sensor 'status = "okay"' - Konrad
+> - Add comment to qrb5165-rb5.dts re: imx412 and imx577 difference - Konrad
+> - Move pin definitions to 8250 dtsi - Vladimir
+> - Drop power domain from sensor definition - Vladimir
+> - Correct to "add to cam2" not "cam1" in commit log - bod
+> 
+> To make verification of the CCI race eaiser I've provided a defconfig both
+> with and without modules enabled.
+> 
+> Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-24-05-22%2bimx577-rb5
+> Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-24-05-22%2bimx577-rb5-compiled-in
+> 
+> git diff linaro/linux-next-22-05-22+imx577-rb5 linaro/linux-next-24-05-22+imx577-rb5
+> 
+> V1:
+> Linux-next now has everything we need to switch on this sensor both in the
+> qcom DTS and in the imx412 driver.
+> 
+> After this, no further dts or driver work is required to capture images on
+> the RB5.
+> 
+> Here's a bootable linux-next with a kernel config. I added Vladimir's
+> power-domain changes on-top to verify nothing breaks for me.
+> 
+> https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-18-05-22%2bimx577-rb5
+> 
+> Bryan O'Donoghue (3):
+>   i2c: qcom-cci: Fix ordering of pm_runtime_xx and i2c_add_adapter
+>   arm64: dts: qcom: sm8250: camss: Define ports address/size cells
+>   arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on cam2
+> 
+> Vladimir Zapolskiy (1):
+>   arm64: dts: qcom: sm8250: Disable camcc by default
+> 
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 60 ++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi     | 39 +++++++++++++++
+>  drivers/i2c/busses/i2c-qcom-cci.c        | 14 ++++--
+>  3 files changed, 108 insertions(+), 5 deletions(-)
+> 
 
-This part is fine.
+I successfully tested this series with the st-vgxy61 sensor instead of the imx577. I can't provide comments on the device tree patch for the imx577 in 4/4.
+For patches 1/4, 2/4, and 3/4:
 
-> Anyway Tinghan should respond to you about way how he proceeds...
+Tested-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
 
-This would be nice, yes.
 
-I was referring to the submit line, which nearly made me miss it, again.
-
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Thanks again for your work.
