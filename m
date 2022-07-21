@@ -2,57 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 220E957C4B0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 08:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD4D457C42C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 08:11:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231686AbiGUGu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 02:50:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38010 "EHLO
+        id S229644AbiGUGLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 02:11:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231675AbiGUGu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 02:50:57 -0400
-Received: from 14.mo561.mail-out.ovh.net (14.mo561.mail-out.ovh.net [188.165.43.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC9A442ADC
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 23:50:55 -0700 (PDT)
-Received: from player758.ha.ovh.net (unknown [10.109.146.86])
-        by mo561.mail-out.ovh.net (Postfix) with ESMTP id BD8BC22E08
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:11:49 +0000 (UTC)
-Received: from RCM-web2.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player758.ha.ovh.net (Postfix) with ESMTPSA id 6F8EF2CD0FAD7;
-        Thu, 21 Jul 2022 06:11:38 +0000 (UTC)
+        with ESMTP id S229498AbiGUGLw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 02:11:52 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7EBDEED;
+        Wed, 20 Jul 2022 23:11:51 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id p8so857426plq.13;
+        Wed, 20 Jul 2022 23:11:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hrNHNw16EtOJwmuHD6+jFO4HKihV4GZ3PvUBJ8NHGuI=;
+        b=f27tBFsGDqOXxvVijYhuUVpOOhEW1Rn7ZrcZxMUPW7rSW7+oyqTeJhNS+YfBzCCTLL
+         hkuaYfM+ir/7uu1CpwzxSFOW2U9x0QlTW5VrHGjST563MaYaDlhPSRUC2N6JHGQpkwBq
+         xoX1AqJ1JU/Ghj2/nliNk76dQVcXmYTNENTV3KTy0fxOAVQ0VfSOW9a5HgO0bRFMtaON
+         MgzF4ckfXsf12kVqjbu0uw3ngorpPGqv8f0Z5huF2kvu6v6Yg51+QibKPpEmm4NAyAOt
+         1qRn9W5meWXgPMTF7n7YVTGoBP+HNYgcWu+d0stnSMwMLa5b1muu2e/zAlEAZQ917yMq
+         zYvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hrNHNw16EtOJwmuHD6+jFO4HKihV4GZ3PvUBJ8NHGuI=;
+        b=TJHwrPrbysXB2WyyhMWO9DsCHIa6l5x4SvzdWsF/uvxoKkPZ8uaJ7nO8C6cq8n4zEI
+         Sm3fXaF8Rn9y0r5qtcIm0WjYmBCl67hn7umDJQGyPA0RtUzXb4YGfLVntyM3K9d4zQ5l
+         WskzSdd08K8QWSu/BNt4vIvOe5FgSqTShcpNc0aaz3uTjEISVQfiVsE5mG4XIK5qeLX2
+         Y2YqdBJoYW+7WWZpRoJ8atjc2IFF/E2YQZaxqopyrr/B/2h98Yy1VRzlQnr3phNkEMz3
+         xpkjIlLo/ZNGKOaHXmeNAY0FNHQIO/nL7mH7KEccBTgJUxsftXVkqn/+m7qxDddXqrpK
+         peVg==
+X-Gm-Message-State: AJIora/6VIZthIRPZDGytgRa6p1jcLjvTaPga08K2+J/XKKzihMmHREe
+        JarpQQCyOehJ8w7mV/VBuawCYyA9mBs=
+X-Google-Smtp-Source: AGRyM1uReszn1uuG5YGYJ9YgbsUQ2xWaVFcROuI1lnpL+jlECstktasvh2IKpjzEsWICRDNSBxddUw==
+X-Received: by 2002:a17:903:1c5:b0:16c:4b1f:c5ff with SMTP id e5-20020a17090301c500b0016c4b1fc5ffmr41955463plh.158.1658383911076;
+        Wed, 20 Jul 2022 23:11:51 -0700 (PDT)
+Received: from genechen-System-Product-Name.richtek.com ([2402:7500:46a:8b75:f825:a44d:6d0d:6d6e])
+        by smtp.gmail.com with ESMTPSA id 13-20020a62170d000000b0052ba782f4cbsm744998pfx.7.2022.07.20.23.11.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Jul 2022 23:11:50 -0700 (PDT)
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+To:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, gene_chen@richtek.com,
+        cy_huang@richtek.com
+Subject: [PATCH v2 0/6] usb: typec: tcpci_rt1711h: Add compatible with rt1715
+Date:   Thu, 21 Jul 2022 14:11:38 +0800
+Message-Id: <20220721061144.35139-1-gene.chen.richtek@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Date:   Thu, 21 Jul 2022 08:11:38 +0200
-From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To:     William Zhang <william.zhang@broadcom.com>
-Cc:     Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH 2/9] dt-bindings: arm64: bcmbca: Update BCM4908
- description
-In-Reply-To: <20220721000658.29537-1-william.zhang@broadcom.com>
-References: <20220721000658.29537-1-william.zhang@broadcom.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <a0fa14ba8c4782bde5148d389e2f2a37@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 194.187.74.233
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 17160121956132236251
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudelkedgtdekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtkehjtddtreejnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeevjefhffffveeludejfedtvdfftdekgffghfegieeliedvfeeigfejteejjeekfeenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehplhgrhigvrhejheekrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehiedu
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,51 +70,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-07-21 02:06, William Zhang wrote:
-> Append "brcm,bcmbca" to BCM4908 chip family compatible strings. Add
-> generic 4908 board entry.
-> 
-> Signed-off-by: William Zhang <william.zhang@broadcom.com>
+This patch series add binding document for rt1711h and compatible driver with
+rt1715. Also add different remote rp workaround and initial phy setting.
 
-Acked-by: Rafał Miłecki <rafal@milecki.pl>
+Gene Chen (2)
+ - dt-bindings usb: typec: rt1711h: Add binding for Richtek RT1711H
+ - usb: typec: tcpci_rt1711h: Fix vendor setting when set vconn
+ - usb: typec: tcpci_rt1711h: Add regulator support when source vbus
+ - usb: typec: tcpci_rt1711h: Add initial phy setting
+ - usb: typec: tcpci_rt1711h: Add compatible id with rt1715
+ - usb: typec: tcpci_rt1711h: Fix CC PHY noise filter of voltage level
 
-(with one minor comment below)
+ Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml |  100 ++++++++
+ drivers/usb/typec/tcpm/tcpci_rt1711h.c                     |  155 ++++++++++++-
+ 2 files changed, 248 insertions(+), 7 deletions(-)
 
-> ---
-> 
->  Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git
-> a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-> b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-> index 6a64afa95918..4494a2c58c7f 100644
-> --- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-> @@ -36,18 +36,22 @@ properties:
->                - tplink,archer-c2300-v1
->            - const: brcm,bcm4906
->            - const: brcm,bcm4908
-> +          - const: brcm,bcmbca
-> 
->        - description: BCM4908 based boards
->          items:
->            - enum:
->                - asus,gt-ac5300
->                - netgear,raxe500
-> +              - brcm,bcm94908
-
-I think it would be nice to keep enum entries sorted
+changelogs between v1 & v2
+ - Seperate patch by specific purpose
+ - Fix binding document error
+ - Set cc change woakaround without using tcpci ops callback
 
 
->            - const: brcm,bcm4908
-> +          - const: brcm,bcmbca
-> 
->        - description: BCM49408 based boards
->          items:
->            - const: brcm,bcm49408
->            - const: brcm,bcm4908
-> +          - const: brcm,bcmbca
-> 
->        - description: BCM4912 based boards
->          items:
