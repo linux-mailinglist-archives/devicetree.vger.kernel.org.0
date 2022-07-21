@@ -2,90 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C28D057C9EB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:49:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEBC757CA20
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:58:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbiGULtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 07:49:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57744 "EHLO
+        id S229777AbiGUL6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 07:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229661AbiGULtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:49:25 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCFE8213C
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 04:49:24 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1oEUfx-0002Sl-Ls; Thu, 21 Jul 2022 13:49:05 +0200
-Message-ID: <6cf47684e92d21a343dbb7861f5d4e5ad1949cdc.camel@pengutronix.de>
-Subject: Re: [PATCH v5 3/3] soc: imx: gpcv2: fix suspend/resume by setting
- GENPD_FLAG_IRQ_ON
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>, rafael@kernel.org,
-        khilman@kernel.org, ulf.hansson@linaro.org, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz
-Cc:     kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
-        aford173@gmail.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Thu, 21 Jul 2022 13:49:03 +0200
-In-Reply-To: <20220721043608.1527686-4-martin.kepplinger@puri.sm>
-References: <20220721043608.1527686-1-martin.kepplinger@puri.sm>
-         <20220721043608.1527686-4-martin.kepplinger@puri.sm>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S231636AbiGUL6o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:58:44 -0400
+X-Greylist: delayed 333 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 21 Jul 2022 04:58:43 PDT
+Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0DAC34A801;
+        Thu, 21 Jul 2022 04:58:42 -0700 (PDT)
+Date:   Thu, 21 Jul 2022 13:53:03 +0200
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] gpio: gpio-74x164: add support for CDx4HC4094
+Message-ID: <Ytk+H/w78QWov0nL@ada.ifak-system.com>
+Mail-Followup-To: Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 21.07.2022 um 06:36 +0200 schrieb Martin Kepplinger:
-> For boards that use power-domains' power-supplies that need interrupts
-> to work (like regulator over i2c), set GENPD_FLAG_IRQ_ON.
-> This will tell genpd to adjust accordingly. Currently it "only" sets the
-> correct suspend/resume callbacks.
+Hello Marcus,
+
+Am Thu, Jul 21, 2022 at 11:34:21AM +0200 schrieb Marcus Folkesson:
+> 74hc4094 and 75hc4094 works similar to 74x164 but has an additional
+               ^^
+
+That 75 is probably a typo, isn't it?
+
+Greets
+Alex
+
+> storage latch associated with each stage for strobing data from the
+> serial input to parallell buffer tri-state output.
 > 
-> This fixes suspend/resume on imx8mq-librem5 boards (tested) and
-> imx8mq-evk (by looking at dts) and possibly more.
+> Add support for an optional strobe pin.
 > 
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
 > ---
->  drivers/soc/imx/gpcv2.c | 3 +++
->  1 file changed, 3 insertions(+)
+>  drivers/gpio/gpio-74x164.c | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 > 
-> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> index 6383a4edc360..e058aed76602 100644
-> --- a/drivers/soc/imx/gpcv2.c
-> +++ b/drivers/soc/imx/gpcv2.c
-> @@ -1337,6 +1337,9 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
->  		regmap_update_bits(domain->regmap, domain->regs->map,
->  				   domain->bits.map, domain->bits.map);
+> diff --git a/drivers/gpio/gpio-74x164.c b/drivers/gpio/gpio-74x164.c
+> index e00c33310517..4a1c4de358e4 100644
+> --- a/drivers/gpio/gpio-74x164.c
+> +++ b/drivers/gpio/gpio-74x164.c
+> @@ -21,6 +21,7 @@ struct gen_74x164_chip {
+>  	struct gpio_chip	gpio_chip;
+>  	struct mutex		lock;
+>  	struct gpio_desc	*gpiod_oe;
+> +	struct gpio_desc	*gpiod_strobe;
+>  	u32			registers;
+>  	/*
+>  	 * Since the registers are chained, every byte sent will make
+> @@ -66,6 +67,10 @@ static void gen_74x164_set_value(struct gpio_chip *gc,
+>  		chip->buffer[bank] &= ~(1 << pin);
 >  
-> +	if (of_parse_phandle(domain->dev->of_node, "power-supply", 0))
-
-We don't actually need to parse the phandle. For a simple presence
-check of_property_read_bool() is enough.
-
-Regards,
-Lucas
-
-> +		domain->genpd.flags |= GENPD_FLAG_IRQ_ON;
+>  	__gen_74x164_write_config(chip);
 > +
->  	ret = pm_genpd_init(&domain->genpd, NULL, true);
->  	if (ret) {
->  		dev_err(domain->dev, "Failed to init power domain\n");
-
-
+> +	/*  Latch data to output pins*/
+> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 1);
+> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 0);
+>  	mutex_unlock(&chip->lock);
+>  }
+>  
+> @@ -87,6 +92,10 @@ static void gen_74x164_set_multiple(struct gpio_chip *gc, unsigned long *mask,
+>  		chip->buffer[bank] |= bitmask;
+>  	}
+>  	__gen_74x164_write_config(chip);
+> +
+> +	/*  Latch data to output pins*/
+> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 1);
+> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 0);
+>  	mutex_unlock(&chip->lock);
+>  }
+>  
+> @@ -129,6 +138,12 @@ static int gen_74x164_probe(struct spi_device *spi)
+>  
+>  	gpiod_set_value_cansleep(chip->gpiod_oe, 1);
+>  
+> +	chip->gpiod_strobe = devm_gpiod_get_optional(&spi->dev, "strobe",
+> +			GPIOD_OUT_LOW);
+> +	if (IS_ERR(chip->gpiod_strobe))
+> +		return PTR_ERR(chip->gpiod_strobe);
+> +
+> +
+>  	spi_set_drvdata(spi, chip);
+>  
+>  	chip->gpio_chip.label = spi->modalias;
+> @@ -153,6 +168,10 @@ static int gen_74x164_probe(struct spi_device *spi)
+>  		goto exit_destroy;
+>  	}
+>  
+> +	/*  Latch data to output pins*/
+> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 1);
+> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 0);
+> +
+>  	ret = gpiochip_add_data(&chip->gpio_chip, chip);
+>  	if (!ret)
+>  		return 0;
+> @@ -182,6 +201,8 @@ MODULE_DEVICE_TABLE(spi, gen_74x164_spi_ids);
+>  static const struct of_device_id gen_74x164_dt_ids[] = {
+>  	{ .compatible = "fairchild,74hc595" },
+>  	{ .compatible = "nxp,74lvc594" },
+> +	{ .compatible = "ti,cd54hc4094" },
+> +	{ .compatible = "ti,cd74hc4094" },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, gen_74x164_dt_ids);
+> -- 
+> 2.36.1
+> 
