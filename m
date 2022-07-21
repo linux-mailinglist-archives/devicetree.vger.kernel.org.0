@@ -2,137 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEBC757CA20
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A23557CA15
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 13:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbiGUL6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 07:58:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40630 "EHLO
+        id S233328AbiGULzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 07:55:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231636AbiGUL6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:58:44 -0400
-X-Greylist: delayed 333 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 21 Jul 2022 04:58:43 PDT
-Received: from mail.thorsis.com (mail.thorsis.com [92.198.35.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0DAC34A801;
-        Thu, 21 Jul 2022 04:58:42 -0700 (PDT)
-Date:   Thu, 21 Jul 2022 13:53:03 +0200
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
+        with ESMTP id S233350AbiGULzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 07:55:13 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 937CAF4F;
+        Thu, 21 Jul 2022 04:55:09 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id l11so2308539ybu.13;
+        Thu, 21 Jul 2022 04:55:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qaP0I0aztXzOWdDYC6Rm+hRi89p++ypn2u6RYuQqmAI=;
+        b=n2GNvol73UZ9RBTEE6JYD4zt2QH59JOnkcXJ1909hABOXRirc5oX1vQSx/1JlwEJ95
+         /jdcCsJ5KQmtsF3mAS4cj089UfHwvIAS8reNMQP0Yc1nH8z3lHWlyrVySmzroH5KgTlH
+         7MItE624eO7F90XusVFnG7ko1/3rX0agZx2NEPD/Nj3pL9XJ1Q8FJh0yq1wuEEaz0uQ7
+         FXbBwv3ZqqEykoB5q0SaO99Fe4M8I9yWLcCRca0tq3QG4Vun7oMEpBlVC2T38m7z/gjC
+         JVkrdony4n/6MjliMh/JKlSSzYgksBT9n3Bw4Q0/CqfyLbGtjkX6cM7R8h4JXM2+qjLS
+         XiEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qaP0I0aztXzOWdDYC6Rm+hRi89p++ypn2u6RYuQqmAI=;
+        b=CEFbofwSKoedfFp9dwVDR11K7ObcHe+0o90jXTCrOHOW70nBkW2waQJfPPK6veMWkE
+         0890IFFFsp7VGIR0HJHRml8KuMz6Hw1S1p2AL9/MTSEtGS2eGa1HdE9Qw81liyCrJNpo
+         Sh/QneX2zk93xj4vHltSoszxoryEtsyT6byXLFGG+ORZUq+8V63wOHmXuF/obu+L5o7i
+         xMzU2Uy7AuI34EZqhuwTc6NfW8vzgMKj/k2CP15ny5uN6nC+Mbgql5YYF0Vw3UrW54Je
+         sJ0RIgHg8LCvbuCaqLGQvkbxWdcWrdar3awV5uUT6azCCMG5zz6u85w36fIYjB0uItj4
+         F9Ww==
+X-Gm-Message-State: AJIora9OSgtZ3+EB1D8fhhLAMyRgYHBvNZ5Q2iaXzC58iU2EXxjl58mp
+        hMAmkXspkTefyL2L4D/iVmX61h0iVzPFWEx1zvykraardlg=
+X-Google-Smtp-Source: AGRyM1s8IJzc+CDFsmhXm05gI9yyjM4jlO0gtZQGHVvafriU/TFryCg3YL75XaMYb+qD5v2zymGC/gqXcY7RpTbrtZw=
+X-Received: by 2002:a05:6902:1082:b0:670:9307:b0eb with SMTP id
+ v2-20020a056902108200b006709307b0ebmr8351482ybu.335.1658404508819; Thu, 21
+ Jul 2022 04:55:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220718195651.7711-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220718195651.7711-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdV5s-q13pWXs-ki6o5h8=ZMPL11o08YQx1pawe9EUySBA@mail.gmail.com>
+ <CA+V-a8tqhiO+WBOzAD40A10K+qtVQ4HE87C9PKVpoFgWkkS54w@mail.gmail.com> <CAMuHMdWcj2xv8FrCiTLCVQfWzejONCAv_o-VzAkicLAFNd5gPg@mail.gmail.com>
+In-Reply-To: <CAMuHMdWcj2xv8FrCiTLCVQfWzejONCAv_o-VzAkicLAFNd5gPg@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 21 Jul 2022 12:54:41 +0100
+Message-ID: <CA+V-a8uNZ8T6m+nav=UXTFcwtW8o_2dGE2QFMvkhwcUU=Ka42Q@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: renesas: rzg2l-smarc-som: Add PHY
+ interrupt support for ETH{0/1}
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] gpio: gpio-74x164: add support for CDx4HC4094
-Message-ID: <Ytk+H/w78QWov0nL@ada.ifak-system.com>
-Mail-Followup-To: Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marcus,
+Hi Geert,
 
-Am Thu, Jul 21, 2022 at 11:34:21AM +0200 schrieb Marcus Folkesson:
-> 74hc4094 and 75hc4094 works similar to 74x164 but has an additional
-               ^^
+On Thu, Jul 21, 2022 at 12:43 PM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Thu, Jul 21, 2022 at 1:07 PM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> > On Thu, Jul 21, 2022 at 11:47 AM Geert Uytterhoeven
+> > <geert@linux-m68k.org> wrote:
+> > > On Mon, Jul 18, 2022 at 9:57 PM Lad Prabhakar
+> > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > > The PHY interrupt (INT_N) pin is connected to IRQ2 and IRQ3 for ETH0
+> > > > and ETH1 respectively.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Thanks for your patch!
+> > >
+> > > > --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+> > > > +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+> > > > @@ -94,6 +94,8 @@ phy0: ethernet-phy@7 {
+> > > >                 compatible = "ethernet-phy-id0022.1640",
+> > > >                              "ethernet-phy-ieee802.3-c22";
+> > > >                 reg = <7>;
+> > > > +               interrupt-parent = <&irqc>;
+> > > > +               interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> > >
+> > > 2?
+> > >
+> > IRQ2 = SPI 3, the driver expects the SPI number and is used as index
+> > [0] to map the interrupt in the GIC.
+> >
+> > [0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/irqchip/irq-renesas-rzg2l.c?h=next-20220720#n291
+>
+> Using the SPI number sounds strange to me, as the consumer
+> (Ethernet PHY) is linked to the IRQC, not to the GIC directly.
+>
+Right, are you suggesting that I tweak the driver? The other problem
+is how do we differentiate NMI and IRQ0? How about we add macros for
+IRQ0-7 and use them in the DTS?
 
-That 75 is probably a typo, isn't it?
+> > > "The first cell should contain external interrupt number (IRQ0-7)"
+> > >
+> > Probably I need to reword this to "The first cell should contain the
+> > SPI number for IRQ0-7/NMI interrupt lines" ?
+>
+> Oh, so zero is the NMI?
+> And 1-8 are IRQ0-7.
+>
+Yes that's right.
 
-Greets
-Alex
+> All of this should be documented in the bindings.
+>
+> Probably you want to document the parent interrupts:
+>   - First entry is NMI,
+>   - Next 8 entries are IRQ0-7,
+>   - Next 32 entries are TINT0-31.
+> Currently it's a flat list.
+>
+Agreed, I will update that.
 
-> storage latch associated with each stage for strobing data from the
-> serial input to parallell buffer tri-state output.
-> 
-> Add support for an optional strobe pin.
-> 
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> ---
->  drivers/gpio/gpio-74x164.c | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/drivers/gpio/gpio-74x164.c b/drivers/gpio/gpio-74x164.c
-> index e00c33310517..4a1c4de358e4 100644
-> --- a/drivers/gpio/gpio-74x164.c
-> +++ b/drivers/gpio/gpio-74x164.c
-> @@ -21,6 +21,7 @@ struct gen_74x164_chip {
->  	struct gpio_chip	gpio_chip;
->  	struct mutex		lock;
->  	struct gpio_desc	*gpiod_oe;
-> +	struct gpio_desc	*gpiod_strobe;
->  	u32			registers;
->  	/*
->  	 * Since the registers are chained, every byte sent will make
-> @@ -66,6 +67,10 @@ static void gen_74x164_set_value(struct gpio_chip *gc,
->  		chip->buffer[bank] &= ~(1 << pin);
->  
->  	__gen_74x164_write_config(chip);
-> +
-> +	/*  Latch data to output pins*/
-> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 1);
-> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 0);
->  	mutex_unlock(&chip->lock);
->  }
->  
-> @@ -87,6 +92,10 @@ static void gen_74x164_set_multiple(struct gpio_chip *gc, unsigned long *mask,
->  		chip->buffer[bank] |= bitmask;
->  	}
->  	__gen_74x164_write_config(chip);
-> +
-> +	/*  Latch data to output pins*/
-> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 1);
-> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 0);
->  	mutex_unlock(&chip->lock);
->  }
->  
-> @@ -129,6 +138,12 @@ static int gen_74x164_probe(struct spi_device *spi)
->  
->  	gpiod_set_value_cansleep(chip->gpiod_oe, 1);
->  
-> +	chip->gpiod_strobe = devm_gpiod_get_optional(&spi->dev, "strobe",
-> +			GPIOD_OUT_LOW);
-> +	if (IS_ERR(chip->gpiod_strobe))
-> +		return PTR_ERR(chip->gpiod_strobe);
-> +
-> +
->  	spi_set_drvdata(spi, chip);
->  
->  	chip->gpio_chip.label = spi->modalias;
-> @@ -153,6 +168,10 @@ static int gen_74x164_probe(struct spi_device *spi)
->  		goto exit_destroy;
->  	}
->  
-> +	/*  Latch data to output pins*/
-> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 1);
-> +	gpiod_set_value_cansleep(chip->gpiod_strobe, 0);
-> +
->  	ret = gpiochip_add_data(&chip->gpio_chip, chip);
->  	if (!ret)
->  		return 0;
-> @@ -182,6 +201,8 @@ MODULE_DEVICE_TABLE(spi, gen_74x164_spi_ids);
->  static const struct of_device_id gen_74x164_dt_ids[] = {
->  	{ .compatible = "fairchild,74hc595" },
->  	{ .compatible = "nxp,74lvc594" },
-> +	{ .compatible = "ti,cd54hc4094" },
-> +	{ .compatible = "ti,cd74hc4094" },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, gen_74x164_dt_ids);
-> -- 
-> 2.36.1
-> 
+Cheers,
+Prabhakar
+
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
