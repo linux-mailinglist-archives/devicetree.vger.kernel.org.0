@@ -2,113 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64E0157CC12
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:37:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC46C57CC21
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:42:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbiGUNhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 09:37:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45624 "EHLO
+        id S229591AbiGUNmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 09:42:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229523AbiGUNhm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:37:42 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 568267E334
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:37:40 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id oy13so3252941ejb.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:37:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8/cqmxcIHyGuuAd34yH5EGseYF2qIVCLxif3aKApjO8=;
-        b=jQFRTYzVKfF7XyCxEjMIsHJZa8HQ0iHL21yIQj1Gy5IrYzGHlCXHfSFcxJI/9zfPHT
-         zrlQ5VDaVZr9dhrwrr88VgBc/CzeknSxs3+qAQLyANBZAwoUZp3X4O3J+Zc5mvXCQ2yz
-         U7eTH2JhxhZDOYg8zidV39R6zFx+zpmW4Of24=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8/cqmxcIHyGuuAd34yH5EGseYF2qIVCLxif3aKApjO8=;
-        b=IHnQEOps8B5w57h9l/Xlm0RzTaGHbPKUqL9d3SOMX7Bz9jrbTkajFeWUt4ucjb8yEB
-         9Or+/MiBbeGca4En5Svd/zrDQmWwzbxzNE1EN8opBUVzEpP7WaayxKAbhK27aUk+/hhl
-         F7iZYOgnArOpwKPR9k5xTgkeUJeiVblrJTJwdi7alVhSbapIZ/qSw6XZUWRmg7QKT/ok
-         O1YEq1jzL2gu53CL3AxCd4ThTNbAhoUvw+dlyYgWKvH8JGWUTZXN4i8bJS/koq6bN68f
-         rrBGdAILQO+mpOr/Iy485X27O8+ARVA1ZsrTB6aHzqTy772jFwU/EsIDcJp+CCb+E1h/
-         gX1Q==
-X-Gm-Message-State: AJIora/CifvVz5Eg7T6ASubrG7ftcbB93Znu0n20y91dzNysbX7ENSbj
-        ZUevYC7wJQt82DFD5jjU8X05adT+JmsTUIWS
-X-Google-Smtp-Source: AGRyM1tJLyOcaCLAwgZ4eYjP34Crm2lfRpH1uH7TgMpF5iW1zU88N4jcT9nTP9WbJKnsbXjLqxSDsw==
-X-Received: by 2002:a17:907:3e81:b0:726:9615:d14d with SMTP id hs1-20020a1709073e8100b007269615d14dmr40092310ejc.517.1658410658582;
-        Thu, 21 Jul 2022 06:37:38 -0700 (PDT)
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com. [209.85.128.51])
-        by smtp.gmail.com with ESMTPSA id u2-20020a1709061da200b0072f42ca2934sm867608ejh.148.2022.07.21.06.37.37
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 06:37:37 -0700 (PDT)
-Received: by mail-wm1-f51.google.com with SMTP id id17so1065569wmb.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:37:37 -0700 (PDT)
-X-Received: by 2002:a05:600c:2e48:b0:3a3:1ce3:3036 with SMTP id
- q8-20020a05600c2e4800b003a31ce33036mr7949226wmf.188.1658410656948; Thu, 21
- Jul 2022 06:37:36 -0700 (PDT)
+        with ESMTP id S229493AbiGUNme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:42:34 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 756315A476;
+        Thu, 21 Jul 2022 06:42:33 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 799716601AA5;
+        Thu, 21 Jul 2022 14:42:31 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658410951;
+        bh=wRl0FWql7SruDU8aGm9IKXSOOX2TEFrtCqKWy8np5Z4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=NipOXKPc18jWkAdrlwLnO+2/dY1GOenBw/1QcgxCac+Pjumpbt4O7EVTJnPX0/V+N
+         yy9lDpUoFpM/s49G3FbAlv9nwmfVYEedeoaeW9O9qys7HnQx/b6Nd3H4M9qGkwpqLD
+         8JN19S4eo3OdF1XxpjXEXVRnmL0iidZMSbrhDYGTp5NixMQiE9MHiAz43t4y3M+7Pq
+         xwjeDncQOHGynU1lkDcLcAkn2fdRF+YNPy2AzMC6/h5Z3Lk6Y2510/3S+nbpfve4cE
+         i4UW60QiDXKh8cvjYvN5HaPwAv06dKEVUut8aye92L+55isZm5flHLlXxxceWFZj5C
+         bZKuIIGH0ndaA==
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     matthias.bgg@gmail.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: [PATCH 0/8] MT8195 Acer Tomato - devicetrees Part 2
+Date:   Thu, 21 Jul 2022 15:42:20 +0200
+Message-Id: <20220721134228.310178-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
- <20220721033918.v3.2.I7ecbb7eeb58c5e6a33e32a3abf4d6874e6cb725c@changeid>
-In-Reply-To: <20220721033918.v3.2.I7ecbb7eeb58c5e6a33e32a3abf4d6874e6cb725c@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 21 Jul 2022 06:37:23 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WSBgupLFMCZgianck6uTkAyqrG0WK2ChSbNbJdhOPdLA@mail.gmail.com>
-Message-ID: <CAD=FV=WSBgupLFMCZgianck6uTkAyqrG0WK2ChSbNbJdhOPdLA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: arm: qcom: Document additional sku6
- for sc7180 pazquel
-To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Henry Sun <henrysun@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series enables more functionality on the MT8195 Tomato Chromebooks,
+bringing it to an almost usable state.
 
-On Wed, Jul 20, 2022 at 8:59 PM Yunlong Jia
-<yunlong.jia@ecs.corp-partner.google.com> wrote:
->
-> The difference between sku6 and sku4 is that there is no esim
->
->  The different SKUs are:
->
->    LTE with physical SIM _and_ eSIM
->    LTE with only a physical SIM
->    WiFi only
->  Both sku4 and sku6 are LTE SKUs.
->  One has the eSIM stuffed and one doesn't.
->  There is a single shared device tree for the two.
->
-> Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-> ---
->
-> Changes in v3:
-> - Bindings and dts in the same series.
->
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+With this series, the device is able to boot from the MicroSD card
+and is able to communicate with the EC for various functions,
+including the enablement of the Chromebook's keyboard, battery
+charging, fuel gauge and other standard ChromeOS EC functionality.
 
-Not worth sending a new version for, but normally I expect the
-bindings to be patch #1 and the dts change to be patch #2. In any
-case:
+This also enables the Audio DSP, codec and sound card and adds support
+for the regulators found on the SPMI bus.
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+What's missing (coming in the next part)?
+
+* Format:    feature  (location)
+*
+* MediaTek vcodec enc/dec (mt8195.dtsi only)
+* PCI-Express WiFi card (mt8195 and mt8195-cherry)
+* VDOSYS1 (mt8195.dtsi and mediatek-drm/mmsys drivers)
+* DP/eDP outputs for external/internal display (mt8195 and mt8195-cherry)
+* LVTS Thermal Sensors (mt8195.dtsi, driver is missing)
+* GPU support (comes later, clocks implementation is in the works)
+
+
+### NOTE: ###
+
+This series depends on MediaTek's MT8195 new device nodes [1] series
+
+[1]: https://patchwork.kernel.org/project/linux-mediatek/list/?submitter=196333
+
+AngeloGioacchino Del Regno (8):
+  arm64: dts: mediatek: cherry: Enable the System Companion Processor
+  arm64: dts: mediatek: cherry: Wire up the ChromeOS EC and GSC
+  arm64: dts: mediatek: cherry: Add keyboard mapping for the top row
+  arm64: dts: mediatek: cherry: Enable secondary SD/MMC controller
+  arm64: dts: mediatek: cherry: Enable Elantech eKTH3000 i2c trackpad
+  arm64: dts: mediatek: cherry: Enable DSP, audio codec and sound card
+  arm64: dts: mediatek: cherry: Enable keyboard PWM backlight
+  arm64: dts: mediatek: cherry: Enable MT6315 regulators on SPMI bus
+
+ arch/arm64/boot/dts/mediatek/Makefile         |  52 +--
+ .../dts/mediatek/mt8195-cherry-tomato-r1.dts  |  10 +
+ .../dts/mediatek/mt8195-cherry-tomato-r2.dts  |  10 +
+ .../dts/mediatek/mt8195-cherry-tomato-r3.dts  |  10 +
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      | 403 ++++++++++++++++++
+ 5 files changed, 435 insertions(+), 50 deletions(-)
+
+-- 
+2.35.1
+
