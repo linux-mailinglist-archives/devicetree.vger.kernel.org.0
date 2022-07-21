@@ -2,272 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50CBA57CD36
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E156857CD58
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:22:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229894AbiGUOUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 10:20:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60778 "EHLO
+        id S231317AbiGUOWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 10:22:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230191AbiGUOUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:20:49 -0400
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140089.outbound.protection.outlook.com [40.107.14.89])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B32431924;
-        Thu, 21 Jul 2022 07:20:46 -0700 (PDT)
+        with ESMTP id S229716AbiGUOWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:22:09 -0400
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9B177BE1D;
+        Thu, 21 Jul 2022 07:22:02 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P5IlKo7/SYX+MgqQxtD4Hck9UocGkOcpjDAzZ4py1ByJIhk/xKC1H7PtaYUX3YMV+y756E6NnqPsZk7io1xWx5iebLWLOh4zrEw8LDrcM1S9q5UeVbz2k2zn4lXdR737H2D0OpcPcWu4d75hL3oOg3LViDwdpIZ03egYpPYCpwaSuI1UgUY43vYbmgDW3Jr8ZCcZXwgHJPQwP7Qda+VQoGAuyoqHpp2K5saNqkWkdgE2bAp3irScjglyeYMsJzoK8a+FCxWFiu7lICm+fs20KCAYLxp/7Doh8jXy9MVQ9/k/1FoGDHjm1gdb6tKJc2IWlLhGEs+SyqzOwCkQX9yDTg==
+ b=aODAdK4aabMoCGYrui2SDhVwu9B76R/WMfkF6Zp48K0mTosGmWBWlF2mDLGHrhAxMHuKNzwZA+2jrxXW+8XsObsrm4fbGlk41VnnK0Fu77ajVEOYVpvG3X+0ibb4HrcDKkz7my1U9rfRkmY3GW6V9+o+uQDbfwCYNvbmYhPZ209TuCUg/f2mfumQ9zCtGiGmrVpTI2pKX42fvNnO52qGOSBV4mkBgsrPFuRXVIfNa8DY1TD2CQCDSqeFPAzza4W8GHPON5y8hsV1JlNu7TOX/CRWUSMbgY7bnIGOtYoiYx13VwI0sbkdBsV9T+vZl8z9gnHhoYMkHngr9ll2HRj51Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hrbWObrkKPUODBDZ87wWS64MBlJNvyPdOMPHDfhBWls=;
- b=Fn3o5JbBbdwo2Ypwn3BRk6mLSNNJz4AQjzxa9x36MiyENXg086EEEP+LcTa9P9OwSwqnqejf7mQJtmxyrlcRNld9IArB0kjbgrDDf/vt3IlpnCOUjsMWz/6z4D3sMzHK1LWs2sDzsfVvWcuxAU2ut5tiDTASUjHTQ2+WvYrZpjW1pxg5dVPJ8V03/BthyQeMb+b49keNGekPSdmPkrzyOmZSOXcEayhMRmlnTLV5KmEL3KJSqxtUUSZWlxN45S/SzpxCEiy347YMqdS9dhpycKwIqx0M25SbTYQcQ33mEDL5aZRI4lkx4phrgP131NjsPUcZ8oMFXazD8BppWmGNVA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=r2JUUOmkVby15TFdtCHkiVXcuWt4I74CWGb3GjLV0lk=;
+ b=EXtrT3lCnIdPF/ylwMoYY4Dhzs17QyPnEcsftvpSnm22msU4Zo2X2JvOU2BBpEXMqMGN17O+UrOIf2E4u1GmWTdVo1dNDtJqmjo9b3GzUBmFtalBdiLMVBZxdw+7tJF4RB9nNll07AAIE5Os7CuYWj7KsExFRa5BZWa1cmJH2Y6SgnwQpgvZfk1pR6WZyKMdfra5szTgc5zC3TpOzErKLCNqAqM3YuhAdDr1y+pWe1MhHK/VhY/1cBcJxb9XqgkaS825MqIxoV4wWZrAxbzWrbFyktLTmkCtM91osJ3CjWg4Dg9bbtNtCAu1RgRerKs4zRlQbBCBgq58CSZGLz4CSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.238) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com; dmarc=pass
+ (p=reject sp=reject pct=100) action=none header.from=nvidia.com; dkim=none
+ (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hrbWObrkKPUODBDZ87wWS64MBlJNvyPdOMPHDfhBWls=;
- b=Yrbh3VmyZplORLkDbcx3urfdBizUClOLeV4WCc9mfX5RN1VUJapF61/nNp0TDX4NyiXYrvMtJaxdMlspcYff18/TWKWvGwlcQRGdluzAJb0SEtnJgVK8aRPoTzCBIeZ7LE+gA3jIOQOcElgnKS9bNm+5ZcYg6repCVYyuX5YjRM=
-Received: from VI1PR04MB5807.eurprd04.prod.outlook.com (2603:10a6:803:ec::21)
- by GV1PR04MB9088.eurprd04.prod.outlook.com (2603:10a6:150:23::20) with
+ bh=r2JUUOmkVby15TFdtCHkiVXcuWt4I74CWGb3GjLV0lk=;
+ b=Yzer1hcH86PHHaIoU9g4zL44H6G5bG2WTw6iU1c70e7/+KhXT8U7OqwfeV8CX+SoIqttLW90IMFgcxyjwscmdpbkBQzszMeJmmi5GQHr7tVzd3Slj8d0vGefggXSltqoldG+1m+d3p/Q/RIltZxoSbWH6LPUrvZ3iLWeA71fIAAHKhNi1D71yY4mRy2CB6Vdg0JGaj8F5oHR6iZPXoY5yrVzjV2XgaMQle/RfMiNJHA95auTVEq0fP9mZWgrk/8cATmyfI9/hIv3+mBov39eopy9dwKFL5xdRHVHjMoOfNlwUIaA8pBjrKvG/5KX8MPRqJX6vg6B+m9Pb4WOL1wWFA==
+Received: from DS7PR03CA0207.namprd03.prod.outlook.com (2603:10b6:5:3b6::32)
+ by BN6PR1201MB0034.namprd12.prod.outlook.com (2603:10b6:405:53::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.18; Thu, 21 Jul
- 2022 14:20:42 +0000
-Received: from VI1PR04MB5807.eurprd04.prod.outlook.com
- ([fe80::1df3:3463:6004:6e27]) by VI1PR04MB5807.eurprd04.prod.outlook.com
- ([fe80::1df3:3463:6004:6e27%4]) with mapi id 15.20.5458.018; Thu, 21 Jul 2022
- 14:20:42 +0000
-From:   Camelia Alexandra Groza <camelia.groza@nxp.com>
-To:     Sean Anderson <sean.anderson@seco.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-CC:     Paolo Abeni <pabeni@redhat.com>,
-        Eric Dumazet <edumazet@google.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Russell King <linux@armlinux.org.uk>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-Subject: RE: [PATCH net-next v3 46/47] arm64: dts: ls1046ardb: Add serdes
- bindings
-Thread-Topic: [PATCH net-next v3 46/47] arm64: dts: ls1046ardb: Add serdes
- bindings
-Thread-Index: AQHYmJdO9OJQL8uRzkOwnuesK8wAT62I4DBg
-Date:   Thu, 21 Jul 2022 14:20:42 +0000
-Message-ID: <VI1PR04MB58077A401571734F967FAF12F2919@VI1PR04MB5807.eurprd04.prod.outlook.com>
-References: <20220715215954.1449214-1-sean.anderson@seco.com>
- <20220715215954.1449214-47-sean.anderson@seco.com>
-In-Reply-To: <20220715215954.1449214-47-sean.anderson@seco.com>
-Accept-Language: en-GB, ro-RO, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 587074b1-e57f-4272-e2a0-08da6b2431ed
-x-ms-traffictypediagnostic: GV1PR04MB9088:EE_
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2eTkgOcGrXugVTseJKRWGvH4EAYC/HIuq5yEvZ6KNOWlRNt70/UWQ1nhtycLyVzhZYz7EHwYvMHy8jtfEFW4hpdwzl3nzsAN88D/Pkn1tdPnkaRhAgrk/PS3+xdy3hU1l4g4esAPg/U3f7xj30ESkxQxaiGK4UAtvacITxYFFja9c5Exl09v5eXXpTAdbYuEiM5IMqjyrgt+8JD/cp0u6xHxh/I5oRjgIKYE4EBO71zav70VuXIzQY8NyfHm+r2BQs4mDqjIRGhK8o3/rJYwNh0r99XI4QvtisF+FTX8CMDph8nirwS9yfNizMbqTKJoBsVSBfLxY2shSyTJYEO9vMBH+T1m1RIgUNZ1seEZupC5hxhpx9XRvcGJOfnTmkKnV/W7V2BuneGZtMd9Zaf/fhZvxcPJCNQ2W0vOlKN/DY14Kak9fhhavHH6CYGiJP3iOacfI4CpUiYyyXpc96kLEeaXb5q1TrPUdst2a7lmx0jymKlqDiXkJkag7AWogp8HSi808wrGbGyjBJe0EApd0OrB6lHletCdslEL6oiK1HfCoT8/BJAmVPS7pGUwTScYNNdm5O2P2uPQrgSRLZ159FGCffFO82VvRDYmq5i50A7OM4fNsofZgoLMUHQUCjY7oMhBcwMvierdAxeHWUzCNVuVOf2z80PrgNhKI78G9MsD4istKoLmyzncXBf19JLUZKbDh+CygHQQ4D+2wFV5Tqhhv2fjaOAEeO7SemSA4JDSybipp9ULWyalaJYZr31dPSICq8vds3hvQx5C1S/Rn4ACP+6ugbCMjeGn5IIyJ+o=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5807.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(376002)(39860400002)(396003)(136003)(366004)(38100700002)(71200400001)(478600001)(66446008)(41300700001)(54906003)(316002)(110136005)(53546011)(4326008)(33656002)(66476007)(76116006)(66946007)(7416002)(83380400001)(7696005)(186003)(66556008)(8676002)(38070700005)(86362001)(8936002)(52536014)(9686003)(55236004)(6506007)(55016003)(122000001)(5660300002)(64756008)(2906002)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?SCnE9aaLlP/+m6QqxViyXFuA/8er60l9o24YI9jqC7S6GYJY4QQ8nqVrzxIQ?=
- =?us-ascii?Q?eYtgEZCxwLhxTtV5dEI9/fSBFWusVVvbqv6gcLUGuf9nNbhbaFvdVB5dskLO?=
- =?us-ascii?Q?UtNqK1LkEYOyb/FiLymLWArtXYhTg8TeCyaeIaNgp0AZv3/cuub1PlJsjiJU?=
- =?us-ascii?Q?NZHO/ftgtYQsBpFa2I/loA93y3igF0RQHnheeFmQaIFOZYSvDQHu3oQqIjG6?=
- =?us-ascii?Q?ndWsriBw50YOvYB/nYMjLVIy4oWiMgy6avGb9W+9RH6xCgqNPR0n83DMHrP4?=
- =?us-ascii?Q?o3GmqKmpmAqfuHsrtWXstiDM8t4gpc5Y6QSB/st1mEK7jd0PExSg8gDnf85k?=
- =?us-ascii?Q?3taBIr3vmpQX4Ekfo8w+q5UC14GjTnDJiqfNLzaqosJiEb+rY6UNYpSaO1RP?=
- =?us-ascii?Q?PLiRjrBwbXHrXKTnu/a6aLiYtdbilHI0G2uZzIzKuiN45ybww9autRda3hXf?=
- =?us-ascii?Q?rVMI1zj81ij9Z2wYNxgd1mp6opKJdlI+5fyvRzLq+L6II8QI98t3HhQnXEmz?=
- =?us-ascii?Q?WmqMVVC/n/lhs3/rl6fEse3ZLhuEfjz/aX/XBJivlyhDtmYGih1lmZctDG8l?=
- =?us-ascii?Q?Swtd9ugNMbLB+bpmSa4QV3fLJx1DctW4hEoIM0eAVkpFhk0ZqtpU692mWWhz?=
- =?us-ascii?Q?ocEYPXcB6ZtIy+XMGkxq/QpOg7zrZNCMtMRECpIwkt6Xw39EXWYCgYhr3uo5?=
- =?us-ascii?Q?eluqfLgd6zxw6z57OMpMNj1jqVKubHQ/PtnSPJSuFC6gzrq4Ix1y15MfTIpg?=
- =?us-ascii?Q?w0oLE7K4yfGGkkUQmaGv6De98q1gi208uE7SnyHnPowLw2KHMsca6b/CmmUz?=
- =?us-ascii?Q?bWCrGXMmEfdte1VKvZeaQ3ddt8LZnb2yedw9puRVqz7hCBPIpfHhV1Y0iC8o?=
- =?us-ascii?Q?F9baNMpjWV68s0w1F5ZnaBi5zRaFHcfOl0HByVuOY9li1uyKL0zipVjOYtZd?=
- =?us-ascii?Q?t3it4QKnUxXiHtqSwGyVbViRR+WTVcwNY+dre2YsXb7Sv0XCcpA+2y58haO+?=
- =?us-ascii?Q?jX32rT1VJO/edZEtXU7QHjPkcSMFWORvz3EPs5+7Jcwv8KHJikEMd9lKN37q?=
- =?us-ascii?Q?HkoIHArGaZJKmTlNE3FcfHKXI6SncFvojv+p9T6i7SUUfLcage9fGHG0Y0x8?=
- =?us-ascii?Q?WP24O3jE8lAiKIScp0UaDIiYi9O8EomayL7tx49HOedzmTNX+ba5ljs9o/PW?=
- =?us-ascii?Q?vnqJNJC7Zs9j9qHrcD43n6arAKQvvucbPEal8FJMk6YbV/4ghcYlggNKh1tX?=
- =?us-ascii?Q?TXFMdaCtV1Uxh6BUdiEQ0QuzgBEtLPAFYnhPJHaFlOJF4ZOJ4CuvHXdI+K9q?=
- =?us-ascii?Q?jyJlWdIFiWRNTbad8iiR/i27tXtAKQ1u1o8iFbFRv6rHN8s4ymprNZsZxn5W?=
- =?us-ascii?Q?BzENuzXXB8bZ8KD8GFeXqiNqyb1nZ1RT7LfeZihmVKTybJySJf2+DA4J1R8U?=
- =?us-ascii?Q?uyc1FquJaSdoipD+2kOxijGlJrUhVVpBcSINgauUzNJbn8qB5lNqPWmDBg4d?=
- =?us-ascii?Q?eWZFlL5m88EfY26Qzrjx0Mug5p7Dcowu/lw91A9xAcMb7vyiBrzmQvlZ/PaH?=
- =?us-ascii?Q?r2QsjIWmoUrbkadNcZ+m0vCKxl2dzp4oedpx5BKe?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ 2022 14:22:00 +0000
+Received: from DM6NAM11FT056.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:3b6:cafe::fd) by DS7PR03CA0207.outlook.office365.com
+ (2603:10b6:5:3b6::32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.20 via Frontend
+ Transport; Thu, 21 Jul 2022 14:22:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.238)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.238 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.238; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (12.22.5.238) by
+ DM6NAM11FT056.mail.protection.outlook.com (10.13.173.99) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5458.17 via Frontend Transport; Thu, 21 Jul 2022 14:22:00 +0000
+Received: from drhqmail202.nvidia.com (10.126.190.181) by
+ DRHQMAIL105.nvidia.com (10.27.9.14) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.32; Thu, 21 Jul 2022 14:21:59 +0000
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.26; Thu, 21 Jul 2022 07:21:59 -0700
+Received: from vidyas-desktop.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.126.190.180) with Microsoft SMTP Server id 15.2.986.26 via Frontend
+ Transport; Thu, 21 Jul 2022 07:21:54 -0700
+From:   Vidya Sagar <vidyas@nvidia.com>
+To:     <bhelgaas@google.com>, <lpieralisi@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>
+CC:     <kw@linux.com>, <kishon@ti.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
+Subject: [PATCH V6 07/16] PCI: Disable MSI for Tegra234 root ports
+Date:   Thu, 21 Jul 2022 19:50:43 +0530
+Message-ID: <20220721142052.25971-8-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220721142052.25971-1-vidyas@nvidia.com>
+References: <20220721142052.25971-1-vidyas@nvidia.com>
+X-NVConfidentiality: public
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5807.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 587074b1-e57f-4272-e2a0-08da6b2431ed
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jul 2022 14:20:42.6858
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 132a6bc2-e22e-4789-db60-08da6b24603d
+X-MS-TrafficTypeDiagnostic: BN6PR1201MB0034:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 8mabH5Ii39SqRXfl5T7M1WhNXsxqb2TgFSPZcWYi9V/GEFlXBFoh7CPvDFeeQGWSPVXZLjv054a+DBZx0wHzHQbNZvJv/YDUEDwqv7n9DCQv2fK3PTGj6Lb/zpLrO930bxwwU1bfzKjbhROCS8gie7CwXNQ6WapQJIhRoXvVNnLYUbxbnfWbTjrmkrxw/2X3pfKE/VGw+jC3jT9klow4pM9ooUr0OwAi9CSAyKs6+1VDFklBuO4yk0z7Hf8may8wd0KYHxqoDpPq567+vaoUVU7oHmmDnwZFISq5BHETOe2QOkheo+NTLbTrOJHvSix98IHdXZnZzw52PKjfbPWtplk/ToM4T8VG0KSZpeowNZKVncyBtgfMU00+/kWfIBtmGUebsATS+Cs//Z0STx6p3dCpIBQtYSkPQwSzwA7qtUHRg+WZBBCtCKwuRw4pLiPB1Ff3PEXINWuBvyBMfXBvcTbWluaL+CRLzA9ajAdMTBrYJfu9EtSZ9xzp/H4xe27hupSkOwgR98e1traYrFueRzQSq0kvjaK7ffVddjQ+GkcemfI+hkj1kD486EhAxi+M0PPUfEesw45Pqgqh5COcbODMCYpE5UPQOPlK22mNgK0TlYl3QBWiB8akzCOnrNjRtfAgPTDtaGdHCNG+CucQmWk6R534hrRwjt3R/xyT65RS7z8Ah3a5JDnPL8S1DSU2i5IpyvlPhyKiqPSjQsbK5+e48WtFDb2ToEYggXoJ8rtVMn5HhiTiqUKE1VWny/XzXnZPsSQw7reAGn3aYSkuUOjNwMR/ZyHrYebAf/9JQJ1KapMuP9450i1ZbC0VvLzy7QBRdYALGDmxNZv5rVMBmZ0AX8EKBO24cM5D9r30ppo=
+X-Forefront-Antispam-Report: CIP:12.22.5.238;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230016)(4636009)(396003)(39860400002)(346002)(376002)(136003)(36840700001)(46966006)(40470700004)(186003)(1076003)(40480700001)(110136005)(336012)(426003)(36756003)(8676002)(70206006)(54906003)(41300700001)(47076005)(70586007)(4326008)(26005)(2906002)(7696005)(2616005)(6666004)(81166007)(83380400001)(40460700003)(82310400005)(86362001)(36860700001)(7416002)(8936002)(316002)(5660300002)(82740400003)(478600001)(356005)(2101003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jul 2022 14:22:00.2757
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wzpjqhrhCdIWTolWgV1mtpjCRadh1srmDP9BAHiOyhc4sj1N7ec2zsIVTNZhhOnLigQHOrl1p4B2jVge3uNOCw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9088
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 132a6bc2-e22e-4789-db60-08da6b24603d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.238];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT056.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB0034
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Sean Anderson <sean.anderson@seco.com>
-> Sent: Saturday, July 16, 2022 1:00
-> To: David S . Miller <davem@davemloft.net>; Jakub Kicinski
-> <kuba@kernel.org>; Madalin Bucur <madalin.bucur@nxp.com>;
-> netdev@vger.kernel.org
-> Cc: Paolo Abeni <pabeni@redhat.com>; Eric Dumazet
-> <edumazet@google.com>; linux-arm-kernel@lists.infradead.org; Russell
-> King <linux@armlinux.org.uk>; linux-kernel@vger.kernel.org; Sean Anderson
-> <sean.anderson@seco.com>; Kishon Vijay Abraham I <kishon@ti.com>;
-> Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Leo Li
-> <leoyang.li@nxp.com>; Rob Herring <robh+dt@kernel.org>; Shawn Guo
-> <shawnguo@kernel.org>; Vinod Koul <vkoul@kernel.org>;
-> devicetree@vger.kernel.org; linux-phy@lists.infradead.org
-> Subject: [PATCH net-next v3 46/47] arm64: dts: ls1046ardb: Add serdes
-> bindings
->=20
-> This adds appropriate bindings for the macs which use the SerDes. The
-> 156.25MHz fixed clock is a crystal. The 100MHz clocks (there are
-> actually 3) come from a Renesas 6V49205B at address 69 on i2c0. There is
-> no driver for this device (and as far as I know all you can do with the
-> 100MHz clocks is gate them), so I have chosen to model it as a single
-> fixed clock.
->=20
-> Note: the SerDes1 lane numbering for the LS1046A is *reversed*.
-> This means that Lane A (what the driver thinks is lane 0) uses pins
-> SD1_TX3_P/N.
->=20
-> Because this will break ethernet if the serdes is not enabled, enable
-> the serdes driver by default on Layerscape.
->=20
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> Please let me know if there is a better/more specific config I can use
-> here.
->=20
-> (no changes since v1)
+Tegra234 PCIe rootports don't generate MSI interrupts for PME and AER
+events. Since PCIe spec (Ref: r4.0 sec 6.1.4.3) doesn't support using
+a mix of INTx and MSI/MSI-X, MSI needs to be disabled to avoid root
+ports service drivers registering their respective ISRs with MSI interrupt
+and to let only INTx be used for all events.
 
-My LS1046ARDB hangs at boot with this patch right after the second SerDes i=
-s probed,
-right before the point where the PCI host bridge is registered. I can get a=
-round this
-either by disabling the second SerDes node from the device tree, or disabli=
-ng
-CONFIG_PCI_LAYERSCAPE at build.
+Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+---
+V6:
+* None
 
-I haven't debugged it more but there seems to be an issue here.
+V5:
+* None
 
->  .../boot/dts/freescale/fsl-ls1046a-rdb.dts    | 34 +++++++++++++++++++
->  drivers/phy/freescale/Kconfig                 |  1 +
->  2 files changed, 35 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> index 7025aad8ae89..4f4dd0ed8c53 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a-rdb.dts
-> @@ -26,6 +26,32 @@ aliases {
->  	chosen {
->  		stdout-path =3D "serial0:115200n8";
->  	};
-> +
-> +	clocks {
-> +		clk_100mhz: clock-100mhz {
-> +			compatible =3D "fixed-clock";
-> +			#clock-cells =3D <0>;
-> +			clock-frequency =3D <100000000>;
-> +		};
-> +
-> +		clk_156mhz: clock-156mhz {
-> +			compatible =3D "fixed-clock";
-> +			#clock-cells =3D <0>;
-> +			clock-frequency =3D <156250000>;
-> +		};
-> +	};
-> +};
-> +
-> +&serdes1 {
-> +	clocks =3D <&clk_100mhz>, <&clk_156mhz>;
-> +	clock-names =3D "ref0", "ref1";
-> +	status =3D "okay";
-> +};
-> +
-> +&serdes2 {
-> +	clocks =3D <&clk_100mhz>, <&clk_100mhz>;
-> +	clock-names =3D "ref0", "ref1";
-> +	status =3D "okay";
->  };
->=20
->  &duart0 {
-> @@ -140,21 +166,29 @@ ethernet@e6000 {
->  	ethernet@e8000 {
->  		phy-handle =3D <&sgmii_phy1>;
->  		phy-connection-type =3D "sgmii";
-> +		phys =3D <&serdes1 1>;
-> +		phy-names =3D "serdes";
->  	};
->=20
->  	ethernet@ea000 {
->  		phy-handle =3D <&sgmii_phy2>;
->  		phy-connection-type =3D "sgmii";
-> +		phys =3D <&serdes1 0>;
-> +		phy-names =3D "serdes";
->  	};
->=20
->  	ethernet@f0000 { /* 10GEC1 */
->  		phy-handle =3D <&aqr106_phy>;
->  		phy-connection-type =3D "xgmii";
-> +		phys =3D <&serdes1 3>;
-> +		phy-names =3D "serdes";
->  	};
->=20
->  	ethernet@f2000 { /* 10GEC2 */
->  		fixed-link =3D <0 1 1000 0 0>;
->  		phy-connection-type =3D "xgmii";
-> +		phys =3D <&serdes1 2>;
-> +		phy-names =3D "serdes";
->  	};
->=20
->  	mdio@fc000 {
-> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfi=
-g
-> index fe2a3efe0ba4..9595666213d0 100644
-> --- a/drivers/phy/freescale/Kconfig
-> +++ b/drivers/phy/freescale/Kconfig
-> @@ -43,6 +43,7 @@ config PHY_FSL_LYNX_10G
->  	tristate "Freescale Layerscale Lynx 10G SerDes support"
->  	select GENERIC_PHY
->  	select REGMAP_MMIO
-> +	default y if ARCH_LAYERSCAPE
->  	help
->  	  This adds support for the Lynx "SerDes" devices found on various
-> QorIQ
->  	  SoCs. There may be up to four SerDes devices on each SoC, and
-> each
-> --
-> 2.35.1.1320.gc452695387.dirty
+V4:
+* None
+
+V3:
+* None
+
+V2:
+* Addressed review comments from Bjorn i.e. changed the PCIe spec reference
+  to a more relevant section and modified commit message accordingly
+
+ drivers/pci/quirks.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+index 2e68f50bc7ae..5b532449ac4f 100644
+--- a/drivers/pci/quirks.c
++++ b/drivers/pci/quirks.c
+@@ -2709,8 +2709,8 @@ DECLARE_PCI_FIXUP_EARLY(PCI_VENDOR_ID_NVIDIA,
+ 			nvenet_msi_disable);
+ 
+ /*
+- * PCIe spec r4.0 sec 7.7.1.2 and sec 7.7.2.2 say that if MSI/MSI-X is enabled,
+- * then the device can't use INTx interrupts. Tegra's PCIe root ports don't
++ * PCIe spec r4.0 sec 6.1.4.3 says that if MSI/MSI-X is enabled,then the
++ * device can't use INTx interrupts. Tegra's PCIe root ports don't
+  * generate MSI interrupts for PME and AER events instead only INTx interrupts
+  * are generated. Though Tegra's PCIe root ports can generate MSI interrupts
+  * for other events, since PCIe specification doesn't support using a mix of
+@@ -2760,6 +2760,15 @@ DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e5,
+ DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x10e6,
+ 			      PCI_CLASS_BRIDGE_PCI, 8,
+ 			      pci_quirk_nvidia_tegra_disable_rp_msi);
++DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x229a,
++			      PCI_CLASS_BRIDGE_PCI, 8,
++			      pci_quirk_nvidia_tegra_disable_rp_msi);
++DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x229c,
++			      PCI_CLASS_BRIDGE_PCI, 8,
++			      pci_quirk_nvidia_tegra_disable_rp_msi);
++DECLARE_PCI_FIXUP_CLASS_EARLY(PCI_VENDOR_ID_NVIDIA, 0x229e,
++			      PCI_CLASS_BRIDGE_PCI, 8,
++			      pci_quirk_nvidia_tegra_disable_rp_msi);
+ 
+ /*
+  * Some versions of the MCP55 bridge from Nvidia have a legacy IRQ routing
+-- 
+2.17.1
 
