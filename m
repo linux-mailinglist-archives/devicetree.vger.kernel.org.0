@@ -2,101 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C74F357C869
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 12:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C942E57C8F3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 12:27:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233022AbiGUKAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 06:00:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58328 "EHLO
+        id S233272AbiGUK1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 06:27:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232974AbiGUKAA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 06:00:00 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [5.144.164.164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9A0D8210C;
-        Thu, 21 Jul 2022 02:59:57 -0700 (PDT)
-Received: from SoMainline.org (D57D4C6E.static.ziggozakelijk.nl [213.125.76.110])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 08E341F661;
-        Thu, 21 Jul 2022 11:59:53 +0200 (CEST)
-Date:   Thu, 21 Jul 2022 11:59:46 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        jamipkettunen@somainline.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S233250AbiGUK1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 06:27:43 -0400
+Received: from 19.mo581.mail-out.ovh.net (19.mo581.mail-out.ovh.net [178.33.251.118])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE13747AA
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 03:27:41 -0700 (PDT)
+Received: from player697.ha.ovh.net (unknown [10.108.4.72])
+        by mo581.mail-out.ovh.net (Postfix) with ESMTP id B344C24211
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:51:21 +0000 (UTC)
+Received: from RCM-web2.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player697.ha.ovh.net (Postfix) with ESMTPSA id 65D0E2CD2F359;
+        Thu, 21 Jul 2022 06:51:09 +0000 (UTC)
+MIME-Version: 1.0
+Date:   Thu, 21 Jul 2022 08:51:09 +0200
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     William Zhang <william.zhang@broadcom.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: power: rpmpd: Add SM6375 power domains
-Message-ID: <20220721095946.wy3wbeib4ycwghzl@SoMainline.org>
-References: <20220716193201.455728-1-konrad.dybcio@somainline.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220716193201.455728-1-konrad.dybcio@somainline.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [RESEND PATCH 2/9] dt-bindings: arm64: bcmbca: Update BCM4908
+ description
+In-Reply-To: <a635754e-bf41-4058-5fbb-57ead36b7128@linaro.org>
+References: <20220721000658.29537-1-william.zhang@broadcom.com>
+ <a635754e-bf41-4058-5fbb-57ead36b7128@linaro.org>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <883c2ad4c36220b488519a8902ad72bc@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 194.187.74.233
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Ovh-Tracer-Id: 17827780602349661147
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrudelkedgudeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtjehjtddtredvnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeegvdffjeelvdeggeetheegveejieetgeeiiefggeelveejffehieekhfduueelhfenucfkpheptddrtddrtddrtddpudelgedrudekjedrjeegrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehplhgrhigvrheileejrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhnsggprhgtphhtthhopedupdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehkedu
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-07-16 21:32:00, Konrad Dybcio wrote:
-> Add the bindings for SM6375 RPMPDs.
+On 2022-07-21 08:44, Krzysztof Kozlowski wrote:
+> On 21/07/2022 02:06, William Zhang wrote:
+>> Append "brcm,bcmbca" to BCM4908 chip family compatible strings. Add
+>> generic 4908 board entry.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  .../devicetree/bindings/power/qcom,rpmpd.yaml        |  1 +
->  include/dt-bindings/power/qcom-rpmpd.h               | 12 ++++++++++++
->  2 files changed, 13 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> index ad77a6380f38..8b58cbc298a1 100644
-> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> @@ -39,6 +39,7 @@ properties:
->        - qcom,sm6115-rpmpd
->        - qcom,sm6125-rpmpd
->        - qcom,sm6350-rpmhpd
-> +      - qcom,sm6375-rpmpd
->        - qcom,sm8150-rpmhpd
->        - qcom,sm8250-rpmhpd
->        - qcom,sm8350-rpmhpd
-> diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
-> index 6cce5b7aa940..8b770bfcf46b 100644
-> --- a/include/dt-bindings/power/qcom-rpmpd.h
-> +++ b/include/dt-bindings/power/qcom-rpmpd.h
-> @@ -36,6 +36,18 @@
->  #define SM6350_MSS	4
->  #define SM6350_MX	5
->  
-> +/* SM6350 Power Domain Indexes */
-> +#define SM6375_VDDCX		0
-> +#define SM6375_VDDCX_AO	1
-> +#define SM6375_VDDCX_VFL	2
-> +#define SM6375_VDDMX		3
-> +#define SM6375_VDDMX_AO	4
-> +#define SM6375_VDDMX_VFL	5
-> +#define SM6375_VDDGX		6
-> +#define SM6375_VDDGX_AO	7
-> +#define SM6375_VDD_LPI_CX	8
-> +#define SM6375_VDD_LPI_MX	9
+> This does not explain at all why you are doing it. Improve your commit
+> messages.
 
-Looking at the naming/pattern of these constants I think they should
-reside near the bottom of this file with SM6125 and friends, rather than
-here with SM8150 and friends' MX/CX (and no _VFL).
+To clarify it from my side (and maybe help a bit):
 
-- Marijn
+1. As I understand it BCMBCA is a one big family of SoCs.
+2. BCM4908 is a subset of that family (a subfamily?) designed for a
+    specific group of devices.
 
->  /* SM8150 Power Domain Indexes */
->  #define SM8150_MSS	0
->  #define SM8150_EBI	1
-> -- 
-> 2.37.0
-> 
+If that's correct I think William it's what you should describe in your
+commit message. That would make binding more accurate and should be a
+good argument for your change (I believe).
