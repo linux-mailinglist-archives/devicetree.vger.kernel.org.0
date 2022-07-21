@@ -2,166 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6D4257C486
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 08:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B14BC57C498
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 08:44:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229643AbiGUGeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 02:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52110 "EHLO
+        id S230058AbiGUGo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 02:44:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232042AbiGUGeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 02:34:15 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5229BC31
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 23:34:13 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id by8so654874ljb.13
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 23:34:13 -0700 (PDT)
+        with ESMTP id S229854AbiGUGoY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 02:44:24 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CC375A14D
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 23:44:22 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id k19so685233lji.10
+        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 23:44:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Cnm73MX252Caj40ytmqHkjELENAHvDfcWrwZYR1/NVM=;
-        b=TBOCPKAISq594QJmpljtXK5JvWglm2X0HAFUA+CLSC4fkmSuZGHuCVimq5IRhaiwTx
-         7n4WQRUTkg7StEr07HUdlrnNngap3N9Dpptg779Uy6RPdLngI1bENO1KU+4HhdU6CI4a
-         ZZ5n1Iaqhcb7Iuon41ih6fknwVYDtgjnxQZSdyBehcrzqcAXz+3mNlarYN4687J7AIV7
-         HMVhwuc6sqyLPIbvRY14983JqnZGW6RK5johigv/Za282R0x8PDSZ2KDQ7rzOR8ERgOB
-         WzQTZCGsID/tFmeI8kAwLUJOjqNCw5uRIP+GV8KPUwAChH4hhEmaAlj7NxkxHJ1PSWMk
-         kHAg==
+        bh=9EZ/ZfJ5Dqv/Z3vw3hGwnwu2K6278KtSj/3KJUUKvB4=;
+        b=C+NIwK6JmyQSy6TZnTxWc8AE+VxdpZU00M/uR3FaIduX2i1aGcHp8PW81i+6ey+5ue
+         rkjoDwpZ0e//SR/C9AhcyQ/KdHZ2X4cHoOVPYnEdcLbOqej9PdZwsrFS/N8R8zMG0q3m
+         bmoiY+XaYattEv5qCdDDghTcCwpWhc/bU+a9Tt/9e+82i8zLPDy4/dOJGuE5n9kqtK6D
+         r8RmDV+Pq4fAHW3E19Kg3XaHr8imi4zRGwZZ+W6J4hQnVsXodmTLK4kIkB/OrHA/veTL
+         ZHMPb2JpXU2+DH6f5KRPxpc0R+fpte1fUma6KjuRz0dnu2BYE33TTXXKAdjgIvosvEyn
+         r6Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Cnm73MX252Caj40ytmqHkjELENAHvDfcWrwZYR1/NVM=;
-        b=FYQjkE03iaD0kbVLxZqtlUJ2wm3OtELjBmtUxNuScHCy1nVlWZW68/zMZ3+tDhMVZt
-         epc43vg3volzCwCRJRoT87qNHNsfFdslwT2fftjg8COKBPH4LWE2diXA+PKhdcLgMpYF
-         QkuVRD9oq7WwtgcJzIzpkyKj7t1T+h5EE4cdQUOARs84oMXzFv0XaL3eszsURfBr5XyE
-         Ob8MlfGVj99AWdLEX0DjbBxsTpNb92oK0SH+gGXWlR+5BV3PMMs5v8qIu3OkQRED0WgV
-         VfzqJ0C8BLz+rhRu11SE8oT2ye7+8+r23iEwqn0GtlBbTTJdW/m5s6GWB1unWu1b8fcR
-         VkiA==
-X-Gm-Message-State: AJIora/6FmKF1bKrQ584QU4C+vz+KklPJpqE8n8xbINwpIuLcvcP0Uck
-        pYa41LnzjJtqlaB0//IwzkG/sQ==
-X-Google-Smtp-Source: AGRyM1s1d4f5h2aNvGMt18zpn/ZfYfDPXUBZrMkOm4gFgu21R/BTsAfUGEaL5WsUnMIMqTbhpQg8HA==
-X-Received: by 2002:a05:651c:1a1f:b0:25d:4517:faf with SMTP id by31-20020a05651c1a1f00b0025d45170fafmr17849916ljb.415.1658385252232;
-        Wed, 20 Jul 2022 23:34:12 -0700 (PDT)
+        bh=9EZ/ZfJ5Dqv/Z3vw3hGwnwu2K6278KtSj/3KJUUKvB4=;
+        b=HGGd6qfsyT96652mCBC9yYbbMTV2UrR6Qjik3zVNHqllZ7xKTIXbkfhbAMWWH37s7a
+         CIKELZ5iWMQtNTgtwsSjVpxgXbjvhYqtfORmz8mEA4cQuQw1Rgc31Llr6F04iItiCuDj
+         ZmvgAvfvHSlOE3mGoKMLZeZOFWmfx4XB/h/Xjm1bhnfE2btdSKxqx8sLrRHx3Q16ga/2
+         CumqehXq7qeTe7IiVrcYp78b07qMFDqYuZwQ6wqPiuxTJ/wlRreR/pFo5ZpirnwP2iYc
+         7C5LscxS/hUKFetoPyXL7qmgMXrBZXeYFNYQD0CyO9YaI4ilFXTSbHu3kwbmGaB+przH
+         iEGQ==
+X-Gm-Message-State: AJIora8xvQE3TxX+AiF22TxhApD3Fxy7/aFA4ApYgwpdxgWQZxRi28VZ
+        vRg2rhb58x7Z7RlRgyi/Wax3KA==
+X-Google-Smtp-Source: AGRyM1sAMFvj0gKcnXVhV+I8VCvP4qPZbRcyE6t04/7Xi0WloWvBTC4tmIjUdUAAD0J3xuGPkDDjeQ==
+X-Received: by 2002:a05:651c:54a:b0:25d:6c19:448 with SMTP id q10-20020a05651c054a00b0025d6c190448mr19349273ljp.239.1658385860890;
+        Wed, 20 Jul 2022 23:44:20 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id m16-20020a056512015000b00483e5f0192esm240085lfo.87.2022.07.20.23.34.10
+        by smtp.gmail.com with ESMTPSA id m1-20020a056512114100b0047f7464f1bbsm242803lfg.116.2022.07.20.23.44.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Jul 2022 23:34:11 -0700 (PDT)
-Message-ID: <bba2bbbd-834e-d70a-91a4-6f2e989a6647@linaro.org>
-Date:   Thu, 21 Jul 2022 08:34:10 +0200
+        Wed, 20 Jul 2022 23:44:20 -0700 (PDT)
+Message-ID: <a635754e-bf41-4058-5fbb-57ead36b7128@linaro.org>
+Date:   Thu, 21 Jul 2022 08:44:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v3 06/21] dt-bindings: power: mediatek: Add bindings for
- MediaTek SCPSYS
+Subject: Re: [RESEND PATCH 2/9] dt-bindings: arm64: bcmbca: Update BCM4908
+ description
 Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
+To:     William Zhang <william.zhang@broadcom.com>,
+        Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220720123023.13500-1-tinghan.shen@mediatek.com>
- <20220720123023.13500-7-tinghan.shen@mediatek.com>
- <57b0cf62-0312-05cf-31ff-d38f83a35578@linaro.org>
- <00bc3a146f39feb1a83213fc8503ad1b52cda9f9.camel@mediatek.com>
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20220721000658.29537-1-william.zhang@broadcom.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <00bc3a146f39feb1a83213fc8503ad1b52cda9f9.camel@mediatek.com>
+In-Reply-To: <20220721000658.29537-1-william.zhang@broadcom.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 05:05, Tinghan Shen wrote:
-> On Wed, 2022-07-20 at 19:35 +0200, Krzysztof Kozlowski wrote:
->> On 20/07/2022 14:30, Tinghan Shen wrote:
->>> The System Control Processor System (SCPSYS) has several power
->>> management related tasks in the system. Add the bindings for it.
->>>
->>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
->>> ---
->>>  .../bindings/mfd/mediatek,mt8195-scpsys.yaml  | 68 +++++++++++++++++++
->>>  1 file changed, 68 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
->>> b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
->>> new file mode 100644
->>> index 000000000000..4117a6dbc19c
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
->>> @@ -0,0 +1,68 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: 
->>> https://urldefense.com/v3/__http://devicetree.org/schemas/mfd/mediatek,mt8195-scpsys.yaml*__;Iw!!CTRNKA9wMg0ARbw!y63E-9qbCW_vyn8RrsCCs7YvZ7NxKqFT7l8C0ZZirEW95Ec0ce3lwegsSq51wrjtz8GjVSpkK-omCBP5CKx1l0WESQ$
->>>  
->>> +$schema: 
->>> https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!y63E-9qbCW_vyn8RrsCCs7YvZ7NxKqFT7l8C0ZZirEW95Ec0ce3lwegsSq51wrjtz8GjVSpkK-omCBP5CKzzr9p82Q$
->>>  
->>> +
->>> +title: MediaTek System Control Processor System
->>> +
->>> +maintainers:
->>> +  - MandyJH Liu <mandyjh.liu@mediatek.com>
->>> +
->>> +description:
->>> +  MediaTek System Control Processor System (SCPSYS) has several
->>> +  power management tasks. The tasks include MTCMOS power
->>> +  domain control, thermal measurement, DVFS, etc.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - mediatek,mt8167-scpsys
->>> +          - mediatek,mt8173-scpsys
->>> +          - mediatek,mt8183-scpsys
->>> +          - mediatek,mt8192-scpsys
->>> +          - mediatek,mt8195-scpsys
->>> +      - const: syscon
->>> +      - const: simple-mfd
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +patternProperties:
->>> +  "^power-controller(@[0-9a-f]+)?$":
->>> +    $ref: /schemas/power/mediatek,power-controller.yaml#
->>
->> We talked that unit address might be useful but it was with an
->> assumption that you will actually use it. I think you don't use it, so
->> it is kind of meaningless now... unless you plan to use it?
-> 
-> I tried to add the offset in the node name, but the binding check reports this message.
->  	
->     power-controller@0: node has a unit name, but no reg or ranges property
+On 21/07/2022 02:06, William Zhang wrote:
+> Append "brcm,bcmbca" to BCM4908 chip family compatible strings. Add
+> generic 4908 board entry.
 
-Why would you add unit address without reg? What point would it solve?
+This does not explain at all why you are doing it. Improve your commit
+messages.
 
-> After considering the fact of mt8195 power controller HW resides in scpsys and the current power
-> domain driver doesn't support parsing the register address seperated from scpsys, I decide to
-> keep the power controller node as in v2 to pass the binding check and compatible with driver.
+The explanation you gave here:
+https://lore.kernel.org/all/b8eda882-6838-ab7d-6e2e-131e3125b16f@broadcom.com/
+is also not really sufficient (and is not in commit msg). Moving things
+around in Linux Kconfig does not justify adding some new compatibles.
 
-Then adding unit addresses in bindings has no point.
-
+To be - clear - this is not a review, so you cannot add Rb tag. If you
+insist on a tag, then it as counted as NAK.
 
 Best regards,
 Krzysztof
