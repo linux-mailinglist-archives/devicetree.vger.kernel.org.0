@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DB0357C755
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 11:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A98A557C778
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 11:23:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232355AbiGUJQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 05:16:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48512 "EHLO
+        id S232866AbiGUJXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 05:23:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229748AbiGUJQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 05:16:11 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5FAE7099E
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 02:16:09 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id m12so715144lfj.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 02:16:09 -0700 (PDT)
+        with ESMTP id S232672AbiGUJXB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 05:23:01 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 818737F52F
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 02:23:00 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id a3so1786743lfr.12
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 02:23:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NX01PXec4oCp0RNFOcGC2D4osWkcf/OjSXNrxmif0H4=;
-        b=m5R8uFVK4YrCrVYE4rVc+jXXO2vKg46lp/urdVrQ8f2wGi+2ZdgHF6TxAk+Z1H1NL5
-         s5eRagjcZrTKUvY8orKP+y3wIkuE/LB4brKZg2bUltf6tKqn942slGDC+InNt0FGfGdi
-         +ObIujImekzOuhEK9oi8ajmUpgs8Yhlu93R3fluCYHIDeOy06dXMo8VhUh15wpjHymNc
-         1avfgz0EYxZZGdYrIx1yMHVfpMar52gvGJN17PkyjYwqOoteMsff2wOlNGidyR8TReIB
-         1QBrFPPJ8i7TxaXZlOuOuK9m2555n+BWH/vjXDNV6vNdhPpnqAqGFqpslYgyQHxrosGW
-         JM5A==
+        bh=rSVG5RXgIgM5NvFYOzp6NmV4cF2lN0/Ef9ot41gAaRs=;
+        b=B4LLzm60t1rlt4QV36ZL3Qy4hANoL2STwfayVbO6iAwK/p2NlSCys/OGU/QYeDxGNR
+         faW/V/w1CXEK4qlqeYgputuTIGDFaQWHM0lCALr16CAd8cqhajRhBSZOWYvO9ajgtcCU
+         kf2mag4LqDklhmQC2sDqC+ZUbYbQzLla6QuiJif28PodirPI9qY8XNCvBpG7gmJdRskG
+         b30/3AOtn8paAvktFrCVh2M4rbTe+TY29Jiugt9liWHCHSCo7AxWOq1RKUFDZrEpvSaG
+         /0UU2a/h0ISQAFmY34OfhYd4UWi8GkbcJ+ltl1F8c8fcgVoxYo0Q9U6mHODrGxDLQUQM
+         mBgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=NX01PXec4oCp0RNFOcGC2D4osWkcf/OjSXNrxmif0H4=;
-        b=sjLJ3bm2sVIUEg/rXpupNuzC+DXdxzFD6Mgkcjl6XHd0CVuXmJJqFToCDAPvCfxl01
-         iKg1NcAbmfrEJsp6ZpOM9M9crXmWJhrjem8TRG83FqCLoOSN0TZDjtDp4mYl1TiWraa5
-         rbG2gIVefipkcz4VeHPaeJzRo8RNoTkZLw14vUm0JUvSborTrfzQELzV8+4HjcJZsnxD
-         HE0dQJZqZKO6/gzeBfLMXfbnTNEcZURI2ULgnsFx/7Y2BT/IJ6fHf4Oyus6FEIOfyNsp
-         2ebWvOrg9CI21iLNq3uK6uJRCFBX4wjDgohmhuhwZ+vdCDsmtRKWKTQxcHH30OB9lvC9
-         i48w==
-X-Gm-Message-State: AJIora+ThdC69zzrw+RcZQ9GaTuAaSbTXYNkUlBQ7acO+IHP4tVs6Yxm
-        IKgn0qYWQjbisT6/xeHUuGbYag==
-X-Google-Smtp-Source: AGRyM1tZG8v/X5Cvk5Swz75Z3HdFevHIeUTVvTwWLJIDvqUWpXwC4324umZdPzad973iHEQ3WAhL+w==
-X-Received: by 2002:a05:6512:3c9f:b0:48a:2c32:e22c with SMTP id h31-20020a0565123c9f00b0048a2c32e22cmr14987643lfv.356.1658394968135;
-        Thu, 21 Jul 2022 02:16:08 -0700 (PDT)
+        bh=rSVG5RXgIgM5NvFYOzp6NmV4cF2lN0/Ef9ot41gAaRs=;
+        b=XuYtUtVUwuRBywYJgc5TBV943D4G0tqy054VirWw9wm3TTLZcGA2y6dIwqEvPC5Lez
+         CIp491e2X5mgXBCTKa9xs+moG6qUclfucdgVqxHIAiscpGsbXepxhD2hU1E+fJSStpNd
+         Cj/4ljhy6XNjWgMGHGoGKR9FziuifueZx0CyZdn7bQ1l+4bV8781yg1E5HacTO984O1T
+         7PDLwy3B/qsoTrYEsZJSG+8c9Z8VNySWQ6OifCjJ9PE9QvxptkUgQfS/FwAKDz+vC60s
+         R4wDAe8YllB3pPYjs1wAA78R5PWOY+WaxjEQipLNvWCRJTEKT6DaeQ4C2MF1TlNxDnWt
+         VKFg==
+X-Gm-Message-State: AJIora+h7Wz6L+YnaiEZYYqMTbC5aO/oNi7JwF6dTQJjocLr426RVlNm
+        mBsSiDsQMl5MnJ94C4DX52ANQA==
+X-Google-Smtp-Source: AGRyM1u7eazfJf+qhDvnqRuzjsgcpGetJIrfeJnZOZ1R+WaUrZnXTWFfJyCPPnz6568ACBugGP8L4A==
+X-Received: by 2002:a05:6512:e83:b0:489:e7de:56ea with SMTP id bi3-20020a0565120e8300b00489e7de56eamr23820154lfb.591.1658395378678;
+        Thu, 21 Jul 2022 02:22:58 -0700 (PDT)
 Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id s1-20020a056512202100b0047fac0f34absm318272lfs.196.2022.07.21.02.16.05
+        by smtp.gmail.com with ESMTPSA id g19-20020a2eb5d3000000b0025a739ce2b8sm373440ljn.29.2022.07.21.02.22.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 02:16:06 -0700 (PDT)
-Message-ID: <734ed3cf-1461-6067-e718-663ca4be47a6@linaro.org>
-Date:   Thu, 21 Jul 2022 11:16:05 +0200
+        Thu, 21 Jul 2022 02:22:57 -0700 (PDT)
+Message-ID: <3b51e8c3-6ab4-373e-2c7d-29c02ffddfed@linaro.org>
+Date:   Thu, 21 Jul 2022 11:22:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v1 2/6] dt-bindings: mediatek,mt6779-keypad: use
- unevaluatedProperties
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
+ binding
 Content-Language: en-US
-To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
- <20220720-mt8183-keypad-v1-2-ef9fc29dbff4@baylibre.com>
- <e1ec8511-d1dd-faa5-031f-50c4e55062cd@linaro.org>
- <874jzaj0m5.fsf@baylibre.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220713135528.1386594-1-biju.das.jz@bp.renesas.com>
+ <20220713135528.1386594-2-biju.das.jz@bp.renesas.com>
+ <24903621-358d-d380-76f4-6515c6313bbd@linaro.org>
+ <OS0PR01MB5922CE20E15959AEF89C36D4868B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <1c96a873-81f7-02c4-56cc-f33a283329eb@linaro.org>
+ <OS0PR01MB5922CD0716DF83F92BA63B5F868C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <874jzaj0m5.fsf@baylibre.com>
+In-Reply-To: <OS0PR01MB5922CD0716DF83F92BA63B5F868C9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,53 +88,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 11:06, Mattijs Korpershoek wrote:
-> On Wed, Jul 20, 2022 at 19:14, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On 18/07/2022 15:13, Biju Das wrote:
+> Hi Krzysztof Kozlowski,
 > 
->> On 20/07/2022 16:48, Mattijs Korpershoek wrote:
->>> writing-bindings.rst states:
->>>> - If schema includes other schema (e.g. /schemas/i2c/i2c-controller.yaml) use
->>>>   "unevaluatedProperties:false". In other cases, usually use
->>>>   "additionalProperties:false".
->>>
->>> mt6779-keypad includes matrix-keymap.yaml so replace additionalProperties:false
->>> by unevaluatedProperties:false.
+>> Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
+>> binding
 >>
->> This is not sufficient explanation. You now allow all properties from
->> matrix-keymap.yaml, which might be desired or might be not (e.g. they
->> are not valid for this device). Please investigate it and mention the
->> outcome.
+>> On 15/07/2022 12:17, Biju Das wrote:
+>>> Hi Krzysztof Kozlowski,
+>>>
+>>> Thanks for the feedback.
+>>>
+>>>> Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L
+>>>> POEG binding
+>>>>
+>>>> On 13/07/2022 15:55, Biju Das wrote:
+>>>>> Add device tree bindings for the RZ/G2L Port Output Enable for GPT
+>>>> (POEG).
+>>>>>
+>>>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>>>> ---
+>>>>> REF->v1:
+>>>>>  * Modelled as pincontrol as most of its configuration is intended
+>>>>> to
+>>>> be
+>>>>>    static.
+>>>>>  * Updated reg size in example.
+>>>>> ---
+>>>>>  .../bindings/pinctrl/renesas,rzg2l-poeg.yaml  | 65
+>>>>> +++++++++++++++++++
+>>>>>  1 file changed, 65 insertions(+)
+>>>>>  create mode 100644
+>>>>> Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+>>>>>
+>>>>> diff --git
+>>>>> a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+>>>>> b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..7607dd87fa68
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.y
+>>>>> +++ am
+>>>>> +++ l
+>>>>> @@ -0,0 +1,65 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+>>>>> +---
+>>>>> +$id:
+>>>>> +
+>>>>> +title: Renesas RZ/G2L Port Output Enable for GPT (POEG)
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Biju Das <biju.das.jz@bp.renesas.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  The output pins of the general PWM timer (GPT) can be disabled by
+>>>>> +using
+>>>>> +  the port output enabling function for the GPT (POEG).
+>>>>> +Specifically,
+>>>>> +  either of the following ways can be used.
+>>>>> +  * Input level detection of the GTETRGA to GTETRGD pins.
+>>>>> +  * Output-disable request from the GPT.
+>>>>
+>>>> Shouldn't this all be part of GPT? Is this a real separate device in
+>>>> the SoC?
+>>>
+>>> No, It is separate IP block, having its own register block, interrupts
+>> and resets.
+>>>
+>>> Please see RFC discussion here[1]
+>>>
+>>> [1]
+>>>
+>>>>
+>>>>> +  * Register settings.
+>>>>
+>>>> This is confusing... so you can use POEG to mess up registers of GPT
+>>>> independently, so GPT does not know it?
+>>>
+>>> POEG does not mess up registers of GPT. It is basically for protection.
+>>>
+>>> Using POEG register, it is possible to disable GPT output without the
+>> knowledge of GPT, after configuring the Output disable source select in
+>> the GTINTAD (General PWM Timer Interrupt Output Setting Register)
+>> register present in GPT.
+>>
+>> Then what does it mean:
+>> "...following ways can be used. Register settings."
+>> I cannot parse it.
 > 
-> Hi Krzysztof,
+> Threre 3 methods mentioned in chapter 19.3 of RZ/G2L HW manual for Output-Disable Control Operation. 
+> "Register settings" referred to the 3rd method as mentioned below.
 > 
-> Thank you for your prompt review.
+> 19.3 Output-Disable Control Operation
+> The output of the GTIOCxA and GTIOCxB pins can be disabled when any of the following conditions are satisfied.
 > 
-> In mt6779_keypad_pdrv_probe(), we call
-> * matrix_keypad_parse_properties() which requires keypad,num-rows and keypad,num-cols.
-> * matrix_keypad_build_keymap() which uses linux,keymap
+> 1) Input level or edge detection of the GTETRGn pins
+> 	When POEGGn.PIDE is 1, the POEGGn.PIDF flag is set to 1.
 > 
-> Therefore, all properties from matrix-keymap.yaml are
-> required by the mt6779-keypad 
-Better to mention the device, not driver.
+> 2) Output-disable request from the GPT
+> When POEGGn.IOCE is 1, the POEGGn.IOCF flag is set to 1.
+> The output-disable requests enabled by GRPDTE, GRPABH, and GRPABL bits of the GTINTAD register in the
+> GPT are applied to the group selected by GRP[1:0] bits of the GTINTAD register.
+> 
+> 3) SSF bit setting
+> When POEGGn.SSF is set to 1.
+> 
+> The state of the GTIOCxA and the GTIOCxB pins when the output is disabled is controlled by the GPT module.
+> 
+> Please let me know if you need any info.
 
-> 
-> In v2, I will add the above justification and also add all 3 properties
-> in the "required" list.
-> 
-> Initially, I did not do this because from a dts/code perspective it seemed
-> interesting to split out SoC specific keyboard node vs board specific key configuration:
-> * [PATCH v1 5/6] arm64: dts: mediatek: mt8183: add keyboard node # SoC specific
-> * [PATCH v1 6/6] arm64: dts: mediatek: mt8183-pumpkin: add keypad support # board specific
-> 
-> What would be the recommend approach for above?
-> I see at least 2:
-> * "move the whole keyboard node into the board file (mt8183-pumpkin.dts)" even if it generates
->   duplication between boards using the same SoC.
-> * "add a "dummy keymap,row,cols" properties in the soc node which can be overriden in board file.
->   For example, use rows and cols = 0 which would have the driver early exit.
-> 
-SoC DTSI should have only SoC properties. The keyboard module is part of
-SoC. The keys and how it is wired to them - not.
+Yes, more info is needed in your patch. The "...following ways can be
+used. (...) Register settings." does not explain anything.
 
 Best regards,
 Krzysztof
