@@ -2,212 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FFEF57C617
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:20:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B1B57C618
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231599AbiGUIUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 04:20:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51426 "EHLO
+        id S230167AbiGUIUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 04:20:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230201AbiGUIUD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:20:03 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C812E7D7BE
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:20:02 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id u13so1606909lfn.5
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:20:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=FJ5D/KpCVhJU7PWecXfsixiLL7lhXNx134SjfsphOow=;
-        b=fVVwdfnERH/ZAzKwQ8D2eh/gVhSE4+99hTRGFF297rEcuxwgTKvuvVHKZsmD/NxD8K
-         pcSA4TUfRMJFoaPmevW7XRQzZKN7/wj0xIL/B9KJcpBxo9XmakLaLDn14al9Q9hFEBGb
-         shvTea4/NM9tAwawQ/7PZprdS/4mmy4hYR9yxe58qeSiyyL45VUg9A5oYLalyeeJBcoo
-         s+W3mgKCkJuJQ/Bw9QeZrcI+rji4IiyOWO4jqqToQMz/ie9fhQuXxO0LmVkiQcFPxk/L
-         T890YELQQJ/wqMlY+G5fh0HKDbk5HmobXYw/eWBEd+ABP4kp6f2usqqVPaKyspFKOdcr
-         8SIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=FJ5D/KpCVhJU7PWecXfsixiLL7lhXNx134SjfsphOow=;
-        b=F5DngvTlu+npNqEufmTPuv6z/Xsfee+fMFGT01aMsVxIxsuaAPsEBSqMk/toDMLYCM
-         3+BXL/bb1fdVacXcB1dut7xeKElwxECcvg3gozr/ATKSaTEzrEZKPbAn7PgCJ954Yspy
-         JyTbBDXeha8YP5+fKZ1rkI6JVmGwu10IhNuifNbY7HV6OLLZwcQlhUPTRtj9ZXLocXLh
-         1VT+ueUz9PC1WVX/qNLQ4MU7ddbCUAx+7yJau8GlghIAjgEA6pofRD+iYSsrWNBJo6OW
-         h+Bd3c0OO/TDd4cSnqKPkhtNMcE2R6MUnQaq4/X+sYzq6wFlEmFDZFHU3ziqbgXXMVtO
-         ulcA==
-X-Gm-Message-State: AJIora8jic86C6q3dQ5D+mW5WjJSBizOlqB8Cxgv8RYNnFGlFG4YUG4a
-        0yqx47+idpbFx+FOY0dPVPbqgg==
-X-Google-Smtp-Source: AGRyM1sPlMW8ZU6galDbuJDbczbMcOyN3ll8sb/vHVNn6QO/ZbKCqQJXSIFaIBWvvPBjlnXr2XDM4Q==
-X-Received: by 2002:a05:6512:3f8e:b0:48a:4343:8265 with SMTP id x14-20020a0565123f8e00b0048a43438265mr8777777lfa.294.1658391600897;
-        Thu, 21 Jul 2022 01:20:00 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id j7-20020a2e6e07000000b0025d53e34fe7sm336700ljc.56.2022.07.21.01.19.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 01:19:59 -0700 (PDT)
-Message-ID: <c10033b7-69d2-64b0-66cc-62799de59a7e@linaro.org>
-Date:   Thu, 21 Jul 2022 10:19:58 +0200
+        with ESMTP id S231872AbiGUIUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:20:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A63FE20;
+        Thu, 21 Jul 2022 01:20:05 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 95E0766019C1;
+        Thu, 21 Jul 2022 09:20:03 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658391604;
+        bh=y/fFPsOlPV4GL2mR0m0pPDApjYJ3cj6PObA4XyuM2gk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=hjwZ3AZkGo3csXK7vpW5drB34k2UtUTcsEezCjcr8zAIljSnqljqal3EMebAdg00d
+         Ru/dzPEdqy4a0V1pp25fqfqn1OoqNJMFUQn5WOYwouRRT2x5ftXz24BoA04yavjGA2
+         SaC8y2kuMj2Bvb/hkV8E7kp4qqOLRELWL6SM9Z2+41/nFmdIDm7f/JAhpZWA2bsnq6
+         7v9TeoUtx+GFVTrQtMHG0WrAlsZy7PkeEfelupm9npMCoLgNKnF5rFmlRF80uy5yoL
+         daJo7CabNCX6ffwrMMscM/9yhuhoccGQkwTnFvT22ZKJvMYNXsZujHgdLwJzLVKk2M
+         985AMvC1mPsZw==
+Message-ID: <dd610200-4edb-e2b2-2fe0-33cafc852952@collabora.com>
+Date:   Thu, 21 Jul 2022 10:20:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/1] dt-bindings: rtc: nxp,pcf85063: Convert to DT schema
+Subject: Re: [PATCH v2 1/4] dt-bindings: thermal: mediatek: add binding
+ documentation for MT8365 SoC
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220721073141.1746700-1-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220721073141.1746700-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Amjad Ouled-Ameur <aouledameur@baylibre.com>,
+        matthias.bgg@gmail.com
+Cc:     rafael@kernel.org, fparent@baylibre.com, amitk@kernel.org,
+        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+        robh+dt@kernel.org, rui.zhang@intel.com
+References: <20220720181854.547881-1-aouledameur@baylibre.com>
+ <20220720181854.547881-2-aouledameur@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220720181854.547881-2-aouledameur@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 09:31, Alexander Stein wrote:
-> Convert the NXP PCF85063 RTC binding to DT schema format.
+Il 20/07/22 20:18, Amjad Ouled-Ameur ha scritto:
+> From: Fabien Parent <fparent@baylibre.com>
 > 
-> Add 'interrupts' and 'wakeup-source' as this device has an interrupt
-> which was not documented, but is in use.
+> Add the binding documentation for the thermal support on MT8365 SoC.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> checkpath.pl warns about:
-> WARNING: DT binding docs and includes should be a separate patch. See:
-> Documentation/devicetree/bindings/submitting-patches.rst
-> 
-> But this seems to be a false positive to me. Includes are not touched at
-> all.
-> 
->  .../devicetree/bindings/rtc/nxp,pcf85063.txt  | 32 --------
->  .../devicetree/bindings/rtc/nxp,pcf85063.yaml | 76 +++++++++++++++++++
->  2 files changed, 76 insertions(+), 32 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
->  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
-> deleted file mode 100644
-> index 217b7cd06c11..000000000000
-> --- a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
-> +++ /dev/null
-> @@ -1,32 +0,0 @@
-> -* NXP PCF85063 Real Time Clock
-> -
-> -Required properties:
-> -- compatible: Should one of contain:
-> -	"nxp,pca85073a",
-> -	"nxp,pcf85063",
-> -	"nxp,pcf85063a",
-> -	"nxp,pcf85063tp",
-> -	"microcrystal,rv8263"
-> -- reg: I2C address for chip.
-> -
-> -Optional property:
-> -- quartz-load-femtofarads: The capacitive load of the quartz(x-tal),
-> -  expressed in femto Farad (fF). Valid values are 7000 and 12500.
-> -  Default value (if no value is specified) is 7000fF.
-> -
-> -Optional child node:
-> -- clock: Provide this if the square wave pin is used as boot-enabled fixed clock.
-> -
-> -Example:
-> -
-> -pcf85063: rtc@51 {
-> -	compatible = "nxp,pcf85063";
-> -	reg = <0x51>;
-> -	quartz-load-femtofarads = <12500>;
-> -
-> -		clock {
-> -			compatible = "fixed-clock";
-> -			#clock-cells = <0>;
-> -			clock-frequency = <32768>;
-> -		};
-> -};
-> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> new file mode 100644
-> index 000000000000..f46c7e5378e1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/nxp,pcf85063.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP PCF85063 Real Time Clock
-> +
-> +maintainers:
-> +  - Alexander Stein <alexander.stein@ew.tq-group.com>
-> +
-> +allOf:
-> +  - $ref: rtc.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,pca85073a
-> +      - nxp,pcf85063
-> +      - nxp,pcf85063a
-> +      - nxp,pcf85063tp
-> +      - microcrystal,rv8263
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Acked-by: Amjad Ouled-Ameur <aouledameur@baylibre.com>
 
-How about ordering the entries alphabetically?
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-
-This is an unexpected change, not mentioned in commit msg.
-
-> +
-> +  clock-output-names:
-> +    maxItems: 1
-
-The same.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    const: irq
-
-interrupt-names was not in original bindings and should not be needed.
-
-> +
-> +  quartz-load-femtofarads:
-> +    description:
-> +      The capacitive load of the quartz(x-tal),
-
-Full stop.
-
-> +      expressed in femto Farad (fF). 
-
-Redundant.
-
-> Valid values are 7000 and 12500.
-
-Use enum.
-
-> +      Default value (if no value is specified) is 7000fF.
-
-Use default: 7000.
-
-
-Best regards,
-Krzysztof
