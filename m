@@ -2,98 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A91F57C691
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CDA057C698
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232519AbiGUIjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 04:39:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38164 "EHLO
+        id S231524AbiGUIkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 04:40:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231814AbiGUIjO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:39:14 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E3FD7E831
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:39:13 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id 23so1026328pgc.8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:39:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=p/BNkggYGO5wbhXNiM6UQj7ulNxqOcTRhO0RLDvuzKM=;
-        b=jdCG6+nifZGncJSVnMdZqWcPjB8hTEnufni1x24Oe2zkcR6ptHZNYFJrjGjt5OfhID
-         FH9IMr+HFxCZaLnyI2Bky2/JAJNvjn3uFpBEP8luR59eI4vrZNfvUXosVYBL4rsfH7CX
-         rxiyS8JXf6tbqMladHEzyG9kguZI0+2IFtbi4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=p/BNkggYGO5wbhXNiM6UQj7ulNxqOcTRhO0RLDvuzKM=;
-        b=H0z6fF0aZG1UlTUnoBkJuyB8dF02r2qyN2EpM09ZsAa8iBtPYV33hFQOpnZAaQ0M2C
-         4BrOyk1I01TF/6sHgqQr4Vbw7S/nzg2xRNC7q2gwSibWfxB2TfT+qGtte8sSFxwJQ64/
-         JlIboe2Jov0DpAI9TsgvZ6cUpHovUvsXBDJms+YCwh8q/2NEeNRry/m3JU1AtY/opHmo
-         HyPRh8n09ectPaNBiMuXfxz0IA01+XxKe1eUE5PoT8uYMbnD0kX5qnZlBiSxruACaJJh
-         H53sSqKvVfCKLBfVkjOuJf5zO3fg4rp7gUFzNGd/0YRu7imvxC9M7b7ZTFHztJ4PIG/5
-         flmA==
-X-Gm-Message-State: AJIora+qWAJjJkw16l/ojB4UcV0AnN06yx2Uz+OR9BkbCjd2ojSuf6yw
-        7v78xApXMmkF51Qlw6jN5vxqog==
-X-Google-Smtp-Source: AGRyM1u2dh8hcZHr6mbWIJJwSX9EOohj8nIWfo64hoGPL2tA8Bq50XE9v2BEM8Gz72vRy0bGBjk0GQ==
-X-Received: by 2002:a63:1759:0:b0:40d:5aba:4bb0 with SMTP id 25-20020a631759000000b0040d5aba4bb0mr37760805pgx.496.1658392753209;
-        Thu, 21 Jul 2022 01:39:13 -0700 (PDT)
-Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
-        by smtp.gmail.com with ESMTPSA id l18-20020a170903121200b0016cd74e5f87sm1025943plh.240.2022.07.21.01.39.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 01:39:12 -0700 (PDT)
-From:   Judy Hsiao <judyhsiao@chromium.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
-        judyhsiao@google.com, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sc7280: Include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1
-Date:   Thu, 21 Jul 2022 08:38:49 +0000
-Message-Id: <20220721083849.1571744-4-judyhsiao@chromium.org>
-X-Mailer: git-send-email 2.37.0.170.g444d1eabd0-goog
-In-Reply-To: <20220721083849.1571744-1-judyhsiao@chromium.org>
-References: <20220721083849.1571744-1-judyhsiao@chromium.org>
+        with ESMTP id S229781AbiGUIkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:40:37 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BCA2357C3;
+        Thu, 21 Jul 2022 01:40:35 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B895E66019C1;
+        Thu, 21 Jul 2022 09:40:33 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658392834;
+        bh=UkS0m/M5DvbbQ/GObPG5/kXK7jhZdM3ZkXjeCEHoCvo=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Wnmud/HyoKxCMwupH5qw3uy/zD/ZJAYNNJeOIQLkvpFaLe3dFhwrg+J9cpDkqFtrc
+         9/OGMoi7tmIR3zySfl6CrGRHaPeYRYi+3cKgTtKYy9/PBQM2IgagXmSrAG6gIejYth
+         nmZMNyE4wSKs++BntTw0XBni+hZdexLJNKMK/M/ImDkWod+EpOqOsy5lS3q98HMGv9
+         sqbJphzqjZ2tB5yZX7X85InhUyXxg6OrUsyPKk57h95EB62sXwpGLHx9bSfmKYZH1c
+         IFXDk7zmNRC6odyxyZVp3M6O/jgbuofnF/3rDPK499SCRcmBnFDjrl5gq5eVIu87RF
+         1QEJrnzzjgH2w==
+Message-ID: <c5e94d12-4f52-2e75-3b45-735afa0e987b@collabora.com>
+Date:   Thu, 21 Jul 2022 10:40:31 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v1 3/6] dt-bindings: mediatek,mt6779-keypad: add
+ mediatek,double-keys
+Content-Language: en-US
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
+ <20220720-mt8183-keypad-v1-3-ef9fc29dbff4@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220720-mt8183-keypad-v1-3-ef9fc29dbff4@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1
-as it uses rt5682 codec.
+Il 20/07/22 16:48, Mattijs Korpershoek ha scritto:
+> MediaTek keypad has 2 modes of detecting key events:
+> - single key: each (row, column) can detect one key
+> - double key: each (row, column) is a group of 2 keys
+> 
+> Currently, only single key detection is supported (by default)
+> Add an optional property, mediatek,double-keys to support double
+> key detection.
+> 
+> Double key support exists to minimize cost, since it reduces the number
+> of pins required for physical keys.
+> 
+> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+> 
+> diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+> index ca8ae40a73f7..03c9555849e5 100644
+> --- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+> +++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+> @@ -49,6 +49,12 @@ properties:
+>       maximum: 256
+>       default: 16
+>   
+> +  mediatek,double-keys:
+> +    description: |
+> +      use double key matrix instead of single key
+> +      when set, each (row,column) is a group that can detect 2 keys
 
-Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
- arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts | 1 +
- 1 file changed, 1 insertion(+)
+We can make it shorter and (imo) easier to understand, like:
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-index c1647a85a371..98280436813d 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
-@@ -8,6 +8,7 @@
- /dts-v1/;
- 
- #include "sc7280-herobrine.dtsi"
-+#include "sc7280-herobrine-audio-rt5682.dtsi"
- 
- / {
- 	model = "Google Herobrine (rev1+)";
--- 
-2.37.0.170.g444d1eabd0-goog
+   mediatek,double-keys:
+
+     description: Each (row, column) group has two keys
+
+...also because, if we say that the group "can detect" two keys, it may be
+creating a misunderstandment such as "if I press one key, it gives me two
+different input events for two different keys.", which is something that
+wouldn't make a lot of sense, would it? :-)
+
+> +    type: boolean
+> +
+>   required:
+>     - compatible
+>     - reg
 
