@@ -2,129 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 416BF57D65A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 23:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03E6957D6A7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 00:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233985AbiGUV6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 17:58:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40724 "EHLO
+        id S233752AbiGUWNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 18:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233828AbiGUV6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 17:58:45 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE25A93C26
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 14:58:43 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id u14so3446515lju.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 14:58:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=ruxLzND3PgJ9tqm9kUHYW4Ktbt1QR2XijLIeX7b4Pj4=;
-        b=Ft4woQpDqYFAByyBLaLGcAiqGkvQ2SOKJ23bWhY7iB8ej/NSYlvpBCltgEVC48wDdv
-         Boo/4ZaQQeSnVs185F/Ts8PbW2b4z1oLp+O/g9GQuSukh9VUaeSIGNyQ9E2rb8tMRNuF
-         ihQKzHHOZPxdgwm4EM048n75mnQJRACrYAEvCykaHzCTv7g2lndbj9qwcN9pSPqLsdrP
-         J75ZnKBDEXyw7UjSUKzPVKEdy+o3tE2yAleE08t3B5C8zsyEhGP7+P1MR3l4Z4VSiydW
-         45xh2Jry76SRc4V1sPnI1OhzlovDK+cl4eObM5QQwJYQUW4cyTip6Qy1Qvg/9eXU8Ckq
-         oUow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ruxLzND3PgJ9tqm9kUHYW4Ktbt1QR2XijLIeX7b4Pj4=;
-        b=t2/FFGqEeAi9rsld+QBbfuyZ1u1KjlKGUOHv5PNbfBweQ9Yw/guL0tTRoqFgYN9Mj6
-         Rvqn+F/h8IkMhrhkl5LYUtRtUtmezrs20vopQr3Z7WgRYIRv8hQ/RKkV+tUSASRbQm0s
-         YAak9Z2JUuWhXOnbtBy4foYT5hvHOMVzexsg10yRRTA7S+FYJLx5OJcWp/Ikx1SxPZ9W
-         T40E6e2yUcV+y0F9A6Qqbt+hzKH/mB8Mfgq3xW8SxRuG96dFl2wXyNn/kn2gJNTMs32E
-         fM4vhz2hRyGriVDgYOAMpBIXZZegrGnYZ7ZNdbjIPbiYKuJ3XFz6SChttQaUgwDEPAjQ
-         SkVA==
-X-Gm-Message-State: AJIora+gafUmKh4YZVRnyh5Mf1/RMy9q/NE4Afk1OxUtJ62EUrtvIVyK
-        KUdkloUMfpwZoFsAE3p6iiK8hw==
-X-Google-Smtp-Source: AGRyM1uJA82GHparoFSnxSL6AlG+DnRHBmgFTdZGfW8hLzPeOq9ZpPpd632EiNEE9/zOnZWFcSgDNA==
-X-Received: by 2002:a2e:a7cf:0:b0:25d:9fe6:7065 with SMTP id x15-20020a2ea7cf000000b0025d9fe67065mr144905ljp.138.1658440722010;
-        Thu, 21 Jul 2022 14:58:42 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id n7-20020a05651203e700b00485e55192a3sm674554lfq.72.2022.07.21.14.58.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 14:58:41 -0700 (PDT)
-Message-ID: <a975956c-edbb-861c-e352-8a168e7cb536@linaro.org>
-Date:   Fri, 22 Jul 2022 00:58:40 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: ipq8064: pad addresses to 8 digit
-Content-Language: en-GB
-To:     Christian Marangi <ansuelsmth@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S234134AbiGUWMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 18:12:45 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B1B7995B14;
+        Thu, 21 Jul 2022 15:12:23 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,184,1654527600"; 
+   d="scan'208";a="128692555"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 22 Jul 2022 07:12:22 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7C67B4011407;
+        Fri, 22 Jul 2022 07:12:19 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220718153815.29414-1-ansuelsmth@gmail.com>
- <20220718153815.29414-2-ansuelsmth@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220718153815.29414-2-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/2] Add support to identify RZ/Five SoC
+Date:   Thu, 21 Jul 2022 23:12:10 +0100
+Message-Id: <20220721221212.18491-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/07/2022 18:38, Christian Marangi wrote:
-> Pad reg addresses to 8 digit to make sorting easier.
+Hi All,
 
-Please put this patch before the patch 1/2. It makes reviewing easier.
-Otherwise:
+This patch series adds support to identify the Renesas RZ/Five SoC.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Below is the output tested on SMARC EVK based on RZ/Five SoC:
+/ # dmesg  | grep Detect
+[    0.065484] Detected Renesas RZ/Five r9a07g043 Rev 0
+/ # cat /sys/devices/soc0/family
+RZ/Five
+/ # cat /sys/devices/soc0/machine
+Renesas SMARC EVK based on r9a07g043
+/ # cat /sys/devices/soc0/revision
+0
+/ # cat /sys/devices/soc0/soc_id
+r9a07g043
+/ # 
 
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->   arch/arm/boot/dts/qcom-ipq8064.dtsi | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> index cf41d330c920..9405d6167b20 100644
-> --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> @@ -348,7 +348,7 @@ vsdcc_fixed: vsdcc-regulator {
->   
->   		rpm: rpm@108000 {
->   			compatible = "qcom,rpm-ipq8064";
-> -			reg = <0x108000 0x1000>;
-> +			reg = <0x00108000 0x1000>;
->   			qcom,ipc = <&l2cc 0x8 2>;
->   
->   			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
-> @@ -389,7 +389,7 @@ tsens_calib_backup: calib_backup@410 {
->   
->   		qcom_pinmux: pinmux@800000 {
->   			compatible = "qcom,ipq8064-pinctrl";
-> -			reg = <0x800000 0x4000>;
-> +			reg = <0x00800000 0x4000>;
->   
->   			gpio-controller;
->   			gpio-ranges = <&qcom_pinmux 0 0 69>;
-> @@ -571,7 +571,7 @@ IRQ_TYPE_EDGE_RISING)>,
->   
->   		l2cc: clock-controller@2011000 {
->   			compatible = "qcom,kpss-gcc", "syscon";
-> -			reg = <0x2011000 0x1000>;
-> +			reg = <0x02011000 0x1000>;
->   			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
->   			clock-names = "pll8_vote", "pxo";
->   			clock-output-names = "acpu_l2_aux";
+Cheers,
+Prabhakar
 
+Lad Prabhakar (2):
+  dt-bindings: soc: renesas: renesas,rzg2l-sysc: Document RZ/Five SoC
+  soc: renesas: Identify RZ/Five SoC
+
+ .../soc/renesas/renesas,rzg2l-sysc.yaml       | 56 +++++++++++++------
+ drivers/soc/renesas/Kconfig                   | 10 ++++
+ drivers/soc/renesas/renesas-soc.c             | 14 +++++
+ 3 files changed, 63 insertions(+), 17 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
