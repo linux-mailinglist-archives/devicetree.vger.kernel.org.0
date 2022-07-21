@@ -2,147 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36DF657CA9F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 14:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F5E57CAB3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 14:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232366AbiGUM3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 08:29:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37082 "EHLO
+        id S232164AbiGUMea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 08:34:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231263AbiGUM3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 08:29:15 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF9E24BE8
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 05:29:13 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id a11so948770wmq.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 05:29:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=aEBXeOqzEfCGJOy0QN7fqFcmVzIuK7L6CPfXl8vaOWY=;
-        b=kCfusNrP9wy2rFtaAHi9JEhVpBHay0oK4pfNjMxGTaYiB0TfZhDRq+fyk5tEddKs/L
-         /oMfWRIuOiNEsWEAk/S1gj0IV4eAMCWG6CBJiCDz6HsTyNZvCHm1o3PiPRcLBuaf1Isg
-         sMgSrg/8V2r3uv6IopWW16+56y8Wx/LkpyE3oNYpWd86WM5ufEbUtGQi1yTsX2/yuzIZ
-         I8zypHFBPwii3eejrL8oXcWAA3eBLN7VlQTwPVFGXHwIVtFlleN+d3Bu/yWh9CzQBnrF
-         Tj0sLeqieIbYXl0mCLzrexz3OQBJ6RlXnM3e0arK2AlgjcvkMMSQqBjm9OzQXmxHff90
-         LfeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=aEBXeOqzEfCGJOy0QN7fqFcmVzIuK7L6CPfXl8vaOWY=;
-        b=R14dPhvdhhelegb0s9T/4hOJTC/d7RjwB2h62ivU3AP6vJmHMx5xpslmw6dq57W+/3
-         jNHiE3JCwfjyeBG6XGlFc4zhXQSb7geZu/G/7/MVDhmSBMCadHIj/u4K3pysvrTHsLKU
-         ausJTZ4W8ahLKGoaG6PKXEvID7TDcQZIibf5nPFlSWyX2T+2sYRYjnMhCy+shiAN2hTv
-         aA+7JRv43RxfRPwTQ9oL1u3+IQSOhP+Vae6PJPpIgmbBKI9iH53HLsok6/oqKK9OZH1L
-         bpDNPhL5EMBC4G3nD31So+as6eXLmpm3mjHlsU2SuUYCVgpSO9StQrAK/9A+ytvOB7Co
-         RQkw==
-X-Gm-Message-State: AJIora/svatRVNIdLKElsTRN2dnt3SaV5Kt4fIAxHuTshLf+H4eX/wpJ
-        QSeiHEZtumT9VTxXaAIKmSNAUQ==
-X-Google-Smtp-Source: AGRyM1velcrh/86jqbLl0mh9+0XSu3+oOjqbdPXHW0eId6FGMw9jNMuZ9fKcQBQYswVx4Cmi7ojFug==
-X-Received: by 2002:a05:600c:17c7:b0:3a3:f1:148c with SMTP id y7-20020a05600c17c700b003a300f1148cmr8378112wmo.32.1658406551551;
-        Thu, 21 Jul 2022 05:29:11 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id l37-20020a05600c1d2500b003a33227e49bsm1501272wms.4.2022.07.21.05.29.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 05:29:11 -0700 (PDT)
-Message-ID: <f60a90fc-4780-de95-34a2-771fb68a342a@linaro.org>
-Date:   Thu, 21 Jul 2022 13:29:09 +0100
+        with ESMTP id S233645AbiGUMe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 08:34:29 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDDFC74E39
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 05:34:27 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6D98E496;
+        Thu, 21 Jul 2022 14:34:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1658406865;
+        bh=4u/Wl5mxuWl6k4D4roY6y5SIN2NN8QO64TNR6Sq5plw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vfw7Et/zkla/2ATtBzgqfBnnlCaex0XfbZjJ4o5nxj0tlsMtamhGc5pKQN1UT2gNX
+         UAw7jQZRrBsV5TsBRi0wX4M4BIkamT0pv/k+u3gYk3z2T6Ea3JSR3K4WYJgOC8acVb
+         DLV59PwlcMxGR0vNwpchrctr/SGHj1KAPSvkfQUI=
+Date:   Thu, 21 Jul 2022 15:34:23 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org, robert.foss@linaro.org,
+        dri-devel@lists.freedesktop.org,
+        Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH] dt-bindings: vendor-prefixes: add Densitron
+Message-ID: <YtlHz1+zLR2oi7cK@pendragon.ideasonboard.com>
+References: <20220721030327.210950-1-marex@denx.de>
+ <YtjnFxA66V6bMePa@pendragon.ideasonboard.com>
+ <0b4927f7-f1e4-60a8-1eaf-6d4cbc38daec@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 0/4] Switch on IMX577 on RB5 with a new CCI fix
-Content-Language: en-US
-To:     Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
-        robert.foss@linaro.org, todor.too@gmail.com, agross@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     vladimir.zapolskiy@linaro.org, mchehab@kernel.org,
-        robh+dt@kernel.org, krzk+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, mmitkov@quicinc.com, jgrahsl@snap.com,
-        hfink@snap.com
-References: <20220524140207.2758605-1-bryan.odonoghue@linaro.org>
- <1c596650-177c-e3be-feb0-4c5f00196589@foss.st.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <1c596650-177c-e3be-feb0-4c5f00196589@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0b4927f7-f1e4-60a8-1eaf-6d4cbc38daec@denx.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 12:38, Benjamin Mugnier wrote:
-> Hi Bryan,
-> 
-> On 24/05/2022 16:02, Bryan O'Donoghue wrote:
->> V2:
->>
->> - Adds fix for bug identified by Vladimir
->>    The CCI i2c_adapter_add() and pm_runtime_enable() are racy.
->>    This is a generic problem not related to the rb5/imx577 but, for the sake
->>    of our conversation/review's context I'll add it into this series.
->> - Include Vladimir's camcc patch
->>    I've also opted to include Vladimir's disable of camcc to make the enable
->>    of it in my patchset logical.
->> - Move address/size cells Konrad
->> - Remove newline in pin definitions - Konrad
->> - Remove sensor 'status = "okay"' - Konrad
->> - Add comment to qrb5165-rb5.dts re: imx412 and imx577 difference - Konrad
->> - Move pin definitions to 8250 dtsi - Vladimir
->> - Drop power domain from sensor definition - Vladimir
->> - Correct to "add to cam2" not "cam1" in commit log - bod
->>
->> To make verification of the CCI race eaiser I've provided a defconfig both
->> with and without modules enabled.
->>
->> Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-24-05-22%2bimx577-rb5
->> Link: https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-24-05-22%2bimx577-rb5-compiled-in
->>
->> git diff linaro/linux-next-22-05-22+imx577-rb5 linaro/linux-next-24-05-22+imx577-rb5
->>
->> V1:
->> Linux-next now has everything we need to switch on this sensor both in the
->> qcom DTS and in the imx412 driver.
->>
->> After this, no further dts or driver work is required to capture images on
->> the RB5.
->>
->> Here's a bootable linux-next with a kernel config. I added Vladimir's
->> power-domain changes on-top to verify nothing breaks for me.
->>
->> https://git.linaro.org/people/bryan.odonoghue/kernel.git/log/?h=linux-next-18-05-22%2bimx577-rb5
->>
->> Bryan O'Donoghue (3):
->>    i2c: qcom-cci: Fix ordering of pm_runtime_xx and i2c_add_adapter
->>    arm64: dts: qcom: sm8250: camss: Define ports address/size cells
->>    arm64: dts: qcom: qrb5165-rb5: Enable the IMX577 on cam2
->>
->> Vladimir Zapolskiy (1):
->>    arm64: dts: qcom: sm8250: Disable camcc by default
->>
->>   arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 60 ++++++++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/sm8250.dtsi     | 39 +++++++++++++++
->>   drivers/i2c/busses/i2c-qcom-cci.c        | 14 ++++--
->>   3 files changed, 108 insertions(+), 5 deletions(-)
->>
-> 
-> I successfully tested this series with the st-vgxy61 sensor instead of the imx577. I can't provide comments on the device tree patch for the imx577 in 4/4.
-> For patches 1/4, 2/4, and 3/4:
-> 
-> Tested-by: Benjamin Mugnier <benjamin.mugnier@foss.st.com>
-> 
-> 
-> Thanks again for your work.
+Hi Marek,
 
-Appreciated.
+On Thu, Jul 21, 2022 at 02:24:57PM +0200, Marek Vasut wrote:
+> On 7/21/22 07:41, Laurent Pinchart wrote:
+> > On Thu, Jul 21, 2022 at 05:03:27AM +0200, Marek Vasut wrote:
+> >> Densitron is a manufacturer of LCD panels.
+> >> https://www.densitron.com
+> >>
+> >> Signed-off-by: Marek Vasut <marex@denx.de>
+> >> Cc: Guido Günther <agx@sigxcpu.org>
+> >> Cc: Jagan Teki <jagan@amarulasolutions.com>
+> >> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >> Cc: Linus Walleij <linus.walleij@linaro.org>
+> >> Cc: Rob Herring <robh+dt@kernel.org>
+> >> Cc: Sam Ravnborg <sam@ravnborg.org>
+> >> Cc: Thierry Reding <thierry.reding@gmail.com>
+> >> ---
+> >>   Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >>   1 file changed, 2 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >> index 88859dd4040ee..6277240536b44 100644
+> >> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >> @@ -312,6 +312,8 @@ patternProperties:
+> >>       description: Dell Inc.
+> >>     "^delta,.*":
+> >>       description: Delta Electronics, Inc.
+> >> +  "^densitron,.*":
+> > 
+> > How about "dsn", to follow the practice of using stock names as vendor
+> > prefixes ?
+> 
+> Is there any benefit to that ? All I can see is that it's making DTS 
+> less clear and more difficult to read. It is easy to map "densitron" to 
+> "densitron" when it is spelled out like so in the DT, but it sure isn't 
+> immediately obvious that "dsn" means "densitron" without extra look up. 
+> And even that extra look up of "dsn" does not return densitron, but some 
+> woodworking company and other totally unrelated results.
 
-I'll V3 this series once we sort out the naming of the imx sensor.
+I don't know where that practice originates from, and if it's still the
+recommended naming scheme these days. All I know is that it was the
+recommended scheme at some point. I expect Rob will be able to tell
+which name is best.
 
-https://patchwork.kernel.org/project/linux-media/list/?series=660483
+-- 
+Regards,
+
+Laurent Pinchart
