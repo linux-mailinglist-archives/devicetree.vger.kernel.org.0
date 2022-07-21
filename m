@@ -2,70 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AEE357C165
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 02:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C45E57C189
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 02:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232105AbiGUAHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 20 Jul 2022 20:07:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45486 "EHLO
+        id S229898AbiGUAYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 20 Jul 2022 20:24:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231845AbiGUAHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 20:07:41 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C9BF74DF8
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 17:07:39 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id pc13so64255pjb.4
-        for <devicetree@vger.kernel.org>; Wed, 20 Jul 2022 17:07:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version;
-        bh=EfIL12OxfgmOFV8ZonE5YcyqYSuiie4HgQ6WdtHhs50=;
-        b=hzNH5lQCe6oHS1pk9qm94WvfXcjd9hkemHYufzOby3JkwOncsgswfUgO8HZvh1zTH1
-         treJmXeQYUmOaN+U4HRQ+jtA+JRK7DrJHcXcY5oU7hMMh8+HKvGFc+jU+59Mc1SQxU/s
-         yoPiSDoNaOJJOtuRtpH2qyQvM1lPxF8gAgg70=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
-        bh=EfIL12OxfgmOFV8ZonE5YcyqYSuiie4HgQ6WdtHhs50=;
-        b=UR/1Jc0W9lNeIgZQXMbV8naMbfhaPLDW+EzHCj8xwxk8a4GI5qpJAq4oE2V8VuYHNd
-         QRPLNtFQzgCxlGsXAlY+rWFSAVi9qAiPWov6PmFnVSYGZfeCTASyfra0FOXC51qK5o0H
-         liFreXIEjnRlRCsP71NBOqtcSTaVKYG3t/M0QMgVwTc/MLqTvWwKREJ4t9beECIjtzHC
-         lKxehWW3ycJyjHYnxzSx7AMtvsSPoidR/639MZUcrWifzaqgvoBpEykY4sEH/86dSjhv
-         MobLvWj5GvpnSqdqyf8cbBNufmCjwgjxn1Jv6OThC2vJaUirQQPIedOdSdMGF94qH5wx
-         MFsQ==
-X-Gm-Message-State: AJIora+InDs4prEq4difSBa/i5MPF/OCgz3qLph6PubYSRaEzPlF0K8w
-        BRQvahP4IedGCVEruCzQ+7d3IA==
-X-Google-Smtp-Source: AGRyM1uHRttcx9nkqLOC79W99Cm/YBfWnJ6nopr+ZpNGcmSLoiz3haMaJZVHQQrJbzRulfZSzzh/oA==
-X-Received: by 2002:a17:90b:3a8b:b0:1f0:127:360d with SMTP id om11-20020a17090b3a8b00b001f00127360dmr8241043pjb.64.1658362058488;
-        Wed, 20 Jul 2022 17:07:38 -0700 (PDT)
-Received: from ubuntu-22.localdomain ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id c26-20020a634e1a000000b004114cc062f0sm68708pgb.65.2022.07.20.17.07.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Jul 2022 17:07:37 -0700 (PDT)
-From:   William Zhang <william.zhang@broadcom.com>
-To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229532AbiGUAYL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 20 Jul 2022 20:24:11 -0400
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2132.outbound.protection.outlook.com [40.107.114.132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CD784F1A6;
+        Wed, 20 Jul 2022 17:24:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AmtVYOlvfKMMZ4H+Xp3Z+xnG3ROU2IjVCLI8jXaEf9WhH0i8V9clXZ09N/IesRh0VvQViO4l3EyVTlNQLoV2ij1fg+u7HGhBGtbDG8XUgm5ZokTpxDg3VqVq/SEPYi739+6Bf2y5CI4JchAKKs3wjQ1bSGO2pDL6jQ4Zo5smMDo3WYxgCKb7Aix52rrlHkBGIG7vhRIlc9uOjF7uYC1/uTozFc3VtowM6FlYADJP79vI1mIxjTktw4srjZC2QCPfmmm6Eelld7szxhE7wUWq9v/Of2okB651l2DDnBEXYGLap1yQpg7IUH24CpUTW5xwy26K1erC02YjZIO8YvfYYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sLX/dIga/QzPRZxwyS+jCimsbNXJsLPR0Kf4kav+7ys=;
+ b=PEaCdmDZsjzpypc5YzGmqpPzzAf9+1zX2CCynsr2cj9s5JxXl6QgIb6d94ZXISTOe+lGqgUr4sC5exuJ8v334pwuX16C9xoVgjnIHf0TPXvdGY+fanvDQP7dbQ25sjPDuh2ReyM2vLJaeLJ0CmoFOTa1WAGe4eCuORc5aNbyHQRQEA7UMiXAk4WXNxnnOUc3nLii60p2HUXoKo3oTiRkG+SBy+egi5ZW5wLnSJ0JKyt+ZmhP6Zar+FLTz/lgLPWdgg6S2h08Y0lusRGFscLqkUeJRlGYfcUwa0CRkP2j+1RQhUAHdtPV3uqHQ4qoMgbDpxBjkNSxz9LlHJijZ044EQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sLX/dIga/QzPRZxwyS+jCimsbNXJsLPR0Kf4kav+7ys=;
+ b=WZVkxiGJEXwO9xZA0oSzDpPpSdobxu5nLgJ5PwTpLuAtn/d4iqfyrjNHOINyv2E4zps4+HREzl+6t1sIEZ1BX2b7cCLQtvisMj3TG8ey3cj11uS6vK0lkkyU8pAXsizh/qnl5NdZXd92hCKVeniXda4DGI4PCeHXl/Odnsi/WDY=
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ (2603:1096:404:8028::13) by TYCPR01MB8440.jpnprd01.prod.outlook.com
+ (2603:1096:400:15d::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19; Thu, 21 Jul
+ 2022 00:24:07 +0000
+Received: from TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::307d:7cc:2021:f45f]) by TYBPR01MB5341.jpnprd01.prod.outlook.com
+ ([fe80::307d:7cc:2021:f45f%7]) with mapi id 15.20.5438.024; Thu, 21 Jul 2022
+ 00:24:07 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [RESEND PATCH 5/9] arm64: dts: Add BCM4908 generic board dts
-Date:   Wed, 20 Jul 2022 17:07:31 -0700
-Message-Id: <20220721000731.29597-1-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.34.1
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 0/6] arm64: dts: renesas: Add support for R-Car H3Ne-1.7G
+Thread-Topic: [PATCH 0/6] arm64: dts: renesas: Add support for R-Car H3Ne-1.7G
+Thread-Index: AQHYnA/exUX6k3GRwkCPjZNDXJ8pEa2H9Y+A
+Date:   Thu, 21 Jul 2022 00:24:07 +0000
+Message-ID: <TYBPR01MB5341FE860C3BCC8D6E764854D8919@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+References: <cover.1656072871.git.geert+renesas@glider.be>
+In-Reply-To: <cover.1656072871.git.geert+renesas@glider.be>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 74e029de-b119-433c-45c2-08da6aaf5319
+x-ms-traffictypediagnostic: TYCPR01MB8440:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EzVYx64zkoCYLtrU40MmmZDR0oJDADHFt86BwhOkUlzZ2FHI1EXEnlozYRpO26WNLgM5mkuO0+4f2/qMybBIfgaGd1C9f2dnPgCLlRvMIdD/F+aC91ZKyQlkbsUYaUywC2PQ/W46ACvm/v6yJjUAFlZloIbacsI/C6QKnXeppMFm0QShNO62sKlQ60N831u7xD7SlBzMzLuPM1+hsZezH5dMLHFMcfBBiCnKSHCvJg5ED1od+w7dIYnaAFtFWvTIJ+0+e0VV7IezHTBVMYYwG4or/plaZ9PwaqwVfdmg2C8GaKqoHYOZ10xvrbZifIp2r/0d50GHLRzWRV3GfAlVBV1orivv66PScz65enp7pyvvPRKp8ecp9rH7CAQEV++fai975zR7vGnZ09QqCb+dd0xD9NzdmPkDUv6KhAY76Nzf+IMQp2QXzru+cgcbkJivOPTRyeNRSF9fgXTSiitpYJ8wdrLtti2wy+Lf3DvjjoM5X4iuGUyIi2DhqcLfO3FbRcRbTkZuUrsZV9dI4/il9qv7HMjD9fCO4fiAnxaSB1prjKx87kVLPRtJDbFIe6fV9SirPqpRAmbQhtjUkZGuUmnlKg0BSj9vdk5Rd+zjJmHAbiPc6Cy/JFwutcuHwwxLw1zXIERscuZAaHipLsxN7fwD7N1CS1+V6oYkOed3ImK32QfeenSq2sKh56IHzhd8jr1b5Uif2UWldUOMMPgkFUofkdukV9d1sWD2tMb+BTHz1fukl81wWkC1SKe5AMeTT/bsOZSGa/f3R+FnYX1sRCXMSowZz0eoaHGy6AkKAP9W7A3eQZtRQIqeZT2QYXztnQFUHA9Oye7HnqNkS1q2Yg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYBPR01MB5341.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(366004)(396003)(376002)(136003)(346002)(7696005)(6506007)(9686003)(66946007)(66556008)(76116006)(478600001)(8676002)(64756008)(66476007)(66446008)(4326008)(2906002)(8936002)(54906003)(86362001)(316002)(52536014)(110136005)(33656002)(41300700001)(5660300002)(38070700005)(55016003)(186003)(71200400001)(38100700002)(122000001)(32563001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?VFx9gH0uvY6FB+zGuA7S9jsWPWsHg0bnmnPoDk2BuOC8RVrK7ezFr7d1NzMC?=
+ =?us-ascii?Q?BpjNwCcIACUGTvout9jKDS5KyCD5aVlrwIe6LY5pgz4r3HPF3o2DmjMYwVkc?=
+ =?us-ascii?Q?bpBn0Vr2j5H3BnrbH5VXPGVoqhLZH7rmd9zsI6FqB3aM0wH1RGysgeSmCoB9?=
+ =?us-ascii?Q?Sd3BDVMZ/nVdzdmn8JtlAZfBYJKngEOULBOLhTAOK4mXNiZbqBv4+KO0MyJB?=
+ =?us-ascii?Q?QtDo2wXBwQrIc8vw/9JxL07UoqR0KX0nTIrtUGWayHRiw182yevlVeuHYXZ9?=
+ =?us-ascii?Q?EUziaYQo5ongTlKiJZ3lqkMHxYq+5y3xPP/0Ya7zZZj6QEj8SOYemoxdE/6b?=
+ =?us-ascii?Q?ReKG71lyfegLM7GPNii7dVTzQQts7/ReyHjHA+igdUuDG7ri7h5WbzWbide/?=
+ =?us-ascii?Q?i3MtMBmLRQnR0jUI5siBRYgB0rpPO0nWLVAf+9SJrYEijwFzp5sd+8TGNPLS?=
+ =?us-ascii?Q?TSNBqmFYWmxSK4mso87DyVN5QO8sbf2IOzOAvorDLApih2YnALMBoMpBZl+j?=
+ =?us-ascii?Q?vFGZVI8RfVwu8hNom4NLabq3Ae7pF+ew4Qm0YovFhD930x3g5A5+fJVrdgyB?=
+ =?us-ascii?Q?cAdz9CYdwbgBzfo9AGG0/N6o9AMqOgq6sxdH1CQULhrvwFQuD+1v/btFto+u?=
+ =?us-ascii?Q?qf2cAG2ZPGjtmQyCSdFCYY9CLegvcWsYLT5lgs0RKiw9LRYu9RpiM/7yjfHM?=
+ =?us-ascii?Q?Xw0nEcwxVH6akkJdBLFK2VC6WWx4NDHuPDrpSAtv/dl5T74gEb5P+VcFtW07?=
+ =?us-ascii?Q?6T69ixJV0wEA90pLPdVLaiqUViL+wKo7uIt1PZ9RBNhMHr4XncAYaLvYwaps?=
+ =?us-ascii?Q?360ka9WhN4nWYaO3Sa62PQmdQp34UcwHsS9QNkRFRPU/1eFVbVznNiqQHhVx?=
+ =?us-ascii?Q?LiJPKD69UED0faurTF3lb6FBTCSPfxOSn5WTgF6Q/aFX+0hW5Tv1Z40QCf83?=
+ =?us-ascii?Q?YJxfJlk16Bejz2I8/yAvE9zyyWTNaEpfaSRWibTawlMsfgldS2JgP7seGw41?=
+ =?us-ascii?Q?06ZXf6xQnpcQMIMxwwLAmdAfa8g/w5lbI2UThcN78P/J8OsD/fUrSOB8pEZx?=
+ =?us-ascii?Q?JMxiXfzxq1Uv3SzOs2fHOFT6NZVtF+eYnOnCbuu3z7wlq6Lb/iQz1pWkyWoL?=
+ =?us-ascii?Q?pfapT6dm02tPzCFFBllOTTsMLtptbDhnQntb9FREOMPQ2UDGrn9EcgaWOLnn?=
+ =?us-ascii?Q?yYzq8Z0/qNeUXGXJpgjvl6BdcA0AUcS9e02ZHXABT8E+ySoKbOayC90FVu8L?=
+ =?us-ascii?Q?90VdskDFHofV19uzHRGMD2I3Q5h5U037+7JcOOD1Ngf/d9OfvNfaWmyO7dXe?=
+ =?us-ascii?Q?rfaojICCkiR0QSYZbND6TNMA6x8n6GZjpJsXj6hu3zcv0IdU9Ftjgomgs0+P?=
+ =?us-ascii?Q?7N2r2SqkyAvywdqjVwU69+dS40kJMDutyIb7pNEeWswTdFlEHBRNsN9bfNBe?=
+ =?us-ascii?Q?7DzzJjDokhexgYMp9Cu+1FU+xQu/pP4vn6h9k9rVhdcJd6xzBcDxjDZVBXqL?=
+ =?us-ascii?Q?5/w8IOgy7Zeq+vE/DxsGidDhy/XdVOJ+toEH4hYJv0tDzOLRP8Eh8mepucai?=
+ =?us-ascii?Q?4M2Jiod2FnpEqFiankkDoNa/B274lXquy70quEK3WG3YfghXeiIBcbKnxbMQ?=
+ =?us-ascii?Q?u0/AAukjnIGWG7u7cchD3IKrns5d4zBA7PdgU+mYY8kdcDxMPjT/qvIbytv5?=
+ =?us-ascii?Q?iat/Rg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000006ca74a05e44581f2"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MIME_NO_TEXT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYBPR01MB5341.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74e029de-b119-433c-45c2-08da6aaf5319
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jul 2022 00:24:07.2163
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ytj8r4kIxNXWJUg2Wxn0cuIz9ivIIdZU83A6VYAOI8YEGVsA1pGF9KZzba+WIfDgPILy+Rdc9jsm8ySUkz93Kdh6j7P71EDZqwq0aErklCtZZQgZBQz3UzvFuqIQdYYJ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8440
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,149 +123,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000006ca74a05e44581f2
-Content-Transfer-Encoding: 8bit
+Hi Geert-san,
 
-Add generic bcm94908.dts file.
+Thank you for the patches!
 
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
----
+> From: Geert Uytterhoeven, Sent: Wednesday, July 20, 2022 5:08 PM
+=20
+> 	Hi all,
+>=20
+> This patch series adds support for the R-Car H3Ne-1.7G SoC (R8A779MB),
+> which is a different grading of the R-Car H3-N (R8A77951) SoC.  Board
+> support includes the Salvator-XS and H3ULCB development boards, and the
+> H3ULCB+Kingfisher board combo.  Note that unlike R-Car H3Ne (R8A779M8),
+> R-Car H3Ne-1.7G does support running the Cortex-A57 CPU cores at 1.7
+> GHz[1].
+>=20
+> The last 3 patches are marked RFC, as I do not know which boards
+> will actually be produced with this SoC.
 
- arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |  1 +
- .../boot/dts/broadcom/bcmbca/bcm94908.dts     | 30 +++++++++++++++++++
- 2 files changed, 31 insertions(+)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dts
+I'm sorry I should have informed you about this topic before.
+Like r8a779m8 (R-Car H3Ne), we don't have any actual board for now.
+So, please drop these supports.
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-index d30fa75f0611..27741b71ba9e 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-@@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_BCMBCA) += \
- 				bcm4906-tplink-archer-c2300-v1.dtb \
- 				bcm4908-asus-gt-ac5300.dtb \
- 				bcm4908-netgear-raxe500.dtb \
-+				bcm94908.dtb \
- 				bcm4912-asus-gt-ax6000.dtb \
- 				bcm94912.dtb \
- 				bcm963158.dtb \
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dts
-new file mode 100644
-index 000000000000..fcbd3c430ace
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm4908.dtsi"
-+
-+/ {
-+	model = "Broadcom BCM94908 Reference Board";
-+	compatible = "brcm,bcm94908", "brcm,bcm4908", "brcm,bcmbca";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x08000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
--- 
-2.34.1
+Best regards,
+Yoshihiro Shimoda
 
-
---0000000000006ca74a05e44581f2
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
-fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
-+EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
-abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
-ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
-W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
-1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHrFvoeFRyGgYv3ytp/jPFG0Q4Ek
-GUFPwigWvjE4GY2SMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDcyMTAwMDczOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQCaZqZppVDAAk1uMhn0sGXuWSjHMnuKLc5bXpgwLe/jS/xG
-llc2YC++K14ikTGS8VCFWeuq4t4xeXXlXbKPCs/AIZLDV2KnACj3CgH17o1HaWBXg4rvrIwOKT+B
-nVWNT/MunA2qNtj5sd6wP+2ytrG1OBquFhZxH0MtnLzKwlXyoxTVWFsY8lN8sRD8vdNWSUgNrwlh
-lARPHon94rXxWGXAy8PL1C4AHlPw4nleoHO4JRT01eBeMjToVizaoxtfTgvtvQSwG3EkovAP0AgG
-q9QW8Fk4Hw/xApTTwSqobZIZnjcFhrq8+ojVoc9z3sI5GROp6lL3mcFUkEZITBl0L6rN
---0000000000006ca74a05e44581f2--
+> This has been prototyped and tested on Salvator-XS with R-Car H3 ES2.0.
+>=20
+> I plan to queue (most) of this in renesas-devel for v5.21.
+>=20
+> Thanks for your comments!
+>=20
+> [1] [PATCH] arm64: dts: renesas: r8a779m8: Drop operating points above 1.=
+5 GHz
+>=20
+<snip URL>
+>=20
+> Geert Uytterhoeven (6):
+>   dt-bindings: arm: renesas: Document R-Car H3Ne-1.7G SoC and boards
+>   soc: renesas: Identify R-Car H3Ne-1.7G
+>   arm64: dts: renesas: Add Renesas R8A779MB SoC support
+>   arm64: dts: renesas: Add support for Salvator-XS with R-Car H3Ne-1.7G
+>   arm64: dts: renesas: Add support for H3ULCB with R-Car H3Ne-1.7G
+>   arm64: dts: renesas: Add support for H3ULCB+Kingfisher with R-Car
+>     H3Ne-1.7G
+>=20
+>  .../devicetree/bindings/arm/renesas.yaml      |  9 ++++
+>  arch/arm64/boot/dts/renesas/Makefile          |  4 ++
+>  .../boot/dts/renesas/r8a779mb-salvator-xs.dts | 53 +++++++++++++++++++
+>  .../boot/dts/renesas/r8a779mb-ulcb-kf.dts     | 19 +++++++
+>  arch/arm64/boot/dts/renesas/r8a779mb-ulcb.dts | 53 +++++++++++++++++++
+>  arch/arm64/boot/dts/renesas/r8a779mb.dtsi     | 12 +++++
+>  drivers/soc/renesas/renesas-soc.c             |  1 +
+>  7 files changed, 151 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb-salvator-xs.dts
+>  create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb-ulcb-kf.dts
+>  create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb-ulcb.dts
+>  create mode 100644 arch/arm64/boot/dts/renesas/r8a779mb.dtsi
+>=20
+> --
+> 2.25.1
+>=20
+> Gr{oetje,eeting}s,
+>=20
+> 						Geert
+>=20
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>=20
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+> 							    -- Linus Torvalds
