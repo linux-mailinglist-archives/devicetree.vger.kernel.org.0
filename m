@@ -2,83 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41F7E57D245
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 19:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F95F57D250
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 19:21:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229511AbiGURPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 13:15:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44402 "EHLO
+        id S229616AbiGURV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 13:21:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229475AbiGURPC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 13:15:02 -0400
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D655286C29;
-        Thu, 21 Jul 2022 10:15:01 -0700 (PDT)
-Received: by mail-il1-f182.google.com with SMTP id n13so1120411ilk.1;
-        Thu, 21 Jul 2022 10:15:01 -0700 (PDT)
+        with ESMTP id S229436AbiGURVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 13:21:25 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 963732AC65
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 10:21:23 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id bk26so3197052wrb.11
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 10:21:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod.ie; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CmRxLVY9HuAG01Hu57i7xdSoJXhylPjj1q4eOpHaFLo=;
+        b=bTWUL7ViGNTVsC1FoDdx7RIkNJcFCZWlEiGsHbnuE+6RcUfQUpWssDkNFN/E4Dx2wc
+         S4QXVjfjyFqP9+KLSIg5alE48GBHoasHbTMPJJ0c97khOC+DXmIWPq2rA3KGqSRTo7p4
+         n8mLzpupa6zIRkP3mXzEPKc7oNuUDwZQS6IeeCevOwLeEEHk0HGihjt1E4h2e/ZsCPSr
+         OFWfOIOnC57+2bM9UB5fjBwRAyLdAL0Ufmt8j/AnA31QIl/1DKwDTY+jF3XJm5y3dAaT
+         MGToqoriWdQxlLDA6F/h5BRFAtA7/i6u7VNrC/qJ30AmrwL441/sKzUFEs3LtvjdWtel
+         zT8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yJxhvKyCtA/e4QO3jHTio9jgVbrA3arFF7/VVpN4X2k=;
-        b=zSf1B4aVu47dLju/fWwNX/wBGahXYHrOguRVEvunTgsALL0cZS22/IVW/t4iebuiYo
-         R+4NUaMJVWFLC0IsEuF3a6iW55ZhYUdrmmdgFOE9eVAKepz/R8thIirAY6In+1lfzyy+
-         wtiGP+sRivD1JJiBSMdCXRxeWVX9vije6Cbgai1Uiv8ah4aHuUvYNXtM9FWqk1Wma9Qx
-         wehjFet+3CPuTvA/G/U/hy69bCHFRFqdLgX3TU48yg8n/UOCfHMdSx2Lt9nfYpx5oYvA
-         KKW4ZWSbDZD00cgyoUIZbzCQjHpxHdFWvt8HtSQM55zF5lK0CwcBn+C6HtUiy2QUE5zn
-         u+AA==
-X-Gm-Message-State: AJIora98VYeEcUiMCPLu7Zx3zrJlkTNxPx3h9qrgPbFjQGmYeSsSPngy
-        rcen01jyy57C1Tbg9uA6iw==
-X-Google-Smtp-Source: AGRyM1tnnfG1TCsGYrv/PXcMBH0LzwSzc4qJXcCsniADuAUKDOQSk4uPOJUpcEkvooNO2vK2yKwpng==
-X-Received: by 2002:a05:6e02:1a6f:b0:2dc:8875:617b with SMTP id w15-20020a056e021a6f00b002dc8875617bmr22474872ilv.303.1658423701048;
-        Thu, 21 Jul 2022 10:15:01 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id g188-20020a025bc5000000b00331c58086d8sm998799jab.147.2022.07.21.10.14.59
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CmRxLVY9HuAG01Hu57i7xdSoJXhylPjj1q4eOpHaFLo=;
+        b=rYMtg80+0J0SE16bF3PWXKi5bKUeIfJOHf5F4EFHqYFdFSLzyfr+sHb2mkEBrKlrgk
+         utH6Bh8kGzuvNG9Io3JwCdxMvHqX+tRMzjaiVm8+NpYeIihtADuWTjF2CY8Jc5m+wepp
+         XSILu7LxwLMMUjd36T0UKJFuUvKSCBlBnChgCuU1oF2Ae2sWISBC1AOpX50TA1Z1ctmx
+         bhKcqBfou3PlcxhHsQSIFSpiVjTJTWzBnvYNVABaserYSvvWl/JLaZMZmKSpc4A1wcUa
+         BWZKyqqK4XvM7oHqd3ye7iHKoXALFSqA4ZLA0VuTHMfigRUauvNC+fQjeqMSlkmS5TfM
+         Dzpg==
+X-Gm-Message-State: AJIora+OYboeqJXGIg261CBagkINV4DkoltxliqhPM7eP43OIPpEmls6
+        S4Cp/wWSYWJnxjRNaM36OMiS03LsjMSxyhE/
+X-Google-Smtp-Source: AGRyM1teRPSq/gbNJAmKT5r8AGTamBTGc9+ZMkZBVbSD6pG2a1PnAJYJzQxDdZRMi/sHSn+IxunABg==
+X-Received: by 2002:a05:6000:719:b0:21e:4530:c558 with SMTP id bs25-20020a056000071900b0021e4530c558mr8808003wrb.243.1658424081913;
+        Thu, 21 Jul 2022 10:21:21 -0700 (PDT)
+Received: from henark71.. ([109.76.125.251])
+        by smtp.gmail.com with ESMTPSA id e24-20020a05600c219800b003a2cf1535aasm2455697wme.17.2022.07.21.10.21.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 10:15:00 -0700 (PDT)
-Received: (nullmailer pid 1584463 invoked by uid 1000);
-        Thu, 21 Jul 2022 17:14:58 -0000
-Date:   Thu, 21 Jul 2022 11:14:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Vincent Knecht <vincent.knecht@mailoo.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-leds@vger.kernel.org, hns@goldelico.com,
-        Rob Herring <robh+dt@kernel.org>, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 02/12] dt-bindings: leds: is31fl319x: Document
- variants specificities
-Message-ID: <20220721171458.GA1584266-robh@kernel.org>
-References: <20220712100841.1538395-1-vincent.knecht@mailoo.org>
- <20220712100841.1538395-3-vincent.knecht@mailoo.org>
+        Thu, 21 Jul 2022 10:21:21 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     u.kleine-koenig@pengutronix.de
+Cc:     conor.dooley@microchip.com, daire.mcnamara@microchip.com,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee.jones@linaro.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        robh+dt@kernel.org, thierry.reding@gmail.com
+Subject: [PATCH v7 0/4] Microchip soft ip corePWM driver
+Date:   Thu, 21 Jul 2022 18:21:06 +0100
+Message-Id: <20220721172109.941900-1-mail@conchuod.ie>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220712100841.1538395-3-vincent.knecht@mailoo.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 12 Jul 2022 12:08:28 +0200, Vincent Knecht wrote:
-> Add si-en compatibles for all chip variants and add conditionals
-> depending on compatibles to document variants specs:
-> - possible reg addresses
-> - whether audio-gain-db is supported or not
-> - maximum number of leds
-> - led-max-microamp values
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> ---
->  .../bindings/leds/issi,is31fl319x.yaml        | 84 ++++++++++++++++++-
->  1 file changed, 82 insertions(+), 2 deletions(-)
-> 
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Applied, thanks!
+Hey Uwe, all,
+
+(~same cover as v5)
+
+Added some extra patches so I have a cover letter this time.
+You pointed out that I was overriding npwmcells in the driver and I
+realised that the dt & binding were not correct so I have added two
+simple patches to deal with that. The dts patch I will take in my tree
+once the binding is applied.
+
+For the maintainers entry, I mentioned before that I have several
+changes in-flight for it. We are late~(ish)~ in the cycle so I doubt
+you'll be applying this for v5.20, but in the off chance you do - I
+would be happy to send it (with your Ack) alongside an i2c addition
+that is "deferred". I rebased it ~today~ on top of an additional change
+so it may not apply for you.
+
+In your review of v3, you had a lot of comments about the period and
+duty cycle calculations, so I have had another run at them. I converted
+the period calculation to "search" from the bottom up for the suitable
+prescale value. The duty cycle calculation has been fixed - the problem
+was exactly what I suspected in my replies to your review. I had to block
+the use of a 0xFF period_steps register value (which I think should be
+covered by the updated comment and limitation #2).
+
+Beyond that, I have rebased on -next and converted to the devm_ stuff
+in probe that was recently added & dropped remove() - as requested.
+I added locking to protect the period racing, changed the #defines and
+switched to returning -EINVAL when the period is locked to a value
+greater than that requested.
+
+I'll take the dts change myself once the rest is merged.
+
+Thanks,
+Conor.
+
+Changes from v6:
+- Dropped an unused variable that I'd missed
+- Actually check the return values of the mutex lock()s
+- Re-rebased on -next for the MAINTAINERS patch (again...)
+
+Changes from v5:
+- switched to a mutex b/c we must sleep with the lock taken
+- simplified the locking in apply() and added locking to get_state()
+- reworked apply() as requested
+- removed the loop in the period calculation (thanks Uwe!)
+- add a copy of the enable registers in the driver to save on reads.
+- remove the second (useless) write to sync_update
+- added some missing rounding in get_state()
+- couple other minor cleanups as requested in:
+https://lore.kernel.org/linux-riscv/20220709160206.cw5luo7kxdshoiua@pengutronix.de/
+
+Changes from v4:
+- dropped some accidentally added files
+
+Conor Dooley (4):
+  dt-bindings: pwm: fix microchip corePWM's pwm-cells
+  riscv: dts: fix the icicle's #pwm-cells
+  pwm: add microchip soft ip corePWM driver
+  MAINTAINERS: add pwm to PolarFire SoC entry
+
+ .../bindings/pwm/microchip,corepwm.yaml       |   4 +-
+ MAINTAINERS                                   |   1 +
+ .../dts/microchip/mpfs-icicle-kit-fabric.dtsi |   2 +-
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-microchip-core.c              | 371 ++++++++++++++++++
+ 6 files changed, 387 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/pwm/pwm-microchip-core.c
+
+
+base-commit: a3fd3ca134d9485a0f9a7bdcffd7f8bae27f79d3
+-- 
+2.37.1
+
