@@ -2,96 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EDDC57D465
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 21:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69BF457D472
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 21:58:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbiGUTwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 15:52:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60522 "EHLO
+        id S231970AbiGUT6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 15:58:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229844AbiGUTwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 15:52:19 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96BB02183F;
-        Thu, 21 Jul 2022 12:52:18 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id e69so2184014iof.5;
-        Thu, 21 Jul 2022 12:52:18 -0700 (PDT)
+        with ESMTP id S229693AbiGUT6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 15:58:37 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8379D6371
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 12:58:36 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id ss3so4910425ejc.11
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 12:58:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mHKWUmFgUfuZc36J9hbJA8Kke1gZwOYkNn4MmRRQ64Q=;
+        b=beAHVgvfeXkhJLLqR7EMnPg46bA2u+iFLwngja2Te+ki3gsPMJlt+qGKCn63WN9SLp
+         1XWqRoiVTca7Vy9/skOyyqzKasfEB7HFvZsfS6SAcEzZf6jVN4Yu1IcuE4qWWnMHFjBC
+         fPVcDvyptwdijAuWxXrvk1ONHaad+BKsTmbTo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9qU3lShC423RO9jUaFHy+GEk0cB+opAvk6TkHNpI+xU=;
-        b=KZKB2m3WSJUG9LKZ3sR/Ie2L87r6w4ZcHTj8yX5RmEiL/4vaK/GAgwut5NWyA7+u3h
-         r1RTluXKFrge5WeeCZ1TWN4RTzcgZXCDum4A3Td8g6W4YQL/DvxFFGxX0NTJgAAopJ09
-         2yqBmXipH4d+ZExhZOiN9DI4dL46XG1w5yS+2WZsfQuAQYfRr3tlf1tS8KkggaLZ/xu8
-         hkIpLUEjutp5j8tIrbm9JY/MHAZmQTCM5YbdSZHlI0hxU6CK97NluYiWW0dBkY7KV1Dy
-         /7I3vYJMbyNpvwQf6L9WaloxgBAUDHg684rafOoMCVkiB5Itp+/sBbo+dRt6+Jd2GQRZ
-         Wmbg==
-X-Gm-Message-State: AJIora96+mn46UR7GdPCgzXzO0sE5rkYQAYd774kcUe+01Mlp4uqpwP0
-        aPzpWfQJ1/qBlGDqhCB/+g==
-X-Google-Smtp-Source: AGRyM1vtb/Pgq6vsjHn+wt+hYE2q0Nb6Yn4IDlr2B93dVsctunQcYCRjbeahSAuZpzfSUQBA5UXtzQ==
-X-Received: by 2002:a05:6638:3881:b0:33c:c785:37d1 with SMTP id b1-20020a056638388100b0033cc78537d1mr98828jav.40.1658433137724;
-        Thu, 21 Jul 2022 12:52:17 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id y6-20020a92d206000000b002dc10fd4b88sm1026857ily.29.2022.07.21.12.52.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 12:52:17 -0700 (PDT)
-Received: (nullmailer pid 1821727 invoked by uid 1000);
-        Thu, 21 Jul 2022 19:52:15 -0000
-Date:   Thu, 21 Jul 2022 13:52:15 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v3 6/6] dt-bindings: dma: Convert Qualcomm BAM DMA
- binding to json format
-Message-ID: <20220721195215.GA1817266-robh@kernel.org>
-References: <20220417210436.6203-1-singh.kuldeep87k@gmail.com>
- <20220417210436.6203-7-singh.kuldeep87k@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mHKWUmFgUfuZc36J9hbJA8Kke1gZwOYkNn4MmRRQ64Q=;
+        b=P6UShti/arZDDeOttZMtQltwr5SGDM0onJNFVtwu6tRj2YYHLjHQi3vjvNgxpqjPBu
+         VHEX+w3SA+0JOoOJLM9P7WqcM8VyDbFkF1YrNGX4Co4ZHyWkEE5awV87KH9kGl0WNqfB
+         RJMG63L4coXal+v4J0HARHy/jfB+S1tKm2ZKTFzn3iOph8FaO3/WvqbmRZjLmb7HfJ6L
+         r31slgNkL5kMV9p7MH2BIoJEj2nrLSgqZC6349g7zZx3qVHsV2UvsRoBwA8fSDsi81D7
+         +YYbfn3PPc4+PRz5d3iLJI1cK8QmGCvpPVW0Sa8Oxfii9lIRJTvM6W9PqFHA5abQbqJW
+         4JOg==
+X-Gm-Message-State: AJIora9RcZGiY1XomuwtsgQarvWSdBugiO1MpoMsECHV5FieEx9rWl3b
+        iKTF/Fwhe1p4ZxwPujeMxNKIs+6BR3+oJR7c5rU=
+X-Google-Smtp-Source: AGRyM1tn6r0d3ssenLXQQG0cGSzIVzItLqR5SmxD/loSmiSfRfqqfpO8GKhRcy7YwReheALfD3Iuqg==
+X-Received: by 2002:a17:907:9613:b0:72b:68df:8ada with SMTP id gb19-20020a170907961300b0072b68df8adamr173991ejc.31.1658433514679;
+        Thu, 21 Jul 2022 12:58:34 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com. [209.85.221.51])
+        by smtp.gmail.com with ESMTPSA id ku8-20020a170907788800b007262a5e2204sm1152915ejc.153.2022.07.21.12.58.33
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jul 2022 12:58:34 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id bk26so3743458wrb.11
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 12:58:33 -0700 (PDT)
+X-Received: by 2002:a05:6000:2c9:b0:21d:bd7d:3af6 with SMTP id
+ o9-20020a05600002c900b0021dbd7d3af6mr34835wry.405.1658433513568; Thu, 21 Jul
+ 2022 12:58:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220417210436.6203-7-singh.kuldeep87k@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20220718073104.146985-1-jinghung.chen3@hotmail.com> <SG2PR03MB5006A2ADC6ED22199D8C88D9CC8C9@SG2PR03MB5006.apcprd03.prod.outlook.com>
+In-Reply-To: <SG2PR03MB5006A2ADC6ED22199D8C88D9CC8C9@SG2PR03MB5006.apcprd03.prod.outlook.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 21 Jul 2022 12:58:21 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WTe0ArnF2U43Nmy8Ri-CnqMCssVGcWiPUiLaHzS8zVUQ@mail.gmail.com>
+Message-ID: <CAD=FV=WTe0ArnF2U43Nmy8Ri-CnqMCssVGcWiPUiLaHzS8zVUQ@mail.gmail.com>
+Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: Add LTE SKUs for sc7280-villager family
+To:     Jimmy Chen <jinghung.chen3@hotmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alan Huang <alan-huang@quanta.corp-partner.google.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 18 Apr 2022 02:34:36 +0530, Kuldeep Singh wrote:
-> Convert Qualcomm BAM DMA controller binding to DT schema format using
-> json schema.
-> 
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> ---
-> v3:
-> - Address Krzysztof Comments
-> - qcom,ee as required property
-> - Use boolean type instead of flag
-> - Add min/max to qcom,ee
-> - skip clocks, as it's users are not fixed
-> ---
-> v2:
-> - Use dma-cells
-> - Set additionalProperties to false
-> ---
->  .../devicetree/bindings/dma/qcom,bam-dma.yaml | 97 +++++++++++++++++++
->  .../devicetree/bindings/dma/qcom_bam_dma.txt  | 52 ----------
->  2 files changed, 97 insertions(+), 52 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
->  delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> 
+Hi,
 
-This is the 11th most warned on (168 warnings) for missing a schema, so 
-I've implemented my only comment and applied. It seems neither this one 
-or the other attempt at converting are getting respun.
+On Mon, Jul 18, 2022 at 12:31 AM Jimmy Chen <jinghung.chen3@hotmail.com> wrote:
+>
+> This adds LTE skus for villager device tree files.
+>
+> Signed-off-by: Jimmy Chen <jinghung.chen3@hotmail.com>
+> ---
+>
+> Changes in v6:
+> - Remove v5 accidentally added sc7280-herobrine-herobrine-r1-lte.dts
+>
+> Changes in v5:
+> - Reorder '.dtb' in Makefile
+> - Put the "interconnects" line back
+>
+> Changes in v4:
+> - Reorder 'status' last
+>
+>  arch/arm64/boot/dts/qcom/Makefile               |  2 ++
+>  .../boot/dts/qcom/sc7280-chrome-common.dtsi     | 11 -----------
+>  .../boot/dts/qcom/sc7280-herobrine-crd.dts      |  1 +
+>  .../dts/qcom/sc7280-herobrine-herobrine-r1.dts  |  1 +
+>  .../boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 17 +++++++++++++++++
+>  .../qcom/sc7280-herobrine-villager-r0-lte.dts   | 14 ++++++++++++++
+>  .../qcom/sc7280-herobrine-villager-r1-lte.dts   | 14 ++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts         |  1 +
+>  8 files changed, 50 insertions(+), 11 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
+>
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 7e6a4d7ef3266..bd43d984f69fc 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -103,7 +103,9 @@ dtb-$(CONFIG_ARCH_QCOM)     += sc7180-trogdor-r1-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-crd.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-herobrine-r1.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-villager-r0.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-villager-r0-lte.dtb
+>  dtb-$(CONFIG_ARCG_QCOM)        += sc7280-herobrine-villager-r1.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)        += sc7280-herobrine-villager-r1-lte.dtb
 
-Rob
+Whoops! Looks like you'll need a v7. There's a subtle typo above.
+"ARCH" doesn't end with a "G".
+
+-Doug
