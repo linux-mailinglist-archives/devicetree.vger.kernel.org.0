@@ -2,73 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 116BB57CC70
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF8A357CC7E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229854AbiGUNpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 09:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50760 "EHLO
+        id S229985AbiGUNrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 09:47:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229703AbiGUNos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:44:48 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9509A85FA1
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:43:17 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id k19so1856044lji.10
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:43:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Ugu9+BQebh8oUbesVLf90yINOUSbCYM1Wph6Cxi19ho=;
-        b=hXxAmCBBdRcBuuUkQLQSHKPd2ik/hT1YZYCeZmSJk9huBTf3a0arBXeFb7bF9Rn7VF
-         VrjIii7a8o32Dq2yKaDvkYj9KnRI0RD19vZeFvwWTQzF/HOomGFPZJoAGmXeju6DLfL/
-         WfQia+PqLMj0RaxGoDlWsQLm+b5sTBLKDmQK991mcjTMi7/tsRSjKsiNuVeitNaYOObe
-         Buyb+plCaEy46IjVmktGsm6cj6WflDn6xHbMD43Qxl2UsUhF630e7GhjhKtxil2BLMb1
-         rJgP0d95lcJI76Fwo831+3CzFQXiSfcdajFnGz4N/f1KLDTk1fmfgXxrIdeXrluvc27R
-         lk+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Ugu9+BQebh8oUbesVLf90yINOUSbCYM1Wph6Cxi19ho=;
-        b=0m4LytMUjeZJNkNxOfqT7FKJylcwq0RsSyTUhhTtgrjYaBXFv+GOg+qCakXh6+SIxK
-         KNzoQYXHckbsYRcU9oH5OPeDulqoA7P0Gqwf8SfIPHm77NIq8rZYiZLskFVwJXtPOPpT
-         8eWW5s2H6E3e+3ntW17uH/+EKmJSy6wP/rXJKUUC0hgKU8tJgzXpBQhau9pLKd/ctq4u
-         A7qdaSG3OasqIMIe+dNJLKbY9VJ1Od7xhYFXW0c0LCdBVgxp+RzJW5PLAuzZsCe6ACwh
-         lvt0nLvapV+vk50xy8oKnG4pEHGlHe+l16FRiUO0wOAoHmu5tMGEquxQlkQARQb29T9x
-         wF2Q==
-X-Gm-Message-State: AJIora/0ivli+SQViynDCJkpBdy6TSOfNlnLsyyxdOeCpprUctHN6TBY
-        GBpDHeQVx0az6dHeQG81rzby6A==
-X-Google-Smtp-Source: AGRyM1sk6Lk3HTpTVzJJhaufs5oRoDVVpjxoq9YhDCd6efuK2WP78J5IE1t7GiZ0he9gOf6PkljFhg==
-X-Received: by 2002:a2e:b74e:0:b0:25d:d62a:9033 with SMTP id k14-20020a2eb74e000000b0025dd62a9033mr3370071ljo.105.1658410996048;
-        Thu, 21 Jul 2022 06:43:16 -0700 (PDT)
-Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
-        by smtp.gmail.com with ESMTPSA id a21-20020ac25e75000000b0048a6fba9d77sm443202lfr.177.2022.07.21.06.43.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 06:43:15 -0700 (PDT)
-Message-ID: <5c90ef96-969c-728a-3987-5793956c5224@linaro.org>
-Date:   Thu, 21 Jul 2022 15:43:13 +0200
+        with ESMTP id S229989AbiGUNrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:47:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A6E80516;
+        Thu, 21 Jul 2022 06:46:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E995561F30;
+        Thu, 21 Jul 2022 13:46:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93B17C3411E;
+        Thu, 21 Jul 2022 13:46:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658411204;
+        bh=b8gG2bCPlj2x4Xkb//2x1j95onaGj9Tc/6iMX2KqQyg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QPdX1inLAlzEf+AVLSF8qSECPFUBNdfpxXbaLxP1D7/LfY3lWSJyStkFGIdiA2yL3
+         5uU4aKBPoLTzCQ6rxWif/Z5QCRqOtXrmUP3wV4zP0yHUiYKm4U+0id02wWX83Eeslw
+         HH4iTsYSkWxeu9vTJzujmH/rq0DBaXK5MDY2z674k51PmkEiRZO6Kzq1NGJn3sJZKT
+         i5fR3C9CQLr5ijj56WpXEt655wZiKp3++Ue0DFas6LAcPMrpYckvYzFisw0IxkU7mt
+         BQRemM9ieRGqiWTqDwkUYHF3+goBN/Rne0Ko7cqf+aZbJqxIygWp4KiiVF+6ao2J60
+         6h66mtbaF64VQ==
+Date:   Thu, 21 Jul 2022 14:46:31 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        openbmc@lists.ozlabs.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] spi: npcm-pspi: add full duplex support
+Message-ID: <YtlYt/5VKIblUHBP@sirena.org.uk>
+References: <20220721101556.118568-1-tmaimon77@gmail.com>
+ <20220721101556.118568-2-tmaimon77@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/1] dt-bindings: rtc: nxp,pcf85063: Convert to DT
- schema
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220721133303.1998356-1-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220721133303.1998356-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5SDnULtcW3k8gJQC"
+Content-Disposition: inline
+In-Reply-To: <20220721101556.118568-2-tmaimon77@gmail.com>
+X-Cookie: Exercise caution in your daily affairs.
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,41 +58,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 15:33, Alexander Stein wrote:
-> Convert the NXP PCF85063 RTC binding to DT schema format.
-> 
-> Add 'interrupts' and 'wakeup-source' as this device has an interrupt
-> which was not documented, but is in use.
-> 'clock-output-names' and '#clock-cells' are added as well, those were
-> probably missed when adding clkout support in commit 8c229ab6048b
-> ("rtc: pcf85063: Add pcf85063 clkout control to common clock framework")
 
-Thanks for adding it here, this sounds fine but brought my attention to
-interrupts and quartz-load. It seems that only rv8263 supports
-interrupts. In the same time rv8263 work only with 7000
-quartz-load-femtofarads.
+--5SDnULtcW3k8gJQC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If that's correct, you need to put "allOf" after "required" and inside
-"if:then:" restricting it. For rv8263 interrupts:true and quartz as
-const 7000, for else: interrupts:false.
+On Thu, Jul 21, 2022 at 01:15:55PM +0300, Tomer Maimon wrote:
 
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> Krzysztof, thanks for your review.
-> 
-> Changes in v2:
-> * Sorted compatible list
-> * Mentioned new #clock-cells and clock-output-names properties in commit message
-> * Removed 'interrupt-names', not needed/used anyway
-> * Fixed quartz-load-femtofarads defintion/description
-> 
->  .../devicetree/bindings/rtc/nxp,pcf85063.txt  | 32 --------
->  .../devicetree/bindings/rtc/nxp,pcf85063.yaml | 73 +++++++++++++++++++
->  2 files changed, 73 insertions(+), 32 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
->  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
-> 
+> The NPCM PSPI handler, on TX-buffer not null, would perform a dummy read
+> but did not save the rx-data, this was valid only for half duplex.
 
-Best regards,
-Krzysztof
+> This patch adds full duplex support for NPCM PSPI driver by storing all
+> rx-data when the Rx-buffer is defined also for TX-buffer handling.
+
+This doesn't seem to entirely correspond to what the patch does, nor to
+what the driver currently does?  I can't see any dummy read code in the
+current driver.
+
+>  static void npcm_pspi_send(struct npcm_pspi *priv)
+>  {
+>  	int wsize;
+> -	u16 val;
+> +	u16 val =3D 0;
+> =20
+>  	wsize =3D min(bytes_per_word(priv->bits_per_word), priv->tx_bytes);
+>  	priv->tx_bytes -=3D wsize;
+> =20
+> -	if (!priv->tx_buf)
+> -		return;
+> -
+>  	switch (wsize) {
+>  	case 1:
+> -		val =3D *priv->tx_buf++;
+> +		if (priv->tx_buf)
+> +			val =3D *priv->tx_buf++;
+>  		iowrite8(val, NPCM_PSPI_DATA + priv->base);
+>  		break;
+
+These changes appaear to be trying to ensure that when _send() is called
+we now always write something out, even if there was no transmit buffer.
+Since the device has been supporting half duplex transfers it is not
+clear why we'd want to do that, it's adding overhead to the PIO which
+isn't great.  This also isn't what the changelog said, the changelog
+said we were adding reading of data when there's a transmit buffer.
+Similar issues apply on the read side.
+
+AFAICT the bulk of what the change is doing is trying make the driver
+unconditionally do both read and writes to the hardware when it would
+previously have only read or written data if there was a buffer
+provided.  That's basically open coding SPI_CONTROLLER_MUST_TX and
+SPI_CONTROLLER_MUST_RX, if that's what the hardware needs then you
+should just set those flags and let the core fix things up.
+
+> +       /*
+> +        * first we do the read since if we do the write we previous read=
+ might
+> +        * be lost (indeed low chances)
+> +        */
+
+This reordering sounds like it might be needed but should have been
+mentioned in the changelog and is a separate patch.
+
+--5SDnULtcW3k8gJQC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLZWLYACgkQJNaLcl1U
+h9A4AQf9F0Ou6ruUsB2l9FBA8z/dhz178MbimOt9osjMD/omwua1unnf5WZyjUak
+oknbfxdzONnxJ5jKFsMSkILGJhu9PPjZlrHfemFI6oc+K3CftKWOJ4yx3ICwgb6B
+KCna1abwEAMAaPqZH6G/mOl4JtVv9o5ne8WQCdJroHW1jUTGJE4gRPSG9hxjp9vy
+n1RhgLiOsvpMCDH4jmi1fwoyej2tWkq/PEpIzIAga+T7OR/Qcd4dhyrQRdnxDTOb
+RLRi7egoVTZ3/I6wIytwA2+vBZE1UgYdMktPGJ0NRFa7F4j62miVk/lWI5Zwlj7/
+zRq/nEIMVxUjXEB67rDSegd0erDq8w==
+=rN1K
+-----END PGP SIGNATURE-----
+
+--5SDnULtcW3k8gJQC--
