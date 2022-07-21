@@ -2,132 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBFAC57CBFA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06D4B57CC00
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 15:33:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbiGUNcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 09:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41446 "EHLO
+        id S229655AbiGUNdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 09:33:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbiGUNcq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:32:46 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E4A16113C
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:32:44 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id z13so2267316wro.13
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 06:32:44 -0700 (PDT)
+        with ESMTP id S229649AbiGUNdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 09:33:09 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A68AD5A44B;
+        Thu, 21 Jul 2022 06:33:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=YiChl6swvjdNJt4BL7PNpumaZjt7l2oeMRF/EgqNKOU=;
-        b=KJ71mRTHjcMfVwNP//9xcFCcC1OBo4d3n+D7jV0IXQn0jU0RVFvVjC+UzZNv1hTdkp
-         rbmJXMz0Cu6ENMhNmXpJjh3tMTUGkoMJXCiFqjpV7/C65puZDUJoXZaTu+INoXqWSzQt
-         XUc7JDuo4yVxIUSYpe+yCYeirNvHEtCeW/+w7Ke0TDXVFJCe59VOt3CvLZjPYtPna3kv
-         7JRi9aSPPvzaLaeaz/Zc2688kIV6P75gNSkAQxx87aI1yH5KD+XIMBgq2Qt3RXa7Gnme
-         gON1/dS8zJBUQfAmwgwfxiEkOblleELw+kE41VyCRsu+jBdKgnJqFMWPDifbHFHFV5V8
-         4PAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=YiChl6swvjdNJt4BL7PNpumaZjt7l2oeMRF/EgqNKOU=;
-        b=AoYIwG3gOH14/YzbDw9WoaA37+IMQ6XFy4yJ+yQyz9E6cTTdd86GiGiOgPCjC6cbQr
-         K8r9ZJ8/2Cq2+SWLfPoxzyA3I/Otmltkr2+FtgxqEmBohc+zsAR04SJQHXt6xj/AvTNg
-         R2ehaIM6++u9XYfAsiTUZ4XgIpG1GM+70BBIZeWTjsA6I3VVsns683hpZrVTYIXF3wM/
-         Q+lNwjv63EHIviCOPLQVwQBz9q7d8HcU1fu06VnG/dzqoJ+iq6etbmSrRPsaX90a5ACT
-         1edD0SJ4TMiWTBFbfcrKBJnXK06M6Soi7MDjTmAh5INulIToM8/blkjx0X0gebQvUkhe
-         7Ehw==
-X-Gm-Message-State: AJIora9vKKx1B1A1UMBb0VGDXnWsAqtrzv0GLOSbmUFMklOxRgE6Iwlc
-        zAnSFG3UY190fNefUEiWBj8c8w==
-X-Google-Smtp-Source: AGRyM1sl5Re6/quP4ss/24GJdvjVTANw3tDDCmdmbHWbEAkcAXG92PF0UHBuWneayHvdT1EvhLLaHQ==
-X-Received: by 2002:a05:6000:1a88:b0:21d:aa97:cb16 with SMTP id f8-20020a0560001a8800b0021daa97cb16mr35374955wry.97.1658410362731;
-        Thu, 21 Jul 2022 06:32:42 -0700 (PDT)
-Received: from localhost ([82.66.159.240])
-        by smtp.gmail.com with ESMTPSA id o15-20020a05600c510f00b003a30fbde91dsm6560975wms.20.2022.07.21.06.32.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 06:32:42 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1658410388; x=1689946388;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=nD1yX5ksgvMbluiuTfJuNMjBc2L4C0xuK0HtgkCRt84=;
+  b=bBOVhSOuu9PFwHBdwG3A4wu1G6xPaBCIxUmNWei0NMvYJurBxORkmoUQ
+   iN6A5LbLoOLgIC/CLeYp7lo5pdFpYDD7U9zqhHHYG6wGySjkMEJh8nT4i
+   AdLShmfGj5qvP9XrTz5PUqq6cPBQV6LamJwyZwPRY4Cu7Z+FvArE6O1WF
+   akOHXU6KHy5emwGbJkySA0Z9XDIcFUaG0khVlIaXJU0dblIFdI7unCL3p
+   f91UXkoFm123nXB/AxquIsxXYGKmnbuB0UwkWOHSWEkncMPbE+Du+hCxi
+   QIatZQbsk9CgHK+6yaZrxb1U5oVwdg0qVtRwgdMSm3cHBiii5kk7CGu1E
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,289,1650924000"; 
+   d="scan'208";a="25187733"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 21 Jul 2022 15:33:05 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 21 Jul 2022 15:33:05 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 21 Jul 2022 15:33:05 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1658410385; x=1689946385;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=nD1yX5ksgvMbluiuTfJuNMjBc2L4C0xuK0HtgkCRt84=;
+  b=jR88F0Qplp6lrtY14Jp36BVo9vBgyQW1l975Z+Zy2zqdUK3i84xFFpLK
+   8k0QZ4pmTOQwt+/4GWKbDvD3K3D9wDeM6W+/b7GtTNN7o6o5BpbzaoAXU
+   IORr7f3nr1H/fX4epFNndOCmoYobmnOBC4DsC8CeDVTudfTQaB4KeGdm0
+   qobpBLloZMifpsmzBCc2ftg81yJpwZPS0hTJjkhupp9XMRCOU1ERqf4Ml
+   7C4PURp8Q17N17xe4w/aNnHSiqpiZ7xsmirl36EYTu7HbNt882ARre7xw
+   QEKt0KFHPxkfmc1V+jcSxJSyqqmygt0KzFDpmKdTNjTVHfuIzdeZRF6Yl
+   g==;
+X-IronPort-AV: E=Sophos;i="5.92,289,1650924000"; 
+   d="scan'208";a="25187732"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 21 Jul 2022 15:33:05 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 82303280056;
+        Thu, 21 Jul 2022 15:33:05 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 3/6] dt-bindings: mediatek,mt6779-keypad: add
- mediatek,double-keys
-In-Reply-To: <98ec7967-d007-46d7-ef54-aa41426b5f9f@linaro.org>
-References: <20220720-mt8183-keypad-v1-0-ef9fc29dbff4@baylibre.com>
- <20220720-mt8183-keypad-v1-3-ef9fc29dbff4@baylibre.com>
- <98ec7967-d007-46d7-ef54-aa41426b5f9f@linaro.org>
-Date:   Thu, 21 Jul 2022 15:32:41 +0200
-Message-ID: <87r12eh9qe.fsf@baylibre.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/1] dt-bindings: rtc: nxp,pcf85063: Convert to DT schema
+Date:   Thu, 21 Jul 2022 15:33:03 +0200
+Message-Id: <20220721133303.1998356-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 20, 2022 at 19:26, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Convert the NXP PCF85063 RTC binding to DT schema format.
 
-> On 20/07/2022 16:48, Mattijs Korpershoek wrote:
->> MediaTek keypad has 2 modes of detecting key events:
->> - single key: each (row, column) can detect one key
->> - double key: each (row, column) is a group of 2 keys
->> 
->> Currently, only single key detection is supported (by default)
->> Add an optional property, mediatek,double-keys to support double
->> key detection.
->
-> You focus here on driver implementation and behavior, but should rather
-> focus on hardware, like - in such setup two keys are physically wired to
-> one (row,column) pin.
+Add 'interrupts' and 'wakeup-source' as this device has an interrupt
+which was not documented, but is in use.
+'clock-output-names' and '#clock-cells' are added as well, those were
+probably missed when adding clkout support in commit 8c229ab6048b
+("rtc: pcf85063: Add pcf85063 clkout control to common clock framework")
 
-Understood. Will reword in v2 to reflect that this is hardware
-description, not a software feature.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+Krzysztof, thanks for your review.
 
->
->> 
->> Double key support exists to minimize cost, since it reduces the number
->> of pins required for physical keys.
->> 
->> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
->> 
->> diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
->> index ca8ae40a73f7..03c9555849e5 100644
->> --- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
->> +++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
->> @@ -49,6 +49,12 @@ properties:
->>      maximum: 256
->>      default: 16
->>  
->> +  mediatek,double-keys:
->
-> Do you think there could be another MT keypad version with triple-keys?
+Changes in v2:
+* Sorted compatible list
+* Mentioned new #clock-cells and clock-output-names properties in commit message
+* Removed 'interrupt-names', not needed/used anyway
+* Fixed quartz-load-femtofarads defintion/description
 
-Of all the SoC's i've worked on (MT8167, MT8183, MT8365, MT8195) I've
-never seen a "triple-keys" keypad.
+ .../devicetree/bindings/rtc/nxp,pcf85063.txt  | 32 --------
+ .../devicetree/bindings/rtc/nxp,pcf85063.yaml | 73 +++++++++++++++++++
+ 2 files changed, 73 insertions(+), 32 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
 
->
->> +    description: |
->> +      use double key matrix instead of single key
->> +      when set, each (row,column) is a group that can detect 2 keys
->> +    type: boolean
->> +
->>  required:
->>    - compatible
->>    - reg
->> 
->
->
-> Best regards,
-> Krzysztof
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+deleted file mode 100644
+index 217b7cd06c11..000000000000
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
++++ /dev/null
+@@ -1,32 +0,0 @@
+-* NXP PCF85063 Real Time Clock
+-
+-Required properties:
+-- compatible: Should one of contain:
+-	"nxp,pca85073a",
+-	"nxp,pcf85063",
+-	"nxp,pcf85063a",
+-	"nxp,pcf85063tp",
+-	"microcrystal,rv8263"
+-- reg: I2C address for chip.
+-
+-Optional property:
+-- quartz-load-femtofarads: The capacitive load of the quartz(x-tal),
+-  expressed in femto Farad (fF). Valid values are 7000 and 12500.
+-  Default value (if no value is specified) is 7000fF.
+-
+-Optional child node:
+-- clock: Provide this if the square wave pin is used as boot-enabled fixed clock.
+-
+-Example:
+-
+-pcf85063: rtc@51 {
+-	compatible = "nxp,pcf85063";
+-	reg = <0x51>;
+-	quartz-load-femtofarads = <12500>;
+-
+-		clock {
+-			compatible = "fixed-clock";
+-			#clock-cells = <0>;
+-			clock-frequency = <32768>;
+-		};
+-};
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
+new file mode 100644
+index 000000000000..bf86c9786b0f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/nxp,pcf85063.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PCF85063 Real Time Clock
++
++maintainers:
++  - Alexander Stein <alexander.stein@ew.tq-group.com>
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    enum:
++      - microcrystal,rv8263
++      - nxp,pcf85063
++      - nxp,pcf85063a
++      - nxp,pcf85063tp
++      - nxp,pca85073a
++
++  reg:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 0
++
++  clock-output-names:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  quartz-load-femtofarads:
++    description:
++      The capacitive load of the quartz(x-tal).
++    enum: [7000, 12500]
++    default: 7000
++
++  clock:
++    $ref: /schemas/clock/fixed-clock.yaml
++    description:
++      Provide this if the square wave pin is used as boot-enabled
++      fixed clock.
++
++  wakeup-source: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@51 {
++          compatible = "nxp,pcf85063";
++          reg = <0x51>;
++          quartz-load-femtofarads = <12500>;
++
++          clock {
++            compatible = "fixed-clock";
++            #clock-cells = <0>;
++            clock-frequency = <32768>;
++          };
++        };
++      };
+-- 
+2.25.1
+
