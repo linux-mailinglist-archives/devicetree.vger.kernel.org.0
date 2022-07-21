@@ -2,98 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CF4E57CDDA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:39:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77D1C57CDE7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 16:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbiGUOjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 10:39:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53242 "EHLO
+        id S229624AbiGUOmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 10:42:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232113AbiGUOjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:39:07 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7698569F19;
-        Thu, 21 Jul 2022 07:39:06 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id u19so886426ilk.7;
-        Thu, 21 Jul 2022 07:39:06 -0700 (PDT)
+        with ESMTP id S229456AbiGUOmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 10:42:16 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F85083F3F
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:42:15 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id t1so3120760lft.8
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 07:42:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=thNzHvCp6cjZHmJ/ovw3Dji38lKPQpENV9BvGaehLGw=;
+        b=NEZzqSvG0pj+3+chsobD6C3nUdZDNwikBSErN2n+2h0WF2IzB2BBF8wP9rjYipkOpP
+         EUirwoSfLaOlLLI1mtfNgI7zcK0bJPumnB5rzX1tPJq6KdmfWhMoAUTm4gNAhkZNzl3f
+         VqvvbIGu2iy9d8y8qJlnM5MAcoKqIQE69h0W5NfEEA5VIbx5CNpKr4vLpFNdgit5SkPv
+         HAcZXXHXEAyVK0r0G5JPCkjPygot2GWZ3kA3NHnKinO/gx3ePADnTbIZRujbzwLyHE4s
+         61LB/wrUs18f6S7al3vk74QwWQMRAhXeHt9/dqYpXrr8m6739TmAL14/6DbG8Rv+5qi5
+         0kGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=Sm3tlB8yJNkvcnmGZzguj4nSasaetiaq3D0mjYCkJN0=;
-        b=Q+eziC9iHTKY7L9tORcfEVBuY4F4+cz9TXxFH3Ca/FpZ7c3MoS+3uYkxVzXTFpUvHF
-         OR2WhE5Nk5gkuM9ipIdZAcvLMl46EfxhhP0gsQV8oeA/D9YhF6TbcyFydOu0zX3dU9jr
-         nLZTWIC8O6u8cPXH6l9cZaqiLeEsNwlw3DpCObIl2DGDhAdHE2x7BlDnJeh34zR9bNyQ
-         T8CszXIEze6+twnayFszqSSR4CpDXlHo7TuErrKNKC4QWiR1Ul+g8BD/5Y02AO93iWF1
-         vlpxAG1Jvn0uHAHnAntUPg+kcwR6E7xxgEGT6a5byg5TNTgeOGpafibuiiWLDAn+MxhI
-         vKSw==
-X-Gm-Message-State: AJIora/QTLjhn5Fx/sQm7AwHUN/FF0yDhsLYkwn7CA+QGE8XPucyG+2x
-        fmexFgFkKvKPz7GsgUaNrg==
-X-Google-Smtp-Source: AGRyM1s3RgA4RPtEqdms0tt8gKlUtsmi8LztDesM8l1Pi2YyOtRfdM8vD2mP/jx42IXRMbzL8n5HqQ==
-X-Received: by 2002:a05:6e02:1a49:b0:2dc:7230:29fd with SMTP id u9-20020a056e021a4900b002dc723029fdmr21805427ilv.82.1658414345707;
-        Thu, 21 Jul 2022 07:39:05 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id i2-20020a6bb802000000b0067bcb28e036sm911054iof.49.2022.07.21.07.39.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 07:39:05 -0700 (PDT)
-Received: (nullmailer pid 1363458 invoked by uid 1000);
-        Thu, 21 Jul 2022 14:39:02 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     nick.hawkins@hpe.com
-Cc:     devicetree@vger.kernel.org, broonie@kernel.org, robh+dt@kernel.org,
-        verdun@hpe.com, krzysztof.kozlowski+dt@linaro.org,
-        linux@armlinux.org.uk, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        joel@jms.id.au, arnd@arndb.de
-In-Reply-To: <20220720201158.78068-3-nick.hawkins@hpe.com>
-References: <20220720201158.78068-1-nick.hawkins@hpe.com> <20220720201158.78068-3-nick.hawkins@hpe.com>
-Subject: Re: [PATCH v1 2/5] spi: dt-bindings: add documentation for hpe,gxp-spifi
-Date:   Thu, 21 Jul 2022 08:39:02 -0600
-Message-Id: <1658414342.342423.1363457.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=thNzHvCp6cjZHmJ/ovw3Dji38lKPQpENV9BvGaehLGw=;
+        b=HdA7jWSQXgWofiWJNe9xFYo7EE/LuWzz/AFrHmpIyc8aJxBM68bMPH31MEXbstlgK6
+         dWYh8Wlsc0Xk6PZh/upxd1XCfLUiR4kbVh/1/jGOZv9bGWN+57mnuiL0jelpAdryQ2Nn
+         r1gPFeK/QS43mIlOUiOVPnQG8LK5bx+aiLv3lT72CAUcurpCgGa/19yRpwUaJ2z8ybib
+         yOMev84k8dFTS2/L/A6GxvgEpkYBwa9zfJxhKFMNE1EQyChW0GpZquM4GAw+J2ztGaZP
+         tE1HiUeTVCXkjFdTRynOTeoFx5//Z6AvFaui3kN1yqNoqK8PFoWzVt5P3jlwJ01ODu/K
+         6kBw==
+X-Gm-Message-State: AJIora8EGGeR0OY7dNPgBruRCITCXdqIWUxJ8rDwX/+FDBT1Yxt4a/Vr
+        tMj8lr7fc2IWIoyubdP0ZaD57b+byxqbqZr7
+X-Google-Smtp-Source: AGRyM1uIljE0KwtqdtHRfg15leMXg4zhq3dLayvmUALbiIqC47x9oo2th7HQ2mKA6TYbjXKCJ8GXuA==
+X-Received: by 2002:a05:6512:23a5:b0:489:d513:55a9 with SMTP id c37-20020a05651223a500b00489d51355a9mr21566452lfv.409.1658414533637;
+        Thu, 21 Jul 2022 07:42:13 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id h24-20020a05651c125800b0025bc79181b4sm558765ljh.36.2022.07.21.07.42.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jul 2022 07:42:12 -0700 (PDT)
+Message-ID: <e1a8e417-3c4d-a11b-efce-e66bc170d92c@linaro.org>
+Date:   Thu, 21 Jul 2022 16:42:11 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH net-next v3 03/47] dt-bindings: net: Convert FMan MAC
+ bindings to yaml
+Content-Language: en-US
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        Paolo Abeni <pabeni@redhat.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220715215954.1449214-1-sean.anderson@seco.com>
+ <20220715215954.1449214-4-sean.anderson@seco.com>
+ <1657926388.246596.1631478.nullmailer@robh.at.kernel.org>
+ <1b694d96-5ea8-e4eb-65bf-0ad7ffefa8eb@seco.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1b694d96-5ea8-e4eb-65bf-0ad7ffefa8eb@seco.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jul 2022 15:11:55 -0500, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+On 17/07/2022 00:47, Sean Anderson wrote:
+> On 7/15/22 7:06 PM, Rob Herring wrote:
+>> On Fri, 15 Jul 2022 17:59:10 -0400, Sean Anderson wrote:
+>>> This converts the MAC portion of the FMan MAC bindings to yaml.
+>>>
+>>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>> ---
+>>>
+>>> Changes in v3:
+>>> - Incorporate some minor changes into the first FMan binding commit
+>>>
+>>> Changes in v2:
+>>> - New
+>>>
+>>>   .../bindings/net/fsl,fman-dtsec.yaml          | 145 ++++++++++++++++++
+>>>   .../devicetree/bindings/net/fsl-fman.txt      | 128 +---------------
+>>>   2 files changed, 146 insertions(+), 127 deletions(-)
+>>>   create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/fsl,fman-dtsec.example.dtb: ethernet@e8000: 'phy-connection-type', 'phy-handle' do not match any of the regexes: 'pinctrl-[0-9]+'
+>> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
+>>
+>> doc reference errors (make refcheckdocs):
 > 
-> Create documentation for the hpe,gxp-spifi binding to support access to
-> the SPI parts
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> ---
->  .../bindings/spi/hpe,gxp-spifi.yaml           | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
-> 
+> What's the correct way to do this? I have '$ref: ethernet-controller.yaml#'
+> under allOf, but it doesn't seem to apply. IIRC this doesn't occur for actual dts files.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+You do not allow any other properties than explicitly listed
+(additionalProp:false). If you want to apply all properties from other
+schema you need to use unevaluated.
 
-yamllint warnings/errors:
+https://elixir.bootlin.com/linux/v5.19-rc7/source/Documentation/devicetree/bindings/writing-bindings.rst#L75
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/hpe,gxp-spifi.example.dtb: spi@200: Unevaluated properties are not allowed ('interrupt-parrent' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Best regards,
+Krzysztof
