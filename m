@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE15C57C68B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A91F57C691
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 10:39:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232446AbiGUIj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 04:39:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38648 "EHLO
+        id S232519AbiGUIjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 04:39:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230367AbiGUIjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:39:07 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB4222BC6
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:39:06 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id w185so1143391pfb.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:39:06 -0700 (PDT)
+        with ESMTP id S231814AbiGUIjO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 04:39:14 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E3FD7E831
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:39:13 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id 23so1026328pgc.8
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 01:39:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=eXXIpwZAECFfkkq0izZcTMvjDDE7E9zOtvkutXm7Brc=;
-        b=aBKcuDATeqJ6S40tt4tUzTTaKgwREE6DI+zA2hAKLd9NBOsKSAs3HIwGnKI7wmSkXe
-         U7gDEInqQ13ZeqyDEqRt5/5/gu+Z9eN64DlbcNgVOnuvZQdM7wB4im6ExToTvBkuDJuE
-         U2wLXnb8Vw+NpbhCcCSsaA6F0OvFP3mYn08sU=
+        bh=p/BNkggYGO5wbhXNiM6UQj7ulNxqOcTRhO0RLDvuzKM=;
+        b=jdCG6+nifZGncJSVnMdZqWcPjB8hTEnufni1x24Oe2zkcR6ptHZNYFJrjGjt5OfhID
+         FH9IMr+HFxCZaLnyI2Bky2/JAJNvjn3uFpBEP8luR59eI4vrZNfvUXosVYBL4rsfH7CX
+         rxiyS8JXf6tbqMladHEzyG9kguZI0+2IFtbi4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=eXXIpwZAECFfkkq0izZcTMvjDDE7E9zOtvkutXm7Brc=;
-        b=HGRt2QCc5XZVTSf5TV0cDXzV3C2zvYEX5muH8/ktfi5oLpV9gmLipyj04EiJQ9MH5V
-         mC1CCfhMchlwNDZtgzvICySGq2PuQ1xPwNHR3g2m8c9v56zNPLeSjCGhi2ISM0ENxSPc
-         yJR9cyckT0o2zlk8hH217VBUl2Lo53HSgS6k8jw3AaE+75sHrW3bZzqtpZZ9htEzDYUn
-         GFDJBg8hjyxsIquKeiFTy7nVn5xHMQ7CO0zfOAFj6uCltBkP5vJp5rSSxPtdnfp58hPZ
-         hg8aTg8iytkI2NkBxSH/hxVS+zwE2s3tIvIJ1S8BCKN0k7lqYoLZ7h24ZSATNqht1A12
-         8opQ==
-X-Gm-Message-State: AJIora+Law4b9Q9+HjmkoPp7PUTQR6QwXzcQPqW6HAVcpoluwc5O8m7s
-        zLDZOGrpVn7l+jt36UDwxAym4g==
-X-Google-Smtp-Source: AGRyM1ssLVZNcBFN4a61tzoB2/ugdBRFTMu7lXsQHwakff7xRdUs64FPxnY8/cUbpY39PYz5bVjQ/g==
-X-Received: by 2002:a62:140e:0:b0:52b:780d:fb9d with SMTP id 14-20020a62140e000000b0052b780dfb9dmr17920385pfu.65.1658392746237;
-        Thu, 21 Jul 2022 01:39:06 -0700 (PDT)
+        bh=p/BNkggYGO5wbhXNiM6UQj7ulNxqOcTRhO0RLDvuzKM=;
+        b=H0z6fF0aZG1UlTUnoBkJuyB8dF02r2qyN2EpM09ZsAa8iBtPYV33hFQOpnZAaQ0M2C
+         4BrOyk1I01TF/6sHgqQr4Vbw7S/nzg2xRNC7q2gwSibWfxB2TfT+qGtte8sSFxwJQ64/
+         JlIboe2Jov0DpAI9TsgvZ6cUpHovUvsXBDJms+YCwh8q/2NEeNRry/m3JU1AtY/opHmo
+         HyPRh8n09ectPaNBiMuXfxz0IA01+XxKe1eUE5PoT8uYMbnD0kX5qnZlBiSxruACaJJh
+         H53sSqKvVfCKLBfVkjOuJf5zO3fg4rp7gUFzNGd/0YRu7imvxC9M7b7ZTFHztJ4PIG/5
+         flmA==
+X-Gm-Message-State: AJIora+qWAJjJkw16l/ojB4UcV0AnN06yx2Uz+OR9BkbCjd2ojSuf6yw
+        7v78xApXMmkF51Qlw6jN5vxqog==
+X-Google-Smtp-Source: AGRyM1u2dh8hcZHr6mbWIJJwSX9EOohj8nIWfo64hoGPL2tA8Bq50XE9v2BEM8Gz72vRy0bGBjk0GQ==
+X-Received: by 2002:a63:1759:0:b0:40d:5aba:4bb0 with SMTP id 25-20020a631759000000b0040d5aba4bb0mr37760805pgx.496.1658392753209;
+        Thu, 21 Jul 2022 01:39:13 -0700 (PDT)
 Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
-        by smtp.gmail.com with ESMTPSA id l18-20020a170903121200b0016cd74e5f87sm1025943plh.240.2022.07.21.01.39.03
+        by smtp.gmail.com with ESMTPSA id l18-20020a170903121200b0016cd74e5f87sm1025943plh.240.2022.07.21.01.39.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 01:39:05 -0700 (PDT)
+        Thu, 21 Jul 2022 01:39:12 -0700 (PDT)
 From:   Judy Hsiao <judyhsiao@chromium.org>
 To:     Andy Gross <agross@kernel.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -54,9 +54,9 @@ Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>
-Subject: [PATCH v4 2/3] arm64: dts: qcom: sc7280: Add sc7280-herobrine-audio-rt5682.dtsi
-Date:   Thu, 21 Jul 2022 08:38:48 +0000
-Message-Id: <20220721083849.1571744-3-judyhsiao@chromium.org>
+Subject: [PATCH v4 3/3] arm64: dts: qcom: sc7280: Include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1
+Date:   Thu, 21 Jul 2022 08:38:49 +0000
+Message-Id: <20220721083849.1571744-4-judyhsiao@chromium.org>
 X-Mailer: git-send-email 2.37.0.170.g444d1eabd0-goog
 In-Reply-To: <20220721083849.1571744-1-judyhsiao@chromium.org>
 References: <20220721083849.1571744-1-judyhsiao@chromium.org>
@@ -64,154 +64,36 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Audio dtsi for sc7280 boards that using rt5682 headset codec:
-1. Add dt nodes for sound card which use I2S playback and record
-   through rt5682s and I2S playback through max98357a.
-2. Enable lpass cpu node and add pin control and dai-links.
+Include sc7280-herobrine-audio-rt5682.dtsi in herobrine-r1
+as it uses rt5682 codec.
 
 Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
 Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
 Reviewed-by: Douglas Anderson <dianders@chromium.org>
 ---
- .../qcom/sc7280-herobrine-audio-rt5682.dtsi   | 122 ++++++++++++++++++
- 1 file changed, 122 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
+ arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
-new file mode 100644
-index 000000000000..2dbdeeb29ece
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audio-rt5682.dtsi
-@@ -0,0 +1,122 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ *
-+ * This file defines the common audio settings for the child boards
-+ * using rt5682 codec.
-+ *
-+ * Copyright 2022 Google LLC.
-+ */
-+
-+/ {
-+	/* BOARD-SPECIFIC TOP LEVEL NODES */
-+	sound: sound {
-+		compatible = "google,sc7280-herobrine";
-+		model = "sc7280-rt5682-max98360a-1mic";
-+
-+		status = "okay";
-+		audio-routing =
-+			"Headphone Jack", "HPOL",
-+			"Headphone Jack", "HPOR";
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		dai-link@0 {
-+			link-name = "MAX98360";
-+			reg = <0>;
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu MI2S_SECONDARY>;
-+			};
-+
-+			codec {
-+				sound-dai = <&max98360a>;
-+			};
-+		};
-+
-+		dai-link@1 {
-+			link-name = "ALC5682";
-+			reg = <1>;
-+
-+			cpu {
-+				sound-dai = <&lpass_cpu MI2S_PRIMARY>;
-+			};
-+
-+			codec {
-+				sound-dai = <&alc5682 0 /* aif1 */>;
-+			};
-+		};
-+	};
-+};
-+
-+hp_i2c: &i2c2 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	alc5682: codec@1a {
-+		compatible = "realtek,rt5682s";
-+		reg = <0x1a>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_irq>;
-+
-+		#sound-dai-cells = <1>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <101 IRQ_TYPE_EDGE_BOTH>;
-+
-+		AVDD-supply = <&pp1800_alc5682>;
-+		MICVDD-supply = <&pp3300_codec>;
-+
-+		realtek,dmic1-data-pin = <1>;
-+		realtek,dmic1-clk-pin = <2>;
-+		realtek,jd-src = <1>;
-+		realtek,dmic-clk-rate-hz = <2048000>;
-+	};
-+};
-+
-+&lpass_cpu {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mi2s0_data0>, <&mi2s0_data1>, <&mi2s0_mclk>, <&mi2s0_sclk>, <&mi2s0_ws>,
-+			<&mi2s1_data0>, <&mi2s1_sclk>, <&mi2s1_ws>;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	dai-link@0 {
-+		reg = <MI2S_PRIMARY>;
-+		qcom,playback-sd-lines = <1>;
-+		qcom,capture-sd-lines = <0>;
-+	};
-+
-+	dai-link@1 {
-+		reg = <MI2S_SECONDARY>;
-+		qcom,playback-sd-lines = <0>;
-+	};
-+};
-+
-+&mi2s0_data0 {
-+	drive-strength = <6>;
-+	bias-disable;
-+};
-+
-+&mi2s0_data1 {
-+	drive-strength = <6>;
-+	bias-disable;
-+};
-+
-+&mi2s0_mclk {
-+	drive-strength = <6>;
-+	bias-disable;
-+};
-+
-+&mi2s0_sclk {
-+	drive-strength = <6>;
-+	bias-disable;
-+};
-+
-+&mi2s0_ws {
-+	drive-strength = <6>;
-+	bias-disable;
-+};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+index c1647a85a371..98280436813d 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dts
+@@ -8,6 +8,7 @@
+ /dts-v1/;
+ 
+ #include "sc7280-herobrine.dtsi"
++#include "sc7280-herobrine-audio-rt5682.dtsi"
+ 
+ / {
+ 	model = "Google Herobrine (rev1+)";
 -- 
 2.37.0.170.g444d1eabd0-goog
 
