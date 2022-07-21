@@ -2,78 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D181257CEF6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 17:31:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBCE657CEFD
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 17:32:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229642AbiGUPbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 11:31:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44538 "EHLO
+        id S231135AbiGUPcL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 11:32:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbiGUPbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 11:31:11 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6906A78597;
-        Thu, 21 Jul 2022 08:31:08 -0700 (PDT)
+        with ESMTP id S229854AbiGUPcK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 11:32:10 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DE3513F79
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 08:32:08 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id u19so3432259lfs.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 08:32:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1658417468; x=1689953468;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=I1t5fOErKc+S9ryw9hWukhTz7LniY6w8G1tUsc1Dbs0=;
-  b=h/963ZjryOp5SSKZgNNnITp/n6Sb7YddlyzeDJkj09nPvXvEUng4WXrN
-   v8OehTRqez207erwLHmBvI7a3/f1PzJoD7PoyozX8wHxKXL5454OxjOmy
-   D5+RvboS62xNk/+uV4lYJnSnSSrD/scUB+fTJDBL5zeQbPaE8przYD+0Y
-   c=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 21 Jul 2022 08:31:08 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jul 2022 08:31:07 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 21 Jul 2022 08:31:07 -0700
-Received: from [10.253.77.242] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 21 Jul
- 2022 08:31:02 -0700
-Message-ID: <3f714c34-277d-ef71-b527-f758172160f9@quicinc.com>
-Date:   Thu, 21 Jul 2022 23:30:59 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v12 0/9] Coresight: Add support for TPDM and TPDA
-Content-Language: en-US
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rrDT1Pzl9yr81tqKMwbGgy4cc56GaF0iYxKKVp4xCJc=;
+        b=zsAklumWJlcbhY0ct4EIIAbj8yOgjitDEOWYeEOJlE4CCM/XHYHvaWSlbP6tmRmXjv
+         7/TYVDfTMN1x9GJZA8AThGagQsi0vGlfKn4OI3Nfuz/g1Xp9piLcI6wvL4rvf4eCVd+V
+         EvAim5664qNdtseuKGB0LW5vrXqLKUAI/B5y04Dcugf+sgKdPJ/P/8baq+az85Qp9xSB
+         KwhuxBMoryZfPxi0rFBAdC12/YwtYTX3hmphh8aKtx5Hvzjs/A9fIF1L3CZVvblsDKdo
+         cSHpT1tqSKM77FPIlNMkdNudbVW8u/jdEqKTZD9xwDkgE8+v5A9W2OPKbol5HLuwdfoI
+         MEWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rrDT1Pzl9yr81tqKMwbGgy4cc56GaF0iYxKKVp4xCJc=;
+        b=g3/cffefUuI2bCan/cLtmj4iQuIXsHGg7BStfz3PADsWkCxiCEsRaB0UK7Stbux3N9
+         mLgUlQo4OZeveJZ2zOd0wacgKQrrIXV7pcM6b8sVbCyMjFVMJkkh18DMzPU8rqbmOSJN
+         dlOul60Hfh6Ctx3XBZ3jNGk719vUPy2XCap3li5nMwiTGoFBc/Nfm8a82+Kp0fNKcm6L
+         hh80wPvTwKmKB3iPWED/3ZIIN7gzKGt1c57yOnZEETLZAbtRwRTn0prOh1LOb16b66rc
+         LsIKOB5boFH+NeIKhl2/C8qdsEmdldXnt2LFo7HS9S2zlPQB2DVsVe5rtV2vm/Nw3M36
+         TAKg==
+X-Gm-Message-State: AJIora8lRGczKjlUSGYr1Bdzk8LJ0yIHDq4xCTmop6vNOnSUjtuySV/B
+        L/NUTvN1gNm+WbFVC07l2i5DpQ==
+X-Google-Smtp-Source: AGRyM1vu1xuZW6P4hxkiBne/br5RRQinT3eBea1kYAmvFe+TrOCrAhcFqOe1CC4JG1hETPWqt+GIMg==
+X-Received: by 2002:a05:6512:2244:b0:489:e75e:8e56 with SMTP id i4-20020a056512224400b00489e75e8e56mr24603377lfu.290.1658417526742;
+        Thu, 21 Jul 2022 08:32:06 -0700 (PDT)
+Received: from krzk-bin.. (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id a27-20020ac25e7b000000b0048a2995772asm504604lfr.73.2022.07.21.08.32.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jul 2022 08:32:06 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20220710021032.27455-1-quic_jinlmao@quicinc.com>
-From:   Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <20220710021032.27455-1-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Tomislav Denis <tomislav.denis@avl.com>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Nishant Malpani <nish.malpani25@gmail.com>,
+        Dragos Bogdan <dragos.bogdan@analog.com>,
+        Nuno Sa <nuno.sa@analog.com>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Mark Brown <broonie@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Marek Belisko <marek@goldelico.com>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Christian Eggers <ceggers@arri.de>,
+        Beniamin Bia <beniamin.bia@analog.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Oskar Andero <oskar.andero@gmail.com>,
+        =?UTF-8?q?M=C3=A5rten=20Lindahl?= <martenli@axis.com>,
+        Dan Murphy <dmurphy@ti.com>, Sean Nyekjaer <sean@geanix.com>,
+        Cristian Pop <cristian.pop@analog.com>,
+        Lukas Wunner <lukas@wunner.de>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Matheus Tavares <matheus.bernardino@usp.br>,
+        Sankar Velliangiri <navin@linumiz.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Stefan Wahren <stefan.wahren@in-tech.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, netdev@vger.kernel.org,
+        linux-spi@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 0/6] dt-bindings: iio/panel/eeprom/misc/net/spi: drop SPI CPHA and CPOL
+Date:   Thu, 21 Jul 2022 17:31:49 +0200
+Message-Id: <20220721153155.245336-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,142 +111,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+Hi,
 
-Please help to review V12 patches.
+Rebased on next-20220714
 
-Thanks
+Merging
+=======
+1. The first five patches (panel, eeprom, iio, misc and net) are independent
+   and could be taken as is.
+2. The last SPI patch depends on all previous five, so:
+   a. either everything goes through one tree (e.g. DT bindings),
+   b. or SPI patch waits one cycle till dependencies get to rcX.
 
-Jinlong Mao
+Preference is (2a) - everything through one tree because I plan to include
+spi-peripheral-props.yaml in several SPI client bindings (continuation of [1]).
 
-On 7/10/2022 10:10 AM, Mao Jinlong wrote:
-> This series adds support for the trace performance monitoring and
-> diagnostics hardware (TPDM and TPDA). It is composed of two major
-> elements.
-> a) Changes for original coresight framework to support for TPDM and TPDA.
-> b) Add driver code for TPDM and TPDA.
->
-> Introduction of changes for original coresight framework
-> Support TPDM as new coresight source.
-> Since only STM and ETM are supported as coresight source originally.
-> TPDM is a newly added coresight source. We need to change
-> the original way of saving coresight path to support more types source
-> for coresight driver.
-> The following patch is to add support more coresight sources.
->      coresight: core: Use IDR for non-cpu bound sources' paths.
->
-> Introduction of TPDM and TPDA
-> TPDM - The trace performance monitoring and diagnostics monitor or TPDM in
-> short serves as data collection component for various dataset types
-> specified in the QPMDA(Qualcomm performance monitoring and diagnostics
-> architecture) spec. The primary use case of the TPDM is to collect data
-> from different data sources and send it to a TPDA for packetization,
-> timestamping and funneling.
->       Coresight: Add coresight TPDM source driver
->       dt-bindings: arm: Adds CoreSight TPDM hardware definitions
->       coresight-tpdm: Add DSB dataset support
->       coresight-tpdm: Add integration test support
->       docs: sysfs: coresight: Add sysfs ABI documentation for TPDM
->
-> TPDA - The trace performance monitoring and diagnostics aggregator or
-> TPDA in short serves as an arbitration and packetization engine for the
-> performance monitoring and diagnostics network as specified in the QPMDA
-> (Qualcomm performance monitoring and diagnostics architecture)
-> specification. The primary use case of the TPDA is to provide
-> packetization, funneling and timestamping of Monitor data as specified
-> in the QPMDA specification.
-> The following patch is to add driver for TPDA.
->       Coresight: Add TPDA link driver
->       dt-bindings: arm: Adds CoreSight TPDA hardware definitions
->
-> The last patch of this series is a device tree modification, which add
-> the TPDM and TPDA configuration to device tree for validating.
->      ARM: dts: msm: Add coresight components for SM8250
->      ARM: dts: msm: Add tpdm mm/prng for sm8250
->
-> Once this series patches are applied properly, the tpdm and tpda nodes
-> should be observed at the coresight path /sys/bus/coresight/devices
-> e.g.
-> /sys/bus/coresight/devices # ls -l | grep tpd
-> tpda0 -> ../../../devices/platform/soc@0/6004000.tpda/tpda0
-> tpdm0 -> ../../../devices/platform/soc@0/6c08000.mm.tpdm/tpdm0
->
-> We can use the commands are similar to the below to validate TPDMs.
-> Enable coresight sink first.
->
-> echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
-> echo 1 > /sys/bus/coresight/devices/tpdm0/enable_source
-> echo 1 > /sys/bus/coresight/devices/tpdm0/integration_test
-> echo 2 > /sys/bus/coresight/devices/tpdm0/integration_test
-> The test data will be collected in the coresight sink which is enabled.
-> If rwp register of the sink is keeping updating when do
-> integration_test (by cat tmc_etf0/mgmt/rwp), it means there is data
-> generated from TPDM to sink.
->
-> There must be a tpda between tpdm and the sink. When there are some
-> other trace event hw components in the same HW block with tpdm, tpdm
-> and these hw components will connect to the coresight funnel. When
-> there is only tpdm trace hw in the HW block, tpdm will connect to
-> tpda directly.
->    
->      +---------------+                +-------------+
->      |  tpdm@6c08000 |                |tpdm@684C000 |
->      +-------|-------+                +------|------+
->              |                               |
->      +-------|-------+                       |
->      | funnel@6c0b000|                       |
->      +-------|-------+                       |
->              |                               |
->      +-------|-------+                       |
->      |funnel@6c2d000 |                       |
->      +-------|-------+                       |
->              |                               |
->              |    +---------------+          |
->              +----- tpda@6004000  -----------+
->                   +-------|-------+
->                           |
->                   +-------|-------+
->                   |funnel@6005000 |
->                   +---------------+
->
-> This patch series depends on patch series:
-> "[v2,00/13] coresight: Add new API to allocate trace source ID values"
-> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220704081149.16797-1-mike.leach@linaro.org/
->
-> Changes from V11:
-> 1. Clear bits for atid before setting them and relese atid when tpda
-> remove. -- Suzuki K Poulose <suzuki.poulose@arm.com>
->
-> Mao Jinlong (9):
->    coresight: core: Use IDR for non-cpu bound sources' paths.
->    Coresight: Add coresight TPDM source driver
->    dt-bindings: arm: Adds CoreSight TPDM hardware definitions
->    coresight-tpdm: Add DSB dataset support
->    coresight-tpdm: Add integration test support
->    Coresight: Add TPDA link driver
->    dt-bindings: arm: Adds CoreSight TPDA hardware definitions
->    arm64: dts: qcom: sm8250: Add coresight components
->    arm64: dts: qcom: sm8250: Add tpdm mm/prng
->
->   .../testing/sysfs-bus-coresight-devices-tpdm  |  13 +
->   .../bindings/arm/qcom,coresight-tpda.yaml     | 111 +++
->   .../bindings/arm/qcom,coresight-tpdm.yaml     |  93 +++
->   MAINTAINERS                                   |   2 +
->   arch/arm64/boot/dts/qcom/sm8250.dtsi          | 671 ++++++++++++++++++
->   drivers/hwtracing/coresight/Kconfig           |  23 +
->   drivers/hwtracing/coresight/Makefile          |   2 +
->   drivers/hwtracing/coresight/coresight-core.c  |  42 +-
->   drivers/hwtracing/coresight/coresight-tpda.c  | 208 ++++++
->   drivers/hwtracing/coresight/coresight-tpda.h  |  35 +
->   drivers/hwtracing/coresight/coresight-tpdm.c  | 259 +++++++
->   drivers/hwtracing/coresight/coresight-tpdm.h  |  62 ++
->   include/linux/coresight.h                     |   1 +
->   13 files changed, 1510 insertions(+), 12 deletions(-)
->   create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
->   create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
->   create mode 100644 drivers/hwtracing/coresight/coresight-tpda.c
->   create mode 100644 drivers/hwtracing/coresight/coresight-tpda.h
->   create mode 100644 drivers/hwtracing/coresight/coresight-tpdm.c
->   create mode 100644 drivers/hwtracing/coresight/coresight-tpdm.h
->
+However IIO and SPI patch might not apply cleanly on DT bindings tree, as I
+based it on linux-next. I can rebase if such merging is preferred.
+
+Description
+===========
+The spi-cpha and spi-cpol properties are device specific and should be
+accepted only if device really needs them.  Inspired by [1].
+
+[1] https://lore.kernel.org/all/20220718220012.GA3625497-robh@kernel.org/
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (6):
+  dt-bindings: panel: explicitly list SPI CPHA and CPOL
+  dt-bindings: eeprom: at25: explicitly list SPI CPHA and CPOL
+  dt-bindings: iio: explicitly list SPI CPHA and CPOL
+  dt-bindings: misc: explicitly list SPI CPHA and CPOL
+  dt-bindings: net: explicitly list SPI CPHA and CPOL
+  spi: dt-bindings: drop CPHA and CPOL from common properties
+
+ .../bindings/display/panel/lgphilips,lb035q02.yaml   | 10 ++++++++++
+ .../bindings/display/panel/samsung,ld9040.yaml       | 10 ++++++++++
+ .../bindings/display/panel/samsung,lms380kf01.yaml   | 12 +++++++++---
+ .../bindings/display/panel/samsung,lms397kf04.yaml   | 12 +++++++++---
+ .../bindings/display/panel/samsung,s6d27a1.yaml      | 12 +++++++++---
+ .../bindings/display/panel/sitronix,st7789v.yaml     | 10 ++++++++++
+ .../devicetree/bindings/display/panel/tpo,td.yaml    | 10 ++++++++++
+ Documentation/devicetree/bindings/eeprom/at25.yaml   | 10 ++++++++--
+ .../devicetree/bindings/iio/accel/adi,adxl345.yaml   | 10 ++++++++--
+ .../devicetree/bindings/iio/adc/adi,ad7192.yaml      | 10 ++++++++--
+ .../devicetree/bindings/iio/adc/adi,ad7292.yaml      |  5 ++++-
+ .../devicetree/bindings/iio/adc/adi,ad7606.yaml      | 10 ++++++++--
+ .../devicetree/bindings/iio/adc/adi,ad7768-1.yaml    | 10 ++++++++--
+ .../bindings/iio/adc/microchip,mcp3201.yaml          | 12 ++++++++++--
+ .../devicetree/bindings/iio/adc/ti,adc084s021.yaml   | 11 +++++++++--
+ .../devicetree/bindings/iio/adc/ti,ads124s08.yaml    |  5 ++++-
+ .../devicetree/bindings/iio/adc/ti,ads131e08.yaml    |  5 ++++-
+ .../devicetree/bindings/iio/addac/adi,ad74413r.yaml  |  5 ++++-
+ .../devicetree/bindings/iio/dac/adi,ad5592r.yaml     |  5 ++++-
+ .../devicetree/bindings/iio/dac/adi,ad5755.yaml      | 10 ++++++++--
+ .../devicetree/bindings/iio/dac/adi,ad5758.yaml      |  6 +++++-
+ .../devicetree/bindings/iio/dac/adi,ad5766.yaml      |  5 ++++-
+ .../devicetree/bindings/iio/dac/ti,dac082s085.yaml   |  9 +++++++--
+ .../bindings/iio/gyroscope/adi,adxrs290.yaml         | 10 ++++++++--
+ .../devicetree/bindings/iio/imu/adi,adis16460.yaml   | 12 +++++++++---
+ .../devicetree/bindings/iio/imu/adi,adis16475.yaml   | 10 ++++++++--
+ .../devicetree/bindings/iio/imu/adi,adis16480.yaml   | 11 +++++++++--
+ .../bindings/iio/imu/invensense,icm42600.yaml        | 12 ++++++++++--
+ .../bindings/iio/proximity/ams,as3935.yaml           |  5 ++++-
+ .../devicetree/bindings/iio/resolver/adi,ad2s90.yaml | 10 ++++++++--
+ .../bindings/iio/temperature/maxim,max31855k.yaml    |  6 +++++-
+ .../bindings/iio/temperature/maxim,max31856.yaml     |  6 +++++-
+ .../bindings/iio/temperature/maxim,max31865.yaml     |  6 +++++-
+ .../devicetree/bindings/misc/olpc,xo1.75-ec.yaml     |  5 ++++-
+ .../devicetree/bindings/net/nfc/marvell,nci.yaml     | 12 ++++++++++--
+ .../devicetree/bindings/net/vertexcom-mse102x.yaml   | 12 +++++++++---
+ .../bindings/spi/spi-peripheral-props.yaml           | 10 ----------
+ 37 files changed, 264 insertions(+), 67 deletions(-)
+
+-- 
+2.34.1
+
