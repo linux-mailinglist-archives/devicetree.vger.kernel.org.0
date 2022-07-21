@@ -2,96 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 245B257C7AA
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 11:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFFFC57C79B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 11:30:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232398AbiGUJbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 05:31:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33802 "EHLO
+        id S230472AbiGUJa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 05:30:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232465AbiGUJbo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 05:31:44 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FD9680529;
-        Thu, 21 Jul 2022 02:31:42 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id p26-20020a1c545a000000b003a2fb7c1274so2928785wmi.1;
-        Thu, 21 Jul 2022 02:31:42 -0700 (PDT)
+        with ESMTP id S230148AbiGUJa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 05:30:57 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 396087E82C;
+        Thu, 21 Jul 2022 02:30:56 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id y11so1849625lfs.6;
+        Thu, 21 Jul 2022 02:30:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=CqoqFDcKzQdjJafb6yVEzJIruLZ/32AbmJegq9jmsDE=;
-        b=YAkXHOcznZLGmCMQ1RWcJzQ3Z/GteinQw/AfYqo5ctFERCkDoFahq79y6Y0pwx44gl
-         GLoaT+TWNd0oMAh4jyhZmDSdFHC/Zftc1EEUiFnzxuN6N1LpjDVSm9lKMqXV2EhRL0Ry
-         G079IVg2a7gAS5xznVv2gq67UufdW4WSzlQZ9DXRqk91zH4iPyHriQNKu1M+wNlTEo1n
-         2zA0wZW0tNCpwEP/8UlLssY+QSaTfOjTnzVQJG4SXW9SEcPXN7mdEmbdei940aVuSXGZ
-         guttcy1i/xfOMU5uu8eMfPDPGBLtmZOrxqajlos3sDC8OOgUFvJKwBYbuLu6PcMURAyn
-         KT6Q==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=s151ffk1JIauk2lEB3TrZV+yG7gGvKpVixQvHLr+F1w=;
+        b=nZvJDPK0EO6QY9MLTYOQ0LWUPTJZ5JUKK0SEj61HOjGzS4p4dNaOmtMk+ASvtvO0kx
+         VvN0Jg0ed2dCQehW/9iVtgCAPxitukB6VZ29jQ9k4NV7Mz0gSPh5InWM/gTnb4DNn8Y4
+         sQbFjRcLH33bYFC2t3Jyl+EyNzOFuNb4LGjth3GYI82qFrwTb0liiz+Uf1c6YQU7cdVY
+         9DJi18H5P55gdWgJQcsPXkoo7YhU96Xwwu55mg7D0Qww43xwVMWuaboePe5HjAvPLwKy
+         C5As6//osND0ELDE9TdlKYFu0Bthos9Il+0w9j/EuwSho/hJBVG3eO+AGN7DqG8Ob4NG
+         wsSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=CqoqFDcKzQdjJafb6yVEzJIruLZ/32AbmJegq9jmsDE=;
-        b=TKMOepghT0oAhdKPVW/ErTaiGtAXmt5ygOmv9fb8c30WaruO1TSPY5qqqKen4jFVyq
-         bPVWVDhhPU6zHalL10ut2+BtS2j+P4hCOeE6Rs90clh98HtWlh8bb17EZHHZH15x+W6t
-         3ToPrZFxrCNtMmCjNu3neqZ27KjRl9pgzEiYACONgxLF8wNX/Pw1/DT6nWqDeHmC/XQa
-         zZQxFn1lGYFOL3vGVyyfAS7GthaAuGnZ1glzK8HG8Yl/AuE4XXRJ5Sk3hlBIlOCtDIcl
-         amLFpxCWoXFn0WOMEFGNewraWaI4wBLARRnf+DbtT3sGFnTmaJM4L0SmbqFsi8hzdaHL
-         8gEw==
-X-Gm-Message-State: AJIora+pJ//BMvTDtgjCvysMywj4VUEx2spwg8aHwXB4O8tzkyOpyI/+
-        733K2FVB3zrLKjLHIdfAm+psbDQ6Q2oyMg9bTALEYNYoRtY=
-X-Google-Smtp-Source: AGRyM1uth3ZszQR4Y69c6/F2fcYkQehI7TUvzonlMhEKjh0dv2rEa6EpJ0tm1xDP06OICuKvouAgditDjMYoi6Y6Kko=
-X-Received: by 2002:a05:600c:2110:b0:3a3:1a69:aa7b with SMTP id
- u16-20020a05600c211000b003a31a69aa7bmr7190128wml.186.1658395901183; Thu, 21
- Jul 2022 02:31:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220715112607.591-1-peterwu.pub@gmail.com> <20220715112607.591-12-peterwu.pub@gmail.com>
- <CAHp75VfyVufzf7CK38BVu_j0B4ax_d1gLAGYDE3H1zaKkuUB=A@mail.gmail.com>
- <20220720094510.GA29755@cyhuang-hp-elitebook-840-g3.rt> <CADiBU3_rtVXFX3qdSoc=F-zs9CYiNRmNPOa3RffRJD1Qc5N-bA@mail.gmail.com>
-In-Reply-To: <CADiBU3_rtVXFX3qdSoc=F-zs9CYiNRmNPOa3RffRJD1Qc5N-bA@mail.gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Thu, 21 Jul 2022 17:31:29 +0800
-Message-ID: <CADiBU39=kJXLuBd=3reeEVCaAhvkZXASsFYtsi6oEYJjc79dhA@mail.gmail.com>
-Subject: Re: [PATCH v5 11/13] leds: mt6370: Add MediaTek MT6370 current sink
- type LED Indicator support
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=s151ffk1JIauk2lEB3TrZV+yG7gGvKpVixQvHLr+F1w=;
+        b=oZDXFfPiHXcWB8/ICgUK8uNdifdyxXOv1OZt4x1OgjOZ2qvXFjgWZEEaowznwulf9Z
+         djuxnpCo33LyIAG7NfQRXQHuoQolQB99cxsHPtojqrt9ACXV1aKVE6gTTQ1eL0Z05An2
+         xI0YZupV4V9yCXv/Cdjyp4N3Ee+cR53q9wEzaBq9KDgnXtLmLkXw3+qTm8tQyrYbdCHN
+         RadfbN8vzIu9M3XEJp9/xbjwFv4u6NpIr1dBdflK9ApalwuYdjobrqdC2IA3KnXviz59
+         veYHcUVyYxU16ialqbXbUNRN1uMnUSfISGkuaMkUzakPAIpycCbJh3lkVIbZRaWY6Nx+
+         dUrA==
+X-Gm-Message-State: AJIora8vXL3VMQJXTSfXbruUy73D7/e/I84/JgvgP258ECX2OgOf+sm6
+        4fI2mxfDss9AFf5c/CXf/ycxk3fJ6fk=
+X-Google-Smtp-Source: AGRyM1uLU45d6nitV/svzhHqvt6/3qKj2nNBMf/FZIrIQ/ktIuvkN7xNwI/GV3FyTP60CY71VLOBnA==
+X-Received: by 2002:a05:6512:33c5:b0:48a:1c38:e43 with SMTP id d5-20020a05651233c500b0048a1c380e43mr18876341lfg.671.1658395854412;
+        Thu, 21 Jul 2022 02:30:54 -0700 (PDT)
+Received: from localhost.localdomain (82-209-154-112.cust.bredband2.com. [82.209.154.112])
+        by smtp.gmail.com with ESMTPSA id y30-20020a19915e000000b0047f6b4f82d1sm323055lfj.250.2022.07.21.02.30.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jul 2022 02:30:53 -0700 (PDT)
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Alice Chen <alice_chen@richtek.com>,
-        cy_huang <cy_huang@richtek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        szuni chen <szunichen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Maxime Ripard <mripard@kernel.org>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Marcus Folkesson <marcus.folkesson@gmail.com>
+Subject: [PATCH 1/2] gpio: gpio-74x164: add support for CDx4HC4094
+Date:   Thu, 21 Jul 2022 11:34:21 +0200
+Message-Id: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -99,226 +72,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=8820=E6=
-=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:48=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=8820=E6=
-=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:45=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > On Fri, Jul 15, 2022 at 08:29:42PM +0200, Andy Shevchenko wrote:
-> > > On Fri, Jul 15, 2022 at 1:29 PM ChiaEn Wu <peterwu.pub@gmail.com> wro=
-te:
-> > > >
-> > > > From: ChiYuan Huang <cy_huang@richtek.com>
-> > > >
-> > > > The MediaTek MT6370 is a highly-integrated smart power management I=
-C,
-> > > > which includes a single cell Li-Ion/Li-Polymer switching battery
-> > > > charger, a USB Type-C & Power Delivery (PD) controller, dual
-> > > > Flash LED current sources, a RGB LED driver, a backlight WLED drive=
-r,
-> > > > a display bias driver and a general LDO for portable devices.
-> > > >
-> > > > In MediaTek MT6370, there are four channel current-sink RGB LEDs th=
-at
-> > > > support hardware pattern for constant current, PWM, and breath mode=
-.
-> > > > Isink4 channel can also be used as a CHG_VIN power good indicator.
-> > >
-> > > ...
-> > >
-> > > > +         This driver can also be built as a module. If so the modu=
-le
-> > >
-> > > so, the
-> > >
-> > > > +         will be called "leds-mt6370.ko".
-> > >
-> > > No ".ko".
-> > >
-> > > Why did you ignore these comments? Please go and fix _everywhere_ in
-> > > your series.
-> > > It's basically the rule of thumb, if the reviewer gives a comment
-> > > against an occurrence of something, go through entire series and chec=
-k
-> > > if there are other places like commented one and address them all.
-> > >
-> > > ...
-> > >
-> > > > + * Author: Alice Chen <alice_chen@richtek.com>
-> > >
-> > > Strange, the commit message doesn't have a corresponding SoB, why?
-> > >
-> > Yes, there're two authors Alice and me.
-> > I'll correct it in next.
-> > > ...
-> > >
-> > > > +#define MT6370_PWM_DUTY                                31
-> > > > +#define MT6372_PMW_DUTY                                255
-> > >
-> > > Looks like these are limits by hardware?
-> > > Check with the datasheet if (BIT(x) - 1) makes more sense here.
-> > >
-> > > ...
-> > >
-> > > > +       switch (led_no) {
-> > > > +       case MT6370_LED_ISNK1:
-> > > > +               sel_field =3D F_LED1_DUTY;
-> > > > +               break;
-> > > > +       case MT6370_LED_ISNK2:
-> > > > +               sel_field =3D F_LED2_DUTY;
-> > > > +               break;
-> > > > +       case MT6370_LED_ISNK3:
-> > > > +               sel_field =3D F_LED3_DUTY;
-> > > > +               break;
-> > > > +       default:
-> > > > +               sel_field =3D F_LED4_DUTY;
-> > >
-> > > Missed break;
-> > >
-> > > > +       }
-> > >
-> > > ...
-> > >
-> > > > +       switch (led_no) {
-> > > > +       case MT6370_LED_ISNK1:
-> > > > +               sel_field =3D F_LED1_FREQ;
-> > > > +               break;
-> > > > +       case MT6370_LED_ISNK2:
-> > > > +               sel_field =3D F_LED2_FREQ;
-> > > > +               break;
-> > > > +       case MT6370_LED_ISNK3:
-> > > > +               sel_field =3D F_LED3_FREQ;
-> > > > +               break;
-> > > > +       default:
-> > > > +               sel_field =3D F_LED4_FREQ;
-> > >
-> > > Ditto.
-> > >
-> > > > +       }
-> > >
-> > > ...
-> > >
-> > > > +       switch (led_no) {
-> > > > +       case MT6370_LED_ISNK1:
-> > > > +       case MT6370_LED_ISNK2:
-> > > > +       case MT6370_LED_ISNK3:
-> > > > +               *base =3D MT6370_REG_RGB1_TR + led_no * 3;
-> > > > +               break;
-> > > > +       default:
-> > > > +               *base =3D MT6370_REG_RGB_CHRIND_TR;
-> > >
-> > > Ditto.
-> > > It seems you dropped them for all switch-cases. It's not goot, please
-> > > restore them back.
-> > >
-> > > > +       }
-> > >
-> > > ...
-> > >
-> > > > +       u8 val[P_MAX_PATTERNS / 2] =3D {0};
-> > >
-> > > { } should suffice
-> > >
-> > >
-> > In the above range selector, we use the 'logic or' to generate the
-> typo, it's 'below'.
-> > pattern values.
-> >
-Ah, found in c11 standard 6.7.9 item 21
-It is the same as 'static storage duration'.
-I will follow your comment to revise it.
-Thanks.
-> > If to change it from '{0} to '{ }', is it correct?
-> > > > +       /*
-> > > > +        * Pattern list
-> > > > +        * tr1: byte 0, b'[7: 4]
-> > > > +        * tr2: byte 0, b'[3: 0]
-> > > > +        * tf1: byte 1, b'[7: 4]
-> > > > +        * tf2: byte 1, b'[3: 0]
-> > > > +        * ton: byte 2, b'[7: 4]
-> > > > +        * toff: byte 2, b'[3: 0]
-> > > > +        */
-> > > > +       for (i =3D 0; i < P_MAX_PATTERNS; i++) {
-> > > > +               curr =3D pattern + i;
-> > > > +
-> > > > +               sel_range =3D i =3D=3D P_LED_TOFF ? R_LED_TOFF : R_=
-LED_TRFON;
-> > > > +
-> > > > +               linear_range_get_selector_within(priv->ranges + sel=
-_range,
-> > > > +                                                curr->delta_t, &se=
-l);
-> > > > +
-> > > > +               val[i / 2] |=3D sel << (4 * ((i + 1) % 2));
-> > > > +       }
-> > > > +
-> > > > +       memcpy(pattern_val, val, 3);
-> > > > +       return 0;
-> > > > +}
-> > >
-> > > ...
-> > >
-> > > > +out:
-> > >
-> > > out_unlock:
-> > >
-> > > > +       mutex_unlock(&priv->lock);
-> > > > +
-> > > > +       return ret;
-> > >
-> > > ...
-> > >
-> > > > +out:
-> > >
-> > > Ditto. And so on.
-> > >
-> > > > +       mutex_unlock(&priv->lock);
-> > > > +
-> > > > +       return ret;
-> > >
-> > > ...
-> > >
-> > > > +               sub_led =3D devm_kzalloc(priv->dev,
-> > > > +                                      sizeof(*sub_led) * MC_CHANNE=
-L_NUM,
-> > > > +                                      GFP_KERNEL);
-> > >
-> > > NIH devm_kcalloc(). Also check if you really need zeroed data.
-> > >
-> > Ok, and after the check, I also need to add one line to set the intensi=
-ty to 0.
-> > > > +               if (!sub_led)
-> > > > +                       return -ENOMEM;
-> > >
-> > > ...
-> > >
-> > > > +                       ret =3D fwnode_property_read_u32(child, "co=
-lor", &color);
-> > > > +                       if (ret) {
-> > > > +                               dev_err(priv->dev,
-> > > > +                                       "led %d, no color specified=
-\n",
-> > > > +                                       led->index);
-> > > > +                               return ret;
-> > >
-> > > return dev_err_probe(...) ; ?
-> > >
-> > > Ditto for many places in your entire series.
-> > >
-> > > > +                       }
-> > >
-> > > ...
-> > >
-> > > > +       priv =3D devm_kzalloc(&pdev->dev,
-> > > > +                           struct_size(priv, leds, count), GFP_KER=
-NEL);
-> > >
-> > > At least one parameter can be placed on the previous line.
-> > >
-> > > > +       if (!priv)
-> > > > +               return -ENOMEM;
-> > >
-> > > --
-> > > With Best Regards,
-> > > Andy Shevchenko
+74hc4094 and 75hc4094 works similar to 74x164 but has an additional
+storage latch associated with each stage for strobing data from the
+serial input to parallell buffer tri-state output.
+
+Add support for an optional strobe pin.
+
+Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+---
+ drivers/gpio/gpio-74x164.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/drivers/gpio/gpio-74x164.c b/drivers/gpio/gpio-74x164.c
+index e00c33310517..4a1c4de358e4 100644
+--- a/drivers/gpio/gpio-74x164.c
++++ b/drivers/gpio/gpio-74x164.c
+@@ -21,6 +21,7 @@ struct gen_74x164_chip {
+ 	struct gpio_chip	gpio_chip;
+ 	struct mutex		lock;
+ 	struct gpio_desc	*gpiod_oe;
++	struct gpio_desc	*gpiod_strobe;
+ 	u32			registers;
+ 	/*
+ 	 * Since the registers are chained, every byte sent will make
+@@ -66,6 +67,10 @@ static void gen_74x164_set_value(struct gpio_chip *gc,
+ 		chip->buffer[bank] &= ~(1 << pin);
+ 
+ 	__gen_74x164_write_config(chip);
++
++	/*  Latch data to output pins*/
++	gpiod_set_value_cansleep(chip->gpiod_strobe, 1);
++	gpiod_set_value_cansleep(chip->gpiod_strobe, 0);
+ 	mutex_unlock(&chip->lock);
+ }
+ 
+@@ -87,6 +92,10 @@ static void gen_74x164_set_multiple(struct gpio_chip *gc, unsigned long *mask,
+ 		chip->buffer[bank] |= bitmask;
+ 	}
+ 	__gen_74x164_write_config(chip);
++
++	/*  Latch data to output pins*/
++	gpiod_set_value_cansleep(chip->gpiod_strobe, 1);
++	gpiod_set_value_cansleep(chip->gpiod_strobe, 0);
+ 	mutex_unlock(&chip->lock);
+ }
+ 
+@@ -129,6 +138,12 @@ static int gen_74x164_probe(struct spi_device *spi)
+ 
+ 	gpiod_set_value_cansleep(chip->gpiod_oe, 1);
+ 
++	chip->gpiod_strobe = devm_gpiod_get_optional(&spi->dev, "strobe",
++			GPIOD_OUT_LOW);
++	if (IS_ERR(chip->gpiod_strobe))
++		return PTR_ERR(chip->gpiod_strobe);
++
++
+ 	spi_set_drvdata(spi, chip);
+ 
+ 	chip->gpio_chip.label = spi->modalias;
+@@ -153,6 +168,10 @@ static int gen_74x164_probe(struct spi_device *spi)
+ 		goto exit_destroy;
+ 	}
+ 
++	/*  Latch data to output pins*/
++	gpiod_set_value_cansleep(chip->gpiod_strobe, 1);
++	gpiod_set_value_cansleep(chip->gpiod_strobe, 0);
++
+ 	ret = gpiochip_add_data(&chip->gpio_chip, chip);
+ 	if (!ret)
+ 		return 0;
+@@ -182,6 +201,8 @@ MODULE_DEVICE_TABLE(spi, gen_74x164_spi_ids);
+ static const struct of_device_id gen_74x164_dt_ids[] = {
+ 	{ .compatible = "fairchild,74hc595" },
+ 	{ .compatible = "nxp,74lvc594" },
++	{ .compatible = "ti,cd54hc4094" },
++	{ .compatible = "ti,cd74hc4094" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, gen_74x164_dt_ids);
+-- 
+2.36.1
+
