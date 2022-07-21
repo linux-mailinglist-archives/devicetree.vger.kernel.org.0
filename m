@@ -2,136 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 187A257C50B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 09:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DC3657C50E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 09:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232421AbiGUHJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 03:09:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56098 "EHLO
+        id S229623AbiGUHLj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 03:11:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232405AbiGUHJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 03:09:29 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3639A7B796
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 00:09:24 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id u5so916007wrm.4
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 00:09:24 -0700 (PDT)
+        with ESMTP id S229517AbiGUHLj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 03:11:39 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 459877AC16
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 00:11:38 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id m9so751881ljp.9
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 00:11:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=VXozGTkBuN1pc/ZCQCCgyPsWzMv13rxWxDP+7tq7TJw=;
-        b=D4clmYGbwyS4ogHfjdMc0g0hg0J9Quux7dEE5ZiwsDNyFKCENhfLWl0lPlCnZZWCQJ
-         ADYbbcZ2MSNLjFOnls9NFk+73wCzHxH5smZAn8ihwNtOfRTJu9p0uf+fKfJIxoDoqoR4
-         BuNi+gA4dFpgVVQeyCkI8CnQhWjHYdWLjjK8xN9/NNiHL4EKaQgZ7oZxRWqRVfYmb7dn
-         WdFkNHm92qb2xcXSG21B2sNdPmAixmmvn1Yw0m4SXab3b95hkN8uwO1grTDLXTeqwYcF
-         fg825u2vNg0tXdjqsM2uh/mDNSNRUXHVm/VgmUVz76t6u9QsIzhxnzpu0W4D+wXRCNRb
-         DUsg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=VBDe4gorRUprlTmBClJI/DlecJjKNCX0yBbr1Si/Kq4=;
+        b=UY8lpCxmvbtL/toGtsqltQnAwxXPAPj/BCPbeGrIolwMwllrvM9dWaWjlPyDIKSFQR
+         N8A4f2HAiYO7ETqOVF6xYsfX8YcjEL2Ts5VkzkYYcT6bbgiSF/5xTTJcb48nsn1wYTtC
+         3tT1PfchNwMIwVobbX17i2WWsNDAe+okLqFBmvAM5WT1vZMy5siVrVW/I02HtMI4zaFd
+         SpeZPF9BpsR1vPBEwDoJVjQleSxqTT+xjGj113pcLEyxUfRFq4xFnS0bm/GboRE10dI0
+         I/x5/rrcTMDs/IT7G0+IUi7cSCbkXZR6BiIfInjMFX/BGD8oKFmWlHMGNLCL+u5EKu+c
+         SRVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VXozGTkBuN1pc/ZCQCCgyPsWzMv13rxWxDP+7tq7TJw=;
-        b=tiuMS4oMxh/EJ7XAA43ZppE6BGGI9ygE13f0exGhECCP/HIzrMyifeT1Jz6ZOVUPwY
-         GhlvXVmh1VXqI/INemsaMD6VuEJVo0xTTtozAk3ozcE9526JcLPPaO26gxeH6o8lzml3
-         KNeUwlsyqkLJgbf5Z8X5vujf5Erg9LOrDwZfZLbq5b+I1yDW/Nmz5s7T+6wXTlpmnoZX
-         H6LINax5rekFCGtAeSdZ/MgyA7+cc/LknxajUrBVe9mbhui3o/D78VdXux7SKobGONAj
-         EVPs2czQvbEhNd4tZga8rWB6hxsBU3JyeQTF0EiXsO6BfYe8i+mvSe5N6wJqnmK9PgYq
-         T5eA==
-X-Gm-Message-State: AJIora+uWWPsnyRtE0FpfIU0jFtDMOf8ffb5iNmeHPgCiWV2nAHZwSOU
-        Ds3Xbzqmz9bQaR7DTZxdzq3ydA==
-X-Google-Smtp-Source: AGRyM1uimq2XmA1Z+1x9bodyzH3DDOeO/EH1oMDau48adGSTkIKD3g2y2p5VAb0Pt5outtsag+HW1w==
-X-Received: by 2002:adf:ee0f:0:b0:21d:6e3b:d262 with SMTP id y15-20020adfee0f000000b0021d6e3bd262mr32237238wrn.687.1658387362894;
-        Thu, 21 Jul 2022 00:09:22 -0700 (PDT)
-Received: from blmsp ([2001:4090:a243:806e:25e7:daa:8208:ceb])
-        by smtp.gmail.com with ESMTPSA id y3-20020a7bcd83000000b003a3253b706esm4713951wmj.34.2022.07.21.00.09.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Jul 2022 00:09:21 -0700 (PDT)
-Date:   Thu, 21 Jul 2022 09:09:20 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jerome Neanne <jneanne@baylibre.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, nm@ti.com, kristo@kernel.org,
-        khilman@baylibre.com, narmstrong@baylibre.com, j-keerthy@ti.c,
-        lee.jones@linaro.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 04/14] regulator: dt-bindings: tps65219: Add
- power-button property
-Message-ID: <20220721070920.dymqnh25dtqysooe@blmsp>
-References: <20220719091742.3221-1-jneanne@baylibre.com>
- <20220719091742.3221-5-jneanne@baylibre.com>
- <20220720233906.GB4187584-robh@kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=VBDe4gorRUprlTmBClJI/DlecJjKNCX0yBbr1Si/Kq4=;
+        b=72gorHaFI7Mn62XNpsQGkHFH+yPlESwDvVWjhhPxYf8+3C+HeGZNgCjr+z0zn39v70
+         6NIR3fIuApvqf+o6yaIZk36Zw5PxuEkPHhSXf+TstNp3/XprYJaKx1Uq1vB3nb6OZ8DN
+         y09t33mtw60lJp+LZIdWulGcZyM27iBPoTQEy39751TkXOFRJxWREsdhc9mXish3rTNV
+         3jm1QPdQB9NvTyEd7oRdaP3GsvDxm7RKGgD8BCVO0avt2vpaI3To1Mm94QSB98OES8NX
+         ZIHiS3urhm6GoxRQ8QU9PFGPYXqzu/+IFAKA1M7n2vEsnflL9QvN/S+i4hW1Oothap6g
+         EN5A==
+X-Gm-Message-State: AJIora/P0So4PBnXYszRYBeDdUDxidRIouJY1XcLhvoui/zfRjKjUkbX
+        SyDMLW6Q7GZFBsF6Gx04WSbo3g==
+X-Google-Smtp-Source: AGRyM1sP/W0gXXiVd0E1gcpliLF83/mwjurfkbq28/xa3UPvrWoPr9+eLGizH6pNBoPYCugtoCbZfQ==
+X-Received: by 2002:a2e:a287:0:b0:25d:b515:430c with SMTP id k7-20020a2ea287000000b0025db515430cmr9235376lja.358.1658387496614;
+        Thu, 21 Jul 2022 00:11:36 -0700 (PDT)
+Received: from [192.168.115.193] (89-162-31-138.fiber.signal.no. [89.162.31.138])
+        by smtp.gmail.com with ESMTPSA id 23-20020ac25f57000000b0048159b43083sm255519lfz.201.2022.07.21.00.11.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Jul 2022 00:11:36 -0700 (PDT)
+Message-ID: <174eaacb-27e6-0ce3-3a27-07137a4d1a0d@linaro.org>
+Date:   Thu, 21 Jul 2022 09:11:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220720233906.GB4187584-robh@kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: aspeed: document Ampere
+ Mt.Mitchell BMC compatibles
+Content-Language: en-US
+To:     Quan Nguyen <quan@os.amperecomputing.com>,
+        openbmc@lists.ozlabs.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>
+Cc:     Phong Vo <phong@os.amperecomputing.com>,
+        thang@os.amperecomputing.com
+References: <20220720085230.3801945-1-quan@os.amperecomputing.com>
+ <20220720085230.3801945-2-quan@os.amperecomputing.com>
+ <0a5cbaaa-565a-7215-5e31-12c52f4bbcbd@linaro.org>
+ <4516d7a6-f493-aa51-2700-bbab8ea8533a@os.amperecomputing.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4516d7a6-f493-aa51-2700-bbab8ea8533a@os.amperecomputing.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Wed, Jul 20, 2022 at 05:39:06PM -0600, Rob Herring wrote:
-> On Tue, Jul 19, 2022 at 11:17:32AM +0200, Jerome Neanne wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > Add a power-button property to configure the EN/PB/VSENSE pin as a
-> > powerbutton.
+On 21/07/2022 04:46, Quan Nguyen wrote:
 > 
-> Belongs in the first binding patch.
 > 
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
-> > ---
-> >  Documentation/devicetree/bindings/regulator/ti,tps65219.yaml | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-> > index 6a60e62a313c..3f7f4c0280c3 100644
-> > --- a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-> > +++ b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-> > @@ -36,6 +36,11 @@ properties:
-> >        include/dt-bindings/interrupt-controller/irq.h
-> >      const: 1
-> >  
-> > +  power-button:
+> On 20/07/2022 17:34, Krzysztof Kozlowski wrote:
+>> On 20/07/2022 10:52, Quan Nguyen wrote:
+>>> Document Ampere Mt.Mitchell BMC board compatible.
+>>>
+>>> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
+>>
+>> Thank you for your patch. There is something to discuss/improve.
+>>
+>>> ---
+>>> v2:
+>>>    + Introduce in v2 to add Ampere Mt. Mitchell BMC compatible [Krzysztof]
+>>>
+>>>   Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+>>> index d61408194998..b8146d5c4431 100644
+>>> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+>>> @@ -71,6 +71,7 @@ properties:
+>>>             - enum:
+>>>                 - aspeed,ast2600-evb
+>>>                 - aspeed,ast2600-evb-a1
+>>> +              - ampere,mtmitchell-bmc
+>>
+>> Put the entry ordered alphabetically.
+>>
 > 
-> ti,power-button
+> Thanks Krzysztof for the review.
 > 
-> Though doesn't 'system-power-controller' imply this?
-
-No, there is a difference between system-power-controller and
-power-button. If you ask, my description is probably not clear enough.
-Let me try a new one:
-
-TPS65219 has a multipurpose pin called EN/PB/VSENSE that can be either
-EN in which case it functions as an enable pin. It can be VSENSE which
-compares the voltages and triggers an automatic on/off request. And it
-can be PB in which case it can be configured to trigger an interrupt to
-the SoC. ti,power-button reflects exactly the last one of those options
-where the board has a button wired to the pin and triggers an interrupt
-on pressing it.
-
-I hope that answers your question. We will fix the description in v2.
-
-Thanks,
-Markus
-
+> Will change to :
+>               - enum:
+>   +              - ampere,mtmitchell-bmc
+>                  - aspeed,ast2600-evb
+>                  - aspeed,ast2600-evb-a1
 > 
-> > +    type: boolean
-> > +    description: Optional property that sets the EN/PB/VSENSE pin to be a
-> > +      power-button.
-> > +
-> >  patternProperties:
-> >    "^buck[1-3]-supply$":
-> >      description: Input supply phandle of one regulator.
-> > -- 
-> > 2.17.1
-> > 
-> > 
+> But, should we correct the below as well? ie: to move 
+> "ampere,mtjade-bmc" to before "aspeed,ast2500-evb" ?
+> 
+Oops, indeed, I added aspeed in wrong place. I'll correct it in my tree.
+
+Best regards,
+Krzysztof
