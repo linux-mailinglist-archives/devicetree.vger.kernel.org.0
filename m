@@ -2,92 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B70357D497
-	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 22:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B46157D47F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Jul 2022 22:02:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233543AbiGUUGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 16:06:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41810 "EHLO
+        id S229547AbiGUUCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 16:02:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233538AbiGUUGC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 16:06:02 -0400
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA8AF70E41;
-        Thu, 21 Jul 2022 13:05:51 -0700 (PDT)
-Received: from toolbox.int.toradex.com ([81.221.243.92]) by mrelay.perfora.net
- (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1N2EcM-1nVyz33C3S-013eqi;
- Thu, 21 Jul 2022 22:00:32 +0200
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
+        with ESMTP id S233075AbiGUUCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 16:02:54 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5736D9DF;
+        Thu, 21 Jul 2022 13:02:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1658433770;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=Owkp8ktceAI2U5/duGJt4dKf9HIoey0z8t5W7UFe7eo=;
+    b=BLxrN2S+YWx0HdNI2q7oAFlQ2WmDx7BXapbRJITFzGr3CVzlPle8bxQ0WUuLMyvT7/
+    42ttEv5fnyJmOexK3Q1qd9utSb9Ik4gWvxMbFinqn4eKvmijNONIBxtuRQul4bn7rKcj
+    mKipm1pCV8RQUST7UndcS8AT6kWNrUEMLuYZhrFKITC4clMc7cOf/t8hRmyXSJF4khn6
+    R1kKfay+dTgQyMFgA5DEvFy/TkrqgJbJnzsb+SmmgeUh3DY0TYYMc0bhg/+Vpd4/sf4d
+    o3iJ6+AoR/0s063znjaukuKqOkqX0GE2N6y1HVntt03adNa82HOl8EKO2LUT0lsIErfl
+    Z88g==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrK86+6Y="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.47.0 AUTH)
+    with ESMTPSA id efdacay6LK2n61F
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 21 Jul 2022 22:02:49 +0200 (CEST)
+Date:   Thu, 21 Jul 2022 22:02:43 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 12/12] clk: imx8mm: don't use multiple blank lines
-Date:   Thu, 21 Jul 2022 21:59:35 +0200
-Message-Id: <20220721195936.1082422-13-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220721195936.1082422-1-marcel@ziswiler.com>
-References: <20220721195936.1082422-1-marcel@ziswiler.com>
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916
+ to schema
+Message-ID: <Ytmw41giZ/4S+Pp0@gerhold.net>
+References: <20220718140344.1831731-1-stephan.gerhold@kernkonzept.com>
+ <20220718140344.1831731-3-stephan.gerhold@kernkonzept.com>
+ <20220720224608.GA4107504-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:dR22pRh9FFpDKCHYA5F6Iwy4bJ5r+Z5lgDQHLY3MMytbO6krkQx
- gqVymQr3icTKY2cuOIDoHa4CSSv5yYd1+D4nIudj9HoyA2b05MwZIoSLbJnEuy08EoopPCr
- CyBgfoPSQfrMsCF67w9qdVczpeZb68+i8ijDzY4rMUcsAzzcYO/TDlIfIOnnHmsd7/N8kW0
- wEypyyob5cV1NTghCpk3g==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:D2I4JPn7FEI=:TsASVQtiu57rMYZuJD0/mn
- F7K8LoBPn4aPs1kNjOC70UTsMTdVR5skP/M898ezujKSfcQLi4//zgzMI7+e8Kr5+kSbeoKOO
- m24t9CZjW+vFqWvEi9c8HNdPSSLAzBvKqCmxPTbmyxh/xKhQRg6izMCDpho9+t4HhVLrqiYo9
- +GFH650AkNfykqkd/gD3F0OSE7DE0y1QdhzUfWXmTIIuKUjAgOwtnVVDwPebN6pg5cFIo8vj+
- vOSk4X+pKp739qbYbrTBDbjBvwNfTCF8/WcAri1A14bQ1OI60e6DB/Voctr1LemhUK9P26oEu
- QRR7fzOSzeNTMo1b1MXquZx1Uv+W1FCYjbuxqiHEZn4cuLmxzYFw56kLS96fTdNoeWChCNQ6O
- g+viWpG0wtkyh9Oq85j+8mtJtFrDFl+OAV3NO741EL4RP0IMB9oyKYosDZuIw0z8Ex+0wScZI
- 1l9REE84V1mP/RXS+pFIx/XwfySKzgm5/aaPbgiztKyI01WC0QbhvmDy1oRwEHMmRVBC+fCPf
- Gdy8wTp/rI4+MRbvceQ6Kt4Ids0x7VqpJfErzKiE5CdScfbW/bmfY50GGH5vkeX/FGbC8zds9
- f7iYIbCo69w5JVpEsNoh53t4oZAfL4TjTJ651X+Y/kl+o3uubOjWl8Gy2ArMeQwGCYPN2y9+U
- yOogLH2H57N/+97f06RhfXWuzC8W1LU3Xi8RCE5UX55ksV3sPbx5BiYsXtGQk7up0b3HQmCdZ
- CGa+AKHIrTt6fEfBsLUVY0v+fla0rfP5zXRNeVLsOYFfmEKE6+/jQaD0vw4=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220720224608.GA4107504-robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+On Wed, Jul 20, 2022 at 04:46:08PM -0600, Rob Herring wrote:
+> On Mon, Jul 18, 2022 at 04:03:41PM +0200, Stephan Gerhold wrote:
+> > qcom,q6v5.txt covers multiple SoCs with quite different binding
+> > requirements. Converting this into one DT schema would require
+> > several if statements, making the DT schema overall harder to
+> > read and understand.
+> > 
+> > To avoid this, follow the example of SC7180/SC7280 and split
+> > "qcom,msm8916-mss-pil" (and the equivalent deprecated "qcom,q6v5-pil"
+> > compatible) into a separate DT schema. The schema is somewhat based
+> > on the one for SC7180/SC7280 but adjusted for the old platforms.
+> > 
+> > Compared to the old plain text bindings, add missing documentation for
+> > the "bam-dmux" subnode and recommend one particular approach to specify
+> > the MBA/MPSS "memory-region" (the other one is marked as deprecated).
+> > 
+> > Cc: Sireesh Kodali <sireeshkodali1@gmail.com>
+> > Signed-off-by: Stephan Gerhold <stephan.gerhold@kernkonzept.com>
+> > ---
+> > Changes in v2:
+> >   - Add blank lines between top-level properties
+> >   - Drop "deprecated" in "oneOf" list, it is not clear if this is valid
+> >     and it should be redundant since the properties itself are already
+> >     marked as "deprecated"
+> > ---
+> > Like Sibi's patch series for SC7180/SC7820 [1] this is somewhat related
+> > to Sireesh's series that converts all of qcom,q6v5.txt [2] (with a lot
+> > of if statements). However, this series focuses on MSM8916/MSM8974 (or
+> > actually MSM8909) only.
+> > 
+> > [1]: https://lore.kernel.org/linux-arm-msm/1657020721-24939-1-git-send-email-quic_sibis@quicinc.com/
+> > [2]: https://lore.kernel.org/linux-arm-msm/20220511161602.117772-7-sireeshkodali1@gmail.com/
+> 
+> Is that one abandoned or do we just get to review both approaches 
+> without coordination?
+> 
 
-Avoid the following checkpatch warning:
+I assumed the decision to make separate schemas rather than a big one
+was already made, since Sibi's series was applied and has already moved
+parts of qcom,q6v5.txt into separate schemas.
 
-include/dt-bindings/clock/imx8mm-clock.h:284: check: Please don't use
- multiple blank lines
+Still, I did coordinate with Sireesh before submitting this patch and
+suggested that he can likely just add the new "qcom,msm8953-mss-pil"
+compatible from his series to the DT schema in this patch (the setup is
+also very similar).
 
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> I think you need a common q6v5 schema here with all the common 
+> properties. Having the same property name with the type defined multiple 
+> times is not great. In fact, I'm working on a check for finding those.
 
----
+Which properties would you move to a common schema? Most of the schema
+is just listing items for generic properties (interrupts, clocks, power
+domains, supplies, resets, memory-region, ...) and having them separated
+is intended to avoid lots of if statements in a common schema.
 
- include/dt-bindings/clock/imx8mm-clock.h | 1 -
- 1 file changed, 1 deletion(-)
+What remains is maybe:
 
-diff --git a/include/dt-bindings/clock/imx8mm-clock.h b/include/dt-bindings/clock/imx8mm-clock.h
-index 47c6f7f9582c..1f768b2eeb1a 100644
---- a/include/dt-bindings/clock/imx8mm-clock.h
-+++ b/include/dt-bindings/clock/imx8mm-clock.h
-@@ -281,7 +281,6 @@
- #define IMX8MM_CLK_CLKOUT2_DIV			256
- #define IMX8MM_CLK_CLKOUT2			257
- 
--
- #define IMX8MM_CLK_END				258
- 
- #endif
--- 
-2.35.1
+  - "qcom,smem-states", which is already used in several other schemas
+    and could be possibly defined together with #qcom,smem-state-cells
+    in some generic schema(?)
 
+  - "qcom,halt-regs", "firmware-name", "smd-edge" are used by different
+    Qualcomm remoteproc drivers, so they could possibly be defined in
+    some common "qcom-remoteproc.yaml" schema(?)
+
+Thanks,
+Stephan
