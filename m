@@ -2,163 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61F3B57E7DE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 22:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3D7B57E812
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 22:11:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234879AbiGVUFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 16:05:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60096 "EHLO
+        id S236679AbiGVULp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 16:11:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbiGVUFE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 16:05:04 -0400
-Received: from mailrelay1-1.pub.mailoutpod1-cph3.one.com (mailrelay1-1.pub.mailoutpod1-cph3.one.com [46.30.210.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3EBD81B3A
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 13:05:02 -0700 (PDT)
+        with ESMTP id S236650AbiGVULo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 16:11:44 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A74EA895F;
+        Fri, 22 Jul 2022 13:11:44 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id y15so5417501plp.10;
+        Fri, 22 Jul 2022 13:11:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=Tzxqv/Uzh1JY+W5mrWl4jc5taDT0DwDxhpbR/ngIxKE=;
-        b=ngrCl12iS9dbWrzbb+yEVsi8jv2WhoHn8h0y9wimb9qK6AQJueW3fERGcoV1yQw/zIu9/G9RbA5rn
-         Yeao89uDhxCdUU5TDF4dvTf1L8nKnVo4mzuoBwGD5Dadd7gh75WPUVCXUKWNXcGaxVQPXTOxZugSm9
-         VWZAr3/FVedqQpwGfjkIu8WXd5CjNSidAL1L98VCqUhv8d8F9wHWj0xnSGdAi0RQPytjlWGTuY27sC
-         l3b7xbTydwxittImeDVjIEGHOm30MmaaUXI3b5kgas7FKOtIlKX9c8sZwz019clzsw1JXTfXeFPw6d
-         TDnKeTLqrjdmFX7N8EmCZHlGRAUlamg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=Tzxqv/Uzh1JY+W5mrWl4jc5taDT0DwDxhpbR/ngIxKE=;
-        b=mUvzipy2Q9Z8BIwDUwrCH/RmGe9aq0BuTkWEuXGc/CvysRYAcStZnN/aLKjysmkL/TPnREZ33sp9u
-         08MztDcDg==
-X-HalOne-Cookie: 5935a94967758038358233096c6ddf6e78c687d9
-X-HalOne-ID: 90b086e4-09f9-11ed-a6c8-d0431ea8a283
-Received: from mailproxy1.cst.dirpod4-cph3.one.com (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay1.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
-        id 90b086e4-09f9-11ed-a6c8-d0431ea8a283;
-        Fri, 22 Jul 2022 20:05:00 +0000 (UTC)
-Date:   Fri, 22 Jul 2022 22:04:58 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=F/sHqz52JCjZtTGGz1e4gK9EfsKCCo6NBQFJa9haPXs=;
+        b=No6XYV/cF1q7/4YwMikQsOmP4nHdGsUYQF89/RNENnOywLKSM+0sKtK6Y8f2qqpbAk
+         ZqqQMup4pfMtW5g2QC5DzwYuCxCxPSz/ZRBYSvQTG3VY8Ws/1k7QCZKwzwZZa29svKkR
+         1CULsa8fGnZANIU04WsOqOEGgVgm92ahA+9eWHtVy0agppeuFloVj1BR7dE1IZCDESMz
+         g1YsBZawHl+jprt+D48Hh368lh5w7vfKXMpYchJ9vVyAkjsLTWs0XXD5nucAxiEOUe6S
+         DayhNBZr67gzo2bJ/+C5i2VqIs+S0oP/60pM3TacsXQ9P1IqBgtnEEiiotkOBSFQnVCW
+         hk8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=F/sHqz52JCjZtTGGz1e4gK9EfsKCCo6NBQFJa9haPXs=;
+        b=RRr+NwloVpg1g1MS+w2BgtFTaoZUsoyFnry1PuXeCj3gjC0XA7o7F86bpDhXP9sJul
+         odZ0DH5K4wqtpa4HiZjV0zlD/5NrLCE46TVro0J7gYP60OMtptzXLwCqgepL2SQ0PoAx
+         CCCBWK0f5WbRVohblt5WDrzSdgsf/2cXk4hu2mOGcwtCQ0rcwrmcGfqqifhjeIeXAKgo
+         MIbc2npxXHYxciQFTMYAspNCJS+erTDJoF0VthFIGNDmH25R9pTF20NvFzJe2NncUfbc
+         cNBVUseCWFNLaFOVtJKlJyCqEdu4v0yU0zHdKNuqvOmUuOVRu+VACn3Pb5sZkzbikm9V
+         2wMg==
+X-Gm-Message-State: AJIora8SVCw/sgTwrwtgHEaYwd3sZFht62K6/AymxxMXU09kigEhmq6t
+        ufODi+4Qy2kWq+I26ZHOjDqkCJg+JGU=
+X-Google-Smtp-Source: AGRyM1tmntwkrguuJAICv9NXR4l1waxYHsCW+lA8zubnRJ8OSeVcVzxqCCIofQHq9BybvqvbBCkFhA==
+X-Received: by 2002:a17:90b:4a83:b0:1ef:de4c:65f0 with SMTP id lp3-20020a17090b4a8300b001efde4c65f0mr19248669pjb.149.1658520703099;
+        Fri, 22 Jul 2022 13:11:43 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id p2-20020a170902780200b0016c0eb202a5sm4098604pll.225.2022.07.22.13.11.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Jul 2022 13:11:42 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        dri-devel@lists.freedesktop.org,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: bridge: Document RZ/G2L
- MIPI DSI TX bindings
-Message-ID: <YtsC6p7yy86Dr95H@ravnborg.org>
-References: <20220722191924.544869-1-biju.das.jz@bp.renesas.com>
- <20220722191924.544869-2-biju.das.jz@bp.renesas.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
+        ARM ARCHITECTURE),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v2 0/3] Add Broadcom STB memory controller driver
+Date:   Fri, 22 Jul 2022 13:10:40 -0700
+Message-Id: <20220722201043.2731570-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220722191924.544869-2-biju.das.jz@bp.renesas.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Hi Krzysztof,
 
-On Fri, Jul 22, 2022 at 08:19:23PM +0100, Biju Das wrote:
-> The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's. It
-> can operate in DSI mode, with up to four data lanes.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v3->v4:
->  * No change.
-> v2->v3:
->  * Added Rb tag from Geert and Laurent
->  * Fixed the typo "Receive" -> "transmit"
->  * Added accepible values for data-lanes
->  * Sorted Header file in the example
->  * Added SoC specific compaible along with generic one.
-> v1->v2:
->  * Added full path for dsi-controller.yaml
->  * Modeled DSI + D-PHY as single block and updated reg property
->  * Fixed typo D_PHY->D-PHY
->  * Updated description
->  * Added interrupts and interrupt-names and updated the example 
-> RFC->v1:
->  * Added a ref to dsi-controller.yaml.
-> RFC:-
->  * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-22-biju.das.jz@bp.renesas.com/
-> ---
->  .../bindings/display/bridge/renesas,dsi.yaml  | 182 ++++++++++++++++++
->  1 file changed, 182 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> new file mode 100644
-> index 000000000000..131d5b63ec4f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> @@ -0,0 +1,182 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L MIPI DSI Encoder
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +description: |
-> +  This binding describes the MIPI DSI encoder embedded in the Renesas
-> +  RZ/G2L alike family of SoC's. The encoder can operate in DSI mode, with
-> +  up to four data lanes.
-> +
-> +allOf:
-> +  - $ref: /schemas/display/dsi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
-> +      - const: renesas,rzg2l-mipi-dsi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Sequence operation channel 0 interrupt
-> +      - description: Sequence operation channel 1 interrupt
-> +      - description: Video-Input operation channel 1 interrupt
-> +      - description: DSI Packet Receive interrupt
-> +      - description: DSI Fatal Error interrupt
-> +      - description: DSI D-PHY PPI interrupt
-> +      - description: Debug interrupt
-This is an awful lot of interrupts.
-Is this really individual interrupts or status bits in a single
-interrupt? If it is the latter then there should be only one interrupt
-defined.
+This small patch series adds basic support for controlling self-refresh
+power down on Broadcom STB memory controllers. We might be able to
+contribute more features to the memory controller driver in the future
+like accurate reporting of the memory type, timings, and possibly some
+performance counters.
 
-Note: I looked at the driver, but it does not use interrupt so it did
-not answer my question.
+Changes in v2:
 
-	Sam
+- merged the v1 first two patches
+- added a sysfs document describing attributes exposed
+- addressed feedback from Krzysztof regarding style and API usage
+
+Florian Fainelli (3):
+  dt-bindings: memory-controller: Document Broadcom STB MEMC
+  Documentation: sysfs: Document Broadcom STB memc sysfs knobs
+  memory: Add Broadcom STB memory controller driver
+
+ .../ABI/testing/sysfs-platform-brcmstb-memc   |  15 +
+ .../bindings/arm/bcm/brcm,brcmstb.txt         |  11 +-
+ .../brcm,brcmstb-memc-ddr.yaml                |  53 +++
+ drivers/memory/Kconfig                        |   9 +
+ drivers/memory/Makefile                       |   1 +
+ drivers/memory/brcmstb_memc.c                 | 302 ++++++++++++++++++
+ 6 files changed, 382 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-platform-brcmstb-memc
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
+ create mode 100644 drivers/memory/brcmstb_memc.c
+
+-- 
+2.25.1
+
