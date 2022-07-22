@@ -2,140 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F02D657E672
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A536B57E682
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235478AbiGVSY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 14:24:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40172 "EHLO
+        id S236123AbiGVS1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 14:27:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236033AbiGVSY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:24:27 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210119B1A3
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:24:26 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id y11so8884403lfs.6
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:24:26 -0700 (PDT)
+        with ESMTP id S235664AbiGVS1p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:27:45 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEC7676448
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:27:43 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id p10so1389499lfd.9
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:27:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=y4PUfnBxYpq9HSb+fauW+K364XPSFPA2RCgwysiSwtk=;
-        b=POp8xz8gqsVDeOEnSV/znwpLLT/7mt1y58ijKtYQv6llFmQcKLiM0tfuj9mzKssBKm
-         2Lv5tr+E76TkfjZA+va5wO6hvWlCrFMa30uPQt1voOY7asDLbyv6q7M4Py75une3UypE
-         93MAw89KTptjHuWOD5VJr69Wt3YGrVuAbLbHftnh0K0wJ5Jjx/FQBpB4VrhE8i0eQwQa
-         wE5p2vXX/NXWoCwXcLIu8/sDZqRRXXHk0SASmNsfQaXGBTopm5pMbzv9Ku9GU3ruKoW2
-         EdeqWolvfW/bZQptiziFbwaTAWDV8J3JF+pxi2BkQ3ryfjE29/CyCaNR8Ut7D7HfMzHn
-         XmaQ==
+        bh=I1vUGpwMpvsFijcK7rMVb17fRKbm3rXcOPS4jhYHo+s=;
+        b=mfO9qhrEMeDSmoRTcZLxZYa7i+qL705xCNjz0AxbE+xl4krndTWTvD+DNwwqe8gCjo
+         G158X6kjFckVPHj+JnJoQRjMHr5shekolrNQRyzGP0neK2bdQ5/hhs1WGwAGNPcqmN64
+         46fWG/datwAYc0KLUSDxYt3Bw2StnfXl6gWgvZxBFSspFy2iTgiYwqCPqijK9lRMC33k
+         97/IO6Jw3yQ9ha9/fmnNOFxwNXuJWhyigtB/mPwctGu5zzi04DwYKbh8Qd0XT2+DuyWr
+         zmhtq428dE5g+fcKb/VJETBIBy7u3rFhdWh++s53ONHWZDWRzSwI1d+uL3gzB7pcSn+1
+         JvMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=y4PUfnBxYpq9HSb+fauW+K364XPSFPA2RCgwysiSwtk=;
-        b=3gk60357B9kJvbZAFvBtUENli13aYLwsrM3RmQ2hdEEIPjHsoh4ZDdWJbhxKGbk96D
-         9KukpW0HZAEwVq8JTB5ASOUUkoWd6Tvq7lBGFGF/lMBrFx6TyWoC6zhlGjvMvXYbFKWv
-         zehOrIzNMu5sPlk+caNzL4WA4noobQmIKMzkMyHguGd/CrMeR34OJ9Fn5eEiTLGqb39w
-         IpgOW3stjOXNeln54CUjCG/a+h+pMzjPXh9o/Jx9L+fbCjRF52BWHgs5aDLI/h2lB8zl
-         Ou95jiPyiiUYhrWV0PyBhbo8XSUGahUNkaP3ELKBg2CfM5rTiWG/rTt5Jq669NgTBct3
-         AEAg==
-X-Gm-Message-State: AJIora9HYnUzHAKVrd+9xBpdt9uQHdN7WgOISnCwWTQAic58iXqGmUEZ
-        05w7y84cpSqWTYOi2Zq5FQ/UiQ==
-X-Google-Smtp-Source: AGRyM1us6rSOUrvpiq6AQc8XjSdjL0FZeX63+7AyN+7xrpuEnWAHs+uGC22kUuETgJIr17SRL6nggw==
-X-Received: by 2002:a05:6512:1683:b0:47f:78ca:8ac5 with SMTP id bu3-20020a056512168300b0047f78ca8ac5mr452500lfb.663.1658514264494;
-        Fri, 22 Jul 2022 11:24:24 -0700 (PDT)
+        bh=I1vUGpwMpvsFijcK7rMVb17fRKbm3rXcOPS4jhYHo+s=;
+        b=Jd5SRngOyRw3/zUDotgcIbrDR1NmLyQAefMWNyjJYU2O0QhtrOkeQTDQmK58RtvyRH
+         7JMrAdXQJ7jtEC+3L/iO13IwlQ4qpWU0cr1AqbkVzxzw447A+UL8nX6bYVKFyA8/NSQ1
+         t4SkSmmJKrBNyJL7V8eC4PIllNnlJyWjzLoy22TADJHHABqvNEmU11dTx6iXMps0kfm9
+         gEsGaq2AA02FK5GdotsY0+B0pyQkeVO/fw6sR2oMNJrQ+rUzjbjswaCO07Kk7ic2h+Cv
+         8kDkCtOMfR18bzVdaES/iPSfhxKNBdEY98H+Z4JXpAEmLKOvnTIt8l1tWBvrUEw8URlH
+         395g==
+X-Gm-Message-State: AJIora/GykCaxZISZ5nmX1tmQDL2QRxqb79/RmwLgwhm+64zVKd6JAh8
+        Dx2if4zQzGZHstzFwJMnQ0/F+Q==
+X-Google-Smtp-Source: AGRyM1u5s9vPRllug8ZcmUKJwD6rKM+iYjo9EoPGp5f+2bxpIwcItZExHlxKP0O+ZhB0AaukTIb/IA==
+X-Received: by 2002:a05:6512:ac5:b0:48a:74c4:3d90 with SMTP id n5-20020a0565120ac500b0048a74c43d90mr443420lfu.653.1658514462023;
+        Fri, 22 Jul 2022 11:27:42 -0700 (PDT)
 Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac25f08000000b0048a6bb9418esm1172037lfq.295.2022.07.22.11.24.22
+        by smtp.gmail.com with ESMTPSA id b27-20020ac2563b000000b00478ea0e4f66sm1181083lff.169.2022.07.22.11.27.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 11:24:23 -0700 (PDT)
-Message-ID: <3b60aa59-c40e-11d0-c6d5-dc1b022ec349@linaro.org>
-Date:   Fri, 22 Jul 2022 20:24:21 +0200
+        Fri, 22 Jul 2022 11:27:41 -0700 (PDT)
+Message-ID: <de7fc091-ed12-c585-d39d-2bcf2bda37fe@linaro.org>
+Date:   Fri, 22 Jul 2022 20:27:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [RESEND PATCH 2/9] dt-bindings: arm64: bcmbca: Update BCM4908
- description
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Document additional
+ sa8540p device
 Content-Language: en-US
-To:     William Zhang <william.zhang@broadcom.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Cc:     Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20220721000658.29537-1-william.zhang@broadcom.com>
- <a635754e-bf41-4058-5fbb-57ead36b7128@linaro.org>
- <883c2ad4c36220b488519a8902ad72bc@milecki.pl>
- <193845cb-6149-1ae6-5eb6-6b01ffcf763b@linaro.org>
- <bbc67617-9137-28d4-8d6f-a36507923010@broadcom.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220722142515.18592-1-quic_ppareek@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bbc67617-9137-28d4-8d6f-a36507923010@broadcom.com>
+In-Reply-To: <20220722142515.18592-1-quic_ppareek@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2022 02:07, William Zhang wrote:
+On 22/07/2022 16:25, Parikshit Pareek wrote:
+> Add the ADP ride device to the valid device compatibles found on the
+> sa8540p platform.
 > 
-> 
-> On 07/21/2022 12:01 AM, Krzysztof Kozlowski wrote:
->> On 21/07/2022 08:51, Rafał Miłecki wrote:
->>> On 2022-07-21 08:44, Krzysztof Kozlowski wrote:
->>>> On 21/07/2022 02:06, William Zhang wrote:
->>>>> Append "brcm,bcmbca" to BCM4908 chip family compatible strings. Add
->>>>> generic 4908 board entry.
->>>>
->>>> This does not explain at all why you are doing it. Improve your commit
->>>> messages.
->>>
->>> To clarify it from my side (and maybe help a bit):
->>>
->>> 1. As I understand it BCMBCA is a one big family of SoCs.
->>> 2. BCM4908 is a subset of that family (a subfamily?) designed for a
->>>      specific group of devices.
->>>
->>> If that's correct I think William it's what you should describe in your
->>> commit message. That would make binding more accurate and should be a
->>> good argument for your change (I believe).
->>
->> That's better argument. But what's the benefit of adding generic
->> compatible? Devices cannot bind to it (it is too generic). Does it
->> describe the device anyhow? Imagine someone adding compatible
->> "brcm,all-soc-of-broadcom" - does it make any sense?
->>
-> In case you were also referring the generic 4908 board compatible string 
-> brcm,bcm94908, this is for a bare bone 4908 board dts that only enables 
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
 
-No, we refer to the contents of the patch, so bcmbca compatible.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-I did not see you introducing here bcm4908 compatible.
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
 
-> ARM cpu subsystem, memory and uart. It can be used on all 4908 based 
-> Broadcom reference boards and customer board. It is especially useful 
-> for initial board bring up and one can load this generic board and start 
-> work and debug from the console. Also would be helpful to do a quick 
-> verification of new kernel version when there is cpu subsystem related 
-> change.
-> 
-> I guess my mindset already assume people are now familiar with this 
-> model of bcmbca binding addition for a new SoC since we introduced the 
-> bcmbca arch with first soc 47622 and 10+ other socs late. But sure I 
-> agree and I will update the commit message with more details in addition 
-> to what the cover letter says.
+If a tag was not added on purpose, please state why and what changed.
 
+
+Additionally - please thread your patchset. Git send-email does it by
+default. If you use other tools - be sure the effect is threaded.
+Otherwise it is not possible to find the patches from you.
 
 
 Best regards,
