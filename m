@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 428CC57E51F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BE3257E530
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234838AbiGVROt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 13:14:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35654 "EHLO
+        id S235958AbiGVRQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 13:16:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231409AbiGVROt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:14:49 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E65C15465D
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:14:47 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id by8so6151671ljb.13
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:14:47 -0700 (PDT)
+        with ESMTP id S236058AbiGVRQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:16:22 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E3A224096
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:16:19 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id y11so8621098lfs.6
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:16:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=eJgi1GW66h7gj18ZlW88+UsGgeLNT88IMnndIh1ADtw=;
-        b=XsajXIe50to+kZLYwUSITaq6YT4n5G6Tf/9xNjIOHAWzqSKs5BWDtVyC99h2Nx3Lac
-         BeRwAK+BnZj1DGSJPa0v4Y9YGMWv6GbJ3SgGifmb3h7L/scJi7G3KrzRr/o/rvmbvlHI
-         MlN/fPATnf6aeCELo8MqPCnxrfjya2pXGCBvrU8ioFHiUz3wkKMUNXkDdHhwRo5Dwps9
-         Z2F6YXOrYEvM8UGmdXoFVWEjsgjR19Q9TR4lWBXyHs2K6f78jQ7YFw9jUun0U0DNZCXJ
-         X6oNfo2E79wvcaebDeeZmWEHyrBAKn7Ylpbrzq26PvAXOcOB3nZGo4wsFPzU1jdjFIZ4
-         bXIQ==
+        bh=qzKvnXIunHj3Oe09t7pjgnCJEOdHA12gmzofARgYOME=;
+        b=Eo92qaL4trtnQyMylGrDeeKV8N52OGZdJeqMO8j4DPFBxG970Lp6rmyTOY5N3cKHr6
+         ya3hpXlZiizzbTv4HdI4e+xXwGTBKvxeI/hO46PGeo6+PQM08GcauJg35asuntABAfxB
+         z5x75LH/yCVEA9IEXG/t7M+HBo5kUcCGooIpm0+JLA78wkoOFOuDqXXkzwCQfWtfsH7Z
+         Jo7a7LfLDY1uXEregHEPnZg5TgPXuYnKPGl1FT5RR8rBDJb3O3N2L0I0zdXo+pyONVcV
+         SstaayKDyJYxEV3s5LQ2bY65jDka9OuEseDiLqaI7amQSb260bvOlTCEjvdFBQZ+CZlZ
+         shpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=eJgi1GW66h7gj18ZlW88+UsGgeLNT88IMnndIh1ADtw=;
-        b=3jWyDDOw9eKggjbsHpaTa7j1g38p1B9+dcRnCuA/IhTgS4tJG+x1Mp4Ahi/Ul/OUab
-         VtYaZJ8SEsc8CBdxzRBee2IS9gpXgBIL6YhzD4t3K+AgLCpFOA5vGEaOszCAWRob4tC9
-         r0KaU5KgXbleG8pQGLd7GqKUkXhCxxDMq9ZBdEHwrQ8TunYu0jA1ypzEBR9x6lVDXign
-         YNljcSrLcJaff9ZS+OFsZ/3OoajIzwhLQO7MIXSXMIKCBzBP5ovH5lcK3QaSEak3nQB3
-         leo7G70EmDWnerUmqD4KdZHL8gUrgpu85aIPlfzY946KfXtreyoE1ShSy6FilsCyz9Hf
-         4THQ==
-X-Gm-Message-State: AJIora8Px6rrud5fhOnVkfMvCDmXJbIxnJ/rPN1g/FkVaepPP0S8df9j
-        CSRdlzzExVoWtP0sCYwDCmXbcA==
-X-Google-Smtp-Source: AGRyM1vSZ/7qOlEqVHlCdCJ7FX/JYgnEXy9wXEJbBqZyZ3+GcBqsDsx7UOjeEBLDfw/XOHH9DsK49Q==
-X-Received: by 2002:a2e:9ed1:0:b0:25d:527e:28e4 with SMTP id h17-20020a2e9ed1000000b0025d527e28e4mr368867ljk.478.1658510086302;
-        Fri, 22 Jul 2022 10:14:46 -0700 (PDT)
+        bh=qzKvnXIunHj3Oe09t7pjgnCJEOdHA12gmzofARgYOME=;
+        b=lnu7M8oblxysuzqQpPMn/TfYyWg62R2ri3gjDstbpQCTez6AewjMHvpHVxU3Zpur6E
+         Rv8yoUsMKXBlbXC1k/5C9NPfMa9kErQzobmHZeH29Zeh81f+bSLAPlwLiqGnZYBXkGZV
+         GPVAt/0lSEkX0IlqxlQ4zhx2AWub4ALGrl0cnsl7zFoWEfeKyNAN35a0UATXqx/sLzcA
+         yy+4Ncro6pZ7VBS3i0She087oYWjFlo39HqXiF3hzIAPdyDlkqw/476wXIzcp0E1s36M
+         5zFrvyliRr5yZYKNFKUCuu2aTOvmUmjzXKztiOMhfLRv1BgEPmf6S1RCsXZ6mvsbh+OV
+         GqVw==
+X-Gm-Message-State: AJIora/flEco1xxuv1M1++fgvB/SNxek9XJA7wXSXKMYx9nKLCtqN6iT
+        aIIututsNXyAJxvHxLBUo8bPQQ==
+X-Google-Smtp-Source: AGRyM1tm8lG7HIgSNHNOp7qyZEM1JP4mQGHlpvpjhWzODGjdPwwS9kwQuib0Cmd/jns5KE1BaLEg8g==
+X-Received: by 2002:a05:6512:22d2:b0:48a:1ec7:2220 with SMTP id g18-20020a05651222d200b0048a1ec72220mr362226lfu.668.1658510177750;
+        Fri, 22 Jul 2022 10:16:17 -0700 (PDT)
 Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id s14-20020a056512214e00b0048110fd06c4sm1156566lfr.53.2022.07.22.10.14.44
+        by smtp.gmail.com with ESMTPSA id w24-20020a05651c119800b0025dd5f64d2esm1223031ljo.110.2022.07.22.10.16.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 10:14:45 -0700 (PDT)
-Message-ID: <8a4999b9-862e-f698-28b9-42d26f680367@linaro.org>
-Date:   Fri, 22 Jul 2022 19:14:43 +0200
+        Fri, 22 Jul 2022 10:16:17 -0700 (PDT)
+Message-ID: <7c4a07e3-b087-3d44-d350-43e8ed1e10e6@linaro.org>
+Date:   Fri, 22 Jul 2022 19:16:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
 Subject: Re: [PATCH v3 2/2] dt-bindings: arm: qcom: Document additional sku6
  for sc7180 pazquel
 Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh@kernel.org>
 Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
         LKML <linux-kernel@vger.kernel.org>,
         Henry Sun <henrysun@google.com>,
@@ -65,7 +66,6 @@ Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         linux-arm-msm <linux-arm-msm@vger.kernel.org>
@@ -76,83 +76,108 @@ References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@chang
  <CAD=FV=XmaNdc9k98vAwbcN-sm0w_WeqhRsK_AUm3h4LZ5-egmQ@mail.gmail.com>
  <c2b03863-2249-13e6-98e0-731c1b40d0a9@linaro.org>
  <CAD=FV=XKC_fbBzna8TgiPRmPH_=AQ3ckv2EEjoNvayKQ83Uciw@mail.gmail.com>
+ <20220722002210.GA2223409-robh@kernel.org>
+ <CAD=FV=U1yqdPzdtJFu+Rk56TOX1kYX2BZ16XGuMoM+=Re5NA9A@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAD=FV=XKC_fbBzna8TgiPRmPH_=AQ3ckv2EEjoNvayKQ83Uciw@mail.gmail.com>
+In-Reply-To: <CAD=FV=U1yqdPzdtJFu+Rk56TOX1kYX2BZ16XGuMoM+=Re5NA9A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/07/2022 20:29, Doug Anderson wrote:
+On 22/07/2022 17:41, Doug Anderson wrote:
 > Hi,
 > 
-> On Thu, Jul 21, 2022 at 9:52 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+> On Thu, Jul 21, 2022 at 5:22 PM Rob Herring <robh@kernel.org> wrote:
 >>
->> On 21/07/2022 18:43, Doug Anderson wrote:
+>> On Thu, Jul 21, 2022 at 11:29:13AM -0700, Doug Anderson wrote:
 >>> Hi,
 >>>
->>> On Thu, Jul 21, 2022 at 9:33 AM Krzysztof Kozlowski
+>>> On Thu, Jul 21, 2022 at 9:52 AM Krzysztof Kozlowski
 >>> <krzysztof.kozlowski@linaro.org> wrote:
 >>>>
->>>> On 21/07/2022 15:37, Doug Anderson wrote:
+>>>> On 21/07/2022 18:43, Doug Anderson wrote:
+>>>>> Hi,
 >>>>>
->>>>> Not worth sending a new version for, but normally I expect the
->>>>> bindings to be patch #1 and the dts change to be patch #2. In any
->>>>> case:
+>>>>> On Thu, Jul 21, 2022 at 9:33 AM Krzysztof Kozlowski
+>>>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>>>
+>>>>>> On 21/07/2022 15:37, Doug Anderson wrote:
+>>>>>>>
+>>>>>>> Not worth sending a new version for, but normally I expect the
+>>>>>>> bindings to be patch #1 and the dts change to be patch #2. In any
+>>>>>>> case:
+>>>>>>>
+>>>>>>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>>>>>>
+>>>>>> I would say worth v4, because otherwise patches is not bisectable.
 >>>>>
->>>>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>>>>> You're saying because `dtbs_check` will fail between the two?
 >>>>
->>>> I would say worth v4, because otherwise patches is not bisectable.
+>>>> Yes
 >>>
->>> You're saying because `dtbs_check` will fail between the two?
+>>> OK. Then I assume you agree that reversing the order of the patches
+>>> won't help, only combining the two patches into one.
+>>>
+>>>
+>>>>> How does
+>>>>> flipping the order help? If `dtbs_check` needs to be bisectable then
+>>>>> these two need to be one patch, but I was always under the impression
+>>>>> that we wanted bindings patches separate from dts patches.
+>>>>
+>>>> I don't think anyone said that bindings patches must be separate from
+>>>> DTS. The only restriction is DTS cannot go with drivers.
+>>>
+>>> I have always heard that best practice is to have bindings in a patch
+>>> by themselves. If I've misunderstood and/or folks have changed their
+>>> minds, that's fine, but historically I've been told to keep them
+>>> separate.
 >>
->> Yes
-> 
-> OK. Then I assume you agree that reversing the order of the patches
-> won't help, only combining the two patches into one.
-> 
-> 
->>> How does
->>> flipping the order help? If `dtbs_check` needs to be bisectable then
->>> these two need to be one patch, but I was always under the impression
->>> that we wanted bindings patches separate from dts patches.
+>> Correct.
 >>
->> I don't think anyone said that bindings patches must be separate from
->> DTS. The only restriction is DTS cannot go with drivers.
+>>
+>>>> Bindings for boards go pretty often with DTS (subarch). This is exactly
+>>>> what maintainers do, e.g.:
+>>>> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/log/?h=arm64-for-5.20
+>>>> Bindings for hardware should go via subsystem maintainer (drivers).
+>>>
+>>> OK, fair that in this case both the bindings and the yaml will land
+>>> through the Qualcomm tree. I guess it's really up to Bjorn and whether
+>>> he'd prefer "make dtbs_check" to be bisectable or whether he'd prefer
+>>> the bindings and dts change to be in separate patches from each other.
+>>
+>> Bindings go first if applied together because you have to define the
+>> binding before you use it. But sometimes things go via multiple trees
+>> and that's fine because it's just easier. In that case, the subsystem
+>> tree is preferred for bindings (i.e. with the driver). But in this case,
+>> Bjorn is the subsystem tree.
 > 
-> I have always heard that best practice is to have bindings in a patch
-> by themselves. 
-
-Yes, bindings must be separate patch, no one here objects this. You said
-they cannot go together via one maintainer tree or I misunderstood?
-
-> If I've misunderstood and/or folks have changed their
-> minds, that's fine, but historically I've been told to keep them
-> separate.
-
-Nothing changed. Bindings must be separate. They will be applied by
-maintainer and, if correctly ordered, this is bisectable.
+> Thanks! I'll interpret your response as:
 > 
-> 
->> Bindings for boards go pretty often with DTS (subarch). This is exactly
->> what maintainers do, e.g.:
->> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/log/?h=arm64-for-5.20
->> Bindings for hardware should go via subsystem maintainer (drivers).
-> 
-> OK, fair that in this case both the bindings and the yaml will land
-> through the Qualcomm tree. I guess it's really up to Bjorn and whether
-> he'd prefer "make dtbs_check" to be bisectable or whether he'd prefer
-> the bindings and dts change to be in separate patches from each other.
+> 1. Keep this as two patches and it's more important to keep dts and
+> bindings separate than it is to avoid breaking bisectability of "make
+> dtbs_check".
 
-??? The patches must be separate commits and if properly ordered in one
-branch they are bisectable.
+No one questioned this here...
+
+> 
+> 2. Bindings should have been patch #1, but it's not a massive deal.
+
+This started our discussion and I said it should be a v4 with a proper
+order. It's not massive deal, but hopefully the submitter will learn
+something.
+
+> 
+> 3. I'll assume that Bjorn will yell if he'd like this series re-posted
+> with the reverse order.
+
 
 
 Best regards,
