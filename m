@@ -2,80 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D80357DA74
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 08:43:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97F5157DAA9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 09:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234308AbiGVGnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 02:43:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47476 "EHLO
+        id S234091AbiGVHNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 03:13:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230089AbiGVGnJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 02:43:09 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D5FC868B9;
-        Thu, 21 Jul 2022 23:43:07 -0700 (PDT)
-X-UUID: 04bcd04a01a742cdb764386f66409ece-20220722
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:a7825040-aa15-4457-9e25-becf99aa36e6,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:-5
-X-CID-META: VersionHash:0f94e32,CLOUDID:4975aa33-b9e4-42b8-b28a-6364427c76bb,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 04bcd04a01a742cdb764386f66409ece-20220722
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <mingjia.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1310787261; Fri, 22 Jul 2022 14:43:03 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 22 Jul 2022 14:43:02 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Fri, 22 Jul 2022 14:43:00 +0800
-Message-ID: <cf62ea99e74ea729a38fe7f806cbc06a0c549ddc.camel@mediatek.com>
-Subject: Re: [RESEND] media: mediatek: vcodec: Add to support VP9 inner
- racing mode
-From:   "mingjia.zhang@mediatek.com" <mingjia.zhang@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Fritz Koenig" <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 22 Jul 2022 14:43:00 +0800
-In-Reply-To: <6d8aeee4-9732-1c62-67e0-6e8f56373aa6@collabora.com>
-References: <20220715064938.5812-1-mingjia.zhang@mediatek.com>
-         <6d8aeee4-9732-1c62-67e0-6e8f56373aa6@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S231585AbiGVHNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 03:13:09 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7CE8E6D9;
+        Fri, 22 Jul 2022 00:13:08 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-10dc1b16c12so229085fac.6;
+        Fri, 22 Jul 2022 00:13:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=/5eFAcvX/CKlTrR9jX/d2mPTDiNp5/R1cusUbd4zITc=;
+        b=IAE445tfsoJF+oNXdF/zD/o+xl+j5zuke/2oHbLDrDDG1eK7oMFwzquA9owKIC0akd
+         2wtRxONNq8jxitQ3T9C67se9Vr1rSoQvwlaTscjFzLW1c2a/5F4E5KboDfICs93jZTil
+         0E0IoLVKrsMnxnyYFFQKW2lpHILH6KLPtlg5fey8OufecN3TWNT5SnjkNDpHr+rHZ429
+         3eFW2gX7jaRz0bAt5mhSlzF7pJIgABlYhgd/Y8SaNIi4idYTIuB1mcImAJXFeFE0BWNd
+         CWsx4ux7HI+RoXokQX7/HR+dhEWUyNFu3OZbjpPvIxHLJnUXvkBc4tE4d62xfHQgP7ck
+         4zhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/5eFAcvX/CKlTrR9jX/d2mPTDiNp5/R1cusUbd4zITc=;
+        b=Y/3lGgvkKxgsDRBc4EIHfo+tkFuJRKGvuZqYIINfBRo7D4bh6RvdwngogX2EUvjPgv
+         jsIRq1JH9h3lqu1Zem14HXOgBPJC1+riJJmDMLLUzwqWTWKg+ox6o+Zk1O5QW7oE2NoJ
+         tQtZin4ENd8cu1+A0LWXZEMuVF3ebuSt2mAPrXiWhIq3+O2yzTaxcJuIhl5/L1HK1+9y
+         XSw5QVJ2U8g6kEKdARF11DomjWIk1lbShDz7SNVudLWJme6XtsQmFDXkaeRLsDlLqpBv
+         Q2zPDcYgfZ+zZ5nXEA6pkuGf626Mz4uJtX+Ml8cjISESFq/jUtxuS+SSuCXSVVo87DP+
+         iufg==
+X-Gm-Message-State: AJIora9zhecv0+loBcKD2kyuG1FJ8qb4AeVMxtZiSDPDqtEAZz3WKs7w
+        F/yMT57OVl6qOnp1XGAQERzfcfrwMQB9UETHVXeQU3aF
+X-Google-Smtp-Source: AGRyM1sZbAQqRFGT4zktXxYOhlpCSHAdyV2KhO65mrh0zep3NPJ8L+wFTa+SoqqdeFP8ZeriFFgE8FEPylj7lDy66+k=
+X-Received: by 2002:a05:6870:2323:b0:10d:2b6:3519 with SMTP id
+ w35-20020a056870232300b0010d02b63519mr6962462oao.215.1658473987695; Fri, 22
+ Jul 2022 00:13:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+References: <20220721061144.35139-1-gene.chen.richtek@gmail.com>
+ <20220721061144.35139-4-gene.chen.richtek@gmail.com> <0675b483-9d51-30bc-a51d-9b9f2a0acb51@roeck-us.net>
+In-Reply-To: <0675b483-9d51-30bc-a51d-9b9f2a0acb51@roeck-us.net>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Fri, 22 Jul 2022 15:12:55 +0800
+Message-ID: <CAE+NS340V5+-QqnO8WAFT3Z2U77P+-hejFUbpCbxieORaPJ2Dw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] usb: typec: tcpci_rt1711h: Add regulator support
+ when source vbus
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>,
+        ChiYuan Huang <cy_huang@richtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,38 +74,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
-
-Thanks for your reply and useful comments.
-
-In addition to running cts/gts test, I ran the fluster test with
-GStreamer locally. The test result is "Ran 240/303 tests successfully"
-
-
-Thanks,
-mingjia
-
-
-On Fri, 2022-07-15 at 10:34 +0200, AngeloGioacchino Del Regno wrote:
-> Il 15/07/22 08:49, Mingjia Zhang ha scritto:
-> > In order to reduce decoder latency, enable VP9 inner racing mode.
-> > Send lat trans buffer information to core when trigger lat to work,
-> > need not to wait until lat decode done.
-> > 
-> > Signed-off-by: mingjia zhang <mingjia.zhang@mediatek.com>
+Guenter Roeck <linux@roeck-us.net> =E6=96=BC 2022=E5=B9=B47=E6=9C=8821=E6=
+=97=A5 =E9=80=B1=E5=9B=9B =E6=99=9A=E4=B8=8A10:28=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On 7/20/22 23:11, Gene Chen wrote:
+> > From: Gene Chen <gene_chen@richtek.com>
+> >
+> > Add regulator support when source vbus
+> >
+> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
 > > ---
-> > CTS/GTS test pass
-> 
-> CTS/GTS passing is a good indication but, please, test with GStreamer
-> (and
-> show the output, as well!).
-> 
+> >   drivers/usb/typec/tcpm/tcpci_rt1711h.c | 28 +++++++++++++++++++++++++=
++
+> >   1 file changed, 28 insertions(+)
+> >
+> > diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec=
+/tcpm/tcpci_rt1711h.c
+> > index 3309ceace2b2..52c9594e531d 100644
+> > --- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
+> > +++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
+> > @@ -10,6 +10,7 @@
+> >   #include <linux/i2c.h>
+> >   #include <linux/interrupt.h>
+> >   #include <linux/gpio/consumer.h>
+> > +#include <linux/regulator/consumer.h>
+> >   #include <linux/usb/tcpm.h>
+> >   #include <linux/regmap.h>
+> >   #include "tcpci.h"
+> > @@ -40,6 +41,8 @@ struct rt1711h_chip {
+> >       struct tcpci_data data;
+> >       struct tcpci *tcpci;
+> >       struct device *dev;
+> > +     struct regulator *vbus;
+> > +     bool src_en;
+> >   };
+> >
+> >   static int rt1711h_read16(struct rt1711h_chip *chip, unsigned int reg=
+, u16 *val)
+> > @@ -103,6 +106,26 @@ static int rt1711h_init(struct tcpci *tcpci, struc=
+t tcpci_data *tdata)
+> >
+> >       /* dcSRC.DRP : 33% */
+> >       return rt1711h_write16(chip, RT1711H_RTCTRL16, 330);
+> > +
+> > +}
+> > +
+> > +static int rt1711h_set_vbus(struct tcpci *tcpci, struct tcpci_data *td=
+ata,
+> > +                         bool src, bool snk)
+> > +{
+> > +     struct rt1711h_chip *chip =3D tdata_to_rt1711h(tdata);
+> > +     int ret;
+> > +
+> > +     if (chip->src_en =3D=3D src)
+> > +             return 1;
+> > +
+> > +     if (src)
+> > +             ret =3D regulator_enable(chip->vbus);
+> > +     else
+> > +             ret =3D regulator_disable(chip->vbus);
+> > +
+> > +     if (!ret)
+> > +             chip->src_en =3D src;
+> > +     return ret ? ret : 1;
+>
+> Are you sure this is what you want ? Returning 1 bypasses the code settin=
+g
+> the vbus registers in tcpci.c. If that is on purpose it might make sense
+> to explain it.
+>
+
+ACK, return 0 is more compatible with next generation chip,
+and writing tcpci vbus command won't affect to ic if not supported.
+
+> >   }
+> >
+> >   static int rt1711h_set_vconn(struct tcpci *tcpci, struct tcpci_data *=
+tdata,
+> > @@ -246,7 +269,12 @@ static int rt1711h_probe(struct i2c_client *client=
+,
+> >       if (ret < 0)
+> >               return ret;
+> >
+> > +     chip->vbus =3D devm_regulator_get(&client->dev, "vbus");
+> > +     if (IS_ERR(chip->vbus))
+> > +             return PTR_ERR(chip->vbus);
+> > +
+>
+> This makes regulator support mandatory, which so far was not the case.
+> That warrants an explanation why it is not a problem for existing users.
+>
+
+We verified ic behavior as SNK only, because we couldn't add tcpci set
+vbus callback and external boost otg vbus.
+And we use our own type-c state machine and pd policy engine for mass
+production to user.
+
 > Thanks,
-> Angelo
-> 
-> > ---
-> >   .../vcodec/vdec/vdec_vp9_req_lat_if.c         | 64 ++++++++++++
-> > -------
-> >   1 file changed, 40 insertions(+), 24 deletions(-)
-> > 
-
+> Guenter
+>
+> >       chip->data.init =3D rt1711h_init;
+> > +     chip->data.set_vbus =3D rt1711h_set_vbus;
+> >       chip->data.set_vconn =3D rt1711h_set_vconn;
+> >       chip->data.start_drp_toggling =3D rt1711h_start_drp_toggling;
+> >       chip->tcpci =3D tcpci_register_port(chip->dev, &chip->data);
+>
