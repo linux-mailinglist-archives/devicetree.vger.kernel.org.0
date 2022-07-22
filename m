@@ -2,89 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 813AE57E595
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65A0757E5A8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230486AbiGVRcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 13:32:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52786 "EHLO
+        id S236017AbiGVRdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 13:33:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229667AbiGVRb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:31:59 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC5687F58;
-        Fri, 22 Jul 2022 10:31:58 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id n10-20020a17090a670a00b001f22ebae50aso4783016pjj.3;
-        Fri, 22 Jul 2022 10:31:58 -0700 (PDT)
+        with ESMTP id S235065AbiGVRdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:33:00 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8B39CE30
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:32:59 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id b34so1028700ljr.7
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:32:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ThQlVicPs1rWFVsyGw86UI+Xw2uWwAxd1Fpjx4xaCns=;
-        b=UEsBag87mGWy5BVFAdUXkdk1qCdUs2lOxfmigRvBLhdNgdqYBneUn0atXOS+eQR4IM
-         6sHV41s76ygcnA0g4U0PIhhTQSp/icVkckXBJOtOKU/KBb8UYmIZ6kgXiiBTh9ASEuQE
-         FRnxfAxWVvVk/3dARMgqQYPFzAduNrwCT67rR4WAok6Ld2NqmRtzKx62vuf7VMtDU1xU
-         BKjflmwuAZLUav13K7J/sgHTXP4Pyan/eLgIR8/JeCTouevC77O//rOVekJrjWcgZt12
-         nWWte9PC3FoPJCgsJ7qoIU6cKZU6BU7BZZGsNnlUbLj96QB6rwu9iovQvp65x2ESCE2o
-         Xmaw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=l48XYpfyFIQhz2kXp9OwdWKvu7j6Lw8BsI/XJ/Jv9Po=;
+        b=Yk8lVGLY7UCYYTPZkrBXuwqCPqgSGUB4wvwBVUo+bNNOQiSFpx7HDPJYr6J4QGDG6+
+         sKp0mkuIkGL45Y8mUjqaQzGVH7zR++z0HRsaE847EuN/Hy6PstJjb075COS8SmNCG9zy
+         edunZhxF2J1mZdTOXIugyaegeKHTygAX0xkd02zu+Ht6VFQve4x0kKgMdQht5KvjHkzD
+         Ol49eotMYOU/cDncMdWegvo0Y8f2ErI9Ya/sjDdnv/q4aVq87l2+/a5sTFbWv96HDy38
+         33LqDqvG9bl5RCtZCqd3ftCnFuyGA4ExsS27vDrlGYtS4IAWwzUiqPOOtvtkltH/eob1
+         skVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ThQlVicPs1rWFVsyGw86UI+Xw2uWwAxd1Fpjx4xaCns=;
-        b=LP0ag3SxVcb8GV+eNq2CjGEAEnbJ7aVjfwJYFKTEMzQ393wgo+iNLRReLOtcKvg6gP
-         4Fah2oFFdAkAliIPIsjM4gpwlJsehv9A9IR/1+JzAHtJewOYby5eo5QpECthTXAtAQVK
-         H2pqqEWra53L02zyUC44U+RwHTaxIlE2zp9iEkVkWmHee3EeCyQfzzVIrJZp87Pulhtc
-         XZ/vKV1vwoNw+q43tFRZLjtrUka2DLaCr3inK8I0qLFS9dEyg7Im20u2a08Q/vNrRnTT
-         EhDXNNhncBRrhaJ8BzxtUpFiXbbvHJguephVp6ukh33atOsAW9pa1okp1MBZvjwiVviN
-         RyRg==
-X-Gm-Message-State: AJIora+Uhf28RWO+VmgFkj4D1Is/hNckJub9hOQnY6kn16RtpIH4qmvA
-        TGpnX7pNCDAACSjCWyFHjVc=
-X-Google-Smtp-Source: AGRyM1vKQxvXfAZ5zbgWjOJAsSYiM30LcNcKWPMY9QnHFGqydzpTE5Lb5lNKPDScqfQFMMIF3bwNvg==
-X-Received: by 2002:a17:90b:188a:b0:1f2:3570:5f9f with SMTP id mn10-20020a17090b188a00b001f235705f9fmr720721pjb.75.1658511118005;
-        Fri, 22 Jul 2022 10:31:58 -0700 (PDT)
-Received: from 9a2d8922b8f1 ([115.98.179.206])
-        by smtp.gmail.com with ESMTPSA id x21-20020aa79ad5000000b00528a097aeffsm4174567pfp.118.2022.07.22.10.31.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jul 2022 10:31:57 -0700 (PDT)
-Date:   Fri, 22 Jul 2022 23:01:52 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v3 6/6] dt-bindings: dma: Convert Qualcomm BAM DMA
- binding to json format
-Message-ID: <20220722173152.GA54768@9a2d8922b8f1>
-References: <20220417210436.6203-1-singh.kuldeep87k@gmail.com>
- <20220417210436.6203-7-singh.kuldeep87k@gmail.com>
- <20220721195215.GA1817266-robh@kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=l48XYpfyFIQhz2kXp9OwdWKvu7j6Lw8BsI/XJ/Jv9Po=;
+        b=mPNsYlGKAKVtbL0jBQp5kQ1i3Ow5Fgcut0Vv8nvs4WGxlWlKw+o9OxlcJC5yW0JUXX
+         X4Y94774Ix00tr9di25INDu51Ox8OHot6sWT8rQV2UL1Bu0hQt2XWDZYOhJPHi6/zOgn
+         ILYcc3KWE/qIRVDcaaQewUpSQW6XsRhAD80gnTQy2RysGpRQkCkd576DJf7wyk/a8WVH
+         witpge6LFeEcwLYszLnyoi70dlOM0a+jPIC0uPJ4+hzel7BslglvwGAfnzwTpPKaDONn
+         VmMhJmY2HME13Pwy58GH7aLfwQ+agLRyNQA/hYSyUkAw9y5iy+V451NmcscxaMbrbIZ8
+         LgBw==
+X-Gm-Message-State: AJIora/1fOmyc/OFQsXnm7Ht/D9DWYWhWoGi28Bki6XmkdeyJRHdCp+B
+        sic2mT84/CJVh05lhBMSjw4Dcg==
+X-Google-Smtp-Source: AGRyM1tFjTdGZO6apyoZWyqR7lEhDKJTi9zVNsh1r+H7/YyqRX239MTwEIiGl2W+UPY+SmwYx7Oqfw==
+X-Received: by 2002:a2e:8004:0:b0:25d:80c0:1e93 with SMTP id j4-20020a2e8004000000b0025d80c01e93mr380410ljg.210.1658511177697;
+        Fri, 22 Jul 2022 10:32:57 -0700 (PDT)
+Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
+        by smtp.gmail.com with ESMTPSA id n7-20020a05651203e700b00485e55192a3sm1159175lfq.72.2022.07.22.10.32.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Jul 2022 10:32:57 -0700 (PDT)
+Message-ID: <454232b3-2f98-c3ca-4661-5e9eb51998b6@linaro.org>
+Date:   Fri, 22 Jul 2022 19:32:54 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220721195215.GA1817266-robh@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2] dt-bindings: phy: samsung,ufs-phy: match clock items
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
+        'Rob Herring' <robh+dt@kernel.org>
+Cc:     'Alim Akhtar' <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <CGME20220707063058epcas2p19364a05a5b2fc8aad81fa390ac030f21@epcas2p1.samsung.com>
+ <20220707062807.135960-1-chanho61.park@samsung.com>
+ <4e8a36de-a631-f6c9-44d7-7d873f775db2@linaro.org>
+ <001b01d89d69$37d80320$a7880960$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <001b01d89d69$37d80320$a7880960$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> This is the 11th most warned on (168 warnings) for missing a schema, so 
-> I've implemented my only comment and applied. It seems neither this one 
-> or the other attempt at converting are getting respun.
+On 22/07/2022 03:20, Chanho Park wrote:
+>> Subject: Re: [PATCH v2] dt-bindings: phy: samsung,ufs-phy: match clock
+>> items
+>>
+>> On 07/07/2022 08:28, Chanho Park wrote:
+>>> Below error is detected from dtbs_check. exynos7-ufs-phy is required
+>>> symbol clocks otherwise only PLL ref clock is required.
+>>>
+>>> clock-names: ['ref_clk'] is too short
+>>>
+>>> Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Suggested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Suggested-by: Alim Akhtar <alim.akhtar@samsung.com>
+>>> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+>>
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Hi Krzysztof,
+> 
+> No one takes this patch. Could you please pick this patch in your tree?
+> Thanks.
 
-I didn't respin because Bhupesh mentioned he will send his v5 and then I
-couldn't followup.
+You did not send it to PHY maintainers... The bindings go via subsystem
+maintainers.
 
-I realized I should have anyway respin my patch.
-Thanks for incorporating the changes.
+If Vinod doesn't want it, I could take it, but he never had a chance to
+say :)
 
-Regards
-Kuldeep
+Please resend.
+
+Best regards,
+Krzysztof
