@@ -2,71 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C62D457E579
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:25:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6657757E589
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbiGVRZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 13:25:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47486 "EHLO
+        id S234838AbiGVR0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 13:26:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbiGVRZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:25:08 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3032E87
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:25:06 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id u14so6238516lju.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:25:06 -0700 (PDT)
+        with ESMTP id S235813AbiGVR0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:26:40 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3605E6FA1A
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:26:39 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id w15so619139lft.11
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:26:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=KuEpwZJ1uhtFdUF1C/gI9wPx+uXhdTm9dpr0H9Yke6w=;
-        b=egPNOAbAN7Y+qZ60MlIEaORxMlNW33vdbhk/TMQ/ZDFV2yScqD8w0HuBXmVJB23Mgr
-         mJuWq/sryAH4iWp/5UHpI2wskFsbtxE7mUll6tkj0cjp0oEY5R/ZcRCXSo+qH/kk5uIz
-         kHMnq/L9Qt3LQrGEmJuO1QDt2I8sVfV9Hby0UH8vJ6wxfdKNDfOIKuK3qjDPt4vXObaO
-         cmmCNZ1BA6OjXgdOnaLISFsGguwpY4ApUPps3YB59luy7kyLjtd7FJyiYTpYtpBLLnws
-         qG/1qMQpOiWD8AtVLBsmGQctucAgovGC9Ga8TFOFfZRXlOL4oMphLGwTCVTBzFQlpC6F
-         9dRg==
+        bh=qoN3gDHWVDLFAUm42xgoSLsUq4+PL4CyeQJ0bjtEpCU=;
+        b=ve4ktK15OM0pfiMIrqujRlezfMGvsEQ5YAqFux57vtJ3J20/mY8UAzgLg0HYm9+N0u
+         47DSWQ4U+8NAqESzQcHSEuXsrh6z6hFoIIPVXAOnzYapERTRn/arZX134XW7HojrduPm
+         j3aXxulLfoKC9EnQf91v4gAF1rFUJQAjANXYapg0REhSI+MckWQA7/YSXRscN2wXptKX
+         I7VUzN7iixc9WPegThHkQErY2lzuneQJ3ooy9JDLp5aHN9CgJKLQ3hjPNRRjtMxdfWqD
+         K/MvnpJlCBOquEp1u040AFUgxkZYV2LyqvPkfJvlLsA/1A7kHv2pilYQSS9CZfLHy5uW
+         paeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=KuEpwZJ1uhtFdUF1C/gI9wPx+uXhdTm9dpr0H9Yke6w=;
-        b=5S2TDtl8LJ2EMVJnHGEwpWV32YPqK/l2o0daeLMo76ZfTSPxKn2L5c5145hezUbaYB
-         EYL2iicezp5ReK4XyZcprxoJ/G/vMgh/PLfKtalg0CFyqfB87DuLMwEzy2gliZQ50uCa
-         wfX8YMklKxQoMSfnbNMRf225xJWbnIOX3jXytse94fHynRkYs+sQN7IrIQomn7XR3K/z
-         OVGq4J/EA/L6FJ8SjC4TBUTOibHnZC8VCOjEnT8PTp1zbxwB00tAMnhp9Z10ZvbySh28
-         dio7f+hj/ueSXUBH7l4SqLCGOEWBdVXcAjJHSrQKj5IIoWxn/oM0/c7PQW9X/iKROmOq
-         78VA==
-X-Gm-Message-State: AJIora+5d5ZrQqLpdCqvjaoV61QGgySooMWX61Iyf/7GvCafuyz+rBxK
-        x9ZPnavOit+putc7/7GD7d/VNg==
-X-Google-Smtp-Source: AGRyM1sW6Ujrt3+VsCsQa6hm4P4P+ZVr5SIK9xcNS52rdxS+gihxYH01QZB0l5kXGFj69Tua+Y7gPg==
-X-Received: by 2002:a2e:b013:0:b0:25d:8f3d:7f0 with SMTP id y19-20020a2eb013000000b0025d8f3d07f0mr365855ljk.131.1658510704998;
-        Fri, 22 Jul 2022 10:25:04 -0700 (PDT)
+        bh=qoN3gDHWVDLFAUm42xgoSLsUq4+PL4CyeQJ0bjtEpCU=;
+        b=CtJXRDLVnxZZ2wWy2wvTtAvlZMnko5liNSLfQXtk1eGbzQauAxsjdedJ3dbNLI4myq
+         AKHrPrIgKDswt4Id9XitVtTJv0iJyNRPz3qy1NVY06u+iH9zLKlX49KMGQ7QWZ1oh4af
+         5DXouMYM4pGK5ize5Hv70Z8cN3dnzlagE9l8M3t+jI02gsosQQIYQM5fZsvV7guEH7DB
+         Gn91rhYgfaUZ+Tk2YXfrlhib9gF522FNWzljkOpHfYVo411NvZDtWxUTf40Ptt6qYkFT
+         7xUVLsCK6HMipNgPP8fnmeOJBbfEJDpZUzy80Fw3IAlR3WH7h3UOQQbdc1aQX4WvCuYn
+         oDlQ==
+X-Gm-Message-State: AJIora+G7bLG9ciOkRKaFcdXCkpljh9Uh9eiOlbrKPopgYorgyTE1jPx
+        PxgEP6JeuJqZSR64hBL4KP3CuA==
+X-Google-Smtp-Source: AGRyM1tWDz3YFjB2oREEYfHT63bgnHfvazVkGCurcjXwv9zhQAkymmmPouZ7MaolfC9GM8Hvk+Iykw==
+X-Received: by 2002:ac2:5989:0:b0:48a:74a6:8658 with SMTP id w9-20020ac25989000000b0048a74a68658mr384428lfn.660.1658510797594;
+        Fri, 22 Jul 2022 10:26:37 -0700 (PDT)
 Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id o21-20020ac24c55000000b004891b4a4acfsm1157744lfk.185.2022.07.22.10.25.03
+        by smtp.gmail.com with ESMTPSA id k12-20020a2eb74c000000b0025d40241c1dsm1252846ljo.6.2022.07.22.10.26.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 10:25:04 -0700 (PDT)
-Message-ID: <12dd9bff-bce4-7360-4a98-89bf31202571@linaro.org>
-Date:   Fri, 22 Jul 2022 19:25:02 +0200
+        Fri, 22 Jul 2022 10:26:37 -0700 (PDT)
+Message-ID: <9b6b5e2a-a78d-9aac-5eca-e8231ba6db55@linaro.org>
+Date:   Fri, 22 Jul 2022 19:26:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/1] dt-bindings: rtc: nxp, pcf85063: Convert to DT
- schema
+Subject: Re: [PATCH v3 2/2] dt-bindings: arm: qcom: Document additional sku6
+ for sc7180 pazquel
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Henry Sun <henrysun@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220721133303.1998356-1-alexander.stein@ew.tq-group.com>
- <5c90ef96-969c-728a-3987-5793956c5224@linaro.org>
- <5761215.mogB4TqSGs@steina-w>
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
+ <20220721033918.v3.2.I7ecbb7eeb58c5e6a33e32a3abf4d6874e6cb725c@changeid>
+ <CAD=FV=WSBgupLFMCZgianck6uTkAyqrG0WK2ChSbNbJdhOPdLA@mail.gmail.com>
+ <4b2fe9d0-f590-0fac-79fa-bb05da1d61df@linaro.org>
+ <CAD=FV=XmaNdc9k98vAwbcN-sm0w_WeqhRsK_AUm3h4LZ5-egmQ@mail.gmail.com>
+ <c2b03863-2249-13e6-98e0-731c1b40d0a9@linaro.org>
+ <CAD=FV=XKC_fbBzna8TgiPRmPH_=AQ3ckv2EEjoNvayKQ83Uciw@mail.gmail.com>
+ <8a4999b9-862e-f698-28b9-42d26f680367@linaro.org>
+ <CAD=FV=XBCC6HwUzKJ51LBkfWpXcbY9QepVZfNzQJp3qADzkkQg@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5761215.mogB4TqSGs@steina-w>
+In-Reply-To: <CAD=FV=XBCC6HwUzKJ51LBkfWpXcbY9QepVZfNzQJp3qADzkkQg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,49 +91,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2022 08:02, Alexander Stein wrote:
-> Hello Krzysztof,
+On 22/07/2022 19:23, Doug Anderson wrote:
+> Hi,
 > 
-> thanks for your feedback.
-> 
-> Am Donnerstag, 21. Juli 2022, 15:43:13 CEST schrieb Krzysztof Kozlowski:
->> On 21/07/2022 15:33, Alexander Stein wrote:
->>> Convert the NXP PCF85063 RTC binding to DT schema format.
+> On Fri, Jul 22, 2022 at 10:14 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 21/07/2022 20:29, Doug Anderson wrote:
+>>> Hi,
 >>>
->>> Add 'interrupts' and 'wakeup-source' as this device has an interrupt
->>> which was not documented, but is in use.
->>> 'clock-output-names' and '#clock-cells' are added as well, those were
->>> probably missed when adding clkout support in commit 8c229ab6048b
->>> ("rtc: pcf85063: Add pcf85063 clkout control to common clock framework")
+>>> On Thu, Jul 21, 2022 at 9:52 AM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 21/07/2022 18:43, Doug Anderson wrote:
+>>>>> Hi,
+>>>>>
+>>>>> On Thu, Jul 21, 2022 at 9:33 AM Krzysztof Kozlowski
+>>>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>>>
+>>>>>> On 21/07/2022 15:37, Doug Anderson wrote:
+>>>>>>>
+>>>>>>> Not worth sending a new version for, but normally I expect the
+>>>>>>> bindings to be patch #1 and the dts change to be patch #2. In any
+>>>>>>> case:
+>>>>>>>
+>>>>>>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>>>>>>
+>>>>>> I would say worth v4, because otherwise patches is not bisectable.
+>>>>>
+>>>>> You're saying because `dtbs_check` will fail between the two?
+>>>>
+>>>> Yes
+>>>
+>>> OK. Then I assume you agree that reversing the order of the patches
+>>> won't help, only combining the two patches into one.
+>>>
+>>>
+>>>>> How does
+>>>>> flipping the order help? If `dtbs_check` needs to be bisectable then
+>>>>> these two need to be one patch, but I was always under the impression
+>>>>> that we wanted bindings patches separate from dts patches.
+>>>>
+>>>> I don't think anyone said that bindings patches must be separate from
+>>>> DTS. The only restriction is DTS cannot go with drivers.
+>>>
+>>> I have always heard that best practice is to have bindings in a patch
+>>> by themselves.
 >>
->> Thanks for adding it here, this sounds fine but brought my attention to
->> interrupts and quartz-load. It seems that only rv8263 supports
->> interrupts. In the same time rv8263 work only with 7000
->> quartz-load-femtofarads.
+>> Yes, bindings must be separate patch, no one here objects this. You said
+>> they cannot go together via one maintainer tree or I misunderstood?
 >>
->> If that's correct, you need to put "allOf" after "required" and inside
->> "if:then:" restricting it. For rv8263 interrupts:true and quartz as
->> const 7000, for else: interrupts:false.
+>>> If I've misunderstood and/or folks have changed their
+>>> minds, that's fine, but historically I've been told to keep them
+>>> separate.
+>>
+>> Nothing changed. Bindings must be separate. They will be applied by
+>> maintainer and, if correctly ordered, this is bisectable.
 > 
-> It is slightly different. In all the datasheets I found there was an IRQ pin, 
-> so this applies to all models, although only some of them (PCF85063A, 
-> PCF85073A and RV8263) support alarms, which is what Linux cares for right now. 
-> But this is handles in the driver already.
+> OK, I think this is the disconnect here.
+> 
+> No matter what order Jimmy's patches land in, it won't be bisectable
+> from the standpoint of "make dtbs_check". This is what I've been
+> trying to say.
+> 
+> * If the bindings land first then the device tree won't have sku6 and
+> will fail "make dtbs_check"
+> 
+> * If the dts lands first then the bindings won't have sku6 and will
+> fail "make dtbs_check".
+> 
+> Am I missing something?
 
-OK, this is fine then.
+Ah, you're right... The patch changes the bindings of a board instead of
+bringing a new variant. Yeah, this cannot be bisectable if kept
+separate, thus order does no matter.
 
-> quartz-load-femtofarads does not apply to RV8263, because it has no OSCI pins 
-> at all but uses an onboard oscillator. See commit 5b3a3ade0293 ("rtc: 
-> pcf85063: add Micro Crystal RV8263 support") for that. But this also handled 
-> in the driver already.
-
-This is what I was based on, so the quartz-load-femtofarads should not
-be even allowed for RV8263.
-
-> Apart from that apparently only PCF85063 has a fixed quartz-load of 7pF, the 
-> other types supported can have either 7 oder 12.5 pF.
-
-...and for PCF85063 this should be fixed to 7.
+> 
+> So when you said "I don't think anyone said that bindings patches must
+> be separate from DTS" and that you cared about "make dtbs_check" being
+> bisectable that you were saying you wanted these squashed into one
+> patch. I guess that's not the case.
+>
 
 Best regards,
 Krzysztof
