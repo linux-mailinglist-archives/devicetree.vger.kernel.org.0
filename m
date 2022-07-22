@@ -2,66 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4520357DF98
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 12:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A58057DF84
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 12:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234003AbiGVKPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 06:15:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50006 "EHLO
+        id S234175AbiGVKVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 06:21:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbiGVKPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 06:15:07 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410047748B;
-        Fri, 22 Jul 2022 03:14:57 -0700 (PDT)
-Received: from leknes.fjasle.eu ([46.142.48.124]) by mrelayeu.kundenserver.de
- (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1N5W4y-1nPhFb30ry-016vQa; Fri, 22 Jul 2022 12:13:53 +0200
-Received: from localhost.fjasle.eu (bergen.fjasle.eu [IPv6:fdda:8718:be81:0:6f0:21ff:fe91:394])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by leknes.fjasle.eu (Postfix) with ESMTPS id 2AD5A3C0C7;
-        Fri, 22 Jul 2022 12:13:36 +0200 (CEST)
-Authentication-Results: leknes.fjasle.eu; dkim=none; dkim-atps=neutral
-Received: by localhost.fjasle.eu (Postfix, from userid 1000)
-        id D35264E42; Fri, 22 Jul 2022 12:13:19 +0200 (CEST)
-Date:   Fri, 22 Jul 2022 12:13:19 +0200
-From:   Nicolas Schier <nicolas@fjasle.eu>
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     linux-kbuild@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] kbuild: add dtbs_prepare target
-Message-ID: <Ytp4PyBcCfRsVaG5@bergen.fjasle.eu>
-References: <20220716093122.137494-1-masahiroy@kernel.org>
+        with ESMTP id S229980AbiGVKVl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 06:21:41 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DBF688E00;
+        Fri, 22 Jul 2022 03:21:40 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id i206so7287278ybc.5;
+        Fri, 22 Jul 2022 03:21:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oUOmZaaWZdL4aHrPnrxvArp44HB6G38b625uNkKyttY=;
+        b=cvAX/C3FinUOHgPxFegdanpzYVu5UcB2TLSYzGaEHJMgUpT6TzBiwDMUbuJzHuOfyr
+         BauYQxokp4b9lCGQApaY8Mx3cggaMLuTI64e6+ilSrywRDMQMRn0jhNbQopYxUXEYvI7
+         H+sq/yGMAVnBsxm/D4G8U7oO61kLSS1AtNP5iiWqG6djF76er68DOmPsqvktM/fSuB9g
+         xtCJB8+k/jK3j/r3oVeCzALNlSnqDUkEbv8CkLiH9389rC8tAleJuKfhGFJq5HG7gB8e
+         sDzFYvyO5OPQvFGIUPZ5uuu2ZzKfjn04nkKL3BxSjLqq13OVvVe/gdZBqgHTXzXYtC0y
+         46Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oUOmZaaWZdL4aHrPnrxvArp44HB6G38b625uNkKyttY=;
+        b=QhRofE5k6rZWbAW24pUJRUMZiEyd2eu7pJc2ODWfrlv2HMIoXJ8ajq8bZ8BiJJSsbI
+         5Tp6ExxVaTY8rUF8P8fXPy6x2e/m3t52WYebcDGTzuB3gFTd1iG+td6iGDM0NKFWQBPR
+         g0Io+rhKH5SOMlZpzWPReSUJ8bw9QLiXOjkPsVknAbH9NTgnEli1RNwW6si6WwHLw1Qy
+         sMR+uUUkDkbVQh16Q6RAww80WTJRWHeAHBpJVVvuWP2WHEnPEOlK0YKSHpY4dYZuG1hv
+         VAg5uHeEuWt5my0z0lN+jRF6Ca6bKd01CBA1UduhVOH85bNsaX1+ReKApKtI9rtfgOwx
+         KSeg==
+X-Gm-Message-State: AJIora8yeKayu5nqYwKlXBi8b2l/RZUAIIROsQSOynj3FWfxdCwKPftz
+        3dxB4NENh+Ee3gj0GXicY5h6ziLyITbIhmNiGqAKXVIQd3JsqA==
+X-Google-Smtp-Source: AGRyM1veOXbJyzBK5syagjCutWL1b5Kz2CIv95zfFti52FbUDh1LGzmd7krIAEzczpn/ldlFKn7aZl//rca/b9WXHA8=
+X-Received: by 2002:a5b:508:0:b0:66e:db78:cc3f with SMTP id
+ o8-20020a5b0508000000b0066edb78cc3fmr2397728ybp.299.1658485299630; Fri, 22
+ Jul 2022 03:21:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-In-Reply-To: <20220716093122.137494-1-masahiroy@kernel.org>
-Jabber-ID: nicolas@jabber.no
-X-Operating-System: Debian GNU/Linux bookworm/sid
-X-Provags-ID: V03:K1:kBSYKIANld+Cd82WhQj0ATFo241QPlk9m2Lo9LNLuxwvoUtSFoe
- SMFA1GDRjr8mDkW9Ve4RGsdf/fC38OftrWKxTtPD7ySiPcJEDncQD/nZG1TP4QweOktO9UE
- gTz8LYeAYzOYIO2bGcf/AjqKpmTSB55ysCIUt9tvp2Xa5sUPVLX1UPOkoOnaYqU4e4yrDnr
- rSVTQOAXpCTeKt7pUqtDQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:2Kzuzhkgnbs=:QxOY4QgM7lnnYHAt63zcRu
- h7fZudyRJbGPXieX9UCe0tE7ggda4rRNbN6ds+MgKu/g2gugg1t4QifFxUYyZG5Z0EIHBM2L5
- YWWUqAI4h93Bt77Rj9WsOcePZUBVRPUfS3aarDHdkH7ZbBEvU6jJZvvjYZJBycF7Xu47IZXqz
- usgVRiPjODHQUbF1rhAuHA6Q4iTUPMm4UbQfv9XsVIa0aIvYFRIliCaCxX2HqPY4h6QTvsSYU
- IlgD+gpXhTKR7cCYx73wSae6cvK/CfZSO5OUxe/40PXJHECewQikyB6uuUSP+CkleIJVjxf0c
- w8HcA9kkP6SXV7GZL7iWajd+4FeM6Vj7zzArSAEy8Gwx/i1UTdgAnn17mABMZa6HSZIxSQ/mk
- FX7ZVYeeJIO5a/my3mACGV2njgk3RZjH3gIxiQN/e5/whjTcJJSCHSzormDH8sT/dc2ac6bOv
- fKonYNW+G+ffbAKEpWCXLTzYmfL+C1RaomqZXW6L10i/jS1hH7Ssy+RzuaFHxbN+fiGv0f0oX
- VDKNmvDCdX0TQsFpPqb08qXSnQO8Yl0WC202iJgOaWS7q05mkpjvY1u5SAP2Gkux0KjCSR/Ou
- WuPY/mbKyrZXUYf/2JerVYuowL44P5DXuKFH1J0VIE99VjJ+UcHTQHeFjcVvURNxEinuuP1pj
- Msm3xyu7BF+/1vOVdNivu1TrbApjYq0jYnNGnhuYGZCxNl9n5NL39Zgfn/PuCppDla9qoNKs4
- z97b7jmZbYFQU8/Ixc/Iz1kL2GUroe/JiQN55Q==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20220721221212.18491-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220721221212.18491-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVy0w8Y-+MegHnjdFkQ7vB1Y=jPY-9atTFT_WTVYOiGLg@mail.gmail.com>
+In-Reply-To: <CAMuHMdVy0w8Y-+MegHnjdFkQ7vB1Y=jPY-9atTFT_WTVYOiGLg@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 22 Jul 2022 11:21:12 +0100
+Message-ID: <CA+V-a8tddFVQnJjKSg9MTKB-Hh3X=2OwsU+THis+KFEfz7KB=g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: renesas: renesas,rzg2l-sysc:
+ Document RZ/Five SoC
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,62 +74,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Jul 2022 18:31:22 +0900 Masahiro Yamada wrote:
-> Factor out the common prerequisites for DT compilation into the new
-> target, dtbs_prepare.
-> 
-> Add comments in case you wonder why include/config/kernel.release is
-> the prerequisite. Our policy is that installation targets must not
-> (re)compile any build artifacts in the tree. If we make modules_install
-> depend on include/config/kernel.release and it is executed under the
-> root privilege, it may be owned by root.
-> 
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> ---
-> 
->  Makefile | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Makefile b/Makefile
-> index a9bd55edb75e..8aa4dbb8f878 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1367,16 +1367,22 @@ endif
->  
->  ifneq ($(dtstree),)
->  
-> -%.dtb: include/config/kernel.release scripts_dtc
-> +%.dtb: dtbs_prepare
->  	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
->  
-> -%.dtbo: include/config/kernel.release scripts_dtc
-> +%.dtbo: dtbs_prepare
->  	$(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+Hi Geert,
 
-Is there a reason, why both rules are not unified?  I guess it is, but 
-I can't see it.
+Thank you for the review.
 
->  
-> -PHONY += dtbs dtbs_install dtbs_check
-> -dtbs: include/config/kernel.release scripts_dtc
-> +PHONY += dtbs dtbs_prepare dtbs_install dtbs_check
-> +dtbs: dtbs_prepare
->  	$(Q)$(MAKE) $(build)=$(dtstree)
->  
-> +# include/config/kernel.release is not actually required for building DTBs,
-> +# but for installing DTBs because INSTALL_DTBS_PATH contains $(KERNELRELEASE).
-> +# We do not want to move it to dtbs_install. The policy is installation
-> +# targets (, which may run as root) must not modify the tree.
+On Fri, Jul 22, 2022 at 10:31 AM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, Jul 22, 2022 at 12:15 AM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Document RZ/Five (R9A07G043) SYSC bindings. SYSC block found on the
+> > RZ/Five SoC is almost identical to one found on the RZ/G2L (and alike)
+> > SoC's. To differentiate RZ/G2UL from RZ/Five, "-rzfive" is included in
+> > the compatible string for the RZ/Five SoC as there are no interrupts
+> > from the SYSC block to the core.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > ---
+> >  .../soc/renesas/renesas,rzg2l-sysc.yaml       | 56 +++++++++++++------
+> >  1 file changed, 39 insertions(+), 17 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
+> > index ce2875c89329..bdaf05f8b29b 100644
+> > --- a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
+> > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
+> > @@ -20,35 +20,57 @@ description:
+> >  properties:
+> >    compatible:
+> >      enum:
+> > -      - renesas,r9a07g043-sysc # RZ/G2UL
+> > -      - renesas,r9a07g044-sysc # RZ/G2{L,LC}
+> > -      - renesas,r9a07g054-sysc # RZ/V2L
+> > +      - renesas,r9a07g043-rzfive-sysc # RZ/Five
+>
+> renesas,r9a07g043f-sysc?
+>
+Agreed.
 
-Is the comma after the opening parenthesis intended?
+> But I'm wondering if we really need a different compatible value?
+> It looks like both blocks differ only in external wiring, so if
+> anything needs to be handled differently (the removed/added registers
+> are related to CPU topology), that can be inferred from the system
+> topology (or even #ifdef CONFIG_{ARM64,RISCV} ;-)
+>
+Good point, but I wonder if we would end up in too many #ifdef
+CONFIG_{ARM64,RISCV} checks. If thats OK I will stick with
+"renesas,r9a07g043-sysc"
 
-Kind regards,
-Nicolas
+> > +      - renesas,r9a07g043-sysc        # RZ/G2UL
+> > +      - renesas,r9a07g044-sysc        # RZ/G2{L,LC}
+> > +      - renesas,r9a07g054-sysc        # RZ/V2L
+> >
+> >    reg:
+> >      maxItems: 1
+> >
+> > -  interrupts:
+> > -    items:
+> > -      - description: CA55/CM33 Sleep/Software Standby Mode request interrupt
+> > -      - description: CA55 Software Standby Mode release request interrupt
+> > -      - description: CM33 Software Standby Mode release request interrupt
+> > -      - description: CA55 ACE Asynchronous Bridge Master/Slave interface deny request interrupt
+> > +  interrupts: true
+> >
+> > -  interrupt-names:
+> > -    items:
+> > -      - const: lpm_int
+> > -      - const: ca55stbydone_int
+> > -      - const: cm33stbyr_int
+> > -      - const: ca55_deny
+> > +  interrupt-names: true
+> >
+> >  required:
+> >    - compatible
+> >    - reg
+> > -  - interrupts
+> > -  - interrupt-names
+> >
+> >  additionalProperties: false
+> >
+> > +allOf:
+> > +  - if:
+> > +      not:
+> > +        properties:
+> > +          compatible:
+> > +            contains:
+> > +              enum:
+> > +                - renesas,r9a07g043-rzfive-sysc
+> > +    then:
+> > +      properties:
+> > +        interrupts:
+> > +          items:
+> > +            - description: CA55/CM33 Sleep/Software Standby Mode request interrupt
+> > +            - description: CA55 Software Standby Mode release request interrupt
+> > +            - description: CM33 Software Standby Mode release request interrupt
+> > +            - description: CA55 ACE Asynchronous Bridge Master/Slave interface deny request interrupt
+> > +
+> > +        interrupt-names:
+> > +          items:
+> > +            - const: lpm_int
+> > +            - const: ca55stbydone_int
+> > +            - const: cm33stbyr_int
+> > +            - const: ca55_deny
+> > +
+> > +      required:
+> > +        - interrupts
+> > +        - interrupt-names
+> > +
+> > +    else:
+> > +      properties:
+> > +        interrupts: false
+> > +        interrupt-names: false
+>
+> Do all interrupts{,-names} have to be moved?
+> Wouldn't it be sufficient to just have
+>
+Agreed.
 
-> +dtbs_prepare: include/config/kernel.release scripts_dtc
-> +
->  ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
->  export CHECK_DTBS=y
->  dtbs: dt_binding_check
-> -- 
-> 2.34.1
+>     if [...]
+>     then:
+>         required:
+>           - interrupts
+>           - interrupt-names
+>     else:
+>         properties:
+>             interrupts: false
+>             interrupt-names: false
+>
+> ?
+>
+> But again, without a new compatible value, you could just make
+> interrupts{,-names} not required?
+>
+You mean we just make it optional for all the SoC's?
+
+Cheers,
+Prabhakar
