@@ -2,102 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8B9257EA08
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 00:45:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 581F057EA47
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 01:36:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237200AbiGVWpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 18:45:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39700 "EHLO
+        id S230502AbiGVXgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 19:36:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237204AbiGVWp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 18:45:29 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A58C06F1;
-        Fri, 22 Jul 2022 15:45:02 -0700 (PDT)
-Received: by mail-oi1-f181.google.com with SMTP id w204so7074519oie.7;
-        Fri, 22 Jul 2022 15:45:02 -0700 (PDT)
+        with ESMTP id S230005AbiGVXgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 19:36:07 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4574B8C5B6
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 16:36:06 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id oy13so11053037ejb.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 16:36:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RFcz4tDacWhTd6kvrtBPoWWnqzr4MBqjFZiHtLfkUJ8=;
+        b=bzn91xuSqNlcsX4wD4ZTubf89z9zYzkyeXLgGbEEflgOQp+L4AkOLYtG8ZCTOKmOVD
+         GAmJNTQKEJHoSuGGNFMwJqXLIqbR6nMNj7K4fBXabKZIG5Jt4y6xVPHRoQNFUblC/tCR
+         BFxrI7Bhl7T0Onn9iLzTll2jxDW/08AvikZ7A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=7XwmdpKQBMvYl+pH5ar534iWvJuw8dX5bUNNhw01JC0=;
-        b=spELbzAQgfwfjZgkEC9vp8UKDrSRh+SLdskhEdXv1oJ0bUUDkCgXYmf04Efj4AOebm
-         R3P4ta/+GI77N3TP5aILoZWJy3hb9MK12trOmLpfr6MnZp+KAGZ7C5Lu87b2F2bPUhyv
-         WYB0aP01QZWLPz3QsUqjCXedQ8mbBRfRCgS6ST0TGmOmJ6NqFHT8XMJiux3Eb9150XP4
-         rTwY1VWRysFJ3ZHtqvYYTCSAFk/qJEyk2vmph9pF4V3uJdMOlCPh9oFo+g1FjYWG+t9q
-         sXbsKxHg/LAM211Osz8shPYTyNxOVrYjifB/BvG/JcjtMc+kme1+QULdvm3p9AiW0cU/
-         BXLA==
-X-Gm-Message-State: AJIora+iIA2CCnwvCW35kSZ1sh2L+Je0J8PoAe5N1bjW65rmc5ualJIs
-        3SM5I+FhMiLD/XRDAMmyew==
-X-Google-Smtp-Source: AGRyM1t567gWXFWJV8Z8P3p6+RpUtCKsfkUs/yIOqGV6OA/Un4DLtV0hOWhNYRcnYaQXHgRiApZdsQ==
-X-Received: by 2002:a05:6808:1286:b0:33a:9a90:68d2 with SMTP id a6-20020a056808128600b0033a9a9068d2mr861852oiw.235.1658529898372;
-        Fri, 22 Jul 2022 15:44:58 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id y7-20020a05683009c700b0061cb7f17ed7sm2466136ott.11.2022.07.22.15.44.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jul 2022 15:44:57 -0700 (PDT)
-Received: (nullmailer pid 20323 invoked by uid 1000);
-        Fri, 22 Jul 2022 22:44:50 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Ryan.Wanner@microchip.com
-Cc:     devicetree@vger.kernel.org, alexandre.belloni@bootlin.com,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        broonie@kernel.org, claudiu.beznea@microchip.com,
-        nicolas.ferre@microchip.com
-In-Reply-To: <20220722152945.2950807-1-Ryan.Wanner@microchip.com>
-References: <20220722152945.2950807-1-Ryan.Wanner@microchip.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: atmel-i2s: Convert to json-schema
-Date:   Fri, 22 Jul 2022 16:44:50 -0600
-Message-Id: <1658529890.319757.20312.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RFcz4tDacWhTd6kvrtBPoWWnqzr4MBqjFZiHtLfkUJ8=;
+        b=PQfrm7m0pZdOUqV8WnaGfPPQO4BzyEoqGTugkbHKo6CxHemMuNjewFS1HUuj7VRwod
+         oUnC0494TLOpUvGXlsSJxxCdgFX7a/bwjedrJonzQjSmg0ZgJEzTTSXJvvEwPbWVkONU
+         MOICvXyalzHgcpTRRRCrF9BVf10jstrrIsnwjxhN08xo25YlYV2Sn4+V5bjD4Wp+Au8e
+         FOP7mK5ym/WprTuIK7s2tO1y6Vq4d39DwVMDRzatuQWoWchtx2rwMJwyx08j7paSPZYi
+         03MHeTxdg1bzJT/UCoi23n1sVCTAukHUK0GiVMEGY11TWBJ2fCiCDiofmkjL23YENE7L
+         G04A==
+X-Gm-Message-State: AJIora8Cd2+VJjIeinNQwI0suifqMTmPHw1PD7kk8q2RvePUds1o7ig/
+        3vjcfxvQRg4qP+zbyH4bmHnDO5MIoSdeAoHX
+X-Google-Smtp-Source: AGRyM1uDFqyvMLqdHVF2q1aZSlCDAV13bMyl//xwXE2F7sE7wg81Xufzm7pVhDIC+CMmCMNCfTDJ1w==
+X-Received: by 2002:a17:906:5a6c:b0:72b:561a:3458 with SMTP id my44-20020a1709065a6c00b0072b561a3458mr1749200ejc.114.1658532964359;
+        Fri, 22 Jul 2022 16:36:04 -0700 (PDT)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
+        by smtp.gmail.com with ESMTPSA id g2-20020a170906538200b0072b1bb3cc08sm2536779ejo.120.2022.07.22.16.36.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Jul 2022 16:36:01 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id n185so3587296wmn.4
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 16:36:01 -0700 (PDT)
+X-Received: by 2002:a05:600c:5114:b0:3a3:3f7f:27ec with SMTP id
+ o20-20020a05600c511400b003a33f7f27ecmr1190742wms.93.1658532960761; Fri, 22
+ Jul 2022 16:36:00 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220721182622.RFC.1.I8a64b707169cfd73d9309c5eaf5d43b8bc4db988@changeid>
+ <Ytrq2rVMHqedv4+3@sirena.org.uk>
+In-Reply-To: <Ytrq2rVMHqedv4+3@sirena.org.uk>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 22 Jul 2022 16:35:48 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U-qZQwRdLA8AVwYdcuj_PQEULTnhm3osFybaFmtvjmHg@mail.gmail.com>
+Message-ID: <CAD=FV=U-qZQwRdLA8AVwYdcuj_PQEULTnhm3osFybaFmtvjmHg@mail.gmail.com>
+Subject: Re: [RFC PATCH] regulator: core: Allow for a base-load per client to
+ come from dts
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Johan Hovold <johan@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Jul 2022 08:29:45 -0700, Ryan.Wanner@microchip.com wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
-> 
-> Convert atmel i2s devicetree binding to json-schema.
-> Change file name to match json-schema naming.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-> ---
-> Note: running dtbs_check will fail unless updated with this patch,
-> https://lore.kernel.org/linux-arm-kernel/20220707215812.193008-1-Ryan.Wanner@microchip.com/
-> 
-> v1 -> v2:
-> - Fix formatting for clock description.
-> - Fix formatting for dma description.
-> 
->  .../bindings/sound/atmel,sama5d2-i2s.yaml     | 85 +++++++++++++++++++
->  .../devicetree/bindings/sound/atmel-i2s.txt   | 46 ----------
->  2 files changed, 85 insertions(+), 46 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/atmel-i2s.txt
-> 
+Hi,
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+On Fri, Jul 22, 2022 at 11:22 AM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Thu, Jul 21, 2022 at 06:26:44PM -0700, Douglas Anderson wrote:
+>
+> > Looking through the current users of regulator_set_load(), all but one
+> > or two basically follow the pattern:
+>
+> > 1. Get all the regulators.
+> > 2. Go through each regulator and call regulator_set_load() on it with
+> >    some value that's sufficient to get the regulator to run in "HPM"
+> >    mode.
+> > 3. Enable / disable the regulator as needed.
+>
+> Sure...  I guess these devices are just hoping that their idle currents
+> are near enough to zero to be safe.  Having refreshed my mind about how
+> all this works that's basically the assumption that Linux is making
+> here, that any idle currents will be low enough to be satisified by the
+> lowest power state of any practical regulator and we don't need to keep
+> track of them.
+>
+> > Specifically it should be noted that many devices don't really have a
+> > need for the low power mode of regulators. Unfortunately the current
+>
+> What exactly do you mean by "a need for the low power mode of
+> regulators"?
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+Let me try to come up with some examples. I'll assume a regulator that
+can go up to 10mA in LPM (low power mode) and 100mA in HPM (high power
+mode). Software needs to switch between LPM and HPM manually. I don't
+have great numbers, but I'll assume that the LDO is 90% power
+efficient in LPM and 40% power efficient in HPM.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/
+
+Example 1: Trackpad that powers up on its own when it detects activity
+
+Let's imagine a driver for a trackpad that talks over i2c. We power up
+the trackpad's main supplies and the trackpad's firmware boots up. The
+trackpad goes idle and starts drawing only a little power (1 mA?) When
+someone gets near the trackpad (triggering the capacitive detectors)
+then the firmware on the trackpad will kick into action and start
+drawing a bunch of power (20mA?) to analyze the signals. If the
+trackpad decides it got a real touch then it will send an interrupt to
+the SoC.
+
+This trackpad _cannot_ use software managed LPM/HPM because it doesn't
+tell the main apps processor (AP) before it starts drawing more power
+and the AP is in charge of selecting HPM/LPM. If we want to use this
+trackpad with this regulator we just need to force it to HPM.
+
+In my above terminology, this driver doesn't "need" the low power mode
+of the regulators since it can't take advantage of it.
 
 
-i2s@fc04c000: 'assigned-parrents' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/at91-kizbox3-hs.dtb
-	arch/arm/boot/dts/at91-sama5d27_som1_ek.dtb
-	arch/arm/boot/dts/at91-sama5d27_wlsom1_ek.dtb
-	arch/arm/boot/dts/at91-sama5d2_icp.dtb
-	arch/arm/boot/dts/at91-sama5d2_ptc_ek.dtb
-	arch/arm/boot/dts/at91-sama5d2_xplained.dtb
+Example 2: Trackpad that warns the AP before it draws power
 
+Let's imagine changing the firmware on the trackpad in the first
+example. Now if the trackpad detects activity and wants to power up it
+sends an interrupt to the AP. When the AP says "OK" it starts its high
+power work. The AP can keep the trackpad in LPM most of the time and
+switch to HPM only when there's activity. This saves power, but was it
+a good design? It really depends. If this happens very very
+infrequently then it might save power. If my math is right:
+
+Idle trackpad in HPM (1mA @ 40% efficiency): 1 / .4 = 2.5mA
+Idle trackpad in LPM (1mA @ 90% efficiency): 1 / .9 1.1mA
+
+So we save 1.4mA of idle power but at the cost of complexity and
+response time for the trackpad. We also may need to spin up the CPU
+more often which could blow through our power savings.
+
+The answer here is much less clear cut. Maybe this is totally not
+worth it, but for a device that's very idle, that 1.4 mA might be
+worth it. If the idle power was 8mA (8 / .4 = 20mA) it could really be
+worth it.
+
+
+Example 3: A SPI controller
+
+Let's imagine a SPI controller that takes 5 mA when actively
+transfering data and .1mA when idle (register retention). We have
+several controllers powered by the same rail that may or may not be
+transferring at the same time, so we might end up needing HPM. The
+controller never powers up on its own--only when we tell it to
+transfer.
+
+We could design our driver in two ways:
+
+3a) Turn on the regulators at driver probe time and init our
+registers. Turn them off at system suspend and on at system resume
+(and restore our registers). When actively doing a transfer we request
+our 5mA load and when we're doing with our transfer we request our
+.1mA load.
+
+3b) Right before an active transfer, turn on our regulator and program
+all registers (there aren't that many since SPI is a fairly simple
+protocol). After the transfer is done, turn the regulator off.
+
+Both 3a) and 3b) work. If reprogramming the registers was a chore or
+slow we might choose 3a). If we choose 3b), the driver doesn't really
+need to be HPM/LPM aware. Something needs to specify its load once but
+it doesn't need to actively manage the load, which I guess is what I
+meant by a driver not "needing" the low power mode of the regulator. I
+meant that the driver doesn't need the API to actively manage its
+load.
+
+
+> > state of the world means that all drivers are cluttered with tables of
+> > loads and extra cruft at init time to tell the regulator framework
+> > about said loads.
+>
+> We're only talking about a few lines of code here, and we could make a
+> bulk helper to set loads if this is a serious issue.  You could even
+> just add some more values in the bulk struct and have it be pure data
+> for the drivers, regulator_bulk_get() could see a load and set it.  I
+> think this may actually be the bulk of what's concerning you here?
+
+Extending the bulk API would definitely be a good thing to do if we
+reject my proposal. It would be easy to eliminate a lot of code across
+a lot of drivers this way.
+
+I guess the thing I don't love, though, is that to get to Dmitry's
+dream of all regulators having their load specified the we have to add
+regulator_set_load() calls to all sorts of drivers across the system.
+Right now, at least in mainline, the regulator_set_load() calls are
+almost entirely relegated to Qualcomm-related drivers and for
+peripherals which are on the SoC itself.
+
+Let's go back to the trackpad example, maybe looking specifically at
+"hid-over-i2c". The driver here is fairly hardware agnostic and the
+current used may not be very easy for the i2c-hid driver to specify in
+code. I suppose one answer here is: use board constraints to force
+this regulator to always use HPM (high power mode). That's fine, but
+then if we have a way to turn this device "off" and it's on a shared
+rail? Maybe then we'd want to be able to put the regulator in LPM
+mode?
+
+I guess this is really the place where being able to specify loads in
+the device tree really seems like the right fit. We've got generic
+(non-Qualcomm) components that perhaps are probable and handled by a
+generic driver, but they're powered by these regulators where software
+needs to change between HPM and LPM. It feels clean to specify the
+load of the i2c-hid trackpad in a given board's device tree.
+
+
+> > There are lots of ways we could combine this "base load" with a load
+> > that the driver requests. We could:
+> > - Add them.
+> > - Take the maximum (assume that the "base" is the min).
+> > - Only use the "base" load if the driver didn't request one.
+>
+> This feels a bit mangled, I think largely because you're using the term
+> "base load" to refer to something which I *think* you want to be the
+> peak load the device might cause when it's actively doing stuff which is
+> just very confusing.  If this were being specified per device I'd expect
+> that to be the idle rather than active current with a name like that.
+> That's just naming, but it does suggest that if we were to put this in
+> DT it should be more like the pinctrl equivalents and done as an array
+> of currents with matching array of names.
+
+Sorry for the bad naming. Originally I was thinking that the dts would
+specify the minimum current but as I thought about it more it felt
+like it made more sense to specify the current that should be used for
+a dumb driver (one that doesn't know anything about loads).
+
+Doing an array would make sense. Like:
+
+vdda-phy-load-names = "default", "off", "..."
+vdda-phy-loads = <21800>, <500>, <...>;
+
+Where "default" would be the load by default when enabled, "off" when
+disabled off (if it's a shared rail it could conceivably draw power
+even after regulator_disable()). Others states could be selected
+manually.
+
+If we did something like that, we'd have to figure out how those
+meshed with existing driver calls. Happy for any thoughts.
+
+
+> > I have chosen the third option here. If the driver knows better then
+> > it can override. Note that the driver can't override to "0". To do
+> > that it would just disable the regulator.
+>
+> I don't like the idea of having platform constraints which we ignore,
+> this goes against the general safety principal of the regulator API
+> which is that we won't touch the device state unless given explicit
+> permission to do so by the platform description.  The general idea is
+> to ensure that we can't do anything that might damage the platform
+> without approval from the system integrator.
+>
+> > NOTE: if we want to keep old binary dtb files working with new kernels
+> > then we'd still have to keep existing crufty regulator_set_load() in
+> > drivers, but hopefully we can stop adding new instances of this, and
+> > perhaps eventually people will agree to deprecate old binary dtb files
+> > and we can get rid of all the extra code.
+>
+> To be perfectly honest I'm not sure I see any great advantage here.
+> It's moving the performance numbers from the driver into DT which makes
+> them ABI which makes them harder to update, and the peak load is going
+> to be vulnerable to changes due to driver changes - if we do some
+> performance work and manage to start driving a device harder the numbers
+> specified in the DT may become wrong.  In general it seems safer to not
+> put things into ABI if we don't have to, and a substantial proportion of
+> things that might use regulators are off-SoC devices which don't
+> generally want or need DT fragments to describe them so we end up having
+> to duplicate things in multiple DTs which isn't ideal.
+
+Yeah, I know. Putting things in dts certainly has its downsides. The
+argument you make can be taken to the extreme, of course. We can take
+everything out of dts files and just specify a top-level board
+compatible and everything else could be a table in source code (or,
+here's an idea with extra flexibility, a board.c file). Now you never
+worry about breaking ABI at all. ;-)
+
+All snarkiness aside, though, I'm just trying to point out that
+there's no definitive line to cross. No black and white. Anything we
+put in dts from "assigned-clock-rates" to voltage ranges to whatever
+could need to be updated as we discover more data. It is why I've also
+said that for modern SoCs, I'll believe it's safe to ship device trees
+separate from the kernel when I see someone add the "device tree fixup
+stage" to the kernel boot flow.
+
+
+> What's big push to put this in DT rather than just make the code pattern
+> easier to use?  I'm not totally against it but I'm having a hard time
+> getting enthusiastic about it.
+
+It's nothing make or break and mostly it's just been kicking around in
+the back of my head for the last few years. Mostly I gave a shot at
+implementing something in response to your comment [1] where you said:
+"You could add a way to specify constant base loads in DT on either a
+per regulator or per consumer basis." ;-)
+
+[1] https://lore.kernel.org/r/Ytk2dxEC2n/ffNpD@sirena.org.uk
+
+
+> I think the underlying thing here (and the reason you're seeing this a
+> lot with Qualcomm device specifically) is that Qualcomm have a firmware
+> interface to specify loads and wanted to implement selection of a low
+> power mode when things are idle in the way that Linux does with the
+> get_optimum_mode() interface.  Either they actually have some systems
+> where they were able to select different modes when things are running
+> or they don't have the thing we have where they discount loads from
+> consumers that have removed their enable vote, either way for those
+> platforms what's going on currently does seem like a sensible way of
+> setting things up.
+
+I guess I'm a tad less charitable than you are. From what I've seen of
+Qualcomm, there seems to be an in-house checklist that they have to go
+through before landing code. Drivers have to pass the checklist. I
+think it contains things like:
+
+* All memory reads and writes must be the "relaxed" variant unless you
+can strongly justify the non-relaxed one. It doesn't matter if it's in
+performance critical code. The relaxed version is better, even if it
+is more likely to cause bugs.
+
+* Thou shalt always set a pin's drive strength to exactly 2 if it
+doesn't have a reason to be otherwise. It doesn't matter if the pin is
+an input and the drive strength has no effect. Someone said that 2 is
+safest so always set it to 2.
+
+* All regulators should be configured to be able to run in high power
+mode and low power mode. You should always configure a load on them.
+It doesn't matter if you never use low power mode in practice.
+
+
+> Other platforms don't bother, I think that's likely to be some
+> combination of not caring about anything finer grained than system
+> suspend (which especially for Android is totally fair) and modern
+> regulators being much more able to to dynamically adapt to load than
+> those the code was written for.
+
+Yeah. I think this comes up more in practice with Qualcomm because
+they do their own PMICs and every one of their LDOs has this setting
+for LPM / HPM. Since the setting is there I guess they decided they
+should write software to use it. I agree that it can save some power
+when used well, but I personally don't think the complexity is
+justified except in a small number of cases.
+
+I would hazard a guess that perhaps Qualcomm's LDOs all have this
+feature because it's probably super critical for LTE modems and they
+might as well add the feature for all the LDOs if they're adding it
+for some of them.
+
+-Doug
