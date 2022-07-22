@@ -2,107 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0C2257E782
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 21:37:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 857B257E79C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 21:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236371AbiGVTho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 15:37:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38672 "EHLO
+        id S236459AbiGVTpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 15:45:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232157AbiGVThl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 15:37:41 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2106B5A2CA;
-        Fri, 22 Jul 2022 12:37:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658518661; x=1690054661;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eGASKklxPUMMORdAKbavodrFNdgNugvERNiFn1gNMxc=;
-  b=gVJ/v8XKJZi5aYBTDaIcai59QLtYl1oxxAyZc2Pdv4vIP3rK9XcsDG3O
-   aCvSG+ISFwDs4EXI6Yu4y4jDgih09HUyMrKcn6mtvDsw19y6CU53XJdFi
-   7Q9Px6FajDEb5eiRsWFLFfaK89TbJt3KF3vbGwCPiTzBfK71ssle3mkLd
-   wFkLEZZ8R1jeUvqav1hwCCDdRFy6s4psESn6obYk4zev56yWWWH3sNLTw
-   tq9BSih7aFTT79b/kIsGS9pzR04D+9MXu7AzCYMBzTKjQjEwnsQUq8QrY
-   BWhekkMNNpxWpG0hk1wW5mAxsvC/2smYKakKfj5pLBJJWNU4hZJFJgOp+
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10416"; a="287405644"
-X-IronPort-AV: E=Sophos;i="5.93,186,1654585200"; 
-   d="scan'208";a="287405644"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jul 2022 12:37:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,186,1654585200"; 
-   d="scan'208";a="598954157"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by orsmga002.jf.intel.com with ESMTP; 22 Jul 2022 12:37:35 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oEySt-0001l7-0J;
-        Fri, 22 Jul 2022 19:37:35 +0000
-Date:   Sat, 23 Jul 2022 03:37:30 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, l.stach@pengutronix.de
-Cc:     kbuild-all@lists.01.org, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, laurent.pinchart@ideasonboard.com,
-        marex@denx.de, paul.elder@ideasonboard.com, aford173@gmail.com,
-        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V4 8/8] arm64: dts: imx8mp: add VPU blk ctrl node
-Message-ID: <202207230318.E5ye0CU1-lkp@intel.com>
-References: <20220722125730.3428017-9-peng.fan@oss.nxp.com>
+        with ESMTP id S235642AbiGVTpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 15:45:17 -0400
+Received: from mailrelay4-1.pub.mailoutpod1-cph3.one.com (mailrelay4-1.pub.mailoutpod1-cph3.one.com [46.30.210.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60FE01126
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 12:45:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=rsa1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=nquW4uTK4EsRfwtuLuO5LJX7Kp99WKVz9jDKp1qtM5M=;
+        b=LEOoim3HTfBG6Im2MJvLVsNAGyS2uuOEbXscuyokM/Cq0+jDNjlVMdSZVGzbu08uCGgp2NMKTuBbX
+         UQMe5rIIaUj9Pmsl0FPhJ8TjuBkP1JqgsNRmucTpGIuMDBa2CWjPF4vuOik+cZBfoetpaOgJMmaWZH
+         NPCjkgnc4OFVG8bJuL9A444xXFUePYsLaZ9dy14NgloFQLs5z1Tjg8+ZHKaTTgcx8i+xS7SOr1Bil0
+         1QF/vPpeGyH5KLYMgSnUzMdSC1uw3v3W9dklceReos4x3GPaHg4GlPcMnx+r4aGL/Kc6NvhyGyeSHI
+         cv8Dg8ySg6lhHC+K8w0VPrEFVAlJkCw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=nquW4uTK4EsRfwtuLuO5LJX7Kp99WKVz9jDKp1qtM5M=;
+        b=vjNctA/bG7tR/QobV4rEn85FmJNic46NcaPLTwPjT2TY2KPM14A5VnPI9A2CoM6QTh/fdqjMSdpTB
+         GM2I4gaAQ==
+X-HalOne-Cookie: 7913dd9b8a246146ee3aa0d23a7b5d241bb96559
+X-HalOne-ID: cab67a2b-09f6-11ed-8240-d0431ea8bb10
+Received: from mailproxy3.cst.dirpod4-cph3.one.com (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+        by mailrelay4.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+        id cab67a2b-09f6-11ed-8240-d0431ea8bb10;
+        Fri, 22 Jul 2022 19:45:09 +0000 (UTC)
+Date:   Fri, 22 Jul 2022 21:45:07 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Marek Belisko <marek@goldelico.com>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 1/1] spi/panel: dt-bindings: drop CPHA and CPOL from
+ common properties
+Message-ID: <Ytr+Q6kXr+f6dCfi@ravnborg.org>
+References: <20220722191539.90641-1-krzysztof.kozlowski@linaro.org>
+ <20220722191539.90641-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220722125730.3428017-9-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220722191539.90641-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Peng,
+Hi Krzysztof
 
-Thank you for the patch! Yet something to improve:
+On Fri, Jul 22, 2022 at 09:15:39PM +0200, Krzysztof Kozlowski wrote:
+> The spi-cpha and spi-cpol properties are device specific and should be
+> accepted only if device really needs them.  Drop them from common
+> spi-peripheral-props.yaml schema, mention in few panel drivers which use
+> themi
 
-[auto build test ERROR on shawnguo/for-next]
-[also build test ERROR on linus/master v5.19-rc7 next-20220722]
-[cannot apply to robh/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+    "and include instead in the SPI controller bindings."
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220722-205748
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-config: arm64-randconfig-r005-20220721 (https://download.01.org/0day-ci/archive/20220723/202207230318.E5ye0CU1-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/48de78c570ec370c4fe2dfd6d426fe665416eb21
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220722-205748
-        git checkout 48de78c570ec370c4fe2dfd6d426fe665416eb21
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
+I cannot see you do this in the touched bindings.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+So I cannot see how for example samsung,ld9040.yaml picks up
+spi-controller.yaml and thus it no longer knows the spi-cpha and spi-cpol
+properties.
 
-All errors (new ones prefixed by >>):
+Maybe I missed something?
 
->> Error: arch/arm64/boot/dts/freescale/imx8mp.dtsi:1181.26-27 syntax error
-   FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+	Sam
