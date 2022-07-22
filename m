@@ -2,116 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DF1757E407
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 18:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8808557E40D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 18:04:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234974AbiGVQDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 12:03:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38552 "EHLO
+        id S231491AbiGVQE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 12:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234445AbiGVQDG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 12:03:06 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6218C61711;
-        Fri, 22 Jul 2022 09:03:04 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (89-27-103-169.bb.dnainternet.fi [89.27.103.169])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 1808120272;
-        Fri, 22 Jul 2022 19:03:02 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1658505782;
+        with ESMTP id S229880AbiGVQEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 12:04:55 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::221])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E213C17E3C
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 09:04:54 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id B817B240008;
+        Fri, 22 Jul 2022 16:04:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1658505890;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=FiSm34UE9KFbZYJZ8pR9v7Fsd0k+gVOG64jsciWmcVk=;
-        b=iG0F+MoWoJB6nMI/KUmAuxSlhwg0cLpe2DoBdJHOebyGInKT16MC15UXeL8YKkTZ2vIYYo
-        gUQUXXHAWoulV5hp/7vFybi1Ym6jV5CXMa16yq9MtpPdVLGgYNQZaBoOtBzeg4ZP+UnkCf
-        VQGXImI1HW0UepO9CdxyaGT1d1OuMEI=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 661E5634C96;
-        Fri, 22 Jul 2022 19:03:01 +0300 (EEST)
-Date:   Fri, 22 Jul 2022 19:03:01 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     jacopo@jmondi.org, paul.j.murphy@intel.com,
-        daniele.alessandrelli@intel.com, mchehab@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org, konrad.dybcio@somainline.org,
-        andrey.konovalov@linaro.org
-Subject: Re: [PATCH v2 1/3] media: dt-bindings: media: Rename imx412 to imx577
-Message-ID: <YtrKNQaMYOhc4UUM@valkosipuli.retiisi.eu>
-References: <20220718014215.1240114-1-bryan.odonoghue@linaro.org>
- <20220718014215.1240114-2-bryan.odonoghue@linaro.org>
+        bh=HMTBZyJBu2qexNfv7BzuGD7ItuMgmoc699Ik31JwJh4=;
+        b=W3NApy9oyxKJwhn9jHi4htglHhksEsvyuaiKwGrx/ZYeQyBc3BdC6VCJP2ZpeNfyw0z4MU
+        0C7Wc6I5T0/TS29O/gLs/HPR0c3Qnbt3Fvoz7t1gumwLuycVOm93I8Vuo3QhM4ZLyGp3Lx
+        G5sTHsYOEKDYJvzJ9lVe+G/jCse4raeKURk5p7llr4EEY0+/mmRL7QCMgkgStOVdDzo2fE
+        6ON+A0S7pKO2JlYx5TWPsIt9zNtPlZUtnbTHfECvh8w11JCWoXttIv4WVDca7lke31QQiU
+        +ZwPHW/MhnLB4/YQ2Ns8RkXXAZiXOKyTw0qsaCIrJ0KkJqet/ajWTzUnMSwwIg==
+Date:   Fri, 22 Jul 2022 18:04:49 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: ds1307: Convert to json-schema
+Message-ID: <YtrKofy+cZBQDRq3@mail.local>
+References: <20220617114420.1398259-1-thierry.reding@gmail.com>
+ <20220721213732.GA1993841-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220718014215.1240114-2-bryan.odonoghue@linaro.org>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1658505782;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=FiSm34UE9KFbZYJZ8pR9v7Fsd0k+gVOG64jsciWmcVk=;
-        b=g4VLjDK+ZGqLHPNv/3498Yx0gPbEHrQYEqI3P4FJ8Ulq3GGZoR85ltllMxoVnGWJLln2fE
-        4yCl2fVBWahSZDjVzdIGnh26VJEGx8uvrlbEFbFAFgVW3RFbibp8oJ0XhMzW1RQjMotshh
-        AQG2Pu7aHwBGfujDAxL2ZZg48jFG3HI=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1658505782; a=rsa-sha256; cv=none;
-        b=yPkQMxTdhJE8g7Qg7YLXpHBUPxHDnWYK9vKDKDs84B7769v0qoAJcFfr1wDTYQOveuVJ3d
-        N6S1kCmV0dI9XDls645JKhc8bEZuVsFAFoFXBPs/6C2KMg8JiEW/2YP3hGnjNWkcrAzEYz
-        zAMi6429J43SMLF9Ht91pvOL0OVQiJI=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220721213732.GA1993841-robh@kernel.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bryan,
+Hello,
 
-On Mon, Jul 18, 2022 at 02:42:13AM +0100, Bryan O'Donoghue wrote:
-> The yaml and driver we have right now misidentifies the imx577 as the
-> imx412.
+On 21/07/2022 15:37:32-0600, Rob Herring wrote:
+> On Fri, 17 Jun 2022 13:44:19 +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> > 
+> > Convert the DS1307 (and compatible) RTC bindings from the free-form text
+> > format to json-schema.
+> > 
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> > Changes in v2:
+> > - add compatible string list for [ st,m41t00, dallas,ds1338 ]
+> > - allow second interrupt and interrupt-names
+> > - remove commented-out section
+> > - allow vcc-supply
+> > 
+> >  .../devicetree/bindings/rtc/rtc-ds1307.txt    |  52 ---------
+> >  .../devicetree/bindings/rtc/rtc-ds1307.yaml   | 102 ++++++++++++++++++
+> >  2 files changed, 102 insertions(+), 52 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
+> >  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
+> > 
 > 
-> Looking at similar IMX chips which give their chip identifier via register
-> 0x0016 we can see:
-> 
-> drivers/media/i2c/imx258.c:#define IMX258_REG_CHIP_ID    0x0016
-> drivers/media/i2c/imx258.c:#define IMX258_CHIP_ID        0x0258
-> 
-> drivers/media/i2c/imx319.c:#define IMX319_REG_CHIP_ID    0x0016
-> drivers/media/i2c/imx319.c:#define IMX319_CHIP_ID        0x0319
-> 
-> drivers/media/i2c/imx355.c:#define IMX355_REG_CHIP_ID    0x0016
-> drivers/media/i2c/imx355.c:#define IMX355_CHIP_ID        0x0355
-> 
-> Right now imx412.c does:
-> 
-> drivers/media/i2c/imx412.c:#define IMX412_REG_ID         0x0016
-> drivers/media/i2c/imx412.c:#define IMX412_ID             0x577
+> Looks like this hasn't been picked up so I've applied both patches, 
+> thanks!
 
-This is not a proof the device in question is no IMX412. It's entirely
-possible Sony has two sensors that both happen to have the same value in
-the ID register. Quite possibly the sensors, for a reason or another, share
-the same chip, so also the ID register will be the same. I wouldn't
-necessarily expect them to make a variant just for that.
-
-At least I'd like to see more convincing evidence IMX577 was just confused
-with IMX412 before merging this.
-
-But I'm fine with adding another compatible string for IMX577.
+This was on my radar but I'm never sure what you prefer for dt-bindings
+only series.
 
 -- 
-Regards,
-
-Sakari Ailus
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
