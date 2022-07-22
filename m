@@ -2,114 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 934ED57DFFD
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 12:33:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ADE457E015
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 12:35:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234953AbiGVKb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 06:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41038 "EHLO
+        id S233608AbiGVKer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 06:34:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbiGVKb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 06:31:58 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D47B504B;
-        Fri, 22 Jul 2022 03:31:57 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id e15so5334281edj.2;
-        Fri, 22 Jul 2022 03:31:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IFnsmnbjcLlYoAr+xu6Ngnb6y3ZV0ANVWM4gMEJHPHs=;
-        b=ODcKD8AKT8ZDFo1Dq1Me1oMI0j3JdBF/BczXgmiYMw21AhSv0qxXSpkVlPAFbQHi3w
-         JcUMMZ+2Z0VrdUZ4t53DgWZDjo0dkP2ECKnmqlb0vaHElM6lMjXhZ2xtP1fLuFhtjIwm
-         li9GhqCYir0h+IoaJ0IEOhpfO6l8enuHGnWR94y2kAlWQrudeiaW6flY4Kx1QT0sCAig
-         262JebI8msFNSZE/iF3Uic+zO4uarea7WPSf6rBSmp7MqZV5lPrwdCgAIjYqAbNbPvai
-         IJXNwlOmaUcCqOUMov2mmvucDBFjIA3MJ3fZLE8Uz+CQvUuzWaErz6x1qYDdjS0RbS03
-         +Aeg==
+        with ESMTP id S229671AbiGVKeq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 06:34:46 -0400
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3DEAB504B;
+        Fri, 22 Jul 2022 03:34:45 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id k11so5460754wrx.5;
+        Fri, 22 Jul 2022 03:34:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IFnsmnbjcLlYoAr+xu6Ngnb6y3ZV0ANVWM4gMEJHPHs=;
-        b=VGe9u5PzAx5Q5YHPvJG7oGOQzXHEqY+PhVTJFD8z1kUEvrGD/Nr85Z/aVlMK+bTjqv
-         zfs9qM4GmQq6TBJRy7FlX8h/rVBRjgeeYK5NO8PHiWWgpVawZeJVBL0ZRGaH5GehCPVn
-         Oyf0R2ch+A7jXShoPfABXTL11YyqBiYQFwMbalnzndDSvOxJzKdUxRsQZ88YftLpza4u
-         X5x7UNUjYPTpQCS6ygkwIRPYe/Rb9C4OXNmNa7DPMmziaVgeFKxTE6YB15+pTDY7XG0h
-         UznM+G7V8u62Ho9rLWrOA1lWP9kfeMnC3A7B4z52Vzgm6AX7DxIVqTbGdOu+4K3L2jSD
-         UHvw==
-X-Gm-Message-State: AJIora9aOge5R0e8YbClG+c2abit9a1epmYfioIaR1EktUnaX+h+e98n
-        m/etckYkwwYxELSwb/lPBmM=
-X-Google-Smtp-Source: AGRyM1s4VWxM8kdBPaogcz5EkWQVbnvREQtxatII7yHeZJssaVyWzvpJpywlE5aDi7jeDqYKENptAQ==
-X-Received: by 2002:a05:6402:28c3:b0:43a:6d78:1b64 with SMTP id ef3-20020a05640228c300b0043a6d781b64mr2866830edb.93.1658485915793;
-        Fri, 22 Jul 2022 03:31:55 -0700 (PDT)
-Received: from felia.fritz.box (200116b826e64200edeeb77a6a94b0d2.dip.versatel-1u1.de. [2001:16b8:26e6:4200:edee:b77a:6a94:b0d2])
-        by smtp.gmail.com with ESMTPSA id lu44-20020a170906faec00b006fe9ec4ba9esm1856159ejb.52.2022.07.22.03.31.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jul 2022 03:31:54 -0700 (PDT)
-From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
-To:     Tomer Maimon <tmaimon77@gmail.com>, Arnd Bergmann <arnd@arndb.de>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel-janitors@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: [PATCH] MAINTAINERS: rectify entry for ARM/NUVOTON NPCM ARCHITECTURE
-Date:   Fri, 22 Jul 2022 12:31:29 +0200
-Message-Id: <20220722103129.22998-1-lukas.bulwahn@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nADJV/5h4/gXCaYOhbEKrLOB3utQ1DQ34j9M9pOUKE0=;
+        b=VO1T3ebTHCu1EUWsSLeORLAl1p/Od8dWYZbdI0LL8n2lR8Pr3y2wzoMaS80ob4Wx/r
+         111bAg4GE3yUwig36YYcJBSRM40eBmE/S8ymOgIiNsLg82MOTVBJZywaorkX4d47N8Jw
+         Lo79U0rXodkieL0CMIl0lgVUiZ93w1nhe7gRxsf0UJN2ZOMsVi4tPbiBW+Xe2gffPc9/
+         j4BFeFcpKzic0hPJqqjU2hRhj1ywtA6RCf2DjABovRO/WPevh+pjDbRCLNGQThPTIETi
+         MAQo9etiinkoS6NC8wqE0CJc6pB808OyETkxraWxJbP30HQYkd/4LMEV5CIwB3gwB7ns
+         AVNw==
+X-Gm-Message-State: AJIora9tkpCf6jdxqEhVNVGXnal+cpaoShow1srbtQcfZzgv7PDkD5KU
+        AgMynbh780JgXH9q/M2hTORNBvMVYVri0+hwcGI=
+X-Google-Smtp-Source: AGRyM1sKbSRq+SAZTyfFGHE2wnRenI490IAH0OsYzAtZIRAO4ZCZyR6GjHaXYB2u+5KtBP8xla0cN+koqjKvDJwChw0=
+X-Received: by 2002:a5d:620b:0:b0:21e:5252:311c with SMTP id
+ y11-20020a5d620b000000b0021e5252311cmr2005942wru.604.1658486084189; Fri, 22
+ Jul 2022 03:34:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220720112924.1096-1-harini.katakam@xilinx.com>
+ <20220720112924.1096-3-harini.katakam@xilinx.com> <ba2a4652-31b0-e2c1-94cd-2552efef4f15@microchip.com>
+In-Reply-To: <ba2a4652-31b0-e2c1-94cd-2552efef4f15@microchip.com>
+From:   Harini Katakam <harinik@xilinx.com>
+Date:   Fri, 22 Jul 2022 16:04:33 +0530
+Message-ID: <CAFcVEC+6uNZ0Sq+GQLxZdCW9+DtAh9e-yxrK--3VTGLsOz0_1Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] net: macb: Update tsu clk usage in runtime
+ suspend/resume for Versal
+To:     Claudiu Beznea <Claudiu.Beznea@microchip.com>
+Cc:     Harini Katakam <harini.katakam@xilinx.com>,
+        Nicolas Ferre <Nicolas.Ferre@microchip.com>,
+        David Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, edumazet@google.com,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, netdev <netdev@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 08e950449c62 ("dt-binding: clk: npcm845: Add binding for Nuvoton
-NPCM8XX Clock") obviously adds nuvoton,npcm845-clk.h, but the file entry in
-MAINTAINERS, added with commit 3670d2ec13ee ("arm64: npcm: Add support for
-Nuvoton NPCM8XX BMC SoC") then refers to nuvoton,npcm8xx-clock.h.
+Hi Claudiu,
 
-Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about a
-broken reference.
+On Fri, Jul 22, 2022 at 1:55 PM <Claudiu.Beznea@microchip.com> wrote:
+>
+> On 20.07.2022 14:29, Harini Katakam wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >
+> > On Versal TSU clock cannot be disabled irrespective of whether PTP is
+> > used. Hence introduce a new Versal config structure with a "need tsu"
+> > caps flag and check the same in runtime_suspend/resume before cutting
+> > off clocks.
+> >
+> > More information on this for future reference:
+> > This is an IP limitation on versions 1p11 and 1p12 when Qbv is enabled
+> > (See designcfg1, bit 3). However it is better to rely on an SoC specific
+> > check rather than the IP version because tsu clk property itself may not
+> > represent actual HW tsu clock on some chip designs.
+> >
+> > Signed-off-by: Harini Katakam <harini.katakam@xilinx.com>
+> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+> > ---
+> >  drivers/net/ethernet/cadence/macb.h      |  1 +
+> >  drivers/net/ethernet/cadence/macb_main.c | 17 +++++++++++++++--
+> >  2 files changed, 16 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
+> > index 7ca077b65eaa..8bf67b44b466 100644
+> > --- a/drivers/net/ethernet/cadence/macb.h
+> > +++ b/drivers/net/ethernet/cadence/macb.h
+> > @@ -725,6 +725,7 @@
+> >  #define MACB_CAPS_MACB_IS_GEM                  0x80000000
+> >  #define MACB_CAPS_PCS                          0x01000000
+> >  #define MACB_CAPS_HIGH_SPEED                   0x02000000
+> > +#define MACB_CAPS_NEED_TSUCLK                  0x00001000
+>
+> Can you keep this sorted by the bit position used?
 
-Repair this file reference in ARM/NUVOTON NPCM ARCHITECTURE.
+Thanks for the review.
+Sure, I'll sort these in a separate patch first in the same series.
 
-Fixes: 3670d2ec13ee ("arm64: npcm: Add support for Nuvoton NPCM8XX BMC SoC")
-Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
----
-Arnd, please pick this patch on top of the commits above.
+>
+> >
+> >  /* LSO settings */
+> >  #define MACB_LSO_UFO_ENABLE                    0x01
+> > diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+> > index 7eb7822cd184..8bbc46e8a9eb 100644
+> > --- a/drivers/net/ethernet/cadence/macb_main.c
+> > +++ b/drivers/net/ethernet/cadence/macb_main.c
+> > @@ -4735,6 +4735,16 @@ static const struct macb_config zynqmp_config = {
+> >         .usrio = &macb_default_usrio,
+> >  };
+> >
+> > +static const struct macb_config versal_config = {
+> > +       .caps = MACB_CAPS_GIGABIT_MODE_AVAILABLE | MACB_CAPS_JUMBO |
+> > +               MACB_CAPS_GEM_HAS_PTP | MACB_CAPS_BD_RD_PREFETCH | MACB_CAPS_NEED_TSUCLK,
+> > +       .dma_burst_length = 16,
+> > +       .clk_init = macb_clk_init,
+> > +       .init = init_reset_optional,
+> > +       .jumbo_max_len = 10240,
+> > +       .usrio = &macb_default_usrio,
+> > +};
+> > +
+>
+> Also, could you keep this not b/w zynq configs to have a bit of sort of these?
+>
+> Other than this:
+>
+> Reviewed-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7d14a446df13..e2734926f6ce 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2488,7 +2488,7 @@ F:	arch/arm64/boot/dts/nuvoton/
- F:	drivers/*/*npcm*
- F:	drivers/*/*/*npcm*
- F:	include/dt-bindings/clock/nuvoton,npcm7xx-clock.h
--F:	include/dt-bindings/clock/nuvoton,npcm8xx-clock.h
-+F:	include/dt-bindings/clock/nuvoton,npcm845-clk.h
- 
- ARM/NUVOTON WPCM450 ARCHITECTURE
- M:	Jonathan Neuschäfer <j.neuschaefer@gmx.net>
--- 
-2.17.1
-
+Regards,
+Harini
