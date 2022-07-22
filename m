@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D0A57E5CE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 343DD57E606
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:54:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232383AbiGVRq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 13:46:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37668 "EHLO
+        id S234693AbiGVRyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 13:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232767AbiGVRq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:46:57 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA00F91CD5
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:46:55 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id k19so6261377lji.10
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:46:55 -0700 (PDT)
+        with ESMTP id S233627AbiGVRyR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:54:17 -0400
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32DABC53
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:54:17 -0700 (PDT)
+Received: by mail-il1-x12a.google.com with SMTP id h14so2643685ilq.12
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:54:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4pDf7ez85QHUoBuUMoHgMnyuDNXTg+iV62WcG6bVoxE=;
-        b=k5jT7LN8Fx7VEkTi0XgPQxBYvaHMVqDhNuzeipXMEE2dmex+dbNJnlmZiPyNCJMZ2P
-         Tc+7Z/KTvjKKzxfIihpYVp7o4uYWv8G5KY6JLb6/rgmcyvOEx53QIhkMr1TcCtHZtfjU
-         kR2I+YWQCWY/iBDDjTQS8dhgAfJ/0K0bl8gJSMEbFijjb/Kz5ONZ/AnK82jGsRcYFGlo
-         ww8uAvOc28X7SUpKNAUpNfi0Zd5z6ZTs0jfeIYhKjfVlo595c17U3QvI/4ImkcJcK0D4
-         1kk3nFzKiBm/S5GpZW+EwKlIH5ZfbHo/D94C8C9+GvpeC9PIm2ry3y0jI4UQANy9q4r/
-         XeNQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ue0tc0adu1W83NSgyETf8DUiCKAIIriUdz0pGaeFGiM=;
+        b=h7n2Ohg6jboD5Oevy+0g87C911HBazqSA8cA404DtpQJKvNaWodxAOKcF5pr4LZRwC
+         HV1Qu5FqHBz4aiUjc+OzYlURLq6KwN0tLVuixL9qccP9jz46c3uJVI2z0DqcmWIFBuYN
+         RA2dnwvZMKZe+2dWiMZVvidUgX9zZuPTVKoyE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=4pDf7ez85QHUoBuUMoHgMnyuDNXTg+iV62WcG6bVoxE=;
-        b=epnI0edip+lgHvgO7ClkLVyLMrEUvyBFjhSyuUsyormw/rXlAENnqoLhB8tHTGsNCl
-         cu231ScWwP+KShuNX2MBKVjzty/jiufKEvyfEVF0m2Q3Svj3aCJHZS8/XgwhGxfADQKx
-         hoZDryWi8z2Jt2Kzrcbzk2yywDLLkTEb7DCx3in+3BmlzHOkNyitmgZbq88dj0U8gPH4
-         DJamNSTYrgupNx29WY+QNwxPBJ/ZlFXgzkbq7DaHkLKxdM4pYj4yaThtJvlGKK0OP7ep
-         FPJ985ECtr8BLefGUZ5Evz/4j26bwtRqadQsMSE2+5ImstcEOMI/St1ADr4YFwcX79SB
-         0tiA==
-X-Gm-Message-State: AJIora9sEtU2xUTKiv08VgqpGakgqCZjaK+HM2DBJjMcaeP1zeCqKrIl
-        P/lZiVbi8E7dxLU+KWcHyv1J6w==
-X-Google-Smtp-Source: AGRyM1sqFiGr1+mDJ9qbeVsgJ4L1DLzZ2N4yyzMkKPO7XUslPN8IvI+lN6tL17Kpq2z/VwHxUKK3hA==
-X-Received: by 2002:a2e:a5cb:0:b0:25d:7a70:2891 with SMTP id n11-20020a2ea5cb000000b0025d7a702891mr386558ljp.295.1658512013920;
-        Fri, 22 Jul 2022 10:46:53 -0700 (PDT)
-Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id o1-20020a05651205c100b00489c7fb668dsm1163070lfo.182.2022.07.22.10.46.52
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ue0tc0adu1W83NSgyETf8DUiCKAIIriUdz0pGaeFGiM=;
+        b=ptT/0/43Qtwhz+lUuKgcY4xPNW55oiZ8MTtSko0wBU6cjGxa01axzpiSAjxsWzcXqM
+         0unlIpj0vdjJ41xLa14HIBsjcYMa/2kUjpjNYLkPhee5PWPJGhOb0qOmW1svcK5SDz1a
+         lo2LM3ltvVRxOoRGXv904E8WNySIDjvCPo9roUjSWmKk0519Hqq2WyWBl2NN4t9Z1ipv
+         G8RopTywlFWO7SadgcvfZFdJZ80tC19fOT04c6aK2ULBL+uSx/0GVQs0Vk+cUQOxCg7h
+         tnDH6D2zRRfwx/ikCdF7nIE/Z4yuWKuBMaGXGdjR3uou0NUQACLxnPeFBp3mKTugEkY5
+         K4Bg==
+X-Gm-Message-State: AJIora9nMUQ29kz4cIAd0wrqwgrvsgyG9frtxkBZ8+N3JLnSn/uylYRX
+        auvZxHkFV7KiBfTNk1yEwWcX/nUAkYSdFBKs
+X-Google-Smtp-Source: AGRyM1uK8+fDBxHnBKD0+ArHVRAUp7zQ9J9ODTH6WPdJqe5Cn485pF17is53QSlZ7r9zT1LCmbIhGg==
+X-Received: by 2002:a05:6e02:1543:b0:2dc:bff1:7da3 with SMTP id j3-20020a056e02154300b002dcbff17da3mr444764ilu.167.1658512456124;
+        Fri, 22 Jul 2022 10:54:16 -0700 (PDT)
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com. [209.85.166.52])
+        by smtp.gmail.com with ESMTPSA id a20-20020a027a14000000b0033f5e8dab90sm2267787jac.143.2022.07.22.10.54.15
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 10:46:53 -0700 (PDT)
-Message-ID: <487a93c4-3301-aefd-abba-aabf4cb8ec90@linaro.org>
-Date:   Fri, 22 Jul 2022 19:46:51 +0200
+        Fri, 22 Jul 2022 10:54:15 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id x64so4198024iof.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:54:15 -0700 (PDT)
+X-Received: by 2002:a05:6638:388e:b0:33c:b603:516 with SMTP id
+ b14-20020a056638388e00b0033cb6030516mr534277jav.133.1658512454563; Fri, 22
+ Jul 2022 10:54:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/3] dt-bindings: SPI: Add Ingenic SFC bindings.
-Content-Language: en-US
-To:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>, tudor.ambarus@microchip.com,
-        p.yadav@ti.com, michael@walle.cc, miquel.raynal@bootlin.com,
-        richard@nod.at, vigneshr@ti.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, aidanmacdonald.0x0@gmail.com,
-        tmn505@gmail.com, paul@crapouillou.net, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        jinghui.liu@ingenic.com, sernia.zhou@foxmail.com,
-        reimu@sudomaker.com
-References: <1658508510-15400-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1658508510-15400-3-git-send-email-zhouyanjie@wanyeetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1658508510-15400-3-git-send-email-zhouyanjie@wanyeetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <SG2PR03MB50065D57C3D89C39FA90AC08CC909@SG2PR03MB5006.apcprd03.prod.outlook.com>
+In-Reply-To: <SG2PR03MB50065D57C3D89C39FA90AC08CC909@SG2PR03MB5006.apcprd03.prod.outlook.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 22 Jul 2022 10:54:01 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V861t9d0Q1DdYOD1xBcds79WrG=t36Fn2sw9rV=ukQyQ@mail.gmail.com>
+Message-ID: <CAD=FV=V861t9d0Q1DdYOD1xBcds79WrG=t36Fn2sw9rV=ukQyQ@mail.gmail.com>
+Subject: Re: [PATCH v7 0/3] Add new board revision and LTE SKUs for
+ sc7280-villager family
+To:     Jimmy Chen <jinghung.chen3@hotmail.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alan Huang <alan-huang@quanta.corp-partner.google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,104 +81,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2022 18:48, 周琰杰 (Zhou Yanjie) wrote:
-> Add the SFC bindings for the X1000 SoC, the X1600 SoC, the X1830 SoC,
-> and the X2000 SoC from Ingenic.
-> 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> ---
->  .../devicetree/bindings/spi/ingenic,sfc.yaml       | 64 ++++++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/ingenic,sfc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/ingenic,sfc.yaml b/Documentation/devicetree/bindings/spi/ingenic,sfc.yaml
-> new file mode 100644
-> index 00000000..b7c4cf4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/ingenic,sfc.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/ingenic,sfc.yaml#
+Hi,
 
-File name should be rather based on first compatible, so
-ingenic,x1000-sfc.yaml
+On Fri, Jul 22, 2022 at 1:11 AM Jimmy Chen <jinghung.chen3@hotmail.com> wrote:
+>
+> These patches add a new board revision for device Villager, and add
+> new LTE sku for both board revisions.
+>
+> yaml issue has been clarified in [1] and [2], and 'status' has been
+> reordeded last since v4.
+>
+> [1] https://lore.kernel.org/all/CAD=FV=WtKRFQr5jSQvsr08x9dgHrvenUWWtX_SKuCLuSvSH7WQ@mail.gmail.com/
+> [2] https://lore.kernel.org/all/d3d4d90b-85b5-5ad9-78e6-5a074c21af4f@linaro.org/
+>
+> Changes in v7:
+> -Revise typo in Makefile in ptch 2/3
+>
+> Changes in v6:
+> -remove v5 accidentally added sc7280-herobrine-herobrine-r1-lte.dts in patch3/3
+>
+> Changes in v5:
+> -Update subject and revise Makefile
+>
+> Changes in v4:
+> - Add patch 1/3 and update patch 3/3
+>
+> Changes in v3:
+> - Update patch format
+>
+> Changes in v2:
+> - Add patch 1/2
+>
+> Jimmy Chen (3):
+>   dt-bindings: arm: qcom: document sc7280 and villager board
+>   arm64: dts: qcom: sc7280: Add herobrine-villager-r1
+>   arm64: dts: qcom: Add LTE SKUs for sc7280-villager family
+>
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 15 +++++++++++++++
+>  arch/arm64/boot/dts/qcom/Makefile               |  3 +++
+>  .../boot/dts/qcom/sc7280-chrome-common.dtsi     | 11 -----------
+>  .../boot/dts/qcom/sc7280-herobrine-crd.dts      |  1 +
+>  .../dts/qcom/sc7280-herobrine-herobrine-r1.dts  |  1 +
+>  .../boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi | 17 +++++++++++++++++
+>  .../qcom/sc7280-herobrine-villager-r0-lte.dts   | 14 ++++++++++++++
+>  .../dts/qcom/sc7280-herobrine-villager-r0.dts   |  4 ++--
+>  .../qcom/sc7280-herobrine-villager-r1-lte.dts   | 14 ++++++++++++++
+>  .../dts/qcom/sc7280-herobrine-villager-r1.dts   | 14 ++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts         |  1 +
+>  11 files changed, 82 insertions(+), 13 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-lte-sku.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r0-lte.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1-lte.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for SFC in Ingenic SoCs
-> +
-> +maintainers:
-> +  - 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> +
-> +description:
-> +  The SPI Flash Controller in Ingenic SoCs.
-> +
+We're at a point now where this won't be able to land for at least 2.5
+weeks. Given other changes happening (especially the audio changes), I
+suspect all the in-flight stuff will get confusing. As an experiment,
+I created a staging tree atop the current arm64 dts tree and put this
+there. I'll try to put only things that I believe are truly ready to
+land there, but git hashes won't be stable since it's just a staging
+tree:
 
-You miss here allOf referencing spi-controller.
+https://github.com/dianders/kernel-staging/commits/qcom/arm64-staging
 
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - ingenic,x1000-sfc
-> +          - ingenic,x1600-sfc
-> +          - ingenic,x2000-sfc
-> +      - items:
-> +          - enum:
-> +              - ingenic,x1830-sfc
-> +          - const: ingenic,x1000-sfc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: sfc
-
-Remove the clock-names entirely, no benefits.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/ingenic,x1000-cgu.h>
-> +
-> +	sfc: spi@13440000 {
-> +		compatible = "ingenic,x1000-sfc";
-
-
-Use 4 spaces for example indentation.
-
-> +		reg = <0x13440000 0x1000>;
-> +
-> +		interrupt-parent = <&intc>;
-> +		interrupts = <7>;
-> +
-> +		clocks = <&cgu X1000_CLK_SFC>;
-> +		clock-names = "sfc";
-> +
-> +		status = "disabled";
-
-No status in example.
-
-> +	};
-> +...
-
-
-Best regards,
-Krzysztof
+-Doug
