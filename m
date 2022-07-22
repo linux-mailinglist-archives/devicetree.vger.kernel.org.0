@@ -2,135 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0487557DD08
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 11:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A269E57DD10
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 11:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232299AbiGVJB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 05:01:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60472 "EHLO
+        id S230409AbiGVJE0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 05:04:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230409AbiGVJB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 05:01:58 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5FCA183B7;
-        Fri, 22 Jul 2022 02:01:57 -0700 (PDT)
-Received: by mail-qk1-f170.google.com with SMTP id o1so3141668qkg.9;
-        Fri, 22 Jul 2022 02:01:57 -0700 (PDT)
+        with ESMTP id S231621AbiGVJE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 05:04:26 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD907E306
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 02:04:24 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id t1so6627337lft.8
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 02:04:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=l3h9J6UBwtKZvJITANmcz+24NubjgVssRtaWr316TZs=;
+        b=mirn+CGqVXafmKCSE26H4UOWDduWcnDa1FtZoLehw1N8nxaLCn+AZTl0tCocMNRkMl
+         9jHl8872M72LJOGhgi+2bxsYa7R/Ow5nJPcX85G4FteaQlUCyyp/ScmU05UVqinn6Q0T
+         DPCz6N/vqp2UqZKa1QcZceEQ9y+craPhLT4VabCGwNU3V6NhR56mkCL9Ub0PXOmgR6yr
+         vVdx0n3HyGk+mBUXEBoA1zVALL0WUVm7pl7V0EafzwLIGdcJMe/hIGFmmcfTejYU+FKH
+         pxJeMWG6nk1izMokmiYi6SAcWpOweO02it7CmwLhtJUXVl5dtlm49OajBLWycLIyFmER
+         fUAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1DaHwUZ1RE1PYQHo6ho0JHLd5AyS1nGZAw53JopZtuc=;
-        b=gHA/DliFBweURmf9WxF/3yy3xRmX+qMxuXci9T2veXS6XL0DUMI9tWE1mnhX4/hXXJ
-         Hb1Clt6iam/PfK1M8VW9fllklNXOHmxycIUwcXBnnfq1wnC5FCWLuUNgm9UgS4mu7CPf
-         7FPs6icf5y7XJoqGS7iWvZ1mM135NJHjy6lNBQRNbv+Zu9pZkUFby69O3y3MfKvu6Rwt
-         6Zl0pJnnd7+3eKpaYxMGcyc0oUi0rWM8MtOA9GSy2is/m1yW1SE4EPp5DrwVipGb45qu
-         HLcxCigPBQYss48dNiwJ40TmLRgZIA6gmm9IHSD9waQ3F+n/slae1OK0XIT5q9VB9N7u
-         071g==
-X-Gm-Message-State: AJIora+0cnkVKxpMVFowjaSBlbtpI/ErVNYzZWOdkZgGLpLqJ9AZbGhG
-        LeGsxfbetuy6w4fPrLOQPNKVCMxZ7dEeQw==
-X-Google-Smtp-Source: AGRyM1vIPmi34jnrTC5KHNV4WLLQN9Y5oIVAthkOvkY0eQWfeys9E0ccahs5qzsO+RtZ+Dg3cMxhtA==
-X-Received: by 2002:a05:620a:bd4:b0:6ab:8874:4cdc with SMTP id s20-20020a05620a0bd400b006ab88744cdcmr1742339qki.415.1658480516738;
-        Fri, 22 Jul 2022 02:01:56 -0700 (PDT)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
-        by smtp.gmail.com with ESMTPSA id bs16-20020a05620a471000b006b618e006ffsm2989239qkb.2.2022.07.22.02.01.56
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=l3h9J6UBwtKZvJITANmcz+24NubjgVssRtaWr316TZs=;
+        b=GD+xsZCQ4BKKwU/XHcdYDT9WEx3fhz+Sglprlei3lUvswWGNnrPERVOthGqKy+zesk
+         oupUvgLXRU6ZUxQ12GT+5tjxhhYDNmACF82zb+mJg6wFqPR+/5mnDJXM+hHomDII8uCS
+         nWBZYxZAA29FMXVknBMd6wmcUlCAlMkMWh7UyK0wOQNGaEBNyuzR/n581JDPSEBo60Qi
+         z9Zf4beTx5m9ZKBhDWvPY52+vHI5TaoNxujW6UL0spP3UY4K72CQGM5pcMWnSvJGt/gE
+         s21Hsai0HFjvwoUrKNPJ+2Wa++s48Lk4FCb3hRT8A03Pjg6YesuzZ6nEpJaRbbt3fBfi
+         vjXA==
+X-Gm-Message-State: AJIora9a3WB2QTGrl55Ki+mX/wi26XH0JdoVYE6snws/duN6UyJMela2
+        PB6W5Th9WU2I1e3ksxdCZ5ajYQ==
+X-Google-Smtp-Source: AGRyM1uKGad0HYgW1xNRavLGPomXqqpMS6YPuafQWGsFlmZ49umoCJNqxnl9rMo/IIJozjp4rrkX5w==
+X-Received: by 2002:ac2:5084:0:b0:48a:6e29:bf8 with SMTP id f4-20020ac25084000000b0048a6e290bf8mr971373lfm.572.1658480662753;
+        Fri, 22 Jul 2022 02:04:22 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id o18-20020ac24c52000000b0047f933622c8sm942056lfk.163.2022.07.22.02.04.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 02:01:56 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-31e560aa854so41036027b3.6;
-        Fri, 22 Jul 2022 02:01:56 -0700 (PDT)
-X-Received: by 2002:a81:4f87:0:b0:31e:7122:16fb with SMTP id
- d129-20020a814f87000000b0031e712216fbmr2224273ywb.358.1658480516055; Fri, 22
- Jul 2022 02:01:56 -0700 (PDT)
+        Fri, 22 Jul 2022 02:04:22 -0700 (PDT)
+Message-ID: <53dfe37d-c976-0ffe-dd46-48b681144c6c@linaro.org>
+Date:   Fri, 22 Jul 2022 12:04:20 +0300
 MIME-Version: 1.0
-References: <20220721165701.17888-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220721165701.17888-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <OS0PR01MB5922D6EC478AE231A06E94B586909@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB5922D6EC478AE231A06E94B586909@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 22 Jul 2022 11:01:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUrmseZEBpsh22U52vivA=wXYo2C8Ke6CvgWSKjwgYByQ@mail.gmail.com>
-Message-ID: <CAMuHMdUrmseZEBpsh22U52vivA=wXYo2C8Ke6CvgWSKjwgYByQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: rzg2l-pinctrl: Add macros
- for IRQ0-7
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v17 0/6] PCI: dwc: Fix higher MSI vectors handling
+Content-Language: en-GB
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        Johan Hovold <johan@kernel.org>
+References: <20220707134733.2436629-1-dmitry.baryshkov@linaro.org>
+ <84004850-026a-980d-6c9c-3668182fc458@linaro.org>
+In-Reply-To: <84004850-026a-980d-6c9c-3668182fc458@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CC maz
+On 14/07/2022 14:58, Dmitry Baryshkov wrote:
+> On 07/07/2022 16:47, Dmitry Baryshkov wrote:
+>> I have replied with my Tested-by to the patch at [2], which has landed
+>> in the linux-next as the commit 20f1bfb8dd62 ("PCI: qcom:
+>> Add support for handling MSIs from 8 endpoints"). However lately I
+>> noticed that during the tests I still had 'pcie_pme=nomsi', so the
+>> device was not forced to use higher MSI vectors.
+>>
+>> After removing this option I noticed that hight MSI vectors are not
+>> delivered on tested platforms. After additional research I stumbled upon
+>> a patch in msm-4.14 ([1]), which describes that each group of MSI
+>> vectors is mapped to the separate interrupt. Implement corresponding
+>> mapping.
+> 
+> [skipped]
+> 
+> Gracious ping. Does this series stand a chance of getting into 5.20?
 
-On Fri, Jul 22, 2022 at 6:34 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: [PATCH v2 1/2] dt-bindings: pinctrl: rzg2l-pinctrl: Add macros
-> > for IRQ0-7
-> >
-> > Add macros for IRQ0-7 which map to SPI1-8 so that it can be used in
-> > dts/i.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > v1->v2
-> > * New patch
-> > ---
-> >  include/dt-bindings/pinctrl/rzg2l-pinctrl.h | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >
-> > diff --git a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h b/include/dt-
-> > bindings/pinctrl/rzg2l-pinctrl.h
-> > index c78ed5e5efb7..6aae2ac206d6 100644
-> > --- a/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
-> > +++ b/include/dt-bindings/pinctrl/rzg2l-pinctrl.h
-> > @@ -20,4 +20,14 @@
-> >  /* Convert a port and pin label to its global pin index */
-> >  #define RZG2L_GPIO(port, pin)        ((port) * RZG2L_PINS_PER_PORT +
-> > (pin))
-> >
-> > +/* IRQ0-7 map to SPI1-8 */
-> > +#define RZG2L_IRQ0   1
-> > +#define RZG2L_IRQ1   2
-> > +#define RZG2L_IRQ2   3
-> > +#define RZG2L_IRQ3   4
-> > +#define RZG2L_IRQ4   5
-> > +#define RZG2L_IRQ5   6
-> > +#define RZG2L_IRQ6   7
-> > +#define RZG2L_IRQ7   8
+Bjorn, please excuse my insistence. Given that it's not merged (yet), 
+probably it will not make it into 5.20. Is there anything preventing it 
+from being accepted for 5.21?
 
-No definition for NMI?
+dwc patches were reviewed by Rob, Mani and Johan. Stanimir has acked the 
+bindings patch.
 
-> > +
->
-> Not sure, may be these macros to be moved to [1]?? as it is nothing to do
-> with rzg2l-pinctrl.
->
-> [1]
-> include/dt-bindings/interrupt-controller/irqc-rzg2l.h
->
-> and binding update to use these macros.
+The dts patch should probably go via the arm-soc tree (together with 
+additional patches adding multiple MSI IRQs to other Qualcomm SoCs).
 
-Indeed.
+> 
+>> Dmitry Baryshkov (6):
+>>    PCI: dwc: Correct msi_irq condition in dw_pcie_free_msi()
+>>    PCI: dwc: Convert msi_irq to the array
+>>    PCI: dwc: split MSI IRQ parsing/allocation to a separate function
+>>    PCI: dwc: Handle MSIs routed to multiple GIC interrupts
+>>    dt-bindings: PCI: qcom: Support additional MSI interrupts
+>>    arm64: dts: qcom: sm8250: provide additional MSI interrupts
+>>
+>>   .../devicetree/bindings/pci/qcom,pcie.yaml    |  51 +++++-
+>>   arch/arm64/boot/dts/qcom/sm8250.dtsi          |  12 +-
+>>   drivers/pci/controller/dwc/pci-dra7xx.c       |   2 +-
+>>   drivers/pci/controller/dwc/pci-exynos.c       |   2 +-
+>>   .../pci/controller/dwc/pcie-designware-host.c | 164 +++++++++++++-----
+>>   drivers/pci/controller/dwc/pcie-designware.h  |   2 +-
+>>   drivers/pci/controller/dwc/pcie-keembay.c     |   2 +-
+>>   drivers/pci/controller/dwc/pcie-spear13xx.c   |   2 +-
+>>   drivers/pci/controller/dwc/pcie-tegra194.c    |   2 +-
+>>   9 files changed, 185 insertions(+), 54 deletions(-)
+>>
+> 
+> 
 
-Gr{oetje,eeting}s,
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+With best wishes
+Dmitry
