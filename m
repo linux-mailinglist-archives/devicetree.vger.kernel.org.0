@@ -2,190 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB3457E176
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 14:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DE1957E18D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 14:44:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234549AbiGVMbf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 08:31:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52088 "EHLO
+        id S234930AbiGVMoM convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 22 Jul 2022 08:44:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231814AbiGVMbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 08:31:34 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 194841F2C1;
-        Fri, 22 Jul 2022 05:31:32 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,185,1654527600"; 
-   d="scan'208";a="127036837"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 22 Jul 2022 21:31:32 +0900
-Received: from localhost.localdomain (unknown [10.226.93.52])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6EF0343C50C4;
-        Fri, 22 Jul 2022 21:31:29 +0900 (JST)
-From:   Phil Edworthy <phil.edworthy@renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Phil Edworthy <phil.edworthy@renesas.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: [PATCH v2 1/2] dt-bindings: usb: renesas, usb3-peri: Document RZ/V2M r9a09g011 support
-Date:   Fri, 22 Jul 2022 13:31:06 +0100
-Message-Id: <20220722123107.34122-2-phil.edworthy@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220722123107.34122-1-phil.edworthy@renesas.com>
-References: <20220722123107.34122-1-phil.edworthy@renesas.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S234532AbiGVMoL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 08:44:11 -0400
+X-Greylist: delayed 373 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 22 Jul 2022 05:44:09 PDT
+Received: from lynxeye.de (ns.lynxeye.de [87.118.118.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E0A8F796BF;
+        Fri, 22 Jul 2022 05:44:09 -0700 (PDT)
+Received: by lynxeye.de (Postfix, from userid 501)
+        id D554DE74011; Fri, 22 Jul 2022 14:37:24 +0200 (CEST)
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Received: from [192.168.178.22] (a89-183-85-87.net-htp.de [89.183.85.87])
+        by lynxeye.de (Postfix) with ESMTPSA id B3989E74004;
+        Fri, 22 Jul 2022 14:37:23 +0200 (CEST)
+Message-ID: <9b0fad63e5610533da3d3423fd5f7c8719a86d73.camel@lynxeye.de>
+Subject: Re: [PATCH v1 11/12] arm64: dts: mnt-reform2: don't use multiple
+ blank lines
+From:   Lucas Stach <dev@lynxeye.de>
+To:     Marcel Ziswiler <marcel@ziswiler.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Fri, 22 Jul 2022 14:37:23 +0200
+In-Reply-To: <20220721195936.1082422-12-marcel@ziswiler.com>
+References: <20220721195936.1082422-1-marcel@ziswiler.com>
+         <20220721195936.1082422-12-marcel@ziswiler.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.44.3 (3.44.3-1.fc36) 
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the RZ/V2M SoC bindings.
-The RZ/V2M SoC is a little different to the R-Car implementations.
-A few DRD related registers and bits have moved, there is a separate
-interrupt for DRD, an additional clock for register access and reset
-lines for DRD and USBP.
+Am Donnerstag, dem 21.07.2022 um 21:59 +0200 schrieb Marcel Ziswiler:
+> From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> 
+> Avoid the following checkpatch warning:
+> 
+> arch/arm/boot/dts/imx8mq-mnt-reform2.dts:213: check: Please don't use
+>  multiple blank lines
+> 
+> Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Signed-off-by: Phil Edworthy <phil.edworthy@renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v2:
- - SoCs other than rz/v2m must limit the number of clock/interrupt names
- - Add "Battery Charging" and "Global Purpose Input" interrupts
----
- .../bindings/usb/renesas,usb3-peri.yaml       | 91 ++++++++++++++++---
- 1 file changed, 76 insertions(+), 15 deletions(-)
+Acked-by: Lucas Stach <dev@lynxeye.de>
 
-diff --git a/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-index 9fcf54b10b07..b1a3b32139c5 100644
---- a/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-+++ b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml
-@@ -11,27 +11,55 @@ maintainers:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - renesas,r8a774a1-usb3-peri # RZ/G2M
--          - renesas,r8a774b1-usb3-peri # RZ/G2N
--          - renesas,r8a774c0-usb3-peri # RZ/G2E
--          - renesas,r8a774e1-usb3-peri # RZ/G2H
--          - renesas,r8a7795-usb3-peri  # R-Car H3
--          - renesas,r8a7796-usb3-peri  # R-Car M3-W
--          - renesas,r8a77961-usb3-peri # R-Car M3-W+
--          - renesas,r8a77965-usb3-peri # R-Car M3-N
--          - renesas,r8a77990-usb3-peri # R-Car E3
--      - const: renesas,rcar-gen3-usb3-peri
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,r8a774a1-usb3-peri # RZ/G2M
-+              - renesas,r8a774b1-usb3-peri # RZ/G2N
-+              - renesas,r8a774c0-usb3-peri # RZ/G2E
-+              - renesas,r8a774e1-usb3-peri # RZ/G2H
-+              - renesas,r8a7795-usb3-peri  # R-Car H3
-+              - renesas,r8a7796-usb3-peri  # R-Car M3-W
-+              - renesas,r8a77961-usb3-peri # R-Car M3-W+
-+              - renesas,r8a77965-usb3-peri # R-Car M3-N
-+              - renesas,r8a77990-usb3-peri # R-Car E3
-+          - const: renesas,rcar-gen3-usb3-peri
-+
-+      - items:
-+          - enum:
-+              - renesas,r9a09g011-usb3-peri # RZ/V2M
-+          - const: renesas,rzv2m-usb3-peri
- 
-   reg:
-     maxItems: 1
- 
-   interrupts:
--    maxItems: 1
-+    minItems: 1
-+    items:
-+      - description: Combined interrupt for DMA, SYS and ERR
-+      - description: Dual Role Device (DRD)
-+      - description: Battery Charging
-+      - description: Global Purpose Input
-+
-+  interrupt-names:
-+    minItems: 1
-+    items:
-+      - const: all_p
-+      - const: drd
-+      - const: bc
-+      - const: gpi
- 
-   clocks:
--    maxItems: 1
-+    minItems: 1
-+    items:
-+      - description: Main clock
-+      - description: Register access clock
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: aclk
-+      - const: reg
- 
-   phys:
-     maxItems: 1
-@@ -43,7 +71,15 @@ properties:
-     maxItems: 1
- 
-   resets:
--    maxItems: 1
-+    minItems: 1
-+    items:
-+      - description: Peripheral reset
-+      - description: DRD reset
-+
-+  reset-names:
-+    items:
-+      - const: aresetn_p
-+      - const: drd_reset
- 
-   usb-role-switch:
-     $ref: /schemas/types.yaml#/definitions/flag
-@@ -78,6 +114,31 @@ required:
-   - interrupts
-   - clocks
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzv2m-usb3-peri
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+        clock-names:
-+          minItems: 2
-+        interrupts:
-+          minItems: 4
-+        interrupt-names:
-+          minItems: 4
-+        resets:
-+          minItems: 2
-+      required:
-+        - clock-names
-+        - interrupt-names
-+        - resets
-+        - reset-names
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
+> ---
+> 
+>  arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
+> index 8956a46788fa..055031bba8c4 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
+> @@ -210,7 +210,6 @@ &pwm2 {
+>  	status = "okay";
+>  };
+>  
+> -
+>  &reg_1p8v {
+>  	vin-supply = <&reg_main_5v>;
+>  };
 
