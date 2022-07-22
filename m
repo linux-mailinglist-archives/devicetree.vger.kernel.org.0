@@ -2,48 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6F5957E751
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 21:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85ED357E76A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 21:31:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235967AbiGVTY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 15:24:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56726 "EHLO
+        id S235888AbiGVTbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 15:31:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbiGVTY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 15:24:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643E15F13D;
-        Fri, 22 Jul 2022 12:24:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F29C7618E3;
-        Fri, 22 Jul 2022 19:24:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CC00C341C6;
-        Fri, 22 Jul 2022 19:24:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658517896;
-        bh=rc2TARnnEHdU37RCNbO/dNcdcOLxZd9/3lQoxs1lxHE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=TBxQmimIVApy1pG/KwFsv+C5Ie0TlOT9uuNXf7pw4vugMuxs9VZOsJT/bMP4l6SGR
-         3/tHKhV3Wq5ICR4ELv7Uwe2Ul5cd+F01mLAUGAl6IwP+Luprq2L+snhr5hdv42VXtA
-         FsSIM0yAb7OMJ2FKcPsiqBKAz9kuLURsKImSSfwgiP/HR2R1W5Xy2mMM4BGcifDNYr
-         F/Sx3GwquYwldy96GmeGLkEKU3X9LNfUgjQw3U1PPOz0FotLQWdYt9RcoVTIshLcn/
-         sbHe8qFMOBFUPS4cvCiC+iXeEWdiiV1++0NFLR8UGS6SwaoXDoEk8iovpPBRpJAV0F
-         3nB+4IZsoeQGg==
-Date:   Fri, 22 Jul 2022 14:24:54 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-Cc:     linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, bhelgaas@google.com, michals@xilinx.com
-Subject: Re: [PATCH] MAINTAINERS: Add Xilinx Versal CPM Root Port maintainers
-Message-ID: <20220722192454.GA1923798@bhelgaas>
+        with ESMTP id S229487AbiGVTbt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 15:31:49 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737E94D4E5
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 12:31:47 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id j26so6584096lji.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 12:31:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=DsZnhkrKKVgT8AEpylex3+JSqUDM48I0MS1C/z27rAc=;
+        b=VM1rTqBWBUvBW+dCDHrd2zt8qR0z8cg2vaL17bEauycvvw8BbHYwwDbHMqHRErdX0u
+         lqkgMihCyLHfnJ91WImdhwVSZG8mX5/IqXDD0O0JVMUisE9noNaDSq4bfxx572XTsQg0
+         qon//04uz+7lNSoyyRCjekqO9f2rc+rEWLA3Juo9aMJELUfrGeQlsdpCzz2iu4xtitRB
+         /4cy4sJmgxrybdX2/2VrycPHPS2Tsef1RcVEGbAqFV2wILB8RVSw2tXODs9z2soN+lzN
+         BZZDt9voFCeohr8JlzS/buERcZcixhHaGRJpUAnlO+Moi6k411B3g2oysAT3uTu79y7a
+         8J2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DsZnhkrKKVgT8AEpylex3+JSqUDM48I0MS1C/z27rAc=;
+        b=rNv0XcLzV1rLeawkrJGxd2j7gJgU/QRb9Y+oxkWp/s0IzazloLxYKlmf7bZz9/rbdn
+         S6lImp8Wg18fbSF5sElSOAo27Uc4ZeYX3tatPiGoNLZH3rw7xXlovAaeXHd10c0K0sBn
+         XSFQ6V0g6cnAIj9CAmSaqXqlJT2mmphRNFrKL/U2ygj6YJkmk5+UhYSVWbkckW7q7ZIT
+         S8yvek7txqNYgKqyt8cgZsP94xccYCJSfuSwJlp3LM/6v/KKvZ/4qsLsDcpoGjXNidP2
+         iI7pHNbFeEMAL2C4IvKIqNQ51BYNVse1qhIk/pLfnTJSnErHDUgkF1eXmJjVgskWMb58
+         Kf/w==
+X-Gm-Message-State: AJIora/DHfu4XmF2hMu90ByD4Cy+qlJMCIlh6cp/EeVTa0r6rgrnYmM9
+        fFQLtFufUUI70qUGsYTUXbGCuQ==
+X-Google-Smtp-Source: AGRyM1sLYECEphn6UW/4ukAInsELOgyUF8N/jdp2vSf9KgBzHudMaC9G4madXvV6Nwxthjx+1NcG3g==
+X-Received: by 2002:a2e:9b0e:0:b0:25d:f53f:1bba with SMTP id u14-20020a2e9b0e000000b0025df53f1bbamr536449lji.470.1658518305429;
+        Fri, 22 Jul 2022 12:31:45 -0700 (PDT)
+Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
+        by smtp.gmail.com with ESMTPSA id q22-20020a2eb4b6000000b0025d46eb1475sm1290668ljm.18.2022.07.22.12.31.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Jul 2022 12:31:44 -0700 (PDT)
+Message-ID: <827864f4-c4b0-afe5-c7dc-27fc51ded1d2@linaro.org>
+Date:   Fri, 22 Jul 2022 21:31:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220618052022.10388-1-bharat.kumar.gogada@xilinx.com>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 3/3] memory: Add Broadcom STB memory controller driver
+Content-Language: en-US
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220722184138.2666241-1-f.fainelli@gmail.com>
+ <20220722184138.2666241-4-f.fainelli@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220722184138.2666241-4-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,37 +80,403 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 18, 2022 at 10:50:22AM +0530, Bharat Kumar Gogada wrote:
-> Add maintainer for driver and documentation of Xilinx Versal
-> CPM Root Port device.
+On 22/07/2022 20:41, Florian Fainelli wrote:
+> Add support for configuring the Self Refresh Power Down (SRPD)
+> inactivity timeout on Broadcom STB chips. This is used to conserve power
+> when the DRAM activity is reduced.
 > 
-> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-
-Applied to pci/ctrl/xilinx-cpm for v5.20, thanks!
-
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 > ---
->  MAINTAINERS | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  drivers/memory/Kconfig        |   9 +
+>  drivers/memory/Makefile       |   1 +
+>  drivers/memory/brcmstb_memc.c | 304 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 314 insertions(+)
+>  create mode 100644 drivers/memory/brcmstb_memc.c
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ea3e6c914384..a07f926d7e93 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15063,6 +15063,14 @@ L:	linux-pci@vger.kernel.org
->  S:	Maintained
->  F:	drivers/pci/controller/dwc/*spear*
+> diff --git a/drivers/memory/Kconfig b/drivers/memory/Kconfig
+> index ac1a411648d8..fac290e48e0b 100644
+> --- a/drivers/memory/Kconfig
+> +++ b/drivers/memory/Kconfig
+> @@ -66,6 +66,15 @@ config BRCMSTB_DPFE
+>  	  for the DRAM's temperature. Slower refresh rate means cooler RAM,
+>  	  higher refresh rate means hotter RAM.
 >  
-> +PCI DRIVER FOR XILINX VERSAL CPM
-> +M:	Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
-> +M:	Michal Simek <michal.simek@amd.com>
-> +L:	linux-pci@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> +F:	drivers/pci/controller/pcie-xilinx-cpm.c
+> +config BRCMSTB_MEMC
+> +	tristate "Broadcom STB MEMC driver"
+> +	default ARCH_BRCMSTB
+> +	depends on ARCH_BRCMSTB || COMPILE_TEST
+> +	help
+> +	  This driver provides a way to configure the Broadcom STB memory
+> +	  controller and specifically control the Self Refresh Power Down
+> +	  (SRPD) inactivity timeout.
 > +
->  PCMCIA SUBSYSTEM
->  M:	Dominik Brodowski <linux@dominikbrodowski.net>
->  S:	Odd Fixes
-> -- 
-> 2.17.1
-> 
+>  config BT1_L2_CTL
+>  	bool "Baikal-T1 CM2 L2-RAM Cache Control Block"
+>  	depends on MIPS_BAIKAL_T1 || COMPILE_TEST
+> diff --git a/drivers/memory/Makefile b/drivers/memory/Makefile
+> index bc7663ed1c25..e148f636c082 100644
+> --- a/drivers/memory/Makefile
+> +++ b/drivers/memory/Makefile
+> @@ -11,6 +11,7 @@ obj-$(CONFIG_ARM_PL172_MPMC)	+= pl172.o
+>  obj-$(CONFIG_ATMEL_SDRAMC)	+= atmel-sdramc.o
+>  obj-$(CONFIG_ATMEL_EBI)		+= atmel-ebi.o
+>  obj-$(CONFIG_BRCMSTB_DPFE)	+= brcmstb_dpfe.o
+> +obj-$(CONFIG_BRCMSTB_MEMC)	+= brcmstb_memc.o
+>  obj-$(CONFIG_BT1_L2_CTL)	+= bt1-l2-ctl.o
+>  obj-$(CONFIG_TI_AEMIF)		+= ti-aemif.o
+>  obj-$(CONFIG_TI_EMIF)		+= emif.o
+> diff --git a/drivers/memory/brcmstb_memc.c b/drivers/memory/brcmstb_memc.c
+> new file mode 100644
+> index 000000000000..881da958c542
+> --- /dev/null
+> +++ b/drivers/memory/brcmstb_memc.c
+> @@ -0,0 +1,304 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * DDR Self-Refresh Power Down (SRPD) support for Broadcom STB SoCs
+> + *
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/init.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of_device.h>
+> +#include <linux/io.h>
+
+Let's order the includes by name. It reduces the chances of conflicts later.
+
+> +
+> +#define REG_MEMC_CNTRLR_CONFIG		0x00
+> +#define  CNTRLR_CONFIG_LPDDR4		5
+
+This is also a SHIFT? Later you use such suffix.
+
+> +#define  CNTRLR_CONFIG_MASK		0xf
+> +#define REG_MEMC_SRPD_CFG_21		0x20
+> +#define REG_MEMC_SRPD_CFG_20		0x34
+> +#define REG_MEMC_SRPD_CFG_1x		0x3c
+> +#define INACT_COUNT_SHIFT		0
+> +#define INACT_COUNT_MASK		0xffff
+> +#define SRPD_EN_SHIFT			16
+> +
+> +struct brcmstb_memc_data {
+> +	u32 srpd_offset;
+> +};
+> +
+> +struct brcmstb_memc {
+> +	struct device *dev;
+> +	void __iomem *ddr_ctrl;
+> +	unsigned int timeout_cycles;
+> +	u32 frequency;
+> +	u32 srpd_offset;
+> +};
+> +
+> +static int brcmstb_memc_uses_lpddr4(struct brcmstb_memc *memc)
+> +{
+> +	void __iomem *config = memc->ddr_ctrl + REG_MEMC_CNTRLR_CONFIG;
+> +	u32 reg;
+> +
+> +	reg = readl_relaxed(config) & CNTRLR_CONFIG_MASK;
+> +
+> +	return reg == CNTRLR_CONFIG_LPDDR4;
+> +}
+> +
+> +static int brcmstb_memc_srpd_config(struct brcmstb_memc *memc,
+> +				    unsigned int cycles)
+> +{
+> +	void __iomem *cfg = memc->ddr_ctrl + memc->srpd_offset;
+> +	u32 val;
+> +
+> +	/* Max timeout supported in HW */
+> +	if (cycles > INACT_COUNT_MASK)
+> +		return -EINVAL;
+> +
+> +	memc->timeout_cycles = cycles;
+> +
+> +	val = (cycles << INACT_COUNT_SHIFT) & INACT_COUNT_MASK;
+> +	if (cycles)
+> +		val |= (1 << SRPD_EN_SHIFT);
+
+BIT(SRPD_EN_SHIFT)
+
+> +
+> +	writel_relaxed(val, cfg);
+> +	(void)readl_relaxed(cfg);
+
+Leave a comment why do you need such read.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t frequency_show(struct device *dev,
+> +			      struct device_attribute *attr, char *buf)
+> +{
+> +	struct brcmstb_memc *memc = dev_get_drvdata(dev);
+> +
+> +	return sprintf(buf, "%d\n", memc->frequency);
+> +}
+> +
+> +static ssize_t srpd_show(struct device *dev,
+> +			 struct device_attribute *attr, char *buf)
+> +{
+> +	struct brcmstb_memc *memc = dev_get_drvdata(dev);
+> +
+> +	return sprintf(buf, "%d\n", memc->timeout_cycles);
+> +}
+> +
+> +static ssize_t srpd_store(struct device *dev, struct device_attribute *attr,
+> +			  const char *buf, size_t count)
+
+You need to document the sysfs ABI.
+
+> +{
+> +	struct brcmstb_memc *memc = dev_get_drvdata(dev);
+> +	unsigned int val;
+> +	int ret;
+> +
+
+Start with /*
+
+> +	/* Cannot change the inactivity timeout on LPDDR4 chips because the
+
+...for this comment.
+
+> +	 * dynamic tuning process will also get affected by the inactivity
+> +	 * timeout, thus making it non functional.
+> +	 */
+> +	if (brcmstb_memc_uses_lpddr4(memc))
+> +		return -EOPNOTSUPP;
+> +
+> +	ret = kstrtouint(buf, 10, &val);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = brcmstb_memc_srpd_config(memc, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return count;
+> +}
+> +
+> +static DEVICE_ATTR_RO(frequency);
+> +static DEVICE_ATTR_RW(srpd);
+> +
+> +static struct attribute *dev_attrs[] = {
+> +	&dev_attr_frequency.attr,
+> +	&dev_attr_srpd.attr,
+> +	NULL,
+> +};
+> +
+> +static struct attribute_group dev_attr_group = {
+> +	.attrs = dev_attrs,
+> +};
+> +
+> +static const struct of_device_id brcmstb_memc_of_match[];
+> +
+> +static int brcmstb_memc_probe(struct platform_device *pdev)
+> +{
+> +	const struct brcmstb_memc_data *memc_data;> +	const struct of_device_id *of_id;
+> +	struct device *dev = &pdev->dev;
+> +	struct brcmstb_memc *memc;
+> +	struct resource *res;
+> +	int ret;
+> +
+> +	memc = devm_kzalloc(dev, sizeof(*memc), GFP_KERNEL);
+> +	if (!memc)
+> +		return -ENOMEM;
+> +
+> +	dev_set_drvdata(dev, memc);
+> +
+> +	of_id = of_match_device(brcmstb_memc_of_match, dev);
+> +	if (!of_id || !of_id->data)
+
+!of_id is not possible
+!of_id->data is the same not possible (or even less...)
+
+I would suggest to drop both or at least the latter.
+
+> +		return -EINVAL;
+> +
+> +	memc_data = of_id->data;
+> +	memc->srpd_offset = memc_data->srpd_offset;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	memc->ddr_ctrl = devm_ioremap_resource(dev, res);
+
+devm_platform_ioremap_resource()
+
+> +	if (IS_ERR(memc->ddr_ctrl))
+> +		return PTR_ERR(memc->ddr_ctrl);
+> +
+> +	of_property_read_u32(pdev->dev.of_node, "clock-frequency",
+> +			     &memc->frequency);
+
+Undocumented property.
+
+> +
+> +	ret = sysfs_create_group(&dev->kobj, &dev_attr_group);
+> +	if (ret) {
+> +		dev_err(dev, "failed to create attribute group (%d)\n", ret);
+
+I am pretty sure there was a helper to make it simpler, but canno recall
+now...
+
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int brcmstb_memc_remove(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +
+> +	sysfs_remove_group(&dev->kobj, &dev_attr_group);
+> +
+> +	return 0;
+> +}
+> +
+> +enum brcmstb_memc_hwtype {
+> +	BRCMSTB_MEMC_V21,
+> +	BRCMSTB_MEMC_V20,
+> +	BRCMSTB_MEMC_V1X,
+> +};
+> +
+> +static const struct brcmstb_memc_data brcmstb_memc_versions[] = {
+> +	{ .srpd_offset = REG_MEMC_SRPD_CFG_21 },
+> +	{ .srpd_offset = REG_MEMC_SRPD_CFG_20 },
+> +	{ .srpd_offset = REG_MEMC_SRPD_CFG_1x },
+> +};
+> +
+> +static const struct of_device_id brcmstb_memc_of_match[] = {
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.1.x",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V1X]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.0",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V20]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.1",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.2",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.3",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.5",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.6",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.7",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.2.8",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.3.0",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-b.3.1",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.0",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.1",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.2",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.3",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr-rev-c.1.4",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V21]
+> +	},
+> +	/* default to the original offset */
+> +	{
+> +		.compatible = "brcm,brcmstb-memc-ddr",
+> +		.data = &brcmstb_memc_versions[BRCMSTB_MEMC_V1X]
+> +	},
+> +	{}
+> +};
+> +
+> +static int __maybe_unused brcmstb_memc_suspend(struct device *dev)
+> +{
+> +	struct brcmstb_memc *memc = dev_get_drvdata(dev);
+> +	void __iomem *cfg = memc->ddr_ctrl + memc->srpd_offset;
+> +	u32 val;
+> +
+> +	if (memc->timeout_cycles == 0)
+> +		return 0;
+> +
+> +	/* Disable SPRD prior to suspending the system since that can
+
+SRPD?
+
+Comment starts with /* alone
+
+
+> +	 * cause issues with e.g: XPT_DMA trying to hash memory
+> +	 */
+> +	val = readl_relaxed(cfg);
+> +	val &= ~(1 << SRPD_EN_SHIFT);
+
+~(BIT(SRPD_EN_SHIFT))
+
+> +	writel_relaxed(val, cfg);
+> +	(void)readl_relaxed(cfg);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused brcmstb_memc_resume(struct device *dev)
+> +{
+> +	struct brcmstb_memc *memc = dev_get_drvdata(dev);
+> +
+> +	if (memc->timeout_cycles == 0)
+> +		return 0;
+> +
+> +	return brcmstb_memc_srpd_config(memc, memc->timeout_cycles);
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(brcmstb_memc_pm_ops, brcmstb_memc_suspend,
+> +			 brcmstb_memc_resume);
+> +
+> +static struct platform_driver brcmstb_memc_driver = {
+> +	.probe = brcmstb_memc_probe,
+> +	.remove = brcmstb_memc_remove,
+> +	.driver = {
+> +		.name		= "brcmstb_memc",
+> +		.owner		= THIS_MODULE,
+> +		.of_match_table	= of_match_ptr(brcmstb_memc_of_match),
+
+This does not match brcmstb_memc_of_match - you will have unused
+variable warning. Drop of_match_ptr or add maybe_unused.
+
+
+
+Best regards,
+Krzysztof
