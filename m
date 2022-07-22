@@ -2,167 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B7F357DDF7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 11:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2B3757DF38
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 12:10:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236203AbiGVJdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 05:33:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59954 "EHLO
+        id S236710AbiGVJmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 05:42:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236383AbiGVJdg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 05:33:36 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826B2DA5FD;
-        Fri, 22 Jul 2022 02:22:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1658481732; x=1690017732;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cXYoAQfzHqIkqRatI1Z+3s2u1CFs8OJ8WmJ6anWvBso=;
-  b=FwvXV76oZC/d+pKvfkBGx/MMlgV/PWeBDxJ/dtR5eMoNYdqQh0EC4GSX
-   e2rLee9u1Jge3Duog3L2HNuJLfValMlwIwBLhGNwQPdrOb22vzDgB2Z3J
-   3ASJPl2C21CSB9PA04tcymqPYTX6Kh+zTegovZGA+11oprF1kxMQF7An2
-   w=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 22 Jul 2022 02:22:11 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jul 2022 02:22:10 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 22 Jul 2022 02:22:10 -0700
-Received: from hu-ppareek-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Fri, 22 Jul 2022 02:22:07 -0700
-Date:   Fri, 22 Jul 2022 14:52:03 +0530
-From:   Parikshit Pareek <quic_ppareek@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: introduce sa8540p-ride dts
-Message-ID: <20220722092203.GA12635@hu-ppareek-blr.qualcomm.com>
-References: <20220721154057.15276-1-quic_ppareek@quicinc.com>
- <d960d442-4b0a-ef33-04da-8fe3a3c8fb90@somainline.org>
+        with ESMTP id S235393AbiGVJmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 05:42:01 -0400
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADD6CC6;
+        Fri, 22 Jul 2022 02:31:40 -0700 (PDT)
+Received: by mail-qt1-f174.google.com with SMTP id bz13so3099329qtb.7;
+        Fri, 22 Jul 2022 02:31:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/eKtb1gRHrco8cantWWpSRLNBaxxulEKH0F25Dqd8nk=;
+        b=eLtx8SxvSjynZPSDhTIbmnKIXrYffNIICknXUpmLVWPLilFir4eklz65BCfeqdUtI/
+         2OfEefsNyLWzmXHQ9qGnLrVvnLz8b0AVaOL3rH3Q+imUf2BlAY1QtUQgZCRWHB76wOvg
+         HoOsotx9y4Q24H9lYXwh1i3QXndsEw/Xk/nNx6mnr8boyhLk2pntiuTRKEi9rWdW8XOg
+         x7jXdWOP6ebDa5t/PBA6x6sXubIwcG0uSe5bSTCFxIEoVNZkhXUtKJrwtoB0WdOynDSQ
+         6Zjk6h7Vvm8bt/fTi4lIkXa/NMJ7v3z2eg837E9IIQcxmMXAkKqAAKiiMEgvZ8yfMcjP
+         g/Dg==
+X-Gm-Message-State: AJIora82l+B2ekU0kilrAsyNNEHeyRjcEzaylJtSBTQRN9ZvxcBHpL/n
+        HC8J8J/vIWnRQ7Dfu/8aoPRP6oB20PPc+g==
+X-Google-Smtp-Source: AGRyM1sIWrdIdsDIAWqQgpIrcaCr9h2OtFlh44rPh4GfA1rrnP44h9Z+1dmaA27gB7mymKJ/Wcwhxw==
+X-Received: by 2002:a05:622a:5d2:b0:31f:229d:441d with SMTP id d18-20020a05622a05d200b0031f229d441dmr911312qtb.277.1658482298812;
+        Fri, 22 Jul 2022 02:31:38 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id t28-20020a37ea1c000000b006b58d8f6181sm3195045qkj.72.2022.07.22.02.31.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Jul 2022 02:31:38 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id r3so7102300ybr.6;
+        Fri, 22 Jul 2022 02:31:38 -0700 (PDT)
+X-Received: by 2002:a25:aacc:0:b0:66f:f1ca:409c with SMTP id
+ t70-20020a25aacc000000b0066ff1ca409cmr2301873ybi.36.1658482297883; Fri, 22
+ Jul 2022 02:31:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <d960d442-4b0a-ef33-04da-8fe3a3c8fb90@somainline.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220721221212.18491-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220721221212.18491-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220721221212.18491-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 22 Jul 2022 11:31:26 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVy0w8Y-+MegHnjdFkQ7vB1Y=jPY-9atTFT_WTVYOiGLg@mail.gmail.com>
+Message-ID: <CAMuHMdVy0w8Y-+MegHnjdFkQ7vB1Y=jPY-9atTFT_WTVYOiGLg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: renesas: renesas,rzg2l-sysc:
+ Document RZ/Five SoC
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 21, 2022 at 08:41:34PM +0200, Konrad Dybcio wrote:
-> 
-> Hello!
-> 
-> On 21.07.2022 17:40, Parikshit Pareek wrote:
-> > Create new dts file specific for Qdrive board based on sa8540p chipset.
-> Is the SA8540P any different than SA8295P? My wild guess is that they're
-> binned versions of each other with different DVFS levels.. That could
-> use a separate SoC DTSI to hold these differences should that be true..
-> 
-> 
-> > Introduce common dtsi file sa8295p-adp.dtsi, to be included for adp and
-> > Qdrive board.
-> > 
-> > Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
-> >  arch/arm64/boot/dts/qcom/sa8295p-adp.dts      | 378 +----------------
-> >  arch/arm64/boot/dts/qcom/sa8295p-adp.dtsi     | 385 ++++++++++++++++++
-> >  arch/arm64/boot/dts/qcom/sa8540p-adp-ride.dts |  15 +
-> >  4 files changed, 403 insertions(+), 376 deletions(-)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/sa8295p-adp.dtsi
-> >  create mode 100644 arch/arm64/boot/dts/qcom/sa8540p-adp-ride.dts
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > index 9e2a13d75f9d..fa0abcf7660b 100644
-> > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > @@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sa8295p-adp.dtb
-> > +dtb-$(CONFIG_ARCH_QCOM) += sa8540p-adp-ride.dtb
-> This needs to be a tab.
-> 
-> 
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-idp.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-coachz-r1-lte.dtb
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> > index 9398f0349944..adb6637117bc 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dts
-> > @@ -2,388 +2,14 @@
-> >  /*
-> >   * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> >   * Copyright (c) 2022, Linaro Limited
-> > + * Copyright (c) 2022 Qualcomm Innovaion Center, Inc. All rights reserved.
-> Please add a comma after the year to keep it consistent.
-> 
-> 
-> >   */
-> >  
-> >  /dts-v1/;
-> 
-> [...]
-> 
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8295p-adp.dtsi b/arch/arm64/boot/dts/qcom/sa8295p-adp.dtsi
-> > new file mode 100644
-> > index 000000000000..75ef77b7cac1
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sa8295p-adp.dtsi
-> Are the boards based on each other? Or on a similar base platform?
-> Maybe sa8295p/sa8540p/sasomethingelse-automotive.dtsi could be a 
-> better name in the latter case?
-Thanks, agreed.
-> 
-> 
-> [...]
-> 
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sa8540p-adp-ride.dts
-> > @@ -0,0 +1,15 @@
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +/*
-> > + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> > + * Copyright (c) 2022, Linaro Limited
-> > + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "sa8295p-adp.dtsi"
-> > +
-> > +/ {
-> > +	model = "Qualcomm SA8540 ADP";
-> So "Qdrive board" == SA8540 ADP == SA8540 ADP Ride? Or is there
-> a base platform for all of them? Maybe the Qdrive is simply based
-> on the ADPs? Is there a clear distinction between ADP and ADP Ride?
-Yes, Qdrive board" == SA8540 ADP == SA8540 ADP Ride. ADP is common to
-many boards, one being Qdrive or ADP ride.
-> 
-> Konrad
-> 
-> > +	compatible = "qcom,sa8540p-adp-ride", "qcom,sa8540p";
-> > +};
+Hi Prabhakar,
 
-Regards,
-Parikshit Pareek
+On Fri, Jul 22, 2022 at 12:15 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Document RZ/Five (R9A07G043) SYSC bindings. SYSC block found on the
+> RZ/Five SoC is almost identical to one found on the RZ/G2L (and alike)
+> SoC's. To differentiate RZ/G2UL from RZ/Five, "-rzfive" is included in
+> the compatible string for the RZ/Five SoC as there are no interrupts
+> from the SYSC block to the core.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Thanks for your patch!
+
+> ---
+>  .../soc/renesas/renesas,rzg2l-sysc.yaml       | 56 +++++++++++++------
+>  1 file changed, 39 insertions(+), 17 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
+> index ce2875c89329..bdaf05f8b29b 100644
+> --- a/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
+> +++ b/Documentation/devicetree/bindings/soc/renesas/renesas,rzg2l-sysc.yaml
+> @@ -20,35 +20,57 @@ description:
+>  properties:
+>    compatible:
+>      enum:
+> -      - renesas,r9a07g043-sysc # RZ/G2UL
+> -      - renesas,r9a07g044-sysc # RZ/G2{L,LC}
+> -      - renesas,r9a07g054-sysc # RZ/V2L
+> +      - renesas,r9a07g043-rzfive-sysc # RZ/Five
+
+renesas,r9a07g043f-sysc?
+
+But I'm wondering if we really need a different compatible value?
+It looks like both blocks differ only in external wiring, so if
+anything needs to be handled differently (the removed/added registers
+are related to CPU topology), that can be inferred from the system
+topology (or even #ifdef CONFIG_{ARM64,RISCV} ;-)
+
+> +      - renesas,r9a07g043-sysc        # RZ/G2UL
+> +      - renesas,r9a07g044-sysc        # RZ/G2{L,LC}
+> +      - renesas,r9a07g054-sysc        # RZ/V2L
+>
+>    reg:
+>      maxItems: 1
+>
+> -  interrupts:
+> -    items:
+> -      - description: CA55/CM33 Sleep/Software Standby Mode request interrupt
+> -      - description: CA55 Software Standby Mode release request interrupt
+> -      - description: CM33 Software Standby Mode release request interrupt
+> -      - description: CA55 ACE Asynchronous Bridge Master/Slave interface deny request interrupt
+> +  interrupts: true
+>
+> -  interrupt-names:
+> -    items:
+> -      - const: lpm_int
+> -      - const: ca55stbydone_int
+> -      - const: cm33stbyr_int
+> -      - const: ca55_deny
+> +  interrupt-names: true
+>
+>  required:
+>    - compatible
+>    - reg
+> -  - interrupts
+> -  - interrupt-names
+>
+>  additionalProperties: false
+>
+> +allOf:
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - renesas,r9a07g043-rzfive-sysc
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: CA55/CM33 Sleep/Software Standby Mode request interrupt
+> +            - description: CA55 Software Standby Mode release request interrupt
+> +            - description: CM33 Software Standby Mode release request interrupt
+> +            - description: CA55 ACE Asynchronous Bridge Master/Slave interface deny request interrupt
+> +
+> +        interrupt-names:
+> +          items:
+> +            - const: lpm_int
+> +            - const: ca55stbydone_int
+> +            - const: cm33stbyr_int
+> +            - const: ca55_deny
+> +
+> +      required:
+> +        - interrupts
+> +        - interrupt-names
+> +
+> +    else:
+> +      properties:
+> +        interrupts: false
+> +        interrupt-names: false
+
+Do all interrupts{,-names} have to be moved?
+Wouldn't it be sufficient to just have
+
+    if [...]
+    then:
+        required:
+          - interrupts
+          - interrupt-names
+    else:
+        properties:
+            interrupts: false
+            interrupt-names: false
+
+?
+
+But again, without a new compatible value, you could just make
+interrupts{,-names} not required?
+
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
