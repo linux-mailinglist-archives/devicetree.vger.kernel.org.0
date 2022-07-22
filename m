@@ -2,108 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD5D357E567
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C62D457E579
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231400AbiGVRW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 13:22:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44326 "EHLO
+        id S231178AbiGVRZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 13:25:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236106AbiGVRWy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:22:54 -0400
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 565A554642;
-        Fri, 22 Jul 2022 10:22:52 -0700 (PDT)
-Received: from pps.filterd (m0134425.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26MH34Om017675;
-        Fri, 22 Jul 2022 17:22:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references; s=pps0720;
- bh=1WmnkyGLDl/YLOz0uTvXn87FY3QhYRjCD0uAYiMqTo4=;
- b=OyoPY3yJh2H0h1IcyEcliC+rpZbH7YImJ+jxubmC0wFOeDUDnybAXpOjW9peGHfcsni0
- GZnsNGSEe71ll693eplAXqAWm9zpyPV6SJOnkoUzk03q8ioQQtQhrzZ5f58TNnHw7Po4
- u/pemJM7rItcM+n9YyQmZwkwsDqWZx5TDyjS4MihEOrCiqewVP9+2pBDFqxbOmeGnHi7
- zSfgU2nm9t08+P0UIoz0MC+lHNCHscBT3sBAq1iZtaaKmETUxx1jXoJe682xhD9Cei+Q
- uzHprjt2L5JiFmA6OCCVnfMtOSIsGLWl4snfCxs1jaDflzdVvSWWHLwR8AgX2JkGRqKV cA== 
-Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3hft5w34gp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 22 Jul 2022 17:22:28 +0000
-Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 33164800187;
-        Fri, 22 Jul 2022 17:22:28 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.36])
-        by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 9A7A2807916;
-        Fri, 22 Jul 2022 17:22:27 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     nick.hawkins@hpe.com
-Cc:     broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com,
-        linux@armlinux.org.uk, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, arnd@arndb.de, joel@jms.id.au
-Subject: [PATCH v2 5/5] MAINTAINERS: add spi support to GXP
-Date:   Fri, 22 Jul 2022 12:23:35 -0500
-Message-Id: <20220722172335.33404-6-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220722172335.33404-1-nick.hawkins@hpe.com>
-References: <20220722172335.33404-1-nick.hawkins@hpe.com>
-X-Proofpoint-GUID: J9UmU7HFmwbH9Yy2K_9wWiqFfnHpGlUZ
-X-Proofpoint-ORIG-GUID: J9UmU7HFmwbH9Yy2K_9wWiqFfnHpGlUZ
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-22_06,2022-07-21_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=949 malwarescore=0 lowpriorityscore=0 priorityscore=1501
- mlxscore=0 bulkscore=0 impostorscore=0 spamscore=0 adultscore=0
- clxscore=1015 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2206140000 definitions=main-2207220073
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229567AbiGVRZI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:25:08 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3032E87
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:25:06 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id u14so6238516lju.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:25:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=KuEpwZJ1uhtFdUF1C/gI9wPx+uXhdTm9dpr0H9Yke6w=;
+        b=egPNOAbAN7Y+qZ60MlIEaORxMlNW33vdbhk/TMQ/ZDFV2yScqD8w0HuBXmVJB23Mgr
+         mJuWq/sryAH4iWp/5UHpI2wskFsbtxE7mUll6tkj0cjp0oEY5R/ZcRCXSo+qH/kk5uIz
+         kHMnq/L9Qt3LQrGEmJuO1QDt2I8sVfV9Hby0UH8vJ6wxfdKNDfOIKuK3qjDPt4vXObaO
+         cmmCNZ1BA6OjXgdOnaLISFsGguwpY4ApUPps3YB59luy7kyLjtd7FJyiYTpYtpBLLnws
+         qG/1qMQpOiWD8AtVLBsmGQctucAgovGC9Ga8TFOFfZRXlOL4oMphLGwTCVTBzFQlpC6F
+         9dRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=KuEpwZJ1uhtFdUF1C/gI9wPx+uXhdTm9dpr0H9Yke6w=;
+        b=5S2TDtl8LJ2EMVJnHGEwpWV32YPqK/l2o0daeLMo76ZfTSPxKn2L5c5145hezUbaYB
+         EYL2iicezp5ReK4XyZcprxoJ/G/vMgh/PLfKtalg0CFyqfB87DuLMwEzy2gliZQ50uCa
+         wfX8YMklKxQoMSfnbNMRf225xJWbnIOX3jXytse94fHynRkYs+sQN7IrIQomn7XR3K/z
+         OVGq4J/EA/L6FJ8SjC4TBUTOibHnZC8VCOjEnT8PTp1zbxwB00tAMnhp9Z10ZvbySh28
+         dio7f+hj/ueSXUBH7l4SqLCGOEWBdVXcAjJHSrQKj5IIoWxn/oM0/c7PQW9X/iKROmOq
+         78VA==
+X-Gm-Message-State: AJIora+5d5ZrQqLpdCqvjaoV61QGgySooMWX61Iyf/7GvCafuyz+rBxK
+        x9ZPnavOit+putc7/7GD7d/VNg==
+X-Google-Smtp-Source: AGRyM1sW6Ujrt3+VsCsQa6hm4P4P+ZVr5SIK9xcNS52rdxS+gihxYH01QZB0l5kXGFj69Tua+Y7gPg==
+X-Received: by 2002:a2e:b013:0:b0:25d:8f3d:7f0 with SMTP id y19-20020a2eb013000000b0025d8f3d07f0mr365855ljk.131.1658510704998;
+        Fri, 22 Jul 2022 10:25:04 -0700 (PDT)
+Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
+        by smtp.gmail.com with ESMTPSA id o21-20020ac24c55000000b004891b4a4acfsm1157744lfk.185.2022.07.22.10.25.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Jul 2022 10:25:04 -0700 (PDT)
+Message-ID: <12dd9bff-bce4-7360-4a98-89bf31202571@linaro.org>
+Date:   Fri, 22 Jul 2022 19:25:02 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 1/1] dt-bindings: rtc: nxp, pcf85063: Convert to DT
+ schema
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220721133303.1998356-1-alexander.stein@ew.tq-group.com>
+ <5c90ef96-969c-728a-3987-5793956c5224@linaro.org>
+ <5761215.mogB4TqSGs@steina-w>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5761215.mogB4TqSGs@steina-w>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+On 22/07/2022 08:02, Alexander Stein wrote:
+> Hello Krzysztof,
+> 
+> thanks for your feedback.
+> 
+> Am Donnerstag, 21. Juli 2022, 15:43:13 CEST schrieb Krzysztof Kozlowski:
+>> On 21/07/2022 15:33, Alexander Stein wrote:
+>>> Convert the NXP PCF85063 RTC binding to DT schema format.
+>>>
+>>> Add 'interrupts' and 'wakeup-source' as this device has an interrupt
+>>> which was not documented, but is in use.
+>>> 'clock-output-names' and '#clock-cells' are added as well, those were
+>>> probably missed when adding clkout support in commit 8c229ab6048b
+>>> ("rtc: pcf85063: Add pcf85063 clkout control to common clock framework")
+>>
+>> Thanks for adding it here, this sounds fine but brought my attention to
+>> interrupts and quartz-load. It seems that only rv8263 supports
+>> interrupts. In the same time rv8263 work only with 7000
+>> quartz-load-femtofarads.
+>>
+>> If that's correct, you need to put "allOf" after "required" and inside
+>> "if:then:" restricting it. For rv8263 interrupts:true and quartz as
+>> const 7000, for else: interrupts:false.
+> 
+> It is slightly different. In all the datasheets I found there was an IRQ pin, 
+> so this applies to all models, although only some of them (PCF85063A, 
+> PCF85073A and RV8263) support alarms, which is what Linux cares for right now. 
+> But this is handles in the driver already.
 
-Add the spi driver and dt-binding documentation
+OK, this is fine then.
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> quartz-load-femtofarads does not apply to RV8263, because it has no OSCI pins 
+> at all but uses an onboard oscillator. See commit 5b3a3ade0293 ("rtc: 
+> pcf85063: add Micro Crystal RV8263 support") for that. But this also handled 
+> in the driver already.
 
----
+This is what I was based on, so the quartz-load-femtofarads should not
+be even allowed for RV8263.
 
-v2:
- *No change
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+> Apart from that apparently only PCF85063 has a fixed quartz-load of 7pF, the 
+> other types supported can have either 7 oder 12.5 pF.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a6d3bd9d2a8d..f87728549ecf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2140,11 +2140,13 @@ M:	Jean-Marie Verdun <verdun@hpe.com>
- M:	Nick Hawkins <nick.hawkins@hpe.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/arm/hpe,gxp.yaml
-+F:	Documentation/devicetree/bindings/spi/hpe,gxp-spi.yaml
- F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
- F:	arch/arm/boot/dts/hpe-bmc*
- F:	arch/arm/boot/dts/hpe-gxp*
- F:	arch/arm/mach-hpe/
- F:	drivers/clocksource/timer-gxp.c
-+F:	drivers/spi/spi-gxp.c
- F:	drivers/watchdog/gxp-wdt.c
- 
- ARM/IGEP MACHINE SUPPORT
--- 
-2.17.1
+...and for PCF85063 this should be fixed to 7.
 
+Best regards,
+Krzysztof
