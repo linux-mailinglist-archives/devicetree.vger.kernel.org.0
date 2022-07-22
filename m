@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 219C757E724
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 21:16:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DD5D57E726
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 21:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235400AbiGVTQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 15:16:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51660 "EHLO
+        id S233633AbiGVTQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 15:16:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231149AbiGVTQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 15:16:00 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A079101F9
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 12:15:58 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id y11so9074090lfs.6
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 12:15:58 -0700 (PDT)
+        with ESMTP id S235909AbiGVTQC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 15:16:02 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2861B5B059
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 12:16:00 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id y11so9074216lfs.6
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 12:16:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lDcr6lA6wTvJ7xcFBXD+24WTV1qMn/yJTavRAkd9iGE=;
-        b=ilbCTarj/wnEjMbDmJxl2o954q9xKRhNUNea+2SMOboq81M/BCRCKqvsXSGxHPV57V
-         SbAc0oUcrCWqqzr9eASqxwsnsmws+q0MsNSLz4sEsNko2MdraFVAiC7gOnj9oVR2SdLK
-         5bg24FVpqNRAJA3hfRhtNnTX+9qMd1Swy2jcnXqzePcNeFzkaYH1DkA7yvRoZsysKt7J
-         Diwl3mNT9PiIN3FbyxUdr31X10ji5CPz4cOhGH0s1467mMZ2i3b4OOG7sMMKRcMQHUk0
-         W3xNGdFxYZwcel5RddsqfleFFqbJaU6ivvv9hkTp0wS7aO2JTVpthlZtqI7FePGWwZbz
-         yiYQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=G47quR1ZrGgbuIvZ59TBsJJd6cPVPIYmhWGk53FjaIA=;
+        b=spzJf2AITB3NQPutmqI27okRtwimfTO91xAARb293I66WGKv/cLML3hywZoRzlgoO1
+         fBl9hcQgHMMGMr0yMet80vyPHKcxuoRtPmPunyfpNcyYVKp4EXf7n6gHcfs7KwqOHU/Z
+         6AQxfJ8LT+wdjKubufiFN/GsTTw/YPLnF3e6w8L26VB9pVbpq/pK50eJRaNBgBXRhore
+         47C0iCnBKDmsSj60FTjryu4yURM8Sz30TUco1YyUzbluYUuRYUx8nQBaJoG8GbaqUeTL
+         rO4m7IBmVhhJ2gEcEUE/0uE6guKEYPN7l5gwEqDPrsucx97PC4T46APB/f87qtIKLdLO
+         UmgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lDcr6lA6wTvJ7xcFBXD+24WTV1qMn/yJTavRAkd9iGE=;
-        b=WFyEKfKIassWGSolrpYPyCfiqg+qZKRMfdhbnikRu9vMGbyjNcwfI8r8DTcGCpagsS
-         WmLwe2nsyCEjh6uvRLh9Xly8NG8Boj6dkq8qLEsXjgDZTh44F1zHGdxWN65SQiUlLcav
-         sIkCvCzKKzK7HPK771Gg2wMaaGtY/M0QX8uDxI6LXM0+waW6k7PTatLHfEgUyymX6SDp
-         URTIjjdgiJY9o9sLisHwi2VZBuvIlZMS8lcdNlufOgII9s40TZ6bA9mGXoyGq3tUBX4W
-         Pd3un4hvB5wv4Cb30yxZi5zEuJ5SOue2cultkCetQhXE66xICYd3LNPXMxq2rKzaGCit
-         Wu/g==
-X-Gm-Message-State: AJIora/7BQfmUXTI8nRvQ5Og0a1GnrFbqVlYWMcLaR+i/yhalgbovpaL
-        TjsnTKgccxjKkyU1h1xkTiVmLQ==
-X-Google-Smtp-Source: AGRyM1uljkuyb3A0AYTb0jGs5xTpnu6p3SPVNgMDaAZRVeBWKSRW0DeDhK1nbzG+uCmXUAw7q4zhxw==
-X-Received: by 2002:a19:6745:0:b0:48a:76be:ef7a with SMTP id e5-20020a196745000000b0048a76beef7amr541545lfj.220.1658517356553;
-        Fri, 22 Jul 2022 12:15:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=G47quR1ZrGgbuIvZ59TBsJJd6cPVPIYmhWGk53FjaIA=;
+        b=1Ky7s/G6/66CjD4hFK+xlrri9+rVHOGTBsWpC5A+duqcZoVww/QP68nFm7aBqUsXnG
+         IURGuy9PPduakSmyoHf4RuuezN/RNqJslIbwKek84tKP+EgwanKKDPl0QLzebCTk4Z9q
+         OsJSmqMeYNqlkXp0BBkWWE25BkOdanifQnSNCNdTtKJvJCHInMzqb8cMUvQlNcgN0gIR
+         ieFR3edrWcmzGYTJ6jDnzq6JmRUT4n7PrhVafl+Dd4LWBTHkbX+UHNLhSHdT4nEk9DEb
+         PzwLvMoR3NSpnLmfRUs+Mi1ZTP/WZQeR670DqYNebQ84zlW/aUqNPpWdgUXLRRCc3PCQ
+         Xk6w==
+X-Gm-Message-State: AJIora9bo4qVCExQSCx2oRVxHRCFwOfBBWlOwIC934Re9mUP8BCvSK/t
+        Czyj2P+yXzD8UNt69yO4C/YI/Q==
+X-Google-Smtp-Source: AGRyM1vTa4j/tadJgnKEq9gHixcXZDFaetZSqHt0lkasbn82IkjJKmFFsP6XUHahqlJjNcJz6LaNrQ==
+X-Received: by 2002:a19:ad02:0:b0:48a:7246:63c6 with SMTP id t2-20020a19ad02000000b0048a724663c6mr520857lfc.541.1658517358365;
+        Fri, 22 Jul 2022 12:15:58 -0700 (PDT)
 Received: from krzk-bin.home (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id f7-20020a0565123b0700b0047255d211d7sm287484lfv.262.2022.07.22.12.15.55
+        by smtp.gmail.com with ESMTPSA id f7-20020a0565123b0700b0047255d211d7sm287484lfv.262.2022.07.22.12.15.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jul 2022 12:15:56 -0700 (PDT)
+        Fri, 22 Jul 2022 12:15:57 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -63,11 +63,15 @@ To:     Thierry Reding <thierry.reding@gmail.com>,
         Pratyush Yadav <p.yadav@ti.com>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 0/1] dt-bindings: spi/display/panel: drop SPI CPHA and CPOL
-Date:   Fri, 22 Jul 2022 21:15:38 +0200
-Message-Id: <20220722191539.90641-1-krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/1] spi/panel: dt-bindings: drop CPHA and CPOL from common properties
+Date:   Fri, 22 Jul 2022 21:15:39 +0200
+Message-Id: <20220722191539.90641-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220722191539.90641-1-krzysztof.kozlowski@linaro.org>
+References: <20220722191539.90641-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,34 +84,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Rebased on Linus' master
-
-Changes since v1
-================
-1. Rework patchset as Rob suggested, so there is only one patch - changing spi
-   and display/panel.
-v1: https://lore.kernel.org/all/20220721153155.245336-2-krzysztof.kozlowski@linaro.org/
-
-Merging
-=======
-I guess via DT or SPI tree. I don't expect conflicts with display/panel tree
-(at least nothing visible now in linux-next).
-
-Description
-===========
 The spi-cpha and spi-cpol properties are device specific and should be
-accepted only if device really needs them.  Inspired by [1].
+accepted only if device really needs them.  Drop them from common
+spi-peripheral-props.yaml schema, mention in few panel drivers which use
+them and include instead in the SPI controller bindings.  The controller
+bindings will provide CPHA/CPOL type validation and one place for
+description.  Each device schema must list the properties if they are
+applicable.
 
-[1] https://lore.kernel.org/all/20220718220012.GA3625497-robh@kernel.org/
-
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (1):
-  spi/panel: dt-bindings: drop CPHA and CPOL from common properties
-
+Suggested-by: Jonathan Cameron <jic23@kernel.org>
+Suggested-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
  .../bindings/display/panel/lgphilips,lb035q02.yaml    |  3 +++
  .../bindings/display/panel/samsung,ld9040.yaml        |  3 +++
  .../bindings/display/panel/sitronix,st7789v.yaml      |  3 +++
@@ -116,6 +104,105 @@ Krzysztof Kozlowski (1):
  .../devicetree/bindings/spi/spi-peripheral-props.yaml | 10 ----------
  6 files changed, 23 insertions(+), 10 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+index 5e4e0e552c2f..628c4b898111 100644
+--- a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
++++ b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+@@ -21,6 +21,9 @@ properties:
+   enable-gpios: true
+   port: true
+ 
++  spi-cpha: true
++  spi-cpol: true
++
+ required:
+   - compatible
+   - enable-gpios
+diff --git a/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml b/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml
+index d525165d6d63..c0fabeb38628 100644
+--- a/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml
++++ b/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml
+@@ -42,6 +42,9 @@ properties:
+   panel-height-mm:
+     description: physical panel height [mm]
+ 
++  spi-cpha: true
++  spi-cpol: true
++
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
+index 9e1d707c2ace..d984b59daa4a 100644
+--- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
++++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
+@@ -23,6 +23,9 @@ properties:
+   backlight: true
+   port: true
+ 
++  spi-cpha: true
++  spi-cpol: true
++
+ required:
+   - compatible
+   - reg
+diff --git a/Documentation/devicetree/bindings/display/panel/tpo,td.yaml b/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
+index f902a9d74141..e8c8ee8d7c88 100644
+--- a/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
++++ b/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
+@@ -28,6 +28,9 @@ properties:
+   backlight: true
+   port: true
+ 
++  spi-cpha: true
++  spi-cpol: true
++
+ required:
+   - compatible
+   - port
+diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+index 678cee68b52a..655713fba7e2 100644
+--- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+@@ -95,6 +95,17 @@ patternProperties:
+     type: object
+     $ref: spi-peripheral-props.yaml
+ 
++    properties:
++      spi-cpha:
++        $ref: /schemas/types.yaml#/definitions/flag
++        description:
++          The device requires shifted clock phase (CPHA) mode.
++
++      spi-cpol:
++        $ref: /schemas/types.yaml#/definitions/flag
++        description:
++          The device requires inverse clock polarity (CPOL) mode.
++
+     required:
+       - compatible
+       - reg
+diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+index 5e32928c4fc3..2349f83c07f3 100644
+--- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+@@ -34,16 +34,6 @@ properties:
+     description:
+       The device requires 3-wire mode.
+ 
+-  spi-cpha:
+-    $ref: /schemas/types.yaml#/definitions/flag
+-    description:
+-      The device requires shifted clock phase (CPHA) mode.
+-
+-  spi-cpol:
+-    $ref: /schemas/types.yaml#/definitions/flag
+-    description:
+-      The device requires inverse clock polarity (CPOL) mode.
+-
+   spi-cs-high:
+     $ref: /schemas/types.yaml#/definitions/flag
+     description:
 -- 
 2.34.1
 
