@@ -2,161 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C9A357E730
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 21:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B161957E73A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 21:19:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235843AbiGVTS5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 15:18:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52964 "EHLO
+        id S236032AbiGVTTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 15:19:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234717AbiGVTS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 15:18:56 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6512D624A8
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 12:18:54 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id m9so6497410ljp.9
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 12:18:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Kjnz9jnBzE7TgHYD4icOZx+MB0ePlqFO/pSn3BcmO+0=;
-        b=zrdZV1N8rcljnnm792VSjQ58hdKWLtfgPqKQdfcSLXzUErMw+skmwdSXV2F1TitH/J
-         NXuvWrAerVaTlGh64K45PDLNZTuQHps12d5me3DX8ZH+ldaHlB9pjB4/jMARTYbq1mDC
-         At2wOShU5RXVlK1WMDpuOxXf0+b8seAI639XdkJnWGDlUJNVEw+NrXluQNBlMVrgHYFu
-         IoQENpAAY67ayReLSP6wxkz7wKMI734bKY81eb6+d64imahKqTz7wNKWoTii6KD+qhKv
-         T30tdvfqWDd7ikzgol6ERulCLyJ/niszNvhehaE7QBt7nMOzDRKQQL0F61U4Ospmw5FP
-         rqGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Kjnz9jnBzE7TgHYD4icOZx+MB0ePlqFO/pSn3BcmO+0=;
-        b=mhHnLUvrlzpTNOgX9I/XE9MOg5oNjT7wPWUWb6j7ulxgYSHuQezAdfmmSDf+TMUwPr
-         7DgXCtZs6Nh3TS9Bcv0RBGh9SGdhUl0sxq1DS74l6reqr4m53rpjRBwuz5EGFScksbTj
-         9eS1980WTHmnLslZxVo5XCMtzmqilaNOlA1BsGy/OndMyaJl4kZyfO4xzlczrBvmXjxK
-         P/IN2AGAAP1gvKuPZPJ00nXhlLqFo3NP+qSHZuC46N9r5HlGFXrITPaPvAFl/LeSytBM
-         u8RedUOpNLJT6XQLPOpuj3lucLxCjDEzosuTKPCIXxmT+fMyD+WXC/Hp3pW9wQ7XjLnj
-         B1Vg==
-X-Gm-Message-State: AJIora+eILAaTEGOtD6V2MG2Hh36x8tRxZ9Xy30RxGq+su8Wwb49sYxe
-        fOWpCQNJwEMV/6qB7jMdDsVqvQ==
-X-Google-Smtp-Source: AGRyM1tCLElgP8uPh4Z9md/fxoYz+LRieaRoF2qyv6YfjK5RUT+HTsr3Y0dq0yujq9NNuHAuCiG6qg==
-X-Received: by 2002:a05:651c:20e:b0:25d:521d:66e2 with SMTP id y14-20020a05651c020e00b0025d521d66e2mr517200ljn.258.1658517532596;
-        Fri, 22 Jul 2022 12:18:52 -0700 (PDT)
-Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id o8-20020ac24e88000000b00484edac69ccsm1214228lfr.43.2022.07.22.12.18.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 12:18:52 -0700 (PDT)
-Message-ID: <85199046-b1ff-0b41-0938-172c55b7a4c5@linaro.org>
-Date:   Fri, 22 Jul 2022 21:18:50 +0200
+        with ESMTP id S233512AbiGVTTj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 15:19:39 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DC7C475381;
+        Fri, 22 Jul 2022 12:19:37 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,186,1654527600"; 
+   d="scan'208";a="128811335"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 23 Jul 2022 04:19:37 +0900
+Received: from localhost.localdomain (unknown [10.226.92.254])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4837D4000A89;
+        Sat, 23 Jul 2022 04:19:31 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v4 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI DSI TX bindings
+Date:   Fri, 22 Jul 2022 20:19:23 +0100
+Message-Id: <20220722191924.544869-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220722191924.544869-1-biju.das.jz@bp.renesas.com>
+References: <20220722191924.544869-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/3] dt-bindings: memory-controller: Document Broadcom STB
- MEMC
-Content-Language: en-US
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220722184138.2666241-1-f.fainelli@gmail.com>
- <20220722184138.2666241-2-f.fainelli@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220722184138.2666241-2-f.fainelli@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2022 20:41, Florian Fainelli wrote:
-> Document the Broadcom STB memory controller which is a trivial binding
-> for now with a set of compatible strings and single register.
-> 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> ---
->  .../memory-controllers/brcm,memc.yaml         | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/brcm,memc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/brcm,memc.yaml b/Documentation/devicetree/bindings/memory-controllers/brcm,memc.yaml
-> new file mode 100644
-> index 000000000000..a629734f0cd0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/brcm,memc.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/brcm,memc.yaml#
+The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's. It
+can operate in DSI mode, with up to four data lanes.
 
-Filename like first compatible, so: brcm,brcmstb-memc-ddr.yaml
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v3->v4:
+ * No change.
+v2->v3:
+ * Added Rb tag from Geert and Laurent
+ * Fixed the typo "Receive" -> "transmit"
+ * Added accepible values for data-lanes
+ * Sorted Header file in the example
+ * Added SoC specific compaible along with generic one.
+v1->v2:
+ * Added full path for dsi-controller.yaml
+ * Modeled DSI + D-PHY as single block and updated reg property
+ * Fixed typo D_PHY->D-PHY
+ * Updated description
+ * Added interrupts and interrupt-names and updated the example 
+RFC->v1:
+ * Added a ref to dsi-controller.yaml.
+RFC:-
+ * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-22-biju.das.jz@bp.renesas.com/
+---
+ .../bindings/display/bridge/renesas,dsi.yaml  | 182 ++++++++++++++++++
+ 1 file changed, 182 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Memory controller (MEMC) for Broadcom STB
-> +
-> +maintainers:
-> +  - Florian Fainelli <f.fainelli@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - brcm,brcmstb-memc-ddr-rev-b.1.x
-> +          - brcm,brcmstb-memc-ddr-rev-b.2.0
-> +          - brcm,brcmstb-memc-ddr-rev-b.2.1
-> +          - brcm,brcmstb-memc-ddr-rev-b.2.2
-> +          - brcm,brcmstb-memc-ddr-rev-b.2.3
-> +          - brcm,brcmstb-memc-ddr-rev-b.2.5
-> +          - brcm,brcmstb-memc-ddr-rev-b.2.6
-> +          - brcm,brcmstb-memc-ddr-rev-b.2.7
-> +          - brcm,brcmstb-memc-ddr-rev-b.2.8
-> +          - brcm,brcmstb-memc-ddr-rev-b.3.0
-> +          - brcm,brcmstb-memc-ddr-rev-b.3.1
-> +          - brcm,brcmstb-memc-ddr-rev-c.1.0
-> +          - brcm,brcmstb-memc-ddr-rev-c.1.1
-> +          - brcm,brcmstb-memc-ddr-rev-c.1.2
-> +          - brcm,brcmstb-memc-ddr-rev-c.1.3
-> +          - brcm,brcmstb-memc-ddr-rev-c.1.4
-> +      - const: brcm,brcmstb-memc-ddr
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    memory-controller@9902000 {
-> +        compatible = "brcm,brcmstb-memc-ddr-rev-c.1.1",
-> +                        "brcm,brcmstb-memc-ddr";
+diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+new file mode 100644
+index 000000000000..131d5b63ec4f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+@@ -0,0 +1,182 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas RZ/G2L MIPI DSI Encoder
++
++maintainers:
++  - Biju Das <biju.das.jz@bp.renesas.com>
++
++description: |
++  This binding describes the MIPI DSI encoder embedded in the Renesas
++  RZ/G2L alike family of SoC's. The encoder can operate in DSI mode, with
++  up to four data lanes.
++
++allOf:
++  - $ref: /schemas/display/dsi-controller.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
++      - const: renesas,rzg2l-mipi-dsi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: Sequence operation channel 0 interrupt
++      - description: Sequence operation channel 1 interrupt
++      - description: Video-Input operation channel 1 interrupt
++      - description: DSI Packet Receive interrupt
++      - description: DSI Fatal Error interrupt
++      - description: DSI D-PHY PPI interrupt
++      - description: Debug interrupt
++
++  interrupt-names:
++    items:
++      - const: seq0
++      - const: seq1
++      - const: vin1
++      - const: rcv
++      - const: ferr
++      - const: ppi
++      - const: debug
++
++  clocks:
++    items:
++      - description: DSI D-PHY PLL multiplied clock
++      - description: DSI D-PHY system clock
++      - description: DSI AXI bus clock
++      - description: DSI Register access clock
++      - description: DSI Video clock
++      - description: DSI D-PHY Escape mode transmit clock
++
++  clock-names:
++    items:
++      - const: pllclk
++      - const: sysclk
++      - const: aclk
++      - const: pclk
++      - const: vclk
++      - const: lpclk
++
++  resets:
++    items:
++      - description: MIPI_DSI_CMN_RSTB
++      - description: MIPI_DSI_ARESET_N
++      - description: MIPI_DSI_PRESET_N
++
++  reset-names:
++    items:
++      - const: rst
++      - const: arst
++      - const: prst
++
++  power-domains:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Parallel input port
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: DSI output port
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++            required:
++              - data-lanes
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - power-domains
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r9a07g044-cpg.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    dsi0: dsi@10850000 {
++        compatible = "renesas,r9a07g044-mipi-dsi", "renesas,rzg2l-mipi-dsi";
++        reg = <0x10850000 0x20000>;
++        interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "seq0", "seq1", "vin1", "rcv",
++                          "ferr", "ppi", "debug";
++        clocks = <&cpg CPG_MOD R9A07G044_MIPI_DSI_PLLCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_SYSCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_ACLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_PCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_VCLK>,
++                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_LPCLK>;
++        clock-names = "pllclk", "sysclk", "aclk", "pclk", "vclk", "lpclk";
++        resets = <&cpg R9A07G044_MIPI_DSI_CMN_RSTB>,
++                 <&cpg R9A07G044_MIPI_DSI_ARESET_N>,
++                 <&cpg R9A07G044_MIPI_DSI_PRESET_N>;
++        reset-names = "rst", "arst", "prst";
++        power-domains = <&cpg>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                dsi0_in: endpoint {
++                    remote-endpoint = <&du_out_dsi0>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                dsi0_out: endpoint {
++                    data-lanes = <1 2 3 4>;
++                    remote-endpoint = <&adv7535_in>;
++                };
++            };
++        };
++    };
++...
+-- 
+2.25.1
 
-Could you align it with previous quote "?
-
-Other than that, looks ok, but anyway this will have to wait for merge
-window to finish.
-
-> +        reg = <0x9902000 0x600>;
-> +    };
-
-
-Best regards,
-Krzysztof
