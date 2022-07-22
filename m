@@ -2,119 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B0BB57E60E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 19:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AC0857E63E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:07:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236043AbiGVRzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 13:55:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47954 "EHLO
+        id S230193AbiGVSHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 14:07:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232071AbiGVRzg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 13:55:36 -0400
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085DF186DF
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:55:35 -0700 (PDT)
-Received: by mail-io1-xd30.google.com with SMTP id x64so4200403iof.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:55:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gULf0JdF4EwTcvIBHd+ZJRIXMVlWI/0SvCta4rj+NzQ=;
-        b=Kcmz/jeQZjMgKau9sFwMRtbG91c/92RNy+LYNH5xGvTw+a2mKAFvlIslfDbB3wn9M0
-         ohSl8G1tSVgsE3lEon90WfIpK917we7YqMgM/oonhaRI6LS6hER0K2VXRSIx9Se/4Rfz
-         Ms/mdHLDhcNPzLHCTzZx14PDIzPz13q8+UJ8M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gULf0JdF4EwTcvIBHd+ZJRIXMVlWI/0SvCta4rj+NzQ=;
-        b=zn12YkNEj/zMygQsx8dSj1jcREvlDHyyP5Vn/LUyrDUzLiGnDZOAEVppNdBMOdCqog
-         VCyqmZdN+mEPIkP8d+yadpPREfpjpyJjJBu/WPkI4kO3xOBHtfCY97QBFYBUjLfGsvzb
-         eCdumjsabFCJNYj1I3NWlb0Jf8UN6148rg+Pz1OVjYiHZrdUSfngwKV/a+W+6atZ9BmS
-         OHkxhRvRez2mLAT4PoijT4mb8CgkhkTPUHrHI1yHZDQh7EUBQOWofRQ7ozaSkmYUW3h6
-         7R09pUoWhd+4fxHqPjZVo/D19XnYrRZetGJYmEVf16NokYY/ZEHuq76ITg7LD667KYg+
-         k7NA==
-X-Gm-Message-State: AJIora/1/bZVize4ILUnvyFQpAyevv1sLEqjLMKytSi5o4EzRgCAx2IM
-        4/NSxdnMTz1Moh9axIJu/21u5EmS2a44X3Iy
-X-Google-Smtp-Source: AGRyM1uwtBp71ZWGfT3WcmLCaVOkVn077f9wWxxUv/KWLrfCO/QSoRjJYFvTmChXNVuet8Sz124T3w==
-X-Received: by 2002:a05:6638:144f:b0:33f:5029:280f with SMTP id l15-20020a056638144f00b0033f5029280fmr558772jad.60.1658512533965;
-        Fri, 22 Jul 2022 10:55:33 -0700 (PDT)
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com. [209.85.166.52])
-        by smtp.gmail.com with ESMTPSA id z2-20020a926502000000b002dd0cb24c16sm1977106ilb.17.2022.07.22.10.55.32
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 10:55:32 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id 125so4181006iou.6
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 10:55:32 -0700 (PDT)
-X-Received: by 2002:a05:6638:1a1a:b0:33f:405d:b1ed with SMTP id
- cd26-20020a0566381a1a00b0033f405db1edmr559102jab.164.1658512531715; Fri, 22
- Jul 2022 10:55:31 -0700 (PDT)
+        with ESMTP id S233646AbiGVSHm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:07:42 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B338B4BF;
+        Fri, 22 Jul 2022 11:07:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1658513258; x=1690049258;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hClGG4e0OyV+0QSqAwV6x3Ca/FxE2mG9JLOUb6DTO24=;
+  b=P7wjkEJxIWtoQw8FSan+qV5i+oqxKu7N7TV0DhaOH4vNfGoz9CPNhlWX
+   jkGrSn9dvQoCN7pkbUQvrNiRY9OK2BGPLdEijewXHuSbkhWkvs68zR/WM
+   klot5g6fW1CCq/anmbIg5mXkoo0+4HemCgWtABVv7V5Uvwr2WFoJBpGGt
+   LKqcngTPSliFHpwpDz41Xozy4MNAd8VZqg3GybJZtWMS1cNcAXWvDnliL
+   upq3ZSYfWM/yAg5QAJNvQT7bGZOWNNeiam8ZVViUPGlZNYfri9zlyZUkN
+   +PLWvXvJxQ2tbn1D+EYhyI0ztCwCo62Dg2m+2gsDx2QkLeWFUbEPo9/EA
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10416"; a="274233457"
+X-IronPort-AV: E=Sophos;i="5.93,186,1654585200"; 
+   d="scan'208";a="274233457"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jul 2022 11:07:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,186,1654585200"; 
+   d="scan'208";a="666758059"
+Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
+  by fmsmga004.fm.intel.com with ESMTP; 22 Jul 2022 11:07:32 -0700
+Received: from kbuild by e0eace57cfef with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oEx3k-0001hX-0G;
+        Fri, 22 Jul 2022 18:07:32 +0000
+Date:   Sat, 23 Jul 2022 02:06:32 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, l.stach@pengutronix.de
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        paul.elder@ideasonboard.com, aford173@gmail.com,
+        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V4 6/8] soc: imx: imx8m-blk-ctrl: add i.MX8MP VPU blk ctrl
+Message-ID: <202207230135.ZQrimSwM-lkp@intel.com>
+References: <20220722125730.3428017-7-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
- <CAD=FV=Uuv0rGg1+8_b=R7SM-g87U_4TipwbNgVTXDd6T=X3qEQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=Uuv0rGg1+8_b=R7SM-g87U_4TipwbNgVTXDd6T=X3qEQ@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 22 Jul 2022 10:55:19 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VmKBjvDqxhrJfh72wZpBMVA1nA=JLVwnx-i92ijZt_bA@mail.gmail.com>
-Message-ID: <CAD=FV=VmKBjvDqxhrJfh72wZpBMVA1nA=JLVwnx-i92ijZt_bA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: Add SKU6 for sc7180-trogdor-pazquel-lte-parade
-To:     Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Henry Sun <henrysun@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220722125730.3428017-7-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi "Peng,
 
-On Thu, Jul 21, 2022 at 6:36 AM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Wed, Jul 20, 2022 at 8:59 PM Yunlong Jia
-> <yunlong.jia@ecs.corp-partner.google.com> wrote:
-> >
-> > SKU6 is LTE(w/o eSIM)+WIFI+Parade
-> >
-> > Signed-off-by: Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>
-> > ---
-> >
-> > Changes in v3:
-> > - Bindings and dts in the same series.
-> >
-> > Changes in v2:
-> > - Put sku6 before sku4.
-> >
-> >  arch/arm64/boot/dts/qcom/sc7180-trogdor-pazquel-lte-parade.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Thank you for the patch! Yet something to improve:
 
-We're at a point now where this won't be able to land for at least 2.5
-weeks. As an experiment, I created a staging tree atop the current
-arm64 dts tree and put this there. I'll try to put only things that I
-believe are truly ready to land there, but git hashes won't be stable
-since it's just a staging tree:
+[auto build test ERROR on shawnguo/for-next]
+[also build test ERROR on linus/master v5.19-rc7 next-20220722]
+[cannot apply to robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-https://github.com/dianders/kernel-staging/commits/qcom/arm64-staging
+url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220722-205748
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+config: arm-buildonly-randconfig-r004-20220722 (https://download.01.org/0day-ci/archive/20220723/202207230135.ZQrimSwM-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 72686d68c137551cce816416190a18d45b4d4e2a)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm cross compiling tool for clang build
+        # apt-get install binutils-arm-linux-gnueabi
+        # https://github.com/intel-lab-lkp/linux/commit/69aa4b64765e9c0ed7990d68a5cf3f125fd16f91
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220722-205748
+        git checkout 69aa4b64765e9c0ed7990d68a5cf3f125fd16f91
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/soc/imx/
 
-I reversed the order of patch #1 and patch #2 when applying as per
-discussion in patch #2.
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
--Doug
+All errors (new ones prefixed by >>):
+
+>> drivers/soc/imx/imx8m-blk-ctrl.c:466:4: error: field designator 'path_names' does not refer to any field in type 'const struct imx8m_blk_ctrl_domain_data'
+                   .path_names = (const char *[]){"g1"},
+                    ^
+>> drivers/soc/imx/imx8m-blk-ctrl.c:467:4: error: field designator 'num_paths' does not refer to any field in type 'const struct imx8m_blk_ctrl_domain_data'
+                   .num_paths = 1,
+                    ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:476:4: error: field designator 'path_names' does not refer to any field in type 'const struct imx8m_blk_ctrl_domain_data'
+                   .path_names = (const char *[]){"g2"},
+                    ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:477:4: error: field designator 'num_paths' does not refer to any field in type 'const struct imx8m_blk_ctrl_domain_data'
+                   .num_paths = 1,
+                    ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:486:4: error: field designator 'path_names' does not refer to any field in type 'const struct imx8m_blk_ctrl_domain_data'
+                   .path_names = (const char *[]){"vc8000e"},
+                    ^
+   drivers/soc/imx/imx8m-blk-ctrl.c:487:4: error: field designator 'num_paths' does not refer to any field in type 'const struct imx8m_blk_ctrl_domain_data'
+                   .num_paths = 1,
+                    ^
+>> drivers/soc/imx/imx8m-blk-ctrl.c:495:17: error: invalid application of 'sizeof' to an incomplete type 'const struct imx8m_blk_ctrl_domain_data[]'
+           .num_domains = ARRAY_SIZE(imx8mp_vpu_blk_ctl_domain_data),
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/kernel.h:55:32: note: expanded from macro 'ARRAY_SIZE'
+   #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+                                  ^~~~~
+   7 errors generated.
+
+
+vim +466 drivers/soc/imx/imx8m-blk-ctrl.c
+
+   457	
+   458	static const struct imx8m_blk_ctrl_domain_data imx8mp_vpu_blk_ctl_domain_data[] = {
+   459		[IMX8MP_VPUBLK_PD_G1] = {
+   460			.name = "vpublk-g1",
+   461			.clk_names = (const char *[]){ "g1", },
+   462			.num_clks = 1,
+   463			.gpc_name = "g1",
+   464			.rst_mask = BIT(1),
+   465			.clk_mask = BIT(1),
+ > 466			.path_names = (const char *[]){"g1"},
+ > 467			.num_paths = 1,
+   468		},
+   469		[IMX8MP_VPUBLK_PD_G2] = {
+   470			.name = "vpublk-g2",
+   471			.clk_names = (const char *[]){ "g2", },
+   472			.num_clks = 1,
+   473			.gpc_name = "g2",
+   474			.rst_mask = BIT(0),
+   475			.clk_mask = BIT(0),
+   476			.path_names = (const char *[]){"g2"},
+   477			.num_paths = 1,
+   478		},
+   479		[IMX8MP_VPUBLK_PD_VC8000E] = {
+   480			.name = "vpublk-vc8000e",
+   481			.clk_names = (const char *[]){ "vc8000e", },
+   482			.num_clks = 1,
+   483			.gpc_name = "vc8000e",
+   484			.rst_mask = BIT(2),
+   485			.clk_mask = BIT(2),
+   486			.path_names = (const char *[]){"vc8000e"},
+   487			.num_paths = 1,
+   488		},
+   489	};
+   490	
+   491	static const struct imx8m_blk_ctrl_data imx8mp_vpu_blk_ctl_dev_data = {
+   492		.max_reg = 0x18,
+   493		.power_notifier_fn = imx8mm_vpu_power_notifier,
+   494		.domains = imx8mp_vpu_blk_ctl_domain_data,
+ > 495		.num_domains = ARRAY_SIZE(imx8mp_vpu_blk_ctl_domain_data),
+   496	};
+   497	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
