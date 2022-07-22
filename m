@@ -2,108 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6386757DB3E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 09:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E373757DB54
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 09:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234586AbiGVH0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 03:26:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53374 "EHLO
+        id S229538AbiGVHdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 03:33:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234595AbiGVH0l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 03:26:41 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0CBB951E3;
-        Fri, 22 Jul 2022 00:26:39 -0700 (PDT)
-X-UUID: ed9222a5feb34118a0111ceeb476f066-20220722
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:adac1ab2-78d9-433b-ba5f-e08968884913,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:6913fc64-0b3f-4b2c-b3a6-ed5c044366a0,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: ed9222a5feb34118a0111ceeb476f066-20220722
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <runyang.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 888131102; Fri, 22 Jul 2022 15:26:32 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Fri, 22 Jul 2022 15:26:31 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Fri, 22 Jul 2022 15:26:30 +0800
-From:   Runyang Chen <Runyang.Chen@mediatek.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <nfraprado@collabora.com>
-CC:     <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
+        with ESMTP id S234243AbiGVHdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 03:33:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 703B798213;
+        Fri, 22 Jul 2022 00:33:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0C283621DE;
+        Fri, 22 Jul 2022 07:33:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E6E8C341C6;
+        Fri, 22 Jul 2022 07:33:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658475200;
+        bh=g0J/DZPF0EEz3tPDpzapvuFe35w2oC5Odvf9wwZqa8M=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=KJz9xjIKkzRij37j7QmzWAY1vRA9AFGAxNXZutXVyyhSatiqsc8es7iTcnbRcLIa/
+         K0M39yHcKWLN7ULvJRqFmZj8PXnDdJPyRSNRNBnOPRZtv+I9cJqTEcKD084UyXjnO4
+         7XCotCxqo+JBVPmSgokfeAhc9OH3coJl0HFK3sWOdhyyUDDlYrzL/JXuOb+cpmP16f
+         z+vJM4iF7lp/4If+Mv3d62C4/5yPhJJ3lkZEuuxAM6CLa2n5EuO8cvVV3jnMfFIHcp
+         L8LTMcN7IvvXslz+I1AvCVGQS+SbOOzPIytPdDMorR5yT//VFu+1CSJcq4rfzjytFc
+         x5vl9g6h7jIHA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oEn9x-009GbE-KG;
+        Fri, 22 Jul 2022 08:33:17 +0100
+Date:   Fri, 22 Jul 2022 08:33:17 +0100
+Message-ID: <87tu79y536.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Frank Li <frank.li@nxp.com>
+Cc:     "jdmason@kudzu.us" <jdmason@kudzu.us>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        "Runyang Chen" <runyang.chen@mediatek.com>
-Subject: [PATCH] [3/3] watchdog: mediatek: mt8188: add wdt support
-Date:   Fri, 22 Jul 2022 15:23:16 +0800
-Message-ID: <20220722072316.582-4-Runyang.Chen@mediatek.com>
-X-Mailer: git-send-email 2.9.2
-In-Reply-To: <20220722072316.582-1-Runyang.Chen@mediatek.com>
-References: <20220722072316.582-1-Runyang.Chen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "ntb@lists.linux.dev" <ntb@lists.linux.dev>
+Subject: Re: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi controller
+In-Reply-To: <PAXPR04MB9186A1D283ACE8BD6954039288919@PAXPR04MB9186.eurprd04.prod.outlook.com>
+References: <20220720213036.1738628-1-Frank.Li@nxp.com>
+        <20220720213036.1738628-3-Frank.Li@nxp.com>
+        <874jza525l.wl-maz@kernel.org>
+        <PAXPR04MB9186A1D283ACE8BD6954039288919@PAXPR04MB9186.eurprd04.prod.outlook.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: frank.li@nxp.com, jdmason@kudzu.us, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Runyang Chen <runyang.chen@mediatek.com>
+On Thu, 21 Jul 2022 16:22:08 +0100,
+Frank Li <frank.li@nxp.com> wrote:
+> 
+> > > +     pos = find_first_zero_bit(&msi_data->used, IMX_MU_CHANS);
+> > > +     if (pos < IMX_MU_CHANS)
+> > > +             __set_bit(pos, &msi_data->used);
+> > > +     else
+> > > +             err = -ENOSPC;
+> > > +     spin_unlock(&msi_data->lock);
+> > > +
+> > > +     if (err)
+> > > +             return err;
+> > > +
+> > > +     err = iommu_dma_prepare_msi(info->desc, msi_data->msiir_addr +
+> > pos * 4);
+> > 
+> > Does this HW even have an IOMMU?
+> 
+> [Frank Li] we have a platform with iommu.
 
-Support MT8188 watchdog device.
+I really wonder whether you are taking me for a ride, or whether you
+are completely misunderstanding what this IOMMU business is about.
 
-Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
----
- drivers/watchdog/mtk_wdt.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+This is a *CPU* writing to the device to generate an MSI. CPU
+transactions cannot be translated by an IOMMU as they are not
+(surprise!) IO devices. They are in control of their own translation,
+contrary to devices that generate MSIs.
 
-diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-index f0d4e3cc7459..ce7dc96bfa4b 100644
---- a/drivers/watchdog/mtk_wdt.c
-+++ b/drivers/watchdog/mtk_wdt.c
-@@ -13,6 +13,7 @@
- #include <dt-bindings/reset/mt7986-resets.h>
- #include <dt-bindings/reset/mt8183-resets.h>
- #include <dt-bindings/reset/mt8186-resets.h>
-+#include <dt-bindings/reset/mt8188-resets.h>
- #include <dt-bindings/reset/mt8192-resets.h>
- #include <dt-bindings/reset/mt8195-resets.h>
- #include <linux/delay.h>
-@@ -90,6 +91,10 @@ static const struct mtk_wdt_data mt8186_data = {
- 	.toprgu_sw_rst_num = MT8186_TOPRGU_SW_RST_NUM,
- };
- 
-+static const struct mtk_wdt_data mt8188_data = {
-+	.toprgu_sw_rst_num = MT8188_TOPRGU_SW_RST_NUM,
-+};
-+
- static const struct mtk_wdt_data mt8192_data = {
- 	.toprgu_sw_rst_num = MT8192_TOPRGU_SW_RST_NUM,
- };
-@@ -431,6 +436,7 @@ static const struct of_device_id mtk_wdt_dt_ids[] = {
- 	{ .compatible = "mediatek,mt7986-wdt", .data = &mt7986_data },
- 	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
- 	{ .compatible = "mediatek,mt8186-wdt", .data = &mt8186_data },
-+	{ .compatible = "mediatek,mt8188-wdt", .data = &mt8188_data },
- 	{ .compatible = "mediatek,mt8192-wdt", .data = &mt8192_data },
- 	{ .compatible = "mediatek,mt8195-wdt", .data = &mt8195_data },
- 	{ /* sentinel */ }
+So what sort of translation do you expect this to setup? What StreamID
+is getting used by the DMA framework? There is no answer to these
+questions because they don't make any sense. None of it makes any
+sense.
+
+At best, you are simply copy-pasting things from various drivers
+without understanding what they are all about. I suggest you stop
+doing that and make use of your time working out the problem rather
+than wasting the reviewers'.
+
+	M.
+
 -- 
-2.18.0
-
+Without deviation from the norm, progress is not possible.
