@@ -2,112 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C8557E8EA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 23:34:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56B657E903
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 23:48:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbiGVVeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 17:34:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38292 "EHLO
+        id S234575AbiGVVs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 17:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbiGVVen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 17:34:43 -0400
-Received: from ixit.cz (ip-94-112-206-30.bb.vodafone.cz [94.112.206.30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9F8AF843;
-        Fri, 22 Jul 2022 14:34:40 -0700 (PDT)
-Received: from [10.0.0.163] (_gateway [10.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+        with ESMTP id S231878AbiGVVsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 17:48:25 -0400
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4C1089AA1;
+        Fri, 22 Jul 2022 14:48:24 -0700 (PDT)
+Received: from pps.filterd (m0148664.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26MKrESd011979;
+        Fri, 22 Jul 2022 21:48:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id; s=pps0720;
+ bh=XyhImU/s8jTS0MAtGnuJgfSv2I3LX1GjvUcuw7eaKzM=;
+ b=FoGVqkq541/fg1I5PaSuO/Rsp3Ne0DHLcb0DTLgEN1iTSdmE/yLgbGqvgc9kzhcbXXG6
+ Qz3WOZI8BpwTr2qya8lfdFF1xpsd5OfR5s1te3Zas5fBapNXT9uA9QDSm/0/kKoTQzVU
+ 98XTYvxjEZ4TmMAzFRF2vfPDj6DXXxA3OVKt/bvxqx8WcgHwkghStkRcek3PnzQy104V
+ 4b1Jfm/RMpCdef/8e5jEe7iS6PnfIXJc/asWR1nYFOvryfjRMqxZ5IAMB5/IKHha7DC5
+ 7ZlgTHVb0HEd/F9/1dY+hGMs2WmPR6w5pq3c41RhpK7SK3rRu30Q8ewOpsNqjjklr6j2 hg== 
+Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3hfyqc9t95-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 22 Jul 2022 21:48:07 +0000
+Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 3F0D12007F;
-        Fri, 22 Jul 2022 23:34:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1658525677;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=IGvDGHRGx9ntEIidHJIFw9uv8+buMKH8bvNvMLSCf3w=;
-        b=JLDpM72YTJgPfeMefMM/Npbs8Lz5xh8x96C9nbsVInesHuNWAYVJlE2xZci7XT/G6977iB
-        QryG4NMu0iCW1oC39FBrAjqxAsEjSKXKWfY9KHCoibx8LPrFZrHVodqTwr1V7L8sxhnVY0
-        RWDKL7bZJJShW1kY3WrUu6L9P4PMbSA=
-Message-ID: <b228bc62-c307-0662-3a6e-e3408c328178@ixit.cz>
-Date:   Fri, 22 Jul 2022 23:34:36 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:103.0) Gecko/20100101
- Thunderbird/103.0
-Subject: Re: [PATCH v5] dt-bindings: firmware: convert Qualcomm SCM binding to
- the yaml
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>,
-        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220708090431.30437-1-david@ixit.cz>
- <20220711225705.GA422079-robh@kernel.org>
-Content-Language: en-US
-From:   David Heidelberg <david@ixit.cz>
-In-Reply-To: <20220711225705.GA422079-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RDNS_DYNAMIC,
-        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 5C456800187;
+        Fri, 22 Jul 2022 21:48:06 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.36])
+        by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 463038032AD;
+        Fri, 22 Jul 2022 21:48:05 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     nick.hawkins@hpe.com
+Cc:     broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com,
+        linux@armlinux.org.uk, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, arnd@arndb.de, joel@jms.id.au
+Subject: [PATCH v3 0/5] Add SPI Driver to HPE GXP Architecture
+Date:   Fri, 22 Jul 2022 16:49:15 -0500
+Message-Id: <20220722214920.40485-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-ORIG-GUID: hQ5rnSRM9hxvywIVPFSSPwuS6UK6U-Yz
+X-Proofpoint-GUID: hQ5rnSRM9hxvywIVPFSSPwuS6UK6U-Yz
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-22_06,2022-07-21_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
+ bulkscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0 mlxlogscore=435
+ spamscore=0 mlxscore=0 suspectscore=0 priorityscore=1501 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
+ definitions=main-2207220089
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/07/2022 00:57, Rob Herring wrote:
-> On Fri, Jul 08, 2022 at 11:04:31AM +0200, David Heidelberg wrote:
->> Convert Qualcomm SCM firmware binding to the yaml format.
->>
->> This commit also:
->>   - adds qcom,scm-mdm9607 into list which has only core clock
->>   - adds qcom,scm-sm6125, qcom,scm-ipq6018
->>   - #reset-cells, because the property is already used
->>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> --
-> Should be '---' in order to be removed automatically when applying.
-typo, sorry.
->
->> v5:
->>   - add qcom,scm-sdx65 from new commit to txt binding
->>   - add freshly merged qcom,scm-sc8280xp
->>   - add interconnects
->>   - add accidentally removed # from #include directive
->>   - move mdm9607 to 3 clocks (thx @Guru)
->>   - fix compatible string in example
->> v4:
->>   - added clocks minItems and maxItems
->>   - removed quotes from $id and $schema
->>   - adjusted description of TCSR HW block
->> v3:
->>   - add preceding patches for ARM and arm64 adding missing compatible strings
->>   - extended with missing compatible strings
->>   - added two additional maintainers, see https://lkml.org/lkml/2022/6/23/1969
->> v2:
->>   - changed maintainer to Bjorn
->>   - document #reset-cells
->>
->>   .../devicetree/bindings/firmware/qcom,scm.txt |  61 --------
->>   .../bindings/firmware/qcom,scm.yaml           | 147 ++++++++++++++++++
->>   2 files changed, 147 insertions(+), 61 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.txt
->>   create mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> Doesn't apply for me, so I'm assuming this will go via QCom tree.
-if you want to merge it, I can rebase it against your tree?
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
+From: Nick Hawkins <nick.hawkins@hpe.com>
+
+Changes since v3:
+ *Fixed indentations in hpe,gxp-spifi.yaml
+
+Changes since v2:
+ *Changed the CONFIG_SPI_GXP from y to m in defconfig
+ *Removed extra space around < > for reg in hpe,gxp-spifi.yaml
+ *Changed interrupt-parrent to interrupt-parent in hpe,gxp-spifi.yaml
+ *Removed repeated include file in spi-gxp.c
+ *Removed unnecessary initialization of ret variable in spi-gxp.c
+ *Removed conditional variable checks where failure is not possible in
+  spi-gxp.c
+ *Removed unecessary variable cs in spi-gxp.c
+ *Removed blank gxp-spifi-remove function in spi-gxp.c
+ *Fixed error messages so they are not repetitive
+
+The GXP supports 3 separate SPI interfaces to accommodate the system
+flash, core flash, and other functions. The SPI engine supports variable
+clock frequency, selectable 3-byte or 4-byte addressing and a
+configurable x1, x2, and x4 command/address/data modes. The memory
+buffer for reading and writing ranges between 256 bytes and 8KB. This
+driver supports access to the core flash and bios part.
+
+Nick Hawkins (5):
+  spi: spi-gxp: Add support for HPE GXP SoCs
+  spi: dt-bindings: add documentation for hpe,gxp-spifi
+  ARM: dts: hpe: Add spi driver node
+  ARM: configs: multi_v7_defconfig: Enable HPE GXP SPI driver
+  MAINTAINERS: add spi support to GXP
+
+ .../bindings/spi/hpe,gxp-spifi.yaml           |  56 +++
+ MAINTAINERS                                   |   2 +
+ arch/arm/boot/dts/hpe-bmc-dl360gen10.dts      |  58 ++++
+ arch/arm/boot/dts/hpe-gxp.dtsi                |  21 +-
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ drivers/spi/Kconfig                           |   7 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-gxp.c                         | 325 ++++++++++++++++++
+ 8 files changed, 470 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
+ create mode 100644 drivers/spi/spi-gxp.c
 
 -- 
-David Heidelberg
-Consultant Software Engineer
-
-Matrix: @okias:matrix.org
+2.17.1
 
