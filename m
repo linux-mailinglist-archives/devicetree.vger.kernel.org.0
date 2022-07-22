@@ -2,143 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 493F157E47A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 18:33:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7975357E47F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 18:35:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235721AbiGVQdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 12:33:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32948 "EHLO
+        id S234012AbiGVQff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 12:35:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235751AbiGVQc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 12:32:59 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B659965B
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 09:32:56 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id r186so4859869pgr.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 09:32:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IusqkAi12UkDRpxOqe5d+steBgvYPF1P177Hc5F7MjQ=;
-        b=DpCEW4VfqPFdfl/zi4G3wiRIJC5E6AT1Fp15VyxrdjVkV7k/smBEKKfZPOBrN5xL2y
-         R0kWUB7XgPKpG1gklBR1k/B12m3qGBj4vQljirixvhrVKxbmUj9gniiCQcdaMHa9PBSi
-         6YZPQjh76JQ6pzsHyTGOUsznK2sx9R/6IZ+zE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IusqkAi12UkDRpxOqe5d+steBgvYPF1P177Hc5F7MjQ=;
-        b=0LfPu4OOpIOSLZD4iiNAdO3Zx71DGdKK1+KxPUxHzQiVbxl6TIJyD5SpcgUh+kkyO7
-         4ux2JMXLWIg+3sSKN7AqfIdFZeQZC6laS+5IG+MdAb4hYEVfuVc6F8NJ+s1Nr2sshvI2
-         f9/SWFTpybetXuhF/RNIaR9EPgIvb4V/6w3aKhd3gJErl7GXtGb5zhPENH8eDbYKoiLL
-         I0HDBiEDObNSOwbtv88HNGJimJCB/4zjpVJOCbNRoM/E0XpCK9OOhih96latZQLD7aVQ
-         cIwY27Gr6gPXZMOdUYyfcOD0LUOep9fPZXVT+2gXPsC22nKkOfM+kZZonwwjVfw/TggG
-         b6Nw==
-X-Gm-Message-State: AJIora+z3vQP/fAKEeN8r8E/dHzjjoVZTy08zBTCl8V6hGR4g4UmTjbB
-        LuJy5ytcwwwIysW9WUclW0Zs9w==
-X-Google-Smtp-Source: AGRyM1tQGj7yROA244zt5l+vYLlHTkva9Qxq523ok9iT1yZ78hqApGuetIH3LfAEimjd/KI2mMzayQ==
-X-Received: by 2002:a63:164d:0:b0:416:4bc:1c28 with SMTP id 13-20020a63164d000000b0041604bc1c28mr532460pgw.302.1658507571832;
-        Fri, 22 Jul 2022 09:32:51 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:42b0:2897:3725:985a])
-        by smtp.gmail.com with UTF8SMTPSA id u12-20020a170902e80c00b0016a11b7472csm3987832plg.166.2022.07.22.09.32.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 09:32:50 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: [PATCH v24 2/2] arm64: dts: qcom: sc7280-herobrine: Add nodes for onboard USB hub
-Date:   Fri, 22 Jul 2022 09:32:45 -0700
-Message-Id: <20220722093238.v24.2.I18481b296484eec47bdc292a31fa46fa8c655ca9@changeid>
-X-Mailer: git-send-email 2.37.1.359.gd136c6c3e2-goog
-In-Reply-To: <20220722093238.v24.1.I7a1a6448d50bdd38e6082204a9818c59cc7a9bfd@changeid>
-References: <20220722093238.v24.1.I7a1a6448d50bdd38e6082204a9818c59cc7a9bfd@changeid>
+        with ESMTP id S229567AbiGVQfe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 12:35:34 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92C290D9C;
+        Fri, 22 Jul 2022 09:35:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1658507733; x=1690043733;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wct04tBZUBn/SLi+Q6yHNMxbcUkF4qzPsiApqCX08Nk=;
+  b=jPNL1uwrw+myR0PDEiK1JdAF7IPeU0yu50Un7ABj8jR0rn7sSjaaRrQ0
+   KIV64X5eG+FPmLT24W8kTvNwLSx92qqOv/JAADdTn9CAMTsIe3DhrGUjI
+   /Upw9f0EI7J0Td9rmgrHvJE+YUqzCBMOnh7MlGlVx+uBKD2GghMW6ycdC
+   0EPiGDw31Su3ky/huz9gyVFjTG7n/24Z8XFIFBYVrjqC9O+0wugkSV3cr
+   tWL6hDl180MSLFhdhcCgdlBokPqBvOM0gzCb64kG+SrOlIKbD+CKC1pAV
+   WLgzvmATHrNhoEMb2L+rpGQq1EUDnp41EnshmID9UDRLUmT5Y7X5Mj7Gv
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10416"; a="286111314"
+X-IronPort-AV: E=Sophos;i="5.93,186,1654585200"; 
+   d="scan'208";a="286111314"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jul 2022 09:35:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,186,1654585200"; 
+   d="scan'208";a="701716621"
+Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 22 Jul 2022 09:35:27 -0700
+Received: from kbuild by e0eace57cfef with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oEvcd-0001bt-0B;
+        Fri, 22 Jul 2022 16:35:27 +0000
+Date:   Sat, 23 Jul 2022 00:35:13 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, l.stach@pengutronix.de
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        laurent.pinchart@ideasonboard.com, marex@denx.de,
+        paul.elder@ideasonboard.com, aford173@gmail.com,
+        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V4 5/8] soc: imx: add i.MX8MP HDMI blk ctrl HDCP/HRV
+Message-ID: <202207230052.uIae3wom-lkp@intel.com>
+References: <20220722125730.3428017-6-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220722125730.3428017-6-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for the onboard USB hub on herobrine devices. Remove the
-'always-on' property from the hub regulator, since the regulator
-is now managed by the onboard_usb_hub driver.
+Hi "Peng,
 
-This requires "CONFIG_USB_ONBOARD_HUB=y".
+Thank you for the patch! Yet something to improve:
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
----
+[auto build test ERROR on shawnguo/for-next]
+[also build test ERROR on linus/master v5.19-rc7 next-20220722]
+[cannot apply to robh/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Changes in v24:
-- renamed 'companion-hub' to 'peer-hub' according to the change
-  in the binding
+url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220722-205748
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
+config: arm-buildonly-randconfig-r004-20220722 (https://download.01.org/0day-ci/archive/20220723/202207230052.uIae3wom-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 72686d68c137551cce816416190a18d45b4d4e2a)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm cross compiling tool for clang build
+        # apt-get install binutils-arm-linux-gnueabi
+        # https://github.com/intel-lab-lkp/linux/commit/9f38a755e912ffee8cd2b25002016da6e121f448
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220722-205748
+        git checkout 9f38a755e912ffee8cd2b25002016da6e121f448
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/soc/imx/
 
-Changes in v23:
-- added note about CONFIG_USB_ONBOARD_HUB to the commit message
-- added 'Reviewed-by' tags from Stephen and Doug
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
 
-Changes in v22:
-- patch added to the series
+All errors (new ones prefixed by >>):
 
- .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 21 ++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+>> drivers/soc/imx/imx8mp-blk-ctrl.c:375:4: error: field designator 'path_names' does not refer to any field in type 'const struct imx8mp_blk_ctrl_domain_data'
+                   .path_names = (const char *[]){"hrv"},
+                    ^
+>> drivers/soc/imx/imx8mp-blk-ctrl.c:376:4: error: field designator 'num_paths' does not refer to any field in type 'const struct imx8mp_blk_ctrl_domain_data'
+                   .num_paths = 1,
+                    ^
+   drivers/soc/imx/imx8mp-blk-ctrl.c:383:4: error: field designator 'path_names' does not refer to any field in type 'const struct imx8mp_blk_ctrl_domain_data'
+                   .path_names = (const char *[]){"hdcp"},
+                    ^
+   drivers/soc/imx/imx8mp-blk-ctrl.c:384:4: error: field designator 'num_paths' does not refer to any field in type 'const struct imx8mp_blk_ctrl_domain_data'
+                   .num_paths = 1,
+                    ^
+>> drivers/soc/imx/imx8mp-blk-ctrl.c:394:17: error: invalid application of 'sizeof' to an incomplete type 'const struct imx8mp_blk_ctrl_domain_data[]'
+           .num_domains = ARRAY_SIZE(imx8mp_hdmi_domain_data),
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/kernel.h:55:32: note: expanded from macro 'ARRAY_SIZE'
+   #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+                                  ^~~~~
+   5 errors generated.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-index 3f8996c00b05..1fd381a903de 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine.dtsi
-@@ -144,8 +144,8 @@ pp3300_hub: pp3300-hub-regulator {
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 
-+		/* The BIOS leaves this regulator on */
- 		regulator-boot-on;
--		regulator-always-on;
- 
- 		gpio = <&tlmm 157 GPIO_ACTIVE_HIGH>;
- 		enable-active-high;
-@@ -596,6 +596,25 @@ &usb_1 {
- 
- &usb_1_dwc3 {
- 	dr_mode = "host";
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* 2.x hub on port 1 */
-+	usb_hub_2_x: hub@1 {
-+		compatible = "usbbda,5411";
-+		reg = <1>;
-+		vdd-supply = <&pp3300_hub>;
-+		peer-hub = <&usb_hub_3_x>;
-+	};
-+
-+	/* 3.x hub on port 2 */
-+	usb_hub_3_x: hub@2 {
-+		compatible = "usbbda,411";
-+		reg = <2>;
-+		vdd-supply = <&pp3300_hub>;
-+		peer-hub = <&usb_hub_2_x>;
-+	};
- };
- 
- &usb_1_hsphy {
+
+vim +375 drivers/soc/imx/imx8mp-blk-ctrl.c
+
+   326	
+   327	static const struct imx8mp_blk_ctrl_domain_data imx8mp_hdmi_domain_data[] = {
+   328		[IMX8MP_HDMIBLK_PD_IRQSTEER] = {
+   329			.name = "hdmiblk-irqsteer",
+   330			.clk_names = (const char *[]){ "apb" },
+   331			.num_clks = 1,
+   332			.gpc_name = "irqsteer",
+   333		},
+   334		[IMX8MP_HDMIBLK_PD_LCDIF] = {
+   335			.name = "hdmiblk-lcdif",
+   336			.clk_names = (const char *[]){ "axi", "apb" },
+   337			.num_clks = 2,
+   338			.gpc_name = "lcdif",
+   339		},
+   340		[IMX8MP_HDMIBLK_PD_PAI] = {
+   341			.name = "hdmiblk-pai",
+   342			.clk_names = (const char *[]){ "apb" },
+   343			.num_clks = 1,
+   344			.gpc_name = "pai",
+   345		},
+   346		[IMX8MP_HDMIBLK_PD_PVI] = {
+   347			.name = "hdmiblk-pvi",
+   348			.clk_names = (const char *[]){ "apb" },
+   349			.num_clks = 1,
+   350			.gpc_name = "pvi",
+   351		},
+   352		[IMX8MP_HDMIBLK_PD_TRNG] = {
+   353			.name = "hdmiblk-trng",
+   354			.clk_names = (const char *[]){ "apb" },
+   355			.num_clks = 1,
+   356			.gpc_name = "trng",
+   357		},
+   358		[IMX8MP_HDMIBLK_PD_HDMI_TX] = {
+   359			.name = "hdmiblk-hdmi-tx",
+   360			.clk_names = (const char *[]){ "apb", "ref_266m" },
+   361			.num_clks = 2,
+   362			.gpc_name = "hdmi-tx",
+   363		},
+   364		[IMX8MP_HDMIBLK_PD_HDMI_TX_PHY] = {
+   365			.name = "hdmiblk-hdmi-tx-phy",
+   366			.clk_names = (const char *[]){ "apb", "ref_24m" },
+   367			.num_clks = 2,
+   368			.gpc_name = "hdmi-tx-phy",
+   369		},
+   370		[IMX8MP_HDMIBLK_PD_HRV] = {
+   371			.name = "hdmiblk-hrv",
+   372			.clk_names = (const char *[]){ "axi", "apb" },
+   373			.num_clks = 2,
+   374			.gpc_name = "hrv",
+ > 375			.path_names = (const char *[]){"hrv"},
+ > 376			.num_paths = 1,
+   377		},
+   378		[IMX8MP_HDMIBLK_PD_HDCP] = {
+   379			.name = "hdmiblk-hdcp",
+   380			.clk_names = (const char *[]){ "axi", "apb" },
+   381			.num_clks = 2,
+   382			.gpc_name = "hdcp",
+   383			.path_names = (const char *[]){"hdcp"},
+   384			.num_paths = 1,
+   385		},
+   386	};
+   387	
+   388	static const struct imx8mp_blk_ctrl_data imx8mp_hdmi_blk_ctl_dev_data = {
+   389		.max_reg = 0x23c,
+   390		.power_on = imx8mp_hdmi_blk_ctrl_power_on,
+   391		.power_off = imx8mp_hdmi_blk_ctrl_power_off,
+   392		.power_notifier_fn = imx8mp_hdmi_power_notifier,
+   393		.domains = imx8mp_hdmi_domain_data,
+ > 394		.num_domains = ARRAY_SIZE(imx8mp_hdmi_domain_data),
+   395	};
+   396	
+
 -- 
-2.37.1.359.gd136c6c3e2-goog
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
