@@ -2,129 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E373757DB54
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 09:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5111557DB82
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 09:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229538AbiGVHdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 03:33:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58624 "EHLO
+        id S234426AbiGVHt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 03:49:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234243AbiGVHdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 03:33:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 703B798213;
-        Fri, 22 Jul 2022 00:33:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S234567AbiGVHt6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 03:49:58 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525849A5F9;
+        Fri, 22 Jul 2022 00:49:57 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0C283621DE;
-        Fri, 22 Jul 2022 07:33:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E6E8C341C6;
-        Fri, 22 Jul 2022 07:33:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658475200;
-        bh=g0J/DZPF0EEz3tPDpzapvuFe35w2oC5Odvf9wwZqa8M=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=KJz9xjIKkzRij37j7QmzWAY1vRA9AFGAxNXZutXVyyhSatiqsc8es7iTcnbRcLIa/
-         K0M39yHcKWLN7ULvJRqFmZj8PXnDdJPyRSNRNBnOPRZtv+I9cJqTEcKD084UyXjnO4
-         7XCotCxqo+JBVPmSgokfeAhc9OH3coJl0HFK3sWOdhyyUDDlYrzL/JXuOb+cpmP16f
-         z+vJM4iF7lp/4If+Mv3d62C4/5yPhJJ3lkZEuuxAM6CLa2n5EuO8cvVV3jnMfFIHcp
-         L8LTMcN7IvvXslz+I1AvCVGQS+SbOOzPIytPdDMorR5yT//VFu+1CSJcq4rfzjytFc
-         x5vl9g6h7jIHA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1oEn9x-009GbE-KG;
-        Fri, 22 Jul 2022 08:33:17 +0100
-Date:   Fri, 22 Jul 2022 08:33:17 +0100
-Message-ID: <87tu79y536.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Frank Li <frank.li@nxp.com>
-Cc:     "jdmason@kudzu.us" <jdmason@kudzu.us>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "ntb@lists.linux.dev" <ntb@lists.linux.dev>
-Subject: Re: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi controller
-In-Reply-To: <PAXPR04MB9186A1D283ACE8BD6954039288919@PAXPR04MB9186.eurprd04.prod.outlook.com>
-References: <20220720213036.1738628-1-Frank.Li@nxp.com>
-        <20220720213036.1738628-3-Frank.Li@nxp.com>
-        <874jza525l.wl-maz@kernel.org>
-        <PAXPR04MB9186A1D283ACE8BD6954039288919@PAXPR04MB9186.eurprd04.prod.outlook.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: frank.li@nxp.com, jdmason@kudzu.us, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 066CD6601ABF;
+        Fri, 22 Jul 2022 08:49:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658476194;
+        bh=oK9Kz1PhL+0HQO/x+UDl+NHHPx9XymaVsAnRkTonyio=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=n+ihjK0W2G8musyo/vYHs+DLFlKwGFI6OI7vY43J/IGAxzD/LR82PIFaltQXEzBzc
+         loEww3TgRY2X6+tPikC+1d4fAc5c8s3AKakFy0uGD9zioLAXx0O3EQeiXk/1kjRZan
+         HBt7w6qsVmrgNe8NkoAQ9o/h106WxmbFDY/Rw6ak7COuWOSRhB2q1QhxOtqC5nCdGk
+         zNRCGGAidKI68p3bA3lJWtZmhoSt77anX7lwYJC08ZOhoMw51hV4NHUxNySGPEcmZo
+         hlacCyDvgfe38T1Gj/2mUpkqqWW4jhevrm3kVyUksC3OgueMQPcMCChLt75hB91Le3
+         YFyGVkCiPGa5w==
+Message-ID: <edc08504-bad8-35f5-b4e2-ed664ba1f8f2@collabora.com>
+Date:   Fri, 22 Jul 2022 09:49:51 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] [1/3] dt-bindings: watchdog: Add compatible for MediaTek
+ MT8188
+Content-Language: en-US
+To:     Runyang Chen <Runyang.Chen@mediatek.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20220722072316.582-1-Runyang.Chen@mediatek.com>
+ <20220722072316.582-2-Runyang.Chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220722072316.582-2-Runyang.Chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Jul 2022 16:22:08 +0100,
-Frank Li <frank.li@nxp.com> wrote:
+Il 22/07/22 09:23, Runyang Chen ha scritto:
+> From: Runyang Chen <runyang.chen@mediatek.com>
 > 
-> > > +     pos = find_first_zero_bit(&msi_data->used, IMX_MU_CHANS);
-> > > +     if (pos < IMX_MU_CHANS)
-> > > +             __set_bit(pos, &msi_data->used);
-> > > +     else
-> > > +             err = -ENOSPC;
-> > > +     spin_unlock(&msi_data->lock);
-> > > +
-> > > +     if (err)
-> > > +             return err;
-> > > +
-> > > +     err = iommu_dma_prepare_msi(info->desc, msi_data->msiir_addr +
-> > pos * 4);
-> > 
-> > Does this HW even have an IOMMU?
+> Add dt-binding documentation of watchdog for MediaTek MT8188 SoC
 > 
-> [Frank Li] we have a platform with iommu.
+> Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
 
-I really wonder whether you are taking me for a ride, or whether you
-are completely misunderstanding what this IOMMU business is about.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-This is a *CPU* writing to the device to generate an MSI. CPU
-transactions cannot be translated by an IOMMU as they are not
-(surprise!) IO devices. They are in control of their own translation,
-contrary to devices that generate MSIs.
-
-So what sort of translation do you expect this to setup? What StreamID
-is getting used by the DMA framework? There is no answer to these
-questions because they don't make any sense. None of it makes any
-sense.
-
-At best, you are simply copy-pasting things from various drivers
-without understanding what they are all about. I suggest you stop
-doing that and make use of your time working out the problem rather
-than wasting the reviewers'.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
