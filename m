@@ -2,83 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 184BC57E960
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 23:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0557757E975
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 00:05:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234812AbiGVV7J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 17:59:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58422 "EHLO
+        id S235576AbiGVWFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 18:05:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234190AbiGVV7F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 17:59:05 -0400
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9AC32228D;
-        Fri, 22 Jul 2022 14:59:04 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id g20-20020a9d6a14000000b0061c84e679f5so4299037otn.2;
-        Fri, 22 Jul 2022 14:59:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wGhPXW+iEOdkvg+vG/Kkr+K+8RKFUAz0LS2o7676KFs=;
-        b=GkL09gP/QUWYroxTM5aL85fJB59ZJ7rRbC/7CoC0YjZTs52eyG9rPTaVMzOZHNxvRT
-         4W4ray4G7HHQMtBYA2y3Tmw5kljJMuvpHsXZLwieEKRXqF60VDKyGC3bQQEEKF+gIXUa
-         LBmoekxtHx3FOCcvHek4wWRKt5cMT3EoWUux+1mWht5l9uXx68+mnQ/bCUXMe+3Ah2XM
-         mUs58VZoZj6k2aFPKs47cPperQpIGtp5W3hodz00MY5n6TmwJmSMORL5mmpIF3tEKens
-         hk8RyDDPAzdmmZCNP8iIrkUPhZMpTlFQGgpYCUG6kCBA9JsKl13vPwF+I9loqP8BJ6fx
-         VotQ==
-X-Gm-Message-State: AJIora+M4lQpw8uSfJExuKsWbO/S2/1YzOpFVtZYc+RL8ZvcfIsiwCtX
-        xjOHix1pao7QhxXSvBE3oA==
-X-Google-Smtp-Source: AGRyM1vZqeRx4+M9prX1PCn/vlcW1frqBq8+n/89xRmNP4nVTSW5q2m2RvaqdcGrtJeJ6mD9+bc9Tw==
-X-Received: by 2002:a9d:f62:0:b0:610:417c:807b with SMTP id 89-20020a9d0f62000000b00610417c807bmr768344ott.93.1658527144055;
-        Fri, 22 Jul 2022 14:59:04 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id d3-20020a056830004300b0061c7ce09091sm2386917otp.67.2022.07.22.14.59.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Jul 2022 14:59:03 -0700 (PDT)
-Received: (nullmailer pid 4101811 invoked by uid 1000);
-        Fri, 22 Jul 2022 21:59:00 -0000
-Date:   Fri, 22 Jul 2022 15:59:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Richard Zhu <hongxing.zhu@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-pci@vger.kernel.org, Lucas Stach <l.stach@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: PCI: fsl,imx6q-pcie: Add missing type for
- 'reset-gpio-active-high'
-Message-ID: <20220722215900.GA4101751-robh@kernel.org>
-References: <20220719215031.1875860-1-robh@kernel.org>
+        with ESMTP id S229667AbiGVWFr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 18:05:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B35076E2C1;
+        Fri, 22 Jul 2022 15:05:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2F40E621DD;
+        Fri, 22 Jul 2022 22:05:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A5D5C341CB;
+        Fri, 22 Jul 2022 22:05:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658527545;
+        bh=dlW2CQz7TWp6qIiSdmuvBHnY6y1qDLdv1Y57CrSoo9s=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=bq1FJmzvcM+BRuBbyq2synnPToejL8zu+N/RCRfBxAd+K5pUa9xHiD8H4MlwYe8ft
+         T4AQfaIjbrNPtDX5NiGxOaMpEngXp++3c+2qGFw1t2Hr48TLYMngEaDEUQQzu0Sod5
+         Y9muRh5wrVhBz0h58jId9A+Zf3dgHWtNYUF1VQxWEUTI2aOrpeD6ePkqGq67lCC7GH
+         tfqVGAH7bzN10fhIi+XF38BvDvtV1lq91cMnmH4QsGKubSphpb5rOvujFgOzCnelHQ
+         qFwpDxSrgFtX6RX7RbDvPRiIol6FVcteY/dVpEdWX9IHPrOnMFg+ehq6RU/i7wtuj+
+         g+SbNZa2hqc2Q==
+From:   Mark Brown <broonie@kernel.org>
+To:     Ryan.Wanner@microchip.com, lgirdwood@gmail.com,
+        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com,
+        robh+dt@kernel.org, alexandre.belloni@bootlin.com,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org
+In-Reply-To: <20220722152945.2950807-1-Ryan.Wanner@microchip.com>
+References: <20220722152945.2950807-1-Ryan.Wanner@microchip.com>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: atmel-i2s: Convert to json-schema
+Message-Id: <165852754322.1234289.5406223462611245285.b4-ty@kernel.org>
+Date:   Fri, 22 Jul 2022 23:05:43 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220719215031.1875860-1-robh@kernel.org>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-c7731
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jul 2022 15:50:31 -0600, Rob Herring wrote:
-> 'reset-gpio-active-high' is missing a type definition and is not a common
-> property. The type is boolean.
+On Fri, 22 Jul 2022 08:29:45 -0700, Ryan.Wanner@microchip.com wrote:
+> From: Ryan Wanner <Ryan.Wanner@microchip.com>
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Convert atmel i2s devicetree binding to json-schema.
+> Change file name to match json-schema naming.
+> 
 > 
 
-Applied, thanks!
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: atmel-i2s: Convert to json-schema
+      commit: 6f78675445ca243229303cd72898c4a2b95a2bc0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
