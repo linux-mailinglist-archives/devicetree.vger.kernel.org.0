@@ -2,93 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FD9B57E4A5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 18:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E68557E4AD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 18:48:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235584AbiGVQr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 12:47:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43526 "EHLO
+        id S235845AbiGVQs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 12:48:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbiGVQr5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 12:47:57 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC088F537
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 09:47:54 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id v5so3142764wmj.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 09:47:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+R4IGu7uzIRu6xwKMm+8W0qVqTJ1EcVqQ8zqwW5Uf6Q=;
-        b=aFtOl+yB33pbeBM2ufkA9mgHueNEE++qGPcXJrfvUZLKBH45uNuHK3JkIy+ao4bBIE
-         G/l2Nx/KsnjS5SGbaFF8cDZDXRWyJ45PJAOBwjY0a0c0wfWXErXrRNnltcrneEZgafvs
-         vazi+KyPrvd4D+1TE1cZVFy6gkqCu5atV5ihBOMCY40j/J9Z7u/g71X+9pzHZFw5oUYe
-         6DvGp8aw7QL9bPw3OiWFkCPfKF4D7SSQnVALr0AqL0u20k+/11ibXv4dpsWsRUbIVkK6
-         kU6SM+SlM5difXfWum5ch4luwEVfAvrkfOVVdp71lpcI2/A3pB+GBKAOphAvErUevjwY
-         1Gag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+R4IGu7uzIRu6xwKMm+8W0qVqTJ1EcVqQ8zqwW5Uf6Q=;
-        b=4VZ5K9Za7ta95h8j7n/HIplxkhvUISp/qz0yxgdcUL/pWT57kf0bhRoft+vda5rzNR
-         Gc9yV7YlHtERxOzmbwSGC/wNc+85X8+X+PcPeiJxU8svKzWlpgnZot+rs2gqOgJ1vFGV
-         EnRFUBpp5Z/uoN39wRJOqAef6arWF3MWQV08onSenfX7J61xrYL4GLeyFlE0u5XK0ITb
-         o45wGB8zNwPucLaeS7TUThONhtOV/y/aeJ7CFousgV257iiJ/Wv7+JZm0Vqx7Arp6H0w
-         mmc5E9EgaA8aFkt75JWrvCA2IyXvV1MioWne/jmctymL50pKjZ06v7NVSChrX0x5YYJK
-         adOQ==
-X-Gm-Message-State: AJIora+WKUCwvpxQpP68YEzYS7fZJAV6Dkp2FgzDn6IOTONckScb5sSV
-        ANv/28xqf3E3Szf1L9gf73XXLw==
-X-Google-Smtp-Source: AGRyM1tYNQcfZ5ldrodJST1lIyTciMe2i8015txccx/egjjcWkx0PXvvyOXHs/AEP/sJBjv68JUXug==
-X-Received: by 2002:a05:600c:40cf:b0:3a3:1fd6:47b7 with SMTP id m15-20020a05600c40cf00b003a31fd647b7mr472879wmh.32.1658508473261;
-        Fri, 22 Jul 2022 09:47:53 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id e8-20020a05600c218800b003a319bd3278sm9075310wme.40.2022.07.22.09.47.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 09:47:52 -0700 (PDT)
-Message-ID: <3645463f-0fd6-efad-c257-c214b1b49b18@linaro.org>
-Date:   Fri, 22 Jul 2022 17:47:51 +0100
+        with ESMTP id S229771AbiGVQsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 12:48:55 -0400
+Received: from out28-148.mail.aliyun.com (out28-148.mail.aliyun.com [115.124.28.148])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C29C993C0E;
+        Fri, 22 Jul 2022 09:48:52 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.2783662|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00548407-0.00159274-0.992923;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047201;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=23;RT=23;SR=0;TI=SMTPD_---.Ob0cn8C_1658508518;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.Ob0cn8C_1658508518)
+          by smtp.aliyun-inc.com;
+          Sat, 23 Jul 2022 00:48:47 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     tudor.ambarus@microchip.com, p.yadav@ti.com, michael@walle.cc,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, aidanmacdonald.0x0@gmail.com,
+        tmn505@gmail.com, paul@crapouillou.net, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        jinghui.liu@ingenic.com, sernia.zhou@foxmail.com,
+        reimu@sudomaker.com
+Subject: [PATCH 0/3] Add SFC support for Ingenic SoCs.
+Date:   Sat, 23 Jul 2022 00:48:27 +0800
+Message-Id: <1658508510-15400-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Subject: Re: [PATCH v2 1/3] media: dt-bindings: media: Rename imx412 to imx577
-Content-Language: en-US
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     jacopo@jmondi.org, paul.j.murphy@intel.com,
-        daniele.alessandrelli@intel.com, mchehab@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        dmitry.baryshkov@linaro.org, konrad.dybcio@somainline.org,
-        andrey.konovalov@linaro.org
-References: <20220718014215.1240114-1-bryan.odonoghue@linaro.org>
- <20220718014215.1240114-2-bryan.odonoghue@linaro.org>
- <YtrKNQaMYOhc4UUM@valkosipuli.retiisi.eu>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <YtrKNQaMYOhc4UUM@valkosipuli.retiisi.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2022 17:03, Sakari Ailus wrote:
-> Quite possibly the sensors, for a reason or another, share
-> the same chip, so also the ID register will be the same. I wouldn't
-> necessarily expect them to make a variant just for that.
+1.Use the spi-mem poll status APIs in SPI-NOR to reduce CPU load.
+2.Add SFC support for the X1000 SoC, the X1600 SoC, and the X2000 SoC from Ingenic.
 
-Yeah it could be a silicon yield thing I suppose imx412 might be to 
-imx577 as Celeron was to Pentium.
+Liu Jinghui and Aidan MacDonald provided a lot of assistance during the development of this driver.
 
-Assuming there is no other identifiable difference at the register 
-level, wouldn't you think it would be more consistent at the naming 
-level to have CHIP_ID 0x577 live in imx577.c and then to have 2 compat 
-strings.
+周琰杰 (Zhou Yanjie) (3):
+  mtd: spi-nor: Use the spi-mem poll status APIs.
+  dt-bindings: SPI: Add Ingenic SFC bindings.
+  SPI: Ingenic: Add SFC support for Ingenic SoCs.
 
----
-bod
+ .../devicetree/bindings/spi/ingenic,sfc.yaml       |  64 ++
+ drivers/mtd/spi-nor/core.c                         |  42 +-
+ drivers/spi/Kconfig                                |   9 +
+ drivers/spi/Makefile                               |   1 +
+ drivers/spi/spi-ingenic-sfc.c                      | 662 +++++++++++++++++++++
+ 5 files changed, 768 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/ingenic,sfc.yaml
+ create mode 100755 drivers/spi/spi-ingenic-sfc.c
+
+-- 
+2.7.4
+
