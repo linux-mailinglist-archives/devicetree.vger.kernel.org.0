@@ -2,238 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 520BD57D79E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 02:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF7B357D7AC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 02:22:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229850AbiGVANy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 20:13:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44308 "EHLO
+        id S230193AbiGVAWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 20:22:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229739AbiGVANx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 20:13:53 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B77B712AAC;
-        Thu, 21 Jul 2022 17:13:52 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id gq7so3026826pjb.1;
-        Thu, 21 Jul 2022 17:13:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:content-language:to
-         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=4QRKHLiRN5hnDUcvUHn8lxSQcuIBW2UAZEYmbp1CN+Q=;
-        b=OfetnpZDqRZLzXYCGLHxw7bg0lrX3cenLaetCse44qssBxtm/MtLTviJNP+smm+VMA
-         CpFn8b1q3rJn7Vw//UcGG+VgpXgz/evMlj6qWoWumI2Lc5yeHgVDTBH4KF1ZoBCoWr+5
-         g87fIBaH2pD/CZj5O0m+oK8J/cDRk671wSBpXGBxi3UlaKaSI/sVCv0B6+iWLxD2y+yQ
-         Lvi9+H2NFAX+oJ453VOgw455wm0bruvB3f2rn0gRWb5s390v5rIW1wcPqHUy/KDqrwjg
-         slylHXdNO9x1epKh+M4L17tzKzmHvrgWtiU603kJoPitCZjOVuOcE101WYXaAhDESz5e
-         n0xw==
+        with ESMTP id S233628AbiGVAWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 20:22:15 -0400
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F24974E3F;
+        Thu, 21 Jul 2022 17:22:14 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id 1so1639404ill.11;
+        Thu, 21 Jul 2022 17:22:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=4QRKHLiRN5hnDUcvUHn8lxSQcuIBW2UAZEYmbp1CN+Q=;
-        b=CQCWwfoIiV5yaTsW6AJOVN+KMWIGMe4cwvwNV0I7agPHJfv15Fg73Mc2GTTrmtM/WF
-         X1geuaQapHQpm/4YxnE4fDgaIaFaV3V6basvLXC1qZw1dRwUFe5rp6IVeySc3IkynFy8
-         q3jqLU5DvBPuVbaNpBGsS5avVC02wS2APVI/Ii+vVIhJdlTViZCKU3s7Uz7kL5IhWcEl
-         gnZMEtCb7S5SL/gTDDOcJz8mIWceWO9AZbdtZpQFMnMXWE9Ts991eS2iLiVQS4yJymYb
-         0gxz91X7DME3sjEnobo2Ujg7THMzIyzx0YzMaFVZgRQNe5t/gjeetIOjrG6IHHejMLsB
-         N8LA==
-X-Gm-Message-State: AJIora84++NDkUs5SCTceEZZltdhgMDjUNanhVY9hRFlmGsQYZJVJXZd
-        HeSet18TCOmeujkeQzrACOQ=
-X-Google-Smtp-Source: AGRyM1ukKWFMOVxg2naXZKQ2UXBumBrVmkITXxliBrfjsoZ/J4pPROaMkMUT6KC3sNXUDygDD19PmA==
-X-Received: by 2002:a17:90b:3949:b0:1f2:1729:aa47 with SMTP id oe9-20020a17090b394900b001f21729aa47mr14349445pjb.153.1658448832082;
-        Thu, 21 Jul 2022 17:13:52 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 186-20020a6215c3000000b0052536c695c0sm2413857pfv.170.2022.07.21.17.13.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Jul 2022 17:13:51 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <238e7c41-4ad2-5725-fa71-7ca63020194b@roeck-us.net>
-Date:   Thu, 21 Jul 2022 17:13:50 -0700
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=37TNQXkegxnNHaxlV6oBSEt0TAcZ2231cTAxeerzb9A=;
+        b=pGC9smnRAob4qn8jwEh6UskjyWnFyBzj4HlbQBKvStLq4Kd0nAw8H1QfX3tjJ91ZeI
+         uhZj4xqpqt5MZto0ys3O9dfFlBMkM57cBqXl0TqdwBzpttEQrE5xte6p8UVxfCXnWFpt
+         pujX1YYyLznd5HPDjPQ/MQqCHV+ft1C9CBw/aNPMUSbBEpYQ0uZskAmNOR0LuOiCeBs+
+         XaxJaR8LsC+b6Ehi5LhPjzFqkJc2LHsclmbiISerjnrt3fc9sz7aJV3JVwYuyF8Otf7u
+         UPRU6UfyvySIJ3+h0/6uE0Q0cwAKsl47pp4MJ14ebn7nh/bPPXgdcDmeYXP7p5w6yXW7
+         pOFA==
+X-Gm-Message-State: AJIora8aJJzpSS8O9Mn2joMjmfYE+MTYTGF/Qzk5xs6verwHNd5NxK7Z
+        AhZf1sMG097E6zNOS3p6Vg==
+X-Google-Smtp-Source: AGRyM1t3xSUTPj8NUaYheUjJGn/Wyn134h6vs453EwhUvdH1zTFkN1/JYZprUAj7UKTKrKlLTtP4HQ==
+X-Received: by 2002:a05:6e02:1c43:b0:2dc:7428:cdef with SMTP id d3-20020a056e021c4300b002dc7428cdefmr413494ilg.4.1658449333103;
+        Thu, 21 Jul 2022 17:22:13 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id j10-20020a0566022cca00b00674c8448c3csm1442019iow.6.2022.07.21.17.22.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Jul 2022 17:22:12 -0700 (PDT)
+Received: (nullmailer pid 2233392 invoked by uid 1000);
+        Fri, 22 Jul 2022 00:22:10 -0000
+Date:   Thu, 21 Jul 2022 18:22:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Henry Sun <henrysun@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] dt-bindings: arm: qcom: Document additional sku6
+ for sc7180 pazquel
+Message-ID: <20220722002210.GA2223409-robh@kernel.org>
+References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
+ <20220721033918.v3.2.I7ecbb7eeb58c5e6a33e32a3abf4d6874e6cb725c@changeid>
+ <CAD=FV=WSBgupLFMCZgianck6uTkAyqrG0WK2ChSbNbJdhOPdLA@mail.gmail.com>
+ <4b2fe9d0-f590-0fac-79fa-bb05da1d61df@linaro.org>
+ <CAD=FV=XmaNdc9k98vAwbcN-sm0w_WeqhRsK_AUm3h4LZ5-egmQ@mail.gmail.com>
+ <c2b03863-2249-13e6-98e0-731c1b40d0a9@linaro.org>
+ <CAD=FV=XKC_fbBzna8TgiPRmPH_=AQ3ckv2EEjoNvayKQ83Uciw@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To:     Gene Chen <gene.chen.richtek@gmail.com>,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, gene_chen@richtek.com,
-        cy_huang@richtek.com
-References: <20220721061144.35139-1-gene.chen.richtek@gmail.com>
- <20220721061144.35139-7-gene.chen.richtek@gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 6/6] usb: typec: tcpci_rt1711h: Fix CC PHY noise filter
- of voltage level
-In-Reply-To: <20220721061144.35139-7-gene.chen.richtek@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=XKC_fbBzna8TgiPRmPH_=AQ3ckv2EEjoNvayKQ83Uciw@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/20/22 23:11, Gene Chen wrote:
-> From: Gene Chen <gene_chen@richtek.com>
+On Thu, Jul 21, 2022 at 11:29:13AM -0700, Doug Anderson wrote:
+> Hi,
 > 
-> Fix CC PHY noise filter of voltage level according to
-> current cc voltage level
+> On Thu, Jul 21, 2022 at 9:52 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 21/07/2022 18:43, Doug Anderson wrote:
+> > > Hi,
+> > >
+> > > On Thu, Jul 21, 2022 at 9:33 AM Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >>
+> > >> On 21/07/2022 15:37, Doug Anderson wrote:
+> > >>>
+> > >>> Not worth sending a new version for, but normally I expect the
+> > >>> bindings to be patch #1 and the dts change to be patch #2. In any
+> > >>> case:
+> > >>>
+> > >>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > >>
+> > >> I would say worth v4, because otherwise patches is not bisectable.
+> > >
+> > > You're saying because `dtbs_check` will fail between the two?
+> >
+> > Yes
 > 
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> ---
->   drivers/usb/typec/tcpm/tcpci_rt1711h.c | 83 +++++++++++++++++++++++++-
->   1 file changed, 81 insertions(+), 2 deletions(-)
+> OK. Then I assume you agree that reversing the order of the patches
+> won't help, only combining the two patches into one.
 > 
-> diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> index 3316dfaeee0d..f0c46bf7f00b 100644
-> --- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> +++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> @@ -22,8 +22,11 @@
->   #define RT1711H_PHYCTRL1	0x80
->   #define RT1711H_PHYCTRL2	0x81
->   
-> -#define RT1711H_RTCTRL8		0x9B
-> +#define RT1711H_RTCTRL4		0x93
-> +/* rx threshold of rd/rp: 1b0 for level 0.4V/0.7V, 1b1 for 0.35V/0.75V */
-> +#define RT1711H_BMCIO_RXDZSEL	BIT(0)
->   
-> +#define RT1711H_RTCTRL8		0x9B
->   /* Autoidle timeout = (tout * 2 + 1) * 6.4ms */
->   #define RT1711H_RTCTRL8_SET(ck300, ship_off, auto_idle, tout) \
->   			    (((ck300) << 7) | ((ship_off) << 5) | \
-> @@ -32,7 +35,6 @@
->   #define RT1711H_ENEXTMSG_MASK	BIT(4)
->   
->   #define RT1711H_RTCTRL11	0x9E
-> -
->   /* I2C timeout = (tout + 1) * 12.5ms */
->   #define RT1711H_RTCTRL11_SET(en, tout) \
->   			     (((en) << 7) | ((tout) & 0x0F))
-> @@ -42,6 +44,10 @@
->   #define RT1711H_RTCTRL15	0xA2
->   #define RT1711H_RTCTRL16	0xA3
->   
-> +#define RT1711H_RTCTRL18	0xAF
-> +/* 1b0 as fixed rx threshold of rd/rp 0.55V, 1b1 depends on RTCRTL4[0] */
-> +#define BMCIO_RXDZEN_MASK	BIT(0)
+> 
+> > > How does
+> > > flipping the order help? If `dtbs_check` needs to be bisectable then
+> > > these two need to be one patch, but I was always under the impression
+> > > that we wanted bindings patches separate from dts patches.
+> >
+> > I don't think anyone said that bindings patches must be separate from
+> > DTS. The only restriction is DTS cannot go with drivers.
+> 
+> I have always heard that best practice is to have bindings in a patch
+> by themselves. If I've misunderstood and/or folks have changed their
+> minds, that's fine, but historically I've been told to keep them
+> separate.
 
-I really dislike the use of _MASK for register bit values.
+Correct.
 
-> +
->   struct rt1711h_chip {
->   	struct tcpci_data data;
->   	struct tcpci *tcpci;
-> @@ -162,6 +168,77 @@ static int rt1711h_set_vconn(struct tcpci *tcpci, struct tcpci_data *tdata,
->   				  RT1711H_AUTOIDLEEN_MASK, enable ? 0 : 0xFF);
->   }
->   
-> +#define tcpc_presenting_rd(reg, cc) \
-> +	(!(TCPC_ROLE_CTRL_DRP & (reg)) && \
-> +	 (((reg) & (TCPC_ROLE_CTRL_## cc ##_MASK << TCPC_ROLE_CTRL_## cc ##_SHIFT)) == \
-> +	  (TCPC_ROLE_CTRL_CC_RD << TCPC_ROLE_CTRL_## cc ##_SHIFT)))
-> +
-> +static enum typec_cc_status tcpci_to_typec_cc(unsigned int cc, bool sink)
-> +{
-> +	switch (cc) {
-> +	case 0x1:
-> +		return sink ? TYPEC_CC_RP_DEF : TYPEC_CC_RA;
-> +	case 0x2:
-> +		return sink ? TYPEC_CC_RP_1_5 : TYPEC_CC_RD;
-> +	case 0x3:
-> +		if (sink)
-> +			return TYPEC_CC_RP_3_0;
-> +		fallthrough;
-> +	case 0x0:
-> +	default:
-> +		return TYPEC_CC_OPEN;
-> +	}
-> +}
-> +
-The above is a straight copy from tcpci.c. Can it be moved to
-include/linux/usb/tcpci.h ?
 
-> +/*
-> + * Selects the CC PHY noise filter voltage level according to the current
-> + * CC voltage level.
-> + *
-> + * @param cc_level The CC voltage level for the port's current role
+> > Bindings for boards go pretty often with DTS (subarch). This is exactly
+> > what maintainers do, e.g.:
+> > https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/log/?h=arm64-for-5.20
+> > Bindings for hardware should go via subsystem maintainer (drivers).
+> 
+> OK, fair that in this case both the bindings and the yaml will land
+> through the Qualcomm tree. I guess it's really up to Bjorn and whether
+> he'd prefer "make dtbs_check" to be bisectable or whether he'd prefer
+> the bindings and dts change to be in separate patches from each other.
 
-I seem to be missing that parameter.
+Bindings go first if applied together because you have to define the 
+binding before you use it. But sometimes things go via multiple trees 
+and that's fine because it's just easier. In that case, the subsystem 
+tree is preferred for bindings (i.e. with the driver). But in this case, 
+Bjorn is the subsystem tree.
 
-> + * @return 0 if writes succeed; failure code otherwise
-> + */
-> +static inline int rt1711h_init_cc_params(struct rt1711h_chip *chip, u8 status)
-> +{
-> +	int ret, cc1, cc2;
-> +	u8 role = 0;
-> +	u32 rxdz_en = 0, rxdz_sel = 0;
-
-Those variables are always set and thus do not need to be initialized.
-> +
-> +	ret = rt1711h_read8(chip, TCPC_ROLE_CTRL, &role);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	cc1 = tcpci_to_typec_cc((status >> TCPC_CC_STATUS_CC1_SHIFT) &
-> +				TCPC_CC_STATUS_CC1_MASK,
-> +				status & TCPC_CC_STATUS_TERM ||
-> +				tcpc_presenting_rd(role, CC1));
-> +	cc2 = tcpci_to_typec_cc((status >> TCPC_CC_STATUS_CC2_SHIFT) &
-> +				TCPC_CC_STATUS_CC2_MASK,
-> +				status & TCPC_CC_STATUS_TERM ||
-> +				tcpc_presenting_rd(role, CC2));
-> +
-> +	if ((cc1 >= TYPEC_CC_RP_1_5 && cc2 < TYPEC_CC_RP_DEF) ||
-> +	    (cc2 >= TYPEC_CC_RP_1_5 && cc1 < TYPEC_CC_RP_DEF)) {
-> +		if (chip->did == RT1715_DID) {
-> +			rxdz_en = 1;
-
-This should be
-			rxdz_en = BMCIO_RXDZEN;
-
-> +			rxdz_sel = 1;
-
-This should be
-			rxdz_sel = RT1711H_BMCIO_RXDZSEL;
-
-> +		} else {
-> +			rxdz_en = 1;
-> +			rxdz_sel = 0;
-> +		}
-
-The assignment of rxdz_en can be moved outside the if/else block.
-
-> +	} else {
-> +		rxdz_en = 0;
-> +		rxdz_sel = 1;
-> +	}
-> +
-> +	ret = regmap_update_bits(chip->data.regmap, RT1711H_RTCTRL18,
-> +				 BMCIO_RXDZEN_MASK, rxdz_en);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return regmap_update_bits(chip->data.regmap, RT1711H_RTCTRL4,
-> +				  RT1711H_BMCIO_RXDZSEL, rxdz_sel);
-> +}
-> +
->   static int rt1711h_start_drp_toggling(struct tcpci *tcpci,
->   				      struct tcpci_data *tdata,
->   				      enum typec_cc_status cc)
-> @@ -222,6 +299,8 @@ static irqreturn_t rt1711h_irq(int irq, void *dev_id)
->   		/* Clear cc change event triggered by starting toggling */
->   		if (status & TCPC_CC_STATUS_TOGGLING)
->   			rt1711h_write8(chip, TCPC_ALERT, TCPC_ALERT_CC_STATUS);
-> +		else
-> +			rt1711h_init_cc_params(chip, status);
->   	}
->   
->   out:
-
+Rob
