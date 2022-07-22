@@ -2,51 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E08C57D785
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 01:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E103F57D79B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 02:09:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229696AbiGUX5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 21 Jul 2022 19:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34844 "EHLO
+        id S231797AbiGVAJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 21 Jul 2022 20:09:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbiGUX5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 19:57:43 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38F268AECC
-        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 16:57:42 -0700 (PDT)
-Received: from [192.168.1.101] (abxj77.neoplus.adsl.tpnet.pl [83.9.3.77])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7DF453F67F;
-        Fri, 22 Jul 2022 01:57:38 +0200 (CEST)
-Message-ID: <0feb9493-155e-0b0d-0d33-e4d0ebf45977@somainline.org>
-Date:   Fri, 22 Jul 2022 01:57:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 3/3] ARM: dts: qcom: Add support for Samsung Galaxy Tab
- 4 10.1 (SM-T530)
-Content-Language: en-US
-To:     =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231500AbiGVAJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 21 Jul 2022 20:09:32 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DDE28BAA7
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 17:09:31 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id g12so3171774pfb.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Jul 2022 17:09:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ou8N7CNVah/MspZ0FIMh0nlDpe5eq14kgqKxFpIHdF8=;
+        b=T8fo8S5Ni2Qf4FEUKxf8icacxiaSNYfXbi9CNzrTu/vm/eGzzTYUMa6M41BC9zh4ME
+         pqzTBmUXelmLQal8HD/20Wsxu/BAdJfuIDVtknor6mM8jvws3IShfyBcmhmw6JBCBrcm
+         5uABsOPBeeO7OglMr2REv0RXuAPVKpy1cSV60=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ou8N7CNVah/MspZ0FIMh0nlDpe5eq14kgqKxFpIHdF8=;
+        b=yXp7FlmsM9TMfEYfQRVicpyzU7kXM+5UUxkKB+ogcgbgQo1G1zes0B3JqfF4E03QQq
+         tJI5+yDQcMH3WO5XlgMDQV6GDMTXmzYNsv9F0HtPJtJTQ5L9r5Zl2J9x9gNCeHoTkZNS
+         fVV7hcWxil6otJ+pcPEdpDVl4PkZE8GrxIUql7L6nM4/osnKyhDiAIlg4oHH0h4LpKGE
+         Xvm8ek97VQTOCgzBE3gvUiyFY+40w1Prpd9cLqsQ7OTL4Fq/oYBgLMMz+8rFoDvr/HcF
+         i7ykImja4lU99VmYJ0UkjyRxR3IUxdTJPUYtwS/QekJ1Gdlg59fmhzfdbpsBuuzxrLC4
+         Eipg==
+X-Gm-Message-State: AJIora9X+1upL/tOK5OTI/jzTZbB4Tltjrls0C1tP7O6F/LdDv1K9H9a
+        Y0M20lYFoUjypO6heQHV07FHTQ==
+X-Google-Smtp-Source: AGRyM1u0bUR1xR6ur3/2Met1Iqqa8+qEUo3CpxpaSZHxaCgfEBIVwpr4uDlUawIbW4KmiF1WaW3Utg==
+X-Received: by 2002:a63:2c0d:0:b0:411:4fd7:ecba with SMTP id s13-20020a632c0d000000b004114fd7ecbamr767235pgs.64.1658448570577;
+        Thu, 21 Jul 2022 17:09:30 -0700 (PDT)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id c6-20020a170902d48600b0016be368fb30sm2382389plg.212.2022.07.21.17.07.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 21 Jul 2022 17:08:45 -0700 (PDT)
+Subject: Re: [RESEND PATCH 2/9] dt-bindings: arm64: bcmbca: Update BCM4908
+ description
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220721230231.98886-1-matti.lehtimaki@gmail.com>
- <20220721230231.98886-4-matti.lehtimaki@gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220721230231.98886-4-matti.lehtimaki@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20220721000658.29537-1-william.zhang@broadcom.com>
+ <a635754e-bf41-4058-5fbb-57ead36b7128@linaro.org>
+ <883c2ad4c36220b488519a8902ad72bc@milecki.pl>
+ <193845cb-6149-1ae6-5eb6-6b01ffcf763b@linaro.org>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <bbc67617-9137-28d4-8d6f-a36507923010@broadcom.com>
+Date:   Thu, 21 Jul 2022 17:07:33 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
+MIME-Version: 1.0
+In-Reply-To: <193845cb-6149-1ae6-5eb6-6b01ffcf763b@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -55,81 +87,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 22.07.2022 01:02, Matti Lehtimäki wrote:
-> Add a device tree for the Samsung Galaxy Tab 4 10.1 (SM-T530) wifi tablet
-> based on the apq8026 platform.
+On 07/21/2022 12:01 AM, Krzysztof Kozlowski wrote:
+> On 21/07/2022 08:51, Rafał Miłecki wrote:
+>> On 2022-07-21 08:44, Krzysztof Kozlowski wrote:
+>>> On 21/07/2022 02:06, William Zhang wrote:
+>>>> Append "brcm,bcmbca" to BCM4908 chip family compatible strings. Add
+>>>> generic 4908 board entry.
+>>>
+>>> This does not explain at all why you are doing it. Improve your commit
+>>> messages.
+>>
+>> To clarify it from my side (and maybe help a bit):
+>>
+>> 1. As I understand it BCMBCA is a one big family of SoCs.
+>> 2. BCM4908 is a subset of that family (a subfamily?) designed for a
+>>      specific group of devices.
+>>
+>> If that's correct I think William it's what you should describe in your
+>> commit message. That would make binding more accurate and should be a
+>> good argument for your change (I believe).
 > 
-> Currently supported are accelerometer sensor, hall sensor,
-> internal storage, physical buttons (power & volume), screen
-> (based on simple-framebuffer set up by the bootloader) sdcard,
-> touchscreen and USB.
+> That's better argument. But what's the benefit of adding generic
+> compatible? Devices cannot bind to it (it is too generic). Does it
+> describe the device anyhow? Imagine someone adding compatible
+> "brcm,all-soc-of-broadcom" - does it make any sense?
+>
+In case you were also referring the generic 4908 board compatible string 
+brcm,bcm94908, this is for a bare bone 4908 board dts that only enables 
+ARM cpu subsystem, memory and uart. It can be used on all 4908 based 
+Broadcom reference boards and customer board. It is especially useful 
+for initial board bring up and one can load this generic board and start 
+work and debug from the console. Also would be helpful to do a quick 
+verification of new kernel version when there is cpu subsystem related 
+change.
+
+I guess my mindset already assume people are now familiar with this 
+model of bcmbca binding addition for a new SoC since we introduced the 
+bcmbca arch with first soc 47622 and 10+ other socs late. But sure I 
+agree and I will update the commit message with more details in addition 
+to what the cover letter says.
+
+> Best regards,
+> Krzysztof
 > 
-> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
-> ---
-> Changes in v2:
->   - Change codename to matisse-wifi
->   - Remove msm-id, not needed when lk2nd is used
->   - Remove unused labels from reserved memory regions
->   - Rename muic node
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../dts/qcom-apq8026-samsung-matisse-wifi.dts | 469 ++++++++++++++++++
->  2 files changed, 470 insertions(+)
->  create mode 100644 arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 5112f493f494..8bac4f4f8656 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1010,6 +1010,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
->  	qcom-apq8016-sbc.dtb \
->  	qcom-apq8026-asus-sparrow.dtb \
->  	qcom-apq8026-lg-lenok.dtb \
-> +	qcom-apq8026-samsung-matisse-wifi.dtb \
->  	qcom-apq8060-dragonboard.dtb \
->  	qcom-apq8064-cm-qs600.dtb \
->  	qcom-apq8064-ifc6410.dtb \
-> diff --git a/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
-> new file mode 100644
-> index 000000000000..621e0a337724
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom-apq8026-samsung-matisse-wifi.dts
-> @@ -0,0 +1,469 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2022, Matti Lehtimäki <matti.lehtimaki@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "qcom-msm8226.dtsi"
-> +#include "qcom-pm8226.dtsi"
-> +#include <dt-bindings/input/input.h>
-Hello!
 
-I think generally dt-bindings includes go before the DTS ones.
-> +
-> +/delete-node/ &smem_region;
-> +
-> +/ {
-> +	model = "Samsung Galaxy Tab 4 10.1";
-> +	compatible = "samsung,matisse-wifi", "qcom,apq8026";
-
-[...]
-
-> +
-> +&sdhc_2 {
-> +	status = "okay";
-> +
-> +	vmmc-supply = <&pm8226_l18>;
-> +	vqmmc-supply = <&pm8226_l21>;
-> +
-> +	bus-width = <8>;
-I doubt this.. do you have downstream backing this up?
-
-> +	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-> +};
-
-Other than that, this looks good to me.
-
-Konrad
