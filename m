@@ -2,97 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7393157E1CB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 15:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE5657E206
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 15:07:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234488AbiGVNAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 09:00:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45324 "EHLO
+        id S235489AbiGVNHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 09:07:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbiGVNAA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 09:00:00 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3400589E9E;
-        Fri, 22 Jul 2022 05:59:59 -0700 (PDT)
-Received: from mail-oa1-f46.google.com ([209.85.160.46]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MPp0l-1nseHW1fVr-00MuPL; Fri, 22 Jul 2022 14:59:57 +0200
-Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-10d6e8990b9so6196136fac.7;
-        Fri, 22 Jul 2022 05:59:56 -0700 (PDT)
-X-Gm-Message-State: AJIora+6WOhSd7cvJnowuvD68w5wG0UkUeJKAcxr5+48QdNgaFm1Xdms
-        4H2MhASEBaydmp9zy90gNQSjmUXlfB0lkLP6KOI=
-X-Google-Smtp-Source: AGRyM1vMjRHI1IDUKbv+qzBIY07jN7IIb+WM6l11w0OpthFdMwRbJ5FA5xnOLQhwQ+CrcLNxnU4NQipl0zyL1l9OZjU=
-X-Received: by 2002:a05:6870:6114:b0:10c:6bf:542f with SMTP id
- s20-20020a056870611400b0010c06bf542fmr7505287oae.188.1658494795774; Fri, 22
- Jul 2022 05:59:55 -0700 (PDT)
+        with ESMTP id S235418AbiGVNHN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 09:07:13 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B4FE1F6;
+        Fri, 22 Jul 2022 06:07:07 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26M9svFj006924;
+        Fri, 22 Jul 2022 15:06:40 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=FhrNx+4+JOjQW89HIHGVVBlDYUJXAfCGDiAxKAfPtus=;
+ b=hlfZ1EE+wt1OOsKGZ7jOskbuhjqMJwr4VdS0D4dqt0s48Q6QPk2Z80hd8YFVXVMYY6/n
+ TUQQAQf0JO8iVnmWDFuX6EJTs5V2ohr3keSZ2umB3ZZis8VgOlaZkZUNbcp38xIKLJQH
+ HlGT2a6CQN8htfPktetRHJy8xkqb0BKwtiC0otLv6W67o3jlpHJG0X9pWvH+1M5RHcnG
+ PQbKaK0KuZ+cA+pyp1lH7KqTsvc76tEkJldtWKceVaul4J4e6PTzbB1VURU0dObqi4PH
+ bTm57i9WhpGV1YMszlysk8mRhNkXE+Cvf+8fsfSkFHZZKc3hDRR8RgtcezqvsYcodPGe +g== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3hbnp6jxut-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 22 Jul 2022 15:06:39 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1CDCD10002A;
+        Fri, 22 Jul 2022 15:06:38 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0798E228A4F;
+        Fri, 22 Jul 2022 15:06:38 +0200 (CEST)
+Received: from localhost (10.75.127.49) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Fri, 22 Jul
+ 2022 15:06:37 +0200
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mka@chromium.org>,
+        <alexandre.torgue@foss.st.com>
+CC:     <arnd@arndb.de>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <amelie.delaunay@foss.st.com>
+Subject: [PATCH 0/4] usb: misc: adopt onboard hub support on stm32mp1 boards
+Date:   Fri, 22 Jul 2022 15:05:50 +0200
+Message-ID: <20220722130554.236925-1-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220722103129.22998-1-lukas.bulwahn@gmail.com>
-In-Reply-To: <20220722103129.22998-1-lukas.bulwahn@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 22 Jul 2022 14:59:39 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2gLvpLMEyejJtg8J5TLPjuPRUc-aJwTK2Og9pLeQT2Ww@mail.gmail.com>
-Message-ID: <CAK8P3a2gLvpLMEyejJtg8J5TLPjuPRUc-aJwTK2Og9pLeQT2Ww@mail.gmail.com>
-Subject: Re: [PATCH] MAINTAINERS: rectify entry for ARM/NUVOTON NPCM ARCHITECTURE
-To:     Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Cc:     Tomer Maimon <tmaimon77@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        kernel-janitors <kernel-janitors@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:vxJmmzc8DRXX+kvwjV07yQQad7WNG7IWbOgiOTVmaIhV5jFvaD9
- e3JKdxxLKmfJlR5QNgN0enXdF3WCt3KF0vWAhgFoAbm+2oNdBjqF0Z4PfbXxY+5j4L/mlXc
- kvPoz5xEjy+xfjQDf3WgszkaiwAdGNVuzKgGvrBrL+zfQWpPVJtyzHkw5xSP96njb9rpugm
- 7tSurz0LB9pUNvXcWzkKA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:OIISGVn7qQ8=:DR3DLaJnztGYHVl2p5yxPH
- yprnhtwmF5GNvg7JIaNWCNTqjLYNV5bXvt75ngyWoIW9TOZY8SNfSrW2Ek0YbI/NLkBH6xj5T
- thiRh8tAZPEiuxPJ6dqmMIqPzx81qsulQ3ZdKyTnmf/xIX4QePre0PFFmhPNTWvGNTqb0j9hQ
- pJni2ARqGjIza/ZjILRFaCyL7PSE9DP0qKCtd5esYjtBLxnLkDyLJHLg0OAPGZIUd7y/B3NVj
- aYUgvS16tLRAh2+qCeoUq9Xy9hZq+0ZRKzgYKSqBEsE/+uwVv3+IOYlE+XyN1wkUoBHiTWgvp
- HmYFkso+CFCEUI3kUopO7R0LGdo+Kj2QKAsXscoJt9AW4rTpvd+gOc1+YGQv3oeiKgSGJyy/d
- waae2Evb4INvvBn2wMlNj7JjY9oloJrcC2xGhfd48aHAIwoo3dBz+K4O2FPMSPBRtMF+ubMyL
- 9AzJZ5TgCG2UT3FmAGKah3N50vdSF3S7dRXZD9VJzzU+7aVYvfOiD2Qh4zarA0MjCApE/mEzX
- NUCG9HNgGPJl0eR2z4ZryGxjPw/pvllR32i5EYB0lkGgjmgpHCXZTCbGiiq1eio5WdlAkjH8q
- 2GslEU8NnUjfWH6yBv9vs4Bn3OjrSPMdaQKoV3bF8SNg1swoYtI5cyo708s/iyHT6jlwvd0ht
- VypV6zuUGzZmMzWx9slFDoMhEw0s9QXUxmoaj4CiEwnSOgsHW37i1PeU/p8IyRBAaJ7S0v368
- BeC9YDK2jFSX1us5jPeick/NzziB6cayxQ9dT11F9vBLsPFJwg8BxWWvCJci7V/6KP1DCa+Ei
- clw3yPZk9ebnfJqAcuq8K5DQPbWNCPG6dojIC/MExeIZn2Al2ubt+MfqFGUkk6T3bKzH1WW3p
- 3gpxaPJzFtmAnQY2mfQQ==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-22_04,2022-07-21_02,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 22, 2022 at 12:31 PM Lukas Bulwahn <lukas.bulwahn@gmail.com> wrote:
->
-> Commit 08e950449c62 ("dt-binding: clk: npcm845: Add binding for Nuvoton
-> NPCM8XX Clock") obviously adds nuvoton,npcm845-clk.h, but the file entry in
-> MAINTAINERS, added with commit 3670d2ec13ee ("arm64: npcm: Add support for
-> Nuvoton NPCM8XX BMC SoC") then refers to nuvoton,npcm8xx-clock.h.
->
-> Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about a
-> broken reference.
->
-> Repair this file reference in ARM/NUVOTON NPCM ARCHITECTURE.
->
-> Fixes: 3670d2ec13ee ("arm64: npcm: Add support for Nuvoton NPCM8XX BMC SoC")
-> Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
-> ---
-> Arnd, please pick this patch on top of the commits above.
+Add support for USB2514B HUB found on stm32mp1 boards:
+- Extend the ehci-generic dt-binding to fully use the usb-hcd.yaml, and so
+  the usb-device.yaml.
+- Add usb-device compatible ("usbVID,PID") for the USB2514B USB2.0 HUB to
+  the onboard_usb_hub driver.
+- Add relevant device tree node to stm32mp15 DK boards.
+- Enable the onboard_usb_hub driver on multi_v7 platforms.
 
-Done, thanks!
+Fabrice Gasnier (4):
+  dt-bindings: usb: generic-ehci: allow usb-hcd schema properties
+  usb: misc: onboard-hub: add support for Microchip USB2514B USB 2.0 hub
+  ARM: dts: stm32: add support for USB2514B onboard hub on
+    stm32mp15xx-dkx
+  ARM: multi_v7_defconfig: enable USB onboard HUB driver
 
-      Arnd
+ Documentation/devicetree/bindings/usb/generic-ehci.yaml | 7 +------
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi                  | 8 ++++++++
+ arch/arm/configs/multi_v7_defconfig                     | 1 +
+ drivers/usb/misc/onboard_usb_hub.c                      | 2 ++
+ drivers/usb/misc/onboard_usb_hub.h                      | 1 +
+ 5 files changed, 13 insertions(+), 6 deletions(-)
+
+-- 
+2.25.1
+
