@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3951357E64C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF2357E65F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:19:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235605AbiGVSLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 14:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59734 "EHLO
+        id S235664AbiGVSTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 14:19:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbiGVSLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:11:37 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5084379687
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:11:36 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id r14so6342525ljp.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:11:36 -0700 (PDT)
+        with ESMTP id S232888AbiGVSTe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:19:34 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF5547171F
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:19:32 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id p6so6359262ljc.8
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:19:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=sF47G7O9fURgeWbYq6SM8JLxkTXZ90+QCRb2I+D4fvs=;
-        b=fqE1UBpfr9ntPuKNYHYPRIx9xqjUyJlDyUdp5wU6l6mXMUuOGyONsUHh6gAucLpOCl
-         NItaTKk0owHMCRPhfa2/XiiOyEI27zmYQ1i6dryZKwLTgfdzeffV0lwiORESIDLzPpQC
-         3qZgnXAWCufbkvLvrM2xDAxDVDNLlfIyhT4YhDvUoyoPXALY9Fa65lUmkGnhVWd+e6Uw
-         sVHbHbn6WQJnnLfAdh2O6KKwO8MkCSiYlZ4GPMt1Gb2KviJ8C4vNMnT6MCHUNW77sHPZ
-         sKQFJ+g/WA/0W6mQDOuzzEzLqr4dYYiqhzzn6Ctv3dnNPi7dYn2snSQuetszpLde6IzK
-         xh4Q==
+        bh=TZ89NCSHpZWO6mCiLEkZnsSyxqredp26c+bp6T/IeXs=;
+        b=HV2GeR6BqM1M0qBzVbeUKHIw4fCOt3RQzgcGZy1wqC6IiFpuwgMNPkh0g8Y/uMaKAH
+         OPH5AMoUcrCuZ6YLo/Ab1VxkoWQukq698ETcZCSPIdkWcbq7JYIwN09+aApa4lzffA9r
+         Bw0mz0Yow33Ut9oatcpEWxyS+qJOZ72yMzlMiouUcy9oQKS1QsCrYtji9b/rl0THTVQT
+         gbbAeLCjm0RHR6pxJwZ5uSbTWJuCDhIPDo94gY67qTUO6epy3MqdVwzFgzLqGdvyxe1v
+         zHDpKFnIKu4CeGxT84s6GCq3UWLhF70ryWeBAW99BThs4Eg8r1rw/tlGkerAtRCAgo88
+         k0MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=sF47G7O9fURgeWbYq6SM8JLxkTXZ90+QCRb2I+D4fvs=;
-        b=Z1ZDCnnGmhFFKSV36h9SR4ibgOSgy36JcEqHEs16u0maVroiMdxzzQFMoxvKKImzJc
-         BqTDiIUCYWqI7x/6YeFCXZJHk8BszHGxfA2biO/f+dnxgTGgaNvAVpakmQdP8K8izhFh
-         JtJPrP+4j3lvFNU8uEgLlIN/lWu3crFGmlNXCjQNwdygS8XXiSLo9ZAnz8KhFEfQKslZ
-         8wBcDEg3Hc49UcMnUFnwKQuT6iBeSTTdFpSLv9ny8T1D1alxdeSwoN5Dv4UNDeusnfGr
-         JY3TT3+bY+3x0HT84p5D7rygaLqoiaAKQkU5rX9MWG1BOsnOdo0pC6t3ADCOCxWOOGrw
-         6c3w==
-X-Gm-Message-State: AJIora+vNwt5cz6Ydeuu/THYIwkZTfEt+/E2pnIyy5hz2AcyS9dfV6bX
-        YOlL38tPW+rtAFGwY4pYiSmNG1G8PIelMXiV
-X-Google-Smtp-Source: AGRyM1ut/MyzG1aFPvGJobPk9EcGlGQWeCmS9H+NDOfkAZKB+g2prKmG5v0BqSshVP+aFhgspdw4tQ==
-X-Received: by 2002:a05:651c:b21:b0:25d:f3d8:9776 with SMTP id b33-20020a05651c0b2100b0025df3d89776mr453477ljr.38.1658513494705;
-        Fri, 22 Jul 2022 11:11:34 -0700 (PDT)
+        bh=TZ89NCSHpZWO6mCiLEkZnsSyxqredp26c+bp6T/IeXs=;
+        b=4auwCq8mDUkpaB4YuEZrVgv6nGX+wz48yW6vgC30PPLaibEOIGCa9Gj/iOXIGmlbTT
+         0cFs5Isf+P37JhMcTzzNpzujNW/RF+0+05N02GzXs1N/sAzFDBJBqtEroFWlFvpt7k6/
+         4DTnZGzhiWFsYescAJy3lXhJKB/bMD9Gb6OZhG5RnCH7NQvFyaoJ6mTNJ/ffQQ1rzUV4
+         dGKhkCC+iwGnkBFaNFF8TRPBLzpS1QGdCxNdxHi1MACjfVyxo8v/TJJ4kttexbuuQ8CC
+         3Gv/hb6IUu+gpo69w2wG4fKrcEpYeIsa3omwhm1COGws4Z4tz7D993+FFn2/Lp0no+S5
+         Uf5Q==
+X-Gm-Message-State: AJIora9+psYfjug1tBBJpt2D50e7FiE4hN8hScpE3vpe3heI7wRea+kI
+        ObW4yRMWMK+3pdt+wEgcTqyD9w==
+X-Google-Smtp-Source: AGRyM1t9k6EuxFUL5jwICaF3I0/coOUkurh+jWMFDTooiNiiyxUpIROwoEbytIQYZDtIHnlMr6Elbg==
+X-Received: by 2002:a2e:3209:0:b0:25d:644e:b9d4 with SMTP id y9-20020a2e3209000000b0025d644eb9d4mr401270ljy.13.1658513971230;
+        Fri, 22 Jul 2022 11:19:31 -0700 (PDT)
 Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id q29-20020ac2515d000000b00489cfd58ef6sm1184536lfd.88.2022.07.22.11.11.33
+        by smtp.gmail.com with ESMTPSA id k2-20020a2ea262000000b0025d75995a07sm1259660ljm.24.2022.07.22.11.19.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 11:11:34 -0700 (PDT)
-Message-ID: <da7d3c3c-6c9f-c639-67d8-48c2730c1776@linaro.org>
-Date:   Fri, 22 Jul 2022 20:11:32 +0200
+        Fri, 22 Jul 2022 11:19:30 -0700 (PDT)
+Message-ID: <53d432e9-6715-05c4-d258-896ec38afa4f@linaro.org>
+Date:   Fri, 22 Jul 2022 20:19:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v4 1/4] dt-bindings: qcom: Document bindings for new
- msm8916-samsung-e2015 devices
+Subject: Re: [PATCH 1/3] dt-bindings: mediatek: add pinctrl definition for
+ mt8188
 Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        devicetree@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20220721235205.74741-1-linmengbo0689@protonmail.com>
- <20220721235323.75227-1-linmengbo0689@protonmail.com>
+To:     "hui.liu" <hui.liu@mediatek.com>, linus.walleij@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com
+Cc:     johnson.wang@mediatek.com, zhiyong.tao@mediatek.com,
+        sean.wang@mediatek.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220718113813.23787-1-hui.liu@mediatek.com>
+ <20220718113813.23787-2-hui.liu@mediatek.com>
+ <b28dcbe5-d15f-1c4f-9b3d-650d5c39de6b@linaro.org>
+ <08a7209fe198839093b3ef729fc97c1a950e1fbc.camel@mediatek.com>
+ <35639a59-4a3d-5aa7-946c-22fbd2f25e89@linaro.org>
+ <ea7755e599ad8c06bc04b6249c2a6d0ab3b920f3.camel@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220721235323.75227-1-linmengbo0689@protonmail.com>
+In-Reply-To: <ea7755e599ad8c06bc04b6249c2a6d0ab3b920f3.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,20 +82,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2022 01:54, Lin, Meng-Bo wrote:
-> Document the new samsung,e5/e7/grandmax device tree bindings used in their
-> device trees.
+On 22/07/2022 03:40, hui.liu wrote:
+> Hi, Krzysztof
 > 
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+> That's the comment about reg and reg-names description:
+>>> +  reg:
+>>> +    description: |
+>>> +      Physical address base for gpio base registers. There are 8
+>>> GPIO
+>>> +      physical address base in mt8188.
+>>
+>> Redundant description, skip it. You should list the instead and
+>> describe
+>> each of it.
+>>
+>>> +    maxItems: 8
+>>> +
+>>> +  reg-names:
+>>> +    description: |
+>>> +      Gpio base register names.
+>>
+>> Redundant description, skip it.
+>>
+>>> +    maxItems: 8
+>>
+>> You need to list the items instead.
+> 
+> I plan to update reg and reg-names as the following:
+>   reg:
+>     description: |
+>       Physical address base for gpio base registers. There are 6
+> different GPIO physical address bases in mt8188.
+>     minItems: 6
+>     maxItems: 6
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+You should rather have here items with description:
+items:
+ - description: what is it
+ - description: what is it
+ ....
 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.
-
+> 
+>   reg-names:
+>     items:
+>       - const: iocfg0
+>       - const: iocfg_rm
+>       - const: iocfg_lt
+>       - const: iocfg_lm
+>       - const: iocfg_rt
+>       - const: eint
+> 
+> Is it right?
+> 
+> Thanks.
+> 
 
 
 Best regards,
