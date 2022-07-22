@@ -2,73 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FE2F57E68C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:31:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DA0057E6A8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235096AbiGVSb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 14:31:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46292 "EHLO
+        id S236056AbiGVSh6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 14:37:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236123AbiGVSbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:31:55 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E4E89A72
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:31:53 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id r14so6397651ljp.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:31:53 -0700 (PDT)
+        with ESMTP id S234603AbiGVSh4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:37:56 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E269EA0270
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:37:54 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id p11so4125209lfu.5
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:37:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hrYf+kS/eMHYzQ1cCDYyuj5+w2jPGUuJe7GfAQ3ZFAc=;
-        b=YvABktm3E6d/2fWtcKrw990CSH6WCkg7XgxgrPltc+EvNEeDY7qel28BKQZNlwRWm1
-         DUkrCYuihV0XGw/eufExSOV0IY7v23Z6Wrfd59cXCSt5YRhrbKKcVbamkVrQphwWog9/
-         eo3xuUHDSwDWxo5+XO4Qq9TZTS2LSCVjnOxOhIItb2i8jIboTrKjsUPER8szLIyT+WeV
-         05K96+NwGsyhHaZAPy76OoALnNI9a2kBxSAxcF0YThx6JuzMkhxFoMXzSfOijT21XoWC
-         2QCzy4sFTOhSuerp2yEi0XvYnGARXwvWzxBmvP9ZhDR9nOYdNkNkJFBi9wdPle8FNLim
-         aZ0A==
+        bh=pZNADembFWMrMyIeeoU2sLzijZgUqqEN6vVBxD7cEAs=;
+        b=GsqhyOyvPqQLTvBum+zuJxJdCWumdKt28rH2mPmYbBK74XD17jt60KtD0pMHpo/hya
+         vb9wzTzbNdeHuA/5g/kHobFtb0+H7CYDfb4AvZumRqW3JnejJKFeINvR34dlTLchYXjz
+         j0UREVOivqXUfB4/IgLh/3GwMH3nmWpkN29OsnadwZiyJhvuC8Ke+A7q5rONII1LLIRN
+         ur9/WC2nNosjE3LvdRSxF0kGBq3CGOT6wxtYRhP1t3tA3RPVu4/9VS+clhFLMjMPW09o
+         1TD97bVIN/s+O48yV/5C3XwcnVszKfIepyHe6JQqce4HYChtqdx1Ean31k2MwSuBhPl2
+         mZzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=hrYf+kS/eMHYzQ1cCDYyuj5+w2jPGUuJe7GfAQ3ZFAc=;
-        b=Wp90uqpTFQZqON+M970qnuv4tmdVwP14gZ5BmJ+tCN8ZY2MIQVG5sSylKQ8fUgGNkc
-         Nk+5dol0Qzh4kgytRn6ncKOsuQcvKa7VZ+qb4NKWLsVKV+LeFD5ZQ+hTTBEdomBhHtGa
-         xqC0a8zx90Sx+yufKz4G/YXFW/ZhsgzdWoC6eE5XwORBMG7d5yAJmEZqhdkczr6QB1Rw
-         Dn2OfyUg3qzXNtvbe+sI3XVta4Nha/T5kBkRuJYpBX8uxlkvsWcg/c2aWyKMvNhwPBLp
-         O1idwnAGctm+rcAslUH3sCqvhc7WUPAURQXg7qKAWnfOtxMyZgujlJiXSnQ38ueEFZeJ
-         OinQ==
-X-Gm-Message-State: AJIora8QE2wmICWO+z2o1jFGMhikuWLqjwspy8bpmJWKsBuFrRnAYNoY
-        0QlApUSfR8ESWWy8vHQyqGuArw==
-X-Google-Smtp-Source: AGRyM1tsEhq4uRAMKypq9Eg45aRVXJYgskfWdEsALlbCtw03xaoSeghNBTZkggCr9SYq92KU6YMHuw==
-X-Received: by 2002:a2e:b7c7:0:b0:25d:d901:c2af with SMTP id p7-20020a2eb7c7000000b0025dd901c2afmr450469ljo.244.1658514711970;
-        Fri, 22 Jul 2022 11:31:51 -0700 (PDT)
+        bh=pZNADembFWMrMyIeeoU2sLzijZgUqqEN6vVBxD7cEAs=;
+        b=UEA5zCRqHlSXaW3x5bseS93SOlFHFy10yilbYNucTG3Z0JEV2OYAQI9KLib77MIxWJ
+         q60jB5vo/ARXTtFbzwWrcm1NHTNuHQSOopGXUNaUUMWKJsbdv8QXpe90JF6HV364TGc5
+         x4zAG57+xJbv4v6yG8xI3/mUESooTXKDE6Ia//4oPs64FfZmPTR6Nj3sK8Iic0wLhCn0
+         B32KhEtb4IK1Wr/rSNVL0HG1tFa6/66zaf+xKZDN6lvDc4R4yVXLcXM8ir+gblogIkqT
+         h0kEsCB8mFp/IyluSRZMXe1Z3yZ71UFvQggJYw8jcmOk58NTZvEEktGlHPN/7KKX0a0Y
+         UeyA==
+X-Gm-Message-State: AJIora/4yNddqM97WYmiqZXAJ/wr0X1fqYbqDloagfBpImXbvh45YZ/t
+        X3BDqxBkynX8O5yjcMJKpWxdFQ==
+X-Google-Smtp-Source: AGRyM1t4tkeV7OyDpZcsS6qCtak/AfOICQG9L4dyANvy9yS4TYY7Ac7Z+0mbnuyWn6CiHaHsFou02A==
+X-Received: by 2002:a05:6512:2622:b0:481:5b17:58e7 with SMTP id bt34-20020a056512262200b004815b1758e7mr478609lfb.600.1658515073264;
+        Fri, 22 Jul 2022 11:37:53 -0700 (PDT)
 Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id j2-20020a056512344200b0047f84ec0ac0sm1189905lfr.69.2022.07.22.11.31.49
+        by smtp.gmail.com with ESMTPSA id d15-20020a0565123d0f00b0048a7222eb8bsm1008194lfv.135.2022.07.22.11.37.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 11:31:51 -0700 (PDT)
-Message-ID: <1f51fa3a-8f51-a873-d0f5-bc945c3bbf22@linaro.org>
-Date:   Fri, 22 Jul 2022 20:31:48 +0200
+        Fri, 22 Jul 2022 11:37:52 -0700 (PDT)
+Message-ID: <1a03d894-3f4c-fb57-5f05-ad7bf11f5488@linaro.org>
+Date:   Fri, 22 Jul 2022 20:37:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: cdns,macb: Add versal compatible
- string
+Subject: Re: [PATCH 1/6] dt-bindings: panel: explicitly list SPI CPHA and CPOL
 Content-Language: en-US
-To:     Harini Katakam <harini.katakam@xilinx.com>,
-        nicolas.ferre@microchip.com, davem@davemloft.net,
-        claudiu.beznea@microchip.com, kuba@kernel.org, edumazet@google.com,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        michal.simek@xilinx.com, harinikatakamlinux@gmail.com,
-        harini.katakam@amd.com, devicetree@vger.kernel.org,
-        radhey.shyam.pandey@xilinx.com
-References: <20220722110330.13257-1-harini.katakam@xilinx.com>
- <20220722110330.13257-2-harini.katakam@xilinx.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Markuss Broks <markuss.broks@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Tomislav Denis <tomislav.denis@avl.com>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Nishant Malpani <nish.malpani25@gmail.com>,
+        Dragos Bogdan <dragos.bogdan@analog.com>,
+        Nuno Sa <nuno.sa@analog.com>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Mark Brown <broonie@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Marek Belisko <marek@goldelico.com>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Christian Eggers <ceggers@arri.de>,
+        Beniamin Bia <beniamin.bia@analog.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Oskar Andero <oskar.andero@gmail.com>,
+        =?UTF-8?Q?M=c3=a5rten_Lindahl?= <martenli@axis.com>,
+        Dan Murphy <dmurphy@ti.com>, Sean Nyekjaer <sean@geanix.com>,
+        Cristian Pop <cristian.pop@analog.com>,
+        Lukas Wunner <lukas@wunner.de>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Matheus Tavares <matheus.bernardino@usp.br>,
+        Sankar Velliangiri <navin@linumiz.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Stefan Wahren <stefan.wahren@in-tech.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, netdev@vger.kernel.org,
+        linux-spi@vger.kernel.org
+References: <20220721153155.245336-1-krzysztof.kozlowski@linaro.org>
+ <20220721153155.245336-2-krzysztof.kozlowski@linaro.org>
+ <20220721193004.GA1783390-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220722110330.13257-2-harini.katakam@xilinx.com>
+In-Reply-To: <20220721193004.GA1783390-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,14 +119,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2022 13:03, Harini Katakam wrote:
-> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+On 21/07/2022 21:30, Rob Herring wrote:
+> On Thu, Jul 21, 2022 at 05:31:50PM +0200, Krzysztof Kozlowski wrote:
+>> The spi-cpha and spi-cpol properties are device specific and should be
+>> accepted only if device really needs them.  Explicitly list them in
+>> device bindings in preparation of their removal from generic
+>> spi-peripheral-props.yaml schema.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  .../bindings/display/panel/lgphilips,lb035q02.yaml   | 10 ++++++++++
+>>  .../bindings/display/panel/samsung,ld9040.yaml       | 10 ++++++++++
+>>  .../bindings/display/panel/samsung,lms380kf01.yaml   | 12 +++++++++---
+>>  .../bindings/display/panel/samsung,lms397kf04.yaml   | 12 +++++++++---
+>>  .../bindings/display/panel/samsung,s6d27a1.yaml      | 12 +++++++++---
+>>  .../bindings/display/panel/sitronix,st7789v.yaml     | 10 ++++++++++
+>>  .../devicetree/bindings/display/panel/tpo,td.yaml    | 10 ++++++++++
+>>  7 files changed, 67 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+>> index 5e4e0e552c2f..0bd7bbad5b94 100644
+>> --- a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+>> +++ b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+>> @@ -21,6 +21,16 @@ properties:
+>>    enable-gpios: true
+>>    port: true
+>>  
+>> +  spi-cpha:
+>> +    type: boolean
+>> +    description:
+>> +      The device requires shifted clock phase (CPHA) mode.
+>> +
+>> +  spi-cpol:
+>> +    type: boolean
+>> +    description:
+>> +      The device requires inverse clock polarity (CPOL) mode.
 > 
-> Add versal compatible string.
+> Not great duplicating the type and description everywhere.
+> 
+> We can move the definition back to spi-controller.yaml, so then that 
+> does type checking of the property, but not presence/absence checks.
 
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+If I understand correctly, all client devices (which do no reference
+spi-controller) will need to explicitly mention CPHA/CPOL. Good idea.
 
 Best regards,
 Krzysztof
