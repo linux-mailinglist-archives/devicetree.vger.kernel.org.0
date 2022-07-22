@@ -2,114 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8E3957E6B4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:40:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9317557E6BA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:41:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234074AbiGVSkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 14:40:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53116 "EHLO
+        id S232577AbiGVSlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 14:41:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232098AbiGVSkQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:40:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF287DF93;
-        Fri, 22 Jul 2022 11:40:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 749FA60EDC;
-        Fri, 22 Jul 2022 18:40:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0612C341C6;
-        Fri, 22 Jul 2022 18:40:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658515213;
-        bh=5d2CxmU9AENpMob659VU6/m+ASfwTBzbjgVodKTKjJA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BejbpjJFNI/WK9FjeD2uItfqn59IZDDTupoIL/CYiXcOjyCfpMDNCn6gFW0Lddhc4
-         y9wXMeM0YKLcDiO3uw6tBklCC8qY1xFkRt3KMQVXoklm0lAi9uxh2IJM/KRABdBVJn
-         9xdxAYIsV5PznPVFcr+QBWJ2xAe/EnbRxZhPyi/EGZlsH/MsVVjJXP+pJZ6wkfL+Sq
-         wp46O5+ckWjxfD5afF3ElwkJKpVQm6Zicf/48VYCGHJKlZvpBriZ4RBAdz9BkaAVVp
-         GmBLr32hAvIOH/ejgTB3yBBhDqxDAJ3QVGXoFfl2B2NlYyB3FIFUiIDkbaBzdB/p1p
-         rfeTTCcuwsing==
-Date:   Fri, 22 Jul 2022 19:40:04 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     jerome Neanne <jneanne@baylibre.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, nm@ti.com,
-        kristo@kernel.org, khilman@baylibre.com, narmstrong@baylibre.com,
-        msp@baylibre.com, j-keerthy@ti.c, lee.jones@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 08/14] regulator: drivers: Add TI TPS65219 PMIC
- regulators support
-Message-ID: <YtrvBLvcDZHM2qY9@sirena.org.uk>
-References: <20220719091742.3221-1-jneanne@baylibre.com>
- <20220719091742.3221-9-jneanne@baylibre.com>
- <YtayikFdidxXXubS@sirena.org.uk>
- <b89db08e-3a06-5a8d-2c24-eb087ee3ca7e@baylibre.com>
- <YtqabjVY1vRgjZlM@sirena.org.uk>
- <45c6843e-0447-cf5e-6f1a-3920032ac88c@baylibre.com>
+        with ESMTP id S231199AbiGVSln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:41:43 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D05CD80F64;
+        Fri, 22 Jul 2022 11:41:42 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id go3so5122975pjb.0;
+        Fri, 22 Jul 2022 11:41:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3F+3beTVyq4ZE5Rzvt206g2hbCA+k/uqI3STZYdYGQI=;
+        b=jyPs+8tPYzDpgdc5JpOmvjAPGXGFwiXc40Rt3zS0WyKaBIBWH4TB9TIOoecsAHDHnj
+         cC6+3Hj5nZY9Sd9VTlJ8BNFegBdY/TSPkN75QgCpruTSGMe1midiOW14olLhmeCud3+J
+         5gjI/lFI8as3ZfYFKlYH9Wqeo5u4AlNXKJF8b76KvM3AK0E10vOOI3IsIB1H1/NtYRT5
+         RjFCXlTRZiaMqvFfgaW0C2desHKlW9ksoVQh9/nY5PS3IZREzrmXA96gOri23nG0u4ON
+         piEU8/Ay4evsRvCqKzepKjlVTa9t+FsjVZeCeD2LM75EyPC40CNQNuqyGsP3h0DV4o/n
+         0DWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3F+3beTVyq4ZE5Rzvt206g2hbCA+k/uqI3STZYdYGQI=;
+        b=5wUueGQXm+Eian6gRy5ZNjKdGHET0DgPcNKXbBNFFAmx8evNAg47UGbdbCy3mJKtR3
+         nJybKyXlAusWuBFP0RjLH5gCk+fVCcEJbhuvYGEKizePjmxPeSXAU3SYEk/eWY9aQZ+f
+         SX818OVSuYKN8LFN2L8y+4U3VUXlEeRFEdXVeqP4Xphd1WsVvlp4B7v2hLWPTpM3kTzQ
+         /KLvFhRofMxl7ycyH6QOTfFJkAYPQ6waAiX8ws3uDjVBJ5letLyhbLJbfHPwKrjg/rXv
+         ebySSdn7vrhCZdNxGLLdI1M7pq8RDHLxxt77oipdPMy4ASC0EQemDwqEzb6zbK1Y+kex
+         kLBg==
+X-Gm-Message-State: AJIora8QQw6XnVBg5Rf3G2+qYvgsabss2FSWJfH3Ya6wGoc95L3c3OhV
+        aDx08XIkCVVZJMJ2tnz4lkPgSuhkIiw=
+X-Google-Smtp-Source: AGRyM1tvuaHnD39derlvitnaqzi1EctzVvYDSioOlGmiWU76tcCoIre9bBMzrbYihQ0gt+qHuCtewA==
+X-Received: by 2002:a17:903:185:b0:16c:3af7:dbc8 with SMTP id z5-20020a170903018500b0016c3af7dbc8mr1124664plg.147.1658515301954;
+        Fri, 22 Jul 2022 11:41:41 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id y12-20020a17090322cc00b0016c9e5f291bsm675976plg.111.2022.07.22.11.41.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Jul 2022 11:41:41 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
+        ARM ARCHITECTURE)
+Subject: [PATCH 0/3] Add Broadcom STB memory controller driver
+Date:   Fri, 22 Jul 2022 11:41:35 -0700
+Message-Id: <20220722184138.2666241-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="hitHSkzE9R3acAMO"
-Content-Disposition: inline
-In-Reply-To: <45c6843e-0447-cf5e-6f1a-3920032ac88c@baylibre.com>
-X-Cookie: Yow!  I want my nose in lights!
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---hitHSkzE9R3acAMO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This small patch series adds basic support for controlling self-refresh
+power down on Broadcom STB memory controllers. We might be able to
+contribute more features to the memory controller driver in the future
+like accurate reporting of the memory type, timings, and possibly some
+performance counters.
 
-On Fri, Jul 22, 2022 at 03:30:11PM +0200, jerome Neanne wrote:
-> > @@ -0,0 +1,414 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * tps65219-regulator.c
-> > + *
+Thans!
 
-> Please make the entire comment a C++ one so things look more
-> intentional.
+Florian Fainelli (3):
+  dt-bindings: memory-controller: Document Broadcom STB MEMC
+  dt-bindings: arm: bcm: Refer to the YAML binding for MEMC
+  memory: Add Broadcom STB memory controller driver
 
-> checkpatch is complaining about that:
+ .../bindings/arm/bcm/brcm,brcmstb.txt         |  11 +-
+ .../memory-controllers/brcm,memc.yaml         |  49 +++
+ drivers/memory/Kconfig                        |   9 +
+ drivers/memory/Makefile                       |   1 +
+ drivers/memory/brcmstb_memc.c                 | 304 ++++++++++++++++++
+ 5 files changed, 365 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/brcm,memc.yaml
+ create mode 100644 drivers/memory/brcmstb_memc.c
 
-> ---------------------------------------------------------------------
-> v5.19-rc6-PB-MSP1/0005-mfd-drivers-Add-TI-TPS65219-PMIC-support.patch
-> ---------------------------------------------------------------------
-> WARNING: Improper SPDX comment style for 'drivers/mfd/tps65219.c', please
-> use '//' instead
-> #91: FILE: drivers/mfd/tps65219.c:1:
-> +/* SPDX-License-Identifier: GPL-2.0
+-- 
+2.25.1
 
-> Let me know if I should ignore checkpatch recommendations here.
-
-checkpatch is complaining about you having written a C comment there,
-I'm asking you to make the entire block a C++ comment.  checkpatch won't
-complain if you do that.
-
-Please fix your mail client to clearly indicate quoted sections of text,
-it's quite hard to read things as they are.
-
---hitHSkzE9R3acAMO
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLa7wQACgkQJNaLcl1U
-h9AmIAf/QFBWNGXGoSRXrf91mFze1AK1dqijdQlKoRNVaWCW8ZCVhIYxj3XZ9c+k
-Edk8kq3rIeYWCQ4CEzXuL5uevLKYTdOE7GJLZWSEe5C8uY0OJTFLH54eKnynN4Ab
-hqs4FdjR2Ng6wyXoav9D6q4+PojTq7zBB3Fm6rPec9Ua0AA8YRcWXrDpc4TC3yb2
-eHYDXkaPLJ5MmY3hSsf6IrA5lj/yqh4oMd8DI3ncV8GvShGFmDA7tgdvXmHhVI9g
-23vvpV2t93OVWPWHXo9VWmur52v3Witf7pRUmciu1zpQP4rskkd+iUPf7GBXiWoc
-0iAT0AkJE1mU8dU/z4mlAUwgiPUWDg==
-=smpH
------END PGP SIGNATURE-----
-
---hitHSkzE9R3acAMO--
