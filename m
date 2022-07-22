@@ -2,100 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8886557E688
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:31:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FE2F57E68C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 20:31:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236308AbiGVSb2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 14:31:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45868 "EHLO
+        id S235096AbiGVSb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 14:31:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235895AbiGVSb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:31:27 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 919344C624
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:31:26 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id bp17so9005220lfb.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:31:26 -0700 (PDT)
+        with ESMTP id S236123AbiGVSbz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 14:31:55 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5E4E89A72
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:31:53 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id r14so6397651ljp.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 11:31:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9SCgkhpR1gwZTptYihUGqwzKbmmTGiOXIX0CYL6DcXI=;
-        b=jPv8b8NayyyQxrPCf3enmvAJpO89jGLY8oyMhvl2EXJY+Z5URRs9cgeAXIrRwuaeUJ
-         pYL4TNa7NZBeC9vc7yyp/vuhlHMcyn8etiMmnjD/sZf6LBFP0yeFxvySmPo99Vmpfdqd
-         qombMedSEkiGmVaIdxfnvlHAOPk2HrU9DSNYdOj/Bx6qaIUq/tywzJPDPTexh9twAu0y
-         pjGwvQsjQ0EHaHMaTb1LpV6oUKwy3bZvPQl7Xu6RyVGcieMxtr6K052xFPGQXW2Yy7a5
-         fGtvkSy6l2v3XkKYY7nkcdlXj+iS7jGnEkAVJyCWfjNyj4K73vNODihSQcaxtqHsGFK1
-         NWAw==
+        bh=hrYf+kS/eMHYzQ1cCDYyuj5+w2jPGUuJe7GfAQ3ZFAc=;
+        b=YvABktm3E6d/2fWtcKrw990CSH6WCkg7XgxgrPltc+EvNEeDY7qel28BKQZNlwRWm1
+         DUkrCYuihV0XGw/eufExSOV0IY7v23Z6Wrfd59cXCSt5YRhrbKKcVbamkVrQphwWog9/
+         eo3xuUHDSwDWxo5+XO4Qq9TZTS2LSCVjnOxOhIItb2i8jIboTrKjsUPER8szLIyT+WeV
+         05K96+NwGsyhHaZAPy76OoALnNI9a2kBxSAxcF0YThx6JuzMkhxFoMXzSfOijT21XoWC
+         2QCzy4sFTOhSuerp2yEi0XvYnGARXwvWzxBmvP9ZhDR9nOYdNkNkJFBi9wdPle8FNLim
+         aZ0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=9SCgkhpR1gwZTptYihUGqwzKbmmTGiOXIX0CYL6DcXI=;
-        b=yTz+Sea1VVnGex0sogtENYf3Ur0QTsfaitaUdj1ai69GFDZs+ZYRxGv8Gon1bVZTGN
-         OGUokTn9Ejz43uUeiwEGCwRHgWW5XGMFxJdhSgrnKsRRjWa5SHBNROzvuRpXEUtNOvSa
-         pDk1RNF8PmGYsiiUgWSojVVNy3bs/QB9AV27Dvn2CZjQiIxQQpEP7Sdbrge+BgmIJzAg
-         z95Si+mp1czK7dpSYnnhVqJZRgMlhOLQxIdO2CXDe1mNxs0me1trRB1yKzOa94txVdKH
-         IEgqaczBeSHPYBO1pmge5qzxm/oTnAK1uL9sxy3UXexl8LbTrMaYn+Q5dMHNyOIKJ8uk
-         mhQA==
-X-Gm-Message-State: AJIora80R6wRVZNxrVVwaUvTvmX6CGnsMaqw0h/9efax3JrolUOjT3D1
-        ganSEwrTFQaiRBTblRom/R6kTQ==
-X-Google-Smtp-Source: AGRyM1sfNBcyc6UXdPT//1zUJD6mSdHqh81sH+J00pkzu7Z7brBLJm8sn3cK5BxTb7cFTpHnWm7lgw==
-X-Received: by 2002:ac2:4c53:0:b0:489:d0b3:6b1d with SMTP id o19-20020ac24c53000000b00489d0b36b1dmr534960lfk.310.1658514684893;
-        Fri, 22 Jul 2022 11:31:24 -0700 (PDT)
+        bh=hrYf+kS/eMHYzQ1cCDYyuj5+w2jPGUuJe7GfAQ3ZFAc=;
+        b=Wp90uqpTFQZqON+M970qnuv4tmdVwP14gZ5BmJ+tCN8ZY2MIQVG5sSylKQ8fUgGNkc
+         Nk+5dol0Qzh4kgytRn6ncKOsuQcvKa7VZ+qb4NKWLsVKV+LeFD5ZQ+hTTBEdomBhHtGa
+         xqC0a8zx90Sx+yufKz4G/YXFW/ZhsgzdWoC6eE5XwORBMG7d5yAJmEZqhdkczr6QB1Rw
+         Dn2OfyUg3qzXNtvbe+sI3XVta4Nha/T5kBkRuJYpBX8uxlkvsWcg/c2aWyKMvNhwPBLp
+         O1idwnAGctm+rcAslUH3sCqvhc7WUPAURQXg7qKAWnfOtxMyZgujlJiXSnQ38ueEFZeJ
+         OinQ==
+X-Gm-Message-State: AJIora8QE2wmICWO+z2o1jFGMhikuWLqjwspy8bpmJWKsBuFrRnAYNoY
+        0QlApUSfR8ESWWy8vHQyqGuArw==
+X-Google-Smtp-Source: AGRyM1tsEhq4uRAMKypq9Eg45aRVXJYgskfWdEsALlbCtw03xaoSeghNBTZkggCr9SYq92KU6YMHuw==
+X-Received: by 2002:a2e:b7c7:0:b0:25d:d901:c2af with SMTP id p7-20020a2eb7c7000000b0025dd901c2afmr450469ljo.244.1658514711970;
+        Fri, 22 Jul 2022 11:31:51 -0700 (PDT)
 Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id c6-20020a056512324600b0048920833c25sm1181697lfr.197.2022.07.22.11.31.23
+        by smtp.gmail.com with ESMTPSA id j2-20020a056512344200b0047f84ec0ac0sm1189905lfr.69.2022.07.22.11.31.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 11:31:24 -0700 (PDT)
-Message-ID: <afae04e0-76a3-1bcb-5b47-9944fa9ab2c0@linaro.org>
-Date:   Fri, 22 Jul 2022 20:31:22 +0200
+        Fri, 22 Jul 2022 11:31:51 -0700 (PDT)
+Message-ID: <1f51fa3a-8f51-a873-d0f5-bc945c3bbf22@linaro.org>
+Date:   Fri, 22 Jul 2022 20:31:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/2] spi: npcm-pspi: Add NPCM845 peripheral SPI support
+Subject: Re: [PATCH v2 1/3] dt-bindings: net: cdns,macb: Add versal compatible
+ string
 Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
-        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     openbmc@lists.ozlabs.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220722114136.251415-1-tmaimon77@gmail.com>
- <20220722114136.251415-3-tmaimon77@gmail.com>
+To:     Harini Katakam <harini.katakam@xilinx.com>,
+        nicolas.ferre@microchip.com, davem@davemloft.net,
+        claudiu.beznea@microchip.com, kuba@kernel.org, edumazet@google.com,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        michal.simek@xilinx.com, harinikatakamlinux@gmail.com,
+        harini.katakam@amd.com, devicetree@vger.kernel.org,
+        radhey.shyam.pandey@xilinx.com
+References: <20220722110330.13257-1-harini.katakam@xilinx.com>
+ <20220722110330.13257-2-harini.katakam@xilinx.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220722114136.251415-3-tmaimon77@gmail.com>
+In-Reply-To: <20220722110330.13257-2-harini.katakam@xilinx.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2022 13:41, Tomer Maimon wrote:
-> Add Nuvoton BMC NPCM845 NPCM Peripheral SPI (PSPI) support.
+On 22/07/2022 13:03, Harini Katakam wrote:
+> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  drivers/spi/spi-npcm-pspi.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/spi/spi-npcm-pspi.c b/drivers/spi/spi-npcm-pspi.c
-> index 1668a347e003..7f2e4d1b0d43 100644
-> --- a/drivers/spi/spi-npcm-pspi.c
-> +++ b/drivers/spi/spi-npcm-pspi.c
-> @@ -443,6 +443,7 @@ static int npcm_pspi_remove(struct platform_device *pdev)
->  
->  static const struct of_device_id npcm_pspi_match[] = {
->  	{ .compatible = "nuvoton,npcm750-pspi", .data = NULL },
-> +	{ .compatible = "nuvoton,npcm845-pspi", .data = NULL },
+> Add versal compatible string.
 
-The devices look compatible, so why not reusing 750 compatible and
-adding more specific upfront only in the bindings instead?
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
