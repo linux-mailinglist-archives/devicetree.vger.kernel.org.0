@@ -2,153 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6840357E994
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 00:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33D8C57EA04
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 00:45:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231987AbiGVWR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 18:17:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43424 "EHLO
+        id S237258AbiGVWpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 18:45:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231478AbiGVWR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 18:17:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31D048AECC;
-        Fri, 22 Jul 2022 15:17:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BEABA621E8;
-        Fri, 22 Jul 2022 22:17:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1A4FC341C6;
-        Fri, 22 Jul 2022 22:17:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658528247;
-        bh=td+YTMshEeyZGR/evZyRigCvIWW9VLZJZY+E/aX4XtA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=S1ndK01/ka7GJbgw/cDPqIQy+34bqZ9cz0xCTuY/CdrGB80SKtQKydn5MfoLX3dBb
-         tIamNlcJei626DkoXe4l5sa+yCoRsCQRV6HiU98yxYX6Qf+Xio79GY8oFBf3P6/m97
-         kDRQj2WaYbZXSQvoOA0uBuDgCcn0UkHsD8IhiKUhbT90HV5mqKVxK+fzLPpapScxRt
-         SyIU0D3BVrQcjPUCwwZXz3pt6vmNdH4SZHTMiffdg9QuJn94S38ReBfjpDRLc793s3
-         D7D1v4U2fjy2fWvFB5vQ2d1lAQLw8ollZ8vDeGKhMOt0rkn3ABl2NVIe+AsK6A8qJj
-         ibs3Vt+kwsgrw==
-Date:   Fri, 22 Jul 2022 17:17:25 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     bhelgaas@google.com, lpieralisi@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, kw@linux.com, kishon@ti.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V6 00/16] PCI: tegra: Add Tegra234 PCIe support
-Message-ID: <20220722221725.GA1945889@bhelgaas>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220721142052.25971-1-vidyas@nvidia.com>
-X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S237014AbiGVWpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 18:45:23 -0400
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E2FC06D6;
+        Fri, 22 Jul 2022 15:45:00 -0700 (PDT)
+Received: by mail-oo1-f50.google.com with SMTP id u13-20020a4aa34d000000b00435ac6c3b52so1087715ool.11;
+        Fri, 22 Jul 2022 15:45:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=BcMkbhjHfIjOEjFO5QcCsjIr5qplL7kzWE5vPiVHFT4=;
+        b=flFoC8R27iU96U2N2zvRWcA9OIjmG0Vu0oG4NuQriVWtROFN+Ujlu3mBqmcDdHLRjn
+         u2Bet7waWeHZqhtNuTLW8FMBeYaFFX2pJljg2X3zBSFsKruW0E+PwCOEBR4aLxjkwgJd
+         UzZRbF4DSclhvniTfyH3o8Q8m2DPmLARnlInmRcVpWoH4jj/z8oE4J3bMSZddF4eKMTC
+         IC7PzV+J8JrDfFKO+KXdzxASz9luifFTze/jIzF8p9QBjitDb+LjWcIuTzEONzZHY/NH
+         MZB85WN49L6avjwB066cNmApzfw/IjZ+bxnraJ80kuNTD1iSvdIVo5eFDXhfp+4WqPvh
+         kIFA==
+X-Gm-Message-State: AJIora/oXpBiLqpAJLl34XmjOVTVS956UjG5nXtul51f27FFrLrPubMe
+        SSxqjVdOufwVANZaJHqsMw==
+X-Google-Smtp-Source: AGRyM1u+JlsunW27L1GMybZjJJKJ6kt6UFhFlmt6Cc4c/4bKbT9Sb8d8kFxkxah76TyeHIGHgrEjTw==
+X-Received: by 2002:a4a:c015:0:b0:425:6945:8382 with SMTP id v21-20020a4ac015000000b0042569458382mr764258oop.28.1658529895983;
+        Fri, 22 Jul 2022 15:44:55 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id 64-20020aca0543000000b0033a63ec17dbsm1117854oif.33.2022.07.22.15.44.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Jul 2022 15:44:55 -0700 (PDT)
+Received: (nullmailer pid 20328 invoked by uid 1000);
+        Fri, 22 Jul 2022 22:44:50 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20220722201043.2731570-2-f.fainelli@gmail.com>
+References: <20220722201043.2731570-1-f.fainelli@gmail.com> <20220722201043.2731570-2-f.fainelli@gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: memory-controller: Document Broadcom STB MEMC
+Date:   Fri, 22 Jul 2022 16:44:50 -0600
+Message-Id: <1658529890.363700.20325.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 21, 2022 at 07:50:36PM +0530, Vidya Sagar wrote:
-> Tegra234 has a total of 11 PCIe controllers based on Synopsys DesignWare core.
-> There are three Universal PHY (UPHY) blocks (viz. HSIO, NVHS and GBE) with
-> each block supporting 8 lanes respectively. Controllers:0~4 use UPHY lanes
-> from HSIO block, Controllers:5,6 use UPHY lanes from NVHS block and
-> Controllers:7~10 use UPHY lanes from GBE block. Lane mapping in each block
-> is controlled in XBAR module by BPMP-FW. Since PCIe core has PIPE interface,
-> a glue module called PIPE-to-UPHY (P2U) is used to connect each UPHY lane
-> (applicable to all three UPHY bricks i.e. HSIO/NVHS/GBE) to PCIe controller.
-> All the controllers can operate in the RootPort mode where as only controllers
-> C5, C6, C7 and C10 can operate in the EndPoint mode.
+On Fri, 22 Jul 2022 13:10:41 -0700, Florian Fainelli wrote:
+> Document the Broadcom STB memory controller which is a trivial binding
+> for now with a set of compatible strings and single register.
 > 
-> This patch series
-> - Adds support for Tegra234 in the existing P2U PHY driver
-> - Adds support for Tegra234 in the existing PCIe platform controller driver
-> - Adds device tree nodes for all PCIe controllers
-> - Enables nodes applicable to P3737-0000 platform
+> Since we introduce this binding, the section in
+> Documentation/devicetree/bindings/arm/bcm/brcm,brcmstb.txt is removed
+> and this binding is referenced instead.
 > 
-> Testing done on P3737-0000 platform
-> - PCIe link is up with on-board Broadcom WiFi controller
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
+>  .../bindings/arm/bcm/brcm,brcmstb.txt         | 11 +---
+>  .../brcm,brcmstb-memc-ddr.yaml                | 53 +++++++++++++++++++
+>  2 files changed, 55 insertions(+), 9 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
 > 
-> - PCIe link is up with an NVMe drive connected to M.2 Key-M slot and its
->   functionality is verified
-> 
-> - PCIe link is up with a variety of cards (NICs and USB3.0 add-on cards)
->   connected to CEM slot and their functionality is verified
-> 
-> - PCIe link is up with C5 controller configured for the endpoint mode with
->   a host
-> 
-> V6:
-> * Addressed review comments from Bjorn
-> * Moved out non-Tegra234 specific changes and created separate patches
-> 
-> V5:
-> * Addressed review comments from Rob
-> 
-> V4:
-> * Addressed review comments from Krzysztof and Rob
-> * Changes are only in schema files and regulator patch
-> * Dropped PHY related patches as they are already accepted
-> 
-> V3:
-> * Add DT nodes for the controllers that can work in the EndPoint mode
-> * Converted the existing device-tree binding documentation from .txt to .yaml
-> * Add T234 specific information to the RP and EP .yaml documentation files
-> * Added regulators required to power up required power rails
-> 
-> V2:
-> * Dropped 3 patches that add clocks & resets IDs, power-domain IDs and
->   memory IDs for PCIe controllers as the patches are already available
->   in linux-next
-> * Based on Bjorn's review comment, reverted the commit b57256918399 ("PCI:
->   tegra194: Rename tegra_pcie_dw to tegra194_pcie") and pushed it as a
->   separate patch before adding support for T234 in the existing driver
-> * Addressed review comments from Rob for the other changes
-> 
-> Vidya Sagar (16):
->   dt-bindings: pci: tegra: Convert to json-schema
->   dt-bindings: PCI: tegra234: Add schema for tegra234 rootport mode
->   dt-bindings: PCI: tegra234: Add schema for tegra234 endpoint mode
->   arm64: tegra: Add regulators required for PCIe
->   arm64: tegra: Add P2U and PCIe controller nodes to Tegra234 DT
->   arm64: tegra: Enable PCIe slots in P3737-0000 board
->   PCI: Disable MSI for Tegra234 root ports
->   Revert "PCI: tegra194: Rename tegra_pcie_dw to tegra194_pcie"
->   PCI: tegra194: Find RAS DES PCIe capability offset
->   PCI: tegra194: Fix root port interrupt handling
->   PCI: tegra194: Clear bandwidth management status
->   PCI: tegra194: Enable support for 256 Byte payload
->   PCI: tegra194: Cleanup the exit path for endpoint mode
->   PCI: tegra194: Fix link up retry sequence
->   PCI: tegra194: Extend endpoint mode support
->   PCI: tegra: Add Tegra234 PCIe support
 
-I applied these (except the arch/arm64 .dtsi changes, which I assume
-should go via arm-soc) to pci/ctrl/tegra194 for v5.20, thanks!
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
->  .../bindings/pci/nvidia,tegra194-pcie-ep.yaml | 318 ++++++
->  .../bindings/pci/nvidia,tegra194-pcie.txt     | 245 -----
->  .../bindings/pci/nvidia,tegra194-pcie.yaml    | 349 +++++++
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml |   4 +-
->  .../boot/dts/nvidia/tegra234-p3701-0000.dtsi  |  36 +
->  .../nvidia/tegra234-p3737-0000+p3701-0000.dts |  51 +
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi      | 927 ++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-designware.h  |  19 +
->  drivers/pci/controller/dwc/pcie-tegra194.c    | 658 ++++++++-----
->  drivers/pci/quirks.c                          |  13 +-
->  10 files changed, 2136 insertions(+), 484 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie-ep.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
->  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.yaml
-> 
-> -- 
-> 2.17.1
-> 
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+memc-ddr@2000: 'clock-frequency' is a required property
+	arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+	arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+	arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+
+memc-ddr@2000: compatible:0: 'brcm,brcmstb-memc-ddr' is not one of ['brcm,brcmstb-memc-ddr-rev-b.1.x', 'brcm,brcmstb-memc-ddr-rev-b.2.0', 'brcm,brcmstb-memc-ddr-rev-b.2.1', 'brcm,brcmstb-memc-ddr-rev-b.2.2', 'brcm,brcmstb-memc-ddr-rev-b.2.3', 'brcm,brcmstb-memc-ddr-rev-b.2.5', 'brcm,brcmstb-memc-ddr-rev-b.2.6', 'brcm,brcmstb-memc-ddr-rev-b.2.7', 'brcm,brcmstb-memc-ddr-rev-b.2.8', 'brcm,brcmstb-memc-ddr-rev-b.3.0', 'brcm,brcmstb-memc-ddr-rev-b.3.1', 'brcm,brcmstb-memc-ddr-rev-c.1.0', 'brcm,brcmstb-memc-ddr-rev-c.1.1', 'brcm,brcmstb-memc-ddr-rev-c.1.2', 'brcm,brcmstb-memc-ddr-rev-c.1.3', 'brcm,brcmstb-memc-ddr-rev-c.1.4']
+	arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+	arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+	arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+
+memc-ddr@2000: compatible: ['brcm,brcmstb-memc-ddr'] is too short
+	arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+	arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+	arch/arm/boot/dts/bcm7445-bcm97445svmb.dtb
+
