@@ -2,229 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77BD857E3C4
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 17:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BCAB57E3DE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 17:42:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229771AbiGVP3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 11:29:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45928 "EHLO
+        id S231959AbiGVPl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 11:41:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229778AbiGVP3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 11:29:32 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9FB39EC5C;
-        Fri, 22 Jul 2022 08:29:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1658503769; x=1690039769;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=JJMg/JItXY2a7h4X5arrjc+qdPJvmFrq4BolHcVj9J4=;
-  b=I1Rgg3PDozqVcR0bh7YAgGEsrGTY7/ldKQe8tvd5fFFteSHPytDTbw3t
-   vAB3BGMSzR/KY63B6yycIWrOLPKzsbMbbUQyScw0X/tbNqtd6ROiGC1fA
-   O+Sh75GtDzkcF9o1qfWHY4Io3fE+xYIZozVOv5AQKKMtdnCtEVtF73jm4
-   GcRDietnGujrPVRe7ces+uPiRaccIebaJKL/pIQLYPUikE6cSv3QlSn8H
-   bUnb6iWNHTzUBZLFWUldwE4fXbhNvjIbaqR05PlEx7AY1SdnjPtEsVFp5
-   jS0fOORaexRnp/CcQnqMg1fQIhgzP/QEZHihcF1+0Vbs+mPu3x6h2HblK
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,186,1654585200"; 
-   d="scan'208";a="169088011"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Jul 2022 08:29:28 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 22 Jul 2022 08:29:27 -0700
-Received: from ryan-Precision-5560.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Fri, 22 Jul 2022 08:29:27 -0700
-From:   <Ryan.Wanner@microchip.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Ryan Wanner" <Ryan.Wanner@microchip.com>
-Subject: [PATCH v2] ASoC: dt-bindings: atmel-i2s: Convert to json-schema
-Date:   Fri, 22 Jul 2022 08:29:45 -0700
-Message-ID: <20220722152945.2950807-1-Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231365AbiGVPl6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 11:41:58 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C943733A03
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 08:41:52 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id r6so6295060edd.7
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 08:41:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QNhoAdkJOYGCxLXCG955jmFipTL24RpGzlTxtZa1urY=;
+        b=TxtGiAqK/5NTEiqtOp73RYwUCkkv7lcxld3R3yrkBkg7ZyF7309NXSljnRcxB92tsP
+         f5ZYnL9+vSwOFyD7Bcgsk8ORCZ2YRTw0wdpWCh3ut2w40WmngM1AMHIoCGeW+fJMjE9Z
+         EKCOqRWKw2qP/6QyNYXS77o5mw/dCPD1SRauI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QNhoAdkJOYGCxLXCG955jmFipTL24RpGzlTxtZa1urY=;
+        b=ZaAxlICouLg4/V+3Dit7p80zRmqnIj7Ow5VhS4X3vUlM3mTxWG/gqtL2oGBsRE70gw
+         U+yKU8s5j59N3SxkQe7S4kKzfE6nNn5MN+H4ZTvscfu35nT6OODOO1oMjyu7T+S22umF
+         eyF+mjGZv5LYsBFaUrvyCt70o256b6XnnM+j8YkFCn4o8zxNPyozH1asWpIiUUwyVrHP
+         +Tizrn6xhRt0Ji6VD+Sj/XnlsUY4wGA232YWQyykQTAWxUZ7jt8MWf+Rd+4ohcQ5sKbI
+         TtweK6i+tCzNFZGCLKlAJtmtsZsBsMtrp2+rgdackRVyjiJp+e7AonGPwRFBONXwFaX+
+         iGXA==
+X-Gm-Message-State: AJIora+sZdcMRlIF5urglaWc1+XenUwMFApfU2gdGnntwM+Aq58IMDXq
+        WT7MiZ/DvVmBduM1pRfUCu8QrsW4j2A16GsmgsM=
+X-Google-Smtp-Source: AGRyM1uCYQpDf6cZTo4Rwna8R0OCTNO8nJfu8GhcLks1w5YBOKPFquD3VajPssM619426Xk9erMZ1Q==
+X-Received: by 2002:a05:6402:5001:b0:437:8918:8dbe with SMTP id p1-20020a056402500100b0043789188dbemr510886eda.70.1658504511082;
+        Fri, 22 Jul 2022 08:41:51 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
+        by smtp.gmail.com with ESMTPSA id 16-20020a170906301000b0072efb6c9697sm2153526ejz.101.2022.07.22.08.41.49
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Jul 2022 08:41:49 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id h9so7076222wrm.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 08:41:49 -0700 (PDT)
+X-Received: by 2002:a05:6000:2c9:b0:21d:bd7d:3af6 with SMTP id
+ o9-20020a05600002c900b0021dbd7d3af6mr341263wry.405.1658504508765; Fri, 22 Jul
+ 2022 08:41:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220721033918.v3.1.I10519ca1bf88233702a90e296088808d18cdc7b1@changeid>
+ <20220721033918.v3.2.I7ecbb7eeb58c5e6a33e32a3abf4d6874e6cb725c@changeid>
+ <CAD=FV=WSBgupLFMCZgianck6uTkAyqrG0WK2ChSbNbJdhOPdLA@mail.gmail.com>
+ <4b2fe9d0-f590-0fac-79fa-bb05da1d61df@linaro.org> <CAD=FV=XmaNdc9k98vAwbcN-sm0w_WeqhRsK_AUm3h4LZ5-egmQ@mail.gmail.com>
+ <c2b03863-2249-13e6-98e0-731c1b40d0a9@linaro.org> <CAD=FV=XKC_fbBzna8TgiPRmPH_=AQ3ckv2EEjoNvayKQ83Uciw@mail.gmail.com>
+ <20220722002210.GA2223409-robh@kernel.org>
+In-Reply-To: <20220722002210.GA2223409-robh@kernel.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 22 Jul 2022 08:41:36 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U1yqdPzdtJFu+Rk56TOX1kYX2BZ16XGuMoM+=Re5NA9A@mail.gmail.com>
+Message-ID: <CAD=FV=U1yqdPzdtJFu+Rk56TOX1kYX2BZ16XGuMoM+=Re5NA9A@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: arm: qcom: Document additional sku6
+ for sc7180 pazquel
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Yunlong Jia <yunlong.jia@ecs.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Henry Sun <henrysun@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+Hi,
 
-Convert atmel i2s devicetree binding to json-schema.
-Change file name to match json-schema naming.
+On Thu, Jul 21, 2022 at 5:22 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Jul 21, 2022 at 11:29:13AM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Thu, Jul 21, 2022 at 9:52 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> > >
+> > > On 21/07/2022 18:43, Doug Anderson wrote:
+> > > > Hi,
+> > > >
+> > > > On Thu, Jul 21, 2022 at 9:33 AM Krzysztof Kozlowski
+> > > > <krzysztof.kozlowski@linaro.org> wrote:
+> > > >>
+> > > >> On 21/07/2022 15:37, Doug Anderson wrote:
+> > > >>>
+> > > >>> Not worth sending a new version for, but normally I expect the
+> > > >>> bindings to be patch #1 and the dts change to be patch #2. In any
+> > > >>> case:
+> > > >>>
+> > > >>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > > >>
+> > > >> I would say worth v4, because otherwise patches is not bisectable.
+> > > >
+> > > > You're saying because `dtbs_check` will fail between the two?
+> > >
+> > > Yes
+> >
+> > OK. Then I assume you agree that reversing the order of the patches
+> > won't help, only combining the two patches into one.
+> >
+> >
+> > > > How does
+> > > > flipping the order help? If `dtbs_check` needs to be bisectable then
+> > > > these two need to be one patch, but I was always under the impression
+> > > > that we wanted bindings patches separate from dts patches.
+> > >
+> > > I don't think anyone said that bindings patches must be separate from
+> > > DTS. The only restriction is DTS cannot go with drivers.
+> >
+> > I have always heard that best practice is to have bindings in a patch
+> > by themselves. If I've misunderstood and/or folks have changed their
+> > minds, that's fine, but historically I've been told to keep them
+> > separate.
+>
+> Correct.
+>
+>
+> > > Bindings for boards go pretty often with DTS (subarch). This is exactly
+> > > what maintainers do, e.g.:
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/log/?h=arm64-for-5.20
+> > > Bindings for hardware should go via subsystem maintainer (drivers).
+> >
+> > OK, fair that in this case both the bindings and the yaml will land
+> > through the Qualcomm tree. I guess it's really up to Bjorn and whether
+> > he'd prefer "make dtbs_check" to be bisectable or whether he'd prefer
+> > the bindings and dts change to be in separate patches from each other.
+>
+> Bindings go first if applied together because you have to define the
+> binding before you use it. But sometimes things go via multiple trees
+> and that's fine because it's just easier. In that case, the subsystem
+> tree is preferred for bindings (i.e. with the driver). But in this case,
+> Bjorn is the subsystem tree.
 
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
----
-Note: running dtbs_check will fail unless updated with this patch,
-https://lore.kernel.org/linux-arm-kernel/20220707215812.193008-1-Ryan.Wanner@microchip.com/
+Thanks! I'll interpret your response as:
 
-v1 -> v2:
-- Fix formatting for clock description.
-- Fix formatting for dma description.
+1. Keep this as two patches and it's more important to keep dts and
+bindings separate than it is to avoid breaking bisectability of "make
+dtbs_check".
 
- .../bindings/sound/atmel,sama5d2-i2s.yaml     | 85 +++++++++++++++++++
- .../devicetree/bindings/sound/atmel-i2s.txt   | 46 ----------
- 2 files changed, 85 insertions(+), 46 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/atmel-i2s.txt
+2. Bindings should have been patch #1, but it's not a massive deal.
 
-diff --git a/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
-new file mode 100644
-index 000000000000..0cd1ff89baed
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/atmel,sama5d2-i2s.yaml
-@@ -0,0 +1,85 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/atmel,sama5d2-i2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel I2S controller
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+  - Claudiu Beznea <claudiu.beznea@microchip.com>
-+
-+description:
-+  Atmel I2S (Inter-IC Sound Controller) bus is the standard
-+  interface for connecting audio devices, such as audio codecs.
-+
-+properties:
-+  compatible:
-+    const: atmel,sama5d2-i2s
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Peripheral clock
-+      - description: Generated clock (Optional)
-+      - description: I2S mux clock (Optional). Set
-+          with gclk when Master Mode is required.
-+    minItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+      - const: gclk
-+      - const: muxclk
-+    minItems: 1
-+
-+  dmas:
-+    items:
-+      - description: TX DMA Channel
-+      - description: RX DMA Channel
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - dmas
-+  - dma-names
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/dma/at91.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    i2s@f8050000 {
-+        compatible = "atmel,sama5d2-i2s";
-+        reg = <0xf8050000 0x300>;
-+        interrupts = <54 IRQ_TYPE_LEVEL_HIGH 7>;
-+        dmas = <&dma0
-+                (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
-+                AT91_XDMAC_DT_PERID(31))>,
-+               <&dma0
-+                (AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
-+                AT91_XDMAC_DT_PERID(32))>;
-+        dma-names = "tx", "rx";
-+        clocks = <&i2s0_clk>, <&i2s0_gclk>, <&i2s0muxck>;
-+        clock-names = "pclk", "gclk", "muxclk";
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_i2s0_default>;
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/atmel-i2s.txt b/Documentation/devicetree/bindings/sound/atmel-i2s.txt
-deleted file mode 100644
-index 40549f496a81..000000000000
---- a/Documentation/devicetree/bindings/sound/atmel-i2s.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--* Atmel I2S controller
--
--Required properties:
--- compatible:     Should be "atmel,sama5d2-i2s".
--- reg:            Should be the physical base address of the controller and the
--                  length of memory mapped region.
--- interrupts:     Should contain the interrupt for the controller.
--- dmas:           Should be one per channel name listed in the dma-names property,
--                  as described in atmel-dma.txt and dma.txt files.
--- dma-names:      Two dmas have to be defined, "tx" and "rx".
--                  This IP also supports one shared channel for both rx and tx;
--                  if this mode is used, one "rx-tx" name must be used.
--- clocks:         Must contain an entry for each entry in clock-names.
--                  Please refer to clock-bindings.txt.
--- clock-names:    Should be one of each entry matching the clocks phandles list:
--                  - "pclk" (peripheral clock) Required.
--                  - "gclk" (generated clock) Optional (1).
--                  - "muxclk" (I2S mux clock) Optional (1).
--
--Optional properties:
--- pinctrl-0:      Should specify pin control groups used for this controller.
--- princtrl-names: Should contain only one value - "default".
--
--
--(1) : Only the peripheral clock is required. The generated clock and the I2S
--      mux clock are optional and should only be set together, when Master Mode
--      is required.
--
--Example:
--
--	i2s@f8050000 {
--		compatible = "atmel,sama5d2-i2s";
--		reg = <0xf8050000 0x300>;
--		interrupts = <54 IRQ_TYPE_LEVEL_HIGH 7>;
--		dmas = <&dma0
--			(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
--			 AT91_XDMAC_DT_PERID(31))>,
--		       <&dma0
--			(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1) |
--			 AT91_XDMAC_DT_PERID(32))>;
--		dma-names = "tx", "rx";
--		clocks = <&i2s0_clk>, <&i2s0_gclk>, <&i2s0muxck>;
--		clock-names = "pclk", "gclk", "muxclk";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_i2s0_default>;
--	};
--- 
-2.34.1
+3. I'll assume that Bjorn will yell if he'd like this series re-posted
+with the reverse order.
 
+-Doug
