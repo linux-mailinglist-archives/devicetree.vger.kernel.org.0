@@ -2,202 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7975357E47F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 18:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBC1057E48E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Jul 2022 18:39:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234012AbiGVQff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 12:35:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35468 "EHLO
+        id S235827AbiGVQjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 12:39:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbiGVQfe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 12:35:34 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D92C290D9C;
-        Fri, 22 Jul 2022 09:35:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658507733; x=1690043733;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=wct04tBZUBn/SLi+Q6yHNMxbcUkF4qzPsiApqCX08Nk=;
-  b=jPNL1uwrw+myR0PDEiK1JdAF7IPeU0yu50Un7ABj8jR0rn7sSjaaRrQ0
-   KIV64X5eG+FPmLT24W8kTvNwLSx92qqOv/JAADdTn9CAMTsIe3DhrGUjI
-   /Upw9f0EI7J0Td9rmgrHvJE+YUqzCBMOnh7MlGlVx+uBKD2GghMW6ycdC
-   0EPiGDw31Su3ky/huz9gyVFjTG7n/24Z8XFIFBYVrjqC9O+0wugkSV3cr
-   tWL6hDl180MSLFhdhcCgdlBokPqBvOM0gzCb64kG+SrOlIKbD+CKC1pAV
-   WLgzvmATHrNhoEMb2L+rpGQq1EUDnp41EnshmID9UDRLUmT5Y7X5Mj7Gv
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10416"; a="286111314"
-X-IronPort-AV: E=Sophos;i="5.93,186,1654585200"; 
-   d="scan'208";a="286111314"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jul 2022 09:35:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,186,1654585200"; 
-   d="scan'208";a="701716621"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 22 Jul 2022 09:35:27 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oEvcd-0001bt-0B;
-        Fri, 22 Jul 2022 16:35:27 +0000
-Date:   Sat, 23 Jul 2022 00:35:13 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, l.stach@pengutronix.de
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        laurent.pinchart@ideasonboard.com, marex@denx.de,
-        paul.elder@ideasonboard.com, aford173@gmail.com,
-        Markus.Niebel@ew.tq-group.com, alexander.stein@ew.tq-group.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
-        Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH V4 5/8] soc: imx: add i.MX8MP HDMI blk ctrl HDCP/HRV
-Message-ID: <202207230052.uIae3wom-lkp@intel.com>
-References: <20220722125730.3428017-6-peng.fan@oss.nxp.com>
+        with ESMTP id S235815AbiGVQjS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 12:39:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F0C9B553
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 09:39:17 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CD3416220F
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 16:39:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A915C341C7
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 16:39:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658507956;
+        bh=1Sbso5iA//sLkZVNI8k4cHLynsgGqGnvhoFX47qYb3g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KvTAABb2crlGs/JJOpFibkNT3daIxQGPXrFD5DQunz0sroQ4i+zSGRwKSu0ozXK1D
+         FOr6zGVQEQSfqr401iTbryrmk5Ge+0ter7wqCObpt79n/fxDx/EmcLSaHMQaB0An1A
+         s3qi93Sx9mq8oZbjWnnhCFzepZubBfIyK6gO0QmRcKg0+i03E2G8ZBanY4f39cbSlj
+         vtQUzh2v5qK+PPjpzZ0Mi5xu7q6SpixvvSFZH3Dd++hR3cP08ChEdnpwMhtOA4HcKP
+         vFajiRvnpwYKzbqVSdS8zfUYDwT/dm110ebsdg+wnBgcVvUngWHP8NLQXMdjRagL7C
+         8Xnbc+COpVhgQ==
+Received: by mail-vk1-f172.google.com with SMTP id 14so1778011vkj.12
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 09:39:16 -0700 (PDT)
+X-Gm-Message-State: AJIora96R876C13Ho6DkDGWaMqlztc5fxyCA3DstaXkRj6+XwRMdINrM
+        QSQNnqIigrv9IAWzh5p/H9PyAAK52YQCo7BTiA==
+X-Google-Smtp-Source: AGRyM1tjhU7QYLyqJvjK45puYRz+EQUT2TVk7FQj9bJwNVCEvXX+hXJRBguP0CRMLiHORAE1Ui6WLY6GrjB9vhbikdc=
+X-Received: by 2002:a1f:2454:0:b0:375:10ae:8bca with SMTP id
+ k81-20020a1f2454000000b0037510ae8bcamr259237vkk.26.1658507955110; Fri, 22 Jul
+ 2022 09:39:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220722125730.3428017-6-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-5.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <CA+V-a8uBSDOqcgqfO2YWNKwoRsKdMcK+yi5DzFEWrP0gJOMWig@mail.gmail.com>
+ <5c9db23e-1706-a638-360e-46c8cb4b5f9a@linaro.org> <CA+V-a8vp7agGmHEJyLSLm973ddOs-cD21jRbwFnjSfc7DxrjrQ@mail.gmail.com>
+ <CAL_JsqJCKDdUoBtiC7bLAstTHFP_gdHtCf+NWKy2zbXG_Z153w@mail.gmail.com>
+ <CA+V-a8tYNvQk19ZP_oq=OeV2K5X=7E+Mq6Cin5ZVT6cBt=_yBw@mail.gmail.com>
+ <CAL_JsqJELtWn=PwxMU=9VCUTwaZMk=oyfJo7O7HbnFB-MfcHAQ@mail.gmail.com>
+ <CA+V-a8sGPRQQJ4jZ4pSObyHi37RA6Fc44-W5=2AYwA3Hs_QQ+g@mail.gmail.com> <CA+V-a8uUt=t9SZLMW4VtX4Dwk9m5bij5JwOCMSS2Nzxvv=fpZA@mail.gmail.com>
+In-Reply-To: <CA+V-a8uUt=t9SZLMW4VtX4Dwk9m5bij5JwOCMSS2Nzxvv=fpZA@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 22 Jul 2022 10:39:03 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLdg-stgCbQO__+A2WwnooQN71SKd5NAzFij4v=39oFrw@mail.gmail.com>
+Message-ID: <CAL_JsqLdg-stgCbQO__+A2WwnooQN71SKd5NAzFij4v=39oFrw@mail.gmail.com>
+Subject: Re: dtbs_check issue
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Peng,
+On Fri, Jul 22, 2022 at 7:29 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+>
+> On Fri, Jul 22, 2022 at 12:08 PM Lad, Prabhakar
+> <prabhakar.csengg@gmail.com> wrote:
+> >
+> > On Thu, Jul 21, 2022 at 11:24 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > >
+> > > On Thu, Jul 21, 2022 at 4:18 PM Lad, Prabhakar
+> > > <prabhakar.csengg@gmail.com> wrote:
+> > > >
+> > > > Hi Rob,
+> > > >
+> > > > On Thu, Jul 21, 2022 at 5:57 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > > >
+> > > > > On Thu, Jul 21, 2022 at 9:23 AM Lad, Prabhakar
+> > > > > <prabhakar.csengg@gmail.com> wrote:
+> > > > > >
+> > > > > > Hi Krzysztof,
+> > > > > >
+> > > > > > On Thu, Jul 21, 2022 at 4:12 PM Krzysztof Kozlowski
+> > > > > > <krzysztof.kozlowski@linaro.org> wrote:
+> > > > > > >
+> > > > > > > On 21/07/2022 17:07, Lad, Prabhakar wrote:
+> > > > > > > > Fyi keeping even a single SMARC board in arm renesas.yaml schema I see
+> > > > > > > > dtbs_check failures.
+> > > > > > > >
+> > > > > > > > Any pointers on how I can get around this issue?
+> > > > > > >
+> > > > > > > Few months ago:
+> > > > > > > https://lore.kernel.org/linux-devicetree/cf7728fd-b5c8-cd3d-6074-d27f38f86545@linaro.org/
+> > > > > > >
+> > > > > > Thanks for the link.
+> > > > > >
+> > > > > > > Although Rob admitted in the thread this is in general allowed
+> > > > > > > configuration, to me it is still confusing - the left-most compatible is
+> > > > > > > not the most specific. Non obvious, confusing and it seems dtschema does
+> > > > > > > not support it?
+> > > > > > >
+> > > > > > It looks like dtschema does not support it.
+> > > > >
+> > > > > The issue is the same as licensed IP where we have a generic
+> > > > > compatible and per licensee compatibles in separate schemas. The
+> > > > > solution anytime a compatible exists in more than 1 schema is a custom
+> > > > > 'select' which excludes that compatible. That would be messy here
+> > > > > though due to the large number of compatibles. Perhaps we could
+> > > > > instead merge a custom select with the default generated one. Then the
+> > > > > schema would just need:
+> > > > >
+> > > > > select:
+> > > > >   not:
+> > > > >     properties:
+> > > > >       contains:
+> > > > >         const: renesas,smarc-evk
+> > > > >
+> Being a novice here with the select, I added the below to ignore the
+> arm schema if its the RISC-V board:
+>
+> diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml
+> b/Documentation/devicetree/bindings/arm/renesas.yaml
+> index ff80152f092f..77e78136bfce 100644
+> --- a/Documentation/devicetree/bindings/arm/renesas.yaml
+> +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
+> @@ -9,6 +9,16 @@ title: Renesas SH-Mobile, R-Mobile, and R-Car
+> Platform Device Tree Bindings
+>  maintainers:
+>    - Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> +# We want ignore this schema if the board is of RISC-V arch
+> +select:
+> +  not:
+> +    properties:
+> +      compatible:
+> +        contains:
+> +          const: renesas,r9a07g043f1
+> +    required:
+> +      - compatible
+> +
+>  properties:
+>    $nodename:
+>      const: '/'
+>
+> But when I run the dt_binding_check, I get the below issues:
 
-Thank you for the patch! Yet something to improve:
+That would only work if we change how 'select' is generated. As I
+said, the above would have to be merged with what we normally generate
+(see processed-schema.json for what that looks like).
 
-[auto build test ERROR on shawnguo/for-next]
-[also build test ERROR on linus/master v5.19-rc7 next-20220722]
-[cannot apply to robh/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220722-205748
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-config: arm-buildonly-randconfig-r004-20220722 (https://download.01.org/0day-ci/archive/20220723/202207230052.uIae3wom-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 72686d68c137551cce816416190a18d45b4d4e2a)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm cross compiling tool for clang build
-        # apt-get install binutils-arm-linux-gnueabi
-        # https://github.com/intel-lab-lkp/linux/commit/9f38a755e912ffee8cd2b25002016da6e121f448
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Peng-Fan-OSS/imx-add-i-MX8MP-hdmi-blk-ctrl-hdcp-hrv-and-vpu-blk-ctrl/20220722-205748
-        git checkout 9f38a755e912ffee8cd2b25002016da6e121f448
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/soc/imx/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/soc/imx/imx8mp-blk-ctrl.c:375:4: error: field designator 'path_names' does not refer to any field in type 'const struct imx8mp_blk_ctrl_domain_data'
-                   .path_names = (const char *[]){"hrv"},
-                    ^
->> drivers/soc/imx/imx8mp-blk-ctrl.c:376:4: error: field designator 'num_paths' does not refer to any field in type 'const struct imx8mp_blk_ctrl_domain_data'
-                   .num_paths = 1,
-                    ^
-   drivers/soc/imx/imx8mp-blk-ctrl.c:383:4: error: field designator 'path_names' does not refer to any field in type 'const struct imx8mp_blk_ctrl_domain_data'
-                   .path_names = (const char *[]){"hdcp"},
-                    ^
-   drivers/soc/imx/imx8mp-blk-ctrl.c:384:4: error: field designator 'num_paths' does not refer to any field in type 'const struct imx8mp_blk_ctrl_domain_data'
-                   .num_paths = 1,
-                    ^
->> drivers/soc/imx/imx8mp-blk-ctrl.c:394:17: error: invalid application of 'sizeof' to an incomplete type 'const struct imx8mp_blk_ctrl_domain_data[]'
-           .num_domains = ARRAY_SIZE(imx8mp_hdmi_domain_data),
-                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/kernel.h:55:32: note: expanded from macro 'ARRAY_SIZE'
-   #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
-                                  ^~~~~
-   5 errors generated.
-
-
-vim +375 drivers/soc/imx/imx8mp-blk-ctrl.c
-
-   326	
-   327	static const struct imx8mp_blk_ctrl_domain_data imx8mp_hdmi_domain_data[] = {
-   328		[IMX8MP_HDMIBLK_PD_IRQSTEER] = {
-   329			.name = "hdmiblk-irqsteer",
-   330			.clk_names = (const char *[]){ "apb" },
-   331			.num_clks = 1,
-   332			.gpc_name = "irqsteer",
-   333		},
-   334		[IMX8MP_HDMIBLK_PD_LCDIF] = {
-   335			.name = "hdmiblk-lcdif",
-   336			.clk_names = (const char *[]){ "axi", "apb" },
-   337			.num_clks = 2,
-   338			.gpc_name = "lcdif",
-   339		},
-   340		[IMX8MP_HDMIBLK_PD_PAI] = {
-   341			.name = "hdmiblk-pai",
-   342			.clk_names = (const char *[]){ "apb" },
-   343			.num_clks = 1,
-   344			.gpc_name = "pai",
-   345		},
-   346		[IMX8MP_HDMIBLK_PD_PVI] = {
-   347			.name = "hdmiblk-pvi",
-   348			.clk_names = (const char *[]){ "apb" },
-   349			.num_clks = 1,
-   350			.gpc_name = "pvi",
-   351		},
-   352		[IMX8MP_HDMIBLK_PD_TRNG] = {
-   353			.name = "hdmiblk-trng",
-   354			.clk_names = (const char *[]){ "apb" },
-   355			.num_clks = 1,
-   356			.gpc_name = "trng",
-   357		},
-   358		[IMX8MP_HDMIBLK_PD_HDMI_TX] = {
-   359			.name = "hdmiblk-hdmi-tx",
-   360			.clk_names = (const char *[]){ "apb", "ref_266m" },
-   361			.num_clks = 2,
-   362			.gpc_name = "hdmi-tx",
-   363		},
-   364		[IMX8MP_HDMIBLK_PD_HDMI_TX_PHY] = {
-   365			.name = "hdmiblk-hdmi-tx-phy",
-   366			.clk_names = (const char *[]){ "apb", "ref_24m" },
-   367			.num_clks = 2,
-   368			.gpc_name = "hdmi-tx-phy",
-   369		},
-   370		[IMX8MP_HDMIBLK_PD_HRV] = {
-   371			.name = "hdmiblk-hrv",
-   372			.clk_names = (const char *[]){ "axi", "apb" },
-   373			.num_clks = 2,
-   374			.gpc_name = "hrv",
- > 375			.path_names = (const char *[]){"hrv"},
- > 376			.num_paths = 1,
-   377		},
-   378		[IMX8MP_HDMIBLK_PD_HDCP] = {
-   379			.name = "hdmiblk-hdcp",
-   380			.clk_names = (const char *[]){ "axi", "apb" },
-   381			.num_clks = 2,
-   382			.gpc_name = "hdcp",
-   383			.path_names = (const char *[]){"hdcp"},
-   384			.num_paths = 1,
-   385		},
-   386	};
-   387	
-   388	static const struct imx8mp_blk_ctrl_data imx8mp_hdmi_blk_ctl_dev_data = {
-   389		.max_reg = 0x23c,
-   390		.power_on = imx8mp_hdmi_blk_ctrl_power_on,
-   391		.power_off = imx8mp_hdmi_blk_ctrl_power_off,
-   392		.power_notifier_fn = imx8mp_hdmi_power_notifier,
-   393		.domains = imx8mp_hdmi_domain_data,
- > 394		.num_domains = ARRAY_SIZE(imx8mp_hdmi_domain_data),
-   395	};
-   396	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Rob
