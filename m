@@ -2,112 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 335D757EFCC
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 16:47:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2397457EFD9
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 16:56:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234001AbiGWOrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 10:47:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45380 "EHLO
+        id S233313AbiGWO4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 10:56:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233774AbiGWOrK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 10:47:10 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5595D194;
-        Sat, 23 Jul 2022 07:47:09 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id bp17so11881947lfb.3;
-        Sat, 23 Jul 2022 07:47:09 -0700 (PDT)
+        with ESMTP id S229563AbiGWO4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 10:56:04 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8118CC29;
+        Sat, 23 Jul 2022 07:56:03 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id g1so8874283edb.12;
+        Sat, 23 Jul 2022 07:56:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=HE7GGuksx6MN+gNz4voCRIijIPTMFt+Q99FuH/9Vyns=;
-        b=XcOLoipEtzdWz60RxkIBhM1EJsLSqB3tEf8s+pA+I64qcoAIa2ICCKJdhTzkEMoWr8
-         PBCEMVHRfHV57xdzbFKs4xOvjLuAOwDjzGfIXboZ9NijRjxqgSken0cQQSnjqMnG4ilG
-         zqLmwpK1aAFqLblq6TAlvbEsTT1cC+tfPEsgp8YN0jhXMXXz8Mxyt46KU9hH5VmTrBCx
-         z1EJJz3B8AJCdBkWTu9vZYqViE34sPBxziu4fHVCQrfLUtlDufmGQ61EWeupVlJLWKRc
-         xUTOTHoteAF9l+5kIrfsoFsvm+FdNFy8eOf9qRBbHjhch2LJ1EqeiPr/E7y3cY+fxqB6
-         X9SA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JSxzmKxjlNqM9TSDpV5dH/r3annlSczSnTdVT/KLPhw=;
+        b=Ci/8784Th6shNIq9MybffNf+/ze500Ci6XwQIr/9wvzIYV5DMQTHa7Gx8cOETmA0X+
+         Vh3ynnxhg5VWGXUMzrJm+dfHH0ZCJcPDt0CalKGqwxr1LCrXDE4j/1CkCeWtMkbXpbrX
+         sijdgkJvhZtulYKyrsVb5QSMcuxuuql23EhOTLNdJg07uANubwIyvE1MtcMJXhXFG6v4
+         NYYkd6/Gl9LYF0sjphn7IyCZD/bYU/aCKgHCsqZU4/TtbeZYcaJ8Ycp57HEyb6Ro7jQO
+         fHn/5m6EoBi5aX+yToRNEqK36gbQXLtgYeadxNyBWFSP9Y91sxIRK19A/DEBCeqGHDqf
+         LLEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=HE7GGuksx6MN+gNz4voCRIijIPTMFt+Q99FuH/9Vyns=;
-        b=apJgGtYdukHmXwX1sgTVUti6l9VYcqnt/SAP/sDl6miUGPbMyaKvk/xdgrMWH4auDJ
-         aX3WHIlI+JUcAy4QCYKB6yXrKdyI/F//v268fVYZGJQaursIL+dTNgsp3u5dzcsx5+qR
-         ymliBtRE7dH6veWSArH6RCIMKG2m1IG5dSSmpVNNexrl8A2xPpvcvsRswbptbhQDe7VN
-         EJudyUu9vApd3B8vxhf6nhnNl/wFmQuLOUl8rA650GCHb4lB0cmWTz5y3bODEZx5MaQL
-         zzETroWpV1GXUWcvRXRvD1V3ceMhf9s6BieaOPRIUs8cOMtEKX3BGdaLj8qvU95lZU9Z
-         EyVA==
-X-Gm-Message-State: AJIora95bSGkfLoXkLRG7crs7oVZVocVWxXYB6abc6f1hNGDTFnuGhCU
-        7eg+TYR3ePTxsP8iyjX84MA=
-X-Google-Smtp-Source: AGRyM1tce8Isk5AvQUNCun70fbSPdfnl7tkEm/3+aE4U6gYegDlJnINf0OQKeF50/kjrqO/fUlEKdQ==
-X-Received: by 2002:a05:6512:1307:b0:47f:baa4:52c5 with SMTP id x7-20020a056512130700b0047fbaa452c5mr1724043lfu.103.1658587627614;
-        Sat, 23 Jul 2022 07:47:07 -0700 (PDT)
-Received: from [192.168.1.6] ([212.106.161.60])
-        by smtp.gmail.com with ESMTPSA id c11-20020ac25f6b000000b0048a7ad94982sm775468lfc.84.2022.07.23.07.47.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Jul 2022 07:47:07 -0700 (PDT)
-Message-ID: <e700eecf-e7e0-c2e7-9e20-b5d20df4b65f@gmail.com>
-Date:   Sat, 23 Jul 2022 16:47:04 +0200
+        bh=JSxzmKxjlNqM9TSDpV5dH/r3annlSczSnTdVT/KLPhw=;
+        b=fcOBgQoQhCSTrantY0Fep8R5Hkhma+rWBzLau/htRyG5PIC+l32nyL18tC0PY93URi
+         GtNYyIGMWC3xYs27ZAvpjTDyRLd57RNj/dvSMIj598n5Y72QaBI9kqDiT8843dNhwtgV
+         rEfuX7B4iwMPzbGQMeKQyyOsSOK+f4Bw2pzXNksS4nBC8rLbMETwuX1S18hafmAhcmCc
+         wBnWKetxdnGVu1VM/iUmCE3TeaupWS0GpflKEzYkUoSQL2W9b80kiJY49mrsPQOAyAgP
+         2BN8X37mAkEYLFxtyx+jL0kIluKowL90vKEGggjqgJX9ebKr4pwfv8dmXWzihICOZW8v
+         bHHw==
+X-Gm-Message-State: AJIora+RN30vjJ1Rn7J88wKWBwBfjrDJ+1jxmFI1FWrHmGutrmc91gOm
+        nNK9EnGOYCdABLD4rri/SEw=
+X-Google-Smtp-Source: AGRyM1svGBQm8o/vHZh+k4JHCekqFN+vfcSGobyHkEzWj6qxW4FvY4cABfx0prHfMW79df6QR3Q+fg==
+X-Received: by 2002:a05:6402:5513:b0:43a:b866:b9ab with SMTP id fi19-20020a056402551300b0043ab866b9abmr4860586edb.290.1658588161719;
+        Sat, 23 Jul 2022 07:56:01 -0700 (PDT)
+Received: from localhost.localdomain (host-87-7-207-127.retail.telecomitalia.it. [87.7.207.127])
+        by smtp.googlemail.com with ESMTPSA id cy24-20020a0564021c9800b0043ba1ecb0dfsm4143781edb.75.2022.07.23.07.56.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Jul 2022 07:56:01 -0700 (PDT)
+From:   Christian Marangi <ansuelsmth@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Christian Marangi <ansuelsmth@gmail.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v6 1/4] dt-bindings: clock: add pcm reset for ipq806x lcc
+Date:   Sat, 23 Jul 2022 16:55:55 +0200
+Message-Id: <20220723145558.25210-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 0/3] Add SFC support for Ingenic SoCs.
-Content-Language: en-US
-To:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>, tudor.ambarus@microchip.com,
-        p.yadav@ti.com, michael@walle.cc, miquel.raynal@bootlin.com,
-        richard@nod.at, vigneshr@ti.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, aidanmacdonald.0x0@gmail.com,
-        paul@crapouillou.net, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        jinghui.liu@ingenic.com, sernia.zhou@foxmail.com,
-        reimu@sudomaker.com
-References: <1658508510-15400-1-git-send-email-zhouyanjie@wanyeetech.com>
-From:   Tomasz Maciej Nowak <tmn505@gmail.com>
-In-Reply-To: <1658508510-15400-1-git-send-email-zhouyanjie@wanyeetech.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-W dniu 22.07.2022 o 18:48, 周琰杰 (Zhou Yanjie) pisze:
-> 1.Use the spi-mem poll status APIs in SPI-NOR to reduce CPU load.
-> 2.Add SFC support for the X1000 SoC, the X1600 SoC, and the X2000 SoC from Ingenic.
-> 
-> Liu Jinghui and Aidan MacDonald provided a lot of assistance during the development of this driver.
-> 
-> 周琰杰 (Zhou Yanjie) (3):
->   mtd: spi-nor: Use the spi-mem poll status APIs.
->   dt-bindings: SPI: Add Ingenic SFC bindings.
->   SPI: Ingenic: Add SFC support for Ingenic SoCs.
-> 
->  .../devicetree/bindings/spi/ingenic,sfc.yaml       |  64 ++
->  drivers/mtd/spi-nor/core.c                         |  42 +-
->  drivers/spi/Kconfig                                |   9 +
->  drivers/spi/Makefile                               |   1 +
->  drivers/spi/spi-ingenic-sfc.c                      | 662 +++++++++++++++++++++
->  5 files changed, 768 insertions(+), 10 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/ingenic,sfc.yaml
->  create mode 100755 drivers/spi/spi-ingenic-sfc.c
-> 
+Add pcm reset define for ipq806x lcc.
 
-Even tough it's still early in revision process, I'll add my
-Tested-by: Tomasz Maciej Nowak <tmn505@gmail.com>
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+v3:
+ - Added review tag
+ - Added ack tag
+v2:
+ - Fix Sob tag
 
-The test was performed with Damai DM6291A SoC which is a Ingenic X1000 IP
-but with 256 MiB RAM. No bugs yet observed on my side.
+ include/dt-bindings/clock/qcom,lcc-ipq806x.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/include/dt-bindings/clock/qcom,lcc-ipq806x.h b/include/dt-bindings/clock/qcom,lcc-ipq806x.h
+index 25b92bbf0ab4..e0fb4acf4ba8 100644
+--- a/include/dt-bindings/clock/qcom,lcc-ipq806x.h
++++ b/include/dt-bindings/clock/qcom,lcc-ipq806x.h
+@@ -19,4 +19,6 @@
+ #define SPDIF_CLK			10
+ #define AHBIX_CLK			11
+ 
++#define LCC_PCM_RESET			0
++
+ #endif
 -- 
-TMN
+2.36.1
+
