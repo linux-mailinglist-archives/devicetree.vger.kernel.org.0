@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7905357EB8E
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 04:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78BFA57EB9C
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 05:02:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231329AbiGWChR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 22:37:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44110 "EHLO
+        id S233729AbiGWDCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 23:02:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbiGWChR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 22:37:17 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44B161D62
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 19:37:15 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id g20-20020a9d6a14000000b0061c84e679f5so4631614otn.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 19:37:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=voGugAT13Hil5ADAXFI0Z5pBEP04QpaFfT3ChpCj5yw=;
-        b=PlpYiugUWSomUF/0hlCtQAmLPyY8rLDdlVOM61Ba7K6AcyKH+8rdr/ZHZW8P2vICUV
-         +9pvpRkiFkdxxazwuSrke9x1L0yJwWQ3MCs88vBxtiAn6b9oUwspxeqqkGEbK6er02+y
-         fTt8I3LxCC961fWWYI0tTOm4X2BJgZu+CrmKHEOk4oJRB1u6IjPkw45kGwQ4pLC7yuze
-         kX3KfCVDFZizQYirPbxBVwmW2Z8PsRpUHRcB5HWe68nEmGpie7pb+bGuIbYPi1pD3biP
-         bmj+Nq18xM53W32WjTeCFR2qW47MDy3Ul6p8K0xh+BQHW/kYO93dhS5S5iHCVGa/SX79
-         nNcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=voGugAT13Hil5ADAXFI0Z5pBEP04QpaFfT3ChpCj5yw=;
-        b=KBFhBMqTKBkLxyxiNQ9tD5QNlI9/OSFBrfJvnshvBbgmitZyyB0dr35UJGXJqGoSuo
-         QSjGRgSFhDumBtCQywX3NhBz+uOEtZ3ux/q07E+qRp5cBswxLSvKcabpJwPfEVHygyXX
-         vz/POlYOqUtxVkSChXarK8FcVKOudRtm6I5IGLt0oA9mxoenmtm07BdElUEyiQUYtf8d
-         5kBqqyLQqBq07zukXcju0NRyIpZQUj1cnyAJ1pqots1Exq+ae2DihcaIF1v+xWyH9i3J
-         zI+u6jmlHbN/gS4vHfqpr+HIeKeOsfLcQWIo7fK54zVWTH9mCvMNtaXuvqcNx1jTkbKg
-         QsAg==
-X-Gm-Message-State: AJIora9Vi7ij/SK2RpRzCABcGpqDQjpgDFht5z0ychydUEWEm4WJBJ10
-        uGxRrPaE8encbZWLLRF84cGaNQ==
-X-Google-Smtp-Source: AGRyM1vG1vMNCzMDvxCaqBAcafZzpnlk4TyH/Rxj0qwSionFWOgG9Bd4tQwIMCPuO9cYUn4QfHSuag==
-X-Received: by 2002:a9d:554f:0:b0:61c:86e4:2f37 with SMTP id h15-20020a9d554f000000b0061c86e42f37mr1054976oti.131.1658543835142;
-        Fri, 22 Jul 2022 19:37:15 -0700 (PDT)
-Received: from [192.168.11.16] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id k14-20020a056808068e00b0033a2f6e4736sm2489061oig.20.2022.07.22.19.37.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Jul 2022 19:37:14 -0700 (PDT)
-Message-ID: <d89a540f-672d-83de-d19d-00f10e4370d1@kali.org>
-Date:   Fri, 22 Jul 2022 21:37:12 -0500
+        with ESMTP id S229572AbiGWDCc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 23:02:32 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBFADDECC;
+        Fri, 22 Jul 2022 20:02:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0CE0EB82B1E;
+        Sat, 23 Jul 2022 03:02:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E43CC341C6;
+        Sat, 23 Jul 2022 03:02:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658545346;
+        bh=RmHNidHcM6XnyksPN/PZ9Th3H+UhaPw4mbqV8BGr+lk=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=eu/SahGnm2hDYt+NNv6xEtT/DRemsy7UcVl/gxuxomUCXoPIbz5QwEzpuI3xmeDCz
+         6CvunG/RROezKcPISJH/AZKEfl5SA9kYZ2cAm8q9MYDhCFWJhnpEhB1LjdF5nWszvo
+         yxQ0h13kwPxBbjHoh9Qb4cPngEMrGcd8vfJT9cQ2BxmLzVqEXOjGCcaU3evhGVcTln
+         ozPywvOhwtK+zhKYTPA2I/JIH1oVMEIwqP8BXwi82kEdk2hgJcTXMdVmSXvzcxerr7
+         /5IotM9Y4VfFM3U5UH2+NHcLu0JYjN+Wqs3J2ch54DBiyzrtJ3KZpebnwAwHq6R/KY
+         l9JO+hwonW7yw==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.11.0
-Subject: Re: [PATCH 10/10] arm64: dts: qcom: sdm845: add LLCC BWMON
-Content-Language: en-US
-From:   Steev Klimaszewski <steev@kali.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAP6Zq1ju08GSjNnEG+zDUC8W6aQMJxd5He7QJxy9++hTy0Dc7A@mail.gmail.com>
+References: <20220711123519.217219-1-tmaimon77@gmail.com> <20220711123519.217219-5-tmaimon77@gmail.com> <20220711195544.70A30C34115@smtp.kernel.org> <CAP6Zq1ie_RgJ_9S3ftoVJ=eJHX1xR4_O_czKZghNPKVEFOzC8Q@mail.gmail.com> <20220718191454.5B5D3C341C0@smtp.kernel.org> <CAP6Zq1ju08GSjNnEG+zDUC8W6aQMJxd5He7QJxy9++hTy0Dc7A@mail.gmail.com>
+Subject: Re: [PATCH v8 04/16] clk: npcm8xx: add clock controller
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jonathan =?utf-8?q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Olof Johansson <olof@lixom.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Robert Hancock <robert.hancock@calian.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <20220720192807.130098-1-krzysztof.kozlowski@linaro.org>
- <20220720192807.130098-11-krzysztof.kozlowski@linaro.org>
- <25673493-4171-62b0-f696-1316d115f388@kali.org>
- <96552a95-8939-3ac2-c9b3-14dabaf53923@linaro.org>
- <d814a6da-b0d7-2fd1-fd14-8f1f3b88666f@kali.org>
-In-Reply-To: <d814a6da-b0d7-2fd1-fd14-8f1f3b88666f@kali.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Thomas G leixner <tglx@linutronix.de>,
+        Patrick Venture <venture@google.com>,
+        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Nancy Yuen <yuenn@google.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        SERIAL DRIVERS <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Date:   Fri, 22 Jul 2022 20:02:24 -0700
+User-Agent: alot/0.10
+Message-Id: <20220723030226.8E43CC341C6@smtp.kernel.org>
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,105 +86,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Tomer Maimon (2022-07-19 03:04:43)
+> On Mon, 18 Jul 2022 at 22:14, Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> >
+> > So the clk and reset driver should be the same driver, or one driver
+> > should register the other and use the auxiliary bus to express the
+> > relationship. That way we know that the drivers are tightly coupled and
+> > aren't going to stomp over each other.
+> I think it is very problematic to use the same driver for the reset
+> and the clocks also because The NPCM reset driver is an old driver
+> that was used also to the older NPCM BMC SoC so it will be problematic
+> to use the clock and reset driver in the same space.
+> indeed the reset and clocks are using the same memory region but they
+> are not using the same registers, is it not enough?
+> Please be aware that the NPCM reset driver is checking that it is
+> using the reset registers before calling I/O functions.
 
-On 7/22/22 7:29 PM, Steev Klimaszewski wrote:
->
-> On 7/22/22 12:30 PM, Krzysztof Kozlowski wrote:
->> On 22/07/2022 03:22, Steev Klimaszewski wrote:
->>> Hi Krzysztof,
->>>
->>> On 7/20/22 2:28 PM, Krzysztof Kozlowski wrote:
->>>> The SDM845 comes with few instances of Bandwidth Monitor.  The already
->>>> supported one monitors traffic between CPU and Last Level Cache
->>>> Controller (LLCC) and in downstream sources is called BWMON v4 (or 
->>>> v4 of
->>>> register layout).
->>>>
->>>> SDM845 also has also BWMON instance measuring traffic between LLCC and
->>>> memory with different register layout: called v5.
->>>>
->>>> Cc: Rajendra Nayak <quic_rjendra@quicinc.com>
->>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/sdm845.dtsi | 37 
->>>> ++++++++++++++++++++++++++++
->>>>    1 file changed, 37 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi 
->>>> b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>>> index fe14f7e7523b..4aab464e2bd6 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->>>> @@ -2053,6 +2053,43 @@ llcc: system-cache-controller@1100000 {
->>>>                interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
->>>>            };
->>>>    +        pmu@114a000 {
->>>> +            compatible = "qcom,sdm845-llcc-bwmon";
->>>> +            reg = <0 0x0114a000 0 0x1000>;
->>>> +            interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
->>>> +            interconnects = <&mem_noc MASTER_LLCC 3 &mem_noc 
->>>> SLAVE_EBI1 3>;
->>>> +
->>>> +            operating-points-v2 = <&llcc_bwmon_opp_table>;
->>>> +
->>>> +            llcc_bwmon_opp_table: opp-table {
->>>> +                compatible = "operating-points-v2";
->>>> +
->>>> +                /*
->>>> +                 * The interconnect path bandwidth taken from
->>>> +                 * cpu4_opp_table bandwidth for gladiator_noc-mem_noc
->>>> +                 * interconnect.  This also matches the
->>>> +                 * bandwidth table of qcom,llccbw (qcom,bw-tbl,
->>>> +                 * bus width: 4 bytes) from msm-4.9 downstream
->>>> +                 * kernel.
->>>> +                 */
->>>> +                opp-0 {
->>>> +                    opp-peak-kBps = <800000>;
->>>> +                };
->>>> +                opp-1 {
->>>> +                    opp-peak-kBps = <1804000>;
->>>> +                };
->>>> +                opp-2 {
->>>> +                    opp-peak-kBps = <3072000>;
->>>> +                };
->>>> +                opp-3 {
->>>> +                    opp-peak-kBps = <5412000>;
->>>> +                };
->>>> +                opp-4 {
->>>> +                    opp-peak-kBps = <7216000>;
->>>> +                };
->>>> +            };
->>>> +        };
->>>> +
->>>>            pmu@1436400 {
->>>>                compatible = "qcom,sdm845-bwmon", "qcom,msm8998-bwmon";
->>>>                reg = <0 0x01436400 0 0x600>;
->>>
->>> With this series applied, testing on a Lenovo Yoga C630, which has an
->>> SDM850, I see the following:
->>>
->>> [    3.673660] qcom-bwmon 114a000.pmu: can't request region for 
->>> resource
->>> [mem 0x0114a000-0x0114afff]
->>> [    3.673673] qcom-bwmon 114a000.pmu: error -EBUSY: failed to map 
->>> bwmon
->>> registers
->>> [    3.673678] qcom-bwmon: probe of 114a000.pmu failed with error -16
->>>
->> Thanks for the report. What are you running there? `uname -r`? Maybe
->> your secure world uses it?
->>
->> Best regards,
->> Krzysztof
->
-> Currently it's 5.19.0-rc7 (torvalds tree at 4ba1329c) with a few extra 
-> patches on top, the bwmon set included.  It's possible that secure 
-> world uses it, but I do not know enough about that to say one way or 
-> the other.
->
-> -- steev
->
-I think you may be right; I just applied this patchset to -next 
-(20220722) and i do not see the error message there.  On my 5.19-rc7 
-tree, i am also testing a patchset that enables qcom devices to access 
-efivars, so possibly we are ending up in secure world there?
+To put it simply, platform device drivers should use platform device
+APIs. The platform device APIs hide the fact that the firmware is ACPI
+or DT or nothing at all. The usage of of_address_to_resource() is
+problematic.
+
+After converting that to platform APIs you'll get janitor style cleanups
+trying to convert to devm_platform_ioremap_resource(). We'll have to
+discuss this again when that happens, even if there's a comment in the
+code indicating we can't reserve the IO space because there's another
+driver. These problems have happened in the past, fun times!
+
+Furthermore, in DT, reg properties aren't supposed to overlap. When that
+happens it usually indicates the DT is being written to describe driver
+structure instead of the IP blocks that are delivered by the hardware
+engineer. In this case it sounds like a combined clk and reset IP block
+because they piled all the SoC glue stuff into a register range. Are
+there more features in this IO range?
