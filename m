@@ -2,96 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1144257F09B
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CAFB57F0A2
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237879AbiGWR3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 13:29:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40882 "EHLO
+        id S231846AbiGWRcy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 13:32:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237846AbiGWR3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:29:12 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE881900C
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:29:10 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id bp17so12265560lfb.3
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:29:10 -0700 (PDT)
+        with ESMTP id S231578AbiGWRcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:32:54 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BFA513FBD
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:32:53 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id k19so8693322lji.10
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:32:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Mxp+CxBW8pHVdourNhn6PmNRAsrAJ2ndNnRfOTXc6Oo=;
-        b=NvtcMfL5xL55dHVCLFBJV9Ru0RrDYGST/5RNWwKm/l5tUInf1f1LOsQ7iGNRsgsxLc
-         ZY8S+Yl6dMKEvHylCitRq43sALdjOVoSk0PYnYVq0E9Kx09oQB95WC0HNfj9S8piyZsQ
-         MU9kidr4Q9fRSFQ5IVLKMWvkVagx/EDpPAd4GAOzzkEOlUT4FckL5ZwMkSByU8GyzP7M
-         ZDA9e3GWk2uzEk33dwJYrxykczDiIS2UMXn+170PmjIYBSlUYduDmDhFjYICVtb3NiYL
-         TBVqowRPnokNf8ZCDhkPQ3LUZgKfqUK0jLL5HXJZncc4MP7ycyjV7nh5on8ZeHaytf3q
-         UBrA==
+        bh=x/VzrMn8IRoR/XUw2GaIkz6W+3AiZWGAF5ssto6LX8c=;
+        b=xgtnl3PPZqZRZyGiYh7t2imdcj4sSnzXczgHwKS8ckUS1IUCukpgRcY9SqKF7LynXi
+         puuEHvJ2iLcVMM47QKj/jsDAlUvu6jFI+0TnPjsxr13Q6f/XacJPb9W9jw9RsO7PT1IH
+         oEC8gCBQI+AWCpm8CB+Td3p7FLy0kE+5DwxmEIGZVPxsJsNXW40wnHfokUctKLrqle1h
+         fpsLl/mpXpS/VeinwjnS3wMeSZQ4AWftDqgw81r7BE8hldMpfN/8KhuO+i2O7ZKQWuQX
+         SDyRRcrlO7/ID4hvNtchMJ9vXSBZP/Bvzfq4blcVqaG3glnoFCcbqosqEirGQmTQJwyB
+         SVgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Mxp+CxBW8pHVdourNhn6PmNRAsrAJ2ndNnRfOTXc6Oo=;
-        b=OCoX9YU7B/WDJTR9n8nfDkkIucDx0fEnuHnmoiIR1MTo1LdIWAQSVuTRHm6m1qubD5
-         mrzO5vq7HSNnOVpcsTzcicUxQZlY2jiM8suCQpeyf47cju+FILSz9jsPEi2v2TPHKn23
-         wZTObdcxKCgaa9fYYojB+KtASrLySqDI/waVZITZ5ckj1hYTvFF4UZ71vrXP1IddcQNv
-         NobE6EMnPwARIVjiqzrn09WUiO9XudAIWzFCOTWbu7gSNzj675NRbTvEENoYU7e4vcjY
-         PsnXr3c/OvaFH1cwWJv37wQch6UHtsXmR11WH74Muf4VfQjk8GHfh4Yr84vyjvF0FQ7O
-         Y8rg==
-X-Gm-Message-State: AJIora9+2Vu0eSwvvGneJrBK4gpjT2JHA/8L8XglNlfEBcsTCchKwneO
-        HuQFxcWuHzFFUKKIHmrpnbvREA==
-X-Google-Smtp-Source: AGRyM1vLIWRg/4veh1w7QJCNbMWDeopEiLjxm1bwhdsZ/xk64cZQyXbfaoQB9/6W/RNrbwPSFIoinw==
-X-Received: by 2002:ac2:48b3:0:b0:48a:7442:b4a with SMTP id u19-20020ac248b3000000b0048a74420b4amr1945046lfg.286.1658597349068;
-        Sat, 23 Jul 2022 10:29:09 -0700 (PDT)
+        bh=x/VzrMn8IRoR/XUw2GaIkz6W+3AiZWGAF5ssto6LX8c=;
+        b=szzarJguIHbWClpYEzv4DsJhInpJvNnJqWM3NsA5BowKfOhwYczeYYYD0xiai5phZ4
+         GmqtPieoIQnzZOivHhIV3QBRO01Lh8wFPTw5hIlLGL/niDWESr8wQcKrZVtauw2qCwSq
+         imI9aaHaHKYBrevEdpAazsJF2USIWmQqSRAfeZjQGsv8ooFNOY632mf1cDS9beeNzwJl
+         cHq0YiJswVeH/vsoU1lzN7sBXigsrctTqKqtqm0A1UcNwEdWKz8XJ0HrdLhwTtlyVfGG
+         jsfCSpqHo0OehR6xVD/BJ7zKzxuQbPLmIAT9HQcPXIzzXS2mTaCsG8suDTnbGW39gJK9
+         sRMw==
+X-Gm-Message-State: AJIora8XzAhOEezhGHf/U0tiYr2Q3d9XW0tq7noIpappvnn6i2sIARAw
+        rlqbGCEQ6Yu16Mbn4XF1FX8ljg==
+X-Google-Smtp-Source: AGRyM1sEVLBhf0FP/hJuoN3w9Mu0qolkvPJs5Kd7aIL1sOqGbzFi73wXw0ZOQDoqGnNjSehK/o0iPg==
+X-Received: by 2002:a2e:82c6:0:b0:25d:eef5:8096 with SMTP id n6-20020a2e82c6000000b0025deef58096mr1763269ljh.201.1658597571541;
+        Sat, 23 Jul 2022 10:32:51 -0700 (PDT)
 Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id i7-20020a0565123e0700b00489e211c58esm1746865lfv.134.2022.07.23.10.29.07
+        by smtp.gmail.com with ESMTPSA id u11-20020a056512128b00b004875a37b7b7sm1736514lfs.159.2022.07.23.10.32.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Jul 2022 10:29:08 -0700 (PDT)
-Message-ID: <8027e1d6-d4de-787b-906e-51d40f7b7bad@linaro.org>
-Date:   Sat, 23 Jul 2022 19:29:06 +0200
+        Sat, 23 Jul 2022 10:32:51 -0700 (PDT)
+Message-ID: <875d6856-dea4-e1ff-60b3-706cf00f8bb9@linaro.org>
+Date:   Sat, 23 Jul 2022 19:32:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v5 1/4] dt-bindings: qcom: Document bindings for new
- msm8916-samsung-e2015 devices
+Subject: Re: [PATCH 2/3] memory: mtk-smi: Add enable IOMMU SMC command for MM
+ master
 Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        devicetree@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     "Chengci.Xu" <chengci.xu@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20220723141835.136196-1-linmengbo0689@protonmail.com>
- <20220723142434.136458-1-linmengbo0689@protonmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        srv_heupstream@mediatek.com
+References: <20220723031955.12552-1-chengci.xu@mediatek.com>
+ <20220723031955.12552-3-chengci.xu@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220723142434.136458-1-linmengbo0689@protonmail.com>
+In-Reply-To: <20220723031955.12552-3-chengci.xu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/07/2022 16:26, Lin, Meng-Bo wrote:
-> Document the new samsung,e5/e7/grandmax device tree bindings used in their
-> device trees.
-> 
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> Acked-by: Krzysztof Kozlowski
+On 23/07/2022 05:19, Chengci.Xu wrote:
 
-This is not correct ack. Do not invent stuff, but copy what you received.
+Thank you for your patch. There is something to discuss/improve.
 
-https://elixir.bootlin.com/linux/v5.19-rc1/source/Documentation/process/submitting-patches.rst#L536
+>  #endif
+> diff --git a/include/soc/mediatek/smi.h b/include/soc/mediatek/smi.h
+> index 11f7d6b59642..76093b856335 100644
+> --- a/include/soc/mediatek/smi.h
+> +++ b/include/soc/mediatek/smi.h
+> @@ -8,6 +8,15 @@
+>  
+>  #include <linux/bitops.h>
+>  #include <linux/device.h>
+> +#include <linux/arm-smccc.h>
+> +#include <linux/soc/mediatek/mtk_sip_svc.h>
+
+The headers do not look like used here. Include only relevant headers.
+
+> +
+> +/* IOMMU & SMI ATF CMD */
+> +
+> +enum IOMMU_ATF_CMD {
+> +	IOMMU_ATF_CMD_CONFIG_SMI_LARB,		/* For mm master to en/disable iommu */
+> +	IOMMU_ATF_CMD_COUNT,
+> +};
+>  
+>  #if IS_ENABLED(CONFIG_MTK_SMI)
+>  
 
 
 Best regards,
