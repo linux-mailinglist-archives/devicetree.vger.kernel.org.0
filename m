@@ -2,94 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DEE557F0A4
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:34:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D153E57F0AC
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237897AbiGWRd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 13:33:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43474 "EHLO
+        id S235050AbiGWRiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 13:38:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235989AbiGWRd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:33:57 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB331900C
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:33:56 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id a13so8529376ljr.11
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:33:56 -0700 (PDT)
+        with ESMTP id S238295AbiGWRiR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:38:17 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C24E31EEC0;
+        Sat, 23 Jul 2022 10:38:15 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id j29-20020a05600c1c1d00b003a2fdafdefbso4081713wms.2;
+        Sat, 23 Jul 2022 10:38:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=gtQ14uIFjSRWKjyHokB//t8/r+71OfqgVuwkNcmPeoA=;
-        b=ESMwFonERbuKy1tCSV1hQL5WH+aJhXNLZRY/Mbbh/cHLp5d87ZI0B/mbISmXRxxSzG
-         NkKTrbmSHJ9XNEirQZA8NAF9oQZd1NKbHheggMUejjbj8x8fFj8bkxp7MyU5dpWKothH
-         4J1NxZnLs+IkrOh2X1cNGvP6na0RnJ30+yLZ0L2RZdjMKn27lz5WocVbcr13nbaUmiEe
-         fA8hI5/9xbAS+ZQcHzH5+Gj6U85RWj9+MHg4MKdIrxsQtNBqXc2IJT4xWrU2JnZdV53Q
-         vK+edK+yMFXVOTLt7J/fO1KfG6vGuRk0GizAGrmzs1YwlxKuUfQHW1TefPBoiv/Qkz9s
-         3suA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=GiLNVtCZ/comMeKOF/hrTe2K4Wy7cDxvkOFs3YEqxbU=;
+        b=d8EBltywcAFXfcKPqTIIw5q7voC6OlWbdstf/6tphykMBxGlxQw1Obr3lCq79IySIe
+         hYrCzD2vKtyGIZQY1IBT72tvACWbmdS0uRzjzeqWCT/RFJTJpjZ9yewdLIPEp9FtKRFZ
+         f7cK+5Q+wH6V3Gid1Cm16dRpq4XI0srGbzLVEDBNiuhCrWsRK7zb7ozXwu5RM9vAx05d
+         zZ5b7XIAToQf4A9ZHE1zQ5Oid9C9tqXYuzzAI8OEfOJ/dpByeCdce5laGaatHjYNRVji
+         Oiaxhzdf6e7gu5UWno1mQEpCmRfecy2bGsTtNCGsr9UPKINJ9WHHVh4CHmnoiDt1kOX1
+         fTmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gtQ14uIFjSRWKjyHokB//t8/r+71OfqgVuwkNcmPeoA=;
-        b=BEw58UXbEaOK9RI8sKi5ORtZ9ze5B+7/rGgj7BQd93ecnEdZrL/cGXxXuHEO+uOCL6
-         mc/q4WW7pHc1LLfB468R2I8YobWKNLU60At81Se93N2PI4zvsbaRmhBDLm5JBnzRHhxz
-         Wu1xX0T/jG8FYTHc4akWn/rENn9p2CyPFwkJ6jHBY219DOAVXpmFmUT5sS/fPvVbP4Ts
-         6U/KkLshkaGcolqInYf88EFt2KY7Q/b43TG4P8TGSqcAieaKViQWfeCWuFXABAZ8gMZI
-         +o19PTh0DHMVmyS1DELQsjIAkSQjQQ/QaCnYDAbSQXh9eC/XAgik0HTcsfHtZ6ppB1h1
-         58vw==
-X-Gm-Message-State: AJIora/jH6mN7f3t/RlNQXglBdBI7spj7vXEU/r5Z38Jh3XQKBfRIT4q
-        BTXi22HLDJQlRZ/zai2g0IGhnQ==
-X-Google-Smtp-Source: AGRyM1uU1eUauciMSqDhYkv5IwoplxEQwBcf8zmfZUOEgmhwKkBdpalR6T+snsJt3pQyFxc3nxS7QA==
-X-Received: by 2002:a2e:9c86:0:b0:25d:fe25:3490 with SMTP id x6-20020a2e9c86000000b0025dfe253490mr588675lji.463.1658597634910;
-        Sat, 23 Jul 2022 10:33:54 -0700 (PDT)
-Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id m2-20020a056512358200b00489d1896c06sm1756453lfr.125.2022.07.23.10.33.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Jul 2022 10:33:54 -0700 (PDT)
-Message-ID: <576bcc5b-0587-1059-961c-4e35bbfcf392@linaro.org>
-Date:   Sat, 23 Jul 2022 19:33:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 2/3] memory: mtk-smi: Add enable IOMMU SMC command for MM
- master
-Content-Language: en-US
-To:     "Chengci.Xu" <chengci.xu@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=GiLNVtCZ/comMeKOF/hrTe2K4Wy7cDxvkOFs3YEqxbU=;
+        b=gyVgSx2rP0rroCDvu87qIPaDR4sn+AkhkxnBRBk4goUChidAe6WDa7aViLpp1iaOzX
+         NYpLpsjK+wjcG7Fzjm3mgVPSL9EvudduCrTjC3eYXYYx1cM8Xb47C3HvlQORDm8CxCw+
+         xGP/ueGJlV++1ou6pqAZgbOB1OQ70qf5YS96pqFaAvsXp6E7wNCJOc6APk3ktCr8Wi+O
+         x+1DE30UW/R/Evl5cUlAC6MVqY19sKi5SWIk62O0Cf7tzDOBVxIVmPf6osXkqQVQQzFm
+         NQtqk8ApebX5Yhsk2Pn+qOqEPU2F64+bDjoQd7MfbN+oEJqrniON+KCKZNrf5hvq5Mca
+         i28w==
+X-Gm-Message-State: AJIora/2QCH62bWdfJ4f6wGYMaCxQW+CrVaFiwWa2bqeT+tfAylZzNBN
+        6el0pErY7vA42Ktt+oHJbu9Jtidi/qd2zQ==
+X-Google-Smtp-Source: AGRyM1uKaEEFgVIppa9pGzoJy4EkWZNqMChYduxosRK2pNPmgymG8/GYlaHM57Mf4W3QurntwRXpLw==
+X-Received: by 2002:a05:600c:501e:b0:3a3:4a04:fdb5 with SMTP id n30-20020a05600c501e00b003a34a04fdb5mr2662067wmr.168.1658597893914;
+        Sat, 23 Jul 2022 10:38:13 -0700 (PDT)
+Received: from xps-work.lan (188.red-83-35-57.dynamicip.rima-tde.net. [83.35.57.188])
+        by smtp.gmail.com with ESMTPSA id az14-20020adfe18e000000b0021e529efa60sm1533279wrb.1.2022.07.23.10.38.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Jul 2022 10:38:13 -0700 (PDT)
+From:   Angel Iglesias <ang.iglesiasg@gmail.com>
+To:     linux-iio@vger.kernel.org
+Cc:     Angel Iglesias <ang.iglesiasg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220723031955.12552-1-chengci.xu@mediatek.com>
- <20220723031955.12552-3-chengci.xu@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220723031955.12552-3-chengci.xu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/5] dt-bindings: iio: pressure: bmp085: Add BMP380 compatible string
+Date:   Sat, 23 Jul 2022 19:38:04 +0200
+Message-Id: <8c9e40d02418d3418795596c908589f47e13a36b.1658597501.git.ang.iglesiasg@gmail.com>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <cover.1658597501.git.ang.iglesiasg@gmail.com>
+References: <cover.1658597501.git.ang.iglesiasg@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/07/2022 05:19, Chengci.Xu wrote:
-> For concerns about security, the register to enable/disable IOMMU of
-> SMI LARB should only be configured in secure world. Thus, we add some
-> SMC command for multimedia master to enable/disable MM IOMMU in ATF by
-> setting the register of SMI LARB. This function is prepared for MT8188.
+Add bosch,bmp380 compatible string for the new family of sensors.
+This family includes the BMP380, BMP384 and BMP388. The register map
+in this family changes substantially and introduces new features
+but core concepts and operations carryover from the previous iterations
 
-Could you not Cc non-existing email addresses? It causes annoying
-bounces every time I deal with Mediatek:
+Signed-off-by: Angel Iglesias <ang.iglesiasg@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/iio/pressure/bmp085.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
- 550 Relaying mail to srv_heupstream@mediatek.com is not allowed
+diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
+index 49257f9251e8..72cd2c2d3f17 100644
+--- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
++++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/iio/pressure/bmp085.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: BMP085/BMP180/BMP280/BME280 pressure iio sensors
++title: BMP085/BMP180/BMP280/BME280/BMP380 pressure iio sensors
+ 
+ maintainers:
+   - Andreas Klinger <ak@it-klinger.de>
+@@ -16,6 +16,7 @@ description: |
+     https://www.bosch-sensortec.com/bst/products/all_products/bmp180
+     https://www.bosch-sensortec.com/bst/products/all_products/bmp280
+     https://www.bosch-sensortec.com/bst/products/all_products/bme280
++    https://www.bosch-sensortec.com/bst/products/all_products/bmp380
+ 
+ properties:
+   compatible:
+@@ -24,6 +25,7 @@ properties:
+       - bosch,bmp180
+       - bosch,bmp280
+       - bosch,bme280
++      - bosch,bmp380
+ 
+   reg:
+     maxItems: 1
+-- 
+2.37.1
 
-
-Best regards,
-Krzysztof
