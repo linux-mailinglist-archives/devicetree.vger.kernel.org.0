@@ -2,139 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5087D57ECBE
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 10:30:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E43757ECC4
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 10:36:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230309AbiGWIae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 04:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52698 "EHLO
+        id S233097AbiGWIgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 04:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237150AbiGWIad (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 04:30:33 -0400
-Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 153E51836A;
-        Sat, 23 Jul 2022 01:30:29 -0700 (PDT)
-Received: from [192.168.1.103] (31.173.80.87) by msexch01.omp.ru (10.188.4.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Sat, 23 Jul
- 2022 11:30:17 +0300
-Subject: Re: [PATCH 1/3] mtd: spi-nor: Use the spi-mem poll status APIs.
-To:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>, <tudor.ambarus@microchip.com>,
-        <p.yadav@ti.com>, <michael@walle.cc>, <miquel.raynal@bootlin.com>,
-        <richard@nod.at>, <vigneshr@ti.com>, <broonie@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
-        <linux-mips@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <aidanmacdonald.0x0@gmail.com>,
-        <tmn505@gmail.com>, <paul@crapouillou.net>,
-        <dongsheng.qiu@ingenic.com>, <aric.pzqi@ingenic.com>,
-        <rick.tyliu@ingenic.com>, <jinghui.liu@ingenic.com>,
-        <sernia.zhou@foxmail.com>, <reimu@sudomaker.com>
-References: <1658508510-15400-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1658508510-15400-2-git-send-email-zhouyanjie@wanyeetech.com>
-From:   Sergey Shtylyov <s.shtylyov@omp.ru>
-Organization: Open Mobile Platform
-Message-ID: <1926ce77-6de0-0d87-d676-6ae93fa5c527@omp.ru>
-Date:   Sat, 23 Jul 2022 11:30:16 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        with ESMTP id S231307AbiGWIgS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 04:36:18 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C43F481C7
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 01:36:16 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id b34so2593951ljr.7
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 01:36:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=UFNgKWXdIG6DQFBmwM7XyaYQFbIAlbR9vbv7ZA7sYD4=;
+        b=xwby9q+fB01FO2mS7fKnVXiA1AOLFxxqsXAyshQcITRU+HVTULFKnJSAu0rpdTWLdX
+         7J7diRX15MjxeNOZGeSr/07eAe/qSCX7eVlEkSFYgobhDZR7ziVahvfHAXCW+k1L+vX4
+         0Tq77hQKLtiO7q4eAfrlSk24CTRpnW2l8+V0hGbg0q/jNEDZaLlMoE1lPA/ZkMdmPdPl
+         6u0KQAyda3jodzgnPQQbkr5+Jzp8KNvPsGr2JsH8/5hupplxS2yisBLWF2T2rQPNum52
+         m9MMvJ3Mm0x13S+SghtoKKKEsExJmqk8ewdaF9e/lAlQ02cgTzTAqGu5ZSV1AHoUmBll
+         xypQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=UFNgKWXdIG6DQFBmwM7XyaYQFbIAlbR9vbv7ZA7sYD4=;
+        b=USP/mLU2qMC3nvpoGsTgla8InHjHCApP+2zgBsnIhZB8Vi6d9u4TejSSyMbJaQ2tq/
+         wbEj3MJEIEIoMBE2+7zYgCvB6E/aGlFJMo8Te2rV0/yL6BceVc0ITw8tTxDIh805CInN
+         FVlkkYcxVt5BIoGP6RsvGzFnJe4X0LrS6KKYzgHf0vZ+bze06NQWgUwDzY4RRrsyATWv
+         huS2kqKA1MV4gWmu8Tw+19Zpkjkzhp+qP5Hh2qp8lkhUWQRc0cq1F3ZJQSIyjlsCJFv8
+         daMrdY+aY8Vv4IZWbrgzMT8BDF9GRiZ17QC5PnrRS9RyBbuPcp70GNfIXeSgAIcluV9z
+         OW4Q==
+X-Gm-Message-State: AJIora9dEzzmfQe6nY2bhnJFnPzXcp7WLvugS6n1vPELjjDKdjaJwUV2
+        Jv2mKRbLVR2kqJGowJ5SkAmzug==
+X-Google-Smtp-Source: AGRyM1tC6obcKeJ8XV3Kqpjx1vuO1ZcdPvxoiANz+5GuluNWs+REVtSy3fdPz4vCVsjZoHNtum4bUQ==
+X-Received: by 2002:a2e:a36a:0:b0:25d:d73d:d8c9 with SMTP id i10-20020a2ea36a000000b0025dd73dd8c9mr1160570ljn.68.1658565374570;
+        Sat, 23 Jul 2022 01:36:14 -0700 (PDT)
+Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
+        by smtp.gmail.com with ESMTPSA id x14-20020a056512078e00b0047f79c636f7sm1541978lfr.167.2022.07.23.01.36.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Jul 2022 01:36:14 -0700 (PDT)
+Message-ID: <fec6bd98-5efd-fe34-6d75-1765219acd82@linaro.org>
+Date:   Sat, 23 Jul 2022 10:36:11 +0200
 MIME-Version: 1.0
-In-Reply-To: <1658508510-15400-2-git-send-email-zhouyanjie@wanyeetech.com>
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 10/10] arm64: dts: qcom: sdm845: add LLCC BWMON
 Content-Language: en-US
+To:     Steev Klimaszewski <steev@kali.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <20220720192807.130098-1-krzysztof.kozlowski@linaro.org>
+ <20220720192807.130098-11-krzysztof.kozlowski@linaro.org>
+ <25673493-4171-62b0-f696-1316d115f388@kali.org>
+ <96552a95-8939-3ac2-c9b3-14dabaf53923@linaro.org>
+ <d814a6da-b0d7-2fd1-fd14-8f1f3b88666f@kali.org>
+ <d89a540f-672d-83de-d19d-00f10e4370d1@kali.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d89a540f-672d-83de-d19d-00f10e4370d1@kali.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [31.173.80.87]
-X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
- (10.188.4.12)
-X-KSE-ServerInfo: msexch01.omp.ru, 9
-X-KSE-AntiSpam-Interceptor-Info: scan successful
-X-KSE-AntiSpam-Version: 5.9.20, Database issued on: 07/23/2022 08:13:55
-X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
-X-KSE-AntiSpam-Method: none
-X-KSE-AntiSpam-Rate: 59
-X-KSE-AntiSpam-Info: Lua profiles 171890 [Jul 23 2022]
-X-KSE-AntiSpam-Info: Version: 5.9.20.0
-X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
-X-KSE-AntiSpam-Info: LuaCore: 493 493 c80a237886b75a8eec705b487193915475443854
-X-KSE-AntiSpam-Info: {rep_avail}
-X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
-X-KSE-AntiSpam-Info: {relay has no DNS name}
-X-KSE-AntiSpam-Info: {SMTP from is not routable}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.80.87 in (user)
- b.barracudacentral.org}
-X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.80.87 in (user) dbl.spamhaus.org}
-X-KSE-AntiSpam-Info: 127.0.0.199:7.1.2;31.173.80.87:7.7.3,7.4.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;omp.ru:7.1.1
-X-KSE-AntiSpam-Info: {iprep_blacklist}
-X-KSE-AntiSpam-Info: {Track_Chinese_Simplified, text}
-X-KSE-AntiSpam-Info: ApMailHostAddress: 31.173.80.87
-X-KSE-AntiSpam-Info: {DNS response errors}
-X-KSE-AntiSpam-Info: Rate: 59
-X-KSE-AntiSpam-Info: Status: not_detected
-X-KSE-AntiSpam-Info: Method: none
-X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
- smtp.mailfrom=omp.ru;dkim=none
-X-KSE-Antiphishing-Info: Clean
-X-KSE-Antiphishing-ScanningType: Heuristic
-X-KSE-Antiphishing-Method: None
-X-KSE-Antiphishing-Bases: 07/23/2022 08:17:00
-X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
-X-KSE-Antivirus-Interceptor-Info: scan successful
-X-KSE-Antivirus-Info: Clean, bases: 7/23/2022 6:36:00 AM
-X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+On 23/07/2022 04:37, Steev Klimaszewski wrote:
+>>
+>> Currently it's 5.19.0-rc7 (torvalds tree at 4ba1329c) with a few extra 
+>> patches on top, the bwmon set included.  It's possible that secure 
+>> world uses it, but I do not know enough about that to say one way or 
+>> the other.
 
-On 7/22/22 7:48 PM, 周琰杰 (Zhou Yanjie) wrote:
+To test patches you should apply them on maintainer's tree or
+linux-next. Applying on other trees of course might be useful for
+testing some backports, but it is independent process and different issue.
 
-> With advanced controllers (such as Ingenic SFC), it is possible to poll
-> the status register of the device. This could be done to offload the CPU
-> during a erase or write operation. Make use of spi-mem poll status APIs
-> to handle this feature.
-> 
-> Previously, when erasing large area (e.g. 32MiB), in non-offload case,
-> CPU load could reach ~90% and would generate ~3.92 million interrupts,
-> now it decrease to ~15% CPU load and 0.15 million interrupts.
-> 
-> This should also fix the high CPU usage for system which don't have a
-> dedicated poll status block logic (decrease to ~80% CPU load and ~1.61
-> million interrupts.).
-> 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> ---
->  drivers/mtd/spi-nor/core.c | 42 ++++++++++++++++++++++++++++++++----------
->  1 file changed, 32 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-> index 502967c..6a31132 100644
-> --- a/drivers/mtd/spi-nor/core.c
-> +++ b/drivers/mtd/spi-nor/core.c
-> @@ -617,19 +617,41 @@ static int spi_nor_wait_till_ready_with_timeout(struct spi_nor *nor,
->  	unsigned long deadline;
->  	int timeout = 0, ret;
->  
-> -	deadline = jiffies + timeout_jiffies;
-> +	if (nor->spimem && !nor->params->ready) {
-> +		struct spi_mem_op op = SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_RDSR, 0),
-> +						       SPI_MEM_OP_NO_ADDR,
-> +						       SPI_MEM_OP_NO_DUMMY,
-> +						       SPI_MEM_OP_DATA_IN(1, nor->bouncebuf, 0));
+>>
+>> -- steev
+>>
+> I think you may be right; I just applied this patchset to -next 
+> (20220722) and i do not see the error message there.  On my 5.19-rc7 
+> tree, i am also testing a patchset that enables qcom devices to access 
+> efivars, so possibly we are ending up in secure world there?
 
-   Strange indentation...
+Actually mapping of IO space should not touch secure world, so this was
+a long shot assuming you test it on the next.
 
-[...]
-> +		return spi_mem_poll_status(nor->spimem, &op, SR_WIP, 0, 0, 10,
-> +						       jiffies_to_msecs(timeout_jiffies));
 
-   Here as well...
-
-[...]
-
-MBR, Sergey
+Best regards,
+Krzysztof
