@@ -2,382 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4969857ECEC
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 11:09:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8322657ED24
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 11:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233562AbiGWJJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 05:09:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43972 "EHLO
+        id S233488AbiGWJmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 05:42:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237088AbiGWJJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 05:09:49 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECC225FAF1
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 02:09:47 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id t1so11034701lft.8
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 02:09:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uQoKf4x6bk2NUd2xMmDqdgF51D97Kbt8QIuYFs9WwBA=;
-        b=xptds28g36Es4Y8TKcAcHXqRELOMo4kH8p9rWkCKpbbxIYR1OGbQ63UJc0lQyNvIsk
-         rvXVRzJ7O21JULl5bxqYfra+RudW5YW4il4TJxfhm5WdMjgqqvYgCsqWG4G5o5ZDbca4
-         AYhfekoYv9wLGcrQL2NqYAN5OhYuSv8dWkB6ZPxCuJp5xWzXbghVrA2TlL4aKQUm6QSQ
-         QTIUKNhxK6BZc1V1eC4umZJP1OWGxfb0bnQzURlz3Cx3NiiEO0CCfY/kCiW/ZAFFk4N4
-         Ay3pbugZ3TknPH69oGvJB3t5pbsL75brdE0r8mXQTNAGPCRxm+2PYiU611Kc83l9bp5r
-         GJPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uQoKf4x6bk2NUd2xMmDqdgF51D97Kbt8QIuYFs9WwBA=;
-        b=H7YzDFy7LjfX65g0GhprsVadaQPYzCL7p/cv+zo67wVa9E9sYmTozsW6k3k3wVvcMj
-         z79MRG6OmoNlFP+Oqo1GRMUP+Ye89Z3zT4elzqElKn/MXbKibX7IIqyblC809YiH8pUv
-         EzQiQH2SZfdMf8B+h45ImVLei+gzstc8FAnLKSfKgoZs5+bVes1HPbdy+Pp+0BFdNhqa
-         Azw0OKAapIL5ih5yJXht60/rujPO8lnGzh9+dM/NatnpTCss/ZnGd8uzLVCccXm9G147
-         L+adROSP3Y9KLoQ6wjfGSFam7qvqeMxi5R+FxEYjPgjpGTVl3QfOHD5D+IX8ia+CWvHo
-         eLCg==
-X-Gm-Message-State: AJIora8yaIiXYm7SMJFSj5jjuClzCEV7qoNbajp3Xxz0QdLnvfS11dGi
-        ejeTmCEBRaVjYKbZKRX4abY59Q==
-X-Google-Smtp-Source: AGRyM1ttd9tUFUnhU+bd4hT5AqUXCVRmMtrwWuiErqRg3cXzgoaaCDgC0xYpSanbNTaw6qMSNEiU9g==
-X-Received: by 2002:a05:6512:33c5:b0:48a:1c38:e43 with SMTP id d5-20020a05651233c500b0048a1c380e43mr1540939lfg.671.1658567386233;
-        Sat, 23 Jul 2022 02:09:46 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id s29-20020a05651c049d00b0025d6a975c47sm1537636ljc.94.2022.07.23.02.09.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Jul 2022 02:09:45 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Doug Anderson <dianders@chromium.org>
-Subject: [PATCH 3/3] dt-bindings: arm: qcom: drop individual descriptions of Google devices
-Date:   Sat, 23 Jul 2022 12:09:42 +0300
-Message-Id: <20220723090942.1637676-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220723090942.1637676-1-dmitry.baryshkov@linaro.org>
-References: <20220723090942.1637676-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
+        with ESMTP id S230009AbiGWJl7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 05:41:59 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2046.outbound.protection.outlook.com [40.107.21.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA1C02FFF2;
+        Sat, 23 Jul 2022 02:41:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=D0DF/fWVay+9mZSFvaQel/mFZWXles6r1KOMGe5OnamAU2NGk/3V8vWyWrJIsI8VLVVwQUoc3KUIAaP6mAGJAZIbaDGJnIo3gfYe0MsPlbml5YTI9ET/53zX2WL2ip5E9SY2J/QO1soQ76K6mDWKhsXNmx5bn94k+tGbsUyE9UcVeQ/ToG+ftxU47iQExEliF79Od8thERUFGRqREWCiUTnkUOd/t9GYZf/RlUihN/1ruf2tRBUB73gt6pzOkzIOVC4DJkL0H7sES0cg44iIqSAjgw9ww3A3r8wqHc8lFz5QURDVj3vOc0OAFQlhDsX1axLlwOO1C9aga8GndyhclQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+4lMyhPGZ4Say+VrWXFSjUh7VBAHR35D4Q1L2aJwVaQ=;
+ b=MZGbaU2jCKA/MhphQcfuf1N4A1f72OdmDWzbGOVXttsSnTrcx0evkyOvLg2pKic5mHgskyjQCPhd1QwbFZ+llqom7ENnn4nfYyZJKh5TmCTu1X0yHrHUWH0odtbHo8zGFQAaI6Yv7dX27yGDMvX5NQZVR79mYCfbCt11RMLYFxMCgDLCdnEUXARAVzQvsCS2plCG/bEfh9Sx7mhd+NLYodEA9PB7he7ZPAoVx8oQlH8FRMxzAjdgpYWmmFfGP1rZAU3JvtuCgUFyqizhhERPyx0S1FFrGF7IsgGFx4QFcTxIVxQkJUqZCDcTLPTSyRKXLex3lI/CKHxE92WzwXr+Lw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+4lMyhPGZ4Say+VrWXFSjUh7VBAHR35D4Q1L2aJwVaQ=;
+ b=Z0AN+xgMR29bAmIyQDchmovUpz8T3sJMEamW31bS8eiffa7+o+dGKKjL5iQQ5aqOmp3vapE/8DtF2O5zafTr7nBYaTvUn60gT16+wffF6bgw5H4j9pd04lz1lUXBRHL3gI0dT5HvSQhv9yNfWAf7hzoxfkk9h6yR7dvGx2MkSzM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AM6PR0402MB3685.eurprd04.prod.outlook.com (2603:10a6:209:23::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.23; Sat, 23 Jul
+ 2022 09:41:54 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c0c2:ede7:3b85:1597]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c0c2:ede7:3b85:1597%3]) with mapi id 15.20.5458.019; Sat, 23 Jul 2022
+ 09:41:54 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, aisheng.dong@nxp.com,
+        festevam@gmail.com, ping.bai@nxp.com
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH 0/9] dt-bindings: pinctrl: imx: use minItems
+Date:   Sat, 23 Jul 2022 17:43:26 +0800
+Message-Id: <20220723094335.3577048-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0004.apcprd02.prod.outlook.com
+ (2603:1096:4:194::14) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4656b836-3c78-4e84-2b0e-08da6c8f9395
+X-MS-TrafficTypeDiagnostic: AM6PR0402MB3685:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: G4I7Q5xhkNN1H56tLJZ8X8YjQ/N7XeJ4qEOeRA4nppNtndIACxaie3qh3qCK8lbxoYgejUiXWnSvoBoS3GbrmOvruCoMcuu0Uhq3ae8o8NbzDcUPWYtTIEpZLoDYGbWY6UOxiEWFyqL8MAMcwzzWn+D0fQBOm7w7qs3XhcwianVGBWIaMdyBpjZO2BQ+vOcqXfh4sE2D7dTzgq6pLUrBmCCcXlZwZNL7hylwUx3NZiVwna07v/wCMkArm0uSs6hvvg+LSolEl8zc/LGonJH+B8GxUseNWG317ASJmo2ZS8J61EX00Sj/Z0wAb3xwd+1rmk5U8+ZjcC6XcudtkWZB7KwQavbTdwQXuooOrlFIxQu8EiZmy9AIQ2wShZlifqxF/5bSghlxbzPuv6vkvAqEnIDboaiGt+l4o2cvEyaNL2b+iDJLaRLGH0a/z8Pp9BGvFLPNIetMlXmGwlhZaC6hILaDl1XqwRhy9yxAq8wGZNYKGIMZEUJSf62eroM7qY5OSOrP6k6OOkILc1cMIxpMGWEWfmgzanm88rTP1Xvsshw4YLuPXVRYsK9NjDMaLyuKhpPNOK3K9kQKP1AvBJy2zOBQxTKM6XXNWqt9BQ2eA6yWLRp4nnGLwpnUYUWBY0+ZPLQRUlsxOSlQAM1KR21jmSs0AiNTJgBNav4LQS6MXVyV8ylbP1iVILlxh9u79lnQZTETn3coR5CrrkUB+9r4khM98TTM5eQZPR5jaBc9ERdA50KFimLrAfgKdS6maJaJdMMkiAkgmawaktWXYIT0rkhTy9wgbZbDf87NjdvVRI8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(396003)(39860400002)(366004)(346002)(376002)(316002)(5660300002)(66476007)(4326008)(8936002)(6506007)(7416002)(6512007)(186003)(2906002)(66946007)(66556008)(83380400001)(8676002)(86362001)(52116002)(38100700002)(38350700002)(478600001)(6666004)(1076003)(6486002)(26005)(41300700001)(2616005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1f9BxQSEFUHcg1Y2yUXtPnovHBRn1myit6FLKXWa75dFnNG1Rccm+C7gwjpN?=
+ =?us-ascii?Q?Bz69QZ1xMAodl7jD1FXLX02yEE76lBGo8Dm59Gs86c5ZZ88F0el2LinYwqOd?=
+ =?us-ascii?Q?X0T89I7S2shSSuUe8DmBIXTu+QTib1NFX7M8Xx114zqsk38WfCHtENnSugTz?=
+ =?us-ascii?Q?aJ1ge/voqk1ux0UEkOGvKvNqhKS263lau2gRTM3z0rdbnnXeZKojFOoeFOct?=
+ =?us-ascii?Q?MEfeK5IcGtpMNo+22nCUCTDkjSdJy4vNeHvM9JMZBwCIAIhVlLXVj7x/dqI9?=
+ =?us-ascii?Q?bBD9ZxMVQZGzBcjUD+VXOx1RckHInKxyK+WUxJtSyqQMsyHult82dO7ukoXu?=
+ =?us-ascii?Q?ZXisiQ+OWv8a36jLB00VdIahAa4xk1/qGdJnBHb6aFks2s37b+x+e8oOY5j5?=
+ =?us-ascii?Q?YSektPx5AEtSfWziynjk5+gqi81a9+R/wr43KwDEVGBnsrW9ZNm0lFYFUCe/?=
+ =?us-ascii?Q?zV358izRE5JcV7XRKMpzFF3hH5bL4qnYs0aJoLIhOJU8197qSxw3q7vGQWap?=
+ =?us-ascii?Q?UiZ4aQpdjtBT6ZbpYgGzTMsLmqiyXScpbxlOnyBnpIEZMzLTY7YA/43TLPzl?=
+ =?us-ascii?Q?22gs8mEAlUwaeTSB7DErAO3nwD091QJ1VAsjv3VM0eERzWPWYCBn7Y+PE1nb?=
+ =?us-ascii?Q?jIx/phJLck8nl5odDo9wmWhMll+7QyX2GwGOK4SkGbbkeUQgGkqV2PiehTli?=
+ =?us-ascii?Q?qOhoySUEu+pV5qtXi1LJgM6GmmuKpQDvzaEg4sT7CMde5UKsa+QQK6eZBmZs?=
+ =?us-ascii?Q?ecdP6mZasQ2vLn5A7VnoVVI3drmZTCgkmFX9NMPnSFG9w09MOyeqhWoHFOcZ?=
+ =?us-ascii?Q?JzjUkWK5VrE2xzVmui5t/pVdaX2XJn8qihDi8RBxG49WsMxXjLQPMiOyns9K?=
+ =?us-ascii?Q?O0e+EZS87vKl1hFwiK0BidJmdsNKqMLEcfb+w7f+l7eqFEf+DwJ39bsFt4iC?=
+ =?us-ascii?Q?QZIILORzRAuJ2+BqaqinILdkhnSF9SmdohhM0I9yLnuhBBhn5aTu1Z/94r33?=
+ =?us-ascii?Q?8AWXr7S8lbs+uPDQTvu0M9doEzswIqo04SWszoHa6nXmvSw3HcHoRKJIpDGd?=
+ =?us-ascii?Q?WkARZY2k5PeagyDX3hYef6DfMoKu5+1G+O4433LnFQRQT2IHWZWKBiZj6ten?=
+ =?us-ascii?Q?fqR1u5W+XI23agfKzFdnwguZOAmdDeT0iuH+CKc1kwg2Fs0rP6blae33ZvKm?=
+ =?us-ascii?Q?xodDKyYPnlEzv93R9R2iRBJ7fSmxVdHb41/U1RlEPfk77AFXjE8/mxujvkbV?=
+ =?us-ascii?Q?fOqV7PFmOfpPFTJW7w86iDYcdxuhMCJRgBCoBoznaQIouzUNpoYc9mIN5OQA?=
+ =?us-ascii?Q?DHJ+kMyeiSZiQonQcd+H1kX7n/+K0utIPb5tCgad0DRQG/ggk0vHLclkm5Ba?=
+ =?us-ascii?Q?paIA9gF5hEDZjJUNkwStreO/0pvIGr55zhXdZRlTqKY1N4Ka3ID9fC+BW9bZ?=
+ =?us-ascii?Q?ouDLkzleMLP4JZ4quiHgMxt5lk766GcX8riAyPG3B6DsVBhHVD8S3hc9EQ1d?=
+ =?us-ascii?Q?uRJcQQqyGv3mpvdNu5EvVvZF+6BBU9vyQWCM6ViHJHW6n+KSP+3ramRTumCj?=
+ =?us-ascii?Q?KBe1mfKOGkikCGsA0LzH5biDHCLGpgGd3/xxG4YG?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4656b836-3c78-4e84-2b0e-08da6c8f9395
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2022 09:41:54.3014
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bpm1b0BGaDyNyz9W3jK8o1Hs6q4TvdwShBj6Qd4vrcRdyKHCkti2Jca7+nDMdunlBOq91+Ob2B3vWIR3c5P2UA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR0402MB3685
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Follow the pattern and drop simple sc7180/sc7280 device declarations.
-The goal to leave in place only non-standard cases, rather than
-documenting every possible device.
+From: Peng Fan <peng.fan@nxp.com>
 
-Cc: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../devicetree/bindings/arm/qcom.yaml         | 198 +-----------------
- 1 file changed, 2 insertions(+), 196 deletions(-)
+There are many warnings when do dtbs_check: fsl,pins are too long,
+so add minItems to address that.
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 809d3de18194..f2d3209a25fa 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -130,6 +130,8 @@ properties:
-               - qcom,msm8998
-               - qcom,sa8155p
-               - qcom,sa8540p
-+              - qcom,sc7180
-+              - qcom,sc7280
-               - qcom,sc8180x
-               - qcom,sc8280xp
-               - qcom,sda660
-@@ -165,65 +167,24 @@ properties:
-           - const: qcom,apq8096-sbc
-           - const: qcom,apq8096
- 
--      - description: Qualcomm Technologies, Inc. SC7180 IDP
--        items:
--          - enum:
--              - qcom,sc7180-idp
--          - const: qcom,sc7180
--
-       - description: HP Chromebook x2 11c (rev1 - 2)
-         items:
-           - const: google,coachz-rev1
-           - const: google,coachz-rev2
-           - const: qcom,sc7180
- 
--      - description: HP Chromebook x2 11c (newest rev)
--        items:
--          - const: google,coachz
--          - const: qcom,sc7180
--
-       - description: HP Chromebook x2 11c with LTE (rev1 - 2)
-         items:
-           - const: google,coachz-rev1-sku0
-           - const: google,coachz-rev2-sku0
-           - const: qcom,sc7180
- 
--      - description: HP Chromebook x2 11c with LTE (newest rev)
--        items:
--          - const: google,coachz-sku0
--          - const: qcom,sc7180
--
-       - description: Lenovo Chromebook Duet 5 13 (rev2)
-         items:
-           - const: google,homestar-rev2
-           - const: google,homestar-rev23
-           - const: qcom,sc7180
- 
--      - description: Lenovo Chromebook Duet 5 13 (rev3)
--        items:
--          - const: google,homestar-rev3
--          - const: qcom,sc7180
--
--      - description: Lenovo Chromebook Duet 5 13 (newest rev)
--        items:
--          - const: google,homestar
--          - const: qcom,sc7180
--
--      - description: Google Kingoftown (rev0)
--        items:
--          - const: google,kingoftown-rev0
--          - const: qcom,sc7180
--
--      - description: Google Kingoftown (newest rev)
--        items:
--          - const: google,kingoftown
--          - const: qcom,sc7180
--
--      - description: Acer Chromebook Spin 513 (rev0)
--        items:
--          - const: google,lazor-rev0
--          - const: qcom,sc7180
--
-       - description: Acer Chromebook Spin 513 (rev1 - 2)
-         items:
-           - const: google,lazor-rev1
-@@ -240,11 +201,6 @@ properties:
-           - const: google,lazor-rev8
-           - const: qcom,sc7180
- 
--      - description: Acer Chromebook Spin 513 (newest rev)
--        items:
--          - const: google,lazor
--          - const: qcom,sc7180
--
-       - description: Acer Chromebook Spin 513 with KB Backlight (rev1 - 2)
-         items:
-           - const: google,lazor-rev1-sku2
-@@ -261,11 +217,6 @@ properties:
-           - const: google,lazor-rev8-sku2
-           - const: qcom,sc7180
- 
--      - description: Acer Chromebook Spin 513 with KB Backlight (newest rev)
--        items:
--          - const: google,lazor-sku2
--          - const: qcom,sc7180
--
-       - description: Acer Chromebook Spin 513 with LTE (rev1 - 2)
-         items:
-           - const: google,lazor-rev1-sku0
-@@ -282,11 +233,6 @@ properties:
-           - const: google,lazor-rev8-sku0
-           - const: qcom,sc7180
- 
--      - description: Acer Chromebook Spin 513 with LTE (newest rev)
--        items:
--          - const: google,lazor-sku0
--          - const: qcom,sc7180
--
-       - description: Acer Chromebook 511 (rev4 - rev8)
-         items:
-           - const: google,lazor-rev4-sku4
-@@ -296,16 +242,6 @@ properties:
-           - const: google,lazor-rev8-sku4
-           - const: qcom,sc7180
- 
--      - description: Acer Chromebook 511 (newest rev)
--        items:
--          - const: google,lazor-sku4
--          - const: qcom,sc7180
--
--      - description: Acer Chromebook 511 without Touchscreen (rev4)
--        items:
--          - const: google,lazor-rev4-sku5
--          - const: qcom,sc7180
--
-       - description: Acer Chromebook 511 without Touchscreen (rev5 - rev8)
-         items:
-           - const: google,lazor-rev5-sku5
-@@ -315,133 +251,18 @@ properties:
-           - const: google,lazor-rev8-sku6
-           - const: qcom,sc7180
- 
--      - description: Acer Chromebook 511 without Touchscreen (newest rev)
--        items:
--          - const: google,lazor-sku6
--          - const: qcom,sc7180
--
--      - description: Google Mrbland with AUO panel (rev0)
--        items:
--          - const: google,mrbland-rev0-sku0
--          - const: qcom,sc7180
--
--      - description: Google Mrbland with AUO panel (newest rev)
--        items:
--          - const: google,mrbland-sku1536
--          - const: qcom,sc7180
--
--      - description: Google Mrbland with BOE panel (rev0)
--        items:
--          - const: google,mrbland-rev0-sku16
--          - const: qcom,sc7180
--
-       - description: Google Mrbland with BOE panel (newest rev)
-         items:
-           - const: google,mrbland-sku1024
-           - const: google,mrbland-sku768
-           - const: qcom,sc7180
- 
--      - description: Google Pazquel with Parade (newest rev)
--        items:
--          - const: google,pazquel-sku5
--          - const: qcom,sc7180
--
--      - description: Google Pazquel with TI (newest rev)
--        items:
--          - const: google,pazquel-sku1
--          - const: qcom,sc7180
--
--      - description: Google Pazquel with LTE and Parade (newest rev)
--        items:
--          - const: google,pazquel-sku4
--          - const: qcom,sc7180
--
-       - description: Google Pazquel with LTE and TI (newest rev)
-         items:
-           - const: google,pazquel-sku0
-           - const: google,pazquel-sku2
-           - const: qcom,sc7180
- 
--      - description: Sharp Dynabook Chromebook C1 (rev1)
--        items:
--          - const: google,pompom-rev1
--          - const: qcom,sc7180
--
--      - description: Sharp Dynabook Chromebook C1 (rev2)
--        items:
--          - const: google,pompom-rev2
--          - const: qcom,sc7180
--
--      - description: Sharp Dynabook Chromebook C1 (newest rev)
--        items:
--          - const: google,pompom
--          - const: qcom,sc7180
--
--      - description: Sharp Dynabook Chromebook C1 with LTE (rev1)
--        items:
--          - const: google,pompom-rev1-sku0
--          - const: qcom,sc7180
--
--      - description: Sharp Dynabook Chromebook C1 with LTE (rev2)
--        items:
--          - const: google,pompom-rev2-sku0
--          - const: qcom,sc7180
--
--      - description: Sharp Dynabook Chromebook C1 with LTE (newest rev)
--        items:
--          - const: google,pompom-sku0
--          - const: qcom,sc7180
--
--      - description: Google Quackingstick (newest rev)
--        items:
--          - const: google,quackingstick-sku1537
--          - const: qcom,sc7180
--
--      - description: Google Quackingstick with LTE (newest rev)
--        items:
--          - const: google,quackingstick-sku1536
--          - const: qcom,sc7180
--
--      - description: Google Trogdor (newest rev)
--        items:
--          - const: google,trogdor
--          - const: qcom,sc7180
--
--      - description: Google Trogdor with LTE (newest rev)
--        items:
--          - const: google,trogdor-sku0
--          - const: qcom,sc7180
--
--      - description: Lenovo IdeaPad Chromebook Duet 3 with BOE panel (rev0)
--        items:
--          - const: google,wormdingler-rev0-sku16
--          - const: qcom,sc7180
--
--      - description: Lenovo IdeaPad Chromebook Duet 3 with BOE panel (newest rev)
--        items:
--          - const: google,wormdingler-sku1024
--          - const: qcom,sc7180
--
--      - description: Lenovo IdeaPad Chromebook Duet 3 with BOE panel and rt5682s (newest rev)
--        items:
--          - const: google,wormdingler-sku1025
--          - const: qcom,sc7180
--
--      - description: Lenovo IdeaPad Chromebook Duet 3 with INX panel (rev0)
--        items:
--          - const: google,wormdingler-rev0-sku0
--          - const: qcom,sc7180
--
--      - description: Lenovo IdeaPad Chromebook Duet 3 with INX panel (newest rev)
--        items:
--          - const: google,wormdingler-sku0
--          - const: qcom,sc7180
--
--      - description: Lenovo IdeaPad Chromebook Duet 3 with INX panel and rt5682s (newest rev)
--        items:
--          - const: google,wormdingler-sku1
--          - const: qcom,sc7180
--
-       - description: Qualcomm Technologies, Inc. sc7280 CRD platform (rev3 - 4)
-         items:
-           - const: qcom,sc7280-crd
-@@ -451,11 +272,6 @@ properties:
-           - const: google,piglin-rev4
-           - const: qcom,sc7280
- 
--      - description: Qualcomm Technologies, Inc. sc7280 CRD platform (newest rev)
--        items:
--          - const: google,hoglin
--          - const: qcom,sc7280
--
-       - description: Qualcomm Technologies, Inc. sc7280 IDP SKU1 platform
-         items:
-           - const: qcom,sc7280-idp
-@@ -468,16 +284,6 @@ properties:
-           - const: google,piglin
-           - const: qcom,sc7280
- 
--      - description: Google Herobrine (newest rev)
--        items:
--          - const: google,herobrine
--          - const: qcom,sc7280
--
--      - description: Google Villager (newest rev)
--        items:
--          - const: google,villager
--          - const: qcom,sc7280
--
-       - items:
-           - {}
-           - const: qcom,qcs404-evb
+Peng Fan (9):
+  dt-bindings: pinctrl: imx8mm: use minItems for fsl,pins
+  dt-bindings: pinctrl: imx8mn: use minItems for fsl,pins
+  dt-bindings: pinctrl: imx8mq: use minItems for fsl,pins
+  dt-bindings: pinctrl: imx8mp: use minItems for fsl,pins
+  dt-bindings: pinctrl: imx8ulp: use minItems for fsl,pins
+  dt-bindings: pinctrl: imx93: use minItems for fsl,pins
+  dt-bindings: pinctrl: imx: scu: use minItems for fsl,pins
+  dt-bindings: pinctrl: imx: scu: correct example
+  dt-bindings: pinctrl: imx7d: use minItems for fsl,pins
+
+ .../devicetree/bindings/pinctrl/fsl,imx7d-pinctrl.yaml    | 1 +
+ .../devicetree/bindings/pinctrl/fsl,imx8mm-pinctrl.yaml   | 1 +
+ .../devicetree/bindings/pinctrl/fsl,imx8mn-pinctrl.yaml   | 1 +
+ .../devicetree/bindings/pinctrl/fsl,imx8mp-pinctrl.yaml   | 1 +
+ .../devicetree/bindings/pinctrl/fsl,imx8mq-pinctrl.yaml   | 1 +
+ .../devicetree/bindings/pinctrl/fsl,imx8ulp-pinctrl.yaml  | 1 +
+ .../devicetree/bindings/pinctrl/fsl,imx93-pinctrl.yaml    | 2 +-
+ .../devicetree/bindings/pinctrl/fsl,scu-pinctrl.yaml      | 8 ++++----
+ 8 files changed, 11 insertions(+), 5 deletions(-)
+
 -- 
-2.35.1
+2.25.1
 
