@@ -2,359 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B27057EE45
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 12:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D11B857EEDF
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 12:48:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238700AbiGWKJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 06:09:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43052 "EHLO
+        id S232852AbiGWKs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 06:48:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238939AbiGWKJG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 06:09:06 -0400
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [5.144.164.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6207F526;
-        Sat, 23 Jul 2022 03:02:13 -0700 (PDT)
-Received: from localhost.localdomain (abxj77.neoplus.adsl.tpnet.pl [83.9.3.77])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id E4EFB20682;
-        Sat, 23 Jul 2022 12:01:41 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/3] dt-bindings: clock: add SM6375 QCOM global clock bindings
-Date:   Sat, 23 Jul 2022 12:01:34 +0200
-Message-Id: <20220723100135.91784-2-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220723100135.91784-1-konrad.dybcio@somainline.org>
-References: <20220723100135.91784-1-konrad.dybcio@somainline.org>
-MIME-Version: 1.0
+        with ESMTP id S230399AbiGWKsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 06:48:55 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80051.outbound.protection.outlook.com [40.107.8.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCCE13E0C;
+        Sat, 23 Jul 2022 03:48:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cfG8MC9LxO4DiCKIYjlGne3FLRNmV0gKb0g2zKvd6qN2nz1dIvLScq1dXO9xxJKAlyLMc5Az/vdWsa4qvFAxskoBLMXbQKDaVgz9RpLjZXKkst1l5G9XcaP22yBau0wOsL69BbId7cMz46CqTczt3DTiH1FyMFSkaMJ7yirloGvRYPuJryvDN/HwMnSUl206/WWJojM3VihRUywm/utGKd3kuspW9JvAUedMmh2CaLBIaNoUIhE5cFA+QhkyDQrO8iF8pkNsmevXyqxzWQI/V3QLIHezzWA265yTFNp6aYjASw8hEJntu6n6mYCo0Uv8HqQcFDDwCO5jlXRPswyzzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ibd4i820qxOgB0fNOiwI+CbZGgGoHFg+890daPK2ilE=;
+ b=j0qpNdBh5HVCuIv7ThqEJlMk2nHTTP7VAows9VrcCrZpz0UggI2juee2TuUJrqPNSeZ/GT6istkablEbaT+MZvyDNGlAQop+b7n2MSSyPZ0VVzyoGB5txycK3jmN5boWUixAWUsKh1zjX9jCMWORjFSnIQM/MwZlVGZryVesuPlzRNQoNSWJjklqkzUgfT5Pne9gwZY/g/rP3QvK8JUheITBACk78KzITFg6uxswXQiq8UJSSC+caITlZ9dbPdBTqQVyQgUSVTtHRCuGZWgk2fHfdRRp50L0Sz7/unm9/XIsQ3hd4oQ6U7tmk1Z15DYtg7DfU4Qtbu7ljbvc3tNjqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ibd4i820qxOgB0fNOiwI+CbZGgGoHFg+890daPK2ilE=;
+ b=bWXqLdSQMNi2XDP2TZ18g/JLwakOPK9Y7Rx5ygdRG+8g7i3133nD1YP/YZgK0mMjRGhb9QBSgbL26P72Eo+LXBZZACZL9eGy6oW65rRvVyJ1zGIXC8YDSZW3+7IZ7lkUS3eSK5yPlrYBeVW7HdXiDX4zVjYsaRVAqBKuQuwFnc8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by VI1PR0402MB3709.eurprd04.prod.outlook.com (2603:10a6:803:1e::27) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5438.23; Sat, 23 Jul
+ 2022 10:48:49 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c0c2:ede7:3b85:1597]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::c0c2:ede7:3b85:1597%3]) with mapi id 15.20.5458.019; Sat, 23 Jul 2022
+ 10:48:49 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, tharvey@gateworks.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH] arm64: dts: imx8mp-venice-gw74xx: fix sai2 pin settings
+Date:   Sat, 23 Jul 2022 18:50:05 +0800
+Message-Id: <20220723105005.3583860-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75 autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SGBP274CA0006.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::18)
+ To DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c119dcca-0ea1-48f3-e7d5-08da6c98ecb0
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3709:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: L/eD5AWqTVeMbQYwugZX4A1wCXLk6KL1VoF9CE3W7cqwmGsIfGVt9A5dQURxk2rL1ZtgjsmAN9LPE65fOw4F4mADgpE/lePnII/8HcYBJd1kQIA+JdPeKdXMhUHwtZXhrm/V/5RBgRpcs9slL5xNMJEJttsuGosMZBZD0sgG1eUNiDnGhMfQWLTRjzVv8oiAziUnXhYWSyKW8wNkVG7LCjZxTv3xAfQuuAu/E19cimTT2mWtiZJQbYF/u8hnl8o5yMMzGZtaUhsQU85MR+ik8kNW0rFeljIxzy0sH36jn2qgsSER/VZY4gS8GTcnw5wdoGmsMJay39GBRBrgbJifhoX5oij26DtRwdr6eS1Tbd0SBKwAoF12ukFXlHM6sVW7B3Fqgn38I8xnliW/QBpwl5W/Fx7ZESWBDOPojHZB+KgRGB2lDMh7jHBsV6iHrobv3NJYjhgeVaD5x9wMI/pQD9Lqq4GLZ4RA+xc6UH/6IEAXvVh2GkMqB3rm3+nP3LGinghUyU9kOxShTEICH8DULRqL6pCL190H16b2XIaNdz45LLaICbMjHruy4tvGVe9BYPcyXyLMeTd49+tFG5xnAHY40gxknx+BQlJWTD3nGmtIQ5j3BASQgVtL74D/+xnk06y+d5OP17Tdye9mY144h3YCUr2k5xgxsV/b1I/9ViqTlpJgKSkrTG+kwdDW+qa4mdL06PEzFS0KZDJj7lIC4eSmOPb+gmJq443ViZlghY6oNW0warHvq75WjWe62gmH7p7duQIss20vtThHHjaGDytagK6fWs4b6QmaP9TDwsJeljdEIvE3ywWJWfGWWQNf4ZVWP0btkaZDpjSQO+gPsA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(376002)(366004)(346002)(396003)(39860400002)(66556008)(8676002)(66946007)(4326008)(316002)(8936002)(478600001)(6486002)(2616005)(5660300002)(66476007)(186003)(38350700002)(7416002)(6512007)(6506007)(2906002)(1076003)(83380400001)(52116002)(86362001)(38100700002)(6666004)(26005)(41300700001)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PKKvlojMjRU0R2mEf7LFzr+Foj74VHOupaEUF40m43rQCCMdcfNV5XispmCi?=
+ =?us-ascii?Q?J1ByI15Qd8Km7LMPxZsqTZJzsdXt/pVhogM2JqwsFnU3//uW0xdfvre/pCwR?=
+ =?us-ascii?Q?HNGm2eDflJujDOmW2S0a0C81PKYptGTZATBhrjKNpyYcdl14NdcBgKJTqwbX?=
+ =?us-ascii?Q?+mkgrYk+rMsnCYoEJu+XHDc9yo0Seu0igDZ+mv3uD7739z/ocvznKeCYNPxu?=
+ =?us-ascii?Q?qIIKpx7CFkdeBJ7qOOZxMImwj3oMcfo93nb+q03QgP7oVTSeA4RVhYUttie+?=
+ =?us-ascii?Q?ogEt3PtQ8HQZe9ZT9RXaBrIFS4odaBbMoc/IvbLNpcAchYPZHG2uUFj0+a7k?=
+ =?us-ascii?Q?LxOpx1og/asUzjFPFhDe22lmvocYlEXr90sxkVQqc6mMvicwNplixNA+R799?=
+ =?us-ascii?Q?r0efJaNLT4eAJmSTf6cPssyLGKqLiE9i7cu31MXdzsJ6dq+SGnah0dJca/pV?=
+ =?us-ascii?Q?0wKKqKafwRuEH+BW9upZ2LI0ApaW63LfgMOWvDby1G3LGGc7pSTn08Gazqig?=
+ =?us-ascii?Q?wL2F2x1fYZEn4aeKD/z1d3a8UR2iYu/hBuInTZ4ZLzR+Jw9q2rrhGGMPcarG?=
+ =?us-ascii?Q?F6Fin7Ibvm7c/pRp19n9I273g8LzbRkQyPhnQ2CqLmiPPz337rmP5VGFW1WI?=
+ =?us-ascii?Q?4hhXUXVvueScQdjMKF5K86OSHQznlk8zfhK40D2vKf6RDPmfuO3zmBG5pR6X?=
+ =?us-ascii?Q?M8YgJDKlL5xwRgSPvcfER/P0GA/QF24n7LsLlEvAN4WBgrLmTQZqfkWLpnDL?=
+ =?us-ascii?Q?ZXQmlUPtMRrZT2I40h2UM4BWnhWnUBctd59xewzngjxAoEKCt2yPL84fxL5Q?=
+ =?us-ascii?Q?8fFuunote3arVCKLuA+L2v3rcinlz+cuTK/areEh0IYjifQNJD8wXlXu5bou?=
+ =?us-ascii?Q?kl6kZPvYa8Ittwfp+DnjYIlus+FjByfCo0cpVtBLqPZo+jHZvx81OSkzQCCo?=
+ =?us-ascii?Q?H8UHibZ+zIzJAltkxwO5vn8y9YDHnJ5I6x7QCLW5tf4l25lfx3oWoakftpzW?=
+ =?us-ascii?Q?4ItbtBPu3wB6QmuoWoKQ9aPgoKEVyOdtHUKSSsED9A1tNRCnpLKeULRl0LGU?=
+ =?us-ascii?Q?RMThHSDKVyKgh3ripnxVjNNPJ5RP2Zk4amed1K5mF/TAp/jETpSNOMv2KDW1?=
+ =?us-ascii?Q?tEUhjPfjJmJHRs3VPZQYzvme/oWb2UX9nTsFoaz+rjLnZuJa/T4gn5gEkNSk?=
+ =?us-ascii?Q?r5iDo6gg+Y9J1LnOGnRLmp5x2immn8bwcIBdnxZtLF2xHilU6H6Gls6ytRLi?=
+ =?us-ascii?Q?/1XODJFprMz/dKiXka8rSrm1mWecgvGZxnJIr6hELxJhR08xTErD3tee06ET?=
+ =?us-ascii?Q?vo1iGiXruXA0uYQhy0KjD+jXj2dyJIZVFKb0FT9wj+4wrTFoYMMqbBgOwkQT?=
+ =?us-ascii?Q?YuD+gPd0J2RDsF6TMQRhSU7QiQr3Ru9z6m4r+5WefeM17iUDFzSwBN+y06Xj?=
+ =?us-ascii?Q?1Hy8hw65VdKlknbWQBUn59mAEs5kP63aSk3psfyDbs/WjrSKlI+i3G3WbiA9?=
+ =?us-ascii?Q?6f2QtUoAtJsQO5LLwcQktcm5dosXI9fXwybh/5y16vKW8xPF4of237nR/dR/?=
+ =?us-ascii?Q?A5yyWrzGdUz7EFEMErFXNYLqU7LBNCAxvfjJFF9U?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c119dcca-0ea1-48f3-e7d5-08da6c98ecb0
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jul 2022 10:48:49.2399
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: t4Q87IlwDQOb+Vc4prEMjsURSeEH2lrXgakHWyU8vOXLgAu5RIQXJmck0BWSYAT3f9JBwob11mN9y54CoBRriQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3709
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for global clock controller for SM6375 SoCs.
+From: Peng Fan <peng.fan@nxp.com>
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+The pad settings are missed, add them
+
+Fixes: 7899eb6cb15d ("arm64: dts: imx: Add i.MX8M Plus Gateworks gw7400 dts support")
+Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
-Changes since v2:
-- reference qcom,gcc.yaml
+ arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
- .../bindings/clock/qcom,sm6375-gcc.yaml       |  48 ++++
- include/dt-bindings/clock/qcom,sm6375-gcc.h   | 234 ++++++++++++++++++
- 2 files changed, 282 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
- create mode 100644 include/dt-bindings/clock/qcom,sm6375-gcc.h
-
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
-new file mode 100644
-index 000000000000..fb1c36888d18
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,sm6375-gcc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Global Clock & Reset Controller Binding for SM6375
-+
-+maintainers:
-+  - Konrad Dybcio <konrad.dybcio@somainline.org>
-+
-+description: |
-+  Qualcomm global clock control module which supports the clocks, resets and
-+  power domains on SM6375
-+
-+  See also:
-+  - dt-bindings/clock/qcom,sm6375-gcc.h
-+
-+allOf:
-+  - $ref: qcom,gcc.yaml#
-+
-+properties:
-+  compatible:
-+    const: qcom,sm6375-gcc
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+      - description: Board XO Active-Only source
-+      - description: Sleep clock source
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmcc.h>
-+    clock-controller@1400000 {
-+      compatible = "qcom,sm6375-gcc";
-+      reg = <0x01400000 0x1f0000>;
-+      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-+               <&rpmcc RPM_SMD_XO_A_CLK_SRC>,
-+               <&sleep_clk>;
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+      #power-domain-cells = <1>;
-+    };
-+
-+...
-diff --git a/include/dt-bindings/clock/qcom,sm6375-gcc.h b/include/dt-bindings/clock/qcom,sm6375-gcc.h
-new file mode 100644
-index 000000000000..1e9801e1cedf
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,sm6375-gcc.h
-@@ -0,0 +1,234 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022, Konrad Dybcio <konrad.dybcio@somainline.org>
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_GCC_SM6375_H
-+#define _DT_BINDINGS_CLK_QCOM_GCC_SM6375_H
-+
-+/* Clocks */
-+#define GPLL0						0
-+#define GPLL0_OUT_EVEN					1
-+#define GPLL0_OUT_ODD					2
-+#define GPLL1						3
-+#define GPLL10						4
-+#define GPLL11						5
-+#define GPLL3						6
-+#define GPLL3_OUT_EVEN					7
-+#define GPLL4						8
-+#define GPLL5						9
-+#define GPLL6						10
-+#define GPLL6_OUT_EVEN					11
-+#define GPLL7						12
-+#define GPLL8						13
-+#define GPLL8_OUT_EVEN					14
-+#define GPLL9						15
-+#define GPLL9_OUT_MAIN					16
-+#define GCC_AHB2PHY_CSI_CLK				17
-+#define GCC_AHB2PHY_USB_CLK				18
-+#define GCC_BIMC_GPU_AXI_CLK				19
-+#define GCC_BOOT_ROM_AHB_CLK				20
-+#define GCC_CAM_THROTTLE_NRT_CLK			21
-+#define GCC_CAM_THROTTLE_RT_CLK				22
-+#define GCC_CAMERA_AHB_CLK				23
-+#define GCC_CAMERA_XO_CLK				24
-+#define GCC_CAMSS_AXI_CLK				25
-+#define GCC_CAMSS_AXI_CLK_SRC				26
-+#define GCC_CAMSS_CAMNOC_ATB_CLK			27
-+#define GCC_CAMSS_CAMNOC_NTS_XO_CLK			28
-+#define GCC_CAMSS_CCI_0_CLK				29
-+#define GCC_CAMSS_CCI_0_CLK_SRC				30
-+#define GCC_CAMSS_CCI_1_CLK				31
-+#define GCC_CAMSS_CCI_1_CLK_SRC				32
-+#define GCC_CAMSS_CPHY_0_CLK				33
-+#define GCC_CAMSS_CPHY_1_CLK				34
-+#define GCC_CAMSS_CPHY_2_CLK				35
-+#define GCC_CAMSS_CPHY_3_CLK				36
-+#define GCC_CAMSS_CSI0PHYTIMER_CLK			37
-+#define GCC_CAMSS_CSI0PHYTIMER_CLK_SRC			38
-+#define GCC_CAMSS_CSI1PHYTIMER_CLK			39
-+#define GCC_CAMSS_CSI1PHYTIMER_CLK_SRC			40
-+#define GCC_CAMSS_CSI2PHYTIMER_CLK			41
-+#define GCC_CAMSS_CSI2PHYTIMER_CLK_SRC			42
-+#define GCC_CAMSS_CSI3PHYTIMER_CLK			43
-+#define GCC_CAMSS_CSI3PHYTIMER_CLK_SRC			44
-+#define GCC_CAMSS_MCLK0_CLK				45
-+#define GCC_CAMSS_MCLK0_CLK_SRC				46
-+#define GCC_CAMSS_MCLK1_CLK				47
-+#define GCC_CAMSS_MCLK1_CLK_SRC				48
-+#define GCC_CAMSS_MCLK2_CLK				49
-+#define GCC_CAMSS_MCLK2_CLK_SRC				50
-+#define GCC_CAMSS_MCLK3_CLK				51
-+#define GCC_CAMSS_MCLK3_CLK_SRC				52
-+#define GCC_CAMSS_MCLK4_CLK				53
-+#define GCC_CAMSS_MCLK4_CLK_SRC				54
-+#define GCC_CAMSS_NRT_AXI_CLK				55
-+#define GCC_CAMSS_OPE_AHB_CLK				56
-+#define GCC_CAMSS_OPE_AHB_CLK_SRC			57
-+#define GCC_CAMSS_OPE_CLK				58
-+#define GCC_CAMSS_OPE_CLK_SRC				59
-+#define GCC_CAMSS_RT_AXI_CLK				60
-+#define GCC_CAMSS_TFE_0_CLK				61
-+#define GCC_CAMSS_TFE_0_CLK_SRC				62
-+#define GCC_CAMSS_TFE_0_CPHY_RX_CLK			63
-+#define GCC_CAMSS_TFE_0_CSID_CLK			64
-+#define GCC_CAMSS_TFE_0_CSID_CLK_SRC			65
-+#define GCC_CAMSS_TFE_1_CLK				66
-+#define GCC_CAMSS_TFE_1_CLK_SRC				67
-+#define GCC_CAMSS_TFE_1_CPHY_RX_CLK			68
-+#define GCC_CAMSS_TFE_1_CSID_CLK			69
-+#define GCC_CAMSS_TFE_1_CSID_CLK_SRC			70
-+#define GCC_CAMSS_TFE_2_CLK				71
-+#define GCC_CAMSS_TFE_2_CLK_SRC				72
-+#define GCC_CAMSS_TFE_2_CPHY_RX_CLK			73
-+#define GCC_CAMSS_TFE_2_CSID_CLK			74
-+#define GCC_CAMSS_TFE_2_CSID_CLK_SRC			75
-+#define GCC_CAMSS_TFE_CPHY_RX_CLK_SRC			76
-+#define GCC_CAMSS_TOP_AHB_CLK				77
-+#define GCC_CAMSS_TOP_AHB_CLK_SRC			78
-+#define GCC_CFG_NOC_USB3_PRIM_AXI_CLK			79
-+#define GCC_CPUSS_AHB_CLK_SRC				80
-+#define GCC_CPUSS_AHB_POSTDIV_CLK_SRC			81
-+#define GCC_CPUSS_GNOC_CLK				82
-+#define GCC_DISP_AHB_CLK				83
-+#define GCC_DISP_GPLL0_CLK_SRC				84
-+#define GCC_DISP_GPLL0_DIV_CLK_SRC			85
-+#define GCC_DISP_HF_AXI_CLK				86
-+#define GCC_DISP_SLEEP_CLK				87
-+#define GCC_DISP_THROTTLE_CORE_CLK			88
-+#define GCC_DISP_XO_CLK					89
-+#define GCC_GP1_CLK					90
-+#define GCC_GP1_CLK_SRC					91
-+#define GCC_GP2_CLK					92
-+#define GCC_GP2_CLK_SRC					93
-+#define GCC_GP3_CLK					94
-+#define GCC_GP3_CLK_SRC					95
-+#define GCC_GPU_CFG_AHB_CLK				96
-+#define GCC_GPU_GPLL0_CLK_SRC				97
-+#define GCC_GPU_GPLL0_DIV_CLK_SRC			98
-+#define GCC_GPU_MEMNOC_GFX_CLK				99
-+#define GCC_GPU_SNOC_DVM_GFX_CLK			100
-+#define GCC_GPU_THROTTLE_CORE_CLK			101
-+#define GCC_PDM2_CLK					102
-+#define GCC_PDM2_CLK_SRC				103
-+#define GCC_PDM_AHB_CLK					104
-+#define GCC_PDM_XO4_CLK					105
-+#define GCC_PRNG_AHB_CLK				106
-+#define GCC_QMIP_CAMERA_NRT_AHB_CLK			107
-+#define GCC_QMIP_CAMERA_RT_AHB_CLK			108
-+#define GCC_QMIP_DISP_AHB_CLK				109
-+#define GCC_QMIP_GPU_CFG_AHB_CLK			110
-+#define GCC_QMIP_VIDEO_VCODEC_AHB_CLK			111
-+#define GCC_QUPV3_WRAP0_CORE_2X_CLK			112
-+#define GCC_QUPV3_WRAP0_CORE_CLK			113
-+#define GCC_QUPV3_WRAP0_S0_CLK				114
-+#define GCC_QUPV3_WRAP0_S0_CLK_SRC			115
-+#define GCC_QUPV3_WRAP0_S1_CLK				116
-+#define GCC_QUPV3_WRAP0_S1_CLK_SRC			117
-+#define GCC_QUPV3_WRAP0_S2_CLK				118
-+#define GCC_QUPV3_WRAP0_S2_CLK_SRC			119
-+#define GCC_QUPV3_WRAP0_S3_CLK				120
-+#define GCC_QUPV3_WRAP0_S3_CLK_SRC			121
-+#define GCC_QUPV3_WRAP0_S4_CLK				122
-+#define GCC_QUPV3_WRAP0_S4_CLK_SRC			123
-+#define GCC_QUPV3_WRAP0_S5_CLK				124
-+#define GCC_QUPV3_WRAP0_S5_CLK_SRC			125
-+#define GCC_QUPV3_WRAP1_CORE_2X_CLK			126
-+#define GCC_QUPV3_WRAP1_CORE_CLK			127
-+#define GCC_QUPV3_WRAP1_S0_CLK				128
-+#define GCC_QUPV3_WRAP1_S0_CLK_SRC			129
-+#define GCC_QUPV3_WRAP1_S1_CLK				130
-+#define GCC_QUPV3_WRAP1_S1_CLK_SRC			131
-+#define GCC_QUPV3_WRAP1_S2_CLK				132
-+#define GCC_QUPV3_WRAP1_S2_CLK_SRC			133
-+#define GCC_QUPV3_WRAP1_S3_CLK				134
-+#define GCC_QUPV3_WRAP1_S3_CLK_SRC			135
-+#define GCC_QUPV3_WRAP1_S4_CLK				136
-+#define GCC_QUPV3_WRAP1_S4_CLK_SRC			137
-+#define GCC_QUPV3_WRAP1_S5_CLK				138
-+#define GCC_QUPV3_WRAP1_S5_CLK_SRC			139
-+#define GCC_QUPV3_WRAP_0_M_AHB_CLK			140
-+#define GCC_QUPV3_WRAP_0_S_AHB_CLK			141
-+#define GCC_QUPV3_WRAP_1_M_AHB_CLK			142
-+#define GCC_QUPV3_WRAP_1_S_AHB_CLK			143
-+#define GCC_RX5_PCIE_CLKREF_EN_CLK			144
-+#define GCC_SDCC1_AHB_CLK				145
-+#define GCC_SDCC1_APPS_CLK				146
-+#define GCC_SDCC1_APPS_CLK_SRC				147
-+#define GCC_SDCC1_ICE_CORE_CLK				148
-+#define GCC_SDCC1_ICE_CORE_CLK_SRC			149
-+#define GCC_SDCC2_AHB_CLK				150
-+#define GCC_SDCC2_APPS_CLK				151
-+#define GCC_SDCC2_APPS_CLK_SRC				152
-+#define GCC_SYS_NOC_CPUSS_AHB_CLK			153
-+#define GCC_SYS_NOC_UFS_PHY_AXI_CLK			154
-+#define GCC_SYS_NOC_USB3_PRIM_AXI_CLK			155
-+#define GCC_UFS_MEM_CLKREF_CLK				156
-+#define GCC_UFS_PHY_AHB_CLK				157
-+#define GCC_UFS_PHY_AXI_CLK				158
-+#define GCC_UFS_PHY_AXI_CLK_SRC				159
-+#define GCC_UFS_PHY_ICE_CORE_CLK			160
-+#define GCC_UFS_PHY_ICE_CORE_CLK_SRC			161
-+#define GCC_UFS_PHY_PHY_AUX_CLK				162
-+#define GCC_UFS_PHY_PHY_AUX_CLK_SRC			163
-+#define GCC_UFS_PHY_RX_SYMBOL_0_CLK			164
-+#define GCC_UFS_PHY_TX_SYMBOL_0_CLK			165
-+#define GCC_UFS_PHY_UNIPRO_CORE_CLK			166
-+#define GCC_UFS_PHY_UNIPRO_CORE_CLK_SRC			167
-+#define GCC_USB30_PRIM_MASTER_CLK			168
-+#define GCC_USB30_PRIM_MASTER_CLK_SRC			169
-+#define GCC_USB30_PRIM_MOCK_UTMI_CLK			170
-+#define GCC_USB30_PRIM_MOCK_UTMI_CLK_SRC		171
-+#define GCC_USB30_PRIM_MOCK_UTMI_POSTDIV_CLK_SRC	172
-+#define GCC_USB30_PRIM_SLEEP_CLK			173
-+#define GCC_USB3_PRIM_CLKREF_CLK			174
-+#define GCC_USB3_PRIM_PHY_AUX_CLK_SRC			175
-+#define GCC_USB3_PRIM_PHY_COM_AUX_CLK			176
-+#define GCC_USB3_PRIM_PHY_PIPE_CLK			177
-+#define GCC_VCODEC0_AXI_CLK				178
-+#define GCC_VENUS_AHB_CLK				179
-+#define GCC_VENUS_CTL_AXI_CLK				180
-+#define GCC_VIDEO_AHB_CLK				181
-+#define GCC_VIDEO_AXI0_CLK				182
-+#define GCC_VIDEO_THROTTLE_CORE_CLK			183
-+#define GCC_VIDEO_VCODEC0_SYS_CLK			184
-+#define GCC_VIDEO_VENUS_CLK_SRC				185
-+#define GCC_VIDEO_VENUS_CTL_CLK				186
-+#define GCC_VIDEO_XO_CLK				187
-+
-+/* Resets */
-+#define GCC_CAMSS_OPE_BCR				0
-+#define GCC_CAMSS_TFE_BCR				1
-+#define GCC_CAMSS_TOP_BCR				2
-+#define GCC_GPU_BCR					3
-+#define GCC_MMSS_BCR					4
-+#define GCC_PDM_BCR					5
-+#define GCC_PRNG_BCR					6
-+#define GCC_QUPV3_WRAPPER_0_BCR				7
-+#define GCC_QUPV3_WRAPPER_1_BCR				8
-+#define GCC_QUSB2PHY_PRIM_BCR				9
-+#define GCC_QUSB2PHY_SEC_BCR				10
-+#define GCC_SDCC1_BCR					11
-+#define GCC_SDCC2_BCR					12
-+#define GCC_UFS_PHY_BCR					13
-+#define GCC_USB30_PRIM_BCR				14
-+#define GCC_USB_PHY_CFG_AHB2PHY_BCR			15
-+#define GCC_VCODEC0_BCR					16
-+#define GCC_VENUS_BCR					17
-+#define GCC_VIDEO_INTERFACE_BCR				18
-+#define GCC_USB3_DP_PHY_PRIM_BCR			19
-+#define GCC_USB3_PHY_PRIM_SP0_BCR			20
-+
-+/* GDSCs */
-+#define USB30_PRIM_GDSC					0
-+#define UFS_PHY_GDSC					1
-+#define CAMSS_TOP_GDSC					2
-+#define VENUS_GDSC					3
-+#define VCODEC0_GDSC					4
-+#define HLOS1_VOTE_MM_SNOC_MMU_TBU_NRT_GDSC		5
-+#define HLOS1_VOTE_MM_SNOC_MMU_TBU_RT_GDSC		6
-+#define HLOS1_VOTE_TURING_MMU_TBU0_GDSC			7
-+#define HLOS1_VOTE_TURING_MMU_TBU1_GDSC			8
-+
-+#endif
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+index 521215520a0f..6630ec561dc2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
+@@ -770,10 +770,10 @@ MX8MP_IOMUXC_NAND_DATA03__GPIO3_IO09	0x110
+ 
+ 	pinctrl_sai2: sai2grp {
+ 		fsl,pins = <
+-			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC
+-			MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00
+-			MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK
+-			MX8MP_IOMUXC_SAI2_MCLK__AUDIOMIX_SAI2_MCLK
++			MX8MP_IOMUXC_SAI2_TXFS__AUDIOMIX_SAI2_TX_SYNC	0xd6
++			MX8MP_IOMUXC_SAI2_TXD0__AUDIOMIX_SAI2_TX_DATA00	0xd6
++			MX8MP_IOMUXC_SAI2_TXC__AUDIOMIX_SAI2_TX_BCLK	0xd6
++			MX8MP_IOMUXC_SAI2_MCLK__AUDIOMIX_SAI2_MCLK	0xd6
+ 		>;
+ 	};
+ 
 -- 
-2.37.1
+2.25.1
 
