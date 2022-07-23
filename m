@@ -2,190 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4222A57F0FE
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 20:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7C3657F103
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 20:57:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232624AbiGWSuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 14:50:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53326 "EHLO
+        id S238214AbiGWS54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 14:57:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232490AbiGWSuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 14:50:11 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C51782610
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 11:50:08 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id t1so12357449lft.8
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 11:50:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=B+vvDtYGi1XDKiuGjmDw/lVU+xC9oujhBoztFUY2G+U=;
-        b=SlWw/tImFQZIeS1Hg1TtKzgSZQ49TJZ9bTLtA3YySZ2LrccpK+g5tHfRNOnwpTOwzZ
-         ly8aO31AcU0X43fVYjnTzcZ5U9PXvri7Setm6Uehj2NeCVG6Wjzq1eOrcpFVPGBB2kJl
-         3EPxeCd7hCS9tcwd4b4eBwXXOQMN9lCdGOE9pIgR9I1NDzezeoxImAWWsfYDwZk5QTZv
-         2jlE8byeiWrusQDzQr8VBArJn7GJAUHKjVGsEFg/7NZ+M0DNaan0sHO5hpD2kBViTQaT
-         pfYaxsrpL3CqUEkhCtiyKvxCfpF3IiopehUCN704LF2wp6sMtmunyKlPJljjP4r2K765
-         GX/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=B+vvDtYGi1XDKiuGjmDw/lVU+xC9oujhBoztFUY2G+U=;
-        b=WCEihXZRYyHM05thxY69O7MEXMJT8YBldIjnsPUJoIKbKMGcbmevXfxCYu9b9FW89q
-         Xe00+ayW8gtMADSMDemIBtS9ABhH+JZWmAH6R31kMC7RUeNA2HGQXP7LRh1MvZpeAsMj
-         iDbOI7GROcpTRiZjwRkYdxz2jtI78TRGvsyrWT8kSz7085p6qPTARBmj3Typ1aOjFW2F
-         x1WAcCUzloQ8MGSTYiDVCNqGkd9wxo9tILALUoS25KHY2egVMG9dEf+G9FeisEz2yS/E
-         7hE+qNLNDb/jn1kUEOzJRY6yDBlwPQJ6kATLWQFf0xElaW48KmAaqU9Bvrq+TTkZblnB
-         7bZg==
-X-Gm-Message-State: AJIora/tJ9tnwwoPQgU0UlpAoE1tZVY24ADkdG9kEbFeQ96ZEJISVcN1
-        c8ojZuBJpkSBthapvx45SQ6j4g==
-X-Google-Smtp-Source: AGRyM1tJ3m1Ldo3gY1ozOqzQBPwlbigKbf8YB3WWehnFWJAkReNx2LOf/rTS6Rxfn1qC7HMI24wTxw==
-X-Received: by 2002:a05:6512:10d0:b0:48a:6cee:50d0 with SMTP id k16-20020a05651210d000b0048a6cee50d0mr2039323lfg.222.1658602206736;
-        Sat, 23 Jul 2022 11:50:06 -0700 (PDT)
-Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id h11-20020a0565123c8b00b0048a7d33e0f0sm447803lfv.261.2022.07.23.11.50.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Jul 2022 11:50:06 -0700 (PDT)
-Message-ID: <2c11d0b0-b012-ea24-5c3c-305bbdd231a0@linaro.org>
-Date:   Sat, 23 Jul 2022 20:50:03 +0200
+        with ESMTP id S232490AbiGWS5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 14:57:54 -0400
+Received: from mail-4027.protonmail.ch (mail-4027.protonmail.ch [185.70.40.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 973AF1658B;
+        Sat, 23 Jul 2022 11:57:52 -0700 (PDT)
+Date:   Sat, 23 Jul 2022 18:57:33 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1658602670; x=1658861870;
+        bh=m8R1HiRlIp9Imo0Yj9VIVGVtSUHR6cnW7lkME/XSDRo=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:Feedback-ID:From:To:
+         Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID;
+        b=DV1+t+qXdVU50nQIMWc8T6Jzh7S0g5g4U6/w2tstnOE0yWj0+gO4mUgAZHgbLumCm
+         Tj7VQIEGCSUQpVaHYbvJrDeC7U47ys9bUWPmuhknp9na6TxYdidKXfADa6/WdZJ9OO
+         IPrqMoBTp1X6w4LqvUs47dXuQC46qA/sI4g42aKvnGDmGLzb9umN/Ognsk3qj8Y/yO
+         V16VQdCPmDKDw9g05rqSc9l7vORyn5fhG/RlQ3xjaurmu0rTO8ktXdMbXlUkXeV6vH
+         yAwbe0lTpwIJsg35k/zBNCdGCcNXO8dcgXfbcC5f3J3GL56PWqs89+fzK5pG9OheEE
+         jqJDV7PbKhxaQ==
+To:     devicetree@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, soc@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Subject: [PATCH v6 0/5] Add Samsung Galaxy E5/E7/Grand Max device trees
+Message-ID: <20220723185424.203340-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 3/4] dt-bindings: irqchip: imx mu work as msi
- controller
-Content-Language: en-US
-To:     Frank Li <Frank.Li@nxp.com>, jdmason@kudzu.us, maz@kernel.org,
-        tglx@linutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com
-Cc:     kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        peng.fan@nxp.com, aisheng.dong@nxp.com, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com,
-        lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
-References: <20220720213036.1738628-1-Frank.Li@nxp.com>
- <20220720213036.1738628-4-Frank.Li@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220720213036.1738628-4-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2022 23:30, Frank Li wrote:
-> imx mu support generate irq by write a register.
-> provide msi controller support so other driver
-> can use it by standard msi interface.
+v6: Rename touchscreen analog regulator for a2015
+Use regulator haptic instead of GPIO vibrator
+Fix email in Acked-by tag
+v5: Fix Error:
+arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi:36.2-22 Properti=
+es
+must precede subnodes
+Restore Acked-by tag in the dt-bindings patch
+v4: Disable i2c2 until lis2hh12 accelerometer is fixed.
+Add GPIO LEDs for Grand Max.
+v3: Add a cover letter and changelog
+v2: Add dt-bindings documentation
 
-Please start sentences with capital letter. Unfortunately I don't
-understand the sentences. Please describe shortly the hardware.
+Samsung Galaxy E5, E7 and Grand Max are smartphones using the MSM8916 SoC
+released in 2015.
 
+e2015 and a2015 are similar, with some differences in accelerometer,
+MUIC and Vibrator. The common parts are shared in
+msm8916-samsung-a2015-common.dtsi to reduce duplication.
 
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../interrupt-controller/fsl,mu-msi.yaml      | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
-> new file mode 100644
-> index 0000000000000..e125294243af3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/fsl,mu-msi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX Messaging Unit (MU) work as msi controller
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +description: |
-> +  The Messaging Unit module enables two processors within the SoC to
-> +  communicate and coordinate by passing messages (e.g. data, status
-> +  and control) through the MU interface. The MU also provides the ability
-> +  for one processor to signal the other processor using interrupts.
-> +
-> +  Because the MU manages the messaging between processors, the MU uses
-> +  different clocks (from each side of the different peripheral buses).
-> +  Therefore, the MU must synchronize the accesses from one side to the
-> +  other. The MU accomplishes synchronization using two sets of matching
-> +  registers (Processor A-facing, Processor B-facing).
-> +
-> +  MU can work as msi interrupt controller to do doorbell
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx6sx-mu-msi
-> +      - fsl,imx7ulp-mu-msi
-> +      - fsl,imx8ulp-mu-msi
-> +      - fsl,imx8ulp-mu-msi-s4
-> +
-> +  reg:
-> +    minItems: 2
+The three devices (and all other variants of E5/E7/Grand Max released in
+2015) are very similar, with some differences in display, touchscreen,
+sensors and NFC. The common parts are shared in
+msm8916-samsung-e2015-common.dtsi to reduce duplication.
 
-Not minItems but maxItems in general, but anyway you need to actually
-list and describe the items (and then skip min/max)
+Unfortunately, some E5/E7/Grand Max were released with outdated 32-bit
+only firmware and never received any update from Samsung. Since the 32-bit
+TrustZone firmware is signed there seems to be no way currently to
+actually boot this device tree on arm64 Linux on those variants at the
+moment.
 
-> +
-> +  reg-names:
-> +    items:
-> +      - const: a
-> +      - const: b
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 2
+However, it is possible to use this device tree by compiling an ARM32
+kernel instead. The device tree can be easily built on ARM32 with
+an #include and it works really well there. To avoid confusion for others
+it is still better to add this device tree on arm64. Otherwise it's easy
+to forget to update this one when making some changes that affect all
+MSM8916 devices.
 
-and here you correctly use maxItems, so why min in reg? Anyway, instead
-you need to list and describe the items.
+Maybe someone finds a way to boot ARM64 Linux on those device at some
+point. In this case I expect that this device tree can be simply used
+as-is.
 
-Actually I asked you this last time about interrupts, so you ignored
-that comment.
-
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: a
-> +      - const: b
-> +
-> +  interrupt-controller: true
-> +
-> +  msi-controller: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - msi-controller
-> +  - interrupt-controller
-
-Why different order than used in properties?
-
-
-
-Best regards,
-Krzysztof
