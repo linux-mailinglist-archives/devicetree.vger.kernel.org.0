@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E10757F161
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 22:44:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0625B57F162
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 22:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232294AbiGWUoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 16:44:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46780 "EHLO
+        id S233302AbiGWUoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 16:44:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229542AbiGWUoO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 16:44:14 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97D861B795
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 13:44:13 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id b7-20020a17090a12c700b001f20eb82a08so10954082pjg.3
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 13:44:13 -0700 (PDT)
+        with ESMTP id S229542AbiGWUoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 16:44:19 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F57B1B795
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 13:44:19 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id bk6-20020a17090b080600b001f2138a2a7bso8574607pjb.1
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 13:44:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Ya3Nv1BTlUUpwGAncPsDfdl2nqFWAnDiqXbLgPZdXYg=;
-        b=HTFeQ7kucR3M2+AUfUpXXnIYYsgtk8UBbjxiWQ3Wm53QGLhyjJAd/GSLzQ4zzFSk0T
-         YCkxoaFSOs34z2PzuWZHosX3/UvLV4Qgrqpgw5U4KyfvPyBtIZIol9qRgFu5nwoJLfCz
-         vv5t0OO8pRckOTBNAeYVQ8BCRDY8NqpGwezWdZJJFDjzhomhXODgfvKBYfu63FRX3raD
-         i/U9aK+KS1MqsAeK2UA2zbB/yjLB3PuVEm+VMRbbcySEyH+UFAsfkkgxdtCZbOfGmmgo
-         O1i+uzC5JeaP2iCHqnXBjN06YZS75ccwNUjdQPIm0ZNXgT19yFyVOK9Wfty2vyC6t3JQ
-         6/mQ==
+        bh=0JYQHhkMBvJ54BnDj2DKX+8l1TYnz+gpKI3PN4wmfDQ=;
+        b=v2E3nNGM2y1pGKkwxe8O29Kl/nsdVaQjCOKxwOL95dsKTeA2SJJj9GrV0DlE5YyUY4
+         ZpRnmeHzPCjvFOgGHEU3YHRhRm6eZdJ9HSC4LTDz/lpSyiFApm+4nvypziOPD1+R1fKj
+         /yNLFnzKNBGpTFM4T3P0feRsMQ/Imddav3cU/m65MQi0+jYNJsGYUwemHn3fKnQxWlUu
+         wSKkKR/qoTEGoiGM0km1sv8A1GlVokHJIod/b7r8mIlz+C7a1lVN3+hXedp/iKLSCWtD
+         Q5hJ4jNN+Qgc33GXKN1/niu7BpYzcNa7JDoCSzO/eBKlvUPoeyudN0HxzjVhtYnHCZda
+         +GhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Ya3Nv1BTlUUpwGAncPsDfdl2nqFWAnDiqXbLgPZdXYg=;
-        b=kpKTyviiZd3LpBDflmQgQy5CHjmJz2IHgn3wKxf4dnpmWbbzufgyL2RbIykDDpYzpL
-         MAyGG0PCaYTQrQFaoGNiQVEnNGmDWAoAVM2sqXET/6+uM0W7Jkc1UlX1M3HEU+koPbHW
-         qaa/vjcogJZJrmCCOmtz2Uyy5SEOB3Svm4XvEl/iVvI8w+CvxbSMbQN2OPy9hobTS/Pn
-         0M4KdOvWlzWCFVWC1nMBMugZdl5AJWZ02A4qmBYbl5OXiNUv9hJhmeDCQwWENfg64ycT
-         G3ZwWbZDNEhGtQ8YaAWd05sIpGJWPmcDrYcz9aG8v89WBhVSLSBrbJFVJcZkhgRVhfxi
-         +kMQ==
-X-Gm-Message-State: AJIora8HizRiszPdvbfoJFD37gCiRt7xtOJ+Bseit4XbTecEYo90JUi2
-        ymo9UwlLb7JjX6D5vOXstMrxcQ==
-X-Google-Smtp-Source: AGRyM1vBB0eSjNmpQs3DSZOBgAS25ovghKKNEzKyk544KKusygz70CWKQNKSfDSroiZdY4fhQhc7wA==
-X-Received: by 2002:a17:902:e886:b0:16d:5184:11fa with SMTP id w6-20020a170902e88600b0016d518411famr3908270plg.2.1658609053254;
-        Sat, 23 Jul 2022 13:44:13 -0700 (PDT)
+        bh=0JYQHhkMBvJ54BnDj2DKX+8l1TYnz+gpKI3PN4wmfDQ=;
+        b=psalZhPOCSF2ttNxgAMHgWV9YpAuCCeSFfQqkMDIf060k6/IyGztZvGU6A8y2SHf8P
+         wsA+DwYoN3RDLe8RDft+BsF1Op38ZrpMissn2RGPGVDlB1owgzyNAEtVBjMXSvqasvGn
+         vPDXPCwFYMcHmOqcPQ2MPoXdOEjUHUakr3LwByYvXFbalwtChQmaTrUQVs2O/OqGqA2z
+         lCfkiJtyKtFVCnB4q3VPLDc8TNR9RQfB9TkgsE3aL5G9I23AdYPMIfYa9mUeB16Wii8/
+         A3KC5DV1o4UiYtrSTKoeRLrsuW8ID0BZG4EcQfZKayChHao3C0r6yyKMbhjLcuwEEuBn
+         AXsg==
+X-Gm-Message-State: AJIora+9VkOWRBPY/MAlndlElC25Qju4ESomou85JKHyGVEoyQulpPLf
+        d1AlOhpP91KwmT2a7UrqlHk4Lg==
+X-Google-Smtp-Source: AGRyM1sGe/YuF2G1ZykcVfuYkCukeJuL1dDJ7wz1R0rzQGKqNZYb7QZu37z3YlzWV+NPfxQShPBssA==
+X-Received: by 2002:a17:90b:2241:b0:1f0:2fa5:184f with SMTP id hk1-20020a17090b224100b001f02fa5184fmr24551243pjb.97.1658609058552;
+        Sat, 23 Jul 2022 13:44:18 -0700 (PDT)
 Received: from localhost.localdomain ([2405:201:c00a:a073:a406:cc30:f4ec:f10a])
-        by smtp.gmail.com with ESMTPSA id u14-20020a170902e80e00b0016a6caacaefsm6187950plg.103.2022.07.23.13.44.06
+        by smtp.gmail.com with ESMTPSA id u14-20020a170902e80e00b0016a6caacaefsm6187950plg.103.2022.07.23.13.44.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Jul 2022 13:44:12 -0700 (PDT)
+        Sat, 23 Jul 2022 13:44:18 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kever Yang <kever.yang@rock-chips.com>
 Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH 04/22] dt-bindings: power: rockchip: Document RV1126 PMU IO domains
-Date:   Sun, 24 Jul 2022 02:13:17 +0530
-Message-Id: <20220723204335.750095-5-jagan@edgeble.ai>
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Jagan Teki <jagan@edgeble.ai>
+Subject: [PATCH 05/22] soc: rockchip: io-domain: Add RV1126 IO domains
+Date:   Sun, 24 Jul 2022 02:13:18 +0530
+Message-Id: <20220723204335.750095-6-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220723204335.750095-1-jagan@edgeble.ai>
 References: <20220723204335.750095-1-jagan@edgeble.ai>
@@ -71,68 +73,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document dt-bindings for RV1126 PMU IO domains.
+From: Jianqun Xu <jay.xu@rock-chips.com>
 
+Add IO domains support for RV1126 SoC.
+
+Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>
+Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
- .../bindings/power/rockchip-io-domain.yaml    | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+ drivers/soc/rockchip/io-domain.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/rockchip-io-domain.yaml b/Documentation/devicetree/bindings/power/rockchip-io-domain.yaml
-index 1727bf108979..d71fc72d4464 100644
---- a/Documentation/devicetree/bindings/power/rockchip-io-domain.yaml
-+++ b/Documentation/devicetree/bindings/power/rockchip-io-domain.yaml
-@@ -58,6 +58,7 @@ properties:
-       - rockchip,rk3568-pmu-io-voltage-domain
-       - rockchip,rv1108-io-voltage-domain
-       - rockchip,rv1108-pmu-io-voltage-domain
-+      - rockchip,rv1126-pmu-io-voltage-domain
+diff --git a/drivers/soc/rockchip/io-domain.c b/drivers/soc/rockchip/io-domain.c
+index 9df513d1219b..6619256c2d11 100644
+--- a/drivers/soc/rockchip/io-domain.c
++++ b/drivers/soc/rockchip/io-domain.c
+@@ -491,6 +491,22 @@ static const struct rockchip_iodomain_soc_data soc_data_rv1108_pmu = {
+ 	},
+ };
  
- required:
-   - compatible
-@@ -78,6 +79,7 @@ allOf:
-   - $ref: "#/$defs/rk3568-pmu"
-   - $ref: "#/$defs/rv1108"
-   - $ref: "#/$defs/rv1108-pmu"
-+  - $ref: "#/$defs/rv1126-pmu"
- 
- $defs:
-   px30:
-@@ -344,6 +346,34 @@ $defs:
-         pmu-supply:
-           description: The supply connected to PMUIO_VDD.
- 
-+  rv1126-pmu:
-+    if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rv1126-pmu-io-voltage-domain
++static const struct rockchip_iodomain_soc_data soc_data_rv1126_pmu = {
++	.grf_offset = 0x140,
++	.supply_names = {
++		NULL,
++		"vccio1",
++		"vccio2",
++		"vccio3",
++		"vccio4",
++		"vccio5",
++		"vccio6",
++		"vccio7",
++		"pmuio0",
++		"pmuio1",
++	},
++};
 +
-+    then:
-+      properties:
-+        vccio1-supply:
-+          description: The supply connected to VCCIO1.
-+        vccio2-supply:
-+          description: The supply connected to VCCIO2.
-+        vccio3-supply:
-+          description: The supply connected to VCCIO3.
-+        vccio4-supply:
-+          description: The supply connected to VCCIO4.
-+        vccio5-supply:
-+          description: The supply connected to VCCIO5.
-+        vccio6-supply:
-+          description: The supply connected to VCCIO6.
-+        vccio7-supply:
-+          description: The supply connected to VCCIO7.
-+        pmuio0-supply:
-+          description: The supply connected to PMUIO0.
-+        pmuio1-supply:
-+          description: The supply connected to PMUIO1.
-+
- examples:
-   - |
-     io-domains {
+ static const struct of_device_id rockchip_iodomain_match[] = {
+ 	{
+ 		.compatible = "rockchip,px30-io-voltage-domain",
+@@ -544,6 +560,10 @@ static const struct of_device_id rockchip_iodomain_match[] = {
+ 		.compatible = "rockchip,rv1108-pmu-io-voltage-domain",
+ 		.data = &soc_data_rv1108_pmu
+ 	},
++	{
++		.compatible = "rockchip,rv1126-pmu-io-voltage-domain",
++		.data = &soc_data_rv1126_pmu
++	},
+ 	{ /* sentinel */ },
+ };
+ MODULE_DEVICE_TABLE(of, rockchip_iodomain_match);
 -- 
 2.25.1
 
