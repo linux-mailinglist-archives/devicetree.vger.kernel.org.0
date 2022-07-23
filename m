@@ -2,93 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C34157ECB9
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 10:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5087D57ECBE
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 10:30:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230217AbiGWI1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 04:27:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50852 "EHLO
+        id S230309AbiGWIae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 04:30:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233913AbiGWI1v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 04:27:51 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 146422A94A
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 01:27:50 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id t22so4564978lfg.1
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 01:27:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=2n2UJ/+3iJaUYMgrHfASASdjwSo9Al6kqw/c32WAOhk=;
-        b=gggpmFdg2nW17a0F0lgCxdcV/m0aNWCH/44I1cZQ4tBjdIHa15wT6MEaG5CFTle8L+
-         lXOMPyFJK5YXen51QZiezL+tWgOsHfIVtIoBIycw3MDx2cGu7q4y3tyhi6CdkCkyUMeA
-         a6QHSt1pyjlXZxNlXBUlxAfY4DH4Xh2gC2QnhZEbdEKwxjHG3DfMMd8AiyCjF88/RmOI
-         LfOlMj1sMzwjD1OhmlrFycKGjrgBa56BcVCfdVojy1yZebKyskUUBhwldaMhZoikkeBX
-         wS2jPIojNtKnTz9h4qGv1Yr3sY6IMzAHaA0W91RfSqdUObIfwBwssHwEcVlUxbqS6hD4
-         yksg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=2n2UJ/+3iJaUYMgrHfASASdjwSo9Al6kqw/c32WAOhk=;
-        b=IfPOwG2MZmmRRCKR1pes4ca/H0jCZcQGJlclqe2eYOWrkq7dIvyJkcqfC4CJRuUGI/
-         gVH3mX9uaJIZSyLFKIQl2fBfC91Y/W/vTBXqcTNa6uGhc6Nf4+WAE+VXEEh+5MarXJZw
-         AKE9VhmG3kO35/nSNMlKR4VQHrZ21UkuXa8fIyuToBM7621GhAMG95W4xZkVzx5Wukd+
-         4zeozEO1MGAMGF4HSxm2As3fIaaIGKF7hzwjz9spqitEKsUco/f4wH+NZxYcy9c+ySsh
-         H3oOTasTAu5D0oX+bVcQnnTUm5GO6rCmkH336Z1HLH52CwGiVRSESWrjzXXDGbSedTsH
-         mhsw==
-X-Gm-Message-State: AJIora+8pRcMvOvz1oZO30RJkTMO/w+O3FavGzDM/a/COfIVLf8QRqEw
-        D+J/F5QRVBQtdFG11wFQT1FS9g==
-X-Google-Smtp-Source: AGRyM1vWWS9caJHUIUqf6CAjbWuVstmpc/HF70UbNoGAQZ14kTKxjW7UUNcvdsq2OZy6dhKnfxp4Hg==
-X-Received: by 2002:a05:6512:3342:b0:489:e36b:4149 with SMTP id y2-20020a056512334200b00489e36b4149mr1388490lfd.588.1658564868434;
-        Sat, 23 Jul 2022 01:27:48 -0700 (PDT)
-Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac25f08000000b0047f65b60323sm837988lfq.3.2022.07.23.01.27.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Jul 2022 01:27:47 -0700 (PDT)
-Message-ID: <3b5bf57d-632f-7b6e-7c7d-9a4cd39b317b@linaro.org>
-Date:   Sat, 23 Jul 2022 10:27:46 +0200
+        with ESMTP id S237150AbiGWIad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 04:30:33 -0400
+Received: from mx01.omp.ru (mx01.omp.ru [90.154.21.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 153E51836A;
+        Sat, 23 Jul 2022 01:30:29 -0700 (PDT)
+Received: from [192.168.1.103] (31.173.80.87) by msexch01.omp.ru (10.188.4.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.986.14; Sat, 23 Jul
+ 2022 11:30:17 +0300
+Subject: Re: [PATCH 1/3] mtd: spi-nor: Use the spi-mem poll status APIs.
+To:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>, <tudor.ambarus@microchip.com>,
+        <p.yadav@ti.com>, <michael@walle.cc>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>, <broonie@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>,
+        <linux-mips@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <aidanmacdonald.0x0@gmail.com>,
+        <tmn505@gmail.com>, <paul@crapouillou.net>,
+        <dongsheng.qiu@ingenic.com>, <aric.pzqi@ingenic.com>,
+        <rick.tyliu@ingenic.com>, <jinghui.liu@ingenic.com>,
+        <sernia.zhou@foxmail.com>, <reimu@sudomaker.com>
+References: <1658508510-15400-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1658508510-15400-2-git-send-email-zhouyanjie@wanyeetech.com>
+From:   Sergey Shtylyov <s.shtylyov@omp.ru>
+Organization: Open Mobile Platform
+Message-ID: <1926ce77-6de0-0d87-d676-6ae93fa5c527@omp.ru>
+Date:   Sat, 23 Jul 2022 11:30:16 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: smd: reference SMD edge
- schema
+In-Reply-To: <1658508510-15400-2-git-send-email-zhouyanjie@wanyeetech.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220723082358.39544-1-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220723082358.39544-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [31.173.80.87]
+X-ClientProxiedBy: msexch01.omp.ru (10.188.4.12) To msexch01.omp.ru
+ (10.188.4.12)
+X-KSE-ServerInfo: msexch01.omp.ru, 9
+X-KSE-AntiSpam-Interceptor-Info: scan successful
+X-KSE-AntiSpam-Version: 5.9.20, Database issued on: 07/23/2022 08:13:55
+X-KSE-AntiSpam-Status: KAS_STATUS_NOT_DETECTED
+X-KSE-AntiSpam-Method: none
+X-KSE-AntiSpam-Rate: 59
+X-KSE-AntiSpam-Info: Lua profiles 171890 [Jul 23 2022]
+X-KSE-AntiSpam-Info: Version: 5.9.20.0
+X-KSE-AntiSpam-Info: Envelope from: s.shtylyov@omp.ru
+X-KSE-AntiSpam-Info: LuaCore: 493 493 c80a237886b75a8eec705b487193915475443854
+X-KSE-AntiSpam-Info: {rep_avail}
+X-KSE-AntiSpam-Info: {Tracking_from_domain_doesnt_match_to}
+X-KSE-AntiSpam-Info: {relay has no DNS name}
+X-KSE-AntiSpam-Info: {SMTP from is not routable}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.80.87 in (user)
+ b.barracudacentral.org}
+X-KSE-AntiSpam-Info: {Found in DNSBL: 31.173.80.87 in (user) dbl.spamhaus.org}
+X-KSE-AntiSpam-Info: 127.0.0.199:7.1.2;31.173.80.87:7.7.3,7.4.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;omp.ru:7.1.1
+X-KSE-AntiSpam-Info: {iprep_blacklist}
+X-KSE-AntiSpam-Info: {Track_Chinese_Simplified, text}
+X-KSE-AntiSpam-Info: ApMailHostAddress: 31.173.80.87
+X-KSE-AntiSpam-Info: {DNS response errors}
+X-KSE-AntiSpam-Info: Rate: 59
+X-KSE-AntiSpam-Info: Status: not_detected
+X-KSE-AntiSpam-Info: Method: none
+X-KSE-AntiSpam-Info: Auth:dmarc=temperror header.from=omp.ru;spf=temperror
+ smtp.mailfrom=omp.ru;dkim=none
+X-KSE-Antiphishing-Info: Clean
+X-KSE-Antiphishing-ScanningType: Heuristic
+X-KSE-Antiphishing-Method: None
+X-KSE-Antiphishing-Bases: 07/23/2022 08:17:00
+X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean, bases: 7/23/2022 6:36:00 AM
+X-KSE-BulkMessagesFiltering-Scan-Result: InTheLimit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/07/2022 10:23, Krzysztof Kozlowski wrote:
-> The child node of smd is an SMD edge representing remote subsystem.
-> Bring back missing reference from previously sent patch (disappeared
-> when applying).
+Hello!
+
+On 7/22/22 7:48 PM, 周琰杰 (Zhou Yanjie) wrote:
+
+> With advanced controllers (such as Ingenic SFC), it is possible to poll
+> the status register of the device. This could be done to offload the CPU
+> during a erase or write operation. Make use of spi-mem poll status APIs
+> to handle this feature.
 > 
-> Link: https://lore.kernel.org/r/20220517070113.18023-9-krzysztof.kozlowski@linaro.org
-> Fixes: 385fad1303af ("dt-bindings: remoteproc: qcom,smd-edge: define re-usable schema for smd-edge")
+> Previously, when erasing large area (e.g. 32MiB), in non-offload case,
+> CPU load could reach ~90% and would generate ~3.92 million interrupts,
+> now it decrease to ~15% CPU load and 0.15 million interrupts.
+> 
+> This should also fix the high CPU usage for system which don't have a
+> dedicated poll status block logic (decrease to ~80% CPU load and ~1.61
+> million interrupts.).
+> 
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> ---
+>  drivers/mtd/spi-nor/core.c | 42 ++++++++++++++++++++++++++++++++----------
+>  1 file changed, 32 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+> index 502967c..6a31132 100644
+> --- a/drivers/mtd/spi-nor/core.c
+> +++ b/drivers/mtd/spi-nor/core.c
+> @@ -617,19 +617,41 @@ static int spi_nor_wait_till_ready_with_timeout(struct spi_nor *nor,
+>  	unsigned long deadline;
+>  	int timeout = 0, ret;
+>  
+> -	deadline = jiffies + timeout_jiffies;
+> +	if (nor->spimem && !nor->params->ready) {
+> +		struct spi_mem_op op = SPI_MEM_OP(SPI_MEM_OP_CMD(SPINOR_OP_RDSR, 0),
+> +						       SPI_MEM_OP_NO_ADDR,
+> +						       SPI_MEM_OP_NO_DUMMY,
+> +						       SPI_MEM_OP_DATA_IN(1, nor->bouncebuf, 0));
 
-To be clear:
-This is a fix for above commit (which got changed after applying, maybe
-because of merge conflict), so should go via the same tree - remoteproc.
+   Strange indentation...
 
-Best regards,
-Krzysztof
+[...]
+> +		return spi_mem_poll_status(nor->spimem, &op, SR_WIP, 0, 0, 10,
+> +						       jiffies_to_msecs(timeout_jiffies));
+
+   Here as well...
+
+[...]
+
+MBR, Sergey
