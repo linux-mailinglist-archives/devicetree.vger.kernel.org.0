@@ -2,119 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D153E57F0AC
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:38:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5294957F0BC
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:43:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235050AbiGWRiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 13:38:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46418 "EHLO
+        id S238427AbiGWRnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 13:43:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238295AbiGWRiR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:38:17 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C24E31EEC0;
-        Sat, 23 Jul 2022 10:38:15 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id j29-20020a05600c1c1d00b003a2fdafdefbso4081713wms.2;
-        Sat, 23 Jul 2022 10:38:15 -0700 (PDT)
+        with ESMTP id S231578AbiGWRnL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:43:11 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0AB4F5AD
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:43:09 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id y11so12195521lfs.6
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:43:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GiLNVtCZ/comMeKOF/hrTe2K4Wy7cDxvkOFs3YEqxbU=;
-        b=d8EBltywcAFXfcKPqTIIw5q7voC6OlWbdstf/6tphykMBxGlxQw1Obr3lCq79IySIe
-         hYrCzD2vKtyGIZQY1IBT72tvACWbmdS0uRzjzeqWCT/RFJTJpjZ9yewdLIPEp9FtKRFZ
-         f7cK+5Q+wH6V3Gid1Cm16dRpq4XI0srGbzLVEDBNiuhCrWsRK7zb7ozXwu5RM9vAx05d
-         zZ5b7XIAToQf4A9ZHE1zQ5Oid9C9tqXYuzzAI8OEfOJ/dpByeCdce5laGaatHjYNRVji
-         Oiaxhzdf6e7gu5UWno1mQEpCmRfecy2bGsTtNCGsr9UPKINJ9WHHVh4CHmnoiDt1kOX1
-         fTmQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=HlHphoZuLPE3CLbqX5TxLcWzRpVyhW7sASqwVEBH1/M=;
+        b=CNGVPQBLY5Tr6aU6+prX28HGV6JBxo6xYQGD3TwyVH/5Jsc9WiP/seiZr0xjNFagpw
+         qzRG0jG3xVioEbFWKJcoXdddNRpYNkqxufPKSXUXcxfQh5HBTBrVLWl9Zue1PngXLl93
+         uOfX2gN9Ifd9Rs03FlUm6xePYlb0vSvW85v03WSNSPDKz4VkznKkD7g+FTd25k2mi1+c
+         9xBO0TTvqnc+3vjghW3VUpFB+0+aKwuVx55F8cuDBno+IlJfOGRgpo+A2d9cfeGeKYod
+         UV9JgxC+dlqX2VoZsCWJtl8XiB7DWtqfZIauLLwW5B4tjTjXx9cDGg5kOEOHFgtzzvh9
+         fmRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GiLNVtCZ/comMeKOF/hrTe2K4Wy7cDxvkOFs3YEqxbU=;
-        b=gyVgSx2rP0rroCDvu87qIPaDR4sn+AkhkxnBRBk4goUChidAe6WDa7aViLpp1iaOzX
-         NYpLpsjK+wjcG7Fzjm3mgVPSL9EvudduCrTjC3eYXYYx1cM8Xb47C3HvlQORDm8CxCw+
-         xGP/ueGJlV++1ou6pqAZgbOB1OQ70qf5YS96pqFaAvsXp6E7wNCJOc6APk3ktCr8Wi+O
-         x+1DE30UW/R/Evl5cUlAC6MVqY19sKi5SWIk62O0Cf7tzDOBVxIVmPf6osXkqQVQQzFm
-         NQtqk8ApebX5Yhsk2Pn+qOqEPU2F64+bDjoQd7MfbN+oEJqrniON+KCKZNrf5hvq5Mca
-         i28w==
-X-Gm-Message-State: AJIora/2QCH62bWdfJ4f6wGYMaCxQW+CrVaFiwWa2bqeT+tfAylZzNBN
-        6el0pErY7vA42Ktt+oHJbu9Jtidi/qd2zQ==
-X-Google-Smtp-Source: AGRyM1uKaEEFgVIppa9pGzoJy4EkWZNqMChYduxosRK2pNPmgymG8/GYlaHM57Mf4W3QurntwRXpLw==
-X-Received: by 2002:a05:600c:501e:b0:3a3:4a04:fdb5 with SMTP id n30-20020a05600c501e00b003a34a04fdb5mr2662067wmr.168.1658597893914;
-        Sat, 23 Jul 2022 10:38:13 -0700 (PDT)
-Received: from xps-work.lan (188.red-83-35-57.dynamicip.rima-tde.net. [83.35.57.188])
-        by smtp.gmail.com with ESMTPSA id az14-20020adfe18e000000b0021e529efa60sm1533279wrb.1.2022.07.23.10.38.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Jul 2022 10:38:13 -0700 (PDT)
-From:   Angel Iglesias <ang.iglesiasg@gmail.com>
-To:     linux-iio@vger.kernel.org
-Cc:     Angel Iglesias <ang.iglesiasg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/5] dt-bindings: iio: pressure: bmp085: Add BMP380 compatible string
-Date:   Sat, 23 Jul 2022 19:38:04 +0200
-Message-Id: <8c9e40d02418d3418795596c908589f47e13a36b.1658597501.git.ang.iglesiasg@gmail.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <cover.1658597501.git.ang.iglesiasg@gmail.com>
-References: <cover.1658597501.git.ang.iglesiasg@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HlHphoZuLPE3CLbqX5TxLcWzRpVyhW7sASqwVEBH1/M=;
+        b=AEnvzSyXn4jI9+OJnaNw7pMrd38uOekLJwiJvcsd3ZJ3qRWdnGxJIxOdJpwL+K7hIb
+         Br/BvDM+cnAE/EmRPQHhpNqdbEOoXDF0rpPCz4jw6EIdAUrEtOI03vhuKWHs93+VFjxY
+         TzAv2Pi/uXJyqQK9oDLCrl01qQGG6THvdpvwtCQKsxyvD6TFrMj64nZF8AHVL/9JFz0U
+         RrHi+RZrbCyA1tgx8nCe9Of7ZXnpMQ23A5RNNNEZJN1Hl+7dIYTTrWcTWpS9YGf/LHGQ
+         k1TpaMVJAaODVfQmiPDbc5YniE5BCjzUqwmMlKM5x9kRX4XdpCYyN0uAczUPn2b6YWCD
+         kMlQ==
+X-Gm-Message-State: AJIora8FL+WS5TrtYdb71m2yh6h8yFb9Ed/FjwgwH2zyPvsrYipRWjey
+        0eonU0AUGk84eVdDvrtcmgR/wA==
+X-Google-Smtp-Source: AGRyM1uQNl3x42KCq0cGc9OqDnR54QTGrXDVh1wXSEUelvPCIfB7qPr5bBayswnv+Tpu0ay0JGCmIw==
+X-Received: by 2002:a05:6512:3e0a:b0:489:e50b:1dc9 with SMTP id i10-20020a0565123e0a00b00489e50b1dc9mr2119685lfv.321.1658598187752;
+        Sat, 23 Jul 2022 10:43:07 -0700 (PDT)
+Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
+        by smtp.gmail.com with ESMTPSA id g4-20020a056512118400b00482bdd14fdfsm1770938lfr.32.2022.07.23.10.43.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 23 Jul 2022 10:43:07 -0700 (PDT)
+Message-ID: <d1a0dd15-3621-14e9-b931-417cefaab017@linaro.org>
+Date:   Sat, 23 Jul 2022 19:43:05 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/3] dt-bindings: SPI: Add Ingenic SFC bindings.
+Content-Language: en-US
+To:     Zhou Yanjie <zhouyanjie@wanyeetech.com>,
+        tudor.ambarus@microchip.com, p.yadav@ti.com, michael@walle.cc,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, aidanmacdonald.0x0@gmail.com,
+        tmn505@gmail.com, paul@crapouillou.net, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        jinghui.liu@ingenic.com, sernia.zhou@foxmail.com,
+        reimu@sudomaker.com
+References: <1658508510-15400-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1658508510-15400-3-git-send-email-zhouyanjie@wanyeetech.com>
+ <487a93c4-3301-aefd-abba-aabf4cb8ec90@linaro.org>
+ <37062a5d-9da3-fbaf-89bd-776f32be36d9@wanyeetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <37062a5d-9da3-fbaf-89bd-776f32be36d9@wanyeetech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bosch,bmp380 compatible string for the new family of sensors.
-This family includes the BMP380, BMP384 and BMP388. The register map
-in this family changes substantially and introduces new features
-but core concepts and operations carryover from the previous iterations
+On 23/07/2022 18:50, Zhou Yanjie wrote:
+> Hi Krzysztof,
+> 
+> On 2022/7/23 上午1:46, Krzysztof Kozlowski wrote:
+>> On 22/07/2022 18:48, 周琰杰 (Zhou Yanjie) wrote:
+>>> Add the SFC bindings for the X1000 SoC, the X1600 SoC, the X1830 SoC,
+>>> and the X2000 SoC from Ingenic.
+>>>
+>>> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+>>> ---
+>>>   .../devicetree/bindings/spi/ingenic,sfc.yaml       | 64 ++++++++++++++++++++++
+>>>   1 file changed, 64 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/spi/ingenic,sfc.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/spi/ingenic,sfc.yaml b/Documentation/devicetree/bindings/spi/ingenic,sfc.yaml
+>>> new file mode 100644
+>>> index 00000000..b7c4cf4
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/spi/ingenic,sfc.yaml
+>>> @@ -0,0 +1,64 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/spi/ingenic,sfc.yaml#
+>> File name should be rather based on first compatible, so
+>> ingenic,x1000-sfc.yaml
+> 
+> 
+> No offense, does it really need to be named that way?
+> I can't seem to find documentation with instructions on this :(
+> 
+> The use of "ingenic,sfc.yaml" indicates that this is the documentation
+> for the SFC module for all Ingenic SoCs, without misleading people into
+> thinking it's only for a specific model of SoC. And there seem to be many
+> other yaml documents that use similar names (eg. fsl,spi-fsl-qspi.yaml,
+> spi-rockchip.yaml, spi-nxp-fspi.yaml, ingenic,spi.yaml, spi-sifive.yaml,
+> omap-spi.yaml), maybe these yaml files that are not named with first
+> compatible are also for the same consideration. :)
 
-Signed-off-by: Angel Iglesias <ang.iglesiasg@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/iio/pressure/bmp085.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+We have many bad examples, many poor patterns and they are never an
+argument to add one more bad pattern.
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-index 49257f9251e8..72cd2c2d3f17 100644
---- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-+++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/iio/pressure/bmp085.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: BMP085/BMP180/BMP280/BME280 pressure iio sensors
-+title: BMP085/BMP180/BMP280/BME280/BMP380 pressure iio sensors
- 
- maintainers:
-   - Andreas Klinger <ak@it-klinger.de>
-@@ -16,6 +16,7 @@ description: |
-     https://www.bosch-sensortec.com/bst/products/all_products/bmp180
-     https://www.bosch-sensortec.com/bst/products/all_products/bmp280
-     https://www.bosch-sensortec.com/bst/products/all_products/bme280
-+    https://www.bosch-sensortec.com/bst/products/all_products/bmp380
- 
- properties:
-   compatible:
-@@ -24,6 +25,7 @@ properties:
-       - bosch,bmp180
-       - bosch,bmp280
-       - bosch,bme280
-+      - bosch,bmp380
- 
-   reg:
-     maxItems: 1
--- 
-2.37.1
+It might never grow to new devices (because they might be different), so
+that is not really an argument.
 
+All bindings are to follow this rule, so I don't understand why you
+think it is an exception for you?
+
+
+Best regards,
+Krzysztof
