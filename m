@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF7EC57EAA5
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 02:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5F8757EB21
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 03:54:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbiGWAeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 20:34:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47366 "EHLO
+        id S236925AbiGWByA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 21:54:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbiGWAeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 20:34:23 -0400
-Received: from conssluserg-05.nifty.com (conssluserg-05.nifty.com [210.131.2.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43798246D;
-        Fri, 22 Jul 2022 17:34:21 -0700 (PDT)
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52]) (authenticated)
-        by conssluserg-05.nifty.com with ESMTP id 26N0Y09R021050;
-        Sat, 23 Jul 2022 09:34:01 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com 26N0Y09R021050
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1658536441;
-        bh=RVyxmU6w2hKmkKjVqxY3k5xGesiVVZUE6Qda81Yil5U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CnaaStUm5lwcDDgnvcoHtRhI9g9Hj2UD0mFivWgQ9TXC0e+wcSWDICqtgCA4VVyNZ
-         KOUayWTnng3O06XB7hnZuM68DqZVAwNL02hOc/8sdwj1bC5Wp1eP1AbusZbWAjweUq
-         y/nZnSCii48PwPhIAUr7ZMLVBRpBb98+1MQ3Pe5vr+AiDJ6txtMt5ctgo0DsbzvUVi
-         Y/QlM4vi5hGcmlIQbks7nXsGaOmVm2X5gjgsfWSoQthW3sbnX6ZN6NQ3h8UB/HLZnB
-         gLR3BnEybJgHj7QNOnBysG66U1Gih3iUx8S9G2spveERabUd8uTSPiv916QuAr3kGX
-         JH+iLSowUm73w==
-X-Nifty-SrcIP: [209.85.221.52]
-Received: by mail-wr1-f52.google.com with SMTP id n12so8503947wrc.8;
-        Fri, 22 Jul 2022 17:34:01 -0700 (PDT)
-X-Gm-Message-State: AJIora85ecYxX3IjRSFU5UWh5lvr8EDURw2noW0pg/FUazQNcox2gQ41
-        lm8oFblg9vMGA1vOK69vOPSGlU4cSSsM/63TWqM=
-X-Google-Smtp-Source: AGRyM1sq0fCTIgtFFn2MLkvMra5q7ss5/nqd6TfpnI/TBo055eWmc2bnOhR4KMgJSEGaHvnv7WiWQKxzYhABCTobl4A=
-X-Received: by 2002:a05:6000:104c:b0:21d:87bf:63a2 with SMTP id
- c12-20020a056000104c00b0021d87bf63a2mr1319505wrx.461.1658536439845; Fri, 22
- Jul 2022 17:33:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220716093122.137494-1-masahiroy@kernel.org> <Ytp4PyBcCfRsVaG5@bergen.fjasle.eu>
-In-Reply-To: <Ytp4PyBcCfRsVaG5@bergen.fjasle.eu>
-From:   Masahiro Yamada <masahiroy@kernel.org>
-Date:   Sat, 23 Jul 2022 09:33:03 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASFLKfDaPgWRzq2dw0939eLbcn5Y4A-qtSEfZs9BDecRg@mail.gmail.com>
-Message-ID: <CAK7LNASFLKfDaPgWRzq2dw0939eLbcn5Y4A-qtSEfZs9BDecRg@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: add dtbs_prepare target
-To:     Nicolas Schier <nicolas@fjasle.eu>
-Cc:     Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        with ESMTP id S237002AbiGWBxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 21:53:55 -0400
+Received: from mail-yw1-x1149.google.com (mail-yw1-x1149.google.com [IPv6:2607:f8b0:4864:20::1149])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB1EBA4DC
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 18:53:41 -0700 (PDT)
+Received: by mail-yw1-x1149.google.com with SMTP id 00721157ae682-31cdce3ed04so51807067b3.13
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 18:53:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=QzVlb8qpExa5uUedfnq5+iu4UDDUWMU5VkWdWsn02VU=;
+        b=EQ6PtzwOdEHEABoyy6OuSzp7qYw4y6N5wBrufelHeYXwo1W09/iCMaOl5JqQ5JinYS
+         Hwj/otSOhvtAXXr+HylbgzHrTTXP9M7R3vdzkg9YE6CSGtrHeW0oZSxSxY2vcfS9BUNN
+         8JJH5Du7lQz6KTZqRqpNKUUNQKM9SWJxjRkaxexKiOwlNSPI2jbVDPLR6mNfiuRWTSEZ
+         1cUJB3xaOHJ283IsF+6PIXpcLIDdJaiwL6zQKopaoT1ry7LPKRewkaXAJ8xgIThfN7SO
+         9Gfq0HgWbxMAEFVLGpnpoPnXgrDE24wRfqCpakD1SL+wleRkxyy2AkOdlg2RYnohUSe5
+         zQ7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=QzVlb8qpExa5uUedfnq5+iu4UDDUWMU5VkWdWsn02VU=;
+        b=YtaMSvC1zJvMO5raTZIXY0duq+3o2W7arG6aCBYs5/jNuGVw5jIEZ61w7+vCIfNIN2
+         blrx3M9WRKdgWh6pexRHjI1ah/8ihrQGwrnOz+NOSrk1P5kyfAGNMokd/cc2mFr4vEBo
+         ibO9cneSXDoQTy1XqnDDZu8u5ATh4qkFOsng4OsBlJkkjlWAydKq74kHbK7k5VJPMg42
+         CTAoh2FN+cyfoxy9ulD12g4UeaQDQWJazZhSuwMvM5uKHlDKA1py9BydfU1RxSfEHQct
+         YqaBbZPWrZERqcjfW5UBdmhwqikgc3Q+JLJ2HaERnuKT5CyGqmGJW6AXo8W9IIwXq/o3
+         AA7A==
+X-Gm-Message-State: AJIora/fafdC1yXT2mfCjdP6nhDQWuIQdeZydoQCA3WOjT6VsUGF1tQO
+        N9EiAkfbWY1QSHZ2PN19sFsX8e4=
+X-Google-Smtp-Source: AGRyM1tVcqNkVZYGojbcmD7lQ2+N12RkCDbcUNv/niNww7XOfScR5g01ii92VGPPiFLionB4KtJOLH0=
+X-Received: from pcc-desktop.svl.corp.google.com ([2620:15c:2ce:200:2571:bd04:907d:d32f])
+ (user=pcc job=sendgmr) by 2002:a81:4746:0:b0:31e:a8fc:5db2 with SMTP id
+ u67-20020a814746000000b0031ea8fc5db2mr2210782ywa.395.1658541220146; Fri, 22
+ Jul 2022 18:53:40 -0700 (PDT)
+Date:   Fri, 22 Jul 2022 18:53:31 -0700
+Message-Id: <20220723015331.1607029-1-pcc@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.37.1.359.gd136c6c3e2-goog
+Subject: [PATCH] of/fdt: Clean up early_init_dt_reserve_memory_arch()
+From:   Peter Collingbourne <pcc@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Peter Collingbourne <pcc@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,97 +64,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 22, 2022 at 7:14 PM Nicolas Schier <nicolas@fjasle.eu> wrote:
->
-> On Sat, 16 Jul 2022 18:31:22 +0900 Masahiro Yamada wrote:
-> > Factor out the common prerequisites for DT compilation into the new
-> > target, dtbs_prepare.
-> >
-> > Add comments in case you wonder why include/config/kernel.release is
-> > the prerequisite. Our policy is that installation targets must not
-> > (re)compile any build artifacts in the tree. If we make modules_install
-> > depend on include/config/kernel.release and it is executed under the
-> > root privilege, it may be owned by root.
-> >
-> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
-> > ---
-> >
-> >  Makefile | 14 ++++++++++----
-> >  1 file changed, 10 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Makefile b/Makefile
-> > index a9bd55edb75e..8aa4dbb8f878 100644
-> > --- a/Makefile
-> > +++ b/Makefile
-> > @@ -1367,16 +1367,22 @@ endif
-> >
-> >  ifneq ($(dtstree),)
-> >
-> > -%.dtb: include/config/kernel.release scripts_dtc
-> > +%.dtb: dtbs_prepare
-> >       $(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
-> >
-> > -%.dtbo: include/config/kernel.release scripts_dtc
-> > +%.dtbo: dtbs_prepare
-> >       $(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
->
-> Is there a reason, why both rules are not unified?  I guess it is, but
-> I can't see it.
+As of commit 18250b43f7b6 ("of: fdt: Remove
+early_init_dt_reserve_memory_arch() override capability") this is
+no longer an arch hook, so rename it to remove the confusing _arch
+suffix. Also remove some unnecessary indirection from all but one of
+the callers by calling memblock_reserve() directly instead.
 
+Signed-off-by: Peter Collingbourne <pcc@google.com>
+Link: https://linux-review.googlesource.com/id/I3362bdd92ae6e47e8f5bac01aa228d32f9d01aad
+---
+ drivers/of/fdt.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-
-See the GNU Make manual:
-https://www.gnu.org/software/make/manual/html_node/Pattern-Examples.html
-
-The last paragraph, "This pattern rule has two targets ..."
-
-
-
-%.dtb %.dtbo: dtbs_prepare
-         ...
-
-means foo.dtb and foo.dtbo are generated at the same
-time by the rule.  This is strange.
-
-
-
-
-
->
-> >
-> > -PHONY += dtbs dtbs_install dtbs_check
-> > -dtbs: include/config/kernel.release scripts_dtc
-> > +PHONY += dtbs dtbs_prepare dtbs_install dtbs_check
-> > +dtbs: dtbs_prepare
-> >       $(Q)$(MAKE) $(build)=$(dtstree)
-> >
-> > +# include/config/kernel.release is not actually required for building DTBs,
-> > +# but for installing DTBs because INSTALL_DTBS_PATH contains $(KERNELRELEASE).
-> > +# We do not want to move it to dtbs_install. The policy is installation
-> > +# targets (, which may run as root) must not modify the tree.
->
-> Is the comma after the opening parenthesis intended?
-
-
-I will rephrase the comment in v2.
-
-
-
-
->
-> Kind regards,
-> Nicolas
->
-> > +dtbs_prepare: include/config/kernel.release scripts_dtc
-> > +
-> >  ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
-> >  export CHECK_DTBS=y
-> >  dtbs: dt_binding_check
-> > --
-> > 2.34.1
-
-
-
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index a8f5b6532165..ac43f1788c1b 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -477,8 +477,8 @@ void *initial_boot_params __ro_after_init;
+ 
+ static u32 of_fdt_crc32;
+ 
+-static int __init early_init_dt_reserve_memory_arch(phys_addr_t base,
+-					phys_addr_t size, bool nomap)
++static int __init early_init_dt_reserve_memory(phys_addr_t base,
++					       phys_addr_t size, bool nomap)
+ {
+ 	if (nomap) {
+ 		/*
+@@ -525,7 +525,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+ 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
+ 
+ 		if (size &&
+-		    early_init_dt_reserve_memory_arch(base, size, nomap) == 0) {
++		    early_init_dt_reserve_memory(base, size, nomap) == 0) {
+ 			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
+ 				uname, &base, (unsigned long)(size / SZ_1M));
+ 			if (!nomap)
+@@ -644,7 +644,7 @@ void __init early_init_fdt_scan_reserved_mem(void)
+ 		fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
+ 		if (!size)
+ 			break;
+-		early_init_dt_reserve_memory_arch(base, size, false);
++		memblock_reserve(base, size);
+ 	}
+ 
+ 	fdt_scan_reserved_mem();
+@@ -661,9 +661,8 @@ void __init early_init_fdt_reserve_self(void)
+ 		return;
+ 
+ 	/* Reserve the dtb region */
+-	early_init_dt_reserve_memory_arch(__pa(initial_boot_params),
+-					  fdt_totalsize(initial_boot_params),
+-					  false);
++	memblock_reserve(__pa(initial_boot_params),
++			 fdt_totalsize(initial_boot_params));
+ }
+ 
+ /**
 -- 
-Best Regards
-Masahiro Yamada
+2.37.1.359.gd136c6c3e2-goog
+
