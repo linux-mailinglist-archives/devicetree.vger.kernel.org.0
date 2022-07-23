@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B09357F0CB
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9442D57F0CC
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:50:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229562AbiGWRtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 13:49:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54058 "EHLO
+        id S238014AbiGWRuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 13:50:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237240AbiGWRtU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:49:20 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410E41F608
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:49:14 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id bp17so12307416lfb.3
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:49:14 -0700 (PDT)
+        with ESMTP id S235743AbiGWRuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:50:19 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F24B21144F
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:50:17 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id u20so934268ljk.0
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:50:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=3WvhIh/bRaogkR+V5wEnXmkMdkRVdBNsY2erUf6SfCw=;
-        b=KLNcDQXRrBybFG8VEBcJF0pSEIFy6VuBLkNOhJ6RO9D/JV6tC1kS29CgaNFF3tUq2d
-         etKvTfiJQgUxCnukAAz2I1IDrReOHFBV9CYX4v92bk/V4/zTOXwBtZGRT7LVyu6b8Tl2
-         sikWSkHUQRpn6pW/TAqG5xtuGHCiM+jMsYZLvq70/H0wdNPvezf7kRlFadV3Tbq9wORN
-         FeQ6SAxMelZBozoJSC7z3zBAFtGRxA0HN6R1dLL/ENk4E9hfD6ntogFP+Tj8UsJIcQlb
-         DO434UmR7bQ2KT0us7mJZlvrAW2ySA0lpEqtBhdpmJwnQHxsk/2COnr3M6awQhoQqxgE
-         P8Cw==
+        bh=dXhrdiRI9A20uuxwcHnJ6f3EhQO6j60PAoiG1Gg6iYM=;
+        b=g1Ev3rBtwAUypYUSkAxCireQPKQqCV7NOTSN8gloW7I3b/RI4Tn79K5Q51/QjCRGx8
+         JRlpqX8EJJIG2ozT+RBtw2yjRKaowrtNS43to6bpU0/B+8FFIgk0G7I/ws+zD+2ghKbI
+         jpHMRV6xmHkY9ELIw3pS5+jB77m8lmbfoV0QF/tkmbo5If3w5cX/L+BFR/ejoGmN3Zwr
+         vwBLpmUMQLhTI4TgJRZWQWH2g3IIa4qsstpjSnoSaVKvEg3uSuRNl6MsBEOcwn9b45YG
+         F88R+/MsGXSvmmXxBxtjtMtf9clXv4+TA2GCmyMYrjMbfZpTKLI3OYS67Txv6BZ8Dg9l
+         BrRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=3WvhIh/bRaogkR+V5wEnXmkMdkRVdBNsY2erUf6SfCw=;
-        b=5Xx4ADbzIrwOFK0lTNJ3oOhshEfwUrgz+FCklyNEfMYKsXufULk6QUzirkrbqO2r8v
-         7JTwtSAoO/3xrQ6n86FRIzyy/uYwe8keJ9rCvIML02TTsACN9/2c3BmgJfwL9Z4PUO7q
-         PkL4KqTvAB8edBTjw3k1AyfkMvbUkpxLlKtIFMSbTLm+2ZrXJeN8Y2VsbLPIYzYiekw6
-         FkV8wQPoeSW7QcmTiU5iklpM3e0pZUvvhwkrdGBD67OAy56LdDQ1OnP5rjChYvYJFc3J
-         eIF0Kq51O5O50lajcomQOmhJ4RrM3YYOhIsG+Is802FEXG7Sd8l+JQN7trh0ci+kPdtC
-         N0+Q==
-X-Gm-Message-State: AJIora+Kge6rlZnl2tfBuAemoyrWw20Wg0GQIx9ElF3C+KPmZDTwWV8y
-        4Mh+sQx0zXZBHHBDQECrWBVIug==
-X-Google-Smtp-Source: AGRyM1sl3JYeLHur2ZAmMDmY8dWer+ZIK1ui6a9+vZol8JLb4s6rFjzmFJbsXgVmKrBm9qjort4AZQ==
-X-Received: by 2002:a05:6512:13a3:b0:486:e7fb:c4f2 with SMTP id p35-20020a05651213a300b00486e7fbc4f2mr1970563lfa.175.1658598552406;
-        Sat, 23 Jul 2022 10:49:12 -0700 (PDT)
+        bh=dXhrdiRI9A20uuxwcHnJ6f3EhQO6j60PAoiG1Gg6iYM=;
+        b=v7nfVStWMInytBQNxCdpEit49tm26Q3N5Mh5oulM9XguvjL64O4wRSP73LPDWMf7SL
+         5WTmlEk6bLCUp/mG8u8MIPJ+4mMp/QwgwUxhoM9rmwZ6Ejd6QWoBBHBRjxSKkW7io3h/
+         6UYyWW/uI8t5eCdKQXtiTHJwVclwbuVJJngDC5HDPxJtdzGTlvvQ1pBbplxE/W+u7JZO
+         4zaCZceRfdN4ReuV+uwIjg7OujAs2akKz1iitztAW/DyHBMMHo5Re2bsWzbKPcJWmo3z
+         0W3g3JESBXIR7Yke9fUIpRWpaVc0RWDiTpP17LbZys1yX7wozvp8BkDCfwbWbOvIZeHi
+         2veQ==
+X-Gm-Message-State: AJIora9Ssyn4+ecMKYaI+tpGbPUWgcJSgGdrW+IYqjtH/jrsH/8MOICd
+        o8RqJIpy1WSPFXgQudofAq65lQ==
+X-Google-Smtp-Source: AGRyM1ur6jK9FMp/FydnyQdfxh47/TWfiVvJtSR9MCuC3wLRzjTZKAQL2QL9LuZ6Kj895NNYNKviDw==
+X-Received: by 2002:a2e:a990:0:b0:25d:5e37:1746 with SMTP id x16-20020a2ea990000000b0025d5e371746mr1862518ljq.34.1658598616139;
+        Sat, 23 Jul 2022 10:50:16 -0700 (PDT)
 Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id k11-20020ac257cb000000b0047255d211c7sm362132lfo.246.2022.07.23.10.49.10
+        by smtp.gmail.com with ESMTPSA id b27-20020ac2563b000000b00478ea0e4f66sm1750258lff.169.2022.07.23.10.50.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Jul 2022 10:49:11 -0700 (PDT)
-Message-ID: <ee2aaa0e-d14d-4d71-81d9-cbb297f34d45@linaro.org>
-Date:   Sat, 23 Jul 2022 19:49:09 +0200
+        Sat, 23 Jul 2022 10:50:15 -0700 (PDT)
+Message-ID: <7f041a88-08ef-1819-b5f2-08b6086aadde@linaro.org>
+Date:   Sat, 23 Jul 2022 19:50:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 1/3] dt-bindings: arm: qcom: stop describing individual
- boards
+Subject: Re: [PATCH 2/3] dt-bindings: arm: qcom: merge simple platform
+ definitions
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,15 +65,14 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Doug Anderson <dianders@chromium.org>
 References: <20220723090942.1637676-1-dmitry.baryshkov@linaro.org>
- <20220723090942.1637676-2-dmitry.baryshkov@linaro.org>
+ <20220723090942.1637676-3-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220723090942.1637676-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220723090942.1637676-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,36 +80,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 23/07/2022 11:09, Dmitry Baryshkov wrote:
-> Describing each compatible board in DT schema seems wrong to me. It
-> means that each new board is incompatible by default, until added to the
-> DT schema. If any of the vendors for whatever reasons tries to validate
-> their new device's DT, they will be stuck with it being incompatible
-> with arm/qcom.yaml until the file is expanded to include such devices.
-> 
-> Rework simple cases by dropping individual board compatible strings and
-> replacing them with the empty schema.
+> Merge most existing Qualcomm platform definitions, which consist of
+> empty schema plus single SoC string.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../devicetree/bindings/arm/qcom.yaml         | 203 ++++--------------
->  1 file changed, 39 insertions(+), 164 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index fb1d00bcc847..d4d945a43178 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -107,60 +107,39 @@ properties:
->    compatible:
->      oneOf:
->        - items:
-> -          - enum:
-> -              - qcom,apq8016-sbc
-> +          - {}
->            - const: qcom,apq8016
->  
 
-No, this removes documentation of compatibles thus removes part
-documenting the ABI.
+Just oneOf:
+ - items:
+     - {}
+     - {}
+ - items:
+     - {}
+     - {}
+     - {}
+ - items:
+     - {}
+     - {}
+     - {}
+     - {}
+ - items:
+     - {}
+     - {}
+     - {}
+     - {}
+     - {}
+
+and all boards and all SoCs are handled.
+
+So unfortunately that's a no.
 
 
 Best regards,
