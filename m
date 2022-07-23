@@ -2,146 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33EA257F0C2
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:47:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C08E57F0C8
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 19:48:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238572AbiGWRrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 13:47:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52386 "EHLO
+        id S236181AbiGWRsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 13:48:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238585AbiGWRq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:46:57 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A161CB05
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:46:51 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id u19so12350700lfs.0
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:46:51 -0700 (PDT)
+        with ESMTP id S235743AbiGWRsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 13:48:41 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 142F519C00
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:48:40 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id d17so10130091lfa.12
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 10:48:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=FhF1lM8uv7zCgVno1Bu+pNe+UUVrUzTJdVFGUkHjEf8=;
-        b=NmNX/+YN4XgyaM1U06F1zfqFtqna51ec/Yy3mGYCUqUXO4X7OF+zw78zSPGl117dlR
-         VNAvari39WHZHC/BwNaMt0gzwq50ZJUPDKPsoPm2IfjtQr+/CVm0RbtosfNkOZ3e7Uq4
-         nLyaqxoyNY7karS25w7hR88PoIkWxAVjCV1y4eCSxVkUFewIFBHPCKNdJ+rliIjsT8aB
-         pnuZL0gkdUGNL5wXE7PkupnmXwT6ryZuFQNwWW57e5fnT8i/9Ggp0j69XXlxB+dmh6Xr
-         g3F4bfCDj9D9cvAUpXcpzto7pxLB1dUsykcvxw9ct0CzED+nWprqUJRmDt+AA77H8qyy
-         yfuA==
+        bh=Ca0agAXrQfV+6xG3l60Phv2GWeZWIolmT9TMk5kLo6Y=;
+        b=smPUBqcz4s3f2SGWp+UKn3+gckCTy6vWTcDl/NOFTYxUNmUitVpr3LWTebRo/u6dCj
+         /k8xmsfhYEEo9BnXGNrV1BvuOV3Py7dlLsbYdcevkjM8hu4pfOqzoHwOx4Hp6S1md4y2
+         bPUz/th1Vm/rfl+qWdn+4we3yG3Lu60VPKAXiWhViBxpUEtmsoopR0+QRKDJ6oyIemfh
+         6+rXDKl39H94AzAcMyoP5cPvP5OiI4FE3vXXPn9nPrQvs7KMr3OrEoOPIKvDWLx+BNjd
+         DOjdhsAYLJ0zmreuwhcAGnsjsb8A8DdAt28HtLQo4LiKMhQvVHPEWW83iCk4vneUlPMH
+         m3mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=FhF1lM8uv7zCgVno1Bu+pNe+UUVrUzTJdVFGUkHjEf8=;
-        b=yY//5H0bErAOv4RUBiGd/4zHw8OKZlNmEKa8+ij9KMcKtncrAUpEcaarZkiD3tQWtM
-         mIzScY42DVp4KRrs5zWooij7Y8G7VuchC3ga6C+tfYHG4Ozjf86d6gjLThnOhvjqTYzp
-         5cKNJHEic9+ESQt58BeG6kVF248aaoN9bWT3i97BTVTqxOfcvkGtbbeHTaUi39WY6Bxv
-         y11rCrzN7yWz3Pp+LVc0JixwqrnQTJvadNK36VPYp8F1x0flF7YEBriezSsoCuWGNFsw
-         wUUkGFXHXJmxkTpj0IHjSFpk0tL28M3Iv9fpkGSHRq9a6IdYilqtQa2/75wwkNX8BJl0
-         SOGQ==
-X-Gm-Message-State: AJIora8wsNEccPJe1FH6zGNSukhfwxbmQUJBMlW0FeGqC6Z5i6r1m+bs
-        8xv3RDYTApiy8s9CxrwJW4Y5Jg==
-X-Google-Smtp-Source: AGRyM1uX+gFSaWXXAS8SGkFsPBu7j2yWCVmTN2HX9zVyTRZZK2Xl1IwzTXuemK0iQRBEuenZEHDyrw==
-X-Received: by 2002:a05:6512:5cd:b0:48a:6914:c081 with SMTP id o13-20020a05651205cd00b0048a6914c081mr1929323lfo.29.1658598410244;
-        Sat, 23 Jul 2022 10:46:50 -0700 (PDT)
+        bh=Ca0agAXrQfV+6xG3l60Phv2GWeZWIolmT9TMk5kLo6Y=;
+        b=tTMBv/06m7wum+rvOh9VjELafYhA6pzGAzHY+c0bD+eswItrgEJ/bXDoey5cyJ4lbt
+         O76rE3pvMtjKjcODCtDFqdlIwojkrnAP58FnmREuYPQotqy+p6+en2ChwdglCDo7cDE/
+         302+4D/fGzwq0+xT4P+myXkcxbzTY5wJRTJBY8fm6zsxengy8tp2OYtRfaiCgJvQqnEx
+         e7DHuEhJMsMQ+vnhCYRIUfXUYCyiYwsWJaB6q8BG1TcWKvEKJBLk9XgtZpAWtfhOPH+P
+         X0TIksuIcY6GLKGvD4SfsMPBCLr0fiG780o0Q6354ThnD9925KcoXmKowjacPF4swxJ1
+         LI8g==
+X-Gm-Message-State: AJIora+58ZzdgobMsjxhFWJjIkPYDnxzkIpLW/EOf+64/fBPXJ6gLYiZ
+        pFpXjW3Bt2C/JQZETmc58oysPg==
+X-Google-Smtp-Source: AGRyM1vJphSK/+gZsXQXPz20OliSdrxeumVrnZuUUegE5SJGNEW5DmcSCJkZ0Fb6G9F+TcwrE6x9Eg==
+X-Received: by 2002:a05:6512:2202:b0:48a:8663:6120 with SMTP id h2-20020a056512220200b0048a86636120mr228776lfu.196.1658598518455;
+        Sat, 23 Jul 2022 10:48:38 -0700 (PDT)
 Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id r12-20020a2e8e2c000000b0025d53cbba2bsm1770815ljk.45.2022.07.23.10.46.48
+        by smtp.gmail.com with ESMTPSA id n1-20020a0565120ac100b00482ba723195sm1738158lfu.253.2022.07.23.10.48.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Jul 2022 10:46:49 -0700 (PDT)
-Message-ID: <27154a09-d79b-7814-22ec-c84496596abc@linaro.org>
-Date:   Sat, 23 Jul 2022 19:46:47 +0200
+        Sat, 23 Jul 2022 10:48:37 -0700 (PDT)
+Message-ID: <b1aafb00-f00a-2621-ad51-fb2f7491dace@linaro.org>
+Date:   Sat, 23 Jul 2022 19:48:36 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v3 2/3] dt-bindings: clock: add SM6375 QCOM global clock
- bindings
+Subject: Re: [PATCH 0/3] dt-bindings: arm: qcom: define schema, not devices
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220723100135.91784-1-konrad.dybcio@somainline.org>
- <20220723100135.91784-2-konrad.dybcio@somainline.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Doug Anderson <dianders@chromium.org>
+References: <20220723090942.1637676-1-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220723100135.91784-2-konrad.dybcio@somainline.org>
+In-Reply-To: <20220723090942.1637676-1-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/07/2022 12:01, Konrad Dybcio wrote:
-> Add device tree bindings for global clock controller for SM6375 SoCs.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
-> Changes since v2:
-> - reference qcom,gcc.yaml
-> 
->  .../bindings/clock/qcom,sm6375-gcc.yaml       |  48 ++++
->  include/dt-bindings/clock/qcom,sm6375-gcc.h   | 234 ++++++++++++++++++
->  2 files changed, 282 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,sm6375-gcc.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
-> new file mode 100644
-> index 000000000000..fb1c36888d18
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,sm6375-gcc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Global Clock & Reset Controller Binding for SM6375
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
-> +
-> +description: |
-> +  Qualcomm global clock control module which supports the clocks, resets and
-> +  power domains on SM6375
-> +
-> +  See also:
-> +  - dt-bindings/clock/qcom,sm6375-gcc.h
-> +
-> +allOf:
-> +  - $ref: qcom,gcc.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm6375-gcc
-> +
-> +  clocks:
-> +    items:
-> +      - description: Board XO source
-> +      - description: Board XO Active-Only source
-> +      - description: Sleep clock source
+On 23/07/2022 11:09, Dmitry Baryshkov wrote:
+> Describing each compatible board in DT schema seems wrong to me. It
+> means that each new board is incompatible by default, until added to the DT
+> schema. 
 
-What happened to clock-names?
+The bindings do not document something because it is or it is no
+compatible. They document the compatible. Your patch essentially removes
+the documentation, so there is no point in having compatibles in board
+at all...
 
-> +
-
-I would assume these are required for the clock controller... and they
-were before, so what happened?
+>Adding support for more and more devices would grow this file
+> indefinitely. Drop most of individual device-specific compatibility
+> strings leaving just list of platforms in place. All entries which
+> differ from two-item string array are left inplace.
 
 
 Best regards,
