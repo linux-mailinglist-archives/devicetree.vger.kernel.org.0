@@ -2,185 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F30757F19F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 23:02:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A5CD57F1E5
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 00:50:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236829AbiGWVCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 17:02:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56756 "EHLO
+        id S230282AbiGWWuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 18:50:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231194AbiGWVCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 17:02:04 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC4641181A
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 14:02:02 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id p10so5113944lfd.9
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 14:02:02 -0700 (PDT)
+        with ESMTP id S229875AbiGWWuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 18:50:18 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D605FF7;
+        Sat, 23 Jul 2022 15:50:16 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id v67-20020a1cac46000000b003a1888b9d36so7195278wme.0;
+        Sat, 23 Jul 2022 15:50:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=NDOuFnAIE+sl0YBWuvYACRjja9BgkcP0ipfGZp4RleM=;
-        b=nScvBFwZW3zCh+nENQWyufKd4C+RW72eSxsHwOtCWS4ogSUq4s8iqvTJAb02ZeGUN9
-         rPFqoftLlG0HTjiiU8Nu5AQjg7vi0C56TO/ynSdzOv9MThnw7Et3MGCyvzSNZPh5+lEy
-         4nwip0vDmylpGo14aDglRFckk7QC4/Lg2/LTew9+jmpN0bjLXnqFES8ujsJAGNVasJ2i
-         FdRGWLEzhY6QI4PGEdDB8thGFSQKFBPJFrDb0bSzVWYaoYj+2Wv23jdf8/raNRplS7/c
-         JoQO0U3G0k8dON8DoFQPLlK/ESM7GOQoVMDrOCErwoAHhiRE6qMbYYfnwS+mcEToUVU3
-         cSfQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9+SGmh+zQFQNeqS1nDQMpNKAHLBf8ILAcQLa/iYZ68w=;
+        b=I6zZngK3VVgtj67O2D5LjmT+jF8X+BMMukA7BCYamHgUJ8AvTIMrz53CKg0wpvK/3a
+         sNl6U/bDUcqN6z8l+3d4MK/ARRO8iM/DYSLuss7o7T0hfx3aYB6zR18ZbrCd/83KntJA
+         0donLFzZHADhxPKFgsdpejxV1A5M1efs/UHpMy78nmCP3oHPh9BqeWwkomtjxkWLG0/U
+         XV4o2NsxozeZDe7t+E5Z0cMhvVtgN67lxFfLrzHO3KPM/wbVUeWseGEnMSxPU16psKVZ
+         2VvpPX/nVJ8CZ5MlwjdAbRm2/FsY5cU+7y+46XS5pSFSckGNIIp42bmZsISm6xBdXkJN
+         svyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=NDOuFnAIE+sl0YBWuvYACRjja9BgkcP0ipfGZp4RleM=;
-        b=Ab3BqXI7dZs0/ONFnrnTRL4IY25lkoRKddOyaKFxwNjUFpwNXXI2/3RZxdjJH49K69
-         kV3UYqMFnH0/dNAs7sNQU9zBJ3geDfIUmp7S2TPjBJKw42Unon2zSeIe6aCIPswIEEW4
-         nnxxhIHzDp+UgDXKTvdXI5CI8m3PuHgELCIkfv3xbalklFUpWA2ITp7e1BNP37j67mWR
-         dBDkYR4PcL7rsWdMNkCT/YU/Y6RvdAXenAUAwd4Md4frQSkYDqFUVxQ6cqTpUBGaVBB2
-         pE1NGdY9jmRCcZGsYAMqd6F3Ah9ch3EUY7mW9SQmeSMF1CP6IuhPTKORR+3tB9UoYjah
-         J6Mw==
-X-Gm-Message-State: AJIora9Umhh8UYYwJM84JVgfbWy7qPrPRl12v5WwsSLyM/OdyycKKCO/
-        VqFTVI/zHeFmXA3D7X6JxPJYOg==
-X-Google-Smtp-Source: AGRyM1vf8kI2t4+ngts1aT3KR3C/wqmAIWyUVVeNcvL3MRsjG2G9bk3wqblJ+jSxU5DstUVMbWWWeQ==
-X-Received: by 2002:a05:6512:ad6:b0:48a:20f9:c0e6 with SMTP id n22-20020a0565120ad600b0048a20f9c0e6mr2081027lfu.287.1658610121263;
-        Sat, 23 Jul 2022 14:02:01 -0700 (PDT)
-Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id v7-20020ac258e7000000b00486c14f0fe1sm1836729lfo.11.2022.07.23.14.02.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Jul 2022 14:02:00 -0700 (PDT)
-Message-ID: <3b38996f-e887-9130-36d0-6a02efe2034e@linaro.org>
-Date:   Sat, 23 Jul 2022 23:01:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 09/22] dt-bindings: clock: rockchip: Document RV1126 CRU
-Content-Language: en-US
-To:     Jagan Teki <jagan@edgeble.ai>, Heiko Stuebner <heiko@sntech.de>,
+        bh=9+SGmh+zQFQNeqS1nDQMpNKAHLBf8ILAcQLa/iYZ68w=;
+        b=tiCKd21Or54cCFq6bE6EvU7y4CzukRmCLgSViNqOkSsa8U0qNKCLsXiYgvXNywwXlf
+         r98agPfOd9N2kVn8tJKYx/d3piyLHg9s1aH/7n70G7MDTKyACdtZJoGaIzC7DP+msunl
+         vo9qLvJ5hN58vatBoJ0P3K/xCND+7r/UCL9k6mXGQv0aKrdinYWuOkWHPp/ja6IHi8zA
+         ZlBqetx6ea5XjcfZPtfOBS/zX4xcQI3NsPIWS198V3ZJ1cB6UZOqsnufCvy4qEoH77IK
+         2NCUxS4sPb4rs1WY8/bXX65VT0h9A+Ao5/oDlxb9oW1RIqm8GhRrGGYryVOvS7RPOiub
+         56JA==
+X-Gm-Message-State: AJIora8GvR5Flnhfb2bdPNswVvjNxtEXqrfKnGxXk+tcFTdcCvv5ngiG
+        1fl0xNXWKi0EYSyv7bJUf2kBs2tHIdQ=
+X-Google-Smtp-Source: AGRyM1tb6ICS759gCOl045iJoxWtM+A1P/mUHsqx0egO5+irjQhLPHn2BqpnifLH1FH0OmR9U2Wbng==
+X-Received: by 2002:a7b:cd15:0:b0:3a3:1d69:5201 with SMTP id f21-20020a7bcd15000000b003a31d695201mr3909731wmj.10.1658616614468;
+        Sat, 23 Jul 2022 15:50:14 -0700 (PDT)
+Received: from xws.localdomain (pd9ea3743.dip0.t-ipconnect.de. [217.234.55.67])
+        by smtp.gmail.com with ESMTPSA id x3-20020adff0c3000000b0021deba99142sm7799284wro.40.2022.07.23.15.50.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Jul 2022 15:50:14 -0700 (PDT)
+From:   Maximilian Luz <luzmaximilian@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-References: <20220723204335.750095-1-jagan@edgeble.ai>
- <20220723204335.750095-10-jagan@edgeble.ai>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220723204335.750095-10-jagan@edgeble.ai>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Maximilian Luz <luzmaximilian@gmail.com>
+Subject: [PATCH 0/4] firmware: Add support for Qualcomm UEFI Secure Application
+Date:   Sun, 24 Jul 2022 00:49:45 +0200
+Message-Id: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+X-Mailer: git-send-email 2.37.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/07/2022 22:43, Jagan Teki wrote:
-> Document dt-bindings for Rockchip RV1126 clock controller.
-> 
-> Cc: linux-clk@vger.kernel.org
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> ---
->  .../bindings/clock/rockchip,rv1126-cru.yaml   | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rv1126-cru.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rv1126-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rv1126-cru.yaml
-> new file mode 100644
-> index 000000000000..cf4f11709125
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/rockchip,rv1126-cru.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/rockchip,rv1126-cru.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ROCKCHIP RV1126 Family Clock Control Module Binding
+On modern Qualcomm platforms, access to EFI variables is restricted to
+the secure world / TrustZone, i.e. the Trusted Execution Environment
+(TrEE or TEE) as Qualcomm seems to call it. To access EFI variables, we
+therefore need to talk to the UEFI Secure Application (uefisecapp),
+residing in the TrEE.
 
-s/Binding//
+This series adds support for accessing EFI variables on those platforms.
 
-> +
-> +maintainers:
-> +  - Jagan Teki <jagan@edgeble.ai>
-> +  - Finley Xiao <finley.xiao@rock-chips.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +description: |
+To do this, we first need to add some SCM call functions used to manage
+and talk to Secure Applications. A very small subset of this interface
+is added in the second patch (whereas the first one exports the required
+functions for that). Interface specifications are extracted from [1].
+While this does not (yet) support re-entrant SCM calls (including
+callbacks and listeners), this is enough to talk to the aforementioned
+uefisecapp on a couple of platforms (I've tested this on a Surface Pro X
+and heard reports from Lenovo Flex 5G, Lenovo Thinkpad x13s, and Lenovo
+Yoga C630 devices).
 
-You can skip '|'. No formatting in text.
+The third patch adds a client driver for uefisecapp, installing the
+respective efivar operations. The application interface has been reverse
+engineered from the Windows QcTrEE8180.sys driver.
 
-> +  The RV1126 clock controller generates the clock and also implements a
-> +  reset controller for SoC peripherals.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rv1126-cru
-> +      - rockchip,rv1126-pmucru
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: xin24m
-> +
-> +  rockchip,grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the syscon managing the "general register files" (GRF),
-> +      if missing pll rates are not changeable, due to the missing pll
-> +      lock status.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#clock-cells"
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pmucru: clock-controller@ff480000 {
-> +      compatible = "rockchip,rv1126-pmucru";
-> +      reg = <0xff480000 0x1000>;
-> +      rockchip,grf = <&grf>;
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +    };
-> +  - |
-> +    cru: clock-controller@ff490000 {
-> +      compatible = "rockchip,rv1126-cru";
-> +      reg = <0xff490000 0x1000>;
-> +      rockchip,grf = <&grf>;
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +    };
+Apart from uefisecapp, there are more Secure Applications running that
+we might want to support in the future. For example, on the Surface Pro
+X (sc8180x-based), the TPM is also managed via one.
 
-I would keep just one example - they are the same, except compatible.
-Less code to manage or to fix later...
+I'm not sure whether this should go to drivers/firmware or to
+drivers/soc/qcom. I've put this into firmware as all of this is
+essentially an interface to the secure firmware running in the TrustZone
+(and SCM stuff is handled here already), but please let me know if I
+should move this.
 
-With all the changes:
+Regards,
+Max
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[1]: https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/auto-kernel.lnx.4.14.c34/drivers/misc/qseecom.c
 
+Maximilian Luz (4):
+  firmware: qcom_scm: Export SCM call functions
+  firmware: Add support for Qualcomm Trusted Execution Environment SCM
+    calls
+  firmware: Add support for Qualcomm UEFI Secure Application
+  dt-bindings: firmware: Add Qualcomm UEFI Secure Application client
 
-Best regards,
-Krzysztof
+ .../firmware/qcom,tee-uefisecapp.yaml         |  38 +
+ MAINTAINERS                                   |  14 +
+ drivers/firmware/Kconfig                      |  20 +
+ drivers/firmware/Makefile                     |   2 +
+ drivers/firmware/qcom_scm.c                   | 118 ++-
+ drivers/firmware/qcom_scm.h                   |  47 --
+ drivers/firmware/qcom_tee.c                   | 213 +++++
+ drivers/firmware/qcom_tee_uefisecapp.c        | 761 ++++++++++++++++++
+ include/linux/qcom_scm.h                      |  49 ++
+ include/linux/qcom_tee.h                      | 179 ++++
+ 10 files changed, 1355 insertions(+), 86 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/firmware/qcom,tee-uefisecapp.yaml
+ create mode 100644 drivers/firmware/qcom_tee.c
+ create mode 100644 drivers/firmware/qcom_tee_uefisecapp.c
+ create mode 100644 include/linux/qcom_tee.h
+
+-- 
+2.37.1
+
