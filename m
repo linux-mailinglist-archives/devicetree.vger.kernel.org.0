@@ -2,125 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5F8757EB21
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 03:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7905357EB8E
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 04:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236925AbiGWByA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 22 Jul 2022 21:54:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44028 "EHLO
+        id S231329AbiGWChR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 22 Jul 2022 22:37:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237002AbiGWBxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 21:53:55 -0400
-Received: from mail-yw1-x1149.google.com (mail-yw1-x1149.google.com [IPv6:2607:f8b0:4864:20::1149])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DB1EBA4DC
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 18:53:41 -0700 (PDT)
-Received: by mail-yw1-x1149.google.com with SMTP id 00721157ae682-31cdce3ed04so51807067b3.13
-        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 18:53:41 -0700 (PDT)
+        with ESMTP id S229513AbiGWChR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 22 Jul 2022 22:37:17 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D44B161D62
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 19:37:15 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id g20-20020a9d6a14000000b0061c84e679f5so4631614otn.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Jul 2022 19:37:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=QzVlb8qpExa5uUedfnq5+iu4UDDUWMU5VkWdWsn02VU=;
-        b=EQ6PtzwOdEHEABoyy6OuSzp7qYw4y6N5wBrufelHeYXwo1W09/iCMaOl5JqQ5JinYS
-         Hwj/otSOhvtAXXr+HylbgzHrTTXP9M7R3vdzkg9YE6CSGtrHeW0oZSxSxY2vcfS9BUNN
-         8JJH5Du7lQz6KTZqRqpNKUUNQKM9SWJxjRkaxexKiOwlNSPI2jbVDPLR6mNfiuRWTSEZ
-         1cUJB3xaOHJ283IsF+6PIXpcLIDdJaiwL6zQKopaoT1ry7LPKRewkaXAJ8xgIThfN7SO
-         9Gfq0HgWbxMAEFVLGpnpoPnXgrDE24wRfqCpakD1SL+wleRkxyy2AkOdlg2RYnohUSe5
-         zQ7w==
+        d=kali.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=voGugAT13Hil5ADAXFI0Z5pBEP04QpaFfT3ChpCj5yw=;
+        b=PlpYiugUWSomUF/0hlCtQAmLPyY8rLDdlVOM61Ba7K6AcyKH+8rdr/ZHZW8P2vICUV
+         +9pvpRkiFkdxxazwuSrke9x1L0yJwWQ3MCs88vBxtiAn6b9oUwspxeqqkGEbK6er02+y
+         fTt8I3LxCC961fWWYI0tTOm4X2BJgZu+CrmKHEOk4oJRB1u6IjPkw45kGwQ4pLC7yuze
+         kX3KfCVDFZizQYirPbxBVwmW2Z8PsRpUHRcB5HWe68nEmGpie7pb+bGuIbYPi1pD3biP
+         bmj+Nq18xM53W32WjTeCFR2qW47MDy3Ul6p8K0xh+BQHW/kYO93dhS5S5iHCVGa/SX79
+         nNcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=QzVlb8qpExa5uUedfnq5+iu4UDDUWMU5VkWdWsn02VU=;
-        b=YtaMSvC1zJvMO5raTZIXY0duq+3o2W7arG6aCBYs5/jNuGVw5jIEZ61w7+vCIfNIN2
-         blrx3M9WRKdgWh6pexRHjI1ah/8ihrQGwrnOz+NOSrk1P5kyfAGNMokd/cc2mFr4vEBo
-         ibO9cneSXDoQTy1XqnDDZu8u5ATh4qkFOsng4OsBlJkkjlWAydKq74kHbK7k5VJPMg42
-         CTAoh2FN+cyfoxy9ulD12g4UeaQDQWJazZhSuwMvM5uKHlDKA1py9BydfU1RxSfEHQct
-         YqaBbZPWrZERqcjfW5UBdmhwqikgc3Q+JLJ2HaERnuKT5CyGqmGJW6AXo8W9IIwXq/o3
-         AA7A==
-X-Gm-Message-State: AJIora/fafdC1yXT2mfCjdP6nhDQWuIQdeZydoQCA3WOjT6VsUGF1tQO
-        N9EiAkfbWY1QSHZ2PN19sFsX8e4=
-X-Google-Smtp-Source: AGRyM1tVcqNkVZYGojbcmD7lQ2+N12RkCDbcUNv/niNww7XOfScR5g01ii92VGPPiFLionB4KtJOLH0=
-X-Received: from pcc-desktop.svl.corp.google.com ([2620:15c:2ce:200:2571:bd04:907d:d32f])
- (user=pcc job=sendgmr) by 2002:a81:4746:0:b0:31e:a8fc:5db2 with SMTP id
- u67-20020a814746000000b0031ea8fc5db2mr2210782ywa.395.1658541220146; Fri, 22
- Jul 2022 18:53:40 -0700 (PDT)
-Date:   Fri, 22 Jul 2022 18:53:31 -0700
-Message-Id: <20220723015331.1607029-1-pcc@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.37.1.359.gd136c6c3e2-goog
-Subject: [PATCH] of/fdt: Clean up early_init_dt_reserve_memory_arch()
-From:   Peter Collingbourne <pcc@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Peter Collingbourne <pcc@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=voGugAT13Hil5ADAXFI0Z5pBEP04QpaFfT3ChpCj5yw=;
+        b=KBFhBMqTKBkLxyxiNQ9tD5QNlI9/OSFBrfJvnshvBbgmitZyyB0dr35UJGXJqGoSuo
+         QSjGRgSFhDumBtCQywX3NhBz+uOEtZ3ux/q07E+qRp5cBswxLSvKcabpJwPfEVHygyXX
+         vz/POlYOqUtxVkSChXarK8FcVKOudRtm6I5IGLt0oA9mxoenmtm07BdElUEyiQUYtf8d
+         5kBqqyLQqBq07zukXcju0NRyIpZQUj1cnyAJ1pqots1Exq+ae2DihcaIF1v+xWyH9i3J
+         zI+u6jmlHbN/gS4vHfqpr+HIeKeOsfLcQWIo7fK54zVWTH9mCvMNtaXuvqcNx1jTkbKg
+         QsAg==
+X-Gm-Message-State: AJIora9Vi7ij/SK2RpRzCABcGpqDQjpgDFht5z0ychydUEWEm4WJBJ10
+        uGxRrPaE8encbZWLLRF84cGaNQ==
+X-Google-Smtp-Source: AGRyM1vG1vMNCzMDvxCaqBAcafZzpnlk4TyH/Rxj0qwSionFWOgG9Bd4tQwIMCPuO9cYUn4QfHSuag==
+X-Received: by 2002:a9d:554f:0:b0:61c:86e4:2f37 with SMTP id h15-20020a9d554f000000b0061c86e42f37mr1054976oti.131.1658543835142;
+        Fri, 22 Jul 2022 19:37:15 -0700 (PDT)
+Received: from [192.168.11.16] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
+        by smtp.gmail.com with ESMTPSA id k14-20020a056808068e00b0033a2f6e4736sm2489061oig.20.2022.07.22.19.37.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Jul 2022 19:37:14 -0700 (PDT)
+Message-ID: <d89a540f-672d-83de-d19d-00f10e4370d1@kali.org>
+Date:   Fri, 22 Jul 2022 21:37:12 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.11.0
+Subject: Re: [PATCH 10/10] arm64: dts: qcom: sdm845: add LLCC BWMON
+Content-Language: en-US
+From:   Steev Klimaszewski <steev@kali.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>
+References: <20220720192807.130098-1-krzysztof.kozlowski@linaro.org>
+ <20220720192807.130098-11-krzysztof.kozlowski@linaro.org>
+ <25673493-4171-62b0-f696-1316d115f388@kali.org>
+ <96552a95-8939-3ac2-c9b3-14dabaf53923@linaro.org>
+ <d814a6da-b0d7-2fd1-fd14-8f1f3b88666f@kali.org>
+In-Reply-To: <d814a6da-b0d7-2fd1-fd14-8f1f3b88666f@kali.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As of commit 18250b43f7b6 ("of: fdt: Remove
-early_init_dt_reserve_memory_arch() override capability") this is
-no longer an arch hook, so rename it to remove the confusing _arch
-suffix. Also remove some unnecessary indirection from all but one of
-the callers by calling memblock_reserve() directly instead.
 
-Signed-off-by: Peter Collingbourne <pcc@google.com>
-Link: https://linux-review.googlesource.com/id/I3362bdd92ae6e47e8f5bac01aa228d32f9d01aad
----
- drivers/of/fdt.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index a8f5b6532165..ac43f1788c1b 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -477,8 +477,8 @@ void *initial_boot_params __ro_after_init;
- 
- static u32 of_fdt_crc32;
- 
--static int __init early_init_dt_reserve_memory_arch(phys_addr_t base,
--					phys_addr_t size, bool nomap)
-+static int __init early_init_dt_reserve_memory(phys_addr_t base,
-+					       phys_addr_t size, bool nomap)
- {
- 	if (nomap) {
- 		/*
-@@ -525,7 +525,7 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
- 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
- 
- 		if (size &&
--		    early_init_dt_reserve_memory_arch(base, size, nomap) == 0) {
-+		    early_init_dt_reserve_memory(base, size, nomap) == 0) {
- 			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
- 				uname, &base, (unsigned long)(size / SZ_1M));
- 			if (!nomap)
-@@ -644,7 +644,7 @@ void __init early_init_fdt_scan_reserved_mem(void)
- 		fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
- 		if (!size)
- 			break;
--		early_init_dt_reserve_memory_arch(base, size, false);
-+		memblock_reserve(base, size);
- 	}
- 
- 	fdt_scan_reserved_mem();
-@@ -661,9 +661,8 @@ void __init early_init_fdt_reserve_self(void)
- 		return;
- 
- 	/* Reserve the dtb region */
--	early_init_dt_reserve_memory_arch(__pa(initial_boot_params),
--					  fdt_totalsize(initial_boot_params),
--					  false);
-+	memblock_reserve(__pa(initial_boot_params),
-+			 fdt_totalsize(initial_boot_params));
- }
- 
- /**
--- 
-2.37.1.359.gd136c6c3e2-goog
-
+On 7/22/22 7:29 PM, Steev Klimaszewski wrote:
+>
+> On 7/22/22 12:30 PM, Krzysztof Kozlowski wrote:
+>> On 22/07/2022 03:22, Steev Klimaszewski wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 7/20/22 2:28 PM, Krzysztof Kozlowski wrote:
+>>>> The SDM845 comes with few instances of Bandwidth Monitor.  The already
+>>>> supported one monitors traffic between CPU and Last Level Cache
+>>>> Controller (LLCC) and in downstream sources is called BWMON v4 (or 
+>>>> v4 of
+>>>> register layout).
+>>>>
+>>>> SDM845 also has also BWMON instance measuring traffic between LLCC and
+>>>> memory with different register layout: called v5.
+>>>>
+>>>> Cc: Rajendra Nayak <quic_rjendra@quicinc.com>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> ---
+>>>>    arch/arm64/boot/dts/qcom/sdm845.dtsi | 37 
+>>>> ++++++++++++++++++++++++++++
+>>>>    1 file changed, 37 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi 
+>>>> b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>>> index fe14f7e7523b..4aab464e2bd6 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>>>> @@ -2053,6 +2053,43 @@ llcc: system-cache-controller@1100000 {
+>>>>                interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+>>>>            };
+>>>>    +        pmu@114a000 {
+>>>> +            compatible = "qcom,sdm845-llcc-bwmon";
+>>>> +            reg = <0 0x0114a000 0 0x1000>;
+>>>> +            interrupts = <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +            interconnects = <&mem_noc MASTER_LLCC 3 &mem_noc 
+>>>> SLAVE_EBI1 3>;
+>>>> +
+>>>> +            operating-points-v2 = <&llcc_bwmon_opp_table>;
+>>>> +
+>>>> +            llcc_bwmon_opp_table: opp-table {
+>>>> +                compatible = "operating-points-v2";
+>>>> +
+>>>> +                /*
+>>>> +                 * The interconnect path bandwidth taken from
+>>>> +                 * cpu4_opp_table bandwidth for gladiator_noc-mem_noc
+>>>> +                 * interconnect.  This also matches the
+>>>> +                 * bandwidth table of qcom,llccbw (qcom,bw-tbl,
+>>>> +                 * bus width: 4 bytes) from msm-4.9 downstream
+>>>> +                 * kernel.
+>>>> +                 */
+>>>> +                opp-0 {
+>>>> +                    opp-peak-kBps = <800000>;
+>>>> +                };
+>>>> +                opp-1 {
+>>>> +                    opp-peak-kBps = <1804000>;
+>>>> +                };
+>>>> +                opp-2 {
+>>>> +                    opp-peak-kBps = <3072000>;
+>>>> +                };
+>>>> +                opp-3 {
+>>>> +                    opp-peak-kBps = <5412000>;
+>>>> +                };
+>>>> +                opp-4 {
+>>>> +                    opp-peak-kBps = <7216000>;
+>>>> +                };
+>>>> +            };
+>>>> +        };
+>>>> +
+>>>>            pmu@1436400 {
+>>>>                compatible = "qcom,sdm845-bwmon", "qcom,msm8998-bwmon";
+>>>>                reg = <0 0x01436400 0 0x600>;
+>>>
+>>> With this series applied, testing on a Lenovo Yoga C630, which has an
+>>> SDM850, I see the following:
+>>>
+>>> [    3.673660] qcom-bwmon 114a000.pmu: can't request region for 
+>>> resource
+>>> [mem 0x0114a000-0x0114afff]
+>>> [    3.673673] qcom-bwmon 114a000.pmu: error -EBUSY: failed to map 
+>>> bwmon
+>>> registers
+>>> [    3.673678] qcom-bwmon: probe of 114a000.pmu failed with error -16
+>>>
+>> Thanks for the report. What are you running there? `uname -r`? Maybe
+>> your secure world uses it?
+>>
+>> Best regards,
+>> Krzysztof
+>
+> Currently it's 5.19.0-rc7 (torvalds tree at 4ba1329c) with a few extra 
+> patches on top, the bwmon set included.  It's possible that secure 
+> world uses it, but I do not know enough about that to say one way or 
+> the other.
+>
+> -- steev
+>
+I think you may be right; I just applied this patchset to -next 
+(20220722) and i do not see the error message there.  On my 5.19-rc7 
+tree, i am also testing a patchset that enables qcom devices to access 
+efivars, so possibly we are ending up in secure world there?
