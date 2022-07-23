@@ -2,79 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE50557EFFA
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 17:10:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C441257EF8F
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 16:24:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234920AbiGWPKc convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 23 Jul 2022 11:10:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59528 "EHLO
+        id S237882AbiGWOW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 10:22:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233485AbiGWPKb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 11:10:31 -0400
-X-Greylist: delayed 26048 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 23 Jul 2022 08:10:28 PDT
-Received: from iara.government.bg (mail.iara.government.bg [95.43.208.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F296295A5
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 08:10:26 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by iara.government.bg (Postfix) with ESMTP id 69AB419A9DFC;
-        Sat, 23 Jul 2022 06:43:17 +0300 (EEST)
-Received: from iara.government.bg ([127.0.0.1])
-        by localhost (iara.government.bg [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id Do0KJo-ZaTSp; Sat, 23 Jul 2022 06:43:17 +0300 (EEST)
-Received: from localhost (localhost [127.0.0.1])
-        by iara.government.bg (Postfix) with ESMTP id 0E95B1972F8D;
-        Sat, 23 Jul 2022 05:38:54 +0300 (EEST)
-X-Virus-Scanned: amavisd-new at iara.government.bg
-Received: from iara.government.bg ([127.0.0.1])
-        by localhost (iara.government.bg [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id FqCiEYy4RbzV; Sat, 23 Jul 2022 05:38:53 +0300 (EEST)
-Received: from [51.89.160.112] (cvdcdy7n.indoordelivery.online [51.89.160.112])
-        by iara.government.bg (Postfix) with ESMTPSA id E51FB1971385;
-        Sat, 23 Jul 2022 05:09:59 +0300 (EEST)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S237883AbiGWOWP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 10:22:15 -0400
+Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0291122B3B;
+        Sat, 23 Jul 2022 07:21:15 -0700 (PDT)
+Date:   Sat, 23 Jul 2022 14:21:05 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1658586072; x=1658845272;
+        bh=SihTKt45aRpcxX9AMLARdfazz57gHKVVDZNki8wzPh8=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:Feedback-ID:From:To:
+         Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID;
+        b=ppGnTOJRS6a09VAzeykPPsGl8ZqncmNFguz2ICyPauWV6Sxclwg2AXV10w350MPkm
+         Qmty8HkCK2Ro0sCCVcfOeVO+uFiyMuboHZWx/4eCzo+TklBmkjfejHItGbUJuDnwMY
+         VJQ6TDItV5K1j2R2zsRIt0ucW94DZHkcEPXv1NynL8DsoAoUDgLpp35UCAR5q0VifF
+         69m6aW2VW01rDP+GPbXtZQ0IGDUon0jQ/D6hLGEMG5fJXZAqouvnucUoBqfdrYDTrC
+         S/LFAFgQJp0QBIhn/B9VmdT/4u2+7oNkGHL0IbYQYLVtuU44Z0kz5TNyJ9wu8pitLz
+         9SB0DyQiv+A8g==
+To:     devicetree@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Subject: [PATCH v5 0/4] Add Samsung Galaxy E5/E7/Grand Max device trees
+Message-ID: <20220723141835.136196-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: text GT
-To:     Recipients <Borislav.Chardakov@iara.government.bg>
-From:   Borislav.Chardakov@iara.government.bg
-Date:   Fri, 22 Jul 2022 19:09:58 -0700
-Reply-To: lerynnewest5412@gmail.com
-Message-Id: <20220723020959.E51FB1971385@iara.government.bg>
-X-Spam-Status: Yes, score=6.9 required=5.0 tests=BAYES_60,
-        FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,NIXSPAM_IXHASH,
-        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H2,
-        REPTO_419_FRAUD_GM_LOOSE,SPF_HELO_PASS,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-        *       medium trust
-        *      [95.43.208.99 listed in list.dnswl.org]
-        *  1.3 RCVD_IN_BL_SPAMCOP_NET RBL: Received via a relay in
-        *      bl.spamcop.net
-        *      [Blocked - see <https://www.spamcop.net/bl.shtml?51.89.160.112>]
-        *  1.5 BAYES_60 BODY: Bayes spam probability is 60 to 80%
-        *      [score: 0.7299]
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [lerynnewest5412[at]gmail.com]
-        * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        * -0.0 RCVD_IN_MSPIKE_H2 RBL: Average reputation (+2)
-        *      [95.43.208.99 listed in wl.mailspike.net]
-        *  3.0 NIXSPAM_IXHASH http://www.nixspam.org/
-        *  1.0 REPTO_419_FRAUD_GM_LOOSE Ends-in-digits Reply-To is similar to
-        *      known advance fee fraud collector mailbox
-        *  2.1 FREEMAIL_FORGED_REPLYTO Freemail in Reply-To, but not From
-X-Spam-Level: ******
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Is this email address active? We sent you a message earlier regarding
-the claiming of your €2.8 million donation. Please confirm your email
-and contact us by email
+v5: Fix Error:
+arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi:36.2-22 Properti=
+es
+must precede subnodes
+Restore Acked-by tag in the dt-bindings patch
+v4: Disable i2c2 until lis2hh12 accelerometer is fixed.
+Add GPIO LEDs for Grand Max.
+v3: Add a cover letter and changelog
+v2: Add dt-bindings documentation
 
-Best Regard
-Mrs. Lerynne West
+Samsung Galaxy E5, E7 and Grand Max are smartphones using the MSM8916 SoC
+released in 2015.
+
+e2015 and a2015 are similar, with some differences in accelerometer,
+MUIC and Vibrator. The common parts are shared in
+msm8916-samsung-a2015-common.dtsi to reduce duplication.
+
+The three devices (and all other variants of E5/E7/Grand Max released in
+2015) are very similar, with some differences in display, touchscreen,
+sensors and NFC. The common parts are shared in
+msm8916-samsung-e2015-common.dtsi to reduce duplication.
+
+Unfortunately, some E5/E7/Grand Max were released with outdated 32-bit
+only firmware and never received any update from Samsung. Since the 32-bit
+TrustZone firmware is signed there seems to be no way currently to
+actually boot this device tree on arm64 Linux on those variants at the
+moment.
+
+However, it is possible to use this device tree by compiling an ARM32
+kernel instead. The device tree can be easily built on ARM32 with
+an #include and it works really well there. To avoid confusion for others
+it is still better to add this device tree on arm64. Otherwise it's easy
+to forget to update this one when making some changes that affect all
+MSM8916 devices.
+
+Maybe someone finds a way to boot ARM64 Linux on those device at some
+point. In this case I expect that this device tree can be simply used
+as-is.
+
