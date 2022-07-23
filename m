@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5295057F16D
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 22:44:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C19E57F170
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 22:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238438AbiGWUos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 16:44:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47088 "EHLO
+        id S237087AbiGWUox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 16:44:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238420AbiGWUor (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 16:44:47 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E307E1B7BF
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 13:44:46 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id w205so3834283pfc.8
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 13:44:46 -0700 (PDT)
+        with ESMTP id S237033AbiGWUow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 16:44:52 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3141BE85
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 13:44:51 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id 12so6858007pga.1
+        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 13:44:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=cnz8KtlLCVShEDXOBH4fLkKrMCVF+oQhhCLrqdUx4uU=;
-        b=AkLPquELdVZFdKsl5L1dqydn2AMRu42dCdVIwYpfYKFAjZUGoISFM8bmWfkNbuCD4O
-         SkRgi5tsKnkWK09/FsQP8cv0Ic1r7KQpzhdUspRlW+JHZqDyAMPrtupMnQbaa7baYu68
-         DXhk6CVlZJxATYd4QPHmEPq1dgrPZM5ctK2hFcpoy9BFbebM2nfQ4b85qmz3S+vqDVwr
-         cdPLKXW0oZdOp0hhPXLHokfErKSL1J1nKD410Jx/oCGLSCo7xISBPtB3C76EUyPX6uAT
-         9TqDsxo6oP9REPqy7+3n1xgfWmJ4RkrNOZNq0rEV7SZFWxQ4fcEHPxAy0FHNIhVPn/P9
-         inww==
+        bh=QVGUGb8CKotf1INyoHtVPTbvbGHrouTipBeJg0RyviM=;
+        b=C952au4kP2fHzBsISV0jnK+fE5GuiDIrWFFUoEqvpJWznM0IKLR9Rx7gdPwT1HoCJX
+         yp48lmkuXZ5BliWtOKj5nJSeX1mQq2MvgQPYmIXWwWfGpiBvihqPbRU5fNxNFsRuZw07
+         2AumDiKlfswtIKmb7eCkKwIkv/9lbonI/W3tm9mVpsGohMFec0aNXZmFZLkxGNezRxGP
+         JX96Yxiaphm1Xn789MYfML8tVk2FJ7AsSZCWtJRPfarRzzzckofzg1Z2bA6V/XMdafsP
+         IJesWtpFQas4WAomlLT6C0qy0ySfr9HOekOZVlf3iXbxW3PsKbmCok0WTed3I86Hj8Xy
+         q1iA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=cnz8KtlLCVShEDXOBH4fLkKrMCVF+oQhhCLrqdUx4uU=;
-        b=F7Kp+UjK7Fq1sk/OjTssj+DKBkC/XNARRvwKJR358gx/JUgO+zlNliXvdawesJGpOl
-         N+fy9WjZo9GgEpOF+uJp4P3rN1MP2KRKnDxxClIAb2YOx/V//H47KeCHyGuY+EeNQvDy
-         Rh9Dem7VqtmtoNQ5SLvSVLtzbq21wv3SUpQIGwT7QiQziTXzjlAslTbxAXAwnZ6Sth+9
-         +DFZXYUrlPPZMSYb1NRUKzJqp4U6bMPG2E3jKk7kiOcJzs9DD5a9U60Q9fZPxJrPl0fF
-         vOJsBF0FWGY/DeGwva0HSoPOsS8130AhRif0b/zd4XTQVvjSmom75dZEZ9wcXTGAqBp4
-         cC6g==
-X-Gm-Message-State: AJIora8DSrl+Y+TvC5P1ia5yWKU0iLMXRhlnIJEJ8MfSmBtkTR4vhasA
-        n3JTxrZ4K4qE+yyFwV9s4JMFKg==
-X-Google-Smtp-Source: AGRyM1vcjLOLjkuzKVFR3gktiaujZIDm7gd5DyEJi2HmNt2fT3M104n755k3GbXZzTRikp45GJJkYg==
-X-Received: by 2002:a63:8b4b:0:b0:412:96f4:f154 with SMTP id j72-20020a638b4b000000b0041296f4f154mr5061566pge.281.1658609086392;
-        Sat, 23 Jul 2022 13:44:46 -0700 (PDT)
+        bh=QVGUGb8CKotf1INyoHtVPTbvbGHrouTipBeJg0RyviM=;
+        b=Kpi2HgAenErWDl/clQai0FKAmHT1Xuel2I9vMOh/Ss0NuhQviFeFVWsTpHA1kYQ3XB
+         a7iZWBn2Huo6k8VI0VLsNJrfAHh51bAAx68yIrp6qcibSMLVtSk48E+UwDdGxOzEmQKx
+         Ptq+lXZv4TD68G1lhh3L2GCQ12is04eiHI07NC6v2rKMqE2S/DMbzsJ61W9m6++oH1pz
+         eSHG+PfeQJgLYulDAcxQ4WZ3zfFoxlH7bAZXioTFjLRg4VaRjg5OaME7Azcwvlx63ir+
+         KeD7E/2D6m4AcO9KhPSVsnkGmwnEU3p8YuC95LP1eGJyFvVUuFqUCJWb6KkcmDHbHzzJ
+         kb+g==
+X-Gm-Message-State: AJIora/HtApr+sHhCamNX3ctt4k3ETGxb81XPpn5T1c9RZz5IJvr/ijU
+        24wh6/x8yqqbGhY4mvcoXqveuw==
+X-Google-Smtp-Source: AGRyM1vnkOdFiFE+GmThkbCNapsdUpE3R0cWy4UyW+Uyxq9LVHEvdVJxEBQ5Nw6N7aZ2mwkXtwjnww==
+X-Received: by 2002:a05:6a00:16cb:b0:52b:cc59:9468 with SMTP id l11-20020a056a0016cb00b0052bcc599468mr6058338pfc.46.1658609091313;
+        Sat, 23 Jul 2022 13:44:51 -0700 (PDT)
 Received: from localhost.localdomain ([2405:201:c00a:a073:a406:cc30:f4ec:f10a])
-        by smtp.gmail.com with ESMTPSA id u14-20020a170902e80e00b0016a6caacaefsm6187950plg.103.2022.07.23.13.44.40
+        by smtp.gmail.com with ESMTPSA id u14-20020a170902e80e00b0016a6caacaefsm6187950plg.103.2022.07.23.13.44.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Jul 2022 13:44:46 -0700 (PDT)
+        Sat, 23 Jul 2022 13:44:51 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kever Yang <kever.yang@rock-chips.com>
 Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Jagan Teki <jagan@edgeble.ai>, linux-mmc@vger.kernel.org,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: [PATCH 11/22] dt-bindings: mmc: rockchip-dw-mshc: Document Rockchip RV1126
-Date:   Sun, 24 Jul 2022 02:13:24 +0530
-Message-Id: <20220723204335.750095-12-jagan@edgeble.ai>
+        Jagan Teki <jagan@edgeble.ai>, linux-serial@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: [PATCH 12/22] dt-bindings: serial: snps-dw-apb-uart: Document Rockchip RV1126
+Date:   Sun, 24 Jul 2022 02:13:25 +0530
+Message-Id: <20220723204335.750095-13-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220723204335.750095-1-jagan@edgeble.ai>
 References: <20220723204335.750095-1-jagan@edgeble.ai>
@@ -72,27 +72,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a compatible string for Rockchip RV1126 SoC.
+Document compatible string for Rockchip RV1126 SoC.
 
-Cc: linux-mmc@vger.kernel.org
-Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: linux-serial@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
- Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
+ Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-index 54fb59820d2b..8d888b435817 100644
---- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
-@@ -39,6 +39,7 @@ properties:
-               - rockchip,rk3399-dw-mshc
-               - rockchip,rk3568-dw-mshc
-               - rockchip,rv1108-dw-mshc
-+              - rockchip,rv1126-dw-mshc
-           - const: rockchip,rk3288-dw-mshc
- 
-   reg:
+diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+index 12137fe80acf..4f47d4e4dd94 100644
+--- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+@@ -34,6 +34,7 @@ properties:
+               - rockchip,rk3399-uart
+               - rockchip,rk3568-uart
+               - rockchip,rv1108-uart
++              - rockchip,rv1126-uart
+           - const: snps,dw-apb-uart
+       - items:
+           - enum:
 -- 
 2.25.1
 
