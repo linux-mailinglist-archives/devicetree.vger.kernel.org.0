@@ -2,110 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E43757ECC4
-	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 10:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ED5C57ECE0
+	for <lists+devicetree@lfdr.de>; Sat, 23 Jul 2022 11:05:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233097AbiGWIgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 04:36:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55748 "EHLO
+        id S229708AbiGWJFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 23 Jul 2022 05:05:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231307AbiGWIgS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 04:36:18 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C43F481C7
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 01:36:16 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id b34so2593951ljr.7
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 01:36:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=UFNgKWXdIG6DQFBmwM7XyaYQFbIAlbR9vbv7ZA7sYD4=;
-        b=xwby9q+fB01FO2mS7fKnVXiA1AOLFxxqsXAyshQcITRU+HVTULFKnJSAu0rpdTWLdX
-         7J7diRX15MjxeNOZGeSr/07eAe/qSCX7eVlEkSFYgobhDZR7ziVahvfHAXCW+k1L+vX4
-         0Tq77hQKLtiO7q4eAfrlSk24CTRpnW2l8+V0hGbg0q/jNEDZaLlMoE1lPA/ZkMdmPdPl
-         6u0KQAyda3jodzgnPQQbkr5+Jzp8KNvPsGr2JsH8/5hupplxS2yisBLWF2T2rQPNum52
-         m9MMvJ3Mm0x13S+SghtoKKKEsExJmqk8ewdaF9e/lAlQ02cgTzTAqGu5ZSV1AHoUmBll
-         xypQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=UFNgKWXdIG6DQFBmwM7XyaYQFbIAlbR9vbv7ZA7sYD4=;
-        b=USP/mLU2qMC3nvpoGsTgla8InHjHCApP+2zgBsnIhZB8Vi6d9u4TejSSyMbJaQ2tq/
-         wbEj3MJEIEIoMBE2+7zYgCvB6E/aGlFJMo8Te2rV0/yL6BceVc0ITw8tTxDIh805CInN
-         FVlkkYcxVt5BIoGP6RsvGzFnJe4X0LrS6KKYzgHf0vZ+bze06NQWgUwDzY4RRrsyATWv
-         huS2kqKA1MV4gWmu8Tw+19Zpkjkzhp+qP5Hh2qp8lkhUWQRc0cq1F3ZJQSIyjlsCJFv8
-         daMrdY+aY8Vv4IZWbrgzMT8BDF9GRiZ17QC5PnrRS9RyBbuPcp70GNfIXeSgAIcluV9z
-         OW4Q==
-X-Gm-Message-State: AJIora9dEzzmfQe6nY2bhnJFnPzXcp7WLvugS6n1vPELjjDKdjaJwUV2
-        Jv2mKRbLVR2kqJGowJ5SkAmzug==
-X-Google-Smtp-Source: AGRyM1tC6obcKeJ8XV3Kqpjx1vuO1ZcdPvxoiANz+5GuluNWs+REVtSy3fdPz4vCVsjZoHNtum4bUQ==
-X-Received: by 2002:a2e:a36a:0:b0:25d:d73d:d8c9 with SMTP id i10-20020a2ea36a000000b0025dd73dd8c9mr1160570ljn.68.1658565374570;
-        Sat, 23 Jul 2022 01:36:14 -0700 (PDT)
-Received: from [192.168.10.173] (93.81-167-86.customer.lyse.net. [81.167.86.93])
-        by smtp.gmail.com with ESMTPSA id x14-20020a056512078e00b0047f79c636f7sm1541978lfr.167.2022.07.23.01.36.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Jul 2022 01:36:14 -0700 (PDT)
-Message-ID: <fec6bd98-5efd-fe34-6d75-1765219acd82@linaro.org>
-Date:   Sat, 23 Jul 2022 10:36:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 10/10] arm64: dts: qcom: sdm845: add LLCC BWMON
-Content-Language: en-US
-To:     Steev Klimaszewski <steev@kali.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        with ESMTP id S235896AbiGWJFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 05:05:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C6363D6;
+        Sat, 23 Jul 2022 02:05:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B92E360F08;
+        Sat, 23 Jul 2022 09:05:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1DE9C341C0;
+        Sat, 23 Jul 2022 09:05:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658567110;
+        bh=qyaEZkJAJZmgLW7HETADbLW1hQVlF8cNoPLnBbxZO6s=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=PGjyWEEoqkcIbM4DWheEeD8YNv2O3srm8nL8L1XKPbzmEmPfbgQHrrgQdG/EBvLBN
+         tZ/jC+4JcZ7Pj2cZW6W4Xf1fbENlPvr4i/m88pbRrC0mH+Cyz8D7u1LkSCUmnKHMRL
+         d/qF42vksBfgH1rGhVWx40DegVSpUyOxjkSa5HFBFcZhCkh/tn1FAy49MzBGT9IXuJ
+         3j72zOVtTOL4Jn7CxlxbZAZ2N6753s0wM02ln+UMBbmVrhJq8hNZ4uX8hYjH3CoHhZ
+         6pXNUqk2TdxyASLRiaVHJKOH8ON/V6wBxzrkFnDwfDf92wSOQVEqhl+Rhnks/VThJU
+         uSDDWEIWKUX5A==
+Received: by pali.im (Postfix)
+        id B19E0CDA; Sat, 23 Jul 2022 11:05:06 +0200 (CEST)
+Date:   Sat, 23 Jul 2022 11:05:06 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <20220720192807.130098-1-krzysztof.kozlowski@linaro.org>
- <20220720192807.130098-11-krzysztof.kozlowski@linaro.org>
- <25673493-4171-62b0-f696-1316d115f388@kali.org>
- <96552a95-8939-3ac2-c9b3-14dabaf53923@linaro.org>
- <d814a6da-b0d7-2fd1-fd14-8f1f3b88666f@kali.org>
- <d89a540f-672d-83de-d19d-00f10e4370d1@kali.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d89a540f-672d-83de-d19d-00f10e4370d1@kali.org>
-Content-Type: text/plain; charset=UTF-8
+        Mauri Sandberg <maukka@ext.kapsi.fi>,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: How to correctly define memory range of PCIe config space
+Message-ID: <20220723090506.wofibbrrhicvxi4t@pali>
+References: <20220710225108.bgedria6igtqpz5l@pali>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220710225108.bgedria6igtqpz5l@pali>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/07/2022 04:37, Steev Klimaszewski wrote:
->>
->> Currently it's 5.19.0-rc7 (torvalds tree at 4ba1329c) with a few extra 
->> patches on top, the bwmon set included.  It's possible that secure 
->> world uses it, but I do not know enough about that to say one way or 
->> the other.
+Gentle reminder...
 
-To test patches you should apply them on maintainer's tree or
-linux-next. Applying on other trees of course might be useful for
-testing some backports, but it is independent process and different issue.
-
->>
->> -- steev
->>
-> I think you may be right; I just applied this patchset to -next 
-> (20220722) and i do not see the error message there.  On my 5.19-rc7 
-> tree, i am also testing a patchset that enables qcom devices to access 
-> efivars, so possibly we are ending up in secure world there?
-
-Actually mapping of IO space should not touch secure world, so this was
-a long shot assuming you test it on the next.
-
-
-Best regards,
-Krzysztof
+On Monday 11 July 2022 00:51:08 Pali Rohár wrote:
+> Hello!
+> 
+> Together with Mauri we are working on extending pci-mvebu.c driver to
+> support Orion PCIe controllers as these controllers are same as mvebu
+> controller.
+> 
+> There is just one big difference: Config space access on Orion is
+> different. mvebu uses classic Intel CFC/CF8 registers for indirect
+> config space access but Orion has direct memory mapped config space.
+> So Orion DTS files need to have this memory range for config space and
+> pci-mvebu.c driver have to read this range from DTS and properly map it.
+> 
+> So my question is: How to properly define config space range in device
+> tree file? In which device tree property and in which format? Please
+> note that this memory range of config space is PCIe root port specific
+> and it requires its own MBUS_ID() like memory range of PCIe MEM and PCIe
+> IO mapping. Please look e.g. at armada-385.dtsi how are MBUS_ID() used:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/armada-385.dtsi
+> 
+> Krzysztof, would you be able to help with proper definition of this
+> property, so it would be fine also for schema checkers or other
+> automatic testing tools?
