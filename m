@@ -2,94 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85FD257F449
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 11:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8AE557F473
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 11:35:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbiGXJHJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jul 2022 05:07:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38614 "EHLO
+        id S232785AbiGXJfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jul 2022 05:35:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230321AbiGXJHI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jul 2022 05:07:08 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2E27165A8;
-        Sun, 24 Jul 2022 02:07:07 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id t1so13866080lft.8;
-        Sun, 24 Jul 2022 02:07:07 -0700 (PDT)
+        with ESMTP id S232296AbiGXJfv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jul 2022 05:35:51 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9277CBC8A;
+        Sun, 24 Jul 2022 02:35:50 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id y11so13888192lfs.6;
+        Sun, 24 Jul 2022 02:35:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=twHHobYLA9lRy1K5OK4RAuGFOI4ai78W7xr1iypX7js=;
-        b=VUAVlC4793nwMj0kejd/LhnswSxMM1OmuJnU+Y7zuLWh8lITr/u5/kEmAjG8nOedw1
-         3D8L48ZYToS9vbVLlbDtBLTuHeAgwUX75/c7/F1jEtQZmDwoYOq59g9/Lvh3Rz0n9KxE
-         VZ1VQFUJLTG+Lgc3XAVicvaSEWojoQxVrcXTAnh1vSxZolGik5ggF6+NI+LDZvLilTv+
-         czXZLmxjbN3FhsuRqAy5kOBufRBN6cIoCSUTAQardjBDcYSpf3bVH5I94V4qB1lpCdOH
-         jDf/QBEvPtpnaszZW7KcMkQzFl5sCmSyTA9WplsVWipGLd4rmk+asNaSMk7N7qf2ot5s
-         AWZA==
+        bh=kY/2lDsjH8rvyR9vI13gtj+VtHAX6pqqtYSZIT34gMQ=;
+        b=ANtyF2mKb++gC6/Y0D4BWpKx7diw7+EEqMUgh3n2P/HJ6uj8iZMx80qEQv5EMBVQOe
+         8LiZubbCg+DNm8jTrkbkv3ySYcxjjVH2DwZOdLZv1VDnYbSk6eg7BSmJF0hBg4ARvKec
+         l2cC7rPy8IhAbQStVEDF4iUsJLYL/tOcxyrL2j0u3WrMHj6P+8NlnDSjnz7vK6nNRlIA
+         wk8tRQ/ezcoNCcl3YdNwTV86qIPIPcP2MzQcIOa0nHa+Qqije50JNR2Hw39vLJUZr6rO
+         LdnlgPn94kxJrvqpIfCUGnwNtjHKyH0wgph1/du6/kjONK1CtPra9Zd1eQppoNy4ps5c
+         +HVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=twHHobYLA9lRy1K5OK4RAuGFOI4ai78W7xr1iypX7js=;
-        b=sZVGnbMXPj+CDknV38b4KBWevIf1fw/rmmOUuKAFwajE2uspw2E1FZdh8PUV8bSy11
-         rdND8T8A2e4PJcryu+nr9DVKDfRztD7e8ld+/SV+lKpYsUR+CkorkWmo/mhJ25S3A3JZ
-         aF+ohJzVoVmnaQiW1nQ6ZkOn6BL0TUbjThkuEVdjJ2UlFmr2vguQ6xCmZq0Aw3uU553U
-         ratiHYtvb7GjNoEfWrGlAEkO7FtBsTsgo4qmZWExcv7agZeKAb3g+89lXAxx9LfPQN8h
-         SbfFWIVefy9j3xJ58As5PmVp5dsoDN6UWB/T3I63gqoJxC14RHhMYaGGHlV8I8PPYt05
-         Ki6g==
-X-Gm-Message-State: AJIora85jSXeCZk7DRWp+IusOtq+ZH/mlubCXbKqZPtZaLo8G+xtMzws
-        6y+X1sNumBatb1J3kaDvaEwA9TGK3vGsBRYfBAo=
-X-Google-Smtp-Source: AGRyM1vDCtTZd7D/kRrJ5xi2dNk8sTtQOjt4UXxL6XCbt6MQn01Nys6x/RDb3QuYl6R/HvowptRbbh75st7Lo99vuaw=
-X-Received: by 2002:a05:6512:693:b0:48a:7c23:1896 with SMTP id
- t19-20020a056512069300b0048a7c231896mr2976280lfe.111.1658653626041; Sun, 24
- Jul 2022 02:07:06 -0700 (PDT)
+        bh=kY/2lDsjH8rvyR9vI13gtj+VtHAX6pqqtYSZIT34gMQ=;
+        b=AnlvetoAhugBCIXg3MZEfxo0+cmcZO6CFm+7x9xNI1gHdylSwRbKtBf8MAj2CmC2F5
+         M1aObcfJXw0cxsM1cWlkxY3FtmJWmAXxG9/ZidZGVipnmv8OIQ2dz7kLFtczr9yXZWu+
+         WkMDeI7o/9JHl7Px11vj4+u1casbAvN8LPg6SPBkckxbdwDgtWK5iOiKH7c31XK/LGll
+         HZj3jBbZMTdoGwBRL+Q5YqrwF5CCoMxNwMYXSUDNa28+TZiR9xHsfIuymVUnB3vrpziS
+         LboCQX3ZQcHoWShnDrOS2XwwL+Ykdg4YkEov9ZJGINHJDJ2JSxsqJ8bIPfjfxKvuvRH0
+         BiIA==
+X-Gm-Message-State: AJIora8A3YR0DwFCXKNFCXnTlEelxae784CJ3qJqIqI+gTr1g37jsNmb
+        Hi7CQ1kznssdKNMX75VDmhe7TTj1SXKsrHPUZ/4=
+X-Google-Smtp-Source: AGRyM1ttd4MQTqOMMfzH0Y37+KPEPMu8Aswiq+gjP4iO8JKTk6mNJSA0L8DCpp4Ma/G/aSrXXw+S1m4GvlnoYIE2Jy0=
+X-Received: by 2002:a05:6512:1190:b0:48a:19d5:ef23 with SMTP id
+ g16-20020a056512119000b0048a19d5ef23mr2732227lfr.401.1658655348919; Sun, 24
+ Jul 2022 02:35:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220711123519.217219-1-tmaimon77@gmail.com> <20220711123519.217219-5-tmaimon77@gmail.com>
- <20220711195544.70A30C34115@smtp.kernel.org> <CAP6Zq1ie_RgJ_9S3ftoVJ=eJHX1xR4_O_czKZghNPKVEFOzC8Q@mail.gmail.com>
- <20220718191454.5B5D3C341C0@smtp.kernel.org> <CAP6Zq1ju08GSjNnEG+zDUC8W6aQMJxd5He7QJxy9++hTy0Dc7A@mail.gmail.com>
- <20220723030226.8E43CC341C6@smtp.kernel.org>
-In-Reply-To: <20220723030226.8E43CC341C6@smtp.kernel.org>
+References: <20220721101556.118568-1-tmaimon77@gmail.com> <20220721101556.118568-2-tmaimon77@gmail.com>
+ <YtlYt/5VKIblUHBP@sirena.org.uk>
+In-Reply-To: <YtlYt/5VKIblUHBP@sirena.org.uk>
 From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Sun, 24 Jul 2022 12:06:54 +0300
-Message-ID: <CAP6Zq1gUvMFG9BNObVNLpVgbMRpV7e--HFxknP8kvL4nGk8Hsw@mail.gmail.com>
-Subject: Re: [PATCH v8 04/16] clk: npcm8xx: add clock controller
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Olof Johansson <olof@lixom.net>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Robert Hancock <robert.hancock@calian.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+Date:   Sun, 24 Jul 2022 12:35:37 +0300
+Message-ID: <CAP6Zq1hu4GtFrLa5O_7gyszXwpfijJF=XU0hdw8FBbvj3Bk8Hg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] spi: npcm-pspi: add full duplex support
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
         Tali Perry <tali.perry1@gmail.com>,
-        Thomas G leixner <tglx@linutronix.de>,
+        Joel Stanley <joel@jms.id.au>,
         Patrick Venture <venture@google.com>,
-        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
         Nancy Yuen <yuenn@google.com>,
-        devicetree <devicetree@vger.kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        linux-spi@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        SERIAL DRIVERS <linux-serial@vger.kernel.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
@@ -101,54 +76,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Hi Mark,
 
 Thanks for your detailed explanation!
 
-On Sat, 23 Jul 2022 at 06:02, Stephen Boyd <sboyd@kernel.org> wrote:
+On Thu, 21 Jul 2022 at 16:46, Mark Brown <broonie@kernel.org> wrote:
 >
-> Quoting Tomer Maimon (2022-07-19 03:04:43)
-> > On Mon, 18 Jul 2022 at 22:14, Stephen Boyd <sboyd@kernel.org> wrote:
-> > >
-> > >
-> > > So the clk and reset driver should be the same driver, or one driver
-> > > should register the other and use the auxiliary bus to express the
-> > > relationship. That way we know that the drivers are tightly coupled and
-> > > aren't going to stomp over each other.
-> > I think it is very problematic to use the same driver for the reset
-> > and the clocks also because The NPCM reset driver is an old driver
-> > that was used also to the older NPCM BMC SoC so it will be problematic
-> > to use the clock and reset driver in the same space.
-> > indeed the reset and clocks are using the same memory region but they
-> > are not using the same registers, is it not enough?
-> > Please be aware that the NPCM reset driver is checking that it is
-> > using the reset registers before calling I/O functions.
+> On Thu, Jul 21, 2022 at 01:15:55PM +0300, Tomer Maimon wrote:
 >
-> To put it simply, platform device drivers should use platform device
-> APIs. The platform device APIs hide the fact that the firmware is ACPI
-> or DT or nothing at all. The usage of of_address_to_resource() is
-> problematic.
+> > The NPCM PSPI handler, on TX-buffer not null, would perform a dummy read
+> > but did not save the rx-data, this was valid only for half duplex.
 >
-> After converting that to platform APIs you'll get janitor style cleanups
-> trying to convert to devm_platform_ioremap_resource(). We'll have to
-> discuss this again when that happens, even if there's a comment in the
-> code indicating we can't reserve the IO space because there's another
-> driver. These problems have happened in the past, fun times!
+> > This patch adds full duplex support for NPCM PSPI driver by storing all
+> > rx-data when the Rx-buffer is defined also for TX-buffer handling.
 >
-> Furthermore, in DT, reg properties aren't supposed to overlap. When that
-> happens it usually indicates the DT is being written to describe driver
-> structure instead of the IP blocks that are delivered by the hardware
-> engineer. In this case it sounds like a combined clk and reset IP block
-> because they piled all the SoC glue stuff into a register range. Are
-> there more features in this IO range?
+> This doesn't seem to entirely correspond to what the patch does, nor to
+> what the driver currently does?  I can't see any dummy read code in the
+> current driver.
+>
+In the current handler file, in the handler function.
+static irqreturn_t npcm_pspi_handler(int irq, void *dev_id)
+....
+-       if (priv->tx_buf) {
+-               if (stat & NPCM_PSPI_STAT_RBF) {
+-                       ioread8(NPCM_PSPI_DATA + priv->base);
+the read above doing a dummy read
+-                       if (priv->tx_bytes == 0) {
+-                               npcm_pspi_disable(priv);
+-                               complete(&priv->xfer_done);
+-                               return IRQ_HANDLED;
+-                       }
+-               }
 
-No, this range only combined the reset and clock together, but it
-combined in a way that we cannot split it to two or even three
-different registers...
 
-I do see a way to combine the clock and the reset driver, the NPCM
-reset driver is serving other NPCM BMC's.
-Should we use regmap to handle the clock registers instead of ioremap?
+> >  static void npcm_pspi_send(struct npcm_pspi *priv)
+> >  {
+> >       int wsize;
+> > -     u16 val;
+> > +     u16 val = 0;
+> >
+> >       wsize = min(bytes_per_word(priv->bits_per_word), priv->tx_bytes);
+> >       priv->tx_bytes -= wsize;
+> >
+> > -     if (!priv->tx_buf)
+> > -             return;
+> > -
+> >       switch (wsize) {
+> >       case 1:
+> > -             val = *priv->tx_buf++;
+> > +             if (priv->tx_buf)
+> > +                     val = *priv->tx_buf++;
+> >               iowrite8(val, NPCM_PSPI_DATA + priv->base);
+> >               break;
+>
+> These changes appaear to be trying to ensure that when _send() is called
+> we now always write something out, even if there was no transmit buffer.
+> Since the device has been supporting half duplex transfers it is not
+> clear why we'd want to do that, it's adding overhead to the PIO which
+> isn't great.  This also isn't what the changelog said, the changelog
+> said we were adding reading of data when there's a transmit buffer.
+> Similar issues apply on the read side.
+>
+> AFAICT the bulk of what the change is doing is trying make the driver
+> unconditionally do both read and writes to the hardware when it would
+> previously have only read or written data if there was a buffer
+> provided.  That's basically open coding SPI_CONTROLLER_MUST_TX and
+> SPI_CONTROLLER_MUST_RX, if that's what the hardware needs then you
+> should just set those flags and let the core fix things up.
+We will try to use SPI_CONTROLLER_MUST_TX and SPI_CONTROLLER_MUST_RX
+>
+> > +       /*
+> > +        * first we do the read since if we do the write we previous read might
+> > +        * be lost (indeed low chances)
+> > +        */
+>
+> This reordering sounds like it might be needed but should have been
+> mentioned in the changelog and is a separate patch.
 
 Best regards,
 
