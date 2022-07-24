@@ -2,160 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94DDE57F290
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 03:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C41657F3DB
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 10:02:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234019AbiGXBkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 23 Jul 2022 21:40:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35476 "EHLO
+        id S231533AbiGXICy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jul 2022 04:02:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230176AbiGXBkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 23 Jul 2022 21:40:20 -0400
-X-Greylist: delayed 493 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 23 Jul 2022 18:40:19 PDT
-Received: from ci74p00im-qukt09081502.me.com (ci74p00im-qukt09081502.me.com [17.57.156.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1C27A457
-        for <devicetree@vger.kernel.org>; Sat, 23 Jul 2022 18:40:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-        s=1a1hai; t=1658626325;
-        bh=GsdFZK4oQNZWNc6BXkPULWSnbkpQG2ue3MdM2e30/GQ=;
-        h=Content-Type:From:Mime-Version:Subject:Date:Message-Id:To;
-        b=0CptV9Iz/vhCxOz+MlOz1/Go5VCVLeDJ2h0pg7LmemPmrBHCrtetn8oqlaqsgIwqq
-         looD+9jRM6S3CV+hpiFh4iRqCD/A70nflY5gK3X8GhlcjLi6lEmi6iWK32/0kIhudX
-         XqftYSYdWc6stW2ougQ1PP3rmGiqhEMCLpyGAaK42G+R3HVpXnoNXupzUluP33aP9X
-         Qfi7bKp4merH8SYr+I+ITSSHyi2GYSM/dPDhEzWVJJZLO7e3K2d2PgGD+coR81M4ZJ
-         zSRf25jyzIQjyTGjfnMFNceP90tfdwq9kwq0WtyY01VrUsfonkMlfKoKjy+QcThJP8
-         YawddyCMIsEdA==
-Received: from smtpclient.apple (ci77p00im-dlb-asmtp-mailmevip.me.com [17.57.156.26])
-        by ci74p00im-qukt09081502.me.com (Postfix) with ESMTPSA id 776E228400F1;
-        Sun, 24 Jul 2022 01:32:03 +0000 (UTC)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From:   Vee Page <takeiteasy27@icloud.com>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH 0/3] Add SFC support for Ingenic SoCs.
-Date:   Sat, 23 Jul 2022 21:32:01 -0400
-Message-Id: <D7ACE3CD-3189-4988-BB44-F32514C70425@icloud.com>
-References: <MN2PR17MB33758BDD0221A0C49A13DC3DB8929@MN2PR17MB3375.namprd17.prod.outlook.com>
-Cc:     Tomasz Maciej Nowak <tmn505@gmail.com>,
-        Tudor.Ambarus@microchip.com, p.yadav@ti.com, michael@walle.cc,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        aidanmacdonald.0x0@gmail.com, paul@crapouillou.net,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, jinghui.liu@ingenic.com,
-        sernia.zhou@foxmail.com, reimu@sudomaker.com
-In-Reply-To: <MN2PR17MB33758BDD0221A0C49A13DC3DB8929@MN2PR17MB3375.namprd17.prod.outlook.com>
-To:     Zhou Yanjie <zhouyanjie@wanyeetech.com>
-X-Mailer: iPhone Mail (19B81)
-X-Proofpoint-ORIG-GUID: L2zjtVGRKGpQPmIocJ94RIVCaPPsaP4E
-X-Proofpoint-GUID: L2zjtVGRKGpQPmIocJ94RIVCaPPsaP4E
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.572,17.0.605.474.0000000_definitions?=
- =?UTF-8?Q?=3D2020-02-14=5F11:2020-02-14=5F02,2020-02-14=5F11,2020-01-23?=
- =?UTF-8?Q?=5F02_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0 suspectscore=0 mlxscore=0
- mlxlogscore=855 bulkscore=0 malwarescore=0 spamscore=0 adultscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2207240006
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,MIME_QP_LONG_LINE,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229483AbiGXICx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jul 2022 04:02:53 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E533715706;
+        Sun, 24 Jul 2022 01:02:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1658649772; x=1690185772;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CAUlyqlmn8DRqlIwM/F0ha25qVFV/n8XQ56UArsr3MI=;
+  b=bdVr9buzqMzA6Y9cOztPH21ilT0sqCXjMXlPELRdfmqkGSONlC/+Sq4F
+   mxmcpx44O0oqv2LbBy1OYOkYV2D3mqbfcwNpQobALyuXKY7wTlYtT3Bxi
+   FGOrE9b7SpdHsYNSmvkorwFsLdsq5ux/kqGC2vG2RSOz9GEp8a1A1HU1d
+   Y+IQ9+NZBIk5Uxd2jPI/2RkkY32PBrL9SPGrCulVWGybinPTwSW+2xGDs
+   uA3ZPRNa5juG+eb+rIT20rv8vHODsufk54B0wZLndOk2sglmXImcpPume
+   wTvnivFGau34vwK+Hz8QQYKAK2yvLPtCw+Pbl90E9YjwIlIS+ZBVkWgY8
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10417"; a="267298194"
+X-IronPort-AV: E=Sophos;i="5.93,190,1654585200"; 
+   d="scan'208";a="267298194"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jul 2022 01:02:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,190,1654585200"; 
+   d="scan'208";a="549631966"
+Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 24 Jul 2022 01:02:48 -0700
+Received: from kbuild by e0eace57cfef with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oFWZb-0003hl-1q;
+        Sun, 24 Jul 2022 08:02:47 +0000
+Date:   Sun, 24 Jul 2022 16:01:49 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
+        bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com,
+        shawnguo@kernel.org, kishon@ti.com, kw@linux.com, frank.li@nxp.com
+Cc:     kbuild-all@lists.01.org, hongxing.zhu@nxp.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: Re: [PATCH v1 09/10] PCI: imx6: Add iMX8MM PCIe EP mode
+Message-ID: <202207241506.pe2RsQWk-lkp@intel.com>
+References: <1658223939-25478-10-git-send-email-hongxing.zhu@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1658223939-25478-10-git-send-email-hongxing.zhu@nxp.com>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-No problem!!!
-I forget to tell them. It=E2=80=99s okay though! =F0=9F=91=8C=F0=9F=91=8D
-=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=
-=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=
-=F0=9F=98=9A=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=
-=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=
-=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=
-=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=
-=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=
-=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=
-=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=
-=B8=8F=E2=98=BA=EF=B8=8F
-I=E2=80=99m blushing! Last night was fun.
+Hi Richard,
 
-> On Jul 23, 2022, at 9:30 PM, Vanessa Page <Vebpe@outlook.com> wrote:
->=20
-> =EF=BB=BF=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=
-=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=
-=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=
-=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=
-=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=
-=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=
-=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=
-=A5=B0=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=9A=
-=F0=9F=98=8D=F0=9F=98=9A=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D
->=20
-> Omg thank you Janika!
->=20
-> I=E2=80=99m glad to see everything is okay just tell them next time!
->=20
-> Love ya babes!
->=20
->> On Jul 23, 2022, at 9:27 PM, Zhou Yanjie <zhouyanjie@wanyeetech.com> wrot=
-e:
->>=20
->> =EF=BB=BFHi Tomasz,
->>=20
->>>> On 2022/7/23 =E4=B8=8B=E5=8D=8810:47, Tomasz Maciej Nowak wrote:
->>> W dniu 22.07.2022 o 18:48, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) pis=
-ze:
->>>> 1.Use the spi-mem poll status APIs in SPI-NOR to reduce CPU load.
->>>> 2.Add SFC support for the X1000 SoC, the X1600 SoC, and the X2000 SoC f=
-rom Ingenic.
->>>>=20
->>>> Liu Jinghui and Aidan MacDonald provided a lot of assistance during the=
- development of this driver.
->>>>=20
->>>> =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) (3):
->>>>  mtd: spi-nor: Use the spi-mem poll status APIs.
->>>>  dt-bindings: SPI: Add Ingenic SFC bindings.
->>>>  SPI: Ingenic: Add SFC support for Ingenic SoCs.
->>>>=20
->>>> .../devicetree/bindings/spi/ingenic,sfc.yaml       |  64 ++
->>>> drivers/mtd/spi-nor/core.c                         |  42 +-
->>>> drivers/spi/Kconfig                                |   9 +
->>>> drivers/spi/Makefile                               |   1 +
->>>> drivers/spi/spi-ingenic-sfc.c                      | 662 ++++++++++++++=
-+++++++
->>>> 5 files changed, 768 insertions(+), 10 deletions(-)
->>>> create mode 100644 Documentation/devicetree/bindings/spi/ingenic,sfc.ya=
-ml
->>>> create mode 100755 drivers/spi/spi-ingenic-sfc.c
->>>>=20
->>> Even tough it's still early in revision process, I'll add my
->>> Tested-by: Tomasz Maciej Nowak <tmn505@gmail.com>
->>>=20
->>> The test was performed with Damai DM6291A SoC which is a Ingenic X1000 I=
-P
->>> but with 256 MiB RAM. No bugs yet observed on my side.
->>=20
->>=20
->> Thanks for you test!
->>=20
->>=20
->>>=20
->>=20
->> ______________________________________________________
->> Linux MTD discussion mailing list
->> http://lists.infradead.org/mailman/listinfo/linux-mtd/
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on next-20220718]
+[cannot apply to helgaas-pci/next robh/for-next char-misc/char-misc-testing v5.19-rc7 v5.19-rc6 v5.19-rc5 linus/master v5.19-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Richard-Zhu/Add-iMX-PCIe-EP-mode-support/20220719-180421
+base:    036ad6daa8f0fd357af7f50f9da58539eaa6f68c
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20220724/202207241506.pe2RsQWk-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/1ebd36a42f9836f97d60b714e8ae000135c68576
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Richard-Zhu/Add-iMX-PCIe-EP-mode-support/20220719-180421
+        git checkout 1ebd36a42f9836f97d60b714e8ae000135c68576
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/pci/controller/dwc/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/pci/controller/dwc/pci-imx6.c: In function 'imx6_add_pcie_ep':
+>> drivers/pci/controller/dwc/pci-imx6.c:1069:32: error: initialization of 'struct pcie_port *' from incompatible pointer type 'struct dw_pcie_rp *' [-Werror=incompatible-pointer-types]
+    1069 |         struct pcie_port *pp = &pci->pp;
+         |                                ^
+   drivers/pci/controller/dwc/pci-imx6.c:1072:29: error: passing argument 1 of 'imx6_pcie_host_init' from incompatible pointer type [-Werror=incompatible-pointer-types]
+    1072 |         imx6_pcie_host_init(pp);
+         |                             ^~
+         |                             |
+         |                             struct pcie_port *
+   drivers/pci/controller/dwc/pci-imx6.c:925:51: note: expected 'struct dw_pcie_rp *' but argument is of type 'struct pcie_port *'
+     925 | static int imx6_pcie_host_init(struct dw_pcie_rp *pp)
+         |                                ~~~~~~~~~~~~~~~~~~~^~
+   cc1: some warnings being treated as errors
+
+
+vim +1069 drivers/pci/controller/dwc/pci-imx6.c
+
+  1060	
+  1061	static int imx6_add_pcie_ep(struct imx6_pcie *imx6_pcie,
+  1062				   struct platform_device *pdev)
+  1063	{
+  1064		int ret;
+  1065		unsigned int pcie_dbi2_offset;
+  1066		struct dw_pcie_ep *ep;
+  1067		struct resource *res;
+  1068		struct dw_pcie *pci = imx6_pcie->pci;
+> 1069		struct pcie_port *pp = &pci->pp;
+  1070		struct device *dev = pci->dev;
+  1071	
+  1072		imx6_pcie_host_init(pp);
+  1073		ep = &pci->ep;
+  1074		ep->ops = &pcie_ep_ops;
+  1075	
+  1076		switch (imx6_pcie->drvdata->variant) {
+  1077		case IMX8MM_EP:
+  1078			pcie_dbi2_offset = SZ_1M;
+  1079			break;
+  1080		default:
+  1081			pcie_dbi2_offset = SZ_4K;
+  1082			break;
+  1083		}
+  1084		pci->dbi_base2 = pci->dbi_base + pcie_dbi2_offset;
+  1085		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "addr_space");
+  1086		if (!res)
+  1087			return -EINVAL;
+  1088	
+  1089		ep->phys_base = res->start;
+  1090		ep->addr_size = resource_size(res);
+  1091		ep->page_size = SZ_64K;
+  1092	
+  1093		ret = dw_pcie_ep_init(ep);
+  1094		if (ret) {
+  1095			dev_err(dev, "failed to initialize endpoint\n");
+  1096			return ret;
+  1097		}
+  1098		/* Start LTSSM. */
+  1099		imx6_pcie_ltssm_enable(dev);
+  1100	
+  1101		return 0;
+  1102	}
+  1103	
+
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
