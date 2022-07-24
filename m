@@ -2,157 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8AE557F473
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 11:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4569657F485
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 11:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232785AbiGXJfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jul 2022 05:35:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55854 "EHLO
+        id S233856AbiGXJx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jul 2022 05:53:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232296AbiGXJfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jul 2022 05:35:51 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9277CBC8A;
-        Sun, 24 Jul 2022 02:35:50 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id y11so13888192lfs.6;
-        Sun, 24 Jul 2022 02:35:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kY/2lDsjH8rvyR9vI13gtj+VtHAX6pqqtYSZIT34gMQ=;
-        b=ANtyF2mKb++gC6/Y0D4BWpKx7diw7+EEqMUgh3n2P/HJ6uj8iZMx80qEQv5EMBVQOe
-         8LiZubbCg+DNm8jTrkbkv3ySYcxjjVH2DwZOdLZv1VDnYbSk6eg7BSmJF0hBg4ARvKec
-         l2cC7rPy8IhAbQStVEDF4iUsJLYL/tOcxyrL2j0u3WrMHj6P+8NlnDSjnz7vK6nNRlIA
-         wk8tRQ/ezcoNCcl3YdNwTV86qIPIPcP2MzQcIOa0nHa+Qqije50JNR2Hw39vLJUZr6rO
-         LdnlgPn94kxJrvqpIfCUGnwNtjHKyH0wgph1/du6/kjONK1CtPra9Zd1eQppoNy4ps5c
-         +HVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kY/2lDsjH8rvyR9vI13gtj+VtHAX6pqqtYSZIT34gMQ=;
-        b=AnlvetoAhugBCIXg3MZEfxo0+cmcZO6CFm+7x9xNI1gHdylSwRbKtBf8MAj2CmC2F5
-         M1aObcfJXw0cxsM1cWlkxY3FtmJWmAXxG9/ZidZGVipnmv8OIQ2dz7kLFtczr9yXZWu+
-         WkMDeI7o/9JHl7Px11vj4+u1casbAvN8LPg6SPBkckxbdwDgtWK5iOiKH7c31XK/LGll
-         HZj3jBbZMTdoGwBRL+Q5YqrwF5CCoMxNwMYXSUDNa28+TZiR9xHsfIuymVUnB3vrpziS
-         LboCQX3ZQcHoWShnDrOS2XwwL+Ykdg4YkEov9ZJGINHJDJ2JSxsqJ8bIPfjfxKvuvRH0
-         BiIA==
-X-Gm-Message-State: AJIora8A3YR0DwFCXKNFCXnTlEelxae784CJ3qJqIqI+gTr1g37jsNmb
-        Hi7CQ1kznssdKNMX75VDmhe7TTj1SXKsrHPUZ/4=
-X-Google-Smtp-Source: AGRyM1ttd4MQTqOMMfzH0Y37+KPEPMu8Aswiq+gjP4iO8JKTk6mNJSA0L8DCpp4Ma/G/aSrXXw+S1m4GvlnoYIE2Jy0=
-X-Received: by 2002:a05:6512:1190:b0:48a:19d5:ef23 with SMTP id
- g16-20020a056512119000b0048a19d5ef23mr2732227lfr.401.1658655348919; Sun, 24
- Jul 2022 02:35:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220721101556.118568-1-tmaimon77@gmail.com> <20220721101556.118568-2-tmaimon77@gmail.com>
- <YtlYt/5VKIblUHBP@sirena.org.uk>
-In-Reply-To: <YtlYt/5VKIblUHBP@sirena.org.uk>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Sun, 24 Jul 2022 12:35:37 +0300
-Message-ID: <CAP6Zq1hu4GtFrLa5O_7gyszXwpfijJF=XU0hdw8FBbvj3Bk8Hg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] spi: npcm-pspi: add full duplex support
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
+        with ESMTP id S231218AbiGXJx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jul 2022 05:53:27 -0400
+Received: from mail-40130.protonmail.ch (mail-40130.protonmail.ch [185.70.40.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECE1111147
+        for <devicetree@vger.kernel.org>; Sun, 24 Jul 2022 02:53:23 -0700 (PDT)
+Date:   Sun, 24 Jul 2022 09:53:10 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1658656401; x=1658915601;
+        bh=G33IYnAXaeNcisAWSd3I3CheqUJ739+CZjVoPSdZkbY=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:Feedback-ID:From:To:
+         Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID;
+        b=vx2VD1ahXy44r9SHT8nCxiY+59BLNhd1hBpQhoIWSPontKNJBl/V644NaraHKiqm6
+         xDRwTnCQA3WZJTKXnELHL0TCco/V6Y8L3mCQX5+R5CLx3cW1M2PaA+sgpV7Xqv8sW/
+         CjizhWhDFhKX6smh9zqWw3zJgg1Pl2yWV1msRlk+lemTBJkB3XEtg7/sfmFpYOFDWw
+         oESWThM4bAyTL0aQJUfqnfTkK0taJ57o8QIuZSUyEvfI3IdINKJ678sw2n+s7nJVO/
+         +/JeYOwKppp+p3UlkgvkHjqSHLBiYH6KHJzuJnW8VQnZxSEeCeehPseB7K2aWkE++/
+         Sc9d171RdgdBw==
+To:     devicetree@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        linux-spi@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, soc@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Subject: [PATCH v7 0/5] Add Samsung Galaxy E5/E7/Grand Max device trees
+Message-ID: <20220724095039.13568-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+v7: Fix incorrectly squashed haptic patch
+Fix email in Acked-by tag again
+v6: Rename touchscreen analog regulator for a2015
+Use regulator haptic instead of GPIO vibrator
+Fix email in Acked-by tag
+v5: Fix Error:
+arch/arm64/boot/dts/qcom/msm8916-samsung-e2015-common.dtsi:36.2-22 Properti=
+es
+must precede subnodes
+Restore Acked-by tag in the dt-bindings patch
+v4: Disable i2c2 until lis2hh12 accelerometer is fixed.
+Add GPIO LEDs for Grand Max.
+v3: Add a cover letter and changelog
+v2: Add dt-bindings documentation
 
-Thanks for your detailed explanation!
+Samsung Galaxy E5, E7 and Grand Max are smartphones using the MSM8916 SoC
+released in 2015.
 
-On Thu, 21 Jul 2022 at 16:46, Mark Brown <broonie@kernel.org> wrote:
->
-> On Thu, Jul 21, 2022 at 01:15:55PM +0300, Tomer Maimon wrote:
->
-> > The NPCM PSPI handler, on TX-buffer not null, would perform a dummy read
-> > but did not save the rx-data, this was valid only for half duplex.
->
-> > This patch adds full duplex support for NPCM PSPI driver by storing all
-> > rx-data when the Rx-buffer is defined also for TX-buffer handling.
->
-> This doesn't seem to entirely correspond to what the patch does, nor to
-> what the driver currently does?  I can't see any dummy read code in the
-> current driver.
->
-In the current handler file, in the handler function.
-static irqreturn_t npcm_pspi_handler(int irq, void *dev_id)
-....
--       if (priv->tx_buf) {
--               if (stat & NPCM_PSPI_STAT_RBF) {
--                       ioread8(NPCM_PSPI_DATA + priv->base);
-the read above doing a dummy read
--                       if (priv->tx_bytes == 0) {
--                               npcm_pspi_disable(priv);
--                               complete(&priv->xfer_done);
--                               return IRQ_HANDLED;
--                       }
--               }
+e2015 and a2015 are similar, with some differences in accelerometer,
+MUIC and Vibrator. The common parts are shared in
+msm8916-samsung-a2015-common.dtsi to reduce duplication.
 
+The three devices (and all other variants of E5/E7/Grand Max released in
+2015) are very similar, with some differences in display, touchscreen,
+sensors and NFC. The common parts are shared in
+msm8916-samsung-e2015-common.dtsi to reduce duplication.
 
-> >  static void npcm_pspi_send(struct npcm_pspi *priv)
-> >  {
-> >       int wsize;
-> > -     u16 val;
-> > +     u16 val = 0;
-> >
-> >       wsize = min(bytes_per_word(priv->bits_per_word), priv->tx_bytes);
-> >       priv->tx_bytes -= wsize;
-> >
-> > -     if (!priv->tx_buf)
-> > -             return;
-> > -
-> >       switch (wsize) {
-> >       case 1:
-> > -             val = *priv->tx_buf++;
-> > +             if (priv->tx_buf)
-> > +                     val = *priv->tx_buf++;
-> >               iowrite8(val, NPCM_PSPI_DATA + priv->base);
-> >               break;
->
-> These changes appaear to be trying to ensure that when _send() is called
-> we now always write something out, even if there was no transmit buffer.
-> Since the device has been supporting half duplex transfers it is not
-> clear why we'd want to do that, it's adding overhead to the PIO which
-> isn't great.  This also isn't what the changelog said, the changelog
-> said we were adding reading of data when there's a transmit buffer.
-> Similar issues apply on the read side.
->
-> AFAICT the bulk of what the change is doing is trying make the driver
-> unconditionally do both read and writes to the hardware when it would
-> previously have only read or written data if there was a buffer
-> provided.  That's basically open coding SPI_CONTROLLER_MUST_TX and
-> SPI_CONTROLLER_MUST_RX, if that's what the hardware needs then you
-> should just set those flags and let the core fix things up.
-We will try to use SPI_CONTROLLER_MUST_TX and SPI_CONTROLLER_MUST_RX
->
-> > +       /*
-> > +        * first we do the read since if we do the write we previous read might
-> > +        * be lost (indeed low chances)
-> > +        */
->
-> This reordering sounds like it might be needed but should have been
-> mentioned in the changelog and is a separate patch.
+Unfortunately, some E5/E7/Grand Max were released with outdated 32-bit
+only firmware and never received any update from Samsung. Since the 32-bit
+TrustZone firmware is signed there seems to be no way currently to
+actually boot this device tree on arm64 Linux on those variants at the
+moment.
 
-Best regards,
+However, it is possible to use this device tree by compiling an ARM32
+kernel instead. The device tree can be easily built on ARM32 with
+an #include and it works really well there. To avoid confusion for others
+it is still better to add this device tree on arm64. Otherwise it's easy
+to forget to update this one when making some changes that affect all
+MSM8916 devices.
 
-Tomer
+Maybe someone finds a way to boot ARM64 Linux on those device at some
+point. In this case I expect that this device tree can be simply used
+as-is.
+
