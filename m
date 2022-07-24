@@ -2,123 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9081157F491
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 11:56:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DE2757F4BE
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 13:01:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234406AbiGXJ4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jul 2022 05:56:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37184 "EHLO
+        id S232085AbiGXLBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jul 2022 07:01:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234193AbiGXJ4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jul 2022 05:56:02 -0400
-Received: from mail-4318.protonmail.ch (mail-4318.protonmail.ch [185.70.43.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E43CD112;
-        Sun, 24 Jul 2022 02:55:55 -0700 (PDT)
-Date:   Sun, 24 Jul 2022 09:55:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1658656554; x=1658915754;
-        bh=JRcaGadoJSWUp388kLH0FateOfociPuBOP6jmYHh0XE=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
-         Feedback-ID:Message-ID;
-        b=NgmzzJBkVnRPAuu1I31pjFUcbpga81SpDAc3zwR7u9TXMxkNNlaZ7AHjCIeZg5K/h
-         LxaIJJf++DcjBULQHf89sfYht/j6X2Tg5KoS4zq8NkktsfrBOOfyji31Wfd+In/pJv
-         /eVLf7Urr1XSXlhiYpuNLP5cMzvS+33PTNAaWf3+p83j14VDl5GV9aFmECEpIuz14A
-         3elkPKOL6zPHkjOGvOgmkoA+Sce/Nf1ZKKWExQZyUCiEw65ZjCwhs0hWhqAQm4DQtB
-         iE1i8rupzYOWMR6MjyVsa6Ks2MHv3X4VyltQNRrrSByc5dy4zvRLkg0yLzvH7//Lya
-         mklCK4z4j4FPg==
-To:     devicetree@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229462AbiGXLBe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jul 2022 07:01:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D95B4B7;
+        Sun, 24 Jul 2022 04:01:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 94FF761026;
+        Sun, 24 Jul 2022 11:01:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E601DC3411E;
+        Sun, 24 Jul 2022 11:01:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658660492;
+        bh=1UK/FMBldkCTGcjOUZegKtGA+BZ9JHu+kJka8Z/YOqU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=tgtSlNvxll67Cu/fXKCuxO3u3sz4lfbGfIE/tNpj/4sXY2X0xV+3izbJeeScuZ92s
+         K7ZBYR+6KVNC7mvsuNoPqLW2woxEFsx46CBW/JlGzrDhXD+gB/fjwyvOfJ/JgBPaSX
+         y9e94iCV3nXpB0JP3zi4jG8PzMd+CHuoQErUC9PR2ZnB297Tde3bAbdvS8Nn2C0wuw
+         lX0JpmSaHNBhzhtkQzDIQ8DPEo2E+/2LoRCjkIk+19paENrqsQLszCGbx+tX009/TG
+         9S/Fbk9SeQjH+uFI/XliaRd2jOSzgSn068Lol+2rIf2cBrbRC8KVhqVI/cVERMV0zt
+         HL5Z6pQsFPgQQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oFZMX-009fji-LS;
+        Sun, 24 Jul 2022 12:01:29 +0100
+Date:   Sun, 24 Jul 2022 12:01:28 +0100
+Message-ID: <8735eqdbav.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, soc@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Subject: [PATCH v7 5/5] arm64: dts: qcom: msm8916-samsung-a2015: Rename touchscreen analog regulator
-Message-ID: <20220724095438.14252-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20220724095039.13568-1-linmengbo0689@protonmail.com>
-References: <20220724095039.13568-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: interrupt-controller: renesas,rzg2l-irqc: Update description for '#interrupt-cells' property
+In-Reply-To: <20220722151155.21100-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220722151155.21100-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220722151155.21100-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.mahadev-lad.rj@bp.renesas.com, geert+renesas@glider.be, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, magnus.damm@gmail.com, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, prabhakar.csengg@gmail.com, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-reg_vdd_tsp: regulator-vdd-tsp is actually used as an analog regulator for
-touchscreen on all of a2015 and e2015 devices.
-Rename it into reg_vdd_tsp_a: regulator-vdd-tsp-a to reduce confusion.
+On Fri, 22 Jul 2022 16:11:54 +0100,
+Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> 
+> Update description for '#interrupt-cells' property to utilize the
+> RZG2L_{NMI,IRQX} for the first cell defined in the
+> include/dt-bindings/interrupt-controller/irqc-rzg2l.h file.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v3:
+> * New patch
+> ---
+>  .../bindings/interrupt-controller/renesas,rzg2l-irqc.yaml    | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> index 33b90e975e33..ea7db3618b23 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> @@ -31,8 +31,9 @@ properties:
+>        - const: renesas,rzg2l-irqc
+>  
+>    '#interrupt-cells':
+> -    description: The first cell should contain external interrupt number (IRQ0-7) and the
+> -                 second cell is used to specify the flag.
+> +    description: The first cell should contain a macro RZG2L_{NMI,IRQX} included in the
+> +                 include/dt-bindings/interrupt-controller/irqc-rzg2l.h and the second
+> +                 cell is used to specify the flag.
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts       | 4 ++--
- arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts       | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+I think a binding should be self describing, and not rely on an opaque
+macro. Mentioning that there is a macro that encodes it is fine, but
+the values are what matter, specially when considering that other OSs
+could (and should be able to) write their own DTs from scratch without
+depending on something that is very much Linux-specific.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/a=
-rch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-index 9b4b7de7cec2..2ac7ee3dd7c2 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-@@ -61,9 +61,9 @@ hall-sensor {
- =09=09};
- =09};
+Thanks,
 
--=09reg_vdd_tsp: regulator-vdd-tsp {
-+=09reg_vdd_tsp_a: regulator-vdd-tsp-a {
- =09=09compatible =3D "regulator-fixed";
--=09=09regulator-name =3D "vdd_tsp";
-+=09=09regulator-name =3D "vdd_tsp_a";
- =09=09regulator-min-microvolt =3D <3300000>;
- =09=09regulator-max-microvolt =3D <3300000>;
+	M.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts b/arch/ar=
-m64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-index 4ba11b020f9b..d86d20f28d23 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-@@ -73,8 +73,8 @@ touchscreen@20 {
- =09=09touchscreen-size-x =3D <540>;
- =09=09touchscreen-size-y =3D <960>;
-
--=09=09vdd-supply =3D <&reg_vdd_tsp>;
--=09=09vddo-supply =3D <&pm8916_l6>;
-+=09=09vcca-supply =3D <&reg_vdd_tsp_a>;
-+=09=09vdd-supply =3D <&pm8916_l6>;
-
- =09=09pinctrl-names =3D "default";
- =09=09pinctrl-0 =3D <&ts_int_default>;
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts b/arch/ar=
-m64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-index d978c9ac179d..76b6e8550121 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
-@@ -42,7 +42,7 @@ touchscreen@48 {
- =09=09touchscreen-size-x =3D <720>;
- =09=09touchscreen-size-y =3D <1280>;
-
--=09=09avdd-supply =3D <&reg_vdd_tsp>;
-+=09=09avdd-supply =3D <&reg_vdd_tsp_a>;
- =09=09vdd-supply =3D <&pm8916_l6>;
-
- =09=09pinctrl-names =3D "default";
---
-2.30.2
-
-
+-- 
+Without deviation from the norm, progress is not possible.
