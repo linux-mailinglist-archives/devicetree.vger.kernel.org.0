@@ -2,131 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6449A57F5CE
-	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 17:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1933657F5EA
+	for <lists+devicetree@lfdr.de>; Sun, 24 Jul 2022 17:59:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229818AbiGXPdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 24 Jul 2022 11:33:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40084 "EHLO
+        id S229482AbiGXP7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 24 Jul 2022 11:59:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbiGXPdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jul 2022 11:33:17 -0400
-Received: from out28-218.mail.aliyun.com (out28-218.mail.aliyun.com [115.124.28.218])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5702C64;
-        Sun, 24 Jul 2022 08:33:14 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07456556|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0166075-7.73192e-05-0.983315;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047198;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=24;RT=24;SR=0;TI=SMTPD_---.OcQouzA_1658676787;
-Received: from 192.168.10.152(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.OcQouzA_1658676787)
-          by smtp.aliyun-inc.com;
-          Sun, 24 Jul 2022 23:33:09 +0800
-Subject: Re: [PATCH 2/3] dt-bindings: SPI: Add Ingenic SFC bindings.
-To:     Mike Yang <reimu@sudomaker.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-Cc:     tudor.ambarus@microchip.com, p.yadav@ti.com, michael@walle.cc,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, aidanmacdonald.0x0@gmail.com,
-        tmn505@gmail.com, paul@crapouillou.net, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        jinghui.liu@ingenic.com, sernia.zhou@foxmail.com
-References: <1658508510-15400-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1658508510-15400-3-git-send-email-zhouyanjie@wanyeetech.com>
- <487a93c4-3301-aefd-abba-aabf4cb8ec90@linaro.org>
- <37062a5d-9da3-fbaf-89bd-776f32be36d9@wanyeetech.com>
- <d1a0dd15-3621-14e9-b931-417cefaab017@linaro.org>
- <b5505a46-ce76-d0aa-009e-81d9ba16e1d5@sudomaker.com>
- <YtxLoPOykLDTzTn9@sirena.org.uk>
- <f05045fa-9ecd-d312-0eaa-5d19498453fc@linaro.org>
- <b52a8e97-3b8e-c67b-4440-2d7428edb4fa@sudomaker.com>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <b6232d28-8a24-c769-7d63-d4f7af493375@wanyeetech.com>
-Date:   Sun, 24 Jul 2022 23:33:07 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        with ESMTP id S229471AbiGXP7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 24 Jul 2022 11:59:32 -0400
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52125E0E3;
+        Sun, 24 Jul 2022 08:59:31 -0700 (PDT)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id D782C34C60;
+        Sun, 24 Jul 2022 15:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1658678369; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=cxvex5bGw+e3+6CFw4jkNhrpNowUtS9AgtNeRXWKTkA=;
+        b=GdIEqA2ysDLUgucN7UH6ziilC6kEZ9rNQC6tSdrlyxkttgr1jj2qeJvMQVDruV5f/C709N
+        nNQ+rcQ7jDnNeeYwcO8qxKHpirsnGUJiWUW0ZjHCiicrEfMy4x8vw47i0tYliQ9Xp/9gBr
+        8ChbJjIt+bvy3EUj7UT9osWLZSRXuwk=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1658678369;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=cxvex5bGw+e3+6CFw4jkNhrpNowUtS9AgtNeRXWKTkA=;
+        b=htFrnRKw5thq/VIxymIR7zbZRaYJ+2HwW18cB/XvFhRUzGTamCVInI97Xs2bC1ACPV59/6
+        KS7TRLtoXWMEkQBw==
+Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by relay2.suse.de (Postfix) with ESMTPS id E52192C174;
+        Sun, 24 Jul 2022 15:59:27 +0000 (UTC)
+Date:   Sun, 24 Jul 2022 17:59:26 +0200
+From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
+To:     Michael Walle <michael@walle.cc>
+Cc:     Pratyush Yadav <p.yadav@ti.com>, linux-sunxi@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH 1/2] mtd: spi-nor: When a flash memory is missing do not
+ report an error
+Message-ID: <20220724155926.GI17705@kitsune.suse.cz>
+References: <701967b0c418db333c66b48d225df60aa9d03ead.1657826188.git.msuchanek@suse.de>
+ <d8de86aa0331be697fbef33d5ab2c57a@walle.cc>
+ <20220714205529.GE17705@kitsune.suse.cz>
+ <33abf7b84860049c4a22605578303ff2@walle.cc>
+ <20220714220744.GF17705@kitsune.suse.cz>
+ <20220715092017.2ftoyzm22i4amrbt@ti.com>
+ <20220716082027.GK17705@kitsune.suse.cz>
+ <c6955eed3a445f4b87920fe0d47e7230@walle.cc>
+ <20220716093850.GL17705@kitsune.suse.cz>
+ <50ec7bf33d8eca5eb68a079f7bcc12b7@walle.cc>
 MIME-Version: 1.0
-In-Reply-To: <b52a8e97-3b8e-c67b-4440-2d7428edb4fa@sudomaker.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <50ec7bf33d8eca5eb68a079f7bcc12b7@walle.cc>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mike,
+On Sat, Jul 16, 2022 at 11:44:48AM +0200, Michael Walle wrote:
+> Am 2022-07-16 11:38, schrieb Michal Suchánek:
+> > On Sat, Jul 16, 2022 at 11:30:12AM +0200, Michael Walle wrote:
+> > > Am 2022-07-16 10:20, schrieb Michal Suchánek:
+> > > 
+> > > > > So if DT says there isn't a flash on a specific CS when there is, then
+> > > > > DT should be fixed to describe the flash, and then we can probe it.
+> > > > > You
+> > > > > both seem to be saying the same thing here, and I agree.
+> > > >
+> > > > The disagreement is about the situation when there is sometimes a flash
+> > > > chip.
+> > > 
+> > > No. The disagreement is what should happen if the DT says there is
+> > > a device but there isn't. Which right now is an error and it should
+> > > stay that way. Your hardware description says there is a flash
+> > > but it cannot be probed, so it is an error. What about a board
+> > > which has an actual error and the flash isn't responding? You
+> > > trade one use case for another.
+> > 
+> > And what if you have a SATA controller with a bad cable?
+> > 
+> > Or a bad connection to a mmc card?
+> 
+> Again. You don't tell the kernel via the DT that there is an
+> MMC card nor that there is a SATA SDD. In contrast to SPI-NOR..
 
-On 2022/7/24 ä¸Šåˆ4:49, Mike Yang wrote:
-> On 7/24/22 04:07, Krzysztof Kozlowski wrote:
->> On 23/07/2022 21:27, Mark Brown wrote:
->>> On Sun, Jul 24, 2022 at 02:47:14AM +0800, Mike Yang wrote:
->>>> On 7/24/22 01:43, Krzysztof Kozlowski wrote:
->>>>> On 23/07/2022 18:50, Zhou Yanjie wrote:
->>>>>> No offense, does it really need to be named that way?
->>>>>> I can't seem to find documentation with instructions on this :(
->>> ...
->>>
->>>>> All bindings are to follow this rule, so I don't understand why you
->>>>> think it is an exception for you?
->>>> Zhou didn't ask you to make an exception. They have a valid
->>>> point and they're asking why.
->>>> You may want to avoid further incidents of this kind by stop
->>>> being bossy and actually writing a guideline of naming these
->>>> .yaml files and publish it somewhere online.
->>> Yeah, I do have to say that I was also completely unaware that
->>> there was any enforced convention here.
->> Indeed, it's not a enforced pattern. But there are many other
->> insignificant ones which we also tend to forget during review, like
->> using words "Device Tree bindings" in title or using unnecessary quotes
->> around "refs" (also in ID of schema). It's not a big deal, but I ask
->> when I notice it.
-> Good. Thanks for paying attention to these details.
->
->
->>> Zhou already mentioned he was unable find the naming guidelines of these .yaml files.
->>>
->>> Apparently you think it's unacceptable for new contributors of a certain subsystem to use existing code as examples, and/or they're responsible for figuring out what's a good example and what's a bad one in the existing codebase.
->> It's everywhere in the kernel, what can I say? If you copy existing
->> code, you might copy poor code...
-> Still, it shouldn't be a responsibility of new contributors to determine the quality of an existing piece of code, unless there are clear guidelines (i.e. one should use the new "cs-gpios" attribute in SPI controllers).
->
->>>> It might never grow to new devices (because they might be different), so
->>>> that is not really an argument.
->>> It is an argument. A very valid one.
->>>
->>> "they *might* be different". You may want to get your hands on real hardware and try another word. Or at least read the datasheets instead of believing your imagination.
->>>
->>> I would enjoy duplicating the st,stm32-spi.yaml into st,stm32{f,h}{0..7}-spi.yaml if I'm bored at a Sunday afternoon.
->>>
->>>> All bindings are to follow this rule, so I don't understand why you
->>>> think it is an exception for you?
->>> Zhou didn't ask you to make an exception. They have a valid point and they're asking why.
->> Hm, everyone has the same valid point and such recommendation is to
->> everyone, although it is nothing serious.
->>
->>> You may want to avoid further incidents of this kind by stop being bossy and actually writing a guideline of naming these .yaml files and publish it somewhere online.
->> I did not see any incident here... Process of review includes comments
->> and there is nothing bad happening when you receive a comment. No
->> incident...
->
-> Okay. After careful inspection of the Ingenic datasheets, now I have the conclusion: The Ingenic X1000, X1021, X1500, X1501, X1520, X1600, X1800, X1830, X2000, X2100, X2500 have the same SFC controller.
+So what?
 
+there is some firmware table that can enable/disable individual SATA
+ports, and some BIOSes have the option to disable individual ports.
 
-Actually, you are also missing out the X1630 and X1660, and the upcoming 
-X2600.
+Sure, you could insist that users should disable unused ports, and
+having enabled port with no disk is an error but it's unreasonable - the
+users would have to flip the setting unnecessarily because the kernel
+can probe the presence of the disk but insists on assuming there is
+one on every port. So people would rightfully point out that it's not
+inherently an error to have a SATA port but no disk attached.
 
+What I want is merely the same level of service for SPI NOR - that the
+user does not need to switch the devicetrees when the presence of a
+flash chip can be probed.
 
->
-> X1600 has a newer version (let's say v2) of the SFC, and X2000-2500 have v3. Others have the original version (let's say v1). Each new version introduced new features such as arbitrary DMA sizes, and the rest features are the same.
->
->
-> So IMO the name "ingenic,sfc.yaml" is perfectly logical.
->
->
-> Regards,
-> Mike Yang
+You keep repeting that devicetree describes the hardware but that's not
+what it does.
+
+"A |spec|-compliant devicetree describes device information in a system
+that cannot necessarily be dynamically detected by a client program."
+
+So it does not describe 'hardware', it describes hardware properties
+that cannot be probed.
+
+Let's dissect the mmc situation in a bit more detail:
+
+If the device tree describes a MMC bus it means that there are some
+traces attached to some hardware pins, and that the pinmux should be
+configured to expose a mmc peripherial on these pins.
+
+The decision to use these pins for mmc is somewhat arbitrary. It must be
+specified in the devicetree because it cannot be probed but on many
+boards you could use the same pins for different hardware peripherial
+such as an UART, and with bitbanging low-speed protocols the
+possibilities are endless. Even if there is a SD socket that does not
+really mean anything - there are many abuses of standard connectors for
+non-standard purposes all around.
+
+Nonetheless, if at least some boards come with a MMC device soldered to
+the pins or the documentation advises to use a SD/SDIO card then the
+pins should be configured as MMC, and it is not invalidated by the fact
+that the pins could theoretically be abused for other purposes.
+
+Also on some boards there is always a MMC device soldered, and lack of
+the device could be considered an error. Nonetheless, on other boards
+the device may be present only on some boards or socketed. The mmc
+driver is driver for all of these boards so it has to deal with missing
+device gracefully.
+
+Sure, it means that for some boards that have damaged hardware no error
+is reported. That's the result of drivers being general purpose, not
+baord specific. The same way on some PC mainboards you could consider
+missing SATA drive on a specific port an error but the driver is
+generic, and should handle also boards that don't necessarily always
+come with all ports populated.
+
+There is also the possibility that you have a SDIO WiFi card that does
+not have an eeprom with a MAC address, and an EEPROM is mounted
+somewhere on the board to store it. In thios case although the MMC bus
+is 'discoverable', and the presence and type of the SDIO card can be
+probed all right the relationship to the eeprom cannot, and has to be
+recorded in the device tree. Will missing the SDIO card cause an error?
+I doubt it, MMC is the great 'discoverable' bus after all so here you
+have it - a hardware is described, it's missing, and it's not an error.
+
+So for SPI NOR we similarily have some traces that are connected to some
+hardware pins, and given that the board comes with a SPI NOR at least
+sometimes, or it is documented that these traces should be used for
+mounting a SPI NOR that should be described in the device tree. It is
+not invalidated by the fact that not all boards come with the SPI NOR or
+that it comes in an optional separate bag with accessories or that the
+pins coud be theoretically abused for something else.
+
+Now because SPI bus is not 'discoverable' not only the arbitrary
+decision to mux the SPI peripehrial on those pins needs to be recorded
+but also the arbitrary decision to use the pins to acces a SPI NOR, and
+not any other random SPI peripherial.
+
+Again, the spi-nor driver is driver not only the boards that always come
+with the flash soldered but also for the boards where it is mounted only
+sometimes. It should deal gracefully with the flash missing as much as
+it deals gracefully with different flash memory sizes, erase block
+sizes, etc. It's a parameter that can be probed.
+
+> > Then the kernel also does not say there is an error and simply does not
+> > see the device.
+> > 
+> > This is normal. Not all devices that can potentially exist do exist. It
+> > is up to the user to decide if it's an error that the device is missing.
+> > 
+> > > Also I've looked at the PHY subsystem and there, if a PHY is described
+> > > in the DT but isn't there, the following error will be printed:
+> > >   dev_err(&mdio->dev, "MDIO device at address %d is missing.\n",
+> > > addr);
+> > > 
+> > > And that is for a bus which can even be automatically be
+> > > probed/detected.
+> > 
+> > If there is no use case for having a card with unpopulated PHY then it
+> > makes sense.
+> > 
+> > Here we do have a use case so the comparison is moot.
+> 
+> And what use case is that? You are just demoting an error
+
+Boards with optional SPI NOR device.
+
+> to an info. Apparently you just want to see that error
+> go away, there is no change in functionality.
+
+Yes, it's a sign of a bad assumption on the part of the driver. Sure, it
+might have been true in the past but with new hardware it's no longer
+the case so the driver should adjust.
+
+Currently the driver problem is worked around by being over-specific
+in devicetree but ultimately the driver is broken and should be fixed.
+
+Thanks
+
+Michal
