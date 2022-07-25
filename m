@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 888BA580094
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 16:17:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76C8E580121
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 17:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232199AbiGYORu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 10:17:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51584 "EHLO
+        id S229673AbiGYPHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 11:07:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231282AbiGYORt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 10:17:49 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9BA6FD3E
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 07:17:47 -0700 (PDT)
+        with ESMTP id S229485AbiGYPHO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 11:07:14 -0400
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF61912D09
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 08:07:13 -0700 (PDT)
+Received: by mail-oi1-x234.google.com with SMTP id w204so13772558oie.7
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 08:07:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1658758668; x=1690294668;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=7mPRxV1OFvVSSdngdkVtqWe9nHosbEgc2grknTXzK/Y=;
-  b=ajSitY+Vnrfi+wihzPsHe1C4q2o8XUR/LUivIhtHiKJYrPQl2b010qU9
-   IEZAKaWJpVzYMiiROrCVM1YkQDYrl0agOm7Xe2JmWjvP53YdxFVezUCIV
-   +uXcf+LdUhEbYg0wbT2/XsTTPjXKMWVPlIjQqozZ/xj43wZ4n4eEfPSEk
-   J4hlSYAgZC9ZrcRyjEAiSnloRYeyG+65b9uJ3YAugnEw+qhho5a0++GN0
-   GMd3RWKFdKA+Lu7G5KOw5RSHrdZVk40TowryJ7Tr+EXpoBWStku5GRGe4
-   ogn6wbQrnc7nt3bNs5RI2L3dgewl3T7IzGT9KJKKqRNq6kduNrjc1C8n1
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,193,1654552800"; 
-   d="scan'208";a="25244332"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 25 Jul 2022 16:17:46 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 25 Jul 2022 16:17:46 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 25 Jul 2022 16:17:46 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1658758666; x=1690294666;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=7mPRxV1OFvVSSdngdkVtqWe9nHosbEgc2grknTXzK/Y=;
-  b=dI5Q8y+kk+qUtQfNa8M2iMoLvK4D9I/uWARxxFniZmeZilcPmrZKpBiM
-   5PqL1wrM2H+K/pCpg4EQs9uxbC9qnp1xgwnKOKdGMIPcPRqf4ley+30Jl
-   xIysM8UYCXjDWdSjNW1cj4XpZ4ItxsFUlgMJWBYguNxKUaHHEnB5ZOnS0
-   PvYBV2R6peM45p33o8FBTl9CQHkPcM3XjQhuCoqiVWmpNyg8xnvtl9sok
-   qO0cu5mMKmpdUn8p082ARymYs8MWjS7O9kYpk3V6AJYnruPDF/IlCLBFQ
-   AJYq/aciKYOuxwBle/UrhZG2Bp6kEvRgTmdY+NpgbWzd6Z0B2kTHAV5Yy
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,193,1654552800"; 
-   d="scan'208";a="25244331"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 25 Jul 2022 16:17:45 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id AFEA2280056;
-        Mon, 25 Jul 2022 16:17:45 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] arm64: dts: imx8mq-tqma8mq: Remove superfluous interrupt-names
-Date:   Mon, 25 Jul 2022 16:17:39 +0200
-Message-Id: <20220725141739.186234-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lLYdNu88rwK9RKi0Hdu8L2qjedcRHOnzO3eSS99Jj+4=;
+        b=uSX66gaqfINSKgXXJRgV9sqXY+qx32zQLxcNjZ6CWsyfWP6uWpYcmvETA9qCT8azEH
+         wyrpJBz+8s3IJvKOu8sbcmIchg37H79YpU9DkLH3SQCGSjT7zsV3DO7zu6tlXN1PPB/i
+         KlvTM7bzjKlqmrmFj9E6PafmJ8mI+33KkvwBqCCTu02zeu86uE2OarY3Yknu7tznn8pj
+         KC+ppdyG3FAfrsbP7kt/xCUNNRXAs09PQhm3yXRxiQt5BHeXJlcNKcBm7S3gFxABYeBF
+         Nq7K0X67Tp2umeeRku8MeZClQRl/W4tzXGoJwFNQZvEQ/Bmxe8Z7pGjdyajott0pYUcg
+         E/LQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lLYdNu88rwK9RKi0Hdu8L2qjedcRHOnzO3eSS99Jj+4=;
+        b=xnpEle6hHtEq4Z9WIRcvvxc4QyVpwgTiRwWrtnJOY84VNdWmok5v0TXIxaZ9j16boM
+         +LONFO8/L3Q1MkilHij9+2qpJqQMfLWiuBuxpoBxjxWfKf3mMiDHcCFH08ONUmwcamzi
+         UTNPwG4OrNLSyrGUT1icT9U/i4DpGymBo7TV1QN3ZR3EGwWrNU/G1A88+2lAwxqIOmIg
+         QQD/Jfwz8MRgI7pi7oyfL34ts3Scs3hWsO2apncSDhxI1bIytdj7MjAxRF4kOQA5gdH+
+         cvJp7uQDrvc+LTZaLwOTBkanKpwtw+DECN8wkReL+bAQC6iuORTqsIv1DhTmpNz9cjS4
+         8Syw==
+X-Gm-Message-State: AJIora8zV8AmfE8PiXeVCWEimisi0oAsXqC+eWWDKRPnEQjqdN2X8Itc
+        l9DMoZUpPzhcpmQNO88WHhg3QYa+dDTl+9KPv8srCw==
+X-Google-Smtp-Source: AGRyM1v7J6NrpM5+VYdxmL1VK1k+qwfa9rxkPwG/5wkAIEBb1fYGvBYNHVcpI2jpl2oYPKyinajp9kZ1GoG3d3VJEzo=
+X-Received: by 2002:a05:6808:1b20:b0:33a:b9ab:30d8 with SMTP id
+ bx32-20020a0568081b2000b0033ab9ab30d8mr7623167oib.8.1658761633157; Mon, 25
+ Jul 2022 08:07:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20220725131521.607904-1-robert.marko@sartura.hr>
+ <20220725131521.607904-2-robert.marko@sartura.hr> <CAK8P3a1mL7Pm5+0Ce89LTrup476WaxSQKpTgn=o98_uFuOdfyQ@mail.gmail.com>
+In-Reply-To: <CAK8P3a1mL7Pm5+0Ce89LTrup476WaxSQKpTgn=o98_uFuOdfyQ@mail.gmail.com>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Mon, 25 Jul 2022 17:07:02 +0200
+Message-ID: <CA+HBbNEjYcZ1yU+h3ZR_g=6+18JBQ2U=v3VesRxR21Rc9N4LbA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: microchip: sparx5: dont use PSCI for core bringup
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,32 +72,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This property was never needed, remove it. This also silences
-dtbs_check warnings.
+On Mon, Jul 25, 2022 at 3:33 PM Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Mon, Jul 25, 2022 at 3:15 PM Robert Marko <robert.marko@sartura.hr> wrote:
+> >
+> > As described in previous commit, PSCI is not implemented on this SoC at
+> > all, so use spin-tables to bringup the cores.
+> >
+> > Tested on PCB134 with eMMC (VSC5640EV).
+> >
+> > Fixes: 6694aee00a4b ("arm64: dts: sparx5: Add basic cpu support")
+> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > ---
+>
+> Surely this is only a machine specific bug in the boot loader, not something
+> the SoC is incapable of supporting, right?
 
-Fixes: b186b8b6e770 ("arm64: dts: freescale: add initial device tree for TQMa8Mx with i.MX8M")
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-This property was never required and was discovered during bindings YAML
-conversion at [1].
 
-[1] https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220725071919.25342-1-alexander.stein@ew.tq-group.com/#2938474
+PSCI itself could be implemented on this SoC, you can even implement
+it just by using U-boot.
+I have been looking into adding basic reset and core bring up PSCI
+support to the BSP U-boot for start.
 
- arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+>
+>
+> >  arch/arm64/boot/dts/microchip/sparx5.dtsi | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > index 38da24c1796c..ea2b07ca2887 100644
+> > --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+> > @@ -40,14 +40,16 @@ cpu0: cpu@0 {
+> >                         compatible = "arm,cortex-a53";
+> >                         device_type = "cpu";
+> >                         reg = <0x0 0x0>;
+> > -                       enable-method = "psci";
+> > +                       enable-method = "spin-table";
+> > +                       cpu-release-addr = <0x0 0x0000fff8>;
+> >                         next-level-cache = <&L2_0>;
+> >                 };
+>
+> I think the psci method should be kept in the dtsi file here, since actual
+> product boards would have to support it to be useful, you can just add
+> the spin-table as an override in the broken reference boards, with a
+> comment about which u-boot version is broken, in case this gets fixed
+> in the future.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
-index 899e8e7dbc24..802ad6e5cef6 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
-@@ -204,7 +204,6 @@ pcf85063: rtc@51 {
- 		reg = <0x51>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_rtc>;
--		interrupt-names = "irq";
- 		interrupt-parent = <&gpio1>;
- 		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
- 		quartz-load-femtofarads = <7000>;
+
+Well, that's the thing, Microchip-s BSP is not utilizing PSCI at all,
+they reverted
+to using spin-tables in both Linux and U-boot, and they dont implement
+PSCI at all.
+I highly doubt that any of the vendors are gonna implement it themselves.
+
+I have contacted Microchip and they confirmed that there is no PSCI
+support, they stated
+that they started working on PSCI but that images were larger and took
+longer to boot
+and they dont see any advantage so they removed that.
+
+So I doubt that we are gonna be seeing any boards that implement PSCI
+by default.
+I can tell you that it's annoying me as we are back to 2013 and using
+a GPIO for restart.
+
+U-boot version that I tested is the last one from their 2022.06 BSP,
+its based off U-boot 2019.10.
+
+Maybe somebody from Microchip can chime in on this?
+
+Regards,
+Robert
+>
+>
+>        Arnd
+
+
+
 -- 
-2.25.1
-
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
