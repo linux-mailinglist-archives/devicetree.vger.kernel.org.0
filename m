@@ -2,244 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A50A557F942
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 07:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2D0D57F945
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 08:00:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbiGYF6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 01:58:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40318 "EHLO
+        id S229864AbiGYGAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 02:00:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbiGYF6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 01:58:45 -0400
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01on2094.outbound.protection.outlook.com [40.107.113.94])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E26C1260B;
-        Sun, 24 Jul 2022 22:58:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A5fmNAoOjYS1qXZ4pqvXQ0ilHE5bJJG2JkdewTiI8djW9vf0Q3NoYlXhMgzFMIb48cxE5+up43rojZTT/hlPk/e4+niTw2zDAAxrJkcLeVmx7GP2KQ/b1Wwrut1NiX8PWQuS524OqCLf+FqqzL8BhwCiKr/oANqtGHF5lf3kT9QoikdG+0KCP+4kMJ1XAHvb2E0wnK/mfbOLCgiowCWu9yZ3sCQ8vpuLv1yp/E2eDwRpkiLyCzHUHchmOzUdvjSNZQnD48CtsA3nU3zNEu25w73+spb1dQgSXquvdeeqm/C5LfMex5/AZ+U4hE+s8lAuUbW2BpiUAxBMXXijxkfjKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mQwKjI0ltdik4HSsHRc29svTe1Kq1G8hz7tNMd3NCBw=;
- b=Ex4jpPqSh/i9tYQHMUF2CSyp2EApNqfbNvEbTs6V1rZyar0pMU9EIu0gmxQ+SLWwVf5KkvsVWPNjWm5M2prE3tWChXdK7DDQVh+glk55yhaEoHDE3lXeY+ajbMAZ3ScGYS3uyCXgqy6aaSKg1jcigKkWJC+I28WABENkybp7AxDrmkkRr71GjJNCXzVB2FefYY5IO99XlH2OFTy8siKURpIgfZCwalE0ZSq/M/DNMhTBgl8iEX4cWFosbspbn336i0m1mlaNgtX9naovJntr/OcQHp+GQerP2JRneCR4hnC/k3t34Q270WCsKEuwZ4UWtigFxPf9yC1kMZhimN/+hQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mQwKjI0ltdik4HSsHRc29svTe1Kq1G8hz7tNMd3NCBw=;
- b=L9hG6qjVXDllJhgYchu7jQjjlLegMGcka3hFra6LDZmZKBpUdJEeFIvpZnUESKozTKFoemnHxoenX14fvRHKmEvTjmNjWzVJhdTCqkfcBHE9102dUbdg6ho1DSf8TdQuYELSInipuqGpMExjXlFx1AKYWo2fWyG8U7G6docdTRw=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by TYWPR01MB8808.jpnprd01.prod.outlook.com (2603:1096:400:167::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19; Mon, 25 Jul
- 2022 05:58:39 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b046:d8a3:ac9c:75b5]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b046:d8a3:ac9c:75b5%6]) with mapi id 15.20.5458.024; Mon, 25 Jul 2022
- 05:58:39 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
-CC:     Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S229547AbiGYGAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 02:00:55 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E30AA5FCB
+        for <devicetree@vger.kernel.org>; Sun, 24 Jul 2022 23:00:53 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id ku18so9419794pjb.2
+        for <devicetree@vger.kernel.org>; Sun, 24 Jul 2022 23:00:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to;
+        bh=t1zKu7gu+pgJLsfAiPex4tASxJtZEVRp3lCJWqx+Vug=;
+        b=Fip66BOXWA8R5hpdUYSjrPvPXp/i+pZSh6BFEelVt/9Ri+bZNtzWCkYdulcIMISy15
+         o6R/Jgj9DmIYuSytWsrgucyXx875oyLRO60bmu7Y3hVUk9OYnkyDaNKZkEYXL2/kLPr4
+         bNiPKI41H+Ds7Gn7uzfzlWFnq4BRcAYX4f9UY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to;
+        bh=t1zKu7gu+pgJLsfAiPex4tASxJtZEVRp3lCJWqx+Vug=;
+        b=I4OrNnQFHBbtFladNNjgygf4YMcAqVY/whSkwoH1A8XPn+Mq/xylw5Au1TeVv5HDWc
+         j4NrQ/beg7xUf97jP8b8kxEht6p+6pe+6X2BthK8OZR8SRwcUFPYXT84Zsw+0cwft2/J
+         fnmvdedSh+d2BcEcfECZ3QINHVGoTmPKf9r+RlH87oszQrEtq0cytmMdQZn1ujNhb+kS
+         20DFc6j7i1iGaD1opEBoVDv6oANRSNlu2xUBu6Om3QbjqY5QllgkehRKXevmmBf91EdH
+         4g9QJY8sELwXKG1GvlIT3uytTgecTfvpydxESKfyK2COKjoKKwifochiZmRjf557TAMs
+         UqDQ==
+X-Gm-Message-State: AJIora+gWFAnPqWzDD+t7p74i7zTiu9pf7WmnRbBJifdvk6DVV9H6DFL
+        E/UtSqdGykQ/YTVTRgUNvV4ejQ==
+X-Google-Smtp-Source: AGRyM1sXUyh1W4dR2j6+ZnuoG77JUIVR2y4yjiVW6sdxpWy0f8VbS3Kw+a77eyARZypqTKehWUvuJQ==
+X-Received: by 2002:a17:90b:3841:b0:1f2:534d:a292 with SMTP id nl1-20020a17090b384100b001f2534da292mr12415059pjb.174.1658728853129;
+        Sun, 24 Jul 2022 23:00:53 -0700 (PDT)
+Received: from bcacpedev-irv-3.lvn.broadcom.net ([192.19.161.250])
+        by smtp.gmail.com with ESMTPSA id i66-20020a626d45000000b00525373aac7csm8533402pfc.26.2022.07.24.23.00.51
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 24 Jul 2022 23:00:52 -0700 (PDT)
+Subject: Re: [RESEND PATCH 2/9] dt-bindings: arm64: bcmbca: Update BCM4908
+ description
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Cc:     Linux ARM List <linux-arm-kernel@lists.infradead.org>,
+        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: RE: [PATCH v4 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI
- DSI TX bindings
-Thread-Topic: [PATCH v4 1/2] dt-bindings: display: bridge: Document RZ/G2L
- MIPI DSI TX bindings
-Thread-Index: AQHYnf/87eTeKvDbekaCDE5oqiHWv62K0KIAgAPI8vA=
-Date:   Mon, 25 Jul 2022 05:58:39 +0000
-Message-ID: <OS0PR01MB5922D4ACD0C05DAC4A471BA886959@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20220722191924.544869-1-biju.das.jz@bp.renesas.com>
- <20220722191924.544869-2-biju.das.jz@bp.renesas.com>
- <YtsC6p7yy86Dr95H@ravnborg.org>
-In-Reply-To: <YtsC6p7yy86Dr95H@ravnborg.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f93255f5-775d-4786-3170-08da6e02b8f5
-x-ms-traffictypediagnostic: TYWPR01MB8808:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FvfPvldjfKpSqGUhvWMwQpCxUNe+A6BdfUuipwnjm7MRzrK+KWtVcH5gxucOMFkxPYpMFDI/CWME2Q5jSB1ugRSbVhWq+C9woJ/ZW/X8VI/UkvaDQmazF93u2nFdZ7PLgYZ2MGhcF017Y0rU1Wcr+LZeS17CM8Y6KeLXq+7nbUo2OA5Lo0eZpFj8c8fJxCwCFoUujGl4cf3oeB1orpn+IP3sV1wOJNX3JzqlyqDmasmghN2iJihPtdKEQD7UP+QM87d0pk+ZZHTf6yr8K3CaRAG7JotUnC+tMgO55GX5akdFnCg6IW742hpE+C+kVBVyku4jpv7oA4endZBziiEaUc4wDV2bG/XCFZMhqFKHIPIuxzWlnFcHS714tJyDjIwIvH0IBtk1XcRPqstpoI4EY3V/z9t7p/dbqiwWjJhQlO2wCYBFeqwx+4kBotiV8FLLhcdoWWzO7IuIeYU7813dycJ4n66Hn+8pfCkrEgX1rYS1H1borNPQopvOgEuOdoPtgWxxsR3eWE8mouJvsWGnnEcCZnHJQlFrJCg/XwWR4k/LAt0bwXZ3NxF6CAJn8On0EIIpPXBdZcmgz+Yd/JX6yoapJuh6juLo0iclfD02UHa4DI4lZujQS5Pikj4ByCa7GleTqgax7gWET1YVCgxRRS+JHjW2K3YdNTD8SqHvxEMk/DOPbBHqv/L/gWKJBe8jREMhc7FBL2bL6kmClLl1bFW3SAWIBma593MntAsvFpoKeRQuJBDqkwLQnWz/hBI5oHdDoNPd8YYjWu6RnFk4xKtJRYpAD54w751FJ+f8p4YO/cUZ0kSDuw4JBKNA4/CO
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(136003)(366004)(346002)(396003)(376002)(38100700002)(122000001)(38070700005)(52536014)(8936002)(83380400001)(186003)(7416002)(5660300002)(64756008)(66476007)(66556008)(66446008)(55016003)(2906002)(66946007)(41300700001)(26005)(9686003)(7696005)(478600001)(33656002)(4326008)(76116006)(8676002)(71200400001)(54906003)(316002)(86362001)(6506007)(6916009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FAVoqc1vEF19+W3Vnr7hNHftDkzLcHtYBebNtnv4qmk9b23Xzvzne0B/IGX0?=
- =?us-ascii?Q?oP0+3o2CpzTmG9QyV/rtyrLdVGSPKtLqJz7o266TMb7IFFY7O5QHe8O70bnX?=
- =?us-ascii?Q?27xh6R4CijWYC0FCx1D6edl2qcyOZ0I+JIlJKaH35rLxBu6X01hV7zuPALYp?=
- =?us-ascii?Q?LXDiV2LBfOOe3sRAAb16Py2FZcfyb3IC5dShibOjnizHwkri1MVX6akVyBnw?=
- =?us-ascii?Q?NLg3in/nwtcuNcri8c8Ndm4hO2b48OBRqV83kL2je+aqqCPJn/NAYB73YFYf?=
- =?us-ascii?Q?2LwsjHhyb5vKj224nOG4jQvpKF2lSVg+X8K1ZTiSobta0Ag/iAFJbT7GoBMd?=
- =?us-ascii?Q?fi7hF4Z86q66Sf+F1C0Tj7LJ+JCbf9YoyT1ww7izv4kSmCxfUsjgqjqqH/Ir?=
- =?us-ascii?Q?1IGWo44bn0FOh1ipsisoHXd8k/TJ9VkCcfeZUfM57uFs4SEtuPM6aQj4xuA6?=
- =?us-ascii?Q?WsXswRbruwPXOv2UyEhreqs9eq4Tu65nAs1suAURfomBZhVEGQ0bYhXdADvZ?=
- =?us-ascii?Q?H6JAawreMtPMBmb9lKw3k8S7VfQcogYyEaiEXNc/JiIle8cDcnKVKfZApCGf?=
- =?us-ascii?Q?mrLFsglxEL3iwsC6DoG49DzuGZLScpeNOfwYpgAAjjzdfVp2TNun/z81tm/1?=
- =?us-ascii?Q?tYzrfBewRhE2XP7O+/88wuvRdWvIQB/RpEa4bspD8UKKLXQCnmOjiJgP/t+t?=
- =?us-ascii?Q?HQnrV1cgl3yACc/YAI19FSwjJh/cg1VFgJf0Tpx6/7udx9KUhDRfVUY44x6L?=
- =?us-ascii?Q?SUeqaEW8OkK4S3NVrX1f+soZ+AHFHZ8U3Y+Lf8YFXhaU6WVW/pHO1NwGS9Bf?=
- =?us-ascii?Q?P3fdt64T7kXniO1+za2NguLtxFsrp+808dgfDoXtDZUrl/aG6NMomEQWpzdp?=
- =?us-ascii?Q?hEJZOKDERpzh99lkknNIIz0P5Jn9+YZMYVJkC5MEP/lhg4Jc2mbfFeu3cZmC?=
- =?us-ascii?Q?JnuyIC55YbhyvB4BwTXSLesMUzt6B3MHFBMWWUo2cL0eqE+gotqqgHmnWoa/?=
- =?us-ascii?Q?amH95BQxXkG00bMUHoD+Bf3SNbyMFIefTVvk9ISitbVjzx9BCEQ3X2xP6fMO?=
- =?us-ascii?Q?+JtTLFMwaphBoAQ+ONK7ZIHPVN7VQRof0wxCEYgaZ+NpXBSCxumeXyvtIYqO?=
- =?us-ascii?Q?2WbV2RuLG/zr2UB6A3veDNjNMNMPdhunVdsjp8ntqKW6NRKbDTTcszMng42M?=
- =?us-ascii?Q?rFPc4vAU5QSlJ5KmwVzMEvViOZDPjMxmlUmuKLB/Jh050ax5PImPBX6S45p4?=
- =?us-ascii?Q?zPrzVaMgNlCnxK3jcaC6P6EVHeWGUimT4zfEzZZ7qJ5ggU7hf9YABCBhF4D7?=
- =?us-ascii?Q?GVtLSK9yeSRzxDb3FGA7i534ktwy5EPUthm0GBXBptByA/M4UXC+Xyy0mJhW?=
- =?us-ascii?Q?/FjlNTy9OfiMx8aQJNDLMmytlQ3FxKoSsp4rDEdtIVgjMYZEQe1tDs7+ggk1?=
- =?us-ascii?Q?rBrQj5CLcrO7xmDOamc67JAuuTiUxFbs3+ojWUVsB5fUVOmsTgrkjkWmbs1m?=
- =?us-ascii?Q?cKt5EhkDaomzXkGozRIysfj8o43qdwQ8g5tgcjNROs6wBysrRJDDz8k9l4IP?=
- =?us-ascii?Q?Go6LCfIbZZAPZBOwYPdbSY9vsIatAImTipQuCMG1gsUpk4vaPC20qoSoHhN5?=
- =?us-ascii?Q?qQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Anand Gore <anand.gore@broadcom.com>,
+        Kursad Oney <kursad.oney@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20220721000658.29537-1-william.zhang@broadcom.com>
+ <a635754e-bf41-4058-5fbb-57ead36b7128@linaro.org>
+ <883c2ad4c36220b488519a8902ad72bc@milecki.pl>
+ <193845cb-6149-1ae6-5eb6-6b01ffcf763b@linaro.org>
+ <4b5100e4a6e9e581f4b8ab58e5ca4927@milecki.pl>
+ <c5b37e68-dc1f-cdae-83e4-23aa0216db69@linaro.org>
+ <1d39bbba3f267086eb2884ffcbf4807b@milecki.pl>
+ <e5f3474c-ba7f-7107-064b-74a04b11d7af@gmail.com>
+ <15e4a51c-a89f-79ef-1364-ddca6b6f7b83@broadcom.com>
+ <522433ce-7a3d-73a3-cdf0-4e69edbf3de6@linaro.org>
+From:   William Zhang <william.zhang@broadcom.com>
+Message-ID: <526ab5ca-c730-b1ce-9a40-c0de7cf7a747@broadcom.com>
+Date:   Sun, 24 Jul 2022 23:00:51 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.4.0
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f93255f5-775d-4786-3170-08da6e02b8f5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2022 05:58:39.7945
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nBZHYifNlibEOIN8jk2aT35287XMF15/0NN0w0WiR5DnCzXEDfkJaSKkAQpwLZIeMTK+dsSJrcidin6PLsxtjj5bPI6rJAZW3WikbhnDryo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB8808
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <522433ce-7a3d-73a3-cdf0-4e69edbf3de6@linaro.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000019bcf705e49ae80a"
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
+--00000000000019bcf705e49ae80a
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Thanks for the feedback.
 
-> Subject: Re: [PATCH v4 1/2] dt-bindings: display: bridge: Document
-> RZ/G2L MIPI DSI TX bindings
->=20
-> Hi Biju,
->=20
-> On Fri, Jul 22, 2022 at 08:19:23PM +0100, Biju Das wrote:
-> > The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's.
-> > It can operate in DSI mode, with up to four data lanes.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> > v3->v4:
-> >  * No change.
-> > v2->v3:
-> >  * Added Rb tag from Geert and Laurent
-> >  * Fixed the typo "Receive" -> "transmit"
-> >  * Added accepible values for data-lanes
-> >  * Sorted Header file in the example
-> >  * Added SoC specific compaible along with generic one.
-> > v1->v2:
-> >  * Added full path for dsi-controller.yaml
-> >  * Modeled DSI + D-PHY as single block and updated reg property
-> >  * Fixed typo D_PHY->D-PHY
-> >  * Updated description
-> >  * Added interrupts and interrupt-names and updated the example
-> > RFC->v1:
-> >  * Added a ref to dsi-controller.yaml.
-> > RFC:-
-> >  *
-> > ---
-> >  .../bindings/display/bridge/renesas,dsi.yaml  | 182
-> > ++++++++++++++++++
-> >  1 file changed, 182 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-> > new file mode 100644
-> > index 000000000000..131d5b63ec4f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yam
-> > +++ l
-> > @@ -0,0 +1,182 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +
-> > +title: Renesas RZ/G2L MIPI DSI Encoder
-> > +
-> > +maintainers:
-> > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > +
-> > +description: |
-> > +  This binding describes the MIPI DSI encoder embedded in the Renesas
-> > +  RZ/G2L alike family of SoC's. The encoder can operate in DSI mode,
-> > +with
-> > +  up to four data lanes.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/display/dsi-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - renesas,r9a07g044-mipi-dsi # RZ/G2{L,LC}
-> > +      - const: renesas,rzg2l-mipi-dsi
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: Sequence operation channel 0 interrupt
-> > +      - description: Sequence operation channel 1 interrupt
-> > +      - description: Video-Input operation channel 1 interrupt
-> > +      - description: DSI Packet Receive interrupt
-> > +      - description: DSI Fatal Error interrupt
-> > +      - description: DSI D-PHY PPI interrupt
-> > +      - description: Debug interrupt
-> This is an awful lot of interrupts.
-> Is this really individual interrupts or status bits in a single
-> interrupt? If it is the latter then there should be only one interrupt
-> defined.
 
-It is individual interrupts.
+On 07/22/2022 11:22 AM, Krzysztof Kozlowski wrote:
+> On 21/07/2022 21:35, William Zhang wrote:
+>>
+>>
+>> On 07/21/2022 09:43 AM, Florian Fainelli wrote:
+>>> On 7/21/22 00:50, Rafał Miłecki wrote:
+>>>> On 2022-07-21 09:36, Krzysztof Kozlowski wrote:
+>>>>> On 21/07/2022 09:13, Rafał Miłecki wrote:
+>>>>>>> That's better argument. But what's the benefit of adding generic
+>>>>>>> compatible? Devices cannot bind to it (it is too generic). Does it
+>>>>>>> describe the device anyhow? Imagine someone adding compatible
+>>>>>>> "brcm,all-soc-of-broadcom" - does it make any sense?
+>>
+>>
+>>>>>>
+>>>>>> OK, I see it now. I can't think of any case of handling all devices
+>>>>>> covered with suc a wide brcm,bcmbca binding.
+>>>>>
+>>>>> Maybe there is some common part of a SoC which that generic compatible
+>>>>> would express?
+>>>>>
+>>>>> Most archs don't use soc-wide generic compatible, because of reasons I
+>>>>> mentioned - no actual benefits for anyone from such compatible.
+>>>>>
+>>>>> But there are exceptions. I fouun socfpga and apple. The apple sounds as
+>>>>> mistake to me, because the generic "apple,arm-platform" compatible looks
+>>>>> like covering all possible Apple ARM platforms. I think Apple ARM
+>>>>> designs in 20 years will not be compatible at all with current design,
+>>>>> so such broad compatible is not useful... but that's only my opinion.
+>>>>
+>>>> Let's see if William / Broadcom guys can provide a valid argument for
+>>>> the brcm,bcmbca.
+>>>
+>>> It is common practice to provide a generic fallback compatible string for a given chip family/architecture and all of our existing in-tree (and out of tree for that matter) DTSes for Broadcom SoCs do that:
+>>>
+>>> - Documentation/devicetree/bindings/arm/bcm/brcm,brcmstb.txt
+>>> - Documentation/devicetree/bindings/arm/bcm/brcm,ns2.yaml
+>>> - Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
+>>> - Documentation/devicetree/bindings/arm/bcm/brcm,cygnus.yaml
+>>>
+>>> list goes on and on, of course the counter examples are bcm2835, bcm4708 etc. although those are both chip and families technically, so I suppose the conflation is appropriate in that case. So the pattern is simple:
+>>>
+>>> - outside of Broadcom contributors used convention
+>>> - inside of Broadcom contributors used another
+>>>
+>>> so if nothing else, we ought to be consistent within ourselves as Broadcom insiders, which we are doing here.
+>>>
+>>> While the generic fallback may not be in use, it still serves a purpose:
+>>>
+>>> - Broadcom likes to create a gazillion of part numbers that are hard to untangle from their original SoC architecture unless you happen to work there so it serves as documentation for others to identify what family they belong to, and what to expect from that
+>>>
+>>> - you never know when you might want to be matching on just the generic compatible string of a family and putting it in there costs nothing at all
+>>>
+>>> The point of William's patch series is to right a number of wrongs on Broadcom's side:
+>>>
+>>> - lack of appropriate involvements at the time Rafal submitted the 4908 support as a "standalone" family, I am to take the blame for suggesting that name in the first place, though I did not know at the time that William and others would ever be contributing upstream
+>>>
+>>> - avoid the proliferation of "sub" families within a larger family (BCMBCA) since that serves no purpose other than to make it harder on users to select what they should be selecting in their kernel *and* it makes us inconsistent with arch/arm64/Kconfig.platforms that attempts to reduce those
+>>>
+>>> I would conclude by asking you: why is this such a big issue? What *actual* problem does it causes, except maybe setting a precedent that you do not like, but for which you practically should have no reason to care as long as the binding is enforced.
+>>>
+>> Totally agreed.  Just want to emphasize that the main reason of this
+>> change to merge all the bcmbca family chips into the same group for
+>> better organization and reduce the clutter to the kernel source. Think
+>> about 18 bcmbca devices with different changes to yaml, kconfig,
+>> makefile, sub-directory while they actually share many common blocks,
+>> drivers and dts entries.
+> 
+> Your commit does not explain why you are doing it at all. We have all
+> this discussion, you put so many arguments, but why none of it is in the
+> commit description?
+> 
+The purpose of the discussion was to explain to why we think appending
+brcm,bcmbca is necessary and helpful and the history of this string when
+we first upstream the bcmbca SoC. And I also said I totally agree to the
+improvement of commit message. I just posted the v2 of this patch series
+with all the requests accommodated from this discussion.
 
-As per the hw manual,  these interrupts have dedicated IRQ lines
-as below.
+>>
+>> While nobody would bind a device to brcm,bcmbca (and it can not be
+>> binded because bcmbca,yaml require to prefix with a specific chip), it
+>> is a great way to make it easy for people to understand what device they
+>> are working and look for the bcmbca common driver and other support code
+>> as well. Wouldn't this be good thing to have?
+>>
+>> And don't forget we introduced bcmbca awhile back with first SoC 47622
+>> and have set a clear goal for the purpose we are discussing here today:
+>> Please see this patch series:
+>> http://lists.infradead.org/pipermail/linux-arm-kernel/2022-April/732867.html
+>> "This change introduces Broadcom's ARCH_BCMBCA architecture for
+>> armv7 and armv8 based Broadband SoCs. We expect to send additional
+>> patches for each SoC in the near future."
+>>
+>> And Krzysztof acked that yaml for brcm,bcabca here :
+>> http://lists.infradead.org/pipermail/linux-arm-kernel/2022-April/732867.html
+> 
+> and I keep discussing, so bringing it up proves what? That new comments
+> appeared?
+> 
+>>
+>>
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
-dsi_int_seq0 174 SPI 142 IRQ 142 Level
-dsi_int_seq1 175 SPI 143 IRQ 143 Level
-dsi_int_vin1 176 SPI 144 IRQ 144 Level
-dsi_int_rcv 177 SPI 145 IRQ 145 Level
-dsi_int_ferr 178 SPI 146 IRQ 146 Level
-dsi_int_ppi 179 SPI 147 IRQ 147 Level
-dsi_int_debug 180 SPI 148 IRQ 148 Level
+--00000000000019bcf705e49ae80a
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-Cheers,
-Biju
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIBSmlP3HYkT4T/PWzmEnDrWjap1Z
+TiUKvYyTnM3GpytNMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDcyNTA2MDA1M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQAp53/LlsBoD0gk6pscp1Zb0HcU90xnuml9ykKa2h69oqVj
+JmuintBflnOf1P7aLF6hyXp69tFv4BG7MKPCk6RHZXbEvn9jWEuoYM0wYN2rtPhxNxoflFhLk/23
+ZgGm2Qv2Rx1mEuP5ymj1jrsunh6KkjUl4slhLxqDotrkL349cieGjkBKVLJnPRifA4I/HU2vVEs/
+t8fwBxedVfCjGWqnzR8Lm4iMbRiwT+2FtPK5wpoWDelg8yVpA5Tkz9NGFcBq24Urho9JPh2l2vTa
+bx00sAHcfqJJQVc7yEXmEYen5Gdm4LWzLzlLRD0V92bpOUBx7mwsv/K+AN+LocGu6P2X
+--00000000000019bcf705e49ae80a--
