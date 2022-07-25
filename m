@@ -2,62 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4480357FE0F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 13:07:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6E3F57FE39
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 13:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234709AbiGYLHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 07:07:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47316 "EHLO
+        id S229614AbiGYLUW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 07:20:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234851AbiGYLHO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 07:07:14 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BEC419C3A;
-        Mon, 25 Jul 2022 04:07:11 -0700 (PDT)
-X-UUID: a8410aebdd9143619285ac7fefbc6113-20220725
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:5354a8fa-27fd-480b-9633-d55c83599eaa,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:42986eb3-06d2-48ef-b2dd-540836705165,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: a8410aebdd9143619285ac7fefbc6113-20220725
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1179900225; Mon, 25 Jul 2022 19:07:08 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 25 Jul 2022 19:07:06 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Mon, 25 Jul 2022 19:07:06 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S229694AbiGYLUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 07:20:21 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 485CD2AD7;
+        Mon, 25 Jul 2022 04:20:20 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id b16so5075083lfb.7;
+        Mon, 25 Jul 2022 04:20:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1nXWYVScGrrgl5QUSeVrq++Y1dz2v1W+VupFYq9G2nU=;
+        b=l+gbL0eBM5wqoNTL6mU+nrtKXkIJ2wCFGRnv0j164oXGtbbjLxTdUex4a4H08B+Xxb
+         pWszEQ8HLZHD6CygmWDRj3ZS9EAwE7DMvRFUCh/ZjT8CPDMZ5wLwh47lzBlUDG7MRJDZ
+         UHTwX0+ReDGIDTrnfkvWE8ysZNmMN3N7Ci6wpAqqj1mp3f6QF4mUcpd9WzfCZQCk7Dg4
+         nf/BKpk5AfpOPfLNvaUDuOejJO2NXlEHuRz+7VzAHiABwXy2JsX91ROkusG7mKWzH7SL
+         qqa5A5jnA/DXLrZmuLftop7niajI1zbxKxykG4wxNk6AvgqlBbhO4E0hCBt0odwLKh3a
+         3D3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1nXWYVScGrrgl5QUSeVrq++Y1dz2v1W+VupFYq9G2nU=;
+        b=EB725B654ix+dyOaSVJC4G/tIH/IECLvzOuwozVU6+EiyN8O4CuXrxQiGMPLag9aXt
+         LHI+ytWVvElMzFxPDwGuG4XQTo2xgnD+NZSRaaMrprRBtyfGTOwxWZ6eenXeIBqKeuwW
+         MeZ3FBSOYEaFg9aeLhuflRh6NNrxWSdGinJLoMzJ9el8oPM4TPzW1Mi1TlG6qSsb7BQ+
+         Lg8NIh7323790t/lVwxf6UzSZBht5LKn/nUNVavGtinpqlAMU6ISirAdhuRyZtt7YvBk
+         +rAPwHUyjW+ub4yu8DY2b2JVclljB6Rmm8+cbantezJLOYvClcv4tc5vxZnHJNT9CSkI
+         nyNw==
+X-Gm-Message-State: AJIora/Zgyj9O39kx+3Al7K8ZHsVPlYl7xHQJiRmWKH1iNKvc4oW8Kaf
+        53WukFYYa2CLu8IhEjLiXSxzmjZH9gvMOQ==
+X-Google-Smtp-Source: AGRyM1v6nkCkmmz3xiWYb1U+IEgV4y7BsBHxkT+qPwT/VDX3hlxyeTxLPogLvIsyiimxmX8OVi4/2Q==
+X-Received: by 2002:a05:6512:39d3:b0:48a:7ce3:512e with SMTP id k19-20020a05651239d300b0048a7ce3512emr4581238lfu.112.1658748018372;
+        Mon, 25 Jul 2022 04:20:18 -0700 (PDT)
+Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
+        by smtp.gmail.com with ESMTPSA id g24-20020a2eb5d8000000b0025e0e9d2f1asm135093ljn.29.2022.07.25.04.20.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jul 2022 04:20:17 -0700 (PDT)
+Date:   Mon, 25 Jul 2022 13:24:13 +0200
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH v2 2/2] dt-bindings: pinctrl: mt8186: Add and use drive-strength-microamp
-Date:   Mon, 25 Jul 2022 19:07:02 +0800
-Message-ID: <20220725110702.11362-3-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220725110702.11362-1-allen-kh.cheng@mediatek.com>
-References: <20220725110702.11362-1-allen-kh.cheng@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] gpio: gpio-74x164: add support for CDx4HC4094
+Message-ID: <Yt59XSTaJUvThJli@gmail.com>
+References: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
+ <CAHp75VddBhc9peHXfNfTyTNni246kC8CyLqCrMFadn67LGDarQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="TLJ8iEYt1e9qWIkZ"
+Content-Disposition: inline
+In-Reply-To: <CAHp75VddBhc9peHXfNfTyTNni246kC8CyLqCrMFadn67LGDarQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,67 +77,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit e5fabbe43f3f ("pinctrl: mediatek: paris: Support generic
-PIN_CONFIG_DRIVE_STRENGTH_UA") added support for using
-drive-strength-microamp instead of mediatek,drive-strength-adv.
 
-Similarly to the mt8192 and mt8195, there's no user of property
-'mediatek,drive-strength-adv', hence removing it is safe.
+--TLJ8iEYt1e9qWIkZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: 338e953f1bd1 ("dt-bindings: pinctrl: mt8186: add pinctrl file and binding document")
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../bindings/pinctrl/pinctrl-mt8186.yaml      | 29 ++-----------------
- 1 file changed, 3 insertions(+), 26 deletions(-)
+On Mon, Jul 25, 2022 at 11:32:16AM +0200, Andy Shevchenko wrote:
+> On Thu, Jul 21, 2022 at 11:32 AM Marcus Folkesson
+> <marcus.folkesson@gmail.com> wrote:
+> >
+> > 74hc4094 and 75hc4094 works similar to 74x164 but has an additional
+> > storage latch associated with each stage for strobing data from the
+> > serial input to parallell buffer tri-state output.
+>=20
+> parallel
+>=20
+> > Add support for an optional strobe pin.
+>=20
+> Sorry for my absence of understanding, but why?
+> SPI has MOSI, CLK, CS, where the last one is exactly for that. No?
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
-index 6784885edc5c..1eeb885ce0c6 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
-@@ -107,31 +107,8 @@ patternProperties:
-           drive-strength:
-             enum: [2, 4, 6, 8, 10, 12, 14, 16]
- 
--          mediatek,drive-strength-adv:
--            description: |
--              Describe the specific driving setup property.
--              For I2C pins, the existing generic driving setup can only support
--              2/4/6/8/10/12/14/16mA driving. But in specific driving setup, they
--              can support 0.125/0.25/0.5/1mA adjustment. If we enable specific
--              driving setup, the existing generic setup will be disabled.
--              The specific driving setup is controlled by E1E0EN.
--              When E1=0/E0=0, the strength is 0.125mA.
--              When E1=0/E0=1, the strength is 0.25mA.
--              When E1=1/E0=0, the strength is 0.5mA.
--              When E1=1/E0=1, the strength is 1mA.
--              EN is used to enable or disable the specific driving setup.
--              Valid arguments are described as below:
--              0: (E1, E0, EN) = (0, 0, 0)
--              1: (E1, E0, EN) = (0, 0, 1)
--              2: (E1, E0, EN) = (0, 1, 0)
--              3: (E1, E0, EN) = (0, 1, 1)
--              4: (E1, E0, EN) = (1, 0, 0)
--              5: (E1, E0, EN) = (1, 0, 1)
--              6: (E1, E0, EN) = (1, 1, 0)
--              7: (E1, E0, EN) = (1, 1, 1)
--              So the valid arguments are from 0 to 7.
--            $ref: /schemas/types.yaml#/definitions/uint32
--            enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+          drive-strength-microamp:
-+            enum: [125, 250, 500, 1000]
- 
-           bias-pull-down:
-             oneOf:
-@@ -293,7 +270,7 @@ examples:
-           pinmux = <PINMUX_GPIO127__FUNC_SCL0>,
-                    <PINMUX_GPIO128__FUNC_SDA0>;
-           bias-pull-up = <MTK_PULL_SET_RSEL_001>;
--          mediatek,drive-strength-adv = <7>;
-+          drive-strength-microamp = <1000>;
-         };
-       };
-     };
--- 
-2.18.0
+You're right, I didn't think of that CS could be used for this.
+The additional compatible strings is then superfluous, so I will skip those.
 
+>=20
+>=20
+> --=20
+> With Best Regards,
+> Andy Shevchenko
+
+Best regards
+Marcus Folkesson
+
+--TLJ8iEYt1e9qWIkZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmLefVkACgkQiIBOb1ld
+UjJImBAAq42Hldd+6vNfeKVKIBCQSyENS7qZdpjBM6KLFHnao8Blgtp/SwCNS1WY
+0tXK2+FvZUYppLgswbg7Y9ZpdTWg71ch3Ej5d+Qv+mq4GcRkPGcdUgsQlc17h6nm
+2Dgzj2jbNgvIDH1OtX1JPnyBXN7q32lZ5sryJCOFJO15HwkRZ7OCn0H8FtrHtlqe
+v2X3TTCPErCmfru4wMnoovzJdjshOZDPWnh3UiO4eyyREHhb5MUdXPCE+v3lteG1
+Guvsqv6gsVIApCa1MlB2voTpXUwOt1k7W+fgDCKgDVeG5W49OIbIGusaqSXQ/qrq
+MgTFvcEni/Iu8fEk0dX7pzYmZbxcLXDvQZVp86/F6Uiw2YYeTC1KL4ElT6Ts/qQt
+iFwY9efkjNocI5xQQKijMVvvOmDjnDO95Cwfit1xVejVa2u2maMaEcSTLFkIz575
+cpFuHd+LGD8GCbWDBTWYkPAb5MAT/TPcmWbAelrxRjEGwXTjDeiIU6/jbOJSbqE3
+yikHSMC/6jvAgC9+ir1rqAlwfA87ZZ8V3ScROHBdJ9cQVhx7UJmBrZqVocxpTnNE
+YIndne1pmxMuzWPwRQqdhjTkQEpS4Puxd/vsLWtK6lKy1ZZm6qVbK+UXqEirDbo5
+fsn5x/AcYBP/J/sWSq/pKmamB4Ln9GICzf73jp6VHRZPFEznLF8=
+=8pgl
+-----END PGP SIGNATURE-----
+
+--TLJ8iEYt1e9qWIkZ--
