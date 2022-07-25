@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13062580573
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:23:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 120F458057A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236999AbiGYUXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 16:23:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57890 "EHLO
+        id S236903AbiGYUYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 16:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236993AbiGYUXc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:23:32 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B7B2183D
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:23:30 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id m12so18678620lfj.4
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:23:30 -0700 (PDT)
+        with ESMTP id S236675AbiGYUYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:24:43 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7A821E0F
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:24:41 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id b16so7253595lfb.7
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:24:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=JLb9CbSpiNdOgJDUAuv2Zt5Yd8g+aFxtzAStsVxZY9k=;
-        b=mFmAzSBoYF+o76gSz6AaLS9j6o3aTDGO0uJAEnOGo/75ymCn+VDu+ksvxWf6td27PB
-         +j7U5ZFaYSWp/xfnASdl1MjX9vOTzxTlgYJULgIhyIorJcdzmWhaAWBwgRlyKxGG8QlZ
-         y4CPAInsj5oJOdGAQRobvY7itZ36NhGxz4hVLBv8PDNGcjOynJL4RUsWM5XWSM2c/s/w
-         wVPPLtMhZDLlIbdtwOBtac/dVCYlL0WxbBfozkCwFV7NWGFOeHl1CslUmg9gaqJRolig
-         YzkGqT1i5rON0+HH7nabg9QitJ3Lde731NCNPFJWuN7Tko3tbMLSe6o8oGYwYbgKEsR2
-         IGKg==
+        bh=TbcWMIxOgS2eY9LKbWN7Jh5YaS16I8ZOe/jkBgpK/pc=;
+        b=xtQo5uH95PEf7n57pRRLiQb5kBjmQyJpg4Sngxr8ubmZim6bXxyig0k9B1xnXSX5/v
+         AkTfTgl9FPPczL003j4tClh7RPkq89K8wDVMn0/+zKl73RCWD7lwXKCZ46Escj/FWHL9
+         Uw8Q0yCtVupJjrtrW3cqWlwBFghJdKu4TyDDaDLDtN45hkIYPEoxXj+i1BUyfcjj4J5C
+         0nsPgq14gwFjdLMslqbw7HljlxdMaT7pzvuZGa7Y9+VrI+RmSKaVQYGuTTwG01wBLvya
+         TcHoSp5i9DsPqGuU3tMwvPU6srXR86HIMbgYc6Gj4S/QInQrmkD4oumCMvEecbudIcqK
+         QYZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=JLb9CbSpiNdOgJDUAuv2Zt5Yd8g+aFxtzAStsVxZY9k=;
-        b=xnGOkrTdOJEmC1oQz3Cy4YMCSzJhZvwM/V7+Cz/h92cSJxU5LR7rENwwDjc3mYwHY1
-         t8lhmsjXVwJblOZFidCmf7Q8ARrOO1a3V25xzSqanvWaFsL1uECMx2lWIgyt+4FCr3OQ
-         9w+dZKXvjGD2DZPaXArn8dycXeOErFDHUjJQmLaleOZCwNlXWf7P8KWwARIZDGgwT4qa
-         FyHB9cP5imz3xRIIbY8eQuE6UFCBfPU1zI9BdaY4kQVgTUaFsUdROZAepQoOa4jMlcYH
-         CNuEZeiHjXGGC2cUoizg+xXX+ST410f+izblgE7MjYgZvybUg7H18bq/ViLzN10tkxSY
-         8new==
-X-Gm-Message-State: AJIora8JqbZo3XtHGwqs0wCqv29DN7VDUNUX+KQJDNF27AHKwN3Gti1h
-        ZeEs02Fn/S2HHanSNHepGH5ABQ==
-X-Google-Smtp-Source: AGRyM1sCiSDLLOOuitAkFwBg8EoKLh7+ATInvPdRsltkb5V4wOYSIncUG4AfvJlfN0I8hi8WFfhXAw==
-X-Received: by 2002:ac2:4141:0:b0:48a:e59:dd9f with SMTP id c1-20020ac24141000000b0048a0e59dd9fmr5672063lfi.478.1658780609185;
-        Mon, 25 Jul 2022 13:23:29 -0700 (PDT)
+        bh=TbcWMIxOgS2eY9LKbWN7Jh5YaS16I8ZOe/jkBgpK/pc=;
+        b=WQPRFmXuvRose1XLKpGL6fAU+o6gv7oIal2HwBBWQV/YDj4zntYVffaEJ62c1RcCIN
+         xnb3g+DRmlBBB59jnTbi6l7rN/shmtTs8PRLWJzfXBUL66J8VU3PpfwcHtuZDsfFUKkg
+         MigRk5GhDRk+vYxFcZKluiyQWktBj2q/rwkI24ikRMsQgx2a0OZBbXpLZMxj4obmeTqT
+         l8+E0EUNHb8S8JgyXwZQTMlbBBZs6gPiF38Oq1fYv8BmVxdI2qbIxuJITSrcF47JfSe7
+         8Mj7nhYBEmgHqLyr3BylOTKJpZvVRTyqzt50SQxL4vxDlgQ/r4knmDMrf/KMZ7rZvxsV
+         6Y7A==
+X-Gm-Message-State: AJIora9x3VZMPU/odIlcvUdbdj0kNEyvAKroaSftO1rmKi7H+HbB8b3i
+        zCs1jtWoKOXWXcPmbF2lMR68Yw==
+X-Google-Smtp-Source: AGRyM1tT4HN8CQZCaIz5ID8bu0HEGGk2g9UcEu9SnXxnK5ddIhwLhHuxim+rGUxe6JWcpcZ3L860WA==
+X-Received: by 2002:a05:6512:1523:b0:48a:9ef0:6c17 with SMTP id bq35-20020a056512152300b0048a9ef06c17mr202991lfb.666.1658780679738;
+        Mon, 25 Jul 2022 13:24:39 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id 4-20020ac25f44000000b0048a87fbe245sm975755lfz.258.2022.07.25.13.23.27
+        by smtp.gmail.com with ESMTPSA id v15-20020a2e87cf000000b0025de6edd4a0sm1273226ljj.83.2022.07.25.13.24.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Jul 2022 13:23:28 -0700 (PDT)
-Message-ID: <80707e86-9ac6-3f6b-1271-931d4036e3ba@linaro.org>
-Date:   Mon, 25 Jul 2022 22:23:27 +0200
+        Mon, 25 Jul 2022 13:24:39 -0700 (PDT)
+Message-ID: <739dcb53-3859-e53f-2bbe-9099d5bd0052@linaro.org>
+Date:   Mon, 25 Jul 2022 22:24:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
 Subject: Re: [net-next v2 3/3] dt-bindings: net: adin1110: Add docs
 Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     alexandru.tachici@analog.com, netdev@vger.kernel.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+To:     alexandru.tachici@analog.com, netdev@vger.kernel.org
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
         devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
         gerhard@engleder-embedded.com, geert+renesas@glider.be,
         joel@jms.id.au, stefan.wahren@i2se.com, wellslutw@gmail.com,
@@ -66,9 +65,8 @@ Cc:     alexandru.tachici@analog.com, netdev@vger.kernel.org,
         l.stelmach@samsung.com, linux-kernel@vger.kernel.org
 References: <20220725165312.59471-1-alexandru.tachici@analog.com>
  <20220725165312.59471-4-alexandru.tachici@analog.com>
- <a7d0f6c7-1943-8bef-71ff-736455609cde@linaro.org> <Yt70avEl443NkbJq@lunn.ch>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yt70avEl443NkbJq@lunn.ch>
+In-Reply-To: <20220725165312.59471-4-alexandru.tachici@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,22 +79,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2022 21:52, Andrew Lunn wrote:
->> You had phy nodes here, but they were not replaced with the phy-handle.
->> No ethernet-ports or mdios with phy?
+On 25/07/2022 18:53, alexandru.tachici@analog.com wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
 > 
-> Since this is integrated silicon, much of that is not required. There
-> is a fixed relationship between the MAC and the PHY, so phy-handle is
-> pointless. There is no need to describe the MDIO bus, because nothing
-> can change.  phy-mode is pointless, since it can only be internal.
+> Add bindings for the ADIN1110/2111 MAC-PHY/SWITCH.
 > 
-> ethernet-ports might be useful, if you want to use two different MAC
-> addresses. However, with Ethernet switches, you generally use the same
-> MAC address on all ports.
+> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+> ---
+>  .../devicetree/bindings/net/adi,adin1110.yaml | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/adi,adin1110.yaml
 > 
-> So i don't see a need for any of these properties.
+> diff --git a/Documentation/devicetree/bindings/net/adi,adin1110.yaml b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
+> new file mode 100644
+> index 000000000000..cc83f08c0a55
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/adi,adin1110.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/adi,adin1110.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ADI ADIN1110 MAC-PHY
+> +
+> +maintainers:
+> +  - Alexandru Tachici <alexandru.tachici@analog.com>
+> +
+> +description: |
+> +  The ADIN1110 is a low power single port 10BASE-T1L MAC-
+> +  PHY designed for industrial Ethernet applications. It integrates
+> +  an Ethernet PHY core with a MAC and all the associated analog
+> +  circuitry, input and output clock buffering.
+> +
+> +  The ADIN2111 is a low power, low complexity, two-Ethernet ports
+> +  switch with integrated 10BASE-T1L PHYs and one serial peripheral
+> +  interface (SPI) port. The device is designed for industrial Ethernet
+> +  applications using low power constrained nodes and is compliant
+> +  with the IEEE 802.3cg-2019 Ethernet standard for long reach
+> +  10 Mbps single pair Ethernet (SPE).
+> +
+> +  The device has a 4-wire SPI interface for communication
+> +  between the MAC and host processor.
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adin1110
+> +      - adi,adin2111
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  adi,spi-crc:
+> +    description: |
+> +      Enable CRC8 checks on SPI read/writes.
+> +    type: boolean
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi {
+> +        ethernet@0 {
+> +            compatible = "adi,adin2111";
+> +            reg = <0>;
+> +            spi-max-frequency = <24500000>;
 
-Thanks for clarification, appreciated!
+Rob's bot complained about this. As a SPI slave device, this should also
+reference spi-peripheral-props.yaml
 
 
 Best regards,
