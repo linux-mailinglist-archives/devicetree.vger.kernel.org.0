@@ -2,86 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B069C5807B0
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 00:42:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 219A85807BB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 00:45:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237603AbiGYWl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 18:41:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
+        id S237598AbiGYWpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 18:45:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237658AbiGYWln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 18:41:43 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A2C8275EE;
-        Mon, 25 Jul 2022 15:39:01 -0700 (PDT)
-Received: by mail-oi1-f171.google.com with SMTP id n133so5050748oib.0;
-        Mon, 25 Jul 2022 15:39:01 -0700 (PDT)
+        with ESMTP id S237610AbiGYWou (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 18:44:50 -0400
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0BBF2611C;
+        Mon, 25 Jul 2022 15:43:38 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-10d8880d055so16617160fac.8;
+        Mon, 25 Jul 2022 15:43:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=w7FxtvFFf34t5r5MspsAdF6ejzut5rmIbeeWhBNszsk=;
-        b=7ofqdrd2DVgHYYm6V3N7ionoTAm83ee0ZGxLIw1cVy8XeloG4tylkOpnEDTamCUt0u
-         lZifD4LaoDtVzEdmew6vmOq4TWfHU8DN99vAR7yin5/JaMyGU+csK2prq7DMdF9YvGI4
-         T8Yr7nAT3Av8KhTWzdG3lIAxsyleozeFGBY0yddOnrmXBjhSzaXxBXSBTek1VSIJQwMG
-         eEd01XrE1xuNpgrDpFHyXgK3fy6tb4e67pKKso+4m+Qc574Qv41JRsECbPnUk95QZnXH
-         y3Xk+rE4djKT6LsyPH1aZH6lgLdEVduI+CbpTkOWT8aNxzWrfztU9YaOoLg+tfTP/H91
-         G+TA==
-X-Gm-Message-State: AJIora8cSSdwkGlmGc80mvQVv/ebjXtUWn3MSsZcDgKWPJtTU7pY4NyB
-        6gkzfWZJIo/UIXtYSH+WJA==
-X-Google-Smtp-Source: AGRyM1v6/ZFtxGEc5L9KVu1Lgd4C63p2v2JuY18JC+fh1GxnzBafN02CL3keRAK9CglDbihJ7VltAQ==
-X-Received: by 2002:a54:458b:0:b0:33a:74a7:4271 with SMTP id z11-20020a54458b000000b0033a74a74271mr6406409oib.287.1658788690861;
-        Mon, 25 Jul 2022 15:38:10 -0700 (PDT)
+        bh=414OPFPqm7yiKu0XCIZIVb72Nf4LXIt1k0i8OrjquNM=;
+        b=zqXQz2+Xql+I20zJJzdZeY1qMy0hR3UZ0kbxAcPIU+X6HyIGANlRem1dyhuiU0g8+Q
+         /4mXSu10Mx/JcH1QZ0G5g+bP/Ouz7QImf2xHIMUm7avERpupO+PWrJ2t5S7dRTp1ySdM
+         mFQEpAhva4XwLwKZpPyFRnbOzV7TZwFlLnVwSiUPS/y6SeGje1O6B816SS9G9mD2ET8l
+         7F/DUNXRqzepRphGdTcecuzmiDrR4PiezQsZaSR5yFUibGncbsc7PD6ftFerQIabJ52A
+         Q53Je+xM79k9veCW0juTjjhPitaGu+PrfGgjM3Ge1qlc4shwCl3/m52Zj3lRsmv7UK0A
+         6aTA==
+X-Gm-Message-State: AJIora+GiGVi/Sh/pIbtMbf6bVmKK4GRWrs4zmEGoZ61Qrt2fgL0WAEh
+        V2ZgonpgEqedU19tMQHJYA==
+X-Google-Smtp-Source: AGRyM1sbb07YDLb2nNG3D5ni7t9o/Imo9DVsOQtpEXAJ+WQHpVXMdKmFq3rpH6uepyz4rLi1sRM1gQ==
+X-Received: by 2002:a05:6870:3399:b0:10d:5b33:566f with SMTP id w25-20020a056870339900b0010d5b33566fmr7457280oae.266.1658788997533;
+        Mon, 25 Jul 2022 15:43:17 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c17-20020a056870b29100b000e686d1386dsm6847741oao.7.2022.07.25.15.38.09
+        by smtp.gmail.com with ESMTPSA id cm36-20020a056870b62400b000fb2aa6eef2sm6763107oab.32.2022.07.25.15.43.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jul 2022 15:38:10 -0700 (PDT)
-Received: (nullmailer pid 2874904 invoked by uid 1000);
-        Mon, 25 Jul 2022 22:38:09 -0000
-Date:   Mon, 25 Jul 2022 16:38:09 -0600
+        Mon, 25 Jul 2022 15:43:17 -0700 (PDT)
+Received: (nullmailer pid 2883124 invoked by uid 1000);
+        Mon, 25 Jul 2022 22:43:15 -0000
+Date:   Mon, 25 Jul 2022 16:43:15 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-crypto@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
-        Stefan Hansson <newbyte@disroot.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>
-Subject: Re: [PATCH] dt-bindings: crypto: Add ST-Ericsson Ux500 CRYP
-Message-ID: <20220725223809.GA2874868-robh@kernel.org>
-References: <20220721163010.1060062-1-linus.walleij@linaro.org>
+To:     Runyang Chen <Runyang.Chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Runyang Chen <runyang.chen@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>, nfraprado@collabora.com,
+        devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        angelogioacchino.delregno@collabora.com
+Subject: Re: [PATCH] [1/3] dt-bindings: watchdog: Add compatible for MediaTek
+ MT8188
+Message-ID: <20220725224315.GA2883086-robh@kernel.org>
+References: <20220722072316.582-1-Runyang.Chen@mediatek.com>
+ <20220722072316.582-2-Runyang.Chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220721163010.1060062-1-linus.walleij@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220722072316.582-2-Runyang.Chen@mediatek.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Jul 2022 18:30:10 +0200, Linus Walleij wrote:
-> This adds device tree bindings for the Ux500 CRYP block.
+On Fri, 22 Jul 2022 15:23:14 +0800, Runyang Chen wrote:
+> From: Runyang Chen <runyang.chen@mediatek.com>
 > 
-> This has been used for ages in the kernel device tree for
-> Ux500 but was never documented, so fill in the gap.
+> Add dt-binding documentation of watchdog for MediaTek MT8188 SoC
 > 
-> Cc: devicetree@vger.kernel.org
-> Cc: Lionel Debieve <lionel.debieve@foss.st.com>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
 > ---
-> The relationship to the existing STM32 CRYP block is pretty
-> obvious when looking at the register map. If preferred, I
-> can just extend the STM32 bindings with these extra
-> (generic) properties and compatibles as well.
-> ---
->  .../crypto/stericsson,ux500-cryp.yaml         | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml
+>  Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
