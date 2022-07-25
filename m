@@ -2,96 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3656E5805AD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:32:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D75F5805B6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:33:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233129AbiGYUcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 16:32:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38152 "EHLO
+        id S237159AbiGYUdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 16:33:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237164AbiGYUcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:32:35 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0011B2250B;
-        Mon, 25 Jul 2022 13:32:33 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id b11so22593126eju.10;
-        Mon, 25 Jul 2022 13:32:33 -0700 (PDT)
+        with ESMTP id S237174AbiGYUdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:33:17 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232162252F
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:33:16 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id e11so14467748ljl.4
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:33:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5uTJfbjnCnNY4L/Fr3ZU7lb8k5HMvtMkTOBlXtv0Il0=;
-        b=AQasQ/MSGTbHW6t7ys2gXk6LP7V5bLGKVh0gfNqxetFMDc46uqliQx1vGDyExDaf6i
-         SEM37qO6RpfOq9AAsrjiws9PL6LNDKboDBQzgVIWcGJgdPbtXgPEmlxtQJNFsB7D7AHw
-         OVebDbKFOSLmCnK5DjCnXy8+GsaCQjneXxDoROmzClH+zA1eExpQK+Gcvnj+4++DyadP
-         +sDFI0MkqW4X88dAtYspPnGXB359YsDTrPhhFn2+T0DenlqCaDS9EhBi8YAyRmOPtw3I
-         9Zv2VAw98FeDlIkZQ8VKXwFTrs8EuqsRqxTaGHWX9rxo3XP3//pKMeYl+25vOyiIKmaC
-         LtKA==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=YC8yaQgFd+HG90KHMM102sQ8/krtMPBNJtVyfTE8BxU=;
+        b=H8jtIOaXjJ7yUxFhSWOj1urgWFO6iQ83rNUIXkwDGDtbmGEP9rVWQZyiTqrwJXRhB4
+         1tFh5KmbcQwNa24WhXO5Bpx5Oe3C62+3QRfywxyln3vs3RI/Anblz8DZRUia9gDyM31F
+         6NA4WZpuj2WpUg49DZkd6QOsBbk6eoW/xuxNXZQEbAXpvlox/m5chQ65kqk1Rbo+feUr
+         kQ91xSyLF4qlz0q4S5JL8f/TqnSH9FuWPoCQWkq9BwMPBqgTZTTIn/wsEvkrklfoVIMI
+         F82Mhqkivvv95+91hOq2XBVDwmJMRP8AXVPBBmn4AJIVjBYMy51raEZwn4Hcv31bR/eL
+         CfEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5uTJfbjnCnNY4L/Fr3ZU7lb8k5HMvtMkTOBlXtv0Il0=;
-        b=kECEBRW7vlklyUkuPrvrbwJYwBazyPcisE4v1l2SmD/5zHBplvsEVlD+cVblz5hPKI
-         xQdW+04L6DC5tY5ikLl1Ss2CxTRwxU07uz3DCEAMw2bcQ88UVjdtH8NcnFU5otoP2bWG
-         C9qjt/bv6GvGQP613xINZEcDTrAP9+HCk7NwHq54Is7o8TR3LD4GvHExZI+XflYL/B6X
-         u/Q9tUXHPJcYoZf0F7VFWSXoEGAyg/u8KGbfalLF9GiMBeM+Tb08ztRW3I3tGiD0mKln
-         o25r6P+EfLkcR93Xe4pKnqfQtszPpcDgjt2c6o1fX9fqVlXaL1SW2q19ZiLgLMvTaFfd
-         LgoA==
-X-Gm-Message-State: AJIora+3VITTZuDDJ4lD/hqOIcsi0lyEeO7fJq/9r5FovqaQ8eau+efK
-        rU6u4s6lT97V31+Y8YFCvpTxdfw2Yk6V4b/E13Y=
-X-Google-Smtp-Source: AGRyM1uyBNChG5ECz+p2Fd8YgOxxtmnwutdvyTx8z1E+g68+5PjLrzoMydGgCXDQwbro9Akd5Qttt3/aOY5ERzSxyLE=
-X-Received: by 2002:a17:907:75da:b0:72b:3ce0:2524 with SMTP id
- jl26-20020a17090775da00b0072b3ce02524mr11434125ejc.394.1658781152514; Mon, 25
- Jul 2022 13:32:32 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=YC8yaQgFd+HG90KHMM102sQ8/krtMPBNJtVyfTE8BxU=;
+        b=j34BzsBUtsU+WJiTI+35g5Qt06muGr5S07JO1uciWO9+lZ176//QBtKduExvW/nHhK
+         HDGJIkb4rcifkIk9gGeHGTUplvrcfbM2PJN3bkeoAGU7Cxo50LWVdE8iHs0aTMH/QzDx
+         mIGz8Or8ecbyQHsuCZFrTXU1uf6o4yyJejV1gZ4X1+SSpQagxiYTvcBIIBvGgHu45bLu
+         cMGRpNJRSBPDtOdWpsSnzIB+BiWuzjR0kwwNvQJs/lxjtCtfTC+9xb8sZ7Z/bDVq8E5X
+         DWnuXrdhoqiVpv8dRwzn0rjEJO6HS88ncyBwD5a+Bq8fSBF6tt7f0AXy5RYMWBP3jSty
+         ZDCw==
+X-Gm-Message-State: AJIora/Xrqajpuhu+0WRPR12wsjLLEmmNlKoz+j3Tnxu7vxWj7or9w1z
+        T/hMDgdodb22zp8QHSxX2nXZtA==
+X-Google-Smtp-Source: AGRyM1v1aUdfNCXXDlZnX3/vJ315xsXYbqnTwqAVNHZm40uZvVM7McQWSiMH0kIGD5GH4I/HPdPJhA==
+X-Received: by 2002:a05:651c:1501:b0:25d:a415:8ffd with SMTP id e1-20020a05651c150100b0025da4158ffdmr5079109ljf.310.1658781194399;
+        Mon, 25 Jul 2022 13:33:14 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id v10-20020a05651203aa00b0048a843505f9sm1300967lfp.293.2022.07.25.13.33.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Jul 2022 13:33:13 -0700 (PDT)
+Message-ID: <de68c1e8-447d-f1e9-7885-6a109af1e971@linaro.org>
+Date:   Mon, 25 Jul 2022 22:33:12 +0200
 MIME-Version: 1.0
-References: <20220721080423.156151-2-nuno.sa@analog.com> <202207231228.n8l077iB-lkp@intel.com>
-In-Reply-To: <202207231228.n8l077iB-lkp@intel.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 25 Jul 2022 22:31:56 +0200
-Message-ID: <CAHp75VdY6qikNgvh4K5Ga4D5MHf7sEfm0kbNzN-xNanwj4yQgg@mail.gmail.com>
-Subject: Re: [PATCH v3 01/10] input: keyboard: adp5588-keys: support gpi key
- events as 'gpio keys'
-To:     kernel test robot <lkp@intel.com>
-Cc:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>,
-        linux-input <linux-input@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>, llvm@lists.linux.dev,
-        kbuild-all@lists.01.org, Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] arm: dts: imx6qdl-vicut1.dtsi: Add backlight-isb node
+Content-Language: en-US
+To:     David Jander <david@protonic.nl>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20220725124813.1001032-1-david@protonic.nl>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220725124813.1001032-1-david@protonic.nl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 23, 2022 at 6:57 AM kernel test robot <lkp@intel.com> wrote:
+On 25/07/2022 14:48, David Jander wrote:
+> On some older hardware models this is needed. It will do no harm if used
+> with newer models though.
+> 
+> Signed-off-by: David Jander <david@protonic.nl>
+> ---
+>  arch/arm/boot/dts/imx6qdl-vicut1.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+> index a1676b5d2980..08d425020088 100644
+> --- a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+> @@ -37,6 +37,16 @@ backlight_led: backlight_led {
+>  		power-supply = <&reg_3v3>;
+>  	};
+>  
+> +	/* only for backwards compatibility with old HW */
+> +	backlight_isb: backlight_isb {
+
+Node name: backlight-isb
+
+I know that other node had underscore, but these are not correct for names.
 
 
-...
-
-> All warnings (new ones prefixed by >>):
->
-> >> drivers/input/keyboard/adp5588-keys.c:336:9: warning: implicit conversion from 'unsigned long' to 'int' changes value from 18446744073709551615 to -1 [-Wconstant-conversion]
->            return INVALID_HWIRQ;
->            ~~~~~~ ^~~~~~~~~~~~~
->    include/linux/irq.h:1245:24: note: expanded from macro 'INVALID_HWIRQ'
->    #define INVALID_HWIRQ   (~0UL)
->                             ^~~~
-
-It requires irq.h, but hold on. Marc said that he wants to rather kill
-that definition than having it spread over the kernel. So, please use
-your own custom macro with an appropriate type.
-
--- 
-With Best Regards,
-Andy Shevchenko
+Best regards,
+Krzysztof
