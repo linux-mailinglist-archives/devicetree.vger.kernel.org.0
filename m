@@ -2,103 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2436C5805C2
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:35:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 789945805DE
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:42:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237213AbiGYUfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 16:35:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41650 "EHLO
+        id S237131AbiGYUmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 16:42:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237205AbiGYUfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:35:24 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 816E8273C
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:35:21 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id w15so11755852lft.11
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:35:21 -0700 (PDT)
+        with ESMTP id S235916AbiGYUmL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:42:11 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A0E5639D;
+        Mon, 25 Jul 2022 13:42:09 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id c72so12589550edf.8;
+        Mon, 25 Jul 2022 13:42:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kF+g+F7mYcIUaJYAQWrmzn8M6Wb/+yPNGEuaPjJTuM4=;
-        b=c1E4ypsrj4lfQjVDS1PjLkofXsBCBIYDZ1iSIrtIkmc6jnYy+Q+NdEG9xEhHz7sCTb
-         7S8gZR6Kr0566YVA6fqyBfHCGzMq0XTU6LjPzw+gKr9GarCxMwFKil9NrN5y5MNqZi25
-         23ZJNUw8tky4+kkjcWOway9aElUecKZBb9L80dv2B1iSCGvkn3+n5Evi0EkUBb6kQcoa
-         k4Dg9URTwEyonbgRpBNIgMlnNq9XkMWZVoHVhPinK1jsRrVO6eO9XgfrAGw2XsL+bgcn
-         jgo9TAy/07Pet6Ww4BN6yscaYs/KCpunHCdXKQKkwd3FEsFvJjZHS9XJFEyAOogPD16E
-         rUgw==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CzlvqtZ4sW/ElEWpOjSICTJbEHD0aNQ9entd4nvbv7Y=;
+        b=kB7cXd7d/JNiJw4UHUCysp+SCyNBoKLAZbtLOINNgPIiTgSRGrS1D/B1btIP+jplUD
+         hLfdMsEBa6uw9G0hc/4wjTVCyiEZmU8GPJG6U0EgDCyYgbq/k4EX6AfbTnZ3vez6my/S
+         FjAdUeKOty6/PS30jBULBSk9jKE/DzPejB6hjxSWI16UhbMkGoqUy6fFJlMW5cxl7GDq
+         hdhGJ3sMyv1RP7LLux2UpX25pTDj0FEwd9nuxuLRYd3YIPWdqogqPeQbx5UR4GQybDw6
+         rPoTr9e3Ymeh8CsUpWvKGaV6wPrIfEh5jftOQnAOMUtGNfYSVUkMS4/Tfk+Qpb9uvmqP
+         kqHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kF+g+F7mYcIUaJYAQWrmzn8M6Wb/+yPNGEuaPjJTuM4=;
-        b=6U2bAbRexF3qjJprJvfBzTY5w/oNaOLbRN2W6+BRMiQJQYYxiSHFoJwQ7iHhcxAJKo
-         XJGaP1tgH5uGD5vZbzYp5Vl9A52TGIcF5CefS53J2GW6PicEtM4ZWH7bbCW+vKybDt0l
-         fii6KFJI0RNl2tEgUbR18QFa4bqgFAkBKFVztKkkVcJYIiCveFOfCAdfPxU9YogfvE3c
-         o/hAHU3CuS2Gdh/dyqrcLPDV77cOUErS7Soozr3YYInTtTsCUISZtPhZZohbrx+GAfyt
-         WodIkrX3MtzQ+lzjK/up59CBYU7Lkp5pSkb/pOigMXtNTokdvqI/yzj8pQU7T0sJ+oAH
-         j48w==
-X-Gm-Message-State: AJIora9ezAKtgWBe4U4IuVbWeQwTIG2ykU8G+b7KtPY8OCrLOu7uDnxF
-        dzUDDnPoRq7qBn9n1ycE3YbeCw==
-X-Google-Smtp-Source: AGRyM1ttV6py/cPAH9tBoi/teqtLFo+O1OebISYGtEbEAaJj118/1dMgrgbrEF7axMWM/vp84mGJqg==
-X-Received: by 2002:a05:6512:2302:b0:489:da47:6a90 with SMTP id o2-20020a056512230200b00489da476a90mr4974106lfu.12.1658781319674;
-        Mon, 25 Jul 2022 13:35:19 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id s7-20020a05651c200700b0025deb36756dsm2339404ljo.103.2022.07.25.13.35.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Jul 2022 13:35:19 -0700 (PDT)
-Message-ID: <ea2cc75c-611f-f612-e692-325fb7e98d6b@linaro.org>
-Date:   Mon, 25 Jul 2022 22:35:17 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CzlvqtZ4sW/ElEWpOjSICTJbEHD0aNQ9entd4nvbv7Y=;
+        b=mOeRTn9nRpWm53OqHw2Ul7pf4msH1B2E1OyhxPlz7KHEPQhgfmT4i+S0e+9UZattqm
+         2F+pD8PCKiLuykE4GPhPEzZ4AUxPy8o6rSvKq7cu7V/L8ggJw6pb69d2VRl34Og6CfmX
+         gA4z186sizg8Qircb+IFivf2nB+e9rw8lv6SlgYsXVit0swqigAQThc7TPIFWoUqWsbP
+         ks2Lx0H7qIQHT8vf9/5F7EclCc4OQV/RBxAgCYHBXhUuzQypt2nxc1om/h/OG9mAO77a
+         C7T21BcyTE5invgUtlKvqwTjtDZKsZpZdOt7p5XBUBaDxPErbeVNelvFt/LNM33Xi1sQ
+         23ig==
+X-Gm-Message-State: AJIora8kHzTtJb3ktwo+lS9yYJNhaDu4w8UDFEtz9sLZ7M0BzgdvdfRe
+        9Hyuiw9Fxyj2YJXO6jJ/umGZTCoGKpNYa2EEX5s=
+X-Google-Smtp-Source: AGRyM1sJVhjzVOjASQIpOG0za4qTj18ieNxKgJ9b/Q8r0g76G9F2hNLsedKENR4/v/5jin+j3fdwa6HLNrnYzJ7Ayg0=
+X-Received: by 2002:a05:6402:34c5:b0:43a:8f90:e643 with SMTP id
+ w5-20020a05640234c500b0043a8f90e643mr15004477edc.88.1658781727930; Mon, 25
+ Jul 2022 13:42:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: ufs: qcom,ufs: add SC8280XP binding
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220711101441.4896-1-johan+linaro@kernel.org>
- <Yt5+EU529KriiAvE@hovoldconsulting.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yt5+EU529KriiAvE@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
+ <CAHp75VddBhc9peHXfNfTyTNni246kC8CyLqCrMFadn67LGDarQ@mail.gmail.com> <CACRpkdaczrU1tM5Yt7P-Q2h+ge8STOi6HvvYeTM-g+JwS8_gZw@mail.gmail.com>
+In-Reply-To: <CACRpkdaczrU1tM5Yt7P-Q2h+ge8STOi6HvvYeTM-g+JwS8_gZw@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 25 Jul 2022 22:41:31 +0200
+Message-ID: <CAHp75Ve4+r14dL3poOF7dCPMRgAe8etLeuBPNay0tkyNf97UWg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] gpio: gpio-74x164: add support for CDx4HC4094
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2022 13:27, Johan Hovold wrote:
-> On Mon, Jul 11, 2022 at 12:14:41PM +0200, Johan Hovold wrote:
->> Add SC8280XP to the DT schema.
->>
->> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
->> ---
-> 
-> Rob,
-> 
-> Will you be picking this one up?
-> 
-> There doesn't seem to be any other maintainers listed for this file in
-> case it's expected to go through some other tree.
-> 
+On Mon, Jul 25, 2022 at 3:54 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Mon, Jul 25, 2022 at 11:32 AM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> > On Thu, Jul 21, 2022 at 11:32 AM Marcus Folkesson
+> > <marcus.folkesson@gmail.com> wrote:
+> > >
+> > > 74hc4094 and 75hc4094 works similar to 74x164 but has an additional
+> > > storage latch associated with each stage for strobing data from the
+> > > serial input to parallell buffer tri-state output.
+> >
+> > parallel
+> >
+> > > Add support for an optional strobe pin.
+> >
+> > Sorry for my absence of understanding, but why?
+> > SPI has MOSI, CLK, CS, where the last one is exactly for that. No?
+>
+> Forgive me if I misunderstand, but if you use CS that
+> way, the way that the SPI framework works is to assert
+> CS then transfer a few chunks over SPI (MOSI/CLK)
+> then de-assert CS.
+>
+> If CS is used for strobe, it is constantly asserted
+> during transfer and the sequence will be latched
+> out immediately as you write the SPI transfers and
+> the data is clocked through the register, making the
+> whole train of zeroes and ones flash across the
+> output pins before they stabilize after the SPI
+> transfer is finished.
+>
+> If you first do the SPI transfer, then strobe after
+> finished, this will not happen.
+>
+> Then it should be a separate pin, so this doesn't
+> happen, right?
+>
+> Yours,
+> Linus Walleij
 
-The preference is that it should go via subsystem and get_maintainers.pl
-points Alimi, Avri and Bart. However in the past it seems indeed Rob was
-picking it up...
 
 
-Best regards,
-Krzysztof
+-- 
+With Best Regards,
+Andy Shevchenko
