@@ -2,97 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 235FC57FC93
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 11:38:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1DD857FC9F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 11:40:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233140AbiGYJiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 05:38:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43446 "EHLO
+        id S234272AbiGYJka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 05:40:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234054AbiGYJiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 05:38:09 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 283FBB7C9;
-        Mon, 25 Jul 2022 02:38:08 -0700 (PDT)
+        with ESMTP id S233967AbiGYJk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 05:40:28 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD414E7B;
+        Mon, 25 Jul 2022 02:40:27 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id c12so5762459ede.3;
+        Mon, 25 Jul 2022 02:40:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1658741889; x=1690277889;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TthBya58gH7epvLwOH5Jw8gF6/uSQB1tBx4AWRwJht8=;
-  b=b0LnYgOC3A8u2n/thxdOwXnrety+oNchpSiHnjzoUKd9pVu0CqwSRSDH
-   xsuh3sz052aJeInVVgI9I1lHrGGkGl1zz05q3586yuxS80lyEVlgFkApV
-   sXhuLKswtKEeyCrsH2JSKMthZlitXS0QXZKb4jnjQBVbp12OqANF3xD0/
-   c=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 25 Jul 2022 02:38:08 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jul 2022 02:38:08 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 25 Jul 2022 02:37:36 -0700
-Received: from hu-ppareek-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Mon, 25 Jul 2022 02:37:33 -0700
-Date:   Mon, 25 Jul 2022 15:07:29 +0530
-From:   Parikshit Pareek <quic_ppareek@quicinc.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: Document additional
- sa8540p device
-Message-ID: <20220725093729.GA19730@hu-ppareek-blr.qualcomm.com>
-References: <20220722142515.18592-1-quic_ppareek@quicinc.com>
- <de7fc091-ed12-c585-d39d-2bcf2bda37fe@linaro.org>
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Wk5AdTHZkK3y/y86s2c6z+V6gZGrMEpCv6krR/2aEhw=;
+        b=WyCpx2vunPvzLmeyFWBQxitXLhUa99to7s/rJpVE8ru7UYq8XMRsSPtcU6LC//Uiup
+         Uj5cM7BdEu6VHp1DfMXcnKz8XFRoKnnxjvsHrVS9ov8b6Cowtcp7DBteWxnug3FPyrwd
+         t++iCranU4Pg1it/saglRtJjPEZumxxD4QqC8TsJvV8GWfrcbDkEN9C6mZUlc3Q3eDPX
+         kJIamuZUKv93P9h8gOGuTp1WNFPjdcs5Mg+qGXKE/eoC5eBHzWqYelnOYvl1vB3fV0tS
+         /PQlJlmAHtG+BA1QxFkTTJdMiwum3FnlTGoufX2F+DXLGauusXHKLcATIU0f6cyujV6u
+         Aqrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Wk5AdTHZkK3y/y86s2c6z+V6gZGrMEpCv6krR/2aEhw=;
+        b=7qKl05PIW2U0Nm0A4pHlXynwCJ/4SvIVuaSxuFkewMuNeUCE9FY8xY5o9FPK/4B08C
+         FeyVy96V15fl6MuY8F0ePDKzvFXee1htt0OqFqpa5IzaeR3V7CyX4E5CTGs9z3lYmCQ+
+         ZDT4cSwU0QpERFH+HBkVsK5lpUY9JxNKRU7nvE4rvJxzOroP57Jx62dxFUDFjx58Xcb0
+         yeJSDDCFzHhhwi89bgM5lnfccZ2o9fhP3sTWb7d6aqKE0GOwzgxf2tUBm+b+XG0/23aq
+         tT5ZbxXky9CI/i4FzAfjPb/XkfNNjDJsELeSQD+SGgcdKuQamegbVHTgCGzWd1WNz6fr
+         lZ1A==
+X-Gm-Message-State: AJIora/p0FPbRdAvua781MzC0dBE666pwvm/sRZJpuw4ZuTP6siUQtbM
+        b7bkzWJrYgBkY5DeF26lKcTz+YIe4ebTzkcdALo=
+X-Google-Smtp-Source: AGRyM1sXm4n75Ytiaw9TN/6jOw92F3faw/dxPtaeJZ4pGJu4n51v3+jvF691H0/dfKds1kfN7JPgw2k0M8AwmOUQI2E=
+X-Received: by 2002:a05:6402:d53:b0:43b:a0cf:d970 with SMTP id
+ ec19-20020a0564020d5300b0043ba0cfd970mr11829902edb.277.1658742026168; Mon, 25
+ Jul 2022 02:40:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <de7fc091-ed12-c585-d39d-2bcf2bda37fe@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220722040609.91703-1-colin.foster@in-advantage.com> <20220722040609.91703-2-colin.foster@in-advantage.com>
+In-Reply-To: <20220722040609.91703-2-colin.foster@in-advantage.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 25 Jul 2022 11:39:48 +0200
+Message-ID: <CAHp75VdoBO8nKvGicsMhtY226AmL6nzt_52W+fLjeTkndwV7Aw@mail.gmail.com>
+Subject: Re: [PATCH v14 mfd 1/9] mfd: ocelot: add helper to get regmap from a resource
+To:     Colin Foster <colin.foster@in-advantage.com>
+Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Russell King <linux@armlinux.org.uk>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, katie.morris@in-advantage.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 22, 2022 at 08:27:39PM +0200, Krzysztof Kozlowski wrote:
-> On 22/07/2022 16:25, Parikshit Pareek wrote:
-> > Add the ADP ride device to the valid device compatibles found on the
-> > sa8540p platform.
-> > 
-> > Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-> 
-> If a tag was not added on purpose, please state why and what changed.
-My mistake, I missed the tags.
-> 
-> 
-> Additionally - please thread your patchset. Git send-email does it by
-> default. If you use other tools - be sure the effect is threaded.
-Used git send-email. May be happened due to the change in one of the commit headers in one of the patches.
-> Otherwise it is not possible to find the patches from you.
-> 
-> 
-> Best regards,
-> Krzysztof
-Regards,
-Parikshit Pareek
+On Fri, Jul 22, 2022 at 6:06 AM Colin Foster
+<colin.foster@in-advantage.com> wrote:
+>
+> Several ocelot-related modules are designed for MMIO / regmaps. As such,
+> they often use a combination of devm_platform_get_and_ioremap_resource and
+> devm_regmap_init_mmio.
+
+When we refer to functions we put it like func().
+
+> Operating in an MFD might be different, in that it could be memory mapped,
+> or it could be SPI, I2C... In these cases a fallback to use IORESOURCE_REG
+> instead of IORESOURCE_MEM becomes necessary.
+>
+> When this happens, there's redundant logic that needs to be implemented in
+> every driver. In order to avoid this redundancy, utilize a single function
+> that, if the MFD scenario is enabled, will perform this fallback logic.
+
+...
+
+> +#include <linux/err.h>
+
+You also missed errno.h
+
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/types.h>
+
+...
+
+> +static inline struct regmap *
+> +ocelot_regmap_from_resource_optional(struct platform_device *pdev,
+> +                                    unsigned int index,
+> +                                    const struct regmap_config *config)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct resource *res;
+> +       void __iomem *regs;
+> +
+> +       /*
+> +        * Don't use get_and_ioremap_resource here, since that will invoke
+
+_get_and_ioremap_resource()
+
+> +        * prints of "invalid resource" which simply add confusion
+> +        */
+
+will simply add
+
+Missed period.
+
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, index);
+
+Where are the IORESOURCE_*  defined? Haven't you missed a header?
+
+> +       if (res) {
+> +               regs = devm_ioremap_resource(dev, res);
+> +               if (IS_ERR(regs))
+> +                       return ERR_CAST(regs);
+> +               return devm_regmap_init_mmio(dev, regs, config);
+> +       }
+> +
+> +       /*
+> +        * Fall back to using REG and getting the resource from the parent
+> +        * device, which is possible in an MFD configuration
+> +        */
+> +       if (dev->parent) {
+> +               res = platform_get_resource(pdev, IORESOURCE_REG, index);
+> +               if (!res)
+> +                       return NULL;
+> +
+> +               return dev_get_regmap(dev->parent, res->name);
+> +       }
+> +
+> +       return NULL;
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
