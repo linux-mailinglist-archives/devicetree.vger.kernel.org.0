@@ -2,86 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82E55580830
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 01:27:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C8DB580835
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 01:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233889AbiGYX1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 19:27:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53482 "EHLO
+        id S229845AbiGYX3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 19:29:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230467AbiGYX1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 19:27:50 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8FFF26561
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 16:27:49 -0700 (PDT)
-Received: by mail-oi1-f175.google.com with SMTP id s204so15287698oif.5
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 16:27:49 -0700 (PDT)
+        with ESMTP id S236804AbiGYX3J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 19:29:09 -0400
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A8726561;
+        Mon, 25 Jul 2022 16:29:08 -0700 (PDT)
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-10d83692d5aso16780769fac.1;
+        Mon, 25 Jul 2022 16:29:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8oYhKynfWx9NaWSzEsCx30+DB/6sdfscG0yAYQujutM=;
-        b=GTR+n8Xstcc1UbvmX1ubdGmIKsvNEqYDscMvEEKTPCDWSiGXdwQJNjr9tzyZJHh2Ni
-         10CCr6V0jS5Ax6x6dQTol7AQd4/EdpmbOAalCK1fRnVTkR9x3iYIFmMLGRycrX4w6ezf
-         4WrFWM6t7gge8Yd+OK8KXhHh0/89tTjEfgdxQjcg7/oFpZGPC5SifbLVuF326zvtPSGq
-         fKPL8uC5PuVrQutw0zgFuEHboaF6SxRp22S9inLVXKxwFkYufVnJ9qBB+SJlpkAM7pSW
-         ZnigBs4S4S6neKAFeKn4kKxgApErXpOyX/XEKMhOK0bC9VI+MpNNBn2OZatvYHhS3ZX+
-         hdRw==
-X-Gm-Message-State: AJIora8+TNzfNjsqDk5BS1KsqewNIRVRmQ76HCGWDQihjQ2Kq5nxEA4J
-        JKuNb/9y+xZ98sf7ScCMqw==
-X-Google-Smtp-Source: AGRyM1uh5OpQAd0GsCkxOIOFynCg6VcdXBYFUig50InQ0YE5u3xh9AY3IaGE90zvNca5mYBDnaQQfw==
-X-Received: by 2002:a05:6808:bcb:b0:33a:ce5d:be58 with SMTP id o11-20020a0568080bcb00b0033ace5dbe58mr5318505oik.223.1658791669015;
-        Mon, 25 Jul 2022 16:27:49 -0700 (PDT)
+        bh=pDBC+SN3XUz1fTYobGbOcnhMg9/j1jmuI+TaTt4V2s4=;
+        b=Cx+hcnIUwkOwPaoOqZs3CbO0ZmAtr32CV0ELOUsBuXLfUmWYNzIVT9VUaOiHLzbsxS
+         WMZEGawOTd43BhzexPz4KGjpaSXKhUOORuILbHG12pBGumkH3aOKLHDRwSZPHLuatlYn
+         n2s+/5ZKTesuD8ulsMh91doz7cFmeUwLaVym+iJevZr7NnuWNnvSYJmgzfX7ZLAVCmYr
+         cWPt5unLK//3P1RbL6dMnvVlb6qqpLrr8A3jZL+bmWK/VIyVSj319BjK2LKivIffcWyL
+         ENOXiWiyCCex2Ax9JtGX9ljTlSiDBOHKQ3YGuWcZ6kZKN9cgIlclEGGydAJblAJYSU1v
+         Whpg==
+X-Gm-Message-State: AJIora8BomaHSch+DMX5dMnmv8Co7MDZgV5YOSWnDwKRWzNkfpS7mP52
+        yIt/z7K5UFqOGUITAP1O8b5vcqMUtg==
+X-Google-Smtp-Source: AGRyM1vhB7LzTu9o9WY8Ius1OoEy/Rlrf2xb4cPbrShtSbpFTMzuhLhU5dx5+8rVg+znEScMELoZkw==
+X-Received: by 2002:a05:6871:b22:b0:10d:c30a:c096 with SMTP id fq34-20020a0568710b2200b0010dc30ac096mr8436424oab.75.1658791748050;
+        Mon, 25 Jul 2022 16:29:08 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id g5-20020a056870c14500b0010c0d04eb00sm7310434oad.2.2022.07.25.16.27.47
+        by smtp.gmail.com with ESMTPSA id i22-20020a056870221600b000f325409614sm6724959oaf.13.2022.07.25.16.29.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jul 2022 16:27:48 -0700 (PDT)
-Received: (nullmailer pid 2955529 invoked by uid 1000);
-        Mon, 25 Jul 2022 23:27:47 -0000
-Date:   Mon, 25 Jul 2022 17:27:47 -0600
+        Mon, 25 Jul 2022 16:29:07 -0700 (PDT)
+Received: (nullmailer pid 2957827 invoked by uid 1000);
+        Mon, 25 Jul 2022 23:29:05 -0000
+Date:   Mon, 25 Jul 2022 17:29:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 19/22] dt-bindings: arm: rockchip: Add Edgeble AI Edge
- Compute Module 0 Carrier
-Message-ID: <20220725232747.GA2955495-robh@kernel.org>
-References: <20220723204335.750095-1-jagan@edgeble.ai>
- <20220723204335.750095-20-jagan@edgeble.ai>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH] dt-bindings: timer: allwinner,sun4i-a10-timer: Add D1
+ compatible
+Message-ID: <20220725232905.GA2957766-robh@kernel.org>
+References: <20220725051715.56427-1-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220723204335.750095-20-jagan@edgeble.ai>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220725051715.56427-1-samuel@sholland.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 24 Jul 2022 02:13:32 +0530, Jagan Teki wrote:
-> Edge Compute Module 0 is a 96boards SoM-CB compute module based
-> on Rockchip RV1126 from Edgeble AI.
+On Mon, 25 Jul 2022 00:17:14 -0500, Samuel Holland wrote:
+> Allwinner D1 contains the usual sun4i MMIO timer device. It contains two
+> timers like other recent SoCs, so it is compatible with the A23 variant.
 > 
-> Edge Compute Module 0 Carrier board is an industrial form factor
-> evaluation board from Edgeble AI.
-> 
-> Edge Compute Module 0 needs to mount on top of this evaluation board
-> for creating complete Edge Compute Module 0 Carrier board.
-> 
-> Add dt-bindings for it.
-> 
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> 
+>  .../devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml     | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
