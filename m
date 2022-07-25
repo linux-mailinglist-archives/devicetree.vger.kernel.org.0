@@ -2,134 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27CE457FF39
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 14:46:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA09757FF7B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 15:05:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235206AbiGYMqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 08:46:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51496 "EHLO
+        id S235379AbiGYNFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 09:05:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235180AbiGYMqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 08:46:45 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F91615A06
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 05:46:44 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id z23so20198571eju.8
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 05:46:44 -0700 (PDT)
+        with ESMTP id S235378AbiGYNEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 09:04:53 -0400
+X-Greylist: delayed 964 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Jul 2022 06:04:49 PDT
+Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [IPv6:2a02:9e0:8000::40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA06C13E1D
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 06:04:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=d7+MTfcD+NFc2y/OEnklb7H3XSxJGRWVeSRrvmC4apM=;
-        b=fEQX5UAxkfq+09coTXrN6rrW74oy24rWf11QXf2XtJpNLY7S8dqceObl3gEhdPrrvS
-         MEdzc0jCz3s/8NdcOP34pFUfYlB+YV8EqpnYwLpwfauXAnlpmuEt+Fsyayt6i2dCLwSv
-         wSq+e61Wk8owPJsRezgnp2Mj1p3r+zG7ZaYcDFYuFjl0LhVPOM/MouK0pyUasJb2M5Ni
-         fSsvqKn47kYlyPOlfymvKRpuPtqmVZX1utFQHQMeWJRTxw5AlQZfPxvsWIxb2CDDY3Oh
-         9c/UowiLKOEYLK8IU7oWM9tR9vynkrDxXEEpONfa34gV3kLDiGQBB7M3BjtJj6Vhy5FF
-         PICg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=d7+MTfcD+NFc2y/OEnklb7H3XSxJGRWVeSRrvmC4apM=;
-        b=kvAZhQcLXOSWdF+7hyD60/sUKGxM+GCCRdmgtmBsCI9YNFTpAcHN6FtATp1hsAK39c
-         zgSImp9f6Oah34J+mm7yDKEnF0OX7vooZFZqRHDC5YroFoZRaom0+8iGFbvCu5Kh4i6H
-         wnUgyLujlN37N17Yb0eTYT4vZ6EfwynfhQe/J2qA9bxfgdSdUo+c7mp/TiP4Sn2cjgeb
-         5OxHnwgNW5o1Hcq/KqDcTiJ/2KimLMC7OROiIWAUWMHS+IF6ggaLqSkgaN7xOm6ksPB3
-         KmnSMwoP9/Q+Lv1IcE5NjzWpgyYmremn0/SEm86cca61RNB2EcpGJj8qGMt/ASlpOiMp
-         wjiQ==
-X-Gm-Message-State: AJIora+G5bJrIlI9riRgi0tTV5NDMdPaRhZBoMCHI5mAneQsj3Q+zsmn
-        eFNjiyQLd000QLDTYkOPhzvxp1F30aFzUa//qxOU6w==
-X-Google-Smtp-Source: AGRyM1sCu21K/w1G5XojAxSlYHNjLDCufI94j1Lxyx/oXRqmlY5vGOzH/4OVrcFYM3tG0TTlufO236behkk0QeQyTjM=
-X-Received: by 2002:a17:907:a053:b0:72b:3051:b79b with SMTP id
- gz19-20020a170907a05300b0072b3051b79bmr9552157ejc.690.1658753202304; Mon, 25
- Jul 2022 05:46:42 -0700 (PDT)
+        d=protonic.nl; s=202111;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc:to:from:
+         from;
+        bh=u+Sc1KDzF9RshIeaZARqCUt1rPYR93miba1YFSCpnzo=;
+        b=mOofaVbNfZC1bIz73JDpcREMfcB1SIwA5oBroiFip7vmY+8gc/+h0kHj6VrxKwsd4gXSlIwO6Z0Wr
+         l0dgcYg96h+TPYjLZgAzk4yMEcmNickJUiHufElW65B6AnYiZfh92+0hgvTnGXaMaW4z5fYh6wM3HN
+         dYNrbAfrqEIeoYyGeq1CSEjhn0QO24+Q38dEfoeeM+kcRwpInQXoaYCdBYeb6Lp4MqXCkc3CFM+KpH
+         HXAddP7wV3va2tqEkMwcOG/GSuqaBkSeaUQGhveTBMyAzzC/JN3tykwZyTv4wTW9Wmyz6VE/4TJuer
+         x1ZA3wmhmYKT3RpPZocDDXEWzlQBbug==
+X-MSG-ID: 1cb116df-0c18-11ed-8a45-0050569d11ae
+From:   David Jander <david@protonic.nl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, David Jander <david@protonic.nl>
+Subject: [PATCH] arm: dts: imx6qdl-vicut1.dtsi: Add backlight-isb node
+Date:   Mon, 25 Jul 2022 14:48:13 +0200
+Message-Id: <20220725124813.1001032-1-david@protonic.nl>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20220623090445.1401-1-axe.yang@mediatek.com> <20220623090445.1401-4-axe.yang@mediatek.com>
- <CACRpkdZ5G2fMCqvkXANVEmZjNcF4U4mSDzZk6aXbqFjYVN3hcA@mail.gmail.com> <3747f246650622ef65787159af5271a79401a855.camel@mediatek.com>
-In-Reply-To: <3747f246650622ef65787159af5271a79401a855.camel@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 25 Jul 2022 14:46:30 +0200
-Message-ID: <CACRpkdZP-FBP8hsBfeMn1M8=VR_cYG+j9GQc9VdV-HjkvSo73w@mail.gmail.com>
-Subject: Re: [PATCH v13 3/3] mmc: mediatek: add support for SDIO eint wakup IRQ
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Yong Mao <yong.mao@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 25, 2022 at 11:13 AM Axe Yang <axe.yang@mediatek.com> wrote:
-> On Fri, 2022-07-22 at 13:21 +0200, Linus Walleij wrote:
-> > On Thu, Jun 23, 2022 at 11:10 AM Axe Yang <axe.yang@mediatek.com>
-> > wrote:
+On some older hardware models this is needed. It will do no harm if used
+with newer models though.
 
-> SDIO DAT1 pin mode is changed to GPIO mode in
-> dev_pm_set_dedicated_wake_irq_reverse():
->
-> https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c#L339
->
-> dev_pm_set_dedicated_wake_irq_reverse() -> ... ->request_threaded_irq()
-> -> __setup_irq() -> irq_request_resources() ->
-> mtk_eint_irq_request_resources()-> mtk_xt_set_gpio_as_eint()
+Signed-off-by: David Jander <david@protonic.nl>
+---
+ arch/arm/boot/dts/imx6qdl-vicut1.dtsi | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-This doesn't seem to have much to do with pin control?
-No pin control functions are called on this execution path,
-no pin control state is changed, right?
+diff --git a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+index a1676b5d2980..08d425020088 100644
+--- a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+@@ -37,6 +37,16 @@ backlight_led: backlight_led {
+ 		power-supply = <&reg_3v3>;
+ 	};
+ 
++	/* only for backwards compatibility with old HW */
++	backlight_isb: backlight_isb {
++		compatible = "pwm-backlight";
++		pwms = <&pwm2 0 5000000 0>;
++		brightness-levels = <0 8 48 255>;
++		num-interpolated-steps = <5>;
++		default-brightness-level = <0>;
++		power-supply = <&reg_3v3>;
++	};
++
+ 	connector {
+ 		compatible = "composite-video-connector";
+ 		label = "Composite0";
+@@ -370,6 +380,12 @@ &pwm1 {
+ 	status = "okay";
+ };
+ 
++&pwm2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pwm2>;
++	status = "okay";
++};
++
+ &pwm3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_pwm3>;
+@@ -601,6 +617,12 @@ MX6QDL_PAD_DISP0_DAT8__PWM1_OUT			0x1b0b0
+ 		>;
+ 	};
+ 
++	pinctrl_pwm2: pwm2grp {
++		fsl,pins = <
++			MX6QDL_PAD_DISP0_DAT9__PWM2_OUT			0x1b0b0
++		>;
++	};
++
+ 	pinctrl_pwm3: pwm3grp {
+ 		fsl,pins = <
+ 			MX6QDL_PAD_SD4_DAT1__PWM3_OUT			0x1b0b0
+-- 
+2.32.0
 
-If what you mean is that
-it happens to poke into the same hardware registers that is
-mainly a matter of concurrency in the driver, sometimes two
-abstractions happen to have to poke into the same hardware
-registers and then it is up to the driver to maintain state for
-the hardware, this is not a question for the framework.
-
-How is Mediatek developers thinking about this thing in general?
-You are a few people who developed the driver so certainly
-you must have some design idea to why irq_request_resources()
-poke around in these registers? Does it even perform pin
-control behind the back of the pin control framework?
-
-> To restore SDIO DAT1 pin to uhs mode. I have to call
-> pinctrl_select_state() twice(change pinctrl to another state, then
-> change back to uhs mode). Ulf worried we might be doing something at
-> the mmc driver level, which should really be managed at the pinctrl
-> layer.
->
-> Do you have any comment or suggestion on this?
-
-The pin control state transitions are really just finite automata.
-
-Your pin control needs to be different when using wakeup from
-when being used for SDIO and this is perfectly fine, it's no
-different from the fact that the regulator and clock might need
-to be in different states, so I don't quite understand the
-question?
-
-Yours,
-Linus Walleij
