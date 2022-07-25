@@ -2,78 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AF3557F8F3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 07:17:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E794E57F91C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 07:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbiGYFRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 01:17:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49526 "EHLO
+        id S229656AbiGYFvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 01:51:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbiGYFRV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 01:17:21 -0400
+        with ESMTP id S229496AbiGYFvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 01:51:06 -0400
 Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E97D9F5A4;
-        Sun, 24 Jul 2022 22:17:19 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 686DF5C0097;
-        Mon, 25 Jul 2022 01:17:17 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 25 Jul 2022 01:17:17 -0400
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E35332DC1;
+        Sun, 24 Jul 2022 22:51:02 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 4F6275C0092;
+        Mon, 25 Jul 2022 01:51:02 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Mon, 25 Jul 2022 01:51:02 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
         cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
         :message-id:mime-version:reply-to:sender:subject:subject:to:to;
-         s=fm1; t=1658726237; x=1658812637; bh=0fgmiotfvvA25BECvdY/7miKV
-        B9hRcyaay/R6+d4lYA=; b=UTFtUC5dSKiyDoScNweUNf1i2QR4PIddEUzLmnzUy
-        7fWzyyF4adFU1TPhBphdvZpAf/+Fxp8uGS3dSygeq/VKRO5OrWCPDDespbc+xiWT
-        d+FsoRUQiIYboZTaVCwF8NgKOpJUAgUU2cuRrhYFU3cgQcb6SOj06RwsWTHq+UZ0
-        S+d0cmmBMmGWehDT9rb6xg4eRm7LG9pwMS4KltRgukIkqx0KURk8mVTYMjUyTzDj
-        k17fEMYYMQTseWjRP2RzxwSqzvlZwGI97jh8mFv49kMoXXVEVH5lRHX5728FG5MO
-        k+S/MAkNfi+yci5J6iXV5pEnP8TM+K2J0xkbZZnCJj+kQ==
+         s=fm1; t=1658728262; x=1658814662; bh=69zKIkJkrsurUh1tsYk3dVN3W
+        f+GthColtIIHhnoVFs=; b=Jd2BhkQLuYEXV0dbJW09eooHfpL/3DTknKNft6aW8
+        /UoH9TF5FwzdRxntrJ4eq0jBybQMro1Xp7xYFDwExhKaF2eVIVv2Y5dh9W9A4/rD
+        CGphoewDJ+mSpz0S+TqOH6ptObLPHKp4OSplOaZOLmyi47Tw+WUiYAp5w6ZPxT9u
+        3Uj2+ahuPhV+O3kyDvpXQFy1r/deso4M78Wls+4A3KcfbNE1LCQTKto96/mYcIT9
+        Dm/qFp5mWYLDbuIef456VixJaVU0cvODaJa/ppYvrarJ+Z5wntJAvElEcCQd+QZZ
+        7akM3ZzkFITI7iTdFMUwyu+DWnBnWtQT769J13+iMOEUA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
         :feedback-id:feedback-id:from:from:in-reply-to:message-id
         :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
         :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
-        1658726237; x=1658812637; bh=0fgmiotfvvA25BECvdY/7miKVB9hRcyaay/
-        R6+d4lYA=; b=AvtysUnUVFlYehOZtPhSJ4kKsWz3KAunMsKJen63KtzfiXN0u4G
-        ArD2wEMkR1OkZ53QkQZziQDD3TKqntMAUwqI/uUiIGZFCyV3Ho3Ht2ZYHtnlqsOo
-        CJSynXZdUryDA76MJHzr8J0BR9/N0YoTGS3Bp8Rm7VC5UQl5pmrv/Hr3n2PvR1um
-        3nd5rB42ELmd8auwlevlUack/8r9i9bdLKGOHJ9xuGV3gUxWnGZIfBTn0S1QuSPp
-        BrwOGkq67eaqFIY5TLh/lM7EkCfK7gkvSWI2EZ7JRP+TtcL1tTXx6Fw96WMzr2n5
-        lHUW2WgEeTlZkw2/62BlFvTcOamvymtDGPA==
-X-ME-Sender: <xms:XCfeYqkYh7LHuO5beX-2MXKfgv8CmZUtdqHtSbH0pCmVPhg7YV93nA>
-    <xme:XCfeYh1yb_VqVtazAtDgnSxZVrEtlUqA1D0jRayNChLCIGHbN7aRKtQktdTFLk3t9
-    JrMut6eIwUTWQ88WA>
-X-ME-Received: <xmr:XCfeYor8FfG-PGFALTTYk1uqnZ-yEX-j8PfnjpKAe-aof6RHx3UfRL7yD_3TaksrO8lTWl_7r1WKlPhbxsL3sy-x8wnNTldLTUYikoroTmTIxk0EUbSmQZT55f1zTz8nYwaM9g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddtjedgleehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
-    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
-    grthhtvghrnhepkeevlefhjeeuleeltedvjedvfeefteegleehueejffehgffffeekhefh
-    hfekkeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:XCfeYunuWydAvghR5gtsAdc2MqhXHuRjE_pvrGtIDfAiKARHSZR9zA>
-    <xmx:XCfeYo3T2eP6JAPnJ_q_KvJj2DO4U_zT8qE2KRtBztdCh03n_ldjvA>
-    <xmx:XCfeYltdsoQ9fVXLMMpybraA1ZWT8dBDK9QxDppM6WktseEgrWz5HA>
-    <xmx:XSfeYhtjQNq4QbQHIfoqEeAeXGyo5QuzVMP9URdymhrLGvWw7t04bw>
+        1658728262; x=1658814662; bh=69zKIkJkrsurUh1tsYk3dVN3Wf+GthColtI
+        IHhnoVFs=; b=Wk6sJDgBtmqRlExCsXsgznTMJCsHD0VBzH5mvl79QIaCmcj2dUu
+        nOZleopxLVZkCq8qRELUYGbbmULaxPGtAUiIkTWOkUp93Kn0M1DJCXWiZ4pG/wmN
+        nFH7Og/uH0O3C8TR8Jd49/IurERzBKh39x5HdInqsoA6PDEWxY4tj34dWp3gbm1l
+        g3gkwtOWZQi6OrxEUFr1x9goZ3KNbTEa5PcvkkbD+Xv3zOkeewkQ+vySqjz51WSw
+        gSqAr61cFihUQNsvoV7Dh0gYJQQLD/DhNz7WfUzPUDaStiUnvd3l5sqIOIyVzS8g
+        1viZB9ocREVN18cnmKvmdHJVKxyXvFpTQmw==
+X-ME-Sender: <xms:RS_eYoVkzjUt_GHFdQPdAyZtrcMUrAahpX2A47MKXGH6eG3fPwLLVw>
+    <xme:RS_eYslmwp9AzAA5CPirsSltbtRgVD3XoILvYpBWHpAMcyX_rSJUL_aSIfIG2QJun
+    cu93oAFCLeo2gePFA>
+X-ME-Received: <xmr:RS_eYsaxyrRMHdr3H-uLrqlnrAZhP4c9pRK_T2GYgiJ7HwdIhOtUudiJ6RGaEg61ja0Eg-rJkKdXu_rXjlN4yVM13GlmH_x_c8cbQAY3wB73N_sU5ARL4T6yLhzXIvqmlYgm1A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddtjedguddtvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpeekveelhfejueelleetvdejvdeffeetgeelheeujeffhefgffefkeeh
+    hffhkeekgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:RS_eYnUBcfFBXn3abAB6imnMMuNEMlR3Sc97t95_A0IaQZ0diWsSYw>
+    <xmx:RS_eYimBjF5mM9jnGzLODa5MSGQa3Ls4c54CP5NmN6fEz-F6YZGxrw>
+    <xmx:RS_eYsdwkJ47XWrnCSWmZqbbXaQqvpiVmqBuF87DW5GnpS5Sf9OvQw>
+    <xmx:Ri_eYn83IMOQALPn13Oluk9lAzyQVS0YfVOWgMeRmF71ZxTTcOzcGQ>
 Feedback-ID: i0ad843c9:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 25 Jul 2022 01:17:16 -0400 (EDT)
+ 25 Jul 2022 01:51:00 -0400 (EDT)
 From:   Samuel Holland <samuel@sholland.org>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Samuel Holland <samuel@sholland.org>,
+To:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>
+Cc:     linux-bluetooth@vger.kernel.org,
+        Samuel Holland <samuel@sholland.org>,
+        Alistair Francis <alistair@alistair23.me>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: [PATCH] dt-bindings: timer: allwinner,sun4i-a10-timer: Add D1 compatible
-Date:   Mon, 25 Jul 2022 00:17:14 -0500
-Message-Id: <20220725051715.56427-1-samuel@sholland.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: [PATCH] dt-bindings: net: bluetooth: realtek: Add RTL8723DS
+Date:   Mon, 25 Jul 2022 00:50:59 -0500
+Message-Id: <20220725055059.57498-1-samuel@sholland.org>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -86,27 +91,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner D1 contains the usual sun4i MMIO timer device. It contains two
-timers like other recent SoCs, so it is compatible with the A23 variant.
+RTL8723DS is another version of the RTL8723 WiFi + Bluetooth chip. It is
+already supported by the hci_uart/btrtl driver. Document the compatible.
 
 Signed-off-by: Samuel Holland <samuel@sholland.org>
 ---
 
- .../devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml     | 1 +
+ Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml b/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
-index 53fd24bdc34e..3711872b6b99 100644
---- a/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
-+++ b/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
+diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+index 157d606bf9cb..8ac633b7e917 100644
+--- a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
++++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
 @@ -20,6 +20,7 @@ properties:
-           - allwinner,suniv-f1c100s-timer
-       - items:
-           - enum:
-+              - allwinner,sun20i-d1-timer
-               - allwinner,sun50i-a64-timer
-               - allwinner,sun50i-h6-timer
-               - allwinner,sun50i-h616-timer
+     enum:
+       - realtek,rtl8723bs-bt
+       - realtek,rtl8723cs-bt
++      - realtek,rtl8723ds-bt
+       - realtek,rtl8822cs-bt
+ 
+   device-wake-gpios:
 -- 
 2.35.1
 
