@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AC2457FC15
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 11:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5389657FC21
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 11:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232148AbiGYJNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 05:13:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52366 "EHLO
+        id S233140AbiGYJQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 05:16:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229995AbiGYJNk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 05:13:40 -0400
+        with ESMTP id S233128AbiGYJQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 05:16:16 -0400
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 272AE13F2A;
-        Mon, 25 Jul 2022 02:13:31 -0700 (PDT)
-X-UUID: 6f47f0242b804ee9a0ade328cea7e0f5-20220725
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13EFB12D1B;
+        Mon, 25 Jul 2022 02:16:14 -0700 (PDT)
+X-UUID: 1cd5c103d0a945429bb35aa09b368dda-20220725
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:d45da67b-e461-4ffe-b80d-ed9729f4d661,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:25
-X-CID-META: VersionHash:0f94e32,CLOUDID:4c09ded3-912a-458b-a623-74f605a77e93,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 6f47f0242b804ee9a0ade328cea7e0f5-20220725
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <axe.yang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 779995484; Mon, 25 Jul 2022 17:13:27 +0800
+X-CID-O-INFO: VERSION:1.1.8,REQID:da636671-b920-42b5-addc-bff15833bc61,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.8,REQID:da636671-b920-42b5-addc-bff15833bc61,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:0f94e32,CLOUDID:5e106cb3-06d2-48ef-b2dd-540836705165,C
+        OID:7b9a55edaef9,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 1cd5c103d0a945429bb35aa09b368dda-20220725
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1396310637; Mon, 25 Jul 2022 17:16:11 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 25 Jul 2022 17:13:24 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkmbs11n2.mediatek.inc
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Mon, 25 Jul 2022 17:16:09 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Mon, 25 Jul 2022 17:13:23 +0800
-Message-ID: <3747f246650622ef65787159af5271a79401a855.camel@mediatek.com>
-Subject: Re: [PATCH v13 3/3] mmc: mediatek: add support for SDIO eint wakup
- IRQ
-From:   Axe Yang <axe.yang@mediatek.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        "Eric Biggers" <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "Stephen Boyd" <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+ Transport; Mon, 25 Jul 2022 17:16:09 +0800
+Message-ID: <378f904a445e90d65048ed07a1a55fd8c633f934.camel@mediatek.com>
+Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
         <angelogioacchino.delregno@collabora.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Yong Mao <yong.mao@mediatek.com>
-Date:   Mon, 25 Jul 2022 17:13:22 +0800
-In-Reply-To: <CACRpkdZ5G2fMCqvkXANVEmZjNcF4U4mSDzZk6aXbqFjYVN3hcA@mail.gmail.com>
-References: <20220623090445.1401-1-axe.yang@mediatek.com>
-         <20220623090445.1401-4-axe.yang@mediatek.com>
-         <CACRpkdZ5G2fMCqvkXANVEmZjNcF4U4mSDzZk6aXbqFjYVN3hcA@mail.gmail.com>
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Mon, 25 Jul 2022 17:16:09 +0800
+In-Reply-To: <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
+         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 X-MTK:  N
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,114 +73,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Hi, Bo-Chen:
 
-Thanks for the comments, but Ulf and I have some question on pinctrl.
-
-On Fri, 2022-07-22 at 13:21 +0200, Linus Walleij wrote:
-> On Thu, Jun 23, 2022 at 11:10 AM Axe Yang <axe.yang@mediatek.com>
-> wrote:
+On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
 > 
-> > MSDC driver will time-share the SDIO DAT1 pin. During suspend, MSDC
-> > turn off clock and switch SDIO DAT1 pin to GPIO mode. And during
-> > resume, switch GPIO function back to DAT1 mode then turn on clock.
+> This patch adds a embedded displayport driver for the MediaTek mt8195
+> SoC.
 > 
-> So what I see is that you have what the electronics chip people call
-> an armed pad ring, such that an asynchronous event detector is
-> connected
-> to the pin when it is in GPIO mode, and in this mode the system
-> can enter a lower sleep state (like powering off the MMC block
-> silicon...)
+> It supports the MT8195, the embedded DisplayPort units. It offers
+> DisplayPort 1.4 with up to 4 lanes.
 > 
-> That seems fine, this is definitely how the chip people expected
-> it to work.
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
 > 
-> > +       if (mmc_card_enable_async_irq(mmc->card) && host-
-> > >pins_eint) {
-> > +               if (enb) {
-> > +                       /*
-> > +                        * In
-> > dev_pm_set_dedicated_wake_irq_reverse(), eint pin will be set to
-> > +                        * GPIO mode. We need to restore it to SDIO
-> > DAT1 mode after that.
-> > +                        * Since the current pinstate is pins_uhs,
-> > to ensure pinctrl select take
-> > +                        * affect successfully, we change the
-> > pinstate to pins_eint firstly.
-> > +                        */
-> > +                       pinctrl_select_state(host->pinctrl, host-
-> > >pins_eint);
-> > +                       ret =
-> > dev_pm_set_dedicated_wake_irq_reverse(host->dev, host->eint_irq);
-> > +
-> > +                       if (ret) {
-> > +                               dev_err(host->dev, "Failed to
-> > register SDIO wakeup irq!\n");
-> > +                               host->pins_eint = NULL;
-> > +                               pm_runtime_get_noresume(host->dev);
-> > +                       } else {
-> > +                               dev_dbg(host->dev, "SDIO eint irq:
-> > %d!\n", host->eint_irq);
-> > +                       }
-> > +
-> > +                       pinctrl_select_state(host->pinctrl, host-
-> > >pins_uhs);
-> > +               } else {
-> > +                       dev_pm_clear_wake_irq(host->dev);
-> > +               }
-> > +       } else {
-> > +               if (enb) {
-> > +                       /* Ensure host->pins_eint is NULL */
-> > +                       host->pins_eint = NULL;
-> > +                       pm_runtime_get_noresume(host->dev);
-> > +               } else {
-> > +                       pm_runtime_put_noidle(host->dev);
-> > +               }
-> > +       }
+> This driver is based on an initial version by
+> Jitao shi <jitao.shi@mediatek.com>
 > 
-> This looks right.
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
 
-SDIO DAT1 pin mode is changed to GPIO mode in
-dev_pm_set_dedicated_wake_irq_reverse():
+[snip]
 
-https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c#L339
+> +
+> +static int mtk_dp_training(struct mtk_dp *mtk_dp)
+> +{
+> +	short max_retry = 50;
+> +	int ret;
+> +
+> +	do {
+> +		ret = mtk_dp_train_start(mtk_dp);
+> +		if (!ret)
+> +			break;
+> +		else if (ret != -EAGAIN)
+> +			return ret;
+> +	} while (--max_retry);
 
-dev_pm_set_dedicated_wake_irq_reverse() -> ... ->request_threaded_irq()
--> __setup_irq() -> irq_request_resources() ->
-mtk_eint_irq_request_resources()-> mtk_xt_set_gpio_as_eint()
-
-
-To restore SDIO DAT1 pin to uhs mode. I have to call
-pinctrl_select_state() twice(change pinctrl to another state, then
-change back to uhs mode). Ulf worried we might be doing something at
-the mmc driver level, which should really be managed at the pinctrl
-layer.
-
-Do you have any comment or suggestion on this?
-
-
-> 
-> > +       /* Support for SDIO eint irq ? */
-> > +       if ((mmc->pm_caps & MMC_PM_WAKE_SDIO_IRQ) && (mmc->pm_caps
-> > & MMC_PM_KEEP_POWER)) {
-> > +               host->eint_irq = platform_get_irq_byname(pdev,
-> > "sdio_wakeup");
-> > +               if (host->eint_irq > 0) {
-> > +                       host->pins_eint =
-> > pinctrl_lookup_state(host->pinctrl, "state_eint");
-> 
-> I guess one of the other patches adds this to the DT binding?
-
-Yes. The property related change is in patch 1/3
-
-> 
-> With that:
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> 
-> Yours,
-> Linus Walleij
+mtk_dp_train_start() would never return -EAGAIN, so drop this while
+loop.
 
 Regards,
-Axe
+CK
 
+> 
+> +	if (!max_retry)
+> +		return -ETIMEDOUT;
+> +
+> +	ret = mtk_dp_video_config(mtk_dp);
+> +	if (ret)
+> +		return ret;
+> +	mtk_dp_video_enable(mtk_dp, true);
+> +
+> +	return 0;
+> +}
+> +
 
