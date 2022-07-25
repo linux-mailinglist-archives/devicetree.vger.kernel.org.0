@@ -2,179 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98EB358039A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 19:40:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D66D580403
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 20:31:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235381AbiGYRkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 13:40:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46078 "EHLO
+        id S230337AbiGYSa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 14:30:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229921AbiGYRkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 13:40:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DB5B4A
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 10:40:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9418161377
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 17:40:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1712C341C6
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 17:40:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658770807;
-        bh=sy1GzUQlvpxgT3TfVa9JL7X6aeymSaIUzuhBPRffTTU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=M1zJW7Zl6wsEPjpIdB3N8A6WCQJet7YOiSkxDqg6U9VaLsiGNk7C9XBO+wdQzNznB
-         eI2NvTHsw7RJ5Y2F42DKrU+pufw+u34MiDnXlK+qzD6P4di5Fb9f/y45lLL7BlbL0Z
-         a/v9g7ddrZT0sHbttfF3Jk1jUGZnoBS93bRYvMLCJqVUOVQAHrM7fzxv5TgDmL0atq
-         v/j/0WbMKEBaXK+J74Ptp6e6Vtgx2zor/8qTyYF6SQIvxzMpYB0Mfp/WBLN79iVnkJ
-         XgpwTXx4eRcsex6lylzUTUshh5RnDdNBVWsF6mgi+ZGeHdq1T/j93ZkoxgJJcJjtzK
-         AL5+clU9URBeQ==
-Received: by mail-ua1-f42.google.com with SMTP id t21so4745738uaq.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 10:40:06 -0700 (PDT)
-X-Gm-Message-State: AJIora/hMTy0vk8mlogxidlODkSjqN4UdPYOkDK8S5bhzt1wLKd1cO+K
-        xrw6xpAFsYRoD5FUfRPtfK91uyuMt7nejN3P4Q==
-X-Google-Smtp-Source: AGRyM1vgfG0J4laKU3Z+NQizAS9fxYvk+jOk//tyBKeI1QPJFtsbyr0LOeSd5CuE/WlpEFZJpdG56lr8mCMbvVf0BdU=
-X-Received: by 2002:ab0:6798:0:b0:382:d9f4:8d0 with SMTP id
- v24-20020ab06798000000b00382d9f408d0mr3716123uar.63.1658770805948; Mon, 25
- Jul 2022 10:40:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <CA+V-a8uBSDOqcgqfO2YWNKwoRsKdMcK+yi5DzFEWrP0gJOMWig@mail.gmail.com>
- <5c9db23e-1706-a638-360e-46c8cb4b5f9a@linaro.org> <CA+V-a8vp7agGmHEJyLSLm973ddOs-cD21jRbwFnjSfc7DxrjrQ@mail.gmail.com>
- <CAL_JsqJCKDdUoBtiC7bLAstTHFP_gdHtCf+NWKy2zbXG_Z153w@mail.gmail.com>
- <CA+V-a8tYNvQk19ZP_oq=OeV2K5X=7E+Mq6Cin5ZVT6cBt=_yBw@mail.gmail.com>
- <CAL_JsqJELtWn=PwxMU=9VCUTwaZMk=oyfJo7O7HbnFB-MfcHAQ@mail.gmail.com>
- <CA+V-a8sGPRQQJ4jZ4pSObyHi37RA6Fc44-W5=2AYwA3Hs_QQ+g@mail.gmail.com>
- <CA+V-a8uUt=t9SZLMW4VtX4Dwk9m5bij5JwOCMSS2Nzxvv=fpZA@mail.gmail.com>
- <CAL_JsqLdg-stgCbQO__+A2WwnooQN71SKd5NAzFij4v=39oFrw@mail.gmail.com> <CA+V-a8u655GmGCerhXZh5Nh5fW_3jL7u427SoqmcVdyTUszWkw@mail.gmail.com>
-In-Reply-To: <CA+V-a8u655GmGCerhXZh5Nh5fW_3jL7u427SoqmcVdyTUszWkw@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 25 Jul 2022 11:39:54 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+0P8PccAVi06ZuJgheT8kJhRmxmTPNDFXdnJiHqn3Z+A@mail.gmail.com>
-Message-ID: <CAL_Jsq+0P8PccAVi06ZuJgheT8kJhRmxmTPNDFXdnJiHqn3Z+A@mail.gmail.com>
-Subject: Re: dtbs_check issue
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+        with ESMTP id S229753AbiGYSa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 14:30:57 -0400
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6C9E13D1F;
+        Mon, 25 Jul 2022 11:30:56 -0700 (PDT)
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-10bd4812c29so15801992fac.11;
+        Mon, 25 Jul 2022 11:30:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FEooM2RT53g6tnmnQNbJRb91DOY7HMArXQf84dlNSkI=;
+        b=oeiPZtgn80QrHXsjEiItM6uOpZ5g9IvLYybch+8NTdGLA/PpqeshF0H/ivaGyX3C9Y
+         IfA5xl2+RnB+SpzOFYMZGKV5wTfb162+oRBajYYY8/NsJsKklGwW8VA8zdthj370SBb2
+         JLZRX6d05Fzgcpe1bCEoOJCJLmQN75V1WxcK+0mMCscsIkIJtrkmuJbo+G7A1I/xVlnc
+         OaJNV0tZAfnIAFccpm32D6XZ8ZbvDJL28/Gv6xI8ra23E0L2ubruf6K6ObJpsNXdb+XN
+         gXKAAhEF0a9QtRYVWxcPQcwrzt3TYMlSIaKm8DNUwVnAKbO0ip1BN1xkugU1zMwV9WT/
+         7BaQ==
+X-Gm-Message-State: AJIora+VX//Er7RysbERCQWsy0AvVW86p7bLNk6zfN+rTHVy2sceNzBN
+        61pW5L+mS/5s2t6nG7GYRBPUgDTspQ==
+X-Google-Smtp-Source: AGRyM1vRZ+8PMG1t9D17j7BFUwsAeYGwVsJCeWuLF64Xel9A8HWkj1FtmFh4QSPgjUumYoKZAhSJLA==
+X-Received: by 2002:a05:6870:b48c:b0:10d:f6a2:8d9e with SMTP id y12-20020a056870b48c00b0010df6a28d9emr5492256oap.227.1658773856060;
+        Mon, 25 Jul 2022 11:30:56 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id x52-20020a9d37b7000000b0061cc1ba78e5sm5255756otb.3.2022.07.25.11.30.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jul 2022 11:30:55 -0700 (PDT)
+Received: (nullmailer pid 2459631 invoked by uid 1000);
+        Mon, 25 Jul 2022 18:30:52 -0000
+Date:   Mon, 25 Jul 2022 12:30:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Mike Yang <reimu@sudomaker.com>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Mark Brown <broonie@kernel.org>,
+        Zhou Yanjie <zhouyanjie@wanyeetech.com>,
+        tudor.ambarus@microchip.com, p.yadav@ti.com, michael@walle.cc,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        krzysztof.kozlowski+dt@linaro.org, linux-mtd@lists.infradead.org,
+        linux-spi@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        aidanmacdonald.0x0@gmail.com, tmn505@gmail.com,
+        paul@crapouillou.net, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        jinghui.liu@ingenic.com, sernia.zhou@foxmail.com
+Subject: Re: [PATCH 2/3] dt-bindings: SPI: Add Ingenic SFC bindings.
+Message-ID: <20220725183052.GA2392099-robh@kernel.org>
+References: <1658508510-15400-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1658508510-15400-3-git-send-email-zhouyanjie@wanyeetech.com>
+ <487a93c4-3301-aefd-abba-aabf4cb8ec90@linaro.org>
+ <37062a5d-9da3-fbaf-89bd-776f32be36d9@wanyeetech.com>
+ <d1a0dd15-3621-14e9-b931-417cefaab017@linaro.org>
+ <b5505a46-ce76-d0aa-009e-81d9ba16e1d5@sudomaker.com>
+ <YtxLoPOykLDTzTn9@sirena.org.uk>
+ <f05045fa-9ecd-d312-0eaa-5d19498453fc@linaro.org>
+ <b52a8e97-3b8e-c67b-4440-2d7428edb4fa@sudomaker.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b52a8e97-3b8e-c67b-4440-2d7428edb4fa@sudomaker.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 25, 2022 at 4:02 AM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
->
-> Hi Rob,
->
-> On Fri, Jul 22, 2022 at 5:39 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Fri, Jul 22, 2022 at 7:29 AM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> > >
-> > > On Fri, Jul 22, 2022 at 12:08 PM Lad, Prabhakar
-> > > <prabhakar.csengg@gmail.com> wrote:
-> > > >
-> > > > On Thu, Jul 21, 2022 at 11:24 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > > > >
-> > > > > On Thu, Jul 21, 2022 at 4:18 PM Lad, Prabhakar
-> > > > > <prabhakar.csengg@gmail.com> wrote:
-> > > > > >
-> > > > > > Hi Rob,
-> > > > > >
-> > > > > > On Thu, Jul 21, 2022 at 5:57 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > > > > > >
-> > > > > > > On Thu, Jul 21, 2022 at 9:23 AM Lad, Prabhakar
-> > > > > > > <prabhakar.csengg@gmail.com> wrote:
-> > > > > > > >
-> > > > > > > > Hi Krzysztof,
-> > > > > > > >
-> > > > > > > > On Thu, Jul 21, 2022 at 4:12 PM Krzysztof Kozlowski
-> > > > > > > > <krzysztof.kozlowski@linaro.org> wrote:
-> > > > > > > > >
-> > > > > > > > > On 21/07/2022 17:07, Lad, Prabhakar wrote:
-> > > > > > > > > > Fyi keeping even a single SMARC board in arm renesas.yaml schema I see
-> > > > > > > > > > dtbs_check failures.
-> > > > > > > > > >
-> > > > > > > > > > Any pointers on how I can get around this issue?
-> > > > > > > > >
-> > > > > > > > > Few months ago:
-> > > > > > > > > https://lore.kernel.org/linux-devicetree/cf7728fd-b5c8-cd3d-6074-d27f38f86545@linaro.org/
-> > > > > > > > >
-> > > > > > > > Thanks for the link.
-> > > > > > > >
-> > > > > > > > > Although Rob admitted in the thread this is in general allowed
-> > > > > > > > > configuration, to me it is still confusing - the left-most compatible is
-> > > > > > > > > not the most specific. Non obvious, confusing and it seems dtschema does
-> > > > > > > > > not support it?
-> > > > > > > > >
-> > > > > > > > It looks like dtschema does not support it.
-> > > > > > >
-> > > > > > > The issue is the same as licensed IP where we have a generic
-> > > > > > > compatible and per licensee compatibles in separate schemas. The
-> > > > > > > solution anytime a compatible exists in more than 1 schema is a custom
-> > > > > > > 'select' which excludes that compatible. That would be messy here
-> > > > > > > though due to the large number of compatibles. Perhaps we could
-> > > > > > > instead merge a custom select with the default generated one. Then the
-> > > > > > > schema would just need:
-> > > > > > >
-> > > > > > > select:
-> > > > > > >   not:
-> > > > > > >     properties:
-> > > > > > >       contains:
-> > > > > > >         const: renesas,smarc-evk
-> > > > > > >
-> > > Being a novice here with the select, I added the below to ignore the
-> > > arm schema if its the RISC-V board:
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml
-> > > b/Documentation/devicetree/bindings/arm/renesas.yaml
-> > > index ff80152f092f..77e78136bfce 100644
-> > > --- a/Documentation/devicetree/bindings/arm/renesas.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-> > > @@ -9,6 +9,16 @@ title: Renesas SH-Mobile, R-Mobile, and R-Car
-> > > Platform Device Tree Bindings
-> > >  maintainers:
-> > >    - Geert Uytterhoeven <geert+renesas@glider.be>
-> > >
-> > > +# We want ignore this schema if the board is of RISC-V arch
-> > > +select:
-> > > +  not:
-> > > +    properties:
-> > > +      compatible:
-> > > +        contains:
-> > > +          const: renesas,r9a07g043f1
-> > > +    required:
-> > > +      - compatible
-> > > +
-> > >  properties:
-> > >    $nodename:
-> > >      const: '/'
-> > >
-> > > But when I run the dt_binding_check, I get the below issues:
-> >
-> > That would only work if we change how 'select' is generated. As I
-> > said, the above would have to be merged with what we normally generate
-> > (see processed-schema.json for what that looks like).
-> >
-> I'm a bit lost here!
->
-> Could you please elaborate what you mean by merging a custom select
-> with the default generated one. When I compared the
-> processed-schema.json with/without my changes they were the same.
+On Sun, Jul 24, 2022 at 04:49:25AM +0800, Mike Yang wrote:
+> On 7/24/22 04:07, Krzysztof Kozlowski wrote:
+> > On 23/07/2022 21:27, Mark Brown wrote:
+> >> On Sun, Jul 24, 2022 at 02:47:14AM +0800, Mike Yang wrote:
+> >>> On 7/24/22 01:43, Krzysztof Kozlowski wrote:
+> >>>> On 23/07/2022 18:50, Zhou Yanjie wrote:
+> >>
+> >>>>> No offense, does it really need to be named that way?
+> >>>>> I can't seem to find documentation with instructions on this :(
+> >>
+> >> ...
+> >>
+> >>>> All bindings are to follow this rule, so I don't understand why you
+> >>>> think it is an exception for you?
+> >>
+> >>> Zhou didn't ask you to make an exception. They have a valid
+> >>> point and they're asking why.
+> >>
+> >>> You may want to avoid further incidents of this kind by stop
+> >>> being bossy and actually writing a guideline of naming these
+> >>> .yaml files and publish it somewhere online.
 
-dtschema generates 'select' if it is not present and $nodename or
-compatible properties are. It would instead need to combine your
-'select' above with what it generates instead. Otherwise, wiht just
-the above, it is going to match every node with compatible not
-containing 'renesas,r9a07g043f1' which would be 99.9% of nodes.
+I don't like your tone. Patches are welcome to fix deficiencies in 
+documentation. Out of the hundreds of bindings a year, I see <5 
+documentation patches a year.
+
+The documentation clearly says to run 'make dt_binding_check' and that 
+was obviously not followed here. 
+
+> >> Yeah, I do have to say that I was also completely unaware that
+> >> there was any enforced convention here.
+> > 
+> > Indeed, it's not a enforced pattern. But there are many other
+> > insignificant ones which we also tend to forget during review, like
+> > using words "Device Tree bindings" in title or using unnecessary quotes
+> > around "refs" (also in ID of schema). It's not a big deal, but I ask
+> > when I notice it.
+> 
+> Good. Thanks for paying attention to these details.
+> 
+> 
+> >> Zhou already mentioned he was unable find the naming guidelines of these .yaml files.
+> >>
+> >> Apparently you think it's unacceptable for new contributors of a certain subsystem to use existing code as examples, and/or they're responsible for figuring out what's a good example and what's a bad one in the existing codebase.
+
+Please wrap your lines on replies.
+
+
+> > 
+> > It's everywhere in the kernel, what can I say? If you copy existing
+> > code, you might copy poor code...
+> 
+> Still, it shouldn't be a responsibility of new contributors to 
+> determine the quality of an existing piece of code, unless there are 
+> clear guidelines (i.e. one should use the new "cs-gpios" attribute in SPI controllers).
+
+Generally the guidance is to look at newer drivers for current best 
+practices.
+
+
+> >>> It might never grow to new devices (because they might be different), so
+> >>> that is not really an argument.
+> >>
+> >> It is an argument. A very valid one.
+> >>
+> >> "they *might* be different". You may want to get your hands on real hardware and try another word. Or at least read the datasheets instead of believing your imagination.
+> >>
+> >> I would enjoy duplicating the st,stm32-spi.yaml into st,stm32{f,h}{0..7}-spi.yaml if I'm bored at a Sunday afternoon.
+> >>
+> >>>
+> >>> All bindings are to follow this rule, so I don't understand why you
+> >>> think it is an exception for you?
+> >>
+> >> Zhou didn't ask you to make an exception. They have a valid point and they're asking why.
+> > 
+> > Hm, everyone has the same valid point and such recommendation is to
+> > everyone, although it is nothing serious.
+> > 
+> >> You may want to avoid further incidents of this kind by stop being bossy and actually writing a guideline of naming these .yaml files and publish it somewhere online.
+> > 
+> > I did not see any incident here... Process of review includes comments
+> > and there is nothing bad happening when you receive a comment. No
+> > incident...
+> 
+> 
+> Okay. After careful inspection of the Ingenic datasheets, now I have 
+> the conclusion: The Ingenic X1000, X1021, X1500, X1501, X1520, X1600, 
+> X1800, X1830, X2000, X2100, X2500 have the same SFC controller.
+
+So if they are all 'the same', then I expect they all have a fallback 
+compatible with x1000 and using that for the filename makes sense.
+
+
+> X1600 has a newer version (let's say v2) of the SFC, and X2000-2500 
+> have v3. Others have the original version (let's say v1). Each new 
+> version introduced new features such as arbitrary DMA sizes, and the 
+> rest features are the same.
+
+So backwards compatible? If so, then they should have x1000 for 
+fallback.
+
+> 
+> So IMO the name "ingenic,sfc.yaml" is perfectly logical.
+
+Covering all 3 versions? If so and not backwards compatible, then I 
+would agree.
 
 Rob
