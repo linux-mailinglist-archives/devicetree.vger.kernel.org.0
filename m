@@ -2,129 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E66C57FCD6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 12:03:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53EBC57FCDC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 12:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234323AbiGYKDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 06:03:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59390 "EHLO
+        id S233325AbiGYKEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 06:04:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234331AbiGYKDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 06:03:11 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30F7D1706F;
-        Mon, 25 Jul 2022 03:03:10 -0700 (PDT)
-X-UUID: 075d3d569c304a6382c2f2c06217ef00-20220725
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:66d22342-62e6-4ecb-8176-5018d149aa12,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:44e3c129-fd69-41f1-91fc-8b8a329d3a88,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 075d3d569c304a6382c2f2c06217ef00-20220725
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 31558743; Mon, 25 Jul 2022 18:03:06 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 25 Jul 2022 18:03:05 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Mon, 25 Jul 2022 18:03:05 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Subject: [PATCH 2/2] dt-bindings: pinctrl: mt8186: Add and use drive-strength-microamp
-Date:   Mon, 25 Jul 2022 18:02:53 +0800
-Message-ID: <20220725100253.10687-3-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220725100253.10687-1-allen-kh.cheng@mediatek.com>
-References: <20220725100253.10687-1-allen-kh.cheng@mediatek.com>
+        with ESMTP id S234229AbiGYKEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 06:04:12 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51BB17592;
+        Mon, 25 Jul 2022 03:04:11 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id A21D966015E7;
+        Mon, 25 Jul 2022 11:04:09 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658743450;
+        bh=2lcWg722C+EKD6yIIuLQdkUd6bCzFnI+eE4dlAuYUvE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=aTKVeBbPxPQMF3hLlMWrsWuRihreLRQH9UCFrXPqBm4W9IFBHx3LIEckYUpH7Jznp
+         jftBFM/FE5iw+c+wrZH/DsqscBopHD5RaAepTB87HfQ9KOX/X0VMX6eAzPQKPXQ4gf
+         y0dG7Q4qzBpCkT/mn3XHYUAPxAhGP6m9p/lbXILkqiyDkPWIp8R5ei0688I1fRAIA4
+         oHzw5wNtNaiM6Ai5oKHVnzd03h1Tv655l5RJoFKyFgxXt4DkvwTJs3ChJx2zO9k2aG
+         2I+Q40k4192L9t5/X3lmTY5fSdhhgTW2O5DfotNaCc71tOxzZAuX+NWkfpAQmb7BRm
+         eloD87cUq4+dw==
+Message-ID: <b11386d3-3b28-617e-1dc6-1d862952aff7@collabora.com>
+Date:   Mon, 25 Jul 2022 12:04:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 7/8] arm64: dts: mediatek: cherry: Enable keyboard PWM
+ backlight
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220721145017.918102-1-angelogioacchino.delregno@collabora.com>
+ <20220721145017.918102-8-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5FR-HdPc-_c18Svdx0aviR-+b4ikf6MfbzaLWCcF1catA@mail.gmail.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <CAGXv+5FR-HdPc-_c18Svdx0aviR-+b4ikf6MfbzaLWCcF1catA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit e5fabbe43f3f ("pinctrl: mediatek: paris: Support generic
-PIN_CONFIG_DRIVE_STRENGTH_UA") added support for using
-drive-strength-microamp instead of mediatek,drive-strength-adv.
+Il 25/07/22 11:57, Chen-Yu Tsai ha scritto:
+> n Thu, Jul 21, 2022 at 10:53 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Add a pwm-leds node to enable the PWM controlled keyboard backlight.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>> index ca9955a97f8f..9086a440a995 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+>> @@ -4,6 +4,7 @@
+>>    */
+>>
+>>   #include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/leds/common.h>
+>>   #include "mt8195.dtsi"
+>>   #include "mt6359.dtsi"
+>>
+>> @@ -31,6 +32,18 @@ dmic_codec: dmic-codec {
+>>                  wakeup-delay-ms = <50>;
+>>          };
+>>
+>> +       led-controller {
+>> +               compatible = "pwm-leds";
+>> +
+>> +               keyboard_backlight: keyboard-backlight {
+>> +                       default-state = "off";
+>> +                       function = LED_FUNCTION_KBD_BACKLIGHT;
+>> +                       label = "cros_ec::kbd_backlight";
+>> +                       max-brightness = <1023>;
+>> +                       pwms = <&cros_ec_pwm 3>;
+>> +               };
+>> +       };
+>> +
+> 
+> This didn't work for me. However using "google,cros-kbd-led-backlight"
+> under the EC did. That might be a better option.
 
-Similarly to the mt8192 and mt8195, there's no user of property
-'mediatek,drive-strength-adv', hence removing it is safe.
+Strange. But okay if there's a better option I'll check that out for v3.
 
-Fixes: 338e953f1bd1(dt-bindings: pinctrl: mt8186: add pinctrl file and binding document)
-Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
----
- .../bindings/pinctrl/pinctrl-mt8186.yaml      | 29 ++-----------------
- 1 file changed, 3 insertions(+), 26 deletions(-)
+Cheers!
+Angelo
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
-index 6784885edc5c..1eeb885ce0c6 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
-@@ -107,31 +107,8 @@ patternProperties:
-           drive-strength:
-             enum: [2, 4, 6, 8, 10, 12, 14, 16]
- 
--          mediatek,drive-strength-adv:
--            description: |
--              Describe the specific driving setup property.
--              For I2C pins, the existing generic driving setup can only support
--              2/4/6/8/10/12/14/16mA driving. But in specific driving setup, they
--              can support 0.125/0.25/0.5/1mA adjustment. If we enable specific
--              driving setup, the existing generic setup will be disabled.
--              The specific driving setup is controlled by E1E0EN.
--              When E1=0/E0=0, the strength is 0.125mA.
--              When E1=0/E0=1, the strength is 0.25mA.
--              When E1=1/E0=0, the strength is 0.5mA.
--              When E1=1/E0=1, the strength is 1mA.
--              EN is used to enable or disable the specific driving setup.
--              Valid arguments are described as below:
--              0: (E1, E0, EN) = (0, 0, 0)
--              1: (E1, E0, EN) = (0, 0, 1)
--              2: (E1, E0, EN) = (0, 1, 0)
--              3: (E1, E0, EN) = (0, 1, 1)
--              4: (E1, E0, EN) = (1, 0, 0)
--              5: (E1, E0, EN) = (1, 0, 1)
--              6: (E1, E0, EN) = (1, 1, 0)
--              7: (E1, E0, EN) = (1, 1, 1)
--              So the valid arguments are from 0 to 7.
--            $ref: /schemas/types.yaml#/definitions/uint32
--            enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+          drive-strength-microamp:
-+            enum: [125, 250, 500, 1000]
- 
-           bias-pull-down:
-             oneOf:
-@@ -293,7 +270,7 @@ examples:
-           pinmux = <PINMUX_GPIO127__FUNC_SCL0>,
-                    <PINMUX_GPIO128__FUNC_SDA0>;
-           bias-pull-up = <MTK_PULL_SET_RSEL_001>;
--          mediatek,drive-strength-adv = <7>;
-+          drive-strength-microamp = <1000>;
-         };
-       };
-     };
--- 
-2.18.0
+> 
+> ChenYu
+> 
+>>          memory@40000000 {
+>>                  device_type = "memory";
+>>                  reg = <0 0x40000000 0 0x80000000>;
+>> --
+>> 2.35.1
+>>
+>>
+>> _______________________________________________
+>> linux-arm-kernel mailing list
+>> linux-arm-kernel@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
