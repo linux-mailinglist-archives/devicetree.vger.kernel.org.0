@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A6DD580822
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 01:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC492580824
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 01:26:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237188AbiGYX0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 19:26:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51904 "EHLO
+        id S237311AbiGYX0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 19:26:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232764AbiGYX0B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 19:26:01 -0400
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A59D1181E;
-        Mon, 25 Jul 2022 16:26:00 -0700 (PDT)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-10d6ddda695so16823276fac.0;
-        Mon, 25 Jul 2022 16:26:00 -0700 (PDT)
+        with ESMTP id S232764AbiGYX0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 19:26:12 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8A671B7BD;
+        Mon, 25 Jul 2022 16:26:11 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id y10-20020a9d634a000000b006167f7ce0c5so9805197otk.0;
+        Mon, 25 Jul 2022 16:26:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=v54UcLfyNQ1djxWgf+PNCyjRPCvW5pNaYLYPVrtUUVk=;
-        b=YBEVOUOcBLOeFHi91pfy5TgWlqHoyjuPHFaxqWHBXPPvPAYIsWPu7DZH4mxjIrNjGg
-         Bc6GAC0YClpWOL7O9YtuPWlfHMYp/0tjkRlD4k1CS6JSG5aaPasDUyDhrkcXf0Vqh+P9
-         W0xz6cOq7Vn9OQPldK5079p+yM4XanoBzsvpYa5WTJtotm48SRuOixbGSZNxDolKQ9uf
-         Ro0kbb27856WJv2JzSXmBHOZTSd9OE17g/SBOmGDY+9Qeb/L0jSVlV54UarvVfi0q3HS
-         WznLQQYznbxE8gN1UxBkjkjdI5Jvi8IQRkEdAND7aWbRNi5hKKWEDsyPdO2nC+tQGrdA
-         DoNw==
-X-Gm-Message-State: AJIora8TecVPw+uvQCPILd2qz+8i5MxxxEc9YKXcDpSd3ZmHq+xjPfR5
-        jGbhfpZ1zc2PlPT1Nlug0w==
-X-Google-Smtp-Source: AGRyM1srtAmK8NHbVXrYUZ4su3pd3Y2epHDoAbNdb6EhMrK2frR71syluwbeuW9KB2n+NGTbMVMdiw==
-X-Received: by 2002:a05:6870:344c:b0:10c:236a:79f8 with SMTP id i12-20020a056870344c00b0010c236a79f8mr15912644oah.24.1658791559772;
-        Mon, 25 Jul 2022 16:25:59 -0700 (PDT)
+        bh=xnFhTvVlYrrcoWqTeF1r68lRRBQLPoPsbaCYWGup+Vo=;
+        b=d7j/7PXmdW+xeL5i5UKxOiQBIQLJ/WsF45VTkelkoGoMEGCQbth3ntrFfB/F9uwKuT
+         jv9pLn4fWLKnJw/BHDmXNavktG0WtVo9/wgEvjfod5bnhXho1Vgt2CVvr2RtBABkW5Ih
+         0AQES2JpVebO1iJJE+S60AN+rEf9R6KlBCEMaNv+7X8cjadgwXhPZisCsfturdZMCsrT
+         rzju5RBzwHuebjazusBbr5koQCYP/QbsuViSh3wyubr8nv9O3jSKkeq96d85jgc8Rni/
+         wZ6kPnyvEjBEeavPgVPlc+xd1HOd1ivvztFGHKpjIgCvC2nJjQH/NnnwAzF69iMVD2tB
+         6zag==
+X-Gm-Message-State: AJIora/8JiqDwJ6JXWH/MmJw8Bv1WLJGdSAykhlRIOZ4U38f874TRrq/
+        AAKEx4ZYvsOs88W+0qLYhA==
+X-Google-Smtp-Source: AGRyM1tSrCX6+vSPu5meOoqpG8k5p7fMqZhx876vaGZXdOsAHkQhAM0U3pW+khOSX46P3sFlouD54w==
+X-Received: by 2002:a9d:6f01:0:b0:61c:b224:e7c9 with SMTP id n1-20020a9d6f01000000b0061cb224e7c9mr5740297otq.245.1658791571112;
+        Mon, 25 Jul 2022 16:26:11 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f2-20020a4ad802000000b00434ace74464sm5351784oov.16.2022.07.25.16.25.58
+        by smtp.gmail.com with ESMTPSA id s41-20020a4a96ac000000b00435a59fba01sm5383225ooi.47.2022.07.25.16.26.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jul 2022 16:25:59 -0700 (PDT)
-Received: (nullmailer pid 2951881 invoked by uid 1000);
-        Mon, 25 Jul 2022 23:25:57 -0000
-Date:   Mon, 25 Jul 2022 17:25:57 -0600
+        Mon, 25 Jul 2022 16:26:10 -0700 (PDT)
+Received: (nullmailer pid 2952292 invoked by uid 1000);
+        Mon, 25 Jul 2022 23:26:08 -0000
+Date:   Mon, 25 Jul 2022 17:26:08 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
         Kever Yang <kever.yang@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-Subject: Re: [PATCH 11/22] dt-bindings: mmc: rockchip-dw-mshc: Document
+        linux-serial@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 12/22] dt-bindings: serial: snps-dw-apb-uart: Document
  Rockchip RV1126
-Message-ID: <20220725232557.GA2951823-robh@kernel.org>
+Message-ID: <20220725232608.GA2952235-robh@kernel.org>
 References: <20220723204335.750095-1-jagan@edgeble.ai>
- <20220723204335.750095-12-jagan@edgeble.ai>
+ <20220723204335.750095-13-jagan@edgeble.ai>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220723204335.750095-12-jagan@edgeble.ai>
+In-Reply-To: <20220723204335.750095-13-jagan@edgeble.ai>
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -69,14 +69,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 24 Jul 2022 02:13:24 +0530, Jagan Teki wrote:
-> Add a compatible string for Rockchip RV1126 SoC.
+On Sun, 24 Jul 2022 02:13:25 +0530, Jagan Teki wrote:
+> Document compatible string for Rockchip RV1126 SoC.
 > 
-> Cc: linux-mmc@vger.kernel.org
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: linux-serial@vger.kernel.org
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 > ---
->  Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
+>  Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
