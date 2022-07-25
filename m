@@ -2,140 +2,336 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80B4957FCB1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 11:51:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EA6357FCC2
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 11:55:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233861AbiGYJvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 05:51:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51826 "EHLO
+        id S232912AbiGYJze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 05:55:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232747AbiGYJvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 05:51:19 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BA8BA474;
-        Mon, 25 Jul 2022 02:51:18 -0700 (PDT)
-X-UUID: ae0c1fc3a6f64bfd8b86a4940db392a4-20220725
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:315449f2-28d8-481d-b6b7-0a706ad04402,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:5
-X-CID-META: VersionHash:0f94e32,CLOUDID:7c1edfd3-912a-458b-a623-74f605a77e93,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: ae0c1fc3a6f64bfd8b86a4940db392a4-20220725
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1604583661; Mon, 25 Jul 2022 17:51:12 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 25 Jul 2022 17:51:11 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Mon, 25 Jul 2022 17:51:11 +0800
-Message-ID: <f0c930400e4a5b3723df2d257cc4bc51ee7a2806.camel@mediatek.com>
-Subject: Re: [PATCH v14 06/10] drm/mediatek: Add MT8195 External DisplayPort
- support
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 25 Jul 2022 17:51:11 +0800
-In-Reply-To: <20220712111223.13080-7-rex-bc.chen@mediatek.com>
-References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
-         <20220712111223.13080-7-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S232206AbiGYJzd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 05:55:33 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3D26262;
+        Mon, 25 Jul 2022 02:55:32 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6E66966015E7;
+        Mon, 25 Jul 2022 10:55:30 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658742931;
+        bh=SCxjD0r6W2093T144vIJ+kv/iLm6YRMmyB+sEXDO65I=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=INejVMHUlE0QG8D/2t58BRmaCjdB941Hiz5Hhc3wGvXpn+1o78HC/jIWtcDSR79QG
+         zAskvAjSQ5C1axslCWugrrZHA00PgqU5sVFRNGBL6mSdn44nXZPrn3apprfpViHpFy
+         Ytml4igRZGTQ/g5T9EzJuIlhYtBzmB7782hi2FU1iTsCFJ9nA3dP/gF9/LmTAuBei9
+         4VowvFaoJ+thhP2LY21TpCiBGOf36jJ4NFOUmIb6XaMJI5vv/Ly+UnxvjTDP241vyu
+         scTbBsWjXdWZitUfd4eX8bU+dH3/eN4HQyXLrrg8bypQvvKVn/B2Ov41+7v/R1QtEU
+         0rmDfo28EG1HA==
+Message-ID: <dccc2863-a9db-d9ea-01e1-a18cf0db1d1e@collabora.com>
+Date:   Mon, 25 Jul 2022 11:55:27 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 2/4] soc: mediatek: Add support of WAY_EN operations
+Content-Language: en-US
+To:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Fabien Parent <fparent@baylibre.com>
+References: <20220725081853.1636444-1-msp@baylibre.com>
+ <20220725081853.1636444-3-msp@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220725081853.1636444-3-msp@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
-
-On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
-> From: Guillaume Ranquet <granquet@baylibre.com>
+Il 25/07/22 10:18, Markus Schneider-Pargmann ha scritto:
+> From: Alexandre Bailon <abailon@baylibre.com>
 > 
-> This patch adds External DisplayPort support to the mt8195 eDP
-> driver.
+> This updates the power domain to support WAY_EN operations. These
+> operations enable a path between different units of the chip and are
+> labeled as 'way_en' in the register descriptions.
 > 
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> This operation is required by the mt8365 for the MM power domain.
+> 
+> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
+> 
+> Notes:
+>      Changes in v2:
+>      - some minor style fixes.
+>      - Renamed 'wayen' to 'way_en' to clarify the meaning
+>      - Updated commit message
+> 
+>   drivers/soc/mediatek/mtk-pm-domains.c | 64 +++++++++++++++++++++------
+>   drivers/soc/mediatek/mtk-pm-domains.h | 28 +++++++-----
+>   2 files changed, 68 insertions(+), 24 deletions(-)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
+> index 5ced254b082b..d0eae2227813 100644
+> --- a/drivers/soc/mediatek/mtk-pm-domains.c
+> +++ b/drivers/soc/mediatek/mtk-pm-domains.c
+> @@ -44,6 +44,7 @@ struct scpsys_domain {
+>   	struct clk_bulk_data *subsys_clks;
+>   	struct regmap *infracfg;
+>   	struct regmap *smi;
+> +	struct regmap *infracfg_nao;
 
-[snip]
+What does "nao" mean?
 
-> @@ -1489,13 +1543,34 @@ static int mtk_dp_init_port(struct mtk_dp
-> *mtk_dp)
->  static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
->  {
->  	struct mtk_dp *mtk_dp = dev;
-> +	int event;
-> +
-> +	event = mtk_dp_plug_state(mtk_dp) ?
-> +		connector_status_connected :
-> connector_status_disconnected;
-> +
-> +	if (event < 0)
-> +		return IRQ_HANDLED;
+Besides, please move that before *infracfg to at least keep the same type members
+alphabetically sorted..
 
-event is useless, so drop it.
+>   	struct regulator *supply;
+>   };
+>   
+> @@ -116,23 +117,38 @@ static int scpsys_sram_disable(struct scpsys_domain *pd)
+>   					MTK_POLL_TIMEOUT);
+>   }
+>   
+> -static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd, struct regmap *regmap)
+> +static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd,
+> +				      struct regmap *regmap, struct regmap *infracfg_nao)
+>   {
+>   	int i, ret;
+>   
+>   	for (i = 0; i < SPM_MAX_BUS_PROT_DATA; i++) {
+> -		u32 val, mask = bpd[i].bus_prot_mask;
+> +		u32 mask = bpd[i].bus_prot_mask;
+> +		u32 val = mask, sta_mask = mask;
 
-Regards,
-CK
+You have modified the macros to use sta_mask as mask, so, why are you doing
+that distinction in here between the two? You can simply keep assigning
 
+		u32 mask = bpd[1].bus_prot_mask;
+		u32 sta_mask = bpd[1].bus_prot_sta_mask;
+
+> +		struct regmap *ack_regmap = regmap;
+
+Double assignment. You're reassigning this if way_en == true.
+
+>   
+>   		if (!mask)
+>   			break;
+>   
+> +		if (bpd[i].way_en) {
+> +			if (!infracfg_nao)
+> +				return -ENODEV;
 > +
-> +	dev_dbg(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
-> +	drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
->  
->  	if (mtk_dp->train_info.cable_state_change) {
->  		mtk_dp->train_info.cable_state_change = false;
->  
-> -		mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> -				   DP_PWR_STATE_BANDGAP_TPLL_LANE,
-> -				   DP_PWR_STATE_MASK);
-> +		if (!mtk_dp->train_info.cable_plugged_in) {
-> +			mtk_dp_video_mute(mtk_dp, true);
-> +
-> +			mtk_dp_initialize_priv_data(mtk_dp);
-> +			mtk_dp_set_idle_pattern(mtk_dp, true);
-> +
-> +			mtk_dp_update_bits(mtk_dp,
-> MTK_DP_TOP_PWR_STATE,
-> +					   DP_PWR_STATE_BANDGAP_TPLL,
-> +					   DP_PWR_STATE_MASK);
-> +		} else {
-> +			mtk_dp_update_bits(mtk_dp,
-> MTK_DP_TOP_PWR_STATE,
-> +					   DP_PWR_STATE_BANDGAP_TPLL_LA
-> NE,
-> +					   DP_PWR_STATE_MASK);
+> +			val = 0;
+> +			sta_mask = bpd[i].bus_prot_sta_mask;
+> +			ack_regmap = infracfg_nao;
 > +		}
->  	}
->  
->  	if (mtk_dp->train_info.irq_sta.hpd_inerrupt) {
-> @@ -1597,6 +1672,24 @@ static int mtk_dp_dt_parse(struct mtk_dp
-> *mtk_dp,
->  	return 0;
->  }
->  
 
+		if (bpd[i].way_en) {
+			ack_regmap = regmap_nao;
+			val = 0;
+		} else {
+			ack_regmap = regmap;
+			val = mask;
+		}
+
+> +
+>   		if (bpd[i].bus_prot_reg_update)
+> -			regmap_set_bits(regmap, bpd[i].bus_prot_set, mask);
+> +			regmap_update_bits(regmap, bpd[i].bus_prot_set, mask, val);
+>   		else
+>   			regmap_write(regmap, bpd[i].bus_prot_set, mask);
+>   
+> -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
+> -					       val, (val & mask) == mask,
+> +		if (bpd[i].ignore_clr_ack)
+> +			continue;
+
+You're adding that ignore_clr_ack here in the bus prot enablement function
+which wasn't here before... and I didn't check carefully, but I think that
+this is wrong: as the name says, it's to "ignore CLEAR ack", we're not doing
+any clearing here, we're not in bus_protect_disable.
+
+If you're really sure that this is not a mistake, you should guard it for way_en.
+
+> +
+> +		ret = regmap_read_poll_timeout(ack_regmap, bpd[i].bus_prot_sta,
+> +					       val, (val & sta_mask) == sta_mask,
+>   					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
+>   		if (ret)
+>   			return ret;
+> @@ -145,34 +161,49 @@ static int scpsys_bus_protect_enable(struct scpsys_domain *pd)
+>   {
+>   	int ret;
+>   
+> -	ret = _scpsys_bus_protect_enable(pd->data->bp_infracfg, pd->infracfg);
+> +	ret = _scpsys_bus_protect_enable(pd->data->bp_infracfg,
+> +					 pd->infracfg, pd->infracfg_nao);
+>   	if (ret)
+>   		return ret;
+>   
+> -	return _scpsys_bus_protect_enable(pd->data->bp_smi, pd->smi);
+> +	return _scpsys_bus_protect_enable(pd->data->bp_smi, pd->smi, NULL);
+>   }
+>   
+> +#define mask_cond(way_en, val, mask) \
+> +	((way_en && ((val & mask) == mask)) || (!way_en && !(val & mask)))
+> +
+>   static int _scpsys_bus_protect_disable(const struct scpsys_bus_prot_data *bpd,
+> -				       struct regmap *regmap)
+> +				       struct regmap *regmap, struct regmap *infracfg_nao)
+>   {
+>   	int i, ret;
+>   
+>   	for (i = SPM_MAX_BUS_PROT_DATA - 1; i >= 0; i--) {
+> -		u32 val, mask = bpd[i].bus_prot_mask;
+> +		u32 val = 0, mask = bpd[i].bus_prot_mask;
+> +		u32 sta_mask = mask;
+> +		struct regmap *ack_regmap = regmap;
+>   
+>   		if (!mask)
+>   			continue;
+>   
+> +		if (bpd[i].way_en) {
+> +			if (!infracfg_nao)
+> +				return -ENODEV;
+> +
+> +			val = mask;
+> +			sta_mask = bpd[i].bus_prot_sta_mask;
+> +			ack_regmap = infracfg_nao;
+> +		}
+> +
+>   		if (bpd[i].bus_prot_reg_update)
+> -			regmap_clear_bits(regmap, bpd[i].bus_prot_clr, mask);
+> +			regmap_update_bits(regmap, bpd[i].bus_prot_clr, mask, val);
+>   		else
+>   			regmap_write(regmap, bpd[i].bus_prot_clr, mask);
+>   
+>   		if (bpd[i].ignore_clr_ack)
+>   			continue;
+>   
+> -		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
+> -					       val, !(val & mask),
+> +		ret = regmap_read_poll_timeout(ack_regmap, bpd[i].bus_prot_sta,
+> +					       val, mask_cond(bpd[i].way_en, val, sta_mask),
+
+"I don't know why", my brain still keeps telling me that using different functions
+for the WAY_EN (en/dis) is just better.
+
+This commit seems to be overcomplicating two "easy" en/dis functions.
+
+>   					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
+>   		if (ret)
+>   			return ret;
+> @@ -185,11 +216,12 @@ static int scpsys_bus_protect_disable(struct scpsys_domain *pd)
+>   {
+>   	int ret;
+>   
+> -	ret = _scpsys_bus_protect_disable(pd->data->bp_smi, pd->smi);
+> +	ret = _scpsys_bus_protect_disable(pd->data->bp_smi, pd->smi, NULL);
+>   	if (ret)
+>   		return ret;
+>   
+> -	return _scpsys_bus_protect_disable(pd->data->bp_infracfg, pd->infracfg);
+> +	return _scpsys_bus_protect_disable(pd->data->bp_infracfg,
+> +			pd->infracfg, pd->infracfg_nao);
+>   }
+>   
+>   static int scpsys_regulator_enable(struct regulator *supply)
+> @@ -363,6 +395,10 @@ generic_pm_domain *scpsys_add_one_domain(struct scpsys *scpsys, struct device_no
+>   			return ERR_CAST(pd->smi);
+>   	}
+>   
+> +	pd->infracfg_nao = syscon_regmap_lookup_by_phandle_optional(node, "mediatek,infracfg_nao");
+> +	if (IS_ERR(pd->infracfg_nao))
+> +		return ERR_CAST(pd->infracfg_nao);
+> +
+
+I think that we should enforce a check here:
+
+pd->infracfg_nao = syscon_regmap_lookup_by_phandle(node, "mediatek,infracfg_nao");
+if (IS_ERR(pd->infracfg_nao)) {
+	/* checking if infracfg_nao != NULL at every pwoeron/poweroff is largely
+	 * suboptimal, as if it't present once, it's present always (!)
+	 */
+	if (we have WAY_EN)
+		return ERR_CAST ...
+	pd->infracfg_nao = NULL;
+}
+	
+
+>   	num_clks = of_clk_get_parent_count(node);
+>   	if (num_clks > 0) {
+>   		/* Calculate number of subsys_clks */
+> diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
+> index daa24e890dd4..e788d6bdde9d 100644
+> --- a/drivers/soc/mediatek/mtk-pm-domains.h
+> +++ b/drivers/soc/mediatek/mtk-pm-domains.h
+> @@ -39,23 +39,29 @@
+>   
+>   #define SPM_MAX_BUS_PROT_DATA		6
+>   
+> -#define _BUS_PROT(_mask, _set, _clr, _sta, _update, _ignore) {	\
+> -		.bus_prot_mask = (_mask),			\
+> -		.bus_prot_set = _set,				\
+> -		.bus_prot_clr = _clr,				\
+> -		.bus_prot_sta = _sta,				\
+> -		.bus_prot_reg_update = _update,			\
+> -		.ignore_clr_ack = _ignore,			\
+> +#define _BUS_PROT(_mask, _sta_mask, _set, _clr, _sta, _update, _ignore, _way_en) {	\
+> +		.bus_prot_mask = (_mask),				\
+> +		.bus_prot_set = _set,					\
+> +		.bus_prot_clr = _clr,					\
+> +		.bus_prot_sta = _sta,					\
+> +		.bus_prot_sta_mask = _sta_mask,				\
+> +		.bus_prot_reg_update = _update,				\
+> +		.ignore_clr_ack = _ignore,				\
+> +		.way_en = _way_en,					\
+>   	}
+>   
+>   #define BUS_PROT_WR(_mask, _set, _clr, _sta)			\
+> -		_BUS_PROT(_mask, _set, _clr, _sta, false, false)
+> +		_BUS_PROT(_mask, _mask, _set, _clr, _sta, false, false, false)
+>   
+>   #define BUS_PROT_WR_IGN(_mask, _set, _clr, _sta)		\
+> -		_BUS_PROT(_mask, _set, _clr, _sta, false, true)
+> +		_BUS_PROT(_mask, _mask, _set, _clr, _sta, false, true, false)
+>   
+>   #define BUS_PROT_UPDATE(_mask, _set, _clr, _sta)		\
+> -		_BUS_PROT(_mask, _set, _clr, _sta, true, false)
+> +		_BUS_PROT(_mask, _mask, _set, _clr, _sta, true, false, false)
+> +
+> +#define BUS_PROT_WAY_EN(_en_mask, _sta_mask, _set, _sta)	\
+> +		_BUS_PROT(_en_mask, _sta_mask, _set, _set, _sta, true, false, \
+> +			  true)
+>   
+>   #define BUS_PROT_UPDATE_TOPAXI(_mask)				\
+>   		BUS_PROT_UPDATE(_mask,				\
+> @@ -68,8 +74,10 @@ struct scpsys_bus_prot_data {
+>   	u32 bus_prot_set;
+>   	u32 bus_prot_clr;
+>   	u32 bus_prot_sta;
+> +	u32 bus_prot_sta_mask;
+>   	bool bus_prot_reg_update;
+>   	bool ignore_clr_ack;
+> +	bool way_en;
+>   };
+>   
+>   /**
