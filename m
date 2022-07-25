@@ -2,94 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64B9D5807EF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 01:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B4185807F8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 01:06:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231873AbiGYXEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 19:04:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38382 "EHLO
+        id S237081AbiGYXGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 19:06:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237150AbiGYXEk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 19:04:40 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA1525E8D
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 16:04:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E7A64B80E01
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 23:04:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 251D8C341C6;
-        Mon, 25 Jul 2022 23:04:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658790276;
-        bh=KuI6jPXE59juMwF7FrWJhN68iFyhxdb2/mZjvCRQlL8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bsjEemcFnWQyMl2nerduGS4f89mA/1pwAQTXLi8ZK2J8eo9GL+Ua5c1t+kGRNh3u0
-         s1ellHpQnsirjFDF42o/hQZHaGtq2Zq2UyqPdA1/Py7weV8/zj7uf0VKgVfIXINcI1
-         QW6JmIB4hCP4z8/W2F8Q3/t/o9ZHJQQqjqGGm1B2hSlJ5Y47iS+IVTVQiSFpRBYpV5
-         ws+oEQrqWMkAd21qZGBvp3hEDx4S7UlLIFTrurIs8kMsotR1riMArUC4Zst38KUdlf
-         V/jtvVKP+wzDmxQytR1s2gQZBA1n93c+eWWTXNWN2zrlDiB0cE0In2EjmnbC3a0809
-         y/S6vfjJ8vCsQ==
-Date:   Tue, 26 Jul 2022 00:04:31 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Raphael-Xu <13691752556@139.com>, alsa-devel@alsa-project.org,
-        raphael-xu@ti.com, shenghao-ding@ti.com,
-        devicetree@vger.kernel.org, kevin-lu@ti.com
-Subject: Re: [PATCH v7] ASoc: dt-bindings: tas2780: remove tas2780 and will
- merge it to tas27xx
-Message-ID: <Yt8hf7IqSgKK2VhX@sirena.org.uk>
-References: <20220722105345.175-1-13691752556@139.com>
- <20220725224919.GA2887013-robh@kernel.org>
+        with ESMTP id S230015AbiGYXGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 19:06:40 -0400
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C5AF13F6B;
+        Mon, 25 Jul 2022 16:06:39 -0700 (PDT)
+Received: by mail-oo1-f45.google.com with SMTP id n16-20020a4a9550000000b0043568f1343bso2435424ooi.3;
+        Mon, 25 Jul 2022 16:06:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IhEaSHQR4f/8hLraGFE+9LlVTZgeLV3rteyyTTidIjk=;
+        b=sZF1NbBKhVGlS/L1XsAhhCk4oetb2jYZJRYJaK5APb5US2Px7oZ3jTg9Kg183Hv+oc
+         ohtqXnY67S0nQ0KVoYFY55qE9MLPRq1iFDh+oUvo76tKGDmyQypL1+K2qPWaOwa2SAV/
+         L8ls4Kbhf2GkwMyfu5/3wNvdKpw+LcYjQd3smTeQaXFQkxPZ+QsRHSC+eKim0sGCb6H1
+         yLR4tkw9t3/iuINThRUU579EvhrA98r73osiaCasL/Zzkt8C6BPoe+8Boo9Ds0rD1SQH
+         FeZ0B0XFnAxEzgTAd10Bok0eAHYGOSGnUFqHAYBwW9VVsSeCWN/X05BT5xQdnupmz0KK
+         Chig==
+X-Gm-Message-State: AJIora9W/hXzoJ3/wMdNlw2dkze6zAUmtQhwoZojDt69S2vowLNjgb2o
+        hzakts8+v0WJ/8rb2eA8Ng==
+X-Google-Smtp-Source: AGRyM1uWXbzqvCB09wbBdY4RhmV9MqfiKdcKzlsfS4eiVYuIla5/jtCEi4xIghtxm6uXUVPDYWj8NQ==
+X-Received: by 2002:a4a:d54a:0:b0:435:c4e7:77ce with SMTP id q10-20020a4ad54a000000b00435c4e777cemr4960249oos.67.1658790398832;
+        Mon, 25 Jul 2022 16:06:38 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id x24-20020a056870a79800b0010830c24aaasm6963744oao.56.2022.07.25.16.06.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jul 2022 16:06:38 -0700 (PDT)
+Received: (nullmailer pid 2920430 invoked by uid 1000);
+        Mon, 25 Jul 2022 23:06:36 -0000
+Date:   Mon, 25 Jul 2022 17:06:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>, devicetree@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: interrupt-controller: Add macros for
+ NMI and IRQ0-7 interrupts present on RZ/G2L SoC
+Message-ID: <20220725230636.GA2920367-robh@kernel.org>
+References: <20220722151155.21100-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220722151155.21100-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wxpYfeOoU1p11bZe"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220725224919.GA2887013-robh@kernel.org>
-X-Cookie: If you're happy, you're successful.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220722151155.21100-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 22 Jul 2022 16:11:53 +0100, Lad Prabhakar wrote:
+> Add macros for NMI and IRQ0-7 interrupts which map to SPI0-8 present on
+> RZ/G2L (and alike) SoC's so that these can be used in the first cell of
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v3:
+> * New patch as suggested by Biju and Geert.
+> ---
+>  .../interrupt-controller/irqc-rzg2l.h         | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>  create mode 100644 include/dt-bindings/interrupt-controller/irqc-rzg2l.h
+> 
 
---wxpYfeOoU1p11bZe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jul 25, 2022 at 04:49:19PM -0600, Rob Herring wrote:
-> On Fri, Jul 22, 2022 at 06:53:45PM +0800, Raphael-Xu wrote:
-> > remove tas2780
->=20
-> Your commit message needs to answer 'why'? Write complete sentences.
->=20
-> Though as this was just added, you should do 'git revert' and send that=
-=20
-> patch.
-
-But please write a proper subject and commit description with signoff
-and so on, it's still a patch even if you generate the initial content
-with revert.
-
---wxpYfeOoU1p11bZe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLfIX4ACgkQJNaLcl1U
-h9DjDgf/fNoI9c9iDz0cpsaGfZ30y1qwKiCQfjH/aEuFhC82cIuzakvcUsFU5Zrq
-n9w3dk1Hwrzuu+dsqBCl2iNkjkUk2SE0zSLqRaThDpamDIbsFsKtWyZnBffapT92
-wdvh2f4R6N6TzFOPN1KhvPLtqhSCEzXSjQvKl1I9aN9UIcIrDZ1asO+qTS5BlLBo
-8G5PRDRSZM7LGN+ExX9qWfDQnuPGNDxJN7ww5NdWOh5FZAFIBMi7HxsMHyQXyKn+
-t3uo4OU3WbJCAYV24QF0apo3gXEr+teZ/xB+7d4AFpU4JjTnmwDrdlox3mSE0jJF
-NWogzLkyAb+iwv5s5HdXpICprJpMUg==
-=jhQf
------END PGP SIGNATURE-----
-
---wxpYfeOoU1p11bZe--
+Acked-by: Rob Herring <robh@kernel.org>
