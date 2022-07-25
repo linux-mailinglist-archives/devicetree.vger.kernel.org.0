@@ -2,69 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76C8E580121
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 17:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38FD358012D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 17:11:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229673AbiGYPHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 11:07:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52000 "EHLO
+        id S234910AbiGYPLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 11:11:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbiGYPHO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 11:07:14 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF61912D09
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 08:07:13 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id w204so13772558oie.7
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 08:07:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lLYdNu88rwK9RKi0Hdu8L2qjedcRHOnzO3eSS99Jj+4=;
-        b=uSX66gaqfINSKgXXJRgV9sqXY+qx32zQLxcNjZ6CWsyfWP6uWpYcmvETA9qCT8azEH
-         wyrpJBz+8s3IJvKOu8sbcmIchg37H79YpU9DkLH3SQCGSjT7zsV3DO7zu6tlXN1PPB/i
-         KlvTM7bzjKlqmrmFj9E6PafmJ8mI+33KkvwBqCCTu02zeu86uE2OarY3Yknu7tznn8pj
-         KC+ppdyG3FAfrsbP7kt/xCUNNRXAs09PQhm3yXRxiQt5BHeXJlcNKcBm7S3gFxABYeBF
-         Nq7K0X67Tp2umeeRku8MeZClQRl/W4tzXGoJwFNQZvEQ/Bmxe8Z7pGjdyajott0pYUcg
-         E/LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lLYdNu88rwK9RKi0Hdu8L2qjedcRHOnzO3eSS99Jj+4=;
-        b=xnpEle6hHtEq4Z9WIRcvvxc4QyVpwgTiRwWrtnJOY84VNdWmok5v0TXIxaZ9j16boM
-         +LONFO8/L3Q1MkilHij9+2qpJqQMfLWiuBuxpoBxjxWfKf3mMiDHcCFH08ONUmwcamzi
-         UTNPwG4OrNLSyrGUT1icT9U/i4DpGymBo7TV1QN3ZR3EGwWrNU/G1A88+2lAwxqIOmIg
-         QQD/Jfwz8MRgI7pi7oyfL34ts3Scs3hWsO2apncSDhxI1bIytdj7MjAxRF4kOQA5gdH+
-         cvJp7uQDrvc+LTZaLwOTBkanKpwtw+DECN8wkReL+bAQC6iuORTqsIv1DhTmpNz9cjS4
-         8Syw==
-X-Gm-Message-State: AJIora8zV8AmfE8PiXeVCWEimisi0oAsXqC+eWWDKRPnEQjqdN2X8Itc
-        l9DMoZUpPzhcpmQNO88WHhg3QYa+dDTl+9KPv8srCw==
-X-Google-Smtp-Source: AGRyM1v7J6NrpM5+VYdxmL1VK1k+qwfa9rxkPwG/5wkAIEBb1fYGvBYNHVcpI2jpl2oYPKyinajp9kZ1GoG3d3VJEzo=
-X-Received: by 2002:a05:6808:1b20:b0:33a:b9ab:30d8 with SMTP id
- bx32-20020a0568081b2000b0033ab9ab30d8mr7623167oib.8.1658761633157; Mon, 25
- Jul 2022 08:07:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220725131521.607904-1-robert.marko@sartura.hr>
- <20220725131521.607904-2-robert.marko@sartura.hr> <CAK8P3a1mL7Pm5+0Ce89LTrup476WaxSQKpTgn=o98_uFuOdfyQ@mail.gmail.com>
-In-Reply-To: <CAK8P3a1mL7Pm5+0Ce89LTrup476WaxSQKpTgn=o98_uFuOdfyQ@mail.gmail.com>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Mon, 25 Jul 2022 17:07:02 +0200
-Message-ID: <CA+HBbNEjYcZ1yU+h3ZR_g=6+18JBQ2U=v3VesRxR21Rc9N4LbA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: microchip: sparx5: dont use PSCI for core bringup
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232406AbiGYPLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 11:11:01 -0400
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com (mail-eopbgr10066.outbound.protection.outlook.com [40.107.1.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3A819FF5;
+        Mon, 25 Jul 2022 08:10:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KZ3vg6y5e1RXn3GIEUlZmLzy3/69Agq4QTAf75a1E1M5umFuo1lZoT16vF0993hJf6jxzGzlULqu8QOnlj720bxNir3OivgeF1C4FXP6wB00Td5e4Yaj1mnK1VaGpg1lsNjQYCMh8NATfBD9GzyvZ3TFC8m5GnnVKpAI6EWftY8fv9BFO/4QEqT5xR93Ii7RYPbkmgilzCw45eiWlTnb1HTrLL8lM+dfY2FqSPFK03iHV4XIVXjwHG369wVcVEphu5RM4kCnOY9AoFs42HPo79eC6+4l7EQHu8FPAhn2ATL1OcE5kKdEhRc3scDGqlIiIFDIcg8stCxKwwQelowh7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iO8ROTcaT90018JtrQ0xpZyawquVtsOjOiokopmXpXU=;
+ b=AwAcK3CLManywtGNsSyXxAi3gSwTySPRbW1dqJ9EOink2XTr8UimgKy6cepSZgHiePEd/hsnlYTpXsDOnTtdRuPrVSDNAJfrXwfTiwton8l00BzEpRiz1kFGHJxkjG4PviSqnnVNfGvMkvEvcxGNwwQplsLafTfh5L1FKfJ6Gq3VquFG0fmYMwk7+lWTBh4D+lqZDEO6ETjtLff5gKSwGI6D6G64rswhqyDFsJCLID2DmuP+VHbZbehIRjoAFZ794ZOJmPCDSU4DU8fZ2cEVxltyp4QOHee+pwcrzL0bp5lFjCGfFydJTLFq6uFIKwHSgmuOMUxlVZGo7qbnT0unNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iO8ROTcaT90018JtrQ0xpZyawquVtsOjOiokopmXpXU=;
+ b=OeWFqG5FuAJnfxYuW3aD55YZkRlyiOxRbo0SJtBcOcV0n5CPMBgxKRGP0LQhiUUocJpiKtjvZJyLQExXldqoCnH7bvSmum21P+e5ATC4feskcWMNTBgaQP3TgGrWiKmKPH3XtJNZ0vCNWe9mRXjfkVlFnelONbO4vVFrtrXNE8LV9f1Z5KDGH7bZb65M+TyTNUFGRRuOsoXZgGptm786CbbOS+i72BExcsfyQ8pSFsSYJIPusMuvdLRcWOUX1pqK8PhFt4iwriWR6QspiY8zfchyFERofwMYnHFTN6l44TBIL6yZTLpHEHFPuQ/bT9gO/mhvt/+UC/zQRa6DOTUtcg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
+ by AM9PR03MB7817.eurprd03.prod.outlook.com (2603:10a6:20b:415::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.24; Mon, 25 Jul
+ 2022 15:10:57 +0000
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::59ef:35d2:2f27:e98b]) by DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::59ef:35d2:2f27:e98b%4]) with mapi id 15.20.5458.018; Mon, 25 Jul 2022
+ 15:10:57 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        Camelia Groza <camelia.groza@nxp.com>,
+        linux-kernel@vger.kernel.org (open list),
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Sean Anderson <sean.anderson@seco.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v4 00/25] net: dpaa: Cleanups in preparation for phylink conversion
+Date:   Mon, 25 Jul 2022 11:10:14 -0400
+Message-Id: <20220725151039.2581576-1-sean.anderson@seco.com>
+X-Mailer: git-send-email 2.35.1.1320.gc452695387.dirty
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: CH0PR03CA0229.namprd03.prod.outlook.com
+ (2603:10b6:610:e7::24) To DB7PR03MB4972.eurprd03.prod.outlook.com
+ (2603:10a6:10:7d::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a05e8b60-d2b6-43d8-8a71-08da6e4fe022
+X-MS-TrafficTypeDiagnostic: AM9PR03MB7817:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zH0OB7Ox0cRDGGRKxFMJ+1lkqBMArlhoi2Msg/GHBiD2V1BSjwfpu6+Oy4HurtdczbwXvbCFNTJ7TDgpk46e6Mmk6ryCfv2h0km6uJJx+yIBUZwFFElPNbBkQawBB4ejrRQG3flsxitsDtnzcO7bQWcq7OsWO83mla6IJEKwWuadbYPmhSlPc3+aBOb0C0OFUbWndNtgf/b+SM28pDPWrLmnXfNI1sYTbs+fKpl9C94nbCj9yjJOC3+GPL/bYpHCYBdebAFI/HOq6EZ4I1tj0KRbF8ZA4ulJVeXCN7b3vPc3QcQ/vGln1UB9FQiEgTa2W9NvXr/OV6cPRpzYJ++8z62ew5nJTqovaWe2K9vC8AodpvVl/mYZRhd/PTSnmmSN1Nuq7/ZRHUUQiYok8l6X2h1dAFnzVlKOQpt2xbtXY0tI97ele1FawmFtOasWFjUPCJRZdJlJ+5NbIEPzAlhiNjCaBReIMhzzhVjhHQmpC9XvybYMdpT6UCOHfSdpjWMoJPoMWXWEttCkwQRp7JEMukOY5rWUSnAkVKy98Ih919lfSjMoGydeqe01rkar8qwuRd+o+v8NXyjBqkXRBBzpsP4llZ/wNQddU3ioNCpvwd0QGMT0oxMaUIrF8LKfpLxXXmwNnXfDXiWz58dOFlr5ezmfA6XQD/7rqoyGD5Uv7y4dOl9MgCrRrR0c5ZK+neVlv2o2u033HZ92oJhDo3cJPqJyRCQHFhvZJtxJvXGg8+LLFTzzyV0/90Daz71OUfZBzA6Y7n7awl++bjMndhFubNTPhiear4iMIHJpBggi0qOR2580nGFXGGZRJxLMB4Wtoing/Rl9d6Yk9wF4Jpu8GA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(39850400004)(136003)(396003)(346002)(366004)(376002)(36756003)(110136005)(54906003)(186003)(38350700002)(8676002)(66556008)(66946007)(316002)(66476007)(38100700002)(8936002)(86362001)(2616005)(478600001)(4326008)(5660300002)(6666004)(966005)(83380400001)(7416002)(6506007)(41300700001)(6486002)(44832011)(26005)(6512007)(52116002)(1076003)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nlHho3iVAttAEkzoGaIlYUQ4oE8GR4AsVid/+Df+1AVolIyZdbsdRRt6YNuF?=
+ =?us-ascii?Q?Nw8K+k0S5pRYC73RQFdOnoL9/RPYDNoCIKbYGz3iNoBsZu6lAMPudMJmP0XO?=
+ =?us-ascii?Q?0REHfPPGM/e95t8WgFbqHHj20y2/L6RSygERqsJWi832ap3945siQFuyJ/AH?=
+ =?us-ascii?Q?bgaaIJbwbdMNfUDpul6KoLlY9L8yGgm7Fp3VnTPWlTA3sPx8hL4JpVrl1rER?=
+ =?us-ascii?Q?fCa9R5ekgebBX5UaYCkC0HkXLZA5Ew9+WehdN40sghUsEiAzRsYroUmf++Vl?=
+ =?us-ascii?Q?iTs2nu6sOaE+biwsyXlilscCocLzGmvC6+OtwfFKMRJSpBsYNyU0ttVu1qoY?=
+ =?us-ascii?Q?bcwgh9zHeVbp5lvtuKOAHqdtltca3w8g9mhAl6kVgw+sfRqSwOApdyk7HUN6?=
+ =?us-ascii?Q?7YK/Wx9S2z6Oc8EsRr/gYeDa5JzaJ9MjdRTcwRCOWJLIPtGWFpINJIaVnG8Z?=
+ =?us-ascii?Q?W9nHSei1bvkdnBAXk88C/gtHNi8qNSyZcd2j7Z09J4SqPbx0pNbYXIX2Sjta?=
+ =?us-ascii?Q?sVnVMoHhl8kjqgrEeI0sOciTQJA97kZMIC1eZa/6AyMiPBkpvNnEvOtxhyYU?=
+ =?us-ascii?Q?kXFenaVzWy+7vzXioQboKpie3DbRYLgooXhDs4rAmEjGcVFiCcWJ0Z7BkDc4?=
+ =?us-ascii?Q?ECk3e5aUBpQJtEIC7gJhfi44ufOxTuCM2bUWmLFawRDq/R8mvxr2zguJgTYT?=
+ =?us-ascii?Q?+sT3MskOU8SyyezUDDAb/+w/bd5Ar9z6+zvZzivL7hYzkQCDUTwyje4L1bro?=
+ =?us-ascii?Q?uHbGr1qPTuwBLeANmwmEa/8/c90ShtrNPJoWGON+Nqna0zHoQa5qT1G+ltsT?=
+ =?us-ascii?Q?yyPNOaVez+ABC7Z/m/j+z7PRyJgFapNH9vO/T0Q0WGbh6RpwKkxbaabqabTi?=
+ =?us-ascii?Q?/ewx/RtgjUxG5Irvf8a6Wtx0JWhLBkFd/fgcw92Mg3DFnikMsZQryDg/HnyZ?=
+ =?us-ascii?Q?maaDB88QnzTtaqoBA02T5sb1L+9adMDvomydRTy7oG+2sEnWeMvnpPvwamqm?=
+ =?us-ascii?Q?FZfNpkrN0g5uXTPT++mnlcWVYZON3M/ysWu3HY2NyK74UrHf1ce2eJBKdyWg?=
+ =?us-ascii?Q?ELxEcxjQ3kiD1ZKn8Sz1d0bjzj8VoQlou/RodBrPYdPUt50BMPyESwM5jA+B?=
+ =?us-ascii?Q?KW0/y5uf72IQCuI+OSdDo74YPdnSrqd3H0UgxbiAWnxcYZAF3rIi4WZFBu1S?=
+ =?us-ascii?Q?F2LWPB4tH2jMmRB2bKOr7KPRzbNz12UvV3pzAA70Uzjr0bKe24NgYiw1Vwzx?=
+ =?us-ascii?Q?60MIe/cXAQUzEK54P+JSdzGpMx3j/4cK4DRbTVVb0BZW4GWDfvwEZrrmDlPN?=
+ =?us-ascii?Q?M8WQXDirf7Nmn54SqnkmmkB2YOdInViRMgA2RXmTuONdIQzzCM43cO7kX/nN?=
+ =?us-ascii?Q?DTodPbsYOQPIObDyJYRwAPudVdgHLoUrXDMC26HgFFYzrI5DdWsEfDXs/0sG?=
+ =?us-ascii?Q?g1SqH9plinvgbS+IZPRgbEg5GuxGR2bYQqAyH+eJ9LLBU0PlWVfKocR0MbK5?=
+ =?us-ascii?Q?EjzG6AKTpPPn/S5u9gk6Kd8tcYGERW7PdCaA52mcol4iUxJba9v5zbISWumN?=
+ =?us-ascii?Q?+MkrIpUtsl1R043bmFg7tNy1xQ0m4E1makvVnvwi/kBh0aSwNC5P/8cRgMMK?=
+ =?us-ascii?Q?+w=3D=3D?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a05e8b60-d2b6-43d8-8a71-08da6e4fe022
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jul 2022 15:10:57.0365
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HL06Kivjum387nkqWsmfV6zcckEmZVX7WNdQJrI57YkjlJ4AYx3aP9xkd2GVoow65R4vqIMGs+AnWdK8IPlNyg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR03MB7817
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,89 +121,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 25, 2022 at 3:33 PM Arnd Bergmann <arnd@arndb.de> wrote:
->
-> On Mon, Jul 25, 2022 at 3:15 PM Robert Marko <robert.marko@sartura.hr> wrote:
-> >
-> > As described in previous commit, PSCI is not implemented on this SoC at
-> > all, so use spin-tables to bringup the cores.
-> >
-> > Tested on PCB134 with eMMC (VSC5640EV).
-> >
-> > Fixes: 6694aee00a4b ("arm64: dts: sparx5: Add basic cpu support")
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > ---
->
-> Surely this is only a machine specific bug in the boot loader, not something
-> the SoC is incapable of supporting, right?
+This series contains several cleanup patches for dpaa/fman. While they
+are intended to prepare for a phylink conversion, they stand on their
+own. This series was originally submitted as part of [1].
 
+[1] https://lore.kernel.org/netdev/20220715215954.1449214-1-sean.anderson@seco.com
 
-PSCI itself could be implemented on this SoC, you can even implement
-it just by using U-boot.
-I have been looking into adding basic reset and core bring up PSCI
-support to the BSP U-boot for start.
+Changes in v4:
+- Clarify commit message
+- weer -> were
+- tricy -> tricky
+- Use mac_dev for calling change_addr
+- qman_cgr_create -> qman_create_cgr
 
->
->
-> >  arch/arm64/boot/dts/microchip/sparx5.dtsi | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> > index 38da24c1796c..ea2b07ca2887 100644
-> > --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> > +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> > @@ -40,14 +40,16 @@ cpu0: cpu@0 {
-> >                         compatible = "arm,cortex-a53";
-> >                         device_type = "cpu";
-> >                         reg = <0x0 0x0>;
-> > -                       enable-method = "psci";
-> > +                       enable-method = "spin-table";
-> > +                       cpu-release-addr = <0x0 0x0000fff8>;
-> >                         next-level-cache = <&L2_0>;
-> >                 };
->
-> I think the psci method should be kept in the dtsi file here, since actual
-> product boards would have to support it to be useful, you can just add
-> the spin-table as an override in the broken reference boards, with a
-> comment about which u-boot version is broken, in case this gets fixed
-> in the future.
+Changes in v3:
+- Incorperate some minor changes into the first FMan binding commit
 
+Changes in v2:
+- Convert FMan MAC bindings to yaml
+- Remove some unused variables
+- Fix prototype for dtsec_initialization
+- Fix warning if sizeof(void *) != sizeof(resource_size_t)
+- Specify type of mac_dev for exception_cb
+- Add helper for sanity checking cgr ops
+- Add CGR update function
+- Adjust queue depth on rate change
 
-Well, that's the thing, Microchip-s BSP is not utilizing PSCI at all,
-they reverted
-to using spin-tables in both Linux and U-boot, and they dont implement
-PSCI at all.
-I highly doubt that any of the vendors are gonna implement it themselves.
+Sean Anderson (25):
+  dt-bindings: net: Convert FMan MAC bindings to yaml
+  net: fman: Convert to SPDX identifiers
+  net: fman: Don't pass comm_mode to enable/disable
+  net: fman: Store en/disable in mac_device instead of mac_priv_s
+  net: fman: dtsec: Always gracefully stop/start
+  net: fman: Get PCS node in per-mac init
+  net: fman: Store initialization function in match data
+  net: fman: Move struct dev to mac_device
+  net: fman: Configure fixed link in memac_initialization
+  net: fman: Export/rename some common functions
+  net: fman: memac: Use params instead of priv for max_speed
+  net: fman: Move initialization to mac-specific files
+  net: fman: Mark mac methods static
+  net: fman: Inline several functions into initialization
+  net: fman: Remove internal_phy_node from params
+  net: fman: Map the base address once
+  net: fman: Pass params directly to mac init
+  net: fman: Use mac_dev for some params
+  net: fman: Specify type of mac_dev for exception_cb
+  net: fman: Clean up error handling
+  net: fman: Change return type of disable to void
+  net: dpaa: Use mac_dev variable in dpaa_netdev_init
+  soc: fsl: qbman: Add helper for sanity checking cgr ops
+  soc: fsl: qbman: Add CGR update function
+  net: dpaa: Adjust queue depth on rate change
 
-I have contacted Microchip and they confirmed that there is no PSCI
-support, they stated
-that they started working on PSCI but that images were larger and took
-longer to boot
-and they dont see any advantage so they removed that.
-
-So I doubt that we are gonna be seeing any boards that implement PSCI
-by default.
-I can tell you that it's annoying me as we are back to 2013 and using
-a GPIO for restart.
-
-U-boot version that I tested is the last one from their 2022.06 BSP,
-its based off U-boot 2019.10.
-
-Maybe somebody from Microchip can chime in on this?
-
-Regards,
-Robert
->
->
->        Arnd
-
-
+ .../bindings/net/fsl,fman-dtsec.yaml          | 145 +++++
+ .../devicetree/bindings/net/fsl-fman.txt      | 128 +----
+ .../net/ethernet/freescale/dpaa/dpaa_eth.c    |  59 ++-
+ .../ethernet/freescale/dpaa/dpaa_eth_sysfs.c  |   2 +-
+ drivers/net/ethernet/freescale/fman/fman.c    |  31 +-
+ drivers/net/ethernet/freescale/fman/fman.h    |  31 +-
+ .../net/ethernet/freescale/fman/fman_dtsec.c  | 325 ++++++------
+ .../net/ethernet/freescale/fman/fman_dtsec.h  |  58 +-
+ .../net/ethernet/freescale/fman/fman_keygen.c |  29 +-
+ .../net/ethernet/freescale/fman/fman_keygen.h |  29 +-
+ .../net/ethernet/freescale/fman/fman_mac.h    |  24 +-
+ .../net/ethernet/freescale/fman/fman_memac.c  | 240 +++++----
+ .../net/ethernet/freescale/fman/fman_memac.h  |  57 +-
+ .../net/ethernet/freescale/fman/fman_muram.c  |  31 +-
+ .../net/ethernet/freescale/fman/fman_muram.h  |  32 +-
+ .../net/ethernet/freescale/fman/fman_port.c   |  29 +-
+ .../net/ethernet/freescale/fman/fman_port.h   |  29 +-
+ drivers/net/ethernet/freescale/fman/fman_sp.c |  29 +-
+ drivers/net/ethernet/freescale/fman/fman_sp.h |  28 +-
+ .../net/ethernet/freescale/fman/fman_tgec.c   | 163 +++---
+ .../net/ethernet/freescale/fman/fman_tgec.h   |  54 +-
+ drivers/net/ethernet/freescale/fman/mac.c     | 497 ++----------------
+ drivers/net/ethernet/freescale/fman/mac.h     |  45 +-
+ drivers/soc/fsl/qbman/qman.c                  |  76 ++-
+ include/soc/fsl/qman.h                        |   9 +
+ 25 files changed, 739 insertions(+), 1441 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/fsl,fman-dtsec.yaml
 
 -- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+2.35.1.1320.gc452695387.dirty
+
