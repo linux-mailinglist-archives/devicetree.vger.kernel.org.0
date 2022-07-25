@@ -2,90 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 219B75807C1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 00:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCBDE5807C7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 00:49:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237457AbiGYWpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 18:45:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52234 "EHLO
+        id S237400AbiGYWtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 18:49:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237490AbiGYWpb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 18:45:31 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2B18255A4;
-        Mon, 25 Jul 2022 15:45:27 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id s204so15197089oif.5;
-        Mon, 25 Jul 2022 15:45:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=owwtlW3rOL0CNBfDOH2DnKrzgv4WQIHmvViMboW6yHk=;
-        b=o7wslRPrDe5jMDxzqlE/JZbtpn16qrQHzSsYTCivvFq0M3IMwZEeQf135ieOdXG4MX
-         08PKMqDOlCvQuszPyPO5yzlMB53TM5nMhJWrb2onLEGYY1Kioc2I6zr5DsedWRfOAm11
-         TYQXQdK9yliUXLwvtXo94j43STTJ9F9fogVg7XVK00iMSaXfWxfbDieQuHpssHLpdMR1
-         Q7/qqHNp1MI4blLlI99FlTgn7/bm17HqqaIj19n55HwBA2ImjDqiA70vsBTxVPZnJR4z
-         ReW1VLf6XWQRo1sIMgboL1/Y43Q4BmwZUcOpmqs7nqVpCv3MW/WrlMUgAsIFlSOg0RAP
-         KqDg==
-X-Gm-Message-State: AJIora+MWI4xKMQhyiD70hAnhmypjjmh3amEo/9n0yWjfp7RTLX70VsD
-        PNsv2BkAZa9jTiD+bU+zBQ==
-X-Google-Smtp-Source: AGRyM1svwSsqAhx+tdPya8Gp0eQkBxcOlgC+d6J8MbW4VLKYGHrsTs/zO+0aGudl40kpceveJ48bmw==
-X-Received: by 2002:a05:6808:1514:b0:33a:ab72:ffa7 with SMTP id u20-20020a056808151400b0033aab72ffa7mr10961459oiw.100.1658789125525;
-        Mon, 25 Jul 2022 15:45:25 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id i6-20020aca2b06000000b0033a11fcb23bsm5317942oik.27.2022.07.25.15.45.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jul 2022 15:45:25 -0700 (PDT)
-Received: (nullmailer pid 2886877 invoked by uid 1000);
-        Mon, 25 Jul 2022 22:45:21 -0000
-Date:   Mon, 25 Jul 2022 16:45:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     rex-bc.chen@mediatek.com, ikjn@chromium.org, wenst@chromium.org,
-        sboyd@kernel.org, marijn.suijten@somainline.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        paul.bouchara@somainline.org, p.zabel@pengutronix.de,
-        linux-mediatek@lists.infradead.org, ck.hu@mediatek.com,
-        bgolaszewski@baylibre.com, jason-jh.lin@mediatek.com,
-        mturquette@baylibre.com, matthias.bgg@gmail.com,
-        miles.chen@mediatek.com, konrad.dybcio@somainline.org,
-        krzysztof.kozlowski+dt@linaro.org, tinghan.shen@mediatek.com,
-        ~postmarketos/upstreaming@lists.sr.ht, sam.shih@mediatek.com,
-        linux-clk@vger.kernel.org, y.oudjana@protonmail.com,
-        kernel@collabora.com, robh+dt@kernel.org, fparent@baylibre.com,
-        devicetree@vger.kernel.org, martin.botka@somainline.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 4/8] dt-bindings: clock: mediatek: Add clock driver
- bindings for MT6795
-Message-ID: <20220725224521.GA2886831-robh@kernel.org>
-References: <20220722090609.52364-1-angelogioacchino.delregno@collabora.com>
- <20220722090609.52364-5-angelogioacchino.delregno@collabora.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220722090609.52364-5-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S231424AbiGYWti (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 18:49:38 -0400
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47D4610B0;
+        Mon, 25 Jul 2022 15:49:37 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id E573C320090E;
+        Mon, 25 Jul 2022 18:49:32 -0400 (EDT)
+Received: from imap43 ([10.202.2.93])
+  by compute2.internal (MEProxy); Mon, 25 Jul 2022 18:49:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1658789372; x=1658875772; bh=ND
+        s6eODdn2bexcjuNKFWjUTcea0bQW5OWSmo8ftc1/g=; b=zu146mCcQc1T9H7Y/Z
+        7j1DVU1UX8Q2ZohlvLcSWonP7z5rmGLaV5AzYQ/SJxuKxtd9d0ukJUn6twVXAZPI
+        STTxLSLUdRjtHug88sM5T6J2cXWp9swCGPpwU6Vac0i1qyTWa2OYgmUtunC+ZPrM
+        VAuxbP89C80fOYMm/oUd9Ng+ZVx0ReC7WsG2QQatpRjvQdLN3iGdNuqJIKWUsM66
+        bJlrMdzbmP7vov8CbT0lCGk5Y+AKNQa6wqk8Y4GnSLgYKzeOn4WwSZgI1h2Wu9vc
+        /E9PQjTyzPew78Z9p2OEBYgNGEZTxf3zI+TnGpGNAQPhUR/Rq+X4yKzw2lY022WO
+        ZDvQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1658789372; x=1658875772; bh=NDs6eODdn2bexcjuNKFWjUTcea0b
+        QW5OWSmo8ftc1/g=; b=Lp0QAv5sz2CbyyZiVx0PLOnJU39P11Pq190bzsC5pIZL
+        /XsNGrk0F1VH3O18JmhHdRBv4JupuE/SEOXMcgKrwIegANR8mEEV+gq6l0zBP4gL
+        uq6mhJHpMybVH9143OEtMBCNL1SOE0Px3tpXj8NlP64KO3YNt9tazxAq/rXZGs5L
+        jRz3BR/N7j7EBngpfNtGIRXhVXknisZ6DM0xI8qa8wxuTMbFFikvJa1gNEHgHDYi
+        tdDhHjLuhZwT+y8NcJo45PyECJC1uSeE1G5kcYArQwqTjdtVQM2M/AKb5ZWCb4C8
+        H1CWVxmoUV8Bmssz0Lc2va2MeI4lr4GpyqUV5nAplQ==
+X-ME-Sender: <xms:_B3fYn2eb6G-FmB2gZvefgAfbw-ytSrx-WhQu1AUl7YemxtfbUT70g>
+    <xme:_B3fYmHlHM5QEenUZU7B3MCagd5uIIg5DsYEJ_de0J_YtKD1X3m4QZtUb8XxORbkB
+    1ZrsirDIBvwSGwq-To>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddtledgudegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpeetlhhi
+    shhtrghirhcuoegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrf
+    grthhtvghrnhepueekffekhfejteehtdeigedujeevvdfhjeelkeehfefhudffhfejgfej
+    ieehhefhnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgv
+X-ME-Proxy: <xmx:_B3fYn4oL0MGX6gx_0Td1RJui8sxWd1bLwjeGoV9qMzfhvL3HuDMkg>
+    <xmx:_B3fYs3dgNZtn0RUrr1FvaKFb0tsoInl9T2JRpnio77FdAawv3S6_A>
+    <xmx:_B3fYqFiZJcltk0TnWy_9WftQWH9g4cpBfgKxFQjH_4hiJCB5TwHIQ>
+    <xmx:_B3fYhcbdoPXUCQkCnwuH-be5R5FfON6l48MSSb9ebdUau6_FCOj7Q>
+Feedback-ID: ifd214418:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 03E322D40074; Mon, 25 Jul 2022 18:49:32 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-757-gc3ad9c75d3-fm-20220722.001-gc3ad9c75
+Mime-Version: 1.0
+Message-Id: <9820e03f-8e81-4dc8-ae21-82a21c830278@www.fastmail.com>
+In-Reply-To: <20220725055059.57498-1-samuel@sholland.org>
+References: <20220725055059.57498-1-samuel@sholland.org>
+Date:   Tue, 26 Jul 2022 08:49:11 +1000
+From:   Alistair <alistair@alistair23.me>
+To:     "Samuel Holland" <samuel@sholland.org>,
+        "Marcel Holtmann" <marcel@holtmann.org>,
+        "Johan Hedberg" <johan.hedberg@gmail.com>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Paolo Abeni" <pabeni@redhat.com>
+Cc:     linux-bluetooth@vger.kernel.org,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Vasily Khoruzhick" <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: bluetooth: realtek: Add RTL8723DS
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Jul 2022 11:06:05 +0200, AngeloGioacchino Del Regno wrote:
-> Add the bindings for the clock drivers of the MediaTek Helio X10
-> MT6795 SoC.
+On Mon, 25 Jul 2022, at 3:50 PM, Samuel Holland wrote:
+> RTL8723DS is another version of the RTL8723 WiFi + Bluetooth chip. It is
+> already supported by the hci_uart/btrtl driver. Document the compatible.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../bindings/clock/mediatek,mt6795-clock.yaml | 66 +++++++++++++++++++
->  .../clock/mediatek,mt6795-sys-clock.yaml      | 54 +++++++++++++++
->  2 files changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-clock.yaml
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt6795-sys-clock.yaml
-> 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Alistair Francis <alistair@alistair23.me>
+
+Alistair
+
+> ---
+> 
+> Documentation/devicetree/bindings/net/realtek-bluetooth.yaml | 1 +
+> 1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+> index 157d606bf9cb..8ac633b7e917 100644
+> --- a/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+> +++ b/Documentation/devicetree/bindings/net/realtek-bluetooth.yaml
+> @@ -20,6 +20,7 @@ properties:
+>      enum:
+>        - realtek,rtl8723bs-bt
+>        - realtek,rtl8723cs-bt
+> +      - realtek,rtl8723ds-bt
+>        - realtek,rtl8822cs-bt
+>  
+>    device-wake-gpios:
+> -- 
+> 2.35.1
+> 
+> 
