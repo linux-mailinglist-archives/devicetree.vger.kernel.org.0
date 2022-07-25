@@ -2,110 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE36357FAA0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 09:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57B3657FAD4
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 10:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232728AbiGYH7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 03:59:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48878 "EHLO
+        id S233079AbiGYIEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 04:04:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232654AbiGYH7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 03:59:39 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADA0813D52
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 00:59:36 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id e69so18716444ybh.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 00:59:36 -0700 (PDT)
+        with ESMTP id S232399AbiGYIET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 04:04:19 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 628FA5FEF;
+        Mon, 25 Jul 2022 01:04:18 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id j22so19126473ejs.2;
+        Mon, 25 Jul 2022 01:04:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7LVjJZ3vZnsHBYWH91XFfNQq4hkSx4/m7XWPR5zW2rM=;
-        b=A4yPo/waVaMIqiTi1D3gcMPCRhfFyDMubfV4Ye7jWo15S5jIz6uB9pGlDRNwR+UEkD
-         GkoQ3T2bTCUVib5nqdJFiKC8TuGcSIUhW73cMzUYc15erc9PJ3bJNVk1tZAsuMvah8/F
-         WAuTrmKmpbQ9GW7vd23p41ImSbU8YL34psKJQ=
+        bh=r9oGiDsxiFpBH+3rbxjYFk4fKS6kxjytRyEJ438nM14=;
+        b=CJb2GrDqw5wptQkMGvGnlEHmNqNpBTz+oVejWM8vbDuV20ZOTC6BJ/xAOcSduhufTS
+         CtY8s0Ob07oaPbu/f4yqfvkHz/xDY1O6vs2/oftm3gv1Uc+ykJC+fUd1S21cXIv8VjyW
+         kSXeGTgiv3k4SaU7t5pXcn2tjl5/OFjnaZJ8Uu0DxeB/9Oof1BN5BOo2rRbXDmOoY1Oc
+         CAj9lT0OP1cy+XTY99JtA98O+TDOotsScJIH1YM0dQeqD+8VHoEVugkGshM79Qhx2IYY
+         Qmh4+CVjG1cahmKQrRaUHy+VKbjtu21T43SHNPAsr2ti4ofng6x5uib9AjGL5NY7lM5l
+         yEHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7LVjJZ3vZnsHBYWH91XFfNQq4hkSx4/m7XWPR5zW2rM=;
-        b=SvJSEfGjsaDD51CHI1dajeSI4uEwoQK1yMDxapQFXi9wv66OuoSme0DCs2s0vUhd1g
-         iZ7BEMFRB04/B2faGiMbyg8wbTah0AJ4uC51wqR1CBqyfc9JB3r/eq3lnA6x8c7cEFV7
-         KQ/r63xOu7+OsBHHDewftlMU5ruqp5CPzQzHI0OhTQinQ9y9HhV8FdYMMLyB9HAF3NRT
-         +wEHf2Awk1mqsv1hI/cJ8WH5e32WIZeWMoO8ZuaiHGVvR4htF9RQWKXxqo9XXAtJwgxo
-         B4hJzg9lYeJFKMg+YWgLCotIf9kKZTWigOMlcXliru1PKCz7qfJp2mHaK50u5+FiPNO/
-         oLPg==
-X-Gm-Message-State: AJIora9lrcoVbefsJFgcEArrLG9zlyGB1F+BwaVhW6xQN05sb3WVYSim
-        2jobHKdWXbqPptLa2BTw95q1kKlkza0z+rWp4wgEoA==
-X-Google-Smtp-Source: AGRyM1v0HxzW8vtags5zI75LJuEW/+tx6Jwb+I4b5Af0gdhsPwG/G07wonpdlzb5E5ap46RBTKqTtHsQt/XnayBqYFE=
-X-Received: by 2002:a25:d852:0:b0:66f:259c:17b6 with SMTP id
- p79-20020a25d852000000b0066f259c17b6mr8769449ybg.438.1658735975662; Mon, 25
- Jul 2022 00:59:35 -0700 (PDT)
+        bh=r9oGiDsxiFpBH+3rbxjYFk4fKS6kxjytRyEJ438nM14=;
+        b=qZNUDlfWV1gfKJrxcTaZGJJhKHsk86f362lbhhUtJH+39QG18dOLO63N1sHxgCRE1H
+         hXm6eU6V0zn4Ngv/zQjWMXrfZCkvsMO/VMSSToZETMcw0REBy9BmK+P9YJfC+nZgw5cT
+         F+qDNuwoySwOch2p8/iJA5ylWFoyf0v7tFAwEeaH0uWrL6+ZZT4aBARFcbEv55R4JkOu
+         2wncweioY2IspB39VCmTaBJU8caqKqXBd+e1p9oyen/hPiOj5FQVl/1Y+O0e0bEuHsCf
+         KjK7sJb4BxeEWWf1jzEqXuorh3Ov6obUdVU+bbyYUqQ67tauI+GTcAOFluXaORzYiWvf
+         Zysg==
+X-Gm-Message-State: AJIora8TqEE87kbc31MTqzf5aii+SPJ4mSYWqmMxH1ccYAQZK7hV2fAY
+        /mR9EM6czKo4CmxzsJ13XvQCrJJhJsU0MZbEpVU=
+X-Google-Smtp-Source: AGRyM1slRdGOzS2afMezkzisSa07VKYBk0S3NkjvREARPdSLLPsbko0C4F61HAPbqNjfvUDyrYKyJb1xX+GfnwkFVZU=
+X-Received: by 2002:a17:906:8a4a:b0:72b:5b23:3065 with SMTP id
+ gx10-20020a1709068a4a00b0072b5b233065mr9334315ejc.557.1658736256789; Mon, 25
+ Jul 2022 01:04:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220721145017.918102-1-angelogioacchino.delregno@collabora.com> <20220721145017.918102-4-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220721145017.918102-4-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 25 Jul 2022 15:59:24 +0800
-Message-ID: <CAGXv+5E_Q6Z9RA6VQDHyn6E9xb-C0AmEx7JR8Lc65ofT1YE0sw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/8] arm64: dts: mediatek: cherry: Add keyboard mapping
- for the top row
-To:     AngeloGioacchino Del Regno 
+References: <20220722102407.2205-1-peterwu.pub@gmail.com> <20220722102407.2205-9-peterwu.pub@gmail.com>
+In-Reply-To: <20220722102407.2205-9-peterwu.pub@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 25 Jul 2022 10:03:40 +0200
+Message-ID: <CAHp75VessBZMBA6wNWhhXhPshDCghgkV8EkEUUqOeLqn-5pmpA@mail.gmail.com>
+Subject: Re: [PATCH v6 08/13] usb: typec: tcpci_mt6370: Add MediaTek MT6370
+ tcpci driver
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Alice Chen <alice_chen@richtek.com>,
+        cy_huang <cy_huang@richtek.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        szuni chen <szunichen@gmail.com>,
+        AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 21, 2022 at 10:52 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Fri, Jul 22, 2022 at 12:25 PM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
 >
-> Chromebooks' embedded keyboards differ from standard layouts for the
-> top row, as this one doesn't have the standard function keys but
-> shortcuts instead: map these keys to achieve the functionality that
-> is pictured on the printouts.
+> From: ChiYuan Huang <cy_huang@richtek.com>
 >
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
-
-> ---
->  .../boot/dts/mediatek/mt8195-cherry.dtsi      | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
+> The MediaTek MT6370 is a highly-integrated smart power management IC,
+> which includes a single cell Li-Ion/Li-Polymer switching battery
+> charger, a USB Type-C & Power Delivery (PD) controller, dual
+> Flash LED current sources, a RGB LED driver, a backlight WLED driver,
+> a display bias driver and a general LDO for portable devices.
 >
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> index 87ac2b4f9814..2853f7f76c90 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-> @@ -821,3 +821,33 @@ &xhci3 {
->
->  #include <arm/cros-ec-keyboard.dtsi>
->  #include <arm/cros-ec-sbs.dtsi>
-> +
-> +&keyboard_controller {
-> +       function-row-physmap = <
-> +               MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
-> +               MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
-> +               MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
-> +               MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
-> +               MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
-> +               MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
-> +               MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
-> +               MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
-> +               MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
-> +               MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
+> Add support for the Type-C & Power Delivery controller in
+> MediaTek MT6370 IC.
 
-I wonder if we want to add the sleep button to this list, since it is
-technically part of the first row.
+...
 
-ChenYu
+> +static int mt6370_tcpc_set_vconn(struct tcpci *tcpci, struct tcpci_data *data,
+> +                                bool enable)
+> +{
+> +       return regmap_update_bits(data->regmap, MT6370_REG_SYSCTRL8,
+> +                                 MT6370_AUTOIDLE_MASK,
+> +                                 !enable ? MT6370_AUTOIDLE_MASK : 0);
+
+Why not positive conditional?
+
+  enable ? 0 : mask
+
+> +}
+
+...
+
+> +       ret = devm_add_action_or_reset(dev, mt6370_unregister_tcpci_port,
+> +                                      priv->tcpci);
+
+I believe nothing bad will happen if you put it on one line.
+
+-- 
+With Best Regards,
+Andy Shevchenko
