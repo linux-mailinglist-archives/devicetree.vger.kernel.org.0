@@ -2,141 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 731265805BD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:35:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2436C5805C2
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:35:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237200AbiGYUfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 16:35:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40564 "EHLO
+        id S237213AbiGYUfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 16:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237219AbiGYUe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:34:56 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E5D422BFC;
-        Mon, 25 Jul 2022 13:34:54 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id mf4so22715061ejc.3;
-        Mon, 25 Jul 2022 13:34:54 -0700 (PDT)
+        with ESMTP id S237205AbiGYUfY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:35:24 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 816E8273C
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:35:21 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id w15so11755852lft.11
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:35:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=f9QlVd3sY4PWP1LvgvsglsfYdo46+qKuYLSCKi5klpY=;
-        b=kh+Aki1lVqKeBtJg/8dN55UIOrgM4lLUyefRybo33qn5mXHg5ruQyt607eWvl6XW6C
-         jxpunR2ZxTytMHDyvGlCw780j3AUV8RH92yk9782xsGx4dYJTQxY7CYb46HOvp0cM7cn
-         U1EUwA3uYu6Y/wAi+YGwTpFHC8WGW4otXGC0dqgxaZ+zWmNtFMp7/UQlJcUb4F8FKpLq
-         51YxKGefmk76+gnkAfyzOnn+eEAUHrJd31CtzWtrEXJDUPmIAmAaqi+TR+HgKWa5Ohvg
-         apIPDifFTqDBNqQhaxVB1CRfqneOhV5boGD/NBiEoE6/OgobXAvSahm8ukcbCJT9Ea1X
-         2YXQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=kF+g+F7mYcIUaJYAQWrmzn8M6Wb/+yPNGEuaPjJTuM4=;
+        b=c1E4ypsrj4lfQjVDS1PjLkofXsBCBIYDZ1iSIrtIkmc6jnYy+Q+NdEG9xEhHz7sCTb
+         7S8gZR6Kr0566YVA6fqyBfHCGzMq0XTU6LjPzw+gKr9GarCxMwFKil9NrN5y5MNqZi25
+         23ZJNUw8tky4+kkjcWOway9aElUecKZBb9L80dv2B1iSCGvkn3+n5Evi0EkUBb6kQcoa
+         k4Dg9URTwEyonbgRpBNIgMlnNq9XkMWZVoHVhPinK1jsRrVO6eO9XgfrAGw2XsL+bgcn
+         jgo9TAy/07Pet6Ww4BN6yscaYs/KCpunHCdXKQKkwd3FEsFvJjZHS9XJFEyAOogPD16E
+         rUgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=f9QlVd3sY4PWP1LvgvsglsfYdo46+qKuYLSCKi5klpY=;
-        b=lVaevs7ckjWZKlu1Ad/mqhLsbTeVXq+OulCXiLx5FhPGPwy/lJAcfrOLKQoGeLgvsx
-         6K9/RZcU5IeuDXaoibGn7R0GEv2dO4iDDlaq8D47fy29rfoB3XDjN38wCCsZGp4aPBoW
-         d81zAvaChbd6erdKlcZd5vDSGOzW4z+8mJRj///C85ar9klnvag/EXctDPrJ8KzIhZhn
-         5qH2vLPMb/gCZiFu2rp/Su1hpHPYLLMh/Sw6lbkTYgsoe+DBRWaKVxJ35ducRaK14xrx
-         3bELp7a7nMtFZoQ+GxdH5Y0s/ROhVIMoUeMd1lO0qkd2vO9ZJktHRaiFradfQVUZ1xsz
-         kPHQ==
-X-Gm-Message-State: AJIora87VZoZfHFyTXWialuKUhQGVAOVzCKJJm4yax29YXue8bGxjdl+
-        a1rqkWd8e0oAzPIgIVzH8j+HrkbDYfWoeiNJ95vTboj5IKw=
-X-Google-Smtp-Source: AGRyM1viPX6Y2qUKGqEyRljFJc8aIyvl2t52ya99spUMxKDkKiH7ivLGc1t2cvSXbq/20Q2ES5xf3ux8j9pnK2NlfjE=
-X-Received: by 2002:a17:907:6297:b0:72f:9aad:fcb with SMTP id
- nd23-20020a170907629700b0072f9aad0fcbmr11181691ejc.161.1658781292737; Mon, 25
- Jul 2022 13:34:52 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=kF+g+F7mYcIUaJYAQWrmzn8M6Wb/+yPNGEuaPjJTuM4=;
+        b=6U2bAbRexF3qjJprJvfBzTY5w/oNaOLbRN2W6+BRMiQJQYYxiSHFoJwQ7iHhcxAJKo
+         XJGaP1tgH5uGD5vZbzYp5Vl9A52TGIcF5CefS53J2GW6PicEtM4ZWH7bbCW+vKybDt0l
+         fii6KFJI0RNl2tEgUbR18QFa4bqgFAkBKFVztKkkVcJYIiCveFOfCAdfPxU9YogfvE3c
+         o/hAHU3CuS2Gdh/dyqrcLPDV77cOUErS7Soozr3YYInTtTsCUISZtPhZZohbrx+GAfyt
+         WodIkrX3MtzQ+lzjK/up59CBYU7Lkp5pSkb/pOigMXtNTokdvqI/yzj8pQU7T0sJ+oAH
+         j48w==
+X-Gm-Message-State: AJIora9ezAKtgWBe4U4IuVbWeQwTIG2ykU8G+b7KtPY8OCrLOu7uDnxF
+        dzUDDnPoRq7qBn9n1ycE3YbeCw==
+X-Google-Smtp-Source: AGRyM1ttV6py/cPAH9tBoi/teqtLFo+O1OebISYGtEbEAaJj118/1dMgrgbrEF7axMWM/vp84mGJqg==
+X-Received: by 2002:a05:6512:2302:b0:489:da47:6a90 with SMTP id o2-20020a056512230200b00489da476a90mr4974106lfu.12.1658781319674;
+        Mon, 25 Jul 2022 13:35:19 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id s7-20020a05651c200700b0025deb36756dsm2339404ljo.103.2022.07.25.13.35.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Jul 2022 13:35:19 -0700 (PDT)
+Message-ID: <ea2cc75c-611f-f612-e692-325fb7e98d6b@linaro.org>
+Date:   Mon, 25 Jul 2022 22:35:17 +0200
 MIME-Version: 1.0
-References: <20220721080423.156151-1-nuno.sa@analog.com> <20220721080423.156151-2-nuno.sa@analog.com>
-In-Reply-To: <20220721080423.156151-2-nuno.sa@analog.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 25 Jul 2022 22:34:16 +0200
-Message-ID: <CAHp75Vfeq+7Ngj_wiXUXTGhyL=isqHy3DuPeJyE0C5YjYjZN=Q@mail.gmail.com>
-Subject: Re: [PATCH v3 01/10] input: keyboard: adp5588-keys: support gpi key
- events as 'gpio keys'
-To:     =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>
-Cc:     linux-input <linux-input@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] dt-bindings: ufs: qcom,ufs: add SC8280XP binding
+Content-Language: en-US
+To:     Johan Hovold <johan@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220711101441.4896-1-johan+linaro@kernel.org>
+ <Yt5+EU529KriiAvE@hovoldconsulting.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <Yt5+EU529KriiAvE@hovoldconsulting.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 21, 2022 at 10:03 AM Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
->
-> This change replaces the support for GPIs as key event generators.
-> Instead of reporting the events directly, we add a gpio based irqchip
-> so that these events can be consumed by keys defined in the gpio-keys
-> driver (as it's goal is indeed for keys on GPIOs capable of generating
-> interrupts). With this, the gpio-adp5588 driver can also be dropped.
->
-> The basic idea is that all the pins that are not being used as part of
-> the keymap matrix can be possibly requested as GPIOs by gpio-keys
-> (it's also fine to use these pins as plain interrupts though that's not
-> really the point).
->
-> Since the gpiochip now also has irqchip capabilities, we should only
-> remove it after we free the device interrupt (otherwise we could, in
-> theory, be handling GPIs interrupts while the gpiochip is concurrently
-> removed). Thus the call 'adp5588_gpio_add()' is moved and since the
-> setup phase also needs to come before making the gpios visible, we also
-> need to move 'adp5588_setup()'.
->
-> While at it, always select GPIOLIB so that we don't need to use #ifdef
-> guards.
+On 25/07/2022 13:27, Johan Hovold wrote:
+> On Mon, Jul 11, 2022 at 12:14:41PM +0200, Johan Hovold wrote:
+>> Add SC8280XP to the DT schema.
+>>
+>> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>> ---
+> 
+> Rob,
+> 
+> Will you be picking this one up?
+> 
+> There doesn't seem to be any other maintainers listed for this file in
+> case it's expected to go through some other tree.
+> 
 
-...
+The preference is that it should go via subsystem and get_maintainers.pl
+points Alimi, Avri and Bart. However in the past it seems indeed Rob was
+picking it up...
 
-> +static void adp5588_irq_mask(struct irq_data *d)
-> +{
-> +       struct gpio_chip *gc =3D irq_data_get_irq_chip_data(d);
-> +       struct adp5588_kpad *kpad =3D gpiochip_get_data(gc);
 
-Can it be
-
-  irq_hw_number_t hwirq =3D irqd_to_hwirq(d);
-
-?
-
-> +       unsigned long real_irq =3D kpad->gpiomap[irqd_to_hwirq(d)];
-> +
-> +       kpad->irq_mask[ADP5588_BANK(real_irq)] &=3D ~ADP5588_BIT(real_irq=
-);
-> +       gpiochip_disable_irq(gc, irqd_to_hwirq(d));
-> +}
-> +
-> +static void adp5588_irq_unmask(struct irq_data *d)
-> +{
-> +       struct gpio_chip *gc =3D irq_data_get_irq_chip_data(d);
-> +       struct adp5588_kpad *kpad =3D gpiochip_get_data(gc);
-> +       unsigned long real_irq =3D kpad->gpiomap[irqd_to_hwirq(d)];
-> +
-> +       gpiochip_enable_irq(gc, irqd_to_hwirq(d));
-> +       kpad->irq_mask[ADP5588_BANK(real_irq)] |=3D ADP5588_BIT(real_irq)=
-;
-
-Ditto.
-
-> +}
-
-...
-
-> +                       /* gpio line used as IRQ source */
-
-GPIO
-
---=20
-With Best Regards,
-Andy Shevchenko
+Best regards,
+Krzysztof
