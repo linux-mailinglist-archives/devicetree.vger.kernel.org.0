@@ -2,99 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD6C57FD7C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 12:31:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20DDE57FD80
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 12:31:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231623AbiGYKbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 06:31:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52402 "EHLO
+        id S233992AbiGYKbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 06:31:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233992AbiGYKbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 06:31:03 -0400
+        with ESMTP id S231685AbiGYKbd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 06:31:33 -0400
 Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AD1C2BF7
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 03:31:02 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id bn9so4432011wrb.9
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 03:31:02 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8195BB1F8
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 03:31:31 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id bn9so4433810wrb.9
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 03:31:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=c0efiEkVxtTkTFENAKnUNGf6D7Eoa+H/DnhrKy6xKHg=;
-        b=Atf5Sc5rCOJsmUS2qWZFCQOVdEhMbxWZTVygVwG6MFhmUPsC1N7/gYKvngdjpdoEAp
-         Dj4LLgJT1n2RVuuZHxMLJa6ctougQymX7kwmeuv2XduvP9BIjwFr6xDDAbIFBeddVKim
-         NDMAl58Vs6Ws0S5NT03ZbAiqOLW3MDggeuFp4XDdp+Ig6Ojm6o2RhlJZTjxcz7y38l5t
-         uXWOnzOT7P2OX1R2uOsoNqhihx2rU/5CJ4oWyDoY42p99+J21ZSxWnCREbQBNIFn3JNU
-         ASoQ9iRdvK6qpuXMKHribLIppwbXZEqlgpLOHrEFON9IvBufE3XfDmc4P9xApTbw4TIr
-         xMGA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QR4thViojhLm7m3iVqTAzOPrEuZ+oboQVEbkcRYR7U0=;
+        b=hcY3ebDhxmUgKAKSOPUOX7d/LMYdV3cijN2N6OfC0kvVYjMwOvmOolx+2NETIKYqUp
+         GPy3YFMR7smmOlatz8CKT+4p2UQ+6lI9Ejv06f+y6zEFBSmLUPFbbscFbBBsOCvH434Q
+         ke8WXFQ+uXl36Kdevvs6uhTIaQQgtIFRovUfQ/RDq3AHQ469OhSceGOKRnPmFWjpxVnH
+         VERQ2rtptnToPx6leEXxAAby7RDypiZaQady2IbBpsvPlsYJ0uSwLW6l0adFiFhqOZ8D
+         XJZDsGiJcpWWsVtF7ngMWVpb9VQHwHEkKK2RVLip5CsQWVUMkj1jqMMhHMjq3wvU4bke
+         J0IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=c0efiEkVxtTkTFENAKnUNGf6D7Eoa+H/DnhrKy6xKHg=;
-        b=BRaBe2WXJ/PYmfm2JmwN67FMV2TJL6JnEY/FT1+kWxBU98aNbX4+P/yQmXelJ76/s6
-         ask6FbEwQRKjie47QS2cJPj6KdXdf6Xmr+n8r15Q6WIjL9xZoUQnVr43rvW7GmIj8rM4
-         7zXURLxYWcM3F2jgZ81Bg/WaVSh9kfNqQ26i44h3S59dF/mpbgPZwPCH0KBmdNTYqmCe
-         zfGxEi06EyZKbypxdl8XiKMCbfaSDpbx76t60NyBxbYruFCwP9rI9z/3CXR0UInc2KIE
-         LJyJ3x+eylbeAUxpyvqXtskOzN1VED2QszgqBrLme4PziaGhjWhynETuIFBdy7Q90vsL
-         I/Ag==
-X-Gm-Message-State: AJIora8k4mjsq84vVWLdiiXANYjft6y8FlqGSJMEx7OZxV4k9e8GSyrN
-        iH0bUiPdXBrr3fxh/wI5vhk6IDYL5oYR1O47cBs=
-X-Google-Smtp-Source: AGRyM1vK4IQRl+g1ytDQLqDauo9Bs7pje0HCtF2ZNjXTwwhCOgLqOycSW+kQOslRua41V/NXxr39t7vK929eGBQJjOk=
-X-Received: by 2002:adf:a313:0:b0:21e:6db0:df7f with SMTP id
- c19-20020adfa313000000b0021e6db0df7fmr6800626wrb.387.1658745060580; Mon, 25
- Jul 2022 03:31:00 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QR4thViojhLm7m3iVqTAzOPrEuZ+oboQVEbkcRYR7U0=;
+        b=DINAoEo6rAyOFgXXmyo/Q7l4uPNSm/1VpvKRC4C9zbN+O1+2rvSuDA6miUQHpu4Tet
+         AwdIF6VxWVjpyuD6hY9o1QhbQK43jgL3yCqr2uFCAHODnl/7oyfprvVZZUBa81rPIQ9B
+         xC6ftCimiam+ztjlpiYK99BQVfDm+2mIJ7c5rl4lykslZu+/Cdg7QCGeO2usbTsPk+Yv
+         9SzsOwIJ5K56Smvz44tS7lpBg2XXxlWRC+7i/YpKibIrhTQa08x+QCEojVZVY4PiU78Z
+         YpdP9PJH3NKKAnjaPufFEaST3NnSWwHGr781D25mpNvV50JbIHAphuUVmpbofQTF2BA6
+         hT2w==
+X-Gm-Message-State: AJIora9QU+5Rh+MaAc+7A2fPpr62JyoL/ARYrHmcPbhqy88jitv3tziI
+        DIfkdkFe8l6zYJgDE0zQ73scdQ==
+X-Google-Smtp-Source: AGRyM1uhInd5p9lSRbYGnaq9oTNYSYBtNWlkq9wyaVzmMkSkg4hYhWboyJgYIo9QbRHYBeJSc2cjCg==
+X-Received: by 2002:a5d:584c:0:b0:21e:7f48:bf19 with SMTP id i12-20020a5d584c000000b0021e7f48bf19mr5190179wrf.474.1658745090915;
+        Mon, 25 Jul 2022 03:31:30 -0700 (PDT)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id l18-20020a05600c1d1200b003a04d19dab3sm29367538wms.3.2022.07.25.03.31.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jul 2022 03:31:30 -0700 (PDT)
+Date:   Mon, 25 Jul 2022 11:31:28 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     lee.jones@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, sre@kernel.org, chunfeng.yun@mediatek.com,
+        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
+        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, deller@gmx.de,
+        andy.shevchenko@gmail.com, chiaen_wu@richtek.com,
+        alice_chen@richtek.com, cy_huang@richtek.com,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        szunichen@gmail.com
+Subject: Re: [PATCH v6 13/13] video: backlight: mt6370: Add MediaTek MT6370
+ support
+Message-ID: <20220725103128.xtaw2c4y5fobowg7@maple.lan>
+References: <20220722102407.2205-1-peterwu.pub@gmail.com>
+ <20220722102407.2205-14-peterwu.pub@gmail.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6000:2aa:0:0:0:0 with HTTP; Mon, 25 Jul 2022 03:31:00
- -0700 (PDT)
-Reply-To: alimaanwari12@gmail.com
-From:   Alima Anwari <khuntamar5@gmail.com>
-Date:   Mon, 25 Jul 2022 10:31:00 +0000
-Message-ID: <CAOdLAAJNDdZoovEVDQR4aM5B1fNrtPBEAzrwrepVJM8KCJW5Eg@mail.gmail.com>
-Subject: Greetings
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:432 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5002]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [khuntamar5[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [khuntamar5[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [alimaanwari12[at]gmail.com]
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  3.1 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220722102407.2205-14-peterwu.pub@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello dear friend, i'm Alima Anwari from Afghanistan, please reply
-back to me and have an urgent issue to share with you. I will be waiting
-for your response.
-Thanks.
-Alima.
+On Fri, Jul 22, 2022 at 06:24:07PM +0800, ChiaEn Wu wrote:
+> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
+> index a003e02..846dbe7 100644
+> --- a/drivers/video/backlight/Kconfig
+> +++ b/drivers/video/backlight/Kconfig
+> @@ -268,6 +268,18 @@ config BACKLIGHT_MAX8925
+>  	  If you have a LCD backlight connected to the WLED output of MAX8925
+>  	  WLED output, say Y here to enable this driver.
+>
+> +config BACKLIGHT_MT6370
+> +	tristate "MediaTek MT6370 Backlight Driver"
+> +	depends on MFD_MT6370
+> +	help
+> +	  This enables support for Mediatek MT6370 Backlight driver.
+> +	  It's commonly used to drive the display WLED. There are 4 channels
+> +	  inside, and each channel supports up to 30mA of current capability
+> +	  with 2048 current steps in exponential or linear mapping curves.
+
+Does the MT6372 support more steps than this? In other words does it use
+a fourteen bit scale or does it use an 11-bit scale at a different
+register location?
+
+
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called "mt6370-backlight".
+> +
+> [...]
+> diff --git a/drivers/video/backlight/mt6370-backlight.c b/drivers/video/backlight/mt6370-backlight.c
+> new file mode 100644
+> index 0000000..ba00a8f
+> --- /dev/null
+> +++ b/drivers/video/backlight/mt6370-backlight.c
+> [...]
+> +static int mt6370_bl_update_status(struct backlight_device *bl_dev)
+> +{
+> +	struct mt6370_priv *priv = bl_get_data(bl_dev);
+> +	int brightness = backlight_get_brightness(bl_dev);
+> +	unsigned int enable_val;
+> +	u8 brightness_val[2];
+> +	int ret;
+> +
+> +	if (brightness) {
+> +		brightness_val[0] = (brightness - 1) & MT6370_BL_DIM2_MASK;
+> +		brightness_val[1] = (brightness - 1) >> fls(MT6370_BL_DIM2_MASK);
+> +
+> +		/*
+> +		 * To make MT6372 using 14 bits to control the brightness
+> +		 * backward compatible with 11 bits brightness control
+> +		 * (like MT6370 and MT6371 do), we left shift the value
+> +		 * and pad with 1 to remaining bits. Hence, the MT6372's
+> +		 * backlight brightness will be almost the same as MT6370's
+> +		 * and MT6371's.
+> +		 */
+> +		if (priv->vid_type == MT6370_VID_6372) {
+> +			brightness_val[0] <<= MT6370_BL_DIM2_6372_SHIFT;
+> +			brightness_val[0] |= MT6370_BL_DUMMY_6372_MASK;
+> +		}
+
+This somewhat depends on the answer to the first question above, but
+what is the point of this shifting? If the range is 14-bit then the
+driver should set max_brightness to 16384 and present the full range of
+the MT6372 to the user.
+
+Especially when using linear mappings (which are a totally pointless
+scale to use for a backlight) the extra steps are useful for backlight
+animation.
+
+
+Daniel.
