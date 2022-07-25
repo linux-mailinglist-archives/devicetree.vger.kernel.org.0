@@ -2,127 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76AC05805EF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEAFA580658
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 23:22:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237150AbiGYUtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 16:49:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50234 "EHLO
+        id S236551AbiGYVWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 17:22:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237213AbiGYUtD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:49:03 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C191EEDB;
-        Mon, 25 Jul 2022 13:49:01 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id z23so22483513eju.8;
-        Mon, 25 Jul 2022 13:49:01 -0700 (PDT)
+        with ESMTP id S229536AbiGYVWI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 17:22:08 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 495301D33C
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 14:22:07 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id b6so7607697wmq.5
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 14:22:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=H1sQSHwWsz6Sfwn/nw5m5qGb/V8KmFsQdNiXy1s2J4A=;
-        b=W6LQBYpYc9r0gZTP+KjajSNtzgYjp0/W2wVeAlBo5qX18C2YIIAN+mkPZ2k25X0vQH
-         D5oLTPfisi9KkMr8vadRjvyneg4i1dl+sz7DXPqL0XaCuJk30rxo0H2aSea12gZy/4NR
-         IOJDxxSOzPwbkNiiCyLrjbHPhdhxQDq5E4kYKJLWVsd0aeAazrt0fOtbC4jQmTtdp3Qm
-         PYqpSLmGcz6URRVp1+olPkUVxFc4CtH47lxnyL6bUnnvBdD5M21q+kZI+2GEmZIC4Z59
-         4SicQIcK9zBuo6xVm/SHK9rNDeKI2Y7aiKF6PD38NwOEBeujYYYXEU72gHfrhP0UvkkA
-         yK+A==
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lHmQZHpGxawao/KUr1/i4POaZ94konia4hXkNONDx+E=;
+        b=F9QqMeFjwu9yp0G6OthtTiaWgsDTaInPT1jusgqebeA1i42DdZBHHbgnP/bmbU21UI
+         c1q/8HfdyO3tvMeYxa35NtjAU3a+ob49vBVNqrXXKNa8CYt/aM3ZvYxDhFvYLRTYOQ7S
+         6+uouSSvnWt4BfBUWO30jtKEouRDkDqmAEKv6ZRB1PzJwd+6S1Y+y/dKt0HjjyD6YxWw
+         +VWJ6fJ2PSInuY1J8uW0sz9hJLl8IwLoDdTqFrucLbjjUWBzFnLLgrPpfc1ts8UK/o09
+         rub3yUepDoN3n/+U7R9WO1s8DjEMubKtZbOiE7FD2L/vElsNpJGa4GEJgI6YpHqmHRbC
+         fUrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=H1sQSHwWsz6Sfwn/nw5m5qGb/V8KmFsQdNiXy1s2J4A=;
-        b=QXXGQTe/LXvHnK7ykNcvJfASj7iZz1jZh2m49Z06JXS3zojB3+fUYVXL7RN+k2GMe8
-         ZGnCwlz8lRxJ0OdLUatWRNk0AUvFgMBEYs0Nj/dT4AdjQmnRXWFRnx7/oYMDpcJGcxZH
-         WX+7y/8Qsbg0zmdeom/DkAtr8GUeHQ5oGzR5wmxUbv3k0s55L5BVM9dcDLvf/WpOzQYF
-         N7LIXFVDlVIlnl+qZy0NNkmqHtEK+UU5Z0sD5seslMugRSufiw18mbAPuu58lRaocLFz
-         sz4prN/DAroxpDvP3xlje515OXQr3HYDeJoZ0W1MkgUHC06XdzYCzzIBXB1PElc0DzRK
-         1VvQ==
-X-Gm-Message-State: AJIora/Ha4Pph7LpX9DoOKUWAQVAfA6149NONXY27GRTLvA1UV8M0/Cz
-        vPUOgTKAOunzkQ/zeXQYIplxutMYfoR5b7CLWH0CSLs2dcU=
-X-Google-Smtp-Source: AGRyM1v8uNsvvjdJ96eRk3dnw3sMBVwfFmLN8sslNZ3kPcNgk3WfNeienkmUBExxzF5QOMHyQ0VLaHIXE+p+WboqWSw=
-X-Received: by 2002:a17:906:9b09:b0:72b:9612:d373 with SMTP id
- eo9-20020a1709069b0900b0072b9612d373mr11208248ejc.606.1658782139887; Mon, 25
- Jul 2022 13:48:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
- <CAHp75VddBhc9peHXfNfTyTNni246kC8CyLqCrMFadn67LGDarQ@mail.gmail.com> <CACRpkdaczrU1tM5Yt7P-Q2h+ge8STOi6HvvYeTM-g+JwS8_gZw@mail.gmail.com>
-In-Reply-To: <CACRpkdaczrU1tM5Yt7P-Q2h+ge8STOi6HvvYeTM-g+JwS8_gZw@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 25 Jul 2022 22:48:23 +0200
-Message-ID: <CAHp75VfaExrFYto7LWa5Vnbm6JbiAqtutKmk0HzfeHmmi3PwOg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] gpio: gpio-74x164: add support for CDx4HC4094
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lHmQZHpGxawao/KUr1/i4POaZ94konia4hXkNONDx+E=;
+        b=kpY9mhY5v5KPzgJ16oGW99dfwGuMr8TyaA8kCtjdDM8z33bOmJdrKiiXo7RtAL30ie
+         b1+AuwM+VBO3PBe9wJIltlrLCQRHnpO9q/EVMoOc6YACPHUQYgEtxoCPFaP/bdua87Yv
+         K7z50NSxhymfyHcP/Lf1Q/Doa99IDAFPzj7G3ig6zblvaJw1c+TKYQSL3+3o5duA/bP8
+         cII+G2vf2D35yqmwoHW9s9cSzbOaTlG/Cya3DzzEALkQIBYzLNW2lLTUSO/VXpkUqQe5
+         OBYaGxIYty8iY7+hUBitTGJBfEOqV01O6j1+/3RzTj4Dt/OfaHnFSCzAuLrp0wLcYPc9
+         U1zQ==
+X-Gm-Message-State: AJIora8pNJlMckk1WBC1w7KRou9Jmu05BgvrIy9acBmHzML+sCe3ys+P
+        QmRptXMzh13tK5Pq7oNq5g+qfg==
+X-Google-Smtp-Source: AGRyM1tPzYAZV+4e7woXtPhacFgFJ+VXWN2jfK/7TOtlfqroKnrLVBR3acothJfB5hGOvWG9er+Hrg==
+X-Received: by 2002:a05:600c:1d92:b0:3a3:2167:b8e5 with SMTP id p18-20020a05600c1d9200b003a32167b8e5mr22220881wms.24.1658784125739;
+        Mon, 25 Jul 2022 14:22:05 -0700 (PDT)
+Received: from localhost.localdomain (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id i13-20020a05600011cd00b0021d6924b777sm12656348wrx.115.2022.07.25.14.22.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jul 2022 14:22:05 -0700 (PDT)
+From:   Ben Dooks <ben.dooks@sifive.com>
+To:     linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Greentime Hu <greentime.hu@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>
+Subject: [[PATCH v2] 1/9] dt-bindings: pwm: Document Synopsys DesignWare snps,pwm
+Date:   Mon, 25 Jul 2022 22:21:32 +0100
+Message-Id: <20220725212140.741644-1-ben.dooks@sifive.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 25, 2022 at 3:54 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Mon, Jul 25, 2022 at 11:32 AM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Thu, Jul 21, 2022 at 11:32 AM Marcus Folkesson
-> > <marcus.folkesson@gmail.com> wrote:
+Add documentation for the bindings for Synopsys' DesignWare PWM block
+as we will be adding DT/platform support to the Linux driver soon.
 
-...
+Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+--
+v2:
+- fix #pwm-cells to be 3
+- fix indentation and ordering issues
+---
+ .../devicetree/bindings/pwm/snps,pwm.yaml     | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/snps,pwm.yaml
 
-> > Sorry for my absence of understanding, but why?
-> > SPI has MOSI, CLK, CS, where the last one is exactly for that. No?
->
-> Forgive me if I misunderstand, but if you use CS that
-> way, the way that the SPI framework works is to assert
-> CS then transfer a few chunks over SPI (MOSI/CLK)
-> then de-assert CS.
-
-No, CS here is used exactly for what it is designed for ("tell that
-this message is *for me*"). Yes, hardware implementation here is a
-latch register. Because otherwise ALL messages are "for me" which is
-wrong. Is it wrong interpretation of the hardware and SPI?
-
-> If CS is used for strobe, it is constantly asserted
-> during transfer and the sequence will be latched
-> out immediately as you write the SPI transfers and
-> the data is clocked through the register, making the
-> whole train of zeroes and ones flash across the
-> output pins before they stabilize after the SPI
-> transfer is finished.
-
-I'm not sure I understand the stabilization issue here. It's how SPI
-normally works and we have a lot of delays here and there related to
-the phase of the CS in comparison to clock and data. We have a lot of
-time to stabilize the outputs of the shift register before latching
-it. Did I miss anything?
-
-
-> If you first do the SPI transfer, then strobe after
-> finished, this will not happen.
-
-I have hardware, I have tested it and I understand what you mean by
-"stabilizing", but finishing transfer _is_ CS toggling for _this_
-chip. No?
-
-> Then it should be a separate pin, so this doesn't
-> happen, right?
-
-I think no, you don't need it. I.o.w. either I'm missing something
-very interesting about both this kind of chips and SPI basics (shame
-on me in this case) or...?
-
-
+diff --git a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+new file mode 100644
+index 000000000000..594085e5e26f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2022 SiFive, Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/snps,pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Synopsys PWM controller
++
++maintainers:
++  - Ben Dooks <ben.dooks@sifive.com>
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    const: snps,pwm
++
++  "#pwm-cells":
++    const: 3
++
++  clocks:
++    items:
++      - description: Interface bus clock
++      - description: PWM reference clock
++
++  clock-names:
++    items:
++      - const: bus
++      - const: timer
++
++required:
++  - "#pwm-cells"
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++
++additionalProperties: false
 -- 
-With Best Regards,
-Andy Shevchenko
+2.35.1
+
