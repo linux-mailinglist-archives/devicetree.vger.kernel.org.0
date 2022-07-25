@@ -2,78 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2830957FA39
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 09:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A70F257FA56
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 09:36:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbiGYH2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 03:28:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58498 "EHLO
+        id S229803AbiGYHg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 03:36:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229774AbiGYH2F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 03:28:05 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9658E11C12
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 00:28:04 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-31e623a4ff4so100093797b3.4
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 00:28:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=H7epkIx7Bo7OZyKYOv+XZev2GSnfQLkdGLGiZ0LxZ8c=;
-        b=WLJPSC4TMjyg8I8soxTZ5c/HaieMRu0ilw/tYRRT3dW0234hNQCaBNsAMTmimcGDym
-         gVcVywpiMWRY/hrWOgk+A1jqyaQK58ADdH6mp8Tdc8eGMhccWCQCpwhj7GoeV3boF7Ka
-         8ZkuOxODo52fwq1YDMMA0VNVW2Wh//+YXV39E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=H7epkIx7Bo7OZyKYOv+XZev2GSnfQLkdGLGiZ0LxZ8c=;
-        b=funVzut3B58nu/0Suz54IStQOTC9qG9F+taK2uHYDFG4t0TDihYznCx1eE6Bm2vxJT
-         HPdrLOiy6AF0MexO3tzh5buzmW946Fl9dI/bzvqACltlq2q0YC18LQ1CUFMieU7tsJ8j
-         1fLUsc/Hhv9YrXPupUI8l/Qyne3aq1BjrVR6rKejrDl5+AN3IhjT3eoQclGH9n0W/DSf
-         UHzyZG3l4y07Bc4q4eaIXqTfinH4GuvxdFinMFJIHzztiPHnngsSpSUr6u3bBULMw0z7
-         gtH4TV6CHACY8SZ2GYNhJvilRfoKShQKaOkcyS9QmCH8AC8tudTivU3Sd+8YuI8dSW46
-         SVwg==
-X-Gm-Message-State: AJIora90IP2Mk8JmF8Kp6gBCoNaopFp7qju7sy1RQ6AoybOoKs2DGe9S
-        W4TuJk5OUufECrC/0rrdtzZ1lshJu5s0EFmN3hxmvOxP7rc=
-X-Google-Smtp-Source: AGRyM1sofK+ZbAm2wHz6/PMlObpSJxFDTP5gSmhP92Rp/Kt616QZhHpvv/6xAWxzGOgw9UhR8Behll/ww824d2IHfE0=
-X-Received: by 2002:a81:816:0:b0:31e:acde:8726 with SMTP id
- 22-20020a810816000000b0031eacde8726mr8600976ywi.195.1658734083888; Mon, 25
- Jul 2022 00:28:03 -0700 (PDT)
+        with ESMTP id S229571AbiGYHg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 03:36:57 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36DA812091;
+        Mon, 25 Jul 2022 00:36:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7695CB80D81;
+        Mon, 25 Jul 2022 07:36:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 283CEC341C6;
+        Mon, 25 Jul 2022 07:36:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658734613;
+        bh=LUiMLAhA+OjPnzur2BcOAHYRJpUgPwPJevN7YbYoXG8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UssAoRr2irhYEnKwR1jy9cAG6tz6GVQQNmEU4WpmgaCnzpRupWp213/TKp5sgXPxW
+         f4FJqxs8C0bLuuyupi2rq7qmvnsiHwzs4pMXhF2GlY1RpYxsFfy+qfyALuf0ldeLci
+         pJdoRH6sk7rRFo9c9Itb//58M3cMjOlEsWZoDe7siGpHYJNzoFjQY2j2YQBgV92qiW
+         PTRAzFYecjITUELPVxv+025MDiMDYCsRK3CqAO2potzLcpKTwlBmSqeRYm88xVC34W
+         bJiNGuqOjhC8vB9+/jf+DxjVhaxzEku51iUBR1l7u0xpmu+rv7wO1UrrJrDxqSOITI
+         N6qLrUFDEqr2w==
+Date:   Mon, 25 Jul 2022 13:06:48 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Chanho Park <chanho61.park@samsung.com>
+Cc:     'Krzysztof Kozlowski' <krzysztof.kozlowski@linaro.org>,
+        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Alim Akhtar' <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: phy: samsung,ufs-phy: match clock items
+Message-ID: <Yt5IEHK9OsRZDGi1@matsya>
+References: <CGME20220707063058epcas2p19364a05a5b2fc8aad81fa390ac030f21@epcas2p1.samsung.com>
+ <20220707062807.135960-1-chanho61.park@samsung.com>
+ <4e8a36de-a631-f6c9-44d7-7d873f775db2@linaro.org>
+ <001b01d89d69$37d80320$a7880960$@samsung.com>
+ <454232b3-2f98-c3ca-4661-5e9eb51998b6@linaro.org>
+ <000001d89fb9$4ee00520$eca00f60$@samsung.com>
 MIME-Version: 1.0
-References: <20220721145017.918102-1-angelogioacchino.delregno@collabora.com> <20220721145017.918102-6-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220721145017.918102-6-angelogioacchino.delregno@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 25 Jul 2022 15:27:53 +0800
-Message-ID: <CAGXv+5E5+i3eG-04JAqN4wGmSd276FFE5KRDK5hUv+wK5vJT4Q@mail.gmail.com>
-Subject: Re: [PATCH v2 5/8] arm64: dts: mediatek: cherry: Enable Elantech
- eKTH3000 i2c trackpad
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <000001d89fb9$4ee00520$eca00f60$@samsung.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 21, 2022 at 10:52 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> The Cherry platform uses an Elantech touchpad/trackpad: enable
-> probing it at address 0x15 on I2C1.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On 25-07-22, 08:58, Chanho Park wrote:
+> > >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > >
+> > > Hi Krzysztof,
+> > >
+> > > No one takes this patch. Could you please pick this patch in your tree?
+> > > Thanks.
+> > 
+> > You did not send it to PHY maintainers... The bindings go via subsystem
+> > maintainers.
+> > 
+> > If Vinod doesn't want it, I could take it, but he never had a chance to
+> > say :)
+> > 
+> > Please resend.
+> 
+> Oh, maybe I missed him due to not showing from get_maintainer.pl script.
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+./scripts/get_maintainer.pl Documentation/devicetree/bindings/phy/
+Kishon Vijay Abraham I <kishon@ti.com> (supporter:GENERIC PHY FRAMEWORK)
+Vinod Koul <vkoul@kernel.org> (supporter:GENERIC PHY FRAMEWORK)
+
+:-|
+
+> I'll resend this.
+
+Pls do..
+
+-- 
+~Vinod
