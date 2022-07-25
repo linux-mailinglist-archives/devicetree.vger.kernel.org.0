@@ -2,86 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCEE6580756
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 00:28:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBA3B580763
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 00:32:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbiGYW2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 18:28:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36826 "EHLO
+        id S230320AbiGYWcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 18:32:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbiGYW2g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 18:28:36 -0400
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A783B252AA;
-        Mon, 25 Jul 2022 15:28:35 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id u9so15148645oiv.12;
-        Mon, 25 Jul 2022 15:28:35 -0700 (PDT)
+        with ESMTP id S230242AbiGYWcn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 18:32:43 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 523C72558C;
+        Mon, 25 Jul 2022 15:32:40 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-f2a4c51c45so16593095fac.9;
+        Mon, 25 Jul 2022 15:32:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ydROe5Yeqe7LKLvisIFiWDBcUFI7G/LxHrwDl1ZPZes=;
-        b=UI4ZK7Mss07ztjlb0lt2hn3LtbNEPeXCcAiSyjh+USavG4RGiDy0rSy82QStGHC1wv
-         H/TEnM0skLfpItvl37sxna57Wi224DnCTJKVMqgVVv8qt4b5owPsIBDdOnmklUX79zj1
-         cBUjaX1yNUxUlS4Pg6WYwOhsblWL4CYgOlGaTBPJZuSCbVgp/ULUb4my0ybYVvCZPh7Q
-         pjN51b78F1kImacrxUx7WlkjzVnvQ35FFidSjna8c64p0+ndwiNyZVslcZnKeD7CW/tv
-         +XoL100FlzUjRIsL1Q1bG+Wv+/x7KMIKMQuAy1H/LT3L65uXXRJj8T5OSL+3n3dYPPlJ
-         mbUg==
-X-Gm-Message-State: AJIora8/CH8HS1oFfOGqn++Fs7Gw+uSNaqe43CRw0LXXMOViAUBjSGNH
-        WFxG0TezDZeFhyxSCZnzvw==
-X-Google-Smtp-Source: AGRyM1s71mYHjgRvajARzt6yUDLac3slJauP/Yk6irLnti0u1tVfqTcvRz9lQPTSlzY1oaeDkp/SWA==
-X-Received: by 2002:a05:6808:bce:b0:33a:c6c8:9d6f with SMTP id o14-20020a0568080bce00b0033ac6c89d6fmr6219832oik.135.1658788114842;
-        Mon, 25 Jul 2022 15:28:34 -0700 (PDT)
+        bh=vrFg/Wdr2fpmDmlkrGgKtDYpcQh0adoN9huZZNeAVOQ=;
+        b=Tpsi4QB3GFKWUzPpssMRziiEEhUzcbZhFg7umD+Xyb4bCLgcB4v7C9dasSYUplLBr2
+         CL6AB7dEfXGgi/cvEWwNaZyqJV4xDh6URdG74FYgh4xk36zu09LVk0em2N9g+0Ox23Vl
+         q7DJyHohgGn6YemyqlfcGR7yb2/nkBzWCBOtkr04IOZosAP27gNxYZ8EZjswNa5oLkci
+         jwWlDmJ8J/E/ofFqZcGxzIAqmgAxSkXDb4dLJ3q0LgKmzMN5mAIO3W/rVJe2RLDlouVn
+         ie9AG5/rUA3KjtptVIhFzVSHTixMHMS+EeZd44KRJJvahntLvSc8fRTg0seB4arGsduz
+         TE+g==
+X-Gm-Message-State: AJIora/j1aed4SC1g01Rbp8C443SfvAGCrvbkPU1yw0ejoK2yN/IXXWa
+        cEj5msUJjQUX1C2D17LNxg==
+X-Google-Smtp-Source: AGRyM1t1bEV8DgQsWGAL0ndG+noYPz6WBjacLVXvISBkY4yCzv8I+OD2St3QKdRdkQDGzUvNBLwXNw==
+X-Received: by 2002:a05:6870:15c9:b0:101:cdac:3887 with SMTP id k9-20020a05687015c900b00101cdac3887mr7255938oad.35.1658788359595;
+        Mon, 25 Jul 2022 15:32:39 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b17-20020a056808011100b0033a9f4c13cesm5322861oie.13.2022.07.25.15.28.33
+        by smtp.gmail.com with ESMTPSA id f24-20020a9d6c18000000b0061c731fc92bsm5415876otq.64.2022.07.25.15.32.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jul 2022 15:28:34 -0700 (PDT)
-Received: (nullmailer pid 2859320 invoked by uid 1000);
-        Mon, 25 Jul 2022 22:28:32 -0000
-Date:   Mon, 25 Jul 2022 16:28:32 -0600
+        Mon, 25 Jul 2022 15:32:38 -0700 (PDT)
+Received: (nullmailer pid 2865933 invoked by uid 1000);
+        Mon, 25 Jul 2022 22:32:37 -0000
+Date:   Mon, 25 Jul 2022 16:32:37 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Jitao shi <jitao.shi@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org, hsinyi@chromium.org,
-        linux-mediatek@lists.infradead.org, fparent@baylibre.com,
-        CK Hu <ck.hu@mediatek.com>
-Subject: Re: [PATCH v2 1/1] dt-bindings: display: mediatek: dpi: add
- power-domains property
-Message-ID: <20220725222832.GA2859262-robh@kernel.org>
-References: <20220720130604.14113-1-allen-kh.cheng@mediatek.com>
- <20220720130604.14113-2-allen-kh.cheng@mediatek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: Re: [PATCH 01/10] dt-bindings: interconnect: qcom,msm8998-bwmon: add
+ support for SDM845 LLCC BWMON
+Message-ID: <20220725223237.GA2865899-robh@kernel.org>
+References: <20220720192807.130098-1-krzysztof.kozlowski@linaro.org>
+ <20220720192807.130098-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220720130604.14113-2-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20220720192807.130098-2-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 20 Jul 2022 21:06:04 +0800, Allen-KH Cheng wrote:
-> DPI is part of the display / multimedia block in MediaTek SoCs
-> and is managed using power controller in some platforms. We add
-> the power-domains property to the binding documentation.
+On Wed, 20 Jul 2022 21:27:58 +0200, Krzysztof Kozlowski wrote:
+> Add compatible for SDM845 Bandwidth Monitor instance measuring traffic
+> between LLCC and memory.  It comes with different register layout:
+> called v5.
 > 
-> Fixes:9273cf7d3942("dt-bindings: display: mediatek: convert the dpi bindings to yaml")
-> 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Cc: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml   | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../devicetree/bindings/interconnect/qcom,msm8998-bwmon.yaml     | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
