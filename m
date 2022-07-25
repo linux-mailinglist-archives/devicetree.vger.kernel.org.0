@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A9A57FD87
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 12:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F6357FD9F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 12:36:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234437AbiGYKbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 06:31:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53156 "EHLO
+        id S229694AbiGYKf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 06:35:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234374AbiGYKbu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 06:31:50 -0400
+        with ESMTP id S234448AbiGYKf5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 06:35:57 -0400
 Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9558DBF7D;
-        Mon, 25 Jul 2022 03:31:49 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE4D61835A;
+        Mon, 25 Jul 2022 03:35:55 -0700 (PDT)
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id A01F666015E7;
-        Mon, 25 Jul 2022 11:31:47 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id E0FB56601AA6;
+        Mon, 25 Jul 2022 11:35:53 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658745108;
-        bh=Kzl6rJAX0GE+A+bAr17TGLG58H0MIyUfgGavzI2ADVQ=;
+        s=mail; t=1658745354;
+        bh=uJhjhv9FEf4L8eIR0Uo4rGRFYDm94By0OZtCQ7aMwS0=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dH6TcisVVQQWZ1moaYXa3FpXe5qu6/whfdViIddJFf3N/UhJ0RgBggkYUBfbOaRts
-         appcv0aLiHHo4JaPh1DSLYXkQOBHjIguBUlAnEpcNBy0Vvow0kw7p/VdKzLtcTSqs0
-         iySYxJxFCTfG/NIrW+6WMQ4JuD3jG0PbZvBuJ2IHSxoRNPljU09n7n7fwhAdapGGm9
-         dEUnTOaFLHW1klsUMRQdZA0HMRT3NfKIv/P2fABP5URL5wIKkJGePEE0OH2jH45Rqw
-         dQwSevPd2dswQ0wH7uD9F6zyAI3U451lzwweuuSrMcwPoG4wW+UbNrLnx3rEedJ72C
-         4jp54+HrjQPqQ==
-Message-ID: <bcb8c2b4-a1ab-8646-9fcb-034a70f5a329@collabora.com>
-Date:   Mon, 25 Jul 2022 12:31:45 +0200
+        b=IZXFrqEAmkP6tSa8ke4aIOQTmJcLqTi85C4KCMTtR2p6A74so/XsYXJ0OrX5inCC9
+         2SsTT7PLbgMmqI6Q8SVaFtJWUgqcy3tJKiCwZK1LI0oJw4gTGJ67puWWNi9Orhrq0A
+         ymKJwZZ+HKzUInw0rU1iV9I8VX7dLLDXX/wHbkzPTNoXxhtE23mxakoRGC+9jl6PCK
+         RaJIri0xaDmxW5+NgzhysPsRlBBz18kRlq2W/c9PrgABEekxFacLDdpOPyNcvzc8XZ
+         f8ChmX4v58mFMNHqR3YxudPT/nj2F0o39Iehx/WlMrozY1D8LsvO65EjLMwfvAkB3a
+         P7kwfbhSbOx9Q==
+Message-ID: <b52caf77-7fdc-8496-3087-e4d392c93853@collabora.com>
+Date:   Mon, 25 Jul 2022 12:35:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: mt8173-oak: Switch to SMC watchdog
+Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: mt8186: Add and use
+ drive-strength-microamp
 Content-Language: en-US
-To:     Pin-yen Lin <treapking@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        Evan Benn <evanbenn@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20220725082447.2613231-1-treapking@chromium.org>
- <5856610d-510f-46dc-63b2-79e571956a7c@collabora.com>
- <CAEXTbpeHy6-WjLOyWFkncoHzBPM+6qq4w-kUoZj7=05gf8YBjw@mail.gmail.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>
+References: <20220725100253.10687-1-allen-kh.cheng@mediatek.com>
+ <20220725100253.10687-3-allen-kh.cheng@mediatek.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAEXTbpeHy6-WjLOyWFkncoHzBPM+6qq4w-kUoZj7=05gf8YBjw@mail.gmail.com>
+In-Reply-To: <20220725100253.10687-3-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -64,91 +64,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/07/22 12:19, Pin-yen Lin ha scritto:
-> On Mon, Jul 25, 2022 at 4:39 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 25/07/22 10:24, Pin-yen Lin ha scritto:
->>> Switch to SMC watchdog because we need direct control of HW watchdog
->>> registers from kernel. The corresponding firmware was uploaded in
->>> https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
->>>
->>
->> There's a fundamental issue with this change, I think.
->>
->> What happens if we run this devicetree on a device that does *not* have
->> the new(er) firmware?
+Il 25/07/22 12:02, Allen-KH Cheng ha scritto:
+> Commit e5fabbe43f3f ("pinctrl: mediatek: paris: Support generic
+> PIN_CONFIG_DRIVE_STRENGTH_UA") added support for using
+> drive-strength-microamp instead of mediatek,drive-strength-adv.
 > 
-> I haven't tried this patch with an older firmware. I'll manage to
-> build one for this.
->>
->> The kernel *shall not* get broken when running on devices that are running
->> on older firmware, especially because that's what was initially supported
->> and what is working right now.
+> Similarly to the mt8192 and mt8195, there's no user of property
+> 'mediatek,drive-strength-adv', hence removing it is safe.
 > 
-> Actually the current approach does not work *right*. The device boots,
-> but the watchdog does not work properly.
-> 
+> Fixes: 338e953f1bd1(dt-bindings: pinctrl: mt8186: add pinctrl file and binding document)
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 
-Is this a Chromebook firmware specific issue?
+The fixes tag format is wrong... Please fix that:
 
-> Also, all MT8173 ChromeOS devices have this firmware updated, and we
-> don't have other upstream users apart from mt8173-evb. Do we want to
-> support the developers that are running upstream linux with their
-> MT8173 boards?
-> 
+Fixes: 338e953f1bd1 ("dt-bindings: pinctrl: mt8186: add pinctrl file and binding 
+document")
 
-Upstream shall not be just about one machine: if we add support for a SoC there,
-we shall support the SoC-generic things in the SoC-specific DTSI, and the machine
-specific things in the machine-specific devicetrees.
+(sorry about wrapped line if you see it, that's supposed to be one line!).
 
-Chromebooks are not the only machines using the MT8173 SoC (Chuwi, Amazon also do
-have products using MT8173), so we shall not make the main mt8173.dtsi incompatible
-with these machines.
+After which:
 
->>
->> For this reason, I think that we should get some code around that checks
->> if the SMC watchdog is supported and, if not, resort to MMIO wdog.
-> 
-> What is the expected way to support this backward compatibility? Do we
-> put the old compatible strings ("mediatek,mt8173-wdt" and
-> "mediatek,mt6589-wdt") after "arm,smc-wdt" and reject it in the
-> drivers if the firmware does not support it?
-
-I don't know what's the best option to support both cases... Perhaps a good one
-would be to check (in mtk_wdt? or in arm_smc_wdt?) if the arm_smc_wdt is actually
-supported in firmware, so if the SMC one is registered, we skip the other.
-
->>
->> Regards,
->> Angelo
->>
->>
->>> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
->>> ---
->>>
->>>    arch/arm64/boot/dts/mediatek/mt8173.dtsi | 6 ++----
->>>    1 file changed, 2 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->>> index a2aef5aa67c1..2d1c776740a5 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
->>> @@ -528,10 +528,8 @@ power-domain@MT8173_POWER_DOMAIN_MFG {
->>>                        };
->>>                };
->>>
->>> -             watchdog: watchdog@10007000 {
->>> -                     compatible = "mediatek,mt8173-wdt",
->>> -                                  "mediatek,mt6589-wdt";
->>> -                     reg = <0 0x10007000 0 0x100>;
->>> +             watchdog {
->>> +                     compatible = "arm,smc-wdt";
->>>                };
->>>
->>>                timer: timer@10008000 {
->>>
->>
->>
-
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
