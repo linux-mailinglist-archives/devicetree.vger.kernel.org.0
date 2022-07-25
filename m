@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F0657FB1D
+	by mail.lfdr.de (Postfix) with ESMTP id 26D4F57FB1C
 	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 10:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231778AbiGYITZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 04:19:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37516 "EHLO
+        id S233514AbiGYITY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 04:19:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231532AbiGYITL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 04:19:11 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3023213CDA
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 01:19:09 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id m17so14558151wrw.7
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 01:19:09 -0700 (PDT)
+        with ESMTP id S232065AbiGYITM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 04:19:12 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E0313CEF
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 01:19:10 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id w8-20020a05600c014800b003a32e89bc4eso5864735wmm.5
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 01:19:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=BiiV58nU4rcN8bdraPGg645D1WoAdToltdDT10Y4MlA=;
-        b=yxSj25Jac0tBpewedcx75I0V8AXibC32IcqyFe5LWXT2XFcLbjj/VCWyt1YjR+Ambn
-         4trkkyYubCldCHZgCtjTWcN2hj9fO7UMhw8fH8KAkBC4EXnr20asStmofrcxbG95hZi9
-         qrO/nduVf/pBba+PHSS1PVku10Q76Uo+Kohv+5TLKZsUquUpAtxqbMrmGDrgj+EaNSYP
-         yR7ajhLMqkZBaEOWHCrqI5IiwMyWymdNT6HPRgdBpQiGBa922y8hgDm7jBg77DKD5TKs
-         A97TM4WFRhZA0PLJPPURZEK/s1GKD0xThMUIRIs1FfX0yvnF/i3tLcQEPtxuRQ/egi1G
-         dysw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=1uBINhkXj5CiEZH5/8Pm1Qj/TstsEH9+dcozESvLJgY=;
+        b=4VWKR6bZmkYqrWq3HipPRaTMH3acCvx2/KBXfW0kxl0JLH2/QaFB5eScM72+FYuodm
+         1Ps0q3GVeNhtTBshvFoBo3Tg+luJAwRx41Xw2WtnWBJxDGW50QVjM//ZZ7wJvEAAosnM
+         +Cpv9WmVQCiCmjmJ29j2Y2wEiCmig/9I5iyCVcpCZU1JQbrbcqLFkcPaZk6vTFVvSO4k
+         r8HNjXFoAY4onmMo4mvQFeERGQPpAGzZMSpw4mwbD9NsJwuInYdD0TxA5EmnAe/IvGxy
+         VFPQIIeLE0FjcUp5Z8aNVQnik0SGEXiA3bBapqYfkjetq4LhdY5qx9raqdGyxVn92K0p
+         hIIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=BiiV58nU4rcN8bdraPGg645D1WoAdToltdDT10Y4MlA=;
-        b=pjGy1T/+bBMVsorT3URqKvLlTk9eyXcd2lVbqetNpVnsMvWDXRpQOHfvvnPMpQ9S36
-         WZEBZBL7w37wj4tZvDVGXTp8aMOpXwDfCqp02ISHg6u0RrHbHFZlcLhaFVRR6TEzWFA8
-         fXNjgL2YL2PdlEgl7F1xwY4goHTE/GZ4SAjqUoGBieP264b4/+ePfQ1bDDLh5EBuzDvB
-         kurzqclP/UuoOxd9Kvx/igzdScr5JUoUaD8g0eIF07KbIiDMYYJYHwnRXXRVRUszfTA1
-         vCZ5FMzSzpwo1XQ/T+UlieUIfppFh5aZARrxmf8Wkc3MbUd0FSySGXdIm3j1TBEPt+68
-         KLmg==
-X-Gm-Message-State: AJIora9zLkpGOESwMigP6RdEIoCgFrN58IbR/6E9TSyhz9eWf+ga0dkw
-        qx2Sk4TdLfRmoSzhD8ADvsK41Q==
-X-Google-Smtp-Source: AGRyM1s09Hj0Ovo8gO4XIgJh8/tiWDq5AfIXHuQX7HAQyK6OBlWljcZEzkfM801KP4JxiVQI7Qx9/A==
-X-Received: by 2002:a05:6000:1acb:b0:21d:ad71:3585 with SMTP id i11-20020a0560001acb00b0021dad713585mr6633475wry.156.1658737147630;
-        Mon, 25 Jul 2022 01:19:07 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=1uBINhkXj5CiEZH5/8Pm1Qj/TstsEH9+dcozESvLJgY=;
+        b=GiIh5hBLcpXVCeyCoooBvd1VeVEZnp/A/8bkN2+80COfZL8feX1/e9AIeVT9KbhBuk
+         /+2FLgmm/6tl7m6hv56n6qqLbKZ031tX6m51ewpgBpR7kVSvcIliBxemNOzgQzpmRT3d
+         u2nzsgxy9TdULbZIJ/PFL7z5t0k/avQxZuQT2ZWTR7GzxbmGID+eqm1WCSn5oeSlX0dI
+         XBeRV+g48oo+h7fQu75BmJ6arfB612TaPUZyXRvflApQ1WjSt5jJe2E6F6yKE3cGnw61
+         wcVDu1fcX6quZKpFPJ/hLG2ZNe7G7T0Hd+KL2u2XnFUxTGuPaEi62DKCIoRJuqfL+BZ8
+         BPhg==
+X-Gm-Message-State: AJIora/WkuyivzLIypnhMlIBQ07IF6vA7Mg71glH9GwCfY1a4X9K1vow
+        HzYssG5iugGLm5uYb5H9ofjuRA==
+X-Google-Smtp-Source: AGRyM1vVJst7/Aus6G68zbPeB5sjlhQjFaxS3scwhOLz5W4CplCDcGNlIQKvOud+yzBrYFf/TaeraA==
+X-Received: by 2002:a7b:c851:0:b0:3a3:19df:2673 with SMTP id c17-20020a7bc851000000b003a319df2673mr7533079wml.75.1658737148896;
+        Mon, 25 Jul 2022 01:19:08 -0700 (PDT)
 Received: from blmsp.fritz.box ([2001:4090:a243:806e:25e7:daa:8208:ceb])
-        by smtp.gmail.com with ESMTPSA id x3-20020a05600c420300b003a3200bc788sm16695264wmh.33.2022.07.25.01.19.06
+        by smtp.gmail.com with ESMTPSA id x3-20020a05600c420300b003a3200bc788sm16695264wmh.33.2022.07.25.01.19.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jul 2022 01:19:07 -0700 (PDT)
+        Mon, 25 Jul 2022 01:19:08 -0700 (PDT)
 From:   Markus Schneider-Pargmann <msp@baylibre.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -55,11 +55,14 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
         Markus Schneider-Pargmann <msp@baylibre.com>
-Subject: [PATCH v2 0/4] soc: mediatek: MT8365 power support
-Date:   Mon, 25 Jul 2022 10:18:49 +0200
-Message-Id: <20220725081853.1636444-1-msp@baylibre.com>
+Subject: [PATCH v2 1/4] dt-bindings: power: Add MT8365 power domains
+Date:   Mon, 25 Jul 2022 10:18:50 +0200
+Message-Id: <20220725081853.1636444-2-msp@baylibre.com>
 X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220725081853.1636444-1-msp@baylibre.com>
+References: <20220725081853.1636444-1-msp@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -71,38 +74,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Fabien Parent <fparent@baylibre.com>
 
-this series contains patches related to the support of mt8365 power domains. I
-took over the series from Fabien.
+Add power domains dt-bindings for MT8365.
 
-Best,
-Markus
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+---
 
-Changes in v2:
-- Updated error handling path for scpsys_power_on()
-- Minor updates described in each patch
+Notes:
+    Changes in v2:
+    - Made include/dt-bindings/power/mt8365-power.h dual-license.
 
-Previous versions:
-v1 - https://lore.kernel.org/linux-mediatek/20220530204214.913251-1-fparent@baylibre.com/
-
-Alexandre Bailon (2):
-  soc: mediatek: Add support of WAY_EN operations
-  soc: mediatek: add support of MTK_SCPD_STRICT_BUSP cap
-
-Fabien Parent (2):
-  dt-bindings: power: Add MT8365 power domains
-  soc: mediatek: pm-domains: Add support for MT8365
-
- .../power/mediatek,power-controller.yaml      |   2 +
- drivers/soc/mediatek/mt8365-pm-domains.h      | 147 ++++++++++++++++++
- drivers/soc/mediatek/mtk-pm-domains.c         |  98 +++++++++---
- drivers/soc/mediatek/mtk-pm-domains.h         |  29 ++--
- include/dt-bindings/power/mt8365-power.h      |  19 +++
- 5 files changed, 267 insertions(+), 28 deletions(-)
- create mode 100644 drivers/soc/mediatek/mt8365-pm-domains.h
+ .../power/mediatek,power-controller.yaml      |  2 ++
+ include/dt-bindings/power/mt8365-power.h      | 19 +++++++++++++++++++
+ 2 files changed, 21 insertions(+)
  create mode 100644 include/dt-bindings/power/mt8365-power.h
 
+diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+index 135c6f722091..2c6d3e4246b2 100644
+--- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
++++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+@@ -29,6 +29,7 @@ properties:
+       - mediatek,mt8186-power-controller
+       - mediatek,mt8192-power-controller
+       - mediatek,mt8195-power-controller
++      - mediatek,mt8365-power-controller
+ 
+   '#power-domain-cells':
+     const: 1
+@@ -67,6 +68,7 @@ patternProperties:
+               "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
+               "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
+               "include/dt-bindings/power/mt8195-power.h" - for MT8195 type power domain.
++              "include/dt-bindings/power/mt8365-power.h" - for MT8365 type power domain.
+         maxItems: 1
+ 
+       clocks:
+diff --git a/include/dt-bindings/power/mt8365-power.h b/include/dt-bindings/power/mt8365-power.h
+new file mode 100644
+index 000000000000..e6cfd0ec7871
+--- /dev/null
++++ b/include/dt-bindings/power/mt8365-power.h
+@@ -0,0 +1,19 @@
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
++/*
++ * Copyright (c) 2022 MediaTek Inc.
++ */
++
++#ifndef _DT_BINDINGS_POWER_MT8365_POWER_H
++#define _DT_BINDINGS_POWER_MT8365_POWER_H
++
++#define MT8365_POWER_DOMAIN_MM		0
++#define MT8365_POWER_DOMAIN_CONN	1
++#define MT8365_POWER_DOMAIN_MFG		2
++#define MT8365_POWER_DOMAIN_AUDIO	3
++#define MT8365_POWER_DOMAIN_CAM		4
++#define MT8365_POWER_DOMAIN_DSP		5
++#define MT8365_POWER_DOMAIN_VDEC	6
++#define MT8365_POWER_DOMAIN_VENC	7
++#define MT8365_POWER_DOMAIN_APU		8
++
++#endif /* _DT_BINDINGS_POWER_MT8365_POWER_H */
 -- 
 2.36.1
 
