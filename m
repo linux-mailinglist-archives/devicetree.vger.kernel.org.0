@@ -2,80 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC39D580773
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 00:36:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B069C5807B0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 00:42:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230431AbiGYWgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 18:36:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42780 "EHLO
+        id S237603AbiGYWl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 18:41:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229784AbiGYWgR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 18:36:17 -0400
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3728D22BDD;
-        Mon, 25 Jul 2022 15:36:17 -0700 (PDT)
-Received: by mail-ot1-f44.google.com with SMTP id y10-20020a9d634a000000b006167f7ce0c5so9740990otk.0;
-        Mon, 25 Jul 2022 15:36:17 -0700 (PDT)
+        with ESMTP id S237658AbiGYWln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 18:41:43 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A2C8275EE;
+        Mon, 25 Jul 2022 15:39:01 -0700 (PDT)
+Received: by mail-oi1-f171.google.com with SMTP id n133so5050748oib.0;
+        Mon, 25 Jul 2022 15:39:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Eyu1crtWTSJ/wKktKn2bCD4mtqeJsq4ok+GmCcS2Uj8=;
-        b=ZqNS4FeTfJCGeDjFyWEkfhBvXfKsiyxMOxekUrwpDIW6AtZGwRo2OwGpGARqjdCZ64
-         mTAJZBbK/7Ezjlb2XPQmRiak1f/aN3g4uCEzO2PQvCw0mIeFlPOZAGGMt79T6bbqa+I+
-         nQo5KA1N5GbIKV923HLPJd1V79lR/VrrlnQ5w9OOXOmYZ5hf/nbzbRZskztv/xHidWkg
-         Wyjc2Od4UNKfLC6lHFaIV7EJCgn4Kaydm2yEfEpbwjRo9BoyWcfvjxlYbMgsswGWn0K3
-         tVKDqFMxdMirFjk5DZCIcSN5dri7XBMh4HHeHbZMFWgmLU5gKTOfTOiy3bO6I7dMINHo
-         U0AA==
-X-Gm-Message-State: AJIora/h7/jFBxZh32RPHf0FxGJ8bxAqUsxpydWgc6HyyfP/4nTMSHvw
-        /fFm4kDfY3lvnhYacg84EYFoSPVe8g==
-X-Google-Smtp-Source: AGRyM1u0StGZDbuF9HoXEonCaBjVakg5NTUPPyrimmOjlELkzV3g/A4DSewECV8OF0DROTxFxF9t7Q==
-X-Received: by 2002:a05:6830:1e77:b0:61c:80d2:1a66 with SMTP id m23-20020a0568301e7700b0061c80d21a66mr5456908otr.214.1658788576431;
-        Mon, 25 Jul 2022 15:36:16 -0700 (PDT)
+        bh=w7FxtvFFf34t5r5MspsAdF6ejzut5rmIbeeWhBNszsk=;
+        b=7ofqdrd2DVgHYYm6V3N7ionoTAm83ee0ZGxLIw1cVy8XeloG4tylkOpnEDTamCUt0u
+         lZifD4LaoDtVzEdmew6vmOq4TWfHU8DN99vAR7yin5/JaMyGU+csK2prq7DMdF9YvGI4
+         T8Yr7nAT3Av8KhTWzdG3lIAxsyleozeFGBY0yddOnrmXBjhSzaXxBXSBTek1VSIJQwMG
+         eEd01XrE1xuNpgrDpFHyXgK3fy6tb4e67pKKso+4m+Qc574Qv41JRsECbPnUk95QZnXH
+         y3Xk+rE4djKT6LsyPH1aZH6lgLdEVduI+CbpTkOWT8aNxzWrfztU9YaOoLg+tfTP/H91
+         G+TA==
+X-Gm-Message-State: AJIora8cSSdwkGlmGc80mvQVv/ebjXtUWn3MSsZcDgKWPJtTU7pY4NyB
+        6gkzfWZJIo/UIXtYSH+WJA==
+X-Google-Smtp-Source: AGRyM1v6/ZFtxGEc5L9KVu1Lgd4C63p2v2JuY18JC+fh1GxnzBafN02CL3keRAK9CglDbihJ7VltAQ==
+X-Received: by 2002:a54:458b:0:b0:33a:74a7:4271 with SMTP id z11-20020a54458b000000b0033a74a74271mr6406409oib.287.1658788690861;
+        Mon, 25 Jul 2022 15:38:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id n8-20020a056870240800b0010d7242b623sm6597056oap.21.2022.07.25.15.36.15
+        by smtp.gmail.com with ESMTPSA id c17-20020a056870b29100b000e686d1386dsm6847741oao.7.2022.07.25.15.38.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jul 2022 15:36:16 -0700 (PDT)
-Received: (nullmailer pid 2871903 invoked by uid 1000);
-        Mon, 25 Jul 2022 22:36:14 -0000
-Date:   Mon, 25 Jul 2022 16:36:14 -0600
+        Mon, 25 Jul 2022 15:38:10 -0700 (PDT)
+Received: (nullmailer pid 2874904 invoked by uid 1000);
+        Mon, 25 Jul 2022 22:38:09 -0000
+Date:   Mon, 25 Jul 2022 16:38:09 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, cy_huang@richtek.com,
-        linux-usb@vger.kernel.org, gene_chen@richtek.com,
-        heikki.krogerus@linux.intel.com, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
-        linux@roeck-us.net, robh+dt@kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings usb: typec: rt1711h: Add binding for
- Richtek RT1711H
-Message-ID: <20220725223614.GA2871870-robh@kernel.org>
-References: <20220721061144.35139-1-gene.chen.richtek@gmail.com>
- <20220721061144.35139-2-gene.chen.richtek@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-crypto@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Lionel Debieve <lionel.debieve@foss.st.com>,
+        phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
+        Stefan Hansson <newbyte@disroot.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>
+Subject: Re: [PATCH] dt-bindings: crypto: Add ST-Ericsson Ux500 CRYP
+Message-ID: <20220725223809.GA2874868-robh@kernel.org>
+References: <20220721163010.1060062-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220721061144.35139-2-gene.chen.richtek@gmail.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220721163010.1060062-1-linus.walleij@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 21 Jul 2022 14:11:39 +0800, Gene Chen wrote:
-> From: Gene Chen <gene_chen@richtek.com>
+On Thu, 21 Jul 2022 18:30:10 +0200, Linus Walleij wrote:
+> This adds device tree bindings for the Ux500 CRYP block.
 > 
-> Add binding for Richtek RT1711H
+> This has been used for ages in the kernel device tree for
+> Ux500 but was never documented, so fill in the gap.
 > 
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: Lionel Debieve <lionel.debieve@foss.st.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/usb/richtek,rt1711h.yaml         | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/richtek,rt1711h.yaml
+> The relationship to the existing STM32 CRYP block is pretty
+> obvious when looking at the register map. If preferred, I
+> can just extend the STM32 bindings with these extra
+> (generic) properties and compatibles as well.
+> ---
+>  .../crypto/stericsson,ux500-cryp.yaml         | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/stericsson,ux500-cryp.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
