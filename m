@@ -2,91 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8778A580596
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 669C458059B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:29:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236680AbiGYU2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 16:28:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33798 "EHLO
+        id S237073AbiGYU3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 16:29:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234791AbiGYU2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:28:16 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C20CD1EC4E
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:28:14 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id d17so17687714lfa.12
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:28:14 -0700 (PDT)
+        with ESMTP id S237052AbiGYU3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:29:47 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CC0D220F7
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:29:45 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id t17so7522578lfk.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:29:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=O2CYov6VR9WRgLV7z6Vc4s5eGjcXRfw3rMK6o2AVod4=;
-        b=RR3XETVpwiUnj5jXaPQvAbUGMN7jphRUcKg0sN6ks3ItxY+ywhthjjY6zMH+9uvnop
-         RFinhCM8/0aJU7SZ1AOaP4MOEvU5LAx/q7xtZJyki5KlfhAErO1eSkz2Sa1HdXKIVXXp
-         HMYzKSLPc5EWqhST2qrRh6cVxrC30ViLwp3aos8viQ0cstFmm9V+ls+/1loscT8fsYxJ
-         36cnrFD+SbdN5mteoOksk+vFYAJIi67J8gUoGepfvZN846G6RPEbmfl5l6WbHlA60HyE
-         mYaCrbv06HbueVXkkB5vuDmV0flizq481lYBzNI3aIPoTBQ3UbBqCJzz8V+4h6l/QKQa
-         p/rg==
+        bh=b4+zrHydncSnGE8NzMR4jfY6BqFnB6mPYhQPBEGmp+4=;
+        b=vuV4gzEXUyKzE3RrbAcYXdJpyb6GtSn899V1rBjnjTjVzITMoIyUWVTF3eeKsx1gAm
+         teVs3DU+iJyaaIJoWl6G2cSz4mTJtxS2bpAQxAAbyH6W9EBNLc2YKp1NYMsSvfEvl1Nw
+         VA9u6s81AhaHWD7kLv3cPMbWRTuBeyB58FHUHJUf9twXDgsfIamkEXautM33e0uhtJDm
+         GX1VtaMoTfZf+D7ZE35Rj5cWAfNRCth0dazBmDK8vZn33mkc3jkUWLtHpVCoWt1eBxYo
+         BVyovkHQNxsbuSRHiNAlKdX9DWvd7+oB39aBNM9cWGdj0eWlzOgK/6iBs1UUx477jiPG
+         tvWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=O2CYov6VR9WRgLV7z6Vc4s5eGjcXRfw3rMK6o2AVod4=;
-        b=8FUVMMeaaUQ8h2ajwxXh3Fu30e4KriEAZKwcugHPr48yzkDFVNUtC2aFh6DOYDoVuH
-         oEr/CU9cOqgN4hA90MX9h9E5q3Czdlhj7tsGLWa2jjmVAFY56Kg4fWCqMyUymGpYNiQt
-         9D3myLhO8GkBzd22VIlX+sox6hl44YYrn5QgIrXZiXDAJ/NXMTwvn8iLh5sWPYw7TJ5S
-         arqdvrKY173sJEG/VVk0VHaaNazwBpcOdvHGF75Y9JnH7vqTgytuSGWMIQGNQE4zl8Dx
-         Ph1cM6woNGHHcOZE0/VMQCq97KQcCBpcUAR9M/noGJfuAbgP4SFr2F7QvxhaHdRoMqDu
-         6z4A==
-X-Gm-Message-State: AJIora+Yt0+WFsLedUTSC5WfYn4qLBLE6mWK0yvQrtsJJuzL84NkG1bE
-        f9gtVvyqEYh+4u/jKWyVu8rsew==
-X-Google-Smtp-Source: AGRyM1vkjXrbVPKhc4CGN2oLklJ4LfkjLtfOC9TYzvAxNETYrZFYaB6EWiVDnv+7KcXSWKzsP7Cd+w==
-X-Received: by 2002:ac2:4a8f:0:b0:48a:9705:c81d with SMTP id l15-20020ac24a8f000000b0048a9705c81dmr1262795lfp.63.1658780893176;
-        Mon, 25 Jul 2022 13:28:13 -0700 (PDT)
+        bh=b4+zrHydncSnGE8NzMR4jfY6BqFnB6mPYhQPBEGmp+4=;
+        b=HIdzIdpnpGDgHdMoL2j8V4BA8LFDABALxeq4Nq0TZXaKGg4ovUmxfwhLXYomLp3dQi
+         dgAoQPuUDe3bA7WjYmCWcZzdxDMe1BgN++j7dA7JEIJQgV5En1Tue9RD1oVbCDPuKGN2
+         oNw0uUExy5+/oX2hk++TTHUn60mfXs7CPLfExZCSiB3x0Xq3y0FxpPQs9/uM5F/eIzcv
+         wtmxzV0qYiWaHHOfr+g4cxAcMtu5YEoBeBz7ys8f3Sl/Pcnw2cuUUWZcOPC9hdPn1qjE
+         VgKm8dA5Xi4ksvvz7HWOVUjLvYTJptQMrO+APe4fgJGux7m1OugUokEFn3Pz+sCtTJ+o
+         C/Pw==
+X-Gm-Message-State: AJIora8g9Upemuv7M9Sf7j51NhMr02h6alqDLZh7aneqfACAsfEhOz9x
+        MXCN0WzX3Hx5MiH4wpOQAR1uMQ==
+X-Google-Smtp-Source: AGRyM1t7ckEhCnEiqOR0EzJEDxOVbbtd5X+MdkJqJwBraQR7j+TWjzxErv7tMQ71wjc4uX91+CX2ZA==
+X-Received: by 2002:a05:6512:218c:b0:48a:1e1e:7b59 with SMTP id b12-20020a056512218c00b0048a1e1e7b59mr5044957lft.580.1658780983896;
+        Mon, 25 Jul 2022 13:29:43 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id 27-20020ac25f5b000000b004896ed8dce3sm1448860lfz.2.2022.07.25.13.28.11
+        by smtp.gmail.com with ESMTPSA id v7-20020a2ea447000000b0025d715bc088sm2907615ljn.0.2022.07.25.13.29.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Jul 2022 13:28:12 -0700 (PDT)
-Message-ID: <979a618d-a107-af3d-c101-de6eb9e89464@linaro.org>
-Date:   Mon, 25 Jul 2022 22:28:11 +0200
+        Mon, 25 Jul 2022 13:29:43 -0700 (PDT)
+Message-ID: <ad56dc32-e696-3c16-17cc-28e8d24c36dc@linaro.org>
+Date:   Mon, 25 Jul 2022 22:29:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [EXT] Re: [PATCH v3 3/4] dt-bindings: irqchip: imx mu work as msi
- controller
+Subject: Re: [PATCH v4 2/5] spi: dt-bindings: add documentation for
+ hpe,gxp-spifi
 Content-Language: en-US
-To:     Frank Li <frank.li@nxp.com>, "jdmason@kudzu.us" <jdmason@kudzu.us>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>
-Cc:     "kernel@vger.kernel.org" <kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "ntb@lists.linux.dev" <ntb@lists.linux.dev>
-References: <20220720213036.1738628-1-Frank.Li@nxp.com>
- <20220720213036.1738628-4-Frank.Li@nxp.com>
- <2c11d0b0-b012-ea24-5c3c-305bbdd231a0@linaro.org>
- <PAXPR04MB9186010F8F364CFB760064DF88959@PAXPR04MB9186.eurprd04.prod.outlook.com>
- <7994d7c7-ae13-a136-f60c-40fd9918565d@linaro.org>
- <PAXPR04MB91860D406AF430B16032EA5488959@PAXPR04MB9186.eurprd04.prod.outlook.com>
+To:     nick.hawkins@hpe.com
+Cc:     broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com,
+        linux@armlinux.org.uk, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, arnd@arndb.de, joel@jms.id.au
+References: <20220725201322.41810-1-nick.hawkins@hpe.com>
+ <20220725201322.41810-3-nick.hawkins@hpe.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PAXPR04MB91860D406AF430B16032EA5488959@PAXPR04MB9186.eurprd04.prod.outlook.com>
+In-Reply-To: <20220725201322.41810-3-nick.hawkins@hpe.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -99,44 +78,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2022 18:55, Frank Li wrote:
-
->>>> Not minItems but maxItems in general, but anyway you need to actually
->>>> list and describe the items (and then skip min/max)
->>> [Frank Li]
->>>       I am not sure format.  Any example?
->>>
->>> Reg:
->>>       Items:
->>>            - description:  a side register
->>>            - description: b side register
->>
->> Yes, but then explain what is A and B in bindings description.
+On 25/07/2022 22:13, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> [Frank Li]  How about "A(B) side base register address."
-> Any other description need?  
-
-In top-level description you have:
-  "The MU also provides the ability for one processor to signal the
-other processor using interrupts."
-
-so maybe:
-  "The MU also provides the ability for one processor (A side) to signal
-the other processor (B side) using interrupts."
-
+> Create documentation for the hpe,gxp-spifi binding to support access to
+> the SPI parts
 > 
->>
->> Why MU, which sits on A side needs to access other side (B) registers?
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> [Frank Li] MU work as MSI controller for PCI EP.  So driver need provide
-> B side register to PCI EP by msi_msg.   PCI EP driver use this address to set
-> PCI bar<n>.  Then PCI host can write this address to trigger PCIe EP side irq
-> As doorbell. 
-> 
-> MU MSI driver also need A side register
-> To get irq status.  So MU MSI need both side registers. 
 
-OK.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
