@@ -2,38 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E34057FD8B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 12:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79ECF57FD41
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 12:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234365AbiGYKc1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 06:32:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53740 "EHLO
+        id S232971AbiGYKTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 06:19:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232314AbiGYKc0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 06:32:26 -0400
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 616B9BF7D
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 03:32:25 -0700 (PDT)
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 011EB1A13A8;
-        Mon, 25 Jul 2022 12:32:24 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id BF22E1A01B7;
-        Mon, 25 Jul 2022 12:32:23 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 6F0A01800318;
-        Mon, 25 Jul 2022 18:32:22 +0800 (+08)
-From:   haibo.chen@nxp.com
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        haibo.chen@nxp.com, devicetree@vger.kernel.org
-Subject: [PATCH] arm: dts: imx7d-sdb: config the max pressure for tsc2046
-Date:   Mon, 25 Jul 2022 18:16:22 +0800
-Message-Id: <1658744182-570-1-git-send-email-haibo.chen@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        with ESMTP id S231654AbiGYKTX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 06:19:23 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0484AB491
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 03:19:22 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id h9so15314241wrm.0
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 03:19:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4qKGmWMqZhEmESnw4XiD+O0THResKBg5Q3wlwtvAW/k=;
+        b=hv2GEF4dtTTSztB0obRjKRpHxTon1gEYyRohRuamIcDUPyt/tP2SXOQBZFsD7zpGE+
+         bTEK8t5WDE+622xIsSiGf/Fs4gOdTrZhWaglwuctUCChX3HcB07SyaIQwElXb2W6RHRG
+         iGA/Nxx3TL9R4Kd/V57KX6EiRH99aBno+/RAg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4qKGmWMqZhEmESnw4XiD+O0THResKBg5Q3wlwtvAW/k=;
+        b=yAzOlSGkKSGlZ3rcdQigLxUagJdOQaRDa6miXNLp5Wkn63NL2yeJEL81ygumiUVCzf
+         hjFsE6GWl4d/dbXV6cvoRf556knaah83CT9IdhxfKuqAEvo6a+zfE2UalA9yVkFdCqkR
+         wCwzp0fcU1IZR525A9h61b+K8Jmimnnz32JVA5HjhfwmQBjLzR684LOmUqvUxGhKd0m6
+         57GdyHFF0wQphp0QDuOup8//bGJjk198PNweNUdtCxGoh5E63I42mAqm4TOMCxQKlr43
+         qelIuj0iCCakvLRIl/qN9cfR5rqKLaHxaiOH2PqBbJuVhDhDaJk5MdEIZ7VDKBIn0BsQ
+         89XQ==
+X-Gm-Message-State: AJIora9eotPmHC3dYS0+n+bj2TN8lWnfOrrCBkjRoF1pcbQ5igAPPjE5
+        cqdn+wOVngqiOwFnTBxEwcbERDe6f0B8DbPCM92k/Q==
+X-Google-Smtp-Source: AGRyM1uN9zadKS6Nx4rG97C6xaz+jKp9LVcuSfRCaJh2ZAajRxqI38cP8WAfn6ByjTht9F2p1SRciCiBlVqAEVGzDmc=
+X-Received: by 2002:a5d:59a9:0:b0:21e:5e6a:6a8e with SMTP id
+ p9-20020a5d59a9000000b0021e5e6a6a8emr7812606wrr.190.1658744360514; Mon, 25
+ Jul 2022 03:19:20 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220725082447.2613231-1-treapking@chromium.org> <5856610d-510f-46dc-63b2-79e571956a7c@collabora.com>
+In-Reply-To: <5856610d-510f-46dc-63b2-79e571956a7c@collabora.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Mon, 25 Jul 2022 18:19:09 +0800
+Message-ID: <CAEXTbpeHy6-WjLOyWFkncoHzBPM+6qq4w-kUoZj7=05gf8YBjw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8173-oak: Switch to SMC watchdog
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -41,54 +68,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Haibo Chen <haibo.chen@nxp.com>
+On Mon, Jul 25, 2022 at 4:39 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 25/07/22 10:24, Pin-yen Lin ha scritto:
+> > Switch to SMC watchdog because we need direct control of HW watchdog
+> > registers from kernel. The corresponding firmware was uploaded in
+> > https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
+> >
+>
+> There's a fundamental issue with this change, I think.
+>
+> What happens if we run this devicetree on a device that does *not* have
+> the new(er) firmware?
 
-Use the general touchscreen method to config the max pressure for
-touch tsc2046(data sheet suggest 8 bit pressure), otherwise, for
-ABS_PRESSURE, when config the same max and min value, weston will
-meet the following issue,
+I haven't tried this patch with an older firmware. I'll manage to
+build one for this.
+>
+> The kernel *shall not* get broken when running on devices that are running
+> on older firmware, especially because that's what was initially supported
+> and what is working right now.
 
-[17:19:39.183] event1  - ADS7846 Touchscreen: is tagged by udev as: Touchscreen
-[17:19:39.183] event1  - ADS7846 Touchscreen: kernel bug: device has min == max on ABS_PRESSURE
-[17:19:39.183] event1  - ADS7846 Touchscreen: was rejected
-[17:19:39.183] event1  - not using input device '/dev/input/event1'
+Actually the current approach does not work *right*. The device boots,
+but the watchdog does not work properly.
 
-This will then cause the APP weston-touch-calibrator can't list touch devices.
+Also, all MT8173 ChromeOS devices have this firmware updated, and we
+don't have other upstream users apart from mt8173-evb. Do we want to
+support the developers that are running upstream linux with their
+MT8173 boards?
 
-root@imx6ul7d:~# weston-touch-calibrator
-could not load cursor 'dnd-move'
-could not load cursor 'dnd-copy'
-could not load cursor 'dnd-none'
-No devices listed.
+>
+> For this reason, I think that we should get some code around that checks
+> if the SMC watchdog is supported and, if not, resort to MMIO wdog.
 
-And accroding to binding Doc, "ti,x-max", "ti,y-max", "ti,pressure-max"
-belong to the deprecated properties, so remove them. Also for "ti,x-min",
-"ti,y-min", "ti,x-plate-ohms", the value set in dts equal to the default
-value in driver, so are redundant, also remove here.
-
-Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
----
- arch/arm/boot/dts/imx7d-sdb.dts | 7 +------
- 1 file changed, 1 insertion(+), 6 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx7d-sdb.dts b/arch/arm/boot/dts/imx7d-sdb.dts
-index 78f4224a9bf4..e93b9cd9c27b 100644
---- a/arch/arm/boot/dts/imx7d-sdb.dts
-+++ b/arch/arm/boot/dts/imx7d-sdb.dts
-@@ -206,12 +206,7 @@ tsc2046@0 {
- 		interrupt-parent = <&gpio2>;
- 		interrupts = <29 0>;
- 		pendown-gpio = <&gpio2 29 GPIO_ACTIVE_HIGH>;
--		ti,x-min = /bits/ 16 <0>;
--		ti,x-max = /bits/ 16 <0>;
--		ti,y-min = /bits/ 16 <0>;
--		ti,y-max = /bits/ 16 <0>;
--		ti,pressure-max = /bits/ 16 <0>;
--		ti,x-plate-ohms = /bits/ 16 <400>;
-+		touchscreen-max-pressure = <255>;
- 		wakeup-source;
- 	};
- };
--- 
-2.25.1
-
+What is the expected way to support this backward compatibility? Do we
+put the old compatible strings ("mediatek,mt8173-wdt" and
+"mediatek,mt6589-wdt") after "arm,smc-wdt" and reject it in the
+drivers if the firmware does not support it?
+>
+> Regards,
+> Angelo
+>
+>
+> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> > ---
+> >
+> >   arch/arm64/boot/dts/mediatek/mt8173.dtsi | 6 ++----
+> >   1 file changed, 2 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> > index a2aef5aa67c1..2d1c776740a5 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> > @@ -528,10 +528,8 @@ power-domain@MT8173_POWER_DOMAIN_MFG {
+> >                       };
+> >               };
+> >
+> > -             watchdog: watchdog@10007000 {
+> > -                     compatible = "mediatek,mt8173-wdt",
+> > -                                  "mediatek,mt6589-wdt";
+> > -                     reg = <0 0x10007000 0 0x100>;
+> > +             watchdog {
+> > +                     compatible = "arm,smc-wdt";
+> >               };
+> >
+> >               timer: timer@10008000 {
+> >
+>
+>
