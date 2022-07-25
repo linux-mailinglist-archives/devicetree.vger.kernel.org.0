@@ -2,69 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 789945805DE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:42:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C1825805E9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:47:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237131AbiGYUmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 16:42:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46116 "EHLO
+        id S229798AbiGYUr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 16:47:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235916AbiGYUmL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:42:11 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A0E5639D;
-        Mon, 25 Jul 2022 13:42:09 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id c72so12589550edf.8;
-        Mon, 25 Jul 2022 13:42:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CzlvqtZ4sW/ElEWpOjSICTJbEHD0aNQ9entd4nvbv7Y=;
-        b=kB7cXd7d/JNiJw4UHUCysp+SCyNBoKLAZbtLOINNgPIiTgSRGrS1D/B1btIP+jplUD
-         hLfdMsEBa6uw9G0hc/4wjTVCyiEZmU8GPJG6U0EgDCyYgbq/k4EX6AfbTnZ3vez6my/S
-         FjAdUeKOty6/PS30jBULBSk9jKE/DzPejB6hjxSWI16UhbMkGoqUy6fFJlMW5cxl7GDq
-         hdhGJ3sMyv1RP7LLux2UpX25pTDj0FEwd9nuxuLRYd3YIPWdqogqPeQbx5UR4GQybDw6
-         rPoTr9e3Ymeh8CsUpWvKGaV6wPrIfEh5jftOQnAOMUtGNfYSVUkMS4/Tfk+Qpb9uvmqP
-         kqHw==
+        with ESMTP id S229587AbiGYUr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:47:56 -0400
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85285E030;
+        Mon, 25 Jul 2022 13:47:55 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-10d9137bd2eso16305150fac.3;
+        Mon, 25 Jul 2022 13:47:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CzlvqtZ4sW/ElEWpOjSICTJbEHD0aNQ9entd4nvbv7Y=;
-        b=mOeRTn9nRpWm53OqHw2Ul7pf4msH1B2E1OyhxPlz7KHEPQhgfmT4i+S0e+9UZattqm
-         2F+pD8PCKiLuykE4GPhPEzZ4AUxPy8o6rSvKq7cu7V/L8ggJw6pb69d2VRl34Og6CfmX
-         gA4z186sizg8Qircb+IFivf2nB+e9rw8lv6SlgYsXVit0swqigAQThc7TPIFWoUqWsbP
-         ks2Lx0H7qIQHT8vf9/5F7EclCc4OQV/RBxAgCYHBXhUuzQypt2nxc1om/h/OG9mAO77a
-         C7T21BcyTE5invgUtlKvqwTjtDZKsZpZdOt7p5XBUBaDxPErbeVNelvFt/LNM33Xi1sQ
-         23ig==
-X-Gm-Message-State: AJIora8kHzTtJb3ktwo+lS9yYJNhaDu4w8UDFEtz9sLZ7M0BzgdvdfRe
-        9Hyuiw9Fxyj2YJXO6jJ/umGZTCoGKpNYa2EEX5s=
-X-Google-Smtp-Source: AGRyM1sJVhjzVOjASQIpOG0za4qTj18ieNxKgJ9b/Q8r0g76G9F2hNLsedKENR4/v/5jin+j3fdwa6HLNrnYzJ7Ayg0=
-X-Received: by 2002:a05:6402:34c5:b0:43a:8f90:e643 with SMTP id
- w5-20020a05640234c500b0043a8f90e643mr15004477edc.88.1658781727930; Mon, 25
- Jul 2022 13:42:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220721093422.2173982-1-marcus.folkesson@gmail.com>
- <CAHp75VddBhc9peHXfNfTyTNni246kC8CyLqCrMFadn67LGDarQ@mail.gmail.com> <CACRpkdaczrU1tM5Yt7P-Q2h+ge8STOi6HvvYeTM-g+JwS8_gZw@mail.gmail.com>
-In-Reply-To: <CACRpkdaczrU1tM5Yt7P-Q2h+ge8STOi6HvvYeTM-g+JwS8_gZw@mail.gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 25 Jul 2022 22:41:31 +0200
-Message-ID: <CAHp75Ve4+r14dL3poOF7dCPMRgAe8etLeuBPNay0tkyNf97UWg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] gpio: gpio-74x164: add support for CDx4HC4094
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wM1hK2c/dTp5U3qgSjbl+Mkf9GAgKrulWLu2l8asXMg=;
+        b=PI+N7/O2Z4m58Erb5nDnV1AKkk0VweFFIOZD6QE3S525fh3sGYzdbHCVIsFOrTGxvh
+         +sU12ttR/BrmIG2I21bcm6pWAGoujjymfU2Ct+bo7TWqpsMxgB7XJMie33kx749a+Ns2
+         w9DFEkv+RIY/hF9FX/tBv3ah8SJJxrXnJsqV8dFr4CKN9IL2CrEQhzzdEdjiS6CX+5kA
+         NYHhakT21iNx8kBowlsn93G9GFkCD+I0hf6haS9vDZ2rKyeoz9a7JOFsT2HhgGbhPqEk
+         OkXiQDTawzsoScp1+Fb2nSsLzaum3j1dNpLrF6xMVv/tXlNv8zBLbV31wqQkMtjYAhtH
+         kdJA==
+X-Gm-Message-State: AJIora+kgUd7QLA6Rl0K0MReFXqZXyCBxokTLIzE2PJzJ4Q1nBO+8iND
+        Ihh2vlbadUG1oE8hL0vivJSW653y0A==
+X-Google-Smtp-Source: AGRyM1uYYn9eDDDIyVDp1EozaBHVGSFeYmutnuF07N2Do7HDPkvBIRyLKm0gPmoaR0mEba9mzl7nSw==
+X-Received: by 2002:a05:6870:231b:b0:10b:7a08:bfbf with SMTP id w27-20020a056870231b00b0010b7a08bfbfmr14335133oao.11.1658782074708;
+        Mon, 25 Jul 2022 13:47:54 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id w21-20020a056870b39500b0010bf07976c9sm6539499oap.41.2022.07.25.13.47.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jul 2022 13:47:54 -0700 (PDT)
+Received: (nullmailer pid 2696639 invoked by uid 1000);
+        Mon, 25 Jul 2022 20:47:52 -0000
+Date:   Mon, 25 Jul 2022 14:47:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Robert Chiras <robert.chiras@nxp.com>,
+        David Airlie <airlied@linux.ie>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        dri-devel@lists.freedesktop.org,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: Re: [PATCH] dt-bindings: panel: raydium,rm67191: Add missing type to
+ 'video-mode'
+Message-ID: <20220725204752.GA2696554-robh@kernel.org>
+References: <20220719215201.1877997-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220719215201.1877997-1-robh@kernel.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,48 +68,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 25, 2022 at 3:54 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Mon, Jul 25, 2022 at 11:32 AM Andy Shevchenko
-> <andy.shevchenko@gmail.com> wrote:
-> > On Thu, Jul 21, 2022 at 11:32 AM Marcus Folkesson
-> > <marcus.folkesson@gmail.com> wrote:
-> > >
-> > > 74hc4094 and 75hc4094 works similar to 74x164 but has an additional
-> > > storage latch associated with each stage for strobing data from the
-> > > serial input to parallell buffer tri-state output.
-> >
-> > parallel
-> >
-> > > Add support for an optional strobe pin.
-> >
-> > Sorry for my absence of understanding, but why?
-> > SPI has MOSI, CLK, CS, where the last one is exactly for that. No?
->
-> Forgive me if I misunderstand, but if you use CS that
-> way, the way that the SPI framework works is to assert
-> CS then transfer a few chunks over SPI (MOSI/CLK)
-> then de-assert CS.
->
-> If CS is used for strobe, it is constantly asserted
-> during transfer and the sequence will be latched
-> out immediately as you write the SPI transfers and
-> the data is clocked through the register, making the
-> whole train of zeroes and ones flash across the
-> output pins before they stabilize after the SPI
-> transfer is finished.
->
-> If you first do the SPI transfer, then strobe after
-> finished, this will not happen.
->
-> Then it should be a separate pin, so this doesn't
-> happen, right?
->
-> Yours,
-> Linus Walleij
+On Tue, 19 Jul 2022 15:52:01 -0600, Rob Herring wrote:
+> 'video-mode' is missing a type definition and is not a common property. The
+> type is 'uint32'.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/display/panel/raydium,rm67191.yaml       | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+Applied, thanks!
