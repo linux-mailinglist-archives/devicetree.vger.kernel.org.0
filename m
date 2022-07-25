@@ -2,292 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6962158057E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:25:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 337D258058F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:27:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbiGYUZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 16:25:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60192 "EHLO
+        id S237000AbiGYU1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 16:27:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236236AbiGYUZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:25:36 -0400
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D78875FB8;
-        Mon, 25 Jul 2022 13:25:35 -0700 (PDT)
-Received: by mail-oo1-f52.google.com with SMTP id d12-20020a4aeb8c000000b004214e709b72so2370112ooj.6;
-        Mon, 25 Jul 2022 13:25:35 -0700 (PDT)
+        with ESMTP id S236888AbiGYU1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:27:22 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE367BCAB
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:27:17 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d10so11424594pfd.9
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:27:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6pnjId8157F0YTWhWfSC/5aTXpHZCwIpGW/QEGNcteY=;
+        b=abaAiWLmWu93GmZ4BTbyEdgieqn+J3Po/WKjkZo6zp2S8oYLiqt/zNpFD0WKEmFOu0
+         gF4YImq4nZK32SgJkJkgCCKL+wD6+PPDWD34RPRliXyeJptGKWoSsqa91+Vcwu2BBR81
+         sXV7gYpizMscVuktwLzAuXnWJxKSY0IjFPS0HyHtqzS4GTleqogdTNkb2HnErRUyWQHk
+         9sbENXwqhXbzK5CODpLnaectsCjxJyQqD/C/uRylazhGROMQnXqwhFux4qGxv8/aa0AE
+         6BEE7yfP6U8eDnObkVzoZJ/vBoZg5tLkWcI4PJPw1TIvH7OWZSDVQlLAxrJk1wxvOJzB
+         sx0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JQxHu4a4wv2GlB8Ke6rSU0zLRfgHSssjYhuNGcsfE8k=;
-        b=Myn894LFJdEqif41FpCbBCWOJsynURpAlklFxRrvYD0h2UG56OPLAaaiWWzDoq/jcJ
-         SgfVNZYZny0EasKaLVCiZr08RdQhGxeNB3JZq3/Oqn1lBFK1NRQhNomrzOpbDsQvCezD
-         0kWD2NUWKjZ+q56G1Ce0KDLE2629BTwAvfL8t7f7q9siLRg4jzgPx+nr22+R8qV0IPV/
-         d6LwQWUAMTh5jluf19q6lDPOF/92cJc8V9tfC1oojvyKJI6Smu0D+zaQcNyHYRh+c05L
-         nlATWsEu5SqLia5R2G47egb8mGVN9/A3KXUbLGPQQZqqOizffpvbIOnv1n7rHt+RJ9R2
-         7zyA==
-X-Gm-Message-State: AJIora/LdizHLTSIpvflRlzdmPZjhGRRlKBHhRoLUwYhAEjOplaqxirk
-        b68iMFuNk0K6tbIhRo7rx2RNEUWOHA==
-X-Google-Smtp-Source: AGRyM1ufpwvixikt2/t7xfjuqVSdirOL2BSlmwLs0O8Fo9v7BwWEXhEzAf5A/d5CnHVJOb+TzO0vUw==
-X-Received: by 2002:a4a:c716:0:b0:435:f656:70f8 with SMTP id n22-20020a4ac716000000b00435f65670f8mr221794ooq.27.1658780735033;
-        Mon, 25 Jul 2022 13:25:35 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id k23-20020a056870959700b000f5f4ad194bsm6947011oao.25.2022.07.25.13.25.33
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6pnjId8157F0YTWhWfSC/5aTXpHZCwIpGW/QEGNcteY=;
+        b=Ev+2hcrO9WBzNCfmZuwRaS1hE8Sn7yJ4mH9v6jqEJd635q3L7yeqXTnHKf7hkFCk9D
+         S4WHv3IBcbqpmhja0EO6MY4rlrjnBEjZsQCv0bowPAeBUoVkIzw1MtPpzha74DruDkRe
+         5XrbzsOtmti3qNKJYmTAeasVCMAzUVN7f63cxjJwMpy3JfjSFTtv5mtWqD0+gMiqDBmd
+         vVff5M2Su4aciEMU/LFGnlJU2LAwMLR42CXh+ZinvHIROv6N8kM9FiKgjCiZgW4TSqWl
+         /kYWJt75QS9rSO6wVqpVATQ2pvV61tFqY6EGg7xqWD4E/EnYmpYjWDqZ+jyo2rYHwHQu
+         6jtQ==
+X-Gm-Message-State: AJIora+wEGUL/qVSaczdQ/DdfxMUC+MiHrykSpEVYVRl+s59vY7c6eDP
+        i/2kjkxeicy91jcWK1+Qg8lyOQ==
+X-Google-Smtp-Source: AGRyM1seKXbaSXVkL6RxTSPDAO8V8WuGv9UJA311bQxvxR8q5Qj+DwNK8ibUE0wINtgMaajoUaL/bw==
+X-Received: by 2002:a63:1a09:0:b0:415:fa9a:ae57 with SMTP id a9-20020a631a09000000b00415fa9aae57mr12018258pga.181.1658780837266;
+        Mon, 25 Jul 2022 13:27:17 -0700 (PDT)
+Received: from localhost.localdomain ([2401:4900:1f3a:5a45:a9cd:d7dd:fd01:73c0])
+        by smtp.gmail.com with ESMTPSA id o4-20020a17090a678400b001ef7fd7954esm11568479pjj.20.2022.07.25.13.27.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jul 2022 13:25:34 -0700 (PDT)
-Received: (nullmailer pid 2653284 invoked by uid 1000);
-        Mon, 25 Jul 2022 20:25:32 -0000
-Date:   Mon, 25 Jul 2022 14:25:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        shengjiu.wang@gmail.com
-Subject: Re: [PATCH] ASoC: dt-bindings: fsl,sai: Convert format to json-schema
-Message-ID: <20220725202532.GA2626016-robh@kernel.org>
-References: <1658741467-32620-1-git-send-email-shengjiu.wang@nxp.com>
+        Mon, 25 Jul 2022 13:27:16 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-mmc@vger.kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, ulf.hansson@linaro.org,
+        robh@kernel.org, bhupesh.sharma@linaro.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: mmc: sdhci-msm: Fix 'operating-points-v2 was unexpected' issue
+Date:   Tue, 26 Jul 2022 01:57:09 +0530
+Message-Id: <20220725202709.2861789-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1658741467-32620-1-git-send-email-shengjiu.wang@nxp.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 25, 2022 at 05:31:07PM +0800, Shengjiu Wang wrote:
-> Convert the NXP SAI binding to DT schema format using json-schema.
-> 
-> The Synchronous Audio Interface (SAI) provides an interface that
-> supports full-duplex serial interfaces with frame synchronization
-> formats such as I2S, AC97, TDM, and codec/DSP interfaces.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> ---
->  .../devicetree/bindings/sound/fsl,sai.yaml    | 175 ++++++++++++++++++
->  .../devicetree/bindings/sound/fsl-sai.txt     |  95 ----------
->  2 files changed, 175 insertions(+), 95 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,sai.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/fsl-sai.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> new file mode 100644
-> index 000000000000..adcd77531eba
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> @@ -0,0 +1,175 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale Synchronous Audio Interface (SAI).
-> +
-> +maintainers:
-> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
-> +
-> +description: |
-> +  The SAI is based on I2S module that used communicating with audio codecs,
-> +  which provides a synchronous audio interface that supports fullduplex
-> +  serial interfaces with frame synchronization such as I2S, AC97, TDM, and
-> +  codec/DSP interfaces.
-> +
-> +properties:
-> +  compatible:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      enum:
-> +        - fsl,vf610-sai
-> +        - fsl,imx6sx-sai
-> +        - fsl,imx6ul-sai
-> +        - fsl,imx7ulp-sai
-> +        - fsl,imx8mq-sai
-> +        - fsl,imx8qm-sai
-> +        - fsl,imx8mm-sai
-> +        - fsl,imx8mn-sai
-> +        - fsl,imx8mp-sai
-> +        - fsl,imx8ulp-sai
+As Rob reported in [1], there is one more issue present
+in the 'sdhci-msm' dt-binding which shows up when a fix for
+'unevaluatedProperties' handling is applied:
 
-You need to define the order and combinations which are valid.
+ Documentation/devicetree/bindings/mmc/sdhci-msm.example.dtb:
+  mmc@8804000: Unevaluated properties are not allowed
+   ('operating-points-v2' was unexpected)
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: receive and transmit interrupt
-> +
-> +  dmas:
-> +    minItems: 2
-> +    maxItems: 2
-> +    description:
-> +      Must contain a list of pairs of references to DMA specifiers, one for
-> +      transmission, and one for reception.
+Fix the same.
 
-No need for generic descriptions.
+[1]. https://lore.kernel.org/lkml/20220514220116.1008254-1-bhupesh.sharma@linaro.org/
 
-> +
-> +  dma-names:
-> +    minItems: 2
-> +    maxItems: 2
-> +    items:
-> +      enum:
-> +        - tx
-> +        - rx
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ - Rebased on linux-next/master.
 
-We really need to support either order?
+ Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> +
-> +  clocks:
-> +    minItems: 4
-> +    items:
-> +      - description: The ipg clock for register access
-> +      - description: master clock source 0 (obsoleted, compatible for old dts)
-> +      - description: master clock source 1
-> +      - description: master clock source 2
-> +      - description: master clock source 3
-> +      - description: PLL clock source for 8kHz series
-> +      - description: PLL clock source for 11kHz series
-> +
-> +  clock-names:
-> +    minItems: 4
-> +    maxItems: 7
-> +    items:
-> +      enum:
-> +        - bus
-> +        - mclk0
-> +        - mclk1
-> +        - mclk2
-> +        - mclk3
-> +        - pll8k
-> +        - pll11k
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+index b00578ae1dea..fc0e81c2066c 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
++++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+@@ -137,6 +137,8 @@ properties:
+ 
+   max-frequency: true
+ 
++  operating-points-v2: true
++
+ patternProperties:
+   '^opp-table(-[a-z0-9]+)?$':
+     if:
+-- 
+2.35.3
 
-Again, need to define the order.
-
-> +
-> +  lsb-first:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      Configures whether the LSB or the MSB is transmitted
-> +      first for the fifo data. If this property is absent,
-> +      the MSB is transmitted first as default, or the LSB
-> +      is transmitted first.
-> +
-> +  big-endian:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-
-Common property, already has a type and description.
-
-> +    description: |
-> +      Boolean property, required if all the SAI
-> +      registers are big-endian rather than little-endian.
-> +
-> +  fsl,sai-synchronous-rx:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      This is a boolean property. If present, indicating
-> +      that SAI will work in the synchronous mode (sync Tx
-> +      with Rx) which means both the transmitter and the
-> +      receiver will send and receive data by following
-> +      receiver's bit clocks and frame sync clocks.
-> +      fsl,sai-asynchronous and fsl,sai-synchronous-rx are exclusive.
-> +
-> +  fsl,sai-asynchronous:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      This is a boolean property. If present, indicating
-
-Schema already says it is boolean property, don't need that in plain 
-text.
-
-> +      that SAI will work in the asynchronous mode, which
-> +      means both transmitter and receiver will send and
-> +      receive data by following their own bit clocks and
-> +      frame sync clocks separately.
-> +      If both fsl,sai-asynchronous and fsl,sai-synchronous-rx are absent, the
-> +      default synchronous mode (sync Rx with Tx) will be used, which means both
-> +      transmitter and receiver will send and receive data by following clocks
-> +      of transmitter.
-> +      fsl,sai-asynchronous and fsl,sai-synchronous-rx are exclusive.
-> +
-> +  fsl,dataline:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +    description: |
-> +      configure the dataline. it has 3 value for each configuration
-> +      first one means the type: I2S(1) or PDM(2)
-
-Looks like constraints:
-
-items:
-  items:
-    - description: ...
-      enum: [ 1, 2 ]
-    - ...
-    - ...
-
-> +      second one is dataline mask for 'rx'
-> +      third one is dataline mask for 'tx'.
-> +      for example: fsl,dataline = <1 0xff 0xff 2 0xff 0x11>;
-
-Perhaps add to the actual example.
-
-> +      it means I2S type rx mask is 0xff, tx mask is 0xff, PDM type
-> +      rx mask is 0xff, tx mask is 0x11 (dataline 1 and 5 enabled).
-> +
-> +  fsl,sai-mclk-direction-output:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      This is a boolean property. If present,
-> +      indicates that SAI will output the SAI MCLK clock.
-> +
-> +  fsl,shared-interrupt:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      This is a boolean property. If present,
-> +      indicates that interrupt is shared with other modules.
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - dmas
-> +  - dma-names
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/vf610-clock.h>
-> +    sai2: sai@40031000 {
-> +        compatible = "fsl,vf610-sai";
-> +        reg = <0x40031000 0x1000>;
-> +        interrupts = <86 IRQ_TYPE_LEVEL_HIGH>;
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&pinctrl_sai2_1>;
-> +        clocks = <&clks VF610_CLK_PLATFORM_BUS>,
-> +                 <&clks VF610_CLK_SAI2>,
-> +                 <&clks 0>, <&clks 0>;
-> +        clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> +        dma-names = "rx", "tx";
-> +        dmas = <&edma0 0 20>,
-> +               <&edma0 0 21>;
-> +        big-endian;
-> +        lsb-first;
-> +    };
