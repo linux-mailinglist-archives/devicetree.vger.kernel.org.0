@@ -2,110 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B3E057FFF9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 15:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 739AC580008
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 15:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232856AbiGYNdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 09:33:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54194 "EHLO
+        id S233238AbiGYNgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 09:36:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235143AbiGYNdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 09:33:16 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B4A0DEB3;
-        Mon, 25 Jul 2022 06:33:10 -0700 (PDT)
-Received: from mail-ed1-f47.google.com ([209.85.208.47]) by
- mrelayeu.kundenserver.de (mreue106 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MF418-1oIB8W2NC4-00FVHH; Mon, 25 Jul 2022 15:33:08 +0200
-Received: by mail-ed1-f47.google.com with SMTP id t3so13984731edd.0;
-        Mon, 25 Jul 2022 06:33:08 -0700 (PDT)
-X-Gm-Message-State: AJIora89bRqDDz//xVeXLWONCcZ2Aa6Da8hDCDMx0IrlcmdUIN67eUJv
-        Ikkwtf3i9k1DNVpFCbTnVJJYKejLuVpjYtQl8Ls=
-X-Google-Smtp-Source: AGRyM1uBYx31EaoHvVg4a6DoO8wdFAmnQxUFYQH4EXTFcFL/POUpdGvHyymM2kU6xA5JVH+KIVtQV6KhInfa2bs5xZo=
-X-Received: by 2002:a05:6402:1003:b0:43a:75d8:a0e with SMTP id
- c3-20020a056402100300b0043a75d80a0emr13240149edu.303.1658755988158; Mon, 25
- Jul 2022 06:33:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220725131521.607904-1-robert.marko@sartura.hr> <20220725131521.607904-2-robert.marko@sartura.hr>
-In-Reply-To: <20220725131521.607904-2-robert.marko@sartura.hr>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 25 Jul 2022 15:32:51 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1mL7Pm5+0Ce89LTrup476WaxSQKpTgn=o98_uFuOdfyQ@mail.gmail.com>
-Message-ID: <CAK8P3a1mL7Pm5+0Ce89LTrup476WaxSQKpTgn=o98_uFuOdfyQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: microchip: sparx5: dont use PSCI for core bringup
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S231282AbiGYNgq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 09:36:46 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C39213DFF;
+        Mon, 25 Jul 2022 06:36:45 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id bb16so13443706oib.11;
+        Mon, 25 Jul 2022 06:36:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=OVuAV4zEqV8OvcfuWI261n47Dfimj3n0F6abvdO9uP0=;
+        b=sHZSAI8Tcb7uQWH3Qev99G9HrLzREhT5MjeMORLvAZ7/TIZwYT3F+5Ka4lcXiP0HnZ
+         t/pgs6vQQPV55d8dto5vo1iQ1fxUrXG/bvoUH6CDRaKX8Qg6gwOcHMjYQUIAGjMCTP8q
+         1aGCF1RTQWRafAKE0tPFWK2zQ5GiHGvoJNrK6upBDDf9YRBrmfx5BGRNQGDwelpu6xO+
+         30l/8wtpDyt2gjP/ta3MYPWCBH/HoAJQG043F/3vhAp637VjquxAq4QrFBbZymEVIJbm
+         Sm7WMWzfM/kdXarIumZI9JZ2FGs7NMe576FTMcYjaMTKxvrMmXS2WmxDla9xtuwYTYPt
+         BbsQ==
+X-Gm-Message-State: AJIora9WkfVTycKfe1u1DaaRbsjkNCR01GqvFHQSbjD+KflwXzJvuvsx
+        NNJcBJ9MCJvQOIZhjrIDPFO4ThA6Lg==
+X-Google-Smtp-Source: AGRyM1tMJv5zEKT0OvXgcHFTrOd+Ln3XLbxvFY76hfSYJLaRK/o7G//VqcGAZEpnH28VbJp1MOKZaQ==
+X-Received: by 2002:a05:6808:150e:b0:33a:9e31:7049 with SMTP id u14-20020a056808150e00b0033a9e317049mr5608196oiw.47.1658756204478;
+        Mon, 25 Jul 2022 06:36:44 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id 65-20020aca0644000000b00339c8aab320sm4889867oig.3.2022.07.25.06.36.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 25 Jul 2022 06:36:43 -0700 (PDT)
+Received: (nullmailer pid 1989016 invoked by uid 1000);
+        Mon, 25 Jul 2022 13:36:42 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:hgPNv7fT6KgSLyogNS0KnDb3EN14lo1+D2ZjToCDJX13T17WaJZ
- TJ7hUXUujONX1X6I11mew17rx4/bhv0OjBI0VxlBw/z+337vrg8La66hoBMkLchwi1wWTqg
- MvJfxku6QmKSzT18eOnA/IZLNvxfNz7PSP9rtIhL+foqMCu1SJDi9zelRw4R/ghjCqcwkDP
- mt6bSvAzNMUETiT45lzMw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:+KAQEH0sBqY=:QrvrzKehAlU1GDA/j8wyiC
- Folzvti2NOPjQuDBTRHUIqUrgkcW2oGKSbWgzCzRxqyQjJ/C10bR2Q4UXS9MS7bO3RE+JkrF7
- mJparIQ1ZLdjm+BSIqLrEPgX6OBqL2O8w/J3ynpDsDjh1sMnSotJYMiFPfjZ6BVyQrpbYVGRO
- 7xkwmBwZQokvZPwO+HEK7aWhi7BlDjW3IBA17MKqfdjQZMEYICieaIzVbFm0LvjTwJsLwnh3p
- Uv7idJKlaAUwNSVtu7gmKpkBZDx3cGQAoDHbRENB5qzToOHZnPuAzqyY8KqcLl9u0Z5xs56Qq
- BIMrAjAhTEjpSuRd68LEBE2xAYGvb6DwvM0I1B4DJ+cb0Q/lNjgCEeIKxLXqeEoDGqLS21K2q
- 09z4P2baN2DN32/JBerGu3fCA4cAg3BxYDNaqANWmPtUypIDqrEmjGimAaMKEBptumvdy1wcN
- X5IbS+cVvL/mWsfhd8dD3Ta3s78kLMrRxvXNa0+10VeTVnWKp2AyYiGG0EnjvUPlwgYYWYJ1P
- AVj6M6irjf4LGnfpUQthWO2trccScJVdjuRRplH7phSGHEfkaCvXbQEtd9pbhSOnvWVjRJA61
- HxYMZiPI+Hf1DCtiSP/YBQx1eJFZKmWK4H7+G17utmIT53rhcTsTdpb38TNxQg151nGNg/EEF
- RVQ5n85xeLm5kIMcvqRvMSGAS8bcAVycZiq7NqfouafdnoFHMjcyVQa6zMWP4rU8wicDknOY5
- M6385ul+ZllyOqOv4Ql82LacYqa1BEttwaJQsvTg+NT4gE1EtvRX3CgET2iGDuIPoqY2o8k+V
- HWSyNiZtnm8vWH+l6ZsoH1WkDnzE3hKDBOQeMzC19qo4/HMpv4Iis5jkwNje6iyqLejn/n6jW
- advdEn/XtlQ6BCMm4zZg==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20220725071919.25342-1-alexander.stein@ew.tq-group.com>
+References: <20220725071919.25342-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v3 1/1] dt-bindings: rtc: nxp,pcf85063: Convert to DT schema
+Date:   Mon, 25 Jul 2022 07:36:42 -0600
+Message-Id: <1658756202.615935.1989014.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 25, 2022 at 3:15 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> As described in previous commit, PSCI is not implemented on this SoC at
-> all, so use spin-tables to bringup the cores.
->
-> Tested on PCB134 with eMMC (VSC5640EV).
->
-> Fixes: 6694aee00a4b ("arm64: dts: sparx5: Add basic cpu support")
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+On Mon, 25 Jul 2022 09:19:19 +0200, Alexander Stein wrote:
+> Convert the NXP PCF85063 RTC binding to DT schema format.
+> 
+> Add 'interrupts' and 'wakeup-source' as this device has an interrupt
+> which was not documented, but is in use.
+> 'clock-output-names' and '#clock-cells' are added as well, those were
+> probably missed when adding clkout support in commit 8c229ab6048b
+> ("rtc: pcf85063: Add pcf85063 clkout control to common clock framework")
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
+> Krzysztof, thanks for your review.
+> 
+> Changes in v3:
+> * Added constraints for rv8263 & pcf85063 regarding 'quartz-load-femtofarads'
+> * Fixed example
+> 
+> I have to admit I could not actually verify in the registers that pcf85063 is
+> limited to 7pF. I was not able to find any datasheet containg the registers,
+> only a product brief [1] indicating this limit.
+> 
+> Changes in v2:
+> * Sorted compatible list
+> * Mentioned new #clock-cells and clock-output-names properties in commit message
+> * Removed 'interrupt-names', not needed/used anyway
+> * Fixed quartz-load-femtofarads defintion/description
+> 
+> [1] https://www.mouser.de/pdfDocs/NXP_PCF85063_PB.pdf
+> 
+>  .../devicetree/bindings/rtc/nxp,pcf85063.txt  | 32 -------
+>  .../devicetree/bindings/rtc/nxp,pcf85063.yaml | 92 +++++++++++++++++++
+>  2 files changed, 92 insertions(+), 32 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf85063.yaml
+> 
 
-Surely this is only a machine specific bug in the boot loader, not something
-the SoC is incapable of supporting, right?
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
->  arch/arm64/boot/dts/microchip/sparx5.dtsi | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> index 38da24c1796c..ea2b07ca2887 100644
-> --- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> +++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-> @@ -40,14 +40,16 @@ cpu0: cpu@0 {
->                         compatible = "arm,cortex-a53";
->                         device_type = "cpu";
->                         reg = <0x0 0x0>;
-> -                       enable-method = "psci";
-> +                       enable-method = "spin-table";
-> +                       cpu-release-addr = <0x0 0x0000fff8>;
->                         next-level-cache = <&L2_0>;
->                 };
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-I think the psci method should be kept in the dtsi file here, since actual
-product boards would have to support it to be useful, you can just add
-the spin-table as an override in the broken reference boards, with a
-comment about which u-boot version is broken, in case this gets fixed
-in the future.
+Full log is available here: https://patchwork.ozlabs.org/patch/
 
-       Arnd
+
+rtc@51: 'interrupt-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dtb
+
+rtc@51: quartz-load-femtofarads:0:0: 7000 was expected
+	arch/arm/boot/dts/imx6dl-skov-revc-lt2.dtb
+	arch/arm/boot/dts/imx6dl-skov-revc-lt6.dtb
+	arch/arm/boot/dts/imx6q-skov-revc-lt2.dtb
+	arch/arm/boot/dts/imx6q-skov-revc-lt6.dtb
+	arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dtb
+
