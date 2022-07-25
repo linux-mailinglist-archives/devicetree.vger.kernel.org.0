@@ -2,81 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4191D58038E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 19:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98EB358039A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 19:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232528AbiGYRhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 13:37:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43234 "EHLO
+        id S235381AbiGYRkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 13:40:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235759AbiGYRfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 13:35:23 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 951E3A46D
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 10:35:22 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id b11so21836645eju.10
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 10:35:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qcfOh8Denmd0INMFIRrRqdVhDnIFcHuSf6pHOX9fToY=;
-        b=WH/hAjPah1uBmw3psKddZer+8vy7FW/UOnixKrB+/kjw+ykmpEkrhNO+b5uvOM8oW/
-         3e+kT8UmZTjU8ipPdcWMrk8WrpAupe1NrWwhhGxtxdfNpzCAQ71Bm0J8L/TVbU/ujyq4
-         rG2+lG4xhEnvWdTGsQUPYuN3ru1x8iENLFCM0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qcfOh8Denmd0INMFIRrRqdVhDnIFcHuSf6pHOX9fToY=;
-        b=a24nuCjgjIrSZr96G+kCsklGTE1y/4P8I99HSzho0Vll+PJRC1fU/4uH1lxGUrLm5y
-         pGk5+ZSVJQYKPhQrNwq1RvbcO+0I3SjKg0vGWdYGNcA66C1wQg7UsOUdem+qQ7d+RMMd
-         XGjH4IY2ZEkATqchMVvyNrOx1Y/E7YzlauK2/jQGaOdOSQ/axf8mBfoAzdDZwM/jOliV
-         hFBpwzAHa6HDCVOugGy1BG1U5/NDhg91V/v/ec2IuFsrb10yoWPNZ5V1ndF9TwzPHXfh
-         uxndnrn6XxB2eo0snfjYkyhTSznCQUhdd2xx+/b2z6sICVn6pCb4wXTv4NWoztKG0VVE
-         DOxQ==
-X-Gm-Message-State: AJIora/HwWY148lhYvhA2ua1GoY27v8kW/T4VuVO4ZFLImwaRN0NlwF8
-        YrzXya+gsEQW+Q+zDQ1Ao9zm1XzPJ8mWq51V
-X-Google-Smtp-Source: AGRyM1tVAHY8YXQWBeDkM9Z5PWnCVvHJhhZzK1ZY7Wq/Xib+/nPG4n28SnKrEdM3GdeheqbP6GOZ3A==
-X-Received: by 2002:a17:906:98c7:b0:72b:20fe:807d with SMTP id zd7-20020a17090698c700b0072b20fe807dmr11131164ejb.75.1658770520617;
-        Mon, 25 Jul 2022 10:35:20 -0700 (PDT)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com. [209.85.221.53])
-        by smtp.gmail.com with ESMTPSA id a3-20020a05640213c300b0043bbbaa323dsm7376198edx.0.2022.07.25.10.35.18
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Jul 2022 10:35:18 -0700 (PDT)
-Received: by mail-wr1-f53.google.com with SMTP id h8so16990568wrw.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 10:35:18 -0700 (PDT)
-X-Received: by 2002:a5d:5889:0:b0:21d:bccd:38e3 with SMTP id
- n9-20020a5d5889000000b0021dbccd38e3mr8063195wrf.659.1658770517714; Mon, 25
- Jul 2022 10:35:17 -0700 (PDT)
+        with ESMTP id S229921AbiGYRkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 13:40:09 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DB5B4A
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 10:40:08 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9418161377
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 17:40:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1712C341C6
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 17:40:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658770807;
+        bh=sy1GzUQlvpxgT3TfVa9JL7X6aeymSaIUzuhBPRffTTU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=M1zJW7Zl6wsEPjpIdB3N8A6WCQJet7YOiSkxDqg6U9VaLsiGNk7C9XBO+wdQzNznB
+         eI2NvTHsw7RJ5Y2F42DKrU+pufw+u34MiDnXlK+qzD6P4di5Fb9f/y45lLL7BlbL0Z
+         a/v9g7ddrZT0sHbttfF3Jk1jUGZnoBS93bRYvMLCJqVUOVQAHrM7fzxv5TgDmL0atq
+         v/j/0WbMKEBaXK+J74Ptp6e6Vtgx2zor/8qTyYF6SQIvxzMpYB0Mfp/WBLN79iVnkJ
+         XgpwTXx4eRcsex6lylzUTUshh5RnDdNBVWsF6mgi+ZGeHdq1T/j93ZkoxgJJcJjtzK
+         AL5+clU9URBeQ==
+Received: by mail-ua1-f42.google.com with SMTP id t21so4745738uaq.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 10:40:06 -0700 (PDT)
+X-Gm-Message-State: AJIora/hMTy0vk8mlogxidlODkSjqN4UdPYOkDK8S5bhzt1wLKd1cO+K
+        xrw6xpAFsYRoD5FUfRPtfK91uyuMt7nejN3P4Q==
+X-Google-Smtp-Source: AGRyM1vgfG0J4laKU3Z+NQizAS9fxYvk+jOk//tyBKeI1QPJFtsbyr0LOeSd5CuE/WlpEFZJpdG56lr8mCMbvVf0BdU=
+X-Received: by 2002:ab0:6798:0:b0:382:d9f4:8d0 with SMTP id
+ v24-20020ab06798000000b00382d9f408d0mr3716123uar.63.1658770805948; Mon, 25
+ Jul 2022 10:40:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220723090942.1637676-1-dmitry.baryshkov@linaro.org>
- <b1aafb00-f00a-2621-ad51-fb2f7491dace@linaro.org> <CAA8EJpp_tSCR3CLGSD_qq62MzjVQOYGspY345aNfNSu1tMM=Vw@mail.gmail.com>
- <CAD=FV=WGtDMmB08py8D6jc0cv3xGsn5Rfc0MObQbEV=CiisBYg@mail.gmail.com>
- <76defcb3-8566-286a-d953-54c4a2b04782@linaro.org> <CAD=FV=XhYD0U=FAaGV0aLJhZ4LrULXrLptDV7=D8A91Kx=Qkgg@mail.gmail.com>
- <e3eb02f4-daf7-ed69-001f-72a275819af5@linaro.org> <CAD=FV=WYshw8tcDb7dRS-CRdH1q2BOp0g74_qKtvKa1Lzo+mcg@mail.gmail.com>
- <9e012a76-aaab-9525-f3d4-8d84e26325a9@linaro.org> <CAD=FV=XiJd6G0-QExB=SPDNx3TNFyFjyPvUGdkkBGPEe4XYiEw@mail.gmail.com>
- <e3878d93-7c66-1018-ddfc-ab7fd9be1936@linaro.org>
-In-Reply-To: <e3878d93-7c66-1018-ddfc-ab7fd9be1936@linaro.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 25 Jul 2022 10:35:04 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WXhmmB4uSm=W_Phx9Pp8=WJ7zCKRZoO7zcOFkiLf+8cQ@mail.gmail.com>
-Message-ID: <CAD=FV=WXhmmB4uSm=W_Phx9Pp8=WJ7zCKRZoO7zcOFkiLf+8cQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] dt-bindings: arm: qcom: define schema, not devices
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <CA+V-a8uBSDOqcgqfO2YWNKwoRsKdMcK+yi5DzFEWrP0gJOMWig@mail.gmail.com>
+ <5c9db23e-1706-a638-360e-46c8cb4b5f9a@linaro.org> <CA+V-a8vp7agGmHEJyLSLm973ddOs-cD21jRbwFnjSfc7DxrjrQ@mail.gmail.com>
+ <CAL_JsqJCKDdUoBtiC7bLAstTHFP_gdHtCf+NWKy2zbXG_Z153w@mail.gmail.com>
+ <CA+V-a8tYNvQk19ZP_oq=OeV2K5X=7E+Mq6Cin5ZVT6cBt=_yBw@mail.gmail.com>
+ <CAL_JsqJELtWn=PwxMU=9VCUTwaZMk=oyfJo7O7HbnFB-MfcHAQ@mail.gmail.com>
+ <CA+V-a8sGPRQQJ4jZ4pSObyHi37RA6Fc44-W5=2AYwA3Hs_QQ+g@mail.gmail.com>
+ <CA+V-a8uUt=t9SZLMW4VtX4Dwk9m5bij5JwOCMSS2Nzxvv=fpZA@mail.gmail.com>
+ <CAL_JsqLdg-stgCbQO__+A2WwnooQN71SKd5NAzFij4v=39oFrw@mail.gmail.com> <CA+V-a8u655GmGCerhXZh5Nh5fW_3jL7u427SoqmcVdyTUszWkw@mail.gmail.com>
+In-Reply-To: <CA+V-a8u655GmGCerhXZh5Nh5fW_3jL7u427SoqmcVdyTUszWkw@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 25 Jul 2022 11:39:54 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+0P8PccAVi06ZuJgheT8kJhRmxmTPNDFXdnJiHqn3Z+A@mail.gmail.com>
+Message-ID: <CAL_Jsq+0P8PccAVi06ZuJgheT8kJhRmxmTPNDFXdnJiHqn3Z+A@mail.gmail.com>
+Subject: Re: dtbs_check issue
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <swboyd@chromium.org>
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,48 +70,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, Jul 25, 2022 at 10:29 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Mon, Jul 25, 2022 at 4:02 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
 >
-> On 25/07/2022 19:22, Doug Anderson wrote:
-> >>>> You cannot do that...
-> >>>
-> >>> The bootloader never falls back to just the SoC name.
-> >>
-> >> There is no "SoC" part of compatible list. Only by convenience we put it
-> >> that way, but DT spec does not define first compatible to be for
-> >> platform because they all are[1], therefore following your earlier
-> >> description - bootloader should load BAR DTS on FOO device just because
-> >> qcom,sdm845 matches.
+> Hi Rob,
+>
+> On Fri, Jul 22, 2022 at 5:39 PM Rob Herring <robh+dt@kernel.org> wrote:
 > >
-> > As documented in "Documentation/arm/google/chromebook-boot-flow.rst",
-> > the bootloader creates a match list to pick a device tree file. It
-> > never creates a match list that has just the SoC. It always picks
-> > based on the board name and never falls back to just the SoC name.
+> > On Fri, Jul 22, 2022 at 7:29 AM Lad, Prabhakar
+> > <prabhakar.csengg@gmail.com> wrote:
+> > >
+> > > On Fri, Jul 22, 2022 at 12:08 PM Lad, Prabhakar
+> > > <prabhakar.csengg@gmail.com> wrote:
+> > > >
+> > > > On Thu, Jul 21, 2022 at 11:24 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > > >
+> > > > > On Thu, Jul 21, 2022 at 4:18 PM Lad, Prabhakar
+> > > > > <prabhakar.csengg@gmail.com> wrote:
+> > > > > >
+> > > > > > Hi Rob,
+> > > > > >
+> > > > > > On Thu, Jul 21, 2022 at 5:57 PM Rob Herring <robh+dt@kernel.org> wrote:
+> > > > > > >
+> > > > > > > On Thu, Jul 21, 2022 at 9:23 AM Lad, Prabhakar
+> > > > > > > <prabhakar.csengg@gmail.com> wrote:
+> > > > > > > >
+> > > > > > > > Hi Krzysztof,
+> > > > > > > >
+> > > > > > > > On Thu, Jul 21, 2022 at 4:12 PM Krzysztof Kozlowski
+> > > > > > > > <krzysztof.kozlowski@linaro.org> wrote:
+> > > > > > > > >
+> > > > > > > > > On 21/07/2022 17:07, Lad, Prabhakar wrote:
+> > > > > > > > > > Fyi keeping even a single SMARC board in arm renesas.yaml schema I see
+> > > > > > > > > > dtbs_check failures.
+> > > > > > > > > >
+> > > > > > > > > > Any pointers on how I can get around this issue?
+> > > > > > > > >
+> > > > > > > > > Few months ago:
+> > > > > > > > > https://lore.kernel.org/linux-devicetree/cf7728fd-b5c8-cd3d-6074-d27f38f86545@linaro.org/
+> > > > > > > > >
+> > > > > > > > Thanks for the link.
+> > > > > > > >
+> > > > > > > > > Although Rob admitted in the thread this is in general allowed
+> > > > > > > > > configuration, to me it is still confusing - the left-most compatible is
+> > > > > > > > > not the most specific. Non obvious, confusing and it seems dtschema does
+> > > > > > > > > not support it?
+> > > > > > > > >
+> > > > > > > > It looks like dtschema does not support it.
+> > > > > > >
+> > > > > > > The issue is the same as licensed IP where we have a generic
+> > > > > > > compatible and per licensee compatibles in separate schemas. The
+> > > > > > > solution anytime a compatible exists in more than 1 schema is a custom
+> > > > > > > 'select' which excludes that compatible. That would be messy here
+> > > > > > > though due to the large number of compatibles. Perhaps we could
+> > > > > > > instead merge a custom select with the default generated one. Then the
+> > > > > > > schema would just need:
+> > > > > > >
+> > > > > > > select:
+> > > > > > >   not:
+> > > > > > >     properties:
+> > > > > > >       contains:
+> > > > > > >         const: renesas,smarc-evk
+> > > > > > >
+> > > Being a novice here with the select, I added the below to ignore the
+> > > arm schema if its the RISC-V board:
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml
+> > > b/Documentation/devicetree/bindings/arm/renesas.yaml
+> > > index ff80152f092f..77e78136bfce 100644
+> > > --- a/Documentation/devicetree/bindings/arm/renesas.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
+> > > @@ -9,6 +9,16 @@ title: Renesas SH-Mobile, R-Mobile, and R-Car
+> > > Platform Device Tree Bindings
+> > >  maintainers:
+> > >    - Geert Uytterhoeven <geert+renesas@glider.be>
+> > >
+> > > +# We want ignore this schema if the board is of RISC-V arch
+> > > +select:
+> > > +  not:
+> > > +    properties:
+> > > +      compatible:
+> > > +        contains:
+> > > +          const: renesas,r9a07g043f1
+> > > +    required:
+> > > +      - compatible
+> > > +
+> > >  properties:
+> > >    $nodename:
+> > >      const: '/'
+> > >
+> > > But when I run the dt_binding_check, I get the below issues:
+> >
+> > That would only work if we change how 'select' is generated. As I
+> > said, the above would have to be merged with what we normally generate
+> > (see processed-schema.json for what that looks like).
+> >
+> I'm a bit lost here!
 >
-> So this means you embedded some custom-interpretation of board
-> compatibles in bootloader. What stops you to customize it even more,
-> that the bootloader must always pick the most specific compatible? IOW,
-> it cannot load DTB from more generic compatible (just like it should not
-> load qcom,sdm845 DTS)?
->
-> I understand the limitation of board compatibles for your case, but I
-> still believe it is wrong usage of it.
-> If the usage - by principle - was correct, then you would not need to
-> add the restriction you mentioned above ("never creates a match list
-> that has just the SoC").
->
-> Because when Linux drivers match, they do not have such restriction...
+> Could you please elaborate what you mean by merging a custom select
+> with the default generated one. When I compared the
+> processed-schema.json with/without my changes they were the same.
 
-I think we're essentially re-hashing a previous discussion that led me
-writing the documentation of how depthcharge boots. It's probably not
-worth rehashing. Depthcharge isn't going to change unless we find a
-compelling way to solve all the use cases we described last time we
-talked about this. I honestly think the "backwardness" stems from the
-fact that in the normal case we start with a dts and pick a driver and
-in the FIT image / bootloader case we are picking a dts. Those are
-fundamentally different needs.
+dtschema generates 'select' if it is not present and $nodename or
+compatible properties are. It would instead need to combine your
+'select' above with what it generates instead. Otherwise, wiht just
+the above, it is going to match every node with compatible not
+containing 'renesas,r9a07g043f1' which would be 99.9% of nodes.
 
--Doug
+Rob
