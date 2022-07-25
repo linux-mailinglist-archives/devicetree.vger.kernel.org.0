@@ -2,129 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC34D58026E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 18:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35DFB580285
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 18:18:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235742AbiGYQHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 12:07:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
+        id S235158AbiGYQSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 12:18:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235596AbiGYQHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 12:07:44 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560FADFBD;
-        Mon, 25 Jul 2022 09:07:43 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id y15so10805922plp.10;
-        Mon, 25 Jul 2022 09:07:43 -0700 (PDT)
+        with ESMTP id S232954AbiGYQSy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 12:18:54 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03E4513FBB
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 09:18:53 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id p11so13997177lfu.5
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 09:18:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mjgpg4ZV+VLOftEfwsbp2uyCZES8VtwrkrpG5A+4mFg=;
-        b=PXdnEvIptvDcZIyG61PW8j3e6CaFKPs19zNKWybPquAAocjh6WbFtCYQABJRRGRkGu
-         iSUSKehBWJ/TCJFMwYEg5SncOsQAV2wAtaVwamxeFssuKAK/HimjxRXHwBHxEz3f+YF6
-         JsaO/9sidEX+KvCCwDDykoSyC6kiQMUsuY0/xl0xcBBKQ2xRkRfahd2it2a6kYagMQJp
-         7/j0YYDIrp2F19w4rGdFzNIiGadoxK1raR5PJBfH2xdmtCYmrwsdophoyYam6qzOHwmZ
-         gV/ZDaIPH9Vnvxd4Gt2jmI8c0wmeMDnDEWwbv/sRTUndC/hkzN11ZPd2Qe8Zf19mqaGz
-         ccLg==
+        bh=LfcvaXiE0JN8HCPiniZBMtz/AbK0xOVq0Sg2Gtmo2VE=;
+        b=PiiavNoTr/u5jRkyzuiTfqyxaJRHzDFV/yqyUu1RiC1IKD2gXL4oVRgsLgCzosTFf5
+         wjZvj20coLGK2rv7XElO1GRLmB8HhvBCGMHBsUpwgFq5Zg57WQ4pKQaJ3oGaO+wmmAAJ
+         TMA6pj/7RbpS275t4IR8oFQURAVyyofUMtsEZnzF34khxdIK/rj05A4rTUEIzCEaXAU9
+         Lm25HJzBV1KLWBtfmmI9E7/dyVswMFdejQP46TwW4hh2HkmgTHFaksQ1UibsJEm57zGN
+         GGENnEPX9gJplG77EuklMPSM31r1/MSYqkvj9Q9TG2di95YfKIdCf+ATbTDc03ZeYx9k
+         0GMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=mjgpg4ZV+VLOftEfwsbp2uyCZES8VtwrkrpG5A+4mFg=;
-        b=MWCr2pC8Qa3gG8WRGAVyVqpfUvbcKA0TjMLi/VGYJsTTVBckTV/lOgS4u+1KPodp//
-         gjvHhys3h+/CtFlQrB5TDtXzG4tQkAPXtax1KGbBhrPz+QpcFLCW1b58uKBpZ+s+dHms
-         buRqDqaLB0efQdB9Pp/g/CR+TZwsSUTM6FtoMXh7CZNpx/dI6u/oxldJZ5n6nRV0wJwB
-         5H0Cnni2WkcEafLz+UkvN58XNji1g7MtbF9ahfAzwbJVm14Ad3Fcty34ZmMXYUlVPKJI
-         WTpeQMJ1pXtBXCEcNQ+6qceFCR0QCT4FOhGNWj57j+zi+wxFDZYPPcYyq3oj0qUHdfyk
-         Z1TA==
-X-Gm-Message-State: AJIora9EMFkAgoC9cW+XqBMaShfCxs01ySsHf72ALUqtJZu/yL/T2LTg
-        s5Na7evXQtTGjyivCEzr4r0=
-X-Google-Smtp-Source: AGRyM1tycli7tWbSuKOfM9rGxt5Dyr1KuUTf/FDE2xa7x7hnJJiKYHpi7gi56Bzr++oS+nvtJdxlqA==
-X-Received: by 2002:a17:903:41d0:b0:16d:23e9:41d0 with SMTP id u16-20020a17090341d000b0016d23e941d0mr12667651ple.47.1658765262423;
-        Mon, 25 Jul 2022 09:07:42 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id b124-20020a621b82000000b0052bf6789f02sm2914567pfb.178.2022.07.25.09.07.41
+        bh=LfcvaXiE0JN8HCPiniZBMtz/AbK0xOVq0Sg2Gtmo2VE=;
+        b=e2KkagpwZcEYqF4c/mtlkVT1G8SLTzjPdFsaYsQEzXnWL5s161rtk7EFpCV1jdYhGv
+         duojXaRK7E+uis+ZjscTwlVljbhgi3BxsrMxzP66pGXXRMzt/YMsYmj2XorAelA98tfU
+         ihzzKcWpTrdX6L+LDER8C8y5kofrJTbd73j3l2NPI+t2Bq4PxGsS6nA3Qgx/zfegG5+C
+         vFOp4c+2iUUZtYxFjy1coAzYAIdRNxco/tHdmWxvBU3cnPzE5ntWXXuWAlCHwjqIO1G7
+         1OQchypS+CXU6MaKmSeU0EhoRf1uv1DaIfElwPeuAARObumiRbukIQwS4PA73JFjPDWm
+         QvqQ==
+X-Gm-Message-State: AJIora+0vmXNM41THjGrfitvRZtUEsazWWqAP+zVG7Ip6jPF3NlSmRa7
+        XDc98se/lva6vAYUAvqv+GDi+g==
+X-Google-Smtp-Source: AGRyM1sLhMNxGrNlrI1HOC8PGGP6QiK+WeQVDeKnrB20NdfsKWtEC6/IKAi1/zJrcmk6Z0V0E2kwpw==
+X-Received: by 2002:a05:6512:15a0:b0:48a:7ca5:ae61 with SMTP id bp32-20020a05651215a000b0048a7ca5ae61mr4998410lfb.635.1658765931270;
+        Mon, 25 Jul 2022 09:18:51 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id n20-20020a05651203f400b0048a93bd163fsm371443lfq.78.2022.07.25.09.18.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Jul 2022 09:07:41 -0700 (PDT)
-Message-ID: <3d29b8fc-f183-5883-edc0-cde55b76e4fd@gmail.com>
-Date:   Mon, 25 Jul 2022 09:07:40 -0700
+        Mon, 25 Jul 2022 09:18:50 -0700 (PDT)
+Message-ID: <62982c58-2a06-0005-cb2f-ec78913da8e1@linaro.org>
+Date:   Mon, 25 Jul 2022 18:18:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/3] Documentation: sysfs: Document Broadcom STB memc
- sysfs knobs
+Subject: Re: [PATCH 0/3] dt-bindings: arm: qcom: define schema, not devices
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20220722201043.2731570-1-f.fainelli@gmail.com>
- <20220722201043.2731570-3-f.fainelli@gmail.com>
- <135be705-24f9-13b8-6939-0eaa569434d7@linaro.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <135be705-24f9-13b8-6939-0eaa569434d7@linaro.org>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Doug Anderson <dianders@chromium.org>
+References: <20220723090942.1637676-1-dmitry.baryshkov@linaro.org>
+ <b1aafb00-f00a-2621-ad51-fb2f7491dace@linaro.org>
+ <CAA8EJpp_tSCR3CLGSD_qq62MzjVQOYGspY345aNfNSu1tMM=Vw@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAA8EJpp_tSCR3CLGSD_qq62MzjVQOYGspY345aNfNSu1tMM=Vw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/23/22 10:59, Krzysztof Kozlowski wrote:
-> On 22/07/2022 22:10, Florian Fainelli wrote:
->> Document the "srpd" and "frequency" sysfs attributes exposed by
->> the brcmstb_memc driver.
+On 24/07/2022 00:50, Dmitry Baryshkov wrote:
+> On Sat, 23 Jul 2022 at 20:48, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
->> ---
->>  .../ABI/testing/sysfs-platform-brcmstb-memc       | 15 +++++++++++++++
->>  1 file changed, 15 insertions(+)
->>  create mode 100644 Documentation/ABI/testing/sysfs-platform-brcmstb-memc
+>> On 23/07/2022 11:09, Dmitry Baryshkov wrote:
+>>> Describing each compatible board in DT schema seems wrong to me. It
+>>> means that each new board is incompatible by default, until added to the DT
+>>> schema.
+> 
+> s/incompatible/non-valid/
+> 
 >>
->> diff --git a/Documentation/ABI/testing/sysfs-platform-brcmstb-memc b/Documentation/ABI/testing/sysfs-platform-brcmstb-memc
->> new file mode 100644
->> index 000000000000..2bf0f58e412c
->> --- /dev/null
->> +++ b/Documentation/ABI/testing/sysfs-platform-brcmstb-memc
->> @@ -0,0 +1,15 @@
->> +What:		/sys/devices/platform/*/*/*/*/srpd
+>> The bindings do not document something because it is or it is no
+>> compatible. They document the compatible. Your patch essentially removes
+>> the documentation, so there is no point in having compatibles in board
+>> at all...
 > 
-> That's a lot of */. Are you sure it is correct path? Didn't you include
-> here some driver-related path components? Can you paste in email full
-> path as an example?
+> I do not quite agree here. Please correct me if I'm wrong.
+> Schema defines which DT files are correct and which are not. Which
+> properties are required, which values are valid, etc. So far so good.
 
-Yes this is the correct path:
+Schema is a tool, we create here bindings. The bindings document what
+you wrote above, plus compatibles and any other pieces mentioned in DT spec.
 
-/sys/devices/platform/rdb/rdb:memory_controllers/rdb:memory_controllers:memc@0/9902000.memc-ddr/
+> For the device nodes it declares (or is willing to declare) all
+> possible compatibility strings. There is a sensible number of on-chip
+> IP blocks, external chips, etc. Each and every new chip (or new IP
+> block) we are going to have a yaml file describing its usage. Perfect.
+> For the machine compatibility lists the arm,qcom schema declares which
+> machine compat strings are valid. And this looks like a problem. Now
+> for the DT to be fully valid against DT schema, we have to define its
+> machine compat string.
 
-the 'rdb' node is our top level bus node, the 'rdb:memory_controllers' is an encapsulating node that groups all of the possible memory controllers in a system (there can be between 1 and 3), the rdb:memory_controllers@0 is the first of those memory controller and finally the 9902000.memc-ddr is the sub-node that contains the register controls of interest, since the memory controller aggregates different functions (arbitration, configuration, statistics, DDR PHY SHIM layer, etc.). Maybe I should provide a more complete binding while I am it.
+Although one of goals is to have schema compliance, that is not the
+reason why we document compatibles. Compatibles were documented long
+time ago before DT schema came, because the bindings require it.
+
+Bindings define the interface between the DTS and software which uses
+it. SW is kernel, bootloaders, user-space and some more.
+
+> For each and every phone/sbc/evb we have to name it in schema. I think
+> this is an overkill. 
+
+Qualcomm is rather moderate, nothing big here so definitely it is not an
+overkill. We almost do not have there SoMs. Just take a pick at
+Freescale - this is much more complex than Qualcomm, so any changes
+should start with that. Qualcomm's "complexity" is not a reason to do
+anything...
+
+> It feels like we are putting DT information
+> (mapping form machine compat to SoC) into the DT schema.
+
+No, we are documenting the compatible in bindings. Just like we always
+did and we always had to.
+
+> For qcs404 we already have a schema which uses three items: {},
+> qcom,qcs404-evb, qcom,qcs404. This sounds like a perfect idea to me.
+> We allow any board, created by Qualcomm, Google or any other random
+> vendor, named Foo, Bar or Baz, as long as it declares that it is
+> compatible with qcom,qcs404-evb.
+> 
+> To go even further. We now have the qrb5165-rb5.dts, declaring
+> compatible = "qcom,qrb5165-rb5", "qcom,sm8250".
+> If at some point I add a navigation/communication/whatever mezz on top
+> of it. It would make sense to use compatible =
+> "qcom,qrb5165-rb5-navi-comm", "qcom,qrb5165-rb5", "qcom,sm8250".
+> Adding this to the growing list inside arm,qcom.yaml sounds like a
+> nightmare. I can only hope that at some point JSON schema gains
+> postfixItems support (as proposed) to be able to change e.g.
+> arm,qcom.yaml to list just our qcom,something platforms as possible
+> postfixItems for the schema.
+
+Again, Qualcomm complexity is nothing compared to Freescale. :)
 
 > 
->> +Date:		July 2022
->> +KernelVersion:	5.21
->> +Contact:	Florian Fainelli <f.fainelli@gmail.com>
->> +Description:
->> +		Self Refresh Power Down (SRPD) inactivity timeout counted in
->> +		internal DDR controller clock cycles. Possible values range
->> +		from 0 (disable inactivity timeout) to 65535 (0xffff).
+> Regarding having compatibles in board files at all. I think that they
+> are somehow misused nowadays. Instead of declaring that the
+> Dragonboard 845c is compatible with "thundercomm,db845c",
+> "qcom,sdm845-sbc", "96boards,ce-board", "96boards,iot-board",
+> "qcom,sdm845", the DT file declares nearly useless
+> "thundercomm,db845c", "qcom,sdm845".
 > 
-> Using hex suggests one should write there hex? If so, skip decimal...
-> You describe the user interface, not hardware registers.
+> Thus, if we (mostly) use machine compatible array to just define
+> Vendor+device name and the underlying Qualcomm SoC, I propose to leave
+> just a sensible part (SoC) in DT schema, while allowing any string in
+> the first part.
 
-Fair enough.
--- 
-Florian
+
+No, because you miss then the purpose of bindings - to document the
+compatible which is the important piece of interface between
+DTS/bootloader/kernel/other OS/user-space.
+
+To summarize, you propose to not document board compatibles. This is not
+what we want, because then the next step is - let's don't document SoCs.
+If you do not document it, means anyone can uniliteraly change it, e.g.
+in kernel DTS, which will break all other users (e.g. user-space or
+bootloaders) parsing the compatibles. And before you say - no one parses
+the board compatibles - let me just say that several user-space
+(embedded/closed) parse them, bootloaders parse them (U-Boot, Google's
+Chromebooks and others)
+
+Best regards,
+Krzysztof
