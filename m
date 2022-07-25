@@ -2,93 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 162F45802A1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 18:26:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 419005802A6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 18:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235811AbiGYQ0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 12:26:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55756 "EHLO
+        id S235991AbiGYQ1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 12:27:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235559AbiGYQ0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 12:26:15 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76F171C122
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 09:26:14 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id bf9so18782028lfb.13
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 09:26:14 -0700 (PDT)
+        with ESMTP id S232981AbiGYQ1d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 12:27:33 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C9E21CB34
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 09:27:31 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id z25so18932325lfr.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 09:27:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=4T+PbyHM+wfLYl65UslDGXMXntturk9NYcTl2mpNuw4=;
-        b=J1Id9hOvX/4PicOieafgx3YXjugYQ+C1JHlqE7GBdQkHoOv2a0rezvL6Ix8UHLi/kR
-         40qMVOZ2dAAJzvyMFB4ehO3IKUDqedyMAftY4wnPCyogwEnsDbJq1I66QLu7tPlUSfnZ
-         9sEwZY89EcaKnqUBnrXXZ/xIsOnFIvYvFkX+wGFfLe+8rCGobMtAGIjlK4KaP3a/+Vue
-         NruVlosIyI0rGCW/2Oy7BC+nUSSAae8YOseQRzup0U8WFrLS4wLiLASTGNT0KV55d+dU
-         XSLGtRQ0EiWH3FhyXQcs/s5R2+N4zmGpujP2mEhfsQe1dKBDkwWdhl6ZQFjsTEbySQcW
-         F2VQ==
+        bh=a8qgtbyQ2Sb8S21ck6j2VRxOU1twEycLNKRZP70WuG8=;
+        b=JhtERbfmoVEvbWgiY8SuIKSc43gL6rNbUppkuVwEQjXZ7KDlqomb8akiU6M2py8RTh
+         keUK/ttlR+gj+ew2QoYldWSiuXopIcE/oY59thxBNiu/vKCNmTI5pkBA6aUxm0JvvtZs
+         EWk6+6iE69emTjZlUTZVBBUT6GGPlbLXxMOdC4fVgwvNEVHT+aTPHkEW2ml53r83EjNF
+         T3MPNymLb/VEkNNYNEQTgwkzJNNQUjv+eLPIgdWjiB2MkfAnTeC8T3FNKyHLf650xZ4D
+         o/MUc/NqZFExoNlA6RAU580SH47kbJCqeIGSclpIxzWWEdLxso9AoRG0exMZkwW8BGXq
+         VzNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=4T+PbyHM+wfLYl65UslDGXMXntturk9NYcTl2mpNuw4=;
-        b=7BtxVl8//0gkKXNugOm+LaDTMnyazg+G553QxjeImfgOFhKB1OcwWhYlP+s4+1HjN9
-         zfZa0dfSFacAOsZI+h+XDvtaT3aGPyVUd/JivJLYcWzfurAMn9dr1RjtCVZWpB8gvrji
-         dYa+C5cby+qpEyvuozrUvw6IOsrsLZpeJ+l/SxuUCIE5R6EphuPz2FOdIrJXTSxilaXY
-         gbDBAab8bypYLK++Y6LS5rJhPcFa7sw/Lvm1WlNYIXmXSWzn9fY92xnPZIXoSFDAM8/4
-         zSi2y1u8yNl/SZB/V5LU4LjNLXRFnmFIdrXJjOIeem72bMPtds50QiN8fK1E4vbpJ0e+
-         WksA==
-X-Gm-Message-State: AJIora99rKIANeJSOEUTmVUfZI9dIbYZKzuOKPkZdHa/8zz7kd9tpj25
-        ce8zZHuHkOLvNHZ3/+gnje59PQ==
-X-Google-Smtp-Source: AGRyM1urdUV3F43axjGYiO0+LpThUaQdCfH0uBGEDq3XRS3hIn1yofWjeUrjT/CDPws3EkB/DCAssA==
-X-Received: by 2002:a05:6512:1310:b0:481:6154:c292 with SMTP id x16-20020a056512131000b004816154c292mr4696089lfu.95.1658766372821;
-        Mon, 25 Jul 2022 09:26:12 -0700 (PDT)
+        bh=a8qgtbyQ2Sb8S21ck6j2VRxOU1twEycLNKRZP70WuG8=;
+        b=48ltB1wO2BkYVUGl5qsgTdTGNsIcrhz/v/PqJij4TDYWuffJTACTwYdBhyba20mHhR
+         eyU6rCWhTgZHpYknpSixtStJdk5kVD0bWEugwWvSl7eaXY2dlQ7fcGSJNB5Q9HKz81TF
+         b9dMzHKJzG9enDHTqtLA0EgUxarRaEMwKdXRzX9b3VzXoG7D/xU2rtzMjC4p/sTbnTvS
+         P3qAYJRFwDI7+uhPZ2FTBdIQWmTEG7ZPV880vW21HOQDQCxTS9mZeq6p2jlVrW3JGWUw
+         dXnlzTynqU9VczpVERjAnxBX5ziKagdHP/YyAMDOvQ00xUdbdpVQahlqm64y1zk5padO
+         6a+g==
+X-Gm-Message-State: AJIora+gEldX9+kJ45H8Z6IWbQWvcRd+PtlfNvVY6Og/8/s1YmCDt0jr
+        NCDGcMrDAoP/j/SM/zu9jdY4Zw==
+X-Google-Smtp-Source: AGRyM1ukQToOk9Zpdc37MBg/4uZr4idwBKkMofuxwfvIVe/VMLESuNHBmYViO8Fap4CebE5hIwIXsg==
+X-Received: by 2002:a05:6512:693:b0:48a:7c23:1896 with SMTP id t19-20020a056512069300b0048a7c231896mr5121392lfe.111.1658766449738;
+        Mon, 25 Jul 2022 09:27:29 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id b9-20020a0565120b8900b0048a950050ebsm352917lfv.28.2022.07.25.09.26.11
+        by smtp.gmail.com with ESMTPSA id f6-20020a05651c02c600b0025a724f2935sm2812818ljo.137.2022.07.25.09.27.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Jul 2022 09:26:12 -0700 (PDT)
-Message-ID: <515453c6-eaa4-d09b-6ce6-3840b350dcbb@linaro.org>
-Date:   Mon, 25 Jul 2022 18:26:10 +0200
+        Mon, 25 Jul 2022 09:27:29 -0700 (PDT)
+Message-ID: <a1ecd715-4f74-640c-09d6-5b74e026ecb0@linaro.org>
+Date:   Mon, 25 Jul 2022 18:27:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH v3 1/1] dt-bindings: rtc: nxp,pcf85063: Convert to DT
- schema
+Subject: Re: [PATCH v6 4/8] dt-bindings: clock: mediatek: Add clock driver
+ bindings for MT6795
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220725071919.25342-1-alexander.stein@ew.tq-group.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, sboyd@kernel.org
+Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        p.zabel@pengutronix.de, y.oudjana@protonmail.com,
+        jason-jh.lin@mediatek.com, ck.hu@mediatek.com,
+        fparent@baylibre.com, rex-bc.chen@mediatek.com,
+        tinghan.shen@mediatek.com, ikjn@chromium.org,
+        miles.chen@mediatek.com, sam.shih@mediatek.com, wenst@chromium.org,
+        bgolaszewski@baylibre.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
+        kernel@collabora.com
+References: <20220722090609.52364-1-angelogioacchino.delregno@collabora.com>
+ <20220722090609.52364-5-angelogioacchino.delregno@collabora.com>
+ <8d656940-567f-d8ea-8cb1-4ca37dde3e0c@linaro.org>
+ <6d6d05cf-9c56-a29a-64cd-1de62c530167@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220725071919.25342-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <6d6d05cf-9c56-a29a-64cd-1de62c530167@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2022 09:19, Alexander Stein wrote:
-> Convert the NXP PCF85063 RTC binding to DT schema format.
+On 25/07/2022 10:13, AngeloGioacchino Del Regno wrote:
+> I'm sorry, yes I got Rob's review tag in v5 and I somehow forgot to add
+> it to v6 :-(
 > 
-> Add 'interrupts' and 'wakeup-source' as this device has an interrupt
-> which was not documented, but is in use.
-> 'clock-output-names' and '#clock-cells' are added as well, those were
-> probably missed when adding clkout support in commit 8c229ab6048b
-> ("rtc: pcf85063: Add pcf85063 clkout control to common clock framework")
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Should I send a v7 for adding back the tag?
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yes, because otherwise it will pop-up at Rob's patchwork for a review.
 
 
 Best regards,
