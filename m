@@ -2,105 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DB3D580803
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 01:11:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB83C580809
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 01:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229609AbiGYXL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 19:11:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43326 "EHLO
+        id S237052AbiGYXOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 19:14:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237097AbiGYXLX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 19:11:23 -0400
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 679B913E3F;
-        Mon, 25 Jul 2022 16:11:21 -0700 (PDT)
-Received: by mail-oo1-f51.google.com with SMTP id j1-20020a4ab1c1000000b0043576bcb9b1so2432864ooo.10;
-        Mon, 25 Jul 2022 16:11:21 -0700 (PDT)
+        with ESMTP id S231604AbiGYXOJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 19:14:09 -0400
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 834FB12ADC;
+        Mon, 25 Jul 2022 16:14:08 -0700 (PDT)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-10cf9f5b500so16719214fac.2;
+        Mon, 25 Jul 2022 16:14:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=VNdXVWht5zzjHjVhQhSusKUMhE8ELd1CfgAT3RGumig=;
-        b=koHoDSfNCxBxtS1VCZepXqbEIg7uQ+AM7mwq79lWBeI5CunmoGontUp/zZmNx2Y0ud
-         sNA0UpzT9e6deLDVcEmCDNt52ATi3wrFLS3qUtqWE6pmam1quckFQz4sw7F6UQ/WaNa8
-         pzBj1OZ/BtHVL14MqSiiEHQhKKar8QLcU2Pr/SxGBYXl1di837hykblNj3CZJRwoCHnc
-         5HmFxdEazyBqjlt5oTAKF78pRZGU8mgwpnXOORtC4P/ebysr2ZkUeIrIzV1bhB7KZVqI
-         207z0cKpdaFHO+ejTQDNZB4GB1tYrAJ560NampQMfHrqsqHYLXEYr62mjiQPuNP6/bBY
-         HXNQ==
-X-Gm-Message-State: AJIora+Le6JrgK25NEuqHc8RRdE25up1TANE6Jti4tUyF/4BctjSbLLW
-        w82QTLZeBQShKBaZUxt0Pw==
-X-Google-Smtp-Source: AGRyM1t/aV8rKVmSzFYaQ2SEStr6U2W+xOIy+oVghT1U75c1dg0LahG8eURVPT/HXUpAh5ssvQ3zgQ==
-X-Received: by 2002:a4a:6550:0:b0:435:f3e8:8d3e with SMTP id z16-20020a4a6550000000b00435f3e88d3emr926118oog.13.1658790680687;
-        Mon, 25 Jul 2022 16:11:20 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=IT9a0wSsGnU4XfNa0zlbA+WkW9Dbub1UMbz6KfLI6MY=;
+        b=pj9o3XWsClJo3/4Wppy2MdfichiXBaaaTyk2IebGc+8yQjxtS9pu47MRr0Hp/d9kDt
+         mAl9WyvUnD/jfqDFHEj6uOskHHjXGNm1rbKUdtHi0DY9Rp2q6g6LHbRqzNh6PYwY81mS
+         4+rVG7ZUIgpRJeVeXHwpCrA0Y6tD3rGJ0jIJ+prVHCym53emCzT08JXSvfoMfa89LFhs
+         Asy/Kt1xJfFiwYSwESc4nKH1jHGrnlQHlEX5XPzn4BhVhZvg8zwJ/ZIytfk4Dk3etv7W
+         f/3ylCCmcM64bJgC6vvQV+LGqe6ha6v0m+mGidxtTw3EtdffVanvTNVaaSsk/4MM+ME4
+         5jRQ==
+X-Gm-Message-State: AJIora9eDKyMIR3rZrAljGzTUmNdKUtI8RrD+WtrRmCX9v5/mAS2IUz+
+        DbHxv55Tlavg1aMxkKxwNg==
+X-Google-Smtp-Source: AGRyM1sOEaENPiaKZi6zm2YQdCZcWqFgTUzFmo56Scl3zxQjWiAN/UML1fly4p3EtWEnkVWhfcKP5g==
+X-Received: by 2002:a05:6870:9a1d:b0:10d:c9c5:e16a with SMTP id fo29-20020a0568709a1d00b0010dc9c5e16amr7700750oab.135.1658790847779;
+        Mon, 25 Jul 2022 16:14:07 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f97-20020a9d2c6a000000b0061c87262540sm5419037otb.65.2022.07.25.16.11.19
+        by smtp.gmail.com with ESMTPSA id 62-20020a4a1541000000b0041b49c19a00sm5359166oon.18.2022.07.25.16.14.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Jul 2022 16:11:20 -0700 (PDT)
-Received: (nullmailer pid 2927686 invoked by uid 1000);
-        Mon, 25 Jul 2022 23:11:18 -0000
-Date:   Mon, 25 Jul 2022 17:11:18 -0600
+        Mon, 25 Jul 2022 16:14:07 -0700 (PDT)
+Received: (nullmailer pid 2932291 invoked by uid 1000);
+        Mon, 25 Jul 2022 23:14:05 -0000
+Date:   Mon, 25 Jul 2022 17:14:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Marek Belisko <marek@goldelico.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>, devicetree@vger.kernel.org,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        linux-spi@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Biju Das <biju.das@bp.renesas.com>,
-        David Airlie <airlied@linux.ie>
-Subject: Re: [PATCH v4 1/2] dt-bindings: display: Document Renesas RZ/G2L DU
- bindings
-Message-ID: <20220725231118.GA2927653-robh@kernel.org>
-References: <20220722191353.544516-1-biju.das.jz@bp.renesas.com>
- <20220722191353.544516-2-biju.das.jz@bp.renesas.com>
+        Mark Brown <broonie@kernel.org>,
+        dri-devel@lists.freedesktop.org,
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: Re: [PATCH v2 1/1] spi/panel: dt-bindings: drop CPHA and CPOL from
+ common properties
+Message-ID: <20220725231405.GA2931469-robh@kernel.org>
+References: <20220722191539.90641-1-krzysztof.kozlowski@linaro.org>
+ <20220722191539.90641-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220722191353.544516-2-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+In-Reply-To: <20220722191539.90641-2-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Jul 2022 20:13:52 +0100, Biju Das wrote:
-> The RZ/G2L LCD controller is composed of Frame Compression Processor
-> (FCPVD), Video Signal Processor (VSPD), and Display Unit (DU).
+On Fri, 22 Jul 2022 21:15:39 +0200, Krzysztof Kozlowski wrote:
+> The spi-cpha and spi-cpol properties are device specific and should be
+> accepted only if device really needs them.  Drop them from common
+> spi-peripheral-props.yaml schema, mention in few panel drivers which use
+> them and include instead in the SPI controller bindings.  The controller
+> bindings will provide CPHA/CPOL type validation and one place for
+> description.  Each device schema must list the properties if they are
+> applicable.
 > 
-> The DU module supports the following hardware features
-> − Display Parallel Interface (DPI) and MIPI LINK Video Interface
-> − Display timing master
-> − Generates video timings
-> − Selecting the polarity of output DCLK, HSYNC, VSYNC, and DE
-> − Supports Progressive
-> − Input data format (from VSPD): RGB888, RGB666
-> − Output data format: same as Input data format
-> − Supporting Full HD (1920 pixels x 1080 lines) for MIPI-DSI Output
-> − Supporting WXGA (1280 pixels x 800 lines) for Parallel Output
-> 
-> This patch document DU module found on RZ/G2L LCDC.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> v3->v4:
->  * Changed compatible name from renesas,du-r9a07g044->renesas,r9a07g044-du
->  * started using same compatible for RZ/G2{L,LC}
-> v3: New patch
-> ---
->  .../bindings/display/renesas,rzg2l-du.yaml    | 124 ++++++++++++++++++
->  1 file changed, 124 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
+>  .../bindings/display/panel/lgphilips,lb035q02.yaml    |  3 +++
+>  .../bindings/display/panel/samsung,ld9040.yaml        |  3 +++
+>  .../bindings/display/panel/sitronix,st7789v.yaml      |  3 +++
+>  .../devicetree/bindings/display/panel/tpo,td.yaml     |  3 +++
+>  .../devicetree/bindings/spi/spi-controller.yaml       | 11 +++++++++++
+>  .../devicetree/bindings/spi/spi-peripheral-props.yaml | 10 ----------
+>  6 files changed, 23 insertions(+), 10 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
+
+Unless Mark doesn't want to pick this up.
