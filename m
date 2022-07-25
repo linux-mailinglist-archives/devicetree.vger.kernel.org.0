@@ -2,184 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D525804F8
-	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:04:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 573F35804FC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Jul 2022 22:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234320AbiGYUEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 16:04:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39918 "EHLO
+        id S236589AbiGYUFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 16:05:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbiGYUEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:04:52 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C376620BFD
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:04:51 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oG4Ji-0007t2-9D; Mon, 25 Jul 2022 22:04:38 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oG4Jg-003B0f-S5; Mon, 25 Jul 2022 22:04:36 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oG4Jg-007Uhh-4S; Mon, 25 Jul 2022 22:04:36 +0200
-Date:   Mon, 25 Jul 2022 22:04:17 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/4] ARM: dts: armada-38x: Fix compatible string for
- gpios
-Message-ID: <20220725200417.nwthxzvdv2bzd5ej@pengutronix.de>
-References: <20220714115515.5748-1-pali@kernel.org>
- <20220714183328.4137-1-pali@kernel.org>
- <20220714183328.4137-3-pali@kernel.org>
- <20220716144028.rzwcn4wl5uyxepjd@pengutronix.de>
- <20220716145019.nps3oh4a22fsuzup@pali>
- <20220716150751.6yaknmo3qwusyy5h@pengutronix.de>
- <20220716160916.jp37siznitgzw6qf@pali>
+        with ESMTP id S230299AbiGYUFm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 16:05:42 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D209D20F73
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:05:38 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id y11so19549360lfs.6
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 13:05:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Oceg/Pf4ocpuzyoJ2bDgrLZz3+Hr4ukfCLs2bjellJ0=;
+        b=xbvE7pFXaNjrko+nOS903yex+fY9Lqzl/dugltKs7yyRNlL+RipCTRGxarErqqJZqz
+         4323Yf7eoI2STUWZBo0sLNSMAL+Lvk4Gc+q1BiGtv/otu+DtzAGz/oJnf4hdTLOfEMor
+         zW+A2MqNv4K4M0+88vRPGZbhKKfab4zW/98PjLXa/mkO2zdJkJIUlHhzax1vmiOIpgXY
+         IwzxgPZagbt9D7kYbIemJKzG51xcpUujcMEeqQ/c8lUnxXrwuWvw83qOXIUonPeMAWuQ
+         mo9gvw4nCivKxT/AtVeTkFMPlLqpFZhRT3/yrATPYtKee7jccdFpJgzkOJ6nIH6J22v4
+         do3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Oceg/Pf4ocpuzyoJ2bDgrLZz3+Hr4ukfCLs2bjellJ0=;
+        b=s8rRqzq5BfpGH806QjDtXkX1xaBVYHrN0fw/PWgdp3eoThMTpCn0dsVjjRf/uZoW//
+         alyFQb41p4Wwyr2ODQDXv7vpnNIPPFyleXr7F/GKax/W+CLbyAuhAGubr8X4fX5KQd/9
+         J3OvDzh0C4/en1j4fIuJvaGlzPZBNseOmrizQkIOu9YJIRUZCqnsB/0BL2r09Z5qgaT0
+         N3ekNvFOOYXqo/QNgmsuV8pi+hU17FtPwvn6KIA+1wFNCQYB0iVKyrEAzZ7XWnSrJPWa
+         8oIKgx4ehQ4f0bGJgGa7/nd8mg2sNeiB2s1q8b8fgEUrJNljKqKFkXzIMT3iVdWdaA/9
+         krdg==
+X-Gm-Message-State: AJIora+bLkCHQES4R4sT9DHypjwvxhBwksLz8ejzKQcFGKg2rOcDl8Q0
+        V2FMqXGQhEa+FwO61XP5NJEMww==
+X-Google-Smtp-Source: AGRyM1sXYCp4Q9ED/TciKrz8jGk4K3lXUkvrseaBvwYdeuV8O0x0U1uIFfHVolrbyOo9xURBlysiIA==
+X-Received: by 2002:a05:6512:a84:b0:48a:556d:5539 with SMTP id m4-20020a0565120a8400b0048a556d5539mr5400698lfu.6.1658779536913;
+        Mon, 25 Jul 2022 13:05:36 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id g1-20020a056512118100b0048a9d0242c9sm182844lfr.210.2022.07.25.13.05.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Jul 2022 13:05:36 -0700 (PDT)
+Message-ID: <e81d657f-edea-4c5d-e546-e3bdb379c659@linaro.org>
+Date:   Mon, 25 Jul 2022 22:05:35 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="n5kkir5uuei4mgh7"
-Content-Disposition: inline
-In-Reply-To: <20220716160916.jp37siznitgzw6qf@pali>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl,sai: Convert format to json-schema
+Content-Language: en-US
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     shengjiu.wang@gmail.com
+References: <1658741467-32620-1-git-send-email-shengjiu.wang@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1658741467-32620-1-git-send-email-shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 25/07/2022 11:31, Shengjiu Wang wrote:
+> Convert the NXP SAI binding to DT schema format using json-schema.
+> 
+> The Synchronous Audio Interface (SAI) provides an interface that
+> supports full-duplex serial interfaces with frame synchronization
+> formats such as I2S, AC97, TDM, and codec/DSP interfaces.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> ---
+>  .../devicetree/bindings/sound/fsl,sai.yaml    | 175 ++++++++++++++++++
+>  .../devicetree/bindings/sound/fsl-sai.txt     |  95 ----------
+>  2 files changed, 175 insertions(+), 95 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/fsl,sai.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/fsl-sai.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> new file mode 100644
+> index 000000000000..adcd77531eba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> @@ -0,0 +1,175 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale Synchronous Audio Interface (SAI).
+> +
+> +maintainers:
+> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> +
+> +description: |
+> +  The SAI is based on I2S module that used communicating with audio codecs,
+> +  which provides a synchronous audio interface that supports fullduplex
+> +  serial interfaces with frame synchronization such as I2S, AC97, TDM, and
+> +  codec/DSP interfaces.
+> +
+> +properties:
+> +  compatible:
+> +    minItems: 1
+> +    maxItems: 2
 
---n5kkir5uuei4mgh7
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You allow anything here, so it's not acceptable. This has to be strictly
+defined.
 
-Hello Pali,
+> +    items:
+> +      enum:
+> +        - fsl,vf610-sai
+> +        - fsl,imx6sx-sai
+> +        - fsl,imx6ul-sai
+> +        - fsl,imx7ulp-sai
+> +        - fsl,imx8mq-sai
+> +        - fsl,imx8qm-sai
+> +        - fsl,imx8mm-sai
+> +        - fsl,imx8mn-sai
+> +        - fsl,imx8mp-sai
+> +        - fsl,imx8ulp-sai
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: receive and transmit interrupt
+> +
+> +  dmas:
+> +    minItems: 2
 
-On Sat, Jul 16, 2022 at 06:09:16PM +0200, Pali Roh=E1r wrote:
-> On Saturday 16 July 2022 17:07:51 Uwe Kleine-K=F6nig wrote:
-> > On Sat, Jul 16, 2022 at 04:50:19PM +0200, Pali Roh=E1r wrote:
-> > > On Saturday 16 July 2022 16:40:28 Uwe Kleine-K=F6nig wrote:
-> > > > On Thu, Jul 14, 2022 at 08:33:27PM +0200, Pali Roh=E1r wrote:
-> > > > > Armada 38x supports per CPU interrupts for gpios, like Armada XP.=
- Pre-XP
-> > > > > variants like Armada 370 do not support per CPU interrupts for gp=
-ios.
-> > > > >=20
-> > > > > So change compatible string for Armada 38x from "marvell,armada-3=
-70-gpio"
-> > > > > which indicates pre-XP variant to "marvell,armadaxp-gpio" which i=
-ndicates
-> > > > > XP variant or new.
-> > > > >=20
-> > > > > Driver gpio-mvebu.c which handles both pre-XP and XP variants alr=
-eady
-> > > > > provides support for per CPU interrupts on XP and newer variants.
-> > > > >=20
-> > > > > Signed-off-by: Pali Roh=E1r <pali@kernel.org>
-> > > > > Fixes: 7cb2acb3fbae ("ARM: dts: mvebu: Add PWM properties for arm=
-ada-38x")
-> > > > > ---
-> > > > >  arch/arm/boot/dts/armada-38x.dtsi | 4 ++--
-> > > > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > > >=20
-> > > > > diff --git a/arch/arm/boot/dts/armada-38x.dtsi b/arch/arm/boot/dt=
-s/armada-38x.dtsi
-> > > > > index df3c8d1d8f64..9343de6947b3 100644
-> > > > > --- a/arch/arm/boot/dts/armada-38x.dtsi
-> > > > > +++ b/arch/arm/boot/dts/armada-38x.dtsi
-> > > > > @@ -292,7 +292,7 @@
-> > > > >  			};
-> > > > > =20
-> > > > >  			gpio0: gpio@18100 {
-> > > > > -				compatible =3D "marvell,armada-370-gpio",
-> > > > > +				compatible =3D "marvell,armadaxp-gpio",
-> > > > >  					     "marvell,orion-gpio";
-> > > >=20
-> > > > If you can treat the XP variant as 370 and everything that is suppo=
-sed
-> > > > to work on 370 works then, then maybe the right incarnation is:
-> > > >=20
-> > > > 	compatible =3D "marvell,armadaxp-gpio", "marvell,armada-370-gpio",=
- "marvell,orion-gpio";
-> > > >=20
-> > > > ?
-> > >=20
-> > > For pre-XP variants is "marvell,orion-gpio" enough and for XP + post-=
-XP
-> > > is needed "marvell,armadaxp-gpio" (with possible "marvell,orion-gpio"
-> > > for backward compatibility).
-> > >=20
-> > > So I do not see reason why to add "marvell,armada-370-gpio" nor what
-> > > value it brings.
-> >=20
-> > If you boot an older kernel (i.e. one that doesn't support
-> > marvell,armadaxp-gpio, but does support marvell,armada-370-gpio), it
->=20
-> Is there such kernel version?
+No need for minItems.
 
-Ah, I thought you added "marvell,armadaxp-gpio" with this patch series.
+> +    maxItems: 2
+> +    description:
+> +      Must contain a list of pairs of references to DMA specifiers, one for
+> +      transmission, and one for reception.
 
-> > will work better as there are relevant differences between
-> > marvell,orion-gpio and marvell,armada-370-gpio.
->=20
-> And if yes, do we really need this in DTS files for new kernel
-> versions? I can imagine that such change can be relevant for old LTS
-> kernel version, but not for new versions.
->=20
-> > For example some
-> > registers seem to have a different offset ...
->=20
-> armada-370-gpio is mapped to MVEBU_GPIO_SOC_VARIANT_ORION, so it will
-> get same offsets as orion-gpio. So no change.
+Skip description and instead describe items like you did for interrupts.
 
-OK, you're right, my assumptions were wrong. I'm convinced your change
-is fine now:
+> +
+> +  dma-names:
+> +    minItems: 2
+> +    maxItems: 2
+> +    items:
+> +      enum:
+> +        - tx
+> +        - rx
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+No, this has to be strictly defined, so items with tx and rx (or
+reversed order).
 
-Best regards
-Uwe
+> +
+> +  clocks:
+> +    minItems: 4
+> +    items:
+> +      - description: The ipg clock for register access
+> +      - description: master clock source 0 (obsoleted, compatible for old dts)
+> +      - description: master clock source 1
+> +      - description: master clock source 2
+> +      - description: master clock source 3
+> +      - description: PLL clock source for 8kHz series
+> +      - description: PLL clock source for 11kHz series
+> +
+> +  clock-names:
+> +    minItems: 4
+> +    maxItems: 7
+> +    items:
+> +      enum:
+> +        - bus
+> +        - mclk0
+> +        - mclk1
+> +        - mclk2
+> +        - mclk3
+> +        - pll8k
+> +        - pll11k
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+Ditto. minItems:4 could stay, but the rest is not correct. This has to
+be strictly ordered/defined list.
 
---n5kkir5uuei4mgh7
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +  lsb-first:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      Configures whether the LSB or the MSB is transmitted
+> +      first for the fifo data. If this property is absent,
+> +      the MSB is transmitted first as default, or the LSB
+> +      is transmitted first.
+> +
+> +  big-endian:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      Boolean property, required if all the SAI
+> +      registers are big-endian rather than little-endian.
+> +
+> +  fsl,sai-synchronous-rx:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      This is a boolean property. 
 
------BEGIN PGP SIGNATURE-----
+Skip such description, it's useless... Further as well.
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLe9zUACgkQwfwUeK3K
-7Ak/lAf9GbJU03sNT87u8d1+k2z6T3ReV3ntV5ZIhu/vzMB63UPufXkQpYfNC64R
-HiMeAfrVBmle3OOiz5SglqkdslWGVjAysLTo4AxaVpvJ323RKQdwzhIqKeXACsC2
-cQkbNq3mlbGJ70VZKdw06u0VHmGncSs3vd25mXIN57uvtOxRRqDaOZjuDI17SA0f
-87yboq8YS1PRVwK3NoW1uixpkda5qnyQbNvCt89BXrCf8YAi16JBDzFgNFKN1IrQ
-fH3ZWuGZL7tA1NkzDcVhATwIsUZtgqTlnVa+ShTFQeskq7OPDdzKSW1HkPm1erC4
-2alQnhUNBjI/4nC4OsOIUL+uHRv2Dw==
-=rPdh
------END PGP SIGNATURE-----
+If present, indicating
+> +      that SAI will work in the synchronous mode (sync Tx
+> +      with Rx) which means both the transmitter and the
+> +      receiver will send and receive data by following
+> +      receiver's bit clocks and frame sync clocks.
+> +      fsl,sai-asynchronous and fsl,sai-synchronous-rx are exclusive.
+> +
+> +  fsl,sai-asynchronous:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      This is a boolean property. If present, indicating
+> +      that SAI will work in the asynchronous mode, which
+> +      means both transmitter and receiver will send and
+> +      receive data by following their own bit clocks and
+> +      frame sync clocks separately.
+> +      If both fsl,sai-asynchronous and fsl,sai-synchronous-rx are absent, the
+> +      default synchronous mode (sync Rx with Tx) will be used, which means both
+> +      transmitter and receiver will send and receive data by following clocks
+> +      of transmitter.
+> +      fsl,sai-asynchronous and fsl,sai-synchronous-rx are exclusive.
+> +
+> +  fsl,dataline:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +    description: |
+> +      configure the dataline. it has 3 value for each configuration
+> +      first one means the type: I2S(1) or PDM(2)
+> +      second one is dataline mask for 'rx'
+> +      third one is dataline mask for 'tx'.
+> +      for example: fsl,dataline = <1 0xff 0xff 2 0xff 0x11>;
+> +      it means I2S type rx mask is 0xff, tx mask is 0xff, PDM type
+> +      rx mask is 0xff, tx mask is 0x11 (dataline 1 and 5 enabled).
+> +
+> +  fsl,sai-mclk-direction-output:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      This is a boolean property. If present,
+> +      indicates that SAI will output the SAI MCLK clock.
+> +
+> +  fsl,shared-interrupt:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      This is a boolean property. If present,
+> +      indicates that interrupt is shared with other modules.
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - dmas
+> +  - dma-names
+> +  - clocks
+> +  - clock-names
 
---n5kkir5uuei4mgh7--
+You need to express the exclusiveness of properties.
+allOf:if:required:then:... would work, like here:
+https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml#L155
+
+
+Best regards,
+Krzysztof
