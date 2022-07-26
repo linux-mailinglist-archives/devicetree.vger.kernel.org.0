@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C583B58127A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE0758127B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:58:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238691AbiGZL64 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 07:58:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36952 "EHLO
+        id S238840AbiGZL66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 07:58:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238380AbiGZL6z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:58:55 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F067E32EFA
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:58:54 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id b21so9224294ljk.8
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:58:54 -0700 (PDT)
+        with ESMTP id S238707AbiGZL66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:58:58 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D93D832EFA
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:58:56 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id t17so10037427lfk.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:58:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SXepETNl0t5Eauvg/pczzznTHabsPOjX83tUsTI9GE8=;
-        b=VzbgU00OJTByzWkVApH4fK61lobcJqO8iZS+G2mTVOJodHxycA0osaY4ettHZ4yICn
-         lg/jJS07mw9kSC50ob3uJ/M7oVakYNcaAfzGvtvHoV/8JfsVxPd/IPwvGvyqkZMBhPYV
-         GOed7CSD2Sv3jFq/jwEYtJ+L94QWmGZe1AufILpiI1fnNGtcpobUaVZL823T7vQBmrC5
-         /BtytQI7S10FKlI7oLUNV6ixezlr+fvQbrFZJXfu42fjhLRM8PiRAc46jV/juNmv5bQP
-         CcgU5m6IqBodoYGm5iht/Ka2Ifgd4h8ZKtnSiTBCk5DliCK6bVu9snz6WHjJhy326JH6
-         /ZDQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=jA+mqudhBBZi2Q/yV+jzZ+rW7CDDtET6U/Ixmvt8ur4=;
+        b=OEx9hi9DiBotTSc9NDiSVFVjtV0XPO9DE0KkWuIzknPN8KIpFfYTsymDloa+FvuuTH
+         TXSbBxtrEW/6REw64WBb2iw+t6apwsb+MieujLHGnA9ZzlqvUwntVzWL6kNwRbQO80Yw
+         08fef0leKuTPSdXaK1B0nq73TSDNBR/tn+7W8697ANyrpOhagpYmq3xSeyHU5SMbEnla
+         K246TeNm2EOy/a1Odvi81WAsagK17pW7pCAn41tBdvMVxO06qv7P3X2q0jhJrniRFwvi
+         PbKeYwvTFv4ktw+N3NMpTlQrQDn1UDVlM5T5A30/wngtk/SH4L7wb/w+40Vnb/zG/Vh5
+         TnFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SXepETNl0t5Eauvg/pczzznTHabsPOjX83tUsTI9GE8=;
-        b=0y/R1WvZ0eZvt6UYdmeU7ciw1aZTTKYSPODfHMB7KYalON2ruXaO3lz9qEKDbnFjzp
-         rRncMhDfsL4/dDN+TghIbufdAz5p1ure5ZsFGuZlNkqv0GGSD8LuVhi4kq7eeFnGhghK
-         Se7WaGys9XDIS68HgmkianWhQINXu70emTgdqbnG7bc0Heu237mmDAvcINnIUNbdd596
-         yoCpuHEK9QNIoSe/SlZC0bcWsQ89fqfdv/oJjnWEFGzqLBKbSQofFiQtlGKe9AF7Tni0
-         FngurEIxE3rkiaQv1iNWNZShv/ur9nlWpPAhUXiRze/S9y5vUalX92JQM2fSRABbCyty
-         Fvag==
-X-Gm-Message-State: AJIora8yeghEeVqEvGD2w4YZ0iuPqPitZwzuBVQBYzWGr+GhlsIdKury
-        PAPJUrQDs6QEI9z2Ubmll9VsSQ==
-X-Google-Smtp-Source: AGRyM1uL5SU4BU4NU69IWSheCc7WAGNBFPBjyEmFfjOiC9y/qWdPQUqFn4FaEP6qkwKIhx2HV/9BUQ==
-X-Received: by 2002:a05:651c:b23:b0:25e:e2d:9e40 with SMTP id b35-20020a05651c0b2300b0025e0e2d9e40mr2328578ljr.38.1658836733335;
-        Tue, 26 Jul 2022 04:58:53 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=jA+mqudhBBZi2Q/yV+jzZ+rW7CDDtET6U/Ixmvt8ur4=;
+        b=wXuZQbQS39b0x0lbO0arVOMLlfKXsZbtFUinInwpvHMg4waUAzpwmPgMCPt12PpEjz
+         t4uFYS3r8rSMhfurDQgBNiVlGcXtaT3Dw9Q1x64ozmVVjH3h9HB/rd0XX4HP416YXexG
+         g5gjDW7J68+RQU3/0cKJNx1DfX9ZxCxzRzJS7tmye1C+izTYV0Qv/kkOrLrMrV/331bt
+         WtaoKe+HraViI5obnvzhFk79AwQJvD61swGUwWkqCt8coCHplbINAUG7dX+0XDplLXKa
+         roY7ve+jDfjADOgMIhhMhY9AkXA1F/ugCu1D/GMOu6/R6p00cqdOli+S+SjNEcgPG5ms
+         OTcw==
+X-Gm-Message-State: AJIora+aQKxy1YqLCU57+tce64Gpdbp/p4JCnlU2Cims529qh5IWh7VP
+        wTzIPTe++EgZAQB8b0x7Rd7cjw==
+X-Google-Smtp-Source: AGRyM1stGsVW9B5+RaHQ2eIH6Xm0MbVHcEZFesSN28iMGL0Xm4GTDsV2XCnVrqIn/tbfBX6mLgoEMQ==
+X-Received: by 2002:a05:6512:32c2:b0:48a:9822:ca2c with SMTP id f2-20020a05651232c200b0048a9822ca2cmr2514915lfg.117.1658836735012;
+        Tue, 26 Jul 2022 04:58:55 -0700 (PDT)
 Received: from krzk-bin.lan (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id u5-20020a05651220c500b0048a9526c7d9sm773000lfr.257.2022.07.26.04.58.51
+        by smtp.gmail.com with ESMTPSA id u5-20020a05651220c500b0048a9526c7d9sm773000lfr.257.2022.07.26.04.58.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 04:58:52 -0700 (PDT)
+        Tue, 26 Jul 2022 04:58:54 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
@@ -64,10 +64,12 @@ To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/4] dt-bindings: soc: bcm: drop quotes when not needed
-Date:   Tue, 26 Jul 2022 13:58:38 +0200
-Message-Id: <20220726115841.101249-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/4] dt-bindings: soc: bcm: use absolute path to other schema
+Date:   Tue, 26 Jul 2022 13:58:39 +0200
+Message-Id: <20220726115841.101249-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220726115841.101249-1-krzysztof.kozlowski@linaro.org>
+References: <20220726115841.101249-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,28 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Id and schema fields do not need quotes.
+Absolute path to other DT schema is preferred over relative one.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-index 894786640938..a6e8018084c6 100644
+index a6e8018084c6..e28ef198a801 100644
 --- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
 +++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-pm.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/soc/bcm/brcm,bcm2835-pm.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/soc/bcm/brcm,bcm2835-pm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+@@ -14,7 +14,7 @@ maintainers:
+   - Nicolas Saenz Julienne <nsaenz@kernel.org>
  
- title: BCM2835 PM (Power domains, watchdog)
+ allOf:
+-  - $ref: ../../watchdog/watchdog.yaml#
++  - $ref: /schemas/watchdog/watchdog.yaml#
  
+ properties:
+   compatible:
 -- 
 2.34.1
 
