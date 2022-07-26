@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 424DC580A31
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 06:03:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7027580A34
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 06:04:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231728AbiGZEDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 00:03:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55598 "EHLO
+        id S237527AbiGZEEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 00:04:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230448AbiGZEDA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 00:03:00 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CBBF2A24A
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 21:02:59 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-31f379a0754so27159647b3.2
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 21:02:59 -0700 (PDT)
+        with ESMTP id S231483AbiGZEE3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 00:04:29 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E0E02A410
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 21:04:28 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id 123so614294ybv.7
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 21:04:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=B35ZTE2adzguA+KA+PCVmrFGgSP+8khovmRbpkdhlpk=;
-        b=iCdcCg7dM7MrFzki/3KEbQYMzTmQgc9+qWJAZrNU8ELqn0bE3XgMEc1d2okpbiVLZ+
-         6GDIDf1M6474U1hs605YAbEATDzljM+GguLrWnC/0MReW8WUUI/rjOo2uG1R4JD4nwmd
-         dQFWCaW1ru1zC9yXCYQ8og8B/ViW4imjyb9yE=
+        bh=8X0WA+kebRC6mPq3dqdjSQFAk2sYowHyB2qCeMP7O6M=;
+        b=S9w8M90liuvaIw1ZfTS+HP0fbRUfVP4FKs1zYR2wsbdAc/LIYKZEwDSZRJ3PVd9niI
+         WOdYSAmVJ3kokTsI95tUVlk1qcJzfnOASGSbc3G0Xz+L/nePrU3c9daZKj7ePg8JOmMa
+         mZA376is49CSoCqeSYkJuacoE8AQu6QvZkhB8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=B35ZTE2adzguA+KA+PCVmrFGgSP+8khovmRbpkdhlpk=;
-        b=0wtkEANcT8/J24/HTw5WVuv4esbiZC9y0zkzRbndVNkjQf0aJ0DHfaAuv4kabgbSn8
-         1Xpk8ImNOul0kEwG41mJNNd8dyYWOwoTm2lHltHem2/WayWtnZNRiysSHlTw4H7YrwT+
-         wgnYsD/9R8PFlwFztTFBuGytWWB8/kzZURW3LsB+lxIGFwZza9Ej+z7bYH0x26IuPL5C
-         kzEcA/6JlLJe82IqJOHbg+mm4fRA4RSMwRTVz/INQ7AN0oVrOj3s3Dvlk5fKrQSFB7gb
-         Z97A52tARCdX4wlmTdsxpidTXB5FIu0sfviPZxCP5JKFDY/TjAdTCuMZLOMH0AFG2AXS
-         vhNw==
-X-Gm-Message-State: AJIora9xwqrzyuG4fA+qbyCie23UFAfW479vQxUrPXtbdb6lkFjA6Ub/
-        iJKAARxGkFfQtt296sw99JeEdIzC+uF2FpAhuxFoNA==
-X-Google-Smtp-Source: AGRyM1vmWMY8rCSkbeemY4WorPmrRFiCRux9K2cC6nnBK7+bevjeA5pxMFdDx99a/rivPkSWyE2mHoHOJfMxvnIXARo=
-X-Received: by 2002:a0d:d90f:0:b0:31e:5401:8533 with SMTP id
- b15-20020a0dd90f000000b0031e54018533mr28793ywe.167.1658808178849; Mon, 25 Jul
- 2022 21:02:58 -0700 (PDT)
+        bh=8X0WA+kebRC6mPq3dqdjSQFAk2sYowHyB2qCeMP7O6M=;
+        b=bB8diJ0PPbG8cG2wyOSP/3exw7ztq0kJWpQHwJSvVL7uIM8AdqdxqSipsHaGkImq//
+         HgCRNBhPNgeXXQHKgrX+lJOdlfFbX3MapLzXf8mIgb6m84ZVohbFC/kZsrMti2+n+4EX
+         2Fij1lkQv8qP5fsSPMvUIYQhTj0tDFCrBHL3J/Nv3eiDE8892MaOoYAJp2/jLkzaLtKI
+         10jp8ZXUmDUevzhK3TTrbdV9Rjbq5N5Dmna8gzQztZyvUtTPhlIvckDX6OBECgwjo9x/
+         YUpXZVR0Xb3sts0b6LzT/M6r156a5elbqVrHmk9ZuYv5KN2Hw4vKs3OvmmfXO/MufZPX
+         ULuQ==
+X-Gm-Message-State: AJIora9NDiEwrkWVn6bFY1pY+B0W1ONZKtaZYy2L7Ap20qJa8GnvSIQF
+        Talhu0BaG/x9wql9bmewjvyoJSgEuYGtCtPFZ96H5A==
+X-Google-Smtp-Source: AGRyM1uP48hjj3jsBDjgKChjyZ2zuY+tmqTb7maY9L6QDMxw3VUhyT+58wQYtUAL2USTYtbhj0Z0phTWRZL5gh5ClF0=
+X-Received: by 2002:a25:6a43:0:b0:66f:d259:7918 with SMTP id
+ f64-20020a256a43000000b0066fd2597918mr12011506ybc.486.1658808267687; Mon, 25
+ Jul 2022 21:04:27 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220721145017.918102-1-angelogioacchino.delregno@collabora.com>
- <20220721145017.918102-7-angelogioacchino.delregno@collabora.com>
- <CAGXv+5E+6aCz3dxsfCqZAOkcmqDp0YWngsv-OZ23NDYhuZSfHw@mail.gmail.com> <f3027153-860f-7ffc-b4a0-ff2a43100cf4@collabora.com>
-In-Reply-To: <f3027153-860f-7ffc-b4a0-ff2a43100cf4@collabora.com>
+ <20220721145017.918102-5-angelogioacchino.delregno@collabora.com>
+ <CAGXv+5FutJb_MRwSVgjV7tByBvfq3AFsSxs6ETUZaNzrfpywgg@mail.gmail.com> <781f6d3e-412e-1553-c2c2-23c9a897626b@collabora.com>
+In-Reply-To: <781f6d3e-412e-1553-c2c2-23c9a897626b@collabora.com>
 From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 26 Jul 2022 12:02:48 +0800
-Message-ID: <CAGXv+5EkQ_CmhHGTkJ4DfmRUZnKw3XaJ0qUvQHG8=qxXPUPY9w@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] arm64: dts: mediatek: cherry: Enable DSP, audio
- codec and sound card
+Date:   Tue, 26 Jul 2022 12:04:16 +0800
+Message-ID: <CAGXv+5Gdwcj1n0q8e8ReoUOZX18pbtbxV7oof06Q2_nJMNY-cw@mail.gmail.com>
+Subject: Re: [PATCH v2 4/8] arm64: dts: mediatek: cherry: Enable secondary
+ SD/MMC controller
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
@@ -61,46 +61,152 @@ Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 25, 2022 at 6:49 PM AngeloGioacchino Del Regno
+On Mon, Jul 25, 2022 at 6:20 PM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
 >
-> Il 25/07/22 12:44, Chen-Yu Tsai ha scritto:
-> > On Thu, Jul 21, 2022 at 10:53 PM AngeloGioacchino Del Regno
+> Il 25/07/22 10:54, Chen-Yu Tsai ha scritto:
+> > On Thu, Jul 21, 2022 at 10:51 PM AngeloGioacchino Del Regno
 > > <angelogioacchino.delregno@collabora.com> wrote:
 > >>
-> >> All machines of the Cherry platform have a working DSP (integrated
-> >> into the MT8195 SoC), and audio support, some with a different audio
-> >> codec: specifically, some using Realtek's RT5682I and some RT5682S.
+> >> As of now, all of the boards based on the cherry platform have a
+> >> usable secondary SD/MMC controller, usually for SD cards: enable
+> >> it to allow both booting from it and generally accessing external
+> >> storage.
 > >>
-> >> Write a configuration for all the audio bits to enable functionality.
+> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> >> ---
+> >>   .../boot/dts/mediatek/mt8195-cherry.dtsi      | 62 +++++++++++++++++++
+> >>   1 file changed, 62 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> >> index 2853f7f76c90..8859957c7b27 100644
+> >> --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> >> +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
+> >> @@ -17,6 +17,7 @@ aliases {
+> >>                  i2c5 = &i2c5;
+> >>                  i2c7 = &i2c7;
+> >>                  mmc0 = &mmc0;
+> >> +               mmc1 = &mmc1;
+> >>                  serial0 = &uart0;
+> >>          };
+> >>
+> >> @@ -227,6 +228,24 @@ &mmc0 {
+> >>          vqmmc-supply = <&mt6359_vufs_ldo_reg>;
+> >>   };
+> >>
+> >> +&mmc1 {
+> >> +       status = "okay";
+> >> +
+> >> +       bus-width = <4>;
+> >> +       cap-sd-highspeed;
+> >> +       cd-gpios = <&pio 54 GPIO_ACTIVE_LOW>;
+> >> +       max-frequency = <200000000>;
+> >> +       no-mmc;
+> >> +       no-sdio;
+> >> +       pinctrl-names = "default", "state_uhs";
+> >> +       pinctrl-0 = <&mmc1_pins_default>;
+> >> +       pinctrl-1 = <&mmc1_pins_uhs>;
+> >> +       sd-uhs-sdr50;
+> >> +       sd-uhs-sdr104;
+> >> +       vmmc-supply = <&mt_pmic_vmch_ldo_reg>;
+> >> +       vqmmc-supply = <&mt_pmic_vmc_ldo_reg>;
+> >> +};
+> >> +
+> >>   /* for CPU-L */
+> >>   &mt6359_vcore_buck_reg {
+> >>          regulator-always-on;
+> >> @@ -575,6 +594,49 @@ pins-rst {
+> >>                  };
+> >>          };
+> >>
+> >> +       mmc1_pins_default: mmc1-default-pins {
+> >> +               pins-cmd-dat {
+> >> +                       pinmux = <PINMUX_GPIO110__FUNC_MSDC1_CMD>,
+> >> +                                <PINMUX_GPIO112__FUNC_MSDC1_DAT0>,
+> >> +                                <PINMUX_GPIO113__FUNC_MSDC1_DAT1>,
+> >> +                                <PINMUX_GPIO114__FUNC_MSDC1_DAT2>,
+> >> +                                <PINMUX_GPIO115__FUNC_MSDC1_DAT3>;
+> >> +                       input-enable;
+> >> +                       drive-strength = <8>;
+> >> +                       bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> >> +               };
+> >> +
+> >> +               pins-clk {
+> >> +                       pinmux = <PINMUX_GPIO111__FUNC_MSDC1_CLK>;
+> >> +                       drive-strength = <8>;
+> >> +                       bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+> >> +               };
+> >> +
+> >> +               pins-insert {
+> >> +                       pinmux = <PINMUX_GPIO54__FUNC_GPIO54>;
+> >> +                       bias-pull-up;
+> >> +               };
+> >> +       };
+> >> +
+> >> +       mmc1_pins_uhs: mmc1-uhs-pins {
+> >> +               pins-cmd-dat {
+> >> +                       pinmux = <PINMUX_GPIO110__FUNC_MSDC1_CMD>,
+> >> +                                <PINMUX_GPIO112__FUNC_MSDC1_DAT0>,
+> >> +                                <PINMUX_GPIO113__FUNC_MSDC1_DAT1>,
+> >> +                                <PINMUX_GPIO114__FUNC_MSDC1_DAT2>,
+> >> +                                <PINMUX_GPIO115__FUNC_MSDC1_DAT3>;
+> >> +                       input-enable;
+> >> +                       drive-strength = <8>;
+> >> +                       bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+> >> +               };
+> >> +
+> >> +               pins-clk {
+> >> +                       pinmux = <PINMUX_GPIO111__FUNC_MSDC1_CLK>;
+> >> +                       drive-strength = <8>;
+> >> +                       bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+> >> +               };
 > >
-> > I think we're still missing some code for SOF that implements the
-> > machine_select() callback, plus the firmware has to be fetched from
-> > the ChromeOS rootfs.
-> >
-> > It might make sense to have SOF disabled for now. Removing the adsp
-> > reference and the overriding dai-link entry from the sound node
-> > should do the trick.
+> > I wonder if pins-insert should be duplicated here. And there's no
+> > difference between the standard and UHS pinconfigs. One would expect
+> > higher drive strength on the UHS set, if two sets were required.
+> > So maybe we should just have one set, and use that one for both
+> > the default and uhs states.
 > >
 >
-> Uhm... I think that we should either have audio, with DSP, or not have it
-> at all... the userspace configurations will differ, so we'd end up with
-> two different confs of which one will get unused and cluttering the ucm2
-> conf git.
+> I don't think that it would really make a lot of sense to duplicate the
+> insertion pin setup in the UHS-specific pinctrl set...
+>
+> Whenever you remove the uSD card, the controller goes back to default,
+> as the first steps in card initialization are always happening at low
+> speed and only after that we can switch to UHS speeds... so we do expect
+> that the first-ever state is always `default` (by spec!), which means
+> that we are also ensuring that the insertion pin setup is always done.
 
-You're right. I haven't even figured out which ones to pull in.
-
-> At this point, I think that the most sensible option is to either omit
-> this commit, or keep audio disabled until the machine_select() callback
-> gets in...
-
-Agreed.
+Right. What I wanted to say was that, besides the insertion pin, there's
+no difference between the default and uhs states here. So why have two
+copies instead of one that is referenced twice? (the uhs state is required
+by the binding).
 
 ChenYu
+
+> Cheers,
+> Angelo
+>
+> > Otherwise,
+> >
+> > Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> > Tested-by: Chen-Yu Tsai <wenst@chromium.org>
+> >
+> >> +       };
+> >> +
+> >>          nor_pins_default: nor-default-pins {
+> >>                  pins-ck-io {
+> >>                          pinmux = <PINMUX_GPIO142__FUNC_SPINOR_IO0>,
+> >> --
+> >> 2.35.1
+> >>
+> >>
+>
