@@ -2,65 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29760580FC3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 11:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D09580FCB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 11:22:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237911AbiGZJVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 05:21:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57920 "EHLO
+        id S231765AbiGZJWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 05:22:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237961AbiGZJVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 05:21:38 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F112FFCE
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:21:37 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26Q5xlKR018505;
-        Tue, 26 Jul 2022 04:21:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=qL9VQHI6gHzerfDG4MXQcGSbkPxboMLFC/IpYFesMYs=;
- b=DvKXLvHYwJVrQWdSRifJIE9+BxaquQTUgjWEGM4ehWgRIiCW3UjbgI11WN4KxmiiAb3J
- uPaM6tipShonTeEz/Juh+He0WVVPq7mbllDzKqV+XNE4ZzdL9sH9u+/CUE+E69yxHEYn
- lR9LtiuQNIsbq64xnCr2iZzLV2tNhG0dXp2emXXR9sjcTGox8WgGTVldY/ZMgAMBYlhG
- 0fF7Y/sGEE9Np13hyKwfqR6IDjTcEnShHkxzYcBTDIf3hz9XOH16YHhRgI9TkaICUoT4
- CZ68TKcg50huLZEAhvRjQ9UsYn+k7XdysYVkz/oQILy9qisdRZNYwVrtdbt5FXN37PB+ Aw== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3hgddp37sa-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 26 Jul 2022 04:21:00 -0500
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.9; Tue, 26 Jul
- 2022 04:20:58 -0500
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
- 15.2.1118.9 via Frontend Transport; Tue, 26 Jul 2022 04:20:58 -0500
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id B3D78B06;
-        Tue, 26 Jul 2022 09:20:58 +0000 (UTC)
-Date:   Tue, 26 Jul 2022 09:20:58 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Zhu Ning <zhuning0077@gmail.com>
-CC:     <alsa-devel@alsa-project.org>,
-        <pierre-louis.bossart@linux.intel.com>, <tiwai@suse.com>,
-        <broonie@kernel.org>, <devicetree@vger.kernel.org>,
-        <robh@kernel.org>, David Yang <yangxiaohua@everest-semi.com>,
-        Zhu Ning <zhuning@everest-semi.com>
-Subject: Re: [PATCH v2 1/2] ASoC: codecs: add support for ES8326
-Message-ID: <20220726092058.GG92394@ediswmail.ad.cirrus.com>
-References: <20220726082505.125267-1-zhuning0077@gmail.com>
+        with ESMTP id S229746AbiGZJWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 05:22:20 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8332230F67;
+        Tue, 26 Jul 2022 02:22:19 -0700 (PDT)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id DA37E4000C;
+        Tue, 26 Jul 2022 09:22:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1658827337;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=Z77u8Y5DYjxcqJrNCOiIhx4nTiZGJ2+SQJQvPZmtZhU=;
+        b=fL4CXUHahE2dBDMCOrYfTbZlNMcZoZ99poqZJpRB5LJIRWEb/gawebWItE5st7p+rfaFSX
+        4xig1Bmrp4WT9vra/PnoF+vH7e8aMxUQ/4Sv6l3yfcTZRtuug7lCrxbM1PY2MeDSn422Mp
+        3BCAupzUw7wYkEAzItWVhwa4bm50j1q18Q56KfHFevyInqVUuEBQf+sweW77hJs5gq/Npi
+        phaeSGwWBdx7ykD97EAGDWNE6d6tpCDTDMgF4B8wXZ0aGkaLYojjL7VFgt2/OEp7NLzJ/b
+        5O/h3BbTO2C+G5x7RISf/PpNfQB9H5zX8vnuyLdF+OsceaV/no32ygMuK4o1kQ==
+Date:   Tue, 26 Jul 2022 11:22:14 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     robh+dt@kernel.org, neelisrinivas18@gmail.com, sgoud@xilinx.com,
+        srinivas.neeli@amd.com, srinivas.neeli@xilinx.com,
+        michal.simek@xilinx.com, a.zummo@towertech.it,
+        krzysztof.kozlowski+dt@linaro.org, shubhraj@xilinx.com
+Cc:     git@amd.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, robh@kernel.org, git@xilinx.com,
+        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V10 1/3] dt-bindings: rtc: zynqmp: Add clock information
+Message-ID: <165882731655.3141015.12259397630549715904.b4-ty@bootlin.com>
+References: <20220626070817.3780977-1-srinivas.neeli@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220726082505.125267-1-zhuning0077@gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: H_y6NjnjQwwRj69qykbYqBPLToxbXjja
-X-Proofpoint-ORIG-GUID: H_y6NjnjQwwRj69qykbYqBPLToxbXjja
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+In-Reply-To: <20220626070817.3780977-1-srinivas.neeli@xilinx.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,31 +54,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 26, 2022 at 04:25:05PM +0800, Zhu Ning wrote:
-> The ES8326 codec is not compatible with ES8316 and requires a dedicated driver.
+On Sun, 26 Jun 2022 12:38:15 +0530, Srinivas Neeli wrote:
+> Added clock information and deprecated calibration support.
 > 
-> Signed-off-by: David Yang <yangxiaohua@everest-semi.com>
-> Signed-off-by: Zhu Ning <zhuning@everest-semi.com>
-> -----
-> +static const struct snd_soc_component_driver soc_component_dev_es8326 = {
-> +	.probe		= es8326_probe,
-> +	.remove		= es8326_remove,
-> +	.resume		= es8326_resume,
-> +	.suspend	= es8326_suspend,
-> +	.set_bias_level = es8326_set_bias_level,
-> +	.set_jack	= es8326_set_jack,
-> +	.dapm_widgets	= es8326_dapm_widgets,
-> +	.num_dapm_widgets	= ARRAY_SIZE(es8326_dapm_widgets),
-> +	.dapm_routes		= es8326_dapm_routes,
-> +	.num_dapm_routes	= ARRAY_SIZE(es8326_dapm_routes),
-> +	.controls		= es8326_snd_controls,
-> +	.num_controls		= ARRAY_SIZE(es8326_snd_controls),
-> +	.use_pmdown_time	= 1,
-> +	.endianness		= 1,
-> +	.non_legacy_dai_naming	= 1,
+> 
 
-The non_legacy_dai_naming flag has been removed, you will get
-this behaviour by default now.
+Applied, thanks!
 
-Thanks,
-Charles
+[1/3] dt-bindings: rtc: zynqmp: Add clock information
+      commit: f69060c14431f476b6993ea92bef77e20437af4e
+[2/3] rtc: zynqmp: Updated calibration value
+      commit: 85cab027d4e31beb082ec41b71cb8670eeb6fd46
+[3/3] rtc: zynqmp: Add calibration set and get support
+      commit: 07dcc6f9c76275d6679f28a69e042a2f9dc8f128
+
+Best regards,
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
