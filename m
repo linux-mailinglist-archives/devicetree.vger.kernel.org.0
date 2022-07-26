@@ -2,85 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3D6F5809F9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 05:30:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B991C580A17
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 05:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230164AbiGZDau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 23:30:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39144 "EHLO
+        id S236868AbiGZDpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 23:45:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231236AbiGZDar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 23:30:47 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E673E1EAD7;
-        Mon, 25 Jul 2022 20:30:39 -0700 (PDT)
-X-UUID: e6da1e1c67f84d369b94ba63bf962b6d-20220726
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:53ff23a7-94be-4595-848e-ff4b1c03f1a5,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:758b04ee-db04-4499-9fdf-04ef44b9468c,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: e6da1e1c67f84d369b94ba63bf962b6d-20220726
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1573937601; Tue, 26 Jul 2022 11:30:31 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 26 Jul 2022 11:30:30 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Tue, 26 Jul 2022 11:30:30 +0800
-Message-ID: <ae6da1f0c9a27f97b4e9dd76071d03f21dcfcd3b.camel@mediatek.com>
-Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?= 
-        <LiangXu.Xu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 26 Jul 2022 11:30:28 +0800
-In-Reply-To: <6232f0fc15bc1057aab68523e5eb63e10b3a2802.camel@mediatek.com>
-References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
-         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
-         <6232f0fc15bc1057aab68523e5eb63e10b3a2802.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229852AbiGZDpQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 23:45:16 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADADD265D;
+        Mon, 25 Jul 2022 20:45:14 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id tk8so23919246ejc.7;
+        Mon, 25 Jul 2022 20:45:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=hK9bdKxTQpaVNAf62mZs34iWrOFJN74ACx5fLDVM42o=;
+        b=dQ1lsD0pepwYEFblTk7mpzcFBnxB6tyOgcPOpx/6lHi03xM2x6XoOMsftr0Ahyhnyp
+         YKRNwmbk3S/dLgnWzqNgPvK3hzQRuTVRQls/Mi1FhdzbDczqdn38liHHuEZW47JFLsk1
+         +h8lkfRCPTDjr9YQRU8WmvTdoUuNXQFyhb7IMeTpMpj5T/h8sYR0lb0eox1DrvXaLl90
+         u8PqQ4B47CZB0IIFF6SbpRISJlWaXFWXrxg6Ylkgcn2ynkyqgVjdVxYWOU1X6rvhpy8R
+         pTzJRcOEm6vNKlAm0C7wQxZPfKBpMYuFfOzuVH69iBnapUG9N+QMFhV7yxDIhCFQNAdJ
+         /mtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=hK9bdKxTQpaVNAf62mZs34iWrOFJN74ACx5fLDVM42o=;
+        b=y9Thlp2Cm6fVezY/mAlU30Z0KdXXnV48dd5JHwH6pxqYAhBAM4rHy082jQRU5cylQH
+         ZCgNgheuN2XDJFEGTkNZ/ArKCPrl9okpCKeosQxcJ1ReX6UNNf9S2Ggvo1w20lp1weYt
+         n3a955YG5EH1NMvlGUfhL76sYVyeuu98kIm9wcrde10AP1uPTZ/CyZc2Boqc/N/f/xl5
+         9wgV1aAvgT/wIyPd8rRJqsvyvzmQSTZKmQoaWl2djn5aEWjZIaG3nzjOfnX/196kGp/U
+         PYH+EpIUbODrK+y4PLvkqpXI2FiEQ3R7p/bUOz95cnWnPBSO+J5JJHknuOflA57kTNg5
+         PXEQ==
+X-Gm-Message-State: AJIora9GuM8QjTucc0BbrvGUBzIKkWQvROY4QJGfzmu2cyDNw4YqBN5W
+        qmPN9PpY0U8+9erQ8W+92ioDVsJq8tddYfAXqwY=
+X-Google-Smtp-Source: AGRyM1uBh2/Ujp0DRIZAzAQnZ43gbhiJIymwO1u6SGrzdqZ5yaYUGN2qu0sR6xbFs3MVvu26GUSOxwk4olKhadauEMc=
+X-Received: by 2002:a17:906:844f:b0:72b:549e:a654 with SMTP id
+ e15-20020a170906844f00b0072b549ea654mr11954747ejy.535.1658807113081; Mon, 25
+ Jul 2022 20:45:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        RDNS_NONE,SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
+References: <1657780937-20891-1-git-send-email-u0084500@gmail.com>
+In-Reply-To: <1657780937-20891-1-git-send-email-u0084500@gmail.com>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Tue, 26 Jul 2022 11:45:00 +0800
+Message-ID: <CADiBU39x98iyO_OB2sYdAUGUOW9pV4dt+mEdfquhuJVm1HDRHA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] Add Richtek RT5120 PMIC support
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        cy_huang <cy_huang@richtek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,122 +73,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-07-25 at 17:23 +0800, CK Hu wrote:
-> Hi, Bo-Chen:
-> 
-> On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > This patch adds a embedded displayport driver for the MediaTek
-> > mt8195
-> > SoC.
-> > 
-> > It supports the MT8195, the embedded DisplayPort units. It offers
-> > DisplayPort 1.4 with up to 4 lanes.
-> > 
-> > The driver creates a child device for the phy. The child device
-> > will
-> > never exist without the parent being active. As they are sharing a
-> > register range, the parent passes a regmap pointer to the child so
-> > that
-> > both can work with the same register range. The phy driver sets
-> > device
-> > data that is read by the parent to get the phy device that can be
-> > used
-> > to control the phy properties.
-> > 
-> > This driver is based on an initial version by
-> > Jitao shi <jitao.shi@mediatek.com>
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> 
-> [snip]
-> 
-> > +
-> > +/*
-> > + * We need to handle HPD signal in eDP even though eDP is a always
-> > connected
-> > + * device. Besides connected status, there is another feature for
-> > HPD signal -
-> > + * HPD pulse: it presents an IRQ from sink devices to source
-> > devices
-> > (Refer to
-> > + * 5.1.4 of DP1.4 spec).
-> > + */
-> > +static irqreturn_t mtk_dp_hpd_isr_handler(struct mtk_dp *mtk_dp)
-> > +{
-> > +	bool hpd_change = false;
-> > +	u32 irq_status = mtk_dp_swirq_get_clear(mtk_dp) |
-> > +			 mtk_dp_hwirq_get_clear(mtk_dp);
-> > +	struct mtk_dp_train_info *train_info = &mtk_dp->train_info;
-> > +
-> > +	if (!irq_status)
-> > +		return IRQ_HANDLED;
-> > +
-> > +	if (irq_status & MTK_DP_HPD_INTERRUPT)
-> > +		train_info->irq_sta.hpd_inerrupt = true;
-> > +	if (irq_status & MTK_DP_HPD_CONNECT ||
-> > +	    irq_status & MTK_DP_HPD_DISCONNECT)
-> > +		hpd_change = true;
-> > +
-> > +	if (!(hpd_change))
-> > +		return IRQ_WAKE_THREAD;
-> > +
-> > +	if (mtk_dp_plug_state(mtk_dp))
-> 
-> mtk_dp_plug_state() is called only here, and prevent function call in
-> isr handler, so squash mtk_dp_plug_state() into this function.
-> 
-
-Hello CK,
-
-Thanks for review.
-
-I would like to keep this because we will use this function for
-mtk_dp_plug_state_avoid_pulse() in dp patch.
-
-> > +		train_info->cable_plugged_in = true;
-> > +	else
-> > +		train_info->cable_plugged_in = false;
-> > +
-> > +	train_info->cable_state_change = true;
-> > +
-> > +	return IRQ_WAKE_THREAD;
-> > +}
-> > +
-> > +static irqreturn_t mtk_dp_hpd_event(int hpd, void *dev)
-> > +{
-> > +	struct mtk_dp *mtk_dp = dev;
-> > +	u32 irq_status;
-> > +
-> > +	irq_status = mtk_dp_read(mtk_dp, MTK_DP_TOP_IRQ_STATUS);
-> > +
-> > +	if (!irq_status)
-> > +		return IRQ_HANDLED;
-> > +
-> > +	if (irq_status & RGS_IRQ_STATUS_TRANSMITTER)
-> > +		return mtk_dp_hpd_isr_handler(mtk_dp);
-> 
-> Prevent function call in isr handler, squash mtk_dp_hpd_isr_handler()
-> into this function.
-> 
-
-Is this really necessary? We also modify this function in following
-patches. I think it's not a good idea to expand this.
-
-BRs,
-Bo-Chen
-
-> Regards,
-> CK
-> 
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
-> > +
-> 
-> 
-
+cy_huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=8814=E6=97=A5 =
+=E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=882:42=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> From: ChiYuan Huang <cy_huang@richtek.com>
+>
+> This patch series is to add Richtek RT5120 PMIC support.
+> In RT5120, it integrates four channels of buck converter, one channel of =
+LDO,
+> and one external enable channel to control the external power source.
+ping ......
+>
+> rt5120-regulator can be referred in the below link
+> Link: https://lore.kernel.org/lkml/165599062767.127406.125714869841700832=
+13.b4-ty@kernel.org/
+>
+> Since v3:
+> - Use a 'dev' variable and dev_err_probe to decrease the LOC in mfd.
+> - Simplify the power key irq handler key report
+> - Since press and release irq not needed to keep in private data, change =
+'press',
+>   'release' irq as local variable only.
+> - Fix Kconfig typo for pwrkey.
+>
+> Since v2:
+> - Add 'unevaluatedProperties: false' for regulator buck1~4/ldo/exten.
+> - Fix indention and remove status for powerkey.
+> - Refine powerkey description for more HW details.
+> - For the regulator property parsing, use of_property_read_u32 instead.
+> - Not to overwrite regulator constraint.
+> - Refine regulator desc coding.
+>
+> ChiYuan Huang (3):
+>   dt-binding: mfd: Add Richtek RT5120 PMIC support
+>   mfd: rt5120: Add Richtek PMIC support
+>   input: misc: rt5120: Add power key support
+>
+>  .../devicetree/bindings/mfd/richtek,rt5120.yaml    | 178 +++++++++++++++=
+++++++
+>  drivers/input/misc/Kconfig                         |   9 ++
+>  drivers/input/misc/Makefile                        |   1 +
+>  drivers/input/misc/rt5120-pwrkey.c                 | 105 ++++++++++++
+>  drivers/mfd/Kconfig                                |  12 ++
+>  drivers/mfd/Makefile                               |   1 +
+>  drivers/mfd/rt5120.c                               | 121 ++++++++++++++
+>  7 files changed, 427 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5120.=
+yaml
+>  create mode 100644 drivers/input/misc/rt5120-pwrkey.c
+>  create mode 100644 drivers/mfd/rt5120.c
+>
+> --
+> 2.7.4
+>
