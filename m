@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90210580ED4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 10:24:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1A1B580ED8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 10:25:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232048AbiGZIYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 04:24:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41108 "EHLO
+        id S238414AbiGZIZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 04:25:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238037AbiGZIYw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 04:24:52 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 375222E69A
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:24:49 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id c12so9462763ede.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:24:49 -0700 (PDT)
+        with ESMTP id S238482AbiGZIZX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 04:25:23 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8F8664DE
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:25:16 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id bp15so24816608ejb.6
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:25:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=2eR2bajGRP/sgNFoTl95SKN8UfWncJyTcpIwCg8mZac=;
-        b=oOPs8L9PuW7OKOkDNzZYO1z+kaxW19SG4MupZMavHPwr6wEwC5Pkc+a3zCWnbp37gB
-         Q/XMOdE8bkMm20N5pufa1A7ii53GVMD+uoA6jY0MaPs/Mz3pXGymLuyqhabVcfCBVdNG
-         FZKT+MEl5xFBxseEjwndE1xYUEu+A4yYJMxdrijrGgYMrqOgTib+1V3AwKxFYa0Q1Yv3
-         lsKS/G21RNxtTJ160BPYSlnp7cgPcAMUXrSkZQHkwV5knNUojtbyLS9Lm//Lys8qBwvo
-         MvYj4n8+5MWt1T59klH/XTflGtix7ZAMhi5ycY1UPpY2nrYkEFLEkCvdxZrYePspDuGY
-         4aDQ==
+        bh=Xkx90yalUpDf8aSv06wMYT+1OK70L3/9oGj4foZkji4=;
+        b=PL30xppZg3iWeTQBfl/NslL+mcaXclPdlk+1wI7jRhfUpQ2/rkYxew0zX1e8T8Xq1/
+         ielzAEIqp+hl4Ay7ucnestwlEE79+0jLp2ojtxc0OkoEzvsT55g0IlEWW+4iisNUBLmo
+         7L29LStoWdJxteClj1Qy8TxWXNvkUFVgrZFoVsedFrRuxuDhjFkg0+A4l8HY78sEx4VI
+         4IB4r6s9zP960K9aI1fhTcbgTrMtauJYKtjox/9EgWBpu2nbxNmsmtI0juHmEx4SpBrz
+         hgO6A0A30PwLRsBhYJEJR9mWGoUfmpjclgYcaAIgndBHP4bPAieoWukNB0ZR+LD6hnON
+         +xyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2eR2bajGRP/sgNFoTl95SKN8UfWncJyTcpIwCg8mZac=;
-        b=Uuc8dq9Dm8q9G35Fd02303IX47Ntot2e1a05CQ4veCDqmMFMI/aqfHWghMmf0jXEvo
-         7hKuAmbsOEzTVv5e3BJUzYF75pxsLF3JR5FfT7JEAEHQaDT7UCbpTH8VShX22ThYVP2c
-         pmOiJMWXmdK1VWGZStoEZF0XIess0Y8em0lQ3gCIQlh0ApEaBLU1ZoCIOXXDCq2hEIO2
-         mCRT097dxRo67biAll1dUqo1p4lVmpkkdXBJBn4ycpYJ79g7YEznNHL6WT9lJGeuQ6pd
-         qlVO+guifXJwLfa+AJUhJXC4idkZN5+zWdr7Qz8lGmY/cr9wQApmcd5RkBnm738AZBzt
-         dwOw==
-X-Gm-Message-State: AJIora91dFOFy61r26Vb8RoyBB1Q9HFr7En1cp1HKPUxe519WsiKUGRN
-        emiEbLctdYH1rjkXbRvH/qBLduCkBChiXSkx8HFzZQ==
-X-Google-Smtp-Source: AGRyM1tstrOXHY8xgRH3GyE5OsoHHbrAl6kqR23c9IfUWFc8GJUD8u2uEM2ekizLdZ6HC2sstvliH1Jpc4Nk7Ibfn7A=
-X-Received: by 2002:a05:6402:2696:b0:43b:eb8b:d0da with SMTP id
- w22-20020a056402269600b0043beb8bd0damr10851495edd.158.1658823887600; Tue, 26
- Jul 2022 01:24:47 -0700 (PDT)
+        bh=Xkx90yalUpDf8aSv06wMYT+1OK70L3/9oGj4foZkji4=;
+        b=hAigaWRj72Pp3r2omUGcegz3ujp0GiBXqdNKrj1g4nyTbEpf/GxKqtKvka2ICqqmLk
+         4Dj8biNCV9nKzdS0XaaMh2K5sDwFNXs/So1rR2Tiv2Q3NFsOZHwgMAtgdw+cbT1JfHvk
+         pnqKWtGIOEVCuGRBKuyeuV9+dHI8WuDNBrXXPWYy9Q5CXWS3CoHL0FKAvWG25SAvRc8F
+         FxOG/Kr7eMgkA7che4rBcF7EEYePmGY9KdDOwYJzox9/Mky3v6vYvmxfJFDAY9YX1nxB
+         u+rgFNPmd4bm1z299sUCtF/4dSky9PrOdUHCT+gbmqwYCDcE6xIKn1mITFbUcIJcmhlW
+         ftKg==
+X-Gm-Message-State: AJIora+2nZmV/Jggmvx+4zoGhRKcXEKdrB1vgoc0B5Evn4u/5Loa2fat
+        OEnxtj39oNGk/Eif23iOHSsGfvI0VftZDAzOcFxLYQ==
+X-Google-Smtp-Source: AGRyM1u3yOCOtZopLwlF/RFirrjzaTrdWVKOaATw//UrBRVUyQggv2JX7KeYTgtrklwgYzdWDacIkTm1zvszXD/o/TM=
+X-Received: by 2002:a17:906:2ed7:b0:72f:d080:411 with SMTP id
+ s23-20020a1709062ed700b0072fd0800411mr8498136eji.203.1658823915420; Tue, 26
+ Jul 2022 01:25:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220725110702.11362-1-allen-kh.cheng@mediatek.com> <20220725110702.11362-2-allen-kh.cheng@mediatek.com>
-In-Reply-To: <20220725110702.11362-2-allen-kh.cheng@mediatek.com>
+References: <20220725110702.11362-1-allen-kh.cheng@mediatek.com> <20220725110702.11362-3-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20220725110702.11362-3-allen-kh.cheng@mediatek.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 26 Jul 2022 10:24:36 +0200
-Message-ID: <CACRpkdbJai1X1iwY+qEGH_NwwsSWk=Ap6goZEat6o4Wb5E_FXw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: mt8186: Add gpio-line-names property
+Date:   Tue, 26 Jul 2022 10:25:04 +0200
+Message-ID: <CACRpkdZjMUqzwqLw0LyPSw-TsYhXvNXr74vwW05LMKaE-n2=og@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: pinctrl: mt8186: Add and use drive-strength-microamp
 To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
@@ -74,9 +74,14 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Mon, Jul 25, 2022 at 1:07 PM Allen-KH Cheng
 <allen-kh.cheng@mediatek.com> wrote:
 
-> Add the 'gpio-line-names' property to mt8186-pinctrl, as this will be
-> used in devicetrees to describe pin names.
+> Commit e5fabbe43f3f ("pinctrl: mediatek: paris: Support generic
+> PIN_CONFIG_DRIVE_STRENGTH_UA") added support for using
+> drive-strength-microamp instead of mediatek,drive-strength-adv.
 >
+> Similarly to the mt8192 and mt8195, there's no user of property
+> 'mediatek,drive-strength-adv', hence removing it is safe.
+>
+> Fixes: 338e953f1bd1 ("dt-bindings: pinctrl: mt8186: add pinctrl file and binding document")
 > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
 > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
