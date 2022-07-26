@@ -2,175 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DA0A580B95
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 08:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B227580B8D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 08:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238061AbiGZGZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 02:25:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40782 "EHLO
+        id S232146AbiGZGXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 02:23:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238055AbiGZGZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 02:25:15 -0400
-X-Greylist: delayed 450 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 25 Jul 2022 23:20:52 PDT
-Received: from st43p00im-zteg10073401.me.com (st43p00im-zteg10073401.me.com [17.58.63.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8100A2ED79
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 23:20:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-        s=1a1hai; t=1658816001;
-        bh=yRHmeERdlt7oqcGU/fHpnGc2WxHp6d3zjEXgoabUAwk=;
-        h=Content-Type:From:Mime-Version:Subject:Date:Message-Id:To;
-        b=aX+M5MX+VDddd7H88p4TecgeHOpVuobIXQ+gzJ48svYqMd/DyJwJBvhMzz32ryFMr
-         uCuEoksObANKG4RBhNqtAqqDmGNhwJmBF+txMZa72GJpwfDRAF1rUgcbBdKZ/pNfrg
-         6OklwSQwkAvNT+Yf9kdnAcHwDj1gpYp2rcjUhQsgF9J/KQRwMu+9Rfcl5zUtCAiP92
-         vh1PLmSRqkRoUyM1TLk7kFt7xttqmUxU0rDkA4RkzXPagx70Rb5NDg6grg7KqiIyM1
-         pKAQszZOLLg1C+UJjjZaroeIQ7LEytpXS78KFlSqSQ7ZuAbWkIs4TdOW7qoguBjmJS
-         i0hGGOSXKEx7Q==
-Received: from smtpclient.apple (st43p00im-dlb-asmtp-mailmevip.me.com [17.42.251.41])
-        by st43p00im-zteg10073401.me.com (Postfix) with ESMTPSA id 4172DA80313;
-        Tue, 26 Jul 2022 06:13:20 +0000 (UTC)
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-From:   Vee Page <takeiteasy27@icloud.com>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [PATCH 0/3] Add SFC support for Ingenic SoCs.
-Date:   Tue, 26 Jul 2022 02:13:18 -0400
-Message-Id: <38D8BFA7-21BD-4DC1-8B6E-68FC1766B6A8@icloud.com>
-References: <D7ACE3CD-3189-4988-BB44-F32514C70425@icloud.com>
-Cc:     Tomasz Maciej Nowak <tmn505@gmail.com>,
-        Tudor.Ambarus@microchip.com, p.yadav@ti.com, michael@walle.cc,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-mtd@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        aidanmacdonald.0x0@gmail.com, paul@crapouillou.net,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, jinghui.liu@ingenic.com,
-        sernia.zhou@foxmail.com, reimu@sudomaker.com
-In-Reply-To: <D7ACE3CD-3189-4988-BB44-F32514C70425@icloud.com>
-To:     Zhou Yanjie <zhouyanjie@wanyeetech.com>
-X-Mailer: iPhone Mail (19B81)
-X-Proofpoint-GUID: Ll-uXQn0_l-BYjG1NU7j_qT7ADjy8jrB
-X-Proofpoint-ORIG-GUID: Ll-uXQn0_l-BYjG1NU7j_qT7ADjy8jrB
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.138,18.0.883,17.0.605.474.0000000_definitions?=
- =?UTF-8?Q?=3D2022-06-21=5F08:2020-02-14=5F02,2022-06-21=5F08,2020-01-23?=
- =?UTF-8?Q?=5F02_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 clxscore=1015
- bulkscore=0 adultscore=0 mlxscore=0 mlxlogscore=999 spamscore=0
- phishscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2206140000 definitions=main-2207260023
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,MIME_QP_LONG_LINE,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S238035AbiGZGXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 02:23:23 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5DEA2CDF3;
+        Mon, 25 Jul 2022 23:18:40 -0700 (PDT)
+X-UUID: dae5e8d8001d436c98dacca0315d8827-20220726
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:e0e87a82-bde3-4391-86ab-0a1e30b0da99,OB:0,LO
+        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,AC
+        TION:release,TS:70
+X-CID-INFO: VERSION:1.1.8,REQID:e0e87a82-bde3-4391-86ab-0a1e30b0da99,OB:0,LOB:
+        0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Spam_GS981B3D,AC
+        TION:quarantine,TS:70
+X-CID-META: VersionHash:0f94e32,CLOUDID:20b481b3-06d2-48ef-b2dd-540836705165,C
+        OID:db9b4cbbdabb,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: dae5e8d8001d436c98dacca0315d8827-20220726
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1998765177; Tue, 26 Jul 2022 14:18:36 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Tue, 26 Jul 2022 14:18:35 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 26 Jul 2022 14:18:35 +0800
+Message-ID: <ef407d8767d12d240280f1c9d9fdd8ba9d3e5632.camel@mediatek.com>
+Subject: Re: [PATCH v14 01/10] dt-bindings: mediatek,dp: Add Display Port
+ binding
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 26 Jul 2022 14:18:35 +0800
+In-Reply-To: <0e1d4cef6b7e72813300eb9be5650066166ac763.camel@mediatek.com>
+References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
+         <20220712111223.13080-2-rex-bc.chen@mediatek.com>
+         <0e1d4cef6b7e72813300eb9be5650066166ac763.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Y=E2=80=99all stank nasty bitch ass niggas don=E2=80=99t have nothing else t=
-o say?
+On Wed, 2022-07-13 at 15:56 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
+> 
+> On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > 
+> > This controller is present on several mediatek hardware. Currently
+> > mt8195 and mt8395 have this controller without a functional
+> > difference,
+> > so only one compatible field is added.
+> > 
+> > The controller can have two forms, as a normal display port and as
+> > an
+> > embedded display port.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  .../display/mediatek/mediatek,dp.yaml         | 115
+> > ++++++++++++++++++
+> >  1 file changed, 115 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.ya
+> > ml
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.ya
+> > ml
+> > new file mode 100644
+> > index 000000000000..e2d6cb314297
+> > --- /dev/null
+> > +++
+> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.ya
+> > ml
+> > @@ -0,0 +1,115 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > http://devicetree.org/schemas/display/mediatek/mediatek,dp.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MediaTek Display Port Controller
+> > +
+> > +maintainers:
+> > +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> > +  - Jitao shi <jitao.shi@mediatek.com>
+> > +
+> > +description: |
+> > +  Device tree bindings for the MediaTek display port TX (DP) and
+> > +  embedded display port TX (eDP) controller present on some
+> > MediaTek
+> > SoCs.
+> > +  MediaTek DP and eDP are different hardwares and they have
+> > different
+> > +  base address for registers, so we need two different compatibles
+> > to
+> > +  separate them.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - mediatek,mt8195-dp-tx
+> > +      - mediatek,mt8195-edp-tx
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  nvmem-cells:
+> > +    maxItems: 1
+> > +    description: efuse data for display port calibration
+> > +
+> > +  nvmem-cell-names:
+> > +    const: dp_calibration_data
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: Input endpoint of the controller, usually
+> > dp_intf
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description: Output endpoint of the controller
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: /schemas/media/video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> > +            properties:
+> > +              data-lanes:
+> > +                description: |
+> > +                  number of lanes supported by the hardware.
+> > +                  The possible values:
+> > +                  0       - For 1 lane enabled in IP.
+> > +                  0 1     - For 2 lanes enabled in IP.
+> > +                  0 1 2 3 - For 4 lanes enabled in IP.
+> > +                minItems: 1
+> > +                maxItems: 4
+> > +            required:
+> > +              - data-lanes
+> > +
+> > +    required:
+> > +      - port@0
+> > +      - port@1
+> > +
+> > +  max-linkrate-mhz:
+> > +    enum: [ 1620, 2700, 5400, 8100 ]
+> > +    description: maximum link rate supported by the hardware.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - ports
+> > +  - max-linkrate-mhz
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/power/mt8195-power.h>
+> > +    dp_tx@1c600000 {
+> > +        compatible = "mediatek,mt8195-dp-tx";
+> > +        reg = <0x1c600000 0x8000>;
+> > +        power-domains = <&spm MT8195_POWER_DOMAIN_DP_TX>;
+> > +        interrupts = <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +        max-linkrate-mhz = <8100>;
+> 
+> Why dp-tx has no clock property? I think this device should work with
+> a
+> clock.
+> 
+> Regards,
+> CK
+> 
 
-What now mother fucker is it past your bedtimes?
+Hello CK,
 
-Go society a favor =E2=80=A6..go to the nearest bridge=E2=80=A6and jump in i=
-t.
+We just need to enable the power domain of dp.
+The clock of dp is generated by itself and we are not using the global
+pll to generate clocks.
 
-Y=E2=80=99all can go continue your conversation six feet under. You sick stu=
-pid fuck.
+BRs,
+Bo-Chen
 
+> > +
+> > +        ports {
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +
+> > +            port@0 {
+> > +                reg = <0>;
+> > +                dptx_in: endpoint {
+> > +                    remote-endpoint = <&dp_intf0_out>;
+> > +                };
+> > +            };
+> > +            port@1 {
+> > +                reg = <1>;
+> > +                dptx_out: endpoint {
+> > +                    data-lanes = <0 1 2 3>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> 
+> 
 
-> On Jul 23, 2022, at 9:32 PM, Vee Page <takeiteasy27@icloud.com> wrote:
->=20
-> =EF=BB=BFNo problem!!!
-> I forget to tell them. It=E2=80=99s okay though! =F0=9F=91=8C=F0=9F=91=8D
-> =F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=
-=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=9A=F0=9F=98=
-=9A=F0=9F=98=9A=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=
-=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=
-=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=
-=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=
-=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=
-=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=
-=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=EF=B8=8F=E2=98=BA=
-=EF=B8=8F=E2=98=BA=EF=B8=8F
-> I=E2=80=99m blushing! Last night was fun.
->=20
->> On Jul 23, 2022, at 9:30 PM, Vanessa Page <Vebpe@outlook.com> wrote:
->>=20
->> =EF=BB=BF=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=
-=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=
-=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=
-=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=
-=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=
-=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=
-=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=A5=B0=F0=9F=
-=A5=B0=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=9A=
-=F0=9F=98=8D=F0=9F=98=9A=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=
-=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=
-=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D=F0=9F=98=8D
->>=20
->> Omg thank you Janika!
->>=20
->> I=E2=80=99m glad to see everything is okay just tell them next time!
->>=20
->> Love ya babes!
->>=20
->>>> On Jul 23, 2022, at 9:27 PM, Zhou Yanjie <zhouyanjie@wanyeetech.com> wr=
-ote:
->>>=20
->>> =EF=BB=BFHi Tomasz,
->>>=20
->>>>> On 2022/7/23 =E4=B8=8B=E5=8D=8810:47, Tomasz Maciej Nowak wrote:
->>>> W dniu 22.07.2022 o 18:48, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) pi=
-sze:
->>>>> 1.Use the spi-mem poll status APIs in SPI-NOR to reduce CPU load.
->>>>> 2.Add SFC support for the X1000 SoC, the X1600 SoC, and the X2000 SoC f=
-rom Ingenic.
->>>>>=20
->>>>> Liu Jinghui and Aidan MacDonald provided a lot of assistance during th=
-e development of this driver.
->>>>>=20
->>>>> =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) (3):
->>>>> mtd: spi-nor: Use the spi-mem poll status APIs.
->>>>> dt-bindings: SPI: Add Ingenic SFC bindings.
->>>>> SPI: Ingenic: Add SFC support for Ingenic SoCs.
->>>>>=20
->>>>> .../devicetree/bindings/spi/ingenic,sfc.yaml       |  64 ++
->>>>> drivers/mtd/spi-nor/core.c                         |  42 +-
->>>>> drivers/spi/Kconfig                                |   9 +
->>>>> drivers/spi/Makefile                               |   1 +
->>>>> drivers/spi/spi-ingenic-sfc.c                      | 662 +++++++++++++=
-++++++++
->>>>> 5 files changed, 768 insertions(+), 10 deletions(-)
->>>>> create mode 100644 Documentation/devicetree/bindings/spi/ingenic,sfc.y=
-aml
->>>>> create mode 100755 drivers/spi/spi-ingenic-sfc.c
->>>>>=20
->>>> Even tough it's still early in revision process, I'll add my
->>>> Tested-by: Tomasz Maciej Nowak <tmn505@gmail.com>
->>>>=20
->>>> The test was performed with Damai DM6291A SoC which is a Ingenic X1000 I=
-P
->>>> but with 256 MiB RAM. No bugs yet observed on my side.
->>>=20
->>>=20
->>> Thanks for you test!
->>>=20
->>>=20
->>>>=20
->>>=20
->>> ______________________________________________________
->>> Linux MTD discussion mailing list
->>> http://lists.infradead.org/mailman/listinfo/linux-mtd/
