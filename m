@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E02E581394
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 14:56:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59B8A58139A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 14:56:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238906AbiGZM4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S238863AbiGZM4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 26 Jul 2022 08:56:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51770 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238881AbiGZM4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 08:56:32 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF54255B8
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:30 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id b26so20054345wrc.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:30 -0700 (PDT)
+        with ESMTP id S238896AbiGZM4d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 08:56:33 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19944255AC
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:32 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id q18so9604879wrx.8
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:date:subject:mime-version:content-transfer-encoding:message-id
          :references:in-reply-to:cc;
-        bh=70sJgJ6M2wTNfwQJ3+bkMBP++3esJkgb8mg1Y3AHAIo=;
-        b=uCZGOkTjzgvg0EGIHfkTrXgEILq36uTtM8gTe/90Li/u6m4RWaLWhuE1JMgp4sVdhr
-         nBXnHLsXXOSeWLOXJ0FHTchVsF9rcMEgC/i0gCjYVVr94LcSaaLfvzCO7IgEm6rgyvzr
-         cHcVisccg3W7PRg2j5JgRfCXS0pURtzJ3xznFjVv9JkQuDji612ViwKLyhfEqURzfe6A
-         vtDiOLM5MrqxfyIKhvHxStZnugMbFV0bqOcHCehraaKtBEtpq4G9hPuuQhui/zF0etoQ
-         gEZ16hmESIpCnRqhX4ISn5i9n4a/lIjwdW1DzbNJfd5JHGDAKrckY0f1xaUZ5BpCCvIo
-         wvbQ==
+        bh=CDEPpnFfFeQNRb6h6qaD2GBuBJjRD788qOFTnSwzmr8=;
+        b=FlHwpR/BGdgeA1Qo4EPCLGZN9pJSYx3Shj8vGvPfjgcvjNQGVL50PDnnpy/7cfmHHC
+         W/dUzWuhGJmzIjpmlXsRbdpsBFivMx4GbzsXMA3Dlo22lTILBBElionRNVHKILNRfgQ1
+         0PoOv+/1cKxGPYQe1NG9r4B0V/F+1NOUsGej+RnyQ4JzvvWCZJE1isN/yWhM3paK/yF6
+         9Dml/P6kNoPbaTA69UFHrKxZlQqihJelbV1q2/l5KKv6fsI+sLdtmcXZ+F82bF0/drpN
+         7tfND2OUcC0bTi5J6lW5oMGiEdlVignPik5jBiFK9wMpEUCy5q69zBavlMiDANCUBGk4
+         JRjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:date:subject:mime-version
          :content-transfer-encoding:message-id:references:in-reply-to:cc;
-        bh=70sJgJ6M2wTNfwQJ3+bkMBP++3esJkgb8mg1Y3AHAIo=;
-        b=W1nHYoxhcxOuYEQk13mI/V5hOplfV6kkUTbK3/KE/rxyc7je2kIF348JYratXR1ABa
-         kXmhW+ErCZRnPkRy9js/2PTBWIf9xfRr4Atla4HlVd8yoo1+6Hx+e7ZtrXjvHCsr1B+9
-         mPyI+j+rxnb2W3OfpWXupX5Qxk8cX5sG7pLuz0A2D9jKfGa4nGWSnNgxPKg5tVTswFiF
-         YOW8QmcTyFXTDloI1aBg7xyRvY06QfDTx4f6XKksWc8taNeRaRpQd0H8LVx9jxIaB1lM
-         1xzIi11XeHGxlrNXXSB218AcLQkaYigkcNl2dr/Mxm00VH30uBfDxit62ppAiige5tga
-         /+lg==
-X-Gm-Message-State: AJIora+uQ3sN9MsZVebLMyyt+KyziUgOJM6VLRhNljHp0i9DwgUrdR4t
-        Xff6GF2Ktc9D2Y3IvIhQwCiLqQ==
-X-Google-Smtp-Source: AGRyM1vh+7xD0uRlVRAT6+8Kk92s+Z9rVWNc12KDQ9vbMZkTR+6hQDfwJmTnKb4erZvbSYKsoe4YNA==
-X-Received: by 2002:adf:e192:0:b0:21d:62ee:ef10 with SMTP id az18-20020adfe192000000b0021d62eeef10mr11127350wrb.693.1658840189248;
-        Tue, 26 Jul 2022 05:56:29 -0700 (PDT)
+        bh=CDEPpnFfFeQNRb6h6qaD2GBuBJjRD788qOFTnSwzmr8=;
+        b=EDfPVxw6lJBZ9cWEmAPmaYRGDZ4eCslAYfBt6JldYXyq5VqnSa7jW1MiofHJ5dTaYh
+         vUJmWZJpccqCHSwYR41njIFs7k7qd9HmrGVeJE7SuezoZm5iI0yylds+yKdo5KkN9HRB
+         abkAG3MaNEf7rhmaPpXb9m63ntI9dTRmeIDAnG8oC5ahH8UBY2y0Z4QYh6yWqWXf0DtB
+         YCSH/myoWi0SfdIm9dT7aHm8DRVOzyvv8tifXjCAbT9DZf5sPWapEBunwNOnmvW8lz5U
+         MQhVLO1sczBI74vmOIJmmJdgE9isTDchcrFuqO08FJAoaplbl6hhK4YuU5aNWln6YZHQ
+         q9JA==
+X-Gm-Message-State: AJIora8xSdLgHdH/BWuwsbKQDP+2G9ap2kW2jRGCxjT3ssMmaOVKJSwl
+        ApGrdA5qF20V8czFFXqWmxe5Eg==
+X-Google-Smtp-Source: AGRyM1sLSFIrbCMWof8a52ULbmaqJoWBEBO19cwgtC1nBgI86bN7MgA7Xp4VETkGqmgn11gRmyyQaA==
+X-Received: by 2002:adf:fd8f:0:b0:21e:bcb4:f731 with SMTP id d15-20020adffd8f000000b0021ebcb4f731mr199816wrr.537.1658840190488;
+        Tue, 26 Jul 2022 05:56:30 -0700 (PDT)
 Received: from [192.168.2.253] ([82.66.159.240])
-        by smtp.gmail.com with ESMTPSA id k1-20020adff5c1000000b0020fff0ea0a3sm14171549wrp.116.2022.07.26.05.56.28
+        by smtp.gmail.com with ESMTPSA id k1-20020adff5c1000000b0020fff0ea0a3sm14171549wrp.116.2022.07.26.05.56.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 05:56:28 -0700 (PDT)
+        Tue, 26 Jul 2022 05:56:30 -0700 (PDT)
 From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Date:   Tue, 26 Jul 2022 14:56:06 +0200
-Subject: [PATCH v2 1/7] MAINTAINERS: input: add mattijs for mt6779-keypad
+Date:   Tue, 26 Jul 2022 14:56:07 +0200
+Subject: [PATCH v2 2/7] dt-bindings: mediatek,mt6779-keypad: use
+ unevaluatedProperties
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20220720-mt8183-keypad-v2-1-6d42c357cb76@baylibre.com>
+Message-Id: <20220720-mt8183-keypad-v2-2-6d42c357cb76@baylibre.com>
 References: <20220720-mt8183-keypad-v2-0-6d42c357cb76@baylibre.com>
 In-Reply-To: <20220720-mt8183-keypad-v2-0-6d42c357cb76@baylibre.com>
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -74,34 +75,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As stated in [1]:
-Fengping has no longer interest and time to maintain this driver so he
-agreed to transfer maintainership over to me.
+writing-bindings.rst states:
+> - If schema includes other schema (e.g. /schemas/i2c/i2c-controller.yaml) use
+>   "unevaluatedProperties:false". In other cases, usually use
+>   "additionalProperties:false".
 
-Add a dedicated maintainer entry as well for the driver to make sure
-that I can help with patch reviews.
-
-[1] https://lore.kernel.org/r/20220421140255.2781505-1-mkorpershoek@baylibre.com
+All 3 properties from matrix-keymap.yaml are valid for the MediaTek keypad:
+* keypad,num-rows and keypad,num-cols configure the KP_SEL register
+* linux,keymap represents the (at most) 8x8 hardware matrix
 
 Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1de6a8fbf0a8..f2f0696caf6a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12805,6 +12805,12 @@ S:	Supported
- F:	Documentation/devicetree/bindings/media/mediatek-jpeg-*.yaml
- F:	drivers/media/platform/mediatek/jpeg/
+diff --git a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+index 03ebd2665d07..ca8ae40a73f7 100644
+--- a/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
++++ b/Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
+@@ -56,7 +56,7 @@ required:
+   - clocks
+   - clock-names
  
-+MEDIATEK KEYPAD DRIVER
-+M:	Mattijs Korpershoek <mkorpershoek@baylibre.com>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
-+F:	drivers/input/keyboard/mt6779-keypad.c
-+
- MEDIATEK MDP DRIVER
- M:	Minghsiu Tsai <minghsiu.tsai@mediatek.com>
- M:	Houlong Wei <houlong.wei@mediatek.com>
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
 
 -- 
 b4 0.10.0-dev-78725
