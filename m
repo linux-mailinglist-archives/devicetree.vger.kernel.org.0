@@ -2,199 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A908A5812A7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 14:02:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFFBC581410
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 15:22:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232819AbiGZMC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 08:02:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42072 "EHLO
+        id S232678AbiGZNWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 09:22:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238974AbiGZMCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 08:02:25 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99408275E2
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:02:23 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id o12so16242881ljc.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:02:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cDTwEdu24/gUiDYI5ikSRUFSCHm0lJ9NOTljGODPF9I=;
-        b=YhCuGXoaxj6XopgqvDBVaPEXJAZgT2pVfEwWuuT05I9axW8GWcr8XWrM8TdJxlGLQt
-         Vv7QhcxfBokRnGtmJUzFBCEZdEIrFci7P3GknpnIZkQgLmaQBpvfXyyfPR7eA9J+ydd2
-         EEdVqvBURz1qpSOvBj5tOyO/PPW3CQ7EPWazot/PWCmSath+M6LM7l3CV0YKOT7zfdZt
-         ejUCCRm+zu7ZCbAn1C5zXYpf9ZFJ2yMGTNFB1g8V6sDNxBExm9wAosexUKvuS4AAsd/h
-         +kjeSdlwOXK8KLWUdf4WogFdY81ldE6MgA3QqoN3EKdh2KwhvDjANKuVzGHpCKAmDC/5
-         ThBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cDTwEdu24/gUiDYI5ikSRUFSCHm0lJ9NOTljGODPF9I=;
-        b=bXSpuE/Wbc30LIehL5urH5gE0WI9fCTwVWO1Kx87/S+UMbP6ufKBtqTOXYrM76spwT
-         ac1/RqJQdmVWLE/KuTi1KK2UrDgC6xUS9Fr5dtpnonkxAZx8VpMLM9B99DRr+fb4u0El
-         8oRGJ59p0MiyMSUtVejN7sdm5icr4IvBWaHVn4CyQBkYjTxl4gJqwN6eUtLUBjbW8sgp
-         OSc3EuCw3hvq1uj0+h2DWtHXFlqYZGtRBFPFyK4dlAXmv1Lr6TkFErMnK6N+b6waohi7
-         efcGekRezNZghb9yxCRw+MQHmAhUUXRyphsvwUtRvM9OeWowOfPBju7huvMxESPS8WAl
-         xsyQ==
-X-Gm-Message-State: AJIora9ojEkKTCznk9JKODKGwYG6asy2w8xthU/4MteNGgW8iYXMSU0k
-        BWKEtFIyoxNpdSgtMcYzDcH5IQ==
-X-Google-Smtp-Source: AGRyM1sJQepMPWvxdDDt7L0oKFQmlKY9LIoZbWgDeEG3eq4A6JiV3VK/8WNv8nzs/PQEyWYrNMsLVg==
-X-Received: by 2002:a2e:bc06:0:b0:25e:19b8:637b with SMTP id b6-20020a2ebc06000000b0025e19b8637bmr687944ljf.356.1658836941744;
-        Tue, 26 Jul 2022 05:02:21 -0700 (PDT)
-Received: from krzk-bin.lan (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id p15-20020a2e804f000000b0025ddf9a5b9csm3221865ljg.72.2022.07.26.05.02.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 05:02:21 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Vinod Koul <vkoul@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] dt-bindings: watchdog: qcom,pm8916-wdt: convert to dtschema
-Date:   Tue, 26 Jul 2022 14:02:15 +0200
-Message-Id: <20220726120215.101868-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220726120215.101868-1-krzysztof.kozlowski@linaro.org>
-References: <20220726120215.101868-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S231154AbiGZNWx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 09:22:53 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52FB52BB31;
+        Tue, 26 Jul 2022 06:22:47 -0700 (PDT)
+X-UUID: 26dc3eeed2d74fedb77701fe27d90ddd-20220726
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:db6dc055-fe34-4f64-8398-18f5f1dc8141,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.8,REQID:db6dc055-fe34-4f64-8398-18f5f1dc8141,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:0f94e32,CLOUDID:2efa8bb3-06d2-48ef-b2dd-540836705165,C
+        OID:c054147f60fb,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 26dc3eeed2d74fedb77701fe27d90ddd-20220726
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 636267679; Tue, 26 Jul 2022 21:22:40 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
+ Tue, 26 Jul 2022 13:22:32 +0000
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 26 Jul 2022 18:06:51 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 26 Jul 2022 18:06:51 +0800
+Message-ID: <c70db24fb66f844a2b53c229fff6e943e99398db.camel@mediatek.com>
+Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "deller@gmx.de" <deller@gmx.de>,
+        "airlied@linux.ie" <airlied@linux.ie>
+CC:     "msp@baylibre.com" <msp@baylibre.com>,
+        "granquet@baylibre.com" <granquet@baylibre.com>,
+        "Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?=" 
+        <jitao.shi@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?=" 
+        <LiangXu.Xu@mediatek.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 26 Jul 2022 18:06:50 +0800
+In-Reply-To: <80f223c8ecf262a62feb047d39b9ea2d8655fd14.camel@mediatek.com>
+References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
+         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+         <378f904a445e90d65048ed07a1a55fd8c633f934.camel@mediatek.com>
+         <9c5b85034ec77be80d771ce3a17260453f007728.camel@mediatek.com>
+         <80f223c8ecf262a62feb047d39b9ea2d8655fd14.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Qualcomm PM8916 watchdog timer controller bindings to DT
-schema and include them in parent device schema.
+On Tue, 2022-07-26 at 17:34 +0800, CK Hu wrote:
+> On Tue, 2022-07-26 at 14:42 +0800, Rex-BC Chen wrote:
+> > On Mon, 2022-07-25 at 17:16 +0800, CK Hu wrote:
+> > > Hi, Bo-Chen:
+> > > 
+> > > On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
+> > > > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> > > > 
+> > > > This patch adds a embedded displayport driver for the MediaTek
+> > > > mt8195
+> > > > SoC.
+> > > > 
+> > > > It supports the MT8195, the embedded DisplayPort units. It
+> > > > offers
+> > > > DisplayPort 1.4 with up to 4 lanes.
+> > > > 
+> > > > The driver creates a child device for the phy. The child device
+> > > > will
+> > > > never exist without the parent being active. As they are
+> > > > sharing
+> > > > a
+> > > > register range, the parent passes a regmap pointer to the child
+> > > > so
+> > > > that
+> > > > both can work with the same register range. The phy driver sets
+> > > > device
+> > > > data that is read by the parent to get the phy device that can
+> > > > be
+> > > > used
+> > > > to control the phy properties.
+> > > > 
+> > > > This driver is based on an initial version by
+> > > > Jitao shi <jitao.shi@mediatek.com>
+> > > > 
+> > > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > > > ---
+> > > 
+> > > [snip]
+> > > 
+> > > > +
+> > > > +static int mtk_dp_training(struct mtk_dp *mtk_dp)
+> > > > +{
+> > > > +	short max_retry = 50;
+> > > > +	int ret;
+> > > > +
+> > > > +	do {
+> > > > +		ret = mtk_dp_train_start(mtk_dp);
+> > > > +		if (!ret)
+> > > > +			break;
+> > > > +		else if (ret != -EAGAIN)
+> > > > +			return ret;
+> > > > +	} while (--max_retry);
+> > > 
+> > > mtk_dp_train_start() would never return -EAGAIN, so drop this
+> > > while
+> > > loop.
+> > > 
+> > > Regards,
+> > > CK
+> > > 
+> > 
+> > Hello CK,
+> > 
+> > the function will not return -EAGAIN, but we still want to retry 50
+> > times if mtk_dp_train_start() is failed. If we retry 50 times and
+> > it
+> > is
+> > still failed. We can confirm there are some issues for the device.
+> > 
+> > I will remove the else if of -EAGAIN and keep th while loop.
+> 
+> In this version, it never retry. And I believe you've tested this no-
+> retry version. If this no-retry version works fine, why do you insist
+> on retry? If you really need retry, merge this retry into
+> mtk_dp_train_start() because mtk_dp_train_start() have already retry.
+> 
+> Regards,
+> CK
+> 
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/power/reset/qcom,pon.yaml        |  4 ++
- .../bindings/watchdog/qcom,pm8916-wdt.txt     | 28 ----------
- .../bindings/watchdog/qcom,pm8916-wdt.yaml    | 51 +++++++++++++++++++
- 3 files changed, 55 insertions(+), 28 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/watchdog/qcom,pm8916-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/qcom,pm8916-wdt.yaml
+Hello Ck,
 
-diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-index e8ecb75155db..e7b436d2e757 100644
---- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-+++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-@@ -36,6 +36,10 @@ properties:
-     type: object
-     $ref: /schemas/input/qcom,pm8941-pwrkey.yaml#
- 
-+  watchdog:
-+    type: object
-+    $ref: /schemas/watchdog/qcom,pm8916-wdt.yaml
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/watchdog/qcom,pm8916-wdt.txt b/Documentation/devicetree/bindings/watchdog/qcom,pm8916-wdt.txt
-deleted file mode 100644
-index 6fb984f31982..000000000000
---- a/Documentation/devicetree/bindings/watchdog/qcom,pm8916-wdt.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--QCOM PM8916 watchdog timer controller
--
--This pm8916 watchdog timer controller must be under pm8916-pon node.
--
--Required properties:
--- compatible: should be "qcom,pm8916-wdt"
--
--Optional properties :
--- interrupts : Watchdog pre-timeout (bark) interrupt.
--- timeout-sec : Watchdog timeout value in seconds.
--
--Example:
--
--	pm8916_0: pm8916@0 {
--		compatible = "qcom,pm8916", "qcom,spmi-pmic";
--		reg = <0x0 SPMI_USID>;
--
--		pon@800 {
--			compatible = "qcom,pm8916-pon";
--			reg = <0x800>;
--
--			watchdog {
--				compatible = "qcom,pm8916-wdt";
--				interrupts = <0x0 0x8 6 IRQ_TYPE_EDGE_RISING>;
--				timeout-sec = <10>;
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/watchdog/qcom,pm8916-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom,pm8916-wdt.yaml
-new file mode 100644
-index 000000000000..568eb8480fc3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/qcom,pm8916-wdt.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/qcom,pm8916-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm PM8916 watchdog timer controller
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    const: qcom,pm8916-wdt
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/spmi/spmi.h>
-+
-+    pmic@0 {
-+        compatible = "qcom,pm8916", "qcom,spmi-pmic";
-+        reg = <0x0 SPMI_USID>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pon@800 {
-+            compatible = "qcom,pm8916-pon";
-+            reg = <0x800>;
-+            mode-bootloader = <0x2>;
-+            mode-recovery = <0x1>;
-+
-+            watchdog {
-+                compatible = "qcom,pm8916-wdt";
-+                interrupts = <0x0 0x8 6 IRQ_TYPE_EDGE_RISING>;
-+                timeout-sec = <60>;
-+            };
-+        };
-+    };
--- 
-2.34.1
+There are many different devices we are not testing for DP devices.
+I think we need to keep this.
+This retry is for restart with init state.
+
+I think it's better to keep it here and it's more clear.
+
+I will remain the comments above, and I think it's enough.
+
+BRs,
+Bo-Chen
+
+> > 
+> > BRs,
+> > Bo-Chen
+> > > > 
+> > > > +	if (!max_retry)
+> > > > +		return -ETIMEDOUT;
+> > > > +
+> > > > +	ret = mtk_dp_video_config(mtk_dp);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +	mtk_dp_video_enable(mtk_dp, true);
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > 
+> > > 
+> > 
+> > 
+> 
+> 
 
