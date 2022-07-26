@@ -2,74 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C2D75815D5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 17:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 567605815DA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 17:01:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239184AbiGZPAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 11:00:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34720 "EHLO
+        id S239332AbiGZPBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 11:01:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238739AbiGZPAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 11:00:39 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEF1C240B5;
-        Tue, 26 Jul 2022 08:00:37 -0700 (PDT)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 3149BFF813;
-        Tue, 26 Jul 2022 15:00:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1658847636;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=DraaBxpt13vT2OYQx+ImtKU2zCJMxssq63gtcac1kv4=;
-        b=cAJmw2DI42AJW/wHS7IhYc0xDwClKeGF2oSi3tpSA6qGIKS7hg4zV2pt1ehxBsOhH2KFLI
-        6tR4y0561YYAXKDkmTy65xm8NQE1L472lVAhhHbkJV8u/UMhkwkvz65p0X0rme/xQkAuPd
-        ZoYCm4WDlcw4c5EJbim81k0rByWn+xLLA0fNMetWyvRvOP5qk+8qF+pqRGqvzUryRLbrmL
-        yR9bIe0LnJhGdsZP3+xN7fFxtDPBaiisI+ZSe4AZkwB6rwuHt1shwqctPGWk9OXWvQkOsT
-        bZLwfoFSPEkAhe8V817dxrYt3NFK10FxGVmre6owzZ4z620Cwov9reCjc3W47g==
-Date:   Tue, 26 Jul 2022 17:00:32 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     alexander.stein@ew.tq-group.com, a.zummo@towertech.it,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v3 1/1] dt-bindings: rtc: nxp,pcf85063: Convert to DT
- schema
-Message-ID: <165884761584.3162909.14717319628949335829.b4-ty@bootlin.com>
-References: <20220725071919.25342-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S238739AbiGZPBT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 11:01:19 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5082F21802
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 08:01:18 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id bf9so22962218lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 08:01:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/Abp4O2phjlQwqXSiq9vrzI7rfG09ZHavgh2SmBCZxI=;
+        b=FNgYeohdCATVAP7X2iU36R9MeHDqIbl1lqmT50Bo1fwMpKLGUi26xD8u7IdsBxpDNr
+         Wr66GNWgOu5zxSsqL/8P7lyTUyVZ+aN6us+npUllII5a1OB0/qOkaX0t0gy3zcEySwFo
+         DEYukwmIhobCcct4j6e0Lrn58FTitKxBfWgQSw8pxQWFmS9BhxdRdaMI8cm618dc3rVK
+         4Ok/3YT3C3L6Fs1CIH0OYz201C/kLUg3DUrQDRzMAvm7aB/iA2Dcp7LrIIugeGyjSVW2
+         NSitrE1iGO764X6mIHq1mZDJXJgWIGdMbAEcP8YIoidic1iUBcteMr6K8ie06+8OsP3r
+         ah9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/Abp4O2phjlQwqXSiq9vrzI7rfG09ZHavgh2SmBCZxI=;
+        b=kxSNbJWrRNMAZsvSCzqNXR87LZlQqZoTd/1/v4EUadCBgXOwvAplW1vhLwIjrhLALS
+         Jo6yz/AalTnFpzV0ec2iFD8Su2Lxtj9VycGJu8QtaAYrGffSp0e4o3TI6nMnbhv/uGOi
+         1Q8I4QZgf1mNNSmGVsO6pKdIKSPmpHVObH4uV7kmVjfeXsgTeFrTAj1gPxeUjq9/YRw1
+         kXsp/WLHkE2uFrnHhSAvtjxiFHUz1awz7Va8NDehIW45IHmDnRhyow3EEODQluQyIGha
+         j7GzbwalswWPvrjzsvmcCWg+RRevtjHjvinMSNX8JjJv3aD7vSPbenyZimRdzO4GFNIy
+         KVEw==
+X-Gm-Message-State: AJIora+UZaE25jUP7PZR6fyePKXkXbrYjlUHCecPwb/oxWMXAWjBRd10
+        a1EZRKaldqyVIDiDUhTVAoyvo31Wt+KJH9m65zaeRcrQgAXcdw==
+X-Google-Smtp-Source: AGRyM1tWqxY9BYKQk44juX1eKWFfDs070weNDGQdXByMLPBbsJzkZx2RmQqqnjwR5M0SiaGb9Mt98TJpDepqL0XK05E=
+X-Received: by 2002:ac2:4249:0:b0:48a:9f05:776a with SMTP id
+ m9-20020ac24249000000b0048a9f05776amr1542411lfl.184.1658847676121; Tue, 26
+ Jul 2022 08:01:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220725071919.25342-1-alexander.stein@ew.tq-group.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220723204335.750095-1-jagan@edgeble.ai> <20220723204335.750095-12-jagan@edgeble.ai>
+In-Reply-To: <20220723204335.750095-12-jagan@edgeble.ai>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 26 Jul 2022 17:00:38 +0200
+Message-ID: <CAPDyKFp0bqiAnvQpNwD5JzKe4vUAGe7RH6Gog6VScqbea376iw@mail.gmail.com>
+Subject: Re: [PATCH 11/22] dt-bindings: mmc: rockchip-dw-mshc: Document
+ Rockchip RV1126
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Jul 2022 09:19:19 +0200, Alexander Stein wrote:
-> Convert the NXP PCF85063 RTC binding to DT schema format.
-> 
-> Add 'interrupts' and 'wakeup-source' as this device has an interrupt
-> which was not documented, but is in use.
-> 'clock-output-names' and '#clock-cells' are added as well, those were
-> probably missed when adding clkout support in commit 8c229ab6048b
-> ("rtc: pcf85063: Add pcf85063 clkout control to common clock framework")
-> 
-> [...]
+On Sat, 23 Jul 2022 at 22:44, Jagan Teki <jagan@edgeble.ai> wrote:
+>
+> Add a compatible string for Rockchip RV1126 SoC.
+>
+> Cc: linux-mmc@vger.kernel.org
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 
-Applied, thanks!
+Applied for next, thanks!
 
-[1/1] dt-bindings: rtc: nxp,pcf85063: Convert to DT schema
-      commit: 10e1fb88c7b7e71ae04895511f4f98a7721c9e6e
+Kind regards
+Uffe
 
-Best regards,
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> ---
+>  Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> index 54fb59820d2b..8d888b435817 100644
+> --- a/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> @@ -39,6 +39,7 @@ properties:
+>                - rockchip,rk3399-dw-mshc
+>                - rockchip,rk3568-dw-mshc
+>                - rockchip,rv1108-dw-mshc
+> +              - rockchip,rv1126-dw-mshc
+>            - const: rockchip,rk3288-dw-mshc
+>
+>    reg:
+> --
+> 2.25.1
+>
