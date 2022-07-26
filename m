@@ -2,165 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5194F581024
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 11:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1AE2581033
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 11:45:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238228AbiGZJmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 05:42:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44332 "EHLO
+        id S238358AbiGZJpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 05:45:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238210AbiGZJmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 05:42:07 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 122862FFCE
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:42:05 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id r188-20020a1c44c5000000b003a34ac64bdfso4058108wma.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:42:04 -0700 (PDT)
+        with ESMTP id S238332AbiGZJpb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 05:45:31 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE6F31391
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:45:29 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id m12so20765118lfj.4
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:45:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AS9H2OdepDISuy0zpfcKWjXYlq3ZJwTXdSc84G0PXjk=;
-        b=UEdP/1caBfZR1vGaxbnA+UoIuwScQbKAKcncBmmq4nqTECUaEDLlNYSomjZPQ+3Edv
-         BzESjJPvCJUl85AD2VwJN8EDsWobDLgwRarLAf9iN9uYiqh2tWnfppB9ebJxHN8Rre/G
-         WUzTe1UZ/zak3NhGsZldKPgIddr49EKjV2cny9NT4ZF150B7A43pkFzKDYiWLC9NJSBF
-         CsB7+a0dhOu59G6sNRbWpTSZ+2Kn+DdnM/p8fF7NkpDMQmFYDCht470BoRRxhRZWDhss
-         7d6u1Qac/xLTKYBtSC4KvqEF3OexaIuCsla6XJByBAqTEAbIOECBf9Y9Axwg3yxb5W1Y
-         8yIQ==
+        bh=8xGuJPx1uoGLuQZAqwN8Nb6aczdriwTde5wtLI3AIWE=;
+        b=iP1Vns9Rdr71xlSUgaLQB+Wgf9z1k13x+LivKmvxKlNz+ByC5eqZwxFYyan8XhRbcL
+         lCNWrmrCN3/XlHcjE78JOZNLgkoqUmtDtSkNWUdFNX9p8FsWz14radPXjxIgppAuJ1sD
+         iqRUmk2YX64tegZqFHAwUbSnq/RvYltVNFg3IVvUAhV2I1PuFarK8zt18Iwo4ZF2Od0C
+         HvkELwgTEURbNBoAs2cBX9/fc0tFJzY/kVhjpqnhcKHPDi84iagYK/uSO5YXV/jbbYdn
+         1BWK8jtJfxarKnVSJeAVS4ZNGIyKqIGajY9oBogUEXNGpOS7iUb0MHOH9eCmsEijuvog
+         0eSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=AS9H2OdepDISuy0zpfcKWjXYlq3ZJwTXdSc84G0PXjk=;
-        b=FRAog0/D/ohx6WraYPzIUlkY2HPH5Nt5dChwL2rj/xJ5ekw02FOmfwUzpM9jPJVkvO
-         rRov3eABi/eqjM9cx5wLnDS2pENpZnwfakeY4T0Qq3ouD/5d1HvySOuqvjBKQgo+HOxr
-         Y0HEZXCS6TA0r4QjpBTQQn8UYvA1ZGk8n8geVMSlvk4VTbWrVQMpd9Wn2NjdXX7eB7Y2
-         8p2OctaoRu7khD/yVxVa/jhfCfImYCaZJe7hgD8ir4cza+xS1aBEWLIWYXUNhJew2Ipp
-         ugn2fduGDLvY3dayLNP6cq2P2ZjrKq70vSpu3whRXpQ6+FL1VkJlJm1rFf7DACFltmgL
-         EGTg==
-X-Gm-Message-State: AJIora+2gE3YznOU663Zc7Q8AixWoCQHZ+bBawXNNU6D9cWHrRXV0pOE
-        JHwuxDvKlL8aeFBVhmRJVYBw/rPaA4C60w==
-X-Google-Smtp-Source: AGRyM1sGgplIS0v67+5+3a3ZiyzGBSgKA7I0u+VqthrWa6RNVsTG1Lkswi8PKUHIKTJvBoPFdUlMeg==
-X-Received: by 2002:a7b:c7d8:0:b0:3a3:1b8a:97a4 with SMTP id z24-20020a7bc7d8000000b003a31b8a97a4mr11816687wmk.160.1658828523550;
-        Tue, 26 Jul 2022 02:42:03 -0700 (PDT)
-Received: from ?IPV6:2a01:cb1d:77d:8cd7:621a:855b:69ac:c34a? ([2a01:cb1d:77d:8cd7:621a:855b:69ac:c34a])
-        by smtp.gmail.com with ESMTPSA id u16-20020a5d4350000000b0021e4b0aac41sm13834639wrr.24.2022.07.26.02.42.02
+        bh=8xGuJPx1uoGLuQZAqwN8Nb6aczdriwTde5wtLI3AIWE=;
+        b=JtkvqecydfNOK09yJjqVFZMPGvL82KJxtxWqpzq169Hg/z/bXCxzf09hg1vFuMu7rY
+         gsgqesbdl7YcJjcZmdcvVioKEGw2jNSgmENi1NH4kkxruqpoVt3+IzTBZH1flV5AGzn0
+         eIYYFEggrAU8sH1U7S9jRYUfDmi2sGfL81G7MVmJc2rjcqFlOEDPFV/WdxJ03NPQWwNU
+         XG+NWDvowRT083kR7QwsSYO1zr/8derMGCDOvTfJWiyxw3nKj93UaXj46/Sp494B0YAy
+         NzI7wFd7lAehfhWOpo7O33mDSZE10m9ipb36KiVOMQGXYlYF2szpxzK4z5wgTLT75eWX
+         L/1g==
+X-Gm-Message-State: AJIora8vGm7MSDv3EKIZVIrjsiG6kgC3zfoWkRhcGn5Xy4Kmq6nPg8Yj
+        2WiQrSWE7WO595uEirlzRwAw5Q==
+X-Google-Smtp-Source: AGRyM1talH+BemWNWyeJS55FRhEcJ00+9GMnyvbyiYEwIj1ILXShUt2a2mtFcJ3AXT7yWfAz4VP8eg==
+X-Received: by 2002:a05:6512:acd:b0:48a:7c05:71db with SMTP id n13-20020a0565120acd00b0048a7c0571dbmr6482630lfu.433.1658828727805;
+        Tue, 26 Jul 2022 02:45:27 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id y19-20020a05651c107300b0025d72c1f646sm3206657ljm.58.2022.07.26.02.45.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 02:42:03 -0700 (PDT)
-Message-ID: <11118ebb-8731-8e4b-e483-7b9b2cc42d13@baylibre.com>
-Date:   Tue, 26 Jul 2022 11:42:02 +0200
+        Tue, 26 Jul 2022 02:45:27 -0700 (PDT)
+Message-ID: <5cd79059-e858-3c6d-8ef2-6d8b12367830@linaro.org>
+Date:   Tue, 26 Jul 2022 11:45:25 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH v1 2/2] dt-binding: iio: time: add capture-tiecap.yaml
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: mediatek: add pinctrl definition for
+ mt8188
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        jic23@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mranostay@ti.com
-References: <20220726072553.5136-1-jpanis@baylibre.com>
- <20220726072553.5136-3-jpanis@baylibre.com>
- <c4e8b285-1e77-492e-31d7-8c79328b95dd@linaro.org>
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <c4e8b285-1e77-492e-31d7-8c79328b95dd@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     "hui.liu" <hui.liu@mediatek.com>, linus.walleij@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com
+Cc:     johnson.wang@mediatek.com, zhiyong.tao@mediatek.com,
+        sean.wang@mediatek.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220718113813.23787-1-hui.liu@mediatek.com>
+ <20220718113813.23787-2-hui.liu@mediatek.com>
+ <b28dcbe5-d15f-1c4f-9b3d-650d5c39de6b@linaro.org>
+ <08a7209fe198839093b3ef729fc97c1a950e1fbc.camel@mediatek.com>
+ <35639a59-4a3d-5aa7-946c-22fbd2f25e89@linaro.org>
+ <ea7755e599ad8c06bc04b6249c2a6d0ab3b920f3.camel@mediatek.com>
+ <53d432e9-6715-05c4-d258-896ec38afa4f@linaro.org>
+ <9dbcee74667cdc77ad80c043bb7725c63ff1cbd2.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9dbcee74667cdc77ad80c043bb7725c63ff1cbd2.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 26/07/2022 11:29, Krzysztof Kozlowski wrote:
-> On 26/07/2022 09:25, Julien Panis wrote:
->> This commit adds a YAML binding for TI ECAP used in capture operating mode.
+On 25/07/2022 12:10, hui.liu wrote:
+> On Fri, 2022-07-22 at 20:19 +0200, Krzysztof Kozlowski wrote:
+>> On 22/07/2022 03:40, hui.liu wrote:
+>>> Hi, Krzysztof
+>>>
+>>> That's the comment about reg and reg-names description:
+>>>>> +  reg:
+>>>>> +    description: |
+>>>>> +      Physical address base for gpio base registers. There are
+>>>>> 8
+>>>>> GPIO
+>>>>> +      physical address base in mt8188.
+>>>>
+>>>> Redundant description, skip it. You should list the instead and
+>>>> describe
+>>>> each of it.
+>>>>
+>>>>> +    maxItems: 8
+>>>>> +
+>>>>> +  reg-names:
+>>>>> +    description: |
+>>>>> +      Gpio base register names.
+>>>>
+>>>> Redundant description, skip it.
+>>>>
+>>>>> +    maxItems: 8
+>>>>
+>>>> You need to list the items instead.
+>>>
+>>> I plan to update reg and reg-names as the following:
+>>>   reg:
+>>>     description: |
+>>>       Physical address base for gpio base registers. There are 6
+>>> different GPIO physical address bases in mt8188.
+>>>     minItems: 6
+>>>     maxItems: 6
 >>
->> Signed-off-by: Julien Panis <jpanis@baylibre.com>
->> ---
->>   .../bindings/iio/time/capture-tiecap.yaml     | 53 +++++++++++++++++++
->>   1 file changed, 53 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
+>> You should rather have here items with description:
+>> items:
+>>  - description: what is it
+>>  - description: what is it
+>>  ....
 >>
->> diff --git a/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
->> new file mode 100644
->> index 000000000000..4f08e49a8506
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
-> Use filename based on compatible, so:
-> ti,am62-ecap-capture.yaml
->
->> @@ -0,0 +1,53 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/capture-tiecap.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Texas Instruments Enhanced Capture (eCAP) Module
->> +
->> +maintainers:
->> +  - Julien Panis <jpanis@baylibre.com>
->> +
->> +description: |
->> +  The eCAP module resources can be used to capture timestamps
->> +  on input signal events (falling/rising edges).
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,am62-ecap-capture
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    const: fck
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    ecap0: capture@23100000 { /* eCAP in capture mode on am62x */
->> +        compatible = "ti,am62-ecap-capture";
->> +        reg = <0x00 0x23100000 0x00 0x100>;
->> +        interrupts = <GIC_SPI 113 IRQ_TYPE_EDGE_RISING>;
->> +        power-domains = <&k3_pds 51 TI_SCI_PD_EXCLUSIVE>;
-> Does not look like you tested the bindings. Please run `make
-> dt_binding_check` (see
-> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> 
+> Hi Krzysztof,
+> 
+> I will list each items with description as follows, is it right?
+>   reg:
+>     description: |
+>       Physical address base for pinctrl base registers. There are 6
+> different physical address bases in mt8188.
+>       iocfg0 is gpio base address;
+>       iocfg_rm is io configuration
+> address for rm group;
+>       iocfg_lt is io configuration address for lt group;
+>       iocfg_lm
+> is io configuration address for mm group;
+>       iocfg_rt is io
+> configuration address for rt group;
+>       eint is eint base address.
+>     minItems: 6
+>     maxItems: 6
+
+No, because it is not schema and you still keep here min/maxItems which
+are pointless in that case. Just read example-schema.
+
+https://elixir.bootlin.com/linux/v5.19-rc8/source/Documentation/devicetree/bindings/example-schema.yaml#L63
 
 
-I did not indeed, sorry. I thought that checkpath also checked binding.
-
-Thank you for your feedback. I'm going to prepare a new version.
-
-
->
->> +        clocks = <&k3_clks 51 0>;
->> +        clock-names = "fck";
->> +    };
->
-> Best regards,
-> Krzysztof
+Best regards,
+Krzysztof
