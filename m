@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7146E58127E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:59:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45916581280
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:59:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238888AbiGZL7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 07:59:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37032 "EHLO
+        id S232593AbiGZL7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 07:59:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238867AbiGZL67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:58:59 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D2332DBC
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:58:58 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id t17so10037523lfk.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:58:58 -0700 (PDT)
+        with ESMTP id S238930AbiGZL7D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:59:03 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0969A33356
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:58:59 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bf9so22201792lfb.13
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:58:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=fXheGcE2vh8eVRPsDfJBjefjPqTEXxVEm5Y9mMq+Fz0=;
-        b=qI7oAyUz1S2BQMRtMxsKknQtd4etscgeBx8jKYNXWxwqJZReDaTny2mLlT5jTGtnLG
-         bXzp+ZvO/QwuO0q1PtV6fpVr79k921sG+JCUT10m6hvpmj5luuJGb1Xf4r1Te62ymaZf
-         KtUkv+XhxqizmEwlWP9htvQfkRemV5P2spDF6J+pPFDul+lZo+Gc9wEzyVvh3Js0BGnX
-         ylXGkJwFM6QpQ5V6gsDlX/JobcqLy+ERx2f56FDlGCjRjnzvmLG4C6vj+sqHiSDEZe7f
-         9nGTsFMI2q7L7T+OYWBVn8O/PBEupIJIh9FzUDw7BIpIHvZZxIXZXEgefuR3AGbGmV7I
-         P5kg==
+        bh=w3XtkKUKbD1b4UgKVPlGooII0Pk7FHBibUL8j/WSqjs=;
+        b=cgtEFIf5L+ce5XEM6PfOjbUlpwDuYfOaqdA0uA1MRphOhGXmysD/4zLTiXgQBmjUDC
+         VosLSoaIFYQ9aSic1aBksLVCN7oqwOwHlp9YLcPRjVCFzAuG/l1Y1YzNWXeVqA48K2Wm
+         PyeVC058GIts1KmLsUBY6BJb1hJKyoVv2UakJhoj9QX9Yx1JQiz3pbmZyQA+/c7ARxMF
+         bVG1eHN9aR0orl4m4xUvzIYUzjZehtNCvAML6kHDYWjlnwNEa/aG/4fd/sEpli3Cu3nX
+         AIRwoGs9yAOkoM1zG6IVVQ5Hv0GRgfTgvU4C/3UMfJMBUtNq9Xdhs/vDmS29ls3kQWZ0
+         98/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=fXheGcE2vh8eVRPsDfJBjefjPqTEXxVEm5Y9mMq+Fz0=;
-        b=fjwlL+pCkmv1fBQ3LEsX52EZE1PZ6+i3KOe+N2qp7v6uEBF+DHbFwrhsJ/jzvIpWb9
-         g7G/Ml/b50uqJaWZ/gt3HjeFoP+ZrYMxbrmPjdwpQBItJ3QuNgpcRz+43+ke8n2X7TDU
-         VvQqi8r0TT4Eb94ImjUc7hkaE2xxk9GV6NdbqrdYml0P0GpX0A2EKKQIRRZCH77D5Ajd
-         NuXS2ZaUGXhrf4oaZ8IvDL4uVofc0wBUfGysLWw/gKBAGoZFaF+8E5omfvTjUPXPILXC
-         pAu1rPTgVn84NjXjUS2GYu5rN4oJFnbvjQKBWdGkQH8QgJZaX8f4qaUXQKgq8vbJKhH7
-         YLwA==
-X-Gm-Message-State: AJIora9qaqNq6aBLscFC0plkq1ZxPrjcxVNcpZMNt8d2rAjts66NPZmA
-        7lQ1nlQxNTbNzR6EzAU6+VmS/A==
-X-Google-Smtp-Source: AGRyM1vq9fy7SbNAytMwkf+4EahvThfrvOV88XCAv01wwt3e3pSZrmVNz43dETwbDjXGuIfJffgBxA==
-X-Received: by 2002:a05:6512:3084:b0:489:e658:25ac with SMTP id z4-20020a056512308400b00489e65825acmr6742052lfd.431.1658836736645;
-        Tue, 26 Jul 2022 04:58:56 -0700 (PDT)
+        bh=w3XtkKUKbD1b4UgKVPlGooII0Pk7FHBibUL8j/WSqjs=;
+        b=TjQaLNArIakNvQmyBil+vXcAGRHnRxg0FlBPtn/Mp0piShkVJhxJCRvkY7lARaAscb
+         XSsi/6YogTanWMaKqnE4lEeKaK2ye06vg3OyvyfLp0I80idJM40zrhBj4Uu8mmaXp7Cs
+         y8hyz/iGzI3Ed1o0ZgPetsRS0XvzQGsK5Mi/3dKyda+HFcGf7RVffj41WCcoZG9OAxOi
+         lmrZ2CkPwu9Su3K9AQp+QJlKV+Y9CEM+wLmX97RFTHTeKZ5rYn1Nx27rs1YaK+mM5nm6
+         DzbtMpvZen8SrbQ1pLwQoRg9u+1cllLTYpoQIoPFN6Ew9kib5HVu6BoO/tG1THx2heG5
+         dcMw==
+X-Gm-Message-State: AJIora/urt6a3gk4BnDopX4YEJedDpKVrVySAzJDS+DDTZWAMafgQBDV
+        KbjBVHrGgWRtNZyotiGjwPI3eg==
+X-Google-Smtp-Source: AGRyM1sAlwvl3au2HeenO+uyoXA1JzXuRyXnOmGFcmsQSJgM6cmNpRF5qIFC6PBqx0v9aSbqPl4P4A==
+X-Received: by 2002:a19:8c46:0:b0:48a:839d:6639 with SMTP id i6-20020a198c46000000b0048a839d6639mr5441735lfj.270.1658836738209;
+        Tue, 26 Jul 2022 04:58:58 -0700 (PDT)
 Received: from krzk-bin.lan (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id u5-20020a05651220c500b0048a9526c7d9sm773000lfr.257.2022.07.26.04.58.55
+        by smtp.gmail.com with ESMTPSA id u5-20020a05651220c500b0048a9526c7d9sm773000lfr.257.2022.07.26.04.58.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 04:58:56 -0700 (PDT)
+        Tue, 26 Jul 2022 04:58:57 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
@@ -64,9 +64,9 @@ To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/4] dt-bindings: soc: microchip: drop quotes when not needed
-Date:   Tue, 26 Jul 2022 13:58:40 +0200
-Message-Id: <20220726115841.101249-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/4] dt-bindings: soc: microchip: use absolute path to other schema
+Date:   Tue, 26 Jul 2022 13:58:41 +0200
+Message-Id: <20220726115841.101249-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220726115841.101249-1-krzysztof.kozlowski@linaro.org>
 References: <20220726115841.101249-1-krzysztof.kozlowski@linaro.org>
@@ -81,44 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Id and schema fields do not need quotes.
+Absolute path to other DT schema is preferred over relative one.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../bindings/soc/microchip/atmel,at91rm9200-tcb.yaml          | 4 ++--
- .../bindings/soc/microchip/microchip,mpfs-sys-controller.yaml | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ .../devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-index 597d67fba92f..2f8cf6191812 100644
+index 2f8cf6191812..33748a061898 100644
 --- a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
 +++ b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/soc/microchip/atmel,at91rm9200-tcb.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/soc/microchip/atmel,at91rm9200-tcb.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+@@ -75,7 +75,7 @@ patternProperties:
  
- title: Atmel Timer Counter Block
- 
-diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
-index b0dae51e1d42..04ffee3a7c59 100644
---- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
-+++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
-@@ -1,8 +1,8 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/soc/microchip/microchip,mpfs-sys-controller.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+$id: http://devicetree.org/schemas/soc/microchip/microchip,mpfs-sys-controller.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Microchip PolarFire SoC (MPFS) MSS (microprocessor subsystem) system controller
- 
+   "^pwm@[0-2]$":
+     description: The timer block channels that are used as PWMs.
+-    $ref: ../../pwm/pwm.yaml#
++    $ref: /schemas/pwm/pwm.yaml#
+     type: object
+     properties:
+       compatible:
 -- 
 2.34.1
 
