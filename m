@@ -2,178 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9104B580EDB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 10:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97087580EF0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 10:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238242AbiGZIZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 04:25:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42878 "EHLO
+        id S237913AbiGZI2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 04:28:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238386AbiGZIZk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 04:25:40 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7D52DEE
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:25:39 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id b133so12631657pfb.6
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:25:39 -0700 (PDT)
+        with ESMTP id S231273AbiGZI2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 04:28:08 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 568F42FFE2
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:28:07 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id u5so19105832wrm.4
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:28:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=y1MIWnHCM+GAst9qr5uT5FWNOFAzzBmNsrQ4ccKB8sg=;
-        b=hCAMyRX5bwda3HXY2lwU+EyjnGLlHgZuasVDr5bzLtOmT92o+1ZiT80LTsgMOvs+vs
-         mN6ge2XpEOKH632dXkeQ0tk1tUB8/31iZAnEblxpLRuEZSy71aD/HU1CxuMIfvylCzXv
-         FCDkObDuVWq5PeBij4QUGg+Z0gASZST6Xsvrh4T409gkuDMSXlWEvvnc/G8a4ofNR7LJ
-         FRGmFtYRQt0eL2qVh9hslZcfL+r/VSsQMBf2RB19g5unRdFViVyZAuNbr1lm8nmyZ1zM
-         aZZFRma1hhxZCOW8JXa1J/CgAeXXkIWp/y83NiTLK87R468kiPd0O+npRtWwMrfCxbFA
-         wfRQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qAKHknFtsvT1+469TMaGtV4FNnDqf7wnEERMTyMAfco=;
+        b=FUUrWzuDishjz9cWOzadM6Gl14xPV+esI8ec68cYC8L7HNGTMZO71Vz0SsxSvz/d/M
+         qRyNp9YUPMSZGVuqzZ6UD0rqiJw/qW+gV6aDzdqByjID17FYpJDMFkICUnmAEE0vu10t
+         H5b6bqv3WvhstO48+JQ5pMzSWALXBv0YWf6q4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=y1MIWnHCM+GAst9qr5uT5FWNOFAzzBmNsrQ4ccKB8sg=;
-        b=N4E0j4ScxNbSRu0WjF0p6ROdcx54aWd+HS6Ieh5kbNpQ8KZDCy6bXZYeOBnR9rxpp3
-         hbEnBTttC81AqMiLeCyGeUH54wXXzpF05XzSs0QesC4gUOloejD5kdLhY2s0VQswlvJa
-         9F0l8qXXUeViWJIo2ziJw98XDqduzg2DmaU4jxxR518f4GrLKhnIo/peP2ilVScsP9AS
-         yz7tCQxaZBPDCbaLEfnmXt/PUbmUKfrBuCr+Pnyx8AHAFElIZ3v4fX19d2HKbY1LglRI
-         rO2Ea5XbjCeYs+g9Kgm+ELZ59QwJ4lRbL0lAv4+1vaqL0E+snyOmeuWqsZsENXuzgeM8
-         muNg==
-X-Gm-Message-State: AJIora/fyysmcfiiLY8wSoTbpfZIKi0oy4Ao+nl8+Anvbq2MflTyiNcJ
-        pLUea89JG1mm4nYjC0r9SGs=
-X-Google-Smtp-Source: AGRyM1ssGcNsC1CNCZvW1Q+AUnTwTpJEiPoGQ8vm7stODtUF5C2WfXk/WXWB3akQBRNsSkhTPvIKoA==
-X-Received: by 2002:a63:1a09:0:b0:415:fa9a:ae57 with SMTP id a9-20020a631a09000000b00415fa9aae57mr13725105pga.181.1658823938419;
-        Tue, 26 Jul 2022 01:25:38 -0700 (PDT)
-Received: from a-VirtualBox.. ([116.233.75.140])
-        by smtp.gmail.com with ESMTPSA id q3-20020a170902a3c300b0016c6a6d8967sm10783991plb.83.2022.07.26.01.25.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 01:25:37 -0700 (PDT)
-From:   Zhu Ning <zhuning0077@gmail.com>
-To:     alsa-devel@alsa-project.org
-Cc:     pierre-louis.bossart@linux.intel.com, tiwai@suse.com,
-        broonie@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
-        ckeepax@opensource.cirrus.com, Zhu Ning <zhuning0077@gmail.com>,
-        David Yang <yangxiaohua@everest-semi.com>,
-        Zhu Ning <zhuning@everest-semi.com>
-Subject: [PATCH v2 2/2] ASoC: dt-bindings: Add Everest ES8326 audio CODEC
-Date:   Tue, 26 Jul 2022 16:25:06 +0800
-Message-Id: <20220726082505.125267-2-zhuning0077@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220726082505.125267-1-zhuning0077@gmail.com>
-References: <20220726082505.125267-1-zhuning0077@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qAKHknFtsvT1+469TMaGtV4FNnDqf7wnEERMTyMAfco=;
+        b=4ITsXiKQKAWpwHHp2gq1QHdxyvC19NAGdMcpBv6stUiOCuG3if3cDJ4CosEJPFjYdx
+         v990KA27Gw3jP6sa+JFiNrtkxpb0IEC33p08ZrrT4+F0rl3/d+XbNQmXBQF3Ft0T3FDV
+         qv0iCJiofuIPLhd0THG19YFYezhKUNc+u+GMqN5UJBRaoN7g4OjgDVfx23TAIIXOtsF3
+         F2762FZyFGOmN3hkKnTUkhMNWSMtIMIAJZLRmCW+RWw3PkuTebLEc8sRe1aisAasCS9D
+         r3iqQqalGqJsHE06qwA13bD6NaC3lF24eRuoYqakrr17sniPeQ7+6nxuyTWjsd52laQp
+         FjCA==
+X-Gm-Message-State: AJIora83qEGBek9pThEAPV2TbheKSJA0fCK8MWW4lLyW0tt0fRKSR4ua
+        pkZoN0TEziYchQhRVaQraIZLUBE2aIhUHE+d/CtaNQ==
+X-Google-Smtp-Source: AGRyM1t/lZNz8m3urqK9JXJr8NpFEnVRSKywvR7SNPRuB0E8haJrZ/ZUTHOWy4RG+PM3vnOlQFpwUR8D2fNwB3WOo5s=
+X-Received: by 2002:a5d:59a9:0:b0:21e:5e6a:6a8e with SMTP id
+ p9-20020a5d59a9000000b0021e5e6a6a8emr10795876wrr.190.1658824085827; Tue, 26
+ Jul 2022 01:28:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220725082447.2613231-1-treapking@chromium.org>
+ <5856610d-510f-46dc-63b2-79e571956a7c@collabora.com> <CAEXTbpeHy6-WjLOyWFkncoHzBPM+6qq4w-kUoZj7=05gf8YBjw@mail.gmail.com>
+ <bcb8c2b4-a1ab-8646-9fcb-034a70f5a329@collabora.com> <CAEXTbpeEkpgFjQfONM030k8drcfYzOoWnB_FUqFptd-27YRqNg@mail.gmail.com>
+ <a91e09c8-377f-7143-2c66-11ef09552d8e@collabora.com>
+In-Reply-To: <a91e09c8-377f-7143-2c66-11ef09552d8e@collabora.com>
+From:   Pin-yen Lin <treapking@chromium.org>
+Date:   Tue, 26 Jul 2022 16:27:54 +0800
+Message-ID: <CAEXTbpeddwN1vqsmRvgvqmWhtKqkKeKhvtKHAzTneZBrkhSa0A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8173-oak: Switch to SMC watchdog
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Eizan Miyamoto <eizan@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree binding documentation for Everest ES8326
+On Tue, Jul 26, 2022 at 4:19 PM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 26/07/22 07:55, Pin-yen Lin ha scritto:
+> > On Mon, Jul 25, 2022 at 6:31 PM AngeloGioacchino Del Regno
+> > <angelogioacchino.delregno@collabora.com> wrote:
+> >>
+> >> Il 25/07/22 12:19, Pin-yen Lin ha scritto:
+> >>> On Mon, Jul 25, 2022 at 4:39 PM AngeloGioacchino Del Regno
+> >>> <angelogioacchino.delregno@collabora.com> wrote:
+> >>>>
+> >>>> Il 25/07/22 10:24, Pin-yen Lin ha scritto:
+> >>>>> Switch to SMC watchdog because we need direct control of HW watchdog
+> >>>>> registers from kernel. The corresponding firmware was uploaded in
+> >>>>> https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
+> >>>>>
+> >>>>
+> >>>> There's a fundamental issue with this change, I think.
+> >>>>
+> >>>> What happens if we run this devicetree on a device that does *not* have
+> >>>> the new(er) firmware?
+> >>>
+> >>> I haven't tried this patch with an older firmware. I'll manage to
+> >>> build one for this.
+> >>>>
+> >>>> The kernel *shall not* get broken when running on devices that are running
+> >>>> on older firmware, especially because that's what was initially supported
+> >>>> and what is working right now.
+> >>>
+> >>> Actually the current approach does not work *right*. The device boots,
+> >>> but the watchdog does not work properly.
+> >>>
+> >>
+> >> Is this a Chromebook firmware specific issue?
+> >
+> > I'm not sure if this is a Chromebook-specific issue. The internal
+> > issue thread only discussed this for the Chromebook firmware.
+> >>
+> >>> Also, all MT8173 ChromeOS devices have this firmware updated, and we
+> >>> don't have other upstream users apart from mt8173-evb. Do we want to
+> >>> support the developers that are running upstream linux with their
+> >>> MT8173 boards?
+> >>>
+> >>
+> >> Upstream shall not be just about one machine: if we add support for a SoC there,
+> >> we shall support the SoC-generic things in the SoC-specific DTSI, and the machine
+> >> specific things in the machine-specific devicetrees.
+> >>
+> >> Chromebooks are not the only machines using the MT8173 SoC (Chuwi, Amazon also do
+> >> have products using MT8173), so we shall not make the main mt8173.dtsi incompatible
+> >> with these machines.
+> >
+> > I don't see their DTS files uploaded to the upstream kernel. So we
+> > still want to support them even if they didn't upstream their changes?
+> >
+>
+> The point is not about having to support them, but about not making things
+> harder for them, in case any community person wants to add support for these
+> upstream.
+>
+> By rule, everything SoC-generic goes to soc.dtsi; everything board-specific
+> goes to board.dts(i).
+>
+> > Does it make sense if we move the modification to mt8173-elm.dtsi? The
+> > device should be running ChromeOS AP firmware if it uses or references
+> > mt8173-elm.dtsi. Also, all the MT8173 Chromebooks were shipped with
+> > the "new" firmware from the very beginning. We just somehow didn't
+> > upstream this around the time.
+>
+> Moving this to mt8173-elm.dtsi is the only sensible option, as this is something
+> that was addressed in Chromebooks' firmwares and it's not a SoC hardware spec.
+>
+> So yes, please.
+>
+> The disablement of the MMIO watchdog should also be done in mt8173-elm.dtsi, and
+> please please please, make sure to add a comment in the devicetree saying that
+> we're disabling that one because the SMC wdog operates on the same MMIO.
+>
+> Regards,
+> Angelo
 
-Signed-off-by: David Yang <yangxiaohua@everest-semi.com>
-Signed-off-by: Zhu Ning <zhuning@everest-semi.com>
----
- .../bindings/sound/everest,es8326.yaml        | 84 +++++++++++++++++++
- 1 file changed, 84 insertions(+)
- create mode 100755 Documentation/devicetree/bindings/sound/everest,es8326.=
-yaml
+Thanks for your detailed explanation. I'll move the modifications to
+mt8173-elm.dtsi and add comments in v2.
 
-diff --git a/Documentation/devicetree/bindings/sound/everest,es8326.yaml b/=
-Documentation/devicetree/bindings/sound/everest,es8326.yaml
-new file mode 100755
-index 000000000000..f6aa3c03d456
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/everest,es8326.yaml
-@@ -0,0 +1,84 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)=0D
-+%YAML 1.2=0D
-+---=0D
-+$id: http://devicetree.org/schemas/sound/everest,es8326.yaml#=0D
-+$schema: http://devicetree.org/meta-schemas/core.yaml#=0D
-+=0D
-+title: Everest ES8326 audio CODEC=0D
-+=0D
-+maintainers:=0D
-+  - David Yang <yangxiaohua@everest-semi.com>=0D
-+=0D
-+properties:=0D
-+  compatible:=0D
-+    const: everest,es8326=0D
-+=0D
-+  reg:=0D
-+    maxItems: 1=0D
-+=0D
-+  clocks:=0D
-+    items:=0D
-+      - description: clock for master clock (MCLK)=0D
-+=0D
-+  clock-names:=0D
-+    items:=0D
-+      - const: mclk=0D
-+=0D
-+  "#sound-dai-cells":=0D
-+    const: 0=0D
-+=0D
-+  everest,jack-pol:=0D
-+    description:=0D
-+      just the value of reg 57. Bit(3) decides whether the jack polarity i=
-s inverted.=0D
-+      Bit(2) decides whether the bottom on the headset is inverted.=0D
-+      Bit(1)/(0) decides the mic properity to be OMTP/CTIA or auto.=0D
-+    $ref: /schemas/types.yaml#/definitions/uint8-array=0D
-+    minimum: 0=0D
-+    maximum: 0x0f=0D
-+    default: 0x0f=0D
-+  =0D
-+  everest,mic1-src:=0D
-+    description:=0D
-+      the value of reg 2A when headset plugged.=0D
-+    $ref: /schemas/types.yaml#/definitions/uint8-array=0D
-+    minimum: 0x00=0D
-+    maximum: 0x77=0D
-+    default: 0x22=0D
-+=0D
-+  everest,mic2-src:=0D
-+    description:=0D
-+      the value of reg 2A when headset unplugged.=0D
-+    $ref: /schemas/types.yaml#/definitions/uint8-array=0D
-+    minimum: 0x00=0D
-+    maximum: 0x77=0D
-+    default: 0x44=0D
-+=0D
-+  everest,jack-detect-inverted:=0D
-+    description:=0D
-+      Defined to invert the jack detection.=0D
-+    $ref: /schemas/types.yaml#/definitions/flag=0D
-+=0D
-+required:=0D
-+  - compatible=0D
-+  - reg=0D
-+  - "#sound-dai-cells"=0D
-+=0D
-+=0D
-+additionalProperties: false=0D
-+=0D
-+examples:=0D
-+  - |=0D
-+    i2c0 {=0D
-+      #address-cells =3D <1>;=0D
-+      #size-cells =3D <0>;=0D
-+      es8326: codec@19 {=0D
-+        compatible =3D "everest,es8326";=0D
-+        reg =3D <0x19>;=0D
-+        clocks =3D <&clks 10>;=0D
-+        clock-names =3D "mclk";=0D
-+        #sound-dai-cells =3D <0>;=0D
-+        everest,mic1-src =3D [22];=0D
-+        everest,mic2-src =3D [44];=0D
-+        everest,jack-pol =3D [0e];=0D
-+      };=0D
-+    };=0D
---=20
-2.36.1
-
+Regards,
+Pin-yen
+>
+> >>
+> >>>>
+> >>>> For this reason, I think that we should get some code around that checks
+> >>>> if the SMC watchdog is supported and, if not, resort to MMIO wdog.
+> >>>
+> >>> What is the expected way to support this backward compatibility? Do we
+> >>> put the old compatible strings ("mediatek,mt8173-wdt" and
+> >>> "mediatek,mt6589-wdt") after "arm,smc-wdt" and reject it in the
+> >>> drivers if the firmware does not support it?
+> >>
+> >> I don't know what's the best option to support both cases... Perhaps a good one
+> >> would be to check (in mtk_wdt? or in arm_smc_wdt?) if the arm_smc_wdt is actually
+> >> supported in firmware, so if the SMC one is registered, we skip the other.
+> >>
+> >>>>
+> >>>> Regards,
+> >>>> Angelo
+> >>>>
+> >>>>
+> >>>>> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> >>>>> ---
+> >>>>>
+> >>>>>     arch/arm64/boot/dts/mediatek/mt8173.dtsi | 6 ++----
+> >>>>>     1 file changed, 2 insertions(+), 4 deletions(-)
+> >>>>>
+> >>>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> >>>>> index a2aef5aa67c1..2d1c776740a5 100644
+> >>>>> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> >>>>> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> >>>>> @@ -528,10 +528,8 @@ power-domain@MT8173_POWER_DOMAIN_MFG {
+> >>>>>                         };
+> >>>>>                 };
+> >>>>>
+> >>>>> -             watchdog: watchdog@10007000 {
+> >>>>> -                     compatible = "mediatek,mt8173-wdt",
+> >>>>> -                                  "mediatek,mt6589-wdt";
+> >>>>> -                     reg = <0 0x10007000 0 0x100>;
+> >>>>> +             watchdog {
+> >>>>> +                     compatible = "arm,smc-wdt";
+> >>>>>                 };
+> >>>>>
+> >>>>>                 timer: timer@10008000 {
+> >>>>>
+> >>>>
+> >>>>
+> >>
+> >>
+>
