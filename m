@@ -2,110 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B44B15811F8
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2813581206
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233153AbiGZLcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 07:32:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44432 "EHLO
+        id S232819AbiGZLes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 07:34:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230198AbiGZLcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:32:07 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1ED127CCE;
-        Tue, 26 Jul 2022 04:32:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1658835126; x=1690371126;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=DzB9acxU3JB4UtdY7GBGshAn56Crt8vbSHYd7HbxwEg=;
-  b=kKT3fS5UoKaDpp81xs721WKQ6KIyTDeKhxO81jdmJ8fbwFsBebXVYUlw
-   3NWVS0MZepx03gZzWvFTau0q4mhfSg2lkGL+dNyj6LEqhSmwXEogfU/PZ
-   ZC19DU8VvRihu604oeYITutu23yFV7a/saXhROKtB7g72G3JdK0pypaKs
-   M=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 26 Jul 2022 04:32:06 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2022 04:32:06 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 26 Jul 2022 04:32:05 -0700
-Received: from [10.79.43.230] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 26 Jul
- 2022 04:32:02 -0700
-Subject: Re: [PATCH 10/10] arm64: dts: qcom: sdm845: add LLCC BWMON
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Georgi Djakov <djakov@kernel.org>,
+        with ESMTP id S229759AbiGZLes (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:34:48 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF608326C7;
+        Tue, 26 Jul 2022 04:34:45 -0700 (PDT)
+X-UUID: f75321209fb341f38ef5686417260ba4-20220726
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:4afb44b6-2896-49b9-bcc6-335e5c17f80a,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:0f94e32,CLOUDID:6a7c8ab3-06d2-48ef-b2dd-540836705165,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: f75321209fb341f38ef5686417260ba4-20220726
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1296717435; Tue, 26 Jul 2022 19:34:39 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 26 Jul 2022 19:34:38 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Jul 2022 19:34:37 +0800
+Message-ID: <6be179889a53bd7f5c281cb4ab0c4dd2e7306143.camel@mediatek.com>
+Subject: Re: [PATCH 3/4] media: mediatek: vcodec: Add mt8188 decoder's chip
+ name
+From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+CC:     Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <20220720192807.130098-1-krzysztof.kozlowski@linaro.org>
- <20220720192807.130098-11-krzysztof.kozlowski@linaro.org>
- <25673493-4171-62b0-f696-1316d115f388@kali.org>
- <96552a95-8939-3ac2-c9b3-14dabaf53923@linaro.org>
- <d814a6da-b0d7-2fd1-fd14-8f1f3b88666f@kali.org>
- <d89a540f-672d-83de-d19d-00f10e4370d1@kali.org>
- <fec6bd98-5efd-fe34-6d75-1765219acd82@linaro.org>
-From:   Sibi Sankar <quic_sibis@quicinc.com>
-Message-ID: <25321f37-dbea-188b-1b11-e983a00701b2@quicinc.com>
-Date:   Tue, 26 Jul 2022 17:01:59 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Fritz Koenig" <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 26 Jul 2022 19:34:37 +0800
+In-Reply-To: <CAGXv+5FdYKNqG6TQawWpiH29oSAPdZFAy1wHM=qkqDDSbs2CUw@mail.gmail.com>
+References: <20220726040155.17206-1-yunfei.dong@mediatek.com>
+         <20220726040155.17206-3-yunfei.dong@mediatek.com>
+         <CAGXv+5FdYKNqG6TQawWpiH29oSAPdZFAy1wHM=qkqDDSbs2CUw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <fec6bd98-5efd-fe34-6d75-1765219acd82@linaro.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/23/22 2:06 PM, Krzysztof Kozlowski wrote:
-> On 23/07/2022 04:37, Steev Klimaszewski wrote:
->>>
->>> Currently it's 5.19.0-rc7 (torvalds tree at 4ba1329c) with a few extra
->>> patches on top, the bwmon set included.  It's possible that secure
->>> world uses it, but I do not know enough about that to say one way or
->>> the other.
-> 
-> To test patches you should apply them on maintainer's tree or
-> linux-next. Applying on other trees of course might be useful for
-> testing some backports, but it is independent process and different issue.
-> 
->>>
->>> -- steev
->>>
->> I think you may be right; I just applied this patchset to -next
->> (20220722) and i do not see the error message there.  On my 5.19-rc7
->> tree, i am also testing a patchset that enables qcom devices to access
->> efivars, so possibly we are ending up in secure world there?
-> 
-> Actually mapping of IO space should not touch secure world, so this was
-> a long shot assuming you test it on the next.
-> 
+Hi Chen-Yu,
 
-The memory region specified in device tree overlaps with the llcc system
-cache controller node. Steev probably had the QCOM_LLCC config enabled 
-when he tested it out on his branch.
+Thanks for your suggestion.
 
+I will merge patch 3 and 2 into one patch in v2.
+
+Best Regards,
+Yunfei DOng
+On Tue, 2022-07-26 at 16:28 +0800, Chen-Yu Tsai wrote:
+> On Tue, Jul 26, 2022 at 12:02 PM Yunfei Dong <
+> yunfei.dong@mediatek.com> wrote:
+> > 
+> > Getting mt8188's chip name according to decoder compatible name.
+> > 
+> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 > 
-> Best regards,
-> Krzysztof
+> This should be squashed with the previous patch adding the compatible
+> to the driver.
 > 
+> > ---
+> >  drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git
+> > a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> > b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> > index 7d194a476713..641f533c417f 100644
+> > --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> > +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_dec.c
+> > @@ -227,6 +227,8 @@ static int mtk_vcodec_dec_get_chip_name(void
+> > *priv)
+> >                 return 8195;
+> >         else if (of_device_is_compatible(dev->of_node,
+> > "mediatek,mt8186-vcodec-dec"))
+> >                 return 8186;
+> > +       else if (of_device_is_compatible(dev->of_node,
+> > "mediatek,mt8188-vcodec-dec"))
+> > +               return 8188;
+> >         else
+> >                 return 8173;
+> >  }
+> > --
+> > 2.25.1
+> > 
+
