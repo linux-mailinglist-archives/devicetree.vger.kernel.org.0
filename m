@@ -2,99 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68BDD5810AD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:03:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F16F5810BB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:05:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232558AbiGZKDZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 06:03:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35802 "EHLO
+        id S237885AbiGZKFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 06:05:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231492AbiGZKDX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:03:23 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 442153121F;
-        Tue, 26 Jul 2022 03:03:22 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id f15so8659120edc.4;
-        Tue, 26 Jul 2022 03:03:22 -0700 (PDT)
+        with ESMTP id S231492AbiGZKFL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:05:11 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D4D9C1E
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:05:09 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id r14so15945068ljp.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:05:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=LKwGqmUj96Eif8vyV8hd+gwU8OsUdDwQ9Yl4J8uKbgU=;
-        b=GGeBqLGdauVLqo0xDLvelQVIgDx/FWxKblVC5Dp81n+qksny1mgA7wi3JQcuD4aZUw
-         +6947jo4tn2swwREiz1qUk6W8U91/zqi4TY6BKs/21ZwT1yp5fx1cdqcuHV2i/rANKk9
-         Tf6mKFfxA/Yt459rDb3aXLMCf/ho7al4PKxXb4npTq8twNZWm9RlvhyGNMcD2VXE9c4a
-         c/NQSWhzW4rwxfscm92Hah6O+J3fcrLPDKY3C87gubm5o9cnBM78Lfa1csifMj5UFwBa
-         RcosCuJkOANlWK8YZmkFphcBxPXFqJvYJOTAXAIi0YzWUss2iTYZMo0OVcmrwx4gQKVo
-         DVrg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=h1KNuKSprlHr1MV7SBK0x2Kig/xSgNNvfwQbrPIkEQQ=;
+        b=MtUHPuESCizcQ0PNuP1E0nC3bo+0y/H9bDfPauVINS4rMsbjZKLs+Nfe+Z7Lcmyq95
+         IcvJ8THHF2RltoACenq5TSn808GyELH917GpEODU5hlY+zcgqrj0zkVq7ShkEcdOXsc3
+         S9R8EkmwVj2sYZWpqDB0D914BpvMBaeuN73R6EsccqV4PJ85yJXhcuZJILB0lcO0Mgad
+         fa/4/emUtEE7vR2uDgSlrFZUTDnKMB/UeohNJhBxrJUArwppznAiXPqVkU9NNwDNbtX9
+         1AZYgrzs59vB3rOAIOvhfx9ouWU8CQ/2eDh/NCoeKq5TgrdlqR5+5y+1pknH96Xt/2Y3
+         PBBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=LKwGqmUj96Eif8vyV8hd+gwU8OsUdDwQ9Yl4J8uKbgU=;
-        b=y1crJJwc4msKuVWegI1WmH0EY86Xp8eIAG4qJlaJGbiHcNHvHtIZGPKK3KiTxr9Wix
-         Xa3WshqUxca8cbZZ9sddKNaE8AKmg5eAthR/1QKFG1p1BGeEPQJ5avDMC9YTmTyk/xKY
-         PFsrHhhb6Pvh9KaOq61/LQOeNNXy116Wb03qVsTHrqhJxlevbXS85lf6Fa+eed1/Y67K
-         VrAkwkjONNee71dtf27Q+6GmAWYIll9ryNh1b4XBw3sDRWqeAe3pFy8LJbkdbQlGulh6
-         K0Pm+jMFBbbHfxEXyfu10T0Xd+yQSEPjTCvWPPoN+Pb49Tb3nRjafiUARkgNkBJIVV/t
-         1d/w==
-X-Gm-Message-State: AJIora/xHwmwRdsorK1LZIoM8TDeDkbRCpbGZoyM+n0jXs2l+mHhbvLF
-        dPND5l3vKHwt6hC4kZCpZS9vZdrDHT/hBbuFPYo=
-X-Google-Smtp-Source: AGRyM1uPysQNOXR4mPuYD+VMBkxc1fR87sWcUT6/GvstLWYn2XNZYtr3aZvs10BDVK13Ig+fb+aHlzs6vxLFmNmqOa4=
-X-Received: by 2002:a05:6402:d05:b0:425:b7ab:776e with SMTP id
- eb5-20020a0564020d0500b00425b7ab776emr18093826edb.142.1658829800622; Tue, 26
- Jul 2022 03:03:20 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=h1KNuKSprlHr1MV7SBK0x2Kig/xSgNNvfwQbrPIkEQQ=;
+        b=2M7MiX0A4jYKw3qViUt3a1pToV/cJZWGIE7XX2jCkNEpYJFV3NjfKgqR4VZeCU75wj
+         9M9QpY9FQBCevFA6Hco8RwWKaQkXervJAYr9wO0QoKYJn63SvKbpG0LoFdbO3y7QSfyd
+         0uen7AlfkBKSpFkW6VKoNk64Jjytm4J34fYlHtndUf6sb6ULTRbat/PBurGh5GARt6BL
+         Oa7/MT/vcdN3lMVzHlF2KIhSvt5b55NqLdkwboURJEADgfQGEu6ZhkXayIu080lSE5W6
+         NqpzofwcwZbn0FDnbMAdcMMReRKYCS6EneK2KBRy1VIPYfXoDv/dyynUI7LcNUlcx6wo
+         N4mA==
+X-Gm-Message-State: AJIora9yM7o9Lu4c9EUz4MsU4ooHm36/BvqclFvbTToOs8ZSmLtWPMk5
+        cv/D14bph66DbJs2haGylCwNqw==
+X-Google-Smtp-Source: AGRyM1s0hwlJLIk5+GLowzZZkbCBEx/YXyiC9aALwSBDH1pvIuSZ+/x8wbbTUfgsTxvnD2b1ZWGFVQ==
+X-Received: by 2002:a05:651c:1147:b0:25d:eb36:755d with SMTP id h7-20020a05651c114700b0025deb36755dmr5372069ljo.16.1658829907392;
+        Tue, 26 Jul 2022 03:05:07 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id y19-20020a05651c107300b0025d72c1f646sm3215724ljm.58.2022.07.26.03.05.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Jul 2022 03:05:06 -0700 (PDT)
+Message-ID: <922628f6-cbb1-b563-6464-e57959bafbcd@linaro.org>
+Date:   Tue, 26 Jul 2022 12:05:05 +0200
 MIME-Version: 1.0
-References: <1657780937-20891-1-git-send-email-u0084500@gmail.com>
- <CADiBU39x98iyO_OB2sYdAUGUOW9pV4dt+mEdfquhuJVm1HDRHA@mail.gmail.com> <ada44af6-2a5e-0b1c-8c46-3dbaae9b1a94@linaro.org>
-In-Reply-To: <ada44af6-2a5e-0b1c-8c46-3dbaae9b1a94@linaro.org>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 26 Jul 2022 18:03:09 +0800
-Message-ID: <CADiBU3-juJZoeGccjPGCsJJ=B7Sez=MhtiiFADCuCCGc7fLrxQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] Add Richtek RT5120 PMIC support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [[PATCH v2] 1/9] dt-bindings: pwm: Document Synopsys DesignWare
+ snps,pwm
+Content-Language: en-US
+To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        cy_huang <cy_huang@richtek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>
+References: <20220725212140.741644-1-ben.dooks@sifive.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220725212140.741644-1-ben.dooks@sifive.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=B9=
-=B47=E6=9C=8826=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=885:59=E5=AF=AB=
-=E9=81=93=EF=BC=9A
->
-> On 26/07/2022 05:45, ChiYuan Huang wrote:
-> > cy_huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=8814=E6=97=
-=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=882:42=E5=AF=AB=E9=81=93=EF=BC=9A
-> >>
-> >> From: ChiYuan Huang <cy_huang@richtek.com>
-> >>
-> >> This patch series is to add Richtek RT5120 PMIC support.
-> >> In RT5120, it integrates four channels of buck converter, one channel =
-of LDO,
-> >> and one external enable channel to control the external power source.
-> > ping ......
->
-> Whom are you pinging? Everyone in To list?
->
-Sorry, forget to specify the part.
-I'm pining the 'mfd' patch and 'power key' patch.
+On 25/07/2022 23:21, Ben Dooks wrote:
+> Add documentation for the bindings for Synopsys' DesignWare PWM block
+> as we will be adding DT/platform support to the Linux driver soon.
+> 
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+> --
 
-> Best regards,
-> Krzysztof
+This is not proper delimiter and causes the changelog to end up in commit.
+
+Correct also wrong formatting of subject PATCH.
+
+> v2:
+> - fix #pwm-cells to be 3
+> - fix indentation and ordering issues
+> ---
+>  .../devicetree/bindings/pwm/snps,pwm.yaml     | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+> new file mode 100644
+> index 000000000000..594085e5e26f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 SiFive, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/snps,pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synopsys PWM controller
+> +
+> +maintainers:
+> +  - Ben Dooks <ben.dooks@sifive.com>
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: snps,pwm
+
+This is very generic compatible. I doubt that you cover here all
+Synopsys PWM designs, past and future. You need a specific compatible.
+
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +  clocks:
+> +    items:
+> +      - description: Interface bus clock
+> +      - description: PWM reference clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bus
+> +      - const: timer
+> +
+> +required:
+> +  - "#pwm-cells"
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+
+Missing example.
+
+
+Best regards,
+Krzysztof
