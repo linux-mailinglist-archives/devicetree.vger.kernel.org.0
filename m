@@ -2,48 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E48A581327
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 14:32:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0EC5581331
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 14:34:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233431AbiGZMca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 08:32:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37372 "EHLO
+        id S232255AbiGZMea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 08:34:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233180AbiGZMca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 08:32:30 -0400
-Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [IPv6:2a02:9e0:8000::40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6706227140
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:32:28 -0700 (PDT)
+        with ESMTP id S230487AbiGZMe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 08:34:29 -0400
+Received: from smtp16.bhosted.nl (smtp16.bhosted.nl [IPv6:2a02:9e0:8000::27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD49922BD4
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:34:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=protonic.nl; s=202111;
-        h=content-transfer-encoding:mime-version:references:in-reply-to:message-id:date:
-         subject:cc:to:from:from;
-        bh=Ev4N4q24UwXqRA9IZ9T6SOhwkJ7AA8kM5UgVGYCXGXQ=;
-        b=d0RrxLX+5rSzrN9QmweysEEObWTyM0ljDKDvGLjfnUjYArMeEzrmxGPwpiq0GviBB3vnrb0Cr2eVk
-         z9DhOhVZ7fcoMQVuu9JkjTETo1xG6n+zyJiutgYuTqMdR7Ifq9325ixMBFb3omrWHUbGnApQcVk5DY
-         7W/zYUeJ1lajGxomtrizHpjXYj98nlLGaJSd5Dh2Xiko7ilqetl3uLy00qOMQGNh2BNDrW/V/2SNeM
-         qf7rXqh+BtCxiEbrZSLaDphY/4RaXYevWJzBG1TZyOIYkRsRlI2Z1LCf123F+5q0BH+NhIIujga/O+
-         C2IanePDUou8CBwYJSTxNbr49CXC6yA==
-X-MSG-ID: 00f680fd-0cdf-11ed-8a45-0050569d11ae
+        h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+         message-id:subject:cc:to:from:date:from;
+        bh=opcQav5T4MbREVpWWZz38bgIRyaBxYgmV1agTFpwly8=;
+        b=oE297L+EUvSzWrbNHHzYfm/xzBWWfnxJLe9FNr5KBCREvrJzRqghey9Ykyi/4iRibuHdutOCBn3uN
+         Z/a9X+Ognfx4w2yroWe/rh22vsMiKPm1b+9Ht5SUnw5FycAxX4/QYYsL0lXw4KKjFnlQSIjUFdlZcS
+         s+CekPQ7XozkZX1Hc6QDxz8tooQh9coJJtr0LP4OM8jy/BBFp9IeRlM1LbHgO5Szn6yrV6uLdOOVmI
+         X5sWKdwssIZVF+1OcST3JRkK3QXzYIXKtm0AX9YXVCLdQBwdcsRGREz7N/6EMrSB6TNJ505/pRbI7D
+         rC/PCQFvDlDNEEUq03KE03LJ1YaKOjg==
+X-MSG-ID: 495cfb04-0cdf-11ed-9051-0050569d2c73
+Date:   Tue, 26 Jul 2022 14:34:26 +0200
 From:   David Jander <david@protonic.nl>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Oleksij Rempel <o.rempel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, David Jander <david@protonic.nl>
-Subject: [PATCH v2 2/2] arm: dts: imx6qdl-vicut1.dtsi: Fix node name backlight_led
-Date:   Tue, 26 Jul 2022 14:32:22 +0200
-Message-Id: <20220726123222.1074876-3-david@protonic.nl>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220726123222.1074876-1-david@protonic.nl>
-References: <20220726123222.1074876-1-david@protonic.nl>
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm: dts: imx6qdl-vicut1.dtsi: Add backlight-isb node
+Message-ID: <20220726143426.1e8a186f@erd992>
+In-Reply-To: <340a4a81-d4ec-2f42-28ae-49124830157a@linaro.org>
+References: <20220725124813.1001032-1-david@protonic.nl>
+        <de68c1e8-447d-f1e9-7885-6a109af1e971@linaro.org>
+        <20220726083006.5c65b597@erd992>
+        <340a4a81-d4ec-2f42-28ae-49124830157a@linaro.org>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
@@ -53,31 +59,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This naming error slipped through, so now that a new backlight node has
-been added with correct spelling, fix this one also.
+On Tue, 26 Jul 2022 09:01:47 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-Fixes: 98efa526a0c4 ("ARM: dts: imx6qdl-vicut1/vicutgo: Add backlight_led node")
-Signed-off-by: David Jander <david@protonic.nl>
----
-v2:
- - new patch in series
----
- arch/arm/boot/dts/imx6qdl-vicut1.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> On 26/07/2022 08:30, David Jander wrote:
+> > On Mon, 25 Jul 2022 22:33:12 +0200
+> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+> >   
+> >> On 25/07/2022 14:48, David Jander wrote:  
+> >>> On some older hardware models this is needed. It will do no harm if used
+> >>> with newer models though.
+> >>>
+> >>> Signed-off-by: David Jander <david@protonic.nl>
+> >>> ---
+> >>>  arch/arm/boot/dts/imx6qdl-vicut1.dtsi | 22 ++++++++++++++++++++++
+> >>>  1 file changed, 22 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+> >>> index a1676b5d2980..08d425020088 100644
+> >>> --- a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+> >>> +++ b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
+> >>> @@ -37,6 +37,16 @@ backlight_led: backlight_led {
+> >>>  		power-supply = <&reg_3v3>;
+> >>>  	};
+> >>>  
+> >>> +	/* only for backwards compatibility with old HW */
+> >>> +	backlight_isb: backlight_isb {    
+> >>
+> >> Node name: backlight-isb
+> >>
+> >> I know that other node had underscore, but these are not correct for names.  
+> > 
+> > I know the names are not correct, but they are in the style of existing node
+> > names in the same file. Do you want me to change them all, or just this one?
+> > This change would break existing user-space software though, which is something
+> > I prefer not to do. Unfortunately both names are relied upon by user-space
+> > software for almost 10 years now, and changing them will force me to maintain
+> > off-tree patches that revert these changes.
+> > I understand the reason for the change though, and if you insist I will do it.  
+> 
+> Node names are not ABI, thus any user-space depending on them does it
+> wrong. Could you link/name which user-space depends on it?
+>
+> I don't understand why new node is also already a dependency. It's a new
+> node, there cannot be anything which depends on it before it is being
+> applied in upstream.
 
-diff --git a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
-index 8a2512f3f378..c4e6cf0527ba 100644
---- a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
-@@ -28,7 +28,7 @@ backlight_lcd: backlight {
- 		enable-gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
- 	};
- 
--	backlight_led: backlight_led {
-+	backlight_led: backlight-led {
- 		compatible = "pwm-backlight";
- 		pwms = <&pwm3 0 5000000 0>;
- 		brightness-levels = <0 16 64 255>;
+Never mind. I already sent out v2 which fixes both node names.
+Thanks.
+
+Best regards,
+
 -- 
-2.32.0
-
+David Jander
