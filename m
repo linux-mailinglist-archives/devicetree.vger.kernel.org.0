@@ -2,97 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F28B5810A0
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 244ED5810D2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:10:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232952AbiGZJ7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 05:59:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60432 "EHLO
+        id S230262AbiGZKKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 06:10:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232769AbiGZJ7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 05:59:48 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB61931211
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:59:32 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id a23so19530916lfm.10
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:59:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ywEnupIYPlj6Qgbc2SratI+CjTje6F8RjFicZ1VllkA=;
-        b=sIk739jdGKOmB5iIVI8mTzj09ojlO01IW1pIKeiEmFLnYbhaTUbgM0YKgEGK4/vfA/
-         JK7g0CAv52xfGBSpiCP+ulE+qRDXvcdtVHa69XTXdfsUgJq9NEWwEhCy/Y7UnFX1gtqQ
-         9ttNzZ/UAi+2/0zLC1z4jLcHJBtFc5n36sDgnldgL8/UBKLavnf8IAQw/dQV5utUttgK
-         Kx1KlKrK2SvYhkrlQGm0XCH07mLZv4N47bxzKfUnB0+JgpzJypn5Aaggk/pdAiAme1od
-         BWDBrEgkprbYzdgRB24L+dxyxCIyvwPX+U2SjMR/ARK4UihSENHI+MU1DIkdZ9tDFySU
-         HkIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ywEnupIYPlj6Qgbc2SratI+CjTje6F8RjFicZ1VllkA=;
-        b=J/u9jBY2+ySo/zd6d4DCWr22EODV0FMkiP3Mi3jPHXzG6Lz1AMwRF4lgxYjjLxaMaf
-         +2Sk29GsW4f62EJdxEEzjW7ETsVnn1jhSrOdG7YlTiUcqHNUXb62H/63/dcuKxqivVK7
-         JnHLbAe5LIIUZ5pQGVO11lGsIqXUCKC9Sjod02GS8I+9z2jxUexwoAYyIZr2vdhKSvJ4
-         nkzUCkKs9ctB5jNix7Hc78mSmmlSVBacwRf42aWqzBpa8zmWbeCM/oMByyzpVfBxMnxB
-         e4NrECofeVuxpXVVv8nKRj8A4N9w31Ee2fKa+FvML01f/nYYVWEPzercQ9Gubz5nwbg8
-         2HSg==
-X-Gm-Message-State: AJIora89sR6kIaDjrNNphnWL+fClWCQtu1QHag1f9vmpb95FrE9OfFxc
-        N1qd44grL3b/tMzULHmWCkshsw==
-X-Google-Smtp-Source: AGRyM1ul9iytSGDUCOYI73b/R1Pu7MMp5Dzp1NZ+scbQx6TNlPsqTC2uIHAzh/jZ2UPn8Mc/TD/a7g==
-X-Received: by 2002:a05:6512:12c7:b0:48a:a637:b4d8 with SMTP id p7-20020a05651212c700b0048aa637b4d8mr612855lfg.46.1658829571079;
-        Tue, 26 Jul 2022 02:59:31 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id u24-20020ac248b8000000b0048a1a70d14dsm3115604lfg.94.2022.07.26.02.59.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 02:59:30 -0700 (PDT)
-Message-ID: <ada44af6-2a5e-0b1c-8c46-3dbaae9b1a94@linaro.org>
-Date:   Tue, 26 Jul 2022 11:59:29 +0200
+        with ESMTP id S231466AbiGZKKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:10:34 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26BE118B2F;
+        Tue, 26 Jul 2022 03:10:33 -0700 (PDT)
+X-UUID: 52d5b12705554bf6b711d92c5ed3528f-20220726
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:66cd931d-4551-4016-9317-e2370bcdd840,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.8,REQID:66cd931d-4551-4016-9317-e2370bcdd840,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:0f94e32,CLOUDID:c5cb0fee-db04-4499-9fdf-04ef44b9468c,C
+        OID:8e0b0ab940ab,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 52d5b12705554bf6b711d92c5ed3528f-20220726
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1242299877; Tue, 26 Jul 2022 18:10:28 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
+ Tue, 26 Jul 2022 10:10:14 +0000
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 26 Jul 2022 15:46:36 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Jul 2022 15:46:34 +0800
+Message-ID: <aface69bc8eeb0a34805428fa36d13f7909f694d.camel@mediatek.com>
+Subject: Re: [PATCH v13 3/3] mmc: mediatek: add support for SDIO eint wakup
+ IRQ
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lucas Stach <dev@lynxeye.de>,
+        "Eric Biggers" <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "Stephen Boyd" <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Yong Mao <yong.mao@mediatek.com>
+Date:   Tue, 26 Jul 2022 15:46:34 +0800
+In-Reply-To: <CACRpkdZP-FBP8hsBfeMn1M8=VR_cYG+j9GQc9VdV-HjkvSo73w@mail.gmail.com>
+References: <20220623090445.1401-1-axe.yang@mediatek.com>
+         <20220623090445.1401-4-axe.yang@mediatek.com>
+         <CACRpkdZ5G2fMCqvkXANVEmZjNcF4U4mSDzZk6aXbqFjYVN3hcA@mail.gmail.com>
+         <3747f246650622ef65787159af5271a79401a855.camel@mediatek.com>
+         <CACRpkdZP-FBP8hsBfeMn1M8=VR_cYG+j9GQc9VdV-HjkvSo73w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 0/3] Add Richtek RT5120 PMIC support
-Content-Language: en-US
-To:     ChiYuan Huang <u0084500@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        cy_huang <cy_huang@richtek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        linux-input@vger.kernel.org
-References: <1657780937-20891-1-git-send-email-u0084500@gmail.com>
- <CADiBU39x98iyO_OB2sYdAUGUOW9pV4dt+mEdfquhuJVm1HDRHA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CADiBU39x98iyO_OB2sYdAUGUOW9pV4dt+mEdfquhuJVm1HDRHA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 05:45, ChiYuan Huang wrote:
-> cy_huang <u0084500@gmail.com> 於 2022年7月14日 週四 下午2:42寫道：
->>
->> From: ChiYuan Huang <cy_huang@richtek.com>
->>
->> This patch series is to add Richtek RT5120 PMIC support.
->> In RT5120, it integrates four channels of buck converter, one channel of LDO,
->> and one external enable channel to control the external power source.
-> ping ......
+On Mon, 2022-07-25 at 14:46 +0200, Linus Walleij wrote:
+> On Mon, Jul 25, 2022 at 11:13 AM Axe Yang <axe.yang@mediatek.com>
+> wrote:
+> > On Fri, 2022-07-22 at 13:21 +0200, Linus Walleij wrote:
+> > > On Thu, Jun 23, 2022 at 11:10 AM Axe Yang <axe.yang@mediatek.com>
+> > > wrote:
+> > SDIO DAT1 pin mode is changed to GPIO mode in
+> > dev_pm_set_dedicated_wake_irq_reverse():
+> > 
+> > 
+https://urldefense.com/v3/__https://elixir.bootlin.com/linux/latest/source/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c*L339__;Iw!!CTRNKA9wMg0ARbw!zE3kmi37pZw4HiBNeRipWbi3gbAqrljLVQc5JVz-WP_NaIWTVhXshkakjFNh478e$
+> >  
+> > 
+> > dev_pm_set_dedicated_wake_irq_reverse() -> ...
+> > ->request_threaded_irq()
+> > -> __setup_irq() -> irq_request_resources() ->
+> > mtk_eint_irq_request_resources()-> mtk_xt_set_gpio_as_eint()
+> 
+> This doesn't seem to have much to do with pin control?
+> No pin control functions are called on this execution path,
+> no pin control state is changed, right?
 
-Whom are you pinging? Everyone in To list?
+That's right, no pin control state is changed.
 
-Best regards,
-Krzysztof
+> 
+> If what you mean is that
+> it happens to poke into the same hardware registers that is
+> mainly a matter of concurrency in the driver, sometimes two
+> abstractions happen to have to poke into the same hardware
+> registers and then it is up to the driver to maintain state for
+> the hardware, this is not a question for the framework.
+> 
+> How is Mediatek developers thinking about this thing in general?
+> You are a few people who developed the driver so certainly
+> you must have some design idea to why irq_request_resources()
+> poke around in these registers? Does it even perform pin
+> control behind the back of the pin control framework?
+
+I see. It is sensible to reset pin function to GPIO mode when trying to
+register the pin to eint mode, and the operation is out of pinctrl
+framework.
+
+Seems like maintain the pin state in driver is the only way to fix the
+pin function conflict.
+
+> 
+> > To restore SDIO DAT1 pin to uhs mode. I have to call
+> > pinctrl_select_state() twice(change pinctrl to another state, then
+> > change back to uhs mode). Ulf worried we might be doing something
+> > at
+> > the mmc driver level, which should really be managed at the pinctrl
+> > layer.
+> > 
+> > Do you have any comment or suggestion on this?
+> 
+> The pin control state transitions are really just finite automata.
+> 
+> Your pin control needs to be different when using wakeup from
+> when being used for SDIO and this is perfectly fine, it's no
+> different from the fact that the regulator and clock might need
+> to be in different states, so I don't quite understand the
+> question?
+
+I see. At first I thought that pinctrl framework should be aware of
+the hidden modification of pin function. But as you said, it is just
+a finite automata. Driver should correct GPIO settings by itself if pin
+state be changed outside pin control state mechanical.
+Sorry for the noise, and thanks for your comment again.
+
+> 
+> 
+Regards,
+Axe
+
