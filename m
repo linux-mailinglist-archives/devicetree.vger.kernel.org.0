@@ -2,141 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A12A580DAA
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 09:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64D6C580DC6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 09:33:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238091AbiGZHa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 03:30:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40522 "EHLO
+        id S238491AbiGZHdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 03:33:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238480AbiGZH3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 03:29:15 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C10FA2CDE5
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 00:26:24 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id u14-20020a05600c00ce00b003a323062569so7621752wmm.4
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 00:26:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rb/J2paXCQbY9WOdGJUo9+9cCQm+agYr6BL4znNtuT8=;
-        b=hIjIzkPaqSf53WTJL2J88j6VVWGiBLIot2PM86d6IO+5pNYCG2odIzbDBTPaVdj4rM
-         LWMuy7vZzKkDM1LeLJbzR5pqU+rjx8+91S9YRklLiq2jfr8/7zVYibu9qWyNLHae1tlO
-         bcdwqeRgy3P6QKBI3cGdZ2WTM2XErduxQ5DqJ49OcRbI5YSR2a6O59EpQHNBwq+upwYS
-         Eo1XF87jRCjA22pfVuNcpvxd6Jjq/7zx4Re++JrBexnpQHQJ+Ti/mBHx5fGLENsgiSZ6
-         sfXhDuaQeqNOPH6I0KUdN/dzGrAQXH86hJPnoYZwGnkadzO+wn3X4nGmDNl/iuAprOs8
-         lmIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=rb/J2paXCQbY9WOdGJUo9+9cCQm+agYr6BL4znNtuT8=;
-        b=Vd7tj3A13IeobPEwBOK7hziNbaziutI8/ZrexBcE8C3qZoBaI0cvfKB9lJyQJg2s64
-         LWwvKSo01hFd3nLLXDPwXTFhj9G9uFilrMr5He+y75px5fHcUF1kVcW/ikTqsUvBPrx2
-         Rb3HOu69DqZDJriHKJoWRBckO6igY3v+ur+KoejpDXfDgr+K3/UygfFJwWPTTlgIozFG
-         AXxMqZ/0DhelW89Ai5Ygk6uN881aB5Ywzr6QquH5KxMDnK1usglMhCWRF6br7v/orYC9
-         W9vr1jdkTIgLkl766oNnffhGrWC7iNSGOQ0JoAoVj3Mv+QfGaytYL93tjFWPOxYFIFqr
-         m+xw==
-X-Gm-Message-State: AJIora/wjCTGDq/T2YZDLmZJ4Re0Ux7RNYRvvIoOLp9a5t42KCNfFK6u
-        unETo0IGjfQdlw99Tv2F7Cif4w==
-X-Google-Smtp-Source: AGRyM1vUHj+p03bFdxBNpvJ/ADK7wO0Sgi+HKKAmKdJsc+Toa4f904HvF300Lkhl3qbHo8wyU5/Tfg==
-X-Received: by 2002:a05:600c:3d93:b0:3a3:3a93:fb16 with SMTP id bi19-20020a05600c3d9300b003a33a93fb16mr15507442wmb.190.1658820371065;
-        Tue, 26 Jul 2022 00:26:11 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:cb1d:77d:8cd7:621a:855b:69ac:c34a])
-        by smtp.gmail.com with ESMTPSA id c17-20020a5d5291000000b0021b956da1dcsm9007835wrv.113.2022.07.26.00.26.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 00:26:10 -0700 (PDT)
-From:   Julien Panis <jpanis@baylibre.com>
-To:     jic23@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mranostay@ti.com, Julien Panis <jpanis@baylibre.com>
-Subject: [PATCH v1 2/2] dt-binding: iio: time: add capture-tiecap.yaml
-Date:   Tue, 26 Jul 2022 09:25:53 +0200
-Message-Id: <20220726072553.5136-3-jpanis@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220726072553.5136-1-jpanis@baylibre.com>
-References: <20220726072553.5136-1-jpanis@baylibre.com>
+        with ESMTP id S238492AbiGZHcQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 03:32:16 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90C22A964;
+        Tue, 26 Jul 2022 00:28:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1658820487; x=1690356487;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yfeBMpJQONyIZu7Rakc0/IyGerTlcG//iuvPj/kUfms=;
+  b=VRRp0b5Bq4Y30A2wqsT/vQqfEfy9aXzbvls8T4QwYCIp0doDu5IA+VAp
+   jZKuKArgjg2IGJ4yU2riIPtq6f8lS6w3MHgcTVKBL93dU+j8MAqgFHsJI
+   TeppIidCSOdVFZcevUcFI4+naMku+yzxrBGdroHe9Nk5FXM6dYGDvFO3d
+   VxPDjXBvTgd6ySaOomeeYT00Mp1CLnHAcX0r74RXzl/Q3SMCbUJJWQmy+
+   M4aVceuF2GIJEsbvOIN9wJ10PIInJMIJ2qbxKQ4S617qstKfpT1Un9gp6
+   sgtgCQ2tDPXvNgy9e4oONP5zJ8DOyFU+QdOwzLhTmuSbfXNttTPeVFGBM
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10419"; a="274751533"
+X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; 
+   d="scan'208";a="274751533"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2022 00:27:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; 
+   d="scan'208";a="776214725"
+Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 26 Jul 2022 00:27:48 -0700
+Received: from kbuild by e0eace57cfef with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oGEyp-0006BE-2z;
+        Tue, 26 Jul 2022 07:27:47 +0000
+Date:   Tue, 26 Jul 2022 15:27:17 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     alexandru.tachici@analog.com, netdev@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gerhard@engleder-embedded.com,
+        geert+renesas@glider.be, joel@jms.id.au, stefan.wahren@i2se.com,
+        wellslutw@gmail.com, geert@linux-m68k.org, robh+dt@kernel.org,
+        d.michailidis@fungible.com, stephen@networkplumber.org,
+        l.stelmach@samsung.com, linux-kernel@vger.kernel.org
+Subject: Re: [net-next v2 2/3] net: ethernet: adi: Add ADIN1110 support
+Message-ID: <202207261549.2tRjhI43-lkp@intel.com>
+References: <20220725165312.59471-3-alexandru.tachici@analog.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220725165312.59471-3-alexandru.tachici@analog.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds a YAML binding for TI ECAP used in capture operating mode.
+Hi,
 
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
----
- .../bindings/iio/time/capture-tiecap.yaml     | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
+I love your patch! Perhaps something to improve:
 
-diff --git a/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
-new file mode 100644
-index 000000000000..4f08e49a8506
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/capture-tiecap.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments Enhanced Capture (eCAP) Module
-+
-+maintainers:
-+  - Julien Panis <jpanis@baylibre.com>
-+
-+description: |
-+  The eCAP module resources can be used to capture timestamps
-+  on input signal events (falling/rising edges).
-+
-+properties:
-+  compatible:
-+    const: ti,am62-ecap-capture
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: fck
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ecap0: capture@23100000 { /* eCAP in capture mode on am62x */
-+        compatible = "ti,am62-ecap-capture";
-+        reg = <0x00 0x23100000 0x00 0x100>;
-+        interrupts = <GIC_SPI 113 IRQ_TYPE_EDGE_RISING>;
-+        power-domains = <&k3_pds 51 TI_SCI_PD_EXCLUSIVE>;
-+        clocks = <&k3_clks 51 0>;
-+        clock-names = "fck";
-+    };
+[auto build test WARNING on net-next/master]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/alexandru-tachici-analog-com/net-ethernet-adi-Add-ADIN1110-support/20220726-004159
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git 086f8246ed621bcc91d07e867fdbfae9382c1fbd
+config: x86_64-allmodconfig (https://download.01.org/0day-ci/archive/20220726/202207261549.2tRjhI43-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-3) 11.3.0
+reproduce:
+        # apt-get install sparse
+        # sparse version: v0.6.4-39-gce1a6720-dirty
+        # https://github.com/intel-lab-lkp/linux/commit/98b8eeb76eafcfa5bf3706812764e769004d9e32
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review alexandru-tachici-analog-com/net-ethernet-adi-Add-ADIN1110-support/20220726-004159
+        git checkout 98b8eeb76eafcfa5bf3706812764e769004d9e32
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        make W=1 C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/net/ethernet/adi/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/net/ethernet/adi/adin1110.c:194:39: sparse: sparse: cast to restricted __le16
+>> drivers/net/ethernet/adi/adin1110.c:194:39: sparse: sparse: restricted __le16 degrades to integer
+>> drivers/net/ethernet/adi/adin1110.c:194:39: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:195:25: sparse: sparse: cast to restricted __le16
+   drivers/net/ethernet/adi/adin1110.c:195:25: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:195:25: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:242:56: sparse: sparse: cast to restricted __le16
+   drivers/net/ethernet/adi/adin1110.c:242:56: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:242:56: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:243:25: sparse: sparse: cast to restricted __le16
+   drivers/net/ethernet/adi/adin1110.c:243:25: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:243:25: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:326:39: sparse: sparse: cast to restricted __le16
+   drivers/net/ethernet/adi/adin1110.c:326:39: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:326:39: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:327:25: sparse: sparse: cast to restricted __le16
+   drivers/net/ethernet/adi/adin1110.c:327:25: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:327:25: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:395:56: sparse: sparse: cast to restricted __le16
+   drivers/net/ethernet/adi/adin1110.c:395:56: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:395:56: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:396:25: sparse: sparse: cast to restricted __le16
+   drivers/net/ethernet/adi/adin1110.c:396:25: sparse: sparse: restricted __le16 degrades to integer
+   drivers/net/ethernet/adi/adin1110.c:396:25: sparse: sparse: restricted __le16 degrades to integer
+
+vim +194 drivers/net/ethernet/adi/adin1110.c
+
+   185	
+   186	static int adin1110_read_reg(struct adin1110_priv *priv, u16 reg, u32 *val)
+   187	{
+   188		struct spi_transfer t[2] = {0};
+   189		__le16 __reg = cpu_to_le16(reg);
+   190		u32 header_len = ADIN1110_RD_HEADER_LEN;
+   191		u32 read_len = ADIN1110_REG_LEN;
+   192		int ret;
+   193	
+ > 194		priv->data[0] = ADIN1110_CD | FIELD_GET(GENMASK(12, 8), __reg);
+   195		priv->data[1] = FIELD_GET(GENMASK(7, 0), __reg);
+   196		priv->data[2] = 0x00;
+   197	
+   198		if (priv->append_crc) {
+   199			priv->data[2] = adin1110_crc_data(&priv->data[0], 2);
+   200			priv->data[3] = 0x00;
+   201			header_len++;
+   202		}
+   203	
+   204		t[0].tx_buf = &priv->data[0];
+   205		t[0].len = header_len;
+   206	
+   207		if (priv->append_crc)
+   208			read_len++;
+   209	
+   210		memset(&priv->data[header_len], 0, read_len);
+   211		t[1].rx_buf = &priv->data[header_len];
+   212		t[1].len = read_len;
+   213	
+   214		ret = spi_sync_transfer(priv->spidev, t, 2);
+   215		if (ret)
+   216			return ret;
+   217	
+   218		if (priv->append_crc) {
+   219			u8 recv_crc;
+   220			u8 crc;
+   221	
+   222			crc = adin1110_crc_data(&priv->data[header_len], ADIN1110_REG_LEN);
+   223			recv_crc = priv->data[header_len + ADIN1110_REG_LEN];
+   224	
+   225			if (crc != recv_crc) {
+   226				dev_err_ratelimited(&priv->spidev->dev, "CRC error.");
+   227				return -EBADMSG;
+   228			}
+   229		}
+   230	
+   231		*val = get_unaligned_be32(&priv->data[header_len]);
+   232	
+   233		return ret;
+   234	}
+   235	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
