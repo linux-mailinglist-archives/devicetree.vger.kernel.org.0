@@ -2,81 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B7C1581048
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 11:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BED29581060
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 11:52:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238492AbiGZJrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 05:47:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49160 "EHLO
+        id S238591AbiGZJw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 05:52:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238521AbiGZJrS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 05:47:18 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A03A32050
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:47:13 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id w15so13815644lft.11
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:47:13 -0700 (PDT)
+        with ESMTP id S238576AbiGZJw4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 05:52:56 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A23B2F64F
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:52:55 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id w18so4853485lje.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:52:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=JG0xRZmWb8mvx5i0TSYuzFaz/yiY+cwQ7/x7y0JIQ+0=;
-        b=eAYkTZ4sTc+PK3E0Ok2+638pi4Yw+VDFEaWLrLgw9i2SeHuFVGjZBZ+oi0fzpCGH0L
-         TkbDzx+cV7nvJXI5zCHMM45U1BHe2cdlJxmcUXbAItFoy7zsRsnFWft9jogs+BxSyifY
-         ItkBpzVb9TIsYt5/dfXem6cQZbOId2mxD8BcRiEIdcVf5nMaxnRVKH9kWVLXhmZoLNd2
-         +rnAVIgPEcx4eR7YHId0vwmPQBLGJWdE/9n9v+meAeUqT6PPZpXo9AyvgBMUp9tM6bac
-         85/Dch0ioAmYIqDtLGVdzXjQVK+jB8cH+DE2mA3EB+i6clSIOisOd4hIyhU0LIc+BvyH
-         sqtg==
+        bh=CaAorG4BYFUosNioD1hfjI7j/Y8uoX4/ARwNzmf43cw=;
+        b=p3n5O0GtUJad0vTXMoPkX2ckqhPr5UafevVhNH5JTi6wy0W2gaHkP5DNy6FGqEQt4M
+         nRj5+HKbZtTmwcspNWsbBHOax1/QKpF9A1DEebDg+AhMGTJZV/1jVkV5Re8w06P8ug1U
+         MVIgkg0hAHBI+L37PvNiuBhkonn2AZ4NsygjD0SYIkK2InScTRd7KBXo4Vej/NLpT+Pt
+         WpNC+P0tYihyUQq4ISoWfY0V54NbhEgLbFafQfclvnZbr8MBqLzEphCRdPTmt8gmHCEH
+         rN+LnAOMeOxqgpFM3cB3vdMDRCMJ9Vj5vE917dvA0Lu9IRYzBQn/xOmRMrtmXEnI7YQ5
+         exww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=JG0xRZmWb8mvx5i0TSYuzFaz/yiY+cwQ7/x7y0JIQ+0=;
-        b=XAtKe87Ktkye75jm9doEeXraRWaE6kzIctFVdfQ+8RHeJWoRcVadF9eW7puBhr5yLH
-         M7V9Vgqq2wUiv5XttT93D6KMDy4r/dx+suniz6pIln+pvsKZPLqX1yjK7AeC9eV0KtAS
-         6qekT4y11Pq9STT/Uy/NbURAxdbIQiASQwtGql5I4eVVHF7eQSqfBobeE4rOChOrFv+8
-         fCee84KJ4tQmg2hfh6tp36M4Nm1eDFMENWJ5d26NqzNHUahvbgrQ7lOy2bgCn2Q2aTeS
-         HRqtyKMwJnCIBW+2ETljxLzzbaAlCm5tznQ+GbOAGk8oloyuPaY5UFU20q5zyLutZ2EH
-         /MdQ==
-X-Gm-Message-State: AJIora/KhIa6RMF4+ew3MWKUiibai3SPZSzom0AnKC/Vly+Z6pEwGM/M
-        ozAz9R+eWnGJA+fkcbc6xv8P5g==
-X-Google-Smtp-Source: AGRyM1vRwPnG7NSomcC7bgx3FgRfofno1LdnnoS0lQ7saUTLfwKfPk7rQo02FYi52y9BfWcIRZ7fOw==
-X-Received: by 2002:a05:6512:4020:b0:48a:8d1b:c8c3 with SMTP id br32-20020a056512402000b0048a8d1bc8c3mr3589538lfb.131.1658828831837;
-        Tue, 26 Jul 2022 02:47:11 -0700 (PDT)
+        bh=CaAorG4BYFUosNioD1hfjI7j/Y8uoX4/ARwNzmf43cw=;
+        b=Ir6p3ayvitcU4u6rWtbVtMyabk++T46QwTlHn8UbaC1LlzGrPp+j4tYN4DRV8idMyf
+         545P9HeSLnRrBV8DruMc2YdqlCVF4rScU3JjMxlf0S2BP1dC1sU0JJi+27wQpspq+2cl
+         4kEViZixWMJXjwnSs57XL8xvF3pa7Tb2LuUFqps7H9OsGxgfSf7HR6c6qNWzobyOwvW3
+         RjJNEsKjCLMcboDnqyiGnauUay6g/nllMqXnOnUEK6vZBhmv58sfmBvQvh1W/tJPzdxk
+         XJMmfqoXBY9Sqz8FHjA/wusq9YOGky5fJTJwPcOrR324g0oMeOe2jmh6Aus9LVNYhUGX
+         Gl4Q==
+X-Gm-Message-State: AJIora+cViwpBvr6SZ2CO679wRmUpbaXhBruOE44FFK125BZgWUXpGr/
+        yrLO2zR6Nl9fSqLDgFiBd6E3IA==
+X-Google-Smtp-Source: AGRyM1s2pQcpuLM9fC6b+Zd3+Jbq+kcT6qzOKl33aqkCPVY4TqWYt34qInfm8Exho2TYRp9M+VOrdw==
+X-Received: by 2002:a2e:8e2c:0:b0:25d:e021:ba8f with SMTP id r12-20020a2e8e2c000000b0025de021ba8fmr5533140ljk.491.1658829173391;
+        Tue, 26 Jul 2022 02:52:53 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id g31-20020a0565123b9f00b0047fb0d5e049sm3120559lfv.273.2022.07.26.02.47.10
+        by smtp.gmail.com with ESMTPSA id c25-20020ac25f79000000b0048a8f097713sm1035410lfc.80.2022.07.26.02.52.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 02:47:11 -0700 (PDT)
-Message-ID: <20869b88-41f3-9e9c-347e-17c3d01baa5d@linaro.org>
-Date:   Tue, 26 Jul 2022 11:47:10 +0200
+        Tue, 26 Jul 2022 02:52:52 -0700 (PDT)
+Message-ID: <cdb5ede1-20b3-223c-efd3-21edb8e715a5@linaro.org>
+Date:   Tue, 26 Jul 2022 11:52:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v2 2/2] spi: npcm-pspi: Add NPCM845 peripheral SPI support
+Subject: Re: [PATCH v3 2/3] dt-bindings: clock: add SM6375 QCOM global clock
+ bindings
 Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        linux-spi@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-References: <20220722114136.251415-1-tmaimon77@gmail.com>
- <20220722114136.251415-3-tmaimon77@gmail.com>
- <afae04e0-76a3-1bcb-5b47-9944fa9ab2c0@linaro.org>
- <YtrvyyMGm64hFG5j@sirena.org.uk>
- <0c8688d5-b0c1-8cc1-ec27-292acbb38dfc@linaro.org>
- <YtrzF9BFJrXfxiz0@sirena.org.uk>
- <CAP6Zq1iRowFv4qg=AqdVmBRRx5p4-5AaC1G-aZs=2LnOAOELXA@mail.gmail.com>
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220723100135.91784-1-konrad.dybcio@somainline.org>
+ <20220723100135.91784-2-konrad.dybcio@somainline.org>
+ <27154a09-d79b-7814-22ec-c84496596abc@linaro.org>
+ <6a33d026-9f30-358e-8498-dbe315fccc5b@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1iRowFv4qg=AqdVmBRRx5p4-5AaC1G-aZs=2LnOAOELXA@mail.gmail.com>
+In-Reply-To: <6a33d026-9f30-358e-8498-dbe315fccc5b@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,41 +87,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/07/2022 10:44, Tomer Maimon wrote:
-> Hi Mark and Krzysztof,
+On 23/07/2022 22:56, Konrad Dybcio wrote:
 > 
-> Thanks for your reply,
 > 
-> On Fri, 22 Jul 2022 at 21:57, Mark Brown <broonie@kernel.org> wrote:
+> On 23.07.2022 19:46, Krzysztof Kozlowski wrote:
+>> On 23/07/2022 12:01, Konrad Dybcio wrote:
+>>> Add device tree bindings for global clock controller for SM6375 SoCs.
+>>>
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>>> ---
+>>> Changes since v2:
+>>> - reference qcom,gcc.yaml
+>>>
+>>>  .../bindings/clock/qcom,sm6375-gcc.yaml       |  48 ++++
+>>>  include/dt-bindings/clock/qcom,sm6375-gcc.h   | 234 ++++++++++++++++++
+>>>  2 files changed, 282 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
+>>>  create mode 100644 include/dt-bindings/clock/qcom,sm6375-gcc.h
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
+>>> new file mode 100644
+>>> index 000000000000..fb1c36888d18
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/clock/qcom,sm6375-gcc.yaml
+>>> @@ -0,0 +1,48 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/clock/qcom,sm6375-gcc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm Global Clock & Reset Controller Binding for SM6375
+>>> +
+>>> +maintainers:
+>>> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
+>>> +
+>>> +description: |
+>>> +  Qualcomm global clock control module which supports the clocks, resets and
+>>> +  power domains on SM6375
+>>> +
+>>> +  See also:
+>>> +  - dt-bindings/clock/qcom,sm6375-gcc.h
+>>> +
+>>> +allOf:
+>>> +  - $ref: qcom,gcc.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: qcom,sm6375-gcc
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: Board XO source
+>>> +      - description: Board XO Active-Only source
+>>> +      - description: Sleep clock source
 >>
->> On Fri, Jul 22, 2022 at 08:47:24PM +0200, Krzysztof Kozlowski wrote:
->>> On 22/07/2022 20:43, Mark Brown wrote:
+>> What happened to clock-names?
 >>
->>>> ...with a fallback list required by the bindings so the driver actually
->>>> binds.  Note that bindings are currently not in YAML format so there'd
->>>> be even less enforcement of that than normal, and as they're currently
->>>> written the bindings don't require fallback.
+>>> +
 >>
->>> Yes, the bindings document should be rephrased but we were living like
->>> that for few years. :)
->>
->> The binding document as it stands only has one compatible, there's no
->> existing problem with it other than the YAML conversion.  If we're
->> adding something new that requires a fallback we should be explicit
->> about that rather than have something that's actively misleading where
->> previously things were clear.  I don't mind if we add the compatible to
->> the driver or document the requirement for the fallback but we should do
->> one of the two.
-> 
-> is V2 good enough? adding the compatible to the driver and the document?
-> Or should we use fallback?
-> If fallback is choosen, can you explain how I should do it?
+>> I would assume these are required for the clock controller... and they
+>> were before, so what happened?
+> I dropped them in v2, as with switching the .c driver to use the
+> index matching, they are no longer used.
 
-I propose to use fallback. The preferred way is to convert it to DT
-schema and then add new device support (so two commits). Other
-acceptable way is to rephrase the TXT so it clearly states desired
-compatibles - one for old device, two for new devices. There are plenty
-of examples in current sources.
+OK, but what about clocks as required? Why aren't these now required?
 
 
 Best regards,
