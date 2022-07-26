@@ -2,249 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB6D958138F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 14:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E02E581394
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 14:56:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238676AbiGZM4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 08:56:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51224 "EHLO
+        id S238906AbiGZM4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 08:56:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233522AbiGZM4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 08:56:12 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19FCB1EC55
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:10 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id f24-20020a1cc918000000b003a30178c022so11279847wmb.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:10 -0700 (PDT)
+        with ESMTP id S238881AbiGZM4c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 08:56:32 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF54255B8
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:30 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id b26so20054345wrc.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ILtpMzX3VY8k59M2BJDRJGfQpuHK3RZfnXCOjBm8eTY=;
-        b=Idx1cyBcJSvQO3qJZY9/aAkWS39UYbRrrvFmReLWAdgOk77gC96Fms5dd93efjpID+
-         SQ2cZMwICM1Dea4y48jvewtcgj6nXOOw5ldBOIcTeW1eIvMogAm1zEw12cbKJ+DM4Fgs
-         wHlb2ykYPd2GlQZxjNsRMSazXBLqe9y+i5cIwGYjkC+yvwGNUkGrMNTFcC36YMnjm6IR
-         xGt5LDLtwbPYpPU4vyZLL1TcFE6BxbFAfe6KoC9E0nPJVbVuChQP7pqvZu+ofLO86Bel
-         Qc5N3OSUXrm35zzIxWP2ZMJhhW6WyO6XJ1ch/A2YysgUwhW9mxP0C9CLKoe6Cewfo1TJ
-         DGfQ==
+        h=from:date:subject:mime-version:content-transfer-encoding:message-id
+         :references:in-reply-to:cc;
+        bh=70sJgJ6M2wTNfwQJ3+bkMBP++3esJkgb8mg1Y3AHAIo=;
+        b=uCZGOkTjzgvg0EGIHfkTrXgEILq36uTtM8gTe/90Li/u6m4RWaLWhuE1JMgp4sVdhr
+         nBXnHLsXXOSeWLOXJ0FHTchVsF9rcMEgC/i0gCjYVVr94LcSaaLfvzCO7IgEm6rgyvzr
+         cHcVisccg3W7PRg2j5JgRfCXS0pURtzJ3xznFjVv9JkQuDji612ViwKLyhfEqURzfe6A
+         vtDiOLM5MrqxfyIKhvHxStZnugMbFV0bqOcHCehraaKtBEtpq4G9hPuuQhui/zF0etoQ
+         gEZ16hmESIpCnRqhX4ISn5i9n4a/lIjwdW1DzbNJfd5JHGDAKrckY0f1xaUZ5BpCCvIo
+         wvbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ILtpMzX3VY8k59M2BJDRJGfQpuHK3RZfnXCOjBm8eTY=;
-        b=LRw2mFEFlQhibHuJTMZvJmEqC3yS00UMIePZKeQQRtY2nBpD40rLWp4aMCL0qIl7DS
-         VAwz9i4oL3Bz6fBv1RzFgaffYfTwFWW0/CuTNcwBsxdBO7R1JGbeKfmGIUXvbr1srUzZ
-         F4j2Hq446tswarO8y2vESsBEuUzDO9WYprSlzx9dZ1Jpgyx0a8Tv2Ge6hF9ltR/2sOyQ
-         aXfgYKXzZNXu5ayQF0tBEH5X4C7WwfKW+F7juYDmbjdGT90YgI25oZ2XlcQa2Oi+D4Qz
-         P6QjoRj1qURTHxykH8tRZXk8OS3SeFHNyroJCUCfTdSxVx2mpX41IojqsSujM05yrrT6
-         DV/Q==
-X-Gm-Message-State: AJIora9hc2MWW2omO/bUu0SM/q4UuLZ2bRhXlUTjzvF4yv4FDAf7c2A0
-        rUopUzi8AzkwtCjz8amU114jfQ==
-X-Google-Smtp-Source: AGRyM1ukOx2aF9TBjUKq17lWfVED7ORwA752wJog+hPij7ufp+0vmCFhu2SrCpEmVz1IreQKIux2RQ==
-X-Received: by 2002:a05:600c:6002:b0:3a3:5453:bcbe with SMTP id az2-20020a05600c600200b003a35453bcbemr8829006wmb.190.1658840168574;
-        Tue, 26 Jul 2022 05:56:08 -0700 (PDT)
-Received: from blmsp ([2001:4090:a243:806e:25e7:daa:8208:ceb])
-        by smtp.gmail.com with ESMTPSA id a9-20020adfeec9000000b0021dfacfdf0dsm14944421wrp.33.2022.07.26.05.56.07
+        h=x-gm-message-state:from:date:subject:mime-version
+         :content-transfer-encoding:message-id:references:in-reply-to:cc;
+        bh=70sJgJ6M2wTNfwQJ3+bkMBP++3esJkgb8mg1Y3AHAIo=;
+        b=W1nHYoxhcxOuYEQk13mI/V5hOplfV6kkUTbK3/KE/rxyc7je2kIF348JYratXR1ABa
+         kXmhW+ErCZRnPkRy9js/2PTBWIf9xfRr4Atla4HlVd8yoo1+6Hx+e7ZtrXjvHCsr1B+9
+         mPyI+j+rxnb2W3OfpWXupX5Qxk8cX5sG7pLuz0A2D9jKfGa4nGWSnNgxPKg5tVTswFiF
+         YOW8QmcTyFXTDloI1aBg7xyRvY06QfDTx4f6XKksWc8taNeRaRpQd0H8LVx9jxIaB1lM
+         1xzIi11XeHGxlrNXXSB218AcLQkaYigkcNl2dr/Mxm00VH30uBfDxit62ppAiige5tga
+         /+lg==
+X-Gm-Message-State: AJIora+uQ3sN9MsZVebLMyyt+KyziUgOJM6VLRhNljHp0i9DwgUrdR4t
+        Xff6GF2Ktc9D2Y3IvIhQwCiLqQ==
+X-Google-Smtp-Source: AGRyM1vh+7xD0uRlVRAT6+8Kk92s+Z9rVWNc12KDQ9vbMZkTR+6hQDfwJmTnKb4erZvbSYKsoe4YNA==
+X-Received: by 2002:adf:e192:0:b0:21d:62ee:ef10 with SMTP id az18-20020adfe192000000b0021d62eeef10mr11127350wrb.693.1658840189248;
+        Tue, 26 Jul 2022 05:56:29 -0700 (PDT)
+Received: from [192.168.2.253] ([82.66.159.240])
+        by smtp.gmail.com with ESMTPSA id k1-20020adff5c1000000b0020fff0ea0a3sm14171549wrp.116.2022.07.26.05.56.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 05:56:08 -0700 (PDT)
+        Tue, 26 Jul 2022 05:56:28 -0700 (PDT)
+From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
 Date:   Tue, 26 Jul 2022 14:56:06 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Jerome Neanne <jneanne@baylibre.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        nm@ti.com, kristo@kernel.org, khilman@baylibre.com,
-        narmstrong@baylibre.com, j-keerthy@ti.com, lee.jones@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 05/11] regulator: dt-bindings: Add TI TPS65219 PMIC
- bindings
-Message-ID: <20220726125606.kzpzlfeg57ufuhiv@blmsp>
-References: <20220726103355.17684-1-jneanne@baylibre.com>
- <20220726103355.17684-6-jneanne@baylibre.com>
+Subject: [PATCH v2 1/7] MAINTAINERS: input: add mattijs for mt6779-keypad
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220726103355.17684-6-jneanne@baylibre.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20220720-mt8183-keypad-v2-1-6d42c357cb76@baylibre.com>
+References: <20220720-mt8183-keypad-v2-0-6d42c357cb76@baylibre.com>
+In-Reply-To: <20220720-mt8183-keypad-v2-0-6d42c357cb76@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Fabien Parent <parent.f@gmail.com>
+X-Mailer: b4 0.10.0-dev-78725
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,MISSING_HEADERS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome,
+As stated in [1]:
+Fengping has no longer interest and time to maintain this driver so he
+agreed to transfer maintainership over to me.
 
-On Tue, Jul 26, 2022 at 12:33:49PM +0200, Jerome Neanne wrote:
-> Add TPS65219 PMIC bindings using json-schema.
-> 
-> Describe required properties and regname-supply.
-> regname-supply is required when bypass mode is used for a regulator.
-> Describes regulator topology.
-> Interrupts support.
-> Add a power-button property to configure the EN/PB/VSENSE pin as a
-> powerbutton:
-> 
-> TPS65219 has a multipurpose pin called EN/PB/VSENSE that can be either:
-> - EN in which case it functions as an enable pin.
-> - VSENSE which compares the voltages and triggers an automatic
-> on/off request.
-> - PB in which case it can be configured to trigger an interrupt
-> to the SoC.
-> ti,power-button reflects the last one of those options
-> where the board has a button wired to the pin and triggers
-> an interrupt on pressing it.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Jerome Neanne <jneanne@baylibre.com>
-> ---
->  .../bindings/regulator/ti,tps65219.yaml       | 164 ++++++++++++++++++
->  1 file changed, 164 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
-> new file mode 100644
-> index 000000000000..8fca4db6c64c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+Add a dedicated maintainer entry as well for the driver to make sure
+that I can help with patch reviews.
 
-...
+[1] https://lore.kernel.org/r/20220421140255.2781505-1-mkorpershoek@baylibre.com
 
-> +
-> +  power-button:
-> +    type: boolean
-> +    description: Optional property that sets the EN/PB/VSENSE pin to be a
-> +      power-button.
+Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
-It seems something went wrong here. This should have been
-ti,power-button and have a similar description as the commit message,
-right?
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 1de6a8fbf0a8..f2f0696caf6a 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12805,6 +12805,12 @@ S:	Supported
+ F:	Documentation/devicetree/bindings/media/mediatek-jpeg-*.yaml
+ F:	drivers/media/platform/mediatek/jpeg/
+ 
++MEDIATEK KEYPAD DRIVER
++M:	Mattijs Korpershoek <mkorpershoek@baylibre.com>
++S:	Supported
++F:	Documentation/devicetree/bindings/input/mediatek,mt6779-keypad.yaml
++F:	drivers/input/keyboard/mt6779-keypad.c
++
+ MEDIATEK MDP DRIVER
+ M:	Minghsiu Tsai <minghsiu.tsai@mediatek.com>
+ M:	Houlong Wei <houlong.wei@mediatek.com>
 
-Best,
-Markus
-
-> +
-> +patternProperties:
-> +  "^buck[1-3]-supply$":
-> +    description: Input supply phandle of one regulator.
-> +
-> +  "^ldo[1-4]-supply$":
-> +    description: Input supply phandle of one regulator.
-> +
-> +  regulators:
-> +    type: object
-> +    description: |
-> +      list of regulators provided by this controller
-> +
-> +    patternProperties:
-> +      "^ldo[1-4]$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        description:
-> +          Properties for single LDO regulator.
-> +
-> +        unevaluatedProperties: false
-> +
-> +      "^buck[1-3]$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +        description:
-> +          Properties for single BUCK regulator.
-> +
-> +        unevaluatedProperties: false
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - regulators
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        tps65219: pmic@30 {
-> +            compatible = "ti,tps65219";
-> +            reg = <0x30>;
-> +            buck1-supply = <&vcc_3v3_sys>;
-> +            buck2-supply = <&vcc_3v3_sys>;
-> +            buck3-supply = <&vcc_3v3_sys>;
-> +            ldo1-supply = <&vcc_3v3_sys>;
-> +            ldo2-supply = <&buck2_reg>;
-> +            ldo3-supply = <&vcc_3v3_sys>;
-> +            ldo4-supply = <&vcc_3v3_sys>;
-> +
-> +            pinctrl-0 = <&pmic_irq_pins_default>;
-> +
-> +            interrupt-parent = <&gic500>;
-> +            interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-controller;
-> +            #interrupt-cells = <1>;
-> +
-> +            regulators {
-> +                buck1_reg: buck1 {
-> +                    regulator-name = "VDD_CORE";
-> +                    regulator-min-microvolt = <750000>;
-> +                    regulator-max-microvolt = <750000>;
-> +                    regulator-boot-on;
-> +                    regulator-always-on;
-> +                };
-> +
-> +                buck2_reg: buck2 {
-> +                    regulator-name = "VCC1V8";
-> +                    regulator-min-microvolt = <1800000>;
-> +                    regulator-max-microvolt = <1800000>;
-> +                    regulator-boot-on;
-> +                    regulator-always-on;
-> +                };
-> +
-> +                buck3_reg: buck3 {
-> +                    regulator-name = "VDD_LPDDR4";
-> +                    regulator-min-microvolt = <1100000>;
-> +                    regulator-max-microvolt = <1100000>;
-> +                    regulator-boot-on;
-> +                    regulator-always-on;
-> +                };
-> +
-> +                ldo1_reg: ldo1 {
-> +                    regulator-name = "VDDSHV_SD_IO_PMIC";
-> +                    regulator-min-microvolt = <33000000>;
-> +                    regulator-max-microvolt = <33000000>;
-> +                };
-> +
-> +                ldo2_reg: ldo2 {
-> +                    regulator-name = "VDDAR_CORE";
-> +                    regulator-min-microvolt = <850000>;
-> +                    regulator-max-microvolt = <850000>;
-> +                    regulator-boot-on;
-> +                    regulator-always-on;
-> +                };
-> +
-> +                ldo3_reg: ldo3 {
-> +                    regulator-name = "VDDA_1V8";
-> +                    regulator-min-microvolt = <18000000>;
-> +                    regulator-max-microvolt = <18000000>;
-> +                    regulator-boot-on;
-> +                    regulator-always-on;
-> +                };
-> +
-> +                ldo4_reg: ldo4 {
-> +                    regulator-name = "VDD_PHY_2V5";
-> +                    regulator-min-microvolt = <25000000>;
-> +                    regulator-max-microvolt = <25000000>;
-> +                    regulator-boot-on;
-> +                    regulator-always-on;
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.17.1
-> 
+-- 
+b4 0.10.0-dev-78725
