@@ -2,126 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3E5F58112D
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:31:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2409581135
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:34:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232824AbiGZKbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 06:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59212 "EHLO
+        id S238674AbiGZKeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 06:34:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232128AbiGZKbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:31:06 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC2627B1B;
-        Tue, 26 Jul 2022 03:31:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1658831466; x=1690367466;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=buTUpv21hPzfPEggPXI1QrQSGfzkMz+f1AZYRt7xzKw=;
-  b=Uew8kbIjnX4kG/PDtrmCfUWenQDHGEcCRbP+Gce+F/cYNSeBTKSEpIor
-   u+5Q1lSVVRNt5igPPPTilUX95cj36FD8XGF+WMjtrI2hZ1NDPdKcog+Ll
-   lrL3ZVPcyYF587r6rDbUxHFggtwd8gQlWgR+AjYGc9noc+RqQaFQZXQL+
-   Vzyx6WrylrYuAQZmUoWpYoyxEwhIt7In6jJMUD+tpqIDrJvuhqVF0jZgz
-   4or0j/MsFDp1Eag2pc6P+gPomZjx/3L8Y5Sy4F+4t+kXc9H+HLqib1Kb4
-   MLX/ttM76ovMxwONTMOnmyQLjgCL7h6e30EbaA9MBNvgOzG02VJkEYzEE
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10419"; a="289109318"
-X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; 
-   d="scan'208";a="289109318"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2022 03:31:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; 
-   d="scan'208";a="550353557"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 26 Jul 2022 03:31:02 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oGHq9-0006hQ-2O;
-        Tue, 26 Jul 2022 10:31:01 +0000
-Date:   Tue, 26 Jul 2022 18:30:40 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-        linux-input@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Subject: Re: [PATCH v3 01/10] input: keyboard: adp5588-keys: support gpi key
- events as 'gpio keys'
-Message-ID: <202207261830.c3VuQ5P0-lkp@intel.com>
-References: <20220721080423.156151-2-nuno.sa@analog.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220721080423.156151-2-nuno.sa@analog.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S238670AbiGZKeL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:34:11 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6B62C661
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:34:06 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id h9so19578998wrm.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:34:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=L7cF1S0BR1iDtQS+rWz5OxrcNphL8d0/4H/6zzg8gsk=;
+        b=FKiEkDsrBPnIBGldU7/Qea96rNYXmsCKktbZ+rZhW1SF9qhz7BSd61lB5Ksq3Lg0r8
+         BSiBaQKv6OcEnFLxscbl8Ha/bhjIrdfpc3VC+rtoI6I9u1J/mne7u0uqIovexwzevepg
+         aIwXxr/q8Go41bLTToTa4zZx0MZPYotCm27bIIqIPZdQE6tIxGzhKw0VXtGVZnlIMHi1
+         ZuZsQe086wdw5OBuUDmLqTprsfBQdMfL7JJf+FkU8ZDDy9EnE67RbZsN4L9FFoc7CfOs
+         L2enuSZYREynQRhUwIBGEutAh157j+iVWgz6tw7u3RGso9Z/DmJlQk8aNR4jlr2rttQ8
+         41hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=L7cF1S0BR1iDtQS+rWz5OxrcNphL8d0/4H/6zzg8gsk=;
+        b=PvZR8id24lMPjQB4t3I/A8GIZac8vXZqrX5yCD+PuHCpotjR+P3JCnvV+oPItFZ7RB
+         cOdkPn+eKD1+EMVA968MNv6W6tUzPCv32ZH+j/DlwNWEBg6Kjhu0Sqy11WDV+Nvc4kdp
+         yukHuNqXYbSyu4r2jJhxujugsyJeHE4CDHsEPV9Op+dbLyzWjm0LavrXw6erMnZ+VyZV
+         YpsLrHUk3ZezupHISG91r9SuxBBCE5SYoJuhEZSrpFTrgnMLtGGwIUhLb1zqw3UQnNC9
+         2id5FD5qPD+6Jm5cxhgVKBsiajv9fqcED1eRCg8/BQj8luPdIWAJ3mT0Y7++6C3PwOvL
+         Bwzg==
+X-Gm-Message-State: AJIora+2sn7IsyaxFeCpqu0DSo44CJSeoa2hPblwvm/IKdipZ+xWHER6
+        thIM14oVutOgzZHsz5GtzHM7NcVTD/NwPA==
+X-Google-Smtp-Source: AGRyM1uyiuaZ7sRQ/+/0vbZseRe6hCKHZv5K0YV4/qCtSPx8WCUAqPe3SrO3oPl2godcD/NnhhmFXA==
+X-Received: by 2002:adf:e18b:0:b0:21e:894e:48c with SMTP id az11-20020adfe18b000000b0021e894e048cmr6008220wrb.341.1658831644991;
+        Tue, 26 Jul 2022 03:34:04 -0700 (PDT)
+Received: from localhost.localdomain (2a02-8440-4641-6f91-91b7-326a-5d27-a1c3.rev.sfr.net. [2a02:8440:4641:6f91:91b7:326a:5d27:a1c3])
+        by smtp.gmail.com with ESMTPSA id ay35-20020a05600c1e2300b003a2e42ae9a4sm20617121wmb.14.2022.07.26.03.34.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Jul 2022 03:34:04 -0700 (PDT)
+From:   Jerome Neanne <jneanne@baylibre.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        nm@ti.com, kristo@kernel.org
+Cc:     khilman@baylibre.com, narmstrong@baylibre.com, msp@baylibre.com,
+        j-keerthy@ti.com, lee.jones@linaro.org, jneanne@baylibre.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 00/11] Add support for TI TPS65219 PMIC.
+Date:   Tue, 26 Jul 2022 12:33:44 +0200
+Message-Id: <20220726103355.17684-1-jneanne@baylibre.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi "Nuno,
+Not implemented
+- DVS
 
-I love your patch! Perhaps something to improve:
+1-Regulators:
+Full implementation and test
+Visual check: cat /sys/kernel/debug/regulator/regulator_summary
+Full validation requires userspace-consumer and virtual-regulator
+LDO1 is not used and output can be probbed on TP84.
 
-[auto build test WARNING on dtor-input/next]
-[also build test WARNING on next-20220725]
-[cannot apply to brgl/gpio/for-next hid/for-next linus/master v5.19-rc8]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+2-Reset WARM/COLD
+test procedure: launch reboot on the console and check visually
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nuno-S/adp5588-keys-refactor-and-fw-properties-support/20220721-160531
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-config: x86_64-randconfig-a013 (https://download.01.org/0day-ci/archive/20220726/202207261830.c3VuQ5P0-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-3) 11.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/intel-lab-lkp/linux/commit/357979f7c2525297178fb321c5793a4bd63dabb6
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Nuno-S/adp5588-keys-refactor-and-fw-properties-support/20220721-160531
-        git checkout 357979f7c2525297178fb321c5793a4bd63dabb6
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash drivers/input/keyboard/
+warm vs. cold can be configured on the kernel command-line at boot time.
+Default is cold, but adding `reboot=w`
+to kernel command allow testing warm reboot.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+Alternative:
+`# echo warm > /sys/kernel/reboot/mode` 
 
-All warnings (new ones prefixed by >>):
+3-SW Shutdown
+test procedure: launch halt on the console and check visually
 
-   In file included from include/linux/gpio/driver.h:6,
-                    from drivers/input/keyboard/adp5588-keys.c:13:
-   drivers/input/keyboard/adp5588-keys.c: In function 'adp5588_gpiomap_get_hwirq':
->> include/linux/irq.h:1245:25: warning: overflow in conversion from 'long unsigned int' to 'int' changes value from '18446744073709551615' to '-1' [-Woverflow]
-    1245 | #define INVALID_HWIRQ   (~0UL)
-         |                         ^
-   drivers/input/keyboard/adp5588-keys.c:336:16: note: in expansion of macro 'INVALID_HWIRQ'
-     336 |         return INVALID_HWIRQ;
-         |                ^~~~~~~~~~~~~
+Note: enters in competition with other source during probe
+
+Board Test Points can be used to check voltage after system shutdown.
+baseport is not handling wakeup.
+A power OFF/ON cycle is needed to recover.
+
+4-Interrupt Pin (nINT):
+
+Interrupt occurring on PMIC TPS65219 is propagated to SOC
+through EXTINTn pin connected to gic500 interrupt controller
+
+Interrupt lines for TPS65219 shows-up on console:
+cat /proc/interrupts
+
+Validation:
+Create a Residual Voltage interrupt and handling and interrupt source is cleared.
+`tps65219 0-0030: Registered residual voltage for LDO1`
+`533:          1          0  tps65219_irq  35 Edge      LDO1_RV`
+
+Mapped to power button (use TP90 to GND to emulate a physical button)
+
+5-PB Startup and Shutdown:
+New implementation to support both rising and falling edge.
+
+TPS65219 has different interrupts compared to other TPS6521* chips.
+TPS65219 defines two interrupts for the powerbutton one for push and one
+for release.
 
 
-vim +1245 include/linux/irq.h
+Interrupt support: cat proc/interrupts
+`557:          0          0  tps65219_irq  47 Edge      tps65219-pwrbutton.1.auto`
+`558:          0          0  tps65219_irq  48 Edge      tps65219-pwrbutton.1.auto`
 
-2f75d9e1c90511 Thomas Gleixner 2017-09-13  1243  
-d17bf24e695290 Qais Yousef     2015-12-08  1244  /* Contrary to Linux irqs, for hardware irqs the irq number 0 is valid */
-d17bf24e695290 Qais Yousef     2015-12-08 @1245  #define INVALID_HWIRQ	(~0UL)
-f9bce791ae2a1a Qais Yousef     2015-12-08  1246  irq_hw_number_t ipi_get_hwirq(unsigned int irq, unsigned int cpu);
-3b8e29a82dd16c Qais Yousef     2015-12-08  1247  int __ipi_send_single(struct irq_desc *desc, unsigned int cpu);
-3b8e29a82dd16c Qais Yousef     2015-12-08  1248  int __ipi_send_mask(struct irq_desc *desc, const struct cpumask *dest);
-3b8e29a82dd16c Qais Yousef     2015-12-08  1249  int ipi_send_single(unsigned int virq, unsigned int cpu);
-3b8e29a82dd16c Qais Yousef     2015-12-08  1250  int ipi_send_mask(unsigned int virq, const struct cpumask *dest);
-d17bf24e695290 Qais Yousef     2015-12-08  1251  
+TPS65219 has a multipurpose pin called EN/PB/VSENSE that can be either:
+- EN in which case it functions as an enable pin.
+- VSENSE which compares the voltages and triggers an automatic on/off request.
+- PB in which case it can be configured to trigger an interrupt to the SoC.
+ti,power-button reflects the last one of those options
+where the board has a button wired to the pin and triggers
+an interrupt on pressing it.
+
+6-Changes vs v1:
+
+6.1- Regulators:
+- Further to Mark Brown review:
+Use standard regmap helpers for set_voltage, enable and disable.
+tps65219_set_mode, return -EINVAL in default statement for clarity.
+Reshaped irq handler to report events through the notification API:
+regulator_notifier_call_chain().
+Use standard regulator events (consumer.h).
+
+6.2- Device tree
+- Further to Nishanth Menon review:
+add tag DONOTMERGE
+Board support is pending waiting for TI commitment.
+This device tree is needed for driver test purpose but should not go upstream.
+
+6.3- Bindings
+- Further to Rob Herring review:
+Squash interrupt commit into regulator dt-binding.
+Squash pwrbutton commit into regulator dt-binding.
+Remove interrupt-controller/cells properties because no consumer for those interrupts.
+
+- Further to Mark Brown review:
+Remove constraints on regulator-name.
+
+- Pending for decision from Lee Jones further to Mark Brown review
+The entire binding document should probably be in MFD if it's going to
+have properties for other functions added to it.
+
+6.4- Misc
+- Further to Mark Brown review:
+Use C++ (//) formatting for file header block including SPDX License
+in mfd, regulator and pwrbutton.
+
+Jerome Neanne (7):
+  DONOTMERGE: arm64: dts: ti: Add TI TPS65219 PMIC support for AM642 SK
+    board.
+  DONOTMERGE: arm64: dts: ti: Add pinmux and irq mapping for TPS65219
+    external interrupts
+  regulator: dt-bindings: Add TI TPS65219 PMIC bindings
+  mfd: drivers: Add TI TPS65219 PMIC support
+  mfd: drivers: Add interrupts support to TI TPS65219 PMIC
+  regulator: drivers: Add TI TPS65219 PMIC regulators support
+  arm64: defconfig: Add tps65219 as modules
+
+Markus Schneider-Pargmann (4):
+  DONOTMERGE: arm64: dts: ti: k3-am642-sk: Enable tps65219 power-button
+  MAINTAINERS: OMAP2+ support, add tps65218-pwrbutton
+  mfd: tps65219: Add power-button support
+  Input: Add tps65219 interrupt driven powerbutton
+
+ .../bindings/regulator/ti,tps65219.yaml       | 164 +++++++
+ MAINTAINERS                                   |   4 +
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts        | 115 +++++
+ arch/arm64/configs/defconfig                  |   3 +
+ drivers/input/misc/Kconfig                    |  10 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/tps65219-pwrbutton.c       | 150 ++++++
+ drivers/mfd/Kconfig                           |  15 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/tps65219.c                        | 437 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/tps65219-regulator.c        | 416 +++++++++++++++++
+ include/linux/mfd/tps65219.h                  | 364 +++++++++++++++
+ 14 files changed, 1690 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/ti,tps65219.yaml
+ create mode 100644 drivers/input/misc/tps65219-pwrbutton.c
+ create mode 100644 drivers/mfd/tps65219.c
+ create mode 100644 drivers/regulator/tps65219-regulator.c
+ create mode 100644 include/linux/mfd/tps65219.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.17.1
+
