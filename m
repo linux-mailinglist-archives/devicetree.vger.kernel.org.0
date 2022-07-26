@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64E255811AA
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:10:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDD0D5811AE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:10:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238700AbiGZLKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 07:10:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58756 "EHLO
+        id S233069AbiGZLKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 07:10:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238784AbiGZLKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:10:34 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71EE62C673
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:10:33 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id b34so10918532ljr.7
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:10:33 -0700 (PDT)
+        with ESMTP id S238784AbiGZLKp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:10:45 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B9C62C133
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:10:43 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id d17so20044702lfa.12
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:10:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=PQoT/9aESy6cKgnq3qKItMEedeT8sT0bie9jvIUX+0E=;
-        b=TyAjvgK6vMsf4yFceEPO32ykAZ2EroeXpFWIixcUnNwQ5uKhKmpbad0GqaTnHbRb+D
-         Xls3tg65nC+2PzCb/an+blW795LXivyMPziF5T69PxBOdhfQcXTwcqc5n/asKiZrxar5
-         VJCMFKzvVPvqHR62UFo22S37g6JjcfQOOtUqMoSQM689w1c2oMnVzSsPoCC0hj4HixLu
-         e5moXJwDYErZgvOSBfyR4+TbtbncAJgj6On8fMcoM+87ui5AOUhdlxlHPbY/7NA0u5DP
-         RJmo6mmgGEFxBeAECZRcox20aZExKFx/T4G2IUSTzQBvswodZQwsFA6ui4sZ5qyC7sMN
-         mTVA==
+        bh=/gVsxDRvhf7UN6aoVco2tQLHspKhkHUI4EyoT3bQKdI=;
+        b=AfqLw07swmMsDTGXqKJS88WfLHAQvmcJMW9agznPEJB+PJd1KV4YcuQ3ezRT3o/sQ8
+         Qi0Ik9iksIHXi8TER4sIKSUcJc6B0TL+tmFfbCu0BejvWq43ePJl3rnpRL3uB66gSoTy
+         NBkovWu4AvsB0cJw7/aCf++vKrX5wJnnTdElaTdpM5G4taGxr9za4zwLccjxFjqEHnfP
+         uXVaqq57YvUJD5P6AtOzIlgxmqsFpMEhM/lIpRd1xBK/sFkxys3iInuf81Fb3PLQbH6+
+         O87dP5vnQv4Wkx9m48Zg/TkLB51Buon7NTb9jJVZOkXXHQoV2wagfO/JDgrsBupqtK/t
+         p5fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=PQoT/9aESy6cKgnq3qKItMEedeT8sT0bie9jvIUX+0E=;
-        b=ITE8LgSNVtwmSRmGSkJuxVLvz1pGpKP8EN74XFrgPWm7JdRvoUN6hv/Ukye2lz4BQp
-         +cEMAeZjxw0hleXEPhLEQyYq2FXH8l5gfrAP4vOBoqKNuRkrTEBLimzxIr+nyfiTjyz/
-         nGPICZ9vLwHG2LbaDVu6yA30b5TZh/SQDvjH6WOzi6dj7RcN+zn4cWOWKYFb9fHX10de
-         qVCHYbUj4IxidzPlXgxYYNj64kOsYp9gZtEF3TwnrTe2jOt8YCKYJHD2+48SgXAsiEHS
-         +X+xk8OiZ3y8Kyi3egr6krcFnaa3akkrt8B2le8BWXXFSb/d1FeS19wl0MTP3rXTobjo
-         dlAw==
-X-Gm-Message-State: AJIora8n0zj8hCnxqWhXM2Chv+pkfmaTEdMdUpqMlC2IakncyCmwm+fF
-        0+DqK0BX7BRBHq36RCE7jVz1zQ==
-X-Google-Smtp-Source: AGRyM1vF4sBG9hH+Oh/N7qzQCKfItcHFL6WlkggHt+XBLNrJA6pFgXPHP/pQ9K4RqSU/GBa6wT++mg==
-X-Received: by 2002:a05:651c:2328:b0:25e:14b2:9aca with SMTP id bi40-20020a05651c232800b0025e14b29acamr850580ljb.437.1658833831523;
-        Tue, 26 Jul 2022 04:10:31 -0700 (PDT)
+        bh=/gVsxDRvhf7UN6aoVco2tQLHspKhkHUI4EyoT3bQKdI=;
+        b=ZMf0T4Rjh/wAgyIRYD+PS5hIF+23onYmu6G5CmNhmCI2CAZgQhaqh0Ncqu9RmUQEbP
+         uSfV2SrCjKgqSAxE2o9FmSeKUhsLPKhpZr+0FCOQH5fZEiFx/iQYjexefWlmowyIlOOG
+         AnkSZUW+/j2payyHDecotwhNreS20FdWHOBtZsNkZaR6kVw4oNAz8rQhzOHMZubGv+Ls
+         JlfG/BwtkfJAXRH5bmjFrcEOro14I2BrpiL9TfkA8k0z+P23O4rY5kR08nogOnz5WwxS
+         1cTWoWdCIy2YN4zTAsMtbdUmdJ9UeOsM60bOvFs8yT0BHtLulWekioNtPMB5GIRLnsLD
+         0ULQ==
+X-Gm-Message-State: AJIora/UDq0Hrw52oJ+sqk8TIsMDql8XheNc86BhIrt47mvE9DuKcrG0
+        ekJX3VkmNw+9vctqGPzrTuWp8QIwCQvD+6kh
+X-Google-Smtp-Source: AGRyM1vvVg7azGF7pulgSeMTkOv0DvQvG63cXTXUtyIIdhvhK1UI9J4KLX+uotNNvorVGnvc5hGeaA==
+X-Received: by 2002:a19:490c:0:b0:481:4b9e:cbdb with SMTP id w12-20020a19490c000000b004814b9ecbdbmr6795726lfa.350.1658833841897;
+        Tue, 26 Jul 2022 04:10:41 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id t26-20020ac24c1a000000b0048a7b5ee999sm2215561lfq.209.2022.07.26.04.10.30
+        by smtp.gmail.com with ESMTPSA id o1-20020ac25e21000000b0048a8586293asm1550874lfg.48.2022.07.26.04.10.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 04:10:31 -0700 (PDT)
-Message-ID: <6316f6ad-b5ce-33f2-a074-a3f6f0db2da3@linaro.org>
-Date:   Tue, 26 Jul 2022 13:10:29 +0200
+        Tue, 26 Jul 2022 04:10:41 -0700 (PDT)
+Message-ID: <93ae1e3d-d352-d92d-c04a-18fc9f7b01a3@linaro.org>
+Date:   Tue, 26 Jul 2022 13:10:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 4/7] arm64: dts: qcom: msm8996: fix supported-hw in
- cpufreq OPP tables
+Subject: Re: [PATCH 5/7] arm64: dts: qcom: msm8996: add support for speed bin
+ 3
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,9 +65,9 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Yassine Oudjana <yassine.oudjana@gmail.com>
 References: <20220724140421.1933004-1-dmitry.baryshkov@linaro.org>
- <20220724140421.1933004-5-dmitry.baryshkov@linaro.org>
+ <20220724140421.1933004-6-dmitry.baryshkov@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220724140421.1933004-5-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220724140421.1933004-6-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,13 +80,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 24/07/2022 16:04, Dmitry Baryshkov wrote:
-> Adjust MSM8996 cpufreq tables according to tables in msm-3.18. Some of
-> the frequencies are not supported on speed bins other than 0. Also other
-> speed bins support intermediate topmost frequencies, not supported on
-> speed bin 0. Implement all these differencies.
+> Add support for msm8996, speed bin 3. It supports full range of
+> frequencies on the power cluster, but is limited to 1.8 GHz on
+> performance cluster.
 > 
-> Fixes: 90173a954a22 ("arm64: dts: qcom: msm8996: Add CPU opps")
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
