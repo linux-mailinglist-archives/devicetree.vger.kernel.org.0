@@ -2,90 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF811580F43
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 10:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88DBE580F55
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 10:45:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238686AbiGZIkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 04:40:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55206 "EHLO
+        id S231877AbiGZIp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 04:45:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238660AbiGZIj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 04:39:58 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F6E42FFDD;
-        Tue, 26 Jul 2022 01:39:56 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6CD1B6601B15;
-        Tue, 26 Jul 2022 09:39:53 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658824794;
-        bh=o8COaf1WnhJ6CshvmVXvwffuBdxhwn1zG6mdYwCYbMM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=KfouyMIC5PPMPw26mf23O0tIb+iVGaFLkR/kg5SB28fo7Osxl7Accy9z/wZHXYQnk
-         L24vXFgaA/XYKaa3IsxSYyKsnKEgyYL9jTnRyVpsEmVVwA5oULUZF3k2f+dsxmVoow
-         HBzyIv3HeNEtJUR8UjGTME0UWjueCXvKQ8oroEOvbbfZ0PyoX5gm3+Z5dXo/W6lJKE
-         jc5QZ5DOiYEpHd8GC9S77tdmqazQZNWTe4B/UmSfHmwBW7UsgodnHlgD7jQaNzvIT+
-         jQK3EFXz8bj+zPlxYitKVRByCuewBJMP3J8YKoERVUMevT9FBVBhTxotsCXUxbmJ7C
-         K8812Sfxz5JEg==
-Message-ID: <14ddcdb5-cbfc-1215-ffdd-85df8d9d6acb@collabora.com>
-Date:   Tue, 26 Jul 2022 10:39:50 +0200
+        with ESMTP id S230093AbiGZIpZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 04:45:25 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FE1FBB
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:45:24 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oGGBq-0000eH-SW; Tue, 26 Jul 2022 10:45:18 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oGGBq-0003AC-Et; Tue, 26 Jul 2022 10:45:18 +0200
+Date:   Tue, 26 Jul 2022 10:45:18 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org, krzk+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v2 2/2] reset: tps380x: Add TPS380x device driver supprt
+Message-ID: <20220726084518.qmb2wjcazi3djcqr@pengutronix.de>
+References: <20220530092226.748644-1-m.felsch@pengutronix.de>
+ <20220530092226.748644-2-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v14 1/3] dt-bindings: mmc: mtk-sd: extend interrupts and
- pinctrls properties
-Content-Language: en-US
-To:     Axe Yang <axe.yang@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Rob Herring <robh@kernel.org>
-References: <20220726062842.18846-1-axe.yang@mediatek.com>
- <20220726062842.18846-2-axe.yang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220726062842.18846-2-axe.yang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220530092226.748644-2-m.felsch@pengutronix.de>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 26/07/22 08:28, Axe Yang ha scritto:
-> Extend interrupts and pinctrls for SDIO wakeup interrupt feature.
-> This feature allow SDIO devices alarm asynchronous interrupt to host
-> even when host stop providing clock to SDIO card. An extra wakeup
-> interrupt and pinctrl states for SDIO DAT1 pin state switching are
-> required in this scenario.
+Hi Philipp,
+
+gentle ping.
+
+On 22-05-30, Marco Felsch wrote:
+> The TI TPS380x family [1] is a voltage supervisor with a dedicated
+> manual reset (mr) line input and a reset output. The chip(s) have a
+> build in reset delay, depending on the chip partnumber. This simple
+> driver addresses this so the cosumer don't need to care about it.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Axe Yang <axe.yang@mediatek.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-P.S.: R-b tags go after S-o-b tags!
+> [1] https://www.ti.com/product/TPS3801
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+> Changelog:
+> v2:
+> - make reset_tps380x_ops static
+> - fix commit message typo
+> 
+>  drivers/reset/Kconfig         |   8 +++
+>  drivers/reset/Makefile        |   1 +
+>  drivers/reset/reset-tps380x.c | 130 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 139 insertions(+)
+>  create mode 100644 drivers/reset/reset-tps380x.c
+> 
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index e0fc80e041ea..e2eb616af812 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -256,6 +256,14 @@ config RESET_TI_SYSCON
+>  	  you wish to use the reset framework for such memory-mapped devices,
+>  	  say Y here. Otherwise, say N.
+>  
+> +config RESET_TI_TPS380X
+> +	tristate "TI TPS380x Reset Driver"
+> +	select GPIOLIB
+> +	help
+> +	  This enables the reset driver support for TI TPS380x devices. If
+> +	  you wish to use the reset framework for such devices, say Y here.
+> +	  Otherwise, say N.
+> +
+>  config RESET_TN48M_CPLD
+>  	tristate "Delta Networks TN48M switch CPLD reset controller"
+>  	depends on MFD_TN48M_CPLD || COMPILE_TEST
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index a80a9c4008a7..66399b92b1bb 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -33,6 +33,7 @@ obj-$(CONFIG_RESET_STARFIVE_JH7100) += reset-starfive-jh7100.o
+>  obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
+>  obj-$(CONFIG_RESET_TI_SCI) += reset-ti-sci.o
+>  obj-$(CONFIG_RESET_TI_SYSCON) += reset-ti-syscon.o
+> +obj-$(CONFIG_RESET_TI_TPS380X) += reset-tps380x.o
+>  obj-$(CONFIG_RESET_TN48M_CPLD) += reset-tn48m.o
+>  obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
+>  obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
+> diff --git a/drivers/reset/reset-tps380x.c b/drivers/reset/reset-tps380x.c
+> new file mode 100644
+> index 000000000000..088158f54e6f
+> --- /dev/null
+> +++ b/drivers/reset/reset-tps380x.c
+> @@ -0,0 +1,130 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * TI TPS380x Supply Voltage Supervisor and Reset Controller Driver
+> + *
+> + * Copyright (C) 2022 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> + *
+> + * Based on Simple Reset Controller Driver
+> + *
+> + * Copyright (C) 2017 Pengutronix, Philipp Zabel <kernel@pengutronix.de>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/reset-controller.h>
+> +
+> +struct tps380x_reset {
+> +	struct reset_controller_dev	rcdev;
+> +	struct gpio_desc		*reset_gpio;
+> +	unsigned int			reset_ms;
+> +};
+> +
+> +struct tps380x_reset_devdata {
+> +	unsigned int min_reset_ms;
+> +	unsigned int typ_reset_ms;
+> +	unsigned int max_reset_ms;
+> +};
+> +
+> +static inline
+> +struct tps380x_reset *to_tps380x_reset(struct reset_controller_dev *rcdev)
+> +{
+> +	return container_of(rcdev, struct tps380x_reset, rcdev);
+> +}
+> +
+> +static int
+> +tps380x_reset_assert(struct reset_controller_dev *rcdev, unsigned long id)
+> +{
+> +	struct tps380x_reset *tps380x = to_tps380x_reset(rcdev);
+> +
+> +	gpiod_set_value_cansleep(tps380x->reset_gpio, 1);
+> +
+> +	return 0;
+> +}
+> +
+> +static int
+> +tps380x_reset_deassert(struct reset_controller_dev *rcdev, unsigned long id)
+> +{
+> +	struct tps380x_reset *tps380x = to_tps380x_reset(rcdev);
+> +
+> +	gpiod_set_value_cansleep(tps380x->reset_gpio, 0);
+> +	msleep(tps380x->reset_ms);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct reset_control_ops reset_tps380x_ops = {
+> +	.assert		= tps380x_reset_assert,
+> +	.deassert	= tps380x_reset_deassert,
+> +};
+> +
+> +static int tps380x_reset_of_xlate(struct reset_controller_dev *rcdev,
+> +				  const struct of_phandle_args *reset_spec)
+> +{
+> +	/* No special handling needed, we have only one reset line per device */
+> +	return 0;
+> +}
+> +
+> +static int tps380x_reset_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	const struct tps380x_reset_devdata *devdata;
+> +	struct tps380x_reset *tps380x;
+> +
+> +	devdata = device_get_match_data(dev);
+> +	if (!devdata)
+> +		return -EINVAL;
+> +
+> +	tps380x = devm_kzalloc(dev, sizeof(*tps380x), GFP_KERNEL);
+> +	if (!tps380x)
+> +		return -ENOMEM;
+> +
+> +	tps380x->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(tps380x->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(tps380x->reset_gpio),
+> +				     "Failed to get GPIO\n");
+> +
+> +	/*
+> +	 * Todo:
+> +	 * Add firmware handling to switch between min/typ/max reset time
+> +	 */
+> +	tps380x->reset_ms = devdata->max_reset_ms;
+> +
+> +	tps380x->rcdev.ops = &reset_tps380x_ops;
+> +	tps380x->rcdev.owner = THIS_MODULE;
+> +	tps380x->rcdev.dev = dev;
+> +	tps380x->rcdev.of_node = dev->of_node;
+> +	tps380x->rcdev.of_reset_n_cells = 0;
+> +	tps380x->rcdev.of_xlate = tps380x_reset_of_xlate;
+> +	tps380x->rcdev.nr_resets = 1;
+> +
+> +	return devm_reset_controller_register(dev, &tps380x->rcdev);
+> +}
+> +
+> +static const struct tps380x_reset_devdata tps3801_reset_data = {
+> +	.min_reset_ms = 120,
+> +	.typ_reset_ms = 200,
+> +	.max_reset_ms = 280,
+> +};
+> +
+> +static const struct of_device_id tps380x_reset_dt_ids[] = {
+> +	{ .compatible = "ti,tps3801", .data = &tps3801_reset_data },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, tps380x_reset_dt_ids);
+> +
+> +static struct platform_driver tps380x_reset_driver = {
+> +	.probe	= tps380x_reset_probe,
+> +	.driver = {
+> +		.name		= "tps380x-reset",
+> +		.of_match_table	= tps380x_reset_dt_ids,
+> +	},
+> +};
+> +module_platform_driver(tps380x_reset_driver);
+> +
+> +MODULE_AUTHOR("Marco Felsch <kernel@pengutronix.de>");
+> +MODULE_DESCRIPTION("TI TPS380x Supply Voltags Supervisor and Reset Driver");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.30.2
+> 
+> 
