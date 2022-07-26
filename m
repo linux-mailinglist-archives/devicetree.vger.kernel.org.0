@@ -2,169 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8681C580BC1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 08:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 187D4580BE1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 08:47:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231608AbiGZGnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 02:43:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55140 "EHLO
+        id S237967AbiGZGrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 02:47:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230464AbiGZGnH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 02:43:07 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB19F1B79B;
-        Mon, 25 Jul 2022 23:43:05 -0700 (PDT)
-X-UUID: ed2d3175cf0546bf91be188b386b5082-20220726
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:1323187d-3f50-4f41-8e52-a0f8b96b44e4,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:a77182b3-06d2-48ef-b2dd-540836705165,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: ed2d3175cf0546bf91be188b386b5082-20220726
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1604846816; Tue, 26 Jul 2022 14:42:59 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 26 Jul 2022 14:42:58 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 26 Jul 2022 14:42:58 +0800
-Message-ID: <9c5b85034ec77be80d771ce3a17260453f007728.camel@mediatek.com>
-Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        with ESMTP id S237971AbiGZGrv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 02:47:51 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0D3320BD6
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 23:47:50 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id y11so21128310lfs.6
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 23:47:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=s9ZmYUyCnBVCgn8I0a4gHlUL2QkHakLsoQIE+4rbZIU=;
+        b=VGpYbF8dlaX9HMAQSkAseu3FRNIClR63M+fO6slYmLoTG1/XrAc4OVO6vPaPwU8Cz4
+         jMKYSrZ4mMcPXmgsKZ0aLZCBkVbQLSKSyJz0JqHB/hMhX+MJhvT9r1kAuFDEMEQlt03B
+         wqeqOPwzFIfHTqFV7On6t/vhxbGdpA2255fCzKYTekoXIVPpX6NXG8K8Lgf2M3Jo0Hvy
+         3Ymk2Qaj2mEG6CwkKIqVj7+zG5DnhA1ilLjRQIZrY5bXyQaMRgKLk1AYqEiPbnrdrYSe
+         9hQGy+JRVPHXQg50KbpBmZlk+s2axwmcqBazGYw0wq6TT7IE1EzasLE8EiFXRieT2Iol
+         pPPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=s9ZmYUyCnBVCgn8I0a4gHlUL2QkHakLsoQIE+4rbZIU=;
+        b=4HYSqZW60iRQ9HTYj6K+TSHiN3rIkAj09SuWq99l+mE+zZIJZqNwjdEb1nbMv66IbI
+         obcNe20QpKhMUvjnCNFTwvhcCocz/gbKXC60ausfWTyk8JJXvfmhE6gL4i4QM+6m7x7x
+         ghzW58IVEKzegC9Sa3K+teOAYotSCLQshxKaL2qX1UlUjMDi/5bRa015aYYEPyQRlyQ3
+         4d2QelSuJSwpvoP9rZVyx9ubmwvu4FmBkXnPI6m6XIPfJZjOkuw4SbofTG+rfQIlP/Os
+         efAzUTjQbZAc98Uihiq3cAmUuZO1yhGPUsIF6QfgTKF3CUHsJwaeNoS3b6MOLEpaN2vT
+         gZ8w==
+X-Gm-Message-State: AJIora+ZuZbgMmJcDIDMIAUzNoChy88Dcd8+u9do9XKRhb04QBpnKB0t
+        13KzdcixnPlc4VGjUqogvBWscQ==
+X-Google-Smtp-Source: AGRyM1uiEyJ1nP5zh3TphkWCCynKG5URODiPVpMQc+i4JRYaf/DzC3PAuI3BhnUAkzvZF+62ssNM1Q==
+X-Received: by 2002:a05:6512:3501:b0:48a:712b:a99 with SMTP id h1-20020a056512350100b0048a712b0a99mr5735515lfs.608.1658818069063;
+        Mon, 25 Jul 2022 23:47:49 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id k15-20020a0565123d8f00b0048aab0259c0sm28716lfv.107.2022.07.25.23.47.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Jul 2022 23:47:48 -0700 (PDT)
+Message-ID: <13697702-20fc-5fef-e335-b6765f93d1a0@linaro.org>
+Date:   Tue, 26 Jul 2022 08:47:46 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 2/4] firmware: Samsung: Add secure monitor driver
+Content-Language: en-US
+To:     dj76.yang@samsung.com,
+        "jesper.nilsson@axis.com" <jesper.nilsson@axis.com>,
+        "lars.persson@axis.com" <lars.persson@axis.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?= 
-        <LiangXu.Xu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>
+Cc:     "javierm@redhat.com" <javierm@redhat.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "linux-arm-kernel@axis.com" <linux-arm-kernel@axis.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 26 Jul 2022 14:42:58 +0800
-In-Reply-To: <378f904a445e90d65048ed07a1a55fd8c633f934.camel@mediatek.com>
-References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
-         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
-         <378f904a445e90d65048ed07a1a55fd8c633f934.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        Moon-Ki Jun <moonki.jun@samsung.com>,
+        Sang Min Kim <hypmean.kim@samsung.com>,
+        Wangseok Lee <wangseok.lee@samsung.com>
+References: <aec4ffd0-368d-e71a-06e4-a084138fbab9@linaro.org>
+ <20220713045516epcms1p86b3f6a8795d767faac65eb947405f911@epcms1p8>
+ <CGME20220713045516epcms1p86b3f6a8795d767faac65eb947405f911@epcms1p6>
+ <20220726000429epcms1p6c32018733b1cf87c9f138f76f5c1bdd4@epcms1p6>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220726000429epcms1p6c32018733b1cf87c9f138f76f5c1bdd4@epcms1p6>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-07-25 at 17:16 +0800, CK Hu wrote:
-> Hi, Bo-Chen:
+On 26/07/2022 02:04, Dongjin Yang wrote:
 > 
-> On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > This patch adds a embedded displayport driver for the MediaTek
-> > mt8195
-> > SoC.
-> > 
-> > It supports the MT8195, the embedded DisplayPort units. It offers
-> > DisplayPort 1.4 with up to 4 lanes.
-> > 
-> > The driver creates a child device for the phy. The child device
-> > will
-> > never exist without the parent being active. As they are sharing a
-> > register range, the parent passes a regmap pointer to the child so
-> > that
-> > both can work with the same register range. The phy driver sets
-> > device
-> > data that is read by the parent to get the phy device that can be
-> > used
-> > to control the phy properties.
-> > 
-> > This driver is based on an initial version by
-> > Jitao shi <jitao.shi@mediatek.com>
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
+> On 14/07/2022 04:28, Krzysztof Kozlowski wrote:
+>> On 13/07/2022 06:55, Dongjin Yang wrote:
+>>>  Introduce a driver to provide calls into secure monitor mode.
+>>>  This driver is used for SoCs produced by Samsung Foundry to provide
+>>>  SMC call. This patch supports register read/write request to secure
+>>>  monitor. Also, SMC call request which uses shared memory to exchange
+>>>  the data between kernel and secure monitor.
+>>>  
+>>>  Signed-off-by: Dongjin Yang <dj76.yang@samsung.com>
+>>>  ---
+>>>   MAINTAINERS                              |   2 +
+>>>   drivers/firmware/Kconfig                 |  11 +++
+>>>   drivers/firmware/Makefile                |   1 +
+>>>   drivers/firmware/samsung-smc-svc.c       | 154 +++++++++++++++++++++++++++++++
+>>>   include/linux/firmware/samsung-smc-svc.h |  59 ++++++++++++
+>>>   5 files changed, 227 insertions(+)
+>>>   create mode 100644 drivers/firmware/samsung-smc-svc.c
+>>>   create mode 100644 include/linux/firmware/samsung-smc-svc.h
+>>>  
+>>>  diff --git a/MAINTAINERS b/MAINTAINERS
+>>>  index 6763746c349f..d173043ffb46 100644
+>>>  --- a/MAINTAINERS
+>>>  +++ b/MAINTAINERS
+>>>  @@ -1868,8 +1868,10 @@ F:        arch/arm/boot/dts/artpec6*
+>>>   F:        arch/arm/mach-artpec
+>>>   F:        drivers/clk/axis
+>>>   F:        drivers/crypto/axis
+>>>  +F:        drivers/firmware/samsung-smc-svc.c
+>>>   F:        drivers/mmc/host/usdhi6rol0.c
+>>>   F:        drivers/pinctrl/pinctrl-artpec*
+>>>  +F:        include/linux/firmware/samsung-smc-svc.h
+>>
+>> Same as for bindings - not related to Artpec platforms. Either add
+>> dedicated entry or put it under Samsung SoC.
+>>
 > 
-> [snip]
-> 
-> > +
-> > +static int mtk_dp_training(struct mtk_dp *mtk_dp)
-> > +{
-> > +	short max_retry = 50;
-> > +	int ret;
-> > +
-> > +	do {
-> > +		ret = mtk_dp_train_start(mtk_dp);
-> > +		if (!ret)
-> > +			break;
-> > +		else if (ret != -EAGAIN)
-> > +			return ret;
-> > +	} while (--max_retry);
-> 
-> mtk_dp_train_start() would never return -EAGAIN, so drop this while
-> loop.
-> 
-> Regards,
-> CK
+> This patch is for Artpec8 SoC.
+
+This does not answer my comment at all.
+
+
 > 
 
-Hello CK,
 
-the function will not return -EAGAIN, but we still want to retry 50
-times if mtk_dp_train_start() is failed. If we retry 50 times and it is
-still failed. We can confirm there are some issues for the device.
-
-I will remove the else if of -EAGAIN and keep th while loop.
-
-BRs,
-Bo-Chen
-> > 
-> > +	if (!max_retry)
-> > +		return -ETIMEDOUT;
-> > +
-> > +	ret = mtk_dp_video_config(mtk_dp);
-> > +	if (ret)
-> > +		return ret;
-> > +	mtk_dp_video_enable(mtk_dp, true);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> 
-> 
-
+Best regards,
+Krzysztof
