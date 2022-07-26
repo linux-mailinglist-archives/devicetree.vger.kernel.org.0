@@ -2,186 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC2695815DE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 17:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD202581608
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 17:07:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239476AbiGZPCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 11:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35660 "EHLO
+        id S239604AbiGZPGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 11:06:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238739AbiGZPCE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 11:02:04 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F406F21802
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 08:02:02 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id p10so15545357lfd.9
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 08:02:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M3eaKEqKki8qki5Qb9UhtHWwntPVhLRvYCUBCxNj9YQ=;
-        b=AiM8g9yWAbkS9+J/TBFSAt7ymESNu9mLo+7HhBQMUsThEYK5XHpx+Li+LJM3yz1HKc
-         JEWiCI6JYY8P1UzuKwqy6FhoeRBbYMV5IBV57aBJ6s1S/pxW+IuhcnRQ0ewsmwvLmigi
-         wq/HR0UD9L4fZMIIJbl/tKUG91ZvQlJPeawXaeB9D/wTxRFnqBKyZ08jDYofYXTNH9Gr
-         YBtRGSZtHDEDDMO0i9e7w0VmZhW+J1aKcfiPTdnpQ4sjdpfmTVbGdHvRglcLnXGeGQZQ
-         wwacrfyXpYa4iunxNiOx25bH/6uG9psehXkQU9nWZfqQQ0zB3N1fN7XPoeVt+yJw4QO3
-         xepw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M3eaKEqKki8qki5Qb9UhtHWwntPVhLRvYCUBCxNj9YQ=;
-        b=OD97iOwOe+6v143o5tL7PqxGBUllrZnUX2maSW9Xy564y2t7tvODuHVZOLjgP9EI97
-         zt+pKnDiNcIlzUqTxGnxeeJapduxFH1NrqcGabKMZjDY79lRuEX1Zpqehj0lZX9A2wSk
-         RC/KqywUMa1cs3fwB25Uxq9qwGY4VaXwjWo0l6GKeqbCqzxgb3Ru/xOYMM3Nqkayq8eh
-         Bt1ke8kqpIecGzEwKUS5IGOlehTSqxN6hv0284YKrquDpVNBNm3/9vZgdVh6xF42N08L
-         y1kUJ7q5XAFj4oNzYCIK+3x6or8QNvLNiZoNgAEGz5uMmtDRp1RfwcENhOXIjgeCfaqs
-         bvuQ==
-X-Gm-Message-State: AJIora+190iQcPLfXaJ01C8kGHMpba94tKPlhIp1EhZfu/C7yn8YoF1q
-        qhhTTuaU+rTSe2ORLRuToLTvmniNGaQWy2Sg9ODJRdbP2OzGCg==
-X-Google-Smtp-Source: AGRyM1uvj3g/wzQqWfb045Pdx41ie7mPz5l6Yuz5unfLdcYSECshn91W4YKovkSvKEvnNaqiqHxlbfPutsUrJA3Wc+8=
-X-Received: by 2002:a05:6512:32c5:b0:48a:af79:601e with SMTP id
- f5-20020a05651232c500b0048aaf79601emr501700lfg.373.1658847721311; Tue, 26 Jul
- 2022 08:02:01 -0700 (PDT)
+        with ESMTP id S239556AbiGZPGn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 11:06:43 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D0882ED6B
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 08:06:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1658847998; x=1690383998;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=yok4uHt7PsQrOxWrRFJ3wPkzLA0NCV0ZHAExNDm1PFE=;
+  b=nwW/OH/FMMlAodgOY5Lp+GeToZgxdeMCoX0b/Uj7FOqtuR2lADBd917b
+   5Ig98KD/XCAuKA5GRwSUyZI2Okkrprgy6FZdk5F4ORkXflK7/U7DchSMT
+   sNQNBSM0u8B45T7+vztppfH0RVex8BbzHrTOUNEE29MhzNunBJDCnmnVe
+   qLVAS15HMIWluLJ9fFltNmjuGyXSq76WM/2G6czDImGkWLJZ8KmwBrlr7
+   AqxYJEKemZuTg4AOXvHinENCAIteQt/qWrr7o1jRVQ+aINgMPLETr6z99
+   gV93RcmhLmjpO37dycq1OAwamPMGOGa6FqcrkvarZZP4paTP1ROoYKobg
+   Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10420"; a="349677973"
+X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; 
+   d="scan'208";a="349677973"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2022 08:06:32 -0700
+X-IronPort-AV: E=Sophos;i="5.93,193,1654585200"; 
+   d="scan'208";a="597054386"
+Received: from adamreed-mobl.amr.corp.intel.com (HELO [10.212.70.145]) ([10.212.70.145])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jul 2022 08:06:31 -0700
+Message-ID: <372a1c8c-b70c-c5f9-3a0b-a4d554d5acf2@linux.intel.com>
+Date:   Tue, 26 Jul 2022 10:06:30 -0500
 MIME-Version: 1.0
-References: <20220726062842.18846-1-axe.yang@mediatek.com>
-In-Reply-To: <20220726062842.18846-1-axe.yang@mediatek.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 26 Jul 2022 17:01:25 +0200
-Message-ID: <CAPDyKFpX32bprQMVXo-CYkfB__UL99JVZQ9EKfOWFqA7yh3Mbg@mail.gmail.com>
-Subject: Re: [PATCH v14 0/3] mmc: mediatek: add support for SDIO async IRQ
-To:     Axe Yang <axe.yang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Satya Tangirala <satyat@google.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lucas Stach <dev@lynxeye.de>,
-        Eric Biggers <ebiggers@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kiwoong Kim <kwmad.kim@samsung.com>,
-        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
-        angelogioacchino.delregno@collabora.com, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.11.0
+Subject: Re: [PATCH v3 1/2] ASoC: codecs: add support for ES8326
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     robh@kernel.org, alsa-devel@alsa-project.org,
+        ckeepax@opensource.cirrus.com, Zhu Ning <zhuning0077@gmail.com>,
+        devicetree@vger.kernel.org, tiwai@suse.com,
+        Zhu Ning <zhuning@everest-semi.com>,
+        David Yang <yangxiaohua@everest-semi.com>
+References: <20220726131747.127992-1-zhuning0077@gmail.com>
+ <2f031e44-4d8a-a69f-697f-1bb83ba1f9f9@linux.intel.com>
+ <YuAApMG8XbxOoGIv@sirena.org.uk>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <YuAApMG8XbxOoGIv@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Jul 2022 at 08:28, Axe Yang <axe.yang@mediatek.com> wrote:
->
-> Changes in v14:
-> - add sdio_irq_claimed() judgement condition around msdc irq and pinctrl
->   control in suspend|resume callback
-
-Version 14, applied for next, thanks!
-
-FYI; Since we are relying on an updated behaviour in the
-pm_runtime_force_suspend|resume() helpers, which are queued as a patch
-via Rafael's tree, I am going to withhold my pull-request for a few
-days longer than usual, until Linus has picked up Rafael's
-pull-request, for v5.20-rc1.
-
-Kind regards
-Uffe
 
 
->
-> Changes in v13:
-> - remove state_dat1 related description in mtk-sd.yaml
-> - move device_init_wakeup() to probe stage
-> - remove redundancy SDC_CFG_SDIOIDE bit control in msdc_runtime_suspend()
-> - replace SDC_CFG_SDIOIDE control with __msdc_enable_sdio_irq() function to
->   disable sdio irq when sdio_irq_claimed() return true in msdc_runtime_resume()
-> - restore to use pm_runtime_force_resume|suspend(), to avoid go out directly
->   in force resume, bump up runtime PM usage counter before force suspend.
->
-> Changes in v12:
-> - assign NULL to pins_eint directly instead of using kfree()
->
-> Changes in v11:
-> - remove '_irq' suffix in interrupts-names property
-> - fix yaml example build error
-> - refactor msdc_enable_sdio_irq(), free pins_eint if async irq is not supported
->
-> Changes in v10:
-> - add sample node for SDIO host which support wakeup interrupt in yaml
-> - skip MMC_PM_WAKE_SDIO_IRQ check before enable SDIO async interrupt
-> - add MMC_PM_KEEP_POWER check before SDIO eint pinstate parsing
-> - use dev_pm_set_dedicated_wake_irq_reverse() to correct irq control sequence
-> - set dedicated irq in msdc_enable_sdio_irq() rather than msdc_drv_probe()
-> - remove unnecessary wake irq control, rpm/dpm system shall manage that
-> - move wake irq/msdc irq control back to system suspend phase, use rpm_suspend
->   and rpm_resume to ensure irq control sequence:
->      disable msdc irq -> enable wake irq -> disable wake irq -> enable msdc irq
-> - simplify variables, check pins_eint to know whether wakeup settings are managed
->
-> Changes in v9:
-> - remove pinctrl "state_dat1"
->
-> Changes in v8:
-> - remove maxItems property under pinctrl-names property
->
-> Changes in v7:
-> - add device_init_wakeup() to register SDIO host as wakeup source
->
-> Changes in v6:
-> - abandon cap-sdio-async-irq flag, use wakeup-source flag instead
-> - extend interrupts and pinctrls in mediatek mmc host controller DT documents
-> - add mmc_card_enable_async_irq() to access enable_async_irq flag
-> - simplify wakeup irq implementation with dedicate wake up irq related interface
->
-> Changes in v5:
-> - resort variables to reversed xmas tree order
-> - restore old copyright year range and add current year back
->
-> Changes in v4:
-> - add MMC_CAP2_SDIO_ASYNC_IRQ judge before lookup eint pinctrl
-> - replace spin_lock_irqsave() variant with spin_lock() in eint irq handler
->
-> Changes in v3:
-> - correct abbreviations with capital letters in commit message
-> - replace copyright year with 2022 in mtk-sd.c
-> - remove unnessary pointer casting
-> - adjust variable order to reversed xmas tree
-> - remove a redundant blank line
-> - refine if statement, following standard pattern
->
-> Changes in v2:
-> - change flag name from 'cap-sdio-async-int' to 'cap-sdio-async-irq'
-> - change corresponding macro names from xxx_INT to xxx_IRQ
-> - resort new member in msdc_host structure
-> - refine function msdc_request_dat1_eint_irq()
-> - rename msdc_{suspend,resume} function names, add suffix '_noirq'
-> - add MMC_CAP2_NO_SDIO judgement before parse eint related pin setting
->
-> Axe Yang (3):
->   dt-bindings: mmc: mtk-sd: extend interrupts and pinctrls properties
->   mmc: core: Add support for SDIO wakeup interrupt
->   mmc: mediatek: add support for SDIO eint wakup IRQ
->
->  .../devicetree/bindings/mmc/mtk-sd.yaml       | 50 ++++++++++-
->  drivers/mmc/core/sdio.c                       | 14 +++
->  drivers/mmc/host/mtk-sd.c                     | 86 +++++++++++++++++--
->  include/linux/mmc/card.h                      |  8 +-
->  include/linux/mmc/sdio.h                      |  5 ++
->  5 files changed, 155 insertions(+), 8 deletions(-)
->
-> --
-> 2.25.1
->
->
+On 7/26/22 09:56, Mark Brown wrote:
+> On Tue, Jul 26, 2022 at 09:06:10AM -0500, Pierre-Louis Bossart wrote:
+>> Much improved version, thank you. See additional comments/questions below.
+> 
+>>> +	regmap_write(es8326->regmap, ES8326_CLK_CTL_01, ES8326_CLK_OFF);
+>>> +	regcache_cache_only(es8326->regmap, true);
+>>> +	regcache_mark_dirty(es8326->regmap);
+>>> +
+>>> +	return 0;
+>>> +}
+> 
+>> One question on the interrupt handling: should there be an interrupt
+>> disable on suspend and conversely an interrupt enable on resume?
+> 
+> That shouldn't be needed (in general the interrupt enable/disable stuff
+> shouldn't be needed at all).
+
+isn't there a risk of an interrupt being triggered after all the jack
+detection resources are disabled?
+
+> 
+>>> +	ret = clk_prepare_enable(es8326->mclk);
+>>> +	if (ret) {
+>>> +		dev_err(&i2c->dev, "unable to enable mclk\n");
+>>> +		return ret;
+>>> +	}
+> 
+>> I am not really following what happens if es8326->mclk is NULL. Why
+>> would you call clk_prepare_enable() with a NULL pointer? If you look at
+>> the code in es8326_set_bias_level(), you do test for that case, so why
+>> not here? Something's not right here.
+> 
+>> Could it be that this is a scope issue? This block should be moved under
+>> the scope of the if (!es8236->mclk) test, no?
+> 
+> The clock API will happily consume NULL clocks (it uses NULL as an
+> equivalent to the regulator API's dummy regulator), there's no *need* to
+> skip clock handling if you've got a NULL clock.
+
+Right, so the code in es8326_set_bias_level() can remove the tests for a
+NULL mclk.
