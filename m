@@ -2,91 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C30B5580E6F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 10:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2185580E78
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 10:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237937AbiGZIFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 04:05:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52004 "EHLO
+        id S237981AbiGZIGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 04:06:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230370AbiGZIFA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 04:05:00 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4EF92D1E2
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:04:59 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id ez10so24583455ejc.13
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 01:04:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KBehNnJT8GsO8upB51VneNbMYqsRg1ZW62nLqXxRwjs=;
-        b=ux3qmfJJzCRpmOIlz05amYZpcKjRQdQpSoXtp0phrhdyP/vH1mgjUHF3Cn6q1rAio9
-         sTifpvJhZaL/w1o15nmY3samMbq8yjVXooInCubRXzNUnweXBqGb7HBfR8Gj+zpCCOBp
-         oQ7iNJBYQZseKBKeQ5mv5+SZV5gcJDb6ePE8xWQSg9oGJIpFn/LFsmiSHs/FfYPc29x5
-         0ZrOfpuhyk+7WLYfptEqkETbazvrhXKGkhwVqtYEVIMrQRMiIeEN4MQ0GgqHsD+BL2ue
-         tHXVaL4vP+mJovTLoaaKe2LMP1LY8R2jrMJvrRSVa0fyYpGWxCHVYNgCm4cQAKXxNi/u
-         75LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KBehNnJT8GsO8upB51VneNbMYqsRg1ZW62nLqXxRwjs=;
-        b=fd+gCkYP3EBVEkM+6KT7jyCq4KbLqcev+iP8CMFLzfnCnSHSONYuz47LxFmL35IEpE
-         Wdo3aXzHEyqalTzu/0TyA7KHohibyAba8YOEAi5f+Lxq2oRuy5WB7VOjIva/off/pjef
-         dQQJHPOSEaIRjIXxYjstPhXCkuiIwOKuCpDFAa+9j6q9cPHUrlC1ZVBrmEl9hbpPUpAj
-         iZ0uvtPOIW+c3+bUsHpnhfMoiBGM6DNc0whjZUDq0PTTP2SbTqLrLd0fJpnyu3SY1Nq/
-         mvRRwxopvHZRUiguPtWK2tdis5ST9GQ0VHZOi75nXd5dOgJPJS9lDEQ/xkWBdr7tb+cz
-         oPkg==
-X-Gm-Message-State: AJIora/jF3DEcDSNAgQQJEjoBQYhvTAQSfPRXFySVC/oSYylN4WDcuIM
-        IDcPAdYDFHqWtFScy2Wh5+EWMez26XPuuK+igN2uXQ==
-X-Google-Smtp-Source: AGRyM1vHhcGel5juigG9IuL9lnmZZvwbKcwgfiDrUj2uiwtNoJw8NVE9bwIMb2MaITVezVvKoTnq3AyC7k1VJmVf5x0=
-X-Received: by 2002:a17:906:5a61:b0:72b:1468:7fac with SMTP id
- my33-20020a1709065a6100b0072b14687facmr13030328ejc.440.1658822698053; Tue, 26
- Jul 2022 01:04:58 -0700 (PDT)
+        with ESMTP id S231923AbiGZIGW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 04:06:22 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1B72125C;
+        Tue, 26 Jul 2022 01:06:20 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 86A616601B12;
+        Tue, 26 Jul 2022 09:06:17 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658822778;
+        bh=MNrUc27nvflxHBWPOSWvk/R35+T8mTF6A6eoo+o6KFs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=m8Zq9Vjs+nhENoayJMvgrwpgB5uvGMP+uuYVanZXnTCE8xWHNgUk3AZLPUjabXhQQ
+         hPpcR8z502BdXcVxgjYXZThkEz6BejjZVCYIAjDHTk+Nj3dOiaqOyRpUNciGZoZRsJ
+         HTYZQCIZrLwc9ao/CYRAUsNFJDj7/aB2pKHe2jLMRI3ZD9hjPsqGFuzQOddmBXUOhj
+         u4GHvSffq7ebvMgj7LG2jx18krnOiVywOJA+ZS9RoqGVeA3dlWy6dvEg1X20ddmN5u
+         1TnuhWJs2TWsYwk85gLVnGDvYaC7+7Ay71lETZAlNx4dsx8eQKjV9i2STnttsBsWOn
+         pSQycEr5SJdCA==
+Message-ID: <22404581-c58e-9703-f0c1-ecd6d44db4f5@collabora.com>
+Date:   Tue, 26 Jul 2022 10:06:15 +0200
 MIME-Version: 1.0
-References: <20220723160513.271692-1-Mr.Bossman075@gmail.com> <20220723160513.271692-4-Mr.Bossman075@gmail.com>
-In-Reply-To: <20220723160513.271692-4-Mr.Bossman075@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 26 Jul 2022 10:04:46 +0200
-Message-ID: <CACRpkdZMFdYDssk9B7R-MH7xG8Ukp+ZQpXCRVtPRCS=SFh34mA@mail.gmail.com>
-Subject: Re: [PATCH v5 03/12] dt-bindings: gpio: fsl-imx-gpio: Add i.MXRT compatibles
-To:     Jesse Taube <mr.bossman075@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     linux-imx@nxp.com, robh+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
-        stefan@agner.ch, daniel.lezcano@linaro.org, tglx@linutronix.de,
-        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-        linux@armlinux.org.uk, abel.vesa@nxp.com, dev@lynxeye.de,
-        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
-        leoyang.li@nxp.com, sebastian.reichel@collabora.com,
-        cniedermaier@dh-electronics.com, clin@suse.com,
-        giulio.benetti@benettiengineering.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 4/4] media: mediatek: vcodec: Add mt8188 encoder's chip
+ name
+Content-Language: en-US
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220726040155.17206-1-yunfei.dong@mediatek.com>
+ <20220726040155.17206-4-yunfei.dong@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220726040155.17206-4-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 23, 2022 at 6:05 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
+Il 26/07/22 06:01, Yunfei Dong ha scritto:
+> Getting mt8188's chip name according to encoder compatible name.
+> 
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 
-> Both the i.MXRT1170 and 1050 have the same gpio controller as
-> "fsl,imx35-gpio". Add i.MXRT to the compatible list.
->
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-Bartosz needs to apply this to the GPIO tree, I think it can just be applied
-directly without regard for the rest of the patches.
-
-Yours,
-Linus Waleij
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
