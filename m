@@ -2,71 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2115D581B6A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 22:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1312F581B94
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 23:10:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231741AbiGZU7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 16:59:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49680 "EHLO
+        id S232083AbiGZVKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 17:10:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232123AbiGZU7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 16:59:16 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D559639BAA
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 13:59:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=k1; bh=hh0OnAI3WNadxjorlRx0y3mS/Dm
-        KeAT9zoPzdkbsBfE=; b=Zf/pA5GPtLiko+b2zs+1LS8kY5lGE+4pddMfVFulkPh
-        +V8lQuOK9Pe6l3HHzS1m5OmVIHEx+6982Gk0zxaLvpNPw/3FYEiWhxVK5uWF+/iK
-        ob7dqC8MRzWQkdB05pVSbUC9Ig7Yef6Ydf0c9ijaEvGgbW2pA6zuclMo9iCLTBJQ
-        =
-Received: (qmail 2809622 invoked from network); 26 Jul 2022 22:59:09 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Jul 2022 22:59:09 +0200
-X-UD-Smtp-Session: l3s3148p1@2OfQkbvkdnpZD+/I
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S231972AbiGZVKR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 17:10:17 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDBBB55AD;
+        Tue, 26 Jul 2022 14:10:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4F32AB81E94;
+        Tue, 26 Jul 2022 21:10:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25E12C433D6;
+        Tue, 26 Jul 2022 21:10:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658869814;
+        bh=v5jGtt7mTprjQRklJAlQCvOSDiZyJZoNBV2t2UvJux4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pF9YPjEkSZDoYZs4+SxkRk/fQhw6va6jUeRuZO3IEioI3xIQ+04xhw+DaHaZmblZN
+         kHFcsHw/FNm6yoljSmJ4+qqbqpMQ61tDFNSpANRlUwJxLDjoYN4ZtsZ+OIsh/aR/cJ
+         mPSFG+gYTxb+WXYtRr5LIhb/1QNacK8Mi9dOX2yiXSbAo+CdUpFrPhAUHishEolx8G
+         DQicONOn7/br74tKD//JDY2KhQi4HkzSDXqO+0F60f5piajO+5PAnKjQ/19PzLMqUn
+         6yh3wsEnmurL9I5qjivDJHn+DVQAoTCj+xZUayaRsR7pfunIVry5G3M7zwi6zk6P3Q
+         LiRNnpe1zf0sg==
+Date:   Tue, 26 Jul 2022 23:10:09 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org
+Subject: Re: [PATCH 13/22] dt-bindings: i2c: i2c-rk3x: Document Rockchip
+ RV1126
+Message-ID: <YuBYMZ8N2GXazKF3@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Jagan Teki <jagan@edgeble.ai>, Heiko Stuebner <heiko@sntech.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: timer: renesas,tmu: Add r8a779f0 support
-Date:   Tue, 26 Jul 2022 22:58:57 +0200
-Message-Id: <20220726205858.1199-1-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.35.1
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org
+References: <20220723204335.750095-1-jagan@edgeble.ai>
+ <20220723204335.750095-14-jagan@edgeble.ai>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="OkwOcuDiD4hVOZSg"
+Content-Disposition: inline
+In-Reply-To: <20220723204335.750095-14-jagan@edgeble.ai>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- Documentation/devicetree/bindings/timer/renesas,tmu.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-index c57169118b68..60f4c059bcff 100644
---- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-+++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-@@ -37,6 +37,7 @@ properties:
-           - renesas,tmu-r8a77990 # R-Car E3
-           - renesas,tmu-r8a77995 # R-Car D3
-           - renesas,tmu-r8a779a0 # R-Car V3U
-+          - renesas,tmu-r8a779f0 # R-Car S4-8
-       - const: renesas,tmu
- 
-   reg:
--- 
-2.35.1
+--OkwOcuDiD4hVOZSg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Sun, Jul 24, 2022 at 02:13:26AM +0530, Jagan Teki wrote:
+> Document compatible string for Rockchip RV1126 SoC.
+>=20
+> Cc: linux-i2c@vger.kernel.org
+> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+
+Applied to for-next, thanks!
+
+
+--OkwOcuDiD4hVOZSg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmLgWCoACgkQFA3kzBSg
+KbaXnA//aBroGAh2q2ivFSQZSL5UMqCj+lNeKrhEetiPfzUoXybnJZBO/q3qCBKq
+mEXvu7ADLc94BTZ+lgWwqSiWpB0zp7vIEHN3qN1Qkl6hOb6cTw6W0XljKnvnZRL5
+5C23Q9qyHZDZ38XxEc4u6njPG+ltl+lxALaWvhpvyyCcMMxauooxHlhjPRXcaoJg
+92AquZzCguxd9AnKpCWqtFW3F9VtSqou+voJ/+pH4247KSRiJ0AjGhZjTchnMvw4
+aT/uDm1Jb1yh8LnbonRrCZGR6h/n5WqQHV1g8B6LtThX3JO4KS27LXd7H8wQoD8V
+GCCGFAI2KY4FxmELttb/DkdkG1JV9pmQYwRwnsIO4FaFkY4pXbEAbC7Z721qw34H
+ZOaIHIgRF/PlDdbwASaOlelTMsnjqkNKOwM86TRDCvcP/Cgx2IkQ34TMrrpOMbTC
+Yhgs6IEe4YTSm/N3wZ3uknIKBRTAz0o6fkZYGl1GZoK5QyR4Zy6qnis851DawHe8
+E7IqMV+TUek8RN759KlJLqwNZO702BWoTb+c5ZCB8Mu1GquYLyy4/Nw1raefGF6A
+U2Sv2etnlMS3PpyC9+IDNsyY3qy1+PISjM3SuLIKvXKg0x2bn7ThUlrwKA9I0wI1
+Bqak5MAQtO5BJVM4YbBZA/j5gpl9aUDDL+c3Wa4j1HZoVBKKCpI=
+=REHw
+-----END PGP SIGNATURE-----
+
+--OkwOcuDiD4hVOZSg--
