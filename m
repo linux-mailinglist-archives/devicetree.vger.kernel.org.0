@@ -2,135 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45BCC5813AB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 14:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A11F05813CA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 15:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239016AbiGZM45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 08:56:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52052 "EHLO
+        id S232995AbiGZNFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 09:05:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238166AbiGZM4i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 08:56:38 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4C4275D1
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:36 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id id17so8696816wmb.1
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 05:56:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:date:subject:mime-version:content-transfer-encoding:message-id
-         :references:in-reply-to:cc;
-        bh=Pv8Wb/XUfgDvlUBb7xZCItYlnc14Qbd8klbk0fBR/cI=;
-        b=JQC0LDeiyCTONLO9wJzCR3DZayr2OeSY97UtihVtK2Bg//mORTzwXNPQ+3bZvguNmQ
-         G8HgNDfEkkPic2mCzlej2yTg5sJBWpWQOKJW4hmFNVLOtUNlTHZLmvnLaYTGO57swON9
-         JnMb07hRleek6DOVe9ppMcxjCwr4KlqQ5aYSfJsjWJ43VFGGsOTp1NkHXUuBaFtIwwkt
-         /bgJS8DYAK1Zn8Fw53JRW+sZoWXXjJs3uWAfYWySQg+Yc5Wpnwa6Ee7Xuue3cpQ89FD+
-         e5reycwqnH7QxWvpijS7glQJuXIBJEVn4DgeAUml+0SWnmHj/ADspwBVxwBwtXp/TTOc
-         0OTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:date:subject:mime-version
-         :content-transfer-encoding:message-id:references:in-reply-to:cc;
-        bh=Pv8Wb/XUfgDvlUBb7xZCItYlnc14Qbd8klbk0fBR/cI=;
-        b=uBC69LMW9Fk5v566yy3xhw1psR11rHnnJ4gE5w+EOXAo08hYda8eS7hTq27m4K/Vku
-         cuDQEKvkqSucv2lUgKFuA+Tp6pAgPcz7UrbnaAWA1kzc0ieobfWE93THyyjgZDpInHL7
-         1pT/au0u/bWyx+vVK2z5obCe1xM4vHCX54A6MhQCSX3g1qr4il5C/ngkXUUGm5vB9aul
-         9STyDDWWgUntpr/btZJq0lKtmYdlrXhMfA3wa4j/GxWhddYTJ2wPqJUqRWMuJdvs8Mqq
-         Q7gVg9guliBH+V9TMv15KkzVtNn2SLGX3Cr1l0ikqziSCZUg0Tvokg10e2LcD2AB2L22
-         bN/g==
-X-Gm-Message-State: AJIora/n0SvU7KpUNezOL0C1x9BAurPnKL4AePX95QdfaAGUf6yTbcDh
-        NSdQb2WNlsxElSFGTH8MfuyNiw==
-X-Google-Smtp-Source: AGRyM1vvvRdQPmoQCB+VQgE8Mf8j6lPcMzabj6A5fEyQBKVFOEwxFB9YOwKu5xXK1jyzEiBm23752g==
-X-Received: by 2002:a05:600c:19cc:b0:3a3:3cfe:d548 with SMTP id u12-20020a05600c19cc00b003a33cfed548mr12225185wmq.6.1658840196274;
-        Tue, 26 Jul 2022 05:56:36 -0700 (PDT)
-Received: from [192.168.2.253] ([82.66.159.240])
-        by smtp.gmail.com with ESMTPSA id k1-20020adff5c1000000b0020fff0ea0a3sm14171549wrp.116.2022.07.26.05.56.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 05:56:35 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Date:   Tue, 26 Jul 2022 14:56:12 +0200
-Subject: [PATCH v2 7/7] arm64: dts: mediatek: mt8183-pumpkin: add keypad support
+        with ESMTP id S233016AbiGZNFh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 09:05:37 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F4522B04
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 06:05:36 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oGKFb-0002fo-P2; Tue, 26 Jul 2022 15:05:27 +0200
+Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oGKFa-003JvN-CB; Tue, 26 Jul 2022 15:05:26 +0200
+Received: from mfe by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1oGKFZ-00CWk3-Ib; Tue, 26 Jul 2022 15:05:25 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/4] ARM: dts: imx6qdl-kontron-samx6i: move phy reset into phy-node
+Date:   Tue, 26 Jul 2022 15:05:20 +0200
+Message-Id: <20220726130523.2985735-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20220720-mt8183-keypad-v2-7-6d42c357cb76@baylibre.com>
-References: <20220720-mt8183-keypad-v2-0-6d42c357cb76@baylibre.com>
-In-Reply-To: <20220720-mt8183-keypad-v2-0-6d42c357cb76@baylibre.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Fabien Parent <parent.f@gmail.com>
-X-Mailer: b4 0.10.0-dev-78725
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,MISSING_HEADERS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabien Parent <fparent@baylibre.com>
+Add ethernet-phy node so we can drop the deprecated fec phy-reset-gpios
+property. The reset-assert-us value is taken from the existing logic
+since the fec driver will add an 1ms assert delay per default if
+phy-reset-gpios is used and phy-reset-duration is not specified.
 
-Add device-tree bindings for the keypad driver on the MT8183 Pumpkin
-board.
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+ arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
-The MT8183 Pumpkin board has 2 buttons connected using: KPROW0,
-KPROW1 and KPCOL0.
-
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-index 530e0c9ce0c9..a1d01639df30 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-@@ -7,6 +7,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
- #include "mt8183.dtsi"
- #include "mt6358.dtsi"
- 
-@@ -122,6 +123,18 @@ &i2c6 {
- 	clock-frequency = <100000>;
- };
- 
-+&keyboard {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&keyboard_pins>;
-+	status = "okay";
-+	linux,keymap = <MATRIX_KEY(0x00, 0x00, KEY_VOLUMEDOWN)
-+			MATRIX_KEY(0x01, 0x00, KEY_VOLUMEUP)>;
-+	keypad,num-rows = <2>;
-+	keypad,num-columns = <1>;
-+	debounce-delay-ms = <32>;
-+	mediatek,keys-per-group = <2>;
-+};
+diff --git a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+index 095c9143d99a..7001c8c5e19b 100644
+--- a/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-kontron-samx6i.dtsi
+@@ -270,7 +270,19 @@ &fec {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_enet>;
+ 	phy-mode = "rgmii";
+-	phy-reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
++	phy-handle = <&ethphy>;
 +
- &mmc0 {
- 	status = "okay";
- 	pinctrl-names = "default", "state_uhs";
-@@ -226,6 +239,14 @@ pins_cmd_dat {
- 		};
- 	};
- 
-+	keyboard_pins: keyboard {
-+		pins_keyboard {
-+			pinmux = <PINMUX_GPIO91__FUNC_KPROW1>,
-+				 <PINMUX_GPIO92__FUNC_KPROW0>,
-+				 <PINMUX_GPIO93__FUNC_KPCOL0>;
++	mdio {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy: ethernet-phy@1 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			reg = <1>;
++			reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <1000>;
 +		};
 +	};
-+
- 	mmc0_pins_default: mmc0-pins-default {
- 		pins_cmd_dat {
- 			pinmux = <PINMUX_GPIO123__FUNC_MSDC0_DAT0>,
-
+ };
+ 
+ &i2c_intern {
 -- 
-b4 0.10.0-dev-78725
+2.30.2
+
