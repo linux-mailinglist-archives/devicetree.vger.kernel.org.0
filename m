@@ -2,111 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F519581814
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 19:08:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B4E458183E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 19:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230208AbiGZRIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 13:08:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40646 "EHLO
+        id S230473AbiGZRTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 13:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232363AbiGZRID (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 13:08:03 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32D9124BCA
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 10:08:01 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id d8so20940829wrp.6
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 10:08:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Jzo7E3iuffF68CMucGWsT/yGzhnjiXcilx74DK/3MzI=;
-        b=PJwcnD/GOZLAyqo5HYBp+ugAHaWK3jD+s39TePD+rKuCuI6iI14Xay2w+UOL0js0v6
-         LSBHiEPB44Ii2OaSGoDqNOVSO6rNg69fZ7u0WIM6Le6oRMF2IRUbOBE0P+5dIMhS9yGa
-         QC+F0XyZryu1sFqAVoIRgh46Ge6GRHy1WkUhbRG8gjFB5aNyx26K2hN41i4YG7PvuOCR
-         qf2apmc2qvQe6Azfk9JX5P9HelPwx7VJwIQamSA2IvtkS0pvhPy9Hm+mGBmhrdG9C2hq
-         YvnISfSwHYV42XaarrfP6SM31clvkoOOFn/3MvggwSxR06Rcuh2QbKN3LYeFiRPBr0y1
-         VnUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Jzo7E3iuffF68CMucGWsT/yGzhnjiXcilx74DK/3MzI=;
-        b=ib2UqWRXLKEhLMdRxFytPe9aiXcyXsBULKxYJdw33i4d269/edehlDO1jPwVOh/3oi
-         kxSaOWLUE5Wvi2Tb1owcfBgcSmgjCtKz4UAvDGPH5oknTTj2u1q8SZ+lBWCAlkg83uhn
-         f7m138AqQUc+wiedRwPzAIvnQwG2bJNjTZMNWoNJLUQz1o+Psp6tDWgtbGO/sz/INClG
-         cHfqECdIAvglzslEYYgf/WYrEQzNt32iOqKG/TChLYofnSfxp6Y8dAYkekOf/VgczMtm
-         fokWNCTi10mSmC3yYdUOwJNKJum+ICgWDYDSW5cFvNzLq4R4HM51cjwATsC/ZXj4wfsH
-         PDjw==
-X-Gm-Message-State: AJIora8LoGOdAn8DMa4oCxY3uiwFCgZyD0SVdqh/tvqHmOc9K5nev6lh
-        Oq4N4QqGPGsNgEKUSTzBF6WbmA==
-X-Google-Smtp-Source: AGRyM1tirn6tXbKRAXaMvkLrwVqgAF4lGynuVfCpdqZGZCoxCIG6G3hqB0PYq/iIx1kid07GWxSsVg==
-X-Received: by 2002:adf:eec2:0:b0:21e:61cd:64c7 with SMTP id a2-20020adfeec2000000b0021e61cd64c7mr11543092wrp.324.1658855279436;
-        Tue, 26 Jul 2022 10:07:59 -0700 (PDT)
-Received: from henark71.. ([109.76.124.168])
-        by smtp.gmail.com with ESMTPSA id r17-20020a5d52d1000000b0021d68a504cbsm14859618wrv.94.2022.07.26.10.07.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 10:07:58 -0700 (PDT)
-From:   Conor Dooley <mail@conchuod.ie>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230170AbiGZRTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 13:19:40 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D0C1A051;
+        Tue, 26 Jul 2022 10:19:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1658855976;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=uaTIlHXasK14UazWIZQ5J2yjUjFXPsbpUf42M8f9VKM=;
+    b=gvrPlAyjpM6IenLkD2ogLNmZZyAieUbVVItaRfJxnKVysjU4PbhAQfHb/Q5Z2PAsHZ
+    pQFp8iQY117uBgRq8A03kUpD+T064ZIwLYiR/x4/MeUtHDeA5xFo5uW6ENFVwHNT0iO5
+    epUbQBHtUsgK48cOE20W3Jb7xyh34cc31EiVqV9CCqamqlMOEMon1/O9c5Q92lcbcVjm
+    F9vvSeH4FlJgmf8wRjlsr3ywhEYVfBWVn9bzddKYBl8re6MoQdlQl4QwTZhaYMvCAYTF
+    xLz+l73Bxab+IIFuGArHzb0g/C4dwuWbv+Iv0Kc+aMYygv4bRNVRoPwwCd3L38nwa+LM
+    RTmA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrKw7/aY="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.47.0 AUTH)
+    with ESMTPSA id u1045ey6QHJZ3UF
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 26 Jul 2022 19:19:35 +0200 (CEST)
+Date:   Tue, 26 Jul 2022 19:19:18 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        Stephan Gerhold <stephan.gerhold@kernkonzept.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Atul Khare <atulkhare@rivosinc.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] dt-bindings: sifive: add gpio-line-names
-Date:   Tue, 26 Jul 2022 18:07:26 +0100
-Message-Id: <20220726170725.3245278-3-mail@conchuod.ie>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220726170725.3245278-1-mail@conchuod.ie>
-References: <20220726170725.3245278-1-mail@conchuod.ie>
+        Sireesh Kodali <sireeshkodali1@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] dt-bindings: remoteproc: qcom,q6v5: Move MSM8916
+ to schema
+Message-ID: <YuAh/ahbNiiQL5Ge@gerhold.net>
+References: <20220718140344.1831731-1-stephan.gerhold@kernkonzept.com>
+ <20220718140344.1831731-3-stephan.gerhold@kernkonzept.com>
+ <20220720224608.GA4107504-robh@kernel.org>
+ <Ytmw41giZ/4S+Pp0@gerhold.net>
+ <27b0d451-4cef-cfc3-c6ae-3bb6cb448083@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <27b0d451-4cef-cfc3-c6ae-3bb6cb448083@linaro.org>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Atul Khare <atulkhare@rivosinc.com>
+On Sat, Jul 23, 2022 at 10:41:53PM +0200, Krzysztof Kozlowski wrote:
+> On 21/07/2022 22:02, Stephan Gerhold wrote:
+> > What remains is maybe:
+> > 
+> >   - "qcom,smem-states", which is already used in several other schemas
+> >     and could be possibly defined together with #qcom,smem-state-cells
+> >     in some generic schema(?)
+> > 
+> >   - "qcom,halt-regs", "firmware-name", "smd-edge" are used by different
+> >     Qualcomm remoteproc drivers, so they could possibly be defined in
+> >     some common "qcom-remoteproc.yaml" schema(?)
+> 
+> smd-edge and glink is already in remoteproc/qcom,smd-edge.yaml
+> qcom,glink-edge.yaml
+> 
 
-Fix device tree schema validation messages like 'gpio-line-names'
-does not match any of the regexes: 'pinctrl-[0-9]+' From schema: ...
-sifive,gpio.yaml'.
+Yep, I'm actually using it already in this patch. I think what I meant
+is that the smd-edge property $ref could be already defined in a common
+"qcom-remoteproc.yaml" schema and inherited via allOf, since all the
+qcom remoteprocs should have either a smd-edge or glink-edge.
 
-The bindings were missing the gpio-line-names element, which was
-causing the dt-schema checker to trip-up.
+But all in all I'm still unsure which "common properties" Rob is
+referring to here, in which file to place them, and if this is worth it
+at all for the few I have listed above... :-)
 
-Signed-off-by: Atul Khare <atulkhare@rivosinc.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- Documentation/devicetree/bindings/gpio/sifive,gpio.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-index 939e31c48081..fc095646adea 100644
---- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-@@ -46,6 +46,10 @@ properties:
-     maximum: 32
-     default: 16
- 
-+  gpio-line-names:
-+    minItems: 1
-+    maxItems: 32
-+
-   gpio-controller: true
- 
- required:
--- 
-2.37.1
-
+Thanks,
+Stephan
