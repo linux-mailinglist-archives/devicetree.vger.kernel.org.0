@@ -2,101 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A8D458126C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55740581272
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 13:58:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233269AbiGZL46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 07:56:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34678 "EHLO
+        id S233355AbiGZL6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 07:58:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233161AbiGZL45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:56:57 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75DAB23165
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:56:55 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id z13so15834185ljj.6
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:56:55 -0700 (PDT)
+        with ESMTP id S238365AbiGZL57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 07:57:59 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB98332DBA
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:57:57 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id p22so6427663lji.10
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 04:57:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=TAHEOLzaHMhB/R8obx1qh3L9mwNu890hdYFNO4ta0OM=;
-        b=yQK5s3GspTALLdHqa+rtwIEKYyWUu4dUa5ZeKNxiig3FJRe/0AhB8cU8JngZV6HsRv
-         Hulx+jPNzgQqJ6t3H8sdsjTn+KzZnHMOsDXGRtV8v2YyARZBoFyCdUhFWhWnzptmj2ts
-         dj8qJ5aaDvEoSWa0OfJPLl0rs+fzfL81qcaZE2dftDekbdV2SdlCZPFx0xOsxA6JWDZp
-         F4F9Bn7FCFCi8sXv46EebTNY4yOXt+KuoXrB8a1hto+Jk+2mPg1ENlSa9TLzG7XuGECS
-         le3xMvlBAbhrmot5l3aUC1zEztm1F8MlvAi/PnfXHXhjX7wun9j7PApC3RnY/hXXU2oF
-         1zSQ==
+        bh=ZwkQZasg6IBuIX69FQ87eiIi43RzDJyxPSLaxovlxC4=;
+        b=kYqEifC17FN7TtUjiBjuAmb1wrChjCst87iBC8TDZ7+xc8vNgwBl2B/DHmo4mtsUTk
+         ukHgvpU7hg4sndI3GIByDjcaQPJeBlvQr8pYw+n9B7CX8aDi+7QwW8qL+4zmVIHZe9rD
+         zDqLjIx9UR84zUhofG2J+SbCH9xpzcmW6j2abK87ChShLIwY+IkusBLVayEyUfEVUuZH
+         as5eQOemkZMLR1sbfhY1Sd4wMqv4fw+pvLTxsnhqbpBea6C5A8Qb0jVVqeqLgaqQa/56
+         RbYJvEoLI5xxRb9DURsh2h4t39Cy/0nkA3xIDdOUEltZFfLFnouXJb0kFRvTngXQ9Wvf
+         BgGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=TAHEOLzaHMhB/R8obx1qh3L9mwNu890hdYFNO4ta0OM=;
-        b=IA92DdEVNYckvKp6H8VUPwDVXAQx23AGvUKMR9NSLkKgfkHz6PdDArzDguGwulFWCi
-         6mS10vlaU6RcnGe50XvG10r7G0OPB4fC7WXKaDsBgm9NT+7KHU9vvtMZntoRiewvwknp
-         bV2PJOVX3knJ8/0+opyVC+h68kazm1ssJB7xHeGrHRQDa1IbXW8a3sF9gglCLdrAzk5I
-         ApcmgOiQoADrHmd111xoP87I76z2PW+NdFV5vJGoRaLajI0Qe3uq8SaIJn7lbJa241B+
-         O8nmi5q5edqQmNdRillgjPy83zL6+OA7ca4v6Yu32gcuRFs8yn8dtxhB9bJPgNBK9XQe
-         xPyw==
-X-Gm-Message-State: AJIora/XCx38sAEw6HrWyvmzgExNoAUoXdLM5LeTBk1nTlCmO7RY8oer
-        7QdN5dzDWBCSH0YQ89FiKL8RUw==
-X-Google-Smtp-Source: AGRyM1s4hyIhGMLZduwwn3bvD/SpcPD4uNToHpf0h42ygdzmQGaT1n+CNuLn/vzvcTRjLdzq2lxfdg==
-X-Received: by 2002:a2e:8706:0:b0:25e:1029:c6d9 with SMTP id m6-20020a2e8706000000b0025e1029c6d9mr1888294lji.502.1658836613650;
-        Tue, 26 Jul 2022 04:56:53 -0700 (PDT)
+        bh=ZwkQZasg6IBuIX69FQ87eiIi43RzDJyxPSLaxovlxC4=;
+        b=zphRPIVTUEVs+Dqc5ovaekm3jJYPEaXVfBVxlKO44rqfAvJiZJpzRSOijFiQE3bRS/
+         pi8aMVNSnATXvwCiv2lkbKTZdrANGmK2msP5Pa8gZqoLlze9Xnb7aVSaIJl3WX1xUzos
+         nwrzwlStF/XSP5769HV+ONsy81enBLG5cYVcVZigQ4ycbxBPXCKWQozbonjj4pqWbqCc
+         71ojWEbewJFGGlb2c1XRVood4G56j2rT1kxWUXiNFHZoWnRTWGbbB031030BplgYYFIx
+         9F9QqoNILd/5pWBXJe/1tXO0cVAO2gNM/37aDJ9JA6USAqKlOmDgWSzm10a5hUvdYx0+
+         TydA==
+X-Gm-Message-State: AJIora97Gb+/1kz+qQWTOuNsjuhascgLSZRuT5xwppq7wSqISB91JOKw
+        YBC2H7kFmNdiWTdRciH/MfcqLA==
+X-Google-Smtp-Source: AGRyM1sbTSItTpSSwTcmlDwnnQpx/0JkNaISSUBsOMOvGMIufatVh9gvLfu9MyNfud5Jhd7RQsdUlg==
+X-Received: by 2002:a05:651c:1208:b0:25e:141e:63a7 with SMTP id i8-20020a05651c120800b0025e141e63a7mr1085274lja.513.1658836675690;
+        Tue, 26 Jul 2022 04:57:55 -0700 (PDT)
 Received: from krzk-bin.lan (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id n20-20020a2ebd14000000b0025de9ff35b4sm2904862ljq.35.2022.07.26.04.56.52
+        by smtp.gmail.com with ESMTPSA id g24-20020a19e058000000b0048a7d05739asm222219lfj.4.2022.07.26.04.57.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 04:56:52 -0700 (PDT)
+        Tue, 26 Jul 2022 04:57:55 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Kurt Kanzenbach <kurt@linutronix.de>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sebastian Reichel <sre@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        David Lechner <david@lechnology.com>,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Purism Kernel Team <kernel@puri.sm>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        =?UTF-8?q?Fern=C3=A1ndez=20Rojas?= <noltari@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Klein <michael@fossekall.de>,
+        Dan Murphy <dmurphy@ti.com>,
+        Ricardo Rivera-Matos <r-rivera-matos@ti.com>,
+        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+        "Andrew F. Davis" <afd@ti.com>, Tony Lindgren <tony@atomide.com>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        David Heidelberg <david@ixit.cz>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: net: hirschmann,hellcreek: use absolute path to other schema
-Date:   Tue, 26 Jul 2022 13:56:50 +0200
-Message-Id: <20220726115650.100726-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: power: drop quotes when not needed
+Date:   Tue, 26 Jul 2022 13:57:46 +0200
+Message-Id: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Absolute path to other DT schema is preferred over relative one.
+Id and schema fields do not need quotes.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml      | 4 ++--
+ .../devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml     | 4 ++--
+ .../devicetree/bindings/power/apple,pmgr-pwrstate.yaml        | 2 +-
+ .../devicetree/bindings/power/brcm,bcm63xx-power.yaml         | 4 ++--
+ Documentation/devicetree/bindings/power/renesas,apmu.yaml     | 4 ++--
+ .../devicetree/bindings/power/renesas,rcar-sysc.yaml          | 4 ++--
+ 6 files changed, 11 insertions(+), 11 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-index 5592f58fa6f0..228683773151 100644
---- a/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-@@ -48,7 +48,7 @@ properties:
-       "^led@[01]$":
-         type: object
-         description: Hellcreek leds
--        $ref: ../../leds/common.yaml#
-+        $ref: /schemas/leds/common.yaml#
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+index 4e52ef33a986..5390e988a934 100644
+--- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+@@ -2,8 +2,8 @@
+ # Copyright 2019 BayLibre, SAS
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/amlogic,meson-ee-pwrc.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/amlogic,meson-ee-pwrc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
  
-         properties:
-           reg:
+ title: Amlogic Meson Everything-Else Power Domains
+ 
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+index 86e5f6513bb3..eab21bb2050a 100644
+--- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+@@ -3,8 +3,8 @@
+ # Author: Jianxin Pan <jianxin.pan@amlogic.com>
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/amlogic,meson-sec-pwrc.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/amlogic,meson-sec-pwrc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Amlogic Meson Secure Power Domains
+ 
+diff --git a/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
+index 19a194980142..94d369eb85de 100644
+--- a/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
++++ b/Documentation/devicetree/bindings/power/apple,pmgr-pwrstate.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Hector Martin <marcan@marcan.st>
+ 
+ allOf:
+-  - $ref: "power-domain.yaml#"
++  - $ref: power-domain.yaml#
+ 
+ description: |
+   Apple SoCs include PMGR blocks responsible for power management,
+diff --git a/Documentation/devicetree/bindings/power/brcm,bcm63xx-power.yaml b/Documentation/devicetree/bindings/power/brcm,bcm63xx-power.yaml
+index 63b15ac6dde4..d867bd6976d8 100644
+--- a/Documentation/devicetree/bindings/power/brcm,bcm63xx-power.yaml
++++ b/Documentation/devicetree/bindings/power/brcm,bcm63xx-power.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/brcm,bcm63xx-power.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/brcm,bcm63xx-power.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: BCM63xx power domain driver
+ 
+diff --git a/Documentation/devicetree/bindings/power/renesas,apmu.yaml b/Documentation/devicetree/bindings/power/renesas,apmu.yaml
+index d77fc88050c8..f2cc89e7f4e4 100644
+--- a/Documentation/devicetree/bindings/power/renesas,apmu.yaml
++++ b/Documentation/devicetree/bindings/power/renesas,apmu.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/renesas,apmu.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/renesas,apmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Renesas Advanced Power Management Unit
+ 
+diff --git a/Documentation/devicetree/bindings/power/renesas,rcar-sysc.yaml b/Documentation/devicetree/bindings/power/renesas,rcar-sysc.yaml
+index 8d56bedd3390..0720b54881c2 100644
+--- a/Documentation/devicetree/bindings/power/renesas,rcar-sysc.yaml
++++ b/Documentation/devicetree/bindings/power/renesas,rcar-sysc.yaml
+@@ -1,8 +1,8 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: "http://devicetree.org/schemas/power/renesas,rcar-sysc.yaml#"
+-$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++$id: http://devicetree.org/schemas/power/renesas,rcar-sysc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+ title: Renesas R-Car and RZ/G System Controller
+ 
 -- 
 2.34.1
 
