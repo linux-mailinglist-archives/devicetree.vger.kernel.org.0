@@ -2,208 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA4465810C5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 367025810CD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232883AbiGZKHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 06:07:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39654 "EHLO
+        id S238211AbiGZKI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 06:08:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232909AbiGZKHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:07:04 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5453864F9;
-        Tue, 26 Jul 2022 03:07:00 -0700 (PDT)
-X-UUID: d8449a038d6e4e6797faf78e8f294378-20220726
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:81a6d707-a1c8-4a0a-980b-7b1c2322e53f,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:7ab00fee-db04-4499-9fdf-04ef44b9468c,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: d8449a038d6e4e6797faf78e8f294378-20220726
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1403125518; Tue, 26 Jul 2022 18:06:53 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Tue, 26 Jul 2022 18:06:51 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Tue, 26 Jul 2022 18:06:51 +0800
-Message-ID: <c70db24fb66f844a2b53c229fff6e943e99398db.camel@mediatek.com>
-Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        "Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?=" 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?=" 
-        <LiangXu.Xu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 26 Jul 2022 18:06:50 +0800
-In-Reply-To: <80f223c8ecf262a62feb047d39b9ea2d8655fd14.camel@mediatek.com>
-References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
-         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
-         <378f904a445e90d65048ed07a1a55fd8c633f934.camel@mediatek.com>
-         <9c5b85034ec77be80d771ce3a17260453f007728.camel@mediatek.com>
-         <80f223c8ecf262a62feb047d39b9ea2d8655fd14.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S238102AbiGZKIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:08:25 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00819CE0C
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:08:23 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id q23so8698620lfr.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:08:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ojyQ+PqrBED/t+SyNTD5eQfcGUJ/2jWYDAqwjA90+Dg=;
+        b=KSYw/sS1ZIaAzFICjc+coAWpU38KFcf7YQ7tVCLB9t6ZqjWBYIe+RyFSm6+EDXb/vo
+         k6OJ1tn/VDioRkMAvuTkxArqROpCYZCvqiF+Ybzii0DaQraJ587KGvv1QZ0K+tC/fp3b
+         QEok5SX/JMaqzC3b2znbhZOADRbtuP+5pA/8i0Mgu1/fRmsOD8xXhSseh4OiFQ0uEyv+
+         EU30e6vxXYD4bLcVzRWEE/+0GW9RD0Hjp+yqc1oePfurnmensGzWX1A0xiN3GtKd+YVB
+         CSD2IP477jOFTgLSkN8ijnpDK9QQnlmD/Z/ARNP00EX40SVR9busPpVPmE7OA8PJI2Tm
+         f3ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ojyQ+PqrBED/t+SyNTD5eQfcGUJ/2jWYDAqwjA90+Dg=;
+        b=2XuZ5YvoYGWJ52P1lOwaf4kgDe+Q4mawOJECpLHNYP/JjgGXvfRCwjDst1aKfITX4I
+         sCxcBS0gnqUJ6ScYDv8NjbbqhpyDZ8fib74+YZLzTXkLxueQxdLI5alT0+B2/Lbl910h
+         DZ9nyAhB2kzmOK9o1Ilr5hbHaO67rB3GywtjfYywQTptzuLAnkevfTO7Stk/95zPayYO
+         83X0pWqataLs1SJbuAR8ggwXB2E1QywYWwBoAqwdKmvOgQ1JgtJRV6tFbXLFMlo8geb2
+         YjD7crPQpWARcBp3jX3vUsh/SQvLz8FMRRMKo92fdfBuW32U+fdrHELKqfA91Lzezuek
+         oEjQ==
+X-Gm-Message-State: AJIora/qxfzszkZsPl3SFl/c2KPxGPQlRiMJmU4IUZntVxUKQQ093TUt
+        pCj8GWT87XZ29oDJEGP2Y0742g==
+X-Google-Smtp-Source: AGRyM1uxPeD7ZsMKAfaSCSOhZK+89Wta+C27PW+mKfAPqnNH0k3b5cg9ab2b7VD9mjiAyzx8QgV8Ug==
+X-Received: by 2002:a05:6512:1598:b0:48a:7733:2dd2 with SMTP id bp24-20020a056512159800b0048a77332dd2mr5769981lfb.288.1658830101798;
+        Tue, 26 Jul 2022 03:08:21 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id d25-20020a196b19000000b0047255d211b2sm3111442lfa.225.2022.07.26.03.08.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Jul 2022 03:08:21 -0700 (PDT)
+Message-ID: <308d6189-c100-e9fc-e4b2-0639d993e436@linaro.org>
+Date:   Tue, 26 Jul 2022 12:08:20 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [[PATCH v2] 2/9] dt-bindings: pwm: snps,pwm add pwm number
+Content-Language: en-US
+To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>
+References: <20220725212140.741644-1-ben.dooks@sifive.com>
+ <20220725212140.741644-2-ben.dooks@sifive.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220725212140.741644-2-ben.dooks@sifive.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-07-26 at 17:34 +0800, CK Hu wrote:
-> On Tue, 2022-07-26 at 14:42 +0800, Rex-BC Chen wrote:
-> > On Mon, 2022-07-25 at 17:16 +0800, CK Hu wrote:
-> > > Hi, Bo-Chen:
-> > > 
-> > > On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
-> > > > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > > 
-> > > > This patch adds a embedded displayport driver for the MediaTek
-> > > > mt8195
-> > > > SoC.
-> > > > 
-> > > > It supports the MT8195, the embedded DisplayPort units. It
-> > > > offers
-> > > > DisplayPort 1.4 with up to 4 lanes.
-> > > > 
-> > > > The driver creates a child device for the phy. The child device
-> > > > will
-> > > > never exist without the parent being active. As they are
-> > > > sharing
-> > > > a
-> > > > register range, the parent passes a regmap pointer to the child
-> > > > so
-> > > > that
-> > > > both can work with the same register range. The phy driver sets
-> > > > device
-> > > > data that is read by the parent to get the phy device that can
-> > > > be
-> > > > used
-> > > > to control the phy properties.
-> > > > 
-> > > > This driver is based on an initial version by
-> > > > Jitao shi <jitao.shi@mediatek.com>
-> > > > 
-> > > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > > > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > > > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > > > ---
-> > > 
-> > > [snip]
-> > > 
-> > > > +
-> > > > +static int mtk_dp_training(struct mtk_dp *mtk_dp)
-> > > > +{
-> > > > +	short max_retry = 50;
-> > > > +	int ret;
-> > > > +
-> > > > +	do {
-> > > > +		ret = mtk_dp_train_start(mtk_dp);
-> > > > +		if (!ret)
-> > > > +			break;
-> > > > +		else if (ret != -EAGAIN)
-> > > > +			return ret;
-> > > > +	} while (--max_retry);
-> > > 
-> > > mtk_dp_train_start() would never return -EAGAIN, so drop this
-> > > while
-> > > loop.
-> > > 
-> > > Regards,
-> > > CK
-> > > 
-> > 
-> > Hello CK,
-> > 
-> > the function will not return -EAGAIN, but we still want to retry 50
-> > times if mtk_dp_train_start() is failed. If we retry 50 times and
-> > it
-> > is
-> > still failed. We can confirm there are some issues for the device.
-> > 
-> > I will remove the else if of -EAGAIN and keep th while loop.
+On 25/07/2022 23:21, Ben Dooks wrote:
+> Add snps,pwm-number property to indicate if the block does not have
+> all 8 of the PWM blocks.
 > 
-> In this version, it never retry. And I believe you've tested this no-
-> retry version. If this no-retry version works fine, why do you insist
-> on retry? If you really need retry, merge this retry into
-> mtk_dp_train_start() because mtk_dp_train_start() have already retry.
+> Not sure if this should be a general PWM property consider optional
+> for all PWM types, so have added a specific one here (there is only
+> one other controller with a property for PWM count at the moment)
 > 
-> Regards,
-> CK
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/snps,pwm.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+> index 594085e5e26f..e95f518b3974 100644
+> --- a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+> @@ -30,11 +30,16 @@ properties:
+>        - const: bus
+>        - const: timer
+>  
+> +  snps,pwm-number:
+> +    $ref: '/schemas/types.yaml#/definitions/uint32'
 
-Hello Ck,
+1. No quotes
+2. Add minimum and maximum (it looks like there are such).
 
-There are many different devices we are not testing for DP devices.
-I think we need to keep this.
-This retry is for restart with init state.
+> +    description: u32 value representing the number of PWM devices
 
-I think it's better to keep it here and it's more clear.
 
-I will remain the comments above, and I think it's enough.
-
-BRs,
-Bo-Chen
-
-> > 
-> > BRs,
-> > Bo-Chen
-> > > > 
-> > > > +	if (!max_retry)
-> > > > +		return -ETIMEDOUT;
-> > > > +
-> > > > +	ret = mtk_dp_video_config(mtk_dp);
-> > > > +	if (ret)
-> > > > +		return ret;
-> > > > +	mtk_dp_video_enable(mtk_dp, true);
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > > > +
-> > > 
-> > > 
-> > 
-> > 
-> 
-> 
-
+Best regards,
+Krzysztof
