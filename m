@@ -2,97 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ED25580BB4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 08:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8681C580BC1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 08:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237952AbiGZGaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 02:30:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48752 "EHLO
+        id S231608AbiGZGnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 02:43:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237971AbiGZGaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 02:30:15 -0400
-Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [IPv6:2a02:9e0:8000::40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A36A110F6
-        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 23:30:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=protonic.nl; s=202111;
-        h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-         message-id:subject:cc:to:from:date:from;
-        bh=QVIS0e/Pgyjm/UeHloB3YzmyfAb0KD91LCWzYjWV8Kw=;
-        b=NoGCHGPHhgtT8otrzY+UiHQE0y309ougCSpmiwh2wyt5UvTABhWhXno5jJp3bGLMmzK3TvuFPGLVD
-         +nSJd5egxlnRx8dduRd2IC1lW0xMoIHxglV0ExcSu72O9EKFosqmwLk7+y1YYJq2s69wh4nofbumwu
-         lKqfWiF0DTV5w4QTw3dTJz81eUQ/YUFdWQxfNt8uqSyw0Vu7Dk4M97hTptXvHuNjtp/tkekQzba2fV
-         GqdGIF1uHd3Ul8rhxemf0nkBnr8nL9zzz0HujhJvwaHcVn04+aNoAoP+1Ion85gqTGLqH4sItFy/8W
-         WKAo73j9tdT/elM2wd12z+TGWYg/6RA==
-X-MSG-ID: 63f9ca3c-0cac-11ed-8a45-0050569d11ae
-Date:   Tue, 26 Jul 2022 08:30:06 +0200
-From:   David Jander <david@protonic.nl>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm: dts: imx6qdl-vicut1.dtsi: Add backlight-isb node
-Message-ID: <20220726083006.5c65b597@erd992>
-In-Reply-To: <de68c1e8-447d-f1e9-7885-6a109af1e971@linaro.org>
-References: <20220725124813.1001032-1-david@protonic.nl>
-        <de68c1e8-447d-f1e9-7885-6a109af1e971@linaro.org>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S230464AbiGZGnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 02:43:07 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB19F1B79B;
+        Mon, 25 Jul 2022 23:43:05 -0700 (PDT)
+X-UUID: ed2d3175cf0546bf91be188b386b5082-20220726
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:1323187d-3f50-4f41-8e52-a0f8b96b44e4,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:0f94e32,CLOUDID:a77182b3-06d2-48ef-b2dd-540836705165,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: ed2d3175cf0546bf91be188b386b5082-20220726
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1604846816; Tue, 26 Jul 2022 14:42:59 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 26 Jul 2022 14:42:58 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 26 Jul 2022 14:42:58 +0800
+Message-ID: <9c5b85034ec77be80d771ce3a17260453f007728.camel@mediatek.com>
+Subject: Re: [PATCH v14 05/10] drm/mediatek: Add MT8195 Embedded DisplayPort
+ driver
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "deller@gmx.de" <deller@gmx.de>,
+        "airlied@linux.ie" <airlied@linux.ie>
+CC:     "msp@baylibre.com" <msp@baylibre.com>,
+        "granquet@baylibre.com" <granquet@baylibre.com>,
+        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
+        <jitao.shi@mediatek.com>,
+        "wenst@chromium.org" <wenst@chromium.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?= 
+        <LiangXu.Xu@mediatek.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 26 Jul 2022 14:42:58 +0800
+In-Reply-To: <378f904a445e90d65048ed07a1a55fd8c633f934.camel@mediatek.com>
+References: <20220712111223.13080-1-rex-bc.chen@mediatek.com>
+         <20220712111223.13080-6-rex-bc.chen@mediatek.com>
+         <378f904a445e90d65048ed07a1a55fd8c633f934.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Jul 2022 22:33:12 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 25/07/2022 14:48, David Jander wrote:
-> > On some older hardware models this is needed. It will do no harm if used
-> > with newer models though.
+On Mon, 2022-07-25 at 17:16 +0800, CK Hu wrote:
+> Hi, Bo-Chen:
+> 
+> On Tue, 2022-07-12 at 19:12 +0800, Bo-Chen Chen wrote:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
 > > 
-> > Signed-off-by: David Jander <david@protonic.nl>
+> > This patch adds a embedded displayport driver for the MediaTek
+> > mt8195
+> > SoC.
+> > 
+> > It supports the MT8195, the embedded DisplayPort units. It offers
+> > DisplayPort 1.4 with up to 4 lanes.
+> > 
+> > The driver creates a child device for the phy. The child device
+> > will
+> > never exist without the parent being active. As they are sharing a
+> > register range, the parent passes a regmap pointer to the child so
+> > that
+> > both can work with the same register range. The phy driver sets
+> > device
+> > data that is read by the parent to get the phy device that can be
+> > used
+> > to control the phy properties.
+> > 
+> > This driver is based on an initial version by
+> > Jitao shi <jitao.shi@mediatek.com>
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
 > > ---
-> >  arch/arm/boot/dts/imx6qdl-vicut1.dtsi | 22 ++++++++++++++++++++++
-> >  1 file changed, 22 insertions(+)
+> 
+> [snip]
+> 
+> > +
+> > +static int mtk_dp_training(struct mtk_dp *mtk_dp)
+> > +{
+> > +	short max_retry = 50;
+> > +	int ret;
+> > +
+> > +	do {
+> > +		ret = mtk_dp_train_start(mtk_dp);
+> > +		if (!ret)
+> > +			break;
+> > +		else if (ret != -EAGAIN)
+> > +			return ret;
+> > +	} while (--max_retry);
+> 
+> mtk_dp_train_start() would never return -EAGAIN, so drop this while
+> loop.
+> 
+> Regards,
+> CK
+> 
+
+Hello CK,
+
+the function will not return -EAGAIN, but we still want to retry 50
+times if mtk_dp_train_start() is failed. If we retry 50 times and it is
+still failed. We can confirm there are some issues for the device.
+
+I will remove the else if of -EAGAIN and keep th while loop.
+
+BRs,
+Bo-Chen
 > > 
-> > diff --git a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
-> > index a1676b5d2980..08d425020088 100644
-> > --- a/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
-> > +++ b/arch/arm/boot/dts/imx6qdl-vicut1.dtsi
-> > @@ -37,6 +37,16 @@ backlight_led: backlight_led {
-> >  		power-supply = <&reg_3v3>;
-> >  	};
-> >  
-> > +	/* only for backwards compatibility with old HW */
-> > +	backlight_isb: backlight_isb {  
+> > +	if (!max_retry)
+> > +		return -ETIMEDOUT;
+> > +
+> > +	ret = mtk_dp_video_config(mtk_dp);
+> > +	if (ret)
+> > +		return ret;
+> > +	mtk_dp_video_enable(mtk_dp, true);
+> > +
+> > +	return 0;
+> > +}
+> > +
 > 
-> Node name: backlight-isb
 > 
-> I know that other node had underscore, but these are not correct for names.
 
-I know the names are not correct, but they are in the style of existing node
-names in the same file. Do you want me to change them all, or just this one?
-This change would break existing user-space software though, which is something
-I prefer not to do. Unfortunately both names are relied upon by user-space
-software for almost 10 years now, and changing them will force me to maintain
-off-tree patches that revert these changes.
-I understand the reason for the change though, and if you insist I will do it.
-
-Best regards,
-
--- 
-David Jander
