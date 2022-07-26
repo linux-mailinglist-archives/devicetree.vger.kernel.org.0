@@ -2,132 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F3B7581A74
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 21:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ECE5581AB8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 22:09:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236260AbiGZTrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 15:47:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36178 "EHLO
+        id S239854AbiGZUJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 16:09:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229672AbiGZTrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 15:47:13 -0400
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0937240A1;
-        Tue, 26 Jul 2022 12:47:12 -0700 (PDT)
-Received: by mail-qt1-x82f.google.com with SMTP id g24so11259056qtu.2;
-        Tue, 26 Jul 2022 12:47:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:reply-to:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MAfdgifMMcfE/yXjpXpDSHvlhww07gmdGSC9ysTyuKc=;
-        b=EFEbG43P2uz2lGXat4fyCPRM6thWWiiPkREsQpPN9+O/mqwyPckmqGwpoViHGCerJi
-         QJlsMvlsxh9syDqBgncXxRlxo6namrgimntsHIOnjDl5VHWOb/6Pw1w+awTQ/s1YI8U7
-         C0o4IGmuShLE0ehpCGpGPtG7QgQ9YxUt+1VNHrhgbgRs4dKUUb3kEeJNsfedphWsxX6R
-         0z0KnBSoQoGh8XTvTM0iDMVL0XcqJaGh4RJMCGvzFyQfHvXOvsIVwdmnLw1zqNr1sBYL
-         wyf+aFwi7hX1MRVi0Ko/r3NbFh8Vd1gweAUuErvI7HfPlvI+4Xmch/7b7qkPWiyYkrPA
-         xayw==
+        with ESMTP id S239833AbiGZUJH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 16:09:07 -0400
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C4F357FD;
+        Tue, 26 Jul 2022 13:09:06 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id e12so1040712ilu.7;
+        Tue, 26 Jul 2022 13:09:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :reply-to:references:mime-version:content-disposition:in-reply-to;
-        bh=MAfdgifMMcfE/yXjpXpDSHvlhww07gmdGSC9ysTyuKc=;
-        b=lI34dTy2z29iOvBFe3h+BVCoe4MC85e9R0NquB+FlqbaSYxPdSXbDocYlFGQMjaFRt
-         fmn/y8bTgqm6WFdUhZ/sTT58rmDLdvMl9Wvtyvb8aW4/Pv0h6arYLo9SX6v7TwR74VxT
-         yLSKyyZw08tLDlHoiHEURkFeCAMSrytPowEQ8+YfuQAS7UA3tAS0cpe7ysnI1pPc224g
-         m+e4eQnlxd0O6n+GDXrObY/PYAbBSl9fj6mW8JT5cxBAM2BIoi1nGbtX4445jBMvPlXu
-         FH+2LleHQLABpMWxcbiJEe6zNgDiowhUgz1Mhc8HLb8Q21sAdevRaTBYjDO+9oy/bTYe
-         meZw==
-X-Gm-Message-State: AJIora88DicRY6ZwFi+WJ3MwjnvngRDakTaK7pEiVmKkYURO0aPOSEug
-        vrOfpHzNgoeWnjHgQhYdtw==
-X-Google-Smtp-Source: AGRyM1tue0AfzJLG/Yn1jOuSrSPoqrsACDpveUi3WRkpV2rVPonkxoGaJ7hxgOnC0yfQXb79hjIKSg==
-X-Received: by 2002:a05:622a:109:b0:31f:3302:3367 with SMTP id u9-20020a05622a010900b0031f33023367mr12518641qtw.488.1658864831713;
-        Tue, 26 Jul 2022 12:47:11 -0700 (PDT)
-Received: from serve.minyard.net (serve.minyard.net. [2001:470:b8f6:1b::1])
-        by smtp.gmail.com with ESMTPSA id y17-20020a37f611000000b006b5e50057basm11427786qkj.95.2022.07.26.12.47.10
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=nrDG32o/nF0+drBL5HQUQubPYkcsSpm90fWevm2EMus=;
+        b=Ma24HiauyBbRCkblMqVysmo6QVrvXjvH2TuS1ys5daUeGrGEgwFt5djgiaI1Kem8I0
+         UR3WQBNz1YFDWmDrpS88fmP5kv1fH5Y1OicnX/gaouuMdjf3QeHHR3RIu3gL2j13UwOz
+         g69UtxIqv5jfjdy7Fp7E1vxtLHFzmtGyih8PrbQnNWmu9SUkYMhKUhiAW5I+0fBMYTrG
+         rK84yXT2aj45rSMEnLIPO+7EaIO/kMcJKnPiC5x0VF2if6D0mKJMVAqbv1GjGKeiLT4h
+         TVFnspCFNZeNzI3uLGzT9kA01iNQmndANak4xuuu93Vt4OvNqD4zUpRUXS7XOEnuipWF
+         ELZA==
+X-Gm-Message-State: AJIora95cQRCMMM5VlFYOc/Ndwkp9O9z+3SL6xbr0O5j6iUFyk+YkYro
+        ndxUWs1uqxe5aYMzWvx+Wg==
+X-Google-Smtp-Source: AGRyM1uhqlxORuUmIgfm9uGaklPD+6R+WsuRI46aW6jH891vImtrJFDsBDRJwFUBPN+Qa2GUfxDIYA==
+X-Received: by 2002:a05:6e02:180d:b0:2dd:6150:58b0 with SMTP id a13-20020a056e02180d00b002dd615058b0mr3659262ilv.265.1658866145360;
+        Tue, 26 Jul 2022 13:09:05 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id k4-20020a0566022d8400b0067be568081fsm7588026iow.43.2022.07.26.13.09.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 12:47:11 -0700 (PDT)
-Sender: Corey Minyard <tcminyard@gmail.com>
-Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:495f:ee54:913c:d540])
-        by serve.minyard.net (Postfix) with ESMTPSA id 21AE81800D9;
-        Tue, 26 Jul 2022 19:47:10 +0000 (UTC)
-Date:   Tue, 26 Jul 2022 14:47:08 -0500
-From:   Corey Minyard <minyard@acm.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        openipmi-developer@lists.sourceforge.net,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 0/2] char: ipmi: kcs: add Arbel NPCM8XX support
-Message-ID: <20220726194708.GO3834@minyard.net>
-Reply-To: minyard@acm.org
-References: <20220717121124.154734-1-tmaimon77@gmail.com>
- <20220718125155.GA40038@minyard.net>
- <CAP6Zq1haOErfj2HZkqKwXZKr3+QvWP2VYK6QQOH5cjHYJ2rV0w@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAP6Zq1haOErfj2HZkqKwXZKr3+QvWP2VYK6QQOH5cjHYJ2rV0w@mail.gmail.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Tue, 26 Jul 2022 13:09:05 -0700 (PDT)
+Received: (nullmailer pid 782233 invoked by uid 1000);
+        Tue, 26 Jul 2022 20:09:02 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Balsam CHIHI <bchihi@baylibre.com>
+Cc:     rui.zhang@intel.com, rex-bc.chen@mediatek.com,
+        daniel.lezcano@linaro.org, amitk@kernel.org, mka@chromium.org,
+        linux-kernel@vger.kernel.org, abailon@baylibre.com,
+        robh+dt@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com,
+        linux-pm@vger.kernel.org, rafael@kernel.org, khilman@baylibre.com,
+        fan.chen@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, louis.yu@mediatek.com,
+        james.lo@mediatek.com
+In-Reply-To: <20220726135506.485108-3-bchihi@baylibre.com>
+References: <20220726135506.485108-1-bchihi@baylibre.com> <20220726135506.485108-3-bchihi@baylibre.com>
+Subject: Re: [PATCH v8 2/6] dt-bindings: thermal: Add binding document for LVTS thermal controllers
+Date:   Tue, 26 Jul 2022 14:09:02 -0600
+Message-Id: <1658866142.328871.782232.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 26, 2022 at 10:41:38PM +0300, Tomer Maimon wrote:
-> Hi Corey,
+On Tue, 26 Jul 2022 15:55:02 +0200, Balsam CHIHI wrote:
+> This patch adds dt-binding documents for mt8192 and mt8195 thermal controllers.
 > 
+> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> ---
+>  .../thermal/mediatek,mt8192-lvts.yaml         | 73 ++++++++++++++++++
+>  .../thermal/mediatek,mt8195-lvts.yaml         | 75 +++++++++++++++++++
+>  2 files changed, 148 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,mt8192-lvts.yaml
+>  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,mt8195-lvts.yaml
 > 
-> On Mon, 18 Jul 2022 at 15:51, Corey Minyard <minyard@acm.org> wrote:
-> >
-> > On Sun, Jul 17, 2022 at 03:11:22PM +0300, Tomer Maimon wrote:
-> > > This patch set adds Arbel NPCM8XX Keyboard Controller Style (KCS) support to
-> > > KCS NPCM driver.
-> > >
-> > > The NPCM KCS driver tested on NPCM845 evaluation board.
-> >
-> > This seems reasonable, I've pulled it into my tree.  If anyone has any
-> > issues with this, please respond.
-> >
-> > -corey
-> >
-> > >
-> > > Tomer Maimon (2):
-> > >   dt-bindings: ipmi: Add npcm845 compatible
-> > >   char: ipmi: modify NPCM KCS configuration
-> > >
-> > >  Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 5 +++--
-> > >  drivers/char/ipmi/Kconfig                                  | 6 +++---
-> > >  2 files changed, 6 insertions(+), 5 deletions(-)
-> > >
-> > > --
-> > > 2.33.0
-> > >
-> 
-> Sorry but I need to do a little fix in the document file.
-> 
-> Can I do it or have you already applied the patches?
 
-At this point I'd prefer a patch on top of what is there.  5.19 isn't
-released yet, so the window isn't open, but that will happen soon and I
-don't want to rebase at this point.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--corey
+yamllint warnings/errors:
 
-> 
-> Thanks,
-> 
-> Tomer
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/thermal/mediatek,mt8195-lvts.example.dts:32.36-37 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:383: Documentation/devicetree/bindings/thermal/mediatek,mt8195-lvts.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1404: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
