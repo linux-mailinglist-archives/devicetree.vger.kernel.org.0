@@ -2,77 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EC68581428
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 15:29:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C262658145C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 15:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238662AbiGZN3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 09:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46430 "EHLO
+        id S232427AbiGZNn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 09:43:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238509AbiGZN3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 09:29:22 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F082B1A2
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 06:29:20 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id w15so14610139lft.11
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 06:29:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kzYEowobG1GCcVsGATTfBQVx4ZYoqtGaYqMt9Le464E=;
-        b=lHoxWQovthKA2GrOxGoHuCbLjZpwWr3Wlh7056dot4DKAFfIVgkG0X9/r6cqb6+TDZ
-         OZPgf3/NLfKQ46hCkQI5oLLcIlzfQnWXPLnp8qei5lfUKUkHHv0wruzLTH3mim3BdFnM
-         1xeKuBtdw2mmbMsOWQUku7r1wAsGnlGA5nckVX+WpWLD+hK487Sn8T4gv2i33F3a65uT
-         24ALNXmSTxaVq71Lw4aQLmo0yKJw2DwMNFFklMhsmGexYn3qNzpQyosSSkGmYyPSsdP6
-         no+INldFjim//84rveKiIerJUAFYM6dFjuSXJrLJE5voGvjXv0ei+RCSVB3/WRewDOu/
-         +7iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kzYEowobG1GCcVsGATTfBQVx4ZYoqtGaYqMt9Le464E=;
-        b=ZXksQKLBdif7QoMKAnnsVEwMIu/j31qitJtMWzfEaypfn6WVfEJlOuV57doBtiWLwn
-         qE0eDnoQRsfvg2f0koiv9OfAT20E3YLyRVrpFbOjcSaiyc/qfM+l3NLE74Ql/iLLJ/mX
-         IWZiWSSsURycrNAz+/QhmfHW9QAwnKZpcnyIelfNmK36tD2WnmerCMrtV4Q1Dp1x/EOp
-         hsqMYrFqdKrr2aeEIawweqougcvGhV45Sc3k+r10f3NCzFrLjz3J5IMn7XuZwsAA45Tp
-         ngJUWB6TMfO2Vx+zxhm1pK6Kr9gYGlV1VHoD7Feay8P+a5kHohs/Ds/3WbfjNyNIzsy/
-         zF2A==
-X-Gm-Message-State: AJIora8q8osgJZhc9/mvGVB+/aa/6ebfQL5Y7IW5o82G1bgoacLYImSV
-        yWmFgtUmdANLl3dcpqL0+Oy8Lg==
-X-Google-Smtp-Source: AGRyM1uzPgOgi6yIT6lZAK0SxMjw4dz41VaKCAnAeaO5QC0g8ea4Em13uGgJdkaREsyjbsOtBTUaHQ==
-X-Received: by 2002:ac2:4e07:0:b0:48a:18f3:e5fe with SMTP id e7-20020ac24e07000000b0048a18f3e5femr6931153lfr.357.1658842159247;
-        Tue, 26 Jul 2022 06:29:19 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id i6-20020a056512318600b0048a78d5c4b5sm1698072lfe.165.2022.07.26.06.29.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 06:29:18 -0700 (PDT)
-Message-ID: <2e928ad6-f11a-145a-d3d3-8ba3ce068a37@linaro.org>
-Date:   Tue, 26 Jul 2022 15:29:17 +0200
+        with ESMTP id S229741AbiGZNn4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 09:43:56 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B1881F2EA
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 06:43:55 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7ADD5615A0
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 13:43:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5D10C433C1;
+        Tue, 26 Jul 2022 13:43:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658843034;
+        bh=mEDN3weHgupnH4A2/+C+Z4+HPL6fCzrzHtbPdOWWPOo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fDYzXd824a1BboA59GcWAdiwnp7qM0Prk7f7JoA8wAxnUVqUHnba8SxG79B+jEDXj
+         9ZwxYw29hDvjmRQZaiwO1eRqHbcwaSyTRL3KYzST8ihmLjOb99Y+qsgIe1rwqFuYaQ
+         AO3R9esauTdfoC9MlpeMaDv4nVgcBTiU9LzAUMPqEo68JsujwQOp0vuiOTRjwVv/l2
+         kOP/sze03Su2JKFEHv0ZmPeAU0jDK8M7Qq5Ssbv5IsenL2sFYYlf3NL2EABLiu9j28
+         TWFW1vm61Jun7ZiWT39pHLBiRnDH43Z0Bkofg0Z8dcR8K8nHP0vVaJWhL45IltdN7u
+         7FfOvsoBzxPbg==
+Date:   Tue, 26 Jul 2022 14:43:49 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Zhu Ning <zhuning0077@gmail.com>
+Cc:     alsa-devel@alsa-project.org, pierre-louis.bossart@linux.intel.com,
+        tiwai@suse.com, devicetree@vger.kernel.org, robh@kernel.org,
+        ckeepax@opensource.cirrus.com,
+        David Yang <yangxiaohua@everest-semi.com>,
+        Zhu Ning <zhuning@everest-semi.com>
+Subject: Re: [PATCH v3 1/2] ASoC: codecs: add support for ES8326
+Message-ID: <Yt/vlUZ+07/a1pcC@sirena.org.uk>
+References: <20220726131747.127992-1-zhuning0077@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 03/10] soc: qcom: icc-bwmon: drop unused BWMON_ZONE_COUNT
-Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <20220720192807.130098-1-krzysztof.kozlowski@linaro.org>
- <20220720192807.130098-4-krzysztof.kozlowski@linaro.org>
- <689ae7a0-bb23-8264-a2ff-40b1b5bbf0af@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <689ae7a0-bb23-8264-a2ff-40b1b5bbf0af@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="LlQEx/YUHbT7YwWA"
+Content-Disposition: inline
+In-Reply-To: <20220726131747.127992-1-zhuning0077@gmail.com>
+X-Cookie: All rights reserved.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,43 +57,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 13:25, Sibi Sankar wrote:
-> Hey Krzysztof,
-> 
-> Thanks for working on the llcc bwmon patch series!
-> 
-> 
-> On 7/21/22 12:58 AM, Krzysztof Kozlowski wrote:
->> BWMON_ZONE_COUNT define is not used.
->>
->> Cc: Rajendra Nayak <quic_rjendra@quicinc.com>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   drivers/soc/qcom/icc-bwmon.c | 1 -
->>   1 file changed, 1 deletion(-)
->>
->> diff --git a/drivers/soc/qcom/icc-bwmon.c b/drivers/soc/qcom/icc-bwmon.c
->> index 3415f42523cd..b76a59d9002c 100644
->> --- a/drivers/soc/qcom/icc-bwmon.c
->> +++ b/drivers/soc/qcom/icc-bwmon.c
->> @@ -105,7 +105,6 @@
->>   
->>   /* BWMONv4 count registers use count unit of 64 kB */
->>   #define BWMON_COUNT_UNIT_KB			64
->> -#define BWMON_ZONE_COUNT			0x2d8
-> 
-> Apart from ^^ a few more defines like BWMON_GLOBAL_IRQ_STATUS,
 
-I will remove it in v2.
+--LlQEx/YUHbT7YwWA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> THRESHOLD_COUNT_ZONE2_SHIFT were unused as well.
+On Tue, Jul 26, 2022 at 09:17:46PM +0800, Zhu Ning wrote:
 
-This one was used in the code and later replaced by reg_field shifts.
+> +static struct snd_pcm_hw_constraint_list es8326_constraints = {
+> +	.count = ARRAY_SIZE(es8326_rates),
+> +	.list = es8326_rates,
+> +};
+> +
+> +static int es8326_set_dai_sysclk(struct snd_soc_dai *codec_dai,
+> +				 int clk_id, unsigned int freq, int dir)
+> +{
+> +	struct snd_soc_component *codec = codec_dai->component;
+> +	struct es8326_priv *es8326 = snd_soc_component_get_drvdata(codec);
+> +
+> +	es8326->sysclk = freq;
+> +
+> +	if (freq == 0) {
+> +		es8326->sysclk_constraints->list = NULL;
+> +		es8326->sysclk_constraints->count = 0;
+> +		return 0;
+> +	}
+> +
+> +	es8326->sysclk_constraints = &es8326_constraints;
 
-> 
-> Reviewed-by: Sibi Sankar <quic_sibis@quicinc.com>
+Nothing ever restores the constraints if a clock is specified again, and
+in general it's odd that the enable/disable don't match up - if we're
+setting variable constraints I'd expect that in the freq == 0 case we
+should be setting ->sysclk_constraints to NULL rather than the contents.
+Indeed, we'll segfault here if the frequency is set to 0 without having
+first been set to some actual value.  It's also bad to modify static
+data potentially shared between multiple instances of the device in a
+system.
 
-Thanks!
+Having said all that though I'm not clear why we're doing this
+constraint stuff at all, we never reference sysclk_constraints during
+startup and teardown and you'd usually do this because you want to set
+constraints that depend on the sysclk but this is just a constant set of
+constraints that should be set in the DAI desription.
 
-Best regards,
-Krzysztof
+> +	if (coeff >= 0) {
+> +		regmap_write(es8326->regmap,  ES8326_CLK_DIV1_04,
+> +			     coeff_div[coeff].reg4);
+> +		regmap_write(es8326->regmap,  ES8326_CLK_DIV2_05,
+> +			     coeff_div[coeff].reg5);
+> +		regmap_write(es8326->regmap,  ES8326_CLK_DLL_06,
+> +			     coeff_div[coeff].reg6);
+> +		regmap_write(es8326->regmap,  ES8326_CLK_MUX_07,
+> +			     coeff_div[coeff].reg7);
+> +		regmap_write(es8326->regmap,  ES8326_CLK_ADC_SEL_08,
+> +			     coeff_div[coeff].reg8);
+> +		regmap_write(es8326->regmap,  ES8326_CLK_DAC_SEL_09,
+> +			     coeff_div[coeff].reg9);
+> +		regmap_write(es8326->regmap,  ES8326_CLK_ADC_OSR_0A,
+> +			     coeff_div[coeff].rega);
+> +		regmap_write(es8326->regmap,  ES8326_CLK_DAC_OSR_0B,
+> +			     coeff_div[coeff].regb);
+> +	}
+
+This will just leave the divider setup at whatever they were last set at
+if we don't get a value which given the names of the registers I suspect
+won't go too well, it'd be better to print a warning just in case.
+
+> +	regmap_write(es8326->regmap, ES8326_INT_SOURCE_58, 0x08);
+> +	regmap_write(es8326->regmap, ES8326_INTOUT_IO_59, 0x45);
+
+This really does look like board specific configuration which should
+come from DT.
+
+--LlQEx/YUHbT7YwWA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLf75QACgkQJNaLcl1U
+h9Ca6wf9F6IsX1jykGyGTMPOx0Z7JLCC3eCFWZMe2bF7n1bm18s+BLWKRa1wubD8
+kdbk9c43t1fBdDZ9egXT+LQT8vGFqXHuJAAafy1DdiGONLYpWKvoFLiko0InioFw
++h73Ip54nIgywCvajE8cqmzJ2cNLK60qYk6pbsaqMr6Xe13z3j4i6o6lIUKpYO4O
+1UY9vGTbi3kibHEh8hcDNvxJPVZXYdQwl11q3jLE4V3Shiawb52l0b9Mr1Vq1q28
+K826iAJseC4qTy5ZlIFanrRwCrNUUzQJndtNnHUrQvcCGE07jtoH9dtdh2If3mvo
+YGCBQ5QvD6rkpzkZZlgw2utwpVLCKA==
+=ZL8T
+-----END PGP SIGNATURE-----
+
+--LlQEx/YUHbT7YwWA--
