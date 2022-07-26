@@ -2,159 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF408581B36
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 22:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21A53581B30
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 22:41:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239729AbiGZUlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 16:41:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39890 "EHLO
+        id S229932AbiGZUlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 16:41:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233443AbiGZUlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 16:41:47 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70053.outbound.protection.outlook.com [40.107.7.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9050237FA2
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 13:41:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dB7GlWwYtV/w9QHPIGiX31LyiGMQkIQmfwqrBsC/CHfpg1xmMwkF27zb1etdfHJOZ1ssAvK8RSRTg0NOpiBaFrQMbPQOfi3gn1zY/plwzIUrUU5HkkLl5I1iH+19ep31TblfHQbkP8xi6zkRuB6F2yynxP5wOGN5N5O7SvgSxlFMNGLkZb/qTOaaBbql0kpGEulrVwG70fve+bcz0BuPPYxh3Y+gFiymoKTNZBb7PF7tmZ4+7TXGKhJ2RA6retcCMmGro0b9jFCzWnjTh5hXc0hqHTTSf3h4res+g7mxY0+ha3uSyJFsP6u4TCx6YaWv3FYS8yYD6zPwhyex+5NR+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vgKd5oy9KhzHO29hnhhY7+SyjEV2zUMNv9ZsFs9aTd0=;
- b=GSvWTMEyL7Ojo9L3zbszX4OBNiDUzPnQJlDjGufp2bRMSqE3GgWOaMbt8qL4x7NrmCLtocTbDGYmD6izPjnNmcdCJ0ggPbRRRdvgOE78205a994aG1bJ1FGsbXTG3t2SlCCr7YvHPzfimzwu5L2yUd8Llt8ZkqSRenC61jYKN4g0dGSaSxdwhJAyFzQqkNgRYw6TNc571FBlR1GIVtKSc/MceOkJsij+bfZ0y873+IQj9vSbz2c2G4T0OlRq3MGbu0IGZajc++26C/P72fTy4b/+cCVX1jsmrpaH1dZvHeomhEYKqbO2ohlMM4V1oVQTGxBvv/RJqug83fEMrpxcKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vgKd5oy9KhzHO29hnhhY7+SyjEV2zUMNv9ZsFs9aTd0=;
- b=EkoYzmeBi4gYkLBO2U+E3WJmv8ps5FTxmHVFy7ltlhO3Ejmt06/zC3Z6LEMbQL0EYFY/L/8cM+oqxW/wPXzc9xkMfxndRgtTZk7FK1dByy1/peyv3qIHtdLhbPG7KixXuBAcCYDGhJD0SuR/JpJOL+Dbee9J/xYrZw9BrhFoFGI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM9PR04MB8274.eurprd04.prod.outlook.com (2603:10a6:20b:3e8::23)
- by AM8PR04MB7441.eurprd04.prod.outlook.com (2603:10a6:20b:1c4::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.25; Tue, 26 Jul
- 2022 20:41:42 +0000
-Received: from AM9PR04MB8274.eurprd04.prod.outlook.com
- ([fe80::f46c:5b09:72eb:638c]) by AM9PR04MB8274.eurprd04.prod.outlook.com
- ([fe80::f46c:5b09:72eb:638c%4]) with mapi id 15.20.5458.025; Tue, 26 Jul 2022
- 20:41:42 +0000
-From:   Shenwei Wang <shenwei.wang@nxp.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>
-Cc:     devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>
-Subject: [PATCH v4 1/3] dt-bindings: firmware: add missing resource IDs for imx8dxl
-Date:   Tue, 26 Jul 2022 15:41:09 -0500
-Message-Id: <20220726204111.733647-2-shenwei.wang@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220726204111.733647-1-shenwei.wang@nxp.com>
-References: <20220726204111.733647-1-shenwei.wang@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0038.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::13) To AM9PR04MB8274.eurprd04.prod.outlook.com
- (2603:10a6:20b:3e8::23)
+        with ESMTP id S229835AbiGZUlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 16:41:11 -0400
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 928A015FFF;
+        Tue, 26 Jul 2022 13:41:10 -0700 (PDT)
+Received: from [192.168.87.140] (unknown [50.47.106.71])
+        by linux.microsoft.com (Postfix) with ESMTPSA id AC6FC20FE2E6;
+        Tue, 26 Jul 2022 13:41:09 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com AC6FC20FE2E6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1658868070;
+        bh=VgOwC09+vnjb9WQXMFtlpt3WfTGrLfx+SsoGsAU+cFc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=r/POcPaqbQK+X7IamgPgQgrbXsaxjYAYFv5uzXMI/O6N0IYq5ntGykO/OjrytvU9w
+         4wlBlS1q4t03xVRC5TSX0xM41bFel0XM/VCMmyY/a3JzAGPwLyXb1Lz4HqAQhr+Htl
+         KvdZU/W85fSzOsCYFuK3wC7v7tEjgXmUIGoueDQM=
+Message-ID: <9d6beefe-9974-22f8-750c-68c9acb707ab@linux.microsoft.com>
+Date:   Tue, 26 Jul 2022 13:41:09 -0700
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3b609e31-0391-41a0-7a49-08da6f473f08
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7441:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hgJrTVWtjMD2J8DDyj+CNe23xOeN1MjOFMUxm24FuoYBNUbFDepuZYq4JDIWXChFNT0gK61/tsPDwY+2z/4gBfSivU24/pkar31tyFCaF4AToIYTkhSJ2qfMBwQuyWXq4xxLhDjcnJ1v3fofFlnnhRmoDPJKFPv1duPACPDdJi0VANIp8hhmSPOwGaPU2/oiMe7Pcab2ucTHhwFDmvtvL0HY44JW+wKrf7Im+6ilcEbnP3tzFizU85iTCWruIcwSNVfAqHZbk22mq1CEKgTshLFoWsYXNRjare6Py2HEMYrO4CF1zXFmJ7R68UWk/5O0Pnb49r8VznbXzcoPgHaSCoXJZif/muEJ1dkC+BHcnXVRgHy6Tzv2oNRfxmJkVthkZgViAdzv9Z7qb8iN/icivkHNjFpDgL6o86WTpbaES3O6opA3iJ1snutGVte7mPSBX48bH3ldc91OKuf6sR7E+w4uvIIMUtcEKt9lLzs4FkkEhvLVuHP4e6M6ouFm0aeeFumeEkeceFwcrKa2+ZuG2K5wkbjB44n3pt9CBYPfuGBhUzv5WdWm64zbGb3PBz3apkKJ10vlpg4rMbJURv+I3+DjTs6fLXJ94vRU9LaAfe3IqSToh0wLnhLF9OBzavXhGFKbG+bvlt7ZjET80ZJlNecN9igq6JntmKVDEOuAmBrynsbWYSB2VfTHjUv/SDOgORYKBENBSUvQ2tST5cq4nqW7PLJplI0IK+q7FiM4e69A2rMopKKtG7/KDsQBTxNe1xWrsEYvX/5of8eMpdUFOl21Qa1z9nGp9jTg6ybJnSSqM3PgCrSxSaa4c+GIn8Dr1hBF0Q+bRYH+jEHiS7bCl23plM8vJ+oHg4U/4N6b2vc=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8274.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(396003)(366004)(136003)(39860400002)(376002)(2616005)(1076003)(2906002)(6666004)(186003)(6506007)(86362001)(55236004)(52116002)(41300700001)(6512007)(26005)(38100700002)(38350700002)(5660300002)(66556008)(66476007)(8936002)(8676002)(4326008)(66946007)(478600001)(6486002)(110136005)(54906003)(36756003)(6636002)(316002)(32563001)(47402002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3ONnEpHTkAOvGcQMOLw6cLJTPn+WcZfOZ0ljPpnW31KfuqjJlJNRuJUKxeYD?=
- =?us-ascii?Q?0CF3c1IKN/Td0Po16Hz00YFp2a8I6g26z+G7kJ7OfkZSFX3ZZGaMZrkCZ84z?=
- =?us-ascii?Q?R5cxNa1oBc1Y3QHnb2QsCXG0G1vA7MXkuRkbmjX50A46WJi3HSVXNHy0OGTD?=
- =?us-ascii?Q?slvClV/MZ+MdTMS58QqrsGxIIuspPbkoWBIjVb2+/eW7V0ITuPJ5fkGgE+qH?=
- =?us-ascii?Q?uQU4ygRs0YjVRjlmblWJ4eC5V7LgbPSE1SDaBxUQhgTkhD4REpQySeUpgBOV?=
- =?us-ascii?Q?ficMN/AF4DXX8GDSFEvPgvIdGAdmySayLItKoW7/Ki3gqvSB2ranX9xzUz5S?=
- =?us-ascii?Q?xn4TsKBVy9KdSuo7/E6432Zizn0txi6A4RVmETXIIV6SsxBqgN0z8I+F+xFl?=
- =?us-ascii?Q?w8RE/jZUUNoivvi7KIr/xYmc5imYCXk3X2vzmn74GCwD8mFz1U8R1ARbdc6B?=
- =?us-ascii?Q?vdeSDO5QVGSTNjvEaIvuMvhK6+pKbl9E38SC++ZwCpPEhAqSYQliffnDgDrM?=
- =?us-ascii?Q?bWnhhaTL5+ngub5Ysh5h4HAmInHKX4cdS+FRyQ1BDZw9xiTV0gTouVtTPLKL?=
- =?us-ascii?Q?aehDYV0XU3/uQvYWjdy+qNv1WGRcTzjwQ17wjJ/YA+O5yZnTBY0jmqH01GAG?=
- =?us-ascii?Q?YxWuDIQ3GydnEnVQF+Xq1M0EryUW/kRwJAkcHkCsBq+oZsJUir0MzOqCG+JR?=
- =?us-ascii?Q?Imby3shIhwLCZoJV8OCERV2ZHrcV9fDyxJjCQ+P4K5uYBSemP+M69UA4NKIi?=
- =?us-ascii?Q?cBTOqCRydpXdRLiMF4vvD5IwKdfiHlK7Bn25pCeQ5oVZmBOuClelg8pCLgMp?=
- =?us-ascii?Q?Q2VePMhJ4x/uZGNXMG91fX+6b02gLGYpibaeQ80kDBrrbbtezOfUgCejaieB?=
- =?us-ascii?Q?cQxE4+zLrWLOZvGFzKE9p2U+zh0TNHYVc7osQChv6XMBpf19LCVeBWHPi1qM?=
- =?us-ascii?Q?yrTV4fUDmt2iIoWOq2UZmmf4quBz48+iazRV3LlQn5LjTy8X6GGc2youwgqO?=
- =?us-ascii?Q?ixgZ/XI2TpFTgMf5Cmc1rQ1EEra1/039jrEL8VQsVXzpXjWCiUEybQluu64v?=
- =?us-ascii?Q?I29JiRirMnOousvWP9ZF9ePYlFwL7YUfBhVMwE/HzlkbFxKnxewzaWU3Zl/V?=
- =?us-ascii?Q?n4cQVAx97aZp344boyUZJdlon8AjKnERvQHr/vF1shKvr2rtuR+YNEZGu4wE?=
- =?us-ascii?Q?Q5b6aV9HXmx/sOTUUn7Srzjc3ejCF+6opB77UJl+pp5nblf9oinXBFk1G7hV?=
- =?us-ascii?Q?ZEC9kbfe1Oc2yUrGUeTj9aYxKozJtj/awHwbYXdfr5ht5X6oeHtZE1w+9X6l?=
- =?us-ascii?Q?eIsixFZR4Hz3a4sJBf2RIOzf8My0OL7Mf7OURaDot76l/NT3sFuZ4P2oc/71?=
- =?us-ascii?Q?BQEGeY2jqkIYsRJIyoINdtp2mgz2UmnskovO1QmJcQ/tjMR+gKYaGxzAWvFP?=
- =?us-ascii?Q?YSGLPUvBwNwXJWCzeAmDqbQS5WbnGU4hQcuWCl2ehIKFMY7wZpZ/1Uk6RRQD?=
- =?us-ascii?Q?uWArpzpJSxGShe3/FntK6FfzpA6/SPMg+zQlsdO8PTPxLFC0COZVQq7k7uRq?=
- =?us-ascii?Q?Xva/yQZrbuMJz6QSbBKBhfloNX+HFF8AIUiyVBA5lNO7qeHxaAYQ1JjQ+3zP?=
- =?us-ascii?Q?eA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b609e31-0391-41a0-7a49-08da6f473f08
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8274.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2022 20:41:41.9259
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tcbdeZ9kzswEJlnry6LCmj6CNgk+haHhRgVT3ZhApT3AzEJGL13tRcTiQiouEOdo14bnbdiugZgz6H/lEpesUA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7441
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v8 5/5] crypto: aspeed: add HACE crypto driver
+Content-Language: en-US
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Dhananjay Phadke <dhphadke@microsoft.com>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+Cc:     linux-aspeed@lists.ozlabs.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com
+References: <20220726113448.2964968-1-neal_liu@aspeedtech.com>
+ <20220726113448.2964968-6-neal_liu@aspeedtech.com>
+From:   Dhananjay Phadke <dphadke@linux.microsoft.com>
+In-Reply-To: <20220726113448.2964968-6-neal_liu@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,
+        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing resource IDs for imx8dxl.
+Hi Neal,
 
-Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
----
- include/dt-bindings/firmware/imx/rsrc.h | 7 +++++++
- 1 file changed, 7 insertions(+)
+Thanks for addressing v7 review comments, few more below.
 
-diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
-index 43885056557c4..1675de05ad33b 100644
---- a/include/dt-bindings/firmware/imx/rsrc.h
-+++ b/include/dt-bindings/firmware/imx/rsrc.h
-@@ -37,10 +37,14 @@
- #define IMX_SC_R_DC_0_BLIT2		21
- #define IMX_SC_R_DC_0_BLIT_OUT		22
- #define IMX_SC_R_PERF			23
-+#define IMX_SC_R_USB_1_PHY		24
- #define IMX_SC_R_DC_0_WARP		25
-+#define IMX_SC_R_V2X_MU_0		26
-+#define IMX_SC_R_V2X_MU_1		27
- #define IMX_SC_R_DC_0_VIDEO0		28
- #define IMX_SC_R_DC_0_VIDEO1		29
- #define IMX_SC_R_DC_0_FRAC0		30
-+#define IMX_SC_R_V2X_MU_2		31
- #define IMX_SC_R_DC_0			32
- #define IMX_SC_R_GPU_2_PID0		33
- #define IMX_SC_R_DC_0_PLL_0		34
-@@ -49,7 +53,10 @@
- #define IMX_SC_R_DC_1_BLIT1		37
- #define IMX_SC_R_DC_1_BLIT2		38
- #define IMX_SC_R_DC_1_BLIT_OUT		39
-+#define IMX_SC_R_V2X_MU_3		40
-+#define IMX_SC_R_V2X_MU_4		41
- #define IMX_SC_R_DC_1_WARP		42
-+#define IMX_SC_R_SECVIO			44
- #define IMX_SC_R_DC_1_VIDEO0		45
- #define IMX_SC_R_DC_1_VIDEO1		46
- #define IMX_SC_R_DC_1_FRAC0		47
--- 
-2.25.1
+On 7/26/2022 4:34 AM, Neal Liu wrote:
+> Add HACE crypto driver to support symmetric-key
+> encryption and decryption with multiple modes of
+> operation.
+> 
+> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
+> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
+> ---
+>   drivers/crypto/aspeed/Kconfig              |   26 +
+>   drivers/crypto/aspeed/Makefile             |    7 +-
+>   drivers/crypto/aspeed/aspeed-hace-crypto.c | 1121 ++++++++++++++++++++
+>   drivers/crypto/aspeed/aspeed-hace.c        |   91 +-
+>   drivers/crypto/aspeed/aspeed-hace.h        |  112 ++
+>   5 files changed, 1354 insertions(+), 3 deletions(-)
+>   create mode 100644 drivers/crypto/aspeed/aspeed-hace-crypto.c
+> 
+> diff --git a/drivers/crypto/aspeed/Kconfig b/drivers/crypto/aspeed/Kconfig
+> index 059e627efef8..f19994915a5e 100644
+> --- a/drivers/crypto/aspeed/Kconfig
+> +++ b/drivers/crypto/aspeed/Kconfig
+> @@ -30,3 +30,29 @@ config CRYPTO_DEV_ASPEED_HACE_HASH_DEBUG
+>   	  to ask for those messages.
+>   	  Avoid enabling this option for production build to
+>   	  minimize driver timing.
+> +
+> +config CRYPTO_DEV_ASPEED_HACE_CRYPTO
+> +	bool "Enable Aspeed Hash & Crypto Engine (HACE) crypto"
+> +	depends on CRYPTO_DEV_ASPEED
+> +	select CRYPTO_ENGINE
+> +	select CRYPTO_AES
+> +	select CRYPTO_DES
+> +	select CRYPTO_ECB
+> +	select CRYPTO_CBC
+> +	select CRYPTO_CFB
+> +	select CRYPTO_OFB
+> +	select CRYPTO_CTR
+> +	help
+> +	  Select here to enable Aspeed Hash & Crypto Engine (HACE)
+> +	  crypto driver.
+> +	  Supports AES/DES symmetric-key encryption and decryption
+> +	  with ECB/CBC/CFB/OFB/CTR options.
+> +
+> +config CRYPTO_DEV_ASPEED_HACE_CRYPTO_DEBUG
+> +	bool "Enable HACE crypto debug messages"
+> +	depends on CRYPTO_DEV_ASPEED_HACE_CRYPTO
+> +	help
+> +	  Print HACE crypto debugging messages if you use this option
+> +	  to ask for those messages.
+> +	  Avoid enabling this option for production build to
+> +	  minimize driver timing.
 
+Why are separate options required for hash and crypto algorithms, if
+hace is only hw crypto on the SoCs?
+
+Looks like that's requiring unnecessary __weak register / unregister
+functions [see below].
+
+Couldn't just two options CONFIG_CRYPTO_DEV_ASPEED and 
+CONFIG_CRYPTO_DEV_ASPEED_DEBUG be simpler to set for downstream defconfigs?
+
+> diff --git a/drivers/crypto/aspeed/Makefile b/drivers/crypto/aspeed/Makefile
+> index 8bc8d4fed5a9..421e2ca9c53e 100644
+> --- a/drivers/crypto/aspeed/Makefile
+> +++ b/drivers/crypto/aspeed/Makefile
+> @@ -1,6 +1,9 @@
+>   obj-$(CONFIG_CRYPTO_DEV_ASPEED) += aspeed_crypto.o
+> -aspeed_crypto-objs := aspeed-hace.o \
+> -		      $(hace-hash-y)
+> +aspeed_crypto-objs := aspeed-hace.o	\
+> +		      $(hace-hash-y)	\
+> +		      $(hace-crypto-y)
+>   
+>   obj-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_HASH) += aspeed-hace-hash.o
+>   hace-hash-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_HASH) := aspeed-hace-hash.o
+> +obj-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_CRYPTO) += aspeed-hace-crypto.o
+> +hace-crypto-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_CRYPTO) := aspeed-hace-crypto.o
+> diff --git a/drivers/crypto/aspeed/aspeed-hace-crypto.c b/drivers/crypto/aspeed/aspeed-hace-crypto.c
+> new file mode 100644
+
+[...]
+
+> +
+> +void aspeed_register_hace_crypto_algs(struct aspeed_hace_dev *hace_dev)
+> +{
+> +	int rc, i;
+> +
+> +	CIPHER_DBG(hace_dev, "\n");
+> +
+> +	for (i = 0; i < ARRAY_SIZE(aspeed_crypto_algs); i++) {
+> +		aspeed_crypto_algs[i].hace_dev = hace_dev;
+> +		rc = crypto_register_skcipher(&aspeed_crypto_algs[i].alg.skcipher);
+> +		if (rc) {
+> +			CIPHER_DBG(hace_dev, "Failed to register %s\n",
+> +				   aspeed_crypto_algs[i].alg.skcipher.base.cra_name);
+> +		}
+> +	}
+> +
+> +	if (hace_dev->version != AST2600_VERSION)
+> +		return;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(aspeed_crypto_algs_g6); i++) {
+> +		aspeed_crypto_algs_g6[i].hace_dev = hace_dev;
+> +		rc = crypto_register_skcipher(&aspeed_crypto_algs_g6[i].alg.skcipher);
+> +		if (rc) {
+> +			CIPHER_DBG(hace_dev, "Failed to register %s\n",
+> +				   aspeed_crypto_algs_g6[i].alg.skcipher.base.cra_name);
+> +		}
+> +	}
+> +}
+> diff --git a/drivers/crypto/aspeed/aspeed-hace.c b/drivers/crypto/aspeed/aspeed-hace.c
+> index 89b1585d72e2..efc0725ebf98 100644
+> --- a/drivers/crypto/aspeed/aspeed-hace.c
+> +++ b/drivers/crypto/aspeed/aspeed-hace.c
+> @@ -32,10 +32,22 @@ void __weak aspeed_unregister_hace_hash_algs(struct aspeed_hace_dev *hace_dev)
+>   	dev_warn(hace_dev->dev, "%s: Not supported yet\n", __func__);
+>   }
+>   
+> +/* Weak function for HACE crypto */
+> +void __weak aspeed_register_hace_crypto_algs(struct aspeed_hace_dev *hace_dev)
+> +{
+> +	dev_warn(hace_dev->dev, "%s: Not supported yet\n", __func__);
+> +}
+> +
+> +void __weak aspeed_unregister_hace_crypto_algs(struct aspeed_hace_dev *hace_dev)
+> +{
+> +	dev_warn(hace_dev->dev, "%s: Not supported yet\n", __func__);
+> +}
+> +
+
+aspeed_unregister_hace_crypto_algs() is not implemented in 
+aspeed-hace-crypto.c, so those algorithms are not unregistered during 
+unload.
+
+This was missed because of __weak function.
+
+>   /* HACE interrupt service routine */
+>   static irqreturn_t aspeed_hace_irq(int irq, void *dev)
+>   {
+>   	struct aspeed_hace_dev *hace_dev = (struct aspeed_hace_dev *)dev;
+> +	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
+>   	struct aspeed_engine_hash *hash_engine = &hace_dev->hash_engine;
+>   	u32 sts;
+>   
+> @@ -51,9 +63,24 @@ static irqreturn_t aspeed_hace_irq(int irq, void *dev)
+>   			dev_warn(hace_dev->dev, "HASH no active requests.\n");
+>   	}
+>   
+> +	if (sts & HACE_CRYPTO_ISR) {
+> +		if (crypto_engine->flags & CRYPTO_FLAGS_BUSY)
+> +			tasklet_schedule(&crypto_engine->done_task);
+> +		else
+> +			dev_warn(hace_dev->dev, "CRYPTO no active requests.\n");
+> +	}
+> +
+>   	return IRQ_HANDLED;
+>   }
+>   
+> +static void aspeed_hace_crypto_done_task(unsigned long data)
+> +{
+> +	struct aspeed_hace_dev *hace_dev = (struct aspeed_hace_dev *)data;
+> +	struct aspeed_engine_crypto *crypto_engine = &hace_dev->crypto_engine;
+> +
+> +	crypto_engine->resume(hace_dev);
+> +}
+> +
+>   static void aspeed_hace_hash_done_task(unsigned long data)
+>   {
+>   	struct aspeed_hace_dev *hace_dev = (struct aspeed_hace_dev *)data;
+> @@ -65,11 +92,13 @@ static void aspeed_hace_hash_done_task(unsigned long data)
+>   static void aspeed_hace_register(struct aspeed_hace_dev *hace_dev)
+>   {
+>   	aspeed_register_hace_hash_algs(hace_dev);
+> +	aspeed_register_hace_crypto_algs(hace_dev);
+>   }
+>   
+>   static void aspeed_hace_unregister(struct aspeed_hace_dev *hace_dev)
+>   {
+>   	aspeed_unregister_hace_hash_algs(hace_dev);
+> +	aspeed_unregister_hace_crypto_algs(hace_dev);
+>   }
+
+Could just wrap these calls instead of weak functions.
+
+static void aspeed_hace_unregister(struct aspeed_hace_dev *hace_dev)
+{
+#ifdef CONFIG_CRYPTO_DEV_ASPEED_HACE_HASH
+   	aspeed_unregister_hace_hash_algs(hace_dev);
+#endif
+#ifdef CONFIG_CRYPTO_DEV_ASPEED_HACE_CRYPTO
+	aspeed_unregister_hace_crypto_algs(hace_dev);
+#endif
+}
+
+>   
+>   static const struct of_device_id aspeed_hace_of_matches[] = {
+> @@ -80,6 +109,7 @@ static const struct of_device_id aspeed_hace_of_matches[] = {
+>   
+>   static int aspeed_hace_probe(struct platform_device *pdev)
+>   {
+> +	struct aspeed_engine_crypto *crypto_engine;
+>   	const struct of_device_id *hace_dev_id;
+>   	struct aspeed_engine_hash *hash_engine;
+>   	struct aspeed_hace_dev *hace_dev;
+> @@ -100,6 +130,7 @@ static int aspeed_hace_probe(struct platform_device *pdev)
+>   	hace_dev->dev = &pdev->dev;
+>   	hace_dev->version = (unsigned long)hace_dev_id->data;
+>   	hash_engine = &hace_dev->hash_engine;
+> +	crypto_engine = &hace_dev->crypto_engine;
+>   
+>   	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+
+Thanks,
+Dhananjay
