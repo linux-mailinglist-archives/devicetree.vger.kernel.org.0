@@ -2,210 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89EDB58195A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 20:07:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4573B58196F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 20:11:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239912AbiGZSHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 14:07:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59682 "EHLO
+        id S234240AbiGZSLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 14:11:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239160AbiGZSHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 14:07:10 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C87253134E;
-        Tue, 26 Jul 2022 11:07:06 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,194,1654527600"; 
-   d="scan'208";a="129202711"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 27 Jul 2022 03:07:04 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 3D13F40C58B3;
-        Wed, 27 Jul 2022 03:06:59 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230127AbiGZSLj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 14:11:39 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A32DB1F613;
+        Tue, 26 Jul 2022 11:11:38 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id b11so27544205eju.10;
+        Tue, 26 Jul 2022 11:11:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=SzyaL+YFgsWmKTqZ24upHaBMmdMUtz48LRdqS95T3OE=;
+        b=NyVTDGWxvAdikaWNVk9np4Okz9MrqPd1fueSvko6rCKdv9lebe2W7m13u6sGVyU1ST
+         yl/y7kSJxkSt0rA7jo55HLvOsLMSaKxjexigkLLzrhEFvvb+SNn3r8kTMK3iySN8Ex8q
+         caLm7bKeOFhr9xRxTtOYQ0h2dPAHmnjA+dvQ1R7dNXjJyxZvSamW3/CgqFw6IGawKupP
+         aYKrRUdJtuT9gkEpaze7/+sFCORzdjey2Zf/kXzrCExaZ7ErFG3f8GhdKA8W79m3MCD1
+         OrV2Beb+evqzD80nt1slinPgOIZXOJicKFYO9Qy1kobKsDMmTvuIgDE4ZJJALnxlxZqg
+         gWIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=SzyaL+YFgsWmKTqZ24upHaBMmdMUtz48LRdqS95T3OE=;
+        b=QYKjscnbNrbgXlEGkUeIpiIz2UaTmGvRdaXYlMusF0/++tHpMISQUQ6KyLwjidKtG8
+         6Kju0EiErCSDu81jWWCqK9f71AsYbc03UD6uy5IseAw6rz31HtvcX8OiT6K97UvFDUzg
+         xiHlQK+mvSH5Sn+826iTx83SyhDWRBsjZQKg6iWQ5keiP3qJuD5W7MvnwHwGM4GcQxqU
+         x2P65FhBmYTtBfdH86pdJrlMYHnW0E6yQ/Hkrr59QsTGXL54jOnJSRZxQDoVp9Bwapnz
+         nZvX2TttUh1kcr4w/zGVVNTty9z3Rd2YUhNSRW2/tM4zyjvd9zFVcbPkPsx8h6d+jIt/
+         04Dw==
+X-Gm-Message-State: AJIora9f0aBU+fyMKt61x7keBxMIHya5IjwhR8pg2mJsddl7m0xsiaVR
+        M+fvlcuFF3gQU6sd7C8vsBU=
+X-Google-Smtp-Source: AGRyM1sGyGeihPMOBlclBHv7fDNWC4Y8ZiGgcSugmbB4OUrMjziIAKD2Hi/zk7EhwF0CNJLOPfj4JA==
+X-Received: by 2002:a17:906:29d:b0:6f0:18d8:7be0 with SMTP id 29-20020a170906029d00b006f018d87be0mr14229734ejf.561.1658859096908;
+        Tue, 26 Jul 2022 11:11:36 -0700 (PDT)
+Received: from localhost ([77.78.38.236])
+        by smtp.gmail.com with ESMTPSA id ti4-20020a170907c20400b0072faba59dd1sm5290081ejc.165.2022.07.26.11.11.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 26 Jul 2022 11:11:36 -0700 (PDT)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Adam Skladowski <a39.skl@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Cc:     Anup Patel <anup@brainfault.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 6/6] riscv: dts: renesas: Add initial devicetree for Renesas RZ/Five SoC
-Date:   Tue, 26 Jul 2022 19:06:23 +0100
-Message-Id: <20220726180623.1668-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH v2 0/5] PM6125 regulator support
+Date:   Tue, 26 Jul 2022 21:11:28 +0300
+Message-Id: <20220726181133.3262695-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.37.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial device tree for Renesas RZ/Five RISC-V CPU Core (AX45MP
-Single).
+This patch series adds SPMI and SMD regulator support for the PM6125 found on
+SM4250/SM6115 SoCs from QCom.
 
-Below is the list of IP blocks added in the initial SoC DTSI which can be
-used to boot via initramfs on RZ/Five SMARC EVK:
-- AX45MP CPU
-- CPG
-- PINCTRL
-- PLIC
-- SCIF0
-- SYSC
+This code has been tested on:
+* OnePlus Nord N100 (oneplus,billie2)
+* Xiaomi 9T (xiaomi,lemon)
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/riscv/boot/dts/Makefile               |   1 +
- arch/riscv/boot/dts/renesas/r9a07g043.dtsi | 121 +++++++++++++++++++++
- 2 files changed, 122 insertions(+)
- create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043.dtsi
+The main source used for this change is qpnp pm6125 support patch from caf [1]:
 
-diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-index ff174996cdfd..b0ff5fbabb0c 100644
---- a/arch/riscv/boot/dts/Makefile
-+++ b/arch/riscv/boot/dts/Makefile
-@@ -3,5 +3,6 @@ subdir-y += sifive
- subdir-y += starfive
- subdir-$(CONFIG_SOC_CANAAN_K210_DTB_BUILTIN) += canaan
- subdir-y += microchip
-+subdir-y += renesas
- 
- obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix /, $(subdir-y))
-diff --git a/arch/riscv/boot/dts/renesas/r9a07g043.dtsi b/arch/riscv/boot/dts/renesas/r9a07g043.dtsi
-new file mode 100644
-index 000000000000..6e0b640c6c7f
---- /dev/null
-+++ b/arch/riscv/boot/dts/renesas/r9a07g043.dtsi
-@@ -0,0 +1,121 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/Five SoC
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corp.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/r9a07g043-cpg.h>
-+
-+/ {
-+	compatible = "renesas,r9a07g043";
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	/* clock can be either from exclk or crystal oscillator (XIN/XOUT) */
-+	extal_clk: extal-clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		/* This value must be overridden by the board */
-+		clock-frequency = <0>;
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		timebase-frequency = <24000000>;
-+
-+		ax45mp: cpu@0 {
-+			compatible = "andestech,ax45mp", "riscv";
-+			device_type = "cpu";
-+			reg = <0x0>;
-+			status = "okay";
-+			riscv,isa = "rv64imafdc";
-+			mmu-type = "riscv,sv39";
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <0x40>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <0x40>;
-+			clocks = <&cpg CPG_CORE R9A07G043_AX45MP_CORE0_CLK>,
-+				 <&cpg CPG_CORE R9A07G043_AX45MP_ACLK>;
-+
-+			cpu0_intc: interrupt-controller {
-+				#interrupt-cells = <1>;
-+				compatible = "riscv,cpu-intc";
-+				interrupt-controller;
-+			};
-+		};
-+	};
-+
-+	soc: soc {
-+		compatible = "simple-bus";
-+		interrupt-parent = <&plic>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		scif0: serial@1004b800 {
-+			compatible = "renesas,scif-r9a07g043",
-+				     "renesas,scif-r9a07g044";
-+			reg = <0 0x1004b800 0 0x400>;
-+			interrupts = <412 IRQ_TYPE_LEVEL_HIGH>,
-+				     <414 IRQ_TYPE_LEVEL_HIGH>,
-+				     <415 IRQ_TYPE_LEVEL_HIGH>,
-+				     <413 IRQ_TYPE_LEVEL_HIGH>,
-+				     <416 IRQ_TYPE_LEVEL_HIGH>,
-+				     <416 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "eri", "rxi", "txi",
-+					  "bri", "dri", "tei";
-+			clocks = <&cpg CPG_MOD R9A07G043_SCIF0_CLK_PCK>;
-+			clock-names = "fck";
-+			power-domains = <&cpg>;
-+			resets = <&cpg R9A07G043_SCIF0_RST_SYSTEM_N>;
-+			status = "disabled";
-+		};
-+
-+		cpg: clock-controller@11010000 {
-+			compatible = "renesas,r9a07g043-cpg";
-+			reg = <0 0x11010000 0 0x10000>;
-+			clocks = <&extal_clk>;
-+			clock-names = "extal";
-+			#clock-cells = <2>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <0>;
-+		};
-+
-+		sysc: system-controller@11020000 {
-+			compatible = "renesas,r9a07g043-sysc";
-+			reg = <0 0x11020000 0 0x10000>;
-+			status = "disabled";
-+		};
-+
-+		pinctrl: pinctrl@11030000 {
-+			compatible = "renesas,r9a07g043-pinctrl";
-+			reg = <0 0x11030000 0 0x10000>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			#interrupt-cells = <2>;
-+			interrupt-controller;
-+			gpio-ranges = <&pinctrl 0 0 152>;
-+			clocks = <&cpg CPG_MOD R9A07G043_GPIO_HCLK>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg R9A07G043_GPIO_RSTN>,
-+				 <&cpg R9A07G043_GPIO_PORT_RESETN>,
-+				 <&cpg R9A07G043_GPIO_SPARE_RESETN>;
-+		};
-+
-+		plic: interrupt-controller@12c00000 {
-+			compatible = "renesas,r9a07g043-plic", "andestech,nceplic100";
-+			#interrupt-cells = <2>;
-+			#address-cells = <0>;
-+			riscv,ndev = <543>;
-+			interrupt-controller;
-+			reg = <0x0 0x12c00000 0 0x400000>;
-+			clocks = <&cpg CPG_MOD R9A07G043_NCEPLIC_ACLK>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg R9A07G043_NCEPLIC_ARESETN>;
-+			interrupts-extended = <&cpu0_intc 11 &cpu0_intc 9>;
-+		};
-+	};
-+};
--- 
-2.17.1
+[1]: https://source.codeaurora.org/quic/la/kernel/msm-5.4/commit/?h=kernel.lnx.5.4.r1-rel&id=d1220daeffaa440ffff0a8c47322eb0033bf54f5
+
+v1: https://lkml.org/lkml/2021/8/28/144
+
+Changes from v1:
+- add dt-bindings
+- split SPMI patch into new reg types and the new PMIC
+- add correct supply mapping
+
+Iskren Chernev (5):
+  dt-bindings: regulator: Document the PM6125 SPMI PMIC
+  dt-bindings: regulator: Document the PM6125 RPM regulators
+  regulator: qcom_spmi: Add support for new regulator types
+  regulator: qcom_spmi: Add PM6125 PMIC support
+  regulator: qcom_smd: Add PM6125 regulators support
+
+ .../regulator/qcom,smd-rpm-regulator.yaml     |   4 +
+ .../regulator/qcom,spmi-regulator.yaml        |  19 +++
+ drivers/regulator/qcom_smd-regulator.c        |  46 +++++
+ drivers/regulator/qcom_spmi-regulator.c       | 160 +++++++++++++++++-
+ 4 files changed, 227 insertions(+), 2 deletions(-)
+
+--
+2.37.1
 
