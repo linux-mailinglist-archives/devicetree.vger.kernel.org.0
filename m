@@ -2,156 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D3EA5810F4
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 701B3581103
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:24:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237981AbiGZKRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 06:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48666 "EHLO
+        id S238100AbiGZKYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 06:24:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230152AbiGZKRF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:17:05 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 387DD252AF
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:17:04 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id b34so10784056ljr.7
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:17:04 -0700 (PDT)
+        with ESMTP id S231345AbiGZKYT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:24:19 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63D6C248FD;
+        Tue, 26 Jul 2022 03:24:18 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id b7-20020a17090a12c700b001f20eb82a08so16862735pjg.3;
+        Tue, 26 Jul 2022 03:24:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=k5O4EHVtxr88sGikNEClrHBrRMv6Wt5HYjbVbFJmD00=;
-        b=vJpAIwYZMErEj5rbGqQ350mc3DCwuGHIizHIV5HmshxNf4Nft1JqUJibbEaQ4UGP3g
-         vw39nBSZJfIqI/XG3vZZaz2dTrpo6uIZi9xYNSTeRGR/DQif/KbWGwtkq388iwShp0gv
-         mP9rVynS6uo9w6P5Jl9Rb1x2SwhDE32s8qhojzZvMBIhdENmCL9rroS/hIDTgtD+zf6z
-         r2ASk5SDwigvx5mC2rkitjtqoKrBzHLSxEzgpL4MnvXE6QduyDQwm115Paei4jBS1Sw0
-         pP/XZdNcsEpxhoxulbvaCJVg7WbhwAwRscys4wzpeIRejNy2KTiv0BM4aZLWBqUsLC5v
-         0ijQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mKlpylo6kQhA+WMEw1iLf8gUPprV17zWXkGgtj81TCc=;
+        b=FwLozWp9bxnFn/jBvCFSKBIHvE0RpS08XZqNWc2ppS9A9P0KVKbregAH3pLO6jCOqp
+         nFeacjF1HX0auSIqDGOgAnysxkAYPHQdx2TtBfPB7Vn81yhzmwsQe0S1UrBbPCW1Qlwn
+         Z9GLUrlgUI/953UKEJoezWsFevgrNARMn9WW3wkKNGXm8CGZTOvJVYBrRCvGJyfq+pO+
+         HsIOajNynYNJ1sukIgnHqsXByAyGJruVl7ZGjg0v5pu8RHKS1m+rSga06ut2v+gFgGd9
+         Bzll4tilHaVT5+MsiogVNroQnOUKJl3jx4ygsWvDThEt8F4xv5xc8t8Hn6GfbXgCWmdz
+         NdjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=k5O4EHVtxr88sGikNEClrHBrRMv6Wt5HYjbVbFJmD00=;
-        b=55mSF/zGobnp+pFXcE9BtYIftwvS2ETRA8524IsLeiFi+AZUveYRNZAnRWFfj0jfGB
-         J7vBxIDnwvukSefJlI1ts2rYctEtXi3PAed4pRwFCIBvaa7A54+fnHo00wEBNL17bimC
-         vc6OYTsRz1wtWPFFCx5gMpSPu5CnuIVA5VBirJniI7+BknLwBFV1JO34oZeumx722C/8
-         4bBRG2gPAKzDf/pU961WJpeK1I203AwibFPBlXFYlmhocheRscbAcr5sNhkdHk9zOjey
-         111zhCDhBaCb8LYqRe7+cpz1FWJ0Wp9oHO8zXMGyKqs1NtBgX5zqUwoYkTCUUQRjHCP0
-         iZBA==
-X-Gm-Message-State: AJIora9iARqxbUzQRKCSPxpzoXSZDGCAkrdLDyVHx/nIVgHxejIHlg0c
-        NO6Pm1v8VaLwdnDwdTNv9hIOWg==
-X-Google-Smtp-Source: AGRyM1uViFn/KmVHqLUDrlNUpPnN4K9sCA2Pesn1Ztt99me1kjgo9CTQ9ebdIYigb0qTu1yG/I46ZQ==
-X-Received: by 2002:a2e:9d02:0:b0:25d:d6b9:b753 with SMTP id t2-20020a2e9d02000000b0025dd6b9b753mr5387184lji.344.1658830622608;
-        Tue, 26 Jul 2022 03:17:02 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id q21-20020ac24a75000000b00484e9e254c4sm3142760lfp.100.2022.07.26.03.17.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 03:17:02 -0700 (PDT)
-Message-ID: <e88d1036-dc58-3fc8-c388-edba9b2d62a7@linaro.org>
-Date:   Tue, 26 Jul 2022 12:17:00 +0200
+        bh=mKlpylo6kQhA+WMEw1iLf8gUPprV17zWXkGgtj81TCc=;
+        b=iUOX8vCDw4ckAHXrqKk7OLiWYRTMhUj+tjmpOFFCXNn7UercabLQ3tKpHxPzfPfbel
+         7ywwU2SSaziblAUX8Y+nLTz67a3NIAVI1RYjgkvMliMRTq228A/46Aos19zYxVLXt6EV
+         eGcrWFosRYDkNqP6xjH0ijK7oW+DCK21OpJ+0+2dJhju3N4q2gERsbEvf6cL3qHfhbQt
+         JiQtaQwjTwj/Gg3s5i1rzYf0lfYsS/l65DZf280K+YywizHdw+/IHQcLCA2RqqP/AFvy
+         TAqWyA6QhFeMUdkUipDeqjKaZNdRhk84ece6qDNLoJVv59rwvuHz7ZyteBDkA/eW2mVX
+         L/2A==
+X-Gm-Message-State: AJIora8fIttJAH4cjr1X4L9GoUj+1KKHeJY+fRdtiVspL7q7oKwX51QZ
+        KEey6pmMKpj3gxzIY6t+IOKqLLR/irL2SA==
+X-Google-Smtp-Source: AGRyM1sWol8//Pl+4G7LSBHy32IBfhaj89vaezrkLFKYJwMyrrEV87Us+oUamvyPyBwLG7OaFDCYAg==
+X-Received: by 2002:a17:902:a418:b0:16c:9ee2:8a02 with SMTP id p24-20020a170902a41800b0016c9ee28a02mr16066111plq.46.1658831057848;
+        Tue, 26 Jul 2022 03:24:17 -0700 (PDT)
+Received: from tj10039pcu.spreadtrum.com ([117.18.48.102])
+        by smtp.gmail.com with ESMTPSA id m12-20020a17090ab78c00b001ef3cec7f47sm10421753pjr.52.2022.07.26.03.24.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Jul 2022 03:24:17 -0700 (PDT)
+From:   Cixi Geng <gengcixi@gmail.com>
+To:     lee.jones@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, orsonzhai@gmail.com,
+        baolin.wang7@gmail.com, zhang.lyra@gmail.com,
+        mturquette@baylibre.com, sboyd@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH V6 0/2] Add ums512 clocks and relative bindings file
+Date:   Tue, 26 Jul 2022 18:24:02 +0800
+Message-Id: <20220726102404.564498-1-gengcixi@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-Content-Language: en-US
-To:     Maximilian Luz <luzmaximilian@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <20220723224949.1089973-5-luzmaximilian@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220723224949.1089973-5-luzmaximilian@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/07/2022 00:49, Maximilian Luz wrote:
-> Add bindings for the Qualcomm Trusted Execution Environment (TrEE) UEFI
-> Secure application (uefisecapp) client.
-> 
-> Signed-off-by: Maximilian Luz <luzmaximilian@gmail.com>
-> ---
->  .../firmware/qcom,tee-uefisecapp.yaml         | 38 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/firmware/qcom,tee-uefisecapp.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/qcom,tee-uefisecapp.yaml b/Documentation/devicetree/bindings/firmware/qcom,tee-uefisecapp.yaml
-> new file mode 100644
-> index 000000000000..9e5de1005d5c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/firmware/qcom,tee-uefisecapp.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
+From: Cixi Geng <cixi.geng1@unisoc.com>
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+This patchset is add the UMS512 clocks support
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Trusted Execution Environment UEFI Secure Application
-> +
-> +maintainers:
-> +  - Maximilian Luz <luzmaximilian@gmail.com>
-> +
-> +description: |
-> +  Various Qualcomm SoCs do not allow direct access to UEFI variables. Instead,
-> +  these need to be accessed via the UEFI Secure Application (uefisecapp),
-> +  residing in the Trusted Execution Environment (TrEE). These bindings mark the
-> +  presence of uefisecapp and allow the respective client driver to load and
-> +  install efivar operations, providing the kernel with access to UEFI
-> +  variables.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,tee-uefisecapp
+v2 changes:
+  adjust description and add the "sprd,ums512-glbregs,syscon,simple-mfd"
+  compatibles to fix match failed logs in the dt_binding_check.
+  add the property license and copyright notice.
 
-Isn't this SoC-specific device? Generic compatibles are usually not
-expected.
+v3 changes:
+  fix wrong indentation and hint: "maxItems" is not needed with an "items"
+  list when use the latest dtschema.
 
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    firmware {
-> +        scm {
-> +            compatible = "qcom,scm-sc8180x", "qcom,scm";
-> +        };
-> +        tee-uefisecapp {
-> +            compatible = "qcom,tee-uefisecapp";
+v4 changes:
+  move the syscon bindins from clk to glbreg yaml file by pickup 
+  chunyan's patch for global registers bindings
+  fix the comments from Krzysztof in v3 patchset
+  add the Acked-by: Krzysztof in patch v4 3/4
+  fix the  warning Prefer "GPL" over "GPL v2"
 
-You did not model here any dependency on SCM. This is not full
-description of the firmware/hardware.
+v5 changes:
+  Add review tags.
+  fix the comments in ums512-glbreg.yaml.
 
+v6 changes:
+  No more send the patch 1/4 and 3/4 in V5 for applied by Stephen
+  change GPL to GPL v2 license
+  fix the lack of space in some "{" and "}"
+  add check error for sprd_clk_regmap_init.
 
+Chunyan Zhang (1):
+  dt-bindings: mfd: sprd: Add bindings for ums512 global registers
 
-Best regards,
-Krzysztof
+Cixi Geng (1):
+  clk: sprd: Add clocks support for UMS512
+
+ .../bindings/mfd/sprd,ums512-glbreg.yaml      |   68 +
+ drivers/clk/sprd/Kconfig                      |    6 +
+ drivers/clk/sprd/Makefile                     |    1 +
+ drivers/clk/sprd/ums512-clk.c                 | 2202 +++++++++++++++++
+ 4 files changed, 2277 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/sprd,ums512-glbreg.yaml
+ create mode 100644 drivers/clk/sprd/ums512-clk.c
+
+-- 
+2.25.1
+
