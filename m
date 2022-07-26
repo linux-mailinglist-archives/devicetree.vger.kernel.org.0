@@ -2,232 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ABCA5814A2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 15:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 693ED5814B1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 15:59:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239120AbiGZNzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 09:55:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38054 "EHLO
+        id S233437AbiGZN7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 09:59:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239129AbiGZNzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 09:55:31 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7B2DD110
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 06:55:24 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id n185so8792016wmn.4
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 06:55:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=N02ENN8wREPX4veIj3cGqV28PXqeQzl2/6jGMwhV5k4=;
-        b=vO9zvYPT5F1jd3WhvAXktLAz6qcb8YZgGeLh1fXmtfpqcsBFp8Js3hB+qnqryJRuBl
-         2tV1KtKbEj+iw2CLAXaujRN8QpTGItj84cZdY3YIt8Wqcxrq1Y9Tqqf0XdvmBml1R99U
-         MVrxwDL2oeW8hl/hZs/K4zffKdBlG573cIGBw0SoXvP78XIxAg7fGITYYjJfOFl7NLZj
-         Sv+SuVeq9vsL5XPjan/wzSLX4NWjqAoRiTF4uXqC1huzb6719k+s+RsdiBN7mKdU0vlk
-         AxQnUwdaAbm/Bi5jSow290CBHv1JEdr0DF4WeHltdnDaKon0HvytQGi+Q3w5aqyJ8ZvY
-         4jCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=N02ENN8wREPX4veIj3cGqV28PXqeQzl2/6jGMwhV5k4=;
-        b=imVtoozRC/Fxg73Frf8b1tw5WPxYyEbpSdB/6bVF4w7SchSeGyFEo4boQqX+zatQ/z
-         1TDbtGThyDBO0W5ZHGPL2iokrKNhydGMIsfxpcc3F2rf4IZAXyGdRSwjRluxQHAKwPId
-         odXr2hVH12El19GkLlUUNfYw6g5m5PoMsBn6Ye7C53htz5jhxjhaeX27SVApiP1Hx6Mf
-         8HL7AiJ235KHLq/k95yu+RoJUGkasQPN/lCfU0HxJvCIgbCpqh78OC5tubFUGHwT/ctp
-         4tztZiWgUUdIh2MBcO4buLivr7+kx/RMqDM+5Vcfz+mlQ7jh9/UarskI01/1xSGu8OHh
-         3X3A==
-X-Gm-Message-State: AJIora+Lizbx8l0Q5A1SHVHsf5sDJk32JAVXR2vnnHubwxBU/REUvKHf
-        PrS9zcWhpLUcj7jTtkEhdLUVDQ==
-X-Google-Smtp-Source: AGRyM1vhX7RgKC8IGy97eICF/591FulDH1b+GwMaL7So30RUVSvED/g4XVgQWTuECYQ6Gn9vbOzMZQ==
-X-Received: by 2002:a1c:2783:0:b0:3a2:fd82:bf46 with SMTP id n125-20020a1c2783000000b003a2fd82bf46mr24814709wmn.29.1658843723039;
-        Tue, 26 Jul 2022 06:55:23 -0700 (PDT)
-Received: from Balsam-ThinkPad-T480.baylibre (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id d13-20020adf9c8d000000b0021e4c3b2967sm15244670wre.65.2022.07.26.06.55.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 06:55:22 -0700 (PDT)
-From:   Balsam CHIHI <bchihi@baylibre.com>
-To:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-Subject: [PATCH v8 6/6] arm64: dts: mt8195: Add thermal zone
-Date:   Tue, 26 Jul 2022 15:55:06 +0200
-Message-Id: <20220726135506.485108-7-bchihi@baylibre.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220726135506.485108-1-bchihi@baylibre.com>
-References: <20220726135506.485108-1-bchihi@baylibre.com>
+        with ESMTP id S238744AbiGZN7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 09:59:37 -0400
+X-Greylist: delayed 22606 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 26 Jul 2022 06:59:36 PDT
+Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B2C424F35;
+        Tue, 26 Jul 2022 06:59:36 -0700 (PDT)
+Received: by gofer.mess.org (Postfix, from userid 1000)
+        id A313810006A; Tue, 26 Jul 2022 14:59:34 +0100 (BST)
+Date:   Tue, 26 Jul 2022 14:59:34 +0100
+From:   Sean Young <sean@mess.org>
+To:     Zhang Ning <zhangn1985@qq.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        narmstrong@baylibre.com, martin.blumenstingl@googlemail.com,
+        linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [v6 2/4] media: rc: add keymap for MagicBox M16S remote
+Message-ID: <Yt/zRoDbEMiMT6qj@gofer.mess.org>
+References: <20220726131523.140581-1-zhangn1985@qq.com>
+ <tencent_7941C3ADC1F805DF58467BADCD88F4C0C406@qq.com>
+ <tencent_DAA1CCC0ECA273CCA2DDC726455A73C2B705@qq.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <tencent_DAA1CCC0ECA273CCA2DDC726455A73C2B705@qq.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the thermal zone for the mt8195.
+On Tue, Jul 26, 2022 at 09:39:46PM +0800, Zhang Ning wrote:
+> On Tue, Jul 26, 2022 at 09:15:21PM +0800, Zhang Ning wrote:
+> > MagicBox M16S Tv box shipped with a simple NEC remote.
+> > 
+> > Signed-off-by: Zhang Ning <zhangn1985@qq.com>
+> > ---
+> >  drivers/media/rc/keymaps/Makefile      |  1 +
+> >  drivers/media/rc/keymaps/rc-magicbox.c | 58 ++++++++++++++++++++++++++
+> >  include/media/rc-map.h                 |  1 +
+> >  3 files changed, 60 insertions(+)
+> >  create mode 100644 drivers/media/rc/keymaps/rc-magicbox.c
+> > 
+> > diff --git a/drivers/media/rc/keymaps/Makefile b/drivers/media/rc/keymaps/Makefile
+> > index f513ff5caf4e..02c1c2150f03 100644
+> > --- a/drivers/media/rc/keymaps/Makefile
+> > +++ b/drivers/media/rc/keymaps/Makefile
+> > @@ -71,6 +71,7 @@ obj-$(CONFIG_RC_MAP) += \
+> >  			rc-kworld-plus-tv-analog.o \
+> >  			rc-leadtek-y04g0051.o \
+> >  			rc-lme2510.o \
+> > +			rc-magicbox.o \
+> >  			rc-manli.o \
+> >  			rc-mecool-kiii-pro.o \
+> >  			rc-mecool-kii-pro.o \
+> > diff --git a/drivers/media/rc/keymaps/rc-magicbox.c b/drivers/media/rc/keymaps/rc-magicbox.c
+> > new file mode 100644
+> > index 000000000000..015767429028
+> > --- /dev/null
+> > +++ b/drivers/media/rc/keymaps/rc-magicbox.c
+> > @@ -0,0 +1,58 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +//
+> > +// Copyright (C) 2022 Zhang Ning <zhangn1985@qq.com>
+> > +
+> > +/*
+> > + * Keytable for the MagicBox M16S remote control
+> > + */
+> > +
+> > +#include <media/rc-map.h>
+> > +#include <linux/module.h>
+> > +
+> > +static struct rc_map_table magicbox[] = {
+> > +	{ 0x9f57, KEY_POWER },
+> > +
+> > +	/*
+> > +	 * This key labeled "M" is used as magic key in vendor OS,
+> > +         * and mapped to KEY_MUTE.
+> oh no, mixed tab and space. I will fix it next version.
 
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
-Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 115 ++++++++++++++++++++++-
- 1 file changed, 114 insertions(+), 1 deletion(-)
+That's something minor that can be fixed when merging.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 4fbf24b5d202..78017224930c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: (GPL-2.0 OR MIT)
- /*
-- * Copyright (c) 2021 MediaTek Inc.
-+ * Copyright (c) 2022 MediaTek Inc.
-  * Author: Seiya Wang <seiya.wang@mediatek.com>
-  */
- 
-@@ -11,6 +11,9 @@
- #include <dt-bindings/memory/mt8195-memory-port.h>
- #include <dt-bindings/phy/phy.h>
- #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
-+#include <dt-bindings/power/mt8195-power.h>
-+#include <dt-bindings/reset/mt8195-resets.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	compatible = "mediatek,mt8195";
-@@ -810,6 +813,28 @@ spi0: spi@1100a000 {
- 			status = "disabled";
- 		};
- 
-+		lvtsap: thermal-sensor@1100b000 {
-+			compatible = "mediatek,mt8195-lvts-ap";
-+			#thermal-sensor-cells = <1>;
-+			reg = <0 0x1100b000 0 0x400>;
-+			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-+			resets = <&infracfg_ao MT8195_INFRA_RST0_THERM_CTRL_SWRST>;
-+			nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
-+			nvmem-cell-names = "lvts_calib_data1", "lvts_calib_data2";
-+		};
-+
-+		lvtsmcu: thermal-sensor@11278000 {
-+			compatible = "mediatek,mt8195-lvts-mcu";
-+			#thermal-sensor-cells = <1>;
-+			reg = <0 0x11278000 0 0x400>;
-+			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
-+			resets = <&infracfg_ao MT8195_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
-+			nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
-+			nvmem-cell-names = "lvts_calib_data1", "lvts_calib_data2";
-+		};
-+
- 		spi1: spi@11010000 {
- 			compatible = "mediatek,mt8195-spi",
- 				     "mediatek,mt6765-spi";
-@@ -1613,4 +1638,92 @@ vencsys_core1: clock-controller@1b000000 {
- 			#clock-cells = <1>;
- 		};
- 	};
-+
-+	thermal_zones: thermal-zones {
-+		cpu-big1-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsmcu 0>;
-+		};
-+		cpu-big2-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsmcu 1>;
-+		};
-+		cpu-big3-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsmcu 2>;
-+		};
-+		cpu-big4-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsmcu 3>;
-+		};
-+		cpu-little1-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsmcu 4>;
-+		};
-+		cpu-little2-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsmcu 5>;
-+		};
-+		cpu-little3-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsmcu 6>;
-+		};
-+		cpu-little4-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsmcu 7>;
-+		};
-+		vpu1-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsap 0>;
-+		};
-+		vpu2-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsap 1>;
-+		};
-+		gpu1-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsap 2>;
-+		};
-+		gpu2-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsap 3>;
-+		};
-+		vdec-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsap 4>;
-+		};
-+		img-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsap 5>;
-+		};
-+		infra-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsap 6>;
-+		};
-+		cam1-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsap 7>;
-+		};
-+		cam2-thermal {
-+			polling-delay = <0>; /* milliseconds */
-+			polling-delay-passive = <0>; /* milliseconds */
-+			thermal-sensors = <&lvtsap 8>;
-+		};
-+	};
- };
--- 
-2.34.1
+Looks good to me, thank you for dealing with all the pedantic reviews.
 
+Signed-off-by: Sean Young <sean@mess.org>
+
+> 
+> > +	 */
+> > +	{ 0x9f8a, KEY_MUTE },
+> > +
+> > +	{ 0x9f43, KEY_UP },
+> > +	{ 0x9f0a, KEY_DOWN },
+> > +	{ 0x9f06, KEY_LEFT },
+> > +	{ 0x9f0e, KEY_RIGHT },
+> > +	{ 0x9f02, KEY_OK },
+> > +
+> > +	{ 0x9f47, KEY_HOME },
+> > +	{ 0x9f4f, KEY_BACK },
+> > +	{ 0x9f16, KEY_MENU },
+> > +
+> > +	{ 0x9fff, KEY_VOLUMEUP },
+> > +	{ 0x9f5d, KEY_VOLUMEDOWN },
+> > +};
+> > +
+> > +static struct rc_map_list magicbox_map = {
+> > +	.map = {
+> > +		.scan     = magicbox,
+> > +		.size     = ARRAY_SIZE(magicbox),
+> > +		.rc_proto = RC_PROTO_NEC,
+> > +		.name     = RC_MAP_MAGICBOX,
+> > +	}
+> > +};
+> > +
+> > +static int __init init_rc_map_magicbox(void)
+> > +{
+> > +	return rc_map_register(&magicbox_map);
+> > +}
+> > +
+> > +static void __exit exit_rc_map_magicbox(void)
+> > +{
+> > +	rc_map_unregister(&magicbox_map);
+> > +}
+> > +
+> > +module_init(init_rc_map_magicbox)
+> > +module_exit(exit_rc_map_magicbox)
+> > +
+> > +MODULE_LICENSE("GPL");
+> > +MODULE_AUTHOR("Zhang Ning <zhangn1985@qq.com>");
+> > diff --git a/include/media/rc-map.h b/include/media/rc-map.h
+> > index 793b54342dff..656217b8e91b 100644
+> > --- a/include/media/rc-map.h
+> > +++ b/include/media/rc-map.h
+> > @@ -277,6 +277,7 @@ struct rc_map *rc_map_get(const char *name);
+> >  #define RC_MAP_KWORLD_PLUS_TV_ANALOG     "rc-kworld-plus-tv-analog"
+> >  #define RC_MAP_LEADTEK_Y04G0051          "rc-leadtek-y04g0051"
+> >  #define RC_MAP_LME2510                   "rc-lme2510"
+> > +#define RC_MAP_MAGICBOX                  "rc-magicbox"
+> >  #define RC_MAP_MANLI                     "rc-manli"
+> >  #define RC_MAP_MECOOL_KII_PRO            "rc-mecool-kii-pro"
+> >  #define RC_MAP_MECOOL_KIII_PRO           "rc-mecool-kiii-pro"
+> > -- 
+> > 2.35.1
+> > 
