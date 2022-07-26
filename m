@@ -2,83 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 411E658163B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 17:16:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12AB1581677
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 17:32:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236009AbiGZPQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 11:16:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48960 "EHLO
+        id S238924AbiGZPcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 11:32:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230424AbiGZPP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 11:15:57 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6449252BE
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 08:15:54 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-10cf9f5b500so18981961fac.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 08:15:54 -0700 (PDT)
+        with ESMTP id S238748AbiGZPcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 11:32:45 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9ABB2559A
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 08:32:43 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id y141so13509124pfb.7
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 08:32:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=qi27YQV2llDIQ9MD4a8mHofES1qIg++Nu2kwK03YD9s=;
-        b=CQAIm7dsoQ67sdv3ZNlQe6NjLz8yY6xJUmn7p6/mRDOJU4AfuiFJiSoeJElIgg+tAG
-         mFMrcjFV63EHW9qUCC6hD/DIPS7bFjLG5uHUNoS1kGMSxsOgyukFtbcOG5hcNandjbup
-         xs4PRGPwsd9nAJw0a02gw1hvB8oQ71GiWPhIS7Sa/gVtWAKHNFvVykm9NRZ++5yJMnUE
-         ty3Y/OtxIaKGQq/omAtGXpNGE6FGbRmEK6T9/LLkQJTuu0yCUC6k3ufqEv16KlMVrlB9
-         grZTXFo08BOg6O46yegyIGx8YZplppu+dB0fP8UW3g+MU2okGzhAnk1YL/4NrYCrdKoY
-         wzKw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QvgqOJsJaRfwh288RK8fy30Wkh0J6u/9f1tN/TUOFVA=;
+        b=NrQhRCOMUDC3mXJXosstgVwIDMYkidDR0/Q8Vw6uHokuZZDKRNeVGoywXSjWMLsSAi
+         BqPLLK53Unp4zoisknrJ5o424bakXSL2cC8jAQsP2Der1v23+fwmcypMhH9PEbm7r3Wz
+         wZUq758ylpkk1JsIjod8XkkgxvaCtL8hlO5xY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=qi27YQV2llDIQ9MD4a8mHofES1qIg++Nu2kwK03YD9s=;
-        b=0cAT4OAkPHcO+K4ba9sMEr56SqaDirLgV5JRQXvxoTO7slfSm7DK0dmDkjWkhcqyBN
-         IMY0svDUluqHENIOwKsP80LA8BZkHGX7t2sm0L+/deV//UhpIAXnmhOAyvTAC7Xru2CG
-         gCAfgRvWcU3JkuOECFuSSHw//ptcWHsKl0P13Ss3y8dDuSdt3SnIQ7WM6DuXpg8SeAoe
-         KRwzKmX8DEiqfJcVy3AO5R0/DpkA2XygQQq27jI0wu4vHPKE6sIctCyJtCU+W2siBk2G
-         rlYere9Dk2PBoCMDue496lvvL6jZR6QiVXzxcSzMnHs8LMaeSAxz6J6PzKQ1piaQea3T
-         o8qQ==
-X-Gm-Message-State: AJIora9uLUPCqiWnQM5oBnSqdSSu8YVKUBskR++Ji4yoF9GiyToDY/bt
-        1HoXgRGxc05RSfDXCMyeYuzMng==
-X-Google-Smtp-Source: AGRyM1uhgZZGXaCq2SBFY+o1bwUROWuIuAPgjZwj+YCssxLFM98pvrFIosfruR3nTAuuiAaROu1fpw==
-X-Received: by 2002:a05:6870:b021:b0:10d:438:15e2 with SMTP id y33-20020a056870b02100b0010d043815e2mr8713667oae.162.1658848553012;
-        Tue, 26 Jul 2022 08:15:53 -0700 (PDT)
-Received: from [192.168.11.16] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id w4-20020a4aa444000000b0041ba884d42csm6015111ool.42.2022.07.26.08.15.51
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QvgqOJsJaRfwh288RK8fy30Wkh0J6u/9f1tN/TUOFVA=;
+        b=EYpKQvuWmqmZWhxvmZcM2jVr2z2ZlRjingoJrpuKG1aKN0k9NNTZtYvgXQdK4e6fiZ
+         A4LUmqTioAqFI9K38VyiQHsdUW65AnWS8zjx+JXjFz2+LbpVVhmV6nUg0keJzxD6PbBU
+         U+2RtPnnsVCMyVNRefRQw5gRpASdkycMpLxah7CsU8TbxagVneTknb76EY/b29G9OiRW
+         g1zduERehvRyUQHd1FWcwbR7dwkpS3IsmI7zmlbnYm/aN+wydtQy4LAIFPZRuDu2CUw9
+         fV2Ud3ZL0PGpsgZLx9bLIPTbU+vLmQGqcsx/4CV4zs34u+sxTzbZZnVjh9AbwFe7Ctc8
+         yRaQ==
+X-Gm-Message-State: AJIora+X70G8nMx36NGrjv95Qt0DDOvd0mCdyTKv6iNQb3+1/9fIzcm1
+        y/icr/xkBlFgSW+rdEDcEjxWSA==
+X-Google-Smtp-Source: AGRyM1s00puXzuack0g772HA7Y+ZUTEclrQEjeyTAfQzTXf+aMs/JSmo14i4PletDJvEYqkYsRojGQ==
+X-Received: by 2002:a65:6e96:0:b0:415:5973:b4f4 with SMTP id bm22-20020a656e96000000b004155973b4f4mr14939446pgb.568.1658849562682;
+        Tue, 26 Jul 2022 08:32:42 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:e9b1:f865:ec5d:495e])
+        by smtp.gmail.com with UTF8SMTPSA id ne16-20020a17090b375000b001f3009a5ccfsm564197pjb.54.2022.07.26.08.32.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 08:15:52 -0700 (PDT)
-Message-ID: <68600ea4-9f65-f365-382a-444c60b4a25d@kali.org>
-Date:   Tue, 26 Jul 2022 10:15:49 -0500
+        Tue, 26 Jul 2022 08:32:42 -0700 (PDT)
+Date:   Tue, 26 Jul 2022 08:32:40 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        alexandre.torgue@foss.st.com, krzysztof.kozlowski+dt@linaro.org,
+        arnd@arndb.de, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, amelie.delaunay@foss.st.com
+Subject: Re: [PATCH v2 2/4] usb: misc: onboard-hub: add support for Microchip
+ USB2514B USB 2.0 hub
+Message-ID: <YuAJGBmX3Bf5Y1qf@google.com>
+References: <20220726080708.162547-1-fabrice.gasnier@foss.st.com>
+ <20220726080708.162547-3-fabrice.gasnier@foss.st.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.11.0
-Subject: Re: [PATCH 10/10] arm64: dts: qcom: sdm845: add LLCC BWMON
-Content-Language: en-US
-To:     Sibi Sankar <quic_sibis@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <20220720192807.130098-1-krzysztof.kozlowski@linaro.org>
- <20220720192807.130098-11-krzysztof.kozlowski@linaro.org>
- <25673493-4171-62b0-f696-1316d115f388@kali.org>
- <96552a95-8939-3ac2-c9b3-14dabaf53923@linaro.org>
- <d814a6da-b0d7-2fd1-fd14-8f1f3b88666f@kali.org>
- <d89a540f-672d-83de-d19d-00f10e4370d1@kali.org>
- <fec6bd98-5efd-fe34-6d75-1765219acd82@linaro.org>
- <25321f37-dbea-188b-1b11-e983a00701b2@quicinc.com>
-From:   Steev Klimaszewski <steev@kali.org>
-In-Reply-To: <25321f37-dbea-188b-1b11-e983a00701b2@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220726080708.162547-3-fabrice.gasnier@foss.st.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,40 +72,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jul 26, 2022 at 10:07:06AM +0200, Fabrice Gasnier wrote:
+> Add support for Microchip USB2514B USB 2.0 hub to the onboard usb hub
+> driver. Adopt the generic usb-device compatible ("usbVID,PID").
+> Some STM32MP1 boards have this hub on-board, with a supply that needs to
+> be enabled for proper operation.
+> 
+> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
 
-On 7/26/22 6:31 AM, Sibi Sankar wrote:
-> On 7/23/22 2:06 PM, Krzysztof Kozlowski wrote:
->> On 23/07/2022 04:37, Steev Klimaszewski wrote:
->>>>
->>>> Currently it's 5.19.0-rc7 (torvalds tree at 4ba1329c) with a few extra
->>>> patches on top, the bwmon set included.  It's possible that secure
->>>> world uses it, but I do not know enough about that to say one way or
->>>> the other.
->>
->> To test patches you should apply them on maintainer's tree or
->> linux-next. Applying on other trees of course might be useful for
->> testing some backports, but it is independent process and different 
->> issue.
->>
->>>>
->>>> -- steev
->>>>
->>> I think you may be right; I just applied this patchset to -next
->>> (20220722) and i do not see the error message there.  On my 5.19-rc7
->>> tree, i am also testing a patchset that enables qcom devices to access
->>> efivars, so possibly we are ending up in secure world there?
->>
->> Actually mapping of IO space should not touch secure world, so this was
->> a long shot assuming you test it on the next.
->>
->
-> The memory region specified in device tree overlaps with the llcc system
-> cache controller node. Steev probably had the QCOM_LLCC config enabled 
-> when he tested it out on his branch.
->
->>
->> Best regards,
->> Krzysztof
->>
-Good catch!  You are correct, my -next config did not have QCOM_LLCC 
-set, and I am using QCOM_LLCC=m on the 5.19.0 release candidate.
+Acked-by: Matthias Kaehlcke <mka@chromium.org>
