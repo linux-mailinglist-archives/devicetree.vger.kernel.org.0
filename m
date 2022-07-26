@@ -2,127 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B991C580A17
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 05:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C66D5580A21
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 05:55:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236868AbiGZDpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 25 Jul 2022 23:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46648 "EHLO
+        id S231243AbiGZDzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 25 Jul 2022 23:55:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229852AbiGZDpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 23:45:16 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADADD265D;
-        Mon, 25 Jul 2022 20:45:14 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id tk8so23919246ejc.7;
-        Mon, 25 Jul 2022 20:45:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=hK9bdKxTQpaVNAf62mZs34iWrOFJN74ACx5fLDVM42o=;
-        b=dQ1lsD0pepwYEFblTk7mpzcFBnxB6tyOgcPOpx/6lHi03xM2x6XoOMsftr0Ahyhnyp
-         YKRNwmbk3S/dLgnWzqNgPvK3hzQRuTVRQls/Mi1FhdzbDczqdn38liHHuEZW47JFLsk1
-         +h8lkfRCPTDjr9YQRU8WmvTdoUuNXQFyhb7IMeTpMpj5T/h8sYR0lb0eox1DrvXaLl90
-         u8PqQ4B47CZB0IIFF6SbpRISJlWaXFWXrxg6Ylkgcn2ynkyqgVjdVxYWOU1X6rvhpy8R
-         pTzJRcOEm6vNKlAm0C7wQxZPfKBpMYuFfOzuVH69iBnapUG9N+QMFhV7yxDIhCFQNAdJ
-         /mtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=hK9bdKxTQpaVNAf62mZs34iWrOFJN74ACx5fLDVM42o=;
-        b=y9Thlp2Cm6fVezY/mAlU30Z0KdXXnV48dd5JHwH6pxqYAhBAM4rHy082jQRU5cylQH
-         ZCgNgheuN2XDJFEGTkNZ/ArKCPrl9okpCKeosQxcJ1ReX6UNNf9S2Ggvo1w20lp1weYt
-         n3a955YG5EH1NMvlGUfhL76sYVyeuu98kIm9wcrde10AP1uPTZ/CyZc2Boqc/N/f/xl5
-         9wgV1aAvgT/wIyPd8rRJqsvyvzmQSTZKmQoaWl2djn5aEWjZIaG3nzjOfnX/196kGp/U
-         PYH+EpIUbODrK+y4PLvkqpXI2FiEQ3R7p/bUOz95cnWnPBSO+J5JJHknuOflA57kTNg5
-         PXEQ==
-X-Gm-Message-State: AJIora9GuM8QjTucc0BbrvGUBzIKkWQvROY4QJGfzmu2cyDNw4YqBN5W
-        qmPN9PpY0U8+9erQ8W+92ioDVsJq8tddYfAXqwY=
-X-Google-Smtp-Source: AGRyM1uBh2/Ujp0DRIZAzAQnZ43gbhiJIymwO1u6SGrzdqZ5yaYUGN2qu0sR6xbFs3MVvu26GUSOxwk4olKhadauEMc=
-X-Received: by 2002:a17:906:844f:b0:72b:549e:a654 with SMTP id
- e15-20020a170906844f00b0072b549ea654mr11954747ejy.535.1658807113081; Mon, 25
- Jul 2022 20:45:13 -0700 (PDT)
+        with ESMTP id S231258AbiGZDzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 25 Jul 2022 23:55:54 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215DC7677
+        for <devicetree@vger.kernel.org>; Mon, 25 Jul 2022 20:55:52 -0700 (PDT)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220726035550epoutp01c0338b0a1bc153b8abf84c35b5d00982~FRNwssjPO2739127391epoutp01d
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:55:50 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220726035550epoutp01c0338b0a1bc153b8abf84c35b5d00982~FRNwssjPO2739127391epoutp01d
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1658807750;
+        bh=fbcLM874Vz+W4WSi9y5XBWvhudbB9qUC0fnLm9sOjTg=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=mDUIqTcKQ4p9gY96ARyLc81vML3F60LykcQfMTV1wI9nUyYpp/LzAiaoJ11iwJ2aE
+         6EGuRw3WdSuRDKiC8iqYVbWZStB/enMjV/6xCHW0on4S2t5LEcJukV33K1++BGKN9w
+         BuGR9jbxb2VGxxRinHO8Fbdqnry/JIj697A+UQek=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20220726035549epcas5p31e2872f38aadcf0a99c6cefbcb81689a~FRNv1yBv30765407654epcas5p3H;
+        Tue, 26 Jul 2022 03:55:49 +0000 (GMT)
+Received: from epsmges5p3new.samsung.com (unknown [182.195.38.174]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4LsNNy1zYxz4x9Q0; Tue, 26 Jul
+        2022 03:55:46 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+        epsmges5p3new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        64.EA.09639.BB56FD26; Tue, 26 Jul 2022 12:55:39 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20220726035538epcas5p4135e63f642ef49535ff12d25c5846e4d~FRNl6b2do0887508875epcas5p4K;
+        Tue, 26 Jul 2022 03:55:38 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20220726035538epsmtrp2c8c3317535a72cb2990c979f4f47e800~FRNl5j9vJ0718607186epsmtrp2z;
+        Tue, 26 Jul 2022 03:55:38 +0000 (GMT)
+X-AuditID: b6c32a4b-e6dff700000025a7-11-62df65bb1675
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        D8.6B.08905.AB56FD26; Tue, 26 Jul 2022 12:55:38 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220726035536epsmtip15e06a5b0baf4bea3dd788359ca92263c~FRNkMRmxr2640726407epsmtip1Y;
+        Tue, 26 Jul 2022 03:55:36 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Johan Hovold'" <johan+linaro@kernel.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>,
+        "'Martin K. Petersen'" <martin.petersen@oracle.com>
+Cc:     "'Andy Gross'" <agross@kernel.org>,
+        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
+        "'Avri Altman'" <avri.altman@wdc.com>,
+        "'Bart Van Assche'" <bvanassche@acm.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+In-Reply-To: <20220711101441.4896-1-johan+linaro@kernel.org>
+Subject: RE: [PATCH] dt-bindings: ufs: qcom,ufs: add SC8280XP binding
+Date:   Tue, 26 Jul 2022 09:25:35 +0530
+Message-ID: <000001d8a0a3$913c2120$b3b46360$@samsung.com>
 MIME-Version: 1.0
-References: <1657780937-20891-1-git-send-email-u0084500@gmail.com>
-In-Reply-To: <1657780937-20891-1-git-send-email-u0084500@gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 26 Jul 2022 11:45:00 +0800
-Message-ID: <CADiBU39x98iyO_OB2sYdAUGUOW9pV4dt+mEdfquhuJVm1HDRHA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] Add Richtek RT5120 PMIC support
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        cy_huang <cy_huang@richtek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        linux-input@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGXKANTK7IsGceyoQ2tYQ03261akwKSTS7Prf5j5AA=
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrMJsWRmVeSWpSXmKPExsWy7bCmpu7u1PtJBrfXCFmce/ybxeLlz6ts
+        Fqf3v2OxmPbhJ7PF/CPnWC1WVFr0vXjIbDFx/1l2i8u75rBZdF/fwWax/Pg/JovWvUfYHXg8
+        Ll/x9ti0qpPN4861PWweH5/eYvH4vEnOo/1AN1MAW1S2TUZqYkpqkUJqXnJ+SmZeuq2Sd3C8
+        c7ypmYGhrqGlhbmSQl5ibqqtkotPgK5bZg7QhUoKZYk5pUChgMTiYiV9O5ui/NKSVIWM/OIS
+        W6XUgpScApMCveLE3OLSvHS9vNQSK0MDAyNToMKE7IzPDwoKpvJVbP8wmbmBcSZ3FyMnh4SA
+        icSr2c9Yuxi5OIQEdjNK7PjUzQiSEBL4xCjx5r0ZROIbo8SC6fuYYTq6m99CdexllJh8uYUZ
+        wnnJKPHv/2mwKjYBXYkdi9vYQBIiAmcYJbZ9PAOWYBZYxyTx7qIgiM0pYCOx//hsFhBbWMBV
+        4sfvGUC7OThYBFQlTr3SBwnzClhK/Nh2hh3CFpQ4OfMJC8QYeYntb+dAXaQg8fPpMlYQW0TA
+        SuJ01y82iBpxiZdHj7CD3CAhcIRDoqN3IjtEg4vE1p1LWCFsYYlXx7dAxaUkPr/bywZyg4SA
+        h8SiP1IQ4QyJt8vXM0LY9hIHrsxhASlhFtCUWL9LH2IVn0Tv7ydMEJ28Eh1tQhDVqhLN766y
+        QNjSEhO7u6GWekicOnaNcQKj4iwkj81C8tgsJA/MQli2gJFlFaNkakFxbnpqsWmBcV5qOTy2
+        k/NzNzGCU6+W9w7GRw8+6B1iZOJgPMQowcGsJMKbEH0/SYg3JbGyKrUoP76oNCe1+BCjKTCw
+        JzJLiSbnA5N/Xkm8oYmlgYmZmZmJpbGZoZI4r9fVTUlCAumJJanZqakFqUUwfUwcnFINTCfr
+        3EyfOU7sC9PsCuXb9L2xrn39U8ZLaWteb5w1NWryklWn61VM6207pCa2Twk1v5i0nZ3/kanf
+        m+sH/3/y0uAucvWqbD1kJ90U0cWxMDJXpq7y0oRl5laSW354q1xg+loUWHCV0Tp2XZankL2k
+        XMnCNTmcM5+WaOqHpnDnrdXgOcyYyFmaF65a0jgzpVfok6N78UU9y8D/E/YXZjtZH45P2Lfg
+        565sToHMVS/fG6/Jm/+3Ut7WZbbe9kr9i3e+e2kwzGPz9mlbeaxom0N8VrvWLAXmyXfnT3j1
+        NqCt6/EpG2vrjSlvHl4Mv9zGWlov4JjoMnH/y6QPh0tjpy2z4vY7GCt6+92hDR6/0oyUWIoz
+        Eg21mIuKEwFqoCUERgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLIsWRmVeSWpSXmKPExsWy7bCSnO6u1PtJBvfmy1qce/ybxeLlz6ts
+        Fqf3v2OxmPbhJ7PF/CPnWC1WVFr0vXjIbDFx/1l2i8u75rBZdF/fwWax/Pg/JovWvUfYHXg8
+        Ll/x9ti0qpPN4861PWweH5/eYvH4vEnOo/1AN1MAWxSXTUpqTmZZapG+XQJXxucHBQVT+Sq2
+        f5jM3MA4k7uLkZNDQsBEorv5LWsXIxeHkMBuRommrc9ZIBLSEtc3TmCHsIUlVv57zg5R9JxR
+        YtX72WBFbAK6EjsWt7GBJEQEzjBK3H7cwgLiMAtsYZJoPbaTEaKll1Hi6ME9zCAtnAI2EvuP
+        Q7QLC7hK/Pg9A6iIg4NFQFXi1Ct9kDCvgKXEj21n2CFsQYmTM5+wgJQwC+hJtG1kBAkzC8hL
+        bH87hxniOgWJn0+XsYLYIgJWEqe7frFB1IhLvDx6hH0Co/AsJJNmIUyahWTSLCQdCxhZVjFK
+        phYU56bnFhsWGOallusVJ+YWl+al6yXn525iBMegluYOxu2rPugdYmTiYDzEKMHBrCTCmxB9
+        P0mINyWxsiq1KD++qDQntfgQozQHi5I474Wuk/FCAumJJanZqakFqUUwWSYOTqkGpsie9l9y
+        K5wE/BjmP2dRWHLM3fHSusmbzzoGG83I6herfqeRmy0SMjv2FxP/0V/37nJ2ptssffemZdF2
+        y6SQ9lZRo0eKApZhafePKpUUsi2Zzb/ibtLiDWvqqo4ttTq2fguv9jOd63NvJ0lM3G7zv/t3
+        jGqv0cLtlTGM6VrSfLaVJ3P/y4vZXLpX0mOW7XL/cb6Uyru3Ka/frzXP75z7YtHt2Qn7Sjgs
+        DQzX2dhUq5c+2dO9fbn2/ZY+P2GNG4qm7IFZ5u/SFv7Zde2Ay5nQ8ycUXqsEn1LVFpd51n5R
+        QVS77yrH4+JPoZNk9kgG/TxYXb7N1zxh5T7p2Rc31cvtOx3sc69SOqWmZeHmqbXzlViKMxIN
+        tZiLihMBzC3QSjADAAA=
+X-CMS-MailID: 20220726035538epcas5p4135e63f642ef49535ff12d25c5846e4d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220711101520epcas5p421bdaef157484ed146577e5deea04e09
+References: <CGME20220711101520epcas5p421bdaef157484ed146577e5deea04e09@epcas5p4.samsung.com>
+        <20220711101441.4896-1-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-cy_huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B47=E6=9C=8814=E6=97=A5 =
-=E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=882:42=E5=AF=AB=E9=81=93=EF=BC=9A
++ Martin K
+
+>-----Original Message-----
+>From: Johan Hovold [mailto:johan+linaro@kernel.org]
+>Sent: Monday, July 11, 2022 3:45 PM
+>To: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+><krzysztof.kozlowski+dt@linaro.org>
+>Cc: Andy Gross <agross@kernel.org>; Bjorn Andersson
+><bjorn.andersson@linaro.org>; Alim Akhtar <alim.akhtar@samsung.com>;
+>Avri Altman <avri.altman@wdc.com>; Bart Van Assche
+><bvanassche@acm.org>; linux-arm-msm@vger.kernel.org; linux-
+>scsi@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>kernel@vger.kernel.org; Johan Hovold <johan+linaro@kernel.org>
+>Subject: [PATCH] dt-bindings: ufs: qcom,ufs: add SC8280XP binding
 >
-> From: ChiYuan Huang <cy_huang@richtek.com>
+>Add SC8280XP to the DT schema.
 >
-> This patch series is to add Richtek RT5120 PMIC support.
-> In RT5120, it integrates four channels of buck converter, one channel of =
-LDO,
-> and one external enable channel to control the external power source.
-ping ......
+>Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+>---
+
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+
+@ Martin, 
+Is this something you can take via your tree?
+
+> Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+> 1 file changed, 2 insertions(+)
 >
-> rt5120-regulator can be referred in the below link
-> Link: https://lore.kernel.org/lkml/165599062767.127406.125714869841700832=
-13.b4-ty@kernel.org/
->
-> Since v3:
-> - Use a 'dev' variable and dev_err_probe to decrease the LOC in mfd.
-> - Simplify the power key irq handler key report
-> - Since press and release irq not needed to keep in private data, change =
-'press',
->   'release' irq as local variable only.
-> - Fix Kconfig typo for pwrkey.
->
-> Since v2:
-> - Add 'unevaluatedProperties: false' for regulator buck1~4/ldo/exten.
-> - Fix indention and remove status for powerkey.
-> - Refine powerkey description for more HW details.
-> - For the regulator property parsing, use of_property_read_u32 instead.
-> - Not to overwrite regulator constraint.
-> - Refine regulator desc coding.
->
-> ChiYuan Huang (3):
->   dt-binding: mfd: Add Richtek RT5120 PMIC support
->   mfd: rt5120: Add Richtek PMIC support
->   input: misc: rt5120: Add power key support
->
->  .../devicetree/bindings/mfd/richtek,rt5120.yaml    | 178 +++++++++++++++=
-++++++
->  drivers/input/misc/Kconfig                         |   9 ++
->  drivers/input/misc/Makefile                        |   1 +
->  drivers/input/misc/rt5120-pwrkey.c                 | 105 ++++++++++++
->  drivers/mfd/Kconfig                                |  12 ++
->  drivers/mfd/Makefile                               |   1 +
->  drivers/mfd/rt5120.c                               | 121 ++++++++++++++
->  7 files changed, 427 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5120.=
-yaml
->  create mode 100644 drivers/input/misc/rt5120-pwrkey.c
->  create mode 100644 drivers/mfd/rt5120.c
->
-> --
-> 2.7.4
->
+>diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>index dcd32c10205a..f2d6298d926c 100644
+>--- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>+++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+>@@ -26,6 +26,7 @@ properties:
+>           - qcom,msm8994-ufshc
+>           - qcom,msm8996-ufshc
+>           - qcom,msm8998-ufshc
+>+          - qcom,sc8280xp-ufshc
+>           - qcom,sdm845-ufshc
+>           - qcom,sm6350-ufshc
+>           - qcom,sm8150-ufshc
+>@@ -98,6 +99,7 @@ allOf:
+>           contains:
+>             enum:
+>               - qcom,msm8998-ufshc
+>+              - qcom,sc8280xp-ufshc
+>               - qcom,sm8250-ufshc
+>               - qcom,sm8350-ufshc
+>               - qcom,sm8450-ufshc
+>--
+>2.35.1
+
+
