@@ -2,104 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1312F581B94
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 23:10:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05075581B96
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 23:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232083AbiGZVKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 17:10:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59128 "EHLO
+        id S232236AbiGZVL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 17:11:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231972AbiGZVKR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 17:10:17 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDBBB55AD;
-        Tue, 26 Jul 2022 14:10:16 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4F32AB81E94;
-        Tue, 26 Jul 2022 21:10:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25E12C433D6;
-        Tue, 26 Jul 2022 21:10:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658869814;
-        bh=v5jGtt7mTprjQRklJAlQCvOSDiZyJZoNBV2t2UvJux4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pF9YPjEkSZDoYZs4+SxkRk/fQhw6va6jUeRuZO3IEioI3xIQ+04xhw+DaHaZmblZN
-         kHFcsHw/FNm6yoljSmJ4+qqbqpMQ61tDFNSpANRlUwJxLDjoYN4ZtsZ+OIsh/aR/cJ
-         mPSFG+gYTxb+WXYtRr5LIhb/1QNacK8Mi9dOX2yiXSbAo+CdUpFrPhAUHishEolx8G
-         DQicONOn7/br74tKD//JDY2KhQi4HkzSDXqO+0F60f5piajO+5PAnKjQ/19PzLMqUn
-         6yh3wsEnmurL9I5qjivDJHn+DVQAoTCj+xZUayaRsR7pfunIVry5G3M7zwi6zk6P3Q
-         LiRNnpe1zf0sg==
-Date:   Tue, 26 Jul 2022 23:10:09 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 13/22] dt-bindings: i2c: i2c-rk3x: Document Rockchip
- RV1126
-Message-ID: <YuBYMZ8N2GXazKF3@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Jagan Teki <jagan@edgeble.ai>, Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-i2c@vger.kernel.org
-References: <20220723204335.750095-1-jagan@edgeble.ai>
- <20220723204335.750095-14-jagan@edgeble.ai>
+        with ESMTP id S229929AbiGZVL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 17:11:28 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 345672A723;
+        Tue, 26 Jul 2022 14:11:27 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id j195so7940049ybj.11;
+        Tue, 26 Jul 2022 14:11:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=3t16s+OcKDcEZXENZbwqgCIwk/X+UcCVddI7l2RgCtI=;
+        b=NLlIwrwDW5ocpVXLAcOp1+TDqUcPCxfwIlZYoT416DevuJKD+dUfl9bBi679g2rqK2
+         CIUnAduiKXZV+uuX9vvtefQgXdxUXYyXsEuPfPNgM1dBPFpPcOIBJkPmyIsfPKqSlPvZ
+         cs/NXt5vjastEJs668It7JG7h3U2M1XnFaZoUdfMr98yqbX8+51XzA9qScCCtr/0CPcf
+         UKlseVrk75xrMR4lK0kFjvrou6WhmwoB1FSX4TmmBRPU0s2fcpACCZRIARCrZi4V0YhC
+         R+/cA4lOo/YX9n2B3Mt9qqQ08B8mD20uA8ooW7zBv+hqRY2P5MRhNrqbHt2mKx2geVrI
+         ym4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3t16s+OcKDcEZXENZbwqgCIwk/X+UcCVddI7l2RgCtI=;
+        b=QqkqoyZJNoso85P4Gg1rhUTPeliPe2/gNCD/mjXNtL7XeM0pcfD8h/c1bW5TDz5RAC
+         Zv7gCmFOPdYTae2z2KvZLS8fs3rofN88GR6XPHiYOfR/P8vdMqzSjFa9eMBFSsqWE8yk
+         rH3ZrDH5vJt0jhLkfuBiHfJ5QNr5iqaEbeTP/b02ikmzl6tvsjZmfuzErh4NZIVr1TAO
+         h3s6uCwZh4dI3UTBR41y4GzQAlRSdG2K4IBKIN5ObrPevTfDvKBWcXuF/yquh7oaFrOF
+         m45dmjFpuryoHICJkiDSCvez/mTh8zQYgYtPePfyfOvdQiolHmI8Cf2Y88zp3eGDA3JM
+         Dagg==
+X-Gm-Message-State: AJIora8QBJuvouUmuGjvXCTKoBIoyLIx+g3j178GP8FyCuOCiUPg10OB
+        gZHx+/rB9rgxiDtnacK3g+wfaFzo2BbPpa7J7T0=
+X-Google-Smtp-Source: AGRyM1vRom4tJven8LPA373fu9mUzwWFI/x5WXxjSDmq4hHFo5RlkMbpmY16sruCIKeXcaYVkHJkHeLZd0gOeU0DUKc=
+X-Received: by 2002:a25:e682:0:b0:671:79d9:66c7 with SMTP id
+ d124-20020a25e682000000b0067179d966c7mr2977858ybh.5.1658869886200; Tue, 26
+ Jul 2022 14:11:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="OkwOcuDiD4hVOZSg"
-Content-Disposition: inline
-In-Reply-To: <20220723204335.750095-14-jagan@edgeble.ai>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 26 Jul 2022 23:11:15 +0200
+Message-ID: <CAFBinCCOcuHeuXvEe9obBu2qby0bwQLPmaSbginmFh3_gSz4GA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: power: drop quotes when not needed
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Sebastian Reichel <sre@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        David Lechner <david@lechnology.com>,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Purism Kernel Team <kernel@puri.sm>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Michael Klein <michael@fossekall.de>,
+        Dan Murphy <dmurphy@ti.com>,
+        Ricardo Rivera-Matos <r-rivera-matos@ti.com>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        "Andrew F. Davis" <afd@ti.com>, Tony Lindgren <tony@atomide.com>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        David Heidelberg <david@ixit.cz>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---OkwOcuDiD4hVOZSg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sun, Jul 24, 2022 at 02:13:26AM +0530, Jagan Teki wrote:
-> Document compatible string for Rockchip RV1126 SoC.
->=20
-> Cc: linux-i2c@vger.kernel.org
-> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-
-Applied to for-next, thanks!
+On Tue, Jul 26, 2022 at 1:57 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> Id and schema fields do not need quotes.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml      | 4 ++--
+>  .../devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml     | 4 ++--
+For the Amlogic ones:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 
---OkwOcuDiD4hVOZSg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmLgWCoACgkQFA3kzBSg
-KbaXnA//aBroGAh2q2ivFSQZSL5UMqCj+lNeKrhEetiPfzUoXybnJZBO/q3qCBKq
-mEXvu7ADLc94BTZ+lgWwqSiWpB0zp7vIEHN3qN1Qkl6hOb6cTw6W0XljKnvnZRL5
-5C23Q9qyHZDZ38XxEc4u6njPG+ltl+lxALaWvhpvyyCcMMxauooxHlhjPRXcaoJg
-92AquZzCguxd9AnKpCWqtFW3F9VtSqou+voJ/+pH4247KSRiJ0AjGhZjTchnMvw4
-aT/uDm1Jb1yh8LnbonRrCZGR6h/n5WqQHV1g8B6LtThX3JO4KS27LXd7H8wQoD8V
-GCCGFAI2KY4FxmELttb/DkdkG1JV9pmQYwRwnsIO4FaFkY4pXbEAbC7Z721qw34H
-ZOaIHIgRF/PlDdbwASaOlelTMsnjqkNKOwM86TRDCvcP/Cgx2IkQ34TMrrpOMbTC
-Yhgs6IEe4YTSm/N3wZ3uknIKBRTAz0o6fkZYGl1GZoK5QyR4Zy6qnis851DawHe8
-E7IqMV+TUek8RN759KlJLqwNZO702BWoTb+c5ZCB8Mu1GquYLyy4/Nw1raefGF6A
-U2Sv2etnlMS3PpyC9+IDNsyY3qy1+PISjM3SuLIKvXKg0x2bn7ThUlrwKA9I0wI1
-Bqak5MAQtO5BJVM4YbBZA/j5gpl9aUDDL+c3Wa4j1HZoVBKKCpI=
-=REHw
------END PGP SIGNATURE-----
-
---OkwOcuDiD4hVOZSg--
+Thank you!
+Martin
