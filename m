@@ -2,157 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79ACE580FE5
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 11:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8CF9580FED
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 11:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238100AbiGZJ3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 05:29:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34560 "EHLO
+        id S238141AbiGZJbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 05:31:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237807AbiGZJ3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 05:29:23 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40C0F2FFFA
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:29:22 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id q7so423318ljp.13
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 02:29:22 -0700 (PDT)
+        with ESMTP id S238027AbiGZJbM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 05:31:12 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF0DB248CE;
+        Tue, 26 Jul 2022 02:31:10 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id a23so19435944lfm.10;
+        Tue, 26 Jul 2022 02:31:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=C73GH9ihVQid8BYkT3Sa1NsZogeb4NXbL4mmn1ehaOE=;
-        b=V5/W5DZLiKaTrI/gH/Wifh0YwVboE5Rt39xduS8KfMtLKsQB8CsUPW/ToeVabJjwJX
-         iJreOYQFgEL3D0c5VdyfHyN1ZWvZCYQ3VwFPTGEMF2y4uTBXSykMine3MxQljjkShXw+
-         tjMwp2iVq0M8Vrqm3ZVOs2fIl6kupIPgO8M7qjqZjsPHojcPiSTSM6jovX1eqUOpiB9I
-         5uYzzC+P3b/hceQUfTdRPw+ZqshnZT3jLhdCwF6acqSxQQiLkNEJAVplGo6hXvvehUGq
-         L6CmqS925cgyKKYzMGu+2AtFJuKOONfWe/jMQ9lK0mllU7EjxyauocPo06HgZIuhVDGX
-         JBUA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IL3Z4+bwdRS3yxOZTNpNZKdqvlk3APcJ7jcbsYJVSmk=;
+        b=l6SHg/J5A0OUd8PSnS43zbEUAINghMLi0ClY87M7YZJOU1SRfY0cZpGXsr1ju7YAAk
+         /DR22tO/5n9CPiQeYtI+j6BnoywwsnfcU5ICBFO2BJd/7QvwoKtUpsMqZ62BXuTSRnaK
+         iX9My8uqm5wq3kROf9GWBFLp59n+0zotuzXO8qjqLLnd3VHsivnceSKRbNhfPUSGKCcG
+         ywxKtTMFpsQz6+gSRsJRwZtdWALuA1QLRYtz+hiQqv69/mtTFr7ToR5loJxRq6vxaE8f
+         bS0YfTZaK+bdlHfd8rXL5I1J2G4v63GuRjrWQr5tzwFWcMpnA1j8lBgOVVlHoPqqWshS
+         gjpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=C73GH9ihVQid8BYkT3Sa1NsZogeb4NXbL4mmn1ehaOE=;
-        b=08VweijsaexjqrQT4fVleP2LnDF3rNS37KEOQqjDQf6NcdLOBt9Dn6BoSGTZnF7HIL
-         gGzvODzhyr3oVlmIpzQ/SCg+U90ZzXm3ktTQUA05dLJOX0lrOfr3RTPNdin4A+GJsjwU
-         npGGdtJZ7MJm5moWaEfVPI5cdHSzxwfBsj/JMi7ir45KGa9L+NEdreGsCCUV9NGq400r
-         sFWgqUq21J2GH+kmj2crMwviA7zJxYqya+8djwSay0U5WMpya7mgyZfv+d/IF6VGzGHc
-         oKifYRJvD4wW7izGlCS5IaqVJOu4S0fwvbFTiN6OwTct95S48P3KEznxQyh0m6VWJC4h
-         xF0g==
-X-Gm-Message-State: AJIora/evYN80o1IJgCA+B3sEcS35PVXBvr3b/Cg5opEuV/06ZINrIZi
-        PWHvmAkkS2ddABa1Ahw8xPmSFQ==
-X-Google-Smtp-Source: AGRyM1uQdBfRCK0JOiJbIzWqsixI71GKQA/6XmfE4JdFdLP4KzdKbUhd2rP0hztesLdVcjEBnAqqPA==
-X-Received: by 2002:a2e:bd85:0:b0:25d:d750:7ac8 with SMTP id o5-20020a2ebd85000000b0025dd7507ac8mr5301578ljq.387.1658827760529;
-        Tue, 26 Jul 2022 02:29:20 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id w5-20020ac25985000000b0048a8a4540d4sm1152563lfn.101.2022.07.26.02.29.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 02:29:19 -0700 (PDT)
-Message-ID: <c4e8b285-1e77-492e-31d7-8c79328b95dd@linaro.org>
-Date:   Tue, 26 Jul 2022 11:29:18 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IL3Z4+bwdRS3yxOZTNpNZKdqvlk3APcJ7jcbsYJVSmk=;
+        b=RnKMT7Tn5cm4kSNrJLjaTyTHJTQbxBpfEBYzJFbeloJV/VAYxw15ZbMuDu/8jWCOa7
+         gpuSDYFuekolXyogPjkJJgKDSHxfSoFTDtkVrT5mJAqe36lNf1l5zykbXGqo1/I2SJw4
+         lCXlIMZYe2+T52i9IF0naXQ7nIAamfCvQUaAEJJ1mGdUIFUVHW7wDPFgTdrpOi1dN3F9
+         6ZyXrBEgeYafIPVN3dK0WsxERvN3QVH93yTkFTXcpb68Q3vgweYpBRPzmsT7h+DeJkPX
+         CRebImJaPYYaEU8IjxXCeN1uMNy1h3bDDjXvF0jzXwQ3nF6SgDeGYHv/Zb2FkcuOGBE0
+         unNw==
+X-Gm-Message-State: AJIora+LqffXqVrPFqnRuJdswGgkH/hk54sXXR8f9pWb5UhOrlWbGwF+
+        6Jqqz8XZvdREM7MazPIFvF3ZFA7hYWypZ0Y+y0w=
+X-Google-Smtp-Source: AGRyM1uL6DT83C459zUSdYi1GQWszpd4iNJjtzhdOjGifSm4yOssdUqu+X+HBkYa0gNl/VFvJe/TlxbmoZl5MFHL4M0=
+X-Received: by 2002:a05:6512:693:b0:48a:7c23:1896 with SMTP id
+ t19-20020a056512069300b0048a7c231896mr6390732lfe.111.1658827869026; Tue, 26
+ Jul 2022 02:31:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v1 2/2] dt-binding: iio: time: add capture-tiecap.yaml
-Content-Language: en-US
-To:     Julien Panis <jpanis@baylibre.com>, jic23@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mranostay@ti.com
-References: <20220726072553.5136-1-jpanis@baylibre.com>
- <20220726072553.5136-3-jpanis@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220726072553.5136-3-jpanis@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220722114136.251415-1-tmaimon77@gmail.com> <20220722114136.251415-2-tmaimon77@gmail.com>
+ <20220725225650.GA2898332-robh@kernel.org>
+In-Reply-To: <20220725225650.GA2898332-robh@kernel.org>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Tue, 26 Jul 2022 12:30:57 +0300
+Message-ID: <CAP6Zq1j0pKHsX20t4ep9-6B_5pTe5MzkU__245F6tW7wFJESiw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-binding: spi: npcm-pspi: Add npcm845 compatible
+To:     Rob Herring <robh@kernel.org>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        linux-spi@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 09:25, Julien Panis wrote:
-> This commit adds a YAML binding for TI ECAP used in capture operating mode.
-> 
-> Signed-off-by: Julien Panis <jpanis@baylibre.com>
-> ---
->  .../bindings/iio/time/capture-tiecap.yaml     | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
-> new file mode 100644
-> index 000000000000..4f08e49a8506
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
+Hi Rob,
 
-Use filename based on compatible, so:
-ti,am62-ecap-capture.yaml
+Thanks for your comments.
 
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/capture-tiecap.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments Enhanced Capture (eCAP) Module
-> +
-> +maintainers:
-> +  - Julien Panis <jpanis@baylibre.com>
-> +
-> +description: |
-> +  The eCAP module resources can be used to capture timestamps
-> +  on input signal events (falling/rising edges).
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,am62-ecap-capture
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: fck
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ecap0: capture@23100000 { /* eCAP in capture mode on am62x */
-> +        compatible = "ti,am62-ecap-capture";
-> +        reg = <0x00 0x23100000 0x00 0x100>;
-> +        interrupts = <GIC_SPI 113 IRQ_TYPE_EDGE_RISING>;
-> +        power-domains = <&k3_pds 51 TI_SCI_PD_EXCLUSIVE>;
-
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-
-> +        clocks = <&k3_clks 51 0>;
-> +        clock-names = "fck";
-> +    };
-
+On Tue, 26 Jul 2022 at 01:56, Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Jul 22, 2022 at 02:41:35PM +0300, Tomer Maimon wrote:
+> > Add a compatible string for Nuvoton BMC NPCM845 PSPI.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt | 3 ++-
+> >  1 file changed, 2 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt b/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt
+> > index b98203ca656d..a4e72e52af59 100644
+> > --- a/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt
+> > +++ b/Documentation/devicetree/bindings/spi/nuvoton,npcm-pspi.txt
+> > @@ -3,7 +3,8 @@ Nuvoton NPCM Peripheral Serial Peripheral Interface(PSPI) controller driver
+> >  Nuvoton NPCM7xx SOC support two PSPI channels.
+> >
+> >  Required properties:
+> > - - compatible : "nuvoton,npcm750-pspi" for NPCM7XX BMC
+> > + - compatible : "nuvoton,npcm750-pspi" for Poleg NPCM7XX.
+>
+> Who/What is Polog? Board/BMC vendor? If so, that should not be in SoC
+> bindings.
+>
+> > +                             "nuvoton,npcm845-pspi" for Arbel NPCM8XX.
+>
+> Same for Arbel.
+Poleg and Arbel are the name of the BMC SoC, will be removed next version.
+>
+> To answer your question on fallback, just put:
+>
+>     "nuvoton,npcm845-pspi", "nuvoton,npcm750-pspi" for NPCM8XX BMC
+In the document?
+because I don't remember doing so in other documents that I use fallback.
+I need to do it in ymal files as well?
+>
+>
+> >   - #address-cells : should be 1. see spi-bus.txt
+> >   - #size-cells : should be 0. see spi-bus.txt
+> >   - specifies physical base address and size of the register.
+> > --
+> > 2.33.0
+> >
+> >
 
 Best regards,
-Krzysztof
+
+Tomer
