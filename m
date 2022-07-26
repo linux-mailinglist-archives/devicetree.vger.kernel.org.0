@@ -2,77 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F36FE581486
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 15:52:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6286658148B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 15:54:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239070AbiGZNwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 09:52:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35356 "EHLO
+        id S238896AbiGZNyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 09:54:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239077AbiGZNwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 09:52:36 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EEDB24F0E
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 06:52:34 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id p11so17916905lfu.5
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 06:52:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VdNg6q8J723SMFE6ZQQCYGOqGdURmHAHReIWq/4Rgig=;
-        b=JolIlpkNt6o+ueX2zNM4yFRAmbfGHxnWWJYVj9v1pnBP2RFRWhl2zgHU25XzZjNTEv
-         5nejim9DXOWzS3ZH9IVYQ9PpA+gvATiFY5IYPsqJ4T9xJD/xkJ48z2th0GFus9wHHBvS
-         dveyJnOVmOE+SAdMdJqlVrjYTOtHnPnCYXfNPcIARwfB5Mi3RQJLqoZXMdmM5ZGYfzqC
-         SaiC+5zzgT9A6iLfVWB5leeqTFGOHjTRwO8Yt2x15X1ltMnhOv8FY/jc74JWrQxNUlV5
-         /Pc8RMTIecxSYNGUfsJQI7/GgrDj2QFuzgAZVvJ7e34TlH2sPf+4vL4/hybr2HaosOiF
-         5dTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=VdNg6q8J723SMFE6ZQQCYGOqGdURmHAHReIWq/4Rgig=;
-        b=SbqT0tgJ9shUnevPfz77tJLoD6xkxH/KMcgoGZSJRPkOtLIJK++G7vFil4CKYVqnI8
-         lHFSH8UF47VKJjP7mUWdAIqSSuiDn6f45W7iJWG5QCBQeTkHw4wIC/P4FwAVKpC4GLly
-         UhVAAYREQmsWqxme5Ww4ni+o5+MBN2/l9WQzxUMkBrwGWD+mEJiyGwKtnYp4ozqlfo7H
-         bWqrqVTaWDj+Gn3P3EnDKyP31gKn/cflZE9EEU5zEBY5ToQOldGg8I4RLfB5TerQ/Pvy
-         s44a7rO3FALGVoQNW2+EgaqM8shqEEsByc7J3bRA++eMpKjuprwgJK5sbIYJ9+U12psz
-         A1Ww==
-X-Gm-Message-State: AJIora/uMVmEHzk6hk1yrW/ktdRWyW7aAdiAobhcyQlpqhy0mDAaCNHd
-        AraBQ7K1mxVOe/PlXy/nuV3cEA==
-X-Google-Smtp-Source: AGRyM1s2WMBqRGRZp41IF+YOjNpKC+v+Zf7LpX2yW4k/kj+aGW2kuOAEu62/r0B7/iM+9y/jmL9emg==
-X-Received: by 2002:a05:6512:239a:b0:48a:77e0:f5b0 with SMTP id c26-20020a056512239a00b0048a77e0f5b0mr6066222lfv.656.1658843552500;
-        Tue, 26 Jul 2022 06:52:32 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id i4-20020a2ea364000000b0025dec0c29bcsm2700088ljn.26.2022.07.26.06.52.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 06:52:31 -0700 (PDT)
-Message-ID: <360f7d11-96f4-369e-1289-6c9dc3c49ca4@linaro.org>
-Date:   Tue, 26 Jul 2022 15:52:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 02/22] dt-bindings: power: Add power-domain header for
- RV1126
-Content-Language: en-US
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230024AbiGZNyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 09:54:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0274B24F1C;
+        Tue, 26 Jul 2022 06:54:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 92B73615A2;
+        Tue, 26 Jul 2022 13:54:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC453C433D6;
+        Tue, 26 Jul 2022 13:54:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658843641;
+        bh=NsZa52p2ynEaIvhICGHrQMtOVXRG9E3jN1QnbN5WGeM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bGjlQ3qmvOSu3K8NQVFD8i6oRXVjgTD8ZBNhM/OAvqwz/jyzJ2RvUK7vl0BtnV38z
+         hFA/aiJQtfUk+6wSAJrJZp0bJJj3tZxVI1KDT49xwYO9sPylo7C3oJ0GIukz/DPDZz
+         LACyFvjQFPqB6MlVQuchaytvpk83fciEOVGUrJCaeWr878vxr5qKg6Jp/YRLkV+n1f
+         cJOMM743SRV1bHcxoIu2DLrlievl2vSluyPmMxWDmbi1KU5HqcJclE+t4wm5fNKmj8
+         SfvgPzWLI8rz54MN4vDL9EwJV1Csx9xb+5DMElRcLa+aeGmqD3RcJ+elOSOB8BDyAj
+         q+su/JQrz9VAQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oGL0n-0001xy-Fr; Tue, 26 Jul 2022 15:54:13 +0200
+Date:   Tue, 26 Jul 2022 15:54:13 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Parikshit Pareek <quic_ppareek@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Elaine Zhang <zhangqing@rock-chips.com>
-References: <20220723204335.750095-1-jagan@edgeble.ai>
- <20220723204335.750095-3-jagan@edgeble.ai>
- <e1d57de9-060b-bd58-2cea-85f41f75e7be@linaro.org>
- <CA+VMnFwNqm57StGj_JyTT2TM56uD-nFjxCekEH6aKYDMhEuxjw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CA+VMnFwNqm57StGj_JyTT2TM56uD-nFjxCekEH6aKYDMhEuxjw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: introduce sa8540p-ride dts
+Message-ID: <Yt/yBbIvav1+TE5s@hovoldconsulting.com>
+References: <20220722143711.17563-1-quic_ppareek@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220722143711.17563-1-quic_ppareek@quicinc.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,39 +60,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 15:44, Jagan Teki wrote:
-> On Sun, 24 Jul 2022 at 02:28, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 23/07/2022 22:43, Jagan Teki wrote:
->>> Add power-domain header for RV1126 SoC from description in TRM.
->>>
->>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
->>> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
->>> ---
->>>  include/dt-bindings/power/rv1126-power.h | 34 ++++++++++++++++++++++++
->>>  1 file changed, 34 insertions(+)
->>>  create mode 100644 include/dt-bindings/power/rv1126-power.h
->>>
->>> diff --git a/include/dt-bindings/power/rv1126-power.h b/include/dt-bindings/power/rv1126-power.h
->>> new file mode 100644
->>> index 000000000000..f15930ff06f7
->>> --- /dev/null
->>> +++ b/include/dt-bindings/power/rv1126-power.h
->>> @@ -0,0 +1,34 @@
->>> +/* SPDX-License-Identifier: GPL-2.0 */
->>
->> Dual license and a blank line,  please.
+On Fri, Jul 22, 2022 at 08:07:11PM +0530, Parikshit Pareek wrote:
+> Create new dts file specific for Qdrive board based on sa8540p chipset.
+> Introduce common dtsi file sa8295p-adp.dtsi, to be included for adp and
+> Qdrive board.
 > 
-> Yes, all rockchip power includes (at least here) are GPL-2.0 what is
-> the issue with it?
+> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
+> ---
+> 
+> Changes since v1:
+> - Add , after year 2022, in the license header
+> - Rename the dtsi which is suitable for common to many ADP boards
+> - Correct the allignment in the Makefile
+> - Split the patch in introducing common dtsi file, and adding new board
+>   file
 
-The headers are part of bindings and all bindings should be dual
-licensed, so they can be used in other projects.
+This changelog would probably make more sense in a cover letter. Also
+your patches are not threaded (e.g. don't show up as a series in out
+mail clients or on lore).
 
-Of course if copyright holder does not agree to release it on BSD, then
-it would be fine as exception. Also would be fine from us not to accept
-such bindings. :)
+Please consider using git-format-patch (which has a --cover-letter
+switch) for generating the series and git-send-email for sending, which
+should help with both issues.
 
-Best regards,
-Krzysztof
+Johan
