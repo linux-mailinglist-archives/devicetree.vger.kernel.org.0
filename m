@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 367025810CD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:08:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFE435810E2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Jul 2022 12:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238211AbiGZKI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 06:08:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40760 "EHLO
+        id S238565AbiGZKMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 06:12:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238102AbiGZKIZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:08:25 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00819CE0C
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:08:23 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id q23so8698620lfr.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:08:23 -0700 (PDT)
+        with ESMTP id S232318AbiGZKMk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 06:12:40 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 873171ADAD
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:12:36 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id h8so19449359wrw.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 03:12:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=sifive.com; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ojyQ+PqrBED/t+SyNTD5eQfcGUJ/2jWYDAqwjA90+Dg=;
-        b=KSYw/sS1ZIaAzFICjc+coAWpU38KFcf7YQ7tVCLB9t6ZqjWBYIe+RyFSm6+EDXb/vo
-         k6OJ1tn/VDioRkMAvuTkxArqROpCYZCvqiF+Ybzii0DaQraJ587KGvv1QZ0K+tC/fp3b
-         QEok5SX/JMaqzC3b2znbhZOADRbtuP+5pA/8i0Mgu1/fRmsOD8xXhSseh4OiFQ0uEyv+
-         EU30e6vxXYD4bLcVzRWEE/+0GW9RD0Hjp+yqc1oePfurnmensGzWX1A0xiN3GtKd+YVB
-         CSD2IP477jOFTgLSkN8ijnpDK9QQnlmD/Z/ARNP00EX40SVR9busPpVPmE7OA8PJI2Tm
-         f3ig==
+        bh=PiP62aeakYuyq8L6kGatq+E4dCzbXVdVsNF3PpzDUvE=;
+        b=HDFJP03ruCOOZf9lRSteG1d1k6+y7EjZpTDRHNdeijeX3ni7Ha4mWlVjxOs7LahNwV
+         x9sSvgtMElp+Mlb2X2Xbap7LtY62O+iuZ3fdyOJ59GqM5lN17asr4aoEIaoQoHqU2G91
+         +7hUWyZ5Sya2IjS3wTp4eyfsCdVJYAhIK6UbW4N9xIXftWeT9wgLbTUAj6TyXL1Ejf+u
+         VT6oaEHKwujUoCw9wXaGLJb9X4WNcSrf5Q6bBPEI6KE24InHrKQDG6eXowWpkggA0Bqf
+         IEiqrxpDdO7FHfRzorxkEeVGl/W44Bu9hDxRdmcZx8PWf1W7PMytly0B5J9oDxlN+hzN
+         Msig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ojyQ+PqrBED/t+SyNTD5eQfcGUJ/2jWYDAqwjA90+Dg=;
-        b=2XuZ5YvoYGWJ52P1lOwaf4kgDe+Q4mawOJECpLHNYP/JjgGXvfRCwjDst1aKfITX4I
-         sCxcBS0gnqUJ6ScYDv8NjbbqhpyDZ8fib74+YZLzTXkLxueQxdLI5alT0+B2/Lbl910h
-         DZ9nyAhB2kzmOK9o1Ilr5hbHaO67rB3GywtjfYywQTptzuLAnkevfTO7Stk/95zPayYO
-         83X0pWqataLs1SJbuAR8ggwXB2E1QywYWwBoAqwdKmvOgQ1JgtJRV6tFbXLFMlo8geb2
-         YjD7crPQpWARcBp3jX3vUsh/SQvLz8FMRRMKo92fdfBuW32U+fdrHELKqfA91Lzezuek
-         oEjQ==
-X-Gm-Message-State: AJIora/qxfzszkZsPl3SFl/c2KPxGPQlRiMJmU4IUZntVxUKQQ093TUt
-        pCj8GWT87XZ29oDJEGP2Y0742g==
-X-Google-Smtp-Source: AGRyM1uxPeD7ZsMKAfaSCSOhZK+89Wta+C27PW+mKfAPqnNH0k3b5cg9ab2b7VD9mjiAyzx8QgV8Ug==
-X-Received: by 2002:a05:6512:1598:b0:48a:7733:2dd2 with SMTP id bp24-20020a056512159800b0048a77332dd2mr5769981lfb.288.1658830101798;
-        Tue, 26 Jul 2022 03:08:21 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id d25-20020a196b19000000b0047255d211b2sm3111442lfa.225.2022.07.26.03.08.20
+        bh=PiP62aeakYuyq8L6kGatq+E4dCzbXVdVsNF3PpzDUvE=;
+        b=dRM3oCmoblaWPGqEbnT2fKHrSeqyr1n1pQEbbAHLN0f+pDQJG+biSInYah1xzksiCP
+         Rkl0d9yA/5lGpAgcHcdvm1eANzFtGefsTJOObPQ19jU1QBIiALf/cLaJ9ucINAzruXUw
+         85f8aS++DI5mkO9nmtSzWuiOGssy/Iub78w+11qMXIUMa1NjtJ8LFflhD+G+BO+xYh0u
+         eegjCqM4NDSsoNXSATB/bXKUJ6NBvMFqEE89nP06Dl3ZogQficPMz8q5gvamlyNAh3yz
+         0UwDih0iGAM09LqnL7oRSj3EeS8yUq3uXJnorxcxIk2ELbvq6lndNxCnoAVaWH3a1gF3
+         8EtQ==
+X-Gm-Message-State: AJIora8O6xxSKZqN2Lw0Snqd3fGwZe8i1CHSWhJj2c8LWsR94MuVyKME
+        D/axFK8lFOU+YVNBtCcL08Js8w==
+X-Google-Smtp-Source: AGRyM1uJ0jtw6fZC6XT/n0g1msSZgpxeMmxOgteemt12FqMczeGXVsAjphGhCS0DmUgwedgixUKx9Q==
+X-Received: by 2002:adf:f94b:0:b0:21e:46fe:bcdb with SMTP id q11-20020adff94b000000b0021e46febcdbmr9751255wrr.143.1658830354497;
+        Tue, 26 Jul 2022 03:12:34 -0700 (PDT)
+Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id a21-20020a05600c349500b003a317ee3036sm18056759wmq.2.2022.07.26.03.12.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 03:08:21 -0700 (PDT)
-Message-ID: <308d6189-c100-e9fc-e4b2-0639d993e436@linaro.org>
-Date:   Tue, 26 Jul 2022 12:08:20 +0200
+        Tue, 26 Jul 2022 03:12:34 -0700 (PDT)
+Message-ID: <8bb5103d-803e-90d2-fd93-132bb2aac2d6@sifive.com>
+Date:   Tue, 26 Jul 2022 11:12:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [[PATCH v2] 2/9] dt-bindings: pwm: snps,pwm add pwm number
-Content-Language: en-US
-To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
+ Thunderbird/91.10.0
+Subject: Re: [[PATCH v2] 1/9] dt-bindings: pwm: Document Synopsys DesignWare
+ snps,pwm
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-pwm@vger.kernel.org
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Lee Jones <lee.jones@linaro.org>,
         u.kleine-koenig@pengutronix.de,
@@ -63,50 +65,98 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Greentime Hu <greentime.hu@sifive.com>
 References: <20220725212140.741644-1-ben.dooks@sifive.com>
- <20220725212140.741644-2-ben.dooks@sifive.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220725212140.741644-2-ben.dooks@sifive.com>
-Content-Type: text/plain; charset=UTF-8
+ <922628f6-cbb1-b563-6464-e57959bafbcd@linaro.org>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <922628f6-cbb1-b563-6464-e57959bafbcd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2022 23:21, Ben Dooks wrote:
-> Add snps,pwm-number property to indicate if the block does not have
-> all 8 of the PWM blocks.
+On 26/07/2022 11:05, Krzysztof Kozlowski wrote:
+> On 25/07/2022 23:21, Ben Dooks wrote:
+>> Add documentation for the bindings for Synopsys' DesignWare PWM block
+>> as we will be adding DT/platform support to the Linux driver soon.
+>>
+>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>> --
 > 
-> Not sure if this should be a general PWM property consider optional
-> for all PWM types, so have added a specific one here (there is only
-> one other controller with a property for PWM count at the moment)
+> This is not proper delimiter and causes the changelog to end up in commit.
 > 
-> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
-> ---
->  Documentation/devicetree/bindings/pwm/snps,pwm.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> Correct also wrong formatting of subject PATCH.
+
+I realised that once sent and forgot the cover letter.
+Maybe I'll try some more post covid recovery.
+
+>> v2:
+>> - fix #pwm-cells to be 3
+>> - fix indentation and ordering issues
+>> ---
+>>   .../devicetree/bindings/pwm/snps,pwm.yaml     | 40 +++++++++++++++++++
+>>   1 file changed, 40 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+>> new file mode 100644
+>> index 000000000000..594085e5e26f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+>> @@ -0,0 +1,40 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2022 SiFive, Inc.
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pwm/snps,pwm.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Synopsys PWM controller
+>> +
+>> +maintainers:
+>> +  - Ben Dooks <ben.dooks@sifive.com>
+>> +
+>> +allOf:
+>> +  - $ref: pwm.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: snps,pwm
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
-> index 594085e5e26f..e95f518b3974 100644
-> --- a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
-> @@ -30,11 +30,16 @@ properties:
->        - const: bus
->        - const: timer
->  
-> +  snps,pwm-number:
-> +    $ref: '/schemas/types.yaml#/definitions/uint32'
+> This is very generic compatible. I doubt that you cover here all
+> Synopsys PWM designs, past and future. You need a specific compatible.
 
-1. No quotes
-2. Add minimum and maximum (it looks like there are such).
+ From what I can get from the documentation (2.13a) there hasn't been
+a huge external interface change and what has been added is all part
+of synthesis time options.
 
-> +    description: u32 value representing the number of PWM devices
+>> +
+>> +  "#pwm-cells":
+>> +    const: 3
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Interface bus clock
+>> +      - description: PWM reference clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: bus
+>> +      - const: timer
+>> +
+>> +required:
+>> +  - "#pwm-cells"
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +
+>> +additionalProperties: false
+> 
+> Missing example.
 
-
-Best regards,
-Krzysztof
+ok, thanks.
