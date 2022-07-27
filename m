@@ -2,214 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30464582A57
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 18:08:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB20D582A69
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 18:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233913AbiG0QIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 12:08:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39074 "EHLO
+        id S234671AbiG0QLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 12:11:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232334AbiG0QIi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 12:08:38 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AD97E31936;
-        Wed, 27 Jul 2022 09:08:37 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,195,1654527600"; 
-   d="scan'208";a="127555192"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 28 Jul 2022 01:08:37 +0900
-Received: from localhost.localdomain (unknown [10.226.92.195])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 3EE6540183E9;
-        Thu, 28 Jul 2022 01:08:32 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 09/10] dt-bindings: display: Document Renesas RZ/G2L DU bindings
-Date:   Wed, 27 Jul 2022 17:07:52 +0100
-Message-Id: <20220727160753.1774761-10-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220727160753.1774761-1-biju.das.jz@bp.renesas.com>
-References: <20220727160753.1774761-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S233957AbiG0QLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 12:11:31 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87BC44B0D7
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:11:29 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id v13so17371752wru.12
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:11:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=WqYi5X2yo783BFRgi9t3Lq2OB3oZyehlF1akigEWMFM=;
+        b=JeyV8Jeqx+OjY0t5dp8PITysUxIUwFbkS03W3FO1Ihy2bRjEPOnJy2aEgRWPWNcDKY
+         R9hFyqswJa8s5bD9Um4FPjuFamCi8DkFn47dgN/IDR8bWe1JIg8c4AZYOsJ4JMamv/uY
+         WKXP2ZlwHiCs57UJmQdT121crS081lNumEA0yzJ4f66ZhGGi3HHpGzUQE1nO6aSkEO7Q
+         YCYNrYVFs5ykFagQUVNItXt3TMnQ+ic34iCZ7jbkGOXrfYY2UculBX7kbKUAbEeMGyTv
+         gPR4Yxlf2AwdwsC9Q3C9GUj+Ic9DFZ+sjlO7IyiyN5TZD/RfOwG8bQ4Io+MSNMBqhdV4
+         e5kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WqYi5X2yo783BFRgi9t3Lq2OB3oZyehlF1akigEWMFM=;
+        b=yABVv6Hdc91p9CLAa0IYW3neh1a0+fS/Ok9sMZqWM+q5Jbgu5TQVBJY4h7qwKH9Rdt
+         uaGENeiuFTlItcYs1gHmXegPshvw6QnwNqhUzJvwOH96Shvo7X0aP6pTnDOBX7Tov3E+
+         BsSqJVP/OqABoDwd/tFravCvgGUoTLLud8Bj2WU7xmFKm05ploXr3BhWFB5O2ZX5AHXz
+         1vgwkJJEFS3pgcK7sqKDTyxg4lhmK0Y8T1pm7LjudMAoCl1hnvtNF/Hcd2M8O0+8/SvS
+         oRC4aXdY6LRl6zAhiJgcQzP4WnfqZk8g0rWWVlJUL67PFkf2Pgs1A2pprlX5QrFRgvH0
+         f5JQ==
+X-Gm-Message-State: AJIora9CzVJjY9lokrA5unSA6XFGT6DgXUkuzHecn2k2wzIf8O+eqnSy
+        eaJuQOqavpB7ZieCNn6Zmis+Fw==
+X-Google-Smtp-Source: AGRyM1tpiUyBuIj5H0IMjzf/5LtCK37SykOA7EQ1w1RDklep062eb/PoNqI0+AE1QMHjtk4P4raQAA==
+X-Received: by 2002:a5d:5984:0:b0:21e:6350:1477 with SMTP id n4-20020a5d5984000000b0021e63501477mr14028638wri.587.1658938287991;
+        Wed, 27 Jul 2022 09:11:27 -0700 (PDT)
+Received: from linaro.org ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id j2-20020a05600c1c0200b003a30c3d0c9csm3063563wms.8.2022.07.27.09.11.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Jul 2022 09:11:26 -0700 (PDT)
+Date:   Wed, 27 Jul 2022 19:11:23 +0300
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     linux-imx@nxp.com, robh+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        daniel.lezcano@linaro.org, tglx@linutronix.de, arnd@arndb.de,
+        olof@lixom.net, soc@kernel.org, linux@armlinux.org.uk,
+        abel.vesa@nxp.com, dev@lynxeye.de, marcel.ziswiler@toradex.com,
+        tharvey@gateworks.com, leoyang.li@nxp.com,
+        sebastian.reichel@collabora.com, cniedermaier@dh-electronics.com,
+        clin@suse.com, giulio.benetti@benettiengineering.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v5 07/12] clk: imx: Update pllv3 to support i.MXRT1170
+Message-ID: <20220727161123.nxmtv4t5oeetow32@linaro.org>
+References: <202207270909.VypZ4wfI-lkp@intel.com>
+ <20220727031541.227335-1-Mr.Bossman075@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220727031541.227335-1-Mr.Bossman075@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/G2L LCD controller is composed of Frame Compression Processor
-(FCPVD), Video Signal Processor (VSPD), and Display Unit (DU).
+On 22-07-26 23:15:41, Jesse Taube wrote:
+> The i.MXRT1170 has a pll that has the multiplier bits inverted and
+> cannot be changed add IMX_PLLV3_GENERICV2.
+>
+> The i.MXRT1170 also has the lock bit moved as well as the
+> power bit inverted the power bit also is in different locations on each
+> pll control register.
+>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
 
-The DU module supports the following hardware features
-− Display Parallel Interface (DPI) and MIPI LINK Video Interface
-− Display timing master
-− Generates video timings
-− Selecting the polarity of output DCLK, HSYNC, VSYNC, and DE
-− Supports Progressive
-− Input data format (from VSPD): RGB888, RGB666
-− Output data format: same as Input data format
-− Supporting Full HD (1920 pixels x 1080 lines) for MIPI-DSI Output
-− Supporting WXGA (1280 pixels x 800 lines) for Parallel Output
+Please do not send the new version as a reply to the old patch.
 
-This patch document DU module found on RZ/G2L LCDC.
-
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v4->v5:
- * Added Rb tag from Rob.
-v3->v4:
- * Changed compatible name from renesas,du-r9a07g044->renesas,r9a07g044-du
- * started using same compatible for RZ/G2{L,LC}
-v3: New patch
----
- .../bindings/display/renesas,rzg2l-du.yaml    | 124 ++++++++++++++++++
- 1 file changed, 124 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-new file mode 100644
-index 000000000000..7626043debd8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/renesas,rzg2l-du.yaml
-@@ -0,0 +1,124 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/renesas,rzg2l-du.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L Display Unit (DU)
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  These DT bindings describe the Display Unit embedded in the Renesas RZ/G2L
-+  and RZ/V2L SoCs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - renesas,r9a07g044-du # RZ/G2{L,LC}
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Main clock
-+      - description: Register access clock
-+      - description: Video clock
-+
-+  clock-names:
-+    items:
-+      - const: aclk
-+      - const: pclk
-+      - const: vclk
-+
-+  resets:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    description: |
-+      The connections to the DU output video ports are modeled using the OF
-+      graph bindings specified in Documentation/devicetree/bindings/graph.txt.
-+      The number of ports and their assignment are model-dependent. Each port
-+      shall have a single endpoint.
-+
-+    patternProperties:
-+      "^port@[0-1]$":
-+        $ref: /schemas/graph.yaml#/properties/port
-+        unevaluatedProperties: false
-+
-+    required:
-+      - port@0
-+
-+    unevaluatedProperties: false
-+
-+  renesas,vsps:
-+    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    items:
-+      items:
-+        - description: phandle to VSP instance that serves the DU channel
-+        - description: Channel index identifying the LIF instance in that VSP
-+    description:
-+      A list of phandle and channel index tuples to the VSPs that handle the
-+      memory interfaces for the DU channels.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - resets
-+  - power-domains
-+  - ports
-+  - renesas,vsps
-+
-+additionalProperties: false
-+
-+examples:
-+  # RZ/G2L DU
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    display@10890000 {
-+        compatible = "renesas,r9a07g044-du";
-+        reg = <0x10890000 0x10000>;
-+        interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
-+                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
-+                 <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
-+        clock-names = "aclk", "pclk", "vclk";
-+        resets = <&cpg R9A07G044_LCDC_RESET_N>;
-+        power-domains = <&cpg>;
-+
-+        renesas,vsps = <&vspd0 0>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                endpoint {
-+                    remote-endpoint = <&dsi0_in>;
-+                };
-+            };
-+            port@1 {
-+                reg = <1>;
-+                endpoint {
-+                };
-+            };
-+        };
-+    };
-+
-+...
--- 
-2.25.1
-
+> ---
+> V1 -> V2:
+>  - Nothing done
+> V2 -> V3:
+>  - Nothing done
+> V3 -> V4:
+>  - Nothing done
+> V4 -> V5:
+>  - Add __imx_clk_hw_pllv3 to change power bit
+>  - Add BM_PLL_POWER and imx_clk_hw_pllv3 to header
+>  - Remove imx_clk_hw_pll3_powerbit
+> ---
+>  drivers/clk/imx/clk-pllv3.c | 57 +++++++++++++++++++++++++++++++++----
+>  drivers/clk/imx/clk.h       | 11 +++++--
+>  2 files changed, 60 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/clk/imx/clk-pllv3.c b/drivers/clk/imx/clk-pllv3.c
+> index eea32f87c60a..68b1498cafe1 100644
+> --- a/drivers/clk/imx/clk-pllv3.c
+> +++ b/drivers/clk/imx/clk-pllv3.c
+> @@ -21,8 +21,8 @@
+>  #define PLL_VF610_NUM_OFFSET	0x20
+>  #define PLL_VF610_DENOM_OFFSET	0x30
+>
+> -#define BM_PLL_POWER		(0x1 << 12)
+>  #define BM_PLL_LOCK		(0x1 << 31)
+> +#define BM_PLL_LOCK_V2		(0x1 << 29)
+>  #define IMX7_ENET_PLL_POWER	(0x1 << 5)
+>  #define IMX7_DDR_PLL_POWER	(0x1 << 20)
+>
+> @@ -34,6 +34,7 @@
+>   * @base:	 base address of PLL registers
+>   * @power_bit:	 pll power bit mask
+>   * @powerup_set: set power_bit to power up the PLL
+> + * @lock_bit:	 pll lock bit mask
+>   * @div_mask:	 mask of divider bits
+>   * @div_shift:	 shift of divider bits
+>   * @ref_clock:	reference clock rate
+> @@ -48,6 +49,7 @@ struct clk_pllv3 {
+>  	void __iomem	*base;
+>  	u32		power_bit;
+>  	bool		powerup_set;
+> +	u32		lock_bit;
+>  	u32		div_mask;
+>  	u32		div_shift;
+>  	unsigned long	ref_clock;
+> @@ -65,7 +67,7 @@ static int clk_pllv3_wait_lock(struct clk_pllv3 *pll)
+>  	if ((pll->powerup_set && !val) || (!pll->powerup_set && val))
+>  		return 0;
+>
+> -	return readl_relaxed_poll_timeout(pll->base, val, val & BM_PLL_LOCK,
+> +	return readl_relaxed_poll_timeout(pll->base, val, val & pll->lock_bit,
+>  					  500, PLL_LOCK_TIMEOUT);
+>  }
+>
+> @@ -101,7 +103,7 @@ static int clk_pllv3_is_prepared(struct clk_hw *hw)
+>  {
+>  	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+>
+> -	if (readl_relaxed(pll->base) & BM_PLL_LOCK)
+> +	if (readl_relaxed(pll->base) & pll->lock_bit)
+>  		return 1;
+>
+>  	return 0;
+> @@ -155,6 +157,39 @@ static const struct clk_ops clk_pllv3_ops = {
+>  	.set_rate	= clk_pllv3_set_rate,
+>  };
+>
+> +static int clk_pllv3_genericv2_set_rate(struct clk_hw *hw, unsigned long rate,
+> +		unsigned long parent_rate)
+> +{
+> +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+> +	u32 val, div;
+> +
+> +	div = (readl_relaxed(pll->base) >> pll->div_shift) & pll->div_mask;
+> +	val = (div == 0) ? parent_rate * 22 : parent_rate * 20;
+> +
+> +	if (rate == val)
+> +		return 0;
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static unsigned long clk_pllv3_genericv2_recalc_rate(struct clk_hw *hw,
+> +					   unsigned long parent_rate)
+> +{
+> +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
+> +	u32 div = (readl_relaxed(pll->base) >> pll->div_shift)  & pll->div_mask;
+> +
+> +	return (div == 0) ? parent_rate * 22 : parent_rate * 20;
+> +}
+> +
+> +static const struct clk_ops clk_pllv3_genericv2_ops = {
+> +	.prepare	= clk_pllv3_prepare,
+> +	.unprepare	= clk_pllv3_unprepare,
+> +	.is_prepared	= clk_pllv3_is_prepared,
+> +	.recalc_rate	= clk_pllv3_genericv2_recalc_rate,
+> +	.round_rate	= clk_pllv3_round_rate,
+> +	.set_rate	= clk_pllv3_genericv2_set_rate,
+> +};
+> +
+>  static unsigned long clk_pllv3_sys_recalc_rate(struct clk_hw *hw,
+>  					       unsigned long parent_rate)
+>  {
+> @@ -407,9 +442,9 @@ static const struct clk_ops clk_pllv3_enet_ops = {
+>  	.recalc_rate	= clk_pllv3_enet_recalc_rate,
+>  };
+>
+> -struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+> +struct clk_hw *__imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+>  			  const char *parent_name, void __iomem *base,
+> -			  u32 div_mask)
+> +			  u32 div_mask, u8 pwr_bit)
+>  {
+>  	struct clk_pllv3 *pll;
+>  	const struct clk_ops *ops;
+> @@ -421,11 +456,21 @@ struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+>  	if (!pll)
+>  		return ERR_PTR(-ENOMEM);
+>
+> -	pll->power_bit = BM_PLL_POWER;
+> +	pll->power_bit = pwr_bit;
+> +	pll->lock_bit = BM_PLL_LOCK;
+>  	pll->num_offset = PLL_NUM_OFFSET;
+>  	pll->denom_offset = PLL_DENOM_OFFSET;
+>
+>  	switch (type) {
+> +	case IMX_PLLV3_GENERICV2:
+> +		pll->lock_bit = BM_PLL_LOCK_V2;
+> +		pll->powerup_set = true;
+> +		ops = &clk_pllv3_genericv2_ops;
+> +		break;
+> +	case IMX_PLLV3_SYSV2:
+> +		pll->lock_bit = BM_PLL_LOCK_V2;
+> +		pll->powerup_set = true;
+> +		fallthrough;
+>  	case IMX_PLLV3_SYS:
+>  		ops = &clk_pllv3_sys_ops;
+>  		break;
+> diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
+> index 5061a06468df..2bf50c92fdfa 100644
+> --- a/drivers/clk/imx/clk.h
+> +++ b/drivers/clk/imx/clk.h
+> @@ -6,6 +6,8 @@
+>  #include <linux/spinlock.h>
+>  #include <linux/clk-provider.h>
+>
+> +#define BM_PLL_POWER		BIT(12)
+> +
+>  extern spinlock_t imx_ccm_lock;
+>  extern bool mcore_booted;
+>
+> @@ -102,6 +104,9 @@ extern struct imx_fracn_gppll_clk imx_fracn_gppll;
+>  	to_clk(clk_hw_register_gate2(dev, name, parent_name, flags, reg, bit_idx, \
+>  				cgr_val, cgr_mask, clk_gate_flags, lock, share_count))
+>
+> +#define imx_clk_hw_pllv3(type, name, parent_name, base, div_mask) \
+> +	__imx_clk_hw_pllv3(type, name, parent_name, base, div_mask, 1)
+> +
+>  #define imx_clk_pllv3(type, name, parent_name, base, div_mask) \
+>  	to_clk(imx_clk_hw_pllv3(type, name, parent_name, base, div_mask))
+>
+> @@ -242,6 +247,8 @@ struct clk_hw *imx_clk_hw_sscg_pll(const char *name,
+>
+>  enum imx_pllv3_type {
+>  	IMX_PLLV3_GENERIC,
+> +	IMX_PLLV3_GENERICV2,
+> +	IMX_PLLV3_SYSV2,
+>  	IMX_PLLV3_SYS,
+>  	IMX_PLLV3_USB,
+>  	IMX_PLLV3_USB_VF610,
+> @@ -253,8 +260,8 @@ enum imx_pllv3_type {
+>  	IMX_PLLV3_AV_IMX7,
+>  };
+>
+> -struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+> -		const char *parent_name, void __iomem *base, u32 div_mask);
+> +struct clk_hw *__imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
+> +		const char *parent_name, void __iomem *base, u32 div_mask, u8 pwr_bit);
+>
+>  #define PLL_1416X_RATE(_rate, _m, _p, _s)		\
+>  	{						\
+> --
+> 2.36.1
+>
