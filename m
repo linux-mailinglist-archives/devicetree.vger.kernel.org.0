@@ -2,93 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4893658299C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 17:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56DF25829AB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 17:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233268AbiG0P1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 11:27:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37216 "EHLO
+        id S233404AbiG0Pc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 11:32:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233170AbiG0P1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 11:27:30 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38CD03336E
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 08:27:29 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id m12so26537555lfj.4
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 08:27:29 -0700 (PDT)
+        with ESMTP id S232685AbiG0Pc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 11:32:57 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64CE11F61F;
+        Wed, 27 Jul 2022 08:32:56 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-31f445bd486so60777147b3.13;
+        Wed, 27 Jul 2022 08:32:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=cldYDRGoUxCLGjKsA9926W9qeodJZ5xTATUaMdBvw+8=;
-        b=IFEiuYWNIzztkedjqQaYCsURRrAMCmcyR3MxjlWulOlcDLq5r0GkgLlc0flh9hU6nB
-         PUEeD5hTOQ5edIdxUSpnBvBwx1jihISMolvW2Qme/F1ADtXpLvDaksgfVW7Bvz+L9Mjv
-         w2nDuh3hjSX+/d8ng3YY0SBoyz15Zmhr2il5qj7IbVSpV1rU6G9SjglVUXDvvoMHbkVR
-         lXZZw2AcoPA5qEaoLcbRZUKWhZx+pvNTiUyVmAIPeoo/gIns5ZN94nEvfYOP+5ORaqYR
-         aIvq/8KuvBZ3g6jY9SqSZQ1eDDfdTFvaGwc9ymnMT9LTmPA488cyU/aS7HS/tk5YJPTG
-         FHng==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UQl6ehKgsHyBcO+W1cY0L1NdZu5y/xwam/X+NYPQiLI=;
+        b=DeXHGhLgtfyynj98wV8YO+BCLU/Yzf46/Fa08tj2uwlIiGSuXkHKxFj+or8DphUJMl
+         ptVfTRP7Lr69Rb5HZQpGnjpDx73NVijiQrvaLm75o5dLo1Y+30Q2zI9e3DK++wyFqOCj
+         Sbr8b0SCC/8fsjHe63vYZdtuFi2Vc0FEWvcCJOHKhtxh2UCi1/xKXnDGpXK/zHdYa2f3
+         4elZnFzDTlcM9TOmqq2QfrvGxy3WDv3uQyTBBrgO+qDkIY9aeWr+pMQ6anyoDsO3/Wdw
+         aZk6C590YR1L4+kKOCpuZnu5uSAonYVLSbQBHbfLdJ2YnWmEQ814i2s5l+MlJqjmSd3G
+         IJvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=cldYDRGoUxCLGjKsA9926W9qeodJZ5xTATUaMdBvw+8=;
-        b=aXxZ/YxHu4nfIdld4JrZKeCGDxgmz2wtsaByAXTohkL03HuQ56c+srajyRDXK0gCGx
-         tnEs093hmUQQCst7/SyGBrx1VbSNqqm2z7ekeoSRfooO3uMtjBOMc/RZXFal4RMpajZi
-         WbEQ/2Qj6dEbUVcMMxBv/vIYyv5vr4dzuCzaO0C4J3ZdHXVi8VHD4GPV8oOiKpHnP8vo
-         SDi+WT/wI3PV+/HmOqyKbIUfgOEKNDin6Ogr2AxomSp8UPRSxybU18I8rPuy58LgQ29K
-         nP5YWf0OYw7MYeyuuFHGY/4AGuSL1VKeMsJZVOTwkDb7Vlzugzdea1ei8labJVGIY3Jz
-         KIDg==
-X-Gm-Message-State: AJIora/SJviEfXduIERAJ3Yf0Ectll56V05dkT56bEtm+2Xzp0brPZxk
-        mwO+m2uDk3yVoiYg7qJ2qz06eg==
-X-Google-Smtp-Source: AGRyM1tOIzFvIUBsCCRkrLBJuFm7HZXYfpM6CS8zcYiZaGmW4hlA1AJt9pj6bSSxBcxrMTF8RdqO8w==
-X-Received: by 2002:ac2:4c8a:0:b0:48a:bee2:37fb with SMTP id d10-20020ac24c8a000000b0048abee237fbmr757958lfl.235.1658935647224;
-        Wed, 27 Jul 2022 08:27:27 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id z20-20020a056512309400b0048a93325906sm1497148lfd.171.2022.07.27.08.27.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 08:27:26 -0700 (PDT)
-Message-ID: <b094bf45-ad7e-9e42-89a6-bae0b8e4aae1@linaro.org>
-Date:   Wed, 27 Jul 2022 17:27:25 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UQl6ehKgsHyBcO+W1cY0L1NdZu5y/xwam/X+NYPQiLI=;
+        b=D84PecWQxNg5rSp6980y4db+GUZ/tI9Q4ilBAhc3ris8PSfWLduZ75Z5XDCxGT7oo1
+         0nFeX2AtCqw1+h6nauWZ/a81XRUMzixIpQHSewXDCkRK/jkTaRYrGWLmQTxFmmeEWUDZ
+         y9GvZzeJouWJ/Bi8t8M6Yl7fxy+3lFm1bvedDLt1/v3cRlZ+lJ/JecnL6XSORs2Vj0ng
+         OE4riCXArTHEigiYQJpoTy+uAIZjuVwSYkI7g0Ok87yWVo8quWNMJWXLEXcN3JMA9eG4
+         jGCyn0CU4Ir5tUkRObiFIyP+0RQAnG2wY/tmyTiieYlPHWAWUZRRNATWAwQ76uAy6Tcu
+         60+Q==
+X-Gm-Message-State: AJIora9o7+z705Qyi5LDbCLAbP1X9Knwi6KAu/yuCMO1UvsX0twzJQgc
+        /B1Ncm7GmjT43n++9r97uzDZIBy5oMx9iefd1uc=
+X-Google-Smtp-Source: AGRyM1sO8vBRq9aT9sglSssa+iwKjicoels0vxgWeCj/K+xF2arUKXy1DBNmqhRSbnGdnNWfin4mhsUYSijorGIdNcw=
+X-Received: by 2002:a81:5d55:0:b0:31c:dce7:96c9 with SMTP id
+ r82-20020a815d55000000b0031cdce796c9mr19528137ywb.519.1658935975618; Wed, 27
+ Jul 2022 08:32:55 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [v7 3/4] dt-bindings: arm: amlogic: add MagicBox M16S bindings
-Content-Language: en-US
-To:     Zhang Ning <zhangn1985@qq.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, narmstrong@baylibre.com,
-        martin.blumenstingl@googlemail.com, sean@mess.org,
-        christianshewitt@gmail.com, linux-amlogic@lists.infradead.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220726143649.142574-1-zhangn1985@qq.com>
- <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220726180623.1668-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <636e9214-4b36-e9a6-3c6b-b6edb944335e@linaro.org> <CA+V-a8sTw1qzuTeD2vb7RgDmmNdEP5qEcxXCjrFgkyrBrLrt5Q@mail.gmail.com>
+ <e64cc15e-b31e-876d-b3cf-b60d255c495b@linaro.org> <CA+V-a8u1VW9xaj2KjySyMuegpisLVENO_6uJOpAFZGbKziYLYw@mail.gmail.com>
+ <e31e0c1f-4755-704e-8428-93970877d8f5@linaro.org> <CA+V-a8sX=Frs_cds9MriauTFRvcZUNCvoeZ+SaC0GUpL7L6qhg@mail.gmail.com>
+ <9f32a4a9-66b4-ba2e-1713-436103c2faf8@linaro.org> <OS0PR01MB5922763582B836DA45CDFF0886979@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <80f08089-e3bb-983e-313b-45613364829e@linaro.org> <OS0PR01MB5922FDF8CFFE44A611D3783886979@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <75e5ace3-3255-2302-65f5-9fbef9cb1147@linaro.org> <5292fbdd-9eae-2398-1260-cbef652f6af2@microchip.com>
+In-Reply-To: <5292fbdd-9eae-2398-1260-cbef652f6af2@microchip.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 27 Jul 2022 16:32:28 +0100
+Message-ID: <CA+V-a8vVOXeqUZL7fTVHrc1qnC==uLR+nHooz=1mg-K3BwW3mQ@mail.gmail.com>
+Subject: Re: [PATCH 4/6] dt-bindings: riscv: Add DT binding documentation for
+ Renesas RZ/Five SoC and SMARC EVK
+To:     Conor.Dooley@microchip.com
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 16:36, Zhang Ning wrote:
-> Add manufactor bindings for Tmall
-> Add the board bindings for Magicbox M16S Tv Box
-> 
-> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
+On Wed, Jul 27, 2022 at 2:29 PM <Conor.Dooley@microchip.com> wrote:
+>
+> On 27/07/2022 14:00, Krzysztof Kozlowski wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >
+> > On 27/07/2022 14:56, Biju Das wrote:
+> >>>
+> >>> Then it is not the same SoC! Same means same, identical. CPU
+> >>> architecture is one of the major differences, which means it is not the
+> >>> same.
+> >>
+> >> Family SoC(R9A07G043) is at top level. Then it has different SoCId for taking care of
+> >> differences for SoC based on ARMV8 and RISC-V which has separate compatible like
+> >> r9a07g043u11 and r9a07g043f01?
+> >
+> > This does not answer the concern - it's not the same SoC. The most
+> > generic compatible denotes the most common part. I would argue that
+> > instruction set and architecture are the most important differences.
+> > None of ARMv8 SoCs (SoCs, not CPU cores) have "arm,armv8" compatible and
+> > you went even more - you combined two architectures in the most generic
+> > compatibles.
+>
+> I would have to agree with this. The most "core" part of the SoC is
+> its architecture and while the peripheral IPs might be the same etc
+> & the Renesas marketing team might have put them in the same "family",
+> for the purposes of a device tree I don't see how having a common
+> fallback makes sense.
+>
+Agreed, I was following the same which we have done on the ARM64 schema.
 
-Please send patches with correct subject PATCH.
+I am waiting on Geert's feedback on whether we should follow as
+Krzysztof suggested ie to have
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+renesas,smarc-evk-r9a07g043f01 - for the board
+renesas,9a07g043f01 - for the SoC
 
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml     | 1 +
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  2 files changed, 3 insertions(+)
-
-Best regards,
-Krzysztof
+Cheers,
+Prabhakar
