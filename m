@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAC425822A7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 11:03:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 633505822AC
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 11:04:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230394AbiG0JDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 05:03:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45060 "EHLO
+        id S231357AbiG0JEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 05:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230422AbiG0JD3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 05:03:29 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD86517E3A
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:03:28 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id z132so10362764yba.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:03:28 -0700 (PDT)
+        with ESMTP id S231350AbiG0JEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 05:04:14 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C4F5474C5
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:04:13 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id 7so29335839ybw.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:04:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0UIfKvFvMqAxcJyxWvWpP/N9FWfFY7zfLwomngLyGZ8=;
-        b=fIdO0pY7egrExHSgHak6Z2Inm4ATnzaAOly1bxMtw9tVoSwX7aM1VrAyPzybYMgYcf
-         C9F1eKsW3h0FUA7cB2RuK3Ef2yeQDITdSMTuU6K0hEmw+IyJhSEiBp4hUgYFnNJc2MQ0
-         wEEEby7mAchafqVQvXoUoUn2EKpF+QB7+L6qbkJwOoVJkBKffyc9MBGCT7Z8pCcrsM/F
-         R/7vr9fzJzoiuCXkzRUiB70zyHowU6fOAlgZ7XU5XZA93uadMqQrV2YBkErcnalhu2xM
-         9l0nbEe8kQmAdA1LCZRRAYXO0SSTT1Ye9onQOUALcHeMXWPKeYsBfrOYWfRvl+g5W3y6
-         0rfA==
+        bh=p2f3kh3jqi9yjSQzKeEhCTNVhq9kV2tSI6rer8mhvNI=;
+        b=WjFzxSO2wJzIbJH4XkUpRb5mtLv5lM7tMqrUu61P+vX0mCZ/dxyDFrjHgg+qBFmghP
+         nfGkL9gbS4Vwnuud/OmpQCyB0dChfNXSYl32JihYvnsBaCCarUtHOOga4p4XSzpQttS6
+         tzpx1dwoudB1NWkAiJvbO21luJ/qSTi1mF8Ku8IMdXHKV/5OiSzbGwXEVW0QvM71M8EC
+         SeUocZhlVq/HD29CtUs1jWRlWUZg0UGiSRK1SMN0nL1eB+v5zdZz/2mSy009D7aOwqFW
+         KSeQ/Q7fVmh7VjJga5qADbHbVztwLQMIU30KVKqPo5h4nsiKuHvwDyAZGhzrWlgFzhK3
+         N3AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0UIfKvFvMqAxcJyxWvWpP/N9FWfFY7zfLwomngLyGZ8=;
-        b=h4uPNM4L/CsbVl9ph1YNM33Ub3kNcRL1lRjbJtua1wO0vHgWIdkm+1etL6fmZQtr/+
-         pYSv0pMvwzZ7+CoJiwKkio94rgj5PLgIDP5GMNZ6S5Qfy7xjIDXHs+UWzT8Zer/jc3wc
-         1cZNfa4QS3piwyxj+zUPCE+16dIcrvGx3YHZ3/IuAiY3m16XzsKRbPYapKZox1oKsivj
-         82EPUafuEg+qH+hzHCDae0mGkhNkFJ2lwu0AK8KhTD9bzMGtlAe84GNp9vjorCTO6KGd
-         NYjiYqJobRLX0JGqGgEUo2MoIYF3Iw1fMF6IcHiLqPkxTyGdUo11nWlSGRi6qvuad5YY
-         FflA==
-X-Gm-Message-State: AJIora9a1ZYujTyYGEKCFPoh4+qoRoQSgp0kF394DvtTlKszZamScUxy
-        werUcNkjQoUMKWNdB7zrkVEsw1spvUwfCcPl0gL5+g==
-X-Google-Smtp-Source: AGRyM1vtjVCiK7A2GDqW/KyubKNqjvhydU8MnJUwOvM8jWILa+8/+sx6a8efaxGE5fWIQcDhL9rRTzH6sIt9ENFqg9U=
-X-Received: by 2002:a25:bb12:0:b0:66f:3c5f:dd9c with SMTP id
- z18-20020a25bb12000000b0066f3c5fdd9cmr15614585ybg.520.1658912607967; Wed, 27
- Jul 2022 02:03:27 -0700 (PDT)
+        bh=p2f3kh3jqi9yjSQzKeEhCTNVhq9kV2tSI6rer8mhvNI=;
+        b=HIu1/VCGCWS3w5Pm1GBIQYptuhU/LKoXcyQb61VjDO4wNDa/Q8YvHB7Kg/e1nmrFOS
+         qChPZi5mRTBx1onpKvy7AmSy7YPyggQLPLsZD/YkRLdGHiPAwUR+WYos8mTfctQNqM3P
+         NFJ/iBQqg11jVIH+VAZ56I91iT8vgU0e/6R8ch5AfqHGs4g13MwBl0rdoApAkKVTIbXf
+         Jh/UOEv/C2oAmcBtyf6Q6L0fuUANDDKO2qJ5U5G23Dw9pHGpPGpArYjgxFmb78J2Eud8
+         6ikcnrKaCwBNC0hfGsT22FEQ7jWdym6UFtX8q6eNh+FHnwLHXtuiKVAsJaBRiz9zX5Bd
+         hD4Q==
+X-Gm-Message-State: AJIora8iWbEWH3mnnrQvV3LAcmlbBnnbQSeS91kuEGZDdtdCbiXHOOqE
+        dkWNZNr6H+uoNXCaxsFMle3FXkfffa0hDSZpCpQHVg==
+X-Google-Smtp-Source: AGRyM1tFqXVl1Wq7EQt3qviY8BvioiYzPA9jdIWLjIYucLUw/m0e/HDPSy2RNp34GiUJ0LE93SKzgQ/kW9FUP7L1iYE=
+X-Received: by 2002:a25:ba02:0:b0:670:8171:3176 with SMTP id
+ t2-20020a25ba02000000b0067081713176mr15910761ybg.61.1658912652855; Wed, 27
+ Jul 2022 02:04:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220726135506.485108-1-bchihi@baylibre.com> <20220726135506.485108-3-bchihi@baylibre.com>
- <35e9db62-4233-1804-0233-f048b149c22c@collabora.com>
-In-Reply-To: <35e9db62-4233-1804-0233-f048b149c22c@collabora.com>
+References: <20220726135506.485108-1-bchihi@baylibre.com> <20220726135506.485108-2-bchihi@baylibre.com>
+ <3cb97e73-d60a-086d-83c2-1711c70057a2@collabora.com>
+In-Reply-To: <3cb97e73-d60a-086d-83c2-1711c70057a2@collabora.com>
 From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Wed, 27 Jul 2022 11:02:51 +0200
-Message-ID: <CAGuA+oqkcmJGUuzraQzjjVO-w7_sSNiU5ZpAYN9nc_hsufkkHg@mail.gmail.com>
-Subject: Re: [PATCH v8 2/6] dt-bindings: thermal: Add binding document for
- LVTS thermal controllers
+Date:   Wed, 27 Jul 2022 11:03:36 +0200
+Message-ID: <CAGuA+orsPVDjKcD=nMoHNKkQd3LNP8FP+TDSCWvabmR9f19TWw@mail.gmail.com>
+Subject: Re: [PATCH v8 1/6] thermal: mediatek: Relocate driver to mediatek folder
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
 Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
@@ -66,46 +65,98 @@ Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
         rex-bc.chen@mediatek.com, abailon@baylibre.com
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 27, 2022 at 10:17 AM AngeloGioacchino Del Regno
+On Wed, Jul 27, 2022 at 10:24 AM AngeloGioacchino Del Regno
 <angelogioacchino.delregno@collabora.com> wrote:
 >
 > Il 26/07/22 15:55, Balsam CHIHI ha scritto:
-> > This patch adds dt-binding documents for mt8192 and mt8195 thermal controllers.
+> > Add Mediatek proprietary folder to upstream more thermal zone and cooler
+> > drivers. Relocate the original thermal controller driver to it and rename
+> > as soc_temp.c to show its purpose more clearly.
 > >
-> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> > Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> > Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
+> > Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 > > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
 > > ---
-> >   .../thermal/mediatek,mt8192-lvts.yaml         | 73 ++++++++++++++++++
-> >   .../thermal/mediatek,mt8195-lvts.yaml         | 75 +++++++++++++++++++
-> >   2 files changed, 148 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,mt8192-lvts.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,mt8195-lvts.yaml
+> >   drivers/thermal/Kconfig                       | 14 ++++-------
+> >   drivers/thermal/Makefile                      |  2 +-
+> >   drivers/thermal/mediatek/Kconfig              | 23 +++++++++++++++++++
+> >   drivers/thermal/mediatek/Makefile             |  1 +
+> >   .../{mtk_thermal.c => mediatek/soc_temp.c}    |  0
+> >   5 files changed, 29 insertions(+), 11 deletions(-)
+> >   create mode 100644 drivers/thermal/mediatek/Kconfig
+> >   create mode 100644 drivers/thermal/mediatek/Makefile
+> >   rename drivers/thermal/{mtk_thermal.c => mediatek/soc_temp.c} (100%)
 > >
+> > diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> > index 0e5cc948373c..ecba8d6e313b 100644
+> > --- a/drivers/thermal/Kconfig
+> > +++ b/drivers/thermal/Kconfig
+> > @@ -412,16 +412,10 @@ config DA9062_THERMAL
+> >         zone.
+> >         Compatible with the DA9062 and DA9061 PMICs.
+> >
+> > -config MTK_THERMAL
+> > -     tristate "Temperature sensor driver for mediatek SoCs"
+> > -     depends on ARCH_MEDIATEK || COMPILE_TEST
+> > -     depends on HAS_IOMEM
+> > -     depends on NVMEM || NVMEM=n
+> > -     depends on RESET_CONTROLLER
+> > -     default y
+> > -     help
+> > -       Enable this option if you want to have support for thermal management
+> > -       controller present in Mediatek SoCs
+> > +menu "Mediatek thermal drivers"
+> > +depends on ARCH_MEDIATEK || COMPILE_TEST
+> > +source "drivers/thermal/mediatek/Kconfig"
+> > +endmenu
+> >
+> >   config AMLOGIC_THERMAL
+> >       tristate "Amlogic Thermal Support"
+> > diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> > index def8e1a0399c..3c00e864ad55 100644
+> > --- a/drivers/thermal/Makefile
+> > +++ b/drivers/thermal/Makefile
+> > @@ -55,7 +55,7 @@ obj-y                               += st/
+> >   obj-$(CONFIG_QCOM_TSENS)    += qcom/
+> >   obj-y                               += tegra/
+> >   obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
+> > -obj-$(CONFIG_MTK_THERMAL)    += mtk_thermal.o
+> > +obj-$(CONFIG_MTK_THERMAL)    += mediatek/
+> >   obj-$(CONFIG_GENERIC_ADC_THERMAL)   += thermal-generic-adc.o
+> >   obj-$(CONFIG_UNIPHIER_THERMAL)      += uniphier_thermal.o
+> >   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+> > diff --git a/drivers/thermal/mediatek/Kconfig b/drivers/thermal/mediatek/Kconfig
+> > new file mode 100644
+> > index 000000000000..9c41e9079fc3
+> > --- /dev/null
+> > +++ b/drivers/thermal/mediatek/Kconfig
+> > @@ -0,0 +1,23 @@
+> > +config MTK_THERMAL
+> > +     tristate "MediaTek thermal drivers"
+> > +     depends on THERMAL_OF
+> > +     help
+> > +             This is the option for MediaTek thermal software
+> > +             solutions. Please enable corresponding options to
+> > +             get temperature information from thermal sensors or
+> > +             turn on throttle mechaisms for thermal mitigation.
 >
-> Hello Balsam,
+> Sorry, I just noticed that the indentation must be fixed.
 >
-> I don't think that having two separated files is necessary (and I don't know if
-> that's correct, even).
+>         help
+>           This is the option .....
 >
-> You're referring to variants of the same hardware (and using the same driver, but
-> that's not really relevant here), so my suggestion here is to have only one YAML,
-> named like "mediatek,lvts-thermal.yaml", where we list all of the compatibles for
-> both MT8192 and MT8195 (and future SoCs).
->
-> Regards,
+> Thanks,
 > Angelo
-Hello AngeloGioacchino,
+OK, It will be fixed ASAP.
 
-Thank you for the feedback.
-Well received. I will resend ASAP.
-
-Best regards,
+Thanks,
 Balsam.
