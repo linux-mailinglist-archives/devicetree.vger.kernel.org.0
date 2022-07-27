@@ -2,156 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C90B5582078
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 08:52:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D6458207F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 08:53:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbiG0GwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 02:52:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60350 "EHLO
+        id S229485AbiG0GxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 02:53:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbiG0Gvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 02:51:46 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21D76F69
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 23:51:15 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id v21so192666ljh.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 23:51:15 -0700 (PDT)
+        with ESMTP id S229502AbiG0GxI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 02:53:08 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E83EBFD
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 23:53:07 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id n13so8449743ilk.1
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 23:53:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=aJUcWFFmWH0ACuT+DEaxkfE7LttZ2cDcW0MPuo+aX+s=;
-        b=vtx7QZ7D3Fz/UFYvObJYc0p4k7igsEZqawJNaTCN9XLR0p2eXTc+WIMlOoklwoTvVg
-         +QLAzNztvGzIkJqCovfYla9H+MiEhwjj9TDqG0s6Qqd0aXmLCTUdzoviFSPZPS9rq3R5
-         uUcqItXA0SmeaFAn1fWctXsDsM1nEVL1UdJuHBRUrFcZnrJ6gHOilwMN6guglZL5610v
-         /vX6PUe/gnAMkcr6aZ6Hf4t2/JYgoUvY3hL240dIqbwhPvDo+M8/IyVsFJ6L3oZGzTfB
-         dgqF8MvxA7kwGoiHvO6l4MUBuaevuECVhPUkEGtzp3iXH1d8BsdLYv3R5DRnTz8DTQYw
-         lubg==
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EVHPMBJtqujxX/VBmofI9sTd6D/nAjo4TTOcZSUMhtA=;
+        b=gyAWVFXUV2K9BGouMBR57rE/DDHvORc3YKzyFA6kvcsUYwH0R1RzvccLA50GHzepQ8
+         yXeP9I0hpk+J6K7KgRl66nhGerdhX17r5PZbCSI7fkxZNsnPkfn/qsXmePDZeGqQZILQ
+         Q6Pkwltg7Qtgf89wyZwymgIp/eMf/jmj66gNCsHsXrrH2sidGjCTSXfcbI3gW7UQTNzn
+         WlmyCsSWZXRRvosEQqXGMT/vltu4NPKLs+fxsimlAxdmAoZgDwPt4fJ/8BStluUNYaJn
+         jOj1U+hmpCWWkGWlKSL/Z1uIpbUSkAlaraAPGPeTI2yAdVZFvubIopKTrvYivBOkbqMQ
+         IURA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=aJUcWFFmWH0ACuT+DEaxkfE7LttZ2cDcW0MPuo+aX+s=;
-        b=Lryh6drxj74XYi0sFcNT3cCoKZwg+GExjAnP5xp6dQp7xIPxi+3l7gxDeGUPRxsrRA
-         HwhNpQUejMEAJ59ww3TU9jWqrqoJC1lW8hGH1UaXIY8bQ+k5UJp9rZHFTjd4qz3d8MS/
-         p2GCKymdb8k8EvZsINX3iYUmWQNdUPt9rUciwcS0EuZi2XhJniTDBkcNAx1rhDHPA3fh
-         u+VKbjcUWNjkR9t3fLxj+jCvCL42pNJWhEkB7yuZJD1BShby1rIUhPOpHvoMcej/DwNo
-         qv9OgDi3TSTUAkHJS5keCEYtSQ4FYtNHuW42ooOnCOjtukwxF9mWVayBN1nmHyOf/xmQ
-         ImyQ==
-X-Gm-Message-State: AJIora+P9LCAQwCG1/DOCtr0q1/XfsHww3QrBANPotR/83lclc/go469
-        903FctKv597MtqSqCIrMLRxgwNBMDVYFydLD
-X-Google-Smtp-Source: AGRyM1ueak/90bYUNOSpELSH8le2EAc2zF3399bwDPGwAEYllYwk9el8QSzhFMo2e77a56LQfDbCAw==
-X-Received: by 2002:a2e:98d5:0:b0:25e:c1b:f262 with SMTP id s21-20020a2e98d5000000b0025e0c1bf262mr3590812ljj.343.1658904673405;
-        Tue, 26 Jul 2022 23:51:13 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id h7-20020a19ca47000000b0048aa00a03fesm808662lfj.215.2022.07.26.23.51.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Jul 2022 23:51:12 -0700 (PDT)
-Message-ID: <8463a831-f263-31b2-6cd7-482ae9594bc1@linaro.org>
-Date:   Wed, 27 Jul 2022 08:51:11 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EVHPMBJtqujxX/VBmofI9sTd6D/nAjo4TTOcZSUMhtA=;
+        b=bKEuxBzZjYrLr4FEg7fEeqBc6HjVGbLGR07AdKwvCR7CE578pywAbHHTzaLRzMORVS
+         +XEp31/tpo+Q4IjTsmx21FAGWb9hGA/tTNX5zdmqM5oLdyJ76t+h5u9cbNVOYX24EY6i
+         FbDE8qvdTb1b6gV//pKE+ZBXij+vkuYfX3WWyxzrvOUnSRrFR2+TgXyDlHjVXpRQ8QI3
+         4o8jKpzUvr/JYF02nCFNkbvtObFmqGz7VbbyaUFhIh+r3NXSoQiP2uNwwh+wDq1AE5vQ
+         mTt2FBQ3oOXkt6E4sA29qfzIqOJMml55QTPHdwRJlVRvOCjGu+8XszwlyQAt9SfiIPcN
+         88Vw==
+X-Gm-Message-State: AJIora/gDBzgVKpBFymczT3FHVuvgoX4ZoUtEWJGsxvORNuX/QFjWIa2
+        fkjJNlfA5JkgtVWgRY2PB+K6qAhaCrG1ywyiWcwQKQ==
+X-Google-Smtp-Source: AGRyM1trz0hjoHAOEd8djqlRxj55j0RShp1tsDTS/u4EmP/r1ce83f00Q6Bx/LPCahv1h04wegwx8mMUNs2TFsynZew=
+X-Received: by 2002:a05:6e02:2186:b0:2dd:14dc:8049 with SMTP id
+ j6-20020a056e02218600b002dd14dc8049mr8695401ila.79.1658904787366; Tue, 26 Jul
+ 2022 23:53:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 2/2] spi: npcm-pspi: Add NPCM845 peripheral SPI support
-Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20220723204335.750095-1-jagan@edgeble.ai> <20220723204335.750095-3-jagan@edgeble.ai>
+ <e1d57de9-060b-bd58-2cea-85f41f75e7be@linaro.org> <CA+VMnFwNqm57StGj_JyTT2TM56uD-nFjxCekEH6aKYDMhEuxjw@mail.gmail.com>
+ <360f7d11-96f4-369e-1289-6c9dc3c49ca4@linaro.org>
+In-Reply-To: <360f7d11-96f4-369e-1289-6c9dc3c49ca4@linaro.org>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Wed, 27 Jul 2022 12:22:56 +0530
+Message-ID: <CA+VMnFzAjif9Af0305B919Dwadgq7MUjiuKJQ3oXwZztTWNX5w@mail.gmail.com>
+Subject: Re: [PATCH 02/22] dt-bindings: power: Add power-domain header for RV1126
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        linux-spi@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-References: <20220722114136.251415-1-tmaimon77@gmail.com>
- <20220722114136.251415-3-tmaimon77@gmail.com>
- <afae04e0-76a3-1bcb-5b47-9944fa9ab2c0@linaro.org>
- <YtrvyyMGm64hFG5j@sirena.org.uk>
- <0c8688d5-b0c1-8cc1-ec27-292acbb38dfc@linaro.org>
- <YtrzF9BFJrXfxiz0@sirena.org.uk>
- <CAP6Zq1iRowFv4qg=AqdVmBRRx5p4-5AaC1G-aZs=2LnOAOELXA@mail.gmail.com>
- <20869b88-41f3-9e9c-347e-17c3d01baa5d@linaro.org>
- <CAP6Zq1iHCL9Krjw-wYKrG1K_yzwj-_qNROYxhogvkDjk+gCL-g@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1iHCL9Krjw-wYKrG1K_yzwj-_qNROYxhogvkDjk+gCL-g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Elaine Zhang <zhangqing@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 21:32, Tomer Maimon wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your explanation.
-> 
-> On Tue, 26 Jul 2022 at 12:47, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 24/07/2022 10:44, Tomer Maimon wrote:
->>> Hi Mark and Krzysztof,
->>>
->>> Thanks for your reply,
->>>
->>> On Fri, 22 Jul 2022 at 21:57, Mark Brown <broonie@kernel.org> wrote:
->>>>
->>>> On Fri, Jul 22, 2022 at 08:47:24PM +0200, Krzysztof Kozlowski wrote:
->>>>> On 22/07/2022 20:43, Mark Brown wrote:
->>>>
->>>>>> ...with a fallback list required by the bindings so the driver actually
->>>>>> binds.  Note that bindings are currently not in YAML format so there'd
->>>>>> be even less enforcement of that than normal, and as they're currently
->>>>>> written the bindings don't require fallback.
->>>>
->>>>> Yes, the bindings document should be rephrased but we were living like
->>>>> that for few years. :)
->>>>
->>>> The binding document as it stands only has one compatible, there's no
->>>> existing problem with it other than the YAML conversion.  If we're
->>>> adding something new that requires a fallback we should be explicit
->>>> about that rather than have something that's actively misleading where
->>>> previously things were clear.  I don't mind if we add the compatible to
->>>> the driver or document the requirement for the fallback but we should do
->>>> one of the two.
->>>
->>> is V2 good enough? adding the compatible to the driver and the document?
->>> Or should we use fallback?
->>> If fallback is choosen, can you explain how I should do it?
->>
->> I propose to use fallback. The preferred way is to convert it to DT
->> schema and then add new device support (so two commits). Other
->> acceptable way is to rephrase the TXT so it clearly states desired
->> compatibles - one for old device, two for new devices. There are plenty
->> of examples in current sources.
-> Appreciate if you could clarify.
-> in case we use DT-schema, we dont describe the fallback like we doing
-> in txt document?
-> I mean that in the yaml file we should describe the NPCM PSPI
-> compatible property as follow:
->   compatible:
->     enum:
->       - nuvoton,npcm750-pspi
->       - nuvoton,npcm845-pspi
-> 
-> If yes, how should the user know that he needs to use fallback incase
-> is using nuvoton,npcm845-pspi? only from the device tree?
+On Tue, 26 Jul 2022 at 19:22, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
+> On 26/07/2022 15:44, Jagan Teki wrote:
+> > On Sun, 24 Jul 2022 at 02:28, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 23/07/2022 22:43, Jagan Teki wrote:
+> >>> Add power-domain header for RV1126 SoC from description in TRM.
+> >>>
+> >>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> >>> Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> >>> ---
+> >>>  include/dt-bindings/power/rv1126-power.h | 34 ++++++++++++++++++++++++
+> >>>  1 file changed, 34 insertions(+)
+> >>>  create mode 100644 include/dt-bindings/power/rv1126-power.h
+> >>>
+> >>> diff --git a/include/dt-bindings/power/rv1126-power.h b/include/dt-bindings/power/rv1126-power.h
+> >>> new file mode 100644
+> >>> index 000000000000..f15930ff06f7
+> >>> --- /dev/null
+> >>> +++ b/include/dt-bindings/power/rv1126-power.h
+> >>> @@ -0,0 +1,34 @@
+> >>> +/* SPDX-License-Identifier: GPL-2.0 */
+> >>
+> >> Dual license and a blank line,  please.
+> >
+> > Yes, all rockchip power includes (at least here) are GPL-2.0 what is
+> > the issue with it?
+>
+> The headers are part of bindings and all bindings should be dual
+> licensed, so they can be used in other projects.
+>
+> Of course if copyright holder does not agree to release it on BSD, then
+> it would be fine as exception. Also would be fine from us not to accept
+> such bindings. :)
 
-If you use DT schema format, you must code it as with fallback (so
-items). This is the most popular setup for SoC components so you will
-easily find such examples.
+I don't hold anything here to use dual-licensing. The only thing I'm
+wondering here is none of the rockchip power includes (which are
+merged) are using dual-licensing they simply have GPL-2.0 which is
+used in BSP.  Let me know what you suggest?
 
-
-Best regards,
-Krzysztof
+Thanks,
+Jagan.
