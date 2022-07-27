@@ -2,90 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A57275825D2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 13:45:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D9F5825F8
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 13:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232433AbiG0Lo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 07:44:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34064 "EHLO
+        id S232285AbiG0L5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 07:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232399AbiG0Lo5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 07:44:57 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810A74A812
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 04:44:56 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id p22so9706322lji.10
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 04:44:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=jtn8/pXZqVmyVmHFD0ROY+AOvBnJkk+T5jet+Sm8Mvw=;
-        b=dyptcIS3dLYiYzrlsmmZOGIFth86TvW5l6M+4b0Mr9yn3urso9iRQ8rrR+W6NJXyte
-         5wUp/Y9tUrZurvjY8+ZAJMb6OHPUFlDkKz7oyecCf62uJpXyr1ZO7ZLgLiNlHY5Fkt4R
-         /dpHOcf947Ov7D8EhsepB/JwpSU8g3etAeE6vzsV1mrOSD8A1zEYB7bRuEr93FTaCZTY
-         +y07iTbyKMJB1/WNq35+23UBJlm7NWtygCOAJUjsxXqzaABbVnr+IFMZJ4JoV0dlaR3b
-         D+vLSZZKd+EsmqYaht1OLj05H+041oIkPOjblXPTeuAQ4lQPLzQjHGJ37ZNFf9kcQt+W
-         0TNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=jtn8/pXZqVmyVmHFD0ROY+AOvBnJkk+T5jet+Sm8Mvw=;
-        b=K/vb/QJtJ//IGXxotJuex9BWKs3WrdaRgAQHATStIzcr9B7BJs2aqeqta6TvwSdUUR
-         lCdPFKf6yKm0P6xwYqaE9YifFA30iYjrhqNNQOvCeyKzYALoHpffrzYvbYAn85+x1CZL
-         blLkuzb2Klwj+Ew3Pp0gMGdaovpxQvDgUqTGxgpIamH0X+k3wGR3dOxGIcfC0vHVo4Wv
-         PDOTHYzg7LhDuAaHcUenWmeb9kaykRb6utmvx07gtlHHd/NtHP2sjpiO1igNN/NsLvo7
-         5uCt9lLMVuqnJ7JOn4tpVN4nfuqVH31dPRkPr1cLLmQl6U8GblwgY+InI8hhXUEYPRlV
-         onag==
-X-Gm-Message-State: AJIora8LkRxvGauuW9EFlfqVeoabVxFI/NYIM5GGuP1ZeZKVZGUEFHjV
-        AwQBVS8ELTYQmoDh38W2HyP0gg==
-X-Google-Smtp-Source: AGRyM1vKJFrPlmDXjA4BYKoOZrKRj/fRP1aoIdOTCo6UEZmXfLZ4iTyhVjD9Nptbds6dKOvZYwUDIg==
-X-Received: by 2002:a2e:9ada:0:b0:25e:1109:b067 with SMTP id p26-20020a2e9ada000000b0025e1109b067mr3243919ljj.425.1658922294916;
-        Wed, 27 Jul 2022 04:44:54 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id o5-20020ac24345000000b0047920d89606sm3745948lfl.187.2022.07.27.04.44.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 04:44:54 -0700 (PDT)
-Message-ID: <9f32a4a9-66b4-ba2e-1713-436103c2faf8@linaro.org>
-Date:   Wed, 27 Jul 2022 13:44:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 4/6] dt-bindings: riscv: Add DT binding documentation for
- Renesas RZ/Five SoC and SMARC EVK
-Content-Language: en-US
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231375AbiG0L5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 07:57:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC3F727CC7;
+        Wed, 27 Jul 2022 04:57:43 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5974F6186D;
+        Wed, 27 Jul 2022 11:57:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F3CC433D6;
+        Wed, 27 Jul 2022 11:57:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658923062;
+        bh=OEoVs/MhSXgR4IWqrhVfbtNjizq9Kvd/Pib0wQFyWH4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=fRDXzn1tXMPuTUSTgVRhPAFjh3z1U1OcjCyjiTNw0vat+ApVqVFWoV7rbsOGIGbnY
+         6NyQR6rH1xQmGrxMJE+nrudPqOqH3jp08fYn5S5OHPMDHcJTBqZhzPt38m3GkjAnXP
+         a9xslA49t4Sp5G1gpZNwIQDyB8xsJuEK/dLRU5hr1vJXNv/CnK3VsFq+pClIu2jawv
+         yiU+4UvE5+dqHPlfg3/ifSaNmcv8PBNWnDoc/uKFGCB0UovyacXlsGFcsWbqyEH69a
+         CN9eQjKDMGSYLJJVVyv5RtH7busZBmkWbsY+qUjtv9LdjhkqbWAn+iG09N+z8FyyWj
+         JP3bCVOdKcRNw==
+Date:   Wed, 27 Jul 2022 12:57:34 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Iskren Chernev <iskren.chernev@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Adam Skladowski <a39.skl@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220726180623.1668-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <636e9214-4b36-e9a6-3c6b-b6edb944335e@linaro.org>
- <CA+V-a8sTw1qzuTeD2vb7RgDmmNdEP5qEcxXCjrFgkyrBrLrt5Q@mail.gmail.com>
- <e64cc15e-b31e-876d-b3cf-b60d255c495b@linaro.org>
- <CA+V-a8u1VW9xaj2KjySyMuegpisLVENO_6uJOpAFZGbKziYLYw@mail.gmail.com>
- <e31e0c1f-4755-704e-8428-93970877d8f5@linaro.org>
- <CA+V-a8sX=Frs_cds9MriauTFRvcZUNCvoeZ+SaC0GUpL7L6qhg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CA+V-a8sX=Frs_cds9MriauTFRvcZUNCvoeZ+SaC0GUpL7L6qhg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 3/5] regulator: qcom_spmi: Add support for new
+ regulator types
+Message-ID: <YuEoLteLBgd+b8sg@sirena.org.uk>
+References: <20220726181133.3262695-1-iskren.chernev@gmail.com>
+ <20220726181133.3262695-4-iskren.chernev@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="c8wmvTBeVsGJsd6K"
+Content-Disposition: inline
+In-Reply-To: <20220726181133.3262695-4-iskren.chernev@gmail.com>
+X-Cookie: No motorized vehicles allowed.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,24 +64,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2022 13:37, Lad, Prabhakar wrote:
->>>>
->>> I did run the dtbs_check test as per your suggestion (below is the
->>> log) and didn't see "no matching schema error"
->>>
->>
->> So you do not see any errors at all. Then it does not work, does it?
->>
-> Right I reverted my changes I can see it complaining, dtb_check seems
-> to have returned false positive in my case.
-> 
-> What approach would you suggest to ignore the schema here?
 
-I don't think currently it would work with your approach. Instead, you
-should select here all SoCs which the schema should match.
+--c8wmvTBeVsGJsd6K
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-This leads to my previous concern - you use the same SoC compatible for
-two different architectures and different SoCs: ARMv8 and RISC-V.
+On Tue, Jul 26, 2022 at 09:11:31PM +0300, Iskren Chernev wrote:
 
-Best regards,
-Krzysztof
+> Add support for some regulator types that are missing in this driver, all
+> belonging to the FTSMPS426 register layout.  This is done in preparation
+> for adding support for the PM6125 PMIC.
+
+> +	.set_mode		= spmi_regulator_ftsmps3_set_mode,
+> +	.get_mode		= spmi_regulator_ftsmps426_get_mode,
+
+Why are set and get asymmetric?
+
+> @@ -1473,7 +1557,7 @@ static const struct spmi_regulator_mapping supported_regulators[] = {
+>  	SPMI_VREG(LDO,   HT_P600,  0, INF, HFS430, hfs430, ht_p600, 10000),
+>  	SPMI_VREG(LDO,   HT_P150,  0, INF, HFS430, hfs430, ht_p150, 10000),
+>  	SPMI_VREG(BUCK,  GP_CTL,   0, INF, SMPS,   smps,   smps,   100000),
+> -	SPMI_VREG(BUCK,  HFS430,   0, INF, HFS430, hfs430, hfs430,  10000),
+> +	SPMI_VREG(BUCK,  HFS430,   0,   3, HFS430, hfs430, hfs430,  10000),
+
+The changelog said we were adding support for new types but this looks
+like changing an existing type.
+
+--c8wmvTBeVsGJsd6K
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLhKC0ACgkQJNaLcl1U
+h9Byawf/SgzRmAePGy24aoL5THi5Xf0CjThrfjmk/FuY4MGwem/ClESAYTdf0o2m
+9Php3xEMaCevtBlamg0SBQ0wcS+n5xVJRdTrsa1w2WmOVX5yWTXcAHrhbZF4zw9n
+T24wbt0fVKQf++QgZV+CvyKGcF6WwT8QUV+XZVUnLNAYXCzi48K1TBK6kLovF6Wm
+qiJyXOC2uSzSRcsw/pFYjDTV5RDMtdw83G2pVPW3KKWxgvfk/7fOk+uHm2i8WJQd
+MB9VqRs1glNuTVqWvjQd/4KSoNZqr/O+J4bJ5i51Naof9XyCv4XtEc2AK6QBzZkJ
+H9KnHQgCubqerwbYSrENJftdUGYn8A==
+=gE9t
+-----END PGP SIGNATURE-----
+
+--c8wmvTBeVsGJsd6K--
