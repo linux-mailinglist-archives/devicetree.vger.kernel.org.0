@@ -2,157 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA3235821B5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 10:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39B915821C2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 10:07:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbiG0ICr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 04:02:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56828 "EHLO
+        id S229873AbiG0IG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 04:06:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbiG0ICq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 04:02:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1AAB422ED;
-        Wed, 27 Jul 2022 01:02:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229568AbiG0IG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 04:06:57 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E44C43E6C;
+        Wed, 27 Jul 2022 01:06:53 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 51A3861645;
-        Wed, 27 Jul 2022 08:02:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6473DC433C1;
-        Wed, 27 Jul 2022 08:02:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658908964;
-        bh=oFIkkeAnr7pbdOUU0Rf2VovOOsOXvFXow9Y98anFXPk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=nu3uQjGzBuXof6HuTHqu3Zbs+UQq/I1YjZ+dKIGVFHKhl8i3LGnFxVfiBRLIyTYQM
-         iN+y0sVuXNHHEDCqHuIChHKhH6gIQonUEBjvNA9sWO96xKT36Q+/ckWWBKmGczPoiF
-         YOBArGwnqQ9l426SjaJaKAYVFkr2LdLT+07irGekkDikfk+UvhVZvHYF1FmpZUDvHV
-         7Fjeq50Ki40NW4eznO/jPWDtZE14kiSYzbUcHvFNx3uPrN9+wfvqJ1FsXjLMw6gZaN
-         6KtGjfEbOX+nkWHsDmFGfqd5TucjRCF3hgKGljZygFGcxSn/0ofV7lc25Nnxi9Zijt
-         BgdI0qA3nuNoA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1oGc0A-00ALOt-13;
-        Wed, 27 Jul 2022 09:02:42 +0100
-Date:   Wed, 27 Jul 2022 09:02:41 +0100
-Message-ID: <877d3zx9su.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Frank Li <frank.li@nxp.com>
-Cc:     "jdmason@kudzu.us" <jdmason@kudzu.us>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "kernel@vger.kernel.org" <kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "ntb@lists.linux.dev" <ntb@lists.linux.dev>
-Subject: Re: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi controller
-In-Reply-To: <PAXPR04MB918621013E6276D37B56C48488949@PAXPR04MB9186.eurprd04.prod.outlook.com>
-References: <20220720213036.1738628-1-Frank.Li@nxp.com>
-        <20220720213036.1738628-3-Frank.Li@nxp.com>
-        <874jza525l.wl-maz@kernel.org>
-        <PAXPR04MB9186A1D283ACE8BD6954039288919@PAXPR04MB9186.eurprd04.prod.outlook.com>
-        <87wnc6xz6r.wl-maz@kernel.org>
-        <PAXPR04MB918621013E6276D37B56C48488949@PAXPR04MB9186.eurprd04.prod.outlook.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: frank.li@nxp.com, jdmason@kudzu.us, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id A8A536601ABE;
+        Wed, 27 Jul 2022 09:06:50 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1658909211;
+        bh=RAzqICOW9S1oGl5H8d7L9/J1u1cDZH2ud8LNYQY1T3M=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=WrVrHpB4r9Rg8ui6n1LNe1Z4aVrjsI8phcDQTTuMVB/RMeashds0PTWh1HiPCQRId
+         czTMc5B5HATboRK45fyVBpH+eZXbfJDIBJs87/uNXlp8y2C3vDJN5tWycVdOP6Y+pR
+         NoPv1Wx/t30Q2WFWLW34pqv6Llq2co6UmLfpHaGOtU4nxaYvhB4FoLIGCF1O8v02K0
+         igcHQEoObnRB5K9M9kKMzUt+bIMrqgRXq8+cg2nj/nGsdnaUovEXBPSwXEhe4pNuLW
+         gBzpL+/BO1wbcxsSZ4BHaSLl5cgxdS3mGS3LGwpXbaEsq1wa4oqiuOE+K6IebX/NDS
+         Odhulc7hKDdvQ==
+Message-ID: <826821ae-432b-f4cc-6b38-16be881213e6@collabora.com>
+Date:   Wed, 27 Jul 2022 10:06:48 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH, v2] media: mediatek: vcodec: Add to support VP9 inner
+ racing mode
+Content-Language: en-US
+To:     Mingjia Zhang <mingjia.zhang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220727061310.2307-1-mingjia.zhang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220727061310.2307-1-mingjia.zhang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Jul 2022 22:48:32 +0100,
-Frank Li <frank.li@nxp.com> wrote:
+Il 27/07/22 08:13, Mingjia Zhang ha scritto:
+> In order to reduce decoder latency, enable VP9 inner racing mode.
+> Send lat trans buffer information to core when trigger lat to work,
+> need not to wait until lat decode done.
 > 
-> > > > > +static void imx_mu_msi_irq_handler(struct irq_desc *desc)
-> > > > > +{
-> > > > > +     struct imx_mu_msi *msi_data = irq_desc_get_handler_data(desc);
-> > > > > +     u32 status;
-> > > > > +     int i;
-> > > > > +
-> > > > > +     status = imx_mu_read(msi_data, msi_data->cfg-
-> > >xSR[IMX_MU_RSR]);
-> > > > > +
-> > > > > +     chained_irq_enter(irq_desc_get_chip(desc), desc);
-> > > > > +     for (i = 0; i < IMX_MU_CHANS; i++) {
-> > > > > +             if (status & IMX_MU_xSR_RFn(msi_data->cfg->type, i)) {
-> > > > > +                     imx_mu_read(msi_data, msi_data->cfg->xRR + i * 4);
-> > > > > +                     generic_handle_domain_irq(msi_data->parent, i);
-> > > >
-> > > > Why the parent? You must start at the top of the hierarchy.
-> 
-> [Frank Li] Do you means that should be msi_data->msi_domain instead
-> of msi_data->parent?
+> Signed-off-by: mingjia zhang <mingjia.zhang@mediatek.com>
 
-Indeed. you must *not* bypass the hierarchy, and the top level of the
-hierarchy has to implement whatever is required by the interrupt flow.
+For MT8195:
 
-> 
-> > > >
-> > > > > +             }
-> > > > > +     }
-> > > > > +     chained_irq_exit(irq_desc_get_chip(desc), desc);
-> > > >
-> > > > If your MSIs are a chained interrupt, why do you even provide an
-> > > > affinity setting callback?
-> > >
-> > > [Frank Li]  it will be crash if no affinity setting callback.	
-> > 
-> > Then you have to fix your driver.
-> 
-> [Frank Li] After debug,  msi_domain_set_affinity() have not did null check for (parent->chip->irq_set_affinity). 
-> I think impact by using dummy set_affinity is minimized.  
-> 
-> int msi_domain_set_affinity(struct irq_data *irq_data,	
-> 			    const struct cpumask *mask, bool force)
-> {
-> 	struct irq_data *parent = irq_data->parent_data;
-> 	struct msi_msg msg[2] = { [1] = { }, };
-> 	int ret;
-> 
-> 	ret = parent->chip->irq_set_affinity(parent, mask, force);
-> 	if (ret >= 0 && ret != IRQ_SET_MASK_OK_DONE) {
-> 		BUG_ON(irq_chip_compose_msi_msg(irq_data, msg));
-> 		msi_check_level(irq_data->domain, msg);
-> 		irq_chip_write_msi_msg(irq_data, msg);
-> 	}
-> 
-> 	return ret;
-> }
-
-No. Changing the affinity of an interrupt must not affect the affinity
-of another. Given that this is a chained handler, you *cannot* satisfy
-this requirement. So you can't change the affinity at all.
-
-	N,
-
--- 
-Without deviation from the norm, progress is not possible.
+Tested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
