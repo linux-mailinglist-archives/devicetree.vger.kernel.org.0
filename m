@@ -2,74 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06C9C582ECF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 19:17:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A533D582EF2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 19:19:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232066AbiG0RRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 13:17:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37550 "EHLO
+        id S232882AbiG0RTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 13:19:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241687AbiG0RQu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 13:16:50 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44802DDC
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:43:17 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id q23so14709364lfr.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:43:16 -0700 (PDT)
+        with ESMTP id S241641AbiG0RSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 13:18:36 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B08B79EDF
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:43:52 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id v21so1853563ljh.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:43:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=dq1uiZkAWa3YJvnfamL8dc9poZEqWN+zXqH3YX0Ei5g=;
-        b=qCyMVBkCXFWl1AlJ5rfWeaCJL8jbUT35O7IxR89YvWURkZkpEiIbfagT6bJR1uSTck
-         YbU0zVyldV6p6XW6UPlKR00YL+u6oN22qGh3V9lr5RSCTRxlTg+6j/L1shioPpEaS7DM
-         ftpLvGyWCZ4+68kqY/LMvV0tyXTclfFKxn0mbsxA8s+4Q6K4RFIO+s856ieFJmBcpnW+
-         /D2V4JWTU3+J4p4RgsA9fCq1V2L8dieLqfkcESOSMz5v+uN+0E8rlxc14XXQP5MqGJmq
-         uJ5bAEibiJbYXh7hTOYcNgy4qXuk7IeI2q0jqOu2k2ViRQo6nhIypR1TXJ/sh8Xcs7M3
-         7PjQ==
+        bh=pGvBGO7The5vMYhAFkbpIL+Mx8zg6qvgHGnml6XuW/Q=;
+        b=kT8v/97SO5qLemWpEOWgpsCzVFRBTJYQVgSNWxMeLA16Y2z+rJrCOKi2p4POvRXPbP
+         jjZJvOZubNUSNIu1yOPJNnupfVf2+J6ACs7Aol56110eu1sX8VAGfaNJg9wrDM5w/Pt6
+         LNfPyGeA42f6Omj/+ctTdqrqHoVpXo2BpltaGDUA7ROclI22vXnhkISrlVPqsfBxgMHI
+         yu2HMuNWmFp+DmZG+6shqoEW3hPhHfPGfyNq93wS3wy15d7vDJrTYisKeaySnQkKb6hW
+         YLV87o4hDYRKoLUJIOmnmdOxlPAIDrqwj+dwuGw4IlP0QbO2XQdG55iXeYgxg/dMy5vx
+         AgAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=dq1uiZkAWa3YJvnfamL8dc9poZEqWN+zXqH3YX0Ei5g=;
-        b=PtQakFY57+NHNDtcgnYSxg7nbMVMDrwGku+68FK5r54DYvpl2dD2pXZr7rhjuJJyok
-         0Gr7h9kTk1nQn7DAm1MpettWDIHE/UBryvyHU2bZRdJhc4aiSHGwBjogwwbYOfRbWVBs
-         b5pSuJ+1QvQUJYMjN9pZ+kp9spAzYLfENMdkW2g86OOFBmXMBAXVNbFUYYS9xUNjYonk
-         O2KrumKkQDAhW3iZWQN8lRNdA8l2d9TxkbEXZ13RRtp0aGxWaoHMCczfeQKainz3J0Ml
-         0+czlbFDutitNWamFJrnpFNDX/88nkaZth/DVtmBtNxdHPjkB1qyAGvgrqiLO+3lyipP
-         ynlw==
-X-Gm-Message-State: AJIora+oyOex0ajW5n9cl1w92fgRnoe2FN3dftjGRdB3qLnX7KHqPepa
-        +tMRVFosIiUfIEJsPueohEb3wg==
-X-Google-Smtp-Source: AGRyM1tjstljwcPGnQ8nUewAwhzjHnExmu7i325wwT19JRsKZYk7zO7l24iTwuawcmiATp8A/e/MEQ==
-X-Received: by 2002:a05:6512:2826:b0:48a:a02c:4a6a with SMTP id cf38-20020a056512282600b0048aa02c4a6amr3196539lfb.29.1658940195058;
-        Wed, 27 Jul 2022 09:43:15 -0700 (PDT)
+        bh=pGvBGO7The5vMYhAFkbpIL+Mx8zg6qvgHGnml6XuW/Q=;
+        b=VanU3kTA8h2dEUO9TYRjX1p9L+jCSalND6ISYwuRIul4A2g+4RpyPlMKzgf0FAogmA
+         chbLCiGqZN7nlG7v1sR+m6e1TDayIOQOXijb/U0ICEejtcNodNAttNb+9dx0YnLhuLzM
+         3dvzdynC5/6GbjY71iJdD+xyKH+KXVkta++8mHPfula92AYzb+DghtjevUcOPqyUiTjJ
+         sR3nc3ibgW2DSH1g5JjRpBmA5TorKiHN/CUZhcOaV5QtboMgJGEg3yBYxXnSvAq7fmnc
+         0YvIgGg+5EtTOdbmwH4NqR4zHsYwZCUPXX79KdzEYDL63OUTQsh4YtUlQAhCdxY8o6Db
+         tx3Q==
+X-Gm-Message-State: AJIora+WHZFBpaM+m05/8QPW5mdYiDo2CgQxg7ctswp6YZn59YvpqeOc
+        tDUVREZUjgByoJlwDrKkhMaQ6Q==
+X-Google-Smtp-Source: AGRyM1sUZd0ZGxF9ub3vjabtve4gBxpZIV8y/DKP9xt3YNCnlcWviSeIKQsMlcKe4GnCRnhJQQPrRg==
+X-Received: by 2002:a2e:8095:0:b0:25d:f573:db4c with SMTP id i21-20020a2e8095000000b0025df573db4cmr7587113ljg.62.1658940230242;
+        Wed, 27 Jul 2022 09:43:50 -0700 (PDT)
 Received: from krzk-bin.lan (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id t17-20020ac243b1000000b0047fae90bfb4sm3869763lfl.56.2022.07.27.09.43.13
+        by smtp.gmail.com with ESMTPSA id i22-20020a056512341600b0048137a6486bsm3865662lfr.228.2022.07.27.09.43.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jul 2022 09:43:14 -0700 (PDT)
+        Wed, 27 Jul 2022 09:43:49 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Ivan Bornyakov <i.bornyakov@metrotek.ru>,
+        Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+        Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Lechner <david@lechnology.com>,
-        Javier Martinez Canillas <javierm@redhat.com>,
-        Heiko Schocher <hs@denx.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: display: use spi-peripheral-props.yaml
-Date:   Wed, 27 Jul 2022 18:43:12 +0200
-Message-Id: <20220727164312.385836-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: fpga: microchip,mpf-spi-fpga-mgr: use spi-peripheral-props.yaml
+Date:   Wed, 27 Jul 2022 18:43:47 +0200
+Message-Id: <20220727164347.386398-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -88,11 +85,6 @@ like maximum frequency.
 While changing additionalProperties->unevaluatedProperties, put it in
 typical place, just before example DTS.
 
-The sitronix,st7735r references also panel-common.yaml and lists
-explicitly allowed properties, thus here reference only
-spi-peripheral-props.yaml for purpose of documenting the SPI slave
-device and bringing spi-max-frequency type validation.
-
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
@@ -108,70 +100,27 @@ loosened for that period.
 
 [1] https://lore.kernel.org/all/20220722191539.90641-2-krzysztof.kozlowski@linaro.org/
 ---
- .../devicetree/bindings/display/panel/lg,lg4573.yaml       | 2 +-
- .../devicetree/bindings/display/sitronix,st7735r.yaml      | 1 +
- .../devicetree/bindings/display/solomon,ssd1307fb.yaml     | 7 +++----
- 3 files changed, 5 insertions(+), 5 deletions(-)
+ .../bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml          | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/lg,lg4573.yaml b/Documentation/devicetree/bindings/display/panel/lg,lg4573.yaml
-index b4314ce7b411..ee357e139ac0 100644
---- a/Documentation/devicetree/bindings/display/panel/lg,lg4573.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/lg,lg4573.yaml
-@@ -15,13 +15,13 @@ maintainers:
+diff --git a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+index aee45cb15592..527532f039ce 100644
+--- a/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
++++ b/Documentation/devicetree/bindings/fpga/microchip,mpf-spi-fpga-mgr.yaml
+@@ -22,13 +22,14 @@ properties:
+     description: SPI chip select
+     maxItems: 1
  
- allOf:
-   - $ref: panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
-     const: lg,lg4573
- 
-   reg: true
--  spi-max-frequency: true
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml b/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
-index 157b1a7b18f9..53f181ef3670 100644
---- a/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
-+++ b/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
-@@ -15,6 +15,7 @@ description:
- 
- allOf:
-   - $ref: panel/panel-common.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
- 
- properties:
-   compatible:
-diff --git a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-index 3fbd87c2c120..669f70b1b4c4 100644
---- a/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-+++ b/Documentation/devicetree/bindings/display/solomon,ssd1307fb.yaml
-@@ -49,9 +49,6 @@ properties:
-   vbat-supply:
-     description: The supply for VBAT
- 
--  # Only required for SPI
 -  spi-max-frequency: true
 -
-   solomon,height:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     default: 16
-@@ -153,6 +150,8 @@ required:
+ required:
+   - compatible
    - reg
  
- allOf:
+-additionalProperties: false
++allOf:
 +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
 +
-   - if:
-       properties:
-         compatible:
-@@ -223,7 +222,7 @@ allOf:
-         solomon,dclk-frq:
-           default: 10
- 
--additionalProperties: false
 +unevaluatedProperties: false
  
  examples:
