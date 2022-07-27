@@ -2,298 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B1DF5832D2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 21:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17D645832DB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 21:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229804AbiG0TFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 15:05:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47334 "EHLO
+        id S234497AbiG0TFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 15:05:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234671AbiG0TEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 15:04:48 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60053.outbound.protection.outlook.com [40.107.6.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8641F5FAD9;
-        Wed, 27 Jul 2022 11:29:45 -0700 (PDT)
+        with ESMTP id S234588AbiG0TFa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 15:05:30 -0400
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F92C21B0;
+        Wed, 27 Jul 2022 11:33:11 -0700 (PDT)
+Received: from pps.filterd (m0150241.ppops.net [127.0.0.1])
+        by mx0a-002e3701.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26RIJOCx007390;
+        Wed, 27 Jul 2022 18:32:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pps0720;
+ bh=3l3dhi/mTkOBun/f/IG9bGZ8Z2L8UaVRukgncAGhZow=;
+ b=DFbPq4wCQybQCUsyo0EOYLnW4RFBOIczBVY9o9MCTXuXxWDRLZD80mtQfMBeYNkKRuxP
+ 7lVXzButjYQyg5MLN9ubtEfAA3zYuU4P4oAzXsZcwsTg7KH6nHsZPS0YIwj1rO4bpSEE
+ XCWd4CtGssY0HpHbXIjfvE96hIhKqR2V6vumCckfsWVYGGDRjUGHQKxpiaNjsgMdLl6c
+ 0iPgCjdwhHqkvJpcAxmsRmmMIG1Hu7j8j27sStofPJ2rZspg/Bc/vEVyjElvEv1aUwBe
+ 6AsEE9nco1q6Znt127+vSVYjIDkBtaKJmVIMAnOT/lCdNsDLyOKK4pgr64RKhqkOnLH0 ZQ== 
+Received: from p1lg14879.it.hpe.com (p1lg14879.it.hpe.com [16.230.97.200])
+        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3hk6ctja8c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 27 Jul 2022 18:32:53 +0000
+Received: from p1wg14923.americas.hpqcorp.net (unknown [10.119.18.111])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by p1lg14879.it.hpe.com (Postfix) with ESMTPS id BE2F4132DE;
+        Wed, 27 Jul 2022 18:32:52 +0000 (UTC)
+Received: from p1wg14924.americas.hpqcorp.net (10.119.18.113) by
+ p1wg14923.americas.hpqcorp.net (10.119.18.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Wed, 27 Jul 2022 06:32:52 -1200
+Received: from P1WG14918.americas.hpqcorp.net (16.230.19.121) by
+ p1wg14924.americas.hpqcorp.net (10.119.18.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15
+ via Frontend Transport; Wed, 27 Jul 2022 06:32:52 -1200
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (192.58.206.38)
+ by edge.it.hpe.com (16.230.19.121) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Wed, 27 Jul 2022 18:32:52 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lXScmbNbJOXJMOjnKVelzs5rIMW/98laMJDrvAm+DMVUHqi0fGaJ/oNuc1DdL2mfDdF+EX5qzVQnSjPfLock/+UmvP5SF4BdQKQXBhAS7w1H/mqNWTgLdZgia0p7Eyg173eJzhkhnfYDL1CooQ42X5hm243XKlWUdNaH9pNOuVlUlfN53vuTrgDy0MATD4MHjKzaNFEKF9DFuEF29LW3MxkespYCRI3/Xe9ItBQhve7u4bCaI3saE6OZYctCdi47KOVRvnZATh3rLQ0Y+9lH5iUmmbmRXptYh86gn14j8oCaEMJljZYpbhFfzF5nyuvW5Ao+Y0rEKdr0wGvc2oFXVg==
+ b=J4gSo6oDJbgYG1zi1mJEt3PgEeJhVgFkMrtEf7np/r6ZRBGPDLTl+AGjYkbgNl7OZTLjxQ3QdZmZ6/DWkUsf1r89T2ducMXs025P9bzx5aozxoP0aeAcN3KpgWdo6cQ2BcXIJvuRRYbyTF+4LnujdSQtf/jkLK99ZJjvuvTi4SjtInxwP8ZoO+URH6+HTRd9KFTzPJI+3IeDpJSwo9ATFi4c2Q1oE7yzxFg5yw+zjjPp2L7goxgJxihSfRwnRZ9LmKAwiqnR28Rdle6uwuBpHQlVjYDzCeN2SP/r+NEM++R/kGawNZfjKKvgdOZV+Vxi1fdi7FHODQGe7aSo5FaYIA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QelDGqyWmLLVUfXIeveAqL4T2A2Wxy6G2ubGKBOiX8g=;
- b=ZSsHWWvtwQmonBpBhkDt5KC1WREptELtEZo7+3BpkEgP6F/GUVZ28RHqvPrZY2KPzmAvUkor31iaROwi2ggqxnbqlzVhm3NkTcrNCPYobzteqBVlmcDwyx2OCoh4hBFXknDA3CA2Bvt8EOOKcDXAPqHR8upkF0EY2zR7VY1x2dYnPyUsSF3bl8WzaFbSsjd+qHfFiWr3RBBN7DGd3EcQxTisubNaZBVleHnQWmk4suCO74+7vfliGqQOybf6iGQgFnnf7ZVKa+7CKCBNZ5j47vMW3ajusytqJY6hHAgLStespGOe6rjzmYO1FxolAkh1h0KIYjujlVswn49Ji9EVOA==
+ bh=3l3dhi/mTkOBun/f/IG9bGZ8Z2L8UaVRukgncAGhZow=;
+ b=oBUBQgRhhfTuFM5uDX0oT2oljp43MgU9Lyokyv/PY0PXarJwv5XooYxrFAY+vhMD0D1LNSFlnUvZWmrV/3D2BO2qpFxGQPArIT3RO+4RZG8rQV7eaM22rJh8pZrBt5CfPksaSSvhpvUmI//B8lsTyF9vWcAR+nKaTiFvNTdqVkd4tj1mwmzPQCFHPmOP3J0xVWXeEJYGW5X1AUZcPJPOEwAgzAHWHp6cbIUHba1UTiVx3PsHB/SYRXRdSSZamOxo4i8f3ubAWnYMNte0umvQdPFy7HCWfICYIA4I1PLu0TkXEDQYGuwaaxMkK1+8kJNDFNpGia4sK/g9Y/4o/F5wng==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QelDGqyWmLLVUfXIeveAqL4T2A2Wxy6G2ubGKBOiX8g=;
- b=PP5r+UE95asJQ0aIuIDjBXBBT1fx2+I2HJyocF2kdAsdaHhSloHFHGLp9UcNPKrRj9ICQnYvW1Med0oiBqYnzhucxIdDe2+hyVaF2CJBxDuMDavSN1CTTNHNdcPzBNoarcWj3B1uwy60OVqtR9Le9Q3x998DbfLbhSpOurkDThQ=
-Received: from PAXPR04MB9186.eurprd04.prod.outlook.com (2603:10a6:102:232::18)
- by DB7PR04MB4716.eurprd04.prod.outlook.com (2603:10a6:10:18::31) with
+ smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
+ header.d=hpe.com; arc=none
+Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::10) by
+ MW5PR84MB1770.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:303:1c4::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19; Wed, 27 Jul
- 2022 18:29:43 +0000
-Received: from PAXPR04MB9186.eurprd04.prod.outlook.com
- ([fe80::1c38:3e39:bb58:8fb5]) by PAXPR04MB9186.eurprd04.prod.outlook.com
- ([fe80::1c38:3e39:bb58:8fb5%8]) with mapi id 15.20.5458.024; Wed, 27 Jul 2022
- 18:29:43 +0000
-From:   Frank Li <frank.li@nxp.com>
-To:     Marc Zyngier <maz@kernel.org>
-CC:     "jdmason@kudzu.us" <jdmason@kudzu.us>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.25; Wed, 27 Jul
+ 2022 18:32:50 +0000
+Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::4969:9f9f:21bc:9fc3]) by DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::4969:9f9f:21bc:9fc3%7]) with mapi id 15.20.5482.006; Wed, 27 Jul 2022
+ 18:32:50 +0000
+From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     "broonie@kernel.org" <broonie@kernel.org>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kw@linux.com" <kw@linux.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "kernel@vger.kernel.org" <kernel@vger.kernel.org>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "ntb@lists.linux.dev" <ntb@lists.linux.dev>
-Subject: RE: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi controller
-Thread-Topic: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi
- controller
-Thread-Index: AQHYnIAGRldFRqOr4kOZ1c4K3zYfO62IdfUAgAB4j7CAAAWJAIAIQw5AgACuYoCAAHgmoIAABhyAgAAvExA=
-Date:   Wed, 27 Jul 2022 18:29:42 +0000
-Message-ID: <PAXPR04MB918619B0E33DE2F3992FEDD288979@PAXPR04MB9186.eurprd04.prod.outlook.com>
-References: <20220720213036.1738628-1-Frank.Li@nxp.com>
-        <20220720213036.1738628-3-Frank.Li@nxp.com>     <874jza525l.wl-maz@kernel.org>
-        <PAXPR04MB9186A1D283ACE8BD6954039288919@PAXPR04MB9186.eurprd04.prod.outlook.com>
-        <87wnc6xz6r.wl-maz@kernel.org>
-        <PAXPR04MB918621013E6276D37B56C48488949@PAXPR04MB9186.eurprd04.prod.outlook.com>
-        <877d3zx9su.wl-maz@kernel.org>
-        <PAXPR04MB91861BF0BA341211C442B20988979@PAXPR04MB9186.eurprd04.prod.outlook.com>
- <871qu6y3g4.wl-maz@kernel.org>
-In-Reply-To: <871qu6y3g4.wl-maz@kernel.org>
+        "arnd@arndb.de" <arnd@arndb.de>, "joel@jms.id.au" <joel@jms.id.au>
+Subject: RE: [PATCH v5 2/5] spi: dt-bindings: add documentation for
+ hpe,gxp-spifi
+Thread-Topic: [PATCH v5 2/5] spi: dt-bindings: add documentation for
+ hpe,gxp-spifi
+Thread-Index: AQHYodh/7b6+KaSQXEi7xOkWjj2eja2SbkkAgAAcIIA=
+Date:   Wed, 27 Jul 2022 18:32:50 +0000
+Message-ID: <DM4PR84MB1927058BCDEF9A45D7E44CC888979@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+References: <20220727164736.48619-1-nick.hawkins@hpe.com>
+ <20220727164736.48619-3-nick.hawkins@hpe.com>
+ <0c3a95fb-a3ee-ba48-1f69-ae9db84cc856@linaro.org>
+In-Reply-To: <0c3a95fb-a3ee-ba48-1f69-ae9db84cc856@linaro.org>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 483736d8-1071-4e89-be72-08da6ffdf994
-x-ms-traffictypediagnostic: DB7PR04MB4716:EE_
+x-ms-office365-filtering-correlation-id: 282d79b2-f6ab-4556-9ffa-08da6ffe697f
+x-ms-traffictypediagnostic: MW5PR84MB1770:EE_
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MdwuW0TNiBAfUP+6yIGsQbCRVK3mKmPvHIEtBeEHlfE+JPNiiRuMhj/ZNwp7I7E9NAyI8xM0qKYAiEWmMDqZbFtUt/oLzxEedKKGQkEpmsePpGfq2wRiuVPH2IrhHhi3t8ko+yQTCNlJCMff/BwicGDFNLqGxjQ+zG/V0KPQhPyFZpSD8jjocBfWqY8b/mLN13Y4OoI0nVzKjdr/mfynw1gQcJZD41GvinLP9D6KS3m4dBkUtPO88ThwlomolakOVnRtsAaOGu+kOXtR3n7/qCFmBQs1PeHNwuMsW4i5PkVc4sQur7DLR9CCNQreDJfpOyv454hw65udWDzsQjqvMoVD+F9wmACUhj8/sSvSyBHKRMkF6FJC4VgoMUtmxGwaBgtyVKPRx/6E7S6A7czBXF2U7U5mCXKbbNWUIoNVP5ab/zhJvTtk9vykST6VwcVoFTi0s+KazlN56/a2qOmrkR3touKGglO/JTR1M561nZ2UF8VIH+CdQaHpYykq5IdO3hHqTP6N9DYi6LKutQAaOV1I2IDYzjO5Fkp+tgoEmT3qbCoeEjupfQxjc5+QAYWXuWvWY+w/wYVOqK7TPmfQVEjgS3KsPqWqK89Lwn5C6oJNwZoVcKh0G37NwTfSAs8ecU4RiTPR8uRMk4vjfRZc1pKnbvk1sDzVVzuD3s0HQI7tUBiwEnWQVq3M9JfJV4/xu8486m9J6kn6/HrllVUr2J8wUpJu4RqrpzAdHyQb20rZyXRY1HgjUGm2eju7sNftVYt1xZikgE/7jcmzuBlKTF+fL5IkjVBRlLPp2HBoA5snc+LNPXqUALQGZHc01Uat
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9186.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(366004)(396003)(39860400002)(136003)(376002)(41300700001)(66446008)(26005)(66476007)(6506007)(186003)(54906003)(7696005)(71200400001)(86362001)(478600001)(6916009)(55236004)(122000001)(38070700005)(8936002)(53546011)(2906002)(5660300002)(7416002)(9686003)(44832011)(8676002)(52536014)(83380400001)(4326008)(76116006)(66556008)(55016003)(38100700002)(33656002)(64756008)(316002)(66946007);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: o5Z0GYfJylkXdcY3Zmy5isIH8F+PhxlH6odRizwfX4vcwurvqUYklC+F5Zn085Gt3DgQoOZUyxCkMF41gSX+TJTlbgM5Keb1TsQBYDRotSvDdDGstnrxCohCv91/0cCzC+utSeIsEukKB9GfLMET/KdtcMYaNrEB57GvhQiKWPwOCd9h2/8/dqGjWhj1BxM1pIVaqObg9f8lHUNzCvtT+rlStECL6ZyBKiPnZuLTKGdvgC2qVgjUAd6wGcw2k4sf5GjNxK7+U7r6VZ5lBTVYc/02/WDJE4ddLfJSJsNq+PEBk8lW1AIM6Izokn9g1zCRSiWV4mCX6wtBHg+idacbp+0A7gUP6hnEpX1rlCqAq1yKZgvWVGJ/IQP+G7KTaSurLxdTNWF3SU/RIW5hZA6h+1i2cp6t3SDTOXTRvXLFswx6EtXJaysdlo6hZkIQn2MAzlAheoK8zFS90VxXZHgwXCQVY4e9KEv2mti4kKQ8tt0EFCO4gfs7SZZXEjiiaHGnql86d8l+JtAAsErGVv1SU/hrddAliJQAtO0L9eGlPTh/9Q1YmSdIO8DY696zCILHMT6OLwABh4Iihs60OYetwbd5jyW14Mb9i1pX4fWbaxvpCUZMPnPGAgEUOgyHvnKYxCKXj/YphynhEPISl6aFdD/KQ1RPouxmwXwOA2owiz8P9tNmOBkUkzPlrdyNTq0w7CZSz8j2Vq+X/xcqTgYelsDOXzZCMRJvkteGDIyntS9Gj9uW5beDXMKgNaA6kkGkq5TbKTDKFMw8ehYacJjpXnBuaB+ALIHoq7mRXYnrew8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(376002)(39860400002)(346002)(366004)(136003)(396003)(66556008)(71200400001)(41300700001)(66476007)(8676002)(4326008)(478600001)(7416002)(64756008)(4744005)(76116006)(5660300002)(66946007)(66446008)(8936002)(52536014)(86362001)(55016003)(186003)(38070700005)(82960400001)(9686003)(26005)(54906003)(83380400001)(6506007)(38100700002)(7696005)(33656002)(6916009)(122000001)(316002)(55236004)(2906002);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?piq8V1e1WJU+UKAScRttuAql8wIumeXnrWH/hieBivNxrQIIJBp45gj9KqaZ?=
- =?us-ascii?Q?gQWz/1y0YtkRRRXMHsnifADK7r7Mr6crkG8bQnour0l7uGueI6LXOuCcdg93?=
- =?us-ascii?Q?ZlbHtOWuwgX0tXO/j+ShBeMRcgVxUtpn/d1CmGih7uW9U3/HzwZZYmVSYkpG?=
- =?us-ascii?Q?KzJFYackU+nwzmqRERTZV0dQCpDV0g2lrQr+dvTBdrVThV10zeMRS24dYb59?=
- =?us-ascii?Q?EWcdXcJnpkcAfwFSFb48lg71km2SVdRfciYo0h10/9Vk+yxMnhnOb6LWonoL?=
- =?us-ascii?Q?PlvjNT6roM7XDYG/kDDLMyLG5uj28QGK2vrr39QC/ehUsN6lpEhG8IQvQml7?=
- =?us-ascii?Q?j/Wfe/MPEex7ZNJaMl4VoPSIfm/i6VHDDq39MCS6mOOrWBXMaUIC3LBoxVHZ?=
- =?us-ascii?Q?3RgcjWYsgYB3p/ZCkCPO1a8qnfMCVI2gptwxeG0qHFz+UOZkVyRcuWoRgWBX?=
- =?us-ascii?Q?gLPthTXesSBdp8T9nzdIlvbA5iZo5sNspQoNwnHKt8n0Zo6xR/h7MaMLhzt4?=
- =?us-ascii?Q?30JvOwXoedApouabx2o1nsBP/DkDESkCMriFijEQ1jqc9DwM4afp/GkfP909?=
- =?us-ascii?Q?g/kHgb7078Vcm/wBHIP6Bd9FzZVhiUOzWJTYPktRV2sT7vxYJe6BVe3dIo2L?=
- =?us-ascii?Q?SCoI4/Z58r/VTM74/oOPm3/vQHr2m3QTfFZy2PAHfjVh1fJe7IpnA+B3z98J?=
- =?us-ascii?Q?UX7nBhgiGzNp1ouVjIhiqliDCF/nlW7jR0Pt1wxupDbflfVBgLu93DWL2bN/?=
- =?us-ascii?Q?aCvxvYRjov/RJSCHJ66qtzEafxPLBkXKsaWEwn+qq40AFufwJtMRYdnKYLEA?=
- =?us-ascii?Q?k8jbzuJMyHc34yIjlWW/tcSewWscml3lmvxEnQcrB+fq2lWa9pnT0kteqSjG?=
- =?us-ascii?Q?Q6bS4DLl6ZyXoAdnB0+o5ksmtDDzzQeWFrp+5+jVxr9vycjbr/8oFlSXOkvS?=
- =?us-ascii?Q?keiZHW03cM6rMaqgOn5khrWvn8qb5eUbH1SB4Q6VVuaJOpRaIu4DV+xZVz6f?=
- =?us-ascii?Q?gewqRnq0EtC+LUoKrVG6adjQL/2aQv0c2d0JnTRozVR8y5l5Xi2L2ioPJdrc?=
- =?us-ascii?Q?N/XSwuHHLDzbRhDEtZ6uQNBtHQ4QIZIGMYMSFHZbl8h+vEl5VfoOzGjMU1IO?=
- =?us-ascii?Q?Vf12TwXoyf2uveEgTgIobXXiXss3uZBM8QnUgJF3o8aAq4AuulvjNBz31VEA?=
- =?us-ascii?Q?dzV4yl9JGObq4Q1Z5I0keJUjnc9cmDQD+eP+tYwFumgvl94INEYFRpH6FPJ/?=
- =?us-ascii?Q?wYJn2TRNjEN8PfpxDOSwoziVOeM/uOPoYVmspajEbI2C8NUWMJZnXG/JqXtH?=
- =?us-ascii?Q?Fxth1XlhzurbK0Oey0fit6INr4WbdStrwLWc3wrCe0mTVfE8R/LaB9BZMKcP?=
- =?us-ascii?Q?YgdUzqJia5nGkCDg6OAaUT6zzb37N7UtrGK77N6bZ8pAsSk9tq60QrHrD/J3?=
- =?us-ascii?Q?7KxCfqccYWZqkErTdl1Xppb7NT1vjYMkC5p5DQrvXSo72v/RFGwt3ax/6N7w?=
- =?us-ascii?Q?RJAS20HA4EPkqGAvuINdckjKQvSxbwGBQFdmA7bn38E0n59N8prkrxYK9fyi?=
- =?us-ascii?Q?+JbemOmfBQMsLMhRsSU=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?U2VpMlcxRVBJdzlEQTdxaGNCWlM1OEhHMlhBRTB1eXRZblBnUUhiRWdGVVMv?=
+ =?utf-8?B?a3hwYUcvRHBpMWlCVkZlL2NqWFdRL2dMRTNtS3ZUa1FTcEZpM1l0V01HVWtj?=
+ =?utf-8?B?S21BTzljcW5GaWw5cVV1R080c3lpbEdxWUgwenFzZ2U0ZEtlN1lXM3BiM3VE?=
+ =?utf-8?B?eXlUYms1TzBtRUpjWlZxTEhERUZqTmdOVGxTRW5PYSs3cWdZTXo4WVgrcHFV?=
+ =?utf-8?B?aVg2NElZSXV4OEVJVmRFNDNyc0ttRVU1NnVwcEEyaWxkT2RQaTN0YU1KZ28x?=
+ =?utf-8?B?YklxKzZ2MzlmSFJDbWE2WHNzYytUblpqK3J2d0VUQmorZGNkVTIvOVlIVzMy?=
+ =?utf-8?B?Wm9za1liZnU3UDJYVWsrRjAzWVYrSGNaWUJMNGZNZm9iTjQ5VXBUNTd1VlRj?=
+ =?utf-8?B?a3VyUzNNZjVMMGNreEZSeXA4NnVCMG9CdUp0YXQxUU9VaElVek92cHdweDlZ?=
+ =?utf-8?B?eDg0ejNGbTRhWStGekZxT1VhalVkVm1BVlZoVVBlNWtBRWJuM0g4dzlwSGQ2?=
+ =?utf-8?B?cHB6R1FYaENxVVRaNHVMT0VNK2c3aXBYdFNLdGY2UmNQckpSNGpySW1LNC9C?=
+ =?utf-8?B?RUJIcTFwRG5mTHVMdjhUWVYvaThRbXNYWTM1blVVKzdIcVQ3Ni9sV3hlSXlm?=
+ =?utf-8?B?aS9rcmRyWjFnNkhjWW9yM2VWVlFES290KzBiMURKMkpNY0dNdURtSmp2N0Iw?=
+ =?utf-8?B?TXNOTW5pV3F5YTBwRFM3QkdTOHM4NTZyTVVRZjVuVDRJNXc2QTh1SVhZQnJs?=
+ =?utf-8?B?cmE2cWw2bkJLck8wSG9BbEdUa0pmNitrS2VXYk1RdzZjUWlyVzc4WE4xcWQ2?=
+ =?utf-8?B?QUt0a0pFYXo2eVZMOXdpb3BNdk11OEFTeWt5elpqWDFvbFNweFpXYlY2UU93?=
+ =?utf-8?B?YTkzZ0M4WW9udUo4cXhGZmF0M1JyR1ZGcndZQkk4cWNXVUhkcTM0SitpaHZY?=
+ =?utf-8?B?V3JITG1zV0RlQWxVTFhtNis2QVVmcmZVNVlicG5xOTlNaXkrMmdDNytkVTJp?=
+ =?utf-8?B?TFpMZFlJcmVERyt4RkdPd2s4bkI5bnNjRERPaXVlT2NhR0R5dENldi9lZjNG?=
+ =?utf-8?B?UjRldkZxSzdoSHlHc1FJUjY4TlU1dVB3WlZxU1EzRjZVd3FGM3czMzVtY3pX?=
+ =?utf-8?B?dWRmMHpGMkxCdzBROHZjdk1ZVjZMeUNDTExsbXVEYWkwdDZWeElxQktRajJ5?=
+ =?utf-8?B?cUpKeFh5aGVZSEZFVy9JNWN1d3JOd3lJQ2JkN2FNUFNsRldrU2ZBM1FPRHk0?=
+ =?utf-8?B?RWNjdzM0RUMxbFFoL251MkRwZG5aei9IMlljMTBHaUkwVVIyNmw5NStlQkZS?=
+ =?utf-8?B?MnFUWWQzdUpaNFVSMHlnVHkwaTFyeUlXeXBCYlJrUFNkNERhdmFkS3pTZ09w?=
+ =?utf-8?B?WHRsUW94RmpJS2xTL1V5N0lNeno3dlpzajUybVBDVXlISjBkekZpWTFtNjJn?=
+ =?utf-8?B?SDdJLzFPejkrTERFdGpETUI1L2ZDaWFGK0VLdC90djNmTU5wNVR6bDNBWFdj?=
+ =?utf-8?B?VWRER0FtbHROK1A2NncrQUpmSnhlZzVRNGRxZ1h1WitvbTZaZ29tVjBVVW16?=
+ =?utf-8?B?WnhoVlZhMVhaNnZKNGpIZWdCTThubi9rSkk3cGFGbnR0U3NqNStRbWhrbHN5?=
+ =?utf-8?B?TGJuaWFZUUxtWUlBNUx1N2xtcGRuaE5QVlk4aFJJUkRMSCtPZlhIbEQvcGZE?=
+ =?utf-8?B?am05T2Q2YnUwd1ZnMkZKMGx5dHBhcmZYcFlsMzVJek10dkNqWjJCa3FFT0x0?=
+ =?utf-8?B?WWNrZjF6WlNuak1QUFZNdENyYXFLanNpVGY4OGkvam1tSmljNVhyT3N1ZElr?=
+ =?utf-8?B?dCtVT0lJRE9sK2l6dFFGZ0F2MlFMV2pQVjFGWUVLY2pRenJhV1N2TFplendM?=
+ =?utf-8?B?SytPVkl2QSszbXZVZm1oOENWandaVzFJTUpES0pHQ3hFZ0pJdGFoNHE2WEoy?=
+ =?utf-8?B?VHhoYXVPQ0RyajZYOThjQkRVMWN1QktneUpPYTJtTWx2eHFDS1JlNDNpOUpF?=
+ =?utf-8?B?aUF0NnBuQnlCN2ozUklReTJldnFkTXR3OUdsV0xveW9xSlArdFJ0dVU4ZlJV?=
+ =?utf-8?B?cDVZODZINUJ2Mzg3WkhTOWxEMU1qcXZEemd0ZzU2Q3JodVlzRHc4VUt0WmNh?=
+ =?utf-8?Q?tfY+Kr0jwzhfX+wTS+otNWV8O?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9186.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 483736d8-1071-4e89-be72-08da6ffdf994
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2022 18:29:43.0405
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 282d79b2-f6ab-4556-9ffa-08da6ffe697f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2022 18:32:50.8538
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TjBX2QhDMtsJSj3Kmqf5SKSqplvVRPOoCsou6u/k+Q+tQ1ei+0tK1vevnU39/iwX2jrLkwy+gsWYblfj0Brd0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4716
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-userprincipalname: qRJKVDc4C1fDCeOipLkNk94uUTUYrAalkHDAEP67/15ByF2HU6RbQX4Mojo/vRpBkRTSeUEAaZgKwhW2XDdjOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR84MB1770
+X-OriginatorOrg: hpe.com
+X-Proofpoint-ORIG-GUID: NkL8RWgrdmRtbErrAAjSb4zTtnzqySHa
+X-Proofpoint-GUID: NkL8RWgrdmRtbErrAAjSb4zTtnzqySHa
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-07-27_07,2022-07-27_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 bulkscore=0 clxscore=1015 mlxlogscore=658 impostorscore=0
+ malwarescore=0 adultscore=0 mlxscore=0 phishscore=0 spamscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2206140000 definitions=main-2207270078
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Marc Zyngier <maz@kernel.org>
-> Sent: Wednesday, July 27, 2022 10:35 AM
-> To: Frank Li <frank.li@nxp.com>
-> Cc: jdmason@kudzu.us; tglx@linutronix.de; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
-> s.hauer@pengutronix.de; kw@linux.com; bhelgaas@google.com;
-> kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-pci@vger.kernel.org; Peng Fan
-> <peng.fan@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
-> kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx <linux-
-> imx@nxp.com>; kishon@ti.com; lorenzo.pieralisi@arm.com;
-> ntb@lists.linux.dev
-> Subject: Re: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi
-> controller
->=20
-> Caution: EXT Email
->=20
-> On Wed, 27 Jul 2022 16:23:26 +0100,
-> Frank Li <frank.li@nxp.com> wrote:
-> >
-> >
-> >
-> > > -----Original Message-----
-> > > From: Marc Zyngier <maz@kernel.org>
-> > > Sent: Wednesday, July 27, 2022 3:03 AM
-> > > To: Frank Li <frank.li@nxp.com>
-> > > Cc: jdmason@kudzu.us; tglx@linutronix.de; robh+dt@kernel.org;
-> > > krzysztof.kozlowski+dt@linaro.org; shawnguo@kernel.org;
-> > > s.hauer@pengutronix.de; kw@linux.com; bhelgaas@google.com;
-> > > kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> > > kernel@lists.infradead.org; linux-pci@vger.kernel.org; Peng Fan
-> > > <peng.fan@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
-> > > kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx <linux-
-> > > imx@nxp.com>; kishon@ti.com; lorenzo.pieralisi@arm.com;
-> > > ntb@lists.linux.dev
-> > > Subject: Re: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi
-> > > controller
-> > >
-> > > Caution: EXT Email
-> > >
-> > > On Tue, 26 Jul 2022 22:48:32 +0100,
-> > > Frank Li <frank.li@nxp.com> wrote:
-> > > >
-> > > > > > > > +static void imx_mu_msi_irq_handler(struct irq_desc *desc)
-> > > > > > > > +{
-> > > > > > > > +     struct imx_mu_msi *msi_data =3D
-> > > irq_desc_get_handler_data(desc);
-> > > > > > > > +     u32 status;
-> > > > > > > > +     int i;
-> > > > > > > > +
-> > > > > > > > +     status =3D imx_mu_read(msi_data, msi_data->cfg-
-> > > > > >xSR[IMX_MU_RSR]);
-> > > > > > > > +
-> > > > > > > > +     chained_irq_enter(irq_desc_get_chip(desc), desc);
-> > > > > > > > +     for (i =3D 0; i < IMX_MU_CHANS; i++) {
-> > > > > > > > +             if (status & IMX_MU_xSR_RFn(msi_data->cfg->ty=
-pe, i)) {
-> > > > > > > > +                     imx_mu_read(msi_data, msi_data->cfg->=
-xRR + i * 4);
-> > > > > > > > +                     generic_handle_domain_irq(msi_data->p=
-arent, i);
-> > > > > > >
-> > > > > > > Why the parent? You must start at the top of the hierarchy.
-> > > >
-> > > > [Frank Li] Do you means that should be msi_data->msi_domain instead
-> > > > of msi_data->parent?
-> > >
-> > > Indeed. you must *not* bypass the hierarchy, and the top level of the
-> > > hierarchy has to implement whatever is required by the interrupt flow=
-.
-> > >
-> >
-> > [Frank Li] I see, just want to confirm msi_data->msi_domain should
-> > be correct here?  It should be leaf of irq hierarchy tree.
->=20
-> Yes.
->=20
-> >
-> > > >
-> > > > > > >
-> > > > > > > > +             }
-> > > > > > > > +     }
-> > > > > > > > +     chained_irq_exit(irq_desc_get_chip(desc), desc);
-> > > > > > >
-> > > > > > > If your MSIs are a chained interrupt, why do you even provide=
- an
-> > > > > > > affinity setting callback?
-> > > > > >
-> > > > > > [Frank Li]  it will be crash if no affinity setting callback.
-> > > > >
-> > > > > Then you have to fix your driver.
-> > > >
-> > > > [Frank Li] After debug,  msi_domain_set_affinity() have not did nul=
-l
-> check
-> > > for (parent->chip->irq_set_affinity).
-> > > > I think impact by using dummy set_affinity is minimized.
-> > > >
-> > > > int msi_domain_set_affinity(struct irq_data *irq_data,
-> > > >                           const struct cpumask *mask, bool force)
-> > > > {
-> > > >       struct irq_data *parent =3D irq_data->parent_data;
-> > > >       struct msi_msg msg[2] =3D { [1] =3D { }, };
-> > > >       int ret;
-> > > >
-> > > >       ret =3D parent->chip->irq_set_affinity(parent, mask, force);
-> > > >       if (ret >=3D 0 && ret !=3D IRQ_SET_MASK_OK_DONE) {
-> > > >               BUG_ON(irq_chip_compose_msi_msg(irq_data, msg));
-> > > >               msi_check_level(irq_data->domain, msg);
-> > > >               irq_chip_write_msi_msg(irq_data, msg);
-> > > >       }
-> > > >
-> > > >       return ret;
-> > > > }
-> > >
-> > > No. Changing the affinity of an interrupt must not affect the affinit=
-y
-> > > of another. Given that this is a chained handler, you *cannot* satisf=
-y
-> > > this requirement. So you can't change the affinity at all.
-> > >
-> >
-> > [Frank Li] I understand affinity can't be changed.
-> > But system use set affinity to write msi msg.
-> >
-> > The call stack as
-> > [   25.508229]  epf_ntb_write_msi_msg+0x78/0x90
-> > [   25.512512]  platform_msi_write_msg+0x2c/0x38
-> > [   25.516882]  msi_domain_set_affinity+0xb0/0xc0
-> > [   25.521330]  irq_do_set_affinity+0x174/0x220
-> > [   25.525604]  irq_setup_affinity+0xe0/0x188
-> > [   25.529713]  irq_startup+0x88/0x160
-> > [   25.533214]  __setup_irq+0x6c8/0x768
-> >
-> > I have not found good place to hook a function to write msi msg.
->=20
-> It is called at MSI activation time (msi_domain_activate).
-
-Another issue:   platform_msi_write_msg() is static function at platform-ms=
-i.c.=20
-It access a local structure struct platform_msi_priv_data.
-
-If I use MSI_FLAG_USE_DEF_CHIP_OPS flags,  both msi_domain_set_affinity and=
- msi_domain_set_affinity.=20
-will be set at chip. So it will NULL point error happen if I don't set affi=
-nity function.
-
->=20
->         M.
->=20
-> --
-> Without deviation from the norm, progress is not possible.
+PiA+IEZyb206IE5pY2sgSGF3a2lucyA8bmljay5oYXdraW5zQGhwZS5jb20+DQo+ID4gDQo+ID4g
+Q3JlYXRlIGRvY3VtZW50YXRpb24gZm9yIHRoZSBocGUsZ3hwLXNwaWZpIGJpbmRpbmcgdG8gc3Vw
+cG9ydCBhY2Nlc3MgDQo+ID4gdG8gdGhlIFNQSSBwYXJ0cw0KPiA+IA0KPiA+IFNpZ25lZC1vZmYt
+Ynk6IE5pY2sgSGF3a2lucyA8bmljay5oYXdraW5zQGhwZS5jb20+DQo+ID4gDQoNCj4gTm8gYmxh
+bmsgbGluZXMgYmV0d2VlbiB0YWdzLg0KDQo+ID4gUmV2aWV3ZWQtYnk6IEtyenlzenRvZiBLb3ps
+b3dza2kgPGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NCj4gPiANCj4gPiAtLS0NCg0K
+QXBvbG9naWVzLCBJIHdpbGwgbWFrZSBzdXJlIGluIHRoZSBmdXR1cmUgdG8gYXZvaWQgdGhpcyBt
+aXN0YWtlLiBJIHdpbGwgY29ycmVjdCB0aGlzIGluIHY2Lg0KDQpUaGFuayB5b3UgZm9yIGFsbCB5
+b3VyIGZlZWRiYWNrLA0KDQotTmljayBIYXdraW5zDQo=
