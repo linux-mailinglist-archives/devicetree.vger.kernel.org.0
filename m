@@ -2,33 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D6ED583418
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 22:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AC69583459
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 23:00:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230392AbiG0UcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 16:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35710 "EHLO
+        id S231542AbiG0VAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 17:00:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229696AbiG0UcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 16:32:05 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 476E251A2E;
-        Wed, 27 Jul 2022 13:32:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1658953873;
-        bh=6cegGklwMN8G/EK3L6ajLxFxmA8JR/v85vtwkffWMww=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=CwJ4xHtVxy9J5c/slCbc9JvCrWKYAsKvdZfBoF9xVxfJxj0VMlfB6xAXS7YxRmsUM
-         PDumPMvlaNqzvx2q5jf4RkdrCeLG1OM+tnGB4oEqOF/tlMnAgq2sPf2ACTmsNBRywB
-         blcMv8DJDxJWcg/sN4Lfg7hCBLeABDqjk9tqpvaY=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.155.189] ([217.61.155.189]) by web-mail.gmx.net
- (3c-app-gmx-bs42.server.lan [172.19.170.94]) (via HTTP); Wed, 27 Jul 2022
- 22:31:13 +0200
+        with ESMTP id S231199AbiG0VAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 17:00:23 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F2F1139;
+        Wed, 27 Jul 2022 14:00:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1658955568; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=cQajrAiz3rDr2BA/813BS4ZEtvJ3H51uYD1ChgH8JgV0Ut70TcWoWXH2VWRdMzBhJGVt/xx2z5n5heN4eptpX61WlCjVlD2YO3VRWGqjA7CB7x4xYNnPT2E8xiSvbo7DU/fT6xmCF/PYADlJ33yVMvRdD34SPl2lWvnIUON6f8w=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1658955568; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=npXsY1wOzM+2ZXYU371FlETSFcM+AsawUkMJLZdIO1A=; 
+        b=RdBLoF26NZX1Vxp01BaQlhtUdKGMXh78OF56opnmTfOa0ijY0pBfiwwR56ZrSGiBcuvpuYFTPPOL4KTo2PFuLcCbZ8VgcNL9Zu+OnfMp+LBAtAgDv5hJ4wn0MXGjl7paNFKHk1hj0vci6X8qiCAiKp6sCZX2jzsLe5PKiZiauDA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1658955568;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=npXsY1wOzM+2ZXYU371FlETSFcM+AsawUkMJLZdIO1A=;
+        b=OkqetZ05VtzEqYvDBoY2o/u5osK1xYce8774XN8MsMqGd4rCYHMFZ1eopk+juhis
+        dfFH5PnU4MNhj+S7Vv5PPKyLhl/A/H5HT8uEj/q5nI6YhXtZ7O/w7gcJgNMgBRdl+dq
+        yJQ+MHMIu2aJC30jamSJPInDUnfih1aKhezUHHaM=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1658955564512750.4742522224943; Wed, 27 Jul 2022 13:59:24 -0700 (PDT)
+Message-ID: <f8ccb632-4bca-486b-a8a4-65b6b90de751@arinc9.com>
+Date:   Wed, 27 Jul 2022 23:59:16 +0300
 MIME-Version: 1.0
-Message-ID: <trinity-96b64414-7b29-4886-b309-48fc9f108959-1658953872981@3c-app-gmx-bs42>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: Aw: [RFC PATCH net-next] dt-bindings: net: dsa: mediatek,mt7530:
+ completely rework binding
+Content-Language: en-US
+To:     Frank Wunderlich <frank-w@public-files.de>
 Cc:     Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
@@ -45,89 +59,64 @@ Cc:     Andrew Lunn <andrew@lunn.ch>,
         DENG Qingfang <dqfext@gmail.com>,
         Luiz Angelo Daros de Luca <luizluca@gmail.com>,
         Sander Vanheule <sander@svanheule.net>,
-        =?UTF-8?Q?Ren=C3=A9_van_Dorst?= <opensource@vdorst.com>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
         Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
         Sergio Paracuellos <sergio.paracuellos@gmail.com>,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-Subject: Aw: [RFC PATCH net-next] dt-bindings: net: dsa: mediatek,mt7530:
- completely rework binding
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 27 Jul 2022 22:31:13 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20220726122406.31043-1-arinc.unal@arinc9.com>
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220726122406.31043-1-arinc.unal@arinc9.com>
-Content-Transfer-Encoding: quoted-printable
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:2SCSIFa9qDIxiGlO6/J12e1r5kj8WpzZq8CaGp3EH1FDBTB/Zd42SDKO7cKqmHqOw4L9d
- tUQCJxaAASNxBfcLOB9WuFIH7h316jwbh7nsC3aMNtjgQb4AertNWPW8mMveK3gOWDh7l5oIeEmH
- p15ux5hOX+BSmAUo95QOtlvr/d0pmMjeZ4ZG7uTkJfDCrO+NNpdVvNFde23ax6hmXuyIERN0D1zD
- aIokREl3zb1PurqUsXvf0HJb8wM6/vFgPfhJGYie4gWZe8X63g/eeHjiGHRt++gqsF1xxnudgup3
- Ts=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:5q6bngrjAHQ=:h2eOVPO5MfSejV/TG/wNgV
- hGp99wen7FNY6GZ1t/so1OQBm8rIRbIDc9wDNrYt+yfw65+YQQ5tW2xQWP8sTVmo57DvpH//k
- d7jbo+5q0XNWqp6gG9YDL/WJgQ32f/Z9ufUNxXZQsOraoMfXc+IZvVtb3wawktWk6vYZknPwm
- opSrJ9dvygiWjp/evzApHuKNRdhdaxbo690MgJ9azVXCoKk9vDwRpPK6DMl9teJL7SwejaWOr
- 9SQUuq5iB9eydFT9vFNK2kZpAtTEHZ5YI7YLOYlkunoyfUXOFftsL1L9BrnZXn9pS+8N8l5V3
- kUa+4hgzVB9zfijMYrAFzhQgJI8ANSbW70JBwTZOEyNm/YzXc9atNPYPouUybe15xEg+axL2+
- BSqRmpVC+1H0e9h4RRS04MMQKyljErAasx4CglvrO+p+Olgzqywq8TmOtAhtB9PRrltkyWH52
- 8U6eolvfNl7QT8esur9ILdj5sZXOayoPUBnYXNroku6RmcLNWo78YGT1K/5YfGdrVohpDnp6x
- HFwjQe8QHaQdKoQDvGW/CMJc1KJ2TineNxzDH3yGuj9TNoaSe+KnJMqSemZHqL50/S63BYC18
- O0m722erANOhEy6/XiCeBlVUzL01HAEQiNuiFjaPbJclC/4I5XMQ+55lm62Osgko/DHO0wplT
- W6Mp9wRL3cHbgvw//8i22BMJaxIDBVGoNtxLstz1amdpQJPwK9vw05UzrPB900uOt2DXeDEl2
- fIDyg7Q4FWCq8EBtLZJu5UcncMOhOwkQG9TogufLtQpnxVcdRnUpO1xFhtkGsWHn6BPvhEndI
- NhgtWGX
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+ <trinity-96b64414-7b29-4886-b309-48fc9f108959-1658953872981@3c-app-gmx-bs42>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <trinity-96b64414-7b29-4886-b309-48fc9f108959-1658953872981@3c-app-gmx-bs42>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 27.07.2022 23:31, Frank Wunderlich wrote:
+> 
+>> Gesendet: Dienstag, 26. Juli 2022 um 14:24 Uhr
+>> Von: "Arınç ÜNAL" <arinc.unal@arinc9.com>
+> 
+> Hi,
+> 
+>> To Frank:
+>> Let me know if MII bindings for port 5 and 6 on MT7531 are okay.
+> 
+> I ack krzysztof, that the change is really huge and it is hard to understand what exactly is changed and why. So please split. I have converted
+> it to yaml, but not have changed the logic itself. I guess you know the switch better than me.
+> 
+>> Does your recent patch for MT7531 make it possible to set any port for CPU,
+>> including user ports? For now, I put a rule to restrict CPU ports to 5 and
+>> 6, as described on the description of dsa port reg property.
+> 
+> i only know that port 5 and 6 are possible, not about the other ports. Afair there was a check if port 5 or 6 (followed by available modes
+> like rgmii, trgmii or sgmii) and then allow cpu-port-mode else allow only user-port mode. Had not changed this, so currently only these 2
+> ports can be used as CPU.
+> 
+>> I suppose your patch does not bring support for using MT7530's port 5 as
+>> CPU port. We could try this on a BPI-R2. Device schematics show that
+>> MT7530's GMII pins are wired to GMAC1 of MT7623NI to work as RGMII.
+> 
+> my patches (and the version from Vladimir that was merged) only solves the Problem that CPU-Port was fixed to 6 before. I tested Patches on r2
+> (mt7530) and r64 too (mt7531) that they do not break anything. But i have not disabled port 6 (maybe i had to do so for a port5-only mode), only
+> enabled port 5 too and run iperf3 over a vlan-aware bridge between wan-port and port 5.
 
-> Gesendet: Dienstag, 26=2E Juli 2022 um 14:24 Uhr
-> Von: "Ar=C4=B1n=C3=A7 =C3=9CNAL" <arinc=2Eunal@arinc9=2Ecom>
+I've seen this under mt7530_setup():
+The bit for MHWTRAP_P6_DIS is cleared to enable port 6 with the comment 
+"Enable Port 6 only; P5 as GMAC5 which currently is not supported".
 
-Hi,=20
+https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git/tree/drivers/net/dsa/mt7530.c#n2189
 
-> To Frank:
-> Let me know if MII bindings for port 5 and 6 on MT7531 are okay=2E
+I'm slowly learning C programming so I can't currently manage to do 
+something on my own here, just letting you know.
 
-I ack krzysztof, that the change is really huge and it is hard to understa=
-nd what exactly is changed and why=2E So please split=2E I have converted=
-=20
-it to yaml, but not have changed the logic itself=2E I guess you know the =
-switch better than me=2E
-
-> Does your recent patch for MT7531 make it possible to set any port for C=
-PU,
-> including user ports? For now, I put a rule to restrict CPU ports to 5 a=
-nd
-> 6, as described on the description of dsa port reg property=2E
-
-i only know that port 5 and 6 are possible, not about the other ports=2E A=
-fair there was a check if port 5 or 6 (followed by available modes
-like rgmii, trgmii or sgmii) and then allow cpu-port-mode else allow only =
-user-port mode=2E Had not changed this, so currently only these 2
-ports can be used as CPU=2E
-
-> I suppose your patch does not bring support for using MT7530's port 5 as
-> CPU port=2E We could try this on a BPI-R2=2E Device schematics show that
-> MT7530's GMII pins are wired to GMAC1 of MT7623NI to work as RGMII=2E
-
-my patches (and the version from Vladimir that was merged) only solves the=
- Problem that CPU-Port was fixed to 6 before=2E I tested Patches on r2=20
-(mt7530) and r64 too (mt7531) that they do not break anything=2E But i hav=
-e not disabled port 6 (maybe i had to do so for a port5-only mode), only
-enabled port 5 too and run iperf3 over a vlan-aware bridge between wan-por=
-t and port 5=2E
-
-> Ar=C4=B1n=C3=A7
-
-regards Frank
+Arınç
