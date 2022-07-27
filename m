@@ -2,102 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 400655825FE
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 14:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EFE1582607
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 14:02:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232514AbiG0L76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 07:59:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46062 "EHLO
+        id S232638AbiG0MCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 08:02:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiG0L76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 07:59:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CACD027CC7;
-        Wed, 27 Jul 2022 04:59:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 57A09B81FE6;
-        Wed, 27 Jul 2022 11:59:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EBB5C433C1;
-        Wed, 27 Jul 2022 11:59:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658923194;
-        bh=Vpeh+fLR8fhAePR4gpuB9Tc/Vj/mATpE0vaPAwGND38=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fTtgb4aqsEJGE/AXv02THG7FNf443jy/W8lSPkzY7uJUaAKkiAuCYKMJZEOqNhzd1
-         qS+X5MYC+GK/K6o+WuCuyQ33Yc3co8k/r+xUuWj9utCwkYlZt7HXBhpiSbJYEUxuMX
-         8WthMAZaUV6AGYTu3CL2BH+DGLJc+I6Bm5+iUod4oi0uGOIBsOf23idAlzgHUZGcHk
-         tJaZ3LWpRttedQxp8ppa1bCgiVd8vkH+0DHO/DFGfFlGOYlJDaaFnSo4qligw1qZMv
-         T3jWxAQh4GEsRu/WMdPeFtUliR1NSjjWw8LbUqfPiNxrgJzQqnCSitArnW0sJObjMn
-         5A4cecE14zJ1w==
-Date:   Wed, 27 Jul 2022 12:59:45 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 4/5] regulator: qcom_spmi: Add PM6125 PMIC support
-Message-ID: <YuEosXO1xYMY8Mul@sirena.org.uk>
-References: <20220726181133.3262695-1-iskren.chernev@gmail.com>
- <20220726181133.3262695-5-iskren.chernev@gmail.com>
+        with ESMTP id S232622AbiG0MCd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 08:02:33 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DBF4B0CF
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:02:30 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id w15so18739734lft.11
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:02:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=hR+37jRvCGMHr0+ocVsrbJ4Hg34fE3vOnHVPjPz+ERI=;
+        b=YbL8VlWKs6UYr2jQP98Nys1+2TlVS2AUtrtLi/sZKHUMKkxQXit4/Lwyf2xVoQB2SI
+         WnP4bStVdZDGzWZKRAmaxvuKIndL0wHlEHiOkqCSUzCspbhjDdH1fj/NGKa7onnwFpmS
+         c6DmOIwj1rcGheIdzd+T6j67slkBZyvRpe/l37/Ldh6NMXUP0wEF5frWMcIXWFcAmO8x
+         b3YMLAwPCa2DtyuiU81EhzTkJDI9cIWtpog8wM5hFYPpYgAPNDk6i2kNbeQ0LjIkTOuY
+         DvsF3ThpJzAf8L6oCrmCWs31CbAT96mY7py7WhV0COOVBrkTaEMA6/03RN6P5WhzSYqC
+         Bxrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=hR+37jRvCGMHr0+ocVsrbJ4Hg34fE3vOnHVPjPz+ERI=;
+        b=xTBPoHRnSbVcC6P7dADhh+ECvuCCQhV0+mBUuBx9/DnI92BvfO0WEdB4Kt5zFObaqP
+         vJ38k1uxGYkKECdKl0wdo4HB1JTsj4EzYuawYyHkorIQjhUzs3RpM+dn9fO8KuBzRGAf
+         XO8mHIirEjFEfeAaeFQBFA/U+T1m9Fi7xEiqWGUVj/I6hOzYEzWHMCuFoCIZrw0doUZP
+         Bc9PoSdGWBDBXfLmiSaRS4H21qJNO24qKYE76MnyRvYNa0P9OXqaQBvs+P0fLUqH5DbK
+         x5fstT+z+g+Y2AalX+FqqgsL7PvV1KOItuhfCiKMctMXat2bedLY4LYm5s38QKEZKU2F
+         JPfA==
+X-Gm-Message-State: AJIora8PNvvIDW9aX048nSYaC/gd4M4dtJDqzgcoVFKvGOwJff0DjCZ6
+        n51h5wZlWP8fDCIP8mxTzGO6pg==
+X-Google-Smtp-Source: AGRyM1uMEeS0TT5lICj8jO3goa7CBewryZUS03dNcTF1YnXiKZhaSFXsC5hVc55XonJRKJJmpry5Cg==
+X-Received: by 2002:a05:6512:3983:b0:48a:83ad:5f70 with SMTP id j3-20020a056512398300b0048a83ad5f70mr6453722lfu.283.1658923348350;
+        Wed, 27 Jul 2022 05:02:28 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id b16-20020a196450000000b00489e011bad7sm2948033lfj.218.2022.07.27.05.02.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Jul 2022 05:02:27 -0700 (PDT)
+Message-ID: <0f5f75c3-269d-a804-7a46-9fa7aec03245@linaro.org>
+Date:   Wed, 27 Jul 2022 14:02:26 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="26sqcxpjMBeK/bO+"
-Content-Disposition: inline
-In-Reply-To: <20220726181133.3262695-5-iskren.chernev@gmail.com>
-X-Cookie: No motorized vehicles allowed.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [[PATCH v2] 1/9] dt-bindings: pwm: Document Synopsys DesignWare
+ snps,pwm
+Content-Language: en-US
+To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>
+References: <20220725212140.741644-1-ben.dooks@sifive.com>
+ <922628f6-cbb1-b563-6464-e57959bafbcd@linaro.org>
+ <8bb5103d-803e-90d2-fd93-132bb2aac2d6@sifive.com>
+ <6317212b-1fca-65b4-9bce-0b9f7408fdae@linaro.org>
+ <1d4573fc-407a-13c2-b049-e7a060d7929b@sifive.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1d4573fc-407a-13c2-b049-e7a060d7929b@sifive.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 27/07/2022 12:32, Ben Dooks wrote:
+> On 26/07/2022 12:05, Krzysztof Kozlowski wrote:
+>> On 26/07/2022 12:12, Ben Dooks wrote:
+>>> On 26/07/2022 11:05, Krzysztof Kozlowski wrote:
+>>>> On 25/07/2022 23:21, Ben Dooks wrote:
+>>>>> Add documentation for the bindings for Synopsys' DesignWare PWM block
+>>>>> as we will be adding DT/platform support to the Linux driver soon.
+>>>>>
+>>>>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>>>>> --
+>>>>
+>>>> This is not proper delimiter and causes the changelog to end up in commit.
+>>>>
+>>>> Correct also wrong formatting of subject PATCH.
+>>>
+>>> I realised that once sent and forgot the cover letter.
+>>> Maybe I'll try some more post covid recovery.
+>>>
+>>>>> v2:
+>>>>> - fix #pwm-cells to be 3
+>>>>> - fix indentation and ordering issues
+>>>>> ---
+>>>>>    .../devicetree/bindings/pwm/snps,pwm.yaml     | 40 +++++++++++++++++++
+>>>>>    1 file changed, 40 insertions(+)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..594085e5e26f
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+>>>>> @@ -0,0 +1,40 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +# Copyright (C) 2022 SiFive, Inc.
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/pwm/snps,pwm.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Synopsys PWM controller
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Ben Dooks <ben.dooks@sifive.com>
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: pwm.yaml#
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: snps,pwm
+>>>>
+>>>> This is very generic compatible. I doubt that you cover here all
+>>>> Synopsys PWM designs, past and future. You need a specific compatible.
+>>>
+>>>   From what I can get from the documentation (2.13a) there hasn't been
+>>> a huge external interface change and what has been added is all part
+>>> of synthesis time options.
+>>
+>> But you have some specific version, right? Usually these blocks are
+>> versioned, so you must include it. I would even argue that such generic
+>> compatible should not be used as fallback at all, because it is simply
+>> to generic (PWM is not some model name but common acronym),
+> 
+> I suppose dw-apb-timers is the actual document name, but that's already
+> been used for the timer mode in a number of SoCs so probably isn't going
+> to be useful. dw-apb-timers-pwm might be a better prefix if snps,pwm is
+> not going to be acceptable. (Yes, the block can be built as either a
+> PWM or a generic interrupt generating timer at IP generation time)
+> 
+> As for the version numbers, we could have the -v.vv suffix for these
+> blocks, but the v2.xx log has 22 entries already and only one feature
+> for programming (which is also a configurable one so can't be just
+> enabled by default - it's the 0/100 mode flag in the control registers).
+> 
+> I'm not sure what the v1.xx timers had, but I don't have access to this
+> information and we're getting these documents as second-generation so I
+> am not sure if we can get a v1.xx at-all (I suspect this is also going
+> to have a number of revisions and about 1 useful register api change
+> which would be the "new mode" double counter method which we currently
+> rely on having being implicitly enabled by the IP builder (again this
+> feature is still something that can be configured on IP genaration))
 
---26sqcxpjMBeK/bO+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+But why would you need v1.xx documentation?
 
-On Tue, Jul 26, 2022 at 09:11:32PM +0300, Iskren Chernev wrote:
+> 
+> Given the configurability of the core, the version numbers might be
+> usable at some point, but it does seem to be a lot of churn for what
+> currently can be described by one boolean for the 0/100 feature that
+> might-be available. Is there a way of saying the compatible string
+> can be dw-apb-timers-pwm-2.[0-9][0-9][a-z] ?
 
-> @@ -2245,7 +2280,6 @@ static const struct spmi_regulator_data pm660l_regu=
-lators[] =3D {
->  	{ }
->  };
->=20
-> -
->  static const struct spmi_regulator_data pm8004_regulators[] =3D {
->  	{ "s2", 0x1700, "vdd_s2", },
->  	{ "s5", 0x2000, "vdd_s5", },
+I don't understand why. Aren't you documenting here only v2.13a version?
 
-Unrelated indentation change (I think undoing a random extra blank line
-added in the prior patch, at least there were some random extras in
-that).
-
---26sqcxpjMBeK/bO+
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLhKK8ACgkQJNaLcl1U
-h9ChSwf/aHTZnhAig+LV40j8fbrE5n7yXzXTD4fInIqXVctRS7cHh7Wjp+WSNONO
-YU/n3Bon7zJMgr80Y9Cm5nHMjjE0Yxx8vD4L7t5YoSgje/4MgX/aeu6xmoR0oOS9
-ts3jzMj9savB/ejl/W8HLFBIfqLzWQm9/TZZ3zHfDgltSbmFYxYzH2PK0j9jIlCW
-MDhDtCodu6ZSO10E6UtOC2Qm3i8An0kcQvSfSn3FroC6QfMdT6yeFZ9swCfABlW8
-M8bn/ijSjKOw2KOGNQQeT7K4mREPcCGj4e7wV7kUa/K0udio2mFEw0SXWRBSHdWy
-iSl+eL5gIBpLBmuuJzVcaEziuiBKWw==
-=UQyf
------END PGP SIGNATURE-----
-
---26sqcxpjMBeK/bO+--
+Best regards,
+Krzysztof
