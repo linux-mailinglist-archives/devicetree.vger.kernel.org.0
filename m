@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38C09582100
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 09:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 950F5582109
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 09:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229588AbiG0HXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 03:23:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58384 "EHLO
+        id S230107AbiG0H0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 03:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229478AbiG0HXj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 03:23:39 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423BB402F1
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 00:23:38 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id d17so23782429lfa.12
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 00:23:38 -0700 (PDT)
+        with ESMTP id S229592AbiG0H0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 03:26:33 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00E263ED45
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 00:26:32 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id m12so24783518lfj.4
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 00:26:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ft3XCwNiOjU+32vJUTrHCohDlzXHlrGObjp/2D3lLcw=;
-        b=D2vcTf6EHxluMdEITJVhlFAhkbW4JXwi4l16W6a5A5FW0GepRJX9Hz0VOFqH4OJ3wj
-         y0rysj0Ybv4kH6MNX324hPKweTIx+9oV9gisPrVjJ6i35zZ/pRYd1H/dD9gTertXKydw
-         QM98CFre3HZrSY0dBfvD4/4qAo2bD5sBxN3qoysT+IjmD5ers8ddWUnRvHqjNJEVH/v3
-         LNm/UZRG9iGKtJNCYgo7kr+eKfozku480KhGGtqiFFigOrP9OjE/Uos5MkYy/PNpuY55
-         hrPdf6wrmD4tAW6gYoHF0KcPidX//mUg5U5xdPL8ylBCsbjjXSKgHw88aOrMWLuOhZXo
-         fBog==
+        bh=8nhJCT3rD1ItmbUeh8BkQKeiT6tXFfN/+ixSzWykvJc=;
+        b=MKIHocr4BEkDBaTzuoccGtEHNAgvpG1hjFXNhO3CIqX7f28bJgPNScExLAY37+OgsB
+         q3zwwzAIvJm8PQ4aLGmUBRe0uEleevOAwvz8hWHSUb7NcUsL6BW7A9cqS60UphudAtdu
+         WkJujEBjICB3B3GwJni1ldK1nW73K1070YzK/fpiaFx4/5V1wJUVHRRKBsx9hh4YhaVD
+         Y2ouJVY99b0mf+CmY2UovTd1Vps8YAoBz4365OUSAqgotejFu3DbA3qn6fpEHm9JUaVV
+         GrnwgqhUAjZS8id7cyFN7xyzYpRVDX0/2zyz2E9g3w3ZDu9EbdQfbya2PZ03V86M8YCR
+         q7EA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ft3XCwNiOjU+32vJUTrHCohDlzXHlrGObjp/2D3lLcw=;
-        b=PKjIb5bVerTTn1JAQWTKXyZ/r5aF5BNOmbSBVe8LZVWoGSvm0JQW5tXMx2F32wbeE6
-         yFiU0bmzKEt6MrCkWGLce/n8pxVE8n4MdaqKYX3s6eUhHnid4O6dhOZUZRb5rNkoMFtB
-         btUOd/7uPF4VPAXz87QeYW6gvTqueGA17uwK+WQTTnKIZlp8u0+S4K5JFDY96CBWxu9t
-         0hkQ5k4TCDf3dvZuaA45aNA20iemUyFuXoAtbfkEH8uiL8CLR83v2p9FUZyUHinl6HdM
-         lAB/7x1jBmNp1I8fmLojET+kNJ2y+wHuNlEgks9+AFw0M/2RhgnuiXOTIwHVo0g0pN53
-         Bi0Q==
-X-Gm-Message-State: AJIora8JO9YNDXY3hKwr7JfagJFuuTRH1216W+MmHxcnqQX9RIU488hb
-        jeG3eAS3OK/YtuULX1Rot5ly9Q==
-X-Google-Smtp-Source: AGRyM1uHJ5ymf8whLvfZFW+rSC4qpuSxZKs4pbYbEi1RVIOv6PYyOgAgAz2r6JpgBX6lGa3re4pjbA==
-X-Received: by 2002:a19:dc4d:0:b0:489:63cb:20c7 with SMTP id f13-20020a19dc4d000000b0048963cb20c7mr7155587lfj.101.1658906616374;
-        Wed, 27 Jul 2022 00:23:36 -0700 (PDT)
+        bh=8nhJCT3rD1ItmbUeh8BkQKeiT6tXFfN/+ixSzWykvJc=;
+        b=BmJXoACt4t3iAsKpjsg5HkR2FHnTw5Jnuj8xxrtjvPw65RN5ohE5jfHb7r8KcTej2j
+         A0Y9I5pUWM9UJkW3Wco9ZiiMYX6wO+Tlg/BG5kI2OA3la3OWGp9yg3tz+xrX++3r8Vib
+         LbmcFXE0k8pfwxTjKdZT8iysa5jHMKuYtjvPcc7UBsTJ9NQ0+1ppPJAGb5uuGjMgfwuA
+         hOJ1dIxIS8M8kkuxLdOXpSPTQNIHGay4PHsZ43xPtmFV1KxtVkrvZGc/USMlLlSWV9Ss
+         7Hhjk/zbyMdReGUtxkdYzsLZNPqppjFOqO+xsy8bvDhfucpVKH7grOAD7BSHCSjWa7s7
+         NKkQ==
+X-Gm-Message-State: AJIora95XsJhp0PdqT2C6n23fGuBE3dgRn9iJBCf386dl96IJPJMXDyY
+        su7Z45fDnG7AIFSo3/YG3hFYLQ==
+X-Google-Smtp-Source: AGRyM1uUEpQJOmsYyeoFck+zrvHEKaVsS4IQQB/C5smIm084uy+xqPneVmF7JFoySIzAF6bFSztIrA==
+X-Received: by 2002:a19:7606:0:b0:48a:74b4:8479 with SMTP id c6-20020a197606000000b0048a74b48479mr7369691lff.441.1658906789985;
+        Wed, 27 Jul 2022 00:26:29 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id o14-20020ac24e8e000000b0048a8899db0fsm1733291lfr.7.2022.07.27.00.23.34
+        by smtp.gmail.com with ESMTPSA id a17-20020a2eb551000000b0025dece5427asm3114746ljn.124.2022.07.27.00.26.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 00:23:35 -0700 (PDT)
-Message-ID: <aaa6b5d0-20e8-146f-ba37-8784dbfd6072@linaro.org>
-Date:   Wed, 27 Jul 2022 09:23:34 +0200
+        Wed, 27 Jul 2022 00:26:29 -0700 (PDT)
+Message-ID: <7e742415-d93f-83d9-bf01-6f023a4d1a34@linaro.org>
+Date:   Wed, 27 Jul 2022 09:26:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v15 01/11] dt-bindings: mediatek,dp: Add Display Port
- binding
+Subject: Re: [PATCH v2 2/5] dt-bindings: regulator: Document the PM6125 RPM
+ regulators
 Content-Language: en-US
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
-        tzimmermann@suse.de, matthias.bgg@gmail.com, deller@gmx.de,
-        airlied@linux.ie
-Cc:     msp@baylibre.com, granquet@baylibre.com, jitao.shi@mediatek.com,
-        wenst@chromium.org, angelogioacchino.delregno@collabora.com,
-        ck.hu@mediatek.com, liangxu.xu@mediatek.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-fbdev@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220727045035.32225-1-rex-bc.chen@mediatek.com>
- <20220727045035.32225-2-rex-bc.chen@mediatek.com>
+To:     Iskren Chernev <iskren.chernev@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Adam Skladowski <a39.skl@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20220726181133.3262695-1-iskren.chernev@gmail.com>
+ <20220726181133.3262695-3-iskren.chernev@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220727045035.32225-2-rex-bc.chen@mediatek.com>
+In-Reply-To: <20220726181133.3262695-3-iskren.chernev@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,128 +83,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2022 06:50, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
+On 26/07/2022 20:11, Iskren Chernev wrote:
+> Document the pm6125 compatible string and available regulators in the QCom SMD
+> RPM regulator documentation.
 > 
-> This controller is present on several mediatek hardware. Currently
-> mt8195 and mt8395 have this controller without a functional difference,
-> so only one compatible field is added.
-> 
-> The controller can have two forms, as a normal display port and as an
-> embedded display port.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
+
+Unusual SoB chain here as well.
+
 > ---
->  .../display/mediatek/mediatek,dp.yaml         | 117 ++++++++++++++++++
->  1 file changed, 117 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+>  .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> new file mode 100644
-> index 000000000000..fd68c6c08df3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-> @@ -0,0 +1,117 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,dp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
+> index c233461cc980..1122a3a17f56 100644
+> --- a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
+> @@ -57,6 +57,9 @@ description:
+> 
+>    For pm660l s1, s2, s3, s5, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, bob
+> 
+> +  For pm6125 s1, s2, s3, s4, s5, s6, s7, s8, l1, l2, l3, l5, l6, l7, l8, l9,
+> +  l10, l22, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24
 > +
-> +title: MediaTek Display Port Controller
-> +
-> +maintainers:
-> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> +  - Jitao shi <jitao.shi@mediatek.com>
-> +
-> +description: |
-> +  Device tree bindings for the MediaTek display port TX (DP) and
-> +  embedded display port TX (eDP) controller present on some MediaTek SoCs.
+>    For pma8084, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, l1, l2, l3,
+>    l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19,
+>    l20, l21, l22, l23, l24, l25, l26, l27, lvs1, lvs2, lvs3, lvs4, 5vs1
+> @@ -90,6 +93,7 @@ properties:
+>        - qcom,rpm-pm8998-regulators
+>        - qcom,rpm-pm660-regulators
+>        - qcom,rpm-pm660l-regulators
+> +      - qcom,rpm-pm6125-regulators
 
-Drop entire sentence and just describe the hardware.
+Put new entry in alphabetical order.
 
-> +  We just need to enable the power domain of DP. The clock of DP is
-> +  generated by itself and we are not using other PLL to generate clocks.
-> +  MediaTek DP and eDP are different hardwares and there are some features
-> +  which are not supported for eDP. For example, audio is not supported for
-> +  eDP. Therefore, we need to use two different compatibles to describe them.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8195-dp-tx
-> +      - mediatek,mt8195-edp-tx
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  nvmem-cells:
-> +    maxItems: 1
-> +    description: efuse data for display port calibration
-> +
-> +  nvmem-cell-names:
-> +    const: dp_calibration_data
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input endpoint of the controller, usually dp_intf
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: Output endpoint of the controller
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +            properties:
-> +              data-lanes:
-> +                description: |
-> +                  number of lanes supported by the hardware.
-> +                  The possible values:
-> +                  0       - For 1 lane enabled in IP.
-> +                  0 1     - For 2 lanes enabled in IP.
-> +                  0 1 2 3 - For 4 lanes enabled in IP.
-> +                minItems: 1
-> +                maxItems: 4
-> +            required:
-> +              - data-lanes
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +  max-linkrate-mhz:
-> +    enum: [ 1620, 2700, 5400, 8100 ]
-> +    description: maximum link rate supported by the hardware.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - ports
-> +  - max-linkrate-mhz
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/mt8195-power.h>
-> +    dp_tx@1c600000 {
-
-No underscores in node names, so just "dp".
 
 Best regards,
 Krzysztof
