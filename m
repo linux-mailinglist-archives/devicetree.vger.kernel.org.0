@@ -2,64 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11FD758353F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 00:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C79D583568
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 00:49:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236787AbiG0WPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 18:15:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59070 "EHLO
+        id S233151AbiG0WtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 18:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237770AbiG0WO7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 18:14:59 -0400
+        with ESMTP id S229532AbiG0WtP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 18:49:15 -0400
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F256765D7E;
-        Wed, 27 Jul 2022 15:12:05 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00A952BB0F;
+        Wed, 27 Jul 2022 15:49:08 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 962E8B82286;
-        Wed, 27 Jul 2022 22:12:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CF3DC43470;
-        Wed, 27 Jul 2022 22:12:03 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 88CADB82292;
+        Wed, 27 Jul 2022 22:49:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2B18C433D6;
+        Wed, 27 Jul 2022 22:49:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658959923;
-        bh=OdgQrrPG8BUR2b2yNmh3OFrDvpcW55FL2Q6+RLHW76M=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tbnFOJUu/WaozZIVJCnvZPi1eEaf2p6DB34iesgMesKdeS97cbvyEKVMuXt5Mg7A4
-         T45PivH+b5v2OIVkzqMY10rLJKYqlFWYP1f/3D8CQKgRiL+p7gALfiU92g5vIvVhCN
-         fJYncG0GlbctujlX0SqZWGXjut3GGaZG3HgRPyEQLkt+QsjvnW4EAWkb+RzlaPLqM3
-         U/0KGDDATpAoKQMpC/MV17I/kX19Za/qwufcgMiAJcAyzcYfXCs0BdbNMVrw30fqvz
-         rHgLBfAO3GE5MKs2MTLIU6ghgIOIjZa+yy4QDpY7YPpG5rRYb1g5xyWjdaRtilXCNY
-         AWJhvjHqLwiwA==
-Received: by mail-vs1-f51.google.com with SMTP id 66so19403vse.4;
-        Wed, 27 Jul 2022 15:12:03 -0700 (PDT)
-X-Gm-Message-State: AJIora/treDbuxk4foMn4oXsrCwCScbSFimiBlu+1IccC0/TevkbmbD/
-        YTCYtk3qhlhl49wSBkRjnX0U5zbP5+EI2F9rEw==
-X-Google-Smtp-Source: AGRyM1uuRDLPni5HdjqtEIbzt0NQRO8rcoruBURHRVynskfUsrrj94bFcELIF4fzDI38jCj6fSCEHXpT1g2KKT916ss=
-X-Received: by 2002:a05:6102:21aa:b0:35a:1419:1bc7 with SMTP id
- i10-20020a05610221aa00b0035a14191bc7mr2983610vsb.26.1658959922069; Wed, 27
- Jul 2022 15:12:02 -0700 (PDT)
+        s=k20201202; t=1658962146;
+        bh=Fk3fRNw7neYbwkL80fsElUIv+y/wuN22YX6LBHbzgAc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=te4u4Jp7OG9Rg7FplEPdPoEAfohwrDavepzp6qKRp2vaW63bfKoH/sOpkO4G3v3C6
+         ZHpNIextOZ+8+3Fg0rxUYsvTYiy/zYYiffk14OqFGdy+k/lFZ4h6uL8fzdLoslTtNM
+         Tdekmz76AwcGrPd0D5sLvOg/IiBmGHb8YHBZ97TT5n2XOXm0CUKDMjIpucQqBB/Uym
+         RNLcWtI7oj6YDtP1W/wXRUOBlie6XSdlRU/GnXBxH56BUmrqGQbQzGmcJWH6nXSVgm
+         iHYM5ySb8+bg2PGkYxndhasV9HcUxRQ4dfw8TI1jp0OuOyXU46JZdJKUL84Mq45MZj
+         YtwkyMRsT28Tg==
+Date:   Wed, 27 Jul 2022 17:49:04 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v4 00/15] PCI: dwc: Add hw version and dma-ranges
+ support
+Message-ID: <20220727224904.GA253904@bhelgaas>
 MIME-Version: 1.0
-References: <20220726212354.1.I5b9006878bdabd6493b866b46dbd6149968d545b@changeid>
- <20220727160320.GA2755147-robh@kernel.org> <CAD=FV=U8ek0FR=hZwemK5JcbUP=JsnRTtv7WzJKmOb-UFwHfXA@mail.gmail.com>
- <CAL_JsqJ=jj6isKbBEKGjax266MS_h+Oehn9zYMMjXzc3K-t4Wg@mail.gmail.com> <CAD=FV=XPTUVKMSrcZdaoztrMU9pCJWXkHLfW-1dHqG70-iR3Yw@mail.gmail.com>
-In-Reply-To: <CAD=FV=XPTUVKMSrcZdaoztrMU9pCJWXkHLfW-1dHqG70-iR3Yw@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 27 Jul 2022 16:11:50 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL+5DSXoLDYVDbaDisW4uBncBYx--RFOO6-jd0Bed_RAQ@mail.gmail.com>
-Message-ID: <CAL_JsqL+5DSXoLDYVDbaDisW4uBncBYx--RFOO6-jd0Bed_RAQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: document zoglin board
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Bob Moragues <moragues@chromium.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Bob Moragues <moragues@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru>
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -69,72 +63,206 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 27, 2022 at 3:59 PM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Wed, Jul 27, 2022 at 12:43 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Wed, Jul 27, 2022 at 11:40 AM Doug Anderson <dianders@chromium.org> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Wed, Jul 27, 2022 at 9:03 AM Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > On Tue, Jul 26, 2022 at 09:24:31PM -0700, Bob Moragues wrote:
-> > > > > Zoglin is a Hoglin Chromebook with SPI Flash reduced from 64MB to 8MB.
-> > > > > Zoglin is identical to Hoglin except for the SPI Flash.
-> > > > > The actual SPI Flash is dynamically probed at and not specified in DTS.
-> > > > >
-> > > > > Signed-off-by: Bob Moragues <moragues@chromium.org>
-> > > > >
-> > > > > Signed-off-by: Bob Moragues <moragues@google.com>
-> > > > > ---
-> > > > >
-> > > > >  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
-> > > > >  1 file changed, 1 insertion(+)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> > > > > index 581485392404..63091df3cbb3 100644
-> > > > > --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> > > > > @@ -475,6 +475,7 @@ properties:
-> > > > >
-> > > > >        - description: Qualcomm Technologies, Inc. sc7280 CRD platform (newest rev)
-> > > > >          items:
-> > > > > +          - const: google,zoglin
-> > > > >            - const: google,hoglin
-> > > > >            - const: qcom,sc7280
-> > > >
-> > > > Is just "google,hoglin", "qcom,sc7280" no longer valid? If it is valid,
-> > > > you need another entry.
-> > >
-> > > If it makes people happy to have another entry then it wouldn't hurt,
-> > > but it has no long term benefit and I would recommend against it. The
-> > > next patch in this series changes the existing "hoglin" device tree to
-> > > have all 3 compatible strings and thus when both patches land then
-> > > make dtbs_check will pass. I assume that is the only goal of
-> > > documenting these boards here. Certainly if you had a device tree that
-> > > had only "google,zoglin" it would boot fine on zoglin devices and if
-> > > you had a device tree that had only "google,hoglin" it would boot fine
-> > > on hoglin device. This is true of all of the entries for Chromebooks
-> > > that have multiple compatible entries.
-> >
-> > Why even add the entry? If it is just a different SPI flash, you can
-> > tell that from the SPI flash compatible or device ID.
->
-> Yeah, it's really unfortunate. :( The issue is a limitation in the
-> ChromeOS bootloader infrastructure. The ChromeOS build infrastructure
-> cannot handle something that it considers the same "board" as having
-> different SPI flash sizes. This is because the infrastructure always
-> requires that the bootloader "image" be the exact same size as the SPI
-> flash and it assumes a universal firmware (single image) per board.
-> It's unfortunately not very flexible but normally for a given board
-> the SPI flash size is chosen at the start and never changed. The CRD
-> board was an exception here. Though it's not beautiful, this means
-> that the firmware considers this as a different board and looks for a
-> different compatible string on the kernel command line.
+On Fri, Jun 24, 2022 at 05:39:32PM +0300, Serge Semin wrote:
+> This patchset is a second one in the series created in the framework of
+> my Baikal-T1 PCIe/eDMA-related work:
+> 
+> [1: In-progress v5] PCI: dwc: Various fixes and cleanups
+> Link: https://lore.kernel.org/linux-pci/20220624143428.8334-1-Sergey.Semin@baikalelectronics.ru/
+> [2: In-progress v4] PCI: dwc: Add hw version and dma-ranges support
+> Link: ---you are looking at it---
 
-Okay, I guess...
+https://lore.kernel.org/r/20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru
 
-Acked-by: Rob Herring <robh@kernel.org>
+> [3: In-progress v3] PCI: dwc: Add extended YAML-schema and Baikal-T1 support
+> Link: https://lore.kernel.org/linux-pci/20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru/
+> [4: In-progress v3] dmaengine: dw-edma: Add RP/EP local DMA support
+> Link: https://lore.kernel.org/linux-pci/20220610091459.17612-1-Sergey.Semin@baikalelectronics.ru
+
+Hi Serge, is the above the latest and greatest list?  The 3rd series
+doesn't apply cleanly for me:
+
+  05:40:34 ~/linux (main)$ git checkout -b wip/serge v5.19-rc1
+  Switched to a new branch 'wip/serge'
+
+  # fetch 1: PCI: dwc: Various fixes and cleanups
+  05:40:45 ~/linux (wip/serge)$ b4 am -om/ https://lore.kernel.org/linux-pci/20220624143428.8334-1-Sergey.Semin@baikalelectronics.ru/
+  Analyzing 37 messages in the thread
+  Checking attestation on all messages, may take a moment...
+  ---
+    ✓ [PATCH v5 1/18] PCI: dwc: Stop link in the host init error and de-initialization
+    ✓ [PATCH v5 2/18] PCI: dwc: Add unroll iATU space support to the regions disable method
+    ✓ [PATCH v5 3/18] PCI: dwc: Disable outbound windows for controllers with iATU
+    ✓ [PATCH v5 4/18] PCI: dwc: Set INCREASE_REGION_SIZE flag based on limit address
+    ✓ [PATCH v5 5/18] PCI: dwc: Deallocate EPC memory on EP init error
+      + Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> (✓ DKIM/linaro.org)
+    ✓ [PATCH v5 6/18] PCI: dwc: Enable CDM-check independently from the num_lanes value
+      + Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> (✓ DKIM/linaro.org)
+    ✓ [PATCH v5 7/18] PCI: dwc: Add braces to the multi-line if-else statements
+    ✓ [PATCH v5 8/18] PCI: dwc: Add trailing new-line literals to the log messages
+    ✓ [PATCH v5 9/18] PCI: dwc: Discard IP-core version checking on unrolled iATU detection
+    ✓ [PATCH v5 10/18] PCI: dwc: Convert Link-up status method to using dw_pcie_readl_dbi()
+    ✓ [PATCH v5 11/18] PCI: dwc: Organize local variables usage
+      + Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> (✓ DKIM/linaro.org)
+    ✓ [PATCH v5 12/18] PCI: dwc: Re-use local pointer to the resource data
+      + Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> (✓ DKIM/linaro.org)
+    ✓ [PATCH v5 13/18] PCI: dwc: Add start_link/stop_link inliners
+      + Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> (✓ DKIM/linaro.org)
+    ✓ [PATCH v5 14/18] PCI: dwc: Move io_cfg_atu_shared to the Root Port descriptor
+      + Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> (✓ DKIM/linaro.org)
+    ✓ [PATCH v5 15/18] PCI: dwc: Add dw_ prefix to the pcie_port structure name
+      + Acked-by: Jesper Nilsson <jesper.nilsson@axis.com> (✓ DKIM/axis.com)
+      + Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> (✓ DKIM/linaro.org)
+      + Reviewed-by: Neil Armstrong <narmstrong@baylibre.com> (✓ DKIM/baylibre-com.20210112.gappssmtp.com)
+    ✓ [PATCH v5 16/18] PCI: dwc-plat: Simplify the probe method return value handling
+    ✓ [PATCH v5 17/18] PCI: dwc-plat: Discard unused regmap pointer
+    ✓ [PATCH v5 18/18] PCI: dwc-plat: Drop dw_plat_pcie_of_match forward declaration
+    ---
+    ✓ Signed: DKIM/baikalelectronics.ru
+  ---
+  Total patches: 18
+  ---
+  NOTE: some trailers ignored due to from/email mismatches:
+      ! Trailer: Link: https://lore.kernel.org/linux-pci/20220616152048.gcqacgs2ed66vsl4@mobilestation/
+       Msg From: Serge Semin <fancer.lancer@gmail.com>
+  NOTE: Rerun with -S to apply them anyway
+  ---
+  Cover: m/v5_20220624_sergey_semin_pci_dwc_various_fixes_and_cleanups.cover
+   Link: https://lore.kernel.org/r/20220624143428.8334-1-Sergey.Semin@baikalelectronics.ru
+   Base: applies clean to current tree
+	 git am m/v5_20220624_sergey_semin_pci_dwc_various_fixes_and_cleanups.mbx
+
+  # apply 1: PCI: dwc: Various fixes and cleanups
+  05:41:24 ~/linux (wip/serge)$ git am m/v5_20220624_sergey_semin_pci_dwc_various_fixes_and_cleanups.mbx
+  Applying: PCI: dwc: Stop link in the host init error and de-initialization
+  Applying: PCI: dwc: Add unroll iATU space support to the regions disable method
+  Applying: PCI: dwc: Disable outbound windows for controllers with iATU
+  Applying: PCI: dwc: Set INCREASE_REGION_SIZE flag based on limit address
+  Applying: PCI: dwc: Deallocate EPC memory on EP init error
+  Applying: PCI: dwc: Enable CDM-check independently from the num_lanes value
+  Applying: PCI: dwc: Add braces to the multi-line if-else statements
+  Applying: PCI: dwc: Add trailing new-line literals to the log messages
+  Applying: PCI: dwc: Discard IP-core version checking on unrolled iATU detection
+  Applying: PCI: dwc: Convert Link-up status method to using dw_pcie_readl_dbi()
+  Applying: PCI: dwc: Organize local variables usage
+  Applying: PCI: dwc: Re-use local pointer to the resource data
+  Applying: PCI: dwc: Add start_link/stop_link inliners
+  Applying: PCI: dwc: Move io_cfg_atu_shared to the Root Port descriptor
+  Applying: PCI: dwc: Add dw_ prefix to the pcie_port structure name
+  Applying: PCI: dwc-plat: Simplify the probe method return value handling
+  Applying: PCI: dwc-plat: Discard unused regmap pointer
+  Applying: PCI: dwc-plat: Drop dw_plat_pcie_of_match forward declaration
+
+  # fetch 2: PCI: dwc: Add hw version and dma-ranges support
+  05:41:46 ~/linux (wip/serge)$ b4 am -om/ https://lore.kernel.org/r/20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru
+  Looking up https://lore.kernel.org/r/20220624143947.8991-1-Sergey.Semin%40baikalelectronics.ru
+  Analyzing 19 messages in the thread
+  Checking attestation on all messages, may take a moment...
+  ---
+    ✓ [PATCH v4 1/15] PCI: dwc: Add more verbose link-up message
+    ✓ [PATCH v4 2/15] PCI: dwc: Detect iATU settings after getting "addr_space" resource
+    ✓ [PATCH v4 3/15] PCI: dwc: Convert to using native IP-core versions representation
+    ✓ [PATCH v4 4/15] PCI: dwc: Add IP-core version detection procedure
+    ✓ [PATCH v4 5/15] PCI: dwc: Introduce Synopsys IP-core versions/types interface
+    ✓ [PATCH v4 6/15] PCI: intel-gw: Drop manual DW PCIe controller version setup
+    ✓ [PATCH v4 7/15] PCI: tegra194: Drop manual DW PCIe controller version setup
+    ✓ [PATCH v4 8/15] PCI: dwc: Add host de-initialization callback
+    ✓ [PATCH v4 9/15] PCI: dwc: Drop inbound iATU types enumeration - dw_pcie_as_type
+    ✓ [PATCH v4 10/15] PCI: dwc: Drop iATU regions enumeration - dw_pcie_region_type
+    ✓ [PATCH v4 11/15] PCI: dwc: Simplify in/outbound iATU setup methods
+    ✓ [PATCH v4 12/15] PCI: dwc: Add iATU regions size detection procedure
+    ✓ [PATCH v4 13/15] PCI: dwc: Verify in/out regions against iATU constraints
+    ✓ [PATCH v4 14/15] PCI: dwc: Check iATU in/outbound ranges setup methods status
+    ✓ [PATCH v4 15/15] PCI: dwc: Introduce dma-ranges property support for RC-host
+    ---
+    ✓ Signed: DKIM/baikalelectronics.ru
+  ---
+  Total patches: 15
+  ---
+  NOTE: some trailers ignored due to from/email mismatches:
+      ! Trailer: Link: https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git/log/?h=pci%2Fctrl%2Fdwc-fixes
+       Msg From: Serge Semin <fancer.lancer@gmail.com>
+      ! Trailer: Link: https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git/log/?h=pci/edma
+       Msg From: Serge Semin <fancer.lancer@gmail.com>
+  NOTE: Rerun with -S to apply them anyway
+  ---
+  Cover: m/v4_20220624_sergey_semin_pci_dwc_add_hw_version_and_dma_ranges_support.cover
+   Link: https://lore.kernel.org/r/20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru
+   Base: applies clean to current tree
+	 git am m/v4_20220624_sergey_semin_pci_dwc_add_hw_version_and_dma_ranges_support.mbx
+
+  # apply 2: PCI: dwc: Add hw version and dma-ranges support
+  05:42:05 ~/linux (wip/serge)$ git am m/v4_20220624_sergey_semin_pci_dwc_add_hw_version_and_dma_ranges_support.mbx
+  Applying: PCI: dwc: Add more verbose link-up message
+  Applying: PCI: dwc: Detect iATU settings after getting "addr_space" resource
+  Applying: PCI: dwc: Convert to using native IP-core versions representation
+  Applying: PCI: dwc: Add IP-core version detection procedure
+  Applying: PCI: dwc: Introduce Synopsys IP-core versions/types interface
+  Applying: PCI: intel-gw: Drop manual DW PCIe controller version setup
+  Applying: PCI: tegra194: Drop manual DW PCIe controller version setup
+  Applying: PCI: dwc: Add host de-initialization callback
+  Applying: PCI: dwc: Drop inbound iATU types enumeration - dw_pcie_as_type
+  Applying: PCI: dwc: Drop iATU regions enumeration - dw_pcie_region_type
+  Applying: PCI: dwc: Simplify in/outbound iATU setup methods
+  Applying: PCI: dwc: Add iATU regions size detection procedure
+  Applying: PCI: dwc: Verify in/out regions against iATU constraints
+  Applying: PCI: dwc: Check iATU in/outbound ranges setup methods status
+  Applying: PCI: dwc: Introduce dma-ranges property support for RC-host
+
+  # fetch 3: PCI: dwc: Add extended YAML-schema and Baikal-T1 support
+  05:42:40 ~/linux (wip/serge)$ b4 am -om/ https://lore.kernel.org/linux-pci/20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru/
+  Analyzing 51 messages in the thread
+  Checking attestation on all messages, may take a moment...
+  ---
+    ✓ [PATCH v3 1/17] dt-bindings: PCI: dwc: Detach common RP/EP DT bindings
+    ✓ [PATCH v3 2/17] dt-bindings: PCI: dwc: Remove bus node from the examples
+      + Reviewed-by: Rob Herring <robh@kernel.org>
+    ✓ [PATCH v3 3/17] dt-bindings: PCI: dwc: Add phys/phy-names common properties
+    ✓ [PATCH v3 4/17] dt-bindings: PCI: dwc: Add max-link-speed common property
+    ✓ [PATCH v3 5/17] dt-bindings: PCI: dwc: Stop selecting generic bindings by default
+    ✓ [PATCH v3 6/17] dt-bindings: PCI: dwc: Add max-functions EP property
+      + Reviewed-by: Rob Herring <robh@kernel.org>
+    ✓ [PATCH v3 7/17] dt-bindings: PCI: dwc: Add interrupts/interrupt-names common properties
+    ✓ [PATCH v3 8/17] dt-bindings: PCI: dwc: Add reg/reg-names common properties
+    ✓ [PATCH v3 9/17] dt-bindings: PCI: dwc: Add clocks/resets common properties
+    ✓ [PATCH v3 10/17] dt-bindings: PCI: dwc: Add dma-coherent property
+    ✓ [PATCH v3 11/17] dt-bindings: PCI: dwc: Apply common schema to Rockchip DW PCIe nodes
+    ✓ [PATCH v3 12/17] dt-bindings: PCI: dwc: Add Baikal-T1 PCIe Root Port bindings
+    ✓ [PATCH v3 13/17] PCI: dwc: Introduce generic controller capabilities interface
+      + Reviewed-by: Rob Herring <robh@kernel.org>
+    ✓ [PATCH v3 14/17] PCI: dwc: Introduce generic resources getter
+      + Reviewed-by: Rob Herring <robh@kernel.org>
+    ✓ [PATCH v3 15/17] PCI: dwc: Combine iATU detection procedures
+      + Reviewed-by: Rob Herring <robh@kernel.org>
+    ✓ [PATCH v3 16/17] PCI: dwc: Introduce generic platform clocks and resets
+    ✓ [PATCH v3 17/17] PCI: dwc: Add Baikal-T1 PCIe controller support
+    ---
+    ✓ Signed: DKIM/baikalelectronics.ru
+  ---
+  Total patches: 17
+  ---
+  NOTE: some trailers ignored due to from/email mismatches:
+      ! Trailer: Link: https://lore.kernel.org/linux-pci/20220610091459.17612-23-Sergey.Semin@baikalelectronics.ru/
+       Msg From: Serge Semin <fancer.lancer@gmail.com>
+      ! Trailer: Link: https://lore.kernel.org/linux-pci/20220610091459.17612-1-Sergey.Semin@baikalelectronics.ru/
+       Msg From: Serge Semin <fancer.lancer@gmail.com>
+  NOTE: Rerun with -S to apply them anyway
+  ---
+  Cover: m/v3_20220610_sergey_semin_pci_dwc_add_generic_resources_and_baikal_t1_support.cover
+   Link: https://lore.kernel.org/r/20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru
+   Base: not specified
+	 git am m/v3_20220610_sergey_semin_pci_dwc_add_generic_resources_and_baikal_t1_support.mbx
+
+  # apply 3: PCI: dwc: Add extended YAML-schema and Baikal-T1 support
+  05:42:58 ~/linux (wip/serge)$ git am m/v3_20220610_sergey_semin_pci_dwc_add_generic_resources_and_baikal_t1_support.mbx
+  Applying: dt-bindings: PCI: dwc: Detach common RP/EP DT bindings
+  error: patch failed: Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml:36
+  error: Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml: patch does not apply
+  error: patch failed: Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml:37
+  error: Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml: patch does not apply
+  Patch failed at 0001 dt-bindings: PCI: dwc: Detach common RP/EP DT bindings
+  hint: Use 'git am --show-current-patch' to see the failed patch
+  When you have resolved this problem, run "git am --continue".
+  If you prefer to skip this patch, run "git am --skip" instead.
+  To restore the original branch and stop patching, run "git am --abort".
+  05:43:07 ~/linux (wip/serge|AM 1/17)$
