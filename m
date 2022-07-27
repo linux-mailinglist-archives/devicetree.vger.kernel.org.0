@@ -2,70 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B65005820C9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 09:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C58195820DC
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 09:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbiG0HLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 03:11:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50002 "EHLO
+        id S230108AbiG0HNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 03:13:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230221AbiG0HLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 03:11:14 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89F2A419AD
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 00:11:06 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id t17so13577821lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 00:11:06 -0700 (PDT)
+        with ESMTP id S229875AbiG0HNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 03:13:50 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8862F1BEB1
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 00:13:49 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id p11so21004925lfu.5
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 00:13:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TCXkWbY8lCYRPmOMxv0DgX48H2ZdZczdOZ5oxlfsFak=;
-        b=J4iDTUiJQy5dAeJrha+6shDJ2AkQyDLrIwg7dMsXnMJ1Q+4nr53y7sbAea1r8ROYQr
-         ak3MchS6eBsh+TSpp53K1JS2uKCQh+c/3thhM0i1cEXq0ELWVZyBGtRRtIYlEbXxN6LW
-         ZoO7Wfq9L+1YLIfdRsB6zEdJxDW2f31IV7uqwIEbMYtypYrYmN+Eg17LE8FADDcu05mV
-         8VRhuiCbIxVHXmuPOaivoXncnpWOr4snSpwyxr9hLVLF6QSg8Vgor2HvCO1HRdBZsRtD
-         WwgMbM4v3ryfZ1N/HIBz+vcVYkFbjHVbHK5yXjH+gl2MUI0fLRElCX8GbNFgA7cuxLVk
-         hTRg==
+        bh=Ssg4tRasr4DBZJdl6J73astDPl5I4c2/6pZV2Ko1zDg=;
+        b=p7y2YstySuGWCWGMOCXucGNBqC60lFvOVhWKJj4kFmbSertbFPzRAen3ld28vGIP/V
+         cVqz0GdshAIp19Q85UxA3WWuPVbhMvIQDf1MsRsn1wc++jPYBV2he98aQaANdhUSbsMz
+         bAQkNv0J7JIFzft9JYLrUjhavcW9aaw967EZQE8Qq3mDl+chdRUNerZj4Sp3l6FGHZjd
+         t20+lQbIowTX0GJWhelQZFJueC4uDd7BuVgXuy1oV4GMXaOKmITg4q58+qBhnUy1x5u0
+         yviK4Nz/cEvWTiLB8CcyqUXQFUVV5Vy/ofoqZXOH1EyhRzSIcMdZ9keZPHAEPKu/2L6X
+         I/nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=TCXkWbY8lCYRPmOMxv0DgX48H2ZdZczdOZ5oxlfsFak=;
-        b=1InC/DdjA+bjCm68WOsuZRK74NFUqWnrceW4oI3uUMX1iTqUk/hBxqmTrNWq2ELOY5
-         iZPgtFIWxhjpvaqJ2QXCZWEjZelJ4DTkybJhAGsGYTVXMisIuZbZYGh9YTiL+uP0cs6g
-         JLOIpcqy7a3VNjb2sdocXKsURnMbtoY0Fx00e+F4T7wFaglYPhwN1snhZ0coZdSQuwj6
-         zsImiqKjZnBuoQIyL06JYdHnKAp8Z4RM+NLBm7ruxPiIntt80RnIndMtgG4Z04MFJ+dt
-         LUL0WJymuL4SEphScCdShWu4JizQOkgQR/6IMJttzkSc9mqWaLNmPnyuG0NBdKpunvV8
-         P0vg==
-X-Gm-Message-State: AJIora8o9QYqrTZeQfZ0KbtPmSMjv0hhwIT8utJpd/kqe2eUe1ribHoO
-        nmgRwKJzmWNJQlvEvsCERTBWFssI0RsuQY90
-X-Google-Smtp-Source: AGRyM1uHY8NtW7/LAJE2Jp+gTe3RPQPdbFUMSfPop/WKRclZ/C9ElcfCMhhRkKS+F3+U55AVNz4qvw==
-X-Received: by 2002:a05:6512:2246:b0:48a:9a7a:3a62 with SMTP id i6-20020a056512224600b0048a9a7a3a62mr3478958lfu.173.1658905865789;
-        Wed, 27 Jul 2022 00:11:05 -0700 (PDT)
+        bh=Ssg4tRasr4DBZJdl6J73astDPl5I4c2/6pZV2Ko1zDg=;
+        b=2eJR/nii2cjUQ7nGKuLQehOzjRHnssrCPcUFWHfT4Z0KMYvEdV7+O9Fn/hhy8uWKM5
+         QB2d4FSqIUfXvCaZIqv9bKE/3mk5C6QLd360SbJVYQMNmIapvqnQ31b+QllotXeSqpOm
+         dldKtF0WHu36XIf/s51QG5Qh21lDNFdhodipgs5SwnwpJpFrCSrmqsla6sGLNpx8ti09
+         COGYotm8P1dXGtOR1V3VI52GD9aGcvL2BiJcnLowRhcH23/mmxALO7B1jxiJ2SbSXab+
+         m6q8A41J2c85ncL5BRjGrCiphblzo12ZrGBkTYynzpgGGQJMONgJW5W51RIgFt3J1So6
+         2loA==
+X-Gm-Message-State: AJIora9IO9sb2cyFQWHv/A5doPxV3l6xYg9g3sknVspiVlCuxjihzH/7
+        zMGAK6nAkL1K0QfgnBizCWDAoA==
+X-Google-Smtp-Source: AGRyM1tnPRmGL8sIq6AcjbGyICwHFDjJ/A/xNKBKL5VlEN4NDa4zhRLe4k8vMTsts1cvocOPufsErg==
+X-Received: by 2002:a05:6512:3041:b0:48a:9c71:8ee2 with SMTP id b1-20020a056512304100b0048a9c718ee2mr3208891lfb.369.1658906027938;
+        Wed, 27 Jul 2022 00:13:47 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id w2-20020a05651234c200b0048aa6228f07sm715512lfr.43.2022.07.27.00.11.04
+        by smtp.gmail.com with ESMTPSA id u11-20020ac258cb000000b0048a884bdb84sm1756297lfo.52.2022.07.27.00.13.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 00:11:05 -0700 (PDT)
-Message-ID: <a947cd45-c3ef-6fae-82cc-c906f96a939c@linaro.org>
-Date:   Wed, 27 Jul 2022 09:11:04 +0200
+        Wed, 27 Jul 2022 00:13:47 -0700 (PDT)
+Message-ID: <bf470847-9e96-fc5e-0b82-d05068aaeb47@linaro.org>
+Date:   Wed, 27 Jul 2022 09:13:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: msm8974: add rpm-stats device node
+Subject: Re: [PATCH v3 1/2] dt-bindings: sifive: add cache-set value of 2048
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220726205355.598874-1-dmitry.baryshkov@linaro.org>
- <20220726205355.598874-2-dmitry.baryshkov@linaro.org>
+To:     Conor.Dooley@microchip.com, linus.walleij@linaro.org,
+        brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
+        atulkhare@rivosinc.com, sagar.kadam@sifive.com
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220726170725.3245278-1-mail@conchuod.ie>
+ <20220726170725.3245278-2-mail@conchuod.ie>
+ <246f132a-a23d-7c53-38a7-2bcec50d65e5@linaro.org>
+ <c77f34aa-ff29-b18a-a3a7-9d90145364a8@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220726205355.598874-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <c77f34aa-ff29-b18a-a3a7-9d90145364a8@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,17 +79,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 22:53, Dmitry Baryshkov wrote:
-> Add device node for the rpm-stats pseudo device.
+On 26/07/2022 19:39, Conor.Dooley@microchip.com wrote:
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm/boot/dts/qcom-msm8974.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
 > 
+> On 26/07/2022 18:35, Krzysztof Kozlowski wrote:
+>> On 26/07/2022 19:07, Conor Dooley wrote:
+>>> From: Atul Khare <atulkhare@rivosinc.com>
+>>>
+>>> Fixes Running device tree schema validation error messages like
+>>> '... cache-sets:0:0: 1024 was expected'.
+>>>
+>>> The existing bindings had a single enumerated value of 1024, which
+>>> trips up the dt-schema checks. The ISA permits any arbitrary power
+>>> of two for the cache-sets value, but we decided to add the single
+>>> additional value of 2048 because we couldn't spot an obvious way
+>>> to express the constraint in the schema.
+>>
+>> There is no way to express "power of two" but enum for multiple values
+>> would work. Is there a reason to limit only to 2048?
+> 
+> Copy pasting from the cover:
+>> I don't think that there's value in speculatively adding values to this
+>> enum especially as (I think at least) the scala for this cache IP has
+>> been released publicly:
+>> https://github.com/sifive/block-inclusivecache-sifive/blob/master/design/craft/inclusivecache/src/Parameters.scala#L32
+>>
+>> The two compatibles in the file match only against two specific cache
+>> implemenations: the fu540's & the fu740's. I would seem to me that, it
+>> would be better to lock this to a single value per compatible since the
+>> 1024 applies to the fu540 & the new value of 2048 applies only to the
+>> fu740.
+>>
+>> I have not made that change, I simply wanted to repackage this series
+>> in a way that could be more easily applied & restart the discussion.
+> 
+> TL;DR: I would limit it to 1024 & 2048 to match the only implementations
+> although not in the way this patch did it.
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The explanation in cover letter is good, but it would be good to have
+one sentence like this in the commit msg. Otherwise your commit is
+actually confusing - you mention that you want power of two and then set
+only 1k + 2k.
 
 
 Best regards,
