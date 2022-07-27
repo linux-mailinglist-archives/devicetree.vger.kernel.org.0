@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EFE1582607
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 14:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9389E58260F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 14:04:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232638AbiG0MCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 08:02:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48518 "EHLO
+        id S232685AbiG0MEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 08:04:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232622AbiG0MCd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 08:02:33 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DBF4B0CF
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:02:30 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id w15so18739734lft.11
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:02:30 -0700 (PDT)
+        with ESMTP id S232672AbiG0MEi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 08:04:38 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 059D44B0EC
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:04:36 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id m12so25695176lfj.4
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:04:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=hR+37jRvCGMHr0+ocVsrbJ4Hg34fE3vOnHVPjPz+ERI=;
-        b=YbL8VlWKs6UYr2jQP98Nys1+2TlVS2AUtrtLi/sZKHUMKkxQXit4/Lwyf2xVoQB2SI
-         WnP4bStVdZDGzWZKRAmaxvuKIndL0wHlEHiOkqCSUzCspbhjDdH1fj/NGKa7onnwFpmS
-         c6DmOIwj1rcGheIdzd+T6j67slkBZyvRpe/l37/Ldh6NMXUP0wEF5frWMcIXWFcAmO8x
-         b3YMLAwPCa2DtyuiU81EhzTkJDI9cIWtpog8wM5hFYPpYgAPNDk6i2kNbeQ0LjIkTOuY
-         DvsF3ThpJzAf8L6oCrmCWs31CbAT96mY7py7WhV0COOVBrkTaEMA6/03RN6P5WhzSYqC
-         Bxrw==
+        bh=2dUZ4AGI+yDI99uFVBIAkMIhm5YNlifPEZHjyoEMmko=;
+        b=w6c+7gFc5bptabl2jpva60XhxykGU+F8kjr9idGrGrRTCUZQS4rGwI4tcucHGdLeOs
+         DUC763HNsyLc7uKz/mGXDbbicgE6tzoj93cfCWUNUnWyHpC3ATvj20W9G5rqQOS1emFC
+         gRiRCycZgA3ucoDHQD6Oy2P5UMpgYdid5MyYaAnud9EYdISYD4O/5+KXsg5NbJPzB7a4
+         5sl+2oAKeHjUCM8W3g373ZLPI4Dp6nu6Ak6yK7ZhAzi43z9g93p3waNKP1x0NLmjkyFM
+         B5TKLarYBWUPcrkHgPPlkfrfZSlnNsZZ5itwSyNVTp75Z72Cg35WzhoEqrSzLMy/mXTe
+         QhKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=hR+37jRvCGMHr0+ocVsrbJ4Hg34fE3vOnHVPjPz+ERI=;
-        b=xTBPoHRnSbVcC6P7dADhh+ECvuCCQhV0+mBUuBx9/DnI92BvfO0WEdB4Kt5zFObaqP
-         vJ38k1uxGYkKECdKl0wdo4HB1JTsj4EzYuawYyHkorIQjhUzs3RpM+dn9fO8KuBzRGAf
-         XO8mHIirEjFEfeAaeFQBFA/U+T1m9Fi7xEiqWGUVj/I6hOzYEzWHMCuFoCIZrw0doUZP
-         Bc9PoSdGWBDBXfLmiSaRS4H21qJNO24qKYE76MnyRvYNa0P9OXqaQBvs+P0fLUqH5DbK
-         x5fstT+z+g+Y2AalX+FqqgsL7PvV1KOItuhfCiKMctMXat2bedLY4LYm5s38QKEZKU2F
-         JPfA==
-X-Gm-Message-State: AJIora8PNvvIDW9aX048nSYaC/gd4M4dtJDqzgcoVFKvGOwJff0DjCZ6
-        n51h5wZlWP8fDCIP8mxTzGO6pg==
-X-Google-Smtp-Source: AGRyM1uMEeS0TT5lICj8jO3goa7CBewryZUS03dNcTF1YnXiKZhaSFXsC5hVc55XonJRKJJmpry5Cg==
-X-Received: by 2002:a05:6512:3983:b0:48a:83ad:5f70 with SMTP id j3-20020a056512398300b0048a83ad5f70mr6453722lfu.283.1658923348350;
-        Wed, 27 Jul 2022 05:02:28 -0700 (PDT)
+        bh=2dUZ4AGI+yDI99uFVBIAkMIhm5YNlifPEZHjyoEMmko=;
+        b=eyyIDNEmipTSEs5vo3U0bynq9W7Sv/5gGBEYN3/W101m4x/i5HNt3Sc7lnFek5Yxbp
+         CVG/x03UALW7GxRNIXI4JBONcyOeLdYkbEkEKCj+tteJU9ehsGR46aqlAP9awQdvkHHC
+         rd3IedCX2UYJiyc/tc+K3CQomZuXkSEx+Ybsaw2+5i81517mUSx/rQZuaOneqmjH6l1D
+         h2O/Ha4lQx2cSgsFYAXxZPJyfK0KEybXUUG+v5FCrWGEsxLWeQ1W/tm/9JWGBlHRys1G
+         b6Dv+XYFGxM2684bkcAw2P1V2NSiCpGDZcEwAFbPAZtzrkZslP0d1U7F085iD9xjIfMJ
+         afuA==
+X-Gm-Message-State: AJIora8gY8INJlk8SsEn3isCX/P7ilHBl0uqfUlQuTaXZX/ymoQUw8Rj
+        gEgTDupJZGFhqpKRYxK5Z7lcJQ==
+X-Google-Smtp-Source: AGRyM1use5uqI8LWDKweipAVSirfmTrNH9lmQFY27iWI4XCfhQb86Ab0tNP7LerX+Ep4k+DAUtcnkw==
+X-Received: by 2002:ac2:4e0d:0:b0:48a:bc83:7fb8 with SMTP id e13-20020ac24e0d000000b0048abc837fb8mr508616lfr.623.1658923474154;
+        Wed, 27 Jul 2022 05:04:34 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id b16-20020a196450000000b00489e011bad7sm2948033lfj.218.2022.07.27.05.02.26
+        by smtp.gmail.com with ESMTPSA id k10-20020ac257ca000000b0048a27abcc34sm1681187lfo.202.2022.07.27.05.04.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 05:02:27 -0700 (PDT)
-Message-ID: <0f5f75c3-269d-a804-7a46-9fa7aec03245@linaro.org>
-Date:   Wed, 27 Jul 2022 14:02:26 +0200
+        Wed, 27 Jul 2022 05:04:33 -0700 (PDT)
+Message-ID: <028091af-b1a1-efc6-b404-dcb5b6f3589e@linaro.org>
+Date:   Wed, 27 Jul 2022 14:04:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [[PATCH v2] 1/9] dt-bindings: pwm: Document Synopsys DesignWare
- snps,pwm
+Subject: Re: [PATCH v2 2/5] dt-bindings: regulator: Document the PM6125 RPM
+ regulators
 Content-Language: en-US
-To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
+To:     Iskren Chernev <iskren.chernev@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Adam Skladowski <a39.skl@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>
-References: <20220725212140.741644-1-ben.dooks@sifive.com>
- <922628f6-cbb1-b563-6464-e57959bafbcd@linaro.org>
- <8bb5103d-803e-90d2-fd93-132bb2aac2d6@sifive.com>
- <6317212b-1fca-65b4-9bce-0b9f7408fdae@linaro.org>
- <1d4573fc-407a-13c2-b049-e7a060d7929b@sifive.com>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <20220726181133.3262695-1-iskren.chernev@gmail.com>
+ <20220726181133.3262695-3-iskren.chernev@gmail.com>
+ <7e742415-d93f-83d9-bf01-6f023a4d1a34@linaro.org>
+ <73a82790-52c4-b777-b4ff-f8d361f0bd29@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1d4573fc-407a-13c2-b049-e7a060d7929b@sifive.com>
+In-Reply-To: <73a82790-52c4-b777-b4ff-f8d361f0bd29@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,98 +86,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2022 12:32, Ben Dooks wrote:
-> On 26/07/2022 12:05, Krzysztof Kozlowski wrote:
->> On 26/07/2022 12:12, Ben Dooks wrote:
->>> On 26/07/2022 11:05, Krzysztof Kozlowski wrote:
->>>> On 25/07/2022 23:21, Ben Dooks wrote:
->>>>> Add documentation for the bindings for Synopsys' DesignWare PWM block
->>>>> as we will be adding DT/platform support to the Linux driver soon.
->>>>>
->>>>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
->>>>> --
->>>>
->>>> This is not proper delimiter and causes the changelog to end up in commit.
->>>>
->>>> Correct also wrong formatting of subject PATCH.
+On 27/07/2022 12:32, Iskren Chernev wrote:
+> 
+>>> ---
+>>>  .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml | 4 ++++
+>>>  1 file changed, 4 insertions(+)
 >>>
->>> I realised that once sent and forgot the cover letter.
->>> Maybe I'll try some more post covid recovery.
+>>> diff --git a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
+>>> index c233461cc980..1122a3a17f56 100644
+>>> --- a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
+>>> +++ b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
+>>> @@ -57,6 +57,9 @@ description:
 >>>
->>>>> v2:
->>>>> - fix #pwm-cells to be 3
->>>>> - fix indentation and ordering issues
->>>>> ---
->>>>>    .../devicetree/bindings/pwm/snps,pwm.yaml     | 40 +++++++++++++++++++
->>>>>    1 file changed, 40 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/pwm/snps,pwm.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..594085e5e26f
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
->>>>> @@ -0,0 +1,40 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +# Copyright (C) 2022 SiFive, Inc.
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/pwm/snps,pwm.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Synopsys PWM controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Ben Dooks <ben.dooks@sifive.com>
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: pwm.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: snps,pwm
->>>>
->>>> This is very generic compatible. I doubt that you cover here all
->>>> Synopsys PWM designs, past and future. You need a specific compatible.
+>>>    For pm660l s1, s2, s3, s5, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, bob
 >>>
->>>   From what I can get from the documentation (2.13a) there hasn't been
->>> a huge external interface change and what has been added is all part
->>> of synthesis time options.
+>>> +  For pm6125 s1, s2, s3, s4, s5, s6, s7, s8, l1, l2, l3, l5, l6, l7, l8, l9,
+>>> +  l10, l22, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24
+>>> +
+>>>    For pma8084, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, l1, l2, l3,
+>>>    l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19,
+>>>    l20, l21, l22, l23, l24, l25, l26, l27, lvs1, lvs2, lvs3, lvs4, 5vs1
+>>> @@ -90,6 +93,7 @@ properties:
+>>>        - qcom,rpm-pm8998-regulators
+>>>        - qcom,rpm-pm660-regulators
+>>>        - qcom,rpm-pm660l-regulators
+>>> +      - qcom,rpm-pm6125-regulators
 >>
->> But you have some specific version, right? Usually these blocks are
->> versioned, so you must include it. I would even argue that such generic
->> compatible should not be used as fallback at all, because it is simply
->> to generic (PWM is not some model name but common acronym),
+>> Put new entry in alphabetical order.
 > 
-> I suppose dw-apb-timers is the actual document name, but that's already
-> been used for the timer mode in a number of SoCs so probably isn't going
-> to be useful. dw-apb-timers-pwm might be a better prefix if snps,pwm is
-> not going to be acceptable. (Yes, the block can be built as either a
-> PWM or a generic interrupt generating timer at IP generation time)
-> 
-> As for the version numbers, we could have the -v.vv suffix for these
-> blocks, but the v2.xx log has 22 entries already and only one feature
-> for programming (which is also a configurable one so can't be just
-> enabled by default - it's the 0/100 mode flag in the control registers).
-> 
-> I'm not sure what the v1.xx timers had, but I don't have access to this
-> information and we're getting these documents as second-generation so I
-> am not sure if we can get a v1.xx at-all (I suspect this is also going
-> to have a number of revisions and about 1 useful register api change
-> which would be the "new mode" double counter method which we currently
-> rely on having being implicitly enabled by the IP builder (again this
-> feature is still something that can be configured on IP genaration))
+> Will sort first (they are currently not sorted), 
 
-But why would you need v1.xx documentation?
+Arh, indeed, they are not sorted.
 
-> 
-> Given the configurability of the core, the version numbers might be
-> usable at some point, but it does seem to be a lot of churn for what
-> currently can be described by one boolean for the 0/100 feature that
-> might-be available. Is there a way of saying the compatible string
-> can be dw-apb-timers-pwm-2.[0-9][0-9][a-z] ?
+> then add pm6125. Should I also
+> sort the driver code?
 
-I don't understand why. Aren't you documenting here only v2.13a version?
+You can, but don't have to.
 
 Best regards,
 Krzysztof
