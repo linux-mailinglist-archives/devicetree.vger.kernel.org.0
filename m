@@ -2,159 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5897158278E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 15:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A7C258279C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 15:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232814AbiG0NW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 09:22:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60544 "EHLO
+        id S232853AbiG0NYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 09:24:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232804AbiG0NW6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 09:22:58 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C4862D1FB;
-        Wed, 27 Jul 2022 06:22:57 -0700 (PDT)
-Received: from [192.168.1.111] (91-158-154-79.elisa-laajakaista.fi [91.158.154.79])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 27C74835;
-        Wed, 27 Jul 2022 15:22:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1658928174;
-        bh=eotjNVMAx8QGW06uc3w0MIvKkRtcfjCQLq3gxWF/uIQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Q+e5gl73+JqpP0dYQ4eSjNqjCNe4M4TG2Sjx+O2xlDudTYz/i3tKWrWLtynEldDgO
-         Nwmzb60YTLItlupERg3e/OWkyQwRdzR6t4IoGoK4uI22nQijb75Fof+RwTIL873C7/
-         vlfPQQ8tLDGP1OtT+jfY2n9LJ2C5yvIEYQQF1rVs=
-Message-ID: <83df99ee-1304-121f-97e6-85ca416aef1f@ideasonboard.com>
-Date:   Wed, 27 Jul 2022 16:22:50 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 8/8] drm/tidss: Enable Dual and Duplicate Modes for OLDI
-Content-Language: en-US
-To:     Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+        with ESMTP id S232909AbiG0NYr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 09:24:47 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AAD9631DE0;
+        Wed, 27 Jul 2022 06:24:45 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DF8F315BF;
+        Wed, 27 Jul 2022 06:24:45 -0700 (PDT)
+Received: from bogus (unknown [10.57.11.51])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 969513F73B;
+        Wed, 27 Jul 2022 06:24:41 -0700 (PDT)
+Date:   Wed, 27 Jul 2022 14:24:37 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Maximilian Luz <luzmaximilian@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Darren Etheridge <detheridge@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Krunal Bhargav <k-bhargav@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>
-References: <20220719080845.22122-1-a-bhatia1@ti.com>
- <20220719080845.22122-9-a-bhatia1@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20220719080845.22122-9-a-bhatia1@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
+ Application client
+Message-ID: <20220727132437.pjob3z2nyxsuxgam@bogus>
+References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+ <20220723224949.1089973-5-luzmaximilian@gmail.com>
+ <20220726143005.wt4be7yo7sbd3xut@bogus>
+ <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
+ <20220726154138.74avqs6iqlzqpzjk@bogus>
+ <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
+ <7284953b-52bb-37ac-fbe1-1fa845c44ff9@linaro.org>
+ <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Jul 27, 2022 at 03:03:49PM +0200, Maximilian Luz wrote:
+>
+> Is there really a good way around it?
 
-On 19/07/2022 11:08, Aradhya Bhatia wrote:
-> The AM625 DSS peripheral supports 2 OLDI TXes which can work to enable 2
-> duplicated displays of smaller resolutions or enable a single Dual-Link
-> display with a higher resolution (1920x1200).
-> 
-> Configure the necessary register to enable the different modes.
-> 
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-> ---
->   drivers/gpu/drm/tidss/tidss_dispc.c | 44 +++++++++++++++++++++++++++--
->   1 file changed, 41 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-> index 0b9689453ee8..28cb61259471 100644
-> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
-> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-> @@ -1021,8 +1021,8 @@ static void dispc_enable_oldi(struct dispc_device *dispc, u32 hw_videoport,
->   	int count = 0;
->   
->   	/*
-> -	 * For the moment DUALMODESYNC, MASTERSLAVE, MODE, and SRC
-> -	 * bits of DISPC_VP_DSS_OLDI_CFG are set statically to 0.
-> +	 * For the moment MASTERSLAVE, and SRC bits of DISPC_VP_DSS_OLDI_CFG are
-> +	 * set statically to 0.
->   	 */
->   
->   	if (fmt->data_width == 24)
-> @@ -1039,7 +1039,45 @@ static void dispc_enable_oldi(struct dispc_device *dispc, u32 hw_videoport,
->   
->   	oldi_cfg |= BIT(0); /* ENABLE */
->   
-> -	dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
-> +	/*
-> +	 * As per all the current implementations of DSS, the OLDI TXes are present only on
-> +	 * hw_videoport = 0 (OLDI TX 0). However, the config register for 2nd OLDI TX (OLDI TX 1)
-> +	 * is present in the address space of hw_videoport = 1. Hence, using "hw_videoport + 1" to
-> +	 * configure OLDI TX 1.
-> +	 */
-> +
-> +	switch (dispc->oldi_mode) {
-> +	case OLDI_MODE_OFF:
-> +		oldi_cfg &= ~BIT(0); /* DISABLE */
-> +		dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
-> +		dispc_vp_write(dispc, hw_videoport + 1, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
-> +		break;
-> +
-> +	case OLDI_SINGLE_LINK_SINGLE_MODE_0:
-> +		dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
-> +		break;
-> +
-> +	case OLDI_SINGLE_LINK_SINGLE_MODE_1:
-> +		dispc_vp_write(dispc, hw_videoport + 1, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
-> +		break;
-> +
-> +	case OLDI_SINGLE_LINK_DUPLICATE_MODE:
-> +		oldi_cfg |= BIT(5); /* DUPLICATE MODE */
-> +		dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
-> +		dispc_vp_write(dispc, hw_videoport + 1, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
-> +		break;
-> +
-> +	case OLDI_DUAL_LINK:
-> +		oldi_cfg |= BIT(11); /* DUALMODESYNC */
-> +		dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
-> +		dispc_vp_write(dispc, hw_videoport + 1, DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
-> +		break;
-> +
-> +	default:
-> +		dev_warn(dispc->dev, "%s: Incorrect oldi mode. Returning.\n",
-> +			 __func__);
-> +		return;
-> +	}
->   
->   	while (!(oldi_reset_bit & dispc_read(dispc, DSS_SYSSTATUS)) &&
->   	       count < 10000)
+Yes rely on the firmware preferably auto discover, if that is not an option,
+how about query. It seem to be working in your case.
 
-This feels a bit hacky:
+> As far as I can see the alternative (especially for the apps that
+> need to be loaded manually) is hard-coding everything in the driver.
+> Which IMHO just spreads device specific information everywhere.
+>
 
-- The function is dispc_enable_oldi, but the above code also disables 
-oldi. We have code in dispc_vp_unprepare() which disables OLDI at the 
-moment.
+It may not be too bad compared to putting loads of firmware details
+in the DT. What happens if you get a firmware upgrade with changed
+number of firmware entities or even if the names are changed.
 
-- The function takes hw_videoport as a parameter, and is designed to 
-work on that videoport. The above operates on two videoports. Isn't the 
-function also called for hw_videoport +1, which would result in reg 
-writes to hw_videoport + 2?
+Are these name user ABI in a way that they won't be changed ? Generally
+these entities tend to use UUID and the name you have might get changed.
 
-- No matching code in dispc_vp_unprepare
+I would ideally prefer even the name to be supplied from the userspace.
+In this particular case, make this a driver and have the name as the
+parameter. If the secure side services are used by some non-secure
+applications, then you will need to have a user-interface which means
+you can get the named from the userspace. No need to change the driver
+in either case. Please let me know if I am missing anything to consider
+here.
 
-Obviously the duplicate mode (I presume that's "cloning") and the dual 
-link complicate things here, and I have to say I haven't worked with 
-such setups. But I think somehow this should be restructured so that 
-common configuration (common to the OLDIs) is done somewhere else.
+> Also: Let's use the TPM app as example. If that would be a SPI or I2C
+> device, you'd model it in the DT. Just because it's a hardware device
+> that's accessible via SCM/firmware you now don't?
+>
 
-I would guess that there are other drivers that support cloning and dual 
-mode. Did you have a look how they handle things?
+Not sure if I understand the comparison here. But if there is some device
+that is access restricted but needs to be accessed and has mechanism to
+access, then you would model it as device in DT.
 
-  Tomi
+But the one $subject is addressing looks pure software and doesn't make
+sense to model in DT IMO.
+
+> If I were absolutely certain that there is a reliable mechanism to
+> detect these apps, I'd agree with having a driver to instantiate those
+> devices. But I am not.
+>
+
+You did say you use some query API to check this. I haven't seen the driver,
+so relying on what you said earlier.
+
+--
+Regards,
+Sudeep
