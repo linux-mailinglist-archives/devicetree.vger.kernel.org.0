@@ -2,77 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC0EB5821E5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 10:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D54D75821ED
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 10:19:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230340AbiG0IR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 04:17:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38936 "EHLO
+        id S229643AbiG0ITu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 04:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbiG0IRY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 04:17:24 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6FF4504C;
-        Wed, 27 Jul 2022 01:17:23 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id CFF896601B1A;
-        Wed, 27 Jul 2022 09:17:20 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1658909841;
-        bh=fXIJ2hAtpli+W6S1Y8IGI1hYRxklmzSVaDFjnGNKiYE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=HVzr2P0a9UH6kJl2DYJR97d2HxdM8dsRiIvlj5Djxi0fRrCGxPd17mDSXLprr4cHl
-         rBXJ9ladoQn/B6hhQmy7p2JTKdishZmHQjtEvE6mTrrDqVtpoc30TgtBn9BizdDiep
-         LE4ZpOU6H56tOR7kLsvuY1HAZ1+PZFG+E9EBkHYuC8CzUj3fmJRg5m6lohXqQY02mt
-         HTNgagQi/NQtGs7W5GXhimenTLjfhE2uIi5ZDfbySn+L4iS0t8qAGHI1heOisUrEv0
-         YziUA4Ler8HgqLm4DKLxDRsmj5eb4ZAOE22WjiG2hR0907g4zsI/a3oqbzlIGFG4sf
-         EC+/wUhAP65Ow==
-Message-ID: <cad2ac1c-992b-960c-09c7-ba12baa58c93@collabora.com>
-Date:   Wed, 27 Jul 2022 10:17:18 +0200
+        with ESMTP id S229747AbiG0ITr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 04:19:47 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CECF243E70;
+        Wed, 27 Jul 2022 01:19:46 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-31f379a0754so64616997b3.2;
+        Wed, 27 Jul 2022 01:19:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZtxVw1pYdcDvsQm6N6G29PT1JL73CCGF7G8sUX9Kfs4=;
+        b=hdCF6Ux5sj/Ui9SA+QZZFWkaz5tpU9oPnqTZMgUl6hVM9GTYkAyiJgwUmQ7xJXqrVC
+         CGZbCqmB4ZibJocXFQycUeXVNgG1DFaAbWs/GzGX+MPkm+55MRRkil1MkC1NVT/1FA0k
+         5Zf8kb4Y+7E1Yx9UzwIILGRYSEFn0kSSkdVICU5GuYN/eNeIin9QlQnUl9GtcOcrxSPE
+         99bveCKYmLsicmzrX5ZkgdCDNAgI0MUmQ8RNirZ6nDSYQ5klEI5rE5YDtmgraxBULcs/
+         XxKpMGAaNf1VXcyVPXKR9eS8HKBWBnwbqvlxVUUPhE+msVyY7V6rWgcb+IHQesqz+H2B
+         7F8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZtxVw1pYdcDvsQm6N6G29PT1JL73CCGF7G8sUX9Kfs4=;
+        b=YCioRMA85b0kZ+Azg3MMOCE8sA+4qMPmwCll3F7kXpbhO2qxfpz8gnG6CgQMZskCKm
+         nDYyKqaKF2JHMUKW4iiih+75NFnhQw9bwJ29sDRAEOxTkHMNOn2XDw+yc1w9c6AcmXgE
+         IIXc2i9dFiwataYK6tMIf4ZM3oFf9KMddQZCOG9S8KcZ9CzqQR2MhQQFT2pamlv7k0CT
+         YrrLw6sgwTDWuwyKWUah0PPcRkVWHUUPuQxGAl6BLjekUM2iryjS/2gqtBBNydKBjrec
+         RBlJvpddHTQhjeTtp1QiqlZ/3DsKL1Td879lP7J9mhzsWMd9eoxDt9HFZgG1MZ9F0rQs
+         VUCQ==
+X-Gm-Message-State: AJIora9eNj8wIJ2P6rc8JYy9H49m1X1wIn+2VLfiexP5urxFGY1yKx1r
+        j/Wu9WBOWZbXVcBoCt13QXNyLaOfhkkVTx5OYcI=
+X-Google-Smtp-Source: AGRyM1secQcLWHxnDAk0KB/hY+50q7KhRWosdCbuNLjT5ScRK3t60youklhj3RRe3N6FfG9loM0EXWhiCzu80vbJ9/Y=
+X-Received: by 2002:a0d:f0c7:0:b0:31e:e814:e7d6 with SMTP id
+ z190-20020a0df0c7000000b0031ee814e7d6mr14519304ywe.340.1658909986075; Wed, 27
+ Jul 2022 01:19:46 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v8 1/6] thermal: mediatek: Relocate driver to mediatek
- folder
-Content-Language: en-US
-To:     Balsam CHIHI <bchihi@baylibre.com>, rafael@kernel.org,
-        rui.zhang@intel.com, daniel.lezcano@linaro.org, amitk@kernel.org
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-References: <20220726135506.485108-1-bchihi@baylibre.com>
- <20220726135506.485108-2-bchihi@baylibre.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220726135506.485108-2-bchihi@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220726180623.1668-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <08083c49-68a3-6b0d-4a12-d9c9f7994281@microchip.com>
+In-Reply-To: <08083c49-68a3-6b0d-4a12-d9c9f7994281@microchip.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 27 Jul 2022 09:19:18 +0100
+Message-ID: <CA+V-a8vx0XLVsZxr-HcQZVqWjQ3tW9ZgbOU0GTKtEf=VcDWRqg@mail.gmail.com>
+Subject: Re: [PATCH 5/6] RISC-V: Kconfig.socs: Add Renesas RZ/Five SoC kconfig option
+To:     Conor.Dooley@microchip.com
+Cc:     "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>, aou@eecs.berkeley.edu,
+        anup@brainfault.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 26/07/22 15:55, Balsam CHIHI ha scritto:
-> Add Mediatek proprietary folder to upstream more thermal zone and cooler
-> drivers. Relocate the original thermal controller driver to it and rename
-> as soc_temp.c to show its purpose more clearly.
-> 
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+Hi Conor,
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Thank you for the review.
 
+On Tue, Jul 26, 2022 at 7:49 PM <Conor.Dooley@microchip.com> wrote:
+>
+> On 26/07/2022 19:06, Lad Prabhakar wrote:
+> > Introduce SOC_RENESAS_RZFIVE config option to enable Renesas RZ/Five
+> > (R9A07G043) SoC, along side also add ARCH_RENESAS config option as most
+> > of the Renesas drivers depend on this config option.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  arch/riscv/Kconfig.socs | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> >
+> > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> > index 69774bb362d6..91b7f38b77a8 100644
+> > --- a/arch/riscv/Kconfig.socs
+> > +++ b/arch/riscv/Kconfig.socs
+> > @@ -80,4 +80,18 @@ config SOC_CANAAN_K210_DTB_SOURCE
+> >
+> >  endif # SOC_CANAAN
+> >
+> > +config ARCH_RENESAS
+>
+> Hmm, I guess since it is very late in the day for v5.20 and there
+> appear to be some issues with the SOC_ symbol breaking the dts build
+> anyway, this is likely to be v5.21 content anyway...
+>
+I was targeting this for v5.21 ;)
+
+> ...but I would be wary of adding ARCH_ symbols from ARM archs prior
+> to figuring out what we actually want symbols in Kconfig.socs to
+> actually  at LPC or w/e. Palmer?
+>
+> > +     bool
+> > +     select GPIOLIB
+> > +     select PINCTRL
+> > +     select SOC_BUS
+> > +
+> > +config SOC_RENESAS_RZFIVE
+>
+> I would like to see this added to the default defconfig so that
+> it has dtbs_check coverage by default.
+>
+Agreed, I will include it in the next version.
+
+Cheers,
+Prabhakar
