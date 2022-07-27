@@ -2,285 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8197E581FC8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 08:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1754581FF8
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 08:13:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229996AbiG0GG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 02:06:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56750 "EHLO
+        id S229659AbiG0GN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 02:13:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230021AbiG0GGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 02:06:24 -0400
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 046C83FA07
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 23:06:20 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220727060614epoutp01ca57be8e31293325f5312f48b5b920ed~Fmo5_1ipz2433724337epoutp01Y
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 06:06:14 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220727060614epoutp01ca57be8e31293325f5312f48b5b920ed~Fmo5_1ipz2433724337epoutp01Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1658901974;
-        bh=VpgiU84Alg6FF/0XqaIW6Ma6QeMypoi9sMCM0SO9kcA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=cj1kpxmP8MUp1HUtslYW6iDvlshBb7W+4Y1XOkbDRvx29coV52w2eawU3gzTFdxOT
-         EhdRq/D2iSsEyu7efebuuAxbTq0lsovNTR+1DviuGII4twlbf3OYVPiG+Aa3omExgP
-         sfbt1EeE2dF/gVrdwBFNYWmTLckQ/IW3K18NK1OM=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220727060613epcas2p45d37ade659385b0a93b6c86310ff9227~Fmo5UUe-Q2914429144epcas2p44;
-        Wed, 27 Jul 2022 06:06:13 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.36.101]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 4Lt3F13kHlz4x9Pv; Wed, 27 Jul
-        2022 06:06:13 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        56.6E.09662.5D5D0E26; Wed, 27 Jul 2022 15:06:13 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-        20220727060612epcas2p47e21a2545b686d536de47518f7b5c199~Fmo4dScQF2914429144epcas2p4u;
-        Wed, 27 Jul 2022 06:06:12 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220727060612epsmtrp1decf6a8fee91f10c28d5730fa6313bc0~Fmo4ZORe50521005210epsmtrp1s;
-        Wed, 27 Jul 2022 06:06:12 +0000 (GMT)
-X-AuditID: b6c32a48-9f7ff700000025be-50-62e0d5d51367
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        41.EB.08905.4D5D0E26; Wed, 27 Jul 2022 15:06:12 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.51]) by
-        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20220727060612epsmtip13635d045e510301425adf80aae590188~Fmo4N7sJm2961429614epsmtip1G;
-        Wed, 27 Jul 2022 06:06:12 +0000 (GMT)
-From:   Chanho Park <chanho61.park@samsung.com>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S229603AbiG0GN0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 02:13:26 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 913F6193DB;
+        Tue, 26 Jul 2022 23:13:19 -0700 (PDT)
+X-UUID: 9392c277dc73408ea32ddb7487b0852b-20220727
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:e2cde25a-183f-4d70-9d53-a85a3af46673,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:0
+X-CID-META: VersionHash:0f94e32,CLOUDID:6507fe15-4d40-4085-b6be-c498a879f53d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 9392c277dc73408ea32ddb7487b0852b-20220727
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <mingjia.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1725333025; Wed, 27 Jul 2022 14:13:15 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Wed, 27 Jul 2022 14:13:13 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 27 Jul 2022 14:13:12 +0800
+From:   Mingjia Zhang <mingjia.zhang@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        "Hans Verkuil" <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH 6/6] clk: samsung: exynosautov9: add fsys1 clock support
-Date:   Wed, 27 Jul 2022 15:01:46 +0900
-Message-Id: <20220727060146.9228-7-chanho61.park@samsung.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220727060146.9228-1-chanho61.park@samsung.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        "Steve Cho" <stevecho@chromium.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH, v2] media: mediatek: vcodec: Add to support VP9 inner racing mode
+Date:   Wed, 27 Jul 2022 14:13:10 +0800
+Message-ID: <20220727061310.2307-1-mingjia.zhang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrNJsWRmVeSWpSXmKPExsWy7bCmqe7Vqw+SDLb/EbF4MG8bm8Xl/doW
-        1788Z7WYf+Qcq0Xfi4fMFntfb2W32PT4GqvFx557rBYzzu9jsrh4ytWide8RdovDb9pZLf5d
-        28hi8bwPKL5q1x9GB36P9zda2T12zrrL7rFpVSebx51re9g8Ni+p9+jbsorR4/MmuQD2qGyb
-        jNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sLcyWFvMTcVFslF58AXbfMHKCrlRTKEnNK
-        gUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkF5gV6xYm5xaV56Xp5qSVWhgYGRqZAhQnZGY82
-        ixYsN6u4snUdWwPjJ70uRk4OCQETiad35jF2MXJxCAnsYJRo2bQIyvnEKNH/YT0TSJWQwDdG
-        iSvLymE69hy/zwZRtJdR4tbU28wQzkegjgd3wDrYBHQltjx/BTZKROAxk8ThI21gLcwCbUwS
-        055tZAWpEhbwkOhbf4sdxGYRUJX4fu0ImM0rYCsxe+YyVoh98hLXb7Yxg9icAnYSO9bsZIKo
-        EZQ4OfMJC4jNDFTTvHU22BkSAis5JF6u+coC0ewicW73HEYIW1ji1fEt7BC2lMTL/jYou1hi
-        6axPTBDNDYwSl7f9YoNIGEvMetYO1MwBtEFTYv0ufRBTQkBZ4sgtqL18Eh2H/7JDhHklOtqE
-        IBrVJQ5snw51gaxE95zPrBAlHhJPrxRBAmsio8Tq0y/ZJjAqzELyzSwk38xC2LuAkXkVo1hq
-        QXFuemqxUYEJPIaT83M3MYJTsZbHDsbZbz/oHWJk4mA8xCjBwawkwpsQfT9JiDclsbIqtSg/
-        vqg0J7X4EKMpMKwnMkuJJucDs0FeSbyhiaWBiZmZobmRqYG5kjivV8qGRCGB9MSS1OzU1ILU
-        Ipg+Jg5OqQamqj81x4+ZNWyPuRWrf3xumbFszI1qv0XBTfsC9n15pRFzxZhn0VrlkyoOzx+z
-        +RdGrlHiN5Zc8ENy+Z/f+80KTxm05ISpL265Ue507RXT/+Wyn0vu3xbgtGmqipnVlHj6TdNL
-        bvm7sxsXCpWv9ds4R7Ke9cVi7qKQyinpNktdkpcnli/Z8qZC7LvDmbTA/xP+Ft2Le+mzJGFx
-        WnFXksBjr191bPY/omWf7jo7xffcCvNnP1dmnz5QuueBW6h2Uoa5wtblnqLXixqE35v+X/fi
-        ttuXq89cyuaIxUc+sV46rbVBVHbdp9X7GJIv3z2uqq5bdjlXoVpXXsqrkFk/w7rx4Ou1p+7P
-        ml8dkjFlbUCjEktxRqKhFnNRcSIAVCt2/E4EAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOLMWRmVeSWpSXmKPExsWy7bCSnO6Vqw+SDB5uNLB4MG8bm8Xl/doW
-        1788Z7WYf+Qcq0Xfi4fMFntfb2W32PT4GqvFx557rBYzzu9jsrh4ytWide8RdovDb9pZLf5d
-        28hi8bwPKL5q1x9GB36P9zda2T12zrrL7rFpVSebx51re9g8Ni+p9+jbsorR4/MmuQD2KC6b
-        lNSczLLUIn27BK6MR5tFC5abVVzZuo6tgfGTXhcjJ4eEgInEnuP32boYuTiEBHYzSjxsnskG
-        kZCVePZuBzuELSxxv+UIK0TRe0aJGYuvMoEk2AR0JbY8f8UIkhAReM4kMWXFQTCHWaCLSeJO
-        2yewdmEBD4m+9bfAbBYBVYnv146A2bwCthKzZy5jhVghL3H9ZhsziM0pYCexY81OsA1CQDUz
-        XzWxQNQLSpyc+QTMZgaqb946m3kCo8AsJKlZSFILGJlWMUqmFhTnpucWGxYY5qWW6xUn5haX
-        5qXrJefnbmIEx42W5g7G7as+6B1iZOJgPMQowcGsJMKbEH0/SYg3JbGyKrUoP76oNCe1+BCj
-        NAeLkjjvha6T8UIC6YklqdmpqQWpRTBZJg5OqQam0qXCS2unyvcl8Pvv91TYFHas8HXeUueF
-        XBPLfBe+1ZUrDrhpXXZvruOHBL3k+AY9pveMn0tmvk3p9U16uJ5rwf4JTNzbrYXzDrrlye3M
-        Vs38HHVBo7Zxxnkx0TmpjbMeivkW2Vo911qUqCaY3fii+cMacwGPf29jGhSKu9LrtGaYPQm6
-        6Dtv1rHTbolz+Q/d3fi5pTjxQo3Gd90YLfM9K6L+nHtmJjrx/wy9Y16CUp/P3kt8zlYal757
-        R8+MkoRfGy+IqNpcPVueXV1+7VzkV/38PTJpDqmFu9ZW21Xsc98gYnN4jjPfyXATpqrUPuYH
-        8f6+cY/uPTe5vtAq20p/WQ+HaI1S0vyJC1UvVyixFGckGmoxFxUnAgCi7u1zCgMAAA==
-X-CMS-MailID: 20220727060612epcas2p47e21a2545b686d536de47518f7b5c199
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220727060612epcas2p47e21a2545b686d536de47518f7b5c199
-References: <20220727060146.9228-1-chanho61.park@samsung.com>
-        <CGME20220727060612epcas2p47e21a2545b686d536de47518f7b5c199@epcas2p4.samsung.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CMU_FSYS1 provides clocks for USB(2 x USB3.1 Gen-1, 2 x USB 2.0) and
-mmc. For MMC clocks, PLL_MMC(PLL0831X type) is also supported as a PLL
-source clock provider.
+In order to reduce decoder latency, enable VP9 inner racing mode.
+Send lat trans buffer information to core when trigger lat to work,
+need not to wait until lat decode done.
 
-Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+Signed-off-by: mingjia zhang <mingjia.zhang@mediatek.com>
 ---
- drivers/clk/samsung/clk-exynosautov9.c | 129 +++++++++++++++++++++++++
- 1 file changed, 129 insertions(+)
+1. CTS/GTS test pass
+2. Fluster result: Ran 240/303 tests successfully
+---
+ .../vcodec/vdec/vdec_vp9_req_lat_if.c         | 64 ++++++++++++-------
+ 1 file changed, 40 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/clk/samsung/clk-exynosautov9.c b/drivers/clk/samsung/clk-exynosautov9.c
-index 527a6837661e..b61eec1244cc 100644
---- a/drivers/clk/samsung/clk-exynosautov9.c
-+++ b/drivers/clk/samsung/clk-exynosautov9.c
-@@ -1307,6 +1307,132 @@ static const struct samsung_cmu_info fsys0_cmu_info __initconst = {
- 	.clk_name		= "dout_clkcmu_fsys0_bus",
- };
+diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+index fb1c36a3592d..92b47f0fdf40 100644
+--- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
++++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp9_req_lat_if.c
+@@ -436,6 +436,7 @@ struct vdec_vp9_slice_ref {
+  * @frame_ctx:		4 frame context according to VP9 Spec
+  * @frame_ctx_helper:	4 frame context according to newest kernel spec
+  * @dirty:		state of each frame context
++ * @local_vsi:		local instance vsi information
+  * @init_vsi:		vsi used for initialized VP9 instance
+  * @vsi:		vsi used for decoding/flush ...
+  * @core_vsi:		vsi used for Core stage
+@@ -482,6 +483,8 @@ struct vdec_vp9_slice_instance {
+ 	struct v4l2_vp9_frame_context frame_ctx_helper;
+ 	unsigned char dirty[4];
  
-+/* ---- CMU_FSYS1 ---------------------------------------------------------- */
++	struct vdec_vp9_slice_vsi local_vsi;
 +
-+/* Register Offset definitions for CMU_FSYS1 (0x17040000) */
-+#define PLL_LOCKTIME_PLL_MMC			0x0000
-+#define PLL_CON0_PLL_MMC			0x0100
-+#define PLL_CON3_PLL_MMC			0x010c
-+#define PLL_CON0_MUX_CLKCMU_FSYS1_BUS_USER	0x0600
-+#define PLL_CON0_MUX_CLKCMU_FSYS1_MMC_CARD_USER	0x0610
-+#define PLL_CON0_MUX_CLKCMU_FSYS1_USBDRD_USER	0x0620
-+
-+#define CLK_CON_MUX_MUX_CLK_FSYS1_MMC_CARD	0x1000
-+#define CLK_CON_DIV_DIV_CLK_FSYS1_MMC_CARD	0x1800
-+
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_FSYS1_CMU_FSYS1_IPCLKPORT_PCLK	0x2018
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_MMC_CARD_IPCLKPORT_SDCLKIN	0x202c
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_MMC_CARD_IPCLKPORT_I_ACLK	0x2028
-+
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB20DRD_0_REF_CLK_40		0x204c
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB20DRD_1_REF_CLK_40		0x2058
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB30DRD_0_REF_CLK_40		0x2064
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB30DRD_1_REF_CLK_40		0x2070
-+
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB2_0_IPCLKPORT_ACLK	0x2074
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB2_1_IPCLKPORT_ACLK	0x2078
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB3_0_IPCLKPORT_ACLK	0x207c
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB3_1_IPCLKPORT_ACLK	0x2080
-+
-+static const unsigned long fsys1_clk_regs[] __initconst = {
-+	PLL_CON0_MUX_CLKCMU_FSYS1_BUS_USER,
-+};
-+
-+static const struct samsung_pll_clock fsys1_pll_clks[] __initconst = {
-+	PLL(pll_0831x, FOUT_MMC_PLL, "fout_mmc_pll", "oscclk",
-+	    PLL_LOCKTIME_PLL_MMC, PLL_CON3_PLL_MMC, NULL),
-+};
-+
-+/* List of parent clocks for Muxes in CMU_FSYS1 */
-+PNAME(mout_fsys1_bus_user_p) = { "oscclk", "dout_clkcmu_fsys1_bus" };
-+PNAME(mout_mmc_pll_p) = { "oscclk", "fout_mmc_pll" };
-+PNAME(mout_fsys1_mmc_card_user_p) = { "oscclk", "gout_clkcmu_fsys1_mmc_card" };
-+PNAME(mout_fsys1_usbdrd_user_p) = { "oscclk", "dout_clkcmu_fsys1_usbdrd" };
-+PNAME(mout_fsys1_mmc_card_p) = { "mout_fsys1_mmc_card_user", "mout_mmc_pll" };
-+
-+static const struct samsung_mux_clock fsys1_mux_clks[] __initconst = {
-+	MUX(CLK_MOUT_FSYS1_BUS_USER, "mout_fsys1_bus_user",
-+	    mout_fsys1_bus_user_p, PLL_CON0_MUX_CLKCMU_FSYS1_BUS_USER, 4, 1),
-+	MUX(CLK_MOUT_MMC_PLL, "mout_mmc_pll", mout_mmc_pll_p,
-+	    PLL_CON0_PLL_MMC, 4, 1),
-+	MUX(CLK_MOUT_FSYS1_MMC_CARD_USER, "mout_fsys1_mmc_card_user",
-+	    mout_fsys1_mmc_card_user_p, PLL_CON0_MUX_CLKCMU_FSYS1_MMC_CARD_USER,
-+	    4, 1),
-+	MUX(CLK_MOUT_FSYS1_USBDRD_USER, "mout_fsys1_usbdrd_user",
-+	    mout_fsys1_usbdrd_user_p, PLL_CON0_MUX_CLKCMU_FSYS1_USBDRD_USER,
-+	    4, 1),
-+	MUX(CLK_MOUT_FSYS1_MMC_CARD, "mout_fsys1_mmc_card",
-+	    mout_fsys1_mmc_card_p, CLK_CON_MUX_MUX_CLK_FSYS1_MMC_CARD,
-+	    0, 1),
-+};
-+
-+static const struct samsung_div_clock fsys1_div_clks[] __initconst = {
-+	DIV(CLK_DOUT_FSYS1_MMC_CARD, "dout_fsys1_mmc_card",
-+	    "mout_fsys1_mmc_card",
-+	    CLK_CON_DIV_DIV_CLK_FSYS1_MMC_CARD, 0, 9),
-+};
-+
-+static const struct samsung_gate_clock fsys1_gate_clks[] __initconst = {
-+	GATE(CLK_GOUT_FSYS1_PCLK, "gout_fsys1_pclk", "mout_fsys1_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_FSYS1_CMU_FSYS1_IPCLKPORT_PCLK,
-+	     21, CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_FSYS1_MMC_CARD_SDCLKIN, "gout_fsys1_mmc_card_sdclkin",
-+	     "dout_fsys1_mmc_card",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_MMC_CARD_IPCLKPORT_SDCLKIN,
-+	     21, CLK_SET_RATE_PARENT, 0),
-+	GATE(CLK_GOUT_FSYS1_MMC_CARD_ACLK, "gout_fsys1_mmc_card_aclk",
-+	     "dout_fsys1_mmc_card",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_MMC_CARD_IPCLKPORT_I_ACLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB20DRD_0_REFCLK, "gout_fsys1_usb20drd_0_refclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB20DRD_0_REF_CLK_40,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB20DRD_1_REFCLK, "gout_fsys1_usb20drd_1_refclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB20DRD_1_REF_CLK_40,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB30DRD_0_REFCLK, "gout_fsys1_usb30drd_0_refclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB30DRD_0_REF_CLK_40,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB30DRD_1_REFCLK, "gout_fsys1_usb30drd_1_refclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB30DRD_1_REF_CLK_40,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB20_0_ACLK, "gout_fsys1_usb20_0_aclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB2_0_IPCLKPORT_ACLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB20_1_ACLK, "gout_fsys1_usb20_1_aclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB2_1_IPCLKPORT_ACLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB30_0_ACLK, "gout_fsys1_usb30_0_aclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB3_0_IPCLKPORT_ACLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB30_1_ACLK, "gout_fsys1_usb30_1_aclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB3_1_IPCLKPORT_ACLK,
-+	     21, 0, 0),
-+};
-+
-+static const struct samsung_cmu_info fsys1_cmu_info __initconst = {
-+	.pll_clks		= fsys1_pll_clks,
-+	.nr_pll_clks		= ARRAY_SIZE(fsys1_pll_clks),
-+	.mux_clks		= fsys1_mux_clks,
-+	.nr_mux_clks		= ARRAY_SIZE(fsys1_mux_clks),
-+	.div_clks		= fsys1_div_clks,
-+	.nr_div_clks		= ARRAY_SIZE(fsys1_div_clks),
-+	.gate_clks		= fsys1_gate_clks,
-+	.nr_gate_clks		= ARRAY_SIZE(fsys1_gate_clks),
-+	.nr_clk_ids		= FSYS1_NR_CLK,
-+	.clk_regs		= fsys1_clk_regs,
-+	.nr_clk_regs		= ARRAY_SIZE(fsys1_clk_regs),
-+	.clk_name		= "dout_clkcmu_fsys1_bus",
-+};
-+
- /* ---- CMU_FSYS2 ---------------------------------------------------------- */
+ 	/* MicroP vsi */
+ 	union {
+ 		struct vdec_vp9_slice_init_vsi *init_vsi;
+@@ -1616,16 +1619,10 @@ static int vdec_vp9_slice_update_single(struct vdec_vp9_slice_instance *instance
+ }
  
- /* Register Offset definitions for CMU_FSYS2 (0x17c00000) */
-@@ -1944,6 +2070,9 @@ static const struct of_device_id exynosautov9_cmu_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynosautov9-cmu-fsys0",
- 		.data = &fsys0_cmu_info,
-+	}, {
-+		.compatible = "samsung,exynosautov9-cmu-fsys1",
-+		.data = &fsys1_cmu_info,
- 	}, {
- 		.compatible = "samsung,exynosautov9-cmu-fsys2",
- 		.data = &fsys2_cmu_info,
+ static int vdec_vp9_slice_update_lat(struct vdec_vp9_slice_instance *instance,
+-				     struct vdec_lat_buf *lat_buf,
+-				     struct vdec_vp9_slice_pfc *pfc)
++				     struct vdec_vp9_slice_vsi *vsi)
+ {
+-	struct vdec_vp9_slice_vsi *vsi;
+-
+-	vsi = &pfc->vsi;
+-	memcpy(&pfc->state[0], &vsi->state, sizeof(vsi->state));
+-
+ 	mtk_vcodec_debug(instance, "Frame %u LAT CRC 0x%08x %lx %lx\n",
+-			 pfc->seq, vsi->state.crc[0],
++			 (instance->seq - 1), vsi->state.crc[0],
+ 			 (unsigned long)vsi->trans.dma_addr,
+ 			 (unsigned long)vsi->trans.dma_addr_end);
+ 
+@@ -2090,6 +2087,13 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 		return ret;
+ 	}
+ 
++	if (IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability)) {
++		vdec_vp9_slice_vsi_from_remote(vsi, instance->vsi, 0);
++		memcpy(&instance->local_vsi, vsi, sizeof(*vsi));
++		vdec_msg_queue_qbuf(&ctx->dev->msg_queue_core_ctx, lat_buf);
++		vsi = &instance->local_vsi;
++	}
++
+ 	if (instance->irq) {
+ 		ret = mtk_vcodec_wait_for_done_ctx(ctx,	MTK_INST_IRQ_RECEIVED,
+ 						   WAIT_INTR_TIMEOUT_MS, MTK_VDEC_LAT0);
+@@ -2102,22 +2106,25 @@ static int vdec_vp9_slice_lat_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	}
+ 
+ 	vdec_vp9_slice_vsi_from_remote(vsi, instance->vsi, 0);
+-	ret = vdec_vp9_slice_update_lat(instance, lat_buf, pfc);
++	ret = vdec_vp9_slice_update_lat(instance, vsi);
+ 
+-	/* LAT trans full, no more UBE or decode timeout */
+-	if (ret) {
+-		mtk_vcodec_err(instance, "VP9 decode error: %d\n", ret);
+-		return ret;
+-	}
++	if (!IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability))
++		/* LAT trans full, no more UBE or decode timeout */
++		if (ret) {
++			mtk_vcodec_err(instance, "frame[%d] decode error: %d\n",
++				       ret, (instance->seq - 1));
++			return ret;
++		}
+ 
+-	mtk_vcodec_debug(instance, "lat dma addr: 0x%lx 0x%lx\n",
+-			 (unsigned long)pfc->vsi.trans.dma_addr,
+-			 (unsigned long)pfc->vsi.trans.dma_addr_end);
+ 
+-	vdec_msg_queue_update_ube_wptr(&ctx->msg_queue,
+-				       vsi->trans.dma_addr_end +
+-				       ctx->msg_queue.wdma_addr.dma_addr);
+-	vdec_msg_queue_qbuf(&ctx->dev->msg_queue_core_ctx, lat_buf);
++	vsi->trans.dma_addr_end += ctx->msg_queue.wdma_addr.dma_addr;
++	vdec_msg_queue_update_ube_wptr(&ctx->msg_queue, vsi->trans.dma_addr_end);
++	if (!IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability))
++		vdec_msg_queue_qbuf(&ctx->dev->msg_queue_core_ctx, lat_buf);
++
++	mtk_vcodec_debug(instance, "lat trans end addr(0x%lx), ube start addr(0x%lx)\n",
++			 (unsigned long)vsi->trans.dma_addr_end,
++			 (unsigned long)ctx->msg_queue.wdma_addr.dma_addr);
+ 
+ 	return 0;
+ }
+@@ -2193,10 +2200,14 @@ static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
+ 		goto err;
+ 	}
+ 
+-	pfc->vsi.trans.dma_addr_end += ctx->msg_queue.wdma_addr.dma_addr;
+ 	mtk_vcodec_debug(instance, "core dma_addr_end 0x%lx\n",
+ 			 (unsigned long)pfc->vsi.trans.dma_addr_end);
+-	vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
++
++	if (IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability))
++		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr);
++	else
++		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
++
+ 	ctx->dev->vdec_pdata->cap_to_disp(ctx, 0, lat_buf->src_buf_req);
+ 
+ 	return 0;
+@@ -2204,7 +2215,12 @@ static int vdec_vp9_slice_core_decode(struct vdec_lat_buf *lat_buf)
+ err:
+ 	if (ctx && pfc) {
+ 		/* always update read pointer */
+-		vdec_msg_queue_update_ube_rptr(&ctx->msg_queue, pfc->vsi.trans.dma_addr_end);
++		if (IS_VDEC_INNER_RACING(instance->ctx->dev->dec_capability))
++			vdec_msg_queue_update_ube_rptr(&ctx->msg_queue,
++						       pfc->vsi.trans.dma_addr);
++		else
++			vdec_msg_queue_update_ube_rptr(&ctx->msg_queue,
++						       pfc->vsi.trans.dma_addr_end);
+ 
+ 		if (fb)
+ 			ctx->dev->vdec_pdata->cap_to_disp(ctx, 1, lat_buf->src_buf_req);
 -- 
-2.37.1
+2.25.1
 
