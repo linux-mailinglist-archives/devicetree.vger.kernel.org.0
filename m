@@ -2,98 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AE3C582A33
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 18:03:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0556582A42
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 18:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233957AbiG0QD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 12:03:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34264 "EHLO
+        id S234655AbiG0QG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 12:06:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233421AbiG0QDX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 12:03:23 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14AE84A838;
-        Wed, 27 Jul 2022 09:03:23 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id f8so835524ils.13;
-        Wed, 27 Jul 2022 09:03:23 -0700 (PDT)
+        with ESMTP id S234612AbiG0QGx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 12:06:53 -0400
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B73952ED45
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:06:52 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-31f41584236so72217557b3.5
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:06:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6ewmeS4McgdnQEH35NlTf+WYZOW3FH17zRDpoEtE6dI=;
+        b=INtOTD/aD9pkxpId/nbuIfYIh2625Ql2cdm3PPE/6OV3MR+Wf16Bp5IKfLSjHDDdjS
+         W7lwSfyvr4fx7EfPX3hqXV1XLbcIMhTyo9YzIwh63CE0L71Xq9Obi4EnF+MQIy1X8AJt
+         Wg+uJYmmPqba3AXMWElBsWx5w+MQ+RS/loTWNnuza6cW8u1isDc7eBuHwdXTdLQ7bxLQ
+         oSpj0xrrJsCW4Pq4spqSnAhj9GsF0WpwBPW8y/ICNyaWKHRCpa157wFfGAr5fGaoA4sI
+         QIUcdKKRbvI4kPeVTPgHneG9ZJXqa0aJU7PVTwSy8IyTy/Lg3cMir7MB3t0/5VoDrZGs
+         sV4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wBsnIffBjiQs1dYf9x9tNvshsRG8mL+pqvf1EO0wYjk=;
-        b=fCzXo09KDuA1Jam4oVPaStv29i6W9oYEW3rVDkII+q8Pg/Rwp3UemoYRTdmdeHmAyx
-         SKvYQUxEhf8HbDQGMYCUIVyrpqR58mygd71w6F1eE7vfRbvwtoemEOci31DpW82mm4c3
-         LUGhpfJxiytIbRaCKy0cUXCVKsIzHsze+Tb9p6Pcw1YCW3Pox+Xu5wBFbdFMaeJ9VuLF
-         AAXMxEXusvCK/0SlxEb9igOqb3pjxAHdGDv9C9oUuNTqluLWA/I3V0TZ6e7XN78pEIuO
-         0LeLetqBCqPA0HY1tjcaANRfHpO1dHydnbAynzC9caoLuEgnPCIQ7skbI56qPo40JSsu
-         M25g==
-X-Gm-Message-State: AJIora94+kFUhcZiIYTC+Rb/Zui3h5VvUifmpp12zcVwp1T0m3PT4clp
-        GW+q9ZFQLHS8SghwOroEgw==
-X-Google-Smtp-Source: AGRyM1tPmy1PxfqCjQmXrwzib4b/M/R/vQyHbMQ1eoFA6LUMW4jtRIa+FKY7nd88pa4eRIcxLfaDhg==
-X-Received: by 2002:a05:6e02:1d1b:b0:2dc:dfac:6131 with SMTP id i27-20020a056e021d1b00b002dcdfac6131mr8892921ila.60.1658937802247;
-        Wed, 27 Jul 2022 09:03:22 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m4-20020a02a144000000b0033eff75fb32sm7921295jah.15.2022.07.27.09.03.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jul 2022 09:03:21 -0700 (PDT)
-Received: (nullmailer pid 2758902 invoked by uid 1000);
-        Wed, 27 Jul 2022 16:03:20 -0000
-Date:   Wed, 27 Jul 2022 10:03:20 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bob Moragues <moragues@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Bob Moragues <moragues@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: document zoglin board
-Message-ID: <20220727160320.GA2755147-robh@kernel.org>
-References: <20220726212354.1.I5b9006878bdabd6493b866b46dbd6149968d545b@changeid>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6ewmeS4McgdnQEH35NlTf+WYZOW3FH17zRDpoEtE6dI=;
+        b=N3PgBKLyIBgcJY2jhWmu5TfS84yfALa5uxdmto18fuNVoi3/ldhjVQUrcs1WkncsVN
+         JdnZlPX1cJYxexIKAJ8GF0WLQVz1IlqgVdD/7yrDR2c6vbBi0Tx0jeM9dy/ZRrJhQK7j
+         pehZh4AE9jkd2ZZXpJADNljl+UNspuDezNXjRh2jBd2m5mUwrCo67/KUDWU0FxjDKmSx
+         s3fd9/4tQisw2t9oj5lnzoZ9HIO15w1NgmsJ+P+SEjeJBRVbEpiuV9rHra5UY1o1DG84
+         nxb3m9QMiUPIm/DqF5lqrr3nqifV486qsy+zekObq9MoBHPqWs+F1zmqaBnCVWGZNVrX
+         n86A==
+X-Gm-Message-State: AJIora+CbvcsvkYDUQ4OsWqm2FAcp3rq5V/HXf552MW1V0ZaThwA2E0f
+        tjs5ClbhdhOwiNqbTlhVYx9kB2XgiPQPndQ7wwkd2MP/SbE=
+X-Google-Smtp-Source: AGRyM1vqCW78Cn3V5a5E1wbeBWAhNzfNn3hKWKs7sG2nMhfHyzih69XaNV0l1aSjh7XmJa8TaUVDgp3KjFrA2y3Jezs=
+X-Received: by 2002:a05:690c:72c:b0:31f:474d:ea43 with SMTP id
+ bt12-20020a05690c072c00b0031f474dea43mr8578158ywb.126.1658938011811; Wed, 27
+ Jul 2022 09:06:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220726212354.1.I5b9006878bdabd6493b866b46dbd6149968d545b@changeid>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20220302211100.65264-1-paul.kocialkowski@bootlin.com>
+ <20220302211100.65264-2-paul.kocialkowski@bootlin.com> <YiaTfsMDs7RGob2N@robh.at.kernel.org>
+ <CAGETcx9u9RO_5nSp+=qgwDGY=jL_Q1hAcj+RfVN=q-H_8iuT4w@mail.gmail.com> <20220727120631.iefzititedahdsdt@houat>
+In-Reply-To: <20220727120631.iefzititedahdsdt@houat>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 27 Jul 2022 09:06:15 -0700
+Message-ID: <CAGETcx_o=L+Ku9CPGbQW2wS15etvi+ofkKZ0K=C7imP4=JcXeQ@mail.gmail.com>
+Subject: Re: [PATCH RFC v3 1/8] of: Mark interconnects property supplier as optional
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 26, 2022 at 09:24:31PM -0700, Bob Moragues wrote:
-> Zoglin is a Hoglin Chromebook with SPI Flash reduced from 64MB to 8MB.
-> Zoglin is identical to Hoglin except for the SPI Flash.
-> The actual SPI Flash is dynamically probed at and not specified in DTS.
-> 
-> Signed-off-by: Bob Moragues <moragues@chromium.org>
-> 
-> Signed-off-by: Bob Moragues <moragues@google.com>
-> ---
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 581485392404..63091df3cbb3 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -475,6 +475,7 @@ properties:
->  
->        - description: Qualcomm Technologies, Inc. sc7280 CRD platform (newest rev)
->          items:
-> +          - const: google,zoglin
->            - const: google,hoglin
->            - const: qcom,sc7280
+On Wed, Jul 27, 2022 at 5:06 AM Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> Hi,
+>
+> On Mon, Mar 07, 2022 at 07:34:22PM -0800, Saravana Kannan wrote:
+> > On Mon, Mar 7, 2022 at 3:21 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > +Saravana
+> > >
+> > > On Wed, Mar 02, 2022 at 10:10:53PM +0100, Paul Kocialkowski wrote:
+> > > > In order to set their correct DMA address offset, some devices rely on
+> > > > the device-tree interconnects property which identifies an
+> > > > interconnect node that provides a dma-ranges property that can be used
+> > > > to set said offset.
+> > > >
+> > > > Since that logic is all handled by the generic openfirmware and driver
+> > > > code, the device-tree description could be enough to properly set
+> > > > the offset.
+> > > >
+> > > > However the interconnects property is currently not marked as
+> > > > optional, which implies that a driver for the corresponding node
+> > > > must be loaded as a requirement. When no such driver exists, this
+> > > > results in an endless EPROBE_DEFER which gets propagated to the
+> > > > calling driver. This ends up in the driver never loading.
+> > > >
+> > > > Marking the interconnects property as optional makes it possible
+> > > > to load the driver in that situation, since the EPROBE_DEFER return
+> > > > code will no longer be propagated to the driver.
+> > > >
+> > > > There might however be undesirable consequences with this change,
+> > > > which I do not fully grasp at this point.
+> >
+> > Temporary NACK till I get a bit more time to take a closer look. I
+> > really don't like the idea of making interconnects optional. IOMMUs
+> > and DMAs were exceptions. Also, we kinda discuss similar issues in
+> > LPC. We had some consensus on how to handle these and I noted them all
+> > down with a lot of details -- let me go take a look at those notes
+> > again and see if I can send a more generic patch.
+> >
+> > Paul,
+> >
+> > Can you point to the DTS (not DTSI) file that corresponds to this?
+> > Also, if it's a builtin kernel, I'd recommend setting
+> > deferred_probe_timeout=1 and that should take care of it too.
+>
+> For the record, I also encountered this today on next-20220726 with this
+> device:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/sun5i.dtsi#n775
+>
+> The driver won't probe without fw_devlink=off
 
-Is just "google,hoglin", "qcom,sc7280" no longer valid? If it is valid, 
-you need another entry.
+Really? I basically ended up doing what I mentioned in my original
+reply. next-20220726 should have my changes that'll make sure
+fw_devlink doesn't block any probe (it'll still try to create as many
+device links as possible) after 10s (default deferred probe timeout).
+Can you try to find more info on why it's not probing?
+<debugfs>/devices_deferred should give more details.
 
->  
-> -- 
-> 2.37.1.359.gd136c6c3e2-goog
-> 
-> 
+
+-Saravana
