@@ -2,92 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53910582389
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 11:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DD2158238D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 11:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229698AbiG0J5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 05:57:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36456 "EHLO
+        id S230035AbiG0J5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 05:57:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbiG0J5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 05:57:00 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34E121810
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:56:58 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id a13so19052992ljr.11
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:56:58 -0700 (PDT)
+        with ESMTP id S229594AbiG0J5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 05:57:45 -0400
+Received: from mail-qv1-xf32.google.com (mail-qv1-xf32.google.com [IPv6:2607:f8b0:4864:20::f32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A84275CF
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:57:43 -0700 (PDT)
+Received: by mail-qv1-xf32.google.com with SMTP id j11so12530597qvt.10
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:57:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mstta/jVJwaxO3E09VbmwkTZ1+8qHEfWiHpYr7kGHfI=;
-        b=blYsZCAlAty2/d/oErPlBtlm7q9vTpFiOkviiBxYv53SH4RasW/PIjnmvuYJCuXU8z
-         BEje8IetYQnMcjBW2RaKE/m9mouErRzMnje+xWvxTED/DZEwpjaX1+rTMpPu52Bi6DI/
-         Tn7OtlKgf5MKdqXsIxyVbcfaF+BJXrOEWOgg5WLIPrZ+79h2wZD5GVGwEQMrfWWBV4xI
-         kGwgAHlwIBEfNokJf7TtcCm5L8kdIqHUdST142Ub1j40ZzE/FNNF9yD5e+K1M/0/4Mvm
-         Yh/z0gTAQQ5sJjmXup75BBBZmy+Og8KP1bwDiQd5LRqBeVvXkATAMiVN3fhk7GVa9Pz4
-         6qhg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=53lHHtLgGKTt9V4FYXYOyjU1GmgFzy4P5pSpDKGgZ6w=;
+        b=PVMtec8RT8WrY/hI2fdU5fZRz3HpXcTT70BXeZeB8odu8Yvf0qJwiZc4mCd30YDiAl
+         d6b1slz+Dkak1vcvvfJjqELk4fdPT9stC5u9RVpzpkq8ttpN46qQuaDYDkP9i7WQ/ezT
+         +YUL0B2nKLf8rbu6VsMk1UzRGJi8HU0CnudmfjmdwJChwAlVjnTObOtwr9qzcTNE7a6w
+         S2inRaRGcQ2I2neYi7/Xa1a5AE81Hd8Q7Z/eBERxVTnNA5v/eyH6lzh+hs3rFbxFrejJ
+         grEV6esSyPqdL76DFdrfvWmLBoDrTlnKjOuxjBv5y/ETFMcIAh+vM+60l6EV9hUj/LQH
+         3/8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=mstta/jVJwaxO3E09VbmwkTZ1+8qHEfWiHpYr7kGHfI=;
-        b=FDMkRrqdlxZH//vidq1Yb5Qbo8NMBnyPoRUtQiCftWg7Vs2hSSocMX+6L1ftdMYZdd
-         l1jWOvuLk5b3tvOtqmiMcsqGFqjT3If+lye6pFFQkuNZoN/M26opTjOENY28RiFUcMUS
-         gzQ+yoRY9USQyfdVfVUhjg9V5NzP/inqEMp+CMyNICX/hHmR6BkgfhmqEFq4DaQPdEAa
-         Spwu3yqIf9osocXzTQzuh/mZAH59A1JPOyw6Zeq60CcIxcTX317CtcNbvI159ixmZv2p
-         VJ+flkZqPKiSe/NfZz0dIHcCuGNIWO2Q0wOhXXAv0hOzj47M/q9kE2EIj0cwo3PqdJZM
-         Io3w==
-X-Gm-Message-State: AJIora91ygu47jf6VhcfV/C52PrJjlMBrhQm43Bv74Ie81/naW0bzYIN
-        I3xRKApHo98n4+K6vOt740122A==
-X-Google-Smtp-Source: AGRyM1soIF6TnPo5Id52uti2xf6LM4cXMhalhqYZ1SGQ34qhPDPV0oFU+HfKVZXTzuNiYOR+MZTWqA==
-X-Received: by 2002:a05:651c:23a2:b0:25d:f590:886e with SMTP id bk34-20020a05651c23a200b0025df590886emr7619748ljb.521.1658915817152;
-        Wed, 27 Jul 2022 02:56:57 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id h11-20020a0565123c8b00b0048a7d33e0f0sm2361901lfv.261.2022.07.27.02.56.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 02:56:56 -0700 (PDT)
-Message-ID: <5d442d08-0991-9912-d5f7-cb2092c3c0f3@linaro.org>
-Date:   Wed, 27 Jul 2022 11:56:55 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=53lHHtLgGKTt9V4FYXYOyjU1GmgFzy4P5pSpDKGgZ6w=;
+        b=F6comzCWu0IYZPC3J0xDSKh45tHvw8otUfy3h8zRiJA66aKH/Luu2ATFvzQtYSwoTI
+         0PUTV8mohsiMRdbms0VHDvf435NqxLib2toL/vVcPxOgIzA+PbcEVqmNhsXSYLnRbsiK
+         1/55x69LqYiOmEAvOt3+Lfkq8v6ITr8XB/WNzjH64YxMu2Q5yRukwdmYL2DF0K7tbgpt
+         6u7SzFuW+d8aavkbV6c+5uozXBEoJwo9fMBssjoH49tcbpjLqxBS+3nq4dsrBPUJz+r5
+         I6p2WOSCoyak2RSrnrljBr3hUx26g4VEoO3QFf4Q8+SHv1y46ZtKGcL93I5Ue1MWzXms
+         tW0w==
+X-Gm-Message-State: AJIora+VMpc9WupaU2syw9t5vDYZ9sOr3dvhIh1Toutb0iBZHsIa0ox0
+        mjipBvNA+9l3Ccl5aWOagcjdL/K8q1F+Q4BIUi6Evw==
+X-Google-Smtp-Source: AGRyM1szWR/2xIGX9mO0iLSAnkKOAFNqVzTKIjPGDDheFKdTjA03iXww/q5rndlh945EGUuDO4gK7Gv3dmlfYLxh3Yc=
+X-Received: by 2002:a0c:8ecc:0:b0:473:2fa4:df7c with SMTP id
+ y12-20020a0c8ecc000000b004732fa4df7cmr18055616qvb.55.1658915862975; Wed, 27
+ Jul 2022 02:57:42 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: usb: Add binding for TI USB8041 hub
- controller
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+References: <20220706114407.1507412-1-dmitry.baryshkov@linaro.org> <CAK7LNAQPS+U1qq4K+7Rao9P7p94bMU3Y6g0+ALUd3t=ioZqSnw@mail.gmail.com>
+In-Reply-To: <CAK7LNAQPS+U1qq4K+7Rao9P7p94bMU3Y6g0+ALUd3t=ioZqSnw@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 27 Jul 2022 12:57:31 +0300
+Message-ID: <CAA8EJprdCftvie3UF9QpCWr9oQ5SQbqW8OPOHg0qigf9=RXU-w@mail.gmail.com>
+Subject: Re: [PATCH v2] kbuild: allow validating individual dtb files against schema
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220727093801.687361-1-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220727093801.687361-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, Tom Rini <trini@konsulko.com>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2022 11:37, Alexander Stein wrote:
-> The TI USB8041 is a USB 3.0 hub controller with 4 ports.
-> 
-> This initial version of the binding only describes USB related aspects
-> of the USB8041, it does not cover the option of connecting the controller
-> as an i2c slave.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+On Sat, 16 Jul 2022 at 12:38, Masahiro Yamada <masahiroy@kernel.org> wrote:
+>
+> On Wed, Jul 6, 2022 at 8:44 PM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > While it is possible to validate all generated dtb files against the
+> > schema, it typically results in huge pile of warnings. While working on
+> > a platform it is quite useful to validate just a single file against
+> > schema.
+> >
+> > Allow specifying CHECK_DTBS=1 on a make command line to enable
+> > validation while building dtb files. This reuses the infrastructure
+> > existing for `make dtbs_check`, making dtbs_check a shortcut for
+> > `make CHECK_DTBS=1 dt_binding_check dtbs`.
+> >
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Tom Rini <trini@konsulko.com>
+> > Cc: Masahiro Yamada <masahiroy@kernel.org>
+> > Cc: linux-kbuild@vger.kernel.org
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >
+> > Changes since v1:
+> > - Added dependency to rebuild schema if `make dtbs` was used.
+> >
+> > ---
+> >  Makefile | 20 +++++++++++++++-----
+> >  1 file changed, 15 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/Makefile b/Makefile
+> > index 9aa7de1ca58f..5a9858aa4934 100644
+> > --- a/Makefile
+> > +++ b/Makefile
+> > @@ -1464,14 +1464,18 @@ endif
+> >
+> >  ifneq ($(dtstree),)
+> >
+> > -%.dtb: include/config/kernel.release scripts_dtc
+> > +ifneq ($(CHECK_DTBS),)
+> > +DT_TMP_BINDING := dt_binding
+> > +endif
+> > +
+> > +%.dtb: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
+> >         $(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+> >
+> > -%.dtbo: include/config/kernel.release scripts_dtc
+> > +%.dtbo: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
+> >         $(Q)$(MAKE) $(build)=$(dtstree) $(dtstree)/$@
+> >
+> >  PHONY += dtbs dtbs_install dtbs_check
+> > -dtbs: include/config/kernel.release scripts_dtc
+> > +dtbs: include/config/kernel.release scripts_dtc $(DT_TMP_BINDING)
+> >         $(Q)$(MAKE) $(build)=$(dtstree)
+> >
+> >  ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
+> > @@ -1498,8 +1502,10 @@ ifneq ($(filter dt_binding_check, $(MAKECMDGOALS)),)
+> >  export CHECK_DT_BINDING=y
+> >  endif
+> >
+> > -PHONY += dt_binding_check
+> > -dt_binding_check: scripts_dtc
+> > +dt_binding_check: dt_binding
+> > +
+> > +PHONY += dt_binding
+> > +dt_binding: scripts_dtc
+> >         $(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
+> >
+> >  # ---------------------------------------------------------------------------
+> > @@ -1774,6 +1780,10 @@ help:
+> >         @echo  '                3: more obscure warnings, can most likely be ignored'
+> >         @echo  '                e: warnings are being treated as errors'
+> >         @echo  '                Multiple levels can be combined with W=12 or W=123'
+> > +       @$(if $(dtstree), \
+> > +               echo '  make CHECK_DTBS=1 [targets] Check all generated dtb files against schema'; \
+> > +               echo '         This can be applied both to "dtbs" and to individual "foo.dtb" targets' ; \
+> > +               )
+> >         @echo  ''
+> >         @echo  'Execute "make" or "make all" to build all targets marked with [*] '
+> >         @echo  'For further info see the ./README file'
+> > --
+> > 2.35.1
+> >
+>
+>
+> I think the idea seems OK to me, but we can make it simpler.
+>
+>
+> First, apply the following clean-up patch to reduce the code duplication.
+> https://lore.kernel.org/all/20220716093122.137494-1-masahiroy@kernel.org/T/#u
+>
+>
+> Then, apply the attached patch.diff
+>
+> Please try it.
 
+Please excuse me, it took me a bit to get back to the issue and test your patch.
+It works like a charm, feel free to add while posting it:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-
-Best regards,
-Krzysztof
+--
+With best wishes
+Dmitry
