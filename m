@@ -2,275 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9036581E18
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 05:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE11F581E4F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 05:36:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240320AbiG0DQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 23:16:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46812 "EHLO
+        id S231192AbiG0DgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 23:36:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240278AbiG0DQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 23:16:11 -0400
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56D443DBD7;
-        Tue, 26 Jul 2022 20:15:53 -0700 (PDT)
-Received: by mail-qv1-xf2a.google.com with SMTP id b11so7527462qvo.11;
-        Tue, 26 Jul 2022 20:15:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+bzNz23O5POP059NXGAFxBTvgq0VJPxoUFyJ+Zf+sF4=;
-        b=UDumRfitfDXkwxTCYroM9auAdxgh7zfPXcOozNvr7CHwzo3fFlRvTPLAzo9ts0lpE4
-         H5EvN8f8I2uANMvl+ZLCPB5wHb3i+7dJ1s2yoM0XURiqD/nvxP5WTnXnjBIb9nU1RYJw
-         3Cp2TNZkR5UmS5k6G7FOaaWeVcG6GxWYclTMiL6dyAMuuEpLyV5ReLUMgb3y8Ep4PxXS
-         vNGhe0gbIhnrqiU0ObxkSTn7g5aPTZVes3nEvcvOk1uV3Tf6p2UY80S1XyIEfrhQQX20
-         d4lEl7ge3IDUloHLOeS6oNk4Mf8txKZPGNcKWvE3jP97LK+rkC6dHN04uUaK/uEfEkTQ
-         rQeA==
+        with ESMTP id S229808AbiG0DgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 23:36:07 -0400
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2889EDEF9;
+        Tue, 26 Jul 2022 20:36:06 -0700 (PDT)
+Received: by mail-il1-f172.google.com with SMTP id p5so1093244ilg.9;
+        Tue, 26 Jul 2022 20:36:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+bzNz23O5POP059NXGAFxBTvgq0VJPxoUFyJ+Zf+sF4=;
-        b=GrDQiZlHMbkq3ptJOCavw/5J1/EITPfi2EN6yzIePXDYov33rTPbAGQF/lKW2Q5ARY
-         zKRszQbZ6Lc0FnzJlxtTlqf8rs/wUnOYCTvXt4W2bdOqx8/wRudKgaI86GYV421jO7pb
-         KHzeNIeapc11zusy2W34okPCP8jvPKEcIfG4gFWzU4aCR1R+6PSU3e9ArkatxVQAVUJp
-         oDnBfkerASlUfrv+7c66KplHp4g5YeAHm4IB5sjkOc6i1KuLPoOU+VUWPK/mArhH69lB
-         pcXabtWYc5xinVqGhk5SgYMlV47Ho9am2A1kvwbiGVoNrFcnq1T/yAooJayscNRG6HOz
-         d09Q==
-X-Gm-Message-State: AJIora8bI0I7gLQRIOKVcNWa5uf0AfOFmv/MZTJ5tAu6SF5Z37/gmoXq
-        5zyUxwI0YB6GQj4akx1wlag=
-X-Google-Smtp-Source: AGRyM1t+vUxgJN+mx4u+5T5G83vTtc2ZbeXbJ64OlRvHoSc//1wcJ8a+5wCTXGgNBsHDFR5t20Gc0g==
-X-Received: by 2002:ad4:5ecd:0:b0:474:71ae:da8d with SMTP id jm13-20020ad45ecd000000b0047471aeda8dmr2197372qvb.114.1658891752116;
-        Tue, 26 Jul 2022 20:15:52 -0700 (PDT)
-Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
-        by smtp.gmail.com with ESMTPSA id o21-20020a05620a2a1500b006b249cc505fsm13139981qkp.82.2022.07.26.20.15.42
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=dnK7WbRCdK4HBAuf4lsZCAqmt9UgwDBVwNpaccKaKvo=;
+        b=Bz+JYWQvtW8OvXdOQcmzkhrxay6Hd4yv2RFYJwCz3vxOBdVOdJ68CNwbwhL+AduvZW
+         fCU8DkCKby6+4dmZCTiOFnGMOZ0TfyunJrWvTGJC8w0x5WyKiVfJWrqy9ho84tCI6dEq
+         u14qRCLtpKYAmJwLoMW85AVmsY/lckZF96+BMprELCSudjRlyQw3gVZc8CvetGBsLIoB
+         gGp5W1u7xtXQz+shOIoKTXTBAw1Z9bvTiTGuYySWkV2mWy7Ie+6qTsrNElud9iMDgUab
+         Ab8MkyPOscwCMjikwrcoLKq5ijuJqXtYrdeOeFbicyQVhzw251vCJU17sQpLNMT/SOu+
+         sydw==
+X-Gm-Message-State: AJIora+jn4B+QhyBZIbXZKwA9M2OP7Nv9i7b9DfroAl20IP+jq16nt5+
+        v1ElPduB8PYNssYohsiuBQ==
+X-Google-Smtp-Source: AGRyM1vPpRVEUNUO4vaxRM4Cs/vOlGLG2Tz+Cv5RcXMqMX7kBrmifz+HCaRGiayZ4f4YJmOABxm/aQ==
+X-Received: by 2002:a05:6e02:11a3:b0:2dd:1a51:119c with SMTP id 3-20020a056e0211a300b002dd1a51119cmr7657899ilj.308.1658892965199;
+        Tue, 26 Jul 2022 20:36:05 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id y4-20020a056602178400b0067c05ad90d6sm8016707iox.19.2022.07.26.20.36.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 20:15:46 -0700 (PDT)
-From:   Jesse Taube <mr.bossman075@gmail.com>
-X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
-To:     linux-imx@nxp.com
-Cc:     robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, aisheng.dong@nxp.com, stefan@agner.ch,
-        linus.walleij@linaro.org, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-        linux@armlinux.org.uk, abel.vesa@nxp.com, dev@lynxeye.de,
-        marcel.ziswiler@toradex.com, tharvey@gateworks.com,
-        leoyang.li@nxp.com, sebastian.reichel@collabora.com,
-        cniedermaier@dh-electronics.com, Mr.Bossman075@gmail.com,
-        clin@suse.com, giulio.benetti@benettiengineering.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org
-Subject: [PATCH v5 07/12] clk: imx: Update pllv3 to support i.MXRT1170
-Date:   Tue, 26 Jul 2022 23:15:41 -0400
-Message-Id: <20220727031541.227335-1-Mr.Bossman075@gmail.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <202207270909.VypZ4wfI-lkp@intel.com>
-References: <202207270909.VypZ4wfI-lkp@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Tue, 26 Jul 2022 20:36:04 -0700 (PDT)
+Received: (nullmailer pid 1589324 invoked by uid 1000);
+        Wed, 27 Jul 2022 03:36:03 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Kevin Hilman <khilman@baylibre.com>,
+        Chris Healy <cphealy@gmail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-amlogic@lists.infradead.org,
+        Jerome Brunet <jbrunet@baylibre.com>
+In-Reply-To: <20220726230329.2844101-4-jiucheng.xu@amlogic.com>
+References: <20220726230329.2844101-1-jiucheng.xu@amlogic.com> <20220726230329.2844101-4-jiucheng.xu@amlogic.com>
+Subject: Re: [PATCH v2 4/4] dt-binding: perf: Add Amlogic DDR PMU
+Date:   Tue, 26 Jul 2022 21:36:03 -0600
+Message-Id: <1658892963.218595.1589323.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MXRT1170 has a pll that has the multiplier bits inverted and
-cannot be changed add IMX_PLLV3_GENERICV2.
+On Wed, 27 Jul 2022 07:03:29 +0800, Jiucheng Xu wrote:
+> Add binding documentation for the Amlogic G12 series DDR
+> performance monitor unit.
+> 
+> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> ---
+> Changes v1 -> v2:
+>   - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
+>   - Delete "model", "dmc_nr", "chann_nr" new properties
+>   - Fix compiling error
+> ---
+>  .../bindings/perf/amlogic,g12_ddr_pmu.yaml    | 45 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+> 
 
-The i.MXRT1170 also has the lock bit moved as well as the
-power bit inverted the power bit also is in different locations on each
-pll control register.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
----
-V1 -> V2:
- - Nothing done
-V2 -> V3:
- - Nothing done
-V3 -> V4:
- - Nothing done
-V4 -> V5:
- - Add __imx_clk_hw_pllv3 to change power bit
- - Add BM_PLL_POWER and imx_clk_hw_pllv3 to header
- - Remove imx_clk_hw_pll3_powerbit
----
- drivers/clk/imx/clk-pllv3.c | 57 +++++++++++++++++++++++++++++++++----
- drivers/clk/imx/clk.h       | 11 +++++--
- 2 files changed, 60 insertions(+), 8 deletions(-)
+yamllint warnings/errors:
 
-diff --git a/drivers/clk/imx/clk-pllv3.c b/drivers/clk/imx/clk-pllv3.c
-index eea32f87c60a..68b1498cafe1 100644
---- a/drivers/clk/imx/clk-pllv3.c
-+++ b/drivers/clk/imx/clk-pllv3.c
-@@ -21,8 +21,8 @@
- #define PLL_VF610_NUM_OFFSET	0x20
- #define PLL_VF610_DENOM_OFFSET	0x30
- 
--#define BM_PLL_POWER		(0x1 << 12)
- #define BM_PLL_LOCK		(0x1 << 31)
-+#define BM_PLL_LOCK_V2		(0x1 << 29)
- #define IMX7_ENET_PLL_POWER	(0x1 << 5)
- #define IMX7_DDR_PLL_POWER	(0x1 << 20)
- 
-@@ -34,6 +34,7 @@
-  * @base:	 base address of PLL registers
-  * @power_bit:	 pll power bit mask
-  * @powerup_set: set power_bit to power up the PLL
-+ * @lock_bit:	 pll lock bit mask
-  * @div_mask:	 mask of divider bits
-  * @div_shift:	 shift of divider bits
-  * @ref_clock:	reference clock rate
-@@ -48,6 +49,7 @@ struct clk_pllv3 {
- 	void __iomem	*base;
- 	u32		power_bit;
- 	bool		powerup_set;
-+	u32		lock_bit;
- 	u32		div_mask;
- 	u32		div_shift;
- 	unsigned long	ref_clock;
-@@ -65,7 +67,7 @@ static int clk_pllv3_wait_lock(struct clk_pllv3 *pll)
- 	if ((pll->powerup_set && !val) || (!pll->powerup_set && val))
- 		return 0;
- 
--	return readl_relaxed_poll_timeout(pll->base, val, val & BM_PLL_LOCK,
-+	return readl_relaxed_poll_timeout(pll->base, val, val & pll->lock_bit,
- 					  500, PLL_LOCK_TIMEOUT);
- }
- 
-@@ -101,7 +103,7 @@ static int clk_pllv3_is_prepared(struct clk_hw *hw)
- {
- 	struct clk_pllv3 *pll = to_clk_pllv3(hw);
- 
--	if (readl_relaxed(pll->base) & BM_PLL_LOCK)
-+	if (readl_relaxed(pll->base) & pll->lock_bit)
- 		return 1;
- 
- 	return 0;
-@@ -155,6 +157,39 @@ static const struct clk_ops clk_pllv3_ops = {
- 	.set_rate	= clk_pllv3_set_rate,
- };
- 
-+static int clk_pllv3_genericv2_set_rate(struct clk_hw *hw, unsigned long rate,
-+		unsigned long parent_rate)
-+{
-+	struct clk_pllv3 *pll = to_clk_pllv3(hw);
-+	u32 val, div;
-+
-+	div = (readl_relaxed(pll->base) >> pll->div_shift) & pll->div_mask;
-+	val = (div == 0) ? parent_rate * 22 : parent_rate * 20;
-+
-+	if (rate == val)
-+		return 0;
-+
-+	return -EINVAL;
-+}
-+
-+static unsigned long clk_pllv3_genericv2_recalc_rate(struct clk_hw *hw,
-+					   unsigned long parent_rate)
-+{
-+	struct clk_pllv3 *pll = to_clk_pllv3(hw);
-+	u32 div = (readl_relaxed(pll->base) >> pll->div_shift)  & pll->div_mask;
-+
-+	return (div == 0) ? parent_rate * 22 : parent_rate * 20;
-+}
-+
-+static const struct clk_ops clk_pllv3_genericv2_ops = {
-+	.prepare	= clk_pllv3_prepare,
-+	.unprepare	= clk_pllv3_unprepare,
-+	.is_prepared	= clk_pllv3_is_prepared,
-+	.recalc_rate	= clk_pllv3_genericv2_recalc_rate,
-+	.round_rate	= clk_pllv3_round_rate,
-+	.set_rate	= clk_pllv3_genericv2_set_rate,
-+};
-+
- static unsigned long clk_pllv3_sys_recalc_rate(struct clk_hw *hw,
- 					       unsigned long parent_rate)
- {
-@@ -407,9 +442,9 @@ static const struct clk_ops clk_pllv3_enet_ops = {
- 	.recalc_rate	= clk_pllv3_enet_recalc_rate,
- };
- 
--struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
-+struct clk_hw *__imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
- 			  const char *parent_name, void __iomem *base,
--			  u32 div_mask)
-+			  u32 div_mask, u8 pwr_bit)
- {
- 	struct clk_pllv3 *pll;
- 	const struct clk_ops *ops;
-@@ -421,11 +456,21 @@ struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
- 	if (!pll)
- 		return ERR_PTR(-ENOMEM);
- 
--	pll->power_bit = BM_PLL_POWER;
-+	pll->power_bit = pwr_bit;
-+	pll->lock_bit = BM_PLL_LOCK;
- 	pll->num_offset = PLL_NUM_OFFSET;
- 	pll->denom_offset = PLL_DENOM_OFFSET;
- 
- 	switch (type) {
-+	case IMX_PLLV3_GENERICV2:
-+		pll->lock_bit = BM_PLL_LOCK_V2;
-+		pll->powerup_set = true;
-+		ops = &clk_pllv3_genericv2_ops;
-+		break;
-+	case IMX_PLLV3_SYSV2:
-+		pll->lock_bit = BM_PLL_LOCK_V2;
-+		pll->powerup_set = true;
-+		fallthrough;
- 	case IMX_PLLV3_SYS:
- 		ops = &clk_pllv3_sys_ops;
- 		break;
-diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
-index 5061a06468df..2bf50c92fdfa 100644
---- a/drivers/clk/imx/clk.h
-+++ b/drivers/clk/imx/clk.h
-@@ -6,6 +6,8 @@
- #include <linux/spinlock.h>
- #include <linux/clk-provider.h>
- 
-+#define BM_PLL_POWER		BIT(12)
-+
- extern spinlock_t imx_ccm_lock;
- extern bool mcore_booted;
- 
-@@ -102,6 +104,9 @@ extern struct imx_fracn_gppll_clk imx_fracn_gppll;
- 	to_clk(clk_hw_register_gate2(dev, name, parent_name, flags, reg, bit_idx, \
- 				cgr_val, cgr_mask, clk_gate_flags, lock, share_count))
- 
-+#define imx_clk_hw_pllv3(type, name, parent_name, base, div_mask) \
-+	__imx_clk_hw_pllv3(type, name, parent_name, base, div_mask, 1)
-+
- #define imx_clk_pllv3(type, name, parent_name, base, div_mask) \
- 	to_clk(imx_clk_hw_pllv3(type, name, parent_name, base, div_mask))
- 
-@@ -242,6 +247,8 @@ struct clk_hw *imx_clk_hw_sscg_pll(const char *name,
- 
- enum imx_pllv3_type {
- 	IMX_PLLV3_GENERIC,
-+	IMX_PLLV3_GENERICV2,
-+	IMX_PLLV3_SYSV2,
- 	IMX_PLLV3_SYS,
- 	IMX_PLLV3_USB,
- 	IMX_PLLV3_USB_VF610,
-@@ -253,8 +260,8 @@ enum imx_pllv3_type {
- 	IMX_PLLV3_AV_IMX7,
- };
- 
--struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
--		const char *parent_name, void __iomem *base, u32 div_mask);
-+struct clk_hw *__imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
-+		const char *parent_name, void __iomem *base, u32 div_mask, u8 pwr_bit);
- 
- #define PLL_1416X_RATE(_rate, _m, _p, _s)		\
- 	{						\
--- 
-2.36.1
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/perf/amlogic,g12_ddr_pmu.yaml#
+Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.example.dts:21.26-29.11: Warning (unit_address_vs_reg): /example-0/ddr_pmu: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.example.dtb:0:0: /example-0/ddr_pmu: failed to match any schema with compatible: ['amlogic,g12a-ddr-pmu']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
