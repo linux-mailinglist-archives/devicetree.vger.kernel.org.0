@@ -2,98 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DE9D581ED1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 06:26:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6E26581F1E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 06:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbiG0E0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 00:26:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57254 "EHLO
+        id S240412AbiG0Euy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 00:50:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240342AbiG0EYn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 00:24:43 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D94E63B966
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 21:24:42 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id c6so11049855plc.5
-        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 21:24:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jNjfWMIST+9EQW65g4EOXNYBjzp8Q3oEU/cOaI9tlIQ=;
-        b=Y/1dTObZmop4N+owBJV/zHDB25DdNO92G20kEk8xB9l4NVrdIVYc+HGC7uSwyuw+j3
-         n35sZOkWdWJrLH0yIdHFU56llHkfh7vDa6+AyhdXSZp7u422brlNcAo7kM+x2KP1DOwy
-         TWNbwp6kseT7A+H9H8QBvjwcEYDydY0kzjbE8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jNjfWMIST+9EQW65g4EOXNYBjzp8Q3oEU/cOaI9tlIQ=;
-        b=RH7/eAhWnDEnx8k5PbgUXwK9T4nxoOSsBDUT4eEG6l97OnnftR5eDn/6hUdcWtHk32
-         xEFr91AX0MRSzzWHFqOEiuIAM/jqNz2l6h1vx0YLj8G2okVEXho5d7/JqDn9OwHlmgTO
-         HSRo/g+HSDse9dpJZ3lBoi+ipddsKFTPLDAe5cgOsHkuzOVqZLpWAkvtzbpe9dwhZDAN
-         goVh0Li91NchUmKE6FDTR3BPN+ES8qWkCsI7kQPWlqFjalHoU9II0T/FZ/4t2quKxITN
-         Csz8dNCDjfi80lAuz6MFMe4f2WB0WsCrq6UpLidalGQwsz5YyX9Loap/eO+ynB5v9vmT
-         wxIA==
-X-Gm-Message-State: AJIora/4M39razT5iIjuHVgfCK9nKIl8s71O9BMJ/lrkL4sp/7qziXwP
-        CsAVUJ9BcRf1MMVs3lXKnD4VeQ==
-X-Google-Smtp-Source: AGRyM1u8pW324tqb+Tq4hBfpdaUrNBPIRQ2cZIAw8cDLNPTypAl++bbEwxfk0PZmU6iPBVYq+6hqqg==
-X-Received: by 2002:a17:90a:cb8d:b0:1f2:156f:f9ca with SMTP id a13-20020a17090acb8d00b001f2156ff9camr2548464pju.72.1658895882316;
-        Tue, 26 Jul 2022 21:24:42 -0700 (PDT)
-Received: from moragues-cloud.c.googlers.com.com (252.157.168.34.bc.googleusercontent.com. [34.168.157.252])
-        by smtp.gmail.com with ESMTPSA id u5-20020a170902e5c500b0016d5a356b31sm8058538plf.116.2022.07.26.21.24.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Jul 2022 21:24:42 -0700 (PDT)
-From:   Bob Moragues <moragues@chromium.org>
-X-Google-Original-From: Bob Moragues <moragues@google.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Bob Moragues <moragues@google.com>,
-        Bob Moragues <moragues@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sc7280: Add support for zoglin
-Date:   Tue, 26 Jul 2022 21:24:32 -0700
-Message-Id: <20220726212354.2.I7d57fb9c4806a8b3fe3501c766b64f4987c271ef@changeid>
-X-Mailer: git-send-email 2.37.1.359.gd136c6c3e2-goog
-In-Reply-To: <20220726212354.1.I5b9006878bdabd6493b866b46dbd6149968d545b@changeid>
-References: <20220726212354.1.I5b9006878bdabd6493b866b46dbd6149968d545b@changeid>
+        with ESMTP id S240389AbiG0Eur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 00:50:47 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0BF318E13;
+        Tue, 26 Jul 2022 21:50:45 -0700 (PDT)
+X-UUID: b23a79603f974761b7caccc9fa03d83d-20220727
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:e8f8bb89-6236-4169-9d56-9ddc88c1b20d,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:0f94e32,CLOUDID:380ffc15-4d40-4085-b6be-c498a879f53d,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: b23a79603f974761b7caccc9fa03d83d-20220727
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 800680731; Wed, 27 Jul 2022 12:50:39 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Wed, 27 Jul 2022 12:50:38 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Wed, 27 Jul 2022 12:50:38 +0800
+From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
+        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Bo-Chen Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v15 00/11] drm/mediatek: Add MT8195 DisplayPort driver
+Date:   Wed, 27 Jul 2022 12:50:24 +0800
+Message-ID: <20220727045035.32225-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        RDNS_NONE,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Zoglin is a Hoglin Chromebook with SPI Flash reduced from 64MB to 8MB.
-Zoglin is identical to Hoglin except for the SPI Flash.
-The actual SPI Flash is dynamically probed at and not specified in DTS.
+This patch is separated from v10 which is including dp driver, phy driver
+and dpintf driver. This series is only contained the DisplayPort driver.
 
-Signed-off-by: Bob Moragues <moragues@chromium.org>
-Signed-off-by: Bob Moragues <moragues@google.com>
----
+This series can be tested using 5.19-rc2 kernel and I test it in MT8195
+Tomato Chromebook. Modetest these modes:
 
- arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+for eDP:
+  #0 2256x1504 60.00 2256 2304 2336 2536 1504 1507 1513 1549 235690 flags: phsync, nvsync; type: preferred, driver
+  #1 2256x1504 48.00 2256 2304 2336 2536 1504 1507 1513 1549 188550 flags: phsync, nvsync; type: driver
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-index 6d324ac2dda1..98d09187fc69 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-crd.dts
-@@ -13,7 +13,7 @@
- 
- / {
- 	model = "Qualcomm Technologies, Inc. sc7280 CRD platform (rev5+)";
--	compatible = "google,hoglin", "qcom,sc7280";
-+	compatible = "google,zoglin", "google,hoglin", "qcom,sc7280";
- 
- 	/* FIXED REGULATORS */
- 
+for DP:
+  #0 1920x1080 60.00 1920 2008 2052 2200 1080 1084 1089 1125 148500 flags: phsync, pvsync; type: preferred, driver
+  #1 1920x1080 59.94 1920 2008 2052 2200 1080 1084 1089 1125 148352 flags: phsync, pvsync; type: driver
+  #2 1920x1080 50.00 1920 2448 2492 2640 1080 1084 1089 1125 148500 flags: phsync, pvsync; type: driver
+  #3 1680x1050 59.95 1680 1784 1960 2240 1050 1053 1059 1089 146250 flags: nhsync, pvsync; type: driver
+  #4 1600x900 60.00 1600 1624 1704 1800 900 901 904 1000 108000 flags: phsync, pvsync; type: driver
+  #5 1280x1024 60.02 1280 1328 1440 1688 1024 1025 1028 1066 108000 flags: phsync, pvsync; type: driver
+  #6 1280x800 59.81 1280 1352 1480 1680 800 803 809 831 83500 flags: nhsync, pvsync; type: driver
+  #7 1280x720 60.00 1280 1390 1430 1650 720 725 730 750 74250 flags: phsync, pvsync; type: driver
+  #8 1280x720 59.94 1280 1390 1430 1650 720 725 730 750 74176 flags: phsync, pvsync; type: driver
+  #9 1280x720 50.00 1280 1720 1760 1980 720 725 730 750 74250 flags: phsync, pvsync; type: driver
+  #10 1024x768 60.00 1024 1048 1184 1344 768 771 777 806 65000 flags: nhsync, nvsync; type: driver
+  #11 800x600 60.32 800 840 968 1056 600 601 605 628 40000 flags: phsync, pvsync; type: driver
+  #12 720x576 50.00 720 732 796 864 576 581 586 625 27000 flags: nhsync, nvsync; type: driver
+  #13 720x480 60.00 720 736 798 858 480 489 495 525 27027 flags: nhsync, nvsync; type: driver
+  #14 720x480 59.94 720 736 798 858 480 489 495 525 27000 flags: nhsync, nvsync; type: driver
+  #15 640x480 60.00 640 656 752 800 480 490 492 525 25200 flags: nhsync, nvsync; type: driver
+  #16 640x480 59.94 640 656 752 800 480 490 492 525 25175 flags: nhsync, nvsync; type: driver
+
+Changes from v14 for dp driver:
+dt-binding:
+  - Add more description for difference of edp and dp.
+  - Add description that why we don't need clock property.
+common part:
+  - Fix reviewers' comments.
+dp drivers:
+  - Expand drivers to one function of irq handle.
+  - Fix reviewers' comments.
+  - Remove some redundant check.
+  - Remove limitation of 60fps.
+  - Add one patch for adding retry.
+  - Add unregister flow of audio platform.
+
+Changes from v13 for dp driver:
+dt-binding:
+  - Move data-lanes to port.
+dp drivers:
+  - Reporting for data-lanes using port.
+  - Remove unnecessary drivers.
+  - Refine mtk_dp_aux_transfer().
+  - Refine mtk_dp_hpd_isr_handler().
+  - Remove fec related drivers.
+
+Changes from v12 for dp driver:
+dt-binding:
+  - Fix build error.
+embedded dp drivers:
+  - Revise Kconfig to let this driver independent.
+  - Drop some unused/redundant drivers.
+  - Move some features to patches of external dp and audio.
+  - Refine format error control flow.
+  - Add error control of write register functions.
+  - Use mtk sip common definitions.
+
+Changes from v11 for dp driver:
+dt-binding:
+  - Use data-lanes to determine the max supported lane numbers.
+  - Add mhz to max-linkrate to show the units.
+embedded dp drivers:
+  - Modify Makefile.
+  - Drop some unused/redundant drivers.
+  - Move some features to patches of external dp and audio.
+  - Modify break condition of training loop to control cr/eq fail.
+  - Replace some function/definition with ones of common drm drivers.
+  - Remove dp_lock mutex because it's only locked in power_on/off.
+  - Add drm_dp_aux_(un)register in mtk_dp_bridge_(de)attach.
+
+Changes from v10 for dp driver:
+- Drop return value for write registers to make code more clear.
+- Refine training state.
+- Add property for dt-binding.
+- Add new bug fix patches for audio and suspend.
+- Rebase to v5.19-rc1.
+
+Changes from v9:
+- The DP-Phy is back to being a child device of the DP driver (as in v8)
+- hot plug detection has been added back to Embedded Display Port... as
+  after discussing with mediatek experts, this is needed eventhough the
+  Embedded Display port is not un-pluggable
+- rebased on linux-next
+- simplified/split train_handler function, as suggested by Rex
+- added comments on the sleep/delays present in the code
+- removed previous patch introducing retries when receiving AUX_DEFER as
+  this is already handled in the dp_aux framework
+- added max-lane and max-linkrate device tree u8 properties instead of
+  hardcoded #defines
+
+Older revisions:
+RFC - https://lore.kernel.org/linux-mediatek/20210816192523.1739365-1-msp@baylibre.com/
+v1  - https://lore.kernel.org/linux-mediatek/20210906193529.718845-1-msp@baylibre.com/
+v2  - https://lore.kernel.org/linux-mediatek/20210920084424.231825-1-msp@baylibre.com/
+v3  - https://lore.kernel.org/linux-mediatek/20211001094443.2770169-1-msp@baylibre.com/
+v4  - https://lore.kernel.org/linux-mediatek/20211011094624.3416029-1-msp@baylibre.com/
+v5  - https://lore.kernel.org/all/20211021092707.3562523-1-msp@baylibre.com/
+v6  - https://lore.kernel.org/linux-mediatek/20211110130623.20553-1-granquet@baylibre.com/
+v7  - https://lore.kernel.org/linux-mediatek/20211217150854.2081-1-granquet@baylibre.com/
+v8  - https://lore.kernel.org/linux-mediatek/20220218145437.18563-1-granquet@baylibre.com/
+v9  - https://lore.kernel.org/all/20220327223927.20848-1-granquet@baylibre.com/
+v10 - https://lore.kernel.org/all/20220523104758.29531-1-granquet@baylibre.com/
+v11 - https://lore.kernel.org/r/20220610105522.13449-1-rex-bc.chen@mediatek.com
+v12 - https://lore.kernel.org/all/20220627080341.5087-1-rex-bc.chen@mediatek.com/
+v13 - https://lore.kernel.org/all/20220701062808.18596-1-rex-bc.chen@mediatek.com/
+v14 - https://lore.kernel.org/all/20220712111223.13080-1-rex-bc.chen@mediatek.com/
+
+Bo-Chen Chen (3):
+  drm/mediatek: Add retry to prevent misjudgment for sink devices
+  drm/mediatek: set monitor to DP_SET_POWER_D3 to avoid garbage
+  drm/mediatek: Use cached audio config when changing resolution
+
+Guillaume Ranquet (4):
+  drm/edid: Convert cea_sad helper struct to kernelDoc
+  drm/edid: Add cea_sad helpers for freq/length
+  drm/mediatek: Add MT8195 External DisplayPort support
+  drm/mediatek: DP audio support for MT8195
+
+Jitao Shi (1):
+  drm/mediatek: add hpd debounce
+
+Markus Schneider-Pargmann (3):
+  dt-bindings: mediatek,dp: Add Display Port binding
+  video/hdmi: Add audio_infoframe packing for DP
+  drm/mediatek: Add MT8195 Embedded DisplayPort driver
+
+ .../display/mediatek/mediatek,dp.yaml         |  117 +
+ drivers/gpu/drm/drm_edid.c                    |   63 +
+ drivers/gpu/drm/mediatek/Kconfig              |    9 +
+ drivers/gpu/drm/mediatek/Makefile             |    2 +
+ drivers/gpu/drm/mediatek/mtk_dp.c             | 2854 +++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_dp_reg.h         |  545 ++++
+ drivers/video/hdmi.c                          |   82 +-
+ include/drm/display/drm_dp.h                  |    2 +
+ include/drm/drm_edid.h                        |   26 +-
+ include/linux/hdmi.h                          |    7 +-
+ 10 files changed, 3684 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_dp.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_dp_reg.h
+
 -- 
-2.37.1.359.gd136c6c3e2-goog
+2.18.0
 
