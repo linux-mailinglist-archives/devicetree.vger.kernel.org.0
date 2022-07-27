@@ -2,131 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFB78581C41
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 01:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47541581D01
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 03:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239935AbiGZXDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 26 Jul 2022 19:03:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54096 "EHLO
+        id S240121AbiG0BTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 26 Jul 2022 21:19:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239913AbiGZXDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 19:03:51 -0400
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60E77EE2E;
-        Tue, 26 Jul 2022 16:03:50 -0700 (PDT)
-Received: from droid01-xa.amlogic.com (10.88.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Wed, 27 Jul 2022
- 07:03:43 +0800
-From:   Jiucheng Xu <jiucheng.xu@amlogic.com>
-To:     <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>,
-        Jiucheng Xu <jiucheng.xu@amlogic.com>
-Subject: [PATCH v2 4/4] dt-binding: perf: Add Amlogic DDR PMU
-Date:   Wed, 27 Jul 2022 07:03:29 +0800
-Message-ID: <20220726230329.2844101-4-jiucheng.xu@amlogic.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220726230329.2844101-1-jiucheng.xu@amlogic.com>
-References: <20220726230329.2844101-1-jiucheng.xu@amlogic.com>
+        with ESMTP id S229484AbiG0BTU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 26 Jul 2022 21:19:20 -0400
+Received: from mail-oa1-x32.google.com (mail-oa1-x32.google.com [IPv6:2001:4860:4864:20::32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1AC7357FC
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 18:19:19 -0700 (PDT)
+Received: by mail-oa1-x32.google.com with SMTP id 586e51a60fabf-10d845dcf92so20777358fac.12
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 18:19:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=N3xrUzjUYFPtoTbDR74Lo54Yq/ddaaWSnnHdJbvIshU=;
+        b=csS2R2IZMt5wdMU536xlBF5TJRObaR2yn7fl6kdl10elppqpFKNDU/b53ozNfjcDs+
+         4lolN0ww4/KdeEm38w/ObNhLwoBXSFG28PR/PSpXS2UcOXhNPzeR/HfcqQj2Ygct05zn
+         /TYnlGGQgtmaODLNi0aZqMKMtGMizkm7WkF1k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=N3xrUzjUYFPtoTbDR74Lo54Yq/ddaaWSnnHdJbvIshU=;
+        b=azbZxXKcIrtwXtI23NsvF202hLtHuGleRBy7Mq9yzkoZ3gpcsb9HfIqCVcdM31XzqD
+         YKE0vH4YQGd1SnScWfcaKi0OjJIKu1WYHfDV5GJ/ra4aW35v4T5bsjfCkBVnPjmWFNBh
+         +BFPYDdn793m5EbMy5fN0XhBwvS0oHL11Spe+d3MktBtLTSoFSXveBuYMK9Ph/Ab4Oki
+         VgcS3YIcnRh/0sd/Vuk/abmKKZrTPDFyPinRU2QvkFFyFdiJTI3NTl8wYKhA9d0khe5T
+         O3PQUsb1zKmBensktFQywvf4u1gz9b8ZNPb1OqDtqidrJ2K9KxPZpZV5JR1QyVkqagzU
+         D6YQ==
+X-Gm-Message-State: AJIora/fE9jE7Qa+NHB6twfufDEGyKXsoFX0cwenC3dBKcPsmHLkXGr0
+        oKq/Hg/nPntIot8tO6b8jT2kBxosisgypsuP3mj3rw==
+X-Google-Smtp-Source: AGRyM1sITUa1kmugE3kEUcG0/QUqaOExLTLf+OwZHOnylEFi62EbnydR2G47tkAROqiHwutJOJOI0DUIwm8VfP1A84s=
+X-Received: by 2002:a05:6870:9a17:b0:e9:3d1:f91a with SMTP id
+ fo23-20020a0568709a1700b000e903d1f91amr942074oab.44.1658884759251; Tue, 26
+ Jul 2022 18:19:19 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 26 Jul 2022 20:19:18 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.88.11.200]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <dc737abb-041b-491a-14f1-a584f9e64a3d@quicinc.com>
+References: <YrxtXdOsIZ5LKhdV@google.com> <de1f3f33-0a8c-eb87-694c-16ebf2835720@quicinc.com>
+ <Yr6oLlmfWRkiAZG7@google.com> <52c6ab15-1cd8-324e-4bcc-c449d8bceb19@quicinc.com>
+ <Yr66ZZqEnBApHYMA@google.com> <0481d3cc-4bb9-4969-0232-76ba57ff260d@quicinc.com>
+ <YsLhxx+L3+GJDRyO@google.com> <bcc5f059-b991-296a-bba6-9cb1236097f2@quicinc.com>
+ <Ys1tYAO39LKzEAOE@google.com> <dc737abb-041b-491a-14f1-a584f9e64a3d@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 26 Jul 2022 20:19:18 -0500
+Message-ID: <CAE-0n528QaTtZFp=WAaHShegFRpKVN_67jQfUJTtsRPr6s--zA@mail.gmail.com>
+Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
+To:     Lee Jones <lee.jones@linaro.org>, Mark Brown <broonie@kernel.org>,
+        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation for the Amlogic G12 series DDR
-performance monitor unit.
+Quoting Satya Priya Kakitapalli (Temp) (2022-07-21 23:31:16)
+>
+>  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 regulator-name =
+=3D "pm8008_l6";
+>  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 };
+>
+>  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 pm8008_l7: ldo7@4600 {
+>  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 reg =3D <0x4600=
+>;
+>  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 regulator-name =
+=3D "pm8008_l7";
+>  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 };
+>  =C2=A0=C2=A0 =C2=A0};
+> };
+>
+>
+> Stephen/Mark, Please do let me know if you are OK with this design.
+>
 
-Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
----
-Changes v1 -> v2:
-  - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
-  - Delete "model", "dmc_nr", "chann_nr" new properties
-  - Fix compiling error
----
- .../bindings/perf/amlogic,g12_ddr_pmu.yaml    | 45 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
-
-diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
-new file mode 100644
-index 000000000000..46ef52b61492
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/perf/amlogic,g12-ddr-pmu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Amlogic G12 DDR performance monitor
-+
-+maintainers:
-+  - Jiucheng Xu <jiucheng.xu@amlogic.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - amlogic,g12b-ddr-pmu
-+                amlogic,g12a-ddr-pmu
-+                amlogic,sm1-ddr-pmu
-+          - const: amlogic,g12-ddr-pmu
-+
-+  reg:
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ddr_pmu: ddr_pmu {
-+
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+        compatible = "amlogic,g12a-ddr-pmu";
-+        reg = <0x0 0xff638000 0x0 0x100
-+               0x0 0xff638c00 0x0 0x100>;
-+        interrupts = <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fd2a56a339b4..e358ee0a5c72 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1055,6 +1055,7 @@ M:	Jiucheng Xu <jiucheng.xu@amlogic.com>
- S:	Supported
- W:	http://www.amlogic.com
- F:	Documentation/admin-guide/perf/aml-ddr-pmu.rst
-+F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
- F:	drivers/perf/amlogic/
- F:	include/soc/amlogic/
- 
--- 
-2.25.1
-
+I was happy with the previous version of the DT node. That had one node
+for the "pm8008 chip", which is important because it really is one
+package. Why isn't that possible to implement and also register i2c
+devices on the i2c bus for the second address?
