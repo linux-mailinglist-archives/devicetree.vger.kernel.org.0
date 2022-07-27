@@ -2,135 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD1795826C2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 14:37:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0830B5826D6
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 14:41:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233183AbiG0MhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 08:37:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51000 "EHLO
+        id S232233AbiG0MlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 08:41:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233088AbiG0MhE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 08:37:04 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8AB12A957
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:37:02 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id t17so14655554lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:37:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LYHdsFsXmivDzoZyQpP5rFyuNapS+2oYgH6BpUjY7r0=;
-        b=ps3hAB/tSpTRQMrzQ0DZsDbNUuGDA6ORksV285PMQlY5R/4Q+CkeAWJogtO/9sAbEr
-         z24P4FjN3dMCjInos0rj25PqiS1hUoahUlcesdYi5lI/yJzonpsrOcU2UCB2nNojknCE
-         5HZb4ZDJGR8ErboZSDSYF/4sGLcpi0V4BYdJM8m1vKVGdn7b/03XE03ues5+L5unkPt9
-         i50cfcWOPwWXzzhH8UyFWVmDj9EhS+GSUNL2ENyRdLHBw6Z26UnI4/cjJVApseQwLVg4
-         3xcpCk2K5pYAch7QwSfWcv9Uw4y0M0ut7lwtk1gndJ8NI2AxUdyElO4uWdbkFUN7ZHyh
-         6a7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LYHdsFsXmivDzoZyQpP5rFyuNapS+2oYgH6BpUjY7r0=;
-        b=efAgUh4H93Oxe0AnduNcuTQWcdgeTU5fKydQqAc4hKcxsx6Xv1tI2YNiq20J+UVIzj
-         wvJfudxBSBsyAJc7XQM15tbOXcuKyxpzg2zKSwtFWkXdsNJtZoDhELIIzh9OWVsDbCev
-         5RPFoDeLYqWyPzTdILYllKBgISaduJVuQpKLKdTL0ZcC/omqN5bRkXyPTyFjJHVwKLmd
-         BAJZfIvi2YfPUSO9LWXz3frGOBujX7f4/OVJ429f3zJuYpfsZiYXYONo8Dozqfv4NAY0
-         edri06IZmkNxtSTQLYq0yAMy/hsqe4eVl5AE9LC9ZcKYYrcNNrrpWmfYrBdqdJRRr1nz
-         9HKQ==
-X-Gm-Message-State: AJIora96piZfKaJlvuHoaE2E9nTYR+SrkaO1SFpnfH5LlV3/ypJlHmpb
-        2UcsSct5eKnmFaud0XjV/KSdlQ==
-X-Google-Smtp-Source: AGRyM1v2UQwhAPwo+gzgOfl/ZKKrPyNKug+bl3yesKfQSUngR1PTahjeZaErm/TPIYZVOYziWximXw==
-X-Received: by 2002:a05:6512:ac5:b0:48a:8817:a6df with SMTP id n5-20020a0565120ac500b0048a8817a6dfmr5700656lfu.388.1658925421307;
-        Wed, 27 Jul 2022 05:37:01 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id k14-20020ac257ce000000b0048a7fa5bff1sm2534024lfo.248.2022.07.27.05.36.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 05:37:00 -0700 (PDT)
-Message-ID: <80f08089-e3bb-983e-313b-45613364829e@linaro.org>
-Date:   Wed, 27 Jul 2022 14:36:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 4/6] dt-bindings: riscv: Add DT binding documentation for
- Renesas RZ/Five SoC and SMARC EVK
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231759AbiG0Mk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 08:40:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D85873C151;
+        Wed, 27 Jul 2022 05:40:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 73F106144F;
+        Wed, 27 Jul 2022 12:40:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56FFAC433C1;
+        Wed, 27 Jul 2022 12:40:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1658925657;
+        bh=XZ/CPw6WEAUkYKhiSwISxfNyJ/lYQsvD9iUIJImuY/s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qxYANs3CnZAv4ofsiUEnPm4ivYlFPoB8PSA8XnuWaFlkUrrQCKrKvKMjgw87MbqEX
+         xKjQOIFSdY4zZRVa0f/b2mS/+NOWOpZCbV/qej6GhOnDuU5nJ1cMmOtO+e9v0u/5HF
+         4um2WjlxURKNIthvfl7C4iULfeBlZLId1Xt1itig=
+Date:   Wed, 27 Jul 2022 14:40:55 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
-References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220726180623.1668-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <636e9214-4b36-e9a6-3c6b-b6edb944335e@linaro.org>
- <CA+V-a8sTw1qzuTeD2vb7RgDmmNdEP5qEcxXCjrFgkyrBrLrt5Q@mail.gmail.com>
- <e64cc15e-b31e-876d-b3cf-b60d255c495b@linaro.org>
- <CA+V-a8u1VW9xaj2KjySyMuegpisLVENO_6uJOpAFZGbKziYLYw@mail.gmail.com>
- <e31e0c1f-4755-704e-8428-93970877d8f5@linaro.org>
- <CA+V-a8sX=Frs_cds9MriauTFRvcZUNCvoeZ+SaC0GUpL7L6qhg@mail.gmail.com>
- <9f32a4a9-66b4-ba2e-1713-436103c2faf8@linaro.org>
- <OS0PR01MB5922763582B836DA45CDFF0886979@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <OS0PR01MB5922763582B836DA45CDFF0886979@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] usb: misc: onboard_usb_hub: Add reset-gpio support
+Message-ID: <YuEyVxJipCmQeMTk@kroah.com>
+References: <20220727093801.687361-1-alexander.stein@ew.tq-group.com>
+ <20220727093801.687361-2-alexander.stein@ew.tq-group.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220727093801.687361-2-alexander.stein@ew.tq-group.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2022 14:21, Biju Das wrote:
-> Hi,
+On Wed, Jul 27, 2022 at 11:38:00AM +0200, Alexander Stein wrote:
+> Despite default reset upon probe, release reset line after powering up
+> the hub and assert reset again before powering down.
 > 
->> Subject: Re: [PATCH 4/6] dt-bindings: riscv: Add DT binding
->> documentation for Renesas RZ/Five SoC and SMARC EVK
->>
->> On 27/07/2022 13:37, Lad, Prabhakar wrote:
->>>>>>
->>>>> I did run the dtbs_check test as per your suggestion (below is the
->>>>> log) and didn't see "no matching schema error"
->>>>>
->>>>
->>>> So you do not see any errors at all. Then it does not work, does it?
->>>>
->>> Right I reverted my changes I can see it complaining, dtb_check seems
->>> to have returned false positive in my case.
->>>
->>> What approach would you suggest to ignore the schema here?
->>
->> I don't think currently it would work with your approach. Instead, you
->> should select here all SoCs which the schema should match.
->>
->> This leads to my previous concern - you use the same SoC compatible for
->> two different architectures and different SoCs: ARMv8 and RISC-V.
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Thanks Matthias for your review.
 > 
-> Or is it same SoC(R9A07G043) based on two different CPU architectures (ARMv8 and RISC-V)
+> Changes in v3:
+> * Require platform data unconditionally
+> * Removed unecessary checks for that reason
+> * Merged power_stable_time into reset_duration (no difference for now)
+> * Rename 'reset_duration' to 'reset_us'
+> * Renamed platform structure to onboard_hub_pdata
+> * Renamed device struct field to pdata as well
+> 
+> Changes in v2:
+> * Use device specific sleep times, if present
+> * Use fsleep instead of usleep_range
+> 
+>  drivers/usb/misc/onboard_usb_hub.c | 28 ++++++++++++++++++++++++++++
+>  drivers/usb/misc/onboard_usb_hub.h | 16 ++++++++++++----
+>  2 files changed, 40 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
+> index 6b9b949d17d3..2aa1db528b31 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.c
+> +++ b/drivers/usb/misc/onboard_usb_hub.c
+> @@ -7,6 +7,7 @@
+>  
+>  #include <linux/device.h>
+>  #include <linux/export.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/init.h>
+>  #include <linux/kernel.h>
+>  #include <linux/list.h>
+> @@ -38,6 +39,8 @@ struct usbdev_node {
+>  struct onboard_hub {
+>  	struct regulator *vdd;
+>  	struct device *dev;
+> +	const struct onboard_hub_pdata *pdata;
+> +	struct gpio_desc *reset_gpio;
+>  	bool always_powered_in_suspend;
+>  	bool is_powered_on;
+>  	bool going_away;
+> @@ -56,6 +59,9 @@ static int onboard_hub_power_on(struct onboard_hub *hub)
+>  		return err;
+>  	}
+>  
+> +	fsleep(hub->pdata->reset_us);
+> +	gpiod_set_value_cansleep(hub->reset_gpio, 0);
+> +
+>  	hub->is_powered_on = true;
+>  
+>  	return 0;
+> @@ -65,6 +71,11 @@ static int onboard_hub_power_off(struct onboard_hub *hub)
+>  {
+>  	int err;
+>  
+> +	if (hub->reset_gpio) {
+> +		gpiod_set_value_cansleep(hub->reset_gpio, 1);
+> +		fsleep(hub->pdata->reset_us);
+> +	}
+> +
+>  	err = regulator_disable(hub->vdd);
+>  	if (err) {
+>  		dev_err(hub->dev, "failed to disable regulator: %d\n", err);
+> @@ -219,6 +230,7 @@ static void onboard_hub_attach_usb_driver(struct work_struct *work)
+>  
+>  static int onboard_hub_probe(struct platform_device *pdev)
+>  {
+> +	const struct of_device_id *of_id;
+>  	struct device *dev = &pdev->dev;
+>  	struct onboard_hub *hub;
+>  	int err;
+> @@ -227,10 +239,26 @@ static int onboard_hub_probe(struct platform_device *pdev)
+>  	if (!hub)
+>  		return -ENOMEM;
+>  
+> +	of_id = of_match_device(onboard_hub_match, &pdev->dev);
+> +	if (!of_id)
+> +		return -ENODEV;
+> +
+> +	hub->pdata = of_id->data;
+> +	if (!hub->pdata)
+> +		return -EINVAL;
+> +
+>  	hub->vdd = devm_regulator_get(dev, "vdd");
+>  	if (IS_ERR(hub->vdd))
+>  		return PTR_ERR(hub->vdd);
+>  
+> +	hub->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						  GPIOD_OUT_HIGH);
+> +	if (IS_ERR(hub->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(hub->reset_gpio), "failed to get reset GPIO\n");
+> +
+> +	if (hub->reset_gpio)
+> +		fsleep(hub->pdata->reset_us);
+> +
+>  	hub->dev = dev;
+>  	mutex_init(&hub->lock);
+>  	INIT_LIST_HEAD(&hub->udev_list);
+> diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
+> index d3a5b6938582..01d067db81f2 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.h
+> +++ b/drivers/usb/misc/onboard_usb_hub.h
+> @@ -6,11 +6,19 @@
+>  #ifndef _USB_MISC_ONBOARD_USB_HUB_H
+>  #define _USB_MISC_ONBOARD_USB_HUB_H
+>  
+> +struct onboard_hub_pdata {
+> +	unsigned long reset_us;		/* reset pulse width in us */
+> +};
+> +
+> +static const struct onboard_hub_pdata realtek_rts5411_data = {
+> +	.reset_us = 0,
+> +};
+> +
+>  static const struct of_device_id onboard_hub_match[] = {
+> -	{ .compatible = "usbbda,411" },
+> -	{ .compatible = "usbbda,5411" },
+> -	{ .compatible = "usbbda,414" },
+> -	{ .compatible = "usbbda,5414" },
+> +	{ .compatible = "usbbda,411", .data = &realtek_rts5411_data, },
+> +	{ .compatible = "usbbda,5411", .data = &realtek_rts5411_data, },
+> +	{ .compatible = "usbbda,414", .data = &realtek_rts5411_data, },
+> +	{ .compatible = "usbbda,5414", .data = &realtek_rts5411_data, },
+>  	{}
+>  };
+>  
+> -- 
+> 2.25.1
+> 
 
-Then it is not the same SoC! Same means same, identical. CPU
-architecture is one of the major differences, which means it is not the
-same.
+This no longer applies to my tree due to some new devices being added.
+Can you rebase against the usb-testing branch of the usb.git tree and
+resend?
 
-> Using same SoM and Carrier board?
+thanks,
 
-It's like saying PC with x86 and ARMv8 board are the same because they
-both use same "PC chassis".
-
-Best regards,
-Krzysztof
+greg k-h
