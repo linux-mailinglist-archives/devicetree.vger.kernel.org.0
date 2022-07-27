@@ -2,252 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEFF0582558
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 13:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA13A5825B9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 13:39:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230379AbiG0LYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 07:24:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44098 "EHLO
+        id S232404AbiG0LjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 07:39:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229961AbiG0LYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 07:24:46 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B015239BA5
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 04:24:44 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id b21so12446008ljk.8
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 04:24:44 -0700 (PDT)
+        with ESMTP id S232479AbiG0LjB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 07:39:01 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B744AD51;
+        Wed, 27 Jul 2022 04:38:19 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id j195so10385222ybj.11;
+        Wed, 27 Jul 2022 04:38:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=QfNI9S8iAQB3LbkapZoXxskcLzEsEgFs5Xu90Ufn+Fo=;
-        b=tLTwBrMrF6ZS8ik80Si/OmDvu2C+ACrn00QzA+SHTgCNnCu24AizmIdW0qfLIZnvqw
-         XOxnokUx1AjBV7+Ln9RIx7ab52h1FhqKU9+O8NYOf//iuE28seLWFh+oY4hECNAOBmLI
-         mP0JF0TP9wjdNJ1YIv8AHv9qst1btVxwMoOuf5pthMgC50260mj8DxzMfSkYpFj//sbv
-         j2GwvZjGkjkjqJDffjqTbwO4ddajYjjbHNMSpoelJ1BZXSw31CT8mPXlEUGDDjHrGa7F
-         sY+IzGh0LwYxuhTm4rpx5IWyBKqdpLOzc+HSZwuG0PVjPySaYGmNulhyUcx+ZD4fPxP/
-         GulA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fUe3ZPHnv3mne953AtKNlkKN9ecK/p0RKLrloPpqCts=;
+        b=K1YSA94w7f1jm0mGfMBGTj4RDOeDsH5BdZYnKdj+ltvE01uB52qrkFVPQswgNq/6/f
+         MNUEbKdU6xkDgPDPLA81boaWlH4bnwjhdQQ5xAIt2g1/tuenHsM8TSSKYjjun4bFEeys
+         XldrNCP4c32arY7cDQFRNmTu0CL9PAkzjLHXcaUVoSNXh6lk7T0oUdfMrRpRaEIWe8Rj
+         WhzFHunzCcgQ8+v2QYKyYHHqFT0NNAG1FqCP5SWKOm+M9MHFGaTkT7MKSBibE1Gnzawi
+         BihjbXPoXNMA4vNyb6g3RyotpVNoT6lQJivBdjz1E+oDJQpAEHkRfddQNSPyQIb5Tf8z
+         3CYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=QfNI9S8iAQB3LbkapZoXxskcLzEsEgFs5Xu90Ufn+Fo=;
-        b=ICWNT+7kaGLxTiY9GklXQv5DsoCO9YgWOwxXvGek4wAXJc+KlfIGyjxSzpd0kEpBDr
-         FwueKXzEC5zKm5ofxZshVTWF7jZWO7Hk9pZfuAviEbGBoW/KCWre51642Ds8tFz5+CIN
-         rYU7vQUFxw9Hwbranch0HemvDbQ4/xjW13Wyt4WnlKCDv74t1dlJ5GKxcxN+ULtmiF2J
-         OGw5Jyfbg4f30A6dpoYXRY9ZpU4TXR/HfpuAIcydeENU7HBV+nP8E6N9V3fq18mZMpDV
-         jwPtrCi6Dvajck24VecFjaAmAZqRYMkZ/D8daVxv/HgpqfCLVm94g/pl4+ZcTV3En/cL
-         gS1g==
-X-Gm-Message-State: AJIora/73O85D9JJLzsevnsR1RTznnQT0ZTU0Wweg64sy10AdqJc4Rwd
-        GHILcT3sDdqY7fr0haGS3KG7og==
-X-Google-Smtp-Source: AGRyM1vtcQcNcjpFWkWLGED3KxqGPdePSivwwXGP8h+91ivZTdwqbIZvpu2UwagnsZ6t5n50ypIJBg==
-X-Received: by 2002:a05:651c:897:b0:25d:e574:b64 with SMTP id d23-20020a05651c089700b0025de5740b64mr7547002ljq.203.1658921082750;
-        Wed, 27 Jul 2022 04:24:42 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id be20-20020a05651c171400b0025bf58c5338sm3876300ljb.15.2022.07.27.04.24.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 04:24:42 -0700 (PDT)
-Message-ID: <53a602e2-0590-6c6a-597b-fd55faa3a4ab@linaro.org>
-Date:   Wed, 27 Jul 2022 13:24:40 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fUe3ZPHnv3mne953AtKNlkKN9ecK/p0RKLrloPpqCts=;
+        b=fmUtoePimh6ifQwB5LGjGVUms0BDs2Ei0tXDf6xKeTkDC4OKxu4D40a6ptM/SSAPrh
+         mTqgMpnZMCWqVM7gRtw5OR6Brc28N4vGQYvRg9O9ixZ+EZ77w9SlKC9ukhvCfhLGHhar
+         zT8adWZUkqN2uo3DtE4l4QfeeX+jgY/JEMD01OfSWOEmFqon3Qoamf3aB/mvlPkxIKD9
+         J53M2uNwisUffrYdrDIGscsehM9CEiPsSEDzCqubq0J25cx0V93buQRC71F3AC8dcB/u
+         xpXKN7mXFx11v44+Gxv2EYpLE5d7WX2wm2KSfzz7NFeL3BVtT6ofi5aJREAnyqh3Dcss
+         FfGA==
+X-Gm-Message-State: AJIora94uCcuxOjkfctWuyu4f8hY4jO525TYZnyXVXgEexJWwuGL/XGU
+        g68XQXBbjIwOc8xsN9lauT/JCuC+9QzY+iz8d3s=
+X-Google-Smtp-Source: AGRyM1vbDxpZI15cnPe+RYbwuyh4ob36FZL9kr7Whb06GU0opVS/mtU/X897buqVar2JA+fAkDH7xA5y7j2o5CywCXU=
+X-Received: by 2002:a25:bd83:0:b0:670:fc70:67f3 with SMTP id
+ f3-20020a25bd83000000b00670fc7067f3mr16485485ybh.244.1658921897467; Wed, 27
+ Jul 2022 04:38:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-Content-Language: en-US
-To:     Maximilian Luz <luzmaximilian@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220726180623.1668-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <636e9214-4b36-e9a6-3c6b-b6edb944335e@linaro.org> <CA+V-a8sTw1qzuTeD2vb7RgDmmNdEP5qEcxXCjrFgkyrBrLrt5Q@mail.gmail.com>
+ <e64cc15e-b31e-876d-b3cf-b60d255c495b@linaro.org> <CA+V-a8u1VW9xaj2KjySyMuegpisLVENO_6uJOpAFZGbKziYLYw@mail.gmail.com>
+ <e31e0c1f-4755-704e-8428-93970877d8f5@linaro.org>
+In-Reply-To: <e31e0c1f-4755-704e-8428-93970877d8f5@linaro.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 27 Jul 2022 12:37:50 +0100
+Message-ID: <CA+V-a8sX=Frs_cds9MriauTFRvcZUNCvoeZ+SaC0GUpL7L6qhg@mail.gmail.com>
+Subject: Re: [PATCH 4/6] dt-bindings: riscv: Add DT binding documentation for
+ Renesas RZ/Five SoC and SMARC EVK
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <20220723224949.1089973-5-luzmaximilian@gmail.com>
- <e88d1036-dc58-3fc8-c388-edba9b2d62a7@linaro.org>
- <87c19c5a-d7f4-7183-1322-f62267e01b3b@gmail.com>
- <11e5c369-c0da-7756-b9e2-ac375dc78e9d@linaro.org>
- <2e522bcd-5d55-e87f-126c-514f5edaa560@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <2e522bcd-5d55-e87f-126c-514f5edaa560@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 17:00, Maximilian Luz wrote:
-> On 7/26/22 15:25, Krzysztof Kozlowski wrote:
->> On 26/07/2022 13:15, Maximilian Luz wrote:
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: qcom,tee-uefisecapp
->>>>
->>>> Isn't this SoC-specific device? Generic compatibles are usually not
->>>> expected.
->>>
->>> This is essentially software (kernel driver) talking to software (in the
->>> TrustZone), so I don't expect there to be anything SoC specific about it.
->>
->> You are documenting here firmware in TZ (not kernel driver). Isn't this
->> a specific piece which might vary from device to device?
->>
->> IOW, do you expect the same compatible to work for all possible Qualcomm
->> boards (past and future like in 10 years from now)?
-> 
-> I'm not sure if Qualcomm will still use the "uefisecapp" approach in 10
-> years, but I don't expect the interface of uefisecapp to change. The
-> interface is modeled after the respective UEFI functions, which are spec
-> and thus I don't expect those to change. Also, it seems to have been
-> around for a couple of generations and it hasn't changed. The oldest
-> tested is sdm850 (Lenovo Yoga C630), and the latest is sc8280xp
-> (Thinkpad X13s).
+Hi Krzysztof,
 
-Expectation is not the same as having a specification saying it will not
-change.
-> 
-> Why not make this behave like a "normal" third-party device? If the
-> interface ever changes use qcom,tee-uefisecapp-v2 or something like
-> that? Again, this does not seem to be directly tied to the SoC.
+On Wed, Jul 27, 2022 at 11:09 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 27/07/2022 12:06, Lad, Prabhakar wrote:
+> > Hi Krzysztof,
+> >
+> > On Wed, Jul 27, 2022 at 10:54 AM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 27/07/2022 11:05, Lad, Prabhakar wrote:
+> >>> Hi Krzysztof,
+> >>>
+> >>> Thank you for the review.
+> >>>
+> >>> On Wed, Jul 27, 2022 at 9:54 AM Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> On 26/07/2022 20:06, Lad Prabhakar wrote:
+> >>>>> Document Renesas RZ/Five (R9A07G043) SoC and SMARC EVK based on this SoC.
+> >>>>>
+> >>>>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >>>>> ---
+> >>>>>  .../devicetree/bindings/riscv/renesas.yaml    | 49 +++++++++++++++++++
+> >>>>>  1 file changed, 49 insertions(+)
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/riscv/renesas.yaml
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/riscv/renesas.yaml b/Documentation/devicetree/bindings/riscv/renesas.yaml
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..f72f8aea6a82
+> >>>>> --- /dev/null
+> >>>>> +++ b/Documentation/devicetree/bindings/riscv/renesas.yaml
+> >>>>> @@ -0,0 +1,49 @@
+> >>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>>> +%YAML 1.2
+> >>>>> +---
+> >>>>> +$id: http://devicetree.org/schemas/riscv/renesas.yaml#
+> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>>> +
+> >>>>> +title: Renesas RZ/Five Platform Device Tree Bindings
+> >>>>> +
+> >>>>> +maintainers:
+> >>>>> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> >>>>> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >>>>> +
+> >>>>> +# We want to ignore this schema if the board is SMARC EVK based on ARM64 arch
+> >>>>> +select:
+> >>>>> +  not:
+> >>>>> +    properties:
+> >>>>> +      compatible:
+> >>>>> +        contains:
+> >>>>> +          items:
+> >>>>
+> >>>> I think you should rather ignore the RiscV SoCs, not specific board.
+> >>>>
+> >>> You mean to ignore ARM/64 SoCs?
+> >>>
+> >>> Agreed just the below enum, should do the trick.
+> >>>
+> >>>             - enum:
+> >>>                 - renesas,r9a07g043u11
+> >>>                 - renesas,r9a07g043u12
+> >>>                 - renesas,r9a07g044c1
+> >>>                 - renesas,r9a07g044c2
+> >>>                 - renesas,r9a07g044l1
+> >>>                 - renesas,r9a07g044l2
+> >>>                 - renesas,r9a07g054l1
+> >>>                 - renesas,r9a07g054l2
+> >>>
+> >>>
+> >>>>> +            - const: renesas,smarc-evk
+> >>>>> +            - enum:
+> >>>>> +                - renesas,r9a07g043u11
+> >>>>> +                - renesas,r9a07g043u12
+> >>>>> +                - renesas,r9a07g044c1
+> >>>>> +                - renesas,r9a07g044c2
+> >>>>> +                - renesas,r9a07g044l1
+> >>>>> +                - renesas,r9a07g044l2
+> >>>>> +                - renesas,r9a07g054l1
+> >>>>> +                - renesas,r9a07g054l2
+> >>>>> +            - enum:
+> >>>>> +                - renesas,r9a07g043
+> >>>>> +                - renesas,r9a07g044
+> >>>>> +                - renesas,r9a07g054
+> >>>>
+> >>>> Did you actually test that it works and properly matches?
+> >>>>
+> >>> Yes I have run the dtbs_check and dt_binding _check for ARM64 and
+> >>> RISC-V. Do you see any cases where it can fail?
+> >>
+> >>
+> >> Just remove the renesas,smarc-evk2 from
+> >> arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts. Do you see the
+> >> error? Not from this schema. The only error you will see is that no
+> >> matching schema was found.
+> >>
+> > I did run the dtbs_check test as per your suggestion (below is the
+> > log) and didn't see "no matching schema error"
+> >
+>
+> So you do not see any errors at all. Then it does not work, does it?
+>
+Right I reverted my changes I can see it complaining, dtb_check seems
+to have returned false positive in my case.
 
-Such approach is not "normal" for third-party devices. Compatible for
-devices has model number. If the block has specification, then v2 would
-have sense, otherwise you would invent own versioning...
+What approach would you suggest to ignore the schema here?
 
-I would say that firmware implementation can easily change. How much of
-your code is tied to it, I don't know, but argument "I don't expect
-Qualcomm to change something in their firmware" is not the correct argument.
-
-> 
-> Then again, if you prefer to name everything based on
-> "qcom,<device>-<soc>" I don't have any strong arguments against it and
-> I'm happy to change that. I just think it will unnecessarily introduce
-> a bunch of compatibles and doesn't reflect the interface "versioning"
-> situation as I see it.
-
-Why bunch? All devices could bind to one specific compatible, as they
-are compatible.
-
-> 
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    firmware {
->>>>> +        scm {
->>>>> +            compatible = "qcom,scm-sc8180x", "qcom,scm";
->>>>> +        };
->>>>> +        tee-uefisecapp {
->>>>> +            compatible = "qcom,tee-uefisecapp";
->>>>
->>>> You did not model here any dependency on SCM. This is not full
->>>> description of the firmware/hardware
->>>
->>> How would I do that? A lot of other stuff also depends on SCM being
->>> present (e.g. qcom_q6v5_pas for loading mdt files) and I don't see them
->>> declare this in the device tree. As far as I can tell, SCM is pretty
->>> much expected to be there at all times (i.e. can't be unloaded) and
->>> drivers check for it when probing via qcom_scm_is_available(),
->>> deferring probe if not.
->>
->> It seems this will be opening a can of worms...
-> 
-> Indeed.
-> 
->> The problem with existing approach is:
->> 1. Lack of any probe ordering or probe deferral support.
->> 2. Lack of any other dependencies, e.g. for PM.
-> 
-> I'm not entirely sure what you mean by "lack of probe deferral support".
-> We have qcom_scm_is_available() and defer probe if that fails. So
-> deferral works, unless I'm misunderstanding something.
-
-And how do you differentiate that qcom_scm_is_available() failed because
-it is not yet available (defer probe) or it is broken and will never
-load? All regular consumer-provider interfaces have it sorted out.
-
-> 
-> But yes, correct on the other points.
-> 
->> Unloading is "solved" only by disallowing the unload, not by proper
->> device links and module get/put.
->>
->> I understand that SCM must be there, but the same for several other
->> components and for these others we have ways to pass reference around
->> (e.g. syscon regmap, PHYs handles).
->>
->>>
->>> Don't take this as an excuse as in "I want to leave that out", it's just
->>> that I don't know how one would declare such a dependency explicitly. If
->>> you can tell me how to fix it, I'll include that for v2.
->>
->> I think there are no dedicated subsystem helpers for this (like for
->> provider/consumer of resets/power domains/clocks etc), so one way would
->> be something like nvidia,bpmp is doing.
-> 
-> I assume you're referring to tegra_bpmp_get()? Does this correctly
-> handle PM dependencies? At least as far as I can tell it doesn't
-> explicitly establish a device link, it only gets a reference to the
-> device, which doesn't guarantee the presence of a driver. Nor correct PM
-> ordering. Please correct me if I'm wrong. As far as I know automatic
-> creation of device links only works with certain props defined in
-> of_supplier_bindings, right?
-
-The Tegra choice is not complete, but it implements at least parts of it
-and firmware dependencies are modeled in DTS. Other way would be to add
-your device as child of SMC firmware and then you do not need bindings
-at all...
-
-> 
-> So unless I'm wrong there is also a bunch of other stuff that may be
-> subtly broken. (Again, not a justification to include these changes,
-> just wondering whether there should be a conscious approach to find and
-> fix these things... rather than discover them patch-by-patch).
-> 
->> meson_sm_get is a bit similar - looking by compatible. This is less
->> portable and I would prefer the bpmp way (just like syscon phandles).
-> 
-> I have another example (that could be improved via a phandle in DT): For
-> the Surface System Aggregator (in ACPI-land), we have ssam_client_bind().
-> This function 1) checks if the controller is available and ready, 2) if
-> it is gets a reference to it, and 3) establishes a device link for
-> PM-ordering, before 4) returning the reference to that controller to the
-> client. This combined with deferring probe ensures that we will always
-> have a valid reference. And since we're in DT-land, we could hook that
-> up with a phandle reference to SCM and load that instead of having to
-> use a global static.
-
-Yes, that's better example than Tegra BPMP.
-
->> The qcom_q6v5_pas could be converted later to use similar approach and
->> eventually the "tatic struct qcom_scm *__scm;" can be entirely removed.
->>
->> Any comments on this approach from Konrad, Bjorn, Dmitry, Vinod and
->> anyone else?
-> 
-> Regards,
-> Max
-
-
-Best regards,
-Krzysztof
+Cheers,
+Prabhakar
