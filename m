@@ -2,90 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D41015824ED
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 12:57:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 034BE5824B1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 12:45:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiG0K5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 06:57:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54066 "EHLO
+        id S231376AbiG0KpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 06:45:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbiG0K5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 06:57:32 -0400
-Received: from 1.mo576.mail-out.ovh.net (1.mo576.mail-out.ovh.net [178.33.251.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A688F3E767
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 03:57:30 -0700 (PDT)
-Received: from player773.ha.ovh.net (unknown [10.110.103.23])
-        by mo576.mail-out.ovh.net (Postfix) with ESMTP id 753F5248EC
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 10:39:46 +0000 (UTC)
-Received: from RCM-web1.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
-        (Authenticated sender: rafal@milecki.pl)
-        by player773.ha.ovh.net (Postfix) with ESMTPSA id D7A9D2D172357;
-        Wed, 27 Jul 2022 10:39:33 +0000 (UTC)
+        with ESMTP id S230503AbiG0KpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 06:45:08 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 471FC474D1
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 03:45:05 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id v17so4663475wrr.10
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 03:45:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5oVqAH+iWelszybMh6Ae4+JTub68D8khqQAfrWm+UrY=;
+        b=Vf9pdSjZMg3SLJ19yGuuiHBu8f0Z4m7f640uGxbOjb43MhHIpy3Z7mK4GKres7Ordp
+         SpllByUGC+tfiiifjsPpQpw2mF7ycjBIZikMFCnyNcASVp3GXdmLo9rBbu18erzVq18v
+         Uq7SPPy9krm2n8atNNVDbhZ87Gx6RlMJDlKIAWHmipUqu84MC+GBBWrH3AhnWIpVMkye
+         H2JlPBYgPFlyqHlSdraDF7pQlQzaNRup4ernzsPFtQ9iDUDYxLIH8BEFFq+9on8/jrxO
+         Rvvdsl2r9+9u3UbXW197Xm3br5AwXHApHvDIubYmQuxdVNhn73VuAV7aQUziKTSWxRx/
+         Hs0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5oVqAH+iWelszybMh6Ae4+JTub68D8khqQAfrWm+UrY=;
+        b=UKZSgbLd0jFkJj14hEdTPvVLY8ZWRuDOoE834aHjWVvxGxlehjBg17Co8H5vvyVXbJ
+         qToPstfo6Cj1m4FgLhbsawzKxOD2kWXsedyCGgwIE79Je1u1xeY9gtrX3ElvvNYDczXC
+         6s1TQ8Ba9woJWIia3NXeeAIUwkM7qO2Oa9VP5B94AGCz2m9sRiHrjgHEgR7UpSZywlxD
+         oXOxZX44/67pmFaREe1fIQBGZhAMckF1yVpwo8IJ9mD+uOjd7EfDKvv41K2syuBwlbia
+         Z4VpMPj8sesVdGcCmfk7Eart7j2DG9fsmvYIaXONA/lH0YORe9tveLQreTUxzDxC2fQx
+         xpiw==
+X-Gm-Message-State: AJIora+IOVG8dVYOR+EpL3iANdcRsrDz4GfdhqgDu0lYjDwK0g2nTb4j
+        4kruSBwcxahcyPDmGYutncS41Q==
+X-Google-Smtp-Source: AGRyM1uGCOaeaXOdwirAYekuOB4Lxs31AWSF1L9awJK4JKpctBf/cT7K9dLT9+RwDmyqaDaxZr91vA==
+X-Received: by 2002:a05:6000:1848:b0:21e:8fa5:e5f4 with SMTP id c8-20020a056000184800b0021e8fa5e5f4mr7738882wri.691.1658918703770;
+        Wed, 27 Jul 2022 03:45:03 -0700 (PDT)
+Received: from [192.168.0.17] (cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net. [86.15.83.122])
+        by smtp.gmail.com with ESMTPSA id c3-20020a7bc003000000b003a2e7c13a3asm1877429wmb.42.2022.07.27.03.45.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Jul 2022 03:45:03 -0700 (PDT)
+Message-ID: <d335c1a6-ad45-994c-053f-32cdfa4cab8d@sifive.com>
+Date:   Wed, 27 Jul 2022 11:45:02 +0100
 MIME-Version: 1.0
-Date:   Wed, 27 Jul 2022 12:39:33 +0200
-From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-To:     William Zhang <william.zhang@broadcom.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linux ARM List <linux-arm-kernel@lists.infradead.org>,
-        joel.peshkin@broadcom.com, f.fainelli@gmail.com,
-        Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        dan.beygelman@broadcom.com, anand.gore@broadcom.com,
-        kursad.oney@broadcom.com, krzysztof.kozlowski@linaro.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [[PATCH v2] 1/9] dt-bindings: pwm: Document Synopsys DesignWare
+ snps,pwm
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>,
+        u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/9] arm64: dts: bcmbca: update BCM4908 board dts files
-In-Reply-To: <1004391f-fb6c-5f84-de28-8f76dc3471e5@broadcom.com>
-References: <20220725055402.6013-1-william.zhang@broadcom.com>
- <20220725055402.6013-4-william.zhang@broadcom.com>
- <20220725233238.GA2960972-robh@kernel.org>
- <1004391f-fb6c-5f84-de28-8f76dc3471e5@broadcom.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <0af44be8f5802e66011b4642de4632d4@milecki.pl>
-X-Sender: rafal@milecki.pl
-X-Originating-IP: 194.187.74.233
-X-Webmail-UserID: rafal@milecki.pl
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+        Greentime Hu <greentime.hu@sifive.com>
+References: <20220725212140.741644-1-ben.dooks@sifive.com>
+ <922628f6-cbb1-b563-6464-e57959bafbcd@linaro.org>
+ <8bb5103d-803e-90d2-fd93-132bb2aac2d6@sifive.com>
+ <6317212b-1fca-65b4-9bce-0b9f7408fdae@linaro.org>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <6317212b-1fca-65b4-9bce-0b9f7408fdae@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Ovh-Tracer-Id: 1581326421855153115
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvfedrvdduvddgfeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvvefujghffgfkgihitgfgsehtjehjtddtredvnecuhfhrohhmpeftrghfrghlpgfoihhlvggtkhhiuceorhgrfhgrlhesmhhilhgvtghkihdrphhlqeenucggtffrrghtthgvrhhnpeetgfekfeduveehuedvgeefhffhieevhfejteeggfefieevffdtueeukedugeelieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepphhlrgihvghrjeejfedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehrrghfrghlsehmihhlvggtkhhirdhplhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheejie
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-07-26 03:09, William Zhang wrote:
-> On 07/25/2022 04:32 PM, Rob Herring wrote:
->> On Sun, Jul 24, 2022 at 10:53:56PM -0700, William Zhang wrote:
->>> Append "brcm,bcmbca" to compatible strings based on the new bcmbca
->>> binding rule for BCM4908 family based boards. This will break drivers
->>> that use the old compatible string for binding. Fortunately there is 
->>> no
->>> such usage in linux and u-boot.
->> 
->> How does adding an additional compatible break things?
->> In theory when some crazy code tries to match the entire string. But 
->> not
-> in linux, u-boot code and hopefully not in other bootloader and Os
-> does that. But this does change an existing compatible string so
-> Krzysztof suggested to add comment about the breakage in the commit
-> message. I can remove this and send v3 if you guys think it is
-> necessary.
+On 26/07/2022 12:05, Krzysztof Kozlowski wrote:
+> On 26/07/2022 12:12, Ben Dooks wrote:
+>> On 26/07/2022 11:05, Krzysztof Kozlowski wrote:
+>>> On 25/07/2022 23:21, Ben Dooks wrote:
+>>>> Add documentation for the bindings for Synopsys' DesignWare PWM block
+>>>> as we will be adding DT/platform support to the Linux driver soon.
+>>>>
+>>>> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+>>>> --
+>>>
+>>> This is not proper delimiter and causes the changelog to end up in commit.
+>>>
+>>> Correct also wrong formatting of subject PATCH.
+>>
+>> I realised that once sent and forgot the cover letter.
+>> Maybe I'll try some more post covid recovery.
+>>
+>>>> v2:
+>>>> - fix #pwm-cells to be 3
+>>>> - fix indentation and ordering issues
+>>>> ---
+>>>>    .../devicetree/bindings/pwm/snps,pwm.yaml     | 40 +++++++++++++++++++
+>>>>    1 file changed, 40 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/pwm/snps,pwm.yaml b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..594085e5e26f
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/pwm/snps,pwm.yaml
+>>>> @@ -0,0 +1,40 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +# Copyright (C) 2022 SiFive, Inc.
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/pwm/snps,pwm.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Synopsys PWM controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Ben Dooks <ben.dooks@sifive.com>
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: pwm.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: snps,pwm
+>>>
+>>> This is very generic compatible. I doubt that you cover here all
+>>> Synopsys PWM designs, past and future. You need a specific compatible.
+>>
+>>   From what I can get from the documentation (2.13a) there hasn't been
+>> a huge external interface change and what has been added is all part
+>> of synthesis time options.
+> 
+> But you have some specific version, right? Usually these blocks are
+> versioned, so you must include it. I would even argue that such generic
+> compatible should not be used as fallback at all, because it is simply
+> to generic (PWM is not some model name but common acronym),
 
-Krzysztof commented on ABI breakage [1] when you tried removing
-"brcm,bcm4908" from the "compatible" list in your patch
-[RFC PATCH 3/3] arm64: dts: bcmbca: update bcm4808 board dts file [2]
+Thank you for the feedback, forgot to say that on the original reply.
 
-In this version of your patch you don't remove "brcm,bcm4908" anymore so
-this change doesn't break anything. Adding a new "compatible" string
-doesn't break things. You can remove that info from the commit message.
+-- 
+Ben
 
-[1] 
-https://lore.kernel.org/linux-arm-kernel/d93e55fa-3359-2609-aad5-c80eca78f380@linaro.org/
-[2] 
-https://lore.kernel.org/linux-arm-kernel/20220712021144.7068-4-william.zhang@broadcom.com/
