@@ -2,89 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B159A58244F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 12:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7D01582453
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 12:30:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231642AbiG0K3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 06:29:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34964 "EHLO
+        id S231182AbiG0Ka1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 06:30:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231217AbiG0K3y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 06:29:54 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76D3545F77
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 03:29:52 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id z25so26542481lfr.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 03:29:52 -0700 (PDT)
+        with ESMTP id S231694AbiG0Ka0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 06:30:26 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADF29654C
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 03:30:24 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id t1so26438751lft.8
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 03:30:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=C8/pL5RbrbSs+hHHBvRwGZbpYLdGvRQCLQtimUHaY/Y=;
-        b=aEvVN8nlbsucKUUCJ/wUHJHSxHoLOa1riYAfbTUcji+KGxjKo9NUlmDFicJ8ogDpCl
-         hMkK48WPOyIp8xI0oAvv3I8h3IrytxEr39XHdhKL/7ZUUG+/y5f2OxlKay0DfkAGdRQp
-         N2nMntakv/nGUJlAmGxgOyUqTcPt03uwToXKvUh8SoNvTUIG7NPtBuFsExp66abTwW2V
-         xdLYEHHweN3rL1XAL3L0kt/DdUkYeAdk/uySuf+B76Mu3lnzxHQAAfXvLCYxu/uAD4SB
-         zcecCzzrdvFntUwwFrbRfekPUx5p6IWlfgTs0n3WGY6lrL4dWKOok5/Y/BbPpN5wHjAQ
-         NkAQ==
+        bh=1DXNckt+1wBuVx3LpQLh6jkvD1I6eVSY2ub2nyt5y2s=;
+        b=zbeJawWtnr8HlbUf/dQUmJkL9S2pqzQeP+sOExxZ8n6cqrv+fkEdtrGDBkAAjG90+w
+         nBSmqsSUS/y2IWtnQtWIUk820C/xGf01Cbx2aVrG6IU4H0blN/rpR9XMRuDZZhHPGIK7
+         9yNybJP38GPnz64+o9piU7UCcBTlTDVUvtNbI417LYRERbVe4lxHITscp4/+dZl+9FxW
+         teeOnZXe1FIzw/PkjiAVnUIHgynb2Ak0PdUFgEtYTx3KdMjX/mQigdAvcTV4Q4/zuIx3
+         Ay9noR82CBb4748uYreBtl+vY/h7aOYjrUE1hKFIhpWDcUc2Dh1Vneg44SFaK+oYbQ6a
+         /roQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=C8/pL5RbrbSs+hHHBvRwGZbpYLdGvRQCLQtimUHaY/Y=;
-        b=fSnyrhxIYbHNr0ppAyNu5toQcZgz5+BwRu8hHNiZFr4z9XZ2djUOKHzlChAFSSzpQz
-         /7jf7+N0yulLxOAgsybQHBGBNx2nRXFOxj+laF4jIA+uUBAvabC2X6uBnZrbj2RhL1h7
-         QSZENONYeUl8DCb+LpFvfVUxqWoK5xFRraLAzAnQhja/u6+Q8W+iNDhYsP0IySs+FJqY
-         GD5uT6MXaBJ7pwirMV+XyMkbdAWx3AY6BxhRXYSIDDZAev4VDQsCiyRD6bF5C2miS2nc
-         SN0nUkVkEtLWnKCulmgeOOops1+zg8a5xZOahRBhuDGA5FysgGKF9qSZCbG7xew+JDi7
-         Vymw==
-X-Gm-Message-State: AJIora+HthugQGBR18T7g2PMOlvqUa+wrChFG1H1K7XARtgx0yVoJx6b
-        gm+4dzrdI4X+WtXrLjIvYfn69g==
-X-Google-Smtp-Source: AGRyM1v6ECH8DolGJTGZAMrGuB6MutvHtE6E/y7iHHFanSZqIcdESQaJ1Av1+9ir3yDaNGXwjrHh/A==
-X-Received: by 2002:a05:6512:22c8:b0:488:e69b:9311 with SMTP id g8-20020a05651222c800b00488e69b9311mr7492057lfu.564.1658917790652;
-        Wed, 27 Jul 2022 03:29:50 -0700 (PDT)
+        bh=1DXNckt+1wBuVx3LpQLh6jkvD1I6eVSY2ub2nyt5y2s=;
+        b=34RdoYY/Xf4r6qMHlqDdjByJvt+2hgxbaA951LiLBNQWEcZPn39/oPAri3eGnfwiIr
+         eqhu7Z9xgcoA8jtQeb6/wgz798jvJk2NmW5ONGfOS85Ahh8ugJVQ1nKdO28MC0Mlw/eq
+         arIHl9xYk0UxGVvTcYHejby67unTVkhRxz6Bn7PBx9OMru84mwFpl0U4lI2N0RcC/nob
+         yV2vNPya2Tw5iiGDuuDjtKp13I7KCYx3194cUXImwXjSFLr2aq/204L7+jWnm4PqCitO
+         nGmkCdOuX05w+uU7Pb6haaNH+V0Ogp2PVsUk9igGqOx4la2cQCevbXF+/Dt+2wXoIdp2
+         Vyvg==
+X-Gm-Message-State: AJIora/4k1p7OjRBK11NXHH2G9VpgU7uTCFaRrSklyKYwfxBAvqMZ7Gr
+        /dGDmktrlze3ZexXyfwmshEHiA==
+X-Google-Smtp-Source: AGRyM1stiNr9XxY7shzNBKP/VCaCIMAwTIP0hycBVdc1xeWChrSE7+wxJE89IzvAPFFn0NgG8+F1ug==
+X-Received: by 2002:a19:6459:0:b0:48a:7139:9ed1 with SMTP id b25-20020a196459000000b0048a71399ed1mr8254096lfj.485.1658917823066;
+        Wed, 27 Jul 2022 03:30:23 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id q12-20020a0565123a8c00b0048a854462a4sm2119726lfu.214.2022.07.27.03.29.48
+        by smtp.gmail.com with ESMTPSA id z20-20020a195e54000000b00489c5e840d4sm3705919lfi.227.2022.07.27.03.30.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 03:29:50 -0700 (PDT)
-Message-ID: <a8c778db-f52c-45cb-c671-556b24f3cb46@linaro.org>
-Date:   Wed, 27 Jul 2022 12:29:48 +0200
+        Wed, 27 Jul 2022 03:30:22 -0700 (PDT)
+Message-ID: <3ebd6dad-038d-eb96-3fed-8735de0cee2e@linaro.org>
+Date:   Wed, 27 Jul 2022 12:30:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [RFC PATCH net-next] dt-bindings: net: dsa: mediatek,mt7530:
- completely rework binding
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: add support for MediaTek
+ mt8188
 Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Sander Vanheule <sander@svanheule.net>,
-        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
-        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+To:     Hui Liu <hui.liu@mediatek.com>, linus.walleij@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        jianguo.zhang@mediatek.com, zhiyong.tao@mediatek.com,
+        sean.wang@mediatek.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220726122406.31043-1-arinc.unal@arinc9.com>
+References: <20220727102140.6676-1-hui.liu@mediatek.com>
+ <20220727102140.6676-2-hui.liu@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220726122406.31043-1-arinc.unal@arinc9.com>
+In-Reply-To: <20220727102140.6676-2-hui.liu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -95,13 +80,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 14:24, Arınç ÜNAL wrote:
-> Completely rework the binding for MediaTek MT7530 and MT7531 switches.
+On 27/07/2022 12:21, Hui Liu wrote:
+> From: "Hui.Liu" <hui.liu@mediatek.com>
+> 
+> Add pinctrl function header file and binding document for mt8188.
+> 
+> Signed-off-by: Hui.Liu <hui.liu@mediatek.com>
+> ---
+>  .../pinctrl/mediatek,mt8188-pinctrl.yaml      |  238 +++
+>  .../pinctrl/mediatek,mt8188-pinfunc.h         | 1280 +++++++++++++++++
+>  2 files changed, 1518 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8188-pinctrl.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8188-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8188-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..a9d5e9eec35d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8188-pinctrl.yaml
+> @@ -0,0 +1,238 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/pinctrl-mt8188.yaml#
 
-Rules are the same for schema as for driver - one patch, one thing. You
-mix here trivial style changes (removal of quotes) with functional stuff.
-
-Patch is unreviewable, so it must be split.
+Does not look like you tested the bindings. Please run `make
+dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
 
 
 Best regards,
