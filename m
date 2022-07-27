@@ -2,98 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96CCB583081
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 19:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A72C58312F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 19:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242172AbiG0Rix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 13:38:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54092 "EHLO
+        id S243249AbiG0Rrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 13:47:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242640AbiG0RiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 13:38:18 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4475E87231
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:50:40 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id d17so25877194lfa.12
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:50:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=rb1FB8S7K+YoHZwnK5lpzdbH9mR1fCmHK8/JCTc6i40=;
-        b=zvVoFZ0OHaSCxvfqQ/tBxedkQ+6xY52vCay7aQqTCmOV57kXJGCmpGecBeN5Cyva3q
-         tQsjhBeaY+bDnUC0QjNu8mvDMw34FiI3J6rmXWHFZ+9YeIWjqBQAi/t0PSKRNJSQp89R
-         psFjSgL/4dGZsyiO8jYkxZrem01Y1RT1Fza5GNXHvbf0KPURmWdXFs1iv1nntSkP5AaX
-         C6cW2c2weWcjtKWdEakGmZk+fG+JT/k/94abqQ+5qGgtwowtxOhvLvvmmybv5NcKUM8+
-         +CTNiX/YFtQDEGtBYl+zGZEfpfoycLa3YsTef0gxzg03pKlalTnjrf9b9MzRCmviTZet
-         /0ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=rb1FB8S7K+YoHZwnK5lpzdbH9mR1fCmHK8/JCTc6i40=;
-        b=q1sNdYTo3AWpAuWP5Wejm15u4HWaRw/FAKceNrf5twkcqUCOmlfHuLY13VvTErytpJ
-         vHKr0WziCbhS1fxOeEU3N/5RKQCiv9udgdDDgeUNTvjBe0dqh08IXxtBZ3HCoH2LTlMj
-         CX80kWLTEgRd1aD7KU4xCO0vIWC8ZIDTVYcfbarBrNumAkmATBWqGGioZvE8jr538GM9
-         wHsw2IqUNh6tz+OjKVuQ2CMcV710j00bon08QT3o+tqfEyxH97yk8g23o9HJO2BXmo+V
-         evxC2hSuOatPHgiQBPZQiS1Bo3psy10tI/PxmnOxLr13gHQy+4B3SHF+cZj2FjHwTqlM
-         e5Rw==
-X-Gm-Message-State: AJIora8ktVxgWTl4GShzBjc3IRpI45Z52NxQ7qdPKmqBo2Qlzh8FMe69
-        NytgWmdN7aURGjGczWpZCvHZzA==
-X-Google-Smtp-Source: AGRyM1uKN/6CsJ7dRw2kJ7G6Z+87qHHOAOs+37FNzhsjBRnj3nETk9Dnt1PcbTtv0zfAhhvq2Yc3fw==
-X-Received: by 2002:a05:6512:16a8:b0:48a:9ba0:606a with SMTP id bu40-20020a05651216a800b0048a9ba0606amr4383326lfb.476.1658940635704;
-        Wed, 27 Jul 2022 09:50:35 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id e28-20020ac25cbc000000b00489c5db8bb6sm3856186lfq.176.2022.07.27.09.50.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 09:50:35 -0700 (PDT)
-Message-ID: <0c3a95fb-a3ee-ba48-1f69-ae9db84cc856@linaro.org>
-Date:   Wed, 27 Jul 2022 18:50:34 +0200
+        with ESMTP id S243186AbiG0RrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 13:47:07 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 769208CC86;
+        Wed, 27 Jul 2022 09:53:57 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26R4fJvX006636;
+        Wed, 27 Jul 2022 11:53:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=iesTYc/ViLkWIDaL0vep5f+nAcgKS6RyWgmV8RlYjKw=;
+ b=Lwkvkol77K7y4mq5fF092Iqo5/qSJ2IY+nGc+YGDXmQZvMt3ETuAHD4ChzdmumioxpTI
+ PU0sdZa20ypglZvtRZt93VQTmSa7SWa0UwoceqwKXpDKm16bGxN76BJZ3jfCIX0aY03J
+ KZTYNK3ozQl+MT2p5CqfytzFn3JyErt+wh0BZ0TLwGSpJuV+55ENP2P0POHUU503CZqb
+ a6MDrl0Q2ve0svGYOomlhIYh52pzSpnLlaCvtEr+PFSttwE6gvevjCeDKiwwopDdsElo
+ ANI5GhsXPtHJx9k84X18FTxxjfTNZIMkZz1tN6zMDIXtX7+e4fGt/8ApeC1IcEBQMuCF SQ== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3hgddp56r0-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 27 Jul 2022 11:53:20 -0500
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.9; Wed, 27 Jul
+ 2022 11:53:18 -0500
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.9 via Frontend
+ Transport; Wed, 27 Jul 2022 11:53:18 -0500
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 96AB62D4;
+        Wed, 27 Jul 2022 16:53:18 +0000 (UTC)
+Date:   Wed, 27 Jul 2022 16:53:18 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Bogdan Togorean <bogdan.togorean@analog.com>,
+        - <patches@opensource.cirrus.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: use spi-peripheral-props.yaml
+Message-ID: <20220727165318.GH92394@ediswmail.ad.cirrus.com>
+References: <20220727164050.385241-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v5 2/5] spi: dt-bindings: add documentation for
- hpe,gxp-spifi
-Content-Language: en-US
-To:     nick.hawkins@hpe.com
-Cc:     broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com,
-        linux@armlinux.org.uk, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, arnd@arndb.de, joel@jms.id.au
-References: <20220727164736.48619-1-nick.hawkins@hpe.com>
- <20220727164736.48619-3-nick.hawkins@hpe.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220727164736.48619-3-nick.hawkins@hpe.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220727164050.385241-1-krzysztof.kozlowski@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: Fb6-zD7Ylv_XSpFuYJi-AaYf5TVKMTY0
+X-Proofpoint-ORIG-GUID: Fb6-zD7Ylv_XSpFuYJi-AaYf5TVKMTY0
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2022 18:47, nick.hawkins@hpe.com wrote:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
+On Wed, Jul 27, 2022 at 06:40:50PM +0200, Krzysztof Kozlowski wrote:
+> Instead of listing directly properties typical for SPI peripherals,
+> reference the spi-peripheral-props.yaml schema.  This allows using all
+> properties typical for SPI-connected devices, even these which device
+> bindings author did not tried yet.
 > 
-> Create documentation for the hpe,gxp-spifi binding to support access to
-> the SPI parts
+> Remove the spi-* properties which now come via spi-peripheral-props.yaml
+> schema, except for the cases when device schema adds some constraints
+> like maximum frequency.
 > 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> While changing additionalProperties->unevaluatedProperties, put it in
+> typical place, just before example DTS.
 > 
-
-No blank lines between tags.
-
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
 > ---
 
+For the Wolfson bits:
 
+Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-Best regards,
-Krzysztof
+Thanks,
+Charles
