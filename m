@@ -2,155 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFC8358217E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 09:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B884E58218F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 09:53:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229670AbiG0Htj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 03:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48258 "EHLO
+        id S229379AbiG0Hx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 03:53:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiG0Hth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 03:49:37 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D02E422CB;
-        Wed, 27 Jul 2022 00:49:36 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id z18so8021703edb.10;
-        Wed, 27 Jul 2022 00:49:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=7qrKymhpLOAPYDYIFsDNUzeQR021XnkNkwlPESUcTX8=;
-        b=FY9ZK6DN7/WlouONO+X7GQTuYKV2MQxX+NxsAxG9h3cBD5XAQJUqonvfI5qp4qOB5Q
-         ym19B8AQOzTbLQmo2n2Gmx0t4SpoqBf50VL5TRiTAyTxa+i4Yj2d2+Dd2a6oqLySyJJe
-         MFvtgnnuQdxYYqDUf90lSOotu51KM13cmu9MDpbImfwBVrYDvC0X4kaO45i2IPiJgp/M
-         cvvHCP3n+c25o6DnZEyE+O3l0/lKE6l/+wtE6pAiJMSl+YHcjuNvAdwsYCRHQh5+cYOH
-         sKf7q0xFFxSLN8MHdvsFSIwT8AK/auwulCLQB/zGBG6yIAM8odehRGMp6xtMXIMaog5m
-         OOjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=7qrKymhpLOAPYDYIFsDNUzeQR021XnkNkwlPESUcTX8=;
-        b=Ag3D5HZIYniQISiOlna4J7vkAAF+vI4xdKfBMI8MJNuKf9d9w58GjGvXbN4nLGpJuw
-         mR2RlsmJfZy0sxu7A8PAnR2KddKdxyA9EiWp+KGqh+3q/EcDIUkTJqOdyofkWJRSNAz0
-         ireQXL8QUjppDlI6Bj25cCFvAdZyVU5Lws9l7sbTIzygvt0ZPW7DMbf0XWIiCf0a6xbG
-         m8ehH5LG5iMEUZ/7+z2aGeW/Qo7Rp0dW/GWlnbO8p/wqtugMRZdTPlY2CeXHRcJ/qA/1
-         AB9q51mOVEsgO55wudMJPVy6Lh0vpvC+hPZpFg0of46yxZAR0W/3KTFxw2bdXsyZPxvb
-         GGMw==
-X-Gm-Message-State: AJIora9q5Z8KammNEnru6qIOauVE1ZiGeQdoUG5By6qP4qJ2niIAb9c8
-        op8Ul5aKOz3pls+8bPO2fH2fHAZfn6NYKTGu
-X-Google-Smtp-Source: AGRyM1tXpncuFPJXAmibcjFfJyU4q/R3OQaxywdRzAQa2B0nQnvOw7ZLhPVOhUShHwVnwox3XPIyqw==
-X-Received: by 2002:a05:6402:1f01:b0:43a:239e:e65a with SMTP id b1-20020a0564021f0100b0043a239ee65amr21521389edb.428.1658908174880;
-        Wed, 27 Jul 2022 00:49:34 -0700 (PDT)
-Received: from [192.168.74.101] ([77.78.38.236])
-        by smtp.gmail.com with ESMTPSA id bt8-20020a0564020a4800b0043bba5ed21csm9698792edb.15.2022.07.27.00.49.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 00:49:34 -0700 (PDT)
-Message-ID: <79fce900-2825-45ca-44f2-9fb94b5eeed3@gmail.com>
-Date:   Wed, 27 Jul 2022 10:49:32 +0300
+        with ESMTP id S229940AbiG0Hx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 03:53:57 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F5C422EE
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 00:53:55 -0700 (PDT)
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20220727075353epoutp012078ba31c5d4fe12a3be9f891b96201f~FoG5X7NbH3077930779epoutp01C
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 07:53:53 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20220727075353epoutp012078ba31c5d4fe12a3be9f891b96201f~FoG5X7NbH3077930779epoutp01C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1658908433;
+        bh=ZFuAEt2AsYWFEFX5DaZU4QMQYWY1k8O2MmbkLH2XzXQ=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=tOyrEFB6FqYad5LvUd6+p2PTOvY+7Yi2UgBwDjM5V8erQFkagqgq/hG2Yy+0tUe1n
+         Fy3K7eiCfKy98E7r9OFMNgUU2qatCPA65x892TbJCzBo1vHdxexFdjuufC8AiyPXVx
+         is4r0A3Uwa+4WcQpEXvM1GGgpkXyhO9FYue6EDzk=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+        20220727075353epcas2p19946fb2c7adcd6a9e327a1b98b634c3d~FoG452n4i2997029970epcas2p1G;
+        Wed, 27 Jul 2022 07:53:53 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.92]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4Lt5dD4xC5z4x9Pw; Wed, 27 Jul
+        2022 07:53:52 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        40.BB.09650.01FE0E26; Wed, 27 Jul 2022 16:53:52 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20220727075352epcas2p1458d9036ead4cfcdb53f157477d760da~FoG4DBkca2997029970epcas2p1F;
+        Wed, 27 Jul 2022 07:53:52 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220727075352epsmtrp1b8094f1f473a00931c9c3cacb4ce9bd5~FoG4B6Uef0394903949epsmtrp1h;
+        Wed, 27 Jul 2022 07:53:52 +0000 (GMT)
+X-AuditID: b6c32a46-8bff9a80000025b2-05-62e0ef100581
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        94.B9.08905.F0FE0E26; Wed, 27 Jul 2022 16:53:51 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220727075351epsmtip17829a445cb327f8cd45457e751071e0a~FoG304_ab2865328653epsmtip1O;
+        Wed, 27 Jul 2022 07:53:51 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Chanwoo Choi'" <cwchoi00@gmail.com>,
+        "'Sylwester Nawrocki'" <s.nawrocki@samsung.com>,
+        "'Tomasz Figa'" <tomasz.figa@gmail.com>,
+        "'Chanwoo Choi'" <cw00.choi@samsung.com>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        "'Stephen Boyd'" <sboyd@kernel.org>,
+        "'Michael Turquette'" <mturquette@baylibre.com>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "'Sam Protsenko'" <semen.protsenko@linaro.org>,
+        "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+        <linux-samsung-soc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <7aac0100-5f45-4586-b13e-df0f8bd95060@gmail.com>
+Subject: RE: [PATCH 2/6] dt-bindings: clock: exynosautov9: add fsys1 clock
+ definitions
+Date:   Wed, 27 Jul 2022 16:53:51 +0900
+Message-ID: <00ba01d8a18e$0345be80$09d13b80$@samsung.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/5] dt-bindings: regulator: Document the PM6125 SPMI
- PMIC
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Adam Skladowski <a39.skl@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20220726181133.3262695-1-iskren.chernev@gmail.com>
- <20220726181133.3262695-2-iskren.chernev@gmail.com>
- <CAA8EJpoLMioMy61np6Y8Gn+Uhb8EvgU6bwuUyouuNcDz0XwByg@mail.gmail.com>
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-In-Reply-To: <CAA8EJpoLMioMy61np6Y8Gn+Uhb8EvgU6bwuUyouuNcDz0XwByg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQGvHdiJRxrKvfr9COO4ztLuF0RMcAHzpheBAcYwLosCFfdsLq22X/Nw
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrGJsWRmVeSWpSXmKPExsWy7bCmma7A+wdJBrPOKFk8mLeNzeL6l+es
+        Fs+OalvMP3KO1aLvxUNmi72vt7JbbHp8jdXiY889VosZ5/cxWVw85WrRuvcIu8XhN+2sFv+u
+        bWSxeN4HFF+16w+jA7/H+xut7B47Z91l99i0qpPN4861PWwem5fUe/RtWcXo8XmTXAB7VLZN
+        RmpiSmqRQmpecn5KZl66rZJ3cLxzvKmZgaGuoaWFuZJCXmJuqq2Si0+ArltmDtDVSgpliTml
+        QKGAxOJiJX07m6L80pJUhYz84hJbpdSClJwC8wK94sTc4tK8dL281BIrQwMDI1OgwoTsjN8/
+        rrIVLOesmLell62B8TR7FyMHh4SAicTaLxVdjFwcQgI7GCXWfW1ih3A+MUrM/rOIBcL5xihx
+        8cl71i5GTrCOez+OsUEk9jJKnD37jRnCecEoMWnGWbAqNgF9iZcd21hBEiICa5glDj7+DDaL
+        WeA1o8S/1rvMINs5BWwlJp3gAmkQFoiQWPR8GiOIzSKgKrHuVy8bSAmvgKVE/zEWkDCvgKDE
+        yZlPwGxmAW2JZQtfM0NcpCDx8+kysL0iAm4SMzbMZoSoEZGY3dkGdpyEwB0OiaM9c6AaXCTO
+        HlnJBmELS7w6voUdwpaSeNnfBmUXSyyd9YkJormBUeLytl9QDcYSs561M4IcxyygKbF+lz4k
+        IJUljtyCuo1PouPwX2j48kp0tAlBNKpLHNg+nQXClpXonvOZdQKj0iwkn81C8tksJB/MQti1
+        gJFlFaNYakFxbnpqsVGBETyyk/NzNzGCE7SW2w7GKW8/6B1iZOJgPMQowcGsJMKbEH0/SYg3
+        JbGyKrUoP76oNCe1+BCjKTCoJzJLiSbnA3NEXkm8oYmlgYmZmaG5kamBuZI4r1fKhkQhgfTE
+        ktTs1NSC1CKYPiYOTqkGppqP6ZzXnKuuG1hceMe54FxSsGiawW+397JXzIwu7DdQbb2Uc/CJ
+        8L3Sl4v8pjfvnxTA1nHKsINN2exAdzTnptW1B8N+aMsXZroy7j/poJVllrvIalP1+z8sc7d8
+        v2KVY3oq4uCyVeHqT/OXnEwSNFs02YWPPebu2nvGYT2+81a85rFecrzr+aO/186E3eRfOG+3
+        9cYlfxM4A4L6r0Q9du1sYp4VqZhs6f6+8PEivRbtu9Ns9wv7p1T1qk+uZjSImn/i/HftHtnz
+        0a2rjdecL/d9VLiD5f6Nw6U3Z1ddSH5w9A6HxrRLKXv8tz6e57j4h8H6nxLqobYCSvbXZu2O
+        kLJdsJvp/p/PFX/qjTl76pVYijMSDbWYi4oTARUnUdNZBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrIIsWRmVeSWpSXmKPExsWy7bCSnK7A+wdJBifjLR7M28Zmcf3Lc1aL
+        Z0e1LeYfOcdq0ffiIbPF3tdb2S02Pb7GavGx5x6rxYzz+5gsLp5ytWjde4Td4vCbdlaLf9c2
+        slg87wOKr9r1h9GB3+P9jVZ2j52z7rJ7bFrVyeZx59oeNo/NS+o9+rasYvT4vEkugD2KyyYl
+        NSezLLVI3y6BK+PYie/MBf2cFb1XZ7A3MG5m72Lk5JAQMJG49+MYWxcjF4eQwG5Gidt/vzJB
+        JGQlnr3bAVUkLHG/5QgrRNEzRokfj3pYQBJsAvoSLzu2gSVEBDYwS8y8fpAdxGEWeM8osW/N
+        XUaQKiGBT4wS25cIdDFycHAK2EpMOsEFEhYWCJOYPuU22CAWAVWJdb962UBKeAUsJfqPgYV5
+        BQQlTs58AmYzC2hLPL35FM5etvA1M8RxChI/ny5jBbFFBNwkZmyYzQhRIyIxu7ONeQKj8Cwk
+        o2YhGTULyahZSFoWMLKsYpRMLSjOTc8tNiwwzEst1ytOzC0uzUvXS87P3cQIjlUtzR2M21d9
+        0DvEyMTBeIhRgoNZSYQ3Ifp+khBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeC10n44UE0hNLUrNT
+        UwtSi2CyTBycUg1MaeLeQvLdb7rDg1YsPOW522qL/oIzDZsz5M77bzh3XV5mqxdnh5NPb8Q3
+        H88bbbtneUrckgn+4t5Q+Gyiw9Wb/M9sO3Ye8AhwePOZ4ZHi5Xmf83atiI+/8JUzZt4JNeFl
+        gfWVuqUW61ZsSFsTZM4jNf/87OQQ4RV37P2+xryLYjabOss7i+/tQy3m1Tz9+ydo/vjLsfRx
+        W6l4ntnShGknltZvSL+48NXkG/L2wknPBfsKq/7cWKDrFv9ksu7M8nfr04I6O5essfbPeVfp
+        saMwR0b10/lFU2cX862Oriw44O8buXK/a8HbZOtj+03uqFz5Y+/5IvnSoXJX1X0/PqZsj/t3
+        scTUT539l2Bx4fRQJZbijERDLeai4kQAHkJxhUQDAAA=
+X-CMS-MailID: 20220727075352epcas2p1458d9036ead4cfcdb53f157477d760da
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220727060612epcas2p34e861279ece7fbd3c7c87ce02c7d795c
+References: <20220727060146.9228-1-chanho61.park@samsung.com>
+        <CGME20220727060612epcas2p34e861279ece7fbd3c7c87ce02c7d795c@epcas2p3.samsung.com>
+        <20220727060146.9228-3-chanho61.park@samsung.com>
+        <7aac0100-5f45-4586-b13e-df0f8bd95060@gmail.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> Subject: Re: =5BPATCH 2/6=5D dt-bindings: clock: exynosautov9: add fsys1 =
+clock
+> definitions
+>=20
+> On 22. 7. 27. 15:01, Chanho Park wrote:
+> > Add fsys1(for usb and mmc) clock definitions.
+> >
+> > Signed-off-by: Chanho Park <chanho61.park=40samsung.com>
+> > ---
+> >  .../dt-bindings/clock/samsung,exynosautov9.h  =7C 25 +++++++++++++++++=
+++
+> >  1 file changed, 25 insertions(+)
+> >
+> > diff --git a/include/dt-bindings/clock/samsung,exynosautov9.h
+> b/include/dt-bindings/clock/samsung,exynosautov9.h
+> > index 6305a84396ce..7e11e681da5c 100644
+> > --- a/include/dt-bindings/clock/samsung,exynosautov9.h
+> > +++ b/include/dt-bindings/clock/samsung,exynosautov9.h
+> > =40=40 -228,6 +228,31 =40=40
+> >
+> >  =23define FSYS0_NR_CLK			37
+> >
+> > +/* CMU_FSYS1 */
+> > +=23define FOUT_MMC_PLL				1
+> > +
+> > +=23define CLK_MOUT_FSYS1_BUS_USER			2
+> > +=23define CLK_MOUT_MMC_PLL			3
+>=20
+> nitpik. This clock id doesn't have 'FSYS1' word. Is it right?
 
+Nice catch. I copied it from the SoC User manual but it should have the FSY=
+S1 prefix because it's definitely included in the FSYS1 cmu block
+I'll update it next patchset.
 
-On 7/26/22 23:36, Dmitry Baryshkov wrote:
-> On Tue, 26 Jul 2022 at 21:11, Iskren Chernev <iskren.chernev@gmail.com> wrote:
->>
->> Add support for pm6125 compatible string and add relevant supplies in QCom SPMI
->> regulator documentation.
->>
->> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
->> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
-> 
-> The order of sign-offs seems incorrect. The sender's signature should
-> be the last one.
+Best Regards,
+Chanho Park
 
-Sure, will do!
-
->> ---
->>  .../regulator/qcom,spmi-regulator.yaml        | 19 +++++++++++++++++++
->>  1 file changed, 19 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
->> index 8b7c4af4b551..d8f18b441484 100644
->> --- a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
->> +++ b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.yaml
->> @@ -12,6 +12,7 @@ maintainers:
->>  properties:
->>    compatible:
->>      enum:
->> +      - qcom,pm6125-regulators
->>        - qcom,pm660-regulators
->>        - qcom,pm660l-regulators
->>        - qcom,pm8004-regulators
->> @@ -106,6 +107,24 @@ required:
->>    - compatible
->>
->>  allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,pm6125-regulators
->> +    then:
->> +      properties:
->> +        vdd_l1_l7_l17_l18-supply: true
->> +        vdd_l2_l3_l4-supply: true
->> +        vdd_l5_l15_l19_l20_l21_l22-supply: true
->> +        vdd_l6_l8-supply: true
->> +        vdd_l9_l11-supply: true
->> +        vdd_l10_l13_l14-supply: true
->> +        vdd_l12_l16-supply: true
->> +        vdd_l23_l24-supply: true
->> +      patternProperties:
->> +        "^vdd_s[1-8]-supply$": true
-> 
-> Add an empty line please.
-
-All other if-then blocks don't have newlines, shall I add one between each as
-well?
-
->>    - if:
->>        properties:
->>          compatible:
->> --
->> 2.37.1
->>
-> 
-> 
