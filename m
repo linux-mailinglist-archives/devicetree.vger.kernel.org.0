@@ -2,73 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9D2582E67
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 19:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7C7A582E71
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 19:13:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236506AbiG0RMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 13:12:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48668 "EHLO
+        id S241486AbiG0RMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 13:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237271AbiG0RLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 13:11:44 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C36AA74E08
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:41:43 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id t1so27894870lft.8
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:41:43 -0700 (PDT)
+        with ESMTP id S241487AbiG0RMK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 13:12:10 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CB474E3E
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:41:53 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id t17so15673954lfk.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:41:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=noZsE9hzm+1k0IDbKYcJedBCS8keQWIZ5dwJ9Bh2iyA=;
-        b=EvaFQ0LZE/erLTRglemqXFQcs3XLxjLrE10420FuIJORcU8P0nkjppHqEchtCoTdrV
-         QP3EHReO5Zj5phUAfO0cxLHKN2bfz0WwIlTvjKlOSHBNTX60u8ZOyI3BJ6DA74rpJkT0
-         8GE21IktCR/UbYLecNeeifL6SJcsv1OCP0KnhjoJWpm9vTJmfsOkimnmmVNmiKXSCjrq
-         PCIvFb2Z/9iLYQZjt4s1MFE4W9GqIdaCKe3Bj9niregePX3wluJt/DkX3AeE/2dJiwmo
-         OUqGp5MF42tU4cR9HJcR08KOXhPf/hL38/GwuPr2abMfrRWfMEMzEVdqiblUcsKeSAsU
-         1shQ==
+        bh=HLLpAzhNV/l0ttpD0m4mlf6L5UXu2Cn5/3KpjyhDTBY=;
+        b=uPUaQqLTpWBsddAvwhB8kXR3XZqpK0bsfMJYxtl6vmn0LIxzSjWbEkXM+1GyWv4q3K
+         0lXRAxsqbWIDmTHN9W9otGvZnmtq6Gi31EciPJxgE8fjh2qUREoJtZEh1xQiYckDq06b
+         RsAcgGnVa7t22jloyDww1FlcS+NSMIoxuplRVXowLQCO7zd4UqWHIJTdos7ONZAPMoQO
+         X8GTSCn5qBzEmzNsHgudvTRUKqbh5UBpG8+/KsiBX1774UKZHSPq9SrIQvAY2SyBGYum
+         lrUgOkkjGsHBhfhQR0ZmWQvSkCw8rH2kUtWhMyPFl6EyINP0S5yN50siJJonzjzCBX5j
+         aA0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=noZsE9hzm+1k0IDbKYcJedBCS8keQWIZ5dwJ9Bh2iyA=;
-        b=kKF58LdH/l901uAdDfFVkD+KIlqxBE94zWjzxeBqtX+1q9X8AYt6gRob5cKk6cYM62
-         xEhCvjQj4KN7f8LNRL5cFQnTPg/OxV7kE2rju3CD8Cm+zdmnBpQ4W4XwJ3tEsV/izZKy
-         QIJOVJaCM0E4IW9sIBKlffpTxK6CuJNBAj0zAPJVh6Kz/TJNJSMK1hEuFfPllvc1uoKD
-         ppDLJLu2yNohaYc9+v8k7GevUXHbtGCwWW7ihXZ0bAu4Bc+xlIgXV3lnmgi/wErn5g6w
-         7U4Id+Eg+yVroVPRItHitudUg4JSBUHIC5q3nVV7hwcOeh5CN2fKHChYfcW4oPYt/qU0
-         l1yg==
-X-Gm-Message-State: AJIora9eQP0K0YEY/81tZ2xx45bF27Wg/Vk6BCiZrax6CsZXrb86pyE+
-        BVLyyHq5/ILIEFkXeQ+HlyQUww==
-X-Google-Smtp-Source: AGRyM1vOxShQJVI2IuMwmQBmBYBiblwWa0oXL7CXsC4l1qkEdcyTkrYB2g5dMB9y4tgZP27svG3sNw==
-X-Received: by 2002:a05:6512:1107:b0:48a:87db:7d24 with SMTP id l7-20020a056512110700b0048a87db7d24mr6539653lfg.58.1658940094944;
-        Wed, 27 Jul 2022 09:41:34 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HLLpAzhNV/l0ttpD0m4mlf6L5UXu2Cn5/3KpjyhDTBY=;
+        b=FndDssvNlt+rguyeYuL2uYN6Iw5P1gZVdjkzsIRLVVWsc38eEMTjYQmR6c/3SHEj5C
+         7zSdGUzjVKCuoRO6hkILeGt1rJfsWT9Y6oxgz8P0mduQPSbmNeoI1SVCxMRSm/Pe/6o+
+         mPUSmW80wICzuDHccb5vyxDTlMksR+hKgZBrHKb74PRuzYVjJf3svQlkTOfZNiB6hahE
+         8O+daVb5eXgJAc95QBLbIdCwTJCUPT7zY9VphwRtkygP3cVNk1PSVbEmQ6/pV+XFLrv9
+         7VjB6/Pyh52nRh7V/n7V6av3ABK63j3pWumoqXvF6j7EBG6mylbMbPA78GHMU+fE6EIy
+         KIFA==
+X-Gm-Message-State: AJIora86S6P7zcFdiibeKpfBwiVfZJ9X4fU4yTVDtmm9ywMGmu14gPGd
+        Ma4pa+mkvJSwxg0iwErHbFI/xA==
+X-Google-Smtp-Source: AGRyM1uF0dw37mu6pVrn0amas3Oc/3y1uf9T6DdFSISA35nOH4HUEzm1LE/4X3+zt0Kb9+FISznkdw==
+X-Received: by 2002:ac2:4f0a:0:b0:48a:839c:2fe with SMTP id k10-20020ac24f0a000000b0048a839c02femr6823774lfr.40.1658940111411;
+        Wed, 27 Jul 2022 09:41:51 -0700 (PDT)
 Received: from krzk-bin.lan (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id i17-20020a2ea231000000b0025a67779931sm3872519ljm.57.2022.07.27.09.41.33
+        by smtp.gmail.com with ESMTPSA id z19-20020a056512371300b0048a73a75908sm784409lfr.302.2022.07.27.09.41.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jul 2022 09:41:34 -0700 (PDT)
+        Wed, 27 Jul 2022 09:41:50 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Greer <mgreer@animalcreek.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        =?UTF-8?q?J=C3=A9r=C3=B4me=20Pouiller?= 
-        <jerome.pouiller@silabs.com>,
-        Adham Abozaeid <adham.abozaeid@microchip.com>,
-        Ajay Singh <ajay.kathat@microchip.com>,
-        Tony Lindgren <tony@atomide.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-wireless@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: wireless: use spi-peripheral-props.yaml
-Date:   Wed, 27 Jul 2022 18:41:30 +0200
-Message-Id: <20220727164130.385411-2-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heiko Schocher <hs@denx.de>, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: mtd: microchip,mchp48l640: use spi-peripheral-props.yaml
+Date:   Wed, 27 Jul 2022 18:41:48 +0200
+Message-Id: <20220727164148.385476-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220727164130.385411-1-krzysztof.kozlowski@linaro.org>
-References: <20220727164130.385411-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -108,125 +99,26 @@ loosened for that period.
 
 [1] https://lore.kernel.org/all/20220722191539.90641-2-krzysztof.kozlowski@linaro.org/
 ---
- .../net/wireless/microchip,wilc1000.yaml      |  7 ++--
- .../bindings/net/wireless/silabs,wfx.yaml     | 15 +++------
- .../bindings/net/wireless/ti,wlcore.yaml      | 32 +++++++++----------
- 3 files changed, 25 insertions(+), 29 deletions(-)
+ .../devicetree/bindings/mtd/microchip,mchp48l640.yaml      | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-index 60de78f1bc7b..b3405f284580 100644
---- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
-@@ -20,8 +20,6 @@ properties:
- 
-   reg: true
- 
--  spi-max-frequency: true
--
-   interrupts:
-     maxItems: 1
- 
-@@ -51,7 +49,10 @@ required:
-   - compatible
-   - interrupts
- 
--additionalProperties: false
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-index 76199a67d628..b35d2f3ad1ad 100644
---- a/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
-@@ -29,12 +29,6 @@ description: >
-     Documentation/devicetree/bindings/mmc/mmc-pwrseq-simple.yaml for more
-     information.
- 
--  For SPI:
--
--    In add of the properties below, please consult
--    Documentation/devicetree/bindings/spi/spi-controller.yaml for optional SPI
--    related properties.
--
- properties:
-   compatible:
-     items:
-@@ -52,8 +46,6 @@ properties:
-       bindings.
+diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+index 2cdf6bf3dc4a..8cc2a7ceb5fb 100644
+--- a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
++++ b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+@@ -22,13 +22,14 @@ properties:
+   reg:
      maxItems: 1
  
 -  spi-max-frequency: true
--
-   interrupts:
-     description: The interrupt line. Should be IRQ_TYPE_EDGE_RISING. When SPI is
-       used, this property is required. When SDIO is used, the "in-band"
-@@ -84,12 +76,15 @@ properties:
- 
-   mac-address: true
- 
--additionalProperties: false
 -
  required:
    - compatible
    - reg
  
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+unevaluatedProperties: false
-+
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-diff --git a/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml b/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
-index d68bb2ec1f7e..e31456730e9f 100644
---- a/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
-+++ b/Documentation/devicetree/bindings/net/wireless/ti,wlcore.yaml
-@@ -36,8 +36,6 @@ properties:
-       This is required when connected via SPI, and optional when connected via
-       SDIO.
- 
--  spi-max-frequency: true
--
-   interrupts:
-     minItems: 1
-     maxItems: 2
-@@ -69,20 +67,22 @@ required:
-   - compatible
-   - interrupts
- 
--if:
--  properties:
--    compatible:
--      contains:
--        enum:
--          - ti,wl1271
--          - ti,wl1273
--          - ti,wl1281
--          - ti,wl1283
--then:
--  required:
--    - ref-clock-frequency
--
 -additionalProperties: false
 +allOf:
 +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,wl1271
-+              - ti,wl1273
-+              - ti,wl1281
-+              - ti,wl1283
-+    then:
-+      required:
-+        - ref-clock-frequency
 +
 +unevaluatedProperties: false
  
