@@ -2,126 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0692D5821AF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 10:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA3235821B5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 10:02:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbiG0IBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 04:01:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55642 "EHLO
+        id S229580AbiG0ICr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 04:02:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230130AbiG0IBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 04:01:15 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFF82422ED;
-        Wed, 27 Jul 2022 01:01:13 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id c131so29002860ybf.9;
-        Wed, 27 Jul 2022 01:01:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=D4DAUtMqWwVudJqi/niJOWb+6cSIXvBRzWlx03pK1Nc=;
-        b=UE9j56sjpWAsYKOcxBMjUI2ak6h/MS5YtqYJaKzcqWKbuuqSfa+F3h8Vu5AdcTPsC3
-         Sd9HGogbOgcFhU/EngE77Yk77wswd7O1Ml4szPquZR7tJAqQdFKdoGBq0iwxKU/fZgII
-         NL1Dgpp8/t2Nkvdqyg0cfv/AfZuLNaB8m0kH4DM0E9t26sRsMKdPZII2imgB1jnpm61i
-         TzYCQ7DWuVjbH/SC99Sc9W8s8TwR6zbvJyKlHw6MjoC9mW4UeCFC7XN6MEsQcmnrgDga
-         gtXiAy3w1WXrtxtI015STtvB806cc5zGnVxMzt5tp7mtAcKn2J1O7TOjv5WlhxJjKvKz
-         pUrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=D4DAUtMqWwVudJqi/niJOWb+6cSIXvBRzWlx03pK1Nc=;
-        b=rl0kM1AbyJU+mhkZslv1HF0STOLaQCiEhAMbUIHpTomaDPSDNkrnF/d+Xam+RuR+f5
-         ytqX6uxQoszWzhNjOI/M/cX4OvvwexYjUGmKk5qPxdbkYpZHQLSgJNPNkBaE6RRonBKf
-         gvf2mTFV0YbDnBTBs4EvP214eAvYBwfOehe/Xs1iN3cjOR9bJ/3TfAGrWR97FOEOGWTy
-         cmWMn2bEoXqJzN1Oys0ezTAHWn78lxTZHo+jGsfVRtcsDSbNal+sFogPP41Z4pBUPbjy
-         i2IDCzB3PgPBbPo5/vE58ddxA/bLMerePrUXONU0CI5VJgspyxx0wP04APdvFj87vgep
-         shRg==
-X-Gm-Message-State: AJIora/PJHwMJvq4C1Cq4TUuZQIF2WDWRQQk19aFPSfYftF+gU+1sKgx
-        Nds37KReQJGQx1qL9YFv/zR/cWVZeAFfquOLzMk=
-X-Google-Smtp-Source: AGRyM1vn+8Q6+I5xh7dntobwuywvhGo1l2I75PEVKouLyIip06Ow1NQMkw5NmUO6c3AaYmH8P2N2SYLMHai6GYktd/Q=
-X-Received: by 2002:a25:9e92:0:b0:66e:c03e:c632 with SMTP id
- p18-20020a259e92000000b0066ec03ec632mr16366501ybq.279.1658908872552; Wed, 27
- Jul 2022 01:01:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <e05b7ef1-64ae-4c12-7664-c70c7a35f76d@microchip.com>
-In-Reply-To: <e05b7ef1-64ae-4c12-7664-c70c7a35f76d@microchip.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 27 Jul 2022 09:00:45 +0100
-Message-ID: <CA+V-a8tkDSKtJZZt8U4ZXZ8dd2jA4o=pAmwXuvLXV9KvSCUeUg@mail.gmail.com>
-Subject: Re: [PATCH 0/6] Add support for Renesas RZ/Five SoC
-To:     Conor.Dooley@microchip.com
-Cc:     "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>, aou@eecs.berkeley.edu,
-        anup@brainfault.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229481AbiG0ICq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 04:02:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1AAB422ED;
+        Wed, 27 Jul 2022 01:02:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 51A3861645;
+        Wed, 27 Jul 2022 08:02:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6473DC433C1;
+        Wed, 27 Jul 2022 08:02:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658908964;
+        bh=oFIkkeAnr7pbdOUU0Rf2VovOOsOXvFXow9Y98anFXPk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=nu3uQjGzBuXof6HuTHqu3Zbs+UQq/I1YjZ+dKIGVFHKhl8i3LGnFxVfiBRLIyTYQM
+         iN+y0sVuXNHHEDCqHuIChHKhH6gIQonUEBjvNA9sWO96xKT36Q+/ckWWBKmGczPoiF
+         YOBArGwnqQ9l426SjaJaKAYVFkr2LdLT+07irGekkDikfk+UvhVZvHYF1FmpZUDvHV
+         7Fjeq50Ki40NW4eznO/jPWDtZE14kiSYzbUcHvFNx3uPrN9+wfvqJ1FsXjLMw6gZaN
+         6KtGjfEbOX+nkWHsDmFGfqd5TucjRCF3hgKGljZygFGcxSn/0ofV7lc25Nnxi9Zijt
+         BgdI0qA3nuNoA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oGc0A-00ALOt-13;
+        Wed, 27 Jul 2022 09:02:42 +0100
+Date:   Wed, 27 Jul 2022 09:02:41 +0100
+Message-ID: <877d3zx9su.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Frank Li <frank.li@nxp.com>
+Cc:     "jdmason@kudzu.us" <jdmason@kudzu.us>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kw@linux.com" <kw@linux.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "kernel@vger.kernel.org" <kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "ntb@lists.linux.dev" <ntb@lists.linux.dev>
+Subject: Re: [EXT] Re: [PATCH v3 2/4] irqchip: imx mu worked as msi controller
+In-Reply-To: <PAXPR04MB918621013E6276D37B56C48488949@PAXPR04MB9186.eurprd04.prod.outlook.com>
+References: <20220720213036.1738628-1-Frank.Li@nxp.com>
+        <20220720213036.1738628-3-Frank.Li@nxp.com>
+        <874jza525l.wl-maz@kernel.org>
+        <PAXPR04MB9186A1D283ACE8BD6954039288919@PAXPR04MB9186.eurprd04.prod.outlook.com>
+        <87wnc6xz6r.wl-maz@kernel.org>
+        <PAXPR04MB918621013E6276D37B56C48488949@PAXPR04MB9186.eurprd04.prod.outlook.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: frank.li@nxp.com, jdmason@kudzu.us, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+On Tue, 26 Jul 2022 22:48:32 +0100,
+Frank Li <frank.li@nxp.com> wrote:
+> 
+> > > > > +static void imx_mu_msi_irq_handler(struct irq_desc *desc)
+> > > > > +{
+> > > > > +     struct imx_mu_msi *msi_data = irq_desc_get_handler_data(desc);
+> > > > > +     u32 status;
+> > > > > +     int i;
+> > > > > +
+> > > > > +     status = imx_mu_read(msi_data, msi_data->cfg-
+> > >xSR[IMX_MU_RSR]);
+> > > > > +
+> > > > > +     chained_irq_enter(irq_desc_get_chip(desc), desc);
+> > > > > +     for (i = 0; i < IMX_MU_CHANS; i++) {
+> > > > > +             if (status & IMX_MU_xSR_RFn(msi_data->cfg->type, i)) {
+> > > > > +                     imx_mu_read(msi_data, msi_data->cfg->xRR + i * 4);
+> > > > > +                     generic_handle_domain_irq(msi_data->parent, i);
+> > > >
+> > > > Why the parent? You must start at the top of the hierarchy.
+> 
+> [Frank Li] Do you means that should be msi_data->msi_domain instead
+> of msi_data->parent?
 
-On Tue, Jul 26, 2022 at 7:51 PM <Conor.Dooley@microchip.com> wrote:
->
-> On 26/07/2022 19:06, Lad Prabhakar wrote:
-> > Useful links:
-> > -------------
-> > [0] https://www.renesas.com/us/en/products/microcontrollers-microprocessors/
-> > rz-mpus/rzfive-risc-v-general-purpose-microprocessors-risc-v-cpu-core-
-> > andes-ax45mp-single-10-ghz-2ch-gigabit-ethernet
-> >
-> > [1] http://www.andestech.com/en/products-solutions/andescore-processors/
-> > riscv-ax45mp/
-> >
-> > Patch series depends on:
-> > -----------------------
-> > [0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/
-> > 20220722141506.20171-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> >
-> > [1] https://patchwork.kernel.org/project/linux-renesas-soc/
-> > cover/20220630100241.35233-1-samuel@sholland.org/
-> >
-> > [2] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
-> > 20220726174525.620-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> >
-> > [3] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
-> > 20220726174929.950-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> >
-> > [4] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
-> > 20220726175315.1147-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
->
-> FYI, your mail client or w/e wrapped these links and none of
-> them work properly :(
->
-Sorry I had wrapped them around.
+Indeed. you must *not* bypass the hierarchy, and the top level of the
+hierarchy has to implement whatever is required by the interrupt flow.
 
-[0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20220722141506.20171-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> 
+> > > >
+> > > > > +             }
+> > > > > +     }
+> > > > > +     chained_irq_exit(irq_desc_get_chip(desc), desc);
+> > > >
+> > > > If your MSIs are a chained interrupt, why do you even provide an
+> > > > affinity setting callback?
+> > >
+> > > [Frank Li]  it will be crash if no affinity setting callback.	
+> > 
+> > Then you have to fix your driver.
+> 
+> [Frank Li] After debug,  msi_domain_set_affinity() have not did null check for (parent->chip->irq_set_affinity). 
+> I think impact by using dummy set_affinity is minimized.  
+> 
+> int msi_domain_set_affinity(struct irq_data *irq_data,	
+> 			    const struct cpumask *mask, bool force)
+> {
+> 	struct irq_data *parent = irq_data->parent_data;
+> 	struct msi_msg msg[2] = { [1] = { }, };
+> 	int ret;
+> 
+> 	ret = parent->chip->irq_set_affinity(parent, mask, force);
+> 	if (ret >= 0 && ret != IRQ_SET_MASK_OK_DONE) {
+> 		BUG_ON(irq_chip_compose_msi_msg(irq_data, msg));
+> 		msi_check_level(irq_data->domain, msg);
+> 		irq_chip_write_msi_msg(irq_data, msg);
+> 	}
+> 
+> 	return ret;
+> }
 
-[1] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20220630100241.35233-1-samuel@sholland.org/
+No. Changing the affinity of an interrupt must not affect the affinity
+of another. Given that this is a chained handler, you *cannot* satisfy
+this requirement. So you can't change the affinity at all.
 
-[2] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220726174525.620-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+	N,
 
-[3] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220726174929.950-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-
-[4] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220726175315.1147-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-
-Cheers,
-Prabhakar
+-- 
+Without deviation from the norm, progress is not possible.
