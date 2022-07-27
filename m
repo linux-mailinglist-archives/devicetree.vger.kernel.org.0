@@ -2,70 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 633505822AC
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 11:04:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E17865822B5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 11:06:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231357AbiG0JEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 05:04:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46032 "EHLO
+        id S230418AbiG0JG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 05:06:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231350AbiG0JEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 05:04:14 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C4F5474C5
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:04:13 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id 7so29335839ybw.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 02:04:13 -0700 (PDT)
+        with ESMTP id S231348AbiG0JGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 05:06:13 -0400
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F4C1474ED;
+        Wed, 27 Jul 2022 02:06:11 -0700 (PDT)
+Received: by mail-yb1-xb31.google.com with SMTP id z132so10371839yba.3;
+        Wed, 27 Jul 2022 02:06:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=p2f3kh3jqi9yjSQzKeEhCTNVhq9kV2tSI6rer8mhvNI=;
-        b=WjFzxSO2wJzIbJH4XkUpRb5mtLv5lM7tMqrUu61P+vX0mCZ/dxyDFrjHgg+qBFmghP
-         nfGkL9gbS4Vwnuud/OmpQCyB0dChfNXSYl32JihYvnsBaCCarUtHOOga4p4XSzpQttS6
-         tzpx1dwoudB1NWkAiJvbO21luJ/qSTi1mF8Ku8IMdXHKV/5OiSzbGwXEVW0QvM71M8EC
-         SeUocZhlVq/HD29CtUs1jWRlWUZg0UGiSRK1SMN0nL1eB+v5zdZz/2mSy009D7aOwqFW
-         KSeQ/Q7fVmh7VjJga5qADbHbVztwLQMIU30KVKqPo5h4nsiKuHvwDyAZGhzrWlgFzhK3
-         N3AA==
+        bh=TVtZIwcu07JXR0+8xN/nQ/0RqGwtHXT7p6Ok3vBeYZE=;
+        b=ZWqbYH4Scf7v0uPK5nBhI+Oi2aGMD3geeu+RxWWfYOXlH233jnt/MhtON9mgnkNPJ8
+         6ASkPkPzx9T4XCRpBU4dfQfAwQ8QUbQgPkk4EYRT0FR3+xAI7fi8WsZqVSR/HQUjFpD+
+         45rkjW8YLxnp4INk5NmrDVeL7osGrneXlYxnSb+Yz0G0q3DWwVQr77QSpWWNIRjDkdlg
+         FtxTn4NGkfcH+d8cQ4VFkyrGGtlohUQwGzDu27uTyzhzk/eBetVM6Dg9boxyEcUtHkmz
+         Ax9VJZbcH7ZK6WV6wWnOPnjSvPvX9iocq148gy1lgQCZIMr57pRH1usjDQ2kobJ2rbHE
+         BtpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=p2f3kh3jqi9yjSQzKeEhCTNVhq9kV2tSI6rer8mhvNI=;
-        b=HIu1/VCGCWS3w5Pm1GBIQYptuhU/LKoXcyQb61VjDO4wNDa/Q8YvHB7Kg/e1nmrFOS
-         qChPZi5mRTBx1onpKvy7AmSy7YPyggQLPLsZD/YkRLdGHiPAwUR+WYos8mTfctQNqM3P
-         NFJ/iBQqg11jVIH+VAZ56I91iT8vgU0e/6R8ch5AfqHGs4g13MwBl0rdoApAkKVTIbXf
-         Jh/UOEv/C2oAmcBtyf6Q6L0fuUANDDKO2qJ5U5G23Dw9pHGpPGpArYjgxFmb78J2Eud8
-         6ikcnrKaCwBNC0hfGsT22FEQ7jWdym6UFtX8q6eNh+FHnwLHXtuiKVAsJaBRiz9zX5Bd
-         hD4Q==
-X-Gm-Message-State: AJIora8iWbEWH3mnnrQvV3LAcmlbBnnbQSeS91kuEGZDdtdCbiXHOOqE
-        dkWNZNr6H+uoNXCaxsFMle3FXkfffa0hDSZpCpQHVg==
-X-Google-Smtp-Source: AGRyM1tFqXVl1Wq7EQt3qviY8BvioiYzPA9jdIWLjIYucLUw/m0e/HDPSy2RNp34GiUJ0LE93SKzgQ/kW9FUP7L1iYE=
-X-Received: by 2002:a25:ba02:0:b0:670:8171:3176 with SMTP id
- t2-20020a25ba02000000b0067081713176mr15910761ybg.61.1658912652855; Wed, 27
- Jul 2022 02:04:12 -0700 (PDT)
+        bh=TVtZIwcu07JXR0+8xN/nQ/0RqGwtHXT7p6Ok3vBeYZE=;
+        b=yE6zXk6zaGXWBRZG9UaxJQuk4Jpph/bqXQONq9egj41viwoRp1YXg9GCUUD07y/rRE
+         FVKoqWv2rT8v6EloE9+sNQSBke6OwUt3s3V3lRXikFOjM6GXZFXDK8e7QdyyfWm8d94l
+         6Webt5RrSgygrJLVNCWIWzCKZhvWPISWAjPwALrLm5H9dzwBNyz7gGnGxOPkF6xIKLfX
+         WPR/SylcXJZQgogtpQWs9/eTO6t3ZNS5J5wuXRv71tDi5N6PwUJkB1jhjmnHk7JArurB
+         wryRzPPSs0VC9rdQS/odDIppxQTBlriw9b13KjyTh27fKu07a3ZU0Sac1oGlpIKCP3e8
+         9Q0g==
+X-Gm-Message-State: AJIora+LC0QoiJjVMe46Rcgre8YMljySipqCNGumABXeMBZuSERRlE4l
+        QGbcFGgUTnSF2NzTP1g9jel7yc70npb3PBDuY80=
+X-Google-Smtp-Source: AGRyM1vMDtzNnEM6xTH8HaoM2lTtPMXOMKIaKhZ65B7NZ920zrB5f8/tgkkYAAYImsgLC6OF2gaBWwRSwVR8dhHF0+M=
+X-Received: by 2002:a25:4689:0:b0:671:6d4f:c974 with SMTP id
+ t131-20020a254689000000b006716d4fc974mr6910885yba.354.1658912769970; Wed, 27
+ Jul 2022 02:06:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220726135506.485108-1-bchihi@baylibre.com> <20220726135506.485108-2-bchihi@baylibre.com>
- <3cb97e73-d60a-086d-83c2-1711c70057a2@collabora.com>
-In-Reply-To: <3cb97e73-d60a-086d-83c2-1711c70057a2@collabora.com>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Wed, 27 Jul 2022 11:03:36 +0200
-Message-ID: <CAGuA+orsPVDjKcD=nMoHNKkQd3LNP8FP+TDSCWvabmR9f19TWw@mail.gmail.com>
-Subject: Re: [PATCH v8 1/6] thermal: mediatek: Relocate driver to mediatek folder
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, khilman@baylibre.com,
-        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
+References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220726180623.1668-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <636e9214-4b36-e9a6-3c6b-b6edb944335e@linaro.org>
+In-Reply-To: <636e9214-4b36-e9a6-3c6b-b6edb944335e@linaro.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 27 Jul 2022 10:05:43 +0100
+Message-ID: <CA+V-a8sTw1qzuTeD2vb7RgDmmNdEP5qEcxXCjrFgkyrBrLrt5Q@mail.gmail.com>
+Subject: Re: [PATCH 4/6] dt-bindings: riscv: Add DT binding documentation for
+ Renesas RZ/Five SoC and SMARC EVK
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,90 +80,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 27, 2022 at 10:24 AM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 26/07/22 15:55, Balsam CHIHI ha scritto:
-> > Add Mediatek proprietary folder to upstream more thermal zone and cooler
-> > drivers. Relocate the original thermal controller driver to it and rename
-> > as soc_temp.c to show its purpose more clearly.
-> >
-> > Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> > Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
-> > Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> > ---
-> >   drivers/thermal/Kconfig                       | 14 ++++-------
-> >   drivers/thermal/Makefile                      |  2 +-
-> >   drivers/thermal/mediatek/Kconfig              | 23 +++++++++++++++++++
-> >   drivers/thermal/mediatek/Makefile             |  1 +
-> >   .../{mtk_thermal.c => mediatek/soc_temp.c}    |  0
-> >   5 files changed, 29 insertions(+), 11 deletions(-)
-> >   create mode 100644 drivers/thermal/mediatek/Kconfig
-> >   create mode 100644 drivers/thermal/mediatek/Makefile
-> >   rename drivers/thermal/{mtk_thermal.c => mediatek/soc_temp.c} (100%)
-> >
-> > diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
-> > index 0e5cc948373c..ecba8d6e313b 100644
-> > --- a/drivers/thermal/Kconfig
-> > +++ b/drivers/thermal/Kconfig
-> > @@ -412,16 +412,10 @@ config DA9062_THERMAL
-> >         zone.
-> >         Compatible with the DA9062 and DA9061 PMICs.
-> >
-> > -config MTK_THERMAL
-> > -     tristate "Temperature sensor driver for mediatek SoCs"
-> > -     depends on ARCH_MEDIATEK || COMPILE_TEST
-> > -     depends on HAS_IOMEM
-> > -     depends on NVMEM || NVMEM=n
-> > -     depends on RESET_CONTROLLER
-> > -     default y
-> > -     help
-> > -       Enable this option if you want to have support for thermal management
-> > -       controller present in Mediatek SoCs
-> > +menu "Mediatek thermal drivers"
-> > +depends on ARCH_MEDIATEK || COMPILE_TEST
-> > +source "drivers/thermal/mediatek/Kconfig"
-> > +endmenu
-> >
-> >   config AMLOGIC_THERMAL
-> >       tristate "Amlogic Thermal Support"
-> > diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
-> > index def8e1a0399c..3c00e864ad55 100644
-> > --- a/drivers/thermal/Makefile
-> > +++ b/drivers/thermal/Makefile
-> > @@ -55,7 +55,7 @@ obj-y                               += st/
-> >   obj-$(CONFIG_QCOM_TSENS)    += qcom/
-> >   obj-y                               += tegra/
-> >   obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
-> > -obj-$(CONFIG_MTK_THERMAL)    += mtk_thermal.o
-> > +obj-$(CONFIG_MTK_THERMAL)    += mediatek/
-> >   obj-$(CONFIG_GENERIC_ADC_THERMAL)   += thermal-generic-adc.o
-> >   obj-$(CONFIG_UNIPHIER_THERMAL)      += uniphier_thermal.o
-> >   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
-> > diff --git a/drivers/thermal/mediatek/Kconfig b/drivers/thermal/mediatek/Kconfig
-> > new file mode 100644
-> > index 000000000000..9c41e9079fc3
-> > --- /dev/null
-> > +++ b/drivers/thermal/mediatek/Kconfig
-> > @@ -0,0 +1,23 @@
-> > +config MTK_THERMAL
-> > +     tristate "MediaTek thermal drivers"
-> > +     depends on THERMAL_OF
-> > +     help
-> > +             This is the option for MediaTek thermal software
-> > +             solutions. Please enable corresponding options to
-> > +             get temperature information from thermal sensors or
-> > +             turn on throttle mechaisms for thermal mitigation.
->
-> Sorry, I just noticed that the indentation must be fixed.
->
->         help
->           This is the option .....
->
-> Thanks,
-> Angelo
-OK, It will be fixed ASAP.
+Hi Krzysztof,
 
-Thanks,
-Balsam.
+Thank you for the review.
+
+On Wed, Jul 27, 2022 at 9:54 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 26/07/2022 20:06, Lad Prabhakar wrote:
+> > Document Renesas RZ/Five (R9A07G043) SoC and SMARC EVK based on this SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../devicetree/bindings/riscv/renesas.yaml    | 49 +++++++++++++++++++
+> >  1 file changed, 49 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/riscv/renesas.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/riscv/renesas.yaml b/Documentation/devicetree/bindings/riscv/renesas.yaml
+> > new file mode 100644
+> > index 000000000000..f72f8aea6a82
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/riscv/renesas.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/riscv/renesas.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas RZ/Five Platform Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > +
+> > +# We want to ignore this schema if the board is SMARC EVK based on ARM64 arch
+> > +select:
+> > +  not:
+> > +    properties:
+> > +      compatible:
+> > +        contains:
+> > +          items:
+>
+> I think you should rather ignore the RiscV SoCs, not specific board.
+>
+You mean to ignore ARM/64 SoCs?
+
+Agreed just the below enum, should do the trick.
+
+            - enum:
+                - renesas,r9a07g043u11
+                - renesas,r9a07g043u12
+                - renesas,r9a07g044c1
+                - renesas,r9a07g044c2
+                - renesas,r9a07g044l1
+                - renesas,r9a07g044l2
+                - renesas,r9a07g054l1
+                - renesas,r9a07g054l2
+
+
+> > +            - const: renesas,smarc-evk
+> > +            - enum:
+> > +                - renesas,r9a07g043u11
+> > +                - renesas,r9a07g043u12
+> > +                - renesas,r9a07g044c1
+> > +                - renesas,r9a07g044c2
+> > +                - renesas,r9a07g044l1
+> > +                - renesas,r9a07g044l2
+> > +                - renesas,r9a07g054l1
+> > +                - renesas,r9a07g054l2
+> > +            - enum:
+> > +                - renesas,r9a07g043
+> > +                - renesas,r9a07g044
+> > +                - renesas,r9a07g054
+>
+> Did you actually test that it works and properly matches?
+>
+Yes I have run the dtbs_check and dt_binding _check for ARM64 and
+RISC-V. Do you see any cases where it can fail?
+
+Cheers,
+Prabhakar
