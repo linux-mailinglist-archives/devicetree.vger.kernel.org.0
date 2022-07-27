@@ -2,162 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A5665827C8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 15:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A62325827E3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 15:43:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233913AbiG0NfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 09:35:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42876 "EHLO
+        id S232731AbiG0NnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 09:43:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233843AbiG0NfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 09:35:12 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F41FC388F
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 06:35:10 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id l22so2659821wrz.7
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 06:35:10 -0700 (PDT)
+        with ESMTP id S230521AbiG0NnA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 09:43:00 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 762BD3ED4A
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 06:42:59 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id w15so19133005lft.11
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 06:42:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zJ2FnNxSmRb8UAb7jQjWYnnmc/G8CPHlMLuAUf0V/qc=;
-        b=DnfSbIpPDdWocXmDLhFZP7gWezV+jOdviMPh+U4M6rSMhuaus/7BlhrkPdwj9F/jxA
-         tE5H+DH16mFRIwWNTBj6ps6cZhh4sPX2O6W1BGtYWIcX3TvqOS2yPOCq2G7iarUqv0Xy
-         e48w/+U3ejTJurqNiHTmLtEf7rf8khREuJ/JGQ6uqWwJbyfiJ3adhCUuNtCcTye2MpZO
-         2cwWEqBSPFFY4VgNNg/HobJvUpYqJ/wlvovJBt93Hbf7twN5kZ+br+R+UOTAyfpmP3gi
-         1GVBfb6ra8mXDiiuzzjuYYxlwSCb7sKBFxX8FyW6OdSFJdDOZc7wGVEXHv0xlgCKWruz
-         Oq1g==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=d6dqqop2vynaGEoBxYQ5azwnb7G+A1ThTymWUCXdRyI=;
+        b=MJhONHLKLWhkwP6aGRVTH84Te9BCOHlTZFTtfPGfP3YKM/PkKAoxkD34bZS3Ss7jt8
+         u89rjXGpyglz31n2dMWdTTuLe1VXRLFZXN99vIVGpF0hB0EwKmJFPh/OxZciq2DAJtPU
+         qWXuNi/UQtc6tq9mr8F/xhanPEXXZtvfMtsbX4Pb5cwWYeHgeuD58/nqfj7zCVE7towx
+         y3IEPWig0IOYHt3+RRqlPqsTNHsEv4UWhLYjLsYLwEjSv1SBXXOhIwisCHiXvtb9O1GU
+         /9egxkXrbUBrFMUmxVI3fyAaOCo3mW2EqFYqL9NhSauYsrfWe37UNGLVva3193W4M1pa
+         dkeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zJ2FnNxSmRb8UAb7jQjWYnnmc/G8CPHlMLuAUf0V/qc=;
-        b=E2ao4VebI0qzmsIuVWnNuvpDw5YgrkFMeV0Wgg1q/OKy6MPetDsOmQZcq0vdJwS7Rd
-         BqZI0NcpDMCZm2dUG0gr+w6/cunB8fJbR5obqhXrGxq9jGQXqY64fha7QFVSwlhTmIoX
-         JFD7hN1qS54yMsdDlPkn0DfGeRYmPyL8YtU1o+KF1wZIUH0grPoAZXAfPq7NoSekm0rF
-         75Dy4uaKBCTyVEyqf8XomOOv5qAeNdnU7t/OK0Sj9P5QmVx2GYxlWcmHZNgS/ni6vvxo
-         n1XgrB68SyFmgTqbpVp+Tn37e1Fl6T431CyUC4F3kcgcv7CTi8yA5nYQISzj/orqNTn7
-         iFRQ==
-X-Gm-Message-State: AJIora/P3ydNPfjs8OcHQXt9CXsXO9hvlhnqG3F+eNe/QzH9g07TBjJF
-        WZwlyRyMFkLmQnkoy7xPJEfJwfU4jptgR/Z0dEJA6Q==
-X-Google-Smtp-Source: AGRyM1uyWvpBoCBAvdlcKemv1yDPMEKUOaEXPjRCz1bUp2JNGpOumHFvwFUDXv3ojXs9fOEbhyIG5mqjIKcpAsbAlfM=
-X-Received: by 2002:a05:600c:4fd5:b0:3a3:4664:6d55 with SMTP id
- o21-20020a05600c4fd500b003a346646d55mr3260914wmq.73.1658928909315; Wed, 27
- Jul 2022 06:35:09 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=d6dqqop2vynaGEoBxYQ5azwnb7G+A1ThTymWUCXdRyI=;
+        b=xtQOez8m7sf8J2ei8f81q4c1O6e2+XglG8Fo58lW5SRjMNLjCvrZ4KCA3GxQx4fJQb
+         um6YvfqWuZE8Cy2SoJZWm0CfFntgKTghXo5S8nfhDW4okHGPN5Tjfn1VKN9JG8l7yqG5
+         TWmYelXYitJW1lKBNgIZfEuIGRTC59mbIzp52GnDk5bJsXkniftQpWznvsV6rarSyIfO
+         RWuZ9hXx2/35GwlzJUoZt5Wf2McLym0r0xHCEZLa6WckHZmE6G/jh+c8NrzCEDw5z4GV
+         NosBlcXzSWsCBEWNGuvTeImBP7d6XmRaQL2oxZbrDlPcjSjwbTRfRLYw3Gsbqim3pAlS
+         gvEw==
+X-Gm-Message-State: AJIora95lRILfHyPelVZ6Do9Z5vPlI1VIMGlV9JnSS2cdjmpyZIhdZlN
+        zziK7hPRaBj65BxJe/1/20yYTg==
+X-Google-Smtp-Source: AGRyM1t9hSJ0xL6l2h7B5F3QkcPXe5D0nv0IWHb/R0ncyU3Xyq01Ywgyvf+weED12LC81MK3ZAEuLw==
+X-Received: by 2002:a05:6512:3983:b0:48a:83ad:5f70 with SMTP id j3-20020a056512398300b0048a83ad5f70mr6606113lfu.283.1658929377734;
+        Wed, 27 Jul 2022 06:42:57 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id a31-20020a2ebe9f000000b0025df0dcdab6sm2997079ljr.8.2022.07.27.06.42.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Jul 2022 06:42:57 -0700 (PDT)
+Message-ID: <51df865b-1684-77ad-1b64-51475ddd6144@linaro.org>
+Date:   Wed, 27 Jul 2022 15:42:56 +0200
 MIME-Version: 1.0
-References: <20220727114302.302201-1-apatel@ventanamicro.com>
- <20220727114302.302201-2-apatel@ventanamicro.com> <372e37bf-ac90-c371-ad9e-b9c18e1cc059@linaro.org>
- <CAK9=C2WjU+2cD7UZbja3TT++KCdRyWroT=50dw=fzi5mX30rcw@mail.gmail.com> <7a0477a0-9f0f-87d6-4070-30321745f4cc@linaro.org>
-In-Reply-To: <7a0477a0-9f0f-87d6-4070-30321745f4cc@linaro.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 27 Jul 2022 19:04:57 +0530
-Message-ID: <CAAhSdy20p5bkVanKGkGyArn94hWJhwncztnX7U+4WkN9-v7NsA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: Add optional DT property riscv,timer-can-wake-cpu
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] dt-bindings: clock: gpio-gate-clock: Convert to
+ json-schema
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jyri Sarha <jsarha@ti.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220727131015.2073100-1-conor.dooley@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220727131015.2073100-1-conor.dooley@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 27, 2022 at 6:05 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 27/07/2022 14:21, Anup Patel wrote:
-> > On Wed, Jul 27, 2022 at 5:37 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 27/07/2022 13:43, Anup Patel wrote:
-> >>> We add an optional DT property riscv,timer-can-wake-cpu which if present
-> >>> in CPU DT node then CPU timer is always powered-on and never loses context.
-> >>>
-> >>> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> >>> ---
-> >>>  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 ++++++
-> >>>  1 file changed, 6 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> >>> index d632ac76532e..b60b64b4113a 100644
-> >>> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> >>> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> >>> @@ -78,6 +78,12 @@ properties:
-> >>>        - rv64imac
-> >>>        - rv64imafdc
-> >>>
-> >>> +  riscv,timer-can-wake-cpu:
-> >>> +    type: boolean
-> >>> +    description:
-> >>> +      If present, the timer interrupt can wake up the CPU from
-> >>> +      suspend/idle state.
-> >>
-> >> Isn't this a property of a timer, not CPU? IOW, your timer node should
-> >> have "wakeup-source" property.
-> >
-> > Historically (since the early days), we never had a timer node in the
-> > RISC-V world.
-> >
-> >>
-> >> Now that's actual problem: why the RISC-V timer is bound to "riscv"
-> >> compatible, not to dedicated timer node? How is it related to actual CPU
-> >> (not SoC)?
-> >
-> > The RISC-V timer is always present on all RISC-V platforms because
->
-> Timer is always present also on ARMv8 (and ARMv7) yet it has its node.
->
-> > the "time" CSR is defined by RISC-V privileged specification. The method
-> > to program per-CPU timer events in either using SBI call or Sstc CSRs.
->
-> Timer is still not part of CPU. Otherwise you are claiming here that CPU
-> can wakeup CPU...
+On 27/07/2022 15:10, Conor Dooley wrote:
+> Convert the simple GPIO clock gate Device Tree binding to json-schema
+> and fix-up references to this file in other text format bindings.
+> Jyri Sarha is the file's only editor/author so they have been added as
+> maintainer of the new yaml binding.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> The original file does not specifiy dual licensing, but when Geert did
+> the gpio-mux-clock conversion the yaml binding was created with dual,
+> so I have done the same thing here.
+> ---
+>  .../bindings/clock/gpio-gate-clock.txt        | 21 ----------
+>  .../bindings/clock/gpio-gate-clock.yaml       | 42 +++++++++++++++++++
 
-The clocksource (i.e. "time" register) is part of the CPU but it is an
-alias/copy
-of a free running system counter whereas clockevent devices (i.e. "mtimecmp"
-or "stimecmp" registers) are tightly coupled-with/part-of-the CPU.
 
-Some of the CPU suspend/idle states may or may not preserve state of
-timer registers so we might not get a timer interrupt to wake up the cpu
-from idle state.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
->
-> >
-> > Since, there is no dedicated timer node, we use CPU compatible string
-> > for probing the per-CPU timer.
->
-> Next time you add a properties:
-> riscv,saata-can-wake-cpu
-> riscv,usb-can-wake-cpu
-> riscv,interrupt-controller-can-wake-cpu
->
-> and so on and keep explaining that "historically" you did not define
-> separate nodes, so thus must be in CPU node.
 
-This is a one-of-case with RISC-V DeviceTree where we are living with
-the fact that there is no timer DT node. If we add a timer DT node now
-then we have to deal with compatibility for existing platforms.
-
->
-> You need to properly reflect hardware in the DTS instead of such hacks.
->
-> Best regards,
-> Krzysztof
-
-Regards,
-Anup
+Best regards,
+Krzysztof
