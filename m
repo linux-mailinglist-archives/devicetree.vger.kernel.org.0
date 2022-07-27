@@ -2,106 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EFDD581F57
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 06:56:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52521581E9E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 06:24:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240479AbiG0E4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 00:56:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51630 "EHLO
+        id S240346AbiG0EYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 00:24:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232586AbiG0E4G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 00:56:06 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA4CCE005;
-        Tue, 26 Jul 2022 21:55:59 -0700 (PDT)
-X-UUID: 1522f4cf26b54007b51356b8b20ab2a5-20220727
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:0a9dbb06-2c81-42c5-ba01-d08930884d09,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:45f77bc9-5f65-4fda-abe9-f2436fed4c72,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 1522f4cf26b54007b51356b8b20ab2a5-20220727
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 214813613; Wed, 27 Jul 2022 12:55:54 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id 15.2.792.3;
- Wed, 27 Jul 2022 04:55:52 +0000
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 27 Jul 2022 10:37:26 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 27 Jul 2022 10:37:24 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S240329AbiG0EYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 00:24:42 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1AA73C8EA
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 21:24:40 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id p8so15100011plq.13
+        for <devicetree@vger.kernel.org>; Tue, 26 Jul 2022 21:24:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jUsDOahpnQXuwfiv7piuKaQU+gbZMugDFvRrrXb0znU=;
+        b=gkaFuqwJET03QJPwHa82iFYWOiNEyWLSWccz/sr4p3FBrtjX5Ff1K1UlIIn8AFhQQo
+         cKji9z3xJQTjwwZogEqq++1FE90GhC4w8hgmdnGbfHsC+F8AYyGUOwE++pSR9mWPORDW
+         kWD7rcO+Foiz3e71MzAT7JyVkzoxbRbcCYcJY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jUsDOahpnQXuwfiv7piuKaQU+gbZMugDFvRrrXb0znU=;
+        b=pYzu7rthD2sajFkqbovJX1/8YIcB1LvdAkDhi7KgYbqbHO+3P2mDAJWYvv91B/48Hg
+         K5BFgtceo+0O4X8pRce1naVo2p6/z2yKd7Y0c/kpOlgffR3l+NmXDxnlgKSgUc1+uZDf
+         gaFD2zpg/155XwvnXtxpiLb6MWHgKyebgzRdfW9oPSPfRYXELIciagFFjCTn//HV0xAQ
+         oCKfxyODSnd1MgmtPkI9hYZ/2Ta4mkGyzyeIe0jAxbiOqVI7llIQcGy8r5PWneQ0qHUt
+         HrDXF47aaYmIK2tTJb85vsT6ITj6HJOIuy+Cc+bKM8/R/8h7tQlcKws9QZ+4EXiM5oI0
+         cuTg==
+X-Gm-Message-State: AJIora86esVth5oX8sL7uBvCWNUWUrxRxkhym5oxmWFh4r4iiGEaXeg/
+        RWg7R29brGDj0E5uSFvPxUW7GRIVZDKm5A==
+X-Google-Smtp-Source: AGRyM1ujhKcdHgh8MTnoxrqF9h+AItjMHVVf0e//dI+pg2gpUzuEN42xOWYPv3fRu8qqu9ey8yaiAw==
+X-Received: by 2002:a17:903:2151:b0:16d:2dcf:fa2e with SMTP id s17-20020a170903215100b0016d2dcffa2emr19812689ple.124.1658895880321;
+        Tue, 26 Jul 2022 21:24:40 -0700 (PDT)
+Received: from moragues-cloud.c.googlers.com.com (252.157.168.34.bc.googleusercontent.com. [34.168.157.252])
+        by smtp.gmail.com with ESMTPSA id u5-20020a170902e5c500b0016d5a356b31sm8058538plf.116.2022.07.26.21.24.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Jul 2022 21:24:39 -0700 (PDT)
+From:   Bob Moragues <moragues@chromium.org>
+X-Google-Original-From: Bob Moragues <moragues@google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     Bob Moragues <moragues@google.com>,
+        Bob Moragues <moragues@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2, 3/3] media: mediatek: vcodec: Add mt8188 encoder's chip name
-Date:   Wed, 27 Jul 2022 10:37:21 +0800
-Message-ID: <20220727023721.31945-3-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220727023721.31945-1-yunfei.dong@mediatek.com>
-References: <20220727023721.31945-1-yunfei.dong@mediatek.com>
+        Stephen Boyd <sboyd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm: qcom: document zoglin board
+Date:   Tue, 26 Jul 2022 21:24:31 -0700
+Message-Id: <20220726212354.1.I5b9006878bdabd6493b866b46dbd6149968d545b@changeid>
+X-Mailer: git-send-email 2.37.1.359.gd136c6c3e2-goog
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Getting mt8188's chip name according to encoder compatible name.
+Zoglin is a Hoglin Chromebook with SPI Flash reduced from 64MB to 8MB.
+Zoglin is identical to Hoglin except for the SPI Flash.
+The actual SPI Flash is dynamically probed at and not specified in DTS.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Signed-off-by: Bob Moragues <moragues@chromium.org>
+
+Signed-off-by: Bob Moragues <moragues@google.com>
 ---
- drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c
-index 25e816863597..75454b955638 100644
---- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c
-+++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_enc.c
-@@ -225,6 +225,8 @@ static int mtk_vcodec_enc_get_chip_name(void *priv)
- 		return 8192;
- 	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8195-vcodec-enc"))
- 		return 8195;
-+	else if (of_device_is_compatible(dev->of_node, "mediatek,mt8188-vcodec-enc"))
-+		return 8188;
- 	else
- 		return 8173;
- }
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 581485392404..63091df3cbb3 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -475,6 +475,7 @@ properties:
+ 
+       - description: Qualcomm Technologies, Inc. sc7280 CRD platform (newest rev)
+         items:
++          - const: google,zoglin
+           - const: google,hoglin
+           - const: qcom,sc7280
+ 
 -- 
-2.18.0
+2.37.1.359.gd136c6c3e2-goog
 
