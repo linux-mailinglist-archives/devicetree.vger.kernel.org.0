@@ -2,140 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7464C5829EB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 17:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DD225829FF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 17:52:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230103AbiG0PrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 11:47:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50416 "EHLO
+        id S233752AbiG0PwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 11:52:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229613AbiG0PrG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 11:47:06 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0567922299;
-        Wed, 27 Jul 2022 08:47:05 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id c20so12904328qtw.8;
-        Wed, 27 Jul 2022 08:47:04 -0700 (PDT)
+        with ESMTP id S234112AbiG0PwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 11:52:09 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38F4C27B1A
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 08:52:08 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id t22so21333805lfg.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 08:52:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:reply-to:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=rKRkz1r3/CKmoOGWsptt41HcBfvgNG2KAxM3cUlyRgg=;
-        b=VoB86KfUBj/OZpm9xIVznbBQgZc4uhxKvVqM6lBqGHVxY4BRsFuuc3xlU3sMxZvcWa
-         4b8ibsPfgRsNd5aIAwrY7NssOu/jUVv3lLJDGVPa6vRidh5+LMt14tCMnn1XwZLBFp+O
-         HQ+Tj+xaYFKZ7w8ImT5JLW2a/FZn2lAizet0UGek3kuZgKbaK7WyoezQ8YGBsO8CqdJ1
-         EjYv/CNb2NbNMBeCTv9ZteUxUViXcld1dSsU03u5kcWMpLMWMZYO0GH+RqTQJOpRT0K7
-         sWi/+E8fjLR9kw8t4Qs+GVWY5Hcq0BKNIHpf3iWNYd5XZjYbecqJl8L+vRAphnxKscDy
-         E1FQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=r+ha7lhBflc460y5THF4+LjZQv3BBhWbPvt660ntV4w=;
+        b=HajfvI/6l0BHtjFFyVInnth5cHgPWWwo3Mq9rUoDiz9X1M/3YvaIv8wMF0NqAPYv9E
+         yOmjV8QRRUcNgLO8UwrGvft4G7GcyUjP6Y691j2KWfT+LavcKebJoLy+TDiYJwXxwuV2
+         XZEN1g2vG1DUCxl1719eQXToHXh9X1q4wpIJ/uXF7iY8xN7ypE2dzJuC3oZmUE7S6z+f
+         /HAikeciCEZQhnAXP4SVD/PLZ3YOWZBynQvpD0RK4WU0D96zwQv9TJWvuhVrDzi7OuWI
+         Lp9lQTpV56DyqMdnfU7FaIYfnujISyLgVwnUlX3lP4n2+M9drfHz7+r+awyLXEIei0OL
+         wojw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :reply-to:references:mime-version:content-disposition:in-reply-to;
-        bh=rKRkz1r3/CKmoOGWsptt41HcBfvgNG2KAxM3cUlyRgg=;
-        b=HgSYz2mpjNDuCKJGm/ufh63qzUIqY/DRNRL3KZlKwA0T3pWB6POEV7c2X1MKBjZqyR
-         2Ux06PQIWQJ35+9nDVCTEgJAECLfPcueGzvsXurnNa8XxbpFQtQhqqVtVrIGYk41EDps
-         4lDPeta0NaFntZQI1bAzG9/5xUPwtPnkDw2W5DRtlW/ArEE5bPz4MvtmD5LdgHlW3PBV
-         W7sC7aOU/GmWiZpQ6qeaFXvTH4RXawJz9WnBgO+OoAWtnxDEoiWvg2yt1ALZHw8fDV/W
-         hlXAUkmc2ftgpbRBHoSRj7kqBmanPRCcJS/9kG9UJ3TaRuPznJkficrZ9jlVydG6wgTe
-         BedA==
-X-Gm-Message-State: AJIora8Y49hJ85okr9VO5yDhhrmKQjZIt2GMKTBQu3lmGDRtfUSG5GbJ
-        bwMx/CgJaJ+NyKKkEyPjRw==
-X-Google-Smtp-Source: AGRyM1syoHp48BJmUDOkb6xY/O5snpMs1dVQsCfX28eSSiv/YiQUo0sVB6pmKfpcMiJUw10Xvbbbnw==
-X-Received: by 2002:a05:622a:1316:b0:31e:f3b4:1c8c with SMTP id v22-20020a05622a131600b0031ef3b41c8cmr19396972qtk.339.1658936823961;
-        Wed, 27 Jul 2022 08:47:03 -0700 (PDT)
-Received: from serve.minyard.net ([47.184.144.75])
-        by smtp.gmail.com with ESMTPSA id de39-20020a05620a372700b006b568bdd7d5sm14091459qkb.71.2022.07.27.08.47.02
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=r+ha7lhBflc460y5THF4+LjZQv3BBhWbPvt660ntV4w=;
+        b=o5w4jqJQbeTR9bfkGFaJUAO7BkTpzMLtmqquNdI8G0tnBaplSHcR4D0CoBaKq/89rX
+         gvwWagp6md6IOltdve0hGxsQFxTwnE86YY1XJwWYcBIIGC9n1hfSRKNmgeJZ83DnwcGz
+         V1UUBuPbqo0zNKrCfPv3d5crNXW/xp9U0wCHz91f1tq4A1fckmJ/jj1UPF9fL+nFmHbm
+         a8Yq2JKsdd7lU5+Wltfknc0GEkQhfaHxZADS6BW3FbhqpzkFMcMeIos0hemammJ/B+zV
+         EajnDmWPak6MVKAIyDcW1EgIZnMOYNZYQXcy2yr8Fzg87v4SrufKt20ahpeHq7aI1m6x
+         De6w==
+X-Gm-Message-State: AJIora9FVYtGLy+TcE5oMiN63LN+nAyvo59gwFCz1EABAdZwvQVB7l/j
+        PLPCBOJp9nuz+SAHdA7tgb21HA==
+X-Google-Smtp-Source: AGRyM1uFlGo+mQfFG/MD+0PotT2fpEV4uoMRX06vRFxHGoiB6r1NRZaNOdvd2pgdj6mnncVtzb3Ktg==
+X-Received: by 2002:ac2:4f03:0:b0:481:5092:ec8f with SMTP id k3-20020ac24f03000000b004815092ec8fmr8817640lfr.35.1658937126228;
+        Wed, 27 Jul 2022 08:52:06 -0700 (PDT)
+Received: from krzk-bin.lan (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id dt9-20020a0565122a8900b0048a835a60f6sm2392163lfb.251.2022.07.27.08.52.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jul 2022 08:47:03 -0700 (PDT)
-Sender: Corey Minyard <tcminyard@gmail.com>
-Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:495f:ee54:913c:d540])
-        by serve.minyard.net (Postfix) with ESMTPSA id AF322180052;
-        Wed, 27 Jul 2022 15:47:01 +0000 (UTC)
-Date:   Wed, 27 Jul 2022 10:47:00 -0500
-From:   Corey Minyard <minyard@acm.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+        Wed, 27 Jul 2022 08:52:05 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        openipmi-developer@lists.sourceforge.net,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 0/2] char: ipmi: kcs: add Arbel NPCM8XX support
-Message-ID: <20220727154700.GS3834@minyard.net>
-Reply-To: minyard@acm.org
-References: <20220717121124.154734-1-tmaimon77@gmail.com>
- <20220718125155.GA40038@minyard.net>
- <CAP6Zq1haOErfj2HZkqKwXZKr3+QvWP2VYK6QQOH5cjHYJ2rV0w@mail.gmail.com>
- <20220726194708.GO3834@minyard.net>
- <CAP6Zq1hHXiZw2a6+o30N-GUhcA_ZJoYH+wZa8AzLu3NmYST+kw@mail.gmail.com>
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: iio: adc: ti,am3359-adc: add ti,am654-adc
+Date:   Wed, 27 Jul 2022 17:52:03 +0200
+Message-Id: <20220727155203.320929-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAP6Zq1hHXiZw2a6+o30N-GUhcA_ZJoYH+wZa8AzLu3NmYST+kw@mail.gmail.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 27, 2022 at 08:39:08AM +0300, Tomer Maimon wrote:
-> Hi Corey,
-> 
-> On Tue, 26 Jul 2022 at 22:47, Corey Minyard <minyard@acm.org> wrote:
-> >
-> > On Tue, Jul 26, 2022 at 10:41:38PM +0300, Tomer Maimon wrote:
-> > > Hi Corey,
-> > >
-> > >
-> > > On Mon, 18 Jul 2022 at 15:51, Corey Minyard <minyard@acm.org> wrote:
-> > > >
-> > > > On Sun, Jul 17, 2022 at 03:11:22PM +0300, Tomer Maimon wrote:
-> > > > > This patch set adds Arbel NPCM8XX Keyboard Controller Style (KCS) support to
-> > > > > KCS NPCM driver.
-> > > > >
-> > > > > The NPCM KCS driver tested on NPCM845 evaluation board.
-> > > >
-> > > > This seems reasonable, I've pulled it into my tree.  If anyone has any
-> > > > issues with this, please respond.
-> > > >
-> > > > -corey
-> > > >
-> > > > >
-> > > > > Tomer Maimon (2):
-> > > > >   dt-bindings: ipmi: Add npcm845 compatible
-> > > > >   char: ipmi: modify NPCM KCS configuration
-> > > > >
-> > > > >  Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 5 +++--
-> > > > >  drivers/char/ipmi/Kconfig                                  | 6 +++---
-> > > > >  2 files changed, 6 insertions(+), 5 deletions(-)
-> > > > >
-> > > > > --
-> > > > > 2.33.0
-> > > > >
-> > >
-> > > Sorry but I need to do a little fix in the document file.
-> > >
-> > > Can I do it or have you already applied the patches?
-> >
-> > At this point I'd prefer a patch on top of what is there.  5.19 isn't
-> > released yet, so the window isn't open, but that will happen soon and I
-> > don't want to rebase at this point.
-> O.K. thanks,
-> I will wait until 5.19 is released and then I will send the patch.
+Document the ti,am654-adc compatible already used in DTS:
 
-Oh, sorry I wasn't clear.  You can send it now, I just don't want to
-rebase what I have already.  Just a new patch on top of it, and I'll get
-it in to 5.19.
+  arch/arm64/boot/dts/ti/k3-am642-evm.dtb: adc: compatible:0: 'ti,am654-adc' is not one of ['ti,am3359-adc', 'ti,am4372-adc']
 
--corey
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/iio/adc/ti,am3359-adc.yaml    | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml b/Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml
+index d6f21d5cccd7..b32be24a9f98 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,am3359-adc.yaml
+@@ -11,9 +11,14 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - ti,am3359-adc
+-      - ti,am4372-adc
++    oneOf:
++      - enum:
++          - ti,am3359-adc
++          - ti,am4372-adc
++      - items:
++          - enum:
++              - ti,am654-adc
++          - const: ti,am3359-adc
+ 
+   '#io-channel-cells':
+     const: 1
+-- 
+2.34.1
+
