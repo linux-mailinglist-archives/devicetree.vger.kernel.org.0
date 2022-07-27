@@ -2,56 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0662B5828FD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 16:51:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA4B582905
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 16:51:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232814AbiG0OvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 10:51:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39334 "EHLO
+        id S234301AbiG0Ovz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 10:51:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234280AbiG0OvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 10:51:15 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD703ED4B;
-        Wed, 27 Jul 2022 07:51:14 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id p5so1754435ilg.9;
-        Wed, 27 Jul 2022 07:51:14 -0700 (PDT)
+        with ESMTP id S234238AbiG0Ovu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 10:51:50 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232FD42AE9;
+        Wed, 27 Jul 2022 07:51:50 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id v185so13704330ioe.11;
+        Wed, 27 Jul 2022 07:51:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=5y7PFmcjHVgT/qs/LxH1VBCcidqbiuh6OAS20LCFKqI=;
-        b=61MSNy5v5tRhKPL32//rRnf1LuflroSTM6e+A4Cs8lAq/KINSEMqC9+IxUzaNjWds4
-         0USY2wt+ahDm1f1Qv05SFa7GJB47wdwJ0u9wTb1rTAzrvzEDp9TxFcFP520qXs5VrrQD
-         JDxO7z6doRqeP0LM+7rzCDK6VR5Ra/51T9MRB3PZXj220T0UvSbb0WRO0KHhiDs3NS0k
-         TdsZ6w47050LvjVqBs62kc7wc79F2hQkhv9Yt8TNZ9F6lWzqWh8MuJCEE32XMlUNczNU
-         +fRaefvNNemHFwpVsHLC6TfU2xU1vVApOO1B7v5mgrKWdILQyu8DUhCs8TiI8nYQrLBr
-         ruUg==
-X-Gm-Message-State: AJIora9GpVXJiTCuTch3HjoZ++A+/UQaA9TdJ/6iIfkHfj1BJLyOrE+U
-        s8xSyHlJW8HzUUmBI7Gmc7mENVge8Q==
-X-Google-Smtp-Source: AGRyM1uMNY3xVs834cDXl2d5qqsiLYPY8gWspaJBg8N+CLm7LfyyhmcoIxu4cNLtSIwjHVEQLefXhQ==
-X-Received: by 2002:a05:6e02:1e0d:b0:2dd:63ac:880d with SMTP id g13-20020a056e021e0d00b002dd63ac880dmr5214909ila.129.1658933473846;
-        Wed, 27 Jul 2022 07:51:13 -0700 (PDT)
+        bh=xCokfXhPR4KTF41sdrZm+RqhxEGMWVkr/Hg5KMBHFR8=;
+        b=H7KppZWnYL7txUh3Yivu8Z8ktrMODqMaki4KRP3lqpqZoGRZE0C25ZCDF5VE4zX14/
+         ujLlFL7993L/tnIIopWsa9aMRyei6SEG/266ztE5r256SlRK5c3hJyGTCNV2mi6+1yJH
+         s1esC8a9O7gj7cAXb7JrtGfZxVxMDSkGZrt16HLuim5xolnS00SzIinb6o9KxZ/Org9P
+         xr4WAqRQr/srv8u91w0bPghV43MyURbv8R95Ezh/tdpQV8xtd5Rxuyy/3sJxfVSAgyr/
+         zQBQCpaVSjbl/rd5D/OGgFeK5803nY/dwyGmICnCVtmzcaEGkObVNntreRmVWLnPrphh
+         oH6Q==
+X-Gm-Message-State: AJIora+ot8LpXgio4Ho2vExDE3fYcUMGC63N+MdboeaeULOhdeubCe62
+        2b6na9G1ePFISUVH9AA0Rr6YS4+kYg==
+X-Google-Smtp-Source: AGRyM1sdrzFHIbGmxlbzQsvgmhTb+u6PlXR7h1s1EkyZ/uFrpL41TeK9mHOW3wo0afjLUrYDMRJkHQ==
+X-Received: by 2002:a05:6638:250d:b0:340:4915:263 with SMTP id v13-20020a056638250d00b0034049150263mr9036435jat.17.1658933509322;
+        Wed, 27 Jul 2022 07:51:49 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id v9-20020a92ab09000000b002dab4765893sm6688701ilh.66.2022.07.27.07.51.13
+        by smtp.gmail.com with ESMTPSA id b11-20020a026f4b000000b0033158c4a312sm7921935jae.55.2022.07.27.07.51.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jul 2022 07:51:13 -0700 (PDT)
-Received: (nullmailer pid 2643014 invoked by uid 1000);
-        Wed, 27 Jul 2022 14:51:12 -0000
-Date:   Wed, 27 Jul 2022 08:51:12 -0600
+        Wed, 27 Jul 2022 07:51:49 -0700 (PDT)
+Received: (nullmailer pid 2644092 invoked by uid 1000);
+        Wed, 27 Jul 2022 14:51:47 -0000
+Date:   Wed, 27 Jul 2022 08:51:47 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Rob Herring <robh@kernel.org>
-Cc:     Sebastian Reichel <sre@kernel.org>, linux-kernel@vger.kernel.org,
+Cc:     Cristian Pop <cristian.pop@analog.com>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: supply: charger-manager: Add missing
- type for 'cm-battery-stat'
-Message-ID: <20220727145112.GA2642918-robh@kernel.org>
-References: <20220719215017.1875530-1-robh@kernel.org>
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio/dac: adi,ad5766: Add missing type to
+ 'output-range-microvolts'
+Message-ID: <20220727145147.GA2644033-robh@kernel.org>
+References: <20220719215152.1877776-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220719215017.1875530-1-robh@kernel.org>
+In-Reply-To: <20220719215152.1877776-1-robh@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -62,14 +66,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 19 Jul 2022 15:50:16 -0600, Rob Herring wrote:
-> 'cm-battery-stat' is missing a type definition and is not a common
-> property. The type is boolean.
+On Tue, 19 Jul 2022 15:51:52 -0600, Rob Herring wrote:
+> 'output-range-microvolts' is missing a type definition. '-microvolts' is
+> not a standard unit (should be '-microvolt'). As the property is already
+> in use, add a type reference.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../devicetree/bindings/power/supply/charger-manager.yaml        | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/iio/dac/adi,ad5766.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Applied, thanks!
