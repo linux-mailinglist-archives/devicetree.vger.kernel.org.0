@@ -2,279 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB20D582A69
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 18:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97DFC582C9A
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 18:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234671AbiG0QLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 12:11:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41756 "EHLO
+        id S240365AbiG0QsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 12:48:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233957AbiG0QLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 12:11:31 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87BC44B0D7
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:11:29 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id v13so17371752wru.12
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:11:29 -0700 (PDT)
+        with ESMTP id S240369AbiG0QrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 12:47:12 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BADBE52E5F
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:32:05 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id r186so16364313pgr.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 09:32:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=WqYi5X2yo783BFRgi9t3Lq2OB3oZyehlF1akigEWMFM=;
-        b=JeyV8Jeqx+OjY0t5dp8PITysUxIUwFbkS03W3FO1Ihy2bRjEPOnJy2aEgRWPWNcDKY
-         R9hFyqswJa8s5bD9Um4FPjuFamCi8DkFn47dgN/IDR8bWe1JIg8c4AZYOsJ4JMamv/uY
-         WKXP2ZlwHiCs57UJmQdT121crS081lNumEA0yzJ4f66ZhGGi3HHpGzUQE1nO6aSkEO7Q
-         YCYNrYVFs5ykFagQUVNItXt3TMnQ+ic34iCZ7jbkGOXrfYY2UculBX7kbKUAbEeMGyTv
-         gPR4Yxlf2AwdwsC9Q3C9GUj+Ic9DFZ+sjlO7IyiyN5TZD/RfOwG8bQ4Io+MSNMBqhdV4
-         e5kw==
+        bh=1TRS6lxdC7P+TgLzuseNCh/XM3JcRUBPWPh5jtlW9yA=;
+        b=dylDx0BBPfbwR7b/4kCuHZNaewyhKf5EOaExE5+Kmb0Pj2jzay+RWZ14VpWqECHOTk
+         Sp3FkxlOqqWYYd3pW90Y8QZnjg9fm8cQ2+LW7SOTSoINdunWBr4AWGeLkupMEUTTojDm
+         zcmBr6qR6DjwtD0RwfLopOIHZfWoOFLWU61yw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WqYi5X2yo783BFRgi9t3Lq2OB3oZyehlF1akigEWMFM=;
-        b=yABVv6Hdc91p9CLAa0IYW3neh1a0+fS/Ok9sMZqWM+q5Jbgu5TQVBJY4h7qwKH9Rdt
-         uaGENeiuFTlItcYs1gHmXegPshvw6QnwNqhUzJvwOH96Shvo7X0aP6pTnDOBX7Tov3E+
-         BsSqJVP/OqABoDwd/tFravCvgGUoTLLud8Bj2WU7xmFKm05ploXr3BhWFB5O2ZX5AHXz
-         1vgwkJJEFS3pgcK7sqKDTyxg4lhmK0Y8T1pm7LjudMAoCl1hnvtNF/Hcd2M8O0+8/SvS
-         oRC4aXdY6LRl6zAhiJgcQzP4WnfqZk8g0rWWVlJUL67PFkf2Pgs1A2pprlX5QrFRgvH0
-         f5JQ==
-X-Gm-Message-State: AJIora9CzVJjY9lokrA5unSA6XFGT6DgXUkuzHecn2k2wzIf8O+eqnSy
-        eaJuQOqavpB7ZieCNn6Zmis+Fw==
-X-Google-Smtp-Source: AGRyM1tpiUyBuIj5H0IMjzf/5LtCK37SykOA7EQ1w1RDklep062eb/PoNqI0+AE1QMHjtk4P4raQAA==
-X-Received: by 2002:a5d:5984:0:b0:21e:6350:1477 with SMTP id n4-20020a5d5984000000b0021e63501477mr14028638wri.587.1658938287991;
-        Wed, 27 Jul 2022 09:11:27 -0700 (PDT)
-Received: from linaro.org ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id j2-20020a05600c1c0200b003a30c3d0c9csm3063563wms.8.2022.07.27.09.11.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jul 2022 09:11:26 -0700 (PDT)
-Date:   Wed, 27 Jul 2022 19:11:23 +0300
-From:   Abel Vesa <abel.vesa@linaro.org>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     linux-imx@nxp.com, robh+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        daniel.lezcano@linaro.org, tglx@linutronix.de, arnd@arndb.de,
-        olof@lixom.net, soc@kernel.org, linux@armlinux.org.uk,
-        abel.vesa@nxp.com, dev@lynxeye.de, marcel.ziswiler@toradex.com,
-        tharvey@gateworks.com, leoyang.li@nxp.com,
-        sebastian.reichel@collabora.com, cniedermaier@dh-electronics.com,
-        clin@suse.com, giulio.benetti@benettiengineering.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v5 07/12] clk: imx: Update pllv3 to support i.MXRT1170
-Message-ID: <20220727161123.nxmtv4t5oeetow32@linaro.org>
-References: <202207270909.VypZ4wfI-lkp@intel.com>
- <20220727031541.227335-1-Mr.Bossman075@gmail.com>
+        bh=1TRS6lxdC7P+TgLzuseNCh/XM3JcRUBPWPh5jtlW9yA=;
+        b=BwMtAeR4OZOICL5hN/D9dVdDuKlKavd+rRtGKuxRG5Qr5owy7SLJz6GPawVKxipaVe
+         S8oOTkqeQLZYnPG7W2uuHb7IYKjCr9SivkXlKpbmmZ+GnPxGH0tXWoQaucR/1o1rLnRP
+         19frlSqwUPFwEqTREAYWsu7t5QWup5bk01OorFNzbo7s/021nKA5a4fTulnc3H9YM5iY
+         bBL3CC4f8of+yNBV8K0JR65vPyOarI+nf5FZ6X+SdDMUo1lEuKnvnY9hRdCDlyWg+fhb
+         adNG7h+2qPKwk+l53Fsqq5KIjntb284tQbnUj5mHgLai7TRZ/NFrqFlEcWWJ6qlAVFsf
+         I8JQ==
+X-Gm-Message-State: AJIora9Q52c3WR3iavI5rmHbp0VQ/Aff1P7ziUMBqC+sK+A8rZOEXnTV
+        1BUJLGeVB5QCKPJ3ihP6gsLc9Q==
+X-Google-Smtp-Source: AGRyM1vQU2jYl7HdvxRw2AE0c/TAVSrUdt4XzX2IDRlho/1FNtKWLInu4htlin0G04xwOjmNqQqI0A==
+X-Received: by 2002:a63:ba18:0:b0:412:afd5:1260 with SMTP id k24-20020a63ba18000000b00412afd51260mr20009579pgf.617.1658939525302;
+        Wed, 27 Jul 2022 09:32:05 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:472c:7351:bacf:5228])
+        by smtp.gmail.com with UTF8SMTPSA id z28-20020aa7949c000000b0052516db7123sm14089324pfk.35.2022.07.27.09.32.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Jul 2022 09:32:04 -0700 (PDT)
+Date:   Wed, 27 Jul 2022 09:32:03 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] usb: misc: onboard_usb_hub: Add reset-gpio support
+Message-ID: <YuFog1IRuKiejicE@google.com>
+References: <20220727093801.687361-1-alexander.stein@ew.tq-group.com>
+ <20220727093801.687361-2-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220727031541.227335-1-Mr.Bossman075@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220727093801.687361-2-alexander.stein@ew.tq-group.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-07-26 23:15:41, Jesse Taube wrote:
-> The i.MXRT1170 has a pll that has the multiplier bits inverted and
-> cannot be changed add IMX_PLLV3_GENERICV2.
->
-> The i.MXRT1170 also has the lock bit moved as well as the
-> power bit inverted the power bit also is in different locations on each
-> pll control register.
->
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+Hi Alexander,
 
-Please do not send the new version as a reply to the old patch.
-
+On Wed, Jul 27, 2022 at 11:38:00AM +0200, Alexander Stein wrote:
+> Despite default reset upon probe, release reset line after powering up
+> the hub and assert reset again before powering down.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
-> V1 -> V2:
->  - Nothing done
-> V2 -> V3:
->  - Nothing done
-> V3 -> V4:
->  - Nothing done
-> V4 -> V5:
->  - Add __imx_clk_hw_pllv3 to change power bit
->  - Add BM_PLL_POWER and imx_clk_hw_pllv3 to header
->  - Remove imx_clk_hw_pll3_powerbit
-> ---
->  drivers/clk/imx/clk-pllv3.c | 57 +++++++++++++++++++++++++++++++++----
->  drivers/clk/imx/clk.h       | 11 +++++--
->  2 files changed, 60 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/clk/imx/clk-pllv3.c b/drivers/clk/imx/clk-pllv3.c
-> index eea32f87c60a..68b1498cafe1 100644
-> --- a/drivers/clk/imx/clk-pllv3.c
-> +++ b/drivers/clk/imx/clk-pllv3.c
-> @@ -21,8 +21,8 @@
->  #define PLL_VF610_NUM_OFFSET	0x20
->  #define PLL_VF610_DENOM_OFFSET	0x30
->
-> -#define BM_PLL_POWER		(0x1 << 12)
->  #define BM_PLL_LOCK		(0x1 << 31)
-> +#define BM_PLL_LOCK_V2		(0x1 << 29)
->  #define IMX7_ENET_PLL_POWER	(0x1 << 5)
->  #define IMX7_DDR_PLL_POWER	(0x1 << 20)
->
-> @@ -34,6 +34,7 @@
->   * @base:	 base address of PLL registers
->   * @power_bit:	 pll power bit mask
->   * @powerup_set: set power_bit to power up the PLL
-> + * @lock_bit:	 pll lock bit mask
->   * @div_mask:	 mask of divider bits
->   * @div_shift:	 shift of divider bits
->   * @ref_clock:	reference clock rate
-> @@ -48,6 +49,7 @@ struct clk_pllv3 {
->  	void __iomem	*base;
->  	u32		power_bit;
->  	bool		powerup_set;
-> +	u32		lock_bit;
->  	u32		div_mask;
->  	u32		div_shift;
->  	unsigned long	ref_clock;
-> @@ -65,7 +67,7 @@ static int clk_pllv3_wait_lock(struct clk_pllv3 *pll)
->  	if ((pll->powerup_set && !val) || (!pll->powerup_set && val))
->  		return 0;
->
-> -	return readl_relaxed_poll_timeout(pll->base, val, val & BM_PLL_LOCK,
-> +	return readl_relaxed_poll_timeout(pll->base, val, val & pll->lock_bit,
->  					  500, PLL_LOCK_TIMEOUT);
->  }
->
-> @@ -101,7 +103,7 @@ static int clk_pllv3_is_prepared(struct clk_hw *hw)
->  {
->  	struct clk_pllv3 *pll = to_clk_pllv3(hw);
->
-> -	if (readl_relaxed(pll->base) & BM_PLL_LOCK)
-> +	if (readl_relaxed(pll->base) & pll->lock_bit)
->  		return 1;
->
+> Thanks Matthias for your review.
+> 
+> Changes in v3:
+> * Require platform data unconditionally
+> * Removed unecessary checks for that reason
+> * Merged power_stable_time into reset_duration (no difference for now)
+> * Rename 'reset_duration' to 'reset_us'
+> * Renamed platform structure to onboard_hub_pdata
+> * Renamed device struct field to pdata as well
+> 
+> Changes in v2:
+> * Use device specific sleep times, if present
+> * Use fsleep instead of usleep_range
+> 
+>  drivers/usb/misc/onboard_usb_hub.c | 28 ++++++++++++++++++++++++++++
+>  drivers/usb/misc/onboard_usb_hub.h | 16 ++++++++++++----
+>  2 files changed, 40 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
+> index 6b9b949d17d3..2aa1db528b31 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.c
+> +++ b/drivers/usb/misc/onboard_usb_hub.c
+> @@ -7,6 +7,7 @@
+>  
+>  #include <linux/device.h>
+>  #include <linux/export.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/init.h>
+>  #include <linux/kernel.h>
+>  #include <linux/list.h>
+> @@ -38,6 +39,8 @@ struct usbdev_node {
+>  struct onboard_hub {
+>  	struct regulator *vdd;
+>  	struct device *dev;
+> +	const struct onboard_hub_pdata *pdata;
+> +	struct gpio_desc *reset_gpio;
+>  	bool always_powered_in_suspend;
+>  	bool is_powered_on;
+>  	bool going_away;
+> @@ -56,6 +59,9 @@ static int onboard_hub_power_on(struct onboard_hub *hub)
+>  		return err;
+>  	}
+>  
+> +	fsleep(hub->pdata->reset_us);
+> +	gpiod_set_value_cansleep(hub->reset_gpio, 0);
+> +
+>  	hub->is_powered_on = true;
+>  
 >  	return 0;
-> @@ -155,6 +157,39 @@ static const struct clk_ops clk_pllv3_ops = {
->  	.set_rate	= clk_pllv3_set_rate,
->  };
->
-> +static int clk_pllv3_genericv2_set_rate(struct clk_hw *hw, unsigned long rate,
-> +		unsigned long parent_rate)
-> +{
-> +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
-> +	u32 val, div;
-> +
-> +	div = (readl_relaxed(pll->base) >> pll->div_shift) & pll->div_mask;
-> +	val = (div == 0) ? parent_rate * 22 : parent_rate * 20;
-> +
-> +	if (rate == val)
-> +		return 0;
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static unsigned long clk_pllv3_genericv2_recalc_rate(struct clk_hw *hw,
-> +					   unsigned long parent_rate)
-> +{
-> +	struct clk_pllv3 *pll = to_clk_pllv3(hw);
-> +	u32 div = (readl_relaxed(pll->base) >> pll->div_shift)  & pll->div_mask;
-> +
-> +	return (div == 0) ? parent_rate * 22 : parent_rate * 20;
-> +}
-> +
-> +static const struct clk_ops clk_pllv3_genericv2_ops = {
-> +	.prepare	= clk_pllv3_prepare,
-> +	.unprepare	= clk_pllv3_unprepare,
-> +	.is_prepared	= clk_pllv3_is_prepared,
-> +	.recalc_rate	= clk_pllv3_genericv2_recalc_rate,
-> +	.round_rate	= clk_pllv3_round_rate,
-> +	.set_rate	= clk_pllv3_genericv2_set_rate,
-> +};
-> +
->  static unsigned long clk_pllv3_sys_recalc_rate(struct clk_hw *hw,
->  					       unsigned long parent_rate)
+> @@ -65,6 +71,11 @@ static int onboard_hub_power_off(struct onboard_hub *hub)
 >  {
-> @@ -407,9 +442,9 @@ static const struct clk_ops clk_pllv3_enet_ops = {
->  	.recalc_rate	= clk_pllv3_enet_recalc_rate,
->  };
->
-> -struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
-> +struct clk_hw *__imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
->  			  const char *parent_name, void __iomem *base,
-> -			  u32 div_mask)
-> +			  u32 div_mask, u8 pwr_bit)
+>  	int err;
+>  
+> +	if (hub->reset_gpio) {
+> +		gpiod_set_value_cansleep(hub->reset_gpio, 1);
+> +		fsleep(hub->pdata->reset_us);
+
+Is this delay here actually needed? There is a delay in onboard_hub_power_on(),
+before de-asserting the reset, isn't that enough?
+
+> +	}
+> +
+>  	err = regulator_disable(hub->vdd);
+>  	if (err) {
+>  		dev_err(hub->dev, "failed to disable regulator: %d\n", err);
+> @@ -219,6 +230,7 @@ static void onboard_hub_attach_usb_driver(struct work_struct *work)
+>  
+>  static int onboard_hub_probe(struct platform_device *pdev)
 >  {
->  	struct clk_pllv3 *pll;
->  	const struct clk_ops *ops;
-> @@ -421,11 +456,21 @@ struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
->  	if (!pll)
->  		return ERR_PTR(-ENOMEM);
->
-> -	pll->power_bit = BM_PLL_POWER;
-> +	pll->power_bit = pwr_bit;
-> +	pll->lock_bit = BM_PLL_LOCK;
->  	pll->num_offset = PLL_NUM_OFFSET;
->  	pll->denom_offset = PLL_DENOM_OFFSET;
->
->  	switch (type) {
-> +	case IMX_PLLV3_GENERICV2:
-> +		pll->lock_bit = BM_PLL_LOCK_V2;
-> +		pll->powerup_set = true;
-> +		ops = &clk_pllv3_genericv2_ops;
-> +		break;
-> +	case IMX_PLLV3_SYSV2:
-> +		pll->lock_bit = BM_PLL_LOCK_V2;
-> +		pll->powerup_set = true;
-> +		fallthrough;
->  	case IMX_PLLV3_SYS:
->  		ops = &clk_pllv3_sys_ops;
->  		break;
-> diff --git a/drivers/clk/imx/clk.h b/drivers/clk/imx/clk.h
-> index 5061a06468df..2bf50c92fdfa 100644
-> --- a/drivers/clk/imx/clk.h
-> +++ b/drivers/clk/imx/clk.h
-> @@ -6,6 +6,8 @@
->  #include <linux/spinlock.h>
->  #include <linux/clk-provider.h>
->
-> +#define BM_PLL_POWER		BIT(12)
+> +	const struct of_device_id *of_id;
+>  	struct device *dev = &pdev->dev;
+>  	struct onboard_hub *hub;
+>  	int err;
+> @@ -227,10 +239,26 @@ static int onboard_hub_probe(struct platform_device *pdev)
+>  	if (!hub)
+>  		return -ENOMEM;
+>  
+> +	of_id = of_match_device(onboard_hub_match, &pdev->dev);
+> +	if (!of_id)
+> +		return -ENODEV;
 > +
->  extern spinlock_t imx_ccm_lock;
->  extern bool mcore_booted;
->
-> @@ -102,6 +104,9 @@ extern struct imx_fracn_gppll_clk imx_fracn_gppll;
->  	to_clk(clk_hw_register_gate2(dev, name, parent_name, flags, reg, bit_idx, \
->  				cgr_val, cgr_mask, clk_gate_flags, lock, share_count))
->
-> +#define imx_clk_hw_pllv3(type, name, parent_name, base, div_mask) \
-> +	__imx_clk_hw_pllv3(type, name, parent_name, base, div_mask, 1)
+> +	hub->pdata = of_id->data;
+> +	if (!hub->pdata)
+> +		return -EINVAL;
 > +
->  #define imx_clk_pllv3(type, name, parent_name, base, div_mask) \
->  	to_clk(imx_clk_hw_pllv3(type, name, parent_name, base, div_mask))
->
-> @@ -242,6 +247,8 @@ struct clk_hw *imx_clk_hw_sscg_pll(const char *name,
->
->  enum imx_pllv3_type {
->  	IMX_PLLV3_GENERIC,
-> +	IMX_PLLV3_GENERICV2,
-> +	IMX_PLLV3_SYSV2,
->  	IMX_PLLV3_SYS,
->  	IMX_PLLV3_USB,
->  	IMX_PLLV3_USB_VF610,
-> @@ -253,8 +260,8 @@ enum imx_pllv3_type {
->  	IMX_PLLV3_AV_IMX7,
->  };
->
-> -struct clk_hw *imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
-> -		const char *parent_name, void __iomem *base, u32 div_mask);
-> +struct clk_hw *__imx_clk_hw_pllv3(enum imx_pllv3_type type, const char *name,
-> +		const char *parent_name, void __iomem *base, u32 div_mask, u8 pwr_bit);
->
->  #define PLL_1416X_RATE(_rate, _m, _p, _s)		\
->  	{						\
-> --
-> 2.36.1
->
+>  	hub->vdd = devm_regulator_get(dev, "vdd");
+>  	if (IS_ERR(hub->vdd))
+>  		return PTR_ERR(hub->vdd);
+>  
+> +	hub->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						  GPIOD_OUT_HIGH);
+> +	if (IS_ERR(hub->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(hub->reset_gpio), "failed to get reset GPIO\n");
+> +
+> +	if (hub->reset_gpio)
+> +		fsleep(hub->pdata->reset_us);
+
+Same question here: onboard_hub_power_on() is called a few lines below and
+has a delay before de-asserting the reset. Is the delay here really needed?
