@@ -2,126 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9389E58260F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 14:04:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A76F0582614
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 14:06:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232685AbiG0MEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 08:04:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49872 "EHLO
+        id S232607AbiG0MGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 08:06:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232672AbiG0MEi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 08:04:38 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 059D44B0EC
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:04:36 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id m12so25695176lfj.4
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 05:04:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=2dUZ4AGI+yDI99uFVBIAkMIhm5YNlifPEZHjyoEMmko=;
-        b=w6c+7gFc5bptabl2jpva60XhxykGU+F8kjr9idGrGrRTCUZQS4rGwI4tcucHGdLeOs
-         DUC763HNsyLc7uKz/mGXDbbicgE6tzoj93cfCWUNUnWyHpC3ATvj20W9G5rqQOS1emFC
-         gRiRCycZgA3ucoDHQD6Oy2P5UMpgYdid5MyYaAnud9EYdISYD4O/5+KXsg5NbJPzB7a4
-         5sl+2oAKeHjUCM8W3g373ZLPI4Dp6nu6Ak6yK7ZhAzi43z9g93p3waNKP1x0NLmjkyFM
-         B5TKLarYBWUPcrkHgPPlkfrfZSlnNsZZ5itwSyNVTp75Z72Cg35WzhoEqrSzLMy/mXTe
-         QhKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=2dUZ4AGI+yDI99uFVBIAkMIhm5YNlifPEZHjyoEMmko=;
-        b=eyyIDNEmipTSEs5vo3U0bynq9W7Sv/5gGBEYN3/W101m4x/i5HNt3Sc7lnFek5Yxbp
-         CVG/x03UALW7GxRNIXI4JBONcyOeLdYkbEkEKCj+tteJU9ehsGR46aqlAP9awQdvkHHC
-         rd3IedCX2UYJiyc/tc+K3CQomZuXkSEx+Ybsaw2+5i81517mUSx/rQZuaOneqmjH6l1D
-         h2O/Ha4lQx2cSgsFYAXxZPJyfK0KEybXUUG+v5FCrWGEsxLWeQ1W/tm/9JWGBlHRys1G
-         b6Dv+XYFGxM2684bkcAw2P1V2NSiCpGDZcEwAFbPAZtzrkZslP0d1U7F085iD9xjIfMJ
-         afuA==
-X-Gm-Message-State: AJIora8gY8INJlk8SsEn3isCX/P7ilHBl0uqfUlQuTaXZX/ymoQUw8Rj
-        gEgTDupJZGFhqpKRYxK5Z7lcJQ==
-X-Google-Smtp-Source: AGRyM1use5uqI8LWDKweipAVSirfmTrNH9lmQFY27iWI4XCfhQb86Ab0tNP7LerX+Ep4k+DAUtcnkw==
-X-Received: by 2002:ac2:4e0d:0:b0:48a:bc83:7fb8 with SMTP id e13-20020ac24e0d000000b0048abc837fb8mr508616lfr.623.1658923474154;
-        Wed, 27 Jul 2022 05:04:34 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id k10-20020ac257ca000000b0048a27abcc34sm1681187lfo.202.2022.07.27.05.04.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Jul 2022 05:04:33 -0700 (PDT)
-Message-ID: <028091af-b1a1-efc6-b404-dcb5b6f3589e@linaro.org>
-Date:   Wed, 27 Jul 2022 14:04:32 +0200
+        with ESMTP id S232611AbiG0MGj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 08:06:39 -0400
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B31B5F56;
+        Wed, 27 Jul 2022 05:06:36 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 4E2E35C01A0;
+        Wed, 27 Jul 2022 08:06:34 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Wed, 27 Jul 2022 08:06:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm2; t=1658923594; x=1659009994; bh=sns5b3/QFe
+        KrteH5LAIPWxoG6sLFqTq3vrWcUhZbXYo=; b=GibnmcNO6wp3WeAyKuTE/nUCLB
+        YW50Ol+91ZDj79Zo5CIskHeaFVR8jAMN0X49kTLFWOa3a9HjROw12SLcp+WTbRWk
+        OAkgmgaftSsl5cwK5scd/mWQIJFxIcXwJ1bcX64UgyDee8EVuuwj44j05ryTguUB
+        p4DCIfXbxijwwku9KDHPm/VhzCK98td11UVKG7pSS/a7NmdUAmozFwQXu3IG1JFW
+        txl5azyk8POfhYSw+3hREMc6nZv9m7rRxqDP8J8Vajz9PGVQLBsC2PlyTMAIwkXm
+        D5yStClLg0CP5ubMKD1whxvJ0Og4wzm6jioIRQ20dGJ6ekEYdHcOyHVe+pFQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1658923594; x=1659009994; bh=sns5b3/QFeKrteH5LAIPWxoG6sLF
+        qTq3vrWcUhZbXYo=; b=CPOvtjMSWfr51w9qpRc0e0LNAed6DSTlNlYhggqfevUC
+        XGfbJ7p3LwPJWqUWCd9A2SMlnM+cLnehqodde9XgZ5q7NJjPW1cPu960mZoIUu+Z
+        MLtHutev6Jg6MRHV7ZuYmcu463JoZ56rC+pIo38UBmuZ91cuktZr3PfECppTuleR
+        WMLUUJaap9ElmMQVnCox/54tVH+0yXXjJJtLkRxteSs55EAxP8C8XnXgsO6TB1WB
+        gWiOY4jExXpp8UFQ7CKeiQWNA90ehzhOO+HibWyvhBUzwZCZuwSwtUA2gssBu4Ig
+        jHUbywnvlinBSmdRzE/t7o4wYzVBt+GLMzcD049NfQ==
+X-ME-Sender: <xms:SSrhYuzCudXQOXDePTu9vd-jnHWA2c0dG9z3DmtX82aSwA_iiHLlVQ>
+    <xme:SSrhYqQivoa7jzWzw_mNC5VX8HsHDGaFeRqg7-0c9M8dAne77B8nWeOZvJglqA2F8
+    13RETjYW95OvqTKwa4>
+X-ME-Received: <xmr:SSrhYgVwpFCYbJHWnIkNSZl2pqClDE01SmH6gCdeKdXa4o7jKmy2gepA-Ejw_cRbcv9nvxuLg3wZ3U5mLd650aRxRfb9Ip_VeJjiaj4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdduvddggeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpedtleekjeeiudefvdfhieffteelhfeivdeliefgieeugffhvdelieffjeei
+    geetjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
+    hh
+X-ME-Proxy: <xmx:SSrhYkicJ_IGgqz6iexkhVvJotQY9PgHDYu6at83sP86XcN-jbRxig>
+    <xmx:SSrhYgD_6W9SF0CcaX5syZO4GDpQtYW869-2NL9JMz79PzcyP-mG8w>
+    <xmx:SSrhYlIvonbC6Au2J1vGXrnhrB9vVXK9few-aIOgGzwMHy05o0c_Hw>
+    <xmx:SirhYob7ea0CytTonx1V7XsjzDERI7TE34Dj8js15DQ3IuZ1nqkMsQ>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 27 Jul 2022 08:06:33 -0400 (EDT)
+Date:   Wed, 27 Jul 2022 14:06:31 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH RFC v3 1/8] of: Mark interconnects property supplier as
+ optional
+Message-ID: <20220727120631.iefzititedahdsdt@houat>
+References: <20220302211100.65264-1-paul.kocialkowski@bootlin.com>
+ <20220302211100.65264-2-paul.kocialkowski@bootlin.com>
+ <YiaTfsMDs7RGob2N@robh.at.kernel.org>
+ <CAGETcx9u9RO_5nSp+=qgwDGY=jL_Q1hAcj+RfVN=q-H_8iuT4w@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 2/5] dt-bindings: regulator: Document the PM6125 RPM
- regulators
-Content-Language: en-US
-To:     Iskren Chernev <iskren.chernev@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Adam Skladowski <a39.skl@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20220726181133.3262695-1-iskren.chernev@gmail.com>
- <20220726181133.3262695-3-iskren.chernev@gmail.com>
- <7e742415-d93f-83d9-bf01-6f023a4d1a34@linaro.org>
- <73a82790-52c4-b777-b4ff-f8d361f0bd29@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <73a82790-52c4-b777-b4ff-f8d361f0bd29@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5f267h7mxg6wplag"
+Content-Disposition: inline
+In-Reply-To: <CAGETcx9u9RO_5nSp+=qgwDGY=jL_Q1hAcj+RfVN=q-H_8iuT4w@mail.gmail.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2022 12:32, Iskren Chernev wrote:
-> 
->>> ---
->>>  .../devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
->>> index c233461cc980..1122a3a17f56 100644
->>> --- a/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
->>> +++ b/Documentation/devicetree/bindings/regulator/qcom,smd-rpm-regulator.yaml
->>> @@ -57,6 +57,9 @@ description:
->>>
->>>    For pm660l s1, s2, s3, s5, l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, bob
->>>
->>> +  For pm6125 s1, s2, s3, s4, s5, s6, s7, s8, l1, l2, l3, l5, l6, l7, l8, l9,
->>> +  l10, l22, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24
->>> +
->>>    For pma8084, s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, l1, l2, l3,
->>>    l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19,
->>>    l20, l21, l22, l23, l24, l25, l26, l27, lvs1, lvs2, lvs3, lvs4, 5vs1
->>> @@ -90,6 +93,7 @@ properties:
->>>        - qcom,rpm-pm8998-regulators
->>>        - qcom,rpm-pm660-regulators
->>>        - qcom,rpm-pm660l-regulators
->>> +      - qcom,rpm-pm6125-regulators
->>
->> Put new entry in alphabetical order.
-> 
-> Will sort first (they are currently not sorted), 
 
-Arh, indeed, they are not sorted.
+--5f267h7mxg6wplag
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> then add pm6125. Should I also
-> sort the driver code?
+Hi,
 
-You can, but don't have to.
+On Mon, Mar 07, 2022 at 07:34:22PM -0800, Saravana Kannan wrote:
+> On Mon, Mar 7, 2022 at 3:21 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > +Saravana
+> >
+> > On Wed, Mar 02, 2022 at 10:10:53PM +0100, Paul Kocialkowski wrote:
+> > > In order to set their correct DMA address offset, some devices rely on
+> > > the device-tree interconnects property which identifies an
+> > > interconnect node that provides a dma-ranges property that can be used
+> > > to set said offset.
+> > >
+> > > Since that logic is all handled by the generic openfirmware and driver
+> > > code, the device-tree description could be enough to properly set
+> > > the offset.
+> > >
+> > > However the interconnects property is currently not marked as
+> > > optional, which implies that a driver for the corresponding node
+> > > must be loaded as a requirement. When no such driver exists, this
+> > > results in an endless EPROBE_DEFER which gets propagated to the
+> > > calling driver. This ends up in the driver never loading.
+> > >
+> > > Marking the interconnects property as optional makes it possible
+> > > to load the driver in that situation, since the EPROBE_DEFER return
+> > > code will no longer be propagated to the driver.
+> > >
+> > > There might however be undesirable consequences with this change,
+> > > which I do not fully grasp at this point.
+>=20
+> Temporary NACK till I get a bit more time to take a closer look. I
+> really don't like the idea of making interconnects optional. IOMMUs
+> and DMAs were exceptions. Also, we kinda discuss similar issues in
+> LPC. We had some consensus on how to handle these and I noted them all
+> down with a lot of details -- let me go take a look at those notes
+> again and see if I can send a more generic patch.
+>=20
+> Paul,
+>=20
+> Can you point to the DTS (not DTSI) file that corresponds to this?
+> Also, if it's a builtin kernel, I'd recommend setting
+> deferred_probe_timeout=3D1 and that should take care of it too.
 
-Best regards,
-Krzysztof
+For the record, I also encountered this today on next-20220726 with this
+device:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arc=
+h/arm/boot/dts/sun5i.dtsi#n775
+
+The driver won't probe without fw_devlink=3Doff
+
+Maxime
+
+--5f267h7mxg6wplag
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYuEqRwAKCRDj7w1vZxhR
+xU7hAPwISO3g/gkHRCgtYcqZGbLJsQTjFn8UlaYIl4MsqUE71AEArjHaL+k43u3L
+IMF27kO1knwUR8duIkDbYBb49e/ZQgs=
+=h3a/
+-----END PGP SIGNATURE-----
+
+--5f267h7mxg6wplag--
