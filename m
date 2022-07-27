@@ -2,167 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F99E582890
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 16:26:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C02175828F0
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 16:49:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233804AbiG0O0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 10:26:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51830 "EHLO
+        id S234180AbiG0OtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 10:49:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233565AbiG0O0s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 10:26:48 -0400
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2060.outbound.protection.outlook.com [40.107.102.60])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D61F2BB3E;
-        Wed, 27 Jul 2022 07:26:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fEhU951Ofy4O6CrtKA+ajEIGOKzR/nWqzFIWprAkPNkguyzLeziPjkXg6eRpH7m3NFj8Qi5ln81uv5J9erEFEgNajqFYhTO3jU0H5D0WIM7uRoTWbdwR79sq08blanmiPN3f+rg5EcbhliCu9XUM5W4HosPOhFsvnHevIxWTXUHypYUNAF3egT0PRgL567M8kgUvJCugMQUMsAXsuQJrDh2sw5R9pvIvXwo9FtlaeAYTaa7BzWPNcXuvDrZl35o5xbLinsCXqtuMLy+UYTqNKCLkOmkOqBZuNpcAyfQFNVeVVTaE5tKpyH3doniZIQ+C+9vUP7BX4jubxjYXC4PKBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yYll37jJ/5ARnWpURdJ9bZ9HIaGmaIfC4gshWatZxFg=;
- b=Pp9XlgNe+ZlpyIfDgx8jQwFseDiULXTWeR4JfM+VV3I0qKuZs28LTWPTlVBTZkmDCRZ2Ng6TL+tNBCYvtekg4XwDy3+zLf1v+7fLbbyHw6dyWxZPckDYoAFHPuREWjPdXvybyeu4EVgYDF2KRmgO178fnUqd0txvMj8XIRyMgRH4uPm1lLAxcSLKNSrJ9xfwwRJARwhd8rBhNVDaYQSnwjsEu0heUQ5BrQnTx+2jtiTnEm6/wT8Z+zZL/En0N4yy1XGhPcs3OHkxRgpC7rP0GMl4hrZOv9nd6z79YsiPMDKmX/r0lMP8D2to0DQM8cvyZLa4K29xACHNZzqBJYohyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.234) smtp.rcpttodomain=renesas.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yYll37jJ/5ARnWpURdJ9bZ9HIaGmaIfC4gshWatZxFg=;
- b=DoA0WsLj8Fg94PaGtaAq2ANPTVs00cK/Z1xLk2IuJw936YcMW3EqwtNeWWECTZZzTs1kh6fTaJKQXsEdf7BU2AiKfVwAqTIMD/iktxfosy54OrI+6T4TGFwJMs26GFP46u+Nt62UEqbhZ7DmVdnhu++sB/BGaukpmY9Aihe7mjdvlrwHjWnAC0SiD6JhD1NbovPyVA/4xnjg03SPT8Pj7/cXD8ZwLB5slD3FfoHZcZqbLm30tJfeRu60xIo76Fy8tM1fdzVOW7R/AA8gdmUJ/AYBVyyPRVjQBx0OYptmas9y2Bqa+r4T1/R6dDet3M+27ZnnDUUonSKbRE/HPy+qUg==
-Received: from MW2PR16CA0062.namprd16.prod.outlook.com (2603:10b6:907:1::39)
- by BN6PR12MB1410.namprd12.prod.outlook.com (2603:10b6:404:18::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.20; Wed, 27 Jul
- 2022 14:26:46 +0000
-Received: from CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:1:cafe::3a) by MW2PR16CA0062.outlook.office365.com
- (2603:10b6:907:1::39) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.19 via Frontend
- Transport; Wed, 27 Jul 2022 14:26:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.234)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.234 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.234; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (12.22.5.234) by
- CO1NAM11FT066.mail.protection.outlook.com (10.13.175.18) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.5482.10 via Frontend Transport; Wed, 27 Jul 2022 14:26:45 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by
- DRHQMAIL101.nvidia.com (10.27.9.10) with Microsoft SMTP Server (TLS) id
- 15.0.1497.32; Wed, 27 Jul 2022 14:26:45 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.26; Wed, 27 Jul 2022 07:26:44 -0700
-Received: from audio.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.126.190.181) with Microsoft SMTP Server id 15.2.986.26 via Frontend
- Transport; Wed, 27 Jul 2022 07:26:41 -0700
-From:   Sameer Pujar <spujar@nvidia.com>
-To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <kuninori.morimoto.gx@renesas.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Sameer Pujar <spujar@nvidia.com>
-Subject: [PATCH 2/2] ASoC: simple-card-utils: Fixup DAI sample format
-Date:   Wed, 27 Jul 2022 19:56:23 +0530
-Message-ID: <1658931983-31647-3-git-send-email-spujar@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1658931983-31647-1-git-send-email-spujar@nvidia.com>
-References: <1658931983-31647-1-git-send-email-spujar@nvidia.com>
+        with ESMTP id S233042AbiG0OtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 10:49:07 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842631F2D9;
+        Wed, 27 Jul 2022 07:49:06 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id w5so9271893edd.13;
+        Wed, 27 Jul 2022 07:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=LPaTuaFLmOEbvjKAXJoZqNhvaMcLCTVz2uTxxpaOLT4=;
+        b=IpQvEM5IglDTK4hAIv8rSOsoPmWxlqFrhka50slFaDm522pphQTqkRRrvZi93Dj3rw
+         FbXbFIDuMr5F6QqH8l3Y0wjnfYVEj/+iyCC/wpZV5zpwM1qhVoWjY9Mdvde1ZO4x3MBc
+         /OOZLkgzvF5NDtZtV8omSW3HeeLJPpnceD3iniuqHf535QgOzD7Eujhv/uH5S5XpT8Ah
+         dmzQxEGYWtrCHh6IG7S6khuGaGWNrHncNfxgc2a01gaT50VWl9f9Tzg4pwDxIj8EKHbh
+         ynZzvwyhC3lqxPT/YTB1IweGAX8tgVejCbJSZQnGhRI7OouNtjg4QBH5VqstAxHX24pj
+         KX2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=LPaTuaFLmOEbvjKAXJoZqNhvaMcLCTVz2uTxxpaOLT4=;
+        b=g6ZngTpTskpsXotS5z63oqw7k+4pF8WW2v5im+u4BU5uRunYtUB4clDn+rm0b7KPQg
+         0QuEpz4i5nSsUKlYRKnpBx116fDWaI5agzLUdXmG0g0jS0pqT10go4LOhaFY+E2j1+ow
+         ueF7dVX8zZkULTIu+y0o5WqKFy6IUgIDOzk+4SO858XUNO51ZzsGMtumXNtP+NihSh0E
+         IrxlblMoXMghX38zVaplxzy+B6hwx3JAut+NLAkCJtdKHDJxiQjo+KdyJ7IyM6VHJPti
+         XOuH0QIwVkBQ180ERB8QJxB4AN6wYe4t8ZX9U6EI8nU4/waBJ1fc9gdr8dl1lyGMAfb5
+         7mBg==
+X-Gm-Message-State: AJIora/KVfX8gHdlh1t62NefL/DFuqyKwdS6/T6TARAsbOfeq2zYstCY
+        42Fy+u6jEHKYj5W73z3WxmU=
+X-Google-Smtp-Source: AGRyM1shuKmZUHOkozD8SxT5PDgQ2V3xwex/Ty5Pm1tskXeLPr52wvprybERDmBArchv7c9JzDvLIw==
+X-Received: by 2002:a05:6402:518:b0:43c:a863:55b with SMTP id m24-20020a056402051800b0043ca863055bmr4478615edv.127.1658933345043;
+        Wed, 27 Jul 2022 07:49:05 -0700 (PDT)
+Received: from [10.20.0.4] ([37.120.217.162])
+        by smtp.gmail.com with ESMTPSA id nc19-20020a1709071c1300b00722d5b26ecesm7751494ejc.205.2022.07.27.07.49.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Jul 2022 07:49:04 -0700 (PDT)
+Message-ID: <7adebeff-a335-8331-bb22-32229f96281e@gmail.com>
+Date:   Wed, 27 Jul 2022 16:49:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3c01a366-85a3-430b-2457-08da6fdc08b3
-X-MS-TrafficTypeDiagnostic: BN6PR12MB1410:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kZlGXnhMfZZ8c+F8jPYmO6uw2HFfmbVnPH4Rd0C0v4vwkwaVtJYFuZISIEyF6ZxSaQgkl2VaQhYZSaoOp7NooGPtX8tYTl596rjq0wY723ELV7/n4E6yHrTG1HkUWPytNlG6n+hth3AOZsYL/qmTybCHATFF1psfK+wdDXRle0MsLszdICWmACFbUlAhjkHBYdY+dPkP332KI7z8qWmiFEqRmq31qNgapXV80jeKhUrClHFvGjlVE7RwMT7XFZmUByxLvHYYs/fe5rZyZQZQuyja9/P4Q7NvZ0UdUbsgaqHJVoQ22n4wor1hEnV9E07EfmYIaPXWudmGO521wOq4By8MGoOsfaDXp2Ll8qiCAYcdXWbm05iCBIYlZ3jvjnw/Wq+efvVm3RB3S1IKTyhKBqZTcUZKclWp6FIk+Z8D1CmGjOrwBqJCo0g04dBqp28e4sCfezH/OvWFZrdPPd4K2VHBwnV4HZa4jAbC3G9kG3/Zm4hHhUDP/21XDdJAOGq1UNWx9Q2QXm0ELiucGokldoTDB4ngbtYRWDb6aj39oV6T0AfUljrqto+OISqv7zmXMbj17QC/KTILAB4zEZuc/3zUVj8iw4vQ4Udp25k7r8JTyQBj/eonuUeyMx8DEr7wBBdiNa/+HX8fIEiN89OTZqG/Jli3juYeuEPig/m8pGJ2HN5VNRZHqPWqxMWmoUkA3GPii33MI+e8be9iUfhJqHAPedPp7ow1vZpDq8NVIkiHYsUkiOHw6iDwnyJsxm6PzRGfQTT3LEWLP89MXm4cgHf1ZbUOJwRs6zPrtFck8wzBPUYwrXighgEi2M8UDCblE7JJLW83fqxBStT3zOzSCg==
-X-Forefront-Antispam-Report: CIP:12.22.5.234;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(376002)(136003)(346002)(396003)(46966006)(36840700001)(40470700004)(5660300002)(82740400003)(110136005)(8676002)(8936002)(4326008)(7416002)(316002)(54906003)(7696005)(70206006)(86362001)(26005)(478600001)(40480700001)(41300700001)(47076005)(36756003)(2616005)(356005)(82310400005)(81166007)(426003)(336012)(70586007)(186003)(6666004)(107886003)(40460700003)(36860700001)(2906002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jul 2022 14:26:45.4542
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c01a366-85a3-430b-2457-08da6fdc08b3
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.234];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT066.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1410
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
+ Application client
+Content-Language: en-US
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+ <20220723224949.1089973-5-luzmaximilian@gmail.com>
+ <20220726143005.wt4be7yo7sbd3xut@bogus>
+ <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
+ <20220726154138.74avqs6iqlzqpzjk@bogus>
+ <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
+ <7284953b-52bb-37ac-fbe1-1fa845c44ff9@linaro.org>
+ <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com>
+ <20220727132437.pjob3z2nyxsuxgam@bogus>
+From:   Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <20220727132437.pjob3z2nyxsuxgam@bogus>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Parse "convert-sample-format" DT binding and fixup the sample format
-as applicable. This is similar to the existing "convert-channels" and
-"convert-rate" properties for channels and rate fixup respectively.
+On 7/27/22 15:24, Sudeep Holla wrote:
+> On Wed, Jul 27, 2022 at 03:03:49PM +0200, Maximilian Luz wrote:
+>>
+>> Is there really a good way around it?
+> 
+> Yes rely on the firmware preferably auto discover, if that is not an option,
+> how about query. It seem to be working in your case.
+> 
+>> As far as I can see the alternative (especially for the apps that
+>> need to be loaded manually) is hard-coding everything in the driver.
+>> Which IMHO just spreads device specific information everywhere.
+>>
+> 
+> It may not be too bad compared to putting loads of firmware details
+> in the DT. What happens if you get a firmware upgrade with changed
+> number of firmware entities or even if the names are changed.
+> 
+> Are these name user ABI in a way that they won't be changed ? Generally
+> these entities tend to use UUID and the name you have might get changed.
 
-Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
----
- include/sound/simple_card_utils.h     |  1 +
- sound/soc/generic/simple-card-utils.c | 12 ++++++++++++
- 2 files changed, 13 insertions(+)
+I am pretty certain that these names do not change for a device once it's
+been released. The full ID of the uefisecapp is "qcom.tz.uefisecapp". The
+built-in firmware parts here are core components. So I really do not expect
+them to just remove or rename things. If they would do that, that would
+mean that, on Windows, access to things like the TPM or UEFI variables
+would be broken if both the driver and Registry are not updated in parallel
+with the firmware. So while I can't myself guarantee that this is a stable
+name and interface, it's very much in MS/Qualcomm's interest to keep it
+stable.
 
-diff --git a/include/sound/simple_card_utils.h b/include/sound/simple_card_utils.h
-index ab55f40..39ea57d 100644
---- a/include/sound/simple_card_utils.h
-+++ b/include/sound/simple_card_utils.h
-@@ -39,6 +39,7 @@ struct asoc_simple_dai {
- struct asoc_simple_data {
- 	u32 convert_rate;
- 	u32 convert_channels;
-+	int convert_sample_format;
- };
- 
- struct asoc_simple_jack {
-diff --git a/sound/soc/generic/simple-card-utils.c b/sound/soc/generic/simple-card-utils.c
-index 4a29e31..6ce5102 100644
---- a/sound/soc/generic/simple-card-utils.c
-+++ b/sound/soc/generic/simple-card-utils.c
-@@ -22,6 +22,8 @@ void asoc_simple_convert_fixup(struct asoc_simple_data *data,
- 						SNDRV_PCM_HW_PARAM_RATE);
- 	struct snd_interval *channels = hw_param_interval(params,
- 						SNDRV_PCM_HW_PARAM_CHANNELS);
-+	struct snd_mask *mask = hw_param_mask(params,
-+						SNDRV_PCM_HW_PARAM_FORMAT);
- 
- 	if (data->convert_rate)
- 		rate->min =
-@@ -30,6 +32,11 @@ void asoc_simple_convert_fixup(struct asoc_simple_data *data,
- 	if (data->convert_channels)
- 		channels->min =
- 		channels->max = data->convert_channels;
-+
-+	if (data->convert_sample_format >= 0) {
-+		snd_mask_none(mask);
-+		snd_mask_set(mask, data->convert_sample_format);
-+	}
- }
- EXPORT_SYMBOL_GPL(asoc_simple_convert_fixup);
- 
-@@ -49,6 +56,11 @@ void asoc_simple_parse_convert(struct device_node *np,
- 	/* channels transfer */
- 	snprintf(prop, sizeof(prop), "%s%s", prefix, "convert-channels");
- 	of_property_read_u32(np, prop, &data->convert_channels);
-+
-+	/* convert sample format */
-+	data->convert_sample_format = -EINVAL;
-+	snprintf(prop, sizeof(prop), "%s%s", prefix, "convert-sample-format");
-+	of_property_read_u32(np, prop, &data->convert_sample_format);
- }
- EXPORT_SYMBOL_GPL(asoc_simple_parse_convert);
- 
--- 
-2.7.4
+Also, I'm not advocating on putting loads of details in the DT. I'm (in
+this series) advocating for a DT compatible that says "this device stores
+EFI variables via that firmware interface". I'd be very surprised if
+MS/Qualcomm suddenly decided to change that out for another interface,
+potentially breaking their own software and devices.
 
+> I would ideally prefer even the name to be supplied from the userspace.
+> In this particular case, make this a driver and have the name as the
+> parameter. If the secure side services are used by some non-secure
+> applications, then you will need to have a user-interface which means
+> you can get the named from the userspace. No need to change the driver
+> in either case. Please let me know if I am missing anything to consider
+> here.
+
+ From userspace? For access to EFI variables and (hopefully in the future
+if I've managed to reverse-engineer that) the TPM? Those are things that
+should work out-of-the-box and not require the user to first have to
+configure something... Also, those are things that the kernel might want
+to use (e.g. EFI variables as pstore for crashdumps) before the user is
+even able to configure something (unless we now want to specify things
+on the kernel command line...).
+
+If this were something that only userspace would use then sure, let
+userspace load it and do all the work. But it isn't.
+
+> 
+>> Also: Let's use the TPM app as example. If that would be a SPI or I2C
+>> device, you'd model it in the DT. Just because it's a hardware device
+>> that's accessible via SCM/firmware you now don't?
+>>
+> 
+> Not sure if I understand the comparison here. But if there is some device
+> that is access restricted but needs to be accessed and has mechanism to
+> access, then you would model it as device in DT.
+> 
+> But the one $subject is addressing looks pure software and doesn't make
+> sense to model in DT IMO.
+
+So as soon as access runs via some firmware mechanism, it should not be
+in the DT? The TPM in the example above would also be accessed via some
+firmware API. EFI variables are stored on some SPI flash that is managed
+by the TrustZone. So in both cases kernel calls to firmware calls to
+device. Where do you draw the line?
+
+>> If I were absolutely certain that there is a reliable mechanism to
+>> detect these apps, I'd agree with having a driver to instantiate those
+>> devices. But I am not.
+>>
+> 
+> You did say you use some query API to check this. I haven't seen the driver,
+> so relying on what you said earlier.
+
+I did say that there is an API that turns a unique identifying string ID
+of a secure application into a runtime-dependent integer ID of the
+running application, returning an error if the application is not
+running. I very much doubt that is supposed to be used for checking
+support of certain applications. It could _maybe_ be used that way, but
+the Windows driver doesn't, which makes me not very comfortable doing
+that either.
+
+Further: As far as I can tell, there is also no way of checking whether
+that lookup failure is due to the application not being present or whether
+something internal to the firmware failed. the respective results that the
+call can (as far as I can tell) return are:
+
+	QCTEE_OS_RESULT_SUCCESS			= 0,
+	QCTEE_OS_RESULT_INCOMPLETE		= 1,
+	QCTEE_OS_RESULT_BLOCKED_ON_LISTENER	= 2,
+	QCTEE_OS_RESULT_FAILURE			= 0xFFFFFFFF,
+
+And it will return QCTEE_OS_RESULT_FAILURE when the app name is wrong.
+
+Again, while it _might_ be possible to use that, I don't think it makes a
+very sound approach and I would really prefer not using it in that way.
+
+Regards,
+Max
