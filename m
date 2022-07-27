@@ -2,141 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB5458213D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 09:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9B3C582144
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 09:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230353AbiG0Hhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 03:37:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40460 "EHLO
+        id S230257AbiG0HiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 03:38:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiG0Hhh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 03:37:37 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D27D63B950;
-        Wed, 27 Jul 2022 00:37:36 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id y9so12106192qtv.5;
-        Wed, 27 Jul 2022 00:37:36 -0700 (PDT)
+        with ESMTP id S230200AbiG0HiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 03:38:16 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08AC3402F5;
+        Wed, 27 Jul 2022 00:38:16 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id e132so15236702pgc.5;
+        Wed, 27 Jul 2022 00:38:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7wBtopi5nrrnF3/tK6d3mUXKRzW2T+DIHWRi/Z/g55U=;
-        b=JrXv07SnypKXIiO9c1hDaO1ve2XFoCQh3YJA9N0xzJ8VKdcy+NOWbVByEfE93yA1bT
-         Tl79vU21bY1Riyh5vdmQjiXNRM6Y+lisVzjlFGA12N5TkfsJVvBTZVM+DXhLMCRLgtAT
-         CWazI0B5gaYgTPfT/LBhBjVu7eM5hrdl/RUhg4FDmsUWR19oAbFy6HoE9edFHPyenD8T
-         Qf2WPKI/e5SPnIeUMPrpopEK3VVMRKkcz81I6LE01vsC+va5BFGobzRlWIltgg+x4gCQ
-         EHVJv70L2zauSaiZEF5yiD6RME26xNIBHXc93G+wfeZxZyIdgW4ZKl6QFkorqrFDfTKD
-         6LhA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=wV3c+f3BmyLTysoPPoqvpQB6Eo53pqDxPKi4IrUrfME=;
+        b=fh4nnd3MT3SOOHuWiPH1hwnO6qvFYGG95e6iGxxwriYf3ayZGKDlgjcYzFBbsuzYI+
+         WBG33QInj+Yef+0BtPB1Er7unTm1/PTDYK5mweCzoaelVvX45g+IKm3o7d25mnPT22LL
+         Xet7d5AjBdJHWyj0PrmSJhqzytUZ6gVqEUtRzQAQj0zS7itT2K5DoeF/xq+OkHHGRYC4
+         KmF+/uCPu9sESyMH4PzXFsUGWTKCOXsQM1/Ai5cJEJI2CR2HYMo1RfghauJjZgOTb88q
+         xd6leNf4K/B6CdHG1ftxaSnBKU6QOV9Ibsb8MPgGpAgV2sBTNOpIHvvk9eoVP70j5bZ3
+         g3hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7wBtopi5nrrnF3/tK6d3mUXKRzW2T+DIHWRi/Z/g55U=;
-        b=6Jat2MyN2X/bCcy4KChsFEgToktjw+TM2nIp1GsWV6ZzmD6Rvuyrj1WVCZLEay7Yy8
-         q74Yij3pzdIaz/b3Dx1814Y7F7SZ4G/HV33u1NUwo1HFCib9KKUGzmTEDTFzeUjfU0Bs
-         QX31Xn8Ix8XeXydaf8AcdSF3TvwfwPs2BaLCmimOEG8poqkdfChiJgGU3sbSMzaEOAPp
-         tjrZy4no79UXKPkp/eBai9E81Hw5Bzcf2HNvuOYOYl0cPXcPSChnTM9IDK5Jn7McZXoP
-         xHO/bCA9YNSGqGzehOVJ5hVsFJnBC1xruUQWUOhNGDVuRflhxLBmPlRaFHVf97VUhQHe
-         GsuA==
-X-Gm-Message-State: AJIora+ycXd0R3vO91GJKaKDVU9HJPaB0TnRR6u89peGwkCT5WgXMS1m
-        XRVpcxeT3Rf2n10XEOj8napxn7O9AWFngkOo0UeP0b2UjH0=
-X-Google-Smtp-Source: AGRyM1sXpKQZrYG0IbOgoxNKanSErlzr5LcY9lrHn4FGhRFmisG96yuJDLZQZGtegCOB6F8ydUZqqM5XWqwFIZtxfFQ=
-X-Received: by 2002:a05:622a:6098:b0:2f0:f0d2:b5f0 with SMTP id
- hf24-20020a05622a609800b002f0f0d2b5f0mr17361865qtb.583.1658907456035; Wed, 27
- Jul 2022 00:37:36 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=wV3c+f3BmyLTysoPPoqvpQB6Eo53pqDxPKi4IrUrfME=;
+        b=Uv2ersq4qN7A5nyArIrQ7ogZba26KZs++qug/d6cZTF1cZHvmxL2zyuCGJPI8zSa/S
+         5hFKeZ9wp9jtciJOiNf1i4ojGlB9mkPrsAYIKnYWVS9591Sj4W6nNHfIgqOKRlQtdn0h
+         xCBJnEcLgJWgwIcN0ZTkZi5g/iqkW95okv1K9nzc+hxnawsQcP2xDNkh7woTxsWKrEVF
+         I/PFZeST1RmqpXf9gqpkKgZoX8WNVDfRU412dkt1vdccsnMMu4pAeMr1kJLyiznBEUgt
+         vPrdAkmZgwOu2UlCr+xqXdK2/aGqpNZwcOLSnMmCd24McQNUQJpiue/Va3alxSiNxuZY
+         1jqw==
+X-Gm-Message-State: AJIora8cV1ciZIwXqKWeO1zu9ghVPB1SZB9uRFIIv/GoO4lyk2GvJSr2
+        lUSjxDSQzzyB520RdZuTJ1E=
+X-Google-Smtp-Source: AGRyM1vdsUIYBLlb0d8yhP0ziUZSwBOiyyZ1gCdwluhVEKF8YIIHe23da7wmdSj2srxv3nolsQcI3g==
+X-Received: by 2002:a63:4f52:0:b0:41a:3744:d952 with SMTP id p18-20020a634f52000000b0041a3744d952mr17251270pgl.186.1658907495484;
+        Wed, 27 Jul 2022 00:38:15 -0700 (PDT)
+Received: from [172.30.1.52] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id t4-20020a17090a3e4400b001f20c694cccsm905286pjm.35.2022.07.27.00.38.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Jul 2022 00:38:13 -0700 (PDT)
+Message-ID: <7aac0100-5f45-4586-b13e-df0f8bd95060@gmail.com>
+Date:   Wed, 27 Jul 2022 16:38:05 +0900
 MIME-Version: 1.0
-References: <20220722102407.2205-1-peterwu.pub@gmail.com> <20220722102407.2205-12-peterwu.pub@gmail.com>
- <CAHp75VewxvEDGoPdRBvLSLQOQ6OZzVft1ce3DkF7MK_O1VXZkQ@mail.gmail.com>
- <CABtFH5+im7=vyKLUqztYeAX81e7ETFc+9o7y0seg2pxH0PEnUQ@mail.gmail.com> <CAHp75Vd4ApTju2LCCHQ1skgOjttwWo5b2NF3u+zbGyVnnFKNhA@mail.gmail.com>
-In-Reply-To: <CAHp75Vd4ApTju2LCCHQ1skgOjttwWo5b2NF3u+zbGyVnnFKNhA@mail.gmail.com>
-From:   ChiaEn Wu <peterwu.pub@gmail.com>
-Date:   Wed, 27 Jul 2022 15:36:59 +0800
-Message-ID: <CABtFH5+bQx5ym5jOzCPJWbZ23WtGYYwS7cMRt2g3ipEEqTb3JA@mail.gmail.com>
-Subject: Re: [PATCH v6 11/13] leds: rgb: mt6370: Add MediaTek MT6370 current
- sink type LED Indicator support
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 2/6] dt-bindings: clock: exynosautov9: add fsys1 clock
+ definitions
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Alice Chen <alice_chen@richtek.com>,
-        cy_huang <cy_huang@richtek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        szuni chen <szunichen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220727060146.9228-1-chanho61.park@samsung.com>
+ <CGME20220727060612epcas2p34e861279ece7fbd3c7c87ce02c7d795c@epcas2p3.samsung.com>
+ <20220727060146.9228-3-chanho61.park@samsung.com>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+In-Reply-To: <20220727060146.9228-3-chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 26, 2022 at 8:18 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
+On 22. 7. 27. 15:01, Chanho Park wrote:
+> Add fsys1(for usb and mmc) clock definitions.
+> 
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  .../dt-bindings/clock/samsung,exynosautov9.h  | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/include/dt-bindings/clock/samsung,exynosautov9.h b/include/dt-bindings/clock/samsung,exynosautov9.h
+> index 6305a84396ce..7e11e681da5c 100644
+> --- a/include/dt-bindings/clock/samsung,exynosautov9.h
+> +++ b/include/dt-bindings/clock/samsung,exynosautov9.h
+> @@ -228,6 +228,31 @@
+>  
+>  #define FSYS0_NR_CLK			37
+>  
+> +/* CMU_FSYS1 */
+> +#define FOUT_MMC_PLL				1
+> +
+> +#define CLK_MOUT_FSYS1_BUS_USER			2
+> +#define CLK_MOUT_MMC_PLL			3
 
-...
+nitpik. This clock id doesn't have 'FSYS1' word. Is it right?
 
-> > Just for saving memory space.
-> > Because these led_classdevs do not be used at the same time.
-> > Or do you think it would be better to rewrite it as follows?
-> > -------------------------------------------------------------------------------------
-> > struct mt6370_led {
-> >        struct led_classdev isink;
-> >        struct led_classdev_mc mc;
-> >        struct mt6370_priv *priv;
-> >        u32 default_state;
-> >        u32 index;
-> > };
-> > -------------------------------------------------------------------------------------
->
-> You obviously didn't get what I'm talking about...
-> Each union to work properly should have an associated variable that
-> holds the information of which field of the union is in use. Do you
-> have such a variable? If not, how does your code know which one to
-> use? If yes, add a proper comment there.
->
+> +#define CLK_MOUT_FSYS1_MMC_CARD_USER		4
+> +#define CLK_MOUT_FSYS1_USBDRD_USER		5
+> +#define CLK_MOUT_FSYS1_MMC_CARD			6
+> +
+> +#define CLK_DOUT_FSYS1_MMC_CARD			7
+> +
+> +#define CLK_GOUT_FSYS1_PCLK			8
+> +#define CLK_GOUT_FSYS1_MMC_CARD_SDCLKIN		9
+> +#define CLK_GOUT_FSYS1_MMC_CARD_ACLK		10
+> +#define CLK_GOUT_FSYS1_USB20DRD_0_REFCLK	11
+> +#define CLK_GOUT_FSYS1_USB20DRD_1_REFCLK	12
+> +#define CLK_GOUT_FSYS1_USB30DRD_0_REFCLK	13
+> +#define CLK_GOUT_FSYS1_USB30DRD_1_REFCLK	14
+> +#define CLK_GOUT_FSYS1_USB20_0_ACLK		15
+> +#define CLK_GOUT_FSYS1_USB20_1_ACLK		16
+> +#define CLK_GOUT_FSYS1_USB30_0_ACLK		17
+> +#define CLK_GOUT_FSYS1_USB30_1_ACLK		18
+> +
+> +#define FSYS1_NR_CLK				19
+> +
+>  /* CMU_FSYS2 */
+>  #define CLK_MOUT_FSYS2_BUS_USER		1
+>  #define CLK_MOUT_FSYS2_UFS_EMBD_USER	2
 
-Ummm... from my understanding,
-if the colors of these four LEDs are set to 'LED_COLOR_ID_RGB' or
-'LED_COLOR_ID_MULTI' in DT,
-their 'led->index' will be set to 'MT6370_VIRTUAL_MULTICOLOR' in
-'mt6370_leds_probe()'.
-If so, these led devices will be set as 'struct led_classdev_mc' and
-use related ops functions in 'mt6370_init_led_properties()'.
-Instead, they whose 'led->index' is not 'MT6370_VIRTUAL_MULTICOLOR'
-will be set as 'struct led_classdev'.
-So, maybe the member 'index' of the 'struct mt6370_led' is what you
-describe the information of which field of the union is in use?
-I will add the proper comment here to describe this thing. I'm so
-sorry for misunderstanding your mean last time.
-Thanks again for your review.
 
 -- 
 Best Regards,
-ChiaEn Wu
+Samsung Electronics
+Chanwoo Choi
