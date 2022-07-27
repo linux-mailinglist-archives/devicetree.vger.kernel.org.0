@@ -2,113 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F05A758298F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 17:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F971582992
+	for <lists+devicetree@lfdr.de>; Wed, 27 Jul 2022 17:26:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230376AbiG0P0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 11:26:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36204 "EHLO
+        id S233009AbiG0P0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 11:26:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229526AbiG0P0U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 11:26:20 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 785DC3336E;
-        Wed, 27 Jul 2022 08:26:19 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ABAA5113E;
-        Wed, 27 Jul 2022 08:26:19 -0700 (PDT)
-Received: from bogus (unknown [10.57.11.51])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E04EB3F73B;
-        Wed, 27 Jul 2022 08:26:16 -0700 (PDT)
-Date:   Wed, 27 Jul 2022 16:26:13 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Anup Patel <anup@brainfault.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: riscv: Add optional DT property
- riscv,timer-can-wake-cpu
-Message-ID: <20220727152613.kbhfnvekpkd7na72@bogus>
-References: <20220727114302.302201-1-apatel@ventanamicro.com>
- <20220727114302.302201-2-apatel@ventanamicro.com>
- <372e37bf-ac90-c371-ad9e-b9c18e1cc059@linaro.org>
- <20220727124556.owk3zlyzsg5uaa4t@bogus>
- <CAAhSdy0TSKhR8_2eU7pmgizybuxPbwAycn4YudvkfGWGbnXNtQ@mail.gmail.com>
+        with ESMTP id S233268AbiG0P0Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 11:26:25 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEA2D43E67
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 08:26:23 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id r14so20197787ljp.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 08:26:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0mF1oI1pJZmSieB3wXSlOY9epoXI1hphuf7YfBoklfM=;
+        b=UNT7Qim9QA+w/2JT+GGYhUKLSQKuXqZrEm5f5ZQZN7pycIf9opQaqjb+mKNaGsFYZc
+         ts/7lMlWz6z3PW1L3Uqm7LyZTRkY9FUcMx5V8o8yzif761m8LxIpXTINJM0XZdWK/PdB
+         +kaAFZET6+RR/3Q+qLUY1WSsnQZCWqwRtPo0m1ZqDtIZTlQGbhpJrZReuLj7v+Bg75nW
+         PX8v3XM2H/aclDwO70+i2xC2zyDNbD+09fPQBpfcBrHLEBRaSx7TIy4cIuwtEVwSk0gw
+         rDd/XaRdqplClZ32ww73wlqTFSPhVMviFgCzyWxeEw6iA6KhAWKMchr/o0l/tf0a9UjG
+         0Izw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0mF1oI1pJZmSieB3wXSlOY9epoXI1hphuf7YfBoklfM=;
+        b=RBC3KP7HVlRpmDoqJ5c4SUmYH4X+ju7+6JMkE/x9oxkw6ylc0j30uSeAh93/dNEN7O
+         B0ECZTS1YUPf8YEZV0WUEWKBWIvSSAVR1GcmLEkdoHLpZxhdpd9wQ3afvBi65NxPyszl
+         JGqrOUo8xAO03ptMZG00WWKRUp2zUO5oFqC4eELGdRdfAh8/6O2t7zZFYnIQ7PCcf/WB
+         6F5QBGhidBC2y1ym1boIi/qQWP3JNu/BGU4EvSZrUc86t8mnI7UWQwU79lCqhk8Xgh/6
+         OxsA/i4R2P1OiAd6fSy/YiJLh8LNc1lFKmGhYmPPn89xlgSAhg5Q4108eSx3M1fPjhdC
+         ca0Q==
+X-Gm-Message-State: AJIora9voL2bb0mHx9yknRzjjpmAotqO3GePwdMRCY5E7Zd2I+RbEK/o
+        PG8+0efvKNsq+ELQzh7d20+F8A==
+X-Google-Smtp-Source: AGRyM1vyqiinwPc4/1VoCNVulna424uhIP0azt/mhoIusJSkQdyKzzPC3faBTIa0mC+S0u8/9vTR1g==
+X-Received: by 2002:a2e:2a85:0:b0:25e:1f29:404c with SMTP id q127-20020a2e2a85000000b0025e1f29404cmr1813882ljq.308.1658935582046;
+        Wed, 27 Jul 2022 08:26:22 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id p16-20020a05651211f000b0047f7c897b61sm3846341lfs.129.2022.07.27.08.26.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Jul 2022 08:26:21 -0700 (PDT)
+Message-ID: <b1aa7835-631b-9380-e529-687ee0c16f7d@linaro.org>
+Date:   Wed, 27 Jul 2022 17:26:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAAhSdy0TSKhR8_2eU7pmgizybuxPbwAycn4YudvkfGWGbnXNtQ@mail.gmail.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,TVD_PH_BODY_ACCOUNTS_PRE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [v7 3/4] dt-bindings: arm: amlogic: add MagicBox M16S bindings
+Content-Language: en-US
+To:     Zhang Ning <zhangn1985@qq.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        narmstrong@baylibre.com, martin.blumenstingl@googlemail.com,
+        sean@mess.org, christianshewitt@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220726143649.142574-1-zhangn1985@qq.com>
+ <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
+ <20725cba-220c-5664-5766-14d89d24b93c@linaro.org>
+ <tencent_27A429274A1A0E0C082FA6C700DA856DDA09@qq.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <tencent_27A429274A1A0E0C082FA6C700DA856DDA09@qq.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 27, 2022 at 07:15:28PM +0530, Anup Patel wrote:
-> Hi Sudeep,
+On 27/07/2022 16:41, Zhang Ning wrote:
+> On Wed, Jul 27, 2022 at 09:06:07AM +0200, Krzysztof Kozlowski wrote:
+>> On 26/07/2022 16:36, Zhang Ning wrote:
+>>> Add manufactor bindings for Tmall
+>>> Add the board bindings for Magicbox M16S Tv Box
+>>>
+>>> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
+>>
+>> All your subjects are still partially wrong. I pointed this out in v5
+>> and you still send v6 and v7 without proper patch prefix.
+>>
+>>> ---
+>>>  Documentation/devicetree/bindings/arm/amlogic.yaml     | 1 +
+>>>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>>>  2 files changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+>>> index 61a6cabb375b..a67af2adf6a5 100644
+>>> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+>>> @@ -125,6 +125,7 @@ properties:
+>>>                - libretech,aml-s912-pc
+>>>                - minix,neo-u9h
+>>>                - nexbox,a1
+>>> +              - tmall,magicbox-m16s
+>>
+>> Previously the vendor was magicbox... now it is tmall. But you write
+>> also Alibaba. It's a bit confusing.
 > 
-> On Wed, Jul 27, 2022 at 6:16 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > On Wed, Jul 27, 2022 at 02:07:50PM +0200, Krzysztof Kozlowski wrote:
-> > > On 27/07/2022 13:43, Anup Patel wrote:
-> > > > We add an optional DT property riscv,timer-can-wake-cpu which if present
-> > > > in CPU DT node then CPU timer is always powered-on and never loses context.
-> > > >
-> > > > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 ++++++
-> > > >  1 file changed, 6 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > > > index d632ac76532e..b60b64b4113a 100644
-> > > > --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > > > +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> > > > @@ -78,6 +78,12 @@ properties:
-> > > >        - rv64imac
-> > > >        - rv64imafdc
-> > > >
-> > > > +  riscv,timer-can-wake-cpu:
-> > > > +    type: boolean
-> > > > +    description:
-> > > > +      If present, the timer interrupt can wake up the CPU from
-> > > > +      suspend/idle state.
-> > >
-> > > Isn't this a property of a timer, not CPU? IOW, your timer node should
-> > > have "wakeup-source" property.
-> > >
-> >
-> > I agree on the concept that this is property of the timer and not CPU.
-> > However we generally don't need to use wakeup-source property for timer
-> > as we ideally use this for waking up from system sleep state and we don't
-> > want to be running timer when we enter the state.
-> 
-> It seems ARM is using two separate timer DT properties: one for
-> system suspend (i.e. arm,no-tick-in-suspend) and another for CPU
-> system (i.e. always-on). Is this understanding correct ?
->
+> Tmall is sub-company of Alibaba, if I use alibaba,tmall-magicbox-m16s
+> this will be too long.
 
-TBH, I hadn't looked at "arm,no-tick-in-suspend" before though it seem to
-be there for few years now. Based on the log, I see this as quirk for some
-platform and not used on many platforms. Ideally to account how much time
-was spent in suspend, we could use the counter as it continues to tick
-during the suspend as well i.e. just the timers are not available if
-not always. This was added to handle systems that are not conformant to
-the expectation of always available counter.
+OK
 
--- 
-Regards,
-Sudeep
+
+Best regards,
+Krzysztof
