@@ -2,112 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 222A158363D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 03:21:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFDF7583681
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 03:50:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232117AbiG1BVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 21:21:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42050 "EHLO
+        id S232066AbiG1BuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 21:50:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231626AbiG1BVc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 21:21:32 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5F81C90D;
-        Wed, 27 Jul 2022 18:21:31 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id v67-20020a1cac46000000b003a1888b9d36so1793970wme.0;
-        Wed, 27 Jul 2022 18:21:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=Cxp1c3BTumIa+oetWVz5ChWxRwi9acisZtSdnbq5CfQ=;
-        b=QUw3kZLyF/ngAUJTs99Vp8oy0IIEqSrS3bqix/vKauqObNVg78C+ZWrGHYoh6L7fAo
-         Q6okHBlBgE7OMmMqIEGKu4bnBqV2Mtv+QfPYVVpc3NB7mp6oBrbcpVXvWpXtkX3lcUaN
-         EJB/W+x/DmANqx+SFw1zjGlnkanDnGkTFzxCz+nZP7l0lEzB5V+cqAXvDvvdtY33FykO
-         HXdvPAFjRlRQQHDIC2ANyH7yH4VDsmngwRYsmgd/Y8hzXBoraAogg8mBq9BSvGrqgnbZ
-         NGfSZ5nux/u+09qjOjwS2aTbEH9vF7qd5shyq6x0HJZfWvn3YQX8JEsbeRYP6QI77kua
-         bB7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=Cxp1c3BTumIa+oetWVz5ChWxRwi9acisZtSdnbq5CfQ=;
-        b=MDCZjgcdAou/ye0ffLeTt2K6+rnpVfAOKKDRcZA3XB/2XY4hTL+w0Kppe6QfPZlRt/
-         UkDypXMTIRpvHhbeRazs2dCHvnMDXdl6kjCGwFV87MNVHBvsiZOgYJQRyhW79v160xVK
-         ImCRytMSYtgX6Myp1LFwO4vcmqh/dHWXXikOZVkhoXXe+/VfrLpRZJgQCUde2KSoaUJc
-         OEs0noBDg9u/eTypebAsS4Hit20fiuvXyl3LavRh90dcpkmHb1a5iUXOAJIzsTT0egFp
-         INpxgg7GaGMd6NuUQzQxLVA8oOA6MiO5QB8Eo5T86Y1BNXXc+d+czukrYyIzedcOeDhO
-         AVSA==
-X-Gm-Message-State: AJIora89/3ZPS2cI+6aQAMCWRNHqtXTmcm1US7buRTJhX2lJ5vjvDS/N
-        /ac7TvA3pQPj0b0U6qVvc9E=
-X-Google-Smtp-Source: AGRyM1v27SyKb+DQwAMOBq0K68BhSI7SXTjacmDoMDEvKcUHoAPSOXXqUJJbHAw3eZVTDDULo7jhVA==
-X-Received: by 2002:a05:600c:19c9:b0:3a3:469f:c1e7 with SMTP id u9-20020a05600c19c900b003a3469fc1e7mr4626173wmq.141.1658971290276;
-        Wed, 27 Jul 2022 18:21:30 -0700 (PDT)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id h10-20020a5d548a000000b0021e6c52c921sm15966887wrv.54.2022.07.27.18.21.27
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 27 Jul 2022 18:21:29 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.100.31\))
-Subject: Re: [v7 3/4] dt-bindings: arm: amlogic: add MagicBox M16S bindings
-From:   Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <tencent_F809BC863B83870BBEB1EF76499B3969B607@qq.com>
-Date:   Thu, 28 Jul 2022 05:21:25 +0400
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        sean@mess.org,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <8CBF7318-B6E4-46D9-AFF2-8839459D4C54@gmail.com>
-References: <20220726143649.142574-1-zhangn1985@qq.com>
- <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
- <b094bf45-ad7e-9e42-89a6-bae0b8e4aae1@linaro.org>
- <tencent_F809BC863B83870BBEB1EF76499B3969B607@qq.com>
-To:     Zhang Ning <zhangn1985@qq.com>
-X-Mailer: Apple Mail (2.3696.100.31)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231587AbiG1BuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 21:50:17 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D8531928D;
+        Wed, 27 Jul 2022 18:50:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id F1E80CE241C;
+        Thu, 28 Jul 2022 01:50:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 37175C433D7;
+        Thu, 28 Jul 2022 01:50:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1658973013;
+        bh=TPPEGMm0hdNBEom2DUfGcgh/59bArrwqfsc9IJBgQgE=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=u343eWu0xEhKDDgyyzA0aDlzjCxhuFTq8b5F0ujVM5pbpfqmSeIqqZ2QnhgPW2Kb0
+         BTp3tzXgaZMWva8aX9gC8NI04CeQ/13GbpiVbIeE0ZzCTZPtaTqU3KqOpwSOXyBQGy
+         x86YtGqcxKJfgn1nGuHzaKNnOp10V99P0H4JDGZzmEyArNOxPF1U5gT/4CKzb06pdD
+         x1ZBcYzBp4537mqwmCgqwO00+/LVhbzHGmV02uHWWEyY3+FrmM1uKS5/E1tFcPGln4
+         bAqLX2aVRezRuViKhjczCEF1pDtSlVO2DWRDWxZEChprNmi3JFIUzea5ey+VEptGVD
+         eOT9STVb4O9mQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 1AD49C43143;
+        Thu, 28 Jul 2022 01:50:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] dt-bindings: net: hirschmann,hellcreek: use absolute path to
+ other schema
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <165897301310.12814.15652986557134762426.git-patchwork-notify@kernel.org>
+Date:   Thu, 28 Jul 2022 01:50:13 +0000
+References: <20220726115650.100726-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220726115650.100726-1-krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     kurt@linutronix.de, andrew@lunn.ch, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello:
 
-> On 28 Jul 2022, at 3:48 am, Zhang Ning <zhangn1985@qq.com> wrote:
->=20
-> On Wed, Jul 27, 2022 at 05:27:25PM +0200, Krzysztof Kozlowski wrote:
->> On 26/07/2022 16:36, Zhang Ning wrote:
->>> Add manufactor bindings for Tmall
->>> Add the board bindings for Magicbox M16S Tv Box
->>>=20
->>> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
->>=20
->> Please send patches with correct subject PATCH.
-> I got confused, and don't know how to update..
->=20
-> ad152daedc5c dt-bindings: arm: amlogic: add MagicBox M16S bindings
-> 3f7dbd336f36 dt-bindings: arm: amlogic: add Vero 4K+ bindings
-> 2ca889b12016 dt-bindings: arm: amlogic: add H96-Max bindings
->=20
->>=20
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
-> Christian Hewitt told me to split to 2 patches, 1st for manufactor, =
-2nd
-> for device, how to handle your Acked-by?
+This patch was applied to netdev/net-next.git (master)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Hello Zhang. Let=E2=80=99s work off-list to get things corrected before =
-you send
-another (hopefully final) version. I=E2=80=99m happy to explain and =
-coach you on
-the process.
+On Tue, 26 Jul 2022 13:56:50 +0200 you wrote:
+> Absolute path to other DT schema is preferred over relative one.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml       | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Christian=
+Here is the summary with links:
+  - dt-bindings: net: hirschmann,hellcreek: use absolute path to other schema
+    https://git.kernel.org/netdev/net-next/c/a683dc5c148a
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
