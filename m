@@ -2,139 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0F5B5842C6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 17:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0455D5842D3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 17:17:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231177AbiG1PQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 11:16:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58588 "EHLO
+        id S231659AbiG1PRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 11:17:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230509AbiG1PQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 11:16:41 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28CF74E872
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 08:16:40 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-32194238c77so22956347b3.4
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 08:16:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=I/V7r/JjnXzUGcT6ui2gSCucu1LvJKddLujQ+JW0ayQ=;
-        b=gtAegM1F7Ga+mua1tY0e5tEW6tISaVKUX4kBorZeA23I7ZxrtAHlX6MMeI7VPUS7Z8
-         JasOmqNpNBjQV13JSpTdrN/pR7yns90gilE4ACtbhzDK/p/HW6ySpgJ7CJZsLZNu2zNL
-         CILNfwTlct/Rnd7xJdyp89hoOw+7XyPFNRCmIAzftsNXvDbdfKx3lCmeiCdfpMyMZKFu
-         HYqcjJNSLeh7uKHSlcifaPueU54vOp10O3VVMNmFXGnlbYw61STJ0H+f1p0nssrlj7U5
-         J5cNHKjJ1RyN9kDYIkTS3HSMcSDpTeVIFGPLgotsQ/pyJ6a3VvKsvzPZ3J147/XOnS+U
-         WvnA==
+        with ESMTP id S231670AbiG1PRE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 11:17:04 -0400
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668CF52FF9;
+        Thu, 28 Jul 2022 08:16:53 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id y197so1582217iof.12;
+        Thu, 28 Jul 2022 08:16:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I/V7r/JjnXzUGcT6ui2gSCucu1LvJKddLujQ+JW0ayQ=;
-        b=VsHorl+Wf3FVYIO+bHvCWNkdTAd9B3Y5wJZed5Jyy0UGg0haZK/AEA7iSKWJRqfQSV
-         iXQ4Pof4FZuTDcJ8q5c327ztEsXEGf6hJzrdwuQqmwcQGpFv/uAMlTRAv88pFptTLWPP
-         IDIvNq4pmHpsjf/2gISjtqaw+lsj1a+8TBSYrylW5XyUdF5pQ+Z/zU4PqHVjt+B3kESX
-         n/yeFS3pYFFm5Ww5jmpiAzB+ioQApwGwdLe7MvKIu0/IqA+LHnSDeGtifWwIdwTwYKyi
-         /LWFwtCkfrf46Rkuf6/oPZaPRqsOXmNuHSBKj6L3KEM4WbtwvPbWief3omVGmZ/JUs8L
-         z3bg==
-X-Gm-Message-State: AJIora8n79nSzm7FipBUTkRNzNncS2AP6Dwn6RE8cjhttFTM0ODwYp/t
-        XM6c1sbnHnAclLgQYANLCQBDHuDRShCZcjOz3IipBw==
-X-Google-Smtp-Source: AGRyM1vcmGJ+mmue/tBswMy79EHyowZgJFZhNzrIrwc9P7sgN6Pu3ui4GIF00O3/ldF3QTLG8lR4xHsP9ul10IGd220=
-X-Received: by 2002:a81:a149:0:b0:31f:fded:b121 with SMTP id
- y70-20020a81a149000000b0031ffdedb121mr5995007ywg.122.1659021399305; Thu, 28
- Jul 2022 08:16:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220723224949.1089973-5-luzmaximilian@gmail.com>
- <20220726143005.wt4be7yo7sbd3xut@bogus> <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
- <20220726154138.74avqs6iqlzqpzjk@bogus> <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
- <7284953b-52bb-37ac-fbe1-1fa845c44ff9@linaro.org> <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com>
- <20220727132437.pjob3z2nyxsuxgam@bogus> <CAC_iWj+Pn+h8k=fuDHzYwqD0g4m6jGRt8sCzcz+5+rYqvz9q4w@mail.gmail.com>
- <fd922f0f-99fd-55a3-a0b5-b62ad2dbfb45@gmail.com> <20220728113347.ver6argevzmlsc2c@bogus>
- <CAMj1kXHYb-zrKOS_titU79c487ab9WPyKwJBXuj7pdqum=ygaA@mail.gmail.com>
-In-Reply-To: <CAMj1kXHYb-zrKOS_titU79c487ab9WPyKwJBXuj7pdqum=ygaA@mail.gmail.com>
-From:   Ilias Apalodimas <ilias.apalodimas@linaro.org>
-Date:   Thu, 28 Jul 2022 18:16:03 +0300
-Message-ID: <CAC_iWjJTENeF_4jvD0VGo_mbtw0ZH2xd9oX2JdvJJFK=vAxBcw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-To:     Ard Biesheuvel <ardb@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=JrlKPQ4z+/eb/LwH7+hyMBFCM3G+u1y3FbCWjxfRWs0=;
+        b=c9zDFxtVgHQH4mlP2LqzUZUBvZBebrtUdUQbSfPbjayElwUKasqtHBvXK0OPLWWO6/
+         e8juRC2fOFQg2Rvk4H1CCNyrYr9Auvw9bsRakQZFcYQNqQRKTgdL76bbgcb9RVdy4BAP
+         GRQYXesoHpdBy97Bh0CaByHy1VYbPR+QrfQUgjvgaRQdAxxEfcwI2/O95YEMcs12g8rZ
+         DqgqZtqYZem0AoHB2c9o6xX0sY/yMByGfbEfvpp1S/WbdfKAt+YpaWX3LXtc3bNiGVCK
+         yE9jOAKAzMK6FW0X7zxjlLj4rMPEN07wx5XkADsMiWGygSAeZxmGefr0WbQAI1QastMO
+         uyNw==
+X-Gm-Message-State: AJIora80PW4rnd9WClBiThP0T9EDn3cAXOkKTvKlCP703xCaVkNxLhK3
+        sQITYUSyFtc9RD0egwsfjw==
+X-Google-Smtp-Source: AGRyM1unOndFqwJ/QxZY7xMrXPhTBF5duUZYZLQcuDRiBpPqUp3gM2q6daVUcFNXpNNq9PA/nFbCJQ==
+X-Received: by 2002:a5d:844d:0:b0:67c:a76d:85cd with SMTP id w13-20020a5d844d000000b0067ca76d85cdmr6791200ior.191.1659021412634;
+        Thu, 28 Jul 2022 08:16:52 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id y11-20020a92d0cb000000b002cc20b48163sm466960ila.3.2022.07.28.08.16.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 08:16:52 -0700 (PDT)
+Received: (nullmailer pid 899149 invoked by uid 1000);
+        Thu, 28 Jul 2022 15:16:50 -0000
+Date:   Thu, 28 Jul 2022 09:16:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: adc: ti,am3359-adc: add ti,am654-adc
+Message-ID: <20220728151650.GA899095-robh@kernel.org>
+References: <20220727155203.320929-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220727155203.320929-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ard,
+On Wed, 27 Jul 2022 17:52:03 +0200, Krzysztof Kozlowski wrote:
+> Document the ti,am654-adc compatible already used in DTS:
+> 
+>   arch/arm64/boot/dts/ti/k3-am642-evm.dtb: adc: compatible:0: 'ti,am654-adc' is not one of ['ti,am3359-adc', 'ti,am4372-adc']
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/iio/adc/ti,am3359-adc.yaml    | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
+> 
 
-[...]
-
-> > > From an end-user perspective, it's annoying enough that we'll have to
-> > > stick with DTs for the time being due to the use of PEPs in ACPI.
-> >
-> > But have we explored or investigated what it takes to rewrite ACPI f/w
-> > to just use standard methods ? Does it require more firmware changes or
-> > new firmware entities or impossible at any cost ?
-> >
-> > For me that is more important than just getting this one on DT. Because
-> > if you take that path, we will have to keep doing that, with loads of
-> > unnecessary drivers if they are not shared with any other SoC with DT
-> > support upstream. We might also miss chance to get things added to the ACPI
-> > spec as we don't care which means that we never be able to use ACPI on
-> > similar future platforms even though they get shipped with ACPI.
-> >
-> > It will be a loop where we constantly keep converting this ACPI shipped
-> > platform into DT upstream. IMHO we don't want to be there.
-> >
->
-> Supporting these devices in Linux in ACPI mode would involve
-> reimplementing the PEP subsystem, and reimplementing PEP drivers for
-> all these QCOM peripherals to manage the probing and the power states.
-> I don't think this is realistic at all, and a huge waste of
-> engineering effort otherwise.
->
-> It is also orthogonal to the discussion, as far as I understand: ACPI
-> is not telling the system whether or not these TZ services should be
-> used instead of EFI runtime calls.
->
-> So I think this is a reasonable way to expose these EFI services,
-> although I am not thrilled about the fact that it is needed.
-> Surprisingly, Microsoft also supports this model both on x86 and arm64
-> for platforms that keep their variables on eMMC (or any other kind of
-> storage that sits behind a controller that cannot be shared between
-> the OS and the firmware). So if we agree that we will support these
-> systems as best we can, supporting EFI variables at runtime is
-> something that we should support as well. (Note that I am not
-> convinced about the latter point myself: on many systems, the EFI
-> variable store is used precisely once, when GRUB gets installed and
-> its path added to the boot order, so if we could find a way to
-> streamline that without EFI runtime services, the story around why EFI
-> runtime services are important becomes quite weak)
-
-Unfortunately this is not entirely true.  Yes the majority of use
-cases is what you describe, however we also need SetVariable for
-capsule update on disk.
-
-[...]
+Acked-by: Rob Herring <robh@kernel.org>
