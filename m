@@ -2,120 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F17CF583DDE
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 13:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8944583DE9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 13:45:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236005AbiG1Lmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 07:42:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47428 "EHLO
+        id S237168AbiG1Lpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 07:45:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235603AbiG1Lmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 07:42:51 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF29F33
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:42:50 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id q23so2457997lfr.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:42:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZdeLo/HEqDcBsBJZCtTsZcIieSbE3G0c5YaVE49SxhM=;
-        b=D/2g/QjrEK8fnbPdip0C4HLBdUCVf1+o0vuESGDzjqER7MbdY0B/Po3zAuvNBt1e10
-         WO9vbtKX1sn1Mu/grWuVAdCAk9DappVyhyBvldWRSQNsVYhYtRdhOIM0YQEwBPmKCuff
-         Y7cSyaTCaGporSRlv5/Sy4MK8wgwiR8GV//hfP0+8em4n8ySU+AcxdUxUEj0ZheyLkhe
-         nV5yFu32FsGqrNXaykZNMJMwAFl1ZmYVP1mVXadkm5gLrqL4OS4uskymswtd9GIMhzLP
-         2FtQcW0QmnwVl8wd6enixv3vQek9QkAlT1kBOIFtDdVX35ki7EJ8FCeT19d9rWUdid4K
-         ZA+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZdeLo/HEqDcBsBJZCtTsZcIieSbE3G0c5YaVE49SxhM=;
-        b=i1R3mt5rhUCTdQzfG4CiQS1q8lP3TJQV7Amwla2dcbbvoHYWu/FIOYaFvKaGF0E6Mh
-         /OlOeDuWoA8pQgPAMg4YuKL3/Yq0Nnc50ut2aTQJqlLP8eurgnQ4ofFgSc2Uy4/huuze
-         OhNcf8JuQGFmkTL45lTTQtE/Hpg/g7paUgX4Cm0DrAjC9BLuLxNtMTwYpRsOV6yzkf3V
-         q/NJwzFOsKSzmGPNhIPo8fkjGqYJhZwmS0mfYCAEbMfKex0PMrNMLiXM3P1NZ1scutMs
-         44Ute6wltDZG7HIgc36VKQ2pk2pDtNTQcudJSqdyx2JC1ZivPfEet07YIvIapWyuT1LR
-         TwLw==
-X-Gm-Message-State: AJIora+0oyb6eJEpQdequSiO9cC2O1S9lsxMEy7ImehSXM6u1gSm4vap
-        YzVdIvfJWnMrwpIEUJuWCyp42Q==
-X-Google-Smtp-Source: AGRyM1vj/7RBruIhGdOeZdiOwv0g82Q6nua4rpfJQIzPlJvLjQrz3CgmbPncXFOcdWxaf2eze6H8Lg==
-X-Received: by 2002:ac2:5b1d:0:b0:48a:718b:d21d with SMTP id v29-20020ac25b1d000000b0048a718bd21dmr10235584lfn.488.1659008569059;
-        Thu, 28 Jul 2022 04:42:49 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id t11-20020a056512208b00b0048a78c1fc1dsm162825lfr.111.2022.07.28.04.42.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 04:42:48 -0700 (PDT)
-Message-ID: <a810ec42-825c-1a85-568f-b70f04b58280@linaro.org>
-Date:   Thu, 28 Jul 2022 13:42:47 +0200
+        with ESMTP id S236878AbiG1Lpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 07:45:40 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E87ABF4D;
+        Thu, 28 Jul 2022 04:45:39 -0700 (PDT)
+Received: from [192.168.1.111] (91-158-154-79.elisa-laajakaista.fi [91.158.154.79])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AB30156D;
+        Thu, 28 Jul 2022 13:45:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1659008737;
+        bh=3ikDa89hPYF22Nu4Eybw5k3qIbhMbiGDUev623G/ipc=;
+        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+        b=efmE0csadS2tbT7C4q6dQr+rNAmoe8cpjcdCIfPwXMd4qS1Hssq/M8zc8MJxcmoty
+         0o4wzww9oUIU4jNuSQHvj3eMurOAqhsTOqVObvOaHPXs4hulWPgPJwrfq23L3OxPyX
+         brrKEUw92mSMsdwOtUP/YiJZibXzdbP5D7xkeHvU=
+Message-ID: <ec8dce9b-51d6-a566-67bb-b76f6f3458d7@ideasonboard.com>
+Date:   Thu, 28 Jul 2022 14:45:34 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: spmi: add compatible for mt8188
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 4/8] drm/tidss: Add support for Dual Link LVDS Bus Format
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Sen Chu <sen.chu@mediatek.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
+Cc:     Darren Etheridge <detheridge@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Krunal Bhargav <k-bhargav@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Hui Liu <hui.liu@mediatek.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220726103729.24525-1-sen.chu@mediatek.com>
- <d0d24ba1-e870-2ba0-8259-c405cb029d2f@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d0d24ba1-e870-2ba0-8259-c405cb029d2f@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220719080845.22122-1-a-bhatia1@ti.com>
+ <20220719080845.22122-5-a-bhatia1@ti.com>
+ <f2909af1-be23-009b-ba71-34206f099473@ideasonboard.com>
+In-Reply-To: <f2909af1-be23-009b-ba71-34206f099473@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 13:29, AngeloGioacchino Del Regno wrote:
-> Il 26/07/22 12:37, Sen Chu ha scritto:
->> Add dt-binding documentation of spmi for Mediatek MT8188 SoC platform.
+On 28/07/2022 14:03, Tomi Valkeinen wrote:
+> On 19/07/2022 11:08, Aradhya Bhatia wrote:
+>> The 2 OLDI TXes in the AM625 SoC can be synced together to output a 2K
+>> resolution video.
 >>
->> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Add support in the driver for the discovery of such a dual mode
+>> connection on the OLDI video port, using the values of "ti,oldi-mode"
+>> property.
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
 >> ---
->>   Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml | 1 +
->>   1 file changed, 1 insertion(+)
+>>   drivers/gpu/drm/tidss/tidss_dispc.c | 39 +++++++++++++++++++++--------
+>>   1 file changed, 28 insertions(+), 11 deletions(-)
 >>
->> diff --git a/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml b/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
->> index 2445c5e0b0ef..05801e0199f9 100644
->> --- a/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
->> +++ b/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
->> @@ -20,6 +20,7 @@ properties:
->>     compatible:
->>       enum:
->>         - mediatek,mt6873-spmi
->> +      - mediatek,mt8188-spmi
+>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
+>> b/drivers/gpu/drm/tidss/tidss_dispc.c
+>> index add725fa682b..fb1fdecfc83a 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+>> @@ -853,25 +853,36 @@ void dispc_set_irqenable(struct dispc_device 
+>> *dispc, dispc_irq_t mask)
+>>       }
+>>   }
+>> -enum dispc_oldi_mode_reg_val { SPWG_18 = 0, JEIDA_24 = 1, SPWG_24 = 2 };
+>> +enum dispc_oldi_mode_reg_val {
+>> +    SPWG_18        = 0,
+>> +    JEIDA_24    = 1,
+>> +    SPWG_24        = 2,
+>> +    DL_SPWG_18    = 4,
+>> +    DL_JEIDA_24    = 5,
+>> +    DL_SPWG_24    = 6,
+>> +};
+>>   struct dispc_bus_format {
+>>       u32 bus_fmt;
+>>       u32 data_width;
+>>       bool is_oldi_fmt;
+>> +    bool is_dual_link;
+>>       enum dispc_oldi_mode_reg_val oldi_mode_reg_val;
+>>   };
+>>   static const struct dispc_bus_format dispc_bus_formats[] = {
+>> -    { MEDIA_BUS_FMT_RGB444_1X12,        12, false, 0 },
+>> -    { MEDIA_BUS_FMT_RGB565_1X16,        16, false, 0 },
+>> -    { MEDIA_BUS_FMT_RGB666_1X18,        18, false, 0 },
+>> -    { MEDIA_BUS_FMT_RGB888_1X24,        24, false, 0 },
+>> -    { MEDIA_BUS_FMT_RGB101010_1X30,        30, false, 0 },
+>> -    { MEDIA_BUS_FMT_RGB121212_1X36,        36, false, 0 },
+>> -    { MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,    18, true, SPWG_18 },
+>> -    { MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,    24, true, SPWG_24 },
+>> -    { MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,    24, true, JEIDA_24 },
+>> +    { MEDIA_BUS_FMT_RGB444_1X12,        12, false, false, 0 },
+>> +    { MEDIA_BUS_FMT_RGB565_1X16,        16, false, false, 0 },
+>> +    { MEDIA_BUS_FMT_RGB666_1X18,        18, false, false, 0 },
+>> +    { MEDIA_BUS_FMT_RGB888_1X24,        24, false, false, 0 },
+>> +    { MEDIA_BUS_FMT_RGB101010_1X30,        30, false, false, 0 },
+>> +    { MEDIA_BUS_FMT_RGB121212_1X36,        36, false, false, 0 },
+>> +    { MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,    18, true, false, SPWG_18 },
+>> +    { MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,    24, true, false, SPWG_24 },
+>> +    { MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,    24, true, false, JEIDA_24 },
+>> +    { MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,    18, true, true, DL_SPWG_18 },
+>> +    { MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,    24, true, true, DL_SPWG_24 },
+>> +    { MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,    24, true, true, 
+>> DL_JEIDA_24 },
+>>   };
 > 
-> I think that you'll be adding a SPMI node that will have:
-> 
-> compatible = "mediatek,mt8188-spmi", "mediatek,mt8195-spmi";
-> 
-> Which means that this is actually wrong, so, please fix it by
-> adding items...
+> So the dual link sends two pixels per clock, right? Are there panel or 
+> bridge drivers that support this? My initial thought was that it should 
+> be a new bus format.
 
-I wished bindings were not coming along but with DTS so we can check if
-submitter understands what he/she/they are coding...
+Looks like we have drm bridges supporting dual link, and they use the 
+"normal" bus format. Did you have a look at them? They require two port 
+nodes for dual link, and use the existence of the second one to decide 
+if dual link is used or not.
 
-I also wished bindings in schema were used for testing their own DTBS
-without sending.
+There are also lvds helpers in drm_of.c. I didn't look closely, but it 
+looked to me that the helpers can tell you if the ports are connected to 
+a dual link bridge. If not, you could fall back to cloning. This way no 
+extra properties are needed. But you will need to add a port node, which 
+I think you need to add anyway for cloning.
 
-Ehh.... :(
-Best regards,
-Krzysztof
+  Tomi
