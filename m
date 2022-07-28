@@ -2,161 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92F5E583B1B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 11:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F181583B3B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 11:30:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235242AbiG1JUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 05:20:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58604 "EHLO
+        id S235453AbiG1JaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 05:30:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234950AbiG1JUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 05:20:36 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC9C648E81
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 02:20:34 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id y11so1961699lfs.6
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 02:20:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ywBOOR3hRZ95Faea8Y6GMt4e6+qAIbLT8FcbUkq7ZHE=;
-        b=FLMFlnMeKZxsVr2c45CmvBS+qrnhsIuZ0il6XWUWSJOHskOe3htKisNWoRGcqQJ6Bc
-         IwKoYwCJgIag0uNUSvZRp9i60AKPHNAVzP1lduRtVgkklONHYiYRv/3jIzwJE0mFx74d
-         2ZpSqbV6dQzFqj8auMplx9uRoDOc95fnky0nB56ssFA3bfjG/ppdIPore4Rifm9+MfCt
-         JM0Nqo6IXJ/X36tB7PJXO4bclIdjzw4jGnRBQxLpIO6YJ6UvnH1XG/2qn4p9+0RkexuM
-         5NDGhoJSc7lbi1btPg+xk8t6eJ0NqkOsznAqqpFx7Lbc3gyUiIwyM/38FQZKqN9ZEQo0
-         MeOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ywBOOR3hRZ95Faea8Y6GMt4e6+qAIbLT8FcbUkq7ZHE=;
-        b=qIdv0Ckkj94w8zODIy17a4l0GQ4gDjuWH3Ezgx6ySmuSznKLtLgLbU/p5KkYXu2EOq
-         GYJBLx/EPugKv2yji7jCJXh9azn4ax5lWQPyb6Kd/1y7ttBQ0jata8MV/7cxEHUp0WSp
-         QqE0GhsgaYPJ9k9NEO4j1ySI+mQQFQS4KMCFjzVTIubTZVsrgsvexmflQ9F8d6obeJrg
-         yxCQ9FrPfroVOltbNPdsCvYznZrgybmBX203CcN02y54tgrq+crUk8ZWqh1Z8v0efO/5
-         AggslGCNGyYCJZhQ8h052z8LC85Cb7tVslMuMJCmDpaFWJPya7Gqk31MfODS4DDJNK//
-         ctjw==
-X-Gm-Message-State: AJIora9DY0uEh4Jc2dnjKwR5VLlGr35XWZj4P5/rVZzsP8javpMCuzqQ
-        3ubRLxtJ/eM+7kLFUnjPkcU78020Hc/71KfS9WyYEA==
-X-Google-Smtp-Source: AGRyM1v4zQOyf52XZG8OieodKUUIY6pg6LY/9dvoTrTj2RYsX1V1xy0G18hqalRKNzt7C6arApkKcjQdf5akPoM6wQk=
-X-Received: by 2002:a05:6512:32c5:b0:48a:af79:601e with SMTP id
- f5-20020a05651232c500b0048aaf79601emr3638569lfg.373.1659000033025; Thu, 28
- Jul 2022 02:20:33 -0700 (PDT)
+        with ESMTP id S235163AbiG1JaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 05:30:14 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2064BE06;
+        Thu, 28 Jul 2022 02:30:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7FE65B8040B;
+        Thu, 28 Jul 2022 09:30:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2432EC433C1;
+        Thu, 28 Jul 2022 09:30:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659000611;
+        bh=RK0p45PJzf+xSyo1liQs0iRoThupe00fRizXrfLKftk=;
+        h=Date:From:To:Cc:Subject:From;
+        b=WxKxnFJL+LI4HzvHm+8/hxVki4r/bxkblBRS6RK2nIeWzptQU21Ou7g7VVQ67RrSs
+         r56W0EmhnBCJ+dpC/33zDeOtXyFS5YH6k4OnpKwZqpN+Y4ImiXsM3pxACJ31c5DKBB
+         mWm55JdqrxZM4fVwOd1oFfKOuNvWykqQjfnJjMBSfGSGT7spnfkvzmS+BwrntqPCiT
+         wV5uW3H1/zaA9YiFkX+NlpAMv00rLvP35XnTCaaFn6SsRnSX0wbh8FWK6RxWIO+wr6
+         Ah3FEfJl0LwrIHnkWj0nY2/ZipjfIzghhcj2QHWvEkziNdAbMUCbfUrpNlnCr9nEAA
+         6wAFy0tPtbg0g==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oGzqa-0005Xq-5X; Thu, 28 Jul 2022 11:30:24 +0200
+Date:   Thu, 28 Jul 2022 11:30:24 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Dmitry Torokhov <dtor@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Second-source devices and interrupt-mapping race
+Message-ID: <YuJXMHoT4ijUxnRb@hovoldconsulting.com>
 MIME-Version: 1.0
-References: <20220726083257.1730630-1-martin.kepplinger@puri.sm>
- <20220726083257.1730630-2-martin.kepplinger@puri.sm> <CAPDyKFrLLw=y9+t3f_bOH2mw2NVDGJxKE5=+XHY7C6SUzLzUDg@mail.gmail.com>
- <CAJZ5v0hG4+z=ypDudiSnhG1SUxfLv+EFsUGOjQEqUi0EKH3+Rw@mail.gmail.com>
-In-Reply-To: <CAJZ5v0hG4+z=ypDudiSnhG1SUxfLv+EFsUGOjQEqUi0EKH3+Rw@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 28 Jul 2022 11:19:56 +0200
-Message-ID: <CAPDyKFpNTW4vJYpHmSed_VZ6irex_OCO-NFBkK=Hnfm7rP4NAQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] power: domain: handle genpd correctly when needing interrupts
-To:     "Rafael J. Wysocki" <rafael@kernel.org>
-Cc:     Martin Kepplinger <martin.kepplinger@puri.sm>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, kernel@puri.sm,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>, aford173@gmail.com,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 26 Jul 2022 at 20:33, Rafael J. Wysocki <rafael@kernel.org> wrote:
->
-> On Tue, Jul 26, 2022 at 5:07 PM Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> >
-> > On Tue, 26 Jul 2022 at 10:33, Martin Kepplinger
-> > <martin.kepplinger@puri.sm> wrote:
-> > >
-> > > If for example the power-domains' power-supply node (regulator) needs
-> > > interrupts to work, the current setup with noirq callbacks cannot
-> > > work; for example a pmic regulator on i2c, when suspending, usually already
-> > > times out during suspend_noirq:
-> > >
-> > > [   41.024193] buck4: failed to disable: -ETIMEDOUT
-> > >
-> > > So fix system suspend and resume for these power-domains by using the
-> > > "outer" suspend/resume callbacks instead. Tested on the imx8mq-librem5 board,
-> > > but by looking at the dts, this will fix imx8mq-evk and possibly many other
-> > > boards too.
-> > >
-> > > This is designed so that genpd providers just say "this genpd needs
-> > > interrupts" (by setting the flag) - without implying an implementation.
-> > >
-> > > Initially system suspend problems had been discussed at
-> > > https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
-> > > which led to discussing the pmic that contains the regulators which
-> > > serve as power-domain power-supplies:
-> > > https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
-> > >
-> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > > ---
-> > >  drivers/base/power/domain.c | 13 +++++++++++--
-> > >  include/linux/pm_domain.h   |  5 +++++
-> > >  2 files changed, 16 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
-> > > index 5a2e0232862e..58376752a4de 100644
-> > > --- a/drivers/base/power/domain.c
-> > > +++ b/drivers/base/power/domain.c
-> > > @@ -130,6 +130,7 @@ static const struct genpd_lock_ops genpd_spin_ops = {
-> > >  #define genpd_is_active_wakeup(genpd)  (genpd->flags & GENPD_FLAG_ACTIVE_WAKEUP)
-> > >  #define genpd_is_cpu_domain(genpd)     (genpd->flags & GENPD_FLAG_CPU_DOMAIN)
-> > >  #define genpd_is_rpm_always_on(genpd)  (genpd->flags & GENPD_FLAG_RPM_ALWAYS_ON)
-> > > +#define genpd_irq_on(genpd)            (genpd->flags & GENPD_FLAG_IRQ_ON)
-> > >
-> > >  static inline bool irq_safe_dev_in_sleep_domain(struct device *dev,
-> > >                 const struct generic_pm_domain *genpd)
-> > > @@ -2065,8 +2066,15 @@ int pm_genpd_init(struct generic_pm_domain *genpd,
-> > >         genpd->domain.ops.runtime_suspend = genpd_runtime_suspend;
-> > >         genpd->domain.ops.runtime_resume = genpd_runtime_resume;
-> > >         genpd->domain.ops.prepare = genpd_prepare;
-> > > -       genpd->domain.ops.suspend_noirq = genpd_suspend_noirq;
-> > > -       genpd->domain.ops.resume_noirq = genpd_resume_noirq;
-> > > +
-> > > +       if (genpd_irq_on(genpd)) {
-> > > +               genpd->domain.ops.suspend = genpd_suspend_noirq;
-> > > +               genpd->domain.ops.resume = genpd_resume_noirq;
-> > > +       } else {
-> > > +               genpd->domain.ops.suspend_noirq = genpd_suspend_noirq;
-> > > +               genpd->domain.ops.resume_noirq = genpd_resume_noirq;
-> >
-> > As we discussed previously, I am thinking that it may be better to
-> > move to using genpd->domain.ops.suspend_late and
-> > genpd->domain.ops.resume_early instead.
->
-> Should I take this as a change request?
+Hi Marc, Rob and Krzysztof,
 
-Yes.
+When adding support for the new Lenovo Thinkpad X13s laptop, we realised
+that it comes with two different touchpad controllers.
 
->
-> > Beside this, I think the $subject patch looks good to me.
->
-> Or not?
+To enable some early adopters to use the alternate touchpad, I tried to
+enable both nodes in the devicetree and have the i2c-hid driver bind to
+the one that is actually present.
 
-The patch needs to be updated before I give it my blessing, but the
-only changes that are needed are the minor things I pointed out above.
-Sorry if it was not clear enough.
+This turned out to be racy due to the hid driver in question enabling
+async probing so that the populated and non-populated nodes can be
+probed in parallel, which in turn lead to some interesting findings.
 
-Kind regards
-Uffe
+Specifically, it seems like the interrupt-domain mapping code is racy in
+that it can return two different mappings for the same hwirq, and when
+the hid driver enables one of them, this may end up looking like
+spurious interrupts for the other mapping:
+
+[  +0.014042] i2c_hid_of 0-002c: i2c_device_probe
+[  +0.000001] i2c_hid_of 0-0015: i2c_device_probe
+[  +0.000025] i2c_hid_of 0-002c: i2c_device_probe - irq mapped (166)
+[  +0.000013] i2c_hid_of 0-0015: i2c_device_probe - irq mapped (167)
+[  +0.000051] i2c_hid_of 0-002c: supply vddl not found, using dummy regulator
+[  +0.000056] i2c_hid_of 0-0015: supply vddl not found, using dummy regulator
+[  +0.000016] i2c_hid_of 0-002c: HID probe called for i2c 0x2c
+[  +0.000374] i2c_hid_of 0-0015: HID probe called for i2c 0x15
+...
+[  +0.000180] i2c_hid_of 0-002c: Requesting IRQ: 166
+[  +0.000045] irq 167, desc: (____ptrval____), depth: 1, count: 0, unhandled: 0
+[  +0.000014] ->handle_irq():  (____ptrval____), handle_bad_irq+0x0/0x220
+[  +0.000015] ->irq_data.chip(): (____ptrval____), msm_gpio_irq_chip+0x0/0x108
+[  +0.000011] ->action(): 0000000000000000
+[  +0.000006]    IRQ_NOPROBE set
+
+The interrupt is eventually disabled and the populated device fails to
+probe. Note that this only happens intermittently.
+
+This second-source example could obviously be dismissed as something
+which is simply not supported (the boot firmware should have made sure
+only the populated node was enabled), but what if there were actually
+two separate devices sharing an interrupt and that now end up with two
+different virq?
+
+Async probing has been around for a while now and needs to be supported,
+even if the platform bus doesn't use it (yet). 
+
+TL;DR:
+
+1. Marc, does the irq mapping code need to be serialised to handle the
+valid case of two devices sharing an interrupt being probed in parallel?
+It may not be a common setup, but correctness first?
+
+I've just posted a patch that should address this here:
+
+	https://lore.kernel.org/r/20220728092710.21190-1-johan+linaro@kernel.org
+
+
+2. Rob, Krzysztof, I assume that handling second-source devices by
+enabling multiple variants in the devicetree can not be considered
+correct?
+
+What about the related case of simply non-populated devices (e.g. laptop
+variants without a touchscreen)?
+
+Note that we have at least two cases of "second-source" nodes in mainline
+("rtc" and "trackpad", respectively):
+
+	85a9efcd4e29 ("ARM: mvebu: add DT support for Seagate NAS 2 and 4-Bay")
+	689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
+
+and that, for example, the i2c-hid driver explicitly supports
+non-populated devices:
+
+	b3a81b6c4fc6 ("HID: i2c-hid: check if device is there before really probing")
+
+and the commit message indicates that this is something that Chromebooks
+rely on.
+
+For the X13s, I'm not sure how we would go about to tell the variants
+apart (the ACPI tables that Windows use include both touchpads and an
+optional touchscreen). In the end, the boot firmware might need to
+resort to a similar kind of probing if we don't allow the kernel to do
+it.
+
+Finally, note that while disabling async probing for "second-source"
+nodes (e.g. if we could mark them as requiring that) would take care of
+the irq-mapping race, we'd still currently also need to move any
+pinconfig handles to the parent bus node (as is also done in one of the
+in-tree examples above) to suppress the corresponding pinctrl errors in
+case the populated device is probed and bound first:
+
+[  +0.010217] sc8280xp-tlmm f100000.pinctrl: pin GPIO_182 already requested by 0-0015; cannot claim for 0-002c
+
+Johan
