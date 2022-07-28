@@ -2,90 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E55E5584047
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:47:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A653358405E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:50:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230183AbiG1NrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 09:47:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52304 "EHLO
+        id S229555AbiG1Nue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 09:50:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230113AbiG1NrR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:47:17 -0400
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 109CB61DBD;
-        Thu, 28 Jul 2022 06:47:17 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id p81so1415724iod.2;
-        Thu, 28 Jul 2022 06:47:17 -0700 (PDT)
+        with ESMTP id S230308AbiG1Nud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:50:33 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B981C26AE8
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:50:31 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id sz17so3254788ejc.9
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:50:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vxq8TONSE00HXKwla5aOrD7/8grrZxrUZOEScjMYlXo=;
+        b=I6w8bTdjtiWIAiiIyaZ8AqDCot6M72QWjJBec1p0ARnt8AHMFhDNL//ZXHs6Aj4TcJ
+         /igAyJV2zhTPOL5+D4ckDgbeeKGK3pDFJZ+uLHafanehs6HrIAZgeCEw8EHOns5jIFk+
+         kyjl9Ue4ngXTZEorTt7u464GVRsyPj5c8vMftb95KYLL3gFvZNpyv6A5Zo94ZzGwndM3
+         7+JncdsyRgSX7u3FMswQZT3L7jNW+jf0yxlZ6ZPCMyQTccQP9r8yzYtBQR4prpLllOTd
+         4gUdCmFwmc7lUNriFAqKS368bnIz7FImfmejvwn+pqMKb/5uwMK0Lacm33F2cCXgb+o5
+         MBUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=b5obbi131v2qqX/LqYePEq3jyKNtySpUzi1WsqQzUV4=;
-        b=plftTR/8K7e4OW0ANJHv31wFJO3qgIs3dE7hsKD6LshW6Loq/iOXsZMzcK7jxwF310
-         44/RZ8gUqckPPQrknlJPh9Fi3vtbqNNZDxxsuf++VtYiCnsBIL1IcxzR/w96O3U7dMIL
-         oT0tnDkde3hZ9StpwTTS4AdP5Ki5u/4QOcNvDw4d1cHayPbZu6aCyRX7JDzhq2B7D9pu
-         JneiUzPeumvXVxAsoLCqE43TjlWkbONWAUjSIYEU0Tdg9yE3YDF/odSrB/u8Dtx4eDqL
-         bq1+SzMjWF0ixDPsBcFkOEzZ8YQ1E7+QREJwmFKysVkHhMrGEoCrU+NNQCH73Lf1xX/v
-         56Ww==
-X-Gm-Message-State: AJIora+RGJX4BFE1l5B13KaqHv8Bot33/tOap/CHrvS/OmiB5kBCCyPK
-        r01T/yZzLGncfxjauzwxecaud3gUhA==
-X-Google-Smtp-Source: AGRyM1ss/s2b1yL1tNWQfg+dNHwAUj7+uNfrOXnsIUB1vphl49mkgyrY+KEXwsp3g5jZgJVMwxdJlg==
-X-Received: by 2002:a05:6602:2f0c:b0:67c:19b2:bb0d with SMTP id q12-20020a0566022f0c00b0067c19b2bb0dmr9731828iow.34.1659016036225;
-        Thu, 28 Jul 2022 06:47:16 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id ca27-20020a0566381c1b00b0033cc22c261fsm393693jab.111.2022.07.28.06.47.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 06:47:15 -0700 (PDT)
-Received: (nullmailer pid 779715 invoked by uid 1000);
-        Thu, 28 Jul 2022 13:47:12 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Erling Ljunggren <hljunggr@cisco.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20220728114050.2400475-4-hljunggr@cisco.com>
-References: <20220728114050.2400475-1-hljunggr@cisco.com> <20220728114050.2400475-4-hljunggr@cisco.com>
-Subject: Re: [PATCH 3/5] dt-bindings: media: add cat24c208 bindings
-Date:   Thu, 28 Jul 2022 07:47:12 -0600
-Message-Id: <1659016032.650178.779714.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vxq8TONSE00HXKwla5aOrD7/8grrZxrUZOEScjMYlXo=;
+        b=UxP/oGYJCZToYnBuBsN2R9jOJqt3qIEsXqYLTWHiWTlwpb+CFYVJCX6USf8+6AvJOq
+         uaN/mQU40eI1lPRE0o3aOAEmZww1jgqRyAD1C/mgb+pcZXzgSFcauAKtwx2yfNtJAyBl
+         EBuKYhRTbbYFlQESgkHP1TqNYaXcBMmDPI9oCcblVUGVWfLT/31hDzkmjy/0ZSFuZAI9
+         VNS8bNeEEGwQ0OUjvlJI5Z3XSMguVcMKfdjVYcEnVHplGtRQndbaophBrdpZ7JRobe2e
+         7aVF77Kxaz4/rrzAW5P0R5S5emeooBslaKXGCYCkWSvgQU6ji/xKiw7s07CE5yAo7O1z
+         8yFg==
+X-Gm-Message-State: AJIora+Z/+hwuSKC5uwiQpk214Yjf0P56fxa6VYz+sN5nhTcVQymITxa
+        PwvxdK7UNxMl7FxInN6iSuBChCBW8psy7wCINrAZnQ==
+X-Google-Smtp-Source: AGRyM1vd13k6pgor+DlHJHQfDA7PQXuMPPW6KeHGTUbH0ZXwLGn62yE4jjI826yPI+uPcZiWt3sa3ZGDqeczrsLkYNM=
+X-Received: by 2002:a17:907:9482:b0:72b:8c16:dac0 with SMTP id
+ dm2-20020a170907948200b0072b8c16dac0mr18135736ejc.286.1659016230136; Thu, 28
+ Jul 2022 06:50:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220723160513.271692-1-Mr.Bossman075@gmail.com>
+ <20220723160513.271692-4-Mr.Bossman075@gmail.com> <CACRpkdZMFdYDssk9B7R-MH7xG8Ukp+ZQpXCRVtPRCS=SFh34mA@mail.gmail.com>
+In-Reply-To: <CACRpkdZMFdYDssk9B7R-MH7xG8Ukp+ZQpXCRVtPRCS=SFh34mA@mail.gmail.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Thu, 28 Jul 2022 15:50:19 +0200
+Message-ID: <CAMRc=Mf02_L1Msf3Wynqu1EROq+nsizhdEWEBJR0DpTybQ=KWA@mail.gmail.com>
+Subject: Re: [PATCH v5 03/12] dt-bindings: gpio: fsl-imx-gpio: Add i.MXRT compatibles
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jesse Taube <mr.bossman075@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>, stefan@agner.ch,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Arnd Bergmann <arnd@arndb.de>, olof@lixom.net, soc@kernel.org,
+        Russell King <linux@armlinux.org.uk>, abel.vesa@nxp.com,
+        dev@lynxeye.de, Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Leo Li <leoyang.li@nxp.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        cniedermaier@dh-electronics.com, clin@suse.com,
+        giulio.benetti@benettiengineering.com,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Jul 2022 13:40:48 +0200, Erling Ljunggren wrote:
-> Add devicetree bindings for new cat24c208 EDID EEPROM driver.
-> 
-> Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
-> ---
->  .../bindings/media/i2c/onnn,cat24c208.yaml    | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
-> 
+On Tue, Jul 26, 2022 at 10:04 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Sat, Jul 23, 2022 at 6:05 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
+>
+> > Both the i.MXRT1170 and 1050 have the same gpio controller as
+> > "fsl,imx35-gpio". Add i.MXRT to the compatible list.
+> >
+> > Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> > Acked-by: Rob Herring <robh@kernel.org>
+>
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> Bartosz needs to apply this to the GPIO tree, I think it can just be applied
+> directly without regard for the rest of the patches.
+>
+> Yours,
+> Linus Waleij
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Applied, thanks!
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.example.dts:22.20-25.15: Warning (i2c_bus_reg): /example-0/i2c/lens@e: I2C bus unit address format error, expected "31"
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Bart
