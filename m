@@ -2,88 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44F0C58454E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 20:08:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D07D958454A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 20:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232972AbiG1Rzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 13:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33456 "EHLO
+        id S232720AbiG1SBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 14:01:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232921AbiG1Rzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 13:55:39 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2AA027B11
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 10:55:37 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id h12so2725134ljg.7
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 10:55:37 -0700 (PDT)
+        with ESMTP id S231127AbiG1SBr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 14:01:47 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E9970E5F;
+        Thu, 28 Jul 2022 11:01:46 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id v3so2315602wrp.0;
+        Thu, 28 Jul 2022 11:01:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=n+Kpt1SrfIHhgdOH6tBSVGEfnfJMA34tVlG2Tbb5sFQ=;
-        b=I4qPi8f+3XxKtWd7+MAY0XhUt0Gh5petC0kOU1jusTfg05yFCCorTM1HKl7AzCl4LB
-         pWWEX9IYTPitqYdh2uJ1alCZ8L2Xso9vH1lgeTpoKLaK0ajEwiDkWcyqdU3D9LwzszW+
-         k+i3EYifzKI8HqFpv1Z+93Od3Mfv3vR5jo1cIuTIxPL+zD/5eUMBPclEn86VbJnsrFDD
-         CBMq/ChQC8iLiv6wzsw/hC6Uxfmxm/YA72cWIjY7cflzWJrLWespgfi5h+Ym9pwmUntz
-         vr/cfU09+9EBKNNnXWNidkgGs7KswSjN9tl66jA1Hj/8GlBuHpu43RSJ0dPinVUMCZDH
-         S4Gw==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ugG0AkDTwXcDf7jBLOwWXze+C4ZynRnQwUWaQUR23Ys=;
+        b=b/I4rsfa8kUBcAm8R78E29ui4/MMKpjt9jVqTyV2b7BLIwreSmyDNdawoWsmrDfYkS
+         dwJPXxX2+UD8F+1GyrfzAQcJ6clzAY2aZDFq0gltcENbLihToJsBtghvbWob9xmnNziU
+         C84lj0ZiqVPXAsfruESW8hee7hrNK75gpox3z9Rq6bCmqATenken2lJeAwovcFpK4oyT
+         rcTbkxKHuHVVTe2TjQtve8OmGlfMAjeJykPa6b03fMhsA4Xju9+Sn+fNuhCOenuHDXUO
+         lCTjgMLDD57X+xYhwOQkUZaz/ODzM5t8tk9nxhEK5EOD4nqBRA0naZ1YDqvR2ff90U0F
+         E1dQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=n+Kpt1SrfIHhgdOH6tBSVGEfnfJMA34tVlG2Tbb5sFQ=;
-        b=YOH4JgKc28mow8NHtX0frj82smAJ5RygYHFN7EngDkA1U5rx2vj9Mcwc8/bQJ/fv9c
-         Y1nCO/qUa/6hTs8V1/XasKUHcDk0WtNEp6NOHq/6R7icTlwfJwhwNK7JY7BV5VJPnlWK
-         tK9euUeXoMrgrI0hmddfvLpGzmR9RjaymlK5EnvmfbluKvmAG6t5kj6zrmI4CHpATXgA
-         IJgRa0M5bjQuOZsSNVqkaJxtPqs8eWc2onOBW65ZzLE+88GCpOCDefJMsC9YsKMm0+Cf
-         J6bbNozgvSmfc8W8OFw1N9BrdjxfirsIU6qBT18dmMzQeCpL4mRQjJ/zDf+MXm7R+mV3
-         OJ+g==
-X-Gm-Message-State: AJIora/NSzFgumtf5nKjp6pcU6jF1Yc2P67PNsfM1xLx0Q6xPowc3J1F
-        zeBz6Bz15LCfqm0y0+wr3sPtHtvOgNVuzEqo
-X-Google-Smtp-Source: AGRyM1v7R/9C/AmvCfr3po6yc03PXFrUR1UYDYImrkIqM9TWG/XyVQz+Ox5Yrs5dgjKdUOS8tAl5Mw==
-X-Received: by 2002:a2e:938c:0:b0:25d:f714:52e8 with SMTP id g12-20020a2e938c000000b0025df71452e8mr8633ljh.454.1659030936008;
-        Thu, 28 Jul 2022 10:55:36 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id u13-20020ac258cd000000b00489f0c8bddesm294371lfo.207.2022.07.28.10.55.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 10:55:35 -0700 (PDT)
-Message-ID: <98cc7989-fafd-c252-2b05-46a788622f7c@linaro.org>
-Date:   Thu, 28 Jul 2022 19:55:34 +0200
+        bh=ugG0AkDTwXcDf7jBLOwWXze+C4ZynRnQwUWaQUR23Ys=;
+        b=LbAq6vLH7zQ3HurhN3ePl2GdH9jnMCOi5qJCUqeNa2cH40LICa4a2MRgS9Pf9C3FSA
+         erd4qsMfNhpruPNIodCsr7I4ZMFntEYTt9ETfW/MziiwDTv8KHqg/lvO/lIrpyQCKqh7
+         91IkKaZiENpic4h19BGTt5T2fhZgH+LjUqSCt7xqhS1LDBMdbik9FoGkX4TeaMBMe5Zh
+         7Q++Ge4xmgE4x1Pu18x7aRE3pTwZNABx3USQl2aLJgiZG/kmt2vrSjCs7F5wHkzCyhWD
+         9YrNOmIxIVrEL8cUUrBp8MRnRPlUkm31EuchlCEoE2aWQzyl67GvG/94bSQ1PhN9N+Rb
+         phtw==
+X-Gm-Message-State: ACgBeo2kxswCRjknY2ycC+sUtBESIP3uRIBPBrfkISDJaAWWMalq5dAf
+        uqxd3UVxlsRah6cGzTS3xIM=
+X-Google-Smtp-Source: AA6agR6wkLpMPC1SPg1uZ+xP94dDmp9Ft06Wg4y3tbnEre1LHV+fGClqpmw1g49LZRrUuUIlhUobSQ==
+X-Received: by 2002:a5d:4dcc:0:b0:21e:e644:6af8 with SMTP id f12-20020a5d4dcc000000b0021ee6446af8mr69181wru.219.1659031304843;
+        Thu, 28 Jul 2022 11:01:44 -0700 (PDT)
+Received: from localhost.localdomain ([105.235.128.60])
+        by smtp.gmail.com with ESMTPSA id o5-20020a05600c510500b003a2d6f26babsm2154340wms.3.2022.07.28.11.01.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 11:01:44 -0700 (PDT)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: msm8996-xiaomi-*: Add LEDs
+Date:   Thu, 28 Jul 2022 19:01:20 +0100
+Message-Id: <20220728180120.97968-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/2] dt-binding: iio: time: add
- ti,am62-ecap-capture.yaml
-Content-Language: en-US
-To:     Julien Panis <jpanis@baylibre.com>, jic23@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mranostay@ti.com
-References: <20220728175124.468461-1-jpanis@baylibre.com>
- <20220728175124.468461-2-jpanis@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220728175124.468461-2-jpanis@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 19:51, Julien Panis wrote:
-> This commit adds a YAML binding for TI ECAP used in capture operating mode.
-> 
-> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
+Add LEDs found on the Xiaomi MSM8996 devices. The devices share
+a status RGB LED mounted on the front, as well as a PWM-driven
+IR LED for remote control (sometimes known as an IR blaster).
+The Mi Note 2 has an additional pair of white LEDs used as backlights
+for the touchkeys driven by the PM8994 LPG block.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+---
+ .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  | 54 +++++++++++++++++++
+ .../boot/dts/qcom/msm8996-xiaomi-scorpio.dts  | 30 +++++++++++
+ 2 files changed, 84 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+index 627649979891..ef9a8aa9c2b9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+@@ -58,6 +58,14 @@ key-dome {
+ 		};
+ 	};
+ 
++	irled {
++		compatible = "pwm-ir-tx";
++		pwms = <&pm8994_lpg 1 1000000>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&irled_default>;
++	};
++
+ 	reserved-memory {
+ 		memory@88800000 {
+ 			reg = <0x0 0x88800000 0x0 0x1400000>;
+@@ -297,6 +305,41 @@ &pm8994_resin {
+ 	linux,code = <KEY_VOLUMEDOWN>;
+ };
+ 
++&pm8994_lpg {
++	status = "okay";
++
++	qcom,power-source = <1>;
++};
++
++&pmi8994_lpg {
++	status = "okay";
++
++	qcom,power-source = <1>;
++
++	multi-led {
++		color = <LED_COLOR_ID_RGB>;
++		function = LED_FUNCTION_STATUS;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		led@1 {
++			reg = <1>;
++			color = <LED_COLOR_ID_BLUE>;
++		};
++
++		led@2 {
++			reg = <2>;
++			color = <LED_COLOR_ID_GREEN>;
++		};
++
++		led@3 {
++			reg = <3>;
++			color = <LED_COLOR_ID_RED>;
++		};
++	};
++};
++
+ &slpi_pil {
+ 	status = "okay";
+ 
+@@ -608,6 +651,17 @@ vdd_gfx: s2 {
+ };
+ 
+ &pm8994_gpios {
++	irled_default: irled-default {
++		pinconf {
++			pins = "gpio5";
++			function = PMIC_GPIO_FUNC_FUNC1;
++			output-low;
++			qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
++			power-source = <PM8994_GPIO_S4>;
++			bias-disable;
++		};
++	};
++
+ 	wlan_en_default: wlan-en-state {
+ 		pins = "gpio8";
+ 		function = PMIC_GPIO_FUNC_NORMAL;
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
+index 30a9e4bed4af..0b47a659cc38 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
++++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
+@@ -116,6 +116,25 @@ &mss_pil {
+ 			"qcom/msm8996/scorpio/modem.mbn";
+ };
+ 
++&pm8994_lpg {
++	pinctrl-names = "default";
++	pinctrl-0 = <&keypad_default>;
++
++	led@3 {
++		reg = <3>;
++		color = <LED_COLOR_ID_WHITE>;
++		function = LED_FUNCTION_KBD_BACKLIGHT;
++		function-enumerator = <1>;
++	};
++
++	led@6 {
++		reg = <6>;
++		color = <LED_COLOR_ID_WHITE>;
++		function = LED_FUNCTION_KBD_BACKLIGHT;
++		function-enumerator = <0>;
++	};
++};
++
+ &q6asmdai {
+ 	dai@0 {
+ 		reg = <0>;
+@@ -258,6 +277,17 @@ &pm8994_gpios {
+ 		"PMIC_SLB",		/* GPIO_20 */
+ 		"UIM_BATT_ALARM",	/* GPIO_21 */
+ 		"NC";			/* GPIO_22 */
++
++	keypad_default: keypad-default {
++		pinconf {
++			pins = "gpio7", "gpio10";
++			function = PMIC_GPIO_FUNC_FUNC1;
++			output-low;
++			qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
++			power-source = <PM8994_GPIO_S4>;
++			bias-disable;
++		};
++	};
+ };
+ 
+ &pm8994_mpps {
+-- 
+2.37.1
 
-Best regards,
-Krzysztof
