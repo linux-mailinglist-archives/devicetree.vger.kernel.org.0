@@ -2,144 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB35D58443A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 18:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F301B584416
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 18:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229887AbiG1Qe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 12:34:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48972 "EHLO
+        id S231358AbiG1QZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 12:25:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbiG1Qe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 12:34:58 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DF392A408
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 09:34:57 -0700 (PDT)
-Received: from [192.168.1.101] (abxi232.neoplus.adsl.tpnet.pl [83.9.2.232])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id E13361F888;
-        Thu, 28 Jul 2022 18:24:55 +0200 (CEST)
-Message-ID: <ef8f8b68-1a21-6984-8373-4bf6f1d7ad72@somainline.org>
-Date:   Thu, 28 Jul 2022 18:24:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-Content-Language: en-US
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Ard Biesheuvel <ardb@kernel.org>
-Cc:     Maximilian Luz <luzmaximilian@gmail.com>,
-        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S230023AbiG1QZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 12:25:36 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4255A41D32;
+        Thu, 28 Jul 2022 09:25:34 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,198,1654527600"; 
+   d="scan'208";a="129476555"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 29 Jul 2022 01:25:33 +0900
+Received: from localhost.localdomain (unknown [10.226.93.50])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 41104400940D;
+        Fri, 29 Jul 2022 01:25:28 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
- <20220726154138.74avqs6iqlzqpzjk@bogus>
- <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
- <7284953b-52bb-37ac-fbe1-1fa845c44ff9@linaro.org>
- <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com>
- <20220727132437.pjob3z2nyxsuxgam@bogus>
- <CAC_iWj+Pn+h8k=fuDHzYwqD0g4m6jGRt8sCzcz+5+rYqvz9q4w@mail.gmail.com>
- <fd922f0f-99fd-55a3-a0b5-b62ad2dbfb45@gmail.com>
- <20220728113347.ver6argevzmlsc2c@bogus>
- <CAMj1kXHYb-zrKOS_titU79c487ab9WPyKwJBXuj7pdqum=ygaA@mail.gmail.com>
- <20220728161611.qc6ksoecg64rkov5@bogus>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220728161611.qc6ksoecg64rkov5@bogus>
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v4 0/2] Add support for RZ/G2L GPT
+Date:   Thu, 28 Jul 2022 17:25:24 +0100
+Message-Id: <20220728162526.330542-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
+(GPT32E). It supports the following functions
+ * 32 bits × 8 channels
+ * Up-counting or down-counting (saw waves) or up/down-counting
+   (triangle waves) for each counter.
+ * Clock sources independently selectable for each channel
+ * Two I/O pins per channel
+ * Two output compare/input capture registers per channel
+ * For the two output compare/input capture registers of each channel,
+   four registers are provided as buffer registers and are capable of
+   operating as comparison registers when buffering is not in use.
+ * In output compare operation, buffer switching can be at crests or
+   troughs, enabling the generation of laterally asymmetric PWM waveforms.
+ * Registers for setting up frame cycles in each channel (with capability
+   for generating interrupts at overflow or underflow)
+ * Generation of dead times in PWM operation
+ * Synchronous starting, stopping and clearing counters for arbitrary
+   channels
+ * Starting, stopping, clearing and up/down counters in response to input
+   level comparison
+ * Starting, clearing, stopping and up/down counters in response to a
+   maximum of four external triggers
+ * Output pin disable function by dead time error and detected
+   short-circuits between output pins
+ * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
+ * Enables the noise filter for input capture and external trigger
+   operation
+
+This patch series aims to add basic pwm support for RZ/G2L GPT driver
+by creating separate logical channels for each IOs.
+
+v3->v4:
+ * Changed the local variable type i from u16->u8 and prescaled_period_
+   cycles from u64->u32 in calculate_prescale().
+ * Replaced mul_u64_u64_div_u64()->mul_u64_u32_div()
+ * Dropped the comma after the sentinel.
+ * Add a variable to track pwm enabled by bootloader and added comments
+   in probe().
+ * Removed unnecessary rzg2l_gpt_reset_assert_pm_disable() from probe.
+ * Replaced devm_clk_get()->devm_clk_get_prepared()
+ * Removed devm_clk_get_optional_enabled()
+v2->v3:
+ * Added Rb tag from Rob for the bindings.
+ * Updated limitation section
+ * Added prefix "RZG2L_" for all macros
+ * Modified prescale calculation
+ * Removed pwm_set_chip_data
+ * Updated comment related to modifying Mode and Prescaler
+ * Updated setting of prescale value in rzg2l_gpt_config()
+ * Removed else branch from rzg2l_gpt_get_state()
+ * removed the err label from rzg2l_gpt_apply()
+ * Added devm_clk_get_optional_enabled() to retain clk on status,
+   in case bootloader turns on the clk of pwm.
+ * Replaced devm_reset_control_get_exclusive->devm_reset_control_get_shared
+   as single reset shared between 8 channels.
+V1->v2:
+ * Added '|' after 'description:' to preserve formatting.
+ * Removed description for pwm_cells as it is common property.
+ * Changed the reg size in example from 0xa4->0x100
+ * Added Rb tag from Geert for bindings.
+ * Added Limitations section
+ * dropped "_MASK" from the define names.
+ * used named initializer for struct phase
+ * Added gpt_pwm_device into a flexible array member in rzg2l_gpt_chip
+ * Revised the logic for prescale
+ * Added .get_state callback
+ * Improved error handling in rzg2l_gpt_apply
+ * Removed .remove callback
+ * Tested the driver with PWM_DEBUG enabled.
+
+RFC->v1:
+ * Added Description in binding patch
+ * Removed comments from reg and clock
+ * replaced rzg2l_gpt_write_mask()->rzg2l_gpt_modify()
+ * Added rzg2l_gpt_read() and updated macros
+ * Removed dtsi patches, will send it separately
+
+RFC:
+ * https://lore.kernel.org/linux-renesas-soc/20220430075915.5036-1-biju.das.jz@bp.renesas.com/T/#t
+
+Biju Das (2):
+  dt-bindings: pwm: Add RZ/G2L GPT binding
+  pwm: Add support for RZ/G2L GPT
+
+ .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 129 ++++++
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rzg2l-gpt.c                   | 371 ++++++++++++++++++
+ 4 files changed, 512 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+ create mode 100644 drivers/pwm/pwm-rzg2l-gpt.c
 
 
-On 28.07.2022 18:16, Sudeep Holla wrote:
-> On Thu, Jul 28, 2022 at 08:05:58AM -0700, Ard Biesheuvel wrote:
->> On Thu, 28 Jul 2022 at 04:33, Sudeep Holla <sudeep.holla@arm.com> wrote:
->>>
->>> On Thu, Jul 28, 2022 at 12:48:19PM +0200, Maximilian Luz wrote:
->>>
->>> [...]
->>>
->>>>
->>>> I would very much like to avoid the need for special bootloaders. The
->>>> devices we're talking about are WoA devices, meaning they _should_
->>>> ideally boot just fine with EFI and ACPI.
->>>>
->>>
->>> Completely agreed.
->>>
->>>> From an end-user perspective, it's annoying enough that we'll have to
->>>> stick with DTs for the time being due to the use of PEPs in ACPI.
->>>
->>> But have we explored or investigated what it takes to rewrite ACPI f/w
->>> to just use standard methods ? Does it require more firmware changes or
->>> new firmware entities or impossible at any cost ?
->>>
->>> For me that is more important than just getting this one on DT. Because
->>> if you take that path, we will have to keep doing that, with loads of
->>> unnecessary drivers if they are not shared with any other SoC with DT
->>> support upstream. We might also miss chance to get things added to the ACPI
->>> spec as we don't care which means that we never be able to use ACPI on
->>> similar future platforms even though they get shipped with ACPI.
->>>
->>> It will be a loop where we constantly keep converting this ACPI shipped
->>> platform into DT upstream. IMHO we don't want to be there.
->>>
->>
->> Supporting these devices in Linux in ACPI mode would involve
->> reimplementing the PEP subsystem, and reimplementing PEP drivers for
->> all these QCOM peripherals to manage the probing and the power states.
->> I don't think this is realistic at all, and a huge waste of
->> engineering effort otherwise.
->>
-> 
-> I am aware of that and hence I am happy to see these as one off drivers
-> if needed. But if we don't stop that or keep converting them to DT,
-> IMO we will be in vicious circle of this conversion and will never be
-> able to support ACPI natively on these platforms. 
-I think that people have given up on ACPI on Snapdragon, as it was not
-providing enough information in some cases (such as TLMM pins that are
-not accessible from the AP due to being marked 'secure') that needed to
-be hardcoded.
+base-commit: 9250d2f72dc46a808b6aa23bf50dd670f1f52ddc
+-- 
+2.25.1
 
-New WoA laptop support is added using FDT and I haven't seen any patches
-even adding ACPI matchlists for a long long time.
-
-Konrad
-I know it is huge
-> effort and not expecting that to be done here, but we need to convey the
-> message to use ACPI standards or improve it if there is a need. Using
-> PEP is not helpful to run Linux in the long run. Also we may hit a point
-> when it may not be trivial to do that ACPI<->DT conversion.
-> 
->> It is also orthogonal to the discussion, as far as I understand: ACPI
->> is not telling the system whether or not these TZ services should be
->> used instead of EFI runtime calls.
->>
-> 
-> Agreed and I don't want to block any such discussions. Sorry if I derailed
-> the discussion, that was not my intentions.
-> 
-> --
-> Regards,
-> Sudeep
