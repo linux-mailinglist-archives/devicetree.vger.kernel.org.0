@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 680995847D9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 23:50:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EEBF5847FF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 00:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230419AbiG1Vun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 17:50:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37962 "EHLO
+        id S231797AbiG1WL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 18:11:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230332AbiG1Vul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 17:50:41 -0400
+        with ESMTP id S231809AbiG1WLZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 18:11:25 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24DF01F629;
-        Thu, 28 Jul 2022 14:50:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 147D1785A6;
+        Thu, 28 Jul 2022 15:11:24 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 903A361AC7;
-        Thu, 28 Jul 2022 21:50:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1600C433D6;
-        Thu, 28 Jul 2022 21:50:39 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 85A3C61B54;
+        Thu, 28 Jul 2022 22:11:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97EB9C433D6;
+        Thu, 28 Jul 2022 22:11:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659045040;
-        bh=TIOCNvw+17eRmNBfMFABH6VkBMWnuv6D1qn6yCQMJrw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YBHZYgsKrAuDGDNxgcUIVjuVNislrbcEKsfe/xHrKkvXsKbsnBm0l7C12G3Oa27q8
-         PlIDnNyVuOSJwbT5Tji2DrzAkwZrc7HNnhNGn3hnDQppcEIXDFS18u0aW3hlVT4faS
-         BixsHF3y5wiguEnyPr1Qjeqob4YsQfoQoYjcA2YwSE8Sfoo06FHJFVTEi068Uyen5r
-         ziANQly7ihmRuTQObzk0XUjy4fvNHaykq0bFtfMvNNtVcLhN69mrWl30UFI35gbBpY
-         ObP2ygENYWaoQHDMCJyzZisRqkcfs++QU6Eod7c+qpNHrwaLu8Ia2lE3tqMKI4vDs3
-         PF1oFXvnSirvw==
-Received: by mail-vk1-f178.google.com with SMTP id b2so1445361vkg.2;
-        Thu, 28 Jul 2022 14:50:39 -0700 (PDT)
-X-Gm-Message-State: AJIora8ApiSScivdsEJbgBiWjU+0/Fs9/d2CT7dRLiFUy++vjgroT6VL
-        gdJq8V5oKVIc5X+7Y95wsABumUYdWAZp4x76HQ==
-X-Google-Smtp-Source: AGRyM1ummHcv4YmBzQF2UjMZlRgMn8EgYxyFbY/AxWBSezepPmZZ6gULxdnDc+jSowPTBq4nLYPRsyqBX5nG9adIf9Q=
-X-Received: by 2002:ac5:c916:0:b0:376:f130:808f with SMTP id
- t22-20020ac5c916000000b00376f130808fmr245211vkl.19.1659045038884; Thu, 28 Jul
- 2022 14:50:38 -0700 (PDT)
+        s=k20201202; t=1659046282;
+        bh=vp6m+L9NT4VOGQFGhTGWKhJ+KeHAmVR6ZlUE3kmLqwo=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=OVWwxA6TrLNqjrPLMMlsdyH5BSH0sI2F2NZpv/X4HtMwy8C36kYfRBPUJgmZ6W6XP
+         t4ii7bUoL+B2HUSGLNdl4UglXKyEg03AR2eEy1+ms4DUqKMKOK8fTdxL3lMDQUnEUo
+         3irc0aMX511EfdFlP9OZDZuul86sq3cYe1876wH3lX9VJ6V0BjtwFaY+Z0aT/mA1BC
+         rMpmKBPSIzMdWATDtErF+FKsWVNNVa7fuY+hZJT0XNKNSbDjrNKKNBPu3C2A7ZZqyb
+         MIJCr9p33GFqz1g+XFIQfV63LePmtZ6V+eIFiTSB04bAH/HUcWzVMLlC0VYNX+azzH
+         fjp4lvB7x6Psw==
+Date:   Thu, 28 Jul 2022 17:11:20 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RESEND v4 15/15] PCI: dwc: Introduce dma-ranges property
+ support for RC-host
+Message-ID: <20220728221120.GA330510@bhelgaas>
 MIME-Version: 1.0
-References: <20220728185512.1270964-1-robh@kernel.org>
-In-Reply-To: <20220728185512.1270964-1-robh@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 28 Jul 2022 15:50:27 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKGmL7BTibEJM0NWRmazOJBsNDLAWFtvth=oBOQQmn_VQ@mail.gmail.com>
-Message-ID: <CAL_JsqKGmL7BTibEJM0NWRmazOJBsNDLAWFtvth=oBOQQmn_VQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: dma: arm,pl330: Add missing 'iommus' property
-To:     Vinod Koul <vkoul@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220624143947.8991-16-Sergey.Semin@baikalelectronics.ru>
 X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -62,38 +63,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 28, 2022 at 12:55 PM Rob Herring <robh@kernel.org> wrote:
->
-> The pl330 can be behind an IOMMU which is the case for Arm Juno board.
-> Add the 'iommus' property allowing for 1 IOMMU per channel.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/dma/arm,pl330.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/dma/arm,pl330.yaml b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> index 2bec69b308f8..b9c4bee178ae 100644
-> --- a/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> +++ b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-> @@ -55,6 +55,11 @@ properties:
->
->    dma-coherent: true
->
-> +  iommus:
-> +    minItems: 1
-> +    maxItems: 8
+On Fri, Jun 24, 2022 at 05:39:47PM +0300, Serge Semin wrote:
+> In accordance with the generic PCIe Root Port DT-bindings the "dma-ranges"
+> property has the same format as the "ranges" property. The only difference
+> is in their semantics. The "dma-ranges" property describes the PCIe-to-CPU
+> memory mapping in opposite to the CPU-to-PCIe mapping of the "ranges"
+> property. Even though the DW PCIe controllers are normally equipped with
+> the internal Address Translation Unit which inbound and outbound tables
+> can be used to implement both properties semantics, it was surprising for
+> me to discover that the host-related part of the DW PCIe driver currently
+> supports the "ranges" property only while the "dma-ranges" windows are
+> just ignored. Having the "dma-ranges" supported in the driver would be
+> very handy for the platforms, that don't tolerate the 1:1 CPU-PCIe memory
+> mapping and require a customized PCIe memory layout. So let's fix that by
+> introducing the "dma-ranges" property support.
 
-Off by 1. Juno has 9 entries. I think it's 8 entries for write the
-read side has 1 entry. The TRM isn't too clear.
+Do we have a platform that requires this yet?  Or does this fix a bug?
 
-Rob
+I see that dw_pcie_host_init() calls devm_pci_alloc_host_bridge(),
+which eventually parses "dma-ranges", but I don't see any DWC DT
+bindings that use it yet.
 
-> +    description: Up to 1 IOMMU per DMA channel
-> +
->    power-domains:
->      maxItems: 1
->
-> --
-> 2.34.1
->
+I'm not clear on what value this adds today.
+
+Bjorn
