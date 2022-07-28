@@ -2,136 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC565841E6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 16:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C960584246
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 16:53:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231786AbiG1Okx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 10:40:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40578 "EHLO
+        id S232400AbiG1OxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 10:53:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233100AbiG1Okg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 10:40:36 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 495E669F32;
-        Thu, 28 Jul 2022 07:38:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 018F8B82484;
-        Thu, 28 Jul 2022 14:38:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73272C433C1;
-        Thu, 28 Jul 2022 14:38:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659019107;
-        bh=PzTyW5XDvX426b+qr4yqw7MdaUS0RZKB/42aqH1QEyA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=cQIWqK7G5qHhJinwmsf8nCjYKjC40bgwRARdhVnaNZrIMu/Z52VdSYNhvOZ24x2jH
-         1BD29MHdZ3a2cPa0NvFJeKxObQJKeVhOR997twrCGLbaTzACREZ7iT4Hc8S6izx+Nb
-         l4ebRU06R7YQec4czw7rmXYLaCGoHr4lZV9uVJGsg0yZMdPtUCxMgn3GY50mLVBCLp
-         3P3kVGwcGKtXrdDmWTYD1IyrAIQGz2B1w+p3RU5g2LykfkcN3VknVlV3fVpEc7tCvj
-         tDH62ZgV3ZN8E115s9kc8ke9y3DFdoqhJMb8WH3cMk6v//fQv9eXfpzqT5qv2NGweZ
-         O6jerW2ecHY/Q==
-Date:   Thu, 28 Jul 2022 09:38:25 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v4 02/15] PCI: dwc: Detect iATU settings after
- getting "addr_space" resource
-Message-ID: <20220728143825.GA298132@bhelgaas>
+        with ESMTP id S232245AbiG1OxE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 10:53:04 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57F956050B;
+        Thu, 28 Jul 2022 07:53:02 -0700 (PDT)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 94FB260009;
+        Thu, 28 Jul 2022 14:52:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1659019978;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=w9gjrFfJNDyi+UVEtu1C2UBFOyncoWXQkKZtz3CZtE8=;
+        b=o3sxx7HQE6bPRAFefUy9+Yi6mBcI36Wp00NT/2+0A9NLCgpsN7gC899XWtjYi3SvDulVPY
+        q9AsRK/lyCobDOktBquxGBLOs6MpT9VIgp1hQ2N/nWfBDtuKNzy2Wliv12CICDJ0qZFf74
+        AijxQ54dJhWAAIjRBgpfYEy+sOaM9GzHno52Tew4dRPd3cziBCEGQdxtfB0JClCqI83Qxq
+        jipUJPKweHtp7ZD2iLUmUrKHk+gs+R0/V80xSzkkaPBELItM8IJbAeK2oLJX+IhCYzCkZ1
+        OhPIE+NNa+DSn1cPEDXhEUUxPmfS4H+Nmnw30jiN/CRSDUrB0r/WA9sAntg2Fw==
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org, Horatiu.Vultur@microchip.com,
+        Allan.Nielsen@microchip.com, UNGLinuxDriver@microchip.com
+Subject: [PATCH net-next 0/4] net: Introduce QUSGMII phy mode
+Date:   Thu, 28 Jul 2022 16:52:48 +0200
+Message-Id: <20220728145252.439201-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220624143947.8991-3-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 05:39:34PM +0300, Serge Semin wrote:
-> The iATU detection procedure was introduced in the commit 281f1f99cf3a
-> ("PCI: dwc: Detect number of iATU windows"). A bit later the procedure
-> execution was moved to Host/EP-specific methods in the framework of commit
-> 8bcca2658558 ("PCI: dwc: Move iATU detection earlier"). The later
-> modification wasn't done in the most optimal way since the "addr_space"
-> CSR region resource doesn't depend on anything detected in the
-> dw_pcie_iatu_detect() method. Thus the detection can be postponed to be
-> executed after the resource request which can fail and make the detection
-> pointless. It will be also helpful for the dw_pcie_ep_init() method
-> readability since we are about to add the IP-core version and eDMA module
-> (a bit later) detection procedures.
+Hello everyone,
 
-The patch is fine, but IMO the commit log is overkill.  It's enough to
-say that we do some work (dw_pcie_iatu_detect()) earlier than
-necessary, so we can move it later.  All the history makes it seem
-like this is more complicated than it really is.
+This is the V2 of a previous series [1] initially aimed at introducing
+inband extensions, with modes like QUSGMII. This mode allows passing
+info in the ethernet preamble between the MAC and the PHY, such s
+timestamps.
 
-Something like this is enough:
+This series has now become a preliminary series, that simply introduces
+the new interface mode, without support for inband extensions, that will
+come later.
 
-    Previously, dw_pcie_ep_init() did:
+The reasonning is that work will need to be done in the networking
+subsystem, but also in the generic phy driver subsystem to allow serdes
+configuration for qusgmii.
 
-      dw_pcie_iatu_detect(pci);
-      res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "addr_space");
-      if (!res)
-        return -EINVAL;
+This series add the mode, the relevant binding changes, adds support for
+it in the lan966x driver, and also introduces a small helper to get the
+number of links a given phy mode can carry (think 1 for SGMII and 4 for
+QSGMII). This allows for better readability and will prove useful
+when (if) we support PSGMII (5 links on 1 interface) and OUSGMII (8
+links on one interface).
 
-    The platform_get_resource_byname() can fail, and dw_pcie_iatu_detect()
-    doesn't depend on the "addr_space" resource, so delay it until afterwards,
-    i.e.,
+Best regards,
 
-      platform_get_resource_byname(pdev, IORESOURCE_MEM, "addr_space");
-      dw_pcie_iatu_detect(pci);
+Maxime
 
-No need to repost for this.
+[1] : https://lore.kernel.org/netdev/20220519135647.465653-1-maxime.chevallier@bootlin.com/
 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> ---
-> 
-> Changelog v2:
-> - This is a new patch added on v2 iteration of the series.
-> ---
->  drivers/pci/controller/dwc/pcie-designware-ep.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 15b8059544e3..1e35542d6f72 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -704,8 +704,6 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  		}
->  	}
->  
-> -	dw_pcie_iatu_detect(pci);
-> -
->  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "addr_space");
->  	if (!res)
->  		return -EINVAL;
-> @@ -713,6 +711,8 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  	ep->phys_base = res->start;
->  	ep->addr_size = resource_size(res);
->  
-> +	dw_pcie_iatu_detect(pci);
-> +
->  	ep->ib_window_map = devm_kcalloc(dev,
->  					 BITS_TO_LONGS(pci->num_ib_windows),
->  					 sizeof(long),
-> -- 
-> 2.35.1
-> 
+Maxime Chevallier (4):
+  net: phy: Introduce QUSGMII PHY mode
+  dt-bindings: net: ethernet-controller: add QUSGMII mode
+  net: phy: Add helper to derive the number of ports from a phy mode
+  net: lan966x: Add QUSGMII support for lan966x
+
+ .../bindings/net/ethernet-controller.yaml     |  1 +
+ Documentation/networking/phy.rst              |  9 ++++
+ .../ethernet/microchip/lan966x/lan966x_main.c |  2 +
+ .../microchip/lan966x/lan966x_phylink.c       |  3 +-
+ .../ethernet/microchip/lan966x/lan966x_port.c | 22 +++++---
+ .../ethernet/microchip/lan966x/lan966x_regs.h |  6 +++
+ drivers/net/phy/phy-core.c                    | 52 +++++++++++++++++++
+ drivers/net/phy/phylink.c                     |  3 ++
+ include/linux/phy.h                           |  5 ++
+ 9 files changed, 96 insertions(+), 7 deletions(-)
+
+-- 
+2.37.1
+
