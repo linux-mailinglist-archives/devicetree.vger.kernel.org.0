@@ -2,208 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4186F5838E7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 08:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D1D55838F5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 08:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233727AbiG1Glg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 02:41:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46456 "EHLO
+        id S233809AbiG1GqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 02:46:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232855AbiG1GlI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 02:41:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B38B50728;
-        Wed, 27 Jul 2022 23:41:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 924AF61AC1;
-        Thu, 28 Jul 2022 06:41:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 761DCC433C1;
-        Thu, 28 Jul 2022 06:41:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1658990465;
-        bh=W0XxXdLLkEgMd9X3IxL9GRsb5r2xRaRkUt/W5UWZraI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bMbtyxn/epbzK5OyRgqr6XtEubLOX+vvDaYhynhx2CPPZ8y4hLP5NsdWTfU+wI07y
-         Ote1DNBBLHv8KwGdKMAAxUJ9ySxZVf39Pfm4FocJuZssv73Jitrrzix/ivg3/fVcEO
-         9sdIgAv0+COLwSxWCJcevTomkiZYVqGOJ5QUpSSE=
-Date:   Thu, 28 Jul 2022 08:41:01 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] usb: misc: onboard_usb_hub: Add reset-gpio support
-Message-ID: <YuIvfahpGgMc7CJh@kroah.com>
-References: <20220727141117.909361-1-alexander.stein@ew.tq-group.com>
- <YuFykRtbvxGssSVs@google.com>
- <2191669.iZASKD2KPV@steina-w>
+        with ESMTP id S230043AbiG1GqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 02:46:22 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FDD852DFE;
+        Wed, 27 Jul 2022 23:46:21 -0700 (PDT)
+Received: from [192.168.1.111] (91-158-154-79.elisa-laajakaista.fi [91.158.154.79])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B61216D4;
+        Thu, 28 Jul 2022 08:46:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1658990779;
+        bh=6tsI1MnO9HDLFqseRpRktO0za1aD8wvp2v09jWiF6II=;
+        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+        b=CdCPksdCuSNA6VkWAPH5XiG8rFu3KgdIRDZ3OTkUwIYrSYYGNWvJuiunamWRepYq/
+         zgbUk66YZlPXqJLmIWRIh3VE+xaYa9M5J7wcQ1xn2pKSEcuoBA2vNoH9IunaUupGVI
+         poLka3YxsyCfjcvjgnnLZjOdgg3q1g2faFbOdhoI=
+Message-ID: <c72e64b5-fbf0-0605-1d50-5b1f9b99eacf@ideasonboard.com>
+Date:   Thu, 28 Jul 2022 09:46:16 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2191669.iZASKD2KPV@steina-w>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 8/8] drm/tidss: Enable Dual and Duplicate Modes for OLDI
+Content-Language: en-US
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To:     Aradhya Bhatia <a-bhatia1@ti.com>
+Cc:     Darren Etheridge <detheridge@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Krunal Bhargav <k-bhargav@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jyri Sarha <jyri.sarha@iki.fi>
+References: <20220719080845.22122-1-a-bhatia1@ti.com>
+ <20220719080845.22122-9-a-bhatia1@ti.com>
+ <83df99ee-1304-121f-97e6-85ca416aef1f@ideasonboard.com>
+In-Reply-To: <83df99ee-1304-121f-97e6-85ca416aef1f@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 28, 2022 at 08:20:13AM +0200, Alexander Stein wrote:
-> Hello Matthias,
+On 27/07/2022 16:22, Tomi Valkeinen wrote:
+> Hi,
 > 
-> Am Mittwoch, 27. Juli 2022, 19:14:57 CEST schrieb Matthias Kaehlcke:
-> > Hi Alexander,
-> > 
-> > (copying my comments from v3 to keep the discussion on the latest version)
-> > 
-> > On Wed, Jul 27, 2022 at 04:11:16PM +0200, Alexander Stein wrote:
-> > > Despite default reset upon probe, release reset line after powering up
-> > > the hub and assert reset again before powering down.
-> > > 
-> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > ---
-> > > * Patch 1 dropped as it already applied
-> > > 
-> > > Changes in v4:
-> > > * Rebased to [1] commit e0c6b1f3d757 ("USB: usbsevseg: convert sysfs
-> > > snprintf to sysfs_emit") * Added platform data for usb424
-> > > 
-> > >   Reset pulse length taken from [2], Table 3-2 Symbol RESET_N
-> > >   Completely untested
-> > > 
-> > > [1] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git Branch
-> > > usb-testing [2]
-> > > http://ww1.microchip.com/downloads/en/devicedoc/00001692c.pdf
-> > > 
-> > >  drivers/usb/misc/onboard_usb_hub.c | 28 ++++++++++++++++++++++++++++
-> > >  drivers/usb/misc/onboard_usb_hub.h | 22 +++++++++++++++++-----
-> > >  2 files changed, 45 insertions(+), 5 deletions(-)
-> > > 
-> > > diff --git a/drivers/usb/misc/onboard_usb_hub.c
-> > > b/drivers/usb/misc/onboard_usb_hub.c index de3627af3c84..0c81417dd9a7
-> > > 100644
-> > > --- a/drivers/usb/misc/onboard_usb_hub.c
-> > > +++ b/drivers/usb/misc/onboard_usb_hub.c
-> > > @@ -7,6 +7,7 @@
-> > > 
-> > >  #include <linux/device.h>
-> > >  #include <linux/export.h>
-> > > 
-> > > +#include <linux/gpio/consumer.h>
-> > > 
-> > >  #include <linux/init.h>
-> > >  #include <linux/kernel.h>
-> > >  #include <linux/list.h>
-> > > 
-> > > @@ -38,6 +39,8 @@ struct usbdev_node {
-> > > 
-> > >  struct onboard_hub {
-> > >  
-> > >  	struct regulator *vdd;
-> > >  	struct device *dev;
-> > > 
-> > > +	const struct onboard_hub_pdata *pdata;
-> > > +	struct gpio_desc *reset_gpio;
-> > > 
-> > >  	bool always_powered_in_suspend;
-> > >  	bool is_powered_on;
-> > >  	bool going_away;
-> > > 
-> > > @@ -56,6 +59,9 @@ static int onboard_hub_power_on(struct onboard_hub *hub)
-> > > 
-> > >  		return err;
-> > >  	
-> > >  	}
-> > > 
-> > > +	fsleep(hub->pdata->reset_us);
-> > > +	gpiod_set_value_cansleep(hub->reset_gpio, 0);
-> > > +
-> > > 
-> > >  	hub->is_powered_on = true;
-> > >  	
-> > >  	return 0;
-> > > 
-> > > @@ -65,6 +71,11 @@ static int onboard_hub_power_off(struct onboard_hub
-> > > *hub)> 
-> > >  {
-> > >  
-> > >  	int err;
-> > > 
-> > > +	if (hub->reset_gpio) {
-> > > +		gpiod_set_value_cansleep(hub->reset_gpio, 1);
-> > > +		fsleep(hub->pdata->reset_us);
-> > 
-> > Is this delay here actually needed? There is a delay in
-> > onboard_hub_power_on(), before de-asserting the reset, isn't that enough?
+> On 19/07/2022 11:08, Aradhya Bhatia wrote:
+>> The AM625 DSS peripheral supports 2 OLDI TXes which can work to enable 2
+>> duplicated displays of smaller resolutions or enable a single Dual-Link
+>> display with a higher resolution (1920x1200).
+>>
+>> Configure the necessary register to enable the different modes.
+>>
+>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+>> ---
+>>   drivers/gpu/drm/tidss/tidss_dispc.c | 44 +++++++++++++++++++++++++++--
+>>   1 file changed, 41 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
+>> b/drivers/gpu/drm/tidss/tidss_dispc.c
+>> index 0b9689453ee8..28cb61259471 100644
+>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+>> @@ -1021,8 +1021,8 @@ static void dispc_enable_oldi(struct 
+>> dispc_device *dispc, u32 hw_videoport,
+>>       int count = 0;
+>>       /*
+>> -     * For the moment DUALMODESYNC, MASTERSLAVE, MODE, and SRC
+>> -     * bits of DISPC_VP_DSS_OLDI_CFG are set statically to 0.
+>> +     * For the moment MASTERSLAVE, and SRC bits of 
+>> DISPC_VP_DSS_OLDI_CFG are
+>> +     * set statically to 0.
+>>        */
+>>       if (fmt->data_width == 24)
+>> @@ -1039,7 +1039,45 @@ static void dispc_enable_oldi(struct 
+>> dispc_device *dispc, u32 hw_videoport,
+>>       oldi_cfg |= BIT(0); /* ENABLE */
+>> -    dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
+>> oldi_cfg);
+>> +    /*
+>> +     * As per all the current implementations of DSS, the OLDI TXes 
+>> are present only on
+>> +     * hw_videoport = 0 (OLDI TX 0). However, the config register for 
+>> 2nd OLDI TX (OLDI TX 1)
+>> +     * is present in the address space of hw_videoport = 1. Hence, 
+>> using "hw_videoport + 1" to
+>> +     * configure OLDI TX 1.
+>> +     */
+>> +
+>> +    switch (dispc->oldi_mode) {
+>> +    case OLDI_MODE_OFF:
+>> +        oldi_cfg &= ~BIT(0); /* DISABLE */
+>> +        dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
+>> oldi_cfg);
+>> +        dispc_vp_write(dispc, hw_videoport + 1, 
+>> DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
+>> +        break;
+>> +
+>> +    case OLDI_SINGLE_LINK_SINGLE_MODE_0:
+>> +        dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
+>> oldi_cfg);
+>> +        break;
+>> +
+>> +    case OLDI_SINGLE_LINK_SINGLE_MODE_1:
+>> +        dispc_vp_write(dispc, hw_videoport + 1, 
+>> DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
+>> +        break;
+>> +
+>> +    case OLDI_SINGLE_LINK_DUPLICATE_MODE:
+>> +        oldi_cfg |= BIT(5); /* DUPLICATE MODE */
+>> +        dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
+>> oldi_cfg);
+>> +        dispc_vp_write(dispc, hw_videoport + 1, 
+>> DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
+>> +        break;
+>> +
+>> +    case OLDI_DUAL_LINK:
+>> +        oldi_cfg |= BIT(11); /* DUALMODESYNC */
+>> +        dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
+>> oldi_cfg);
+>> +        dispc_vp_write(dispc, hw_videoport + 1, 
+>> DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
+>> +        break;
+>> +
+>> +    default:
+>> +        dev_warn(dispc->dev, "%s: Incorrect oldi mode. Returning.\n",
+>> +             __func__);
+>> +        return;
+>> +    }
+>>       while (!(oldi_reset_bit & dispc_read(dispc, DSS_SYSSTATUS)) &&
+>>              count < 10000)
 > 
-> If you see both delays together you are right, but I tend to think in that way 
-> it is to ensure whenever we apply a reset it is long enough.
-> As said before the powering on delay is to ensure the pulse length delay even 
-> if there is no reset GPIO but it is controlled by hardware.
+> This feels a bit hacky:
 > 
-> > > +	}
-> > > +
-> > > 
-> > >  	err = regulator_disable(hub->vdd);
-> > >  	if (err) {
-> > >  	
-> > >  		dev_err(hub->dev, "failed to disable regulator: %d\n", 
-> err);
-> > > 
-> > > @@ -219,6 +230,7 @@ static void onboard_hub_attach_usb_driver(struct
-> > > work_struct *work)> 
-> > >  static int onboard_hub_probe(struct platform_device *pdev)
-> > >  {
-> > > 
-> > > +	const struct of_device_id *of_id;
-> > > 
-> > >  	struct device *dev = &pdev->dev;
-> > >  	struct onboard_hub *hub;
-> > >  	int err;
-> > > 
-> > > @@ -227,10 +239,26 @@ static int onboard_hub_probe(struct platform_device
-> > > *pdev)> 
-> > >  	if (!hub)
-> > >  	
-> > >  		return -ENOMEM;
-> > > 
-> > > +	of_id = of_match_device(onboard_hub_match, &pdev->dev);
-> > > +	if (!of_id)
-> > > +		return -ENODEV;
-> > > +
-> > > +	hub->pdata = of_id->data;
-> > > +	if (!hub->pdata)
-> > > +		return -EINVAL;
-> > > +
-> > > 
-> > >  	hub->vdd = devm_regulator_get(dev, "vdd");
-> > >  	if (IS_ERR(hub->vdd))
-> > >  	
-> > >  		return PTR_ERR(hub->vdd);
-> > > 
-> > > +	hub->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-> > > +						  
-> GPIOD_OUT_HIGH);
-> > > +	if (IS_ERR(hub->reset_gpio))
-> > > +		return dev_err_probe(dev, PTR_ERR(hub->reset_gpio), 
-> "failed to get
-> > > reset GPIO\n"); +
-> > > +	if (hub->reset_gpio)
-> > > +		fsleep(hub->pdata->reset_us);
-> > 
-> > Same question here: onboard_hub_power_on() is called a few lines below and
-> > has a delay before de-asserting the reset. Is the delay here really needed?
+> - The function is dispc_enable_oldi, but the above code also disables 
+> oldi. We have code in dispc_vp_unprepare() which disables OLDI at the 
+> moment.
 > 
-> This actually looks like the delay is duplicated here. I agree with removing 
-> this.
-> How shall we proceed now that the whole series (incl. the bindings patch 1/3 
-> from v3) has landed in usb-testing? I can create a patch on top of this if 
-> this is the way to go.
+> - The function takes hw_videoport as a parameter, and is designed to 
+> work on that videoport. The above operates on two videoports. Isn't the 
+> function also called for hw_videoport +1, which would result in reg 
+> writes to hw_videoport + 2?
+> 
+> - No matching code in dispc_vp_unprepare
+> 
+> Obviously the duplicate mode (I presume that's "cloning") and the dual 
+> link complicate things here, and I have to say I haven't worked with 
+> such setups. But I think somehow this should be restructured so that 
+> common configuration (common to the OLDIs) is done somewhere else.
+> 
+> I would guess that there are other drivers that support cloning and dual 
+> mode. Did you have a look how they handle things?
 
-Please do.
+Oh, I see now... There's just one dss video port for OLDI, the same as 
+in am65x, but that single video port is now connected to two OLDI TXes. 
+And thus this function will only be called for the single video port.
 
+But... The registers for the second OLDI are part of the second video 
+port (DPI) register block?
+
+  Tomi
