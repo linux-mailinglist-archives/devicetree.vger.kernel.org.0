@@ -2,72 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43FAC583C14
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:32:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84FEF583C2B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:38:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235944AbiG1Kco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 06:32:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58782 "EHLO
+        id S236039AbiG1Ki3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 06:38:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235934AbiG1Kcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:32:39 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F25E17048
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:32:38 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id b16so2195439lfb.7
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:32:38 -0700 (PDT)
+        with ESMTP id S234891AbiG1Ki1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:38:27 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D421558D1
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:38:26 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id q23so2234358lfr.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:38:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LssnVf2Hx3DAf9PFq4l/W6b4KFQJSD35yxvcRp6Iqig=;
-        b=L1wzYJ3VtFtmqmprQoCkFtJHxKqV5ETHdihJCs6JucOE71bPODd67tfOotuDJ17e5z
-         UuwikMYsZ0uLzzShKVSUsQiXpUZMfzZw8RsNQ8L3EhIHY2QdfOOKIgtH3Oc0r95HTLqt
-         WpXNfiFKUnt7u0lV09fTNU/MEFXBObJGC9cPnrbXmVfDeDM5l98ol/8kR3uUYjvBP4b6
-         QBN9m/Kwmwe10UiKW8hOFglJJmf/0uMo4hAanVzEDlS7l3IitkuMmiDctle3ZG4LRVNc
-         ANsC+ifC8Lsr6WeS62MQgJuTmLD91B/QZ4fMANufLo+2D4Zk3G/smibIdZGHl41ie88O
-         xEIw==
+        bh=8m/gkzSEeNVGRFeYIZRczc0LCDlyyEDYTWCS8S+fEHE=;
+        b=XqLaXF2NeoAQW2dMnoSIDTZU0KG6eCdZEAY5fhmVPd/5x50fX4JXudcgltKeyaotQ0
+         O5ULowKZ4NKoWL2xhBvMkDBRHlO+3nZnyD8rVN0R1USPZ5NqUi53UsRnmrRriN3vSfR6
+         H/4PSGLLVf+pz3k34Epn+3R6uSXJEaaEinGw5oBQmu2/vBKiVsFg8d5CHssFfN1khEGK
+         CEC3/E/6j4XJQ+X7zbw1+0HDRvHXdG8YrYuQJl2B+KJlqxsllu1E9xZTjEGFKKoqdkc2
+         RXOVtqLeYuiHlVZeS3f7HeKxk8Y8d3cTS+oUii8HaBeXv1mSk7fTYM+2ildVCtirszrh
+         KqZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=LssnVf2Hx3DAf9PFq4l/W6b4KFQJSD35yxvcRp6Iqig=;
-        b=X2sBmKxR80+LHx8uQALE6YuDtxn5gUjM5CdqqYTe6bLGFCij8/2Oy3psaqT/UP7xN2
-         P5zWjxRvjSa4EhhNSI//+AstKFoG6KrmjOMn20Eewa65KeXyAbwwYvG3haRGCCNwjnfM
-         jAztCLTLmR6BU6vQmlLJ2Tq+EuQGtvie0gga12gaJ+Y8XTq4YNuYjp413mN5F6eFUI5o
-         2ef94kPC+xwHPAZNBk8XyRVhn24ZUvfvTvCacfp20sLDOEJFnqw4cZvl9aXpyJhF8S4s
-         maePzCeeHiwrPaPHjK0uRQauq6m8JRx09P7ZggC2uY6oZW8rtDvPeS0SH9xj/L7h4x9t
-         8Hag==
-X-Gm-Message-State: AJIora/nCEe/1l2SNEucmSzKsY2jvIJNhhY688dkC/3Q0o6hJ4Fo4biC
-        tVluKIfl1oydhHTrRT4M3jwP+w==
-X-Google-Smtp-Source: AGRyM1sbVrvpYj2bzSCOVYeKPMbcT4xI0frfcsQ8FalT/oMMzdB8EilkHrRhoVqlZhu4BZtF0oieiw==
-X-Received: by 2002:a05:6512:3186:b0:48a:c33e:f5e with SMTP id i6-20020a056512318600b0048ac33e0f5emr1316081lfe.531.1659004356108;
-        Thu, 28 Jul 2022 03:32:36 -0700 (PDT)
+        bh=8m/gkzSEeNVGRFeYIZRczc0LCDlyyEDYTWCS8S+fEHE=;
+        b=JmaiOgyWSkwWaxgVbkH5ajxwuWVxYxu8D4MxLsO+uxZ79707MmxwFYWHwlYr/uiB5C
+         M7rDDT/OjQK2EwaL6XalwTKEUkkdVmhUiP6uMWgnXVKvjjgdSsgwziKBuljQX89+Pti7
+         fSOXrfC1e2gflkl3pL2u3ZC8Ggs9aQ2xRxBg9Nf52dDBSAmFPsliDOPMNOUW/sxnrCWl
+         Q6nTmtxApuh6BYb6uUxZDLdcXu44MVJxwB3b7RexWOyIz0b2bKgCst6F3VYUtc53rGQE
+         N1BEy81uLhBLpcQjJmc5g3swczL35SPEdt/1Ic10YI2VzM4gTOtnQTP63HXNJV+Uq0K1
+         /HTA==
+X-Gm-Message-State: AJIora/PwJXk0KFSl1IQ2pdjZA+wkZuUpCpstTtsdn9E6T3j7efDfGSL
+        R0bDJdYY/xxK9FvE/GUtgnHS3g==
+X-Google-Smtp-Source: AGRyM1s0UetzE1MnFh1Eb1ryFBat7KSzR7WNDyYfOitPLcyRuZriydrL2o7MLluKluE7GI2HTDn+cA==
+X-Received: by 2002:a05:6512:3b81:b0:48a:9787:7837 with SMTP id g1-20020a0565123b8100b0048a97877837mr6118077lfv.678.1659004704638;
+        Thu, 28 Jul 2022 03:38:24 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id m5-20020a056512114500b004793b9c2c12sm138611lfg.124.2022.07.28.03.32.34
+        by smtp.gmail.com with ESMTPSA id r1-20020a2e8e21000000b0025e0a13bf42sm76850ljk.53.2022.07.28.03.38.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 03:32:35 -0700 (PDT)
-Message-ID: <eec86221-8dfc-4a98-396d-208d8b82ac19@linaro.org>
-Date:   Thu, 28 Jul 2022 12:32:34 +0200
+        Thu, 28 Jul 2022 03:38:24 -0700 (PDT)
+Message-ID: <d8510e53-673a-7913-32be-1be691a79511@linaro.org>
+Date:   Thu, 28 Jul 2022 12:38:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH RFC v1 1/2] bus: add Wiegand write-only GPIO driver
+Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
+ Application client
 Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, mani@kernel.org,
-        hemantk@codeaurora.org, elder@linaro.org, f.fainelli@gmail.com,
-        linus.walleij@linaro.org, Michael.Srba@seznam.cz,
-        jeffrey.l.hugo@gmail.com, gregkh@linuxfoundation.org,
-        bjorn.andersson@linaro.org, saravanak@google.com,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-References: <20220728091712.13395-1-m.zatovic1@gmail.com>
+To:     Maximilian Luz <luzmaximilian@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+ <20220723224949.1089973-5-luzmaximilian@gmail.com>
+ <e88d1036-dc58-3fc8-c388-edba9b2d62a7@linaro.org>
+ <87c19c5a-d7f4-7183-1322-f62267e01b3b@gmail.com>
+ <11e5c369-c0da-7756-b9e2-ac375dc78e9d@linaro.org>
+ <2e522bcd-5d55-e87f-126c-514f5edaa560@gmail.com>
+ <53a602e2-0590-6c6a-597b-fd55faa3a4ab@linaro.org>
+ <acd7b231-3167-e35c-5cdf-8b3127a7d710@gmail.com>
+ <95cbcda8-d1bc-376c-b338-92d1b923f04a@linaro.org>
+ <fe2b820b-9f3b-814b-4792-e6685b13ede6@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220728091712.13395-1-m.zatovic1@gmail.com>
+In-Reply-To: <fe2b820b-9f3b-814b-4792-e6685b13ede6@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -77,243 +95,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 11:17, Martin Zaťovič wrote:
-> Wiegand is a communication protocol that is still widely used
-> especially for access control applications. It utilizes two wires to
-> transmit data - D0 and D1, the generic names of which are data-lo and
-> data-hi.
+On 28/07/2022 12:25, Maximilian Luz wrote:
+> On 7/28/22 09:48, Krzysztof Kozlowski wrote:
 > 
-> Both data lines are initially pulled up. To send a bit of value 1, the
-> D1 line is set low. Similarly to send a bit of value 0, the D0 line is
-> set low. Standard Wiegand formats include 26, 36 and 37 bit and they
-> reserve the first and last bits for parity. The first(MSB) parity bit
-> is set to 1 if the parity of the first half of the payload is odd. The
-> last(LSB) parity bit is set to 1 if the parity of the second half of
-> the payload even.
+> [...]
 > 
-> The driver currently supports the 3 standard formats - 26, 36 and 37
-> bits. When one of these formats is used, it automatically calculates
-> the values of parity bits and appends them to the messages. It also
-> offers to set a custom format. Using a custom format, the user is
-> responsible for setting the parity bits. The driver offers setting of
-> the following sysfs attributes:
+>>
+>> For example like tegra_bpmp_get() is doing.
 > 
-> 	pulse_len - length of the low pulse in usec; defaults to 50us
-> 	interval_len - length of a whole bit(pulse_len + high phase)
-> 	in usec; defaults to 50us
-> 	frame_gap - length of the last bit of a frame(pulse_len +
-> 	high phase); defaults to interval_len
-> 	format - valid values are 0 for custom, 26, 36, 37
-> 	custom_payload_len - can be set when using a custom format(0);
-> 	0 means all bits of a message will be sent
-> 
-> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
-> ---
-> The driver was tested on NXP Verdin iMX8MP Plus.
-> 
-> I would like to kindly ask a few questions:
-> 1. Is debug printing of the data being transmitted a valid thing to do?
-> Wiegand could potentially be used to transmit sensitive data which
-> might get exposed by the debug mode.
-> 2. The part of the code, where sysfs files are being created does not
-> currently contain freeing of the ones already created on an error. Is
-> it better to use goto jumps to free them and exit, or let the driver
-> run without some of the attribute files?
-> 
-> If you have any suggestions to make this patch better, please let me
-> know, I am eager to learn. I am very much new to this field, so any
-> feedback will be aprreciated.
-> ---
->  MAINTAINERS                |   6 +
->  drivers/bus/Kconfig        |  10 +
->  drivers/bus/Makefile       |   1 +
->  drivers/bus/wiegand-gpio.c | 661 +++++++++++++++++++++++++++++++++++++
->  drivers/bus/wiegand-gpio.h |  54 +++
->  5 files changed, 732 insertions(+)
->  create mode 100644 drivers/bus/wiegand-gpio.c
->  create mode 100644 drivers/bus/wiegand-gpio.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 64379c699903..9a519530e44e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -21586,6 +21586,12 @@ L:	linux-rtc@vger.kernel.org
->  S:	Maintained
->  F:	drivers/rtc/rtc-sd3078.c
->  
-> +WIEGAND WRITE-ONLY GPIO DRIVER
-> +M:	Martin Zaťovič <m.zatovic1@gmail.com>
-> +S:	Maintained
-> +F:	drivers/bus/wiegand-gpio.c
-> +F:	drivers/bus/wiegand-gpio.h
-> +
->  WIIMOTE HID DRIVER
->  M:	David Rheinsberg <david.rheinsberg@gmail.com>
->  L:	linux-input@vger.kernel.org
-> diff --git a/drivers/bus/Kconfig b/drivers/bus/Kconfig
-> index 7bfe998f3514..f7c7d3b24710 100644
-> --- a/drivers/bus/Kconfig
-> +++ b/drivers/bus/Kconfig
-> @@ -231,6 +231,16 @@ config UNIPHIER_SYSTEM_BUS
->  	  Support for UniPhier System Bus, a simple external bus.  This is
->  	  needed to use on-board devices connected to UniPhier SoCs.
->  
-> +config WIEGAND_GPIO
-> +    tristate "GPIO-based wiegand master (write only)"
-> +    depends on OF_GPIO
-> +    help
-> +      Say y here to enable a driver which uses GPIO pins to send
-> +      Wiegand data. Say m to build it as module. Say n to disable
-> +      building. The driver utilizes two data lines that need to be
-> +      defined as outputs in the device tree - wiegand-data-hi and
-> +      wiegand-data-lo.
-> +
->  config VEXPRESS_CONFIG
->  	tristate "Versatile Express configuration bus"
->  	default y if ARCH_VEXPRESS
-> diff --git a/drivers/bus/Makefile b/drivers/bus/Makefile
-> index d90eed189a65..cc21530a441f 100644
-> --- a/drivers/bus/Makefile
-> +++ b/drivers/bus/Makefile
-> @@ -36,6 +36,7 @@ obj-$(CONFIG_TI_SYSC)		+= ti-sysc.o
->  obj-$(CONFIG_TS_NBUS)		+= ts-nbus.o
->  obj-$(CONFIG_UNIPHIER_SYSTEM_BUS)	+= uniphier-system-bus.o
->  obj-$(CONFIG_VEXPRESS_CONFIG)	+= vexpress-config.o
-> +obj-$(CONFIG_WIEGAND_GPIO)	+= wiegand-gpio.o
->  
+> But tegra_bpmp_get() can also not differentiate whether the supplier driver is
+> ever going to be successfully probed or not. I'm not sure you can ever really
+> solve that. The only thing it does in addition is check whether the phandle and
+> device is there. Or do you mean those not being present by "broken"? That's a
+> point I agree should be improved with SCM.
 
-This is confusing. You put it in bus, but you just added a single
-driver, not a bus driver, right?
+Yes, at least it checks if phandles points to proper device and device
+is there. That's what we want.
 
-If it is not a bus driver, it goes to respective subsystem.
-
-> +DEVICE_ATTR_RW(pulse_len);
-> +DEVICE_ATTR_RW(interval_len);
-> +DEVICE_ATTR_RW(frame_gap);
-> +DEVICE_ATTR_RW(format);
-> +DEVICE_ATTR_RW(payload_len);
-> +
-> +static int wiegand_gpio_dev_probe(struct platform_device *pdev)
-> +{
-> +	int rc;
-> +	struct wiegand_gpio_device *wiegand_gpio;
-> +	struct wiegand_gpio_platform_data *pdata = pdev->dev.platform_data;
-> +
-> +	if (!pdata) {
-> +		if (IS_ERR(pdata))
-> +			return PTR_ERR(pdata);
-
-Why? How is this going to bind? Who provides pdata? Who provides error
-pdata?!?
-
-> +	}
-> +
-> +	wiegand_gpio = kzalloc(sizeof(struct wiegand_gpio_device), GFP_KERNEL);
-
-devm, sizeof(*wiegand_gpio)
-
-> +	if (!wiegand_gpio)
-> +		return -ENOMEM;
-> +
-> +	wiegand_gpio->dev = &pdev->dev;
-> +
-> +	/* Initialize character device */
-> +	cdev_init(&wiegand_gpio->cdev, &wiegand_gpio_fops);
-> +	wiegand_gpio->cdev.owner = THIS_MODULE;
-> +
-> +	rc = cdev_add(&wiegand_gpio->cdev, MKDEV(MAJOR(base_devno),
-> +				pdev->id == -1 ? 0 : pdev->id), 1);
-> +	if (rc < 0) {
-> +		dev_err(&pdev->dev, "Failed to allocate cdev: %d\n", rc);
-> +		kfree(wiegand_gpio);
-> +		return rc;
-> +	}
-> +
-> +	wiegand_gpio->dev->devt = wiegand_gpio->cdev.dev;
-> +	mutex_init(&wiegand_gpio->mutex);
-> +
-> +	/* Get GPIO lines using device tree bindings. */
-> +	wiegand_gpio->gpio_data_lo = devm_gpiod_get(wiegand_gpio->dev,
-> +			"wiegand-data-lo", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(wiegand_gpio->gpio_data_lo)) {
-> +		dev_info(wiegand_gpio->dev,
-> +			"Failed to get wiegand-data-lo pin.\n");
-> +		return PTR_ERR(wiegand_gpio->gpio_data_lo);
-
-No, return dev_err_probe().
-
-> +	}
-> +	wiegand_gpio->gpio_data_hi = devm_gpiod_get(wiegand_gpio->dev,
-> +			"wiegand-data-hi", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(wiegand_gpio->gpio_data_hi)) {
-> +		dev_info(wiegand_gpio->dev,
-> +			"Failed to get wiegand-data-hi pin.\n");
-> +		return PTR_ERR(wiegand_gpio->gpio_data_hi);
-
-return dev_err_probe()
-
-> +	}
-> +
-> +	memcpy(&wiegand_gpio->setup, &WIEGAND_SETUP,
-> +			sizeof(struct wiegand_setup));
-> +
-> +	platform_set_drvdata(pdev, wiegand_gpio);
-> +
-> +	dev_info(&pdev->dev, "devno=%d:%d\n",
-> +		 MAJOR(wiegand_gpio->dev->devt),
-> +		 MINOR(wiegand_gpio->dev->devt));
-> +
-> +	rc = device_create_file(wiegand_gpio->dev, &dev_attr_pulse_len);
-> +	rc |= device_create_file(wiegand_gpio->dev, &dev_attr_interval_len);
-> +	rc |= device_create_file(wiegand_gpio->dev, &dev_attr_frame_gap);
-> +	rc |= device_create_file(wiegand_gpio->dev, &dev_attr_format);
-> +	rc |= device_create_file(wiegand_gpio->dev,
-> +				&dev_attr_payload_len);
-> +	if (rc != 0)
-> +		dev_warn(&pdev->dev,
-> +				"Failed to register attribute files(%d)\n", rc);
-> +
-> +	return 0;
-> +}
-> +
-> +static int wiegand_gpio_dev_remove(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct wiegand_gpio_device *wiegand_gpio = platform_get_drvdata(pdev);
-> +
-> +	device_remove_file(dev, &dev_attr_pulse_len);
-> +	device_remove_file(dev, &dev_attr_interval_len);
-> +	device_remove_file(dev, &dev_attr_frame_gap);
-> +	device_remove_file(dev, &dev_attr_format);
-> +	device_remove_file(dev, &dev_attr_payload_len);
-> +	cdev_del(&wiegand_gpio->cdev);
-> +	kfree(wiegand_gpio);
-> +
-> +	return 0;
-> +}
-> +
-> +#ifdef CONFIG_OF
-> +static const struct of_device_id wiegand_gpio_dt_idtable[] = {
-> +	{ .compatible = "wiegand-gpio" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, wiegand_gpio_dt_idtable);
-> +#endif
-> +
-> +static struct platform_driver wiegand_gpio_driver = {
-> +	.probe		= wiegand_gpio_dev_probe,
-> +	.remove		= wiegand_gpio_dev_remove,
-> +	.driver		= {
-> +		.owner	= THIS_MODULE,
-
-This is not needed. Do you see it in any driver?
-
-> +		.name	= "wiegand-gpio",
-> +		.of_match_table = of_match_ptr(wiegand_gpio_dt_idtable),
-> +	}
-> +};
-> +MODULE_ALIAS("platform:wiegand-gpio");
-> +
+We are not solving here case of providing being in a module which never
+gets loaded (thus endless EPROBE_DEFER). Such case is ok.
 
 Best regards,
 Krzysztof
