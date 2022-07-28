@@ -2,98 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 973445835E3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 02:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D231A5835F9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 02:22:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230395AbiG1AEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 20:04:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48752 "EHLO
+        id S231392AbiG1AW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 20:22:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230057AbiG1AEk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 20:04:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9360491F1;
-        Wed, 27 Jul 2022 17:04:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1115F6175A;
-        Thu, 28 Jul 2022 00:04:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 721D3C433C1;
-        Thu, 28 Jul 2022 00:04:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658966677;
-        bh=wINtCHc5eLNlHmB53FT2rtl/5x4h8+wHWDC1bCkxcbk=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=dju8klrp1eA2utIGaZDOwT8k5dc/FhHAPdDk5VpUIfEfc2/96bAGzrm/SsqnTYT2h
-         ktBwE2mZh3wrLUhVR5j5FVCkuaovYlx+Y/PjI1Y5df5ALqHc7vYdpalpE2sU9aTwSg
-         HZefOC0ohmx3Dxn7exySpyC8Q/TsbqoCBULagkrEv3XgILB3SdkkPTuhZyVnPcuUX6
-         ptwCgH2eVJyA6JW1MbISoBB26Hm6phQkr43nJ/Nyj4KnISW2ZX06sDoMfNZYk4KWTl
-         P/VWWvZdyC1wgi88hNTcmD+YS96uWLS8mNcETiWYvQLTabtOohrZmkmocRFAHHWAhx
-         KXW2WYFdQcIOw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        - <patches@opensource.cirrus.com>,
-        Bogdan Togorean <bogdan.togorean@analog.com>,
-        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20220727164050.385241-1-krzysztof.kozlowski@linaro.org>
-References: <20220727164050.385241-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: use spi-peripheral-props.yaml
-Message-Id: <165896667516.3927242.3602967595765365551.b4-ty@kernel.org>
-Date:   Thu, 28 Jul 2022 01:04:35 +0100
+        with ESMTP id S230395AbiG1AW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 20:22:57 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 219E34C613
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 17:22:56 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id n185so125400wmn.4
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 17:22:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AmEmeRZhd9Zjf3GjjylIGsA/lCIIeJ6jjo7QTxJzxvA=;
+        b=ICGsuhAhunYr+r/GoO+4BHNivDMLZR5fvOwLh5HFkDDRz6EfC02ywECIWGFN71ODiB
+         3LxXaj60PZEk9S9t5ZHy9PcgGbOX2Ff4/uR0n+FZBgj+oBEs+XUGLMjTqeOEJZsaeYVq
+         lrQkcGUdHRgl0eQl3YnUoRvXLNV3rPzWu/zXc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AmEmeRZhd9Zjf3GjjylIGsA/lCIIeJ6jjo7QTxJzxvA=;
+        b=kfMXutcrz9o1x7MHnWFyCxu1kB3J/06JSGba4IlMVcckbGiK95YEJ8DiboaxZeOcpj
+         6FOxHLRO//puO1JrwFAgRLwAK/pBAabYnhGuremzuvxBPhW+ghnzuD3zwfe/btzkuxUH
+         +1ty3dDQQ2AchcUVRtMpauXhRwvaeiwmFp63GwWTNaB1S19qd9D4p3zvrUYSR/5TgeYW
+         X8dCJi9mReZeBUJatJYdtxxmnICCMJjHa359Yx/FB7wqp6UopDmn2EVL6Aq0GZOYo6AX
+         n6pVUvlHXFcNiZsNTYVq14OMmd3l5aDBh23zz4wq8Ih0IGdt0fpk0qv73UXxwrATOa2x
+         7lFA==
+X-Gm-Message-State: AJIora8pwq0/EGWYaOLtH1f8lhSOneQiodGTpXdvANasW5rjMGFcC6oi
+        o36XTC2CygseGsGpiW69GuXeXQDRReaCsbxEEsQm1Q==
+X-Google-Smtp-Source: AGRyM1t+gk2Xy/Rz+Hu8IN5+F/z5MXtLN24ReL9yKM1lsyxrotsmT/Zh2a+RN7wQ24QUJzRdJqi66T7ujHp2mlnt1oc=
+X-Received: by 2002:a05:600c:a03:b0:39e:4f0c:938c with SMTP id
+ z3-20020a05600c0a0300b0039e4f0c938cmr4621229wmp.145.1658967774472; Wed, 27
+ Jul 2022 17:22:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-d1cc2
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <CAODwPW9E8wWwxbYKyf4_-JFb4F-JSmLR3qOF_iudjX0f9ndF0A@mail.gmail.com>
+ <CAODwPW8fiFSNehZbZDdR9kjHxohLGiyE7edU=Opy0xV_P8JbEQ@mail.gmail.com>
+ <3bb0ffa0-8091-0848-66af-180a41a68bf7@linaro.org> <CAODwPW89xZQZiZdQNt6+CcRjz=nbEAAFH0h_dBFSE5v3aFU4rQ@mail.gmail.com>
+ <8f51aed8-956b-ac09-3baf-2b4572db1352@linaro.org> <CAODwPW9MvYJo8QbKOoVcUAKJ8Hxon2MCv_H5qpv=yaSTLLc+ug@mail.gmail.com>
+ <628a7302-1409-81f7-f72b-6b1645df9225@linaro.org> <CAODwPW-4i+idH8Nz6=EmNUXYWgWkoOHs3wOZ7BbrH5GwGDZ1Ww@mail.gmail.com>
+ <1f3189ef-7d3f-27b3-a691-b9649090b650@linaro.org> <CAODwPW-GDkfyFaNSnEngpSfz8LSXRetu+xwp3QrFHP1rH1O06w@mail.gmail.com>
+ <86b9c6d6-e8e5-7f6d-0970-460baf9b6fcc@linaro.org>
+In-Reply-To: <86b9c6d6-e8e5-7f6d-0970-460baf9b6fcc@linaro.org>
+From:   Julius Werner <jwerner@chromium.org>
+Date:   Wed, 27 Jul 2022 17:22:42 -0700
+Message-ID: <CAODwPW_tcAAqKE66B+RbvMn-=favT07i3EK3TnAspVsWTAeJ4Q@mail.gmail.com>
+Subject: Re: [RFC] Correct memory layout reporting for "jedec,lpddr2" and
+ related bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Julius Werner <jwerner@chromium.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Jian-Jia Su <jjsu@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Nikola Milosavljevic <mnidza@outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Jul 2022 18:40:50 +0200, Krzysztof Kozlowski wrote:
-> Instead of listing directly properties typical for SPI peripherals,
-> reference the spi-peripheral-props.yaml schema.  This allows using all
-> properties typical for SPI-connected devices, even these which device
-> bindings author did not tried yet.
-> 
-> Remove the spi-* properties which now come via spi-peripheral-props.yaml
-> schema, except for the cases when device schema adds some constraints
-> like maximum frequency.
-> 
-> [...]
+> > By "use case" I mean our particular platform and firmware requirements
+> > -- or rather, the realities of building devices with widely
+> > multi-sourced LPDDR parts. One cannot efficiently build firmware that
+> > can pass an exact vendor-and-part-specific compatible string to Linux
+> > for this binding for every single LPDDR part used on such a platform.
+>
+> Why cannot? You want to pass them as numerical values which directly map
+> to vendor ID and some part, don't they?
 
-Applied to
+Yes, but the current compatible string format also requires the exact
+part number, of which there are many thousands and it's impossible to
+build a list in advance. Even for vendors, hardcoding 255 strings in a
+tight firmware space would be an unnecessary burden. There's also an
+update problem -- firmware may be built and signed and burned into ROM
+long before the assembly of the final mainboard. Board manufacturers
+want to be able to just drop-in replace a newly-sourced LPDDR part in
+their existing production line without having to worry if the existing
+(and possibly no longer changeable) firmware contains a string table
+entry for this part.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+If you just want the compatible string to be unique, encoding the
+numbers like Doug suggested (e.g. jedec,lpddr3-ff-0100) would work for
+us.
 
-Thanks!
+> If we talk about standard, then DT purpose is not for autodetectable
+> pieces. These values are autodetectable, so such properties should not
+> be encoded in DT.
 
-[1/1] ASoC: dt-bindings: use spi-peripheral-props.yaml
-      commit: abed2baf6814597f244cd879285b2210b0870548
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+But the DT is the only interface that we have to pass information from
+firmware to kernel and userspace. Where else should these properties
+be encoded? They are auto-detectable, but not for the kernel itself
+(only for memory-training firmware running in SRAM). Maybe the usual
+rules of thumb don't apply here, because unlike all other peripheral
+controllers the memory controller is special in that the kernel cannot
+simply reinitialize it and get the same information from the original
+source again.
