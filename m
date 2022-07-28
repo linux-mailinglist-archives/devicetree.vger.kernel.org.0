@@ -2,138 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11DF45839A3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 09:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F5165839CC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 09:48:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234614AbiG1Hkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 03:40:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33546 "EHLO
+        id S234760AbiG1HsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 03:48:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234230AbiG1Hkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 03:40:35 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5753D4D83D;
-        Thu, 28 Jul 2022 00:40:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D264AB82284;
-        Thu, 28 Jul 2022 07:40:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21B61C43470;
-        Thu, 28 Jul 2022 07:40:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1658994031;
-        bh=p81wbSl4jQvNdxEQIWuCLFSph+3DQKM11CCOw6EGVc4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cv5PwUYCCTni2XA0aQzBYgUcsAonaMU5j+FBsyqzk1VBGaUBwrzetTytavedUvCdv
-         oSg/NaVW1sccm2S21QeVGOyR1WM91YMv4P9yxSS7MSeF543QvBSwiKkuZ6QY8IzHze
-         IXXPphSIebXXWzKADTcb8tz4gH5C6DlKkfx8oIXcYjaqkXOXSKrD9X7bvIgAbeyAEH
-         hLFbMjVVFD7ONHyHCMfWpdGYm0ln5egrWHzeuKff2JN3TpGNhKoI//vy5s3bHUeRcY
-         cWWmFbwBBKWhGj2msQyHoMmDM4sJ7bKKc9vKPtOCRSCrdeyUhH+5/lKCptXnTGYayu
-         ftYnFgLCqFFbg==
-Date:   Thu, 28 Jul 2022 10:40:28 +0300
-From:   Jarkko Sakkinen <jarkko@kernel.org>
-To:     Stefan Berger <stefanb@linux.ibm.com>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com, mpe@ellerman.id.au,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v5 4/6] tpm: of: Make of-tree specific function commonly
- available
-Message-ID: <YuI9bLmqGsZwn4n6@kernel.org>
-References: <20220706152329.665636-1-stefanb@linux.ibm.com>
- <20220706152329.665636-5-stefanb@linux.ibm.com>
- <YsuTRny45aBxGjm5@kernel.org>
- <3a9196b3-c510-0c32-8b70-572d9c4fe69d@linux.ibm.com>
+        with ESMTP id S233032AbiG1HsU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 03:48:20 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A240261714
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 00:48:17 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id z25so1682814lfr.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 00:48:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=fCUzkrrVti+DuQ9YZ66uDbjkm2O9p7N93LSf/4Y1rqw=;
+        b=FcT3HD9UuvhS0fZm//5zxRGb1EhPOh3t/FJB6OWvAfsVKWqT7XUYgKcSrCYv82NtFG
+         clfqrKO3uRhEgTVGdRV1V/Xe87qmNqaL7fZmyIRmrY9XGSIyhZ7SLrWncsTLE+cVcS8o
+         H2CbJ+ZeSA39R6hTegJnVjTAFXseAMScED4CPXt1byZYCJ75/2P7zx2EdpnwnvKy63Dw
+         3RyTJxsZjPZIg3fKH3tvvgRXwYqcNg5JK/gdms/Kh5nLgVR9xwfrs5LpeyZSDRptlPOO
+         jb3hFCCV2OvHbDPxfI5cOAV8yH4UC+1hD+WJIqhefTXbVk/6UM2RTuxQ6OssTd84hObL
+         ok4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=fCUzkrrVti+DuQ9YZ66uDbjkm2O9p7N93LSf/4Y1rqw=;
+        b=SoF3jMS9ReCdatOQF5X/5iuMwE/PBTj/y5DDtr28YY2o9thWPGxvGXIX4Spxh4C1I/
+         vukfgeYpF9xmF8vct5NOO48o6t/l1fgGdNgPBKpJGyN/f0YR8O4nA2J/SJInXr1AcxM8
+         xvt9PuKpACX+qHOT/r91VPMcez94NqE1pKHO60qA3hXHaQ552RC4/MlzMjPiuPTHWixe
+         zh6f1brxtOIrv0nQyxEGEEpkwD4v2Y6/pZ42KDk4DEYyKaXcuCEaX6TdsrWPafM1uJfs
+         LdklpjTJmiSEWTu3tJbpjWMe79y9IlKnl4w6H72p271pKoc0ZdHtBJcTQWR3Hwcq2PA1
+         83OQ==
+X-Gm-Message-State: AJIora9SvLYc9TLyn3nsIRHATqRfJLhsyqQeaqLY7ygkSKjFdfOM7fAa
+        SagcRZZE706ArhIMMOORzHDm6Q==
+X-Google-Smtp-Source: AGRyM1uXGhPeR606LsJssvTDJlC4T3k/CuVwOkQjtbV4yuWokpohwSrNa+3v0DyoVMsl7lRB4A4mrQ==
+X-Received: by 2002:a05:6512:220a:b0:48a:7b14:d51c with SMTP id h10-20020a056512220a00b0048a7b14d51cmr8647513lfu.267.1658994495906;
+        Thu, 28 Jul 2022 00:48:15 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id b3-20020a056512304300b0048a7ebb3151sm68149lfb.181.2022.07.28.00.48.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jul 2022 00:48:15 -0700 (PDT)
+Message-ID: <95cbcda8-d1bc-376c-b338-92d1b923f04a@linaro.org>
+Date:   Thu, 28 Jul 2022 09:48:13 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3a9196b3-c510-0c32-8b70-572d9c4fe69d@linux.ibm.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
+ Application client
+Content-Language: en-US
+To:     Maximilian Luz <luzmaximilian@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+ <20220723224949.1089973-5-luzmaximilian@gmail.com>
+ <e88d1036-dc58-3fc8-c388-edba9b2d62a7@linaro.org>
+ <87c19c5a-d7f4-7183-1322-f62267e01b3b@gmail.com>
+ <11e5c369-c0da-7756-b9e2-ac375dc78e9d@linaro.org>
+ <2e522bcd-5d55-e87f-126c-514f5edaa560@gmail.com>
+ <53a602e2-0590-6c6a-597b-fd55faa3a4ab@linaro.org>
+ <acd7b231-3167-e35c-5cdf-8b3127a7d710@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <acd7b231-3167-e35c-5cdf-8b3127a7d710@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 15, 2022 at 12:01:36PM -0400, Stefan Berger wrote:
+On 27/07/2022 15:00, Maximilian Luz wrote:
+>>> Then again, if you prefer to name everything based on
+>>> "qcom,<device>-<soc>" I don't have any strong arguments against it and
+>>> I'm happy to change that. I just think it will unnecessarily introduce
+>>> a bunch of compatibles and doesn't reflect the interface "versioning"
+>>> situation as I see it.
+>>
+>> Why bunch? All devices could bind to one specific compatible, as they
+>> are compatible.
 > 
-> 
-> On 7/10/22 23:04, Jarkko Sakkinen wrote:
-> > On Wed, Jul 06, 2022 at 11:23:27AM -0400, Stefan Berger wrote:
-> > > Simplify tpm_read_log_of() by moving reusable parts of the code into
-> > > an inline function that makes it commonly available so it can be
-> > > used also for kexec support. Call the new of_tpm_get_sml_parameters()
-> > > function from the TPM Open Firmware driver.
-> > > 
-> > > Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
-> > > Cc: Jarkko Sakkinen <jarkko@kernel.org>
-> > > Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Frank Rowand <frowand.list@gmail.com>
-> > > 
-> > > ---
-> > > v4:
-> > >   - converted to inline function
-> > > ---
-> > >   drivers/char/tpm/eventlog/of.c | 31 +++++--------------------------
-> > >   include/linux/tpm.h            | 27 +++++++++++++++++++++++++++
-> > >   2 files changed, 32 insertions(+), 26 deletions(-)
-> > > 
-> > > diff --git a/drivers/char/tpm/eventlog/of.c b/drivers/char/tpm/eventlog/of.c
-> > > index a9ce66d09a75..f9462d19632e 100644
-> > > --- a/drivers/char/tpm/eventlog/of.c
-> > > +++ b/drivers/char/tpm/eventlog/of.c
-> > > @@ -12,6 +12,7 @@
-> > >   #include <linux/slab.h>
-> > >   #include <linux/of.h>
-> > > +#include <linux/tpm.h>
-> > >   #include <linux/tpm_eventlog.h>
-> > >   #include "../tpm.h"
-> > > @@ -20,11 +21,10 @@
-> > >   int tpm_read_log_of(struct tpm_chip *chip)
-> > >   {
-> > >   	struct device_node *np;
-> > > -	const u32 *sizep;
-> > > -	const u64 *basep;
-> > >   	struct tpm_bios_log *log;
-> > >   	u32 size;
-> > >   	u64 base;
-> > > +	int ret;
-> > >   	log = &chip->log;
-> > >   	if (chip->dev.parent && chip->dev.parent->of_node)
-> > > @@ -35,30 +35,9 @@ int tpm_read_log_of(struct tpm_chip *chip)
-> > >   	if (of_property_read_bool(np, "powered-while-suspended"))
-> > >   		chip->flags |= TPM_CHIP_FLAG_ALWAYS_POWERED;
-> > > -	sizep = of_get_property(np, "linux,sml-size", NULL);
-> > > -	basep = of_get_property(np, "linux,sml-base", NULL);
-> > > -	if (sizep == NULL && basep == NULL)
-> > > -		return -ENODEV;
-> > > -	if (sizep == NULL || basep == NULL)
-> > > -		return -EIO;
-> > > -
-> > > -	/*
-> > > -	 * For both vtpm/tpm, firmware has log addr and log size in big
-> > > -	 * endian format. But in case of vtpm, there is a method called
-> > > -	 * sml-handover which is run during kernel init even before
-> > > -	 * device tree is setup. This sml-handover function takes care
-> > > -	 * of endianness and writes to sml-base and sml-size in little
-> > > -	 * endian format. For this reason, vtpm doesn't need conversion
-> > > -	 * but physical tpm needs the conversion.
-> > > -	 */
-> 
-> 
-> Jarkko,
-> 
->  can I apply your R-b tag after putting this lost comment back into the
-> inline function?
->    Stefan
+> Ah, I think I misunderstood you there. I thought you were advocating for
+> creating compatibles for each SoC just because it's a new SoC and things
+> might be different. I'm not at all against naming this something like
+> qcom,tee-uefisecapp-sc8180x then using that on all platforms that work.
+> I just didn't like the idea of having a bunch of different
+> qcom,tee-uefisecapp-<soc> pointing to the exact same thing without any
+> difference at all.
 
-If there's a change I want to see the updated patch first.
+You start with one specific compatible and if needed later either add
+more specific upfront (qcom,sc8280x-tee-uefisecapp,
+qcom,sc8180x-tee-uefisecapp) or as entirely new one if it is not compatible.
 
-BR, Jarkko
+> 
+>>>>>>> +
+>>>>>>> +required:
+>>>>>>> +  - compatible
+>>>>>>> +
+>>>>>>> +additionalProperties: false
+>>>>>>> +
+>>>>>>> +examples:
+>>>>>>> +  - |
+>>>>>>> +    firmware {
+>>>>>>> +        scm {
+>>>>>>> +            compatible = "qcom,scm-sc8180x", "qcom,scm";
+>>>>>>> +        };
+>>>>>>> +        tee-uefisecapp {
+>>>>>>> +            compatible = "qcom,tee-uefisecapp";
+>>>>>>
+>>>>>> You did not model here any dependency on SCM. This is not full
+>>>>>> description of the firmware/hardware
+>>>>>
+>>>>> How would I do that? A lot of other stuff also depends on SCM being
+>>>>> present (e.g. qcom_q6v5_pas for loading mdt files) and I don't see them
+>>>>> declare this in the device tree. As far as I can tell, SCM is pretty
+>>>>> much expected to be there at all times (i.e. can't be unloaded) and
+>>>>> drivers check for it when probing via qcom_scm_is_available(),
+>>>>> deferring probe if not.
+>>>>
+>>>> It seems this will be opening a can of worms...
+>>>
+>>> Indeed.
+>>>
+>>>> The problem with existing approach is:
+>>>> 1. Lack of any probe ordering or probe deferral support.
+>>>> 2. Lack of any other dependencies, e.g. for PM.
+>>>
+>>> I'm not entirely sure what you mean by "lack of probe deferral support".
+>>> We have qcom_scm_is_available() and defer probe if that fails. So
+>>> deferral works, unless I'm misunderstanding something.
+>>
+>> And how do you differentiate that qcom_scm_is_available() failed because
+>> it is not yet available (defer probe) or it is broken and will never
+>> load? All regular consumer-provider interfaces have it sorted out.
+> 
+> Fair point. By shifting that to device links you'll at least know what
+> it's waiting for and the driver won't attempt to probe until that's
+> resolved. But your question applies to that then as well: How do you
+> differentiate between the device link or supplier being broken somehow
+> and the supplier being just not ready yet?
+
+For example like tegra_bpmp_get() is doing.
+
+Best regards,
+Krzysztof
