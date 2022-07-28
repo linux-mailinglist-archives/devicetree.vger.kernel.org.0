@@ -2,84 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20FAA58456E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 20:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9A0A584563
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 20:08:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233050AbiG1Rvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 13:51:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56946 "EHLO
+        id S230178AbiG1RyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 13:54:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233024AbiG1Rvr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 13:51:47 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D8974CDA;
-        Thu, 28 Jul 2022 10:51:46 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id o2so1919271iof.8;
-        Thu, 28 Jul 2022 10:51:45 -0700 (PDT)
+        with ESMTP id S229863AbiG1RyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 13:54:20 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 440E87437E
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 10:54:19 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id bf9so3878486lfb.13
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 10:54:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=6MfQt0pBWorRlsAFP8DPl6zHr8P3SDh0xwaF66hHtuo=;
+        b=PSOOhlr1VTqdPCNhNjATTulVhMqFIJ6P/zYsu6rgIGU/c4tXgbVS3GqXW64iQEF2Wz
+         XskiPlFCCSrbuQaBpbciOiaIgIawF8aZA0SM3KUIzRyWV5iIJ9tMSfIsOT/Jr9Hw34nd
+         o7hmXIByqyAhsTgTsdsjmWVaZR/P0w6byYToDcktZpMea+RWSixBTrgYZIP5fm8+Z1N3
+         SEkduZvIeY2mI5HJ6CehwsTdX26ZHau9Cx7/PL0NmY/sOB+GKEFlODaAcky7Wb8DwYW6
+         D13neg0HcS00D+iP+q4jb6E8YfwhtQFX9RFwrUdng04m25TR9pJ54HHvwERqKBPzEig+
+         VJ1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=pzdOsIQ1Y26ZpedDpUj1LMMDG9wHQ8yPKUPV4/zQYvU=;
-        b=zEoB9EkBX2xu7n1QjSjBWhYNeC/K+rCgx1C20ljOXK+iutaHE90Sxj/XE3WHEXYnCe
-         TPq/Bie8FWUKZBxO0gWeV3XJ4tu2yRl/30PE+dwfqqIqratRpvB2uoDcmSZG+x2OucQq
-         Yjq6id5eQjcJCQwZbJiXLoVA8rS9y6wkt3gazD2FMDWqUO20QGDcAYDNtObbY90vvrYY
-         b4D5DEgTr5w7uolFktSgcm45WBslieROKqo+9p7/x8JFMOr1MzxkFxhwhJGeD/ITDEID
-         MLkYghpXtr6mwRobdil/TvigJe1/Ay2/cD4HNGIvVo7wtMVkjbEPzb5Ly9JAcY5sxXW3
-         /kxQ==
-X-Gm-Message-State: AJIora/UF0yTUsPSUOkc++bzofuM2eWqmfQzPF6MpkojL0WzbTp0HCOo
-        t+kbkTXmIHv9LcBdSzQYZw==
-X-Google-Smtp-Source: AGRyM1uE8Gpxa1EzQyPI5qU5/FxUiJRmY+OBx4u+FL1d203xvf+27hN3L3hFcxlM8veTQxXRGTHXvg==
-X-Received: by 2002:a05:6638:d93:b0:341:5cab:4d9 with SMTP id l19-20020a0566380d9300b003415cab04d9mr11578144jaj.146.1659030704990;
-        Thu, 28 Jul 2022 10:51:44 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.248])
-        by smtp.googlemail.com with ESMTPSA id y31-20020a029522000000b0033f3782eccfsm618069jah.89.2022.07.28.10.51.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 10:51:44 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: PCI: host-generic-pci: Allow IOMMU and MSI properties
-Date:   Thu, 28 Jul 2022 11:51:37 -0600
-Message-Id: <20220728175137.1172841-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=6MfQt0pBWorRlsAFP8DPl6zHr8P3SDh0xwaF66hHtuo=;
+        b=37LEE0ExnYnBBkPOPWgxiKSjd3/Fjj5icaGE4R4mUZtwiaenHsN6w44A4mUTfevr1Q
+         MJd2XJBQDbV2Lx6oMnXn+ax03KmC6LWz1MCHZIoqtcFnDpsZqD6Q93PtYwfSh9ejRMy4
+         5IOMNhADEADFZ2CAJ20k/iAhStchMdomOXmiZGDrPI/2vs+MUbvJQIZnRoyn31ViNB2f
+         3xN5sDM9GtR+J1PFs2G7LqhycVdQyXiNF9XKi5VSdnrjXpJL+Q+cTzlZXpzgD7E4/+Dq
+         rC5yMFo7JncE08aC0tk/YMmZ0DNH7JsivD/s3DdQ4mSXpcxfepB4SiqOoKR86/oDk9i2
+         CzsA==
+X-Gm-Message-State: AJIora+14nbgLLcTMDI0xjhkp13ZQ9leZaj/RynjK0mZ++cw1pjYL9T2
+        TdkXzYJ/13YpOrWJYs2UPvEjCA==
+X-Google-Smtp-Source: AGRyM1uC9AUPOcDFCyJbmlXK6r4q8xIOp/Zk9fpaBMmiBcH1i15Ev3nqouRr0FKDDD/Eu3JOB5MlwA==
+X-Received: by 2002:a05:6512:2622:b0:481:5b17:58e7 with SMTP id bt34-20020a056512262200b004815b1758e7mr3513lfb.600.1659030857234;
+        Thu, 28 Jul 2022 10:54:17 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id b3-20020a056512304300b0048a7ebb3151sm292023lfb.181.2022.07.28.10.54.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jul 2022 10:54:13 -0700 (PDT)
+Message-ID: <2640c637-68c7-641d-9b15-c57bdd5adca2@linaro.org>
+Date:   Thu, 28 Jul 2022 19:54:12 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3] arm64: dts: mt8173-oak: Switch to SMC watchdog
+Content-Language: en-US
+To:     Pin-yen Lin <treapking@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Eizan Miyamoto <eizan@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20220728153913.2652153-1-treapking@chromium.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220728153913.2652153-1-treapking@chromium.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow 'iommu-map', 'iommu-map-mask', and 'msi-parent' properties for
-generic host. This fixes unevaluated property warnings on Arm Juno, AMD
-Seattle, and FSL LS1028a.
+On 28/07/2022 17:39, Pin-yen Lin wrote:
+> Switch to SMC watchdog because we need direct control of HW watchdog
+> registers from kernel. The corresponding firmware was uploaded in
+> https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
+> 
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> ---
+> 
+> Changes in v3:
+> - Remove /delete-node/ and create a new node for SMC watchdog.
+> 
+> Changes in v2:
+> - Move the modifications to mt8173-elm.dtsi and add some comments.
+> 
+>  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> index e21feb85d822..fc8203297bac 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> @@ -161,6 +161,19 @@ hdmi_connector_in: endpoint {
+>  			};
+>  		};
+>  	};
+> +
+> +
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Why?
 
-diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-index 6bcaa8f2c3cf..d25423aa7167 100644
---- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-+++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-@@ -106,6 +106,9 @@ properties:
-     maxItems: 3
- 
-   dma-coherent: true
-+  iommu-map: true
-+  iommu-map-mask: true
-+  msi-parent: true
- 
- required:
-   - compatible
--- 
-2.34.1
+> +	smc_watchdog {
 
+No, you need to read the comment you receive one more time. So to be
+clear: "watchdog"
+
+
+
+Best regards,
+Krzysztof
