@@ -2,118 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84FEF583C2B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBF37583C67
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:46:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236039AbiG1Ki3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 06:38:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35068 "EHLO
+        id S236691AbiG1KqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 06:46:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234891AbiG1Ki1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:38:27 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D421558D1
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:38:26 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id q23so2234358lfr.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:38:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=8m/gkzSEeNVGRFeYIZRczc0LCDlyyEDYTWCS8S+fEHE=;
-        b=XqLaXF2NeoAQW2dMnoSIDTZU0KG6eCdZEAY5fhmVPd/5x50fX4JXudcgltKeyaotQ0
-         O5ULowKZ4NKoWL2xhBvMkDBRHlO+3nZnyD8rVN0R1USPZ5NqUi53UsRnmrRriN3vSfR6
-         H/4PSGLLVf+pz3k34Epn+3R6uSXJEaaEinGw5oBQmu2/vBKiVsFg8d5CHssFfN1khEGK
-         CEC3/E/6j4XJQ+X7zbw1+0HDRvHXdG8YrYuQJl2B+KJlqxsllu1E9xZTjEGFKKoqdkc2
-         RXOVtqLeYuiHlVZeS3f7HeKxk8Y8d3cTS+oUii8HaBeXv1mSk7fTYM+2ildVCtirszrh
-         KqZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=8m/gkzSEeNVGRFeYIZRczc0LCDlyyEDYTWCS8S+fEHE=;
-        b=JmaiOgyWSkwWaxgVbkH5ajxwuWVxYxu8D4MxLsO+uxZ79707MmxwFYWHwlYr/uiB5C
-         M7rDDT/OjQK2EwaL6XalwTKEUkkdVmhUiP6uMWgnXVKvjjgdSsgwziKBuljQX89+Pti7
-         fSOXrfC1e2gflkl3pL2u3ZC8Ggs9aQ2xRxBg9Nf52dDBSAmFPsliDOPMNOUW/sxnrCWl
-         Q6nTmtxApuh6BYb6uUxZDLdcXu44MVJxwB3b7RexWOyIz0b2bKgCst6F3VYUtc53rGQE
-         N1BEy81uLhBLpcQjJmc5g3swczL35SPEdt/1Ic10YI2VzM4gTOtnQTP63HXNJV+Uq0K1
-         /HTA==
-X-Gm-Message-State: AJIora/PwJXk0KFSl1IQ2pdjZA+wkZuUpCpstTtsdn9E6T3j7efDfGSL
-        R0bDJdYY/xxK9FvE/GUtgnHS3g==
-X-Google-Smtp-Source: AGRyM1s0UetzE1MnFh1Eb1ryFBat7KSzR7WNDyYfOitPLcyRuZriydrL2o7MLluKluE7GI2HTDn+cA==
-X-Received: by 2002:a05:6512:3b81:b0:48a:9787:7837 with SMTP id g1-20020a0565123b8100b0048a97877837mr6118077lfv.678.1659004704638;
-        Thu, 28 Jul 2022 03:38:24 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id r1-20020a2e8e21000000b0025e0a13bf42sm76850ljk.53.2022.07.28.03.38.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 03:38:24 -0700 (PDT)
-Message-ID: <d8510e53-673a-7913-32be-1be691a79511@linaro.org>
-Date:   Thu, 28 Jul 2022 12:38:22 +0200
+        with ESMTP id S236558AbiG1KpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:45:07 -0400
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34420664E3;
+        Thu, 28 Jul 2022 03:44:23 -0700 (PDT)
+Date:   Thu, 28 Jul 2022 10:44:20 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1659005061;
+        h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=BvyQ53aTo6TzG6aGVr0rWTID5OlvrGNl2NWUlk432dU=;
+        b=y563N3OfqLDAswrjy3oxY2bQD8Tql9gaslLcPV8xHQBp91gHh2UlUFe4c/+TlOSfMdOHFc
+        bjbt0pHRh3sc+F0jgiUdMRq3MChBZP5ucM6gM6YLUMNNEwA1Yivjpr3n4DD+E6sxIiNjMp
+        vhcAU5t6x5FWsB2Fx6akJ3cdLbI6UgtitTGNRAiHFgJAl+05gM+GJYmD7MFtt4TM3ANgTc
+        jPQQFt27FQ2SAow07psnNUGrJTTTNVcU906a9RZxURLeEvbt2ZgbGYHQqCgggySaTHWLN1
+        EJIj1zjbVuHlxMpzABs1kQgiykSh2cvRs5DyJ26Wolxi+h+UTyR+bo4ALT6Eow==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1659005061;
+        h=from:from:sender:sender:reply-to:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=BvyQ53aTo6TzG6aGVr0rWTID5OlvrGNl2NWUlk432dU=;
+        b=RpBLNMtwG1KvVahOMEeci2cYalsfTbYkOc9HqYWszRbtSojjRq12wJUr0DNHJHGZnjuGQn
+        o4j+aM6rKeVm9GCQ==
+From:   "tip-bot2 for Linus Walleij" <tip-bot2@linutronix.de>
+Sender: tip-bot2@linutronix.de
+Reply-to: linux-kernel@vger.kernel.org
+To:     linux-tip-commits@vger.kernel.org
+Subject: [tip: timers/core] dt-bindings: timer: Add Nomadik MTU binding
+Cc:     Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>, x86@kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20220526213621.373727-1-linus.walleij@linaro.org>
+References: <20220526213621.373727-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-Content-Language: en-US
-To:     Maximilian Luz <luzmaximilian@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <20220723224949.1089973-5-luzmaximilian@gmail.com>
- <e88d1036-dc58-3fc8-c388-edba9b2d62a7@linaro.org>
- <87c19c5a-d7f4-7183-1322-f62267e01b3b@gmail.com>
- <11e5c369-c0da-7756-b9e2-ac375dc78e9d@linaro.org>
- <2e522bcd-5d55-e87f-126c-514f5edaa560@gmail.com>
- <53a602e2-0590-6c6a-597b-fd55faa3a4ab@linaro.org>
- <acd7b231-3167-e35c-5cdf-8b3127a7d710@gmail.com>
- <95cbcda8-d1bc-376c-b338-92d1b923f04a@linaro.org>
- <fe2b820b-9f3b-814b-4792-e6685b13ede6@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fe2b820b-9f3b-814b-4792-e6685b13ede6@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Message-ID: <165900506020.15455.5741050322919175591.tip-bot2@tip-bot2>
+Robot-ID: <tip-bot2@linutronix.de>
+Robot-Unsubscribe: Contact <mailto:tglx@linutronix.de> to get blacklisted from these emails
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 12:25, Maximilian Luz wrote:
-> On 7/28/22 09:48, Krzysztof Kozlowski wrote:
-> 
-> [...]
-> 
->>
->> For example like tegra_bpmp_get() is doing.
-> 
-> But tegra_bpmp_get() can also not differentiate whether the supplier driver is
-> ever going to be successfully probed or not. I'm not sure you can ever really
-> solve that. The only thing it does in addition is check whether the phandle and
-> device is there. Or do you mean those not being present by "broken"? That's a
-> point I agree should be improved with SCM.
+The following commit has been merged into the timers/core branch of tip:
 
-Yes, at least it checks if phandles points to proper device and device
-is there. That's what we want.
+Commit-ID:     d6513a34926f4f4b331be115819702ca2a4682fb
+Gitweb:        https://git.kernel.org/tip/d6513a34926f4f4b331be115819702ca2a4682fb
+Author:        Linus Walleij <linus.walleij@linaro.org>
+AuthorDate:    Thu, 26 May 2022 23:36:21 +02:00
+Committer:     Daniel Lezcano <daniel.lezcano@linaro.org>
+CommitterDate: Tue, 14 Jun 2022 21:23:06 +02:00
 
-We are not solving here case of providing being in a module which never
-gets loaded (thus endless EPROBE_DEFER). Such case is ok.
+dt-bindings: timer: Add Nomadik MTU binding
 
-Best regards,
-Krzysztof
+The Nomadik MTU timer has been used in devicetrees forever
+but somehow we missed to add a binding for it. Fix it
+by simply adding it.
+
+Cc: Lee Jones <lee.jones@linaro.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Link: https://lore.kernel.org/r/20220526213621.373727-1-linus.walleij@linaro.org
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ Documentation/devicetree/bindings/timer/st,nomadik-mtu.yaml | 58 +++++++-
+ 1 file changed, 58 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/st,nomadik-mtu.yaml
+
+diff --git a/Documentation/devicetree/bindings/timer/st,nomadik-mtu.yaml b/Documentation/devicetree/bindings/timer/st,nomadik-mtu.yaml
+new file mode 100644
+index 0000000..901848d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/st,nomadik-mtu.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2022 Linaro Ltd.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/timer/st,nomadik-mtu.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: ST Microelectronics Nomadik Multi-Timer Unit MTU Timer
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: This timer is found in the ST Microelectronics Nomadik
++  SoCs STn8800, STn8810 and STn8815 as well as in ST-Ericsson DB8500.
++
++properties:
++  compatible:
++    items:
++      - const: st,nomadik-mtu
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    description: The first clock named TIMCLK clocks the actual timers and
++      the second clock clocks the digital interface to the interconnect.
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: timclk
++      - const: apb_pclk
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/mfd/dbx500-prcmu.h>
++    timer@a03c6000 {
++      compatible = "st,nomadik-mtu";
++      reg = <0xa03c6000 0x1000>;
++      interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
++
++      clocks = <&prcmu_clk PRCMU_TIMCLK>, <&prcc_pclk 6 6>;
++      clock-names = "timclk", "apb_pclk";
++    };
