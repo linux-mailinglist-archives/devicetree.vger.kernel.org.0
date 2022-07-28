@@ -2,240 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC201583CB2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 334F5583CBB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 13:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236742AbiG1K6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 06:58:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55428 "EHLO
+        id S236794AbiG1LAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 07:00:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236620AbiG1K6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:58:06 -0400
-Received: from mail.baikalelectronics.com (unknown [87.245.175.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 38F7D62A45;
-        Thu, 28 Jul 2022 03:57:57 -0700 (PDT)
-Received: from mail (mail.baikal.int [192.168.51.25])
-        by mail.baikalelectronics.com (Postfix) with ESMTP id 3B14816D3;
-        Thu, 28 Jul 2022 14:00:18 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.com 3B14816D3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baikalelectronics.ru; s=mail; t=1659006018;
-        bh=I3BqipZnlSoZ4zjQmP5m9pmq2YSrZyjEN8smWhboj70=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References:From;
-        b=Kchz9ZC7HZFdaUc6YGNXvEXkVVLhhIWAiFc0JOw4tYpJdz+6nrbe1tdRUX89qa5y2
-         A9BJ/t6RyufDxZDLHHlX8Y4Xcazzxdt5zmJXmqIS4nYPPE4RD0xM7Rr2u8pi8qScaJ
-         +nIwMJ7urCGhUi8hINxtlO6Ovkk3+H6BSA69Kj/s=
-Received: from localhost (192.168.53.207) by mail (192.168.51.25) with
- Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 28 Jul 2022 13:57:53 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        <linux-clk@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v9 6/7] clk: baikal-t1: Add DDR/PCIe directly controlled resets support
-Date:   Thu, 28 Jul 2022 13:57:34 +0300
-Message-ID: <20220728105736.8266-7-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20220728105736.8266-1-Sergey.Semin@baikalelectronics.ru>
-References: <20220728105736.8266-1-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S236803AbiG1K7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:59:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53E7866AC3;
+        Thu, 28 Jul 2022 03:59:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E4CF8619F9;
+        Thu, 28 Jul 2022 10:59:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 761CEC433D6;
+        Thu, 28 Jul 2022 10:59:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659005972;
+        bh=W8zB8u+278oI2Tht4FAyuNGpeZIppdQ+WlcUV9UCJsA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jW5Y/C7RYDe8wN323emUqPgme2owEznQSSBwaHbid2pZxzqc0L9J58Xjn9Bo1zpJ8
+         tqg5bXhA8eJt8IQ/0FjKOCTiXjhXa6p/mXMdM4v3J88W4u8dJoDJPbUs5alkVS/QHL
+         uSPilmRREd0l1NgNt2LAOl84khY3YMBKcZg+M1/zVu6z6Wy9K9iAkXsbpWKcoghaf3
+         Ao/vklow/p/yHaLd1oBn4oJ2GUGXxRpRFRsfNTT+ZlPkhQobkakGPJlrdrMljHChAz
+         /iG3+nwrE6wdRaZnDRXHJbTqgo3m0KJ42oQoLNbACxRAuR5emPevgEKi4pETKv9/J6
+         8u/rYqDr3FW/Q==
+Date:   Thu, 28 Jul 2022 11:59:24 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
+Cc:     lee.jones@linaro.org, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        lgirdwood@gmail.com, eddie.huang@mediatek.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        fshao@chromium.org, sen.chu@mediatek.com, hui.liu@mediatek.com,
+        allen-kh.cheng@mediatek.com, hsin-hsiung.wang@mediatek.com,
+        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
+        wen.su@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 0/1] Mediatek MT6366 Regulator patch
+Message-ID: <YuJsDI8rqkHuysIT@sirena.org.uk>
+References: <20220728062749.18701-1-zhiyong.tao@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,T_SPF_PERMERROR
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="EF9Dhh4p1JnapVZl"
+Content-Disposition: inline
+In-Reply-To: <20220728062749.18701-1-zhiyong.tao@mediatek.com>
+X-Cookie: People respond to people who respond.
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Aside with a set of the trigger-like resets Baikal-T1 CCU provides two
-additional blocks with directly controlled reset signals. In particular it
-concerns DDR full and initial resets and various PCIe sub-domains resets.
-Let's add the direct reset assertion/de-assertion of the corresponding
-flags support into the Baikal-T1 CCU driver then. It will be required at
-least for the PCIe platform driver. Obviously the DDR controller isn't
-supposed to be fully reset in the kernel, so the corresponding controls
-are added just for the sake of the interface implementation completeness.
 
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+--EF9Dhh4p1JnapVZl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
----
+On Thu, Jul 28, 2022 at 02:27:48PM +0800, Zhiyong Tao wrote:
+> Add mt6366 binding documentation
 
-Changelog v6:
-- Refactor the code to support the linear reset IDs only. (@Philipp)
+Please don't send cover letters for single patches, if there is anything
+that needs saying put it in the changelog of the patch or after the ---
+if it's administrative stuff.  This reduces mail volume and ensures that=20
+any important information is recorded in the changelog rather than being
+lost.=20
 
-Changelog v7:
-- Drop empty line from the sys_rst_info structure initialization block.
-  (@Philipp)
----
- drivers/clk/baikal-t1/ccu-rst.c     | 66 +++++++++++++++++++++++++++++
- drivers/clk/baikal-t1/ccu-rst.h     | 10 +++++
- include/dt-bindings/reset/bt1-ccu.h |  9 ++++
- 3 files changed, 85 insertions(+)
+--EF9Dhh4p1JnapVZl
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/drivers/clk/baikal-t1/ccu-rst.c b/drivers/clk/baikal-t1/ccu-rst.c
-index 7db52633270f..40023ea67463 100644
---- a/drivers/clk/baikal-t1/ccu-rst.c
-+++ b/drivers/clk/baikal-t1/ccu-rst.c
-@@ -35,18 +35,29 @@
- #define CCU_AXI_HWA_BASE		0x054
- #define CCU_AXI_SRAM_BASE		0x058
- 
-+#define CCU_SYS_DDR_BASE		0x02c
- #define CCU_SYS_SATA_REF_BASE		0x060
- #define CCU_SYS_APB_BASE		0x064
-+#define CCU_SYS_PCIE_BASE		0x144
- 
- #define CCU_RST_DELAY_US		1
- 
- #define CCU_RST_TRIG(_base, _ofs)		\
- 	{					\
-+		.type = CCU_RST_TRIG,		\
-+		.base = _base,			\
-+		.mask = BIT(_ofs),		\
-+	}
-+
-+#define CCU_RST_DIR(_base, _ofs)		\
-+	{					\
-+		.type = CCU_RST_DIR,		\
- 		.base = _base,			\
- 		.mask = BIT(_ofs),		\
- 	}
- 
- struct ccu_rst_info {
-+	enum ccu_rst_type type;
- 	unsigned int base;
- 	unsigned int mask;
- };
-@@ -79,6 +90,15 @@ static const struct ccu_rst_info axi_rst_info[] = {
- static const struct ccu_rst_info sys_rst_info[] = {
- 	[CCU_SYS_SATA_REF_RST] = CCU_RST_TRIG(CCU_SYS_SATA_REF_BASE, 1),
- 	[CCU_SYS_APB_RST] = CCU_RST_TRIG(CCU_SYS_APB_BASE, 1),
-+	[CCU_SYS_DDR_FULL_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 1),
-+	[CCU_SYS_DDR_INIT_RST] = CCU_RST_DIR(CCU_SYS_DDR_BASE, 2),
-+	[CCU_SYS_PCIE_PCS_PHY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 0),
-+	[CCU_SYS_PCIE_PIPE0_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 4),
-+	[CCU_SYS_PCIE_CORE_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 8),
-+	[CCU_SYS_PCIE_PWR_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 9),
-+	[CCU_SYS_PCIE_STICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 10),
-+	[CCU_SYS_PCIE_NSTICKY_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 11),
-+	[CCU_SYS_PCIE_HOT_RST] = CCU_RST_DIR(CCU_SYS_PCIE_BASE, 12),
- };
- 
- static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
-@@ -86,6 +106,9 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
- 	struct ccu_rst *rst = to_ccu_rst(rcdev);
- 	const struct ccu_rst_info *info = &rst->rsts_info[idx];
- 
-+	if (info->type != CCU_RST_TRIG)
-+		return -EOPNOTSUPP;
-+
- 	regmap_update_bits(rst->sys_regs, info->base, info->mask, info->mask);
- 
- 	/* The next delay must be enough to cover all the resets. */
-@@ -94,8 +117,51 @@ static int ccu_rst_reset(struct reset_controller_dev *rcdev, unsigned long idx)
- 	return 0;
- }
- 
-+static int ccu_rst_set(struct reset_controller_dev *rcdev,
-+		       unsigned long idx, bool high)
-+{
-+	struct ccu_rst *rst = to_ccu_rst(rcdev);
-+	const struct ccu_rst_info *info = &rst->rsts_info[idx];
-+
-+	if (info->type != CCU_RST_DIR)
-+		return high ? -EOPNOTSUPP : 0;
-+
-+	return regmap_update_bits(rst->sys_regs, info->base,
-+				  info->mask, high ? info->mask : 0);
-+}
-+
-+static int ccu_rst_assert(struct reset_controller_dev *rcdev,
-+			  unsigned long idx)
-+{
-+	return ccu_rst_set(rcdev, idx, true);
-+}
-+
-+static int ccu_rst_deassert(struct reset_controller_dev *rcdev,
-+			    unsigned long idx)
-+{
-+	return ccu_rst_set(rcdev, idx, false);
-+}
-+
-+static int ccu_rst_status(struct reset_controller_dev *rcdev,
-+			  unsigned long idx)
-+{
-+	struct ccu_rst *rst = to_ccu_rst(rcdev);
-+	const struct ccu_rst_info *info = &rst->rsts_info[idx];
-+	u32 val;
-+
-+	if (info->type != CCU_RST_DIR)
-+		return -EOPNOTSUPP;
-+
-+	regmap_read(rst->sys_regs, info->base, &val);
-+
-+	return !!(val & info->mask);
-+}
-+
- static const struct reset_control_ops ccu_rst_ops = {
- 	.reset = ccu_rst_reset,
-+	.assert = ccu_rst_assert,
-+	.deassert = ccu_rst_deassert,
-+	.status = ccu_rst_status,
- };
- 
- struct ccu_rst *ccu_rst_hw_register(const struct ccu_rst_init_data *rst_init)
-diff --git a/drivers/clk/baikal-t1/ccu-rst.h b/drivers/clk/baikal-t1/ccu-rst.h
-index 68214d777465..d6e8b2f671f4 100644
---- a/drivers/clk/baikal-t1/ccu-rst.h
-+++ b/drivers/clk/baikal-t1/ccu-rst.h
-@@ -13,6 +13,16 @@
- 
- struct ccu_rst_info;
- 
-+/*
-+ * enum ccu_rst_type - CCU Reset types
-+ * @CCU_RST_TRIG: Self-deasserted reset signal.
-+ * @CCU_RST_DIR: Directly controlled reset signal.
-+ */
-+enum ccu_rst_type {
-+	CCU_RST_TRIG,
-+	CCU_RST_DIR,
-+};
-+
- /*
-  * struct ccu_rst_init_data - CCU Resets initialization data
-  * @sys_regs: Baikal-T1 System Controller registers map.
-diff --git a/include/dt-bindings/reset/bt1-ccu.h b/include/dt-bindings/reset/bt1-ccu.h
-index 3578e83026bc..c691efaa678f 100644
---- a/include/dt-bindings/reset/bt1-ccu.h
-+++ b/include/dt-bindings/reset/bt1-ccu.h
-@@ -21,5 +21,14 @@
- 
- #define CCU_SYS_SATA_REF_RST		0
- #define CCU_SYS_APB_RST			1
-+#define CCU_SYS_DDR_FULL_RST		2
-+#define CCU_SYS_DDR_INIT_RST		3
-+#define CCU_SYS_PCIE_PCS_PHY_RST	4
-+#define CCU_SYS_PCIE_PIPE0_RST		5
-+#define CCU_SYS_PCIE_CORE_RST		6
-+#define CCU_SYS_PCIE_PWR_RST		7
-+#define CCU_SYS_PCIE_STICKY_RST		8
-+#define CCU_SYS_PCIE_NSTICKY_RST	9
-+#define CCU_SYS_PCIE_HOT_RST		10
- 
- #endif /* __DT_BINDINGS_RESET_BT1_CCU_H */
--- 
-2.35.1
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLibAsACgkQJNaLcl1U
+h9BQDwgAgnCNhlgMGhYw7HaqbKgbrRyZJJcsqo6ZGtKsrelWYwC9Dl6BAHubd0Py
+6aJjP2A36ng35571uUI8/CcvkzCh0K8ohBE2+8UgXElPMJH/7i2Lvmxwz9REshOX
+gYY8sV02SitN4wj6xWsDJbRqQDKNadHtw6GSYbyR3UaY6PP9egRUFMQTU1oT10Lj
+FWT6PG5LqAzzSuAGBuLN9x2u5XdLKkQzfrUC4hffFiodazOnEWncI6StFPNK3tk0
+5Lw+npv2e0u5jlR53jIaZnsnkF9MlsZV7PP4odHY31xhm4bMMo0bmbGct3YG/IkL
+wz6MXlA/ueBsF1SvmpRBsKRaeWGWPQ==
+=9UEF
+-----END PGP SIGNATURE-----
+
+--EF9Dhh4p1JnapVZl--
