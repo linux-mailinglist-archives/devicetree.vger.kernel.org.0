@@ -2,162 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D129583F5B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 14:58:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC75A583F73
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:02:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237486AbiG1M6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 08:58:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37610 "EHLO
+        id S238112AbiG1NCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 09:02:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237168AbiG1M6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 08:58:16 -0400
-Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40EC46DAC;
-        Thu, 28 Jul 2022 05:58:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1659013095; x=1690549095;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VqGMwL7Lma99b1Lz1Z4Qv/qEv0GH5EqC0hCdpYV4L4k=;
-  b=WB0n5eT29jJO2AWPJ08+VGIb4YysdLfB5EUsFz+8uxFmReUvVAbmiQ8N
-   JxJP9KAjclXhxHMJjuHF7xzgX82t5nfWn0VBLreAPolkcfaI0OJ9UycK2
-   PWEWcvLUkb4tSWpeCVTS7Fnk1+KfiEpsmnrVxe042n17dJCa576oi15+B
-   tIflwSZrsI23HuDDG3Qeb0gxGIx/aeuFiI29d2nWS3J87IIvlruRhkDxb
-   P09csQjaHEJVa5nCp353LBCfnUUlV+VHB7jNMej47xv8E4vkJOLjiYoEK
-   NTlHkJOoiBWbCqd/fd+FPV89WUSrcYFhxPCwONRiKHRWOBRir7oa8bkDa
-   w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="350208096"
-X-IronPort-AV: E=Sophos;i="5.93,198,1654585200"; 
-   d="scan'208";a="350208096"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jul 2022 05:58:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,198,1654585200"; 
-   d="scan'208";a="846692228"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 28 Jul 2022 05:58:11 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oH35e-000A16-1s;
-        Thu, 28 Jul 2022 12:58:10 +0000
-Date:   Thu, 28 Jul 2022 20:57:51 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: Re: [PATCH] ASoC: qcom: SC7280: Add support for external DMIC bias
- supply
-Message-ID: <202207282036.84w516Y3-lkp@intel.com>
-References: <1658992233-28372-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S236063AbiG1NCr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:02:47 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 484DD120AD;
+        Thu, 28 Jul 2022 06:02:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1659013365; x=1690549365;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=twfzwC4ZtHVwen3q6kY8rgaaSpJtjcr+xNILXgSzAdo=;
+  b=lHXOzY0WMz1SREhHGlavPEfmdWP8RQeSdgtiuFhyj29ycQqnUZHbbwCV
+   pHGuswYLHHvOL5jtCZVemfHCtIJpzDey70bS6FS8h7BKb7ZW/guis4Whb
+   yl8XU21NHPXZuaPDMz1ucHlhoWVykZNwZkw2yTYObaI6NXNjRL+f362Kq
+   9r/VNQm1G03F7ql7GzT/ReVNXPCeucS+2ctQ6TFef+Zn1eP2kBJNT9ur5
+   uhzvXawQPyHd6aqRwO9ykY3kYfsAnvMmO35QyPwOtDwDea4OyWM13nrhn
+   JdPwESK/WER4MSkLO3awIxlvIbCtarRwOj7gAfEpWNRQp04AcE2msZsSH
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,198,1654552800"; 
+   d="scan'208";a="25321363"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 28 Jul 2022 15:02:43 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 28 Jul 2022 15:02:43 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 28 Jul 2022 15:02:43 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1659013363; x=1690549363;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=twfzwC4ZtHVwen3q6kY8rgaaSpJtjcr+xNILXgSzAdo=;
+  b=TgBiX7QEbBhJwtLSjakHT+EsF4Td16r2ANwvIHQndZgluRl2lEKTD4tF
+   k3K3iig+NMpYfcg53txG/92326ZfZX5E/SG04TaoXk2WF2/9D43u6wABy
+   y+C5PJpXht9de4XWD3GkXo/NeIfHGIXkIBQsQcdBCijZtsU+WqyiuSO5c
+   HNuL8mMOf16fQiKgAA3UXHzwxUYe8lwOVgd+dXVO5SbWi3aunjZARjkRk
+   GaOZXtm0g0dKBexc2OSNwplPqKW4hwyolXY4EnKmd//Qbsudoefc+qFwG
+   nZcgN/Tib3t4wpyN0FWYJinkdq+IJ6FLURQlpTpOy7Dhi+dIjUwpf47Xg
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.93,198,1654552800"; 
+   d="scan'208";a="25321362"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 28 Jul 2022 15:02:43 +0200
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 302BF280056;
+        Thu, 28 Jul 2022 15:02:43 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     "Paul J . Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@iki.fi>
+Subject: [PATCH v4 0/7] OV9281 support
+Date:   Thu, 28 Jul 2022 15:02:30 +0200
+Message-Id: <20220728130237.3396663-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1658992233-28372-1-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivasa,
+Hi,
 
-Thank you for the patch! Yet something to improve:
+this is the 4th series adding support for OV9281 which is quite similar to OV9282.
+This includes:
+* a small cleanup (Patch 1)
+* adding a new compatible (Patch 2 & 3)
+* adding support for regulators (Patch 4 & 5)
+* Fixing v4l2 subdev name depending on actual model name (Patch 6)
+* Add regmap support (Patch 7)
 
-[auto build test ERROR on broonie-sound/for-next]
-[also build test ERROR on linus/master v5.19-rc8 next-20220728]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thanks for anyone doing review and giving a feedback.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Srinivasa-Rao-Mandadapu/ASoC-qcom-SC7280-Add-support-for-external-DMIC-bias-supply/20220728-151249
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20220728/202207282036.84w516Y3-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/d59fc8cd6dd22df37f41309d1d18a7853929e2f8
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Srinivasa-Rao-Mandadapu/ASoC-qcom-SC7280-Add-support-for-external-DMIC-bias-supply/20220728-151249
-        git checkout d59fc8cd6dd22df37f41309d1d18a7853929e2f8
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash sound/soc/qcom/
+Here are the changes in v4:
+* Use platform data to set sensor name (Patch 6)
+* Fixed some style issues (Patch 7)
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+Here are the changes in v3:
+* Removed struct field documentation as well (Patch 1)
+* Dropped v2 Patch 6 (wrong approach)
+* Added new Patch 6 to set subdev name according to model parsed form compatible
+* Added new Patch 7 adding regmap support
+  This is a preparation to solve the defunct auto-increment using regmap's
+  'use_single_read' (still WIP)
 
-All errors (new ones prefixed by >>):
+Here are the changes in v2:
+* Added Krzysztof's a-b for Patch 2 & 4
+* Added Daniele's a-b for Patch 1 & 3
+* Removed additional error message in ov9282_power_off
+* Renamed function from ov9282_configure_regulators to ov9282_get_regulators
+* Cleaned-up reading ID registers
 
-   sound/soc/qcom/sc7280.c: In function 'sc7280_snd_platform_probe':
->> sound/soc/qcom/sc7280.c:413:37: error: expected ')' before 'return'
-     413 |         if (IS_ERR(data->vdd_supply)
-         |            ~                        ^
-         |                                     )
-     414 |                 return PTR_ERR(data->vdd_supply);
-         |                 ~~~~~~               
->> sound/soc/qcom/sc7280.c:417:1: error: expected expression before '}' token
-     417 | }
-         | ^
-   sound/soc/qcom/sc7280.c:417:1: error: control reaches end of non-void function [-Werror=return-type]
-     417 | }
-         | ^
-   cc1: some warnings being treated as errors
+The regulator support is based on the driver from Raspberry Pi downstream kernel
+[1], the ID register read fix as well. Please refer to [2] why this fix is
+required. I can confirm this is necessary by checking with a Logic analyzer on
+the i2c bus.
+
+Best regards,
+Alexander
+
+[1] https://github.com/raspberrypi/linux/blob/rpi-5.15.y/drivers/media/i2c/ov9281.c
+[2] https://github.com/raspberrypi/linux/commit/58deee7c917e1c3c5e37987c3a89ad19d791f58a
 
 
-vim +413 sound/soc/qcom/sc7280.c
+Alexander Stein (7):
+  media: i2c: ov9282: remove unused and unset i2c_client member
+  media: dt-bindings: media: Add compatible for ov9281
+  media: i2c: ov9282: Add ov9281 compatible
+  media: dt-bindings: media: ov9282: Add power supply properties
+  media: i2c: ov9282: Add regulator support
+  media: i2c: ov9282: Set v4l2 subdev name according to sensor model
+  media: i2c: ov9282: Add regmap support
 
-   380	
-   381	static int sc7280_snd_platform_probe(struct platform_device *pdev)
-   382	{
-   383		struct snd_soc_card *card;
-   384		struct sc7280_snd_data *data;
-   385		struct device *dev = &pdev->dev;
-   386		struct snd_soc_dai_link *link;
-   387		int ret, i;
-   388	
-   389		data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-   390		if (!data)
-   391			return -ENOMEM;
-   392	
-   393		card = &data->card;
-   394		snd_soc_card_set_drvdata(card, data);
-   395	
-   396		card->owner = THIS_MODULE;
-   397		card->driver_name = "SC7280";
-   398		card->dev = dev;
-   399	
-   400		card->dapm_widgets = sc7280_snd_widgets;
-   401		card->num_dapm_widgets = ARRAY_SIZE(sc7280_snd_widgets);
-   402	
-   403		ret = qcom_snd_parse_of(card);
-   404		if (ret)
-   405			return ret;
-   406	
-   407		for_each_card_prelinks(card, i, link) {
-   408			link->init = sc7280_init;
-   409			link->ops = &sc7280_ops;
-   410		}
-   411	
-   412		data->vdd_supply = devm_regulator_get(dev, "vdd-dmic-bias");
- > 413		if (IS_ERR(data->vdd_supply)
-   414			return PTR_ERR(data->vdd_supply);
-   415	
-   416		return devm_snd_soc_register_card(dev, card);
- > 417	}
-   418	
+ .../bindings/media/i2c/ovti,ov9282.yaml       |  14 ++-
+ drivers/media/i2c/ov9282.c                    | 108 ++++++++++++------
+ 2 files changed, 89 insertions(+), 33 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.25.1
+
