@@ -2,109 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02A7D5838BF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 08:29:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4186F5838E7
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 08:41:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232566AbiG1G2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 02:28:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37158 "EHLO
+        id S233727AbiG1Glg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 02:41:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234225AbiG1G2W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 02:28:22 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8148E5E324;
-        Wed, 27 Jul 2022 23:28:18 -0700 (PDT)
-Received: from [192.168.1.111] (91-158-154-79.elisa-laajakaista.fi [91.158.154.79])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A18E96D4;
-        Thu, 28 Jul 2022 08:28:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1658989696;
-        bh=oCjtC3g82Ud1cVCYqkX2EY6KFanHwbRaoqifixuKbmA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=pLx7l3bs6ZKtj6EfgHKRXHtx8LpDlK0WiczliWhXNIU0zM1CdjQ7hoY+McC3SApIU
-         Whu8CwSs08TDg5lRIbdifPeFplGyXlkmPsQZJdkZjRG/R3JmWMXjPq8inSfSpjjL6e
-         Fxjqm2fE0ttDKEKE912kE3ThBV7hLH7HR3TQt6OU=
-Message-ID: <d10cd3c6-ff3c-ee0e-9363-f0b71fe7e2c2@ideasonboard.com>
-Date:   Thu, 28 Jul 2022 09:28:12 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/8] dt-bindings: display: ti,am65x-dss: Add port
- properties for DSS
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, Rob Herring <robh@kernel.org>
-Cc:     Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S232855AbiG1GlI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 02:41:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B38B50728;
+        Wed, 27 Jul 2022 23:41:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 924AF61AC1;
+        Thu, 28 Jul 2022 06:41:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 761DCC433C1;
+        Thu, 28 Jul 2022 06:41:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1658990465;
+        bh=W0XxXdLLkEgMd9X3IxL9GRsb5r2xRaRkUt/W5UWZraI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bMbtyxn/epbzK5OyRgqr6XtEubLOX+vvDaYhynhx2CPPZ8y4hLP5NsdWTfU+wI07y
+         Ote1DNBBLHv8KwGdKMAAxUJ9ySxZVf39Pfm4FocJuZssv73Jitrrzix/ivg3/fVcEO
+         9sdIgAv0+COLwSxWCJcevTomkiZYVqGOJ5QUpSSE=
+Date:   Thu, 28 Jul 2022 08:41:01 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Darren Etheridge <detheridge@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Krunal Bhargav <k-bhargav@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>
-References: <20220719080845.22122-1-a-bhatia1@ti.com>
- <20220719080845.22122-2-a-bhatia1@ti.com>
- <20220720232845.GA4164694-robh@kernel.org>
- <20220722161621.p35apy5mstpgqhef@reverence>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20220722161621.p35apy5mstpgqhef@reverence>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] usb: misc: onboard_usb_hub: Add reset-gpio support
+Message-ID: <YuIvfahpGgMc7CJh@kroah.com>
+References: <20220727141117.909361-1-alexander.stein@ew.tq-group.com>
+ <YuFykRtbvxGssSVs@google.com>
+ <2191669.iZASKD2KPV@steina-w>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2191669.iZASKD2KPV@steina-w>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/07/2022 19:16, Nishanth Menon wrote:
-> On 17:28-20220720, Rob Herring wrote:
->>> On the bridge side R0->R2, G0->G1, B0->B2 would be tied to ground.
->>> The bridge sees 24bits of data,  but the lsb's are always zero.
->>
->> Unless the bridge ignores the LSBs, that's not the right way to do 16 to
->> 24 bit. The LSBs should be connected to the MSB of the color component
->> to get full color range.
+On Thu, Jul 28, 2022 at 08:20:13AM +0200, Alexander Stein wrote:
+> Hello Matthias,
 > 
-> I unfortunately cannot point specifics without violating NDAs, so
-> will just give a broad perspective.
+> Am Mittwoch, 27. Juli 2022, 19:14:57 CEST schrieb Matthias Kaehlcke:
+> > Hi Alexander,
+> > 
+> > (copying my comments from v3 to keep the discussion on the latest version)
+> > 
+> > On Wed, Jul 27, 2022 at 04:11:16PM +0200, Alexander Stein wrote:
+> > > Despite default reset upon probe, release reset line after powering up
+> > > the hub and assert reset again before powering down.
+> > > 
+> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > > ---
+> > > * Patch 1 dropped as it already applied
+> > > 
+> > > Changes in v4:
+> > > * Rebased to [1] commit e0c6b1f3d757 ("USB: usbsevseg: convert sysfs
+> > > snprintf to sysfs_emit") * Added platform data for usb424
+> > > 
+> > >   Reset pulse length taken from [2], Table 3-2 Symbol RESET_N
+> > >   Completely untested
+> > > 
+> > > [1] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git Branch
+> > > usb-testing [2]
+> > > http://ww1.microchip.com/downloads/en/devicedoc/00001692c.pdf
+> > > 
+> > >  drivers/usb/misc/onboard_usb_hub.c | 28 ++++++++++++++++++++++++++++
+> > >  drivers/usb/misc/onboard_usb_hub.h | 22 +++++++++++++++++-----
+> > >  2 files changed, 45 insertions(+), 5 deletions(-)
+> > > 
+> > > diff --git a/drivers/usb/misc/onboard_usb_hub.c
+> > > b/drivers/usb/misc/onboard_usb_hub.c index de3627af3c84..0c81417dd9a7
+> > > 100644
+> > > --- a/drivers/usb/misc/onboard_usb_hub.c
+> > > +++ b/drivers/usb/misc/onboard_usb_hub.c
+> > > @@ -7,6 +7,7 @@
+> > > 
+> > >  #include <linux/device.h>
+> > >  #include <linux/export.h>
+> > > 
+> > > +#include <linux/gpio/consumer.h>
+> > > 
+> > >  #include <linux/init.h>
+> > >  #include <linux/kernel.h>
+> > >  #include <linux/list.h>
+> > > 
+> > > @@ -38,6 +39,8 @@ struct usbdev_node {
+> > > 
+> > >  struct onboard_hub {
+> > >  
+> > >  	struct regulator *vdd;
+> > >  	struct device *dev;
+> > > 
+> > > +	const struct onboard_hub_pdata *pdata;
+> > > +	struct gpio_desc *reset_gpio;
+> > > 
+> > >  	bool always_powered_in_suspend;
+> > >  	bool is_powered_on;
+> > >  	bool going_away;
+> > > 
+> > > @@ -56,6 +59,9 @@ static int onboard_hub_power_on(struct onboard_hub *hub)
+> > > 
+> > >  		return err;
+> > >  	
+> > >  	}
+> > > 
+> > > +	fsleep(hub->pdata->reset_us);
+> > > +	gpiod_set_value_cansleep(hub->reset_gpio, 0);
+> > > +
+> > > 
+> > >  	hub->is_powered_on = true;
+> > >  	
+> > >  	return 0;
+> > > 
+> > > @@ -65,6 +71,11 @@ static int onboard_hub_power_off(struct onboard_hub
+> > > *hub)> 
+> > >  {
+> > >  
+> > >  	int err;
+> > > 
+> > > +	if (hub->reset_gpio) {
+> > > +		gpiod_set_value_cansleep(hub->reset_gpio, 1);
+> > > +		fsleep(hub->pdata->reset_us);
+> > 
+> > Is this delay here actually needed? There is a delay in
+> > onboard_hub_power_on(), before de-asserting the reset, isn't that enough?
 > 
-> Correct, this is not ideal, but in certain scenarios with limited
-> pins (due to iovoltage groups), we are indeed starting to see this
-> kind of usage model starting to pop up. Tradeoff is in a limit on
-> image quality, but that tends to be acceptable in certain lower cost
-> solutions.
+> If you see both delays together you are right, but I tend to think in that way 
+> it is to ensure whenever we apply a reset it is long enough.
+> As said before the powering on delay is to ensure the pulse length delay even 
+> if there is no reset GPIO but it is controlled by hardware.
+> 
+> > > +	}
+> > > +
+> > > 
+> > >  	err = regulator_disable(hub->vdd);
+> > >  	if (err) {
+> > >  	
+> > >  		dev_err(hub->dev, "failed to disable regulator: %d\n", 
+> err);
+> > > 
+> > > @@ -219,6 +230,7 @@ static void onboard_hub_attach_usb_driver(struct
+> > > work_struct *work)> 
+> > >  static int onboard_hub_probe(struct platform_device *pdev)
+> > >  {
+> > > 
+> > > +	const struct of_device_id *of_id;
+> > > 
+> > >  	struct device *dev = &pdev->dev;
+> > >  	struct onboard_hub *hub;
+> > >  	int err;
+> > > 
+> > > @@ -227,10 +239,26 @@ static int onboard_hub_probe(struct platform_device
+> > > *pdev)> 
+> > >  	if (!hub)
+> > >  	
+> > >  		return -ENOMEM;
+> > > 
+> > > +	of_id = of_match_device(onboard_hub_match, &pdev->dev);
+> > > +	if (!of_id)
+> > > +		return -ENODEV;
+> > > +
+> > > +	hub->pdata = of_id->data;
+> > > +	if (!hub->pdata)
+> > > +		return -EINVAL;
+> > > +
+> > > 
+> > >  	hub->vdd = devm_regulator_get(dev, "vdd");
+> > >  	if (IS_ERR(hub->vdd))
+> > >  	
+> > >  		return PTR_ERR(hub->vdd);
+> > > 
+> > > +	hub->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> > > +						  
+> GPIOD_OUT_HIGH);
+> > > +	if (IS_ERR(hub->reset_gpio))
+> > > +		return dev_err_probe(dev, PTR_ERR(hub->reset_gpio), 
+> "failed to get
+> > > reset GPIO\n"); +
+> > > +	if (hub->reset_gpio)
+> > > +		fsleep(hub->pdata->reset_us);
+> > 
+> > Same question here: onboard_hub_power_on() is called a few lines below and
+> > has a delay before de-asserting the reset. Is the delay here really needed?
+> 
+> This actually looks like the delay is duplicated here. I agree with removing 
+> this.
+> How shall we proceed now that the whole series (incl. the bindings patch 1/3 
+> from v3) has landed in usb-testing? I can create a patch on top of this if 
+> this is the way to go.
 
-It doesn't require more pins. If the lowest bits are tied to ground the 
-image is always a bit darker than it should, and you do not get the full 
-brightness. But if you wire e.g. the red component:
+Please do.
 
-SoC : Bridge
-R2 ->   R0
-R3 ->   R1
-R4 ->   R2
-R0 ->   R3
-R1 ->   R4
-R2 ->   R5
-R3 ->   R6
-R4 ->   R7
-
-or
-
-R4 ->   R0
-R4 ->   R1
-R4 ->   R2
-R0 ->   R3
-R1 ->   R4
-R2 ->   R5
-R3 ->   R6
-R4 ->   R7
-
-You'll get the full range.
-
-  Tomi
