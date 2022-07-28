@@ -2,169 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F5165839CC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 09:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF35B5839D4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 09:50:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234760AbiG1HsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 03:48:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40478 "EHLO
+        id S234721AbiG1HuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 03:50:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233032AbiG1HsU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 03:48:20 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A240261714
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 00:48:17 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id z25so1682814lfr.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 00:48:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=fCUzkrrVti+DuQ9YZ66uDbjkm2O9p7N93LSf/4Y1rqw=;
-        b=FcT3HD9UuvhS0fZm//5zxRGb1EhPOh3t/FJB6OWvAfsVKWqT7XUYgKcSrCYv82NtFG
-         clfqrKO3uRhEgTVGdRV1V/Xe87qmNqaL7fZmyIRmrY9XGSIyhZ7SLrWncsTLE+cVcS8o
-         H2CbJ+ZeSA39R6hTegJnVjTAFXseAMScED4CPXt1byZYCJ75/2P7zx2EdpnwnvKy63Dw
-         3RyTJxsZjPZIg3fKH3tvvgRXwYqcNg5JK/gdms/Kh5nLgVR9xwfrs5LpeyZSDRptlPOO
-         jb3hFCCV2OvHbDPxfI5cOAV8yH4UC+1hD+WJIqhefTXbVk/6UM2RTuxQ6OssTd84hObL
-         ok4Q==
+        with ESMTP id S234639AbiG1HuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 03:50:03 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 130DF61717
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 00:50:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1658994601;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=9eK2YyyBatGGNk2Z0mtnha3xmk64bToJtZ1mLMzdB7s=;
+        b=WWGWpRJipWezrw7Xy0LSFIxE3cVwUssfXtO3oasDzBSZxJyHKIZyq3etUtXIKCIXCOXHNY
+        4bxWZNSx5fqlTwDrjyPHLZz8M0Y3Ks4SuijFG342FleUMAv9rLe+zZxe/vFWqSFWhb0QFl
+        4YTJSewweZP8q80+a5Bm7W+sE6N1A1A=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-561-b0fEx_CuO5aRP8k7B_ob4A-1; Thu, 28 Jul 2022 03:49:58 -0400
+X-MC-Unique: b0fEx_CuO5aRP8k7B_ob4A-1
+Received: by mail-wr1-f70.google.com with SMTP id t13-20020adfe10d000000b0021bae3def1eso155544wrz.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 00:49:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=fCUzkrrVti+DuQ9YZ66uDbjkm2O9p7N93LSf/4Y1rqw=;
-        b=SoF3jMS9ReCdatOQF5X/5iuMwE/PBTj/y5DDtr28YY2o9thWPGxvGXIX4Spxh4C1I/
-         vukfgeYpF9xmF8vct5NOO48o6t/l1fgGdNgPBKpJGyN/f0YR8O4nA2J/SJInXr1AcxM8
-         xvt9PuKpACX+qHOT/r91VPMcez94NqE1pKHO60qA3hXHaQ552RC4/MlzMjPiuPTHWixe
-         zh6f1brxtOIrv0nQyxEGEEpkwD4v2Y6/pZ42KDk4DEYyKaXcuCEaX6TdsrWPafM1uJfs
-         LdklpjTJmiSEWTu3tJbpjWMe79y9IlKnl4w6H72p271pKoc0ZdHtBJcTQWR3Hwcq2PA1
-         83OQ==
-X-Gm-Message-State: AJIora9SvLYc9TLyn3nsIRHATqRfJLhsyqQeaqLY7ygkSKjFdfOM7fAa
-        SagcRZZE706ArhIMMOORzHDm6Q==
-X-Google-Smtp-Source: AGRyM1uXGhPeR606LsJssvTDJlC4T3k/CuVwOkQjtbV4yuWokpohwSrNa+3v0DyoVMsl7lRB4A4mrQ==
-X-Received: by 2002:a05:6512:220a:b0:48a:7b14:d51c with SMTP id h10-20020a056512220a00b0048a7b14d51cmr8647513lfu.267.1658994495906;
-        Thu, 28 Jul 2022 00:48:15 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id b3-20020a056512304300b0048a7ebb3151sm68149lfb.181.2022.07.28.00.48.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 00:48:15 -0700 (PDT)
-Message-ID: <95cbcda8-d1bc-376c-b338-92d1b923f04a@linaro.org>
-Date:   Thu, 28 Jul 2022 09:48:13 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-Content-Language: en-US
-To:     Maximilian Luz <luzmaximilian@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=9eK2YyyBatGGNk2Z0mtnha3xmk64bToJtZ1mLMzdB7s=;
+        b=IJJuv/aCVgyJHQYYP40zMfCdzV0rD8RTHKzfEp9q+Q/FnajNLvzhIPCueHOEevB5ON
+         l3NCRfja53vVa8LX1r8SNOqn/v1nYM68azHes4jgvlGphp+D/gcIHzMbjZVTEBf72ZCj
+         7TiBF+D1udqHHRdtlvGTdkpi0oFzmoWqGafocEmrSQ/uAsjyL1gV+bx4Ff9Vhr1ayIbc
+         pslotg+hOp2Zlbq5uKbQpHgogYOP+MDrHGEMyRFh7urQdzWmkflS5bgGc9OBYt8CXTlK
+         ZELeE6enPbFZ0VUdJxdKWw+q4pJzJdAiPA66Dwv5UqCPmMqaDxQkpu1He2jA4UJb0pQ/
+         fD/g==
+X-Gm-Message-State: AJIora89J3M5BOmtdT2aA/6OsA1vPUcDYyJP4MMg6IIS0Z0IoksOh6mw
+        4pNxFzsEQrYolBMJ+9XedIGHiJEcTUcjHeWWJFmrdc8uJePmwHd8ITe78tBqXiGjw9WReBIQDnY
+        gcFvQDnsIq7aX+PrTIHSTOQ==
+X-Received: by 2002:adf:d1c2:0:b0:21e:6dd4:5ece with SMTP id b2-20020adfd1c2000000b0021e6dd45ecemr15961859wrd.119.1658994597340;
+        Thu, 28 Jul 2022 00:49:57 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1sZVjvhgrjDvwEsjcaTQK0ct/rZFtxkAxhfiEtpVH5WFjDRl1aiMSrCve4zLcCVqd+A8JNELw==
+X-Received: by 2002:adf:d1c2:0:b0:21e:6dd4:5ece with SMTP id b2-20020adfd1c2000000b0021e6dd45ecemr15961839wrd.119.1658994597117;
+        Thu, 28 Jul 2022 00:49:57 -0700 (PDT)
+Received: from gerbillo.redhat.com (146-241-104-164.dyn.eolo.it. [146.241.104.164])
+        by smtp.gmail.com with ESMTPSA id bk9-20020a0560001d8900b0021d76a1b0e3sm234618wrb.6.2022.07.28.00.49.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 00:49:56 -0700 (PDT)
+Message-ID: <87d8327b85ae54e4c9d080d0ef6645eda6f92e98.camel@redhat.com>
+Subject: Re: [PATCH v2 2/2] net: cdns,macb: use correct xlnx prefix for
+ Xilinx
+From:   Paolo Abeni <pabeni@redhat.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <20220723224949.1089973-5-luzmaximilian@gmail.com>
- <e88d1036-dc58-3fc8-c388-edba9b2d62a7@linaro.org>
- <87c19c5a-d7f4-7183-1322-f62267e01b3b@gmail.com>
- <11e5c369-c0da-7756-b9e2-ac375dc78e9d@linaro.org>
- <2e522bcd-5d55-e87f-126c-514f5edaa560@gmail.com>
- <53a602e2-0590-6c6a-597b-fd55faa3a4ab@linaro.org>
- <acd7b231-3167-e35c-5cdf-8b3127a7d710@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <acd7b231-3167-e35c-5cdf-8b3127a7d710@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Harini Katakam <harini.katakam@xilinx.com>,
+        Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+Date:   Thu, 28 Jul 2022 09:49:55 +0200
+In-Reply-To: <20220726070802.26579-2-krzysztof.kozlowski@linaro.org>
+References: <20220726070802.26579-1-krzysztof.kozlowski@linaro.org>
+         <20220726070802.26579-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.4 (3.42.4-2.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2022 15:00, Maximilian Luz wrote:
->>> Then again, if you prefer to name everything based on
->>> "qcom,<device>-<soc>" I don't have any strong arguments against it and
->>> I'm happy to change that. I just think it will unnecessarily introduce
->>> a bunch of compatibles and doesn't reflect the interface "versioning"
->>> situation as I see it.
->>
->> Why bunch? All devices could bind to one specific compatible, as they
->> are compatible.
-> 
-> Ah, I think I misunderstood you there. I thought you were advocating for
-> creating compatibles for each SoC just because it's a new SoC and things
-> might be different. I'm not at all against naming this something like
-> qcom,tee-uefisecapp-sc8180x then using that on all platforms that work.
-> I just didn't like the idea of having a bunch of different
-> qcom,tee-uefisecapp-<soc> pointing to the exact same thing without any
-> difference at all.
+Hello,
 
-You start with one specific compatible and if needed later either add
-more specific upfront (qcom,sc8280x-tee-uefisecapp,
-qcom,sc8180x-tee-uefisecapp) or as entirely new one if it is not compatible.
+On Tue, 2022-07-26 at 09:08 +0200, Krzysztof Kozlowski wrote:
+> Use correct vendor for Xilinx versions of Cadence MACB/GEM Ethernet
+> controller.  The Versal compatible was not released, so it can be
+> changed. 
 
-> 
->>>>>>> +
->>>>>>> +required:
->>>>>>> +  - compatible
->>>>>>> +
->>>>>>> +additionalProperties: false
->>>>>>> +
->>>>>>> +examples:
->>>>>>> +  - |
->>>>>>> +    firmware {
->>>>>>> +        scm {
->>>>>>> +            compatible = "qcom,scm-sc8180x", "qcom,scm";
->>>>>>> +        };
->>>>>>> +        tee-uefisecapp {
->>>>>>> +            compatible = "qcom,tee-uefisecapp";
->>>>>>
->>>>>> You did not model here any dependency on SCM. This is not full
->>>>>> description of the firmware/hardware
->>>>>
->>>>> How would I do that? A lot of other stuff also depends on SCM being
->>>>> present (e.g. qcom_q6v5_pas for loading mdt files) and I don't see them
->>>>> declare this in the device tree. As far as I can tell, SCM is pretty
->>>>> much expected to be there at all times (i.e. can't be unloaded) and
->>>>> drivers check for it when probing via qcom_scm_is_available(),
->>>>> deferring probe if not.
->>>>
->>>> It seems this will be opening a can of worms...
->>>
->>> Indeed.
->>>
->>>> The problem with existing approach is:
->>>> 1. Lack of any probe ordering or probe deferral support.
->>>> 2. Lack of any other dependencies, e.g. for PM.
->>>
->>> I'm not entirely sure what you mean by "lack of probe deferral support".
->>> We have qcom_scm_is_available() and defer probe if that fails. So
->>> deferral works, unless I'm misunderstanding something.
->>
->> And how do you differentiate that qcom_scm_is_available() failed because
->> it is not yet available (defer probe) or it is broken and will never
->> load? All regular consumer-provider interfaces have it sorted out.
-> 
-> Fair point. By shifting that to device links you'll at least know what
-> it's waiting for and the driver won't attempt to probe until that's
-> resolved. But your question applies to that then as well: How do you
-> differentiate between the device link or supplier being broken somehow
-> and the supplier being just not ready yet?
+I'm keeping this in PW a little extra time to allow for xilinx's
+review.
 
-For example like tegra_bpmp_get() is doing.
+@Harini, @Radhey: could you please confirm the above?
 
-Best regards,
-Krzysztof
+Thanks!
+
+Paolo
+
