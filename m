@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D80584648
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 21:33:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF0D584664
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 21:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229728AbiG1Szg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 14:55:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50482 "EHLO
+        id S230007AbiG1TIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 15:08:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbiG1Szf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 14:55:35 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B816205F4;
-        Thu, 28 Jul 2022 11:55:33 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id w16so1399866ilh.0;
-        Thu, 28 Jul 2022 11:55:33 -0700 (PDT)
+        with ESMTP id S229696AbiG1TIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 15:08:21 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D4F07647C;
+        Thu, 28 Jul 2022 12:08:20 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id 125so2094650iou.6;
+        Thu, 28 Jul 2022 12:08:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc;
-        bh=ygDDZAK0kTm4OImfggTWOYy2/qhBCyhklb1w0zcbi+A=;
-        b=LpUDLKY6jJ+yHbz0aFvKI15low+3tBoqfmpzZ4IWrNOBHxaykVvkU71bRS2zqBVlbE
-         Z032GZup287uSR5NDUrZiHC/2QqFZ8n6aXQY7O3iPfrj1aWnu8PqZFW6vCA2ESD6J6FX
-         kCG3OLc3De33kv6CkZLeJPDmugV7QIEbX6ehNuY/3TTLYhJuJvaVf8MJ4dIAHA6NEAUC
-         2pM2bi7/gxXlwyNPHBAPPanytQiRqgD8CKvXQRU/Y4TydM/Ru10ma6S2VjHwtgCebh7u
-         wjtq+trrqy+1pyO2v8EgC+mom9KnJGZHFVnKeCu1YfaDa1i0f1XRtZG7/JSSZwJytKCx
-         VGqw==
-X-Gm-Message-State: AJIora9YHENjtHNl+PFSx4NpiMVzgCaulG1xaSCynhvn+nBXG7WXwtQ4
-        VXf4sWCdyOIkBGYXkyN+4Q==
-X-Google-Smtp-Source: AGRyM1uOV94o6o/LRv0RKpi+rsYtCnrOr5PU5H4FUNef114yiY6UBYAXaWwsZY+vQPqxo1yziudhzg==
-X-Received: by 2002:a92:3603:0:b0:2dd:f09d:81f1 with SMTP id d3-20020a923603000000b002ddf09d81f1mr25163ila.246.1659034532806;
-        Thu, 28 Jul 2022 11:55:32 -0700 (PDT)
+        bh=v9wHqg56H+uoOIrL9eJ984x2nTDhBoLucd/ILwvblVU=;
+        b=T0fc9j0+VxsRROMpe9+vPg9P8OQ7T3PjszvsAVptuQCGyXQpEkheWbEFFc7JybGuS+
+         ZR0ie+ga8tVbbzbLunzqYz+5phDgU3o/OyV4M/1rgBZC0rhQMre6ULTRBzTfLZY9mSMY
+         57myQI1Lsz4LPFNnKAuAepXshRH+/egr0oOu6LW+fw/kHwrJbjAnF5GJWzfxmDcHWmdb
+         I64qJYtgKfOL/CQ3oV4wmknsqfg+Pdl9AxTIvrBGGglEJuefSP8vQOuiBn03cOxLxe7V
+         c/Sa5XKdFeeq//vavFAbBL55tFaru8w2Gt9/QQHTl59aV8osfB+biviqmWDnReSBoVN6
+         GXWg==
+X-Gm-Message-State: AJIora9rN0iC0pJiHf9VhNJ4IXuuAQ3LbOogqtgqqeJnVHwVh5sEMs14
+        18M8gIXpjgdHfm8TEdb1Lg==
+X-Google-Smtp-Source: AGRyM1sVNmY9MfcHctmxos7tipWmYpxdT/kEnj+TXY/uecZIlKiMd68IQMb2q4jLInK0H3OXwkRL1g==
+X-Received: by 2002:a05:6638:3282:b0:33f:6ed0:4c83 with SMTP id f2-20020a056638328200b0033f6ed04c83mr105725jav.96.1659035299715;
+        Thu, 28 Jul 2022 12:08:19 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.248])
-        by smtp.googlemail.com with ESMTPSA id ay6-20020a5d9d86000000b0067bf99ea25bsm641820iob.44.2022.07.28.11.55.31
+        by smtp.googlemail.com with ESMTPSA id l16-20020a92d8d0000000b002dd0cb24c16sm626896ilo.17.2022.07.28.12.08.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 11:55:32 -0700 (PDT)
+        Thu, 28 Jul 2022 12:08:19 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>,
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: dma: arm,pl330: Add missing 'iommus' property
-Date:   Thu, 28 Jul 2022 12:55:11 -0600
-Message-Id: <20220728185512.1270964-1-robh@kernel.org>
+Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: mailbox: arm,mhu: Make secure interrupt optional
+Date:   Thu, 28 Jul 2022 13:08:10 -0600
+Message-Id: <20220728190810.1290857-1-robh@kernel.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -57,30 +57,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pl330 can be behind an IOMMU which is the case for Arm Juno board.
-Add the 'iommus' property allowing for 1 IOMMU per channel.
+The secure interrupt is only useful to secure world, therefore for NS
+users it shouldn't be required. Make it optional.
+
+This fixes a warning on Arm Juno board:
+
+mhu@2b1f0000: interrupts: [[0, 36, 4], [0, 35, 4]] is too short
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/dma/arm,pl330.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ Documentation/devicetree/bindings/mailbox/arm,mhu.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/arm,pl330.yaml b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-index 2bec69b308f8..b9c4bee178ae 100644
---- a/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-+++ b/Documentation/devicetree/bindings/dma/arm,pl330.yaml
-@@ -55,6 +55,11 @@ properties:
- 
-   dma-coherent: true
- 
-+  iommus:
-+    minItems: 1
-+    maxItems: 8
-+    description: Up to 1 IOMMU per DMA channel
-+
-   power-domains:
+diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+index bd49c201477d..d9a4f4a02d7c 100644
+--- a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
++++ b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+@@ -57,6 +57,7 @@ properties:
      maxItems: 1
  
+   interrupts:
++    minItems: 2
+     items:
+       - description: low-priority non-secure
+       - description: high-priority non-secure
 -- 
 2.34.1
 
