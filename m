@@ -2,140 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E050E583E0F
+	by mail.lfdr.de (Postfix) with ESMTP id 49AFF583E0D
 	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 13:50:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235551AbiG1LuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 07:50:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54938 "EHLO
+        id S236167AbiG1LuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 07:50:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236911AbiG1LuT (ORCPT
+        with ESMTP id S236520AbiG1LuT (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 07:50:19 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1D89CE04
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:50:16 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id b21-20020a05600c4e1500b003a32bc8612fso912898wmq.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:50:16 -0700 (PDT)
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C5D812617
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:50:18 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id z25so2486409lfr.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:50:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=references:user-agent:from:to:subject:date:in-reply-to:message-id
-         :mime-version;
-        bh=FxwqpjhD9/gLaQrnTT9TOXORIlpv5bjNu3/8g5til8A=;
-        b=nTEylWFWV5aRYXQnjm2kiRjVJlk7CEQjzrUBHIDJnxn+cY0Vj8Q7ezPN7FgIiJK/+v
-         ine2IGE+ebrioKCcdP9pPI+ICu9WtJvFA+PUXlNmr8SoGEJwVEgcyeHUlpHnXNjI/HmY
-         pLvlZNwoi1m0h5/WHucjBDABR1SPLS8arubysiloaSV92rt9yiaiMG3l9yCH5l/aQ3/9
-         s+IwJzB984E9vKSpdLwuxLICOc1sgE4UtWWOy3UrfagJPHpMHyDvMoK4x3Cyq1tORPeE
-         gbi0d45zdtr7iycIpE5AhCbM8wEKpE9OrycAhoQLkNBUjTUoAZMsEcibmKdyhO0fjDjX
-         21yw==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7xpPHdGqf/twjarqLThIKnxxVR76bJ0+Y4hOdD6FTH0=;
+        b=u9RxphfEhlesMJTgJ2DTHDXp2Is+k+Yy6xHKD/10S8uOdq7uzCt1W2XYvdxDzhXztZ
+         c33fK2uiiX/zGMz54CexpA3Sllzj/9EaYd7ZV0sbG7JTAaljvjGU1o0APd4Tf+oiOuRi
+         dHLO3+QXs45GLqryQq2oN147NTNMGzEGq8WTpGHCo77FZDgC80+mgbvsjE0aUcYNpe3Z
+         Oc+XaUdhjtuENe6nqBnYhxu2KGzzP0NESPHglrlcTK54eC5hP5bC/NH54ZMrMawjUz1U
+         gXwELDJTyehwB9Jv3q9JOyyXsvKF9aCL8TfoPxcXR2sXRYnOHNTbBtVazD49FNOqrXJI
+         iOXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:user-agent:from:to:subject:date
-         :in-reply-to:message-id:mime-version;
-        bh=FxwqpjhD9/gLaQrnTT9TOXORIlpv5bjNu3/8g5til8A=;
-        b=oP6yIUoS0/CInVqoXLjaHJ7rwrresJCgfhmU0GpD1LAMwDqldHYx8mrtQL3frc1h1+
-         9ErpCuZr5sg3vamEHeLOvYTCH75bkehdMS6n3dmzVHpN8fYvbcd68mqtH1vPIoVU3k7N
-         4WObxRXqNo0Cv6xMcnPSxg8M4Aq/B7cod07aZ+aN/CJkvR7EBoDtq5nEKlnkoFlxcpYT
-         Fu43xBiIZIO7NhVS+03cHI4lg2dGh/t98PP2TkPzB+rMuAVN5JsTaGbp7YAijPImuiqL
-         VdIJYhi8yHxV2GUruY34RyTJmaTd3XLBdG0m1LtwjzZDLhnTqL7zMMG9k2uvvbUuLaxL
-         mZQw==
-X-Gm-Message-State: AJIora/cYO986mo3s77oAeCZtp7ZLwofajNEdUKmQlODcaMJ2eCXn7lW
-        LU6ODxlN6KQBPAn0gs4TrZ6k4Q==
-X-Google-Smtp-Source: AGRyM1v0j0TKqWnZsAUWLQ3B4oY6N7U+8YetS6WSCx/Q+1LpG7g7jTIsnd/U+8JWEBXprZeoB78iww==
-X-Received: by 2002:a7b:c453:0:b0:3a3:1c65:ff97 with SMTP id l19-20020a7bc453000000b003a31c65ff97mr6046013wmi.180.1659009015199;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7xpPHdGqf/twjarqLThIKnxxVR76bJ0+Y4hOdD6FTH0=;
+        b=IsxkqleIXO8wXZVeyYqSzY3lq96Lm/LR6Yf1TRtqbmCwoJCFc8jpty5UKgz5gykUBQ
+         PVfy+frPgzFo4AjlZn1MP5ufMe/xhOL2nbQwTTzghzorLSagKKuf+jiiso6cbPaJs8Ju
+         Qy9u4JSBv0MhsigqHgFLbAsOJyOsIKDy5MjyBOhYN2NPmM9smuYew90fOtScCEUl9QHR
+         YBkHM/M1pp+yLXN0XKaO+iLdqF5nK0+zO+5OwWL5n0i0SQlX41/ey4qzfbiaKlksV6hy
+         6lmvKEKfUsAWDAgkydtxNpJfgHivqRGfAsfkKPB2D3fQt+iJS9KBf9awaJDXvN5ar/eA
+         2V/w==
+X-Gm-Message-State: AJIora+zOfRYPOprMKenBqavGbMURIHDVSyBQu8NZ3dLiZZ0bqjS6vh/
+        KAbf2iyOKtvFJCsS/Z1Qwex+Vg==
+X-Google-Smtp-Source: AGRyM1v/NiequENiAj7aR5vCW9GvvpY8xU5xz6IyBFp6PvvVx8Zz8iDfP8Up4QHmcWvCQ7F+NHVtWQ==
+X-Received: by 2002:a05:6512:3403:b0:481:60ae:7ebc with SMTP id i3-20020a056512340300b0048160ae7ebcmr10262663lfr.358.1659009016201;
+        Thu, 28 Jul 2022 04:50:16 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id s6-20020a056512202600b0048a833a14edsm163625lfs.201.2022.07.28.04.50.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
         Thu, 28 Jul 2022 04:50:15 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id o5-20020a05600c510500b003a2d6c623f3sm5639135wms.19.2022.07.28.04.50.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 04:50:14 -0700 (PDT)
-References: <20220728054202.6981-1-yu.tu@amlogic.com>
- <20220728054202.6981-2-yu.tu@amlogic.com>
- <82e3fd36-df96-a555-4cea-47fabd26502b@linaro.org>
- <74cd833a-4773-eeb0-80aa-75ea1cdc093e@amlogic.com>
- <39395257-703b-a5e9-17c3-80f79f67fdc7@linaro.org>
- <ff582551-9661-4404-c00e-853bc60907cc@amlogic.com>
-User-agent: mu4e 1.8.6; emacs 27.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V2 1/3] dt-bindings: clk: meson: add S4 SoC clock
- controller bindings
-Date:   Thu, 28 Jul 2022 13:48:14 +0200
-In-reply-to: <ff582551-9661-4404-c00e-853bc60907cc@amlogic.com>
-Message-ID: <1jbkt9focq.fsf@starbuckisacylon.baylibre.com>
+Message-ID: <76ed8999-c211-f8ea-c70c-21fddd75a896@linaro.org>
+Date:   Thu, 28 Jul 2022 13:50:14 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 2/3] ARM: dts: qcom: msm8960: add references to USB1
+Content-Language: en-US
+To:     Shinjo Park <peremen@gmail.com>
+Cc:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220728111635.30540-1-peremen@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220728111635.30540-1-peremen@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 28/07/2022 13:16, Shinjo Park wrote:
+> Use the same USB definition as qcom-apq8064.dtsi, tested on Casio GzOne.
+> 
+> Signed-off-by: Shinjo Park <peremen@gmail.com>
+> Reviewed-by: David Heidelberg <david@ixit.cz>
 
-On Thu 28 Jul 2022 at 18:19, Yu Tu <yu.tu@amlogic.com> wrote:
+Thank you for your patch. There is something to discuss/improve.
 
-> On 2022/7/28 18:09, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->> On 28/07/2022 12:05, Yu Tu wrote:
->>> Hi Krzysztof,
->>> 	Thanks for your reply.
->>>
->>> On 2022/7/28 16:41, Krzysztof Kozlowski wrote:
->>>> [ EXTERNAL EMAIL ]
->>>>
->>>> On 28/07/2022 07:42, Yu Tu wrote:
->>>>> Add new clock controller compatible and dt-bindings header for the
->>>>> Everything-Else domain of the S4 SoC.
->>>>>
->>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>>>
->>>>
->>>>
->>>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>>> index c1abc53f9e91..f872d0c0c253 100644
->>>>> --- a/MAINTAINERS
->>>>> +++ b/MAINTAINERS
->>>>> @@ -1775,6 +1775,7 @@ F:	Documentation/devicetree/bindings/clock/amlogic*
->>>>>    F:	drivers/clk/meson/
->>>>>    F:	include/dt-bindings/clock/gxbb*
->>>>>    F:	include/dt-bindings/clock/meson*
->>>>> +F:	include/dt-bindings/clock/s4-clkc.h
->>>>>       ARM/Amlogic Meson SoC Crypto Drivers
->>>>>    M:	Corentin Labbe <clabbe@baylibre.com>
->>>>> diff --git a/include/dt-bindings/clock/s4-clkc.h b/include/dt-bindings/clock/s4-clkc.h
->>>>> new file mode 100644
->>>>> index 000000000000..b686c8877419
->>>>> --- /dev/null
->>>>> +++ b/include/dt-bindings/clock/s4-clkc.h
->>>>
->>>> Filename with vendor prefix, so:
->>>> amlogic,s4-clkc.h
->>> It's fine with me. It's mainly Jerome's opinion.
->> To clarify: I understand such naming might bring inconsistency, but we
->> want to bring some order in the bindings directories. They keep growing
->> and at some point the model names might start conflicting.
-> If Jerome agrees, I will change it according to your opinion and make
-> another edition.
+Similar problems as with previous patch - thread your patches and how
+did you get review?
 
-I'm aligned with Krzysztof on this. Please add the vendor prefix.
+> ---
+>  arch/arm/boot/dts/qcom-msm8960.dtsi | 32 +++++++++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
+> index 991eb1948..a32073d61 100644
+> --- a/arch/arm/boot/dts/qcom-msm8960.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
+> @@ -4,6 +4,7 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/clock/qcom,gcc-msm8960.h>
+>  #include <dt-bindings/clock/qcom,lcc-msm8960.h>
+> +#include <dt-bindings/reset/qcom,gcc-msm8960.h>
+>  #include <dt-bindings/mfd/qcom-rpm.h>
+>  #include <dt-bindings/soc/qcom,gsbi.h>
+>  
+> @@ -201,6 +202,37 @@ regulators {
+>  			};
+>  		};
+>  
+> +		usb1: usb@12500000 {
+> +			compatible = "qcom,ci-hdrc";
+> +			reg = <0x12500000 0x200>,
+> +			      <0x12500200 0x200>;
+> +			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc USB_HS1_XCVR_CLK>, <&gcc USB_HS1_H_CLK>;
+> +			clock-names = "core", "iface";
+> +			assigned-clocks = <&gcc USB_HS1_XCVR_CLK>;
+> +			assigned-clock-rates = <60000000>;
+> +			resets = <&gcc USB_HS1_RESET>;
+> +			reset-names = "core";
+> +			phy_type = "ulpi";
+> +			ahb-burst-config = <0>;
+> +			phys = <&usb_hs1_phy>;
+> +			phy-names = "usb-phy";
+> +			status = "disabled";
 
-It was mistake to omit the vendor prefix. Unfortunately, I don't think
-we can fix the old bindings now.
+status is the last property.
 
->
->> 
->> Best regards,
->> Krzysztof
->> .
+> +			#reset-cells = <1>;
 
+
+
+Best regards,
+Krzysztof
