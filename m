@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92F04583FB1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:13:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3BB6584027
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:39:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239072AbiG1NNR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 09:13:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51832 "EHLO
+        id S229513AbiG1NjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 09:39:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236688AbiG1NNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:13:16 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B172BDE
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:13:14 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id z13so1919160ljj.6
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:13:14 -0700 (PDT)
+        with ESMTP id S229763AbiG1Ni7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:38:59 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3116F54668
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:38:58 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id m12so2898799lfj.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:38:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=enxGsIYunokJEXPMGCaE1Z7pYtuICaBoKBXgeSWmWds=;
-        b=KnPMKWFuiKPiA/P4vExFpb/yxNCbd6RN4z9b8adLpTi0enYQdO1DCGVCgRRXSZC5Aq
-         lTQJRiT2rver/3W0QAvIbJasWNyvKj5jOGvuGSZ9L7ugDmmtuWPgZiRkF87i839pGiHN
-         FkI57ALLpz6VRvaVAVKLZI/FYYj/Upg4C8T+7DTj6WVkB+S3QGqYG8PplFXF2huPBcPn
-         K9SlgYUChDKy2D7mZm0hVnLB1AA+a84x2krOEb0Tr9YFTHd3ANjZxyWjAg+NisUbkwxR
-         dO4ju2jllwgx2GQNjQBZ8LCO+mRH00lr4tzjMTd3F3ByUX8UNDmfwCm6por0skChclOp
-         5RNQ==
+        bh=ZqCjcUOaHYpMK3vIolMQW2GaFwrdt4cxHDd7c/52CMQ=;
+        b=ewLyss8Nb7G0W+LpmWKJgwSy6iF0SIcra7vXZLYHlcF4iHW3NfGdjfTe6ld3oDseIr
+         Gb4DqETHEhjSc80YQTbNzo7IlvpCKFXDpp2R8hEZ22YRKiLIJDrffqAl3ZF2sfmZKird
+         TeFU3DFzHI3t0STrHl1iR3u68MOGlkA3Wsdti3tvdLTrIpaDMnfq4A7iIsY5jFzUmuv+
+         QJfrHyzXfoaReGhSW4qyj4WpybhFqitGt1ST+2FO4AUNnGhD4o5Jjil3Jk4aZmF8lrzq
+         AGje+yNMhAzM7t9Ez6eL7jP+mdzhruFFS7sXIz0GmZCZsqNaByJ9ZBUUjp3KZmVAMW5d
+         y3DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=enxGsIYunokJEXPMGCaE1Z7pYtuICaBoKBXgeSWmWds=;
-        b=44GGzTuE+sbiroVzyl2FnNLCz/sAm+CkJM8Ny/Y1wYvkeRpW5Rqu1hrg4ai+OJoyGD
-         0d6lOdpDjo4fga91fjt/+yIkmdwi5hW51m6pmsfn3QlkNrwCSRb7Zm6zF14sdqn7jM9g
-         heDaV00juj+NWoukCI0IUuHDhDMbGibmPH6/RFE5rSCU1ksHS9dMwDX2QNw8TJquCUc2
-         ADlm516sbNCflKDeko8djh25iGzqKjdIFtP5ZF16zW5jEoXdcsPlqpm5nKOK2pclC0vI
-         i9Rtl0zt1WUyfx2uI0GHeGKpijCpXV/7rncMNDIQuZjl+VGatwMWXU81uFjfd6F0oUpY
-         Ws/A==
-X-Gm-Message-State: AJIora9WYQhqyLLmxZcgg9QRdV0cFrwmBcHeXWuq1TqWRRXCajW3gvwq
-        ORlJ+jPD0zGubFbFWNmZFwrTsA==
-X-Google-Smtp-Source: AGRyM1ueWV1tfxf9FVvPLoM/8R4w9qdGdgVWOxGzoYQXpfgmjsGBeWL+qbYnT+dzT+zmLYVcaF3k7Q==
-X-Received: by 2002:a2e:5741:0:b0:25d:fcb1:d449 with SMTP id r1-20020a2e5741000000b0025dfcb1d449mr7752871ljd.333.1659013992945;
-        Thu, 28 Jul 2022 06:13:12 -0700 (PDT)
+        bh=ZqCjcUOaHYpMK3vIolMQW2GaFwrdt4cxHDd7c/52CMQ=;
+        b=E9zCWCOwgJ4Lj1TNe/vzSyeGmEJjN5smFI7YjM9FM4QL4ogQt6h4+A9wJzp9atKGR2
+         ymfB6oi0n9vU7URFYlWQxUQIYm0R0zWM1iS4R7LbSJ2jCsx4fYY0TXJksf+joo40WZZM
+         XhAdu/TPy9xV/OZUge6x8dHPEMZWZZ5/eesdS6C87+oVGwONhUQS5I4ciOuFBy0m/W2w
+         23h/VyieYzhKWmERYCkgd74qMepl/nxxUWIGCPcD9/0Ovaau0nJ1WWYyi6MedAgsLUf1
+         DhFOjijOY3dR4YrHfm2n6M5TsD6TTeJ/zZHgXGTCv/DCilf5BqVcdf+hZufVGvy2QJ6L
+         azvQ==
+X-Gm-Message-State: AJIora+r9redxGwwfGV8AK+Llf1YGQWGxVhWTADPdJcIlk5WQPsWEvoB
+        HBtdOr14ZKYkjyQEb7hMVDrbFgvqOaSHMA==
+X-Google-Smtp-Source: AGRyM1vetL+cadr2N2pQZG8ARVschWpr3CdgphGyJxgv9v1jMyZiff6pTMD5ePZ4SqHqdIwWHJY2xw==
+X-Received: by 2002:a05:6512:3a89:b0:48a:b9f5:be1d with SMTP id q9-20020a0565123a8900b0048ab9f5be1dmr2391240lfu.462.1659015536533;
+        Thu, 28 Jul 2022 06:38:56 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id d20-20020a193854000000b0048a757d314esm188383lfj.304.2022.07.28.06.13.11
+        by smtp.gmail.com with ESMTPSA id c6-20020a19e346000000b0048a82fec50esm197322lfk.305.2022.07.28.06.38.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 06:13:12 -0700 (PDT)
-Message-ID: <4e89e55b-9312-5525-974b-0a1dbe0b3dd1@linaro.org>
-Date:   Thu, 28 Jul 2022 15:13:11 +0200
+        Thu, 28 Jul 2022 06:38:56 -0700 (PDT)
+Message-ID: <6268ec8c-73f8-6517-c7a7-a6d3ede420ab@linaro.org>
+Date:   Thu, 28 Jul 2022 15:38:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v4 3/7] media: i2c: ov9282: Add ov9281 compatible
+Subject: Re: [PATCH v2 1/2] dt-binding: iio: time: add capture-tiecap.yaml
 Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@iki.fi>
-References: <20220728130237.3396663-1-alexander.stein@ew.tq-group.com>
- <20220728130237.3396663-4-alexander.stein@ew.tq-group.com>
+To:     Julien Panis <jpanis@baylibre.com>, jic23@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mranostay@ti.com
+References: <20220728125212.76728-1-jpanis@baylibre.com>
+ <20220728125212.76728-2-jpanis@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220728130237.3396663-4-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20220728125212.76728-2-jpanis@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,30 +75,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 15:02, Alexander Stein wrote:
-> According to product brief they are identical from software point of view.
-> Differences are a different chief ray angle (CRA) and the package.
+On 28/07/2022 14:52, Julien Panis wrote:
+> This commit adds a YAML binding for TI ECAP used in capture operating mode.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Signed-off-by: Julien Panis <jpanis@baylibre.com>
 > ---
->  drivers/media/i2c/ov9282.c | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/iio/time/capture-tiecap.yaml     | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
 > 
-> diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
-> index 8a252bf3b59f..c8d83a29f9bb 100644
-> --- a/drivers/media/i2c/ov9282.c
-> +++ b/drivers/media/i2c/ov9282.c
-> @@ -1113,6 +1113,7 @@ static const struct dev_pm_ops ov9282_pm_ops = {
->  };
->  
->  static const struct of_device_id ov9282_of_match[] = {
-> +	{ .compatible = "ovti,ov9281" },
+> diff --git a/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
+> new file mode 100644
+> index 000000000000..5d66df90ba5d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/time/capture-tiecap.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 
-The devices seem entirely compatible, so why you add a new compatible
-and not re-use existing?
+Still wrong file name.
 
-The difference in lens does not explain this.
+Do not ignore comments you received. Either you implement them or you
+keep the discussion going.
+
+
+> +
+> +title: Texas Instruments Enhanced Capture (eCAP) Module
+> +
+> +maintainers:
+> +  - Julien Panis <jpanis@baylibre.com>
+> +
+
+(...)
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        bus@f0000 {
+> +            compatible = "simple-bus";
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
+> +            ranges = <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>;
+
+A bit too many nodes. Just keep one, bus or soc. Look at other examples.
 
 
 Best regards,
