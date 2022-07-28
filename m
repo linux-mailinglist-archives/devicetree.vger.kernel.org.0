@@ -2,214 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14D4B584419
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 18:25:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1636A584429
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 18:32:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229793AbiG1QZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 12:25:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40280 "EHLO
+        id S232022AbiG1Qb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 12:31:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232310AbiG1QZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 12:25:39 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3D86C41D35;
-        Thu, 28 Jul 2022 09:25:38 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,198,1654527600"; 
-   d="scan'208";a="129476558"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 29 Jul 2022 01:25:38 +0900
-Received: from localhost.localdomain (unknown [10.226.93.50])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E494A40078D2;
-        Fri, 29 Jul 2022 01:25:33 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
-Date:   Thu, 28 Jul 2022 17:25:25 +0100
-Message-Id: <20220728162526.330542-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220728162526.330542-1-biju.das.jz@bp.renesas.com>
-References: <20220728162526.330542-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S233473AbiG1Qbn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 12:31:43 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD9171901E
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 09:31:36 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id m12so3613429lfj.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 09:31:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0Qrp1aC7ii4l+FdZJbsIzM1JU8ekTQaZIFWORS0YhME=;
+        b=yOYlyKgvos/05p6jY1ecXbckNmfg3Mp8u9eEL/FG5WoJQlIVSW4Wt15soFBSdg3DbK
+         MZKnX4UD8Mrs67cU8Lh7LWrVM7dFQJROTOP9oHyGKP3Q9U53B+VMZAKpJzu1rYwfKjqI
+         cuOfm0wia1rOHbe/CP6zk9qP1t6tcSsnPs4COz/C0QMizLpFO5kJpces4fvL1wXgQktW
+         gnlRfSt4JWCEjGkra3Xd+enNrD1CDHOSwCKFpUIz6E7X8TGhlY4fT6wgX8esaFHClmcV
+         /4TMxl2WogYqSfHjIYuzIS8IpJF1HtlLixOkRKWIAtuGxYunJODuyk6XquNYDzZeqpcP
+         cQSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0Qrp1aC7ii4l+FdZJbsIzM1JU8ekTQaZIFWORS0YhME=;
+        b=ihNKz8PUzjgTdGVNLggEXO0yFBnsbvE/CDHhRFCiwpuv78FmS1h6mtPLWiY49BX3XE
+         p4754shdLr/hKTmZUOF1lrX38ryki/2Ss9XZ1+1n7oM/eiNpEocBEArXVr3usK41ewJm
+         aooKeXVCeD6M5owZy6cK6J5V9NCHEckzg2uD5eKnWEQw7ZpYz4F2buEB1HsNUHD5qxIP
+         sh66RVH6TY6e6ZqUJhfIx4fb/fwCJl68bTnuzEwWghr/XGk81t2M0cSmQ2bdLNqEGS2G
+         weuvvmv0XMNmkaJanOxz6NbBaivWCYf770fpX9G5fpnBBgAe9hB5Kq/tC39Nfdo+lmBN
+         JBLQ==
+X-Gm-Message-State: AJIora/4su+EIIhxaYs6irc7kEkwFwJijwI/lscg0E6MahWJbs0IXtPE
+        zP1ikajncMyPPvLmDiF05JBwrA==
+X-Google-Smtp-Source: AGRyM1vQbNnKAzNUxSU0neBQyxzQa6mDwQFmjvcMDN7uctQh6GF1gf3S5rEkvDVrNvEcqXGUIUiupw==
+X-Received: by 2002:a19:e007:0:b0:481:c74:37b7 with SMTP id x7-20020a19e007000000b004810c7437b7mr10138465lfg.439.1659025894853;
+        Thu, 28 Jul 2022 09:31:34 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id m8-20020a195208000000b004894b6df9e2sm264175lfb.114.2022.07.28.09.31.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jul 2022 09:31:34 -0700 (PDT)
+Message-ID: <ea684136-bdbb-1b2c-35d3-64fdbd1d1764@linaro.org>
+Date:   Thu, 28 Jul 2022 18:31:32 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/2] dt-bindings: nfc: use spi-peripheral-props.yaml
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Ajay Singh <ajay.kathat@microchip.com>,
+        linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        Adham Abozaeid <adham.abozaeid@microchip.com>,
+        Mark Greer <mgreer@animalcreek.com>
+References: <20220727164130.385411-1-krzysztof.kozlowski@linaro.org>
+ <20220728151802.GA900320-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220728151802.GA900320-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the General PWM Timer (GPT).
+On 28/07/2022 17:18, Rob Herring wrote:
+> On Wed, 27 Jul 2022 18:41:29 +0200, Krzysztof Kozlowski wrote:
+>> Instead of listing directly properties typical for SPI peripherals,
+>> reference the spi-peripheral-props.yaml schema.  This allows using all
+>> properties typical for SPI-connected devices, even these which device
+>> bindings author did not tried yet.
+>>
+>> Remove the spi-* properties which now come via spi-peripheral-props.yaml
+>> schema, except for the cases when device schema adds some constraints
+>> like maximum frequency.
+>>
+>> While changing additionalProperties->unevaluatedProperties, put it in
+>> typical place, just before example DTS.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Technically, this depends on [1] merged to SPI tree, if we want to
+>> preserve existing behavior of not allowing SPI CPHA and CPOL in each of
+>> schemas in this patch.
+>>
+>> If this patch comes independently via different tree, the SPI CPHA and
+>> CPOL will be allowed for brief period of time, before [1] is merged.
+>> This will not have negative impact, just DT schema checks will be
+>> loosened for that period.
+> 
+> I don't think these need to go via the same tree.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v3->v4:
- * No change.
-v2->v3:
- * Added Rb tag from Rob.
-v1->v2:
- * Added '|' after 'description:' to preserve formatting.
- * Removed description for pwm_cells as it is common property.
- * Changed the reg size in example from 0xa4->0x100
- * Added Rb tag from Geert.
-RFC->v1:
- * Added Description
- * Removed comments from reg and clock
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 129 ++++++++++++++++++
- 1 file changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+Yeah, I wanted to express it that almost no impact is expected if it
+goes independently. I could be more explicit here.
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-new file mode 100644
-index 000000000000..e8f7b9947eaa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/renesas,rzg2l-gpt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L General PWM Timer (GPT)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
-+  (GPT32E). It supports the following functions
-+  * 32 bits × 8 channels.
-+  * Up-counting or down-counting (saw waves) or up/down-counting
-+    (triangle waves) for each counter.
-+  * Clock sources independently selectable for each channel.
-+  * Two I/O pins per channel.
-+  * Two output compare/input capture registers per channel.
-+  * For the two output compare/input capture registers of each channel,
-+    four registers are provided as buffer registers and are capable of
-+    operating as comparison registers when buffering is not in use.
-+  * In output compare operation, buffer switching can be at crests or
-+    troughs, enabling the generation of laterally asymmetric PWM waveforms.
-+  * Registers for setting up frame cycles in each channel (with capability
-+    for generating interrupts at overflow or underflow)
-+  * Generation of dead times in PWM operation.
-+  * Synchronous starting, stopping and clearing counters for arbitrary
-+    channels.
-+  * Starting, stopping, clearing and up/down counters in response to input
-+    level comparison.
-+  * Starting, clearing, stopping and up/down counters in response to a
-+    maximum of four external triggers.
-+  * Output pin disable function by dead time error and detected
-+    short-circuits between output pins.
-+  * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
-+  * Enables the noise filter for input capture and external trigger
-+    operation.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-gpt  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-gpt  # RZ/V2L
-+      - const: renesas,rzg2l-gpt
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#pwm-cells':
-+    const: 2
-+
-+  interrupts:
-+    items:
-+      - description: GTCCRA input capture/compare match
-+      - description: GTCCRB input capture/compare
-+      - description: GTCCRC compare match
-+      - description: GTCCRD compare match
-+      - description: GTCCRE compare match
-+      - description: GTCCRF compare match
-+      - description: GTADTRA compare match
-+      - description: GTADTRB compare match
-+      - description: GTCNT overflow/GTPR compare match
-+      - description: GTCNT underflow
-+
-+  interrupt-names:
-+    items:
-+      - const: ccmpa
-+      - const: ccmpb
-+      - const: cmpc
-+      - const: cmpd
-+      - const: cmpe
-+      - const: cmpf
-+      - const: adtrga
-+      - const: adtrgb
-+      - const: ovf
-+      - const: unf
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    gpt4: pwm@10048400 {
-+        compatible = "renesas,r9a07g044-gpt", "renesas,rzg2l-gpt";
-+        reg = <0x10048400 0x100>;
-+        interrupts = <GIC_SPI 270 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 271 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 272 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 273 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 274 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 275 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 276 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 277 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 278 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 279 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "ccmpa", "ccmpb", "cmpc", "cmpd",
-+                          "cmpe", "cmpf", "adtrga", "adtrgb",
-+                          "ovf", "unf";
-+        clocks = <&cpg CPG_MOD R9A07G044_GPT_PCLK>;
-+        power-domains = <&cpg>;
-+        resets = <&cpg R9A07G044_GPT_RST_C>;
-+        #pwm-cells = <2>;
-+    };
--- 
-2.25.1
 
+Best regards,
+Krzysztof
