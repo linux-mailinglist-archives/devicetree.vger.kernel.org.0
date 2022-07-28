@@ -2,169 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EA3D583E6B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 14:14:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90BCC583E7A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 14:17:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236632AbiG1MOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 08:14:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49304 "EHLO
+        id S237921AbiG1MRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 08:17:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236087AbiG1MOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 08:14:08 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E30FD6A4A2;
-        Thu, 28 Jul 2022 05:14:06 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id va17so2938655ejb.0;
-        Thu, 28 Jul 2022 05:14:06 -0700 (PDT)
+        with ESMTP id S236484AbiG1MRH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 08:17:07 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 727FB52DFB
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 05:17:06 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id p21so1739948ljh.12
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 05:17:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=scVy0siNZQpTUdZNL0fbzg1tkYynfpBNYNosy5mDXbo=;
-        b=L1d+CZwzgEYbBQfAzHvwLizC1GGkZ90spMFq1QdruzSr63GvGl1AcEs22RojeLnbsG
-         PXacIVMpW+xbG7m1aDuXWx3QO/0tbRAQ/apH+gzBDFpkrBobX4y4KnaUeV90QOk4HXAb
-         0eR4gOqBUTJvjQJfXZ/cwIo8U5l6/qp9TMyTgY4agh4epz+MweVcz0KHTkuGQV7EQmPQ
-         y5dTNk4+HBISwbw40woua8pheq+Lyk5TiP+07wcj6WEIjypXwcI9fefz0LaPjuY9Ks9G
-         AU+3hIpK0jhvaL+A7oYFWyDtqlnCkxhbZ2+/7RTU0MAD3ak3jAhpFqAXO5gKgTujzus7
-         R9uw==
+        bh=SAWlWlo5GyVcE2aVGpSKqxbu1YUmv/l8IRZI6iKroOU=;
+        b=BXCd3H2LIDg72mznLqVg5bCu0ydPWZ9vxSa+uouKxRIMrlEOyi6wiRbwpeI5l73R+O
+         zlzDvu0U4f3TAGJvsEHQySn6MI7MaiGA6Qb8sLyjf1i9cSbqdQuhf6KOar0piZKkqhIw
+         khEN2g/YMno9sKaTw/kbqVdlu20zUch89KBAAQNpMXN0kRs4ZspH8+Ngbw0EKao4z/Kh
+         zAX/YTf2W0j9XVAMQn324gViKVkCrjnyIDndRZApF7blfneG+w5miK8qw5KFvcbOmWFi
+         g+34B7gVdfQXWUMeVh3vfs23vDQOb7rhcgxrV+KI2FRmXNY4HS3QGPORkvgfFofZDGtu
+         mJdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=scVy0siNZQpTUdZNL0fbzg1tkYynfpBNYNosy5mDXbo=;
-        b=M4xtLAocg/NyfP6Gdhe54Y1d0C2bfOIBKB2t5HWNt3AD+PhSXLUK/CKpjPWmorInLM
-         gommY+E92jeySVuWjqc7p3rzGQO281+n4C5iKgJTK7qXl5RLyArK+fSPYhR7k2b3e7iX
-         cUl3dFpqXfKKjQTD+HnT8XvBFFccDlOPQSTkWjZla0U7CgwCXl8lzzM/9zy8HZBNG8I0
-         +gjo0iEYMYhx8LlkpgxLgUbXxusiuZJXGXVFG4IGhvvHU337ar4yyoohc8d+Dgnl8D+e
-         SDARMnLxc0rK3UIt7DoDWgkIBHdSYMahrhpe/68SJVSI8SqylEBJsB2YOS21khOsf8un
-         WX6w==
-X-Gm-Message-State: AJIora8pKzJo9NOsz4/v4Joe1TUmOOu1g+SND0+1lwDSaiz+t4QkzSnV
-        OKoamgNe6DnOczED6Zd6GyU=
-X-Google-Smtp-Source: AGRyM1v8wI8e/9YVypkA6YmuF9VMTC2v748xvT/qo96rRnB5rK/71JOzO0432SDZmmnY/cQxLEN2Jg==
-X-Received: by 2002:a17:907:2bf4:b0:72b:3336:ca9e with SMTP id gv52-20020a1709072bf400b0072b3336ca9emr20838356ejc.341.1659010445268;
-        Thu, 28 Jul 2022 05:14:05 -0700 (PDT)
-Received: from [10.31.0.4] ([37.120.217.162])
-        by smtp.gmail.com with ESMTPSA id c17-20020a17090618b100b006fee98045cdsm367373ejf.10.2022.07.28.05.14.04
+        bh=SAWlWlo5GyVcE2aVGpSKqxbu1YUmv/l8IRZI6iKroOU=;
+        b=Jn2RWI+74/11r84szt12mkBCEJpEi2sKoCWIwh3kbvnODtvsknLeoTywX759I6N/6L
+         opE1YxoygP9SEcbWj8qo3GqfoU3w9smACcJh2gTEX2fdc/ZxWfqrvLgHfpjoMViaeNFJ
+         qQZDm4GKoIQ9CfA+1wh3smDhUzNwzagxNuij9h907DoYAVy61U+/qeQWNpV9Uaoy2UDl
+         3RQN99S5V3q4FJhPhqVybUnXvoRCOwfUM8cC8cbuQtPAY6wBReExrHsYiVpJtmEKMR9E
+         MaiZ+ERqQcj+2gBIZKkkQ8fzU6IhT7r3Ku8XWk0Dx2HLYmk+hOfJO6o2NIy4SOOSeI2k
+         QaPA==
+X-Gm-Message-State: AJIora+1QRtyNQXpeZ6QlNwDgwgp9ZeisRXLpPXK22LEMlMXOzUnv/G6
+        nQNMPbVLA+bXK5kJkv815Ya6ww==
+X-Google-Smtp-Source: AGRyM1vI0ZKeUCG/yKFDtqirw8GvQ0KhX68RAHnYDcvxAh8pmNNCY3ml26WPiz6AEjbmu75zhj5hyA==
+X-Received: by 2002:a2e:a177:0:b0:25e:2d69:391b with SMTP id u23-20020a2ea177000000b0025e2d69391bmr699026ljl.60.1659010624826;
+        Thu, 28 Jul 2022 05:17:04 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id r4-20020ac25c04000000b0048a9ec2ce46sm169134lfp.260.2022.07.28.05.17.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 05:14:04 -0700 (PDT)
-Message-ID: <e9c6e5dd-928c-c227-eb03-708e6b3e1a26@gmail.com>
-Date:   Thu, 28 Jul 2022 14:13:58 +0200
+        Thu, 28 Jul 2022 05:17:04 -0700 (PDT)
+Message-ID: <5467d0ad-0285-f2ba-5366-68b0c30caed0@linaro.org>
+Date:   Thu, 28 Jul 2022 14:17:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v4 1/2] dt-bindings: display: panel: Add Novatek NT35596S
+ panel bindings
 Content-Language: en-US
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Molly Sophia <mollysophia379@gmail.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220723224949.1089973-5-luzmaximilian@gmail.com>
- <20220726143005.wt4be7yo7sbd3xut@bogus>
- <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
- <20220726154138.74avqs6iqlzqpzjk@bogus>
- <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
- <7284953b-52bb-37ac-fbe1-1fa845c44ff9@linaro.org>
- <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com>
- <20220727132437.pjob3z2nyxsuxgam@bogus>
- <CAC_iWj+Pn+h8k=fuDHzYwqD0g4m6jGRt8sCzcz+5+rYqvz9q4w@mail.gmail.com>
- <fd922f0f-99fd-55a3-a0b5-b62ad2dbfb45@gmail.com>
- <20220728113347.ver6argevzmlsc2c@bogus>
-From:   Maximilian Luz <luzmaximilian@gmail.com>
-In-Reply-To: <20220728113347.ver6argevzmlsc2c@bogus>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20220728023555.8952-1-mollysophia379@gmail.com>
+ <20220728023555.8952-2-mollysophia379@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220728023555.8952-2-mollysophia379@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/28/22 13:33, Sudeep Holla wrote:
-> On Thu, Jul 28, 2022 at 12:48:19PM +0200, Maximilian Luz wrote:
+On 28/07/2022 04:35, Molly Sophia wrote:
+> Add documentation for "novatek,nt35596s" panel.
 > 
-> [...]
+> Changes in v4:
+> - Correct numeric order of the items.
 > 
->>
->> I would very much like to avoid the need for special bootloaders. The
->> devices we're talking about are WoA devices, meaning they _should_
->> ideally boot just fine with EFI and ACPI.
->>
-> 
-> Completely agreed.
-> 
->>  From an end-user perspective, it's annoying enough that we'll have to
->> stick with DTs for the time being due to the use of PEPs in ACPI.
-> 
-> But have we explored or investigated what it takes to rewrite ACPI f/w
-> to just use standard methods ? Does it require more firmware changes or
-> new firmware entities or impossible at any cost ?
+> Changes in v3:
+> - Embed the documentation into existing one (novatek,nt36672a).
 
-Again, I'm not a Qualcomm employee. I would prefer it they'd use
-standard methods in the future. Rewriting the ACPI tables based on the
-information that we have is probably possible, but we'd again have to do
-this on a device-by-device basis, so why not just write a DT instead?
+This does not go to commit msg, but to changelog after ---
 
-Again, I'm not a Qualcomm employee. I would prefer it they'd use
-standard methods in the future. I cannot say why they are using PEPs and
-whether they can't just use something "normal". Rewriting the ACPI
-tables based on the information that we have is probably possible, but
-we'd again have to do this manually, on a device-by-device basis. So why
-not just write a DT instead?
+With this fixed:
 
-Apart from that they also unfortunately hard-code a lot of SoC specific
-MMIO addresses into their drivers, so, for each SoC, they essentially
-have their own ACPI HID even if the specific hardware interface hasn't
-changed. It's bad all around... and I don't like it one bit either.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> For me that is more important than just getting this one on DT. Because
-> if you take that path, we will have to keep doing that, with loads of
-> unnecessary drivers if they are not shared with any other SoC with DT
-> support upstream. We might also miss chance to get things added to the ACPI
-> spec as we don't care which means that we never be able to use ACPI on
-> similar future platforms even though they get shipped with ACPI.
-> 
-> It will be a loop where we constantly keep converting this ACPI shipped
-> platform into DT upstream. IMHO we don't want to be there.
 
-I fully agree with that. And that is also something that I fear.
-
-Unfortunately, the only way out that I can see is either Qualcomm
-changing its ways or us supporting ACPI PEPs, doing hard-coded register
-addresses based on ACPI HIDs, and converting a lot of existing drivers
-written for DT/OF to support ACPI. I personally would prefer if we'd do
-all that and hope that we can one day support PEPs.
-
-Once we do, we'd at least "only" have to add the needed MMIO definitions
-for drivers via HID matches and write a PEP driver for that specific SoC
-(which would then be similar to regulator or clock controllers). Still
-some work but a lot less than having to write DTs for each and every
-possible model.
-
-As much as I'd like to support and work on that, I'm doing this in my
-free time, and this sounds like a big undertaking. At the moment, my
-efforts are focused on making the Surface Pro X play (relatively) nice
-with Linux (via DT). I had thought about this, but my time to work on
-this is unfortunately limited. You'd probably have to ask e.g. the
-Linaro folks for help and input (some of which, e.g. Bjorn Andersson
-are currently working on DTs for WoA devices), and also convince the
-ACPI maintainers.
-
-Regards,
-Max
+Best regards,
+Krzysztof
