@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88BB7583A3B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 10:19:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9CCE583A3D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 10:20:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233818AbiG1IT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 04:19:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35408 "EHLO
+        id S235111AbiG1IUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 04:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235104AbiG1ITz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 04:19:55 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F39F561DA6
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 01:19:53 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id p10so1739106lfd.9
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 01:19:53 -0700 (PDT)
+        with ESMTP id S235049AbiG1IUI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 04:20:08 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F82E10C
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 01:20:06 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id w15so1731586lft.11
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 01:20:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wiwsOcAFhcP1YnC2hDH+OWeVsqfZDXQ4dmGIGapgvWw=;
-        b=c4pF8+u1o2Agi9MOgr9rwnue9oIMJDicYl7ZHap2pJpW52sCqIIh9R99O8Z16XtgsS
-         2Rh3ZNm+HjG1Hg/sN1Eet02XeBSScS9wQaX4J2svABt84rSTOkFO3cJDR8dSKC+GgsZW
-         xhhmWpTL6Q/oGWKFFkAjDIx5GPw/jyr3AoaB5uE9HvIXVeFYZbBd/MQ8Y0gaWw8JzoIT
-         BLjwX3u5JqUl1ftRXBFiBdJC9DDj++z7clnBubwhHKHYLGBhazKEexjG2rSttU95+Lox
-         59BZDa5jHz5IXnpTS+TPiL7OKWuRr8L5hiGJxCroJhrNiZ7EvzrF1hD3NDKzK8OgdQo5
-         Jiyw==
+        bh=DKzfCCCnKo3KEpIcC/EIkk48aTnRNunOV51qSF2JIg0=;
+        b=K11/htmnd+5P5N6e+/fDuUA5yhnkoDDKjWZWWoVGByVs2g2geIP1E8LLgQd0WDPlFv
+         BOd0ICk2MiuKnh6oigxU+LcCtJPOdkHEe5LK9J6SXtAHsHSJf1VHI+pQQOtx47QDJFGK
+         6PQCzsyKjjDDAAEfUpFDURAtS5zIKiEoXR82uApJdhQxeIzXoKds77fw+mW2fQqgPR/L
+         hAzWH5Aqgr6R6GMS7gij/ZnJJ7A3aSJXdU/7BwXuIsKHAi94O+C6fwCXWtLIP8tG0hN8
+         xnXZTfDVm04wBX+6gnpio4o4N81z6EVKRE1iH2LG/V407ObYmCu9aOFBd47LSQycxIyu
+         Cjkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=wiwsOcAFhcP1YnC2hDH+OWeVsqfZDXQ4dmGIGapgvWw=;
-        b=QYi0pV7xVHMTZwR5v6iWH0v/GPpTuKz1oi9bekzPAPc3H7mUIfnUdVVyx1xbAiXR9E
-         AF0Yz+RdIvp4DgwsJPpsTB6Sb6A7mCfvoV1mUTeO3t2EqC0qTdUpxdEhdolMqvH0Cj7S
-         0OfdmzmmdtNCLMjhp1LfxK26tCI+AvhwzBlpDGoNNuu77avkKAGo5OA/8C5OK/5R5XFn
-         zKKMvFw8Ta6OLxExhJznPibppu1tT2bZ0njgHDlzaavwWyHiR8oR3ooDozvHPpPR0eEG
-         KNY1iObDBIeTVkcg966V3zJ5CIsO05UgXB5GAYwB4vvFBUVrgh5WBzQkbSPbzdf4EFGD
-         Dh5g==
-X-Gm-Message-State: AJIora+ZoEcYwbmqBXn9Z/gp6yykrD+ojas4qKsSnreItppnW/5p7SpH
-        zY8/eXX2UMfSFSMoAwpjc0Cu9g==
-X-Google-Smtp-Source: AGRyM1vHMBaq7eMyF4IxAZR17D6EnbhMcJWzOBt6bvWihTeFHLQMhm3g7u4o81ewydTQ9GvMVb2lcg==
-X-Received: by 2002:a05:6512:2350:b0:48a:794b:382 with SMTP id p16-20020a056512235000b0048a794b0382mr8955820lfu.185.1658996392245;
-        Thu, 28 Jul 2022 01:19:52 -0700 (PDT)
+        bh=DKzfCCCnKo3KEpIcC/EIkk48aTnRNunOV51qSF2JIg0=;
+        b=dpwA/WJYiPIzcujNOulDjWUNTfl4Hv+b138uHsgWaH7/tdrBVT8D1/mayB+YyUuqCg
+         U/o3V6xzLoUX54xkFTKqmpKhe+0txczETXEowaMk/94r2bSR8YbKTiIMkb0mek4Ufq9A
+         C+xCTzuPVOde7jeUfdTrbEMxx82DShIfGcUovNZgLI1No7fiX9cB5M+0YuO7sF7iiv6i
+         EyL35CT7tJx4NCnqXKRLMrxBDicJC1jAtcTJhXJD10ZM76NYvHbGnRCc2Wlg2h4rKCOk
+         EGnhRNBU1QvILqBk1MCBoavm2DS8NoWuuJiLamxBNIUWcN+IpF1w4dbdjE9+uhvrDVQQ
+         VD6g==
+X-Gm-Message-State: AJIora9mFldByCSk6r1AoMh7F/vpndY92eMvLXYkrVmczcZHUHp++JUL
+        KTz967YA8myD4jXQV2l0gS6f9g==
+X-Google-Smtp-Source: AGRyM1tYjlAr/l8HMjRK6lch+iSSPXvv9ggcKMcsJFEUii6FD895YJnlkl/W/UOFIsjL+fWjuSfolg==
+X-Received: by 2002:a05:6512:a84:b0:48a:556d:5539 with SMTP id m4-20020a0565120a8400b0048a556d5539mr9947898lfu.6.1658996404853;
+        Thu, 28 Jul 2022 01:20:04 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id i29-20020ac25b5d000000b0048910301774sm78550lfp.307.2022.07.28.01.19.50
+        by smtp.gmail.com with ESMTPSA id a1-20020a19ca01000000b00488d0e38283sm84816lfg.153.2022.07.28.01.20.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 01:19:51 -0700 (PDT)
-Message-ID: <d78826d8-381a-f2aa-aad4-34f46dd51bf3@linaro.org>
-Date:   Thu, 28 Jul 2022 10:19:50 +0200
+        Thu, 28 Jul 2022 01:20:04 -0700 (PDT)
+Message-ID: <9f8bebcc-fc09-cbdf-aa62-3d0012df662a@linaro.org>
+Date:   Thu, 28 Jul 2022 10:20:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 5/6] clk: samsung: exynosautov9: add fsys0 clock support
+Subject: Re: [PATCH 6/6] clk: samsung: exynosautov9: add fsys1 clock support
 Content-Language: en-US
 To:     Chanho Park <chanho61.park@samsung.com>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
@@ -68,16 +68,15 @@ Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
         linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20220727060146.9228-1-chanho61.park@samsung.com>
- <CGME20220727060612epcas2p1e79b8d8bfb9e8a3ea351c4dbd7c42b7d@epcas2p1.samsung.com>
- <20220727060146.9228-6-chanho61.park@samsung.com>
+ <CGME20220727060612epcas2p47e21a2545b686d536de47518f7b5c199@epcas2p4.samsung.com>
+ <20220727060146.9228-7-chanho61.park@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220727060146.9228-6-chanho61.park@samsung.com>
+In-Reply-To: <20220727060146.9228-7-chanho61.park@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,11 +84,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27/07/2022 08:01, Chanho Park wrote:
-> CMU_FSYS0 block provides clocks for PCIe Gen3 1 x 4Lanes and 2 x 2
-> Lanes.
+> CMU_FSYS1 provides clocks for USB(2 x USB3.1 Gen-1, 2 x USB 2.0) and
+> mmc. For MMC clocks, PLL_MMC(PLL0831X type) is also supported as a PLL
+> source clock provider.
 > 
 > Signed-off-by: Chanho Park <chanho61.park@samsung.com>
-> ---
 
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
