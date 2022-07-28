@@ -2,102 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD5E583B9A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 11:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A983D583BAE
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:04:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235412AbiG1J67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 05:58:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58966 "EHLO
+        id S231260AbiG1KEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 06:04:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234937AbiG1J65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 05:58:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13A96390D;
-        Thu, 28 Jul 2022 02:58:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3EBED614A0;
-        Thu, 28 Jul 2022 09:58:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3DD5C433D7;
-        Thu, 28 Jul 2022 09:58:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659002335;
-        bh=fo7cx7+jR998x+sKT6+q+pmbkV1soLLQX3aSXJvv9OY=;
-        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-        b=trQaffMXdMhMxovHwhDRg+/L2fNETbnE3A3TNC7nkAT+awdDCkDzWS+OtmE+3DLJC
-         WxVIz6duubf65lN96GN+8pLldwbUvTrR7xlWEXKgb7Wp4JAoMZ9pqn1YJ6rsMsS0k9
-         aJNVCeZFHzjBpYTKyGd5L+3bWt1R1oq5xFSLA9da3QsI0ozDCRub+YGnysYMrV5xyA
-         mfhgZ9RMrsYByv2CQOkV8oV8Wa3w/yIZRj2H/c8emdn00iQif7OWvbySMh3qLaVa2H
-         SuZtWFz+bTEeVBeJ7DLws1dWxYtmhf/gOcTs+BJBnKlBNLE+aR0u3JZ37eR5xg5i5R
-         ltfgw+wo0Bgfg==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH 1/2] dt-bindings: bcm4329-fmac: add optional
- brcm,ccode-map-trivial
-From:   Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20220711123005.3055300-2-alvin@pqrs.dk>
-References: <20220711123005.3055300-2-alvin@pqrs.dk>
-To:     =?utf-8?q?Alvin_=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235018AbiG1KDr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:03:47 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B216262A52
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:03:43 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id u5so1546463wrm.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:03:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=references:user-agent:from:to:subject:date:in-reply-to:message-id
+         :mime-version;
+        bh=y4T0HC+LgWXmkogwugZt7HLiFgtmRV8VQfPIoPRbde0=;
+        b=csdItTfYI8AMJ6g7jI8x9ssnGKX+BNs9aZD4R1pd2bQRdogBMITspj/oV2UzNUupdo
+         MBwl06n5qBT34W0MDXH3vcscdrnedwcSZdAk35NNTINrlJgG5JhkMzXc0tO4+O8fNh1A
+         FjBmJHspacXIgWkhDNxtqGEdmf8LK4zRFY0uvJJ0pVlPRwbfMFlsRKGZ7FKRhG/HykKi
+         OWVgf63m6zJ0Xom3esoEzx10YevVuBsL2h0ZbqwtVJD4AZVgxCggyhq991xFotWZUijv
+         n3D5glVbGwxbTrgZax66+8MSsTjxdNiYgBGgcEeDUwQhP6gD91X6kybOqly3tEP+9/Hy
+         CMEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:user-agent:from:to:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=y4T0HC+LgWXmkogwugZt7HLiFgtmRV8VQfPIoPRbde0=;
+        b=VwGXAu4vZ+BEEay9nNSUBS8b4fg1gFl5W0rpXdrMYC4S9Kh4PUBmFKkd6IX6XVPKaK
+         3LhCJePIWP53g7lzbFRIeLhCZ4gPAsVPm7Q2EOGaveXxzCTeKDGZrelqa2w4m+yY6FTf
+         B610ab3R+/8TnTKfvxfUObCoLbhBOGTHmt2DAtK8Cu9daujRHb9Sgv/n2T7BR2u+0Qw/
+         wdfiA9AcMfxLlNlGrS6MhZ2W3B33yW0UtJcSROuwqhqZF+eRNzSzBIRHZqXADuILVvQ4
+         oVVQIr2neRORyvE9xm0Pt2SH1/gDjm1lPJa+7QojtFHZqJvsrUaY5riho4M/ofhkcdXP
+         HUcg==
+X-Gm-Message-State: AJIora+ZFGj5mlUtnmRLOXcxLmoxUaiUomwotqczmIK2f+iUPY+NPrb1
+        KwQGHZhZ04KN74pMpPYc5xaIUA==
+X-Google-Smtp-Source: AGRyM1sVUOYVm8VpDrMDKjr0I9JufvhLIMmqV/AteNtB09x3qu5lBkrmNvYEnEoreb0NoNtADZen7w==
+X-Received: by 2002:a5d:6dc6:0:b0:21e:a87c:91bc with SMTP id d6-20020a5d6dc6000000b0021ea87c91bcmr7694254wrz.165.1659002622171;
+        Thu, 28 Jul 2022 03:03:42 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id m20-20020a056000181400b0021e571a99d5sm526097wrh.17.2022.07.28.03.03.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 03:03:41 -0700 (PDT)
+References: <20220728054202.6981-1-yu.tu@amlogic.com>
+ <20220728054202.6981-2-yu.tu@amlogic.com>
+ <82e3fd36-df96-a555-4cea-47fabd26502b@linaro.org>
+ <1jv8rhfw8h.fsf@starbuckisacylon.baylibre.com>
+ <367cf98b-ef06-8f44-76c8-9099a1ec13dc@linaro.org>
+ <1jmtctfuli.fsf@starbuckisacylon.baylibre.com>
+ <c088e01c-0714-82be-8347-6140daf56640@linaro.org>
+User-agent: mu4e 1.8.6; emacs 27.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arend van Spriel <aspriel@gmail.com>,
-        Franky Lin <franky.lin@broadcom.com>,
-        Hante Meuleman <hante.meuleman@broadcom.com>,
-        van Spriel <arend@broadcom.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        brcm80211-dev-list.pdl@broadcom.com,
-        SHA-cyfmac-dev-list@infineon.com
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <165900233004.25113.10282302027538037167.kvalo@kernel.org>
-Date:   Thu, 28 Jul 2022 09:58:51 +0000 (UTC)
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V2 1/3] dt-bindings: clk: meson: add S4 SoC clock
+ controller bindings
+Date:   Thu, 28 Jul 2022 11:54:49 +0200
+In-reply-to: <c088e01c-0714-82be-8347-6140daf56640@linaro.org>
+Message-ID: <1jfsilftab.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Alvin Šipraga <alvin@pqrs.dk> wrote:
 
-> From: Alvin Šipraga <alsi@bang-olufsen.dk>
-> 
-> The bindings already offer a brcm,ccode-map property to describe the
-> mapping between the kernel's ISO3166 alpha 2 country code string and the
-> firmware's country code string and revision number. This is a
-> board-specific property and determined by the CLM blob firmware provided
-> by the hardware vendor.
-> 
-> However, in some cases the firmware will also use ISO3166 country codes
-> internally, and the revision will always be zero. This implies a trivial
-> mapping: cc -> { cc, 0 }.
-> 
-> For such cases, add an optional property brcm,ccode-map-trivial which
-> obviates the need to describe every trivial country code mapping in the
-> device tree with the existing brcm,ccode-map property. The new property
-> is subordinate to the more explicit brcm,ccode-map property.
-> 
-> Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
-> Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> Acked-by: Rob Herring <robh@kernel.org>
+On Thu 28 Jul 2022 at 11:48, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-2 patches applied to wireless-next.git, thanks.
+> On 28/07/2022 11:09, Jerome Brunet wrote:
+>> 
+>> On Thu 28 Jul 2022 at 11:02, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>> 
+>>> On 28/07/2022 10:50, Jerome Brunet wrote:
+>>>>
+>>>> On Thu 28 Jul 2022 at 10:41, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>>> On 28/07/2022 07:42, Yu Tu wrote:
+>> [...]
+>>>>>> +/*
+>>>>>> + * CLKID index values
+>>>>>> + */
+>>>>>> +
+>>>>>> +#define CLKID_FIXED_PLL			1
+>>>>>> +#define CLKID_FCLK_DIV2			3
+>>>>>> +#define CLKID_FCLK_DIV3			5
+>>>>>> +#define CLKID_FCLK_DIV4			7
+>>>>>> +#define CLKID_FCLK_DIV5			9
+>>>>>> +#define CLKID_FCLK_DIV7			11
+>>>>>
+>>>>> Why these aren't continuous? IDs are expected to be incremented by 1.
+>>>>>
+>>>>
+>>>> All clocks have IDs, it is one big table in the driver, but we are not exposing them all.
+>>>> For example, with composite 'mux / div / gate' assembly, we usually need
+>>>> only the leaf.
+>>>
+>>> I understand you do not expose them all, but that is not the reason to
+>>> increment ID by 2 or 3... Otherwise these are not IDs and you are not
+>>> expected to put register offsets into the bindings (you do not bindings
+>>> in such case).
+>> 
+>> Why is it not an IDs if it not continuous in the bindings ?
+>> 
+>> If there is technical reason, we'll probably end up exposing everything. It
+>> would not be a dramatic change. I asked for this over v1 because we have
+>> done that is the past and I think it makes sense.
+>> 
+>> I'm happy to be convinced to do things differently. Just looking for the
+>> technical reason that require contiuous exposed IDs.
+>> 
+>> The other IDs exists, but we do not expose them as bindings.
+>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/meson/gxbb.h#n125
+>
+> https://lore.kernel.org/linux-devicetree/CAK8P3a1APzs74YTcZ=m43G3zrmwJZKcYSTvV5eDDQX-37UY7Tw@mail.gmail.com/
+>
+> https://lore.kernel.org/linux-devicetree/CAK8P3a0fDJQvGLEtG0fxLkG08Fh9V7LEMPsx4AaS+2Ldo_xWxw@mail.gmail.com/
+>
+> https://lore.kernel.org/linux-devicetree/b60f5fd2-dc48-9375-da1c-ffcfe8292683@linaro.org/
+>
+> The IDs are abstract numbers, where the number does not matter because
+> it is not tied to driver implementation or device programming model. The
+> driver maps ID to respective clock.
+>
+> Using some meaningful numbers as these IDs, means you tied bindings to
+> your implementation and any change in implementation requires change in
+> the bindings. This contradicts the idea of bindings.
+>
 
-8406993a891f dt-bindings: bcm4329-fmac: add optional brcm,ccode-map-trivial
-5c54ab24377b wifi: brcmfmac: support brcm,ccode-map-trivial DT property
+I totally agree. Bindings ID are abstract numbers.
+We do follow that. We even document it:
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20220711123005.3055300-2-alvin@pqrs.dk/
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/meson/gxbb.h#n118
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+It is just a choice to not expose some IDs.
+It is not tied to the implementation at all.
+I think we actually follow the rules and the idea behind it.
 
+We can expose then all If you still think what we are doing is not appropriate.
+
+I'd like things to be consistent though. So if the decision is to
+expose everything, I'll probably end up doing the same for the old SoCs.
