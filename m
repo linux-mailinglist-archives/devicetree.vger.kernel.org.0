@@ -2,107 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D68D65837A3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 05:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12BC45837BF
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 05:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231854AbiG1DiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 23:38:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51840 "EHLO
+        id S234412AbiG1D4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 23:56:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiG1DiW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 23:38:22 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D06B6284;
-        Wed, 27 Jul 2022 20:38:19 -0700 (PDT)
-Received: from [192.168.1.107] (87-97-28-73.pool.digikabel.hu [87.97.28.73])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: hs@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E1C1B83010;
-        Thu, 28 Jul 2022 05:38:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1658979497;
-        bh=/cS9TPU5+rXkX+J5Jkln5vvjln8emRqorhd/BraAqbU=;
-        h=Reply-To:Subject:To:References:From:Date:In-Reply-To:From;
-        b=sAUx4q81Hb1k4UrxcPIM8ByjmJ9sKdXUtAhOl02E0bk/WDWrzNT+9zQx16jwS9mDT
-         nX/d35ryiZbjkOuxs5CK5c/HlPS2m+CbdH3c+GGbDE9E6iNz4lo3wyMNdz/9Fd1lXx
-         ceRBfwvgLGJsDBF8VIlEJmRYI2h4yevlzMk1H9oMojpatMQEAeYVTm/wgrLqp7piPI
-         EPugZspBPyg1PdPre10qfT2LqbzXCuuJMbwa+EzueEpu3jmMv8izXtTem1ZtjBatj7
-         14S9qXflcxlJQJvjAAGpF0p3cTknD2UrWiCxOdqtQ6xeJj2alY9PZaGwPtZlou5GZq
-         uug7cBm6z32Fw==
-Reply-To: hs@denx.de
-Subject: Re: [PATCH] dt-bindings: mtd: microchip,mchp48l640: use
- spi-peripheral-props.yaml
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220727164148.385476-1-krzysztof.kozlowski@linaro.org>
-From:   Heiko Schocher <hs@denx.de>
-Message-ID: <316239d0-1661-0430-1adb-e7faeff66144@denx.de>
-Date:   Thu, 28 Jul 2022 05:38:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        with ESMTP id S232465AbiG1D4a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 23:56:30 -0400
+Received: from n169-113.mail.139.com (n169-113.mail.139.com [120.232.169.113])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC18481FF
+        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 20:56:28 -0700 (PDT)
+X-RM-TagInfo: emlType=0                                       
+X-RM-SPAM:                                                                                        
+X-RM-SPAM-FLAG: 00000000
+Received: from LAPTOP-39QA2GAC.localdomain (unknown[192.163.20.102])
+        by rmsmtp-lg-appmail-31-12045 (RichMail) with SMTP id 2f0d62e208dbae7-16378;
+        Thu, 28 Jul 2022 11:56:24 +0800 (CST)
+X-RM-TRANSID: 2f0d62e208dbae7-16378
+From:   Raphael-Xu <13691752556@139.com>
+To:     robh+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, raphael-xu@ti.com,
+        shenghao-ding@ti.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, kevin-lu@ti.com,
+        Raphael-Xu <13691752556@139.com>
+Subject: [PATCH v1] ASoc: dt-bindings: tas27xx: update maximum I2C address and revise the format
+Date:   Thu, 28 Jul 2022 11:56:10 +0800
+Message-Id: <20220728035610.158-1-13691752556@139.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-In-Reply-To: <20220727164148.385476-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
+        FROM_LOCAL_HEX,SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+1.use correct maximum I2C address 2.revise the format
 
-On 27.07.22 18:41, Krzysztof Kozlowski wrote:
-> Instead of listing directly properties typical for SPI peripherals,
-> reference the spi-peripheral-props.yaml schema.  This allows using all
-> properties typical for SPI-connected devices, even these which device
-> bindings author did not tried yet.
-> 
-> Remove the spi-* properties which now come via spi-peripheral-props.yaml
-> schema, except for the cases when device schema adds some constraints
-> like maximum frequency.
-> 
-> While changing additionalProperties->unevaluatedProperties, put it in
-> typical place, just before example DTS.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Technically, this depends on [1] merged to SPI tree, if we want to
-> preserve existing behavior of not allowing SPI CPHA and CPOL in each of
-> schemas in this patch.
-> 
-> If this patch comes independently via different tree, the SPI CPHA and
-> CPOL will be allowed for brief period of time, before [1] is merged.
-> This will not have negative impact, just DT schema checks will be
-> loosened for that period.
-> 
-> [1] https://lore.kernel.org/all/20220722191539.90641-2-krzysztof.kozlowski@linaro.org/
-> ---
->  .../devicetree/bindings/mtd/microchip,mchp48l640.yaml      | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
+Signed-off-by: Raphael-Xu <13691752556@139.com>
+---
+ .../devicetree/bindings/sound/tas27xx.yaml       | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
-Reviewed-by: Heiko Schocher <hs@denx.de>
-
-Thanks!
-
-bye,
-Heiko
+diff --git a/Documentation/devicetree/bindings/sound/tas27xx.yaml b/Documentation/devicetree/bindings/sound/tas27xx.yaml
+index 66a0df8850ea..573652577462 100644
+--- a/Documentation/devicetree/bindings/sound/tas27xx.yaml
++++ b/Documentation/devicetree/bindings/sound/tas27xx.yaml
+@@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+ title: Texas Instruments TAS2764/TAS2780 Smart PA
+ 
+ maintainers:
+-  - Shenghao Ding <shenghao-ding@ti.com>
++  - Raphael Xu <raphael-xu@ti.com>
+ 
+ description: |
+   The TAS2764/TAS2780 is a mono, digital input Class-D audio amplifier
+@@ -23,17 +23,19 @@ properties:
+       - ti,tas2780
+ 
+   reg:
+-    maxItems: 1
+     description: |
+-       I2C address of the device can be between 0x38 to 0x45.
++       I2C address of the device can be between 0x38 to 0x3f.
++    minimum: 0x38
++    maximum: 0x3f
+ 
+   reset-gpios:
+-    maxItems: 1
+     description: GPIO used to reset the device.
++    maxItems: 1
+ 
+   shutdown-gpios:
++    description: |
++       GPIO used to control the state of the device.Only for TAS2764.
+     maxItems: 1
+-    description: GPIO used to control the state of the device.
+ 
+   interrupts:
+     maxItems: 1
+@@ -41,10 +43,14 @@ properties:
+   ti,imon-slot-no:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: TDM TX current sense time slot.
++    minimum: 0
++    maximum: 3
+ 
+   ti,vmon-slot-no:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: TDM TX voltage sense time slot.
++    minimum: 0
++    maximum: 3
+ 
+   '#sound-dai-cells':
+     const: 1
 -- 
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
+2.35.1
+
+
