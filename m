@@ -2,180 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D1D55838F5
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 08:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89673583917
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 09:01:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233809AbiG1GqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 02:46:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50458 "EHLO
+        id S233556AbiG1HBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 03:01:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230043AbiG1GqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 02:46:22 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FDD852DFE;
-        Wed, 27 Jul 2022 23:46:21 -0700 (PDT)
-Received: from [192.168.1.111] (91-158-154-79.elisa-laajakaista.fi [91.158.154.79])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B61216D4;
-        Thu, 28 Jul 2022 08:46:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1658990779;
-        bh=6tsI1MnO9HDLFqseRpRktO0za1aD8wvp2v09jWiF6II=;
-        h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-        b=CdCPksdCuSNA6VkWAPH5XiG8rFu3KgdIRDZ3OTkUwIYrSYYGNWvJuiunamWRepYq/
-         zgbUk66YZlPXqJLmIWRIh3VE+xaYa9M5J7wcQ1xn2pKSEcuoBA2vNoH9IunaUupGVI
-         poLka3YxsyCfjcvjgnnLZjOdgg3q1g2faFbOdhoI=
-Message-ID: <c72e64b5-fbf0-0605-1d50-5b1f9b99eacf@ideasonboard.com>
-Date:   Thu, 28 Jul 2022 09:46:16 +0300
+        with ESMTP id S232973AbiG1HBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 03:01:06 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3228052DD9
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 00:01:04 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id h12so975422ljg.7
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 00:01:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=nRhU8Xmo8NVx+3hPXhYpUbAwbYIpncAqKvgE1eanWM4=;
+        b=Dw02yJpYL/KXSjq0VXkvvmLYDISAKKmLsOkwCxlia2u47URBEuv2/gJF0Epdd3B1LF
+         m4Qcw7u/Ts6pp5tKpNC2+GnNveS8BcgpbEa2+MrBArNsmHF5utlF7aBPBjt14ujaO6+l
+         XTMwYFByECCRfK2qs2bc6/gCS+3nFCEaDixtd1QWtMPJBvQiYsgZbAAVTIauXeUFLHra
+         p3Btvbo+W8ykXDLznW3Po8AGs/sVunLSsYy5QRdxNzUeUiI/nsT7xodaJ+quAqE6TuVo
+         IbTbnYsl2ZJOv6eEpbB7BPa00HYp8RmkpmCDAtFrgwVOInWXZu/YgQKnYA7/QzoQHWZ0
+         Ax8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=nRhU8Xmo8NVx+3hPXhYpUbAwbYIpncAqKvgE1eanWM4=;
+        b=f8+XrvYsd0kiFspKzMQgAx1OSeaEaZA/cJlk4O+FuK95GDaY1O4Z/h7+zZLGY+/8+8
+         ewnnQtuYLabdbdRrlYJXcvlgFWs1LaJAdkMpbTQWMzblDCYKmUAgyxpJ7wmuKNpzBjvT
+         FrOjIgy/LgN3jvRPEBUR/9vyc7/2S0lMMpDapRlPFFhZiV8P+l5qT//8wA7uoS51jYzc
+         77qYOjknSxxyhL3WNXmc/tpqoF07bCcNj7rPGHtlL2c4s5qIKc1g1yen9KRtt/yNFVDG
+         YfQ/G+iE1W7oh1JNKt+XlmYwhVKXgOJJVxcHnjVQYkfAipqZ0D00hrhv99UQQ5+K5iqi
+         KwTQ==
+X-Gm-Message-State: AJIora+kwiVVLnZQ/P+pFkIly6TNX2i+/wfLmRZaQJG3bRdAqM9k5kPA
+        OC5BfVI0hFJcSdJ1UAuZ6AGpMg==
+X-Google-Smtp-Source: AGRyM1vvAFefN8UxewXLvqrhGbBM4U+BhOGlbN6KRptT19q7Jk5gCZOufq2rYPIc2TkOPf+3bA4m+g==
+X-Received: by 2002:a05:651c:b23:b0:25e:e2d:9e40 with SMTP id b35-20020a05651c0b2300b0025e0e2d9e40mr5406364ljr.38.1658991662420;
+        Thu, 28 Jul 2022 00:01:02 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id r11-20020a2e8e2b000000b0025a70f7ea3asm4390878ljk.138.2022.07.28.00.01.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jul 2022 00:01:01 -0700 (PDT)
+Message-ID: <91e966c9-b398-1a3a-e4be-8e4e3a0f8d89@linaro.org>
+Date:   Thu, 28 Jul 2022 09:01:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 8/8] drm/tidss: Enable Dual and Duplicate Modes for OLDI
+ Thunderbird/91.12.0
+Subject: Re: [v7 3/4] dt-bindings: arm: amlogic: add MagicBox M16S bindings
 Content-Language: en-US
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-Cc:     Darren Etheridge <detheridge@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Krunal Bhargav <k-bhargav@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>
-References: <20220719080845.22122-1-a-bhatia1@ti.com>
- <20220719080845.22122-9-a-bhatia1@ti.com>
- <83df99ee-1304-121f-97e6-85ca416aef1f@ideasonboard.com>
-In-Reply-To: <83df99ee-1304-121f-97e6-85ca416aef1f@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To:     Zhang Ning <zhangn1985@qq.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        narmstrong@baylibre.com, martin.blumenstingl@googlemail.com,
+        sean@mess.org, christianshewitt@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220726143649.142574-1-zhangn1985@qq.com>
+ <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
+ <b094bf45-ad7e-9e42-89a6-bae0b8e4aae1@linaro.org>
+ <tencent_F809BC863B83870BBEB1EF76499B3969B607@qq.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <tencent_F809BC863B83870BBEB1EF76499B3969B607@qq.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/07/2022 16:22, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 19/07/2022 11:08, Aradhya Bhatia wrote:
->> The AM625 DSS peripheral supports 2 OLDI TXes which can work to enable 2
->> duplicated displays of smaller resolutions or enable a single Dual-Link
->> display with a higher resolution (1920x1200).
+On 28/07/2022 01:48, Zhang Ning wrote:
+> On Wed, Jul 27, 2022 at 05:27:25PM +0200, Krzysztof Kozlowski wrote:
+>> On 26/07/2022 16:36, Zhang Ning wrote:
+>>> Add manufactor bindings for Tmall
+>>> Add the board bindings for Magicbox M16S Tv Box
+>>>
+>>> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
 >>
->> Configure the necessary register to enable the different modes.
+>> Please send patches with correct subject PATCH.
+> I got confused, and don't know how to update..
+> 
+> ad152daedc5c dt-bindings: arm: amlogic: add MagicBox M16S bindings
+> 3f7dbd336f36 dt-bindings: arm: amlogic: add Vero 4K+ bindings
+> 2ca889b12016 dt-bindings: arm: amlogic: add H96-Max bindings
+
+git format-patch -v8
+
+> 
 >>
->> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->> ---
->>   drivers/gpu/drm/tidss/tidss_dispc.c | 44 +++++++++++++++++++++++++++--
->>   1 file changed, 41 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
->> b/drivers/gpu/drm/tidss/tidss_dispc.c
->> index 0b9689453ee8..28cb61259471 100644
->> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
->> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
->> @@ -1021,8 +1021,8 @@ static void dispc_enable_oldi(struct 
->> dispc_device *dispc, u32 hw_videoport,
->>       int count = 0;
->>       /*
->> -     * For the moment DUALMODESYNC, MASTERSLAVE, MODE, and SRC
->> -     * bits of DISPC_VP_DSS_OLDI_CFG are set statically to 0.
->> +     * For the moment MASTERSLAVE, and SRC bits of 
->> DISPC_VP_DSS_OLDI_CFG are
->> +     * set statically to 0.
->>        */
->>       if (fmt->data_width == 24)
->> @@ -1039,7 +1039,45 @@ static void dispc_enable_oldi(struct 
->> dispc_device *dispc, u32 hw_videoport,
->>       oldi_cfg |= BIT(0); /* ENABLE */
->> -    dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
->> oldi_cfg);
->> +    /*
->> +     * As per all the current implementations of DSS, the OLDI TXes 
->> are present only on
->> +     * hw_videoport = 0 (OLDI TX 0). However, the config register for 
->> 2nd OLDI TX (OLDI TX 1)
->> +     * is present in the address space of hw_videoport = 1. Hence, 
->> using "hw_videoport + 1" to
->> +     * configure OLDI TX 1.
->> +     */
->> +
->> +    switch (dispc->oldi_mode) {
->> +    case OLDI_MODE_OFF:
->> +        oldi_cfg &= ~BIT(0); /* DISABLE */
->> +        dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
->> oldi_cfg);
->> +        dispc_vp_write(dispc, hw_videoport + 1, 
->> DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
->> +        break;
->> +
->> +    case OLDI_SINGLE_LINK_SINGLE_MODE_0:
->> +        dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
->> oldi_cfg);
->> +        break;
->> +
->> +    case OLDI_SINGLE_LINK_SINGLE_MODE_1:
->> +        dispc_vp_write(dispc, hw_videoport + 1, 
->> DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
->> +        break;
->> +
->> +    case OLDI_SINGLE_LINK_DUPLICATE_MODE:
->> +        oldi_cfg |= BIT(5); /* DUPLICATE MODE */
->> +        dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
->> oldi_cfg);
->> +        dispc_vp_write(dispc, hw_videoport + 1, 
->> DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
->> +        break;
->> +
->> +    case OLDI_DUAL_LINK:
->> +        oldi_cfg |= BIT(11); /* DUALMODESYNC */
->> +        dispc_vp_write(dispc, hw_videoport, DISPC_VP_DSS_OLDI_CFG, 
->> oldi_cfg);
->> +        dispc_vp_write(dispc, hw_videoport + 1, 
->> DISPC_VP_DSS_OLDI_CFG, oldi_cfg);
->> +        break;
->> +
->> +    default:
->> +        dev_warn(dispc->dev, "%s: Incorrect oldi mode. Returning.\n",
->> +             __func__);
->> +        return;
->> +    }
->>       while (!(oldi_reset_bit & dispc_read(dispc, DSS_SYSSTATUS)) &&
->>              count < 10000)
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> This feels a bit hacky:
-> 
-> - The function is dispc_enable_oldi, but the above code also disables 
-> oldi. We have code in dispc_vp_unprepare() which disables OLDI at the 
-> moment.
-> 
-> - The function takes hw_videoport as a parameter, and is designed to 
-> work on that videoport. The above operates on two videoports. Isn't the 
-> function also called for hw_videoport +1, which would result in reg 
-> writes to hw_videoport + 2?
-> 
-> - No matching code in dispc_vp_unprepare
-> 
-> Obviously the duplicate mode (I presume that's "cloning") and the dual 
-> link complicate things here, and I have to say I haven't worked with 
-> such setups. But I think somehow this should be restructured so that 
-> common configuration (common to the OLDIs) is done somewhere else.
-> 
-> I would guess that there are other drivers that support cloning and dual 
-> mode. Did you have a look how they handle things?
+> Christian Hewitt told me to split to 2 patches, 1st for manufactor, 2nd
+> for device, how to handle your Acked-by?
+>
+If split is the only change, you can add ti both of them
 
-Oh, I see now... There's just one dss video port for OLDI, the same as 
-in am65x, but that single video port is now connected to two OLDI TXes. 
-And thus this function will only be called for the single video port.
 
-But... The registers for the second OLDI are part of the second video 
-port (DPI) register block?
-
-  Tomi
+Best regards,
+Krzysztof
