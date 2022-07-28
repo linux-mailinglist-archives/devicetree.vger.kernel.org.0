@@ -2,121 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1636A584429
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 18:32:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C51F8584435
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 18:34:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232022AbiG1Qb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 12:31:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45658 "EHLO
+        id S229646AbiG1Qee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 12:34:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233473AbiG1Qbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 12:31:43 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD9171901E
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 09:31:36 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id m12so3613429lfj.4
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 09:31:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=0Qrp1aC7ii4l+FdZJbsIzM1JU8ekTQaZIFWORS0YhME=;
-        b=yOYlyKgvos/05p6jY1ecXbckNmfg3Mp8u9eEL/FG5WoJQlIVSW4Wt15soFBSdg3DbK
-         MZKnX4UD8Mrs67cU8Lh7LWrVM7dFQJROTOP9oHyGKP3Q9U53B+VMZAKpJzu1rYwfKjqI
-         cuOfm0wia1rOHbe/CP6zk9qP1t6tcSsnPs4COz/C0QMizLpFO5kJpces4fvL1wXgQktW
-         gnlRfSt4JWCEjGkra3Xd+enNrD1CDHOSwCKFpUIz6E7X8TGhlY4fT6wgX8esaFHClmcV
-         /4TMxl2WogYqSfHjIYuzIS8IpJF1HtlLixOkRKWIAtuGxYunJODuyk6XquNYDzZeqpcP
-         cQSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=0Qrp1aC7ii4l+FdZJbsIzM1JU8ekTQaZIFWORS0YhME=;
-        b=ihNKz8PUzjgTdGVNLggEXO0yFBnsbvE/CDHhRFCiwpuv78FmS1h6mtPLWiY49BX3XE
-         p4754shdLr/hKTmZUOF1lrX38ryki/2Ss9XZ1+1n7oM/eiNpEocBEArXVr3usK41ewJm
-         aooKeXVCeD6M5owZy6cK6J5V9NCHEckzg2uD5eKnWEQw7ZpYz4F2buEB1HsNUHD5qxIP
-         sh66RVH6TY6e6ZqUJhfIx4fb/fwCJl68bTnuzEwWghr/XGk81t2M0cSmQ2bdLNqEGS2G
-         weuvvmv0XMNmkaJanOxz6NbBaivWCYf770fpX9G5fpnBBgAe9hB5Kq/tC39Nfdo+lmBN
-         JBLQ==
-X-Gm-Message-State: AJIora/4su+EIIhxaYs6irc7kEkwFwJijwI/lscg0E6MahWJbs0IXtPE
-        zP1ikajncMyPPvLmDiF05JBwrA==
-X-Google-Smtp-Source: AGRyM1vQbNnKAzNUxSU0neBQyxzQa6mDwQFmjvcMDN7uctQh6GF1gf3S5rEkvDVrNvEcqXGUIUiupw==
-X-Received: by 2002:a19:e007:0:b0:481:c74:37b7 with SMTP id x7-20020a19e007000000b004810c7437b7mr10138465lfg.439.1659025894853;
-        Thu, 28 Jul 2022 09:31:34 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id m8-20020a195208000000b004894b6df9e2sm264175lfb.114.2022.07.28.09.31.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 09:31:34 -0700 (PDT)
-Message-ID: <ea684136-bdbb-1b2c-35d3-64fdbd1d1764@linaro.org>
-Date:   Thu, 28 Jul 2022 18:31:32 +0200
+        with ESMTP id S229494AbiG1Qed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 12:34:33 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7F92A408;
+        Thu, 28 Jul 2022 09:34:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 60913B824A4;
+        Thu, 28 Jul 2022 16:34:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDCECC433C1;
+        Thu, 28 Jul 2022 16:34:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659026070;
+        bh=nHxv6d85T9pP+ZMr9V+fyaj2Jn/Rv2IPUgxkxsht70U=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=cqYXCPuHS+WT6FGL4i5sVVQ3hh488bn5WY8VefisqFETD+o830r8o5DuzRgLVW53p
+         lNZeGzhyQ8QOiB1mNtSQFEJJPpx11tMYKlvZ5TmINHyTmE1VrfDVQIeLcRL93LnTJu
+         pRtByKNRTw4unO5i+yUbdipm3koH7i1SaIYGKGeHp8pZ3Q1LkTPvSJZl3i6qk1STPT
+         IIkKTlokqLliUiO+4/zVGlgsVe9V8ANEMNh6aTwI7kaDEYRM8oKhpcGDv5ckqBHqRW
+         cRpmTEGnjAaovH786jk/Zl02k6dDD4RObN6O4rYHoGdZ0dwmfiXGBMEpDWSsLNvACE
+         nVo4A5EIx9yWQ==
+Date:   Thu, 28 Jul 2022 11:34:28 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Ben Dooks <ben.dooks@codethink.co.uk>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rahul Tanwar <rtanwar@maxlinear.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH RESEND v4 03/15] PCI: dwc: Convert to using native
+ IP-core versions representation
+Message-ID: <20220728163428.GA309179@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: nfc: use spi-peripheral-props.yaml
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?SsOpcsO0bWUgUG91aWxsZXI=?= <jerome.pouiller@silabs.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Ajay Singh <ajay.kathat@microchip.com>,
-        linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Kalle Valo <kvalo@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        Adham Abozaeid <adham.abozaeid@microchip.com>,
-        Mark Greer <mgreer@animalcreek.com>
-References: <20220727164130.385411-1-krzysztof.kozlowski@linaro.org>
- <20220728151802.GA900320-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220728151802.GA900320-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0d644682-094d-6151-aa2f-86552c8f9a87@codethink.co.uk>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 17:18, Rob Herring wrote:
-> On Wed, 27 Jul 2022 18:41:29 +0200, Krzysztof Kozlowski wrote:
->> Instead of listing directly properties typical for SPI peripherals,
->> reference the spi-peripheral-props.yaml schema.  This allows using all
->> properties typical for SPI-connected devices, even these which device
->> bindings author did not tried yet.
->>
->> Remove the spi-* properties which now come via spi-peripheral-props.yaml
->> schema, except for the cases when device schema adds some constraints
->> like maximum frequency.
->>
->> While changing additionalProperties->unevaluatedProperties, put it in
->> typical place, just before example DTS.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> ---
->>
->> Technically, this depends on [1] merged to SPI tree, if we want to
->> preserve existing behavior of not allowing SPI CPHA and CPOL in each of
->> schemas in this patch.
->>
->> If this patch comes independently via different tree, the SPI CPHA and
->> CPOL will be allowed for brief period of time, before [1] is merged.
->> This will not have negative impact, just DT schema checks will be
->> loosened for that period.
+On Thu, Jul 28, 2022 at 04:31:17PM +0100, Ben Dooks wrote:
+> On 28/07/2022 16:24, Bjorn Helgaas wrote:
+> > On Fri, Jun 24, 2022 at 05:39:35PM +0300, Serge Semin wrote:
+> > > Since DWC PCIe v4.70a the controller version can be read from the
+> > > PORT_LOGIC.PCIE_VERSION_OFF register. Version is represented in the FourCC
+> > > format [1]. It's standard versioning approach for the Synopsys DWC
+> > > IP-cores. Moreover some of the DWC kernel drivers already make use of it
+> > > to fixup version-dependent functionality (See DWC USB3, Stmicro STMMAC or
+> > > recent DW SPI driver).
+> > 
+> > These references to other drivers might be useful, but without a
+> > function name or file name, I can't easily find them.
+> > 
+> > > In order to preserve the standard version
+> > > representation and prevent the data conversion back and forth, we suggest
+> > > to preserve the native version representation in the DWC PCIe driver too
+> > > in the same way as it has already been done in the rest of the DWC
+> > > drivers. IP-core version reading from the CSR will be introduced in the
+> > > next commit together with a simple macro-based API to use it.
+> > > 
+> > > [1] https://en.wikipedia.org/wiki/FourCC
 > 
-> I don't think these need to go via the same tree.
+> I'm currently looking at a OF based dw-apb-timers-pwm driver, so also
+> would like to follow this.
 
-Yeah, I wanted to express it that almost no impact is expected if it
-goes independently. I could be more explicit here.
+FWIW, the breadcrumbs I found are:
 
-
-Best regards,
-Krzysztof
+  dwc3_core_is_valid()
+  stmmac_hwif_init()
+  dw_spi_hw_init()
