@@ -2,148 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 409EC5840B6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 16:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF6B05840FC
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 16:22:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230205AbiG1OKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 10:10:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39070 "EHLO
+        id S231614AbiG1OWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 10:22:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230293AbiG1OKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 10:10:07 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F2A5C36B
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 07:10:05 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id t1so3013142lft.8
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 07:10:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=3ZkQISkEyAXqDJZYEpQ7KC461gTyV9M43PYYTAdpW9k=;
-        b=l1GF1944v4xfZOTAoyVPjRU1bI2U5o/dI5UtIc8ezqvZnf6NLuoQyXXO9lBdy/HzQ1
-         +dPIJxPqqSzNPc8VsHoSd6/JlGb5zLyq4cNxNqpiXrik6qjLpqMutKXPbBF2uuYzniUG
-         6uJShkWKsE4I29ZHjuhSpvH8rOew62e96DMQULj+zuFjt8FCGTlm4om7Uc7AiAOiidKo
-         yWpb65M38LA7CyzuIhyA8nDHIsLZNdvpiFE+V/SdsEdF2l56AfxXsuCavlsOL4mKLLra
-         F9eAhGM+agB1gTsE4kNekk0xY3vYAwuPTxec0hl0f+cn0zIY3KzN1Lj+8+ZGOYzaiidl
-         WYyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=3ZkQISkEyAXqDJZYEpQ7KC461gTyV9M43PYYTAdpW9k=;
-        b=NmuURU154D+qdj1KpKxV5cIHfDT9CENy+oIyGlhDSi6phcjtXFNNduo8+KeLjHCWkW
-         05fw4vTpnL2Q+H3Jt5VjiYR07hdYWQ/HLaSFOPGmd/WXLHMXf8EYDpGLkIeCC5ow5ZF0
-         34aKwS5y2JwOEiW8ydKVqal51R3FIOILlHZdUBw6UOgVpuivRfmMVobwkLkB7K8VpOZR
-         7XOZRqPLe5XIdxFE+zWz9y4pKNxEDUVXe0Wlnyd6c0UENWcR55mpplYbcg254n+1l3GA
-         /tPrSL/TEZgnP9dQ6md+SZ6GqyJ9vv4qJ3zVM3LbC5aK+0G9yRY/KRHi7j0lXFhaPTSs
-         kPFQ==
-X-Gm-Message-State: AJIora9tGXDvgQqOP33aQmaGI6HEGVmDEtmO/4abgKFSTegiigel8Z4v
-        ZcIPRUc/qqghVZQUW4EhFQW76A==
-X-Google-Smtp-Source: AGRyM1s6eMkW7RadgIwnMhQWUiqP2h73XK4fRJOfJ7MByx2t3fVD6PR8bOn5QnF0b3ef0tJyASGPUQ==
-X-Received: by 2002:a05:6512:151c:b0:48a:9763:5d29 with SMTP id bq28-20020a056512151c00b0048a97635d29mr6347878lfb.79.1659017403706;
-        Thu, 28 Jul 2022 07:10:03 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id e13-20020a05651236cd00b0048a727ac440sm220929lfs.45.2022.07.28.07.10.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 07:10:03 -0700 (PDT)
-Message-ID: <84923720-30a6-1a49-48f6-96e078a46743@linaro.org>
-Date:   Thu, 28 Jul 2022 16:10:01 +0200
+        with ESMTP id S230153AbiG1OWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 10:22:43 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6306A46D81;
+        Thu, 28 Jul 2022 07:22:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0BC18B82460;
+        Thu, 28 Jul 2022 14:22:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4054AC433D7;
+        Thu, 28 Jul 2022 14:22:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659018156;
+        bh=1ZLap4eGsbbvgt1gdvMRC3A6YG6dEbs+KXGpBQ82L6A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Y5HXFfFEczrHiYs6Rl6biGP/3nCuiwwHhNo5YOCtuOoUXlh+PjOtaQvXtoOkqxEy/
+         i1kASCXtevXkWsrAGL0cxLUWWREmlRmXZY1WbeqcUG8VJnmZrGEqioo4nk+iAPOQck
+         AOYV4w1LOL/5SQKe9uWRhVHfF8SdK8J7GxXOrCCEpmHY1HC/IocRZQHLQEWh95XwY8
+         lAJ83JrcqscTu9NY7kk1EBShHN3GDH7SbGq0lUUS/pqOlYpb8/j/wRoGvFJhTkh1+5
+         AnYoV1tbRWgRTeRLTcHWbtgmw2auX5VDc/xWKUNGTXcEczX56KitMzAMmRHGtSIEWk
+         PjpcEfcl4u7rQ==
+Date:   Thu, 28 Jul 2022 15:22:29 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] ASoC: qcom: SC7280: Add support for external DMIC
+ bias supply
+Message-ID: <YuKbpXVOeGn2l2gd@sirena.org.uk>
+References: <1659016789-9933-1-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 3/3] dt-bindings: phy: add definition for MSM8960
-Content-Language: en-US
-To:     Shinjo Park <peremen@gmail.com>
-Cc:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220728111740.30595-1-peremen@gmail.com>
- <aef9bae5-b72b-d520-a8e5-8f6a838775eb@linaro.org>
- <CAAs2AW7A4RfxAaKPsmJjA1s7s5_rnM2O4XAAFC=7x1Npttg5rQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAAs2AW7A4RfxAaKPsmJjA1s7s5_rnM2O4XAAFC=7x1Npttg5rQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="MxtsZ/7dcBrss2UQ"
+Content-Disposition: inline
+In-Reply-To: <1659016789-9933-1-git-send-email-quic_srivasam@quicinc.com>
+X-Cookie: People respond to people who respond.
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 15:54, Shinjo Park wrote:
-> Hello Krzysztof,
-> 
-> Sorry for any confusion during my first patch submission.
-> 
-> PATCH 1:
->>> Change the reference of sleep_clk to the same as qcom-apq8064.dtsi.
->>
->> You add label, not change something.
-> 
->>> - sleep_clk {
-> 
->>> + sleep_clk: sleep_clk {
-> 
->>
-> 
->> Since you touch the line, make the device node sleep-clk (device node
-> 
->> names should not have underscores) and mention this in commit msg.
-> 
-> 
-> I can change the line into "sleep_clk: sleep-clk". And the commit message
-> would be "Change the device node of sleep_clk to sleep-clk and add a
-> label"? Another problem is that in the same .dtsi file there are other
-> device nodes containing underscores (cxo_board, pxo_board). Should I also
-> change these in the patch?
-> 
-> PATCH 2:
->>> +                     phy-names = "usb-phy";
->>> +                     status = "disabled";
->>
->> status is the last property.
->>
->>> +                     #reset-cells = <1>;
-> 
-> I can move #reset-cells one line up and make the status last line. On the
-> other hand, the same definition is also used in
-> arch/arm/boot/dts/qcom-apq8064.dtsi (also the clock definition mentioned in
-> PATCH 1). Shall I include another patch for that file in the next revision
-> of this patch series?
 
+--MxtsZ/7dcBrss2UQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yes, you can rename them in other patch as well.
+On Thu, Jul 28, 2022 at 07:29:49PM +0530, Srinivasa Rao Mandadapu wrote:
+> Update SC7280 machine driver for enabling external dmic bias supply,
+> which is required for villager evt boards.
 
-> 
-> PATH 3:
->> 1. Thread your submissions.
-> 
-> Shall I use this thread for all follow-ups for my first and second patch?
+> +++ b/sound/soc/qcom/sc7280.c
+> @@ -356,6 +356,7 @@ static const struct snd_soc_ops sc7280_ops =3D {
+>  static const struct snd_soc_dapm_widget sc7280_snd_widgets[] =3D {
+>  	SND_SOC_DAPM_HP("Headphone Jack", NULL),
+>  	SND_SOC_DAPM_MIC("Headset Mic", NULL),
+> +	SND_SOC_DAPM_REGULATOR_SUPPLY("DMICVDD", 0, 0),
+>  };
+> =20
+>  static int sc7280_snd_platform_probe(struct platform_device *pdev)
 
-No. One patchset, one thread.
+Don't you want to connect this to something?  This won't do anything
+as-is.  I can't see any references to DMICVDD which might be failing to
+resolve in the current sound/soc/qcom.
 
-https://elixir.bootlin.com/linux/v5.19-rc5/source/Documentation/process/5.Posting.rst
+--MxtsZ/7dcBrss2UQ
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
->> 2. Use subject prefix matching the file.
-> 
-> If I understood correctly, then this should be "dt-bindings: phy:
-> qcom,usb-hs-phy:"?
+-----BEGIN PGP SIGNATURE-----
 
-Yes.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLim6UACgkQJNaLcl1U
+h9Dk8wf+MsLnuYuJIjjPKX84On6/bVQTcNFnLcE6zWzTDjoWVmdWlUpcngQ1j7I4
+mW5T0pKVL53Y8VcFCFuY5+awvsL3/tfCfKLpRjoRAhd1rG9kApq3RpgVyQ2OIR1A
+ZbzfRK363FCoo/7EmnenWk/QH9u8jlNU7G5vfBcf8C2VOBwepUHt15YdW3xvHDtv
+J0OyhPXNMuVCAGmhxTRc6ZbAxTbSu7R6u5aW0RquI+Ovfu6G/Hkcf2Yw0NYAd/Kb
+RUP0UjIwsek2lGqM366yItV2PGLDjKNMHDtCZ7i07otKl5TrG5q2DsmY1M+yhnHF
+2U9y6ryaWhXclqdx5B0vtki6mnCf2Q==
+=Uifj
+-----END PGP SIGNATURE-----
 
-
-Best regards,
-Krzysztof
+--MxtsZ/7dcBrss2UQ--
