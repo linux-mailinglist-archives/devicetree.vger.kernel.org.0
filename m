@@ -2,110 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A653358405E
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:50:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E322B584063
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:51:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229555AbiG1Nue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 09:50:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55302 "EHLO
+        id S230330AbiG1NvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 09:51:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230308AbiG1Nud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:50:33 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B981C26AE8
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:50:31 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id sz17so3254788ejc.9
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:50:31 -0700 (PDT)
+        with ESMTP id S231304AbiG1Nux (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:50:53 -0400
+Received: from mailrelay3-1.pub.mailoutpod1-cph3.one.com (mailrelay3-1.pub.mailoutpod1-cph3.one.com [46.30.210.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD01C481CA
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:50:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vxq8TONSE00HXKwla5aOrD7/8grrZxrUZOEScjMYlXo=;
-        b=I6w8bTdjtiWIAiiIyaZ8AqDCot6M72QWjJBec1p0ARnt8AHMFhDNL//ZXHs6Aj4TcJ
-         /igAyJV2zhTPOL5+D4ckDgbeeKGK3pDFJZ+uLHafanehs6HrIAZgeCEw8EHOns5jIFk+
-         kyjl9Ue4ngXTZEorTt7u464GVRsyPj5c8vMftb95KYLL3gFvZNpyv6A5Zo94ZzGwndM3
-         7+JncdsyRgSX7u3FMswQZT3L7jNW+jf0yxlZ6ZPCMyQTccQP9r8yzYtBQR4prpLllOTd
-         4gUdCmFwmc7lUNriFAqKS368bnIz7FImfmejvwn+pqMKb/5uwMK0Lacm33F2cCXgb+o5
-         MBUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vxq8TONSE00HXKwla5aOrD7/8grrZxrUZOEScjMYlXo=;
-        b=UxP/oGYJCZToYnBuBsN2R9jOJqt3qIEsXqYLTWHiWTlwpb+CFYVJCX6USf8+6AvJOq
-         uaN/mQU40eI1lPRE0o3aOAEmZww1jgqRyAD1C/mgb+pcZXzgSFcauAKtwx2yfNtJAyBl
-         EBuKYhRTbbYFlQESgkHP1TqNYaXcBMmDPI9oCcblVUGVWfLT/31hDzkmjy/0ZSFuZAI9
-         VNS8bNeEEGwQ0OUjvlJI5Z3XSMguVcMKfdjVYcEnVHplGtRQndbaophBrdpZ7JRobe2e
-         7aVF77Kxaz4/rrzAW5P0R5S5emeooBslaKXGCYCkWSvgQU6ji/xKiw7s07CE5yAo7O1z
-         8yFg==
-X-Gm-Message-State: AJIora+Z/+hwuSKC5uwiQpk214Yjf0P56fxa6VYz+sN5nhTcVQymITxa
-        PwvxdK7UNxMl7FxInN6iSuBChCBW8psy7wCINrAZnQ==
-X-Google-Smtp-Source: AGRyM1vd13k6pgor+DlHJHQfDA7PQXuMPPW6KeHGTUbH0ZXwLGn62yE4jjI826yPI+uPcZiWt3sa3ZGDqeczrsLkYNM=
-X-Received: by 2002:a17:907:9482:b0:72b:8c16:dac0 with SMTP id
- dm2-20020a170907948200b0072b8c16dac0mr18135736ejc.286.1659016230136; Thu, 28
- Jul 2022 06:50:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220723160513.271692-1-Mr.Bossman075@gmail.com>
- <20220723160513.271692-4-Mr.Bossman075@gmail.com> <CACRpkdZMFdYDssk9B7R-MH7xG8Ukp+ZQpXCRVtPRCS=SFh34mA@mail.gmail.com>
-In-Reply-To: <CACRpkdZMFdYDssk9B7R-MH7xG8Ukp+ZQpXCRVtPRCS=SFh34mA@mail.gmail.com>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Thu, 28 Jul 2022 15:50:19 +0200
-Message-ID: <CAMRc=Mf02_L1Msf3Wynqu1EROq+nsizhdEWEBJR0DpTybQ=KWA@mail.gmail.com>
-Subject: Re: [PATCH v5 03/12] dt-bindings: gpio: fsl-imx-gpio: Add i.MXRT compatibles
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Jesse Taube <mr.bossman075@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        d=ravnborg.org; s=rsa1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=81CE8cWzUiT+pbHFTXIMXYIlWow9EQ8Wvsa5Y6TihSE=;
+        b=mpQSV1lcqdnZfUqHQdsZjIZjllkBefKHfE47qVKcR0LcVGrrMg0gzsfGuXbi/Q4Pw/Gh917YDPusw
+         yEUty+79TONgN7i6IbHrVlNs1xIi1YHtp7Z8TYGLm8LItpEj3fVBG7crQtM0omFesJ9/D2E5Zd8tAk
+         uWyUGMK5/305ZYKmKc+5wbCa41ETO+e7FoKglMukQhbu55RtbFvcV/3HzTF0PtBcK/pQyEaxaiR7fX
+         x0TAwr7kc2YLAdIZy3tgDe0LF82IdgiF0NBSzFnS44XUK928uMSsH9c1nv+SMZFJFXiLXGYXt6GCFi
+         j/SnFGw7dr8j84w1sWq7vLrkPgeXR+A==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed1;
+        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+         from:date:from;
+        bh=81CE8cWzUiT+pbHFTXIMXYIlWow9EQ8Wvsa5Y6TihSE=;
+        b=vkqXrzrQS4Ozm2e1ARR8cR3abhTvNzuqERua9aY+ZZXN9K58QRPSMD5QoDmq+Nt2PnK04ujTj6o69
+         Hhll8OIDA==
+X-HalOne-Cookie: 0d8ef64462d11d9be67ccc33377236296e9cc1f0
+X-HalOne-ID: 4828a37a-0e7c-11ed-be80-d0431ea8bb03
+Received: from mailproxy2.cst.dirpod4-cph3.one.com (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+        by mailrelay3.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+        id 4828a37a-0e7c-11ed-be80-d0431ea8bb03;
+        Thu, 28 Jul 2022 13:50:47 +0000 (UTC)
+Date:   Thu, 28 Jul 2022 15:50:45 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Molly Sophia <mollysophia379@gmail.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>, stefan@agner.ch,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Arnd Bergmann <arnd@arndb.de>, olof@lixom.net, soc@kernel.org,
-        Russell King <linux@armlinux.org.uk>, abel.vesa@nxp.com,
-        dev@lynxeye.de, Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Leo Li <leoyang.li@nxp.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        cniedermaier@dh-electronics.com, clin@suse.com,
-        giulio.benetti@benettiengineering.com,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] drm: panel: Add novatek nt35596s panel driver
+Message-ID: <YuKUNeazoho6LPTJ@ravnborg.org>
+References: <20220728023555.8952-1-mollysophia379@gmail.com>
+ <20220728023555.8952-3-mollysophia379@gmail.com>
+ <1685ecd6-cfe7-c2f1-add5-6bfff055fa06@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1685ecd6-cfe7-c2f1-add5-6bfff055fa06@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 26, 2022 at 10:04 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Sat, Jul 23, 2022 at 6:05 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
->
-> > Both the i.MXRT1170 and 1050 have the same gpio controller as
-> > "fsl,imx35-gpio". Add i.MXRT to the compatible list.
-> >
-> > Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> > Acked-by: Rob Herring <robh@kernel.org>
->
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> Bartosz needs to apply this to the GPIO tree, I think it can just be applied
-> directly without regard for the rest of the patches.
->
-> Yours,
-> Linus Waleij
+Hi Krzysztof
+On Thu, Jul 28, 2022 at 02:17:29PM +0200, Krzysztof Kozlowski wrote:
+> On 28/07/2022 04:35, Molly Sophia wrote:
+> > Novatek NT35596s is a generic DSI IC that drives command and video mode
+> > panels. Add the driver for it. Currently add support for the LCD panel
+> > from JDI connected with this IC, as found on Xiaomi Mi Mix2s phones.
+> > 
+> > Changes in v4:
+> > - No change.
+> > 
+> > Changes in v3:
+> > - Embed the support into existing driver (panel-novatek-nt36672a), as
+> >   these two IC are similar with different initialization commands.
+> > 
+> 
+> This does not go to commit msg (---).
+It depends...
 
-Applied, thanks!
+In the drm sub-system the general rule is if someone cares to write it,
+then it deserves to be added to the commit message.
+So for drm patches it is perfectly fine to have the history part
+included in the commit message.
 
-Bart
+These sub-system differences does not makes it easier - I know.
+
+	Sam
