@@ -2,684 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FCBA583F48
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 14:52:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D129583F5B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 14:58:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235978AbiG1Mwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 08:52:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33176 "EHLO
+        id S237486AbiG1M6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 08:58:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238372AbiG1Mwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 08:52:35 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EBAB1025
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 05:52:31 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id h188-20020a1c21c5000000b003a34ac64bdfso804117wmh.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 05:52:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mmUa+efGnnzywDxvMPhfVDjqBi9J02VWB8wA5GmwpzU=;
-        b=sL5kPNDOB4ZGgOCgoSLLu8RmGwRmoyfaURtDq/zg+BEPyL/esvR3jNXDX9sMrGn9hM
-         xyfZLqbodyvwzDoT6O51nBktq7F8rXYHPtxBvJ1KetDmZDJZooE0rgINNDc4OAinxwQk
-         6OJH1Ja5uev6A6MgxQ6O4uI9fi8Uzl7zv35xonV2eN+DcQXwIlzDn1IMSIJSqd1cbf94
-         LaSapD78d+eEPVSAR60zKEL/FBGvJYQFNOvVt3aly1FqsF4caeXotHpl/yjMZznxxvXd
-         x5M8LGcyyViw4952cslit7U1GBdbukPnr+ZivC81UQGHIFGphDSk4bujC35XPsxKYJM9
-         RsNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mmUa+efGnnzywDxvMPhfVDjqBi9J02VWB8wA5GmwpzU=;
-        b=Xp2TR9KdUtCJ6Cxy0IyquzGBOIfeeNEcZNtwMY8GuPo6FGQhenIBapQ48KuCDRFZ2G
-         iXvAkRCvXQkAC0Ctg7cOo0VF/UMHiZlgx3HCzOXlX9TiE9s9m5E/EtveRLzTj8p+cH7N
-         rwKyOQttryikT1CNCCO+cBxwrVxC6xhcubvG1oRNNRb0s+Wml+vZl/t0Xo0U2SiE6UFc
-         8vuhA/ji1/4/98tGymq4Hu9yYBn3Sg2Lc7LwB7Abdvw8UAvpycsaQm/v5XV5uT0OaZ/q
-         gwM1IGmvWQpP8gjwhdefL723mqeTqCs++0JLvEvjJ1dHMrY20eeuOm8EWvrEmwOAFKPz
-         qDaw==
-X-Gm-Message-State: AJIora8sUXx6HU5gmYCDlN6Pt7Cd0PnzOPMbEgmNja9sMi4MfOorzfVr
-        sy38+Xfu/x/o2V/Y9YE0jQkHy7WQVJtFCg==
-X-Google-Smtp-Source: AGRyM1tp3Qz7Y4dEkI71yqZkHyPCGlV+Fe9NhNjvBTH0du7cuY3k7wFlVKVTqc/KhgoAdysbzZ1Lgg==
-X-Received: by 2002:a05:600c:1e03:b0:3a3:6cd6:1d38 with SMTP id ay3-20020a05600c1e0300b003a36cd61d38mr6531713wmb.25.1659012749714;
-        Thu, 28 Jul 2022 05:52:29 -0700 (PDT)
-Received: from localhost.localdomain (33.169.185.81.rev.sfr.net. [81.185.169.33])
-        by smtp.gmail.com with ESMTPSA id h3-20020a5d4fc3000000b0021eba590ad1sm977700wrw.90.2022.07.28.05.52.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 05:52:29 -0700 (PDT)
-From:   Julien Panis <jpanis@baylibre.com>
-To:     jic23@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mranostay@ti.com, Julien Panis <jpanis@baylibre.com>
-Subject: [PATCH v2 2/2] iio: time: capture-tiecap: capture driver support for ECAP
-Date:   Thu, 28 Jul 2022 14:52:12 +0200
-Message-Id: <20220728125212.76728-3-jpanis@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220728125212.76728-1-jpanis@baylibre.com>
-References: <20220728125212.76728-1-jpanis@baylibre.com>
+        with ESMTP id S237168AbiG1M6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 08:58:16 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B40EC46DAC;
+        Thu, 28 Jul 2022 05:58:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1659013095; x=1690549095;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VqGMwL7Lma99b1Lz1Z4Qv/qEv0GH5EqC0hCdpYV4L4k=;
+  b=WB0n5eT29jJO2AWPJ08+VGIb4YysdLfB5EUsFz+8uxFmReUvVAbmiQ8N
+   JxJP9KAjclXhxHMJjuHF7xzgX82t5nfWn0VBLreAPolkcfaI0OJ9UycK2
+   PWEWcvLUkb4tSWpeCVTS7Fnk1+KfiEpsmnrVxe042n17dJCa576oi15+B
+   tIflwSZrsI23HuDDG3Qeb0gxGIx/aeuFiI29d2nWS3J87IIvlruRhkDxb
+   P09csQjaHEJVa5nCp353LBCfnUUlV+VHB7jNMej47xv8E4vkJOLjiYoEK
+   NTlHkJOoiBWbCqd/fd+FPV89WUSrcYFhxPCwONRiKHRWOBRir7oa8bkDa
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10421"; a="350208096"
+X-IronPort-AV: E=Sophos;i="5.93,198,1654585200"; 
+   d="scan'208";a="350208096"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jul 2022 05:58:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,198,1654585200"; 
+   d="scan'208";a="846692228"
+Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 28 Jul 2022 05:58:11 -0700
+Received: from kbuild by e0eace57cfef with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oH35e-000A16-1s;
+        Thu, 28 Jul 2022 12:58:10 +0000
+Date:   Thu, 28 Jul 2022 20:57:51 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
+        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: Re: [PATCH] ASoC: qcom: SC7280: Add support for external DMIC bias
+ supply
+Message-ID: <202207282036.84w516Y3-lkp@intel.com>
+References: <1658992233-28372-1-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1658992233-28372-1-git-send-email-quic_srivasam@quicinc.com>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ECAP hardware on AM62x SoC supports capture feature. It can be used
-to timestamp events (falling/rising edges) detected on signal input pin.
+Hi Srinivasa,
 
-This commit adds capture driver support for ECAP hardware on AM62x SoC.
+Thank you for the patch! Yet something to improve:
 
-In the ECAP hardware, capture pin can also be configured to be in
-PWM mode. Current implementation only supports capture operating mode.
-Hardware also supports timebase sync between multiple instances, but
-this driver supports simple independent capture functionality.
+[auto build test ERROR on broonie-sound/for-next]
+[also build test ERROR on linus/master v5.19-rc8 next-20220728]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
----
- drivers/iio/Kconfig               |   1 +
- drivers/iio/Makefile              |   1 +
- drivers/iio/time/Kconfig          |  22 ++
- drivers/iio/time/Makefile         |   6 +
- drivers/iio/time/capture-tiecap.c | 521 ++++++++++++++++++++++++++++++
- 5 files changed, 551 insertions(+)
- create mode 100644 drivers/iio/time/Kconfig
- create mode 100644 drivers/iio/time/Makefile
- create mode 100644 drivers/iio/time/capture-tiecap.c
+url:    https://github.com/intel-lab-lkp/linux/commits/Srinivasa-Rao-Mandadapu/ASoC-qcom-SC7280-Add-support-for-external-DMIC-bias-supply/20220728-151249
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20220728/202207282036.84w516Y3-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/d59fc8cd6dd22df37f41309d1d18a7853929e2f8
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Srinivasa-Rao-Mandadapu/ASoC-qcom-SC7280-Add-support-for-external-DMIC-bias-supply/20220728-151249
+        git checkout d59fc8cd6dd22df37f41309d1d18a7853929e2f8
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=powerpc SHELL=/bin/bash sound/soc/qcom/
 
-diff --git a/drivers/iio/Kconfig b/drivers/iio/Kconfig
-index b190846c3dc2..ba11b8824071 100644
---- a/drivers/iio/Kconfig
-+++ b/drivers/iio/Kconfig
-@@ -99,5 +99,6 @@ source "drivers/iio/pressure/Kconfig"
- source "drivers/iio/proximity/Kconfig"
- source "drivers/iio/resolver/Kconfig"
- source "drivers/iio/temperature/Kconfig"
-+source "drivers/iio/time/Kconfig"
- 
- endif # IIO
-diff --git a/drivers/iio/Makefile b/drivers/iio/Makefile
-index 3be08cdadd7e..09283402a2c6 100644
---- a/drivers/iio/Makefile
-+++ b/drivers/iio/Makefile
-@@ -42,4 +42,5 @@ obj-y += proximity/
- obj-y += resolver/
- obj-y += temperature/
- obj-y += test/
-+obj-y += time/
- obj-y += trigger/
-diff --git a/drivers/iio/time/Kconfig b/drivers/iio/time/Kconfig
-new file mode 100644
-index 000000000000..02f6cf7ff79e
---- /dev/null
-+++ b/drivers/iio/time/Kconfig
-@@ -0,0 +1,22 @@
-+#
-+# Time drivers
-+#
-+
-+menu "Time"
-+
-+config CAPTURE_TIECAP
-+	tristate "ECAP capture support"
-+	depends on ARCH_OMAP2PLUS || ARCH_DAVINCI_DA8XX || ARCH_KEYSTONE || ARCH_K3 || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	select IIO_BUFFER
-+	select IIO_KFIFO_BUF
-+	help
-+	  IIO driver support for the ECAP capture hardware found on TI SoCs.
-+
-+	  It can be used to timestamp events (falling/rising edges) detected
-+	  on signal input pin.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called capture-tiecap.
-+
-+endmenu
-diff --git a/drivers/iio/time/Makefile b/drivers/iio/time/Makefile
-new file mode 100644
-index 000000000000..3a27f3557d1e
---- /dev/null
-+++ b/drivers/iio/time/Makefile
-@@ -0,0 +1,6 @@
-+# SPDX-License-Identifier: GPL-2.0
-+#
-+# Makefile for industrial I/O Time drivers
-+#
-+
-+obj-$(CONFIG_CAPTURE_TIECAP) += capture-tiecap.o
-diff --git a/drivers/iio/time/capture-tiecap.c b/drivers/iio/time/capture-tiecap.c
-new file mode 100644
-index 000000000000..1044e0d36b86
---- /dev/null
-+++ b/drivers/iio/time/capture-tiecap.c
-@@ -0,0 +1,521 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * ECAP Capture driver
-+ *
-+ * Copyright (C) 2022 Julien Panis <jpanis@baylibre.com>
-+ */
-+
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/io.h>
-+#include <linux/err.h>
-+#include <linux/clk.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/of_device.h>
-+#include <linux/bitfield.h>
-+#include <linux/regmap.h>
-+#include <linux/interrupt.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/kfifo_buf.h>
-+
-+/* Registers */
-+#define ECAP_NB_CAP			4
-+
-+#define ECAP_TSCNT_REG			0x00
-+
-+#define ECAP_CAP_REG(i)		(((i) << 2) + 0x08)
-+
-+#define ECAP_ECCTL_REG			0x28
-+#define ECAP_CAPPOL_BIT(i)		BIT((i) << 1)
-+#define ECAP_EV_MODE_MASK		GENMASK(7, 0)
-+#define ECAP_CAPLDEN_BIT		BIT(8)
-+#define ECAP_EVTFLTPS_MASK		GENMASK(13, 9)
-+#define ECAP_PS_DEFAULT_VAL		0
-+#define ECAP_PS_MAX_VAL		31
-+#define ECAP_CONT_ONESHT_BIT		BIT(16)
-+#define ECAP_STOPVALUE_MASK		GENMASK(18, 17)
-+#define ECAP_REARM_RESET_BIT		BIT(19)
-+#define ECAP_TSCNTSTP_BIT		BIT(20)
-+#define ECAP_SYNCO_DIS_MASK		GENMASK(23, 22)
-+#define ECAP_CAP_APWM_BIT		BIT(25)
-+#define ECAP_ECCTL_EN_MASK		(ECAP_CAPLDEN_BIT | ECAP_TSCNTSTP_BIT)
-+#define ECAP_ECCTL_CFG_MASK		(ECAP_EVTFLTPS_MASK | ECAP_SYNCO_DIS_MASK	\
-+					| ECAP_STOPVALUE_MASK | ECAP_ECCTL_EN_MASK	\
-+					| ECAP_CAP_APWM_BIT | ECAP_CONT_ONESHT_BIT	\
-+					| ECAP_REARM_RESET_BIT)
-+
-+#define ECAP_ECINT_EN_FLG_REG		0x2c
-+#define ECAP_NB_CEVT			(ECAP_NB_CAP + 1)
-+#define ECAP_CEVT_EN_MASK		GENMASK(ECAP_NB_CEVT, 1)
-+#define ECAP_CEVT_FLG_BIT(i)		BIT((i) + 17)
-+#define ECAP_OVF_VAL			0xff
-+
-+#define ECAP_ECINT_CLR_FRC_REG	0x30
-+#define ECAP_INT_CLR_BIT		BIT(0)
-+#define ECAP_CEVT_CLR_BIT(i)		BIT((i) + 1)
-+#define ECAP_CEVT_CLR_MASK		GENMASK(ECAP_NB_CEVT, 0)
-+
-+#define ECAP_PID_REG			0x5c
-+
-+/*
-+ * Event modes
-+ * One bit for each CAPx register : 1 = falling edge / 0 = rising edge
-+ * e.g. mode = 13 = 0xd = 0b1101
-+ * -> falling edge for CAP1-3-4 / rising edge for CAP2
-+ */
-+#define ECAP_NB_EV_MODES		GENMASK(ECAP_NB_CAP - 1, 0)
-+#define ECAP_EV_MODE_BIT(i)		BIT(i)
-+
-+static unsigned int prescaler = ECAP_PS_DEFAULT_VAL;
-+module_param(prescaler, uint, 0644);
-+MODULE_PARM_DESC(prescaler, "Input capture signal prescaler from 0 to "
-+		 __MODULE_STRING(ECAP_PS_MAX_VAL)", default "
-+		 __MODULE_STRING(ECAP_PS_DEFAULT_VAL));
-+
-+static const struct regmap_config ecap_iio_regmap_config = {
-+	.reg_bits = 32,
-+	.reg_stride = 4,
-+	.val_bits = 32,
-+	.max_register = ECAP_PID_REG,
-+};
-+
-+/*
-+ * struct ecap_iio_context - IIO device context
-+ * @ev_mode:   event mode describing falling/rising edges for captures 1 to 4
-+ * @time_cntr: timestamp counter value
-+ */
-+struct ecap_iio_context {
-+	u8 ev_mode;
-+	unsigned int time_cntr;
-+};
-+
-+/*
-+ * struct ecap_iio_data - IIO device data
-+ * @ev_idx:  event index (0 to 3 for CAP1 to CAP4)
-+ * @ev_time: falling/rising edge timestamp
-+ */
-+struct ecap_iio_data {
-+	u8 ev_idx;
-+	s64 ev_time __aligned(sizeof(s64));
-+};
-+
-+/*
-+ * struct ecap_iio_dev - IIO device private data structure
-+ * @enabled:  device state
-+ * @clk:      device clock
-+ * @clk_rate: device clock rate
-+ * @regmap:   device register map
-+ * @pm_ctx:   device context for PM operations
-+ * @data:     device data
-+ */
-+struct ecap_iio_dev {
-+	bool enabled;
-+	struct clk *clk;
-+	unsigned long clk_rate;
-+	struct regmap *regmap;
-+	struct ecap_iio_context pm_ctx;
-+	struct ecap_iio_data data;
-+};
-+
-+static u8 ecap_iio_capture_get_evmode(struct iio_dev *indio_dev)
-+{
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+	u8 ev_mode = 0;
-+	unsigned int regval;
-+	int i;
-+
-+	pm_runtime_get_sync(indio_dev->dev.parent);
-+	regmap_read(ecap_dev->regmap, ECAP_ECCTL_REG, &regval);
-+	pm_runtime_put_sync(indio_dev->dev.parent);
-+
-+	for (i = 0 ; i < ECAP_NB_CAP ; i++) {
-+		if (regval & ECAP_CAPPOL_BIT(i))
-+			ev_mode |= ECAP_EV_MODE_BIT(i);
-+	}
-+
-+	return ev_mode;
-+}
-+
-+static void ecap_iio_capture_set_evmode(struct iio_dev *indio_dev, u8 ev_mode)
-+{
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+	unsigned int regval = 0;
-+	int i;
-+
-+	for (i = 0 ; i < ECAP_NB_CAP ; i++) {
-+		if (ev_mode & ECAP_EV_MODE_BIT(i))
-+			regval |= ECAP_CAPPOL_BIT(i);
-+	}
-+
-+	pm_runtime_get_sync(indio_dev->dev.parent);
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_EV_MODE_MASK, regval);
-+	pm_runtime_put_sync(indio_dev->dev.parent);
-+}
-+
-+static void ecap_iio_capture_enable(struct iio_dev *indio_dev, bool rearm)
-+{
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+	unsigned int regval = 0;
-+
-+	pm_runtime_get_sync(indio_dev->dev.parent);
-+
-+	/* Enable interrupts on events */
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECINT_EN_FLG_REG,
-+			   ECAP_CEVT_EN_MASK, ECAP_CEVT_EN_MASK);
-+
-+	/* Run counter */
-+	regval |= FIELD_PREP(ECAP_EVTFLTPS_MASK, prescaler)
-+		| ECAP_SYNCO_DIS_MASK | ECAP_STOPVALUE_MASK | ECAP_ECCTL_EN_MASK;
-+	if (rearm) {
-+		regmap_write(ecap_dev->regmap, ECAP_TSCNT_REG, 0);
-+		regval |= ECAP_REARM_RESET_BIT;
-+	}
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_ECCTL_CFG_MASK, regval);
-+}
-+
-+static void ecap_iio_capture_disable(struct iio_dev *indio_dev)
-+{
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+
-+	/* Disable interrupts on events */
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECINT_EN_FLG_REG, ECAP_CEVT_EN_MASK, 0);
-+
-+	/* Stop counter */
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECCTL_REG, ECAP_ECCTL_EN_MASK, 0);
-+
-+	pm_runtime_put_sync(indio_dev->dev.parent);
-+}
-+
-+static int ecap_iio_read_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan,
-+			     int *val, int *val2, long info)
-+{
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+
-+	switch (info) {
-+	case IIO_CHAN_INFO_ENABLE:
-+		*val = ecap_dev->enabled;
-+		return IIO_VAL_INT;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ecap_iio_write_raw(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      int val, int val2, long info)
-+{
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+
-+	switch (info) {
-+	case IIO_CHAN_INFO_ENABLE:
-+		if (val < 0 || val > 1)
-+			return -EINVAL;
-+		if (val == ecap_dev->enabled)
-+			return 0;
-+		if (val)
-+			ecap_iio_capture_enable(indio_dev, true);
-+		else
-+			ecap_iio_capture_disable(indio_dev);
-+		ecap_dev->enabled = val;
-+		return 0;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ecap_iio_read_event_value(struct iio_dev *indio_dev,
-+				     const struct iio_chan_spec *chan,
-+				     enum iio_event_type type,
-+				     enum iio_event_direction dir,
-+				     enum iio_event_info info,
-+				     int *val, int *val2)
-+{
-+	switch (info) {
-+	case IIO_EV_INFO_VALUE:
-+		switch (dir) {
-+		case IIO_EV_DIR_FALLING:
-+			*val = ecap_iio_capture_get_evmode(indio_dev);
-+			return IIO_VAL_INT;
-+		default:
-+			return -EINVAL;
-+		}
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int ecap_iio_write_event_value(struct iio_dev *indio_dev,
-+				      const struct iio_chan_spec *chan,
-+				      enum iio_event_type type,
-+				      enum iio_event_direction dir,
-+				      enum iio_event_info info,
-+				      int val, int val2)
-+{
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+
-+	switch (info) {
-+	case IIO_EV_INFO_VALUE:
-+		switch (dir) {
-+		case IIO_EV_DIR_FALLING:
-+			if (val < 0 || val > ECAP_NB_EV_MODES)
-+				return -EINVAL;
-+			if (ecap_dev->enabled)
-+				return -EBUSY;
-+			ecap_iio_capture_set_evmode(indio_dev, val);
-+			return 0;
-+		default:
-+			return -EINVAL;
-+		}
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info ecap_iio_info = {
-+	.read_raw = ecap_iio_read_raw,
-+	.write_raw = ecap_iio_write_raw,
-+	.read_event_value = ecap_iio_read_event_value,
-+	.write_event_value = ecap_iio_write_event_value,
-+};
-+
-+static const struct iio_event_spec ecap_iio_events[] = {
-+	{
-+		.type = IIO_EV_TYPE_CHANGE,
-+		.dir = IIO_EV_DIR_FALLING,
-+		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
-+	},
-+};
-+
-+static const struct iio_chan_spec ecap_iio_channels[] = {
-+	{
-+		.scan_index = 0,
-+		.type = IIO_INDEX,
-+		.address = 0,
-+		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_ENABLE),
-+		.modified = 0,
-+		.event_spec = ecap_iio_events,
-+		.num_event_specs = ARRAY_SIZE(ecap_iio_events),
-+		.scan_type = {
-+			.sign = 'u',
-+			.endianness = IIO_LE,
-+			.realbits = 2,
-+			.storagebits = 8,
-+			.shift = 0,
-+		},
-+	},
-+	IIO_CHAN_SOFT_TIMESTAMP(1),
-+};
-+
-+static irqreturn_t ecap_iio_isr(int irq, void *dev_id)
-+{
-+	struct iio_dev *indio_dev = dev_id;
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+	struct ecap_iio_data *ecap_data = &ecap_dev->data;
-+	unsigned int clr = 0;
-+	unsigned int flg;
-+	unsigned int cap_time;
-+	int i;
-+
-+	regmap_read(ecap_dev->regmap, ECAP_ECINT_EN_FLG_REG, &flg);
-+
-+	for (i = 0 ; i < ECAP_NB_CEVT ; i++) {
-+		if (flg & ECAP_CEVT_FLG_BIT(i)) {
-+			if (i < ECAP_NB_CAP) {
-+				/*
-+				 * Input signal edge detected
-+				 * time_ns = 10^9 * time_cycles / clk_rate
-+				 */
-+				ecap_data->ev_idx = i;
-+				regmap_read(ecap_dev->regmap, ECAP_CAP_REG(i), &cap_time);
-+				ecap_data->ev_time = cap_time * NSEC_PER_SEC;
-+				do_div(ecap_data->ev_time, ecap_dev->clk_rate);
-+			} else {
-+				/* Counter overflow */
-+				ecap_data->ev_idx = ECAP_OVF_VAL;
-+				ecap_data->ev_time = 0;
-+			}
-+			iio_push_to_buffers(indio_dev, ecap_data);
-+
-+			clr |= ECAP_CEVT_CLR_BIT(i);
-+		}
-+	}
-+
-+	clr |= ECAP_INT_CLR_BIT;
-+	regmap_update_bits(ecap_dev->regmap, ECAP_ECINT_CLR_FRC_REG, ECAP_CEVT_CLR_MASK, clr);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void ecap_iio_clk_disable(void *clk)
-+{
-+	clk_disable_unprepare(clk);
-+}
-+
-+static int ecap_iio_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct ecap_iio_dev *ecap_dev;
-+	struct iio_dev *indio_dev;
-+	void __iomem *mmio_base;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*ecap_dev));
-+	if (IS_ERR(indio_dev)) {
-+		dev_err(dev, "failed to allocate memory for iio device\n");
-+		return PTR_ERR(indio_dev);
-+	}
-+
-+	ecap_dev = iio_priv(indio_dev);
-+
-+	ecap_dev->clk = devm_clk_get(dev, "fck");
-+	if (IS_ERR(ecap_dev->clk)) {
-+		dev_err(dev, "failed to get clock\n");
-+		return PTR_ERR(ecap_dev->clk);
-+	}
-+
-+	ret = clk_prepare_enable(ecap_dev->clk);
-+	if (ret) {
-+		dev_err(dev, "failed to enable clock\n");
-+		return ret;
-+	}
-+
-+	ret = devm_add_action_or_reset(dev, ecap_iio_clk_disable, ecap_dev->clk);
-+	if (ret) {
-+		dev_err(dev, "failed to add clock disable action\n");
-+		return ret;
-+	}
-+
-+	ecap_dev->clk_rate = clk_get_rate(ecap_dev->clk);
-+	if (!ecap_dev->clk_rate) {
-+		dev_err(dev, "failed to get clock rate\n");
-+		return -EINVAL;
-+	}
-+
-+	if (prescaler > ECAP_PS_MAX_VAL) {
-+		prescaler = ECAP_PS_MAX_VAL;
-+		dev_warn(dev, "prescaler out of range, forced to %d\n", prescaler);
-+	}
-+
-+	mmio_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(mmio_base)) {
-+		dev_err(dev, "failed to remap io\n");
-+		return PTR_ERR(mmio_base);
-+	}
-+
-+	ecap_dev->regmap = regmap_init_mmio(dev, mmio_base, &ecap_iio_regmap_config);
-+	if (IS_ERR(ecap_dev->regmap)) {
-+		dev_err(dev, "failed to init regmap\n");
-+		return PTR_ERR(ecap_dev->regmap);
-+	}
-+
-+	indio_dev->name = devm_kasprintf(dev, GFP_KERNEL,
-+					 "ecap-iio-%p", mmio_base);
-+	indio_dev->info = &ecap_iio_info;
-+	indio_dev->channels = ecap_iio_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(ecap_iio_channels);
-+	indio_dev->modes = INDIO_BUFFER_SOFTWARE;
-+
-+	ret = devm_iio_kfifo_buffer_setup_ext(dev, indio_dev, NULL, NULL);
-+	if (ret) {
-+		dev_err(dev, "failed to setup iio buffer\n");
-+		return ret;
-+	}
-+
-+	ret = platform_get_irq(pdev, 0);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to get irq\n");
-+		return ret;
-+	}
-+
-+	ret = devm_request_irq(dev, ret, ecap_iio_isr, 0, pdev->name, indio_dev);
-+	if (ret) {
-+		dev_err(dev, "failed to request irq\n");
-+		return ret;
-+	}
-+
-+	platform_set_drvdata(pdev, indio_dev);
-+	pm_runtime_enable(&pdev->dev);
-+
-+	ecap_dev->enabled = 0;
-+	ecap_iio_capture_set_evmode(indio_dev, 0);
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static int ecap_iio_remove(struct platform_device *pdev)
-+{
-+	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+
-+	if (ecap_dev->enabled)
-+		ecap_iio_capture_disable(indio_dev);
-+
-+	regmap_exit(ecap_dev->regmap);
-+
-+	pm_runtime_disable(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static __maybe_unused int ecap_iio_suspend(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+
-+	/* If eCAP is running, stop capture then save timestamp counter */
-+	if (ecap_dev->enabled) {
-+		ecap_iio_capture_disable(indio_dev);
-+
-+		pm_runtime_get_sync(indio_dev->dev.parent);
-+		regmap_read(ecap_dev->regmap, ECAP_TSCNT_REG, &ecap_dev->pm_ctx.time_cntr);
-+		pm_runtime_put_sync(indio_dev->dev.parent);
-+	}
-+
-+	ecap_dev->pm_ctx.ev_mode = ecap_iio_capture_get_evmode(indio_dev);
-+
-+	return 0;
-+}
-+
-+static __maybe_unused int ecap_iio_resume(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct ecap_iio_dev *ecap_dev = iio_priv(indio_dev);
-+
-+	ecap_iio_capture_set_evmode(indio_dev, ecap_dev->pm_ctx.ev_mode);
-+
-+	/* If eCAP was running, restore timestamp counter then run capture */
-+	if (ecap_dev->enabled) {
-+		pm_runtime_get_sync(indio_dev->dev.parent);
-+		regmap_write(ecap_dev->regmap, ECAP_TSCNT_REG, ecap_dev->pm_ctx.time_cntr);
-+		pm_runtime_put_sync(indio_dev->dev.parent);
-+
-+		ecap_iio_capture_enable(indio_dev, false);
-+	}
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(ecap_iio_pm_ops, ecap_iio_suspend, ecap_iio_resume);
-+
-+static const struct of_device_id ecap_iio_of_match[] = {
-+	{ .compatible	= "ti,am62-ecap-capture" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, ecap_iio_of_match);
-+
-+static struct platform_driver ecap_iio_driver = {
-+	.probe = ecap_iio_probe,
-+	.remove = ecap_iio_remove,
-+	.driver = {
-+		.name = "ecap-capture",
-+		.of_match_table = of_match_ptr(ecap_iio_of_match),
-+		.pm = &ecap_iio_pm_ops,
-+	},
-+};
-+module_platform_driver(ecap_iio_driver);
-+
-+MODULE_DESCRIPTION("ECAP Capture driver");
-+MODULE_AUTHOR("Julien Panis <jpanis@baylibre.com>");
-+MODULE_LICENSE("GPL");
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   sound/soc/qcom/sc7280.c: In function 'sc7280_snd_platform_probe':
+>> sound/soc/qcom/sc7280.c:413:37: error: expected ')' before 'return'
+     413 |         if (IS_ERR(data->vdd_supply)
+         |            ~                        ^
+         |                                     )
+     414 |                 return PTR_ERR(data->vdd_supply);
+         |                 ~~~~~~               
+>> sound/soc/qcom/sc7280.c:417:1: error: expected expression before '}' token
+     417 | }
+         | ^
+   sound/soc/qcom/sc7280.c:417:1: error: control reaches end of non-void function [-Werror=return-type]
+     417 | }
+         | ^
+   cc1: some warnings being treated as errors
+
+
+vim +413 sound/soc/qcom/sc7280.c
+
+   380	
+   381	static int sc7280_snd_platform_probe(struct platform_device *pdev)
+   382	{
+   383		struct snd_soc_card *card;
+   384		struct sc7280_snd_data *data;
+   385		struct device *dev = &pdev->dev;
+   386		struct snd_soc_dai_link *link;
+   387		int ret, i;
+   388	
+   389		data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+   390		if (!data)
+   391			return -ENOMEM;
+   392	
+   393		card = &data->card;
+   394		snd_soc_card_set_drvdata(card, data);
+   395	
+   396		card->owner = THIS_MODULE;
+   397		card->driver_name = "SC7280";
+   398		card->dev = dev;
+   399	
+   400		card->dapm_widgets = sc7280_snd_widgets;
+   401		card->num_dapm_widgets = ARRAY_SIZE(sc7280_snd_widgets);
+   402	
+   403		ret = qcom_snd_parse_of(card);
+   404		if (ret)
+   405			return ret;
+   406	
+   407		for_each_card_prelinks(card, i, link) {
+   408			link->init = sc7280_init;
+   409			link->ops = &sc7280_ops;
+   410		}
+   411	
+   412		data->vdd_supply = devm_regulator_get(dev, "vdd-dmic-bias");
+ > 413		if (IS_ERR(data->vdd_supply)
+   414			return PTR_ERR(data->vdd_supply);
+   415	
+   416		return devm_snd_soc_register_card(dev, card);
+ > 417	}
+   418	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://01.org/lkp
