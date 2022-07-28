@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 147BD583D97
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 13:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86062583DA4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 13:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236016AbiG1LiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 07:38:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39018 "EHLO
+        id S236448AbiG1LiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 07:38:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236264AbiG1Lh6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 07:37:58 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 870B952DEE
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:37:57 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id b16so2419416lfb.7
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:37:57 -0700 (PDT)
+        with ESMTP id S236016AbiG1LiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 07:38:00 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AD6C55081
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:37:58 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id b16so2419464lfb.7
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:37:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=8f7AzP41RwjwjZoc5Fi63P8k3nDowsYtu1Mq4bqqV00=;
-        b=uRee3hHcuqRucHOZB3WCx5VdGAyydjYM5zjTsBKtDKgkMtOI8MOv66+a+0HMyNLZd6
-         6Q1LcPPX/b6nOZ83WoVq1Jyme1AH4prpuQxj9AL3BZ1SPAYUdZLDOVLZXL3zEcP3tYZm
-         wa/N2d6kHIMjSvytZl+GnFZbnn4RO8PTrZdhRTNqThr54komn5FXDxzf7wyr/7Vrfx7e
-         FSPxtGVDVr84TYiKy799uFEP7t73w8tvbWGZ/1LQ0wbk4mHxTVuwLA2yqrIKhnlA+m+m
-         DbMop+WnD/kcQTfHz7+MVwdFxdcVu7m63MNahhCIzUXa04cOUOefM1g+5rSkGiT4CjhJ
-         Ayrg==
+        bh=6jxkS7/ms1db5yL2dzxTICIKKExj7puACAAi6Hsp2r4=;
+        b=BP4WxWJfZP9C0iIqVnO6veQ7kEEeQwbnrYoi//uSqcoG6QACxPT+Hsm4WbZqkDH/Rm
+         xy2OeGxKmVE6RgUw36lYlYjPUlr8intYwl8bfAzC5HBFkbCj4v/JLwb6AoxbrhudicaI
+         HvJCPzymY8590cxiEZBq+cJhGqlOY5xktGllTMqohiIuCw6nbpD1fsi+lZbp5yUaF0BD
+         v9FLRNFzsOzgq2DPWuZGFT7xS+wNTbmnuDpjMhmDU9ZXUVnq6WhzblLR89ORjNJW4/zg
+         5/kE2AfKb+ZnrCZZB+ndmQRP5BPTBcB0EFJE3VwdLi3wMNvaLKOs5ZBD7FSIwqH6jPAf
+         mDAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=8f7AzP41RwjwjZoc5Fi63P8k3nDowsYtu1Mq4bqqV00=;
-        b=zE/PCpiLjnyhSASdzjLUjRBwUgahzuL+9mLUzs7ty8N/1046qbppbKA8nRo8Ifvyp4
-         Nu+dLbcounCVQaHN95LgaZRe6BKq20nAFIPm5nYkd0dLlUsCBKQYp/rL/Myu1OD7oxqf
-         B+4gbuOEXhr8KDl1KbuLQdRtfISCULgf8GnDHU+WweQJXe7PaUutrmxafpraGXWOz/Qf
-         S3QCnEjlVOn2ygmSp2d4g//FHAAsBNeOxt/O++00Y+/aYe280w7hHYzr/QYwdGrYwXhV
-         iWYGv6z9tws1jxxwUkaBZV6b4lZCCRiR3beUnUk/wwAda5L4p3+AwzsK4btWIdZASnCb
-         C6qw==
-X-Gm-Message-State: AJIora92QhF656ApusWCCfBdExffGe1KXtx3Icea4Wcr4ad7f0bbBbQO
-        IDmiA5uWfHbmQZapzKQwHE2uCQ==
-X-Google-Smtp-Source: AGRyM1svL/jAfEzurLOoAGAE0tDhv8inIGoxoPYrjBITobXC5679QnZn5OdPRm4PKEqAmE4ETI/Oiw==
-X-Received: by 2002:a05:6512:1291:b0:48a:9148:64e6 with SMTP id u17-20020a056512129100b0048a914864e6mr6720951lfs.480.1659008275675;
-        Thu, 28 Jul 2022 04:37:55 -0700 (PDT)
+        bh=6jxkS7/ms1db5yL2dzxTICIKKExj7puACAAi6Hsp2r4=;
+        b=XNf0nXJ1VOJHcZwuH0HSQAqmnMRLgyaD/81v/JYywfPlVb0a+MsK2P0Z1peGhMe/zk
+         +h6b/D2gYqy9X04n+NNsL7fUoG22VOIqKxn1XS0NHKwTwwL9wYVF8/xQRKFxq6leHSGO
+         0XWooruxa5YgeLeir76rTZRXe2A9+RQa48SdsSLECaPOeIr5MVSuJ+CSwmcN4T3RZfhg
+         cL5weofuu8CHgu/WQAYiw7tBAkeJY9dyVOqxiotNtlahYDP9vtdgHnxahDSjqsPTXdAy
+         YpAMZeQp6NtOkTVRLejepaasEQ7qcQ6McNLYsDc6eOc3Pc9ZFQfbyzhbPM6sTe2NFfHM
+         iwaQ==
+X-Gm-Message-State: AJIora8zKxpq6BhPlDyDlds2nPBmzr3c0+ZeYQnphdjrsiGNbyq5yJ+w
+        MMr6L+Q1LvD1CTFja2TSVIpovQ==
+X-Google-Smtp-Source: AGRyM1vqo2kECSeNqRT/11i8yeK+k68/7tONmD12YcAGOuzStG6+YPxeGukes24HgLmGopZ6zJSjHA==
+X-Received: by 2002:a05:6512:1690:b0:48a:c5b6:17cc with SMTP id bu16-20020a056512169000b0048ac5b617ccmr1028550lfb.375.1659008276907;
+        Thu, 28 Jul 2022 04:37:56 -0700 (PDT)
 Received: from krzk-bin.lan (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id l12-20020a2ea80c000000b0025e0396786dsm98192ljq.93.2022.07.28.04.37.54
+        by smtp.gmail.com with ESMTPSA id l12-20020a2ea80c000000b0025e0396786dsm98192ljq.93.2022.07.28.04.37.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 04:37:55 -0700 (PDT)
+        Thu, 28 Jul 2022 04:37:56 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -58,9 +58,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>,
         Sibi Sankar <quic_sibis@quicinc.com>
-Subject: [PATCH v2 02/11] soc: qcom: icc-bwmon: re-use IRQ enable/clear define
-Date:   Thu, 28 Jul 2022 13:37:39 +0200
-Message-Id: <20220728113748.170548-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 03/11] soc: qcom: icc-bwmon: drop unused registers
+Date:   Thu, 28 Jul 2022 13:37:40 +0200
+Message-Id: <20220728113748.170548-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220728113748.170548-1-krzysztof.kozlowski@linaro.org>
 References: <20220728113748.170548-1-krzysztof.kozlowski@linaro.org>
@@ -76,32 +76,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The interrupt enable, status and clear registers have the same layout,
-so BWMON_GLOBAL_IRQ_ENABLE_ENABLE define can be used also for clearing
-IRQ, instead of hard-coded value.
+BWMON_GLOBAL_IRQ_STATUS and BWMON_ZONE_COUNT defines are not used.
 
 Cc: Rajendra Nayak <quic_rjendra@quicinc.com>
 Cc: Sibi Sankar <quic_sibis@quicinc.com>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Reviewed-by: Sibi Sankar <quic_sibis@quicinc.com>
 ---
- drivers/soc/qcom/icc-bwmon.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/soc/qcom/icc-bwmon.c | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/drivers/soc/qcom/icc-bwmon.c b/drivers/soc/qcom/icc-bwmon.c
-index bea3ea1de7a4..3415f42523cd 100644
+index 3415f42523cd..9295ea04356a 100644
 --- a/drivers/soc/qcom/icc-bwmon.c
 +++ b/drivers/soc/qcom/icc-bwmon.c
-@@ -162,7 +162,8 @@ static void bwmon_clear_irq(struct icc_bwmon *bwmon)
- 	 * interrupt is cleared.
- 	 */
- 	writel(BWMON_IRQ_ENABLE_MASK, bwmon->base + BWMON_IRQ_CLEAR);
--	writel(BIT(0), bwmon->base + BWMON_GLOBAL_IRQ_CLEAR);
-+	writel(BWMON_GLOBAL_IRQ_ENABLE_ENABLE,
-+	       bwmon->base + BWMON_GLOBAL_IRQ_CLEAR);
- }
+@@ -31,7 +31,6 @@
+ /* Internal sampling clock frequency */
+ #define HW_TIMER_HZ				19200000
  
- static void bwmon_disable(struct icc_bwmon *bwmon)
+-#define BWMON_GLOBAL_IRQ_STATUS			0x0
+ #define BWMON_GLOBAL_IRQ_CLEAR			0x8
+ #define BWMON_GLOBAL_IRQ_ENABLE			0xc
+ #define BWMON_GLOBAL_IRQ_ENABLE_ENABLE		BIT(0)
+@@ -105,7 +104,6 @@
+ 
+ /* BWMONv4 count registers use count unit of 64 kB */
+ #define BWMON_COUNT_UNIT_KB			64
+-#define BWMON_ZONE_COUNT			0x2d8
+ #define BWMON_ZONE_MAX(zone)			(0x2e0 + 4 * (zone))
+ 
+ struct icc_bwmon_data {
 -- 
 2.34.1
 
