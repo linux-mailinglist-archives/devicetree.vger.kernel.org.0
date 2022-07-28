@@ -2,123 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A3A2583A4B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 10:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19875583A73
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 10:39:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234819AbiG1IXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 04:23:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38628 "EHLO
+        id S235208AbiG1Ijk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 04:39:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235155AbiG1IXg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 04:23:36 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A80C06248D;
-        Thu, 28 Jul 2022 01:23:35 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C9A83106F;
-        Thu, 28 Jul 2022 01:23:35 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DDF8F3F73B;
-        Thu, 28 Jul 2022 01:23:32 -0700 (PDT)
-Date:   Thu, 28 Jul 2022 09:23:30 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Maximilian Luz <luzmaximilian@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235153AbiG1Ijd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 04:39:33 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A120762A4E
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 01:39:31 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 2-20020a1c0202000000b003a3a22178beso578146wmc.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 01:39:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=references:user-agent:from:to:subject:date:in-reply-to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=jIAL/NtinFiIoUs1seDVkZQ5Lk2NmjX9+zgQPi+IvjA=;
+        b=igCNHyQ+4L6hHGHtmQg+2CD+K5Lvfdlh+ACqtzyHI+0w3RvK2lZlpDBROkddBN9MaY
+         RsVkQtpd2iBAqUrYrvuxJsJcMkolsL+ZY1MFOdQuU4vQd+zBp/vI2sL5UUn/o0khNJnm
+         Tr4/ynuvnx3cxODsOm30vkD8XGxrYBipeO2GpFZiq8aE5kjO5hAdh5p8ScJQDEjSiyJY
+         lUOgKCpLWfVBzsvUEReXVJ6OwDyOWtoNh71AlIKCOKh2DIdJpw1NRrhEuOnerCgCSBM5
+         MZZRz+sXHYM3frimQR/+CoQ7D8PHkDVAkXilylaD+9GXtYkLZaFlaDAqXBsyKcXicvsf
+         fVTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:user-agent:from:to:subject:date
+         :in-reply-to:message-id:mime-version:content-transfer-encoding;
+        bh=jIAL/NtinFiIoUs1seDVkZQ5Lk2NmjX9+zgQPi+IvjA=;
+        b=C/QKmDFgQEMw70PyA1Eine8K4HZ2gynn7jjBbbUxH0ZEonYmKRlQG0WCx0ZMmyUAyN
+         Lh1dIAFcpK8ey04Pn93MVyPMebxezLr4c0JYqEBlcqeygCq3IWZYeSomvvsByWyrAfrd
+         VBfVP7u9boiIeBZnz4yoYD7YiLsiyt+zdDCqhChjPMBXR67BmhyMPwA6Re1dZIHChmeJ
+         dsQQIE6jDNQZu6zQE/IRJd40H8Uqx1mSHaXhJPewymn2W8FNAd+5MTQ7JliAoNCGnWyd
+         qkR1GmFrO72G+ekD7NYwRT9HeHzPs57e+DWo9Yq+5Fw9/uKBQss+xMzNvgA55ut220i9
+         SXSA==
+X-Gm-Message-State: AJIora/YWtrqODYTxY0mS51DA6DMrnJlmuaBFEmhD4UKXUJpWMZXxg2d
+        QIJ1gZN0A3zKGWk3bSJBBcm4ng==
+X-Google-Smtp-Source: AGRyM1uM91GvDx6P1GRpKHAV4YFnCfa9JW4xCzK7+51rXTwVChFIWKbdxZIbjGm98XgIPJ4Z2/8p4A==
+X-Received: by 2002:a1c:7503:0:b0:3a3:2db1:d37e with SMTP id o3-20020a1c7503000000b003a32db1d37emr5730471wmc.47.1658997570007;
+        Thu, 28 Jul 2022 01:39:30 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id z16-20020adfe550000000b002185631adf0sm363872wrm.23.2022.07.28.01.39.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 01:39:29 -0700 (PDT)
+References: <20220728054202.6981-1-yu.tu@amlogic.com>
+ <1j8rodhfn9.fsf@starbuckisacylon.baylibre.com>
+ <032b3c3f-f899-bf53-ecbb-35191d39392b@amlogic.com>
+User-agent: mu4e 1.8.6; emacs 27.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-Message-ID: <20220728082330.w4ppmzvjaeywsglu@bogus>
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <20220723224949.1089973-5-luzmaximilian@gmail.com>
- <20220726143005.wt4be7yo7sbd3xut@bogus>
- <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
- <20220726154138.74avqs6iqlzqpzjk@bogus>
- <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V2 0/3] Add S4 SoC clock controller driver
+Date:   Thu, 28 Jul 2022 10:27:00 +0200
+In-reply-to: <032b3c3f-f899-bf53-ecbb-35191d39392b@amlogic.com>
+Message-ID: <1j4jz1hbr5.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 26, 2022 at 07:01:28PM +0200, Maximilian Luz wrote:
-> On 7/26/22 17:41, Sudeep Holla wrote:
-> > On Tue, Jul 26, 2022 at 05:15:41PM +0200, Maximilian Luz wrote:
-> > >
-> > > So ultimately I think it's better to add a DT entry for it.
-> >
-> > I disagree for the reason that once you discover more apps running on the
-> > secure side, you want to add more entries and update DT on the platform
-> > every time you discover some new firmware entity and you wish to interact
-> > with it from the non-secure side.
+
+On Thu 28 Jul 2022 at 16:06, Yu Tu <yu.tu@amlogic.com> wrote:
+
+> Hi JB=EF=BC=8C
 >
-> Just as you'll have to add a driver to the kernel and update whatever is
-> probing the TrEE interface and add those strings to that interface. If
-> you then start doing SoC-specific lists, I think you'd be pretty much
-> re-implementing a DT in the kernel driver...
+> On 2022/7/28 15:08, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>>=20
+>> On Thu 28 Jul 2022 at 13:41, Yu Tu <yu.tu@amlogic.com> wrote:
+>>=20
+>>> 1. Add clock controller driver for S4 SOC.
+>>>
+>>> Yu Tu (3):
+>>>    dt-bindings: clk: meson: add S4 SoC clock controller bindings
+>>>    arm64: dts: meson: add S4 Soc clock controller in DT
+>>>    clk: meson: s4: add s4 SoC clock controller driver
+>>>
+>>> V1 -> V2: Change format as discussed in the email.
+>>>
+>>> Link:https://lore.kernel.org/linux-amlogic/20220708062757.3662-1-yu.tu@=
+amlogic.com/
+>>>
+>>>   .../bindings/clock/amlogic,gxbb-clkc.txt      |    1 +
+>>>   MAINTAINERS                                   |    1 +
+>>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   11 +
+>>>   drivers/clk/meson/Kconfig                     |   15 +
+>>>   drivers/clk/meson/Makefile                    |    1 +
+>>>   drivers/clk/meson/s4.c                        | 4732 +++++++++++++++++
+>>>   drivers/clk/meson/s4.h                        |  296 ++
+>>>   include/dt-bindings/clock/s4-clkc.h           |  146 +
+>>>   8 files changed, 5203 insertions(+)
+>>>   create mode 100644 drivers/clk/meson/s4.c
+>>>   create mode 100644 drivers/clk/meson/s4.h
+>>>   create mode 100644 include/dt-bindings/clock/s4-clkc.h
+>>>
+>>>
+>>> base-commit: b293bc9286ee21824e93f0fcfed3b78fdfee01e6
+>> Please don't post until you have addressed *ALL* the comments from the
+>> previous version.
+> The last email asked you to adopt A1 method, but you did not reply?
 >
+>> At first glance, I can see that this is still a single driver for
+>> what is obviously 2 controllers with 2 register spaces. Simple comments
+>> like the "<< 2" in the register declaration have not been addressed eith=
+er.
+> I understand that this should be a controller, just two address
+> descriptions. One is the various PLL registers and one is the clock for=20
+> the peripherals. And PLL is to provide a clock source for various
+> peripheral clocks. So a clock controller is reasonable. I think you got=20
+> it wrong.
 
-Yes at the cost of DT being dumping ground for all the SoC specific firmware
-crap. Firmware can be and must be discoverable, no point in dumping it in
-DT as it forces DT upgrade every time something changes in the firmware i.e.
-it can go out of sync quite quickly.
+I don't think I do. This looks exactly like the A1.
+The post of that controller are still in the  archive and I am sure your
+colleagues can give you the history.
 
-> I don't quite understand why this is a problem. I think per device,
-> there's a reasonably limited set of apps that we would want to interact
-> with from the kernel. And for one single device, that set doesn't change
-> over time. So what's the difference to, say, an I2C device?
+You clearly have register regions providing clock, separated by
+0x8000. Claiming that as one big region is bad design.
+
+There has been several remarks about using a big syscon on V1,
+unaddressed too.
+
+CCF has everything necessary in place to handle each register region
+separately, properly and pass clock around.
+
+You can handle it as a single controller, claiming the two regions
+individually but:
+# 1 - handling 2 different regmaps in the controller is going to be
+      bigger mess than you think
+# 2 - I am far from convinced there is any reason to do so
+
+
 >
-
-As I said we don't want DT to be dumping ground for all the not well designed
-firmware interface. The whole point of firmware being another piece of
-software that can be change unlike hardware makes it fragile to present any
-more that what you need in the DT. I see this as one of the example.
-
-Anyways I don't have the final say, I leave it to the DT maintainers.
-
-> > As along as get this application ID can handle any random name, I prefer
-> > to use that as the discover mechanism and not have this DT.
+> Ok, if you insist on using two clock controllers,, please provide your the
+> reason and example code?
 >
-> Apart from the above, some apps must also be loaded from the system. And
-> those you can't detect: If an app isn't running, it doesn't have an ID
-> (uefisecapp and the tpm app are loaded by the firmware at boot). Those
-> are mostly vendor-specific things as far as I can tell, or HDCP stuff.
-> So you'd need to specify those as firmware somehow, and since (as far as
-> I can tell) those are signed specifically by/for that vendor and
-> potentially device (similar to the GPU zap shader or remoteproc
-> firmware), you'll need to use per-device paths.
->
+>> Seeing that, I have not reviewed this version further.
+>> I won't until all the comments from v1 are either addressed or answer
+>> Regards
+>> Jerome
+>> .
 
-Sounds to me like more can be pushed to user space as it gets loaded at
-runtime.
-
-> That means you either hard-code them in the driver and have a compatible
-> per model, do DMI matching, or something similar (again, essentially
-> baking DTs into the kernel driver...), or just store them in the DT
-> (like we already do for GPU/remoteprocs). While you could hard-code some
-> known loaded-by-firmware apps and use the DT for others, I think we
-> should keep everything in the same place.
->
-
-Worst case I am fine with that as this needs to be one of and future
-platforms must get their act right in designing their f/w interface.
-
---
-Regards,
-Sudeep
