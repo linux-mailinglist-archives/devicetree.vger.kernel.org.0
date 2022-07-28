@@ -2,342 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A38584112
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 16:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0282E584196
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 16:36:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbiG1O1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 10:27:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55650 "EHLO
+        id S232084AbiG1OgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 10:36:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229531AbiG1O1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 10:27:11 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C35054661;
-        Thu, 28 Jul 2022 07:27:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DBE8BB82325;
-        Thu, 28 Jul 2022 14:27:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D16C8C433D7;
-        Thu, 28 Jul 2022 14:27:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1659018426;
-        bh=j06HbzUSgAZ3/Eqn9s1zrMihKBDhnjBeQ4BSOCaTRqI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=k+ixU+0k+5qRXW9L1CKCzZrp/gyPMMghsB+VNXkVG8QFGnoQu92902JrmT7+gABp+
-         JJLNQ1Y1D4syIvFfmfyCeB0rqdbBbZFzB3LF5+Dc9qrnpDwPbCPesyU6uUnUVDnSRx
-         Q+0jiNrMV7Qr4UAlBotOaCDsmtjh8phMkJwwZydY=
-Date:   Thu, 28 Jul 2022 16:27:03 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Appana Durga Kedareswara rao 
-        <appana.durga.kedareswara.rao@amd.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        michal.simek@xilinx.com, derek.kiernan@xilinx.com,
-        dragan.cvetic@xilinx.com, arnd@arndb.de, appanad@amd.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, git@amd.com, git@xilinx.com,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-Subject: Re: [PATCH v2 2/4] drivers: misc: Add Support for TMR Manager
-Message-ID: <YuKctxTbVnb3lUF3@kroah.com>
-References: <20220720060016.1646317-1-appana.durga.kedareswara.rao@amd.com>
- <20220720060016.1646317-3-appana.durga.kedareswara.rao@amd.com>
+        with ESMTP id S231707AbiG1OfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 10:35:20 -0400
+Received: from mail.baikalelectronics.com (unknown [87.245.175.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BD65F4D82B;
+        Thu, 28 Jul 2022 07:34:45 -0700 (PDT)
+Received: from mail (mail.baikal.int [192.168.51.25])
+        by mail.baikalelectronics.com (Postfix) with ESMTP id 8E51C16D6;
+        Thu, 28 Jul 2022 17:37:09 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.baikalelectronics.com 8E51C16D6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baikalelectronics.ru; s=mail; t=1659019029;
+        bh=k8cqCIZ1UKDayziIYbpjw+xAAOPDcYeeuHLMd+JNEjE=;
+        h=From:To:CC:Subject:Date:From;
+        b=jDmGE//Awzyh+2BOgapYJYAyd0ZSEtgn5dEXZTO4Z8svyMcvnM9gKTNE6KFlUjiVu
+         XE/V3bRuLnO92MbBS4yJjDBkJE0HlvheFdQUpkFbqC9voxIx3RYtP/JZxl04eHF8ND
+         5ZyJeyLNtgYdVF/nBtyG3eiB7bCE9UmYKXgojDYM=
+Received: from localhost (192.168.53.207) by mail (192.168.51.25) with
+ Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 28 Jul 2022 17:34:44 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 00/17] PCI: dwc: Add generic resources and Baikal-T1 support
+Date:   Thu, 28 Jul 2022 17:34:10 +0300
+Message-ID: <20220728143427.13617-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220720060016.1646317-3-appana.durga.kedareswara.rao@amd.com>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,T_SPF_PERMERROR
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 20, 2022 at 11:30:14AM +0530, Appana Durga Kedareswara rao wrote:
-> From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-> 
-> Triple Modular Redundancy(TMR) subsystem contains three microblaze cores,
-> subsystem is fault-tolerant and continues to operate nominally after
-> encountering an error. Together with the capability to detect and recover
-> from errors, the implementation ensures the reliability of the entire
-> subsystem.  TMR Manager is responsible for performing recovery of the
-> subsystem detects the fault via a break signal it invokes microblaze
-> software break handler which calls the tmr manager driver api to
-> update the error count and status, added support for fault detection
-> feature via sysfs interface.
-> 
-> Usage:
-> To know the hardware status:
-> cat /sys/devices/platform/amba_pl/44a10000.tmr_manager/status
-> To know the break handler count(Error count):
-> cat /sys/devices/platform/amba_pl/44a10000.tmr_manager/errcnt
-> 
-> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
-> Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-> ---
-> Changes for v2:
-> --> Added Examples for sysfs entries
-> --> Removed uneeded struct dev from the driver private structure
-> --> Fixed style issues (Used resource_size_t instead of uintptr_t)
-> --> Updated driver to use sysfs_emit() API instead of sprintf() API
-> --> Added error checks wherever applicable.
-> --> Fixed sysfs registration.
->  .../testing/sysfs-driver-xilinx-tmr-manager   |  27 ++
->  MAINTAINERS                                   |   7 +
->  drivers/misc/Kconfig                          |  10 +
->  drivers/misc/Makefile                         |   1 +
->  drivers/misc/xilinx_tmr_manager.c             | 253 ++++++++++++++++++
->  5 files changed, 298 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
->  create mode 100644 drivers/misc/xilinx_tmr_manager.c
-> 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager b/Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
-> new file mode 100644
-> index 000000000000..fc5fe7e22b09
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
-> @@ -0,0 +1,27 @@
-> +What:		/sys/devices/platform/amba_pl/<dev>/status
-> +Date:		June 2022
-> +Contact:	appana.durga.rao@xilinx.com
-> +Description:	This control file provides the status of the tmr manager
-> +		useful for getting the status of fault.
-> +		This file cannot be written.
-> +		Example:
-> +		# cat /sys/devices/platform/amba_pl/44a10000.tmr_manager/status
-> +		  Lockstep mismatch between processor 1 and 2
-> +		  Lockstep mismatch between processor 2 and 3
+This patchset is a third one in the series created in the framework of
+my Baikal-T1 PCIe/eDMA-related work:
 
-Why a whole long string?
+[1: Done v5] PCI: dwc: Various fixes and cleanups
+Link: https://lore.kernel.org/linux-pci/20220624143428.8334-1-Sergey.Semin@baikalelectronics.ru/
+Link: https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git/?h=pci/ctrl/dwc-fixes
+[2: Done v4] PCI: dwc: Add hw version and dma-ranges support
+Link: https://lore.kernel.org/linux-pci/20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru
+[3: In-review v4] PCI: dwc: Add generic resources and Baikal-T1 support
+Link: ---you are looking at it---
+[4: Done v4] dmaengine: dw-edma: Add RP/EP local DMA support
+Link: https://lore.kernel.org/linux-pci/20220728142841.12305-1-Sergey.Semin@baikalelectronics.ru/
 
-And this should only be 1 line, not multiple lines.  If it's multiple
-lines, this is NOT ok for a sysfs file.
+Note it is very recommended to merge the patchsets in the same order as
+they are listed in the set above in order to have them applied smoothly.
+Nothing prevents them from being reviewed synchronously though.
 
-> +
-> +What:		/sys/devices/platform/amba_pl/<dev>/errcnt
-> +Date:		June 2022
-> +Contact:	appana.durga.rao@xilinx.com
-> +Description:	This control file provides the fault detection count.
-> +		This file cannot be written.
-> +		Example:
-> +		# cat /sys/devices/platform/amba_pl/44a10000.tmr_manager/errcnt
-> +		  1
-> +
-> +What:		/sys/devices/platform/amba_pl/<dev>/dis_block_break
-> +Date:		June 2022
-> +Contact:	appana.durga.rao@xilinx.com
-> +Description:	This control file enables the break signal.
-> +		This file is write only.
-> +		Example:
-> +		# echo 1 > /sys/devices/platform/amba_pl/44a10000.tmr_manager/dis_block_break
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 651616ed8ae2..732fd9ae7d9f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13080,6 +13080,13 @@ W:	http://www.monstr.eu/fdt/
->  T:	git git://git.monstr.eu/linux-2.6-microblaze.git
->  F:	arch/microblaze/
->  
-> +MICROBLAZE TMR MANAGER
-> +M:	Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
-> +S:	Supported
-> +F:	Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
-> +F:	Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
-> +F:	drivers/misc/xilinx_tmr_manager.c
-> +
->  MICROCHIP AT91 DMA DRIVERS
->  M:	Ludovic Desroches <ludovic.desroches@microchip.com>
->  M:	Tudor Ambarus <tudor.ambarus@microchip.com>
-> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index 41d2bb0ae23a..555ae2e33b91 100644
-> --- a/drivers/misc/Kconfig
-> +++ b/drivers/misc/Kconfig
-> @@ -483,6 +483,16 @@ config OPEN_DICE
->  
->  	  If unsure, say N.
->  
-> +config TMR_MANAGER
-> +	bool "Select TMR Manager"
-> +	depends on MICROBLAZE && MB_MANAGER
-> +	help
-> +	  This option enables the driver developed for TMR Manager. The Triple
-> +	  Modular Redundancy(TMR) manager provides support for fault detection
-> +	  via sysfs interface.
-> +
-> +	  Say N here unless you know what you are doing.
+@Bjorn, as we agreed here:
+Link: https://lore.kernel.org/linux-pci/20220616163533.GA1094478@bhelgaas
+could you please merge this series into the 'pci/edma' branch of your repo:
+Link: https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git/log/?h=pci/edma
+Thanks.
 
-Not a module?
+Originally the patches submitted in this patchset were a part of the series:
+Link: https://lore.kernel.org/linux-pci/20220503214638.1895-1-Sergey.Semin@baikalelectronics.ru/
+but due to the reviewers requests the series was expanded to about 30
+patches which made it too bulky for a comfortable review. So I decided to
+split it up into two patchsets: 2. and 3. in the table above.
 
-> +
->  source "drivers/misc/c2port/Kconfig"
->  source "drivers/misc/eeprom/Kconfig"
->  source "drivers/misc/cb710/Kconfig"
-> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-> index 70e800e9127f..28b9803f909b 100644
-> --- a/drivers/misc/Makefile
-> +++ b/drivers/misc/Makefile
-> @@ -60,3 +60,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
->  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
->  obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
->  obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
-> +obj-$(CONFIG_TMR_MANAGER)	+= xilinx_tmr_manager.o
-> diff --git a/drivers/misc/xilinx_tmr_manager.c b/drivers/misc/xilinx_tmr_manager.c
-> new file mode 100644
-> index 000000000000..dbeca18c409f
-> --- /dev/null
-> +++ b/drivers/misc/xilinx_tmr_manager.c
-> @@ -0,0 +1,253 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Xilinx TMR Subsystem.
-> + *
-> + * Copyright (C) 2022 Xilinx, Inc.
-> + *
-> + * Description:
-> + * This driver is developed for TMR Manager,The Triple Modular Redundancy(TMR)
-> + * Manager is responsible for handling the TMR subsystem state, including
-> + * fault detection and error recovery. The core is triplicated in each of
-> + * the sub-blocks in the TMR subsystem, and provides majority voting of
-> + * its internal state provides soft error detection, correction and
-> + * recovery. Error detection feature is provided through sysfs
-> + * entries which allow the user to observer the TMR microblaze
-> + * status.
-> + */
-> +
-> +#include <asm/xilinx_mb_manager.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +
-> +/* TMR Manager Register offsets */
-> +#define XTMR_MANAGER_CR_OFFSET		0x0
-> +#define XTMR_MANAGER_FFR_OFFSET		0x4
-> +#define XTMR_MANAGER_CMR0_OFFSET	0x8
-> +#define XTMR_MANAGER_CMR1_OFFSET	0xC
-> +#define XTMR_MANAGER_BDIR_OFFSET	0x10
-> +#define XTMR_MANAGER_SEMIMR_OFFSET	0x1C
-> +
-> +/* Register Bitmasks/shifts */
-> +#define XTMR_MANAGER_CR_MAGIC1_MASK	GENMASK(7, 0)
-> +#define XTMR_MANAGER_CR_MAGIC2_MASK	GENMASK(15, 8)
-> +#define XTMR_MANAGER_CR_RIR_MASK	BIT(16)
-> +#define XTMR_MANAGER_FFR_LM12_MASK	BIT(0)
-> +#define XTMR_MANAGER_FFR_LM13_MASK	BIT(1)
-> +#define XTMR_MANAGER_FFR_LM23_MASK	BIT(2)
-> +
-> +#define XTMR_MANAGER_CR_MAGIC2_SHIFT	4
-> +#define XTMR_MANAGER_CR_RIR_SHIFT	16
-> +#define XTMR_MANAGER_CR_BB_SHIFT	18
-> +
-> +#define XTMR_MANAGER_MAGIC1_MAX_VAL	255
-> +
-> +/**
-> + * struct xtmr_manager_dev - Driver data for TMR Manager
-> + * @regs: device physical base address
-> + * @cr_val: control register value
-> + * @magic1: Magic 1 hardware configuration value
-> + * @err_cnt: error statistics count
-> + * @phys_baseaddr: Physical base address
-> + */
-> +struct xtmr_manager_dev {
-> +	void __iomem *regs;
-> +	u32 cr_val;
-> +	u32 magic1;
-> +	u32 err_cnt;
-> +	resource_size_t phys_baseaddr;
-> +};
-> +
-> +/* IO accessors */
-> +static inline void xtmr_manager_write(struct xtmr_manager_dev *xtmr_manager,
-> +				      u32 addr, u32 value)
-> +{
-> +	iowrite32(value, xtmr_manager->regs + addr);
-> +}
-> +
-> +static inline u32 xtmr_manager_read(struct xtmr_manager_dev *xtmr_manager,
-> +				    u32 addr)
-> +{
-> +	return ioread32(xtmr_manager->regs + addr);
-> +}
-> +
-> +static void xmb_manager_reset_handler(struct xtmr_manager_dev *xtmr_manager)
-> +{
-> +	/* Clear the FFR Register contents as a part of recovery process. */
-> +	xtmr_manager_write(xtmr_manager, XTMR_MANAGER_FFR_OFFSET, 0);
-> +}
-> +
-> +static void xmb_manager_update_errcnt(struct xtmr_manager_dev *xtmr_manager)
-> +{
-> +	xtmr_manager->err_cnt++;
-> +}
-> +
-> +static ssize_t errcnt_show(struct device *dev, struct device_attribute *attr,
-> +			   char *buf)
-> +{
-> +	struct xtmr_manager_dev *xtmr_manager = dev_get_drvdata(dev);
-> +
-> +	return sysfs_emit(buf, "%x\n", xtmr_manager->err_cnt);
-> +}
-> +static DEVICE_ATTR_RO(errcnt);
-> +
-> +static ssize_t status_show(struct device *dev, struct device_attribute *attr,
-> +			   char *buf)
-> +{
-> +	struct xtmr_manager_dev *xtmr_manager = dev_get_drvdata(dev);
-> +	size_t ffr;
-> +	int len = 0;
-> +
-> +	ffr = xtmr_manager_read(xtmr_manager, XTMR_MANAGER_FFR_OFFSET);
-> +	if ((ffr & XTMR_MANAGER_FFR_LM12_MASK) == XTMR_MANAGER_FFR_LM12_MASK) {
-> +		len += sysfs_emit_at(buf, len, "Lockstep mismatch between ");
-> +		len += sysfs_emit_at(buf, len, "processor 1 and 2\n");
+Regarding the series content. This patchset is mainly about adding new DW
+PCIe platform support - Baikal-T1 PCIe of DW PCIe v4.60a IP-core. But a
+set of feature-reach preparations are done first. It starts from
+converting the currently available DT-schema into a more flexible schemas
+hierarchy with separately defined regs, clocks, resets and interrupts
+properties. As a result the common schema can be easily re-used by all the
+currently available platforms while the named properties above can be
+either re-defined or used as is if the platforms support they. In the
+framework of that modification we also suggest to add a set of generic
+regs, clocks, resets and interrupts resource names in accordance with what
+the DW PCIe hardware reference manual describes and what the DW PCIe core
+driver already expects to be specified. Thus the new platform driver will
+be able to re-use the common resources infrastructure.
 
-You can write a full string all at once, no need to call this twice.
+Link: https://lore.kernel.org/linux-pci/20220324013734.18234-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v2:
+- Rename 'syscon' property to 'baikal,bt1-syscon'. (@Rob)
+- Move the iATU region selection procedure into a helper function (@Rob).
+- Rebase from kernel v5.17 onto v5.18-rc3 since the later kernel has
+  already DT bindings converted. (@Rob)
+- Use 'definitions' property instead of the '$defs' one. It fixes the
+  dt-validate error: 'X is not of type array.'
+- Drop 'interrupts' and 'interrupt-names' property from being required
+  for the native DW PCIe host.
+- Evaluate the 'snps,dw-pcie-common.yaml' schema in the
+  'socionext,uniphier-pcie-ep.yaml' DT-bindings since the later has
+  platform-specific names defined.
 
-> +	}
-> +
-> +	if ((ffr & XTMR_MANAGER_FFR_LM13_MASK) == XTMR_MANAGER_FFR_LM13_MASK) {
-> +		len += sysfs_emit_at(buf, len, "Lockstep mismatch between ");
-> +		len += sysfs_emit_at(buf, len, "processor 1 and 3\n");
-> +	}
-> +
-> +	if ((ffr & XTMR_MANAGER_FFR_LM23_MASK) == XTMR_MANAGER_FFR_LM23_MASK) {
-> +		len += sysfs_emit_at(buf, len, "Lockstep mismatch between ");
-> +		len += sysfs_emit_at(buf, len, "processor 2 and 3\n");
-> +	}
+Link: https://lore.kernel.org/linux-pci/20220503225104.12108-1-Sergey.Semin@baikalelectronics.ru
+Changelog v3:
+- Split up the patch "dt-bindings: PCI: dwc: Define common and native DT
+  bindings" into a series of modifications. (@Rob)
+- Detach this series of the patches into a dedicated patchset.
+- Add a new feature patch: "PCI: dwc: Introduce generic controller
+  capabilities interface".
+- Add a new feature patch: "PCI: dwc: Introduce generic resources getter".
+- Add a new cleanup patch: "PCI: dwc: Combine iATU detection procedures".
+- Add a method to at least request the generic clocks and resets. (@Rob)
+- Add GPIO-based PERST# signal support to the core module.
+- Redefine Baikal-T1 PCIe host bridge config space accessors with the
+  pci_generic_config_read32() and pci_generic_config_write32() methods.
+  (@Rob)
+- Drop synonymous from the names list in the common DT-schema since the
+  device sub-schemas create their own enumerations anyway.
+- Rebase onto kernel v5.18.
 
-As said above, multiple lines is not ok, you need to fix up this api.
+Link: https://lore.kernel.org/linux-pci/20220610085706.15741-1-Sergey.Semin@baikalelectronics.ru/
+Changelog v4:
+- Drop PCIBIOS_* macros usage. (@Rob)
+- Add "static const" to the dw_pcie_ops and dw_pcie_host_ops structure
+  instances. (@Bjorn)
+- Rename bt1_pcie_dw_ops to bt1_pcie_ops. (@Bjorn)
+- Rename bt1_pcie_ops to bt1_pci_ops. (@Bjorn)
+- Use start_link/stop_link suffixes in the Baikal-T1 PCIe
+  start/stop link callbacks. (@Bjorn)
+- Change the get_res() method suffix to being get_resources(). (@Bjorn)
+- Change *_{add,del}_dw_port() method to *_{add,del}_port(). (@Bjorn)
+- Drop dma_coerce_mask_and_coherent() applied to the PCI host bridge
+  kernel device instance. (@Bjorn)
+- Add the comment above the dma_set_mask_and_coherent() method usage
+  regarding the controller eDMA feature. (@Bjorn)
+- Fix the comment above the core reset controls assertion. (@Bjorn)
+- Replace delays and timeout numeric literals with macros. (@Bjorn)
+- Convert the method name from dw_pcie_get_res() to
+  dw_pcie_get_resources(). (@Bjorn)
+- Rebase onto the kernel v5.19-rcX.
 
-Perhaps 3 files, one for eacy type of mismatch and a simple 0/1 value
-returned in them?
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: "Krzysztof Wilczyński" <kw@linux.com>
+Cc: Frank Li <Frank.Li@nxp.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: linux-pci@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
 
+Serge Semin (17):
+  dt-bindings: PCI: dwc: Detach common RP/EP DT bindings
+  dt-bindings: PCI: dwc: Remove bus node from the examples
+  dt-bindings: PCI: dwc: Add phys/phy-names common properties
+  dt-bindings: PCI: dwc: Add max-link-speed common property
+  dt-bindings: PCI: dwc: Stop selecting generic bindings by default
+  dt-bindings: PCI: dwc: Add max-functions EP property
+  dt-bindings: PCI: dwc: Add interrupts/interrupt-names common
+    properties
+  dt-bindings: PCI: dwc: Add reg/reg-names common properties
+  dt-bindings: PCI: dwc: Add clocks/resets common properties
+  dt-bindings: PCI: dwc: Add dma-coherent property
+  dt-bindings: PCI: dwc: Apply common schema to Rockchip DW PCIe nodes
+  dt-bindings: PCI: dwc: Add Baikal-T1 PCIe Root Port bindings
+  PCI: dwc: Introduce generic controller capabilities interface
+  PCI: dwc: Introduce generic resources getter
+  PCI: dwc: Combine iATU detection procedures
+  PCI: dwc: Introduce generic platform clocks and resets
+  PCI: dwc: Add Baikal-T1 PCIe controller support
 
-> +
-> +	return len;
-> +}
-> +static DEVICE_ATTR_RO(status);
-> +
-> +static ssize_t dis_block_break_store(struct device *dev,
-> +				     struct device_attribute *attr,
-> +				     const char *buf, size_t size)
-> +{
-> +	struct xtmr_manager_dev *xtmr_manager = dev_get_drvdata(dev);
-> +	int ret;
-> +	long value;
-> +
-> +	ret = kstrtoul(buf, 16, &value);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (value > 1)
-> +		return -EINVAL;
+ .../bindings/pci/baikal,bt1-pcie.yaml         | 154 +++++
+ .../bindings/pci/fsl,imx6q-pcie.yaml          |   3 +-
+ .../bindings/pci/hisilicon,kirin-pcie.yaml    |   3 +-
+ .../bindings/pci/rockchip-dw-pcie.yaml        |   3 +-
+ .../bindings/pci/samsung,exynos-pcie.yaml     |   3 +-
+ .../bindings/pci/sifive,fu740-pcie.yaml       |   3 +-
+ .../bindings/pci/snps,dw-pcie-common.yaml     | 323 +++++++++
+ .../bindings/pci/snps,dw-pcie-ep.yaml         | 155 +++--
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml | 208 ++++--
+ .../pci/socionext,uniphier-pcie-ep.yaml       |  12 +-
+ .../bindings/pci/toshiba,visconti-pcie.yaml   |   3 +-
+ drivers/pci/controller/dwc/Kconfig            |   9 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-bt1.c         | 653 ++++++++++++++++++
+ .../pci/controller/dwc/pcie-designware-ep.c   |  26 +-
+ .../pci/controller/dwc/pcie-designware-host.c |  15 +-
+ drivers/pci/controller/dwc/pcie-designware.c  | 206 ++++--
+ drivers/pci/controller/dwc/pcie-designware.h  |  57 +-
+ 18 files changed, 1628 insertions(+), 209 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-bt1.c
 
-Why is 1 magic?
+-- 
+2.35.1
 
-And we have a sysfs function to read a 0/1/Y/N/y/n value, please use
-that.
-
-thanks,
-
-greg k-h
