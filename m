@@ -2,79 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C1CE5838B2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 08:24:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EA335838B9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 08:28:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232161AbiG1GUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 02:20:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60950 "EHLO
+        id S232724AbiG1G2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 02:28:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231926AbiG1GUX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 02:20:23 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1442230F57;
-        Wed, 27 Jul 2022 23:20:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1658989219; x=1690525219;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=77z4OSLcpLQHGmEKgErSafXR9441+COqyJNi8XBEHhg=;
-  b=gHiC2poa9t1Ye/oPhqkAIMry7cGakKFqzl1yK60FCC1rhRCfBf2oa+RY
-   8lun/EMXwY4Q5A67qTAXK/uey6MCtC8SrELBmQQnnh5HYwuFAwZ064Pue
-   dafXNUw5GmE+jXBJInF+e/zV0xKHL/sFdH4Jjyw7Yu1T7EOLnVUTkUdLC
-   Glcs/fwCr1fLz1NgFly6kpxsiJ049dxJsCqqI1AZ3oFvz3ysT+Mc5NpF5
-   oj0r00d7Fsg/SeCr7HBMvob+ZUMUBnjP/ZnmS9E0LiPQZTTKGCoJahiko
-   dGLm8RS1ojG8FV1aI9BFKkeZfFLX3TNUP9hhnNUI2xVrHiOZy4l3ThM1u
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,196,1654552800"; 
-   d="scan'208";a="25307345"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 28 Jul 2022 08:20:16 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 28 Jul 2022 08:20:16 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 28 Jul 2022 08:20:16 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1658989216; x=1690525216;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=77z4OSLcpLQHGmEKgErSafXR9441+COqyJNi8XBEHhg=;
-  b=EwzegZZg+IkjEKkBUpjaBmlRMuXVmS1CQik1b53Ny6DxXW6Qkz+kmuLM
-   SWy1EDyqqADLI7iSg/quj9zVMBWWDzCL3HnZ7rLVWsVTj2pukRArJQO9b
-   bqdIleEwyXoKHRnw0AGvfGoPlYZsMTqJQcG3OZXX9b/diYOyVUrYgAQBp
-   Bpo0loqzI7dgaO2uhAaF9Jacoi5sLTDp+sIA6P/EOG8sg/zXqpCvJsWpI
-   DPoHlPtvBbjGg3JTPxLrP7/BztQ1WH0bdNDc6tNwsgQDJDp6jfvTreBI+
-   L4U0RrDrRpetnIILblNILnwDY3rJvGWWj+Mb3ZY7pPLkEE5h26oAzDYcB
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,196,1654552800"; 
-   d="scan'208";a="25307344"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 28 Jul 2022 08:20:16 +0200
-Received: from steina-w.localnet (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 35837280056;
-        Thu, 28 Jul 2022 08:20:16 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] usb: misc: onboard_usb_hub: Add reset-gpio support
-Date:   Thu, 28 Jul 2022 08:20:13 +0200
-Message-ID: <2191669.iZASKD2KPV@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <YuFykRtbvxGssSVs@google.com>
-References: <20220727141117.909361-1-alexander.stein@ew.tq-group.com> <YuFykRtbvxGssSVs@google.com>
+        with ESMTP id S229936AbiG1G2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 02:28:01 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8245C96F;
+        Wed, 27 Jul 2022 23:28:00 -0700 (PDT)
+X-UUID: 9834e5e67fe6498abb1bb44876a1099b-20220728
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:9349cc6a-b847-4d42-9258-a2a6df395678,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:95
+X-CID-INFO: VERSION:1.1.8,REQID:9349cc6a-b847-4d42-9258-a2a6df395678,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,ACT
+        ION:quarantine,TS:95
+X-CID-META: VersionHash:0f94e32,CLOUDID:c8e49ccf-a6cf-4fb6-be1b-c60094821ca2,C
+        OID:6368f752834d,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 9834e5e67fe6498abb1bb44876a1099b-20220728
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1550841840; Thu, 28 Jul 2022 14:27:54 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 28 Jul 2022 14:27:53 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Thu, 28 Jul 2022 14:27:52 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <eddie.huang@mediatek.com>,
+        <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <fshao@chromium.org>
+CC:     <sen.chu@mediatek.com>, <hui.liu@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hsin-hsiung.wang@mediatek.com>, <sean.wang@mediatek.com>,
+        <macpaul.lin@mediatek.com>, <wen.su@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-rtc@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v2 0/1] Mediatek MT6366 Regulator patch 
+Date:   Thu, 28 Jul 2022 14:27:48 +0800
+Message-ID: <20220728062749.18701-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        RDNS_NONE,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,159 +68,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Matthias,
+Add mt6366 binding documentation
 
-Am Mittwoch, 27. Juli 2022, 19:14:57 CEST schrieb Matthias Kaehlcke:
-> Hi Alexander,
-> 
-> (copying my comments from v3 to keep the discussion on the latest version)
-> 
-> On Wed, Jul 27, 2022 at 04:11:16PM +0200, Alexander Stein wrote:
-> > Despite default reset upon probe, release reset line after powering up
-> > the hub and assert reset again before powering down.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> > * Patch 1 dropped as it already applied
-> > 
-> > Changes in v4:
-> > * Rebased to [1] commit e0c6b1f3d757 ("USB: usbsevseg: convert sysfs
-> > snprintf to sysfs_emit") * Added platform data for usb424
-> > 
-> >   Reset pulse length taken from [2], Table 3-2 Symbol RESET_N
-> >   Completely untested
-> > 
-> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git Branch
-> > usb-testing [2]
-> > http://ww1.microchip.com/downloads/en/devicedoc/00001692c.pdf
-> > 
-> >  drivers/usb/misc/onboard_usb_hub.c | 28 ++++++++++++++++++++++++++++
-> >  drivers/usb/misc/onboard_usb_hub.h | 22 +++++++++++++++++-----
-> >  2 files changed, 45 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/usb/misc/onboard_usb_hub.c
-> > b/drivers/usb/misc/onboard_usb_hub.c index de3627af3c84..0c81417dd9a7
-> > 100644
-> > --- a/drivers/usb/misc/onboard_usb_hub.c
-> > +++ b/drivers/usb/misc/onboard_usb_hub.c
-> > @@ -7,6 +7,7 @@
-> > 
-> >  #include <linux/device.h>
-> >  #include <linux/export.h>
-> > 
-> > +#include <linux/gpio/consumer.h>
-> > 
-> >  #include <linux/init.h>
-> >  #include <linux/kernel.h>
-> >  #include <linux/list.h>
-> > 
-> > @@ -38,6 +39,8 @@ struct usbdev_node {
-> > 
-> >  struct onboard_hub {
-> >  
-> >  	struct regulator *vdd;
-> >  	struct device *dev;
-> > 
-> > +	const struct onboard_hub_pdata *pdata;
-> > +	struct gpio_desc *reset_gpio;
-> > 
-> >  	bool always_powered_in_suspend;
-> >  	bool is_powered_on;
-> >  	bool going_away;
-> > 
-> > @@ -56,6 +59,9 @@ static int onboard_hub_power_on(struct onboard_hub *hub)
-> > 
-> >  		return err;
-> >  	
-> >  	}
-> > 
-> > +	fsleep(hub->pdata->reset_us);
-> > +	gpiod_set_value_cansleep(hub->reset_gpio, 0);
-> > +
-> > 
-> >  	hub->is_powered_on = true;
-> >  	
-> >  	return 0;
-> > 
-> > @@ -65,6 +71,11 @@ static int onboard_hub_power_off(struct onboard_hub
-> > *hub)> 
-> >  {
-> >  
-> >  	int err;
-> > 
-> > +	if (hub->reset_gpio) {
-> > +		gpiod_set_value_cansleep(hub->reset_gpio, 1);
-> > +		fsleep(hub->pdata->reset_us);
-> 
-> Is this delay here actually needed? There is a delay in
-> onboard_hub_power_on(), before de-asserting the reset, isn't that enough?
+Changes in patch v2:
+1)fix patch title description.
+2)fix patch maintainer description.
+3)won't cc to srv_heupstream@mediatek.com
+4)fix patch commit message description.
+5)add properties node and compatible
+6)put "unevaluatedProperties: false" after $ref
+7)remove underscores in node names.
+8)change Filename to "mediatek,mt6366-regulator.yaml"
 
-If you see both delays together you are right, but I tend to think in that way 
-it is to ensure whenever we apply a reset it is long enough.
-As said before the powering on delay is to ensure the pulse length delay even 
-if there is no reset GPIO but it is controlled by hardware.
+zhiyong tao (1):
+  pmic: add mt6366 regulator document
 
-> > +	}
-> > +
-> > 
-> >  	err = regulator_disable(hub->vdd);
-> >  	if (err) {
-> >  	
-> >  		dev_err(hub->dev, "failed to disable regulator: %d\n", 
-err);
-> > 
-> > @@ -219,6 +230,7 @@ static void onboard_hub_attach_usb_driver(struct
-> > work_struct *work)> 
-> >  static int onboard_hub_probe(struct platform_device *pdev)
-> >  {
-> > 
-> > +	const struct of_device_id *of_id;
-> > 
-> >  	struct device *dev = &pdev->dev;
-> >  	struct onboard_hub *hub;
-> >  	int err;
-> > 
-> > @@ -227,10 +239,26 @@ static int onboard_hub_probe(struct platform_device
-> > *pdev)> 
-> >  	if (!hub)
-> >  	
-> >  		return -ENOMEM;
-> > 
-> > +	of_id = of_match_device(onboard_hub_match, &pdev->dev);
-> > +	if (!of_id)
-> > +		return -ENODEV;
-> > +
-> > +	hub->pdata = of_id->data;
-> > +	if (!hub->pdata)
-> > +		return -EINVAL;
-> > +
-> > 
-> >  	hub->vdd = devm_regulator_get(dev, "vdd");
-> >  	if (IS_ERR(hub->vdd))
-> >  	
-> >  		return PTR_ERR(hub->vdd);
-> > 
-> > +	hub->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-> > +						  
-GPIOD_OUT_HIGH);
-> > +	if (IS_ERR(hub->reset_gpio))
-> > +		return dev_err_probe(dev, PTR_ERR(hub->reset_gpio), 
-"failed to get
-> > reset GPIO\n"); +
-> > +	if (hub->reset_gpio)
-> > +		fsleep(hub->pdata->reset_us);
-> 
-> Same question here: onboard_hub_power_on() is called a few lines below and
-> has a delay before de-asserting the reset. Is the delay here really needed?
+ .../regulator/mediatek,mt6366-regulator.yaml  | 375 ++++++++++++++++++
+ 1 file changed, 375 insertions(+)
+ create mode 100755 Documentation/devicetree/bindings/regulator/mediatek,mt6366-regulator.yaml
 
-This actually looks like the delay is duplicated here. I agree with removing 
-this.
-How shall we proceed now that the whole series (incl. the bindings patch 1/3 
-from v3) has landed in usb-testing? I can create a patch on top of this if 
-this is the way to go.
-
-Best regards,
-Alexander
-
+--
+2.18.0
 
 
