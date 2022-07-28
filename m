@@ -2,416 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6485583701
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 04:37:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E070D583731
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 04:52:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237618AbiG1ChP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 22:37:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35950 "EHLO
+        id S234788AbiG1CwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 22:52:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237484AbiG1ChO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 22:37:14 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E0345A882;
-        Wed, 27 Jul 2022 19:37:13 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id o3so608291ple.5;
-        Wed, 27 Jul 2022 19:37:13 -0700 (PDT)
+        with ESMTP id S232484AbiG1CwF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 22:52:05 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0831252FEF;
+        Wed, 27 Jul 2022 19:52:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1658976721; x=1690512721;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-id:content-transfer-encoding:mime-version;
+  bh=dsMASH9Ml/ViiRhBb0SVmWBmRL3cDl1TbpVHWbhgN1w=;
+  b=yqHS7xaCILwPpbyahVZ5ntYryOLo0GscW4/dATOk9ABPsWsbmyE6Iwch
+   juKGngvr4+Rb7hykrK5+bOyu/0HwQCR5K5KEedsldoj9yQObPCP8djVE3
+   3eHy4zu8xOWC0bCtzQA+/uC9DtRWtEJ65+5YF5vI8k83iQfHd/yj9bFT7
+   saZaOzRldndYRdWoe7CroLTK+OHvRHyLf690mtZF/zwj+gDgHiDAYrC63
+   ySwgA2nQ4sqaXAqnba8PUVQW0t8OZJH4aiUMzCv5tD1QHXSi/AmJRZLV/
+   NKyLsUnSM+4nLi3bWTzbz2IOXwlHfgSuXVRgKGZCiD31gTQv93zN8QZwV
+   w==;
+X-IronPort-AV: E=Sophos;i="5.93,196,1654585200"; 
+   d="scan'208";a="184061216"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jul 2022 19:52:01 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28; Wed, 27 Jul 2022 19:52:01 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.28 via Frontend Transport; Wed, 27 Jul 2022 19:52:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cdc2PjEamY2sheS5112gVRjiSfzhNBGsB2+AOiyt+5VgLjiaNl5AUxip3AkEeuOfOAKp91KDrJGS0Tn0GDx2Qxlo6aXJoYgD1FYaC2SS1Eh+bAkHWUlUIE2MRzvoroQ/XysC+q7ACjsk+3IvGvzO3S9pUEpHhRF6p8S6ZV/7PZrgoeZxJCEhYuAaPvpUo5W2ddXzu6iFD/nRndJrFrRS4PURmDodvwMm7qwUGNPfAQMc422Ro+t9KbzntUMqF0eBWvQVjrKozsZm8ilHAsjctgsIV9R37VMV/uLGijjTPg38sTMzcK2eu8YqFv2xFKZtSKYnHKzt6rbqDmVTgbo0SA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dsMASH9Ml/ViiRhBb0SVmWBmRL3cDl1TbpVHWbhgN1w=;
+ b=V6Zsj0IfXL7NMhFlfpWqPW6xGJcWthTob6vAzNgZ2pQ8HFsaS4zRPwlMGToCQyd9r5zhPK7qyvp5e7/vVQPSXCYHU6HR3Yz0mmvf1KTdqZmElSDnu5Qu/FDa0tXtZpGmLWQjyqipACai387oYFNHlXq8KPzk3nOFx8VQ0oQe7lFtVKT7r6lEZC2/ENbQ7BNdZxCWXnDIjvQ/WWekAcJYNgwjinLau3Sd3+lvHnDqyAFvt12PvuYySEhgvln1HSndJOwbQv0aXoMcFEIOoSQb0FQBLk7a/zQ7sjjsSPtxTQSoNPh3j7zSMiXymlWNXjL76Ktddvg76iwwCaxszArzDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WWJy9+afMOxe1MZB5oRxnjQxTPoeievVL1sbDLfuPV0=;
-        b=pOyAFXu90jk0bpAM11JpbkyEMZRdu4xkF3iG3n3RgH6DlEK1ZHAMOlpBrC1NYkOmtb
-         gPzCNnYF3FsfP5OEDz8QtTXQHtZLwvz+Q2eTbRk/4rf43dtlZQb8CSEt9xvkbArju3Nw
-         OmGxlUwkYhTSKL26skNxHa7o6B8MEWDRIroKv1xdRldGogI6wrOPm2FaN76wp9Ig8g6t
-         p8EGUCfuXXs0VNNWZsjtUTlbmcZik6bvdEcMJpnqU4AObOmALxQYuWUo8iBxrBJAY0bC
-         BIaNSfUbMFa8T62UrlphdL8NIruYVJz2w6lmaaF3XRbQvuaifkUU0deAFbuacrJUPDsr
-         dGQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WWJy9+afMOxe1MZB5oRxnjQxTPoeievVL1sbDLfuPV0=;
-        b=fwjAPXeNRJU8Te5BGijkcXSe0FFgJm7LG6N4YyY/mpK3wJ/DofQo1yAU+/oGHZRx/D
-         vAGc00wSMK6Sp5itwOFCJoSNOvs5Z7vYSR51as/YFbTWkrosZTrwwcddDsV07vtoQ8vo
-         MwJMU28JIFJtoOpwCO7M4yw1uqul3IqAHY+w/QpGz/+VZs1K79bFY/453zJxJuuJUEZE
-         PQto9FzzNdKZbQtVTbdvL+kKylPUdpsYzfjPFOIgWpJVxVFhRcVKMDSPObuuPVdBud2d
-         9XvWEKEqmtIRlVw4EgyaRYYzYqIaydTePHMykAHg/hkWXIzCjTSD1DfwzrPi2Lr8N5Ps
-         7T+g==
-X-Gm-Message-State: AJIora84WSs0WFYjqRymSy5iUN/yP1fzVVECYHl/jkVZ7SC9LfkYZu5o
-        E7HO1Y7MpzRoACQznBJ4wmA=
-X-Google-Smtp-Source: AGRyM1s1A0Ig2mi+uzk2O/Nf9rPZWHq0oqbFeIXqxKPdxWEdLdSMLMF5Zhda4ntChv6oCY7m+Toj/g==
-X-Received: by 2002:a17:90b:1c0a:b0:1f3:1848:591c with SMTP id oc10-20020a17090b1c0a00b001f31848591cmr3021484pjb.24.1658975832739;
-        Wed, 27 Jul 2022 19:37:12 -0700 (PDT)
-Received: from localhost.localdomain ([112.0.190.165])
-        by smtp.gmail.com with ESMTPSA id v12-20020aa799cc000000b00528c149fe97sm14631311pfi.89.2022.07.27.19.37.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Jul 2022 19:37:12 -0700 (PDT)
-From:   Molly Sophia <mollysophia379@gmail.com>
-To:     Sumit Semwal <sumit.semwal@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Molly Sophia <mollysophia379@gmail.com>
-Subject: [PATCH v4 2/2] drm: panel: Add novatek nt35596s panel driver
-Date:   Thu, 28 Jul 2022 10:35:55 +0800
-Message-Id: <20220728023555.8952-3-mollysophia379@gmail.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728023555.8952-1-mollysophia379@gmail.com>
-References: <20220728023555.8952-1-mollysophia379@gmail.com>
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dsMASH9Ml/ViiRhBb0SVmWBmRL3cDl1TbpVHWbhgN1w=;
+ b=FWeQu7S87fieogczGsM7m33BcnBmZb1TdDgv2DEtC+qUpMMcBX//9ee8pod2UEZ1WoXUK3mleS3/80Sm9fMmHlABU1v3Rw2VszUZ6VsqAgtcc9zh0d06u7b4e6s9BYsxoR+NUS1hYGUsodhrQEv3QsNp7qNfHobAMYRaou8h6Bo=
+Received: from DM4PR11MB6479.namprd11.prod.outlook.com (2603:10b6:8:8c::19) by
+ DM4PR11MB6429.namprd11.prod.outlook.com (2603:10b6:8:b5::10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5482.6; Thu, 28 Jul 2022 02:51:59 +0000
+Received: from DM4PR11MB6479.namprd11.prod.outlook.com
+ ([fe80::7549:c58c:5e93:7c35]) by DM4PR11MB6479.namprd11.prod.outlook.com
+ ([fe80::7549:c58c:5e93:7c35%5]) with mapi id 15.20.5458.023; Thu, 28 Jul 2022
+ 02:51:57 +0000
+From:   <Tudor.Ambarus@microchip.com>
+To:     <krzysztof.kozlowski@linaro.org>, <miquel.raynal@bootlin.com>,
+        <richard@nod.at>, <vigneshr@ti.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <hs@denx.de>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: mtd: microchip,mchp48l640: use
+ spi-peripheral-props.yaml
+Thread-Topic: [PATCH] dt-bindings: mtd: microchip,mchp48l640: use
+ spi-peripheral-props.yaml
+Thread-Index: AQHYoi0AWP2mceo9e0GmyHApqQWCHA==
+Date:   Thu, 28 Jul 2022 02:51:57 +0000
+Message-ID: <333ab65d-6717-29dc-72c7-968817090d22@microchip.com>
+References: <20220727164148.385476-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220727164148.385476-1-krzysztof.kozlowski@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ae20f0af-10d5-43de-6b1f-08da70442315
+x-ms-traffictypediagnostic: DM4PR11MB6429:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: =?utf-8?B?T3k3ZENtL094NzhwRWZFYUZuYVgxVkhrS2RTbzc1S1BNUG51YnhXTFphQ3Rj?=
+ =?utf-8?B?S2N6cFF4QWV5bmdpQ3ZSb0dORVgxOVZ1WkZGMHBaS3kwRjhHTW8zNFErQ0Rn?=
+ =?utf-8?B?VHVEd2NJS2lIdDNaYzNVWHExMFJFSmdvMkN1VmJha2lqOHBBMURxODdpc0li?=
+ =?utf-8?B?K0pTZWtWdkVNK1hhYXEzaFBCclFJckh1WklMWi9WZk9QUVBDYVhPZUFnRUFR?=
+ =?utf-8?B?bnBvSEtkbkx0ZUhSaTkxT25TTDNoSjA0bWMvL1VvTDNyQ2ZPOHkwOWtEN2Fy?=
+ =?utf-8?B?SVVoTm9XZVY1UDlYRElyRURmbFBUL3NiSElDZXhpRHI4Z0h5V01VeVplLy9t?=
+ =?utf-8?B?RXM3QW9QNU13TjQyNzhMNVBITXlBeTV3dmpyT2ttL25abk9oeXlPWHBoM2Vp?=
+ =?utf-8?B?VFpKSCtycGdxdTkybldwU3Z1cjFYRXNkbFZST1pKcnQ0ZzFjbS9Mb2VOT2tG?=
+ =?utf-8?B?RytxemRLM296cU9uSVF1d08xblowQTgxc05HNFFyeUNNQ1QyelV1bWlEL2sv?=
+ =?utf-8?B?R0kzYzFsbUkzdzR1UmF6ZGtKQ1o4K3NSV3oyRzJzd2x3QWM3dkJUcjFuQmo4?=
+ =?utf-8?B?UjNITC9OSm9UaWM0cmpYZmFkeUxsTWdVd0xFcHltL1BTTFBrRlRNZG1yejZo?=
+ =?utf-8?B?c3A0VGFJcmNDUHkxRHVSaFpOQ0RvSlBkVGkvK1lVTHRsWEMwWDl0MC9EbWhz?=
+ =?utf-8?B?YW15bWRiUTd6VG1CSGxnTmdaNXl1N2dDT0RCOFRsWEFyRHBxRG54MmNBQkcy?=
+ =?utf-8?B?RFZXK2k5R25mcm5zd0VZY1JucDB6M3ZHdmZ5Mm9UaWZFMVNvNXdOWG45dmhn?=
+ =?utf-8?B?TTZ4ME12SHExNzFkTzR5TXVTSVRLSlROZlRnclJPdWxOOU1ma3dXWDgraS8y?=
+ =?utf-8?B?NUtTT1RVTEd2R1FWeE1BWnpwTklZWkNwS28zVDZyVmw4UUZnaUU4ZWg1dytZ?=
+ =?utf-8?B?bTlXUEdQZExTTkQ2WklQaSs4dVR3eG5IVWVMcWI5NmJBZWdOblJKL0VkTlNu?=
+ =?utf-8?B?MGI0MGpadDFwWTFJVUhBekF4S0R0NnVEcUVBbnA2QWhQUWJXeE82VVdIRTV1?=
+ =?utf-8?B?YWpYU2lnNW5NU3J0VzR4bUJqSkhoRzh1VU5NZTdidW5rOHp5QjJ6NG1mVTBH?=
+ =?utf-8?B?MklQcXIyTjFXUWFuaXExdms2d3plTFM3YWJHb1JoNmVYYTFNUjB1bkFBejEy?=
+ =?utf-8?B?SHNPV3QvSWlscWNCZjJ5ZUV1ZlV3bHJhd3JWbWgzY2RzUHowWm0xOW9aTXVW?=
+ =?utf-8?B?WE9TOE9vdHJGM1B0VGg3c25YRlRJRVl1eXdLVy90M3Jsa3ZuZz09?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB6479.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(346002)(39860400002)(136003)(376002)(366004)(36756003)(2906002)(91956017)(66476007)(921005)(7416002)(64756008)(8936002)(31686004)(66446008)(66946007)(76116006)(38070700005)(31696002)(86362001)(110136005)(316002)(66556008)(8676002)(6506007)(71200400001)(6486002)(966005)(5660300002)(2616005)(478600001)(6512007)(186003)(83380400001)(53546011)(26005)(122000001)(38100700002)(41300700001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ekVWd0NGN1Q1VEp1MWhvVmwrbElXbUFSOUhGTnJhQ1ZlRVVhUFp4dDJZVDcv?=
+ =?utf-8?B?a0VUR013cDVRZ2FXb2lzUTBWb3pmaUg4QlRXRlRMMEJSdG0xVjRVdU11dVVE?=
+ =?utf-8?B?ZmtEbEZEMlFrUVdGbVhsVGEzQytYdXF3SEFocHZybEcrcXhLZTROd3hRR0wx?=
+ =?utf-8?B?TE51ZEZqTXBiVWlJZXB4RXdhcjB4VG5sd3ByK1cwY0JBR016dGJjYXBGMlFt?=
+ =?utf-8?B?cVpYSGFncTljUW1aUFV6ZGVsZ1lUTHJLenlnNWNxM0l0NWc5V1JxdTh6cERI?=
+ =?utf-8?B?QW1jaE1icTVzdnYrNkhSZUd2SkZYWHB1aVl1M2YrSXRGNDJWTjBQM3o3UHpZ?=
+ =?utf-8?B?SHRDeURpMTYyZ3N1UjF6YWg2NzczWEZFUDArcENsdmZBRWxodjBJNUY1OXI3?=
+ =?utf-8?B?K2swSVZZWWNqVjV5eE5YWGsrSFR2cWVmSmRJbWVyYzJLc1lPYzdTbkM4WVhR?=
+ =?utf-8?B?RXFnT1BBSHJ6VjYxc0lrcDNuNGJ5clhraXdrUmxwbk1CVWI2Q1dvdzQyalgr?=
+ =?utf-8?B?UUx1RjBzUjF4NjNQc0tSbGp4cTcwS3p4TnVOdWVhTzQzejU2WEJPeHBhUTRh?=
+ =?utf-8?B?TU0wK1JaR3J0OHY1TXBTS0dTNTA0UHJYQXFlUUUwWG9ubHFFSGZ3RmFFYnFa?=
+ =?utf-8?B?bWRaYXJrMlB3L3N1SGRBWmtjbUZqV0ZuckttZFpKR2pIUkVyY2hSMnk4MXpY?=
+ =?utf-8?B?VE80RllPSG5DdDRjZU1lL0pCZGhlZ29QVXRQbGR4bG1qbGEwYnM2MjRlSVYz?=
+ =?utf-8?B?eHphK21Fem1CYm5RM2VYeVM3UUhsYjZXenJES3hkUXpBZHJUMnZ0NlVDbUFv?=
+ =?utf-8?B?dFRPRlAwd0t1OXZCTFpJNHRWMEkycXZyUWphU1gxejdLMjRHemprZVRlcDVl?=
+ =?utf-8?B?bld6Tk4zRUtFUTJJYnNsMEtOdUxCekI1SHBGeUs4bUVTWnE0NlVta0VOTWdD?=
+ =?utf-8?B?OHFTN1FlTm5vTkJXVVkwWnlSTHV5THFVaEoxd0U1Ukx5RzBwSXNSOUt1K2cz?=
+ =?utf-8?B?bXkrZ1NVeGZMUENpM2tTSHNLZDAzTmVuR1IzZHN2U3B1VGw4enJNeElHT3Fx?=
+ =?utf-8?B?SXdJUHFReGZyUkZKZnpSaWc1amNxQmR3bjJ0MTZQSWQ4T3VkYnB1YUJvT2g4?=
+ =?utf-8?B?NXl3T1lWejVzUWd5Wjh3WHl5QkR2TzRWdE9ROFJBcFZrRnFPQm5iNXBPSDJQ?=
+ =?utf-8?B?UUV3b3B0M3hGR3BobXhzZFF0czg2b3liZjFWUGxXb1dGYkpFVXN2R2Z4czQx?=
+ =?utf-8?B?cG1IQ3FWZDdFQnQvQjRWcC81Z1dTa25iYko3QkdEL1dmNHV0SktuOU1qcC93?=
+ =?utf-8?B?YU0wRkVpU2QvOTVCdzhiQ2ZBUFA0aVJHZ3h2bklGNmMva1k5T3dTdWJqNDI2?=
+ =?utf-8?B?QlNoRmxLM0hUbGhxU3VXVGJ6WXdIWFY0V0xnUXN4R0ZQOEh4TG5xaGtwNXNu?=
+ =?utf-8?B?a1FTRFF1VlhlV294ZEM4bDNCT1RzaVNiOTZHa1Qvd3FlcTI0RWZCcHJ2Z0RN?=
+ =?utf-8?B?ODRSY3hlYU91VmoxV1hHem1xbVBxY1dBL1I3QU51N1hFWmUvelV2a3FsZmQ0?=
+ =?utf-8?B?SUtqVkpDWG1WbTV6TEI3ZGtEMHZiNGZJUDRieGdTY0w0bnVTcWVzY0F6eVZu?=
+ =?utf-8?B?d09mZ25wcWVpTDJJYjJ3V2R5bTJwOE1jUk9PTFFCd09JejZPWDJjR2NpMFd2?=
+ =?utf-8?B?WUYzOXZmL2w5N01hTE9sZjJrb3RVQ0VBbDluYm1xSi9LekVETHFXdFhUckl4?=
+ =?utf-8?B?MkU3S3NIVVNHOG9jQVd5dVNTc3hIdmxIeXpNbHJrclBmWmlLbkRPZkliendX?=
+ =?utf-8?B?bkFpWkR5S0QvcDN6SThWVVU3ZEx2bFY4RXoxc1BVMlJEVHNmV3NvdjVKNWNp?=
+ =?utf-8?B?dldXZXN3ZzU5ZHF4TTM5TXY4bDFLOUVieXcvbm5KRVBLdi9oR21DcWFDd0lX?=
+ =?utf-8?B?UGRuY2d3MFh3aUdLcHA0VUd0eVVHKzVLRGFCK2Z6dEY2Tk1uY3JsSThRQjFD?=
+ =?utf-8?B?bUhIVHAzWU5OeTZyRjY0WisvSERIV0Z6UjBDQXZwdFkrZnBsd216S1lxL0pY?=
+ =?utf-8?B?WVFvMWU0VlZ6SzVlcWMyM3NMdit3VnUzekFaOXFERjZEcGx4dksrRndjQUJB?=
+ =?utf-8?Q?yFzQwg0wZMZwrH1nPxE+9RC7e?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <393DFCF283F7C24BA3C9C8F8CF9B0D55@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6479.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae20f0af-10d5-43de-6b1f-08da70442315
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2022 02:51:57.4727
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Qf0gkn6rLMXePiRjWzINyoQEnfYDVkBpIk0RI9gZ91zcAjNI1/tezdFUbgSZOKidzKXABH4M1CdHnW/T/NaJXVqHD2bgY7sMh5g3cSK1Yrc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6429
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Novatek NT35596s is a generic DSI IC that drives command and video mode
-panels. Add the driver for it. Currently add support for the LCD panel
-from JDI connected with this IC, as found on Xiaomi Mi Mix2s phones.
-
-Changes in v4:
-- No change.
-
-Changes in v3:
-- Embed the support into existing driver (panel-novatek-nt36672a), as
-  these two IC are similar with different initialization commands.
-
-Signed-off-by: Molly Sophia <mollysophia379@gmail.com>
----
- drivers/gpu/drm/panel/Kconfig                 |   7 +-
- .../gpu/drm/panel/panel-novatek-nt36672a.c    | 246 ++++++++++++++++--
- 2 files changed, 234 insertions(+), 19 deletions(-)
-
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 38799effd00a..ecc1b9aa6a1c 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -328,14 +328,15 @@ config DRM_PANEL_NOVATEK_NT35950
- 	  mobile phones.
- 
- config DRM_PANEL_NOVATEK_NT36672A
--	tristate "Novatek NT36672A DSI panel"
-+	tristate "Novatek NT36672A/NT35596S DSI panel"
- 	depends on OF
- 	depends on DRM_MIPI_DSI
- 	depends on BACKLIGHT_CLASS_DEVICE
- 	help
- 	  Say Y here if you want to enable support for the panels built
--	  around the Novatek NT36672A display controller, such as some
--	  Tianma panels used in a few Xiaomi Poco F1 mobile phones.
-+	  around the Novatek NT36672A or NT35596S display controller, such
-+	  as some Tianma panels used in a few Xiaomi Poco F1 mobile phones
-+	  or the JDI panels used in Xiaomi Mi Mix2S mobile phones.
- 
- config DRM_PANEL_NOVATEK_NT39016
- 	tristate "Novatek NT39016 RGB/SPI panel"
-diff --git a/drivers/gpu/drm/panel/panel-novatek-nt36672a.c b/drivers/gpu/drm/panel/panel-novatek-nt36672a.c
-index 231f371901e8..fcdde538d847 100644
---- a/drivers/gpu/drm/panel/panel-novatek-nt36672a.c
-+++ b/drivers/gpu/drm/panel/panel-novatek-nt36672a.c
-@@ -3,13 +3,15 @@
-  * Copyright (C) 2020 Linaro Ltd
-  * Author: Sumit Semwal <sumit.semwal@linaro.org>
-  *
-- * This driver is for the DSI interface to panels using the NT36672A display driver IC
-+ * Copyright (C) 2022 Molly Sophia <mollysophia379@gmail.com>
-+ *
-+ * This driver is for the DSI interface to panels using the NT36672A/NT35596S display driver IC
-  * from Novatek.
-  * Currently supported are the Tianma FHD+ panels found in some Xiaomi phones, including
-- * some variants of the Poco F1 phone.
-+ * some variants of the Poco F1 phone, and the JDI FHD+ panels found in Xiaomi Mi Mix2S phones.
-  *
-- * Panels using the Novatek NT37762A IC should add appropriate configuration per-panel and
-- * use this driver.
-+ * Panels using the Novatek NT37762A or NT35596S IC should add appropriate configuration
-+ * per-panel and use this driver.
-  */
- 
- #include <linux/delay.h>
-@@ -123,12 +125,14 @@ static int nt36672a_panel_unprepare(struct drm_panel *panel)
- 	if (!pinfo->prepared)
- 		return 0;
- 
--	/* send off cmds */
--	ret = nt36672a_send_cmds(panel, pinfo->desc->off_cmds,
--				 pinfo->desc->num_off_cmds);
-+	if (pinfo->desc->num_off_cmds != 0) {
-+		/* send off cmds if present */
-+		ret = nt36672a_send_cmds(panel, pinfo->desc->off_cmds,
-+					pinfo->desc->num_off_cmds);
- 
--	if (ret < 0)
--		dev_err(panel->dev, "failed to send DCS off cmds: %d\n", ret);
-+		if (ret < 0)
-+			dev_err(panel->dev, "failed to send DCS off cmds: %d\n", ret);
-+	}
- 
- 	ret = mipi_dsi_dcs_set_display_off(pinfo->link);
- 	if (ret < 0)
-@@ -211,13 +215,15 @@ static int nt36672a_panel_prepare(struct drm_panel *panel)
- 		goto poweroff;
- 	}
- 
--	/* Send rest of the init cmds */
--	err = nt36672a_send_cmds(panel, pinfo->desc->on_cmds_2,
--				 pinfo->desc->num_on_cmds_2);
-+	if (pinfo->desc->num_on_cmds_2 != 0) {
-+		/* Send rest of the init cmds if present */
-+		err = nt36672a_send_cmds(panel, pinfo->desc->on_cmds_2,
-+					pinfo->desc->num_on_cmds_2);
- 
--	if (err < 0) {
--		dev_err(panel->dev, "failed to send DCS Init 2nd Code: %d\n", err);
--		goto poweroff;
-+		if (err < 0) {
-+			dev_err(panel->dev, "failed to send DCS Init 2nd Code: %d\n", err);
-+			goto poweroff;
-+		}
- 	}
- 
- 	msleep(120);
-@@ -601,6 +607,212 @@ static const struct nt36672a_panel_desc tianma_fhd_video_panel_desc = {
- 	.num_off_cmds = ARRAY_SIZE(tianma_fhd_video_off_cmds),
- };
- 
-+static const struct nt36672a_panel_cmd jdi_nt35596s_video_on_cmds[] = {
-+	{ .data = { 0xff, 0x24 } },
-+	{ .data = { 0x9d, 0x34 } },
-+	{ .data = { 0xfb, 0x01 } },
-+	{ .data = { 0xc4, 0x25 } },
-+	{ .data = { 0xd1, 0x08 } },
-+	{ .data = { 0xd2, 0x84 } },
-+	{ .data = { 0xff, 0x26 } },
-+	{ .data = { 0xfb, 0x01 } },
-+	{ .data = { 0x03, 0x1c } },
-+	{ .data = { 0x3b, 0x08 } },
-+	{ .data = { 0x6b, 0x08 } },
-+	{ .data = { 0x97, 0x08 } },
-+	{ .data = { 0xc5, 0x08 } },
-+	{ .data = { 0xfb, 0x01 } },
-+	{ .data = { 0xff, 0x23 } },
-+	{ .data = { 0xfb, 0x01 } },
-+	{ .data = { 0x01, 0x84 } },
-+	{ .data = { 0x05, 0x2d } },
-+	{ .data = { 0x06, 0x00 } },
-+	{ .data = { 0x33, 0x07 } },
-+	{ .data = { 0x21, 0xee } },
-+	{ .data = { 0x22, 0xed } },
-+	{ .data = { 0x23, 0xea } },
-+	{ .data = { 0x24, 0xe8 } },
-+	{ .data = { 0x25, 0xe5 } },
-+	{ .data = { 0x26, 0xe2 } },
-+	{ .data = { 0x27, 0xde } },
-+	{ .data = { 0x28, 0xbb } },
-+	{ .data = { 0x29, 0x87 } },
-+	{ .data = { 0x2a, 0x77 } },
-+	{ .data = { 0x32, 0x0c } },
-+	{ .data = { 0x13, 0x3f } },
-+	{ .data = { 0x14, 0x34 } },
-+	{ .data = { 0x15, 0x2a } },
-+	{ .data = { 0x16, 0x25 } },
-+	{ .data = { 0x17, 0x9d } },
-+	{ .data = { 0x18, 0x9a } },
-+	{ .data = { 0x19, 0x97 } },
-+	{ .data = { 0x1a, 0x94 } },
-+	{ .data = { 0x1b, 0x91 } },
-+	{ .data = { 0x1c, 0x8e } },
-+	{ .data = { 0x1d, 0x8b } },
-+	{ .data = { 0x1e, 0x89 } },
-+	{ .data = { 0x1f, 0x86 } },
-+	{ .data = { 0x20, 0x83 } },
-+	{ .data = { 0xff, 0x22 } },
-+	{ .data = { 0x00, 0x0a } },
-+	{ .data = { 0x01, 0x43 } },
-+	{ .data = { 0x02, 0x5b } },
-+	{ .data = { 0x03, 0x6a } },
-+	{ .data = { 0x04, 0x7a } },
-+	{ .data = { 0x05, 0x82 } },
-+	{ .data = { 0x06, 0x85 } },
-+	{ .data = { 0x07, 0x80 } },
-+	{ .data = { 0x08, 0x7c } },
-+	{ .data = { 0x09, 0x7c } },
-+	{ .data = { 0x0a, 0x74 } },
-+	{ .data = { 0x0b, 0x71 } },
-+	{ .data = { 0x0c, 0x6e } },
-+	{ .data = { 0x0d, 0x68 } },
-+	{ .data = { 0x0e, 0x65 } },
-+	{ .data = { 0x0f, 0x5c } },
-+	{ .data = { 0x10, 0x32 } },
-+	{ .data = { 0x11, 0x18 } },
-+	{ .data = { 0x12, 0x00 } },
-+	{ .data = { 0x13, 0x00 } },
-+	{ .data = { 0x1a, 0x00 } },
-+	{ .data = { 0x1b, 0x00 } },
-+	{ .data = { 0x1c, 0x00 } },
-+	{ .data = { 0x1d, 0x00 } },
-+	{ .data = { 0x1e, 0x00 } },
-+	{ .data = { 0x1f, 0x00 } },
-+	{ .data = { 0x20, 0x00 } },
-+	{ .data = { 0x21, 0x00 } },
-+	{ .data = { 0x22, 0x00 } },
-+	{ .data = { 0x23, 0x00 } },
-+	{ .data = { 0x24, 0x00 } },
-+	{ .data = { 0x25, 0x00 } },
-+	{ .data = { 0x26, 0x00 } },
-+	{ .data = { 0x27, 0x00 } },
-+	{ .data = { 0x28, 0x00 } },
-+	{ .data = { 0x29, 0x00 } },
-+	{ .data = { 0x2a, 0x00 } },
-+	{ .data = { 0x2b, 0x00 } },
-+	{ .data = { 0x2f, 0x00 } },
-+	{ .data = { 0x30, 0x00 } },
-+	{ .data = { 0x31, 0x00 } },
-+	{ .data = { 0x32, 0x0c } },
-+	{ .data = { 0x33, 0x0c } },
-+	{ .data = { 0x34, 0x0c } },
-+	{ .data = { 0x35, 0x0b } },
-+	{ .data = { 0x36, 0x09 } },
-+	{ .data = { 0x37, 0x09 } },
-+	{ .data = { 0x38, 0x08 } },
-+	{ .data = { 0x39, 0x05 } },
-+	{ .data = { 0x3a, 0x03 } },
-+	{ .data = { 0x3b, 0x00 } },
-+	{ .data = { 0x3f, 0x00 } },
-+	{ .data = { 0x40, 0x00 } },
-+	{ .data = { 0x41, 0x00 } },
-+	{ .data = { 0x42, 0x00 } },
-+	{ .data = { 0x43, 0x00 } },
-+	{ .data = { 0x44, 0x00 } },
-+	{ .data = { 0x45, 0x00 } },
-+	{ .data = { 0x46, 0x00 } },
-+	{ .data = { 0x47, 0x00 } },
-+	{ .data = { 0x48, 0x00 } },
-+	{ .data = { 0x49, 0x03 } },
-+	{ .data = { 0x4a, 0x06 } },
-+	{ .data = { 0x4b, 0x07 } },
-+	{ .data = { 0x4c, 0x07 } },
-+	{ .data = { 0x53, 0x01 } },
-+	{ .data = { 0x54, 0x01 } },
-+	{ .data = { 0x55, 0x89 } },
-+	{ .data = { 0x56, 0x00 } },
-+	{ .data = { 0x58, 0x00 } },
-+	{ .data = { 0x68, 0x00 } },
-+	{ .data = { 0x84, 0xff } },
-+	{ .data = { 0x85, 0xff } },
-+	{ .data = { 0x86, 0x03 } },
-+	{ .data = { 0x87, 0x00 } },
-+	{ .data = { 0x88, 0x00 } },
-+	{ .data = { 0xa2, 0x20 } },
-+	{ .data = { 0xa9, 0x01 } },
-+	{ .data = { 0xaa, 0x12 } },
-+	{ .data = { 0xab, 0x13 } },
-+	{ .data = { 0xac, 0x0a } },
-+	{ .data = { 0xad, 0x74 } },
-+	{ .data = { 0xaf, 0x33 } },
-+	{ .data = { 0xb0, 0x03 } },
-+	{ .data = { 0xb1, 0x14 } },
-+	{ .data = { 0xb2, 0x42 } },
-+	{ .data = { 0xb3, 0x40 } },
-+	{ .data = { 0xb4, 0xa5 } },
-+	{ .data = { 0xb6, 0x44 } },
-+	{ .data = { 0xb7, 0x04 } },
-+	{ .data = { 0xb8, 0x14 } },
-+	{ .data = { 0xb9, 0x42 } },
-+	{ .data = { 0xba, 0x40 } },
-+	{ .data = { 0xbb, 0xa5 } },
-+	{ .data = { 0xbd, 0x44 } },
-+	{ .data = { 0xbe, 0x04 } },
-+	{ .data = { 0xbf, 0x00 } },
-+	{ .data = { 0xc0, 0x75 } },
-+	{ .data = { 0xc1, 0x6a } },
-+	{ .data = { 0xc2, 0xa5 } },
-+	{ .data = { 0xc4, 0x22 } },
-+	{ .data = { 0xc5, 0x02 } },
-+	{ .data = { 0xc6, 0x00 } },
-+	{ .data = { 0xc7, 0x95 } },
-+	{ .data = { 0xc8, 0x8a } },
-+	{ .data = { 0xc9, 0xa5 } },
-+	{ .data = { 0xcb, 0x22 } },
-+	{ .data = { 0xcc, 0x02 } },
-+	{ .data = { 0xcd, 0x00 } },
-+	{ .data = { 0xce, 0xb5 } },
-+	{ .data = { 0xcf, 0xaa } },
-+	{ .data = { 0xd0, 0xa5 } },
-+	{ .data = { 0xd2, 0x22 } },
-+	{ .data = { 0xd3, 0x02 } },
-+	{ .data = { 0xfb, 0x01 } },
-+	{ .data = { 0xff, 0x10 } },
-+	{ .data = { 0x26, 0x02 } },
-+	{ .data = { 0x35, 0x00 } },
-+	{ .data = { 0x51, 0xff } },
-+	{ .data = { 0x53, 0x24 } },
-+	{ .data = { 0x55, 0x00 } },
-+	{ .data = { 0xb0, 0x00 } },
-+};
-+
-+static const struct drm_display_mode jdi_nt35596s_video_panel_mode = {
-+	.clock = (1080 + 16 + 28 + 40) * (2160 + 7 + 4 + 24) * 60 / 1000,
-+
-+	.hdisplay = 1080,
-+	.hsync_start = 1080 + 16,
-+	.hsync_end = 1080 + 16 + 28,
-+	.htotal = 1080 + 16 + 28 + 40,
-+
-+	.vdisplay = 2160,
-+	.vsync_start = 2160 + 7,
-+	.vsync_end = 2160 + 7 + 4,
-+	.vtotal = 2160 + 7 + 4 + 24,
-+
-+	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-+};
-+
-+static const struct nt36672a_panel_desc jdi_nt35596s_video_panel_desc = {
-+	.display_mode = &jdi_nt35596s_video_panel_mode,
-+
-+	.width_mm = 68,
-+	.height_mm = 136,
-+
-+	.mode_flags = MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_VIDEO |
-+		      MIPI_DSI_MODE_VIDEO_HSE | MIPI_DSI_CLOCK_NON_CONTINUOUS |
-+		      MIPI_DSI_MODE_VIDEO_BURST,
-+	.format = MIPI_DSI_FMT_RGB888,
-+	.lanes = 4,
-+	.on_cmds_1 = jdi_nt35596s_video_on_cmds,
-+	.num_on_cmds_1 = ARRAY_SIZE(jdi_nt35596s_video_on_cmds),
-+	.on_cmds_2 = NULL,
-+	.num_on_cmds_2 = 0,
-+	.off_cmds = NULL,
-+	.num_off_cmds = 0,
-+};
-+
- static int nt36672a_panel_add(struct nt36672a_panel *pinfo)
- {
- 	struct device *dev = &pinfo->link->dev;
-@@ -697,6 +909,7 @@ static void nt36672a_panel_shutdown(struct mipi_dsi_device *dsi)
- 
- static const struct of_device_id tianma_fhd_video_of_match[] = {
- 	{ .compatible = "tianma,fhd-video", .data = &tianma_fhd_video_panel_desc },
-+	{ .compatible = "jdi,fhd-nt35596s", .data = &jdi_nt35596s_video_panel_desc },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, tianma_fhd_video_of_match);
-@@ -713,5 +926,6 @@ static struct mipi_dsi_driver nt36672a_panel_driver = {
- module_mipi_dsi_driver(nt36672a_panel_driver);
- 
- MODULE_AUTHOR("Sumit Semwal <sumit.semwal@linaro.org>");
--MODULE_DESCRIPTION("NOVATEK NT36672A based MIPI-DSI LCD panel driver");
-+MODULE_AUTHOR("Molly Sophia <mollysophia379@gmail.com>");
-+MODULE_DESCRIPTION("NOVATEK NT36672A/NT35596S based MIPI-DSI LCD panel driver");
- MODULE_LICENSE("GPL");
--- 
-2.37.1
-
+T24gNy8yNy8yMiAxOTo0MSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gRVhURVJOQUwg
+RU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Ug
+a25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPiBJbnN0ZWFkIG9mIGxpc3RpbmcgZGlyZWN0
+bHkgcHJvcGVydGllcyB0eXBpY2FsIGZvciBTUEkgcGVyaXBoZXJhbHMsDQo+IHJlZmVyZW5jZSB0
+aGUgc3BpLXBlcmlwaGVyYWwtcHJvcHMueWFtbCBzY2hlbWEuICBUaGlzIGFsbG93cyB1c2luZyBh
+bGwNCj4gcHJvcGVydGllcyB0eXBpY2FsIGZvciBTUEktY29ubmVjdGVkIGRldmljZXMsIGV2ZW4g
+dGhlc2Ugd2hpY2ggZGV2aWNlDQo+IGJpbmRpbmdzIGF1dGhvciBkaWQgbm90IHRyaWVkIHlldC4N
+Cj4gDQo+IFJlbW92ZSB0aGUgc3BpLSogcHJvcGVydGllcyB3aGljaCBub3cgY29tZSB2aWEgc3Bp
+LXBlcmlwaGVyYWwtcHJvcHMueWFtbA0KPiBzY2hlbWEsIGV4Y2VwdCBmb3IgdGhlIGNhc2VzIHdo
+ZW4gZGV2aWNlIHNjaGVtYSBhZGRzIHNvbWUgY29uc3RyYWludHMNCj4gbGlrZSBtYXhpbXVtIGZy
+ZXF1ZW5jeS4NCj4gDQo+IFdoaWxlIGNoYW5naW5nIGFkZGl0aW9uYWxQcm9wZXJ0aWVzLT51bmV2
+YWx1YXRlZFByb3BlcnRpZXMsIHB1dCBpdCBpbg0KPiB0eXBpY2FsIHBsYWNlLCBqdXN0IGJlZm9y
+ZSBleGFtcGxlIERUUy4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEtyenlzenRvZiBLb3psb3dza2kg
+PGtyenlzenRvZi5rb3psb3dza2lAbGluYXJvLm9yZz4NClJldmlld2VkLWJ5OiBUdWRvciBBbWJh
+cnVzIDx0dWRvci5hbWJhcnVzQG1pY3JvY2hpcC5jb20+DQo+IA0KPiAtLS0NCj4gDQo+IFRlY2hu
+aWNhbGx5LCB0aGlzIGRlcGVuZHMgb24gWzFdIG1lcmdlZCB0byBTUEkgdHJlZSwgaWYgd2Ugd2Fu
+dCB0bw0KPiBwcmVzZXJ2ZSBleGlzdGluZyBiZWhhdmlvciBvZiBub3QgYWxsb3dpbmcgU1BJIENQ
+SEEgYW5kIENQT0wgaW4gZWFjaCBvZg0KPiBzY2hlbWFzIGluIHRoaXMgcGF0Y2guDQo+IA0KPiBJ
+ZiB0aGlzIHBhdGNoIGNvbWVzIGluZGVwZW5kZW50bHkgdmlhIGRpZmZlcmVudCB0cmVlLCB0aGUg
+U1BJIENQSEEgYW5kDQo+IENQT0wgd2lsbCBiZSBhbGxvd2VkIGZvciBicmllZiBwZXJpb2Qgb2Yg
+dGltZSwgYmVmb3JlIFsxXSBpcyBtZXJnZWQuDQo+IFRoaXMgd2lsbCBub3QgaGF2ZSBuZWdhdGl2
+ZSBpbXBhY3QsIGp1c3QgRFQgc2NoZW1hIGNoZWNrcyB3aWxsIGJlDQo+IGxvb3NlbmVkIGZvciB0
+aGF0IHBlcmlvZC4NCj4gDQo+IFsxXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyMjA3
+MjIxOTE1MzkuOTA2NDEtMi1rcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmcvDQo+IC0tLQ0K
+PiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkL21pY3JvY2hpcCxtY2hwNDhsNjQwLnlhbWwg
+ICAgICB8IDcgKysrKy0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMyBk
+ZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvbXRkL21pY3JvY2hpcCxtY2hwNDhsNjQwLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvbXRkL21pY3JvY2hpcCxtY2hwNDhsNjQwLnlhbWwNCj4gaW5kZXgg
+MmNkZjZiZjNkYzRhLi44Y2MyYTdjZWI1ZmIgMTAwNjQ0DQo+IC0tLSBhL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvbWljcm9jaGlwLG1jaHA0OGw2NDAueWFtbA0KPiArKysg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkL21pY3JvY2hpcCxtY2hwNDhs
+NjQwLnlhbWwNCj4gQEAgLTIyLDEzICsyMiwxNCBAQCBwcm9wZXJ0aWVzOg0KPiAgICByZWc6DQo+
+ICAgICAgbWF4SXRlbXM6IDENCj4gDQo+IC0gIHNwaS1tYXgtZnJlcXVlbmN5OiB0cnVlDQo+IC0N
+Cj4gIHJlcXVpcmVkOg0KPiAgICAtIGNvbXBhdGlibGUNCj4gICAgLSByZWcNCj4gDQo+IC1hZGRp
+dGlvbmFsUHJvcGVydGllczogZmFsc2UNCj4gK2FsbE9mOg0KPiArICAtICRyZWY6IC9zY2hlbWFz
+L3NwaS9zcGktcGVyaXBoZXJhbC1wcm9wcy55YW1sIw0KPiArDQo+ICt1bmV2YWx1YXRlZFByb3Bl
+cnRpZXM6IGZhbHNlDQo+IA0KPiAgZXhhbXBsZXM6DQo+ICAgIC0gfA0KPiAtLQ0KPiAyLjM0LjEN
+Cj4gDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX18NCj4gTGludXggTVREIGRpc2N1c3Npb24gbWFpbGluZyBsaXN0DQo+IGh0dHA6Ly9s
+aXN0cy5pbmZyYWRlYWQub3JnL21haWxtYW4vbGlzdGluZm8vbGludXgtbXRkLw0KDQoNCi0tIA0K
+Q2hlZXJzLA0KdGENCg==
