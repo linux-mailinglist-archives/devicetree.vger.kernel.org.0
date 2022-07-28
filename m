@@ -2,68 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D07D958454A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 20:08:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98DAC5845FB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 20:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232720AbiG1SBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 14:01:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37722 "EHLO
+        id S229471AbiG1SxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 14:53:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231127AbiG1SBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 14:01:47 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61E9970E5F;
-        Thu, 28 Jul 2022 11:01:46 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id v3so2315602wrp.0;
-        Thu, 28 Jul 2022 11:01:46 -0700 (PDT)
+        with ESMTP id S229456AbiG1SxR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 14:53:17 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2330C743EE;
+        Thu, 28 Jul 2022 11:53:16 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id t1so4113825lft.8;
+        Thu, 28 Jul 2022 11:53:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ugG0AkDTwXcDf7jBLOwWXze+C4ZynRnQwUWaQUR23Ys=;
-        b=b/I4rsfa8kUBcAm8R78E29ui4/MMKpjt9jVqTyV2b7BLIwreSmyDNdawoWsmrDfYkS
-         dwJPXxX2+UD8F+1GyrfzAQcJ6clzAY2aZDFq0gltcENbLihToJsBtghvbWob9xmnNziU
-         C84lj0ZiqVPXAsfruESW8hee7hrNK75gpox3z9Rq6bCmqATenken2lJeAwovcFpK4oyT
-         rcTbkxKHuHVVTe2TjQtve8OmGlfMAjeJykPa6b03fMhsA4Xju9+Sn+fNuhCOenuHDXUO
-         lCTjgMLDD57X+xYhwOQkUZaz/ODzM5t8tk9nxhEK5EOD4nqBRA0naZ1YDqvR2ff90U0F
-         E1dQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YqDuXzOWTVq7U9l2+ECUplWD7jFZHdMOUjcOJGRtYg8=;
+        b=oTsUjBvaphUVin2C+irLGt/eQKo8mEz1OmLk6F+TFa44ZlbqPfzst4bMz9r/xmHSJn
+         thA2IcTMKOtkE6tSKOAoLZeDN9FCKJOUe6kVcn7gDptnjwA2zrQ62oIqrel+7PJy1eiN
+         Bz4Jy2DumSblx8a+L+V3MUsziemK6oDsm3XXQ9nJl4DqDHl9dr7qFXz00Pba9LA5P9Sy
+         Tdq/417wkgMqW5LmNlpGXjAdixfia0K5C0RoOmOwJYOEDwrS/dQYxVFs/5wobUFefq6M
+         L5bZ5MPFbowYk7VxyDWZSVHPwrE3X42q5Xm82TlVolK+O5NlXoj96r7m+1z1WU5dLTab
+         4o0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ugG0AkDTwXcDf7jBLOwWXze+C4ZynRnQwUWaQUR23Ys=;
-        b=LbAq6vLH7zQ3HurhN3ePl2GdH9jnMCOi5qJCUqeNa2cH40LICa4a2MRgS9Pf9C3FSA
-         erd4qsMfNhpruPNIodCsr7I4ZMFntEYTt9ETfW/MziiwDTv8KHqg/lvO/lIrpyQCKqh7
-         91IkKaZiENpic4h19BGTt5T2fhZgH+LjUqSCt7xqhS1LDBMdbik9FoGkX4TeaMBMe5Zh
-         7Q++Ge4xmgE4x1Pu18x7aRE3pTwZNABx3USQl2aLJgiZG/kmt2vrSjCs7F5wHkzCyhWD
-         9YrNOmIxIVrEL8cUUrBp8MRnRPlUkm31EuchlCEoE2aWQzyl67GvG/94bSQ1PhN9N+Rb
-         phtw==
-X-Gm-Message-State: ACgBeo2kxswCRjknY2ycC+sUtBESIP3uRIBPBrfkISDJaAWWMalq5dAf
-        uqxd3UVxlsRah6cGzTS3xIM=
-X-Google-Smtp-Source: AA6agR6wkLpMPC1SPg1uZ+xP94dDmp9Ft06Wg4y3tbnEre1LHV+fGClqpmw1g49LZRrUuUIlhUobSQ==
-X-Received: by 2002:a5d:4dcc:0:b0:21e:e644:6af8 with SMTP id f12-20020a5d4dcc000000b0021ee6446af8mr69181wru.219.1659031304843;
-        Thu, 28 Jul 2022 11:01:44 -0700 (PDT)
-Received: from localhost.localdomain ([105.235.128.60])
-        by smtp.gmail.com with ESMTPSA id o5-20020a05600c510500b003a2d6f26babsm2154340wms.3.2022.07.28.11.01.42
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YqDuXzOWTVq7U9l2+ECUplWD7jFZHdMOUjcOJGRtYg8=;
+        b=PHN7/lMdiuSHNm4K7NgKIYg8J3vgIjc0cP66RO3bDQ5H7CkeajccK/1/otzGzLNf3q
+         G2ZVpNVFa++39uQiBGW3SvNbzMVgN+r4+7sEQNFB5ZvPHTc6RjBHPtBaCe9Lzd5ZYsm9
+         k5IjD+wvSC7RxcFMxg1hkj6uJ60zZm89qOA0hv/MZi9rxTC8IdJXmTO9dmHAGrGOowYW
+         brVMUa7mBdStK2uDTlh7dHFD/n61NsB9M9vrYiRtdni1uh8txrlsD8RxbCJw8GlXv+QY
+         RIQdolyA//imBpmhR+Am/4bbgVjWfe0cCPkAdKTicKXyyCr7YZyk1STObQCxI+CirGRG
+         wHfg==
+X-Gm-Message-State: AJIora8/M+y1H2jLegPhGAQ9lGIwp7mZJjG99gXD/v5/pWa5XAqOdEfD
+        JDxX6ODQ8e92SDRR5SDBGiA=
+X-Google-Smtp-Source: AGRyM1vxbrmC9UG6lvhuS8D++pmLdPzd/EMFdQeBuXzwgUbAdL+jtkgDOa5UQ8z/YDvwcmjbrXhETQ==
+X-Received: by 2002:a05:6512:ac6:b0:48a:8379:bcc0 with SMTP id n6-20020a0565120ac600b0048a8379bcc0mr56793lfu.601.1659034394104;
+        Thu, 28 Jul 2022 11:53:14 -0700 (PDT)
+Received: from mobilestation ([95.79.140.178])
+        by smtp.gmail.com with ESMTPSA id y14-20020a0565123f0e00b0048a9a756763sm322087lfa.19.2022.07.28.11.53.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 11:01:44 -0700 (PDT)
-From:   Yassine Oudjana <yassine.oudjana@gmail.com>
-X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Yassine Oudjana <yassine.oudjana@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: msm8996-xiaomi-*: Add LEDs
-Date:   Thu, 28 Jul 2022 19:01:20 +0100
-Message-Id: <20220728180120.97968-1-y.oudjana@protonmail.com>
-X-Mailer: git-send-email 2.37.1
+        Thu, 28 Jul 2022 11:53:13 -0700 (PDT)
+Date:   Thu, 28 Jul 2022 21:53:11 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rahul Tanwar <rtanwar@maxlinear.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH RESEND v4 03/15] PCI: dwc: Convert to using native
+ IP-core versions representation
+Message-ID: <20220728185311.3b4n2izy64fdpfk6@mobilestation>
+References: <20220624143947.8991-4-Sergey.Semin@baikalelectronics.ru>
+ <20220728152418.GA302516@bhelgaas>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220728152418.GA302516@bhelgaas>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -74,147 +87,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yassine Oudjana <y.oudjana@protonmail.com>
+On Thu, Jul 28, 2022 at 10:24:18AM -0500, Bjorn Helgaas wrote:
+> On Fri, Jun 24, 2022 at 05:39:35PM +0300, Serge Semin wrote:
+> > Since DWC PCIe v4.70a the controller version can be read from the
+> > PORT_LOGIC.PCIE_VERSION_OFF register. Version is represented in the FourCC
+> > format [1]. It's standard versioning approach for the Synopsys DWC
+> > IP-cores. Moreover some of the DWC kernel drivers already make use of it
+> > to fixup version-dependent functionality (See DWC USB3, Stmicro STMMAC or
+> > recent DW SPI driver).
+> 
 
-Add LEDs found on the Xiaomi MSM8996 devices. The devices share
-a status RGB LED mounted on the front, as well as a PWM-driven
-IR LED for remote control (sometimes known as an IR blaster).
-The Mi Note 2 has an additional pair of white LEDs used as backlights
-for the touchkeys driven by the PM8994 LPG block.
+> These references to other drivers might be useful, but without a
+> function name or file name, I can't easily find them.
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
----
- .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  | 54 +++++++++++++++++++
- .../boot/dts/qcom/msm8996-xiaomi-scorpio.dts  | 30 +++++++++++
- 2 files changed, 84 insertions(+)
+1. DW APB SSI driver, defined in drivers/spi/spi-dw.h:
+#define DW_HSSI_102A                    0x3130322a
+#define dw_spi_ip_is(_dws, _ip) ...
+#define dw_spi_ver_is(_dws, _ip, _ver) ...
+#define dw_spi_ver_is_ge(_dws, _ip, _ver) ...
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-index 627649979891..ef9a8aa9c2b9 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-@@ -58,6 +58,14 @@ key-dome {
- 		};
- 	};
- 
-+	irled {
-+		compatible = "pwm-ir-tx";
-+		pwms = <&pm8994_lpg 1 1000000>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&irled_default>;
-+	};
-+
- 	reserved-memory {
- 		memory@88800000 {
- 			reg = <0x0 0x88800000 0x0 0x1400000>;
-@@ -297,6 +305,41 @@ &pm8994_resin {
- 	linux,code = <KEY_VOLUMEDOWN>;
- };
- 
-+&pm8994_lpg {
-+	status = "okay";
-+
-+	qcom,power-source = <1>;
-+};
-+
-+&pmi8994_lpg {
-+	status = "okay";
-+
-+	qcom,power-source = <1>;
-+
-+	multi-led {
-+		color = <LED_COLOR_ID_RGB>;
-+		function = LED_FUNCTION_STATUS;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@1 {
-+			reg = <1>;
-+			color = <LED_COLOR_ID_BLUE>;
-+		};
-+
-+		led@2 {
-+			reg = <2>;
-+			color = <LED_COLOR_ID_GREEN>;
-+		};
-+
-+		led@3 {
-+			reg = <3>;
-+			color = <LED_COLOR_ID_RED>;
-+		};
-+	};
-+};
-+
- &slpi_pil {
- 	status = "okay";
- 
-@@ -608,6 +651,17 @@ vdd_gfx: s2 {
- };
- 
- &pm8994_gpios {
-+	irled_default: irled-default {
-+		pinconf {
-+			pins = "gpio5";
-+			function = PMIC_GPIO_FUNC_FUNC1;
-+			output-low;
-+			qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
-+			power-source = <PM8994_GPIO_S4>;
-+			bias-disable;
-+		};
-+	};
-+
- 	wlan_en_default: wlan-en-state {
- 		pins = "gpio8";
- 		function = PMIC_GPIO_FUNC_NORMAL;
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
-index 30a9e4bed4af..0b47a659cc38 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dts
-@@ -116,6 +116,25 @@ &mss_pil {
- 			"qcom/msm8996/scorpio/modem.mbn";
- };
- 
-+&pm8994_lpg {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&keypad_default>;
-+
-+	led@3 {
-+		reg = <3>;
-+		color = <LED_COLOR_ID_WHITE>;
-+		function = LED_FUNCTION_KBD_BACKLIGHT;
-+		function-enumerator = <1>;
-+	};
-+
-+	led@6 {
-+		reg = <6>;
-+		color = <LED_COLOR_ID_WHITE>;
-+		function = LED_FUNCTION_KBD_BACKLIGHT;
-+		function-enumerator = <0>;
-+	};
-+};
-+
- &q6asmdai {
- 	dai@0 {
- 		reg = <0>;
-@@ -258,6 +277,17 @@ &pm8994_gpios {
- 		"PMIC_SLB",		/* GPIO_20 */
- 		"UIM_BATT_ALARM",	/* GPIO_21 */
- 		"NC";			/* GPIO_22 */
-+
-+	keypad_default: keypad-default {
-+		pinconf {
-+			pins = "gpio7", "gpio10";
-+			function = PMIC_GPIO_FUNC_FUNC1;
-+			output-low;
-+			qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
-+			power-source = <PM8994_GPIO_S4>;
-+			bias-disable;
-+		};
-+	};
- };
- 
- &pm8994_mpps {
--- 
-2.37.1
+2. DWC USB3 driver, defined in drivers/usb/dwc3/core.h
+#define DWC3_IP                 0x5533
+#define DWC31_IP                0x3331
+#define DWC32_IP                0x3332
+#define DWC3_REVISION_173A      0x5533173a
+#define DWC3_REVISION_175A      0x5533175a
+...
+#define DWC31_REVISION_110A     0x3131302a
+#define DWC31_REVISION_120A     0x3132302a
+...
+#define DWC3_IP_IS(_ip) ...
+#define DWC3_VER_IS(_ip, _ver) ...
+#define DWC3_VER_IS_PRIOR(_ip, _ver) ...
+#define DWC3_VER_IS_WITHIN(_ip, _from, _to) ...
+#define DWC3_VER_TYPE_IS_WITHIN(_ip, _ver, _from, _to) ...
 
+Regarding the STMMAC (DW MAC/GMAC/xGMAC) driver. I've harried up to
+claim it has the native IP-core versioning support. The current kernel
+driver doesn't have it. Instead I have it implemented in my local
+repo, but it isn't ready to be submitted yet. I need some more time to
+finish my DW GMAC/xGMAC work first.
+
+Ideally we could have created a common interface for all the drivers.
+I thought about it first when I was initially creating the patchsets.
+But now I don't time left for this at all. The review process's taken
+way much more time than I had/planned to spend for the PCIe-patches.
+So what I can do at this stage is to provide minor fixes if required.
+
+-Sergey
+
+> 
+> > In order to preserve the standard version
+> > representation and prevent the data conversion back and forth, we suggest
+> > to preserve the native version representation in the DWC PCIe driver too
+> > in the same way as it has already been done in the rest of the DWC
+> > drivers. IP-core version reading from the CSR will be introduced in the
+> > next commit together with a simple macro-based API to use it.
+> > 
+> > [1] https://en.wikipedia.org/wiki/FourCC
