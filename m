@@ -2,79 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A3A5583BCA
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:09:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD7F583BE1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:16:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235798AbiG1KJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 06:09:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40554 "EHLO
+        id S235412AbiG1KQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 06:16:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235882AbiG1KJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:09:41 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6FBD52DE1
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:09:39 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id p11so2136864lfu.5
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:09:39 -0700 (PDT)
+        with ESMTP id S234535AbiG1KQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:16:01 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B71354CB1
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:16:00 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id w15so2114970lft.11
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:16:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=BUqatnFwzy7O1x1Y7oCnQMez3coEtfR7Z07+z2mqDIM=;
-        b=E/+uSTOSDSMvIY911TS6NsLjCU2k5JY7OTPnQwHkFPfSSxSmQGgjn1sEpME7hms5ZR
-         udL2kU6KX8ZxUX99L46psZjfg3TT5nvmXLXWfHc/d9bggduvWGgRDkWgumNGS/Zel5fu
-         ZEqZRpZD4u5xuxoz/bZkGwJstGQrFfUmURRspcm4jdU8imSn92Rudp12WY0adZGvFzNE
-         4eRsD29SasU+m/xUUqqfrrZRIiCJj/8fE/P3bZ4dgAfc+jVo/OhicYsvtKdLZas86Gcg
-         zgnuxQQg71FxjYslCFtwEdvfHAtPgvytwVUXUgeMWsVTG0lwxUyOGrMutbMuFr9rlSuX
-         /Hyw==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=dI10duHMDNmaJknvYmD+fuJsCt7TqWfzF/cnzOU7UpE=;
+        b=v0Sx289TviS3yA2Yyz6iJziQkpjXI+OPGSN41Lee2WtzudVS5DYX3cAlZiiIaqIViu
+         xcE4PoYKieXWKBnZyTYx8l9SIk5ul2SQdD89alWUGgcTXlF6D9y/fiWVnXX2Nym0vEtn
+         Cse70XFUNHS3q8FVy09GYZ/7jn+weOw19bvajMeNmPZ42Me9fbDDLRmQxjLt7wFBAiam
+         daGlON5KkxXS84UUtdr43LSDIvGj3zyt8fM4pq65J21m+Sz9KAXHI5I5nVctvY5YnU6L
+         SmXs9CQA1XX0xB9QEt5xsDzHLDyx7166w5dvsYRN3qgVh7ch9JL5WVsZy/BuN6R01p66
+         KLkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=BUqatnFwzy7O1x1Y7oCnQMez3coEtfR7Z07+z2mqDIM=;
-        b=adCCDNIwWsYyqoQcnRI5WLe4d5H8QnNcLW4WdFarv179bOBhJNQwtdEuXO1xNEOQ8L
-         +VtLvW7HD+lNxFOEjFNrI/1bSJVdWZ8uJg2z7RKwkEZuvmahJnCx5T+VdYYs6yn1VfB8
-         M9oLLE+9Iolw9zuSFU+lrVb0tHnksVyJfugvIE1s9XDUC0gP7V6omL4kv1CnaNZmPWLN
-         MfDhNIp+IsHaawHookYxQsHtrTliJ3pVxcrgGVtGiOTKk3/d6J6TFtD9gQWWIMsgOIYL
-         u4kNKsPMb5LTvCgv8b2yPeWfqPncUogErhzeXn1XOUeoOw/mL7X25UAFMIB1P8pQG/V2
-         XbYQ==
-X-Gm-Message-State: AJIora/li+BQJrQWWAvZ+pCrRooNKXH73oWY1FLxup5W4d5pqsRuqhQI
-        82jyHBi+ciqhH/GlFHxQGLOCaA==
-X-Google-Smtp-Source: AGRyM1vweiBCNpCytMP732q5tdxS2gLMfJ+RJ+bhKD3ocWCdE4ymh77QcXFo4IWFINCqGpkFYitrnw==
-X-Received: by 2002:a05:6512:b21:b0:47f:752a:c140 with SMTP id w33-20020a0565120b2100b0047f752ac140mr9193515lfu.349.1659002977983;
-        Thu, 28 Jul 2022 03:09:37 -0700 (PDT)
+        bh=dI10duHMDNmaJknvYmD+fuJsCt7TqWfzF/cnzOU7UpE=;
+        b=u5u+rrENJ406zjoQpK7wLXmDpC1RoUMG0r+FJ1HgFUFcR9IU+T4rIImObm4tLdoGrD
+         XthaTyIeKDcthL6HIIBCcKjmbxnrZOGtXu/Zo7ouH6hKihqPZArICyYzB33oT5JIY+Ze
+         hkXikRzCLxUN+dNP6P7GF9lafY8apkW++qC2JcupB0WYmBuAj2/WFgzm5nmihxjo+MH+
+         KpTV3RxusVPaLWhZIgrSd37Ex8p1lIXVEZYCT3WvXnh8DPIfd6SECr7ea25VrwoFWdi9
+         DbFtx2VqmbQFub/pZPX36MYF1lz/uh4+xOM3zlEDrL8WaUMv4XSC0GJcM6qnw6bxBqq1
+         +Mkw==
+X-Gm-Message-State: AJIora+qLs+K5Ra3z1a9PiaCewpbUJfHClHrUeLODAWPpYJekBH6ABcE
+        jLREjhy1dXPyGZLeFoR9qdu3ZA==
+X-Google-Smtp-Source: AGRyM1s8LOJyDO4TBVbKzUNGxlK1NOytoHtgjaBH7enoIbBxOyHyxQe19MFvmaimT3SEYUAAQ9c/JA==
+X-Received: by 2002:a19:4f12:0:b0:48a:7a26:7f92 with SMTP id d18-20020a194f12000000b0048a7a267f92mr9292666lfb.503.1659003358804;
+        Thu, 28 Jul 2022 03:15:58 -0700 (PDT)
 Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id 10-20020ac25f0a000000b0048137a6486bsm125870lfq.228.2022.07.28.03.09.36
+        by smtp.gmail.com with ESMTPSA id a21-20020a056512201500b0048a86468531sm135120lfb.61.2022.07.28.03.15.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 03:09:37 -0700 (PDT)
-Message-ID: <39395257-703b-a5e9-17c3-80f79f67fdc7@linaro.org>
-Date:   Thu, 28 Jul 2022 12:09:35 +0200
+        Thu, 28 Jul 2022 03:15:58 -0700 (PDT)
+Message-ID: <52832d25-f60b-8b89-fc8e-0379f6f37689@linaro.org>
+Date:   Thu, 28 Jul 2022 12:15:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH V2 1/3] dt-bindings: clk: meson: add S4 SoC clock
- controller bindings
+Subject: Re: [PATCH RFC v1 2/2] devicetree: bindings: bus: add Wiegand driver
+ documentation
 Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220728054202.6981-1-yu.tu@amlogic.com>
- <20220728054202.6981-2-yu.tu@amlogic.com>
- <82e3fd36-df96-a555-4cea-47fabd26502b@linaro.org>
- <74cd833a-4773-eeb0-80aa-75ea1cdc093e@amlogic.com>
+To:     =?UTF-8?Q?Martin_Za=c5=a5ovi=c4=8d?= <m.zatovic1@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, mani@kernel.org,
+        hemantk@codeaurora.org, elder@linaro.org, f.fainelli@gmail.com,
+        linus.walleij@linaro.org, Michael.Srba@seznam.cz,
+        jeffrey.l.hugo@gmail.com, gregkh@linuxfoundation.org,
+        bjorn.andersson@linaro.org, saravanak@google.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+References: <20220728091712.13395-1-m.zatovic1@gmail.com>
+ <20220728091712.13395-2-m.zatovic1@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <74cd833a-4773-eeb0-80aa-75ea1cdc093e@amlogic.com>
+In-Reply-To: <20220728091712.13395-2-m.zatovic1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -84,46 +79,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 12:05, Yu Tu wrote:
-> Hi Krzysztof,
-> 	Thanks for your reply.
+On 28/07/2022 11:17, Martin Zaťovič wrote:
+> Wiegand write-only driver requires definitions of two GPIO lines
+> in the devicetree. This adds the documentation of their
+> definitions.
 > 
-> On 2022/7/28 16:41, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On 28/07/2022 07:42, Yu Tu wrote:
->>> Add new clock controller compatible and dt-bindings header for the
->>> Everything-Else domain of the S4 SoC.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>
->>
->>
->>> diff --git a/MAINTAINERS b/MAINTAINERS
->>> index c1abc53f9e91..f872d0c0c253 100644
->>> --- a/MAINTAINERS
->>> +++ b/MAINTAINERS
->>> @@ -1775,6 +1775,7 @@ F:	Documentation/devicetree/bindings/clock/amlogic*
->>>   F:	drivers/clk/meson/
->>>   F:	include/dt-bindings/clock/gxbb*
->>>   F:	include/dt-bindings/clock/meson*
->>> +F:	include/dt-bindings/clock/s4-clkc.h
->>>   
->>>   ARM/Amlogic Meson SoC Crypto Drivers
->>>   M:	Corentin Labbe <clabbe@baylibre.com>
->>> diff --git a/include/dt-bindings/clock/s4-clkc.h b/include/dt-bindings/clock/s4-clkc.h
->>> new file mode 100644
->>> index 000000000000..b686c8877419
->>> --- /dev/null
->>> +++ b/include/dt-bindings/clock/s4-clkc.h
->>
->> Filename with vendor prefix, so:
->> amlogic,s4-clkc.h
-> It's fine with me. It's mainly Jerome's opinion.
 
-To clarify: I understand such naming might bring inconsistency, but we
-want to bring some order in the bindings directories. They keep growing
-and at some point the model names might start conflicting.
+Subject prefix consistent with subsystem, so:
+dt-bindings: bus: add Wiegand bus
+
+There should be no references to drivers in bindings. Bindings also go
+before the actual driver in the patchset.
+
+
+> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
+> ---
+>  .../devicetree/bindings/bus/wiegand-gpio.yaml | 66 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/wiegand-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/wiegand-gpio.yaml b/Documentation/devicetree/bindings/bus/wiegand-gpio.yaml
+> new file mode 100644
+> index 000000000000..74733aadc61e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/wiegand-gpio.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+
+Dual license please.
+
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/wiegand-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Wiegand write-only GPIO driver
+> +
+> +maintainers:
+> +  - Martin Zaťovič <m.zatovic1@gmail.com>
+> +
+> +description: |
+> +  Wiegand interface is a wiring standard popularized in the 1980s. To this day
+> +  many card readers, fingerprint readers, sensors, etc. use Wiegand interface
+> +  particularly for access control applications. It utilizes two wires to
+> +  transmit the data - D0 and D1.
+> +
+> +  Both data lines are initially pulled up. To send a bit of value 1, the D1
+> +  line is set low. Similarly to send a bit of value 0, the D0 line is set low.
+> +  Standard Wiegand formats include 26, 36 and 37 bit and they reserve the first
+> +  and last bits for parity. The first(MSB) parity bit is set to 1 if the parity
+> +  of the first half of the payload is odd. The last(LSB) parity bit is set to 1
+> +  if the parity of the second half of the payload even.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^wiegand-gpio(@[0-9a-f]+)?$"
+> +
+> +  compatible:
+> +    contains:
+
+Nope. See example-schema.
+
+> +      const: gpio,wiegand-gpio
+> +    description:
+> +      Shall contain "wiegand-gpio" for the driver to match with this node.
+
+No description. See example-schema.
+> +
+> +  wiegand-data-hi-gpios:
+
+I propose just data-hi-gpios
+
+> +    description:
+> +      gpio used to transmit bits the value of which is 1, it should be
+> +      flagged as active high with GPIO_ACTIVE_HIGH from
+> +      <dt-bindings/gpio/gpio.h>.
+> +    maxItems: 1
+> +
+> +  wiegand-data-lo-gpios:
+
+data-lo-gpios
+
+> +    description:
+> +      gpio used to transmit bits the value of which is 1, it should be
+> +      flagged as active high with GPIO_ACTIVE_HIGH from
+> +      <dt-bindings/gpio/gpio.h>.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - wiegand-data-hi-gpios
+> +  - wiegand-data-lo-gpios
+> +
+> +additionalProperties: true
+
+Nope. This must be false, unless you create here a bus bindings. But in
+such case you example is incomplete.
+
+> +
+> +examples:
+> +  - |
+> +    wiegand-gpio {
+
+Just wiegand.
+
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +        compatible = "wiegand-gpio";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_uart1_wiegand>;
+> +        wiegand-data-hi-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
+> +        wiegand-data-lo-gpios = <&gpio2 2 GPIO_ACTIVE_HIGH>;
+> +        status = "okay";
+
+No need for status.
+
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 9a519530e44e..c7db1e41cc02 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21589,6 +21589,7 @@ F:	drivers/rtc/rtc-sd3078.c
+>  WIEGAND WRITE-ONLY GPIO DRIVER
+>  M:	Martin Zaťovič <m.zatovic1@gmail.com>
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/bus/wiegand-gpio.yaml
+>  F:	drivers/bus/wiegand-gpio.c
+>  F:	drivers/bus/wiegand-gpio.h
+>  
 
 
 Best regards,
