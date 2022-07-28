@@ -2,123 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2FE2583DF9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 13:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E050E583E0F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 13:50:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232884AbiG1LsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 07:48:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52230 "EHLO
+        id S235551AbiG1LuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 07:50:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236421AbiG1LsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 07:48:01 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C4351438;
-        Thu, 28 Jul 2022 04:48:00 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (dkwl20tj04snw15cjtflt-3.rev.dnainternet.fi [IPv6:2001:14ba:4493:6f40:fec3:d72a:e447:8113])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 5F588203D5;
-        Thu, 28 Jul 2022 14:47:57 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1659008877;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+tHy9h65vJZQaaGgoTKb8eP0eWKQ+deaT4/swsvy4MQ=;
-        b=d2cc2CT5N3dF3OFA118+wXEOORCKUNq80P0AhQlRbt1gbApuvi/bhdtKspP7ph4s881kDX
-        amCxca7Aj/PTFmE/pb7/I7XH0P4r4m/7FAY8kWFgpINufv3LkxYuCl6FXKQvI+UzI6y74Z
-        nIhZwCc9yz43q8q3Dl7vfgHfusJ433Q=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id DED3E634C97;
-        Thu, 28 Jul 2022 14:47:56 +0300 (EEST)
-Date:   Thu, 28 Jul 2022 14:47:56 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S236911AbiG1LuT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 07:50:19 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1D89CE04
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:50:16 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id b21-20020a05600c4e1500b003a32bc8612fso912898wmq.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 04:50:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=references:user-agent:from:to:subject:date:in-reply-to:message-id
+         :mime-version;
+        bh=FxwqpjhD9/gLaQrnTT9TOXORIlpv5bjNu3/8g5til8A=;
+        b=nTEylWFWV5aRYXQnjm2kiRjVJlk7CEQjzrUBHIDJnxn+cY0Vj8Q7ezPN7FgIiJK/+v
+         ine2IGE+ebrioKCcdP9pPI+ICu9WtJvFA+PUXlNmr8SoGEJwVEgcyeHUlpHnXNjI/HmY
+         pLvlZNwoi1m0h5/WHucjBDABR1SPLS8arubysiloaSV92rt9yiaiMG3l9yCH5l/aQ3/9
+         s+IwJzB984E9vKSpdLwuxLICOc1sgE4UtWWOy3UrfagJPHpMHyDvMoK4x3Cyq1tORPeE
+         gbi0d45zdtr7iycIpE5AhCbM8wEKpE9OrycAhoQLkNBUjTUoAZMsEcibmKdyhO0fjDjX
+         21yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:references:user-agent:from:to:subject:date
+         :in-reply-to:message-id:mime-version;
+        bh=FxwqpjhD9/gLaQrnTT9TOXORIlpv5bjNu3/8g5til8A=;
+        b=oP6yIUoS0/CInVqoXLjaHJ7rwrresJCgfhmU0GpD1LAMwDqldHYx8mrtQL3frc1h1+
+         9ErpCuZr5sg3vamEHeLOvYTCH75bkehdMS6n3dmzVHpN8fYvbcd68mqtH1vPIoVU3k7N
+         4WObxRXqNo0Cv6xMcnPSxg8M4Aq/B7cod07aZ+aN/CJkvR7EBoDtq5nEKlnkoFlxcpYT
+         Fu43xBiIZIO7NhVS+03cHI4lg2dGh/t98PP2TkPzB+rMuAVN5JsTaGbp7YAijPImuiqL
+         VdIJYhi8yHxV2GUruY34RyTJmaTd3XLBdG0m1LtwjzZDLhnTqL7zMMG9k2uvvbUuLaxL
+         mZQw==
+X-Gm-Message-State: AJIora/cYO986mo3s77oAeCZtp7ZLwofajNEdUKmQlODcaMJ2eCXn7lW
+        LU6ODxlN6KQBPAn0gs4TrZ6k4Q==
+X-Google-Smtp-Source: AGRyM1v0j0TKqWnZsAUWLQ3B4oY6N7U+8YetS6WSCx/Q+1LpG7g7jTIsnd/U+8JWEBXprZeoB78iww==
+X-Received: by 2002:a7b:c453:0:b0:3a3:1c65:ff97 with SMTP id l19-20020a7bc453000000b003a31c65ff97mr6046013wmi.180.1659009015199;
+        Thu, 28 Jul 2022 04:50:15 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id o5-20020a05600c510500b003a2d6c623f3sm5639135wms.19.2022.07.28.04.50.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 04:50:14 -0700 (PDT)
+References: <20220728054202.6981-1-yu.tu@amlogic.com>
+ <20220728054202.6981-2-yu.tu@amlogic.com>
+ <82e3fd36-df96-a555-4cea-47fabd26502b@linaro.org>
+ <74cd833a-4773-eeb0-80aa-75ea1cdc093e@amlogic.com>
+ <39395257-703b-a5e9-17c3-80f79f67fdc7@linaro.org>
+ <ff582551-9661-4404-c00e-853bc60907cc@amlogic.com>
+User-agent: mu4e 1.8.6; emacs 27.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Yu Tu <yu.tu@amlogic.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 6/7] media: i2c: ov9282: Set v4l2 subdev name
- according to sensor model
-Message-ID: <YuJ3bMxaIp9tEgsN@valkosipuli.retiisi.eu>
-References: <20220722131947.2456988-1-alexander.stein@ew.tq-group.com>
- <20220722131947.2456988-7-alexander.stein@ew.tq-group.com>
- <YtqrJp8qZOwYdUrZ@valkosipuli.retiisi.eu>
- <5587982.DvuYhMxLoT@steina-w>
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V2 1/3] dt-bindings: clk: meson: add S4 SoC clock
+ controller bindings
+Date:   Thu, 28 Jul 2022 13:48:14 +0200
+In-reply-to: <ff582551-9661-4404-c00e-853bc60907cc@amlogic.com>
+Message-ID: <1jbkt9focq.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5587982.DvuYhMxLoT@steina-w>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1659008877;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+tHy9h65vJZQaaGgoTKb8eP0eWKQ+deaT4/swsvy4MQ=;
-        b=FruJqP/tcsHtJltxJyRs5KwE5J30PIFOzg+7rg5T0G31ghvTxF6cF250ZlOD/n722oGMlG
-        xa2ggrm1QbP1b66+fmtlzGL3qxCMfgLDtia9xtJQQmuEsa6wcQ/Xlb22VsbRNB23NQHnNC
-        mkHptxbhUtzFIaYEWXp5m7RJKeCTN2g=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1659008877; a=rsa-sha256; cv=none;
-        b=oWHG9VQD8iljm5Unp6XhAf7Vg/1jKsyv9uAW5HRzYuh+9U0f2wyL3GxwqO0lS3K0TjOW4v
-        1IlGgipgdpy7Z/r1H1oTBRQadoFWkQkEydDNzG6cpF6HugO4EU5oNJ8B/QdD0zcHbf/w2t
-        AWCk2gxl+llz79UOolfvbUujohXrIEs=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
 
-On Mon, Jul 25, 2022 at 08:38:57AM +0200, Alexander Stein wrote:
-> Hi Sakari,
-> 
-> Am Freitag, 22. Juli 2022, 15:50:30 CEST schrieb Sakari Ailus:
-> > Hi Alexander,
-> > 
-> > On Fri, Jul 22, 2022 at 03:19:46PM +0200, Alexander Stein wrote:
-> > > To distinguish ov9281 & ov9282 the name has to be explicitly set.
-> > > i2c_client already has the name parsed from the compatible.
-> > > 
-> > > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > > ---
-> > > 
-> > >  drivers/media/i2c/ov9282.c | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
-> > > index 352dbe21a902..dbc0a4cd060f 100644
-> > > --- a/drivers/media/i2c/ov9282.c
-> > > +++ b/drivers/media/i2c/ov9282.c
-> > > @@ -1047,6 +1047,7 @@ static int ov9282_probe(struct i2c_client *client)
-> > > 
-> > >  	/* Initialize subdev */
-> > >  	v4l2_i2c_subdev_init(&ov9282->sd, client, &ov9282_subdev_ops);
-> > > 
-> > > +	v4l2_i2c_subdev_set_name(&ov9282->sd, client, client->name, NULL);
-> > 
-> > Could you instead do this based on the compatible string in the driver,
-> > using device_get_match_data()? The approach works on non-OF systems, too.
-> 
-> I actually don't like doing the same as of_modalias_node() is doing.
-> Until non-OF support is added (if ever), I don't see any benefit in doing so 
-> right now.
+On Thu 28 Jul 2022 at 18:19, Yu Tu <yu.tu@amlogic.com> wrote:
 
-client->name will be wrong on un-OF; putting this string to device match
-data is a better option. It'll be about the same number of lines, too.
+> On 2022/7/28 18:09, Krzysztof Kozlowski wrote:
+>> [ EXTERNAL EMAIL ]
+>> On 28/07/2022 12:05, Yu Tu wrote:
+>>> Hi Krzysztof,
+>>> 	Thanks for your reply.
+>>>
+>>> On 2022/7/28 16:41, Krzysztof Kozlowski wrote:
+>>>> [ EXTERNAL EMAIL ]
+>>>>
+>>>> On 28/07/2022 07:42, Yu Tu wrote:
+>>>>> Add new clock controller compatible and dt-bindings header for the
+>>>>> Everything-Else domain of the S4 SoC.
+>>>>>
+>>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>>
+>>>>
+>>>>
+>>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>>>> index c1abc53f9e91..f872d0c0c253 100644
+>>>>> --- a/MAINTAINERS
+>>>>> +++ b/MAINTAINERS
+>>>>> @@ -1775,6 +1775,7 @@ F:	Documentation/devicetree/bindings/clock/amlogic*
+>>>>>    F:	drivers/clk/meson/
+>>>>>    F:	include/dt-bindings/clock/gxbb*
+>>>>>    F:	include/dt-bindings/clock/meson*
+>>>>> +F:	include/dt-bindings/clock/s4-clkc.h
+>>>>>       ARM/Amlogic Meson SoC Crypto Drivers
+>>>>>    M:	Corentin Labbe <clabbe@baylibre.com>
+>>>>> diff --git a/include/dt-bindings/clock/s4-clkc.h b/include/dt-bindings/clock/s4-clkc.h
+>>>>> new file mode 100644
+>>>>> index 000000000000..b686c8877419
+>>>>> --- /dev/null
+>>>>> +++ b/include/dt-bindings/clock/s4-clkc.h
+>>>>
+>>>> Filename with vendor prefix, so:
+>>>> amlogic,s4-clkc.h
+>>> It's fine with me. It's mainly Jerome's opinion.
+>> To clarify: I understand such naming might bring inconsistency, but we
+>> want to bring some order in the bindings directories. They keep growing
+>> and at some point the model names might start conflicting.
+> If Jerome agrees, I will change it according to your opinion and make
+> another edition.
 
--- 
-Sakari Ailus
+I'm aligned with Krzysztof on this. Please add the vendor prefix.
+
+It was mistake to omit the vendor prefix. Unfortunately, I don't think
+we can fix the old bindings now.
+
+>
+>> 
+>> Best regards,
+>> Krzysztof
+>> .
+
