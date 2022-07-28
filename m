@@ -2,133 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3BB6584027
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F73A584035
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:42:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbiG1NjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 09:39:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45686 "EHLO
+        id S229672AbiG1Nm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 09:42:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229763AbiG1Ni7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:38:59 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3116F54668
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:38:58 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id m12so2898799lfj.4
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:38:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ZqCjcUOaHYpMK3vIolMQW2GaFwrdt4cxHDd7c/52CMQ=;
-        b=ewLyss8Nb7G0W+LpmWKJgwSy6iF0SIcra7vXZLYHlcF4iHW3NfGdjfTe6ld3oDseIr
-         Gb4DqETHEhjSc80YQTbNzo7IlvpCKFXDpp2R8hEZ22YRKiLIJDrffqAl3ZF2sfmZKird
-         TeFU3DFzHI3t0STrHl1iR3u68MOGlkA3Wsdti3tvdLTrIpaDMnfq4A7iIsY5jFzUmuv+
-         QJfrHyzXfoaReGhSW4qyj4WpybhFqitGt1ST+2FO4AUNnGhD4o5Jjil3Jk4aZmF8lrzq
-         AGje+yNMhAzM7t9Ez6eL7jP+mdzhruFFS7sXIz0GmZCZsqNaByJ9ZBUUjp3KZmVAMW5d
-         y3DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZqCjcUOaHYpMK3vIolMQW2GaFwrdt4cxHDd7c/52CMQ=;
-        b=E9zCWCOwgJ4Lj1TNe/vzSyeGmEJjN5smFI7YjM9FM4QL4ogQt6h4+A9wJzp9atKGR2
-         ymfB6oi0n9vU7URFYlWQxUQIYm0R0zWM1iS4R7LbSJ2jCsx4fYY0TXJksf+joo40WZZM
-         XhAdu/TPy9xV/OZUge6x8dHPEMZWZZ5/eesdS6C87+oVGwONhUQS5I4ciOuFBy0m/W2w
-         23h/VyieYzhKWmERYCkgd74qMepl/nxxUWIGCPcD9/0Ovaau0nJ1WWYyi6MedAgsLUf1
-         DhFOjijOY3dR4YrHfm2n6M5TsD6TTeJ/zZHgXGTCv/DCilf5BqVcdf+hZufVGvy2QJ6L
-         azvQ==
-X-Gm-Message-State: AJIora+r9redxGwwfGV8AK+Llf1YGQWGxVhWTADPdJcIlk5WQPsWEvoB
-        HBtdOr14ZKYkjyQEb7hMVDrbFgvqOaSHMA==
-X-Google-Smtp-Source: AGRyM1vetL+cadr2N2pQZG8ARVschWpr3CdgphGyJxgv9v1jMyZiff6pTMD5ePZ4SqHqdIwWHJY2xw==
-X-Received: by 2002:a05:6512:3a89:b0:48a:b9f5:be1d with SMTP id q9-20020a0565123a8900b0048ab9f5be1dmr2391240lfu.462.1659015536533;
-        Thu, 28 Jul 2022 06:38:56 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id c6-20020a19e346000000b0048a82fec50esm197322lfk.305.2022.07.28.06.38.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 06:38:56 -0700 (PDT)
-Message-ID: <6268ec8c-73f8-6517-c7a7-a6d3ede420ab@linaro.org>
-Date:   Thu, 28 Jul 2022 15:38:54 +0200
+        with ESMTP id S229543AbiG1Nm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:42:28 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E03F661B13;
+        Thu, 28 Jul 2022 06:42:26 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 264B2106F;
+        Thu, 28 Jul 2022 06:42:27 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8D05E3F70D;
+        Thu, 28 Jul 2022 06:42:24 -0700 (PDT)
+Date:   Thu, 28 Jul 2022 14:42:22 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Maximilian Luz <luzmaximilian@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
+ Application client
+Message-ID: <20220728134222.hs2v75zkxgtcctrx@bogus>
+References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+ <20220723224949.1089973-5-luzmaximilian@gmail.com>
+ <20220726143005.wt4be7yo7sbd3xut@bogus>
+ <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
+ <20220726154138.74avqs6iqlzqpzjk@bogus>
+ <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
+ <20220728082330.w4ppmzvjaeywsglu@bogus>
+ <4e777590-616a-558a-031e-3ef1f1e492b4@gmail.com>
+ <20220728112150.hs5el6wufljeoqyy@bogus>
+ <b018e909-e371-fd57-2790-9f0a37b63f29@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 1/2] dt-binding: iio: time: add capture-tiecap.yaml
-Content-Language: en-US
-To:     Julien Panis <jpanis@baylibre.com>, jic23@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mranostay@ti.com
-References: <20220728125212.76728-1-jpanis@baylibre.com>
- <20220728125212.76728-2-jpanis@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220728125212.76728-2-jpanis@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b018e909-e371-fd57-2790-9f0a37b63f29@gmail.com>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 14:52, Julien Panis wrote:
-> This commit adds a YAML binding for TI ECAP used in capture operating mode.
-> 
-> Signed-off-by: Julien Panis <jpanis@baylibre.com>
-> ---
->  .../bindings/iio/time/capture-tiecap.yaml     | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
-> new file mode 100644
-> index 000000000000..5d66df90ba5d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/time/capture-tiecap.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On Thu, Jul 28, 2022 at 01:45:57PM +0200, Maximilian Luz wrote:
+>
+> Would something like this work for you: Add a compatible for the TrEE
+> interface (e.g. qcom,sc8180x-tee) but not for the specific apps running
 
-Still wrong file name.
+IIUC, you would introduce a compatible for each unique production if there
+is a need. This constitutes as a strong need for that, but you need just
+that, no need to have any notion or info to indicate TrEE/TEE as you know
+this product runs those in TEE.
 
-Do not ignore comments you received. Either you implement them or you
-keep the discussion going.
+In short, just use the platform specific(not SoC or SoC family) specific
+compatible to initialise your driver and don't introduce any specific
+compatible for this particular firmware interface need.
 
-
-> +
-> +title: Texas Instruments Enhanced Capture (eCAP) Module
-> +
-> +maintainers:
-> +  - Julien Panis <jpanis@baylibre.com>
-> +
-
-(...)
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        bus@f0000 {
-> +            compatible = "simple-bus";
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            ranges = <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>;
-
-A bit too many nodes. Just keep one, bus or soc. Look at other examples.
-
-
-Best regards,
-Krzysztof
+--
+Regards,
+Sudeep
