@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88395584106
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 16:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A38584112
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 16:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229946AbiG1OYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 10:24:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52676 "EHLO
+        id S229526AbiG1O1M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 10:27:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231624AbiG1OYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 10:24:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 235C754AF0;
-        Thu, 28 Jul 2022 07:24:07 -0700 (PDT)
+        with ESMTP id S229531AbiG1O1L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 10:27:11 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C35054661;
+        Thu, 28 Jul 2022 07:27:09 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 905DB6102A;
-        Thu, 28 Jul 2022 14:24:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34B56C433D7;
-        Thu, 28 Jul 2022 14:24:06 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DBE8BB82325;
+        Thu, 28 Jul 2022 14:27:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D16C8C433D7;
+        Thu, 28 Jul 2022 14:27:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1659018247;
-        bh=jGICmRzkN3mB2vVHmw3SJO6pEzZUPArOLL2IhzvWYfo=;
+        s=korg; t=1659018426;
+        bh=j06HbzUSgAZ3/Eqn9s1zrMihKBDhnjBeQ4BSOCaTRqI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cKDLWHduHYMvzFo69JVaBPtGcczE9v78EFedXugXg2Q26iUlJ+zz6lt6L+Rdgw3VQ
-         VBZnZaYkjxvvx7eGqz0ffgyRIocMxEqtCGGFUBGBB8LkAWlrcugzepIfw4CnYpBYzh
-         B3JtbldrLfFtDib0fdO2L8i3L9UusHFledAW7N18=
-Date:   Thu, 28 Jul 2022 16:24:04 +0200
+        b=k+ixU+0k+5qRXW9L1CKCzZrp/gyPMMghsB+VNXkVG8QFGnoQu92902JrmT7+gABp+
+         JJLNQ1Y1D4syIvFfmfyCeB0rqdbBbZFzB3LF5+Dc9qrnpDwPbCPesyU6uUnUVDnSRx
+         Q+0jiNrMV7Qr4UAlBotOaCDsmtjh8phMkJwwZydY=
+Date:   Thu, 28 Jul 2022 16:27:03 +0200
 From:   Greg KH <gregkh@linuxfoundation.org>
 To:     Appana Durga Kedareswara rao 
         <appana.durga.kedareswara.rao@amd.com>
@@ -38,14 +38,14 @@ Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, git@amd.com, git@xilinx.com,
         Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-Subject: Re: [PATCH v2 4/4] drivers: misc: Add Support for TMR Inject IP
-Message-ID: <YuKcBO5JatwRYQJ3@kroah.com>
+Subject: Re: [PATCH v2 2/4] drivers: misc: Add Support for TMR Manager
+Message-ID: <YuKctxTbVnb3lUF3@kroah.com>
 References: <20220720060016.1646317-1-appana.durga.kedareswara.rao@amd.com>
- <20220720060016.1646317-5-appana.durga.kedareswara.rao@amd.com>
+ <20220720060016.1646317-3-appana.durga.kedareswara.rao@amd.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220720060016.1646317-5-appana.durga.kedareswara.rao@amd.com>
+In-Reply-To: <20220720060016.1646317-3-appana.durga.kedareswara.rao@amd.com>
 X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -55,195 +55,274 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 20, 2022 at 11:30:16AM +0530, Appana Durga Kedareswara rao wrote:
+On Wed, Jul 20, 2022 at 11:30:14AM +0530, Appana Durga Kedareswara rao wrote:
 > From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
 > 
-> The Triple Modular Redundancy(TMR) provides functional fault injection by
-> changing selected MicroBlaze instructions, which provides the possibility
-> to verify that the TMR subsystem error detection and fault recovery logic
-> is working properly, provided sysfs entries which allow the user to inject
-> a fault.
-
-We already have a fault-injection api, why are you not using that?
-
+> Triple Modular Redundancy(TMR) subsystem contains three microblaze cores,
+> subsystem is fault-tolerant and continues to operate nominally after
+> encountering an error. Together with the capability to detect and recover
+> from errors, the implementation ensures the reliability of the entire
+> subsystem.  TMR Manager is responsible for performing recovery of the
+> subsystem detects the fault via a break signal it invokes microblaze
+> software break handler which calls the tmr manager driver api to
+> update the error count and status, added support for fault detection
+> feature via sysfs interface.
 > 
 > Usage:
-> echo 1 > /sys/devices/platform/amba_pl/44a30000.tmr_inject/inject_err
+> To know the hardware status:
+> cat /sys/devices/platform/amba_pl/44a10000.tmr_manager/status
+> To know the break handler count(Error count):
+> cat /sys/devices/platform/amba_pl/44a10000.tmr_manager/errcnt
 > 
 > Signed-off-by: Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
 > Signed-off-by: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-
-Odd, just one is needed.
-
 > ---
 > Changes for v2:
 > --> Added Examples for sysfs entries
 > --> Removed uneeded struct dev from the driver private structure
+> --> Fixed style issues (Used resource_size_t instead of uintptr_t)
 > --> Updated driver to use sysfs_emit() API instead of sprintf() API
 > --> Added error checks wherever applicable.
 > --> Fixed sysfs registration.
->  .../testing/sysfs-driver-xilinx-tmr-inject    |  16 ++
+>  .../testing/sysfs-driver-xilinx-tmr-manager   |  27 ++
 >  MAINTAINERS                                   |   7 +
 >  drivers/misc/Kconfig                          |  10 +
 >  drivers/misc/Makefile                         |   1 +
->  drivers/misc/xilinx_tmr_inject.c              | 186 ++++++++++++++++++
->  5 files changed, 220 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-xilinx-tmr-inject
->  create mode 100644 drivers/misc/xilinx_tmr_inject.c
+>  drivers/misc/xilinx_tmr_manager.c             | 253 ++++++++++++++++++
+>  5 files changed, 298 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
+>  create mode 100644 drivers/misc/xilinx_tmr_manager.c
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-xilinx-tmr-inject b/Documentation/ABI/testing/sysfs-driver-xilinx-tmr-inject
+> diff --git a/Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager b/Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
 > new file mode 100644
-> index 000000000000..d274b30ee24c
+> index 000000000000..fc5fe7e22b09
 > --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-driver-xilinx-tmr-inject
-> @@ -0,0 +1,16 @@
-> +What:		/sys/devices/platform/amba_pl/<dev>/inject_err
+> +++ b/Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
+> @@ -0,0 +1,27 @@
+> +What:		/sys/devices/platform/amba_pl/<dev>/status
 > +Date:		June 2022
-
-It's not June anymore, even when you sent this patch :(
-
 > +Contact:	appana.durga.rao@xilinx.com
-> +Description:	This control file allows to inject fault using tmr inject.
-> +		This file is write only.
+> +Description:	This control file provides the status of the tmr manager
+> +		useful for getting the status of fault.
+> +		This file cannot be written.
 > +		Example:
-> +		# echo 1 > /sys/devices/platform/amba_pl/44a30000.tmr_inject/inject_err
+> +		# cat /sys/devices/platform/amba_pl/44a10000.tmr_manager/status
+> +		  Lockstep mismatch between processor 1 and 2
+> +		  Lockstep mismatch between processor 2 and 3
+
+Why a whole long string?
+
+And this should only be 1 line, not multiple lines.  If it's multiple
+lines, this is NOT ok for a sysfs file.
+
 > +
-> +What:		/sys/devices/platform/amba_pl/<dev>/inject_cpuid
+> +What:		/sys/devices/platform/amba_pl/<dev>/errcnt
 > +Date:		June 2022
 > +Contact:	appana.durga.rao@xilinx.com
-> +Description:	This control file allows to configure the CPU identifier
-> +		to enable fault injection.
+> +Description:	This control file provides the fault detection count.
+> +		This file cannot be written.
+> +		Example:
+> +		# cat /sys/devices/platform/amba_pl/44a10000.tmr_manager/errcnt
+> +		  1
+> +
+> +What:		/sys/devices/platform/amba_pl/<dev>/dis_block_break
+> +Date:		June 2022
+> +Contact:	appana.durga.rao@xilinx.com
+> +Description:	This control file enables the break signal.
 > +		This file is write only.
 > +		Example:
-> +		# echo 1 > /sys/devices/platform/amba_pl/44a30000.tmr_inject/inject_cpuid
-
-What errors and faults happen?  Where is that documented?  What happens
-when you write to these sysfs files?  Does the system crash?  Why would
-you want to use them ever?
-
-
-
+> +		# echo 1 > /sys/devices/platform/amba_pl/44a10000.tmr_manager/dis_block_break
 > diff --git a/MAINTAINERS b/MAINTAINERS
-> index 732fd9ae7d9f..c903b45c204a 100644
+> index 651616ed8ae2..732fd9ae7d9f 100644
 > --- a/MAINTAINERS
 > +++ b/MAINTAINERS
-> @@ -13087,6 +13087,13 @@ F:	Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
->  F:	Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
->  F:	drivers/misc/xilinx_tmr_manager.c
+> @@ -13080,6 +13080,13 @@ W:	http://www.monstr.eu/fdt/
+>  T:	git git://git.monstr.eu/linux-2.6-microblaze.git
+>  F:	arch/microblaze/
 >  
-> +MICROBLAZE TMR INJECT
+> +MICROBLAZE TMR MANAGER
 > +M:	Appana Durga Kedareswara rao <appana.durga.kedareswara.rao@amd.com>
 > +S:	Supported
-> +F:	Documentation/ABI/testing/sysfs-driver-xilinx-tmr-inject
-> +F:	Documentation/devicetree/bindings/misc/xlnx,tmr-inject.yaml
-> +F:	drivers/misc/xilinx_tmr_inject.c
+> +F:	Documentation/ABI/testing/sysfs-driver-xilinx-tmr-manager
+> +F:	Documentation/devicetree/bindings/misc/xlnx,tmr-manager.yaml
+> +F:	drivers/misc/xilinx_tmr_manager.c
 > +
 >  MICROCHIP AT91 DMA DRIVERS
 >  M:	Ludovic Desroches <ludovic.desroches@microchip.com>
 >  M:	Tudor Ambarus <tudor.ambarus@microchip.com>
 > diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index 555ae2e33b91..0989c36f3051 100644
+> index 41d2bb0ae23a..555ae2e33b91 100644
 > --- a/drivers/misc/Kconfig
 > +++ b/drivers/misc/Kconfig
-> @@ -493,6 +493,16 @@ config TMR_MANAGER
+> @@ -483,6 +483,16 @@ config OPEN_DICE
 >  
->  	  Say N here unless you know what you are doing.
+>  	  If unsure, say N.
 >  
-> +config TMR_INJECT
-> +	bool "Select TMR Inject"
-> +	depends on TMR_MANAGER
+> +config TMR_MANAGER
+> +	bool "Select TMR Manager"
+> +	depends on MICROBLAZE && MB_MANAGER
 > +	help
-> +	  This option enables the driver developed for TMR Inject.
-> +	  The Triple Modular Redundancy(TMR) Inject provides
-> +	  fault injection.
+> +	  This option enables the driver developed for TMR Manager. The Triple
+> +	  Modular Redundancy(TMR) manager provides support for fault detection
+> +	  via sysfs interface.
 > +
 > +	  Say N here unless you know what you are doing.
 
-Why can't this be a module?
-
-
+Not a module?
 
 > +
 >  source "drivers/misc/c2port/Kconfig"
 >  source "drivers/misc/eeprom/Kconfig"
 >  source "drivers/misc/cb710/Kconfig"
 > diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-> index 28b9803f909b..e9d0a709e207 100644
+> index 70e800e9127f..28b9803f909b 100644
 > --- a/drivers/misc/Makefile
 > +++ b/drivers/misc/Makefile
-> @@ -61,3 +61,4 @@ obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
+> @@ -60,3 +60,4 @@ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
+>  obj-$(CONFIG_HISI_HIKEY_USB)	+= hisi_hikey_usb.o
 >  obj-$(CONFIG_HI6421V600_IRQ)	+= hi6421v600-irq.o
 >  obj-$(CONFIG_OPEN_DICE)		+= open-dice.o
->  obj-$(CONFIG_TMR_MANAGER)	+= xilinx_tmr_manager.o
-> +obj-$(CONFIG_TMR_INJECT)	+= xilinx_tmr_inject.o
-> diff --git a/drivers/misc/xilinx_tmr_inject.c b/drivers/misc/xilinx_tmr_inject.c
+> +obj-$(CONFIG_TMR_MANAGER)	+= xilinx_tmr_manager.o
+> diff --git a/drivers/misc/xilinx_tmr_manager.c b/drivers/misc/xilinx_tmr_manager.c
 > new file mode 100644
-> index 000000000000..930d89e90b61
+> index 000000000000..dbeca18c409f
 > --- /dev/null
-> +++ b/drivers/misc/xilinx_tmr_inject.c
-> @@ -0,0 +1,186 @@
+> +++ b/drivers/misc/xilinx_tmr_manager.c
+> @@ -0,0 +1,253 @@
 > +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * Driver for Xilinx TMR Inject IP.
+> + * Xilinx TMR Subsystem.
 > + *
 > + * Copyright (C) 2022 Xilinx, Inc.
 > + *
 > + * Description:
-> + * This driver is developed for TMR Inject IP,The Triple Modular Redundancy(TMR)
-> + * Inject provides fault injection.
-> + * Fault injection and detection features are provided through sysfs entries
-> + * which allow the user to generate a fault.
+> + * This driver is developed for TMR Manager,The Triple Modular Redundancy(TMR)
+> + * Manager is responsible for handling the TMR subsystem state, including
+> + * fault detection and error recovery. The core is triplicated in each of
+> + * the sub-blocks in the TMR subsystem, and provides majority voting of
+> + * its internal state provides soft error detection, correction and
+> + * recovery. Error detection feature is provided through sysfs
+> + * entries which allow the user to observer the TMR microblaze
+> + * status.
 > + */
 > +
 > +#include <asm/xilinx_mb_manager.h>
 > +#include <linux/module.h>
 > +#include <linux/of_device.h>
 > +
-> +/* TMR Inject Register offsets */
-> +#define XTMR_INJECT_CR_OFFSET		0x0
-> +#define XTMR_INJECT_AIR_OFFSET		0x4
-> +#define XTMR_INJECT_IIR_OFFSET		0xC
-> +#define XTMR_INJECT_EAIR_OFFSET		0x10
-> +#define XTMR_INJECT_ERR_OFFSET		0x204
+> +/* TMR Manager Register offsets */
+> +#define XTMR_MANAGER_CR_OFFSET		0x0
+> +#define XTMR_MANAGER_FFR_OFFSET		0x4
+> +#define XTMR_MANAGER_CMR0_OFFSET	0x8
+> +#define XTMR_MANAGER_CMR1_OFFSET	0xC
+> +#define XTMR_MANAGER_BDIR_OFFSET	0x10
+> +#define XTMR_MANAGER_SEMIMR_OFFSET	0x1C
 > +
 > +/* Register Bitmasks/shifts */
-> +#define XTMR_INJECT_CR_CPUID_SHIFT	8
-> +#define XTMR_INJECT_CR_IE_SHIFT		10
-> +#define XTMR_INJECT_IIR_ADDR_MASK	GENMASK(31, 16)
+> +#define XTMR_MANAGER_CR_MAGIC1_MASK	GENMASK(7, 0)
+> +#define XTMR_MANAGER_CR_MAGIC2_MASK	GENMASK(15, 8)
+> +#define XTMR_MANAGER_CR_RIR_MASK	BIT(16)
+> +#define XTMR_MANAGER_FFR_LM12_MASK	BIT(0)
+> +#define XTMR_MANAGER_FFR_LM13_MASK	BIT(1)
+> +#define XTMR_MANAGER_FFR_LM23_MASK	BIT(2)
 > +
-> +#define XTMR_INJECT_MAGIC_MAX_VAL	255
+> +#define XTMR_MANAGER_CR_MAGIC2_SHIFT	4
+> +#define XTMR_MANAGER_CR_RIR_SHIFT	16
+> +#define XTMR_MANAGER_CR_BB_SHIFT	18
+> +
+> +#define XTMR_MANAGER_MAGIC1_MAX_VAL	255
 > +
 > +/**
-> + * struct xtmr_inject_dev - Driver data for TMR Inject
+> + * struct xtmr_manager_dev - Driver data for TMR Manager
 > + * @regs: device physical base address
 > + * @cr_val: control register value
-> + * @magic: Magic hardware configuration value
+> + * @magic1: Magic 1 hardware configuration value
 > + * @err_cnt: error statistics count
+> + * @phys_baseaddr: Physical base address
 > + */
-> +struct xtmr_inject_dev {
+> +struct xtmr_manager_dev {
 > +	void __iomem *regs;
 > +	u32 cr_val;
-> +	u32 magic;
+> +	u32 magic1;
 > +	u32 err_cnt;
+> +	resource_size_t phys_baseaddr;
 > +};
 > +
 > +/* IO accessors */
-> +static inline void xtmr_inject_write(struct xtmr_inject_dev *xtmr_inject,
-> +				     u32 addr, u32 value)
+> +static inline void xtmr_manager_write(struct xtmr_manager_dev *xtmr_manager,
+> +				      u32 addr, u32 value)
 > +{
-> +	iowrite32(value, xtmr_inject->regs + addr);
+> +	iowrite32(value, xtmr_manager->regs + addr);
 > +}
 > +
-> +static inline u32 xtmr_inject_read(struct xtmr_inject_dev *xtmr_inject,
-> +				   u32 addr)
+> +static inline u32 xtmr_manager_read(struct xtmr_manager_dev *xtmr_manager,
+> +				    u32 addr)
 > +{
-> +	return ioread32(xtmr_inject->regs + addr);
+> +	return ioread32(xtmr_manager->regs + addr);
 > +}
 > +
-> +static ssize_t inject_err_store(struct device *dev,
-> +				struct device_attribute *attr, const char *buf,
-> +				size_t size)
+> +static void xmb_manager_reset_handler(struct xtmr_manager_dev *xtmr_manager)
 > +{
+> +	/* Clear the FFR Register contents as a part of recovery process. */
+> +	xtmr_manager_write(xtmr_manager, XTMR_MANAGER_FFR_OFFSET, 0);
+> +}
+> +
+> +static void xmb_manager_update_errcnt(struct xtmr_manager_dev *xtmr_manager)
+> +{
+> +	xtmr_manager->err_cnt++;
+> +}
+> +
+> +static ssize_t errcnt_show(struct device *dev, struct device_attribute *attr,
+> +			   char *buf)
+> +{
+> +	struct xtmr_manager_dev *xtmr_manager = dev_get_drvdata(dev);
+> +
+> +	return sysfs_emit(buf, "%x\n", xtmr_manager->err_cnt);
+> +}
+> +static DEVICE_ATTR_RO(errcnt);
+> +
+> +static ssize_t status_show(struct device *dev, struct device_attribute *attr,
+> +			   char *buf)
+> +{
+> +	struct xtmr_manager_dev *xtmr_manager = dev_get_drvdata(dev);
+> +	size_t ffr;
+> +	int len = 0;
+> +
+> +	ffr = xtmr_manager_read(xtmr_manager, XTMR_MANAGER_FFR_OFFSET);
+> +	if ((ffr & XTMR_MANAGER_FFR_LM12_MASK) == XTMR_MANAGER_FFR_LM12_MASK) {
+> +		len += sysfs_emit_at(buf, len, "Lockstep mismatch between ");
+> +		len += sysfs_emit_at(buf, len, "processor 1 and 2\n");
+
+You can write a full string all at once, no need to call this twice.
+
+> +	}
+> +
+> +	if ((ffr & XTMR_MANAGER_FFR_LM13_MASK) == XTMR_MANAGER_FFR_LM13_MASK) {
+> +		len += sysfs_emit_at(buf, len, "Lockstep mismatch between ");
+> +		len += sysfs_emit_at(buf, len, "processor 1 and 3\n");
+> +	}
+> +
+> +	if ((ffr & XTMR_MANAGER_FFR_LM23_MASK) == XTMR_MANAGER_FFR_LM23_MASK) {
+> +		len += sysfs_emit_at(buf, len, "Lockstep mismatch between ");
+> +		len += sysfs_emit_at(buf, len, "processor 2 and 3\n");
+> +	}
+
+As said above, multiple lines is not ok, you need to fix up this api.
+
+Perhaps 3 files, one for eacy type of mismatch and a simple 0/1 value
+returned in them?
+
+
+> +
+> +	return len;
+> +}
+> +static DEVICE_ATTR_RO(status);
+> +
+> +static ssize_t dis_block_break_store(struct device *dev,
+> +				     struct device_attribute *attr,
+> +				     const char *buf, size_t size)
+> +{
+> +	struct xtmr_manager_dev *xtmr_manager = dev_get_drvdata(dev);
 > +	int ret;
 > +	long value;
 > +
@@ -254,33 +333,11 @@ Why can't this be a module?
 > +	if (value > 1)
 > +		return -EINVAL;
 
-That does not match your documentation :(
+Why is 1 magic?
 
+And we have a sysfs function to read a 0/1/Y/N/y/n value, please use
+that.
 
-> +
-> +	xmb_inject_err();
-> +
-> +	return size;
-> +}
-> +static DEVICE_ATTR_WO(inject_err);
-> +
-> +static ssize_t inject_cpuid_store(struct device *dev,
-> +				  struct device_attribute *attr,
-> +				  const char *buf, size_t size)
-> +{
-> +	struct xtmr_inject_dev *xtmr_inject = dev_get_drvdata(dev);
-> +	int ret;
-> +	long value;
-> +
-> +	ret = kstrtoul(buf, 0, &value);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (value > 3)
-> +		return -EINVAL;
-
-Again, does not match the documentation at all.
-
-confused,
+thanks,
 
 greg k-h
