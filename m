@@ -2,70 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F13583F93
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92F04583FB1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:13:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238705AbiG1NGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 09:06:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45340 "EHLO
+        id S239072AbiG1NNR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 09:13:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238882AbiG1NGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:06:22 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC31225E86;
-        Thu, 28 Jul 2022 06:06:21 -0700 (PDT)
+        with ESMTP id S236688AbiG1NNQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:13:16 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B172BDE
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:13:14 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id z13so1919160ljj.6
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:13:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1659013581; x=1690549581;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=b/wEQ01RTadmT60aE0Fd5qVRKAPrU1I1CCnWHz9Go5Y=;
-  b=Kc8OJY/+AhN68NOxkIrzQIrZjewBuw5yC5qyNgyDpKbsOeKqZw5ZuBBO
-   COcs8tTguxwjjiFMdggfdx91dg0y/RP8gmGU4S2rmAL3ABhaE30ORhllr
-   jtuHREt3toOrKSIREDm58oMbfxxHpcp9W3UY/gH+KIKJDLVEcfQFvEiTy
-   o=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 28 Jul 2022 06:06:21 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jul 2022 06:06:21 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 28 Jul 2022 06:06:20 -0700
-Received: from [10.216.53.81] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 28 Jul
- 2022 06:06:15 -0700
-Message-ID: <00cd5620-a276-6e55-8997-fbf8285d9a9a@quicinc.com>
-Date:   Thu, 28 Jul 2022 18:36:12 +0530
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=enxGsIYunokJEXPMGCaE1Z7pYtuICaBoKBXgeSWmWds=;
+        b=KnPMKWFuiKPiA/P4vExFpb/yxNCbd6RN4z9b8adLpTi0enYQdO1DCGVCgRRXSZC5Aq
+         lTQJRiT2rver/3W0QAvIbJasWNyvKj5jOGvuGSZ9L7ugDmmtuWPgZiRkF87i839pGiHN
+         FkI57ALLpz6VRvaVAVKLZI/FYYj/Upg4C8T+7DTj6WVkB+S3QGqYG8PplFXF2huPBcPn
+         K9SlgYUChDKy2D7mZm0hVnLB1AA+a84x2krOEb0Tr9YFTHd3ANjZxyWjAg+NisUbkwxR
+         dO4ju2jllwgx2GQNjQBZ8LCO+mRH00lr4tzjMTd3F3ByUX8UNDmfwCm6por0skChclOp
+         5RNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=enxGsIYunokJEXPMGCaE1Z7pYtuICaBoKBXgeSWmWds=;
+        b=44GGzTuE+sbiroVzyl2FnNLCz/sAm+CkJM8Ny/Y1wYvkeRpW5Rqu1hrg4ai+OJoyGD
+         0d6lOdpDjo4fga91fjt/+yIkmdwi5hW51m6pmsfn3QlkNrwCSRb7Zm6zF14sdqn7jM9g
+         heDaV00juj+NWoukCI0IUuHDhDMbGibmPH6/RFE5rSCU1ksHS9dMwDX2QNw8TJquCUc2
+         ADlm516sbNCflKDeko8djh25iGzqKjdIFtP5ZF16zW5jEoXdcsPlqpm5nKOK2pclC0vI
+         i9Rtl0zt1WUyfx2uI0GHeGKpijCpXV/7rncMNDIQuZjl+VGatwMWXU81uFjfd6F0oUpY
+         Ws/A==
+X-Gm-Message-State: AJIora9WYQhqyLLmxZcgg9QRdV0cFrwmBcHeXWuq1TqWRRXCajW3gvwq
+        ORlJ+jPD0zGubFbFWNmZFwrTsA==
+X-Google-Smtp-Source: AGRyM1ueWV1tfxf9FVvPLoM/8R4w9qdGdgVWOxGzoYQXpfgmjsGBeWL+qbYnT+dzT+zmLYVcaF3k7Q==
+X-Received: by 2002:a2e:5741:0:b0:25d:fcb1:d449 with SMTP id r1-20020a2e5741000000b0025dfcb1d449mr7752871ljd.333.1659013992945;
+        Thu, 28 Jul 2022 06:13:12 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id d20-20020a193854000000b0048a757d314esm188383lfj.304.2022.07.28.06.13.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jul 2022 06:13:12 -0700 (PDT)
+Message-ID: <4e89e55b-9312-5525-974b-0a1dbe0b3dd1@linaro.org>
+Date:   Thu, 28 Jul 2022 15:13:11 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] ASoC: qcom: SC7280: Add support for external DMIC bias
- supply
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v4 3/7] media: i2c: ov9282: Add ov9281 compatible
 Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
-        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <devicetree@vger.kernel.org>
-References: <1658992233-28372-1-git-send-email-quic_srivasam@quicinc.com>
- <YuJpxSuPBB++pl/o@sirena.org.uk>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <YuJpxSuPBB++pl/o@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        "Paul J . Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Sakari Ailus <sakari.ailus@iki.fi>
+References: <20220728130237.3396663-1-alexander.stein@ew.tq-group.com>
+ <20220728130237.3396663-4-alexander.stein@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220728130237.3396663-4-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,23 +78,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 28/07/2022 15:02, Alexander Stein wrote:
+> According to product brief they are identical from software point of view.
+> Differences are a different chief ray angle (CRA) and the package.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> ---
+>  drivers/media/i2c/ov9282.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
+> index 8a252bf3b59f..c8d83a29f9bb 100644
+> --- a/drivers/media/i2c/ov9282.c
+> +++ b/drivers/media/i2c/ov9282.c
+> @@ -1113,6 +1113,7 @@ static const struct dev_pm_ops ov9282_pm_ops = {
+>  };
+>  
+>  static const struct of_device_id ov9282_of_match[] = {
+> +	{ .compatible = "ovti,ov9281" },
 
-On 7/28/2022 4:19 PM, Mark Brown wrote:
-Thanks for your time Mark!!!
-> On Thu, Jul 28, 2022 at 12:40:33PM +0530, Srinivasa Rao Mandadapu wrote:
->
->> +static int sc7280_dmic_micbias(struct snd_soc_dapm_widget *w,
->> +				struct snd_kcontrol *kcontrol, int event)
->> +{
->> +	struct snd_soc_card *card = w->dapm->card;
->> +	struct sc7280_snd_data *data = snd_soc_card_get_drvdata(card);
->> +	int ret = 0;
->> +
-> This is open coding SND_SOC_DAPM_REGULATOR_SUPPLY() isn't it?
+The devices seem entirely compatible, so why you add a new compatible
+and not re-use existing?
 
-Yes, agree that SND_SOC_DAPM_REGULATOR_SUPPLY can be used here. As I was 
-using two different names for
+The difference in lens does not explain this.
 
-VDD supply property and widget name, got confused. I will re post the 
-patch, with single name for both and replace with above macro .
 
+Best regards,
+Krzysztof
