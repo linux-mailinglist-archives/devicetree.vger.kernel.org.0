@@ -2,160 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A983D583BAE
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:04:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FBDE583BB4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:05:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231260AbiG1KEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 06:04:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34798 "EHLO
+        id S234681AbiG1KFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 06:05:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235018AbiG1KDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:03:47 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B216262A52
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:03:43 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id u5so1546463wrm.4
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 03:03:43 -0700 (PDT)
+        with ESMTP id S234721AbiG1KFV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:05:21 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A9112084;
+        Thu, 28 Jul 2022 03:05:18 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id u5so1551653wrm.4;
+        Thu, 28 Jul 2022 03:05:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=references:user-agent:from:to:subject:date:in-reply-to:message-id
-         :mime-version;
-        bh=y4T0HC+LgWXmkogwugZt7HLiFgtmRV8VQfPIoPRbde0=;
-        b=csdItTfYI8AMJ6g7jI8x9ssnGKX+BNs9aZD4R1pd2bQRdogBMITspj/oV2UzNUupdo
-         MBwl06n5qBT34W0MDXH3vcscdrnedwcSZdAk35NNTINrlJgG5JhkMzXc0tO4+O8fNh1A
-         FjBmJHspacXIgWkhDNxtqGEdmf8LK4zRFY0uvJJ0pVlPRwbfMFlsRKGZ7FKRhG/HykKi
-         OWVgf63m6zJ0Xom3esoEzx10YevVuBsL2h0ZbqwtVJD4AZVgxCggyhq991xFotWZUijv
-         n3D5glVbGwxbTrgZax66+8MSsTjxdNiYgBGgcEeDUwQhP6gD91X6kybOqly3tEP+9/Hy
-         CMEA==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=dWlkcKxZ/jS1fvdg+IOxwtUsS5FS2QYlkdZZEqT1QMc=;
+        b=hyGik4gSM24BRmFurXeXH+YFWoNR6Q2CZ5C0exR0BakP/Mr++Htqf6TXWPI3tbLheL
+         DLz2flfQY3b82VstHLrylN1GbAgvw5HY5obOiFMf6cqsix4m5lIHfHYsNf0y2uSUs+RH
+         q8GDanVkOqqg6AGs3Dc1Zec2xkH+JS19Y2M3FisP4otHZ47NrCsXVgV7RCqydhx4qEJz
+         UtsYss3ctyifFHlGtwi5v/l2uSfkLCPCUyk7G9g7RU1OcMYG1h+vlrAkmyi4QkFEk1mE
+         iFJ7mZP9X4bVt/4ZIVGrKAAB2MCmEB745/EZFGjttFV4G8CfaGrzoRkE+j/LB/PBrQp/
+         6UOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:user-agent:from:to:subject:date
-         :in-reply-to:message-id:mime-version;
-        bh=y4T0HC+LgWXmkogwugZt7HLiFgtmRV8VQfPIoPRbde0=;
-        b=VwGXAu4vZ+BEEay9nNSUBS8b4fg1gFl5W0rpXdrMYC4S9Kh4PUBmFKkd6IX6XVPKaK
-         3LhCJePIWP53g7lzbFRIeLhCZ4gPAsVPm7Q2EOGaveXxzCTeKDGZrelqa2w4m+yY6FTf
-         B610ab3R+/8TnTKfvxfUObCoLbhBOGTHmt2DAtK8Cu9daujRHb9Sgv/n2T7BR2u+0Qw/
-         wdfiA9AcMfxLlNlGrS6MhZ2W3B33yW0UtJcSROuwqhqZF+eRNzSzBIRHZqXADuILVvQ4
-         oVVQIr2neRORyvE9xm0Pt2SH1/gDjm1lPJa+7QojtFHZqJvsrUaY5riho4M/ofhkcdXP
-         HUcg==
-X-Gm-Message-State: AJIora+ZFGj5mlUtnmRLOXcxLmoxUaiUomwotqczmIK2f+iUPY+NPrb1
-        KwQGHZhZ04KN74pMpPYc5xaIUA==
-X-Google-Smtp-Source: AGRyM1sVUOYVm8VpDrMDKjr0I9JufvhLIMmqV/AteNtB09x3qu5lBkrmNvYEnEoreb0NoNtADZen7w==
-X-Received: by 2002:a5d:6dc6:0:b0:21e:a87c:91bc with SMTP id d6-20020a5d6dc6000000b0021ea87c91bcmr7694254wrz.165.1659002622171;
-        Thu, 28 Jul 2022 03:03:42 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id m20-20020a056000181400b0021e571a99d5sm526097wrh.17.2022.07.28.03.03.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 03:03:41 -0700 (PDT)
-References: <20220728054202.6981-1-yu.tu@amlogic.com>
- <20220728054202.6981-2-yu.tu@amlogic.com>
- <82e3fd36-df96-a555-4cea-47fabd26502b@linaro.org>
- <1jv8rhfw8h.fsf@starbuckisacylon.baylibre.com>
- <367cf98b-ef06-8f44-76c8-9099a1ec13dc@linaro.org>
- <1jmtctfuli.fsf@starbuckisacylon.baylibre.com>
- <c088e01c-0714-82be-8347-6140daf56640@linaro.org>
-User-agent: mu4e 1.8.6; emacs 27.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V2 1/3] dt-bindings: clk: meson: add S4 SoC clock
- controller bindings
-Date:   Thu, 28 Jul 2022 11:54:49 +0200
-In-reply-to: <c088e01c-0714-82be-8347-6140daf56640@linaro.org>
-Message-ID: <1jfsilftab.fsf@starbuckisacylon.baylibre.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=dWlkcKxZ/jS1fvdg+IOxwtUsS5FS2QYlkdZZEqT1QMc=;
+        b=qWkJvqw76U4X4kpdicnn34cL6s3LAeYhZAptoyxFrpg/Fd3J60RxKjAFYs0uGkajjC
+         rAfDZSh9TIQy/8iR8LyljxFB5AD2GzqGzPv8KcObRAjMvLiyyjKUmO2Cz2nNzagupwFy
+         z/j76ejppNMeB8XstXgpMVBAJtmMRiQpDAjdPF7tsxgJ75Br0htRnvVJN04rbKrUB8NA
+         cx2y9GpZG5knDx8Cg2Ql55WLf/fwaBK6F/ax3edU6QdtVUnZ8BDXgjm0ax3BIbhDvmpw
+         h+2SNCQiPaaRsP4RtSPqzPf43gQTP6Jk8lZ2n5jmGY+yUAZ3RDgxjYMpH2ovBjDn+Vom
+         JaNg==
+X-Gm-Message-State: AJIora+ex49Qa8okSDqpPY2ZARHrDFKDMjLNeiQ2rAfB1bAKOyXoNSyM
+        ZfLPYACMcQyTYDsN0DeXo5g=
+X-Google-Smtp-Source: AGRyM1t0iA7TPfcqYYgpFlRXePVpOn+sJssKxjGrJTwqD8Q0XR9BDUqt1ipPUuJW6ULIyrFN9kOWuA==
+X-Received: by 2002:a5d:6d8f:0:b0:21d:b7d0:a913 with SMTP id l15-20020a5d6d8f000000b0021db7d0a913mr16483662wrs.462.1659002717317;
+        Thu, 28 Jul 2022 03:05:17 -0700 (PDT)
+Received: from [192.168.2.202] (pd9ea36f8.dip0.t-ipconnect.de. [217.234.54.248])
+        by smtp.gmail.com with ESMTPSA id bg3-20020a05600c3c8300b003a327b98c0asm804016wmb.22.2022.07.28.03.05.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jul 2022 03:05:16 -0700 (PDT)
+Message-ID: <4e777590-616a-558a-031e-3ef1f1e492b4@gmail.com>
+Date:   Thu, 28 Jul 2022 12:05:15 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
+ Application client
+Content-Language: en-US
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
+ <20220723224949.1089973-5-luzmaximilian@gmail.com>
+ <20220726143005.wt4be7yo7sbd3xut@bogus>
+ <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
+ <20220726154138.74avqs6iqlzqpzjk@bogus>
+ <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
+ <20220728082330.w4ppmzvjaeywsglu@bogus>
+From:   Maximilian Luz <luzmaximilian@gmail.com>
+In-Reply-To: <20220728082330.w4ppmzvjaeywsglu@bogus>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu 28 Jul 2022 at 11:48, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 28/07/2022 11:09, Jerome Brunet wrote:
->> 
->> On Thu 28 Jul 2022 at 11:02, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->> 
->>> On 28/07/2022 10:50, Jerome Brunet wrote:
+On 7/28/22 10:23, Sudeep Holla wrote:
+> On Tue, Jul 26, 2022 at 07:01:28PM +0200, Maximilian Luz wrote:
+>> On 7/26/22 17:41, Sudeep Holla wrote:
+>>> On Tue, Jul 26, 2022 at 05:15:41PM +0200, Maximilian Luz wrote:
 >>>>
->>>> On Thu 28 Jul 2022 at 10:41, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>>> On 28/07/2022 07:42, Yu Tu wrote:
->> [...]
->>>>>> +/*
->>>>>> + * CLKID index values
->>>>>> + */
->>>>>> +
->>>>>> +#define CLKID_FIXED_PLL			1
->>>>>> +#define CLKID_FCLK_DIV2			3
->>>>>> +#define CLKID_FCLK_DIV3			5
->>>>>> +#define CLKID_FCLK_DIV4			7
->>>>>> +#define CLKID_FCLK_DIV5			9
->>>>>> +#define CLKID_FCLK_DIV7			11
->>>>>
->>>>> Why these aren't continuous? IDs are expected to be incremented by 1.
->>>>>
->>>>
->>>> All clocks have IDs, it is one big table in the driver, but we are not exposing them all.
->>>> For example, with composite 'mux / div / gate' assembly, we usually need
->>>> only the leaf.
+>>>> So ultimately I think it's better to add a DT entry for it.
 >>>
->>> I understand you do not expose them all, but that is not the reason to
->>> increment ID by 2 or 3... Otherwise these are not IDs and you are not
->>> expected to put register offsets into the bindings (you do not bindings
->>> in such case).
->> 
->> Why is it not an IDs if it not continuous in the bindings ?
->> 
->> If there is technical reason, we'll probably end up exposing everything. It
->> would not be a dramatic change. I asked for this over v1 because we have
->> done that is the past and I think it makes sense.
->> 
->> I'm happy to be convinced to do things differently. Just looking for the
->> technical reason that require contiuous exposed IDs.
->> 
->> The other IDs exists, but we do not expose them as bindings.
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/meson/gxbb.h#n125
->
-> https://lore.kernel.org/linux-devicetree/CAK8P3a1APzs74YTcZ=m43G3zrmwJZKcYSTvV5eDDQX-37UY7Tw@mail.gmail.com/
->
-> https://lore.kernel.org/linux-devicetree/CAK8P3a0fDJQvGLEtG0fxLkG08Fh9V7LEMPsx4AaS+2Ldo_xWxw@mail.gmail.com/
->
-> https://lore.kernel.org/linux-devicetree/b60f5fd2-dc48-9375-da1c-ffcfe8292683@linaro.org/
->
-> The IDs are abstract numbers, where the number does not matter because
-> it is not tied to driver implementation or device programming model. The
-> driver maps ID to respective clock.
->
-> Using some meaningful numbers as these IDs, means you tied bindings to
-> your implementation and any change in implementation requires change in
-> the bindings. This contradicts the idea of bindings.
->
+>>> I disagree for the reason that once you discover more apps running on the
+>>> secure side, you want to add more entries and update DT on the platform
+>>> every time you discover some new firmware entity and you wish to interact
+>>> with it from the non-secure side.
+>>
+>> Just as you'll have to add a driver to the kernel and update whatever is
+>> probing the TrEE interface and add those strings to that interface. If
+>> you then start doing SoC-specific lists, I think you'd be pretty much
+>> re-implementing a DT in the kernel driver...
+>>
+> 
+> Yes at the cost of DT being dumping ground for all the SoC specific firmware
+> crap. Firmware can be and must be discoverable, no point in dumping it in
+> DT as it forces DT upgrade every time something changes in the firmware i.e.
+> it can go out of sync quite quickly.
 
-I totally agree. Bindings ID are abstract numbers.
-We do follow that. We even document it:
+I fully agree with you here on the design level. Firmware _should_ be
+discoverable. Unfortunately, in this case it really isn't.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/meson/gxbb.h#n118
+Again, in Windows, this information is stored via the Registry and set
+when the driver is installed. An example:
 
-It is just a choice to not expose some IDs.
-It is not tied to the implementation at all.
-I think we actually follow the rules and the idea behind it.
+     ; UEFIVAR SECURE APP SERVICE
+     HKR,%EFIVarService.RegKey%,Enabled,%REG_DWORD%,1
+     HKR,%EFIVarService.RegKey%,MajorVersion,%REG_DWORD%,1
+     HKR,%EFIVarService.RegKey%,MinorVersion,%REG_DWORD%,0
+     
+     ; WINSECAPP SECURE APP SERVICE
+     HKR,%WinSecAppService.RegKey%,Enabled,%REG_DWORD%,1
+     HKR,%WinSecAppService.RegKey%,SecureApp,%REG_DWORD%,1
+     HKR,%WinSecAppService.RegKey%,LoadApp,%REG_DWORD%,0
+     HKR,%WinSecAppService.RegKey%,AppName,,"qcom.tz.winsecapp"
+     HKR,%WinSecAppService.RegKey%,MajorVersion,%REG_DWORD%,1
+     HKR,%WinSecAppService.RegKey%,MinorVersion,%REG_DWORD%,0
+     HKR,%WinSecAppService.RegKey%,OSDependencies,%REG_MULTI_SZ%,%RpmbOsService%
+     
+     ; HDCP v2.2 SECURE APP SERVICE
+     HKR,%Hdcp2p2Service.RegKey%,Enabled,%REG_DWORD%,1
+     HKR,%Hdcp2p2Service.RegKey%,SecureApp,%REG_DWORD%,1
+     HKR,%Hdcp2p2Service.RegKey%,LoadApp,%REG_DWORD%,1
+     HKR,%Hdcp2p2Service.RegKey%,AppName,,"qcom.tz.hdcp2p2"
+     HKR,%Hdcp2p2Service.RegKey%,FileName,,"hdcp2p2.mbn"
+     HKR,%Hdcp2p2Service.RegKey%,MajorVersion,%REG_DWORD%,1
+     HKR,%Hdcp2p2Service.RegKey%,MinorVersion,%REG_DWORD%,0
+     HKR,%Hdcp2p2Service.RegKey%,OSDependencies,%REG_MULTI_SZ%,%RpmbOsService%,%TzAppsOsService%
 
-We can expose then all If you still think what we are doing is not appropriate.
+The '.RegKey' contains a GUID that specifies the _driver_ interface that
+is registered by the driver to the kernel (i.e. is not related to the
+specific firmware and firmware version), e.g. [1]. For uefisecapp, the
+driver also maps this GUID to the name-string.
 
-I'd like things to be consistent though. So if the decision is to
-expose everything, I'll probably end up doing the same for the old SoCs.
+[1]: https://github.com/tpn/winsdk-10/blob/9b69fd26ac0c7d0b83d378dba01080e93349c2ed/Include/10.0.16299.0/km/treevariableservice.h#L35
+
+>> I don't quite understand why this is a problem. I think per device,
+>> there's a reasonably limited set of apps that we would want to interact
+>> with from the kernel. And for one single device, that set doesn't change
+>> over time. So what's the difference to, say, an I2C device?
+>>
+> 
+> As I said we don't want DT to be dumping ground for all the not well designed
+> firmware interface. The whole point of firmware being another piece of
+> software that can be change unlike hardware makes it fragile to present any
+> more that what you need in the DT. I see this as one of the example.
+
+I can see your point. But this interface has apparently been around
+since at least sdm850 (e.g. Lenovo C630) and hasn't changed. As I've
+argued elsewhere: All parties involved have a vested interest that this
+interface doesn't change in a breaking way. The interface is modeled
+similar to syscalls, so I very much expect them to extend it if needed,
+instead of changing/breaking it.
+
+Sure, it _could_ be changed in a breaking way. But again, I believe that
+to be _very_ unlikely.
+
+> Anyways I don't have the final say, I leave it to the DT maintainers.
+> 
+>>> As along as get this application ID can handle any random name, I prefer
+>>> to use that as the discover mechanism and not have this DT.
+>>
+>> Apart from the above, some apps must also be loaded from the system. And
+>> those you can't detect: If an app isn't running, it doesn't have an ID
+>> (uefisecapp and the tpm app are loaded by the firmware at boot). Those
+>> are mostly vendor-specific things as far as I can tell, or HDCP stuff.
+>> So you'd need to specify those as firmware somehow, and since (as far as
+>> I can tell) those are signed specifically by/for that vendor and
+>> potentially device (similar to the GPU zap shader or remoteproc
+>> firmware), you'll need to use per-device paths.
+>>
+> 
+> Sounds to me like more can be pushed to user space as it gets loaded at
+> runtime.
+
+If we have user-space available at the time when these things should be
+loaded or if they are more or less optional, sure.
+
+>> That means you either hard-code them in the driver and have a compatible
+>> per model, do DMI matching, or something similar (again, essentially
+>> baking DTs into the kernel driver...), or just store them in the DT
+>> (like we already do for GPU/remoteprocs). While you could hard-code some
+>> known loaded-by-firmware apps and use the DT for others, I think we
+>> should keep everything in the same place.
+>>
+> 
+> Worst case I am fine with that as this needs to be one of and future
+> platforms must get their act right in designing their f/w interface.
+
+Again, I fully agree with you that this situation shouldn't exist. But
+reality is sadly different.
+
+Regards,
+Max
