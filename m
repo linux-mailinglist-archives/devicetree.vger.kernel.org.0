@@ -2,184 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3FC3584241
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 16:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF10C584285
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 17:02:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232153AbiG1OxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 10:53:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32860 "EHLO
+        id S231596AbiG1PB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 11:01:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232730AbiG1OxJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 10:53:09 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8FDE6069F;
-        Thu, 28 Jul 2022 07:53:06 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 9C15860007;
-        Thu, 28 Jul 2022 14:53:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1659019984;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=i6ixpedV57yhN8lJ4519v1XA35dTMW/Roc+IABYUoNc=;
-        b=PfI2rfazBYUivvLzCdMAOGchPRLUBBGck7wt4NaDSNeacSGWEXrDjRkYM9r0VTimNMR5DT
-        4v2xe4nTzlQrY/hiYOhVyEcpNTOSnsegMHHMewQ1HZ3Di/0m7h0P7tfay2cQL0K6hA1j9w
-        9H2W9mVuJZOX+O6jQrlsdzFceEQzSlMRTdioDRaQrRohgINzqN3jXYuqD0qRDBb97QHRm1
-        0f0GW/uj68bJzXn4GjIGxWvqSqNpuyF4jLzd/8fFWe9wPw5tUBKboNRvD38Vlhwh60/tAv
-        D4+1fmENrP+La1NGB0oXuQ4J5QFeU6bng21S7tXiIw6jGJW6Tm+uXdwTzu4eyw==
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org, Horatiu.Vultur@microchip.com,
-        Allan.Nielsen@microchip.com, UNGLinuxDriver@microchip.com
-Subject: [PATCH net-next 4/4] net: lan966x: Add QUSGMII support for lan966x
-Date:   Thu, 28 Jul 2022 16:52:52 +0200
-Message-Id: <20220728145252.439201-5-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220728145252.439201-1-maxime.chevallier@bootlin.com>
-References: <20220728145252.439201-1-maxime.chevallier@bootlin.com>
+        with ESMTP id S230172AbiG1PB6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 11:01:58 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9E03AE72;
+        Thu, 28 Jul 2022 08:01:56 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id r6so1050997ilc.12;
+        Thu, 28 Jul 2022 08:01:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4xhkwBQOC3l/9BVCi/iH6M0p6a60oLxwKOAOMHWHS0M=;
+        b=5s454/aOaM9742ipbSdq+EygaCLRCf19v2j0sYdarVZfNTtQLrw9JddnvOvJL+5qdd
+         ArH4sT3jNTzHbz9mzhExKxcbrWcCX/MnL+9BcHEl/blnAiLK3+1G28z2izENJeDoP6PV
+         dPk0d3AAfwkYdY1CDCk4Rb4741xsT6pp+0/VHi1o7q8VaJ3mH4Ll4OctDBvtLyt+bKvn
+         SFrxKBE6+LVwdhqyqZkfQX+GVQ23pITeQ0APCynk1dRNuO9JJQq3/X6YocO6v6tNrn3D
+         GyHH/4tuD6MT+nmSTzrc/DiUQHkNgtynQYaUpthtnwwJY/OOCLgunOy1xXf29UOM1Lsc
+         ImUw==
+X-Gm-Message-State: AJIora8RioNiYn7S+rWu57aj4Qwry4SsDK+9iPjAgBMxN99eYD8NWLaP
+        AiPV0vSvx9d3DFvTQIkg2g==
+X-Google-Smtp-Source: AGRyM1s9TBNPMh+h0VSF1UIFm+2L8BR6R7Sx3FR1UBFzNemD2E/mHDcueOUOM4kTLY1m3sJ5cH/1jw==
+X-Received: by 2002:a05:6e02:194d:b0:2dc:6c56:a522 with SMTP id x13-20020a056e02194d00b002dc6c56a522mr10900635ilu.203.1659020515826;
+        Thu, 28 Jul 2022 08:01:55 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id s20-20020a056638259400b0033f3d432a2asm460506jat.174.2022.07.28.08.01.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 08:01:55 -0700 (PDT)
+Received: (nullmailer pid 879826 invoked by uid 1000);
+        Thu, 28 Jul 2022 15:01:52 -0000
+Date:   Thu, 28 Jul 2022 09:01:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH] dt-bindings: iio: gyroscope: bosch,bmg160: correct
+ number of pins
+Message-ID: <20220728150152.GA879792-robh@kernel.org>
+References: <20220727140148.223508-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220727140148.223508-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Lan996x controller supports the QUSGMII mode, which is very similar
-to QSGMII in the way it's configured and the autonegociation
-capababilities it provides.
+On Wed, 27 Jul 2022 16:01:48 +0200, Krzysztof Kozlowski wrote:
+> BMG160 has two interrupt pins to which interrupts can be freely mapped.
+> Correct the schema to express such case and fix warnings like:
+> 
+>   qcom/msm8916-alcatel-idol347.dtb: gyroscope@68: interrupts: [[97, 1], [98, 1]] is too long
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml        | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-This commit adds support for that mode, treating it most of the time
-like QSGMII, making sure that we do configure the PCS how we should.
-
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-V1->V2 : Pass the QUSGMII mode as-is to the generic PHY driver, and use
-         phy_interface_num_ports, as per Russell's review
-
- .../ethernet/microchip/lan966x/lan966x_main.c |  2 ++
- .../microchip/lan966x/lan966x_phylink.c       |  3 ++-
- .../ethernet/microchip/lan966x/lan966x_port.c | 22 ++++++++++++++-----
- .../ethernet/microchip/lan966x/lan966x_regs.h |  6 +++++
- 4 files changed, 26 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-index 1d6e3b641b2e..1e604e8db20c 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-@@ -778,6 +778,8 @@ static int lan966x_probe_port(struct lan966x *lan966x, u32 p,
- 		  port->phylink_config.supported_interfaces);
- 	__set_bit(PHY_INTERFACE_MODE_QSGMII,
- 		  port->phylink_config.supported_interfaces);
-+	__set_bit(PHY_INTERFACE_MODE_QUSGMII,
-+		  port->phylink_config.supported_interfaces);
- 	__set_bit(PHY_INTERFACE_MODE_1000BASEX,
- 		  port->phylink_config.supported_interfaces);
- 	__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c b/drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c
-index 38a7e95d69b4..87f3d3a57aed 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c
-@@ -28,11 +28,12 @@ static int lan966x_phylink_mac_prepare(struct phylink_config *config,
- 				       phy_interface_t iface)
- {
- 	struct lan966x_port *port = netdev_priv(to_net_dev(config->dev));
-+	phy_interface_t serdes_mode = iface;
- 	int err;
- 
- 	if (port->serdes) {
- 		err = phy_set_mode_ext(port->serdes, PHY_MODE_ETHERNET,
--				       iface);
-+				       serdes_mode);
- 		if (err) {
- 			netdev_err(to_net_dev(config->dev),
- 				   "Could not set mode of SerDes\n");
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_port.c b/drivers/net/ethernet/microchip/lan966x/lan966x_port.c
-index f141644e4372..bbf42fc8c8d5 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_port.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_port.c
-@@ -168,7 +168,7 @@ static void lan966x_port_link_up(struct lan966x_port *port)
- 	/* Also the GIGA_MODE_ENA(1) needs to be set regardless of the
- 	 * port speed for QSGMII ports.
- 	 */
--	if (config->portmode == PHY_INTERFACE_MODE_QSGMII)
-+	if (phy_interface_num_ports(config->portmode) == 4)
- 		mode = DEV_MAC_MODE_CFG_GIGA_MODE_ENA_SET(1);
- 
- 	lan_wr(config->duplex | mode,
-@@ -331,10 +331,14 @@ int lan966x_port_pcs_set(struct lan966x_port *port,
- 	struct lan966x *lan966x = port->lan966x;
- 	bool inband_aneg = false;
- 	bool outband;
-+	bool full_preamble = false;
-+
-+	if (config->portmode == PHY_INTERFACE_MODE_QUSGMII)
-+		full_preamble = true;
- 
- 	if (config->inband) {
- 		if (config->portmode == PHY_INTERFACE_MODE_SGMII ||
--		    config->portmode == PHY_INTERFACE_MODE_QSGMII)
-+		    phy_interface_num_ports(config->portmode) == 4)
- 			inband_aneg = true; /* Cisco-SGMII in-band-aneg */
- 		else if (config->portmode == PHY_INTERFACE_MODE_1000BASEX &&
- 			 config->autoneg)
-@@ -345,9 +349,15 @@ int lan966x_port_pcs_set(struct lan966x_port *port,
- 		outband = true;
- 	}
- 
--	/* Disable or enable inband */
--	lan_rmw(DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA_SET(outband),
--		DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA,
-+	/* Disable or enable inband.
-+	 * For QUSGMII, we rely on the preamble to transmit data such as
-+	 * timestamps, therefore force full preamble transmission, and prevent
-+	 * premable shortening
-+	 */
-+	lan_rmw(DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA_SET(outband) |
-+		DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA_SET(full_preamble),
-+		DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA |
-+		DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA,
- 		lan966x, DEV_PCS1G_MODE_CFG(port->chip_port));
- 
- 	/* Enable PCS */
-@@ -396,7 +406,7 @@ void lan966x_port_init(struct lan966x_port *port)
- 	if (lan966x->fdma)
- 		lan966x_fdma_netdev_init(lan966x, port->dev);
- 
--	if (config->portmode != PHY_INTERFACE_MODE_QSGMII)
-+	if (phy_interface_num_ports(config->portmode) != 4)
- 		return;
- 
- 	lan_rmw(DEV_CLOCK_CFG_PCS_RX_RST_SET(0) |
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h b/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
-index 8265ad89f0bc..c53bae5d8dbd 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
-@@ -504,6 +504,12 @@ enum lan966x_target {
- #define DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA_GET(x)\
- 	FIELD_GET(DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA, x)
- 
-+#define DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA        BIT(1)
-+#define DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA_SET(x)\
-+	FIELD_PREP(DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA, x)
-+#define DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA_GET(x)\
-+	FIELD_GET(DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA, x)
-+
- /*      DEV:PCS1G_CFG_STATUS:PCS1G_SD_CFG */
- #define DEV_PCS1G_SD_CFG(t)       __REG(TARGET_DEV, t, 8, 72, 0, 1, 68, 8, 0, 1, 4)
- 
--- 
-2.37.1
-
+Acked-by: Rob Herring <robh@kernel.org>
