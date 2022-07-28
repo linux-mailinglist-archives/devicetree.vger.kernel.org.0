@@ -2,107 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D1545838A1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 08:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C1CE5838B2
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 08:24:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232220AbiG1GSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 02:18:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58710 "EHLO
+        id S232161AbiG1GUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 02:20:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233781AbiG1GSY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 02:18:24 -0400
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DCA115D0F2;
-        Wed, 27 Jul 2022 23:18:22 -0700 (PDT)
-Received: from [192.168.87.140] (unknown [50.47.106.71])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 18D4620FE86F;
-        Wed, 27 Jul 2022 23:18:22 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 18D4620FE86F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1658989102;
-        bh=dOWYO9Tc9My88lpKym2V9t4KyEwrpWAjOIRXvs4C5XQ=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Ak0uQ40xJOJRfAIrFUYHIr9TFMyUDjJbJTZm6CGUkKy+4qOq8U56I8c+XrKWgMQ8B
-         csdkyl9vpQCSv5JuJFTpnLAuSRIlKNFG4wOc1us79zruuwJNmDK1gCUlFhLZtlZyG7
-         wGUvBV/uHTBcB+UTdH5KjjtwmuxD2IG+4K95CEvI=
-Message-ID: <450dee2f-63bf-51a7-730e-b780b594c1c5@linux.microsoft.com>
-Date:   Wed, 27 Jul 2022 23:18:22 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v8 5/5] crypto: aspeed: add HACE crypto driver
-Content-Language: en-US
-To:     Neal Liu <neal_liu@aspeedtech.com>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
+        with ESMTP id S231926AbiG1GUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 02:20:23 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1442230F57;
+        Wed, 27 Jul 2022 23:20:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1658989219; x=1690525219;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=77z4OSLcpLQHGmEKgErSafXR9441+COqyJNi8XBEHhg=;
+  b=gHiC2poa9t1Ye/oPhqkAIMry7cGakKFqzl1yK60FCC1rhRCfBf2oa+RY
+   8lun/EMXwY4Q5A67qTAXK/uey6MCtC8SrELBmQQnnh5HYwuFAwZ064Pue
+   dafXNUw5GmE+jXBJInF+e/zV0xKHL/sFdH4Jjyw7Yu1T7EOLnVUTkUdLC
+   Glcs/fwCr1fLz1NgFly6kpxsiJ049dxJsCqqI1AZ3oFvz3ysT+Mc5NpF5
+   oj0r00d7Fsg/SeCr7HBMvob+ZUMUBnjP/ZnmS9E0LiPQZTTKGCoJahiko
+   dGLm8RS1ojG8FV1aI9BFKkeZfFLX3TNUP9hhnNUI2xVrHiOZy4l3ThM1u
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,196,1654552800"; 
+   d="scan'208";a="25307345"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 28 Jul 2022 08:20:16 +0200
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 28 Jul 2022 08:20:16 +0200
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 28 Jul 2022 08:20:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1658989216; x=1690525216;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=77z4OSLcpLQHGmEKgErSafXR9441+COqyJNi8XBEHhg=;
+  b=EwzegZZg+IkjEKkBUpjaBmlRMuXVmS1CQik1b53Ny6DxXW6Qkz+kmuLM
+   SWy1EDyqqADLI7iSg/quj9zVMBWWDzCL3HnZ7rLVWsVTj2pukRArJQO9b
+   bqdIleEwyXoKHRnw0AGvfGoPlYZsMTqJQcG3OZXX9b/diYOyVUrYgAQBp
+   Bpo0loqzI7dgaO2uhAaF9Jacoi5sLTDp+sIA6P/EOG8sg/zXqpCvJsWpI
+   DPoHlPtvBbjGg3JTPxLrP7/BztQ1WH0bdNDc6tNwsgQDJDp6jfvTreBI+
+   L4U0RrDrRpetnIILblNILnwDY3rJvGWWj+Mb3ZY7pPLkEE5h26oAzDYcB
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,196,1654552800"; 
+   d="scan'208";a="25307344"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 28 Jul 2022 08:20:16 +0200
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 35837280056;
+        Thu, 28 Jul 2022 08:20:16 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Johnny Huang <johnny_huang@aspeedtech.com>
-Cc:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-References: <20220726113448.2964968-1-neal_liu@aspeedtech.com>
- <20220726113448.2964968-6-neal_liu@aspeedtech.com>
- <9d6beefe-9974-22f8-750c-68c9acb707ab@linux.microsoft.com>
- <TY2PR06MB32137A54B483D6D700BDE7EC80979@TY2PR06MB3213.apcprd06.prod.outlook.com>
-From:   Dhananjay Phadke <dphadke@linux.microsoft.com>
-In-Reply-To: <TY2PR06MB32137A54B483D6D700BDE7EC80979@TY2PR06MB3213.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-19.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,ENV_AND_HDR_SPF_MATCH,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,USER_IN_DEF_DKIM_WL,
-        USER_IN_DEF_SPF_WL autolearn=ham autolearn_force=no version=3.4.6
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] usb: misc: onboard_usb_hub: Add reset-gpio support
+Date:   Thu, 28 Jul 2022 08:20:13 +0200
+Message-ID: <2191669.iZASKD2KPV@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <YuFykRtbvxGssSVs@google.com>
+References: <20220727141117.909361-1-alexander.stein@ew.tq-group.com> <YuFykRtbvxGssSVs@google.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/26/2022 10:31 PM, Neal Liu wrote:
->> Why are separate options required for hash and crypto algorithms, if hace is
->> only hw crypto on the SoCs?
->>
->> Looks like that's requiring unnecessary __weak register / unregister functions
->> [see below].
->>
->> Couldn't just two options CONFIG_CRYPTO_DEV_ASPEED and
->> CONFIG_CRYPTO_DEV_ASPEED_DEBUG be simpler to set for downstream
->> defconfigs?
-> I would like to separate different algorithms by different options for more convenient for further use and debug.
-> We also have RSA engine named ACRY, and would upstream once hash & crypto being accepted.
-> So combined them into one option seems not a good choice for multiple hw crypto, do you agree?
+Hello Matthias,
 
-Not sure what's the use case of just enabling crypto or hash separately
-out of same HW engine and esp. when there's no alternative accel 
-available, but that's fine.
+Am Mittwoch, 27. Juli 2022, 19:14:57 CEST schrieb Matthias Kaehlcke:
+> Hi Alexander,
+> 
+> (copying my comments from v3 to keep the discussion on the latest version)
+> 
+> On Wed, Jul 27, 2022 at 04:11:16PM +0200, Alexander Stein wrote:
+> > Despite default reset upon probe, release reset line after powering up
+> > the hub and assert reset again before powering down.
+> > 
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> > * Patch 1 dropped as it already applied
+> > 
+> > Changes in v4:
+> > * Rebased to [1] commit e0c6b1f3d757 ("USB: usbsevseg: convert sysfs
+> > snprintf to sysfs_emit") * Added platform data for usb424
+> > 
+> >   Reset pulse length taken from [2], Table 3-2 Symbol RESET_N
+> >   Completely untested
+> > 
+> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git Branch
+> > usb-testing [2]
+> > http://ww1.microchip.com/downloads/en/devicedoc/00001692c.pdf
+> > 
+> >  drivers/usb/misc/onboard_usb_hub.c | 28 ++++++++++++++++++++++++++++
+> >  drivers/usb/misc/onboard_usb_hub.h | 22 +++++++++++++++++-----
+> >  2 files changed, 45 insertions(+), 5 deletions(-)
+> > 
+> > diff --git a/drivers/usb/misc/onboard_usb_hub.c
+> > b/drivers/usb/misc/onboard_usb_hub.c index de3627af3c84..0c81417dd9a7
+> > 100644
+> > --- a/drivers/usb/misc/onboard_usb_hub.c
+> > +++ b/drivers/usb/misc/onboard_usb_hub.c
+> > @@ -7,6 +7,7 @@
+> > 
+> >  #include <linux/device.h>
+> >  #include <linux/export.h>
+> > 
+> > +#include <linux/gpio/consumer.h>
+> > 
+> >  #include <linux/init.h>
+> >  #include <linux/kernel.h>
+> >  #include <linux/list.h>
+> > 
+> > @@ -38,6 +39,8 @@ struct usbdev_node {
+> > 
+> >  struct onboard_hub {
+> >  
+> >  	struct regulator *vdd;
+> >  	struct device *dev;
+> > 
+> > +	const struct onboard_hub_pdata *pdata;
+> > +	struct gpio_desc *reset_gpio;
+> > 
+> >  	bool always_powered_in_suspend;
+> >  	bool is_powered_on;
+> >  	bool going_away;
+> > 
+> > @@ -56,6 +59,9 @@ static int onboard_hub_power_on(struct onboard_hub *hub)
+> > 
+> >  		return err;
+> >  	
+> >  	}
+> > 
+> > +	fsleep(hub->pdata->reset_us);
+> > +	gpiod_set_value_cansleep(hub->reset_gpio, 0);
+> > +
+> > 
+> >  	hub->is_powered_on = true;
+> >  	
+> >  	return 0;
+> > 
+> > @@ -65,6 +71,11 @@ static int onboard_hub_power_off(struct onboard_hub
+> > *hub)> 
+> >  {
+> >  
+> >  	int err;
+> > 
+> > +	if (hub->reset_gpio) {
+> > +		gpiod_set_value_cansleep(hub->reset_gpio, 1);
+> > +		fsleep(hub->pdata->reset_us);
+> 
+> Is this delay here actually needed? There is a delay in
+> onboard_hub_power_on(), before de-asserting the reset, isn't that enough?
 
-If ARCY is different HW engine (interface) then having separate config
-sounds logical.
+If you see both delays together you are right, but I tend to think in that way 
+it is to ensure whenever we apply a reset it is long enough.
+As said before the powering on delay is to ensure the pulse length delay even 
+if there is no reset GPIO but it is controlled by hardware.
 
-Multiplying DEBUG configs seems unnecessary though. With dynamic debug
-any of the dev_dbg could be turned on. Suggest using single one for
-the module, if not drop it altogether. Following code is still not
-covered by Kconfig, it in common code.
+> > +	}
+> > +
+> > 
+> >  	err = regulator_disable(hub->vdd);
+> >  	if (err) {
+> >  	
+> >  		dev_err(hub->dev, "failed to disable regulator: %d\n", 
+err);
+> > 
+> > @@ -219,6 +230,7 @@ static void onboard_hub_attach_usb_driver(struct
+> > work_struct *work)> 
+> >  static int onboard_hub_probe(struct platform_device *pdev)
+> >  {
+> > 
+> > +	const struct of_device_id *of_id;
+> > 
+> >  	struct device *dev = &pdev->dev;
+> >  	struct onboard_hub *hub;
+> >  	int err;
+> > 
+> > @@ -227,10 +239,26 @@ static int onboard_hub_probe(struct platform_device
+> > *pdev)> 
+> >  	if (!hub)
+> >  	
+> >  		return -ENOMEM;
+> > 
+> > +	of_id = of_match_device(onboard_hub_match, &pdev->dev);
+> > +	if (!of_id)
+> > +		return -ENODEV;
+> > +
+> > +	hub->pdata = of_id->data;
+> > +	if (!hub->pdata)
+> > +		return -EINVAL;
+> > +
+> > 
+> >  	hub->vdd = devm_regulator_get(dev, "vdd");
+> >  	if (IS_ERR(hub->vdd))
+> >  	
+> >  		return PTR_ERR(hub->vdd);
+> > 
+> > +	hub->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> > +						  
+GPIOD_OUT_HIGH);
+> > +	if (IS_ERR(hub->reset_gpio))
+> > +		return dev_err_probe(dev, PTR_ERR(hub->reset_gpio), 
+"failed to get
+> > reset GPIO\n"); +
+> > +	if (hub->reset_gpio)
+> > +		fsleep(hub->pdata->reset_us);
+> 
+> Same question here: onboard_hub_power_on() is called a few lines below and
+> has a delay before de-asserting the reset. Is the delay here really needed?
 
- > +#ifdef ASPEED_HACE_DEBUG
- > +#define HACE_DBG(d, fmt, ...)	\
- > +	dev_info((d)->dev, "%s() " fmt, __func__, ##__VA_ARGS__)
- > +#else
- > +#define HACE_DBG(d, fmt, ...)	\
- > +	dev_dbg((d)->dev, "%s() " fmt, __func__, ##__VA_ARGS__)
- > +#endif
+This actually looks like the delay is duplicated here. I agree with removing 
+this.
+How shall we proceed now that the whole series (incl. the bindings patch 1/3 
+from v3) has landed in usb-testing? I can create a patch on top of this if 
+this is the way to go.
 
-Regards,
-Dhananjay
+Best regards,
+Alexander
+
 
 
