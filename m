@@ -2,111 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CA30584511
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 19:48:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27AC658454B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 20:08:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229447AbiG1Rfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 13:35:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44674 "EHLO
+        id S232924AbiG1Rvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 13:51:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232508AbiG1Rf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 13:35:28 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 576BE13D65
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 10:35:24 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id r1-20020a05600c35c100b003a326685e7cso3507573wmq.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 10:35:24 -0700 (PDT)
+        with ESMTP id S232972AbiG1Rvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 13:51:44 -0400
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74D6B74CC9
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 10:51:43 -0700 (PDT)
+Received: by mail-pg1-x52a.google.com with SMTP id 12so2111305pga.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 10:51:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=VbbJgehw8s69ZFldc80l1If2xNlW1MCzh0YgoGTkFWQ=;
-        b=snLIwA63J2zsHlnWu52Gpx/KsjI8oAuG/PxSiB/UbQqZE6/kWzXyAaUjkXba8Tq9+N
-         EPqGz0KVQ4S6aLzn99R+YW2bxjKsnqKwqwmXdVcOAs7NAmQVw4b6toQevZWcY+YhItqX
-         /xIrig3AcA8JHkMggt5ugsES93GWBvZYIwTTAqZN1JkN8WV/m0L8RT/M/Y6bGJ3bkFLq
-         ELc+vg0axo4F5EDxzsqpMpWy1Ole9zWriLqSouGfdwQJNd7nUlM8irLCIuxXjTV8sj2B
-         ujxcOJmqvceWGLr6zrtUUy4jygbQ5G2Qu7kzOSVOwymrdyA6PdH1uuH8psGF9idOiLvN
-         mt/Q==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=QRPeWa+D/9YFuXXP1Wo3iP9ouDPjlDA43crG7LuYS3c=;
+        b=XnK6Ahd5Neh+1+Tmw/DVISXnCN62TDDOOeYQ6deBdNYm1mvKmlTRpwEPyESo8bE+wH
+         6KDgzgNDzMZyzCpXLxnYu/hfyZyzRO4MRcuN6b+C5gdGf8u9UP+PJ8k/ZuD7cmiTEIfw
+         lZP341vQUf1vS02Is+5tGXF25QRv5NHrWtqe4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=VbbJgehw8s69ZFldc80l1If2xNlW1MCzh0YgoGTkFWQ=;
-        b=rXvAZBqCAleeuEb9SvgMygCzBbK1lXw1hOr5VlsWMAHSkMNL+2g19/clJphKvgvNzi
-         rDd6QL8Uvn1/f7cGJ6goA5UfDqN4WWiQMuO9RdHtT6SjNAvE1cyCb4LZAg9H1Pdmbgan
-         jXyV9NTvQ/nvr/95QtB3M/JXrghhb2yXMtg77sU0uM8KwMwCXu04nom9LUg5z+72MMMt
-         8qTFiRLvoRL7Hx2zvovh1Wqbpw+AdfY2YPCeYtPYqbCPTO2cTIcHH5R+ZhtnbBIhWML3
-         iMR+BVZjcorw6X1FYfIqs/n/YJIOlVPA9/vv7uIB9HJNokLK4N07VGZ+pk78htr6gs3J
-         ejZw==
-X-Gm-Message-State: AJIora/yqTg5vY9D4LZ7R1CTtRL+1Lnw8vSiQuttKPzK9U7pWaEe+Gxy
-        FDCypH6/Ll3VRvJNKfyKS8/WDA==
-X-Google-Smtp-Source: AGRyM1sOD6Y08ZL1MA0szDzx3Whx7DStDWCvrxUZpox8X8ojsNF8FBVXQm9uCjHxKuWylc6DovVKCA==
-X-Received: by 2002:a05:600c:4f81:b0:3a3:1f5a:2b6a with SMTP id n1-20020a05600c4f8100b003a31f5a2b6amr17901wmq.53.1659029722901;
-        Thu, 28 Jul 2022 10:35:22 -0700 (PDT)
-Received: from [192.168.43.135] (33.169.185.81.rev.sfr.net. [81.185.169.33])
-        by smtp.gmail.com with ESMTPSA id 9-20020a05600c020900b003a3187a2d4csm6074212wmi.22.2022.07.28.10.35.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 10:35:22 -0700 (PDT)
-Message-ID: <6795356b-29d4-0098-f282-1eaf4fb21108@baylibre.com>
-Date:   Thu, 28 Jul 2022 19:35:20 +0200
+        bh=QRPeWa+D/9YFuXXP1Wo3iP9ouDPjlDA43crG7LuYS3c=;
+        b=H/jSSDlQ0wwMrojA9wfMBNQwCqfwPYa4AkE5qmwGkf5yph15fgj4rJXEVZS44UzUaW
+         ERokNYC4Qu4oo5G30VgmK/SeUVIjh+7T/6qM6ES2vguQ1QwXhJLfr5zvAb3k14xRL88O
+         H/Tf9Q1rfOkf2Kl8RpUrVyet7eAUHL/Z58/nAa8gYjwzT+4RbzE9P9WGnGKdWtX1bTWN
+         2b+75WRbjaAqf8+gsH355iMHPCGdPx91pKc/3DS1Hdag9UBwfw8YChKl1B3AmpCjniU6
+         i3YZ02vaDYntePG/GlwPPDIJY1A9A4pFDJeK1H+DAftxwVxikq993Xncp2RYo9WCeIeI
+         0GRw==
+X-Gm-Message-State: AJIora/LUbzxgQaEgEt7La3PzYw6HDkxGvgcoSxMkmDXPFEE4y4IVNX2
+        Yul1GQfAT2DOqxkZjm8h6Hhso3PhBfrR4Q==
+X-Google-Smtp-Source: AGRyM1vwZSiGXf4A2+/27mfoJxejt3u3qqPSDpCDsxRT+xM9wyDg+E9KCFmYEuCbY58r3HHhARl5sQ==
+X-Received: by 2002:a65:6e96:0:b0:415:5973:b4f4 with SMTP id bm22-20020a656e96000000b004155973b4f4mr23188866pgb.568.1659030702919;
+        Thu, 28 Jul 2022 10:51:42 -0700 (PDT)
+Received: from moragues-cloud.c.googlers.com.com (252.157.168.34.bc.googleusercontent.com. [34.168.157.252])
+        by smtp.gmail.com with ESMTPSA id t14-20020a17090a3e4e00b001f315f73ef1sm2696136pjm.0.2022.07.28.10.51.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 10:51:42 -0700 (PDT)
+From:   Bob Moragues <moragues@chromium.org>
+X-Google-Original-From: Bob Moragues <moragues@google.com>
+To:     LKML <linux-kernel@vger.kernel.org>
+Cc:     dianders@chromium.org, swboyd@chromium.org, mka@chromium.org,
+        Bob Moragues <moragues@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Bob Moragues <moragues@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: arm: qcom: document zoglin board
+Date:   Thu, 28 Jul 2022 10:51:10 -0700
+Message-Id: <20220728105005.v2.1.I5b9006878bdabd6493b866b46dbd6149968d545b@changeid>
+X-Mailer: git-send-email 2.37.1.455.g008518b4e5-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.0
-Subject: Re: [PATCH v2 1/2] dt-binding: iio: time: add capture-tiecap.yaml
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        jic23@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mranostay@ti.com
-References: <20220728125212.76728-1-jpanis@baylibre.com>
- <20220728125212.76728-2-jpanis@baylibre.com>
- <6268ec8c-73f8-6517-c7a7-a6d3ede420ab@linaro.org>
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <6268ec8c-73f8-6517-c7a7-a6d3ede420ab@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Bob Moragues <moragues@chromium.org>
 
+Zoglin is a Hoglin Chromebook with SPI Flash reduced from 64MB to 8MB.
+Zoglin is identical to Hoglin except for the SPI Flash.
+The actual SPI Flash is dynamically probed at and not specified in DTS.
 
-On 28/07/2022 15:38, Krzysztof Kozlowski wrote:
-> On 28/07/2022 14:52, Julien Panis wrote:
->> This commit adds a YAML binding for TI ECAP used in capture operating mode.
->>
->> Signed-off-by: Julien Panis <jpanis@baylibre.com>
->> ---
->>   .../bindings/iio/time/capture-tiecap.yaml     | 68 +++++++++++++++++++
->>   1 file changed, 68 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
->> new file mode 100644
->> index 000000000000..5d66df90ba5d
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/time/capture-tiecap.yaml
->> @@ -0,0 +1,68 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/time/capture-tiecap.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> Still wrong file name.
->
-> Do not ignore comments you received. Either you implement them or you
-> keep the discussion going.
+Signed-off-by: Bob Moragues <moragues@chromium.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Bob Moragues <moragues@google.com>
+---
 
+Changes in v2:
+- Fixed Signed-off-by
+- Added reviews / acks
 
-Sorry, that was not intentional. I have prepared a new version which 
-takes into account your last comments.
+ Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Julien
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 581485392404..63091df3cbb3 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -475,6 +475,7 @@ properties:
+ 
+       - description: Qualcomm Technologies, Inc. sc7280 CRD platform (newest rev)
+         items:
++          - const: google,zoglin
+           - const: google,hoglin
+           - const: qcom,sc7280
+ 
+-- 
+2.37.1.455.g008518b4e5-goog
+
