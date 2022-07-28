@@ -2,54 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C11B583B8B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 11:53:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 594C1583B93
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 11:56:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235169AbiG1JxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 05:53:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54860 "EHLO
+        id S235626AbiG1J4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 05:56:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233296AbiG1JxB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 05:53:01 -0400
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A11EB15A2E;
-        Thu, 28 Jul 2022 02:52:59 -0700 (PDT)
-Received: from [10.18.29.47] (10.18.29.47) by mail-sh.amlogic.com (10.18.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Thu, 28 Jul
- 2022 17:52:57 +0800
-Message-ID: <9256c0f2-a656-996f-0ed8-d22ae2907070@amlogic.com>
-Date:   Thu, 28 Jul 2022 17:52:57 +0800
+        with ESMTP id S235034AbiG1J4v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 05:56:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF7D63916;
+        Thu, 28 Jul 2022 02:56:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 638A7614B6;
+        Thu, 28 Jul 2022 09:56:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46B3DC433D6;
+        Thu, 28 Jul 2022 09:56:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1659002209;
+        bh=boCRpvTjs+becvjTUzbhpSoR5geBGJA5S2zg5QWdSzA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YoaQAlgH4ipQj1MmkAM7/6TnXhLNauUGd+9Etc2xZJqqfbSBFcNVbfzo2lnGlaIve
+         SNaOdjL/t5ZKtXB2+QwsSpo6InQok9ULaiGkOKxuyEtN5Teq0zzfBIBjIy3aAc3gBT
+         9nN4fpMlXB0Qaw0iT6ORhqeCWxnD6Z6P9wXSoxy0=
+Date:   Thu, 28 Jul 2022 11:56:46 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mani@kernel.org, hemantk@codeaurora.org, elder@linaro.org,
+        f.fainelli@gmail.com, linus.walleij@linaro.org,
+        Michael.Srba@seznam.cz, jeffrey.l.hugo@gmail.com,
+        bjorn.andersson@linaro.org, saravanak@google.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH RFC v1 1/2] bus: add Wiegand write-only GPIO driver
+Message-ID: <YuJdXk7eqSGlDpjj@kroah.com>
+References: <20220728091712.13395-1-m.zatovic1@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH V2 0/3] Add S4 SoC clock controller driver
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220728054202.6981-1-yu.tu@amlogic.com>
- <1j8rodhfn9.fsf@starbuckisacylon.baylibre.com>
- <032b3c3f-f899-bf53-ecbb-35191d39392b@amlogic.com>
- <1j4jz1hbr5.fsf@starbuckisacylon.baylibre.com>
- <965f83cf-4695-f89c-5ede-2f6b2524f392@amlogic.com>
- <1jr125fvz0.fsf@starbuckisacylon.baylibre.com>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1jr125fvz0.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.18.29.47]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+In-Reply-To: <20220728091712.13395-1-m.zatovic1@gmail.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,107 +54,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jul 28, 2022 at 11:17:11AM +0200, Martin Zaťovič wrote:
+> --- /dev/null
+> +++ b/drivers/bus/wiegand-gpio.c
+> @@ -0,0 +1,661 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Wiegand write-only GPIO driver
+> + *
+> + * This program is free software; you can redistribute it and/or modify
+> + * it under the terms of the GNU General Public License version 2 as
+> + * published by the Free Software Foundation.
+> + *
+> + * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+> + * kind, whether express or implied; without even the implied warranty
+> + * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+> + * GNU General Public License for more details.
 
+No need for the license "boilerplate" if you have the SPDX line, so
+these two paragraphs can be dropped entirely.
 
-On 2022/7/28 17:03, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> 
-> On Thu 28 Jul 2022 at 16:55, Yu Tu <yu.tu@amlogic.com> wrote:
-> 
->> Hi Jerome,
->> 	Thanks for your reply and explanation.
->>
->> On 2022/7/28 16:27, Jerome Brunet wrote:
->>> [ EXTERNAL EMAIL ]
->>>
->>> On Thu 28 Jul 2022 at 16:06, Yu Tu <yu.tu@amlogic.com> wrote:
->>>
->>>> Hi JB，
->>>>
->>>> On 2022/7/28 15:08, Jerome Brunet wrote:
->>>>> [ EXTERNAL EMAIL ]
->>>>>
->>>>> On Thu 28 Jul 2022 at 13:41, Yu Tu <yu.tu@amlogic.com> wrote:
->>>>>
->>>>>> 1. Add clock controller driver for S4 SOC.
->>>>>>
->>>>>> Yu Tu (3):
->>>>>>      dt-bindings: clk: meson: add S4 SoC clock controller bindings
->>>>>>      arm64: dts: meson: add S4 Soc clock controller in DT
->>>>>>      clk: meson: s4: add s4 SoC clock controller driver
->>>>>>
->>>>>> V1 -> V2: Change format as discussed in the email.
->>>>>>
->>>>>> Link:https://lore.kernel.org/linux-amlogic/20220708062757.3662-1-yu.tu@amlogic.com/
->>>>>>
->>>>>>     .../bindings/clock/amlogic,gxbb-clkc.txt      |    1 +
->>>>>>     MAINTAINERS                                   |    1 +
->>>>>>     arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   11 +
->>>>>>     drivers/clk/meson/Kconfig                     |   15 +
->>>>>>     drivers/clk/meson/Makefile                    |    1 +
->>>>>>     drivers/clk/meson/s4.c                        | 4732 +++++++++++++++++
->>>>>>     drivers/clk/meson/s4.h                        |  296 ++
->>>>>>     include/dt-bindings/clock/s4-clkc.h           |  146 +
->>>>>>     8 files changed, 5203 insertions(+)
->>>>>>     create mode 100644 drivers/clk/meson/s4.c
->>>>>>     create mode 100644 drivers/clk/meson/s4.h
->>>>>>     create mode 100644 include/dt-bindings/clock/s4-clkc.h
->>>>>>
->>>>>>
->>>>>> base-commit: b293bc9286ee21824e93f0fcfed3b78fdfee01e6
->>>>> Please don't post until you have addressed *ALL* the comments from the
->>>>> previous version.
->>>> The last email asked you to adopt A1 method, but you did not reply?
->>>>
->>>>> At first glance, I can see that this is still a single driver for
->>>>> what is obviously 2 controllers with 2 register spaces. Simple comments
->>>>> like the "<< 2" in the register declaration have not been addressed either.
->>>> I understand that this should be a controller, just two address
->>>> descriptions. One is the various PLL registers and one is the clock for
->>>> the peripherals. And PLL is to provide a clock source for various
->>>> peripheral clocks. So a clock controller is reasonable. I think you got
->>>> it wrong.
->>> I don't think I do. This looks exactly like the A1.
->>> The post of that controller are still in the  archive and I am sure your
->>> colleagues can give you the history.
->>> You clearly have register regions providing clock, separated by
->>> 0x8000. Claiming that as one big region is bad design.
->>> There has been several remarks about using a big syscon on V1,
->>> unaddressed too.
->>> CCF has everything necessary in place to handle each register region
->>> separately, properly and pass clock around.
->>> You can handle it as a single controller, claiming the two regions
->>> individually but:
->>> # 1 - handling 2 different regmaps in the controller is going to be
->>>         bigger mess than you think
->>> # 2 - I am far from convinced there is any reason to do so
->>>
->> It makes sense, as you say, to separate the two controllers. But I think
->> the only thing that was forced apart was that the digital designers
->> didn't put these registers together when they were designing the chips.
->>
-> 
-> One controller is providing all the base PLLs
-> The other is providing most (if not all) the devices clocks.
-> This does not look like coincidence or mistake to me.
-Thanks for your reply. Looks like I got it wrong. However, I will talk 
-to the chip designer about whether it is possible to put these registers 
-in the later chip so that it may be easier for our software to process.
+You might want to add a copyright line though, lots of companies want to
+see that, don't know if yours cares or not :)
 
-> 
->> I'm going to separate the two controllers like you said.
->>
->>>
->>>>
->>>> Ok, if you insist on using two clock controllers,, please provide your the
->>>> reason and example code?
->>>>
->>>>> Seeing that, I have not reviewed this version further.
->>>>> I won't until all the comments from v1 are either addressed or answer
->>>>> Regards
->>>>> Jerome
->>>>> .
->>> .
-> 
-> .
+thanks,
+
+greg k-h
