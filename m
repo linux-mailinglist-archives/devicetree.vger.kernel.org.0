@@ -2,179 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 356A258403C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:44:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 103E8584046
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 15:47:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbiG1NoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 09:44:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49422 "EHLO
+        id S230085AbiG1NrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 09:47:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiG1NoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:44:15 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B720961B36
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:44:13 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id p22so1999254lji.10
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 06:44:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=t3snUb/RB7GBK47suv0EVR2ZsOaRly5GONJO77oiuQg=;
-        b=sOfaZgsXdyu9YFFlp0fBAF2zTWC0nkR9f1upJND4qGEPvrIrLVegHEtcimHFcC9AGq
-         prtZcg30BThzrAdiXdKEkUpRniIlN96f9mAQHH7S+CtLKp+3fTUZSPlD611eQ2dtYPjR
-         YqiMQUjkRHEf04LzZ3ppP6nOtWAGMc2bT8RjQ/hyE7z92pAwqHUhynHwvZZNtP4KbouY
-         eceF+JDX0LoKRTtVK45Nwa4hAEhH/SEhaMDggMzfvU4kS+8AyKVNwNkLJElivl4nSrZE
-         TmqN96xweMiMzHG2Ydb14z1yTvzz3i2DMY+wiFAizX7sPBHqBoMkScO6+hRyMgBmlRvl
-         OhAg==
+        with ESMTP id S229532AbiG1NrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 09:47:16 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498E8624A3;
+        Thu, 28 Jul 2022 06:47:15 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id x64so1419834iof.1;
+        Thu, 28 Jul 2022 06:47:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=t3snUb/RB7GBK47suv0EVR2ZsOaRly5GONJO77oiuQg=;
-        b=lWkhb/EYBtHu1UX18L/q8WAAmG5fpgg0gO/TQYjc+oAMs22sk7uaAUYaYLkaAIm9Fw
-         b+Lpb5+juI4wvwvDvA0fjKHGhsELJkf26iM0X4pD4R/3QB99fJJ2iMRZOu13lKfaMqBL
-         MucvftAe/CbPtdh24JZmh1ueJXtkWCxCb/Zg5AIeVR0P3/qp6JOZRSIiBnPxXwdS+quI
-         eRATwPzjqFcSzMdGH/F6I5vgQrmmSpl2YQ8SPp6CaTGbuT1Nd3RDU1NTA0nsLKAXhjCf
-         Z74NlrCiXwBmPzTLRbLrkWvXfGFEmhedxsi1LDQa22kbgIoklWHaPJvQjTM0WkA7wghf
-         8vQA==
-X-Gm-Message-State: AJIora/sX06uvOHHENvuPg0Rq1EyMBnYhWOd1XWkcU22kQa0ivk9HS01
-        RODG0BJ74hsvw1h8OWdEG+JrkpzCDg3DuA==
-X-Google-Smtp-Source: AGRyM1uZFOldfIslMBj3ijO/FI232ybFsJuneomS8qRe2mSt04mZInbLVyYT4ft2fJRvZF6pDwVzIA==
-X-Received: by 2002:a05:651c:1993:b0:25e:2766:924 with SMTP id bx19-20020a05651c199300b0025e27660924mr2108589ljb.231.1659015852086;
-        Thu, 28 Jul 2022 06:44:12 -0700 (PDT)
-Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
-        by smtp.gmail.com with ESMTPSA id v23-20020a2e9f57000000b0025de9a05176sm149221ljk.111.2022.07.28.06.44.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 06:44:11 -0700 (PDT)
-Message-ID: <5f728a46-d222-a734-ce69-5adb695fb374@linaro.org>
-Date:   Thu, 28 Jul 2022 15:44:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 2/2] iio: time: capture-tiecap: capture driver support
- for ECAP
-Content-Language: en-US
-To:     Julien Panis <jpanis@baylibre.com>, jic23@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mranostay@ti.com
-References: <20220728125212.76728-1-jpanis@baylibre.com>
- <20220728125212.76728-3-jpanis@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220728125212.76728-3-jpanis@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=z/W+enaupbkegvbEDRlhZGtG6b7D/kXPx1TKEn5BI3s=;
+        b=5vFY8mFDjFdI7pEA3KPZ7J4IFmuS9hitF+SPc1kh5klguTwrLG3z61/IiscadIcrsu
+         zde5WHIvQPHwVNBqdtYqzyCLeZm9N8gVSoE9195Douez0zzz0vhiWoA8jZuMVWnXs22W
+         sD0EyhgbUKW8i9v3k5CjIubRSksSUijuWl2W/0x+vljoqazPRaJbhTjcSGbYQBbapX48
+         rmx347Q8LRAMG0pKqxYTRxA9CMYdPuscc8m46AJG3UgKrcXRkeRcjdwm6+MYrRtRX1qH
+         tO4R7YAXs6lXZr14FW/pGVKtsIy7jHrXujvEZh02Fxq3BcdflwKcwlO/iEyg6uM56t/c
+         gQuw==
+X-Gm-Message-State: AJIora91ajUYYHNzjOPjpbIqQgyHJUWiN50CjNFg73vJHkpbls7FI3dN
+        icyoiBniZXFl2xeg+QrGVQ==
+X-Google-Smtp-Source: AGRyM1vnN5JBFltZQ5clBLXtY/PaNiw6vObuIjwvoFtMJqjVNj4jWE1UNeF8RUb+hywHn30jJvQEag==
+X-Received: by 2002:a05:6602:2b88:b0:67c:aca7:2f73 with SMTP id r8-20020a0566022b8800b0067caca72f73mr5984371iov.108.1659016034497;
+        Thu, 28 Jul 2022 06:47:14 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id q28-20020a02a99c000000b0033a29ec646dsm404093jam.4.2022.07.28.06.47.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 06:47:14 -0700 (PDT)
+Received: (nullmailer pid 779712 invoked by uid 1000);
+        Thu, 28 Jul 2022 13:47:12 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?q?Martin_Za=C5=A5ovi=C4=8D?= <m.zatovic1@gmail.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        jeffrey.l.hugo@gmail.com, hemantk@codeaurora.org,
+        f.fainelli@gmail.com, bjorn.andersson@linaro.org,
+        gregkh@linuxfoundation.org, mani@kernel.org, saravanak@google.com,
+        Michael.Srba@seznam.cz, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, elder@linaro.org, linus.walleij@linaro.org
+In-Reply-To: <20220728091712.13395-2-m.zatovic1@gmail.com>
+References: <20220728091712.13395-1-m.zatovic1@gmail.com> <20220728091712.13395-2-m.zatovic1@gmail.com>
+Subject: Re: [PATCH RFC v1 2/2] devicetree: bindings: bus: add Wiegand driver documentation
+Date:   Thu, 28 Jul 2022 07:47:12 -0600
+Message-Id: <1659016032.636583.779711.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,PP_MIME_FAKE_ASCII_TEXT,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 14:52, Julien Panis wrote:
-> ECAP hardware on AM62x SoC supports capture feature. It can be used
-> to timestamp events (falling/rising edges) detected on signal input pin.
+On Thu, 28 Jul 2022 11:17:12 +0200, Martin Zaťovič wrote:
+> Wiegand write-only driver requires definitions of two GPIO lines
+> in the devicetree. This adds the documentation of their
+> definitions.
 > 
-> This commit adds capture driver support for ECAP hardware on AM62x SoC.
+> Signed-off-by: Martin Zaťovič <m.zatovic1@gmail.com>
+> ---
+>  .../devicetree/bindings/bus/wiegand-gpio.yaml | 66 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/wiegand-gpio.yaml
 > 
-> In the ECAP hardware, capture pin can also be configured to be in
 
-Thank you for your patch. There is something to discuss/improve.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-(...)
+yamllint warnings/errors:
 
-> +static int ecap_iio_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct ecap_iio_dev *ecap_dev;
-> +	struct iio_dev *indio_dev;
-> +	void __iomem *mmio_base;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*ecap_dev));
-> +	if (IS_ERR(indio_dev)) {
-> +		dev_err(dev, "failed to allocate memory for iio device\n");
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/bus/wiegand-gpio.example.dts:22.47-48 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:383: Documentation/devicetree/bindings/bus/wiegand-gpio.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1404: dt_binding_check] Error 2
 
-Do not print messages, which core takes care of.
+doc reference errors (make refcheckdocs):
 
-> +		return PTR_ERR(indio_dev);
-> +	}
-> +
-> +	ecap_dev = iio_priv(indio_dev);
-> +
-> +	ecap_dev->clk = devm_clk_get(dev, "fck");
-> +	if (IS_ERR(ecap_dev->clk)) {
-> +		dev_err(dev, "failed to get clock\n");
-> +		return PTR_ERR(ecap_dev->clk);
-> +	}
-> +
-> +	ret = clk_prepare_enable(ecap_dev->clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable clock\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_add_action_or_reset(dev, ecap_iio_clk_disable, ecap_dev->clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to add clock disable action\n");
-> +		return ret;
-> +	}
-> +
-> +	ecap_dev->clk_rate = clk_get_rate(ecap_dev->clk);
-> +	if (!ecap_dev->clk_rate) {
-> +		dev_err(dev, "failed to get clock rate\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (prescaler > ECAP_PS_MAX_VAL) {
-> +		prescaler = ECAP_PS_MAX_VAL;
-> +		dev_warn(dev, "prescaler out of range, forced to %d\n", prescaler);
-> +	}
-> +
-> +	mmio_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(mmio_base)) {
-> +		dev_err(dev, "failed to remap io\n");
+See https://patchwork.ozlabs.org/patch/
 
-No need for msg.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-> +		return PTR_ERR(mmio_base);
-> +	}
-> +
-> +	ecap_dev->regmap = regmap_init_mmio(dev, mmio_base, &ecap_iio_regmap_config);
-> +	if (IS_ERR(ecap_dev->regmap)) {
-> +		dev_err(dev, "failed to init regmap\n");
-> +		return PTR_ERR(ecap_dev->regmap);
-> +	}
-> +
-> +	indio_dev->name = devm_kasprintf(dev, GFP_KERNEL,
-> +					 "ecap-iio-%p", mmio_base);
-> +	indio_dev->info = &ecap_iio_info;
-> +	indio_dev->channels = ecap_iio_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(ecap_iio_channels);
-> +	indio_dev->modes = INDIO_BUFFER_SOFTWARE;
-> +
-> +	ret = devm_iio_kfifo_buffer_setup_ext(dev, indio_dev, NULL, NULL);
-> +	if (ret) {
-> +		dev_err(dev, "failed to setup iio buffer\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = platform_get_irq(pdev, 0);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to get irq\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = devm_request_irq(dev, ret, ecap_iio_isr, 0, pdev->name, indio_dev);
-> +	if (ret) {
-> +		dev_err(dev, "failed to request irq\n");
-> +		return ret;
-> +	}
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Best regards,
-Krzysztof
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
