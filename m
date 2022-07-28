@@ -2,158 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 944DA583B65
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 11:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0B63583B7E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 11:48:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235647AbiG1Jkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 05:40:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46918 "EHLO
+        id S234535AbiG1JsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 05:48:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235617AbiG1Jks (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 05:40:48 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 555A2B49E;
-        Thu, 28 Jul 2022 02:40:47 -0700 (PDT)
-X-UUID: ec76a3fca1e7485c9046b5b537d5a4e7-20220728
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:f6e62fc7-c20c-4bd7-83d4-42ab672c27cc,OB:20,L
-        OB:10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,A
-        CTION:release,TS:45
-X-CID-INFO: VERSION:1.1.8,REQID:f6e62fc7-c20c-4bd7-83d4-42ab672c27cc,OB:20,LOB
-        :10,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:45
-X-CID-META: VersionHash:0f94e32,CLOUDID:1a5993d0-841b-4e95-ad42-8f86e18f54fc,C
-        OID:f0ccf6249fe2,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: ec76a3fca1e7485c9046b5b537d5a4e7-20220728
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1802726423; Thu, 28 Jul 2022 17:40:42 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 28 Jul 2022 17:40:41 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 28 Jul 2022 17:40:41 +0800
-Message-ID: <22cd8a6807385941c55e75b390d31424936ae8c4.camel@mediatek.com>
-Subject: Re: [PATCH v15 07/11] drm/mediatek: Add retry to prevent
- misjudgment for sink devices
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <ck.hu@mediatek.com>, <liangxu.xu@mediatek.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 28 Jul 2022 17:40:41 +0800
-In-Reply-To: <ce46e9b2-8e34-b6cd-d802-35b3ae66e02d@collabora.com>
-References: <20220727045035.32225-1-rex-bc.chen@mediatek.com>
-         <20220727045035.32225-8-rex-bc.chen@mediatek.com>
-         <ce46e9b2-8e34-b6cd-d802-35b3ae66e02d@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S235123AbiG1JsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 05:48:18 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48D4A6581A
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 02:48:16 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id t22so2085367lfg.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 02:48:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=DPAyrSv5Oh9I0JWv/cbh3M8iNlmpiJ+L3KUAI07k8nM=;
+        b=khcBZtlfNFfGUhTWR1nODMkOMfMe1YD6Zeye1trFQiFlQ5lXNAXloTmbqF82kXyCwm
+         TrO2qrn8Brdqcl2r7R+MlapuXQxHBbeQXqGrHr07QRxVfajM2YYEM0m0LQxCfNu5Hujp
+         0mGjHb+OzofD5rCCEzIPDqwPeQWAJXYFmaB7Z5L0YaN3+gXbBYl3+PpT9+e2g1NycHZs
+         OoV8LlvWkKoJr6SBIbjgcLJdfcXB+eqR9gsFX2bD/DBpTj/PoZPlqItVgfdmIPH7u6Je
+         zt+pKZsdjOz22679/7lEkBbqf6u2RgsRwuKHjkfRQIUuqXRadPPI0ST1SzBme1ezmfTw
+         vKIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=DPAyrSv5Oh9I0JWv/cbh3M8iNlmpiJ+L3KUAI07k8nM=;
+        b=eMzeqarQ6b8MfOweqhlZQREj48JSexnJnYPeGgm1TXSm5AXUYyatZZDDRS9BoQ6sw8
+         jb5Y/3M1AnKSy4u7+ojXB0e40sxWudYvbKl+moqun9KGv1s3zmGKrHVLkq/pxkeD6/dV
+         sWhMuD22idkFf5gDfifbZFJGVkg1iltbFGyQmhiXX113iGiD2SmEbdFrcYWi0RTA5eux
+         EiaauBkfi53qn3hFZbzL0rL83lUzbdHWotVdzJWTrbm6hnBjfavCtcTeATcUuXUwL8k5
+         ksbOHjdyY48oxS7H7cEH5FGyOkMI34Vj2Xohsp4/AkqV3peHtIvU3Qqm3CSyPLdJAyhj
+         8jOA==
+X-Gm-Message-State: AJIora/22lyXlJ+n2DZYA77mnID2Yx6Lci+f03lSFR04cTHEk+Hc8uuU
+        gEKagObk7SmrsEbeU51+au0s2Q==
+X-Google-Smtp-Source: AGRyM1tcCDD/G+nBlrNp6d4l4wQUepusSGXteoykxFWtMJnaYlcJzDCpBuQD0aCBwcGy4p3FFgt/9w==
+X-Received: by 2002:a19:7606:0:b0:48a:74b4:8479 with SMTP id c6-20020a197606000000b0048a74b48479mr9159783lff.441.1659001694241;
+        Thu, 28 Jul 2022 02:48:14 -0700 (PDT)
+Received: from [192.168.3.197] (78-26-46-173.network.trollfjord.no. [78.26.46.173])
+        by smtp.gmail.com with ESMTPSA id p11-20020a2eb98b000000b0025e2e1d7c52sm55711ljp.44.2022.07.28.02.48.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jul 2022 02:48:13 -0700 (PDT)
+Message-ID: <c088e01c-0714-82be-8347-6140daf56640@linaro.org>
+Date:   Thu, 28 Jul 2022 11:48:12 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH V2 1/3] dt-bindings: clk: meson: add S4 SoC clock
+ controller bindings
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>, Yu Tu <yu.tu@amlogic.com>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+References: <20220728054202.6981-1-yu.tu@amlogic.com>
+ <20220728054202.6981-2-yu.tu@amlogic.com>
+ <82e3fd36-df96-a555-4cea-47fabd26502b@linaro.org>
+ <1jv8rhfw8h.fsf@starbuckisacylon.baylibre.com>
+ <367cf98b-ef06-8f44-76c8-9099a1ec13dc@linaro.org>
+ <1jmtctfuli.fsf@starbuckisacylon.baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1jmtctfuli.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-07-27 at 11:40 +0200, AngeloGioacchino Del Regno wrote:
-> Il 27/07/22 06:50, Bo-Chen Chen ha scritto:
-> > For some DP dungles, we need to train more than onece to confirm
-> > that we
-> > don't misjudge the status of sink device.
+On 28/07/2022 11:09, Jerome Brunet wrote:
 > 
-> Please fix the typos in your commit title and description.
-> title: misjudgment -> misjudgement
-> desc: dungles->dongles; onece->once
+> On Thu 28 Jul 2022 at 11:02, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> > 
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >   drivers/gpu/drm/mediatek/mtk_dp.c | 21 ++++++++++++++++++---
-> >   1 file changed, 18 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c
-> > b/drivers/gpu/drm/mediatek/mtk_dp.c
-> > index ce817cb59445..80d7d6488105 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> > @@ -42,6 +42,7 @@
-> >   #define MTK_DP_CHECK_SINK_CAP_TIMEOUT_COUNT 3
-> >   #define MTK_DP_TBC_BUF_READ_START_ADDR 0x08
-> >   #define MTK_DP_TRAIN_DOWNSCALE_RETRY 8
-> > +#define MTK_DP_TRAIN_CLEAR_RETRY 50
-> >   
-> >   struct mtk_dp_train_info {
-> >   	bool tps3;
-> > @@ -1431,11 +1432,25 @@ static int mtk_dp_video_config(struct
-> > mtk_dp *mtk_dp)
-> >   
-> >   static int mtk_dp_training(struct mtk_dp *mtk_dp)
-> >   {
-> > +	short max_retry = MTK_DP_TRAIN_CLEAR_RETRY;
-> >   	int ret;
-> >   
-> > -	ret = mtk_dp_train_start(mtk_dp);
-> > -	if (ret)
-> > -		return ret;
-> > +	/*
-> > +	 * We do retry to confirm that we don't misjudge the sink
-> > status.
-> > +	 * If it is still failed, we can confirm there are some issues
-> > for the
-> > +	 * sink device.
-> > +	 */
-> > +	do {
-> > +		ret = mtk_dp_train_start(mtk_dp);
-> > +		if (!ret)
-> > +			break;
-> > +	} while (--max_retry);
-> > +
-> > +	dev_info(mtk_dp->dev, "dp training clear retry times: %d\n",
-> > +		 MTK_DP_TRAIN_CLEAR_RETRY - max_retry);
+>> On 28/07/2022 10:50, Jerome Brunet wrote:
+>>>
+>>> On Thu 28 Jul 2022 at 10:41, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+>>>
+>>>> On 28/07/2022 07:42, Yu Tu wrote:
+> [...]
+>>>>> +/*
+>>>>> + * CLKID index values
+>>>>> + */
+>>>>> +
+>>>>> +#define CLKID_FIXED_PLL			1
+>>>>> +#define CLKID_FCLK_DIV2			3
+>>>>> +#define CLKID_FCLK_DIV3			5
+>>>>> +#define CLKID_FCLK_DIV4			7
+>>>>> +#define CLKID_FCLK_DIV5			9
+>>>>> +#define CLKID_FCLK_DIV7			11
+>>>>
+>>>> Why these aren't continuous? IDs are expected to be incremented by 1.
+>>>>
+>>>
+>>> All clocks have IDs, it is one big table in the driver, but we are not exposing them all.
+>>> For example, with composite 'mux / div / gate' assembly, we usually need
+>>> only the leaf.
+>>
+>> I understand you do not expose them all, but that is not the reason to
+>> increment ID by 2 or 3... Otherwise these are not IDs and you are not
+>> expected to put register offsets into the bindings (you do not bindings
+>> in such case).
 > 
-> dev_dbg() here.
+> Why is it not an IDs if it not continuous in the bindings ?
 > 
-> ...after which,
+> If there is technical reason, we'll probably end up exposing everything. It
+> would not be a dramatic change. I asked for this over v1 because we have
+> done that is the past and I think it makes sense.
 > 
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
+> I'm happy to be convinced to do things differently. Just looking for the
+> technical reason that require contiuous exposed IDs.
 > 
+> The other IDs exists, but we do not expose them as bindings.
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/meson/gxbb.h#n125
 
-Hello Angelo,
+https://lore.kernel.org/linux-devicetree/CAK8P3a1APzs74YTcZ=m43G3zrmwJZKcYSTvV5eDDQX-37UY7Tw@mail.gmail.com/
 
-Thanks for your review.
-I will modify these in next version.
+https://lore.kernel.org/linux-devicetree/CAK8P3a0fDJQvGLEtG0fxLkG08Fh9V7LEMPsx4AaS+2Ldo_xWxw@mail.gmail.com/
 
-BRs,
-Bo-Chen
+https://lore.kernel.org/linux-devicetree/b60f5fd2-dc48-9375-da1c-ffcfe8292683@linaro.org/
 
-> > +
-> > +	if (!max_retry)
-> > +		return -ETIMEDOUT;
-> >   
-> >   	ret = mtk_dp_video_config(mtk_dp);
-> >   	if (ret)
+The IDs are abstract numbers, where the number does not matter because
+it is not tied to driver implementation or device programming model. The
+driver maps ID to respective clock.
+
+Using some meaningful numbers as these IDs, means you tied bindings to
+your implementation and any change in implementation requires change in
+the bindings. This contradicts the idea of bindings.
+
 > 
+>>
+>>
+>>> Same has been done for the other AML controllers:
+>>> For ex:
+>>>
+>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/dt-bindings/clock/gxbb-clkc.h
+>>
+>> This cannot be fixed now, but it is very poor argument. Like saying "we
+>> had a bug in other driver, so we implemented the bug here as well".
 > 
+> I agree, "done before" is not a good argument. I was trying to provide a
+> better picutre. I'm just surprised to have this new requirement that IDs
+> have to be incremented by 1 (in the bindings) and I'd like to understand
+> why what we had done could be considered a bug now.
 
+It was always, just no one ever enforced it. And almost all clock and
+reset providers follow it. There are just literally few exceptions.
+
+> For example the simple-reset driver compute the reset offset from the IDs:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/reset/reset-simple.c
+
+This is one of the exceptions where it actually made sense, but I would
+argue it still contradicts the bindings. You have now binding which is
+tied to both Linux implementation and to device programming model.
+
+However fixing it would require creating huge mapping tables for each
+SoC, so obviously this exception is quite reasonable.
+
+Clock drivers require tables and translation anyway. Almost all clock
+drivers did it, so such exception is not justified.
+
+> There might be holes in the IDs if not all bits have reset maps.
+> I don't think that would be a bug either.
+
+Bug was of course highly exaggerated example. :)
+
+Best regards,
+Krzysztof
