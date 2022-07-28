@@ -2,115 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82D9E5843F1
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 18:14:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 935FF584403
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 18:16:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232716AbiG1QOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 12:14:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53648 "EHLO
+        id S232778AbiG1QQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 12:16:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232688AbiG1QOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 12:14:32 -0400
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3826E8AF;
-        Thu, 28 Jul 2022 09:14:17 -0700 (PDT)
-Received: from pps.filterd (m0150244.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 26SG3pYU014257;
-        Thu, 28 Jul 2022 16:13:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references; s=pps0720;
- bh=RxxDzF31NL6V06N4hL06es3D8QVrXa1IQTyzOi1phEo=;
- b=FPP+UZ6xHvaOwDRtH3O0b9Zs7dvL+uhbMYGnJkn5Trzoldms91CGsdEP8dMwS2vLFpLU
- 03A6ksLVTuiWqMTlCL5wlXUL6B5/xR9OK9pJQb0o6/2QE6T2U83SzIhEN5Jke1roEKkk
- hUruMRA+4YDmIgJ+0/qBZ6soFXLA+0a37lMhhw1gztdh3TSkEExWbwCe9eFEt6wbMrdm
- 82tFWQaaUYSRraBzBz6UvcYopKmxmSBI+4FYaGATL0+yZWVcIauxwKnVv/ZTeTEltajN
- ucbNKCJ0pXzOTlefM5e232b68GKkeWomzmmBCjGm0u6us6ttboyju84gZ6Fo+Xj7AEYc 1g== 
-Received: from p1lg14878.it.hpe.com (p1lg14878.it.hpe.com [16.230.97.204])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3hkvp10qfv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 28 Jul 2022 16:13:56 +0000
-Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by p1lg14878.it.hpe.com (Postfix) with ESMTPS id 83D8214796;
-        Thu, 28 Jul 2022 16:13:55 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.36])
-        by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id 04B4F80805B;
-        Thu, 28 Jul 2022 16:13:54 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     nick.hawkins@hpe.com
-Cc:     broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, verdun@hpe.com,
-        linux@armlinux.org.uk, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, arnd@arndb.de
-Subject: [PATCH v6 5/5] MAINTAINERS: add spi support to GXP
-Date:   Thu, 28 Jul 2022 11:14:59 -0500
-Message-Id: <20220728161459.7738-6-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220728161459.7738-1-nick.hawkins@hpe.com>
-References: <20220728161459.7738-1-nick.hawkins@hpe.com>
-X-Proofpoint-GUID: tsACJDK9q_O57Ys1ZaUs2CY6XoVbyutb
-X-Proofpoint-ORIG-GUID: tsACJDK9q_O57Ys1ZaUs2CY6XoVbyutb
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-07-28_06,2022-07-28_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- suspectscore=0 malwarescore=0 adultscore=0 spamscore=0 phishscore=0
- mlxscore=0 bulkscore=0 lowpriorityscore=0 impostorscore=0 mlxlogscore=944
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2206140000 definitions=main-2207280073
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232578AbiG1QQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 12:16:18 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9679DBD1;
+        Thu, 28 Jul 2022 09:16:16 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7FFE6106F;
+        Thu, 28 Jul 2022 09:16:16 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B18CE3F70D;
+        Thu, 28 Jul 2022 09:16:13 -0700 (PDT)
+Date:   Thu, 28 Jul 2022 17:16:11 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Ard Biesheuvel <ardb@kernel.org>
+Cc:     Maximilian Luz <luzmaximilian@gmail.com>,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
+ Application client
+Message-ID: <20220728161611.qc6ksoecg64rkov5@bogus>
+References: <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
+ <20220726154138.74avqs6iqlzqpzjk@bogus>
+ <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
+ <7284953b-52bb-37ac-fbe1-1fa845c44ff9@linaro.org>
+ <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com>
+ <20220727132437.pjob3z2nyxsuxgam@bogus>
+ <CAC_iWj+Pn+h8k=fuDHzYwqD0g4m6jGRt8sCzcz+5+rYqvz9q4w@mail.gmail.com>
+ <fd922f0f-99fd-55a3-a0b5-b62ad2dbfb45@gmail.com>
+ <20220728113347.ver6argevzmlsc2c@bogus>
+ <CAMj1kXHYb-zrKOS_titU79c487ab9WPyKwJBXuj7pdqum=ygaA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMj1kXHYb-zrKOS_titU79c487ab9WPyKwJBXuj7pdqum=ygaA@mail.gmail.com>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+On Thu, Jul 28, 2022 at 08:05:58AM -0700, Ard Biesheuvel wrote:
+> On Thu, 28 Jul 2022 at 04:33, Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > On Thu, Jul 28, 2022 at 12:48:19PM +0200, Maximilian Luz wrote:
+> >
+> > [...]
+> >
+> > >
+> > > I would very much like to avoid the need for special bootloaders. The
+> > > devices we're talking about are WoA devices, meaning they _should_
+> > > ideally boot just fine with EFI and ACPI.
+> > >
+> >
+> > Completely agreed.
+> >
+> > > From an end-user perspective, it's annoying enough that we'll have to
+> > > stick with DTs for the time being due to the use of PEPs in ACPI.
+> >
+> > But have we explored or investigated what it takes to rewrite ACPI f/w
+> > to just use standard methods ? Does it require more firmware changes or
+> > new firmware entities or impossible at any cost ?
+> >
+> > For me that is more important than just getting this one on DT. Because
+> > if you take that path, we will have to keep doing that, with loads of
+> > unnecessary drivers if they are not shared with any other SoC with DT
+> > support upstream. We might also miss chance to get things added to the ACPI
+> > spec as we don't care which means that we never be able to use ACPI on
+> > similar future platforms even though they get shipped with ACPI.
+> >
+> > It will be a loop where we constantly keep converting this ACPI shipped
+> > platform into DT upstream. IMHO we don't want to be there.
+> >
+>
+> Supporting these devices in Linux in ACPI mode would involve
+> reimplementing the PEP subsystem, and reimplementing PEP drivers for
+> all these QCOM peripherals to manage the probing and the power states.
+> I don't think this is realistic at all, and a huge waste of
+> engineering effort otherwise.
+>
 
-Add the spi driver and dt-binding documentation
+I am aware of that and hence I am happy to see these as one off drivers
+if needed. But if we don't stop that or keep converting them to DT,
+IMO we will be in vicious circle of this conversion and will never be
+able to support ACPI natively on these platforms. I know it is huge
+effort and not expecting that to be done here, but we need to convey the
+message to use ACPI standards or improve it if there is a need. Using
+PEP is not helpful to run Linux in the long run. Also we may hit a point
+when it may not be trivial to do that ACPI<->DT conversion.
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+> It is also orthogonal to the discussion, as far as I understand: ACPI
+> is not telling the system whether or not these TZ services should be
+> used instead of EFI runtime calls.
+>
 
----
-v6:
- *No change
-v5:
- *No change
-v4:
- *No change
-v3:
- *No change
-v2:
- *No change
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Agreed and I don't want to block any such discussions. Sorry if I derailed
+the discussion, that was not my intentions.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a6d3bd9d2a8d..f87728549ecf 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2140,11 +2140,13 @@ M:	Jean-Marie Verdun <verdun@hpe.com>
- M:	Nick Hawkins <nick.hawkins@hpe.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/arm/hpe,gxp.yaml
-+F:	Documentation/devicetree/bindings/spi/hpe,gxp-spi.yaml
- F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
- F:	arch/arm/boot/dts/hpe-bmc*
- F:	arch/arm/boot/dts/hpe-gxp*
- F:	arch/arm/mach-hpe/
- F:	drivers/clocksource/timer-gxp.c
-+F:	drivers/spi/spi-gxp.c
- F:	drivers/watchdog/gxp-wdt.c
- 
- ARM/IGEP MACHINE SUPPORT
--- 
-2.17.1
-
+--
+Regards,
+Sudeep
