@@ -2,114 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D231A5835F9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 02:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 222A158363D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 03:21:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231392AbiG1AW6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 27 Jul 2022 20:22:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60768 "EHLO
+        id S232117AbiG1BVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 27 Jul 2022 21:21:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230395AbiG1AW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 20:22:57 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 219E34C613
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 17:22:56 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id n185so125400wmn.4
-        for <devicetree@vger.kernel.org>; Wed, 27 Jul 2022 17:22:56 -0700 (PDT)
+        with ESMTP id S231626AbiG1BVc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 27 Jul 2022 21:21:32 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5F81C90D;
+        Wed, 27 Jul 2022 18:21:31 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id v67-20020a1cac46000000b003a1888b9d36so1793970wme.0;
+        Wed, 27 Jul 2022 18:21:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AmEmeRZhd9Zjf3GjjylIGsA/lCIIeJ6jjo7QTxJzxvA=;
-        b=ICGsuhAhunYr+r/GoO+4BHNivDMLZR5fvOwLh5HFkDDRz6EfC02ywECIWGFN71ODiB
-         3LxXaj60PZEk9S9t5ZHy9PcgGbOX2Ff4/uR0n+FZBgj+oBEs+XUGLMjTqeOEJZsaeYVq
-         lrQkcGUdHRgl0eQl3YnUoRvXLNV3rPzWu/zXc=
+        d=gmail.com; s=20210112;
+        h=mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=Cxp1c3BTumIa+oetWVz5ChWxRwi9acisZtSdnbq5CfQ=;
+        b=QUw3kZLyF/ngAUJTs99Vp8oy0IIEqSrS3bqix/vKauqObNVg78C+ZWrGHYoh6L7fAo
+         Q6okHBlBgE7OMmMqIEGKu4bnBqV2Mtv+QfPYVVpc3NB7mp6oBrbcpVXvWpXtkX3lcUaN
+         EJB/W+x/DmANqx+SFw1zjGlnkanDnGkTFzxCz+nZP7l0lEzB5V+cqAXvDvvdtY33FykO
+         HXdvPAFjRlRQQHDIC2ANyH7yH4VDsmngwRYsmgd/Y8hzXBoraAogg8mBq9BSvGrqgnbZ
+         NGfSZ5nux/u+09qjOjwS2aTbEH9vF7qd5shyq6x0HJZfWvn3YQX8JEsbeRYP6QI77kua
+         bB7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AmEmeRZhd9Zjf3GjjylIGsA/lCIIeJ6jjo7QTxJzxvA=;
-        b=kfMXutcrz9o1x7MHnWFyCxu1kB3J/06JSGba4IlMVcckbGiK95YEJ8DiboaxZeOcpj
-         6FOxHLRO//puO1JrwFAgRLwAK/pBAabYnhGuremzuvxBPhW+ghnzuD3zwfe/btzkuxUH
-         +1ty3dDQQ2AchcUVRtMpauXhRwvaeiwmFp63GwWTNaB1S19qd9D4p3zvrUYSR/5TgeYW
-         X8dCJi9mReZeBUJatJYdtxxmnICCMJjHa359Yx/FB7wqp6UopDmn2EVL6Aq0GZOYo6AX
-         n6pVUvlHXFcNiZsNTYVq14OMmd3l5aDBh23zz4wq8Ih0IGdt0fpk0qv73UXxwrATOa2x
-         7lFA==
-X-Gm-Message-State: AJIora8pwq0/EGWYaOLtH1f8lhSOneQiodGTpXdvANasW5rjMGFcC6oi
-        o36XTC2CygseGsGpiW69GuXeXQDRReaCsbxEEsQm1Q==
-X-Google-Smtp-Source: AGRyM1t+gk2Xy/Rz+Hu8IN5+F/z5MXtLN24ReL9yKM1lsyxrotsmT/Zh2a+RN7wQ24QUJzRdJqi66T7ujHp2mlnt1oc=
-X-Received: by 2002:a05:600c:a03:b0:39e:4f0c:938c with SMTP id
- z3-20020a05600c0a0300b0039e4f0c938cmr4621229wmp.145.1658967774472; Wed, 27
- Jul 2022 17:22:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAODwPW9E8wWwxbYKyf4_-JFb4F-JSmLR3qOF_iudjX0f9ndF0A@mail.gmail.com>
- <CAODwPW8fiFSNehZbZDdR9kjHxohLGiyE7edU=Opy0xV_P8JbEQ@mail.gmail.com>
- <3bb0ffa0-8091-0848-66af-180a41a68bf7@linaro.org> <CAODwPW89xZQZiZdQNt6+CcRjz=nbEAAFH0h_dBFSE5v3aFU4rQ@mail.gmail.com>
- <8f51aed8-956b-ac09-3baf-2b4572db1352@linaro.org> <CAODwPW9MvYJo8QbKOoVcUAKJ8Hxon2MCv_H5qpv=yaSTLLc+ug@mail.gmail.com>
- <628a7302-1409-81f7-f72b-6b1645df9225@linaro.org> <CAODwPW-4i+idH8Nz6=EmNUXYWgWkoOHs3wOZ7BbrH5GwGDZ1Ww@mail.gmail.com>
- <1f3189ef-7d3f-27b3-a691-b9649090b650@linaro.org> <CAODwPW-GDkfyFaNSnEngpSfz8LSXRetu+xwp3QrFHP1rH1O06w@mail.gmail.com>
- <86b9c6d6-e8e5-7f6d-0970-460baf9b6fcc@linaro.org>
-In-Reply-To: <86b9c6d6-e8e5-7f6d-0970-460baf9b6fcc@linaro.org>
-From:   Julius Werner <jwerner@chromium.org>
-Date:   Wed, 27 Jul 2022 17:22:42 -0700
-Message-ID: <CAODwPW_tcAAqKE66B+RbvMn-=favT07i3EK3TnAspVsWTAeJ4Q@mail.gmail.com>
-Subject: Re: [RFC] Correct memory layout reporting for "jedec,lpddr2" and
- related bindings
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Julius Werner <jwerner@chromium.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Jian-Jia Su <jjsu@google.com>,
-        Doug Anderson <dianders@chromium.org>,
+        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+         :content-transfer-encoding:message-id:references:to;
+        bh=Cxp1c3BTumIa+oetWVz5ChWxRwi9acisZtSdnbq5CfQ=;
+        b=MDCZjgcdAou/ye0ffLeTt2K6+rnpVfAOKKDRcZA3XB/2XY4hTL+w0Kppe6QfPZlRt/
+         UkDypXMTIRpvHhbeRazs2dCHvnMDXdl6kjCGwFV87MNVHBvsiZOgYJQRyhW79v160xVK
+         ImCRytMSYtgX6Myp1LFwO4vcmqh/dHWXXikOZVkhoXXe+/VfrLpRZJgQCUde2KSoaUJc
+         OEs0noBDg9u/eTypebAsS4Hit20fiuvXyl3LavRh90dcpkmHb1a5iUXOAJIzsTT0egFp
+         INpxgg7GaGMd6NuUQzQxLVA8oOA6MiO5QB8Eo5T86Y1BNXXc+d+czukrYyIzedcOeDhO
+         AVSA==
+X-Gm-Message-State: AJIora89/3ZPS2cI+6aQAMCWRNHqtXTmcm1US7buRTJhX2lJ5vjvDS/N
+        /ac7TvA3pQPj0b0U6qVvc9E=
+X-Google-Smtp-Source: AGRyM1v27SyKb+DQwAMOBq0K68BhSI7SXTjacmDoMDEvKcUHoAPSOXXqUJJbHAw3eZVTDDULo7jhVA==
+X-Received: by 2002:a05:600c:19c9:b0:3a3:469f:c1e7 with SMTP id u9-20020a05600c19c900b003a3469fc1e7mr4626173wmq.141.1658971290276;
+        Wed, 27 Jul 2022 18:21:30 -0700 (PDT)
+Received: from smtpclient.apple ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id h10-20020a5d548a000000b0021e6c52c921sm15966887wrv.54.2022.07.27.18.21.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 27 Jul 2022 18:21:29 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.100.31\))
+Subject: Re: [v7 3/4] dt-bindings: arm: amlogic: add MagicBox M16S bindings
+From:   Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <tencent_F809BC863B83870BBEB1EF76499B3969B607@qq.com>
+Date:   Thu, 28 Jul 2022 05:21:25 +0400
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Nikola Milosavljevic <mnidza@outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        krzysztof.kozlowski+dt@linaro.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        sean@mess.org,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <8CBF7318-B6E4-46D9-AFF2-8839459D4C54@gmail.com>
+References: <20220726143649.142574-1-zhangn1985@qq.com>
+ <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
+ <b094bf45-ad7e-9e42-89a6-bae0b8e4aae1@linaro.org>
+ <tencent_F809BC863B83870BBEB1EF76499B3969B607@qq.com>
+To:     Zhang Ning <zhangn1985@qq.com>
+X-Mailer: Apple Mail (2.3696.100.31)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > By "use case" I mean our particular platform and firmware requirements
-> > -- or rather, the realities of building devices with widely
-> > multi-sourced LPDDR parts. One cannot efficiently build firmware that
-> > can pass an exact vendor-and-part-specific compatible string to Linux
-> > for this binding for every single LPDDR part used on such a platform.
->
-> Why cannot? You want to pass them as numerical values which directly map
-> to vendor ID and some part, don't they?
 
-Yes, but the current compatible string format also requires the exact
-part number, of which there are many thousands and it's impossible to
-build a list in advance. Even for vendors, hardcoding 255 strings in a
-tight firmware space would be an unnecessary burden. There's also an
-update problem -- firmware may be built and signed and burned into ROM
-long before the assembly of the final mainboard. Board manufacturers
-want to be able to just drop-in replace a newly-sourced LPDDR part in
-their existing production line without having to worry if the existing
-(and possibly no longer changeable) firmware contains a string table
-entry for this part.
+> On 28 Jul 2022, at 3:48 am, Zhang Ning <zhangn1985@qq.com> wrote:
+>=20
+> On Wed, Jul 27, 2022 at 05:27:25PM +0200, Krzysztof Kozlowski wrote:
+>> On 26/07/2022 16:36, Zhang Ning wrote:
+>>> Add manufactor bindings for Tmall
+>>> Add the board bindings for Magicbox M16S Tv Box
+>>>=20
+>>> Signed-off-by: Zhang Ning <zhangn1985@qq.com>
+>>=20
+>> Please send patches with correct subject PATCH.
+> I got confused, and don't know how to update..
+>=20
+> ad152daedc5c dt-bindings: arm: amlogic: add MagicBox M16S bindings
+> 3f7dbd336f36 dt-bindings: arm: amlogic: add Vero 4K+ bindings
+> 2ca889b12016 dt-bindings: arm: amlogic: add H96-Max bindings
+>=20
+>>=20
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> Christian Hewitt told me to split to 2 patches, 1st for manufactor, =
+2nd
+> for device, how to handle your Acked-by?
 
-If you just want the compatible string to be unique, encoding the
-numbers like Doug suggested (e.g. jedec,lpddr3-ff-0100) would work for
-us.
+Hello Zhang. Let=E2=80=99s work off-list to get things corrected before =
+you send
+another (hopefully final) version. I=E2=80=99m happy to explain and =
+coach you on
+the process.
 
-> If we talk about standard, then DT purpose is not for autodetectable
-> pieces. These values are autodetectable, so such properties should not
-> be encoded in DT.
-
-But the DT is the only interface that we have to pass information from
-firmware to kernel and userspace. Where else should these properties
-be encoded? They are auto-detectable, but not for the kernel itself
-(only for memory-training firmware running in SRAM). Maybe the usual
-rules of thumb don't apply here, because unlike all other peripheral
-controllers the memory controller is special in that the kernel cannot
-simply reinitialize it and get the same information from the original
-source again.
+Christian=
