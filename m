@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15262583AD7
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 11:00:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56529583ABE
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 10:53:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233460AbiG1JAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 05:00:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40282 "EHLO
+        id S235072AbiG1Ixt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 04:53:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235298AbiG1JAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 05:00:04 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ABC7655BB
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 02:00:02 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id b26so1347386wrc.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 02:00:02 -0700 (PDT)
+        with ESMTP id S234989AbiG1Ixs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 04:53:48 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A68665585
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 01:53:47 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id u5so1324855wrm.4
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 01:53:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=references:user-agent:from:to:subject:date:in-reply-to:message-id
-         :mime-version;
-        bh=r0KkVkVfudOsZa8bt775hkQQT4bXWpl6svhyGVd6ieQ=;
-        b=KA2+5rXbBP1kJXeW6hiBXH2pt90gqNXRRgOvI9OI4R4XpmjEaLf1UIiUGZyGlOxFHC
-         ykYgfhTnrP+POspD23CY/8v9+X5DsIrqFYaRgocVqdCuB5PMK30TxTNWlnsBNrR8Fank
-         ragjMrJgixERVOzTdYl1vzqJHh/eAYZtDZScJ/nKWzR1FObowBVnVPGrXruSlc/bjvqk
-         BdHd48UjYmjvkbYL4wG52xrLfmK0zE+IupWNAU/TK4zqXTdUcv2OSQKwTjP8kCljGM11
-         /FXwhX5sr/1imuYz7tqOErnW+wJY4f6z3OpQRPzEFDa229eSksGSQ2K87rJflO6gQNJi
-         V56Q==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=9AF0C8l8seSrzx2WmUBIWSdZqGWfFBtfpdLun9U6Kz8=;
+        b=mP/mmTrHM6/k6VQpQzfSYKo6wM/3/z+WB1b8AnfbQRmYSGYo2t1YFLoEixZuoBhuPa
+         UvwY/bfbiI1uveHGmETaK6nuicHscsF/pNv7VhlbF+eeKKvhO2fJwzdDDcLkTsaAWf97
+         /JUhjOFMU/gtHAeg84LBUq0TGc3iMe7bxaxkY6gVCzMumA1b6dkhX+4a5BdRjWSDQj8z
+         LTmPqw6LTmwqIYYlHgTuQdE0ynLn2ouVfuDmtpzyXT+qDxveLv1U8r7ZXkOn6EC3Rloz
+         fVgoWX3H2vNK2SGhXDa5k0WcYY9uXbdoAopMfF9+T77xzkIk5fZc99Fpi9boaQ1IL9fE
+         5ofw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:references:user-agent:from:to:subject:date
-         :in-reply-to:message-id:mime-version;
-        bh=r0KkVkVfudOsZa8bt775hkQQT4bXWpl6svhyGVd6ieQ=;
-        b=nwYvHvMMzSJMfg5M2uYGJ37V72lJ7y8Bipsu+rf1yhloTpJks9VNtSeadsncGH0rms
-         LL82aj5C7BBraHb2rpWGQeJyLbq2Kcozy3yPRTFT/LWpC1JOCJj/78E8gU+wNJM8gbYA
-         /GSt8uMH/zAqTSAY1hpZxQcDrkzl3tbb3E5cY9ra143txSrms+kHjvOeRJsjZP+Eki10
-         LQz6CfIH8+0ym3Kjjc31tWuNHOksoGbrplb7bKvfQ0dyoderAVtgNDW8CTezirzAYVTD
-         RM7V2i3v8N5mxe9OQ9xZrxkgAPYLXhWIGrJqbS+CzklSX++hRNMb0YzNKhFjkRQourEU
-         obrA==
-X-Gm-Message-State: AJIora8jmRSAAQO4ZaoT+TTTc+g183aOfR365LjIaPcc+s2987FeORJ5
-        PmTLPEIQAVaaGrOafchpHjYgqQ==
-X-Google-Smtp-Source: AGRyM1vJ9qug6pEGy6DgN4WD7c36nLypVRFi2FQDF34WxBfiQss+w86zHbsxaCj2bnKZVMdA3qxhgw==
-X-Received: by 2002:adf:ecc5:0:b0:21e:b73f:e33d with SMTP id s5-20020adfecc5000000b0021eb73fe33dmr6349761wro.223.1658998800870;
-        Thu, 28 Jul 2022 02:00:00 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id y14-20020adffa4e000000b0021eb309c97dsm398706wrr.25.2022.07.28.02.00.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 02:00:00 -0700 (PDT)
-References: <20220728054202.6981-1-yu.tu@amlogic.com>
- <20220728054202.6981-2-yu.tu@amlogic.com>
- <82e3fd36-df96-a555-4cea-47fabd26502b@linaro.org>
-User-agent: mu4e 1.8.6; emacs 27.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V2 1/3] dt-bindings: clk: meson: add S4 SoC clock
- controller bindings
-Date:   Thu, 28 Jul 2022 10:50:50 +0200
-In-reply-to: <82e3fd36-df96-a555-4cea-47fabd26502b@linaro.org>
-Message-ID: <1jv8rhfw8h.fsf@starbuckisacylon.baylibre.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=9AF0C8l8seSrzx2WmUBIWSdZqGWfFBtfpdLun9U6Kz8=;
+        b=Fr9buDc+rxPlaMnqpG92NaasNIKHFQo9k5QjcYDbImTps88YdzwORaIduUcHNOdyb1
+         0Y6YotoVk35WV4/UT2Q9LSsch3KdlCnXYuA1g5/UXRenodLLq7YwhwXY+LE0FdmAKmYg
+         EzlCIsNlb0kXTJdVbSdSVApwSi9GDHotpwSlzIf5eAeTD7MoiJ06f63W18XQhTGhGJu4
+         wF3HESfYuXt+qNJ+1hGU83swBLogESNR/BAGLZoWCM2RE8iIb4TwbvnfWWLevTEqwHfg
+         5cC06opBXn3dTUMTpgjcuCqr6SpCdGqaTYCJrnqy3ij0+RkaFcOa4wmf19ofJ7gwZKit
+         eCbg==
+X-Gm-Message-State: AJIora9RDywIU3idHDPJ6bILSPtiwR8jR3oifZPIDzB1/tIVw7+Z6OhL
+        Ps3scT/DXm4OawtWkavqdz8ZNg==
+X-Google-Smtp-Source: AGRyM1tjAGtsAciOHE5CsBzVumOndSP4m4ERcdH7oyhmbdFq+OGEyGoruEpjxxeh3gBxCpR4A3Ahdw==
+X-Received: by 2002:a05:6000:1789:b0:21e:87cd:beba with SMTP id e9-20020a056000178900b0021e87cdbebamr13229704wrg.252.1658998425382;
+        Thu, 28 Jul 2022 01:53:45 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:65a8:ebd8:4098:d9d0? ([2a05:6e02:1041:c10:65a8:ebd8:4098:d9d0])
+        by smtp.googlemail.com with ESMTPSA id n18-20020a5d67d2000000b0020fff0ea0a3sm293465wrw.116.2022.07.28.01.53.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Jul 2022 01:53:45 -0700 (PDT)
+Message-ID: <24250d03-b25f-e521-5abd-f36109885c36@linaro.org>
+Date:   Thu, 28 Jul 2022 10:53:43 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v8 1/6] thermal: mediatek: Relocate driver to mediatek
+ folder
+Content-Language: en-US
+To:     Balsam CHIHI <bchihi@baylibre.com>, rafael@kernel.org,
+        rui.zhang@intel.com, amitk@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+References: <20220726135506.485108-1-bchihi@baylibre.com>
+ <20220726135506.485108-2-bchihi@baylibre.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20220726135506.485108-2-bchihi@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,74 +82,152 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu 28 Jul 2022 at 10:41, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+Hi Balsam,
 
-> On 28/07/2022 07:42, Yu Tu wrote:
->> Add new clock controller compatible and dt-bindings header for the
->> Everything-Else domain of the S4 SoC.
->> 
->> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->
->
->
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index c1abc53f9e91..f872d0c0c253 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -1775,6 +1775,7 @@ F:	Documentation/devicetree/bindings/clock/amlogic*
->>  F:	drivers/clk/meson/
->>  F:	include/dt-bindings/clock/gxbb*
->>  F:	include/dt-bindings/clock/meson*
->> +F:	include/dt-bindings/clock/s4-clkc.h
->>  
->>  ARM/Amlogic Meson SoC Crypto Drivers
->>  M:	Corentin Labbe <clabbe@baylibre.com>
->> diff --git a/include/dt-bindings/clock/s4-clkc.h b/include/dt-bindings/clock/s4-clkc.h
->> new file mode 100644
->> index 000000000000..b686c8877419
->> --- /dev/null
->> +++ b/include/dt-bindings/clock/s4-clkc.h
->
-> Filename with vendor prefix, so:
-> amlogic,s4-clkc.h
->
->> @@ -0,0 +1,146 @@
->> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->> +/*
->> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
->> + * Author: Yu Tu <yu.tu@amlogic.com>
->> + */
->> +
->> +#ifndef _DT_BINDINGS_CLOCK_S4_CLKC_H
->> +#define _DT_BINDINGS_CLOCK_S4_CLKC_H
->> +
->> +/*
->> + * CLKID index values
->> + */
->> +
->> +#define CLKID_FIXED_PLL			1
->> +#define CLKID_FCLK_DIV2			3
->> +#define CLKID_FCLK_DIV3			5
->> +#define CLKID_FCLK_DIV4			7
->> +#define CLKID_FCLK_DIV5			9
->> +#define CLKID_FCLK_DIV7			11
->
-> Why these aren't continuous? IDs are expected to be incremented by 1.
->
+On 26/07/2022 15:55, Balsam CHIHI wrote:
+> Add Mediatek proprietary folder to upstream more thermal zone and cooler
+> drivers. Relocate the original thermal controller driver to it and rename
+> as soc_temp.c to show its purpose more clearly.
 
-All clocks have IDs, it is one big table in the driver, but we are not exposing them all.
-For example, with composite 'mux / div / gate' assembly, we usually need
-only the leaf.
+I realize the Kconfig, Makefiles format are not consistent across the 
+boards. Before I fix this, you can comply to the format:
 
-Same has been done for the other AML controllers:
-For ex:
+drivers/thermal/Kconfig:
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/dt-bindings/clock/gxbb-clkc.h
+menu "Mediatek thermal drivers"
+depends on ARCH_MEDIATEK || COMPILE_TEST
+source "drivers/thermal/mediatek/Kconfig"
+endmenu
 
->> +
->> +#endif /* _DT_BINDINGS_CLOCK_S4_CLKC_H */
->
->
-> Best regards,
-> Krzysztof
+drivers/thermal/Makefile:
 
+-obj-$(CONFIG_MTK_THERMAL)      += mtk_thermal.o
++obj-y                          += mediatek
+
+drivers/thermal/mediatek/Kconfig:
+
+config MTK_SOC_THERMAL
+	tristate "Temperature sensor driver for MediaTek SoCs"
+	depends on HAS_IOMEM
+	depends on NVMEM
+	depends on RESET_CONTROLLER
+	help
+		Enable this option if you want to get SoC temperature
+		information for MediaTek platforms. This driver
+		configures thermal controllers to collect temperature
+		via AUXADC interface.
+
+drivers/thermal/mediatek/Makefile:
+
+obj-$(MTK_SOC_THERMAL)	+= soc_temp.o
+
+However, rename 'soc_temp' to something more SoC explicit, eg. 
+mtxxx_thermal.c
+
+Thanks
+
+   -- Daniel
+
+
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+
+> ---
+>   drivers/thermal/Kconfig                       | 14 ++++-------
+>   drivers/thermal/Makefile                      |  2 +-
+>   drivers/thermal/mediatek/Kconfig              | 23 +++++++++++++++++++
+>   drivers/thermal/mediatek/Makefile             |  1 +
+>   .../{mtk_thermal.c => mediatek/soc_temp.c}    |  0
+>   5 files changed, 29 insertions(+), 11 deletions(-)
+>   create mode 100644 drivers/thermal/mediatek/Kconfig
+>   create mode 100644 drivers/thermal/mediatek/Makefile
+>   rename drivers/thermal/{mtk_thermal.c => mediatek/soc_temp.c} (100%)
+> 
+> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+> index 0e5cc948373c..ecba8d6e313b 100644
+> --- a/drivers/thermal/Kconfig
+> +++ b/drivers/thermal/Kconfig
+> @@ -412,16 +412,10 @@ config DA9062_THERMAL
+>   	  zone.
+>   	  Compatible with the DA9062 and DA9061 PMICs.
+>   
+> -config MTK_THERMAL
+> -	tristate "Temperature sensor driver for mediatek SoCs"
+> -	depends on ARCH_MEDIATEK || COMPILE_TEST
+> -	depends on HAS_IOMEM
+> -	depends on NVMEM || NVMEM=n
+> -	depends on RESET_CONTROLLER
+> -	default y
+> -	help
+> -	  Enable this option if you want to have support for thermal management
+> -	  controller present in Mediatek SoCs
+> +menu "Mediatek thermal drivers"
+> +depends on ARCH_MEDIATEK || COMPILE_TEST
+> +source "drivers/thermal/mediatek/Kconfig"
+> +endmenu
+>   
+>   config AMLOGIC_THERMAL
+>   	tristate "Amlogic Thermal Support"
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index def8e1a0399c..3c00e864ad55 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -55,7 +55,7 @@ obj-y				+= st/
+>   obj-$(CONFIG_QCOM_TSENS)	+= qcom/
+>   obj-y				+= tegra/
+>   obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
+> -obj-$(CONFIG_MTK_THERMAL)	+= mtk_thermal.o
+> +obj-$(CONFIG_MTK_THERMAL)	+= mediatek/
+>   obj-$(CONFIG_GENERIC_ADC_THERMAL)	+= thermal-generic-adc.o
+>   obj-$(CONFIG_UNIPHIER_THERMAL)	+= uniphier_thermal.o
+>   obj-$(CONFIG_AMLOGIC_THERMAL)     += amlogic_thermal.o
+> diff --git a/drivers/thermal/mediatek/Kconfig b/drivers/thermal/mediatek/Kconfig
+> new file mode 100644
+> index 000000000000..9c41e9079fc3
+> --- /dev/null
+> +++ b/drivers/thermal/mediatek/Kconfig
+> @@ -0,0 +1,23 @@
+> +config MTK_THERMAL
+> +	tristate "MediaTek thermal drivers"
+> +	depends on THERMAL_OF
+> +	help
+> +		This is the option for MediaTek thermal software
+> +		solutions. Please enable corresponding options to
+> +		get temperature information from thermal sensors or
+> +		turn on throttle mechaisms for thermal mitigation.
+> +
+> +if MTK_THERMAL
+> +
+> +config MTK_SOC_THERMAL
+> +	tristate "Temperature sensor driver for MediaTek SoCs"
+> +	depends on HAS_IOMEM
+> +	depends on NVMEM
+> +	depends on RESET_CONTROLLER
+> +	help
+> +		Enable this option if you want to get SoC temperature
+> +		information for MediaTek platforms. This driver
+> +		configures thermal controllers to collect temperature
+> +		via AUXADC interface.
+> +
+> +endif
+> diff --git a/drivers/thermal/mediatek/Makefile b/drivers/thermal/mediatek/Makefile
+> new file mode 100644
+> index 000000000000..4b4cb04a358f
+> --- /dev/null
+> +++ b/drivers/thermal/mediatek/Makefile
+> @@ -0,0 +1 @@
+> +obj-$(CONFIG_MTK_SOC_THERMAL)		+= soc_temp.o
+> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mediatek/soc_temp.c
+> similarity index 100%
+> rename from drivers/thermal/mtk_thermal.c
+> rename to drivers/thermal/mediatek/soc_temp.c
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
