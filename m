@@ -2,89 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFFA758431D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 17:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08F1D584334
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 17:39:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbiG1Pbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 11:31:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46458 "EHLO
+        id S230187AbiG1PjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 11:39:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229862AbiG1Pbm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 11:31:42 -0400
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 892FD61DA9;
-        Thu, 28 Jul 2022 08:31:41 -0700 (PDT)
-Received: from cpc152649-stkp13-2-0-cust121.10-2.cable.virginm.net ([86.15.83.122] helo=[192.168.0.17])
-        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1oH5Tr-006dKi-BO; Thu, 28 Jul 2022 16:31:19 +0100
-Message-ID: <0d644682-094d-6151-aa2f-86552c8f9a87@codethink.co.uk>
-Date:   Thu, 28 Jul 2022 16:31:17 +0100
+        with ESMTP id S229588AbiG1PjV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 11:39:21 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A57755723A
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 08:39:20 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id y9so2221151pff.12
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 08:39:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CqSVW/Ueq6eSKuuwfz5Rq7CFA5+wXLwAWIYxDZSpO44=;
+        b=Mr16A+PaQ/QvRlFTof2HXImkabcfMVdsACcFH/i8ptMJGW1+/4dSaqJ2BBBZbr8sj1
+         T/xZiOYHH9TxqQMvAbuFv+TD6zRIiIZWvOjT+sFZppRity0mktOZJF6Gn+Hajj67uf5z
+         9Pv1twnvGQC0/BWmgqg9CgZVs82EDjtuTntDk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CqSVW/Ueq6eSKuuwfz5Rq7CFA5+wXLwAWIYxDZSpO44=;
+        b=V5E58jB7ctC6pRrQL9Sz95Lb06XVw2DzOwb7FTJIP9Z9899MmMGQsu/4lH4V4qwxMA
+         UuIwOfaHCyH2D84U/bbtGN89Btur0crS7TKagrdv4O05FeSTm4EEPH64jS7ZXJwn6UJ0
+         GFoNse1w9Ay9vwQ7eM0XMEoObkOm5uDz4JK2+gLyidnBF4wqI7UacoUzV8nrZoYXEocP
+         vUs+97qvWgStJRX4FjD4c2henlPMlRLXRdCdAp8ryFwC831DWyVqEO9LBDU0UUcvZ9lv
+         bwtRi3ccFNbxWd/WLCCRs1+SoTbQKpZIj7Gqc5Hn5PU4bmwA+Js0LQnIMSW3NNfBsd47
+         Nqvw==
+X-Gm-Message-State: AJIora+fCdbDB7zUa0x2LyIbSltWpNmHrDS6zDJFBBQi63Ju2/csJRWB
+        rMNzibxO2kj2uR9pLFUg0cBxdA==
+X-Google-Smtp-Source: AGRyM1u7RU0iN+DYfRvTGeLIPu8TkCTXOx9aEqO/5m1pJbFtITJo9P6lOu6fitsB9UUSmxcut8h8eg==
+X-Received: by 2002:a63:1c24:0:b0:41b:40c5:f114 with SMTP id c36-20020a631c24000000b0041b40c5f114mr8543848pgc.3.1659022760163;
+        Thu, 28 Jul 2022 08:39:20 -0700 (PDT)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:7c0f:5963:f38d:5645])
+        by smtp.gmail.com with ESMTPSA id n5-20020a170902e54500b0016c0593876csm1462148plf.157.2022.07.28.08.39.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 08:39:19 -0700 (PDT)
+From:   Pin-yen Lin <treapking@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Eizan Miyamoto <eizan@chromium.org>,
+        Evan Benn <evanbenn@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Pin-yen Lin <treapking@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3] arm64: dts: mt8173-oak: Switch to SMC watchdog
+Date:   Thu, 28 Jul 2022 23:39:13 +0800
+Message-Id: <20220728153913.2652153-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.37.1.359.gd136c6c3e2-goog
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH RESEND v4 03/15] PCI: dwc: Convert to using native IP-core
- versions representation
-Content-Language: en-GB
-To:     Bjorn Helgaas <helgaas@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rahul Tanwar <rtanwar@maxlinear.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20220728152418.GA302516@bhelgaas>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <20220728152418.GA302516@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2022 16:24, Bjorn Helgaas wrote:
-> On Fri, Jun 24, 2022 at 05:39:35PM +0300, Serge Semin wrote:
->> Since DWC PCIe v4.70a the controller version can be read from the
->> PORT_LOGIC.PCIE_VERSION_OFF register. Version is represented in the FourCC
->> format [1]. It's standard versioning approach for the Synopsys DWC
->> IP-cores. Moreover some of the DWC kernel drivers already make use of it
->> to fixup version-dependent functionality (See DWC USB3, Stmicro STMMAC or
->> recent DW SPI driver).
-> 
-> These references to other drivers might be useful, but without a
-> function name or file name, I can't easily find them.
-> 
->> In order to preserve the standard version
->> representation and prevent the data conversion back and forth, we suggest
->> to preserve the native version representation in the DWC PCIe driver too
->> in the same way as it has already been done in the rest of the DWC
->> drivers. IP-core version reading from the CSR will be introduced in the
->> next commit together with a simple macro-based API to use it.
->>
->> [1] https://en.wikipedia.org/wiki/FourCC
-> 
+Switch to SMC watchdog because we need direct control of HW watchdog
+registers from kernel. The corresponding firmware was uploaded in
+https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
 
-I'm currently looking at a OF based dw-apb-timers-pwm driver, so also
-would like to follow this.
+Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+---
 
+Changes in v3:
+- Remove /delete-node/ and create a new node for SMC watchdog.
+
+Changes in v2:
+- Move the modifications to mt8173-elm.dtsi and add some comments.
+
+ arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+index e21feb85d822..fc8203297bac 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+@@ -161,6 +161,19 @@ hdmi_connector_in: endpoint {
+ 			};
+ 		};
+ 	};
++
++
++	smc_watchdog {
++		compatible = "arm,smc-wdt";
++	};
++};
++
++/*
++ * Disable the original MMIO watch dog and switch to the SMC watchdog, which
++ * operates on the same MMIO.
++ */
++&watchdog {
++	status = "disabled";
+ };
+ 
+ &mfg_async {
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+2.37.1.359.gd136c6c3e2-goog
 
-https://www.codethink.co.uk/privacy.html
