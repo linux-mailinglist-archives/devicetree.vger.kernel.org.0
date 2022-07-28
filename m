@@ -2,209 +2,352 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FBDE583BB4
-	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:05:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A117F583BBA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Jul 2022 12:05:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234681AbiG1KFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 06:05:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36126 "EHLO
+        id S235042AbiG1KFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 06:05:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234721AbiG1KFV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:05:21 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A9112084;
-        Thu, 28 Jul 2022 03:05:18 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id u5so1551653wrm.4;
-        Thu, 28 Jul 2022 03:05:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dWlkcKxZ/jS1fvdg+IOxwtUsS5FS2QYlkdZZEqT1QMc=;
-        b=hyGik4gSM24BRmFurXeXH+YFWoNR6Q2CZ5C0exR0BakP/Mr++Htqf6TXWPI3tbLheL
-         DLz2flfQY3b82VstHLrylN1GbAgvw5HY5obOiFMf6cqsix4m5lIHfHYsNf0y2uSUs+RH
-         q8GDanVkOqqg6AGs3Dc1Zec2xkH+JS19Y2M3FisP4otHZ47NrCsXVgV7RCqydhx4qEJz
-         UtsYss3ctyifFHlGtwi5v/l2uSfkLCPCUyk7G9g7RU1OcMYG1h+vlrAkmyi4QkFEk1mE
-         iFJ7mZP9X4bVt/4ZIVGrKAAB2MCmEB745/EZFGjttFV4G8CfaGrzoRkE+j/LB/PBrQp/
-         6UOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dWlkcKxZ/jS1fvdg+IOxwtUsS5FS2QYlkdZZEqT1QMc=;
-        b=qWkJvqw76U4X4kpdicnn34cL6s3LAeYhZAptoyxFrpg/Fd3J60RxKjAFYs0uGkajjC
-         rAfDZSh9TIQy/8iR8LyljxFB5AD2GzqGzPv8KcObRAjMvLiyyjKUmO2Cz2nNzagupwFy
-         z/j76ejppNMeB8XstXgpMVBAJtmMRiQpDAjdPF7tsxgJ75Br0htRnvVJN04rbKrUB8NA
-         cx2y9GpZG5knDx8Cg2Ql55WLf/fwaBK6F/ax3edU6QdtVUnZ8BDXgjm0ax3BIbhDvmpw
-         h+2SNCQiPaaRsP4RtSPqzPf43gQTP6Jk8lZ2n5jmGY+yUAZ3RDgxjYMpH2ovBjDn+Vom
-         JaNg==
-X-Gm-Message-State: AJIora+ex49Qa8okSDqpPY2ZARHrDFKDMjLNeiQ2rAfB1bAKOyXoNSyM
-        ZfLPYACMcQyTYDsN0DeXo5g=
-X-Google-Smtp-Source: AGRyM1t0iA7TPfcqYYgpFlRXePVpOn+sJssKxjGrJTwqD8Q0XR9BDUqt1ipPUuJW6ULIyrFN9kOWuA==
-X-Received: by 2002:a5d:6d8f:0:b0:21d:b7d0:a913 with SMTP id l15-20020a5d6d8f000000b0021db7d0a913mr16483662wrs.462.1659002717317;
-        Thu, 28 Jul 2022 03:05:17 -0700 (PDT)
-Received: from [192.168.2.202] (pd9ea36f8.dip0.t-ipconnect.de. [217.234.54.248])
-        by smtp.gmail.com with ESMTPSA id bg3-20020a05600c3c8300b003a327b98c0asm804016wmb.22.2022.07.28.03.05.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 03:05:16 -0700 (PDT)
-Message-ID: <4e777590-616a-558a-031e-3ef1f1e492b4@gmail.com>
-Date:   Thu, 28 Jul 2022 12:05:15 +0200
+        with ESMTP id S235934AbiG1KFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 06:05:33 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1405247A;
+        Thu, 28 Jul 2022 03:05:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 577CFB82398;
+        Thu, 28 Jul 2022 10:05:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CB8FC433B5;
+        Thu, 28 Jul 2022 10:05:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1659002726;
+        bh=bHkAUUJ8s9fL6+SCkEHpALg68TWhAv30Y5oWcfi3Dyc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Qr0udpQzvizSkLpGfOnZu9Jg/2C1UycmicxD2MmCsRua5PnQSkwyD08NzFdVUqOUD
+         8HfDlwWGck0JNcu4CQbKOg0mnDvt2aAKP3b1mO3pu8pHCZJFcFqnMLYYItVrOdZBxm
+         mw+37B/L9RAnpDjLIPusQlDxTbTW0eyVGIDwhouc=
+Date:   Thu, 28 Jul 2022 12:05:23 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mani@kernel.org, hemantk@codeaurora.org, elder@linaro.org,
+        f.fainelli@gmail.com, linus.walleij@linaro.org,
+        Michael.Srba@seznam.cz, jeffrey.l.hugo@gmail.com,
+        bjorn.andersson@linaro.org, saravanak@google.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH RFC v1 1/2] bus: add Wiegand write-only GPIO driver
+Message-ID: <YuJfY1sfYQgKVQa7@kroah.com>
+References: <20220728091712.13395-1-m.zatovic1@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-Content-Language: en-US
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <20220723224949.1089973-5-luzmaximilian@gmail.com>
- <20220726143005.wt4be7yo7sbd3xut@bogus>
- <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com>
- <20220726154138.74avqs6iqlzqpzjk@bogus>
- <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
- <20220728082330.w4ppmzvjaeywsglu@bogus>
-From:   Maximilian Luz <luzmaximilian@gmail.com>
-In-Reply-To: <20220728082330.w4ppmzvjaeywsglu@bogus>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220728091712.13395-1-m.zatovic1@gmail.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/28/22 10:23, Sudeep Holla wrote:
-> On Tue, Jul 26, 2022 at 07:01:28PM +0200, Maximilian Luz wrote:
->> On 7/26/22 17:41, Sudeep Holla wrote:
->>> On Tue, Jul 26, 2022 at 05:15:41PM +0200, Maximilian Luz wrote:
->>>>
->>>> So ultimately I think it's better to add a DT entry for it.
->>>
->>> I disagree for the reason that once you discover more apps running on the
->>> secure side, you want to add more entries and update DT on the platform
->>> every time you discover some new firmware entity and you wish to interact
->>> with it from the non-secure side.
->>
->> Just as you'll have to add a driver to the kernel and update whatever is
->> probing the TrEE interface and add those strings to that interface. If
->> you then start doing SoC-specific lists, I think you'd be pretty much
->> re-implementing a DT in the kernel driver...
->>
-> 
-> Yes at the cost of DT being dumping ground for all the SoC specific firmware
-> crap. Firmware can be and must be discoverable, no point in dumping it in
-> DT as it forces DT upgrade every time something changes in the firmware i.e.
-> it can go out of sync quite quickly.
+On Thu, Jul 28, 2022 at 11:17:11AM +0200, Martin Zaťovič wrote:
+> +static dev_t base_devno;
+> +static int max_devices = 1;
+> +static struct class *wiegand_gpio_cl;
 
-I fully agree with you here on the design level. Firmware _should_ be
-discoverable. Unfortunately, in this case it really isn't.
+No need for your own class and stuff, just use the misc_device interface
+and dynamically create a device node that way.  It will make your code
+much simaller and simpler overall.
 
-Again, in Windows, this information is stored via the Registry and set
-when the driver is installed. An example:
 
-     ; UEFIVAR SECURE APP SERVICE
-     HKR,%EFIVarService.RegKey%,Enabled,%REG_DWORD%,1
-     HKR,%EFIVarService.RegKey%,MajorVersion,%REG_DWORD%,1
-     HKR,%EFIVarService.RegKey%,MinorVersion,%REG_DWORD%,0
-     
-     ; WINSECAPP SECURE APP SERVICE
-     HKR,%WinSecAppService.RegKey%,Enabled,%REG_DWORD%,1
-     HKR,%WinSecAppService.RegKey%,SecureApp,%REG_DWORD%,1
-     HKR,%WinSecAppService.RegKey%,LoadApp,%REG_DWORD%,0
-     HKR,%WinSecAppService.RegKey%,AppName,,"qcom.tz.winsecapp"
-     HKR,%WinSecAppService.RegKey%,MajorVersion,%REG_DWORD%,1
-     HKR,%WinSecAppService.RegKey%,MinorVersion,%REG_DWORD%,0
-     HKR,%WinSecAppService.RegKey%,OSDependencies,%REG_MULTI_SZ%,%RpmbOsService%
-     
-     ; HDCP v2.2 SECURE APP SERVICE
-     HKR,%Hdcp2p2Service.RegKey%,Enabled,%REG_DWORD%,1
-     HKR,%Hdcp2p2Service.RegKey%,SecureApp,%REG_DWORD%,1
-     HKR,%Hdcp2p2Service.RegKey%,LoadApp,%REG_DWORD%,1
-     HKR,%Hdcp2p2Service.RegKey%,AppName,,"qcom.tz.hdcp2p2"
-     HKR,%Hdcp2p2Service.RegKey%,FileName,,"hdcp2p2.mbn"
-     HKR,%Hdcp2p2Service.RegKey%,MajorVersion,%REG_DWORD%,1
-     HKR,%Hdcp2p2Service.RegKey%,MinorVersion,%REG_DWORD%,0
-     HKR,%Hdcp2p2Service.RegKey%,OSDependencies,%REG_MULTI_SZ%,%RpmbOsService%,%TzAppsOsService%
+> +static unsigned int wiegand_gpio_get_payload_size(
+> +						unsigned long payload_len_bits,
+> +						enum wiegand_format fmt)
+> +{
+> +	unsigned int ret;
+> +
+> +	if (fmt == WIEGAND_CUSTOM)
+> +		ret = wiegand_gpio_calc_bytes(payload_len_bits);
+> +	else
+> +		/* add 2 for parity bits */
+> +		ret = wiegand_gpio_calc_bytes(payload_len_bits + 2);
+> +
+> +	return ret;
+> +}
+> +
+> +static int wiegand_gpio_calc_parity8(uint8_t v)
 
-The '.RegKey' contains a GUID that specifies the _driver_ interface that
-is registered by the driver to the kernel (i.e. is not related to the
-specific firmware and firmware version), e.g. [1]. For uefisecapp, the
-driver also maps this GUID to the name-string.
+Note, "unit8_t" is not a real kernel type, please just use u8 for this
+(and all other variable types you have here.)  The "_t" types are for
+userspace code only, doesn't really belong in the kernel.
 
-[1]: https://github.com/tpn/winsdk-10/blob/9b69fd26ac0c7d0b83d378dba01080e93349c2ed/Include/10.0.16299.0/km/treevariableservice.h#L35
+And yes, I know, there are lots of in-kernel users, but no need to make
+more when you don't have to.
 
->> I don't quite understand why this is a problem. I think per device,
->> there's a reasonably limited set of apps that we would want to interact
->> with from the kernel. And for one single device, that set doesn't change
->> over time. So what's the difference to, say, an I2C device?
->>
-> 
-> As I said we don't want DT to be dumping ground for all the not well designed
-> firmware interface. The whole point of firmware being another piece of
-> software that can be change unlike hardware makes it fragile to present any
-> more that what you need in the DT. I see this as one of the example.
+> +{
+> +	v = (v >> 4) ^ (v & ((1 << 4)-1));
+> +	v = (v >> 2) ^ (v & ((1 << 2)-1));
+> +	v = (v >> 1) ^ (v & ((1 << 1)-1));
+> +	return v;
+> +}
+> +
+> +static void wiegand_gpio_add_parity_to_data(unsigned char *tmp, uint8_t *data,
+> +						enum wiegand_format fmt)
+> +{
+> +	switch (fmt) {
+> +	case WIEGAND_V26:
+> +		data[0] = (tmp[0] >> 1) | (wiegand_gpio_calc_parity8(
+> +						tmp[0] ^ (tmp[1] & 0xf0)) << 7);
+> +		data[1] = (tmp[0] << 7) | (tmp[1] >> 1);
+> +		data[2] = (tmp[1] << 7) | (tmp[2] >> 1);
+> +		data[3] = (tmp[2] << 7) | (!wiegand_gpio_calc_parity8(
+> +						(tmp[1] & 0x0f) ^ tmp[2]) << 6);
+> +
+> +#ifdef DEBUG
+> +		printk(KERN_DEBUG
+> +			"%s: d[%02x,%02x,%02x] -> w[%02x,%02x,%02x,%02x]\n",
+> +			__func__,
+> +			tmp[0], tmp[1], tmp[2],
+> +			data[0], data[1],
+> +			data[2], data[3]);
+> +#endif
 
-I can see your point. But this interface has apparently been around
-since at least sdm850 (e.g. Lenovo C630) and hasn't changed. As I've
-argued elsewhere: All parties involved have a vested interest that this
-interface doesn't change in a breaking way. The interface is modeled
-similar to syscalls, so I very much expect them to extend it if needed,
-instead of changing/breaking it.
+dev_dbg() is your friend, no need for any #ifdef comments.  As you have
+a real device everywhere, always use dev_*() calls, never a raw printk()
+or pr_*() call.
 
-Sure, it _could_ be changed in a breaking way. But again, I believe that
-to be _very_ unlikely.
+Also with dev_dbg(), no need for the addition of __func__ as it's added
+automatically by the kernel if you ask for it.
 
-> Anyways I don't have the final say, I leave it to the DT maintainers.
-> 
->>> As along as get this application ID can handle any random name, I prefer
->>> to use that as the discover mechanism and not have this DT.
->>
->> Apart from the above, some apps must also be loaded from the system. And
->> those you can't detect: If an app isn't running, it doesn't have an ID
->> (uefisecapp and the tpm app are loaded by the firmware at boot). Those
->> are mostly vendor-specific things as far as I can tell, or HDCP stuff.
->> So you'd need to specify those as firmware somehow, and since (as far as
->> I can tell) those are signed specifically by/for that vendor and
->> potentially device (similar to the GPU zap shader or remoteproc
->> firmware), you'll need to use per-device paths.
->>
-> 
-> Sounds to me like more can be pushed to user space as it gets loaded at
-> runtime.
+> +static int wiegand_gpio_open(struct inode *ino, struct file *filp)
+> +{
+> +	struct wiegand_gpio_device *wiegand_gpio;
+> +	struct wiegand_gpio_instance *info;
+> +	int rc;
+> +
+> +	wiegand_gpio = container_of(ino->i_cdev,
+> +			struct wiegand_gpio_device, cdev);
+> +
+> +	mutex_lock(&wiegand_gpio->mutex);
+> +
+> +	/* Only one device instance allowed */
+> +	if (wiegand_gpio->flags) {
 
-If we have user-space available at the time when these things should be
-loaded or if they are more or less optional, sure.
+This check really will not work, sorry.  Don't worry about userspace
+trying to open the device node multiple times, you can't prevent this,
+and any kernel code that tries to is wrong (think about duplicating a
+file handle and passing it to other processes...)
 
->> That means you either hard-code them in the driver and have a compatible
->> per model, do DMI matching, or something similar (again, essentially
->> baking DTs into the kernel driver...), or just store them in the DT
->> (like we already do for GPU/remoteprocs). While you could hard-code some
->> known loaded-by-firmware apps and use the DT for others, I think we
->> should keep everything in the same place.
->>
-> 
-> Worst case I am fine with that as this needs to be one of and future
-> platforms must get their act right in designing their f/w interface.
+So just don't care, if userspace wants to do something foolish like
+this, let it, it will have to deal with the pieces when things fall
+apart :)
 
-Again, I fully agree with you that this situation shouldn't exist. But
-reality is sadly different.
 
-Regards,
-Max
+> +static ssize_t store_ulong(unsigned long *val, const char *buf,
+> +				size_t size, unsigned long max)
+> +{
+> +	int ret;
+> +	unsigned long new;
+> +
+> +	ret = kstrtoul(buf, 0, &new);
+> +	if (ret)
+> +		return ret;
+> +	if (max != 0 && new > max)
+> +		return -EINVAL;
+> +
+> +	*val = new;
+> +	return size;
+> +}
+
+We have this function in the kernel already, right?
+
+> +
+> +/* sysfs functions */
+> +static ssize_t show_ulong(unsigned long val, char *buf)
+> +{
+> +	return snprintf(buf, PAGE_SIZE, "%lu\n", val);
+
+sysfs_emit() please.
+
+Also, you have sysfs files in this driver, but no Documentation/ABI
+entries, which is always needed.
+
+> +}
+> +
+> +ssize_t pulse_len_show(struct device *dev, struct device_attribute *attr,
+> +		char *buf)
+> +{
+> +	struct wiegand_gpio_device *device = dev_get_drvdata(dev);
+> +
+> +	if (!device)
+> +		return -ENODEV;
+> +
+> +	return show_ulong(device->setup.pulse_len, buf);
+
+Just do a sysfs_emit(), no need for the show_ulong() call.
+
+> +static int wiegand_gpio_dev_probe(struct platform_device *pdev)
+> +{
+> +	int rc;
+> +	struct wiegand_gpio_device *wiegand_gpio;
+> +	struct wiegand_gpio_platform_data *pdata = pdev->dev.platform_data;
+> +
+> +	if (!pdata) {
+> +		if (IS_ERR(pdata))
+> +			return PTR_ERR(pdata);
+> +	}
+> +
+> +	wiegand_gpio = kzalloc(sizeof(struct wiegand_gpio_device), GFP_KERNEL);
+> +	if (!wiegand_gpio)
+> +		return -ENOMEM;
+> +
+> +	wiegand_gpio->dev = &pdev->dev;
+> +
+> +	/* Initialize character device */
+> +	cdev_init(&wiegand_gpio->cdev, &wiegand_gpio_fops);
+> +	wiegand_gpio->cdev.owner = THIS_MODULE;
+> +
+> +	rc = cdev_add(&wiegand_gpio->cdev, MKDEV(MAJOR(base_devno),
+> +				pdev->id == -1 ? 0 : pdev->id), 1);
+> +	if (rc < 0) {
+> +		dev_err(&pdev->dev, "Failed to allocate cdev: %d\n", rc);
+> +		kfree(wiegand_gpio);
+> +		return rc;
+> +	}
+> +
+> +	wiegand_gpio->dev->devt = wiegand_gpio->cdev.dev;
+> +	mutex_init(&wiegand_gpio->mutex);
+> +
+> +	/* Get GPIO lines using device tree bindings. */
+> +	wiegand_gpio->gpio_data_lo = devm_gpiod_get(wiegand_gpio->dev,
+> +			"wiegand-data-lo", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(wiegand_gpio->gpio_data_lo)) {
+> +		dev_info(wiegand_gpio->dev,
+> +			"Failed to get wiegand-data-lo pin.\n");
+
+dev_err()?
+
+> +		return PTR_ERR(wiegand_gpio->gpio_data_lo);
+
+You also just leaked memory :(
+
+> +	}
+> +	wiegand_gpio->gpio_data_hi = devm_gpiod_get(wiegand_gpio->dev,
+> +			"wiegand-data-hi", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(wiegand_gpio->gpio_data_hi)) {
+> +		dev_info(wiegand_gpio->dev,
+> +			"Failed to get wiegand-data-hi pin.\n");
+
+dev_err()?
+
+> +		return PTR_ERR(wiegand_gpio->gpio_data_hi);
+
+memory leak :(
+
+> +	}
+> +
+> +	memcpy(&wiegand_gpio->setup, &WIEGAND_SETUP,
+> +			sizeof(struct wiegand_setup));
+> +
+> +	platform_set_drvdata(pdev, wiegand_gpio);
+> +
+> +	dev_info(&pdev->dev, "devno=%d:%d\n",
+> +		 MAJOR(wiegand_gpio->dev->devt),
+> +		 MINOR(wiegand_gpio->dev->devt));
+
+When drivers work properly, they are quiet, no need for this.  Make it
+dev_dbg() if you really want it.
+
+> +
+> +	rc = device_create_file(wiegand_gpio->dev, &dev_attr_pulse_len);
+> +	rc |= device_create_file(wiegand_gpio->dev, &dev_attr_interval_len);
+> +	rc |= device_create_file(wiegand_gpio->dev, &dev_attr_frame_gap);
+> +	rc |= device_create_file(wiegand_gpio->dev, &dev_attr_format);
+> +	rc |= device_create_file(wiegand_gpio->dev,
+> +				&dev_attr_payload_len);
+> +	if (rc != 0)
+> +		dev_warn(&pdev->dev,
+> +				"Failed to register attribute files(%d)\n", rc);
+
+Use an attribute group please.
+
+Also, you just raced with userspace and lost, never create/remove your
+own sysfs files.  Have the driver core do it automatically for you in a
+safe way (also less code for you to write.)  Use the default_groups
+attribute of the platform device please.
+
+> +static int __init wiegand_gpio_init(void)
+> +{
+> +	int rc;
+> +	struct device *wiegand_device;
+> +	struct class *cl;
+> +
+> +	rc = alloc_chrdev_region(&base_devno, 0, max_devices, "wiegand-gpio");
+> +	if (rc < 0) {
+> +		pr_err("%s: Failed to allocate chardev region: %d\n",
+> +			__func__, rc);
+> +		return rc;
+> +	}
+> +
+> +	cl = class_create(THIS_MODULE, "chardrv");
+
+Very generic name for a specific driver :)
+
+Anyway, as mentioned above, this is not needed at all, just use the misc
+device layer instead.  Much simpler code overall.
+
+
+> +	if (IS_ERR(cl)) {
+> +		pr_err("Failed to create a class for character device");
+> +		unregister_chrdev_region(base_devno, max_devices);
+> +		return PTR_ERR(cl);
+> +	}
+> +	wiegand_gpio_cl = cl;
+> +
+> +	wiegand_device = device_create(cl, NULL, base_devno, NULL,
+> +			"wiegand-gpio");
+> +	if (IS_ERR(wiegand_device)) {
+> +		class_destroy(cl);
+> +		unregister_chrdev_region(base_devno, max_devices);
+> +		return PTR_ERR(wiegand_device);
+> +	}
+> +
+> +	rc = platform_driver_register(&wiegand_gpio_driver);
+> +	if (rc < 0) {
+> +		pr_err("Error %d while registering wiegand-gpio driver\n", rc);
+> +		unregister_chrdev_region(base_devno, max_devices);
+> +		return rc;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void __exit wiegand_gpio_exit(void)
+> +{
+> +	platform_driver_unregister(&wiegand_gpio_driver);
+> +	unregister_chrdev_region(base_devno, max_devices);
+> +	device_destroy(wiegand_gpio_cl, base_devno);
+> +	class_destroy(wiegand_gpio_cl);
+> +}
+> +
+> +module_init(wiegand_gpio_init);
+> +module_exit(wiegand_gpio_exit);
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("Wiegand write-only driver realized by GPIOs");
+> +MODULE_AUTHOR("Martin Zaťovič <m.zatovic1@gmail.com>");
+> diff --git a/drivers/bus/wiegand-gpio.h b/drivers/bus/wiegand-gpio.h
+> new file mode 100644
+> index 000000000000..f0f389d5bfec
+> --- /dev/null
+> +++ b/drivers/bus/wiegand-gpio.h
+
+No need for a .h file for only a single .c file.  Put this all in the
+driver file itself.
+
+thanks,
+
+greg k-h
