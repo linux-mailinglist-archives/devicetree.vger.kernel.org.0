@@ -2,190 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1980E584A79
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 06:00:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 236D7584A83
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 06:11:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbiG2EA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 00:00:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57476 "EHLO
+        id S231898AbiG2ELm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 00:11:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbiG2EA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 00:00:26 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5743419C37
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 21:00:25 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id u5so4536017wrm.4
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 21:00:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=N+M08tpos8evh2hu91cRjLmMwuJ4cMW1pehmYWY8GhA=;
-        b=DlRnNYVHf3u5DiGzLfwBE2FvJZHevCE3BjBtqtFkubjnjY9nLKabKPj4chGSNNn3M9
-         ckesrVKRzHqgd0zNFCU3pfN/1vpQXp0ZRVF8ledWD+k1i7p4cUono+MnZB68y7/5jdE7
-         10COQAgbY8OimaBx54LYhTY3oxT/m4O/adaGg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=N+M08tpos8evh2hu91cRjLmMwuJ4cMW1pehmYWY8GhA=;
-        b=Dm3/NSTEJX1qv1tfjx2kch3B8jZFZaiZIE0dYMb75RqeqFBUgfyMpz6yJl2Joz5n1C
-         pL0tl6R4I/HxdKjFiP9/SJLv5y0b4lnkGiGjC9CMd7CDv89RyClwUXnZNl+1aeGskQyz
-         z3vMbiYtcEhzwRn9e1wldX3WFfJP8sJkOMRTBTzafdQqiRQQ128ovM2A7J585OEwdfQN
-         qNGWja6S4ChcYn6LnZRapFE2Qv55ej+qa/eHGxoEWoJgtgxjnERWtYywq2eMGbwo3gpX
-         2p2VVxAbMgvi66TvNDLaNokUNdWnTFeaQzob9OQgELKJ5PWqpWK0cbDsJsNbcu+Vr/gR
-         SzLQ==
-X-Gm-Message-State: ACgBeo0Ble2Tjtt3GpiC4EnSFkTqxkGI1YOA1ETH+3PzIhFOAqxRDap6
-        BUH4E/5L/aCQCxfcCotbu5Tv1bp5/16eIcVbVO4Vpw==
-X-Google-Smtp-Source: AA6agR7/0FtNh7jjz3ZxnoZKxjIxEcKDzaD7rZuUPapJb2MMh3j0nj5Ylz9QQMxX5PTay7wZW4S9C6oKjcQEsjdfF9M=
-X-Received: by 2002:a5d:64cc:0:b0:21d:a4bd:fdbe with SMTP id
- f12-20020a5d64cc000000b0021da4bdfdbemr1011124wri.580.1659067223723; Thu, 28
- Jul 2022 21:00:23 -0700 (PDT)
+        with ESMTP id S231897AbiG2ELl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 00:11:41 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2077.outbound.protection.outlook.com [40.107.94.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 519DA6D9D5;
+        Thu, 28 Jul 2022 21:11:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hJyDZn/AjD4XQ1kZIoRBUHAfPFeHQ2N2Qw1qYgwpv0y6tW9qUyYzjp1x4my7dfKxNklnE3nKq17/qhPLdg2DtjcB4nyLIMYSc4L+XQFpd0/6qo1o2XEyFOKSpVWcdKUYVMHLBNoKYbHYY+DG0Zl2540FyYNT+98ZQ0xuogMshqQpSVRwh5pAXjeI9ItegZ2QrqDIpGFLgHdVmB8QpGO4wuyKPN3USaMB7LneT9aO0k+R7oNkBS+FxroReSNO6YqnFGERvQTm4k7rdzS8f/sp21jqh0XkfKCCW0JQJSvXwDC7GDfbhc9w31mD02WUCuhSfsOITrxWsuGNpIF7FfxhyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BdPJwwGO2OARN/iw6a9OwdWhquDhALcEUn94ouAHCEs=;
+ b=c6FZV8alhBsTU0TmY6v9qTS3AHf+sLppaed07q1O+2P02n2NoDEgx7sGs1NNhdiHH8RxY4Jczv2D2LLvQfCyi9sZ2TrKw94UXGEt8vsmrolfe2dKMeuKHXRXgygU3jrvBdQ2oLHGcUgEL+9CtfVCplulOi4Kag/mTwdYt4TF67toPTNY+5zqTtrjueLvZU5Htraz6ryQvfAxmNQqcykWNul2jDsxOYnU1yKiOpV+HsIHXxW8KO9XKBaciTjqU19rCHiUaOzLSJ1/kkwIyzV31Skzc/0SyD/Wx+rna582XHJIwLZ/SLuEZ2/3OZcGihDS7/nL5WCl7EgmzWk7k6IYKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BdPJwwGO2OARN/iw6a9OwdWhquDhALcEUn94ouAHCEs=;
+ b=rvAuhyhgmSZhjkcQg72u7ouXmu1unw6s7Tswil0vGtbm4F+1TrbRdvIXZVOaacnflufV+e3QCKn4qoAmI5qbwATZZD4fI8Xt6hXjMO5qk65pL9hVSgxHlwvqaxCaUA9SeM3UAgJDYIKlo2NOgENCmZwmrvl1ziCR4VzdD0yZPaO6r82rrGYmZCAYVlVGn3Xycd1ZEUkZ/VCy8iZWAm5jub3v39XVAcB8mXdBadOUtarz9JBf7lNZZWwX+3IPGBrk16ecGhKdSipgrhCxgNNI1l2CA05Rft4OgjrI8hlxITfashJl1rbi7C+CHDmkPNQsBrRlMBEu03lGAyYMBH00sQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CY4PR12MB1576.namprd12.prod.outlook.com (2603:10b6:910:10::9)
+ by MW2PR12MB4665.namprd12.prod.outlook.com (2603:10b6:302:2::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5458.20; Fri, 29 Jul
+ 2022 04:11:37 +0000
+Received: from CY4PR12MB1576.namprd12.prod.outlook.com
+ ([fe80::8c7e:4e8e:3225:34c2]) by CY4PR12MB1576.namprd12.prod.outlook.com
+ ([fe80::8c7e:4e8e:3225:34c2%12]) with mapi id 15.20.5458.025; Fri, 29 Jul
+ 2022 04:11:37 +0000
+Message-ID: <fbe773df-7a92-df52-740e-41bb2f47c1f7@nvidia.com>
+Date:   Fri, 29 Jul 2022 09:41:26 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: Add sample format conversion
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
+        kuninori.morimoto.gx@renesas.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1658931983-31647-1-git-send-email-spujar@nvidia.com>
+ <1658931983-31647-2-git-send-email-spujar@nvidia.com>
+ <c801afa4-a40d-9363-1ebd-9e8e30c21df5@linaro.org>
+From:   Sameer Pujar <spujar@nvidia.com>
+In-Reply-To: <c801afa4-a40d-9363-1ebd-9e8e30c21df5@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0104.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:af::10) To CY4PR12MB1576.namprd12.prod.outlook.com
+ (2603:10b6:910:10::9)
 MIME-Version: 1.0
-References: <20220727094034.1372745-1-treapking@chromium.org>
- <c455adea-2d18-60af-7175-a4e283e3dcb8@collabora.com> <CAEXTbpc7W40-vYcTVTNo7ikQ-n0O246AsbPntNb4q2nBErYVQw@mail.gmail.com>
- <689b439f-531b-9b3d-2e48-b7b83c50b3dd@collabora.com> <CAEXTbperyGnKZw9y_55yE-T5gzuR8yzpTwfg7dy_bvTUhmrOag@mail.gmail.com>
-In-Reply-To: <CAEXTbperyGnKZw9y_55yE-T5gzuR8yzpTwfg7dy_bvTUhmrOag@mail.gmail.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Fri, 29 Jul 2022 12:00:12 +0800
-Message-ID: <CAEXTbpdc29kKeaU=GO_=6JwXvx=vSpR3wG+VsjYQaT+kAdVuoQ@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: mt8173-oak: Switch to SMC watchdog
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Eizan Miyamoto <eizan@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Evan Benn <evanbenn@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7afa29e5-b993-4acb-ae87-08da71186e6c
+X-MS-TrafficTypeDiagnostic: MW2PR12MB4665:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: eYqZBdDvizb/rARVmunfQnQZQ+H6KWHqW83ZYk3mzJ0ASUMLQiE+j1cuh4yBIph6P6lcPAn007w+49ASuBJe/uxHXePWOC3ND93C8fJIR3QUAZgvyh0/vmYRfHi9LxYqiPfyIF/kQIRmJYFRWxw6aE9gB+P1xpwIKhVV1bHUOgSE+z7khTIJ0ju9wuqe+2bGuKhjshfSfxLlDKD8ULr6OGVgyCJpWrTTp1Q4+lsWjorNJ4cZq3foMI1w5+0zjmgLTbeJrXdHjFobUUNl1895AlzcAxfxbidfxFIC9hdWGo7eSiTUQjz2Rksoykx6PqzvOCuL5+MwE7u0mUv1jR2ks1e7O43NifZWu+Gy/9hWdRRzFh1/TmxwZumgdcT26SvpLI/fPs2gbDmRnmygbxbzi3lAP0mLRPhSAJhaeE/Eef6MGLkcr9XD5X0mAGOHyIGO80qVA6Off+YUT2LdZd3qHuW5GI4oUEdkqvmREBjwJTVVaNIpp51KZkKooXq1zl0Gupx3+XM37TqFBkId8MDgqEb+vwDhOxFONmmzE90Q8RlaHYZIktdo01Hs/mc9ldTTJizdm0gM2vmb+WYH/ljyWalScb5JPb0UnEa/a3KQQc/rNNLpUnYZVasVOta6sIoL7nNMWdsQz+w3TMOj+Fji+cf0EnO82jjIt5vxwnPbVs/Phh07zC9NfaXfkadFTaKs3LAyVaDJa52G+xj0pZe6k6i78lvo+W8kM4AQYVxwvBaWUIMcE6fVTGTamZt1+LuwRfl5aqZKXiSwW1kogAHmFW3Pq+k7TtN4+0o6WomIHs+WLAwsi3EMxywip17I9sbu9ES59xqXmvJOiWHfQRz2dg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR12MB1576.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(346002)(376002)(366004)(136003)(396003)(186003)(31686004)(66946007)(26005)(86362001)(2906002)(6666004)(6512007)(66556008)(53546011)(8676002)(41300700001)(4326008)(66476007)(31696002)(316002)(6506007)(36756003)(38100700002)(8936002)(2616005)(478600001)(6486002)(7416002)(5660300002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UXAwMUltQ2N4dUgrbXc2SWNNa3RqQ2RocHNCOE1WWGZpZ3JJMURBM201NlpH?=
+ =?utf-8?B?ZWhoL1lNUmMweTNLSzNXT1VlQmRxNUtBL1g5T2pEeWVxQ2Uwa3lsSW9EYnVE?=
+ =?utf-8?B?ZHJUdVVjTTZHM0dpY2Fka1pPUmcxTHBDRWh0OThjRmxPaGZDa0dUWjQ0SUFS?=
+ =?utf-8?B?YjB6ZVUxMzBwSUE4Z0ZUcWIxN3U2cUt2eGMrVFduNE1VYzMyYVl4cUJGUldn?=
+ =?utf-8?B?L0l5V2g5SjRwSnlNMUFjL2ZWYTZuTGp6OFlxTW83WE0rLzZRWElYWFYzMnZG?=
+ =?utf-8?B?eHJ5SUlvMGxwZEh6RFcya0hnRXBYSTF3MTVGOS80bStEMHYrS3o1eUJyMHhK?=
+ =?utf-8?B?alN3aGQ5ZzlBeG5UWENYMDVKMk1ZNTAvdmhhdEVXTkRscGZpOVhTR1YwWFVz?=
+ =?utf-8?B?TzFBWlZoZ0h2VTl1eHdwbVFIcXVKcVRIQWNLamFYK2hmejgyRWExRWFQSU5a?=
+ =?utf-8?B?MVZVeUNpcHQ4SElTRm5RTVAvQXJBNXU2OUxxSjl6Y0poSTd2VklYYzV4Ykk3?=
+ =?utf-8?B?RUtsTitpWWw3WmlNTHowR29LeHg0NzNna2FON29DeCtyYXlyOVY5Q2NlZXVx?=
+ =?utf-8?B?RXd3aXdZNkVTekttNENBS3JrTzhJeXZRL3hhT01MMTlVZHhUcEJ2QitHUUVW?=
+ =?utf-8?B?eStWU1J4K0pxNEhSeVkzSDBRNExDTTkxMVI5WjIzOVVyVXZrMTRCRVowdXFt?=
+ =?utf-8?B?Y3JJWHhCTDBYU24za2kwSktWVS9vSDZmYjFRZVBSd0lmdi9pQXVVVk0zOGVq?=
+ =?utf-8?B?RFQrQ0M0SW5IbzlydEhpYVpMQk00dGxYTDF5aGIyNEVYNVRCUUh2TXUrbjJu?=
+ =?utf-8?B?T0tSbDcyWXRjMERUWFhwUmFRYW4wL3lXVlJnTVpQczZxZHZGaHc4R1dMenhM?=
+ =?utf-8?B?TUtnTXNsU2NMaTJOa2JHSjhySzdPLzNzd0hkSCsyTXBvNzNCZG1YeVdSNHQ4?=
+ =?utf-8?B?MVl3bUF3UURvanM1RE1kZnZleWw5R1crcWZMaGU5ZDE5Zkc3bmpBaG5qSmJw?=
+ =?utf-8?B?c0dMV0Yrd2VMaFdueU10QVMwczkyclZoaGhuQnZBejVhTnFtMXNvSkk4Unhu?=
+ =?utf-8?B?MHEvdHlscjVSYzVtYU5wRmUyQldGc1dydGZvRUJUcDZCaHA4UGhzcGlqTnlW?=
+ =?utf-8?B?bGE5TnNXVGVZN3k0T3ZOSWhjeTBwQUczbG80UTBLQTJGSCtBNjZCSTd2WHlt?=
+ =?utf-8?B?a1dxaEFkUkFRSDNNbUlhQ2I3WEdjQVpZZVpsVkFrNnczdjFZcGdseXFJZ2NY?=
+ =?utf-8?B?dmRpS3haVkp2dDl2b2dGQ3poYkJVMlBTL1B5M1NEYWZDbTFlNERSSENmRDRG?=
+ =?utf-8?B?L0lYc0d6RkpTT3FSUjB1aUViN1VNVEtsWTBxNlRWZm9JTDhXMXlmQ1F1VlZK?=
+ =?utf-8?B?NU9sQ3ZOd1NESE0zYWNLK1VkZ3ZKbitCdXltYlZyci9pSEpLR3E1aTR6UnpU?=
+ =?utf-8?B?ZlZndkdYZTJrMXZtR2ZUTmR1OXloSnJVNG5vYzlsbEdoOVFsMGhkaVFQTW9w?=
+ =?utf-8?B?K0ZSYUpPTVJMWHpZdENMd1o2Y0tMbkNQbVJSUW1ScUsrYnVXbFdKSFF3TlB5?=
+ =?utf-8?B?dERiQ0hDcnRKVzV2V2RkYmJwMXZpcnBJQXFyL2cybjhGYUIyejNRRDBabVpE?=
+ =?utf-8?B?bWY4Mm52aWhWUjg4TkdmMC9Hd1QxTmp3dk9rOUJRVVpIY1lHRkRvSDVoZlVn?=
+ =?utf-8?B?ajI1RHFMT0xiUG5tWjdtV25KdWtkKzFnVzQ3dVZNalRUSzk0WE9KTmVNSUFr?=
+ =?utf-8?B?UmdZT3Zia096d0RwNXJnWjg5YjZucnJKdEhwbE92dUtYSktGdEY2K1YxWURp?=
+ =?utf-8?B?UzIyYUNrblcxb25HSWp4bkt2TjlYSy9hbjF4SjBWRTU3TFZ6V2pKdTZkK3c1?=
+ =?utf-8?B?SnZKYU1VTFJlWVRtekhTYy92ZmRIV3poS1hvdEdFdmFvTFB2MTVwS2EvdW5X?=
+ =?utf-8?B?c3lmaDNHTnZCMytVTndrQVBZa2Zlc3Y1cmYvaHlWTHdTWHpYeFhmSjRZQkJV?=
+ =?utf-8?B?c0xMTkQ5QW9mVXhHNmVMS0xjcXU1amI1S2xyL1JKYk9TUWZCZDF2TVRIWXQ0?=
+ =?utf-8?B?NHE5YlBsQVljSTdGVldhbitobnpXcmlFQnNvVFVBNmRiZmZvOTkyMTBlNVFw?=
+ =?utf-8?Q?B8EEKRBRwnJa13yFD0Q9/odhD?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7afa29e5-b993-4acb-ae87-08da71186e6c
+X-MS-Exchange-CrossTenant-AuthSource: CY4PR12MB1576.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2022 04:11:37.5866
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /8RU93CptN6kDZ60/V/PkBx8MejnObJ/jCwIbi7MNdxOtqOZ5lG/Vg6rvo+KfMk3NvvT1nPzu58O4n3m97ar5A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR12MB4665
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 29, 2022 at 10:59 AM Pin-yen Lin <treapking@chromium.org> wrote:
->
-> On Thu, Jul 28, 2022 at 11:51 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
-> >
-> > Il 28/07/22 17:39, Pin-yen Lin ha scritto:
-> > > On Thu, Jul 28, 2022 at 7:21 PM AngeloGioacchino Del Regno
-> > > <angelogioacchino.delregno@collabora.com> wrote:
-> > >>
-> > >> Il 27/07/22 11:40, Pin-yen Lin ha scritto:
-> > >>> Switch to SMC watchdog because we need direct control of HW watchdog
-> > >>> registers from kernel. The corresponding firmware was uploaded in
-> > >>> https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
-> > >>>
-> > >>> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> > >>> ---
-> > >>>
-> > >>> Changes in v2:
-> > >>> - Move the modifications to mt8173-elm.dtsi and add some comments.
-> > >>>
-> > >>>    arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 12 ++++++++++++
-> > >>>    1 file changed, 12 insertions(+)
-> > >>>
-> > >>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> > >>> index e21feb85d822..b2269770abc3 100644
-> > >>> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> > >>> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> > >>> @@ -161,6 +161,18 @@ hdmi_connector_in: endpoint {
-> > >>>                        };
-> > >>>                };
-> > >>>        };
-> > >>> +
-> > >>> +     soc {
-> > >>> +             /*
-> > >>> +              * Disable the original MMIO watch dog and switch to the SMC watchdog,
-> > >>> +              * which operates on the same MMIO.
-> > >>> +              */
-> > >>> +             /delete-node/ watchdog@10007000;
-> > >>
-> > >> Unfortunately, we're not quite there yet.
-> > >> The comment is fine, but...
-> > >>
-> > >> There's no need to /delete-node/: you can just do it like
-> > >>
-> > >> /*
-> > >>    * Disable the original MMIO watch dog and switch to the SMC watchdog,
-> > >>    * which operates on the same MMIO.
-> > >>    */
-> > >> &watchdog {
-> > >>          status = "disabled";
-> > >> };
-> > >>
-> > >> and...
-> > >>
-> > >>> +
-> > >>> +             watchdog {
-> > >>
-> > >> This isn't addressable, hence it belongs to the root node, not to soc.
-> > >> If you did that because of naming issues, I would propose to call it
-> > >> smc-watchdog instead of watchdog.
-> > >>
-> > >>
-> > >>> +                     compatible = "arm,smc-wdt";
-> > >>
-> > > Thanks for the suggestion. I'll modify it accordingly in v3.
-> > >
-> > >> P.S.: No timeout-sec?
-> > >
-> > > The example in the binding file has a timeout-sec property, but it is
-> > > not defined in the binding nor used in the driver...
-> > > The driver seems to talk with the firmware to get a timeout value[1]
-> > > instead of reading it from the devicetree.
-> > >
-> >
-> > Oh. I admit I trusted the binding blindly, didn't check the actual driver code.
-> >
-> > On a note, we should check why is that binding partially wrong and eventually
-> > fix it (remove the property), or add the capability to the driver, but feel free
-> > to ignore that for now, as this is not relevant for the context of this specific
-> > change that you're trying to do here.
->
-> It looks like the timeout-sec property was not defined nor referenced
-> from the very first commit [2][3]. I'll send out another patch to
-> remove it.
->
-> [2]: dt-bindings:
-> https://lore.kernel.org/all/20200505131242.v6.1.Id96574f1f52479d7a2f3b866b8a0552ab8c03d7f@changeid/
-> [3]: watchdog driver:
-> https://lore.kernel.org/all/20200505131242.v6.2.Ia92bb4d4ce84bcefeba1d00aaa1c1e919b6164ef@changeid/
 
-I checked the drivers again, and I realized that the `timeout-sec`
-property overrides the default timeout from the firmware.
+On 28-07-2022 17:52, Krzysztof Kozlowski wrote:
+> On 27/07/2022 16:26, Sameer Pujar wrote:
+>> Presently "convert-channels" and "convert-rate" DT bindings are available
+>> for channel and rate fixups respectively.
+>>
+>> Similarly add "convert-sample-format" binding to fixup DAI sample format
+>> as well. This is added to simple-card and audio-graph based sound cards.
+>>
+>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+>> ---
+>>   .../devicetree/bindings/sound/audio-graph-port.yaml | 21 +++++++++++++++++++++
+>>   .../devicetree/bindings/sound/audio-graph.yaml      | 11 +++++++++++
+>>   .../devicetree/bindings/sound/simple-card.yaml      | 15 +++++++++++++++
+>>   3 files changed, 47 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+>> index 5c36867..d7491038 100644
+>> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+>> @@ -24,6 +24,17 @@ properties:
+>>     convert-channels:
+>>       description: CPU to Codec rate channels.
+>>       $ref: /schemas/types.yaml#/definitions/uint32
+> Missing blank line.
 
-But for MT8173 chromebooks, I think we can just leave it blank and use
-the default value.
+will fix.
 
-> >
-> > P.S.: I just noticed that the commit title is also wrong. s/mt8173-oak/mt8173-elm/g
 >
-> I sent out the v3 before I saw this reply.  I'll send out a v4 for
-> this and address Krzysztof's comment as well.
+>> +  convert-sample-format:
+>> +    description: CPU to Codec sample format.
+>> +      Value    Format
+>> +        0        S8
+>> +        2        S16_LE
+>> +        6        S24_LE
+>> +        10       S32_LE
+>> +        32       S24_3LE
+> Why some random set of integers? Just use string, must more descriptive
+> and you do not embed programming model to DT... unless there is some
+> reason for this approach?
+
+I referenced it from similar usage in fsl,easrc.yaml for binding 
+"fsl,asrc-format" and driver can directly use it. However agree with 
+above and let me use strings here.
+
+
+[...]
+
+
+> diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/Documentation/devicetree/bindings/sound/simple-card.yaml
+> index b261d49..6decd73 100644
+> --- a/Documentation/devicetree/bindings/sound/simple-card.yaml
+> +++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
+> @@ -77,6 +77,17 @@ definitions:
+>       description: CPU to Codec rate channels.
+>       $ref: /schemas/types.yaml#/definitions/uint32
 >
-> >
-> > Waiting for a v3!
-> >
-> >
-> > > [1]: https://elixir.bootlin.com/linux/latest/source/drivers/watchdog/arm_smc_wdt.c#L138
-> > >>
-> > >> Regards,
-> > >> Angelo
-> > >>
-> > >>> +             };
-> > >>> +     };
-> > >>>    };
-> > >>>
-> > >>>    &mfg_async {
-> > >>>
-> > >>
-> >
+> +  convert-sample-format:
+> +    description: CPU to Codec sample format.
+> +      Value    Format
+> +        0        S8
+> +        2        S16_LE
+> +        6        S24_LE
+> +        10       S32_LE
+> +        32       S24_3LE
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> Wait, you now put the same property in four different places. Don't you
+> have something which could be shared?
+>
+There is no shared schema between simple-card.yaml and others. I will 
+have to create a new doc to share these definitions.
+
