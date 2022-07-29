@@ -2,91 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BAA584DBF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 11:02:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4180C584DCF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 11:07:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231381AbiG2JCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 05:02:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38386 "EHLO
+        id S235558AbiG2JHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 05:07:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbiG2JCY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 05:02:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D386B1EEEF;
-        Fri, 29 Jul 2022 02:02:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6D99661D3E;
-        Fri, 29 Jul 2022 09:02:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F7A3C433C1;
-        Fri, 29 Jul 2022 09:02:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1659085342;
-        bh=1QoElUDidX1GYKTiNfimkmUJvoHtiH5T/3fdnEC8+Ro=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eRUOTG+poS4/2XqCPUtITn7QvBAS1tpvurhzioxH9HsMEYu+3H21IpL+Lwn/3ld1J
-         ePEXMUz3J5FcjtLRbHMEbtDXYcoTa6ZAvP7AzO07uKFAmn2MtPBTQKdfNUR+yTIVza
-         Nm/f13T2RndjkzhHTZmvoccKwrPGTeCd0VwngedI=
-Date:   Fri, 29 Jul 2022 11:02:20 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     "Rao, Appana Durga Kedareswara" <appanad@amd.com>
-Cc:     Appana Durga Kedareswara rao 
-        <appana.durga.kedareswara.rao@amd.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, michal.simek@xilinx.com,
-        derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, git@amd.com, git@xilinx.com,
-        Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-Subject: Re: [PATCH v2 4/4] drivers: misc: Add Support for TMR Inject IP
-Message-ID: <YuOiHGBaVOSGzD7V@kroah.com>
-References: <20220720060016.1646317-1-appana.durga.kedareswara.rao@amd.com>
- <20220720060016.1646317-5-appana.durga.kedareswara.rao@amd.com>
- <YuKcBO5JatwRYQJ3@kroah.com>
- <f0ea25fe-782b-ed35-d977-3fe16724193c@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f0ea25fe-782b-ed35-d977-3fe16724193c@amd.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S235559AbiG2JHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 05:07:00 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D849684EF5;
+        Fri, 29 Jul 2022 02:06:57 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id k8so3051134wrd.5;
+        Fri, 29 Jul 2022 02:06:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc;
+        bh=Xuz7b31SZ6YAYumJHBVurHpw2rO7+Ja8ryp7tp5VZOk=;
+        b=lZP98vktrRv81gPPiiUXrQADzP6Mv/O9M9hy591hYZZB1qAsEvIwzd0DCm1SJxdnH0
+         zQtatHUP1QNgLMYa+Q1LLy0Y7Iud6BuDiET5qbzKEuI4tTo4UR/PaHJkrkyRsjNWoiw9
+         n17NEOpQruPlM9h6I3djY/31KmUQQgGycAcTX8jjI1mwCa5WurXrwIBhQ25bMxprZl6d
+         +DgPrcsqFyKNrlwWtzoLiYOUTRi8ktRdkXKmhdgANOGCbDx53qfm8CH9276kcc/przRy
+         WmW3c+/871xf2VXXB4NlprC9zMNsBYo4KwE84E2X3KO/du83SsIXcX3DAiQ+sdc2slvD
+         X2jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc;
+        bh=Xuz7b31SZ6YAYumJHBVurHpw2rO7+Ja8ryp7tp5VZOk=;
+        b=q/PY6uOgWCtLJ5rF/3Hm8eBPrH76Zy92F8xArGZmbPTmkuX534f8jMj7Afg0S31ivI
+         tKq2JX08a6oN/smQb8f519b0rND6F31Kkx/Nlog92FV+fUF0Z55BNDkHwUtPbGjqDWuQ
+         Jn90csjTXTTefATvo7TXjKCllEGGAiozLluwMzYDUxHDCImpoe348gFOH34Dc3uEeGJk
+         iFIVs1rkMm3xKsVTEJWqTdIzdoorpuVkj1Tc9LUH8qXtJn/sOmKHRWVJ85g54a3YPpw0
+         sbbY2ySHr23iPOAgUvZ8os51zWZbjoRjaGYi0aYn0POS6E01P/IUYPmuUQHWYMcCCn+o
+         JmzA==
+X-Gm-Message-State: ACgBeo2YgMz9R6HmfP1c2g4WLd3x6A+k5fcfVkG/CH/Ivsk7WG8EM2vc
+        /eEaPwecCiYPRgBgzvPLLtA=
+X-Google-Smtp-Source: AA6agR44DjBZWJyjyaXogrlqG2/oyAQ95weNGFS2YkkqRteBULPfHkamSDbm9eqLBahUPT61SgGD8A==
+X-Received: by 2002:adf:d1e2:0:b0:21d:c7ae:3b1a with SMTP id g2-20020adfd1e2000000b0021dc7ae3b1amr1725590wrd.700.1659085616268;
+        Fri, 29 Jul 2022 02:06:56 -0700 (PDT)
+Received: from smtpclient.apple ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id q2-20020a5d6582000000b0021e52020198sm3049879wru.61.2022.07.29.02.06.53
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 29 Jul 2022 02:06:55 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.100.31\))
+Subject: Re: [v7 3/4] dt-bindings: arm: amlogic: add MagicBox M16S bindings
+From:   Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <YuOdWyF2yJVhh415@gofer.mess.org>
+Date:   Fri, 29 Jul 2022 13:06:51 +0400
+Cc:     Zhang Ning <zhangn1985@qq.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <D258CD0B-4490-4182-85A5-BE8D213EB70F@gmail.com>
+References: <20220726143649.142574-1-zhangn1985@qq.com>
+ <tencent_A962A641C180EEC2680CA53DDD6643BA6E05@qq.com>
+ <b094bf45-ad7e-9e42-89a6-bae0b8e4aae1@linaro.org>
+ <tencent_F809BC863B83870BBEB1EF76499B3969B607@qq.com>
+ <YuOdWyF2yJVhh415@gofer.mess.org>
+To:     Sean Young <sean@mess.org>
+X-Mailer: Apple Mail (2.3696.100.31)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 29, 2022 at 01:43:47PM +0530, Rao, Appana Durga Kedareswara wrote:
-> Hi Greg,
-> 
-> Thanks for the review.
-> 
-> On 28/07/22 7:54 pm, Greg KH wrote:
-> > On Wed, Jul 20, 2022 at 11:30:16AM +0530, Appana Durga Kedareswara rao wrote:
-> > > From: Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
-> > > 
-> > > The Triple Modular Redundancy(TMR) provides functional fault injection by
-> > > changing selected MicroBlaze instructions, which provides the possibility
-> > > to verify that the TMR subsystem error detection and fault recovery logic
-> > > is working properly, provided sysfs entries which allow the user to inject
-> > > a fault.
-> > 
-> > We already have a fault-injection api, why are you not using that?
-> > 
-> 
-> Inorder to inject the error using TMR inject IP, The API
-> which injects the error should be executed from Processor LMB,
-> below sysfs entry calls microblaze core API xmb_inject_err()
-> which switches the processor to real mode and injects the error,
-> Please find the code corresponds to xmb_inject_err() API here:
-> https://www.spinics.net/lists/arm-kernel/msg991888.html
 
-You did not answer the question.  Why are you not using the in-kernel
-fault injection userspace api and why have you created your own?
+> On 29 Jul 2022, at 12:42 pm, Sean Young <sean@mess.org> wrote:
+>=20
+> On Thu, Jul 28, 2022 at 07:48:57AM +0800, Zhang Ning wrote:
+>> Christian Hewitt told me to split to 2 patches, 1st for manufactor, =
+2nd
+>> for device, how to handle your Acked-by?
+>>=20
+>> btw, he also said I'm wrong in handle Sean's Signed-of-by, still =
+don't
+>> know how to do in next version. Should I just not send this patch?
+>=20
+> Christian can you explain *on list* what is wrong with handling my
+> Signed-off-by? As far as I can see Ning has done the right thing.
 
-Also, please use lore.kernel.org links when possible.
+Sorry, this is my ignorance. I=E2=80=99ve only seen maintainers provide =
+Acked-By
+or Reviewed-By tags in response to my own past submissions. I=E2=80=99ve =
+not had
+Signed-Off-By responses on-list before. I=E2=80=99ve only seen =
+maintainer SOB
+being applied to patches as they are merged into the maintainers tree
+and queued for sending upstream. Today is a learning day :)
 
-thanks,
+> Please keep the conversation on list so we're all in the loop.
 
-greg k-h
+The board still has some hardware items to figure out and the next date
+Amlogic patches will be picked for 5.21 is ~2.5 months away, so there
+is no rush and I=E2=80=99ve encouraged Zhang to keep working via the =
+Armbian
+forum thread that he started [0]. I=E2=80=99m no expert (as you can see =
+^) but
+I=E2=80=99m trying to coach and explain/spot the common etiquette and =
+process
+nits (which I=E2=80=99ve made myself in the past) before he sends the =
+next rev.
+of patches for review.
+
+Christian
+
+[0] =
+https://forum.armbian.com/topic/22301-help-to-review-porting-mainline-u-bo=
+ot-and-linux-to-tmall-magicbox-m16s-amlogic-s912-h-tv-box/=
