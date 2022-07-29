@@ -2,286 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7CA7584927
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 02:36:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78FB258496F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 03:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232867AbiG2AgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 20:36:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35124 "EHLO
+        id S233742AbiG2Bus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 21:50:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233584AbiG2AgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 20:36:19 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E137B1D7
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 17:36:16 -0700 (PDT)
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20220729003613epoutp044434124b64a5eea478d97a735b45130e~GJbVx7-nN2019420194epoutp04U
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 00:36:13 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20220729003613epoutp044434124b64a5eea478d97a735b45130e~GJbVx7-nN2019420194epoutp04U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1659054974;
-        bh=NZbi1R5mScOU9IsiIc2NDSvoSk0KABzd5j6IYyV63rY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=u2NG0Ex9GhMeJgCtcilp4DfB5pc7ZbwjMEejJf6te4OmGcgVQSGmu/jFnxDQHWkcG
-         XoolHzZG6i/KKa9rnZAnmOtR5dFEgmfBtME+EMdTi7uPS8bUmfVIQvy5e3gdENO7VQ
-         fc19d00Gcl0tQRaurIceGTnAjS7SLiO42Lrn3a30=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20220729003613epcas2p4a1d38ca859e7628ca198317511577152~GJbVPFCa61918919189epcas2p4s;
-        Fri, 29 Jul 2022 00:36:13 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.36.100]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4Lv7qK089Yz4x9Q5; Fri, 29 Jul
-        2022 00:36:13 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        75.66.09662.C7B23E26; Fri, 29 Jul 2022 09:36:12 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-        20220729003612epcas2p4cd006dcd814ff49583aa44921fbbed5a~GJbUd0A1M1916219162epcas2p42;
-        Fri, 29 Jul 2022 00:36:12 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20220729003612epsmtrp16fa748709ceea95b5012e7555a4a2f5e~GJbUa0PT83217232172epsmtrp1p;
-        Fri, 29 Jul 2022 00:36:12 +0000 (GMT)
-X-AuditID: b6c32a48-20206a80000025be-b3-62e32b7c3e23
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        0D.70.08802.C7B23E26; Fri, 29 Jul 2022 09:36:12 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.51]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20220729003612epsmtip205607e011a66850793daff714307df30~GJbUNX2wC0066700667epsmtip2O;
-        Fri, 29 Jul 2022 00:36:12 +0000 (GMT)
-From:   Chanho Park <chanho61.park@samsung.com>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chanho Park <chanho61.park@samsung.com>
-Subject: [PATCH v2 6/6] clk: samsung: exynosautov9: add fsys1 clock support
-Date:   Fri, 29 Jul 2022 09:30:24 +0900
-Message-Id: <d4aa967538fed9667e9550a256e545026fc2fa8d.1659054220.git.chanho61.park@samsung.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <cover.1659054220.git.chanho61.park@samsung.com>
+        with ESMTP id S231720AbiG2Bur (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 21:50:47 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6317C1CB02
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 18:50:46 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id t2-20020a17090a4e4200b001f21572f3a4so3940684pjl.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 18:50:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version;
+        bh=bjCzU96JVFlapB+S1TBBOw/wMrRRkGTgHF0WDuB8iqE=;
+        b=HAOmMlfeAVLc5KjOK4GkqvcMHf1WtasL7ENNeA4xurZmuSmB6YBk4aatAtChTD6ipG
+         M76dl071GZrQVSEPGICLRxTnvtUhjgL48CPdFB7XHppmhySSgbuclz0yx29nOegmprOZ
+         sAdojzUGnhvWt/jYh+qXdnN7Za7ELrmmQP2/k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version;
+        bh=bjCzU96JVFlapB+S1TBBOw/wMrRRkGTgHF0WDuB8iqE=;
+        b=p1AfYAmvtyDFNo4gdLnc6iakrnKiHIdESjBH77fv/YOE7c7h7OCee4v1+y1AXf9zyz
+         XHI0rPX20ME21R/nsLgivcJdz1NGo8hTBIDEM8sQDIhoAM8NExZS/vq4VEHi/GVtBgwa
+         tv4abQOhP0RtbtRkblYg9wNPGbwbUsusubRd9rPqyIBe8rgOIvEOHN90zwXGo46afgrE
+         iJlGXqaJa0Tmd/ArlxA4UtS0ZibaAZBOQ6NXj9TTZ3BW8Y9DfFVOHBXlUj6W4JAGdA+n
+         OXU5RmCugSrD9WGAPugpKBb9ABSWwqFMzhQVVl5/bX+38V5Kw3IVxUTg63rv6iXRZ7kG
+         BsvA==
+X-Gm-Message-State: ACgBeo2GO6kyMbyjdcCJs+USoHvYumWxU+q4dMjyzwR5hirEu5GLBDqv
+        98SgzYIygFZtoh0TBMVuJzo2jQ==
+X-Google-Smtp-Source: AA6agR4oPw1NLfiA8xYH/CoAyIN3/gjOpP+izQBjsWr7MhjIkpODsZkEIYHhkwGMrdJBkxoP6xHwmA==
+X-Received: by 2002:a17:902:cec8:b0:16d:8eb5:1d4c with SMTP id d8-20020a170902cec800b0016d8eb51d4cmr1642988plg.129.1659059445709;
+        Thu, 28 Jul 2022 18:50:45 -0700 (PDT)
+Received: from ubuntu-22.localdomain ([192.19.222.250])
+        by smtp.gmail.com with ESMTPSA id x11-20020a1709028ecb00b0016c38eb1f3asm1978067plo.214.2022.07.28.18.50.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Jul 2022 18:50:44 -0700 (PDT)
+From:   William Zhang <william.zhang@broadcom.com>
+To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        kursad.oney@broadcom.com, dan.beygelman@broadcom.com,
+        f.fainelli@gmail.com, anand.gore@broadcom.com,
+        joel.peshkin@broadcom.com,
+        William Zhang <william.zhang@broadcom.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] ARM: dts: bcmbca: fix arch timer node cpu mask flag value
+Date:   Thu, 28 Jul 2022 18:50:26 -0700
+Message-Id: <20220729015029.14863-1-william.zhang@broadcom.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrNJsWRmVeSWpSXmKPExsWy7bCmuW6N9uMkg8d3LC0ezNvGZnF5v7bF
-        9S/PWS3mHznHatH34iGzxd7XW9ktNj2+xmrxseceq8WM8/uYLC6ecrVo3XuE3eLwm3ZWi3/X
-        NrJYPO8Diq/a9YfRgd/j/Y1Wdo+ds+6ye2xa1cnmcefaHjaPzUvqPfq2rGL0+LxJLoA9Ktsm
-        IzUxJbVIITUvOT8lMy/dVsk7ON453tTMwFDX0NLCXEkhLzE31VbJxSdA1y0zB+hqJYWyxJxS
-        oFBAYnGxkr6dTVF+aUmqQkZ+cYmtUmpBSk6BeYFecWJucWleul5eaomVoYGBkSlQYUJ2xvPm
-        bvaCM2YVl3o/sDUwTtTvYuTkkBAwkTh5dR1rFyMXh5DADkaJa28OMUE4nxgltr78xQJSJSTw
-        mVHi3D3eLkYOsI7Xj1IganYxSqx9dp0FwvnIKDHj+GQmkAY2AV2JLc9fMYIkRAQeM0kcPtLG
-        BuIwC7QxSUx7tpEVpEpYwFti4dKjLCBjWQRUJW4ezgMJ8wrESyw8u4gZ4j55ies328BsTgFb
-        ia6m7ywQNYISJ2c+AbOZgWqat85mBpkvIbCWQ6J9/UtWiGYXibsH1jFB2MISr45vYYewpSRe
-        9rdB2cUSS2d9YoJobmCUuLztFxtEwlhi1rN2RpDjmAU0Jdbv0od4X1niyC2ovXwSHYf/skOE
-        eSU62oQgGtUlDmyfzgJhy0p0z/kMdY2HxIEtR9ghgTWBUWLL1jWMExgVZiF5ZxaSd2YhLF7A
-        yLyKUSy1oDg3PbXYqMAEHsPJ+bmbGMGpWMtjB+Pstx/0DjEycTAeYpTgYFYS4U2Ivp8kxJuS
-        WFmVWpQfX1Sak1p8iNEUGNYTmaVEk/OB2SCvJN7QxNLAxMzM0NzI1MBcSZzXK2VDopBAemJJ
-        anZqakFqEUwfEwenVAOT+0bpKXJtRsfl1s59pP2yc6l06/eDj2bvrX78ZdUKpmkFGo0OTgrv
-        Vgee+Pi5Zu7XxS/yCpPYzr/fmx0U+Lf669rbjvqNqRGOP76z9RQa+3pnfLlQVCkR1X/Sm39W
-        i/Telxo2q9df2Xznw0Ql3dKW5BKB6xVXLkZ330tM4Hl3o06z/sUVIS37bwpy/MYz37O6BsVu
-        OsWmoq7S/+ODy3IuU735mysLDr8+kz+leNMM/W8PXFZN61VbtL3osa/99Yd1r5fNn7ZMd1fs
-        Id+tsznnW/KfTI585+j5S8Tc7desnb4HV1g7ydz/PoM35fw27kWCFvG7fltNdGQ1Vbtipygj
-        LzmX6+6dxPk6E093TXkio8RSnJFoqMVcVJwIAARXEtJOBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrGLMWRmVeSWpSXmKPExsWy7bCSvG6N9uMkgzVrpS0ezNvGZnF5v7bF
-        9S/PWS3mHznHatH34iGzxd7XW9ktNj2+xmrxseceq8WM8/uYLC6ecrVo3XuE3eLwm3ZWi3/X
-        NrJYPO8Diq/a9YfRgd/j/Y1Wdo+ds+6ye2xa1cnmcefaHjaPzUvqPfq2rGL0+LxJLoA9issm
-        JTUnsyy1SN8ugSvjeXM3e8EZs4pLvR/YGhgn6ncxcnBICJhIvH6U0sXIxSEksINRYuLuhcxd
-        jJxAcVmJZ+92sEPYwhL3W46wQhS9Z5Q41byKCSTBJqArseX5K0aQhIjAcyaJKSsOgjnMAl1M
-        EnfaPoG1Cwt4SyxcepQFZB2LgKrEzcN5IGFegXiJhWcXQW2Tl7h+sw3M5hSwlehq+s4CYgsJ
-        2EhsWbaIDaJeUOLkzCdgcWag+uats5knMArMQpKahSS1gJFpFaNkakFxbnpusWGBUV5quV5x
-        Ym5xaV66XnJ+7iZGcNRoae1g3LPqg94hRiYOxkOMEhzMSiK8CdH3k4R4UxIrq1KL8uOLSnNS
-        iw8xSnOwKInzXug6GS8kkJ5YkpqdmlqQWgSTZeLglGpg4nd/0NDdcqv6P9dGvVkFUZcWLp6X
-        wPW149QPb44dtd//XFqmFy6TKnenjc3t/bqK1VKLV0uZr91Wuft5wrsbd9cLpaxQ41tmvsh2
-        2pa5QgEb9bdvCjjxNz1bsfHjwVygsutTO8KqU36v//Rn4p/EQwvVdn493L38zuN1gmwzN8Xk
-        L/k84SfbLm7poAp+8fO7cxva7rxlfh6Zrb9N4ObVhf2zS3fwP9fZcW6Kg94xsYO//Df//JXG
-        6m3AznU9irv4SsznQw57xL45v+jhurXq4tuqV3GV0+qEhPI75Nb9Moj/LbQgQfGGopHSeic/
-        icraxnPGK3uTbVQ7VzZunvn3tUHy5O9xJrnW2crHG7nYlViKMxINtZiLihMBQs4YTwkDAAA=
-X-CMS-MailID: 20220729003612epcas2p4cd006dcd814ff49583aa44921fbbed5a
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20220729003612epcas2p4cd006dcd814ff49583aa44921fbbed5a
-References: <cover.1659054220.git.chanho61.park@samsung.com>
-        <CGME20220729003612epcas2p4cd006dcd814ff49583aa44921fbbed5a@epcas2p4.samsung.com>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="000000000000f3147905e4e7e01d"
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MIME_NO_TEXT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CMU_FSYS1 provides clocks for USB(2 x USB3.1 Gen-1, 2 x USB 2.0) and
-mmc. For MMC clocks, PLL_MMC(PLL0831X type) is also supported as a PLL
-source clock provider.
+--000000000000f3147905e4e7e01d
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+The cpu mask flag value should match the number of cpu cores in the
+chip. Correct the value accordingly for BCM63178, BCM6846 and BCM6878.
+
+Fixes: fc85b7e64acb ("ARM: dts: add dts files for bcmbca soc 63178")
+Fixes: de1a99ac0b64 ("ARM: dts: Add DTS files for bcmbca SoC BCM6846")
+Fixes: 6bcad714e173 ("ARM: dts: Add DTS files for bcmbca SoC BCM6878")
+
+Signed-off-by: William Zhang <william.zhang@broadcom.com>
 ---
- drivers/clk/samsung/clk-exynosautov9.c | 130 +++++++++++++++++++++++++
- 1 file changed, 130 insertions(+)
 
-diff --git a/drivers/clk/samsung/clk-exynosautov9.c b/drivers/clk/samsung/clk-exynosautov9.c
-index 527a6837661e..196d8b023907 100644
---- a/drivers/clk/samsung/clk-exynosautov9.c
-+++ b/drivers/clk/samsung/clk-exynosautov9.c
-@@ -1307,6 +1307,133 @@ static const struct samsung_cmu_info fsys0_cmu_info __initconst = {
- 	.clk_name		= "dout_clkcmu_fsys0_bus",
- };
+ arch/arm/boot/dts/bcm63178.dtsi | 8 ++++----
+ arch/arm/boot/dts/bcm6846.dtsi  | 8 ++++----
+ arch/arm/boot/dts/bcm6878.dtsi  | 8 ++++----
+ 3 files changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm/boot/dts/bcm63178.dtsi b/arch/arm/boot/dts/bcm63178.dtsi
+index 5463443f0762..14d2c5bd2c52 100644
+--- a/arch/arm/boot/dts/bcm63178.dtsi
++++ b/arch/arm/boot/dts/bcm63178.dtsi
+@@ -46,10 +46,10 @@ L2_0: l2-cache0 {
  
-+/* ---- CMU_FSYS1 ---------------------------------------------------------- */
-+
-+/* Register Offset definitions for CMU_FSYS1 (0x17040000) */
-+#define PLL_LOCKTIME_PLL_MMC			0x0000
-+#define PLL_CON0_PLL_MMC			0x0100
-+#define PLL_CON3_PLL_MMC			0x010c
-+#define PLL_CON0_MUX_CLKCMU_FSYS1_BUS_USER	0x0600
-+#define PLL_CON0_MUX_CLKCMU_FSYS1_MMC_CARD_USER	0x0610
-+#define PLL_CON0_MUX_CLKCMU_FSYS1_USBDRD_USER	0x0620
-+
-+#define CLK_CON_MUX_MUX_CLK_FSYS1_MMC_CARD	0x1000
-+#define CLK_CON_DIV_DIV_CLK_FSYS1_MMC_CARD	0x1800
-+
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_FSYS1_CMU_FSYS1_IPCLKPORT_PCLK	0x2018
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_MMC_CARD_IPCLKPORT_SDCLKIN	0x202c
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_MMC_CARD_IPCLKPORT_I_ACLK	0x2028
-+
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB20DRD_0_REF_CLK_40		0x204c
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB20DRD_1_REF_CLK_40		0x2058
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB30DRD_0_REF_CLK_40		0x2064
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB30DRD_1_REF_CLK_40		0x2070
-+
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB2_0_IPCLKPORT_ACLK	0x2074
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB2_1_IPCLKPORT_ACLK	0x2078
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB3_0_IPCLKPORT_ACLK	0x207c
-+#define CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB3_1_IPCLKPORT_ACLK	0x2080
-+
-+static const unsigned long fsys1_clk_regs[] __initconst = {
-+	PLL_CON0_MUX_CLKCMU_FSYS1_BUS_USER,
-+};
-+
-+static const struct samsung_pll_clock fsys1_pll_clks[] __initconst = {
-+	PLL(pll_0831x, FOUT_MMC_PLL, "fout_mmc_pll", "oscclk",
-+	    PLL_LOCKTIME_PLL_MMC, PLL_CON3_PLL_MMC, NULL),
-+};
-+
-+/* List of parent clocks for Muxes in CMU_FSYS1 */
-+PNAME(mout_fsys1_bus_user_p) = { "oscclk", "dout_clkcmu_fsys1_bus" };
-+PNAME(mout_fsys1_mmc_pll_p) = { "oscclk", "fout_mmc_pll" };
-+PNAME(mout_fsys1_mmc_card_user_p) = { "oscclk", "gout_clkcmu_fsys1_mmc_card" };
-+PNAME(mout_fsys1_usbdrd_user_p) = { "oscclk", "dout_clkcmu_fsys1_usbdrd" };
-+PNAME(mout_fsys1_mmc_card_p) = { "mout_fsys1_mmc_card_user",
-+				 "mout_fsys1_mmc_pll" };
-+
-+static const struct samsung_mux_clock fsys1_mux_clks[] __initconst = {
-+	MUX(CLK_MOUT_FSYS1_BUS_USER, "mout_fsys1_bus_user",
-+	    mout_fsys1_bus_user_p, PLL_CON0_MUX_CLKCMU_FSYS1_BUS_USER, 4, 1),
-+	MUX(CLK_MOUT_FSYS1_MMC_PLL, "mout_fsys1_mmc_pll", mout_fsys1_mmc_pll_p,
-+	    PLL_CON0_PLL_MMC, 4, 1),
-+	MUX(CLK_MOUT_FSYS1_MMC_CARD_USER, "mout_fsys1_mmc_card_user",
-+	    mout_fsys1_mmc_card_user_p, PLL_CON0_MUX_CLKCMU_FSYS1_MMC_CARD_USER,
-+	    4, 1),
-+	MUX(CLK_MOUT_FSYS1_USBDRD_USER, "mout_fsys1_usbdrd_user",
-+	    mout_fsys1_usbdrd_user_p, PLL_CON0_MUX_CLKCMU_FSYS1_USBDRD_USER,
-+	    4, 1),
-+	MUX(CLK_MOUT_FSYS1_MMC_CARD, "mout_fsys1_mmc_card",
-+	    mout_fsys1_mmc_card_p, CLK_CON_MUX_MUX_CLK_FSYS1_MMC_CARD,
-+	    0, 1),
-+};
-+
-+static const struct samsung_div_clock fsys1_div_clks[] __initconst = {
-+	DIV(CLK_DOUT_FSYS1_MMC_CARD, "dout_fsys1_mmc_card",
-+	    "mout_fsys1_mmc_card",
-+	    CLK_CON_DIV_DIV_CLK_FSYS1_MMC_CARD, 0, 9),
-+};
-+
-+static const struct samsung_gate_clock fsys1_gate_clks[] __initconst = {
-+	GATE(CLK_GOUT_FSYS1_PCLK, "gout_fsys1_pclk", "mout_fsys1_bus_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_FSYS1_CMU_FSYS1_IPCLKPORT_PCLK,
-+	     21, CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_FSYS1_MMC_CARD_SDCLKIN, "gout_fsys1_mmc_card_sdclkin",
-+	     "dout_fsys1_mmc_card",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_MMC_CARD_IPCLKPORT_SDCLKIN,
-+	     21, CLK_SET_RATE_PARENT, 0),
-+	GATE(CLK_GOUT_FSYS1_MMC_CARD_ACLK, "gout_fsys1_mmc_card_aclk",
-+	     "dout_fsys1_mmc_card",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_MMC_CARD_IPCLKPORT_I_ACLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB20DRD_0_REFCLK, "gout_fsys1_usb20drd_0_refclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB20DRD_0_REF_CLK_40,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB20DRD_1_REFCLK, "gout_fsys1_usb20drd_1_refclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB20DRD_1_REF_CLK_40,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB30DRD_0_REFCLK, "gout_fsys1_usb30drd_0_refclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB30DRD_0_REF_CLK_40,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB30DRD_1_REFCLK, "gout_fsys1_usb30drd_1_refclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_USB30DRD_1_REF_CLK_40,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB20_0_ACLK, "gout_fsys1_usb20_0_aclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB2_0_IPCLKPORT_ACLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB20_1_ACLK, "gout_fsys1_usb20_1_aclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB2_1_IPCLKPORT_ACLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB30_0_ACLK, "gout_fsys1_usb30_0_aclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB3_0_IPCLKPORT_ACLK,
-+	     21, 0, 0),
-+	GATE(CLK_GOUT_FSYS1_USB30_1_ACLK, "gout_fsys1_usb30_1_aclk",
-+	     "mout_fsys1_usbdrd_user",
-+	     CLK_CON_GAT_GOUT_BLK_FSYS1_UID_US_D_USB3_1_IPCLKPORT_ACLK,
-+	     21, 0, 0),
-+};
-+
-+static const struct samsung_cmu_info fsys1_cmu_info __initconst = {
-+	.pll_clks		= fsys1_pll_clks,
-+	.nr_pll_clks		= ARRAY_SIZE(fsys1_pll_clks),
-+	.mux_clks		= fsys1_mux_clks,
-+	.nr_mux_clks		= ARRAY_SIZE(fsys1_mux_clks),
-+	.div_clks		= fsys1_div_clks,
-+	.nr_div_clks		= ARRAY_SIZE(fsys1_div_clks),
-+	.gate_clks		= fsys1_gate_clks,
-+	.nr_gate_clks		= ARRAY_SIZE(fsys1_gate_clks),
-+	.nr_clk_ids		= FSYS1_NR_CLK,
-+	.clk_regs		= fsys1_clk_regs,
-+	.nr_clk_regs		= ARRAY_SIZE(fsys1_clk_regs),
-+	.clk_name		= "dout_clkcmu_fsys1_bus",
-+};
-+
- /* ---- CMU_FSYS2 ---------------------------------------------------------- */
+ 	timer {
+ 		compatible = "arm,armv7-timer";
+-		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(3) | IRQ_TYPE_LEVEL_LOW)>,
++			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(3) | IRQ_TYPE_LEVEL_LOW)>,
++			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(3) | IRQ_TYPE_LEVEL_LOW)>,
++			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(3) | IRQ_TYPE_LEVEL_LOW)>;
+ 		arm,cpu-registers-not-fw-configured;
+ 	};
  
- /* Register Offset definitions for CMU_FSYS2 (0x17c00000) */
-@@ -1944,6 +2071,9 @@ static const struct of_device_id exynosautov9_cmu_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynosautov9-cmu-fsys0",
- 		.data = &fsys0_cmu_info,
-+	}, {
-+		.compatible = "samsung,exynosautov9-cmu-fsys1",
-+		.data = &fsys1_cmu_info,
- 	}, {
- 		.compatible = "samsung,exynosautov9-cmu-fsys2",
- 		.data = &fsys2_cmu_info,
+diff --git a/arch/arm/boot/dts/bcm6846.dtsi b/arch/arm/boot/dts/bcm6846.dtsi
+index e610c102498f..b74491a3f111 100644
+--- a/arch/arm/boot/dts/bcm6846.dtsi
++++ b/arch/arm/boot/dts/bcm6846.dtsi
+@@ -40,10 +40,10 @@ L2_0: l2-cache0 {
+ 
+ 	timer {
+ 		compatible = "arm,armv7-timer";
+-		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
++			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
++			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
++			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
+ 		arm,cpu-registers-not-fw-configured;
+ 	};
+ 
+diff --git a/arch/arm/boot/dts/bcm6878.dtsi b/arch/arm/boot/dts/bcm6878.dtsi
+index a7dff596fe1e..6dd3d2df4e16 100644
+--- a/arch/arm/boot/dts/bcm6878.dtsi
++++ b/arch/arm/boot/dts/bcm6878.dtsi
+@@ -39,10 +39,10 @@ L2_0: l2-cache0 {
+ 
+ 	timer {
+ 		compatible = "arm,armv7-timer";
+-		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+-			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
++		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
++			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
++			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
++			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
+ 		arm,cpu-registers-not-fw-configured;
+ 	};
+ 
 -- 
-2.37.1
+2.34.1
 
+
+--000000000000f3147905e4e7e01d
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIAQP16KPfwSxIDCb7IPFfVdCMYf4
+1DrNoOMU6gCjePHUMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDcyOTAxNTA0NlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQDKbndA/cWO5FU4wwlooDHbZzrq7tobDtOK9ZkRdGZsSjS4
+xpbrjbsFakSlwAaCU9zPjrnqmepTfwkmOQBdu+r1/DlfNqAXoRLPsBxDQBAt/Yz8TgvbRYVbJsNR
+PFYFkC4Vo1QvPPOwIHp3bejLFmwsBlL41Wtm9ki+NgOtTDJaL3wWBy8NU3sT+bht6lrSFg9YG8K0
+eT29TPJNe7c7Tvf3mRj8qIpHmY7FIPN4Ja7xcpUo9D6R2YK1JRsLxZxk8FHsR036PDIabvfS0AHR
+VhhzvXyBjvYE5XHxgTw9+W/JFEfMqxmxDDsoUgYdZjxJCJt7MzQMTaFVuuyu/3AeSVY+
+--000000000000f3147905e4e7e01d--
