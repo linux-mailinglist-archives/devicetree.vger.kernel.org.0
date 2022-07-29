@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BF8A584973
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 03:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C958B584975
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 03:51:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233785AbiG2BvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 21:51:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49176 "EHLO
+        id S233798AbiG2BvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 21:51:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233780AbiG2BvD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 21:51:03 -0400
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1AC1CB17
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 18:51:02 -0700 (PDT)
-Received: by mail-pl1-x62c.google.com with SMTP id x7so3312990pll.7
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 18:51:02 -0700 (PDT)
+        with ESMTP id S233800AbiG2BvN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 21:51:13 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2025926C
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 18:51:12 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id 70so3429860pfx.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 18:51:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version;
-        bh=322GuJPmpg3TSGzE28p8iSIyykU/lwQNglKG4RkVjv0=;
-        b=bpWNkoKOvIzINtL9gC69+mM4Pbd48H97qH2PE/qKLAf06iA/9FsngVyDyR81cbGKv6
-         ssjwRMMrwDM0LDk9UleGmsWCcx83KOEamRiFxGuPadlJ5CBR2/iw6O3HjdpJXCxedAvu
-         6XFkzzx4jCY9fGXoUDYjVZ+BemW2vcOPBQ8Sg=
+        bh=HV7bTwJZwkDNKodnN3OCjxX0FkPRtcWtky8W87ahId8=;
+        b=aVkyLEySz7pKEqNv3rlbQVd1uh5ZmGpXnDu+2/+sK59z4K1NIeHBavlh3tZ3YPS5Rz
+         E9R8BCOgBoKuNwXA0k24qV411aWm/B6958IVBZHt3Fudz7FyKxu/E6j0/Obivi00byWV
+         IQDezbX+NeTS3DuEu4xXt80r7VenUjSMPfBqw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version;
-        bh=322GuJPmpg3TSGzE28p8iSIyykU/lwQNglKG4RkVjv0=;
-        b=QrDssb45rH7Ltq5WBQyY+OZHUWdO1+yd46eoe9cSNITHppP8IkY3DRZTHAJS00+7hS
-         kF9tW0eYSHLvb0kYSVdZaO1T1Q+vcHxZkCcAk3TxhkdA1B30w4KIu7EStM1DyG4oETMk
-         Q1rWh5bvXXmsVBYXuXzjmUzLleUztp55WKZ3Rlj2uouBCSjqCGZagc1voheF1giz0Xtu
-         MxdE4/7XN/+K9RJTfKZQS7CfUHVAUpqAUnH/DbdLHqBFSX9wSSPO04VLM5GuRGKmmO69
-         dnJ6Tvkbk4yrBbAfioq7OKesn6fdNA3H+kMid5pC2llKn/weM4m+EzVHleXSqW/ItX+t
-         YF0A==
-X-Gm-Message-State: ACgBeo1lUa+5Fo3Z/qMmCnJ3Gxna5s5awU2p4aXckm6MdxGHMJaxT4iZ
-        NI/Aa0pc2cQyf23wBEXuBJolvdXOlnBIZg==
-X-Google-Smtp-Source: AA6agR5ElPkEu3nqvm6XWUu2LNIAykVJ6SPyeJ6rXvcg4zyjQ/b218IQ/2CZ6QQ14WJudJ7/K/gUAA==
-X-Received: by 2002:a17:90a:b785:b0:1f1:be59:a607 with SMTP id m5-20020a17090ab78500b001f1be59a607mr1521826pjr.84.1659059461949;
-        Thu, 28 Jul 2022 18:51:01 -0700 (PDT)
+        bh=HV7bTwJZwkDNKodnN3OCjxX0FkPRtcWtky8W87ahId8=;
+        b=RZsIxlxv5Qt3BG604uVmxF6tShitIYwERvEnpnEAp0TxEe1z4pi97JjuaQYGdqllR/
+         CVrHr09jmyPCNOmPqOPcfIgfcqrpj+Ei+ZwXjW/EAjlqBn8P0wkEw84D/BDqSPM5oYC0
+         A6lz9d05dUiWPY08odffhlkYnZQ/lSa5l5ULKLEoC2H0zbzgSOdumqiytMmtrxpiHmGZ
+         mmuCbrhYYvvN2vCn9t06lwu0jeQGjNpqTKmlQxP1WctBqy3NUxZl5maZrb2+8/Sb5K2P
+         5c2wtmZMcoPijui5MNwqTInsdcDiFXp9bfVMIdCqnR5BNHqblZO/w1bSaF1cCMQcosfN
+         5fDw==
+X-Gm-Message-State: AJIora9U0Fenj3peUiuAZfpVDQifLHwXFREkUGVydPJ3862dUDcbqXIP
+        r36jdXAvFYsxjHqlB8ObEgkCPg==
+X-Google-Smtp-Source: AGRyM1upZ33oniMEV56cXCil48albATS/udzKOjSuThvVwmoXOLxe071EyDPM9T3dCzxoatiGI2rQw==
+X-Received: by 2002:aa7:8884:0:b0:52b:c486:d780 with SMTP id z4-20020aa78884000000b0052bc486d780mr1242796pfe.82.1659059471675;
+        Thu, 28 Jul 2022 18:51:11 -0700 (PDT)
 Received: from ubuntu-22.localdomain ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id x11-20020a1709028ecb00b0016c38eb1f3asm1978067plo.214.2022.07.28.18.51.00
+        by smtp.gmail.com with ESMTPSA id x11-20020a1709028ecb00b0016c38eb1f3asm1978067plo.214.2022.07.28.18.51.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 18:51:01 -0700 (PDT)
+        Thu, 28 Jul 2022 18:51:11 -0700 (PDT)
 From:   William Zhang <william.zhang@broadcom.com>
 To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
 Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
@@ -54,15 +54,15 @@ Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 3/4] ARM: dts: bcmbca: clean up psci node
-Date:   Thu, 28 Jul 2022 18:50:28 -0700
-Message-Id: <20220729015029.14863-3-william.zhang@broadcom.com>
+Subject: [PATCH 4/4] ARM: dts: bcmbca: cosmetic change
+Date:   Thu, 28 Jul 2022 18:50:29 -0700
+Message-Id: <20220729015029.14863-4-william.zhang@broadcom.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220729015029.14863-1-william.zhang@broadcom.com>
 References: <20220729015029.14863-1-william.zhang@broadcom.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000e8373e05e4e7e12a"
+        boundary="0000000000007e84d605e4e7e24e"
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
@@ -72,54 +72,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000e8373e05e4e7e12a
+--0000000000007e84d605e4e7e24e
 Content-Transfer-Encoding: 8bit
 
-Remove unnecessary cpu_on and cpu_off properties from psci node for
-BCM63178 and BCM6846 as they are only needed for psci version prior to
-0.2.
-
-Fixes: fc85b7e64acb ("ARM: dts: add dts files for bcmbca soc 63178")
-Fixes: de1a99ac0b64 ("ARM: dts: Add DTS files for bcmbca SoC BCM6846")
+Add new line between dts nodes for BCM63178 and BCM6878.
 
 Signed-off-by: William Zhang <william.zhang@broadcom.com>
+
 ---
 
- arch/arm/boot/dts/bcm63178.dtsi | 2 --
- arch/arm/boot/dts/bcm6846.dtsi  | 2 --
- 2 files changed, 4 deletions(-)
+ arch/arm/boot/dts/bcm63178.dtsi | 3 +++
+ arch/arm/boot/dts/bcm6878.dtsi  | 2 ++
+ 2 files changed, 5 insertions(+)
 
 diff --git a/arch/arm/boot/dts/bcm63178.dtsi b/arch/arm/boot/dts/bcm63178.dtsi
-index 202baa3a5e74..dba71fa53466 100644
+index dba71fa53466..29e621517e06 100644
 --- a/arch/arm/boot/dts/bcm63178.dtsi
 +++ b/arch/arm/boot/dts/bcm63178.dtsi
-@@ -80,8 +80,6 @@ uart_clk: uart-clk {
- 	psci {
- 		compatible = "arm,psci-0.2";
- 		method = "smc";
--		cpu_off = <1>;
--		cpu_on = <2>;
- 	};
- 
- 	axi@81000000 {
-diff --git a/arch/arm/boot/dts/bcm6846.dtsi b/arch/arm/boot/dts/bcm6846.dtsi
-index 93b44283b9ba..8aa47a2583b2 100644
---- a/arch/arm/boot/dts/bcm6846.dtsi
-+++ b/arch/arm/boot/dts/bcm6846.dtsi
-@@ -65,8 +65,6 @@ periph_clk: periph-clk {
- 	psci {
- 		compatible = "arm,psci-0.2";
- 		method = "smc";
--		cpu_off = <1>;
--		cpu_on = <2>;
- 	};
- 
- 	axi@81000000 {
+@@ -32,6 +32,7 @@ CA7_1: cpu@1 {
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 		};
++
+ 		CA7_2: cpu@2 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a7";
+@@ -39,6 +40,7 @@ CA7_2: cpu@2 {
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 		};
++
+ 		L2_0: l2-cache0 {
+ 			compatible = "cache";
+ 		};
+@@ -68,6 +70,7 @@ periph_clk: periph-clk {
+ 			#clock-cells = <0>;
+ 			clock-frequency = <200000000>;
+ 		};
++
+ 		uart_clk: uart-clk {
+ 			compatible = "fixed-factor-clock";
+ 			#clock-cells = <0>;
+diff --git a/arch/arm/boot/dts/bcm6878.dtsi b/arch/arm/boot/dts/bcm6878.dtsi
+index 6dd3d2df4e16..e89a19b31dc9 100644
+--- a/arch/arm/boot/dts/bcm6878.dtsi
++++ b/arch/arm/boot/dts/bcm6878.dtsi
+@@ -32,6 +32,7 @@ CA7_1: cpu@1 {
+ 			next-level-cache = <&L2_0>;
+ 			enable-method = "psci";
+ 		};
++
+ 		L2_0: l2-cache0 {
+ 			compatible = "cache";
+ 		};
+@@ -59,6 +60,7 @@ periph_clk: periph-clk {
+ 			#clock-cells = <0>;
+ 			clock-frequency = <200000000>;
+ 		};
++
+ 		uart_clk: uart-clk {
+ 			compatible = "fixed-factor-clock";
+ 			#clock-cells = <0>;
 -- 
 2.34.1
 
 
---000000000000e8373e05e4e7e12a
+--0000000000007e84d605e4e7e24e
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -190,13 +208,13 @@ W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
 1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
 MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
 VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOdETzLJ7mnjMZnfG87yXFKWaFZ9
-tphRJ+7Yn1TfCYA6MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDcyOTAxNTEwMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIF2CxzbDMGtSjR6bpqByP1tOpXvn
+10Qf1rVYqYEp5sSvMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDcyOTAxNTExMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
 CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQA+UIu/RsDKuyAchvNya5u4T5BbZtXwi9BhsNK3qNtDBhkz
-T2w5cocr2NLCEFfofh3F1rZG6MuAN95/rq/3LGWoVDQwb6L66g5Dv5AFu1/niR1fq9v8UJ5vTPCH
-g0ZsoxcdC64NN1C7QEm4IlYhFiRmSnwoHepDGTou5P1oZwZ0yQq5sKmE3ebxalXEQCJ4Wx6It4VE
-3Ka2I2hct2wV1nweR5NqvrAgoOJ/f0N5xp5nmMe7w0J6iW58WGP936+G1OglyY9/IzkLtra6qIK5
-qEAR3Xs4Ec28LgmDXLRoNoh36TQxc0Sli/U6YYMhLxuyy7cM7Ce3c9MZrHTnX0YMGKfp
---000000000000e8373e05e4e7e12a--
+AwQCATANBgkqhkiG9w0BAQEFAASCAQDTP38yKpp94qyI69MzGOttkdwR+AoOetsVKK+9SvSGCL+t
+zvRmGk4BmE38O9/Q+gIX2i+sFJH7jhjvcSXMlpWMVVO6JgdfCOMD0+o/OhneAQWp7b1mPtdNJKIB
+8DsLGavMJd3qHknXDrw9qGtpX0SYiBIqROoVAWQXUmhp2KIG23d6jGjM8zODxqf7+ORyt4O4gYEt
+r6qauPVNnQu+CloUlRuzjccrIeTVDpose225dbfo+cvSyQMg83ngjQIH0dvlOLWVtFOEc0s4eHOu
+Tw6uqk4ZARBpKeNMSu7PdZSycJhtiUTzcJONIUc6rVp80atcTWdfuA1ZW5vZBFv0jD23
+--0000000000007e84d605e4e7e24e--
