@@ -2,62 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 034C3584A00
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 05:00:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1E93584A02
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 05:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233400AbiG2DAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 23:00:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42324 "EHLO
+        id S233856AbiG2DAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 23:00:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229973AbiG2DAA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 23:00:00 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF9307B1CE
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 19:59:59 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id p10so213694wru.8
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 19:59:59 -0700 (PDT)
+        with ESMTP id S233400AbiG2DAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 23:00:32 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900FF4D4C3
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 20:00:31 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id b21-20020a05600c4e1500b003a32bc8612fso1889378wmq.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 20:00:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=NqOa2ydWKPCFCDt1F37LPTz5eL6WtbCSjhIkDCaOa5c=;
-        b=ig1aLUwDBF5K8r2xiXUpGpnlzg85IiadmuaALx5IUb+9Q9EWw/YjeZJS94s5/tuspY
-         LmJSFgP5e3p4SYbfBq4TBfoIxrTVAaurJdNnpp4SefZUZw/nM3QjI0k2LK33SJzFkUlD
-         xUMLU0Cf0vePKX0nwkOS8+4bbspWWeALobH0c=
+        bh=IARz1toyVxe2HEfXFShiS/q8AGQuTpTxAvAR8tfiMlI=;
+        b=PEMKgRBg0/b8wGG06Ge61tOAZBg5440Z+J7QOYbD12FX41/2XsVQyh4TznJ+UHK5kH
+         NryQjFW2ZK2KTD8qQxn3ZgSFKXRI1VjMcXjDvrtle5B2LdnezzkZrl3qN4w4bcm0Qlvu
+         faD6K2VU+v8jypIBrG+P6iJUKSnGYh2oH6csw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=NqOa2ydWKPCFCDt1F37LPTz5eL6WtbCSjhIkDCaOa5c=;
-        b=YrYGv5uFmmt1iONPQ4/UnPmIl38kHtNIKIp+lQVKjJP1Y1ZzWf3G2VpIM635z3vncZ
-         JCbfmK0ykPkoXswI5wZLPTAqUj1ocO/SfG8oEQ1YIgW5nnMUBvDZVjMkYGNGjQhzNrPE
-         flljJyCbNMs4K5XsPFIQgRoJw4K4J0mWt43LqMYsqT25Xot+2nIsPyL4vJdnDg5+k+NQ
-         7Y1rDG98ziZV9OjVtUKnbhXmOFySMNeR1t2fccTvSMNIpnCX/EEmC7uKWzqd2omgzlgo
-         xKFbh0i5K9BeBgbkFn1/iTfsPOlUd6ecv5OF2I8gB5RcRYgX9DK3DjFqEhspy95dZXP+
-         Q7fg==
-X-Gm-Message-State: ACgBeo2rHs5dFFIf4BSPjnpp6ONp4KwQ48Ey483UxioNY2tuImrFqqWA
-        g9ACsZM4PBfczNETNlhcBY6A3/qXlFqK+fFqAgNT7A==
-X-Google-Smtp-Source: AA6agR4toWohZGJKI+9YbnPUu2yUsYg/YV9HP/3UFT4/MV/bpns3J4siYJlYs6COKIg0lrGKxz70EhFqqeOtGJX3zu8=
-X-Received: by 2002:a5d:64cc:0:b0:21d:a4bd:fdbe with SMTP id
- f12-20020a5d64cc000000b0021da4bdfdbemr932345wri.580.1659063598082; Thu, 28
- Jul 2022 19:59:58 -0700 (PDT)
+        bh=IARz1toyVxe2HEfXFShiS/q8AGQuTpTxAvAR8tfiMlI=;
+        b=6e1mLRnqX1a5c7oPQKQihaQW5L293XPe72E7MmY2MUsD/gklfZj4iufKFo8SWSpSxa
+         V7K0WRFLj0dfD5D0taDBBnoGkq41j7kG67qPqiFaPncggkFutQvJ6dgk0BUca0h8ALrj
+         DKchTclQGeEbVLQYvvL8AhANR8qyeAXMSKrK6Kv8/CwEf+4gN9F8oYMTGnE4Rbps4Wj2
+         tIpHoNhNG11oSjfu6dIMKZgCLFm8cqxEYHRPPAdTHcIVCmOeWvpRkiPtvPhO4YSE8kF2
+         QYMQKCFGwNvjxBcAlzbUVQogwvrtmd5uIeHuThLkOsckDD7nTYE+YVIhOVHquvurNrRF
+         jQrQ==
+X-Gm-Message-State: AJIora/SEVdAXrFiSQbevKw1Oykrd+aPGX3oDwAFctzVkfjXiHG4TPvX
+        1nfyQUhuUDHMzKMR9xfIH58IOEw6IcnQfmpviqvjYg==
+X-Google-Smtp-Source: AGRyM1s4J7+PVpOZXKBLR/RL1MJ9PGiF4IXC/hzBc5uB4snB/tWt+HG0unw+G16sBk8ZRvUykWi1YgJdBM4Iqn6UzPo=
+X-Received: by 2002:a7b:c7d1:0:b0:3a3:1890:3495 with SMTP id
+ z17-20020a7bc7d1000000b003a318903495mr1284023wmk.18.1659063630016; Thu, 28
+ Jul 2022 20:00:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220727094034.1372745-1-treapking@chromium.org>
- <c455adea-2d18-60af-7175-a4e283e3dcb8@collabora.com> <CAEXTbpc7W40-vYcTVTNo7ikQ-n0O246AsbPntNb4q2nBErYVQw@mail.gmail.com>
- <689b439f-531b-9b3d-2e48-b7b83c50b3dd@collabora.com>
-In-Reply-To: <689b439f-531b-9b3d-2e48-b7b83c50b3dd@collabora.com>
+References: <20220728153913.2652153-1-treapking@chromium.org> <2640c637-68c7-641d-9b15-c57bdd5adca2@linaro.org>
+In-Reply-To: <2640c637-68c7-641d-9b15-c57bdd5adca2@linaro.org>
 From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Fri, 29 Jul 2022 10:59:47 +0800
-Message-ID: <CAEXTbperyGnKZw9y_55yE-T5gzuR8yzpTwfg7dy_bvTUhmrOag@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: mt8173-oak: Switch to SMC watchdog
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
+Date:   Fri, 29 Jul 2022 11:00:19 +0800
+Message-ID: <CAEXTbpdpOE=9U2ZNPBZDqBVS3AU9-cO6G9kjBy3tuVAbGrDNQA@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: mt8173-oak: Switch to SMC watchdog
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         Eizan Miyamoto <eizan@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
         Evan Benn <evanbenn@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
@@ -70,113 +67,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 28, 2022 at 11:51 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Fri, Jul 29, 2022 at 1:54 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> Il 28/07/22 17:39, Pin-yen Lin ha scritto:
-> > On Thu, Jul 28, 2022 at 7:21 PM AngeloGioacchino Del Regno
-> > <angelogioacchino.delregno@collabora.com> wrote:
-> >>
-> >> Il 27/07/22 11:40, Pin-yen Lin ha scritto:
-> >>> Switch to SMC watchdog because we need direct control of HW watchdog
-> >>> registers from kernel. The corresponding firmware was uploaded in
-> >>> https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
-> >>>
-> >>> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> >>> ---
-> >>>
-> >>> Changes in v2:
-> >>> - Move the modifications to mt8173-elm.dtsi and add some comments.
-> >>>
-> >>>    arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 12 ++++++++++++
-> >>>    1 file changed, 12 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> >>> index e21feb85d822..b2269770abc3 100644
-> >>> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> >>> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> >>> @@ -161,6 +161,18 @@ hdmi_connector_in: endpoint {
-> >>>                        };
-> >>>                };
-> >>>        };
-> >>> +
-> >>> +     soc {
-> >>> +             /*
-> >>> +              * Disable the original MMIO watch dog and switch to the SMC watchdog,
-> >>> +              * which operates on the same MMIO.
-> >>> +              */
-> >>> +             /delete-node/ watchdog@10007000;
-> >>
-> >> Unfortunately, we're not quite there yet.
-> >> The comment is fine, but...
-> >>
-> >> There's no need to /delete-node/: you can just do it like
-> >>
-> >> /*
-> >>    * Disable the original MMIO watch dog and switch to the SMC watchdog,
-> >>    * which operates on the same MMIO.
-> >>    */
-> >> &watchdog {
-> >>          status = "disabled";
-> >> };
-> >>
-> >> and...
-> >>
-> >>> +
-> >>> +             watchdog {
-> >>
-> >> This isn't addressable, hence it belongs to the root node, not to soc.
-> >> If you did that because of naming issues, I would propose to call it
-> >> smc-watchdog instead of watchdog.
-> >>
-> >>
-> >>> +                     compatible = "arm,smc-wdt";
-> >>
-> > Thanks for the suggestion. I'll modify it accordingly in v3.
+> On 28/07/2022 17:39, Pin-yen Lin wrote:
+> > Switch to SMC watchdog because we need direct control of HW watchdog
+> > registers from kernel. The corresponding firmware was uploaded in
+> > https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
 > >
-> >> P.S.: No timeout-sec?
+> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+> > ---
 > >
-> > The example in the binding file has a timeout-sec property, but it is
-> > not defined in the binding nor used in the driver...
-> > The driver seems to talk with the firmware to get a timeout value[1]
-> > instead of reading it from the devicetree.
+> > Changes in v3:
+> > - Remove /delete-node/ and create a new node for SMC watchdog.
 > >
+> > Changes in v2:
+> > - Move the modifications to mt8173-elm.dtsi and add some comments.
+> >
+> >  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> > index e21feb85d822..fc8203297bac 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> > @@ -161,6 +161,19 @@ hdmi_connector_in: endpoint {
+> >                       };
+> >               };
+> >       };
+> > +
+> > +
 >
-> Oh. I admit I trusted the binding blindly, didn't check the actual driver code.
+> Why?
 >
-> On a note, we should check why is that binding partially wrong and eventually
-> fix it (remove the property), or add the capability to the driver, but feel free
-> to ignore that for now, as this is not relevant for the context of this specific
-> change that you're trying to do here.
-
-It looks like the timeout-sec property was not defined nor referenced
-from the very first commit [2][3]. I'll send out another patch to
-remove it.
-
-[2]: dt-bindings:
-https://lore.kernel.org/all/20200505131242.v6.1.Id96574f1f52479d7a2f3b866b8a0552ab8c03d7f@changeid/
-[3]: watchdog driver:
-https://lore.kernel.org/all/20200505131242.v6.2.Ia92bb4d4ce84bcefeba1d00aaa1c1e919b6164ef@changeid/
+> > +     smc_watchdog {
 >
-> P.S.: I just noticed that the commit title is also wrong. s/mt8173-oak/mt8173-elm/g
-
-I sent out the v3 before I saw this reply.  I'll send out a v4 for
-this and address Krzysztof's comment as well.
-
+> No, you need to read the comment you receive one more time. So to be
+> clear: "watchdog"
 >
-> Waiting for a v3!
+Ah I see. I'll fix this in v4.
 >
 >
-> > [1]: https://elixir.bootlin.com/linux/latest/source/drivers/watchdog/arm_smc_wdt.c#L138
-> >>
-> >> Regards,
-> >> Angelo
-> >>
-> >>> +             };
-> >>> +     };
-> >>>    };
-> >>>
-> >>>    &mfg_async {
-> >>>
-> >>
->
+> Best regards,
+> Krzysztof
