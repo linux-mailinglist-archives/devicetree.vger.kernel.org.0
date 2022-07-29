@@ -2,130 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99DCE584D56
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 10:28:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3493E584D69
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 10:34:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235617AbiG2I2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 04:28:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35206 "EHLO
+        id S234757AbiG2Ie5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 04:34:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234644AbiG2I15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 04:27:57 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68D77683CC
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 01:26:48 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id l4so5086731wrm.13
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 01:26:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2u5OrUHUpOMO5fEyAlLsIDOLs93NcMBXwRg6aSJD9DA=;
-        b=IRfHBuNRCPf3dfAa/Oe7k94E+8lxZitlK7DOyEhPW7X/zOUQk6SxKaid/iofF3vADw
-         NtfIUq06xahkXxOKmIY2MXoaEeNzbBDh2fZ551x/yKuxVezuHgrj5KEgbXK5aOyzZx5g
-         t48eXZsjmqkNVR8sRdkKD5Yj9Q6KE863bfutg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2u5OrUHUpOMO5fEyAlLsIDOLs93NcMBXwRg6aSJD9DA=;
-        b=uZvYmowNUF7JmNWtI814sQBu77DBFBvn/uce+z3Ni2arutW5cpuZwzYHh4LDO3uYFD
-         zAIcdkmm9VNzWX8IP2ZJPi/ns5Posw4drjGvaRXe51JxT+fbvzMqlkb1IpDGDMOBkRvV
-         mJLG7urYFVzoswQIv6dvzuniOqvm+BW69LN3NlkDm7NbeqWiag8rwA4ak78HTFe4plZJ
-         84NoLgCrfcsRVbf5HaRJU26XeY6a1ji5VzNMGrNS42MxZ+5PHbhDWKrw7xwenloARVtJ
-         wz4TbD5XuiH7afA9FFtgHJXu7vLxuB4MuxMKAMrj3CJwpikHY+osi7vRgYeI+3rrQwFv
-         mO/g==
-X-Gm-Message-State: ACgBeo1eQjaNTKwKbbpSeFdXeeh1ad2v5XGvbqr90ksyJDXJsvJ0d4ir
-        WWUcX3pbIAvWymc+mME8PKinmWXTl+k+qmP0TDfIhA==
-X-Google-Smtp-Source: AA6agR5FXdxHYMSCOAf3XvPso/HOt+pVRXDTIBRgpFGW9U0fv50u3omwYjhK7izsNPIcvrt0bqrPsE1OPlpLIy8gEnk=
-X-Received: by 2002:a5d:4d0b:0:b0:21e:c456:e565 with SMTP id
- z11-20020a5d4d0b000000b0021ec456e565mr1582022wrt.3.1659083206728; Fri, 29 Jul
- 2022 01:26:46 -0700 (PDT)
+        with ESMTP id S233362AbiG2Ie4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 04:34:56 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29C17D1CC;
+        Fri, 29 Jul 2022 01:34:55 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 63FF36601B38;
+        Fri, 29 Jul 2022 09:34:53 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1659083694;
+        bh=JZHyz/nv/3f5KWb0VPaswGYeWHtAmTjncnJD7Dy6ybw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=F2dfqoJV3UzCqw3OHj+c25OHr/eYsuxNUkpukVM8d6eqScVGjz2mAssU3L3Rc8CGh
+         j/9l/QPEMNq+Dya4C9Z/xsjj9aEJn/6R2vPrb1QSC3aF0ld+j/ffCHH0lFJH17p8qq
+         0bRUcggIus0xNMkK3TwqI04/wPlkr2ZWta7h1k5Glk71DOhNdwlXJaN8FuRnVIT+a8
+         9499D3e2058va4Bg5D+QitWUMwtBUvKcKipFc74Rys9YJodBI48YAx0KF323Sa0gfj
+         AO/x2Mm8qAKVH5VMsEyK+1+05MZOWcAeQtZ0+XTGtuJ19rCrYgH1chsA5Z9Lm2JKwC
+         FpT+Da0lFNHGw==
+Message-ID: <44dde534-769c-c456-c869-4e29213b3d56@collabora.com>
+Date:   Fri, 29 Jul 2022 10:34:51 +0200
 MIME-Version: 1.0
-References: <20220729032423.157144-1-treapking@chromium.org> <2719519a-4690-4cc8-42c3-f6089d888cce@collabora.com>
-In-Reply-To: <2719519a-4690-4cc8-42c3-f6089d888cce@collabora.com>
-From:   Pin-yen Lin <treapking@chromium.org>
-Date:   Fri, 29 Jul 2022 16:26:35 +0800
-Message-ID: <CAEXTbpfRWX_RfR6DU31NweLrGTOZTi_hCs-515xaW6x_McnJ5Q@mail.gmail.com>
-Subject: Re: [PATCH v4] arm64: dts: mt8173-elm: Switch to SMC watchdog
-To:     AngeloGioacchino Del Regno 
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [V12,1/7] dt-bindings: mediatek: Add mediatek, mt8195-jpgenc
+ compatible
+Content-Language: en-US
+To:     Irui Wang <irui.wang@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        nicolas.dufresne@collabora.com, wenst@chromium.org,
+        kyrie wu <kyrie.wu@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+References: <20220729062630.5592-1-irui.wang@mediatek.com>
+ <20220729062630.5592-2-irui.wang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Evan Benn <evanbenn@chromium.org>,
-        Eizan Miyamoto <eizan@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220729062630.5592-2-irui.wang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 29, 2022 at 4:01 PM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 29/07/22 05:24, Pin-yen Lin ha scritto:
-> > Switch to SMC watchdog because we need direct control of HW watchdog
-> > registers from kernel. The corresponding firmware was uploaded in
-> > https://review.trustedfirmware.org/c/TF-A/trusted-firmware-a/+/3405.
-> >
-> > Signed-off-by: Pin-yen Lin <treapking@chromium.org>
-> > ---
-> >
-> > Changes in v4:
-> > - Rename the watchdog node (smc_watchdog -> watchdog)
-> > - Correct the patch summary (mt8173-oak -> mt8173-elm)
-> >
-> > Changes in v3:
-> > - Remove /delete-node/ and create a new node for SMC watchdog.
-> >
-> > Changes in v2:
-> > - Move the modifications to mt8173-elm.dtsi and add some comments.
-> >
-> >   arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 13 +++++++++++++
-> >   1 file changed, 13 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> > index e21feb85d822..421bb2945135 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
-> > @@ -161,6 +161,19 @@ hdmi_connector_in: endpoint {
-> >                       };
-> >               };
-> >       };
-> > +
-> > +
->
-> You don't need two blank lines, just one is enough (please fix).
+Il 29/07/22 08:26, Irui Wang ha scritto:
+> From: kyrie wu <kyrie.wu@mediatek.com>
+> 
+> Add mediatek,mt8195-jpgenc compatible to binding document.
+> 
+> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> Signed-off-by: irui wang <irui.wang@mediatek.com>
+> ---
+>   .../media/mediatek,mt8195-jpegenc.yaml        | 139 ++++++++++++++++++
+>   1 file changed, 139 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml
+> new file mode 100644
+> index 000000000000..d9133e6a92f8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8195-jpegenc.yaml
+> @@ -0,0 +1,139 @@
 
-This is already addressed in v5. Thanks for the review though.
->
-> After which:
->
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->
-> > +     watchdog {
-> > +             compatible = "arm,smc-wdt";
-> > +     };
-> > +};
-> > +
-> > +/*
-> > + * Disable the original MMIO watch dog and switch to the SMC watchdog, which
-> > + * operates on the same MMIO.
-> > + */
-> > +&watchdog {
-> > +     status = "disabled";
-> >   };
-> >
-> >   &mfg_async {
-> >
->
->
+..snip..
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/mt8195-memory-port.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/power/mt8195-power.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        jpgenc_master {
+
+What about using ranges here? The binding would look way cleaner, like:
+
+         jpeg-encoder@1a030000 {
+                .... properties ....
+                ranges = <0x30000   0 0x1a030000 0x10000>, /* P.S.: Not tested! */
+                         <0x1030000 0 0x1b030000 0x10000>;
+
+                encoder-core@30000 {
+                         compatible = "mediatek,mt8195-jpgenc-hw";
+                         reg = <0 0x30000 0 0x10000>;
+                         .... properties ....
+                };
+
+                encoder-core@1030000 {
+                         compatible = "mediatek,mt8195-jpgenc-hw";
+                         reg = <0 0x1030000 0 0x10000>;
+                         .... properties ....
+                };
+         };
+
+P.S.: Added Krzysztof to the loop.
+
+Krzysztof, can you please give an opinion on that?
+
+Thanks,
+Angelo
+
+> +                compatible = "mediatek,mt8195-jpgenc";
+> +                power-domains = <&spm MT8195_POWER_DOMAIN_VENC_CORE1>;
+> +                iommus = <&iommu_vpp M4U_PORT_L20_JPGENC_Y_RDMA>,
+> +                <&iommu_vpp M4U_PORT_L20_JPGENC_C_RDMA>,
+> +                <&iommu_vpp M4U_PORT_L20_JPGENC_Q_TABLE>,
+> +                <&iommu_vpp M4U_PORT_L20_JPGENC_BSDMA>;
+> +                #address-cells = <2>;
+> +                #size-cells = <2>;
+> +
+> +                jpgenc@1a030000 {
+> +                        compatible = "mediatek,mt8195-jpgenc-hw";
+> +                        reg = <0 0x1a030000 0 0x10000>;
+> +                        iommus = <&iommu_vdo M4U_PORT_L19_JPGENC_Y_RDMA>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGENC_C_RDMA>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGENC_Q_TABLE>,
+> +                        <&iommu_vdo M4U_PORT_L19_JPGENC_BSDMA>;
+> +                        interrupts = <GIC_SPI 342 IRQ_TYPE_LEVEL_HIGH 0>;
+> +                        clocks = <&vencsys CLK_VENC_JPGENC>;
+> +                        clock-names = "jpgenc";
+> +                        power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
+> +                };
+> +
+> +                jpgenc@1b030000 {
+> +                        compatible = "mediatek,mt8195-jpgenc-hw";
+> +                        reg = <0 0x1b030000 0 0x10000>;
+> +                        iommus = <&iommu_vpp M4U_PORT_L20_JPGENC_Y_RDMA>,
+> +                        <&iommu_vpp M4U_PORT_L20_JPGENC_C_RDMA>,
+> +                        <&iommu_vpp M4U_PORT_L20_JPGENC_Q_TABLE>,
+> +                        <&iommu_vpp M4U_PORT_L20_JPGENC_BSDMA>;
+> +                        interrupts = <GIC_SPI 347 IRQ_TYPE_LEVEL_HIGH 0>;
+> +                        clocks = <&vencsys_core1 CLK_VENC_CORE1_JPGENC>;
+> +                        clock-names = "jpgenc";
+> +                        power-domains = <&spm MT8195_POWER_DOMAIN_VENC_CORE1>;
+> +                };
+> +        };
+> +    };
+
+
