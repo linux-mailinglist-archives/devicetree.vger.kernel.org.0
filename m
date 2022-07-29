@@ -2,267 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A7E5855D1
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 21:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2A705855F4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 22:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238168AbiG2T53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 15:57:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38596 "EHLO
+        id S239133AbiG2UOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 16:14:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232154AbiG2T52 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 15:57:28 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC5F88747;
-        Fri, 29 Jul 2022 12:57:26 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 568CC6D4;
-        Fri, 29 Jul 2022 21:57:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1659124644;
-        bh=Fnn3BsSY+9Y0ZoK8j2r8OJ5JPOWen6rkhc4Jc5JKggI=;
+        with ESMTP id S230499AbiG2UOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 16:14:31 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D98B86C1C;
+        Fri, 29 Jul 2022 13:14:30 -0700 (PDT)
+Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 01AE26601B8B;
+        Fri, 29 Jul 2022 21:14:25 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1659125668;
+        bh=G4GT0Els2R2O6vlylb/sPAqakzAO0cQG7B/tH51PEEU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t1Lt2uMFpxcd4uIXRIX0TC89Zw3JE8NFq5pMJSoXqbYk7ITBdt3FAJ2peWzbDJIUx
-         q20OXY0NtRlT5NrSfeIFpEJFoCI/Wjjb4XV4f67o1mzQtYuefih16R5KNlBws+HBZC
-         9yObX8+qwjtXDhGDwrj+8SyBq4NgxZNl6tn3UaRo=
-Date:   Fri, 29 Jul 2022 22:57:21 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
-        stanimir.varbanov@linaro.org, tomi.valkeinen@ideasonboard.com,
-        robh+dt@kernel.org, nicolas@ndufresne.ca,
-        alexander.stein@ew.tq-group.com, ezequiel@vanguardiasur.com.ar,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 5/6] media: dw100: Add i.MX8MP dw100 dewarper driver
-Message-ID: <YuQ7oeLLAo9QCt91@pendragon.ideasonboard.com>
-References: <20220715135329.975400-1-xavier.roumegue@oss.nxp.com>
- <20220715135329.975400-6-xavier.roumegue@oss.nxp.com>
- <4f7eb28b-f14e-00bd-b96c-3fe9f12b8deb@xs4all.nl>
- <YuJKSLBvoXEMt1T5@pendragon.ideasonboard.com>
- <75fdb576-0985-c93a-1711-1ccf032d5f29@xs4all.nl>
+        b=jRKbidvNZSHnE0RihwLLsClpimZvmfrieKisTV9H8nPXadNlgHePR5iSRGqrzWmqz
+         GvKCBSP5Y9j9eQK+RtEAmhLv/YMPgCDicqCvMRHVTOyUBdwxngGfCf4p4lU64aIEB/
+         AkbgRn6Lfhz8lS4AayccSN1+IR/X2Rvsm7fzTK9+RNB1GOji/h1VZpYC3wT3gKXaJt
+         krsxsnm00Yq47GNmtoDFQ3xKPkkx/IBbSTklQo6QFFPDViqUVTWjEzF78wkZjTDIfG
+         R2UBLuZ774WBQedpkWci3XWz4/9wBLjimTpQQZt6lx2MwpTWYI5Y0a3kG79dlDXRar
+         PGPvmvpDBMKHQ==
+Date:   Fri, 29 Jul 2022 16:14:21 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Balsam CHIHI <bchihi@baylibre.com>
+Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amitk@kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, khilman@baylibre.com,
+        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+Subject: Re: [PATCH v8 5/6] arm64: dts: mt8195: Add efuse node to mt8195
+Message-ID: <20220729201421.fxybo57g46ftghgd@notapiano>
+References: <20220726135506.485108-1-bchihi@baylibre.com>
+ <20220726135506.485108-6-bchihi@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <75fdb576-0985-c93a-1711-1ccf032d5f29@xs4all.nl>
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,PDS_OTHER_BAD_TLD,SPF_HELO_PASS,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220726135506.485108-6-bchihi@baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
-
-On Thu, Jul 28, 2022 at 11:08:27AM +0200, Hans Verkuil wrote:
-> On 7/28/22 10:35, Laurent Pinchart wrote:
-> > On Thu, Jul 28, 2022 at 10:17:32AM +0200, Hans Verkuil wrote:
-> >> On 7/15/22 15:53, Xavier Roumegue wrote:
-> >>> Add a V4L2 mem-to-mem driver for the Vivante DW100 Dewarp Processor IP
-> >>> core found on i.MX8MP SoC.
-> >>>
-> >>> The processor core applies a programmable geometrical transformation on
-> >>> input images to correct distorsion introduced by lenses.
-> >>> The transformation function is exposed as a grid map with 16x16 pixel
-> >>> macroblocks indexed using X, Y vertex coordinates.
-> >>>
-> >>> The dewarping map can be set from application through a dedicated v4l2
-> >>> control. If not set or invalid, the driver computes an identity map
-> >>> prior to starting the processing engine.
-> >>>
-> >>> The driver supports scaling, cropping and pixel format conversion.
-> >>>
-> >>> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-> >>> Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-> >>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >>> ---
-> >>>  drivers/media/platform/nxp/Kconfig            |    1 +
-> >>>  drivers/media/platform/nxp/Makefile           |    1 +
-> >>>  drivers/media/platform/nxp/dw100/Kconfig      |   17 +
-> >>>  drivers/media/platform/nxp/dw100/Makefile     |    3 +
-> >>>  drivers/media/platform/nxp/dw100/dw100.c      | 1683 +++++++++++++++++
-> >>>  drivers/media/platform/nxp/dw100/dw100_regs.h |  117 ++
-> >>>  6 files changed, 1822 insertions(+)
-> >>>  create mode 100644 drivers/media/platform/nxp/dw100/Kconfig
-> >>>  create mode 100644 drivers/media/platform/nxp/dw100/Makefile
-> >>>  create mode 100644 drivers/media/platform/nxp/dw100/dw100.c
-> >>>  create mode 100644 drivers/media/platform/nxp/dw100/dw100_regs.h
-
-[snip]
-
-> >>> diff --git a/drivers/media/platform/nxp/dw100/dw100.c b/drivers/media/platform/nxp/dw100/dw100.c
-> >>> new file mode 100644
-> >>> index 000000000000..986ef1c9dfe3
-> >>> --- /dev/null
-> >>> +++ b/drivers/media/platform/nxp/dw100/dw100.c
-> >>> @@ -0,0 +1,1683 @@
-
-[snip]
-
-> >>> +static int dw100_s_ctrl(struct v4l2_ctrl *ctrl)
-> >>> +{
-> >>> +	struct dw100_ctx *ctx =
-> >>> +		container_of(ctrl->handler, struct dw100_ctx, hdl);
-> >>> +
-> >>> +	switch (ctrl->id) {
-> >>> +	case V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP:
-> >>> +		ctx->user_map_is_valid = true;
-> >>
-> >> Ah, no. You don't want to do this.
-> >>
-> >> The control should always be valid.
-> > 
-> > This is meant to indicate if the control value has been set after a
-> > S_FMT call. If the resolution changes, the control value isn't valid
-> > anymore.
-> > 
-> > We could change the control value from within the driver in the S_FMT
-> > handler, but frankly that's completely overkill. I'd rather ditch
-> > control support and use a custom ioctl then if the control framework
-> > and/or the API requirements are not well suited for this purpose.
+On Tue, Jul 26, 2022 at 03:55:05PM +0200, Balsam CHIHI wrote:
+> This adds the efuse node. This will be required by the thermal driver
+> to get the calibration data.
 > 
-> It's a general V4L2 design rule that you shouldn't have invalid values.
-> If changing one parameter (the format in this case) would cause other
-> values to become invalid, then it is the driver that has to fix things
-> so the state is once more consistent.
-
-The only thing the driver can do is to reset the control to an identity
-map. It seems quite inefficient to do so, compared to creating the map
-when needed, as an identity map if the control hasn't been set since the
-last S_FMT, or from the control value otherwise.
-
-> Note that v4l2_ctrl_modify_dimensions calls init() already, so adding
-> your own init op that fills it with a sane value doesn't add overhead.
-
-Right. I would have gone for a custom ioctl, but it's not my driver so I
-don't mind a control :-)
-
-> >> See the next comment...
-> >>
-> >>> +		break;
-> >>> +	}
-> >>> +
-> >>> +	return 0;
-> >>> +}
-> >>> +
-> >>> +static const struct v4l2_ctrl_ops dw100_ctrl_ops = {
-> >>> +	.s_ctrl = dw100_s_ctrl,
-> >>> +};
-> >>> +
-> >>> +static const struct v4l2_ctrl_config controls[] = {
-> >>> +	[DW100_CTRL_DEWARPING_MAP] = {
-> >>> +		.ops = &dw100_ctrl_ops,
-> >>
-> >> What you want to do here is set .type_ops as well and override the init
-> >> function.
-> > 
-> > Not a blocker for this, but I think the init function of type_ops is
-> > really ineffecient for large arrays. Something better is needed.
+> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> I agree, and after looking at the code I think this is quite easy to do.
-> Instead of initing each element in turn, it would just be called once
-> for the whole array. It's a good optimization.
-> 
-> The main reason that wasn't done before is that arrays were a late addition
-> and are still quite rare and typically are initialized only once. So there
-> was never a real need to optimize the code. But for this it makes sense to
-> do the work.
-> 
-> Let me know if you want me to do this.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index 0ff34edcf8c8..4fbf24b5d202 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1236,6 +1236,22 @@ nor_flash: spi@1132c000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		efuse: efuse@11c10000 {
+> +			compatible = "mediatek,efuse";
+> +			reg = <0 0x11c10000 0 0x1000>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			lvts_efuse_data1: lvts1-calib@1bc {
+> +				reg = <0x1bc 0x14>;
+> +			};
+> +			lvts_efuse_data2: lvts2-calib@1d0 {
+> +				reg = <0x1d0 0x38>;
+> +			};
+> +			svs_calibration: calib@580 {
+> +				reg = <0x580 0x64>;
+> +			};
+> +		};
+> +
 
-Thanks for posting a patch already.
+This commit doesn't apply, there's already an efuse node on mt8195.dtsi. Please
+rebase.
 
-> >> This init function should be used to fill in the initial values for the
-> >> array, which would be just the x/y coordinates of the vertices, i.e. no
-> >> warping.
-> >>
-> >> This will ensure that the contents of the array is always valid.
-> >>
-> >>> +		.id = V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP,
-> >>> +		.name = "Look-Up Table",
-> >>
-> >> That's a poor name, I think. How about "Dewarping Vertex Map" or something
-> >> along those lines? That at least explains what it does.
-> >>
-> >>> +		.type = V4L2_CTRL_TYPE_U32,
-> >>> +		.min = 0x00000000,
-> >>> +		.max = 0xffffffff,
-> >>> +		.step = 1,
-> >>> +		.def = 0,
-> >>> +		.dims = { DW100_MAX_LUT_W, DW100_MAX_LUT_H },
-> >>> +	},
-> >>> +};
-
-[snip]
-
-> >>> +static int dw100_s_fmt(struct dw100_ctx *ctx, struct v4l2_format *f)
-> >>> +{
-> >>> +	struct dw100_q_data *q_data;
-> >>> +	struct vb2_queue *vq;
-> >>> +
-> >>> +	vq = v4l2_m2m_get_vq(ctx->fh.m2m_ctx, f->type);
-> >>> +	if (!vq)
-> >>> +		return -EINVAL;
-> >>> +
-> >>> +	q_data = dw100_get_q_data(ctx, f->type);
-> >>> +	if (!q_data)
-> >>> +		return -EINVAL;
-> >>> +
-> >>> +	if (vb2_is_busy(vq)) {
-> >>> +		dev_dbg(&ctx->dw_dev->pdev->dev, "%s queue busy\n", __func__);
-> >>> +		return -EBUSY;
-> >>> +	}
-> >>> +
-> >>> +	q_data->fmt = dw100_find_format(f);
-> >>> +	q_data->pix_fmt = f->fmt.pix_mp;
-> >>> +	q_data->crop.top = 0;
-> >>> +	q_data->crop.left = 0;
-> >>> +	q_data->crop.width = f->fmt.pix_mp.width;
-> >>> +	q_data->crop.height = f->fmt.pix_mp.height;
-> >>> +
-> >>> +	/* Propagate buffers encoding */
-> >>> +
-> >>> +	if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
-> >>> +		struct dw100_q_data *dst_q_data =
-> >>> +			dw100_get_q_data(ctx,
-> >>> +					 V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> >>> +
-> >>> +		dst_q_data->pix_fmt.colorspace = q_data->pix_fmt.colorspace;
-> >>> +		dst_q_data->pix_fmt.ycbcr_enc = q_data->pix_fmt.ycbcr_enc;
-> >>> +		dst_q_data->pix_fmt.quantization = q_data->pix_fmt.quantization;
-> >>> +		dst_q_data->pix_fmt.xfer_func = q_data->pix_fmt.xfer_func;
-> >>> +	}
-> >>> +
-> >>> +	dev_dbg(&ctx->dw_dev->pdev->dev,
-> >>> +		"Setting format for type %u, wxh: %ux%u, fmt: %p4cc\n",
-> >>> +		f->type, q_data->pix_fmt.width, q_data->pix_fmt.height,
-> >>> +		&q_data->pix_fmt.pixelformat);
-> >>> +
-> >>> +	if (f->type == V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) {
-> >>> +		int ret;
-> >>> +		u32 dims[V4L2_CTRL_MAX_DIMS] = {};
-> >>> +		struct v4l2_ctrl *ctrl = ctx->ctrls[DW100_CTRL_DEWARPING_MAP];
-> >>> +
-> >>> +		dims[0] = dw100_get_n_vertices_from_length(q_data->pix_fmt.width);
-> >>> +		dims[1] = dw100_get_n_vertices_from_length(q_data->pix_fmt.height);
-> >>> +
-> >>> +		v4l2_ctrl_lock(ctrl);
-> >>> +		ctx->user_map_is_valid = false;
-> >>> +		ret = __v4l2_ctrl_modify_dimensions(ctrl, dims);
-> >>> +		v4l2_ctrl_unlock(ctrl);
-> >>> +
-> >>> +		if (ret) {
-> >>> +			dev_err(&ctx->dw_dev->pdev->dev,
-> >>> +				"Modifying LUT dimensions failed with error %d\n",
-> >>> +				ret);
-> >>> +			return ret;
-> >>> +		}
-> >>> +	}
-> >>> +
-> >>> +	return 0;
-> >>> +}
-
--- 
-Regards,
-
-Laurent Pinchart
+Thanks,
+Nícolas
