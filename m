@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7E8B584DAC
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 10:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BA42584DD4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 11:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234830AbiG2IwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 04:52:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58898 "EHLO
+        id S234845AbiG2JIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 05:08:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234622AbiG2IwU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 04:52:20 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 999D882F99;
-        Fri, 29 Jul 2022 01:52:19 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EE4C31063;
-        Fri, 29 Jul 2022 01:52:19 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 287103F73B;
-        Fri, 29 Jul 2022 01:52:17 -0700 (PDT)
-Date:   Fri, 29 Jul 2022 09:52:14 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Maximilian Luz <luzmaximilian@gmail.com>
-Cc:     Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-Message-ID: <20220729085214.bh2cak5g2hcqun4i@bogus>
-References: <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
- <7284953b-52bb-37ac-fbe1-1fa845c44ff9@linaro.org>
- <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com>
- <20220727132437.pjob3z2nyxsuxgam@bogus>
- <CAC_iWj+Pn+h8k=fuDHzYwqD0g4m6jGRt8sCzcz+5+rYqvz9q4w@mail.gmail.com>
- <fd922f0f-99fd-55a3-a0b5-b62ad2dbfb45@gmail.com>
- <CAC_iWjLWBJLth26ifFfHvimProHZu_w5SjQNWSH_D2Fs_JXjbA@mail.gmail.com>
- <b703f678-b2c5-cdeb-ac40-9646e043d1c3@gmail.com>
- <CAC_iWjLrntWuJUzVuRi0ZOtG6JXNwz7SbS2mrqpuTgU5TV6rQA@mail.gmail.com>
- <d5a19e17-08eb-8bd6-ea18-5da638d13622@gmail.com>
+        with ESMTP id S231381AbiG2JIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 05:08:31 -0400
+X-Greylist: delayed 422 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 29 Jul 2022 02:08:29 PDT
+Received: from mx1.emlix.com (mx1.emlix.com [136.243.223.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6520C84EF0;
+        Fri, 29 Jul 2022 02:08:29 -0700 (PDT)
+Received: from mailer.emlix.com (unknown [81.20.119.6])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.emlix.com (Postfix) with ESMTPS id 7EB5F60344;
+        Fri, 29 Jul 2022 11:01:24 +0200 (CEST)
+Date:   Fri, 29 Jul 2022 11:01:24 +0200
+From:   Daniel =?iso-8859-1?Q?Gl=F6ckner?= <dg@emlix.com>
+To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
+Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
+        trix@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        system@metrotek.ru,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 2/2] dt-bindings: fpga: add binding doc for ecp5-spi
+ fpga mgr
+Message-ID: <20220729090123.GA28299@homes.emlix.com>
+References: <20220719112335.9528-1-i.bornyakov@metrotek.ru>
+ <20220719112335.9528-3-i.bornyakov@metrotek.ru>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d5a19e17-08eb-8bd6-ea18-5da638d13622@gmail.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220719112335.9528-3-i.bornyakov@metrotek.ru>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 28, 2022 at 07:27:19PM +0200, Maximilian Luz wrote:
+Hi,
 
-[...]
+On Tue, Jul 19, 2022 at 02:23:35PM +0300, Ivan Bornyakov wrote:
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - lattice,ecp5-fpga-mgr
 
-> My current suggestion (already sent to Sudeep earlier) is (roughly)
-> this: Add one compatible for the TrEE / TrustZone interface.
+Since this driver uses the same interface as the existing
+drivers/fpga/machxo2-spi.c driver, wouldn't it be advisable to use a
+similar compatible id, i.e. lattice,ecp5-slave-spi?
 
-Still I don't understand why you need extra compatible if you know
-this laptop(with a unique compatible to identify it) always runs this
-TrEE interface.
+> +required:
+> +  - compatible
+> +  - reg
+> +  - program-gpios
+> +  - init-gpios
+> +  - done-gpios
 
---
-Regards,
-Sudeep
+I think some of the GPIOs can be made optional by reading the status
+register or using the refresh command, assuming the slave spi interface
+stayed enabled after previous programming and we are not dealing with
+several chained FPGAs. But that can of course be left as an exercise for
+other developers.
+
+Best regards,
+
+  Daniel
