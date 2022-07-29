@@ -2,79 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46467584D9D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 10:45:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD153584DA5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 10:48:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230053AbiG2Ipn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 04:45:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53502 "EHLO
+        id S235200AbiG2Isa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 04:48:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234893AbiG2Ipg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 04:45:36 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 954DF29C88;
-        Fri, 29 Jul 2022 01:45:34 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,200,1654527600"; 
-   d="scan'208";a="127790715"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 29 Jul 2022 17:45:33 +0900
-Received: from localhost.localdomain (unknown [10.226.93.50])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 17F1B401658B;
-        Fri, 29 Jul 2022 17:45:29 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: r9a07g043: Fix audio clk node names
-Date:   Fri, 29 Jul 2022 09:45:27 +0100
-Message-Id: <20220729084527.388023-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S235224AbiG2Is1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 04:48:27 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E43C483205;
+        Fri, 29 Jul 2022 01:48:23 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4D1BD1063;
+        Fri, 29 Jul 2022 01:48:24 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C66DE3F73B;
+        Fri, 29 Jul 2022 01:48:22 -0700 (PDT)
+Date:   Fri, 29 Jul 2022 09:48:20 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mailbox: arm,mhu: Make secure interrupt
+ optional
+Message-ID: <20220729084820.73mnj2wwd65eey6x@bogus>
+References: <20220728190810.1290857-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220728190810.1290857-1-robh@kernel.org>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replace the clk node names audio-clk{1,2} with audio{1,2}-clk as per
-the device tree specification.
+On Thu, Jul 28, 2022 at 01:08:10PM -0600, Rob Herring wrote:
+> The secure interrupt is only useful to secure world, therefore for NS
+> users it shouldn't be required. Make it optional.
+> 
+> This fixes a warning on Arm Juno board:
+> 
+> mhu@2b1f0000: interrupts: [[0, 36, 4], [0, 35, 4]] is too short
+>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g043.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Reviewed-by:  Sudeep Holla <sudeep.holla@arm.com>
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-index f61459a98c51..d1b567d1b6e1 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-@@ -13,14 +13,14 @@ / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
--	audio_clk1: audio-clk1 {
-+	audio_clk1: audio1-clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		/* This value must be overridden by boards that provide it */
- 		clock-frequency = <0>;
- 	};
- 
--	audio_clk2: audio-clk2 {
-+	audio_clk2: audio2-clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		/* This value must be overridden by boards that provide it */
 -- 
-2.25.1
-
+Regards,
+Sudeep
