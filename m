@@ -2,133 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 194CF585170
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 16:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59BA15851AD
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 16:38:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236178AbiG2OU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 10:20:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
+        id S231976AbiG2Oia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 10:38:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236433AbiG2OU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 10:20:27 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4832713EAA
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 07:20:26 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id z12-20020a056830128c00b0061c8168d3faso3357383otp.7
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 07:20:26 -0700 (PDT)
+        with ESMTP id S229937AbiG2Oia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 10:38:30 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A38867CB6;
+        Fri, 29 Jul 2022 07:38:28 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id p10so7581402lfd.9;
+        Fri, 29 Jul 2022 07:38:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=n48rwJ6znQ/JiCvqsQDOhikE94C4sngYxJzSk0+idkE=;
-        b=kEtZGN6Z/CorW5Lq9wq9t9IfRLJyy5KD5gGGTiO1ceZcd1+AdGD/ipjIzeeBB477aM
-         NjaME6VCtJHKdIAtJSf3AyiDtYVfHU2DMx2BK+WgYUfzmxs+P9l5aIpPj8EnP/GCW3Aj
-         63YYjuqGUmZqgyEURS2I7WmMqi6xNyoj1JDqGyqUbbpCzs2wKSkVV+WTKbYNCprRzxDE
-         kaXM6QtugzjaCnUIHwCHVfYbzEMnI4Ny5Tr15HtS6EDQTweVOT7qfNgUGZwOliuIDXfV
-         Szj2FryXQ589F5FlbwRvCpKK+4KZBNbXRUWfVMy+WsWihby1p3QZA93hXObM1VLVwTbf
-         2ZGA==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=EWcB4X8ENw9vtO1R4Hk4K+2CQ/dMncr7JEdlRLjexCY=;
+        b=aufEE8sF+BMJDS0VfJg6CSw51VMg0z9s3/aEv05VpQddjA1NCYxxozP4a4E+CNFx6A
+         k4CYJpHNCEEjQ1oYuCWrqVUdRi5QQtyw4BmWqytm/czsAABnIiYKs2hnVmB5OcAtE071
+         MLApCHcbwtfHaKt55jqpijJ9X1xs1Hvduf79kUAiUJpLv7jsUEksAblKt62psk95fzVn
+         mBPaOGTCxfmACvjRexIZhzrxDIbPunIUrBJjPbu9UKJ5aptzTBIYISbWvYj/RiTowZrE
+         rwrd/mmerT3AM88snLyr4zwaMQT8Keui12FVYZ4oTsS3Ov6s19O8BLPA0vfIMCj9Qzx8
+         Cahg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=n48rwJ6znQ/JiCvqsQDOhikE94C4sngYxJzSk0+idkE=;
-        b=vc2JJw86DzDg00Mj/eW/cPOks1uB4Icuqmls4FFuzB9UaPo6S36lavsG3Jqp0ONBbF
-         zOKvZmDfk3H5ZoyWm8nv98XGN8zWitpDnYZhLOY4+TaYzkgv2/CUwbOhskVQxiZcIcuo
-         ThBexxID5Kg8G1wlKdf0JSEiCvn7YkjhqPkBUUU04j1SYb83SknpWoMYTyETUcl4XhIU
-         s3Tx14C2NZj+AzTNGQX1WgsPJTAMjI1DXAMyXsuoqDwy4MvTopdrG9Q+51U+5yG6HOjH
-         +dj1gqYOzVOXVy0NqdY6kcOac/gaA+oVHIdsBTsGZgCoKTyOb7ZYL7MIN68Ki/1k1iyt
-         cIiA==
-X-Gm-Message-State: AJIora9LOWluQL2ui+LQbEcywQHMvM3e0Ss6CaTLhdasXAjPj5BVK3iP
-        8Uso3PpkyOPErxCotk9uTUYLqA==
-X-Google-Smtp-Source: AGRyM1uRHTKEEcbNwdfwMOxF4/qNgi9j0Z4DK9KAiGrml3gkmfEBOEQ2f+23Zdw83v8JeDV2xhvALA==
-X-Received: by 2002:a05:6830:660c:b0:61c:1c4f:3f56 with SMTP id cp12-20020a056830660c00b0061c1c4f3f56mr1498744otb.207.1659104425591;
-        Fri, 29 Jul 2022 07:20:25 -0700 (PDT)
-Received: from [192.168.11.16] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
-        by smtp.gmail.com with ESMTPSA id o32-20020a05687096a000b0010ea56a12a4sm113791oaq.10.2022.07.29.07.20.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Jul 2022 07:20:24 -0700 (PDT)
-Message-ID: <42875ff3-04a2-c465-4063-1ce3b0b35dba@kali.org>
-Date:   Fri, 29 Jul 2022 09:20:22 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.11.0
-Subject: Re: [PATCH v2 00/11] soc/arm64: qcom: Add LLCC BWMON on SDM845
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EWcB4X8ENw9vtO1R4Hk4K+2CQ/dMncr7JEdlRLjexCY=;
+        b=JTap1TrdGp8Rd87axRkywsu1LdLKehQKJ1LAZEVYXRsLqNroCdlCjlOS3qeINCS0Fm
+         ZQpAkpc1ihgkqo7L7IU7B3W2F36lBvMgIk9Qoy1IgU4CpZlU4Wu4sfsqpaaMzQXzB/l1
+         3oTXJUgypCGqcq2r+sbzd8g1Oump4k8k6R2djo5+gurIvEF+2FzKeBCt14f6MzRDycop
+         lUE6GaAlKnDWoiuuzaydgvX44XY6abTcwdGPOe8JFRgZdQzHI/9hu43qYkqrag23eFS/
+         MKmXWL9I+7jByUOIxDnpxaZ7zznxw+Dj3iZoAivXIKC/2HptEQqhlgTFUyFZRbghG5mT
+         I85Q==
+X-Gm-Message-State: AJIora+PnGQ5gGQHQD8tl1xp8OZU4d8wEwWfP3HbnBqEhb+Ya0ju6YYc
+        +WQc8++vou/Wx8Oz2cAHZwU=
+X-Google-Smtp-Source: AGRyM1ses1MGHS/+TVzVcL6XWaiWRrJtziJMtkyuKaxN0vltHNtIqeuJbKM6B1AwZA9l3dmPomJCBQ==
+X-Received: by 2002:a05:6512:3d1e:b0:48a:9502:1bda with SMTP id d30-20020a0565123d1e00b0048a95021bdamr1358237lfv.492.1659105506467;
+        Fri, 29 Jul 2022 07:38:26 -0700 (PDT)
+Received: from mobilestation ([95.79.140.178])
+        by smtp.gmail.com with ESMTPSA id u17-20020a05651220d100b0048759bc6c1asm678484lfr.203.2022.07.29.07.38.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Jul 2022 07:38:25 -0700 (PDT)
+Date:   Fri, 29 Jul 2022 17:38:23 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>
-References: <20220728113748.170548-1-krzysztof.kozlowski@linaro.org>
-From:   Steev Klimaszewski <steev@kali.org>
-In-Reply-To: <20220728113748.170548-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH RESEND v4 15/15] PCI: dwc: Introduce dma-ranges property
+ support for RC-host
+Message-ID: <20220729143823.zpmyeimz7qgjjet6@mobilestation>
+References: <20220729045220.akdabli5szd5lbdt@mobilestation>
+ <20220729113345.GA445581@bhelgaas>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220729113345.GA445581@bhelgaas>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Jul 29, 2022 at 06:33:45AM -0500, Bjorn Helgaas wrote:
+> On Fri, Jul 29, 2022 at 07:52:20AM +0300, Serge Semin wrote:
+> > On Thu, Jul 28, 2022 at 05:11:20PM -0500, Bjorn Helgaas wrote:
+> > > On Fri, Jun 24, 2022 at 05:39:47PM +0300, Serge Semin wrote:
+> > > > In accordance with the generic PCIe Root Port DT-bindings the "dma-ranges"
+> > > > property has the same format as the "ranges" property. The only difference
+> > > > is in their semantics. The "dma-ranges" property describes the PCIe-to-CPU
+> > > > memory mapping in opposite to the CPU-to-PCIe mapping of the "ranges"
+> > > > property. Even though the DW PCIe controllers are normally equipped with
+> > > > the internal Address Translation Unit which inbound and outbound tables
+> > > > can be used to implement both properties semantics, it was surprising for
+> > > > me to discover that the host-related part of the DW PCIe driver currently
+> > > > supports the "ranges" property only while the "dma-ranges" windows are
+> > > > just ignored. Having the "dma-ranges" supported in the driver would be
+> > > > very handy for the platforms, that don't tolerate the 1:1 CPU-PCIe memory
+> > > > mapping and require a customized PCIe memory layout. So let's fix that by
+> > > > introducing the "dma-ranges" property support.
+> > 
+> > > Do we have a platform that requires this yet?  Or does this fix a bug?
+> > > 
+> > > I see that dw_pcie_host_init() calls devm_pci_alloc_host_bridge(),
+> > > which eventually parses "dma-ranges", but I don't see any DWC DT
+> > > bindings that use it yet.
+> > > 
+> > > I'm not clear on what value this adds today.
+> > 
+> > There are several points of having this supported.
+> > First of all, generic PCIe DT-bindings permit having the dma-ranges
+> > specified for the PCIe RCs. If so having it unsupported by the driver
+> > just breaks the bindings or at least makes it incomplete.
+> 
 
-On 7/28/22 6:37 AM, Krzysztof Kozlowski wrote:
-> Hi,
->
-> Changes since v1
-> ================
-> 1. Patch #2: Drop also BWMON_GLOBAL_IRQ_STATUS (Sibi).
-> 2. Minor rebasings because of above drop.
-> 3. Patch #4: typo in subject (Sibi).
-> 4. New patch: arm64: dts: qcom: sdm845: narrow LLCC address space (Sibi).
-> 5. Add Rb tags.
->
-> Description
-> ===========
-> BWMON is a data bandwidth monitor providing throughput/bandwidth over certain
-> interconnect links in a SoC.  It might be used to gather current bus usage and
-> vote for interconnect bandwidth, thus adjusting the bus speed based on actual
-> usage.
->
-> Qualcomm SoCs might several BWMON instances.  Extend existing support for CPU
-> BWMON (called v4) to LLCC BWMON (called v5).
->
-> Cc: Rajendra Nayak <quic_rjendra@quicinc.com>
-> Cc: Sibi Sankar <quic_sibis@quicinc.com>
->
-> Best regards,
-> Krzysztof
->
-> Krzysztof Kozlowski (11):
->    dt-bindings: interconnect: qcom,msm8998-bwmon: add support for SDM845
->      LLCC BWMON
->    soc: qcom: icc-bwmon: re-use IRQ enable/clear define
->    soc: qcom: icc-bwmon: drop unused registers
->    soc: qcom: icc-bwmon: store reference to variant data in container
->    soc: qcom: icc-bwmon: clear all registers on init
->    soc: qcom: icc-bwmon: store count unit per variant
->    soc: qcom: icc-bwmon: use regmap and prepare for BWMON v5
->    soc: qcom: icc-bwmon: add per-variant quirks
->    soc: qcom: icc-bwmon: add support for SDM845 LLCC BWMON
->    arm64: dts: qcom: sdm845: narrow LLCC address space
->    arm64: dts: qcom: sdm845: add LLCC BWMON
->
->   .../interconnect/qcom,msm8998-bwmon.yaml      |   1 +
->   arch/arm64/boot/dts/qcom/sdm845.dtsi          |  39 +-
->   drivers/soc/qcom/icc-bwmon.c                  | 460 ++++++++++++++----
->   3 files changed, 401 insertions(+), 99 deletions(-)
->
-Tested on the Lenovo Yoga C630 with QCOM_LLCC=m and no longer see the 
-previous error message.
+> Are there bindings in the tree that are broken and will be fixed by
+> this?
 
-Tested-by: Steev Klimaszewski <steev@kali.org>
+Shortly speaking: explicitly none of them are broken, but implicitly most
+of them are broken.)
 
+As I said the generic DT-bindings permit having the dma-ranges
+property specified for the PCIe RCs:
+Link: https://github.com/robherring/dt-schema/blob/master/schemas/pci/pci-bus.yaml#L47
+
+So all the PCIe RC bindings can be equipped with the dma-ranges
+property. At least dtschema check tool won't print any error if the
+property is specified for any of the currently available PCIe RC
+device including DW PCIe RC. But if the dma-ranges aren't supported by
+the driver having it specified won't give any expected effect. In case
+of the DW PCIe RC device setting the dma-ranges property up won't
+change anything because without this patch the dma-ranges won't be
+accordingly translated to the inbound iATU settings.
+
+> 
+> > Second, the main point of this patchset is to add the dma-ranges
+> > support.) Especially seeing some other PCIe RC drivers do have it
+> > supported too.
+> > Finally. It is required for our platform (and for all the platforms
+> > with similar issues). The problem is that the outbound source window
+> > base address (on CPU-side) is size-unaligned. It resides at the 128MB
+> > base address (size is somewhat about ~335MB). In case of the
+> > one-on-one CPU->PCI mapping the peripherals with relatively big BARs
+> > (at least of 256MB) and which need the BARs having size-aligned memory
+> > won't be supported. So we had to remap the PCIe space to the
+> > size-aligned base address. But in its turn that caused the PCIe-CPU
+> > memory overlap. So PCIe DMA stopped working for the overlapped memory
+> > due to the implicit P2P transactions. In order to fix that we had to
+> > add the dma-ranges support to the DW PCIe driver and use it to remap
+> > the overlapped memory. So please add this patch to the repo. We really
+> > need it.
+> 
+
+> Does the above apply to the pending Baikal-T1 driver? 
+
+The problem described above is indeed specific to the Baikal-T1
+platform.
+
+> If so, let's
+> just include this patch in that series.  Then we'll have a user of
+> this functionality and we'll be able to exercise and test this code.
+
+Basically it can be tested out on any platform, not only on ours. You
+don't even need to have the problem described above. All you need is a
+DW PCIe RC-device with the inbound iATU windows support, this patch
+and a dts file with the dma-ranges specified for the corresponding DT
+device node.
+
+Secondly even if you do move this patch to that series it likely won't
+be tested by anyone but me, which I and our customer have already done
+many times here. By postponing the patch merge in you'll just postpone
+the feature being utilized by the rest of the kernel users and nothing
+else. I am sure it's working at least in our case. Let's add it to the
+kernel on this cycle so in case of unexpected problems they could be
+fixed in the next rc-stages.
+
+-Sergey
+
+> 
+> Bjorn
