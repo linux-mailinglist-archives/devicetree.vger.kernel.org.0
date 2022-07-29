@@ -2,647 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DCF0584BF8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 08:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 243CA584C1C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 08:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234974AbiG2Gcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 02:32:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50452 "EHLO
+        id S234009AbiG2Gus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 02:50:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234968AbiG2Gch (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 02:32:37 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE6F5804A1;
-        Thu, 28 Jul 2022 23:32:27 -0700 (PDT)
-X-UUID: 25a87aaf01964111b5f6b391a7d5ca5f-20220729
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:c75d76e4-2d82-4692-92f9-3a5e469383ec,OB:0,LO
-        B:30,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,AC
-        TION:release,TS:95
-X-CID-INFO: VERSION:1.1.8,REQID:c75d76e4-2d82-4692-92f9-3a5e469383ec,OB:0,LOB:
-        30,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,AC
-        TION:quarantine,TS:95
-X-CID-META: VersionHash:0f94e32,CLOUDID:04f2b224-a982-4824-82d2-9da3b6056c2a,C
-        OID:592ffac3a016,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 25a87aaf01964111b5f6b391a7d5ca5f-20220729
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1524624662; Fri, 29 Jul 2022 14:32:16 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 29 Jul 2022 14:32:15 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.792.15 via Frontend Transport; Fri, 29 Jul 2022 14:32:15 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-CC:     <iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v4 18/20] arm64: dts: mt8195: Add iommu and smi nodes
-Date:   Fri, 29 Jul 2022 14:32:06 +0800
-Message-ID: <20220729063208.16799-19-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220729063208.16799-1-tinghan.shen@mediatek.com>
-References: <20220729063208.16799-1-tinghan.shen@mediatek.com>
+        with ESMTP id S233434AbiG2Gup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 02:50:45 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5D3020BD6;
+        Thu, 28 Jul 2022 23:50:42 -0700 (PDT)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 305B520003;
+        Fri, 29 Jul 2022 06:50:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1659077441;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=VArjTbD7FSaQb0tgbNiKVH96xYPmiJmsUZgAk82eZWo=;
+        b=bEemRDID19M43BonRh9+LrwTyv+asZ6HnYNrwN2wAs4IxK4gXZvfbOuaBOKkrjpoLX8vI1
+        CsIfvQ5e6EASKP6NdwohvCWw8jMkKFBo9EtHbROv71YvLESAG4ihNJiE87Vv3FNEwm2fzN
+        S5lXlQYqAsGBcZM5IgIoQzneEZKfgULbdZ6JbeEJSw2DSh5U6r3CsAKd+HKvXL2xOSEm0n
+        e0AtAI64jsaKmXQRRoiyRj4m/0/j/ncO2TEjHH3s0GNFayFQN5r+qBF72YDAQAN28/Tz/+
+        O2EgigmKSMmpI4/U1p61EZutyQ9Q0LYyN8J+MthD9tPy4b9BLyXBr8h4du9k0A==
+Date:   Fri, 29 Jul 2022 08:50:36 +0200
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, davem@davemloft.net,
+        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        thomas.petazzoni@bootlin.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org, Horatiu.Vultur@microchip.com,
+        Allan.Nielsen@microchip.com, UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH net-next 3/4] net: phy: Add helper to derive the number
+ of ports from a phy mode
+Message-ID: <20220729085036.2b180478@pc-10.home>
+In-Reply-To: <df39cfc9-6fd8-e277-870b-67059dcebb2b@gmail.com>
+References: <20220728145252.439201-1-maxime.chevallier@bootlin.com>
+        <20220728145252.439201-4-maxime.chevallier@bootlin.com>
+        <YuMAdACnRKsL8/xD@lunn.ch>
+        <df39cfc9-6fd8-e277-870b-67059dcebb2b@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add iommu nodes and smi nodes for mt8195.
+Hello Florian, Andrew,
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 451 +++++++++++++++++++++++
- 1 file changed, 451 insertions(+)
+On Thu, 28 Jul 2022 14:44:47 -0700
+Florian Fainelli <f.fainelli@gmail.com> wrote:
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 9c14c42f07139..6b8f349d3a1d5 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/mt8195-clk.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/memory/mt8195-memory-port.h>
- #include <dt-bindings/phy/phy.h>
- #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
- #include <dt-bindings/power/mt8195-power.h>
-@@ -724,6 +725,19 @@
- 			assigned-clock-parents = <&topckgen CLK_TOP_ULPOSC1_D10>;
- 		};
- 
-+		iommu_infra: infra-iommu@10315000 {
-+			compatible = "mediatek,mt8195-iommu-infra";
-+			reg = <0 0x10315000 0 0x5000>;
-+			interrupts = <GIC_SPI 795 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 796 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 797 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 798 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 799 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&clk26m>;
-+			clock-names = "bclk";
-+			#iommu-cells = <1>;
-+		};
-+
- 		scp: scp@10500000 {
- 			compatible = "mediatek,mt8195-scp";
- 			reg = <0 0x10500000 0 0x100000>,
-@@ -1438,6 +1452,64 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		smi_sub_common_vpp0_vpp1_2x1: smi@14010000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x14010000 0 0x1000>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vpp>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
-+		smi_sub_common_vdec_vpp0_2x1: smi@14011000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x14011000 0 0x1000>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vpp>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
-+		smi_common_vpp: smi@14012000 {
-+			compatible = "mediatek,mt8195-smi-common-vpp";
-+			reg = <0 0x14012000 0 0x1000>;
-+			clocks = <&vppsys0 CLK_VPP0_SMI_COMMON_LARB4>,
-+			       <&vppsys0 CLK_VPP0_SMI_COMMON_LARB4>,
-+			       <&vppsys0 CLK_VPP0_SMI_RSI>,
-+			       <&vppsys0 CLK_VPP0_SMI_RSI>;
-+			clock-names = "apb", "smi", "gals0", "gals1";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
-+		larb4: larb@14013000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14013000 0 0x1000>;
-+			mediatek,larb-id = <4>;
-+			mediatek,smi = <&smi_sub_common_vpp0_vpp1_2x1>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>,
-+			       <&vppsys0 CLK_VPP0_SMI_COMMON_LARB4>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
-+		iommu_vpp: iommu@14018000 {
-+			compatible = "mediatek,mt8195-iommu-vpp";
-+			reg = <0 0x14018000 0 0x1000>;
-+			mediatek,larbs = <&larb1 &larb3 &larb4 &larb6 &larb8
-+					  &larb12 &larb14 &larb16 &larb18
-+					  &larb20 &larb22 &larb23 &larb26
-+					  &larb27>;
-+			interrupts = <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&vppsys0 CLK_VPP0_SMI_IOMMU>;
-+			clock-names = "bclk";
-+			#iommu-cells = <1>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
- 		wpesys: clock-controller@14e00000 {
- 			compatible = "mediatek,mt8195-wpesys";
- 			reg = <0 0x14e00000 0 0x1000>;
-@@ -1456,24 +1528,116 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb7: larb@14e04000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14e04000 0 0x1000>;
-+			mediatek,larb-id = <7>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&wpesys CLK_WPE_SMI_LARB7>,
-+				 <&wpesys CLK_WPE_SMI_LARB7>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_WPESYS>;
-+		};
-+
-+		larb8: larb@14e05000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14e05000 0 0x1000>;
-+			mediatek,larb-id = <8>;
-+			mediatek,smi = <&smi_common_vpp>;
-+			clocks = <&wpesys CLK_WPE_SMI_LARB8>,
-+			       <&wpesys CLK_WPE_SMI_LARB8>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_WPESYS>;
-+		};
-+
- 		vppsys1: clock-controller@14f00000 {
- 			compatible = "mediatek,mt8195-vppsys1";
- 			reg = <0 0x14f00000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb5: larb@14f02000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14f02000 0 0x1000>;
-+			mediatek,larb-id = <5>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vppsys1 CLK_VPP1_VPPSYS1_LARB>,
-+			       <&vppsys1 CLK_VPP1_VPPSYS1_GALS>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_LARB5>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS1>;
-+		};
-+
-+		larb6: larb@14f03000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14f03000 0 0x1000>;
-+			mediatek,larb-id = <6>;
-+			mediatek,smi = <&smi_sub_common_vpp0_vpp1_2x1>;
-+			clocks = <&vppsys1 CLK_VPP1_VPPSYS1_LARB>,
-+			       <&vppsys1 CLK_VPP1_VPPSYS1_GALS>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_LARB6>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS1>;
-+		};
-+
- 		imgsys: clock-controller@15000000 {
- 			compatible = "mediatek,mt8195-imgsys";
- 			reg = <0 0x15000000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb9: larb@15001000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x15001000 0 0x1000>;
-+			mediatek,larb-id = <9>;
-+			mediatek,smi = <&smi_sub_common_img1_3x1>;
-+			clocks = <&imgsys CLK_IMG_LARB9>,
-+				 <&imgsys CLK_IMG_LARB9>,
-+				 <&imgsys CLK_IMG_GALS>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_IMG>;
-+		};
-+
-+		smi_sub_common_img0_3x1: smi@15002000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x15002000 0 0x1000>;
-+			clocks = <&imgsys CLK_IMG_IPE>,
-+				 <&imgsys CLK_IMG_IPE>,
-+				 <&vppsys0 CLK_VPP0_GALS_IMGSYS_CAMSYS>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vpp>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_IMG>;
-+		};
-+
-+		smi_sub_common_img1_3x1: smi@15003000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x15003000 0 0x1000>;
-+			clocks = <&imgsys CLK_IMG_LARB9>,
-+				 <&imgsys CLK_IMG_LARB9>,
-+				 <&imgsys CLK_IMG_GALS>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vdo>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_IMG>;
-+		};
-+
- 		imgsys1_dip_top: clock-controller@15110000 {
- 			compatible = "mediatek,mt8195-imgsys1_dip_top";
- 			reg = <0 0x15110000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb10: larb@15120000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x15120000 0 0x1000>;
-+			mediatek,larb-id = <10>;
-+			mediatek,smi = <&smi_sub_common_img1_3x1>;
-+			clocks = <&imgsys CLK_IMG_DIP0>,
-+			       <&imgsys1_dip_top CLK_IMG1_DIP_TOP_LARB10>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_DIP>;
-+		};
-+
- 		imgsys1_dip_nr: clock-controller@15130000 {
- 			compatible = "mediatek,mt8195-imgsys1_dip_nr";
- 			reg = <0 0x15130000 0 0x1000>;
-@@ -1486,18 +1650,129 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb11: larb@15230000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x15230000 0 0x1000>;
-+			mediatek,larb-id = <11>;
-+			mediatek,smi = <&smi_sub_common_img1_3x1>;
-+			clocks = <&imgsys CLK_IMG_WPE0>,
-+			       <&imgsys1_wpe CLK_IMG1_WPE_LARB11>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_DIP>;
-+		};
-+
- 		ipesys: clock-controller@15330000 {
- 			compatible = "mediatek,mt8195-ipesys";
- 			reg = <0 0x15330000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb12: larb@15340000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x15340000 0 0x1000>;
-+			mediatek,larb-id = <12>;
-+			mediatek,smi = <&smi_sub_common_img0_3x1>;
-+			clocks = <&ipesys CLK_IPE_SMI_LARB12>,
-+				 <&ipesys CLK_IPE_SMI_LARB12>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_IPE>;
-+		};
-+
- 		camsys: clock-controller@16000000 {
- 			compatible = "mediatek,mt8195-camsys";
- 			reg = <0 0x16000000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb13: larb@16001000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16001000 0 0x1000>;
-+			mediatek,larb-id = <13>;
-+			mediatek,smi = <&smi_sub_common_cam_4x1>;
-+			clocks = <&camsys CLK_CAM_LARB13>,
-+			       <&camsys CLK_CAM_LARB13>,
-+			       <&camsys CLK_CAM_CAM2MM0_GALS>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		larb14: larb@16002000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16002000 0 0x1000>;
-+			mediatek,larb-id = <14>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&camsys CLK_CAM_LARB14>,
-+				 <&camsys CLK_CAM_LARB14>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		smi_sub_common_cam_4x1: smi@16004000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x16004000 0 0x1000>;
-+			clocks = <&camsys CLK_CAM_LARB13>,
-+				 <&camsys CLK_CAM_LARB13>,
-+				 <&camsys CLK_CAM_CAM2MM0_GALS>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vdo>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		smi_sub_common_cam_7x1: smi@16005000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x16005000 0 0x1000>;
-+			clocks = <&camsys CLK_CAM_LARB14>,
-+				 <&camsys CLK_CAM_CAM2MM1_GALS>,
-+				 <&vppsys0 CLK_VPP0_GALS_IMGSYS_CAMSYS>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vpp>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		larb16: larb@16012000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16012000 0 0x1000>;
-+			mediatek,larb-id = <16>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&camsys_rawa CLK_CAM_RAWA_LARBX>,
-+				 <&camsys_rawa CLK_CAM_RAWA_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_RAWA>;
-+		};
-+
-+		larb17: larb@16013000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16013000 0 0x1000>;
-+			mediatek,larb-id = <17>;
-+			mediatek,smi = <&smi_sub_common_cam_4x1>;
-+			clocks = <&camsys_yuva CLK_CAM_YUVA_LARBX>,
-+				 <&camsys_yuva CLK_CAM_YUVA_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_RAWA>;
-+		};
-+
-+		larb27: larb@16014000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16014000 0 0x1000>;
-+			mediatek,larb-id = <27>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&camsys_rawb CLK_CAM_RAWB_LARBX>,
-+				 <&camsys_rawb CLK_CAM_RAWB_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_RAWB>;
-+		};
-+
-+		larb28: larb@16015000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16015000 0 0x1000>;
-+			mediatek,larb-id = <28>;
-+			mediatek,smi = <&smi_sub_common_cam_4x1>;
-+			clocks = <&camsys_yuvb CLK_CAM_YUVB_LARBX>,
-+				 <&camsys_yuvb CLK_CAM_YUVB_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_RAWB>;
-+		};
-+
- 		camsys_rawa: clock-controller@1604f000 {
- 			compatible = "mediatek,mt8195-camsys_rawa";
- 			reg = <0 0x1604f000 0 0x1000>;
-@@ -1528,24 +1803,103 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb25: larb@16141000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16141000 0 0x1000>;
-+			mediatek,larb-id = <25>;
-+			mediatek,smi = <&smi_sub_common_cam_4x1>;
-+			clocks = <&camsys CLK_CAM_LARB13>,
-+				 <&camsys_mraw CLK_CAM_MRAW_LARBX>,
-+				 <&camsys CLK_CAM_CAM2MM0_GALS>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_MRAW>;
-+		};
-+
-+		larb26: larb@16142000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16142000 0 0x1000>;
-+			mediatek,larb-id = <26>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&camsys_mraw CLK_CAM_MRAW_LARBX>,
-+				 <&camsys_mraw CLK_CAM_MRAW_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_MRAW>;
-+
-+		};
-+
- 		ccusys: clock-controller@17200000 {
- 			compatible = "mediatek,mt8195-ccusys";
- 			reg = <0 0x17200000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb18: larb@17201000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x17201000 0 0x1000>;
-+			mediatek,larb-id = <18>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&ccusys CLK_CCU_LARB18>,
-+				 <&ccusys CLK_CCU_LARB18>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		larb24: larb@1800d000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1800d000 0 0x1000>;
-+			mediatek,larb-id = <24>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
-+				 <&vdecsys_soc CLK_VDEC_SOC_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC0>;
-+		};
-+
-+		larb23: larb@1800e000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1800e000 0 0x1000>;
-+			mediatek,larb-id = <23>;
-+			mediatek,smi = <&smi_sub_common_vdec_vpp0_2x1>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>,
-+				 <&vdecsys_soc CLK_VDEC_SOC_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC0>;
-+		};
-+
- 		vdecsys_soc: clock-controller@1800f000 {
- 			compatible = "mediatek,mt8195-vdecsys_soc";
- 			reg = <0 0x1800f000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb21: larb@1802e000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1802e000 0 0x1000>;
-+			mediatek,larb-id = <21>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vdecsys CLK_VDEC_LARB1>,
-+				 <&vdecsys CLK_VDEC_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
-+		};
-+
- 		vdecsys: clock-controller@1802f000 {
- 			compatible = "mediatek,mt8195-vdecsys";
- 			reg = <0 0x1802f000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb22: larb@1803e000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1803e000 0 0x1000>;
-+			mediatek,larb-id = <22>;
-+			mediatek,smi = <&smi_sub_common_vdec_vpp0_2x1>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>,
-+				 <&vdecsys_core1 CLK_VDEC_CORE1_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC2>;
-+		};
-+
- 		vdecsys_core1: clock-controller@1803f000 {
- 			compatible = "mediatek,mt8195-vdecsys_core1";
- 			reg = <0 0x1803f000 0 0x1000>;
-@@ -1564,6 +1918,17 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb19: larb@1a010000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1a010000 0 0x1000>;
-+			mediatek,larb-id = <19>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vencsys CLK_VENC_VENC>,
-+				 <&vencsys CLK_VENC_GALS>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
-+		};
-+
- 		vencsys_core1: clock-controller@1b000000 {
- 			compatible = "mediatek,mt8195-vencsys_core1";
- 			reg = <0 0x1b000000 0 0x1000>;
-@@ -1576,10 +1941,96 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb20: larb@1b010000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1b010000 0 0x1000>;
-+			mediatek,larb-id = <20>;
-+			mediatek,smi = <&smi_common_vpp>;
-+			clocks = <&vencsys_core1 CLK_VENC_CORE1_LARB>,
-+				 <&vencsys_core1 CLK_VENC_CORE1_GALS>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_VDO1_VENCSYS_CORE1>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VENC_CORE1>;
-+		};
-+
-+		larb0: larb@1c018000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1c018000 0 0x1000>;
-+			mediatek,larb-id = <0>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_LARB>,
-+				 <&vdosys0 CLK_VDO0_SMI_LARB>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_LARB0>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-+		};
-+
-+		larb1: larb@1c019000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1c019000 0 0x1000>;
-+			mediatek,larb-id = <1>;
-+			mediatek,smi = <&smi_common_vpp>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_LARB>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_VDO1_VENCSYS_CORE1>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_LARB1>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-+		};
-+
- 		vdosys1: syscon@1c100000 {
- 			compatible = "mediatek,mt8195-mmsys", "syscon";
- 			reg = <0 0x1c100000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
-+
-+		smi_common_vdo: smi@1c01b000 {
-+			compatible = "mediatek,mt8195-smi-common-vdo";
-+			reg = <0 0x1c01b000 0 0x1000>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_COMMON>,
-+				 <&vdosys0 CLK_VDO0_SMI_EMI>,
-+				 <&vdosys0 CLK_VDO0_SMI_RSI>,
-+				 <&vdosys0 CLK_VDO0_SMI_GALS>;
-+			clock-names = "apb", "smi", "gals0", "gals1";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-+
-+		};
-+
-+		iommu_vdo: iommu@1c01f000 {
-+			compatible = "mediatek,mt8195-iommu-vdo";
-+			reg = <0 0x1c01f000 0 0x1000>;
-+			mediatek,larbs = <&larb0 &larb2 &larb5 &larb7 &larb9
-+					  &larb10 &larb11 &larb13 &larb17
-+					  &larb19 &larb21 &larb24 &larb25
-+					  &larb28>;
-+			interrupts = <GIC_SPI 669 IRQ_TYPE_LEVEL_HIGH 0>;
-+			#iommu-cells = <1>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_IOMMU>;
-+			clock-names = "bclk";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-+		};
-+
-+		larb2: larb@1c102000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1c102000 0 0x1000>;
-+			mediatek,larb-id = <2>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vdosys1 CLK_VDO1_SMI_LARB2>,
-+				 <&vdosys1 CLK_VDO1_SMI_LARB2>,
-+				 <&vdosys1 CLK_VDO1_GALS>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-+		};
-+
-+		larb3: larb@1c103000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1c103000 0 0x1000>;
-+			mediatek,larb-id = <3>;
-+			mediatek,smi = <&smi_common_vpp>;
-+			clocks = <&vdosys1 CLK_VDO1_SMI_LARB3>,
-+				 <&vdosys1 CLK_VDO1_GALS>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_VDO1_VENCSYS_CORE1>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-+		};
- 	};
- };
--- 
-2.18.0
+> On 7/28/22 14:32, Andrew Lunn wrote:
+> >> +int phy_interface_num_ports(phy_interface_t interface)
+> >> +{
+> >> +	switch (interface) {
+> >> +	case PHY_INTERFACE_MODE_NA:
+> >> +	case PHY_INTERFACE_MODE_INTERNAL:
+> >> +		return 0;  
+> > 
+> > I've not yet looked at how this is used. Returning 0 could have
+> > interesting effects i guess? INTERNAL clearly does have some sort of
+> > path between the MAC and the PHY, so i think 1 would be a better
+> > value. NA is less clear, it generally means Don't touch. But again,
+> > there still needs to be a path between the MAC and PHY, otherwise
+> > there would not be any to touch.
+> > 
+> > Why did you pick 0?  
 
+My reasonning was that PHY_INTERNAL is likely a custom solution to link
+IPs existing on the same die, so nothing prevents vendors from
+multiplexing links on that interface. But it's a far-fetched
+reasonning, so 1 can be good, as other interfaces that are meant to be
+used on-die like XGMII.
+
+> I would agree that returning 1 is a more sensible default to avoid
+> breaking users of that function. However this makes me wonder, in
+> what case will we break the following common meaning:
+> 
+> - Q -> quad
+> - P -> penta
+> - O -> octal
+> 
+> Is the helper really needed in the sense that the phy_interface_t
+> enumeration is explicit enough thanks to or because of its name? --
+> Florian
+
+Good question actually ! It started as a point from Russell proposing a
+helper to get the number of serdes lanes for a given interface, but
+this sisn't quite fit the use-case, which was simply to simplify
+
+	if (interface == PHY_INTERFACE_MODE_QSGMII ||
+	    interface == PHY_INTERFACE_MODE_QUSGMII)
+
+into
+
+	if (phy_interface_num_ports(interface) == 4)
+
+But this a slim simplification at the cost of a new helper to maintain,
+so I can repove that if you want.
+
+Thanks for the reviews,
+
+Maxime
