@@ -2,126 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C15584F61
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 13:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B20584F89
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 13:25:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235460AbiG2LK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 07:10:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32972 "EHLO
+        id S233298AbiG2LY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 07:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235625AbiG2LK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 07:10:56 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BC01A7AC0E;
-        Fri, 29 Jul 2022 04:10:54 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E1F21063;
-        Fri, 29 Jul 2022 04:10:55 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6A3C13F73D;
-        Fri, 29 Jul 2022 04:10:53 -0700 (PDT)
-Date:   Fri, 29 Jul 2022 12:10:51 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
+        with ESMTP id S235979AbiG2LY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 07:24:56 -0400
+Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCAF33DF3C;
+        Fri, 29 Jul 2022 04:24:52 -0700 (PDT)
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 26TB5WpT050856;
+        Fri, 29 Jul 2022 19:05:32 +0800 (GMT-8)
+        (envelope-from neal_liu@aspeedtech.com)
+Received: from localhost.localdomain (192.168.10.10) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 29 Jul
+ 2022 19:23:16 +0800
+From:   Neal Liu <neal_liu@aspeedtech.com>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mailbox: arm,mhu: Make secure interrupt
- optional
-Message-ID: <20220729111051.5me4vklrzskvsj4w@bogus>
-References: <20220728190810.1290857-1-robh@kernel.org>
- <CABb+yY2jV7c8oX7=F=nocfvGrOMHJAYov7zS2nT0=qFoNyoxJQ@mail.gmail.com>
- <CABb+yY0JzztBB+giBu+RCt-dzgwYWF32sCR3WKKP9U5K9UvhxA@mail.gmail.com>
+        Joel Stanley <joel@jms.id.au>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        Dhananjay Phadke <dhphadke@microsoft.com>,
+        "Johnny Huang" <johnny_huang@aspeedtech.com>
+CC:     <linux-aspeed@lists.ozlabs.org>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <BMC-SW@aspeedtech.com>
+Subject: [PATCH v9 0/5] Add Aspeed crypto driver for hardware acceleration
+Date:   Fri, 29 Jul 2022 19:23:08 +0800
+Message-ID: <20220729112313.86169-1-neal_liu@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CABb+yY0JzztBB+giBu+RCt-dzgwYWF32sCR3WKKP9U5K9UvhxA@mail.gmail.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.10.10]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 26TB5WpT050856
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 28, 2022 at 04:07:45PM -0500, Jassi Brar wrote:
-> On Thu, Jul 28, 2022 at 3:17 PM Jassi Brar <jassisinghbrar@gmail.com> wrote:
-> >
-> > On Thu, Jul 28, 2022 at 2:08 PM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > The secure interrupt is only useful to secure world, therefore for NS
-> > > users it shouldn't be required. Make it optional.
-> > >
-> > > This fixes a warning on Arm Juno board:
-> > >
-> > > mhu@2b1f0000: interrupts: [[0, 36, 4], [0, 35, 4]] is too short
-> > >
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/mailbox/arm,mhu.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
-> > > index bd49c201477d..d9a4f4a02d7c 100644
-> > > --- a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
-> > > +++ b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
-> > > @@ -57,6 +57,7 @@ properties:
-> > >      maxItems: 1
-> > >
-> > >    interrupts:
-> > > +    minItems: 2
-> > >      items:
-> > >        - description: low-priority non-secure
-> > >        - description: high-priority non-secure
-> > >
-> > Do we also want to specify that only the secure-irq is optional
-> > because irqs are directly mapped onto channels in the driver, and only
-> > omitting the secure (last) irq will work.
-> >
-> I could learn why specifying secure irq isn't desirable?
-> No non-secure client node would ask for that secure irq/channel, which
-> will simply lay unused.
->
+Aspeed Hash and Crypto Engine (HACE) is designed to accelerate the
+throughput of hash data digest, encryption and decryption.
 
-Did you mean would or wouldn't ?
+These patches aim to add Aspeed hash & crypto driver support.
+The hash & crypto driver also pass the run-time self tests that
+take place at algorithm registration.
 
-Anyways I can insert a module that requests this channel and bring down
-the system as accessing anything configure secure from non-secure side
-on Juno results in system hang/error.
+The patch series are tested on both AST2500 & AST2600 evaluation boards.
 
-> The programming of the secure channel doesn't care if the mode is
-> indeed secure. It all relies on providing accurate information in the
-> device tree :- the controller provides secure and non-secure channels
-> but only non-secure channels are _used_ in non-secure mode.
->
+Tested-by below configs:
+- CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+- CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+- CONFIG_DMA_API_DEBUG=y
+- CONFIG_DMA_API_DEBUG_SG=y
+- CONFIG_CPU_BIG_ENDIAN=y
 
-In general w.r.t the MHU IP may be yes. But if the secure side configures
-it as secure only and claims the channel which is the case on Juno, any
-attempt to access the same from non-secure side is fatal.
+Change since v8:
+- Remove __weak functions for register/unregister crypto algos.
+- Add missing functions of unregister crypto algos.
+- Use single debug config to control debug messages.
 
-> index f6c55877fbd94..004b1566be74d 100644
-> --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
-> +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
-> @@ -26,7 +26,8 @@ mailbox: mhu@2b1f0000 {
->         compatible = "arm,mhu", "arm,primecell";
->         reg = <0x0 0x2b1f0000 0x0 0x1000>;
->         interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
-> -                <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-> +                <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
-> +                <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
->         interrupt-names = "mhu_lpri_rx",
->                   "mhu_hpri_rx";
->         #mbox-cells = <1>;
-> 
-> If this works for you, I could submit a proper patch.
->
+Change since v7:
+- Define debug Kconfigs.
+- Simplify assign iv/ivsize.
+- Simplify cra_init() for hmac related init.
 
-No this doesn't work IMO. Yes standalone everything looks fine, but you can
-insert a module requesting this channel and bring down the system. So I am
-not for this change.
+Change since v6:
+- Refine debug print.
+- Change aspeed_sg_list struct memeber's type to __le32.
+
+Change since v5:
+- Re-define HACE clock define to fix breaking ABI.
+
+Change since v4:
+- Add AST2500 clock definition & dts node.
+- Add software fallback for handling corner cases.
+- Fix copy wrong key length.
+
+Change since v3:
+- Use dmam_alloc_coherent() instead to manage dma_alloc_coherent().
+- Add more error handler of dma_prepare() & crypto_engine_start().
+
+Change since v2:
+- Fix endianness issue. Tested on both little endian & big endian
+  system.
+- Use common crypto hardware engine for enqueue & dequeue requests.
+- Use pre-defined IVs for SHA-family.
+- Revise error handler flow.
+- Fix sorts of coding style problems.
+
+Change since v1:
+- Add more error handlers, including DMA memory allocate/free, DMA
+  map/unmap, clock enable/disable, etc.
+- Fix check dma_map error for config DMA_API_DEBUG.
+- Fix dt-binding doc & dts node naming.
+
+Neal Liu (5):
+  crypto: aspeed: Add HACE hash driver
+  dt-bindings: clock: Add AST2500/AST2600 HACE reset definition
+  ARM: dts: aspeed: Add HACE device controller node
+  dt-bindings: crypto: add documentation for aspeed hace
+  crypto: aspeed: add HACE crypto driver
+
+ .../bindings/crypto/aspeed,ast2500-hace.yaml  |   53 +
+ MAINTAINERS                                   |    7 +
+ arch/arm/boot/dts/aspeed-g5.dtsi              |    8 +
+ arch/arm/boot/dts/aspeed-g6.dtsi              |    8 +
+ drivers/crypto/Kconfig                        |    1 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/aspeed/Kconfig                 |   49 +
+ drivers/crypto/aspeed/Makefile                |    9 +
+ drivers/crypto/aspeed/aspeed-hace-crypto.c    | 1135 ++++++++++++++
+ drivers/crypto/aspeed/aspeed-hace-hash.c      | 1389 +++++++++++++++++
+ drivers/crypto/aspeed/aspeed-hace.c           |  288 ++++
+ drivers/crypto/aspeed/aspeed-hace.h           |  298 ++++
+ include/dt-bindings/clock/aspeed-clock.h      |    1 +
+ include/dt-bindings/clock/ast2600-clock.h     |    1 +
+ 14 files changed, 3248 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/aspeed,ast2500-hace.yaml
+ create mode 100644 drivers/crypto/aspeed/Kconfig
+ create mode 100644 drivers/crypto/aspeed/Makefile
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace-crypto.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace-hash.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace.c
+ create mode 100644 drivers/crypto/aspeed/aspeed-hace.h
 
 -- 
-Regards,
-Sudeep
+2.25.1
+
