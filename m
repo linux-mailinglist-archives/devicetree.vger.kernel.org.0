@@ -2,136 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55617584F37
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 12:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23C15584F61
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 13:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235808AbiG2Ktr convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 29 Jul 2022 06:49:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45776 "EHLO
+        id S235460AbiG2LK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 07:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234819AbiG2Ktq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 06:49:46 -0400
-Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 11F1BB52
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 03:49:44 -0700 (PDT)
-Received: from CHE01-GV0-obe.outbound.protection.outlook.com
- (mail-gv0che01lp2048.outbound.protection.outlook.com [104.47.22.48]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-38-502i-sN2NTO6hUvOzNcbVA-2; Fri, 29 Jul 2022 12:49:41 +0200
-X-MC-Unique: 502i-sN2NTO6hUvOzNcbVA-2
-Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:2e::8) by
- GVAP278MB0261.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:38::14) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5482.12; Fri, 29 Jul 2022 10:49:39 +0000
-Received: from ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- ([fe80::3510:6f55:f14a:380f]) by ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- ([fe80::3510:6f55:f14a:380f%7]) with mapi id 15.20.5482.011; Fri, 29 Jul 2022
- 10:49:39 +0000
-Date:   Fri, 29 Jul 2022 12:49:38 +0200
-From:   Francesco Dolcini <francesco.dolcini@toradex.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235625AbiG2LK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 07:10:56 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BC01A7AC0E;
+        Fri, 29 Jul 2022 04:10:54 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0E1F21063;
+        Fri, 29 Jul 2022 04:10:55 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6A3C13F73D;
+        Fri, 29 Jul 2022 04:10:53 -0700 (PDT)
+Date:   Fri, 29 Jul 2022 12:10:51 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-Subject: Re: [PATCH v1 0/2] arm64: dts: imx8mm-verdin: update CAN clock and
- interrupt type
-Message-ID: <20220729104938.GA93488@francesco-nb.int.toradex.com>
-References: <20220708124205.59564-1-andrejs.cainikovs@toradex.com>
-In-Reply-To: <20220708124205.59564-1-andrejs.cainikovs@toradex.com>
-X-ClientProxiedBy: MR1P264CA0138.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:501:51::19) To ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:2e::8)
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mailbox: arm,mhu: Make secure interrupt
+ optional
+Message-ID: <20220729111051.5me4vklrzskvsj4w@bogus>
+References: <20220728190810.1290857-1-robh@kernel.org>
+ <CABb+yY2jV7c8oX7=F=nocfvGrOMHJAYov7zS2nT0=qFoNyoxJQ@mail.gmail.com>
+ <CABb+yY0JzztBB+giBu+RCt-dzgwYWF32sCR3WKKP9U5K9UvhxA@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 953bd025-8b26-44e5-e8ad-08da71500919
-X-MS-TrafficTypeDiagnostic: GVAP278MB0261:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0
-X-Microsoft-Antispam-Message-Info: FCNVNcmsFWj6a75P1ncGB2e3DoSSnPROsrHVL5Fai2VHyLAV0TEEQnmn6qLA4rG6k7stiP1RY7rzybrl+g/YkMKtORylOvSMDyxd9IILQxe3oHEKSM/imTBNjaMJddDw8XGKhQn/AdCra/ZMLM9OTJ4vUlhUCjcIzR9JELCByZeRMLXROP1SLbwlvq+UjyyyIxDzjNWiGWGi7L4ndcGCfLZo4RmA7RrLmgzndiWcu37zabN0plVFZXENWn2874vyN76e6NMrDdeKQK3EZoq5x4rbu7+oAW9cI+Pj5F4pz5Yr205NEugEbdHmlet6r1i3qh3a1QDGEcSKrjaNDOl4rIeXCyRW8A8IhD+HRQtncKZTL2uQYB8SOn2eWHExf4XO4XTzD8hMbaQv4iQrqvDOCzG706Nytt3M4lxjiqIjdSezUmpvj10BhztRj6h/QHuOfoTSZUSOgfNPW/FJxjEFQg8Xgbp3/EBN+kDup+CMUNv7uhBqzLTpesFLw98TJGXZaE/+dLZUZjPjWBWL/p2DH8sIBCeTktQd6wzufWk1QP4kzsq2XCABsnj7QF99NefsfNcTl1ijXlb4ht2cbxs41kRm/REjKl09TJElM/smaejSeRLgXrGO1XZ8Sl4KalktJQ0nZEetTY2t2eEDD0H2w6HU6UQQYqrDUyYhPFtBDZWneThIT6wIgKWKieAEDNhYtbsVFKYZgUkCHrsmCNvnEgk2CRWZO9ubhO53HieS0+UYb/vhnvmaim2bpC+CWfK1RudEkgpBlXZ0mHf2SMexnwutkFBu4PIHNDjgUmkizv0ejohQWrUfQi4jALMuSLgha3llaV7stSlIgIGbR1NBNw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39840400004)(366004)(396003)(376002)(136003)(346002)(38350700002)(38100700002)(41300700001)(6486002)(8936002)(7416002)(5660300002)(478600001)(83380400001)(66946007)(4326008)(8676002)(66556008)(66476007)(316002)(1076003)(186003)(52116002)(6506007)(54906003)(6916009)(26005)(6512007)(4744005)(2906002)(44832011)(86362001)(107886003)(33656002)(15650500001)(32563001);DIR:OUT;SFP:1102
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?y2ltT2DfVOQTYkscph1X9NNzqwR9C0DxZP66JJsEOKmd7dbrexSvdDaGutp5?=
- =?us-ascii?Q?76E0LSdzfgjGHKoLOn1iJSTeaHtYMbmx3k+wyXa+PCxiNH/ZDbl4O066Ik3f?=
- =?us-ascii?Q?ckN0OULyqYXOtyZS0DWiG8Zfjcks8ynhI+jb/Vy2kUAoFNAFKUQZbuIC5jp+?=
- =?us-ascii?Q?dGc5Kpr3+aUrat0n+wrXdFSeUyxjbPGfY7VeuqZCjX3obVmdwaCP/s8/ZW27?=
- =?us-ascii?Q?tLOzzHNgMY8M0iaX7F0obboyDWpCs4ppMs9Je0c4ow81s8vn5MQZ21y3/A9c?=
- =?us-ascii?Q?9a+6K5a/5gpR1QUOmUaTFVDPz886o81yGUaG5bO4ctsoKnQXwLUZAp+D1m3d?=
- =?us-ascii?Q?mWX2MPObGSbN5NfRCJ6JT1D/Vv+TdV0J0ZBeVTlqCpsEoH/KBUf1/s3eygKi?=
- =?us-ascii?Q?nXWAqc9jNfMWciW78VSt6fWsseL+EiVNQAucpsOviEpNKBNmdy8NHDNWxa+m?=
- =?us-ascii?Q?vRvKWGk/TEeBHIFf65h5kKYtYmPn3vrFy3P0RC6VR//VR1IlLAqR3MzbZZOF?=
- =?us-ascii?Q?RslqwUrNycqJ1CDZiaiDV5brVIr0esOTcviujuWvGo861Z0rqgct81g8C0/C?=
- =?us-ascii?Q?oPFKVGFZCZ58QOLEFUwaBAYj4X/e6pPkmsrzXJI8S04D3TlSkbfntvSpBiYy?=
- =?us-ascii?Q?GSwcJp9xbAtv35T5LA0MbH4vK5gdp3ELHZyn412ZAIMAs21IDrZM82nGy1tI?=
- =?us-ascii?Q?eHP/6TQzwolklxb9J/6od7RmmnpFmRwLuS70HS9c/QGIX7InlbZWBOx1fDY1?=
- =?us-ascii?Q?AlYaMiMcP1WDrhV8C3NEdQQVZsJkbB9xi7nCOGavFjDrS1V3zBEY+/TOzRBE?=
- =?us-ascii?Q?EI1c7qYc59V/iYEzG3qH0XGmk9wUCrH3b8nXma34gGDkdwWrMOpi3C3FHh6V?=
- =?us-ascii?Q?hUrECDVR7vKINg22PgHVu4fUImameLN4IOEdePIa0oE6u0l/OasFx83LJuHq?=
- =?us-ascii?Q?htlTSSyivCkWBm4lpD44qzNREMr4OvaOOYATFfxX/oB1cDFvt3truwL2oWKG?=
- =?us-ascii?Q?DBW4/KO7/2YJk5YaG/64M3uafXiBYXs/Ek3DWmC0iFw/zcdUccVRN+DlzYUs?=
- =?us-ascii?Q?8Q9VXJJRg3CKHC2WXgdzEYINUmeejzAj88q9fOuzc3+hi6fSl9HTbWDu2D8U?=
- =?us-ascii?Q?nDhEiOB722VTQbPLayGH3t4KpLwDNH5tOAZTn5WGcB95qw4Jd4llUqjmyzOt?=
- =?us-ascii?Q?2a7gy39+wRfezv45+b6XOLbTBj+KsthMo/Mgy7XDSHCb+Hdl40Z1zc548g8j?=
- =?us-ascii?Q?hwg+0Pba2IlzOSKov54xWbcVy19MVDP24uimFb4kEyasIfmQNvA0j+h1xGdv?=
- =?us-ascii?Q?YM7ry2/g84QGt84uuvAKpzeS1PPzg+HS1b661ztJslm8CXteWH3OPlyv+zsI?=
- =?us-ascii?Q?DKoi47DgjvdnX9L4f7VDlY1Dwn5XiIunchhwgzXyN/1ofuo7w/cTmFGNv4AI?=
- =?us-ascii?Q?8kap16Z+8fZyVdKtrSi74o2iHOTEtYjVwfTke5jRWRqLPiYnKZe+Z0Z4J2C2?=
- =?us-ascii?Q?DR1fawzs3Z6WQ28GVx0zHwoTJnedknTAW+h40P6hGanr0cCjpO4ucdbu0m6B?=
- =?us-ascii?Q?h+K1FzNgsM7YYX9oGodQudnw3SMDThVzck1zqshjI9mfQ5zt+7JE2FKlG06U?=
- =?us-ascii?Q?YQ=3D=3D?=
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 953bd025-8b26-44e5-e8ad-08da71500919
-X-MS-Exchange-CrossTenant-AuthSource: ZRAP278MB0495.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2022 10:49:39.1455
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7u1j0CEt+bk1LXDLD/cCbp+SsVSMesXweUrH2iX1CUtaywTBpDDcmxoyDzdSrO/tRo4YTWn7fRUfBMqzwF9vxHj3SpW7JokZCOPVhlXadQk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVAP278MB0261
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=CDE13A77 smtp.mailfrom=francesco.dolcini@toradex.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
-Content-Type: text/plain; charset=WINDOWS-1252
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CABb+yY0JzztBB+giBu+RCt-dzgwYWF32sCR3WKKP9U5K9UvhxA@mail.gmail.com>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Shawn,
-just a gently ping.
+On Thu, Jul 28, 2022 at 04:07:45PM -0500, Jassi Brar wrote:
+> On Thu, Jul 28, 2022 at 3:17 PM Jassi Brar <jassisinghbrar@gmail.com> wrote:
+> >
+> > On Thu, Jul 28, 2022 at 2:08 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > The secure interrupt is only useful to secure world, therefore for NS
+> > > users it shouldn't be required. Make it optional.
+> > >
+> > > This fixes a warning on Arm Juno board:
+> > >
+> > > mhu@2b1f0000: interrupts: [[0, 36, 4], [0, 35, 4]] is too short
+> > >
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/mailbox/arm,mhu.yaml | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+> > > index bd49c201477d..d9a4f4a02d7c 100644
+> > > --- a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+> > > +++ b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+> > > @@ -57,6 +57,7 @@ properties:
+> > >      maxItems: 1
+> > >
+> > >    interrupts:
+> > > +    minItems: 2
+> > >      items:
+> > >        - description: low-priority non-secure
+> > >        - description: high-priority non-secure
+> > >
+> > Do we also want to specify that only the secure-irq is optional
+> > because irqs are directly mapped onto channels in the driver, and only
+> > omitting the secure (last) irq will work.
+> >
+> I could learn why specifying secure irq isn't desirable?
+> No non-secure client node would ask for that secure irq/channel, which
+> will simply lay unused.
+>
 
-On Fri, Jul 08, 2022 at 02:42:03PM +0200, Andrejs Cainikovs wrote:
-> This patch set updates CAN controller clock and changes interrupt type.
+Did you mean would or wouldn't ?
+
+Anyways I can insert a module that requests this channel and bring down
+the system as accessing anything configure secure from non-secure side
+on Juno results in system hang/error.
+
+> The programming of the secure channel doesn't care if the mode is
+> indeed secure. It all relies on providing accurate information in the
+> device tree :- the controller provides secure and non-secure channels
+> but only non-secure channels are _used_ in non-secure mode.
+>
+
+In general w.r.t the MHU IP may be yes. But if the secure side configures
+it as secure only and claims the channel which is the case on Juno, any
+attempt to access the same from non-secure side is fatal.
+
+> index f6c55877fbd94..004b1566be74d 100644
+> --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
+> +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+> @@ -26,7 +26,8 @@ mailbox: mhu@2b1f0000 {
+>         compatible = "arm,mhu", "arm,primecell";
+>         reg = <0x0 0x2b1f0000 0x0 0x1000>;
+>         interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
+> -                <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> +                <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
+> +                <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+>         interrupt-names = "mhu_lpri_rx",
+>                   "mhu_hpri_rx";
+>         #mbox-cells = <1>;
 > 
-> Andrejs Cainikovs (2):
->   arm64: dts: imx8mm-verdin: update CAN clock to 40MHz
->   arm64: dts: imx8mm-verdin: use level interrupt for mcp251xfd
-> 
->  arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
+> If this works for you, I could submit a proper patch.
+>
 
-It's too late for the merge window? These 2 commits do not have a fixes
-tag, but they are really fixes (we just did not bother having those
-backported initially).
+No this doesn't work IMO. Yes standalone everything looks fine, but you can
+insert a module requesting this channel and bring down the system. So I am
+not for this change.
 
-Francesco
-
+-- 
+Regards,
+Sudeep
