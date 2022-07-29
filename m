@@ -2,219 +2,397 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C958B584975
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 03:51:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF8D15849B5
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 04:26:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233798AbiG2BvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 28 Jul 2022 21:51:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49288 "EHLO
+        id S233190AbiG2C0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 28 Jul 2022 22:26:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233800AbiG2BvN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 21:51:13 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2025926C
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 18:51:12 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id 70so3429860pfx.1
-        for <devicetree@vger.kernel.org>; Thu, 28 Jul 2022 18:51:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version;
-        bh=HV7bTwJZwkDNKodnN3OCjxX0FkPRtcWtky8W87ahId8=;
-        b=aVkyLEySz7pKEqNv3rlbQVd1uh5ZmGpXnDu+2/+sK59z4K1NIeHBavlh3tZ3YPS5Rz
-         E9R8BCOgBoKuNwXA0k24qV411aWm/B6958IVBZHt3Fudz7FyKxu/E6j0/Obivi00byWV
-         IQDezbX+NeTS3DuEu4xXt80r7VenUjSMPfBqw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version;
-        bh=HV7bTwJZwkDNKodnN3OCjxX0FkPRtcWtky8W87ahId8=;
-        b=RZsIxlxv5Qt3BG604uVmxF6tShitIYwERvEnpnEAp0TxEe1z4pi97JjuaQYGdqllR/
-         CVrHr09jmyPCNOmPqOPcfIgfcqrpj+Ei+ZwXjW/EAjlqBn8P0wkEw84D/BDqSPM5oYC0
-         A6lz9d05dUiWPY08odffhlkYnZQ/lSa5l5ULKLEoC2H0zbzgSOdumqiytMmtrxpiHmGZ
-         mmuCbrhYYvvN2vCn9t06lwu0jeQGjNpqTKmlQxP1WctBqy3NUxZl5maZrb2+8/Sb5K2P
-         5c2wtmZMcoPijui5MNwqTInsdcDiFXp9bfVMIdCqnR5BNHqblZO/w1bSaF1cCMQcosfN
-         5fDw==
-X-Gm-Message-State: AJIora9U0Fenj3peUiuAZfpVDQifLHwXFREkUGVydPJ3862dUDcbqXIP
-        r36jdXAvFYsxjHqlB8ObEgkCPg==
-X-Google-Smtp-Source: AGRyM1upZ33oniMEV56cXCil48albATS/udzKOjSuThvVwmoXOLxe071EyDPM9T3dCzxoatiGI2rQw==
-X-Received: by 2002:aa7:8884:0:b0:52b:c486:d780 with SMTP id z4-20020aa78884000000b0052bc486d780mr1242796pfe.82.1659059471675;
-        Thu, 28 Jul 2022 18:51:11 -0700 (PDT)
-Received: from ubuntu-22.localdomain ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id x11-20020a1709028ecb00b0016c38eb1f3asm1978067plo.214.2022.07.28.18.51.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Jul 2022 18:51:11 -0700 (PDT)
-From:   William Zhang <william.zhang@broadcom.com>
-To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        kursad.oney@broadcom.com, dan.beygelman@broadcom.com,
-        f.fainelli@gmail.com, anand.gore@broadcom.com,
-        joel.peshkin@broadcom.com,
-        William Zhang <william.zhang@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] ARM: dts: bcmbca: cosmetic change
-Date:   Thu, 28 Jul 2022 18:50:29 -0700
-Message-Id: <20220729015029.14863-4-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220729015029.14863-1-william.zhang@broadcom.com>
-References: <20220729015029.14863-1-william.zhang@broadcom.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000007e84d605e4e7e24e"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229535AbiG2C0j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 28 Jul 2022 22:26:39 -0400
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE6584A826;
+        Thu, 28 Jul 2022 19:26:37 -0700 (PDT)
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2E03D1A3123;
+        Fri, 29 Jul 2022 04:26:36 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A77361A311C;
+        Fri, 29 Jul 2022 04:26:35 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id D56E6180031A;
+        Fri, 29 Jul 2022 10:26:33 +0800 (+08)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     shengjiu.wang@gmail.com
+Subject: [PATCH v3] ASoC: dt-bindings: fsl,sai: Convert format to json-schema
+Date:   Fri, 29 Jul 2022 10:10:32 +0800
+Message-Id: <1659060632-4880-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000007e84d605e4e7e24e
-Content-Transfer-Encoding: 8bit
+Convert the NXP SAI binding to DT schema format using json-schema.
 
-Add new line between dts nodes for BCM63178 and BCM6878.
+The Synchronous Audio Interface (SAI) provides an interface that
+supports full-duplex serial interfaces with frame synchronization
+formats such as I2S, AC97, TDM, and codec/DSP interfaces.
 
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
+Beside conversion, 'fsl,shared-interrupt' and '#sound-dai-cells'
+are added for they are already used by some dts.
 
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 ---
+changes in v3
+- address comments from Krzysztof
 
- arch/arm/boot/dts/bcm63178.dtsi | 3 +++
- arch/arm/boot/dts/bcm6878.dtsi  | 2 ++
- 2 files changed, 5 insertions(+)
+changes in v2
+- fix exclusive property issue
+- fix order issue of compatible, clock-names, dma-names
 
-diff --git a/arch/arm/boot/dts/bcm63178.dtsi b/arch/arm/boot/dts/bcm63178.dtsi
-index dba71fa53466..29e621517e06 100644
---- a/arch/arm/boot/dts/bcm63178.dtsi
-+++ b/arch/arm/boot/dts/bcm63178.dtsi
-@@ -32,6 +32,7 @@ CA7_1: cpu@1 {
- 			next-level-cache = <&L2_0>;
- 			enable-method = "psci";
- 		};
+ .../devicetree/bindings/sound/fsl,sai.yaml    | 221 ++++++++++++++++++
+ .../devicetree/bindings/sound/fsl-sai.txt     |  95 --------
+ 2 files changed, 221 insertions(+), 95 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/fsl,sai.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/fsl-sai.txt
+
+diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+new file mode 100644
+index 000000000000..86ee46755b0c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+@@ -0,0 +1,221 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 		CA7_2: cpu@2 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a7";
-@@ -39,6 +40,7 @@ CA7_2: cpu@2 {
- 			next-level-cache = <&L2_0>;
- 			enable-method = "psci";
- 		};
++title: Freescale Synchronous Audio Interface (SAI).
 +
- 		L2_0: l2-cache0 {
- 			compatible = "cache";
- 		};
-@@ -68,6 +70,7 @@ periph_clk: periph-clk {
- 			#clock-cells = <0>;
- 			clock-frequency = <200000000>;
- 		};
++maintainers:
++  - Shengjiu Wang <shengjiu.wang@nxp.com>
 +
- 		uart_clk: uart-clk {
- 			compatible = "fixed-factor-clock";
- 			#clock-cells = <0>;
-diff --git a/arch/arm/boot/dts/bcm6878.dtsi b/arch/arm/boot/dts/bcm6878.dtsi
-index 6dd3d2df4e16..e89a19b31dc9 100644
---- a/arch/arm/boot/dts/bcm6878.dtsi
-+++ b/arch/arm/boot/dts/bcm6878.dtsi
-@@ -32,6 +32,7 @@ CA7_1: cpu@1 {
- 			next-level-cache = <&L2_0>;
- 			enable-method = "psci";
- 		};
++description: |
++  The SAI is based on I2S module that used communicating with audio codecs,
++  which provides a synchronous audio interface that supports fullduplex
++  serial interfaces with frame synchronization such as I2S, AC97, TDM, and
++  codec/DSP interfaces.
 +
- 		L2_0: l2-cache0 {
- 			compatible = "cache";
- 		};
-@@ -59,6 +60,7 @@ periph_clk: periph-clk {
- 			#clock-cells = <0>;
- 			clock-frequency = <200000000>;
- 		};
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - fsl,vf610-sai
++          - fsl,imx6sx-sai
++          - fsl,imx6ul-sai
++          - fsl,imx7ulp-sai
++          - fsl,imx8mq-sai
++          - fsl,imx8qm-sai
++          - fsl,imx8ulp-sai
++      - items:
++          - enum:
++              - fsl,imx8mm-sai
++              - fsl,imx8mn-sai
++              - fsl,imx8mp-sai
++          - const: fsl,imx8mq-sai
 +
- 		uart_clk: uart-clk {
- 			compatible = "fixed-factor-clock";
- 			#clock-cells = <0>;
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: receive and transmit interrupt
++
++  dmas:
++    maxItems: 2
++
++  dma-names:
++    maxItems: 2
++
++  clocks:
++    items:
++      - description: The ipg clock for register access
++      - description: master clock source 0 (obsoleted)
++      - description: master clock source 1
++      - description: master clock source 2
++      - description: master clock source 3
++      - description: PLL clock source for 8kHz series
++      - description: PLL clock source for 11kHz series
++    minItems: 4
++
++  clock-names:
++    oneOf:
++      - items:
++          - const: bus
++          - const: mclk0
++          - const: mclk1
++          - const: mclk2
++          - const: mclk3
++          - const: pll8k
++          - const: pll11k
++        minItems: 4
++      - items:
++          - const: bus
++          - const: mclk1
++          - const: mclk2
++          - const: mclk3
++          - const: pll8k
++          - const: pll11k
++        minItems: 4
++
++  lsb-first:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      Configures whether the LSB or the MSB is transmitted
++      first for the fifo data. If this property is absent,
++      the MSB is transmitted first as default, or the LSB
++      is transmitted first.
++    type: boolean
++
++  big-endian:
++    description: |
++      required if all the SAI registers are big-endian rather than little-endian.
++    type: boolean
++
++  fsl,sai-synchronous-rx:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      SAI will work in the synchronous mode (sync Tx with Rx) which means
++      both the transmitter and the receiver will send and receive data by
++      following receiver's bit clocks and frame sync clocks.
++    type: boolean
++
++  fsl,sai-asynchronous:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      SAI will work in the asynchronous mode, which means both transmitter
++      and receiver will send and receive data by following their own bit clocks
++      and frame sync clocks separately.
++      If both fsl,sai-asynchronous and fsl,sai-synchronous-rx are absent, the
++      default synchronous mode (sync Rx with Tx) will be used, which means both
++      transmitter and receiver will send and receive data by following clocks
++      of transmitter.
++    type: boolean
++
++  fsl,dataline:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    description: |
++      Configure the dataline. It has 3 value for each configuration
++    maxItems: 16
++    items:
++      items:
++        - description: format Default(0), I2S(1) or PDM(2)
++          enum: [0, 1, 2]
++        - description: dataline mask for 'rx'
++        - description: dataline mask for 'tx'
++
++  fsl,sai-mclk-direction-output:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: SAI will output the SAI MCLK clock.
++    type: boolean
++
++  fsl,shared-interrupt:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: Interrupt is shared with other modules.
++    type: boolean
++
++  "#sound-dai-cells":
++    const: 0
++    description: optional, some dts node didn't add it.
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: fsl,vf610-sai
++    then:
++      properties:
++        dmas:
++          items:
++            - description: DMA controller phandle and request line for TX
++            - description: DMA controller phandle and request line for RX
++        dma-names:
++          items:
++            - const: tx
++            - const: rx
++    else:
++      properties:
++        dmas:
++          items:
++            - description: DMA controller phandle and request line for RX
++            - description: DMA controller phandle and request line for TX
++        dma-names:
++          items:
++            - const: rx
++            - const: tx
++  - if:
++      required:
++        - fsl,sai-asynchronous
++    then:
++      properties:
++        fsl,sai-synchronous-rx: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - dmas
++  - dma-names
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/vf610-clock.h>
++    sai2: sai@40031000 {
++        compatible = "fsl,vf610-sai";
++        reg = <0x40031000 0x1000>;
++        interrupts = <86 IRQ_TYPE_LEVEL_HIGH>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_sai2_1>;
++        clocks = <&clks VF610_CLK_PLATFORM_BUS>,
++                 <&clks VF610_CLK_SAI2>,
++                 <&clks 0>, <&clks 0>;
++        clock-names = "bus", "mclk1", "mclk2", "mclk3";
++        dma-names = "tx", "rx";
++        dmas = <&edma0 0 21>,
++               <&edma0 0 20>;
++        big-endian;
++        lsb-first;
++    };
++
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/imx8mm-clock.h>
++    sai1: sai@30010000 {
++        compatible = "fsl,imx8mm-sai", "fsl,imx8mq-sai";
++        reg = <0x30010000 0x10000>;
++        interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clk IMX8MM_CLK_SAI1_IPG>,
++                 <&clk IMX8MM_CLK_DUMMY>,
++                 <&clk IMX8MM_CLK_SAI1_ROOT>,
++                 <&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_CLK_DUMMY>;
++        clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3";
++        dmas = <&sdma2 0 2 0>, <&sdma2 1 2 0>;
++        dma-names = "rx", "tx";
++        fsl,dataline = <1 0xff 0xff 2 0xff 0x11>;
++        #sound-dai-cells = <0>;
++    };
+diff --git a/Documentation/devicetree/bindings/sound/fsl-sai.txt b/Documentation/devicetree/bindings/sound/fsl-sai.txt
+deleted file mode 100644
+index fbdefc3fade7..000000000000
+--- a/Documentation/devicetree/bindings/sound/fsl-sai.txt
++++ /dev/null
+@@ -1,95 +0,0 @@
+-Freescale Synchronous Audio Interface (SAI).
+-
+-The SAI is based on I2S module that used communicating with audio codecs,
+-which provides a synchronous audio interface that supports fullduplex
+-serial interfaces with frame synchronization such as I2S, AC97, TDM, and
+-codec/DSP interfaces.
+-
+-Required properties:
+-
+-  - compatible		: Compatible list, contains "fsl,vf610-sai",
+-			  "fsl,imx6sx-sai", "fsl,imx6ul-sai",
+-			  "fsl,imx7ulp-sai", "fsl,imx8mq-sai",
+-			  "fsl,imx8qm-sai", "fsl,imx8mm-sai",
+-			  "fsl,imx8mn-sai", "fsl,imx8mp-sai", or
+-			  "fsl,imx8ulp-sai".
+-
+-  - reg			: Offset and length of the register set for the device.
+-
+-  - clocks		: Must contain an entry for each entry in clock-names.
+-
+-  - clock-names		: Must include the "bus" for register access and
+-			  "mclk1", "mclk2", "mclk3" for bit clock and frame
+-			  clock providing.
+-                          "pll8k", "pll11k" are optional, they are the clock
+-                          source for root clock, one is for 8kHz series rates
+-                          another one is for 11kHz series rates.
+-  - dmas		: Generic dma devicetree binding as described in
+-			  Documentation/devicetree/bindings/dma/dma.txt.
+-
+-  - dma-names		: Two dmas have to be defined, "tx" and "rx".
+-
+-  - pinctrl-names	: Must contain a "default" entry.
+-
+-  - pinctrl-NNN		: One property must exist for each entry in
+-			  pinctrl-names. See ../pinctrl/pinctrl-bindings.txt
+-			  for details of the property values.
+-
+-  - lsb-first		: Configures whether the LSB or the MSB is transmitted
+-			  first for the fifo data. If this property is absent,
+-			  the MSB is transmitted first as default, or the LSB
+-			  is transmitted first.
+-
+-  - fsl,sai-synchronous-rx: This is a boolean property. If present, indicating
+-			  that SAI will work in the synchronous mode (sync Tx
+-			  with Rx) which means both the transmitter and the
+-			  receiver will send and receive data by following
+-			  receiver's bit clocks and frame sync clocks.
+-
+-  - fsl,sai-asynchronous: This is a boolean property. If present, indicating
+-			  that SAI will work in the asynchronous mode, which
+-			  means both transmitter and receiver will send and
+-			  receive data by following their own bit clocks and
+-			  frame sync clocks separately.
+-
+-  - fsl,dataline        : configure the dataline. it has 3 value for each configuration
+-                          first one means the type: I2S(1) or PDM(2)
+-                          second one is dataline mask for 'rx'
+-                          third one is dataline mask for 'tx'.
+-                          for example: fsl,dataline = <1 0xff 0xff 2 0xff 0x11>;
+-                          it means I2S type rx mask is 0xff, tx mask is 0xff, PDM type
+-                          rx mask is 0xff, tx mask is 0x11 (dataline 1 and 4 enabled).
+-
+-Optional properties:
+-
+-  - big-endian		: Boolean property, required if all the SAI
+-			  registers are big-endian rather than little-endian.
+-
+-Optional properties (for mx6ul):
+-
+-  - fsl,sai-mclk-direction-output: This is a boolean property. If present,
+-			 indicates that SAI will output the SAI MCLK clock.
+-
+-Note:
+-- If both fsl,sai-asynchronous and fsl,sai-synchronous-rx are absent, the
+-  default synchronous mode (sync Rx with Tx) will be used, which means both
+-  transmitter and receiver will send and receive data by following clocks
+-  of transmitter.
+-- fsl,sai-asynchronous and fsl,sai-synchronous-rx are exclusive.
+-
+-Example:
+-sai2: sai@40031000 {
+-	      compatible = "fsl,vf610-sai";
+-	      reg = <0x40031000 0x1000>;
+-	      pinctrl-names = "default";
+-	      pinctrl-0 = <&pinctrl_sai2_1>;
+-	      clocks = <&clks VF610_CLK_PLATFORM_BUS>,
+-		     <&clks VF610_CLK_SAI2>,
+-		     <&clks 0>, <&clks 0>;
+-	      clock-names = "bus", "mclk1", "mclk2", "mclk3";
+-	      dma-names = "tx", "rx";
+-	      dmas = <&edma0 0 VF610_EDMA_MUXID0_SAI2_TX>,
+-		   <&edma0 0 VF610_EDMA_MUXID0_SAI2_RX>;
+-	      big-endian;
+-	      lsb-first;
+-};
 -- 
 2.34.1
 
-
---0000000000007e84d605e4e7e24e
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
-fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
-+EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
-abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
-ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
-W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
-1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIF2CxzbDMGtSjR6bpqByP1tOpXvn
-10Qf1rVYqYEp5sSvMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDcyOTAxNTExMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQDTP38yKpp94qyI69MzGOttkdwR+AoOetsVKK+9SvSGCL+t
-zvRmGk4BmE38O9/Q+gIX2i+sFJH7jhjvcSXMlpWMVVO6JgdfCOMD0+o/OhneAQWp7b1mPtdNJKIB
-8DsLGavMJd3qHknXDrw9qGtpX0SYiBIqROoVAWQXUmhp2KIG23d6jGjM8zODxqf7+ORyt4O4gYEt
-r6qauPVNnQu+CloUlRuzjccrIeTVDpose225dbfo+cvSyQMg83ngjQIH0dvlOLWVtFOEc0s4eHOu
-Tw6uqk4ZARBpKeNMSu7PdZSycJhtiUTzcJONIUc6rVp80atcTWdfuA1ZW5vZBFv0jD23
---0000000000007e84d605e4e7e24e--
