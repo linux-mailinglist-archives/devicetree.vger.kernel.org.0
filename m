@@ -2,68 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47742584E64
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 11:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8109584EA9
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 12:25:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231878AbiG2JxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 05:53:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50948 "EHLO
+        id S235699AbiG2KZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 06:25:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230506AbiG2JxE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 05:53:04 -0400
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DF5C678201;
-        Fri, 29 Jul 2022 02:53:02 -0700 (PDT)
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 29 Jul 2022 18:53:00 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 0231220584CE;
-        Fri, 29 Jul 2022 18:53:00 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 29 Jul 2022 18:52:59 +0900
-Received: from [10.212.182.0] (unknown [10.212.182.0])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id A3CF7B62A4;
-        Fri, 29 Jul 2022 18:52:58 +0900 (JST)
-Subject: Re: [PATCH 0/9] Update UniPhier armv8 devicetree
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <1656894074-15751-1-git-send-email-hayashi.kunihiko@socionext.com>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Message-ID: <0a0a64a7-60cc-e95d-c2e3-3c11a53a6527@socionext.com>
-Date:   Fri, 29 Jul 2022 18:52:58 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S235352AbiG2KZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 06:25:10 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE20A82450;
+        Fri, 29 Jul 2022 03:25:02 -0700 (PDT)
+X-UUID: 1899f163b777413ca0fe6c7d74e23ee5-20220729
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:83e7240c-24e5-45f9-a811-6e74ce692894,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:0f94e32,CLOUDID:1e7eba24-a982-4824-82d2-9da3b6056c2a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 1899f163b777413ca0fe6c7d74e23ee5-20220729
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+        (envelope-from <hui.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 47033403; Fri, 29 Jul 2022 18:24:56 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Fri, 29 Jul 2022 18:24:54 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 29 Jul 2022 18:24:53 +0800
+From:   Hui Liu <hui.liu@mediatek.com>
+To:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <matthias.bgg@gmail.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <hui.liu@mediatek.com>, <jianguo.zhang@mediatek.com>,
+        <zhiyong.tao@mediatek.com>, <sean.wang@mediatek.com>,
+        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/2] MediaTek pinctrl patch on mt8188
+Date:   Fri, 29 Jul 2022 18:24:50 +0800
+Message-ID: <20220729102452.9478-1-hui.liu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <1656894074-15751-1-git-send-email-hayashi.kunihiko@socionext.com>
-Content-Type: text/plain; charset=iso-2022-jp; format=flowed; delsp=yes
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd, Olof,
+This series include 2 patches:
+1.Add pinmux definition file and pinctrl binding document for mt8188.
+2.Add pinctrl driver for mt8188.
 
-On 2022/07/04 9:21, Kunihiko Hayashi wrote:
-> Update devicetree sources for UniPhier armv8 SoCs to remove dtschema
-> warnings, add support existing features that haven't yet been
-> described, and replace constants with macros.
+Changes in patch v4:
+1.Add gpio-line-names in binding document.
+2.Fix typo in driver files.
 
-If there is nothing wrong with this series and armv7 DT series,
-I'd like to make a pull request.
-If the request is late, carry it over to the next version.
+Changes in patch v3:
+1.Fix binding document dt_binding_check fail issue.
 
-How about that?
+Changes in patch v2:
+1.Change pinmux definition file name to mediatek,mt8188-pinfunc.h.
+2.Change binding document name to mediatek,mt8188-pinctrl.yaml.
+3.Update yaml description.
 
-Thank you,
+Changes in patch v1:
+1.Add pinmux definition file.
+2.Add binding document.
+3.Add mt8188 pinctrl drivers.
 
----
-Best Regards
-Kunihiko Hayashi
+*** BLURB HERE ***
+
+Hui.Liu (2):
+  dt-bindings: pinctrl: add support for mediatek mt8188
+  pinctrl: mediatek: add mt8188 driver
+
+ .../pinctrl/mediatek,mt8188-pinctrl.yaml      |  238 ++
+ drivers/pinctrl/mediatek/Kconfig              |   12 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt8188.c     | 1669 ++++++++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8188.h | 2260 +++++++++++++++++
+ .../pinctrl/mediatek,mt8188-pinfunc.h         | 1280 ++++++++++
+ 6 files changed, 5460 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8188-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8188.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8188.h
+ create mode 100644 include/dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h
+
+--
+2.18.0
+
+
