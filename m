@@ -2,93 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FB95585221
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 17:11:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE8E58522D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 17:15:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236806AbiG2PLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 11:11:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40588 "EHLO
+        id S236946AbiG2PPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 11:15:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236384AbiG2PLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 11:11:08 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC06175BB;
-        Fri, 29 Jul 2022 08:11:07 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id q30so1960181wra.11;
-        Fri, 29 Jul 2022 08:11:07 -0700 (PDT)
+        with ESMTP id S237072AbiG2PPk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 11:15:40 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BDD23DBE1
+        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 08:15:38 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id o15so8647459yba.10
+        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 08:15:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xpR3E29/A9nc5RITUNo9yzDkYexPEEQLAxJsqHGPRlM=;
-        b=GjySXkZbiKSHDRXi8/iFiMbWWJUy3IxxGLhr28E6V2rGQ4FLfZzBUQs9xfOw1jSW7N
-         dmaw+ZHVRqt1DXkUGxkiC2qpmefkigwbJZf9L+byvQL+7yAZbucJaRhRT8LDnQn8+hxV
-         qnlIEfbX2IEg8MQfQnBvsKWcxZguQNAdrOzqSt/jNmuge9joluAClgP4LunWcKaUBOTT
-         sHH7bqiMzNkxCSA9C/KYEc2uNpVMng/lVxRqR+Okar7M9VMVpgcPdTqL4L06kkJPlvG+
-         ukDrThmZw+TXIpz5ktJqYjZ2KU+92ENdrTi8AFvy5RSD3TyfjIe0F3uu4c6YA7BTVgLZ
-         myFg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JVW1HuRhi3qWhCumOh2BN9qRaoJYOTe2cMXmsKboVPA=;
+        b=q3+xVd38htCkerZKxQ6R7n4Dj/dhgTXP8cf1zgt0TETxOzRPDIPko+9f0eqCQOzoxF
+         o/Y64pJri8xB0On7D4lX+BJ33/XKXOk/Es62jTldY/l7pg4XOKeesDuPqY9fiz35PN5G
+         7Q2AerqnCZzrSfQgwj6hmLEds9r22fcQSYT/X3u/T4uNZHd1i2qdUo5V0H04IxJc+hdX
+         q+wUd3CTnyTcE9E/+/Qtp8AHG0baKZiTcvw/mh/ongkjwlo96i1Lzlpt50A9cL96srAM
+         YmE9GBS1/BXs2uYAh2q0wlxlqZDTKhh4lnaIsthfcd1q6Lj0fE/O46aD/eehLc9aD+kl
+         L3tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xpR3E29/A9nc5RITUNo9yzDkYexPEEQLAxJsqHGPRlM=;
-        b=WxJWzvrlN/D8Ti+sViWF706SgIbQeYd8qq1xJVF18V5U2pYqG2zf6VQmni7kR9Sn40
-         z1s3fiUwoy2lY5b19ceLRR2i0IzjGmVmE9WJqrA1bdvaVhgC60X5+ksaS75VLjfTs1qG
-         enOBK2hzeylsBvhR1L3mgSXtbFb6rCv23hgHpSgctiAi1l0beEpT3qlY3MuGpblZe1+k
-         dcauVBCoDgEZgFZBJT5050l58xtLGCwPQTUIC+16mmMhPG/y1Saaf55RpzSgVgKNwEVl
-         ydBtAIKUWVs5Hg/784o7Wx/cMOkDpmiXiOtukYnljy+Gk8tcg0sCmgSnvTGJAgDY00nQ
-         6hfw==
-X-Gm-Message-State: ACgBeo20zUpNvM6NBz0bV/xaBOvmAcU+HHlGiCgougqVN375gjWX76el
-        hev7yBd86DB2//ry3VITlzk=
-X-Google-Smtp-Source: AA6agR7e2boDjM41jCQg2pq7nhx4wFbSqs4syky7BvMUTysFCiJEc7ktjZY47bTJ99nZpteZJak1BQ==
-X-Received: by 2002:a5d:5c08:0:b0:21d:854a:7009 with SMTP id cc8-20020a5d5c08000000b0021d854a7009mr2670770wrb.263.1659107465544;
-        Fri, 29 Jul 2022 08:11:05 -0700 (PDT)
-Received: from [192.168.2.202] (pd9ea3777.dip0.t-ipconnect.de. [217.234.55.119])
-        by smtp.gmail.com with ESMTPSA id bh15-20020a05600c3d0f00b003a4a5bcd37esm1494237wmb.23.2022.07.29.08.11.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Jul 2022 08:11:05 -0700 (PDT)
-Message-ID: <097eb672-ee9f-523c-d52d-79e723a7bf2c@gmail.com>
-Date:   Fri, 29 Jul 2022 17:11:04 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JVW1HuRhi3qWhCumOh2BN9qRaoJYOTe2cMXmsKboVPA=;
+        b=EgLkslqSMBShJn4r0YmziEK5dAiSsy4xu//rdD8j//6SM3QTcvJd/7V7PfqcBgz8yX
+         mX5Ph6zGbkySUTkI6nDBoGwJ9SD8H/uvr2ArBL2eB3Iax1lH/Aux/OmkEx1nY9f/ETAp
+         gtBZcH3uHsfw8zRtn+RBGci5FJpTZlibiI1GyJr4IZn5Bd0AMdQh/6n7qmLM3VNgDy3o
+         3PxB2QR8qBW2hsYyq6vWmtJrAcgfcN/ekkkvUkktvIJYC8rGrupKG4IVbaeVslh5M0Xe
+         On4Rz5PbqbhMGfrJ5c5CqBQYUN/OD/Xc0XSd4pYqVieD1OACtu4ntAm2d1M+fU0HvZC9
+         moHw==
+X-Gm-Message-State: ACgBeo07WBpApD6V8tiDR+yCtCOITheuhA6ZWutkQELDalfoDhV0v0gX
+        afk3vnGJOlbHh7v1wZIt4UvVFAPu1/701AiLlugDTw==
+X-Google-Smtp-Source: AA6agR7MjsWrl5+wY6we1QLY1FGUyJgK/g+rqxviL46ZaTQ/lIO46FFNuI2HHXPoibeBW6Xc014AeHOzzqbfCG2Ff7Y=
+X-Received: by 2002:a25:bb12:0:b0:66f:3c5f:dd9c with SMTP id
+ z18-20020a25bb12000000b0066f3c5fdd9cmr2700663ybg.520.1659107737834; Fri, 29
+ Jul 2022 08:15:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-Content-Language: en-US
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Ilias Apalodimas <ilias.apalodimas@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com>
- <7284953b-52bb-37ac-fbe1-1fa845c44ff9@linaro.org>
- <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com>
- <20220727132437.pjob3z2nyxsuxgam@bogus>
- <CAC_iWj+Pn+h8k=fuDHzYwqD0g4m6jGRt8sCzcz+5+rYqvz9q4w@mail.gmail.com>
- <fd922f0f-99fd-55a3-a0b5-b62ad2dbfb45@gmail.com>
- <CAC_iWjLWBJLth26ifFfHvimProHZu_w5SjQNWSH_D2Fs_JXjbA@mail.gmail.com>
- <b703f678-b2c5-cdeb-ac40-9646e043d1c3@gmail.com>
- <CAC_iWjLrntWuJUzVuRi0ZOtG6JXNwz7SbS2mrqpuTgU5TV6rQA@mail.gmail.com>
- <d5a19e17-08eb-8bd6-ea18-5da638d13622@gmail.com>
- <20220729085214.bh2cak5g2hcqun4i@bogus>
-From:   Maximilian Luz <luzmaximilian@gmail.com>
-In-Reply-To: <20220729085214.bh2cak5g2hcqun4i@bogus>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20220726135506.485108-1-bchihi@baylibre.com> <20220726135506.485108-3-bchihi@baylibre.com>
+ <1658866142.328871.782232.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1658866142.328871.782232.nullmailer@robh.at.kernel.org>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Fri, 29 Jul 2022 17:15:01 +0200
+Message-ID: <CAGuA+opZSoWLZ62tZMdA1GoUe7N9K8DV19AUAophCQpr6rNH9Q@mail.gmail.com>
+Subject: Re: [PATCH v8 2/6] dt-bindings: thermal: Add binding document for
+ LVTS thermal controllers
+To:     Rob Herring <robh@kernel.org>
+Cc:     rui.zhang@intel.com, rex-bc.chen@mediatek.com,
+        daniel.lezcano@linaro.org, amitk@kernel.org, mka@chromium.org,
+        linux-kernel@vger.kernel.org, abailon@baylibre.com,
+        robh+dt@kernel.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com,
+        linux-pm@vger.kernel.org, rafael@kernel.org, khilman@baylibre.com,
+        fan.chen@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        krzk+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, louis.yu@mediatek.com,
+        james.lo@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,61 +73,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/29/22 10:52, Sudeep Holla wrote:
-> On Thu, Jul 28, 2022 at 07:27:19PM +0200, Maximilian Luz wrote:
-> 
-> [...]
-> 
->> My current suggestion (already sent to Sudeep earlier) is (roughly)
->> this: Add one compatible for the TrEE / TrustZone interface.
-> 
-> Still I don't understand why you need extra compatible if you know
-> this laptop(with a unique compatible to identify it) always runs this
-> TrEE interface.
+On Tue, Jul 26, 2022 at 10:09 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, 26 Jul 2022 15:55:02 +0200, Balsam CHIHI wrote:
+> > This patch adds dt-binding documents for mt8192 and mt8195 thermal controllers.
+> >
+> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> > ---
+> >  .../thermal/mediatek,mt8192-lvts.yaml         | 73 ++++++++++++++++++
+> >  .../thermal/mediatek,mt8195-lvts.yaml         | 75 +++++++++++++++++++
+> >  2 files changed, 148 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,mt8192-lvts.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,mt8195-lvts.yaml
+> >
+>
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/thermal/mediatek,mt8195-lvts.example.dts:32.36-37 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:383: Documentation/devicetree/bindings/thermal/mediatek,mt8195-lvts.example.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1404: dt_binding_check] Error 2
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.ozlabs.org/patch/
+>
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
+>
 
-First of all, to recap: I suggest adding a device and driver for the TrEE
-interface, with a compatible for that. That then (based on platform)
-instantiates devices and drivers for the applications running in TrEE. The
-compatible I'm talking about is for that general TrEE interface. Not any
-specific application.
+Hello Rob,
 
-a) Because this better reflects the ACPI tables on those devices. As I've said,
-    there is a HID specifically for the TrEE interface. You were concerned
-    earlier that we should try to add support for that, and now you want to
-    create a purely artificial divide between ACPI and DT? Ideally, we can have
-    the driver load via both the DT compatible and the ACPI HID depending on
-    whether we use one or the other without many other changes.
+This error only appear when I apply my series directly on top of linux-5.19.rc8.
+But, when I apply the other two series that mine depends on,
 
-    Would you equally suggest that we not load the driver by its ACPI HID and
-    instead do DMI matching?
+https://patchwork.kernel.org/project/linux-pm/cover/20220722200007.1839356-1-daniel.lezcano@linexp.org/
+https://patchwork.kernel.org/project/linux-mediatek/cover/20220523093346.28493-1-rex-bc.chen@mediatek.com/
 
-b) Qualcomm also has a DT compatible for this (qcom,qseecom), see e.g. [1].
-    Note: they seem to have changed the name from Secure Execution Environment
-    to Trusted Execution Environment, at least in their Windows driver. This is
-    why I used "tee" instead of "see" (also their naming of things is somewhat
-    confusing and seems to change randomly). Fundamentally, this is the same
-    interface (they just implement a lot more things in their driver, the couple
-    of functions I proposed here handle the absolute minimum required for
-    uefisecapp, it can always be extended later when needed).
+and run "dt_binding_check" again against my YAML file, it does not
+print the error you found above.
+Would you check it, please?
+Thank you.
 
-c) Given their naming of the DT compatible, this interface itself is pretty
-    much guaranteed to be stable. It's definitely not going away with some
-    firmware update. So your earlier concerns about having to update the DT in
-    case of firmware changes do simply not apply here. It is a core component of
-    these platforms. As far as I can see, your "let's load the TrEE driver via
-    the platform compatible" suggestion is now exactly the same as a "let's load
-    some PCIe controller via the platform/SoC compatible". It's an interface
-    that is either present or not present, depending on the device. We're not
-    encoding any firmware specifics (ie. what's running inside the TrEE) in the
-    DT, we just say that it's there (the rest is decided by the driver, e.g. via
-    platform compatibles or DMI matching).
-
-d) By specifying it in the DT, we can properly link it up via a phandle to the
-    SCM and properly model the supplier/client relation between them. While we
-    can't do that with ACPI, I think it's still a good idea to handle this
-    properly in times we can.
-
-Regards,
-Max
-
-[1]: https://git.codelinaro.org/clo/la/kernel/msm-4.14/-/blob/auto-kernel.lnx.4.14.c34/drivers/misc/qseecom.c
+Best regards.
+Balsam.
