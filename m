@@ -2,94 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 031AC5850F8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 15:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76585585102
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 15:38:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236579AbiG2Nfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 09:35:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53580 "EHLO
+        id S236353AbiG2Nii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 09:38:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236667AbiG2Nfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 09:35:37 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64DCE24BE6
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 06:35:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 04A17B827B0
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 13:35:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D89AC433D6;
-        Fri, 29 Jul 2022 13:35:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659101733;
-        bh=OPnmHe7xqIRuz4QI8wZC/8APNp4xzRDjJrUr9X3kF9M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t30MSvduBlMTQZckvb2AxnwIrsTUfq06OH+yTTugp5FVfxSetZjJHMpsou1XXs+AZ
-         OU3fwVUbHqnEz585yxbddmzGZoG2Q3/4/7Yp1pA0e+af/ZIYi7cbLEFX48i/z0XD1d
-         rijRLETJugQ5fi187EHotPsyIiwqcduLHqaaDoZmME/Ua6Mbcapgwf8c9AkJLwydlJ
-         01T4MFPV8LK2aWi+57gOmBLUxW/LIvivx2BvYIz2+NvF8bnrfmLZAXhuvJS2PBo4E5
-         EWnxmAcqvjFrDXPLzmEsO5to/L3N1OLspHGLB9XCD8qjWltXXp4bm7UHL76ccaGAdA
-         pe66tW/3/0yjg==
-Date:   Fri, 29 Jul 2022 14:35:28 +0100
-From:   Mark Brown <broonie@kernel.org>
+        with ESMTP id S235451AbiG2Nih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 09:38:37 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C848467C80
+        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 06:38:34 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id o2so3612962iof.8
+        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 06:38:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc;
+        bh=IVEhYZW7pVuVNX7N8DIrmuV9luqyf17twFjiGQBjaSI=;
+        b=YMuh/5TgIeKx+2rZWSONT3IZywRGnYBPgirbX+Ni9Q6bncLrzn2WPPnFHKAgZLH50p
+         bNVJzJ57M0ACFq2GuJ5pgElZaOWL8iH8uAXnW/mbREd02Mk9J19CoMbYjif41QBfSrPY
+         MFWJhRP6ATM3E6v2nBuTO1iRGeMZ/VJqxb9rip2A16tGKfd7s0dXjeg2HA732r5MJUoB
+         uKtcx605vUX1ri2dnorZ/tkyXSAQe80dAF6xUWGqmM0XobmIzAuc8LMA+RIgSgS5JgZR
+         tBTarDu17lri5Cdmq77jLIsba+OWOsTtYoWs8zo6eYY7lsjCmGic0jJRo0KS2nBbPxWg
+         Ihiw==
+X-Gm-Message-State: AJIora8MXUioDhEdXkA+HN25xma89kdwhv3DmIlqQPIOW1m7L/iaIJzO
+        gpJb1c7HZ/eoZ1kKidXAMQ==
+X-Google-Smtp-Source: AGRyM1s/kppGnaM8HYOtHmwqEE1QPpJwVG7cKuy6k01IF42KCve7/7DB+xbtvTEgnc2xIp8MMD93aw==
+X-Received: by 2002:a02:3f11:0:b0:33f:5d4c:179e with SMTP id d17-20020a023f11000000b0033f5d4c179emr1477525jaa.23.1659101914025;
+        Fri, 29 Jul 2022 06:38:34 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id f15-20020a02848f000000b0033f3435955dsm1621909jai.102.2022.07.29.06.38.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Jul 2022 06:38:33 -0700 (PDT)
+Received: (nullmailer pid 3271160 invoked by uid 1000);
+        Fri, 29 Jul 2022 13:38:31 -0000
+From:   Rob Herring <robh@kernel.org>
 To:     Zhu Ning <zhuning0077@gmail.com>
-Cc:     alsa-devel@alsa-project.org, pierre-louis.bossart@linux.intel.com,
-        tiwai@suse.com, devicetree@vger.kernel.org, robh@kernel.org,
-        David Yang <yangxiaohua@everest-semi.com>,
-        Zhu Ning <zhuning@everest-semi.com>
-Subject: Re: [PATCH v4 1/2] ASoC: codecs: add support for ES8326
-Message-ID: <YuPiIHvkK4pb6Mae@sirena.org.uk>
-References: <20220729090857.579785-1-zhuning0077@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="A/sDrsDDQfaXBz8i"
-Content-Disposition: inline
-In-Reply-To: <20220729090857.579785-1-zhuning0077@gmail.com>
-X-Cookie: Chairman of the Bored.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Cc:     tiwai@suse.com, David Yang <yangxiaohua@everest-semi.com>,
+        pierre-louis.bossart@linux.intel.com,
+        Zhu Ning <zhuning@everest-semi.com>, broonie@kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+In-Reply-To: <20220729090857.579785-2-zhuning0077@gmail.com>
+References: <20220729090857.579785-1-zhuning0077@gmail.com> <20220729090857.579785-2-zhuning0077@gmail.com>
+Subject: Re: [PATCH v4 2/2] ASoC: dt-bindings: Add Everest ES8326 audio CODEC
+Date:   Fri, 29 Jul 2022 07:38:31 -0600
+Message-Id: <1659101911.665574.3271159.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 29 Jul 2022 17:08:57 +0800, Zhu Ning wrote:
+> Add device tree binding documentation for Everest ES8326
+> 
+> Signed-off-by: David Yang <yangxiaohua@everest-semi.com>
+> Signed-off-by: Zhu Ning <zhuning@everest-semi.com>
+> ----
+> v4 add properity for reg58 and reg59
+> ---
+>  .../bindings/sound/everest,es8326.yaml        | 116 ++++++++++++++++++
+>  1 file changed, 116 insertions(+)
+>  create mode 100755 Documentation/devicetree/bindings/sound/everest,es8326.yaml
+> 
 
---A/sDrsDDQfaXBz8i
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-On Fri, Jul 29, 2022 at 05:08:56PM +0800, Zhu Ning wrote:
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/everest,es8326.yaml:76:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
 
-> +static unsigned int es8326_rates[] = {
-> +	8000, 12000, 16000, 32000, 48000, 96000
-> +};
-> +
-> +static struct snd_pcm_hw_constraint_list es8326_constraints = {
-> +	.count = ARRAY_SIZE(es8326_rates),
-> +	.list = es8326_rates,
-> +};
-> +
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:$ref: '/schemas/types.yaml#/definitions/uint8' is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:maximum: 127 is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:default: 69 is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:minimum: 0 is not of type 'object', 'boolean'
+	from schema $id: http://json-schema.org/draft-07/schema#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:everest,interrupt-clk: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:everest,interrupt-clk: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:everest,interrupt-clk: 'oneOf' conditional failed, one must be fixed:
+		'$ref' is a required property
+		'allOf' is a required property
+		hint: A vendor property needs a $ref to types.yaml
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: ignoring, error in schema: properties: default
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,mic1-src: b'"' is not of type 'object', 'array', 'boolean', 'null'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,mic2-src: b'D' is not of type 'object', 'array', 'boolean', 'null'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,jack-pol: b'\x0e' is not of type 'object', 'array', 'boolean', 'null'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,interrupt-src: b'\x08' is not of type 'object', 'array', 'boolean', 'null'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,interrupt-clk: b'E' is not of type 'object', 'array', 'boolean', 'null'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+Documentation/devicetree/bindings/sound/everest,es8326.example.dtb:0:0: /example-0/i2c/codec@19: failed to match any schema with compatible: ['everest,es8326']
 
-These now aren't used, you should see warnings about this which will
-turn into build failures in an allmodconfig since it's built with
--Werror.  Otherwise than that one small thing this now looks good.
+doc reference errors (make refcheckdocs):
 
---A/sDrsDDQfaXBz8i
-Content-Type: application/pgp-signature; name="signature.asc"
+See https://patchwork.ozlabs.org/patch/
 
------BEGIN PGP SIGNATURE-----
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLj4iAACgkQJNaLcl1U
-h9AKSAf/XESgiF0L737Iu8Wd451H4iGXfZIA2LMbUc9JyLDw0OB/OkiO4otMQxKS
-Am5bXzHPOVaoJuh3iUEq6y2JlWigIQH1vMT8NhkXBWlNoo2Zvz1Tr3XA7uocWV4Y
-Lmr6ThAMjjFy5keWqaxd9KnVsX8yX6srz5uy8LQye3q/LK3AALxwKkojc6GM0rKQ
-Xt+m0e2AHXBQygNc291RpVi45V4UAe8jb4OBiI146U5XZUFCAWaECGtolXQuQLQS
-jN6Hk9yesHh+hp2KplfmQwkGUOYBp1ilBaJs/QxyEBZGSPxAle/9htbTG+Ab9axK
-X+ulIeq85WDKEg3vCKcH9nUTKWquLQ==
-=DHk6
------END PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
---A/sDrsDDQfaXBz8i--
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
