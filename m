@@ -2,131 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76585585102
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 15:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 194CF585170
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 16:20:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236353AbiG2Nii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 09:38:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55250 "EHLO
+        id S236178AbiG2OU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 10:20:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235451AbiG2Nih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 09:38:37 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C848467C80
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 06:38:34 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id o2so3612962iof.8
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 06:38:34 -0700 (PDT)
+        with ESMTP id S236433AbiG2OU1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 10:20:27 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4832713EAA
+        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 07:20:26 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id z12-20020a056830128c00b0061c8168d3faso3357383otp.7
+        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 07:20:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kali.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=n48rwJ6znQ/JiCvqsQDOhikE94C4sngYxJzSk0+idkE=;
+        b=kEtZGN6Z/CorW5Lq9wq9t9IfRLJyy5KD5gGGTiO1ceZcd1+AdGD/ipjIzeeBB477aM
+         NjaME6VCtJHKdIAtJSf3AyiDtYVfHU2DMx2BK+WgYUfzmxs+P9l5aIpPj8EnP/GCW3Aj
+         63YYjuqGUmZqgyEURS2I7WmMqi6xNyoj1JDqGyqUbbpCzs2wKSkVV+WTKbYNCprRzxDE
+         kaXM6QtugzjaCnUIHwCHVfYbzEMnI4Ny5Tr15HtS6EDQTweVOT7qfNgUGZwOliuIDXfV
+         Szj2FryXQ589F5FlbwRvCpKK+4KZBNbXRUWfVMy+WsWihby1p3QZA93hXObM1VLVwTbf
+         2ZGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=IVEhYZW7pVuVNX7N8DIrmuV9luqyf17twFjiGQBjaSI=;
-        b=YMuh/5TgIeKx+2rZWSONT3IZywRGnYBPgirbX+Ni9Q6bncLrzn2WPPnFHKAgZLH50p
-         bNVJzJ57M0ACFq2GuJ5pgElZaOWL8iH8uAXnW/mbREd02Mk9J19CoMbYjif41QBfSrPY
-         MFWJhRP6ATM3E6v2nBuTO1iRGeMZ/VJqxb9rip2A16tGKfd7s0dXjeg2HA732r5MJUoB
-         uKtcx605vUX1ri2dnorZ/tkyXSAQe80dAF6xUWGqmM0XobmIzAuc8LMA+RIgSgS5JgZR
-         tBTarDu17lri5Cdmq77jLIsba+OWOsTtYoWs8zo6eYY7lsjCmGic0jJRo0KS2nBbPxWg
-         Ihiw==
-X-Gm-Message-State: AJIora8MXUioDhEdXkA+HN25xma89kdwhv3DmIlqQPIOW1m7L/iaIJzO
-        gpJb1c7HZ/eoZ1kKidXAMQ==
-X-Google-Smtp-Source: AGRyM1s/kppGnaM8HYOtHmwqEE1QPpJwVG7cKuy6k01IF42KCve7/7DB+xbtvTEgnc2xIp8MMD93aw==
-X-Received: by 2002:a02:3f11:0:b0:33f:5d4c:179e with SMTP id d17-20020a023f11000000b0033f5d4c179emr1477525jaa.23.1659101914025;
-        Fri, 29 Jul 2022 06:38:34 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f15-20020a02848f000000b0033f3435955dsm1621909jai.102.2022.07.29.06.38.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jul 2022 06:38:33 -0700 (PDT)
-Received: (nullmailer pid 3271160 invoked by uid 1000);
-        Fri, 29 Jul 2022 13:38:31 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Zhu Ning <zhuning0077@gmail.com>
-Cc:     tiwai@suse.com, David Yang <yangxiaohua@everest-semi.com>,
-        pierre-louis.bossart@linux.intel.com,
-        Zhu Ning <zhuning@everest-semi.com>, broonie@kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-In-Reply-To: <20220729090857.579785-2-zhuning0077@gmail.com>
-References: <20220729090857.579785-1-zhuning0077@gmail.com> <20220729090857.579785-2-zhuning0077@gmail.com>
-Subject: Re: [PATCH v4 2/2] ASoC: dt-bindings: Add Everest ES8326 audio CODEC
-Date:   Fri, 29 Jul 2022 07:38:31 -0600
-Message-Id: <1659101911.665574.3271159.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=n48rwJ6znQ/JiCvqsQDOhikE94C4sngYxJzSk0+idkE=;
+        b=vc2JJw86DzDg00Mj/eW/cPOks1uB4Icuqmls4FFuzB9UaPo6S36lavsG3Jqp0ONBbF
+         zOKvZmDfk3H5ZoyWm8nv98XGN8zWitpDnYZhLOY4+TaYzkgv2/CUwbOhskVQxiZcIcuo
+         ThBexxID5Kg8G1wlKdf0JSEiCvn7YkjhqPkBUUU04j1SYb83SknpWoMYTyETUcl4XhIU
+         s3Tx14C2NZj+AzTNGQX1WgsPJTAMjI1DXAMyXsuoqDwy4MvTopdrG9Q+51U+5yG6HOjH
+         +dj1gqYOzVOXVy0NqdY6kcOac/gaA+oVHIdsBTsGZgCoKTyOb7ZYL7MIN68Ki/1k1iyt
+         cIiA==
+X-Gm-Message-State: AJIora9LOWluQL2ui+LQbEcywQHMvM3e0Ss6CaTLhdasXAjPj5BVK3iP
+        8Uso3PpkyOPErxCotk9uTUYLqA==
+X-Google-Smtp-Source: AGRyM1uRHTKEEcbNwdfwMOxF4/qNgi9j0Z4DK9KAiGrml3gkmfEBOEQ2f+23Zdw83v8JeDV2xhvALA==
+X-Received: by 2002:a05:6830:660c:b0:61c:1c4f:3f56 with SMTP id cp12-20020a056830660c00b0061c1c4f3f56mr1498744otb.207.1659104425591;
+        Fri, 29 Jul 2022 07:20:25 -0700 (PDT)
+Received: from [192.168.11.16] (cpe-173-173-107-246.satx.res.rr.com. [173.173.107.246])
+        by smtp.gmail.com with ESMTPSA id o32-20020a05687096a000b0010ea56a12a4sm113791oaq.10.2022.07.29.07.20.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Jul 2022 07:20:24 -0700 (PDT)
+Message-ID: <42875ff3-04a2-c465-4063-1ce3b0b35dba@kali.org>
+Date:   Fri, 29 Jul 2022 09:20:22 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.11.0
+Subject: Re: [PATCH v2 00/11] soc/arm64: qcom: Add LLCC BWMON on SDM845
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Sibi Sankar <quic_sibis@quicinc.com>
+References: <20220728113748.170548-1-krzysztof.kozlowski@linaro.org>
+From:   Steev Klimaszewski <steev@kali.org>
+In-Reply-To: <20220728113748.170548-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Jul 2022 17:08:57 +0800, Zhu Ning wrote:
-> Add device tree binding documentation for Everest ES8326
-> 
-> Signed-off-by: David Yang <yangxiaohua@everest-semi.com>
-> Signed-off-by: Zhu Ning <zhuning@everest-semi.com>
-> ----
-> v4 add properity for reg58 and reg59
-> ---
->  .../bindings/sound/everest,es8326.yaml        | 116 ++++++++++++++++++
->  1 file changed, 116 insertions(+)
->  create mode 100755 Documentation/devicetree/bindings/sound/everest,es8326.yaml
-> 
+Hi,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On 7/28/22 6:37 AM, Krzysztof Kozlowski wrote:
+> Hi,
+>
+> Changes since v1
+> ================
+> 1. Patch #2: Drop also BWMON_GLOBAL_IRQ_STATUS (Sibi).
+> 2. Minor rebasings because of above drop.
+> 3. Patch #4: typo in subject (Sibi).
+> 4. New patch: arm64: dts: qcom: sdm845: narrow LLCC address space (Sibi).
+> 5. Add Rb tags.
+>
+> Description
+> ===========
+> BWMON is a data bandwidth monitor providing throughput/bandwidth over certain
+> interconnect links in a SoC.  It might be used to gather current bus usage and
+> vote for interconnect bandwidth, thus adjusting the bus speed based on actual
+> usage.
+>
+> Qualcomm SoCs might several BWMON instances.  Extend existing support for CPU
+> BWMON (called v4) to LLCC BWMON (called v5).
+>
+> Cc: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Cc: Sibi Sankar <quic_sibis@quicinc.com>
+>
+> Best regards,
+> Krzysztof
+>
+> Krzysztof Kozlowski (11):
+>    dt-bindings: interconnect: qcom,msm8998-bwmon: add support for SDM845
+>      LLCC BWMON
+>    soc: qcom: icc-bwmon: re-use IRQ enable/clear define
+>    soc: qcom: icc-bwmon: drop unused registers
+>    soc: qcom: icc-bwmon: store reference to variant data in container
+>    soc: qcom: icc-bwmon: clear all registers on init
+>    soc: qcom: icc-bwmon: store count unit per variant
+>    soc: qcom: icc-bwmon: use regmap and prepare for BWMON v5
+>    soc: qcom: icc-bwmon: add per-variant quirks
+>    soc: qcom: icc-bwmon: add support for SDM845 LLCC BWMON
+>    arm64: dts: qcom: sdm845: narrow LLCC address space
+>    arm64: dts: qcom: sdm845: add LLCC BWMON
+>
+>   .../interconnect/qcom,msm8998-bwmon.yaml      |   1 +
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi          |  39 +-
+>   drivers/soc/qcom/icc-bwmon.c                  | 460 ++++++++++++++----
+>   3 files changed, 401 insertions(+), 99 deletions(-)
+>
+Tested on the Lenovo Yoga C630 with QCOM_LLCC=m and no longer see the 
+previous error message.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/sound/everest,es8326.yaml:76:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:$ref: '/schemas/types.yaml#/definitions/uint8' is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:maximum: 127 is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:default: 69 is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:minimum: 0 is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:everest,interrupt-clk: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:everest,interrupt-clk: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: properties:everest,interrupt-clk: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.yaml: ignoring, error in schema: properties: default
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,mic1-src: b'"' is not of type 'object', 'array', 'boolean', 'null'
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,mic2-src: b'D' is not of type 'object', 'array', 'boolean', 'null'
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,jack-pol: b'\x0e' is not of type 'object', 'array', 'boolean', 'null'
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,interrupt-src: b'\x08' is not of type 'object', 'array', 'boolean', 'null'
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/everest,es8326.example.dtb: codec@19: everest,interrupt-clk: b'E' is not of type 'object', 'array', 'boolean', 'null'
-	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
-Documentation/devicetree/bindings/sound/everest,es8326.example.dtb:0:0: /example-0/i2c/codec@19: failed to match any schema with compatible: ['everest,es8326']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+Tested-by: Steev Klimaszewski <steev@kali.org>
 
