@@ -2,186 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52C2F585733
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 01:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9B7458573D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 01:17:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239559AbiG2XLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 19:11:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57244 "EHLO
+        id S231683AbiG2XRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 19:17:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239299AbiG2XK7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 19:10:59 -0400
-Received: from sonic314-19.consmr.mail.ir2.yahoo.com (sonic314-19.consmr.mail.ir2.yahoo.com [77.238.177.145])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87ECE63FD
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 16:10:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1659136257; bh=j0y90HcGnvh7+Fiy7DXqAfH7+i9WBOWWjO3AdIO9Szs=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=bnUW6kdU3CLdbysRpdYm1Se4edFUwdJPTX7sp2iOixfLWUyNpidhlBQf/xFBsI5r+NyRDUxFi/MlFX9lvwETs0U1QmaWyYR82Y3aR8YgMuHjcuugxxqe2VgGQlYeZ3Q2Lzalc9wUDcUnTp/DKjUr68qdxfo1qFoD9pVFfMCM7zdSxfXfrnFFJ6/9ClXBqMVEAHgSXJgzgXWCZZp0blmcxs7/kgZ0RRjQRi1B20ZrbkhRe9l96w2d0mcIwka/7sk6Z8p9H7isshKNIxfIeafufLEHotzA2UzbnQOnLmFii4ONDFHr9HKneW3UOl1gcznzW6VPoM3NL77gbQOQKTBllA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1659136257; bh=fFygH170iKSZU6LoFUCAyDOdnf0Amylyb3iefI9oeVc=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=B49BPUaWq6v3b6bK0XObio8mWcab0UQhFOK1fWr4AXWa+wxpXFsGvmqgqL0uxwRNZqkur+6bT52Fn3V4eJNjCZ5l/a5/qwwnlFOXow4J1dRviolyuPPyjPW/jYO0kWSPlY3NBnGRN9Sc3s82V+kjG/ux85phXzvGMQ4Hx76MqxBpvHDN+zJjEvndhP0H3QcRFnjSLti5VFLwHtNJ8jDBEEe+Uvn8kmu9LJFffoMnJc7zxjN42IUwE4SsgMllTL67yCkBgOXCZO19297n4ziqDoyEwOzZU6WyZRM2F0STZ3JS6BES6AdyxOmPGTqeDqEa64RxTSx89S7E1mH+lyuOUA==
-X-YMail-OSG: SElaZPMVM1mbduzjf_D6.z2DtvnBfc4egVF7BmO8bOrW1CChALi4XiwSsQ_Fwke
- 745WkN0G.Jqq_.SK1J03saG6zT0jPLX.OX7WR6A5FbXLP0TWaFV5wWdYCHln7fqsbkn.WkP9vEou
- DejPFHnQIJybgxBGXJm8RxJWkqM_MgxNejb4nSLFG7UfCaYCgW3EqrKJSLs5307TJLktOnzlaw_Z
- mBC9JiUFJzgN8b8ROd0X1R7udTnGb3.A4LGD3D5dl4nzzOb0SqEdnAo4mPyonlDidtljbPm9RPyz
- t.zQzbkG5Unkfu_pQXC3iEi2dhSloQoXZcU21JDwiwrfnuf5ng03E.ZFNcLTtb1vDo0aaVkkPr_K
- .2zzDrAt9bMgn_0mx04E7iDZHknZxFSYyn1joSd5CtftrWS67k0IpTeXK7CXxLiQf1lz_BYaIjGC
- f9rz4h3daupx15espZ0W8Ia4_A6R79ullrQSfj9QKgWYQte2o5l7U0e5AyQXTnbBgKq2yws4hhWS
- MvlHJI.pT50tRh2Ood76lLZp8qptKzMmNknLNZz_oYt4xiEYNugeZXCWvMk8rCrYDA76Cf6hHwrG
- 3dN3Di3QGXmkY9ztNhDqDC7jAOJRtwa9_CjEk4YTGf2YtOnYQ2wmyUf_1RYP3iY4HKRDm2sdISZ8
- hXnCr2cvaxoV0i5AjR7KFg0pnADPLjNNMVlKOENh4WmUlSrcFssujDXCS1EdhnOHogn56No55yWz
- 9wo2AUbhh1_Ae4TMhbds8Gn.F.gt26XQU0O2AN3R4qS.sd0gqCzF2Y9T9oH3wkxlo_8PZB24vf1E
- mivL3mTGaWS29.gvSxLbZ_qi_dj8vprGbZiQjajwQrZfb51BP.AHg832BRhItGrMtRRDYwCV9skU
- K0zjw0hTEQOO_fA1EzLzximMKM5mcsg5jXq_wQ2_rQefTjpcysF_sT00U3cuaFXRGQUxwKxQGPFh
- EjL0Pm8GAZ8ba6O.e1T9uEZyInC35juhnb05mSCMLBD1DhGhQVpUdlS5hzPRK_GCpzLc82EFtxEV
- wqEpO_3Krpl.srgPrm7vzygRCg2XPCzJh8LdLYGROKtgkfptfD74iMo7b15n9rRyzbTgVKthaCEt
- p4x_nTWMtBtghrys.Jv_OAQL2K.IHPhjuskowFvqyOaC2xCIDdwSYJtXNzkxSZIsV8kpas0tAvmJ
- ys3eX38ahnJODW7tlxgZ7IlESpVfpHL537DzERUQsMucAAGAqQRg8JH1_5ipyvTYxqySsapqVMo6
- uWAc2aLgMjRJ1zlKl6JtdsHhWuPNFzqc41YXGLRjswfDOPdK1bI8pYTt1yiIgkKgOydcdbUVVnSZ
- _9Kl_3uQlI47pKgHHYBBHOKgYJjy00l2Owog3zCgOUWEuzyvI7DVcqPJBs6vN7lrRy36.0T4Tb5_
- sfoKJLixkPOjUXgU_1kj3oJAKI9Aca8ratb4RbyoUWrGuPqxc11Q94zNFLNVesr.8RMomyRohMcx
- 9C1rbjrqXiQnsiGRwJh4fC8X1PRaq8NO25PFEvizD_bbtsJ8ZxUApl8qTipsriLLisloG1TjyJWd
- LQ4o246AjRzvwzYF9fKO2iCmk75v3nAFHTvEj3WNKkdGFKa0.nCutdC0JAl_nubPH8eb4pCLdh6m
- PBb_ZoafTHXtkLLgn72h5cb4UDQImDD1nnifD4izLw7uUK9FQ.1GWT9uHZ_Ys8aH5wuBxMfENkZw
- C1jbEtIldOtAxnTnBHZc40U6yEMCYwvMznH.2U5RaRzDJROKlhlG1rL.LiP8lLSQE56ebhi9vZuh
- pVHMh3boC5VlwzE9tmLkrogvBMvtlSh4n343.aH8QlaZ1h3yGxr43bmUjuGlbzaMxTcPj9YfIfc5
- mLc6vFTXzTeUhaIJWh7Oe1IJFuvsmF9nlNCwb8DEVgit9NuJN8HXY48rrpCIS4cOpqGBP4kutjBC
- jfQtW6PUp1aXAt_9sTOAWgtkLYkTpgbi9LljDxrskI3M0.9uftIEtpBou_k6EmCalM7uhxnN.e3T
- kphrfw1948PU.h4vNXB8Ucjl8bZ31yp7FU6s7OfF1ZmdWy1FIHrZFu0TG7Rpzvtqum3XREwuJaBG
- bqJmhoEgVs2x6GVokJSZpi3z0zFPHou9MSEAHT6Ygdo9zn1LOkWpfxqn03XOvOqVbV8W8B4i0IPm
- Xm00XVKY3AWa0J4XNrprZoj5p2bDZDIu1rTNq19e734vYQfBDypxvf2nl0G3wqnRgKy3aKxlwgNO
- XQAdw5pMSNtghbmaN3barSEGT6PJ0SraDGYVhRWLX0BEx9e6f3JreM8dBaqsvoWKNj_eyg9Xje4i
- tr_6lFw--
-X-Sonic-MF: <jahau@rocketmail.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.ir2.yahoo.com with HTTP; Fri, 29 Jul 2022 23:10:57 +0000
-Received: by hermes--canary-production-ir2-d447c45b6-sqmx2 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 1f3ccc7804ef89f3edf9285c0ab5243c;
-          Fri, 29 Jul 2022 23:10:55 +0000 (UTC)
-Message-ID: <f8071532-14c5-c2a8-ca75-f4327066817b@rocketmail.com>
-Date:   Sat, 30 Jul 2022 01:10:53 +0200
+        with ESMTP id S231536AbiG2XRn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 19:17:43 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1106948EB6;
+        Fri, 29 Jul 2022 16:17:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BCE28B829E0;
+        Fri, 29 Jul 2022 23:17:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B326C43470;
+        Fri, 29 Jul 2022 23:17:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659136659;
+        bh=AWtNU1BuOPWuDZZMj03bU56kICItzf4P/swp+T/7PYU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=kVg02aonFnSNV2V0ejVRK5UL+W+k5arMXtZ2VItlsph0dFNLzJT8WUhKoAcpmkxiN
+         eHp/WzrUCxSzK6yUBHM3YeaMIpkvvyHxAl+ZJfnFtI5r+X9sEBCCqLkalC27o7iI6C
+         ikVtvaBa25JvAoKxcLLVYcrX/ay5msDo+69TBst4ic3ikl2/OC9RpnBcbtt8spYGqT
+         atmI6eyxPiFOAKHmWU9/xOy1EPn9Lp6gZxDmhG0+mjDegI8GunlA3mbwbqs9UQ2fk7
+         xAnsA0/y8mdoDzOeI2vLUOIhK62HnjXw1UJEpyul9eiHzbwRnP8DuBXScNSA+PlX+E
+         b8YP/w/AL+Q5A==
+Received: by mail-ua1-f52.google.com with SMTP id y22so2206927uay.1;
+        Fri, 29 Jul 2022 16:17:39 -0700 (PDT)
+X-Gm-Message-State: ACgBeo03IK9MBisnKqJyhitdvt+avyKwDmA/Xew8eORnv3isllFW9c2Y
+        pMsyz6QXWXc8RW5AUZVN5l3JYA3ZivlJcVHSLQ==
+X-Google-Smtp-Source: AA6agR5OBLe8TV5PHMPmDU9mV4CF7EG/t08Z8OOg3bkxFNj40oxmxovmQJx+tRkW+2cSPfG7372Fk6KrjONetwVjBmQ=
+X-Received: by 2002:ab0:2505:0:b0:384:cc62:9a75 with SMTP id
+ j5-20020ab02505000000b00384cc629a75mr2389355uan.36.1659136658061; Fri, 29 Jul
+ 2022 16:17:38 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v4 10/10] iio: magnetometer: yas530: Add YAS537 variant
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1656883851.git.jahau@rocketmail.com>
- <69a512cf5b62b34415d5983a6406c3d5ba438a1d.1656883851.git.jahau@rocketmail.com>
- <CAHp75Ve5Z9OOx94FtXY77_Fwkp27D32Hn7bAG+Da++HXmupytA@mail.gmail.com>
- <c5643cee-8491-3fae-b9d4-ac03d86c1e8a@rocketmail.com>
- <CAHp75VdDdKo7rt+cik4J+_4tDRgBXhgZYc8p+dOSH4s_gtCOUg@mail.gmail.com>
- <6e13daf2-179f-d37f-ace4-db5cd37be8d3@rocketmail.com>
- <CAHp75VdLBowZ7=6g4aFVr5zkN5Pkv7ir68vPCdkRmoFysqRz9Q@mail.gmail.com>
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <CAHp75VdLBowZ7=6g4aFVr5zkN5Pkv7ir68vPCdkRmoFysqRz9Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.20447 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220728190810.1290857-1-robh@kernel.org> <CABb+yY2jV7c8oX7=F=nocfvGrOMHJAYov7zS2nT0=qFoNyoxJQ@mail.gmail.com>
+ <CABb+yY0JzztBB+giBu+RCt-dzgwYWF32sCR3WKKP9U5K9UvhxA@mail.gmail.com> <20220729111051.5me4vklrzskvsj4w@bogus>
+In-Reply-To: <20220729111051.5me4vklrzskvsj4w@bogus>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 29 Jul 2022 17:17:26 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLwk+=CeDWqXzhrVESzhJnNjOjyR-TtisKGgjMUi7TivQ@mail.gmail.com>
+Message-ID: <CAL_JsqLwk+=CeDWqXzhrVESzhJnNjOjyR-TtisKGgjMUi7TivQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mailbox: arm,mhu: Make secure interrupt optional
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Fri, Jul 29, 2022 at 5:10 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
+>
+> On Thu, Jul 28, 2022 at 04:07:45PM -0500, Jassi Brar wrote:
+> > On Thu, Jul 28, 2022 at 3:17 PM Jassi Brar <jassisinghbrar@gmail.com> wrote:
+> > >
+> > > On Thu, Jul 28, 2022 at 2:08 PM Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > The secure interrupt is only useful to secure world, therefore for NS
+> > > > users it shouldn't be required. Make it optional.
+> > > >
+> > > > This fixes a warning on Arm Juno board:
+> > > >
+> > > > mhu@2b1f0000: interrupts: [[0, 36, 4], [0, 35, 4]] is too short
+> > > >
+> > > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/mailbox/arm,mhu.yaml | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+> > > > index bd49c201477d..d9a4f4a02d7c 100644
+> > > > --- a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+> > > > +++ b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+> > > > @@ -57,6 +57,7 @@ properties:
+> > > >      maxItems: 1
+> > > >
+> > > >    interrupts:
+> > > > +    minItems: 2
+> > > >      items:
+> > > >        - description: low-priority non-secure
+> > > >        - description: high-priority non-secure
+> > > >
+> > > Do we also want to specify that only the secure-irq is optional
+> > > because irqs are directly mapped onto channels in the driver, and only
+> > > omitting the secure (last) irq will work.
+> > >
+> > I could learn why specifying secure irq isn't desirable?
+> > No non-secure client node would ask for that secure irq/channel, which
+> > will simply lay unused.
+> >
+>
+> Did you mean would or wouldn't ?
+>
+> Anyways I can insert a module that requests this channel and bring down
+> the system as accessing anything configure secure from non-secure side
+> on Juno results in system hang/error.
+>
+> > The programming of the secure channel doesn't care if the mode is
+> > indeed secure. It all relies on providing accurate information in the
+> > device tree :- the controller provides secure and non-secure channels
+> > but only non-secure channels are _used_ in non-secure mode.
+> >
+>
+> In general w.r.t the MHU IP may be yes. But if the secure side configures
+> it as secure only and claims the channel which is the case on Juno, any
+> attempt to access the same from non-secure side is fatal.
+>
+> > index f6c55877fbd94..004b1566be74d 100644
+> > --- a/arch/arm64/boot/dts/arm/juno-base.dtsi
+> > +++ b/arch/arm64/boot/dts/arm/juno-base.dtsi
+> > @@ -26,7 +26,8 @@ mailbox: mhu@2b1f0000 {
+> >         compatible = "arm,mhu", "arm,primecell";
+> >         reg = <0x0 0x2b1f0000 0x0 0x1000>;
+> >         interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
+> > -                <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> > +                <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
+> > +                <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+> >         interrupt-names = "mhu_lpri_rx",
+> >                   "mhu_hpri_rx";
 
-On 29.07.22 19:24, Andy Shevchenko wrote:
-> On Fri, Jul 29, 2022 at 1:13 AM Jakob Hauser <jahau@rocketmail.com> wrote:
->> On 27.07.22 19:46, Andy Shevchenko wrote:
-> 
-> ..
-> 
->> /*
->>  * Write registers according to Android driver, the exact meaning
->>  * is unknown
-> 
-> With a period at the end :-)
-> 
->>  */
-> 
->> This reminded me of another location where I first had a comment
->> "Writing SRST register, the exact meaning is unknown". There you
->> criticized the part "the exact meaning is unknown", so I changed it to
->> simply "Writing SRST register".
-> 
-> Yeah, but that is different, SRST seems like easy to deduce to "soft
-> reset" (taking into account where it's programmed in the run flow).
-> 
->> Accordingly, I would choose the following comment here:
->>
->> /* Writing ADCCAL and TRM registers */
-> 
-> Fine with me!
+Missing name.
 
-OK, I'll apply the comment "Writing ADCCAL and TRM registers".
+> >         #mbox-cells = <1>;
+> >
+> > If this works for you, I could submit a proper patch.
+> >
+>
+> No this doesn't work IMO. Yes standalone everything looks fine, but you can
+> insert a module requesting this channel and bring down the system. So I am
+> not for this change.
 
-> 
-> ..
-> 
->>> You seem to program the 16-bit register with a single value, I don't
->>> think it's a good idea to split a such. When it's a bulk write and
->>> value defined with __be16 / __le16 it makes much more clear what
->>> hardware is and what it expects.
->>
->> We don't know for sure whether it is a 16-bit register or an incomplete
->> register naming.
-> 
-> By the values you write into it seems to be a __be16 calibration
-> register. The value to write is 0x3f8 which might ring a bell to you
-> if you know what other values related to ADC.
+Not having the interrupt listed in DT doesn't prevent that. Is this
+security by obscurity?
 
-Sigh, ok, I'll apply bulk write.
+I don't really care which way this is fixed though. I just want the
+warning gone. We've all got better things to worry about. The DT not
+having the interrupt has been that way for years (presumably) and the
+kernel never needs the interrupt, so the schema should reflect
+reality. On the flip side, considering it *can* be present already,
+there's not really much argument for not having it.
 
-How to do it correctly? I guess:
-
-        __be16 buf = cpu_to_be16(GENMASK(9, 3));
-        ret = regmap_bulk_write(yas5xx->map, YAS537_ADCCAL, &buf, 2);
-        if (ret)
-                return ret;
-
-The whole block would then look like:
-
-        /* Writing ADCCAL and TRM registers */
-        __be16 buf = cpu_to_be16(GENMASK(9, 3));
-        ret = regmap_bulk_write(yas5xx->map, YAS537_ADCCAL, &buf, 2);
-        if (ret)
-                return ret;
-        ret = regmap_write(yas5xx->map, YAS537_TRM, GENMASK(7, 0));
-        if (ret)
-                return ret;
-
-...
-
-> To the 4100 denominator:
-> https://github.com/XPerience-AOSP-Lollipop/android_kernel_wingtech_msm8916/blob/xpe-11.1/drivers/input/misc/yas_mag_drv-yas537.c#L235,
-> seems you can find a lot by browsing someone's code and perhaps a Git
-> history.
-
-I've seen that comment before but I don't understand its meaning.
-
->> Still I didn't get your comment. Is your intention to change the "50
->> milliseconds * 1000" to "50000 microseconds" in the define?
->>
->> It would look like ...
->>
->>         #define YAS537_DEFAULT_SENSOR_DELAY_US  50000
->>
->> ... though I would prefer to keep current define, as it is implemented
->> now and stated above:
->>
->>         #define YAS537_DEFAULT_SENSOR_DELAY_MS  50
-> 
-> No, just to show in the actual calculation that you convert MS to US
-> using MILLI.
-
-Sorry, I still don't get what you want me to do. What do you mean by
-"using MILLI", can you elaborate?
-
-Kind regards,
-Jakob
+Rob
