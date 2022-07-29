@@ -2,77 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B01065854BB
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 19:49:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A1EF58558A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 21:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238279AbiG2Rtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 13:49:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58884 "EHLO
+        id S238435AbiG2TXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 15:23:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238096AbiG2Rts (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 13:49:48 -0400
-Received: from mx1.emlix.com (mx1.emlix.com [136.243.223.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E6CC89A9E;
-        Fri, 29 Jul 2022 10:49:47 -0700 (PDT)
-Received: from mailer.emlix.com (unknown [81.20.119.6])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S229549AbiG2TXJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 15:23:09 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3658E5A2C4;
+        Fri, 29 Jul 2022 12:23:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mx1.emlix.com (Postfix) with ESMTPS id 7AC965FDAA;
-        Fri, 29 Jul 2022 19:49:45 +0200 (CEST)
-Date:   Fri, 29 Jul 2022 19:49:45 +0200
-From:   Daniel =?iso-8859-1?Q?Gl=F6ckner?= <dg@emlix.com>
-To:     Ivan Bornyakov <i.bornyakov@metrotek.ru>
-Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 2/2] dt-bindings: fpga: add binding doc for ecp5-spi
- fpga mgr
-Message-ID: <20220729174945.GA7164@homes.emlix.com>
-References: <20220719112335.9528-1-i.bornyakov@metrotek.ru>
- <20220719112335.9528-3-i.bornyakov@metrotek.ru>
- <20220729090123.GA28299@homes.emlix.com>
- <20220729163347.irqqqcvh2biliqg2@x260>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C9ABF61FAD;
+        Fri, 29 Jul 2022 19:23:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35DDEC433D6;
+        Fri, 29 Jul 2022 19:23:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659122588;
+        bh=2zs4loLiG2NHp7f2Cx4otysQzAR7dF+KLdjZ4DQy/dg=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=GmE3xQtsjEETj+q11L55TRTQVQY36tlsTpzRMqvZVswR8sd2D9it4gSkzBVyJwxDC
+         s9FYAsk+ZKh9nBE4AhAl3CwEHxWJ4DMjFqJh+ngIvvw/u31daeQKb8TORWuh79AE+t
+         KtklZemfZfjFsnpogab6RtGKb8TozA+gD/iGGv1c6eUznGUwh4bOXw4s+ys6LADApj
+         Tpi9/ped/PDNYXxA1L+97Djo5VEM+wkioMO9uO+mwOJZdcrDEu/xvYT+8O0LaXEe9U
+         btnpov5uWvfsFw9O07QbWlvU0/GACpu4cW8mHiTegXOOcYAj9WliwT+YNN+FKdYLwN
+         o6V4GzI114M6Q==
+From:   Mark Brown <broonie@kernel.org>
+To:     nick.hawkins@hpe.com
+Cc:     arnd@arndb.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, verdun@hpe.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux@armlinux.org.uk
+In-Reply-To: <20220728161459.7738-1-nick.hawkins@hpe.com>
+References: <20220728161459.7738-1-nick.hawkins@hpe.com>
+Subject: Re: (subset) [PATCH v6 0/5] Add SPI Driver to HPE GXP Architecture
+Message-Id: <165912258592.2735119.5654882155337365652.b4-ty@kernel.org>
+Date:   Fri, 29 Jul 2022 20:23:05 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220729163347.irqqqcvh2biliqg2@x260>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: b4 0.10.0-dev-d1cc2
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 29, 2022 at 07:33:47PM +0300, Ivan Bornyakov wrote:
-> On Fri, Jul 29, 2022 at 11:01:24AM +0200, Daniel Glöckner wrote:
-> > On Tue, Jul 19, 2022 at 02:23:35PM +0300, Ivan Bornyakov wrote:
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - lattice,ecp5-fpga-mgr
-> > 
-> > Since this driver uses the same interface as the existing
-> > drivers/fpga/machxo2-spi.c driver, wouldn't it be advisable to use a
-> > similar compatible id, i.e. lattice,ecp5-slave-spi?
-> > 
+On Thu, 28 Jul 2022 11:14:54 -0500, nick.hawkins@hpe.com wrote:
+> From: Nick Hawkins <nick.hawkins@hpe.com>
 > 
-> To quote Krzysztof Kozlowski from v1 review:
->  > Do not encode interface name in compatible so no "spi"
+> Changes since v6:
+>  *Removed spaces between tags on commit descriptions
 > 
-> See https://lore.kernel.org/linux-fpga/044a9736-a4ec-c250-7755-c80a5bcbe38b@linaro.org/
+> Changes since v5:
+>  *Fixed indentation in Kconfig file
+> 
+> [...]
 
-true... MachXO2 to MachXO5 and those Nexus chips speak that protocol both
-over spi and i2c and the position in the device tree decides which one it
-should be. Maybe the compatible string in the existing driver should be
-changed to lattice,machxo2. After all there is no other MachXO2-specific
-interface/protocol except maybe jtag.
+Applied to
 
-Best regards,
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-  Daniel
+Thanks!
+
+[1/5] spi: spi-gxp: Add support for HPE GXP SoCs
+      commit: 730bc8ba5e9ec103065142975015a793558f09a0
+[2/5] spi: dt-bindings: add documentation for hpe,gxp-spifi
+      commit: 8cc35b86546dc35fb4f5ff7d1d163c5efc78bf0e
+[5/5] MAINTAINERS: add spi support to GXP
+      commit: a1848b0fa2517a8d0bbc2783c90aefd4b7e7567a
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
