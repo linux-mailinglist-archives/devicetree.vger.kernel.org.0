@@ -2,96 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ED05585409
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 18:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0D4A585455
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 19:20:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238067AbiG2Q66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 12:58:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46552 "EHLO
+        id S238217AbiG2RUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 13:20:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232321AbiG2Q65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 12:58:57 -0400
-Received: from mail.pr-group.ru (mail.pr-group.ru [178.18.215.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C881E89A63;
-        Fri, 29 Jul 2022 09:58:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-        d=metrotek.ru; s=mail;
-        h=from:subject:date:message-id:to:cc:mime-version:content-type:
-         content-transfer-encoding:in-reply-to:references;
-        bh=HcyS1kHLPZESdGp9R+oyPMtufBfDWfydet05Vxb7ves=;
-        b=cjwCDrbFQMPGAFMf7CwS3hbVeF0L1QgdRtCzntfr6jV/Nde1TBFZlb+iQ1Go80mbJBsNC5wxGBzNg
-         Po6YVgkyCIjsNH9NMTnXj7MZud6wK91Aw3GrM7jtIo+r5ke1lLEqvtbUUbXhgwnaEFg30SoykgSNDu
-         GXLKyQ0jQZNOhYXQsLAWnh1TOqCR1zHgB+bJAZCn5nuNGzQoTHDdlJVqAK4IMX/DyblhVE5dZbjdci
-         VzlNoUGHc3AqGEY7BF0dI3umPdyQoKAxQzxup33pYjF3hASj0BNeImHt1LLyv89CrpDZsOEnam9dpa
-         K0zDQ35r5/9PLn19/BebA1KzYIPKKxA==
-X-Kerio-Anti-Spam:  Build: [Engines: 2.16.3.1424, Stamp: 3], Multi: [Enabled, t: (0.000012,0.006052)], BW: [Enabled, t: (0.000035,0.000001)], RTDA: [Enabled, t: (0.081346), Hit: No, Details: v2.41.0; Id: 15.52k00k.1g95ealga.9p5; mclb], total: 0(700)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Level: 
-X-Footer: bWV0cm90ZWsucnU=
-Received: from x260 ([85.93.58.13])
-        (authenticated user i.bornyakov@metrotek.ru)
-        by mail.pr-group.ru with ESMTPSA
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits));
-        Fri, 29 Jul 2022 19:58:36 +0300
-Date:   Fri, 29 Jul 2022 19:33:47 +0300
-From:   Ivan Bornyakov <i.bornyakov@metrotek.ru>
-To:     Daniel =?utf-8?B?R2zDtmNrbmVy?= <dg@emlix.com>
-Cc:     mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-        trix@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-fpga@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        system@metrotek.ru,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 2/2] dt-bindings: fpga: add binding doc for ecp5-spi
- fpga mgr
-Message-ID: <20220729163347.irqqqcvh2biliqg2@x260>
-References: <20220719112335.9528-1-i.bornyakov@metrotek.ru>
- <20220719112335.9528-3-i.bornyakov@metrotek.ru>
- <20220729090123.GA28299@homes.emlix.com>
+        with ESMTP id S232488AbiG2RUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 13:20:01 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F24EB83225;
+        Fri, 29 Jul 2022 10:20:00 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id o5-20020a17090a3d4500b001ef76490983so5872185pjf.2;
+        Fri, 29 Jul 2022 10:20:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=hxBFRTN1LZRoFnahsiKcdK0tbZNGdjelWAHFypZYkFw=;
+        b=eiq04DaxAgViGZ9EjXJAweUo+d5rfzN0ZcDsnWBuTVAbrBldprM1+hXUHba9T/4yJa
+         Dfflm8wSp8C681mf5fMlGS0yPjfW38NmFqJbW+39mcFA9u+YjxX+zpB3rnKuGPvmoaCG
+         VMIHDm2ztN7RI+qdvlrDfD86Fngq/U1Tj6Yb1umPyx3nVj1K75u47/ryQMhjVU1tKa2v
+         qHSyD6s/gTlxlRcWAnErIpS1Xa7O1qogS2n4GfwNgYYRSUM/OsLO3H1tLUUo4n5zQivs
+         F7vpYEAWdZ89AvkwKQ4cJGpmLP15VViBvgiBmI1ideW0NrYN/p0WGJvmnm3iSqwoFuLJ
+         5owg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=hxBFRTN1LZRoFnahsiKcdK0tbZNGdjelWAHFypZYkFw=;
+        b=CscgOhR9kFcinc8BeOW+gU8EDiOtdqX25CwXkV0lcmIkVBnvjPiIOnjwXOgyYV9hOb
+         6wt1H4pfdcJWQ39gwj0rMh/sMAohwGcs4xIfHPQnbNGM/aQ7Icu9JXDHxWtMEP0NevHy
+         zsa/9vfqmk3DIp4RGrjZREhNAU/fUPPoT7TAtxDJky+vB3frxu81cco5KObjd/7ZxCHT
+         euFlKcYMHdmZjF9sMJtlAK6I+mJf4n69z4DZO9V+PIPGP4S4TWSOEVbgTi9ALRuRZSP0
+         3435IUutWDFypPuoq4y5F5lni0FpGGvcXERsQuTH81IxNJ7bZCQjs5ZKHbcS84ro7zqR
+         ElhQ==
+X-Gm-Message-State: ACgBeo0SimLQjVPHsfNAbxY/OTzNDbALl5GMLVh/oCGO4nAG7SSO0ncV
+        QxTrV7AZtNSCT5JcyjAw+FI=
+X-Google-Smtp-Source: AA6agR41uGgoEk7+NXJL+sFLmDGhuy+Mni8pojmb/mVvHl4PEVuWbXu8RbyWs4i0T2dCXz60Kcq39w==
+X-Received: by 2002:a17:90b:1d91:b0:1f0:7824:1297 with SMTP id pf17-20020a17090b1d9100b001f078241297mr5773562pjb.126.1659115200308;
+        Fri, 29 Jul 2022 10:20:00 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id m14-20020a63710e000000b0041b667a1b69sm2818592pgc.36.2022.07.29.10.19.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Jul 2022 10:19:59 -0700 (PDT)
+Message-ID: <056164ec-3525-479b-3b71-834af48d323c@gmail.com>
+Date:   Fri, 29 Jul 2022 10:19:54 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220729090123.GA28299@homes.emlix.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH net-next v3 3/4] net: phy: Add helper to derive the number
+ of ports from a phy mode
+Content-Language: en-US
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
+Cc:     netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Richard Cochran <richardcochran@gmail.com>,
+        Horatiu.Vultur@microchip.com, Allan.Nielsen@microchip.com,
+        UNGLinuxDriver@microchip.com
+References: <20220729153356.581444-1-maxime.chevallier@bootlin.com>
+ <20220729153356.581444-4-maxime.chevallier@bootlin.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+In-Reply-To: <20220729153356.581444-4-maxime.chevallier@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 29, 2022 at 11:01:24AM +0200, Daniel Glöckner wrote:
-> Hi,
+On 7/29/22 08:33, Maxime Chevallier wrote:
+> Some phy modes such as QSGMII multiplex several MAC<->PHY links on one
+> single physical interface. QSGMII used to be the only one supported, but
+> other modes such as QUSGMII also carry multiple links.
 > 
-> On Tue, Jul 19, 2022 at 02:23:35PM +0300, Ivan Bornyakov wrote:
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - lattice,ecp5-fpga-mgr
+> This helper allows getting the number of links that are multiplexed
+> on a given interface.
 > 
-> Since this driver uses the same interface as the existing
-> drivers/fpga/machxo2-spi.c driver, wouldn't it be advisable to use a
-> similar compatible id, i.e. lattice,ecp5-slave-spi?
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> ---
+> V1->V2 : New patch
+> V2->V3 : Made PHY_INTERFACE_MODE_INTERNAL 1 port, and added the MAX
+> case.
 > 
-
-To quote Krzysztof Kozlowski from v1 review:
- > Do not encode interface name in compatible so no "spi"
-
-See https://lore.kernel.org/linux-fpga/044a9736-a4ec-c250-7755-c80a5bcbe38b@linaro.org/
-
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - program-gpios
-> > +  - init-gpios
-> > +  - done-gpios
+>  drivers/net/phy/phy-core.c | 52 ++++++++++++++++++++++++++++++++++++++
+>  include/linux/phy.h        |  2 ++
+>  2 files changed, 54 insertions(+)
 > 
-> I think some of the GPIOs can be made optional by reading the status
-> register or using the refresh command, assuming the slave spi interface
-> stayed enabled after previous programming and we are not dealing with
-> several chained FPGAs. But that can of course be left as an exercise for
-> other developers.
+> diff --git a/drivers/net/phy/phy-core.c b/drivers/net/phy/phy-core.c
+> index 1f2531a1a876..f8ec12d3d6ae 100644
+> --- a/drivers/net/phy/phy-core.c
+> +++ b/drivers/net/phy/phy-core.c
+> @@ -74,6 +74,58 @@ const char *phy_duplex_to_str(unsigned int duplex)
+>  }
+>  EXPORT_SYMBOL_GPL(phy_duplex_to_str);
+>  
+> +/**
+> + * phy_interface_num_ports - Return the number of links that can be carried by
+> + *			     a given MAC-PHY physical link. Returns 0 if this is
+> + *			     unknown, the number of links else.
+> + *
+> + * @interface: The interface mode we want to get the number of ports
+> + */
+> +int phy_interface_num_ports(phy_interface_t interface)
+> +{
+> +	switch (interface) {
+> +	case PHY_INTERFACE_MODE_NA:
+> +		return 0;
+> +	case PHY_INTERFACE_MODE_INTERNAL:
 
-I would prefer the latter.
-
+Maybe this was covered in the previous iteration, but cannot the default case return 1, and all of the cases that need an explicit non-1 return value are handled? Enumeration all of those that do need to return 1 does not really scale.
+-- 
+Florian
