@@ -2,83 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7255B584C64
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 09:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCB8A584CA7
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 09:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234349AbiG2HHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 03:07:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54278 "EHLO
+        id S234792AbiG2HdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 03:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232555AbiG2HHp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 03:07:45 -0400
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14375BC31;
-        Fri, 29 Jul 2022 00:07:44 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (89-27-103-169.bb.dnainternet.fi [89.27.103.169])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id C72721B002C9;
-        Fri, 29 Jul 2022 10:07:39 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
-        t=1659078460;
+        with ESMTP id S233985AbiG2HdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 03:33:01 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1F597C1B4;
+        Fri, 29 Jul 2022 00:32:59 -0700 (PDT)
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id ED1271C000D;
+        Fri, 29 Jul 2022 07:32:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1659079978;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=GLHwRWD8w65TnHLEVtLlTx9NDMVLYEkO0F6RFMeR+IY=;
-        b=G7yoncEnfQRIJmkGrI/xeC0bYXWSDyhdcq92q6ArEcrB/1jkZMw8m8TnMT6VGyGQ/kPfjt
-        qe6b3Hy2MDqc66R4mv2rzPWcaz+SKDNswExH6jdfHguRAx07kAceosTrrS5BvdSDFoox6f
-        JLgEvSZSLl0N9qYJRHilQ2xGELSO2Jblr9hRAt2nBn/ESs3zdREg9Ad71jBoVR8d4u24YE
-        a4iGrkV4Xyv+Y8P69/8+wqlNptiE9MwkBliZ9lTwG1934/hDDa4Z2LQ3gNYR7PFLTq4sXu
-        FFmylPlyWBo6crJ2lOzCy5BL6TF/9t0rkjqiJCM6DQVgCUpzyMg9o1BYroFbaQ==
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 43A97634C97;
-        Fri, 29 Jul 2022 10:07:36 +0300 (EEST)
-Date:   Fri, 29 Jul 2022 10:07:36 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v4 3/7] media: i2c: ov9282: Add ov9281 compatible
-Message-ID: <YuOHOEUk+znzump5@valkosipuli.retiisi.eu>
-References: <20220728130237.3396663-1-alexander.stein@ew.tq-group.com>
- <20220728130237.3396663-4-alexander.stein@ew.tq-group.com>
- <4e89e55b-9312-5525-974b-0a1dbe0b3dd1@linaro.org>
+        bh=Qr9dBtRHpEsZnY4WwAGh3TdMzUoTMBzq+LV/3YLwXZc=;
+        b=X2aEFCq12Cd3VqkHThYBrZGJKoeYCB29lOCN6l1FKfrPKFfgmf8d2jGeBok/AgqU7LwszH
+        1TmrFcfbqn4eYwSCoY08CR/FcrC+OrSQH/BF9s7jUGsJKuhZjrSYQU6PNPxb1IHyWW/W5E
+        /DkybKlTUjBy+7aBrfRIVwJS681owU9kOlTNXCY9b22+jDBvFBW9cFZKcfXvk7i894pmnO
+        pJm9kXfZjbF9jdWAu5cTO0M0VbvMhzBLVGzHsbgFqvwf8rQGUxXRQ6Y8kil5O946VIfTS+
+        uuNmsJPIApRj1LuLoH4UfOdajD44yRUFGmhQjWR6oOyxCrxIImT9a5wNq7C2gw==
+Date:   Fri, 29 Jul 2022 09:32:52 +0200
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org, Horatiu.Vultur@microchip.com,
+        Allan.Nielsen@microchip.com, UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH net-next 3/4] net: phy: Add helper to derive the number
+ of ports from a phy mode
+Message-ID: <20220729093252.50977d5c@pc-10.home>
+In-Reply-To: <YuMAdACnRKsL8/xD@lunn.ch>
+References: <20220728145252.439201-1-maxime.chevallier@bootlin.com>
+        <20220728145252.439201-4-maxime.chevallier@bootlin.com>
+        <YuMAdACnRKsL8/xD@lunn.ch>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4e89e55b-9312-5525-974b-0a1dbe0b3dd1@linaro.org>
-ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1659078460; a=rsa-sha256;
-        cv=none;
-        b=P+1gUNu7FHb44zhrppmS/d+DVSoNMGESY8AknH3gxUVgPALpG5FmpbUkdkJlM8ipaS2e0B
-        90YrWqp4eX1rQsp1Fd1qFzvPJgfBGCty/7s8lYU4JmWFZeJSP0zIHxTzegIlG/Qnbgz57Q
-        jGadX+jqgjvfPQIws/IsqOUOg6ST4YtrtYc1bByfFb6e5fKFwIh7uqcSDhCk/WtRRC+uTL
-        Hewq3BPtopuUAbTOAf9OWz8qfcXxAohOXJoFi8+mKUnUINvig0q2KN7T5P39iJqnpp0H/f
-        rBqNwdWM+Tk/pZGL4zgdbFHnDHYy0I9AFFWNSZMcvRay+9ywp0hljO2dgK38GQ==
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=lahtoruutu; t=1659078460;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=GLHwRWD8w65TnHLEVtLlTx9NDMVLYEkO0F6RFMeR+IY=;
-        b=A7iFlK8IZS/vdjvYkAFOcJQVEhAThTpHGD2nQDzWgIrun97HXAqZI9DmR0oqLlib7NhD0L
-        4TBudi+MPru008sq5PkF837n88/9Q0fYDBb91PIqpTuAZASZHfo0+0ynkEBp57lvWrTOBT
-        f0Ca6U2ocPLUKggFLIMrf5Fom3whSJ7WtJzCVLZ8eyM6NsG9bhk56LsbqoEcXpEoxxgajz
-        xm0f1vvNUB2wdvWakE/QLH4zjEVfqeZZpsRqmcJDMMnQGwsmLwy3IPX6mAYIAE5QGUFAXJ
-        NB6C/2Q+ELvR+6Esm94uSo8MPaXyJDxKE4KaYp2cn5z9TToDzqJJpCMPAewWbA==
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -88,48 +61,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, 28 Jul 2022 23:32:36 +0200
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-On Thu, Jul 28, 2022 at 03:13:11PM +0200, Krzysztof Kozlowski wrote:
-> On 28/07/2022 15:02, Alexander Stein wrote:
-> > According to product brief they are identical from software point of view.
-> > Differences are a different chief ray angle (CRA) and the package.
-> > 
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > ---
-> >  drivers/media/i2c/ov9282.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
-> > index 8a252bf3b59f..c8d83a29f9bb 100644
-> > --- a/drivers/media/i2c/ov9282.c
-> > +++ b/drivers/media/i2c/ov9282.c
-> > @@ -1113,6 +1113,7 @@ static const struct dev_pm_ops ov9282_pm_ops = {
-> >  };
-> >  
-> >  static const struct of_device_id ov9282_of_match[] = {
-> > +	{ .compatible = "ovti,ov9281" },
+> > +int phy_interface_num_ports(phy_interface_t interface)
+> > +{
+> > +	switch (interface) {
+> > +	case PHY_INTERFACE_MODE_NA:
+> > +	case PHY_INTERFACE_MODE_INTERNAL:
+> > +		return 0;  
 > 
-> The devices seem entirely compatible, so why you add a new compatible
-> and not re-use existing?
+> I've not yet looked at how this is used. Returning 0 could have
+> interesting effects i guess? INTERNAL clearly does have some sort of
+> path between the MAC and the PHY, so i think 1 would be a better
+> value. NA is less clear, it generally means Don't touch. But again,
+> there still needs to be a path between the MAC and PHY, otherwise
+> there would not be any to touch.
 > 
-> The difference in lens does not explain this.
+> Why did you pick 0?
+> 
+> > +
+> > +	case PHY_INTERFACE_MODE_MII:
+> > +	case PHY_INTERFACE_MODE_GMII:
+> > +	case PHY_INTERFACE_MODE_TBI:
+> > +	case PHY_INTERFACE_MODE_REVMII:
+> > +	case PHY_INTERFACE_MODE_RMII:
+> > +	case PHY_INTERFACE_MODE_REVRMII:
+> > +	case PHY_INTERFACE_MODE_RGMII:
+> > +	case PHY_INTERFACE_MODE_RGMII_ID:
+> > +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> > +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> > +	case PHY_INTERFACE_MODE_RTBI:
+> > +	case PHY_INTERFACE_MODE_XGMII:
+> > +	case PHY_INTERFACE_MODE_XLGMII:
+> > +	case PHY_INTERFACE_MODE_MOCA:
+> > +	case PHY_INTERFACE_MODE_TRGMII:
+> > +	case PHY_INTERFACE_MODE_USXGMII:
+> > +	case PHY_INTERFACE_MODE_SGMII:
+> > +	case PHY_INTERFACE_MODE_SMII:
+> > +	case PHY_INTERFACE_MODE_1000BASEX:
+> > +	case PHY_INTERFACE_MODE_2500BASEX:
+> > +	case PHY_INTERFACE_MODE_5GBASER:
+> > +	case PHY_INTERFACE_MODE_10GBASER:
+> > +	case PHY_INTERFACE_MODE_25GBASER:
+> > +	case PHY_INTERFACE_MODE_10GKR:
+> > +	case PHY_INTERFACE_MODE_100BASEX:
+> > +	case PHY_INTERFACE_MODE_RXAUI:
+> > +	case PHY_INTERFACE_MODE_XAUI:
+> > +		return 1;
+> > +	case PHY_INTERFACE_MODE_QSGMII:
+> > +	case PHY_INTERFACE_MODE_QUSGMII:
+> > +		return 4;
+> > +
+> > +	default:
+> > +		return 0;
+> > +	}
+> > +}  
+> 
+> Have you tried without a default: ? I _think_ gcc will then warn about
+> missing enum values, which will help future developers when they add
+> further values to the enum.
 
-It is typically necessary to know what kind of related hardware can be
-found in the system, beyond just the device's register interface. Apart
-from USB cameras, less integrated cameras require low-level software
-control in which specific device properties are important. In this case it
-could be the lens shading table, among other things.
+Without the default clause, I get an error about the missing
+PHY_INTERFACE_MODE_MAX case, which I don't think belongs here...
 
-	https://www.ovt.com/sensor/ov9282/
+Too bad :/
 
-Therefore I think adding a specific compatible string for this one is
-justified.
+> 	Andrew
 
-Also cc Laurent.
-
--- 
-Kind regards,
-
-Sakari Ailus
