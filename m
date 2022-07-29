@@ -2,66 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B1B8585718
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 01:05:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A456585727
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 01:06:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239645AbiG2XFx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 19:05:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53552 "EHLO
+        id S238817AbiG2XGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 19:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54030 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239638AbiG2XFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 19:05:52 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44588683C2;
-        Fri, 29 Jul 2022 16:05:52 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id c185so4655703iof.7;
-        Fri, 29 Jul 2022 16:05:52 -0700 (PDT)
+        with ESMTP id S232250AbiG2XGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 19:06:47 -0400
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8223087228;
+        Fri, 29 Jul 2022 16:06:46 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id e69so4670038iof.5;
+        Fri, 29 Jul 2022 16:06:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=hjKDBui3XbMvdfBvZRSNvz4Y50HGiS8SdRV7n9Sisvk=;
-        b=fpGqANHZE3Dxk/jahYXXp5haq9MtXc2HiXKGHYMtCUp7mxyElW+0uEyn8OPDgUk25s
-         q9xcpTFHrtZkbP7r57M8imf+ls89+futBiN+U08nmTEPTagmDMxpbfHUs+0C5Ot7GlnM
-         8uWjY89B31VYLhk/ejq5R/EG4ykrLvKnwait/gnUjpndEYGyWYepPjACmvbyy6mnSpF4
-         4wxWVjYYyf72cdNkAV6Y+MmMMIv2Pf7C0NDviMCmakHavS/DOncWN9MJCX9uuXxF/c8e
-         yF1xdODC1dQnlyoIf+VhIColtqsv5FdVOkhe5P3WUSSnINuriDnI80nfvCRIfMx6yzkx
-         rzCw==
-X-Gm-Message-State: AJIora+/pbuG5tpHPJHWHLePMDU+BMRhHE1nshs8htHRb8m6X6UG2pSV
-        RD2WcbpjU41VaVEQWoQo0Q==
-X-Google-Smtp-Source: AGRyM1t9O8iQe6oGeaMvWKzV15vZwYX2sfVSpSzsAO1ojnDOjg2jhLPWpDG1bIaXNx1V4sYolB/0Gg==
-X-Received: by 2002:a6b:4019:0:b0:669:3314:ebcb with SMTP id k25-20020a6b4019000000b006693314ebcbmr1870454ioa.197.1659135951515;
-        Fri, 29 Jul 2022 16:05:51 -0700 (PDT)
+        bh=SVW9DWKOLx9YOr6c7F/wYxosecHqFmeN8CQC8/9ssJ0=;
+        b=79BKcuocYUYs9Zbp5DCpKdoXMxdRvoGI9+q84h62orwIrB9D7JnoI31uJpNQBCrC44
+         ydQtDcy/gnC1NLY2tMO9TavF8iMenL/nOJQe5mbjYWZEkbX8Ly1L4nPgHkUqD4QPwqae
+         fMNjXuXD+gZdgHAMqp7OSI6nAbtVJW/35HHs7vYOTyHRGCOMGpKJI4WR3THgKIQSJGaT
+         la4a4tbOx0Cl6kU6LkSaWnkN6cRWumDsE/63pgfzNkx2apWXFsIkcqsOa2AG1puOC5ES
+         MKYMNnTkqs+MDAJbZGS8MvfLp+lnS0WjKuMR1x9V25b729P6rksIRMypR2r46RtsGYGL
+         nBuA==
+X-Gm-Message-State: AJIora9CSr9V3rJf02C0ba/Wv6piT5BaT7utpS4Djc2+0Ux5eY5dC/DU
+        oCttcbI+wc9hPjOhoF3ieg==
+X-Google-Smtp-Source: AGRyM1spnDrVja1LcglOLXL2ULa6cCcIObu4tG0+mMCr8UcsIq75aUZcAyh2ev7/Zc12OQ+WJ30OVQ==
+X-Received: by 2002:a02:c8c9:0:b0:33f:3647:e751 with SMTP id q9-20020a02c8c9000000b0033f3647e751mr2079680jao.225.1659136005699;
+        Fri, 29 Jul 2022 16:06:45 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id bs19-20020a056638451300b0033ec45fb044sm2227216jab.47.2022.07.29.16.05.48
+        by smtp.gmail.com with ESMTPSA id d123-20020a026281000000b00335c432c4b9sm2249778jac.136.2022.07.29.16.06.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jul 2022 16:05:50 -0700 (PDT)
-Received: (nullmailer pid 105414 invoked by uid 1000);
-        Fri, 29 Jul 2022 23:05:46 -0000
-Date:   Fri, 29 Jul 2022 17:05:46 -0600
+        Fri, 29 Jul 2022 16:06:44 -0700 (PDT)
+Received: (nullmailer pid 106784 invoked by uid 1000);
+        Fri, 29 Jul 2022 23:06:40 -0000
+Date:   Fri, 29 Jul 2022 17:06:40 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     long.cheng@mediatek.com, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        nfraprado@collabora.com, ~postmarketos/upstreaming@lists.sr.ht,
-        hsinyi@chromium.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
-        fparent@baylibre.com, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        vkoul@kernel.org, sam.shih@mediatek.com,
-        allen-kh.cheng@mediatek.com, dmaengine@vger.kernel.org,
-        ulf.hansson@linaro.org, wenbin.mei@mediatek.com,
-        sean.wang@mediatek.com, krzysztof.kozlowski+dt@linaro.org,
-        chaotian.jing@mediatek.com
-Subject: Re: [PATCH 7/8] dt-bindings: arm: mediatek: Add compatible for
- MT6795 Sony Xperia M5
-Message-ID: <20220729230546.GA105364-robh@kernel.org>
-References: <20220729104441.39177-1-angelogioacchino.delregno@collabora.com>
- <20220729104441.39177-9-angelogioacchino.delregno@collabora.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Biju Das <biju.das@bp.renesas.com>, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: renesas: Add RZ/G2L POEG
+ binding
+Message-ID: <20220729230640.GA106750-robh@kernel.org>
+References: <20220729122448.498690-1-biju.das.jz@bp.renesas.com>
+ <20220729122448.498690-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220729104441.39177-9-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220729122448.498690-2-biju.das.jz@bp.renesas.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -72,13 +71,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Jul 2022 12:44:40 +0200, AngeloGioacchino Del Regno wrote:
-> Add a compatible for the Sony Xperia M5 smartphone.
+On Fri, 29 Jul 2022 13:24:47 +0100, Biju Das wrote:
+> Add device tree bindings for the RZ/G2L Port Output Enable for GPT (POEG).
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> v1->v2:
+>  * Updated the description.
+> REF->v1:
+>  * Modelled as pincontrol as most of its configuration is intended to be
+>    static.
+>  * Updated reg size in example.
+> ---
+>  .../bindings/pinctrl/renesas,rzg2l-poeg.yaml  | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-poeg.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
