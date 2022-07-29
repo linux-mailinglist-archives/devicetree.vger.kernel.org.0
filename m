@@ -2,187 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90FC55852C0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 17:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64F605852C6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Jul 2022 17:36:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237653AbiG2Pec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 11:34:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34738 "EHLO
+        id S237020AbiG2PgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 11:36:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237672AbiG2PeN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 11:34:13 -0400
-Received: from relay10.mail.gandi.net (relay10.mail.gandi.net [IPv6:2001:4b98:dc4:8::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7C36863E0;
-        Fri, 29 Jul 2022 08:34:10 -0700 (PDT)
-Received: (Authenticated sender: maxime.chevallier@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 09A7E240005;
-        Fri, 29 Jul 2022 15:34:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1659108849;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=r6zv+4Rgp5w6FDDW/zBKRge/d7MWJqq2ZpBzTWXVYIA=;
-        b=DlnRIYoeDwSA+zJ2qRq87QzCqFIjM1HIRTe34x0zvKIAj1QyMXBwRjhwSnDRvbBpImbrFc
-        LIiCrWSOVcDdEp+RQkAkvHo2n+syy3khJxv9xsklR6vp0uzCXvYWXeSmtvW42kklmwvlL+
-        DSf8/ykTDgdScar+KBC0oow9Y6dYScQPYkz80ksooYlFnrGxLgozRdYhJuG0Mv2d0waebb
-        qDYvQYZeql6+DqSdn+K4zocbZVKnzOZ8U9s5vimxm2Tw0WRsnsuQNbRTQaDJD2RH1NDTqX
-        u67qUjKt/1p54s2QapQE9ZQjbThGRdc2XkvC6CmU9QOma941wujj1PndJ6PlAA==
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     davem@davemloft.net, Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Richard Cochran <richardcochran@gmail.com>,
-        Horatiu.Vultur@microchip.com, Allan.Nielsen@microchip.com,
-        UNGLinuxDriver@microchip.com
-Subject: [PATCH net-next v3 4/4] net: lan966x: Add QUSGMII support for lan966x
-Date:   Fri, 29 Jul 2022 17:33:56 +0200
-Message-Id: <20220729153356.581444-5-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220729153356.581444-1-maxime.chevallier@bootlin.com>
-References: <20220729153356.581444-1-maxime.chevallier@bootlin.com>
+        with ESMTP id S236674AbiG2PgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 11:36:04 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B411585FAB
+        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 08:36:00 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id v3so5508715wrp.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 08:36:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=WOyX2y+yK0055b41MICdKQ4YUsD5Kv8I3S4JoEvD3+s=;
+        b=xbfzkZERozdMBRcOgicJM58M+/THgvCx3GpKROZViHKS8LplxroCDEH9yBY5Yu3xtw
+         nuYfDFK7ctPBCgZjlwG6j4ZFbiB0p+n55irjINmm0//6S6geKc13W6xs6Tx2fcjs+OBj
+         CEiYed4SZPcOuTE2JIrZuGPfoFlTiUEd+DRYYt6iFgeK5HNWss0g6Z/m05F9i6QVwanR
+         LZN11YEaG11iT31jLUtmWEzQ8O1eyggr/ZQfptO1NDBOPcrvui0u/KT6YxIQBqDQxlVa
+         8BJRfhTIRiXpcf48f2/JwbLdWCBq7DEa7l7zsU4npa08t8GSuYEA9EC+lSGXTXRkmJ2A
+         pj1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=WOyX2y+yK0055b41MICdKQ4YUsD5Kv8I3S4JoEvD3+s=;
+        b=wFEEIMFQG6xtbJ3Wnc6QfjgaiaJOIXPqkDjFdug9KX0o9ToCDVPAw8phSaEghCIZoS
+         8v3MNy4I73Pk3bxoLannGlrL/9Ks7rxRPlEC5thK3d2VT/2x4IezUDyVGvQGI9T1YBI8
+         i/rz2dx37c2S6Kqz9V0sfftD2h6tLFb2+wQCOPJzzEIr8VevFiwLz4ZyRALLq60KOatt
+         6UB/L8PdX88ZCcxmw8ZZf57vf8BbXkuyeSPj9oDH1S+FNSya3l84zzeUnKlF13+duXLM
+         +DLtiF3PhLAS3vldkZ05BYtH6gGxKOVcQRbZAO50h/uaH1XkeP9TZyxv4cDXmJpznioD
+         TSrw==
+X-Gm-Message-State: ACgBeo1qTCnSjrf+VxJ9/41MAPqp0Gynlvq/Gd2gJWwWjwIrlJ4etxhB
+        e85NB2f8tgNEYTXG51Zgf4MqgA==
+X-Google-Smtp-Source: AA6agR5m46hlp4+2Ih0uGB6NvQXsjckIOKi97W3GjOn1UxRDc27vQ3IwYtKwGaoHAhPJC8aD3Z3JpQ==
+X-Received: by 2002:a05:6000:1849:b0:21d:9ad7:f27f with SMTP id c9-20020a056000184900b0021d9ad7f27fmr2707113wri.445.1659108959123;
+        Fri, 29 Jul 2022 08:35:59 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:a2b5:2611:bcc1:9aac? ([2a05:6e02:1041:c10:a2b5:2611:bcc1:9aac])
+        by smtp.googlemail.com with ESMTPSA id v11-20020a5d43cb000000b0021ec76a0c36sm3806397wrr.106.2022.07.29.08.35.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Jul 2022 08:35:58 -0700 (PDT)
+Message-ID: <9b224465-e9e5-43d3-50eb-3614decbd8b2@linaro.org>
+Date:   Fri, 29 Jul 2022 17:35:57 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v8 1/6] thermal: mediatek: Relocate driver to mediatek
+ folder
+Content-Language: en-US
+To:     Balsam CHIHI <bchihi@baylibre.com>
+Cc:     rafael@kernel.org, rui.zhang@intel.com, amitk@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+References: <20220726135506.485108-1-bchihi@baylibre.com>
+ <20220726135506.485108-2-bchihi@baylibre.com>
+ <24250d03-b25f-e521-5abd-f36109885c36@linaro.org>
+ <CAGuA+opxZ7DDrWHcnTRhMcm7YveCAypdy9MDSytt58asgekayw@mail.gmail.com>
+ <CAGuA+ooOUXaBM+uPvEEohFLtO8sRd4T=DMcc6Fvo9P92gsq4yg@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <CAGuA+ooOUXaBM+uPvEEohFLtO8sRd4T=DMcc6Fvo9P92gsq4yg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Lan996x controller supports the QUSGMII mode, which is very similar
-to QSGMII in the way it's configured and the autonegociation
-capababilities it provides.
+Hi Balsam,
 
-This commit adds support for that mode, treating it most of the time
-like QSGMII, making sure that we do configure the PCS how we should.
+On 29/07/2022 17:21, Balsam CHIHI wrote:
+> On Fri, Jul 29, 2022 at 5:19 PM Balsam CHIHI <bchihi@baylibre.com> wrote:
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-V1->V2 : Pass the QUSGMII mode as-is to the generic PHY driver, and use
-         phy_interface_num_ports, as per Russell's review
-V2->V3 : No changes
+[ ... ]
 
- .../ethernet/microchip/lan966x/lan966x_main.c |  2 ++
- .../microchip/lan966x/lan966x_phylink.c       |  3 ++-
- .../ethernet/microchip/lan966x/lan966x_port.c | 22 ++++++++++++++-----
- .../ethernet/microchip/lan966x/lan966x_regs.h |  6 +++++
- 4 files changed, 26 insertions(+), 7 deletions(-)
+>>> config MTK_SOC_THERMAL
+>>>          tristate "Temperature sensor driver for MediaTek SoCs"
+>>>          depends on HAS_IOMEM
+>>>          depends on NVMEM
+>>>          depends on RESET_CONTROLLER
+>>>          help
+>>>                  Enable this option if you want to get SoC temperature
+>>>                  information for MediaTek platforms. This driver
+>>>                  configures thermal controllers to collect temperature
+>>>                  via AUXADC interface.
+>>>
+>>> drivers/thermal/mediatek/Makefile:
+>>>
+>>> obj-$(MTK_SOC_THERMAL)  += soc_temp.o
+>>>
+>>> However, rename 'soc_temp' to something more SoC explicit, eg.
+>>> mtxxx_thermal.c
+>>>
+>>> Thanks
+>>>
+>>>     -- Daniel
+>>
+>> Hello Daniel,
+>>
+>> Thank you for the feedback.
+>> Changes have been made as you suggested.
+>> Resubmitting seen.
+> *soon.
 
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-index 1d6e3b641b2e..1e604e8db20c 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
-@@ -778,6 +778,8 @@ static int lan966x_probe_port(struct lan966x *lan966x, u32 p,
- 		  port->phylink_config.supported_interfaces);
- 	__set_bit(PHY_INTERFACE_MODE_QSGMII,
- 		  port->phylink_config.supported_interfaces);
-+	__set_bit(PHY_INTERFACE_MODE_QUSGMII,
-+		  port->phylink_config.supported_interfaces);
- 	__set_bit(PHY_INTERFACE_MODE_1000BASEX,
- 		  port->phylink_config.supported_interfaces);
- 	__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c b/drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c
-index 38a7e95d69b4..87f3d3a57aed 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c
-@@ -28,11 +28,12 @@ static int lan966x_phylink_mac_prepare(struct phylink_config *config,
- 				       phy_interface_t iface)
- {
- 	struct lan966x_port *port = netdev_priv(to_net_dev(config->dev));
-+	phy_interface_t serdes_mode = iface;
- 	int err;
- 
- 	if (port->serdes) {
- 		err = phy_set_mode_ext(port->serdes, PHY_MODE_ETHERNET,
--				       iface);
-+				       serdes_mode);
- 		if (err) {
- 			netdev_err(to_net_dev(config->dev),
- 				   "Could not set mode of SerDes\n");
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_port.c b/drivers/net/ethernet/microchip/lan966x/lan966x_port.c
-index f141644e4372..bbf42fc8c8d5 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_port.c
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_port.c
-@@ -168,7 +168,7 @@ static void lan966x_port_link_up(struct lan966x_port *port)
- 	/* Also the GIGA_MODE_ENA(1) needs to be set regardless of the
- 	 * port speed for QSGMII ports.
- 	 */
--	if (config->portmode == PHY_INTERFACE_MODE_QSGMII)
-+	if (phy_interface_num_ports(config->portmode) == 4)
- 		mode = DEV_MAC_MODE_CFG_GIGA_MODE_ENA_SET(1);
- 
- 	lan_wr(config->duplex | mode,
-@@ -331,10 +331,14 @@ int lan966x_port_pcs_set(struct lan966x_port *port,
- 	struct lan966x *lan966x = port->lan966x;
- 	bool inband_aneg = false;
- 	bool outband;
-+	bool full_preamble = false;
-+
-+	if (config->portmode == PHY_INTERFACE_MODE_QUSGMII)
-+		full_preamble = true;
- 
- 	if (config->inband) {
- 		if (config->portmode == PHY_INTERFACE_MODE_SGMII ||
--		    config->portmode == PHY_INTERFACE_MODE_QSGMII)
-+		    phy_interface_num_ports(config->portmode) == 4)
- 			inband_aneg = true; /* Cisco-SGMII in-band-aneg */
- 		else if (config->portmode == PHY_INTERFACE_MODE_1000BASEX &&
- 			 config->autoneg)
-@@ -345,9 +349,15 @@ int lan966x_port_pcs_set(struct lan966x_port *port,
- 		outband = true;
- 	}
- 
--	/* Disable or enable inband */
--	lan_rmw(DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA_SET(outband),
--		DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA,
-+	/* Disable or enable inband.
-+	 * For QUSGMII, we rely on the preamble to transmit data such as
-+	 * timestamps, therefore force full preamble transmission, and prevent
-+	 * premable shortening
-+	 */
-+	lan_rmw(DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA_SET(outband) |
-+		DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA_SET(full_preamble),
-+		DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA |
-+		DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA,
- 		lan966x, DEV_PCS1G_MODE_CFG(port->chip_port));
- 
- 	/* Enable PCS */
-@@ -396,7 +406,7 @@ void lan966x_port_init(struct lan966x_port *port)
- 	if (lan966x->fdma)
- 		lan966x_fdma_netdev_init(lan966x, port->dev);
- 
--	if (config->portmode != PHY_INTERFACE_MODE_QSGMII)
-+	if (phy_interface_num_ports(config->portmode) != 4)
- 		return;
- 
- 	lan_rmw(DEV_CLOCK_CFG_PCS_RX_RST_SET(0) |
-diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h b/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
-index 8265ad89f0bc..c53bae5d8dbd 100644
---- a/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
-+++ b/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
-@@ -504,6 +504,12 @@ enum lan966x_target {
- #define DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA_GET(x)\
- 	FIELD_GET(DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA, x)
- 
-+#define DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA        BIT(1)
-+#define DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA_SET(x)\
-+	FIELD_PREP(DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA, x)
-+#define DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA_GET(x)\
-+	FIELD_GET(DEV_PCS1G_MODE_CFG_SAVE_PREAMBLE_ENA, x)
-+
- /*      DEV:PCS1G_CFG_STATUS:PCS1G_SD_CFG */
- #define DEV_PCS1G_SD_CFG(t)       __REG(TARGET_DEV, t, 8, 72, 0, 1, 68, 8, 0, 1, 4)
- 
+You may want to wait next week before sending a new version, I'm still 
+reviewing your series (note you can send it anyway if you prefer)
+
 -- 
-2.37.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
