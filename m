@@ -2,168 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 320A45856F6
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 00:53:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E7BA585700
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 00:56:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232112AbiG2Wxh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 18:53:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44088 "EHLO
+        id S239575AbiG2W4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 18:56:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232195AbiG2WxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 18:53:24 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB9D583F35;
-        Fri, 29 Jul 2022 15:53:23 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id e69so4655063iof.5;
-        Fri, 29 Jul 2022 15:53:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=qdPiZGCx2gOg+Z8f5WWlV+ALjDbF5Hu969TqFhTswc8=;
-        b=v1qSuFOxS34jl27PtbSR+wiKmL48jw+uYZ1bTR7QkEd7dcNyLhCSjrAZqtu6dsXX9N
-         xMPjNayJQ1P73TNo4ZlD7K3/Zm0F2SOi1E9C5H4T8TNnUcttX9h5oIh7tQRcCfF9fRsW
-         O0zw2q2ntdZgazLnzhxADRw5tX2meLfD0s13J049qdtd2ScuP+nTNrm/psy/1Dv44a30
-         azVsZMkirn1ZiVDaDcljF36N+dHhWdruGyuIuyL/2hphJUZAZMt+aucx8YSxbeN9KWjX
-         P2PvP/Y6a/J+ntSbKm+xkNP0fPP3udgfdXR5yyf9ZugJBxHvta5VU03NBOz8E8gbwEvd
-         XmKg==
-X-Gm-Message-State: AJIora9G4Y2H+CEzY27UOU+Pmv3xThPoVxKF9Gsc7x4nyn5sBG08EDNz
-        +DeZCLy3c6wNnJ8fTQjhKw==
-X-Google-Smtp-Source: AGRyM1tVKy42bKeKa7Lz5BjK7FPG39AaKdNNz7b3gF69f/Zl3T81ORLeG5jHeetLJGrjQH3iD0lfEQ==
-X-Received: by 2002:a5e:a618:0:b0:67c:27b4:1f93 with SMTP id q24-20020a5ea618000000b0067c27b41f93mr1846960ioi.75.1659135202913;
-        Fri, 29 Jul 2022 15:53:22 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r1-20020a92c5a1000000b002ddd1e250c0sm1994579ilt.5.2022.07.29.15.53.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Jul 2022 15:53:22 -0700 (PDT)
-Received: (nullmailer pid 87726 invoked by uid 1000);
-        Fri, 29 Jul 2022 22:53:20 -0000
-Date:   Fri, 29 Jul 2022 16:53:20 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Ryder Lee <ryder.lee@mediatek.com>, Rex-BC.Chen@mediatek.com,
-        TingHan.Shen@mediatek.com, Liju-clr.Chen@mediatek.com,
-        Jian.Yang@mediatek.com
-Subject: Re: [PATCH v2] dt-bindings: PCI: mediatek-gen3: Add support for
- MT8188 and MT8195
-Message-ID: <20220729225320.GA82746-robh@kernel.org>
-References: <20220729033331.3075-1-jianjun.wang@mediatek.com>
+        with ESMTP id S239413AbiG2W4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 18:56:06 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E741E89A7C;
+        Fri, 29 Jul 2022 15:56:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 8905BB82A02;
+        Fri, 29 Jul 2022 22:56:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12528C433D6;
+        Fri, 29 Jul 2022 22:56:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659135363;
+        bh=zk29gmNkOWKkDPAyPj1KjLUZzxwFt6lvMvWIi2eO2Lc=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=QfcqUVGobKwRR3DAPC3w8Y/kVCpprAGZdplH6sAVBNMroIEmwLYn9rQ2TUd+lg4x7
+         jkTqCFSFnU+THaJGobcDJ0gav0im3GXsUM5hrG4Z3UaD2HfBBLT5LENuAs3gkYFCKd
+         MqO3B7iD1p5gxL9cGRphF5rzi27JXEErT+flJzx+vlX0XjXx2dUmFeFVZdsmNO4dAr
+         7o+GXFViDrxwcDMM19aeb8JVsHTNFl+vjJzIQxdKbsBz8+CY+0wX7T4BolRiNJ0c3p
+         /FJ6w6TBUItx3/TaF1kitcByu4ufl2RUZUJasoEBGlx/IvP2/nADsB7hMGK3b5VaAK
+         7o68VE9qS5kpg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220729033331.3075-1-jianjun.wang@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAP6Zq1gUvMFG9BNObVNLpVgbMRpV7e--HFxknP8kvL4nGk8Hsw@mail.gmail.com>
+References: <20220711123519.217219-1-tmaimon77@gmail.com> <20220711123519.217219-5-tmaimon77@gmail.com> <20220711195544.70A30C34115@smtp.kernel.org> <CAP6Zq1ie_RgJ_9S3ftoVJ=eJHX1xR4_O_czKZghNPKVEFOzC8Q@mail.gmail.com> <20220718191454.5B5D3C341C0@smtp.kernel.org> <CAP6Zq1ju08GSjNnEG+zDUC8W6aQMJxd5He7QJxy9++hTy0Dc7A@mail.gmail.com> <20220723030226.8E43CC341C6@smtp.kernel.org> <CAP6Zq1gUvMFG9BNObVNLpVgbMRpV7e--HFxknP8kvL4nGk8Hsw@mail.gmail.com>
+Subject: Re: [PATCH v8 04/16] clk: npcm8xx: add clock controller
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jonathan =?utf-8?q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Olof Johansson <olof@lixom.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Thomas G leixner <tglx@linutronix.de>,
+        Patrick Venture <venture@google.com>,
+        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Nancy Yuen <yuenn@google.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        SERIAL DRIVERS <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Date:   Fri, 29 Jul 2022 15:56:01 -0700
+User-Agent: alot/0.10
+Message-Id: <20220729225603.12528C433D6@smtp.kernel.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 29, 2022 at 11:33:31AM +0800, Jianjun Wang wrote:
-> MT8188 and MT8195 are ARM platform SoCs with the same PCIe IP as MT8192.
-> 
-> Also add new clock name "peri_mem" since the MT8188 and MT8195 use clock
-> "peri_mem" instead of "top_133m".
-> 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> ---
-> Changes in v2:
-> Merge two patches into one.
-> ---
->  .../bindings/pci/mediatek-pcie-gen3.yaml      | 51 +++++++++++++++----
->  1 file changed, 40 insertions(+), 11 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> index 0499b94627ae..038e25ae0be7 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> @@ -43,12 +43,16 @@ description: |+
->    each set has its own address for MSI message, and supports 32 MSI vectors
->    to generate interrupt.
->  
-> -allOf:
-> -  - $ref: /schemas/pci/pci-bus.yaml#
-> -
->  properties:
->    compatible:
-> -    const: mediatek,mt8192-pcie
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt8188-pcie
-> +              - mediatek,mt8195-pcie
-> +          - const: mediatek,mt8192-pcie
-> +      - items:
-> +          - const: mediatek,mt8192-pcie
->  
->    reg:
->      maxItems: 1
-> @@ -78,13 +82,7 @@ properties:
->      maxItems: 6
->  
->    clock-names:
-> -    items:
-> -      - const: pl_250m
-> -      - const: tl_26m
-> -      - const: tl_96m
-> -      - const: tl_32k
-> -      - const: peri_26m
-> -      - const: top_133m
-> +    maxItems: 6
->  
->    assigned-clocks:
->      maxItems: 1
-> @@ -126,9 +124,40 @@ required:
->    - interrupts
->    - ranges
->    - clocks
-> +  - clock-names
->    - '#interrupt-cells'
->    - interrupt-controller
->  
-> +allOf:
-> +  - $ref: /schemas/pci/pci-bus.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8188-pcie
-> +              - mediatek,mt8195-pcie
-> +    then:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: pl_250m
-> +            - const: tl_26m
-> +            - const: tl_96m
-> +            - const: tl_32k
-> +            - const: peri_26m
-> +            - const: peri_mem
-> +    else:
-> +      properties:
-> +        clock-names:
-> +          items:
-> +            - const: pl_250m
-> +            - const: tl_26m
-> +            - const: tl_96m
-> +            - const: tl_32k
-> +            - const: peri_26m
-> +            - const: top_133m
+Quoting Tomer Maimon (2022-07-24 02:06:54)
+> On Sat, 23 Jul 2022 at 06:02, Stephen Boyd <sboyd@kernel.org> wrote:
+> > Furthermore, in DT, reg properties aren't supposed to overlap. When that
+> > happens it usually indicates the DT is being written to describe driver
+> > structure instead of the IP blocks that are delivered by the hardware
+> > engineer. In this case it sounds like a combined clk and reset IP block
+> > because they piled all the SoC glue stuff into a register range. Are
+> > there more features in this IO range?
+>=20
+> No, this range only combined the reset and clock together, but it
+> combined in a way that we cannot split it to two or even three
+> different registers...
 
-I'm not sure it's worth enforcing just the last clock name. Just do:
+Because it is jumbled in some range?
 
-enum: [ peri_mem, top_133m ]
+>=20
+> I do see a way to combine the clock and the reset driver, the NPCM
+> reset driver is serving other NPCM BMC's.
+> Should we use regmap to handle the clock registers instead of ioremap?
 
-And key in the top level.
-
-Rob
+Sure? Using regmap or not looks like a parallel discussion. How does it
+help use platform APIs?
