@@ -2,103 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30F8F5857A7
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 02:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 615325857DA
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 03:51:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239299AbiG3AyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 20:54:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54350 "EHLO
+        id S229599AbiG3Bvr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 21:51:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbiG3AyW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 20:54:22 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF09172EF3;
-        Fri, 29 Jul 2022 17:54:20 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id o13so7653858edc.0;
-        Fri, 29 Jul 2022 17:54:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=HiX7UZw83z65upkOi8fzhvPs9EuIeKpV4I9Y1lg/dkM=;
-        b=CQoKjaEltHTvhH0yPkJeFkyXVZBJ0boHa8rjowvJXaxwlf2kImZTIDryfE7Nvwtm5a
-         4ChFsph0c0MaJauQNQ+nYWg/BHLpOhuGlQeiYK6WUqtHPZ11FcTZDmi69yUNO594XPbZ
-         nU4h6Bf8kuycorLi6Ov7fyolTlrBTcEgeuwZ/eBFNTfHTskKKp0gPqNUNUaFbF9fU5t/
-         KFqP9aGsaiwCekGxmSyjDg6fwnf/NDs97ePwQ8jtDOsPmkvXNDUOZQLJhNw+GM8N3PpZ
-         qrlOycIdQgb9j08uuYKc/DjFR48xsSis07JcFC6HktiikcjfwUeRWkrD30R8kegx28Wp
-         c3hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=HiX7UZw83z65upkOi8fzhvPs9EuIeKpV4I9Y1lg/dkM=;
-        b=Ap7EeCqYdJDpsrEx/xzSuzsSQmDwm/TdardwTH0KDHsAwpfi5uwBsRsV/g5ubRqqpl
-         ruPTLSXT2cZJfMELWgLom0mejg3rURtEHMu4aREeJzGHoZKufi4St7WdRoAcV+x7pAID
-         Tz+lTtLQMhI+j6zCDyogsSlLBJR12QSgrGL+Z2wW5Xem3zWTXaWtk4Z/ymvDpLYU+O8M
-         xYJFqxsfD+euWTYxoy8taU2HneeCrpCtxfCgi4sfPR4DMjxU81UzQ3rq1xJtj4Z8Th4W
-         1/rFqdb9vMl3zXoUUH+ih22bHrQT32rinubTb/PQWP459RPiLN8XPureuB0Oket5LOOe
-         VwwQ==
-X-Gm-Message-State: AJIora8VPmosydw7mdApN6rf+dsN/IA9Mybk9kySZJCpNixKF+avrHnx
-        gwXug9P/jiK0Xm7gKwnPLkJfuiUO73SawFQSRc4=
-X-Google-Smtp-Source: AGRyM1tUVTpxiDLTTTJzAJjWmjbGLDXV8sBbEonp2bC2OiTZrFV1hPmVHZ47eXNINQZjgXPJAkU391MxbP3NdyOA+fc=
-X-Received: by 2002:a05:6402:501d:b0:437:e000:a898 with SMTP id
- p29-20020a056402501d00b00437e000a898mr6006440eda.265.1659142459180; Fri, 29
- Jul 2022 17:54:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1656883851.git.jahau@rocketmail.com> <28a2a9ec27c6fb4073149b897415475a8f04e3f7.1656883851.git.jahau@rocketmail.com>
- <CAHp75VfGqk_q1iDyj06tEuTNoG35xjOL0_5HgokFauUz_aAwFQ@mail.gmail.com>
- <8639301c-ae9e-54ac-919d-baeb8760a31b@rocketmail.com> <CAHp75VecjLe67XfK6qgM4eZfKiTJ-UabD40i6Q_YmMpyWAWMkg@mail.gmail.com>
- <c52e34f1-1cc3-4351-e03b-6b9bf83481b6@rocketmail.com> <CAHp75Ve_0srfZbvKJ4z8dW3Mp_a8CHSTqASSAY_SOJiD20K0eA@mail.gmail.com>
- <30ce3ff6-14bf-19e5-e330-d7b8b30c1727@rocketmail.com>
-In-Reply-To: <30ce3ff6-14bf-19e5-e330-d7b8b30c1727@rocketmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sat, 30 Jul 2022 02:53:42 +0200
-Message-ID: <CAHp75VdO+bZLjetjMB7o5Uqc7pUYg1P6myp7em-tdOehE=z=vg@mail.gmail.com>
-Subject: Re: [PATCH v4 09/10] iio: magnetometer: yas530: Introduce "chip_info" structure
-To:     Jakob Hauser <jahau@rocketmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S231843AbiG3Bvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 21:51:39 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 631AB2AC69;
+        Fri, 29 Jul 2022 18:51:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1659145896; x=1690681896;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oXvrqgHJX/aXymOLI6Lbg84MsWqjCWPM0eFPadKnZeA=;
+  b=WwPNwDV8PvM7ogfwNJmy/F7daIfhyfAPVcara4+c4ptVtvHjb+s6yICo
+   n0e47mCKqPrGiPibcIBRR5sOOfNPG5/Vc6lj6HVX6s1CkUpq7c0iVNwn+
+   z8eztzxgJb45fou3JWj77LnW2f2qDdnkqpnGhsUoFxsS4eQCLZE/hSMBR
+   6RigKMj2WmGYPmQCgBju2Z7aNokbmR7xtTkA89zt1ZdF3lnWQpsIvBZe9
+   l14R7qXpjbQmrgu57Ow8aBHvI8TPZBPgfbryt7tKYvkR1Qb2oyR2NHXMl
+   5t7UyN5wL3G1KypSZ8MrR11fxa7gJ7gLCf6Qb4ZTE2J/PmEfQkxadGD0Q
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10423"; a="268649188"
+X-IronPort-AV: E=Sophos;i="5.93,202,1654585200"; 
+   d="scan'208";a="268649188"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jul 2022 18:51:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,202,1654585200"; 
+   d="scan'208";a="601464706"
+Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 29 Jul 2022 18:51:32 -0700
+Received: from kbuild by e0eace57cfef with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oHbdb-000CG5-2Y;
+        Sat, 30 Jul 2022 01:51:31 +0000
+Date:   Sat, 30 Jul 2022 09:51:27 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         Hans de Goede <hdegoede@redhat.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Jens Axboe <axboe@kernel.dk>, Hannes Reinecke <hare@suse.de>
+Cc:     kbuild-all@lists.01.org,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Rob Herring <robh+dt@kernel.org>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RESEND v6 07/23] ata: libahci_platform: Convert to using
+ devm bulk clocks API
+Message-ID: <202207300915.8DDz66ju-lkp@intel.com>
+References: <20220728111905.12427-8-Sergey.Semin@baikalelectronics.ru>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220728111905.12427-8-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 30, 2022 at 12:56 AM Jakob Hauser <jahau@rocketmail.com> wrote:
-> On 29.07.22 18:13, Andy Shevchenko wrote:
-> > On Fri, Jul 29, 2022 at 1:06 AM Jakob Hauser <jahau@rocketmail.com> wrote:
+Hi Serge,
 
-...
+I love your patch! Yet something to improve:
 
-> >>         static const char * const yas5xx_version_name[][2] = {
-> >
-> > yas5xx_version_names (note S at the end)
->
-> As I understand you, it's to be applied on "yas5xx_version_names" only.
-> In the chip_info table, it would then look like:
->
->         .product_name = yas5xx_product_name[yas530],
->         .version_name = yas5xx_version_names[yas530],
->                                            ^
->                                            S
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on axboe-block/for-next linus/master v5.19-rc8 next-20220728]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Yes.
+url:    https://github.com/intel-lab-lkp/linux/commits/Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220728-192315
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: csky-randconfig-r023-20220729 (https://download.01.org/0day-ci/archive/20220730/202207300915.8DDz66ju-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/a84e837dd293db69f2510f3036f2c83ce8b0167c
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Serge-Semin/ata-ahci-Add-DWC-Baikal-T1-AHCI-SATA-support/20220728-192315
+        git checkout a84e837dd293db69f2510f3036f2c83ce8b0167c
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=csky SHELL=/bin/bash drivers/ata/
 
-> >>                 [yas530] = { "A", "B" },
-> >>                 [yas532] = { "AB", "AC" },
-> >>                 [yas533] = { "AB", "AC" },
-> >>         };
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/ata/ahci_da850.c: In function 'ahci_da850_probe':
+>> drivers/ata/ahci_da850.c:181:13: error: wrong type argument to unary exclamation mark
+     181 |         if (!hpriv->clks[0]) {
+         |             ^
+>> drivers/ata/ahci_da850.c:186:34: error: incompatible types when assigning to type 'struct clk_bulk_data' from type 'struct clk *'
+     186 |                 hpriv->clks[0] = clk;
+         |                                  ^~~
+   drivers/ata/ahci_da850.c:194:13: error: wrong type argument to unary exclamation mark
+     194 |         if (!hpriv->clks[1]) {
+         |             ^
+   drivers/ata/ahci_da850.c:201:34: error: incompatible types when assigning to type 'struct clk_bulk_data' from type 'struct clk *'
+     201 |                 hpriv->clks[1] = clk;
+         |                                  ^~~
+>> drivers/ata/ahci_da850.c:204:64: error: incompatible type for argument 1 of 'clk_get_rate'
+     204 |         mpy = ahci_da850_calculate_mpy(clk_get_rate(hpriv->clks[1]));
+         |                                                     ~~~~~~~~~~~^~~
+         |                                                                |
+         |                                                                struct clk_bulk_data
+   In file included from drivers/ata/ahci.h:23,
+                    from drivers/ata/ahci_da850.c:13:
+   include/linux/clk.h:584:40: note: expected 'struct clk *' but argument is of type 'struct clk_bulk_data'
+     584 | unsigned long clk_get_rate(struct clk *clk);
+         |                            ~~~~~~~~~~~~^~~
+--
+   drivers/ata/ahci_dm816.c: In function 'ahci_dm816_phy_init':
+>> drivers/ata/ahci_dm816.c:72:13: error: wrong type argument to unary exclamation mark
+      72 |         if (!hpriv->clks[1]) {
+         |             ^
+>> drivers/ata/ahci_dm816.c:77:47: error: incompatible type for argument 1 of 'clk_get_rate'
+      77 |         refclk_rate = clk_get_rate(hpriv->clks[1]);
+         |                                    ~~~~~~~~~~~^~~
+         |                                               |
+         |                                               struct clk_bulk_data
+   In file included from drivers/ata/ahci.h:23,
+                    from drivers/ata/ahci_dm816.c:16:
+   include/linux/clk.h:584:40: note: expected 'struct clk *' but argument is of type 'struct clk_bulk_data'
+     584 | unsigned long clk_get_rate(struct clk *clk);
+         |                            ~~~~~~~~~~~~^~~
+
+
+vim +186 drivers/ata/ahci_da850.c
+
+018d5ef2048fcab Akinobu Mita              2015-01-29  159  
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  160  static int ahci_da850_probe(struct platform_device *pdev)
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  161  {
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  162  	struct device *dev = &pdev->dev;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  163  	struct ahci_host_priv *hpriv;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  164  	void __iomem *pwrdn_reg;
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  165  	struct resource *res;
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  166  	struct clk *clk;
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  167  	u32 mpy;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  168  	int rc;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  169  
+16af2d65842d343 Kunihiko Hayashi          2018-08-22  170  	hpriv = ahci_platform_get_resources(pdev, 0);
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  171  	if (IS_ERR(hpriv))
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  172  		return PTR_ERR(hpriv);
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  173  
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  174  	/*
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  175  	 * Internally ahci_platform_get_resources() calls clk_get(dev, NULL)
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  176  	 * when trying to obtain the functional clock. This SATA controller
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  177  	 * uses two clocks for which we specify two connection ids. If we don't
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  178  	 * have the functional clock at this point - call clk_get() again with
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  179  	 * con_id = "fck".
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  180  	 */
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30 @181  	if (!hpriv->clks[0]) {
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  182  		clk = clk_get(dev, "fck");
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  183  		if (IS_ERR(clk))
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  184  			return PTR_ERR(clk);
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  185  
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30 @186  		hpriv->clks[0] = clk;
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  187  	}
+82dbe1a68fd65a4 Bartosz Golaszewski       2017-01-30  188  
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  189  	/*
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  190  	 * The second clock used by ahci-da850 is the external REFCLK. If we
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  191  	 * didn't get it from ahci_platform_get_resources(), let's try to
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  192  	 * specify the con_id in clk_get().
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  193  	 */
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  194  	if (!hpriv->clks[1]) {
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  195  		clk = clk_get(dev, "refclk");
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  196  		if (IS_ERR(clk)) {
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  197  			dev_err(dev, "unable to obtain the reference clock");
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  198  			return -ENODEV;
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  199  		}
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  200  
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  201  		hpriv->clks[1] = clk;
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  202  	}
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  203  
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30 @204  	mpy = ahci_da850_calculate_mpy(clk_get_rate(hpriv->clks[1]));
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  205  	if (mpy == 0) {
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  206  		dev_err(dev, "invalid REFCLK multiplier value: 0x%x", mpy);
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  207  		return -EINVAL;
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  208  	}
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  209  
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  210  	rc = ahci_platform_enable_resources(hpriv);
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  211  	if (rc)
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  212  		return rc;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  213  
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  214  	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+c88c094985ad38c Christophe JAILLET        2017-08-16  215  	if (!res) {
+c88c094985ad38c Christophe JAILLET        2017-08-16  216  		rc = -ENODEV;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  217  		goto disable_resources;
+c88c094985ad38c Christophe JAILLET        2017-08-16  218  	}
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  219  
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  220  	pwrdn_reg = devm_ioremap(dev, res->start, resource_size(res));
+c88c094985ad38c Christophe JAILLET        2017-08-16  221  	if (!pwrdn_reg) {
+c88c094985ad38c Christophe JAILLET        2017-08-16  222  		rc = -ENOMEM;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  223  		goto disable_resources;
+c88c094985ad38c Christophe JAILLET        2017-08-16  224  	}
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  225  
+cdf0ead3747200d Bartosz Golaszewski       2017-01-30  226  	da850_sata_init(dev, pwrdn_reg, hpriv->mmio, mpy);
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  227  
+018d5ef2048fcab Akinobu Mita              2015-01-29  228  	rc = ahci_platform_init_host(pdev, hpriv, &ahci_da850_port_info,
+018d5ef2048fcab Akinobu Mita              2015-01-29  229  				     &ahci_platform_sht);
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  230  	if (rc)
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  231  		goto disable_resources;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  232  
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  233  	return 0;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  234  disable_resources:
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  235  	ahci_platform_disable_resources(hpriv);
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  236  	return rc;
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  237  }
+ae8723f8a9c8e80 Bartlomiej Zolnierkiewicz 2014-03-25  238  
 
 -- 
-With Best Regards,
-Andy Shevchenko
+0-DAY CI Kernel Test Service
+https://01.org/lkp
