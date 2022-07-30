@@ -2,71 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B3C1585A3E
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 13:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E711585A53
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 13:59:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233967AbiG3LdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jul 2022 07:33:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45214 "EHLO
+        id S234526AbiG3L6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jul 2022 07:58:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231839AbiG3LdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jul 2022 07:33:19 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA0DB2496F;
-        Sat, 30 Jul 2022 04:33:18 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id tk8so12509659ejc.7;
-        Sat, 30 Jul 2022 04:33:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=VvYg/CL1I3r8dHS3x/B2hatcu1jC3itrUA2DHNmFFd4=;
-        b=mWO91qiHEvCEjEuIS1mWxJOHRz5CQt4du4H+AJyyxZWoDto9z7/g1KdikUv3gVtcIR
-         YJhfi9OAx9+MAyVtgsCYrz6MWZX3tBGfcdLNyMxrC9JkySyjsnx8kUPDhyxzcX/AuVoh
-         TnX3b25uCTl8kNx5TRiyIBm6JRQxwjrhVz9bl2g/vLn+pYBycEOm6xTx9otbDX+32FTY
-         FZnONJW2kB63Ub1U5NABobYsaHVyNzSlCtl7FoN/6IwHoMwULdaZY3oJWrM89rzU8ZeU
-         ctduW+4nFrhu1V6hEIh9ROhI4ahz1VOsMmkyIEaLHXjva+oSc8OicUvIVgIVcFysXEFS
-         KKuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=VvYg/CL1I3r8dHS3x/B2hatcu1jC3itrUA2DHNmFFd4=;
-        b=8O5P3nrgp5SApfiafieaOeHa3vaqCKXg/WFaT6/q9uerVe8WJGmwhYVKtzJ0oONJVv
-         sJP0JarvEM/wHZoXM8+k6CwOfmE1zFUcm83qjJFNx8xQvG8MM8C0CXLkNmxKxK4B5vzx
-         j/DYcb9guBIzZIeTrBYIeRZlSfJ9kvJDYGLMAOSioQEbY+ddAcPr0PRA5mF8pvkVYmZb
-         3l5AjqrD65F02RMnr6JLk7ShF5KilHSnwOhpIgG88xu1Z+zQrzmHQdILR1jZDzRhBB60
-         vfJsWVds/JDGvJ15Sngo+fMez3yareowcv17VH3phjZyylUpw8Uszn3M9YuwxYUvNrEJ
-         iPlQ==
-X-Gm-Message-State: AJIora8DUspmYN8WQ2DPK37rC8lm+dPRu5nVf4Fcdfa9oxcVI7qtMbEH
-        NAx0jWDLOKjDdpT9lac5VJ6AEoF084tIyuA46MI=
-X-Google-Smtp-Source: AGRyM1u3kTIFffjaneKqov0bWZAXQtBgZ7FyoMRx9I+4ygtJlriDYUctxrr3OgNnUpaCEI2EiIXnnVlv4toDKxzowWA=
-X-Received: by 2002:a17:907:2dab:b0:72f:f7:bdd6 with SMTP id
- gt43-20020a1709072dab00b0072f00f7bdd6mr6184496ejc.330.1659180797115; Sat, 30
- Jul 2022 04:33:17 -0700 (PDT)
+        with ESMTP id S234533AbiG3L62 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jul 2022 07:58:28 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8920427FC2;
+        Sat, 30 Jul 2022 04:58:25 -0700 (PDT)
+Received: from mail-ej1-f52.google.com ([209.85.218.52]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1Myb09-1nWMa23t4X-00yzje; Sat, 30 Jul 2022 13:58:23 +0200
+Received: by mail-ej1-f52.google.com with SMTP id os14so12589171ejb.4;
+        Sat, 30 Jul 2022 04:58:23 -0700 (PDT)
+X-Gm-Message-State: AJIora8V8G6AQK/3isvSN9H8arjxzdkSybJuis4c7Y/rbX+h3JEYP2HL
+        awsXbMJWQ22kHOnhwwKHOdQndwN23ogv5YEwYy8=
+X-Google-Smtp-Source: AGRyM1sNtDGiw6hf77/2a2P1cTuDqhVg3wEykZ7DCfJvtPr1QIJQXTq/XdL/6YVyMfp6GUhEWuszkC0FQNjog4Zv9Xw=
+X-Received: by 2002:a17:907:97cd:b0:72f:2df:274f with SMTP id
+ js13-20020a17090797cd00b0072f02df274fmr5985160ejc.766.1659182303585; Sat, 30
+ Jul 2022 04:58:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1656883851.git.jahau@rocketmail.com> <69a512cf5b62b34415d5983a6406c3d5ba438a1d.1656883851.git.jahau@rocketmail.com>
- <CAHp75Ve5Z9OOx94FtXY77_Fwkp27D32Hn7bAG+Da++HXmupytA@mail.gmail.com>
- <c5643cee-8491-3fae-b9d4-ac03d86c1e8a@rocketmail.com> <CAHp75VdDdKo7rt+cik4J+_4tDRgBXhgZYc8p+dOSH4s_gtCOUg@mail.gmail.com>
- <6e13daf2-179f-d37f-ace4-db5cd37be8d3@rocketmail.com> <CAHp75VdLBowZ7=6g4aFVr5zkN5Pkv7ir68vPCdkRmoFysqRz9Q@mail.gmail.com>
- <f8071532-14c5-c2a8-ca75-f4327066817b@rocketmail.com>
-In-Reply-To: <f8071532-14c5-c2a8-ca75-f4327066817b@rocketmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sat, 30 Jul 2022 13:32:40 +0200
-Message-ID: <CAHp75VcPMZSpDS_S_4mM2bfq4154HVMHzZHvdJnP6oUA7RtpiQ@mail.gmail.com>
-Subject: Re: [PATCH v4 10/10] iio: magnetometer: yas530: Add YAS537 variant
-To:     Jakob Hauser <jahau@rocketmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+References: <1656894026-15707-1-git-send-email-hayashi.kunihiko@socionext.com> <1656894026-15707-10-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <1656894026-15707-10-git-send-email-hayashi.kunihiko@socionext.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Sat, 30 Jul 2022 13:58:09 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0D4CYqZipY30scDA=KkWR_Az_5i-8avkg6EeDs1nM62w@mail.gmail.com>
+Message-ID: <CAK8P3a0D4CYqZipY30scDA=KkWR_Az_5i-8avkg6EeDs1nM62w@mail.gmail.com>
+Subject: Re: [PATCH 9/9] ARM: dts: uniphier: Remove compatible
+ "snps,dw-pcie-ep" from Pro5 pcie-ep node
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Provags-ID: V03:K1:pKJPtwD9dFI4Wj8EfGjqY3UkXplbYTF+HW2fJWzotyGpudZt/Zk
+ mePKO+ztZ5k9aTOPgavXfKd3JnQBg8Ml/uKfCVJCD9gdttnY0DUKK3AuQA3HqzISUPudNSH
+ 3NU6Rpo+0ROavUqlX9EmnSUTAacYA72bX033etWyvr2nrADXb4/xMM2Iu/hxLsZSHSJuLeD
+ w5ftVy7N12GZJjfN9Ed9A==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:6Zsj7PGIRJ8=:INmDqUjDkFkNJDFWqQjVu4
+ /vuRLj7x0aYCpc8cpO7n99gW7EyUZ+SEGD2Npi6RZhR8QMePmfkbsfLQljKaqAjYtECHaHXVS
+ HP5vxkIjyYT4Q09WuRpFi5QRnDdwLkfgVG+kYK6bsjv9ZDtxDZwgW8s1siHdiHMoyKu3m007R
+ Z0neg4PwR+NjWP+i3gwjyFozvSpZjnqr7pZgjdwBBD0swFEg5VX1Mo/AKAV1tjzE5ZUFIJq76
+ YFEC9NaoApMI/W/yTscGd6JiVwhQF3RorgVDazTJ2VVQKG4r7UEORgXRb8dFxqNovxMcT446N
+ Xv6CCHDk9W5xR3x65SkRgIg41CL3IXbcq3AKZrabWNoamUipIkHy8v29BeXX3CVvdVIyoZG6O
+ xsb7HIujZkK32D6eLv97QYxmwY80L9J3y4LumpbNe4KnpSftwHRO1+hiVxQ7Sh0O14BSqHU1O
+ Y/Q8P/14ylpNc8JELwwSsSojw285NXew0iOjFAwc8IjmPXsENpCV1567GNV0BCDiNWmeNtXY9
+ qWBwPKW+dQAqvqPpnVnkNDr5Wsq+l5kpfs+XP2W6mwvPuA+QLJWWmxCJcip3Q8/v898wJo1X2
+ TyxvwKj5QUNhdwsTLBy/c4sRt7KJUPrOE93wLS9nR5RVw9rSzI+8EJ9ktezUIuHH44QYchl+f
+ 6UIYwbkhVzbzOp+7pP6p62S7AfNZdb7TICJhgz7LJLRRlExe/hLobBbEtGh7ZjzOjEl8df/WF
+ ADg+u24saHEwLTS3+ixd171EbtyKnXUiotdSCTejf5jYmHVdFtFw5dyHMQ6TcBfHm28r8EPb7
+ 9Nq6S1nF+ugog6V5LqZ1aT0rJlB8RplWBRDJU+TJiBtW9WLnMg/NrE8r5Zs4ztWMgGrR5i8g1
+ b/1bIy1Xa/7OHlwzw54w==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,89 +68,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 30, 2022 at 1:10 AM Jakob Hauser <jahau@rocketmail.com> wrote:
-> On 29.07.22 19:24, Andy Shevchenko wrote:
-> > On Fri, Jul 29, 2022 at 1:13 AM Jakob Hauser <jahau@rocketmail.com> wrote:
-> >> On 27.07.22 19:46, Andy Shevchenko wrote:
-
-...
-
-> >> We don't know for sure whether it is a 16-bit register or an incomplete
-> >> register naming.
-> >
-> > By the values you write into it seems to be a __be16 calibration
-> > register. The value to write is 0x3f8 which might ring a bell to you
-> > if you know what other values related to ADC.
+On Mon, Jul 4, 2022 at 2:20 AM Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
 >
-> Sigh, ok, I'll apply bulk write.
+> UniPhier PCIe endpoint controller doesn't use "snps,dw-pcie-ep" compatible,
+> so this is no longer needed. Remove the compatible string from the pcie-ep
+> node to fix the following warning.
 >
-> How to do it correctly? I guess:
+>   uniphier-pro5-epcore.dtb: pcie@66000000: compatible: ['socionext,uniphier-pro5-pcie-ep', 'snps,dw-pcie-ep'] is too long
+>       From schema: Documentation/devicetree/bindings/pci/socionext,uniphier-pcie-ep.yaml
 >
->         __be16 buf = cpu_to_be16(GENMASK(9, 3));
 
-Looks like that, yes.
+This sounds like a problem with the binding rather than the dt file. Is this not
+a designware pci endpoint? Should it be documented in that binding instead?
 
->         ret = regmap_bulk_write(yas5xx->map, YAS537_ADCCAL, &buf, 2);
-
-sizeof(buf)
-
->         if (ret)
->                 return ret;
->
-> The whole block would then look like:
->
->         /* Writing ADCCAL and TRM registers */
->         __be16 buf = cpu_to_be16(GENMASK(9, 3));
-
-(Taking into account that definitions are at the top of the function it would be
-
-  __be16 buf;
-  ...
-  buf = cpu_to_be16(...);
-
->         ret = regmap_bulk_write(yas5xx->map, YAS537_ADCCAL, &buf, 2);
->         if (ret)
->                 return ret;
->         ret = regmap_write(yas5xx->map, YAS537_TRM, GENMASK(7, 0));
->         if (ret)
->                 return ret;
-
-...
-
-> > To the 4100 denominator:
-> > https://github.com/XPerience-AOSP-Lollipop/android_kernel_wingtech_msm8916/blob/xpe-11.1/drivers/input/misc/yas_mag_drv-yas537.c#L235,
-> > seems you can find a lot by browsing someone's code and perhaps a Git
-> > history.
->
-> I've seen that comment before but I don't understand its meaning.
-
-It points out that there is a SMPLTIM, which I decode as Sample Time,
-which is in 4.1 msec steps (up to 255 steps).
-
-...
-
-> >> Still I didn't get your comment. Is your intention to change the "50
-> >> milliseconds * 1000" to "50000 microseconds" in the define?
-> >>
-> >> It would look like ...
-> >>
-> >>         #define YAS537_DEFAULT_SENSOR_DELAY_US  50000
-> >>
-> >> ... though I would prefer to keep current define, as it is implemented
-> >> now and stated above:
-> >>
-> >>         #define YAS537_DEFAULT_SENSOR_DELAY_MS  50
-> >
-> > No, just to show in the actual calculation that you convert MS to US
-> > using MILLI.
->
-> Sorry, I still don't get what you want me to do. What do you mean by
-> "using MILLI", can you elaborate?
-
-You use formula x * 1000 to convert milliseconds to microseconds. My
-suggestion is to replace 1000 with MILLI which adds information about
-exponent sign, i.e. 10^-3 (which may be important to the reader).
-
--- 
-With Best Regards,
-Andy Shevchenko
+         Arnd
