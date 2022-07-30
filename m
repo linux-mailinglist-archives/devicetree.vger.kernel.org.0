@@ -2,45 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23B85585C2A
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 22:53:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7FD0585C31
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 23:00:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235346AbiG3Uxq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jul 2022 16:53:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59598 "EHLO
+        id S235786AbiG3VAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jul 2022 17:00:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232779AbiG3Uxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jul 2022 16:53:45 -0400
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E56416597
-        for <devicetree@vger.kernel.org>; Sat, 30 Jul 2022 13:53:43 -0700 (PDT)
-Received: from [192.168.1.101] (abxi232.neoplus.adsl.tpnet.pl [83.9.2.232])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 18BD13F70B;
-        Sat, 30 Jul 2022 22:53:39 +0200 (CEST)
-Message-ID: <c074cd3f-3398-f0ff-bbca-5e7ff157cc7e@somainline.org>
-Date:   Sat, 30 Jul 2022 22:53:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13s: Add LID
- switch
-Content-Language: en-US
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232279AbiG3VAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jul 2022 17:00:31 -0400
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B865110FEA;
+        Sat, 30 Jul 2022 14:00:30 -0700 (PDT)
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 84FC51C0001; Sat, 30 Jul 2022 23:00:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+        t=1659214829;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=ucSCYgK+GmsYscsfSPeCmlSx8seUtYHo8kNxn/rdyec=;
+        b=VnowGBcPVNzioXBTILWPf1RwBfQ6aIj1WpHUMIdciaUc0mo4w3vGiQ9ihf5CGx+9AKHOnf
+        TNLr/74GjFfBPo+WDed325sBUOtKfkwd3E6iH3pg9IOruCXkdOKYJ3nDcWGMpKo2w1UDwM
+        +T4x9ZXRvtmj/XMFSq4XlIkONpt2Hr4=
+Date:   Sat, 30 Jul 2022 23:00:29 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sven Schwermer <sven.schwermer@disruptive-technologies.com>,
         linux-kernel@vger.kernel.org
-References: <20220730193617.1688563-1-bjorn.andersson@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20220730193617.1688563-1-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH] dt-bindings: leds: pwm-multicolor: document
+ max-brigthness
+Message-ID: <20220730210029.GC23307@duo.ucw.cz>
+References: <20220719074542.24581-1-krzysztof.kozlowski@linaro.org>
+ <20220719232614.GA2034561-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="8X7/QrJGcKSMr1RN"
+Content-Disposition: inline
+In-Reply-To: <20220719232614.GA2034561-robh@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -48,66 +55,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--8X7/QrJGcKSMr1RN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 30.07.2022 21:36, Bjorn Andersson wrote:
-> Add gpio-keys for exposing the LID switch state.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+On Tue 2022-07-19 17:26:14, Rob Herring wrote:
+> On Tue, 19 Jul 2022 09:45:42 +0200, Krzysztof Kozlowski wrote:
+> > The Multicolor PWM LED uses max-brigthness property (in the example and
+> > in the driver), so document it to fixi dt_binding_check warning like:
+> >=20
+> >   leds/leds-pwm-multicolor.example.dtb:
+> >     led-controller: multi-led: Unevaluated properties are not allowed (=
+'max-brightness' was unexpected)
+> >=20
+> > Reported-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  .../devicetree/bindings/leds/leds-pwm-multicolor.yaml       | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >=20
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Konrad
+Thank you, applied.
+								Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
 
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 25 +++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 84dc92dda0b8..f3246cc13d15 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -7,6 +7,8 @@
->  /dts-v1/;
->  
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/gpio-keys.h>
-> +#include <dt-bindings/input/input.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->  
->  #include "sc8280xp.dtsi"
-> @@ -26,6 +28,21 @@ backlight {
->  		pinctrl-0 = <&edp_bl_en>, <&edp_bl_pwm>;
->  	};
->  
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&hall_int_state>;
-> +
-> +		switch-lid {
-> +			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <EV_SW>;
-> +			linux,code = <SW_LID>;
-> +			wakeup-source;
-> +			wakeup-event-action = <EV_ACT_DEASSERTED>;
-> +		};
-> +	};
-> +
->  	vreg_edp_bl: regulator-edp-bl {
->  		compatible = "regulator-fixed";
->  
-> @@ -347,6 +364,14 @@ reset {
->  		};
->  	};
->  
-> +	hall_int_state: hall-int-state {
-> +		pins = "gpio107";
-> +		function = "gpio";
-> +
-> +		input-enable;
-> +		bias-disable;
-> +	};
-> +
->  	qup0_i2c4_default: qup0-i2c4-default-state {
->  		pins = "gpio171", "gpio172";
->  		function = "qup4";
+--8X7/QrJGcKSMr1RN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCYuWb7QAKCRAw5/Bqldv6
+8lQOAKCbz10ruXYIIOdXbryLrqwVQ/EXHwCaArUFtrYKBGelWJS0EQxfYL9Nbbk=
+=cZYo
+-----END PGP SIGNATURE-----
+
+--8X7/QrJGcKSMr1RN--
