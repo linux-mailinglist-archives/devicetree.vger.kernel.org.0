@@ -2,182 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4A4585A2B
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 12:49:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B3C1585A3E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 13:33:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231839AbiG3KtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jul 2022 06:49:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51514 "EHLO
+        id S233967AbiG3LdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jul 2022 07:33:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230036AbiG3KtK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jul 2022 06:49:10 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F3B17A8B;
-        Sat, 30 Jul 2022 03:49:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 89748B80139;
-        Sat, 30 Jul 2022 10:49:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BFEAC433C1;
-        Sat, 30 Jul 2022 10:49:04 +0000 (UTC)
-Message-ID: <5fdb62df-da1a-2c68-aaed-18a394f5f4ba@xs4all.nl>
-Date:   Sat, 30 Jul 2022 12:49:02 +0200
+        with ESMTP id S231839AbiG3LdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jul 2022 07:33:19 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA0DB2496F;
+        Sat, 30 Jul 2022 04:33:18 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id tk8so12509659ejc.7;
+        Sat, 30 Jul 2022 04:33:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=VvYg/CL1I3r8dHS3x/B2hatcu1jC3itrUA2DHNmFFd4=;
+        b=mWO91qiHEvCEjEuIS1mWxJOHRz5CQt4du4H+AJyyxZWoDto9z7/g1KdikUv3gVtcIR
+         YJhfi9OAx9+MAyVtgsCYrz6MWZX3tBGfcdLNyMxrC9JkySyjsnx8kUPDhyxzcX/AuVoh
+         TnX3b25uCTl8kNx5TRiyIBm6JRQxwjrhVz9bl2g/vLn+pYBycEOm6xTx9otbDX+32FTY
+         FZnONJW2kB63Ub1U5NABobYsaHVyNzSlCtl7FoN/6IwHoMwULdaZY3oJWrM89rzU8ZeU
+         ctduW+4nFrhu1V6hEIh9ROhI4ahz1VOsMmkyIEaLHXjva+oSc8OicUvIVgIVcFysXEFS
+         KKuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=VvYg/CL1I3r8dHS3x/B2hatcu1jC3itrUA2DHNmFFd4=;
+        b=8O5P3nrgp5SApfiafieaOeHa3vaqCKXg/WFaT6/q9uerVe8WJGmwhYVKtzJ0oONJVv
+         sJP0JarvEM/wHZoXM8+k6CwOfmE1zFUcm83qjJFNx8xQvG8MM8C0CXLkNmxKxK4B5vzx
+         j/DYcb9guBIzZIeTrBYIeRZlSfJ9kvJDYGLMAOSioQEbY+ddAcPr0PRA5mF8pvkVYmZb
+         3l5AjqrD65F02RMnr6JLk7ShF5KilHSnwOhpIgG88xu1Z+zQrzmHQdILR1jZDzRhBB60
+         vfJsWVds/JDGvJ15Sngo+fMez3yareowcv17VH3phjZyylUpw8Uszn3M9YuwxYUvNrEJ
+         iPlQ==
+X-Gm-Message-State: AJIora8DUspmYN8WQ2DPK37rC8lm+dPRu5nVf4Fcdfa9oxcVI7qtMbEH
+        NAx0jWDLOKjDdpT9lac5VJ6AEoF084tIyuA46MI=
+X-Google-Smtp-Source: AGRyM1u3kTIFffjaneKqov0bWZAXQtBgZ7FyoMRx9I+4ygtJlriDYUctxrr3OgNnUpaCEI2EiIXnnVlv4toDKxzowWA=
+X-Received: by 2002:a17:907:2dab:b0:72f:f7:bdd6 with SMTP id
+ gt43-20020a1709072dab00b0072f00f7bdd6mr6184496ejc.330.1659180797115; Sat, 30
+ Jul 2022 04:33:17 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v9 7/8] media: dw100: Add i.MX8MP dw100 dewarper driver
-Content-Language: en-US
-To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>, mchehab@kernel.org,
-        stanimir.varbanov@linaro.org, laurent.pinchart@ideasonboard.com,
-        tomi.valkeinen@ideasonboard.com, robh+dt@kernel.org,
-        nicolas@ndufresne.ca, alexander.stein@ew.tq-group.com,
-        ezequiel@vanguardiasur.com.ar
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220730102413.547698-1-xavier.roumegue@oss.nxp.com>
- <20220730102413.547698-8-xavier.roumegue@oss.nxp.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-In-Reply-To: <20220730102413.547698-8-xavier.roumegue@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.7 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1656883851.git.jahau@rocketmail.com> <69a512cf5b62b34415d5983a6406c3d5ba438a1d.1656883851.git.jahau@rocketmail.com>
+ <CAHp75Ve5Z9OOx94FtXY77_Fwkp27D32Hn7bAG+Da++HXmupytA@mail.gmail.com>
+ <c5643cee-8491-3fae-b9d4-ac03d86c1e8a@rocketmail.com> <CAHp75VdDdKo7rt+cik4J+_4tDRgBXhgZYc8p+dOSH4s_gtCOUg@mail.gmail.com>
+ <6e13daf2-179f-d37f-ace4-db5cd37be8d3@rocketmail.com> <CAHp75VdLBowZ7=6g4aFVr5zkN5Pkv7ir68vPCdkRmoFysqRz9Q@mail.gmail.com>
+ <f8071532-14c5-c2a8-ca75-f4327066817b@rocketmail.com>
+In-Reply-To: <f8071532-14c5-c2a8-ca75-f4327066817b@rocketmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sat, 30 Jul 2022 13:32:40 +0200
+Message-ID: <CAHp75VcPMZSpDS_S_4mM2bfq4154HVMHzZHvdJnP6oUA7RtpiQ@mail.gmail.com>
+Subject: Re: [PATCH v4 10/10] iio: magnetometer: yas530: Add YAS537 variant
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Xavier,
+On Sat, Jul 30, 2022 at 1:10 AM Jakob Hauser <jahau@rocketmail.com> wrote:
+> On 29.07.22 19:24, Andy Shevchenko wrote:
+> > On Fri, Jul 29, 2022 at 1:13 AM Jakob Hauser <jahau@rocketmail.com> wrote:
+> >> On 27.07.22 19:46, Andy Shevchenko wrote:
 
-On 30/07/2022 12:24, Xavier Roumegue wrote:
-> Add a V4L2 mem-to-mem driver for the Vivante DW100 Dewarp Processor IP
-> core found on i.MX8MP SoC.
-> 
-> The processor core applies a programmable geometrical transformation on
-> input images to correct distorsion introduced by lenses.
-> The transformation function is exposed as a grid map with 16x16 pixel
-> macroblocks indexed using X, Y vertex coordinates.
-> 
-> The dewarping map can be set from application through a dedicated v4l2
-> control. If not set or invalid, the driver computes an identity map
-> prior to starting the processing engine.
-> 
-> The driver supports scaling, cropping and pixel format conversion.
-> 
-> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-> Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  drivers/media/platform/nxp/Kconfig            |    1 +
->  drivers/media/platform/nxp/Makefile           |    1 +
->  drivers/media/platform/nxp/dw100/Kconfig      |   17 +
->  drivers/media/platform/nxp/dw100/Makefile     |    3 +
->  drivers/media/platform/nxp/dw100/dw100.c      | 1712 +++++++++++++++++
->  drivers/media/platform/nxp/dw100/dw100_regs.h |  117 ++
->  6 files changed, 1851 insertions(+)
->  create mode 100644 drivers/media/platform/nxp/dw100/Kconfig
->  create mode 100644 drivers/media/platform/nxp/dw100/Makefile
->  create mode 100644 drivers/media/platform/nxp/dw100/dw100.c
->  create mode 100644 drivers/media/platform/nxp/dw100/dw100_regs.h
-> 
+...
 
-<snip>
+> >> We don't know for sure whether it is a 16-bit register or an incomplete
+> >> register naming.
+> >
+> > By the values you write into it seems to be a __be16 calibration
+> > register. The value to write is 0x3f8 which might ring a bell to you
+> > if you know what other values related to ADC.
+>
+> Sigh, ok, I'll apply bulk write.
+>
+> How to do it correctly? I guess:
+>
+>         __be16 buf = cpu_to_be16(GENMASK(9, 3));
 
-> +/*
-> + * Initialize the dewarping map with an identity mapping.
-> + *
-> + * A 16 pixels cell size grid is mapped on the destination image.
-> + * The last cells width/height might be lesser than 16 if the destination image
-> + * width/height is not divisible by 16. This dewarping grid map specifies the
-> + * source image pixel location (x, y) on each grid intersection point.
-> + * Bilinear interpolation is used to compute inner cell points locations.
-> + *
-> + * The coordinates are saved in UQ12.4 fixed point format.
-> + */
-> +static void dw100_ctrl_dewarping_map_init(const struct v4l2_ctrl *ctrl,
-> +					  u32 from_idx, u32 elems,
-> +					  union v4l2_ctrl_ptr ptr)
-> +{
-> +	struct dw100_ctx *ctx =
-> +		container_of(ctrl->handler, struct dw100_ctx, hdl);
-> +
-> +	u32 sw, sh, dw, dh, mw, mh, i, j;
-> +	u16 qx, qy, qdx, qdy, qsh, qsw;
-> +	u32 *map = ctrl->p_cur.p_u32;
-> +
-> +	sw = ctx->q_data[DW100_QUEUE_SRC].pix_fmt.width;
-> +	dw = ctx->q_data[DW100_QUEUE_DST].pix_fmt.width;
-> +	sh = ctx->q_data[DW100_QUEUE_SRC].pix_fmt.height;
-> +	dh = ctx->q_data[DW100_QUEUE_DST].pix_fmt.height;
-> +
-> +	mw = dw100_get_n_vertices_from_length(dw);
-> +	mh = dw100_get_n_vertices_from_length(dh);
+Looks like that, yes.
 
-Note that ctrl->dims[] contains the array dimensions: use that rather than
-calculating from dw/dh since using dims[] is more robust.
+>         ret = regmap_bulk_write(yas5xx->map, YAS537_ADCCAL, &buf, 2);
 
-> +
-> +	qsw = dw100_map_convert_to_uq12_4(sw);
-> +	qsh = dw100_map_convert_to_uq12_4(sh);
-> +	qdx = qsw / (mw - 1);
-> +	qdy = qsh / (mh - 1);
-> +
-> +	ctx->map_width = mw;
-> +	ctx->map_height = mh;
-> +	ctx->map_size = mh * mw * sizeof(u32);
-> +
-> +	for (i = 0, qy = 0; i < mh; i++, qy += qdy) {
+sizeof(buf)
 
-This isn't correct: you actually start from 'from_idx', which is almost always 0,
-except if userspace only sets the first N elements of an array, in that case
-those N elements are copied to the control array and the remainder is initialized.
+>         if (ret)
+>                 return ret;
+>
+> The whole block would then look like:
+>
+>         /* Writing ADCCAL and TRM registers */
+>         __be16 buf = cpu_to_be16(GENMASK(9, 3));
 
-I admit that it doesn't make much sense in this particular case, but you still
-need to take it into account.
+(Taking into account that definitions are at the top of the function it would be
 
-I also would rename i and j to y and x, that makes more sense here.
+  __be16 buf;
+  ...
+  buf = cpu_to_be16(...);
 
-> +		if (qy > qsh)
-> +			qy = qsh;
-> +		for (j = 0, qx = 0; j < mw; j++, qx += qdx) {
-> +			if (qx > qsw)
-> +				qx = qsw;
-> +			*map++ = dw100_map_format_coordinates(qx, qy);
-> +		}
-> +	}
-> +
-> +	ctx->user_map_is_set = false;
-> +}
+>         ret = regmap_bulk_write(yas5xx->map, YAS537_ADCCAL, &buf, 2);
+>         if (ret)
+>                 return ret;
+>         ret = regmap_write(yas5xx->map, YAS537_TRM, GENMASK(7, 0));
+>         if (ret)
+>                 return ret;
 
-Regards,
+...
 
-	Hans
+> > To the 4100 denominator:
+> > https://github.com/XPerience-AOSP-Lollipop/android_kernel_wingtech_msm8916/blob/xpe-11.1/drivers/input/misc/yas_mag_drv-yas537.c#L235,
+> > seems you can find a lot by browsing someone's code and perhaps a Git
+> > history.
+>
+> I've seen that comment before but I don't understand its meaning.
 
-> +
-> +static const struct v4l2_ctrl_type_ops dw100_ctrl_type_ops = {
-> +	.init = dw100_ctrl_dewarping_map_init,
-> +	.validate = v4l2_ctrl_type_op_validate,
-> +	.log = v4l2_ctrl_type_op_log,
-> +	.equal = v4l2_ctrl_type_op_equal,
-> +};
-> +
-> +static const struct v4l2_ctrl_config controls[] = {
-> +	[DW100_CTRL_DEWARPING_MAP] = {
-> +		.ops = &dw100_ctrl_ops,
-> +		.type_ops = &dw100_ctrl_type_ops,
-> +		.id = V4L2_CID_DW100_DEWARPING_16x16_VERTEX_MAP,
-> +		.name = "Dewarping Vertex Map",
-> +		.type = V4L2_CTRL_TYPE_U32,
-> +		.min = 0x00000000,
-> +		.max = 0xffffffff,
-> +		.step = 1,
-> +		.def = 0,
-> +		.dims = { DW100_DEF_LUT_W, DW100_DEF_LUT_H },
-> +	},
-> +};
+It points out that there is a SMPLTIM, which I decode as Sample Time,
+which is in 4.1 msec steps (up to 255 steps).
 
-Regards,
+...
 
-	Hans
+> >> Still I didn't get your comment. Is your intention to change the "50
+> >> milliseconds * 1000" to "50000 microseconds" in the define?
+> >>
+> >> It would look like ...
+> >>
+> >>         #define YAS537_DEFAULT_SENSOR_DELAY_US  50000
+> >>
+> >> ... though I would prefer to keep current define, as it is implemented
+> >> now and stated above:
+> >>
+> >>         #define YAS537_DEFAULT_SENSOR_DELAY_MS  50
+> >
+> > No, just to show in the actual calculation that you convert MS to US
+> > using MILLI.
+>
+> Sorry, I still don't get what you want me to do. What do you mean by
+> "using MILLI", can you elaborate?
+
+You use formula x * 1000 to convert milliseconds to microseconds. My
+suggestion is to replace 1000 with MILLI which adds information about
+exponent sign, i.e. 10^-3 (which may be important to the reader).
+
+-- 
+With Best Regards,
+Andy Shevchenko
