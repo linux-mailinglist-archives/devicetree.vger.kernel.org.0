@@ -2,208 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA652585788
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 02:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABA6B58578E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 02:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231562AbiG3AUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 20:20:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38840 "EHLO
+        id S239413AbiG3AYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 20:24:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229686AbiG3AUe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 20:20:34 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63F3019291
-        for <devicetree@vger.kernel.org>; Fri, 29 Jul 2022 17:20:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1659140433; x=1690676433;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WXjO7o7rBgFi5ZrQro+PfC6phuM1TO7iPk05avOV+/I=;
-  b=WxXuHP9Nv92KtMCQ5pxK3kzX/CwIBNRyWu65y0y80oxCWyleIuCIiD+9
-   X8XUgX4uN/MQPGGtm176jJujr/1fhswR2R1EA0QmLk4FzvDVY28TXhoLK
-   Lffncf9QM9mT/1qjxNqQ1RqoGGEOldtV73HIFUH0T/YMn/DG1sZGEGfTA
-   +MLJdQe+kWN/1r5qigotD/ydPKDg9t+PpDy96QoQyWuBsNlKOmnIJRDm3
-   7Q4gfcXdJtIZTUbF8MEGHUKP48e3+sdR2R0DdisXvB1Z9yEWznxxsy7ZV
-   e0NsnK3i6bRDDwfLGO1gKpN65fCg6H1GkOijY8HrC1JjQwHH4o4U447Un
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10423"; a="271915319"
-X-IronPort-AV: E=Sophos;i="5.93,202,1654585200"; 
-   d="scan'208";a="271915319"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jul 2022 17:20:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,202,1654585200"; 
-   d="scan'208";a="551913500"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 29 Jul 2022 17:20:29 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oHaDU-000CD3-2W;
-        Sat, 30 Jul 2022 00:20:28 +0000
-Date:   Sat, 30 Jul 2022 08:20:17 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Zhu Ning <zhuning0077@gmail.com>, alsa-devel@alsa-project.org
-Cc:     kbuild-all@lists.01.org, pierre-louis.bossart@linux.intel.com,
-        tiwai@suse.com, broonie@kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, Zhu Ning <zhuning0077@gmail.com>,
-        David Yang <yangxiaohua@everest-semi.com>
-Subject: Re: [PATCH v4 1/2] ASoC: codecs: add support for ES8326
-Message-ID: <202207300809.yYpFMTmt-lkp@intel.com>
-References: <20220729090857.579785-1-zhuning0077@gmail.com>
+        with ESMTP id S229686AbiG3AYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 20:24:42 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC332275C2;
+        Fri, 29 Jul 2022 17:24:40 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id bh13so5162802pgb.4;
+        Fri, 29 Jul 2022 17:24:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=S3s0DgJMCfv1NH5K7iItwTPGWILKOx0U0CgxdGkoF3M=;
+        b=KXZPSDeLmdbcAWDk3ZfWpW0UckKemRFDvtNW1WHG4M2QoQFaBqWvDnqfCyU/D4Iz9S
+         f7mwlh9Y/+uekgY2/06bD3NHA1bPd3PdhVnVjLF7F3gv1xnLJdZ7EFKobAu1I8QSZ/Sh
+         /FQwqiTvVawixa2VeBX4MaewpQpB41wO0de2NaLAaBXQzPu82QHT5o+Q3b34/gdMrTTd
+         eFOIJCrRWUisvD/+AjBT58jpeTcif6AEhpLDxGs6Cr602aKU+Qmri/AYwmIRUYoYP/K4
+         t+LS+4+YXylA8MHiMthkBEQA/yRsWprde8EfeynJ8OFNbWB3yoiDve71vVn2/ZQwVcp9
+         JxXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=S3s0DgJMCfv1NH5K7iItwTPGWILKOx0U0CgxdGkoF3M=;
+        b=nC1yMmfVMSdjZsB0bjeDFUZ9SFP9wFADpjpHTImKeERRBaHjhDWwBaDErWePQlNthG
+         SPcsjnAWz/NcB8Q+74ynbnibSba0QUuGgWq4YAG9HJ2/jAaYMZlIuOj0ZYxZsfWAOGYt
+         fAQPap2i72H3NduEMsYwpD98v60eA9Qdfce1iHedAYVYvkokvLEJpUBbpmm/tPOIczLv
+         v1IeANF6bt9y6RlUl6xxcHfwPwEhXgNcfYrY8Ihsi+rDz9c4+0VA2mDNyyIV+/QEzKW4
+         Da/Qw/qwwaiqK+tO/WTTOmLgzjzHHEv977jHzkH0uT2lqppVBfjS8+xCD/qRQmorwcco
+         RtNw==
+X-Gm-Message-State: AJIora8limM37Je4SmeQlGUR5iEO/+zY1MsytmvNNMoc5ZvgM22WRGdF
+        79t5NJgWKICrwxLQPQvT5DE=
+X-Google-Smtp-Source: AGRyM1uPniZcQhDM5GslX0kU1VMtXyiCeWvXKvISdBxcpP/0jBcGh7iBE753Ez0PgmJoPyNTw7dhmg==
+X-Received: by 2002:a05:6a00:815:b0:52a:dea8:269b with SMTP id m21-20020a056a00081500b0052adea8269bmr5804673pfk.66.1659140679370;
+        Fri, 29 Jul 2022 17:24:39 -0700 (PDT)
+Received: from [172.30.1.52] ([14.32.163.5])
+        by smtp.gmail.com with ESMTPSA id g15-20020a1709029f8f00b001637529493esm4257335plq.66.2022.07.29.17.24.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Jul 2022 17:24:38 -0700 (PDT)
+Message-ID: <7be2229d-b74d-efaf-236b-6ca1af5705fc@gmail.com>
+Date:   Sat, 30 Jul 2022 09:24:34 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220729090857.579785-1-zhuning0077@gmail.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 2/6] dt-bindings: clock: exynosautov9: add fsys1 clock
+ definitions
+Content-Language: en-US
+To:     Chanho Park <chanho61.park@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1659054220.git.chanho61.park@samsung.com>
+ <CGME20220729003612epcas2p280d8bd61f755ab6234b60030bc2cf7f9@epcas2p2.samsung.com>
+ <debb6335cb2bcc935f7572bed25d76a85e80cfaa.1659054220.git.chanho61.park@samsung.com>
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+In-Reply-To: <debb6335cb2bcc935f7572bed25d76a85e80cfaa.1659054220.git.chanho61.park@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhu,
+On 22. 7. 29. 09:30, Chanho Park wrote:
+> Add fsys1(for usb and mmc) clock definitions.
+> 
+> Signed-off-by: Chanho Park <chanho61.park@samsung.com>
+> ---
+>  .../dt-bindings/clock/samsung,exynosautov9.h  | 25 +++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+> 
+> diff --git a/include/dt-bindings/clock/samsung,exynosautov9.h b/include/dt-bindings/clock/samsung,exynosautov9.h
+> index 6305a84396ce..ffa44b3bdd2b 100644
+> --- a/include/dt-bindings/clock/samsung,exynosautov9.h
+> +++ b/include/dt-bindings/clock/samsung,exynosautov9.h
+> @@ -228,6 +228,31 @@
+>  
+>  #define FSYS0_NR_CLK			37
+>  
+> +/* CMU_FSYS1 */
+> +#define FOUT_MMC_PLL				1
+> +
+> +#define CLK_MOUT_FSYS1_BUS_USER			2
+> +#define CLK_MOUT_FSYS1_MMC_PLL			3
+> +#define CLK_MOUT_FSYS1_MMC_CARD_USER		4
+> +#define CLK_MOUT_FSYS1_USBDRD_USER		5
+> +#define CLK_MOUT_FSYS1_MMC_CARD			6
+> +
+> +#define CLK_DOUT_FSYS1_MMC_CARD			7
+> +
+> +#define CLK_GOUT_FSYS1_PCLK			8
+> +#define CLK_GOUT_FSYS1_MMC_CARD_SDCLKIN		9
+> +#define CLK_GOUT_FSYS1_MMC_CARD_ACLK		10
+> +#define CLK_GOUT_FSYS1_USB20DRD_0_REFCLK	11
+> +#define CLK_GOUT_FSYS1_USB20DRD_1_REFCLK	12
+> +#define CLK_GOUT_FSYS1_USB30DRD_0_REFCLK	13
+> +#define CLK_GOUT_FSYS1_USB30DRD_1_REFCLK	14
+> +#define CLK_GOUT_FSYS1_USB20_0_ACLK		15
+> +#define CLK_GOUT_FSYS1_USB20_1_ACLK		16
+> +#define CLK_GOUT_FSYS1_USB30_0_ACLK		17
+> +#define CLK_GOUT_FSYS1_USB30_1_ACLK		18
+> +
+> +#define FSYS1_NR_CLK				19
+> +
+>  /* CMU_FSYS2 */
+>  #define CLK_MOUT_FSYS2_BUS_USER		1
+>  #define CLK_MOUT_FSYS2_UFS_EMBD_USER	2
 
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on broonie-sound/for-next]
-[also build test ERROR on tiwai-sound/for-next linus/master v5.19-rc8 next-20220728]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Zhu-Ning/ASoC-codecs-add-support-for-ES8326/20220729-171050
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-config: parisc-randconfig-s042-20220729 (https://download.01.org/0day-ci/archive/20220730/202207300809.yYpFMTmt-lkp@intel.com/config)
-compiler: hppa64-linux-gcc (GCC) 12.1.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-39-gce1a6720-dirty
-        # https://github.com/intel-lab-lkp/linux/commit/fa066f18e36d4d134a5e94a872c911335b148576
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Zhu-Ning/ASoC-codecs-add-support-for-ES8326/20220729-171050
-        git checkout fa066f18e36d4d134a5e94a872c911335b148576
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=parisc64 SHELL=/bin/bash sound/soc/codecs/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/container_of.h:5,
-                    from include/linux/kernel.h:21,
-                    from include/linux/clk.h:13,
-                    from sound/soc/codecs/es8326.c:9:
-   sound/soc/codecs/es8326.c: In function 'es8326_jack_button_handler':
->> include/linux/container_of.h:19:54: error: 'struct es8326_priv' has no member named 'button_press_work'
-      19 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
-         |                                                      ^~
-   include/linux/build_bug.h:78:56: note: in definition of macro '__static_assert'
-      78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
-         |                                                        ^~~~
-   include/linux/container_of.h:19:9: note: in expansion of macro 'static_assert'
-      19 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
-         |         ^~~~~~~~~~~~~
-   include/linux/container_of.h:19:23: note: in expansion of macro '__same_type'
-      19 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
-         |                       ^~~~~~~~~~~
-   sound/soc/codecs/es8326.c:533:17: note: in expansion of macro 'container_of'
-     533 |                 container_of(work, struct es8326_priv, button_press_work.work);
-         |                 ^~~~~~~~~~~~
-   include/linux/compiler_types.h:293:27: error: expression in static assertion is not an integer
-     293 | #define __same_type(a, b) __builtin_types_compatible_p(typeof(a), typeof(b))
-         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:78:56: note: in definition of macro '__static_assert'
-      78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
-         |                                                        ^~~~
-   include/linux/container_of.h:19:9: note: in expansion of macro 'static_assert'
-      19 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
-         |         ^~~~~~~~~~~~~
-   include/linux/container_of.h:19:23: note: in expansion of macro '__same_type'
-      19 |         static_assert(__same_type(*(ptr), ((type *)0)->member) ||       \
-         |                       ^~~~~~~~~~~
-   sound/soc/codecs/es8326.c:533:17: note: in expansion of macro 'container_of'
-     533 |                 container_of(work, struct es8326_priv, button_press_work.work);
-         |                 ^~~~~~~~~~~~
-   In file included from include/uapi/linux/posix_types.h:5,
-                    from include/uapi/linux/types.h:14,
-                    from include/linux/types.h:6,
-                    from include/linux/kasan-checks.h:5,
-                    from include/asm-generic/rwonce.h:26,
-                    from ./arch/parisc/include/generated/asm/rwonce.h:1,
-                    from include/linux/compiler.h:248,
-                    from include/linux/err.h:5,
-                    from include/linux/clk.h:12:
->> include/linux/stddef.h:16:33: error: 'struct es8326_priv' has no member named 'button_press_work'
-      16 | #define offsetof(TYPE, MEMBER)  __builtin_offsetof(TYPE, MEMBER)
-         |                                 ^~~~~~~~~~~~~~~~~~
-   include/linux/container_of.h:22:28: note: in expansion of macro 'offsetof'
-      22 |         ((type *)(__mptr - offsetof(type, member))); })
-         |                            ^~~~~~~~
-   sound/soc/codecs/es8326.c:533:17: note: in expansion of macro 'container_of'
-     533 |                 container_of(work, struct es8326_priv, button_press_work.work);
-         |                 ^~~~~~~~~~~~
->> sound/soc/codecs/es8326.c:543:46: error: 'ES8326_HP_DECTECT_FB' undeclared (first use in this function); did you mean 'ES8326_HP_DETECT_FB'?
-     543 |         iface = snd_soc_component_read(comp, ES8326_HP_DECTECT_FB);
-         |                                              ^~~~~~~~~~~~~~~~~~~~
-         |                                              ES8326_HP_DETECT_FB
-   sound/soc/codecs/es8326.c:543:46: note: each undeclared identifier is reported only once for each function it appears in
->> sound/soc/codecs/es8326.c:574:54: error: 'struct es8326_priv' has no member named 'button_press_work'
-     574 |                 queue_delayed_work(system_wq, &es8326->button_press_work,
-         |                                                      ^~
-   sound/soc/codecs/es8326.c:579:54: error: 'struct es8326_priv' has no member named 'button_press_work'
-     579 |                 queue_delayed_work(system_wq, &es8326->button_press_work,
-         |                                                      ^~
-   sound/soc/codecs/es8326.c: In function 'es8326_jack_detect_handler':
-   sound/soc/codecs/es8326.c:602:46: error: 'ES8326_HP_DECTECT_FB' undeclared (first use in this function); did you mean 'ES8326_HP_DETECT_FB'?
-     602 |         iface = snd_soc_component_read(comp, ES8326_HP_DECTECT_FB);
-         |                                              ^~~~~~~~~~~~~~~~~~~~
-         |                                              ES8326_HP_DETECT_FB
-   sound/soc/codecs/es8326.c:615:62: error: 'struct es8326_priv' has no member named 'button_press_work'
-     615 |                         queue_delayed_work(system_wq, &es8326->button_press_work, 10);
-         |                                                              ^~
-   sound/soc/codecs/es8326.c: In function 'es8326_resume':
->> sound/soc/codecs/es8326.c:681:14: error: 'reg' undeclared (first use in this function)
-     681 |         if ((reg & ES8326_VERSION_B) == 1) {
-         |              ^~~
-   sound/soc/codecs/es8326.c: In function 'es8326_probe':
->> sound/soc/codecs/es8326.c:740:41: error: 'ES8326_INT_SRC_PIN9' undeclared (first use in this function); did you mean 'ES8326_HP_DET_SRC_PIN9'?
-     740 |                 es8326->interrupt_src = ES8326_INT_SRC_PIN9;
-         |                                         ^~~~~~~~~~~~~~~~~~~
-         |                                         ES8326_HP_DET_SRC_PIN9
-   sound/soc/codecs/es8326.c: At top level:
-   sound/soc/codecs/es8326.c:530:13: warning: 'es8326_jack_button_handler' defined but not used [-Wunused-function]
-     530 | static void es8326_jack_button_handler(struct work_struct *work)
-         |             ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   sound/soc/codecs/es8326.c:315:42: warning: 'es8326_constraints' defined but not used [-Wunused-variable]
-     315 | static struct snd_pcm_hw_constraint_list es8326_constraints = {
-         |                                          ^~~~~~~~~~~~~~~~~~
-
-
-vim +19 include/linux/container_of.h
-
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08   9  
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  10  /**
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  11   * container_of - cast a member of a structure out to the containing structure
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  12   * @ptr:	the pointer to the member.
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  13   * @type:	the type of the container struct this is embedded in.
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  14   * @member:	the name of the member within the struct.
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  15   *
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  16   */
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  17  #define container_of(ptr, type, member) ({				\
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  18  	void *__mptr = (void *)(ptr);					\
-e1edc277e6f6dfb Rasmus Villemoes 2021-11-08 @19  	static_assert(__same_type(*(ptr), ((type *)0)->member) ||	\
-e1edc277e6f6dfb Rasmus Villemoes 2021-11-08  20  		      __same_type(*(ptr), void),			\
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  21  		      "pointer type mismatch in container_of()");	\
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  22  	((type *)(__mptr - offsetof(type, member))); })
-d2a8ebbf8192b84 Andy Shevchenko  2021-11-08  23  
+Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
 
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+Best Regards,
+Samsung Electronics
+Chanwoo Choi
