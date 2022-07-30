@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EE7C585926
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 10:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC016585964
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 11:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229916AbiG3I0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 30 Jul 2022 04:26:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48534 "EHLO
+        id S233650AbiG3JQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 30 Jul 2022 05:16:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229581AbiG3I0H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jul 2022 04:26:07 -0400
+        with ESMTP id S233508AbiG3JQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 30 Jul 2022 05:16:07 -0400
 Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 170B413D3E;
-        Sat, 30 Jul 2022 01:26:05 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1659169507; cv=none; 
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1713D24973;
+        Sat, 30 Jul 2022 02:16:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1659172525; cv=none; 
         d=zohomail.com; s=zohoarc; 
-        b=ikFsdtZS6QLQV7wSSuu0bVueSxmcxFv4Ze50nTcsSkhess3qh89zI+TmWNjMcLW86AI2LwysHmW7RQq6MJNwpOHiP1ONXDHPzsenibLgQxwwPN673VoyNXPAe6mbpKhIBiDOdyg4sfOj1lqKyfGSerWQtK9vdHGgY1ZqgekU5pQ=
+        b=ZiQy66cF6l7rF1Kk0Ro+K7FCFJUDhDRzik60PYhZU+9K7FnYPvvmcwM3DXhpFGIPnOwUgKsXgYLmRqlGzVQwdlVTh7MJPK3pw5KlsLzUZa5W7NsjyAu6X5cyhyRJKuFlK3w/s/i/UJvYP7w8sFUm4sWv9IN7VBnGVUe5a9SzUg4=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1659169507; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=36su4m2QjNQHBx4LFEg5D6awN/f2ZqxlK1cfInLaW0k=; 
-        b=LTCvyeBRkbu3CLzAff9ttLUsmCMQsvoDNcufIv9Rtn4To6xBcbPtDszYiF3USHSJ5T8xxiTTHISRXzHqYJT1mnUeIfGvcAET4Q6hRTNE5hShs50DuuNPvqrwqGccxxF6U98o83Wv+RAohOTxETHb8d2h4GNZKVeHSVb8klYXS0k=
+        t=1659172525; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=Ip/n8l6suEtbm+49thEhP6FKGtcYyDNRdjrTqyl8UVM=; 
+        b=ct/2ZTeeaj+LRzWYAeDMwMUOZx4tFbT4uFDUlWGqJtk5YoJjuMPjXoip4scruo8dyHeyKhnDwABtAOMdWNizyaqkFLFF5+BJgYvMUUPfx9kkE93KbXMyyTAHvISaE1p1HeQ87HbsdvXPic59M6WBp9m1pEB/8zPiHzDywOzJVRs=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
         dkim=pass  header.i=arinc9.com;
         spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
         dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1659169507;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1659172525;
         s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
         h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=36su4m2QjNQHBx4LFEg5D6awN/f2ZqxlK1cfInLaW0k=;
-        b=Eg/bfs6AKyEGW9uenYU81ZDZ2AxVkJJst7BH4RJuWUWJT6zhKVwpFEIUCqGJjpmn
-        VHX4b9gpExL9P6bajvIuCskR1KkHu1T5GrTc3ECJoNbdTJSg5EKkS4GkabBOWOpEgNF
-        TuYbWsVoKDV84qcNu3xg9e5Fg+P1pIVpGrXjSKIo=
+        bh=Ip/n8l6suEtbm+49thEhP6FKGtcYyDNRdjrTqyl8UVM=;
+        b=WinEmM44Ykvb7Xh+Iia+e46vquGVfpvZZeBTUmUZsWtYacUymSxrXNJDWhlCGqRJ
+        34j8ZZEkILDcdkwm3vTLGzvu4WPoLhnGczFMG0CEkCQksmoDaYcM4YyKdFlVRMJ4azH
+        NwoRQD1ZSa/3nhr3jrlpWb8ntgY1D+AYIy2xkjak=
 Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 165916950613718.65544541820657; Sat, 30 Jul 2022 01:25:06 -0700 (PDT)
-Message-ID: <a2dd1ce2-a23e-8894-5ef4-b73ef0dad89d@arinc9.com>
-Date:   Sat, 30 Jul 2022 11:24:59 +0300
+        with SMTPS id 1659172524609562.8091071134861; Sat, 30 Jul 2022 02:15:24 -0700 (PDT)
+Message-ID: <980c9926-9199-9b6e-aa65-6b5276af5d70@arinc9.com>
+Date:   Sat, 30 Jul 2022 12:15:17 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
 Subject: Re: [RFC PATCH net-next] dt-bindings: net: dsa: mediatek,mt7530:
  completely rework binding
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
+To:     Daniel Golle <daniel@makrotopia.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Vladimir Oltean <olteanv@gmail.com>,
@@ -61,15 +61,15 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Luiz Angelo Daros de Luca <luizluca@gmail.com>,
         Sander Vanheule <sander@svanheule.net>,
         =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
-        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220726122406.31043-1-arinc.unal@arinc9.com>
- <a8c778db-f52c-45cb-c671-556b24f3cb46@linaro.org>
+ <YuK193gAQ+Rwe26s@makrotopia.org>
 From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <a8c778db-f52c-45cb-c671-556b24f3cb46@linaro.org>
+In-Reply-To: <YuK193gAQ+Rwe26s@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-ZohoMailClient: External
@@ -82,24 +82,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On 27.07.2022 13:29, Krzysztof Kozlowski wrote:
-> On 26/07/2022 14:24, Arınç ÜNAL wrote:
->> Completely rework the binding for MediaTek MT7530 and MT7531 switches.
+On 28.07.2022 19:14, Daniel Golle wrote:
+> Hi,
 > 
-> Rules are the same for schema as for driver - one patch, one thing. You
-> mix here trivial style changes (removal of quotes) with functional stuff.
+> please see a minor comment inline below:
 > 
-> Patch is unreviewable, so it must be split.
+> On Tue, Jul 26, 2022 at 03:24:06PM +0300, Arınç ÜNAL wrote:
+>> [...]
+>> -  CPU-Ports need a phy-mode property:
+>> -    Allowed values on mt7530 and mt7621:
+>> -      - "rgmii"
+>> -      - "trgmii"
+>> -    On mt7531:
+>> -      - "1000base-x"
+>> -      - "2500base-x"
+>> -      - "rgmii"
+>> -      - "sgmii"
+>> +  There are two versions of MT7530. MT7621AT, MT7621DAT, MT7621ST and MT7623AI
+> 
+> There are two version of MT7530 **supported by this driver**.....
+> (MT7620 also contains MT7530, switch registers are directly mapped into
+> SoC's memory map rather than using MDIO like on MT7621 and standalone
+> variants, and it got FastEthernet PHYs for Port 0-4)
 
-Thank you. I'm going to split it this way:
-- Trivial changes; fix title and property descriptions, remove quotes, 
-add me as maintainer, etc.
-- Update binding description
-- Update json-schema for compatible devices
-- Update examples
+Thanks Daniel. To be precise, this is the case for MT7620AN, MT7620DA, 
+MT7620DAN, MT7620NN, MT7628AN, MT7628DAN, MT7628DBN, MT7628KN, MT7628NN, 
+MT7688AN and MT7688KN SoCs as all include a 5p FE switch according to 
+Russia hosted WikiDevi.
 
-Let me know if you have any objections.
+I'll update the description accordingly.
 
 Arınç
