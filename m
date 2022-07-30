@@ -2,68 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8FBD585834
-	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 05:20:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4675585858
+	for <lists+devicetree@lfdr.de>; Sat, 30 Jul 2022 05:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239849AbiG3DUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 29 Jul 2022 23:20:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52458 "EHLO
+        id S230423AbiG3Dyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 29 Jul 2022 23:54:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230251AbiG3DUC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 23:20:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 853B567157;
-        Fri, 29 Jul 2022 20:20:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2033A61DF1;
-        Sat, 30 Jul 2022 03:20:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB269C433C1;
-        Sat, 30 Jul 2022 03:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659151200;
-        bh=tfSWoMkwODNxGSKsRUG2sf1d8iEa2jTje7Hk6HGFtbo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=NpfvAzBTjlgeEtINtYLbdRudI7auMNgzKMM5BxUIEK7PBV2+0MP7eUAOUW81QT1w4
-         fRia9z5pQmXrkC8U5tnRqRx1azIOMuu0k36fk4pdtNsT8oc2n3MeFqflVtmQHClQ8v
-         B/Xgho/+PofnvTQ0RMLJ/GIiblBrQbuUyDcachC/euGEQo91SedHadaXlxpqFpZGVx
-         +Jc3Z7x9+YPxGCM0rhBFnik3nHsRNIqSHkrAMqp7BGJwbe4cNT1xrjPcEmgxpfRL7x
-         0P7wSSbc9nhLvA5B1TPpoIeNqAVfBi8XwVrsC2Rcet8dAzCJAXvly2MxF4FGRuDpOj
-         NZfYJ5rDNeNgw==
-Date:   Fri, 29 Jul 2022 20:19:58 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     wei.fang@nxp.com
-Cc:     davem@davemloft.net, edumazet@google.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, peng.fan@nxp.com,
-        ping.bai@nxp.com, sudeep.holla@arm.com,
-        linux-arm-kernel@lists.infradead.org, aisheng.dong@nxp.com
-Subject: Re: [PATCH V4 0/3] Add the fec node on i.MX8ULP platform
-Message-ID: <20220729201958.307d8a86@kernel.org>
-In-Reply-To: <20220726143853.23709-1-wei.fang@nxp.com>
-References: <20220726143853.23709-1-wei.fang@nxp.com>
+        with ESMTP id S230251AbiG3Dyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 29 Jul 2022 23:54:31 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B36DD743E0;
+        Fri, 29 Jul 2022 20:54:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=7YiLpMaw2/hxuRrEztHHabGbkHQasdt3WXqJtG/B6gw=; b=h6XBNvyFKzvxULfonXBLLWfWS1
+        u9687BHCigWyaGq0EikFteQpmPwoy8uAPviM+sB/X0ZJwLLz9hwfpz16IHQIHlzwof6+0WTpJaYXZ
+        Nxbblkknonx6RC6kIZs9z72+xkZScI3Qloyrs+nV+Uo6u/RCpyrRCUdCiwh21Zhtc8kk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oHdYR-00BzQN-P6; Sat, 30 Jul 2022 05:54:19 +0200
+Date:   Sat, 30 Jul 2022 05:54:19 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        davem@davemloft.net, Rob Herring <robh+dt@kernel.org>,
+        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Richard Cochran <richardcochran@gmail.com>,
+        Horatiu.Vultur@microchip.com, Allan.Nielsen@microchip.com,
+        UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH net-next v3 3/4] net: phy: Add helper to derive the
+ number of ports from a phy mode
+Message-ID: <YuSra19Sm0VAM9T9@lunn.ch>
+References: <20220729153356.581444-1-maxime.chevallier@bootlin.com>
+ <20220729153356.581444-4-maxime.chevallier@bootlin.com>
+ <056164ec-3525-479b-3b71-834af48d323c@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <056164ec-3525-479b-3b71-834af48d323c@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Jul 2022 00:38:50 +1000 wei.fang@nxp.com wrote:
-> From: Wei Fang <wei.fang@nxp.com>
+> > +int phy_interface_num_ports(phy_interface_t interface)
+> > +{
+> > +	switch (interface) {
+> > +	case PHY_INTERFACE_MODE_NA:
+> > +		return 0;
+> > +	case PHY_INTERFACE_MODE_INTERNAL:
 > 
-> Add the fec node on i.MX8ULP platfroms.
-> And enable the fec support on i.MX8ULP EVK boards.
 
-FWIW the dts patches do not apply cleanly to netdev so if someone wants
-to take the whole thing please LMK/LUK otherwise we can take the schema
-in separately for 5.20 and leave the rest to whoever.
+> Maybe this was covered in the previous iteration, but cannot the
+> default case return 1, and all of the cases that need an explicit
+> non-1 return value are handled? Enumeration all of those that do
+> need to return 1 does not really scale.
+
+It is a trade off. In the current form, when somebody adds a new enum
+value, gcc will give a warning if they forget to add it here. If we
+default to 1, new values are probably going to be missed here, and
+could end up with the incorrect return value.
+
+I think the compiler warning actually does make it scale. And the
+generated code probably very similar either way.
+
+	  Andrew
