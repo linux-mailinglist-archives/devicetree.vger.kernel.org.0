@@ -2,153 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 41F0758612D
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 22:03:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA675861B1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 00:37:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233893AbiGaUDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jul 2022 16:03:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55286 "EHLO
+        id S238510AbiGaWhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jul 2022 18:37:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230351AbiGaUDm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 16:03:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C706DF72;
-        Sun, 31 Jul 2022 13:03:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 33BEC6106D;
-        Sun, 31 Jul 2022 20:03:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC1ECC433C1;
-        Sun, 31 Jul 2022 20:03:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659297820;
-        bh=DiCzLyjq2glkJY89KAj8wJUY9M8e4FOBXNexPvEN1+Y=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Lav/Tqvm6Jh6brIHJfl8lK+UYy1F8mqVmUpl+45ClyLSIUlfDEARo98owlJgmi2Ro
-         tOl+1xi32Mgcp87SMiKbep0Je6ZQNBicQndl39KnNfM303yfePLeTwzVGoVDMnLG8J
-         aN1Qqudh1NTkpKA3ixyyc/mjYnYz+jRa6NIPoJYQQtQ2dbRz224VHebhosFst1lgMU
-         FoSVY+gXU8Tb9InGjQBghic6HvYLVLOI4JX+sdC1KWYZDutUeFl14SI7C4uj5Af390
-         jNHSB6RshgdC0HcQBhHqlMgDPNJKhPIdgAqLN1bIa8tDjx5YowDHKoxyyq3EA4NOnG
-         n/+0F3eoVuSwg==
-Date:   Sun, 31 Jul 2022 21:13:51 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     <eugen.hristev@microchip.com>, <lars@metafoo.de>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 00/19] iio: adc: at91-sama5d2_adc: add support for
- temperature sensor
-Message-ID: <20220731211351.072e3334@jic23-huawei>
-In-Reply-To: <20220716174249.687af22b@jic23-huawei>
-References: <20220628151631.3116454-1-claudiu.beznea@microchip.com>
-        <20220716174249.687af22b@jic23-huawei>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S229710AbiGaWhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 18:37:46 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60DAF11156;
+        Sun, 31 Jul 2022 15:37:45 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id b16so4203877edd.4;
+        Sun, 31 Jul 2022 15:37:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=sUg3mbi85wkC20O/owxGcBmnSUP/JalL+pPQsthwix4=;
+        b=bB75wBM9YfHXfB9SaWTPbVuoO0448vuhmS1nuYb+3RvRKk5o/oYE28YZm6MhYwehJh
+         jsDQzsO5dmGRbz1HXmJb96WtbnyoE2aWPb2IgFHZ8AW3ryR9g4QsgotgQbmD/LB0Zs6G
+         izsHUSYjfxNY2Oei46E6qbw9SxkhJqrYwq4ZsPCWqYhYspcAqMXqW6oxdYmwcE8NbjEv
+         4rVPiZkmhLe6LvmlMYG/HUv66EIdz0LQbi27fn5YmeeMNwqQFh2IDMsEIqF4Pnw2pLr5
+         c7AI6XnVI+73Ms+lXHNXakQmkuinXCa/TEEvMNcg7Oxky+NRDt3uuLAvyJ0J7jw6cJlH
+         iSYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=sUg3mbi85wkC20O/owxGcBmnSUP/JalL+pPQsthwix4=;
+        b=DR2SZ4DenoOHHiydT5dJhAaH+HcwYDGzS1TkjqsTrv2ea4uQuXytPyYSE02jiFaC41
+         KCTQQYZyqNgwVHMyHMLsqyBYMoGpoDom5TQf/EG3L+yU0m4pXLi3kJ3hpGSkb882PO+y
+         QZ2I+Ad8dVNWnTDkjhoBeNOjSiP3cl/iBR9qjF4uv9nF0BxileZK1Vp0J8BIPx55/W9q
+         nHUYDawHuEV771JpbrBETr175JcpF8MA4MrUXZEHJEJKNZTnHfdYR2MhJ8jKOvMkGcns
+         Bn7UG+Q1oZjfu+qE/opuFsn69FBLIS6oQ84oCyqcEJXFO56Be5MwHHgzU5otPjmaXVne
+         GmTw==
+X-Gm-Message-State: AJIora+nsYa4Sd4KgSot+bnxwSLD2sHzjjLknCpN05hDXKKnmdl3Dom3
+        Y/3cl199FB8hvTfqmMqwN2I=
+X-Google-Smtp-Source: AGRyM1vW7wD9jdt0hSkZT/Dae8z4eop9k1bk1UppwK+nPRdwezYV3XUJZdN9PLobODHeJRjHPno8zg==
+X-Received: by 2002:a05:6402:4144:b0:431:6ef0:bef7 with SMTP id x4-20020a056402414400b004316ef0bef7mr12640724eda.151.1659307063871;
+        Sun, 31 Jul 2022 15:37:43 -0700 (PDT)
+Received: from localhost ([77.78.38.236])
+        by smtp.gmail.com with ESMTPSA id gw6-20020a170906f14600b0072b2cc08c48sm4485591ejb.63.2022.07.31.15.37.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 Jul 2022 15:37:42 -0700 (PDT)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH v3 00/13] PM6125 regulator support
+Date:   Mon,  1 Aug 2022 01:37:23 +0300
+Message-Id: <20220731223736.1036286-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 16 Jul 2022 17:42:49 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+This patch series adds SPMI and SMD regulator support for the PM6125 found on
+SM4250/SM6115 SoCs from QCom.
 
-> On Tue, 28 Jun 2022 18:16:12 +0300
-> Claudiu Beznea <claudiu.beznea@microchip.com> wrote:
-> 
-> > Hi,
-> > 
-> > The following series add support for temperature sensor available on
-> > SAMA7G5.
-> > 
-> > Temperature sensor available on SAMA7G5 provides 2 outputs VTEMP and VBG.
-> > VTEMP is proportional to the absolute temperature voltage and VBG is a
-> > quasi-temperature independent voltage. Both are necessary in computing
-> > the temperature (for better accuracy). Also, for better accuracy the
-> > following settings were imposed when measusing the temperature:
-> > oversampling rate of 256, sampling frequency of 10MHz, a startup time of
-> > 512 ticks, MR.tracktim=0xf, EMR.trackx=0x3.
-> > 
-> > For computing the temperature measured by ADC calibration data is
-> > necessary. This is provided via OTP memory available on SAMA7G5.
-> > 
-> > Patches 1/19-4/19 provides some fixes.
-> > Patches 5/19-16/19 prepares for the addition of temperature sensor
-> > support.
-> > Patch 17/16 adds the temperature sensor support.
-> > 
-> > Along with temperature sensor support I took the chance and added
-> > runtime PM support in this series, too (handled in patch 19/19).
-> > 
-> > The rest of patches in this series are minor cleanups.  
-> 
-> Other than the use of MEGA in patch 17, I'm fine with this now, but
-> would like to leave more time for Eugen and others to comment if they
-> wish.  Given timing, I'm afraid this is very unlikely to make the next
-> merge window anyway now, so we have lots of time.
+This code has been tested on:
+* OnePlus Nord N100 (oneplus,billie2, SoC sm4250)
+* Redmi 9T (redmi,lemon, SoC sm6115)
 
-Long enough.  I'll queue this up though for now it'll only be exposed as testing
-as I'll be rebasing the togreg tree on rc1 once available.
+The main source used for this change is qpnp pm6125 support patch from caf [1]:
 
-Thanks,
+[1]: https://source.codeaurora.org/quic/la/kernel/msm-5.4/commit/?h=kernel.lnx.5.4.r1-rel&id=d1220daeffaa440ffff0a8c47322eb0033bf54f5
 
-Jonathan
+v2: https://lkml.org/lkml/2022/7/26/885
+v1: https://lkml.org/lkml/2021/8/28/144
 
-> 
-> Sorry for the delay in my reviewing v2. Pesky covid.
-> 
-> Jonathan
-> 
-> > 
-> > Thank you,
-> > Claudiu Beznea
-> > 
-> > Changes in v2:
-> > - addressed review comments
-> > - with this, new patches were intruced in this series: 2/19, 4/19,
-> >   8/19, 9,19
-> > - runtime pm support has been adapted to work also when CONFIG_PM
-> >   is not enabled
-> > - collected tags
-> > 
-> > Claudiu Beznea (19):
-> >   iio: adc: at91-sama5d2_adc: fix AT91_SAMA5D2_MR_TRACKTIM_MAX
-> >   iio: adc: at91-sama5d2_adc: check return status for pressure and touch
-> >   iio: adc: at91-sama5d2_adc: lock around oversampling and sample freq
-> >   iio: adc: at91-sama5d2_adc: disable/prepare buffer on suspend/resume
-> >   iio: adc: at91-sama5d2_adc: exit from write_raw() when buffers are
-> >     enabled
-> >   iio: adc: at91-sama5d2_adc: handle different EMR.OSR for different hw
-> >     versions
-> >   iio: adc: at91-sama5d2_adc: move the check of oversampling in its
-> >     function
-> >   iio: adc: at91-sama5d2_adc: drop AT91_OSR_XSAMPLES defines
-> >   iio: adc: at91-sama5d2_adc: add .read_avail() chan_info ops
-> >   iio: adc: at91-sama5d2_adc: adjust osr based on specific platform data
-> >   iio: adc: at91-sama5d2_adc: add 64 and 256 oversampling ratio
-> >   iio: adc: at91-sama5d2_adc: move oversampling storage in its function
-> >   iio: adc: at91-sama5d2_adc: update trackx on emr
-> >   iio: adc: at91-sama5d2_adc: add startup and tracktim as parameter for
-> >     at91_adc_setup_samp_freq()
-> >   iio: adc: at91-sama5d2_adc: lock around at91_adc_read_info_raw()
-> >   dt-bindings: iio: adc: at91-sama5d2_adc: add id for temperature
-> >     channel
-> >   iio: adc: at91-sama5d2_adc: add support for temperature sensor
-> >   iio: adc: at91-sama5d2_adc: add empty line after functions
-> >   iio: adc: at91-sama5d2_adc: add runtime pm support
-> > 
-> >  drivers/iio/adc/at91-sama5d2_adc.c            | 683 +++++++++++++++---
-> >  .../dt-bindings/iio/adc/at91-sama5d2_adc.h    |   3 +
-> >  2 files changed, 566 insertions(+), 120 deletions(-)
-> >   
-> 
+Changes from v2:
+- split spmi new regulator support in 2 patches
+- FTS and LDOs now have set_load and set_pull_down ops
+- add better commit messages on spmi patches
+- fix sob header order
+- fix tested device info (Redmi 9T, NOT Xiaomi 9T)
+- improve formatting in spmi binding docs
+- sort alphabetically in smd binding docs
+- sort alphabetically spmi pmics
+- sort alphabetically smd pmics
+Changes from v1:
+- add dt-bindings
+- split SPMI patch into new reg types and the new PMIC
+- add correct supply mapping
+
+Iskren Chernev (13):
+  dt-bindings: regulator: qcom_spmi: Improve formatting of if-then
+    blocks
+  dt-bindings: regulator: qcom_spmi: Document PM6125 PMIC
+  dt-bindings: regulator: qcom_smd: Sort compatibles alphabetically
+  dt-bindings: regulator: qcom_smd: Document PM6125 PMIC
+  regulator: qcom_spmi: Add support for new regulator types
+  regulator: qcom_spmi: Add support for HFSMPS regulator type
+  regulator: qcom_spmi: Sort pmics alphabetically (part 1)
+  regulator: qcom_spmi: Sort pmics alphabetically (part 2)
+  regulator: qcom_spmi: Add PM6125 PMIC support
+  regulator: qcom_smd: Sort pmics alphabetically (part 1)
+  regulator: qcom_smd: Sort pmics alphabetically (part 2)
+  regulator: qcom_smd: Sort pmics alphabetically (part 3)
+  regulator: qcom_smd: Add PM6125 regulators support
+
+ .../regulator/qcom,smd-rpm-regulator.yaml     |  26 +-
+ .../regulator/qcom,spmi-regulator.yaml        |  32 ++
+ drivers/regulator/qcom_smd-regulator.c        | 400 ++++++++++--------
+ drivers/regulator/qcom_spmi-regulator.c       | 383 ++++++++++++-----
+ 4 files changed, 556 insertions(+), 285 deletions(-)
+
+-- 
+2.37.1
 
