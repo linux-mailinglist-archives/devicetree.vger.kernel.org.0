@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5451158602D
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 19:48:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EECA758602E
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 19:48:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232268AbiGaRr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jul 2022 13:47:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44732 "EHLO
+        id S235278AbiGaRsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jul 2022 13:48:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232158AbiGaRr6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 13:47:58 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4FB3B4A9
-        for <devicetree@vger.kernel.org>; Sun, 31 Jul 2022 10:47:57 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id d7so4776022pgc.13
-        for <devicetree@vger.kernel.org>; Sun, 31 Jul 2022 10:47:57 -0700 (PDT)
+        with ESMTP id S232158AbiGaRsC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 13:48:02 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1ACAE08C
+        for <devicetree@vger.kernel.org>; Sun, 31 Jul 2022 10:48:01 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id v18so8552148plo.8
+        for <devicetree@vger.kernel.org>; Sun, 31 Jul 2022 10:48:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=DtHl8Tfdbid4Ip0K1rvhxAAb055JKxUwgFqvF7A2pZw=;
-        b=FrIgIbjZWlhx84pjqV0am4wg7VbAPLSm1lET64x1Ks3OeeK0C8lfnVT54f/ooeIRqa
-         yJM17T5F7aN/AsCTUkDJxoMVu01QbTXKh8Xpyy0RXSfMrzNz6fxX3jsdsJ3rU+ij2sGl
-         YLayh1UZHD3cYAR7sSYglNBOnv3lDGnJNSGuUyp0rnVyJLgZFDP1nxpPkvixlS66PzCX
-         2mgmYo9MboqSDpTbwb97YWm9vFtyObKqN3wJzcW5AFmC6MiR5/QZQW1Bt9feQclQAJu+
-         cCmG/t6dQ2xs47Bwzm3eVY2aw8jOsBm4Q2SJenBbv6OmznaWWr6uS2rcfO65qJKEvSgV
-         qqVQ==
+        bh=YgD9TwGCuuBHZJnCn7bWlJjphN4d2OaC6VP0Q8F71/Y=;
+        b=r3wtAUPfTHCV5mJiM/deqk2JQLIKvN8flIaQ56ma/wwyURqR6AQzAEfuabfEL8rSh8
+         9MbjpoMZW20whGkNy6jkWZn/QVhU+Hc8KaWF8evkAX4PkQAzQAp3dvg5tyYCBHqYKRsh
+         T72ki3QuyrUC/m04tARlj3uYhAs+AaB/pvR7wq+jK95imNRT/b3sHYF4u+5eCqjwz8U/
+         w/Ab5c6X/RTvwfXai8gROdzbAPeNr3h8PtSIIQ7D075o5cTvB+TJFMXe8AlUCuoaxGGc
+         QGfCbcjRP6wxcpC6REbd6g29c+tYm78vA2CJtM4vBcrXV4a2XRVGDS5CrBXEE07XuLcX
+         qzYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=DtHl8Tfdbid4Ip0K1rvhxAAb055JKxUwgFqvF7A2pZw=;
-        b=YJXMUe+1gVB7dv8b4bdC702h+3b6dfJM697EmiUrrxx8q/FIrBDdVO2guCj/hSdL7h
-         tzpuHjc3MhwnOa+UtjbJxnLRU3fBcs2pNPBetNZgPpzby7V2bdYROm7HJy+Bn1dw6uzX
-         8cabmGk7p/FbvjnuzDtDkdCR83rBjC56RdCQah1YE9GSqI1mjBi1tByAecFN4yeqTynZ
-         7m1ha09zZr6jQl7ZHQhGpJQzj9mwBH/50ORK4ASMWYG/EHKOct7gJu2QFnkII/kQwgm6
-         TjnDfxGaptGVNz5hemeGN3/4YhNKEIIfh8PCtusPjPylT6tMpmCE5tmWZ6PlZkv9X9Gv
-         b1Dw==
-X-Gm-Message-State: AJIora/b/1OPLz81ZBs5zBMpANXDma6s+EBi6YZQwgjs3k+fqNwF9RS3
-        /ABLZEpIRGOyQHro6S0nf4IPSw==
-X-Google-Smtp-Source: AGRyM1ub8ANS59rvz/sZljT7HwORhT1DV48eiTbTUQy4m3j+sQyYYdJz5ubHgjGKzs9ZC8QgHOHHfw==
-X-Received: by 2002:a63:8c47:0:b0:40d:2d4:e3a2 with SMTP id q7-20020a638c47000000b0040d02d4e3a2mr10751105pgn.2.1659289677284;
-        Sun, 31 Jul 2022 10:47:57 -0700 (PDT)
+        bh=YgD9TwGCuuBHZJnCn7bWlJjphN4d2OaC6VP0Q8F71/Y=;
+        b=LMeYsudttGq8PYP8WIbDTsSs9YBBuVh9hIXPELzH4FS7mAUC2ANPWY6GsFTnmduptq
+         CQ+Qt1Vog1adNfsa/0d7CvLzBsJQZxnhD9TCc4pkHPOKR3EYrhox+kfbVzsSSZuxwpcj
+         qRnppLquqxvIAUqbDo6R7hfaZiyybYle4rFuIzRm2gpmmwLUmveUymDzkhjyjM2ZJl6E
+         wp25yqbjPx7oErpRBGD1BjOx+j7eKQeDoO3zZGVwh1wLZkT0MicSrX0c0rTrHikRdyZc
+         /reQm8CfoUu4w3L0Hl5AbGy2VJBSlA7kzB7Rqdi+PVvqdmM1YTbx6+yP43tvIS0Y5pNx
+         qavQ==
+X-Gm-Message-State: ACgBeo1cwe5w0NLEuv6tHkc8OTzHG1yjE2ZecSfuitFq85qZz5LHZA5o
+        3ughKSnOVzzOfpR+jhbDkmWCfw==
+X-Google-Smtp-Source: AA6agR7dDfo38veMxE4mlFaHX7QVEzFbUI9cbBpmfuWUFb3j2a5ZD81IPQKvNbpkBH6jUed/bFzvFQ==
+X-Received: by 2002:a17:903:18f:b0:16d:6e7a:44b with SMTP id z15-20020a170903018f00b0016d6e7a044bmr13723404plg.113.1659289681256;
+        Sun, 31 Jul 2022 10:48:01 -0700 (PDT)
 Received: from localhost.localdomain ([2405:201:c00a:a073:c5e8:48d3:6a8c:6418])
-        by smtp.gmail.com with ESMTPSA id n5-20020a170903110500b0016d3935eff0sm7812062plh.176.2022.07.31.10.47.53
+        by smtp.gmail.com with ESMTPSA id n5-20020a170903110500b0016d3935eff0sm7812062plh.176.2022.07.31.10.47.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Jul 2022 10:47:57 -0700 (PDT)
+        Sun, 31 Jul 2022 10:48:00 -0700 (PDT)
 From:   Jagan Teki <jagan@edgeble.ai>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Kever Yang <kever.yang@rock-chips.com>
 Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Jianqun Xu <jay.xu@rock-chips.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Jagan Teki <jagan@edgeble.ai>
-Subject: [PATCH v2 05/20] soc: rockchip: io-domain: Add RV1126 IO domains
-Date:   Sun, 31 Jul 2022 23:17:11 +0530
-Message-Id: <20220731174726.72631-6-jagan@edgeble.ai>
+        Jagan Teki <jagan@edgeble.ai>, linux-gpio@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 06/20] dt-bindings: pinctrl: rockchip: Document RV1126 pinctrl
+Date:   Sun, 31 Jul 2022 23:17:12 +0530
+Message-Id: <20220731174726.72631-7-jagan@edgeble.ai>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220731174726.72631-1-jagan@edgeble.ai>
 References: <20220731174726.72631-1-jagan@edgeble.ai>
@@ -73,59 +73,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jianqun Xu <jay.xu@rock-chips.com>
+Document dt-bindings for RV1126 SoC pinctrl support.
 
-Add IO domains support for RV1126 SoC.
-
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
-Signed-off-by: Jianqun Xu <jay.xu@rock-chips.com>
+Cc: linux-gpio@vger.kernel.org
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Jagan Teki <jagan@edgeble.ai>
 ---
 Changes for v2:
-- none
+- collect Krzysztof ack
 
- drivers/soc/rockchip/io-domain.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/soc/rockchip/io-domain.c b/drivers/soc/rockchip/io-domain.c
-index 9df513d1219b..6619256c2d11 100644
---- a/drivers/soc/rockchip/io-domain.c
-+++ b/drivers/soc/rockchip/io-domain.c
-@@ -491,6 +491,22 @@ static const struct rockchip_iodomain_soc_data soc_data_rv1108_pmu = {
- 	},
- };
+diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+index 677a285ca416..b486f41df65f 100644
+--- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+@@ -47,6 +47,7 @@ properties:
+       - rockchip,rk3568-pinctrl
+       - rockchip,rk3588-pinctrl
+       - rockchip,rv1108-pinctrl
++      - rockchip,rv1126-pinctrl
  
-+static const struct rockchip_iodomain_soc_data soc_data_rv1126_pmu = {
-+	.grf_offset = 0x140,
-+	.supply_names = {
-+		NULL,
-+		"vccio1",
-+		"vccio2",
-+		"vccio3",
-+		"vccio4",
-+		"vccio5",
-+		"vccio6",
-+		"vccio7",
-+		"pmuio0",
-+		"pmuio1",
-+	},
-+};
-+
- static const struct of_device_id rockchip_iodomain_match[] = {
- 	{
- 		.compatible = "rockchip,px30-io-voltage-domain",
-@@ -544,6 +560,10 @@ static const struct of_device_id rockchip_iodomain_match[] = {
- 		.compatible = "rockchip,rv1108-pmu-io-voltage-domain",
- 		.data = &soc_data_rv1108_pmu
- 	},
-+	{
-+		.compatible = "rockchip,rv1126-pmu-io-voltage-domain",
-+		.data = &soc_data_rv1126_pmu
-+	},
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, rockchip_iodomain_match);
+   rockchip,grf:
+     $ref: "/schemas/types.yaml#/definitions/phandle"
 -- 
 2.25.1
 
