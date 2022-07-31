@@ -2,82 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC68F585E59
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 11:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85F9E585E7F
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 12:49:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236388AbiGaJyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jul 2022 05:54:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52420 "EHLO
+        id S231267AbiGaKt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jul 2022 06:49:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236339AbiGaJyu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 05:54:50 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2683120A3
-        for <devicetree@vger.kernel.org>; Sun, 31 Jul 2022 02:54:48 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id 7so14684602ybw.0
-        for <devicetree@vger.kernel.org>; Sun, 31 Jul 2022 02:54:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BsZfWrLyYjP0/eroAD6Tswpaa/jZnIwA/CULSdWEsRw=;
-        b=Te2BLHgKyWcngv+lgmyImbh71a//Cv1duStFCayIsf0NUJPLngkUldq0f9S3qHK7Cx
-         c/0zzsaMtN0H1qc9Du2fJt4BBAJHbKOC12EeBPe9qcZ4SexySj8dOm4sHreXcyfG6MAP
-         YLps9hBwq0H97frk/FYEQgEw93EIKYleJUwyXyyghkNag4m0gP/KYmGiDlGo72fc8H2i
-         9HXv/47I3Lo1HbyjZJ6ZNKEKeMhnYkP3KQ+2NIoTou3FNknkV32ZSU0e7T7ayzeUL4dk
-         CG1xp8yBmEO3zY2hkSKezY6hmorwGhaERPgJc1L3P88xj+XzfaXeWQ5/FZce9JZG6dHe
-         Q2FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BsZfWrLyYjP0/eroAD6Tswpaa/jZnIwA/CULSdWEsRw=;
-        b=uSI8Rus1TX4BlSHTCndG0sqteu6yL1IOmlS0XMGmHG9XAAbgQeV1zYjhrlpmzXOcJc
-         lh+xBRitDOJHw8yA97Bzu0zOtqoL6WaBltcBayU36EuLkZtoOGk5Yuiytq6rkK1s+9OH
-         yup9Kf9nKXxfH1NIKNpo7xFPDvyCi7fco3nKuqhzobtCaNzMuUfjAxEswUP7cS9btw1W
-         heeYUs6xE/f0xXRtFPIbM4NPEQv0uT11+IHww6Vz12nyHOYgWAFakkq3Ukq3YUhKweHm
-         9BpOOBKm5dN0nFUyXELFcT0D4bNrjdnY4D74YtPDmPLNIT5QSlIsqR2+0WYRFi8BDf0v
-         fkpQ==
-X-Gm-Message-State: ACgBeo0rm2m9fYiCUFzc7u+/ZxMcLpZ338BMkURi0Lj4BMJX74PA+jd+
-        unM1AFJYDa1F4NhTj2XUMNwCZDfJHcrHUU9Uf2hu4w==
-X-Google-Smtp-Source: AA6agR47nDSR8GcbtgCBHh+yHO9YCzoEII6fBOCusqMmxOnIcuKViwritOpcw9qD7bVBj07lvPbygE5GF3WtPvievts=
-X-Received: by 2002:a25:424f:0:b0:671:816f:6979 with SMTP id
- p76-20020a25424f000000b00671816f6979mr7555758yba.26.1659261287749; Sun, 31
- Jul 2022 02:54:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <20220723224949.1089973-5-luzmaximilian@gmail.com> <20220726143005.wt4be7yo7sbd3xut@bogus>
- <829c8fee-cae5-597d-933d-784b4b57bd73@gmail.com> <20220726154138.74avqs6iqlzqpzjk@bogus>
- <d1bc99bb-82ce-aa6e-7fad-e9309fa1c19b@gmail.com> <7284953b-52bb-37ac-fbe1-1fa845c44ff9@linaro.org>
- <3d752603-365d-3a33-e13e-ca241cee9a11@gmail.com> <20220727132437.pjob3z2nyxsuxgam@bogus>
- <CAC_iWj+Pn+h8k=fuDHzYwqD0g4m6jGRt8sCzcz+5+rYqvz9q4w@mail.gmail.com>
- <fd922f0f-99fd-55a3-a0b5-b62ad2dbfb45@gmail.com> <CAC_iWjLWBJLth26ifFfHvimProHZu_w5SjQNWSH_D2Fs_JXjbA@mail.gmail.com>
- <b703f678-b2c5-cdeb-ac40-9646e043d1c3@gmail.com> <CAC_iWjLrntWuJUzVuRi0ZOtG6JXNwz7SbS2mrqpuTgU5TV6rQA@mail.gmail.com>
- <d5a19e17-08eb-8bd6-ea18-5da638d13622@gmail.com>
-In-Reply-To: <d5a19e17-08eb-8bd6-ea18-5da638d13622@gmail.com>
-From:   Ilias Apalodimas <ilias.apalodimas@linaro.org>
-Date:   Sun, 31 Jul 2022 12:54:11 +0300
-Message-ID: <CAC_iWj+mEEAVzZ-_Cn9KKw6H9sUB9sz8f16neXi-wXFXWSLycg@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dt-bindings: firmware: Add Qualcomm UEFI Secure
- Application client
-To:     Maximilian Luz <luzmaximilian@gmail.com>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229484AbiGaKt5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 06:49:57 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E4749FC8;
+        Sun, 31 Jul 2022 03:49:54 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 20F0ECE0E5F;
+        Sun, 31 Jul 2022 10:49:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAF50C433C1;
+        Sun, 31 Jul 2022 10:49:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659264588;
+        bh=PUNN+rCT3YXN5pehv7cULkzpQnreNsgjU2b4qW3dOto=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bejCl17Yd2Tvvo8nEdqDOHsy6MvrBm2YL4gdQtABzahCWd1IyD+yGqMbF12AxcAWe
+         qAygk10Ha3H7fLFiBYQSB4iWD8kP2ijEKXmypi14eeKaUCHteH4bhwLNmaBA6Bp2vT
+         niOdnThWuwAMSrAFmciEp7SwuJkvJCdV+xSsz1NR8TnBHwOFi3s9AmyHhKwNiUfI87
+         T1Eg1ckCHjMqwRXwMk+cHD9wlP1VYfhCv1AU0WOBX5W9xX7nAp1xgR06+kSBUCF73O
+         oDuiVbu2X4nk0Ec512FsjObYmYNNDOTvLjek+grtmp63BtCjYzqdbVEJqFNsla+Vqc
+         Rw/q6SHFNAfjA==
+Date:   Sun, 31 Jul 2022 11:59:55 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Mark Brown <broonie@kernel.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Marek Belisko <marek@goldelico.com>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 1/1] spi/panel: dt-bindings: drop CPHA and CPOL from
+ common properties
+Message-ID: <20220731115955.1977f429@jic23-huawei>
+In-Reply-To: <20220722191539.90641-2-krzysztof.kozlowski@linaro.org>
+References: <20220722191539.90641-1-krzysztof.kozlowski@linaro.org>
+        <20220722191539.90641-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,118 +69,131 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maximilian,
+On Fri, 22 Jul 2022 21:15:39 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-On Thu, 28 Jul 2022 at 20:27, Maximilian Luz <luzmaximilian@gmail.com> wrote:
->
+> The spi-cpha and spi-cpol properties are device specific and should be
+> accepted only if device really needs them.  Drop them from common
+> spi-peripheral-props.yaml schema, mention in few panel drivers which use
+> them and include instead in the SPI controller bindings.  The controller
+> bindings will provide CPHA/CPOL type validation and one place for
+> description.  Each device schema must list the properties if they are
+> applicable.
+> 
+> Suggested-by: Jonathan Cameron <jic23@kernel.org>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-[...]
+This seems like a good solution to me.
 
-> >>>>>
-> >>>>> [1] https://git.linaro.org/people/ilias.apalodimas/net-next.git/log/?h=setvar_rt_optee_3
-> >>>>
-> >>>> I would very much like to avoid the need for special bootloaders. The
-> >>>> devices we're talking about are WoA devices, meaning they _should_
-> >>>> ideally boot just fine with EFI and ACPI.
-> >>>
-> >>> I've already responded to following email, but I'll repeat it here for
-> >>> completeness. It's not a special bootloader.  It's the opposite, it's
-> >>> a generic UEFI compliant bootloader which takes advantage of the fact
-> >>> EFI is extensible. We are doing something very similar in how we load
-> >>> our initrd via the EFI_LOAD_FILE2 protocol.  Whether Qualcomm can add
-> >>> that to their bootloaders is a different topic though.  But at some
-> >>> point we need to draw a line than keep overloading the DT because a
-> >>> vendor decided to go down it's own path.
-> >>
-> >> But still, you're asking users to install an extra thing in the boot
-> >> chain.
-> >
-> > Not users.  EFI firmware implementations that want to support this in
-> > a generic way.
->
-> The whole point here is that we don't have control over that. I'd like
-> to fix the firmware, but we're talking about WoA devices where, let's
-> face it, both device and SoC vendor don't really care about Linux. Even
-> if you'd convince them to implement that for future generations, you'd
-> still need them to push firmware updates for older generations.
-> Generations that are end-of-life. IMHO, we should still try support
-> those. Or we just say "sorry, Linux doesn't support that on your WoA
-> device".
+Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Yea we agree on that.  I've mentioned on a previous mail that whether
-Qualcomm wants to support this in a generic way is questionable, since
-we have no control over the firmware.  My only 'objection' is that the
-kernel has a generic way of discovering which runtime services are
-supported, which we will completely ignore based on some DT entries.
+> ---
+>  .../bindings/display/panel/lgphilips,lb035q02.yaml    |  3 +++
+>  .../bindings/display/panel/samsung,ld9040.yaml        |  3 +++
+>  .../bindings/display/panel/sitronix,st7789v.yaml      |  3 +++
+>  .../devicetree/bindings/display/panel/tpo,td.yaml     |  3 +++
+>  .../devicetree/bindings/spi/spi-controller.yaml       | 11 +++++++++++
+>  .../devicetree/bindings/spi/spi-peripheral-props.yaml | 10 ----------
+>  6 files changed, 23 insertions(+), 10 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+> index 5e4e0e552c2f..628c4b898111 100644
+> --- a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+> @@ -21,6 +21,9 @@ properties:
+>    enable-gpios: true
+>    port: true
+>  
+> +  spi-cpha: true
+> +  spi-cpol: true
+> +
+>  required:
+>    - compatible
+>    - enable-gpios
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml b/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml
+> index d525165d6d63..c0fabeb38628 100644
+> --- a/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml
+> @@ -42,6 +42,9 @@ properties:
+>    panel-height-mm:
+>      description: physical panel height [mm]
+>  
+> +  spi-cpha: true
+> +  spi-cpol: true
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
+> index 9e1d707c2ace..d984b59daa4a 100644
+> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
+> @@ -23,6 +23,9 @@ properties:
+>    backlight: true
+>    port: true
+>  
+> +  spi-cpha: true
+> +  spi-cpol: true
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/display/panel/tpo,td.yaml b/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
+> index f902a9d74141..e8c8ee8d7c88 100644
+> --- a/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
+> @@ -28,6 +28,9 @@ properties:
+>    backlight: true
+>    port: true
+>  
+> +  spi-cpha: true
+> +  spi-cpol: true
+> +
+>  required:
+>    - compatible
+>    - port
+> diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> index 678cee68b52a..655713fba7e2 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+> @@ -95,6 +95,17 @@ patternProperties:
+>      type: object
+>      $ref: spi-peripheral-props.yaml
+>  
+> +    properties:
+> +      spi-cpha:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          The device requires shifted clock phase (CPHA) mode.
+> +
+> +      spi-cpol:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          The device requires inverse clock polarity (CPOL) mode.
+> +
+>      required:
+>        - compatible
+>        - reg
+> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> index 5e32928c4fc3..2349f83c07f3 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> @@ -34,16 +34,6 @@ properties:
+>      description:
+>        The device requires 3-wire mode.
+>  
+> -  spi-cpha:
+> -    $ref: /schemas/types.yaml#/definitions/flag
+> -    description:
+> -      The device requires shifted clock phase (CPHA) mode.
+> -
+> -  spi-cpol:
+> -    $ref: /schemas/types.yaml#/definitions/flag
+> -    description:
+> -      The device requires inverse clock polarity (CPOL) mode.
+> -
+>    spi-cs-high:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
 
-In any case let's find something that fits OP-TEE as well, since I can
-send those patches afterwards.
-
->
-> >> That's what I mean by "special". So the situation would then be
-> >> this: User needs a) GRUB (or something similar) for booting the kernel
-> >> (or dual-booting, ...), b) DTBLoader for loading the device-tree because
-> >> we don't support the ACPI Qualcomm provided, and c) your thing for EFI
-> >> variables and potentially other firmware fix-ups. b) and c) are both
-> >> things that "normal" users don't expect. IMHO we should try to get rid
-> >> of those "non-standard" things, not add more.
-> >
-> > But that's exactly why EFI is extensible .  You can have non standard
-> > functionality on your firmware for cases like this which doesn't need
-> > to land in the spec.
-> >
-> >>
-> >>>>    From an end-user perspective, it's annoying enough that we'll have to
-> >>>> stick with DTs for the time being due to the use of PEPs in ACPI. I
-> >>>> really don't want to add some special bootloader for fixups to that.
-> >>>> Also, this would just move the problem from kernel to bootloader.
-> >>>
-> >>> But it *is* a bootloader problem.  The bootloader is aware of the fact
-> >>> that it can't provide runtime services for X reasons and that's
-> >>> exactly why we are trying to set EFI_RT_PROPERTIES_TABLE correctly
-> >>> from the firmware.  All we are doing is install a config table to tell
-> >>> the OS "I can't do that, can you find a way around it?".
-> >>
-> >> Sure, but is making the Linux installation process more device
-> >> dependent and complicated really the best way to solve this?
-> >
-> > Isn't it device dependent already?  That boat has sailed already since
-> > we need to change the very definition of runtime services and replace
-> > them with OS specific ones.  If we add it on the DT, you'll end up
-> > with different DTs per OS and potentially per use case.  In my head
-> > the DTs should be part of the firmware (and authenticated by the
-> > firmware as well) instead of loading whatever we want each time.  By
-> > using a config table we can add a u64 (random thought),  that tells
-> > the kernel which TEE implementation will handle variable storage.  So
-> > we can have a common extension to boot loaders, which at least uses
-> > EFI interfaces to communicate the functionality.
->
-> The only thing that is making the installation-process for end-users
-> device dependent is installing the DTB. We can handle the device
-> specific stuff in the kernel, just as we already handle buggy devices.
->
-> Further, you seem to assume that these devices provide a DT in the first
-> place. WoA devices use ACPI, so they don't. But for the time being (as
-> discussed elsewhere) we unfortunately need to stick with DTs and can't
-> really use ACPI. I agree that we should avoid OS and use-case specific
-> DTs, but I don't see how this would make a DT use-case or OS specific.
-> Things are firmware specific, the interface doesn't change with a
-> different OS, and we're only indicating the presence of that interface.
->
-> My current suggestion (already sent to Sudeep earlier) is (roughly)
-> this: Add one compatible for the TrEE / TrustZone interface. Then decide
-> to load or instantiate what needs to be loaded in the driver for that.
-> That (depending on maybe SoC / platform / vendor) includes installing
-> the efivar operations. This way we don't have to fill the DT with the
-> specific things running in firmware.
-
-As far as OP-TEE is concerned, I think we can make the 'feature'
-discoverable.  I'll go propose that to op-tee but if that gets
-accepted, we don't need any extra nodes (other than the existing one),
-to wire up efivars_register().
-
-Thanks
-/Ilias
->
-> Regards,
-> Max
