@@ -2,166 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B44B9585FB0
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 18:04:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5BC1585FCB
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 18:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237463AbiGaQCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jul 2022 12:02:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53234 "EHLO
+        id S237544AbiGaQYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jul 2022 12:24:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237471AbiGaQCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 12:02:47 -0400
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C421FD06;
-        Sun, 31 Jul 2022 09:02:46 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id j20so3025949ila.6;
-        Sun, 31 Jul 2022 09:02:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=Yq7IbsWb6KGMKaLqYMBkrgh9qZVrTfcDeSB4X4YswxE=;
-        b=DESqx0VFhfjV99BEzXS4wn3MlhP1FqBKKAs8tm3KOsOPaEO9Z+JDvv/DZEc4BF8a97
-         ak4gZ4YEdWpo4bMnKyFVSUqIvJNb3jPk6IK6UUoE+dI97ZcHnf9Vo3veb5UcDb1WujuX
-         mttQwDwtgqPzkmNOMiNE3JPdwGkvJDafupikUAxFT5bfhj3/3+AiOT8e6BXu16ay/4/D
-         vlcF3Ndt4Qc25hK8LxLnVrZi6OB+O+9QtoXnGE95pgDRJVmp5u2vdx6DyuXBPxIzU0qq
-         gKVWA56T55xS05P8SJSGU6yCXxLxuEZMa8Dgkh8tO05mNQ6dOMXRnCWtk6TimX1fn97R
-         cOeg==
-X-Gm-Message-State: AJIora/IU0m5wXDSZxm5cszyx53cTzepf1x3AIunGaLX10lz80SP9lVJ
-        1KBQotk3/C4lBas+3LOc4/eMisvVCw==
-X-Google-Smtp-Source: AGRyM1s+ueUdhvIOJSejGa9xW8hJwCQnq39jrQwJI44xF3l1OTLOhZUlqkBkEWz7m7XcKWQVUFVkUg==
-X-Received: by 2002:a92:6f0a:0:b0:2d9:24b5:9401 with SMTP id k10-20020a926f0a000000b002d924b59401mr4454365ilc.89.1659283365495;
-        Sun, 31 Jul 2022 09:02:45 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m3-20020a924a03000000b002de2b639101sm2891012ilf.4.2022.07.31.09.02.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Jul 2022 09:02:44 -0700 (PDT)
-Received: (nullmailer pid 3380586 invoked by uid 1000);
-        Sun, 31 Jul 2022 16:02:39 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     John Crispin <john@phrozen.org>, Jakub Kicinski <kuba@kernel.org>,
-        UNGLinuxDriver@microchip.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
-        Aleksander Jan Bajkowski <olek2@wp.pl>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Pawel Dembicki <paweldembicki@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        Mans Rullgard <mans@mansr.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Kurt Kanzenbach <kurt@linutronix.de>
-In-Reply-To: <20220731150006.2841795-1-vladimir.oltean@nxp.com>
-References: <20220731150006.2841795-1-vladimir.oltean@nxp.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: dsa: make phylink bindings required for CPU/DSA ports
-Date:   Sun, 31 Jul 2022 10:02:39 -0600
-Message-Id: <1659283359.435016.3380585.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S235773AbiGaQYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 12:24:38 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4CBBFD1B;
+        Sun, 31 Jul 2022 09:24:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 80F4FB80DA2;
+        Sun, 31 Jul 2022 16:24:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FA57C433C1;
+        Sun, 31 Jul 2022 16:24:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659284675;
+        bh=zIfT12tnwJq/DHxO3JDHCrsfY6cAZhMxyMpQL4k8BlQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=RHk92vJOFgnmG5gh1fBtXiDrUesy9CCx/dyDtAkatVjGDE38kWwdjK1Fda6hzMyrj
+         Yej741/bTVNdk76J0ZZ48AWj+bsPKLu54a97FYSkyUAJcN6CwV8/j2LGh9k22N8HAi
+         2wUzzTy74cass+mSMnsp2JAKBIWBYh/guGxtwx2vf9Cji+4T4D4GQ5FLgVOfVPXbxF
+         j9GHIBEFYnRa6hGh4Bn1LUA9ziSFHAwZUTmOrNfGxMl2uW2v8bRSOY+zzKqptqAQ+Q
+         bsQdKgCiRj84ztxkqwy23LXgny87CQsEwe3Na0Oe8+BdxCaVXLdBG98Mb4j9MvarGa
+         PMA7E2n+fcmWA==
+Date:   Sun, 31 Jul 2022 17:34:46 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Shreeya Patel <shreeya.patel@collabora.com>
+Cc:     lars@metafoo.de, robh+dt@kernel.org, Zhigang.Shi@liteon.com,
+        dmitry.osipenko@collabora.com, krisman@collabora.com,
+        andy.shevchenko@gmail.com, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, alvaro.soliverez@collabora.com
+Subject: Re: [PATCH v10 0/2] Add LTRF216A Driver
+Message-ID: <20220731173446.7400bfa8@jic23-huawei>
+In-Reply-To: <20220725104050.491396-1-shreeya.patel@collabora.com>
+References: <20220725104050.491396-1-shreeya.patel@collabora.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 31 Jul 2022 18:00:06 +0300, Vladimir Oltean wrote:
-> It is desirable that new DSA drivers are written to expect that all
-> their ports register with phylink, and not rely on the DSA core's
-> workarounds to skip this process.
+On Mon, 25 Jul 2022 16:10:48 +0530
+Shreeya Patel <shreeya.patel@collabora.com> wrote:
+
+> This patchset adds support for ltrf216a Ambient Light Sensor
+> and documents the DT bindings for the same.
+
+Series applied to the togreg branch of iio.git and pushed out as testing
+for the autobuilders to see if they can find anything we missed.
+
+Thanks for persisting with this!  Note that it will be queued up for
+next cycle and that I'll rebase my tree on rc1 once available.
+I won't push out as togreg (which is picked up by linux-next) until
+after that rebase.
+
+Thanks,
+
+Jonathan
+
 > 
-> To that end, DSA is being changed to warn existing drivers when such DT
-> blobs are in use:
-> https://patchwork.kernel.org/project/netdevbpf/cover/20220729132119.1191227-1-vladimir.oltean@nxp.com/
+> Changes in v10
+>   - Handle !CONFIG_PM scenario similar to how other IIO drivers
+>     do it.
+>   - Fix kernel test robot warning.
 > 
-> Introduce another layer of validation in the DSA DT schema, and assert
-> that CPU and DSA ports must have phylink-related properties present.
+> Changes in v9
+>   - Add LTRF216A_MAIN_STATUS register in volatile function.
+>   - Update the datasheet link.
 > 
-> Suggested-by: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
-> I've sent this patch separately because at least right now I don't have
-> a reason to resend the other 4 patches linked above, and this has no
-> dependency on those.
+> Changes in v8
+>   - Add caching mechanism to restore register state after h/w resume.
+>   - Add callback functions and disable locking in regmap config.
+>   - Update mutex comment as per it's current scope in the driver.
+>   - Add Shreeya as author of the driver.
+>   - Make some minor cleanups.
 > 
->  .../devicetree/bindings/net/dsa/dsa-port.yaml | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
+> Changes in v7
+>   - Add regmap support.
+>   - Fix runtime power management implementation.
+>   - Fix the ordering of devm and non-devm functions.
+>   - Use DEFINE_RUNTIME_DEV_PM_OPS macro
+>   - Fix the error reported by kernel test robot for bindings.
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/dsa/dsa-port.yaml:91:3: [warning] wrong indentation: expected 4 but found 2 (indentation)
-./Documentation/devicetree/bindings/net/dsa/dsa-port.yaml:92:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-./Documentation/devicetree/bindings/net/dsa/dsa-port.yaml:94:5: [warning] wrong indentation: expected 6 but found 4 (indentation)
-./Documentation/devicetree/bindings/net/dsa/dsa-port.yaml:95:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
-./Documentation/devicetree/bindings/net/dsa/dsa-port.yaml:97:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
-./Documentation/devicetree/bindings/net/dsa/dsa-port.yaml:99:7: [warning] wrong indentation: expected 8 but found 6 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.example.dtb: switch@8: ethernet-ports:ethernet-port@3: 'phy-mode' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.example.dtb: switch@8: Unevaluated properties are not allowed ('ethernet-ports' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/arrow,xrs700x.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.example.dtb: switch@ff240000: ethernet-ports:port@0: 'phy-mode' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.example.dtb: switch@ff240000: ethernet-ports:port@0: 'oneOf' conditional failed, one must be fixed:
-	'fixed-link' is a required property
-	'phy-handle' is a required property
-	'managed' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.example.dtb: switch@ff240000: Unevaluated properties are not allowed ('dsa,member', 'ethernet-ports' were unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/brcm,b53.example.dtb: switch@36000: ethernet-ports:port@8: 'phy-mode' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/brcm,b53.example.dtb: switch@36000: Unevaluated properties are not allowed ('ethernet-ports' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/microchip,ksz.example.dtb: switch@0: ethernet-ports:port@5: 'phy-mode' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/microchip,ksz.example.dtb: switch@0: Unevaluated properties are not allowed ('ethernet-ports' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/microchip,ksz.example.dtb: switch@1: ethernet-ports:port@6: 'phy-mode' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/microchip,ksz.example.dtb: switch@1: Unevaluated properties are not allowed ('ethernet-ports' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+> Changes in v6
+>   - Fix some errors reported by kernel test robot.
+>   - Add protocol details for the datasheet link.
+>   - Remove useless assignments.
+>   - Add unit details for read data delay macro.
+>   - Use pm_sleep_ptr().
+> 
+> Changes in v5
+>   - Add power management support.
+>   - Add reset functionality.
+>   - Use readx_poll_timeout() to get data.
+>   - Cleanup some of the redundant code.
+>   - Update int_time_fac after I2C write is successful.
+>   - Rename mutex to lock.
+>   - Use Reverse Xmas tree pattern for all variable definitions.
+>   - Improve error handling messages and add error codes.
+>   - Add one more MODULE_AUTHOR.
+>   - Remove cleardata which was reading data for infrared light.
+>   - Remove patch for deprecated vendor prefix [PATCH v4 3/3].
+>   - Remove deprecated string from DT binding document.
+> 
+> Changes in v4
+>   - Add more descriptive comment for mutex lock
+>   - Fix mutex locking in read_raw()
+>   - Use i2c_smbus_read_i2c_block_data()
+> 
+> Changes in v3
+>   - Use u16 instead of u8 for int_time_fac
+>   - Reorder headers in ltrf216a.c file
+>   - Remove int_time_mapping table and use int_time_available
+>   - Fix indentation in the bindings file.
+> 
+> Changes in v2
+>   - Add support for 25ms and 50ms integration time.
+>   - Rename some of the macros as per names given in datasheet
+>   - Add a comment for the mutex lock
+>   - Use read_avail callback instead of attributes and set the
+>     appropriate _available bit.
+>   - Use FIELD_PREP() at appropriate places.
+>   - Add a constant lookup table for integration time and reg val
+>   - Use BIT() macro for magic numbers.
+>   - Improve error handling at few places.
+>   - Use get_unaligned_le24() and div_u64()
+>   - Use probe_new() callback and devm functions
+>   - Return errors in probe using dev_err_probe()
+>   - Use DEFINE_SIMPLE_DEV_PM_OPS()
+>   - Correct the formula for lux to use 0.45 instead of 0.8
+>   - Add interrupt and power supply property in DT bindings
+>   - Add vendor prefix name as per the alphabetical order.
+> 
+> 
+> Shreeya Patel (2):
+>   dt-bindings: Document ltrf216a light sensor bindings
+>   iio: light: Add support for ltrf216a sensor
+> 
+>  .../bindings/iio/light/liteon,ltrf216a.yaml   |  49 ++
+>  drivers/iio/light/Kconfig                     |  11 +
+>  drivers/iio/light/Makefile                    |   1 +
+>  drivers/iio/light/ltrf216a.c                  | 537 ++++++++++++++++++
+>  4 files changed, 598 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/liteon,ltrf216a.yaml
+>  create mode 100644 drivers/iio/light/ltrf216a.c
+> 
 
