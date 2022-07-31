@@ -2,111 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA367585DE5
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 09:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F51E585E3A
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 10:54:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236431AbiGaHST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jul 2022 03:18:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40946 "EHLO
+        id S236446AbiGaIyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jul 2022 04:54:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232200AbiGaHSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 03:18:17 -0400
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84499BCB1;
-        Sun, 31 Jul 2022 00:18:16 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 6236042597;
-        Sun, 31 Jul 2022 07:18:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
-        t=1659251891; bh=kfVzooG27qyJrlBGaONv8AvOhI3FVvCdLGwZwOKwhbo=;
-        h=Date:Subject:To:References:From:In-Reply-To;
-        b=kUVkwqCkA7rnHeP4k1RTrP9kUKae5GjVXCA9K8P0mUZ87H1IYM+rB1KP9mTd8qfJT
-         yz7D9vVK04L/HaxYwgX6BSjpnPVipbKQIBdGa8aVBCxJjyLl1Y/B5GCuRnqFVbumT2
-         Pv+3eTWXl8tGsVW5innkrciJCh+9vZPFqhL41seTPT58y/bt18KC88yqCaQ9wKUU6q
-         QBVLLjuP9X0XzxkFDynhihM7TfWnc6qv6z9UtaYZITIw0yKx1GidfScWmgp8fqifMn
-         6YRxXl8yaDbpWSpivbfrNg3vCEMMcvmKitr7uLVzXoopnlxV1lx4si9oUENXILUCK7
-         sv2v9iv8TJ4GQ==
-Message-ID: <f3941493-de9d-1a5f-af74-ced4708dd6ce@marcan.st>
-Date:   Sun, 31 Jul 2022 16:17:59 +0900
+        with ESMTP id S229456AbiGaIyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 04:54:07 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA35AB1EF;
+        Sun, 31 Jul 2022 01:54:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1659257594; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=SwhoDV58nqvepP1FZQz3lBk58BugH67wtYS9Q533jp/uMQ95jx/de2mkaj+62SkIkjlgHeIiY+1xXVwbowtxMVQSMGIsLUPYArVtUwdofYo65L5mSbNliRl+N1c6lBRou/bwLNp/Ytm3XGj+hu8CzstSszG6zxYhvc7p9BAplD8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1659257594; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=e44jgZLP1HEmwyKrbQI6PjgpbbGNrnF9zlgtzzmI5E4=; 
+        b=W/wQbvX1Ka30D8KO87ltRJuydbjYfjuTCwKDkTfz61x/+Bl7XNmO5VIe/ZPzFfp7gacNR4CwLADFlnl3G+TWqQ5FTuiI14dUv89nH0lXKqTYtL3wyUjnc0+9O2SPGwJNJAN6BBQr704g0DC0syC8PvXe+4JMLB8qnOgir+yQkEw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1659257594;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=e44jgZLP1HEmwyKrbQI6PjgpbbGNrnF9zlgtzzmI5E4=;
+        b=KjN7uqVX/myj83W3MyCfA25qyyvecseRVcrxkS1mx32RyHFQTbo8l9HQhAQFM/uO
+        Yq5+jpJp0R+wLCCPeQNp9x+6pCVOz3ZvrpT7MH5fY6uz8yWp8S1pk6FQTyM/rF5JUo5
+        IxTGXg/gzfU/JrU7Kwjzt3SF5UuUR/oCROgWLHRU=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1659257591946592.7858418300208; Sun, 31 Jul 2022 01:53:11 -0700 (PDT)
+Message-ID: <6b29e16c-d4b8-93af-ce0f-84d308a88089@arinc9.com>
+Date:   Sun, 31 Jul 2022 11:53:05 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/3] dt-bindings: power: drop quotes when not needed
-Content-Language: es-ES
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 0/4] completely rework mediatek,mt7530 binding
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Sebastian Reichel <sre@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        David Lechner <david@lechnology.com>,
-        Iskren Chernev <iskren.chernev@gmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Matheus Castello <matheus@castello.eng.br>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-        Purism Kernel Team <kernel@puri.sm>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        =?UTF-8?Q?Fern=c3=a1ndez_Rojas?= <noltari@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Klein <michael@fossekall.de>,
-        Dan Murphy <dmurphy@ti.com>,
-        Ricardo Rivera-Matos <r-rivera-matos@ti.com>,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        "Andrew F. Davis" <afd@ti.com>, Tony Lindgren <tony@atomide.com>,
-        Artur Rojek <contact@artur-rojek.eu>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        David Heidelberg <david@ixit.cz>,
-        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
-From:   Hector Martin <marcan@marcan.st>
-In-Reply-To: <20220726115748.101015-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220730142627.29028-1-arinc.unal@arinc9.com>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <20220730142627.29028-1-arinc.unal@arinc9.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2022 20.57, Krzysztof Kozlowski wrote:
-> Id and schema fields do not need quotes.
+This is for net-next, I forgot to include it in the subject.
+
+Arınç
+
+On 30.07.2022 17:26, Arınç ÜNAL wrote:
+> Hello.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  .../devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml      | 4 ++--
->  .../devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml     | 4 ++--
->  .../devicetree/bindings/power/apple,pmgr-pwrstate.yaml        | 2 +-
->  .../devicetree/bindings/power/brcm,bcm63xx-power.yaml         | 4 ++--
->  Documentation/devicetree/bindings/power/renesas,apmu.yaml     | 4 ++--
->  .../devicetree/bindings/power/renesas,rcar-sysc.yaml          | 4 ++--
->  6 files changed, 11 insertions(+), 11 deletions(-)
+> This patch series brings complete rework of the mediatek,mt7530 binding.
 > 
-
-For apple,pmgr-pwrstate:
-
-Reviewed-by: Hector Martin <marcan@marcan.st>
-
-- Hector
+> The binding is checked with "make dt_binding_check
+> DT_SCHEMA_FILES=mediatek,mt7530.yaml".
+> 
+> If anyone knows the GIC bit for interrupt for multi-chip module MT7530 in
+> MT7623AI SoC, let me know. I'll add it to the examples.
+> 
+> If anyone got a Unielec U7623 or another MT7623AI board, please reach out.
+> 
+> Arınç ÜNAL (4):
+>    dt-bindings: net: dsa: mediatek,mt7530: make trivial changes
+>    dt-bindings: net: dsa: mediatek,mt7530: update examples
+>    dt-bindings: net: dsa: mediatek,mt7530: update binding description
+>    dt-bindings: net: dsa: mediatek,mt7530: update json-schema
+> 
+>   .../bindings/net/dsa/mediatek,mt7530.yaml       | 1006 +++++++++++++-----
+>   1 file changed, 764 insertions(+), 242 deletions(-)
+> 
+> 
