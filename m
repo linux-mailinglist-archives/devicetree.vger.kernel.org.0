@@ -2,60 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85F9E585E7F
-	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 12:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4279E585EC9
+	for <lists+devicetree@lfdr.de>; Sun, 31 Jul 2022 14:10:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231267AbiGaKt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jul 2022 06:49:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49798 "EHLO
+        id S236776AbiGaMKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jul 2022 08:10:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbiGaKt5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 06:49:57 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E4749FC8;
-        Sun, 31 Jul 2022 03:49:54 -0700 (PDT)
+        with ESMTP id S233137AbiGaMKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 08:10:09 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD28D2;
+        Sun, 31 Jul 2022 05:10:07 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 20F0ECE0E5F;
-        Sun, 31 Jul 2022 10:49:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAF50C433C1;
-        Sun, 31 Jul 2022 10:49:43 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 15A5960CBB;
+        Sun, 31 Jul 2022 12:10:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32468C433C1;
+        Sun, 31 Jul 2022 12:10:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659264588;
-        bh=PUNN+rCT3YXN5pehv7cULkzpQnreNsgjU2b4qW3dOto=;
+        s=k20201202; t=1659269406;
+        bh=4KI97k0DgnwajWPahn/uuCMNyFUWkGhGx/caSLwK5oI=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=bejCl17Yd2Tvvo8nEdqDOHsy6MvrBm2YL4gdQtABzahCWd1IyD+yGqMbF12AxcAWe
-         qAygk10Ha3H7fLFiBYQSB4iWD8kP2ijEKXmypi14eeKaUCHteH4bhwLNmaBA6Bp2vT
-         niOdnThWuwAMSrAFmciEp7SwuJkvJCdV+xSsz1NR8TnBHwOFi3s9AmyHhKwNiUfI87
-         T1Eg1ckCHjMqwRXwMk+cHD9wlP1VYfhCv1AU0WOBX5W9xX7nAp1xgR06+kSBUCF73O
-         oDuiVbu2X4nk0Ec512FsjObYmYNNDOTvLjek+grtmp63BtCjYzqdbVEJqFNsla+Vqc
-         Rw/q6SHFNAfjA==
-Date:   Sun, 31 Jul 2022 11:59:55 +0100
+        b=rTOg0/evvI8G2UEoMi6Ik3I9xtfC+uogodP/AcWlep4N2rXzQIKyZDZOusdHdGWQM
+         jh4SIazYlMWTHQAV29tEvm2Yg4KhYdf28B0I2jeWYwTo0y/kqKiODKS5W+QistXgUY
+         9sBV4kQtIuh24r2lRPBrZDzAA1jBBXxLjKRpXOlhFwmebn4dYqWj05iFbivjAWKeKW
+         CMf7N4b8L72gc2luv9CoUhneeimYLse6znzc4zH2OiTnyog2530oJD6LUfekvkUcoe
+         IEvnByIyjCbBnTltWtci0+5vfYsw7M411W1iZ7W3v7vjAjhYwKFcz9/kxrP/Xd7eUk
+         xkthq8UXcEwxg==
+Date:   Sun, 31 Jul 2022 13:20:18 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Marek Belisko <marek@goldelico.com>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 1/1] spi/panel: dt-bindings: drop CPHA and CPOL from
- common properties
-Message-ID: <20220731115955.1977f429@jic23-huawei>
-In-Reply-To: <20220722191539.90641-2-krzysztof.kozlowski@linaro.org>
-References: <20220722191539.90641-1-krzysztof.kozlowski@linaro.org>
-        <20220722191539.90641-2-krzysztof.kozlowski@linaro.org>
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: adc: ti,am3359-adc: add ti,am654-adc
+Message-ID: <20220731132018.058329d1@jic23-huawei>
+In-Reply-To: <20220728151650.GA899095-robh@kernel.org>
+References: <20220727155203.320929-1-krzysztof.kozlowski@linaro.org>
+        <20220728151650.GA899095-robh@kernel.org>
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -69,131 +59,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Jul 2022 21:15:39 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Thu, 28 Jul 2022 09:16:50 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-> The spi-cpha and spi-cpol properties are device specific and should be
-> accepted only if device really needs them.  Drop them from common
-> spi-peripheral-props.yaml schema, mention in few panel drivers which use
-> them and include instead in the SPI controller bindings.  The controller
-> bindings will provide CPHA/CPOL type validation and one place for
-> description.  Each device schema must list the properties if they are
-> applicable.
+> On Wed, 27 Jul 2022 17:52:03 +0200, Krzysztof Kozlowski wrote:
+> > Document the ti,am654-adc compatible already used in DTS:
+> > 
+> >   arch/arm64/boot/dts/ti/k3-am642-evm.dtb: adc: compatible:0: 'ti,am654-adc' is not one of ['ti,am3359-adc', 'ti,am4372-adc']
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  .../devicetree/bindings/iio/adc/ti,am3359-adc.yaml    | 11 ++++++++---
+> >  1 file changed, 8 insertions(+), 3 deletions(-)
+> >   
 > 
-> Suggested-by: Jonathan Cameron <jic23@kernel.org>
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-This seems like a good solution to me.
+Applied to the togreg branch of iio.git, but note that I've sent my last pull request
+for the coming merge window, so this is queued up for next cycle now.
 
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Let me know if I should take this via a fixes path instead.
 
-> ---
->  .../bindings/display/panel/lgphilips,lb035q02.yaml    |  3 +++
->  .../bindings/display/panel/samsung,ld9040.yaml        |  3 +++
->  .../bindings/display/panel/sitronix,st7789v.yaml      |  3 +++
->  .../devicetree/bindings/display/panel/tpo,td.yaml     |  3 +++
->  .../devicetree/bindings/spi/spi-controller.yaml       | 11 +++++++++++
->  .../devicetree/bindings/spi/spi-peripheral-props.yaml | 10 ----------
->  6 files changed, 23 insertions(+), 10 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
-> index 5e4e0e552c2f..628c4b898111 100644
-> --- a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
-> @@ -21,6 +21,9 @@ properties:
->    enable-gpios: true
->    port: true
->  
-> +  spi-cpha: true
-> +  spi-cpol: true
-> +
->  required:
->    - compatible
->    - enable-gpios
-> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml b/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml
-> index d525165d6d63..c0fabeb38628 100644
-> --- a/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/samsung,ld9040.yaml
-> @@ -42,6 +42,9 @@ properties:
->    panel-height-mm:
->      description: physical panel height [mm]
->  
-> +  spi-cpha: true
-> +  spi-cpol: true
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-> index 9e1d707c2ace..d984b59daa4a 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-> @@ -23,6 +23,9 @@ properties:
->    backlight: true
->    port: true
->  
-> +  spi-cpha: true
-> +  spi-cpol: true
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/display/panel/tpo,td.yaml b/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
-> index f902a9d74141..e8c8ee8d7c88 100644
-> --- a/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/tpo,td.yaml
-> @@ -28,6 +28,9 @@ properties:
->    backlight: true
->    port: true
->  
-> +  spi-cpha: true
-> +  spi-cpol: true
-> +
->  required:
->    - compatible
->    - port
-> diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> index 678cee68b52a..655713fba7e2 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-> @@ -95,6 +95,17 @@ patternProperties:
->      type: object
->      $ref: spi-peripheral-props.yaml
->  
-> +    properties:
-> +      spi-cpha:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          The device requires shifted clock phase (CPHA) mode.
-> +
-> +      spi-cpol:
-> +        $ref: /schemas/types.yaml#/definitions/flag
-> +        description:
-> +          The device requires inverse clock polarity (CPOL) mode.
-> +
->      required:
->        - compatible
->        - reg
-> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> index 5e32928c4fc3..2349f83c07f3 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> @@ -34,16 +34,6 @@ properties:
->      description:
->        The device requires 3-wire mode.
->  
-> -  spi-cpha:
-> -    $ref: /schemas/types.yaml#/definitions/flag
-> -    description:
-> -      The device requires shifted clock phase (CPHA) mode.
-> -
-> -  spi-cpol:
-> -    $ref: /schemas/types.yaml#/definitions/flag
-> -    description:
-> -      The device requires inverse clock polarity (CPOL) mode.
-> -
->    spi-cs-high:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
+Thanks,
+
+Jonathan
 
