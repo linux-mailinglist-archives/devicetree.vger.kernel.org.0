@@ -2,91 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A5B586D2F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 16:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE25A586D58
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 17:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232609AbiHAOqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 10:46:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60506 "EHLO
+        id S232430AbiHAPAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 11:00:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231732AbiHAOqE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 10:46:04 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F01D937F8E
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 07:46:02 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id u14-20020a05600c00ce00b003a323062569so5693721wmm.4
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 07:46:02 -0700 (PDT)
+        with ESMTP id S232507AbiHAPAg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 11:00:36 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7EC64C4
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 08:00:31 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id h8so7552233qvs.6
+        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 08:00:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc;
-        bh=FR8O4N8tNoaJYbvgZd1Cpg3goq3vbq55nVd9pbrgGqM=;
-        b=f+MZQ6S5tIRuf0Ya6Y7XT4KGe2PUHJ+Hsfw3Holdb0ubXJn0zbi2Lu2mMu8hl+h7OU
-         rWeaf3qm1lF12n0y6+5YVkqNgAa4W5ecoyldqaujoo1R2tslaXDmZuEDFxmaPFyM5ch2
-         fjexgkIne7vvglvpA2HpUQlrEDkM9UMAigaepzLk0qQ45peanef+MZpJrqGNsebPszjj
-         88FogTCKGPcWFqHbudBfbncCOlPz+2qGFRqARALnxvs7PonQ0XAX4L0II7c/ngtXQYna
-         PYESr0ximyGqWMC8mDnUQk3PTdmYheB9j4C+RD3C1NYov0BpugEtphGESktj9YnkefY1
-         l1bQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=VH9MjgED0AWITndim501l1CH8RMaZNy1yKl/Ru3+vOI=;
+        b=nvKz/XHSj68KdSTanByg6d4KCigA8S6DVIxtXtNsB5E82D3aY43nigcQSYITM3ssP3
+         O3oy90WdaMCut5i1JVBixoB329/SGYXcJ13oGCeYYYrXe32Gu8QIaOPA3XFfLA9pbqfp
+         YTDyaCEcMIp7VcnWdFzu0lLahnmMWB9Um2hUiKVbRngfc+lPFKyw1stelQPkVCogZj0k
+         iYsKXpEjYQ4om1eovrnOo7R0/gPU3mFPtAwK+4TmWKgVQMuXredBqnQt0GsWxFCGT6iz
+         mz8rdrAcVf7XSWYY0TfMXjygKYwRbwI3L2Sfp2/l8NdjfMzp81N0Wc5JZGToQhc19bkZ
+         WFYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc;
-        bh=FR8O4N8tNoaJYbvgZd1Cpg3goq3vbq55nVd9pbrgGqM=;
-        b=bxrn5f/oq+HL45jxk6N89V/J03YFfVZYxNzCQ2pcTlN0ma5HAhiWFzcPt1dV1HdIpU
-         Ro/Z+xKdjYIf5H+agFQHsY/Vpbi8lPEjkmRvXz95Ynhf7acMGJOIe6iYJfcqFa4A5OK0
-         DJ7MuZ2g5f8Y6U3fGMyrsfjRdavr/MEDC5TdaMExKpQsd1TRT77HU7VXcceYzw0pEoV1
-         lgGzYGYlZRFyutBrGIbAJE52Ml7M+yQx50cGDqcLdXtiUtj70Shi240MaJZzeORClVHn
-         +tJCIpDveoKZ//zXzZmlqq0AHpA0JhDNPl/UnityybmNkJoImJU+H3OA4r2g/zpv0fyg
-         x1Pw==
-X-Gm-Message-State: AJIora9hS4ClG44XDn13EbJo+HkFR1oqHfhwUsNwRdJWPyX0cHW8GM44
-        0zDDmW4uj11Jyfa/4XxLUV4HYw==
-X-Google-Smtp-Source: AGRyM1u8gHMw1lYFRiuFnnSBpWToFrrSg1vfiT6fK9TJa4NYb2zmpKgJzOqRFCh9v5Mng8B93FWWzA==
-X-Received: by 2002:a05:600c:4e86:b0:3a3:2edc:bcb4 with SMTP id f6-20020a05600c4e8600b003a32edcbcb4mr11850612wmq.85.1659365161500;
-        Mon, 01 Aug 2022 07:46:01 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id n185-20020a1ca4c2000000b003a37b7e0780sm14888069wme.8.2022.08.01.07.45.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 07:46:00 -0700 (PDT)
-Date:   Mon, 1 Aug 2022 15:45:57 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        katie.morris@in-advantage.com, Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v14 mfd 1/9] mfd: ocelot: add helper to get regmap from a
- resource
-Message-ID: <YufnJXB5MOdFzOEy@google.com>
-References: <20220722040609.91703-1-colin.foster@in-advantage.com>
- <20220722040609.91703-2-colin.foster@in-advantage.com>
- <CAHp75VdoBO8nKvGicsMhtY226AmL6nzt_52W+fLjeTkndwV7Aw@mail.gmail.com>
- <Yt665a77awMYDqrN@colin-ia-desktop>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=VH9MjgED0AWITndim501l1CH8RMaZNy1yKl/Ru3+vOI=;
+        b=MQnKzMlOacK3cjDvd4aKZsO2SKjr5NvcSAF16bLPBRSl1N9jEelARdfXSN4Q1qFMdM
+         qkT8UOSlW3y9JEGw0KUIzeEWGOxEKqNqGcx8j7a7ENDdxjXm+NQGQ15KV82kK6VuGLUT
+         8DrvoCfLb/2njWMTzp8R/W00xY1rAlRBKtC0QtmrBgIJoAZ5ZcxPd9n4sQHbpRPURDgV
+         IGleiQno/oyi2Fr4mL+L2OfVHl899cMov541suBooEUxWYLDOEWNbcaoq0kBXGr6mqRE
+         IHKwvdvVEJ0OFUcNFOkXepWsrTC0CBTeAESsz5DN1oEijdCU48bDbHwnG4mloZz5vwt5
+         bv5g==
+X-Gm-Message-State: ACgBeo07vMjjOZ05cco0fjfljJW33nnJt5mSzU4ANzjYUXP3K7zwUnsa
+        /E7Vk8dyqtoKs/exHtK584rRLLYi+rvAwzODrv1hFQ==
+X-Google-Smtp-Source: AA6agR48bKZ7gnfltlVl1dBF4hEAWGRSmEMqBE3ThX5K1gCRT1iMR2DjmeVyYc+nbfG0UAL9FyuoK2Qs9LxAp3tY+Z4=
+X-Received: by 2002:a0c:8ecc:0:b0:473:2fa4:df7c with SMTP id
+ y12-20020a0c8ecc000000b004732fa4df7cmr14424536qvb.55.1659366030428; Mon, 01
+ Aug 2022 08:00:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yt665a77awMYDqrN@colin-ia-desktop>
+References: <BY5PR02MB70099020AC1D181D15909F64EA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
+ <BY5PR02MB700972E09CC9D8ED6EFBA59AEA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
+In-Reply-To: <BY5PR02MB700972E09CC9D8ED6EFBA59AEA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Mon, 1 Aug 2022 18:00:19 +0300
+Message-ID: <CAA8EJpqBVaPt6dc+=u1YZwxEo9i4Y6+QFK5ko0Gd3091pKYXjw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] Add support for Xiaomi Poco F1 EBBG variant
+To:     Joel Selvaraj <joel.selvaraj@outlook.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -97,21 +71,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Jul 2022, Colin Foster wrote:
+Hi,
 
-> Hi Andy,
-> 
-> Great catches as always. Thank you.
-> 
-> I'll wait for Lee to take a look before blasting out another version.
-> I'm still holding out hope for this upcoming merge window!
+On Mon, 1 Aug 2022 at 14:44, Joel Selvaraj <joel.selvaraj@outlook.com> wrote:
+>
+> To be honest, I have no idea why my patch series doesn't get linked
+> properly. I think there is some issue in my OS. I use git format-patch
+> and git send-mail to send patches. It used to work fine. But it doesn't
+> want to work anymore :/ Is there a mailing list for sending test mails?
+> or how do I debug this? Kindly let me know if anyone has any
+> suggestions.
 
-No chance. :)
+Judging from the following headers, it's not your OS, it is M$
+rewriting the headers.
 
-Please submit the latest version.
+Message-ID: <BY5PR02MB70099020AC1D181D15909F64EA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
+X-Microsoft-Original-Message-ID:
+<20220801112512.209047-1-joel.selvaraj@outlook.com>
+
+According to some mentions on the Internet, M$ relies on headers
+rewriting and will not change this behaviour.
+
+I'd suggest switching to another SMTP submission host. I think it
+should be e.g. possible to tell GMail to send mails with @outlook.com
+addresses. However this might confuse some of the mail clients into
+believing it is spam since the email will SOFTFAIL the SPF check.
+
+Switching to another mail provider might be an option too.
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+With best wishes
+Dmitry
