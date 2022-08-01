@@ -2,75 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CED7B587001
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 20:01:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA9E58702E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 20:07:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232300AbiHASBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 14:01:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41082 "EHLO
+        id S233080AbiHASHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 14:07:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233157AbiHASBJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 14:01:09 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED00248D2
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 11:01:08 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id a13so13132823ljr.11
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 11:01:07 -0700 (PDT)
+        with ESMTP id S232300AbiHASHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 14:07:24 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62786E39
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 11:07:23 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id a9so5744733lfm.12
+        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 11:07:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=uZR/I+yAkBmW0w7mHOk3YtgLxlXC2BKh5JL5UtMmwBs=;
-        b=q+w6TE6z8roa1FS6pRp+tOhYcqoLK1RRU14NW5VdOJfv8hFjDkUklpCbJ0Zl4zmPBn
-         RCi6pAbq34Qsp896AIPfQsEXgp4FmQ9P1asmBO/5jNtq7wXUDfX9UCfCUp3jhB94dxOx
-         bAfL/QhWup7fU2XaCntjtXmyRRdyLfc1J5QqEsljVEOHviQjSxVn6v6KmX9MNtiMfOBW
-         dnz6oXrJCAYm4G2Mnz5cwr+o4qtZcKhtz7JY4LiK5ZTLRkgstfhGCAjZP+43gi7bNxDZ
-         hXwUACWS4Bigbxoz64aX9jfwSxHSRwx7i+EkjPU2ySYW/48LpOqbvlmdZYAvjHNZ2/d8
-         m36w==
+        bh=370jJersisG8fPy4Ka8zqcPhpPqZLT8jJAiRbixcWys=;
+        b=Gg5B/B4sDvtXYmQYppiwAZbHVpuHZxBp+P6rIAK+DrkCM2DhFipqmRYazNbyDiL963
+         ecLhsKeEd5eV///nUpvUNd+vF9QOBoPl2uAO4hgPa48elzV4QAnhSqJwyWuxZFX4jW2W
+         fpKspmtZptX5VFPeA1NYcDL2W1CkHW31zCVFiF8Ml8gKa2HgXYt3dQhnA1pSWEZkXou3
+         IDSnmLpKcvOkh4TNMiJTdyCAxk5Uv7fyz8Q4uyV06KwNbvNEhCNHJP3QuwYO9Z5J2J6P
+         UqXcKXRErG+LLVAtiOqJjluBIBuZH+OUfMvyGU+6nCnjeaER+6+Gc+W/tWuvyG0Fi5Vq
+         8iwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=uZR/I+yAkBmW0w7mHOk3YtgLxlXC2BKh5JL5UtMmwBs=;
-        b=5BvWiKnsVft9jjbZvN07FDPrDNDfQ1W8FAxSWB2JX22fiNXjZEFBDy0gf5ubpF+Zkn
-         I7hOd7rNVItYE/7kc2zHifp2Es3Pp4IUme7tQRQQAfTa3UjXEf95dVwPkIZeXRhMZNra
-         X739nwY/IIG2h1xH8b7seuqe68/AOfS8WBI07fCn1TUHwWgpIhSaGsPkDvG1EDQdYsDf
-         G9G+UQwln1VVkz+oJsaNn85iEDsl9yKSSpwJQfdIMAzoxmj7iJEq3xSpgpWXijuWliv3
-         uJ9rKrQ8EZoc5TEfuIkU6zDIItz7hpm4JvpH6Kx2wler/qGiFcw7QG3HWHNcP7juysXf
-         kMVA==
-X-Gm-Message-State: AJIora/5ND4b1TKCw7XWxwW59/43etiISJQtz3EguKVUAY7Ejt7yx+s8
-        1OVXEfTyJltE1hXPNEGEHAZkfA==
-X-Google-Smtp-Source: AGRyM1s+ieLndbXdmOHTogelfkNm1sPX5Vt3Z6RRXxCaWFy4HZux37fvLIAz14ZPc21Ux3ijqkBQBA==
-X-Received: by 2002:a2e:934f:0:b0:250:a7bc:2b8f with SMTP id m15-20020a2e934f000000b00250a7bc2b8fmr5464878ljh.512.1659376866299;
-        Mon, 01 Aug 2022 11:01:06 -0700 (PDT)
+        bh=370jJersisG8fPy4Ka8zqcPhpPqZLT8jJAiRbixcWys=;
+        b=VWr6W6OsKe4JVMi+aUrs2pL7DhJUNqahoGdb5fBwBK/9ZtZ8ynESn5CpmAY/vmX4XZ
+         e+JApKry6QJaLQRgV2t2Swpur68QjQKZIrKMFuYGrFFM1j32zeD8oPcsVik3RY73+JR+
+         lZ1DlIBS1iKPXRdrfkRlYCn0qiYiWF8lxdw3qn3nidwPDV3fOg7ABtkhs/Pt0X7VqNld
+         CS1iioyBjGM47lthEKFTW+7w727qzXRjYx6wTSxGG/kXKVh7RE9KmRH8D8HQErBUnF3v
+         8ezq/a9j2bWD390OtJgtixSnSiVMx1ODZJtmSIN9lxm/PGYX14dAO4CFPk7Xe4TZZwec
+         nxrg==
+X-Gm-Message-State: AJIora8mTSChRyqzyrIilmoSocfGF/sFSiaXDXo5oIRaYqcNoIOUMNiW
+        jhq7RO7HrQjSTzjEHgZ7Jxccug==
+X-Google-Smtp-Source: AGRyM1suLNdfhpm/00Q+GZnN4Z3MI9qLna7mJW2e3US6fJa/WDzCKc6pPbvVcAz/8p31Rd+frlNkbw==
+X-Received: by 2002:a05:6512:16a4:b0:48a:aebb:42fb with SMTP id bu36-20020a05651216a400b0048aaebb42fbmr6428767lfb.355.1659377241169;
+        Mon, 01 Aug 2022 11:07:21 -0700 (PDT)
 Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id c15-20020a056512324f00b0048ae7b7b077sm1151293lfr.200.2022.08.01.11.01.04
+        by smtp.gmail.com with ESMTPSA id g41-20020a0565123ba900b0048aec70f7e6sm987459lfv.194.2022.08.01.11.07.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Aug 2022 11:01:05 -0700 (PDT)
-Message-ID: <57faa0a7-301c-c60c-6831-00a351ed3ea5@linaro.org>
-Date:   Mon, 1 Aug 2022 20:01:03 +0200
+        Mon, 01 Aug 2022 11:07:20 -0700 (PDT)
+Message-ID: <e3847096-ae60-9ab3-f1e7-c461508be952@linaro.org>
+Date:   Mon, 1 Aug 2022 20:07:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [RESEND 3/4 v7] power: supply: Add charger driver for Rockchip
- RK817
+Subject: Re: [PATCH v4 3/7] media: i2c: ov9282: Add ov9281 compatible
 Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>,
-        kernel test robot <lkp@intel.com>
-Cc:     linux-pm@vger.kernel.org, kbuild-all@lists.01.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        zhangqing@rock-chips.com, zyw@rock-chips.com,
-        jon.lin@rock-chips.com, sre@kernel.org, heiko@sntech.de,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, Chris Morgan <macromorgan@hotmail.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-References: <20220721161718.29800-4-macroalpha82@gmail.com>
- <202207242227.mttUkfTB-lkp@intel.com>
- <20220729162828.GB102@wintermute.localdomain>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        "Paul J . Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Naushir Patuck <naush@raspberrypi.com>
+References: <20220728130237.3396663-1-alexander.stein@ew.tq-group.com>
+ <20220728130237.3396663-4-alexander.stein@ew.tq-group.com>
+ <4e89e55b-9312-5525-974b-0a1dbe0b3dd1@linaro.org>
+ <YuOHOEUk+znzump5@valkosipuli.retiisi.eu>
+ <YuOXyZ6XTW2DjLvd@pendragon.ideasonboard.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220729162828.GB102@wintermute.localdomain>
+In-Reply-To: <YuOXyZ6XTW2DjLvd@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,34 +85,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/07/2022 18:28, Chris Morgan wrote:
-> On Sun, Jul 24, 2022 at 10:58:00PM +0800, kernel test robot wrote:
->> Hi Chris,
->>
->> Thank you for the patch! Perhaps something to improve:
+On 29/07/2022 10:18, Laurent Pinchart wrote:
+> Hi Sakari,
 > 
-> I'm afraid I'm not sure the best way to fix this. The only thing I can
-> think of is for now the driver should only be for systems with a
-> Rockchip RK817 PMIC (to my knowledge only ARM based systems from
-> Rockchip),
+> (Adding Dave and Naush to the CC list)
+> 
+> On Fri, Jul 29, 2022 at 10:07:36AM +0300, Sakari Ailus wrote:
+>> On Thu, Jul 28, 2022 at 03:13:11PM +0200, Krzysztof Kozlowski wrote:
+>>> On 28/07/2022 15:02, Alexander Stein wrote:
+>>>> According to product brief they are identical from software point of view.
+>>>> Differences are a different chief ray angle (CRA) and the package.
+>>>>
+>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+>>>> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+>>>> ---
+>>>>  drivers/media/i2c/ov9282.c | 1 +
+>>>>  1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
+>>>> index 8a252bf3b59f..c8d83a29f9bb 100644
+>>>> --- a/drivers/media/i2c/ov9282.c
+>>>> +++ b/drivers/media/i2c/ov9282.c
+>>>> @@ -1113,6 +1113,7 @@ static const struct dev_pm_ops ov9282_pm_ops = {
+>>>>  };
+>>>>  
+>>>>  static const struct of_device_id ov9282_of_match[] = {
+>>>> +	{ .compatible = "ovti,ov9281" },
+>>>
+>>> The devices seem entirely compatible, so why you add a new compatible
+>>> and not re-use existing?
+>>>
+>>> The difference in lens does not explain this.
+>>
+>> It is typically necessary to know what kind of related hardware can be
+>> found in the system, beyond just the device's register interface. Apart
+>> from USB cameras, less integrated cameras require low-level software
+>> control in which specific device properties are important. In this case it
+>> could be the lens shading table, among other things.
+>>
+>> 	https://www.ovt.com/sensor/ov9282/
+>>
+>> Therefore I think adding a specific compatible string for this one is
+>> justified.
 
-Why? We want to compile test everything everywhere,
+Specific compatible in binding is a requirement. No one discussed this.
+However not in the driver. None of the arguments above justify adding
+such binding, unless user-space depends on matching compatible, but not
+real compatible?
 
->  but it looks like the arch was set as parisc. 
+>>
+>> Also cc Laurent.
+> 
+> Interesting coincidence, we've talked about this topic (as part of a
+> broader discussion) no later than yesterday.
+> 
+> I agree with Sakari in that userspace needs to know the exact model of
+> the camera sensor. I don't see a good alternative to providing that
+> information through the platform firmware, so the device tree in this
+> case. The question is how it should be provided (the question of how it
+> should then be exposed to userspace is also important, but out of scope
+> in this discussion).
+> 
+> The compatible string is meant to indicate a device's compatibility with
+> "something", and that something is often considered from the point of
+> view of software support, and in particular to pick an appropriate
+> kernel driver and tune its behaviour for the device. Here, one could
+> argue that the exact model is also needed to ensure proper software
+> support, but in userspace this time, not in the kernel. I think using a
+> dedicated compatible string would be reasonable. An alternative would be
+> to use another DT property, which should then be standardized. I'm not
+> sure it's worth it.
+> 
+> Broadening the discussion, we also need to know detailed information
+> about the camera lens (I'm talking about the lens itself here, not the
+> lens controller IC that controls the motor that moves the focus lens).
+> The lens isn't described in the device tree with a dedicated device tree
+> node today, and I don't think it should (I'd have a hard time coming up
+> with a naming scheme for lenses that we could use in compatible strings,
+> and the lens-related data that a system requires can possibly vary based
+> not only on the lens itself but on the ISP that the camera sensor is
+> used with). Typical useful data are the lens movement range, the
+> hyperfocal distance, but also the lens shading tables. (Part of) that
+> information is sometimes stored in non-volatile memory in the camera
+> module (OTP in the camera sensor itself, or a separate EEPROM), but
+> that's not always the case. We have considered the possibility of
+> storing the information in the device tree, but I doubt that would be
+> accepted. We can store the information in userspace in configuration
+> files, but we will still need to device tree to provide lens
+> identification information to select the correct configuration file. I
+> don't know how that should be done.
 
-The arch itself does not matter unless the actual warning is specific to it.
-
-> Even still,
-> as long as some of the functions ahead of it don't error out each
-> of those variables should be used. Is there a way to confirm these
-> warnings?
-
-Just compile and see by yourself. The error should be visible on
-multiple archs. If not, then use parisc. Ubuntu provides most of cross
-compilers so it's extra easy to use. The ones not provided by Ubuntu are
-also here:
-https://mirrors.edge.kernel.org/pub/tools/crosstool/
-
+It seems both you and Sakari suggested not to have specific compatible.
+Such idea (not to have specific compatible) was not proposed by me.
+Quite contrary - specific compatible is a requirement. However device
+driver does no need it. Just use fallback for the driver.
 
 Best regards,
 Krzysztof
