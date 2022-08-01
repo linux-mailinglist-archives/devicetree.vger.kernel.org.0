@@ -2,265 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08EBA586AEA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 14:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAD96586B26
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 14:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbiHAMhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 08:37:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39812 "EHLO
+        id S234782AbiHAMqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 08:46:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231532AbiHAMhm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 08:37:42 -0400
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC6D9D51E;
-        Mon,  1 Aug 2022 05:16:52 -0700 (PDT)
-Received: from hillosipuli.retiisi.eu (dkwl20tj04snw15cjtflt-3.rev.dnainternet.fi [IPv6:2001:14ba:4493:6f40:fec3:d72a:e447:8113])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 3D0AA20093;
-        Mon,  1 Aug 2022 15:16:49 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1659356209;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=/Bh14Hk6sa//86NbqJfelnT4ZG7/BMw5JTIu6cE97AM=;
-        b=XA8hThafhSmPdApR5a4xni1OvnlBHbIMm/gUNIm8JA9mt/akVcOyz3hLOWCE2iSiPyt7Dp
-        XMy8AU086198SPHiolFCkWsuBTpCKsZ2hv9/d3+kp+8dH7CS6rG1XKLggUvuS3qZxJK8go
-        Ir8R7HMeFh50LO+Rucu6Y9RWBWldXB4=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id AB224634C97;
-        Mon,  1 Aug 2022 15:16:48 +0300 (EEST)
-Date:   Mon, 1 Aug 2022 15:16:48 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        kernel test robot <lkp@intel.com>, llvm@lists.linux.dev,
-        kbuild-all@lists.01.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 6/7] media: i2c: ov9282: Set v4l2 subdev name
- according to sensor model
-Message-ID: <YufEMD8oBLNNewsf@valkosipuli.retiisi.eu>
-References: <20220728130237.3396663-7-alexander.stein@ew.tq-group.com>
- <202207290518.1D7MVS65-lkp@intel.com>
- <6086686.mvXUDI8C0e@steina-w>
+        with ESMTP id S234669AbiHAMpx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 08:45:53 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 510D249B43
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 05:34:08 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id i62so16882275yba.5
+        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 05:34:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=LcoRKUZxcX+fwnP/w+Ek0L1ccliKcMJGGIMkqg+/gBk=;
+        b=8Qq67pSUym7bRxaJ1wXQxajEMJS6HpKos8PyqVw/AIYaTRUkyuiHDv0eycBw7WteMz
+         vA2ffmtRj5NpE9imFKTBnZZHdh7Veak9BjcfMJEO1TvQsTZncZ8wpJSSeWS/Fzl2r4oo
+         crxtVikU87MU4cvow8KAMXuSE8Fw4ECrP5KwDbAKdS8agCFU52209EKhx1fzCsQSWcmG
+         Bf2T4r9FGmsl0SSufopazQYH6qUx7esh3yBY7jYpKJtzHa+9ugcTbzjnNcl7YUrB99/v
+         9oEa7EI5KFpJbbLUS6osrgC2g3+vL4a3PJZdTepn337fCpKGSdA1qUQAomSfAXFQxHJJ
+         e1NA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=LcoRKUZxcX+fwnP/w+Ek0L1ccliKcMJGGIMkqg+/gBk=;
+        b=lLTN62u5bh+d8728ItZ8wXwDrjPBqsK2j1USGAvmLPRCwWrBz6svwDeCge74/3kaTB
+         m3A4o+ul8zcTXkJaYF7fgP86CcLzZWYw7X7f1K5yK1UjTnKK3sotHQoE4RXd0p4HZA2e
+         Gh+3Z72hcLranKRky0HHDZCfxOncxjcxLvtqFDEMhK7GjAaqGs6gEJ0G1NfsdXRnV8wf
+         z7jqKY4cLSiix1vACgpi37oQsr9dPqhRnPaIhY5ZiBXRLcNL3rcHrodkWmGNumFz9fPN
+         IIL6aV43AlHF34FdY4YLCKrQMNH6KGZGgSScX/ZfzQ1UiDPXn3ea/QoS107aLVJEWyzz
+         civg==
+X-Gm-Message-State: ACgBeo1ZKl0bQPkIW9Nn6UKNR2q8swkByNtlQW1DmMNv4Pz9K/GvkuSA
+        TAaEBFfwBxNl7LVzojvjaW2eiQ2cXgm+e/F3jrgMNw==
+X-Google-Smtp-Source: AA6agR6gUV377VODoTtcZyENpHL6zTEL/yl0+xktWswsikj2XjC6xG8FsEO1Dd8D5SwcKI+6sZgTq8Xo9pCEdETIOIU=
+X-Received: by 2002:a25:4941:0:b0:670:24c7:dc96 with SMTP id
+ w62-20020a254941000000b0067024c7dc96mr10354775yba.22.1659357247554; Mon, 01
+ Aug 2022 05:34:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6086686.mvXUDI8C0e@steina-w>
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1659356209;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=/Bh14Hk6sa//86NbqJfelnT4ZG7/BMw5JTIu6cE97AM=;
-        b=sr9i6Y4w35p+nn6UQualFRbF0kd5EnJTPzkTl+iUSnQBhfIkfsBY+NynJW3Eaw+BubnQmb
-        7SgGIOPdYSp8jRzTMaE2N43EXbOZETkb53U2EmHD0kf1/XUwuCNmJfTODXkhyRzZuGmuke
-        l+QqzROGLPFlVpI7Ulvzp22GXpq1aJE=
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1659356209; a=rsa-sha256; cv=none;
-        b=yOXwmQhhdERA8o8oVHsE/aNiStiyzdmF5L1AK+++S8MP8Whp2Cgy+C5SpIP0AksIxorN0D
-        Nqut8pUnLUZORsCsNrj/om65chCSPnG/UOBwYTdfng858YQZPeNPS+0wn6K9pNyasCQluH
-        78I5hwolxfU79lqrx+KKxYl3TV2uImc=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220726135506.485108-1-bchihi@baylibre.com> <20220726135506.485108-6-bchihi@baylibre.com>
+ <20220729201421.fxybo57g46ftghgd@notapiano>
+In-Reply-To: <20220729201421.fxybo57g46ftghgd@notapiano>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Mon, 1 Aug 2022 14:33:31 +0200
+Message-ID: <CAGuA+ooqk-tf5FVfEbA0WdjTOo2fPJi-+AaHDC9jXgw=3vKq0g@mail.gmail.com>
+Subject: Re: [PATCH v8 5/6] arm64: dts: mt8195: Add efuse node to mt8195
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amitk@kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, khilman@baylibre.com,
+        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexander,
+On Fri, Jul 29, 2022 at 10:14 PM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+> On Tue, Jul 26, 2022 at 03:55:05PM +0200, Balsam CHIHI wrote:
+> > This adds the efuse node. This will be required by the thermal driver
+> > to get the calibration data.
+> >
+> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> > ---
+> >  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot=
+/dts/mediatek/mt8195.dtsi
+> > index 0ff34edcf8c8..4fbf24b5d202 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > @@ -1236,6 +1236,22 @@ nor_flash: spi@1132c000 {
+> >                       status =3D "disabled";
+> >               };
+> >
+> > +             efuse: efuse@11c10000 {
+> > +                     compatible =3D "mediatek,efuse";
+> > +                     reg =3D <0 0x11c10000 0 0x1000>;
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <1>;
+> > +                     lvts_efuse_data1: lvts1-calib@1bc {
+> > +                             reg =3D <0x1bc 0x14>;
+> > +                     };
+> > +                     lvts_efuse_data2: lvts2-calib@1d0 {
+> > +                             reg =3D <0x1d0 0x38>;
+> > +                     };
+> > +                     svs_calibration: calib@580 {
+> > +                             reg =3D <0x580 0x64>;
+> > +                     };
+> > +             };
+> > +
+>
+> This commit doesn't apply, there's already an efuse node on mt8195.dtsi. =
+Please
+> rebase.
+>
+> Thanks,
+> N=C3=ADcolas
 
-On Fri, Jul 29, 2022 at 10:23:48AM +0200, Alexander Stein wrote:
-> Am Donnerstag, 28. Juli 2022, 23:10:07 CEST schrieb kernel test robot:
-> > Hi Alexander,
-> > 
-> > Thank you for the patch! Perhaps something to improve:
-> > 
-> > [auto build test WARNING on media-tree/master]
-> > [also build test WARNING on linus/master v5.19-rc8 next-20220728]
-> > [If your patch is applied to the wrong git tree, kindly drop us a note.
-> > And when submitting patch, we suggest to use '--base' as documented in
-> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> > 
-> > url:   
-> > https://github.com/intel-lab-lkp/linux/commits/Alexander-Stein/OV9281-suppo
-> > rt/20220728-210448 base:   git://linuxtv.org/media_tree.git master
-> > config: arm-randconfig-r022-20220728
-> > (https://download.01.org/0day-ci/archive/20220729/202207290518.1D7MVS65-lkp
-> > @intel.com/config) compiler: clang version 15.0.0
-> > (https://github.com/llvm/llvm-project
-> > 8dfaecc4c24494337933aff9d9166486ca0949f1) reproduce (this is a W=1 build):
-> >         wget
-> > https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O
-> > ~/bin/make.cross chmod +x ~/bin/make.cross
-> >         # install arm cross compiling tool for clang build
-> >         # apt-get install binutils-arm-linux-gnueabi
-> >         #
-> > https://github.com/intel-lab-lkp/linux/commit/ee28006553d4d23f600b0076ef606
-> > 6710519f156 git remote add linux-review
-> > https://github.com/intel-lab-lkp/linux git fetch --no-tags linux-review
-> > Alexander-Stein/OV9281-support/20220728-210448 git checkout
-> > ee28006553d4d23f600b0076ef6066710519f156
-> >         # save the config file
-> >         mkdir build_dir && cp config build_dir/.config
-> >         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1
-> > O=build_dir ARCH=arm SHELL=/bin/bash drivers/media/i2c/
-> > 
-> > If you fix the issue, kindly add following tag where applicable
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > 
-> > All warnings (new ones prefixed by >>):
-> > >> drivers/media/i2c/ov9282.c:1054:10: warning: variable 'ret' is
-> > >> uninitialized when used here [-Wuninitialized]
-> >                    return ret;
-> >                           ^~~
-> >    drivers/media/i2c/ov9282.c:1041:9: note: initialize the variable 'ret' to
-> > silence this warning int ret;
-> >                   ^
-> >                    = 0
-> >    1 warning generated.
-> > 
-> > 
-> > vim +/ret +1054 drivers/media/i2c/ov9282.c
-> > 
-> >   1030
-> >   1031	/**
-> >   1032	 * ov9282_probe() - I2C client device binding
-> >   1033	 * @client: pointer to i2c client device
-> >   1034	 *
-> >   1035	 * Return: 0 if successful, error code otherwise.
-> >   1036	 */
-> >   1037	static int ov9282_probe(struct i2c_client *client)
-> >   1038	{
-> >   1039		struct ov9282 *ov9282;
-> >   1040		const char *sensor_name;
-> >   1041		int ret;
-> >   1042
-> >   1043		ov9282 = devm_kzalloc(&client->dev, sizeof(*ov9282), 
-> GFP_KERNEL);
-> >   1044		if (!ov9282)
-> >   1045			return -ENOMEM;
-> >   1046
-> >   1047		ov9282->dev = &client->dev;
-> >   1048
-> >   1049		/* Initialize subdev */
-> >   1050		v4l2_i2c_subdev_init(&ov9282->sd, client, 
-> &ov9282_subdev_ops);
-> >   1051		sensor_name = device_get_match_data(ov9282->dev);
-> >   1052		if (!sensor_name) {
-> >   1053			dev_err(ov9282->dev, "Sensor name is 
-> missing");
-> > 
-> > > 1054			return ret;
-> > 
-> >   1055		}
-> >   1056		v4l2_i2c_subdev_set_name(&ov9282->sd, client, 
-> sensor_name, NULL);
-> >   1057
-> >   1058		ret = ov9282_parse_hw_config(ov9282);
-> >   1059		if (ret) {
-> >   1060			dev_err(ov9282->dev, "HW configuration is not 
-> supported");
-> >   1061			return ret;
-> >   1062		}
-> >   1063
-> >   1064		ret = ov9282_get_regulators(ov9282);
-> >   1065		if (ret) {
-> >   1066			dev_err(&client->dev, "Failed to get power 
-> regulators\n");
-> >   1067			return ret;
-> >   1068		}
-> >   1069
-> >   1070		mutex_init(&ov9282->mutex);
-> >   1071
-> >   1072		ret = ov9282_power_on(ov9282->dev);
-> >   1073		if (ret) {
-> >   1074			dev_err(ov9282->dev, "failed to power-on the 
-> sensor");
-> >   1075			goto error_mutex_destroy;
-> >   1076		}
-> >   1077
-> >   1078		/* Check module identity */
-> >   1079		ret = ov9282_detect(ov9282);
-> >   1080		if (ret) {
-> >   1081			dev_err(ov9282->dev, "failed to find sensor: 
-> %d", ret);
-> >   1082			goto error_power_off;
-> >   1083		}
-> >   1084
-> >   1085		/* Set default mode to max resolution */
-> >   1086		ov9282->cur_mode = &supported_mode;
-> >   1087		ov9282->vblank = ov9282->cur_mode->vblank;
-> >   1088
-> >   1089		ret = ov9282_init_controls(ov9282);
-> >   1090		if (ret) {
-> >   1091			dev_err(ov9282->dev, "failed to init 
-> controls: %d", ret);
-> >   1092			goto error_power_off;
-> >   1093		}
-> >   1094
-> >   1095		/* Initialize subdev */
-> >   1096		ov9282->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> >   1097		ov9282->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> >   1098
-> >   1099		/* Initialize source pad */
-> >   1100		ov9282->pad.flags = MEDIA_PAD_FL_SOURCE;
-> >   1101		ret = media_entity_pads_init(&ov9282->sd.entity, 1, 
-> &ov9282->pad);
-> >   1102		if (ret) {
-> >   1103			dev_err(ov9282->dev, "failed to init entity 
-> pads: %d", ret);
-> >   1104			goto error_handler_free;
-> >   1105		}
-> >   1106
-> >   1107		ret = v4l2_async_register_subdev_sensor(&ov9282->sd);
-> >   1108		if (ret < 0) {
-> >   1109			dev_err(ov9282->dev,
-> >   1110				"failed to register async subdev: 
-> %d", ret);
-> >   1111			goto error_media_entity;
-> >   1112		}
-> >   1113
-> >   1114		pm_runtime_set_active(ov9282->dev);
-> >   1115		pm_runtime_enable(ov9282->dev);
-> >   1116		pm_runtime_idle(ov9282->dev);
-> >   1117
-> >   1118		return 0;
-> >   1119
-> >   1120	error_media_entity:
-> >   1121		media_entity_cleanup(&ov9282->sd.entity);
-> >   1122	error_handler_free:
-> >   1123		v4l2_ctrl_handler_free(ov9282->sd.ctrl_handler);
-> >   1124	error_power_off:
-> >   1125		ov9282_power_off(ov9282->dev);
-> >   1126	error_mutex_destroy:
-> >   1127		mutex_destroy(&ov9282->mutex);
-> >   1128
-> >   1129		return ret;
-> >   1130	}
-> >   1131
-> 
-> Meh, I'll come up with a fixed once discussion about the additional compatible 
-> has settled. This will also include the missing member documentation in patch 
-> 5
+Hello N=C3=ADcolas,
 
-I think you could simply pass device_get_match_data() return value as the
-sensor name. The driver is in direct control of the string so I don't think
-you need error handling here.
+Thank you so much for the review.
+I rebased on top of the latest kernel version "linux-5.19.0" but I
+can't find efuse node on mt8195.dtsi.
+But, this node is indeed present on mt8192.dtsi.
 
--- 
-Sakari Ailus
+Best regards,
+Balsam
