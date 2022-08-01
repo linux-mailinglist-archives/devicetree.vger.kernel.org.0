@@ -2,124 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3EA05863A5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 06:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3D0D5863CA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 07:43:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239042AbiHAEu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 00:50:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39446 "EHLO
+        id S239567AbiHAFnN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 01:43:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231543AbiHAEu5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 00:50:57 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0545FB863;
-        Sun, 31 Jul 2022 21:50:54 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2714oiOI065412;
-        Sun, 31 Jul 2022 23:50:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1659329445;
-        bh=8Lr8tAgVWICX0AhenALNmgpmwS+V4Lzh+IMEWbghyDc=;
-        h=Date:Subject:From:To:CC:References:In-Reply-To;
-        b=iml3PDN/V87l14FsnWoi/XUKn0qJ1HL30pOko8rCaKaubuk7pEvE8sb6A/1Nmf/lG
-         O6KX1NpRH1bSi1HKoe09NToDdGSoQtqjGQew1sFbCTV7Xej5EFTpI/bnUiLsSquw63
-         ApMigCVfP95TZCmJMd9iuFK8qbC0yd4KFZ3Vb6ts=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2714oiQ5030237
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 31 Jul 2022 23:50:44 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sun, 31
- Jul 2022 23:50:44 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Sun, 31 Jul 2022 23:50:44 -0500
-Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2714ofqa063483;
-        Sun, 31 Jul 2022 23:50:41 -0500
-Message-ID: <1896bceb-2c0d-4c87-4fb6-1e418bf5cef1@ti.com>
-Date:   Mon, 1 Aug 2022 10:20:40 +0530
+        with ESMTP id S231483AbiHAFnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 01:43:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8425F13DEB;
+        Sun, 31 Jul 2022 22:43:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D16D860C93;
+        Mon,  1 Aug 2022 05:43:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A91FDC433C1;
+        Mon,  1 Aug 2022 05:43:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659332589;
+        bh=GsGF8A4Me4IQT0F9GvKCQUBEMKLVc7qayH0CzaMRxE8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uv/bntGh5sgvS9Mm030zD5YjMm0KSOsVTmJ2zCMMkP0eDlk3DDFibIkO5TgLEOWS+
+         HOry+Jf1cRNvOngT2lMtgyHdm7k//Wez9OQQFk1AdAYoz475TMAZ3A4mA7uHYeafxI
+         RQD5OpTuZ9YybIWaOektt0IJnta/E+ZnhB/1ESWgWblwkWvfLA1vOsRtjrwlcp7aJg
+         I8Rtr5vGKxfiPhGpyMW6LUohqyVK5weFKF7QYNOeOt7vxcQ1fBv58pC8v3FoZHq1M5
+         80mtBsjQe9oLTvoT5gw2ZRsLyc03R/8DoMhvAyo5HJ9v798VaaYJyN/2bnVv9YxskM
+         rGzp29fXLaP5Q==
+Date:   Mon, 1 Aug 2022 11:12:55 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Johan Hovold <johan@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [RFC PATCH 0/4] cpufreq: qcom-hw: Move clocks to CPU node
+Message-ID: <20220801054255.GA12039@thinkpad>
+References: <cover.1657695140.git.viresh.kumar@linaro.org>
+ <20220715160933.GD12197@workstation>
+ <20220718015742.uwskqo55qd67jx2w@vireshk-i7>
+ <20220801023756.76jswkbwivuntqof@vireshk-i7>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: crypto: ti,sa2ul: drop dma-coherent property
-Content-Language: en-US
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     Rob Herring <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <vigneshr@ti.com>,
-        <davem@davemloft.net>, <robh+dt@kernel.org>,
-        <herbert@gondor.apana.org.au>, <j-keerthy@ti.com>
-References: <20220707110756.16169-1-j-choudhary@ti.com>
- <1657315922.470955.1508205.nullmailer@robh.at.kernel.org>
- <5d9c0f44-efb6-7a1a-e9e4-51a060701ec3@ti.com>
-In-Reply-To: <5d9c0f44-efb6-7a1a-e9e4-51a060701ec3@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220801023756.76jswkbwivuntqof@vireshk-i7>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Rob,
-
-On 11/07/22 14:36, Jayesh Choudhary wrote:
-> Hi Rob,
+On Mon, Aug 01, 2022 at 08:07:56AM +0530, Viresh Kumar wrote:
+> On 18-07-22, 07:27, Viresh Kumar wrote:
+> > The OPP tables, which are part of the CPU nodes, mentions clock rates.
+> > Are these values for the cxo/gpll clocks or the clock that reaches the
+> > CPUs? I believe the latter. The DT is not really complete if the CPU
+> > node mentions the frequency, but not the source clock. It works for
+> > you because you don't want to do clk_set_rate() in this case, but then
+> > it leaves other frameworks, like OPP, confused and rightly so.
+> > 
+> > Normally, there is always a difference in what the OPP table contains
+> > as frequency value and what the hardware programs, mostly it is small
+> > though. It shouldn't prevent us from having the hierarchy clearly
+> > defined in the DT.
+> > 
+> > Based on your description, I think it would be better to make
+> > cpufreq-hw a clock provider and CPUs the consumer of it. It would then
+> > allow the OPP core to not carry the hack to make it all work.
 > 
-> On 09/07/22 3:02 am, Rob Herring wrote:
->> On Thu, 07 Jul 2022 16:37:56 +0530, Jayesh Choudhary wrote:
->>> crypto driver itself is not dma-coherent. It is the dmaengine
->>> that moves data and the buffers are to be mapped to the
->>> dmaengine provider. So this property should be dropped.
->>>
->>> Fixes: 2ce9a7299bf6 ('dt-bindings: crypto: Add TI SA2UL crypto accelerator documentation')
->>> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->>> ---
->>>   .../devicetree/bindings/crypto/ti,sa2ul.yaml        | 13 -------------
->>>   1 file changed, 13 deletions(-)
->>>
->>
->> Running 'make dtbs_check' with the schema in this patch gives the
->> following warnings. Consider if they are expected or the schema is
->> incorrect. These may not be new warnings.
->>
->> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
->> This will change in the future.
->>
->> Full log is available here: https://patchwork.ozlabs.org/patch/
->>
->>
->> crypto@4e00000: 'dma-coherent' does not match any of the regexes: '^rng@[a-f0-9]+$', 'pinctrl-[0-9]+'
->> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dtb
->> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dtb
->> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dtb
->> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dtb
->> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dtb
->> 	arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dtb
->> 	arch/arm64/boot/dts/ti/k3-j721e-sk.dtb
->>
+> Bjorn / Mani,
 > 
-> These warnings are expected. dt-node fixes need to be there.
-> I will send the dt-node fixes once this patch gets in due to
-> dependency. Or should I proceed any other way?
+> Can we please get this sorted out ? I don't want to carry an unnecessary hack in
+> the OPP core for this.
 > 
-> Thanks,
-> Jayesh
 
+I'm waiting for inputs from Bjorn.
 
+@Bjorn: What do you think of the proposal to add qcom-cpufreq-hw as the clk
+provider for CPUs?
 
-This patch is ACKed and there are no other comments.
-Can this patch be merged so that I can move forward with dt node
-fixes or do you have any other comments on this?
+Thanks,
+Mani
 
-Regards,
-Jayesh
+> -- 
+> viresh
+
+-- 
+மணிவண்ணன் சதாசிவம்
