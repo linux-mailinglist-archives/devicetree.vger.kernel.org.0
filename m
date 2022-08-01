@@ -2,104 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6301586F94
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 19:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91C2F586F9E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 19:36:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232386AbiHARaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 13:30:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44406 "EHLO
+        id S232650AbiHARgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 13:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232417AbiHARaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 13:30:21 -0400
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DBB626EE;
-        Mon,  1 Aug 2022 10:30:20 -0700 (PDT)
-Received: by mail-il1-f173.google.com with SMTP id s16so2207728ilp.3;
-        Mon, 01 Aug 2022 10:30:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=0LWhWxKEK9e9eqjUyOZZ8NVIggUUXhWj4ioBL7S50EQ=;
-        b=1LNbUKMHFJQpuH+e5ETZkYzVYwK/0UuSZSwh+VuE6h0Ny9LUjkXENxy13MDAc8l2yi
-         B8boc2H6cr7FyHdskxXRtTicgQon9to60vNxduMYly+0fCAjXWBK8gzx8LnTaBaB+FLf
-         vJf3uXmHYHqUDX2p4tCvEYbedPM0SWH/ZkHCN/FBpoc6PXCLj6wiq0ijq1eWDAYdqMs6
-         Jx0ZMcAG34Zvt0rrl6qryC3vjl6PTwkCkJppQu9LUFuCYccDoTJRTytsAEnIucB55qMk
-         M0wu6cWYpF79FnMfloTqEyIzoI5vxeY5BAtNe/wZFl/E86R4DhhZg8sXn2nS2COe09+1
-         gmqA==
-X-Gm-Message-State: ACgBeo3woR/kxkjxbI/YFKU0jNwPIW1T81WSWU0odRLsRexA7aiX3byk
-        FI+uSrsl9Ifv+Pz8SvbzvA==
-X-Google-Smtp-Source: AA6agR5vgSzZo7CA10FZ++gLwwH0vmNXaPRlHfPRzbPu2sVj4x2fE8QJdkfxldaj9o0Ag5kQ0I97Eg==
-X-Received: by 2002:a05:6e02:12c3:b0:2de:79d9:f408 with SMTP id i3-20020a056e0212c300b002de79d9f408mr3517874ilm.107.1659375019748;
-        Mon, 01 Aug 2022 10:30:19 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id x14-20020a92de0e000000b002dd0cf02f42sm4958665ilm.44.2022.08.01.10.30.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 10:30:18 -0700 (PDT)
-Received: (nullmailer pid 1218214 invoked by uid 1000);
-        Mon, 01 Aug 2022 17:30:16 -0000
-Date:   Mon, 1 Aug 2022 11:30:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Frank Li <Frank.Li@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        linux-kernel@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>
-Subject: Re: [PATCH v4 01/17] dt-bindings: PCI: dwc: Detach common RP/EP DT
- bindings
-Message-ID: <20220801173016.GA1218163-robh@kernel.org>
-References: <20220728143427.13617-1-Sergey.Semin@baikalelectronics.ru>
- <20220728143427.13617-2-Sergey.Semin@baikalelectronics.ru>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220728143427.13617-2-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S232249AbiHARgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 13:36:16 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D861E12ADB;
+        Mon,  1 Aug 2022 10:36:14 -0700 (PDT)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 491585C00FC;
+        Mon,  1 Aug 2022 13:36:12 -0400 (EDT)
+Received: from imap47 ([10.202.2.97])
+  by compute2.internal (MEProxy); Mon, 01 Aug 2022 13:36:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1659375372; x=1659461772; bh=Y2
+        57L4d6b5CFZRcEy4JTormzanQNT+CLmxVCxY4oXZQ=; b=g4bHXidTEQtZid/MiU
+        Km2uU51ckhpdCCymYl9CZnQTKMlvu+uJpr/P5nW4iTzjl1vl2e8ieXlyrpXfYsrE
+        i2ewUMNKuXi9h7fs6I8OyyJk0qdyz0Xk640DgQBehTA/5dbT41tICmzo3pwl4MJN
+        4qpe3+T99uf2uQ4MKBtHYokvje5dVU2sSDThBGjByO5035SFXneWI6lJ+FF/Uc0+
+        1bVfqKYJYBDnBiLDN/qochGDy/GLy5ca1FNe/dS5xehVIrakomdfjcE8K1fLkmu5
+        O0Ef9GaLpCJATqeso3YDjcXku+INE8xh2w+SFu+u2YVr9qEXvP/A8H1fH6uqeXa7
+        yM4A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
+        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
+        :mime-version:references:reply-to:sender:subject:subject:to:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm3; t=1659375372; x=1659461772; bh=Y257L4d6b5CFZRcEy4JTormzanQN
+        T+CLmxVCxY4oXZQ=; b=W/FfjJ0eKIl/DnkCsoGQA8BXCbnS7+/bgS4IsH8VkUFc
+        WEFgOu9seVvV32WdW8BXLdISTVnxmC7NrzewMn2cYqTWjICiGUdQkYwPmfDDM9i6
+        7Q9OboAhiF4ugSPkxFtpJEzhhVL0L7qXDjAz4fKoZ5N74QHCR5ADne85PHBYZuHX
+        BIwdNSA3kFt0PxjnvkCZoPIgcWYeEkzlLR/ILAHup3SzdbJrjeUUEzXobCU59M7L
+        cEgRBI1hmwIPsAYi7F5pxUir5Azv8ZuckuDCSO0hGSl02LvCw0cOCwMpVXeYWJMi
+        5YSILl8MsCgPKBAh1bKy42hWCyICXQYdT4jbAZaG+A==
+X-ME-Sender: <xms:Cw_oYrr_5aCcl7cEE8iaunfu4F_D1TAzOMyG-iKFo2s8kzoT5W2JBQ>
+    <xme:Cw_oYloaHXmrllphGVNjks4ob5Q4icuVgL8s2XahiBUYr-vwpeoE8npb7JMYNE4HD
+    whi1wwhU0Gvmdg9Agc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddvfedgudduhecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdfu
+    vhgvnhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtf
+    frrghtthgvrhhnpeefgedugffhjedvfffggfektedutdetueehudeitdfgudefvdduiedt
+    vdeliedvgfenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsth
+    gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhp
+    vghtvghrrdguvghv
+X-ME-Proxy: <xmx:Cw_oYoNsaQXZJY3jgsO6geqeaJyaheDOg96WD6T7KWUkt0bAAZh1uw>
+    <xmx:Cw_oYu5RCO3SfaN-QC5_LwJh_uAEw1PVWJfcaW1L1IN4YHElfs-mOQ>
+    <xmx:Cw_oYq560o3pp4JroCLxPVfRfAWjZK-k7L6lRy59B9UN7S__p0weBw>
+    <xmx:DA_oYpQDEz816y26wyIy4v7InNIcT-9QSPcwrFPOFJfMwpZdBzLJTQ>
+Feedback-ID: i51094778:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 5A72EA6007C; Mon,  1 Aug 2022 13:36:11 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.7.0-alpha0-758-ge0d20a54e1-fm-20220729.001-ge0d20a54
+Mime-Version: 1.0
+Message-Id: <de5f9eb8-9328-4c1c-a57c-a06d40ec203e@www.fastmail.com>
+In-Reply-To: <20220801152338.GB1031441-robh@kernel.org>
+References: <20220801103633.27772-1-sven@svenpeter.dev>
+ <20220801103633.27772-2-sven@svenpeter.dev>
+ <20220801152338.GB1031441-robh@kernel.org>
+Date:   Mon, 01 Aug 2022 19:35:51 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Rob Herring" <robh@kernel.org>
+Cc:     "Marcel Holtmann" <marcel@holtmann.org>,
+        "Johan Hedberg" <johan.hedberg@gmail.com>,
+        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Eric Dumazet" <edumazet@google.com>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        "Paolo Abeni" <pabeni@redhat.com>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>, asahi@lists.linux.dev,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: net: Add generic Bluetooth controller
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Jul 2022 17:34:11 +0300, Serge Semin wrote:
-> Currently both DW PCIe Root Port and End-point DT bindings are defined as
-> separate schemas. Carefully looking at them, at the hardware reference
-> manuals and seeing there is a generic part of the driver used by the both
-> RP and EP drivers we can greatly simplify the DW PCIe controller bindings
-> by moving some of the properties into the common DT schema. It concerns
-> the PERST GPIO control, number of lanes, number of iATU windows and CDM
-> check properties. They will be defined in the snps,dw-pcie-common.yaml
-> schema which will be referenced in the DW PCIe Root Port and End-point DT
-> bindings in order to evaluate the common for both of these controllers
-> properties. The rest of properties like reg{,-names}, clock{s,-names},
-> reset{s,-names}, etc will be consolidate there in one of the next commits.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v3:
-> - This is a new patch unpinned from the next one:
->   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
->   by the Rob' request. (@Rob)
-> ---
->  .../bindings/pci/snps,dw-pcie-common.yaml     | 76 +++++++++++++++++++
->  .../bindings/pci/snps,dw-pcie-ep.yaml         | 31 +-------
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml | 33 +-------
->  3 files changed, 78 insertions(+), 62 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml
-> 
+Hi,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, Aug 1, 2022, at 17:23, Rob Herring wrote:
+> On Mon, Aug 01, 2022 at 12:36:29PM +0200, Sven Peter wrote:
+>> Bluetooth controllers share the common local-bd-address property.
+>> Add a generic YAML schema to replace bluetooth.txt for those.
+>> 
+>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+>> ---
+>> I hope it's fine to list the current Bluetooth maintainers in here
+>> as well.
+>> 
+>>  .../bindings/net/bluetooth-controller.yaml    | 30 +++++++++++++++++++
+>>  .../devicetree/bindings/net/bluetooth.txt     |  6 +---
+>>  2 files changed, 31 insertions(+), 5 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/net/bluetooth-controller.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/net/bluetooth-controller.yaml b/Documentation/devicetree/bindings/net/bluetooth-controller.yaml
+>> new file mode 100644
+>> index 000000000000..0ea8a20e30f9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/bluetooth-controller.yaml
+>> @@ -0,0 +1,30 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/bluetooth-controller.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Bluetooth Controller Generic Binding
+>> +
+>> +maintainers:
+>> +  - Marcel Holtmann <marcel@holtmann.org>
+>> +  - Johan Hedberg <johan.hedberg@gmail.com>
+>> +  - Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^bluetooth(@.*)?$"
+>> +
+>> +  local-bd-address:
+>> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+>> +    minItems: 6
+>> +    maxItems: 6
+>> +    description:
+>> +      Specifies the BD address that was uniquely assigned to the Bluetooth
+>> +      device. Formatted with least significant byte first (little-endian), e.g.
+>> +      in order to assign the address 00:11:22:33:44:55 this property must have
+>> +      the value [55 44 33 22 11 00].
+>> +
+>> +additionalProperties: true
+>> +
+>> +...
+>> diff --git a/Documentation/devicetree/bindings/net/bluetooth.txt b/Documentation/devicetree/bindings/net/bluetooth.txt
+>> index 94797df751b8..3cb5a7b8e5ad 100644
+>> --- a/Documentation/devicetree/bindings/net/bluetooth.txt
+>> +++ b/Documentation/devicetree/bindings/net/bluetooth.txt
+>> @@ -1,5 +1 @@
+>> -The following properties are common to the Bluetooth controllers:
+>> -
+>> -- local-bd-address: array of 6 bytes, specifies the BD address that was
+>> -  uniquely assigned to the Bluetooth device, formatted with least significant
+>> -  byte first (little-endian).
+>> +This file has been moved to bluetooth-controller.yaml.
+>
+> There's one reference to bluetooth.txt. Update it and remove this file.
+
+Sure, I've just checked and found Documentation/devicetree/bindings/soc/qcom/qcom,wcnss.yaml
+and Documentation/devicetree/bindings/net/qualcomm-bluetooth.yaml and will
+update both for v2 and remove bluetooth.txt.
+
+
+Thanks,
+
+
+Sven
