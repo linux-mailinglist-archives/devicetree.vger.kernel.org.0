@@ -2,427 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4647A586C4F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E8A7586C5F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:57:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232149AbiHANzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 09:55:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48638 "EHLO
+        id S231886AbiHAN5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 09:57:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231934AbiHANzL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:55:11 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ACAF25E93
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 06:55:07 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id q16so9741683pgq.6
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 06:55:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=3gGmjHB8qbI2ripW12YTaHS1CCUIUDUosN8z8CaaVjc=;
-        b=DV6yPWMjRzwPCGNDgFwh9/JNWX0htmAkF9pUwv7wvmY4NhX5nERIWzD35E8w2bYR9u
-         nkOFNTCcqX4lnQDE+PLqtQZWyxpCaqxp96+bbliDX5f9wxI0IFdOMpLCU4tzW6k7xhYa
-         MhL8zrylk+1xf7hhd+d5/oxzaSAL85geevKkH08CizV/FLiDu8tdeypp7EN2M9rhCIXx
-         XiOXDmXBTZi/i7EKizqmtmQhhBOHzA5EVJZSqgEE56E0huColNcyTc0LAM1evfWzmAXX
-         C5H6S55J3vVDmFeSxJ2TLicgwPhUJ0fESboaUiA1YQGsCGcUlNLnQe9V1kNNo0m6jnLU
-         jfZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=3gGmjHB8qbI2ripW12YTaHS1CCUIUDUosN8z8CaaVjc=;
-        b=dELI76k/G/iomhv2X1ogyEXFlmdn+AXaeiB2e4ZjglKLt/moHh8l/9Bzf/fXgiPGGw
-         LNDqguoHnfA1NMXOOhIOYncOri7HGiMYma02wLsNwGuA23nxcjw9Lzk/F3UGGdY3c3H+
-         lJca432NJyiGpDSWmqxulCHrB4zr4Mo/2fnt1qDl/eXmtyqeG2sd8E5IkHAWFFjVrSL+
-         B83AoO/h3yBNvZbumXXtkpXrv8IiBfbmn/3GSYd+uMRZ8sNCQHji/tIshuDR/1xg4JzS
-         5ss1j005tcLwXEQ79TDaoE8DCpHvFpi3Jv1HfB7NBzPq8hqGtPCO67Vvktn5aKACb/Q8
-         eT0g==
-X-Gm-Message-State: ACgBeo2A6Dm4k/I6JAa45/oVghbXR43OAOmcx8MIn/097X83zahxq+lY
-        edjr31Ii1Hc4AzoGlL+RtTj1
-X-Google-Smtp-Source: AA6agR5eYRbo6sIZHryuqtIY5TrfwJALrvXNw37SQjF5283qm1h6pn6Y9Iu7bADb9YsrrMJK9Ab8Ag==
-X-Received: by 2002:a62:cec9:0:b0:52d:414b:c70f with SMTP id y192-20020a62cec9000000b0052d414bc70fmr7770111pfg.20.1659362106652;
-        Mon, 01 Aug 2022 06:55:06 -0700 (PDT)
-Received: from thinkpad ([117.217.185.73])
-        by smtp.gmail.com with ESMTPSA id p1-20020a170902e74100b0016bcc35000asm9498654plf.302.2022.08.01.06.55.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 06:55:06 -0700 (PDT)
-Date:   Mon, 1 Aug 2022 19:24:57 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rahul Tanwar <rtanwar@maxlinear.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v4 14/15] PCI: dwc: Check iATU in/outbound ranges
- setup methods status
-Message-ID: <20220801135457.GN93763@thinkpad>
-References: <20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru>
- <20220624143947.8991-15-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S231701AbiHAN5M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:57:12 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20B6013CF1;
+        Mon,  1 Aug 2022 06:57:10 -0700 (PDT)
+Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 08D606601BA6;
+        Mon,  1 Aug 2022 14:57:05 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1659362228;
+        bh=8QNCSs2CJVUaA/nm2AntjPKq5zW1gHSa89sDl9+SitQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=geXyPyLTVTBpug0yIc9edkx0PZ4OLb+YZBimraT31hA+ST855QlVeiwLZDIyUt5kV
+         XfecpVmwLNZZoWwoVc/Cbm+fBDekWsMlIJcOF8+bwRZemY+T2Sdh87oxNgk04UEDyO
+         ckmkJeMTI9YH8/eDlXMjj2mbPv+bjId0M/4eLfdcq+pc9UqnJE7mSrmLEGH51LRzjL
+         z+xhu5eXX5MKprD62KBjuQXBozsosgfFwwRZRYtB0a5FnGB27Zw8B+b0jSd877QHbw
+         sfVkXvJ49SN8QWrIRDYQpGFLkZHSmOF7VQDfu+myEHeIGhAOFSik8MEC+bPejazeQ9
+         /++jT5dFmy9tw==
+Date:   Mon, 1 Aug 2022 09:57:01 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Balsam CHIHI <bchihi@baylibre.com>
+Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amitk@kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, khilman@baylibre.com,
+        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+Subject: Re: [PATCH v8 5/6] arm64: dts: mt8195: Add efuse node to mt8195
+Message-ID: <20220801135701.dke4m7yshxucewnb@notapiano>
+References: <20220726135506.485108-1-bchihi@baylibre.com>
+ <20220726135506.485108-6-bchihi@baylibre.com>
+ <20220729201421.fxybo57g46ftghgd@notapiano>
+ <CAGuA+ooqk-tf5FVfEbA0WdjTOo2fPJi-+AaHDC9jXgw=3vKq0g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220624143947.8991-15-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <CAGuA+ooqk-tf5FVfEbA0WdjTOo2fPJi-+AaHDC9jXgw=3vKq0g@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 05:39:46PM +0300, Serge Semin wrote:
-> Let's make the DWC PCIe RC/EP safer and more verbose for the invalid or
-> failed inbound and outbound iATU windows setups. Needless to say that
-> silently ignoring iATU regions setup errors may cause unpredictable
-> errors. For instance if for some reason a cfg or IO window fails to be
-> activated, then any CFG/IO requested won't reach target PCIe devices and
-> the corresponding accessors will return platform-specific random values.
+On Mon, Aug 01, 2022 at 02:33:31PM +0200, Balsam CHIHI wrote:
+> On Fri, Jul 29, 2022 at 10:14 PM N�colas F. R. A. Prado
+> <nfraprado@collabora.com> wrote:
+> >
+> > On Tue, Jul 26, 2022 at 03:55:05PM +0200, Balsam CHIHI wrote:
+> > > This adds the efuse node. This will be required by the thermal driver
+> > > to get the calibration data.
+> > >
+> > > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> > > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> > > ---
+> > >  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 16 ++++++++++++++++
+> > >  1 file changed, 16 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > > index 0ff34edcf8c8..4fbf24b5d202 100644
+> > > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> > > @@ -1236,6 +1236,22 @@ nor_flash: spi@1132c000 {
+> > >                       status = "disabled";
+> > >               };
+> > >
+> > > +             efuse: efuse@11c10000 {
+> > > +                     compatible = "mediatek,efuse";
+> > > +                     reg = <0 0x11c10000 0 0x1000>;
+> > > +                     #address-cells = <1>;
+> > > +                     #size-cells = <1>;
+> > > +                     lvts_efuse_data1: lvts1-calib@1bc {
+> > > +                             reg = <0x1bc 0x14>;
+> > > +                     };
+> > > +                     lvts_efuse_data2: lvts2-calib@1d0 {
+> > > +                             reg = <0x1d0 0x38>;
+> > > +                     };
+> > > +                     svs_calibration: calib@580 {
+> > > +                             reg = <0x580 0x64>;
+> > > +                     };
+> > > +             };
+> > > +
+> >
+> > This commit doesn't apply, there's already an efuse node on mt8195.dtsi. Please
+> > rebase.
+> >
+> > Thanks,
+> > N�colas
 > 
-> First of all we need to convert dw_pcie_ep_outbound_atu() method to check
-> whether the specified outbound iATU range is successfully setup. That
-> method is called by the pci_epc_ops.map_addr callback. Thus we'll make the
-> EP-specific CPU->PCIe memory mappings saver.
+> Hello N�colas,
 > 
-> Secondly since the iATU outbound range programming method now returns the
-> operation status, it will be handy to take that status into account in the
-> pci_ops.{map_bus,read,write} methods. Thus any failed mapping will be
-> immediately noticeable by the PCIe CFG operations requesters.
-> 
-> Finally we need to convert the dw_pcie_setup_rc() method to returning the
-> operation status, since the iATU outbound ranges setup procedure may now
-> fail. It will be especially handy in case if the DW PCIe RC DT-node has
-> invalid/unsupported (dma-)ranges property. Note since the suggested
-> modification causes having too wide code indentation, it is reasonable
-> from maintainability and readability points of view to move the outbound
-> ranges setup procedure in the separate function.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Thank you so much for the review.
+> I rebased on top of the latest kernel version "linux-5.19.0" but I
+> can't find efuse node on mt8195.dtsi.
+> But, this node is indeed present on mt8192.dtsi.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Hi Balsam,
+
+no I'm really talking about mt8195. For the dts patches in the series you should
+base on top of Matthias' -next/dts64 branch [1]. And there you can see the efuse
+node on mt8195 [2].
 
 Thanks,
-Mani
+N�colas
 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../pci/controller/dwc/pcie-designware-ep.c   |   9 +-
->  .../pci/controller/dwc/pcie-designware-host.c | 153 ++++++++++++------
->  drivers/pci/controller/dwc/pcie-designware.h  |   5 +-
->  drivers/pci/controller/dwc/pcie-intel-gw.c    |   6 +-
->  4 files changed, 114 insertions(+), 59 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 2e91222f7c98..627c4b69878c 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -184,8 +184,9 @@ static int dw_pcie_ep_outbound_atu(struct dw_pcie_ep *ep, u8 func_no,
->  				   phys_addr_t phys_addr,
->  				   u64 pci_addr, size_t size)
->  {
-> -	u32 free_win;
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> +	u32 free_win;
-> +	int ret;
->  
->  	free_win = find_first_zero_bit(ep->ob_window_map, pci->num_ob_windows);
->  	if (free_win >= pci->num_ob_windows) {
-> @@ -193,8 +194,10 @@ static int dw_pcie_ep_outbound_atu(struct dw_pcie_ep *ep, u8 func_no,
->  		return -EINVAL;
->  	}
->  
-> -	dw_pcie_prog_ep_outbound_atu(pci, func_no, free_win, PCIE_ATU_TYPE_MEM,
-> -				     phys_addr, pci_addr, size);
-> +	ret = dw_pcie_prog_ep_outbound_atu(pci, func_no, free_win, PCIE_ATU_TYPE_MEM,
-> +					   phys_addr, pci_addr, size);
-> +	if (ret)
-> +		return ret;
->  
->  	set_bit(free_win, ep->ob_window_map);
->  	ep->outbound_addr[free_win] = phys_addr;
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index e0a2819608c6..6993ce9e856d 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -412,7 +412,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  
->  	dw_pcie_iatu_detect(pci);
->  
-> -	dw_pcie_setup_rc(pp);
-> +	ret = dw_pcie_setup_rc(pp);
-> +	if (ret)
-> +		goto err_free_msi;
->  
->  	if (!dw_pcie_link_up(pci)) {
->  		ret = dw_pcie_start_link(pci);
-> @@ -466,10 +468,10 @@ EXPORT_SYMBOL_GPL(dw_pcie_host_deinit);
->  static void __iomem *dw_pcie_other_conf_map_bus(struct pci_bus *bus,
->  						unsigned int devfn, int where)
->  {
-> -	int type;
-> -	u32 busdev;
->  	struct dw_pcie_rp *pp = bus->sysdata;
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	int type, ret;
-> +	u32 busdev;
->  
->  	/*
->  	 * Checking whether the link is up here is a last line of defense
-> @@ -490,8 +492,10 @@ static void __iomem *dw_pcie_other_conf_map_bus(struct pci_bus *bus,
->  	else
->  		type = PCIE_ATU_TYPE_CFG1;
->  
-> -
-> -	dw_pcie_prog_outbound_atu(pci, 0, type, pp->cfg0_base, busdev, pp->cfg0_size);
-> +	ret = dw_pcie_prog_outbound_atu(pci, 0, type, pp->cfg0_base, busdev,
-> +					pp->cfg0_size);
-> +	if (ret)
-> +		return NULL;
->  
->  	return pp->va_cfg0_base + where;
->  }
-> @@ -499,33 +503,45 @@ static void __iomem *dw_pcie_other_conf_map_bus(struct pci_bus *bus,
->  static int dw_pcie_rd_other_conf(struct pci_bus *bus, unsigned int devfn,
->  				 int where, int size, u32 *val)
->  {
-> -	int ret;
->  	struct dw_pcie_rp *pp = bus->sysdata;
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	int ret;
->  
->  	ret = pci_generic_config_read(bus, devfn, where, size, val);
-> +	if (ret != PCIBIOS_SUCCESSFUL)
-> +		return ret;
->  
-> -	if (!ret && pp->cfg0_io_shared)
-> -		dw_pcie_prog_outbound_atu(pci, 0, PCIE_ATU_TYPE_IO, pp->io_base,
-> -					  pp->io_bus_addr, pp->io_size);
-> +	if (pp->cfg0_io_shared) {
-> +		ret = dw_pcie_prog_outbound_atu(pci, 0, PCIE_ATU_TYPE_IO,
-> +						pp->io_base, pp->io_bus_addr,
-> +						pp->io_size);
-> +		if (ret)
-> +			return PCIBIOS_SET_FAILED;
-> +	}
->  
-> -	return ret;
-> +	return PCIBIOS_SUCCESSFUL;
->  }
->  
->  static int dw_pcie_wr_other_conf(struct pci_bus *bus, unsigned int devfn,
->  				 int where, int size, u32 val)
->  {
-> -	int ret;
->  	struct dw_pcie_rp *pp = bus->sysdata;
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	int ret;
->  
->  	ret = pci_generic_config_write(bus, devfn, where, size, val);
-> +	if (ret != PCIBIOS_SUCCESSFUL)
-> +		return ret;
->  
-> -	if (!ret && pp->cfg0_io_shared)
-> -		dw_pcie_prog_outbound_atu(pci, 0, PCIE_ATU_TYPE_IO, pp->io_base,
-> -					  pp->io_bus_addr, pp->io_size);
-> +	if (pp->cfg0_io_shared) {
-> +		ret = dw_pcie_prog_outbound_atu(pci, 0, PCIE_ATU_TYPE_IO,
-> +						pp->io_base, pp->io_bus_addr,
-> +						pp->io_size);
-> +		if (ret)
-> +			return PCIBIOS_SET_FAILED;
-> +	}
->  
-> -	return ret;
-> +	return PCIBIOS_SUCCESSFUL;
->  }
->  
->  static struct pci_ops dw_child_pcie_ops = {
-> @@ -552,10 +568,72 @@ static struct pci_ops dw_pcie_ops = {
->  	.write = pci_generic_config_write,
->  };
->  
-> -void dw_pcie_setup_rc(struct dw_pcie_rp *pp)
-> +static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
->  {
-> -	u32 val, ctrl, num_ctrls;
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct resource_entry *entry;
-> +	int i, ret;
-> +
-> +	/* Note the very first outbound ATU is used for CFG IOs */
-> +	if (!pci->num_ob_windows) {
-> +		dev_err(pci->dev, "No outbound iATU found\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	/*
-> +	 * Ensure all outbound windows are disabled before proceeding with
-> +	 * the MEM/IO ranges setups.
-> +	 */
-> +	for (i = 0; i < pci->num_ob_windows; i++)
-> +		dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_OB, i);
-> +
-> +	i = 0;
-> +	resource_list_for_each_entry(entry, &pp->bridge->windows) {
-> +		if (resource_type(entry->res) != IORESOURCE_MEM)
-> +			continue;
-> +
-> +		if (pci->num_ob_windows <= ++i)
-> +			break;
-> +
-> +		ret = dw_pcie_prog_outbound_atu(pci, i, PCIE_ATU_TYPE_MEM,
-> +						entry->res->start,
-> +						entry->res->start - entry->offset,
-> +						resource_size(entry->res));
-> +		if (ret) {
-> +			dev_err(pci->dev, "Failed to set MEM range %pr\n",
-> +				entry->res);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	if (pp->io_size) {
-> +		if (pci->num_ob_windows > ++i) {
-> +			ret = dw_pcie_prog_outbound_atu(pci, i, PCIE_ATU_TYPE_IO,
-> +							pp->io_base,
-> +							pp->io_bus_addr,
-> +							pp->io_size);
-> +			if (ret) {
-> +				dev_err(pci->dev, "Failed to set IO range %pr\n",
-> +					entry->res);
-> +				return ret;
-> +			}
-> +		} else {
-> +			pp->cfg0_io_shared = true;
-> +		}
-> +	}
-> +
-> +	if (pci->num_ob_windows <= i)
-> +		dev_warn(pci->dev, "Resources exceed number of ATU entries (%d)\n",
-> +			 pci->num_ob_windows);
-> +
-> +	return 0;
-> +}
-> +
-> +int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	u32 val, ctrl, num_ctrls;
-> +	int ret;
->  
->  	/*
->  	 * Enable DBI read-only registers for writing/updating configuration.
-> @@ -610,42 +688,9 @@ void dw_pcie_setup_rc(struct dw_pcie_rp *pp)
->  	 * ATU, so we should not program the ATU here.
->  	 */
->  	if (pp->bridge->child_ops == &dw_child_pcie_ops) {
-> -		int i, atu_idx = 0;
-> -		struct resource_entry *entry;
-> -
-> -		/*
-> -		 * Ensure all outbound windows are disabled so there are
-> -		 * multiple matches
-> -		 */
-> -		for (i = 0; i < pci->num_ob_windows; i++)
-> -			dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_OB, i);
-> -
-> -		/* Get last memory resource entry */
-> -		resource_list_for_each_entry(entry, &pp->bridge->windows) {
-> -			if (resource_type(entry->res) != IORESOURCE_MEM)
-> -				continue;
-> -
-> -			if (pci->num_ob_windows <= ++atu_idx)
-> -				break;
-> -
-> -			dw_pcie_prog_outbound_atu(pci, atu_idx,
-> -						  PCIE_ATU_TYPE_MEM, entry->res->start,
-> -						  entry->res->start - entry->offset,
-> -						  resource_size(entry->res));
-> -		}
-> -
-> -		if (pp->io_size) {
-> -			if (pci->num_ob_windows > ++atu_idx)
-> -				dw_pcie_prog_outbound_atu(pci, atu_idx,
-> -							  PCIE_ATU_TYPE_IO, pp->io_base,
-> -							  pp->io_bus_addr, pp->io_size);
-> -			else
-> -				pp->cfg0_io_shared = true;
-> -		}
-> -
-> -		if (pci->num_ob_windows <= atu_idx)
-> -			dev_warn(dev, "Resources exceed number of ATU entries (%d)\n",
-> -				 pci->num_ob_windows);
-> +		ret = dw_pcie_iatu_setup(pp);
-> +		if (ret)
-> +			return ret;
->  	}
->  
->  	dw_pcie_writel_dbi(pci, PCI_BASE_ADDRESS_0, 0);
-> @@ -658,5 +703,7 @@ void dw_pcie_setup_rc(struct dw_pcie_rp *pp)
->  	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, val);
->  
->  	dw_pcie_dbi_ro_wr_dis(pci);
-> +
-> +	return 0;
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_setup_rc);
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 60f1ddc54933..c3e73ed9aff5 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -387,7 +387,7 @@ static inline void dw_pcie_stop_link(struct dw_pcie *pci)
->  
->  #ifdef CONFIG_PCIE_DW_HOST
->  irqreturn_t dw_handle_msi_irq(struct dw_pcie_rp *pp);
-> -void dw_pcie_setup_rc(struct dw_pcie_rp *pp);
-> +int dw_pcie_setup_rc(struct dw_pcie_rp *pp);
->  int dw_pcie_host_init(struct dw_pcie_rp *pp);
->  void dw_pcie_host_deinit(struct dw_pcie_rp *pp);
->  int dw_pcie_allocate_domains(struct dw_pcie_rp *pp);
-> @@ -399,8 +399,9 @@ static inline irqreturn_t dw_handle_msi_irq(struct dw_pcie_rp *pp)
->  	return IRQ_NONE;
->  }
->  
-> -static inline void dw_pcie_setup_rc(struct dw_pcie_rp *pp)
-> +static inline int dw_pcie_setup_rc(struct dw_pcie_rp *pp)
->  {
-> +	return 0;
->  }
->  
->  static inline int dw_pcie_host_init(struct dw_pcie_rp *pp)
-> diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
-> index a44f685ec94d..c3481200e86a 100644
-> --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
-> +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
-> @@ -302,7 +302,11 @@ static int intel_pcie_host_setup(struct intel_pcie *pcie)
->  	intel_pcie_ltssm_disable(pcie);
->  	intel_pcie_link_setup(pcie);
->  	intel_pcie_init_n_fts(pci);
-> -	dw_pcie_setup_rc(&pci->pp);
-> +
-> +	ret = dw_pcie_setup_rc(&pci->pp);
-> +	if (ret)
-> +		goto app_init_err;
-> +
->  	dw_pcie_upconfig_setup(pci);
->  
->  	intel_pcie_device_rst_deassert(pcie);
-> -- 
-> 2.35.1
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/log/?h=v5.19-next/dts64
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux.git/commit/?h=v5.19-next/dts64&id=ab43a84c9863b65dc20373d5aca4e4d012aa852e
