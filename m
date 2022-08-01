@@ -2,220 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F2A3586B98
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38F1D586BAC
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231848AbiHANMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 09:12:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44502 "EHLO
+        id S230292AbiHANQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 09:16:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbiHANMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:12:31 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C44252AF
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 06:12:29 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id c139so10560801pfc.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 06:12:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=jO1bqIIamDycGg4bu9gqL7wpx+GWJSddw3ScY623t+4=;
-        b=ldLqZN/JZgXIMHZSkgb0EPjT4l9tbZFVODBOINq3PjAzp8QoxfEpDQPwr+O7Zyz/q0
-         KQi5YMTNOmHy6oSnwh4CoK0Bx7b0Uxtkt6ZPbQybXc+cm0qR8NUGbWNizJYwiXt26bRD
-         CyHEpc5F6tuAhNMAucwjsjHe/se9pr5mS23TcNBZ48ecNEMv4HwwI+YUbaOgQM+Npbt1
-         /3gAde/DrC4SURPzJnDAJyfDsBqVRWQem1NdGfz81y9cqu0/HSfvBb50BbaoFVX7uLdZ
-         M5XR/qIsl+QoaU5s+Y6LCBeiCoh1n8cV62j6o21HWWJF5P/bY2e2AW7oHTU+tuNg5KyB
-         aFeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=jO1bqIIamDycGg4bu9gqL7wpx+GWJSddw3ScY623t+4=;
-        b=GJMzye85K7EN6uYEzMn8cMxZOAWrUiEuAXLb0Sd/W9oRSnx5rPVEa5VImGVZ25uldf
-         PshZ1VJI8mLvPJgfSKDbYVIdi5jvjpdoGJjfmGfcmofQDFF08siQpyVJw3RADYcn5j9A
-         mG3efKp4x4cqXN+cYVsjfLjSaC5mhgXuJV8Kvm1FlWdg2KTB4KO8sy6yRXx9Q0OENQBe
-         hQFaOGSAqJMmguuxrJBmaehl16qvR3SBmj7sQreIrqaLQcFsdTlaHxZH54chw1A6qsSN
-         rdgq24Rcu5DBsEmshzMqOmYNT/Xg8E6x1cmTrtj+vl8hMr0S/8lmbrAcQQax+dQiL7HG
-         pyFA==
-X-Gm-Message-State: ACgBeo0z21ivh4eDge2WOh5GB00AoG17NCywXdrfJjyCWRyZ5WIn6aME
-        OjhAAQJZUIzspWmh9vwtiLk2
-X-Google-Smtp-Source: AA6agR4S1dUEx4li1cfSqTDjfJx1siavuXv+Qxp1ggsYNxB9BseT82XgYD4ZkmAMk8xZVux8VCJzeA==
-X-Received: by 2002:a63:4407:0:b0:41c:30f7:8faf with SMTP id r7-20020a634407000000b0041c30f78fafmr2542123pga.359.1659359548939;
-        Mon, 01 Aug 2022 06:12:28 -0700 (PDT)
-Received: from thinkpad ([117.217.185.73])
-        by smtp.gmail.com with ESMTPSA id u17-20020a170903125100b0016d33b8a231sm9641684plh.270.2022.08.01.06.12.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 06:12:28 -0700 (PDT)
-Date:   Mon, 1 Aug 2022 18:42:19 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v4 04/15] PCI: dwc: Add IP-core version detection
- procedure
-Message-ID: <20220801131219.GD93763@thinkpad>
-References: <20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru>
- <20220624143947.8991-5-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S230087AbiHANQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:16:07 -0400
+Received: from mail.fris.de (mail.fris.de [IPv6:2a01:4f8:c2c:390b::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E0462B264;
+        Mon,  1 Aug 2022 06:16:03 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E7E48BFBC6;
+        Mon,  1 Aug 2022 15:15:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+        t=1659359760; h=from:subject:date:message-id:to:cc:mime-version:
+         content-transfer-encoding; bh=n20eecw78N24KCT8Ahm3HDfln/rPRfajiP3bL2FlrGs=;
+        b=pdgNgswtZrsx51v7nh4v33IU0NLiXWy45kzDW5tKzkBgys/a/O7gKeMV04CYiCO4vfUxn+
+        SPRSZjts64T1zt/uW1ruzr+HFJjlKUUkaS8Xy2Uq3zmjynUHoMxXvk6fgxSl+c+hjdCjrj
+        bwKw0YNutHT7iP0Zk2jyFAhFXDbQ2mQ3nQCS07Cc/KDIo3ZyV93FCMX/w3vp/UoMumhm2E
+        mPQtt3X6CctdMi9yNYoliTynu/THuUuWJTs8oftSQGZZopPQFLRhLZd+xn6gpVK66hChKF
+        wK7lruNaIe+VeAKKzdGaLkddAAuKTiTwE2u9LIZ35CbDgydVrg++w17VHkI3dw==
+From:   Frieder Schrempf <frieder@fris.de>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Robin Gong <yibin.gong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v2 0/8] arm64: dts: imx8mm-kontron: Improvements and OSM board support
+Date:   Mon,  1 Aug 2022 15:15:44 +0200
+Message-Id: <20220801131554.116795-1-frieder@fris.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220624143947.8991-5-Sergey.Semin@baikalelectronics.ru>
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 05:39:36PM +0300, Serge Semin wrote:
-> Since DWC PCIe v4.70a the controller version and version type can be read
-> from the PORT_LOGIC.PCIE_VERSION_OFF and PORT_LOGIC.PCIE_VERSION_TYPE_OFF
-> registers respectively. Seeing the generic code has got version-dependent
-> parts let's use these registers to find out the controller version.  The
-> detection procedure is executed for both RC and EP modes right after the
-> platform-specific initialization. We can't do that earlier since the
-> glue-drivers can perform the DBI-related setups there including the bus
-> reference clocks activation, without which the CSRs just can't be read.
-> 
-> Note the CSRs content is zero on the older DWC PCIe controller. In that
-> case we have no choice but to rely on the platform setup.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+This set contains a few small improvements for the imx8mm-kontron devicetrees
+(patch 3-7) and support for a new SoM (patch 8, including baseboard) that
+complies to the Open Standard Module (OSM) 1.0 hardware specification, size S
+(https://sget.org/standards/osm).
 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> ---
-> 
-> Changelog v2:
-> - Move the IP-core version detection procedure call from
->   dw_pcie_ep_init_complete() to dw_pcie_ep_init().
-> ---
->  .../pci/controller/dwc/pcie-designware-ep.c   |  2 ++
->  .../pci/controller/dwc/pcie-designware-host.c |  2 ++
->  drivers/pci/controller/dwc/pcie-designware.c  | 24 +++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-designware.h  |  6 +++++
->  4 files changed, 34 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 1e35542d6f72..ffbd3af6d65a 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -711,6 +711,8 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  	ep->phys_base = res->start;
->  	ep->addr_size = resource_size(res);
->  
-> +	dw_pcie_version_detect(pci);
-> +
+It also includes binding changes for the new board (patch 1) and a binding
+change for the PCA9450 PMIC regulators (patch2).
 
-There is still an ongoing debate about moving all DBI accesses to
-init_complete. But this is fine atm.
+Changes in v2:
+* move binding changes to beginning of patchset
+* Allow arbitrary regulator names in PCA9450 bindings
+* Use voltage rail names from schematic for PMIC regulator-names
+* Add SPI NOR partition layout to devicetree
+* Remove unneeded header include
+* Add tags
 
-Thanks,
-Mani
+Frieder Schrempf (8):
+  dt-bindings: arm: fsl: Add Kontron BL i.MX8MM OSM-S board
+  dt-bindings: regulator: pca9450: Allow arbitrary regulator names
+  arm64: dts: imx8mm-kontron: Adjust board and SoM model strings
+  arm64: dts: imx8mm-kontron: Use the VSELECT signal to switch SD card
+    IO voltage
+  arm64: dts: imx8mm-kontron: Remove low DDRC operating point
+  arm64: dts: imx8mm-kontron: Use voltage rail names from schematic for
+    PMIC regulator-names
+  arm64: dts: imx8mm-kontron: Add SPI NOR partition layout
+  arm64: dts: Add support for Kontron SL/BL i.MX8MM OSM-S
 
->  	dw_pcie_iatu_detect(pci);
->  
->  	ep->ib_window_map = devm_kcalloc(dev,
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 95256434913f..b1437b37140f 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -405,6 +405,8 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  		}
->  	}
->  
-> +	dw_pcie_version_detect(pci);
-> +
->  	dw_pcie_iatu_detect(pci);
->  
->  	dw_pcie_setup_rc(pp);
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index f10a7d5d94e8..cbb36ccaa48b 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -16,6 +16,30 @@
->  #include "../../pci.h"
->  #include "pcie-designware.h"
->  
-> +void dw_pcie_version_detect(struct dw_pcie *pci)
-> +{
-> +	u32 ver;
-> +
-> +	/* The content of the CSR is zero on DWC PCIe older than v4.70a */
-> +	ver = dw_pcie_readl_dbi(pci, PCIE_VERSION_NUMBER);
-> +	if (!ver)
-> +		return;
-> +
-> +	if (pci->version && pci->version != ver)
-> +		dev_warn(pci->dev, "Versions don't match (%08x != %08x)\n",
-> +			 pci->version, ver);
-> +	else
-> +		pci->version = ver;
-> +
-> +	ver = dw_pcie_readl_dbi(pci, PCIE_VERSION_TYPE);
-> +
-> +	if (pci->type && pci->type != ver)
-> +		dev_warn(pci->dev, "Types don't match (%08x != %08x)\n",
-> +			 pci->type, ver);
-> +	else
-> +		pci->type = ver;
-> +}
-> +
->  /*
->   * These interfaces resemble the pci_find_*capability() interfaces, but these
->   * are for configuring host controllers, which are bridges *to* PCI devices but
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 6b81530fb2ca..7899808bdbc6 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -85,6 +85,9 @@
->  #define PCIE_PORT_MULTI_LANE_CTRL	0x8C0
->  #define PORT_MLTI_UPCFG_SUPPORT		BIT(7)
->  
-> +#define PCIE_VERSION_NUMBER		0x8F8
-> +#define PCIE_VERSION_TYPE		0x8FC
-> +
->  #define PCIE_ATU_VIEWPORT		0x900
->  #define PCIE_ATU_REGION_INBOUND		BIT(31)
->  #define PCIE_ATU_REGION_OUTBOUND	0
-> @@ -279,6 +282,7 @@ struct dw_pcie {
->  	struct dw_pcie_ep	ep;
->  	const struct dw_pcie_ops *ops;
->  	u32			version;
-> +	u32			type;
->  	int			num_lanes;
->  	int			link_gen;
->  	u8			n_fts[2];
-> @@ -290,6 +294,8 @@ struct dw_pcie {
->  #define to_dw_pcie_from_ep(endpoint)   \
->  		container_of((endpoint), struct dw_pcie, ep)
->  
-> +void dw_pcie_version_detect(struct dw_pcie *pci);
-> +
->  u8 dw_pcie_find_capability(struct dw_pcie *pci, u8 cap);
->  u16 dw_pcie_find_ext_capability(struct dw_pcie *pci, u8 cap);
->  
-> -- 
-> 2.35.1
-> 
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../regulator/nxp,pca9450-regulator.yaml      |   8 +-
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mm-kontron-n801x-s.dts  |   5 +-
+ .../freescale/imx8mm-kontron-n801x-som.dtsi   |  51 ++-
+ .../dts/freescale/imx8mm-kontron-n802x-s.dts  | 376 ++++++++++++++++++
+ .../freescale/imx8mm-kontron-n802x-som.dtsi   | 330 +++++++++++++++
+ 7 files changed, 754 insertions(+), 23 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-kontron-n802x-s.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-kontron-n802x-som.dtsi
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.37.1
+
