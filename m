@@ -2,103 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE25A586D58
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 17:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C73F0586D74
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 17:12:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232430AbiHAPAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 11:00:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41432 "EHLO
+        id S232259AbiHAPMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 11:12:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232507AbiHAPAg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 11:00:36 -0400
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7EC64C4
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 08:00:31 -0700 (PDT)
-Received: by mail-qv1-xf33.google.com with SMTP id h8so7552233qvs.6
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 08:00:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=VH9MjgED0AWITndim501l1CH8RMaZNy1yKl/Ru3+vOI=;
-        b=nvKz/XHSj68KdSTanByg6d4KCigA8S6DVIxtXtNsB5E82D3aY43nigcQSYITM3ssP3
-         O3oy90WdaMCut5i1JVBixoB329/SGYXcJ13oGCeYYYrXe32Gu8QIaOPA3XFfLA9pbqfp
-         YTDyaCEcMIp7VcnWdFzu0lLahnmMWB9Um2hUiKVbRngfc+lPFKyw1stelQPkVCogZj0k
-         iYsKXpEjYQ4om1eovrnOo7R0/gPU3mFPtAwK+4TmWKgVQMuXredBqnQt0GsWxFCGT6iz
-         mz8rdrAcVf7XSWYY0TfMXjygKYwRbwI3L2Sfp2/l8NdjfMzp81N0Wc5JZGToQhc19bkZ
-         WFYw==
+        with ESMTP id S229943AbiHAPMT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 11:12:19 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B1CEE24;
+        Mon,  1 Aug 2022 08:12:18 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id v185so8573944ioe.11;
+        Mon, 01 Aug 2022 08:12:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=VH9MjgED0AWITndim501l1CH8RMaZNy1yKl/Ru3+vOI=;
-        b=MQnKzMlOacK3cjDvd4aKZsO2SKjr5NvcSAF16bLPBRSl1N9jEelARdfXSN4Q1qFMdM
-         qkT8UOSlW3y9JEGw0KUIzeEWGOxEKqNqGcx8j7a7ENDdxjXm+NQGQ15KV82kK6VuGLUT
-         8DrvoCfLb/2njWMTzp8R/W00xY1rAlRBKtC0QtmrBgIJoAZ5ZcxPd9n4sQHbpRPURDgV
-         IGleiQno/oyi2Fr4mL+L2OfVHl899cMov541suBooEUxWYLDOEWNbcaoq0kBXGr6mqRE
-         IHKwvdvVEJ0OFUcNFOkXepWsrTC0CBTeAESsz5DN1oEijdCU48bDbHwnG4mloZz5vwt5
-         bv5g==
-X-Gm-Message-State: ACgBeo07vMjjOZ05cco0fjfljJW33nnJt5mSzU4ANzjYUXP3K7zwUnsa
-        /E7Vk8dyqtoKs/exHtK584rRLLYi+rvAwzODrv1hFQ==
-X-Google-Smtp-Source: AA6agR48bKZ7gnfltlVl1dBF4hEAWGRSmEMqBE3ThX5K1gCRT1iMR2DjmeVyYc+nbfG0UAL9FyuoK2Qs9LxAp3tY+Z4=
-X-Received: by 2002:a0c:8ecc:0:b0:473:2fa4:df7c with SMTP id
- y12-20020a0c8ecc000000b004732fa4df7cmr14424536qvb.55.1659366030428; Mon, 01
- Aug 2022 08:00:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <BY5PR02MB70099020AC1D181D15909F64EA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
- <BY5PR02MB700972E09CC9D8ED6EFBA59AEA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
-In-Reply-To: <BY5PR02MB700972E09CC9D8ED6EFBA59AEA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 1 Aug 2022 18:00:19 +0300
-Message-ID: <CAA8EJpqBVaPt6dc+=u1YZwxEo9i4Y6+QFK5ko0Gd3091pKYXjw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] Add support for Xiaomi Poco F1 EBBG variant
-To:     Joel Selvaraj <joel.selvaraj@outlook.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=00WqQczM5k8faqmOf4LEoLA+1YSvWY/3Za2518s+4uU=;
+        b=biWCPeRyJmYxNRAY8hfPT8rc/2mR0eopkr27JUMW/M/+8eOcb/4Q8aF8+IpG9NMDJx
+         muwl2gSWrZUhoWbAEYA1AeMJpqFzq/FPFW8+jtLJ03eOVpRceY5lYd2zWYeyE9OSUd3d
+         VqZanhrIvlPpxnApzsxE78oRo+5Hmxz+di0OIdzaGWqWOjEMNwkMipwPrKl4eLCuvqaa
+         OON6E4qyc7UhvmW5zZ1cPt9FHLt48YZOWXnsBtCDHJOFKyBYv7l47k9Rs7rKJzZ5uTtQ
+         fOaZHnERUwGYm0zn07NItH0A6nKdmj7pr+eDAwgKx1DQRohx2aOCEIy+z8uD/Oip8tbk
+         U8qw==
+X-Gm-Message-State: AJIora/Z+Y3o1/IuoOTXw5qQhLGU7LYuSyxL3Ycc0aIE80fZod2M0uMY
+        P4YfZ+cq497+8DicHSQ3rg==
+X-Google-Smtp-Source: AGRyM1thp9kA3Eh3vTT9FeBlCAt4d8hWHWj0c/lOM7jBCyA4dUJ52JMSYKOcy7OtWDaBMrJUXGty4Q==
+X-Received: by 2002:a05:6602:27cc:b0:5f0:876e:126b with SMTP id l12-20020a05660227cc00b005f0876e126bmr5557146ios.129.1659366738051;
+        Mon, 01 Aug 2022 08:12:18 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id y92-20020a029565000000b0033edc51d7e3sm5350067jah.64.2022.08.01.08.12.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Aug 2022 08:12:17 -0700 (PDT)
+Received: (nullmailer pid 1029847 invoked by uid 1000);
+        Mon, 01 Aug 2022 15:12:16 -0000
+Date:   Mon, 1 Aug 2022 09:12:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Nathan Chancellor <nathan@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: remove the dead code in cmd_mk_schema
+Message-ID: <20220801151216.GA1026724-robh@kernel.org>
+References: <20220729052112.3235325-1-masahiroy@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220729052112.3235325-1-masahiroy@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Jul 29, 2022 at 02:21:12PM +0900, Masahiro Yamada wrote:
+> Since commit 2783a7f56f99 ("dt-bindings: kbuild: Pass DT_SCHEMA_FILES to
+> dt-validate"), the processed schema takes all the YAML files.
+> 
+> Remove the dead code.
+> 
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> ---
+> 
+>  Documentation/devicetree/bindings/Makefile | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
 
-On Mon, 1 Aug 2022 at 14:44, Joel Selvaraj <joel.selvaraj@outlook.com> wrote:
->
-> To be honest, I have no idea why my patch series doesn't get linked
-> properly. I think there is some issue in my OS. I use git format-patch
-> and git send-mail to send patches. It used to work fine. But it doesn't
-> want to work anymore :/ Is there a mailing list for sending test mails?
-> or how do I debug this? Kindly let me know if anyone has any
-> suggestions.
+I also sent out a similar patch[1].
 
-Judging from the following headers, it's not your OS, it is M$
-rewriting the headers.
+> 
+> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+> index c9953f86b19d..223df2a023fd 100644
+> --- a/Documentation/devicetree/bindings/Makefile
+> +++ b/Documentation/devicetree/bindings/Makefile
+> @@ -42,10 +42,8 @@ quiet_cmd_chk_bindings = CHKDT   $@
+>  
+>  quiet_cmd_mk_schema = SCHEMA  $@
+>        cmd_mk_schema = f=$$(mktemp) ; \
+> -                      $(if $(DT_MK_SCHEMA_FLAGS), \
+> -                           printf '%s\n' $(real-prereqs), \
+> -                           $(find_all_cmd)) > $$f ; \
+> -                      $(DT_MK_SCHEMA) -j $(DT_MK_SCHEMA_FLAGS) @$$f > $@ ; \
+> +		      $(find_all_cmd) > $$f ; \
+> +		      $(DT_MK_SCHEMA) -j @$$f > $@ ; \
 
-Message-ID: <BY5PR02MB70099020AC1D181D15909F64EA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
-X-Microsoft-Original-Message-ID:
-<20220801112512.209047-1-joel.selvaraj@outlook.com>
+I want to keep DT_MK_SCHEMA_FLAGS because I'm working on a new optional 
+flag to pass.
 
-According to some mentions on the Internet, M$ relies on headers
-rewriting and will not change this behaviour.
+Rob
 
-I'd suggest switching to another SMTP submission host. I think it
-should be e.g. possible to tell GMail to send mails with @outlook.com
-addresses. However this might confuse some of the mail clients into
-believing it is spam since the email will SOFTFAIL the SPF check.
-
-Switching to another mail provider might be an option too.
-
--- 
-With best wishes
-Dmitry
+[1] https://lore.kernel.org/all/20220727211100.3249417-1-robh@kernel.org/
