@@ -2,106 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 838A6586FB8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 19:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B803D586FEA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 19:56:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232932AbiHARql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 13:46:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54654 "EHLO
+        id S233862AbiHAR4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 13:56:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232541AbiHARqk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 13:46:40 -0400
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9862A435
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 10:46:39 -0700 (PDT)
-Received: by mail-lf1-x144.google.com with SMTP id u1so8216982lfq.4
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 10:46:39 -0700 (PDT)
+        with ESMTP id S234138AbiHARzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 13:55:13 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7154C33A04
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 10:55:00 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id t1so18479114lft.8
+        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 10:55:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=q9Slei3vdZHf3BWZhWjxjnYHcSiTDd6lLLw5COAJJH4=;
-        b=I79gjp4NwelxOUS6wVI1hpiSvkKIP+PpMGUyP2Ry+rIEUDjjiJiS+5ardDvgRoC+3e
-         Q5vVrpXMdKLK+ZXfZxpQF17GdRDOhaSR1u+HORIP/nOi6ukEYaQ09f1T9gVtSmig8r9h
-         W0NDlybVkGkIa4TBPTWy4t4XLprl/JQNZRNLgsUv9uk6TLUngl/a/4Vq7N7gM2bQ29lb
-         vAGHsWuP948uN0X6WRAfihnOn0XCY2J0gcWTAdyaHittAHwbpeIIei2rxei1/8ZzEpXa
-         3CDGOQ6KBheCUVOxCl02CzBKzfojM1PymVqEH4kgqdkCbTZ0qUW1qjjEZnSVteFAAZ5i
-         nnXQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0dGf0wQlT5nVscla096RlUxod41IYCPpARZuBEndXgw=;
+        b=T6Yc3nNefe3TyXG0Vbq3cLSHdoLWMnMoLC1rCsAkOgbXk6qxf5NxTtsWLdlh+h8h+Y
+         zy2IwEG5thASc8/tliCDThGrGmtCTEdm8IXEBOHigiClrMlsAzwm83kX6UzZ765pOx1e
+         OclAzmznuvZ754z0Ve0hY1GPZHIA1OlVcjqd1pdshqzyg6rGVUId1LPHhOz3KeyYZFRc
+         t/OHO6Ha6Awj4xVLh6Z29b7VRFpOctOrXQjlHsrwl4Qf09vAHD3rLXe3d64GSOjqOUXp
+         pxqPLGY1Wx82yKUx05QB3V6cu+EFy6fNjGcOecN3bN3HXJRhuRdVTt0iyNgPggTgQqgE
+         58kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=q9Slei3vdZHf3BWZhWjxjnYHcSiTDd6lLLw5COAJJH4=;
-        b=gBOsw/t6jkV9SI+hJgemMTwfL5mKjzObgLvWkjA04f2iSgouqbchGvx2yjpoLvow9g
-         kdTfbTkWZmKKPCIiDOujEbowAYn0fmof75kcvfm2rIyUZGVclDrivRZlKWhZ9VB6G90h
-         CeayGZgA1wwBO4BoxG0doYUrUYFlZwsm+AzX8aPky0Z03EoGl/PXDGdDMGsBL4eV21Ml
-         wCPBr0kLnPrRBGSFptvSTwHbIF2baGaUHHEJ+uHyYw3oiDdesfyLI0oGII/AJ2h4r2ah
-         +pWz6ljHs4CCx/lAYIt+O5odNba+0GEhGiUDHVRwJhBsLhwOG9vX8Ww9Y0J8jj/qFoab
-         bIWg==
-X-Gm-Message-State: ACgBeo1AACc8sNfG6m81qyCmAj4BT1tmK09DYxqNdcp6pNfMOt11NhK9
-        nWhb+8rdRWjs48+zxpq3wAXc1oSUCZNHOdjmCM8=
-X-Google-Smtp-Source: AA6agR6q4RxFY5dXSqAkxUSJygyPmezEs6ReHlgtPm/hSyjvEZKfiae4kIjLp8ELSlSYNMP19jLCrqDFr2hEgzS3xTA=
-X-Received: by 2002:a05:6512:2c8a:b0:48a:f7e9:973f with SMTP id
- dw10-20020a0565122c8a00b0048af7e9973fmr2167466lfb.5.1659375997971; Mon, 01
- Aug 2022 10:46:37 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0dGf0wQlT5nVscla096RlUxod41IYCPpARZuBEndXgw=;
+        b=Mmo+LpqjWa3XZvueQSUcsxUbFBWlEp8Sg/KCdsG+WcD3+ZrHcHPnfDGuDfV2c8K47P
+         M5BVTV16RoHnh8jYsrIOZ/TtoApVWF3+qR2HDfSmSIITqviGdUt8eYxLKen5T3RWfAEu
+         LsDtVmjowHBOhfOVG+gqUGUfJ/wEG3Nlx4GI5UXExJbIO82tkFiRGvgQCg7vTjha2obC
+         3yg1SQdJFGTqZqvChS/o+8qBxFnz2s/xqVP2OXXnIV4YPbdC9Te+KeXkZJnxPL/OnS3r
+         zJmP4EVVja2XeZuTsFq8lFlK5E0k7vt7vRjo5P7iM3XJzoqPwR1zTOtf7kwrgyWntrVE
+         gAog==
+X-Gm-Message-State: AJIora9EjtzKp6iMgU83VuSAQCusjZbN3LsI2Ht9X+wR6hwfUgRrUPFq
+        9ctUalVLrRExr7pwirA9SLDoew==
+X-Google-Smtp-Source: AGRyM1sQPJdZYAWXfwoVj4Hz7Z7Cwylr4YwG9UFSXMVERZh0c/cbramPGiv0H/4T1qlznG/Ilz5Rxw==
+X-Received: by 2002:ac2:4a8f:0:b0:48a:9705:c81d with SMTP id l15-20020ac24a8f000000b0048a9705c81dmr5760708lfp.63.1659376498624;
+        Mon, 01 Aug 2022 10:54:58 -0700 (PDT)
+Received: from [192.168.1.6] ([213.161.169.44])
+        by smtp.gmail.com with ESMTPSA id bj38-20020a2eaaa6000000b0025d64453f4dsm1654422ljb.122.2022.08.01.10.54.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Aug 2022 10:54:57 -0700 (PDT)
+Message-ID: <428fe2c1-3c70-5ae8-efcb-1e4a0426a972@linaro.org>
+Date:   Mon, 1 Aug 2022 19:54:54 +0200
 MIME-Version: 1.0
-Received: by 2002:aa6:cb52:0:b0:1fa:aaed:e6d9 with HTTP; Mon, 1 Aug 2022
- 10:46:36 -0700 (PDT)
-From:   Bright Gawayn <gben68387@gmail.com>
-Date:   Mon, 1 Aug 2022 23:16:36 +0530
-Message-ID: <CAG1+V0xZBekA5JkmYjS+TJWe19LYLgympYBS4UhcAqZCWqwTWg@mail.gmail.com>
-Subject: Lucrative business proposal very urgent!
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=6.9 required=5.0 tests=ADVANCE_FEE_3_NEW,BAYES_50,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,UNDISC_MONEY autolearn=no autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [RFC PATCH net-next] dt-bindings: net: dsa: mediatek,mt7530:
+ completely rework binding
+Content-Language: en-US
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220726122406.31043-1-arinc.unal@arinc9.com>
+ <a8c778db-f52c-45cb-c671-556b24f3cb46@linaro.org>
+ <a2dd1ce2-a23e-8894-5ef4-b73ef0dad89d@arinc9.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a2dd1ce2-a23e-8894-5ef4-b73ef0dad89d@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:144 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [gben68387[at]gmail.com]
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [gben68387[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        *  3.5 ADVANCE_FEE_3_NEW Appears to be advance fee fraud (Nigerian
-        *      419)
-        *  2.5 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-X-Spam-Level: ******
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello dear My name is Mr Bright Gawayn,  It's my pleasure to contact you today.
+On 30/07/2022 10:24, Arınç ÜNAL wrote:
+> Hi Krzysztof,
+> 
+> On 27.07.2022 13:29, Krzysztof Kozlowski wrote:
+>> On 26/07/2022 14:24, Arınç ÜNAL wrote:
+>>> Completely rework the binding for MediaTek MT7530 and MT7531 switches.
+>>
+>> Rules are the same for schema as for driver - one patch, one thing. You
+>> mix here trivial style changes (removal of quotes) with functional stuff.
+>>
+>> Patch is unreviewable, so it must be split.
+> 
+> Thank you. I'm going to split it this way:
+> - Trivial changes; fix title and property descriptions, remove quotes, 
+> add me as maintainer, etc.
+> - Update binding description
+> - Update json-schema for compatible devices
+> - Update examples
+> 
+> Let me know if you have any objections.
 
-We use a certain raw material in our pharmaceutical firm for the
-manufacture of animal vaccines and many more.
 
-My intention is to give you the new contact information of the local
-manufacturer of this raw material in India and every details regarding
-how to supply the material to my company if you're interested, my
-company pays in advance for this material.
+Depends what are these "udpates". One logical change = one patch. Adding
+compatible in one patch and then adding example for it, is not correct.
 
-Due to some reasons, which I will explain in my next email, I cannot
-procure this material and supply it to my company myself due to the
-fact that I am a staff in the company.
 
-Please get back to me as soon as possible for full detail if you are interested.
-
-Thanks and regards
-Bright.
+Best regards,
+Krzysztof
