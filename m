@@ -2,278 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D83586C14
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9675586C2D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231288AbiHANiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 09:38:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37606 "EHLO
+        id S231820AbiHANn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 09:43:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231213AbiHANiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:38:02 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA5823DBDF
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 06:38:00 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id w7so10437549ply.12
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 06:38:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=whUWaihRGoPJeGsGnYlH2rgsb6L376dHvnt4fynQnj0=;
-        b=KIrqHTxH5CEYa1IcIoJE438nYYf5E3fgLkufLG7wR9l89mg7hVGzIPNcHJ1Hm2bWFL
-         sByR9SaDsv2R14LShgQ2GWd0YBjmgOR1rFySD/B3lWITsC9iamLpOImq/n7R38vXNhga
-         PcF85p402WBmWjB0ysSDG5IC9GmLw3PlRSFxzrmnqxfq4lyP6YqMMG7+LvA2K0LLvtsj
-         C1QzM108Umf5k/Wsug1ZxukHf0IFMmkMWshuJY+nosFIVDEuLJzy3UmeEw4s+ot0x4PW
-         x72sf2k0vuzOUMw8CLPd7r7N+XlsfporyFCkGKCOYwmyL2WYy3/V5Y9YPy3WeL40d7CJ
-         X6Jg==
+        with ESMTP id S230390AbiHANn4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:43:56 -0400
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B191495BB;
+        Mon,  1 Aug 2022 06:43:55 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id y197so8360618iof.12;
+        Mon, 01 Aug 2022 06:43:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=whUWaihRGoPJeGsGnYlH2rgsb6L376dHvnt4fynQnj0=;
-        b=0i7F66zIR0JflNg1Yg67BgXn3tP+3IX/2XVzs7GoP3og8PFV5HA3DcZDDXpn1T94/B
-         4/N4JZ/DCL6SjbONv6Hy076HGadOQ/NcWhgT4VuleuChOD6jNtvGF+42aJ6ygGMN3Cm4
-         YxYGEPm/IhN0+48aLsnJT+9Nzuh7Ai6lNR9wWfyBvXYtbYVhemBHgVZV6X3zzvbYwJY0
-         kNI+9+/gk3ij9gFLIIxPQ1LJy8qBRjxAtyDTKMmdx96LYmUCBgaTilvKc/dPrfW1R9+Q
-         HrFf6lOSCHY0qjsisdq6wZeYJJuOHsForrR4sPBxJIqfGhLqxnK/bypUJ66zTxFu4A/S
-         90Gg==
-X-Gm-Message-State: ACgBeo3ZeBBBWEGU3/qJHOs31WUsBllzZozQqcoQiE4uZjJWZoYU3Dhc
-        VwERu1mGiq70lW7yXZRhpzLv
-X-Google-Smtp-Source: AA6agR6To6Z6kX/M7daqcF3CxSEZS7mmB8jslWhSkljkZMmvVI63TAhmFwPQCoOb/s14xotwsf7o+w==
-X-Received: by 2002:a17:90a:d58e:b0:1f4:f9a5:22a8 with SMTP id v14-20020a17090ad58e00b001f4f9a522a8mr6668783pju.58.1659361080360;
-        Mon, 01 Aug 2022 06:38:00 -0700 (PDT)
-Received: from thinkpad ([117.217.185.73])
-        by smtp.gmail.com with ESMTPSA id m4-20020a170902db0400b0016bea26bb2asm2049556plx.245.2022.08.01.06.37.54
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc;
+        bh=y4FlZrpOSW7bs3SSCv+hrJsY9DFSZ9IOQL9orespssM=;
+        b=Ik785jSVPFDzG/p7l0S2V5IFBPshRlBBpt6joZhsiDiNEgFL69HhetKUWsj/xPbObo
+         IeRHsgl5O4xG517UHWfWYvvnV0vDrJ9BgorzMRu+gyMxZFEAWR9EAu09gw6m2YkobZGF
+         GH3ut+igD+xUmzrTEcOnm8tD6kjfked+++8OUpCeBATdIdChhdNxB3n2L7BR317tLDCU
+         8TcEZjSEwvxq5AFsqZToTwVaTePtNUwHu5nROQRrTGNd+0hrUarMp/EWuq2OoXaZ/dxn
+         70eQP92cS/TlJoL8rDk5uuzgQoBuDFE0KBuklPOsZ5h2yGojK56kL4XgFBt5flz5AyFw
+         Oc7g==
+X-Gm-Message-State: ACgBeo18QHrF8s150mTIOIfp288fdOayScqUCRoMcAZQx2wplSKSiIJH
+        FxlJqZ7ISP16RrDwhGEyTQ==
+X-Google-Smtp-Source: AA6agR6RXwK+cr0Hg80Gi5E4Kbz7VRmoTYTZl1KiiQk8aOjn7XSfaVSOFmc0ncyMLohxtFBWQRdjng==
+X-Received: by 2002:a05:6638:ca:b0:342:7d2f:d882 with SMTP id w10-20020a05663800ca00b003427d2fd882mr528451jao.220.1659361434887;
+        Mon, 01 Aug 2022 06:43:54 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id t129-20020a025487000000b003415b95c097sm5294568jaa.42.2022.08.01.06.43.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 06:38:00 -0700 (PDT)
-Date:   Mon, 1 Aug 2022 19:07:49 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESEND v4 10/15] PCI: dwc: Drop iATU regions enumeration
- - dw_pcie_region_type
-Message-ID: <20220801133749.GJ93763@thinkpad>
-References: <20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru>
- <20220624143947.8991-11-Sergey.Semin@baikalelectronics.ru>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220624143947.8991-11-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Mon, 01 Aug 2022 06:43:54 -0700 (PDT)
+Received: (nullmailer pid 914818 invoked by uid 1000);
+        Mon, 01 Aug 2022 13:43:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-sunxi@lists.linux.dev,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+In-Reply-To: <20220801044758.12679-1-samuel@sholland.org>
+References: <20220801044758.12679-1-samuel@sholland.org>
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: Add Allwinner D1 LDOs
+Date:   Mon, 01 Aug 2022 07:43:53 -0600
+Message-Id: <1659361433.069437.914817.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 05:39:42PM +0300, Serge Semin wrote:
-> There is no point in having the dw_pcie_region_type enumeration for almost
-> the same reasons as it was stated for dw_pcie_as_type. First of all it's
-> redundant since the driver already has a set of the macros declared which
-> describe the possible inbound and outbound iATU regions. Having an
-> addition abstraction just needlessly complicates the code. Secondly
-> checking the region type passed to the dw_pcie_disable_atu() method for
-> validity is pointless since the erroneous situation is just ignored in the
-> current method implementation. So to speak let's drop the redundant
-> dw_pcie_region_type enumeration replacing it with the direct iATU
-> direction macro usage.
+On Sun, 31 Jul 2022 23:47:57 -0500, Samuel Holland wrote:
+> The Allwinner D1 SoC contains two pairs of in-package LDOs. One pair is
+> for general purpose use. LDOA generally powers the board's 1.8 V rail.
+> LDOB generally powers the in-package DRAM, where applicable.
 > 
-> Since the dw_pcie_disable_atu() method now directly accepts the
-> in-/outbound iATU region direction instead of the abstract region type we
-> need to change the argument name and the arguments order. The later change
-> makes the function prototype looking more logical since the passed index
-> indicates an iATU window within the regions with the corresponding
-> direction.
+> The other pair of LDOs powers the analog power domains inside the SoC,
+> including the audio codec, thermal sensor, and ADCs. These LDOs require
+> a 0.9 V bandgap voltage reference. The calibration value for the voltage
+> reference is stored in an eFuse, accessed via an NVMEM cell.
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks,
-Mani
-
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Neither LDO control register is in its own MMIO range; instead, each
+> regulator device relies on a syscon exported by some "host" device node.
+> Getting the register via a syscon avoids a dependency on the subsystem/
+> driver for that host device (e.g. a functioning thermal sensor should
+> not depend on having the audio codec driver loaded).
 > 
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
 > 
-> Changelog v2:
-> - Move this patch to being applied before the IB/OB iATU windows setup
->   simplification patch (@Rob).
-> ---
->  .../pci/controller/dwc/pcie-designware-ep.c   |  4 +--
->  .../pci/controller/dwc/pcie-designware-host.c |  2 +-
->  drivers/pci/controller/dwc/pcie-designware.c  | 28 +++++--------------
->  drivers/pci/controller/dwc/pcie-designware.h  | 13 ++-------
->  4 files changed, 13 insertions(+), 34 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 5a158813f687..2e91222f7c98 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -212,7 +212,7 @@ static void dw_pcie_ep_clear_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  
->  	__dw_pcie_ep_reset_bar(pci, func_no, bar, epf_bar->flags);
->  
-> -	dw_pcie_disable_atu(pci, atu_index, DW_PCIE_REGION_INBOUND);
-> +	dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_IB, atu_index);
->  	clear_bit(atu_index, ep->ib_window_map);
->  	ep->epf_bar[bar] = NULL;
->  }
-> @@ -286,7 +286,7 @@ static void dw_pcie_ep_unmap_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
->  	if (ret < 0)
->  		return;
->  
-> -	dw_pcie_disable_atu(pci, atu_index, DW_PCIE_REGION_OUTBOUND);
-> +	dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_OB, atu_index);
->  	clear_bit(atu_index, ep->ob_window_map);
->  }
->  
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 4f984c845b59..e0a2819608c6 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -618,7 +618,7 @@ void dw_pcie_setup_rc(struct dw_pcie_rp *pp)
->  		 * multiple matches
->  		 */
->  		for (i = 0; i < pci->num_ob_windows; i++)
-> -			dw_pcie_disable_atu(pci, i, DW_PCIE_REGION_OUTBOUND);
-> +			dw_pcie_disable_atu(pci, PCIE_ATU_REGION_DIR_OB, i);
->  
->  		/* Get last memory resource entry */
->  		resource_list_for_each_entry(entry, &pp->bridge->windows) {
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 330575182712..a90d3f6ce50c 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -353,7 +353,7 @@ static void __dw_pcie_prog_outbound_atu(struct dw_pcie *pci, u8 func_no,
->  	limit_addr = cpu_addr + size - 1;
->  
->  	dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT,
-> -			   PCIE_ATU_REGION_OUTBOUND | index);
-> +			   PCIE_ATU_REGION_DIR_OB | index);
->  	dw_pcie_writel_dbi(pci, PCIE_ATU_LOWER_BASE,
->  			   lower_32_bits(cpu_addr));
->  	dw_pcie_writel_dbi(pci, PCIE_ATU_UPPER_BASE,
-> @@ -464,7 +464,7 @@ int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
->  		return dw_pcie_prog_inbound_atu_unroll(pci, func_no, index, type,
->  						       cpu_addr, bar);
->  
-> -	dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT, PCIE_ATU_REGION_INBOUND |
-> +	dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT, PCIE_ATU_REGION_DIR_IB |
->  			   index);
->  	dw_pcie_writel_dbi(pci, PCIE_ATU_LOWER_TARGET, lower_32_bits(cpu_addr));
->  	dw_pcie_writel_dbi(pci, PCIE_ATU_UPPER_TARGET, upper_32_bits(cpu_addr));
-> @@ -491,24 +491,10 @@ int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
->  	return -EBUSY;
->  }
->  
-> -void dw_pcie_disable_atu(struct dw_pcie *pci, int index,
-> -			 enum dw_pcie_region_type type)
-> +void dw_pcie_disable_atu(struct dw_pcie *pci, u32 dir, int index)
->  {
-> -	u32 region;
-> -
-> -	switch (type) {
-> -	case DW_PCIE_REGION_INBOUND:
-> -		region = PCIE_ATU_REGION_INBOUND;
-> -		break;
-> -	case DW_PCIE_REGION_OUTBOUND:
-> -		region = PCIE_ATU_REGION_OUTBOUND;
-> -		break;
-> -	default:
-> -		return;
-> -	}
-> -
->  	if (pci->iatu_unroll_enabled) {
-> -		if (region == PCIE_ATU_REGION_INBOUND) {
-> +		if (dir == PCIE_ATU_REGION_DIR_IB) {
->  			dw_pcie_writel_ib_unroll(pci, index, PCIE_ATU_UNR_REGION_CTRL2,
->  						 ~(u32)PCIE_ATU_ENABLE);
->  		} else {
-> @@ -516,7 +502,7 @@ void dw_pcie_disable_atu(struct dw_pcie *pci, int index,
->  						 ~(u32)PCIE_ATU_ENABLE);
->  		}
->  	} else {
-> -		dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT, region | index);
-> +		dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT, dir | index);
->  		dw_pcie_writel_dbi(pci, PCIE_ATU_CR2, ~(u32)PCIE_ATU_ENABLE);
->  	}
->  }
-> @@ -661,7 +647,7 @@ static void dw_pcie_iatu_detect_regions(struct dw_pcie *pci)
->  	max_region = dw_pcie_readl_dbi(pci, PCIE_ATU_VIEWPORT) + 1;
->  
->  	for (i = 0; i < max_region; i++) {
-> -		dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT, PCIE_ATU_REGION_OUTBOUND | i);
-> +		dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT, PCIE_ATU_REGION_DIR_OB | i);
->  		dw_pcie_writel_dbi(pci, PCIE_ATU_LOWER_TARGET, 0x11110000);
->  		val = dw_pcie_readl_dbi(pci, PCIE_ATU_LOWER_TARGET);
->  		if (val == 0x11110000)
-> @@ -671,7 +657,7 @@ static void dw_pcie_iatu_detect_regions(struct dw_pcie *pci)
->  	}
->  
->  	for (i = 0; i < max_region; i++) {
-> -		dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT, PCIE_ATU_REGION_INBOUND | i);
-> +		dw_pcie_writel_dbi(pci, PCIE_ATU_VIEWPORT, PCIE_ATU_REGION_DIR_IB | i);
->  		dw_pcie_writel_dbi(pci, PCIE_ATU_LOWER_TARGET, 0x11110000);
->  		val = dw_pcie_readl_dbi(pci, PCIE_ATU_LOWER_TARGET);
->  		if (val == 0x11110000)
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index c63ace3c3f25..72d185ff72f3 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -104,8 +104,8 @@
->  #define PCIE_VERSION_TYPE		0x8FC
->  
->  #define PCIE_ATU_VIEWPORT		0x900
-> -#define PCIE_ATU_REGION_INBOUND		BIT(31)
-> -#define PCIE_ATU_REGION_OUTBOUND	0
-> +#define PCIE_ATU_REGION_DIR_IB		BIT(31)
-> +#define PCIE_ATU_REGION_DIR_OB		0
->  #define PCIE_ATU_CR1			0x904
->  #define PCIE_ATU_INCREASE_REGION_SIZE	BIT(13)
->  #define PCIE_ATU_TYPE_MEM		0x0
-> @@ -185,12 +185,6 @@ struct dw_pcie;
->  struct dw_pcie_rp;
->  struct dw_pcie_ep;
->  
-> -enum dw_pcie_region_type {
-> -	DW_PCIE_REGION_UNKNOWN,
-> -	DW_PCIE_REGION_INBOUND,
-> -	DW_PCIE_REGION_OUTBOUND,
-> -};
-> -
->  enum dw_pcie_device_mode {
->  	DW_PCIE_UNKNOWN_TYPE,
->  	DW_PCIE_EP_TYPE,
-> @@ -326,8 +320,7 @@ void dw_pcie_prog_ep_outbound_atu(struct dw_pcie *pci, u8 func_no, int index,
->  				  u64 size);
->  int dw_pcie_prog_inbound_atu(struct dw_pcie *pci, u8 func_no, int index,
->  			     int type, u64 cpu_addr, u8 bar);
-> -void dw_pcie_disable_atu(struct dw_pcie *pci, int index,
-> -			 enum dw_pcie_region_type type);
-> +void dw_pcie_disable_atu(struct dw_pcie *pci, u32 dir, int index);
->  void dw_pcie_setup(struct dw_pcie *pci);
->  void dw_pcie_iatu_detect(struct dw_pcie *pci);
->  
-> -- 
-> 2.35.1
+>  .../allwinner,sun20i-d1-analog-ldos.yaml      | 77 +++++++++++++++++++
+>  .../allwinner,sun20i-d1-system-ldos.yaml      | 55 +++++++++++++
+>  2 files changed, 132 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
 > 
 
--- 
-மணிவண்ணன் சதாசிவம்
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.example.dts:24.27-28 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:383: Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1404: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
