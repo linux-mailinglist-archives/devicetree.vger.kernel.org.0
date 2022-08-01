@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B6415871EE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 22:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B46235871EC
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 22:01:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230229AbiHAUBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 16:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49224 "EHLO
+        id S232936AbiHAUBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 16:01:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230320AbiHAUBq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 16:01:46 -0400
+        with ESMTP id S230320AbiHAUBo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 16:01:44 -0400
 Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2073.outbound.protection.outlook.com [40.107.22.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F5C81A3A5
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 13:01:45 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74ECE1A80C
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 13:01:43 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i1RMaQjifAI4ub4EmdjGKJhQQ/Z0MYNT0MBgLOylcOk60qdN1gIGKGneiqxnbmzVRn8TWvxjOB9MlzBWFDZQq9RTITFqKPGWTW0Cv9nkM7NbwVG3fVrebnyrUgnzwRPXOXFI/TEljiaSVJkt8YYfZ9ds/GFMQ7SOzNkPUxCifwsgarKImbquMCE2PqF6/TzkNNCKYTwM7a0bQes+AZEnrMdDec/2WJqEnnO/itEC5eE2kw5cNkXHlCB5foGEiT/Uxe2K36LTh8saSzV4tLo4lRPRii8rZetvgcvCO6uCMF1VRH6EoTnOkZnwtvm+D7KSWTk5ZUbgml2s2NjY1RW/RQ==
+ b=WaDJfBxWFVBZM+viHpKAkPGbfvk1XXdjbaWOmeY78cfMinsNsWj+7y2eHOoCxz3FnTBj4jHG7KeRReXwkwhvcBCjtppb2E7twcEiN+3ZMStHtbfNr2XJu3fW36P4A8U8GC8nU4CGNKlqUdjlKhJQJZIBGtRlO3ivRB3Sa/NyVkdjKTaYhRN+/KlNsp5g9komb8YkgAVSkog0+cNFzJVpOFOKcbPq4IxFg9sPvjVeJju+ut69K/fiEin+TjE+hYDKI8szkveFUQxmlsZm7NVbY4hRc9VOsLGHOoKc44/IUAwfuDIroocSqCV9nDmRRE2jiOuDfOH9mH0rdmoglp1Z6w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lFniB6aowl2k12wNTPdGj8/+jEOhQL2DqvwJuz/WCKQ=;
- b=Ek33zq1k/j2g9jkaBcAA3El6fa9xthRj3LExNaKdVIg68MAKwqVPDY8YOAlUqMtXMCZ1e3GJevvwznhJPRbG2eaG9AopK904IByNwWppsHIWtiOvjzbOHlFW028yFZXwnrvQmNdjmYnUKuryVRJcPhA/tjN2E/11pSg0Z9YGaEzWuD2JbW/0LTdAKg3RnnMD9Jnhd+tGSgQ4ik+cYunVT6s4zQzAwly20zEZwvGC5aNrBGxVf6v8GMwKmhQmUd0I6946PMqewBGFpEyapGYOw0qPrk0OXB9Y75JDK4PqctP8DUEFGzvuWiI1jfS/qMd7TvaXJVa94D6pAoeXGeUCVA==
+ bh=ChUDk/NGdNqq6v60GB3y7b8JN7h1MwnKILWSXuIZi7w=;
+ b=inyF5BwTK4YVcIQOXTPyncSZYW6eHiIzFpO/NHE02ADNyXZ1kIeZJw9yFL+yBv9i1FiMcR0UCblXxcoS31gYCB0yQK0n6wU4tWY+qNBemrcbphhv3JT1ws8a5/HF+C0mg31+Q8IBdeLqrAyB088945pPig3YwzK3lzOLqTe2PrYU64EMze7c7JKHU43y4yVCaEmcnKlioF9nVKSr9InzgTlCkH4EycrnM2xptf2AshvgXJ28UnZ1JkmE3axT1BbCWvmVBBWx+ocm7DZ407rdf6fmexx+Js2FsuMWgdpbFwFXHy7KaGbQTKVYxqHQMimg6Fe1lZpbBG3iolNj01opqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lFniB6aowl2k12wNTPdGj8/+jEOhQL2DqvwJuz/WCKQ=;
- b=QQvfcfC8skUqo49hgtcO2aEKjyINLlHCYRhwdB6KmE+IdcwPBOHLCUbhsl/NjbRbH7zXkjK58fg+C0Eec/viHiNbrc/iKYUqgmtBwjJHJArjuyUl7Xs+n5I5lHDeW9sB17ZfXs42Iy++ERfg8ckw0hovWWC1c2iay5Ov9t+/cTQ=
+ bh=ChUDk/NGdNqq6v60GB3y7b8JN7h1MwnKILWSXuIZi7w=;
+ b=XWuJQ9HTpmjwloSN9UCKw+ifDGzmZhRlcqwCCjiqK0A4hKybBfYxyhmCwcDGTb0sej0UhYxg07fZNdMwy6JpJImmJ8gZajyRXZgABwBR0YNETOg3VRzhvA//zYhpfbJV8CHfloPN7Rqzc6477TRmECQT882yGcs2FqN5HckC/OI=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from AM9PR04MB8274.eurprd04.prod.outlook.com (2603:10a6:20b:3e8::23)
  by AM0PR04MB6516.eurprd04.prod.outlook.com (2603:10a6:208:174::27) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.16; Mon, 1 Aug
- 2022 20:01:41 +0000
+ 2022 20:01:40 +0000
 Received: from AM9PR04MB8274.eurprd04.prod.outlook.com
  ([fe80::747c:397f:a003:dbca]) by AM9PR04MB8274.eurprd04.prod.outlook.com
  ([fe80::747c:397f:a003:dbca%4]) with mapi id 15.20.5482.016; Mon, 1 Aug 2022
- 20:01:41 +0000
+ 20:01:40 +0000
 From:   Shenwei Wang <shenwei.wang@nxp.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -47,63 +47,66 @@ To:     Rob Herring <robh+dt@kernel.org>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Peng Fan <peng.fan@nxp.com>
 Cc:     devicetree@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>
-Subject: [PATCH v5 0/3] add imx8dxl evk support
-Date:   Mon,  1 Aug 2022 15:01:18 -0500
-Message-Id: <20220801200121.672619-1-shenwei.wang@nxp.com>
+        Shenwei Wang <shenwei.wang@nxp.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 1/3] dt-bindings: firmware: add missing resource IDs for imx8dxl
+Date:   Mon,  1 Aug 2022 15:01:19 -0500
+Message-Id: <20220801200121.672619-2-shenwei.wang@nxp.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220801200121.672619-1-shenwei.wang@nxp.com>
+References: <20220801200121.672619-1-shenwei.wang@nxp.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0228.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::23) To AM9PR04MB8274.eurprd04.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0213.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::8) To AM9PR04MB8274.eurprd04.prod.outlook.com
  (2603:10a6:20b:3e8::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 583625d3-3079-49e0-4d03-08da73f8a66b
+X-MS-Office365-Filtering-Correlation-Id: 559e5eb1-67d2-476b-f460-08da73f8a5fd
 X-MS-TrafficTypeDiagnostic: AM0PR04MB6516:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4hX9ifnDu+aHpxAW6G7MhcEPJzS0ojkoCXC7QeKckqfy2w5+thQEY0GBSCjoXEsaN60dIb5vW2h0PSJLfUEGu8BFVB8m9Orf/ATI2DSIK+u/wxutM/wdL8oHoQJ9lzx/jrF87bpDn/5MY7LEYkw7vBSHEHQmmJD6IgPlHwOqE3NQfTBEPv0cBItnniusjFGG5cM9LgiVusy8D99vPY/4yJAJKnXRaH9HuJOHQ0tk+FFh+OFoNYbr5XwJwWEDJ5/OiDPVh8qkR6jvT7ODHikn0l2YmSXzTIurz73XsLDb3+8/61p1qQcN8Ln8kNX/YDC+tAf93tSZovNw2JiLgmJ3uq+alT68A/c4IQLPU3TzkefCwntRVWOYFzUZomzEwg65zZ0bM4eTeDSfr9lo4XMuls/jGwN1SznPlIogi7JTshxRPO9gbgQ9GR9bzLECbKpRKoVGhXJVP5qu8YcKxNnmoPoti7KS4AHmaDdFqFMh5DxU1Xm+lrOxKHV+/P1k4J9YDkhzE0d/F6ZZW7kWf+9vvQFe0KtdJp9m91+s45c519lQJoiVJC92cB1ONoZikC8EofPbOoj1ZO1hXByHjUDQmjCPuBAcUgq75pFulWxMCNoR5u1lDhBK9xhtyxmTwEQfuMblZcty9ZXUX1NY1GDX1A1D3l0B5oHPfIrbJxxRkWlFA/k1BjoCYkuMwOTPNyEJ0RLYavRvJVaF3fELxmWNJkmjnes/8ibf5bB0oIu+HoyfMWQ0VPai0RIrb3PvnB6H90gLl6gZR0y3hUtkSEk4tbe4jUTH3Ax7e5sePa8T13MaWCrXW/3MFf5F0mjMQPuv
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8274.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(39860400002)(396003)(376002)(346002)(136003)(6666004)(6506007)(83380400001)(52116002)(41300700001)(26005)(6512007)(2616005)(186003)(55236004)(38350700002)(1076003)(38100700002)(5660300002)(44832011)(8936002)(36756003)(478600001)(86362001)(6486002)(2906002)(4326008)(8676002)(66946007)(66556008)(66476007)(316002)(54906003)(110136005)(6636002)(32563001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: 6Wg5hZpZErqW2MvCIJAWjdoMNAQZyCuW3tV/y9w/pyuKXuNjZL5ACYL4hrotiDjXdQSZxe/9OUV2UYExy3qtfTdNhVRWJZzLHxBrsF8kVcK7siqtBpfuSfZ9ry6k7zKHJb8OPQSbAqoYMFQ+8HE/yKGR+pvfC5bWXhHbuqxAEctM8AGujTVrqTY9SJ3AoDokaRpVdb+KQIy6wZZXw59As4GfuhKGJyHURLfwmDN4ScjCOd6Bql+vtQDVdG/GA4Nf3aq1BWy0zILhgfSscj+/kuPn8Iwdkxr5FTh51fE8wFj18BOiRzO0fbMMbibDsV/whMJ/Vivo0pYMAFHwwkSHWQ45v5ecEQlzaZhMOMZIllqAHEFFe08Ko3JS44DmDDkJZO4NWNaRHHK/12a7uRkWKRezmzxTWdw4BQC7oNEuA6Volqou52emOPszXHuVtYeBHn9s3ueF47gOsyUcenvLVGwbwzyoA4CACtQB2jKLCd7J5o13Z6MJWWxmoXwelroRxbPx4mBTYqsuH3FWeaepiH6XRazqgy4PrwRzACsAIMkiYvNxUudXa/JW6jjCHudJ5CJ1KzBCaGDIZSk83HD6ihutUNQ3fHWsarVgnh092icZpaliIAV485yRmWZMOV5TWPA85//HogahsXh9HCuhweky14vje3NU6X3T9Wpx9SEHrBfEoEUHcELlGwbkbbFMnq8bOcFBtL8x11r4gygroZw6zUFSt0jUBPzXj3APJSpZbLHMxTJOqktDofGfRzkh+aq2UwS49ruT5cGkk8ougOFGPuZlmT3GsYZNIRt/uCqUfbA+9jD52aSy0XCyY41aaEJ8Zq4DEL08IYpIMTeT5Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8274.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(39860400002)(396003)(376002)(346002)(136003)(6666004)(6506007)(52116002)(41300700001)(26005)(6512007)(2616005)(186003)(55236004)(38350700002)(1076003)(38100700002)(5660300002)(44832011)(8936002)(36756003)(478600001)(86362001)(6486002)(2906002)(4326008)(8676002)(66946007)(66556008)(66476007)(316002)(54906003)(110136005)(6636002)(32563001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hvZFr1t0+11VSnoSovOQB0xUHG1M9ai0HtaSjQdB2TWTKAEzO++GdTKLBsbN?=
- =?us-ascii?Q?dl26sz3TlQVt9ASMbviMWwo4UVdryCEoQ1XaXh174JkojZjrJzDefRx6ur2r?=
- =?us-ascii?Q?yxgD3Hl2qiKjfmS0PNmzuajPGKpBBMGu9fNccwRqpaVxBRMIP8SK7FOHu2+Q?=
- =?us-ascii?Q?ZMIpL+/ydMSJh58TPh1Vrl3YUHnTPLfhcPfkxiJX6kkALb2c6QwxbyS20q2F?=
- =?us-ascii?Q?tpra0/COqYP6NpWXGbUpm3BGj1XrwkNgmIbPWFtgjycIMIaRP2dGoQlQ9yIW?=
- =?us-ascii?Q?L7ALauHfwUvIWycUkJwtl6uxr/VJWuWzIvMMaYpNBFCdeJuF8KHWO0eDte07?=
- =?us-ascii?Q?XxQYL7/haAHz2habxr0WGeQR75kNIMu9HgP6JUiqbvMMO5FHwlrDfUnZL5XS?=
- =?us-ascii?Q?NKGU2I/3xk66DDPSo7a2EG++KP/FfESbG/w/9Z8Z4s4m0bcwgnLPdJHzGCbg?=
- =?us-ascii?Q?IC1eClPP7gjd0mlumQQhbY6OAfgI+KCIeWj9tRM5Drdahh23FNDDvSbJPj17?=
- =?us-ascii?Q?6ZarVVDGiyXjike77wosqyOhPi2ETBgvdo6Wg65WTjLAVY8A2+jvHB2HK7gm?=
- =?us-ascii?Q?55DQRPWng3WSsHoWWRYxMvVDnGeMIiOCF3zGzDMb+Y92438Cj7eLNFuGos2Y?=
- =?us-ascii?Q?dsGAmOlnJIx5Ox84m43zUa5JMaG5zxrgyLrCz2TMV0CjU6i/lEvyrlaj4aJT?=
- =?us-ascii?Q?pG/rJ2xUvBlBTG4X+VkUIkq4JICczUUQhwWPn2WwGRfVskWebrd0j6JKW9BY?=
- =?us-ascii?Q?xZ5JkQ+Uj4m334MfQYnU7gXkncduvomdHaOTcmn0cQOdjtX7bVw3O/r+91nT?=
- =?us-ascii?Q?EoAEh9QyXyWk9JHKrXm0PBQZZQDT1e7Fwal/p35j+UsLfPV62TO3VK1Ni//R?=
- =?us-ascii?Q?J5jZ3dDXHvciu1Zu29zpL6LTobLpWBGIvdhfDEHJ/ugDfWhsAvd9TpurKl7c?=
- =?us-ascii?Q?TfqvnAs+HvXUwTVt4A2JstsOgj1aczgL+gG9l55PxOzCICTUI+Fp5hPwQ0bL?=
- =?us-ascii?Q?j49K0Q2+lgCzgtf7uxedB48nwNfcZcW+yithWQi4cBZ7bzTO3NF/Xs5q5Co+?=
- =?us-ascii?Q?3YLQzuecHhrbrvFdxtBrJ1VkyVrFP7P+QU/xg6vMyx3dtTrId7a0QfkTZ6xj?=
- =?us-ascii?Q?YDAMEniEosLkQjrgvrZVnIc5+xBeQXZAtUcIDGLyfjr/WfgIKvDW9mK82JOD?=
- =?us-ascii?Q?hAwPR5sDe85WuaPUK9tgDrfS+tMSNmrYOeDpgTKwMnKg/Efc9kxUyr1a/Tk0?=
- =?us-ascii?Q?9Miwqi509VLvz94p+dK31QmUxeGpbSVnsE2xDR7ZisNg5B4l3kzHl/PFSlZp?=
- =?us-ascii?Q?LoR8ML5rea9mtcMLi2pKu0akIsFiMaCxH3xlpw8iIMvBpoBSlmTnPFgiK5eu?=
- =?us-ascii?Q?wCxBCK0GgJUP4zEQWWxXtyrb5fNuXX+GeWR2oXlC+WLFJUWQPu2JAQcGkU7Y?=
- =?us-ascii?Q?KLyrBg3qgXcFYtXiuhwbXzfmjK0rgWUbgbMU+WVE1iXcnalSZqMNu2Ouv5En?=
- =?us-ascii?Q?r3/QBU9VPZ7BZW52EQ7V/eOZdKstovSOBQl8y8pHMb/fv4z77+GAkeMvNl30?=
- =?us-ascii?Q?NfRJ+pt7GclZQUAUQ+Lyv0iAKLlBNZ009eyJ+V9a?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4SF0NeB8SOBV1S9blMUnMKvmhhZHW19aPdyQyX+NmiD6ZTNnsIC7UmwIlECp?=
+ =?us-ascii?Q?2lCq+nFMogNQQAntgf4+Makkocf/JU4M90Y/QNwAoy/mRNYTEFt2OFeO58h4?=
+ =?us-ascii?Q?3csmboBVFeCtM4J55NLMOmzefDnzZJ0u6YVn4LvozVLS4kNy9Y26z7GH9IOj?=
+ =?us-ascii?Q?i3w9devmZ0ryPmdtOi1rIQfeNbcxR5C0wl4X9ltrbog6PzVTECnIlkZzzp1T?=
+ =?us-ascii?Q?AbHOhU3XVcAaCBHm8alKwS3xxRb118kzKfkRsqfDIZzdpS5ZoUZ/ylqH1swf?=
+ =?us-ascii?Q?Hjf9RRJUd8ftkpF0AneoDN16e2IProOqCXBVZuzOkP0EfgFV4JdSDpK5AsWL?=
+ =?us-ascii?Q?EW2sF2mQqcG8aNZrAx79NfJUtQ6PT6g6ShkcU/jIM/0a6VtAWwuh4VlARWG/?=
+ =?us-ascii?Q?9FLNudrc8v9LugFE+kXKgaqcCCNpgMBCk+BVhqxDtiafyKfyIu08rbzZtgZo?=
+ =?us-ascii?Q?K3noW6Ip/5VnghunQPj7ZIn6QU2Epy1zs0p/DJ97CHy+GtgnJT9mkqC+QXGz?=
+ =?us-ascii?Q?AaEol0eKBRhFNBPLOKog3lpkQxeFZojW8sYk7lEjSQC3KKNShFuGctaV3Xon?=
+ =?us-ascii?Q?T9sDsylVenMhnfZpIFN7m0wh2Oth8NWmiGT2FfpGT4DfmxKhHQk6frsf7DFE?=
+ =?us-ascii?Q?rbgCHGlWR3/9dOgeVBvgglgPkD3t9VMGBkNdlfd0ZwOD9vnr1fzT3BTSgpbz?=
+ =?us-ascii?Q?V5qDs1wLKmaOx57sv0pkJkLMnwdFlpKY+G91g2XWv4nTPL+qibX8ssrxS277?=
+ =?us-ascii?Q?JaHVj7gUyGCviaKer9COz54MJuWDNEMo70sYqSOvMEoGdH/cP4U74FUe43I9?=
+ =?us-ascii?Q?lEPxVnOjsoN76VamiDCUodXVhBkZWWNSdPMhpJlRVc3MukTPBsjmzrsp+m8Z?=
+ =?us-ascii?Q?LrHRpfvEDsXNgS3nx6tKXyKhwRi8K32mdlxZrljdUpjxUAyPA+JrlDhfDvN+?=
+ =?us-ascii?Q?wIhRrajllmAy4FdbAwZbGkZ52hMGAOCL/vtedNi38sQ3Jv6yR63kXhv2L9ZE?=
+ =?us-ascii?Q?+wGdMQl2ao4sigKcaNm29jyUe+E0KzVs8EgQVTwUSCGZk1W21Kgihc8jKwU0?=
+ =?us-ascii?Q?fldpiuQ+Pzf07J0iqliZwfFBkXeOgHIF6gXwD9HnOMVIwlYQx2s3mWLgQacJ?=
+ =?us-ascii?Q?aBH0L2O+QUM8belbZrF4Pxn/CU8Ye/bRTb2a+19Y2Bas5kve6TY0ux9UdKgp?=
+ =?us-ascii?Q?Gr4PKI2wu77UfpsXr37z5WSVrbBCATC2HRbdnsr5cPvKe4y2tfiW3TQUB8TZ?=
+ =?us-ascii?Q?bBsFrYEyp2E/P3+psa60RYDg6+sybIBsfq/dXmqB706pdSPULnH89MBCT4pX?=
+ =?us-ascii?Q?OvVmXetPqIPstEOF7D+Xf3IcBtO9AaAhB9BAL9cU8LURb/BbqT4DLE2dlBjO?=
+ =?us-ascii?Q?vBigMc0FcjLxiRfgyzN4qzTn7cu4z7SAhqfhdJeY3Ro1GkgQbOrL7SXHg/A4?=
+ =?us-ascii?Q?oOdV0nE1L2LkcLb697FVckry5vGws6xJWvr5ZRuRHUr1cBQV0zl9CxYmBQuh?=
+ =?us-ascii?Q?FFHAwq8Ca5aSAxdk0kDNTUM8qyI8wXr48RMOkei1iDLfM722SJ3B20TtUv/z?=
+ =?us-ascii?Q?VBdzfh2Uyg78tafnfbMwrd5Q/NslQ1d95zLOApyj?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 583625d3-3079-49e0-4d03-08da73f8a66b
+X-MS-Exchange-CrossTenant-Network-Message-Id: 559e5eb1-67d2-476b-f460-08da73f8a5fd
 X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8274.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2022 20:01:40.8417
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2022 20:01:40.2344
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: unRsITT0Qjjg+sS2vd4GQhxxgl/qKC22rRj3lWVkRMYO6NOZ99VKcGGd5ncmHgj1Inj91TR3NBq3HWI/n7OsDQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ddy+aBq0LthwX42tMP2eeUv32EMMsLXUH7EZkt1p6lh0xMYA+H03pQZDYOVjmGYfsdle9/hyAq7xqeWieg1zBA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6516
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -115,62 +118,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8DXL is a device targeting the automotive and industrial market
-segments. The chip is designed to achieve both high performance and
-low power consumption. It has a dual (2x) Cortex-A35 processor.
+Add the missing resource IDs for imx8dxl.
 
-The series of patches is to add the imx8dxl soc and its evk board
-support.
+Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ include/dt-bindings/firmware/imx/rsrc.h | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-changes in V5:
-  - change the "scu" node name to "system-controller"
-  - fix the typo in the comments for imx8dxl evk board
-
-changes in V4:
-  - move i2c/mmc/serial aliases from soc to board
-  - correct the node names to follow the generic names recommendation
-  - remove some unused nodes in the evk board dts
-
-changes in V3:
-  - re-order the commit sequence according to Krzysztof's feedback
-  - correct the syntax and styple problems pointed by Krzysztof
-    (Thank you for the detailed review, Krzysztof!)
-  - remove the unused nodes in imx8dxl-evk.dts
-  - dt_binding_check passed
-
-Changes in V2:
-  - removed the edma2 device node because the edma v3 driver hasn't been
-    upstreamed yet.
-  - removed the imx8dxl_cm4 alias to fix the compile error.
-  - removed the extra blank lines at EOF.
-  - dt_binding_check passed.
-
-
-Shenwei Wang (3):
-  dt-bindings: firmware: add missing resource IDs for imx8dxl
-  dt-bindings: arm: imx: update fsl.yaml for imx8dxl
-  arm64: dts: imx: add imx8dxl support
-
- .../devicetree/bindings/arm/fsl.yaml          |   6 +
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../arm64/boot/dts/freescale/imx8-ss-ddr.dtsi |   2 +-
- .../arm64/boot/dts/freescale/imx8-ss-dma.dtsi | 138 ++++++
- .../boot/dts/freescale/imx8-ss-lsio.dtsi      |  14 +
- arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 463 ++++++++++++++++++
- .../boot/dts/freescale/imx8dxl-ss-adma.dtsi   |  72 +++
- .../boot/dts/freescale/imx8dxl-ss-conn.dtsi   | 145 ++++++
- .../boot/dts/freescale/imx8dxl-ss-ddr.dtsi    |   9 +
- .../boot/dts/freescale/imx8dxl-ss-lsio.dtsi   |  78 +++
- arch/arm64/boot/dts/freescale/imx8dxl.dtsi    | 238 +++++++++
- include/dt-bindings/firmware/imx/rsrc.h       |   7 +
- 12 files changed, 1172 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
- create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-adma.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-lsio.dtsi
- create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl.dtsi
-
---
+diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
+index 43885056557c4..1675de05ad33b 100644
+--- a/include/dt-bindings/firmware/imx/rsrc.h
++++ b/include/dt-bindings/firmware/imx/rsrc.h
+@@ -37,10 +37,14 @@
+ #define IMX_SC_R_DC_0_BLIT2		21
+ #define IMX_SC_R_DC_0_BLIT_OUT		22
+ #define IMX_SC_R_PERF			23
++#define IMX_SC_R_USB_1_PHY		24
+ #define IMX_SC_R_DC_0_WARP		25
++#define IMX_SC_R_V2X_MU_0		26
++#define IMX_SC_R_V2X_MU_1		27
+ #define IMX_SC_R_DC_0_VIDEO0		28
+ #define IMX_SC_R_DC_0_VIDEO1		29
+ #define IMX_SC_R_DC_0_FRAC0		30
++#define IMX_SC_R_V2X_MU_2		31
+ #define IMX_SC_R_DC_0			32
+ #define IMX_SC_R_GPU_2_PID0		33
+ #define IMX_SC_R_DC_0_PLL_0		34
+@@ -49,7 +53,10 @@
+ #define IMX_SC_R_DC_1_BLIT1		37
+ #define IMX_SC_R_DC_1_BLIT2		38
+ #define IMX_SC_R_DC_1_BLIT_OUT		39
++#define IMX_SC_R_V2X_MU_3		40
++#define IMX_SC_R_V2X_MU_4		41
+ #define IMX_SC_R_DC_1_WARP		42
++#define IMX_SC_R_SECVIO			44
+ #define IMX_SC_R_DC_1_VIDEO0		45
+ #define IMX_SC_R_DC_1_VIDEO1		46
+ #define IMX_SC_R_DC_1_FRAC0		47
+-- 
 2.25.1
 
