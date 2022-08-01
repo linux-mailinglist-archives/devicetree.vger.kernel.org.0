@@ -2,312 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043285865E6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 09:55:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 336E8586688
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 10:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229716AbiHAHzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 03:55:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49854 "EHLO
+        id S229987AbiHAIpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 04:45:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229750AbiHAHzR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 03:55:17 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324CD25F9;
-        Mon,  1 Aug 2022 00:55:16 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id s5-20020a17090a13c500b001f4da9ffe5fso4246095pjf.5;
-        Mon, 01 Aug 2022 00:55:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=uetOwY75YdSkRkOmZ7kqjcqe6M7pgBJrux4C6ueh2dc=;
-        b=C29sey2y0GPIrbCS1cC5P88q5AOwiJEWMKfpOhoEpoq5K3kncC1gldVs6rhVi8BtcE
-         iIQ52S3NH1H9vx44xLKhIMn1zCf9/ERISI8EIe0uuXI9Bv5KEN2v3T+2uqHoSvRA7V+s
-         N5npdgHtX8URJO/y2DQLFrGOLkeWM50IovV1QYdz956TMqBImdgZPZ3A1oddKDyAgGl9
-         FpCdWKV2uTsx/p/2x+ELaBcaGwMlhSymB13qKmhc/2GmHv36G1ysuEqdZ2C3hx304DCU
-         8gHdyrbT7OU85bAHV5I5dca7/J6R+PTZh/LjYR5AA0gfe1y5qlI3gvj5sPLJ7oshUIzv
-         QLmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=uetOwY75YdSkRkOmZ7kqjcqe6M7pgBJrux4C6ueh2dc=;
-        b=KdFJ0ArsGigTnUpmo9zD5uFCX/m4e08U7iF4VZRDENKAH8TphB70mO6bJXug7F9+ss
-         Drq21v0UajQE8u0MTs+ViK3s0Fh5XAu9GhPm+hqBeYsGfM8MBjGPytEJQFvFUIARIUDp
-         7CcBtpogncqUbA1rDf9aQR+koRXDsIxawcPlCwLHnIEiivhZPcg3GAkXloKDzxgBrasc
-         3OQ+Hp7UeI/qu0BXv5lI5s2Hye7ht3OwA6NXLrR1BqOdKXoC7o1ysqy4GkO34Cq9Bn66
-         6Etx3BgbditDSLpPwkl6lnOzCZcqqT1Tc5D90gVR4AFpLr//OcE3BIOKbvFvHWSGA9HO
-         ByAg==
-X-Gm-Message-State: ACgBeo06AME7zE5f1L01NVH14HQptjlJwyvQEQCNOhjzUhULKJCXXs6a
-        5Sm6xrrNs5rWS8JLfHLju0x+JlxKuNFPl2mzZk8=
-X-Google-Smtp-Source: AA6agR4XQs0SfniccMvwBwEbhZr9DuCZhpAzorqzz/klNEEIk+hI+XSuBOa4ULddUpASHKk37VGPc9LS8p1Pl6/mYJA=
-X-Received: by 2002:a17:903:268f:b0:16d:d62c:5b8b with SMTP id
- jf15-20020a170903268f00b0016dd62c5b8bmr13763583plb.107.1659340515630; Mon, 01
- Aug 2022 00:55:15 -0700 (PDT)
+        with ESMTP id S229689AbiHAIpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 04:45:03 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 496DF2F67B
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 01:45:01 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2716fT31028373;
+        Mon, 1 Aug 2022 10:44:32 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=I7b/hxGMS8TVVccr6yHPdrkzx6SCaQqi8VD8U+Ok7Xg=;
+ b=1IkGg+7obZoE0ft8TJqYz+tnL7JDta0hS3yx+4L8KUlVtXvxV7f35QjDy95IeR/ZX7Ef
+ Keqtf5B6Onr9FLw8gwZwCDfKP8xPmw4y9g6XMA22Cg9rAXNh0l3yAkWjxL0SUZTFpGrJ
+ kHqxKFCtkxBGcu5OV6ArYjPhkQ5PwpTT6eJlAg5hVXquqMxVB0lNThnq43ktFJNwpYjF
+ epupnwDLMGRtYOlsK1AN1FGjWol+xoIqemlZwixIsTNaXAEwvEw+WOk2/c4ynGoU1miW
+ tNxDeF8pqk1SeYgfjmr5LIOywp7Tn979sfW6VNj28wuNrZKIXMnMD3cG7OFu+K/1fxwi Gg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3hmv013c5s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 01 Aug 2022 10:44:32 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8E52A10002A;
+        Mon,  1 Aug 2022 10:44:30 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 886F62194F6;
+        Mon,  1 Aug 2022 10:44:30 +0200 (CEST)
+Received: from [10.201.21.93] (10.75.127.45) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 1 Aug
+ 2022 10:44:29 +0200
+Message-ID: <dcb245b7-1d2f-0f90-8be8-26688d184b5a@foss.st.com>
+Date:   Mon, 1 Aug 2022 10:44:28 +0200
 MIME-Version: 1.0
-References: <20220722102407.2205-1-peterwu.pub@gmail.com> <20220722102407.2205-12-peterwu.pub@gmail.com>
- <20220730213913.GJ23307@duo.ucw.cz>
-In-Reply-To: <20220730213913.GJ23307@duo.ucw.cz>
-From:   szuni chen <szunichen@gmail.com>
-Date:   Mon, 1 Aug 2022 15:55:04 +0800
-Message-ID: <CA+hk2fakxuWD2kFSW2e6p7sgWF5jrk0gZg3BU6MtFxcxv6g5jQ@mail.gmail.com>
-Subject: Re: [PATCH v6 11/13] leds: rgb: mt6370: Add MediaTek MT6370 current
- sink type LED Indicator support
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     ChiaEn Wu <peterwu.pub@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v4 2/2] ARM: dts: stm32mp15x: Add timer interrupts
+Content-Language: en-US
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <kernel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Alice Chen <alice_chen@richtek.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+ <20220519162838.695404-2-u.kleine-koenig@pengutronix.de>
+ <20220720071834.augn2mtytqzqcixo@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20220720071834.augn2mtytqzqcixo@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-01_04,2022-07-28_02,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
-Sorry for resending the mail, I add all reviewers this time.
+Hi Uwe
 
+On 7/20/22 09:18, Uwe Kleine-König wrote:
+> Hello,
+> 
+> On Thu, May 19, 2022 at 06:28:38PM +0200, Uwe Kleine-König wrote:
+>> The timer units in the stm32mp15x CPUs have interrupts, depending on the
+>> timer flavour either one "global" or four dedicated ones. Add the irqs
+>> to the timer units on stm32mp15x.
+>>
+>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> 
+> This patch wasn't picked up yet (at least nobody told to have done it
+> and it's not in next). Is there a problem other than no maintainer time?
+> 
+> Best regards
+> Uwe
+> 
 
-Pavel Machek <pavel@ucw.cz> =E6=96=BC 2022=E5=B9=B47=E6=9C=8831=E6=97=A5 =
-=E9=80=B1=E6=97=A5 =E6=B8=85=E6=99=A85:39=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Hi!
->
-...
+I was waiting for a review from Rob or Krzysztof on bindings patch [1]. 
+Let me know if I missed it.
 
->
-> > +config LEDS_MT6370_RGB
-> > +     tristate "LED Support for MediaTek MT6370 PMIC"
-> > +     depends on MFD_MT6370
-> > +     select LINEAR_RANGE
-> > +     help
-> > +       Say Y here to enable support for MT6370_RGB LED device.
-> > +       In MT6370, there are four channel current-sink LED drivers that
-> > +       support hardware pattern for constant current, PWM, and breath =
-mode.
->
->
-> > +       Isink4 channel can also be used as a CHG_VIN power good  indica=
-tor.
->
-> That does not really belong here.
->
-Should we just remove it, or describe Isink4 in another position?
+Alex
 
-> > +struct mt6370_priv {
-> > +     /* Per LED access lock */
-> > +     struct mutex lock;
->
-> Do we really need per-led locking?
->
-Sorry, maybe the comment is not precise.
-The lock is used to prevent LEDs from accessing the HW at the same time.
-
-If I use
-/* LED access lock, only one LED can access the HW at the same time */
-will it look better?
-No, we aren't.
-There are six steps tr1, tr2, tf1, tf2, ton, and toff in MT6370 led breath =
-mode.
-We parse duration settings from node "hw_pattern" and set them to the regis=
-ters.
-
-This function is used to generate duration settings from hw_pattern.
-
-The brightness of the six steps mentioned above in breath mode is
-limited to the node "brightness".
-The target brightness of tr1 and tf1 is 25% of node "brightness", and
-they are automatically set by HW.
-
-> > +static int mt6370_init_led_properties(struct mt6370_led *led,
-> > +                                   struct led_init_data *init_data)
-> > +{
-> > +     struct mt6370_priv *priv =3D led->priv;
-> > +     struct device *dev =3D priv->dev;
-> > +     struct led_classdev *lcdev;
-> > +     struct fwnode_handle *child;
-> > +     enum mt6370_led_ranges sel_range;
-> > +     u32 max_uA, max_level;
-> > +     const char * const states[] =3D { "off", "keep", "on" };
->
-> We'd really preffer not to add "keep" / "on" support unless you need
-> it.
->
-Forgive me, but I would like to know why "keep" / "on" is not preferred.
-We think the users might have some conditions that need them.
-
-
-Best Regards,
-Alice
-
-Pavel Machek <pavel@ucw.cz> =E6=96=BC 2022=E5=B9=B47=E6=9C=8831=E6=97=A5 =
-=E9=80=B1=E6=97=A5 =E6=B8=85=E6=99=A85:39=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Hi!
->
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > The MediaTek MT6370 is a highly-integrated smart power management IC,
-> > which includes a single cell Li-Ion/Li-Polymer switching battery
-> > charger, a USB Type-C & Power Delivery (PD) controller, dual
-> > Flash LED current sources, a RGB LED driver, a backlight WLED driver,
-> > a display bias driver and a general LDO for portable devices.
-> >
-> > In MediaTek MT6370, there are four channel current-sink RGB LEDs that
-> > support hardware pattern for constant current, PWM, and breath mode.
-> > Isink4 channel can also be used as a CHG_VIN power good indicator.
-> >
->
-> > +config LEDS_MT6370_RGB
-> > +     tristate "LED Support for MediaTek MT6370 PMIC"
-> > +     depends on MFD_MT6370
-> > +     select LINEAR_RANGE
-> > +     help
-> > +       Say Y here to enable support for MT6370_RGB LED device.
-> > +       In MT6370, there are four channel current-sink LED drivers that
-> > +       support hardware pattern for constant current, PWM, and breath =
-mode.
->
->
-> > +       Isink4 channel can also be used as a CHG_VIN power good  indica=
-tor.
->
-> That does not really belong here.
->
-> > +struct mt6370_priv {
-> > +     /* Per LED access lock */
-> > +     struct mutex lock;
->
-> Do we really need per-led locking?
->
-> > +static int mt6370_gen_breath_pattern(struct mt6370_priv *priv,
-> > +                                  struct led_pattern *pattern, u32 len=
-,
-> > +                                  u8 *pattern_val, u32 val_len)
-> > +{
-> > +     enum mt6370_led_ranges sel_range;
-> > +     struct led_pattern *curr;
-> > +     unsigned int sel;
-> > +     u8 val[P_MAX_PATTERNS / 2] =3D {};
-> > +     int i;
-> > +
-> > +     if (len < P_MAX_PATTERNS && val_len < P_MAX_PATTERNS / 2)
-> > +             return -EINVAL;
-> > +
-> > +     /*
-> > +      * Pattern list
-> > +      * tr1: byte 0, b'[7: 4]
-> > +      * tr2: byte 0, b'[3: 0]
-> > +      * tf1: byte 1, b'[7: 4]
-> > +      * tf2: byte 1, b'[3: 0]
-> > +      * ton: byte 2, b'[7: 4]
-> > +      * toff: byte 2, b'[3: 0]
-> > +      */
-> > +     for (i =3D 0; i < P_MAX_PATTERNS; i++) {
-> > +             curr =3D pattern + i;
-> > +
-> > +             sel_range =3D i =3D=3D P_LED_TOFF ? R_LED_TOFF : R_LED_TR=
-FON;
-> > +
-> > +             linear_range_get_selector_within(priv->ranges + sel_range=
-,
-> > +                                              curr->delta_t, &sel);
-> > +
-> > +             val[i / 2] |=3D sel << (4 * ((i + 1) % 2));
-> > +     }
-> > +
-> > +     memcpy(pattern_val, val, 3);
-> > +
-> > +     return 0;
-> > +}
->
-> I wonder how this works... you are not creating private sysfs
-> interface, are you?
->
-> > +static int mt6370_init_led_properties(struct mt6370_led *led,
-> > +                                   struct led_init_data *init_data)
-> > +{
-> > +     struct mt6370_priv *priv =3D led->priv;
-> > +     struct device *dev =3D priv->dev;
-> > +     struct led_classdev *lcdev;
-> > +     struct fwnode_handle *child;
-> > +     enum mt6370_led_ranges sel_range;
-> > +     u32 max_uA, max_level;
-> > +     const char * const states[] =3D { "off", "keep", "on" };
->
-> We'd really preffer not to add "keep" / "on" support unless you need
-> it.
->
-> > +                     if (ret)
-> > +                             return dev_err_probe(dev, ret,
-> > +                                                  "led %d, no color sp=
-ecified\n",
-> > +                                                  led->index);
->
-> led->LED.
->
-> > +             if (num_color < 2)
-> > +                     return dev_err_probe(dev, -EINVAL,
-> > +                                          "Multicolor must include
-> > 2 or more led channel\n");
->
-> "LED channels".
->
-> > +static int mt6370_isnk_init_default_state(struct mt6370_led *led)
-> > +{
-> > +     struct mt6370_priv *priv =3D led->priv;
-> > +     unsigned int enable, level;
-> > +     int ret;
-> > +
-> > +     ret =3D mt6370_get_led_brightness(priv, led->index, &level);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     ret =3D regmap_field_read(priv->fields[F_RGB_EN], &enable);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     if (!(enable & MT6370_CHEN_BIT(led->index)))
-> > +             level =3D LED_OFF;
->
-> Just use 0 instead of LED_OFF.
->
-> Best regards,
->                                                         Pavel
->
-> --
-> People of Russia, stop Putin before his war on Ukraine escalates.
