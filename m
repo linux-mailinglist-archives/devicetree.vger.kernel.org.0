@@ -2,85 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3857C587153
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 21:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CD08587171
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 21:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233489AbiHATVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 15:21:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45462 "EHLO
+        id S234512AbiHATbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 15:31:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231579AbiHATVl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 15:21:41 -0400
-X-Greylist: delayed 533 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 01 Aug 2022 12:21:39 PDT
-Received: from mailgw.felk.cvut.cz (mailgw.felk.cvut.cz [147.32.82.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C453892;
-        Mon,  1 Aug 2022 12:21:39 -0700 (PDT)
-Received: from mailgw.felk.cvut.cz (localhost.localdomain [127.0.0.1])
-        by mailgw.felk.cvut.cz (Proxmox) with ESMTP id DC94130B294F;
-        Mon,  1 Aug 2022 21:12:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        cmp.felk.cvut.cz; h=cc:cc:content-transfer-encoding:content-type
-        :content-type:date:from:from:in-reply-to:message-id:mime-version
-        :references:reply-to:subject:subject:to:to; s=felkmail; bh=3F52n
-        xY/tmh9PZSV7vW/mnbDTdP8zzNslKlWQPThCYU=; b=CHH45DlE4nR+ZlgCvTtbJ
-        Cq/aGpKN9C9JtSPYDiAq7/qeDnYjDcfyd3re2wiT5SI/FmjsvYMkF8+XloJFIm05
-        VptaBDd3oMivohzia7+wNj4mAlbvxVsDnWpwHtOfgOEO8YQCX5ghTHBwVt70/6PZ
-        /qNMoxTl2bteZK/G+CQEBmaStY12P57hZIZRsLcBDrxCFqbVlaDmrMn8RF1hSicR
-        +B1zEH6CajkA938TYajrlWwTDI7xW30/FMk8ppDboOQcR8vBYZEXZyr7DH/Gwvl3
-        fpC2AgulXOIY7ITGu61NYn1F4grh9DxP+9TcOTcKNqb3zrNNW6E76+iaRjcK/6TA
-        w==
-Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
-        by mailgw.felk.cvut.cz (Proxmox) with ESMTPS id 8118E30AE002;
-        Mon,  1 Aug 2022 21:12:44 +0200 (CEST)
-Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
-        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 271JCiHi007731;
-        Mon, 1 Aug 2022 21:12:44 +0200
-Received: (from pisa@localhost)
-        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 271JCiIL007730;
-        Mon, 1 Aug 2022 21:12:44 +0200
-X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
-From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
-To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
-Subject: Re: [PATCH v2 3/3] doc: ctucanfd: RX frames timestamping for platform devices
-Date:   Mon, 1 Aug 2022 21:12:36 +0200
-User-Agent: KMail/1.9.10
-Cc:     Ondrej Ille <ondrej.ille@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "Marc Kleine-Budde" <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220801184656.702930-1-matej.vasilevski@seznam.cz> <20220801184656.702930-4-matej.vasilevski@seznam.cz>
-In-Reply-To: <20220801184656.702930-4-matej.vasilevski@seznam.cz>
-X-KMail-QuotePrefix: > 
-MIME-Version: 1.0
-Content-Type: Text/Plain;
-  charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-Message-Id: <202208012112.36751.pisa@cmp.felk.cvut.cz>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S234945AbiHATay (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 15:30:54 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDDC31117E;
+        Mon,  1 Aug 2022 12:30:50 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id p10so840590ile.5;
+        Mon, 01 Aug 2022 12:30:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc;
+        bh=68X4qWbGtTFIeTpRkrQqYh3V9U2RdglpeJ/XvuTio2M=;
+        b=6K3kDAMEuG4O2yYT3bEXRUXz0QgV0ftzshhkzXRUDcwEdJclsJRLd748yCfjnGaKmt
+         Cp2RLQfv4S5RFaKhDPcCI2AOYpUmvtFI7QqkQOu/dkmngz1RDNCxMtqKZ6FWoLm9Cv1p
+         +W2V87+F+7H+B/WlJpfrONtwlJXC94ZNzKxOT2ciSYYxoRSSYA0Lt3w1qo0etjXzidF2
+         hShgNFkg0OBvJ4/jXyuRr3ejFuqtqtzImzCANdF+60ELEKNRqfir2lMJTUeOQ2l1ekwE
+         ztlCj3ZJnbaYNY6/hl49VIyxgatH+1IwErv1VpB+XAbRl5cYo3yLCsJ7xTRLjtIVzWX9
+         L6IA==
+X-Gm-Message-State: AJIora/wUAzq0Zayy6ieO4pO3dOUv0z1iYa+XQ4HmbfZPDeKeUFMcfO5
+        /85ZUhP+QyNjQDr9q5bFGg==
+X-Google-Smtp-Source: AGRyM1tQNi5twR+ViPskLi6NNiVfaZlNIANTIuqKhF5Nl5YIUD1ubx9Pi6G6HuZVS9nvyPZ5GIuC1g==
+X-Received: by 2002:a92:d752:0:b0:2dd:d885:82f2 with SMTP id e18-20020a92d752000000b002ddd88582f2mr6615271ilq.50.1659382249905;
+        Mon, 01 Aug 2022 12:30:49 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id o8-20020a92c688000000b002dcf9e17a29sm5021974ilg.76.2022.08.01.12.30.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Aug 2022 12:30:49 -0700 (PDT)
+Received: (nullmailer pid 1380282 invoked by uid 1000);
+        Mon, 01 Aug 2022 19:30:47 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, perex@perex.cz,
+        kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
+        broonie@kernel.org, robh+dt@kernel.org, tiwai@suse.com,
+        lgirdwood@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <1659370052-18966-2-git-send-email-spujar@nvidia.com>
+References: <1659370052-18966-1-git-send-email-spujar@nvidia.com> <1659370052-18966-2-git-send-email-spujar@nvidia.com>
+Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: Add schema for common DAI params
+Date:   Mon, 01 Aug 2022 13:30:47 -0600
+Message-Id: <1659382247.124005.1380281.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Matej Vasilevski,
+On Mon, 01 Aug 2022 21:37:30 +0530, Sameer Pujar wrote:
+> The "convert-channels" and "convert-rate" bindings are provided for both
+> simple-card and audio-graph-card. However these are separately defined in
+> their respective schemas. For any new binding addition, which is common to
+> both, there will be duplication.
+> 
+> Introduce a new schema to have common DAI params properties and these can
+> be re-used in other schemas wherever applicable.
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  .../bindings/sound/audio-graph-port.yaml           | 13 ++++------
+>  .../devicetree/bindings/sound/audio-graph.yaml     |  7 +++---
+>  .../devicetree/bindings/sound/dai-params.yaml      | 28 ++++++++++++++++++++++
+>  .../devicetree/bindings/sound/simple-card.yaml     | 16 ++++---------
+>  4 files changed, 40 insertions(+), 24 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/dai-params.yaml
+> 
 
-thanks much for the work
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-On Monday 01 of August 2022 20:46:56 Matej Vasilevski wrote:
-> Update the section about timestamping RX frames with instructions
-> how to enable it.
->
-> Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
-Acked-by: Pavel Pisa <pisa@cmp.felk.cvut.cz>
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.yaml: properties:simple-audio-card,convert-rate: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	'description' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('$ref' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.yaml: properties:simple-audio-card,convert-rate: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	'/schemas/sound/dai-params.yaml#/properties/dai-sample-rate' does not match 'types.yaml#/definitions/'
+		hint: A vendor property needs a $ref to types.yaml
+	'/schemas/sound/dai-params.yaml#/properties/dai-sample-rate' does not match '^#/(definitions|\\$defs)/'
+		hint: A vendor property can have a $ref to a a $defs schema
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.yaml: properties:simple-audio-card,convert-channels: 'oneOf' conditional failed, one must be fixed:
+	'type' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	'description' is a required property
+		hint: A vendor boolean property can use "type: boolean"
+	Additional properties are not allowed ('$ref' was unexpected)
+		hint: A vendor boolean property can use "type: boolean"
+	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.yaml: properties:simple-audio-card,convert-channels: 'oneOf' conditional failed, one must be fixed:
+		'enum' is a required property
+		'const' is a required property
+		hint: A vendor string property with exact values has an implicit type
+		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+	'/schemas/sound/dai-params.yaml#/properties/dai-channels' does not match 'types.yaml#/definitions/'
+		hint: A vendor property needs a $ref to types.yaml
+	'/schemas/sound/dai-params.yaml#/properties/dai-channels' does not match '^#/(definitions|\\$defs)/'
+		hint: A vendor property can have a $ref to a a $defs schema
+	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+./Documentation/devicetree/bindings/sound/simple-card.yaml: Error in referenced schema matching $id: http://devicetree.org/schemas/sound/simple-card.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.yaml: ignoring, error in schema: properties: simple-audio-card,convert-channels
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound: simple-audio-card,widgets: b'Microphone\x00Microphone Jack\x00Headphone\x00Headphone Jack\x00Speaker\x00External Speaker\x00' is not of type 'object', 'array', 'boolean', 'null'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound: simple-audio-card,routing: b'MIC_IN\x00Microphone Jack\x00Headphone Jack\x00HP_OUT\x00External Speaker\x00LINE_OUT\x00' is not of type 'object', 'array', 'boolean', 'null'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+Documentation/devicetree/bindings/sound/simple-card.example.dtb:0:0: /example-0/sound: failed to match any schema with compatible: ['simple-audio-card']
+Documentation/devicetree/bindings/sound/simple-card.example.dtb:0:0: /example-1/sound: failed to match any schema with compatible: ['simple-audio-card']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound: simple-audio-card,widgets: b'Headphone\x00Headphone Jack\x00' is not of type 'object', 'array', 'boolean', 'null'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+Documentation/devicetree/bindings/sound/simple-card.example.dtb:0:0: /example-2/sound: failed to match any schema with compatible: ['simple-audio-card']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.example.dtb: sound: simple-audio-card,routing: b'ak4642 Playback\x00DAI0 Playback\x00DAI0 Capture\x00ak4642 Capture\x00' is not of type 'object', 'array', 'boolean', 'null'
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/dt-core.yaml
+Documentation/devicetree/bindings/sound/simple-card.example.dtb:0:0: /example-3/sound: failed to match any schema with compatible: ['simple-audio-card']
+Documentation/devicetree/bindings/sound/simple-card.example.dtb:0:0: /example-4/sound: failed to match any schema with compatible: ['simple-audio-card']
+Documentation/devicetree/bindings/sound/simple-card.example.dtb:0:0: /example-5/sound: failed to match any schema with compatible: ['simple-audio-card']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
