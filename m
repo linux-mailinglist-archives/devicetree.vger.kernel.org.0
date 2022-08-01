@@ -2,197 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 969E1586ADB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 14:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08EBA586AEA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 14:37:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231420AbiHAMey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 08:34:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34484 "EHLO
+        id S231529AbiHAMhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 08:37:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234450AbiHAMeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 08:34:36 -0400
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2091.outbound.protection.outlook.com [40.107.104.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 145C740BEC;
-        Mon,  1 Aug 2022 05:14:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lV9br0gmkUFuWcmxFTleciPxKffYYLEprpksL6oKzKxbs6sRpCrhSDf3EDVkx5pjEwqhaRceQdd3lxvhLpaxK+reuELCEuSqYDbOUZeic8S/Da/WV6ZDJLbW6s8XPPg4lUYZcAZgQ7BfzS9oFdFkai49PceJJdq5TEl2Az/qgFQSe/9HuN0s2FUaT+rvKuZouUqS2PZf9qdzqCTw9BQIqiSR9dSjZAi080nkQ/1dXF3fREqVzeWzS3HI8MAzkarN0ivVv647h7OtQThlSlziBS6zBIfp0PgVxZrfI7C3VPBxkwy5aa9l1TyIBCu/KZw8ba6u7IJZC+dweVjHJhykOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xoViaoT4lMWPOQeq0nHE371KtFD/bh5S8sSMM2zIg3w=;
- b=ncJLeCyqWyWDbOksFaicUxm6ebgsjQdnFKlmo5OaUhziHcpC7x8m7EMxLCLDexCa5IxDgDtlFw5fFW67iFPLNsK3SgosWclMN+HapR/1HerGYT9kybyhiUWLEn6wCNbJkc7c1FdG39wN1SMRtsVWlm0xJUvF3Plzrb4+f1XgLGJRlF1uNdfWX6CcHS3IDLRUgINRckdc7Pv0JGqg66wt66RDqg2tnI80lNXm3dLjAwmg0oVzqhEqb7siOagPw5c38VRyFRf1o6hgpo9YGCciDr9RH6//K2ZfxsGfXrn0kZa99WQCDHPgHn8VpzuPtMZhmlKUNhrQsASSPDXkvVp3eg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xoViaoT4lMWPOQeq0nHE371KtFD/bh5S8sSMM2zIg3w=;
- b=aayFlvQrs4P9DN3nSB7Pu0PfA9wMb+7Lzb5Afji+sOebVONqE31mwiIhuN9u/NNLdA/YfgWJ2q5OlCCaT8LIceZNPuI/SvMym6+q0d139spdnEdpqm6N/qtcqprdYGGjnf7hn1zse67vVQV2Z338VPQYdCX40cqx66a8hNXvUdM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
- by VI1PR10MB1997.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:803:36::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.11; Mon, 1 Aug
- 2022 12:14:16 +0000
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::8cd6:567b:46d0:a1a8]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::8cd6:567b:46d0:a1a8%8]) with mapi id 15.20.5482.014; Mon, 1 Aug 2022
- 12:14:16 +0000
-Message-ID: <7ef6812e-5732-e8c7-e796-f568de4eef62@kontron.de>
-Date:   Mon, 1 Aug 2022 14:14:14 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] arm64: dts: verdin-imx8mm: add otg2 pd to usbphy
-Content-Language: en-US
-To:     Philippe Schenker <dev@pschenker.ch>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        with ESMTP id S231532AbiHAMhm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 08:37:42 -0400
+Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC6D9D51E;
+        Mon,  1 Aug 2022 05:16:52 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (dkwl20tj04snw15cjtflt-3.rev.dnainternet.fi [IPv6:2001:14ba:4493:6f40:fec3:d72a:e447:8113])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 3D0AA20093;
+        Mon,  1 Aug 2022 15:16:49 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1659356209;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=/Bh14Hk6sa//86NbqJfelnT4ZG7/BMw5JTIu6cE97AM=;
+        b=XA8hThafhSmPdApR5a4xni1OvnlBHbIMm/gUNIm8JA9mt/akVcOyz3hLOWCE2iSiPyt7Dp
+        XMy8AU086198SPHiolFCkWsuBTpCKsZ2hv9/d3+kp+8dH7CS6rG1XKLggUvuS3qZxJK8go
+        Ir8R7HMeFh50LO+Rucu6Y9RWBWldXB4=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id AB224634C97;
+        Mon,  1 Aug 2022 15:16:48 +0300 (EEST)
+Date:   Mon, 1 Aug 2022 15:16:48 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     "Paul J . Murphy" <paul.j.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Jacky Bai <ping.bai@nxp.com>, Jun Li <jun.li@nxp.com>
-References: <20220722075600.10943-1-dev@pschenker.ch>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20220722075600.10943-1-dev@pschenker.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P191CA0014.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d5::20) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:263::10)
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        kernel test robot <lkp@intel.com>, llvm@lists.linux.dev,
+        kbuild-all@lists.01.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 6/7] media: i2c: ov9282: Set v4l2 subdev name
+ according to sensor model
+Message-ID: <YufEMD8oBLNNewsf@valkosipuli.retiisi.eu>
+References: <20220728130237.3396663-7-alexander.stein@ew.tq-group.com>
+ <202207290518.1D7MVS65-lkp@intel.com>
+ <6086686.mvXUDI8C0e@steina-w>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 63a271ae-faa7-4664-47bb-08da73b75a97
-X-MS-TrafficTypeDiagnostic: VI1PR10MB1997:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: B4GXdEMxgyo5/DEQcLKvvkHGSBWf+6DILGQQEXMtH+sNtOZdQ3sbBtD72VYElYx0TAeucy2sVvlssnOgM51xhC2FUAt+JZKhJZ6fGS5pocu8BOcTScuX7nt/AFNVCG7pTkzwD5rCSCunVY8nqd4ZOfVBURAblVDJwGXye9w5M7ePAVLaeRtQE2ntRX4qD0O76fpvdUVYh/aePBHsqML6JJzX2NTh+xGLbdzlP82vt4WDmdk0ds4KiMGVI+aGCADQAfOeEvR198Qy5E2MJTUqMbwjPgp5jlpnYcEugTmF/ae37wqMgHpolSvF8/bYJtp8Fjhp34+3ENv9T6ZabwhVI4A9AGGBP1YTz9mYdcO4pJf11qyCWF4XgE0q4WQBdr49ApgalvSAn3hI+zdylOePZK8NuNaxsYt4BTu2KiiTT1SKAJFjsdhg+dZ4YZ3qlWGRkVNY/UYm8VT38270cEsNtmpbdt9S74e4aZI7jKjegp4eV5pxPYGJ91A3VKJNJ4L/8XFzvp8XkT9ZurFXL2XLsKoZjO/yFGjfYhR0BOtf7EmcMR7LeNDWhCnEjxq+0MVAvc2fsn8m2qy8oExpPdiWDw0/D9hdWKlXBug/eBq9kQIV8Q30BFXuhHCb1pV+eajjjCdjRbqivSf3cH3pYoN6tK50rYoeIlnKsaxhrOKQ5AlNt3ejhCn6CtnBB4WB7fayTj3jL0vpztgwY3dtlHhR1cDH8XZJsf5cbZrJzeXZ8x/rEtatwh18sZhfFKcpjuHYfkz06l7+xhiaH1BK4EWv1pDBd7pUgJIVsjBpEOenhQ3tGXye4YWYY5eraU0Ilr44sy7z/KF5PZuNSNKAb9mEG+NZqz/MyYHnK8Eucq3QMdmURF0muQygU27hnLgxTI5U
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(39860400002)(136003)(346002)(376002)(396003)(6506007)(6512007)(186003)(66476007)(4326008)(66556008)(26005)(8676002)(66946007)(31696002)(2906002)(8936002)(478600001)(41300700001)(86362001)(44832011)(966005)(2616005)(6486002)(7416002)(5660300002)(38100700002)(31686004)(54906003)(316002)(83380400001)(36756003)(110136005)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bytjNkoxZlRiN21nQ3FiSnhudW9KS3hxNG41ekV1NHZRQktKa2VaeHZGRXFU?=
- =?utf-8?B?T2l1T3RIUFIwZlk2SnRLcVNlcS9FRWhRMVV0aXd2ZFYzTGxBa0ZSSmNIeHpN?=
- =?utf-8?B?OHZSbjdIbEFKS21YUE5IUzRhZGlYT25MNURMTnpwV1RuUVREQkFmVlhxZTdY?=
- =?utf-8?B?SlhBaTNWNVdwdzJaYm9GWUNDWTRUY2E1d0xTMHN2R2czZ3hBblpVWHU3eVB4?=
- =?utf-8?B?c0wvV3E4UzJadEFOb0NVNkJjTEtxZlVHdEdRT3J6dTRmdmIwc0w5eXdqWXlU?=
- =?utf-8?B?ZEJYZ0N2Vk51SnBvWUYvTXQwbXZxYm1DK015L0tkMVJMMXpnaEFTYWFIK3M5?=
- =?utf-8?B?NGxsaWdENjVvUU9MLzNZTEdyMGtYNVVPTDB0NWhoOWdQRlcrWXlhWmN5MHp0?=
- =?utf-8?B?VEJ1Tk40bTlseVo2Qkp3WHUxTXlpbG1WYm84all1UWdRU0ZDSkhPd1dlbEdV?=
- =?utf-8?B?Zm5WWVljTHluYkRVVXU5c21WNTd1K1M3VGhpQ1FUWEJvenV2ZG5ybytDOTVp?=
- =?utf-8?B?R3RQbmJWei9MSEZDUmNSQWtOdHRiMENMK2VhUjIzbjlaSXpIOStuR3Z3TzBr?=
- =?utf-8?B?NUt5LzhkQW1SYWZpM0tKWmN1ZktzS1BnR1djblBRWGdBTGh2b01EZkhkeFZF?=
- =?utf-8?B?dy9JejdzZC9Ibk1XYmI3M1BoL0d5bFNZdXoyNEZRamxaZjNQM1ZWSndIaGEr?=
- =?utf-8?B?RmhQR25NekFLLzN2TStiOCtqVkFkQUhFeDQ5cytHRUxER1lEQzUzVmpBQS9S?=
- =?utf-8?B?YkVVekxwVVVRTWwxdTdBcG96QmdyYTYyYk1vbmdvVnk3eHRTemlmTDZZeVBE?=
- =?utf-8?B?eFNNclo5ZXFCaGdzR1E0cTFnUHkrejNMYVNjUVI4VDZEZGU3OHBtMEtYWW8w?=
- =?utf-8?B?SjljejRsS21HcWV4TGxSSVBRWUY5cERuQ01RWStGb3hIWmR3T3BsWFpVTnlQ?=
- =?utf-8?B?a0RWSnBpL3huWlZRWWtSZmVpSDZWNlNva0ZvQ0NzWDUrNUxyanNTQlJCaHo3?=
- =?utf-8?B?R00yaDFQczlhLyttWW1FSytuTnJQS3RUeGlPY2l1Z0JvVmpyUHRTZ3BLM1pN?=
- =?utf-8?B?dFdQVmc2NGh1a0N6L2RrR3M2Zk4xU2tZM21UUDlNb0dnZEtUNU5WR1NRVC9T?=
- =?utf-8?B?cGtablE3T2dTOGwvZkdpbXF5VkQrQ0NBaWlVQVY1ams4aXFqQzVLSTA2Sm83?=
- =?utf-8?B?cGVLTkZjb2FNd0cvWmdoV0dVTDBqZVk1MEluS3czNnZTNHZUZW5oc0RqbFpD?=
- =?utf-8?B?TXlUYjZxWWd2bVNHb2tOWE8vQTFhSEtvVTRFK1NOSzJGbC94ZS80YmdVWUJC?=
- =?utf-8?B?cEV1cW5qTlhjcjB5OTIrN3BoZTJ5SUVCaWt6SmRXR2N2S1RGclVtaE11ZTRQ?=
- =?utf-8?B?TTJyUGtTak4rQytUcTR6TU5UdEZVSGlsT1ZWMjkzUWhGbS8ycEY5Y1BzSDFy?=
- =?utf-8?B?aUJZbGtSaElrTDlXUkM3cEpadVN3RVhCUS9WZEg1a2ZKNFhlREFFeVg3MXRY?=
- =?utf-8?B?eUowc1JmMnJSMFVQWjNZdWFBU1R4QnVwN0Z3SDZTVlhQN3hwRjU1c3pkU0cr?=
- =?utf-8?B?VGFwOVhJVHV6a1Q1L0IrZHRNOEovc243SC96Qm9lTTVFNW8vRXpEWUxDNGRT?=
- =?utf-8?B?MnhUeVZFUUtQQzVxWE5lWFVEM2hOWGFLVlpQT3c4bUVScTFwYndUYlZRd2Fv?=
- =?utf-8?B?Skt2QVAwZXJIZUpmZ2VGU2YraHNKcExKYzhHSFVtNHVFYzBWVUdwelU1Z3Y1?=
- =?utf-8?B?VGRmN3lwM0tZY0tUWXZIRXVQRnhmdVZNNGViYndmVHJSZ09NSjRPMnJjTnlx?=
- =?utf-8?B?QUhpdjBqZjlkNCtpMzA0QUlWNktmREdUc0gvcXp6SG0xVUdBbGhsd3BnK3M3?=
- =?utf-8?B?N1hGYnZFSmIvUzVrYW5qZE00NHdVWEZBK2FOVUZvMk9ENldWbG5yczhwYWRo?=
- =?utf-8?B?MjNCR08xK1lIOVE4aFZONVZDRVhDR2VtcEtnV21DTDZKT2xja0hnUjh4OEgr?=
- =?utf-8?B?aUhxeHIzVmtuZ2xUY0NLam80WDRJVjdqK2gxMDc1Vk5WNWdRZy9jOXhVWTNK?=
- =?utf-8?B?MlY3cjgyMUFCYmtLSko4SzkzSUlzWUpNeFZQQUI5TmxrUkEwdVM2bDNkVVJV?=
- =?utf-8?B?OWd1ZytoMVlqbElMWVdPWVZqM2p3WEF0NU1FT3FpSW9mNGp4dEYvQ3p2Z3di?=
- =?utf-8?B?OWc9PQ==?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63a271ae-faa7-4664-47bb-08da73b75a97
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Aug 2022 12:14:16.3981
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FzjaQF2vkidwf/9phvSUuLPnIIa2+eWCUTflqlrcvM4XCa2uyJH83tFkJpNQCSl7s1y1YVj1Y/oGSFMY2uwskD8HX5frB8lHTt+nE7X4/QE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB1997
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6086686.mvXUDI8C0e@steina-w>
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1659356209;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=/Bh14Hk6sa//86NbqJfelnT4ZG7/BMw5JTIu6cE97AM=;
+        b=sr9i6Y4w35p+nn6UQualFRbF0kd5EnJTPzkTl+iUSnQBhfIkfsBY+NynJW3Eaw+BubnQmb
+        7SgGIOPdYSp8jRzTMaE2N43EXbOZETkb53U2EmHD0kf1/XUwuCNmJfTODXkhyRzZuGmuke
+        l+QqzROGLPFlVpI7Ulvzp22GXpq1aJE=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1659356209; a=rsa-sha256; cv=none;
+        b=yOXwmQhhdERA8o8oVHsE/aNiStiyzdmF5L1AK+++S8MP8Whp2Cgy+C5SpIP0AksIxorN0D
+        Nqut8pUnLUZORsCsNrj/om65chCSPnG/UOBwYTdfng858YQZPeNPS+0wn6K9pNyasCQluH
+        78I5hwolxfU79lqrx+KKxYl3TV2uImc=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+CC: Li Jun, Jacky Bai, Lucas Stach
+Hi Alexander,
 
-Hi Philippe,
-
-Am 22.07.22 um 09:55 schrieb Philippe Schenker:
-> From: Philippe Schenker <philippe.schenker@toradex.com>
+On Fri, Jul 29, 2022 at 10:23:48AM +0200, Alexander Stein wrote:
+> Am Donnerstag, 28. Juli 2022, 23:10:07 CEST schrieb kernel test robot:
+> > Hi Alexander,
+> > 
+> > Thank you for the patch! Perhaps something to improve:
+> > 
+> > [auto build test WARNING on media-tree/master]
+> > [also build test WARNING on linus/master v5.19-rc8 next-20220728]
+> > [If your patch is applied to the wrong git tree, kindly drop us a note.
+> > And when submitting patch, we suggest to use '--base' as documented in
+> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> > 
+> > url:   
+> > https://github.com/intel-lab-lkp/linux/commits/Alexander-Stein/OV9281-suppo
+> > rt/20220728-210448 base:   git://linuxtv.org/media_tree.git master
+> > config: arm-randconfig-r022-20220728
+> > (https://download.01.org/0day-ci/archive/20220729/202207290518.1D7MVS65-lkp
+> > @intel.com/config) compiler: clang version 15.0.0
+> > (https://github.com/llvm/llvm-project
+> > 8dfaecc4c24494337933aff9d9166486ca0949f1) reproduce (this is a W=1 build):
+> >         wget
+> > https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O
+> > ~/bin/make.cross chmod +x ~/bin/make.cross
+> >         # install arm cross compiling tool for clang build
+> >         # apt-get install binutils-arm-linux-gnueabi
+> >         #
+> > https://github.com/intel-lab-lkp/linux/commit/ee28006553d4d23f600b0076ef606
+> > 6710519f156 git remote add linux-review
+> > https://github.com/intel-lab-lkp/linux git fetch --no-tags linux-review
+> > Alexander-Stein/OV9281-support/20220728-210448 git checkout
+> > ee28006553d4d23f600b0076ef6066710519f156
+> >         # save the config file
+> >         mkdir build_dir && cp config build_dir/.config
+> >         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1
+> > O=build_dir ARCH=arm SHELL=/bin/bash drivers/media/i2c/
+> > 
+> > If you fix the issue, kindly add following tag where applicable
+> > Reported-by: kernel test robot <lkp@intel.com>
+> > 
+> > All warnings (new ones prefixed by >>):
+> > >> drivers/media/i2c/ov9282.c:1054:10: warning: variable 'ret' is
+> > >> uninitialized when used here [-Wuninitialized]
+> >                    return ret;
+> >                           ^~~
+> >    drivers/media/i2c/ov9282.c:1041:9: note: initialize the variable 'ret' to
+> > silence this warning int ret;
+> >                   ^
+> >                    = 0
+> >    1 warning generated.
+> > 
+> > 
+> > vim +/ret +1054 drivers/media/i2c/ov9282.c
+> > 
+> >   1030
+> >   1031	/**
+> >   1032	 * ov9282_probe() - I2C client device binding
+> >   1033	 * @client: pointer to i2c client device
+> >   1034	 *
+> >   1035	 * Return: 0 if successful, error code otherwise.
+> >   1036	 */
+> >   1037	static int ov9282_probe(struct i2c_client *client)
+> >   1038	{
+> >   1039		struct ov9282 *ov9282;
+> >   1040		const char *sensor_name;
+> >   1041		int ret;
+> >   1042
+> >   1043		ov9282 = devm_kzalloc(&client->dev, sizeof(*ov9282), 
+> GFP_KERNEL);
+> >   1044		if (!ov9282)
+> >   1045			return -ENOMEM;
+> >   1046
+> >   1047		ov9282->dev = &client->dev;
+> >   1048
+> >   1049		/* Initialize subdev */
+> >   1050		v4l2_i2c_subdev_init(&ov9282->sd, client, 
+> &ov9282_subdev_ops);
+> >   1051		sensor_name = device_get_match_data(ov9282->dev);
+> >   1052		if (!sensor_name) {
+> >   1053			dev_err(ov9282->dev, "Sensor name is 
+> missing");
+> > 
+> > > 1054			return ret;
+> > 
+> >   1055		}
+> >   1056		v4l2_i2c_subdev_set_name(&ov9282->sd, client, 
+> sensor_name, NULL);
+> >   1057
+> >   1058		ret = ov9282_parse_hw_config(ov9282);
+> >   1059		if (ret) {
+> >   1060			dev_err(ov9282->dev, "HW configuration is not 
+> supported");
+> >   1061			return ret;
+> >   1062		}
+> >   1063
+> >   1064		ret = ov9282_get_regulators(ov9282);
+> >   1065		if (ret) {
+> >   1066			dev_err(&client->dev, "Failed to get power 
+> regulators\n");
+> >   1067			return ret;
+> >   1068		}
+> >   1069
+> >   1070		mutex_init(&ov9282->mutex);
+> >   1071
+> >   1072		ret = ov9282_power_on(ov9282->dev);
+> >   1073		if (ret) {
+> >   1074			dev_err(ov9282->dev, "failed to power-on the 
+> sensor");
+> >   1075			goto error_mutex_destroy;
+> >   1076		}
+> >   1077
+> >   1078		/* Check module identity */
+> >   1079		ret = ov9282_detect(ov9282);
+> >   1080		if (ret) {
+> >   1081			dev_err(ov9282->dev, "failed to find sensor: 
+> %d", ret);
+> >   1082			goto error_power_off;
+> >   1083		}
+> >   1084
+> >   1085		/* Set default mode to max resolution */
+> >   1086		ov9282->cur_mode = &supported_mode;
+> >   1087		ov9282->vblank = ov9282->cur_mode->vblank;
+> >   1088
+> >   1089		ret = ov9282_init_controls(ov9282);
+> >   1090		if (ret) {
+> >   1091			dev_err(ov9282->dev, "failed to init 
+> controls: %d", ret);
+> >   1092			goto error_power_off;
+> >   1093		}
+> >   1094
+> >   1095		/* Initialize subdev */
+> >   1096		ov9282->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> >   1097		ov9282->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> >   1098
+> >   1099		/* Initialize source pad */
+> >   1100		ov9282->pad.flags = MEDIA_PAD_FL_SOURCE;
+> >   1101		ret = media_entity_pads_init(&ov9282->sd.entity, 1, 
+> &ov9282->pad);
+> >   1102		if (ret) {
+> >   1103			dev_err(ov9282->dev, "failed to init entity 
+> pads: %d", ret);
+> >   1104			goto error_handler_free;
+> >   1105		}
+> >   1106
+> >   1107		ret = v4l2_async_register_subdev_sensor(&ov9282->sd);
+> >   1108		if (ret < 0) {
+> >   1109			dev_err(ov9282->dev,
+> >   1110				"failed to register async subdev: 
+> %d", ret);
+> >   1111			goto error_media_entity;
+> >   1112		}
+> >   1113
+> >   1114		pm_runtime_set_active(ov9282->dev);
+> >   1115		pm_runtime_enable(ov9282->dev);
+> >   1116		pm_runtime_idle(ov9282->dev);
+> >   1117
+> >   1118		return 0;
+> >   1119
+> >   1120	error_media_entity:
+> >   1121		media_entity_cleanup(&ov9282->sd.entity);
+> >   1122	error_handler_free:
+> >   1123		v4l2_ctrl_handler_free(ov9282->sd.ctrl_handler);
+> >   1124	error_power_off:
+> >   1125		ov9282_power_off(ov9282->dev);
+> >   1126	error_mutex_destroy:
+> >   1127		mutex_destroy(&ov9282->mutex);
+> >   1128
+> >   1129		return ret;
+> >   1130	}
+> >   1131
 > 
-> The Verdin iMX8M Mini System on Module does not have VBUS signal
-> connected on Verdin USB_2 (usbotg2). On Verdin Development board this is
-> no problem, as we have connected a USB-Hub that is always connected.
-> 
-> However, if Verdin USB_2 is desired to be used as a single USB-Host port
-> the chipidea driver does not detect if a USB device is plugged into this
-> port, due to runtime pm shutting down the PHY.
-> 
-> Add the power-domain &pgc_otg2 to &usbphynop2 in order to detect
-> plugging events and enumerate the usb device.
-> 
-> Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
-> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+> Meh, I'll come up with a fixed once discussion about the additional compatible 
+> has settled. This will also include the missing member documentation in patch 
+> 5
 
-I'm probably having the same issue on our hardware. There was a previous
-attempt to fix this globally for all the i.MX8MM boards here: [1].
+I think you could simply pass device_get_match_data() return value as the
+sensor name. The driver is in direct control of the string so I don't think
+you need error handling here.
 
-Unfortunately this didn't seem to work as intended in my case (see
-discussion for that patch). Looking at your patch I wonder if not having
-the vcc-supply for the usbphynop causes problems in my case. Do you
-happen to know the effect of adding the regulator here? I don't see this
-in any other i.MX8MM board devicetree.
-
-Could you test Li's patch instead of this board specific fix and see if
-it works for you? On your hardware, do you have an always-on device on
-the usbotg1 port? If yes, does the detection on the usbotg2 port still
-work if the usbotg1 port is disabled in the devicetree?
-
-Thanks
-Frieder
-
-[1]
-https://lore.kernel.org/linux-arm-kernel/f4879eed-79a7-3a1a-8dd0-c1a6ed367f34@kontron.de
-
-> 
-> ---
-> 
->  arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> index eafa88d980b3..197da74837ca 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-> @@ -737,6 +737,7 @@ &usbphynop1 {
->  };
->  
->  &usbphynop2 {
-> +	power-domains = <&pgc_otg2>;
->  	vcc-supply = <&reg_vdd_3v3>;
->  };
->  
+-- 
+Sakari Ailus
