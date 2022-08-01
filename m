@@ -2,184 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E451F5873AB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 00:01:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 941D35873BA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 00:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233932AbiHAWBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 18:01:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51842 "EHLO
+        id S232927AbiHAWJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 18:09:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230406AbiHAWBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 18:01:45 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2CD4273;
-        Mon,  1 Aug 2022 15:01:43 -0700 (PDT)
-Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 471546601BB3;
-        Mon,  1 Aug 2022 23:01:40 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1659391302;
-        bh=T/RBuEUbnEnXmUp/1eTflZrVxy/Gs/nupFpbmEOWa9E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZOws5VedmDbHkFhWT29i0tdGLWLXgnKLQsNlmwrf2CibOJCyd98LRZJAfGhV7rnfL
-         Vcb60J/3oA+NKz3bm2V2ATrGv0/O8AuOCifcOCxRysAs+X6v+XHPvitrg/p30ZoTP7
-         ULTMtx+YGzzxtpa7yTgi1L+Tdm+zI3N7Mfb65Tvw8zLKpTu5+JeVp+k3bT5mOYngpS
-         jjJO44SYhlpB1gqLGEyuMgDVnafsaf1rfuYb4l+P0Rz91ixPmdI0eNYBaJt1nOP8Py
-         c4U7tdPjkvM3/xdZMJWbsU5lPOlcjniYtNVTUw15N4voCTifxYLDaFbufyurZGNiXD
-         3it+WslmnD6iQ==
-Date:   Mon, 1 Aug 2022 18:01:36 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S231190AbiHAWJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 18:09:36 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D523DF7D;
+        Mon,  1 Aug 2022 15:09:35 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id s5-20020a17090a13c500b001f4da9ffe5fso6536546pjf.5;
+        Mon, 01 Aug 2022 15:09:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=9Z8J3irksMZXis7Ie9brihlp5V92bNnWK5MaHlycXJo=;
+        b=PiL+wNbeYjYPPXoxsUcMIi1LeUIRuIw6u9OiR1j3/5sio2e+qGd88Cbri1RfgBKSUo
+         XJ+yWyVyTtbsBzo0HX61BtxEn+Sm1t2U8+ooX4EdtP/Z72p6pTTYFdweoliDLdFeZwmb
+         PDiQhMStGlAVpcC4S5TLlY8sfLc/cYcMgi1uQw8VnEYfb+TGI64IvluEeXH8i383FyDz
+         fGcTvKVeJczaw2DaTMPa5MroHev6cVgl0lrOo+tukNhtgoqs6+2emyLJ8NzWJkKWYuE/
+         +FdJfTjDducUqsRzq8AMtqfn8gfxchW5vUfGbeOgUW1nDI0xFgUaE9FpEqyFGhEhWIQP
+         Ok8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=9Z8J3irksMZXis7Ie9brihlp5V92bNnWK5MaHlycXJo=;
+        b=YsRIntJ0ic4w6jrcQfKTb2JjsxyBSeywKW8jwYDb+cb7CMhTNy6+ZVFlGJsLXmZcGG
+         p4cUsuyge4XlLNVfLwt05+ywOMxAHOCg6+04yDbdCKERZinl5ftKezfnSOxEVhbsPKMA
+         epJNogZHdtQYGPeoGhUegmYU+Je/YRZuR8GOHcp1jkMUQd2M2lX6DETnFgNqxFA3kDrD
+         q9nNvV3ogVW5ZVk4CEoRL6lv32TRPZzWmeUUAqP0mKoqZPZwuUW8BeIcRjUgDoe8laGL
+         TJUZBmuIQUx7a7zLFXlQYh3+XDgDGHu+nqPVbF+AExz3mHji/FYKSz2fnDswWvtZK1zZ
+         M1Iw==
+X-Gm-Message-State: ACgBeo29I3Xn2I+PG/xlEb2UbtIDPXWLPE3lq6945bDo34IyM80Zszdt
+        eUz83cpepROdS47x4ESeq0vBjlSh5YA=
+X-Google-Smtp-Source: AA6agR7iWd0Wn7UJ43mQfrjRZalF3kIoRd7+rxXZ8UFJ5UhnkR77njj5iyB/cVMOwmt2qJP+K0VZWw==
+X-Received: by 2002:a17:902:cec4:b0:16d:7d8c:4be with SMTP id d4-20020a170902cec400b0016d7d8c04bemr17802366plg.139.1659391774294;
+        Mon, 01 Aug 2022 15:09:34 -0700 (PDT)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id g15-20020a1709029f8f00b001637529493esm10136969plq.66.2022.08.01.15.09.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Aug 2022 15:09:33 -0700 (PDT)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>, hsinyi@chromium.org
-Subject: Re: [PATCH v12 1/1] arm64: dts: Add MediaTek MT8186 dts and
- evaluation board and Makefile
-Message-ID: <20220801220136.4lll2wifc7muocuc@notapiano>
-References: <20220801123952.18932-1-allen-kh.cheng@mediatek.com>
- <20220801123952.18932-2-allen-kh.cheng@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
+        ARM ARCHITECTURE),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v3 0/3] Add Broadcom STB memory controller driver
+Date:   Mon,  1 Aug 2022 15:09:28 -0700
+Message-Id: <20220801220931.181531-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220801123952.18932-2-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Allen,
+Hi Krzysztof,
 
-On Mon, Aug 01, 2022 at 08:39:52PM +0800, Allen-KH Cheng wrote:
-> Add basic chip support for MediaTek MT8186.
-> 
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->  arch/arm64/boot/dts/mediatek/mt8186-evb.dts | 238 ++++++
->  arch/arm64/boot/dts/mediatek/mt8186.dtsi    | 874 ++++++++++++++++++++
->  3 files changed, 1113 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> 
-[..]
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-evb.dts b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
-> new file mode 100644
-> index 000000000000..7d4a64ab95e4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
-[..]
-> +&pio {
-> +	i2c0_pins: i2c0-default-pins {
-> +		pins-bus {
-> +			pinmux = <PINMUX_GPIO128__FUNC_SDA0>,
-> +				 <PINMUX_GPIO127__FUNC_SCL0>;
-> +			bias-disable;
-> +			drive-strength-microamp = <1000>;
-> +			drive-strength = <4>;
+This small patch series adds basic support for controlling self-refresh
+power down on Broadcom STB memory controllers. We might be able to
+contribute more features to the memory controller driver in the future
+like accurate reporting of the memory type, timings, and possibly some
+performance counters.
 
-You can't use both drive-strength-microamp and drive-strength. You only want the
-microamp one here (and for the others below), since these are i2c pins.
+Changes in v3:
 
-> +			input-enable;
-> +		};
-> +	};
-[..]
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186.dtsi b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> new file mode 100644
-> index 000000000000..38f9466eea42
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186.dtsi
-> @@ -0,0 +1,874 @@
-[..]
-> +		pio: pinctrl@10005000 {
-> +			compatible = "mediatek,mt8186-pinctrl";
-> +			reg = <0 0x10005000 0 0x1000>,
-> +			      <0 0x10002000 0 0x0200>,
-> +			      <0 0x10002200 0 0x0200>,
-> +			      <0 0x10002400 0 0x0200>,
-> +			      <0 0x10002600 0 0x0200>,
-> +			      <0 0x10002A00 0 0x0200>,
-> +			      <0 0x10002C00 0 0x0200>,
-> +			      <0 0x1000B000 0 0x1000>;
+- made 'frequency' property optional to avoid introducing warnings for
+  existing BMIPS and BCM7445 DTS files
+- updated sysfs document to use a shorter and universal path
 
-Please use lowercase hex for addresses.
+Changes in v2:
 
-> +			reg-names = "iocfg0", "iocfg_bm", "iocfg_bl", "iocfg_br",
-> +				    "iocfg_lm", "iocfg_rb", "iocfg_tl", "eint";
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&pio 0 0 185>;
-> +			interrupt-controller;
-> +			interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			#interrupt-cells = <2>;
-> +		};
-[..]
-> +		xhci0: usb@11200000 {
-> +			compatible = "mediatek,mt8186-xhci",
-> +				     "mediatek,mtk-xhci";
-> +			reg = <0 0x11200000 0 0x1000>,
-> +			      <0 0x11203e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts = <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			phys = <&u2port0 PHY_TYPE_USB2>;
-> +			clocks = <&topckgen CLK_TOP_USB_TOP>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_HCLK>,
-> +				 <&infracfg_ao CLK_INFRA_AO_ICUSB>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_REF>;
-> +			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
+- merged the v1 first two patches
+- added a sysfs document describing attributes exposed
+- addressed feedback from Krzysztof regarding style and API usage
 
-The clocks and clock-names don't match, can you confirm whether they're right?
-(But keep this clock order, see the comment on xhci1 below)
 
-> +			mediatek,syscon-wakeup = <&pericfg 0x420 2>;
-> +			wakeup-source;
-> +			status = "disabled";
-> +		};
-[..]
-> +		xhci1: usb@11280000 {
-> +			compatible = "mediatek,mt8186-xhci",
-> +				     "mediatek,mtk-xhci";
-> +			reg = <0 0x11280000 0 0x1000>,
-> +			      <0 0x11283e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts = <GIC_SPI 324 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			phys = <&u2port1 PHY_TYPE_USB2>,
-> +			       <&u3port1 PHY_TYPE_USB3>;
-> +			clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_SYS>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_XHCI>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_HCLK>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_P1_REF>;
-> +			clock-names = "sys_ck", "ref_ck", "mcu_ck", "xhci_ck";
+Florian Fainelli (3):
+  dt-bindings: memory-controller: Document Broadcom STB MEMC
+  Documentation: sysfs: Document Broadcom STB memc sysfs knobs
+  memory: Add Broadcom STB memory controller driver
 
-The xhci dt-binding enforces this clock order:
+ .../ABI/testing/sysfs-platform-brcmstb-memc   |  15 +
+ .../bindings/arm/bcm/brcm,brcmstb.txt         |  11 +-
+ .../brcm,brcmstb-memc-ddr.yaml                |  52 +++
+ drivers/memory/Kconfig                        |   9 +
+ drivers/memory/Makefile                       |   1 +
+ drivers/memory/brcmstb_memc.c                 | 302 ++++++++++++++++++
+ 6 files changed, 381 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-platform-brcmstb-memc
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/brcm,brcmstb-memc-ddr.yaml
+ create mode 100644 drivers/memory/brcmstb_memc.c
 
-	sys_ck, ref_ck, mcu_ck, dma_ck, xhci_ck
+-- 
+2.25.1
 
-You can't skip dma_ck, otherwise you'll see a dtbs_check warning. So if this
-hardware block has a fixed clock connected to the dma_ck slot (ie it isn't
-controllable), then just add a fixed clock entry for it (eg <&clk26m>).
-
-The clock names also look switched here, please double-check.
-
-Thanks,
-Nícolas
-
-> +			mediatek,syscon-wakeup = <&pericfg 0x424 2>;
-> +			wakeup-source;
-> +			status = "disabled";
-> +		};
