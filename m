@@ -2,193 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1DD0586E28
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 17:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 458F7586E26
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 17:58:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbiHAP6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 11:58:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57072 "EHLO
+        id S231548AbiHAP6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 11:58:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231325AbiHAP6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 11:58:10 -0400
-X-Greylist: delayed 399 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 01 Aug 2022 08:58:06 PDT
-Received: from sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF69333416;
-        Mon,  1 Aug 2022 08:58:06 -0700 (PDT)
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id cd18dc5e;
-        Mon, 1 Aug 2022 17:51:24 +0200 (CEST)
-Date:   Mon, 1 Aug 2022 17:51:23 +0200 (CEST)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Rob Herring <robh@kernel.org>
-Cc:     sven@svenpeter.dev, marcel@holtmann.org, johan.hedberg@gmail.com,
-        luiz.dentz@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, marcan@marcan.st, alyssa@rosenzweig.io,
-        asahi@lists.linux.dev, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20220801153921.GC1031441-robh@kernel.org> (message from Rob
-        Herring on Mon, 1 Aug 2022 09:39:21 -0600)
-Subject: Re: [PATCH 2/5] dt-bindings: net: Add Broadcom BCM4377 family PCI
- Bluetooth
-References: <20220801103633.27772-1-sven@svenpeter.dev>
- <20220801103633.27772-3-sven@svenpeter.dev> <20220801153921.GC1031441-robh@kernel.org>
-Message-ID: <d3ce6343fdaaf127@bloch.sibelius.xs4all.nl>
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
-        version=3.4.6
+        with ESMTP id S231325AbiHAP6H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 11:58:07 -0400
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E53C3337F
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 08:58:06 -0700 (PDT)
+Received: by mail-il1-f171.google.com with SMTP id j20so4284149ila.6
+        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 08:58:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=hz7nXHEq1F85KPRnekV1M2XaUBYmmbucYnVIbXgpzws=;
+        b=bzWBZKXUjlCVotWT8MhR5LREwpnL+QjHln7Cl7AzKawmxBLe6tWcQ0dkF6Ri1m5ORQ
+         mXuPLlZNuYlOhUpvc6SbRZ3pwGOnl0BpON0DerY6lyFRhtK0I/o+BYL1uxedW+9r4EEC
+         U1/Fnp0w/uzAyYzGqJk3Qyjuw1JtPv4SAdvkdhiNlczAJh2vc+fTWAWM77mZzO4WQIlX
+         qXIiapveZhiRllpl8QrFollliMg6UkJB+yhvHKp73zWjrLS7wxg5/pd+2H81klzK9gfZ
+         oJvG49xoHUfYeYvfqOldT3KVsB0GHm2ZoHzLHuQNHQudsJAtWN3u1MT88xtmFzCynqBs
+         g4Uw==
+X-Gm-Message-State: AJIora+7dxSwTKoSaGoSDLFjGpW3aXmQQ49EMs8FY7Iqy7kiOhqc/ajx
+        kHsv3XVSkwaxeUZRwYO0DK37LTmwqA==
+X-Google-Smtp-Source: AGRyM1tj25NZhfphWqwROi3f80JZ6aZpzFI1C0At4lGs4DKytgAiBXKMF13d8KsBa/cQmcDnU9zAlw==
+X-Received: by 2002:a05:6e02:1aab:b0:2dd:1c2e:c495 with SMTP id l11-20020a056e021aab00b002dd1c2ec495mr6566304ilv.166.1659369485607;
+        Mon, 01 Aug 2022 08:58:05 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id r15-20020a92d44f000000b002de8a37ceccsm1833683ilm.70.2022.08.01.08.58.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Aug 2022 08:58:05 -0700 (PDT)
+Received: (nullmailer pid 1091762 invoked by uid 1000);
+        Mon, 01 Aug 2022 15:58:03 -0000
+Date:   Mon, 1 Aug 2022 09:58:03 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Raphael-Xu <13691752556@139.com>
+Cc:     alsa-devel@alsa-project.org, raphael-xu@ti.com,
+        shenghao-ding@ti.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, kevin-lu@ti.com
+Subject: Re: [PATCH v1] ASoc: dt-bindings: tas27xx: update maximum I2C
+ address and revise the format
+Message-ID: <20220801155803.GA1090009-robh@kernel.org>
+References: <20220728035610.158-1-13691752556@139.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220728035610.158-1-13691752556@139.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Date: Mon, 1 Aug 2022 09:39:21 -0600
-> From: Rob Herring <robh@kernel.org>
-> 
-> On Mon, Aug 01, 2022 at 12:36:30PM +0200, Sven Peter wrote:
-> > These chips are combined Wi-Fi/Bluetooth radios which expose a
-> > PCI subfunction for the Bluetooth part.
-> > They are found in Apple machines such as the x86 models with the T2
-> > chip or the arm64 models with the M1 or M2 chips.
-> > 
-> > Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> > ---
-> >  .../bindings/net/brcm,bcm4377-bluetooth.yaml  | 77 +++++++++++++++++++
-> >  MAINTAINERS                                   |  1 +
-> >  2 files changed, 78 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/brcm,bcm4377-bluetooth.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/brcm,bcm4377-bluetooth.yaml b/Documentation/devicetree/bindings/net/brcm,bcm4377-bluetooth.yaml
-> > new file mode 100644
-> > index 000000000000..afe6ecebd939
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/brcm,bcm4377-bluetooth.yaml
-> > @@ -0,0 +1,77 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/brcm,bcm4377-bluetooth.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Broadcom BCM4377 family PCI Bluetooth Chips
-> > +
-> > +allOf:
-> > +  - $ref: bluetooth-controller.yaml#
-> > +
-> > +maintainers:
-> > +  - Sven Peter <sven@svenpeter.dev>
-> > +
-> > +description:
-> > +  This binding describes Broadcom BCM4377 family PCI-attached bluetooth chips
-> 
-> s/PCI/PCIe/
-> 
-> > +  usually found in Apple machines. The Wi-Fi part of the chip is described in
-> > +  bindings/net/wireless/brcm,bcm4329-fmac.yaml.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - pci14e4,5fa0 # BCM4377
-> > +      - pci14e4,5f69 # BCM4378
-> > +      - pci14e4,5f71 # BCM4387
-> > +
-> > +  reg:
-> > +    description: PCI device identifier.
-> > +
-> > +  brcm,board-type:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: Board type of the Bluetooth chip. This is used to decouple
-> > +      the overall system board from the Bluetooth module and used to construct
-> > +      firmware and calibration data filenames.
-> > +      On Apple platforms, this should be the Apple module-instance codename
-> > +      prefixed by "apple,", e.g. "apple,atlantisb".
-> 
-> pattern: '^apple,.*'
-> 
-> And when there's other known vendors we can add them.
-> 
-> Really, I'm not all that crazy about this property. 'firmware-name' 
-> doesn't work? Or perhaps this should just be a more specific compatible 
-> string.
+On Thu, Jul 28, 2022 at 11:56:10AM +0800, Raphael-Xu wrote:
+> 1.use correct maximum I2C address 2.revise the format
 
-This matches the property proposed here:
+Same comments from v8 apply.
 
-  https://patchwork.kernel.org/project/linux-wireless/patch/20220104072658.69756-2-marcan@marcan.st/
-
-Unfortunately that series didn't make progress for other reasons...
-
-There was some significant bikeshedding in the original version of that series already:
-
-  https://patchwork.kernel.org/project/linux-wireless/patch/20211226153624.162281-2-marcan@marcan.st/
-
-Are you sure you want to repeat that? ;)
-
-> > +
-> > +  brcm,taurus-cal-blob:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    description: A per-device calibration blob for the Bluetooth radio. This
-> > +      should be filled in by the bootloader from platform configuration
-> > +      data, if necessary, and will be uploaded to the device.
-> > +      This blob is used if the chip stepping of the Bluetooth module does not
-> > +      support beamforming.
-> > +
-> > +  brcm,taurus-bf-cal-blob:
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    description: A per-device calibration blob for the Bluetooth radio. This
-> > +      should be filled in by the bootloader from platform configuration
-> > +      data, if necessary, and will be uploaded to the device.
-> > +      This blob is used if the chip stepping of the Bluetooth module supports
-> > +      beamforming.
-> > +
-> > +  local-bd-address: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - local-bd-address
-> > +  - brcm,board-type
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    pci0 {
 > 
-> pcie {
+> Signed-off-by: Raphael-Xu <13691752556@139.com>
+> ---
+>  .../devicetree/bindings/sound/tas27xx.yaml       | 16 +++++++++++-----
+>  1 file changed, 11 insertions(+), 5 deletions(-)
 > 
-> > +      #address-cells = <3>;
-> > +      #size-cells = <2>;
-> > +
-> > +      bluetooth@0,1 {
-> > +        compatible = "pci14e4,5f69";
-> > +        reg = <0x10100 0x0 0x0 0x0 0x0>;
+> diff --git a/Documentation/devicetree/bindings/sound/tas27xx.yaml b/Documentation/devicetree/bindings/sound/tas27xx.yaml
+> index 66a0df8850ea..573652577462 100644
+> --- a/Documentation/devicetree/bindings/sound/tas27xx.yaml
+> +++ b/Documentation/devicetree/bindings/sound/tas27xx.yaml
+> @@ -8,7 +8,7 @@ $schema: "http://devicetree.org/meta-schemas/core.yaml#"
+>  title: Texas Instruments TAS2764/TAS2780 Smart PA
+>  
+>  maintainers:
+> -  - Shenghao Ding <shenghao-ding@ti.com>
+> +  - Raphael Xu <raphael-xu@ti.com>
+>  
+>  description: |
+>    The TAS2764/TAS2780 is a mono, digital input Class-D audio amplifier
+> @@ -23,17 +23,19 @@ properties:
+>        - ti,tas2780
+>  
+>    reg:
+> -    maxItems: 1
+>      description: |
+> -       I2C address of the device can be between 0x38 to 0x45.
+> +       I2C address of the device can be between 0x38 to 0x3f.
+> +    minimum: 0x38
+> +    maximum: 0x3f
+>  
+>    reset-gpios:
+> -    maxItems: 1
+>      description: GPIO used to reset the device.
+> +    maxItems: 1
+>  
+>    shutdown-gpios:
+> +    description: |
+> +       GPIO used to control the state of the device.Only for TAS2764.
+>      maxItems: 1
+> -    description: GPIO used to control the state of the device.
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -41,10 +43,14 @@ properties:
+>    ti,imon-slot-no:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: TDM TX current sense time slot.
+> +    minimum: 0
+> +    maximum: 3
+>  
+>    ti,vmon-slot-no:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: TDM TX voltage sense time slot.
+> +    minimum: 0
+> +    maximum: 3
+>  
+>    '#sound-dai-cells':
+>      const: 1
+> -- 
+> 2.35.1
 > 
-> reg should not have the bus number here as that is dynamic. So 0x100 for 
-> the 1st cell.
-> 
-> > +        brcm,board-type = "apple,honshu";
-> > +        /* To be filled by the bootloader */
-> > +        local-bd-address = [00 00 00 00 00 00];
-> > +      };
-> > +    };
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index a6d3bd9d2a8d..8965556bace8 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -1837,6 +1837,7 @@ F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
-> >  F:	Documentation/devicetree/bindings/iommu/apple,dart.yaml
-> >  F:	Documentation/devicetree/bindings/iommu/apple,sart.yaml
-> >  F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
-> > +F:	Documentation/devicetree/bindings/net/brcm,bcm4377-bluetooth.yaml
-> >  F:	Documentation/devicetree/bindings/nvme/apple,nvme-ans.yaml
-> >  F:	Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
-> >  F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
-> > -- 
-> > 2.25.1
-> > 
-> > 
 > 
 > 
