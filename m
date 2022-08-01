@@ -2,98 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71543587368
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 23:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C110587380
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 23:47:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233235AbiHAVcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 17:32:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33428 "EHLO
+        id S233860AbiHAVrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 17:47:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233212AbiHAVb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 17:31:58 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1054F13F13;
-        Mon,  1 Aug 2022 14:31:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1659389518; x=1690925518;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=R5heWOrA0L7jVKQ4xtIbAlwPo9Q61Q40Wz0JXNi/NHs=;
-  b=TToqGQ94h/YZ4LHZooyR0dCnZFTF9uDn0lFHNOwOBajX9dUvFa/LeKla
-   oSb917VZf9yQWM8A4EqKN9dn4m6HMisV21rH7iqs56dZJ35C4hGeYksC8
-   zWRWL9epFRst0tOshHc5iDodz1TIxX8d2aJXfG0uAV0cyUua6Ow7toHXA
-   E=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 01 Aug 2022 14:31:57 -0700
-X-QCInternal: smtphost
-Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Aug 2022 14:31:57 -0700
-Received: from [10.110.127.168] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 1 Aug 2022
- 14:31:55 -0700
-Message-ID: <81167190-d705-f19a-fb93-ee99a1bc7a92@quicinc.com>
-Date:   Mon, 1 Aug 2022 14:31:35 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 00/11] Drivers for gunyah hypervisor
-Content-Language: en-US
-To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "Marc Zyngier" <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        DTML <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>
-References: <20220801211240.597859-1-quic_eberman@quicinc.com>
- <CAOCk7NoZAg234iV0L0fvon+16vEP4k4on72rtO-8bkeHL+yWqw@mail.gmail.com>
-From:   Elliot Berman <quic_eberman@quicinc.com>
-In-Reply-To: <CAOCk7NoZAg234iV0L0fvon+16vEP4k4on72rtO-8bkeHL+yWqw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232288AbiHAVra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 17:47:30 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 006D733A1E;
+        Mon,  1 Aug 2022 14:47:28 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,209,1654527600"; 
+   d="scan'208";a="129950924"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 02 Aug 2022 06:47:28 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 716E64108B8D;
+        Tue,  2 Aug 2022 06:47:23 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/4] Add driver for CSI2 and CRU modules found on Renesas RZ/G2L SoC
+Date:   Mon,  1 Aug 2022 22:47:14 +0100
+Message-Id: <20220801214718.16943-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeffrey,
+Hi All,
 
-On 8/1/2022 2:27 PM, Jeffrey Hugo wrote:
-> On Mon, Aug 1, 2022 at 3:16 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->>
->> Gunyah is a Type-1 hypervisor independent of any
->> high-level OS kernel, and runs in a higher CPU privilege level. It does
->> not depend on any lower-privileged OS kernel/code for its core
->> functionality. This increases its security and can support a much smaller
->> trusted computing base than a Type-2 hypervisor.
->>
->> Gunyah is an open source hypervisor. The source repo is available at
->> https://github.com/quic/gunyah-hypervisor.
-> 
-> Nowhere in this series do I see a change log, yet this is marked as
-> v2.  How is anyone supposed to identify what is the difference between
-> v1 and v2?
-I dropped the message when copying cover letter:
+This patch series aims to add driver support to CRU module found
+on Renesas RZ/G2L SoC.
 
-Changes in v2:
-  - DT bindings clean up
-  - Switch hypercalls to follow SMCCC
+The Camera Data Receiving Unit (CRU) consists of a MIPI CSI-2
+block and an Image Processing block. The Image Processing block
+can receive video data received from the external Digital Parallel
+Interface or MIPI CSI-2 block, and perform appropriate image
+processing for each.
+
+More details:
+* https://renesas.info/wiki/File:CRU.png
+* https://www.renesas.com/document/mah/rzg2l-group-rzg2lc-group-users-manual-hardware-0?language=en&r=1467981
+
+Currently the driver has been tested using yavta and Gstreamer
+on RZ/G2L SMARC EVK using the ov5645 sensor on CSI2 interface
+only.
+
+RFC v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20220121010543.31385-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+RFC v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/20211207012351.15754-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (4):
+  media: dt-bindings: media: Document RZ/G2L CSI-2 block
+  media: dt-bindings: media: Document RZ/G2L CRU
+  media: platform: Add Renesas RZ/G2L MIPI CSI-2 receiver driver
+  media: platform: Add Renesas RZ/G2L CRU driver
+
+ .../bindings/media/renesas,rzg2l-cru.yaml     | 142 ++++
+ .../bindings/media/renesas,rzg2l-csi2.yaml    | 149 ++++
+ drivers/media/platform/renesas/Kconfig        |   1 +
+ drivers/media/platform/renesas/Makefile       |   1 +
+ .../media/platform/renesas/rzg2l-cru/Kconfig  |  34 +
+ .../media/platform/renesas/rzg2l-cru/Makefile |   6 +
+ .../platform/renesas/rzg2l-cru/rzg2l-core.c   | 371 +++++++++
+ .../platform/renesas/rzg2l-cru/rzg2l-cru.h    | 144 ++++
+ .../platform/renesas/rzg2l-cru/rzg2l-csi2.c   | 702 +++++++++++++++++
+ .../platform/renesas/rzg2l-cru/rzg2l-csi2.h   |  49 ++
+ .../platform/renesas/rzg2l-cru/rzg2l-dma.c    | 728 ++++++++++++++++++
+ .../platform/renesas/rzg2l-cru/rzg2l-v4l2.c   | 354 +++++++++
+ 12 files changed, 2681 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-csi2.yaml
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/Kconfig
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/Makefile
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-core.c
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-cru.h
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-csi2.c
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-csi2.h
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-dma.c
+ create mode 100644 drivers/media/platform/renesas/rzg2l-cru/rzg2l-v4l2.c
+
+-- 
+2.25.1
+
