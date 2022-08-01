@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C73F0586D74
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 17:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99575586D7D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 17:16:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232259AbiHAPMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 11:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48354 "EHLO
+        id S232353AbiHAPQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 11:16:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229943AbiHAPMT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 11:12:19 -0400
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B1CEE24;
-        Mon,  1 Aug 2022 08:12:18 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id v185so8573944ioe.11;
-        Mon, 01 Aug 2022 08:12:18 -0700 (PDT)
+        with ESMTP id S231444AbiHAPQR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 11:16:17 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D69AD10FF8;
+        Mon,  1 Aug 2022 08:16:16 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id s16so2013982ilp.3;
+        Mon, 01 Aug 2022 08:16:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=00WqQczM5k8faqmOf4LEoLA+1YSvWY/3Za2518s+4uU=;
-        b=biWCPeRyJmYxNRAY8hfPT8rc/2mR0eopkr27JUMW/M/+8eOcb/4Q8aF8+IpG9NMDJx
-         muwl2gSWrZUhoWbAEYA1AeMJpqFzq/FPFW8+jtLJ03eOVpRceY5lYd2zWYeyE9OSUd3d
-         VqZanhrIvlPpxnApzsxE78oRo+5Hmxz+di0OIdzaGWqWOjEMNwkMipwPrKl4eLCuvqaa
-         OON6E4qyc7UhvmW5zZ1cPt9FHLt48YZOWXnsBtCDHJOFKyBYv7l47k9Rs7rKJzZ5uTtQ
-         fOaZHnERUwGYm0zn07NItH0A6nKdmj7pr+eDAwgKx1DQRohx2aOCEIy+z8uD/Oip8tbk
-         U8qw==
-X-Gm-Message-State: AJIora/Z+Y3o1/IuoOTXw5qQhLGU7LYuSyxL3Ycc0aIE80fZod2M0uMY
-        P4YfZ+cq497+8DicHSQ3rg==
-X-Google-Smtp-Source: AGRyM1thp9kA3Eh3vTT9FeBlCAt4d8hWHWj0c/lOM7jBCyA4dUJ52JMSYKOcy7OtWDaBMrJUXGty4Q==
-X-Received: by 2002:a05:6602:27cc:b0:5f0:876e:126b with SMTP id l12-20020a05660227cc00b005f0876e126bmr5557146ios.129.1659366738051;
-        Mon, 01 Aug 2022 08:12:18 -0700 (PDT)
+        bh=HOzPqmgULZoG1/y97IP7LGvfzYRQUc7XYUea7CGLp8U=;
+        b=YAvN+t2HBbzsvdIjZDeT1ZpwzLcB4Jd3YTv3N1PbPqg/krzPmKqZbqKY+eqkaNjF3f
+         5z+DOO/4m9v2+vzKdw07TV6p5kt99Sd4sZk4+FbHk6OQ/rW7hTqVoTRazq+vKosmMo6b
+         fGA8OpcYnY6Q59dUkljiHyJh2Vovzc1pRzMz0JQErFiAlYQOzear54F8Qrs8uq+okjDa
+         RoNS4jOiUGXFzvOEd0fVERGQBxfkpEMsX2TEwoSRR1wNAHfW5CQyfdnKHxE/ye7w0mpZ
+         Rn7h4vJZZa/ukH+pa4xbFvZ0pOo4kDeMP2dtIxfFISm1jByxywGmcqMASRjkbmnNPEOy
+         bK8Q==
+X-Gm-Message-State: AJIora/MJyExVKkN8p9GBoCxxU9TSiL2rcK/r+L3qID+NRfPzltYOt5B
+        zgS0JBlKjm2bXYlB7XzTh3kH8G/3tg==
+X-Google-Smtp-Source: AGRyM1tBT8uzEoN/IPycG1TaNi4r8WsAWJy+p/L9JRkw66xWTFSVYLTTw/cSKPf2yP4onj4R6IzOZw==
+X-Received: by 2002:a05:6e02:1847:b0:2dd:18c7:51c3 with SMTP id b7-20020a056e02184700b002dd18c751c3mr6610384ilv.29.1659366975972;
+        Mon, 01 Aug 2022 08:16:15 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id y92-20020a029565000000b0033edc51d7e3sm5350067jah.64.2022.08.01.08.12.17
+        by smtp.gmail.com with ESMTPSA id g10-20020a05660226ca00b0067bcbb0d258sm5779349ioo.46.2022.08.01.08.16.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 08:12:17 -0700 (PDT)
-Received: (nullmailer pid 1029847 invoked by uid 1000);
-        Mon, 01 Aug 2022 15:12:16 -0000
-Date:   Mon, 1 Aug 2022 09:12:16 -0600
+        Mon, 01 Aug 2022 08:16:15 -0700 (PDT)
+Received: (nullmailer pid 1035626 invoked by uid 1000);
+        Mon, 01 Aug 2022 15:16:14 -0000
+Date:   Mon, 1 Aug 2022 09:16:14 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nathan Chancellor <nathan@kernel.org>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: remove the dead code in cmd_mk_schema
-Message-ID: <20220801151216.GA1026724-robh@kernel.org>
-References: <20220729052112.3235325-1-masahiroy@kernel.org>
+To:     Randy Dunlap <rdunlap@infradead.org>
+Cc:     linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH] devicetree/bindings: correct possessive "its" typos
+Message-ID: <20220801151614.GA1031441-robh@kernel.org>
+References: <20220801025221.30563-1-rdunlap@infradead.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220729052112.3235325-1-masahiroy@kernel.org>
+In-Reply-To: <20220801025221.30563-1-rdunlap@infradead.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,39 +62,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 29, 2022 at 02:21:12PM +0900, Masahiro Yamada wrote:
-> Since commit 2783a7f56f99 ("dt-bindings: kbuild: Pass DT_SCHEMA_FILES to
-> dt-validate"), the processed schema takes all the YAML files.
+On Sun, 31 Jul 2022 19:52:21 -0700, Randy Dunlap wrote:
+> Correct all uses of "it's" that are meant to be possessive "its".
 > 
-> Remove the dead code.
-> 
-> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+> Cc: Jonathan Corbet <corbet@lwn.net>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: devicetree@vger.kernel.org
 > ---
-> 
->  Documentation/devicetree/bindings/Makefile | 6 ++----
->  1 file changed, 2 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/clock/st/st,flexgen.txt        |    2 +-
+>  Documentation/devicetree/bindings/clock/ti/dra7-atl.txt          |    2 +-
+>  Documentation/devicetree/bindings/hwmon/adt7475.yaml             |    2 +-
+>  Documentation/devicetree/bindings/input/touchscreen/ektf2127.txt |    2 +-
+>  Documentation/devicetree/bindings/mfd/rohm,bd71815-pmic.yaml     |    2 +-
+>  Documentation/devicetree/bindings/mips/lantiq/rcu.txt            |    2 +-
+>  Documentation/devicetree/bindings/net/altera_tse.txt             |    2 +-
+>  Documentation/devicetree/bindings/net/cpsw.txt                   |    2 +-
+>  Documentation/devicetree/bindings/powerpc/fsl/mpc5200.txt        |    2 +-
+>  Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml    |    2 +-
+>  Documentation/devicetree/bindings/sound/da9055.txt               |    2 +-
+>  11 files changed, 11 insertions(+), 11 deletions(-)
 
-I also sent out a similar patch[1].
-
-> 
-> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-> index c9953f86b19d..223df2a023fd 100644
-> --- a/Documentation/devicetree/bindings/Makefile
-> +++ b/Documentation/devicetree/bindings/Makefile
-> @@ -42,10 +42,8 @@ quiet_cmd_chk_bindings = CHKDT   $@
->  
->  quiet_cmd_mk_schema = SCHEMA  $@
->        cmd_mk_schema = f=$$(mktemp) ; \
-> -                      $(if $(DT_MK_SCHEMA_FLAGS), \
-> -                           printf '%s\n' $(real-prereqs), \
-> -                           $(find_all_cmd)) > $$f ; \
-> -                      $(DT_MK_SCHEMA) -j $(DT_MK_SCHEMA_FLAGS) @$$f > $@ ; \
-> +		      $(find_all_cmd) > $$f ; \
-> +		      $(DT_MK_SCHEMA) -j @$$f > $@ ; \
-
-I want to keep DT_MK_SCHEMA_FLAGS because I'm working on a new optional 
-flag to pass.
-
-Rob
-
-[1] https://lore.kernel.org/all/20220727211100.3249417-1-robh@kernel.org/
+Its a great fix. Applied, thanks!
