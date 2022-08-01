@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFFB2587197
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 21:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D71C1587199
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 21:45:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234756AbiHATp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 15:45:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33274 "EHLO
+        id S229901AbiHATpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 15:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234761AbiHATpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 15:45:24 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29C5ADFAF
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 12:45:23 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id o5-20020a17090a3d4500b001ef76490983so13169157pjf.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 12:45:23 -0700 (PDT)
+        with ESMTP id S234835AbiHATph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 15:45:37 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11E22A702
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 12:45:35 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id w185so11577959pfb.4
+        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 12:45:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc;
-        bh=6/puvBhYxz4Gs5uhNDJxqHnVfA+k9EvDtpQkkODjwVI=;
-        b=fGQHQbtY6z+bxz8owej7X6TxF2xjegSmFfqc1V6wwnNhXzsUuKlYSTOJPd1O3VniYw
-         wvg66CQtw9HKjgmACbDg8hDekOs+FCQtGvDmq8swdVr5I+JHFd4ycrmLOoAzlDIR1W30
-         xHmx3zJSh6A+ow8xScjfJ9x1xhyepyJRvBk7k=
+        bh=MqxsdWGVWZJSq1tUclSEEIizj+IgqXPHPTEm2SXLm9E=;
+        b=Pv4h4ovPX8wTDKZbgmtseWUUSQWdtrEYMGd9V0sI7zBUDb7IWDWLXSt45TjU+kDv5v
+         Ou8hqnd189PFzEPnOTKyX37BW1dNBXf//x0tf64e+vDqAGm4Zbbhz96JRcir+MgyLnpW
+         a6P3hDRrJAXNJCFqMut9BFHOLHp9+FokBInTM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc;
-        bh=6/puvBhYxz4Gs5uhNDJxqHnVfA+k9EvDtpQkkODjwVI=;
-        b=l6ulegSLCr2lzrAdYwOGhNklk94YdVHI0HB/ne0BfoM6PxPQNL3dGpVHJ/Dv8Rse/F
-         pDeuN3Ey/+x/GB9/J1rytnOwlpRPSgw26irUtYwCo6r4ETyGI+87FvN1JpfEJRgq6k9O
-         mWdYw3wL0SNFPzC1b/+zyDAQBGpPt161uC56GeGuGENNMMQaeMnBnGnj2wv3ApIwS2or
-         3hg8AJGiIAXL++pgn3YCHW+tfUJplR7Bk+VfHTzQByas0fmFb8WC76CieejW6JM8JR3B
-         8Bh7dhX9tnaNyjjiX55cEOCDjKKtlMXbAWGulyz/+uNDzG7Y1qbgtlaDRk8IFqVDU3Qp
-         bSlA==
-X-Gm-Message-State: ACgBeo1WzPBpR2/rGop/6bZytOxcr/g6uHv0YpKh3xO02yscgmkkG/oB
-        Y/w9t4CSkeimeWYzDVtDnsAENg==
-X-Google-Smtp-Source: AA6agR4T3jz2YG7uzGgC88CIsM2wXvcz/O93sgxDwnN7Fyfc/bvCyeEph1uHb0Dfx7f8GE1jXbfv1Q==
-X-Received: by 2002:a17:90b:1d87:b0:1f5:3d0:e1d8 with SMTP id pf7-20020a17090b1d8700b001f503d0e1d8mr6288102pjb.32.1659383122596;
-        Mon, 01 Aug 2022 12:45:22 -0700 (PDT)
+        bh=MqxsdWGVWZJSq1tUclSEEIizj+IgqXPHPTEm2SXLm9E=;
+        b=vTtkLwDhsaUAdnES27O37PW+L0DyXu40J/gfbK0SDmVTps82FfAmbn8vTDSeHzS8j5
+         UMRQpT1z9c+rt4IxpLC0nM390ipsBkKBEW2DoqWNJrNKhLnnog+qj9395WIfPWhsPiTX
+         QupbLGiJHVji6I+7J1osIS5/YRHNZeF+TVYqxa/xABmNQwCbNnAfv4CeT4Dz8JNfrlWq
+         W1iQzJWCV2eQWDDMjbj8MwhAumzzSj+SvxoXMuqwcHoBYvbvmzeAsfBR86qVFKQgmUxC
+         r9KYAIx4fcvNdQGweuRnEKc7j8v/JsugSB6yFQYxJjFulk0Ofnjqpx0StsJnIKICEx0z
+         9S2Q==
+X-Gm-Message-State: AJIora//HH0J4A0zZ69sbnryEeQW06fsMSTzSZenC0bC8PlDVshz0iQG
+        UD8zlY22TiKC+E/j2ny7YcCOYA==
+X-Google-Smtp-Source: AGRyM1vN/Ggz1FnEcA+bf3Il8TKvbm0keVrDZEWiJY6zH4KBC4GIZHuzi7P3sbeHkmqNKMeymtFrzw==
+X-Received: by 2002:a63:fc1b:0:b0:41b:93c4:136a with SMTP id j27-20020a63fc1b000000b0041b93c4136amr12925041pgi.163.1659383134975;
+        Mon, 01 Aug 2022 12:45:34 -0700 (PDT)
 Received: from ubuntu-22.localdomain ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id d17-20020a170902ced100b0016d9877d3bfsm10075561plg.32.2022.08.01.12.45.19
+        by smtp.gmail.com with ESMTPSA id d17-20020a170902ced100b0016d9877d3bfsm10075561plg.32.2022.08.01.12.45.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 12:45:21 -0700 (PDT)
+        Mon, 01 Aug 2022 12:45:32 -0700 (PDT)
 From:   William Zhang <william.zhang@broadcom.com>
 To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
 Cc:     f.fainelli@gmail.com, anand.gore@broadcom.com,
@@ -54,15 +54,15 @@ Cc:     f.fainelli@gmail.com, anand.gore@broadcom.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 2/4] ARM: dts: bcmbca: bcm63178: clean up psci node
-Date:   Mon,  1 Aug 2022 12:44:46 -0700
-Message-Id: <20220801194448.29363-2-william.zhang@broadcom.com>
+Subject: [PATCH 3/4] ARM: dts: bcmbca: bcm63178: fix interrupt controller node
+Date:   Mon,  1 Aug 2022 12:44:47 -0700
+Message-Id: <20220801194448.29363-3-william.zhang@broadcom.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220801194448.29363-1-william.zhang@broadcom.com>
 References: <20220801194448.29363-1-william.zhang@broadcom.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000096b75305e5333d0c"
+        boundary="00000000000053bac405e5333ed6"
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
@@ -72,37 +72,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000096b75305e5333d0c
+--00000000000053bac405e5333ed6
 Content-Transfer-Encoding: 8bit
 
-Remove unnecessary cpu_on and cpu_off properties from psci
-node as they are only needed for psci version prior to 0.2.
+Add the missing gic registers and interrupts property to the gic node.
 
 Fixes: fc85b7e64acb ("ARM: dts: add dts files for bcmbca soc 63178")
 Signed-off-by: William Zhang <william.zhang@broadcom.com>
 ---
 
- arch/arm/boot/dts/bcm63178.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm/boot/dts/bcm63178.dtsi | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/arch/arm/boot/dts/bcm63178.dtsi b/arch/arm/boot/dts/bcm63178.dtsi
-index 14d2c5bd2c52..98ab10e1c81e 100644
+index 98ab10e1c81e..dba71fa53466 100644
 --- a/arch/arm/boot/dts/bcm63178.dtsi
 +++ b/arch/arm/boot/dts/bcm63178.dtsi
-@@ -80,8 +80,6 @@ uart_clk: uart-clk {
- 	psci {
- 		compatible = "arm,psci-0.2";
- 		method = "smc";
--		cpu_off = <1>;
--		cpu_on = <2>;
+@@ -86,15 +86,17 @@ axi@81000000 {
+ 		compatible = "simple-bus";
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		ranges = <0 0x81000000 0x4000>;
++		ranges = <0 0x81000000 0x8000>;
+ 
+ 		gic: interrupt-controller@1000 {
+ 			compatible = "arm,cortex-a7-gic";
+ 			#interrupt-cells = <3>;
+-			#address-cells = <0>;
+ 			interrupt-controller;
++			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(3) | IRQ_TYPE_LEVEL_HIGH)>;
+ 			reg = <0x1000 0x1000>,
+-				<0x2000 0x2000>;
++				<0x2000 0x2000>,
++				<0x4000 0x2000>,
++				<0x6000 0x2000>;
+ 		};
  	};
  
- 	axi@81000000 {
 -- 
 2.34.1
 
 
---00000000000096b75305e5333d0c
+--00000000000053bac405e5333ed6
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -173,13 +184,13 @@ W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
 1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
 MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
 VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIHAlh8HorSownUBEeFNXbU8QnaQm
-d6nWHVjmV7Yc4EMfMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDgwMTE5NDUyMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJSv9gfK0nJALL73Ijg8W3oBGuoE
+yvU3jlWEqlFKZas6MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDgwMTE5NDUzNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
 CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQBDRBuh/z2ELdvjWMlLWJ4+eA6tIfhps1/MD4nzuhe7Qmr7
-0kNLzYiqay5vBJjEGksCgb/4BawChUbv+MVuIXD4ELXJlH+u43vgk027U+LkOmBMng6U7Al3BdOt
-cVrOgOEmoCn5ETwy0aHJLpB6i6JzJne06bqPt88MpMTAICxlmGBP3Ji/q+b34sg+Z5UFN1nWmSDC
-0FUYi80WV8vrqGivCHEW2XBhaydd3jIu9jsn5kRmw5c3/4WlHokO/5lQkCtb08aVMq9f/K1fNqpa
-3y8VqSkrtJdBbGJXZ7QKBqLFbbfUS6G+z0JVAm4kKh5P7kKaYfCvqgaGbep5B9rYDxlK
---00000000000096b75305e5333d0c--
+AwQCATANBgkqhkiG9w0BAQEFAASCAQAUvqoGxAggkEiw32qS34LGo3k5VCQZ6fYFkF6JzihWjzIE
+1sib1VHItz9HBBTP/oYKOLd/QXd5fxWch1gvu05UKY0+UxfdZN79DWM8/5TrRzyQyBDhdwirStv5
+EzB1BibGTLx0u/EGO+n21qp3p6+ZmSp6EpoyNz407Q/xHn6D2QvV1cCVGSqcocHM3abyl6zTuRzi
+1jZjscOuWdgOX2kKEIRdQ5C2cLGxEovDtohjG6GA6Kw2b+QAuoSdm8lE+BDgjPT1/lNJKxwljdAT
+KhPcfptWLo2GmHrBqGqtTqeBELvT2pLE+1gRsRWSUeGHsF0jigf1Va5G0y2GL6nN7/Dc
+--00000000000053bac405e5333ed6--
