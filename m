@@ -2,99 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E19A0586FF4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 19:58:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CED7B587001
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 20:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234222AbiHAR6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 13:58:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32990 "EHLO
+        id S232300AbiHASBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 14:01:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234049AbiHAR5x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 13:57:53 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41BE018E0D;
-        Mon,  1 Aug 2022 10:56:57 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id h145so8951429iof.9;
-        Mon, 01 Aug 2022 10:56:57 -0700 (PDT)
+        with ESMTP id S233157AbiHASBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 14:01:09 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ED00248D2
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 11:01:08 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id a13so13132823ljr.11
+        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 11:01:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=uZR/I+yAkBmW0w7mHOk3YtgLxlXC2BKh5JL5UtMmwBs=;
+        b=q+w6TE6z8roa1FS6pRp+tOhYcqoLK1RRU14NW5VdOJfv8hFjDkUklpCbJ0Zl4zmPBn
+         RCi6pAbq34Qsp896AIPfQsEXgp4FmQ9P1asmBO/5jNtq7wXUDfX9UCfCUp3jhB94dxOx
+         bAfL/QhWup7fU2XaCntjtXmyRRdyLfc1J5QqEsljVEOHviQjSxVn6v6KmX9MNtiMfOBW
+         dnz6oXrJCAYm4G2Mnz5cwr+o4qtZcKhtz7JY4LiK5ZTLRkgstfhGCAjZP+43gi7bNxDZ
+         hXwUACWS4Bigbxoz64aX9jfwSxHSRwx7i+EkjPU2ySYW/48LpOqbvlmdZYAvjHNZ2/d8
+         m36w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=pXG+lGlXO+8gYYtFStzjQr5se0f0+gkX9e0+xy32FKc=;
-        b=AzK800nLL7ZskyZTKpJVS2U8NswuBUL1vQFKwPo4IiyqUgfBhaCDAVGi8pMoKKmsGI
-         r88m5gRnllrq5cCW+IAlbekLlxZRu4LhgTPLkqbeKv57yfSaaEhtuOwZSbrVaTZ056nO
-         pMHjuhnrPgBh5kk6YDdmGUsMwJv4RAA7G2dX2uCSpoQ7FLzVtWHkgQB+57zgY5AfLQOL
-         /N6MLCm+ZOX6BKjgYL1nM7vx8/6e0vjqoTnd/GY1rCsgt2FSsnEQTCXtMcM8Ugv5Q2z/
-         oVZJFn7cQqFIuMzpOAXeeCO7EEr8biL1+2CVcylW9cLwb8eC/YSsiFTwAoKmF8QyBeZ3
-         uRKA==
-X-Gm-Message-State: ACgBeo2/PfPOwS12U905uZuXK5/e/i+JXjHxEojDzEAlbWPbpR6xRcWL
-        cG27jSiVjFhSIxj34Uabhg==
-X-Google-Smtp-Source: AA6agR6iEjeYVaghayqVwr6+BtbP1cV2+9w6GkG0x/n0NBqNAt+1nAmTgbOvHOrrUTFuV9d0Ayq4Pw==
-X-Received: by 2002:a05:6638:1355:b0:342:7281:8e3a with SMTP id u21-20020a056638135500b0034272818e3amr2884519jad.15.1659376616876;
-        Mon, 01 Aug 2022 10:56:56 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id y8-20020a027308000000b00339c4e447e2sm5527837jab.151.2022.08.01.10.56.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 10:56:56 -0700 (PDT)
-Received: (nullmailer pid 1257252 invoked by uid 1000);
-        Mon, 01 Aug 2022 17:56:54 -0000
-Date:   Mon, 1 Aug 2022 11:56:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Frank Li <Frank.Li@nxp.com>, devicetree@vger.kernel.org,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-Subject: Re: [PATCH v4 04/17] dt-bindings: PCI: dwc: Add max-link-speed
- common property
-Message-ID: <20220801175654.GA1257218-robh@kernel.org>
-References: <20220728143427.13617-1-Sergey.Semin@baikalelectronics.ru>
- <20220728143427.13617-5-Sergey.Semin@baikalelectronics.ru>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=uZR/I+yAkBmW0w7mHOk3YtgLxlXC2BKh5JL5UtMmwBs=;
+        b=5BvWiKnsVft9jjbZvN07FDPrDNDfQ1W8FAxSWB2JX22fiNXjZEFBDy0gf5ubpF+Zkn
+         I7hOd7rNVItYE/7kc2zHifp2Es3Pp4IUme7tQRQQAfTa3UjXEf95dVwPkIZeXRhMZNra
+         X739nwY/IIG2h1xH8b7seuqe68/AOfS8WBI07fCn1TUHwWgpIhSaGsPkDvG1EDQdYsDf
+         G9G+UQwln1VVkz+oJsaNn85iEDsl9yKSSpwJQfdIMAzoxmj7iJEq3xSpgpWXijuWliv3
+         uJ9rKrQ8EZoc5TEfuIkU6zDIItz7hpm4JvpH6Kx2wler/qGiFcw7QG3HWHNcP7juysXf
+         kMVA==
+X-Gm-Message-State: AJIora/5ND4b1TKCw7XWxwW59/43etiISJQtz3EguKVUAY7Ejt7yx+s8
+        1OVXEfTyJltE1hXPNEGEHAZkfA==
+X-Google-Smtp-Source: AGRyM1s+ieLndbXdmOHTogelfkNm1sPX5Vt3Z6RRXxCaWFy4HZux37fvLIAz14ZPc21Ux3ijqkBQBA==
+X-Received: by 2002:a2e:934f:0:b0:250:a7bc:2b8f with SMTP id m15-20020a2e934f000000b00250a7bc2b8fmr5464878ljh.512.1659376866299;
+        Mon, 01 Aug 2022 11:01:06 -0700 (PDT)
+Received: from [192.168.1.6] ([213.161.169.44])
+        by smtp.gmail.com with ESMTPSA id c15-20020a056512324f00b0048ae7b7b077sm1151293lfr.200.2022.08.01.11.01.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Aug 2022 11:01:05 -0700 (PDT)
+Message-ID: <57faa0a7-301c-c60c-6831-00a351ed3ea5@linaro.org>
+Date:   Mon, 1 Aug 2022 20:01:03 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220728143427.13617-5-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [RESEND 3/4 v7] power: supply: Add charger driver for Rockchip
+ RK817
+Content-Language: en-US
+To:     Chris Morgan <macroalpha82@gmail.com>,
+        kernel test robot <lkp@intel.com>
+Cc:     linux-pm@vger.kernel.org, kbuild-all@lists.01.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        zhangqing@rock-chips.com, zyw@rock-chips.com,
+        jon.lin@rock-chips.com, sre@kernel.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        lee.jones@linaro.org, Chris Morgan <macromorgan@hotmail.com>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+References: <20220721161718.29800-4-macroalpha82@gmail.com>
+ <202207242227.mttUkfTB-lkp@intel.com>
+ <20220729162828.GB102@wintermute.localdomain>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220729162828.GB102@wintermute.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Jul 2022 17:34:14 +0300, Serge Semin wrote:
-> In accordance with [1] DW PCIe controllers support up to Gen5 link speed.
-> Let's add the max-link-speed property upper bound to 5 then. The DT
-> bindings of the particular devices are expected to setup more strict
-> constraint on that parameter.
+On 29/07/2022 18:28, Chris Morgan wrote:
+> On Sun, Jul 24, 2022 at 10:58:00PM +0800, kernel test robot wrote:
+>> Hi Chris,
+>>
+>> Thank you for the patch! Perhaps something to improve:
 > 
-> [1] Synopsys DesignWare Cores PCI Express Controller Databook, Version
-> 5.40a, March 2019, p. 27
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v3:
-> - This is a new patch unpinned from the next one:
->   https://lore.kernel.org/linux-pci/20220503214638.1895-2-Sergey.Semin@baikalelectronics.ru/
->   by the Rob' request. (@Rob)
-> ---
->  Documentation/devicetree/bindings/pci/snps,dw-pcie-common.yaml | 3 +++
->  Documentation/devicetree/bindings/pci/snps,dw-pcie-ep.yaml     | 2 ++
->  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml        | 1 +
->  3 files changed, 6 insertions(+)
-> 
+> I'm afraid I'm not sure the best way to fix this. The only thing I can
+> think of is for now the driver should only be for systems with a
+> Rockchip RK817 PMIC (to my knowledge only ARM based systems from
+> Rockchip),
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Why? We want to compile test everything everywhere,
+
+>  but it looks like the arch was set as parisc. 
+
+The arch itself does not matter unless the actual warning is specific to it.
+
+> Even still,
+> as long as some of the functions ahead of it don't error out each
+> of those variables should be used. Is there a way to confirm these
+> warnings?
+
+Just compile and see by yourself. The error should be visible on
+multiple archs. If not, then use parisc. Ubuntu provides most of cross
+compilers so it's extra easy to use. The ones not provided by Ubuntu are
+also here:
+https://mirrors.edge.kernel.org/pub/tools/crosstool/
+
+
+Best regards,
+Krzysztof
