@@ -2,101 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67C04586B23
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 14:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1FDA586B43
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 14:49:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234012AbiHAMqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 08:46:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44370 "EHLO
+        id S230206AbiHAMtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 08:49:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232363AbiHAMpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 08:45:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3F5E47BB4;
-        Mon,  1 Aug 2022 05:33:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 62DBC6115D;
-        Mon,  1 Aug 2022 12:33:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2247CC433D6;
-        Mon,  1 Aug 2022 12:33:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659357228;
-        bh=cUtyBDgVVj8a2DbWuYT23A9XZzN6tatVF6DfpqOHBm0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ClllzYyOR3dE2PIjBhiD9mIY0evMgFfq96zdfbiZZoJpUaM3xfKYvT4OJLpl/+hwn
-         wAmAQHl59WTf3EmMFJwyj1uh4dteRpGUtPJ+XGqAmPSM9miXINyvlG8jbT/Mx6VQ8b
-         30L9Efuvo6xM5QgI1c19qvmWZcg2hIRplCFsW/csfP+qXz9jXKI4SeXTDGEy9iItpE
-         ZFf4sLJCmB50r/kXG0a4Dv0Su6fduhwhabIqj0GE+9zQ/63+CbpRkXvMIaVkMlOQTE
-         wOWV67NWq3v6V9J8xNR+GZzQ80A27Xiy2j7qhpIOq3qtW18nVeOZG5ptihphxuSeum
-         uI7wpsyEFm2ew==
-Date:   Mon, 1 Aug 2022 13:33:43 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Conor.Dooley@microchip.com
-Cc:     Nagasuresh.Relli@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] spi: microchip-core-qspi: Add support for microchip
- fpga qspi controllers
-Message-ID: <YufIJ9JtTKaUjRqZ@sirena.org.uk>
-References: <20220801094255.664548-1-nagasuresh.relli@microchip.com>
- <20220801094255.664548-3-nagasuresh.relli@microchip.com>
- <283bdfef-cbd9-5d87-f77d-10f007c37a0c@microchip.com>
+        with ESMTP id S231215AbiHAMtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 08:49:02 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A242C6258;
+        Mon,  1 Aug 2022 05:40:20 -0700 (PDT)
+X-UUID: f1ea4fb8317843ab8017207144315c28-20220801
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:def95827-f715-4d59-ad3a-30f9aec44f66,OB:0,LO
+        B:10,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Release_Ham,A
+        CTION:release,TS:90
+X-CID-INFO: VERSION:1.1.8,REQID:def95827-f715-4d59-ad3a-30f9aec44f66,OB:0,LOB:
+        10,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:95,FILE:0,RULE:Spam_GS981B3D,A
+        CTION:quarantine,TS:90
+X-CID-META: VersionHash:0f94e32,CLOUDID:9cdce8d0-841b-4e95-ad42-8f86e18f54fc,C
+        OID:1254dfa547d3,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: f1ea4fb8317843ab8017207144315c28-20220801
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1614910273; Mon, 01 Aug 2022 20:40:15 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Mon, 1 Aug 2022 20:39:55 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Mon, 1 Aug 2022 20:39:55 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Chen-Yu Tsai <wenst@chromium.org>, <hsinyi@chromium.org>,
+        Allen-kh Cheng <allen-kh.cheng@mediatek.corp-partner.google.com>
+Subject: [PATCH v12 0/1] Add basic node support for MediaTek MT8186 SoC
+Date:   Mon, 1 Aug 2022 20:39:51 +0800
+Message-ID: <20220801123952.18932-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wK8xglAK6STQSGFE"
-Content-Disposition: inline
-In-Reply-To: <283bdfef-cbd9-5d87-f77d-10f007c37a0c@microchip.com>
-X-Cookie: Dieters live life in the fasting lane.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Allen-kh Cheng <allen-kh.cheng@mediatek.corp-partner.google.com>
 
---wK8xglAK6STQSGFE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+MT8186 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55 and
+2 CA76 cores. MT8186 share many HW IP with MT65xx series. This patchset was 
+tested on MT8186 evaluation board to shell.
 
-On Mon, Aug 01, 2022 at 10:40:33AM +0000, Conor.Dooley@microchip.com wrote:
-> On 01/08/2022 10:42, Naga Sureshkumar Relli wrote:
+This series is based on tag: next-20220728, linux-next/master
+Since we have a another dts series of mt8195 [1] which is waiting for review from
+maintainers. I remove power domains controller node from this series.
 
-> > +	qspi = spi_controller_get_devdata(ctlr);
+There are some corrections in mt8186 hardware bindings. We need to apply the below patches.
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220725110702.11362-2-allen-kh.cheng@mediatek.com/
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220725110702.11362-3-allen-kh.cheng@mediatek.com/
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220720130604.14113-2-allen-kh.cheng@mediatek.com/
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220721014845.19044-2-allen-kh.cheng@mediatek.com/
 
-> Is there a reason to use spi_controller_get_devdata() rather than
-> spi_master_get_devdata() ?
+[1]
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=663978
 
-We are trying to move everything away from the old terminonlogy to using
-controller, this also applies to the the other API functions.
+changes since v11:
+ - add #cooling-cells in cpu nodes
+ - add pmu nodes for mt8186
+ - change #interrupt-cells from 3 to 4
+ - correct interrupts property in each nodes for 4 interrupt cells
+ - remove power domains controller node
+ - move #address-cells and #size-cells into mt8186.dts
+ - remove unused ahb_cg clock in mmc0
+ - add efuse node
+ - add dsi node and remove dpi node
+ - move i2c status position in mt8186-evb.dts
+ - change i2c child nodee name in pio node to *-pins
+ - change property from mediatek,drive-strength-adv to drive-strength-microamp in i2c child nodes of pio
+ - change drive-strength value from MTK_DRIVE_4mA to 4 in i2c child nodes of pio
+ - change i2c child nodes from pins-sda-sc1 to pins-bus
+ - correct pintctrl clk names
 
-> > +clk_dis_all:
-> > +	clk_disable_unprepare(qspi->clk);
+changes since v10:
+ - remove merged PATCHes
+ - add pmu nodes
+ - add #cooling-cells
+ - change #interrupt-cells number from 3 to 4
+ - remove power domains controller node
+ - move #address-cells/#size-cells into mt8186.dts from evb dts for i2c
+ - move status = 'okay' position in i2cx
+ - fix pinctrl patternproperties name in pio
+ - add efuse node
+ - fix dsi node
+ - add #reset-cells in infracfg_ao: syscon
 
-> If we move the clk prepare & enable later in probe, ie after
-> getting the irq, this goto could be removed too because the
-> only place requiring teardown of the clock would be the error
-> path of devm_spi_register_controller().
+changes since v9:
+ - remove some merged PATCHs from series
+ - reorder nodes in dts (cpu-map)
+ - remove okay status in auxadc
+ - remove unnecessary suffix node name for i2c
+ - add pwm node 
+ - add dsi-phy node 
+ - add dpi node 
 
-Is the clock needed for handling of the interrupt?
+changes since v9:
+ - add one space before equal sign of drive-strength-adv
+ - corect compatible name for big cores (ca76)
+ - use upper case of address in pinctrl
+ - add pwrap node
+ - add pwm node
 
---wK8xglAK6STQSGFE
-Content-Type: application/pgp-signature; name="signature.asc"
+changes since v8:
+ - change name from pins_bus to pins-sda-scl
+ - correct email address
+ - add capacity-dmips-mhz for each CPU
+ - add ppi-partitions in gic node
+ - change name to power-domain
+ - remove status "okay" in scp node
+ - update timer and pericfg compatible in series
 
------BEGIN PGP SIGNATURE-----
+changes since v7:
+ - add scp&auxadc node
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLnyCcACgkQJNaLcl1U
-h9DxVwf/W1ICkrqkCv2q0uPZM2Bc0iszQetiS5Eo6c4OxfHShFWnnGBHw3fT+EaL
-dLlNzAB4FXCohs4U8rnww3yqyW9cGJDxLiROxdvWKvZUEmVCFqUX1xrJWXQAPorN
-z5TIgfJA0lAaDuAywSBNP/v2NIojASHEp2bY8Qk2WhUkDy4KYd2lei5H6T9MenHO
-r0kmbaG+Q366FrANMcHQBrmn5OaTIcmtEKbyqJYzE71uFwTYHR5qrVdTDC/dCiPm
-H9c+jB4t1cZ+krcxnqWxM5KJlsSk3TReAEY0Z8FPz00iVLpY9Gisdj88NF6lkNOy
-eof9krPC1BSU5fJZWWGBuxzbvteqtA==
-=hglu
------END PGP SIGNATURE-----
+changes since v6:
+ - remove unnecessary blank line
 
---wK8xglAK6STQSGFE--
+changes since v5:
+ - replace Mediatek a to MediaTek
+ - use GPL-2.0-only OR BSD-2-Clause
+
+changes since v4:
+ - correct driver clock of mt8186
+ - add power domains controller and clock controllers
+ - add pinctrl, usb host, spi and i2c nodes
+ - add node status in mt8186-evb.dts
+ - correct some dtbs_check warnings
+
+changes since v3:
+ - remove serial, mmc and phy patch from series. (already merged)
+ - remove mcusysoff node
+ - move oscillator nodes at the head of dts
+ - change name from usb-phy to t-phy
+
+changes since v2:
+ - add soc {} in mt8186.dtsi
+
+changes since v1:
+ - add dt-bindings: arm: Add compatible for MediaTek MT8186
+
+Allen-KH Cheng (1):
+  arm64: dts: Add MediaTek MT8186 dts and evaluation board and Makefile
+
+ arch/arm64/boot/dts/mediatek/Makefile       |   1 +
+ arch/arm64/boot/dts/mediatek/mt8186-evb.dts | 238 ++++++
+ arch/arm64/boot/dts/mediatek/mt8186.dtsi    | 874 ++++++++++++++++++++
+ 3 files changed, 1113 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
+
+-- 
+2.18.0
+
