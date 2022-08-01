@@ -2,47 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42BAD5871A5
+	by mail.lfdr.de (Postfix) with ESMTP id D806A5871A7
 	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 21:47:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234882AbiHATrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 15:47:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35264 "EHLO
+        id S235000AbiHATrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 15:47:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234324AbiHATrD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 15:47:03 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20056DD7
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 12:47:03 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id c139so11572848pfc.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 12:47:03 -0700 (PDT)
+        with ESMTP id S234983AbiHATrM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 15:47:12 -0400
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60201EC52
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 12:47:11 -0700 (PDT)
+Received: by mail-pl1-x62d.google.com with SMTP id z19so11439579plb.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 12:47:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
-        h=mime-version:message-id:date:subject:cc:to:from:from:to:cc;
-        bh=dlVWU4v1K3oAvkCj7eTY2ws1d+WJ5WeOrxBdP+exYg4=;
-        b=QhibTir5J7Qz6N3oBw9+mKwWvEA7uo8cg/bcAQ01HDNr3Q9uuklTdXt8Lp7cXHoNo9
-         N7VWq6FwfAz61q1RxXRfybu8E29nB5TtoBjxnvg1nrHCipc2LcdJvkGpAe/VSfUWPOid
-         L63iZFDDkNLYk2tmJpRSyLFFlUELVZEjkpl3o=
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:from:to:cc;
+        bh=A7m2U59ItpbE+xCNnedgJZ0cAnBPervxJKTA81idvk0=;
+        b=FDHPwfCbttv7jO+v4KNF/SrnrnS2DGIUYgO+2zukcmqE8MSmhULbcCZhG7MyezbSxA
+         Lrr74JJjO6sWCJo5/fF7OXr6ZDSSbT7HO9qohvIff3Lc1ZLO37DKCKi7gjhN4p62qUVY
+         7SMoVRLdOX3bnpqDIi9Y6j5aoBYshkQ24nXcw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:date:subject:cc:to:from:x-gm-message-state
-         :from:to:cc;
-        bh=dlVWU4v1K3oAvkCj7eTY2ws1d+WJ5WeOrxBdP+exYg4=;
-        b=HzFGuOaXJMa+ncRsUaec+xzqV2Eqdqfgq+C03GSV7bcDwVi/ShOAKiC/G9irvO7K5x
-         lZKOqsnKywSH8G3BKFx4mkFYI152mUxlay5fI90RFJkvPdJHhpJBeutIGGaepgHX7q00
-         5+eu1BBd/WeBX0H5aQPWzaQc/eGSaLZRPdkhI3H5W0XPewdYNojprHoCPkP14w5bgFnV
-         t6VfbVElNkWyPJui0BZpNtYX39X6CvRrAB+S3Y9uWRL0MNkKHGAXie+4pHLRrLrGo0WH
-         OVBJCwoh5F+PgQFCyp5DM82Br/bN6jYQofcSZiJskXsYmGvs1a0D7clH+OdAdIUoHW0Q
-         06uA==
-X-Gm-Message-State: ACgBeo28nUxJIBSy8b4cAZQ6zUzfLeHGjL77dHZTnTx/r+GEPf/NJiy7
-        hmCxs5UJDdrZ4KNqlLj08Tvtkg==
-X-Google-Smtp-Source: AA6agR5fdwCHmtwE4qN5OOBXPfiwxgzKwRY2G+Ld4mhVhX238VgsFrcG6xHO4z8Jm6HAeco7tlxJbQ==
-X-Received: by 2002:a63:81c8:0:b0:41b:d65b:8861 with SMTP id t191-20020a6381c8000000b0041bd65b8861mr8625985pgd.622.1659383222524;
-        Mon, 01 Aug 2022 12:47:02 -0700 (PDT)
+        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:x-gm-message-state:from:to:cc;
+        bh=A7m2U59ItpbE+xCNnedgJZ0cAnBPervxJKTA81idvk0=;
+        b=JXd9OVqeV19jWfwIDsI6yXzTKEKoWy5leJcZpvW0yF77P3aBUJSdPnh8gauRvc2jp+
+         lWaDQPDLmUAMjTxYOttG0MZ9/Er9T4+R9RqmjS34zTsR3sEWJTr1LNQ91dA8H3w6TXE5
+         QP0lgFm4WmzZsRF770gRWyW/I9PguZEP+XhumLWxh6gBEaNzwL07UHySP+Lb8B+/go6N
+         rddZ4TrZ6n/LG5JP4ggzhltZtmmsTUsVNYaydhanxHJR2LX46j6iw/5DJMmGNtHpWlmt
+         sZ9tz8431d//n2TxdA2nmToBwFpnCxi/Tut8sarScXOOBiaLSGBSX1RvtIJHRzbNa4Wq
+         SJRg==
+X-Gm-Message-State: ACgBeo03EYWuY6ArA20hlLfpvjyvZ5NQu1If6DohPJoMyHYlOZfMsqOz
+        s5jNRq2NcS/DQH+Wlec4Mfq5cg==
+X-Google-Smtp-Source: AA6agR7h4btnMgwCoPONfv2OhdVuo36rOFJACtADTDoUw876O45pOk/ClSgnCcqLrkmRBhPPbrPDww==
+X-Received: by 2002:a17:90a:6007:b0:1f3:3527:609e with SMTP id y7-20020a17090a600700b001f33527609emr19827090pji.52.1659383231263;
+        Mon, 01 Aug 2022 12:47:11 -0700 (PDT)
 Received: from ubuntu-22.localdomain ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id s18-20020a170902ea1200b0016c28fbd7e5sm10266715plg.268.2022.08.01.12.46.55
+        by smtp.gmail.com with ESMTPSA id s18-20020a170902ea1200b0016c28fbd7e5sm10266715plg.268.2022.08.01.12.47.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 12:46:57 -0700 (PDT)
+        Mon, 01 Aug 2022 12:47:06 -0700 (PDT)
 From:   William Zhang <william.zhang@broadcom.com>
 To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
 Cc:     f.fainelli@gmail.com,
@@ -53,60 +54,55 @@ Cc:     f.fainelli@gmail.com,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] ARM: dts: bcmbca: bcm6846: fix timer node cpu mask flag
-Date:   Mon,  1 Aug 2022 12:46:45 -0700
-Message-Id: <20220801194647.29437-1-william.zhang@broadcom.com>
+Subject: [PATCH 2/3] ARM: dts: bcmbca: bcm6846: clean up psci node
+Date:   Mon,  1 Aug 2022 12:46:46 -0700
+Message-Id: <20220801194647.29437-2-william.zhang@broadcom.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220801194647.29437-1-william.zhang@broadcom.com>
+References: <20220801194647.29437-1-william.zhang@broadcom.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000008bd87705e5334313"
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,MIME_NO_TEXT,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.6
+        boundary="000000000000105ad905e5334488"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000008bd87705e5334313
+--000000000000105ad905e5334488
 Content-Transfer-Encoding: 8bit
 
-The cpu mask flag value should match the number of cpu cores in the
-chip. Correct the value to two cpus for BCM6846 dual core SoC.
+Remove unnecessary cpu_on and cpu_off properties from psci
+node as they are only needed for psci version prior to 0.2.
 
 Fixes: de1a99ac0b64 ("ARM: dts: Add DTS files for bcmbca SoC BCM6846")
 Signed-off-by: William Zhang <william.zhang@broadcom.com>
 ---
 
- arch/arm/boot/dts/bcm6846.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/bcm6846.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/arch/arm/boot/dts/bcm6846.dtsi b/arch/arm/boot/dts/bcm6846.dtsi
-index e610c102498f..b74491a3f111 100644
+index b74491a3f111..9876ceb1d47c 100644
 --- a/arch/arm/boot/dts/bcm6846.dtsi
 +++ b/arch/arm/boot/dts/bcm6846.dtsi
-@@ -40,10 +40,10 @@ L2_0: l2-cache0 {
- 
- 	timer {
- 		compatible = "arm,armv7-timer";
--		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
--			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-+			<GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
- 		arm,cpu-registers-not-fw-configured;
+@@ -65,8 +65,6 @@ periph_clk: periph-clk {
+ 	psci {
+ 		compatible = "arm,psci-0.2";
+ 		method = "smc";
+-		cpu_off = <1>;
+-		cpu_on = <2>;
  	};
  
+ 	axi@81000000 {
 -- 
 2.34.1
 
 
---0000000000008bd87705e5334313
+--000000000000105ad905e5334488
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -177,13 +173,13 @@ W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
 1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
 MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
 VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIOpVVD+d5ZJUlSm9XtYmDpApR1fI
-/KslYrcdxFxInW09MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDgwMTE5NDcwMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIPvxuV2rbgSfRWJDBVQiYDEIfdl9
+dx1jAz9BazA9zyk7MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDgwMTE5NDcxMVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
 CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQBdFqZcaq/uq856IivCwL2jxa2NEEekAyYPl7k5PT4jPUzb
-yZ0phKF5Sxvj61HrU4F7oNCaK2uvNoU/1z/K6AzJw5UtQ6mesClA5Mm4o8ofym/FlTcY5CTPqSK2
-H9XbKRS7mAx1pAmPdFVuhMgWNaaUPOMxqXQ3j59E8bzrFV2EN0lg0iGP/GaHBc4pGX1RNEP2bzMI
-Mb2FKaTposadSuDrpsHzxbMXMNZRSW2QADVdHPb/hGXOdSwwLAlmEbWdCu4BYMruf4IBwj6d6UeO
-nNbiASO1bFauLc/0b/Tq2UCg2f3CjYaog4e9+y5YtmUEWY4hweDBzxVlvmkRezH878Nl
---0000000000008bd87705e5334313--
+AwQCATANBgkqhkiG9w0BAQEFAASCAQAvokpr6ixqpGNd6vUhbQiEc5HioFid3C5Rkt77zKzcLrB+
+/rWE+o+7BmP7cXBf3cJOeRGGLOyABZZo7fziEvZUG3mfB+i5SaR0hX5c3PblDkmbvJ299We8XN63
+8Na6Db0FPFbhG+a90FsD5HgJsMlsIq4xyrl8xRwZzBHSLKMjQxPrGQ65+onQW29R3cF+kft/3yX1
+BZlG9EETNH9Unt+bMB/YWliWFwwYJCXAJYKpRlOqQbCWhmtsIMhcNkX0pm5WI9C2u8P7U+1dX8I4
+2VPf0xsp/tPSbFnwutWp1vlrACD0s1gDYvZ2NRssnPFXnMmPHrvfdw6vPWkuVO+KXGZU
+--000000000000105ad905e5334488--
