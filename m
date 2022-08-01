@@ -2,84 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9959586E5D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 18:13:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BD4F586E7A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 18:23:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232607AbiHAQNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 12:13:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40246 "EHLO
+        id S231653AbiHAQXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 12:23:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232404AbiHAQNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 12:13:50 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE6E9371BA;
-        Mon,  1 Aug 2022 09:13:49 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id h145so8729854iof.9;
-        Mon, 01 Aug 2022 09:13:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc;
-        bh=HOeZrXGvQWgmw/kn9A6WzMB35arB2Qy0jWKFW84PCac=;
-        b=oKIKrJcWFoBT5P0i3byKK5S8Sbc47oRpQQWfkN7bSDKMWS0grCiEPa3Ja0ks1zTx6u
-         KS4B1RIyRPJTIzBZcdEl4qWiqCrTLMFqJwthobVhJoYzDC6F2MisNJHpjkzyrn70gDhX
-         qJBeOJZUuvInLL5+5HUvLkvBHVGXEt7QZxyDwicunsW1DyOVrNYOQJy8nF/Ph3lRr17J
-         YCvJntb7XGZU4WauhMseG1aWv0xoLuPOK1A05hXHYp1HhwGFY7o0Uy+cR5kKE7iL4UzG
-         /FYYuNr2p1o/8NVGIyXhfv/cgkfriAw+PL/O7/8hZjOGr72f7bxG7lMN0z+idgMkUQ78
-         zmAg==
-X-Gm-Message-State: ACgBeo3hfXcTHATSGM/aNH5CVmQwR/mRx78JOfi5K2Te7fRbgauJhGwu
-        WCtUm5NUOhR6zIX4f1Orjg==
-X-Google-Smtp-Source: AA6agR77X6e+kL2ohXCtQSY24Igj/v2LMUzRDPzkde/WIrjwQSvtJo5GAXuSc8asvPT97SJBCMliVQ==
-X-Received: by 2002:a02:ccb3:0:b0:342:712e:98a3 with SMTP id t19-20020a02ccb3000000b00342712e98a3mr2936945jap.204.1659370428907;
-        Mon, 01 Aug 2022 09:13:48 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id u13-20020a02b1cd000000b0034272104854sm1912896jah.115.2022.08.01.09.13.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 09:13:48 -0700 (PDT)
-Received: (nullmailer pid 1112748 invoked by uid 1000);
-        Mon, 01 Aug 2022 16:13:47 -0000
-Date:   Mon, 1 Aug 2022 10:13:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Xu Qiang <xuqiang36@huawei.com>
-Cc:     linux-kernel@vger.kernel.org, frowand.list@gmail.com,
-        weiyongjun1@huawei.com, robh+dt@kernel.org, guohanjun@huawei.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH -next] of/fdt: declared return type does not match actual
- return type
-Message-ID: <20220801161347.GA1112588-robh@kernel.org>
-References: <20220801120506.11461-1-xuqiang36@huawei.com>
- <20220801120506.11461-2-xuqiang36@huawei.com>
+        with ESMTP id S231294AbiHAQXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 12:23:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC21E1835C;
+        Mon,  1 Aug 2022 09:22:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8220460EE6;
+        Mon,  1 Aug 2022 16:22:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51EF9C433C1;
+        Mon,  1 Aug 2022 16:22:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659370978;
+        bh=uJxbC9lFZcULQRmAJwk4jNToadVBCPsNxrzs+F17Yf8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=QCwV9sClJDQqs9U577arTBiLzpUD8DxFqMLeAIXv0Am7gpn8Qlj6rUfChgnCmdg4m
+         qvzulf9C6y0rdFF6N0U8yOR8E6G1of2ED6/6Tf2hx204V+FhdbYlFtLCznH33BJeHC
+         6EV/61OWM28EcbeWfT6FKAJU6ubvkQNjeQjS8TnHvDJ4ShAPt49bfN4h7V7dByHDBI
+         iyxJkbxOEILCaW2/gnxIHleBb1QXvjujPV2G5I906g/AhJpM6tBbTDAwv83CLUNgNE
+         mCgwZ3z+OaWCQcgYGNYa7WSr9AxNPqtjlU04GGPj/aYXTwz2VZvHw3l0c5fL4hZajc
+         ctiooiWHXmpSQ==
+Date:   Mon, 1 Aug 2022 09:22:56 -0700
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Mans Rullgard <mans@mansr.com>,
+        Arun Ramadoss <arun.ramadoss@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Aleksander Jan Bajkowski <olek2@wp.pl>,
+        Alvin =?UTF-8?B?xaBpcHJhZ2E=?= <alsi@bang-olufsen.dk>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Pawel Dembicki <paweldembicki@gmail.com>,
+        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>,
+        Marcin Wojtas <mw@semihalf.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: dsa: make phylink bindings
+ required for CPU/DSA ports
+Message-ID: <20220801092256.3e05c12e@kernel.org>
+In-Reply-To: <20220731150006.2841795-1-vladimir.oltean@nxp.com>
+References: <20220731150006.2841795-1-vladimir.oltean@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220801120506.11461-2-xuqiang36@huawei.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 Aug 2022 12:05:06 +0000, Xu Qiang wrote:
-> The commit 649cab56de8e (“of: properly check for error returned
-> by fdt_get_name()”) changed the return value type from bool to int,
-> but forgot to change the return value simultaneously.
+On Sun, 31 Jul 2022 18:00:06 +0300 Vladimir Oltean wrote:
+> It is desirable that new DSA drivers are written to expect that all
+> their ports register with phylink, and not rely on the DSA core's
+> workarounds to skip this process.
 > 
-> populate_node was only called in unflatten_dt_nodes, and returns
-> with values greater than or equal to 0 were discarded without further
-> processing. Considering that return 0 usually indicates success,
-> return 0 instead of return true.
+> To that end, DSA is being changed to warn existing drivers when such DT
+> blobs are in use:
+> https://patchwork.kernel.org/project/netdevbpf/cover/20220729132119.1191227-1-vladimir.oltean@nxp.com/
 > 
-> Fixes: 649cab56de8e (“of: properly check for error returned by fdt_get_name()”)
-> Signed-off-by: Xu Qiang <xuqiang36@huawei.com>
+> Introduce another layer of validation in the DSA DT schema, and assert
+> that CPU and DSA ports must have phylink-related properties present.
+> 
+> Suggested-by: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 > ---
->  drivers/of/fdt.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> I've sent this patch separately because at least right now I don't have
+> a reason to resend the other 4 patches linked above, and this has no
+> dependency on those.
 
-Applied, thanks!
+If I'm reading
+
+https://lore.kernel.org/r/CAL_JsqKZ6cEny_xD8LUMQUR6AQ0q7JKZMmdP-9MUZxzzNxZ3JQ@mail.gmail.com/
+
+correctly - the warnings are expected but there needs to be a change 
+to properties, so CR? (FWIW I'd lean towards allowing it still, even
+tho net-next got closed. Assuming v2 can get posted and acked today.)
