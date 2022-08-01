@@ -2,122 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9812586BFA
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49F91586BFF
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:29:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230356AbiHAN3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 09:29:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59582 "EHLO
+        id S231726AbiHAN3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 09:29:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbiHAN3F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:29:05 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694763C8D7
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 06:29:04 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2719pgGx003239;
-        Mon, 1 Aug 2022 15:28:47 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=a1HMbAEdWLn+FNF0+2Ws3CrNvw3tnB1rE4cGaL0xKU0=;
- b=qol5DtfArmU94z+/2n3ug/4IRssv3XMghvPVAM8f2WKpRltEuz/GXnQRqgP/yZkUwlhm
- djib4mYZb5bf7yQv8z4fNHsqrRQY6d8J26oHW909/0z6o9iDDXbZlh8vLAAo8KT+VPrF
- jHh9VoAxvwejpyJaiQDlNUrIxi4iINMsvLwxv7gdbZMVmcpAMWrFxkozfSkw39YHuzfL
- qVINoTOgQJU5qEdk9itVyUbUVMyFMzXGOCJ11K3ek+gJAYruazcVbYXXehvKLl3mZbBI
- sHqztlzSGja0qIuqhXsbjhZyF8xAprR0vGyRQyRbFTM632ughhiGGX8cnHUIlJvqiFva sg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3hmv01527w-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 01 Aug 2022 15:28:47 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DE51910002A;
-        Mon,  1 Aug 2022 15:28:45 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D7E4922D18D;
-        Mon,  1 Aug 2022 15:28:45 +0200 (CEST)
-Received: from [10.201.21.93] (10.75.127.47) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 1 Aug
- 2022 15:28:44 +0200
-Message-ID: <0323004a-c948-d3a6-03b0-480b2171ee67@foss.st.com>
-Date:   Mon, 1 Aug 2022 15:28:44 +0200
+        with ESMTP id S231634AbiHAN33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:29:29 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F04C3CBC0
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 06:29:25 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id t2so10451948ply.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 06:29:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=piHbK3UTbLD9iX3PR06IXvcLd5J15k6XNiAP53ZMJ4M=;
+        b=uarbxJk2fAKWggvb+nqWwyIdVHYdxMvhC3w+walHGbRvIXqB/KHaPOb1ekLfW5unTw
+         FleMMIiUYW4Ox6mnoQvMRDLVgqJbyNjh8uZTkuxJcVY2OuIC5YAueJRbPnCEnEA/WHwF
+         Cppgpm4qkdJ34arKkjA5Bo7fozZ+Jt4lh/SZ9TMlxqF+zWANlRQXfFf1bGQedPoRSWTz
+         x752vYb4PVKFaK+yZy0ofrS8Y4fkLsFcQicGYgL7PF9bW7MwJoNQA56yQ6NsvOuF54xd
+         VjWEGBSYVTgMI7ga5Tp7HPy8FPwnZK3M8UZUsdF6CQiE2Yf1lH8SCys76qUtTPc1rUOp
+         IDfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=piHbK3UTbLD9iX3PR06IXvcLd5J15k6XNiAP53ZMJ4M=;
+        b=Q9Up2MAS+xreMNI6rgkilUHbiv+sni99Lv3eKY1oB0pf2grhWReD8DjxzGwB0nLAzp
+         pjbdrCD+CHUb8/TYTqJOshbn/SVsZCL75Sv25HpIaYQSmjzwOa2rlLwLbFIxpN8rOo09
+         9xEbulBS2+qeodLH9vqG3/jvj4SMvUACm3+cjLqLVc9RX0d3jbuJBnHa6shlmOpNxJyV
+         9vwL7CMm3zsfiC2uUfz0nXsx0TQtY8Nyon/DjRyFoPTD4/ymaJf9FkEVvXrJdA/DENqV
+         eN3gOafUdAn1PJ+k29x9ptV1uGR6grTItbMSPUCEoUMm1LM7qu2B6hKXF4K6ZrsAkA2j
+         W3Pw==
+X-Gm-Message-State: ACgBeo2lkEYE6sHWy01fUuAQtWyaFsALW3m0g+Aoyl7kipDKrOPvfebH
+        I98g+GKJZ1ipZ2ZSbc1F4b1e
+X-Google-Smtp-Source: AA6agR6f2gG1JYF96xw37fgWxbCpANQ6x8CkczTqANqhYTnastBsdlFNyUsPc3C5KODvwf6fE5Bb3A==
+X-Received: by 2002:a17:90b:3a90:b0:1f2:edfe:db4 with SMTP id om16-20020a17090b3a9000b001f2edfe0db4mr19430937pjb.105.1659360564404;
+        Mon, 01 Aug 2022 06:29:24 -0700 (PDT)
+Received: from thinkpad ([117.217.185.73])
+        by smtp.gmail.com with ESMTPSA id l190-20020a6225c7000000b0052d98fbf8f3sm1647563pfl.56.2022.08.01.06.29.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Aug 2022 06:29:24 -0700 (PDT)
+Date:   Mon, 1 Aug 2022 18:59:12 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH RESEND v4 07/15] PCI: tegra194: Drop manual DW PCIe
+ controller version setup
+Message-ID: <20220801132912.GG93763@thinkpad>
+References: <20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru>
+ <20220624143947.8991-8-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [PATCH v4 2/2] ARM: dts: stm32mp15x: Add timer interrupts
-Content-Language: en-US
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-CC:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <kernel@pengutronix.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
- <20220519162838.695404-2-u.kleine-koenig@pengutronix.de>
- <20220720071834.augn2mtytqzqcixo@pengutronix.de>
- <dcb245b7-1d2f-0f90-8be8-26688d184b5a@foss.st.com>
- <20220801095308.5ueokezguhfcug3u@pengutronix.de>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20220801095308.5ueokezguhfcug3u@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-01_07,2022-08-01_01,2022-06-22_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220624143947.8991-8-Sergey.Semin@baikalelectronics.ru>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/1/22 11:53, Uwe Kleine-König wrote:
-> On Mon, Aug 01, 2022 at 10:44:28AM +0200, Alexandre TORGUE wrote:
->> Hi Uwe
->>
->> On 7/20/22 09:18, Uwe Kleine-König wrote:
->>> Hello,
->>>
->>> On Thu, May 19, 2022 at 06:28:38PM +0200, Uwe Kleine-König wrote:
->>>> The timer units in the stm32mp15x CPUs have interrupts, depending on the
->>>> timer flavour either one "global" or four dedicated ones. Add the irqs
->>>> to the timer units on stm32mp15x.
->>>>
->>>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
->>>
->>> This patch wasn't picked up yet (at least nobody told to have done it
->>> and it's not in next). Is there a problem other than no maintainer time?
->>>
->>> Best regards
->>> Uwe
->>>
->>
->> I was waiting for a review from Rob or Krzysztof on bindings patch [1]. Let
->> me know if I missed it.
+On Fri, Jun 24, 2022 at 05:39:39PM +0300, Serge Semin wrote:
+> Since the DW PCIe common code now supports the IP-core version
+> auto-detection there is no point in manually setting the version up for the
+> controllers newer than v4.70a. Seeing Tegra 194 PCIe Host and EP
+> controllers are based on the DW PCIe v4.90a IP-core we can freely drop the
+> dw_pcie.version field initialization.
 > 
-> You did:
-> 
-> Patch #1 was reviewed by Rob and taken by Lee, currently waiting in
-> 'for-mfd-next' of
-> git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git as
-> 9875ab53c8ae ("dt-bindings: mfd: stm32-timers: Document how to specify
-> interrupts").
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 
-Ok, my mistake. I'll apply it for v5.21.
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Cheers
-Alex
+Thanks,
+Mani
 
 > 
-> Best regards
-> Uwe
+> ---
+> 
+> Folks, I don't have Tegra 194 PCIe hw instance to test it out. Could you
+> please make sure this patch doesn't brake anything?
+> 
+> Changelog v3:
+> - This is a new patch create as a result of the discussion:
+>   https://lore.kernel.org/linux-pci/20220503214638.1895-6-Sergey.Semin@baikalelectronics.ru/
+> ---
+>  drivers/pci/controller/dwc/pcie-tegra194.c | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+> index f24b30b7454f..e497e6de8d15 100644
+> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+> @@ -1979,7 +1979,6 @@ static int tegra194_pcie_probe(struct platform_device *pdev)
+>  	pci->ops = &tegra_dw_pcie_ops;
+>  	pci->n_fts[0] = N_FTS_VAL;
+>  	pci->n_fts[1] = FTS_VAL;
+> -	pci->version = DW_PCIE_VER_490A;
+>  
+>  	pp = &pci->pp;
+>  	pp->num_vectors = MAX_MSI_IRQS;
+> -- 
+> 2.35.1
 > 
 
+-- 
+மணிவண்ணன் சதாசிவம்
