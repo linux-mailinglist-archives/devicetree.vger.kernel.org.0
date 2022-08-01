@@ -2,162 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB22D586318
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 05:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DFE658632B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 05:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233932AbiHADd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 31 Jul 2022 23:33:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57726 "EHLO
+        id S238898AbiHADyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 31 Jul 2022 23:54:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229569AbiHADdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 23:33:25 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A153D114;
-        Sun, 31 Jul 2022 20:33:23 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2713X22I050303;
-        Sun, 31 Jul 2022 22:33:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1659324782;
-        bh=7B069uNIbizG2Scyb7mJP42slsILM1cjLIHQt/v7SUw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=wrUhdqh4r7+wfsrQJvKz1GBqjboNkZ1H/Mnemnr63/YIQWeK9Bk6xLoJNxzt40g4r
-         jP3ALc2VEMWhUZRukbBk1cTLljwk2eA3P8NHiD8vOFZ+edLUFvB8JUcASn1cyxGsyv
-         Ebs0DrOHQaZC+E3hm5vMhuz3xqaJ0Fzt/u0Al+yM=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2713X2Wp022620
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 31 Jul 2022 22:33:02 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sun, 31
- Jul 2022 22:33:01 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Sun, 31 Jul 2022 22:33:01 -0500
-Received: from [172.24.157.172] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2713WuJj091250;
-        Sun, 31 Jul 2022 22:32:57 -0500
-Message-ID: <ffe8a97d-0c79-c08f-7cfa-83eb6bbc2d39@ti.com>
-Date:   Mon, 1 Aug 2022 09:02:55 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.3
-Subject: Re: [PATCH 4/8] drm/tidss: Add support for Dual Link LVDS Bus Format
-Content-Language: en-US
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC:     Nishanth Menon <nm@ti.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        David Airlie <airlied@linux.ie>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Darren Etheridge <detheridge@ti.com>,
+        with ESMTP id S229497AbiHADyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 31 Jul 2022 23:54:18 -0400
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C50BD12AE8;
+        Sun, 31 Jul 2022 20:54:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1659326057; x=1690862057;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=LIL0NXbRqabhEVprRkXveEeGK6nwA3ua/cchDuHt71s=;
+  b=c7m+uYR3IZu814Ph2jLOrW6cCw2RyvCV9mmo+xcRBbv1SAORlShwGcrf
+   6mNCEhSwmLSQ3qeS7spunAgQ363duD+EKXjpL890CY0KqEJbFVTQmI2C1
+   NPUoYQ0mLxRfMizs6PG2noXDDQMxi3fQ9baqdgktFKcDvTlrPKa8oHgr7
+   dojKHnxLW4nTbFfEoXQusuwWp8v80N9ZZRRv0uoJ8Vzi8piWwEhYzHB7T
+   SNrCd5anv6QA0WhHqdJ7Citba9JysWLgZBCylMl8SiAkE9FmFqnr7E1KZ
+   flzvzMMW0a0TnUl9EdTh6OLxSq70HNXSd569fZTjf6F7REGABRVPXiD0s
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10425"; a="269437613"
+X-IronPort-AV: E=Sophos;i="5.93,206,1654585200"; 
+   d="scan'208";a="269437613"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jul 2022 20:54:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,206,1654585200"; 
+   d="scan'208";a="691322796"
+Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 31 Jul 2022 20:54:13 -0700
+Received: from kbuild by e0eace57cfef with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oIMVQ-000Elh-2s;
+        Mon, 01 Aug 2022 03:54:12 +0000
+Date:   Mon, 1 Aug 2022 11:53:13 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Iskren Chernev <iskren.chernev@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>, Rahul T R <r-ravikumar@ti.com>,
-        Krunal Bhargav <k-bhargav@ti.com>
-References: <20220719080845.22122-1-a-bhatia1@ti.com>
- <20220719080845.22122-5-a-bhatia1@ti.com>
- <f2909af1-be23-009b-ba71-34206f099473@ideasonboard.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <f2909af1-be23-009b-ba71-34206f099473@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Iskren Chernev <iskren.chernev@gmail.com>,
+        Adam Skladowski <a39.skl@gmail.com>
+Subject: Re: [PATCH v3 05/13] regulator: qcom_spmi: Add support for new
+ regulator types
+Message-ID: <202208011110.Bms4zAP4-lkp@intel.com>
+References: <20220731223736.1036286-6-iskren.chernev@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220731223736.1036286-6-iskren.chernev@gmail.com>
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Iskren,
+
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on broonie-regulator/for-next]
+[also build test ERROR on next-20220728]
+[cannot apply to krzk-dt/for-next linus/master v5.19]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Iskren-Chernev/PM6125-regulator-support/20220801-064059
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+config: arm64-buildonly-randconfig-r005-20220731 (https://download.01.org/0day-ci/archive/20220801/202208011110.Bms4zAP4-lkp@intel.com/config)
+compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project 52cd00cabf479aa7eb6dbb063b7ba41ea57bce9e)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/intel-lab-lkp/linux/commit/3758c84ef9cec75fc09a3463506782d3179fe480
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Iskren-Chernev/PM6125-regulator-support/20220801-064059
+        git checkout 3758c84ef9cec75fc09a3463506782d3179fe480
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/regulator/
+
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/regulator/qcom_spmi-regulator.c:1565:15: error: incompatible function pointer types initializing 'unsigned int (*)(struct regulator_dev *)' with an expression of type 'int (struct regulator_dev *, unsigned int)' [-Werror,-Wincompatible-function-pointer-types]
+           .get_mode               = spmi_regulator_ftsmps3_get_mode,
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 error generated.
 
 
-On 28-Jul-22 16:33, Tomi Valkeinen wrote:
-> On 19/07/2022 11:08, Aradhya Bhatia wrote:
->> The 2 OLDI TXes in the AM625 SoC can be synced together to output a 2K
->> resolution video.
->>
->> Add support in the driver for the discovery of such a dual mode
->> connection on the OLDI video port, using the values of "ti,oldi-mode"
->> property.
->>
->> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->> ---
->>   drivers/gpu/drm/tidss/tidss_dispc.c | 39 +++++++++++++++++++++--------
->>   1 file changed, 28 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
->> b/drivers/gpu/drm/tidss/tidss_dispc.c
->> index add725fa682b..fb1fdecfc83a 100644
->> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
->> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
->> @@ -853,25 +853,36 @@ void dispc_set_irqenable(struct dispc_device 
->> *dispc, dispc_irq_t mask)
->>       }
->>   }
->> -enum dispc_oldi_mode_reg_val { SPWG_18 = 0, JEIDA_24 = 1, SPWG_24 = 2 };
->> +enum dispc_oldi_mode_reg_val {
->> +    SPWG_18        = 0,
->> +    JEIDA_24    = 1,
->> +    SPWG_24        = 2,
->> +    DL_SPWG_18    = 4,
->> +    DL_JEIDA_24    = 5,
->> +    DL_SPWG_24    = 6,
->> +};
->>   struct dispc_bus_format {
->>       u32 bus_fmt;
->>       u32 data_width;
->>       bool is_oldi_fmt;
->> +    bool is_dual_link;
->>       enum dispc_oldi_mode_reg_val oldi_mode_reg_val;
->>   };
->>   static const struct dispc_bus_format dispc_bus_formats[] = {
->> -    { MEDIA_BUS_FMT_RGB444_1X12,        12, false, 0 },
->> -    { MEDIA_BUS_FMT_RGB565_1X16,        16, false, 0 },
->> -    { MEDIA_BUS_FMT_RGB666_1X18,        18, false, 0 },
->> -    { MEDIA_BUS_FMT_RGB888_1X24,        24, false, 0 },
->> -    { MEDIA_BUS_FMT_RGB101010_1X30,        30, false, 0 },
->> -    { MEDIA_BUS_FMT_RGB121212_1X36,        36, false, 0 },
->> -    { MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,    18, true, SPWG_18 },
->> -    { MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,    24, true, SPWG_24 },
->> -    { MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,    24, true, JEIDA_24 },
->> +    { MEDIA_BUS_FMT_RGB444_1X12,        12, false, false, 0 },
->> +    { MEDIA_BUS_FMT_RGB565_1X16,        16, false, false, 0 },
->> +    { MEDIA_BUS_FMT_RGB666_1X18,        18, false, false, 0 },
->> +    { MEDIA_BUS_FMT_RGB888_1X24,        24, false, false, 0 },
->> +    { MEDIA_BUS_FMT_RGB101010_1X30,        30, false, false, 0 },
->> +    { MEDIA_BUS_FMT_RGB121212_1X36,        36, false, false, 0 },
->> +    { MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,    18, true, false, SPWG_18 },
->> +    { MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,    24, true, false, SPWG_24 },
->> +    { MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,    24, true, false, JEIDA_24 },
->> +    { MEDIA_BUS_FMT_RGB666_1X7X3_SPWG,    18, true, true, DL_SPWG_18 },
->> +    { MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,    24, true, true, DL_SPWG_24 },
->> +    { MEDIA_BUS_FMT_RGB888_1X7X4_JEIDA,    24, true, true, 
->> DL_JEIDA_24 },
->>   };
-> 
-> So the dual link sends two pixels per clock, right? Are there panel or 
-> bridge drivers that support this? My initial thought was that it should 
-> be a new bus format.
-In dual link, we are having 2 OLDI TXes simultaneously send pixels, at a
-fraction of the pixel frequency clock. Both the TXes have their own
-clock lanes and they are in sync.
+vim +1565 drivers/regulator/qcom_spmi-regulator.c
 
-At the moment, we are not modeling the OLDI TXes as bridges in the DT,
-nor are the drivers for these written. The tidss driver handles the
-configuration, as the register is inside the DSS video ports address
-space.
+  1554	
+  1555	static const struct regulator_ops spmi_ftsmps3_ops = {
+  1556		.enable			= regulator_enable_regmap,
+  1557		.disable		= regulator_disable_regmap,
+  1558		.is_enabled		= regulator_is_enabled_regmap,
+  1559		.set_voltage_sel	= spmi_regulator_ftsmps426_set_voltage,
+  1560		.set_voltage_time_sel	= spmi_regulator_set_voltage_time_sel,
+  1561		.get_voltage_sel	= spmi_regulator_ftsmps426_get_voltage,
+  1562		.map_voltage		= spmi_regulator_single_map_voltage,
+  1563		.list_voltage		= spmi_regulator_common_list_voltage,
+  1564		.set_mode		= spmi_regulator_ftsmps3_set_mode,
+> 1565		.get_mode		= spmi_regulator_ftsmps3_get_mode,
+  1566		.set_load		= spmi_regulator_common_set_load,
+  1567		.set_pull_down		= spmi_regulator_common_set_pull_down,
+  1568	};
+  1569	
 
-The need to add a dual link field in the above patch is there because
-the OLDI config registers needs to know so. The output from both the
-TXes remains according to the standard bus formats.
-
-Regards
-Aradhya
+-- 
+0-DAY CI Kernel Test Service
+https://01.org/lkp
