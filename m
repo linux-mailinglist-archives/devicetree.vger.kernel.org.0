@@ -2,175 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D613586BF4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9812586BFA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Aug 2022 15:29:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231582AbiHAN2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 09:28:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58948 "EHLO
+        id S230356AbiHAN3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 09:29:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231417AbiHAN2b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:28:31 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD473C179
-        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 06:28:29 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id p14-20020a17090a74ce00b001f4d04492faso5828761pjl.4
-        for <devicetree@vger.kernel.org>; Mon, 01 Aug 2022 06:28:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=wyQqPKgBTGooqZfohpI1mfr8+wRbGXjvZx6y58chggA=;
-        b=llMzU+PmXn8jowe/WZtM708qdAhg0SRPpGZUPSdzCnyXQU7Oh7acn+pWlwMF4mYMZi
-         cqcceiPSVNHCGTiUhuai9CSLBod+3dTA/4z2rv0p0WyRxO3XLjHWhUv72QTXvqKv7ksD
-         Pt+NEI4N+BSttGQpSAJpmC5rLjPWEEEI/8PeUXTq+WoBk2H8aMSN6QQLHZHHieGa3L7S
-         RrW/QPJx4MA6L4dn/Xqz3kfUmF+I3YPg2Kur6lj0zN1h/OQAXWg9XRO4nUSnYczo0J3x
-         bMjJG+3bYAGTZ7qr69219QdJrFeAMAbV1duarZX+6yT8sEYIFOBy6va6pJJfNyJ8Rwbr
-         mECw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=wyQqPKgBTGooqZfohpI1mfr8+wRbGXjvZx6y58chggA=;
-        b=sgaxn4RzHQnb0tI3hHTXYb/Eu5WuMsQI8oJedVTUEzre+G4UUHQcaTtHIU4vk06H5S
-         KhcUAUPQMY4IWjAEbtR4tQ4qOrsNER/w2exPvFPBNcbBxEGt87Sbb7OofolFvXv3P2By
-         k64fc+6snec8MdD9/K2JSFE1Qt6OdfhDF3UDr8q+DqF737QJgsJ30wr+5xQf4Z9tUfAu
-         9OZtpSOTUKpDWTZ1szFlJRLSwbYP8/d81xQVkgUPlE+dbmCCiwpFlx1PLkK8yHVDpbDa
-         PIxPGzeg62K+TP6CuYltfQ13gUrYy0andc7IoOdhBbCa2/O/cOrB9/7nHfK1RZL+193U
-         pWSA==
-X-Gm-Message-State: ACgBeo2jNms/zVJEHNyuZM7RArMPetzDhVZ4VC27h4V9iw+LcZNeJhbq
-        dG4tfC0L1ewz8kzpbXemucNQ
-X-Google-Smtp-Source: AA6agR5zmrc/qpk0QEVdPd0hGYr/gqqpLMP0KZT8hDjPgliTh6m/o/2HqS8lfcbo52JPraornwDhIw==
-X-Received: by 2002:a17:90b:4c12:b0:1f5:958:c313 with SMTP id na18-20020a17090b4c1200b001f50958c313mr3657056pjb.6.1659360508919;
-        Mon, 01 Aug 2022 06:28:28 -0700 (PDT)
-Received: from thinkpad ([117.217.185.73])
-        by smtp.gmail.com with ESMTPSA id w4-20020a17090a1b8400b001f32f242020sm7502648pjc.43.2022.08.01.06.28.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Aug 2022 06:28:28 -0700 (PDT)
-Date:   Mon, 1 Aug 2022 18:58:17 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Rahul Tanwar <rtanwar@maxlinear.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Frank Li <Frank.Li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, eswara.kota@linux.intel.com
-Subject: Re: [PATCH RESEND v4 06/15] PCI: intel-gw: Drop manual DW PCIe
- controller version setup
-Message-ID: <20220801132817.GF93763@thinkpad>
-References: <20220624143947.8991-1-Sergey.Semin@baikalelectronics.ru>
- <20220624143947.8991-7-Sergey.Semin@baikalelectronics.ru>
+        with ESMTP id S231276AbiHAN3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 09:29:05 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694763C8D7
+        for <devicetree@vger.kernel.org>; Mon,  1 Aug 2022 06:29:04 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 2719pgGx003239;
+        Mon, 1 Aug 2022 15:28:47 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=a1HMbAEdWLn+FNF0+2Ws3CrNvw3tnB1rE4cGaL0xKU0=;
+ b=qol5DtfArmU94z+/2n3ug/4IRssv3XMghvPVAM8f2WKpRltEuz/GXnQRqgP/yZkUwlhm
+ djib4mYZb5bf7yQv8z4fNHsqrRQY6d8J26oHW909/0z6o9iDDXbZlh8vLAAo8KT+VPrF
+ jHh9VoAxvwejpyJaiQDlNUrIxi4iINMsvLwxv7gdbZMVmcpAMWrFxkozfSkw39YHuzfL
+ qVINoTOgQJU5qEdk9itVyUbUVMyFMzXGOCJ11K3ek+gJAYruazcVbYXXehvKLl3mZbBI
+ sHqztlzSGja0qIuqhXsbjhZyF8xAprR0vGyRQyRbFTM632ughhiGGX8cnHUIlJvqiFva sg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3hmv01527w-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 01 Aug 2022 15:28:47 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DE51910002A;
+        Mon,  1 Aug 2022 15:28:45 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D7E4922D18D;
+        Mon,  1 Aug 2022 15:28:45 +0200 (CEST)
+Received: from [10.201.21.93] (10.75.127.47) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Mon, 1 Aug
+ 2022 15:28:44 +0200
+Message-ID: <0323004a-c948-d3a6-03b0-480b2171ee67@foss.st.com>
+Date:   Mon, 1 Aug 2022 15:28:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: [PATCH v4 2/2] ARM: dts: stm32mp15x: Add timer interrupts
+Content-Language: en-US
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+CC:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <kernel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220519162838.695404-1-u.kleine-koenig@pengutronix.de>
+ <20220519162838.695404-2-u.kleine-koenig@pengutronix.de>
+ <20220720071834.augn2mtytqzqcixo@pengutronix.de>
+ <dcb245b7-1d2f-0f90-8be8-26688d184b5a@foss.st.com>
+ <20220801095308.5ueokezguhfcug3u@pengutronix.de>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20220801095308.5ueokezguhfcug3u@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220624143947.8991-7-Sergey.Semin@baikalelectronics.ru>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-01_07,2022-08-01_01,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 24, 2022 at 05:39:38PM +0300, Serge Semin wrote:
-> Since the DW PCIe common code now supports the IP-core version
-> auto-detection there is no point manually setting the version up for the
-> controllers newer than v4.70a. In particular Intel GW PCIe platform code
-> can be set free from the manual version setup, which as a positive side
-> effect causes the private device data removal too.
+On 8/1/22 11:53, Uwe Kleine-König wrote:
+> On Mon, Aug 01, 2022 at 10:44:28AM +0200, Alexandre TORGUE wrote:
+>> Hi Uwe
+>>
+>> On 7/20/22 09:18, Uwe Kleine-König wrote:
+>>> Hello,
+>>>
+>>> On Thu, May 19, 2022 at 06:28:38PM +0200, Uwe Kleine-König wrote:
+>>>> The timer units in the stm32mp15x CPUs have interrupts, depending on the
+>>>> timer flavour either one "global" or four dedicated ones. Add the irqs
+>>>> to the timer units on stm32mp15x.
+>>>>
+>>>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>>>
+>>> This patch wasn't picked up yet (at least nobody told to have done it
+>>> and it's not in next). Is there a problem other than no maintainer time?
+>>>
+>>> Best regards
+>>> Uwe
+>>>
+>>
+>> I was waiting for a review from Rob or Krzysztof on bindings patch [1]. Let
+>> me know if I missed it.
 > 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> You did:
+> 
+> Patch #1 was reviewed by Rob and taken by Lee, currently waiting in
+> 'for-mfd-next' of
+> git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git as
+> 9875ab53c8ae ("dt-bindings: mfd: stm32-timers: Document how to specify
+> interrupts").
 
-I don't have a hardware to test. But going by the DWC spec, this looks good to
-me.
+Ok, my mistake. I'll apply it for v5.21.
 
-CCed the author of this driver, "Dilip Kota" in case he can confirm.
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks,
-Mani
+Cheers
+Alex
 
 > 
-> ---
-> 
-> Folks, I don't have Intel GW PCIe hw instance to test it out. Could you
-> please make sure this patch doesn't brake anything?
-> 
-> Changelog v3:
-> - This is a new patch create as a result of the discussion:
->   https://lore.kernel.org/linux-pci/20220503214638.1895-6-Sergey.Semin@baikalelectronics.ru/
-> ---
->  drivers/pci/controller/dwc/pcie-intel-gw.c | 16 +---------------
->  1 file changed, 1 insertion(+), 15 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-intel-gw.c b/drivers/pci/controller/dwc/pcie-intel-gw.c
-> index 371b5aa189d1..a44f685ec94d 100644
-> --- a/drivers/pci/controller/dwc/pcie-intel-gw.c
-> +++ b/drivers/pci/controller/dwc/pcie-intel-gw.c
-> @@ -58,10 +58,6 @@
->  #define BUS_IATU_OFFSET			SZ_256M
->  #define RESET_INTERVAL_MS		100
->  
-> -struct intel_pcie_soc {
-> -	u32	pcie_ver;
-> -};
-> -
->  struct intel_pcie {
->  	struct dw_pcie		pci;
->  	void __iomem		*app_base;
-> @@ -394,13 +390,8 @@ static const struct dw_pcie_host_ops intel_pcie_dw_ops = {
->  	.host_init =		intel_pcie_rc_init,
->  };
->  
-> -static const struct intel_pcie_soc pcie_data = {
-> -	.pcie_ver =		DW_PCIE_VER_520A,
-> -};
-> -
->  static int intel_pcie_probe(struct platform_device *pdev)
->  {
-> -	const struct intel_pcie_soc *data;
->  	struct device *dev = &pdev->dev;
->  	struct intel_pcie *pcie;
->  	struct dw_pcie_rp *pp;
-> @@ -424,12 +415,7 @@ static int intel_pcie_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	data = device_get_match_data(dev);
-> -	if (!data)
-> -		return -ENODEV;
-> -
->  	pci->ops = &intel_pcie_ops;
-> -	pci->version = data->pcie_ver;
->  	pp->ops = &intel_pcie_dw_ops;
->  
->  	ret = dw_pcie_host_init(pp);
-> @@ -447,7 +433,7 @@ static const struct dev_pm_ops intel_pcie_pm_ops = {
->  };
->  
->  static const struct of_device_id of_intel_pcie_match[] = {
-> -	{ .compatible = "intel,lgm-pcie", .data = &pcie_data },
-> +	{ .compatible = "intel,lgm-pcie" },
->  	{}
->  };
->  
-> -- 
-> 2.35.1
+> Best regards
+> Uwe
 > 
 
--- 
-மணிவண்ணன் சதாசிவம்
