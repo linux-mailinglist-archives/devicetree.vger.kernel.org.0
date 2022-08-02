@@ -2,164 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C26D587928
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:38:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FDF3587931
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:42:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236436AbiHBIi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 04:38:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40862 "EHLO
+        id S236311AbiHBIlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 04:41:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236433AbiHBIiz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:38:55 -0400
+        with ESMTP id S231326AbiHBIls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:41:48 -0400
 Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D16639B82
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:38:53 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id t1so20922554lft.8
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:38:53 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 200F81835A
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:41:47 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id t1so20932050lft.8
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:41:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=OUlNVrJftmJ2XfuB3wDshZNv/WR+XBtPkC09jnanpmY=;
-        b=wPsQf9BgZWpy0q27jb7/9V/6AeIs+AAlD45SBnMIRQ16xfnhaYsgSlyFWW2/PISiLs
-         qK2irYUDp2EIT7BkMxtsceOKJCFQ29u6JdmeOOtmCocgRrGBr/cBXoWIs3hfMNBEEfxQ
-         EMjREyZPkUGamG4vhygIZTayMiXWVFxTshSLANg/lj6pBGdXz5ZvNZlg0pSxXX4/zcJS
-         MlxEmpHBbOdhW0z4JUHptfv2oNQz/5WQiPvFul85fEaIEyILXa2yFyUjkkf+5doryFZ9
-         11g/sNIBagAyybksgBRc2C24lTGcwMJbT+ld8YatmlMfAcwm94A114UsmnFlfxa5soTZ
-         io6A==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=zzB0a7bJOMuRv01PGiHsY1rvic1GuiUFISUsomCCCOo=;
+        b=FGiOqoB701ZWcSGMUaQswKviPECFcCRkpb1CO5b7T7slyTtpMvgZLLV6NZv4POrW3A
+         8KxoyNm4hvlQ39tHXnv1WTlPGfm4VwNAbmheiMYG5htaEo9wiHviHhhbehHK9+BM69dZ
+         NyZ3qlzJbke68yc7fuGUCf8nJYbMAcXy/exARn+DYXlbv/5Ldrl5wN1FhsetYXS/rNlo
+         MsVvjSNyIdpmYIMdW+LURg68QqTKLFfEEha5nzX/+71DcMi352uN2HPEY2i/zJj5Vrob
+         Sc7aki4z/6Cvxbx2OQ4zEY8V4gYluEfFcHvtaYS+MRvfu6PGwN79mL3GtQHxzWt/Rqec
+         xT0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=OUlNVrJftmJ2XfuB3wDshZNv/WR+XBtPkC09jnanpmY=;
-        b=Sg5l+gpbGce/h5KN+GLYgioJBfL4yNooQFDqfVNJFsXLMxh2/CpobD+2tBiIviOB9a
-         zUHrI8QKnyio8u56kKQyN1B1swjen+JiDwfJ0JM5Pod5+NOEozLB7qgvhZKFBHzKDcJw
-         rfhtlmhK1DU4zcSWlwR5CRWE301YK1yCzfziEEfnCBil+FqCvj4/uNlgjScUZ0/MskPe
-         rWeJTQX4Gc9qASQsjeuutQBmqqb/ZWtbdbIuLeEiY/63pDqPovp0NohjVAGhZUn3tDqT
-         Rc7fHbkPcmZ9T9t2UnPIPOTNqt0r4giRM3lXWZxB13j21YfPJMa2mISrXxlkMPfqo7EQ
-         cwwA==
-X-Gm-Message-State: ACgBeo0fwBMIXASb3YwohcN0GKMbNIANAyv2nGZX3KpVS1i/7iyzNIRZ
-        TPabxNdQmDXUlPcv8Nc+N0Pwty9zG4FuKw==
-X-Google-Smtp-Source: AA6agR5ZVmGpYFxuTsEJLxQ7mSYVQFY+1aKXLwklROUAmeEvG7kRXnZXEHSDo/EizY7YdFM0JJv6sQ==
-X-Received: by 2002:ac2:465e:0:b0:48a:ebc2:2cbf with SMTP id s30-20020ac2465e000000b0048aebc22cbfmr4866933lfo.374.1659429531862;
-        Tue, 02 Aug 2022 01:38:51 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id c25-20020a056512075900b0048afdf1ba33sm585309lfs.208.2022.08.02.01.38.50
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=zzB0a7bJOMuRv01PGiHsY1rvic1GuiUFISUsomCCCOo=;
+        b=PnzTCj5aiFkiQ0JcI2P6fr0FCceVrF7Y8VN7jPk9IUdtU3eY/FtqQsq0/czcbwcMg4
+         2+w2BwH2xyKgQ2+U+Jw+eu79QvqBxkKieOcxZvaM/bxDDNd+5SKHZBulO4YM2kMOPxZQ
+         J6fI6kTmmJo/e1dxvhowT6stTQhI47Z6zLSx/7v3ULz9ool86nLzqc8NVYhZ+RGuuwVk
+         d22bBOtNtSUj1mndmKh+mKtE9vU8D9unxzXPmSO5eb03ORDnD4FWRViBirUOe8TlmNjE
+         nX7h7fWe8MapGRRflszoZOV0QLh3y79RCIVPflwFeC7vei7Xq8PQhPB33d7ZlA+070jo
+         oF+Q==
+X-Gm-Message-State: AJIora8qW+k5kPlJ0R8U+rfkOzqF6VEKOJeboEiECMm8oJ5q9U/wp6jD
+        WfWPfoxzHMGSTE+wlJY0ckCbiw==
+X-Google-Smtp-Source: AGRyM1vJSAY2q/uqhkA1XSIumtj2KvUDJDe8nq4mEflYQj1coZO+qe9bEl83kK9K5j3RD9tqV2NHeg==
+X-Received: by 2002:a19:6d0d:0:b0:48a:8b3c:e28 with SMTP id i13-20020a196d0d000000b0048a8b3c0e28mr6420470lfc.265.1659429705435;
+        Tue, 02 Aug 2022 01:41:45 -0700 (PDT)
+Received: from [192.168.1.6] ([213.161.169.44])
+        by smtp.gmail.com with ESMTPSA id e12-20020a19674c000000b00489e2156285sm2021463lfj.104.2022.08.02.01.41.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 01:38:51 -0700 (PDT)
-Message-ID: <869e9d41-7a21-c01a-ccbd-53bfb236938c@linaro.org>
-Date:   Tue, 2 Aug 2022 11:38:50 +0300
+        Tue, 02 Aug 2022 01:41:44 -0700 (PDT)
+Message-ID: <cc60401b-ecb8-4907-af3e-bb437ae1421b@linaro.org>
+Date:   Tue, 2 Aug 2022 10:41:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 09/11] gunyah: rsc_mgr: Add auxiliary devices for
- console
-Content-Language: en-GB
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/4] dt-bindings: net: dsa: mediatek,mt7530: make trivial
+ changes
+Content-Language: en-US
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220801211240.597859-1-quic_eberman@quicinc.com>
- <20220801211240.597859-10-quic_eberman@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220801211240.597859-10-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220730142627.29028-1-arinc.unal@arinc9.com>
+ <20220730142627.29028-2-arinc.unal@arinc9.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220730142627.29028-2-arinc.unal@arinc9.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2022 00:12, Elliot Berman wrote:
-> Gunyah resource manager exposes a concrete functionalities which
-> complicate a single resource manager driver. Use auxiliary bus
-> to help split high level functions for the resource manager and keep the
-> primary resource manager driver focused on the RPC with RM itself.
-> Delegate Resource Manager's console functionality to the auxiliary bus.
+On 30/07/2022 16:26, Arınç ÜNAL wrote:
+> Make trivial changes on the binding.
 > 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> - Update title to include MT7531 switch.
+> - Add me as a maintainer. List maintainers in alphabetical order by first
+> name.
+> - Add description to compatible strings.
+> - Fix MCM description. mediatek,mcm is not used on MT7623NI.
+> - Add description for reset-gpios.
+> - Remove quotes from $ref: "dsa.yaml#".
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
 > ---
->   drivers/virt/gunyah/rsc_mgr.c | 61 ++++++++++++++++++++++++++++++++++-
->   1 file changed, 60 insertions(+), 1 deletion(-)
+>  .../bindings/net/dsa/mediatek,mt7530.yaml     | 27 ++++++++++++++-----
+>  1 file changed, 20 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/virt/gunyah/rsc_mgr.c b/drivers/virt/gunyah/rsc_mgr.c
-> index b8268ee02fab..44b22cef7d44 100644
-> --- a/drivers/virt/gunyah/rsc_mgr.c
-> +++ b/drivers/virt/gunyah/rsc_mgr.c
-> @@ -91,6 +91,11 @@ struct gh_rm_notif_complete {
->   	struct work_struct work;
->   };
->   
-> +struct gh_rsc_mgr_adev {
-> +	struct auxiliary_device adev;
-> +	struct list_head list;
-> +};
-> +
->   struct gh_rsc_mgr {
->   	struct task_struct *recv_task;
->   	struct gunyah_device *msgq_tx, *msgq_rx;
-> @@ -99,6 +104,13 @@ struct gh_rsc_mgr {
->   	struct mutex call_idr_lock;
->   
->   	struct mutex send_lock;
-> +
-> +	struct list_head adevs;
-> +};
-> +
-> +/* List of auxiliary devices which resource manager creates */
-> +static const char * const adev_names[] = {
-> +	"console",
->   };
+> diff --git a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> index 17ab6c69ecc7..541984a7d2d4 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/mediatek,mt7530.yaml
+> @@ -4,12 +4,13 @@
+>  $id: http://devicetree.org/schemas/net/dsa/mediatek,mt7530.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Mediatek MT7530 Ethernet switch
+> +title: Mediatek MT7530 and MT7531 Ethernet Switches
+>  
+>  maintainers:
+> -  - Sean Wang <sean.wang@mediatek.com>
+> +  - Arınç ÜNAL <arinc.unal@arinc9.com>
+>    - Landen Chao <Landen.Chao@mediatek.com>
+>    - DENG Qingfang <dqfext@gmail.com>
+> +  - Sean Wang <sean.wang@mediatek.com>
+>  
+>  description: |
+>    Port 5 of mt7530 and mt7621 switch is muxed between:
+> @@ -66,6 +67,14 @@ properties:
+>        - mediatek,mt7531
+>        - mediatek,mt7621
+>  
+> +    description: |
+> +      mediatek,mt7530:
+> +        For standalone MT7530 and multi-chip module MT7530 in MT7623AI SoC.
+> +      mediatek,mt7531:
+> +        For standalone MT7531.
+> +      mediatek,mt7621:
+> +        For multi-chip module MT7530 in MT7621AT, MT7621DAT and MT7621ST SoCs.
 
-Which other auxilliary devices do you expect at this moment?
+If compatible: is changed to oneOf, you can use description for each
+item. Look at board compatibles (arm/fsl.yaml)
 
->   
->   static struct gh_rsc_mgr *__rsc_mgr;
-> @@ -516,6 +528,14 @@ int gh_rm_unregister_notifier(struct notifier_block *nb)
->   }
->   EXPORT_SYMBOL_GPL(gh_rm_unregister_notifier);
->   
-> +static void gh_rm_adev_release(struct device *dev)
-> +{
-> +	struct gh_rsc_mgr_adev *rm_adev = container_of(dev, struct gh_rsc_mgr_adev, adev.dev);
 > +
-> +	list_del(&rm_adev->list);
+>    reg:
+>      maxItems: 1
+>  
+> @@ -79,7 +88,7 @@ properties:
+>    gpio-controller:
+>      type: boolean
+>      description:
+> -      if defined, MT7530's LED controller will run on GPIO mode.
+> +      If defined, MT7530's LED controller will run on GPIO mode.
+>  
+>    "#interrupt-cells":
+>      const: 1
+> @@ -98,11 +107,15 @@ properties:
+>    mediatek,mcm:
+>      type: boolean
+>      description:
+> -      if defined, indicates that either MT7530 is the part on multi-chip
+> -      module belong to MT7623A has or the remotely standalone chip as the
+> -      function MT7623N reference board provided for.
+> +      Used for MT7621AT, MT7621DAT, MT7621ST and MT7623AI SoCs which the MT7530
+> +      switch is a part of the multi-chip module.
 
-is there a race for the rsc_mgr->list? Can multiple release functions be 
-called in parallel?
-Rather than having a list, it would be easier to have an array of 
-devices. Less race conditions, simpler code.
+Does this mean it is valid only on these variants? If yes, this should
+have a "mediatek,mcm:false" in allOf:if:then as separate patch (with
+this change in description).
 
-Or just add gh_rsc_msg->console_adev and use it directly without any 
-additional bells and whistles.
+>  
+>    reset-gpios:
+> +    description:
+> +      GPIO to reset the switch. Use this if mediatek,mcm is not used.
 
-> +	kfree(rm_adev);
-> +}
-> +
->   static struct gunyah_device *gh_msgq_platform_probe_direction(struct platform_device *pdev,
->   				u8 gh_type, int idx)
->   {
--- 
-With best wishes
-Dmitry
+The same. Example:
+https://elixir.bootlin.com/linux/v5.17-rc2/source/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml#L155
+
+> +      This property is optional because some boards share the reset line with
+> +      other components which makes it impossible to probe the switch if the
+> +      reset line is used.
+>      maxItems: 1
+>  
+>    reset-names:
+> @@ -148,7 +161,7 @@ required:
+>    - reg
+>  
+>  allOf:
+> -  - $ref: "dsa.yaml#"
+> +  - $ref: dsa.yaml#
+>    - if:
+>        required:
+>          - mediatek,mcm
+
+
+Best regards,
+Krzysztof
