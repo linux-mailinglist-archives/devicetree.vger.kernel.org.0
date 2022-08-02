@@ -2,120 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17F6A587895
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:01:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 080AE5879E7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 11:34:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236290AbiHBIA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 04:00:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40488 "EHLO
+        id S235113AbiHBJen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 05:34:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235970AbiHBIA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:00:56 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0776BBCB1
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:00:55 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id h12so14777629ljg.7
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:00:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Qp/fom4yzLGREQ6eeR8li3mYbaq2TiER/tBpXxkXygo=;
-        b=TFKlaysWDIVNTrpIejCvdZ3ShsEZpGjK197WnOqTVDguDiHpHDaSiYtLkMZnv5nWVL
-         Y4HNIrLz/rrChsreSuiWgemQ3g80PyFtDxrfZiE1E8sapn0v7ZIR5BzlDcJLmpMqqwT1
-         wX++pYFLpakjvWeQhddWl3cAY9KW1symUlX6F6umXqO+4JZ3J8WmsgFz1JnpbIySrFgC
-         DYlNBb8kW3xD+a/p7M+eAjUxNgc6Jhs/CzaA30VuYoKvl3k8wpnknxRdQjaIxDqRSMB2
-         pAdELhDbrTvIN9g0syFGrU4L5TFeE8HeXYDIatMLL9ahGlsDrC5IHf6wi4UgNJP54G6P
-         C2fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Qp/fom4yzLGREQ6eeR8li3mYbaq2TiER/tBpXxkXygo=;
-        b=WoareS0tIIkGgBe7eG29ZzV1REjOzLKWr85soH/O8wZGcJTS9L/wDxzUsCpVOfY/Pc
-         CQ9yT6jRovKhQyNRyEYLsAuKI9jvwn6jHHf+0HRKnoPNbHghGvjKfWPlgGGrne1SZQBV
-         OrKqPw9+Zxy3xTE5FRhzNpqtSUXaCbbJk8hUeqzre/8b+TfE81T6YAThd3BYrRifpvSg
-         REKKREhtHjJUgDc2dIwznzieUN+4nutsO+j2wkCWoFQ3yOK2jgdhtscEei2y7yLS5+uW
-         39ZjxHDIpiqNYXumvYftS3ETsHyyjvk4aeLhm8v7Lm/lRtqwBJIWdqRPIrRR8D8Vqkvv
-         quTg==
-X-Gm-Message-State: AJIora9iIwPTWLAOozSKZlGXGvsVUn0wqvPACuUWiLngG5ZRkoFsdUzz
-        lFsZpQBAxApuSeU3hi/TmEPsnA==
-X-Google-Smtp-Source: AGRyM1tLMTHtWy8rLH1qccJY+573kjD3/apdLT7hUWRIsx3cmqkIWPYfI8rcWCVwsyah4kPGJxNplg==
-X-Received: by 2002:a2e:a812:0:b0:25d:d922:d with SMTP id l18-20020a2ea812000000b0025dd922000dmr5895793ljq.181.1659427253194;
-        Tue, 02 Aug 2022 01:00:53 -0700 (PDT)
-Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id v2-20020a2e2f02000000b0025deba4d9f1sm1818669ljv.86.2022.08.02.01.00.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 01:00:52 -0700 (PDT)
-Message-ID: <426b98b9-95a0-eb5e-7f68-fbe1e45b4740@linaro.org>
-Date:   Tue, 2 Aug 2022 10:00:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 00/10] dt-bindings: iio: use spi-peripheral-props.yaml
-Content-Language: en-US
-To:     Lukas Wunner <lukas@wunner.de>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+        with ESMTP id S232727AbiHBJem (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 05:34:42 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B21C402C4
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 02:34:42 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1oIoIA-0005wN-Ok; Tue, 02 Aug 2022 11:34:22 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 705CFC130C;
+        Tue,  2 Aug 2022 07:06:31 +0000 (UTC)
+Date:   Tue, 2 Aug 2022 09:06:30 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
+Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stankus <lucas.p.stankus@gmail.com>,
-        Puranjay Mohan <puranjay12@gmail.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Tomislav Denis <tomislav.denis@avl.com>,
-        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
-        Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        Dragos Bogdan <dragos.bogdan@analog.com>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Joachim Eastwood <manabian@gmail.com>,
-        Tomas Melin <tomas.melin@vaisala.com>,
-        Sean Nyekjaer <sean@geanix.com>,
-        Beniamin Bia <beniamin.bia@analog.com>,
-        Patrick Vasseur <patrick.vasseur@c-s.fr>,
-        Charles-Antoine Couret <charles-antoine.couret@essensium.com>,
-        Vladimir Barinov <vladimir.barinov@cogentembedded.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Philippe Reynes <tremyfr@yahoo.fr>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Akinobu Mita <akinobu.mita@gmail.com>,
-        Alexandru Lazar <alazar@startmail.com>,
-        Oskar Andero <oskar.andero@gmail.com>,
-        =?UTF-8?Q?M=c3=a5rten_Lindahl?= <martenli@axis.com>,
-        Bogdan Pricop <bogdan.pricop@emutex.com>,
-        Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Phil Reid <preid@electromag.com.au>,
-        Michael Welling <mwelling@ieee.org>,
-        Robert Jones <rjones@gateworks.com>,
-        Chris Coffey <cmc@babblebit.net>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Sankar Velliangiri <navin@linumiz.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org
-References: <20220727164646.387541-1-krzysztof.kozlowski@linaro.org>
- <20220730224643.GB11662@wunner.de>
- <bd829586-f052-03c3-aa68-e5a2be84b6bb@linaro.org>
- <20220801160410.GA6059@wunner.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220801160410.GA6059@wunner.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] can: ctucanfd: hardware rx timestamps reporting
+Message-ID: <20220802070630.7g5dyn732bh724az@pengutronix.de>
+References: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="w4uynht36msvyibp"
+Content-Disposition: inline
+In-Reply-To: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -123,32 +60,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/08/2022 18:04, Lukas Wunner wrote:
-> On Mon, Aug 01, 2022 at 05:45:07PM +0200, Krzysztof Kozlowski wrote:
->> On 31/07/2022 00:46, Lukas Wunner wrote:
->>> On Wed, Jul 27, 2022 at 06:46:36PM +0200, Krzysztof Kozlowski wrote:
->>>>  78 files changed, 324 insertions(+), 249 deletions(-)
->>>
->>> Pardon me for being dense, but what is the benefit of this series
->>> that justifies inflating the schema definitions by a total of 75 lines?
->>
->> The commits were explaining rationale, so let me bring it here. The
->> benefits are:
->> This allows using all properties typical for SPI-connected devices, even
->> these which device bindings author did not tried yet.
-> 
-> How do you know these untested properties work with the devices to which
-> you're adding them?
 
-These properties should be device independent and instead
-controller-dependent. At least some of them (that's why CPHA/CPOL was
-moved away and maybe the same we need to do with spi-3wire, spi-cs-high,
-spi-lsb-first).
+--w4uynht36msvyibp
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My approach here is no different than other subsystems. Take a look at
-regulator - we allow all regulator.yaml properties, even though several
-are not applicable (e.g. current for voltage regulators) and for sure no
-tested.
+On 01.08.2022 20:46:53, Matej Vasilevski wrote:
+> Hello,
+>=20
+> this is the v2 patch for CTU CAN FD hardware timestamps reporting.
+>=20
+> This patch series is based on the latest net-next, as I need the patch
+> - 9e7c9b8eb719 can: ctucanfd: Update CTU CAN FD IP core registers to matc=
+h version 3.x.
+> and the patch below to avoid git conflict (both this and my patch
+> introduce ethtool_ops)
+> - 409c188c57cd can: tree-wide: advertise software timestamping capabiliti=
+es
+>=20
+> Changes in v2: (compared to the RFC I've sent in May)
 
-Best regards,
-Krzysztof
+Please add a link to the RFC here:
+https://lore.kernel.org/all/20220512232706.24575-1-matej.vasilevski@seznam.=
+cz
+
+> - Removed kconfig option to enable/disable timestamps.
+> - Removed dt parameters ts-frequency and ts-used-bits. Now the user
+>   only needs to add the timestamping clock phandle to clocks, and even
+>   that is optional.
+> - Added SIOCSHWTSTAMP ioctl to enable/disable timestamps.
+> - Adressed comments from the RFC review.
+>=20
+> Matej Vasilevski (3):
+>   can: ctucanfd: add HW timestamps to RX and error CAN frames
+>   dt-bindings: can: ctucanfd: add another clock for HW timestamping
+>   doc: ctucanfd: RX frames timestamping for platform devices
+
+Please reorder your patches so that the dt-bindings update comes first.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--w4uynht36msvyibp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmLozPMACgkQrX5LkNig
+01091Af+OFXdTcBJ8SC+XtUpGidcGMP3j/04HaOYtByP8I5TVp+WdTPZAJaPbVmj
+N556yRn6xx+cbMZVYQQ0cRr0uDBMWiv0jKfP95EI6X9zQtv/eiACjoTI+81QRoPz
++bfPfCiDnPNZKGUhGRNdJiFRbbFBG998Ihim6RVsqZcTo3aQVzzKIK7yVOpx+vKH
+e+d6wgTX0X6+iyqx5kKlONJk9vhxW9waSQEQDlu5f+M4K7djBEHg+cZkpgPI0W5P
+5yFAmPQZJCi0RoySSKXxYcQQAFXkPeTTv3eS/6sAI5EkHe+eDwcaNm8jgt3syFh+
+KAEvVRaI8HEqEXM/eVE9m9UXMac8OA==
+=/wYk
+-----END PGP SIGNATURE-----
+
+--w4uynht36msvyibp--
