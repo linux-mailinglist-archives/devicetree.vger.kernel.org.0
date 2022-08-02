@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D154C5878B2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03B075878B7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:08:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236309AbiHBIGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 04:06:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46068 "EHLO
+        id S236372AbiHBII3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 04:08:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232855AbiHBIGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:06:40 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6211317E21
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:06:39 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id f20so13615234lfc.10
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:06:39 -0700 (PDT)
+        with ESMTP id S236323AbiHBII2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:08:28 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2666B17AAF
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:08:27 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id c17so2348384lfb.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:08:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ziFYm8rk88alkwyI6DGKeiYYXv8dOfZWiNNEBAzbbUs=;
-        b=Q8FM7seRKFOLqDs9pbGjh7O9ypmYDNdS02O44fr0uDaD+Ekvix2C28Eu0YTnz4un9E
-         zjZb0kmjzXhhxF2hA2MeGBEhZUMa2/QJ7merfkAYx+/6MBHNZg1vx8bdYF97YjDHoVTq
-         LgeRNFA3ZxvbVMGhNzLcWi3AowWv9gQfOIN9VEPdRqbavEwLcWYz2pkHXeG3wsK20CUp
-         tpChIa1AGzm/UKVSMhOsfVWVx+62gtQHTdGyf6F4anBWut49KD7kwKERKPGjulXz/zwU
-         Zcu1mgRS0QCNWOsHRL3PcYpZM4sPoC0AwrgM3PyBQNCoCpSrp8xPLrt98yJI5L5agObH
-         Tsnw==
+        bh=HsSHGNI5OACJwEWXjbDzjjqUsgJ2e/s83LTa6i8r0GI=;
+        b=x9+2qf4ZdKgMTZvBEcj6p1uz8yxPF/KbiP41BT7UBm02nqoaQcV08jWKe5qCE5a4K9
+         iRJ5Hx81rBXLs+eFmpXM02R8pj7Qi5ER5uGEzFauqq8zbP5hI/jNqXErDS2fDjRL3ELA
+         QdJuzdGI0AFGk7ylTyPLFuYEjpV86+tZ82bjBTnaAWNeUUTPJJDeDSJ41K6C9ejCkaSZ
+         JWp3D+OdgZTQki8hyYRZSyyEpbanEwNIHYq2WjRtFa6bUJfeQkaLu3Krk9AACkRYFuoh
+         3HpZ9ksUHPAn8tEWjWh4V0lcJ+ivfWefHK9lslCDHJb3wrGIADIufBGDDIQEMeK4etVO
+         GLlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ziFYm8rk88alkwyI6DGKeiYYXv8dOfZWiNNEBAzbbUs=;
-        b=aWLhNEyj/T+vmMFil7BrlvzGvL09jFCKnFT8Uxve7b+bG/tFHDfN84FqbqwPlVHc/q
-         bemorcTw55jTedntrpdmzu0NHF6M0Qcu+4hXqxhz/9gslL98AO1O9Cz0vQrYwJU3ZhDP
-         nlHrPGncaBZXZcSTunjRS/G3E/v36wWw1hLOxnuhx7jWBpHqr1f+rciCeK1xM8EeMAGa
-         8NQcwKORBiqkJgPwSJP2e0g5SMVLCUF1BoyEnplC94cbfc+g9bOu8Hn0J3yP5ec56Dnb
-         DyURdSmO5bdMYnbd0Np/XvS30/TAXQBxMkUoVy7GXnKUbLV0CNHLEoAW+Mt4I6My3K4i
-         GhrQ==
-X-Gm-Message-State: ACgBeo0wJNwyUlShLsdVWG+KPTmAAI5S6UFCJILWreIHFiRwlFZcaPye
-        BBmucQyCXr1LSQXvpOionMOrlQ==
-X-Google-Smtp-Source: AA6agR6XdqW2PkasC+a1MlQwwoq1vcDKjruY6HOg87UsjC6E5gXtnZmjIUf2X1MMpMjvcyj6YFh0jw==
-X-Received: by 2002:ac2:4e07:0:b0:48a:f6f2:8555 with SMTP id e7-20020ac24e07000000b0048af6f28555mr3101742lfr.200.1659427597773;
-        Tue, 02 Aug 2022 01:06:37 -0700 (PDT)
+        bh=HsSHGNI5OACJwEWXjbDzjjqUsgJ2e/s83LTa6i8r0GI=;
+        b=3iYvyybUwmQR+DhgcVxsoIFXAsoUDmMVS+nKt86/zWAPQyeKJl1fN6EOcrCt1SRF84
+         8XazasHdCbZlj81EY063+QF6Nq/CgQjIQarB8TmtBxLBb9SfLPrnCwxpCuP6UQzs9sO5
+         pOEtRjIpByudDmS0J2bt3I1QyOGZuxjbpGwdkEV6xgTeoRAcK11Tt5t05WxTUI9/HZTJ
+         gX7eFiD5jyE9eFy1uR2PVUrI7LBi4Z0BxeSYfy/uT3BN6STdg7dLBJ5tdzdcjRBB7Bev
+         HXMeFq4fBeLdFpms4Zj+HgwHmAU+LPeFT3El9u0La8+aExdN0U27zwWEVQN0FiZAbV5G
+         YWow==
+X-Gm-Message-State: ACgBeo3FMdjugVwgLBefxDwEJDbAAtcqbWjppcxdh06efIIAuBWjaixc
+        ThWxxQ5oGO9xocWfrnpqOC3FBA==
+X-Google-Smtp-Source: AA6agR6fhg7bVDtnj6MaImLAqneEW0TB3bldN3JTZEOELsJkGM35fAWCQzptDK4wcs1ivPOsQuqJbg==
+X-Received: by 2002:a05:6512:3609:b0:48a:ef9f:9465 with SMTP id f9-20020a056512360900b0048aef9f9465mr4871576lfs.115.1659427705492;
+        Tue, 02 Aug 2022 01:08:25 -0700 (PDT)
 Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id o3-20020a2e9b43000000b0025e2cb58c6esm1842316ljj.37.2022.08.02.01.06.36
+        by smtp.gmail.com with ESMTPSA id f16-20020a056512361000b0048af4dc964asm894454lfs.73.2022.08.02.01.08.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 01:06:37 -0700 (PDT)
-Message-ID: <341b4627-d729-0941-2c35-08c16ac68f3c@linaro.org>
-Date:   Tue, 2 Aug 2022 10:06:35 +0200
+        Tue, 02 Aug 2022 01:08:25 -0700 (PDT)
+Message-ID: <995fbb2b-2b34-d407-6bfd-4798de2251d7@linaro.org>
+Date:   Tue, 2 Aug 2022 10:08:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: mailbox: add definition for mt8188
+Subject: Re: [PATCH 2/2] dt-bindings: gce: add gce header file for mt8188
 Content-Language: en-US
 To:     Elvis Wang <Elvis.Wang@mediatek.com>,
         Jassi Brar <jassisinghbrar@gmail.com>,
@@ -66,9 +66,9 @@ Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-mediatek@lists.infradead.org,
         Project_Global_Chrome_Upstream_Group@mediatek.com
 References: <20220729084319.6880-1-Elvis.Wang@mediatek.com>
- <20220729084319.6880-2-Elvis.Wang@mediatek.com>
+ <20220729084319.6880-3-Elvis.Wang@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220729084319.6880-2-Elvis.Wang@mediatek.com>
+In-Reply-To: <20220729084319.6880-3-Elvis.Wang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,10 +81,98 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/07/2022 10:43, Elvis Wang wrote:
-> Add dt-binding header for mt8188.
+> Add gce header file to define the gce subsys id, hardware event id and
+> constant for mt8188.
 > 
+> Signed-off-by: Elvis Wang <Elvis.Wang@mediatek.com>
+> ---
+>  include/dt-bindings/gce/mt8188-gce.h | 1079 ++++++++++++++++++++++++++
+>  1 file changed, 1079 insertions(+)
+>  create mode 100644 include/dt-bindings/gce/mt8188-gce.h
+> 
+> diff --git a/include/dt-bindings/gce/mt8188-gce.h b/include/dt-bindings/gce/mt8188-gce.h
+> new file mode 100644
+> index 000000000000..b15e965fe671
+> --- /dev/null
+> +++ b/include/dt-bindings/gce/mt8188-gce.h
 
-Use subject prefix matching the device.
+Use vendor in filename, so mediatek,mt8188-gce.h
+
+> @@ -0,0 +1,1079 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+
+Dual license.
+
+> +/*
+> + * Copyright (c) 2018 MediaTek Inc.
+> + *
+> + */
+> +#ifndef _DT_BINDINGS_GCE_MT8188_H
+> +#define _DT_BINDINGS_GCE_MT8188_H
+> +
+> +/* assign timeout 0 also means default */
+> +#define CMDQ_NO_TIMEOUT		0xffffffff
+> +#define CMDQ_TIMEOUT_DEFAULT	1000
+
+How CMDQ_TIMEOUT_DEFAULT is part of bindings? How is it related to bindings?
+
+> +
+> +/* GCE thread priority */
+> +#define CMDQ_THR_PRIO_LOWEST	0
+> +#define CMDQ_THR_PRIO_1		1
+> +#define CMDQ_THR_PRIO_2		2
+> +#define CMDQ_THR_PRIO_3		3
+> +#define CMDQ_THR_PRIO_4		4
+> +#define CMDQ_THR_PRIO_5		5
+> +#define CMDQ_THR_PRIO_6		6
+> +#define CMDQ_THR_PRIO_HIGHEST	7
+> +
+> +/* CPR count in 32bit register */
+> +#define GCE_CPR_COUNT		1312
+
+No register values in the bindings.
+
+
+
+> +
+> +/* GCE subsys table */
+> +#define SUBSYS_1400XXXX		0
+> +#define SUBSYS_1401XXXX		1
+> +#define SUBSYS_1402XXXX		2
+> +#define SUBSYS_1c00XXXX		3
+> +#define SUBSYS_1c01XXXX		4
+> +#define SUBSYS_1c02XXXX		5
+> +#define SUBSYS_1c10XXXX		6
+> +#define SUBSYS_1c11XXXX		7
+> +#define SUBSYS_1c12XXXX		8
+> +#define SUBSYS_14f0XXXX		9
+> +#define SUBSYS_14f1XXXX		10
+> +#define SUBSYS_14f2XXXX		11
+> +#define SUBSYS_1800XXXX		12
+> +#define SUBSYS_1801XXXX		13
+> +#define SUBSYS_1802XXXX		14
+> +#define SUBSYS_1803XXXX		15
+> +#define SUBSYS_1032XXXX		16
+> +#define SUBSYS_1033XXXX		17
+> +#define SUBSYS_1600XXXX		18
+> +#define SUBSYS_1601XXXX		19
+> +#define SUBSYS_14e0XXXX		20
+> +#define SUBSYS_1c20XXXX		21
+> +#define SUBSYS_1c30XXXX		22
+> +#define SUBSYS_1c40XXXX		23
+> +#define SUBSYS_1c50XXXX		24
+> +#define SUBSYS_1c60XXXX		25
+> +#define SUBSYS_NO_SUPPORT	99
+> +
+> +/* GCE General Purpose Register (GPR) support
+> + * Leave note for scenario usage here
+> + */
+> +/* GCE: write mask */
+> +#define GCE_GPR_R00		0x00
+> +#define GCE_GPR_R01		0x01
+
+No. These are no bindings. Do not embed device programming model into
+bindings header. I'll stop review.
 
 
 Best regards,
