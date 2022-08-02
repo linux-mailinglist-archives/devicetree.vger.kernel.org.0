@@ -2,73 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 190B5587AA1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 12:25:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D811587AA6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 12:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232660AbiHBKZ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 06:25:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36744 "EHLO
+        id S236005AbiHBK0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 06:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232724AbiHBKZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 06:25:55 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B64312D22
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 03:25:53 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id q7so15094959ljp.13
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 03:25:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=AEY4MLBFWszSDlFsX1O9mcXZWaX+6Dl1GV/cQTUc6HA=;
-        b=s1rzN/Sw9Y5GQfYgd0LeTVIqavax9eZL4k200QKPrMdOce0zokiBu7Z1BPc57YByi/
-         JeiS155uaIOKsiWqPJQCYGZ47qIFTM/xg1F5JMqu7ct7HE4pyrhC2gZoL6AKqu3GgBp3
-         nK53+xstKYZzXp3nSQygsWHXr27ihC02zWPGlvqpaI/a2hgcyHdthFq/GzrTWGVByU6Z
-         MXOlU2XcO7XfcEyh053uCNmL8viS7nALBDxXRUpajjk8PnAf/C/WlcWqxRDGS4IizmHP
-         ygONNvMJ4NaLSu+0UskdMcDn7wSs5aQacNoKbWfn25tubnykRsDKOId9LlCchgvOpQhW
-         LHOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=AEY4MLBFWszSDlFsX1O9mcXZWaX+6Dl1GV/cQTUc6HA=;
-        b=D/8O4/EHCu5ia7sH35mZN6RM92RriWv6jdlLuQH8SL4+wOlblmeZkrHl1H3NvA9lFN
-         8u/ZI2B8x42gbhSGRGu+zmV3s61RL4WQKmQAFT9NxNbh/Y9mA79eeUxJsKxkug+Yzs0/
-         KqDLDDnrN4BAih6Q7/+b9l9xT20HZlFtvY3KyXhAmI3Y1zrLj5C6GRLQ/WugMzk024s9
-         TwLR90GcOsPtJxlCqwsho4b02yTWpG9YbAamre8vVzahnmJgnF1/iG0J1DlwWQNJ26Sd
-         nmZ6jzacdvLSKmyeqUpV+3TqlxBDgunLyVeeKhmouY7wRo2oqJrf1q6XejQM0uxRgiyJ
-         a/pw==
-X-Gm-Message-State: AJIora/j4uHMT/ptAjJRT+Z+PhXCdQIxHhz5/D/UZKg9Ao4mTM7YtbaJ
-        oZicU2NkxdFEZ6GNhY2EE7iynQ==
-X-Google-Smtp-Source: AGRyM1s5CzxCKbjkEvHfj9GdL48adB9sjMvugzyxSe5CMJRaBgbhu6zBHXCFiFTQkPxAQr581W3tRQ==
-X-Received: by 2002:a2e:bd0a:0:b0:25d:d2a3:7366 with SMTP id n10-20020a2ebd0a000000b0025dd2a37366mr6341676ljq.35.1659435951667;
-        Tue, 02 Aug 2022 03:25:51 -0700 (PDT)
-Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id c22-20020a056512239600b0048af7e58c9dsm800641lfv.278.2022.08.02.03.25.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 03:25:51 -0700 (PDT)
-Message-ID: <08b60fe9-6e89-b10e-dcfa-5a0d53912676@linaro.org>
-Date:   Tue, 2 Aug 2022 12:25:49 +0200
+        with ESMTP id S231836AbiHBK0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 06:26:38 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59EDA22B3D
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 03:26:37 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1oIp6X-0005CV-JP; Tue, 02 Aug 2022 12:26:25 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 76707C1541;
+        Tue,  2 Aug 2022 10:26:23 +0000 (UTC)
+Date:   Tue, 2 Aug 2022 12:26:22 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
+Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] can: ctucanfd: add HW timestamps to RX and error
+ CAN frames
+Message-ID: <20220802102622.vdxpbdkxf6lrlp76@pengutronix.de>
+References: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
+ <20220801184656.702930-2-matej.vasilevski@seznam.cz>
+ <20220802092907.d2xtbqulkvzcwfgj@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 2/3] spi: microchip-core-qspi: Add support for
- microchip fpga qspi controllers
-Content-Language: en-US
-To:     Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor.dooley@microchip.com
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220802070518.855951-1-nagasuresh.relli@microchip.com>
- <20220802070518.855951-3-nagasuresh.relli@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220802070518.855951-3-nagasuresh.relli@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hvtigcj35h4im5ap"
+Content-Disposition: inline
+In-Reply-To: <20220802092907.d2xtbqulkvzcwfgj@pengutronix.de>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,88 +63,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2022 09:05, Naga Sureshkumar Relli wrote:
-> +
-> +	qspi->clk = devm_clk_get(&pdev->dev, NULL);
-> +	if (IS_ERR(qspi->clk)) {
-> +		dev_err(&pdev->dev, "clock not found.\n");
 
-Same comments as v1.
+--hvtigcj35h4im5ap
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +		ret = PTR_ERR(qspi->clk);
-> +		goto remove_master;
-> +	}
-> +
-> +	ret = clk_prepare_enable(qspi->clk);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "failed to enable clock\n");
-> +		goto remove_master;
-> +	}
-> +
-> +	init_completion(&qspi->data_completion);
-> +	mutex_init(&qspi->op_lock);
-> +
-> +	qspi->irq = platform_get_irq(pdev, 0);
-> +	if (qspi->irq <= 0) {
-> +		ret = qspi->irq;
-> +		goto clk_dis_all;
-> +	}
-> +
-> +	ret = devm_request_irq(&pdev->dev, qspi->irq, mchp_coreqspi_isr,
-> +			       IRQF_SHARED, pdev->name, qspi);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "request_irq failed %d\n", ret);
-> +		goto clk_dis_all;
-> +	}
-> +
-> +	ctlr->bits_per_word_mask = SPI_BPW_MASK(8);
-> +	ctlr->mem_ops = &mchp_coreqspi_mem_ops;
-> +	ctlr->setup = mchp_coreqspi_setup_op;
-> +	ctlr->mode_bits = SPI_CPOL | SPI_CPHA | SPI_RX_DUAL | SPI_RX_QUAD |
-> +			  SPI_TX_DUAL | SPI_TX_QUAD;
-> +	ctlr->dev.of_node = np;
-> +
-> +	ret = devm_spi_register_controller(&pdev->dev, ctlr);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "spi_register_controller failed\n");
-> +		goto clk_dis_all;
-> +	}
-> +
-> +	return 0;
-> +
-> +clk_dis_all:
-> +	clk_disable_unprepare(qspi->clk);
-> +remove_master:
-> +	spi_controller_put(ctlr);
-> +
-> +	return ret;
-> +}
-> +
-> +static int mchp_coreqspi_remove(struct platform_device *pdev)
-> +{
-> +	struct mchp_coreqspi *qspi = platform_get_drvdata(pdev);
-> +	u32 control = readl_relaxed(qspi->regs + REG_CONTROL);
-> +
-> +	mchp_coreqspi_disable_ints(qspi);
-> +	control &= ~CONTROL_ENABLE;
-> +	writel_relaxed(control, qspi->regs + REG_CONTROL);
-> +	clk_disable_unprepare(qspi->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * Platform driver data structure
+On 02.08.2022 11:29:07, Marc Kleine-Budde wrote:
+> >  #define CTU_CAN_FD_TXTNF(priv) (!!FIELD_GET(REG_STATUS_TXNF, ctucan_re=
+ad32(priv, CTUCANFD_STATUS)))
+> >  #define CTU_CAN_FD_ENABLED(priv) (!!FIELD_GET(REG_MODE_ENA, ctucan_rea=
+d32(priv, CTUCANFD_MODE)))
+>=20
+> please make these static inline bool functions.
 
-Same comments as v1.
+Ignore this comment - these were already in the driver.
 
-> + */
-> +static const struct of_device_id mchp_coreqspi_of_match[] = {
-> +	{ .compatible = "microchip,mpfs-qspi" },
-> +	{ .compatible = "microchip,coreqspi-rtl-v2" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, mchp_coreqspi_of_match);
-> +
-Best regards,
-Krzysztof
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--hvtigcj35h4im5ap
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmLo+8sACgkQrX5LkNig
+012PmQf/V93b3CkaKxm6W0SNWxNzZuGNYfR02MFbByKpUkjpq3f3ZgzXI8U3wcfO
+KFVgtO7Rh3UIsV1DK5wz5N/pGnzmwP1zWY5OMyT2yb/PXhxoXQvu7MkHs/w2pU4k
+JiNAC6rBvOm+y4cuimhMHoKpZp47UdhD6i3foTbVPNB06ptVLnQiZh7LA4Ycx1V4
+jjM+3G14IBbaCqqIMckMpGMXwcufNIdBC/kE/l7izO8phHnS3LrWWrdSIF4fVv3q
+Xgcd3eJ6BfA7wTKYEe97AINMxLRN77R1uTIB9K6pDpRdOtvUO2uPmKsehdkdSMy8
+FY3Ha2/+BN6fsPXIfPKzA9BHJiKd+g==
+=RD+M
+-----END PGP SIGNATURE-----
+
+--hvtigcj35h4im5ap--
