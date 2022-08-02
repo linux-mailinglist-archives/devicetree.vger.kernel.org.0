@@ -2,75 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A33EF587B53
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 13:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59088587B70
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 13:16:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236713AbiHBLFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 07:05:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41834 "EHLO
+        id S232487AbiHBLQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 07:16:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236701AbiHBLE7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 07:04:59 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382A6DD;
-        Tue,  2 Aug 2022 04:04:58 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id bv3so3531254wrb.5;
-        Tue, 02 Aug 2022 04:04:58 -0700 (PDT)
+        with ESMTP id S236955AbiHBLQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 07:16:03 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4090100;
+        Tue,  2 Aug 2022 04:16:01 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id bk11so7618423wrb.10;
+        Tue, 02 Aug 2022 04:16:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
          :content-language:user-agent:mime-version:date:message-id:from:to:cc;
-        bh=nHi8fLHEx0FAPEMq1lv35iSGwVjA+eu1JTfdJG/1JwA=;
-        b=Lal3Ie/ci8JOgPvGGtAlBm+U3/MyomhyVeQYF8BxD+cyn/mzYMbb0osW/bFrWGKyoS
-         IPD1iNwxtnxdZ4xzKaV94j4XsnpgI3VK7s+oYr/3frgnNe1u1OplTeJkDHD/gajbkPV6
-         kAA7OjLG0cB2hH6Y7Hy3mUCGwsaURof5IrhcyVDeGMq62nrRl/70ELU0iIr3UnhYd0hs
-         +IfVPDh0HzVUGYx9SVzeeImsTuz8L91WWWPr6QLIBCQd6L84fzWRQk0rfdiBzGdTF6qf
-         NBGPGvIPjrS0exxyTrJ4YdSwOW8IhWrgYE6LBAh+U/ROTt6CuuIeKKOFt91TOUzmKn2h
-         qI1w==
+        bh=A2VfX0ohBEDI9pdacm9qg39DqZbTOcJ97Tvbb0ay7PA=;
+        b=VEUHFtoWx1hsRT9yABC0bQ31nr/6iVyFPY07sKhk+zGOtFoAr032aVFnqJhsw8mIgM
+         wo6+VbjXn94MA/HZ4zfb1Ts7PpY5VPW0MAOAlkpSFfHBWBZhnsrMsxRbQriOkylatqfs
+         Dni8FpGvml5Rd/s0777eugW09N3nOd+IQTNMgFFrOpmR76tqEYoAAM8c1qIdIle0Us8+
+         Zb79FKXDzoY2NE8xLMlrc/veUgICeLtdzZpvKpJuyITsrwj6P2TizZ2tuXuL4IuzGeIB
+         WwIOodMTV6ZWwzzShjrFILwwZIl0zQarB4il5LwD644ZSbszNbpVPRCMuOyFi1dtONtP
+         roqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
          :content-language:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=nHi8fLHEx0FAPEMq1lv35iSGwVjA+eu1JTfdJG/1JwA=;
-        b=RZU52G6NqHEzDYVWATHme2cQSWa8lJBN498s1rk05csHmdJ3V8ckRbIvdzF8GFPMeG
-         hTW7hzZcB25aWakCE+b9Pt70FV5cr9fJ6nAGN8Z8jLNtCKiKGG4HaOU2k1eVL5YwxbWX
-         FUMVaA1YJwMwsUasEa3wMO3HC2PR4rg0Jir+HNIsg6PrhAQGISfMwkV3a+xxuBZdegeN
-         JxnTBldSRY+dVky2goB40Eu8qER0wu2NPgqDeIXteo/+GrE0mHvFt5If3uT1yOWIzEMK
-         bLkZKrSc5Ehcy4WPmEIkVRarZo6MF61UmI2RDW0fJVSp2QtDecXgRaTaINYe0iTRiGxB
-         BUXQ==
-X-Gm-Message-State: ACgBeo3TK0ex8oyPy46HbzBgk44rXSBGUClwFuB9zkodsedtL8TtV2YE
-        521LJD0YYi9LjrSc3l7S3LtDqfVnsaf6qA==
-X-Google-Smtp-Source: AA6agR7DlMgWDRSL/ir77djsoo6TQQwGJanGObcqxajeOs3Ab9UqoY9gLUS27WVcA6hneLY29OqAVA==
-X-Received: by 2002:a5d:47a8:0:b0:21d:b690:9273 with SMTP id 8-20020a5d47a8000000b0021db6909273mr11991374wrb.242.1659438296497;
-        Tue, 02 Aug 2022 04:04:56 -0700 (PDT)
+        bh=A2VfX0ohBEDI9pdacm9qg39DqZbTOcJ97Tvbb0ay7PA=;
+        b=yvVAC0XqIz3tIpWudrrSBce2LwBHdxfTk4jsT3RHeDirhf7C1DB6v2MmTtT9rg3QRq
+         NiQwlsqXFJZ9uMvXcSH+fWxuNZObfXYRjDV2Vml2MRj2I8tX7lBrGy8GNPL/1qds0WfA
+         S5Ct4GVgrG7o5iw4qaG/Dh387CjCoF+wQ6LbAE6axz1tcSKSgGucYCxMNBQ2IbjoAY4H
+         yHqE1UdUlN99N53St3BxucTAFfhcxO00wmaRj35Mp+hPZ8ZZHmURQ7teFcirZdqiUSsh
+         SjyUZk30IY87d+2DiRKoe+pp2FxuK+jFkim1IYWDgnFLp3BzYcqXXJNDx7rd35veV19y
+         XliA==
+X-Gm-Message-State: ACgBeo1w6DUQDYYIEro+mj6lCr7DzIOthvkdX0c7GQNsEl1uAEdiEE2T
+        mn2K3Dd8omf9lWqFW4+6+R8=
+X-Google-Smtp-Source: AA6agR5UZhUHndApFToNzkGMWRF30QoaS3PKoIYA19437kHEspwNEJV7RjGO47a9PKuVvSVTjJuFCw==
+X-Received: by 2002:a5d:6b09:0:b0:21e:2eb6:2d03 with SMTP id v9-20020a5d6b09000000b0021e2eb62d03mr12526766wrw.684.1659438960337;
+        Tue, 02 Aug 2022 04:16:00 -0700 (PDT)
 Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id o5-20020a05600c510500b003a2d6c623f3sm24236447wms.19.2022.08.02.04.04.54
+        by smtp.gmail.com with ESMTPSA id az13-20020a05600c600d00b003a32490c95dsm23044355wmb.35.2022.08.02.04.15.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 04:04:55 -0700 (PDT)
-Message-ID: <5dac39d1-3b42-40e9-5693-0c127e8c689a@gmail.com>
-Date:   Tue, 2 Aug 2022 13:04:53 +0200
+        Tue, 02 Aug 2022 04:15:59 -0700 (PDT)
+Message-ID: <3eb66813-14a9-8644-b2dd-588815a06079@gmail.com>
+Date:   Tue, 2 Aug 2022 13:15:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
 Content-Language: en-US
-To:     Chen-Yu Tsai <wenst@chromium.org>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>, nfraprado@collabora.com,
-        angelogioacchino.delregno@collabora.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20220721014845.19044-1-allen-kh.cheng@mediatek.com>
- <20220721014845.19044-2-allen-kh.cheng@mediatek.com>
- <CAGXv+5HXwVpaJPV-4Z6qw14xZzEkx_E7dVks6-GBa7bQyN8hCg@mail.gmail.com>
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>, hsinyi@chromium.org,
+        Allen-kh Cheng <allen-kh.cheng@mediatek.corp-partner.google.com>
+References: <20220802085152.31284-1-allen-kh.cheng@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: mediatek: watchdog: Fix compatible
- fallbacks and example
-In-Reply-To: <CAGXv+5HXwVpaJPV-4Z6qw14xZzEkx_E7dVks6-GBa7bQyN8hCg@mail.gmail.com>
+Subject: Re: [PATCH v13 0/1] Add basic node support for MediaTek MT8186 SoC
+In-Reply-To: <20220802085152.31284-1-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,101 +78,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Allen,
 
+Below some notes for myself.
 
-On 01/08/2022 11:29, Chen-Yu Tsai wrote:
-> On Thu, Jul 21, 2022 at 10:50 AM Allen-KH Cheng
-> <allen-kh.cheng@mediatek.com> wrote:
->>
->> The watchdog timer of mt8186. mt8195 and mt7986 have their DT data.
->> We should not use 'mediatek,mt6589-wdt' as fallback.
->>
->> For mediatek,wdt example of mt8183, We remove mediatek,mt6589-wdt fallback.
+On 02/08/2022 10:51, Allen-KH Cheng wrote:
+> From: Allen-kh Cheng <allen-kh.cheng@mediatek.corp-partner.google.com>
 > 
-> I think this needs some more information.
+> MT8186 is a SoC based on 64bit ARMv8 architecture. It contains 6 CA55
+> and 2 CA76 cores. MT8186 share many HW IP with MT65xx series. This
+> patchset was tested on MT8186 evaluation board to shell.
 > 
-> Right now on the kernel side, mt6589-wdt provides just watchdog support.
-> The SoC-specific compatibles that are touched by this patch provide reset
-> controls in addition to the standard watchdog, which remains the same.
+> This series is based on tag: next-20220728, linux-next/master
+> Since we have a another dts series of mt8195 [1] which is waiting for
+> review from maintainers. I remove power domains controller node from
+> this mt8186 series and will update in another patch.
 > 
-> If that is the case, then the fallback compatibles are correct. A fallback
-> says that the new hardware is compatible with some older hardware, and
-> can be run with the driver supporting that older hardware, likely with
-> reduced functionality.
-> 
+> There are some corrections in mt8186 hardware bindings. We need to
+> apply the below patches.
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220725110702.11362-2-allen-kh.cheng@mediatek.com/
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220725110702.11362-3-allen-kh.cheng@mediatek.com/
 
-My understanding is, that we add a fallback because although at the time we 
-entered the compatible, the functionality of the device is the same as the 
-fallback. Nonetheless we add a compatible specific for the device in case in the 
-future we realize that the device has some functionality that is not and can not 
-be covered by the fallback.
+Both are already merged.
 
-This is the case here. Actually adding the fallback in the first place was 
-wrong, because the driver since ever supports the extra function for the device, 
-the reset.
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220720130604.14113-2-allen-kh.cheng@mediatek.com/
 
-So this is a mere cleanup of the binding to reflect what was always present in 
-the driver.
+Acked but not yet merged.
+
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20220721014845.19044-2-allen-kh.cheng@mediatek.com/
+
+We still have some discussions here.
+
 
 Regards,
 Matthias
 
-> As an example, if mt8195-wdt is backward compatible with mt6589-wdt,
-> then it should run as mt6589-wdt, and would just be missing new
-> functionality, in this case the reset controls.
 > 
-> So either mt6589-wdt also contains a reset control that is not the same
-> as the other newer chips, or has some other functionality that the other
-> chips contain, and justifies the removal of the fallback, or this patch
-> is incorrect. Note that mt2701-wdt and mt762*-wdt are still listed as
-> compatible with mt6589-wdt. So I think a better explanation is required.
+> [1]
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=663978
 > 
+> changes since v12:
+>   - remove drive-strength fom i2c pins
+>   - use lowercase hex addresses in pinctrl node
+>   - correct clk order in xhci0
+>   - add clk26m for dma_ck
 > 
-> Regards
-> ChenYu
+> changes since v11:
+>   - add #cooling-cells in cpu nodes
+>   - add pmu nodes for mt8186
+>   - change #interrupt-cells from 3 to 4
+>   - correct interrupts property in each nodes for 4 interrupt cells
+>   - remove power domains controller node
+>   - move #address-cells and #size-cells into mt8186.dts
+>   - remove unused ahb_cg clock in mmc0
+>   - add efuse node
+>   - add dsi node and remove dpi node
+>   - move i2c status position in mt8186-evb.dts
+>   - change i2c child nodee name in pio node to *-pins
+>   - change property from mediatek,drive-strength-adv to drive-strength-microamp in i2c child nodes of pio
+>   - change drive-strength value from MTK_DRIVE_4mA to 4 in i2c child nodes of pio
+>   - change i2c child nodes from pins-sda-sc1 to pins-bus
+>   - correct pintctrl clk names
 > 
+> changes since v10:
+>   - remove merged PATCHes
+>   - add pmu nodes
+>   - add #cooling-cells
+>   - change #interrupt-cells number from 3 to 4
+>   - remove power domains controller node
+>   - move #address-cells/#size-cells into mt8186.dts from evb dts for i2c
+>   - move status = 'okay' position in i2cx
+>   - fix pinctrl patternproperties name in pio
+>   - add efuse node
+>   - fix dsi node
+>   - add #reset-cells in infracfg_ao: syscon
 > 
->> Fixes:a45b408a020b("dt-bindings: watchdog: Add compatible for MediaTek MT8186")
->> Fixes:b326f2c85f3d("dt-bindings: watchdog: Add compatible for Mediatek MT8195")
->> Fixes:41e73feb1024("dt-bindings: watchdog: Add compatible for Mediatek MT7986")
->> Fixes:f43f97a0fc0e("dt-bindings: mediatek: mt8183: Add #reset-cells")
->> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
->> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 9 ++++-----
->>   1 file changed, 4 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
->> index 762c62e428ef..67ef991ec4cf 100644
->> --- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
->> +++ b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
->> @@ -14,12 +14,12 @@ Required properties:
->>          "mediatek,mt7622-wdt", "mediatek,mt6589-wdt": for MT7622
->>          "mediatek,mt7623-wdt", "mediatek,mt6589-wdt": for MT7623
->>          "mediatek,mt7629-wdt", "mediatek,mt6589-wdt": for MT7629
->> -       "mediatek,mt7986-wdt", "mediatek,mt6589-wdt": for MT7986
->> +       "mediatek,mt7986-wdt": for MT7986
->>          "mediatek,mt8183-wdt": for MT8183
->> -       "mediatek,mt8186-wdt", "mediatek,mt6589-wdt": for MT8186
->> +       "mediatek,mt8186-wdt": for MT8186
->>          "mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
->>          "mediatek,mt8192-wdt": for MT8192
->> -       "mediatek,mt8195-wdt", "mediatek,mt6589-wdt": for MT8195
->> +       "mediatek,mt8195-wdt": for MT8195
->>
->>   - reg : Specifies base physical address and size of the registers.
->>
->> @@ -32,8 +32,7 @@ Optional properties:
->>   Example:
->>
->>   watchdog: watchdog@10007000 {
->> -       compatible = "mediatek,mt8183-wdt",
->> -                    "mediatek,mt6589-wdt";
->> +       compatible = "mediatek,mt8183-wdt";
->>          mediatek,disable-extrst;
->>          reg = <0 0x10007000 0 0x100>;
->>          interrupts = <GIC_SPI 139 IRQ_TYPE_NONE>;
->> --
->> 2.18.0
->>
->>
+> changes since v9:
+>   - remove some merged PATCHs from series
+>   - reorder nodes in dts (cpu-map)
+>   - remove okay status in auxadc
+>   - remove unnecessary suffix node name for i2c
+>   - add pwm node
+>   - add dsi-phy node
+>   - add dpi node
+> 
+> changes since v9:
+>   - add one space before equal sign of drive-strength-adv
+>   - corect compatible name for big cores (ca76)
+>   - use upper case of address in pinctrl
+>   - add pwrap node
+>   - add pwm node
+> 
+> changes since v8:
+>   - change name from pins_bus to pins-sda-scl
+>   - correct email address
+>   - add capacity-dmips-mhz for each CPU
+>   - add ppi-partitions in gic node
+>   - change name to power-domain
+>   - remove status "okay" in scp node
+>   - update timer and pericfg compatible in series
+> 
+> changes since v7:
+>   - add scp&auxadc node
+> 
+> changes since v6:
+>   - remove unnecessary blank line
+> 
+> changes since v5:
+>   - replace Mediatek a to MediaTek
+>   - use GPL-2.0-only OR BSD-2-Clause
+> 
+> changes since v4:
+>   - correct driver clock of mt8186
+>   - add power domains controller and clock controllers
+>   - add pinctrl, usb host, spi and i2c nodes
+>   - add node status in mt8186-evb.dts
+>   - correct some dtbs_check warnings
+> 
+> changes since v3:
+>   - remove serial, mmc and phy patch from series. (already merged)
+>   - remove mcusysoff node
+>   - move oscillator nodes at the head of dts
+>   - change name from usb-phy to t-phy
+> 
+> changes since v2:
+>   - add soc {} in mt8186.dtsi
+> 
+> changes since v1:
+>   - add dt-bindings: arm: Add compatible for MediaTek MT8186
+> 
+> Allen-KH Cheng (1):
+>    arm64: dts: Add MediaTek MT8186 dts and evaluation board and Makefile
+> 
+>   arch/arm64/boot/dts/mediatek/Makefile       |   1 +
+>   arch/arm64/boot/dts/mediatek/mt8186-evb.dts | 228 +++++
+>   arch/arm64/boot/dts/mediatek/mt8186.dtsi    | 875 ++++++++++++++++++++
+>   3 files changed, 1104 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
+>   create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
+> 
