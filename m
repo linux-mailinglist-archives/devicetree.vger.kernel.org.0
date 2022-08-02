@@ -2,102 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8796A588155
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 19:49:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D3AE588164
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 19:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231316AbiHBRtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 13:49:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41476 "EHLO
+        id S234288AbiHBR6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 13:58:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbiHBRtu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 13:49:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54A4DF51;
-        Tue,  2 Aug 2022 10:49:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 64E006124C;
-        Tue,  2 Aug 2022 17:49:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99ACEC433D6;
-        Tue,  2 Aug 2022 17:49:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659462588;
-        bh=SiDSLNYqS+YCU6eABTOFnw8yzFj7rK8ND4yKHLw9GSQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ej5aZu6zGAp7YNdqGlldZ+bgVeK6ayHmJAE2qmFYUPjrc9IfUztB9D+8hNrfS7oiC
-         aN/Ax6B6iQqVhZNwukHUCxo4Q6LOrqf2uBn8gKpLxp3E16qx8sWC9vqFK3/iUcub7z
-         Mhb+ail9AjacTKmhJV/7BY03t2mgpH5A1aEwZWv6HvlJb2jhq9zj+5LHdh3dYjV2EQ
-         jr3ckbQsYt4SJ0rjh8+4MtwSd874bu/srH/ZfwyNqZ/QJmgd/nOKLDWqA4pIDDyxb0
-         Dw8CLx2emQpbbmlPe6xnPi8ZEuGPBBu9hx/R5vlheVhckR2GpoL6QwL1vzadOCelKb
-         KAdFhIQ/S2fjQ==
-Received: by pali.im (Postfix)
-        id 3C024F81; Tue,  2 Aug 2022 19:49:45 +0200 (CEST)
-Date:   Tue, 2 Aug 2022 19:49:45 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Mauri Sandberg <maukka@ext.kapsi.fi>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        bhelgaas@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrew@lunn.ch,
-        sebastian.hesselbarth@gmail.com, gregory.clement@bootlin.com,
-        linux@armlinux.org.uk, lpieralisi@kernel.org, kw@linux.com,
-        thomas.petazzoni@bootlin.com
-Subject: Re: [PATCH v2 0/2] PCI: mvebu: add support for orion soc
-Message-ID: <20220802174945.5nyywb4mmbnhkzys@pali>
-References: <20220718202843.6766-1-maukka@ext.kapsi.fi>
- <20220802173423.47230-1-maukka@ext.kapsi.fi>
+        with ESMTP id S233653AbiHBR6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 13:58:19 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36B134AD48
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 10:58:18 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id p10so14609003wru.8
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 10:58:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=D5VB2FOmZFu7Zd41ltdFac1q4e5aLoaLQgroB4OX9/s=;
+        b=aamoHvNa6141WrHA4zpN7rbydohy1lauVLA0F4AswnJ6fgLWB2VPeU5WlX7+7en22D
+         VpNOl5B7V/AYoUbgHVnx1jiDfjPg4lK7SdoXvUKo6FT/rYhP9g9qM/Qw2bQB9Bn2PyuR
+         JjxhBUpDiomTg1xNyyL3WrCak0hUXuCIwTS0sCZpZlygha/idyNKAYA0BDKkBOOR8mxA
+         EczL8nhi5U2gTrW+XW1GS/S+QyS05o2cNw0Q8+PslQfalu6SzOYxXn4tFf5ql/eBmjFo
+         zcEE87sC6W2K+01GTE8NqeMXZ6VIALDc4dmZVLwgvUG76wYSelhiqGO0iYME2P4ZfSf5
+         Sf3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=D5VB2FOmZFu7Zd41ltdFac1q4e5aLoaLQgroB4OX9/s=;
+        b=xx7BMBe3B/5tV2QQN04ShCTD2fuu/lDuHn7LlLy5dVaksknYqWeUDdtobL0qqNUyio
+         kjqh7rdJLtPMx4FA8UKRIWGspI+oDx+H63mXQJHciP9FJO9rD9ywmxs0WucbhOWxs4nL
+         WJ2+i9LZp7Yv9ejOhOZQ2eInbZUZmM6LOUywTUmHsfwEiaw3/tAbefcGJqjCEItd7DxX
+         VIMAuaWQTRRkIkI+6k3pXwBe8C/5qALnFPQvZ+GFEg9+uQTMWkUFO3WFGuihzGYr2oHn
+         gEoRX6NEvLCjMGfHNcRfAtY/X+qDrYuGs40D1vmHzyYqKVkqnutqKpaZsStmqWwgJLb1
+         hcsg==
+X-Gm-Message-State: ACgBeo1i9pjsS44jBuhxU/ZndL2qoRGui2ezhkoWWzE5nWtA2svEErof
+        S8P+HEaxRPgpaUL7lZDrCcgn9A==
+X-Google-Smtp-Source: AA6agR6rAMlfiAvC3j2BDeH7AB7wHWhuUx276d06qGtylAw+ckAidJAvLeFkbbt7zeFLNcua1pXstQ==
+X-Received: by 2002:adf:e6d0:0:b0:21f:156d:1a8c with SMTP id y16-20020adfe6d0000000b0021f156d1a8cmr12685521wrm.177.1659463096802;
+        Tue, 02 Aug 2022 10:58:16 -0700 (PDT)
+Received: from debian.office.codethink.co.uk ([2405:201:8005:8149:e5c9:c0ac:4d82:e94b])
+        by smtp.gmail.com with ESMTPSA id 9-20020a05600c020900b003a3187a2d4csm23318222wmi.22.2022.08.02.10.58.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Aug 2022 10:58:16 -0700 (PDT)
+From:   Sudip Mukherjee <sudip.mukherjee@sifive.com>
+To:     Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     greentime.hu@sifive.com, jude.onyenegecha@sifive.com,
+        william.salmon@sifive.com, adnan.chowdhury@sifive.com,
+        ben.dooks@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jeegar.lakhani@sifive.com,
+        Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Subject: [PATCH 00/11] Add support for enhanced SPI for Designware SPI controllers
+Date:   Tue,  2 Aug 2022 18:57:44 +0100
+Message-Id: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220802173423.47230-1-maukka@ext.kapsi.fi>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 02 August 2022 20:34:21 Mauri Sandberg wrote:
-> Hello all,
-> 
-> Here a cleaned up version of the previous series.
-> 
-> Changes
->  - instead of removing PCIe related mvebu windows add them in pcie_setup()
-> 
-> I intentionally left the ORION5X_PCIE_WA_VIRT_BASE in place as all pieces
-> in the puzzle have not found their place yet. It will be replaced with
-> ioremap() or similar when the problem of passing the address to
-> configuration space from a device tree is solved.
+Some Synopsys SSI controllers support enhanced SPI which includes
+Dual mode, Quad mode and Octal mode. DWC_ssi includes clock stretching
+feature in enhanced SPI modes which can be used to prevent FIFO underflow
+and overflow conditions while transmitting or receiving the data respectively.
+This is only tested on controller version 1.03a.
 
-Hello all, could you please look at the issue how to write
-representation of PCIe config space in device tree?
-https://lore.kernel.org/linux-devicetree/20220710225108.bgedria6igtqpz5l@pali/
+Ben Dooks (1):
+  spi: dw-apb-ssi: add generic 1.03a version
 
-Without it we cannot finish this conversion of orion5x pcie code from
-arch/arm to pci-mvebu.c
+Sudip Mukherjee (10):
+  spi: dw: define capability for enhanced spi
+  spi: dw: add check for support of dual/quad/octal
+  spi: dw: define spi_frf for dual/quad/octal modes
+  spi: dw: use TMOD_RO to read in enhanced spi modes
+  spi: dw: define SPI_CTRLR0 register and its fields
+  spi: dw: update SPI_CTRLR0 register
+  spi: dw: update NDF while writing in enhanced spi mode
+  spi: dw: update buffer for enhanced spi mode
+  spi: dw: prepare the transfer routine for enhanced mode
+  spi: dw: initialize dwc-ssi-1.03a controller
 
-> Tested with DNS323 both DT and non-DT builds.
-> 
-> Thanks,
-> Mauri
-> 
-> Mauri Sandberg (2):
->   dt-bindings: PCI: mvebu: Add orion5x compatible
->   PCI: mvebu: add support for orion5x
-> 
->  .../devicetree/bindings/pci/mvebu-pci.txt     |  1 +
->  arch/arm/mach-orion5x/common.c                | 13 ----
->  arch/arm/mach-orion5x/pci.c                   | 14 +++++
->  drivers/pci/controller/Kconfig                |  2 +-
->  drivers/pci/controller/pci-mvebu.c            | 59 +++++++++++++++++++
->  5 files changed, 75 insertions(+), 14 deletions(-)
-> 
-> 
-> base-commit: 7d0d3fa7339ed5a06d6608b7cde9f079eba62bb1
-> --
-> 2.25.1
+ .../bindings/spi/snps,dw-apb-ssi.yaml         |   1 +
+ drivers/spi/spi-dw-core.c                     | 288 ++++++++++++++++--
+ drivers/spi/spi-dw-mmio.c                     |  10 +
+ drivers/spi/spi-dw.h                          |  19 ++
+ 4 files changed, 291 insertions(+), 27 deletions(-)
+
+-- 
+2.30.2
+
