@@ -2,219 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22F665877C5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:27:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA0DC5877CC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:28:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235884AbiHBH1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 03:27:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34252 "EHLO
+        id S235894AbiHBH2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 03:28:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235835AbiHBH1A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:27:00 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 742493B944
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 00:26:57 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id x39so11137684lfu.7
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 00:26:57 -0700 (PDT)
+        with ESMTP id S231804AbiHBH2o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:28:44 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A96C3B944
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 00:28:43 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id z25so20759160lfr.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 00:28:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=d4HkZdDOv7XNMC5h/HfkGuuWra/wdCBUbN3rR8kUcYw=;
-        b=IVrIhKV6TQ2LB8/agWnpQ42D82tl2sCEUmqpSES2WT3nhnptLgRnpkPPtUsiLmXRfM
-         gT+gL3l8RtiOZd9IwL/KWUMsd67aEritX51QDojFFghkW7gzh//2J5KrMZ8Iu1qhHqe4
-         4a1pcioPuluo5PnBnsOPTnAlVi09nbdP6eNqkkSITGgzdAqYzhhXdqrWpVBcyMOCKvlP
-         5s6LgVu5mhBKl3tD/pikVQJ6HZY9jR/Msqt9E1mb+aoHG5UnIBinhhGjXi9zaKOwmbFm
-         twYYtXscQfoMAUZBxUnedqv/CaIouL2hhOTt7LNPKJxRcQsqiqpUE6mLiL8lSKwxZKjr
-         TJcQ==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=2wW+pW8iv7CjZwE7FU2+N4FeVyi5IA1nYjrBItlvXmw=;
+        b=iwn1tkT0IhoEXGX91JW2PcDuYxmh0sZlbFzZMYZOrrw/UIOxzQjSq/+0r3dsMFJ2zh
+         iovWS6WF6yFL6Lpv/H2Z0hQwOeTcmvbRLK9E/b9IJRbPgJ/7ZE8odQuky/UlYjRLxKbh
+         e4mNgfYfKgA9abky2bywIRt6wdEbYu8ep5e4jLvAeIDXnmRf7zH6noR59Y4YNESS4tWu
+         ggDgnVeER0iQ0C0+1W/iOcKvoAhqHddyWu8IOicJ0UTu2cN19lEHrM6rBf1ugixcQHrs
+         aGq5qLpkN4qBdx5d9fws5Cxk0EYwAlEKwwP4ytBFKwHUXoCT8Au381UNCsrGsLWdOIIe
+         b9sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=d4HkZdDOv7XNMC5h/HfkGuuWra/wdCBUbN3rR8kUcYw=;
-        b=BB7Tt8kxH3/yFkD/19Eoe3rZBzkoh9WbnPe9WWPS+q09D0VjepdZj2XxzXZKUGyYMS
-         Ghjrp8bV3FVSP+ncYZuVkC3990txSGIQXToowsCJe46qNlmohW85G9wJSB9z6VGoy+wM
-         JWMMmL6WPS/HTdtabv/iPwuIy2uT/dNmJ9X1G0HxjAG0ZAEtOWgoF0cR+XvUdlcPlIag
-         enxzgpQ7rsOsDjaKVHXMY0C2kqTVhttFD03hzcAWjF1HhQUv/TgzVYvrTFvh8o0dupQm
-         LWXZN+C6kfZ7m1rQIXQ44yvEuXvctkMOkIVwNrHwg/BMuU3YGGMCqVFdbX4pB4MMLdHi
-         y+tA==
-X-Gm-Message-State: ACgBeo2mCwr8hBOiHTQpQWcLd8+rLdUnshdR1B+lp1GlZVx34HTnYbBc
-        oPtGMVMyvyMuBTXVGeyOTlP4gA==
-X-Google-Smtp-Source: AA6agR4qI7vkwPxXKnLuW4SI41fSrQ+0NIFPJ6qbvRABceYlNlsRqTf7UV8Y8TYIvB6PTniHjU07Pw==
-X-Received: by 2002:a05:6512:3990:b0:48a:e4ca:7ec0 with SMTP id j16-20020a056512399000b0048ae4ca7ec0mr5902895lfu.146.1659425215752;
-        Tue, 02 Aug 2022 00:26:55 -0700 (PDT)
-Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id bf17-20020a056512259100b0048ad4ca88afsm1616699lfb.102.2022.08.02.00.26.54
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=2wW+pW8iv7CjZwE7FU2+N4FeVyi5IA1nYjrBItlvXmw=;
+        b=1ongYLhcSqa0O9mHc6wqzQ9nm6+75HTqnFxTU/2dt6puNPY1omxqGKKYsC4xgiaFyO
+         jvmygOvKAZADFJSKuKqok/DECwHJ+tq1ibXw0w63v3/DowOkw/PdSFUNs99sweh6zrja
+         ZqGUM0kapymKaG3CpOMupn52Omr/do8IEu2D1YTIpsln5AIVt77av8ncmcLCg6di4pOp
+         kGLAEZoSDyRQm1jIZFDkqXDM1Cwc5CZ3kL73T7D+bAOGRU83r59jTCJClqgdozx3YnRO
+         XdTWqScDI7AZg/pB4HkJa8RK2BvhJm/0wLOf7s+BY9c9us8vkrnKqjs1VOCKcSiSn7sJ
+         kqEA==
+X-Gm-Message-State: AJIora/msszkCKnlSgUIriVcnC0Mq5uJpATjUkDIyCiFeqzQ2QN3hteF
+        LRPm37QMeYiMs9TAWPO7WAmW/Q==
+X-Google-Smtp-Source: AGRyM1sbs7Pia9l1GPT3H8p4ExsIV87tAWP6X7IH/C7nolnZru4z6kO5bAYo4b+ZdPy+yuX7k/jpzA==
+X-Received: by 2002:a05:6512:1318:b0:482:ae30:fc77 with SMTP id x24-20020a056512131800b00482ae30fc77mr7266024lfu.279.1659425321572;
+        Tue, 02 Aug 2022 00:28:41 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id bu7-20020a056512168700b0048a1a70d14dsm2004992lfb.94.2022.08.02.00.28.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 00:26:55 -0700 (PDT)
-Message-ID: <ba6bc0e8-8b64-aa7f-241e-1e88dd9cfaa5@linaro.org>
-Date:   Tue, 2 Aug 2022 09:26:53 +0200
+        Tue, 02 Aug 2022 00:28:41 -0700 (PDT)
+Message-ID: <0ad6bd7b-b5cb-6f9a-eeca-b493c5bfa8b3@linaro.org>
+Date:   Tue, 2 Aug 2022 10:28:40 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3] ASoC: dt-bindings: fsl,sai: Convert format to
- json-schema
-Content-Language: en-US
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     shengjiu.wang@gmail.com
-References: <1659060632-4880-1-git-send-email-shengjiu.wang@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1659060632-4880-1-git-send-email-shengjiu.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 02/11] dt-bindings: Add binding for gunyah hypervisor
+Content-Language: en-GB
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        linux-doc@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20220801211240.597859-1-quic_eberman@quicinc.com>
+ <20220801211240.597859-3-quic_eberman@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220801211240.597859-3-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/07/2022 04:10, Shengjiu Wang wrote:
-> Convert the NXP SAI binding to DT schema format using json-schema.
+On 02/08/2022 00:12, Elliot Berman wrote:
+> When Linux is booted as a guest under the Gunyah hypervisor, Gunyah
+> applies a devicetree overlay describing the virtual platform
+> configuration of the guest VM, such as the message queue capability IDs
+> for communicating with the Resource Manager. Add the DT bindings that
+> Gunyah adheres for the hypervisor node and message queues.
 > 
-> The Synchronous Audio Interface (SAI) provides an interface that
-> supports full-duplex serial interfaces with frame synchronization
-> formats such as I2S, AC97, TDM, and codec/DSP interfaces.
-> 
-> Beside conversion, 'fsl,shared-interrupt' and '#sound-dai-cells'
-> are added for they are already used by some dts.
-> 
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 > ---
-> changes in v3
-> - address comments from Krzysztof
+>   .../bindings/firmware/gunyah-hypervisor.yaml  | 84 +++++++++++++++++++
+>   MAINTAINERS                                   |  1 +
+>   2 files changed, 85 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
 > 
-> changes in v2
-> - fix exclusive property issue
-> - fix order issue of compatible, clock-names, dma-names
-> 
->  .../devicetree/bindings/sound/fsl,sai.yaml    | 221 ++++++++++++++++++
->  .../devicetree/bindings/sound/fsl-sai.txt     |  95 --------
->  2 files changed, 221 insertions(+), 95 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/fsl,sai.yaml
->  delete mode 100644 Documentation/devicetree/bindings/sound/fsl-sai.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> diff --git a/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
 > new file mode 100644
-> index 000000000000..86ee46755b0c
+> index 000000000000..e50d932e768c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> @@ -0,0 +1,221 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/sound/fsl,sai.yaml#
+> +$id: http://devicetree.org/schemas/firmware/gunyah-hypervisor.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Freescale Synchronous Audio Interface (SAI).
+> +title: Gunyah Hypervisor
 > +
 > +maintainers:
-> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> +  - Murali Nalajala <quic_mnalajal@quicinc.com>
+> +  - Elliot Berman <quic_eberman@quicinc.com>
 > +
-> +description: |
-> +  The SAI is based on I2S module that used communicating with audio codecs,
-> +  which provides a synchronous audio interface that supports fullduplex
-> +  serial interfaces with frame synchronization such as I2S, AC97, TDM, and
-> +  codec/DSP interfaces.
+> +description: |+
+> +  On systems which support devicetree, Gunyah generates and overlays a deviceetree overlay which
+> +  describes the basic configuration of the hypervisor. Virtual machines use this information for
+> +  initial discovery that they are running as a Gunyah guest VM.
+> +  See also: https://github.com/quic/gunyah-resource-manager/blob/develop/src/vm_creation/dto_construct.c
 > +
 > +properties:
 > +  compatible:
 > +    oneOf:
-> +      - enum:
-> +          - fsl,vf610-sai
-> +          - fsl,imx6sx-sai
-> +          - fsl,imx6ul-sai
-> +          - fsl,imx7ulp-sai
-> +          - fsl,imx8mq-sai
-> +          - fsl,imx8qm-sai
-> +          - fsl,imx8ulp-sai
 > +      - items:
-> +          - enum:
-> +              - fsl,imx8mm-sai
-> +              - fsl,imx8mn-sai
-> +              - fsl,imx8mp-sai
-> +          - const: fsl,imx8mq-sai
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: receive and transmit interrupt
-> +
-> +  dmas:
-> +    maxItems: 2
-> +
-> +  dma-names:
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    items:
-> +      - description: The ipg clock for register access
-> +      - description: master clock source 0 (obsoleted)
-> +      - description: master clock source 1
-> +      - description: master clock source 2
-> +      - description: master clock source 3
-> +      - description: PLL clock source for 8kHz series
-> +      - description: PLL clock source for 11kHz series
-> +    minItems: 4
-> +
-> +  clock-names:
-> +    oneOf:
-> +      - items:
-> +          - const: bus
-> +          - const: mclk0
-> +          - const: mclk1
-> +          - const: mclk2
-> +          - const: mclk3
-> +          - const: pll8k
-> +          - const: pll11k
-> +        minItems: 4
-> +      - items:
-> +          - const: bus
-> +          - const: mclk1
-> +          - const: mclk2
-> +          - const: mclk3
-> +          - const: pll8k
-> +          - const: pll11k
-> +        minItems: 4
-> +
-> +  lsb-first:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      Configures whether the LSB or the MSB is transmitted
-> +      first for the fifo data. If this property is absent,
-> +      the MSB is transmitted first as default, or the LSB
-> +      is transmitted first.
-> +    type: boolean
+> +          - const: gunyah-hypervisor-1.0
+> +          - const: gunyah-hypervisor
 
-The type: boolean goes instead of $ref, not additionally to it. Just
-like below...
+Just:
+  - items:
+   - const: gunyah-hypervisor-1.0
+   - const: gunyah-hypervisor
+
+oneOf is not necessary
 
 > +
-> +  big-endian:
-> +    description: |
-> +      required if all the SAI registers are big-endian rather than little-endian.
-> +    type: boolean
-
-... be consistent.
-
+> +  "#address-cells":
+> +    description: Number of cells needed to represent 64-bit capability IDs.
+> +    const: 2
+> +  "#size-cells":
+> +    description: must be 0, because capability IDs are not memory address
+> +                  ranges and do not have a size.
+> +    const: 0
 > +
-> +  fsl,sai-synchronous-rx:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      SAI will work in the synchronous mode (sync Tx with Rx) which means
-> +      both the transmitter and the receiver will send and receive data by
-> +      following receiver's bit clocks and frame sync clocks.
-> +    type: boolean
+> +patternProperties:
+> +  "^gunyah-resource-mgr(@.*)?":
+> +    type: object
+> +    description:
+> +      Resource Manager node which is required to communicate to Resource
+> +      Manager VM using Gunyah Message Queues.
 > +
+> +    properties:
+> +      compatible:
+> +        oneOf:
 
-Best regards,
-Krzysztof
+Again, please drop the oneOf.
+
+> +          - items:
+> +              - const: gunyah-resource-manager-1-0
+> +              - const: gunyah-resource-manager
+> +      reg:
+> +        items:
+> +          - description: Gunyah capability ID of the TX message queue
+> +          - description: Gunyah capability ID of the RX message queue
+> +      interrupts:
+> +        items:
+> +          - description: Interrupt for the TX message queue
+> +          - description: Interrupt for the RX message queue
+> +    additionalProperties: false
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - interrupts
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    hypervisor {
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +        compatible = "gunyah-hypervisor-1.0", "gunyah-hypervisor";
+> +
+> +        gunyah-resource-mgr@1 {
+> +            compatible = "gunyah-resource-manager-1-0", "gunyah-resource-manager";
+> +            interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX full IRQ */
+> +                         <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX empty IRQ */
+> +            reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>;
+> +                  /* TX, RX cap ids */
+
+Do these cap ids persist from platform to platform? Then you might want 
+to define generic values for these caps.
+
+Also it feels like you are misusing the #address-cells/reg properties. 
+For example, the device should have its @NNNN to be equal to the first 
+addres. But you are using the second reg.
+
+I think that using a separate property with /bits/ 64 might be a better 
+solution.
+
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 18fb034526e1..0cd12ea6c11c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8741,6 +8741,7 @@ M:	Elliot Berman <quic_eberman@quicinc.com>
+>   M:	Murali Nalajala <quic_mnalajal@quicinc.com>
+>   L:	linux-arm-msm@vger.kernel.org
+>   S:	Maintained
+> +F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
+>   F:	Documentation/virt/gunyah/
+>   
+>   HABANALABS PCI DRIVER
+
+
+-- 
+With best wishes
+Dmitry
