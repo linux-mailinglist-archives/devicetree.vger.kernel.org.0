@@ -2,236 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1BB6587E4B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 16:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31A20587E51
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 16:46:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236058AbiHBOoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 10:44:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60936 "EHLO
+        id S236744AbiHBOqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 10:46:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233153AbiHBOoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 10:44:08 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B334EA474;
-        Tue,  2 Aug 2022 07:44:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1659451447; x=1690987447;
-  h=message-id:date:mime-version:subject:from:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=0HsczQYtJm1i3slGdvS7RQjwctCL5Y7nU/w+74oz0VQ=;
-  b=NtJqa5+c4hyQxkCkFvns1YHHb270xsUJvX0ROjaKRzAVScegUpSvQldK
-   jb/nRZHfs1DoSRQMO+4TejkEgS6X8SCEQ837sOHU9+dubrR67Jms55P7K
-   10AI3sbL083OCrc7aldQgwRR14WG47efXkSKIurHieVaRKm1dtLmEp0/S
-   s=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 02 Aug 2022 07:44:07 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 07:44:06 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 2 Aug 2022 07:44:06 -0700
-Received: from [10.253.74.155] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 2 Aug 2022
- 07:43:58 -0700
-Message-ID: <20260db2-8c7e-e2b6-2385-74f433e4b55e@quicinc.com>
-Date:   Tue, 2 Aug 2022 22:43:39 +0800
+        with ESMTP id S237056AbiHBOqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 10:46:06 -0400
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 302BA286C7;
+        Tue,  2 Aug 2022 07:46:05 -0700 (PDT)
+Received: by mail-il1-f177.google.com with SMTP id d4so7097893ilc.8;
+        Tue, 02 Aug 2022 07:46:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=YWdMhY/w6xJGnTNrD3+yPIQp9IMoWMfQJOwkWlFi+RQ=;
+        b=UkfW133lkPqM4U5g4pZNc5TWRf77vc0/jF1Ip42D0q+33NTLSi/zumy1ARwbUnRF7M
+         6Mg14nQJumaeG1GqJ3wn76MNOIkUhBLUaBzqXiG7OrPX7wChWJ8UpZJ/TmSFdCfRm9gw
+         H+Vm+3o8ID1fnpbZsf9WNZfLd0uMm1ctbQz+MQtipGj9BkwVqHNF0dY8KAC+UWzR9f3N
+         l2s3XN5ogPtppoTx3eegxt1MAQycLMzzlL9OGST4XGnZf5lWirBrqnAVbcx0Tvy7fnrf
+         GVhJe1WiVGY5I79cdpkEe/adU048JiRW75WO+wRvOIop1W3aS7d0tqKY3VhDMBjaNncs
+         k/PA==
+X-Gm-Message-State: ACgBeo3GPxPt2xFtkl2KvOq8n5dE9gzZmWWT+mFFqj5dDFw4ncW+0/v9
+        dvkDUf1zD8e1D2hGM/WwkQ==
+X-Google-Smtp-Source: AA6agR5WgaywX71Mi/tssUPXgR+p0/h9FgYemIjJDIjmuwbCJAULertTvwumkbhjtOaFmgv9kXdbvQ==
+X-Received: by 2002:a05:6e02:1d18:b0:2de:b805:99f1 with SMTP id i24-20020a056e021d1800b002deb80599f1mr3169607ila.61.1659451564182;
+        Tue, 02 Aug 2022 07:46:04 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id j4-20020a026304000000b00341d7c43ed5sm6405840jac.73.2022.08.02.07.46.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Aug 2022 07:46:03 -0700 (PDT)
+Received: (nullmailer pid 79583 invoked by uid 1000);
+        Tue, 02 Aug 2022 14:46:02 -0000
+Date:   Tue, 2 Aug 2022 08:46:02 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, perex@perex.cz,
+        kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
+        broonie@kernel.org, tiwai@suse.com, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: Add schema for common DAI
+ params
+Message-ID: <20220802144602.GA30116-robh@kernel.org>
+References: <1659370052-18966-1-git-send-email-spujar@nvidia.com>
+ <1659370052-18966-2-git-send-email-spujar@nvidia.com>
+ <1659382247.124005.1380281.nullmailer@robh.at.kernel.org>
+ <982b3f0c-0b6c-d531-3d75-27d5ca1aabec@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v12 0/9] Coresight: Add support for TPDM and TPDA
-Content-Language: en-US
-From:   Jinlong Mao <quic_jinlmao@quicinc.com>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-CC:     Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Tao Zhang <quic_taozha@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20220710021032.27455-1-quic_jinlmao@quicinc.com>
- <3f714c34-277d-ef71-b527-f758172160f9@quicinc.com>
-In-Reply-To: <3f714c34-277d-ef71-b527-f758172160f9@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <982b3f0c-0b6c-d531-3d75-27d5ca1aabec@nvidia.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Reviewers,
+On Tue, Aug 02, 2022 at 04:15:28PM +0530, Sameer Pujar wrote:
+> Hi Rob, Krzysztof
+> 
+> On 02-08-2022 01:00, Rob Herring wrote:
+> > On Mon, 01 Aug 2022 21:37:30 +0530, Sameer Pujar wrote:
+> > > The "convert-channels" and "convert-rate" bindings are provided for both
+> > > simple-card and audio-graph-card. However these are separately defined in
+> > > their respective schemas. For any new binding addition, which is common to
+> > > both, there will be duplication.
+> > > 
+> > > Introduce a new schema to have common DAI params properties and these can
+> > > be re-used in other schemas wherever applicable.
+> > > 
+> > > Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> > > Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > > ---
+> > >   .../bindings/sound/audio-graph-port.yaml           | 13 ++++------
+> > >   .../devicetree/bindings/sound/audio-graph.yaml     |  7 +++---
+> > >   .../devicetree/bindings/sound/dai-params.yaml      | 28 ++++++++++++++++++++++
+> > >   .../devicetree/bindings/sound/simple-card.yaml     | 16 ++++---------
+> > >   4 files changed, 40 insertions(+), 24 deletions(-)
+> > >   create mode 100644 Documentation/devicetree/bindings/sound/dai-params.yaml
+> > > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.yaml: properties:simple-audio-card,convert-rate: 'oneOf' conditional failed, one must be fixed:
+> >          'type' is a required property
+> >                  hint: A vendor boolean property can use "type: boolean"
+> >          'description' is a required property
+> >                  hint: A vendor boolean property can use "type: boolean"
+> >          Additional properties are not allowed ('$ref' was unexpected)
+> >                  hint: A vendor boolean property can use "type: boolean"
+> >          /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.yaml: properties:simple-audio-card,convert-rate: 'oneOf' conditional failed, one must be fixed:
+> >                  'enum' is a required property
+> >                  'const' is a required property
+> >                  hint: A vendor string property with exact values has an implicit type
+> >                  from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> >          '/schemas/sound/dai-params.yaml#/properties/dai-sample-rate' does not match 'types.yaml#/definitions/'
+> >                  hint: A vendor property needs a $ref to types.yaml
+> >          '/schemas/sound/dai-params.yaml#/properties/dai-sample-rate' does not match '^#/(definitions|\\$defs)/'
+> >                  hint: A vendor property can have a $ref to a a $defs schema
+> >          hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+> >          from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+> 
+> I am hitting this error if I use properties/definitions from another schema.
+> If I define it locally, it works. I see there are examples where properties
+> from different schema are used. But not able to understand why errors are
+> seen in my case. Am I missing anything here?
 
-Please help to review V12 series of TPDM/TPDA patches.
-
-Thanks
-
-Jinlong Mao
-
-On 7/21/2022 11:30 PM, Jinlong Mao wrote:
-> Hi all,
->
-> Please help to review V12 patches.
->
-> Thanks
->
-> Jinlong Mao
->
-> On 7/10/2022 10:10 AM, Mao Jinlong wrote:
->> This series adds support for the trace performance monitoring and
->> diagnostics hardware (TPDM and TPDA). It is composed of two major
->> elements.
->> a) Changes for original coresight framework to support for TPDM and 
->> TPDA.
->> b) Add driver code for TPDM and TPDA.
->>
->> Introduction of changes for original coresight framework
->> Support TPDM as new coresight source.
->> Since only STM and ETM are supported as coresight source originally.
->> TPDM is a newly added coresight source. We need to change
->> the original way of saving coresight path to support more types source
->> for coresight driver.
->> The following patch is to add support more coresight sources.
->>      coresight: core: Use IDR for non-cpu bound sources' paths.
->>
->> Introduction of TPDM and TPDA
->> TPDM - The trace performance monitoring and diagnostics monitor or 
->> TPDM in
->> short serves as data collection component for various dataset types
->> specified in the QPMDA(Qualcomm performance monitoring and diagnostics
->> architecture) spec. The primary use case of the TPDM is to collect data
->> from different data sources and send it to a TPDA for packetization,
->> timestamping and funneling.
->>       Coresight: Add coresight TPDM source driver
->>       dt-bindings: arm: Adds CoreSight TPDM hardware definitions
->>       coresight-tpdm: Add DSB dataset support
->>       coresight-tpdm: Add integration test support
->>       docs: sysfs: coresight: Add sysfs ABI documentation for TPDM
->>
->> TPDA - The trace performance monitoring and diagnostics aggregator or
->> TPDA in short serves as an arbitration and packetization engine for the
->> performance monitoring and diagnostics network as specified in the QPMDA
->> (Qualcomm performance monitoring and diagnostics architecture)
->> specification. The primary use case of the TPDA is to provide
->> packetization, funneling and timestamping of Monitor data as specified
->> in the QPMDA specification.
->> The following patch is to add driver for TPDA.
->>       Coresight: Add TPDA link driver
->>       dt-bindings: arm: Adds CoreSight TPDA hardware definitions
->>
->> The last patch of this series is a device tree modification, which add
->> the TPDM and TPDA configuration to device tree for validating.
->>      ARM: dts: msm: Add coresight components for SM8250
->>      ARM: dts: msm: Add tpdm mm/prng for sm8250
->>
->> Once this series patches are applied properly, the tpdm and tpda nodes
->> should be observed at the coresight path /sys/bus/coresight/devices
->> e.g.
->> /sys/bus/coresight/devices # ls -l | grep tpd
->> tpda0 -> ../../../devices/platform/soc@0/6004000.tpda/tpda0
->> tpdm0 -> ../../../devices/platform/soc@0/6c08000.mm.tpdm/tpdm0
->>
->> We can use the commands are similar to the below to validate TPDMs.
->> Enable coresight sink first.
->>
->> echo 1 > /sys/bus/coresight/devices/tmc_etf0/enable_sink
->> echo 1 > /sys/bus/coresight/devices/tpdm0/enable_source
->> echo 1 > /sys/bus/coresight/devices/tpdm0/integration_test
->> echo 2 > /sys/bus/coresight/devices/tpdm0/integration_test
->> The test data will be collected in the coresight sink which is enabled.
->> If rwp register of the sink is keeping updating when do
->> integration_test (by cat tmc_etf0/mgmt/rwp), it means there is data
->> generated from TPDM to sink.
->>
->> There must be a tpda between tpdm and the sink. When there are some
->> other trace event hw components in the same HW block with tpdm, tpdm
->> and these hw components will connect to the coresight funnel. When
->> there is only tpdm trace hw in the HW block, tpdm will connect to
->> tpda directly.
->>         +---------------+                +-------------+
->>      |  tpdm@6c08000 |                |tpdm@684C000 |
->>      +-------|-------+                +------|------+
->>              |                               |
->>      +-------|-------+                       |
->>      | funnel@6c0b000|                       |
->>      +-------|-------+                       |
->>              |                               |
->>      +-------|-------+                       |
->>      |funnel@6c2d000 |                       |
->>      +-------|-------+                       |
->>              |                               |
->>              |    +---------------+          |
->>              +----- tpda@6004000  -----------+
->>                   +-------|-------+
->>                           |
->>                   +-------|-------+
->>                   |funnel@6005000 |
->>                   +---------------+
->>
->> This patch series depends on patch series:
->> "[v2,00/13] coresight: Add new API to allocate trace source ID values"
->> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220704081149.16797-1-mike.leach@linaro.org/ 
->>
->>
->> Changes from V11:
->> 1. Clear bits for atid before setting them and relese atid when tpda
->> remove. -- Suzuki K Poulose <suzuki.poulose@arm.com>
->>
->> Mao Jinlong (9):
->>    coresight: core: Use IDR for non-cpu bound sources' paths.
->>    Coresight: Add coresight TPDM source driver
->>    dt-bindings: arm: Adds CoreSight TPDM hardware definitions
->>    coresight-tpdm: Add DSB dataset support
->>    coresight-tpdm: Add integration test support
->>    Coresight: Add TPDA link driver
->>    dt-bindings: arm: Adds CoreSight TPDA hardware definitions
->>    arm64: dts: qcom: sm8250: Add coresight components
->>    arm64: dts: qcom: sm8250: Add tpdm mm/prng
->>
->>   .../testing/sysfs-bus-coresight-devices-tpdm  |  13 +
->>   .../bindings/arm/qcom,coresight-tpda.yaml     | 111 +++
->>   .../bindings/arm/qcom,coresight-tpdm.yaml     |  93 +++
->>   MAINTAINERS                                   |   2 +
->>   arch/arm64/boot/dts/qcom/sm8250.dtsi          | 671 ++++++++++++++++++
->>   drivers/hwtracing/coresight/Kconfig           |  23 +
->>   drivers/hwtracing/coresight/Makefile          |   2 +
->>   drivers/hwtracing/coresight/coresight-core.c  |  42 +-
->>   drivers/hwtracing/coresight/coresight-tpda.c  | 208 ++++++
->>   drivers/hwtracing/coresight/coresight-tpda.h  |  35 +
->>   drivers/hwtracing/coresight/coresight-tpdm.c  | 259 +++++++
->>   drivers/hwtracing/coresight/coresight-tpdm.h  |  62 ++
->>   include/linux/coresight.h                     |   1 +
->>   13 files changed, 1510 insertions(+), 12 deletions(-)
->>   create mode 100644 
->> Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
->>   create mode 100644 
->> Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
->>   create mode 100644 
->> Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
->>   create mode 100644 drivers/hwtracing/coresight/coresight-tpda.c
->>   create mode 100644 drivers/hwtracing/coresight/coresight-tpda.h
->>   create mode 100644 drivers/hwtracing/coresight/coresight-tpdm.c
->>   create mode 100644 drivers/hwtracing/coresight/coresight-tpdm.h
->>
+You either need to use 'properties' with actual property names and 
+reference that schema from the node level. Or you use '$defs' if you are 
+going to have references from the (DT) property level. I think I'd just 
+leave simple-card out of this and do the former.
