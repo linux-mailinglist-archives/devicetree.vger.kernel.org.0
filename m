@@ -2,109 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C6D58828A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 21:35:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB4225882C9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 21:48:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231317AbiHBTf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 15:35:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57400 "EHLO
+        id S233477AbiHBTr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 15:47:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbiHBTf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 15:35:57 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 067651147C;
-        Tue,  2 Aug 2022 12:35:56 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id p81so11427123iod.2;
-        Tue, 02 Aug 2022 12:35:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=je8IzPMT4x05fWjZdQbsGe6R9X7dS9v0hhBrpxg2d3A=;
-        b=DNBQqehmsHO64TYXuoO/IfBeSdzAH9YJlQVg6Nj/yLH2N2YRXMnGVkIrxB+rWms3gm
-         kQSRJevov9Kc7kWlqwG/LO8sBQB0ZT7P8mU5aK2IFtNWdrFB28EYP25R6A/igvg15LHv
-         NbotMdfVxuX/01PRuyCzirrVBRBHFBkhLgfVJAKmdCsyloz0p4MUeRi5w/hDpmUzCqLw
-         HVYQyrBVbJr8pUis3Q3hwN/z6YM4UqjfJPehLr12JpSmNVnPBFmcupJUmz88/QCzKUK5
-         m+o0C+NojPUOypjqIQ7PqTIph7aJL8AHhOR/pTwmUMrjKBNMBMLrFo9Ad/N1yfe4lDec
-         i/LA==
-X-Gm-Message-State: AJIora+rFaHMxDetm66h5FBtjt+lQezzuNCZmuc2VWceQ5jI8xJo/fat
-        Szs4GXdgjAypmSeydJIN/A==
-X-Google-Smtp-Source: AGRyM1sWRCb1Hw3XjyIq16bybj1jSYaNDnLhLTVrmFNgVXfB078wWj8bRWptFCoOvzFVgO6thInA7w==
-X-Received: by 2002:a6b:ba85:0:b0:67b:cd01:aef2 with SMTP id k127-20020a6bba85000000b0067bcd01aef2mr8368749iof.59.1659468955247;
-        Tue, 02 Aug 2022 12:35:55 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id v18-20020a056e020f9200b002dbfcfa3233sm6090185ilo.37.2022.08.02.12.35.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Aug 2022 12:35:54 -0700 (PDT)
-Received: (nullmailer pid 526062 invoked by uid 1000);
-        Tue, 02 Aug 2022 19:35:52 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     andrei.tachici@stud.acs.upb.ro
-Cc:     krzysztof.kozlowski+dt@linaro.org, davem@davemloft.net,
-        robh+dt@kernel.org, netdev@vger.kernel.org, joel@jms.id.au,
-        edumazet@google.com, andrew@lunn.ch, kuba@kernel.org,
-        pabeni@redhat.com, linux@armlinux.org.uk,
-        linux-kernel@vger.kernel.org, hkallweit1@gmail.com,
-        l.stelmach@samsung.com, devicetree@vger.kernel.org,
-        vegard.nossum@oracle.com
-In-Reply-To: <20220802155947.83060-4-andrei.tachici@stud.acs.upb.ro>
-References: <20220802155947.83060-1-andrei.tachici@stud.acs.upb.ro> <20220802155947.83060-4-andrei.tachici@stud.acs.upb.ro>
-Subject: Re: [net-next v3 3/3] dt-bindings: net: adin1110: Add docs
-Date:   Tue, 02 Aug 2022 13:35:52 -0600
-Message-Id: <1659468952.852417.526061.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S232949AbiHBTrt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 15:47:49 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D2152FCB;
+        Tue,  2 Aug 2022 12:47:47 -0700 (PDT)
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 272JFRUV008862;
+        Tue, 2 Aug 2022 19:47:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=noWbrVaOPUO/w0UphzMRye+2Bomv7aG3YuUle6322CI=;
+ b=Xc625qQdZcOoiwDa+sMwikqBeMzu6geW27LxsAQyFuktyjtsCxR727oiPuNET3Cr9tsm
+ 39vUhjJhGpPSzdpLRibacBvnyMzWsuGXLKvBqfeCkyNM+BvGIaQNq72O++9VA6u5gC7H
+ tKWyEYgs1VsalFv/2iRxvQof0q7VW5tGW9VA3PYN8Pd9iWw+2bhSDlwVurNH3TBKmdR2
+ ALVjpShqPaWgtwiN0snzZOXkjZN5CuppCPetnXetEaVZMvzUg/kOsNuXLEn/Lj6LmPmu
+ 2+rUbMPBDRIRXDD+iIL5gZ322qO75zvX51M/rPUAl7xKFnWVo4/EuaMtgCwJfzkffprB XQ== 
+Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3hq9x30ruh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 02 Aug 2022 19:47:10 +0000
+Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
+        by ppma05wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 272JLOQ1020286;
+        Tue, 2 Aug 2022 19:47:10 GMT
+Received: from b01cxnp22033.gho.pok.ibm.com (b01cxnp22033.gho.pok.ibm.com [9.57.198.23])
+        by ppma05wdc.us.ibm.com with ESMTP id 3hmv99m074-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 02 Aug 2022 19:47:10 +0000
+Received: from b01ledav002.gho.pok.ibm.com (b01ledav002.gho.pok.ibm.com [9.57.199.107])
+        by b01cxnp22033.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 272Jl9oj56230302
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 2 Aug 2022 19:47:09 GMT
+Received: from b01ledav002.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 90A6E124055;
+        Tue,  2 Aug 2022 19:47:09 +0000 (GMT)
+Received: from b01ledav002.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id C5657124052;
+        Tue,  2 Aug 2022 19:47:08 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.77.144.23])
+        by b01ledav002.gho.pok.ibm.com (Postfix) with ESMTP;
+        Tue,  2 Aug 2022 19:47:08 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     joel@jms.id.au
+Cc:     linux@roeck-us.net, jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+        devicetree@vger.kernel.org, Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH 0/3] occ: Restore default behavior of polling OCC during init
+Date:   Tue,  2 Aug 2022 14:46:53 -0500
+Message-Id: <20220802194656.240564-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: foUfB15FyPeo5IxQhrKPr7wYKmk9YzdO
+X-Proofpoint-GUID: foUfB15FyPeo5IxQhrKPr7wYKmk9YzdO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-02_14,2022-08-02_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ lowpriorityscore=0 bulkscore=0 malwarescore=0 impostorscore=0 adultscore=0
+ mlxlogscore=707 priorityscore=1501 phishscore=0 clxscore=1011 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2206140000
+ definitions=main-2208020092
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 02 Aug 2022 18:59:47 +0300, andrei.tachici@stud.acs.upb.ro wrote:
-> From: Alexandru Tachici <alexandru.tachici@analog.com>
-> 
-> Add bindings for the ADIN1110/2111 MAC-PHY/SWITCH.
-> 
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
-> ---
->  .../devicetree/bindings/net/adi,adin1110.yaml | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/adi,adin1110.yaml
-> 
+A recent change to the OCC hwmon driver modified the default behavior to
+no longer poll the OCC during initialization. This does change the
+interface, meaning that old applications will not work with the more
+recent driver. To resolve this issue, introduce a new dts property to
+control the behavior of the driver during initialization, similar to the
+FSI master property "no-scan-on-init". Without the new
+"ibm,inactive-on-init" boolean present, the driver will now do the
+previous behavior of polling the OCC.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Eddie James (3):
+  dt-bindings: hwmon: Add IBM OCC bindings
+  fsi: occ: Support probing the hwmon child device from dts node
+  hwmon: (occ) Check for device property for setting OCC active during
+    probe
 
-yamllint warnings/errors:
+ .../bindings/hwmon/ibm,occ-hmwon.yaml         | 40 ++++++++++++++++++
+ drivers/fsi/fsi-occ.c                         | 41 +++++++++++++++----
+ drivers/hwmon/occ/common.c                    | 11 ++++-
+ drivers/hwmon/occ/p9_sbe.c                    |  9 ++++
+ 4 files changed, 93 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/ibm,occ-hmwon.yaml
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/net/adi,adin1110.example.dts:26.17-27: Warning (reg_format): /example-0/spi/ethernet@0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/net/adi,adin1110.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/adi,adin1110.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/adi,adin1110.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/adi,adin1110.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/adi,adin1110.example.dts:23.13-39.11: Warning (spi_bus_bridge): /example-0/spi: incorrect #address-cells for SPI bus
-Documentation/devicetree/bindings/net/adi,adin1110.example.dts:23.13-39.11: Warning (spi_bus_bridge): /example-0/spi: incorrect #size-cells for SPI bus
-Documentation/devicetree/bindings/net/adi,adin1110.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/adi,adin1110.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'spi_bus_bridge'
-Documentation/devicetree/bindings/net/adi,adin1110.example.dts:24.24-38.15: Warning (avoid_default_addr_size): /example-0/spi/ethernet@0: Relying on default #address-cells value
-Documentation/devicetree/bindings/net/adi,adin1110.example.dts:24.24-38.15: Warning (avoid_default_addr_size): /example-0/spi/ethernet@0: Relying on default #size-cells value
-Documentation/devicetree/bindings/net/adi,adin1110.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+-- 
+2.31.1
 
