@@ -2,84 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 982955877E2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FB205877E7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235911AbiHBHdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 03:33:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38836 "EHLO
+        id S235892AbiHBHek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 03:34:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235927AbiHBHdX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:33:23 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1C61D33D
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 00:33:21 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id t1so20719626lft.8
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 00:33:21 -0700 (PDT)
+        with ESMTP id S233894AbiHBHeh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:34:37 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E7515FEB
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 00:34:35 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id t1so20723380lft.8
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 00:34:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=x0vIST26rZjynUdC0JD/9jdYIKyQsxo+i+ae0TFwt3I=;
-        b=Ynj3vf6wpFup4Zbq1zEDpexAo9XLF5Wpopp0ljAX3UEU4+XaLR3OXTJW2DRzA7D6f/
-         O9C2dDynvEdbBEjlBzHoLN0sdWLOjqlzn3m0vOAIZFrAi0PdYnZSiJDiN/p2oLjsHNUE
-         t+17hpCPReEUV6/WpviWS9MuuzIBAmSfiUzTEGxkHwMMUg5FhZeYtXeW4ud4p5gU/Maa
-         rg01g/BtuJKa/IeBBjC2BpqkeTktNn8oJlvH1X+a6Dma0RJgjQTJQ78BKoPyIWbAjA6x
-         OOMtJSVIQgcejqs6LexBESy2EdVQgYxBIVjgMwpDwp0pPMUUF2HUnFk9qF6OVfr0IyKS
-         5QLg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=368JpS/36rpWybO7f4ScB1zDTWLXtrfKA8qyBV5OuNo=;
+        b=PAW48wAwiZTpeP12dW/05hHrrHyEYFI0im9DNNF9Q1icROFPCIEb6M269XeZJ/MbV9
+         5t2YxR+fMq4jgvEjANIcqMivgGJF29PZCnSzboOrNW+MBMK/EPhmD6KywOWoIpLszoRP
+         2MCSDWoEriFDPYGELrXkSoaskNDFPu2DRWKIwXJqdxt0ZPPQiel/waz1N1RgyFPEc8Yb
+         jlqJY/UTJ7/RQbPi9DQDvTyje7I/eb2hboyuTCyytIo/c58JUOEARUmiVwcVt3KSK1vT
+         fin8GBGpmk2oD8H+CYqA8ukdX9l03o89vJAgdLCMn7uUYsAqnRRV1s+uQJX33SQeZD8b
+         g06g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=x0vIST26rZjynUdC0JD/9jdYIKyQsxo+i+ae0TFwt3I=;
-        b=eyNV+nUxZIp4VjT9x6g5HN/DFjZl/2zM3dWS5zj8UPnwXNikVx1k3hrPHP4uRKN2+0
-         SCxCOVfiqu2SVPe/uO7FvTv/W2jskoR2K5TCrCPfVypwiW348dUgbatnUpdf0sqOfNpe
-         IgK0fGfmqriN8Gri/F4/0IZ76LcHAfX7LdzwRVkdWD7SbuwBjpuhImmVS+qdHEqCY/27
-         qr+zwHbg+1T8xWSYVNNJoagadCwgDoeJgJRZ8d8Qc9BJpd0DkQE7N5DgrmtQoQoBz3f/
-         5c+/ZpEJWdfWN0hUqMdb2zWE9OS90QCziqIUKhZj2vQuM62eACUTwh7Bvjmw81qe0w3h
-         dowQ==
-X-Gm-Message-State: ACgBeo1HOSpx6W9qnSm4OOtjG8AwCKJXFEBjUmNyXk3CMsiA250BHLsT
-        PXkT6y6WunQ2SQOT1t9iMiI/WQ==
-X-Google-Smtp-Source: AA6agR6W55Lb6cpzjt373AB2/+S8QAA6i4tr+Ru+u1BwPZ6v0wI3o12azkoxYP5Ptz0nUaCB4GKQqg==
-X-Received: by 2002:a05:6512:401c:b0:48a:f35d:8b51 with SMTP id br28-20020a056512401c00b0048af35d8b51mr3795149lfb.172.1659425600014;
-        Tue, 02 Aug 2022 00:33:20 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 8-20020ac25f48000000b0048a8852fc7asm1239895lfz.49.2022.08.02.00.33.19
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=368JpS/36rpWybO7f4ScB1zDTWLXtrfKA8qyBV5OuNo=;
+        b=bjQmreEI04z2vrc0kV6Zb1LwgCUp9W+YzS8AvBp3Xk0d+ra9SVZDqdDyhxC5fS3Ezo
+         0MJ7aO3AqNKsNjjGIIp6d2ITdIxU7T7+6ine1tMgSNBNDi8P5rC5DkeLmY+erphAKksn
+         IP1DNOJ7mrdIwBshMPbFazPu7cZKHBByUFBiAi5cDZd3dpR4sYVXuT/g+QWguN68vO75
+         CxqZT0zThyOQndJranGsG/oMV6Fgx/LIZMMvGP139y6m5xQ4RVjps8QhsQvTriogt44/
+         p6x4maoi4YqzsOiBr9uTTFYmAh8oI0P4SczJ8MK4hC71MuBBnhgTs5n7l9w5qH2eT7YX
+         0/og==
+X-Gm-Message-State: AJIora9cyIByyssQz666T5xvDTEk6FyE+Xxckkg+Eg2CHmX06Ef5DrjX
+        6BkzmXz+e0K59hMUe3zpe3RxEQ==
+X-Google-Smtp-Source: AGRyM1uGrAhHXhNa8GumMf2zq7PU+wfp79kPHZ7PJ8Y8ijdAWAR4/sCz3QReeNWyA2joc0ixSYZ0KQ==
+X-Received: by 2002:ac2:4f03:0:b0:481:50f7:ac07 with SMTP id k3-20020ac24f03000000b0048150f7ac07mr6416124lfr.422.1659425674316;
+        Tue, 02 Aug 2022 00:34:34 -0700 (PDT)
+Received: from [192.168.1.6] ([213.161.169.44])
+        by smtp.gmail.com with ESMTPSA id l8-20020a194948000000b0048a9603399fsm2009441lfj.267.2022.08.02.00.34.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 00:33:19 -0700 (PDT)
-Message-ID: <24a2d70e-0ed1-5f7d-9c9c-261afac73989@linaro.org>
-Date:   Tue, 2 Aug 2022 10:33:18 +0300
+        Tue, 02 Aug 2022 00:34:33 -0700 (PDT)
+Message-ID: <f6d7607f-dabf-9339-8d2d-7694a58e8427@linaro.org>
+Date:   Tue, 2 Aug 2022 09:34:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 04/11] gunyah: Common types and error codes for Gunyah
- hypercalls
-Content-Language: en-GB
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220801211240.597859-1-quic_eberman@quicinc.com>
- <20220801211240.597859-5-quic_eberman@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220801211240.597859-5-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/8] dt-bindings: dma: mediatek,uart-dma: Add binding for
+ MT6795 SoC
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, vkoul@kernel.org,
+        chaotian.jing@mediatek.com, ulf.hansson@linaro.org,
+        matthias.bgg@gmail.com, hsinyi@chromium.org,
+        nfraprado@collabora.com, allen-kh.cheng@mediatek.com,
+        fparent@baylibre.com, sam.shih@mediatek.com,
+        sean.wang@mediatek.com, long.cheng@mediatek.com,
+        wenbin.mei@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20220729104441.39177-1-angelogioacchino.delregno@collabora.com>
+ <20220729104441.39177-2-angelogioacchino.delregno@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220729104441.39177-2-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -91,116 +85,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2022 00:12, Elliot Berman wrote:
-> Add architecture-independent standard error codes, types, and macros for
-> Gunyah hypercalls.
+On 29/07/2022 12:44, AngeloGioacchino Del Regno wrote:
+> Add mediatek,mt6795-uart-dma to the compatibles list to support
+> the MT6795 Helio X10 SoC's UART APDMA.
 > 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->   MAINTAINERS            |  1 +
->   include/linux/gunyah.h | 75 ++++++++++++++++++++++++++++++++++++++++++
->   2 files changed, 76 insertions(+)
->   create mode 100644 include/linux/gunyah.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 02f97ac90cdf..2e4f1d9ed47b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8744,6 +8744,7 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
->   F:	Documentation/virt/gunyah/
->   F:	arch/arm64/include/asm/gunyah.h
-> +F:	include/linux/gunyah.h
->   
->   HABANALABS PCI DRIVER
->   M:	Oded Gabbay <ogabbay@kernel.org>
-> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
-> new file mode 100644
-> index 000000000000..69931a0f5736
-> --- /dev/null
-> +++ b/include/linux/gunyah.h
-> @@ -0,0 +1,75 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef _GUNYAH_H
-> +#define _GUNYAH_H
-> +
-> +#include <linux/types.h>
-> +#include <linux/errno.h>
-> +#include <asm/gunyah.h>
-> +
-> +typedef u64 gh_capid_t;
-> +
-> +/* Common Gunyah macros */
-> +#define GH_CAPID_INVAL	U64_MAX
-> +
-> +#define GH_ERROR_OK			0
-
-Is there any semantic difference between GH_ERROR_foo < 0 and 
-GH_ERROR_bar > 0 ?
-
-> +#define GH_ERROR_UNIMPLEMENTED		-1
-> +#define GH_ERROR_RETRY			-2
-> +
-> +#define GH_ERROR_ARG_INVAL		1
-> +#define GH_ERROR_ARG_SIZE		2
-> +#define GH_ERROR_ARG_ALIGN		3
-> +
-> +#define GH_ERROR_NOMEM			10
-> +
-> +#define GH_ERROR_ADDR_OVFL		20
-> +#define GH_ERROR_ADDR_UNFL		21
-> +#define GH_ERROR_ADDR_INVAL		22
-> +
-> +#define GH_ERROR_DENIED			30
-> +#define GH_ERROR_BUSY			31
-> +#define GH_ERROR_IDLE			32
-> +
-> +#define GH_ERROR_IRQ_BOUND		40
-> +#define GH_ERROR_IRQ_UNBOUND		41
-> +
-> +#define GH_ERROR_CSPACE_CAP_NULL	50
-> +#define GH_ERROR_CSPACE_CAP_REVOKED	51
-> +#define GH_ERROR_CSPACE_WRONG_OBJ_TYPE	52
-> +#define GH_ERROR_CSPACE_INSUF_RIGHTS	53
-> +#define GH_ERROR_CSPACE_FULL		54
-> +
-> +#define GH_ERROR_MSGQUEUE_EMPTY		60
-> +#define GH_ERROR_MSGQUEUE_FULL		61
-> +
-> +static inline int gh_remap_error(int gh_error)
-> +{
-> +	switch (gh_error) {
-> +	case GH_ERROR_OK:
-> +		return 0;
-> +	case GH_ERROR_NOMEM:
-> +		return -ENOMEM;
-> +	case GH_ERROR_DENIED:
-> +	case GH_ERROR_CSPACE_CAP_NULL:
-> +	case GH_ERROR_CSPACE_CAP_REVOKED:
-> +	case GH_ERROR_CSPACE_WRONG_OBJ_TYPE:
-> +	case GH_ERROR_CSPACE_INSUF_RIGHTS:
-> +	case GH_ERROR_CSPACE_FULL:
-> +		return -EACCES;
-> +	case GH_ERROR_BUSY:
-> +	case GH_ERROR_IDLE:
-> +		return -EBUSY;
-> +	case GH_ERROR_IRQ_BOUND:
-> +	case GH_ERROR_IRQ_UNBOUND:
-> +	case GH_ERROR_MSGQUEUE_FULL:
-> +	case GH_ERROR_MSGQUEUE_EMPTY:
-> +		return -EPERM;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +#endif
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
--- 
-With best wishes
-Dmitry
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+Best regards,
+Krzysztof
