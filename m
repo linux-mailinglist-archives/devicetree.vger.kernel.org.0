@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1892587AD9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 12:41:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0CE5587ADC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 12:41:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236346AbiHBKl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 06:41:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47744 "EHLO
+        id S236372AbiHBKlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 06:41:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236087AbiHBKl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 06:41:27 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70A622539
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 03:41:25 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id z25so21372528lfr.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 03:41:25 -0700 (PDT)
+        with ESMTP id S233041AbiHBKly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 06:41:54 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9DA1EAF0
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 03:41:52 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id y23so4829760ljh.12
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 03:41:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=3qLvNhAx0ZshshWMGsLhQiJFEgbstO0kVWIVueJ7P4M=;
-        b=RGPG5b8+QlKFSiIaY0/Z+ZIBzeL5qF17ni0r7YZO0MMIluEyizGqfVQFvswt1kqTdX
-         Xxj30W3vztSKDgLKdjKTWuqzTsLhf65OYmrl8ytl3txizOiRh7Ps8KeLcr/QjtzruAo6
-         HrYb/A3S5Qrl1/82Iy5VKDgF+W46DmSSAWT29RRmg/0+W5tGMdFWWoJxTE623X128Yn6
-         /XBrmds+sjgHTa2tIjNn2w/XyrsjupPJI7vlTnjBpKEhiCgXKpmV8XFgY+uBojCaZYCj
-         CZE+51NESU9yri/IpvnYsrcNgh81OX6nOvyC0ePIL51sTiJ2HbzcpyQELBoCQ+NACQQD
-         mbJA==
+        bh=wmTM3L/iymZMU/fnd3mvXNlrqlcsNutt59LWDA/9pO0=;
+        b=prTa7/zZhEgTnrNrq+qfzAi60M2N7oGlzarc7fGn3QTieiDcfQgawwYItQ1vzqHFnT
+         YDV2RlNG7vAJiPulv8Fe+OkriVHzlu/qEI6rxUrdZ6zvZEs4s2jZ5cVy/GpI4jMY7XPA
+         EkbTOQ+vIbSIrJifag1U+U/jM+VP0tQhDQEdDWi2ERxpK6wr2Sd6aX52ShucbPyUuoVf
+         XR4xMKOi01xQTF7LS4Bavh4Qd+2/ClkjlrtQdgevcABFSA9IVU0V4MhmL39IxdpyZt5y
+         eJclTJg5g+7nddKfySzB2VZkA0AfGDzoBO3mqyW0ZN4uvYE2SJOZgti+E2HDc+abJbdo
+         k4cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=3qLvNhAx0ZshshWMGsLhQiJFEgbstO0kVWIVueJ7P4M=;
-        b=z/1j3SDFwABdznZMdg6fcXFqVym0BhaleZbY9k8nMPnsZxZwm3fRhKDN+mNWCwB/J8
-         jO35miTJNWVj7EMD4tg2BO2nKLbh7p6AI3PtreCfzhl92CeTPoYmq+wljpDLawrk2hb1
-         zuVU7PcHCO9ZU1Ni1h7qOW52Vqoq3hcVKbuMb7eWOLUo01pG9nqYbfKTzdWfrzeDxlg/
-         Z53q63UE2mKzxZW5vogAUEjZLQzgiWYU+l01NpoikZIeLfkgokYTNf5QMw3GMAepRCpp
-         y8NpkmETOUx8pxHKckDGqmgFFrRfyUx9zdG3kuJNcqVHlUAT1x069HsBUnYL+bGYjDwQ
-         ypUg==
-X-Gm-Message-State: AJIora9rf9EC+RRG+oNHV3eWHpbt5wetEUmBhGBtCvksKA5p4K+c5raL
-        FWFspLoJL34gvUTc3HIp3rl4jA==
-X-Google-Smtp-Source: AGRyM1ulk9FftA473yTrqLrLl5XAtNdoG6EZxNyqMRzN6I7Y4dw+FR2rMi+idU56zCI8IAVlQjzMyQ==
-X-Received: by 2002:ac2:4e13:0:b0:489:d699:5046 with SMTP id e19-20020ac24e13000000b00489d6995046mr7602347lfr.134.1659436884254;
-        Tue, 02 Aug 2022 03:41:24 -0700 (PDT)
+        bh=wmTM3L/iymZMU/fnd3mvXNlrqlcsNutt59LWDA/9pO0=;
+        b=fsuqPd/++2j2Ho1M6N29b5PbWUQvD7aYW/IwobFGrKlQhGdQCHww6rkhzae6Jz6yMd
+         IJV9R24vmBlWZq5h39u22qzwD69TO8nScNnaxnFwiOfQnoZrhuPrcYdVkJ0q+dDWiwJg
+         n4ks1AZDDK6SH+sZjU7uvueJmzc9ARNbt5MqEtvX/YNBW7gGBqqkdfuc2v2iB5wxqebo
+         Db2wnCA3XCfAH7FuqNV3pGQrr6VOU86jx7oFVzSsjLsZKCuDzTqLxx957cV6NP0w0/GV
+         a+icDGfZhtXoHSuOd64HQ5iG+jU4hWBQpFNX2ml9hi9/Pek1bNXqBUhnSDs4aMt+HFB4
+         a34w==
+X-Gm-Message-State: AJIora+dxZ5BCb+5MYBcXlmU+CVPZ3cBmUxv4dBibZyyYm1V1/lQ5xOs
+        0IOT+JPSS9l8TuijhxZDmCY+Mw==
+X-Google-Smtp-Source: AGRyM1uAwk5Z6Nt5hhCOS+uMyGAWFxAUfImDvreK4WeYQqd+ilSgJuebsCKPFwbZvBV161vdVqZd2w==
+X-Received: by 2002:a2e:8081:0:b0:253:ce61:3c66 with SMTP id i1-20020a2e8081000000b00253ce613c66mr6034789ljg.98.1659436911078;
+        Tue, 02 Aug 2022 03:41:51 -0700 (PDT)
 Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id i3-20020a2ea223000000b0025e4ed638dcsm688267ljm.59.2022.08.02.03.41.22
+        by smtp.gmail.com with ESMTPSA id s3-20020a056512202300b0048af79884fesm829165lfs.101.2022.08.02.03.41.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 03:41:23 -0700 (PDT)
-Message-ID: <c140e7da-bc89-afc5-12b2-f3d53bc4020a@linaro.org>
-Date:   Tue, 2 Aug 2022 12:41:21 +0200
+        Tue, 02 Aug 2022 03:41:50 -0700 (PDT)
+Message-ID: <a4868d91-f4a1-23bd-91a3-802fac7d7e9e@linaro.org>
+Date:   Tue, 2 Aug 2022 12:41:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v3 01/13] dt-bindings: regulator: qcom_spmi: Improve
- formatting of if-then blocks
+Subject: Re: [PATCH v3 02/13] dt-bindings: regulator: qcom_spmi: Document
+ PM6125 PMIC
 Content-Language: en-US
 To:     Iskren Chernev <iskren.chernev@gmail.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -66,11 +66,12 @@ Cc:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Adam Skladowski <a39.skl@gmail.com>
 References: <20220731223736.1036286-1-iskren.chernev@gmail.com>
- <20220731223736.1036286-2-iskren.chernev@gmail.com>
+ <20220731223736.1036286-3-iskren.chernev@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220731223736.1036286-2-iskren.chernev@gmail.com>
+In-Reply-To: <20220731223736.1036286-3-iskren.chernev@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,11 +85,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/08/2022 00:37, Iskren Chernev wrote:
-> Add a newline between if-then blocks for different compatible PMICs.
+> Add support for pm6125 compatible string and add relevant supplies in QCom
+> SPMI regulator documentation.
 > 
+> Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
 > Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
-> ---
->  .../bindings/regulator/qcom,spmi-regulator.yaml      | 12 ++++++++++++
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
