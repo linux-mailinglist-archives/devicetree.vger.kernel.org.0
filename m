@@ -2,124 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4573A587EC4
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 17:14:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0783587EEE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 17:25:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237223AbiHBPOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 11:14:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53282 "EHLO
+        id S234375AbiHBPZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 11:25:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236698AbiHBPOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 11:14:20 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7062D167CA;
-        Tue,  2 Aug 2022 08:14:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1D823B81F3A;
-        Tue,  2 Aug 2022 15:14:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AE7DC43151;
-        Tue,  2 Aug 2022 15:14:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659453256;
-        bh=HDXSUJAM6KP/jceAZJSA5f6hHQ5LwdeRI3r8X6y5ils=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qUreBEosfSUZFnnsF46nBBB1G1aIvl2/nh2ElYeeYb6ttZVzKyuOY8xvCGlV/ncQB
-         jkFdPCt23Lem9bsE8iNEHD96FPyJPZ6kERpW0ft/l1+F74wr4BZ/nnQzngibu8GZzM
-         vDU9tM4bSm5bad1YFVFZEVoQIHTbISSyI2BG7fdPY/bxSraWQ+Xnlo/fdHDbgbzPMv
-         bDCpnPUR4XoTtQ+wGb3lgCbsCpcX6Lgaaq/tJsakdW3VyOWpIeK+27kq0cfAjAqe7T
-         vHFwsx1kstJh7LskeHAqAOHggaF5liARMTogPtKsuzQKfDBI1pr/i1TqYxfCBNQCm6
-         twIDMAHz4yrHA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan+linaro@kernel.org>)
-        id 1oItbM-0000Ti-M9; Tue, 02 Aug 2022 17:14:32 +0200
-From:   Johan Hovold <johan+linaro@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        "Matthias Kaehlcke" <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Johan Hovold <johan+linaro@kernel.org>
-Subject: [PATCH 8/8] usb: dwc3: qcom: clean up suspend callbacks
-Date:   Tue,  2 Aug 2022 17:14:04 +0200
-Message-Id: <20220802151404.1797-9-johan+linaro@kernel.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220802151404.1797-1-johan+linaro@kernel.org>
-References: <20220802151404.1797-1-johan+linaro@kernel.org>
+        with ESMTP id S231682AbiHBPZr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 11:25:47 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 022FD6371;
+        Tue,  2 Aug 2022 08:25:45 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id l24so10857060ion.13;
+        Tue, 02 Aug 2022 08:25:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=ZbgYz5Xwf6vwbfHu21Ds/i5GJdOzX5BaausoB5dIHO8=;
+        b=owhVT1rnzeNA0B3s+WmKQbOLADQVv/6q2SsChTwbgYBdSUeTop9QhFmIlMmXxotKnq
+         slmZfPIfm4xOIDn/3NRUhAqSAq9O/J/Bk/5EzkVg4AzhvncPcDPMlSBTUAtUd2Xxd4xF
+         sa4dYCIl7hnxTz/tP6bQuTXynDCvV/eWAYuJixlSucZaqK19ia0MMajr78lAaoXn5bN4
+         ceAvjecX7maqgn/UVtjvst4xajGtyrYIhjKLsRsmalG3tYk3LK+6OWIRQTl6XUVTjDOF
+         L/Ej9rp0xab38jNh2X/3BnBdLxiLJ4NQhlrHFOBSJptXbX5RPZsNZ8mziRsVc6+fyYnW
+         0jRw==
+X-Gm-Message-State: AJIora+RXtYUjvgyNDqkvnik1xlGnUnDYUzP+L0qAX3NRqgWh5Unbk9Q
+        uILH6LCCU46bLBSYl6W6Iw==
+X-Google-Smtp-Source: AGRyM1tott+jWdvGogVwj9+mzc9AcUyEu+QMyogO3NhyS73SxjIdbKEwVi6KMes1kXwuU+Fbj4WY/A==
+X-Received: by 2002:a05:6602:3405:b0:67c:2d26:f8b7 with SMTP id n5-20020a056602340500b0067c2d26f8b7mr7402164ioz.178.1659453944199;
+        Tue, 02 Aug 2022 08:25:44 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id b34-20020a0295a5000000b00341a215d3cesm168271jai.63.2022.08.02.08.25.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Aug 2022 08:25:43 -0700 (PDT)
+Received: (nullmailer pid 145716 invoked by uid 1000);
+        Tue, 02 Aug 2022 15:25:42 -0000
+Date:   Tue, 2 Aug 2022 09:25:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Kestrel <kestrelseventyfour@gmail.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] dt-bindings: remoteproc: Add AVM WASP
+Message-ID: <20220802152542.GA132728-robh@kernel.org>
+References: <20220723074247.32523-1-kestrelseventyfour@gmail.com>
+ <20220723074247.32523-3-kestrelseventyfour@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220723074247.32523-3-kestrelseventyfour@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Clean up the suspend callbacks by separating the error and success paths
-to improve readability.
+On Sat, Jul 23, 2022 at 09:42:46AM +0200, Daniel Kestrel wrote:
+> AVM Fritzbox router boards may contain an additional ATH79
+> based SoC that has the wifi cards connected.
+> This patch adds bindings for this remote processor.
+> 
+> Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
+> ---
+>  .../bindings/remoteproc/avm,wasp-rproc.yaml   | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> new file mode 100644
+> index 000000000000..e8618706a34f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/avm,wasp-rproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AVM WASP processor controller bindings
+> +
+> +maintainers:
+> +  - Daniel Kestrel <kestrelseventyfour@gmail.com>
+> +
+> +description: |
+> +  This document defines the bindings for the remoteproc component that loads and
+> +  boots firmwares on the AVM Wireless Assistant Support Processor (WASP) SoC
+> +  that is attached to some AVM Fritzbox devices (3390, 3490, 5490, 5491, 7490).
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - avm,fritzbox3390-wasp
+> +      - avm,fritzbox3490-wasp
+> +      - avm,fritzbox5490-wasp
+> +      - avm,fritzbox5491-wasp
+> +      - avm,fritzbox7490-wasp
+> +
+> +  avm,wasp-mdio:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Lantiq GSWIP switch mdio.
 
-Also drop a related redundant initialisation.
+"git grep 'mdio.*=.*<'" gives existing 'mdio-parent-bus', 'mdio-device', 
+and 'mdio-handle'. 'mdio-parent-bus' is the only one documented, but is 
+for muxes. I'd go with 'mdio-device' here.
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
----
- drivers/usb/dwc3/dwc3-qcom.c | 19 +++++++++++--------
- 1 file changed, 11 insertions(+), 8 deletions(-)
+> +
+> +  avm,wasp-port:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: Network port, where the WASP SoC is connected to.
 
-diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-index 1bd2818b4daa..01e8c2fc6914 100644
---- a/drivers/usb/dwc3/dwc3-qcom.c
-+++ b/drivers/usb/dwc3/dwc3-qcom.c
-@@ -944,14 +944,15 @@ static int __maybe_unused dwc3_qcom_pm_suspend(struct device *dev)
- {
- 	struct dwc3_qcom *qcom = dev_get_drvdata(dev);
- 	bool wakeup = device_may_wakeup(dev);
--	int ret = 0;
--
-+	int ret;
- 
- 	ret = dwc3_qcom_suspend(qcom, wakeup);
--	if (!ret)
--		qcom->pm_suspended = true;
-+	if (ret)
-+		return ret;
- 
--	return ret;
-+	qcom->pm_suspended = true;
-+
-+	return 0;
- }
- 
- static int __maybe_unused dwc3_qcom_pm_resume(struct device *dev)
-@@ -961,10 +962,12 @@ static int __maybe_unused dwc3_qcom_pm_resume(struct device *dev)
- 	int ret;
- 
- 	ret = dwc3_qcom_resume(qcom, wakeup);
--	if (!ret)
--		qcom->pm_suspended = false;
-+	if (ret)
-+		return ret;
- 
--	return ret;
-+	qcom->pm_suspended = false;
-+
-+	return 0;
- }
- 
- static int __maybe_unused dwc3_qcom_runtime_suspend(struct device *dev)
--- 
-2.35.1
+Maybe something already exists here too.
 
+> +
+> +  avm,reset-gpios:
+> +    description: Reset gpio of the WASP SoC.
+> +    maxItems: 1
+
+Just 'reset-gpios' is fine here as that is somewhat standard.
+
+> +
+> +  avm,startup-gpios:
+> +    description: Startup gpio of the WASP SoC.
+
+s/gpio/GPIO/
+
+Perhaps some detail on what it does besides just 'startup'.
+
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - avm,wasp-mdio
+> +  - avm,wasp-port
+> +  - avm,reset-gpios
+> +  - avm,startup-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    remoteproc {
+> +        compatible = "avm,fritzbox7490-wasp";
+> +        avm,wasp-mdio = <&gswip_mdio>;
+> +        avm,wasp-port = <&port5>;
+> +        avm,reset-gpios = <&gpio 34 GPIO_ACTIVE_HIGH>;
+> +        avm,startup-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
+> +    };
+> -- 
+> 2.17.1
+> 
+> 
