@@ -2,279 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 542005874CC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 02:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D56D8587581
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 04:17:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230292AbiHBA1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 20:27:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51020 "EHLO
+        id S235613AbiHBCR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 22:17:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbiHBA07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 20:26:59 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2064.outbound.protection.outlook.com [40.107.21.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E681EB7F2;
-        Mon,  1 Aug 2022 17:26:57 -0700 (PDT)
+        with ESMTP id S231986AbiHBCR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 22:17:26 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2130.outbound.protection.outlook.com [40.107.223.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C725D43E74;
+        Mon,  1 Aug 2022 19:17:24 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=A3Ym/TeyQL9+A6BSx8NKlcCbfNJ3Gz82NPIuQKrnG7giDxS/wMZjl256udoPq0HWTIx4dQG0bsJjK9VN4m6kb2cMwbzWWwV1j2JbJjd1hjkchAnywkNVvI/QNmKbGSfKUeccCLe9/G7eElI6/C5/E/vuczAQwCMW0TYSAl8j0HdfxjrBiaLUIQMGJMMUTR1AL61cbNlHlKjJGWecD+lb2HEcAqonySkNOJFoqh6VQl/WeuVrVojyEiGpXaYOxkemRRQKMvabfe3qLRUS+e7FirhbO0w2UtEdcY1hmvxvB3AGBmtTi1zehY2nOgiPggDyVleew5Rmun+aQgCfzgsZeQ==
+ b=bMNpXqZxFtly4/rQqyj+ZDoM845lEDBKte20o8Gjyvz8hweEf8sBkrm55Hn5uvauwY1Lckk2J8qrmB8puo2F2Iawk4FkOuHuA8TFPPAYCBVeN6lmqrs+js/tRF/DAcPQEG4nEifR5HU7cDmTvvgrXmuCXHsYeauoNxhU8ikUaVK91RBYHJgIthWaOBeSsvfa01wKr9Yh1imcdSYY4wf2wJv9mRzwblq6XEOwqrYC4+oPDSfpfCWtEKARvSw1+n0V/z3K6H4FIqCreqgIgQkFyiGHBhFwIwLCzJXB3hJzHEsuR06hN0HOQNphJbC7FV/wBkuTKDRY07RgyeyHnNLlRA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9k+1YOr/dbbIXe2kynMV4+AoZ+P9Djqc7UQyQ79hLp8=;
- b=ba9WGak2e+p5IqC9tGAmjTl+0lUUQO0BiOlOtHf9UCXbOABYmERDznGo8JdmrlIzXxyO2k2MwcWwFygEUuI7RorwKGZ7xB1CJEaL/bKDqEiSRlrl61i1ucBprL3FTYwYxYKNmrKoAiCvUtHI5tjEcheFW4fkDdubBLE5V/oo2sykUi/ZF2vUTUy1AIJA4kNVnS5CZ06gUipcvnCwVMZgNWiW39PewIHEsyOT16oomGh5tQrQP8sO4rD8xXVuzQSjDw5/j+B2Kabgz9pml20SmTlUXf91+bIHtOHIfpHTPOGzJzpVV54HR3n/Z75smPJisH2AcdgUbVVFp5BtLAcyMQ==
+ bh=OrIW3dBY5vbh0Y/itGbehrxSAFo7mQAP5sUZE7W9QvA=;
+ b=NDOCaYqDhLrVr2zXc7m8wIMciA9QsmdZj1nO5VzWeFuAoJnsKzHoJmyqs6/mNe+oV0dbktXK/glWWMy1UpvbdAJs2q+UIwCYWxa9Slv3iK4uTn9R9FU604yMKRtXMnhCNWtwTZtztX7rc1xFTESbUk1jROS+jQ2xRy/gt7zcxsYIKFBV4ik8F42Q2WUE9DIsFAdvycMRaw7ghhzA0A9efgSuj08sZ3wLYY4ojJq99YeAVTtIUT+OL43PHo//a1EoAEbqj3jhfIiluoBeMlrsXm+QRN3dIaJvkkekHk5ebqinnP+FDOFhA+yNqXDNB4C+fbo3zOr3/Pj+Bk3Sk8G4rg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9k+1YOr/dbbIXe2kynMV4+AoZ+P9Djqc7UQyQ79hLp8=;
- b=LWRXialyHaVE1oFgWr8tkh/YZJmmez1qpG5uSEkJzlIW9bQ41HuBoM10fw30ewnwqKw2eMO0sbM9cqB/JXB7JZrkWu8uNoDSSezmPTTGEd9SFUXW99arnNArwBMgDE9MKDEeyID5MWUIZRHoM9/eGs+UeJGGi4dK23GSZp0o1/4=
+ bh=OrIW3dBY5vbh0Y/itGbehrxSAFo7mQAP5sUZE7W9QvA=;
+ b=HgKMig/9CQQHjiZk0hK8Lct7aGmBATDnhd0kxxpCoVSogDxox0QXZbdYE56EL9DGXa0h7WWkeNHXWDSA3AIB9DplXy81OvbwNSPwyAsjxQFzHM+5LUfjK6BFLgseZegnpfEHUR3kOivZiaLi7M8l4Ag61+mMRSeE+pM2McKa52g=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by DB7PR04MB5385.eurprd04.prod.outlook.com (2603:10a6:10:83::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.15; Tue, 2 Aug
- 2022 00:26:55 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::71b7:8ed1:e4e0:3857]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::71b7:8ed1:e4e0:3857%4]) with mapi id 15.20.5482.016; Tue, 2 Aug 2022
- 00:26:54 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     netdev@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
+ header.d=none;dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by CO6PR10MB5585.namprd10.prod.outlook.com
+ (2603:10b6:303:144::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.6; Tue, 2 Aug
+ 2022 02:17:21 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::b869:6c52:7a8d:ddee]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::b869:6c52:7a8d:ddee%4]) with mapi id 15.20.5482.014; Tue, 2 Aug 2022
+ 02:17:21 +0000
+Date:   Mon, 1 Aug 2022 19:17:16 -0700
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Terry Bowman <terry.bowman@amd.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Paolo Abeni <pabeni@redhat.com>,
-        Brian Hutchinson <b.hutchman@gmail.com>
-Subject: [PATCH net] net: dsa: microchip: make learning configurable and keep it off while standalone
-Date:   Tue,  2 Aug 2022 03:26:36 +0300
-Message-Id: <20220802002636.3963025-1-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR06CA0144.eurprd06.prod.outlook.com
- (2603:10a6:803:a0::37) To VI1PR04MB5136.eurprd04.prod.outlook.com
- (2603:10a6:803:55::19)
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Russell King <linux@armlinux.org.uk>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, katie.morris@in-advantage.com
+Subject: Re: [PATCH v14 mfd 9/9] mfd: ocelot: add support for the vsc7512
+ chip via spi
+Message-ID: <YuiJLK8ncbHH3OhE@euler>
+References: <20220722040609.91703-1-colin.foster@in-advantage.com>
+ <20220722040609.91703-10-colin.foster@in-advantage.com>
+ <CAHp75Ve-pqgb56punEL=p=PnEtjRnqTBSqgs+vVn1Zv8F94g9Q@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75Ve-pqgb56punEL=p=PnEtjRnqTBSqgs+vVn1Zv8F94g9Q@mail.gmail.com>
+X-ClientProxiedBy: SJ0PR05CA0201.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::26) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 71b19dd1-d396-4d83-616e-08da741db35b
-X-MS-TrafficTypeDiagnostic: DB7PR04MB5385:EE_
+X-MS-Office365-Filtering-Correlation-Id: 78e75a64-5c80-49e4-5e82-08da742d2135
+X-MS-TrafficTypeDiagnostic: CO6PR10MB5585:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: LbQX5129F1ei0JyuVIv8EM4zbHALMZdsO88G8z1iqeop45huYFG4KDq2pCvxu0GBf8Zqi6js+GXWssF/xqhvGa4GvDMoA6IIcKEnhiaDxC466n4YfXiDAAqe4xxaDjM0OkUi0tsHvSiMhb0t/gcTFsy3R7+fGebAM8Tb5xAuC1/Uesa2Big1MxgatcTXW3xAdH18Y/dTg9lOI8+7LjmBIBm2bfd8AA8yy4nXM/RCDTDkBftt87YWwakog9BeSjYXT8ffJZT6Bp54x5fthfYhTjWYaVOhE+cQah+j26B1T9YlIlLKC64v+t4gIdsK07hAS6Xt/9ZthEu2nDfUcyHMDu4WyKczrvDM1Pt7TDoMO3Y10AVkv3AtP3fwHQLytVjvGYCtipKiblb2t70d3qtxFBUeOQti/fI9Jj+Me4/TlS035R133Mv2nJYtdfCWDiGhKdSdU1rWtHTj+0ifgV7c80kWF0Px592jRXAFkALjn7LAyuxsB/7ge2t77e5107bwAbjtBYsxwAivgTiILn+aLhcmKRh3JB/EuC0SWBvw7x45uiDwuwcIo9Wl9b9zlbpJJFi0XusiEBiqs0/0P2kYKYPVOu0TU00MdXDTWn0/8Ynt97slTfvIpf1BEXhSfBTIP1QBSQVdsM/WlCdnFEBJN90SS33mHlG9g1RMl16o5VqXKuxebY7vUBRes4cfNPXGrax04K43woKLsoqHPFTDLjHK34cESIg6g3vbHRIKGhGYHZtSWbFlnO93xQfTcwaP249VMykWWQ6LA9Z+8M8XBRmWLCTMYmznXv/tBV1YZE3jJLRJksDHdIGdp2DgkrZVm9UpYRYukSzWDb34XElNLQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(39860400002)(136003)(396003)(376002)(366004)(44832011)(6506007)(26005)(7416002)(2616005)(5660300002)(6512007)(1076003)(186003)(52116002)(6666004)(8936002)(83380400001)(41300700001)(2906002)(8676002)(966005)(6486002)(38350700002)(38100700002)(478600001)(86362001)(316002)(36756003)(4326008)(66476007)(54906003)(66556008)(6916009)(66946007);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: klp5zM0vszVPu7BI4/RchVrUGUb53+RQSGaaa4gxF+ND0Q1dIYrKXnGflJenSDWdIwDY6QHmJW9l5u6/s7kKK6N15HaJcXR1wyCiAPoyQ7EGrWcJC5+6rdyAVEqZLUlcUBYWhL8I9emgmfjaWDHQbD7x7qAqO5NGB8rOYJjxyM5rk4R+Few7UT5iP4kOV/yXbSstr3McjHopn4k0VRkvjnjmTnHbLRgmDtpjxeDGSKMpyxgXE+vob1pRbW6Pa0o0QpXRQrMdaJdvpyDF/ZDLO1LCFFKzgov+wQACrsNWQEXIY2ZZrfnyqDeowPzkPxeWJNF1Z1AAEbAEgzzGnM40utkklOnIIAjeBydqv/tTyeoLjvZkFAd6g3oH/h16rMrKfMmMHmmUOmlVyovkxYeKZlZsHk+tAtLB6ottfZMpAFgkJdbZZSPD+lR/KuRq4yZlGqhomRyy47nmL0JXxpXZfamjnu4oAe+Cj1SseleugnDolIlIVT4gMosVZX3ulKKVkAX4c54qov/AQP+/505nUmINihxQZ9pee4Zo6j5VoCGld03HaO8DIpPVXH62On1aGFinBXd/1M67X7CcT14kkYVy7getVs6A/vKGNgJxeVch3WpnqF3iPMoXwgnEV6A7HsD1NybboQsfiW1T+jpkX92NwnHvm18NK9SFeI9s936jxW86C61xqxlsHIJ54xjDSYTVzkhibUJmsA7YsN8za8WBmS4LL7Ck3Vv1uuYlY1M=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(346002)(376002)(39830400003)(366004)(396003)(136003)(26005)(6512007)(9686003)(6666004)(41300700001)(86362001)(6506007)(54906003)(6916009)(316002)(33716001)(6486002)(478600001)(38100700002)(107886003)(186003)(83380400001)(7416002)(5660300002)(8676002)(4326008)(66556008)(66476007)(66946007)(44832011)(8936002)(2906002);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?SlWD3+rhR58k2xBryZcfDuZYvmIxfeQUuncH/Lfgj+m9j8QO0cNEV5q/kVaa?=
- =?us-ascii?Q?/zCMi/qLU8X+ZzlsYzrMQIF3iKlIhUM+rWlOzxHbNUn/pImw/WKNxxSFIeYd?=
- =?us-ascii?Q?x5N/0j36tVledoE/uX4UX4hxK4+J17DGg2YbaXkTc0Y78GEZm/ZFyWE0G77x?=
- =?us-ascii?Q?WJnmEYStteUdiJqs6Tdde3nkbLByKyor9xlTVyAolOfrGiRydlm5yJPz6waG?=
- =?us-ascii?Q?XlmFrbofg7XV6JfNF7tDGIUjLqBKkiMbTUamUgpbbDDDqGq4KeIGXxeQNlwO?=
- =?us-ascii?Q?2xEeHpCp4b4LyFwPq1+jEsq3TzRCUpvmSEm1v90yosPW/9EWC8e3/1sYL88t?=
- =?us-ascii?Q?eiwL5id5YvE1yGQp7erdDU1wn+Hk2TZWOsl4dWERv4sAARII8hUha8UKpICd?=
- =?us-ascii?Q?qx6YiX7yu1Am71YQnqskNxKgNJ85oT7zVAVZyp/gOnUAwDJt8HBwVZHyuSyU?=
- =?us-ascii?Q?Mh6wNLgPFU1DtmFIXC54zo85c77pvTsqzhdlLLYLb7vxdTtehtxxCRqT9qA+?=
- =?us-ascii?Q?E5VFN81pju7U0XbAZd7S0+AjPfL9QS4OYtOyHoBNCAJZrldCmFWd/JkdqQmF?=
- =?us-ascii?Q?eGO4q/Rh2fk0HGHTPPW4Eiq8+8fM3w7awna6c4rDA3fZA327idsmVaOZJTWA?=
- =?us-ascii?Q?JGtyhZrAImSVthOPPgn+Zz209pP0VUcLbWLdSSCxQ9tBHZrdOwUBsdoGygGe?=
- =?us-ascii?Q?wzPF6Yfw8fAmQyrfBGofVflyaEdgHC8ziTA5UivL1oX20WE3RHXuaA88pFmJ?=
- =?us-ascii?Q?iWUqfG1HDvMDmx+2mGldl3KhKQW0/E8sPW/hv138IGUcttPJgIO0XMpUwcMH?=
- =?us-ascii?Q?hkM0nE9zeWabELA4iJ0pnwKCGplWJCDtRSOZ3NvOUkGOBTUnxilgfRd1dAgf?=
- =?us-ascii?Q?oomIV7M1FZtqiQvMXUK+hosXTdn4mQ1QF+yVcFf/XJIhgCjpxuzZHxWsb4QX?=
- =?us-ascii?Q?HIRNF4RwnJQYmhn+sSlXSr8SE8LUEI4PGM+abjslzZzgklDOrHQBhnU9CxdA?=
- =?us-ascii?Q?8pkZc2QQGN4RrtBsdsDRvM8eDKFDns6vx3yDc8PuAuBTbTc7Xwf/4DVJUY9w?=
- =?us-ascii?Q?jJryUeRKDq1x3dyeU/hmTPIrcAFSNCrd8EtYvG5p6pJd0ArEE5DYcwhWNpVY?=
- =?us-ascii?Q?vHmUJXKgrHdLhEowd7JcfWX6C+B1saV7qiimIEB5gr8wcZ4UnS2fXYjmDqt+?=
- =?us-ascii?Q?Mp+NLD+q/k2kJBjXRb2Q3OVjIBZvdsjJzhpJHngxcp31pDT4/yZ4rP0IO6nB?=
- =?us-ascii?Q?wdFa8pCrhKb7I6xwzkPgoyHOZQmfd0fbLCAMgfKWWJGUEtaW76M6mU+DA88S?=
- =?us-ascii?Q?nNXO+vrgJRvh4/LglR7n1V5XkzCvss7M78GiWiU3Me7UKKwCZqbp8QMkRvoI?=
- =?us-ascii?Q?LWIjPbR1mNj0ZxAZaPm16gWDcx5Ohdjs9yOmwilgSoTfj2rXJBAkIYW+YXgC?=
- =?us-ascii?Q?f8aqORpMpFPr6oUr1YaZaMsSrGnWEIkVCwoHpIZNAmEsSu73hMTGTNi/VZhG?=
- =?us-ascii?Q?K999q+TTldzeWICg/FnGKYf4yTzvEPdF86MotP1jE02VRo08IwEYiwWW5RRU?=
- =?us-ascii?Q?Vwq4G8yaUqAElRbdApTKezyH0fHkuWNdzmyOWAKP1qF/S0z/7GIJAdBjQYw3?=
- =?us-ascii?Q?Wg=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71b19dd1-d396-4d83-616e-08da741db35b
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?02E6em1qquWDLHx1I8zebBgWIJ71uPDQqUqdS6iOF2paisFuQ4DFaNtzdXVT?=
+ =?us-ascii?Q?H/zM+cywPOYEriChdY2rGFyjC/0ABscJDfOXiH6zo4jU7tUUUlgQVOjN0E/1?=
+ =?us-ascii?Q?12Ow5r7nMOttHikZzauExU0jM/J7P/xgrYgYoLSeu4wimd/mG1mIaR2l1fx2?=
+ =?us-ascii?Q?VObpbB/jtUFXs/5DekGsjjiJjRiQ3LAYe3DD11KcX7Me8SBcouLSZMHClPeC?=
+ =?us-ascii?Q?T7e0qw5b45M8BUWzk6lQzmp8o5xJHTR8GzdRMGk2UoXJJjYzTGVK4oS6PPEZ?=
+ =?us-ascii?Q?GDeYoUKTisKyFOv8nR/KMB7eJhnJzELdiTFLohHbjX3Hdy0t5yZ4Dtsww1m+?=
+ =?us-ascii?Q?9SUz5qee4QuSPdx9Jg2U8JU6WllY9RLErx72i3KTu8BFrGDvNWqPawZ7bJJc?=
+ =?us-ascii?Q?bGMUsDVqEX03qyBAtIBey74UmCQ8LNDAbgXiSl9DA4JEqvcikRRDGTSKKuZj?=
+ =?us-ascii?Q?f70qPLQaqOeIoO7ZnpfhXwMBVCTvCDHat44/xr13izfE2yRDgcsIZo4rB/33?=
+ =?us-ascii?Q?mia/KSAOzc3UV5WNbyfzMQweBJ8c8FhzJr5+cvdVRiqBupyy15Kc3T9hsdwA?=
+ =?us-ascii?Q?BSvJLyusBp5dZv0MleLonw5DcISyOTuyDeEDzqJpzM0AXZa+CMxg2Vl2fIqn?=
+ =?us-ascii?Q?tFpOqb88o4W6fPPI2RuxVtxHnZ2TCxwJHN8N36H5QfaYa4Hj98ocMZrNwbjl?=
+ =?us-ascii?Q?CvFUD2bbZeLtafPnr1jXKe2tMTiLyXS79ML+FQiykrkpIgMbw2d+5lwTISgg?=
+ =?us-ascii?Q?ZL+M0p6tsz4ZjP+RQhky4Z7BOzuS1xQrYD8tVdm3KY8jV/j9smPFxmeBmB8N?=
+ =?us-ascii?Q?m9s73v2oE3nd5jpCsjA1yRvuTrp7hsDd9kexhnOsy3oPaWH3GsMe6ccgXBPz?=
+ =?us-ascii?Q?jUtj/+jSvdwtkh0DHAeI8isf9oLkh/WNwM32XjLpHGeED0UY5XCuzOzrR3/m?=
+ =?us-ascii?Q?yVtkG0lfkxcBpNJ/W4ytBj4hpTcD95CGUt3HaOypnOK8MwFr+CVkb6ZLkBOG?=
+ =?us-ascii?Q?RKK1X1vH4VWC2T24M4qtr8cTecTwUotNAL3L28CMVpLFllFwXbTxkaa0FLh2?=
+ =?us-ascii?Q?McU6HEmOWGryZItAKIzjg/gf/3Zh7zXB/24nyKN7XlKx9JoGjZ6aju1l8Dw0?=
+ =?us-ascii?Q?npPq4aIrRz4/hX+1WcA3rALPUvxLTfzdxe5j+iOrEh9SdGUVyU9+yMHxCmRE?=
+ =?us-ascii?Q?xeMtW9+7xkIhR53OXbJ32qiYP+PXU0DH8XVv2x54U3wbbFjHvCZ1A8xlPy6c?=
+ =?us-ascii?Q?WQEnkJLVvizS5jgxFzTNNl7ccrGmts2IpD3HtbIYv9Brmsy2mC+W95f8ilRQ?=
+ =?us-ascii?Q?oNB6A8xEuHkE0oU27w9SjljD2/ahLcne06r7nvcaAyZEMHY8eGiKcKVgsDuO?=
+ =?us-ascii?Q?YKfH4Nbwz53gmNuPGL5zTkWUQN8D1CZBzOmczY0UcGBgq4Y4BmMkMqL11K81?=
+ =?us-ascii?Q?tZw7DldN3or38Q1QUo6L2MjzFMnO9w/y0XqMQraxBNbky6Bgn3cYbrMwYGkW?=
+ =?us-ascii?Q?H/sX5Syx35vkJShGCvHWW8hZdNG6n3vIQapHLi5mdNgQ9815Q9IbOW2KAhvH?=
+ =?us-ascii?Q?kT8lViP6ckPvEYQwyOCxkiQ1eP4POQ7DSAWM8O5cx9UPy68M63f49rDdzHEL?=
+ =?us-ascii?Q?nw=3D=3D?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 78e75a64-5c80-49e4-5e82-08da742d2135
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2022 00:26:54.2548
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2022 02:17:21.0842
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0ZVShCQ2QFXqF+zYA2tS7nYpNjLAGAqu+rMJq/xFE4h0aQgmk0vboaKgOhchR58z5eKCDUx2A8+DW4I/CI2y4w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB5385
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: pbrRDsrESAEjM8ofpt3L1PvpNd0f0Fzwhx9lxL4uZHDNJD6z+W/utVtb4JseaYA9tgXVIY7N/DZ/9h10VAJIFtzSENfBuaQY4S3Mm0cfFV0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR10MB5585
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Address learning should initially be turned off by the driver for port
-operation in standalone mode, then the DSA core handles changes to it
-via ds->ops->port_bridge_flags().
+Hi Andy,
 
-Leaving address learning enabled while ports are standalone breaks any
-kind of communication which involves port B receiving what port A has
-sent.
+Apologies for the late response. Everything seemed straightforward, but
+as I was implementing your suggestions one thing came out.
 
-This fixes a design oversight in the ksz9477 and ksz8795 drivers, which
-unconditionally leave address learning enabled.
+I just want to make sure my implementation isn't horribly off before the
+next patch set.
 
-Link: https://lore.kernel.org/netdev/CAFZh4h-JVWt80CrQWkFji7tZJahMfOToUJQgKS5s0_=9zzpvYQ@mail.gmail.com/
-Reported-by: Brian Hutchinson <b.hutchman@gmail.com>
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-This is compile-tested only, but the equivalent change was tested by
-Brian on a 5.10 kernel and it worked.
+Specifically this question (copied from below):
+> I'm wondering if you can use in both cases
+> spi_message_init_with_transfers().
 
-I'm targeting just the "net" tree here (today 5.19 release candidates),
-but this needs to be fixed separately for net-next and essentially every
-other stable branch, since we will be lacking the port_bridge_flags
-callbacks, and there has been a lot of general refactoring in the
-microchip driver.
+> > +static int ocelot_spi_regmap_bus_read(void *context, const void *reg, size_t reg_size,
+> > +                                     void *val, size_t val_size)
+> > +{
+> > +       struct spi_transfer tx, padding, rx;
 
-Jakub, I wonder if I should let you do the merge resolution between
-"net" and "net-next", or should I just resend against "net-next" and
-keep this patch as one of the stable backports?
+struct spi_transfer xfers[3] = {0};
+struct spi_transfer *xfer_tok = xfers;
 
- drivers/net/dsa/microchip/ksz8795.c    |  2 ++
- drivers/net/dsa/microchip/ksz9477.c    |  2 ++
- drivers/net/dsa/microchip/ksz_common.c | 35 +++++++++++++++++++++++++-
- drivers/net/dsa/microchip/ksz_common.h |  7 ++++++
- 4 files changed, 45 insertions(+), 1 deletion(-)
+> > +       struct device *dev = context;
+> > +       struct ocelot_ddata *ddata;
+> > +       struct spi_device *spi;
+> > +       struct spi_message msg;
+> > +
+> > +       ddata = dev_get_drvdata(dev);
+> > +       spi = to_spi_device(dev);
+> > +
+> > +       spi_message_init(&msg);
+> > +
+> > +       memset(&tx, 0, sizeof(tx));
+> > +
+> > +       tx.tx_buf = reg;
+> > +       tx.len = reg_size;
 
-diff --git a/drivers/net/dsa/microchip/ksz8795.c b/drivers/net/dsa/microchip/ksz8795.c
-index 12a599d5e61a..17930858cacf 100644
---- a/drivers/net/dsa/microchip/ksz8795.c
-+++ b/drivers/net/dsa/microchip/ksz8795.c
-@@ -1408,6 +1408,8 @@ static const struct dsa_switch_ops ksz8_switch_ops = {
- 	.port_bridge_join	= ksz_port_bridge_join,
- 	.port_bridge_leave	= ksz_port_bridge_leave,
- 	.port_stp_state_set	= ksz8_port_stp_state_set,
-+	.port_pre_bridge_flags	= ksz_port_pre_bridge_flags,
-+	.port_bridge_flags	= ksz_port_bridge_flags,
- 	.port_fast_age		= ksz_port_fast_age,
- 	.port_vlan_filtering	= ksz8_port_vlan_filtering,
- 	.port_vlan_add		= ksz8_port_vlan_add,
-diff --git a/drivers/net/dsa/microchip/ksz9477.c b/drivers/net/dsa/microchip/ksz9477.c
-index ab40b700cf1a..811ba0a44ae8 100644
---- a/drivers/net/dsa/microchip/ksz9477.c
-+++ b/drivers/net/dsa/microchip/ksz9477.c
-@@ -1339,6 +1339,8 @@ static const struct dsa_switch_ops ksz9477_switch_ops = {
- 	.port_bridge_join	= ksz_port_bridge_join,
- 	.port_bridge_leave	= ksz_port_bridge_leave,
- 	.port_stp_state_set	= ksz9477_port_stp_state_set,
-+	.port_pre_bridge_flags	= ksz_port_pre_bridge_flags,
-+	.port_bridge_flags	= ksz_port_bridge_flags,
- 	.port_fast_age		= ksz_port_fast_age,
- 	.port_vlan_filtering	= ksz9477_port_vlan_filtering,
- 	.port_vlan_add		= ksz9477_port_vlan_add,
-diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-index 92a500e1ccd2..9bef51af49a0 100644
---- a/drivers/net/dsa/microchip/ksz_common.c
-+++ b/drivers/net/dsa/microchip/ksz_common.c
-@@ -900,6 +900,8 @@ void ksz_port_stp_state_set(struct dsa_switch *ds, int port,
- 	ksz_pread8(dev, port, reg, &data);
- 	data &= ~(PORT_TX_ENABLE | PORT_RX_ENABLE | PORT_LEARN_DISABLE);
- 
-+	p = &dev->ports[port];
-+
- 	switch (state) {
- 	case BR_STATE_DISABLED:
- 		data |= PORT_LEARN_DISABLE;
-@@ -909,9 +911,13 @@ void ksz_port_stp_state_set(struct dsa_switch *ds, int port,
- 		break;
- 	case BR_STATE_LEARNING:
- 		data |= PORT_RX_ENABLE;
-+		if (!p->learning)
-+			data |= PORT_LEARN_DISABLE;
- 		break;
- 	case BR_STATE_FORWARDING:
- 		data |= (PORT_TX_ENABLE | PORT_RX_ENABLE);
-+		if (!p->learning)
-+			data |= PORT_LEARN_DISABLE;
- 		break;
- 	case BR_STATE_BLOCKING:
- 		data |= PORT_LEARN_DISABLE;
-@@ -923,13 +929,40 @@ void ksz_port_stp_state_set(struct dsa_switch *ds, int port,
- 
- 	ksz_pwrite8(dev, port, reg, data);
- 
--	p = &dev->ports[port];
- 	p->stp_state = state;
- 
- 	ksz_update_port_member(dev, port);
- }
- EXPORT_SYMBOL_GPL(ksz_port_stp_state_set);
- 
-+int ksz_port_pre_bridge_flags(struct dsa_switch *ds, int port,
-+			      struct switchdev_brport_flags flags,
-+			      struct netlink_ext_ack *extack)
-+{
-+	if (flags.mask & ~BR_LEARNING)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(ksz_port_pre_bridge_flags);
-+
-+int ksz_port_bridge_flags(struct dsa_switch *ds, int port,
-+			  struct switchdev_brport_flags flags,
-+			  struct netlink_ext_ack *extack)
-+{
-+	struct ksz_device *dev = ds->priv;
-+	struct ksz_port *p = &dev->ports[port];
-+
-+	if (flags.mask & BR_LEARNING) {
-+		p->learning = !!(flags.val & BR_LEARNING);
-+
-+		ds->ops->port_stp_state_set(ds, port, p->stp_state);
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(ksz_port_bridge_flags);
-+
- struct ksz_device *ksz_switch_alloc(struct device *base, void *priv)
- {
- 	struct dsa_switch *ds;
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index 8500eaedad67..a0f1775a9960 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -54,6 +54,7 @@ struct ksz_chip_data {
- 
- struct ksz_port {
- 	bool remove_tag;		/* Remove Tag flag set, for ksz8795 only */
-+	bool learning;
- 	int stp_state;
- 	struct phy_device phydev;
- 
-@@ -219,6 +220,12 @@ void ksz_port_bridge_leave(struct dsa_switch *ds, int port,
- 			   struct dsa_bridge bridge);
- void ksz_port_stp_state_set(struct dsa_switch *ds, int port,
- 			    u8 state, int reg);
-+int ksz_port_pre_bridge_flags(struct dsa_switch *ds, int port,
-+			      struct switchdev_brport_flags flags,
-+			      struct netlink_ext_ack *extack);
-+int ksz_port_bridge_flags(struct dsa_switch *ds, int port,
-+			  struct switchdev_brport_flags flags,
-+			  struct netlink_ext_ack *extack);
- void ksz_port_fast_age(struct dsa_switch *ds, int port);
- int ksz_port_fdb_dump(struct dsa_switch *ds, int port, dsa_fdb_dump_cb_t *cb,
- 		      void *data);
--- 
-2.34.1
+xfer_tok->tx_buf = reg;
+xfer_tok->len = reg_size;
+xfer_tok++;
 
+> > +
+> > +       spi_message_add_tail(&tx, &msg);
+> > +
+> > +       if (ddata->spi_padding_bytes) {
+> > +               memset(&padding, 0, sizeof(padding));
+> > +
+> > +               padding.len = ddata->spi_padding_bytes;
+> > +               padding.tx_buf = ddata->dummy_buf;
+> > +               padding.dummy_data = 1;
+
+xfer_tok->len
+xfer_tok->tx_buf
+xfer_tok->dummy_data
+xfer_tok++;
+
+> > +
+> > +               spi_message_add_tail(&padding, &msg);
+> > +       }
+> > +
+> > +       memset(&rx, 0, sizeof(rx));
+> > +       rx.rx_buf = val;
+> > +       rx.len = val_size;
+
+xfer_tok->rx_buf
+xfer_tok->len
+xfer_tok++;
+
+> > +
+> > +       spi_message_add_tail(&rx, &msg);
+
+spi_message_init_with_transfers(&msg, xfers, xfer_tok - xfers);
+
+> 
+> I'm wondering if you can use in both cases
+> spi_message_init_with_transfers().
+
+I could see that implementation getting the response of "what the heck
+were you thinking" or "that looks alright" and I honestly have no idea
+which pool it will fall into.
+
+> 
+> > +       return spi_sync(spi, &msg);
+> > +}
+> 
