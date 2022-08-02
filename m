@@ -2,125 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 080AE5879E7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 11:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAE3C5878A7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:04:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235113AbiHBJen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 05:34:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54430 "EHLO
+        id S236339AbiHBIEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 04:04:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232727AbiHBJem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 05:34:42 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B21C402C4
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 02:34:42 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1oIoIA-0005wN-Ok; Tue, 02 Aug 2022 11:34:22 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 705CFC130C;
-        Tue,  2 Aug 2022 07:06:31 +0000 (UTC)
-Date:   Tue, 2 Aug 2022 09:06:30 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
-Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] can: ctucanfd: hardware rx timestamps reporting
-Message-ID: <20220802070630.7g5dyn732bh724az@pengutronix.de>
-References: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
+        with ESMTP id S235964AbiHBIEm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:04:42 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C592D402FB
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:04:40 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id a13so14758621ljr.11
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:04:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ShX8SdjvHP5x/QEd5P7yAfW5q1aymhg/8ZpNAExgulI=;
+        b=sW5x7sNbJm4KPJDaPbJSKP/ieBiy0VQV6/CwTUBzDue1/tqIDXiGuUa3pPKGip/gp7
+         dvIASGX9muNVoZQezp0vMnf7L1LMoOqMU5yT9cz4AQVtRztDTuGLTRTxnJarqn0wrvg/
+         ME1fncpdVr6vy8k0Npb+7fUiCN2Y9XxzQse3A96WsGPwXswnSmjky0hZpOdV6FhjulJj
+         ZZ/oG+94OFhETqBbW/S/95+mrNbHoOqPSigy/svtn4ZVfCl1PQ9Ebfjco2kqb4Ll0EJ+
+         wUhZ47JELQTKpt/xzT4O6hDHuGermjL1ws/kPYxw+fuYslE+1rOBC02k+xhg3k80AbX4
+         RsfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ShX8SdjvHP5x/QEd5P7yAfW5q1aymhg/8ZpNAExgulI=;
+        b=WULORTTQL6G1CqEdBgS2BQk1JyYPBPzHVgcwZHYcoZ0kSZeAkjdseRmbddtk7OUztT
+         0X1lsXowYNjmo+cYjOLxQQSACWTZLjE43YM4p4Ay0mMlwedFYXZipvP+7aLhWUw0mB4i
+         Bh6i8Vu7IhqYrlir5GntKhlULRZi2Iprl/YyPlsMr0mayH7SA57U3lldSG75/sd5ZHzL
+         p1Cvh6DBksLxPSjIvFBdTyOz6L47in0+ZKHHSEYmC4qFt2wMp+GkyiLUSdyPUW/dalAn
+         eb4nCzj208j6Jax+/MiN/90jx81UZVzu36xVbBonOpv+C7pjBKc4CT/31x5sjqWTF/6Y
+         sMCA==
+X-Gm-Message-State: AJIora+GS3glE85X9HovY77pwvgHMgBIlJ8DyownSeUqcTYZxFsr+LI0
+        tABTC42ztiqxNWagOgqw6htfyA==
+X-Google-Smtp-Source: AGRyM1usD347g/PCYf5onVBO1mElQUVrm5vGKhPd8Gyrw+2mzv2u3tW20rdNGIxVEc6umXcRtrExZA==
+X-Received: by 2002:a05:651c:1147:b0:25d:eb36:755d with SMTP id h7-20020a05651c114700b0025deb36755dmr5848282ljo.16.1659427479158;
+        Tue, 02 Aug 2022 01:04:39 -0700 (PDT)
+Received: from [192.168.1.6] ([213.161.169.44])
+        by smtp.gmail.com with ESMTPSA id x18-20020a056512079200b0048b038c7624sm436240lfr.42.2022.08.02.01.04.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Aug 2022 01:04:38 -0700 (PDT)
+Message-ID: <0893fab6-a7e1-bfa7-2497-239e044cc7ed@linaro.org>
+Date:   Tue, 2 Aug 2022 10:04:36 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="w4uynht36msvyibp"
-Content-Disposition: inline
-In-Reply-To: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 4/4] dt-binding: perf: Add Amlogic DDR PMU
+Content-Language: en-US
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chris Healy <cphealy@gmail.com>
+References: <20220801060049.1655177-1-jiucheng.xu@amlogic.com>
+ <20220801060049.1655177-4-jiucheng.xu@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220801060049.1655177-4-jiucheng.xu@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01/08/2022 08:00, Jiucheng Xu wrote:
+> Add binding documentation for the Amlogic G12 series DDR
+> performance monitor unit.
+> 
+> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+> ---
+> Changes v2 -> v3:
+>   - Remove oneOf
+>   - Add descriptions
+>   - Fix compiling warning
+> 
+> Changes v1 -> v2:
+>   - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
+>   - Delete "model", "dmc_nr", "chann_nr" new properties
+>   - Fix compiling error
+> ---
+>  .../bindings/perf/amlogic,g12_ddr_pmu.yaml    | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+> new file mode 100644
+> index 000000000000..961656d4db6e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/amlogic,g12-ddr-pmu.yaml#
 
---w4uynht36msvyibp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You still did not test the bindings...
 
-On 01.08.2022 20:46:53, Matej Vasilevski wrote:
-> Hello,
->=20
-> this is the v2 patch for CTU CAN FD hardware timestamps reporting.
->=20
-> This patch series is based on the latest net-next, as I need the patch
-> - 9e7c9b8eb719 can: ctucanfd: Update CTU CAN FD IP core registers to matc=
-h version 3.x.
-> and the patch below to avoid git conflict (both this and my patch
-> introduce ethtool_ops)
-> - 409c188c57cd can: tree-wide: advertise software timestamping capabiliti=
-es
->=20
-> Changes in v2: (compared to the RFC I've sent in May)
+You received such comment (with instructions how to do it) and still
+decided to send untested bindings.
 
-Please add a link to the RFC here:
-https://lore.kernel.org/all/20220512232706.24575-1-matej.vasilevski@seznam.=
-cz
+That's not how submission procces should look like.
 
-> - Removed kconfig option to enable/disable timestamps.
-> - Removed dt parameters ts-frequency and ts-used-bits. Now the user
->   only needs to add the timestamping clock phandle to clocks, and even
->   that is optional.
-> - Added SIOCSHWTSTAMP ioctl to enable/disable timestamps.
-> - Adressed comments from the RFC review.
->=20
-> Matej Vasilevski (3):
->   can: ctucanfd: add HW timestamps to RX and error CAN frames
->   dt-bindings: can: ctucanfd: add another clock for HW timestamping
->   doc: ctucanfd: RX frames timestamping for platform devices
+NAK, till you send something which you actually test.
 
-Please reorder your patches so that the dt-bindings update comes first.
 
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---w4uynht36msvyibp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmLozPMACgkQrX5LkNig
-01091Af+OFXdTcBJ8SC+XtUpGidcGMP3j/04HaOYtByP8I5TVp+WdTPZAJaPbVmj
-N556yRn6xx+cbMZVYQQ0cRr0uDBMWiv0jKfP95EI6X9zQtv/eiACjoTI+81QRoPz
-+bfPfCiDnPNZKGUhGRNdJiFRbbFBG998Ihim6RVsqZcTo3aQVzzKIK7yVOpx+vKH
-e+d6wgTX0X6+iyqx5kKlONJk9vhxW9waSQEQDlu5f+M4K7djBEHg+cZkpgPI0W5P
-5yFAmPQZJCi0RoySSKXxYcQQAFXkPeTTv3eS/6sAI5EkHe+eDwcaNm8jgt3syFh+
-KAEvVRaI8HEqEXM/eVE9m9UXMac8OA==
-=/wYk
------END PGP SIGNATURE-----
-
---w4uynht36msvyibp--
+Best regards,
+Krzysztof
