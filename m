@@ -2,60 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31A20587E51
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 16:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FE1B587E61
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 16:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236744AbiHBOqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 10:46:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34484 "EHLO
+        id S231368AbiHBOuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 10:50:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237056AbiHBOqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 10:46:06 -0400
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 302BA286C7;
-        Tue,  2 Aug 2022 07:46:05 -0700 (PDT)
-Received: by mail-il1-f177.google.com with SMTP id d4so7097893ilc.8;
-        Tue, 02 Aug 2022 07:46:05 -0700 (PDT)
+        with ESMTP id S233655AbiHBOuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 10:50:12 -0400
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE61D215;
+        Tue,  2 Aug 2022 07:50:10 -0700 (PDT)
+Received: by mail-il1-f176.google.com with SMTP id b12so6408032ils.9;
+        Tue, 02 Aug 2022 07:50:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=YWdMhY/w6xJGnTNrD3+yPIQp9IMoWMfQJOwkWlFi+RQ=;
-        b=UkfW133lkPqM4U5g4pZNc5TWRf77vc0/jF1Ip42D0q+33NTLSi/zumy1ARwbUnRF7M
-         6Mg14nQJumaeG1GqJ3wn76MNOIkUhBLUaBzqXiG7OrPX7wChWJ8UpZJ/TmSFdCfRm9gw
-         H+Vm+3o8ID1fnpbZsf9WNZfLd0uMm1ctbQz+MQtipGj9BkwVqHNF0dY8KAC+UWzR9f3N
-         l2s3XN5ogPtppoTx3eegxt1MAQycLMzzlL9OGST4XGnZf5lWirBrqnAVbcx0Tvy7fnrf
-         GVhJe1WiVGY5I79cdpkEe/adU048JiRW75WO+wRvOIop1W3aS7d0tqKY3VhDMBjaNncs
-         k/PA==
-X-Gm-Message-State: ACgBeo3GPxPt2xFtkl2KvOq8n5dE9gzZmWWT+mFFqj5dDFw4ncW+0/v9
-        dvkDUf1zD8e1D2hGM/WwkQ==
-X-Google-Smtp-Source: AA6agR5WgaywX71Mi/tssUPXgR+p0/h9FgYemIjJDIjmuwbCJAULertTvwumkbhjtOaFmgv9kXdbvQ==
-X-Received: by 2002:a05:6e02:1d18:b0:2de:b805:99f1 with SMTP id i24-20020a056e021d1800b002deb80599f1mr3169607ila.61.1659451564182;
-        Tue, 02 Aug 2022 07:46:04 -0700 (PDT)
+        bh=e4JWei8BMxaRFQiwirEOpStmVsY2WsRWjYgax2kVdRc=;
+        b=Ig12JKcTkMPo97mT/OLDm/Xq7L+5vtey3m3os8ZKljR0zn+ihDmP4e5wzViKVkx3EV
+         KcHFXGeDAUb4jUMMbxE3QN2d5Ufyxl06wGnEPPKyqmSqjNpgdIpuZ7XmIghoUs6anr1S
+         OV3blU0qmcHR4r5YU0Ob4RFFJFA4HVKWCLBXw7KPn0CsIc34Xs5cStFU20u/1piNtbNj
+         3JEaIMiZe+OuPNwCe1+6r2gI8GPdX6e82ApDCBKlS65uobr90zGLvg6+HWOLdkNSFbnb
+         xwfVJVcpVElE9MnAr0BcMEg2vVXtjhM3wuJIrgt/DWhBKb3KWUoyStf3ZJC2DIZHxC5u
+         UneA==
+X-Gm-Message-State: ACgBeo3F29n756widdu1DU8yt50UhLGCHIlwnSCL2e8CSdQeIKnMWq1Q
+        LsGwUtxavstBd+q37uAeZQ==
+X-Google-Smtp-Source: AA6agR47+EjReEzIB4sp12jVe0PEjtgf7L/ATJqstogXhzbClxWHyciERfQXiINmgx7Mxoh8x+JmqQ==
+X-Received: by 2002:a05:6e02:1a6f:b0:2de:b54a:1ce4 with SMTP id w15-20020a056e021a6f00b002deb54a1ce4mr3250938ilv.284.1659451810001;
+        Tue, 02 Aug 2022 07:50:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j4-20020a026304000000b00341d7c43ed5sm6405840jac.73.2022.08.02.07.46.03
+        by smtp.gmail.com with ESMTPSA id q11-20020a02cf0b000000b0033f3dd2e7e7sm6481253jar.44.2022.08.02.07.50.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Aug 2022 07:46:03 -0700 (PDT)
-Received: (nullmailer pid 79583 invoked by uid 1000);
-        Tue, 02 Aug 2022 14:46:02 -0000
-Date:   Tue, 2 Aug 2022 08:46:02 -0600
+        Tue, 02 Aug 2022 07:50:09 -0700 (PDT)
+Received: (nullmailer pid 85864 invoked by uid 1000);
+        Tue, 02 Aug 2022 14:50:08 -0000
+Date:   Tue, 2 Aug 2022 08:50:08 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     krzysztof.kozlowski+dt@linaro.org, perex@perex.cz,
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, perex@perex.cz, tiwai@suse.com,
         kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
-        broonie@kernel.org, tiwai@suse.com, lgirdwood@gmail.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: Add schema for common DAI
- params
-Message-ID: <20220802144602.GA30116-robh@kernel.org>
+Subject: Re: [PATCH v2 2/3] ASoC: dt-bindings: Add sample format conversion
+Message-ID: <20220802145008.GB30116-robh@kernel.org>
 References: <1659370052-18966-1-git-send-email-spujar@nvidia.com>
- <1659370052-18966-2-git-send-email-spujar@nvidia.com>
- <1659382247.124005.1380281.nullmailer@robh.at.kernel.org>
- <982b3f0c-0b6c-d531-3d75-27d5ca1aabec@nvidia.com>
+ <1659370052-18966-3-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <982b3f0c-0b6c-d531-3d75-27d5ca1aabec@nvidia.com>
+In-Reply-To: <1659370052-18966-3-git-send-email-spujar@nvidia.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,60 +63,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 02, 2022 at 04:15:28PM +0530, Sameer Pujar wrote:
-> Hi Rob, Krzysztof
+On Mon, Aug 01, 2022 at 09:37:31PM +0530, Sameer Pujar wrote:
+> Presently "convert-channels" and "convert-rate" DT bindings are available
+> for channel and rate fixups respectively.
 > 
-> On 02-08-2022 01:00, Rob Herring wrote:
-> > On Mon, 01 Aug 2022 21:37:30 +0530, Sameer Pujar wrote:
-> > > The "convert-channels" and "convert-rate" bindings are provided for both
-> > > simple-card and audio-graph-card. However these are separately defined in
-> > > their respective schemas. For any new binding addition, which is common to
-> > > both, there will be duplication.
-> > > 
-> > > Introduce a new schema to have common DAI params properties and these can
-> > > be re-used in other schemas wherever applicable.
-> > > 
-> > > Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> > > Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> > > ---
-> > >   .../bindings/sound/audio-graph-port.yaml           | 13 ++++------
-> > >   .../devicetree/bindings/sound/audio-graph.yaml     |  7 +++---
-> > >   .../devicetree/bindings/sound/dai-params.yaml      | 28 ++++++++++++++++++++++
-> > >   .../devicetree/bindings/sound/simple-card.yaml     | 16 ++++---------
-> > >   4 files changed, 40 insertions(+), 24 deletions(-)
-> > >   create mode 100644 Documentation/devicetree/bindings/sound/dai-params.yaml
-> > > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.yaml: properties:simple-audio-card,convert-rate: 'oneOf' conditional failed, one must be fixed:
-> >          'type' is a required property
-> >                  hint: A vendor boolean property can use "type: boolean"
-> >          'description' is a required property
-> >                  hint: A vendor boolean property can use "type: boolean"
-> >          Additional properties are not allowed ('$ref' was unexpected)
-> >                  hint: A vendor boolean property can use "type: boolean"
-> >          /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/simple-card.yaml: properties:simple-audio-card,convert-rate: 'oneOf' conditional failed, one must be fixed:
-> >                  'enum' is a required property
-> >                  'const' is a required property
-> >                  hint: A vendor string property with exact values has an implicit type
-> >                  from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> >          '/schemas/sound/dai-params.yaml#/properties/dai-sample-rate' does not match 'types.yaml#/definitions/'
-> >                  hint: A vendor property needs a $ref to types.yaml
-> >          '/schemas/sound/dai-params.yaml#/properties/dai-sample-rate' does not match '^#/(definitions|\\$defs)/'
-> >                  hint: A vendor property can have a $ref to a a $defs schema
-> >          hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-> >          from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-> 
-> I am hitting this error if I use properties/definitions from another schema.
-> If I define it locally, it works. I see there are examples where properties
-> from different schema are used. But not able to understand why errors are
-> seen in my case. Am I missing anything here?
+> Similarly add "convert-sample-format" binding to fixup DAI sample format
+> as well. This is added to simple-card and audio-graph based sound cards.
 
-You either need to use 'properties' with actual property names and 
-reference that schema from the node level. Or you use '$defs' if you are 
-going to have references from the (DT) property level. I think I'd just 
-leave simple-card out of this and do the former.
+Do you have users for both cases?
+
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> ---
+>  Documentation/devicetree/bindings/sound/audio-graph-port.yaml |  4 ++++
+>  Documentation/devicetree/bindings/sound/audio-graph.yaml      |  2 ++
+>  Documentation/devicetree/bindings/sound/dai-params.yaml       | 10 ++++++++++
+>  Documentation/devicetree/bindings/sound/simple-card.yaml      |  4 ++++
+>  4 files changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> index 30a644d9..8e64192 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+> @@ -22,6 +22,8 @@ properties:
+>      $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-rate"
+>    convert-channels:
+>      $ref: "/schemas/sound/dai-params.yaml#/properties/dai-channels"
+> +  convert-sample-format:
+> +    $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-format"
+>  
+>  patternProperties:
+>    "^endpoint(@[0-9a-f]+)?":
+> @@ -67,6 +69,8 @@ patternProperties:
+>          $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-rate"
+>        convert-channels:
+>          $ref: "/schemas/sound/dai-params.yaml#/properties/dai-channels"
+> +      convert-sample-format:
+> +        $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-format"
+>  
+>        dai-tdm-slot-width-map:
+>          description: Mapping of sample widths to slot widths. For hardware
+> diff --git a/Documentation/devicetree/bindings/sound/audio-graph.yaml b/Documentation/devicetree/bindings/sound/audio-graph.yaml
+> index a9cd52e..93ddd55 100644
+> --- a/Documentation/devicetree/bindings/sound/audio-graph.yaml
+> +++ b/Documentation/devicetree/bindings/sound/audio-graph.yaml
+> @@ -30,6 +30,8 @@ properties:
+>      $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-rate"
+>    convert-channels:
+>      $ref: "/schemas/sound/dai-params.yaml#/properties/dai-channels"
+> +  convert-sample-format:
+> +    $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-format"
+
+Can someone explain why we need these properties defined in 3 different 
+locations? That's not a great pattern to continue.
+
+>  
+>    pa-gpios:
+>      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/sound/dai-params.yaml b/Documentation/devicetree/bindings/sound/dai-params.yaml
+> index aae60cb..933957d 100644
+> --- a/Documentation/devicetree/bindings/sound/dai-params.yaml
+> +++ b/Documentation/devicetree/bindings/sound/dai-params.yaml
+> @@ -19,6 +19,16 @@ properties:
+>      minimum: 1
+>      maximum: 32
+>  
+> +  dai-sample-format:
+> +    description: Audio sample format used by DAI
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum:
+> +      - s8
+> +      - s16_le
+> +      - s24_le
+> +      - s24_3le
+> +      - s32_le
+> +
+>    dai-sample-rate:
+>      description: Audio sample rate used by DAI
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/Documentation/devicetree/bindings/sound/simple-card.yaml
+> index ab03a2b..ec21190 100644
+> --- a/Documentation/devicetree/bindings/sound/simple-card.yaml
+> +++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
+> @@ -183,6 +183,8 @@ properties:
+>      $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-rate"
+>    simple-audio-card,convert-channels:
+>      $ref: "/schemas/sound/dai-params.yaml#/properties/dai-channels"
+> +  simple-audio-card,convert-sample-format:
+
+Don't add more properties with 'simple-audio-card,' prefix. That's not a 
+pattern we want to be consistent with...
+
+> +    $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-format"
+>    simple-audio-card,prefix:
+>      $ref: "#/definitions/prefix"
+>    simple-audio-card,pin-switches:
+> @@ -226,6 +228,8 @@ patternProperties:
+>          $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-rate"
+>        convert-channels:
+>          $ref: "/schemas/sound/dai-params.yaml#/properties/dai-channels"
+> +      convert-sample-format:
+> +        $ref: "/schemas/sound/dai-params.yaml#/properties/dai-sample-format"
+>        prefix:
+>          $ref: "#/definitions/prefix"
+>        pin-switches:
+> -- 
+> 2.7.4
+> 
+> 
