@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65A4B58816C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 19:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 863B758816F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 19:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235411AbiHBR6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 13:58:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46262 "EHLO
+        id S235652AbiHBR6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 13:58:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235353AbiHBR6e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 13:58:34 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 975114F66A
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 10:58:32 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id z16so18749921wrh.12
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 10:58:32 -0700 (PDT)
+        with ESMTP id S235277AbiHBR6l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 13:58:41 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F1594F6B8
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 10:58:39 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id b21-20020a05600c4e1500b003a32bc8612fso7300053wmq.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 10:58:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=4xON5/1RnjBTHOYTi8U3eC1G9Pht10d2+/+PE/oCDM8=;
-        b=kDBdO+hRY7GGEfK3BrZAjRifF/FxSnBpdqBE5RTRkvK2+41NZPoMQ0DSrbX5Vq63HN
-         jv2F8RuSflT3kmgJsznZ3Vw+ZM4dzzIlaiARzmp2HMjwZlnF0DvBYwBSJpO9JQqz/2ua
-         AkF0nVK+2CZw2K/6HS4JmJJBjFCta96WWyKXdyEuNAvWx/fo5qH0VfCLOrYf8o5k5Vey
-         Hzs0Vr/sNMNFqdUZMfRIS8dAE3tgh/r8nRH0luf+CqcDgalKNwOUgYd1XOaewHP3JrfG
-         0PLyhMwOlNBy0XdpblT15qNlmuMhaSeqqCvRNMJrI8WnPEw0xtU8BVoDh0wK8u3763rj
-         9lhA==
+        bh=UjGXyUyDLmjMDOf8jNJMvPEYFg/F977ZxHxgmhAvnmc=;
+        b=Qh2sccOhKOymfr5Qop+pGzCH8T+687LGQLFRfVvoM3mFqaGCRJEm0wRxg98se49s0U
+         N+wb1c9mjaL4yVirYDILB0P0YX4NPYi9DAHEV9Eg2iI0V0j1C/dHTMTtSmubquYBNiE7
+         DDnG2uqIJDUgkqbyvgCoOMvk0rA64gM0k18LqPAeHBOB7RprdaxP2Dly/I1A27INmgug
+         J9/3qEKHS2ciOpZsH7KiXSf/iiUZ3lvfArqouhz/x1xSOUF95ftI6SHX2sRSodB3Rnx4
+         vh5gK7ye8THHoD7z30L9YwPyRms6IcJ/FeyrpKmOO3bf4EVLHbxK1WRpsFHzzyT/4nMi
+         ezJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=4xON5/1RnjBTHOYTi8U3eC1G9Pht10d2+/+PE/oCDM8=;
-        b=nbysudAUsAYIZVDyqdg95Ctp3ALkYIqMIPihoCv+st1+xbxswkoQfeT9cz2NfVCWyU
-         JBEq2eD0DJkTwQDnqWIVSUi2v/9BOxZKxWTn5D4sz6wcVjvA4YlePG0mB6V4AWtGvbWX
-         V4Xz2jleI7FGv2XFe1Pc0DatsQmYKOgr1D5E9tUyr7P6YeUOlLK59ZjYnlUHt5bZw5NS
-         G8AGlQHgz95Nab5lsfC2waY71r+9UHMlHzuyEyHFbulr0SVYONrHV1T8S3GqaesG4pRT
-         YlExZ9R8BNcmUXrP7PTcC8Bdq+7ahgR8UZpcHkM+Ujec9SuTp9GUgEdMuUsBqD5TpZbb
-         gupQ==
-X-Gm-Message-State: ACgBeo1YYHWxWIYbWzH4nW3UmrVrDoIpuCZMx1n/InnwO7qYJZiQtcL8
-        FomWwkstx8T3QwJA9kBZrJtMEQ==
-X-Google-Smtp-Source: AA6agR7f7dwanjYpEbjx2VufVCj+4oz4IFATBDBtRwOoC0bEAehgEene0qb5B2gm0Y13e+MUYyqOLQ==
-X-Received: by 2002:adf:e28c:0:b0:21e:660e:26aa with SMTP id v12-20020adfe28c000000b0021e660e26aamr13777281wri.345.1659463110904;
-        Tue, 02 Aug 2022 10:58:30 -0700 (PDT)
+        bh=UjGXyUyDLmjMDOf8jNJMvPEYFg/F977ZxHxgmhAvnmc=;
+        b=fABOAwhN2O1uV6QV9I/wUrtfejK2sitKecFNeeTSzxZkPk5SVd5VJCUdwbVUrgLxVx
+         q7gzf2W63fIo6ptsdFlqW93rWc9i9eNXkw0tkhZKPE2pkgIK9gESVMvaPOH7zCtvCKTU
+         yrt3s88hCGTMgneEH7Ln7R7u3dyhnrMEGfM328l5kMf3+oqRFWivVpNrh2hEqT//cqXn
+         H7Q/37MHlbhinGNYce13pfhcN7BAGhh5RK27zFZZnZwtw0x8DbYpmlvb0iLukrW8VsDQ
+         pURUTqHS1LsEs5a4V5zvQfKo1pmsGzFZu9vaHLIEdpmv5E4edCSLwcIzVjetlycohnJV
+         AxfA==
+X-Gm-Message-State: ACgBeo0CNSMxkTw63gjrr+V0qXLIza+T+BTaA6sAavxPNWmiBgeMTp8M
+        KKrPYBnZyvFOE9W+5M2tLDhk2A==
+X-Google-Smtp-Source: AA6agR4jqgI7Xs6iYK8jzlkHDKEuwOrDweCr7U8C/ikyOQNCqpvpyUePii/sxWpyirqjvlfe+oPfuA==
+X-Received: by 2002:a05:600c:19d2:b0:3a3:2cdb:cc02 with SMTP id u18-20020a05600c19d200b003a32cdbcc02mr382332wmq.182.1659463117937;
+        Tue, 02 Aug 2022 10:58:37 -0700 (PDT)
 Received: from debian.office.codethink.co.uk ([2405:201:8005:8149:e5c9:c0ac:4d82:e94b])
-        by smtp.gmail.com with ESMTPSA id 9-20020a05600c020900b003a3187a2d4csm23318222wmi.22.2022.08.02.10.58.24
+        by smtp.gmail.com with ESMTPSA id 9-20020a05600c020900b003a3187a2d4csm23318222wmi.22.2022.08.02.10.58.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Aug 2022 10:58:30 -0700 (PDT)
+        Tue, 02 Aug 2022 10:58:37 -0700 (PDT)
 From:   Sudip Mukherjee <sudip.mukherjee@sifive.com>
 To:     Serge Semin <fancer.lancer@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -58,9 +58,9 @@ Cc:     greentime.hu@sifive.com, jude.onyenegecha@sifive.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         jeegar.lakhani@sifive.com,
         Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Subject: [PATCH 02/11] spi: dw: add check for support of dual/quad/octal
-Date:   Tue,  2 Aug 2022 18:57:46 +0100
-Message-Id: <20220802175755.6530-3-sudip.mukherjee@sifive.com>
+Subject: [PATCH 03/11] spi: dw: define spi_frf for dual/quad/octal modes
+Date:   Tue,  2 Aug 2022 18:57:47 +0100
+Message-Id: <20220802175755.6530-4-sudip.mukherjee@sifive.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
 References: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
@@ -68,53 +68,100 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Before doing the mem op spi controller will be queried about the
-buswidths it supports. Add the dual/quad/octal if the controller
-has the DW_SPI_CAP_EXT_SPI capability.
+The SPI mode needs to be mentioned in CTRLR0[23:22] register. Define a
+configuration variable to keep the mode based on the buswidth, which will
+then be used to update CR0. If the transfer is using dual/quad/octal
+mode then mark enhanced_spi as true.
 
 Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
 ---
- drivers/spi/spi-dw-core.c | 19 +++++++++++++++++--
- 1 file changed, 17 insertions(+), 2 deletions(-)
+ drivers/spi/spi-dw-core.c | 29 +++++++++++++++++++++++++++++
+ drivers/spi/spi-dw.h      |  7 +++++++
+ 2 files changed, 36 insertions(+)
 
 diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
-index 97e72da7c120..77529e359b6d 100644
+index 77529e359b6d..8c84a2e991b5 100644
 --- a/drivers/spi/spi-dw-core.c
 +++ b/drivers/spi/spi-dw-core.c
-@@ -488,8 +488,23 @@ static int dw_spi_adjust_mem_op_size(struct spi_mem *mem, struct spi_mem_op *op)
- static bool dw_spi_supports_mem_op(struct spi_mem *mem,
- 				   const struct spi_mem_op *op)
- {
--	if (op->data.buswidth > 1 || op->addr.buswidth > 1 ||
--	    op->dummy.buswidth > 1 || op->cmd.buswidth > 1)
-+	struct dw_spi *dws = spi_controller_get_devdata(mem->spi->controller);
-+
-+	/*
-+	 * Only support TT0 mode in enhanced SPI for now.
-+	 * TT0 = Instruction and Address will be sent in
-+	 * Standard SPI Mode.
-+	 */
-+	if (op->addr.buswidth > 1 || op->dummy.buswidth > 1 ||
-+	    op->cmd.buswidth > 1)
-+		return false;
-+
-+	/* In enhanced SPI 1, 2, 4, 8 all are valid modes. */
-+	if (op->data.buswidth > 1 && (!(dws->caps & DW_SPI_CAP_EXT_SPI)))
-+		return false;
-+
-+	/* Only support upto 32 bit address in enhanced SPI for now. */
-+	if (op->data.buswidth > 1 && op->addr.nbytes > 4)
- 		return false;
+@@ -333,6 +333,14 @@ void dw_spi_update_config(struct dw_spi *dws, struct spi_device *spi,
+ 		/* CTRLR0[11:10] Transfer Mode */
+ 		cr0 |= FIELD_PREP(DW_HSSI_CTRLR0_TMOD_MASK, cfg->tmode);
  
- 	return spi_mem_default_supports_op(mem, op);
++	if (dws->caps & DW_SPI_CAP_EXT_SPI) {
++		if (cfg->spi_frf)
++			cr0 |= FIELD_PREP(DW_HSSI_CTRLR0_SPI_FRF_MASK,
++				cfg->spi_frf);
++		else
++			cr0 &= ~DW_HSSI_CTRLR0_SPI_FRF_MASK;
++	}
++
+ 	dw_writel(dws, DW_SPI_CTRLR0, cr0);
+ 
+ 	if (cfg->tmode == DW_SPI_CTRLR0_TMOD_EPROMREAD ||
+@@ -679,10 +687,31 @@ static void dw_spi_stop_mem_op(struct dw_spi *dws, struct spi_device *spi)
+ static int dw_spi_exec_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
+ {
+ 	struct dw_spi *dws = spi_controller_get_devdata(mem->spi->controller);
++	bool enhanced_spi = false;
+ 	struct dw_spi_cfg cfg;
+ 	unsigned long flags;
+ 	int ret;
+ 
++	if (dws->caps & DW_SPI_CAP_EXT_SPI) {
++		switch (op->data.buswidth) {
++		case 2:
++			cfg.spi_frf = DW_SSI_CTRLR0_SPI_FRF_DUAL_SPI;
++			enhanced_spi = true;
++			break;
++		case 4:
++			cfg.spi_frf = DW_SSI_CTRLR0_SPI_FRF_QUAD_SPI;
++			enhanced_spi = true;
++			break;
++		case 8:
++			cfg.spi_frf = DW_SSI_CTRLR0_SPI_FRF_OCT_SPI;
++			enhanced_spi = true;
++			break;
++		default:
++			cfg.spi_frf = 0;
++			break;
++		}
++	}
++
+ 	/*
+ 	 * Collect the outbound data into a single buffer to speed the
+ 	 * transmission up at least on the initial stage.
+diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
+index 71d18e9291a3..b8cc20e0deaa 100644
+--- a/drivers/spi/spi-dw.h
++++ b/drivers/spi/spi-dw.h
+@@ -96,6 +96,12 @@
+ #define DW_HSSI_CTRLR0_SRL			BIT(13)
+ #define DW_HSSI_CTRLR0_MST			BIT(31)
+ 
++/* Bit fields in CTRLR0 for enhanced SPI */
++#define DW_HSSI_CTRLR0_SPI_FRF_MASK		GENMASK(23, 22)
++#define DW_SSI_CTRLR0_SPI_FRF_DUAL_SPI		0x1
++#define DW_SSI_CTRLR0_SPI_FRF_QUAD_SPI		0x2
++#define DW_SSI_CTRLR0_SPI_FRF_OCT_SPI		0x3
++
+ /* Bit fields in CTRLR1 */
+ #define DW_SPI_NDF_MASK				GENMASK(15, 0)
+ 
+@@ -136,6 +142,7 @@ struct dw_spi_cfg {
+ 	u8 dfs;
+ 	u32 ndf;
+ 	u32 freq;
++	u8 spi_frf;
+ };
+ 
+ struct dw_spi;
 -- 
 2.30.2
 
