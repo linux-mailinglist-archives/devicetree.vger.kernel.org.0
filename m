@@ -2,95 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CA74587D08
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 15:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A6F9587D14
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 15:28:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236435AbiHBNYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 09:24:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58436 "EHLO
+        id S236225AbiHBN2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 09:28:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236302AbiHBNYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 09:24:45 -0400
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2744E15A37;
-        Tue,  2 Aug 2022 06:24:44 -0700 (PDT)
-Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 02 Aug 2022 22:24:43 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 7326320584CE;
-        Tue,  2 Aug 2022 22:24:43 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 2 Aug 2022 22:24:43 +0900
-Received: from [10.212.181.253] (unknown [10.212.181.253])
-        by kinkan2.css.socionext.com (Postfix) with ESMTP id 6BAA8B62A4;
-        Tue,  2 Aug 2022 22:24:42 +0900 (JST)
-Subject: Re: [PATCH 0/9] Update UniPhier armv8 devicetree
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Olof Johansson <olof@lixom.net>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <1656894074-15751-1-git-send-email-hayashi.kunihiko@socionext.com>
- <0a0a64a7-60cc-e95d-c2e3-3c11a53a6527@socionext.com>
- <CAK8P3a0egd9dupLFid9CsSygQyTK3KopB8m5LVgnUW9L1cF6JA@mail.gmail.com>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <fd6e9539-4c67-93a2-9104-018ed9703ff9@socionext.com>
-Date:   Tue, 2 Aug 2022 22:24:42 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S233900AbiHBN2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 09:28:16 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 657C718394
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 06:28:13 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id z12so7789348wrs.9
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 06:28:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=zhQV6KklANoXAExR2SdxpOLIazXCUZND/JNIe+QuHXc=;
+        b=Ain8zt4q7eV7NL2VgVzu8tHPSmzLHBe2hlUNvqd30pvxjhbHbgdoyTEdzqnfozWlv1
+         8WK3K+/5FS9QkKqUBTR2sjb8MogLMszoK2fpRlRNv78dQ6o9rBDJwdOWwnMBpkKyasg1
+         8uGkcJvylDuzhbyBuCDbMdjtnqQVtvKWzGz88Ww1DdQjG7bN3HM9Vy6q1/5NmMMnZ23L
+         MQ3fxTgAE2hkUP9fduJHzfRhkUUe/OEQBUVkBjhPWe1dyMWzxgAxWlB/+IZ7lTVW1Q1H
+         5TAECFYVlHQC0liH1ZwhF+9qMfQz8nZ1XuIwhjoj5NXbGC1M0Sj/hRZp393I4IiVz2bU
+         x6MQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=zhQV6KklANoXAExR2SdxpOLIazXCUZND/JNIe+QuHXc=;
+        b=ZYoen3X4IbfSLlEn3rk2CdqR6avciCo3fBj6ieXAfLQvpp/M2Sfe8uli9JlS38tTkz
+         8tRW/RxuQq6lW9ucbt0G2KAkRjSfbjDI38PTrhDAWzaeEIepIbCwwBr9OZyNyjFQJZzw
+         O+GamS8DTnJ8Q+5Au5zOgOCPzeuk9YyW1bvkKrBsM8r0MJmdIIfWqb4SvaiXvd+9/eI7
+         w78HtPVV6thwvxbKY8VRj76VsRjcIwnUUbTnNT2xElyngh7wopz/7eYtJWshkoZOOYHn
+         zjJcmw9/u570XkHabdCSbBzJvZzWoRjprLPr0Bkdt9W5uudV6vLN+SEAuUTHjiuP0Rlc
+         9oMA==
+X-Gm-Message-State: ACgBeo3l9gIG4kmz0MaGR4bkh4QaIXQ+mCyNI5Cs+13FmxTXo0hKgorv
+        b7/+Q+68ihzpfrrk/opWxpbDxQ==
+X-Google-Smtp-Source: AA6agR4cSFplWRmJFt46bFuJLRjHgyuj120RsB6jAgbcAkjmDxvGeNISURre7kRy/h6qlASE0FOvUg==
+X-Received: by 2002:adf:d1ea:0:b0:220:6334:25e with SMTP id g10-20020adfd1ea000000b002206334025emr6527722wrd.32.1659446891922;
+        Tue, 02 Aug 2022 06:28:11 -0700 (PDT)
+Received: from [192.168.1.69] (32.31.102.84.rev.sfr.net. [84.102.31.32])
+        by smtp.gmail.com with ESMTPSA id i16-20020a05600c401000b003a305c0ab06sm22618640wmm.31.2022.08.02.06.28.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Aug 2022 06:28:11 -0700 (PDT)
+Message-ID: <98d17617-72b5-6330-d4f5-1bece928ceab@baylibre.com>
+Date:   Tue, 2 Aug 2022 15:28:09 +0200
 MIME-Version: 1.0
-In-Reply-To: <CAK8P3a0egd9dupLFid9CsSygQyTK3KopB8m5LVgnUW9L1cF6JA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.0
+Subject: Re: [PATCH v3 2/2] iio: time: capture-tiecap: capture driver support
+ for ECAP
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Julien Panis <jpanis@baylibre.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lars@metafoo.de, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mranostay@ti.com
+References: <20220728175124.468461-1-jpanis@baylibre.com>
+ <20220728175124.468461-3-jpanis@baylibre.com>
+ <20220731164116.30e91f34@jic23-huawei>
+ <11b7436b-5c31-671e-ba77-435fe8e3b767@baylibre.com>
+In-Reply-To: <11b7436b-5c31-671e-ba77-435fe8e3b767@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
 
-Thank you for your reply.
 
-On 2022/07/30 21:03, Arnd Bergmann wrote:
-> On Fri, Jul 29, 2022 at 11:52 AM Kunihiko Hayashi
-> <hayashi.kunihiko@socionext.com> wrote:
->> On 2022/07/04 9:21, Kunihiko Hayashi wrote:
->>> Update devicetree sources for UniPhier armv8 SoCs to remove dtschema
->>> warnings, add support existing features that haven't yet been
->>> described, and replace constants with macros.
+On 01/08/2022 16:08, Julien Panis wrote:
+>
+>
+> On 31/07/2022 17:41, Jonathan Cameron wrote:
+>> On Thu, 28 Jul 2022 19:51:24 +0200
+>> Julien Panis <jpanis@baylibre.com> wrote:
 >>
->> If there is nothing wrong with this series and armv7 DT series,
->> I'd like to make a pull request.
->> If the request is late, carry it over to the next version.
+>>> ECAP hardware on AM62x SoC supports capture feature. It can be used
+>>> to timestamp events (falling/rising edges) detected on signal input 
+>>> pin.
+>>>
+>>> This commit adds capture driver support for ECAP hardware on AM62x SoC.
+>>>
+>>> In the ECAP hardware, capture pin can also be configured to be in
+>>> PWM mode. Current implementation only supports capture operating mode.
+>>> Hardware also supports timebase sync between multiple instances, but
+>>> this driver supports simple independent capture functionality.
+>>>
+>>> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+>> Hi Julien,
 >>
->> How about that?
-> 
-> The timing is not great, as normal updates should get merged as parts
-> of the normal
-> pull requests, which I have already sent.
+>> So this isn't the first ecap driver we've had proposed, but the previous
+>> one was a few years ago and never reached v2.
+>> https://lore.kernel.org/all/20200818153614.6438-1-dts86@cornell.edu/
+>>
+>> Honestly I can't remember much about it, but maybe the discussion around
+>> that will be worth a reread.
+>
+> Hi Jonathan, thank you for your review.
+>
+> I read the discussion about previous attempt, before submitting this 
+> patch. There were
+> interesting comments indeed.
+>
+> But in this previous attempt, only one-shot pulses were handled 
+> (moreover, global IRQ flag
+> was not cleared, so I'm not sure that IRQ could be raised more than 
+> once).
+>
+> However, ECAP can be used to make time measurements for any type of 
+> "square waveform".
+> That's why I tried to make this event mode configurable. Besides, 
+> using a continuous mode allows
+> handling much more signal types (not only single pulses).
+>
+>>
+>> The use of ABI here is unusual. So I'd definitely like to see some 
+>> documentation
+>> probably as a file in the main kernel documentation to explain what 
+>> the interface
+>> is an how that relates to what is being captured.
+>
+> OK, I will add some userspace documentation.
+>
+>>
+>> First thing to note here is the channel type of IIO_INDEX is now not 
+>> actually
+>> used any more because we moved all the relevant drivers over to the 
+>> counter
+>> subsystem (and we failed to mark it deprecated).
+>
+> I evaluated this counter subsystem before starting development. 
+> Counting events is not "a priori"
+> the goal when using ECAP.
+>
+> Nevertheless, maybe "counter_push_event" function could do the job. If 
+> I use counter API :
+> # Option 1 : CAP1/2/3/4 registers could be seen as 4 channels of the 
+> same counter...
+> but there are not channels, there are just sequential timestamps 
+> actually. So I'm afraid this leads
+> to misunderstanding for the user.
+> Moreover, the user will have to read several entries (counts 1/2/3/4) 
+> to gather timestamps from
+> the same input signal, which is not very convenient.
+> # Option 2 : Either CAP 1/2/3/4 events could be gathered in a single 
+> channel...but then it will not
+> be possible to configure their polarity (rising/falling edge) 
+> individually (unless I did
+> not understand well counter framework documentation).
+>
+> So, even with counter framework, it will lead to some diverted use of 
+> the framwork, since ECAP
+> is a very specific hardware that do not fit 100% counter philosophy.
+>
+> I admit that ECAP do not fit 100% IIO philosophy either.
+>
+> Maybe misc API would be more relevant actually. Any opinion about it 
+> will be welcome. :-)
 
-I understand it was late.
+[Answering my own mail]
 
-> A lot of the changes can be considered bugfixes, and I would still
-> merge them if you
-> think they are harmless and can fix things. In this case, also mark them as
-> 'Cc: stable@vger.kernel.org' to be backported into lts kernels. Anything
-> that
-> does not qualify as a bugfix should now go into the 5.21 merge window.
-> 
-> Please send the bugfix pull request as soon as you can so we can merge that
-> early. The other updates should be rebased onto v5.20-rc1 once that is
-> released in about two weeks.
+I got a closer look at counter framework. It is not suitable at all for 
+ECAP. Initially, I thought that
+"counter_push_event" function could be used, but the only timestamp 
+handled by this function
+is a software timestamp. I strongly doubt that counter framework 
+maintainer would accept
+some modification here to support hardware timestamp : a patch rejection 
+would be
+legitimate, since a counter is dedicated to "event counting". Whereas 
+ECAP is dedicated to
+"event timestamping".
 
-There are one bugfix patch for each series and they will be sent for "stable".
-About the other patches, I'll rebase and send them again.
+Beside, ECAP has 4 timestamp registers but they are used to capture 
+timestamps for a
+single input pin (only 1 channel). In ECAP context, 'index X" is used to 
+identify CAP X
+(used to capture event X detected on a single pin, with X = 0/1/2/3/0...).
+In counter framework, "index X" is used to identify channel X (among 
+several pins).
+So, the word "index" has not the same meaning in counter framework than 
+in ECAP device.
+Somehow, this ECAP index (0/1/2/3 for CAP1/2/3/4 registers) must be 
+logged with timestamp
+because it is an important part of signal info for the user (raw 
+consecutive timestamps
+are not enough).
 
-Thank you,
+So, here is my proposal for my next version :
+(1) Replace IIO_INDEX by IIO_COUNT channel (already used in 
+"stm32-timer-trigger.c" driver)
+# In ECAP documentation, the word "index" is not used. The word used to 
+speak about this
+0->1->2->3->0 sequenced counter is "Mod4 counter".
+(2) Configure event mode with 4 sysfs entries (to remove the mix of 
+buffers and events interfaces)
+# User will see 4 files (1 file for each CAP timestamp) named 
+"falling_edge_active_0/1/2/3".
+Writing 1 will select falling edge/ Writing 0 will select rising edge.
 
----
-Best Regards
-Kunihiko Hayashi
+Would it be an acceptable alternative for you, Jonathan ? Would either 
+(1) and/or (2) be a "no-go" ?
+
+>
+>>
+>> Anyhow, I've reviewed below, but need docs to discuss this in depth.  
+>> In particular
+>> the mix of buffers and events interfaces is unlikely to be an 
+>> acceptable path
+>> forwards.
+>
+> OK, I will consider alternatives.
+>
+>>
+>> Jonathan
+
