@@ -2,85 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 004A25879CA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 11:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E4075879CD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 11:25:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233294AbiHBJY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 05:24:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47522 "EHLO
+        id S232773AbiHBJZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 05:25:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232021AbiHBJY0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 05:24:26 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A9D32ED6
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 02:24:24 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id y11so21060436lfs.6
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 02:24:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=1n1ZKC51PL7oA8qvseMiLtJyJ6uxOwh3lLvNachyl1g=;
-        b=SkPaGq8iz1oHc+v7esobJprt9PJgk67NAJHJdsKvxA4Kb40e4boROTAcUc2xJkDOtP
-         feiZ4DFggiNTTdytEx5RqfqnF9zoj0Ovv/NDSwuP+Qt0gSOM4kTxBz9LaBBmjh3gYcI8
-         om5PBZP8AbVCWg0xSi5ruxNf2iyyRdZ6CY6rsQhR1zD0h/wCidH1BKH47KOcQMNSiZ1N
-         PDGarGTsjYrWojQ6gq85qllU6HPIBbbsDHui241G6b21VvTZmfSgB3jGRCj7C0tgt98M
-         VyA5lbHDlWTfKlqOFAmu36bhGTfFSSzXVtOIqwgMAJG6jd9t9YyBW54hF1K3wE0OYD3g
-         ZvsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=1n1ZKC51PL7oA8qvseMiLtJyJ6uxOwh3lLvNachyl1g=;
-        b=RzC+W159qYzTTvnIW+bZQMYYpKwq+7o1gG57U4R26/NVNK4CuZfypk3BjtdLGNk54S
-         QMucrON8DfgOWg8YoFq+O+oL97d1qB3o0RsA8NXslDVnK+bIACNAXhoq4kxAsqfJsH5A
-         ZLdLXIHXpyKoYmdt6o+kSqFYvfEtlvtv8RI+Txy/oRBn6F7PE6CsRLQ1YbxG0IPqcJMz
-         O0Ec+AtYfRtg4qzS4Gpd+cgxiGXid8dFJSjAn5dtaU4dK6R+u+x2clLRXAWn9uUCs7Ab
-         9ytHvyVF54ZPNTibaHagB6wF7S574abZUkG1HEgwj/wk1krtir66N8dUL9MWaGf1NOi/
-         Jg9A==
-X-Gm-Message-State: AJIora98aGvQy7ulmyJJVFKeYxQlKI5jFc8DyDtk/AwkCrbLxKS3GjEM
-        9gXY6bOgHfD00gzZ71YAPwY2BQ==
-X-Google-Smtp-Source: AGRyM1uBK8mjLp2Dc3a0wZ5cXTLENaz5MzrxfwZV1SGtxG45Quj5zu+tMF8YQMQoSC9KIbWP1jib7Q==
-X-Received: by 2002:a19:f004:0:b0:48a:bf41:1e70 with SMTP id p4-20020a19f004000000b0048abf411e70mr6530388lfc.342.1659432263152;
-        Tue, 02 Aug 2022 02:24:23 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id z13-20020a2eb52d000000b0025dc0adf38csm119052ljm.61.2022.08.02.02.24.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 02:24:22 -0700 (PDT)
-Message-ID: <50230652-c1ae-4ce2-907c-9bdc6b827f8e@linaro.org>
-Date:   Tue, 2 Aug 2022 12:24:21 +0300
+        with ESMTP id S232771AbiHBJZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 05:25:32 -0400
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA2F1A819;
+        Tue,  2 Aug 2022 02:25:30 -0700 (PDT)
+Received: from [10.88.19.200] (10.88.19.200) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Tue, 2 Aug 2022
+ 17:25:28 +0800
+Message-ID: <bafb824a-d450-b4d3-20a9-026dccaca2cd@amlogic.com>
+Date:   Tue, 2 Aug 2022 17:25:32 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 00/11] Drivers for gunyah hypervisor
-Content-Language: en-GB
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0.2
+Subject: Re: [PATCH v3 4/4] dt-binding: perf: Add Amlogic DDR PMU
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
         Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220801211240.597859-1-quic_eberman@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220801211240.597859-1-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chris Healy <cphealy@gmail.com>
+References: <20220801060049.1655177-1-jiucheng.xu@amlogic.com>
+ <20220801060049.1655177-4-jiucheng.xu@amlogic.com>
+ <0893fab6-a7e1-bfa7-2497-239e044cc7ed@linaro.org>
+From:   Jiucheng Xu <jiucheng.xu@amlogic.com>
+In-Reply-To: <0893fab6-a7e1-bfa7-2497-239e044cc7ed@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [10.88.19.200]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,107 +53,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2022 00:12, Elliot Berman wrote:
-> Gunyah is a Type-1 hypervisor independent of any
-> high-level OS kernel, and runs in a higher CPU privilege level. It does
-> not depend on any lower-privileged OS kernel/code for its core
-> functionality. This increases its security and can support a much smaller
-> trusted computing base than a Type-2 hypervisor.
-> 
-> Gunyah is an open source hypervisor. The source repo is available at
-> https://github.com/quic/gunyah-hypervisor.
-> 
-> The diagram below shows the architecture.
-> 
-> ::
-> 
->          Primary VM           Secondary VMs
 
-Is there any significant difference between Primary VM and other VMs?
+On 2022/8/2 16:04, Krzysztof Kozlowski wrote:
+> [ EXTERNAL EMAIL ]
+>
+> On 01/08/2022 08:00, Jiucheng Xu wrote:
+>> Add binding documentation for the Amlogic G12 series DDR
+>> performance monitor unit.
+>>
+>> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
+>> ---
+>> Changes v2 -> v3:
+>>    - Remove oneOf
+>>    - Add descriptions
+>>    - Fix compiling warning
+>>
+>> Changes v1 -> v2:
+>>    - Rename file, from aml_ddr_pmu.yaml to amlogic,g12_ddr_pmu.yaml
+>>    - Delete "model", "dmc_nr", "chann_nr" new properties
+>>    - Fix compiling error
+>> ---
+>>   .../bindings/perf/amlogic,g12_ddr_pmu.yaml    | 51 +++++++++++++++++++
+>>   MAINTAINERS                                   |  1 +
+>>   2 files changed, 52 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+>> new file mode 100644
+>> index 000000000000..961656d4db6e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/perf/amlogic,g12_ddr_pmu.yaml
+>> @@ -0,0 +1,51 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/perf/amlogic,g12-ddr-pmu.yaml#
+> You still did not test the bindings...
+>
+> You received such comment (with instructions how to do it) and still
+> decided to send untested bindings.
+>
+> That's not how submission procces should look like.
+>
+> NAK, till you send something which you actually test.
+>
+>
+> Best regards,
+> Krzysztof
 
->       +-----+ +-----+  | +-----+ +-----+ +-----+
->       |     | |     |  | |     | |     | |     |
->   EL0 | APP | | APP |  | | APP | | APP | | APP |
->       |     | |     |  | |     | |     | |     |
->       +-----+ +-----+  | +-----+ +-----+ +-----+
->   ---------------------|-------------------------
->       +--------------+ | +----------------------+
->       |              | | |                      |
->   EL1 | Linux Kernel | | |Linux kernel/Other OS |   ...
->       |              | | |                      |
->       +--------------+ | +----------------------+
->   --------hvc/smc------|------hvc/smc------------
->       +----------------------------------------+
->       |                                        |
->   EL2 |            Gunyah Hypervisor           |
->       |                                        |
->       +----------------------------------------+
-> 
-> Gunyah provides these following features.
-> 
-> - Threads and Scheduling: The scheduler schedules virtual CPUs (VCPUs) on
-> physical CPUs and enables time-sharing of the CPUs.
+Hi Krzysztof,
 
-Is the scheduling provided behind the back of the OS or does it require 
-cooperation?
 
-> - Memory Management: Gunyah tracks memory ownership and use of all memory
-> under its control. Memory partitioning between VMs is a fundamental
-> security feature.
-> - Interrupt Virtualization: All interrupts are handled in the hypervisor
-> and routed to the assigned VM.
-> - Inter-VM Communication: There are several different mechanisms provided
-> for communicating between VMs.
-> - Device Virtualization: Para-virtualization of devices is supported using
-> inter-VM communication. Low level system features and devices such as
-> interrupt controllers are supported with emulation where required.
+Thanks for your time. I think I got a wrong understanding.
 
-After reviewing some of the patches from the series, I'd like to 
-understand, what does it provide (and can be provided) to the VMs.
+As the binding doc says, I run the following command to check:
 
-I'd like to understand it first, before going deep into the API issues.
+# make dt_binding_check DT_SCHEMA_FILES=amlogic,g12_ddr_pmu.yaml ARCH=arm64
 
-1) The hypervisor provides message queues, doorbells and vCPUs
+I saw the warning/errors in v2 patch, and thanks to your comments let 
+them gone.
 
-Each of resources has it's own capability ID.
-Why is it called capability? Is it just a misname for the resource ID, 
-or has it any other meaning behind? If it is a capability, who is 
-capable of what?
+But I didn't see any warning/errors keywords printing in v3 except the 
+message as below:
 
-At this moment you create allocate two message queues with fixed IDs for 
-communication with resource manager. Then you use these message queues 
-to organize a console and a pack of tty devices.
+"$id: relative path/filename doesn't match actual path or filename".
 
-What other kinds of services does RM provide to the guest OS?
-Do you expect any other drivers to be calling into the RM?
 
-What is the usecase for the doorbells? Who provides doorbells?
+I admit I didn't understand this prompt. I found the doc in example says 
+that:
 
-You mentioned that the RM generates DT overlays. What kind of 
-information goes to the overlay?
+# $id is a unique identifier based on the filename. There may or may not 
+be a
+# file present at the URL.
 
-My current impression of this series is that you have misused the 
-concept of devices. Rather than exporting MSGQs and BELLs as 
-gunyah_devices and then using them from other drivers, I'd suggest 
-turning them into resources provided by the gunyah driver core. I 
-mentioned using the mailbox API for this. Another subsystem that might 
-ring the bell for you is the remoteproc, especially the rproc_subdev.
+So I thought that was not warning/errors prompt.
 
-I might be completely wrong about this, but if my in-mind picture of 
-Gunyah is correct, I'd have implemented the gunyah core subsytem as 
-mailbox provider, RM as a separate platform driver consuming these 
-mailboxes and in turn being a remoteproc driver, and consoles as 
-remoteproc subdevices.
+Today, I find the root cause of the warning/errors prompt.
 
-I can assume that at some point you would like to use Gunyah to boot 
-secondary VMs from the primary VM by calling into RM, etc.
-Most probably at this moment a VM would be allocated other bells, 
-message queues, etc. If this assumption is correct, them the VM can 
-become a separate device (remoteproc?) in the Linux device tree.
+I think I have fixed it and the building log is so quiet.
 
-I might be wrong in any of the assumptions above. Please feel free to 
-correct me. We can then think about a better API for your usecase.
+
+This is my first upstream patch, TBH I even didn't know what is binding 
+before.
+
+In order to upstream my driver, I try to learn how to write binding scheme.
+
+It looks like I still did terribly.
+
+I think my stupid misunderstanding get you angry. I'm sorry for wasting 
+your time and comments.
+
+I will re-submit v4 to fix it.
 
 -- 
-With best wishes
-Dmitry
+Thanks,
+Jiucheng
+
