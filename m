@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5CA588176
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 19:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07693588179
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 19:59:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236553AbiHBR7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 13:59:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46426 "EHLO
+        id S236323AbiHBR7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 13:59:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236119AbiHBR66 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 13:58:58 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADEB151413
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 10:58:53 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id l22so18841619wrz.7
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 10:58:53 -0700 (PDT)
+        with ESMTP id S236454AbiHBR7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 13:59:08 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 933075070F
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 10:59:00 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id ay36-20020a05600c1e2400b003a4e30d7995so1229939wmb.5
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 10:59:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=MZTeoa87dfvJFG/ev+WcWMi6pJYHv4C0u5fdzNHZAPI=;
-        b=KFQxbUGkbdnNFcpFvYllrGe2i0Oqt50GRp+xE1pLOFLMhInNKQfn+3LZZGA/cGowMi
-         t2EfJVFt5mxOPw7T0ZE8McatT2X2faWr9NAd7sR7tVZDPDPDpgL8WIs9cjr15H0gI9nf
-         aeJziL/uxBJfcwY+IIY1wRxhP+Y07KO/IgsJzMMOVIPYCMR/G4k7QMyN3iaXmEoKPu0S
-         5cEn2u8XF+bUkVehjle1MTjgz85hZf2O4nALxHMcgKsJ6MtDGbk5MBFTtbSq2xHYqd54
-         Vnv5CGE4MQf/BO9OH4wRG1NGsgIrIk4LWRgt0/wLBER++g+wZm5dRt+XIMzf0V5ywZwf
-         flPA==
+        bh=E4UV8naDvq3qTPSo5The0YIEVHRxQNXYLDteElqpqxc=;
+        b=JEDdNc+SdwY9H7WGJA/h7gfZJT/8n7093kHisyTqxAECd0XnvlBbQZPIby2t91lvs5
+         LwH14ohei4NP0alduv/V0qZNQS4aFVRdknb/bzMN/PJw7g6OqHbHN45n7QV9eMFVulDN
+         lvoMfjg9Est6l4Za5WJgVpfPqmIKkkDI6g+PnCExjWG667VSPxy9SQbJsrh+Rs18O0vj
+         mU4AU/FbZJx0qYraQEtsdCA1xbB/0QUP1aSHd2S5YBzRaeLqseMTUJd3veDbC1ct/5Me
+         MMb7VTgOaHgYubha4E0KnM8S1fU3RKhvIwoZfMSHCfmAjC44SmnSiNeEDxneVkMRsyPR
+         rCfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=MZTeoa87dfvJFG/ev+WcWMi6pJYHv4C0u5fdzNHZAPI=;
-        b=MASrscxJiUuHN+kJmIPB1rrbgIi0YyGgJy0wBUifgBM/udNGSMnf9t/fxUOcOkMyWP
-         p9TKpw8aR6Yobr8JRuzHXKtmbCM2pdiWZ4mEit+gZ1ZJRX0nx/Kl+Oy3GOitP9332j0e
-         EbX911+gkGnZ+DO6r6zsNV1tA/5kS9tRMbPkEhLh4p7iQw1WTy1nI6K3RJ1vcjMaGQJy
-         6vFIdha1gm853XFnlgbTK14NnI8bG83sbYOpm9O5hl9SPFdvcQLejUTqi/mKoUFhhRUu
-         lyNYwGB72aFYyTO31zO1129r7kbUomu61bGEn344ZJao9ZtiuFicYE0zdh2F6y/RZDDI
-         XC/w==
-X-Gm-Message-State: ACgBeo3kEphumHM3lFpObkFsTb4mwQ5WkoD3Si0py9SDejVBEthkkj/J
-        13pzWBDBBQo8/dx5R/0BU9igLQ==
-X-Google-Smtp-Source: AA6agR79yXvPO2icms6I7OLPLmvO8VuEh5kLencnb2xoh+3znDhpOEYXIDS0kCA0vjDXdTCpQd9ACw==
-X-Received: by 2002:a05:6000:42:b0:21f:dc5:5ce0 with SMTP id k2-20020a056000004200b0021f0dc55ce0mr14429646wrx.12.1659463131961;
-        Tue, 02 Aug 2022 10:58:51 -0700 (PDT)
+        bh=E4UV8naDvq3qTPSo5The0YIEVHRxQNXYLDteElqpqxc=;
+        b=0BOunGGae6d6849h/l8Sr43EorV1BZ9qimGcEaH9MJiPpmvgnWw31M69QuMPuCFrFa
+         lX1AJMQXDLlTNk3NIfdiMjQrDUxo1idbuReSqer9rzOsDgyVrO3A2VaWFlfG503oH1UH
+         Is+EAzA0u3rDD+kjGFbp5jE5KDL+TlQL7erb7sRgeEjIqReIoXnCimn0GoUyhGCySmY3
+         P59WyGoCJKeZau4/RZGxZ2h67DgWbq7MjadtEjUPOJc/k/TgED9TiZZAsJOJoCHeSwGG
+         D5VWKTSPHKKLXhwni0LyJK1bRu9wrhC/ofDvs9ApObYlloV9FWvKhLt181dUauykLpzX
+         pFSQ==
+X-Gm-Message-State: ACgBeo1XjyU5Oprwjt+HEqWE+pCUlaB7b031QHRxeNZkQfCj3/DScFZ2
+        qcTnpIlQndzSSCRtF803PwRZtg==
+X-Google-Smtp-Source: AA6agR5oi5bh7J5T4XlHOaXxcqmZnSljMBeaUPSklXYLtjxO0JSI4hGEjQ3l7B3fG9zxrUDs2BCG4g==
+X-Received: by 2002:a7b:cbc4:0:b0:3a3:745d:ae5e with SMTP id n4-20020a7bcbc4000000b003a3745dae5emr411727wmi.12.1659463139006;
+        Tue, 02 Aug 2022 10:58:59 -0700 (PDT)
 Received: from debian.office.codethink.co.uk ([2405:201:8005:8149:e5c9:c0ac:4d82:e94b])
-        by smtp.gmail.com with ESMTPSA id 9-20020a05600c020900b003a3187a2d4csm23318222wmi.22.2022.08.02.10.58.45
+        by smtp.gmail.com with ESMTPSA id 9-20020a05600c020900b003a3187a2d4csm23318222wmi.22.2022.08.02.10.58.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Aug 2022 10:58:51 -0700 (PDT)
+        Tue, 02 Aug 2022 10:58:58 -0700 (PDT)
 From:   Sudip Mukherjee <sudip.mukherjee@sifive.com>
 To:     Serge Semin <fancer.lancer@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -58,9 +58,9 @@ Cc:     greentime.hu@sifive.com, jude.onyenegecha@sifive.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         jeegar.lakhani@sifive.com,
         Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Subject: [PATCH 05/11] spi: dw: define SPI_CTRLR0 register and its fields
-Date:   Tue,  2 Aug 2022 18:57:49 +0100
-Message-Id: <20220802175755.6530-6-sudip.mukherjee@sifive.com>
+Subject: [PATCH 06/11] spi: dw: update SPI_CTRLR0 register
+Date:   Tue,  2 Aug 2022 18:57:50 +0100
+Message-Id: <20220802175755.6530-7-sudip.mukherjee@sifive.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
 References: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
@@ -68,59 +68,69 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Synopsys SSI controllers supporting enhanced SPI mode of operation has
-SPI Control Register at offset 0xf4 which controls the following:
-
-CLK_STRETCH_EN: Enables clock stretching capability in SPI transfers.
-In case of write, if the FIFO becomes empty DWC_ssi will stretch the
-clock until FIFO has enough data to continue the transfer. In case of
-read, if the receive FIFO becomes full DWC_ssi will stop the clock until
-data has been read from the FIFO.
-
-WAIT_CYCLES: Wait cycles in Dual/Quad/Octal mode between control frames
-transmit and data reception.
-
-INST_L: Dual/Quad/Octal mode instruction length in bits.
-
-ADDR_L: defines Length of Address to be transmitted.
-
-For now, we are only using 32bit Address length and 8 bit Instruction
-length.
+If the controller supports enhanced SPI modes then update the register
+or reset the register if the transfer is not using dual/quad/octal mode.
 
 Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
 ---
- drivers/spi/spi-dw.h | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ drivers/spi/spi-dw-core.c | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/spi/spi-dw.h b/drivers/spi/spi-dw.h
-index b8cc20e0deaa..a7a4637d6d32 100644
---- a/drivers/spi/spi-dw.h
-+++ b/drivers/spi/spi-dw.h
-@@ -63,6 +63,17 @@
- #define DW_SPI_RX_SAMPLE_DLY		0xf0
- #define DW_SPI_CS_OVERRIDE		0xf4
+diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+index 8e624620864f..9d499bdf2ce6 100644
+--- a/drivers/spi/spi-dw-core.c
++++ b/drivers/spi/spi-dw-core.c
+@@ -676,6 +676,32 @@ static void dw_spi_stop_mem_op(struct dw_spi *dws, struct spi_device *spi)
+ 	dw_spi_enable_chip(dws, 1);
+ }
  
-+/* Register offsets (Defined in DWC SSI 1.03a) */
-+#define DW_HSSI_SPI_CTRLR0		0xf4
++static void update_spi_ctrl0(struct dw_spi *dws, const struct spi_mem_op *op, bool enable)
++{
++	u32 spi_ctrlr0;
 +
-+/* Bit fields in SPI_CTRLR0 (Defined in DWC SSI 1.03a) */
-+#define DW_HSSI_SPI_CTRLR0_CLK_STRETCH_EN	BIT(30)
-+#define DW_HSSI_SPI_CTRLR0_WAIT_CYCLE_MASK	GENMASK(15, 11)
-+#define DW_HSSI_SPI_CTRLR0_INST_L_MASK		GENMASK(9, 8)
-+#define DW_HSSI_SPI_CTRLR0_INST_L8		0x2
-+#define DW_HSSI_SPI_CTRLR0_ADDR_L_MASK		GENMASK(5, 2)
-+#define DW_HSSI_SPI_CTRLR0_ADDR_L32		0x8
++	spi_ctrlr0 = dw_readl(dws, DW_HSSI_SPI_CTRLR0);
++	if (enable) {
++		spi_ctrlr0 |= FIELD_PREP(DW_HSSI_SPI_CTRLR0_WAIT_CYCLE_MASK,
++					 op->dummy.nbytes * BITS_PER_BYTE);
++		/* 8 bit instruction length */
++		spi_ctrlr0 |= FIELD_PREP(DW_HSSI_SPI_CTRLR0_INST_L_MASK,
++					 DW_HSSI_SPI_CTRLR0_INST_L8);
++		/* 32 bit address length */
++		spi_ctrlr0 |= FIELD_PREP(DW_HSSI_SPI_CTRLR0_ADDR_L_MASK,
++					 DW_HSSI_SPI_CTRLR0_ADDR_L32);
++		/* Enable clock stretching */
++		spi_ctrlr0 |= DW_HSSI_SPI_CTRLR0_CLK_STRETCH_EN;
++	} else {
++		spi_ctrlr0 &= ~DW_HSSI_SPI_CTRLR0_WAIT_CYCLE_MASK;
++		spi_ctrlr0 &= ~DW_HSSI_SPI_CTRLR0_INST_L_MASK;
++		spi_ctrlr0 &= ~DW_HSSI_SPI_CTRLR0_ADDR_L_MASK;
++		spi_ctrlr0 &= ~DW_HSSI_SPI_CTRLR0_CLK_STRETCH_EN;
++	}
 +
- /* Bit fields in CTRLR0 (DWC APB SSI) */
- #define DW_PSSI_CTRLR0_DFS_MASK			GENMASK(3, 0)
- #define DW_PSSI_CTRLR0_DFS32_MASK		GENMASK(20, 16)
++	dw_writel(dws, DW_HSSI_SPI_CTRLR0, spi_ctrlr0);
++}
++
+ /*
+  * The SPI memory operation implementation below is the best choice for the
+  * devices, which are selected by the native chip-select lane. It's
+@@ -738,6 +764,9 @@ static int dw_spi_exec_mem_op(struct spi_mem *mem, const struct spi_mem_op *op)
+ 
+ 	dw_spi_enable_chip(dws, 0);
+ 
++	if (dws->caps & DW_SPI_CAP_EXT_SPI)
++		update_spi_ctrl0(dws, op, enhanced_spi);
++
+ 	dw_spi_update_config(dws, mem->spi, &cfg);
+ 
+ 	dw_spi_mask_intr(dws, 0xff);
 -- 
 2.30.2
 
