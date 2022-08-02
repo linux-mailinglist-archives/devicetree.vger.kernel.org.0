@@ -2,231 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4736D5877F6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:37:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72CD05877FB
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235943AbiHBHh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 03:37:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42666 "EHLO
+        id S233830AbiHBHik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 03:38:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235924AbiHBHh0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:37:26 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BDC3B86E
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 00:37:24 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id e11so14738392ljl.4
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 00:37:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=URseQjXjOTyP7Y7Ids7IGoAxfF0B+LCgv9LDJOxn0e4=;
-        b=hgEifgEEc8RJp8ISWE1R7rNbqZOTjbYFLSR+ZCQ3pCzNKf6M/zLuIFQub34HwSf2Cx
-         pXKoJH0Xcib5nDBj2xTw283BeMqtxYDBvYDoIHZ5I6c/rQhNNETCJMkJnDSqRfkdnINH
-         WQsz52anuBiuLZsea5kdDORb9OCwYhdOeFETD/smvx1IIcxqGsEipeovwptZxh8xxgMi
-         HR1N11jZ7fKXqkJR1DpgnvlUxqvhw4LvcpeLid1CWKfDQbCw8sbPiQkog8VM8YuvXQo5
-         HQcRsz5ksXv2HRAld+feKYP4AKMwKPCz4CSwRRY0EOVd0zhAskdDwfJyNkWFza/SJ1WV
-         dNRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=URseQjXjOTyP7Y7Ids7IGoAxfF0B+LCgv9LDJOxn0e4=;
-        b=idMzPpmcaPzd+640gDDthWovhPhXJvn/gPaw8UooolIuwFuXYYAhbAcFSl/VusijhM
-         mQmENg/78/f4P+It5Gh5ION+qIJ//iPjov24vHHpLGnrwx77BAduprdTgAFQaWX7rGYN
-         57SqnMeU6sPngwsnEDhj+wPtH/rqf9K7aryowJGyjLS4fh750EVLoMnUC4lPihoJf30c
-         4CdMbAmlBCAhe3IJ8o/S9IkNq+iJDciPZsW0+fo0qetahn5Bp0Q3c3XkasO5U9fQHhdp
-         IRxQToH8ax+OPIS7yWPEnzZFn++4HgZBRtW1mzbKwhJ5cJstC8aXS6+7aOIyGGXiDaMw
-         EesA==
-X-Gm-Message-State: AJIora8PO9MbMxeNHO58u6UbyPVclm53EXzP/oHwn9GmWgOElW+Gyu6G
-        zeJg07w6FlYjx7QreclGFhZJCA==
-X-Google-Smtp-Source: AGRyM1uhBNEbBQJbIFzahQRwuRR5CYFcJwVMYLFPLaZ+RgbUYWmzvMn9AyXfnetpcWEXjIbws1+nSA==
-X-Received: by 2002:a2e:bc06:0:b0:25e:19b8:637b with SMTP id b6-20020a2ebc06000000b0025e19b8637bmr6779517ljf.356.1659425842847;
-        Tue, 02 Aug 2022 00:37:22 -0700 (PDT)
-Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id be20-20020a05651c171400b0025d4cbc20d8sm1845842ljb.22.2022.08.02.00.37.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 00:37:22 -0700 (PDT)
-Message-ID: <4ff10b73-d04b-cda8-6603-f6f342f5ce9a@linaro.org>
-Date:   Tue, 2 Aug 2022 09:37:20 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 2/4] media: dt-bindings: media: Document RZ/G2L CRU
-Content-Language: en-US
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S232158AbiHBHij (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:38:39 -0400
+Received: from mailgw.felk.cvut.cz (mailgw.felk.cvut.cz [147.32.82.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1656CB86E;
+        Tue,  2 Aug 2022 00:38:34 -0700 (PDT)
+Received: from mailgw.felk.cvut.cz (localhost.localdomain [127.0.0.1])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTP id E4E7A30B294F;
+        Tue,  2 Aug 2022 09:38:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        cmp.felk.cvut.cz; h=cc:cc:content-transfer-encoding:content-type
+        :content-type:date:from:from:in-reply-to:message-id:mime-version
+        :references:reply-to:subject:subject:to:to; s=felkmail; bh=qMHRI
+        qP5hY9O9b/xkCgt4bDck43g/6SvtkDTMLkcfYA=; b=XMnqdhxlHMHU2ffmRKnm0
+        UH8m2Udz/jXZ0tdKq0SO6Yalq8AdzRX4kKKclhN8L6frxLltJpSGVeb/hT1ac1O3
+        uEQ+5j32Vr1JNY1cqYWoNCTE9e5yXiWtYtvptepPEUlsTZ9ZIsom2ymTpaNmZ4CN
+        EdKzsrTCw9TvM1Id5+ew/1sQIdOiU0Ja56m1KCqdM29zu9X/zdydS9hCX/rz/u7m
+        LuwFNTtTkinFYYjVEoXB+fR6JXlaMWjnDxPjDybF2L+GKCtT1sKrPJOMaFZ5vqmb
+        kQ8Wkba6qYFvJu/AJ8oKPegegQ4rYLalQWvVg6QXq2LUYiyCphWuYaW8lfFEELMh
+        Q==
+Received: from cmp.felk.cvut.cz (haar.felk.cvut.cz [147.32.84.19])
+        by mailgw.felk.cvut.cz (Proxmox) with ESMTPS id D5FE330ADE4B;
+        Tue,  2 Aug 2022 09:38:01 +0200 (CEST)
+Received: from haar.felk.cvut.cz (localhost [127.0.0.1])
+        by cmp.felk.cvut.cz (8.14.0/8.12.3/SuSE Linux 0.6) with ESMTP id 2727c1n4011125;
+        Tue, 2 Aug 2022 09:38:01 +0200
+Received: (from pisa@localhost)
+        by haar.felk.cvut.cz (8.14.0/8.13.7/Submit) id 2727c10Z011124;
+        Tue, 2 Aug 2022 09:38:01 +0200
+X-Authentication-Warning: haar.felk.cvut.cz: pisa set sender to pisa@cmp.felk.cvut.cz using -f
+From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
+To:     Vincent Mailhol <vincent.mailhol@gmail.com>
+Subject: Re: [PATCH v2 1/3] can: ctucanfd: add HW timestamps to RX and error CAN frames
+Date:   Tue, 2 Aug 2022 09:37:54 +0200
+User-Agent: KMail/1.9.10
+Cc:     Matej Vasilevski <matej.vasilevski@seznam.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "Marc Kleine-Budde" <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund@ragnatech.se>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220801214718.16943-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220801214718.16943-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220801214718.16943-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Jiri Novak <jnovak@fel.cvut.cz>,
+        Oliver Hartkopp <socketcan@hartkopp.net>
+References: <20220801184656.702930-1-matej.vasilevski@seznam.cz> <20220801184656.702930-2-matej.vasilevski@seznam.cz> <CAMZ6RqJEBV=1iUN3dH-ZZVujOFEoJ-U1FaJ5OOJzw+aM_mkUvA@mail.gmail.com>
+In-Reply-To: <CAMZ6RqJEBV=1iUN3dH-ZZVujOFEoJ-U1FaJ5OOJzw+aM_mkUvA@mail.gmail.com>
+X-KMail-QuotePrefix: > 
+MIME-Version: 1.0
+Content-Type: Text/Plain;
+  charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Message-Id: <202208020937.54675.pisa@cmp.felk.cvut.cz>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/08/2022 23:47, Lad Prabhakar wrote:
-> Document the CRU block found on Renesas RZ/G2L SoC's.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> RFC v2 -> v1
-> * Dropped endpoint stuff from port1 as suggested by Rob
-> * Updated description for endpoint
-> 
-> RFC v1 -> RFC v2
-> * Dropped CSI
-> ---
->  .../bindings/media/renesas,rzg2l-cru.yaml     | 142 ++++++++++++++++++
->  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> new file mode 100644
-> index 000000000000..d7389693dae9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
-> @@ -0,0 +1,142 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2022 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,rzg2l-cru.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L (and alike SoC's) Camera Data Receiving Unit (CRU) Image processing
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +
-> +description:
-> +  The CRU image processing module is a data conversion module equipped with pixel
-> +  color space conversion, LUT, pixel format conversion, etc. An MIPI CSI-2 input and
-> +  parallel (including ITU-R BT.656) input are provided as the image sensor interface.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
+Hello Vincent,
 
-No need for oneOf, unless you already have a patch adding second case to
-oneOf.
+thanks much for review. I am adding some notices to Tx timestamps
+after your comments
 
-> +      - items:
-> +          - enum:
-> +              - renesas,r9a07g044-cru     # RZ/G2{L,LC}
-> +              - renesas,r9a07g054-cru     # RZ/V2L
-> +          - const: renesas,rzg2l-cru
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 3
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: image_conv
-> +      - const: image_conv_err
-> +      - const: axi_mst_err
-> +
-> +  clocks:
-> +    items:
-> +      - description: CRU Main clock
-> +      - description: CPU Register access clock
-> +      - description: CRU image transfer clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: vclk
-> +      - const: pclk
-> +      - const: aclk
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: CRU_PRESETN reset terminal
-> +      - description: CRU_ARESETN reset terminal
-> +
-> +  reset-names:
-> +    items:
-> +      - const: presetn
-> +      - const: aresetn
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Input port node, single endpoint describing a parallel input source.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              hsync-active: true
-> +              vsync-active: true
-> +              bus-width: true
-> +              data-shift: true
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Input port node, describing the Image Processing module connected to the
-> +          CSI-2 receiver.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Device node example with CSI-2
-> +  - |
-> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    cru: video@10830000 {
-> +            compatible = "renesas,r9a07g044-cru", "renesas,rzg2l-cru";
-
-Also 4-space for DTS example, please.
+On Tuesday 02 of August 2022 05:43:38 Vincent Mailhol wrote:
+> I just send a series last week which a significant amount of changes
+> for CAN timestamping tree-wide:
+> https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/co=
+mm
+>it/?id=3D12a18d79dc14c80b358dbd26461614b97f2ea4a6
+>
+> I suggest you have a look at this series and harmonize it with the new
+> features (e.g. Hardware TX=E2=80=AFtimestamp).
+>
+> On Tue. 2 Aug. 2022 at 03:52, Matej Vasilevski
+=2E..
+> > +static int ctucan_hwtstamp_set(struct net_device *dev, struct ifreq
+> > *ifr) +{
+> > +       struct ctucan_priv *priv =3D netdev_priv(dev);
+> > +       struct hwtstamp_config cfg;
+> > +
+> > +       if (!priv->timestamp_possible)
+> > +               return -EOPNOTSUPP;
+> > +
+> > +       if (copy_from_user(&cfg, ifr->ifr_data, sizeof(cfg)))
+> > +               return -EFAULT;
+> > +
+> > +       if (cfg.flags)
+> > +               return -EINVAL;
+> > +
+> > +       if (cfg.tx_type !=3D HWTSTAMP_TX_OFF)
+> > +               return -ERANGE;
+>
+> I have a great news: your driver now also support hardware TX timestamps:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/co=
+mm
+>it/?id=3D8bdd1112edcd3edce2843e03826204a84a61042d
+>
+> > +
+> > +       switch (cfg.rx_filter) {
+> > +       case HWTSTAMP_FILTER_NONE:
+> > +               priv->timestamp_enabled =3D false;
+=2E..
+> > +
+> > +       cfg.flags =3D 0;
+> > +       cfg.tx_type =3D HWTSTAMP_TX_OFF;
+>
+> Hardware TX timestamps are now supported (c.f. supra).
+>
+> > +       cfg.rx_filter =3D priv->timestamp_enabled ? HWTSTAMP_FILTER_ALL=
+ :
+> > HWTSTAMP_FILTER_NONE; +       return copy_to_user(ifr->ifr_data, &cfg,
+> > sizeof(cfg)) ? -EFAULT : 0; +}
+> > +
+> > +static int ctucan_ioctl(struct net_device *dev, struct ifreq *ifr, int
+> > cmd)
+>
+> Please consider using the generic function can_eth_ioctl_hwts()
+> https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/co=
+mm
+>it/?id=3D90f942c5a6d775bad1be33ba214755314105da4a
+>
+> > +{
+=2E..
+> > +       info->so_timestamping |=3D SOF_TIMESTAMPING_RX_HARDWARE |
+> > +                                SOF_TIMESTAMPING_RAW_HARDWARE;
+> > +       info->tx_types =3D BIT(HWTSTAMP_TX_OFF);
+>
+> Hardware TX timestamps are now supported (c.f. supra).
+>
+> > +       info->rx_filters =3D BIT(HWTSTAMP_FILTER_NONE) |
+> > +                          BIT(HWTSTAMP_FILTER_ALL);
 
 
+I am not sure if it is good idea to report support for hardware
+TX timestamps by all drivers. Precise hardware Tx timestamps
+are important for some CAN applications but they require to be
+exactly/properly aligned with Rx timestamps.
 
-Best regards,
-Krzysztof
+Only some CAN (FD) controllers really support that feature.
+=46or M-CAN and some others it is realized as another event
+=46IFO in addition to Tx and Rx FIFOs.
+
+=46or CTU CAN FD, we have decided that we do not complicate design
+and driver by separate events channel. We have configurable
+and possibly large Rx FIFO depth which is logical to use for
+analyzer mode and we can use loopback to receive own messages
+timestamped same way as external received ones.
+
+See 2.14.1 Loopback mode
+SETTINGS[ILBP]=3D1.
+
+in the datasheet
+
+  http://canbus.pages.fel.cvut.cz/ctucanfd_ip_core/doc/Datasheet.pdf
+
+There is still missing information which frames are received
+locally and from which buffer they are in the Rx message format,
+but we plan to add that into VHDL design.
+
+In such case, we can switch driver mode and release Tx buffers
+only after corresponding message is read from Rx FIFO and
+fill exact finegrain (10 ns in our current design) timestamps
+to the echo skb. The order of received messages will be seen
+exactly mathing the wire order for both transmitted and received
+messages then. Which I consider as proper solution for the
+most applications including CAN bus analyzers.
+
+So I consider to report HW Tx timestamps for cases where exact,
+precise timestamping is not available for loopback messages
+as problematic because you cannot distinguish if you talk
+with driver and HW with real/precise timestamps support
+or only dummy implementation to make some tools happy.
+
+=20
+Best wishes and thanks for consideration about altrenatives,
+
+                Pavel
+
+=2D-=20
+                Pavel Pisa
+    phone:      +420 603531357
+    e-mail:     pisa@cmp.felk.cvut.cz
+    Department of Control Engineering FEE CVUT
+    Karlovo namesti 13, 121 35, Prague 2
+    university: http://control.fel.cvut.cz/
+    personal:   http://cmp.felk.cvut.cz/~pisa
+    projects:   https://www.openhub.net/accounts/ppisa
+    CAN related:http://canbus.pages.fel.cvut.cz/
+    RISC-V education: https://comparch.edu.cvut.cz/
+    Open Technologies Research Education and Exchange Services
+    https://gitlab.fel.cvut.cz/otrees/org/-/wikis/home
+
