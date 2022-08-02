@@ -2,240 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18580587C95
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 14:43:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFB34587CBD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 14:59:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236126AbiHBMnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 08:43:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59642 "EHLO
+        id S232909AbiHBM7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 08:59:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235227AbiHBMna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 08:43:30 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A819E37FB9;
-        Tue,  2 Aug 2022 05:43:29 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id q7-20020a17090a7a8700b001f300db8677so15183687pjf.5;
-        Tue, 02 Aug 2022 05:43:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=U9m3FQ39/4mYFptI4g6gXxTyAr9soFCJ8+yoeDOFuYE=;
-        b=i2Q8AEq1KNHeon8oovOfgQZVLe3KS3nqoU7VPppGG0qPugDAUwSenRTDP59HL+JmAc
-         POppR8p9f8SEZP/itNPUPvW1gb/7AyizvM7ycr9ukE6NXZRw3rMQJhd4097jNG8+gqFt
-         VKbG6SlXdmjPVoTA8fTjPk33Bu7/gFAkhZuQ/bKzeiit7n1l5ctyO73Mwex4wjbZ5zOv
-         d/McmwavwIO049aXxV7GBfF+3n0mzGNuKLulvO3JnoMoAeo359wjQhVlJMIv+ca3BdxM
-         hf2/Jk8oqWOzrWRyHunRbSC48OQx3yCFOw0dJROA92vx4u4W8JQMBay5swmGhXRu3geT
-         kaNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=U9m3FQ39/4mYFptI4g6gXxTyAr9soFCJ8+yoeDOFuYE=;
-        b=tK3sr2/gkovMAtaCj7BX55DZbakriam2nBbdCqbDlrMeN5hUYscooAEPO+XOhMa4Jd
-         fSY5+EZhSIpBh5IAXJGsU1o85NNJ30qEDFKg9zFVTMXsCu/pgnjtqpWGW3M+vp6I8zpf
-         xn0Z8se+pVTM9RO4/QpAJguGGXQu1smNHjyg3T4PFxdm5ZqJ4cRAUyufHxgfm2db3UGZ
-         s8if+S+WsD6b8+L60O+wR2jQKE9OW4ccOL8WfcysHYUJOFjvbwvLddQbCl+QFY2Vu3CV
-         TarXB5+fnR06Cw0Ob+RuD0YCzTNB6kNt8aVf77sXwe48siSxg0XoWjTQK+81ssqO9EHz
-         c22Q==
-X-Gm-Message-State: ACgBeo3/kZNt2sl0xwCdLVt31PzI7mHhK3dh4xyztxsPqV5XD2+aIroX
-        YiBr4mOSePK0qh7Cg1MVAtk3c8sX6SMQGq32jQM=
-X-Google-Smtp-Source: AA6agR43XCpLPTV1z8GO6mF5EYSfHI1FBFdyJ9uqiH9/FXtU0W+zqQqUBcZB+xxQvTIjrrBh2aUEIqE7in1fYQiNu9Q=
-X-Received: by 2002:a17:902:d4c2:b0:16d:c317:ee9d with SMTP id
- o2-20020a170902d4c200b0016dc317ee9dmr19985383plg.25.1659444209092; Tue, 02
- Aug 2022 05:43:29 -0700 (PDT)
+        with ESMTP id S237117AbiHBM7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 08:59:13 -0400
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C79AD371B6;
+        Tue,  2 Aug 2022 05:58:41 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 148623200930;
+        Tue,  2 Aug 2022 08:58:35 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Tue, 02 Aug 2022 08:58:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=cc:cc:content-transfer-encoding:content-type:date:date:from
+        :from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to; s=fm3; t=1659445115; x=1659531515; bh=lF
+        k/fEqBGfRzPVeA4zR92b29OEVwLUgqcUO6+ieSCuw=; b=De3Ozp7T3KJr7SZH9B
+        bdvwSXWKjdJcwUl3KPk2abFFoUT5VfnYQTgF9xQw0RMpDq708rwYzTLfy1qx93gW
+        JxWODCyv43eBQrL2MsqfRw1o/F4BsGIWOyYKUOaNDIxmpfZy4L1tdaf89IoM2n6G
+        kpNDUhZa5XJBJF4VCFWPEAYhHTqTs0LW473Tiz0wS3sSLbXUn2ggf22jgu6ztEfm
+        wrMLhVsCN0K8Y4zX4KYqyaagq2xEIvswfrcpcD+lTvylh9mlAcmjW0BRS/qDlGK+
+        sZ3uFYOiV9O+8ZN+y480hqkqKu3gZ8oF6dN55/Wk6eFVwQ56tlfxduRDSco/VgZj
+        6qdw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; t=1659445115; x=1659531515; bh=lFk/fEqBGfRzP
+        VeA4zR92b29OEVwLUgqcUO6+ieSCuw=; b=zA75VwDG+ZdUQsq4YEMlA09bxhBoc
+        u3cEMDCk5J+/KKKaCwQAdLTlBlHUPLAiOe48l9P68E54jqGNp8OQ+Pz16GS2UqBc
+        +4GZus9hPXfcZZcuHrAziWtf7cFMr6EJ7FJY/NTQiDNDby11bF46vY1pLCMHq1xl
+        vrgPD8P84XvYXWPVMqi9QttikKwMJ9MmyQXz+3ijb75LoVwCLagoBMHvJWI0MruR
+        EEqk/yoyF5geYd3Mp7MUyklrYPpAHmFXyPADqBZeDOXxmQMAu1+pcwYwVs1CQz0p
+        Su8Ujy4ocy0Qo1fK27A81Sw2VF56OMEMyktYzqNUzOqxuP/MezqChfdJw==
+X-ME-Sender: <xms:ex_pYgIsBpK7I1jSMD_iM468W3TmFlAMzxHA_41aN53rhR8pz23rdA>
+    <xme:ex_pYgKl-E1dbVT82y3RgthvCmZ-H-Mi85eh0jctP-qvarQIV_M3Sm0wjz25I7AVt
+    smnpbDT4nYs6aX8SeE>
+X-ME-Received: <xmr:ex_pYgtmVmhq_qTUOdVjy8cm29_q-qQjW3CGH1yHH4jOt8QEUQgyHCed6uNy6D6I1_gGYegBQnEk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddvhedgheejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucgoufhorhhtvggutfgvtghiphdvucdlgedtmdenuc
+    fjughrpefhvfevufffkffogggtgfesthekredtredtjeenucfhrhhomheptehlihhsthgr
+    ihhrucfhrhgrnhgtihhsuceorghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgvqe
+    enucggtffrrghtthgvrhhnpeegtddvffefffejkeeggfegteffffdtueevkeefvdejveet
+    vdeuuddvvddtiefgleenucffohhmrghinheplhifnhdrnhgvthdpghhithhhuhgsrdgtoh
+    hmnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghl
+    ihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgv
+X-ME-Proxy: <xmx:ex_pYtbAfu0vzyPON07SxqCbgYoXmrkfWCNBGxJopFbPPvXiJo3Qog>
+    <xmx:ex_pYnYjxJU1kQb4jk_LiAoWquw1E40uBJB22HaSh4d_Od8-narLmw>
+    <xmx:ex_pYpC5DYJry9xxwS1avRAoaBZewP9bHnWi9Jho_n-5kprYEH4FpQ>
+    <xmx:ex_pYrSVtVCE8cBrdMzyJ6iBSi9vs5dbVRrCndVbFUMUwFZrPMtL1g>
+Feedback-ID: ifd214418:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 2 Aug 2022 08:58:30 -0400 (EDT)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     shawnguo@kernel.org, alistair23@gmail.com, robh+dt@kernel.org,
+        linus.walleij@linaro.org, s.hauer@pengutronix.de,
+        andreas@kemnade.info, krzysztof.kozlowski+dt@linaro.org,
+        rydberg@bitmath.org, dmitry.torokhov@gmail.com,
+        Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v8 0/4] Add support for the Cypress cyttsp5
+Date:   Tue,  2 Aug 2022 22:58:23 +1000
+Message-Id: <20220802125827.34509-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-References: <20220525115554.430971-1-alistair@alistair23.me>
- <20220525115554.430971-5-alistair@alistair23.me> <ea5e1659-5842-6685-52eb-f77ac4247a2d@sholland.org>
-In-Reply-To: <ea5e1659-5842-6685-52eb-f77ac4247a2d@sholland.org>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Tue, 2 Aug 2022 22:43:02 +1000
-Message-ID: <CAKmqyKPLanGCWkofWh7rEiAhpTFF865BGQNg1q-8avpObJ+J3A@mail.gmail.com>
-Subject: Re: [PATCH v21 4/4] ARM: dts: imx7d-remarkable2: Enable lcdif
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Amit Kucheria <amitk@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-hwmon@vger.kernel.org, dl-linux-imx <linux-imx@nxp.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Zhang Rui <rui.zhang@intel.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, May 29, 2022 at 4:20 AM Samuel Holland <samuel@sholland.org> wrote:
->
-> Hi Alistair,
->
-> On 5/25/22 6:55 AM, Alistair Francis wrote:
-> > Connect the dispaly on the reMarkable2.
-> >
-> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> > ---
-> >  arch/arm/boot/dts/imx7d-remarkable2.dts | 74 +++++++++++++++++++++++++
-> >  1 file changed, 74 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> > index 99ac0d242936..03a4029e1e57 100644
-> > --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-> > +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> > @@ -68,6 +68,16 @@ reg_digitizer: regulator-digitizer {
-> >               startup-delay-us = <100000>; /* 100 ms */
-> >       };
-> >
-> > +     reg_sdoe: regulator-sdoe {
-> > +             compatible = "regulator-fixed";
-> > +             regulator-name = "SDOE";
-> > +             pinctrl-names = "default", "sleep";
-> > +             pinctrl-0 = <&pinctrl_sdoe_reg>;
-> > +             pinctrl-1 = <&pinctrl_sdoe_reg>;
-> > +             gpio = <&gpio3 27 GPIO_ACTIVE_HIGH>;
-> > +             enable-active-high;
-> > +     };
-> > +
-> >       wifi_pwrseq: wifi_pwrseq {
-> >               compatible = "mmc-pwrseq-simple";
-> >               pinctrl-names = "default";
-> > @@ -76,6 +86,16 @@ wifi_pwrseq: wifi_pwrseq {
-> >               clocks = <&clks IMX7D_CLKO2_ROOT_DIV>;
-> >               clock-names = "ext_clock";
-> >       };
-> > +
-> > +     panel {
-> > +             compatible = "eink,vb3300-kca";
-> > +
-> > +             port {
-> > +                     panel_in: endpoint {
-> > +                             remote-endpoint = <&display_out>;
-> > +                     };
-> > +             };
-> > +     };
->
-> From the discussion at [1], this is not safe to merge. It exposes an
-> electrophoretic display to fbcon/userspace as if it was an LCD, which it very
-> much is not. Trying to write RGB pixel data to the panel could damage it.
+This patch series builds on top of [1] and adds support for the cyttsp5
+touchscreen controller for the reMarkable 2.
 
-Hey Samuel,
+I first tried to add an I2C HID device. Although the cyttsp5 has some HID
+looking aspects it is not HID compatible. Just in trying to probe the device
+I found:
+ - The HID descriptor has extra padding
+ - The HID descriptor sets the high bytes of the descriptor length
+ - The HID descriptor has extra unrecognised tags
+ - The HID reset command doesn't appear to work
 
-From what I can tell it's difficult to damage the display, but I see your point.
+I don't think there is a way to use the I2C HID framework with the cyttsp5.
+For anyone interested you can see the work here [2]. In that branch though I
+can only obtain a HID descriptor, nothing else works without more core
+changes.
 
->
-> So at the very least before hooking this up, the LCD controller has to know that
-> the EPD needs special handling and that it cannot accept RGB.
+So instead I rebased the series from [1]. Converted to the new yaml DTS
+documentation, added regulator support and fixed a x/y miscalculation bug.
 
-Looking at [1] it seems like no decision was made about how to handle
-a case like this where the EPC driving is all done in software. We
-currently drive it from userspace via proprietary software. It seems
-unlikely we will be able to support this in the kernel, so it would be
-nice to somehow expose it to userspace.
+1: https://lwn.net/ml/linux-kernel/20180703094309.18514-1-mylene.josserand@bootlin.com/
+2: https://github.com/alistair23/linux/commits/rM2-mainline-cyttsp5-hid
 
->
-> That doesn't necessarily mean there is a problem with the content of this patch
-> -- the special handling may all be taken care of based on the compatible string
+v8:
+ - Rebase and resend
+v7:
+ - Fix device tree warnings
+v6:
+ - Use reg for the button properties
+v5:
+ - Address review comments from v4
 
-Ah ok. So it sounds like adding a check to the LCD controller based on
-compatible string to reject RGB values would be a good start here.
-That would at least block bogus values from making it to the screen
+Alistair Francis (4):
+  Input: Add driver for Cypress Generation 5 touchscreen
+  dt-bindings: input: Add Cypress TT2100 touchscreen controller
+  ARM: imx_v6_v7_defconfig: Enable the cyttsp5 touchscreen
+  ARM: dts: imx7d-remarkable2: Enable the cyttsp5
 
-Alistair
+ .../input/touchscreen/cypress,tt21000.yaml    | 101 ++
+ arch/arm/boot/dts/imx7d-remarkable2.dts       | 100 ++
+ arch/arm/configs/imx_v6_v7_defconfig          |   1 +
+ drivers/input/touchscreen/Kconfig             |  16 +
+ drivers/input/touchscreen/Makefile            |   1 +
+ drivers/input/touchscreen/cyttsp5.c           | 902 ++++++++++++++++++
+ 6 files changed, 1121 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+ create mode 100644 drivers/input/touchscreen/cyttsp5.c
 
-> -- but I think it's a really bad idea to merge this with how "eink,vb3300-kca"
-> is currently represented in panel-simple.
->
-> Regards,
-> Samuel
->
-> [1]: https://lore.kernel.org/lkml/Yo5kz%2F9cSd6ewC5f@phenom.ffwll.local/
->
-> >  };
-> >
-> >  &clks {
-> > @@ -132,6 +152,20 @@ reg_epdpmic: vcom {
-> >       };
-> >  };
-> >
-> > +&lcdif {
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&pinctrl_lcdif>;
-> > +     lcd-supply = <&reg_epdpmic>;
-> > +     lcd2-supply = <&reg_sdoe>;
-> > +     status = "okay";
-> > +
-> > +     port {
-> > +             display_out: endpoint {
-> > +                     remote-endpoint = <&panel_in>;
-> > +             };
-> > +     };
-> > +};
-> > +
-> >  &snvs_pwrkey {
-> >       status = "okay";
-> >  };
-> > @@ -246,6 +280,46 @@ MX7D_PAD_I2C4_SCL__I2C4_SCL              0x4000007f
-> >               >;
-> >       };
-> >
-> > +     pinctrl_lcdif: lcdifgrp {
-> > +             fsl,pins = <
-> > +                     MX7D_PAD_LCD_DATA00__LCD_DATA0          0x79
-> > +                     MX7D_PAD_LCD_DATA01__LCD_DATA1          0x79
-> > +                     MX7D_PAD_LCD_DATA02__LCD_DATA2          0x79
-> > +                     MX7D_PAD_LCD_DATA03__LCD_DATA3          0x79
-> > +                     MX7D_PAD_LCD_DATA04__LCD_DATA4          0x79
-> > +                     MX7D_PAD_LCD_DATA05__LCD_DATA5          0x79
-> > +                     MX7D_PAD_LCD_DATA06__LCD_DATA6          0x79
-> > +                     MX7D_PAD_LCD_DATA07__LCD_DATA7          0x79
-> > +                     MX7D_PAD_LCD_DATA08__LCD_DATA8          0x79
-> > +                     MX7D_PAD_LCD_DATA09__LCD_DATA9          0x79
-> > +                     MX7D_PAD_LCD_DATA10__LCD_DATA10         0x79
-> > +                     MX7D_PAD_LCD_DATA11__LCD_DATA11         0x79
-> > +                     MX7D_PAD_LCD_DATA12__LCD_DATA12         0x79
-> > +                     MX7D_PAD_LCD_DATA13__LCD_DATA13         0x79
-> > +                     MX7D_PAD_LCD_DATA14__LCD_DATA14         0x79
-> > +                     MX7D_PAD_LCD_DATA15__LCD_DATA15         0x79
-> > +
-> > +                     MX7D_PAD_LCD_DATA17__LCD_DATA17         0x79
-> > +                     MX7D_PAD_LCD_DATA18__LCD_DATA18         0x79
-> > +                     MX7D_PAD_LCD_DATA19__LCD_DATA19         0x79
-> > +                     MX7D_PAD_LCD_DATA20__LCD_DATA20         0x79
-> > +                     MX7D_PAD_LCD_DATA21__LCD_DATA21         0x79
-> > +
-> > +                     MX7D_PAD_LCD_DATA23__LCD_DATA23         0x79
-> > +                     MX7D_PAD_LCD_CLK__LCD_CLK               0x79
-> > +                     MX7D_PAD_LCD_ENABLE__LCD_ENABLE         0x79
-> > +                     MX7D_PAD_LCD_VSYNC__LCD_VSYNC           0x79
-> > +                     MX7D_PAD_LCD_HSYNC__LCD_HSYNC           0x79
-> > +                     MX7D_PAD_LCD_RESET__LCD_RESET           0x79
-> > +             >;
-> > +     };
-> > +
-> > +     pinctrl_sdoe_reg: sdoereggrp {
-> > +             fsl,pins = <
-> > +                     MX7D_PAD_LCD_DATA22__GPIO3_IO27         0x74
-> > +             >;
-> > +     };
-> > +
-> >       pinctrl_uart1: uart1grp {
-> >               fsl,pins = <
-> >                       MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX    0x79
-> >
->
+-- 
+2.37.1
+
