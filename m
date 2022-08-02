@@ -2,108 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A9A7588428
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 00:22:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC813588478
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 00:40:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236146AbiHBWWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 18:22:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52632 "EHLO
+        id S237169AbiHBWjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 18:39:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236347AbiHBWWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 18:22:07 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EBB654AFE;
-        Tue,  2 Aug 2022 15:22:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9E937B81F45;
-        Tue,  2 Aug 2022 22:22:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66109C433D7;
-        Tue,  2 Aug 2022 22:22:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659478923;
-        bh=9VDhQQyT2A6k2G8P0OvmJ8l24hraDbeYrrioekoRq9M=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ksE43vgw5yPAp97pisFLn1VMujzKXlkfPpm8PiuTHHAnw/i4DUvp8pWYAhRlEz7R9
-         6hWB+5zUcSucx8Otxq8+kHSpfuum2mKEpGAKzm1wzgwHIOxA8kqLJWWnjv3AcNhIj7
-         70ASWFQZBqQfdTr3WLiBR36eWYIuOI9+l8M8QqG3YFaEHnx2W6ortl++uj5/lFr+xd
-         jndtMFUmzHcvbPOnUmMmDz89w2jv2yvGo7zt9xVk4Ma8l99834n1LSXQ4oTcTH/GAP
-         fNRddzTFv4Mdg/SSOu2LZFP/ui+5L/+k6aOUXukWBhxLpQxLgy9DwSRGOTjRI8AH/c
-         3VgkVx+OsoBZQ==
-Received: by mail-pg1-f179.google.com with SMTP id i71so7992310pge.9;
-        Tue, 02 Aug 2022 15:22:03 -0700 (PDT)
-X-Gm-Message-State: ACgBeo1H3hy1YUfvUlEjj4brFy6Omg4PHnID8evPsO8P6K9gHC/M1QZ6
-        1OPdlCATpaM+cqeF0wgpaxD+xZ+NmFixnrdjBw==
-X-Google-Smtp-Source: AA6agR5CzuOzOwpHSN5b+WH1fxHUfAlYek1LHV5RvuPClFgI4f4JvRb9+DG82z3885fVG/s3a/RFDqymvboLdabT8FM=
-X-Received: by 2002:aa7:982f:0:b0:52d:9787:c5c5 with SMTP id
- q15-20020aa7982f000000b0052d9787c5c5mr9518249pfl.24.1659478922946; Tue, 02
- Aug 2022 15:22:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220728175137.1172841-1-robh@kernel.org> <a673e846-e3d7-63e3-70cd-4adef3f761cc@arm.com>
-In-Reply-To: <a673e846-e3d7-63e3-70cd-4adef3f761cc@arm.com>
+        with ESMTP id S237207AbiHBWiw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 18:38:52 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5B3254CBF;
+        Tue,  2 Aug 2022 15:38:36 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id z132so11795351iof.0;
+        Tue, 02 Aug 2022 15:38:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc;
+        bh=xc7pVcgM8oggfYYoDi+YgFJKASpGtHTVPBIB9MLasi0=;
+        b=U68JPjhcBKABY2EvsarONwVp5tohHQCtr7S63ThToKpvKEov9ALIHsiM+hl/1/X51v
+         ZZ8SkqvresjW37+CbExxB/IiJ1OJdmem9wQgLH3siNzkk5gL7SnFNdXbrNqbr/WjAbJp
+         aBjKeCOet+qZ6l1F1o8bjOBsCVHITkvvWx3U6R9TlG2J8eHQPcX2sLBkBGn7pt5qrDmf
+         XQ2Pzj7czWDUYtlia7mbWCxx+Hf6xQ21npZXIYBQ/US2UTo8c/ynR86GAwnlIQzcJZxo
+         chROhYDn5JzRgRFjitmcK7FKSnuDUQ67ikb5Fv3QHGXFOJlcaGkJyZCG4VzzdoGo7rpO
+         VxBQ==
+X-Gm-Message-State: AJIora+opKqbpGMhWwm9yl+DQ15SC8nwvzUV8CkfVwkGq8RCvoWnRU68
+        FGBAlwt3HygFoaJu9AdFbQ==
+X-Google-Smtp-Source: AGRyM1uvjDnbb8GnFfjBfYlQ83bdSSQK2oBX9P0LrOPi4jW/MSL2a2C/PDhZtFJlJhS9j6J7oaGaYQ==
+X-Received: by 2002:a02:9046:0:b0:341:af23:4bb5 with SMTP id y6-20020a029046000000b00341af234bb5mr8385992jaf.44.1659479911950;
+        Tue, 02 Aug 2022 15:38:31 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id d191-20020a0262c8000000b00341927a1e0dsm7109249jac.72.2022.08.02.15.38.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Aug 2022 15:38:31 -0700 (PDT)
+Received: (nullmailer pid 758799 invoked by uid 1000);
+        Tue, 02 Aug 2022 22:38:27 -0000
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 2 Aug 2022 16:21:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL37RQqGv6ZB5uxsnPFoUjKPh6uc7_SWpaqDJqvWAF4Dg@mail.gmail.com>
-Message-ID: <CAL_JsqL37RQqGv6ZB5uxsnPFoUjKPh6uc7_SWpaqDJqvWAF4Dg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: PCI: host-generic-pci: Allow IOMMU and MSI properties
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+To:     Jai Luthra <j-luthra@ti.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20220802214811.29033-1-j-luthra@ti.com>
+References: <20220802214811.29033-1-j-luthra@ti.com>
+Subject: Re: [PATCH] dt-bindings: sound: tlv320aic3x: Convert to dtschema
+Date:   Tue, 02 Aug 2022 16:38:27 -0600
+Message-Id: <1659479907.575212.758797.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 2, 2022 at 3:26 AM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2022-07-28 18:51, Rob Herring wrote:
-> > Allow 'iommu-map', 'iommu-map-mask', and 'msi-parent' properties for
-> > generic host. This fixes unevaluated property warnings on Arm Juno, AMD
-> > Seattle, and FSL LS1028a.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >   Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 3 +++
-> >   1 file changed, 3 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> > index 6bcaa8f2c3cf..d25423aa7167 100644
-> > --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
-> > @@ -106,6 +106,9 @@ properties:
-> >       maxItems: 3
-> >
-> >     dma-coherent: true
-> > +  iommu-map: true
-> > +  iommu-map-mask: true
-> > +  msi-parent: true
->
-> Hmm, in general this set looks suspiciously incomplete without msi-map
-> and msi-map-mask too. Am I right in thinking that the ideal thing to do
-> here would be to convert pci-msi.txt and pci-iommu.txt to schema and
-> $ref them?
+On Tue, 02 Aug 2022 16:48:11 -0500, Jai Luthra wrote:
+> Convert bindings for TI's TLV320AIC3x audio codecs to dtschema.
+> 
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+>  .../devicetree/bindings/sound/tlv320aic3x.txt |  97 ------------
+>  .../bindings/sound/tlv320aic3x.yaml           | 145 ++++++++++++++++++
+>  2 files changed, 145 insertions(+), 97 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/tlv320aic3x.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/tlv320aic3x.yaml
+> 
 
-I already added msi-map/msi-map-mask to pci-bus.yaml[1] as well as
-schemas for iommu-map/iommu-map-mask[2] and msi-parent[3]. Since
-msi-map is already in the referenced schema, it is allowed here.
-msi-parent is separate because it is used elsewhere. iommu-map is
-separate largely to make copying pci-iommu.txt as-is easier.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-And yes, pci-iommu.txt can now be removed. pci-msi.txt is more
-complicated as all of it hasn't been moved into schemas.
+yamllint warnings/errors:
 
-Rob
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/tlv320aic3x.yaml: properties:ai3x-gpio-func:maxItems: False schema does not allow 3
+	hint: Scalar properties should not have array keywords
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/tlv320aic3x.yaml: properties:ai3x-gpio-func:minItems: False schema does not allow 3
+	hint: Scalar properties should not have array keywords
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/tlv320aic3x.yaml: ignoring, error in schema: properties: ai3x-gpio-func: maxItems
+Documentation/devicetree/bindings/sound/tlv320aic3x.example.dtb:0:0: /example-0/i2c/tlv320aic3x@1b: failed to match any schema with compatible: ['ti,tlv320aic3x']
+Documentation/devicetree/bindings/sound/tlv320aic3x.example.dtb:0:0: /example-1/spi/codec@0: failed to match any schema with compatible: ['ti,tlv320aic3x']
 
-[1] https://github.com/devicetree-org/dt-schema/commit/109bde712466281e8c96a4fadb0f68e7a90a6eca
-[2] https://github.com/devicetree-org/dt-schema/commit/3d44bf2b46a9ac638550ca3916d7d7f70823bb58
-[3] https://github.com/devicetree-org/dt-schema/commit/59f2e3103b6e776afe4f42e45897f7eabae06fa4
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
