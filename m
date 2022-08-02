@@ -2,144 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D593588252
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 21:12:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA401588258
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 21:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbiHBTL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 15:11:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40958 "EHLO
+        id S231539AbiHBTNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 15:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229450AbiHBTL7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 15:11:59 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB7B52702;
-        Tue,  2 Aug 2022 12:11:53 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id z4so1983282ljn.8;
-        Tue, 02 Aug 2022 12:11:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=3bvHSL4jo5dqmiw6tjFQyqXjPqhxqKwJwmPSxxlR63Y=;
-        b=n3xEZzogiOs9ZwIgZxS2PSvnYU8m93jcAA9Sm2MAfCMwyEa35AS53DTZh0l3pwvzXL
-         FS/ChfExwS72nql3OcJZKCCHpA13xG0YGv/5lvH9GRu+PaSFX2dR/VX3Epo66CnLin44
-         ODrXSOtwbW36ubjO10FLiAu0v7nBIBYjN1GDRkKjxzwlTI45dAk/urS1IKgV4pfJlUJB
-         CsHDzzo4m7TlyAcJhd5zYkF9C0eXS5RnhLKQ+OZV9XzDdyuA4tJr6mzh4RWxR5Ha6Jai
-         eBRY1dHWUcDHKTkWVdMQ7+aabOXavjPcXzqfSQ4Kbjbwy4Sb2r5nJ4iXtH54AeCr4NOg
-         hl0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=3bvHSL4jo5dqmiw6tjFQyqXjPqhxqKwJwmPSxxlR63Y=;
-        b=jkXn5IHnXgnjdOAe3RrGaaAaayUXNSyz6vN3jUldhoeM3jLWDhCKRojkCcPmgGQdev
-         LfU3Hq+6D7VgCLLcgUCMZ7vC1deOFvbCgLKk3wQufEGLdTdKpyfeLS0VrSULCfxiV3PY
-         2QNa1lsbU5Q82/odgBy0CdCrzwv5WX2LrQP1Ng1abjZdckhgDqPL7IxnbkpRVnrk8Ljb
-         a/PDOxPLE/VHb5hliczfCBKiWTE5GqtgzSUn/FNrvDFNVN+bLVOjqkfoH1jhM16GyhmM
-         TOXzxJKl842NPEJhCrZTzMmBUZyMHbmpBvbG8yZuAbB5cgDYOW+TiqPG9O6WkBYob3V8
-         9ntA==
-X-Gm-Message-State: AJIora93TAwuV/gOr/WojZ9/G1aPRPDtcw/TLwWYs3CAH2qIj4b/ojOk
-        ImErczNGL982UEjHBRxv29lIhDLEcX8=
-X-Google-Smtp-Source: AGRyM1u4tykpqMSfoWQWoqLsc9E2xJBK3ESSCihNTwIwfMG7YHRR0VcIT4XVJfzxYitbVvx9ccbYXQ==
-X-Received: by 2002:a2e:be22:0:b0:25e:26e8:fd2f with SMTP id z34-20020a2ebe22000000b0025e26e8fd2fmr6894524ljq.443.1659467511952;
-        Tue, 02 Aug 2022 12:11:51 -0700 (PDT)
-Received: from [192.168.2.202] (pd9ea344f.dip0.t-ipconnect.de. [217.234.52.79])
-        by smtp.gmail.com with ESMTPSA id h14-20020a05651c124e00b0025e6415bb8csm203653ljh.32.2022.08.02.12.11.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 12:11:51 -0700 (PDT)
-Message-ID: <ce805c48-3772-159b-4b82-d0875b52c144@gmail.com>
-Date:   Tue, 2 Aug 2022 21:11:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 0/4] firmware: Add support for Qualcomm UEFI Secure
- Application
-Content-Language: en-US
-To:     Ard Biesheuvel <ardb@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S229532AbiHBTNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 15:13:54 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97D7C52DCD;
+        Tue,  2 Aug 2022 12:13:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 55B57B8207C;
+        Tue,  2 Aug 2022 19:13:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58F9FC433C1;
+        Tue,  2 Aug 2022 19:13:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659467631;
+        bh=T3MBopdOtWixQ3FCkNcXkYUgaM6a+BZ5M1L3tYAPinc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UHuxmrVZA/HqE72SdIgz/Y9s94Vyu8TDSWQQQz9mcp07n6m2w4vVfRiAnrES90+9J
+         TDd+xn849tl2BR1+rxm+XrxZ/AtElelYlUiiL1sNb+jVvoXzIOIMiKwervMN7lECCY
+         rkAHoVHnD+URn9EwSe/uaPiViJ1jmzVprTyBn+ht6dUqxbzxzKuGO/OoxxI+P91Sml
+         bK+4L5IK3sfnA+I5eeRm+WfcWdLTkDy9xdsqEnWQYeFuSttclXj1ERSH++pr1aOhAF
+         8F8BcPEtMpw96z259gEshriJuDWOB5pYolttpZudqA1e9vrE+3hd5j73wacXIpA673
+         j3NA5OOU3RzEw==
+Date:   Tue, 2 Aug 2022 20:13:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220723224949.1089973-1-luzmaximilian@gmail.com>
- <dfd07f84-c4bd-a18c-2263-49f999f2934c@linaro.org>
- <f42539d0-c2a3-a2b2-c35b-b7a5904b376f@gmail.com>
- <CAMj1kXExyKKHK0A48vmqxqRHrT+xgDt3qB1gHvJ31gPAeE2KSA@mail.gmail.com>
-From:   Maximilian Luz <luzmaximilian@gmail.com>
-In-Reply-To: <CAMj1kXExyKKHK0A48vmqxqRHrT+xgDt3qB1gHvJ31gPAeE2KSA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        greentime.hu@sifive.com, jude.onyenegecha@sifive.com,
+        william.salmon@sifive.com, adnan.chowdhury@sifive.com,
+        ben.dooks@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jeegar.lakhani@sifive.com
+Subject: Re: [PATCH 04/11] spi: dw: use TMOD_RO to read in enhanced spi modes
+Message-ID: <Yul3aNP8yoBf5QWu@sirena.org.uk>
+References: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
+ <20220802175755.6530-5-sudip.mukherjee@sifive.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7HxAbNud4AYGSDtm"
+Content-Disposition: inline
+In-Reply-To: <20220802175755.6530-5-sudip.mukherjee@sifive.com>
+X-Cookie: Stay on the trail.
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/2/22 16:02, Ard Biesheuvel wrote:
-> On Tue, 2 Aug 2022 at 15:22, Maximilian Luz <luzmaximilian@gmail.com> wrote:
 
-[...]
+--7HxAbNud4AYGSDtm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> I generally agree with the sentiment, however UEFI variables should IMHO be
->> handled by the kernel. Moving handling of those to userspace breaks things like
->> EFI-based pstore and efivarfs. The latter will in turn break some user-space
->> tools (most notably efibootmgr used by e.g. GRUB and I think fwupdmgr which
->> needs to set some capsule variables). Ideally, we would find a way to not break
->> these, i.e. have them work out-of-the-box.
->>
-> 
-> Only capsule-on-disk requires SetVariable() at runtime, and I doubt
-> whether these platforms implement any of that.
-> 
->> A similar argumentation might apply to the TPM app.
->>
-> 
-> There is a difference, though - the TPM is modeled as a device and
-> runtime access to it is implemented as a device driver, which is only
-> accessed from user space.
+On Tue, Aug 02, 2022 at 06:57:48PM +0100, Sudip Mukherjee wrote:
+> When we are using the enhanced spi modes we can not use EEPROM Read.
+> The Synopsys datasheet mentions EEPROM Read is not applicable in
+> enhanced SPI modes. We will need to use Receive only mode.
+>=20
+> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
+> ---
+>  drivers/spi/spi-dw-core.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/spi/spi-dw-core.c b/drivers/spi/spi-dw-core.c
+> index 8c84a2e991b5..8e624620864f 100644
+> --- a/drivers/spi/spi-dw-core.c
+> +++ b/drivers/spi/spi-dw-core.c
+> @@ -727,7 +727,10 @@ static int dw_spi_exec_mem_op(struct spi_mem *mem, c=
+onst struct spi_mem_op *op)
+>  	cfg.dfs =3D 8;
+>  	cfg.freq =3D clamp(mem->spi->max_speed_hz, 0U, dws->max_mem_freq);
+>  	if (op->data.dir =3D=3D SPI_MEM_DATA_IN) {
+> -		cfg.tmode =3D DW_SPI_CTRLR0_TMOD_EPROMREAD;
+> +		if (enhanced_spi)
+> +			cfg.tmode =3D DW_SPI_CTRLR0_TMOD_RO;
+> +		else
+> +			cfg.tmode =3D DW_SPI_CTRLR0_TMOD_EPROMREAD;
 
-Ah, thanks for that info! I wasn't sure about that last part.
+This is fixing the previous commit...
 
-But we'd still need _something_ in the kernel. All the common software
-using TPMs would expect the TPM to be present as /dev/tpmX. So, while it
-doesn't have to be a full secure-app driver, we'd need at least some way
-to manage a TPM device from user-space (unless we want to tell all
-software using TPMs to just support some non-standard thing instead).
+--7HxAbNud4AYGSDtm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-For EFI variables, something similar might be possible (i.e. running
-efivar operations through a user-space driver), but that will break
-pstore in the times it's most usable (i.e. when no user-space exists or
-things are sufficiently broken that we can't run things through it any
-more).
+-----BEGIN PGP SIGNATURE-----
 
-And then (at least for me) there's the question whether that all seems
-sound: Sure, we can maintain some userspace-daemon outside the kernel,
-but if it is common enough (i.e. not a one-off used only by some single
-vendor and model) and can be easily implemented in the kernel, why not?
-Moving it to userspace makes things more complex. You'll need new
-userspace APIs (as mentioned above, if you don't want to force all
-existing software to adapt to some non-standard thing) and you need to
-tell users to install and set up some daemon(s) (making it yet more
-difficult to produce a single proper install media that works well on
-all the common AArch64 or WoA platforms). All the while you still need
-to maintain essentially the same piece of code (whether it is inside or
-outside of the kernel), so you don't really win anything there either.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLpd2gACgkQJNaLcl1U
+h9AdcQf/fp0qGacGXOTmxLhzXNUGajNyCyIQp3hVO43WcLLNP1qX7SwYdQqpJsWL
++Uodapi9ubYTtcuQRK/vTodDYvuYLM4lCY3uEga/7aTesUwFrYL/ExoW8eaqI67B
+HC6fmMyp44SZHhKAjp5ayY7HXg0e/eAAY8LwapbRfFC8W93kVApYWirG9hPCYS+W
+HGw+HZ80eyBcA0fQNBXzWqfD0Mr0LpIy0itNFZQU/kqcJANcBYuL23i1XkvLFhTJ
+I0sOmMtidWMjhig9BvOtfmenSOMvNMVd/PIgGdHI8o21d8f4odJJ9Meni8q4jxkE
+s1oep2Sjf6h+xyDDUGGHUoO2irGkBw==
+=mC5X
+-----END PGP SIGNATURE-----
 
-Regards,
-Max
+--7HxAbNud4AYGSDtm--
