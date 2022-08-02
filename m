@@ -2,134 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27FC758787A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:58:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17F6A587895
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:01:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233598AbiHBH6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 03:58:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36646 "EHLO
+        id S236290AbiHBIA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 04:00:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233160AbiHBH6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:58:00 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77EF12F38A;
-        Tue,  2 Aug 2022 00:57:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1659427078; x=1690963078;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=o8494un4vXRlvd50TpzXogqNJizswoyXDmZmi+TkmX0=;
-  b=ZTQAEWjCp/Dcra2LEUEQzLviGCfMOuxzX/GVZaDEJzpRP4lQIZcLYgUD
-   qK7i9MfGADx6BWxMEqfmAEE2cWtc56/5azOw6+5N9AxCMCdU95REixyjN
-   egOtBFxuUCHjCNqEKefju3hrnDco9u+YbeKHzOODDhxv4nZXirJv58kCl
-   M6ndhghoqqG5SaGGpBjdnvduTv+lUktS/F3gbt1O5xs1HiKOEj4T43pN5
-   08o0Yjztw/lW+JGwP+IugXaQPe5MWEUgYuxc9H5hlRna06BDf55wqAf1s
-   6VDQjCuYJzcCk19c7jcLqwZLhF+1Yl57k1qCScO0QOpeDSCAqVsEP/PFt
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10426"; a="290563300"
-X-IronPort-AV: E=Sophos;i="5.93,210,1654585200"; 
-   d="scan'208";a="290563300"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 00:57:58 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,210,1654585200"; 
-   d="scan'208";a="744580849"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 02 Aug 2022 00:57:54 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 02 Aug 2022 10:57:53 +0300
-Date:   Tue, 2 Aug 2022 10:57:53 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        gene_chen@richtek.com, cy_huang@richtek.com
-Subject: Re: [PATCH v3 2/7] usb: typec: tcpci_rt1711h: Fix vendor setting
- when set vconn
-Message-ID: <YujZATquqh0srgHm@kuha.fi.intel.com>
-References: <20220801101447.86207-1-gene.chen.richtek@gmail.com>
- <20220801101447.86207-3-gene.chen.richtek@gmail.com>
+        with ESMTP id S235970AbiHBIA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:00:56 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0776BBCB1
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:00:55 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id h12so14777629ljg.7
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:00:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Qp/fom4yzLGREQ6eeR8li3mYbaq2TiER/tBpXxkXygo=;
+        b=TFKlaysWDIVNTrpIejCvdZ3ShsEZpGjK197WnOqTVDguDiHpHDaSiYtLkMZnv5nWVL
+         Y4HNIrLz/rrChsreSuiWgemQ3g80PyFtDxrfZiE1E8sapn0v7ZIR5BzlDcJLmpMqqwT1
+         wX++pYFLpakjvWeQhddWl3cAY9KW1symUlX6F6umXqO+4JZ3J8WmsgFz1JnpbIySrFgC
+         DYlNBb8kW3xD+a/p7M+eAjUxNgc6Jhs/CzaA30VuYoKvl3k8wpnknxRdQjaIxDqRSMB2
+         pAdELhDbrTvIN9g0syFGrU4L5TFeE8HeXYDIatMLL9ahGlsDrC5IHf6wi4UgNJP54G6P
+         C2fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Qp/fom4yzLGREQ6eeR8li3mYbaq2TiER/tBpXxkXygo=;
+        b=WoareS0tIIkGgBe7eG29ZzV1REjOzLKWr85soH/O8wZGcJTS9L/wDxzUsCpVOfY/Pc
+         CQ9yT6jRovKhQyNRyEYLsAuKI9jvwn6jHHf+0HRKnoPNbHghGvjKfWPlgGGrne1SZQBV
+         OrKqPw9+Zxy3xTE5FRhzNpqtSUXaCbbJk8hUeqzre/8b+TfE81T6YAThd3BYrRifpvSg
+         REKKREhtHjJUgDc2dIwznzieUN+4nutsO+j2wkCWoFQ3yOK2jgdhtscEei2y7yLS5+uW
+         39ZjxHDIpiqNYXumvYftS3ETsHyyjvk4aeLhm8v7Lm/lRtqwBJIWdqRPIrRR8D8Vqkvv
+         quTg==
+X-Gm-Message-State: AJIora9iIwPTWLAOozSKZlGXGvsVUn0wqvPACuUWiLngG5ZRkoFsdUzz
+        lFsZpQBAxApuSeU3hi/TmEPsnA==
+X-Google-Smtp-Source: AGRyM1tLMTHtWy8rLH1qccJY+573kjD3/apdLT7hUWRIsx3cmqkIWPYfI8rcWCVwsyah4kPGJxNplg==
+X-Received: by 2002:a2e:a812:0:b0:25d:d922:d with SMTP id l18-20020a2ea812000000b0025dd922000dmr5895793ljq.181.1659427253194;
+        Tue, 02 Aug 2022 01:00:53 -0700 (PDT)
+Received: from [192.168.1.6] ([213.161.169.44])
+        by smtp.gmail.com with ESMTPSA id v2-20020a2e2f02000000b0025deba4d9f1sm1818669ljv.86.2022.08.02.01.00.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Aug 2022 01:00:52 -0700 (PDT)
+Message-ID: <426b98b9-95a0-eb5e-7f68-fbe1e45b4740@linaro.org>
+Date:   Tue, 2 Aug 2022 10:00:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220801101447.86207-3-gene.chen.richtek@gmail.com>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 00/10] dt-bindings: iio: use spi-peripheral-props.yaml
+Content-Language: en-US
+To:     Lukas Wunner <lukas@wunner.de>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stankus <lucas.p.stankus@gmail.com>,
+        Puranjay Mohan <puranjay12@gmail.com>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Kent Gustavsson <kent@minoris.se>,
+        Tomislav Denis <tomislav.denis@avl.com>,
+        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Ricardo Ribalda <ribalda@kernel.org>,
+        Dragos Bogdan <dragos.bogdan@analog.com>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Joachim Eastwood <manabian@gmail.com>,
+        Tomas Melin <tomas.melin@vaisala.com>,
+        Sean Nyekjaer <sean@geanix.com>,
+        Beniamin Bia <beniamin.bia@analog.com>,
+        Patrick Vasseur <patrick.vasseur@c-s.fr>,
+        Charles-Antoine Couret <charles-antoine.couret@essensium.com>,
+        Vladimir Barinov <vladimir.barinov@cogentembedded.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Philippe Reynes <tremyfr@yahoo.fr>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Akinobu Mita <akinobu.mita@gmail.com>,
+        Alexandru Lazar <alazar@startmail.com>,
+        Oskar Andero <oskar.andero@gmail.com>,
+        =?UTF-8?Q?M=c3=a5rten_Lindahl?= <martenli@axis.com>,
+        Bogdan Pricop <bogdan.pricop@emutex.com>,
+        Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Phil Reid <preid@electromag.com.au>,
+        Michael Welling <mwelling@ieee.org>,
+        Robert Jones <rjones@gateworks.com>,
+        Chris Coffey <cmc@babblebit.net>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Sankar Velliangiri <navin@linumiz.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org
+References: <20220727164646.387541-1-krzysztof.kozlowski@linaro.org>
+ <20220730224643.GB11662@wunner.de>
+ <bd829586-f052-03c3-aa68-e5a2be84b6bb@linaro.org>
+ <20220801160410.GA6059@wunner.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220801160410.GA6059@wunner.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gene,
-
-On Mon, Aug 01, 2022 at 06:14:42PM +0800, Gene Chen wrote:
-> From: Gene Chen <gene_chen@richtek.com>
+On 01/08/2022 18:04, Lukas Wunner wrote:
+> On Mon, Aug 01, 2022 at 05:45:07PM +0200, Krzysztof Kozlowski wrote:
+>> On 31/07/2022 00:46, Lukas Wunner wrote:
+>>> On Wed, Jul 27, 2022 at 06:46:36PM +0200, Krzysztof Kozlowski wrote:
+>>>>  78 files changed, 324 insertions(+), 249 deletions(-)
+>>>
+>>> Pardon me for being dense, but what is the benefit of this series
+>>> that justifies inflating the schema definitions by a total of 75 lines?
+>>
+>> The commits were explaining rationale, so let me bring it here. The
+>> benefits are:
+>> This allows using all properties typical for SPI-connected devices, even
+>> these which device bindings author did not tried yet.
 > 
-> replace overwrite whole register with update bits
-> 
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> ---
->  drivers/usb/typec/tcpm/tcpci_rt1711h.c | 15 +++++++++------
->  1 file changed, 9 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> index b56a0880a044..6197d9a05d36 100644
-> --- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> +++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> @@ -5,13 +5,15 @@
->   * Richtek RT1711H Type-C Chip Driver
->   */
->  
-> -#include <linux/kernel.h>
-> -#include <linux/module.h>
-> +#include <linux/bits.h>
-> +#include <linux/gpio/consumer.h>
->  #include <linux/i2c.h>
->  #include <linux/interrupt.h>
-> -#include <linux/gpio/consumer.h>
-> -#include <linux/usb/tcpm.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
->  #include <linux/regmap.h>
-> +#include <linux/usb/tcpm.h>
+> How do you know these untested properties work with the devices to which
+> you're adding them?
 
-That header reshuffling is not necessary for this change - at least you
-are not giving any reason for it in your commit message.
+These properties should be device independent and instead
+controller-dependent. At least some of them (that's why CPHA/CPOL was
+moved away and maybe the same we need to do with spi-3wire, spi-cs-high,
+spi-lsb-first).
 
-If there is no real need for that in this patch, then please leave the
-headers as they are. You can propose changing the order of the headers
-in a separate patch. Though, I would not bother with it unless there
-is some real benefit in doing so, and I'm pretty sure there isn't any.
+My approach here is no different than other subsystems. Take a look at
+regulator - we allow all regulator.yaml properties, even though several
+are not applicable (e.g. current for voltage regulators) and for sure no
+tested.
 
->  #include "tcpci.h"
->  
->  #define RT1711H_VID		0x29CF
-> @@ -23,6 +25,7 @@
->  #define RT1711H_RTCTRL8_SET(ck300, ship_off, auto_idle, tout) \
->  			    (((ck300) << 7) | ((ship_off) << 5) | \
->  			    ((auto_idle) << 3) | ((tout) & 0x07))
-> +#define RT1711H_AUTOIDLEEN	BIT(3)
->  
->  #define RT1711H_RTCTRL11	0x9E
->  
-> @@ -109,8 +112,8 @@ static int rt1711h_set_vconn(struct tcpci *tcpci, struct tcpci_data *tdata,
->  {
->  	struct rt1711h_chip *chip = tdata_to_rt1711h(tdata);
->  
-> -	return rt1711h_write8(chip, RT1711H_RTCTRL8,
-> -			      RT1711H_RTCTRL8_SET(0, 1, !enable, 2));
-> +	return regmap_update_bits(chip->data.regmap, RT1711H_RTCTRL8,
-> +				  RT1711H_AUTOIDLEEN, enable ? 0 : RT1711H_AUTOIDLEEN);
->  }
->  
->  static int rt1711h_start_drp_toggling(struct tcpci *tcpci,
-> -- 
-> 2.25.1
-
-thanks,
-
--- 
-heikki
+Best regards,
+Krzysztof
