@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 591045878AC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:05:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D154C5878B2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:06:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236277AbiHBIF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 04:05:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44482 "EHLO
+        id S236309AbiHBIGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 04:06:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236290AbiHBIFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:05:25 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0289210CF
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:05:22 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id c17so2338495lfb.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:05:22 -0700 (PDT)
+        with ESMTP id S232855AbiHBIGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:06:40 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6211317E21
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:06:39 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id f20so13615234lfc.10
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:06:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=56zrn37C4l7p2DAkni03ePVpqDUmjAfKCMc+oB4Stlk=;
-        b=zU6yAKCdfwACj1LN8M8wvnZF8gHg+PW6MbaJtxOXfjPZTwJFcbsX5rh/4PcyIWFme1
-         7U3JuH6zupd8cH8x4qCM0FHKfjfSOT6oqCxTeBe5iYp/cla6mcBJ6lT6OVcXC5NFs4PH
-         nwLe/i8HdU1F3EaiUhFefSu+O0CnNTDpzr9XET2CF+sSPkT3cfq5eqeTUiyD73P3gTPW
-         td+OZMByUgxO/Xn5SDPI2aJR6TKFVzFjrnRRARwQWY3bzO0BzIq0XTKJifXR2B9sQBt0
-         HH5llronv3dhWHsrTL7p/qsgSkDXD95M2lxNP+KXHPOy6YZsi6aXySPVvltlGIXeUj9w
-         J3lQ==
+        bh=ziFYm8rk88alkwyI6DGKeiYYXv8dOfZWiNNEBAzbbUs=;
+        b=Q8FM7seRKFOLqDs9pbGjh7O9ypmYDNdS02O44fr0uDaD+Ekvix2C28Eu0YTnz4un9E
+         zjZb0kmjzXhhxF2hA2MeGBEhZUMa2/QJ7merfkAYx+/6MBHNZg1vx8bdYF97YjDHoVTq
+         LgeRNFA3ZxvbVMGhNzLcWi3AowWv9gQfOIN9VEPdRqbavEwLcWYz2pkHXeG3wsK20CUp
+         tpChIa1AGzm/UKVSMhOsfVWVx+62gtQHTdGyf6F4anBWut49KD7kwKERKPGjulXz/zwU
+         Zcu1mgRS0QCNWOsHRL3PcYpZM4sPoC0AwrgM3PyBQNCoCpSrp8xPLrt98yJI5L5agObH
+         Tsnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=56zrn37C4l7p2DAkni03ePVpqDUmjAfKCMc+oB4Stlk=;
-        b=dfI+NEkXGWWwCLkH1EmWHY2NUmTVYR9XZBhFLzHtu8VUeEIYgmSRHThm1VSqW0KLSX
-         3wkyfo7KtDgIchrZq+zs9wESl6jnODNyU/SyIvR8fQvYdDZPtv9bEIs9jZT8fAJt6n5c
-         2xF/gmXqVHLc0egLz1BDMCnueWUYLYufrV0cpP/cwHug/nKq1Y7RsBhWsr1P7xbWMbu1
-         5WFxBn9rMs+7CQlUoi5hOg3jyBXfKDaBqjPuCLyaeEoqnd9KdGCwPEU2VP8K6zMpKNA5
-         OwpRzY1AQE3d1z+MtS4uiqk1fITGFjfl54Ad6uWEVQFlb2IO0GO+rZkD8i2u4hgzDVc+
-         oHVQ==
-X-Gm-Message-State: AJIora+5IYJnq9fQd0JNMV8nuMiIw2ZdAizjwmmpykuE6qFeQKKkLpof
-        ndU6fZMpT5Z2n/KLRO2C6dGQnQ==
-X-Google-Smtp-Source: AA6agR62HyYSvC+LgEWXptx8UvHMaf3t1Teq0GYaR98724D7kJpvXdUM92sSva+zoy1yTiI605wHtw==
-X-Received: by 2002:ac2:4e0d:0:b0:48a:bc83:7fb8 with SMTP id e13-20020ac24e0d000000b0048abc837fb8mr6560745lfr.623.1659427520594;
-        Tue, 02 Aug 2022 01:05:20 -0700 (PDT)
+        bh=ziFYm8rk88alkwyI6DGKeiYYXv8dOfZWiNNEBAzbbUs=;
+        b=aWLhNEyj/T+vmMFil7BrlvzGvL09jFCKnFT8Uxve7b+bG/tFHDfN84FqbqwPlVHc/q
+         bemorcTw55jTedntrpdmzu0NHF6M0Qcu+4hXqxhz/9gslL98AO1O9Cz0vQrYwJU3ZhDP
+         nlHrPGncaBZXZcSTunjRS/G3E/v36wWw1hLOxnuhx7jWBpHqr1f+rciCeK1xM8EeMAGa
+         8NQcwKORBiqkJgPwSJP2e0g5SMVLCUF1BoyEnplC94cbfc+g9bOu8Hn0J3yP5ec56Dnb
+         DyURdSmO5bdMYnbd0Np/XvS30/TAXQBxMkUoVy7GXnKUbLV0CNHLEoAW+Mt4I6My3K4i
+         GhrQ==
+X-Gm-Message-State: ACgBeo0wJNwyUlShLsdVWG+KPTmAAI5S6UFCJILWreIHFiRwlFZcaPye
+        BBmucQyCXr1LSQXvpOionMOrlQ==
+X-Google-Smtp-Source: AA6agR6XdqW2PkasC+a1MlQwwoq1vcDKjruY6HOg87UsjC6E5gXtnZmjIUf2X1MMpMjvcyj6YFh0jw==
+X-Received: by 2002:ac2:4e07:0:b0:48a:f6f2:8555 with SMTP id e7-20020ac24e07000000b0048af6f28555mr3101742lfr.200.1659427597773;
+        Tue, 02 Aug 2022 01:06:37 -0700 (PDT)
 Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id c14-20020a2e9d8e000000b0025e5b5474a4sm190805ljj.85.2022.08.02.01.05.19
+        by smtp.gmail.com with ESMTPSA id o3-20020a2e9b43000000b0025e2cb58c6esm1842316ljj.37.2022.08.02.01.06.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 01:05:20 -0700 (PDT)
-Message-ID: <9ef21f8e-163e-fc31-636d-c0d6d004f27f@linaro.org>
-Date:   Tue, 2 Aug 2022 10:05:18 +0200
+        Tue, 02 Aug 2022 01:06:37 -0700 (PDT)
+Message-ID: <341b4627-d729-0941-2c35-08c16ac68f3c@linaro.org>
+Date:   Tue, 2 Aug 2022 10:06:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v3 3/4] arm64: dts: meson: Add DDR PMU node
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: add definition for mt8188
 Content-Language: en-US
-To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Elvis Wang <Elvis.Wang@mediatek.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>
-References: <20220801060049.1655177-1-jiucheng.xu@amlogic.com>
- <20220801060049.1655177-3-jiucheng.xu@amlogic.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        CK Hu <ck.hu@mediatek.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220729084319.6880-1-Elvis.Wang@mediatek.com>
+ <20220729084319.6880-2-Elvis.Wang@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220801060049.1655177-3-jiucheng.xu@amlogic.com>
+In-Reply-To: <20220729084319.6880-2-Elvis.Wang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,37 +80,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/08/2022 08:00, Jiucheng Xu wrote:
-> Add DDR PMU device node for G12 series SoC
+On 29/07/2022 10:43, Elvis Wang wrote:
+> Add dt-binding header for mt8188.
 > 
-> Signed-off-by: Jiucheng Xu <jiucheng.xu@amlogic.com>
-> ---
-> Changes v2 -> v3:
->   - No change
-> 
-> Changes v1 -> v2:
->   - Remove model, dmc_nr, chann_nr properties
->   - Add g12a-ddr-pmu, g12b-ddr-pmu, sm1-ddr-pmu compatibles as
->     identifier
-> ---
->  arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 7 +++++++
->  arch/arm64/boot/dts/amlogic/meson-g12a.dtsi       | 4 ++++
->  arch/arm64/boot/dts/amlogic/meson-g12b.dtsi       | 4 ++++
->  arch/arm64/boot/dts/amlogic/meson-sm1.dtsi        | 4 ++++
->  4 files changed, 19 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> index 45947c1031c4..7e556fe575be 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-> @@ -2146,6 +2146,13 @@ hdmi_tx_out: endpoint {
->  			};
->  		};
->  
-> +		ddr_pmu: ddr_pmu@ff638000 {
-> +			compatible = "amlogic,g12-ddr-pmu";
 
-No. Test your DTS against bindings first.
+Use subject prefix matching the device.
+
 
 Best regards,
 Krzysztof
