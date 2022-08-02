@@ -2,114 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08F93587905
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B99D587908
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:32:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232747AbiHBIbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 04:31:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35716 "EHLO
+        id S235945AbiHBIch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 04:32:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235113AbiHBIbS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:31:18 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9327C21E0B
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:31:16 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id x39so11336199lfu.7
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:31:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=tm9i8Ca6FK9a6ZQOggffT5qJ+C77bjSS2WfM7QIVfdo=;
-        b=azwS2h42mZGSBdjobuObfSo6ZuoD+/OU2OJXRzbv56w7gw3DK/mcr1sh9zHBQ6/3sQ
-         IQOViz6XnPT8rQncPNNsfZ7ABbLAfoUKFcw6AYqyp9LEAW5Ozl1Ro+oS6WeLeliYSy7j
-         jEb9YQkRB30ea0zSHArFfDaCyqsXtukDdlsM/TEI+8n/9wAWu7DtFtrfLCceK10NaJBm
-         JTT68ZX8fYNsVoGzcnvoj01eH8XUl7Os2xYm69pCAUVEvY2bF4baFMwYrdlrMifFXFT7
-         3Xj7bREip5bIbu14t8VLK58VwmV73XJN3sbkxj4teEBKUCNieos6ThW0Lbo6LayvhKzH
-         LOqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=tm9i8Ca6FK9a6ZQOggffT5qJ+C77bjSS2WfM7QIVfdo=;
-        b=MrfQfhiJeEGlqgEGxaofVcVLw3/34WxSwTj15MEhl+0h9CqHBhnTEAWVuRNyLi6Otw
-         tiSGRlqmIrSyoqUWoWcfl94mzBWoMjv/IzuvFigllRJ67EnEVRq/F4tLifSfuRlNY/Py
-         +mObXYPpzxVqBes/x1hv2ImqcDZn6OpXBSy+bsrKsxxBJR42ih1ENaqk94sJcIz5W8lR
-         JsC6iKYl0PrfK/rqyVLPHDvWSH++rjAYGLXMXvZjJaJ7jv9ygXoiMmquqUQSi9DyYKiI
-         uKLbfWEWGwwydQ7NRyN6n84DD7QVlxPzJctFEO6lLaEwd1He9u0xt3NCJE/kJr1d7f11
-         K3SQ==
-X-Gm-Message-State: ACgBeo1b7LZQAsGHYWLXC3g5G9/ZxfPXeHlSHoBxxzwfuu77DjM4Tzvb
-        FPWhTDC2epsvZ8clmxR30E1efA==
-X-Google-Smtp-Source: AA6agR77riBL0TF26fwrGfG3qjaYYiLA8HeiMgBQ2jo3Fv1EKYOG23WEFPgxus1COrP2aVEqaBV3KA==
-X-Received: by 2002:a05:6512:1095:b0:48b:6f2:6f3a with SMTP id j21-20020a056512109500b0048b06f26f3amr1401771lfg.646.1659429074920;
-        Tue, 02 Aug 2022 01:31:14 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id v4-20020a056512348400b0048b08f0c4ddsm222421lfr.253.2022.08.02.01.31.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 01:31:14 -0700 (PDT)
-Message-ID: <6388dd1e-ef17-dd64-36da-4e6cc69358ba@linaro.org>
-Date:   Tue, 2 Aug 2022 11:31:13 +0300
+        with ESMTP id S232482AbiHBIcg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:32:36 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CEEE1EC;
+        Tue,  2 Aug 2022 01:32:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1659429155; x=1690965155;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=m4ANagiP0pBWnABd6SaYZfcztDCXLk8K/eo+vzXaOEU=;
+  b=XjNNHQ4FTw0bMy5XnTMKBUhqmtc9RvabPrkZaJMMXlv3xio5e1OFTVnk
+   +cZdWsP+s0i/utOjKoCCAEq28KaYgqTb1ZBtHN4mSrSZMyOFljpWDX+nC
+   v2orYgrqAYN1OyKvFndPWjmZ72XkADHvgZqWV+w2D0EIood3PE8ELpGvI
+   0ctSV7Ew3hy8X9t0KEsxnHfU35VgZZgssJd2qKPR6No5CuZ+14pfx6nk+
+   KadoBH/u8QDj2jWPMNpBs1w119jmbWDdg+gPbQnnDJ74/B5snYREqLMCz
+   jduZVi1WVgftAoNakIsjlffa5tsOSokHpKfJgzP2zNf93sClGqonQZOdJ
+   w==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10426"; a="288113370"
+X-IronPort-AV: E=Sophos;i="5.93,210,1654585200"; 
+   d="scan'208";a="288113370"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 01:32:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,210,1654585200"; 
+   d="scan'208";a="744590675"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 02 Aug 2022 01:32:30 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 02 Aug 2022 11:32:30 +0300
+Date:   Tue, 2 Aug 2022 11:32:30 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        gene_chen@richtek.com, cy_huang@richtek.com
+Subject: Re: [PATCH v3 6/7] usb: typec: tcpci: Move function
+ "tcpci_to_typec_cc" to common
+Message-ID: <YujhHk4uvMI8PcWo@kuha.fi.intel.com>
+References: <20220801101447.86207-1-gene.chen.richtek@gmail.com>
+ <20220801101447.86207-7-gene.chen.richtek@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v2 11/11] gunyah: Add tty console driver for RM Console
- Serivces
-Content-Language: en-GB
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20220801211240.597859-1-quic_eberman@quicinc.com>
- <20220801211240.597859-12-quic_eberman@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220801211240.597859-12-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220801101447.86207-7-gene.chen.richtek@gmail.com>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2022 00:12, Elliot Berman wrote:
-> Gunyah provides a console for each VM using the VM console resource
-> manager APIs. This driver allows console data from other
-> VMs to be accessed via a TTY device and exports a console device to dump
-> Linux's own logs to our console.
-
-Is such 'console' an unidirectional stream of chars or bidirection one? 
-IOW, can I have getty on such console?
-
+On Mon, Aug 01, 2022 at 06:14:46PM +0800, Gene Chen wrote:
+> From: Gene Chen <gene_chen@richtek.com>
 > 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> Move transition function "tcpci_to_typec_cc" to common header
+> 
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
 > ---
->   Documentation/virt/gunyah/index.rst   |   7 +
->   drivers/virt/gunyah/Kconfig           |  10 +
->   drivers/virt/gunyah/Makefile          |   3 +
->   drivers/virt/gunyah/rsc_mgr_console.c | 405 ++++++++++++++++++++++++++
->   4 files changed, 425 insertions(+)
->   create mode 100644 drivers/virt/gunyah/rsc_mgr_console.c
->
+>  drivers/usb/typec/tcpm/tcpci.c | 22 ----------------------
+>  drivers/usb/typec/tcpm/tcpci.h | 23 +++++++++++++++++++++++
+>  2 files changed, 23 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/tcpm/tcpci.c b/drivers/usb/typec/tcpm/tcpci.c
+> index f33e08eb7670..0f45d456df32 100644
+> --- a/drivers/usb/typec/tcpm/tcpci.c
+> +++ b/drivers/usb/typec/tcpm/tcpci.c
+> @@ -28,11 +28,6 @@
+>  #define	VPPS_VALID_MIN_MV			100
+>  #define	VSINKDISCONNECT_PD_MIN_PERCENT		90
+>  
+> -#define tcpc_presenting_rd(reg, cc) \
+> -	(!(TCPC_ROLE_CTRL_DRP & (reg)) && \
+> -	 (((reg) & (TCPC_ROLE_CTRL_## cc ##_MASK << TCPC_ROLE_CTRL_## cc ##_SHIFT)) == \
+> -	  (TCPC_ROLE_CTRL_CC_RD << TCPC_ROLE_CTRL_## cc ##_SHIFT)))
+> -
+>  struct tcpci {
+>  	struct device *dev;
+>  
+> @@ -219,23 +214,6 @@ static int tcpci_start_toggling(struct tcpc_dev *tcpc,
+>  			    TCPC_CMD_LOOK4CONNECTION);
+>  }
+>  
+> -static enum typec_cc_status tcpci_to_typec_cc(unsigned int cc, bool sink)
+> -{
+> -	switch (cc) {
+> -	case 0x1:
+> -		return sink ? TYPEC_CC_RP_DEF : TYPEC_CC_RA;
+> -	case 0x2:
+> -		return sink ? TYPEC_CC_RP_1_5 : TYPEC_CC_RD;
+> -	case 0x3:
+> -		if (sink)
+> -			return TYPEC_CC_RP_3_0;
+> -		fallthrough;
+> -	case 0x0:
+> -	default:
+> -		return TYPEC_CC_OPEN;
+> -	}
+> -}
+> -
+>  static int tcpci_get_cc(struct tcpc_dev *tcpc,
+>  			enum typec_cc_status *cc1, enum typec_cc_status *cc2)
+>  {
+> diff --git a/drivers/usb/typec/tcpm/tcpci.h b/drivers/usb/typec/tcpm/tcpci.h
+> index b2edd45f13c6..3f45cb0426df 100644
+> --- a/drivers/usb/typec/tcpm/tcpci.h
+> +++ b/drivers/usb/typec/tcpm/tcpci.h
+> @@ -166,6 +166,11 @@
+>  /* I2C_WRITE_BYTE_COUNT + 1 when TX_BUF_BYTE_x is only accessible I2C_WRITE_BYTE_COUNT */
+>  #define TCPC_TRANSMIT_BUFFER_MAX_LEN		31
+>  
+> +#define tcpc_presenting_rd(reg, cc) \
+> +	(!(TCPC_ROLE_CTRL_DRP & (reg)) && \
+> +	 (((reg) & (TCPC_ROLE_CTRL_## cc ##_MASK << TCPC_ROLE_CTRL_## cc ##_SHIFT)) == \
+> +	  (TCPC_ROLE_CTRL_CC_RD << TCPC_ROLE_CTRL_## cc ##_SHIFT)))
+> +
+>  struct tcpci;
+>  
+>  /*
+> @@ -206,4 +211,22 @@ irqreturn_t tcpci_irq(struct tcpci *tcpci);
+>  
+>  struct tcpm_port;
+>  struct tcpm_port *tcpci_get_tcpm_port(struct tcpci *tcpci);
+> +
+> +static inline enum typec_cc_status tcpci_to_typec_cc(unsigned int cc, bool sink)
+> +{
+> +	switch (cc) {
+> +	case 0x1:
+> +		return sink ? TYPEC_CC_RP_DEF : TYPEC_CC_RA;
+> +	case 0x2:
+> +		return sink ? TYPEC_CC_RP_1_5 : TYPEC_CC_RD;
+> +	case 0x3:
+> +		if (sink)
+> +			return TYPEC_CC_RP_3_0;
+> +		fallthrough;
+> +	case 0x0:
+> +	default:
+> +		return TYPEC_CC_OPEN;
+> +	}
+> +}
+> +
+>  #endif /* __LINUX_USB_TCPCI_H */
+> -- 
+> 2.25.1
 
 -- 
-With best wishes
-Dmitry
+heikki
