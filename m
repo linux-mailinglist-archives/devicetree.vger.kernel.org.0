@@ -2,100 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 463C95880B6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 19:03:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A3325880DF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 19:17:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229565AbiHBRDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 13:03:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37280 "EHLO
+        id S233557AbiHBRRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 13:17:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbiHBRDE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 13:03:04 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19DF1255BA;
-        Tue,  2 Aug 2022 10:03:04 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id l24so11073043ion.13;
-        Tue, 02 Aug 2022 10:03:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=2FklMCvsf+IFL6IdQs89s38JLwJsvCdwCA9uElrwbhs=;
-        b=b1VaronuxnKO/TQ9sTHzoNKDc6/PCEYqFlMvqbHIVAn09H/TxvV9KemyHSFoQbFjM3
-         Cua1EXE/pmqySy66SOFTzPKBpGJyikmP/EzgUxLomn5stWFFZ08j0sWIqPcRLK4NhgcF
-         OfryW3UxFeEnq+ydS3MrYncXirQvL/ORM+VmpX37MK+YAx+gtReRnEKPmlBZgSE42qc+
-         Ldxzy7iazBWbHLbBM4Sj+5wNMM35XnKgcX0OsViRg5LZorybcJ1XVC4FPnK8Ee70v3sb
-         ppnwlRdU7QTqkFA1FfPpQj9Lcm0orkrwhPHQbi8ziBu+DWRDddrudSLQf/99rt+B4o5r
-         pGPA==
-X-Gm-Message-State: AJIora8DhLkjUWTsXtYvnutPtynWhZlkSdbtylzkMfIpjC54O3+1Sx6w
-        +7v5ARox0hHEPwKRdLUZYA==
-X-Google-Smtp-Source: AGRyM1tbaN1sLhdrNh2TVrQLtic1f6Uc7wVbQREu84ol+jGbAI7KqCctkaE8hw2JA3Air2u+MzttgA==
-X-Received: by 2002:a05:6638:d54:b0:33f:8e41:a3b3 with SMTP id d20-20020a0566380d5400b0033f8e41a3b3mr8841580jak.251.1659459783371;
-        Tue, 02 Aug 2022 10:03:03 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id z7-20020a926507000000b002de08fef8c5sm5721525ilb.43.2022.08.02.10.03.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Aug 2022 10:03:02 -0700 (PDT)
-Received: (nullmailer pid 297736 invoked by uid 1000);
-        Tue, 02 Aug 2022 17:03:01 -0000
-Date:   Tue, 2 Aug 2022 11:03:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Heiko Schocher <hs@denx.de>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: microchip,mchp48l640: use
- spi-peripheral-props.yaml
-Message-ID: <20220802170301.GA297672-robh@kernel.org>
-References: <20220727164148.385476-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S230280AbiHBRRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 13:17:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C254D1D0E1;
+        Tue,  2 Aug 2022 10:17:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 69CEE611CB;
+        Tue,  2 Aug 2022 17:17:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE03C433C1;
+        Tue,  2 Aug 2022 17:17:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659460655;
+        bh=ezo/DMFL/JZvUXZGmbP9Yp6XteEVnCTIPlNYh1llQVE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=a/0QMhAwa99UhhzkA/GaZ6skt+cIxlFs8m4phu2lVbgEKs8dAuQajL3z/PhmuCPaM
+         FDVa81594txuJ6Xr9STpLGFG7y+g07ES9nX30wKOpuL+gQ7zgDrUjDvJHTpe1A4m2m
+         RDbcrd/tssUPIkaaWNEG4vIhBbaUyU6WWUeJwnQcg+SiDGhhWTaM1GLet9g376AV7n
+         4Ek//phbCj5VOJKH/lMwneV582MPbDyHRh3KM/4EWS5Yt7fv03eq2eb4UMhxmcCJ4U
+         +re1YFXDh1Ux02PHKxrlABplvVUqmFrmPRUWOJbRf+VA/RMft1hLs35Nl3qPvsy013
+         W/CYZ7tl1w0Nw==
+Received: by mail-ua1-f43.google.com with SMTP id c19so6049621uat.6;
+        Tue, 02 Aug 2022 10:17:35 -0700 (PDT)
+X-Gm-Message-State: ACgBeo19klTm7nkg3xVLYWntjoXIVqqGPELxu+K8cEGZFwzwGFViHj2a
+        58pkbCOPEbRRsjmvua1xw1TnJbKGySIefMhZmw==
+X-Google-Smtp-Source: AA6agR7y4buQNvya5WmrFhrh5GEnJcFBluchloSidybizQJCjyZ9Adx3yyIrlsqlhrS3nobQjHpb5sanNqcqWcHzULM=
+X-Received: by 2002:ab0:2b06:0:b0:384:c4af:107c with SMTP id
+ e6-20020ab02b06000000b00384c4af107cmr8357117uar.77.1659460654762; Tue, 02 Aug
+ 2022 10:17:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220727164148.385476-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <20220802151404.1797-1-johan+linaro@kernel.org> <20220802151404.1797-6-johan+linaro@kernel.org>
+In-Reply-To: <20220802151404.1797-6-johan+linaro@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 2 Aug 2022 11:17:22 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL5ZCzfd06rxOdQodFjk4G3QpDCsxA5heM71x0q5d-hCw@mail.gmail.com>
+Message-ID: <CAL_JsqL5ZCzfd06rxOdQodFjk4G3QpDCsxA5heM71x0q5d-hCw@mail.gmail.com>
+Subject: Re: [PATCH 5/8] Revert "dt-bindings: usb: dwc3: Add wakeup-source
+ property support"
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Jul 2022 18:41:48 +0200, Krzysztof Kozlowski wrote:
-> Instead of listing directly properties typical for SPI peripherals,
-> reference the spi-peripheral-props.yaml schema.  This allows using all
-> properties typical for SPI-connected devices, even these which device
-> bindings author did not tried yet.
-> 
-> Remove the spi-* properties which now come via spi-peripheral-props.yaml
-> schema, except for the cases when device schema adds some constraints
-> like maximum frequency.
-> 
-> While changing additionalProperties->unevaluatedProperties, put it in
-> typical place, just before example DTS.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Technically, this depends on [1] merged to SPI tree, if we want to
-> preserve existing behavior of not allowing SPI CPHA and CPOL in each of
-> schemas in this patch.
-> 
-> If this patch comes independently via different tree, the SPI CPHA and
-> CPOL will be allowed for brief period of time, before [1] is merged.
-> This will not have negative impact, just DT schema checks will be
-> loosened for that period.
-> 
-> [1] https://lore.kernel.org/all/20220722191539.90641-2-krzysztof.kozlowski@linaro.org/
-> ---
->  .../devicetree/bindings/mtd/microchip,mchp48l640.yaml      | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
+On Tue, Aug 2, 2022 at 9:14 AM Johan Hovold <johan+linaro@kernel.org> wrote:
+>
+> This reverts commit 098c4d43b91a269e89f60331a26a3f3b914677ed.
+>
+> A devicetree binding should describe hardware capabilities and not be
+> used to configure power-management policies (even if things are a bit
+> blurry when it comes to "wakeup-source").
 
-Applied, thanks!
+Whether a device's interrupt can cause a wakeup is a h/w feature.
+That's not policy. If Linux also uses this to decide whether or not to
+enable wakeup, then that's its policy.
+
+> It should also not be used to
+> work around Linux driver implementation issues such as how to coordinate
+> the glue and core dwc3 drivers.
+>
+> For the Qualcomm dwc3 controllers, it is the glue device that manages
+> the wakeup interrupts, which may or may not be able to wake the system
+> up from system suspend.
+
+While the reasoning to add this may have been for QCom, having this
+property for other users makes sense. On some platforms, 'snps,dwc3'
+is the only node (i.e. there's no wrapper node). So I don't think this
+should be reverted.
+
+Rob
