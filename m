@@ -2,103 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19E3D58781D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09F6C587823
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236074AbiHBHpc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 03:45:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50244 "EHLO
+        id S236050AbiHBHqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 03:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236078AbiHBHp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:45:29 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4839B22B2E
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 00:45:27 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oImag-0008IG-9t; Tue, 02 Aug 2022 09:45:22 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oImaf-001Gz2-GV; Tue, 02 Aug 2022 09:45:21 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1oImae-0095B7-Ow; Tue, 02 Aug 2022 09:45:20 +0200
-Date:   Tue, 2 Aug 2022 09:45:20 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     conor.dooley@microchip.com, daire.mcnamara@microchip.com,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee.jones@linaro.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        robh+dt@kernel.org, thierry.reding@gmail.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v7 1/4] dt-bindings: pwm: fix microchip corePWM's
- pwm-cells
-Message-ID: <20220802074520.ayyjl5sf332eta3o@pengutronix.de>
-References: <20220721172109.941900-1-mail@conchuod.ie>
- <20220721172109.941900-2-mail@conchuod.ie>
+        with ESMTP id S232079AbiHBHqj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:46:39 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B758CE38
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 00:46:37 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id d14so8900576lfl.13
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 00:46:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=RKbt80axAQfOB4DhyqkpntLd+mhVQK1GRd49ynJihfU=;
+        b=PkIXQyslez+E7OClgkr1a3L2n8MrBiO1qQrWB0iEBpqF85yBM16nTVVnK69vt1BX9a
+         dl53gBBPqrQBHlSp7bSLOXVfZmcQAABz7xVHVmjVCwJf6fMY5GAAYqawSSRnuZVHimal
+         h/Cn79WypwdlQLIudVKifLGZJ96vXlw09GTQrkb2fmj4vDZ3qPsLfvSLKQwcM2S3UXKz
+         7SWpM4tbclwB/+B40/YO7wEwi0Lxpmp2s1K30KxtsEz9aLyqSQ8vfta7cyaIxBcBcbqE
+         ryo5CKKpDfmxpk5arXytTKgGJbCUBSSu3wIiUGuyYAwfxkR08pNg2xdt3FGEWL7u/tsa
+         zWzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=RKbt80axAQfOB4DhyqkpntLd+mhVQK1GRd49ynJihfU=;
+        b=i8oDncKJSGf9Ajceo7xo2BSJgYvZdCFFOGFIlTDWAIUEB88MuMrvZ4ZzpYMHK5ahOA
+         Z8RXsMSug2ZQKYyQhmgbpwWL5KGD6votRvPLoV5r2K+Ao13L7lEPwCn/tnechAFYjOVC
+         ddXVEwEXQyYnuz/jLji0I2Eg1vyCzN5oNsQVF9jLDXBTI0XB6xI+ZJ+UVbGMNL69eMf6
+         e/hwxAiu04e3rhDcwB1vza9n33+Ki4exKOsvVWyuClkR0F1nZzCMVXeoq9Wb/G1XNHL7
+         +TrU9g/Od5Upl8yR7ePwk1ZRYy0kFEOVFMHoP61Eu0pnpTzeEsZgBlKzRRHyY0o5eheb
+         nj4w==
+X-Gm-Message-State: ACgBeo0dYXrb5pIQcQ5IamEIAT7PXiZ2BI4V60eYHPjk3NhM126Oqdxx
+        0HpL5ohTQONRpd6QZdYfHqMFOg==
+X-Google-Smtp-Source: AA6agR5NptaxdnaipUCkSDf+B4BKrGT4sXCp0b/ozr3XF1G2x4DcIcXHqMbKokL3W4oiWztQ7iLycw==
+X-Received: by 2002:a05:6512:70a:b0:48a:ee11:1002 with SMTP id b10-20020a056512070a00b0048aee111002mr4532370lfs.501.1659426395967;
+        Tue, 02 Aug 2022 00:46:35 -0700 (PDT)
+Received: from [192.168.1.6] ([213.161.169.44])
+        by smtp.gmail.com with ESMTPSA id m1-20020a056512358100b0048af6019c01sm863795lfr.246.2022.08.02.00.46.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Aug 2022 00:46:35 -0700 (PDT)
+Message-ID: <822b24fb-add3-b49f-d64e-15b577929edf@linaro.org>
+Date:   Tue, 2 Aug 2022 09:46:33 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="qqmpwa5unzevycoi"
-Content-Disposition: inline
-In-Reply-To: <20220721172109.941900-2-mail@conchuod.ie>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sdm845-xiaomi-beryllium-common:
+ move common nodes to a common dtsi
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Joel Selvaraj <joel.selvaraj@outlook.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <BY5PR02MB70099020AC1D181D15909F64EA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
+ <BY5PR02MB70091276EDE0CE4FCB6CFBD5EA9A9@BY5PR02MB7009.namprd02.prod.outlook.com>
+ <20220801185304.ozoydbmbgqe6fqdy@SoMainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220801185304.ozoydbmbgqe6fqdy@SoMainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 01/08/2022 20:53, Marijn Suijten wrote:
+> On 2022-08-01 16:55:11, Joel Selvaraj wrote:
+>> Since there are two variants of Xiaomi Poco F1, move the common nodes from
+>> Tianma variant into a new common dtsi. The EBBG variant will also inherit
+>> the new common dtsi.
+>>
+>> Signed-off-by: Joel Selvaraj <joel.selvaraj@outlook.com>
+>> ---
+> 
+> Any summary what changed since v1?
 
---qqmpwa5unzevycoi
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
++1 (although I already reviewed it)
 
-On Thu, Jul 21, 2022 at 06:21:07PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
->=20
-> corePWM is capable of inverted operation but the binding requires
-> \#pwm-cells of 2. Expand the binding to support setting the polarity.
->=20
-> Fixes: df77f7735786 ("dt-bindings: pwm: add microchip corepwm binding")
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+>>  .../qcom/sdm845-xiaomi-beryllium-common.dtsi  | 595 ++++++++++++++++++
+>>  .../qcom/sdm845-xiaomi-beryllium-tianma.dts   | 590 +----------------
+>>  2 files changed, 598 insertions(+), 587 deletions(-)
+>>  create mode 100644 arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+>> new file mode 100644
+>> index 000000000000..83edcb1171f5
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+> 
+> I haven't re-read what was discussed in v1, but doing it this way causes
+> git to _not_ record this as a rename but instead state that everything
+> has been removed from sdm845-xiaomi-beryllium-tianma.dts, and a new file
+> sdm845-xiaomi-beryllium-common.dtsi was introduced with inconveniently
+> almost identical contents (see the unnecessary size of the patch that
+> follows).
 
-I'm surprised by myself I didn't notice this when acking df77f7735786,
-*shrug*.
+The patch should be formatted a bit different. I agree that if combined
+with first patch and proper settings (-M10% -C10%, optionally also
+experiment with -B although here it looks not needed).
 
-Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+I reviewed the diff side-by-sie and there were differences (labels)
+tricky to spot. If you generate the patch correctly, not much of review
+is needed...
 
-Thanks
-Uwe
+> 
+> Instead, I'd keep the original patch with a rename from
+> sdm845-xiaomi-beryllium.dts to sdm845-xiaomi-beryllium-common.dtsi, and
+> _also_ update the existing:
+> 
+> 	dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
+> 
+> in Makefile to match this rename so that it keeps compiling, even if
+> that means we treat a .dtsi as a .dts which may (likely) not be treated
+> correctly by existing build rules.
+> 
+> If it doesn't - and this approach is probably frowned upon anyway - it
+> is perhaps easiest to generalize sdm845-xiaomi-beryllium.dtb (as
+> suggested above) _and_ introduce sdm845-xiaomi-beryllium-tianma.dtb
+> _and_ update Makefile in a _single_ patch, such that everyting keeps
+> compiling and stays consistent wrt how git treats renames.  Later
+> patches update the compatible and add the ebbg variant.
+> 
+> - Marijn
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
---qqmpwa5unzevycoi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLo1g4ACgkQwfwUeK3K
-7AnP5Af/XZhd73YIdx2wsJViugHNrfh9xObg6ePSOGVeE9RzkIizBUQuUxVZt+Gq
-7imbuubQrntsS0HZqxkwl24eGRPrSbAJrN+jHY323LTl72X3MbLIRBMLHLN2eZ1P
-pbu6kCeR425V36EMSaJOAsAMEHHKuia73rwxuUL2G674Y0brEcZ914XLqgqgC1V9
-+zhH0KFx9rgzEPWPIozeZgVK9AYjhYVgIZC7wj8GEqME1ppslZQt2czTU16cB3PZ
-IsDIseICnSi3YB8poYd/9Od6RkyDW0Lq7r+6HwpxmgIvAzLOjWYWtZad09q1aAKu
-+HmVReWtq83sFOepD+uHUmgmpmZcjQ==
-=Bu3F
------END PGP SIGNATURE-----
-
---qqmpwa5unzevycoi--
+Best regards,
+Krzysztof
