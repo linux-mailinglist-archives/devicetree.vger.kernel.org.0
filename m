@@ -2,74 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1205958760F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 05:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E9AC58761D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 05:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235404AbiHBDoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 23:44:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52562 "EHLO
+        id S235540AbiHBD6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 23:58:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235549AbiHBDnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 23:43:53 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1AB33FA37;
-        Mon,  1 Aug 2022 20:43:50 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id 7so21926451ybw.0;
-        Mon, 01 Aug 2022 20:43:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=C0Ak4IaxG1HCbUjDZlKo8ENRe78+MF1IJnZgspJLz7c=;
-        b=QahM7hQ7++dQmmQBlmk5v7D5u8cQ3T2sSnCwiEHYQOt9QzV63pteShaJ5c3iGjbW34
-         rEb6C+33Mp1y7IXjDarT3K+BK42HjGcIjqlfQ0G6k87K34UZgiZM/UcDkMObBKXItsTd
-         2xrnizgJK2qCy52HbF32YCiZ3Kj8q2ruQzWD3Uq4o0bpc0BgPqZ3qDsE61IoRPQu192U
-         ktRcvaF7rw/1yZUbOnrYX16Jz/4F396++06Md2LdtLkzGM6HnlJwaC9iQZQ/rYF2w/Yk
-         UzwR/ukYWumGclngr86ZjG6uLhp9LixLmYO3Ntk6J/yTC4JXu3pAfneKSwn6dO8OTsXZ
-         iAeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=C0Ak4IaxG1HCbUjDZlKo8ENRe78+MF1IJnZgspJLz7c=;
-        b=xFh3vJklWcLRvuyLgTM8MsXf3LIn1i/MHDFjFFN32FJteXznRou37y0PKd83WAhJWt
-         9V5tu1mwDMPdXRTW1bmsBLFh7+bpcgyVIpJkec0gvhKkC7DF9E8IAWg7gebnU2u0FSRH
-         MiZTiJ886s2lSdxAnzTBZbFVyFMylJIQ6LCJPWDMdX1Y9sv6dulV6WFI1CF+ImNkvdar
-         ozqZvEzJ9Zc1iYZoJJuz4ZzkNLwqUrIXshEspzJoQj73a2+6dij69V6ot+92jN60wETt
-         oSr0hik0HkXlbkYde3vtYZqtO0ymsuMyzAsRWijz87S3JHUbWtAUTNywQENk09YuM8Yk
-         ysxA==
-X-Gm-Message-State: ACgBeo3lsPosqEHNh5+2PvY+IZFWJP2QZL0FYs7RaEBIi9KSgW+/Zu3m
-        SGxhckY6WSWwhPH++yja/2g0HeVVS7nrGS4LZRc=
-X-Google-Smtp-Source: AA6agR5HWPVuajTSYjNz0c9u8RbmMhQwkJDRXIeuBoWDYzobwjTT2LQyuYhhxJK0aKEtQqsKQQjieJGdQAeK1VmgLPA=
-X-Received: by 2002:a25:b812:0:b0:677:68f2:da19 with SMTP id
- v18-20020a25b812000000b0067768f2da19mr3768507ybj.423.1659411829897; Mon, 01
- Aug 2022 20:43:49 -0700 (PDT)
+        with ESMTP id S231849AbiHBD6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 23:58:06 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2081.outbound.protection.outlook.com [40.107.20.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 105CF1A385;
+        Mon,  1 Aug 2022 20:58:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=e4uDRFy08cqnrTHXszfMt5nI3Eb1dz3jgbJobvpiOtqnCN4Q51NAMQJ2PmqH6nd9vPqly8N/2Ghv/YrZoHx86GfsEh4OX22qUnGsn+hcnYAe707mwPKQGc8RIV9wzy7ZZJ+VRvrgubnYWXUHUmKiup27Kf27CfjkHunUflFeOvczCkWuydKPJYd/O6G5HJHyZXJbe49V2SDvesApGZuEpyKbfRhpYsWlcTfJcJx7MpVWpeF3mKzn2dXHLq0nxKR8SHKB04zn6w1giGreJ8dZQvxSZr06kCIYGdHMxbk4tJ382pddqS/OHEb5QuGltotwwcFzucrFgkGNHYyQ8tjShA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BdssSPeRC31YzRKU7ZAeKX6rKONLoGWfto8fNFZPSnQ=;
+ b=BOoXj6oPG9L1oCggdhtDHTCP61S7k6dGEBlyKJ5HDtSwDK3r/SVotj0tecKiz3qy9oRPfzW3aEUe2dxCZhUXwbIifCRhM5nuJl0p31B8gjS+cUVDm4A5EVH11rxheLQQGSIGFaSohipHRCp7GBsn/whn7H7uB4e/cwXwYw8r3+mmGCnOQeXqiaK0UXUM5sDn6S1lF4ojxHJh9a3uq8gw6a/k0QF/1WPvtpXhZHwxICmD7bfRiiboWdAbTPfNtK1fytX11luyevfjRFyY4cY8REi1pj+c9aME/mXhadH83iHoubCGx5JLaMHH37QiAOTrwNrggIdDC9PhMEXHMXbPHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BdssSPeRC31YzRKU7ZAeKX6rKONLoGWfto8fNFZPSnQ=;
+ b=kE3aNyWplDmR9ZDcdb2jl2oebzQvwww3UT01HHnt2wMVHoce6pf7TcLNgPgX2I0NDRp/7QE0ZY3k4QhU1FZ5YKzeZ7SdgC9ERUBmevv+cSCz+mohvYGXsRotZcLviRjXGjRL+syA44hfPruRhMVMlsAXmZ6pmdzTamC61EYDb14=
+Received: from AM6PR04MB5925.eurprd04.prod.outlook.com (2603:10a6:20b:ab::19)
+ by DBAPR04MB7334.eurprd04.prod.outlook.com (2603:10a6:10:1aa::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.16; Tue, 2 Aug
+ 2022 03:58:02 +0000
+Received: from AM6PR04MB5925.eurprd04.prod.outlook.com
+ ([fe80::a88e:aa50:65d9:6206]) by AM6PR04MB5925.eurprd04.prod.outlook.com
+ ([fe80::a88e:aa50:65d9:6206%3]) with mapi id 15.20.5482.016; Tue, 2 Aug 2022
+ 03:58:02 +0000
+From:   Joy Zou <joy.zou@nxp.com>
+To:     "vkoul@kernel.org" <vkoul@kernel.org>
+CC:     "S.J. Wang" <shengjiu.wang@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: FW: [PATCH V2 1/2] bindings: fsl-imx-sdma: Document 'HDMI Audio'
+ transfer
+Thread-Topic: [PATCH V2 1/2] bindings: fsl-imx-sdma: Document 'HDMI Audio'
+ transfer
+Thread-Index: AQHYb0Sbzg3yRatDsU+sUlyHgY6zya2baFlw
+Date:   Tue, 2 Aug 2022 03:58:02 +0000
+Message-ID: <AM6PR04MB592501ABD3A369F913137E1FE19D9@AM6PR04MB5925.eurprd04.prod.outlook.com>
+References: <20220524080337.1322240-1-joy.zou@nxp.com>
+In-Reply-To: <20220524080337.1322240-1-joy.zou@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5baaeada-075a-43b9-a625-08da743b326e
+x-ms-traffictypediagnostic: DBAPR04MB7334:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ccqrWy1qmIBaaMJqf6BhUp81QzsU4EzdJHjUAwVtSIo0bfVesyICEU+jEE9Pdd8hwuJp8m1X4OHTJFW/attFSc7LQWNFw/2T1dMmb0Y5u9oMRUsrbQOEAl4bw/j6gVRo/mxa5UAqcHMurnoyQ2T/cITeg7ECbOmrwoJJlEoK+HRHbv+6b0waQ38MuSFfNwMGv3Hs24pR+5RJKTk1hmvoQ4v2kWkuw8BbH7xLVn2Xat6wIXqAbbWpRMBd9qZ3kNIG5L8ebdTn/xXQ++pCEBYUAgsNl6hXbVftiHMF+c2w4Z8BsnMsMiHtSsGcQOT1be2m/oryOojG819+EVMGSqMxat7OnzJ+0QEn7hr5Px52BPYrIydxC18mtycHTpCJWeinqYO/6INMfbvefAw8xsyNqKw0ObUa1aX744FYQqxGBsDM1TswYzbKCzdcQ9l3+7OarRYtDPR0cJq12ac/v69zWLPyDdpZMUlmYUVx/EtKjF+tsu6SpgPT/8pqgoAqFSyJBG3bRfIelzkpNl2yJ8f1IobgNiSK9fovb1tiFq8ztFh6WB781DYmTg2DWpjwz7mmpo6NPDjjkqVPg4W56L399LgeAE8xNXENI6jsf+ISxNZqjFoCfMo4tjpkL7/TOcSgvwDCpFK57eNSoVB6iHTKp9IPHEQDa7gRCjaCtWTaUQgqUI8n8QxE06whH8KUrlxCYjASjgtIz7AegNhG4bZfrOF3/fajjhUaBqL+pVbkvFSuR8IeVZJWqnz63n2RPr9nTumdb8Wml2DJFH/hnMYAALBpHTpJH7TDR4f/WZ/KYRlT5llRXzSpWuTxY5qWUp1qom6lD8sfrpjIHdOoN3xyMGDpDD3XJsy2SSmHlwKhhOMmMoqG5tFyjnCPrz7fMw/d
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5925.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(346002)(39860400002)(376002)(366004)(136003)(86362001)(38070700005)(38100700002)(122000001)(8676002)(66446008)(64756008)(66556008)(66476007)(4326008)(76116006)(66946007)(6916009)(54906003)(316002)(5660300002)(52536014)(44832011)(7416002)(2906002)(8936002)(53546011)(6506007)(26005)(9686003)(186003)(83380400001)(71200400001)(41300700001)(7696005)(478600001)(55016003)(966005)(33656002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?gb2312?B?eklFSE9ydDJDT0tjeVdQRHU5UWE1MTlEV0RJUE9jaDNEL0VVWkRHNitZZXVH?=
+ =?gb2312?B?eWVtOUxPclc4bXpsdlNXWXgybCs4RXJsTlNYZVN5WG1tVk9BZmdPR1diZDZN?=
+ =?gb2312?B?cDgwakpzMzFNZEo3V1cxMEMvUkNVWmRMa2l2dlFxZmYvUmlyaXVBbExzOFNo?=
+ =?gb2312?B?UHM4dUd4WEh3TzRNancza04wSjFIb2o4REVqSExLZmRQVFYvamhVdXplaXhG?=
+ =?gb2312?B?aVlnL0p4d09ZOEs0aDZwSm9aUEQrMnF5ckNnZFEvdis0QkJDdHFzb3R5RXVS?=
+ =?gb2312?B?Qy9mbE4wWENoYjhtdGVNaEVKTkZzY2FtOTZZeWhIeHFScVlYOGNKVmx0cTl4?=
+ =?gb2312?B?dDBEVzlYN3IxcEg3a3BWWkphWnB5K3FqR0c4M1Q5UmpPSzFneVdFcUhmWEhW?=
+ =?gb2312?B?WXZEQmZSWkhmb3RzREpTSUowWlRzbkxzazBzTDgzTHFSSlh6eWU2MzByMkI3?=
+ =?gb2312?B?Q1RmMkI1aXZ2OXRVMlNJYU5COGN5alN0WkpmNkd5aUh2UWdiM3FiTmZScFg3?=
+ =?gb2312?B?MTYyOU9pRGY5YURWVWxwaDBxNWU4MXc3QkdzeEhYanVkY1Z4QTZFcDI5TnRm?=
+ =?gb2312?B?Wmo2SHRCdVNEZVNGU2JjbzcyQ0tqU1dwdXNQa3NmaWpEd2hDNmlvdmNseHFL?=
+ =?gb2312?B?Z2NrdU9MUGdYdEF3cmNqbkRWc2s2L0x5N1p4VXV3VVU4WHpiZzByd2tUVG03?=
+ =?gb2312?B?a3ppMVdRTXZQNVYrQmowM1hEaUtvV0xiRGhlWlF0bzF5bjRsTUErbmlmckVO?=
+ =?gb2312?B?czVUY3ZIUDZhaklpU2YxekRiRFFzczFPTjVHSzE1SWNyQ0xyVCs1UGRPNGtK?=
+ =?gb2312?B?YVNhZTBDZk93a0tGSlhIcWh4eDlzWkxZVjBsRU0rNStjcVhyeldqWW91N2R0?=
+ =?gb2312?B?T2Z1OVBVMmQvNlNaRC9veFNmK09PZXVEdldUYjhyQ1VQWWcyc2hiQXZ1TFY1?=
+ =?gb2312?B?ekpRRFlZSzlqMFpVZDhEcktGc3BrMS9ZQnkwYjVKcHZZRmo3cEJOeGNWYWVQ?=
+ =?gb2312?B?cElnTk9sQVdVZmtwUkZueXlGQmJiN2FKR1dhOUFBMzFmelFhajNmdDJMTkFq?=
+ =?gb2312?B?ZVYvL1VWNmpuZHVFWXVXVGo1S1BTeklwM0VvbTI1dFNPR09vS1kyajUxaWJU?=
+ =?gb2312?B?b3phMkNNbHFCM2M0cjlqQTJ4S0V2L0tTaWNPLzNXTzFweDNmdE9OMVE5WEZm?=
+ =?gb2312?B?QzlQakNrSDVkQjBsclp3Q3JoUksvNStGYmtJdkRtU3dUSUIyMUM5RFNJNE1x?=
+ =?gb2312?B?MTlTTjNIQmc1eVQ3MVpWSzR0Uis3UGRmYXJvRVJKenQ1OGtYQnJadnVYeXVh?=
+ =?gb2312?B?RmczK21jbjBIQ1p1a3FiZUVpYVVFT1MzZ1VpR2JCRTFLc3lDQmRrUnd2TXhN?=
+ =?gb2312?B?ajJVeVFrdVJ3eUVtSjB0WDU5NnpDUXpqK254YXhJQnNvM0NiZmJXOTBsTW90?=
+ =?gb2312?B?QzRIVVdydTBVbnpsM1RoOHNlQVlqUEZBTnpOaGVVQUovUnlpZVJ6UHByaTZx?=
+ =?gb2312?B?UE84SXJPUjhhenhkWGdTQ0FTd0N5MkdDc2RBR2s2OHVlNEcwVzZLR2ZycnNF?=
+ =?gb2312?B?MGJZT1ZjbWZSK09LbDRIVEVFeWJEYmFwc3Y1c09WNllFZW50OTcxdnZnREgv?=
+ =?gb2312?B?ZE1ETEc3anpzRG5ZNlhwM2Nmb0o3ZXk4Sisya01SMDlQWjEweTRDY0QyemFt?=
+ =?gb2312?B?RDNuTkd6SHRJSjhKVVhrWG1IKzJ3TVFHcFp0ZnFpVzUwMmRWc3Jad0dSQVVY?=
+ =?gb2312?B?Z3RPRzk1VUEvQW5RR3M0L2ZxZS9jR3pKVy9pVEdTa3k5bEN5dGdlZkxMSW9r?=
+ =?gb2312?B?TklzZjhUbS9aWDFXd2dkUml2MnpnanlrcXFFUk83dlhPRnd1MGlERzFIU0M5?=
+ =?gb2312?B?Wmk2ZVNacEkvSi9Wa2JqZXZmc1Ezai9jY3MxcjNhWEs0RjRXYTFTUGxwRDlz?=
+ =?gb2312?B?MWJsS05Xc3FMYll4b00wcWprTlFJRFVtZGUxeXB1dDU0eUh3aW5BWldYUmtB?=
+ =?gb2312?B?TjdCbHhYZVhRdUtXd25GSERxcHhjTk9VdUlkQU9rWkpuZ3hTWWYyRVpLUS93?=
+ =?gb2312?B?VHIwaUdGeTdKNDJBbDMra2g4NDdHN0R6ZVM2MWpxdWNLOUpxajlVb0hMV29l?=
+ =?gb2312?Q?W0ak=3D?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20220801184656.702930-1-matej.vasilevski@seznam.cz> <20220801184656.702930-2-matej.vasilevski@seznam.cz>
-In-Reply-To: <20220801184656.702930-2-matej.vasilevski@seznam.cz>
-From:   Vincent Mailhol <vincent.mailhol@gmail.com>
-Date:   Tue, 2 Aug 2022 12:43:38 +0900
-Message-ID: <CAMZ6RqJEBV=1iUN3dH-ZZVujOFEoJ-U1FaJ5OOJzw+aM_mkUvA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] can: ctucanfd: add HW timestamps to RX and error
- CAN frames
-To:     Matej Vasilevski <matej.vasilevski@seznam.cz>
-Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5925.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5baaeada-075a-43b9-a625-08da743b326e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2022 03:58:02.3882
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9iOlICAc1YVFXJoaeEZ2jUV02Jo8uKEOjhpZQztuOMhzwB1Evn6TFEDT5iJWnEOy
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7334
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,647 +137,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Matej,
-
-I just send a series last week which a significant amount of changes
-for CAN timestamping tree-wide:
-https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/comm=
-it/?id=3D12a18d79dc14c80b358dbd26461614b97f2ea4a6
-
-I suggest you have a look at this series and harmonize it with the new
-features (e.g. Hardware TX=E2=80=AFtimestamp).
-
-On Tue. 2 Aug. 2022 at 03:52, Matej Vasilevski
-<matej.vasilevski@seznam.cz> wrote :
-> This patch adds support for retrieving hardware timestamps to RX and
-> error CAN frames. It uses timecounter and cyclecounter structures,
-> because the timestamping counter width depends on the IP core integration
-> (it might not always be 64-bit).
-> For platform devices, you should specify "ts_clk" clock in device tree.
-> For PCI devices, the timestamping frequency is assumed to be the same
-> as bus frequency.
->
-> Signed-off-by: Matej Vasilevski <matej.vasilevski@seznam.cz>
-> ---
->  drivers/net/can/ctucanfd/Makefile             |   2 +-
->  drivers/net/can/ctucanfd/ctucanfd.h           |  20 ++
->  drivers/net/can/ctucanfd/ctucanfd_base.c      | 214 +++++++++++++++++-
->  drivers/net/can/ctucanfd/ctucanfd_timestamp.c |  87 +++++++
->  4 files changed, 315 insertions(+), 8 deletions(-)
->  create mode 100644 drivers/net/can/ctucanfd/ctucanfd_timestamp.c
->
-> diff --git a/drivers/net/can/ctucanfd/Makefile b/drivers/net/can/ctucanfd=
-/Makefile
-> index 8078f1f2c30f..a36e66f2cea7 100644
-> --- a/drivers/net/can/ctucanfd/Makefile
-> +++ b/drivers/net/can/ctucanfd/Makefile
-> @@ -4,7 +4,7 @@
->  #
->
->  obj-$(CONFIG_CAN_CTUCANFD) :=3D ctucanfd.o
-> -ctucanfd-y :=3D ctucanfd_base.o
-> +ctucanfd-y :=3D ctucanfd_base.o ctucanfd_timestamp.o
->
->  obj-$(CONFIG_CAN_CTUCANFD_PCI) +=3D ctucanfd_pci.o
->  obj-$(CONFIG_CAN_CTUCANFD_PLATFORM) +=3D ctucanfd_platform.o
-> diff --git a/drivers/net/can/ctucanfd/ctucanfd.h b/drivers/net/can/ctucan=
-fd/ctucanfd.h
-> index 0e9904f6a05d..43d9c73ce244 100644
-> --- a/drivers/net/can/ctucanfd/ctucanfd.h
-> +++ b/drivers/net/can/ctucanfd/ctucanfd.h
-> @@ -23,6 +23,10 @@
->  #include <linux/netdevice.h>
->  #include <linux/can/dev.h>
->  #include <linux/list.h>
-> +#include <linux/timecounter.h>
-> +#include <linux/workqueue.h>
-> +
-> +#define CTUCANFD_MAX_WORK_DELAY_SEC 86400U     /* one day =3D=3D 24 * 36=
-00 seconds */
->
->  enum ctu_can_fd_can_registers;
->
-> @@ -51,6 +55,15 @@ struct ctucan_priv {
->         u32 rxfrm_first_word;
->
->         struct list_head peers_on_pdev;
-> +
-> +       struct cyclecounter cc;
-> +       struct timecounter tc;
-> +       struct delayed_work timestamp;
-> +
-> +       struct clk *timestamp_clk;
-> +       u32 work_delay_jiffies;
-> +       bool timestamp_enabled;
-> +       bool timestamp_possible;
->  };
->
->  /**
-> @@ -79,4 +92,11 @@ int ctucan_probe_common(struct device *dev, void __iom=
-em *addr,
->  int ctucan_suspend(struct device *dev) __maybe_unused;
->  int ctucan_resume(struct device *dev) __maybe_unused;
->
-> +u64 ctucan_read_timestamp_cc_wrapper(const struct cyclecounter *cc);
-> +u64 ctucan_read_timestamp_counter(struct ctucan_priv *priv);
-> +u32 ctucan_calculate_work_delay(const u32 timestamp_bit_size, const u32 =
-timestamp_freq);
-> +void ctucan_skb_set_timestamp(const struct ctucan_priv *priv, struct sk_=
-buff *skb,
-> +                             u64 timestamp);
-> +void ctucan_timestamp_init(struct ctucan_priv *priv);
-> +void ctucan_timestamp_stop(struct ctucan_priv *priv);
->  #endif /*__CTUCANFD__*/
-> diff --git a/drivers/net/can/ctucanfd/ctucanfd_base.c b/drivers/net/can/c=
-tucanfd/ctucanfd_base.c
-> index 3c18d028bd8c..35b37de51811 100644
-> --- a/drivers/net/can/ctucanfd/ctucanfd_base.c
-> +++ b/drivers/net/can/ctucanfd/ctucanfd_base.c
-> @@ -18,6 +18,7 @@
->   ***********************************************************************=
-*******/
->
->  #include <linux/clk.h>
-> +#include <linux/clocksource.h>
->  #include <linux/errno.h>
->  #include <linux/ethtool.h>
->  #include <linux/init.h>
-> @@ -148,6 +149,27 @@ static void ctucan_write_txt_buf(struct ctucan_priv =
-*priv, enum ctu_can_fd_can_r
->         priv->write_reg(priv, buf_base + offset, val);
->  }
->
-> +static u64 concatenate_two_u32(u32 high, u32 low)
-
-Might be good to add the "namespace" prefix. I suggest:
-
-static u64 ctucan_concat_tstamp(u32 high, u32 low)
-
-Because, so far, the function is to be used exclusively with timestamps.
-
-Also, I was surprised that no helper functions in include/linux/
-headers already do that. But this is another story.
-
-> +{
-> +       return ((u64)high << 32) | ((u64)low);
-> +}
-> +
-> +u64 ctucan_read_timestamp_counter(struct ctucan_priv *priv)
-> +{
-> +       u32 ts_low;
-> +       u32 ts_high;
-> +       u32 ts_high2;
-> +
-> +       ts_high =3D ctucan_read32(priv, CTUCANFD_TIMESTAMP_HIGH);
-> +       ts_low =3D ctucan_read32(priv, CTUCANFD_TIMESTAMP_LOW);
-> +       ts_high2 =3D ctucan_read32(priv, CTUCANFD_TIMESTAMP_HIGH);
-> +
-> +       if (ts_high2 !=3D ts_high)
-> +               ts_low =3D priv->read_reg(priv, CTUCANFD_TIMESTAMP_LOW);
-> +
-> +       return concatenate_two_u32(ts_high2, ts_low) & priv->cc.mask;
-> +}
-> +
->  #define CTU_CAN_FD_TXTNF(priv) (!!FIELD_GET(REG_STATUS_TXNF, ctucan_read=
-32(priv, CTUCANFD_STATUS)))
->  #define CTU_CAN_FD_ENABLED(priv) (!!FIELD_GET(REG_MODE_ENA, ctucan_read3=
-2(priv, CTUCANFD_MODE)))
-
-
-#define CTU_CAN_FD_TXTNF(priv) \
-        (!!FIELD_GET(REG_STATUS_TXNF, ctucan_read32(priv, CTUCANFD_STATUS))=
-)
-
-#define CTU_CAN_FD_ENABLED(priv) \
-        (!!FIELD_GET(REG_MODE_ENA, ctucan_read32(priv, CTUCANFD_MODE)))
-
-Even if the rule is now more relaxed, the soft limit remains 80
-characters per line:
-
-https://www.kernel.org/doc/html/latest/process/coding-style.html#breaking-l=
-ong-lines-and-strings
-
-> @@ -640,12 +662,16 @@ static netdev_tx_t ctucan_start_xmit(struct sk_buff=
- *skb, struct net_device *nde
->   * @priv:      Pointer to CTU CAN FD's private data
->   * @cf:                Pointer to CAN frame struct
->   * @ffw:       Previously read frame format word
-> + * @skb:       Pointer to buffer to store timestamp
->   *
->   * Note: Frame format word must be read separately and provided in 'ffw'=
-.
->   */
-> -static void ctucan_read_rx_frame(struct ctucan_priv *priv, struct canfd_=
-frame *cf, u32 ffw)
-> +static void ctucan_read_rx_frame(struct ctucan_priv *priv, struct canfd_=
-frame *cf,
-> +                                u32 ffw, u64 *timestamp)
->  {
->         u32 idw;
-> +       u32 tstamp_high;
-> +       u32 tstamp_low;
->         unsigned int i;
->         unsigned int wc;
->         unsigned int len;
-> @@ -682,9 +708,10 @@ static void ctucan_read_rx_frame(struct ctucan_priv =
-*priv, struct canfd_frame *c
->         if (unlikely(len > wc * 4))
->                 len =3D wc * 4;
->
-> -       /* Timestamp - Read and throw away */
-> -       ctucan_read32(priv, CTUCANFD_RX_DATA);
-> -       ctucan_read32(priv, CTUCANFD_RX_DATA);
-> +       /* Timestamp */
-> +       tstamp_low =3D ctucan_read32(priv, CTUCANFD_RX_DATA);
-> +       tstamp_high =3D ctucan_read32(priv, CTUCANFD_RX_DATA);
-> +       *timestamp =3D concatenate_two_u32(tstamp_high, tstamp_low) & pri=
-v->cc.mask;
->
->         /* Data */
->         for (i =3D 0; i < len; i +=3D 4) {
-> @@ -713,6 +740,7 @@ static int ctucan_rx(struct net_device *ndev)
->         struct net_device_stats *stats =3D &ndev->stats;
->         struct canfd_frame *cf;
->         struct sk_buff *skb;
-> +       u64 timestamp;
->         u32 ffw;
->
->         if (test_bit(CTUCANFD_FLAG_RX_FFW_BUFFERED, &priv->drv_flags)) {
-> @@ -736,7 +764,9 @@ static int ctucan_rx(struct net_device *ndev)
->                 return 0;
->         }
->
-> -       ctucan_read_rx_frame(priv, cf, ffw);
-> +       ctucan_read_rx_frame(priv, cf, ffw, &timestamp);
-> +       if (priv->timestamp_enabled)
-> +               ctucan_skb_set_timestamp(priv, skb, timestamp);
->
->         stats->rx_bytes +=3D cf->len;
->         stats->rx_packets++;
-> @@ -906,6 +936,11 @@ static void ctucan_err_interrupt(struct net_device *=
-ndev, u32 isr)
->         if (skb) {
->                 stats->rx_packets++;
->                 stats->rx_bytes +=3D cf->can_dlc;
-> +               if (priv->timestamp_enabled) {
-> +                       u64 tstamp =3D ctucan_read_timestamp_counter(priv=
-);
-> +
-> +                       ctucan_skb_set_timestamp(priv, skb, tstamp);
-> +               }
->                 netif_rx(skb);
->         }
->  }
-> @@ -951,6 +986,11 @@ static int ctucan_rx_poll(struct napi_struct *napi, =
-int quota)
->                         cf->data[1] |=3D CAN_ERR_CRTL_RX_OVERFLOW;
->                         stats->rx_packets++;
->                         stats->rx_bytes +=3D cf->can_dlc;
-> +                       if (priv->timestamp_enabled) {
-> +                               u64 tstamp =3D ctucan_read_timestamp_coun=
-ter(priv);
-> +
-> +                               ctucan_skb_set_timestamp(priv, skb, tstam=
-p);
-> +                       }
->                         netif_rx(skb);
->                 }
->
-> @@ -1231,6 +1271,9 @@ static int ctucan_open(struct net_device *ndev)
->                 goto err_chip_start;
->         }
->
-> +       if (priv->timestamp_possible)
-> +               ctucan_timestamp_init(priv);
-> +
->         netdev_info(ndev, "ctu_can_fd device registered\n");
->         napi_enable(&priv->napi);
->         netif_start_queue(ndev);
-> @@ -1263,6 +1306,9 @@ static int ctucan_close(struct net_device *ndev)
->         ctucan_chip_stop(ndev);
->         free_irq(ndev->irq, ndev);
->         close_candev(ndev);
-> +       if (priv->timestamp_possible)
-> +               ctucan_timestamp_stop(priv);
-> +
->
->         pm_runtime_put(priv->dev);
->
-> @@ -1295,15 +1341,117 @@ static int ctucan_get_berr_counter(const struct =
-net_device *ndev, struct can_ber
->         return 0;
->  }
->
-> +static int ctucan_hwtstamp_set(struct net_device *dev, struct ifreq *ifr=
-)
-> +{
-> +       struct ctucan_priv *priv =3D netdev_priv(dev);
-> +       struct hwtstamp_config cfg;
-> +
-> +       if (!priv->timestamp_possible)
-> +               return -EOPNOTSUPP;
-> +
-> +       if (copy_from_user(&cfg, ifr->ifr_data, sizeof(cfg)))
-> +               return -EFAULT;
-> +
-> +       if (cfg.flags)
-> +               return -EINVAL;
-> +
-> +       if (cfg.tx_type !=3D HWTSTAMP_TX_OFF)
-> +               return -ERANGE;
-
-I have a great news: your driver now also support hardware TX timestamps:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/comm=
-it/?id=3D8bdd1112edcd3edce2843e03826204a84a61042d
-
-> +
-> +       switch (cfg.rx_filter) {
-> +       case HWTSTAMP_FILTER_NONE:
-> +               priv->timestamp_enabled =3D false;
-> +               break;
-> +       case HWTSTAMP_FILTER_ALL:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V1_L4_EVENT:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V1_L4_SYNC:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V1_L4_DELAY_REQ:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V2_L4_EVENT:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V2_L4_SYNC:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V2_L4_DELAY_REQ:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V2_L2_EVENT:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V2_L2_SYNC:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V2_L2_DELAY_REQ:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V2_EVENT:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V2_SYNC:
-> +               fallthrough;
-> +       case HWTSTAMP_FILTER_PTP_V2_DELAY_REQ:
-> +               priv->timestamp_enabled =3D true;
-> +               cfg.rx_filter =3D HWTSTAMP_FILTER_ALL;
-> +               break;
-
-All those HWTSTAMP_FILTER_PTP_V2_* filters are for UDP, Ethernet or AS1:
-https://elixir.bootlin.com/linux/v5.4.5/source/include/uapi/linux/net_tstam=
-p.h#L106
-
-Because those layers do not exist in CAN, I suggest treating them all
-as not supported.
-
-Please have a look at this patch:
-https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/comm=
-it/?id=3D90f942c5a6d775bad1be33ba214755314105da4a
-
-> +       default:
-> +               return -ERANGE;
-> +       }
-> +
-> +       return copy_to_user(ifr->ifr_data, &cfg, sizeof(cfg)) ? -EFAULT :=
- 0;
-> +}
-> +
-> +static int ctucan_hwtstamp_get(struct net_device *dev, struct ifreq *ifr=
-)
-> +{
-> +       struct ctucan_priv *priv =3D netdev_priv(dev);
-> +       struct hwtstamp_config cfg;
-> +
-> +       if (!priv->timestamp_possible)
-> +               return -EOPNOTSUPP;
-> +
-> +       cfg.flags =3D 0;
-> +       cfg.tx_type =3D HWTSTAMP_TX_OFF;
-
-Hardware TX timestamps are now supported (c.f. supra).
-
-> +       cfg.rx_filter =3D priv->timestamp_enabled ? HWTSTAMP_FILTER_ALL :=
- HWTSTAMP_FILTER_NONE;
-> +       return copy_to_user(ifr->ifr_data, &cfg, sizeof(cfg)) ? -EFAULT :=
- 0;
-> +}
-> +
-> +static int ctucan_ioctl(struct net_device *dev, struct ifreq *ifr, int c=
-md)
-
-Please consider using the generic function can_eth_ioctl_hwts()
-https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/comm=
-it/?id=3D90f942c5a6d775bad1be33ba214755314105da4a
-
-> +{
-> +       switch (cmd) {
-> +       case SIOCSHWTSTAMP:
-> +               return ctucan_hwtstamp_set(dev, ifr);
-> +       case SIOCGHWTSTAMP:
-> +               return ctucan_hwtstamp_get(dev, ifr);
-> +       default:
-> +               return -EOPNOTSUPP;
-> +       }
-> +}
->
-> +static int ctucan_ethtool_get_ts_info(struct net_device *ndev, struct et=
-htool_ts_info *info)
-
-Please break the line to meet the 80 columns soft limit.
-
-Please consider using the generic function can_ethtool_op_get_ts_info_hwts(=
-):
-https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/comm=
-it/?id=3D7fb48d25b5ce3bc488dbb019bf1736248181de9a
-
-Something like that:
-static int ctucan_ethtool_get_ts_info(struct net_device *ndev,
-                                      struct ethtool_ts_info *inf
-{
-        struct ctucan_priv *priv =3D netdev_priv(ndev);
-
-        if (!priv->timestamp_possible)
-                ethtool_op_get_ts_info(ndev, info);
-
-        return can_ethtool_op_get_ts_info_hwts(ndev, info);
-}
-
-> +{
-> +       struct ctucan_priv *priv =3D netdev_priv(ndev);
-> +
-> +       ethtool_op_get_ts_info(ndev, info);
-> +
-> +       if (!priv->timestamp_possible)
-> +               return 0;
-> +
-> +       info->so_timestamping |=3D SOF_TIMESTAMPING_RX_HARDWARE |
-> +                                SOF_TIMESTAMPING_RAW_HARDWARE;
-> +       info->tx_types =3D BIT(HWTSTAMP_TX_OFF);
-
-Hardware TX timestamps are now supported (c.f. supra).
-
-> +       info->rx_filters =3D BIT(HWTSTAMP_FILTER_NONE) |
-> +                          BIT(HWTSTAMP_FILTER_ALL);
-> +
-> +       return 0;
-> +}
-> +
->  static const struct net_device_ops ctucan_netdev_ops =3D {
->         .ndo_open       =3D ctucan_open,
->         .ndo_stop       =3D ctucan_close,
->         .ndo_start_xmit =3D ctucan_start_xmit,
->         .ndo_change_mtu =3D can_change_mtu,
-> +       .ndo_eth_ioctl  =3D ctucan_ioctl,
->  };
->
->  static const struct ethtool_ops ctucan_ethtool_ops =3D {
-> -       .get_ts_info =3D ethtool_op_get_ts_info,
-> +       .get_ts_info =3D ctucan_ethtool_get_ts_info,
->  };
->
->  int ctucan_suspend(struct device *dev)
-> @@ -1345,6 +1493,8 @@ int ctucan_probe_common(struct device *dev, void __=
-iomem *addr, int irq, unsigne
->         struct ctucan_priv *priv;
->         struct net_device *ndev;
->         int ret;
-> +       u32 timestamp_freq =3D 0;
-> +       u32 timestamp_bit_size =3D 0;
->
->         /* Create a CAN device instance */
->         ndev =3D alloc_candev(sizeof(struct ctucan_priv), ntxbufs);
-> @@ -1386,7 +1536,9 @@ int ctucan_probe_common(struct device *dev, void __=
-iomem *addr, int irq, unsigne
->
->         /* Getting the can_clk info */
->         if (!can_clk_rate) {
-> -               priv->can_clk =3D devm_clk_get(dev, NULL);
-> +               priv->can_clk =3D devm_clk_get_optional(dev, "core-clk");
-> +               if (!priv->can_clk)
-> +                       priv->can_clk =3D devm_clk_get(dev, NULL);
->                 if (IS_ERR(priv->can_clk)) {
->                         dev_err(dev, "Device clock not found.\n");
-
-Just a suggestion, but you may want to print the mnemotechnic of the error =
-code:
-dev_err(dev, "Device clock not found: %pe.\n", priv->can_clk);
-
->                         ret =3D PTR_ERR(priv->can_clk);
-> @@ -1425,6 +1577,54 @@ int ctucan_probe_common(struct device *dev, void _=
-_iomem *addr, int irq, unsigne
->
->         priv->can.clock.freq =3D can_clk_rate;
->
-> +       priv->timestamp_enabled =3D false;
-> +       priv->timestamp_possible =3D true;
-> +       priv->timestamp_clk =3D NULL;
-> +
-> +       /* Obtain timestamping frequency */
-> +       if (pm_enable_call) {
-> +               /* Plaftorm device: get tstamp clock from device tree */
-> +               priv->timestamp_clk =3D devm_clk_get(dev, "ts-clk");
-> +               if (IS_ERR(priv->timestamp_clk)) {
-> +                       /* Take the core clock frequency instead */
-> +                       timestamp_freq =3D can_clk_rate;
-> +               } else {
-> +                       timestamp_freq =3D clk_get_rate(priv->timestamp_c=
-lk);
-> +               }
-> +       } else {
-> +               /* PCI device: assume tstamp freq is equal to bus clk rat=
-e */
-> +               timestamp_freq =3D can_clk_rate;
-> +       }
-> +
-> +       /* Obtain timestamping counter bit size */
-> +       timestamp_bit_size =3D (ctucan_read32(priv, CTUCANFD_ERR_CAPT) & =
-REG_ERR_CAPT_TS_BITS) >> 24;
-> +       timestamp_bit_size +=3D 1;        /* the register value was bit_s=
-ize - 1 */
-> +
-> +       /* For 2.x versions of the IP core, we will assume 64-bit counter
-> +        * if there was a 0 in the register.
-> +        */
-> +       if (timestamp_bit_size =3D=3D 1) {
-> +               u32 version_reg =3D ctucan_read32(priv, CTUCANFD_DEVICE_I=
-D);
-> +               u32 major =3D (version_reg & REG_DEVICE_ID_VER_MAJOR) >> =
-24;
-> +
-> +               if (major =3D=3D 2)
-> +                       timestamp_bit_size =3D 64;
-> +               else
-> +                       priv->timestamp_possible =3D false;
-> +       }
-> +
-> +       /* Setup conversion constants and work delay */
-> +       priv->cc.read =3D ctucan_read_timestamp_cc_wrapper;
-> +       priv->cc.mask =3D CYCLECOUNTER_MASK(timestamp_bit_size);
-> +       if (priv->timestamp_possible) {
-> +               clocks_calc_mult_shift(&priv->cc.mult, &priv->cc.shift, t=
-imestamp_freq,
-> +                                      NSEC_PER_SEC, CTUCANFD_MAX_WORK_DE=
-LAY_SEC);
-> +               priv->work_delay_jiffies =3D
-> +                       ctucan_calculate_work_delay(timestamp_bit_size, t=
-imestamp_freq);
-> +               if (priv->work_delay_jiffies =3D=3D 0)
-> +                       priv->timestamp_possible =3D false;
-> +       }
-> +
->         netif_napi_add(ndev, &priv->napi, ctucan_rx_poll, NAPI_POLL_WEIGH=
-T);
->
->         ret =3D register_candev(ndev);
-> diff --git a/drivers/net/can/ctucanfd/ctucanfd_timestamp.c b/drivers/net/=
-can/ctucanfd/ctucanfd_timestamp.c
-> new file mode 100644
-> index 000000000000..c802123bbfbb
-> --- /dev/null
-> +++ b/drivers/net/can/ctucanfd/ctucanfd_timestamp.c
-> @@ -0,0 +1,87 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/***********************************************************************=
-********
-> + *
-> + * CTU CAN FD IP Core
-> + *
-> + * Copyright (C) 2022 Matej Vasilevski <matej.vasilevski@seznam.cz> FEE =
-CTU
-> + *
-> + * Project advisors:
-> + *     Jiri Novak <jnovak@fel.cvut.cz>
-> + *     Pavel Pisa <pisa@cmp.felk.cvut.cz>
-> + *
-> + * Department of Measurement         (http://meas.fel.cvut.cz/)
-> + * Faculty of Electrical Engineering (http://www.fel.cvut.cz)
-> + * Czech Technical University        (http://www.cvut.cz/)
-> + ***********************************************************************=
-*******/
-> +
-> +#include "vdso/time64.h"
-> +#include <linux/bitops.h>
-> +#include <linux/clocksource.h>
-> +#include <linux/math64.h>
-> +#include <linux/timecounter.h>
-> +#include <linux/workqueue.h>
-> +
-> +#include "ctucanfd.h"
-> +#include "ctucanfd_kregs.h"
-> +
-> +u64 ctucan_read_timestamp_cc_wrapper(const struct cyclecounter *cc)
-> +{
-> +       struct ctucan_priv *priv;
-> +
-> +       priv =3D container_of(cc, struct ctucan_priv, cc);
-> +       return ctucan_read_timestamp_counter(priv);
-> +}
-> +
-> +static void ctucan_timestamp_work(struct work_struct *work)
-> +{
-> +       struct delayed_work *delayed_work =3D to_delayed_work(work);
-> +       struct ctucan_priv *priv;
-> +
-> +       priv =3D container_of(delayed_work, struct ctucan_priv, timestamp=
-);
-> +       timecounter_read(&priv->tc);
-> +       schedule_delayed_work(&priv->timestamp, priv->work_delay_jiffies)=
-;
-> +}
-> +
-> +u32 ctucan_calculate_work_delay(const u32 timestamp_bit_size, const u32 =
-timestamp_freq)
-> +{
-> +       u32 jiffies_order =3D fls(HZ);
-> +       u32 max_shift_left =3D 63 - jiffies_order;
-> +       s32 final_shift =3D (timestamp_bit_size - 1) - max_shift_left;
-> +       u64 work_delay_jiffies;
-> +
-> +       /* The formula is work_delay_jiffies =3D 2**(bit_size - 1) / ts_f=
-requency * HZ
-> +        * using (bit_size - 1) instead of full bit_size to read the coun=
-ter
-> +        * roughly twice per period
-> +        */
-> +       work_delay_jiffies =3D div_u64((u64)HZ << max_shift_left, timesta=
-mp_freq);
-> +
-> +       if (final_shift > 0)
-> +               work_delay_jiffies =3D work_delay_jiffies << final_shift;
-> +       else
-> +               work_delay_jiffies =3D work_delay_jiffies >> -final_shift=
-;
-> +
-> +       work_delay_jiffies =3D min(work_delay_jiffies,
-> +                                (unsigned long long)CTUCANFD_MAX_WORK_DE=
-LAY_SEC * HZ);
-> +       return (u32)work_delay_jiffies;
-> +}
-> +
-> +void ctucan_skb_set_timestamp(const struct ctucan_priv *priv, struct sk_=
-buff *skb, u64 timestamp)
-> +{
-> +       struct skb_shared_hwtstamps *hwtstamps =3D skb_hwtstamps(skb);
-> +       u64 ns;
-> +
-> +       ns =3D timecounter_cyc2time(&priv->tc, timestamp);
-> +       hwtstamps->hwtstamp =3D ns_to_ktime(ns);
-> +}
-> +
-> +void ctucan_timestamp_init(struct ctucan_priv *priv)
-> +{
-> +       timecounter_init(&priv->tc, &priv->cc, ktime_get_real_ns());
-> +       INIT_DELAYED_WORK(&priv->timestamp, ctucan_timestamp_work);
-> +       schedule_delayed_work(&priv->timestamp, priv->work_delay_jiffies)=
-;
-> +}
-> +
-> +void ctucan_timestamp_stop(struct ctucan_priv *priv)
-> +{
-> +       cancel_delayed_work_sync(&priv->timestamp);
-> +}
-> --
-> 2.25.1
->
+R2VudGxlIHBpbmcuLi4NCg0KQlINCkpveSBab3UNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
+LS0NCkZyb206IEpveSBab3UgDQpTZW50OiAyMDIyxOo11MIyNMjVIDE2OjAyDQpUbzogdmtvdWxA
+a2VybmVsLm9yZw0KQ2M6IFMuSi4gV2FuZyA8c2hlbmdqaXUud2FuZ0BueHAuY29tPjsgcm9iaCtk
+dEBrZXJuZWwub3JnOyBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7IHNoYXduZ3Vv
+QGtlcm5lbC5vcmc7IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7IGtlcm5lbEBwZW5ndXRyb25peC5k
+ZTsgZmVzdGV2YW1AZ21haWwuY29tOyBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPjsg
+ZG1hZW5naW5lQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxp
+bnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgbGludXgta2VybmVsQHZnZXIua2Vy
+bmVsLm9yZw0KU3ViamVjdDogW1BBVENIIFYyIDEvMl0gYmluZGluZ3M6IGZzbC1pbXgtc2RtYTog
+RG9jdW1lbnQgJ0hETUkgQXVkaW8nIHRyYW5zZmVyDQoNCkFkZCBIRE1JIEF1ZGlvIHRyYW5zZmVy
+IHR5cGUuDQoNCmNvbnZlcnQgdGhlIHNkbWEgYmluZGluZ3MgdHh0IGludG8geWFtbCBpbiB2Mi4N
+Cg0KU2lnbmVkLW9mZi1ieTogSm95IFpvdSA8am95LnpvdUBueHAuY29tPg0KLS0tDQpDaGFuZ2Vz
+IHNpbmNlIHYxOg0KY29udmVydCB0aGUgc2RtYSBiaW5kaW5ncyB0eHQgaW50byB5YW1sIGluIHYy
+Lg0KLS0tDQogLi4uL2RldmljZXRyZWUvYmluZGluZ3MvZG1hL2ZzbC1pbXgtc2RtYS55YW1sIHwg
+MTM1ICsrKysrKysrKysrKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCAxMzUgaW5zZXJ0aW9ucygr
+KQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+ZG1hL2ZzbC1pbXgtc2RtYS55YW1sDQoNCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvZG1hL2ZzbC1pbXgtc2RtYS55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL2RtYS9mc2wtaW14LXNkbWEueWFtbA0KbmV3IGZpbGUgbW9kZSAxMDA2
+NDQNCmluZGV4IDAwMDAwMDAwMDAwMC4uNWI0ZjdhMDlhMzk1DQotLS0gL2Rldi9udWxsDQorKysg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZG1hL2ZzbC1pbXgtc2RtYS55YW1s
+DQpAQCAtMCwwICsxLDEzNSBAQA0KKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAt
+b25seSBPUiBCU0QtMi1DbGF1c2UgJVlBTUwgMS4yDQorLS0tDQorJGlkOiBodHRwOi8vZGV2aWNl
+dHJlZS5vcmcvc2NoZW1hcy9kbWEvZnNsLWlteC1zZG1hLnlhbWwjDQorJHNjaGVtYTogaHR0cDov
+L2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQorDQordGl0bGU6IEZyZWVz
+Y2FsZSBTbWFydCBEaXJlY3QgTWVtb3J5IEFjY2VzcyAoU0RNQSkgQ29udHJvbGxlciBmb3IgaS5N
+WA0KKw0KK21haW50YWluZXJzOg0KKyAgLSBWaW5vZCBLb3VsIDx2a291bEBrZXJuZWwub3JnPg0K
+Kw0KK2FsbE9mOg0KKyAgLSAkcmVmOiAiZG1hLWNvbnRyb2xsZXIueWFtbCMiDQorDQorIyBFdmVy
+eXRoaW5nIGVsc2UgaXMgZGVzY3JpYmVkIGluIHRoZSBjb21tb24gZmlsZQ0KKw0KK3Byb3BlcnRp
+ZXM6DQorICBjb21wYXRpYmxlOg0KKyAgICBpdGVtczoNCisgICAgICAtIGVudW06DQorICAgICAg
+ICAgIC0gZnNsLGlteDI1LXNkbWENCisgICAgICAgICAgLSBmc2wsaW14MzEtc2RtYQ0KKyAgICAg
+ICAgICAtIGZzbCxpbXgzMS10bzEtc2RtYQ0KKyAgICAgICAgICAtIGZzbCxpbXgzMS10bzItc2Rt
+YQ0KKyAgICAgICAgICAtIGZzbCxpbXgzNS10bzEtc2RtYQ0KKyAgICAgICAgICAtIGZzbCxpbXgz
+NS10bzItc2RtYQ0KKyAgICAgICAgICAtIGZzbCxpbXg1MS1zZG1hDQorICAgICAgICAgIC0gZnNs
+LGlteDUzLXNkbWENCisgICAgICAgICAgLSBmc2wsaW14NnEtc2RtYQ0KKyAgICAgICAgICAtIGZz
+bCxpbXg3ZC1zZG1hDQorICAgICAgICAgIC0gZnNsLGlteDZzeC1zZG1hDQorICAgICAgICAgIC0g
+ZnNsLGlteDZ1bC1zZG1hDQorICAgICAgICAgIC0gZnNsLGlteDhtbS1zZG1hDQorICAgICAgICAg
+IC0gZnNsLGlteDhtbi1zZG1hDQorICAgICAgICAgIC0gZnNsLGlteDhtcC1zZG1hDQorICAgICAg
+LSBlbnVtOg0KKyAgICAgICAgICAtIGZzbCxpbXgzNS1zZG1hDQorICAgICAgICAgIC0gZnNsLGlt
+eDhtcS1zZG1hDQorDQorICByZWc6DQorICAgIGRlc2NyaXB0aW9uOiBTaG91bGQgY29udGFpbiBT
+RE1BIHJlZ2lzdGVycyBsb2NhdGlvbiBhbmQgbGVuZ3RoDQorDQorICBpbnRlcnJ1cHRzOg0KKyAg
+ICBkZXNjcmlwdGlvbjogU2hvdWxkIGNvbnRhaW4gU0RNQSBpbnRlcnJ1cHQNCisNCisgIGZzbCxz
+ZG1hLXJhbS1zY3JpcHQtbmFtZToNCisgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVm
+aW5pdGlvbnMvc3RyaW5nDQorICAgIGRlc2NyaXB0aW9uOiBTaG91bGQgY29udGFpbiB0aGUgZnVs
+bCBwYXRoIG9mIFNETUEgUkFNIHNjcmlwdHMgZmlybXdhcmUuDQorDQorICAiI2RtYS1jZWxscyI6
+DQorICAgIGNvbnN0OiAzDQorICAgIGRlc2NyaXB0aW9uOiB8DQorICAgICAgVGhlIGZpcnN0IGNl
+bGw6IHJlcXVlc3QvZXZlbnQgSUQNCisNCisgICAgICBUaGUgc2Vjb25kIGNlbGw6IHBlcmlwaGVy
+YWwgdHlwZXMgSUQNCisgICAgICAgIGVudW06DQorICAgICAgICAgIC0gTUNVIGRvbWFpbiBTU0k6
+IDANCisgICAgICAgICAgLSBTaGFyZWQgU1NJOiAxDQorICAgICAgICAgIC0gTU1DOiAyDQorICAg
+ICAgICAgIC0gU0RIQzogMw0KKyAgICAgICAgICAtIE1DVSBkb21haW4gVUFSVDogNA0KKyAgICAg
+ICAgICAtIFNoYXJlZCBVQVJUOiA1DQorICAgICAgICAgIC0gRklSSTogNg0KKyAgICAgICAgICAt
+IE1DVSBkb21haW4gQ1NQSTogNw0KKyAgICAgICAgICAtIFNoYXJlZCBDU1BJOiA4DQorICAgICAg
+ICAgIC0gU0lNOiA5DQorICAgICAgICAgIC0gQVRBOiAxMA0KKyAgICAgICAgICAtIENDTTogMTEN
+CisgICAgICAgICAgLSBFeHRlcm5hbCBwZXJpcGhlcmFsOiAxMg0KKyAgICAgICAgICAtIE1lbW9y
+eSBTdGljayBIb3N0IENvbnRyb2xsZXI6IDEzDQorICAgICAgICAgIC0gU2hhcmVkIE1lbW9yeSBT
+dGljayBIb3N0IENvbnRyb2xsZXI6IDE0DQorICAgICAgICAgIC0gRFNQOiAxNQ0KKyAgICAgICAg
+ICAtIE1lbW9yeTogMTYNCisgICAgICAgICAgLSBGSUZPIHR5cGUgTWVtb3J5OiAxNw0KKyAgICAg
+ICAgICAtIFNQRElGOiAxOA0KKyAgICAgICAgICAtIElQVSBNZW1vcnk6IDE5DQorICAgICAgICAg
+IC0gQVNSQzogMjANCisgICAgICAgICAgLSBFU0FJOiAyMQ0KKyAgICAgICAgICAtIFNTSSBEdWFs
+IEZJRk86IDIyDQorICAgICAgICAgICAgICBkZXNjcmlwdGlvbjogbmVlZHMgZmlybXdhcmUgbW9y
+ZSB0aGFuIHZlciAyDQorICAgICAgICAgIC0gU2hhcmVkIEFTUkM6IDIzDQorICAgICAgICAgIC0g
+U0FJOiAyNA0KKyAgICAgICAgICAtIEhETUkgQXVkaW86IDI1DQorDQorICAgICAgIFRoZSB0aGly
+ZCBjZWxsOiB0cmFuc2ZlciBwcmlvcml0eSBJRA0KKyAgICAgICAgIGVudW06DQorICAgICAgICAg
+ICAtIEhpZ2g6IDANCisgICAgICAgICAgIC0gTWVkaXVtOiAxDQorICAgICAgICAgICAtIExvdzog
+Mg0KKw0KKyAgZ3ByOg0KKyAgICBkZXNjcmlwdGlvbjogVGhlIHBoYW5kbGUgdG8gdGhlIEdlbmVy
+YWwgUHVycG9zZSBSZWdpc3RlciAoR1BSKSBub2RlDQorDQorICBmc2wsc2RtYS1ldmVudC1yZW1h
+cDoNCisgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvdWludDMyLWFy
+cmF5DQorICAgIGRlc2NyaXB0aW9uOiB8DQorICAgICAgUmVnaXN0ZXIgYml0cyBvZiBzZG1hIGV2
+ZW50IHJlbWFwLCB0aGUgZm9ybWF0IGlzIDxyZWcgc2hpZnQgdmFsPi4NCisgICAgICAtIHJlZzog
+dGhlIEdQUiByZWdpc3RlciBvZmZzZXQNCisgICAgICAtIHNoaWZ0OiB0aGUgYml0IHBvc2l0aW9u
+IGluc2lkZSB0aGUgR1BSIHJlZ2lzdGVyDQorICAgICAgLSB2YWw6IHRoZSB2YWx1ZSBvZiB0aGUg
+Yml0ICgwIG9yIDEpDQorDQorcmVxdWlyZWQ6DQorICAtIGNvbXBhdGlibGUNCisgIC0gcmVnDQor
+ICAtIGludGVycnVwdHMNCisgIC0gZnNsLHNkbWEtcmFtLXNjcmlwdC1uYW1lDQorICAtICIjZG1h
+LWNlbGxzIg0KKw0KK3VuZXZhbHVhdGVkUHJvcGVydGllczogZmFsc2UNCisNCitleGFtcGxlczoN
+CisgIC0gfA0KKyAgICBzZG1hOiBkbWEtY29udHJvbGxlckA4M2ZiMDAwMCB7DQorICAgICAgY29t
+cGF0aWJsZSA9ICJmc2wsaW14NTEtc2RtYSIsICJmc2wsaW14MzUtc2RtYSI7DQorICAgICAgcmVn
+ID0gPDB4ODNmYjAwMDAgMHg0MDAwPjsNCisgICAgICBpbnRlcnJ1cHRzID0gPDY+Ow0KKyAgICAg
+ICNkbWEtY2VsbHMgPSA8Mz47DQorICAgICAgZnNsLHNkbWEtcmFtLXNjcmlwdC1uYW1lID0gInNk
+bWEtaW14NTEuYmluIjsNCisgICAgfTsNCisNCisjRE1BIGNsaWVudHMgY29ubmVjdGVkIHRvIHRo
+ZSBpLk1YIFNETUEgY29udHJvbGxlciBtdXN0IHVzZSB0aGUgZm9ybWF0IA0KKyNkZXNjcmliZWQg
+aW4gdGhlIGRtYS1jb250cm9sbGVyLnlhbWwgZmlsZS4NCisgIC0gfA0KKyAgICBzc2kyOiBzc2lA
+NzAwMTQwMDAgew0KKyAgICAgIGNvbXBhdGlibGUgPSAiZnNsLGlteDUxLXNzaSIsICJmc2wsaW14
+MjEtc3NpIjsNCisgICAgICByZWcgPSA8MHg3MDAxNDAwMCAweDQwMDA+Ow0KKyAgICAgIGludGVy
+cnVwdHMgPSA8MzA+Ow0KKyAgICAgIGNsb2NrcyA9IDwmY2xrcyA0OT47DQorICAgICAgZG1hcyA9
+IDwmc2RtYSAyNCAxIDA+LA0KKyAgICAgICAgICAgICA8JnNkbWEgMjUgMSAwPjsNCisgICAgICBk
+bWEtbmFtZXMgPSAicngiLCAidHgiOw0KKyAgICAgIGZzbCxmaWZvLWRlcHRoID0gPDE1PjsNCisg
+ICAgfTsNCisNCisuLi4NCi0tDQoyLjI1LjENCg0K
