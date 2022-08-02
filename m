@@ -2,97 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BF9658831F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 22:28:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 557E8588361
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 23:22:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234716AbiHBU2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 16:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35750 "EHLO
+        id S232059AbiHBVWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 17:22:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234780AbiHBU2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 16:28:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F7ED24098;
-        Tue,  2 Aug 2022 13:28:05 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1C917614C0;
-        Tue,  2 Aug 2022 20:28:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62DDFC433C1;
-        Tue,  2 Aug 2022 20:28:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659472084;
-        bh=pLUb/kBwLxEZnU56D3TMn/JIiow5Blh2ylmpyRYmNCg=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=ASI1cyci/LKUxzn/fna6gubkBPHoIu4tBvFmJnZStkwcH08z4LAFzDLsEqvqj5iKs
-         OS8tme1Uni1AAWMbXO6HRIOlEoosb768s9SYs+XsDjrCsiK9kqcGG2/50/ipRZzX/k
-         1ojCQoPr7Ql9avtF+rvh0Y+wzPFJ7GQc45GLTPlBzWNwYlVIhA7Mz11Aq/CEGm1J4f
-         2ggvp9b4VhjU6kyhzcgzTZ299Br+/yHT110J9VfXXRtgjK1WlIde6Nd+3xZxykasfQ
-         4NkG3E1DM8qOU6W4JXzILPdRWtsIzLPOw9WbmSHf61Xnf6bxxZbZCBhLTIL0KUr4jU
-         N8mtuPCla8wEQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231911AbiHBVWD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 17:22:03 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 64B3B51409
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 14:22:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1659475320;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=jQhPEwH3goRpU8FRyBDXxZC2WkI1FDwYRPXft+9J3uE=;
+        b=ZTG1Sx+FvItbv8eyevjwp5VAd6fSkvewaLSLH0lpfj6mogUb4yqJyqYlm7r4G/z24zpHB3
+        bfb17PCZJCWIqsgSvWeFROW8+DxY+y7c6pkXemyJvsGoxGcHMt3XgTNuR9ZnH0QxWsWaT6
+        8LdkFgG78E3qQxMV9xqIsM+6xPSgYK4=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-567-pd2-bYm8MzGnaOgDTCJrFQ-1; Tue, 02 Aug 2022 17:21:59 -0400
+X-MC-Unique: pd2-bYm8MzGnaOgDTCJrFQ-1
+Received: by mail-qv1-f72.google.com with SMTP id cz12-20020a056214088c00b004763e7e7d81so4961327qvb.21
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 14:21:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jQhPEwH3goRpU8FRyBDXxZC2WkI1FDwYRPXft+9J3uE=;
+        b=55GccpuGIEYP+O45Q/LT1Tq06jqebH6x5/ohUQl/a9CKkgn6J+pc8rVtTIJMLpYj9Z
+         wBaEdZz/MIuB23K/C+3PC7nRA6blRjd6l13dZrtlcYzihRsr0qfVG/Fm9tHjsBkJFsKu
+         VkMhdadg3mm8PkS8DXBRUhhvwZ3hVFgxWB7LgXjFedQpoEYpnMYLw12re14hzpreYS54
+         kisCbeGOYz+AUHK5qiw9fWqeA/cS7PhLrpjgPTHQe7K7kdjYwWeT3a5sbaVK1+i8xTRG
+         y2ak+6lEd4+lekbKTG2VG33JSTLNGIlSxiFFPzoC2CGuseS7uQQKYqQyK2wUgfOlRmd1
+         SKAw==
+X-Gm-Message-State: AJIora+A/NQnYgbbNroOiqIpqjz/FlOlsdSheEiPwB3tR6x9LNbO6TkO
+        mubVwo3C3sChSW24XX2txR74iyCLIYJdqaLN2jgNpgzQcL0SZWmPp5XwaKa12yHKJxyWWbjmmQr
+        4A/Uo9ckfGAxJqNGkstoHbA==
+X-Received: by 2002:ac8:7c4e:0:b0:31f:36ad:e809 with SMTP id o14-20020ac87c4e000000b0031f36ade809mr19580834qtv.441.1659475318571;
+        Tue, 02 Aug 2022 14:21:58 -0700 (PDT)
+X-Google-Smtp-Source: AGRyM1up+f0v7Bn9Uarm0rhHT+yPJxwAn6o3wRiFDpB+iSM6ATGR0cOoe0i5MAVMSQg4awnLzQAyQg==
+X-Received: by 2002:ac8:7c4e:0:b0:31f:36ad:e809 with SMTP id o14-20020ac87c4e000000b0031f36ade809mr19580823qtv.441.1659475318372;
+        Tue, 02 Aug 2022 14:21:58 -0700 (PDT)
+Received: from halaneylaptop ([2600:1700:1ff0:d0e0::2e])
+        by smtp.gmail.com with ESMTPSA id m26-20020ac866da000000b00339163a06fcsm2047794qtp.6.2022.08.02.14.21.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Aug 2022 14:21:57 -0700 (PDT)
+Date:   Tue, 2 Aug 2022 16:21:54 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Frieder Schrempf <frieder@fris.de>,
-        linux-kernel@vger.kernel.org, Robin Gong <yibin.gong@nxp.com>,
-        devicetree@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, Per-Daniel Olsson <perdo@axis.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Rickard x Andersson <rickaran@axis.com>
-In-Reply-To: <20220802064335.8481-1-frieder@fris.de>
-References: <20220802064335.8481-1-frieder@fris.de>
-Subject: Re: [PATCH] dt-bindings: regulator: pca9450: Remove restrictions for regulator-name
-Message-Id: <165947208205.2174956.10539628877269191065.b4-ty@kernel.org>
-Date:   Tue, 02 Aug 2022 21:28:02 +0100
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH 1/8] usb: dwc3: fix PHY disable sequence
+Message-ID: <20220802212154.jh65gds4jpzbvqn6@halaneylaptop>
+References: <20220802151404.1797-1-johan+linaro@kernel.org>
+ <20220802151404.1797-2-johan+linaro@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fe10a
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220802151404.1797-2-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2 Aug 2022 08:43:34 +0200, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On Tue, Aug 02, 2022 at 05:13:57PM +0200, Johan Hovold wrote:
+> Generic PHYs must be powered-off before they can be tore down.
 > 
-> The device bindings shouldn't put any constraints on the regulator-name
-> property specified in the generic bindings. This allows using arbitrary
-> and descriptive names for the regulators.
+> Similarly, suspending legacy PHYs after having powered them off makes no
+> sense.
 > 
+> Fix the dwc3_core_exit() (e.g. called during suspend) and open-coded
+> dwc3_probe() error-path sequences that got this wrong.
 > 
-> [...]
+> Note that this makes dwc3_core_exit() match the dwc3_core_init() error
+> path with respect to powering off the PHYs.
+> 
+> Fixes: 03c1fd622f72 ("usb: dwc3: core: add phy cleanup for probe error handling")
+> Fixes: c499ff71ff2a ("usb: dwc3: core: re-factor init and exit paths")
+> Cc: stable@vger.kernel.org      # 4.8
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
 
-Applied to
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+>  drivers/usb/dwc3/core.c | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index c5c238ab3083..16d1f328775f 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -833,15 +833,16 @@ static void dwc3_core_exit(struct dwc3 *dwc)
+>  {
+>  	dwc3_event_buffers_cleanup(dwc);
+>  
+> +	usb_phy_set_suspend(dwc->usb2_phy, 1);
+> +	usb_phy_set_suspend(dwc->usb3_phy, 1);
+> +	phy_power_off(dwc->usb2_generic_phy);
+> +	phy_power_off(dwc->usb3_generic_phy);
+> +
+>  	usb_phy_shutdown(dwc->usb2_phy);
+>  	usb_phy_shutdown(dwc->usb3_phy);
+>  	phy_exit(dwc->usb2_generic_phy);
+>  	phy_exit(dwc->usb3_generic_phy);
+>  
+> -	usb_phy_set_suspend(dwc->usb2_phy, 1);
+> -	usb_phy_set_suspend(dwc->usb3_phy, 1);
+> -	phy_power_off(dwc->usb2_generic_phy);
+> -	phy_power_off(dwc->usb3_generic_phy);
+>  	dwc3_clk_disable(dwc);
+>  	reset_control_assert(dwc->reset);
+>  }
+> @@ -1879,16 +1880,16 @@ static int dwc3_probe(struct platform_device *pdev)
+>  	dwc3_debugfs_exit(dwc);
+>  	dwc3_event_buffers_cleanup(dwc);
+>  
+> -	usb_phy_shutdown(dwc->usb2_phy);
+> -	usb_phy_shutdown(dwc->usb3_phy);
+> -	phy_exit(dwc->usb2_generic_phy);
+> -	phy_exit(dwc->usb3_generic_phy);
+> -
+>  	usb_phy_set_suspend(dwc->usb2_phy, 1);
+>  	usb_phy_set_suspend(dwc->usb3_phy, 1);
+>  	phy_power_off(dwc->usb2_generic_phy);
+>  	phy_power_off(dwc->usb3_generic_phy);
+>  
+> +	usb_phy_shutdown(dwc->usb2_phy);
+> +	usb_phy_shutdown(dwc->usb3_phy);
+> +	phy_exit(dwc->usb2_generic_phy);
+> +	phy_exit(dwc->usb3_generic_phy);
+> +
+>  	dwc3_ulpi_exit(dwc);
+>  
+>  err4:
+> -- 
+> 2.35.1
+> 
 
-Thanks!
-
-[1/1] dt-bindings: regulator: pca9450: Remove restrictions for regulator-name
-      commit: b0de7fa706506bf0591037908376351beda8c5d6
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
