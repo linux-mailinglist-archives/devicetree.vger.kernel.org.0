@@ -2,90 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D95B1587DB3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 15:56:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E1AC587DC9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 16:02:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237083AbiHBN40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 09:56:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55540 "EHLO
+        id S237100AbiHBOBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 10:01:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237090AbiHBN4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 09:56:10 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BC52B19C;
-        Tue,  2 Aug 2022 06:55:49 -0700 (PDT)
-Received: from mail-ej1-f43.google.com ([209.85.218.43]) by
- mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1N0X4c-1nXnV92TEC-00wRfU; Tue, 02 Aug 2022 15:55:47 +0200
-Received: by mail-ej1-f43.google.com with SMTP id j8so840639ejx.9;
-        Tue, 02 Aug 2022 06:55:47 -0700 (PDT)
-X-Gm-Message-State: AJIora8YtmpPlbFH9Jhq5al2EUyulVRNRiffVLDFSM7/KOi5k8PiOjFz
-        6kZ31c90YttYonYn9xkXBni5cqO8rTJuO3lPAf8=
-X-Google-Smtp-Source: AGRyM1sg5OSSuxk42kmKffHKNvxjUBcwJeG8BNdRHNFKc4WmLSSYCEYhA87Rt2osXHOB56kfJ3SZKbK9oZESz3OQKdY=
-X-Received: by 2002:a17:907:d0f:b0:72e:db1f:9b91 with SMTP id
- gn15-20020a1709070d0f00b0072edb1f9b91mr16334680ejc.470.1659448547198; Tue, 02
- Aug 2022 06:55:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <1656894074-15751-1-git-send-email-hayashi.kunihiko@socionext.com>
- <0a0a64a7-60cc-e95d-c2e3-3c11a53a6527@socionext.com> <CAK8P3a0egd9dupLFid9CsSygQyTK3KopB8m5LVgnUW9L1cF6JA@mail.gmail.com>
- <fd6e9539-4c67-93a2-9104-018ed9703ff9@socionext.com>
-In-Reply-To: <fd6e9539-4c67-93a2-9104-018ed9703ff9@socionext.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 2 Aug 2022 15:55:31 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a2sFYvopsuNqZ5uTFNbgV+t_8ZtWVR6ziCHk7p2eRy5LA@mail.gmail.com>
-Message-ID: <CAK8P3a2sFYvopsuNqZ5uTFNbgV+t_8ZtWVR6ziCHk7p2eRy5LA@mail.gmail.com>
-Subject: Re: [PATCH 0/9] Update UniPhier armv8 devicetree
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:nxeck6+fKHfSgr0GQyASw/Fv+tmX23a9v7NOMLbgHvgrjPDXjBU
- wzQ04UkwRBR4FvCb2nFsp2aU8zy6F080hX4uMIWzDqq958Fq5FzrfAONZ1Nfo8Ee3rjrxlp
- hDq/tM2a4v3qcsNgLbVq0wwLkqFlyLBuixpO2M6r+mTEIVF3FTIwwfezsVQH1BJQb4jtm0l
- J5tIxs8MRQr7/HsOyqGHg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:W+bxOYNdzvA=:IQ9NBZqgLGkkMHKcdmV7UX
- us9vGLw0XTP24WI+fjxvzvjqqkM3ZI1eDwpSyrM+lG0s7CpSmtNhawQbmPy/oE2xs5MChXoUI
- p7/GpTTizg0PCAkhPiWKIF1mCMSQocNH9E8f/hoqauszJ96cc4fflBjplNMfaHbIo4SrrpLX4
- LCp0KlZN8u1H3d1JOlQsrLb8T/ZzM+p5Rf5gVEuExRXMu9kcbXPn9oFO39az19s/bH6Z4o0z7
- /0nLaa3TuHoLv220DTHsDO28qrvNq064Si4quKrbTh5Qv+aK4v5IQ+7ocU9YUzDds+Skifclo
- pvjo2qIgQ9upkxwO+pOZ46Uf48y50CDj28bAsMfm3qX1bHGV7qh0o+YowjbYkibFY26YyKazI
- 2yyVNkieguxYrUuEp5KS4dfB1yBh9SE2yeUF/fDLSTKtZ9iB+nyonSedR90bpDFUV+k6+ERFr
- eIQpK6QGJvpdJzSsa0m44wv515+eIU4l9ZW6CaEcif7q/nbbM18au689rd7gx6uc9yAGE8xkR
- 9UnH3LTfppkji3Pz52r/SsU36/sFkgcSN4DQl8fNL9OgNNAzoUEOi5LyLQAwOFRripfQt16iR
- H42oZglQofvAuEvfxg/9dFDK6FD7HTBGE0i4QxyfO5fflkltUF4IP8/66o7G0L1t1wqaep3T/
- IZSQV32pS6Ia7HXBojPh8A3q4uAcyoFe0/YQYnXUqTx/jtp3llV3tbszYIlrOoxJXQYaRcf9w
- HR+AI9k1vje4OciR0DvTHNll0RDgU5d6AncZIg==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S237055AbiHBOBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 10:01:46 -0400
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED0021F63F;
+        Tue,  2 Aug 2022 07:01:45 -0700 (PDT)
+Received: by mail-il1-f173.google.com with SMTP id h16so7020880ilc.10;
+        Tue, 02 Aug 2022 07:01:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc;
+        bh=9HP6RV14iyBefsrq7UF+VvvWbuNYrykxC6shEJNRhLs=;
+        b=hi0/xOhNNlk4J6q80W7+ZkwaENZUk+bSMIlOnw1aeaCvDRbOEtTgwq6vRs5nOxAKwd
+         B3e5aXjPdmCUD9PkEedUeMb53ZpJlFXA3CmSvmr5WJl4anEegbe4SsF9yM469rouKPQy
+         3pMEx2LZLC4b0/DJxkM+Gjliv2Dtlrg7Npoz2E3flQ8jEpD6An0aPtoOnNgqVqiHNYcW
+         b+0P51brZoY1NpWxHDYbEFU2BSf+Wc7KO3kMj62BtbeaUOrti529WcLm7vzCBfEzJJ8G
+         wIG19cHiChwoD/+KbiWOJzc9fx4NQey2O/wLj2y/xjwQLeXoOqzl6hIPvueYx0Nh7RQa
+         YAbQ==
+X-Gm-Message-State: AJIora9jpe43rEgcbj6d0/tIjrr1NRygKV4JvFGCHEJy1/IClW0T67eU
+        VK4wFEIBSBbul52z6ZY5Ww==
+X-Google-Smtp-Source: AGRyM1ub8jaiVWjVciNr9MeONH5WR1JVir2IcYCFMPoECG21PeM+dvGSFRA95dWXDvCDiilDY4VB2Q==
+X-Received: by 2002:a92:ce50:0:b0:2dd:dc8e:1f36 with SMTP id a16-20020a92ce50000000b002dddc8e1f36mr8814976ilr.34.1659448905241;
+        Tue, 02 Aug 2022 07:01:45 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id n5-20020a056638110500b0033f0589eb52sm1897615jal.2.2022.08.02.07.01.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Aug 2022 07:01:44 -0700 (PDT)
+Received: (nullmailer pid 8420 invoked by uid 1000);
+        Tue, 02 Aug 2022 14:01:41 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     robh+dt@kernel.org, andreas@kemnade.info,
+        dmitry.torokhov@gmail.com, rydberg@bitmath.org,
+        s.hauer@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+        alistair23@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
+        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org
+In-Reply-To: <20220802125827.34509-3-alistair@alistair23.me>
+References: <20220802125827.34509-1-alistair@alistair23.me> <20220802125827.34509-3-alistair@alistair23.me>
+Subject: Re: [PATCH v8 2/4] dt-bindings: input: Add Cypress TT2100 touchscreen controller
+Date:   Tue, 02 Aug 2022 08:01:41 -0600
+Message-Id: <1659448901.672444.8419.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 2, 2022 at 3:24 PM Kunihiko Hayashi
-<hayashi.kunihiko@socionext.com> wrote:
-> > A lot of the changes can be considered bugfixes, and I would still
-> > merge them if you
-> > think they are harmless and can fix things. In this case, also mark them as
-> > 'Cc: stable@vger.kernel.org' to be backported into lts kernels. Anything
-> > that
-> > does not qualify as a bugfix should now go into the 5.21 merge window.
-> >
-> > Please send the bugfix pull request as soon as you can so we can merge that
-> > early. The other updates should be rebased onto v5.20-rc1 once that is
-> > released in about two weeks.
->
-> There are one bugfix patch for each series and they will be sent for "stable".
-> About the other patches, I'll rebase and send them again.
+On Tue, 02 Aug 2022 22:58:25 +1000, Alistair Francis wrote:
+> Add the Cypress TrueTouch Generation 5 touchscreen device tree bindings
+> documentation. It can use I2C or SPI bus.
+> This touchscreen can handle some defined zone that are designed and
+> sent as button. To be able to customize the keycode sent, the
+> "linux,code" property in a "button" sub-node can be used.
+> 
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../input/touchscreen/cypress,tt21000.yaml    | 101 ++++++++++++++++++
+>  1 file changed, 101 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+> 
 
-Ok, I picked up the two patches you just sent. Please make sure in the future to
-send all pull requests and patches that you want me to pick up to soc@kernel.org
-(Cc the usual lists) so they end up in patchwork and do not get lost.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-       Arnd
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dtb: touchscreen@24: Unevaluated properties are not allowed ('#address-cells', '#size-cells' were unexpected)
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
