@@ -2,120 +2,402 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 416335878E0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:19:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 665295878E9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233525AbiHBITW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 04:19:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55776 "EHLO
+        id S235681AbiHBIUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 04:20:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236413AbiHBITU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:19:20 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B637D3CBFC;
-        Tue,  2 Aug 2022 01:19:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1659428359; x=1690964359;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=z+vewyv6+8WMMh7FJKU7WpWGSmrkNzmBg1CxJQHgUEc=;
-  b=VBMYxzC9CJyx4zALFWExBavfMKOFcj51Fn5Y3TmLYQ2bNGbWzU6gjyHW
-   vobJ+4GB8TDgIFe6oy8gd9Awzlbf13sGm26IqG4eGDROA3fLC9sVw6/BV
-   +HcXSFqJSmY5XBqEFCnRIo27RxIqIt3YRrqN2HuPHFC+Rc/rJIpeopWYb
-   jDEW1wRy9k1jX7BBRON0fCcpwmmjt7VTufHpNMPocdW2nOyDNQ2bo97Em
-   iQn1tEiOCr/DEJ+NaGTmuDQtCmDZCBqqJ9SL5nZtZl+Z2emi4wl/Bh0iI
-   /cLYXgVuiJr5TUfHngg7iuv0vAMVGRQwm+C1+9JpmzjmFzPSYy0hoRoAn
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10426"; a="286913667"
-X-IronPort-AV: E=Sophos;i="5.93,210,1654585200"; 
-   d="scan'208";a="286913667"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2022 01:19:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,210,1654585200"; 
-   d="scan'208";a="744587113"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 02 Aug 2022 01:19:16 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 02 Aug 2022 11:19:15 +0300
-Date:   Tue, 2 Aug 2022 11:19:15 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        gene_chen@richtek.com, cy_huang@richtek.com
-Subject: Re: [PATCH v3 4/7] usb: typec: tcpci_rt1711h: Add initial phy setting
-Message-ID: <YujeA2pHG2WnZjaF@kuha.fi.intel.com>
-References: <20220801101447.86207-1-gene.chen.richtek@gmail.com>
- <20220801101447.86207-5-gene.chen.richtek@gmail.com>
+        with ESMTP id S233221AbiHBIUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:20:50 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E3B1EAFA
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:20:48 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id w15so5728547ljw.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:20:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=7r3+FeHJ12YYkVDUzu2HgWxyywzizk2MChlhUEakah0=;
+        b=d3rGLII+eDX1ijXFdPf3A6V3ANR09mFbdjKvxKc2pKnqMtytznaG8wTuSWwnK9XR0m
+         XCjedFrpijG+Ob+sxq2aWHRhXXlqADlaqCUQvXQ++YlFgN0cTG4o9AKd0Xca5UUSx23g
+         iqzRrdkqQFf/L3koseC9dpN0AxTY4hp6hWzwJrP7l1dwc12j+QApoTmcBlyc8dTeuSkg
+         HmkejB9/WIoCTbW+MSoL8EKDzU9Ri+ROHuQsH0n5dN8KNJdD3dRcfllJuqkDIqyfi527
+         sCnTawRYOIafiSGkjxn8QbvRT1uiaicg9iELSFNyM9z6pWkR1/k4YWRr9rLJn6kmLYeB
+         DKkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=7r3+FeHJ12YYkVDUzu2HgWxyywzizk2MChlhUEakah0=;
+        b=ff1cieZqbdDrbTIOZCdNlM6ioYRmzNoCJZoc27MryNmBJ50ZZTPaEeYbaF20ykm9bv
+         8cbUY73aftmWEYl6mUWNfPAkzQPY25pKv3kwe3p7HLbuDiTua2KSMn1Ypb95Tw7r49Cs
+         njeQEd6vfOcINeVXw9R1whgYFc3qXoZ9bZyPNH+EJDXkTkGC1RhJBiaTDwaeCQ4WCsBX
+         enJd1bmhRUnC0F3RqwLwHibaCCHi0/+RHBy6uOxeT5fWLgB336LMGZP+HUZPYTLPzIoV
+         GFw8sDtjOl2LiYr51eWt48fvPOrcq8XVL8rf6eaPFRHL9u3Se1UtnL+IVqtJmbn+XYrr
+         1Bcg==
+X-Gm-Message-State: AJIora/gtThrkCWBoL/v46pRuY6761U80UqdCU8zbhrm5tiikcIiuee7
+        upreNPsADlsU/mnmGI8NK7JqLA==
+X-Google-Smtp-Source: AGRyM1vwmKb9CEAN/6wdjX4etYJNRobxeH43R02CfS9bPRhuO2l7SBZh/r22jiTPQadWdV831A0hGw==
+X-Received: by 2002:a05:651c:10aa:b0:25e:7a1:b126 with SMTP id k10-20020a05651c10aa00b0025e07a1b126mr6424776ljn.432.1659428446817;
+        Tue, 02 Aug 2022 01:20:46 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id q1-20020a19f201000000b0048b025397e9sm480647lfh.204.2022.08.02.01.20.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Aug 2022 01:20:46 -0700 (PDT)
+Message-ID: <95d86d1f-28dd-b373-ff5e-f8ce6f5bb55c@linaro.org>
+Date:   Tue, 2 Aug 2022 11:20:45 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220801101447.86207-5-gene.chen.richtek@gmail.com>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 06/11] virt: gunyah: Add capabilities bus and devices
+Content-Language: en-GB
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220801211240.597859-1-quic_eberman@quicinc.com>
+ <20220801211240.597859-7-quic_eberman@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220801211240.597859-7-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gene,
-
-On Mon, Aug 01, 2022 at 06:14:44PM +0800, Gene Chen wrote:
-> From: Gene Chen <gene_chen@richtek.com>
+On 02/08/2022 00:12, Elliot Berman wrote:
+> Some resources provided by the Gunyah hypervisor are described as
+> objects. The objects are identified with a capability ID. For instance,
+> Inter-VM communication is performed with doorbells and message queues.
+> Each doorbell and message queue endpoint can be described consisely as a
+> Linux device.
 > 
-> Add initial phy setting about phy dicard retry,
-> rx filter deglitech time and BMC-encoded wait time
-
-I'm sorry, but what does "deglitech" mean? Is it just a typo?
-
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> These resources are discovered either on the devicetree or reported by
+> the Resource Manager. Devices on the Gunyah bus are matched with drivers
+> according to the type ID reported by resource manager. Most resources
+> will be discovered directly from the resource manager, so matching
+> directly on type ID seems like sensible design.
+> 
+> Each resource may also optionally have an interrupt associated with it
+> and a known partner VM (e.g. which VM is the receiver of a message
+> queue).
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 > ---
->  drivers/usb/typec/tcpm/tcpci_rt1711h.c | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
+>   drivers/virt/gunyah/Makefile         |   2 +-
+>   drivers/virt/gunyah/device.c         | 108 +++++++++++++++++++++++++++
+>   drivers/virt/gunyah/gunyah_private.h |  12 +++
+>   drivers/virt/gunyah/sysfs.c          |  25 ++++++-
+>   include/linux/gunyah.h               |  45 +++++++++++
+>   5 files changed, 189 insertions(+), 3 deletions(-)
+>   create mode 100644 drivers/virt/gunyah/device.c
+>   create mode 100644 drivers/virt/gunyah/gunyah_private.h
 > 
-> diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> index df7bfe299987..33d8ea95b7c1 100644
-> --- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> +++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> @@ -20,6 +20,9 @@
->  #define RT1711H_VID		0x29CF
->  #define RT1711H_PID		0x1711
->  
-> +#define RT1711H_PHYCTRL1	0x80
-> +#define RT1711H_PHYCTRL2	0x81
-> +
->  #define RT1711H_RTCTRL8		0x9B
->  
->  /* Autoidle timeout = (tout * 2 + 1) * 6.4ms */
-> @@ -107,8 +110,18 @@ static int rt1711h_init(struct tcpci *tcpci, struct tcpci_data *tdata)
->  		return ret;
->  
->  	/* dcSRC.DRP : 33% */
-> -	return rt1711h_write16(chip, RT1711H_RTCTRL16, 330);
-> +	ret = rt1711h_write16(chip, RT1711H_RTCTRL16, 330);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Enable phy discard retry, retry count 7, rx filter deglitech 100 us */
-> +	ret = rt1711h_write8(chip, RT1711H_PHYCTRL1, 0xF1);
-> +	if (ret < 0)
-> +		return ret;
->  
-> +	/* Decrease wait time of BMC-encoded 1 bit from 2.67us to 2.55us */
-> +	/* wait time : (val * .4167) us */
-> +	return rt1711h_write8(chip, RT1711H_PHYCTRL2, 62);
->  }
->  
->  static int rt1711h_set_vbus(struct tcpci *tcpci, struct tcpci_data *tdata,
-> -- 
-> 2.25.1
+> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
+> index 0aa086f9149f..3869fb7371df 100644
+> --- a/drivers/virt/gunyah/Makefile
+> +++ b/drivers/virt/gunyah/Makefile
+> @@ -1,4 +1,4 @@
+>   # SPDX-License-Identifier: GPL-2.0-only
+>   
+> -gunyah-y += sysfs.o
+> +gunyah-y += sysfs.o device.o
+>   obj-$(CONFIG_GUNYAH) += gunyah.o
+> \ No newline at end of file
 
-thanks,
+Even git-format-patch warns you that should be a newline at the end of 
+the file.
+
+> diff --git a/drivers/virt/gunyah/device.c b/drivers/virt/gunyah/device.c
+> new file mode 100644
+> index 000000000000..93595f9a65b9
+> --- /dev/null
+> +++ b/drivers/virt/gunyah/device.c
+> @@ -0,0 +1,108 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#define pr_fmt(fmt) "ghdev: " fmt
+> +
+> +#include <linux/interrupt.h>
+> +#include <linux/gunyah.h>
+> +#include <linux/device.h>
+> +#include <linux/init.h>
+> +#include <linux/slab.h>
+> +
+> +#include "gunyah_private.h"
+> +
+> +static int gunyah_match(struct device *dev, struct device_driver *drv)
+> +{
+> +	struct gunyah_device *ghdev = to_gunyah_device(dev);
+> +	struct gunyah_driver *ghdrv = to_gunyah_driver(drv);
+> +
+> +	return ghdev->type == ghdrv->type;
+> +}
+> +
+> +static int gunyah_probe(struct device *dev)
+> +{
+> +	struct gunyah_device *ghdev = to_gunyah_device(dev);
+> +	struct gunyah_driver *ghdrv = to_gunyah_driver(dev->driver);
+> +
+> +	return ghdrv->probe ? ghdrv->probe(ghdev) : 0;
+> +}
+> +
+> +static void gunyah_remove(struct device *dev)
+> +{
+> +	struct gunyah_device *ghdev = to_gunyah_device(dev);
+> +	struct gunyah_driver *ghdrv = to_gunyah_driver(dev->driver);
+> +
+> +	if (ghdrv->remove)
+> +		ghdrv->remove(ghdev);
+> +}
+> +
+> +static struct bus_type gunyah_bus = {
+> +	.name	= "gunyah",
+> +	.match	= gunyah_match,
+> +	.probe	= gunyah_probe,
+> +	.remove	= gunyah_remove,
+> +};
+> +
+> +int gunyah_register_driver(struct gunyah_driver *ghdrv)
+> +{
+> +	ghdrv->driver.bus = &gunyah_bus;
+> +	return driver_register(&ghdrv->driver);
+> +}
+> +
+> +void gunyah_unregister_driver(struct gunyah_driver *ghdrv)
+> +{
+> +	driver_unregister(&ghdrv->driver);
+> +}
+> +
+> +static void gunyah_device_release(struct device *dev)
+> +{
+> +	struct gunyah_device *ghdev = to_gunyah_device(dev);
+> +
+> +	kfree(ghdev);
+> +}
+> +
+> +struct gunyah_device *gunyah_device_alloc(struct device *parent, gh_capid_t capid, u8 type)
+> +{
+> +	struct gunyah_device *ghdev;
+> +
+> +	ghdev = kzalloc(sizeof(*ghdev), GFP_KERNEL);
+> +	if (!ghdev)
+> +		return NULL;
+> +
+> +	ghdev->capid = capid;
+> +	ghdev->type = type;
+> +	ghdev->irq = IRQ_NOTCONNECTED;
+> +	ghdev->dev.parent = parent;
+> +	ghdev->dev.release = gunyah_device_release;
+> +	ghdev->dev.bus = &gunyah_bus;
+> +	device_initialize(&ghdev->dev);
+> +	return ghdev;
+> +}
+> +
+> +int gunyah_device_add(struct gunyah_device *ghdev)
+> +{
+> +	int ret;
+> +
+> +	ret = dev_set_name(&ghdev->dev, "%u.%08llx", ghdev->type, ghdev->capid);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return device_add(&ghdev->dev);
+> +}
+
+Does your device need any additional setup between _alloc() and _add(). 
+  If not, it may be better to squash them together.
+
+> +
+> +void gunyah_device_remove(struct gunyah_device *ghdev)
+> +{
+> +	device_unregister(&ghdev->dev);
+> +}
+> +
+> +int __init gunyah_bus_init(void)
+> +{
+> +	return bus_register(&gunyah_bus);
+> +}
+> +
+> +void gunyah_bus_exit(void)
+> +{
+> +	bus_unregister(&gunyah_bus);
+> +}
+> diff --git a/drivers/virt/gunyah/gunyah_private.h b/drivers/virt/gunyah/gunyah_private.h
+> new file mode 100644
+> index 000000000000..5f3832608020
+> --- /dev/null
+> +++ b/drivers/virt/gunyah/gunyah_private.h
+> @@ -0,0 +1,12 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef _GUNYAH_PRIVATE_H
+> +#define _GUNYAH_PRIVATE_H
+> +
+> +int __init gunyah_bus_init(void);
+> +void gunyah_bus_exit(void);
+> +
+> +#endif
+> diff --git a/drivers/virt/gunyah/sysfs.c b/drivers/virt/gunyah/sysfs.c
+> index 253433a939cf..220560cb3b1c 100644
+> --- a/drivers/virt/gunyah/sysfs.c
+> +++ b/drivers/virt/gunyah/sysfs.c
+> @@ -12,6 +12,8 @@
+>   #include <linux/init.h>
+>   #include <linux/of.h>
+>   
+> +#include "gunyah_private.h"
+> +
+>   #define QC_HYP_UID0 0x19bd54bd
+>   #define QC_HYP_UID1 0x0b37571b
+>   #define QC_HYP_UID2 0x946f609b
+> @@ -67,7 +69,13 @@ static struct kobj_attribute variant_attr = __ATTR_RO(variant);
+>   
+>   static ssize_t features_show(struct kobject *kobj, struct kobj_attribute *attr, char *buffer)
+>   {
+> -	return sysfs_emit(buffer, "\n");
+> +	int len = 0;
+> +
+> +	if (GH_IDENTIFY_PARTITION_CSPACE(gunyah_api.flags))
+> +		len += sysfs_emit_at(buffer, len, "cspace ");
+
+How is this related to Linux gunyah bus implementation? Please move to 
+the sysfs patch.
+
+> +
+> +	len += sysfs_emit_at(buffer, len, "\n");
+> +	return len;
+>   }
+>   static struct kobj_attribute features_attr = __ATTR_RO(features);
+>   
+> @@ -105,6 +113,7 @@ static void gh_sysfs_unregister(void)
+>   
+>   static int __init gunyah_init(void)
+>   {
+> +	int ret;
+>   	unsigned long uid[4];
+>   
+>   	arch_gh_hypercall(GH_HYPERCALL_CALL_UID, 0, uid[0], uid[1], uid[2], uid[3]);
+> @@ -125,12 +134,24 @@ static int __init gunyah_init(void)
+>   		  GH_API_INFO_API_VERSION(gunyah_api.api_info),
+>   		  GH_API_INFO_VARIANT(gunyah_api.api_info));
+>   
+> -	return gh_sysfs_register();
+> +	ret = gh_sysfs_register();
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = gunyah_bus_init();
+> +	if (ret)
+> +		goto err_sysfs;
+> +
+> +	return ret;
+> +err_sysfs:
+> +	gh_sysfs_unregister();
+> +	return ret;
+>   }
+>   module_init(gunyah_init);
+>   
+>   static void __exit gunyah_exit(void)
+>   {
+> +	gunyah_bus_exit();
+>   	gh_sysfs_unregister();
+>   }
+>   module_exit(gunyah_exit);
+> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
+> index 69931a0f5736..ce35f4491773 100644
+> --- a/include/linux/gunyah.h
+> +++ b/include/linux/gunyah.h
+> @@ -6,6 +6,7 @@
+>   #ifndef _GUNYAH_H
+>   #define _GUNYAH_H
+>   
+> +#include <linux/device.h>
+>   #include <linux/types.h>
+>   #include <linux/errno.h>
+>   #include <asm/gunyah.h>
+> @@ -72,4 +73,48 @@ static inline int gh_remap_error(int gh_error)
+>   	}
+>   }
+>   
+> +/* Follows resource manager's resource types for VM_GET_HYP_RESOURCES */
+> +#define GUNYAH_DEVICE_TYPE_BELL_TX	0
+> +#define GUNYAH_DEVICE_TYPE_BELL_RX	1
+> +#define GUNYAH_DEVICE_TYPE_MSGQ_TX	2
+> +#define GUNYAH_DEVICE_TYPE_MSGQ_RX	3
+> +#define GUNYAH_DEVICE_TYPE_VCPU		4
+> +
+> +struct gunyah_device {
+> +	u8 type;
+> +	gh_capid_t capid;
+> +	int irq;
+> +
+> +	struct device dev;
+> +};
+> +
+> +#define to_gunyah_device(dev) container_of(dev, struct gunyah_device, dev)
+> +
+> +static inline void *ghdev_get_drvdata(const struct gunyah_device *ghdev)
+> +{
+> +	return dev_get_drvdata(&ghdev->dev);
+> +}
+> +
+> +static inline void ghdev_set_drvdata(struct gunyah_device *ghdev, void *data)
+> +{
+> +	dev_set_drvdata(&ghdev->dev, data);
+> +}
+> +
+> +struct gunyah_device *gunyah_device_alloc(struct device *parent, gh_capid_t capid, u8 type);
+> +
+> +int gunyah_device_add(struct gunyah_device *ghdev);
+> +void gunyah_device_remove(struct gunyah_device *ghdev);
+> +
+> +struct gunyah_driver {
+> +	struct device_driver driver;
+> +	u8 type;
+> +	int (*probe)(struct gunyah_device *ghdev);
+> +	int (*remove)(struct gunyah_device *ghdev);
+> +};
+> +
+> +#define to_gunyah_driver(drv) container_of(drv, struct gunyah_driver, driver)
+> +
+> +int gunyah_register_driver(struct gunyah_driver *ghdrv);
+> +void gunyah_unregister_driver(struct gunyah_driver *ghdrv);
+> +
+>   #endif
+
 
 -- 
-heikki
+With best wishes
+Dmitry
