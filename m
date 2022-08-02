@@ -2,134 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD55D587762
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF45258776E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 09:06:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233654AbiHBHCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 03:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43772 "EHLO
+        id S233779AbiHBHGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 03:06:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231442AbiHBHCp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:02:45 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810461EC73
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 00:02:44 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id t1so20627789lft.8
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 00:02:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=/ySHTyzeX/H7MclcVdbanxVutrzYknZPMky5Ufc/cco=;
-        b=ILkBFGqDuBCm81NrzjcIfk8v3fifksnPm3jgAYKIm1BAm3lRuNREbalAI0fcXnz7IF
-         JrlZx82CDX0uqldmBtxSkHAwRsYgW/DoTJ/9BnUGVTwk73vx/GRAjghPbY6AEzGREj79
-         pPIip6BBlJqM7gCDwLMRFLhCfHfXauIlXdJPxY2PCV0z9Zl7M74xX4hH8FFsT5d/GTS7
-         2fkW1xVwAX6Da7nQgCrqpe1Kp1UGxmIb417ZoswTZ2HUNFKYLNARs8l3WNnR6TdiOMfo
-         G2UhGeT2lPVHtLKb0qRt3SLBhgiVVcQhbu2mu/2+M5KSR5xECr+ASZdEJnmTtlWyhaS3
-         wqsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=/ySHTyzeX/H7MclcVdbanxVutrzYknZPMky5Ufc/cco=;
-        b=TVzbnAU3Aq4bfHGCmpNJtmugROR6bwjvpcajLgu/+IqoasLuOjmhXoXAyxar3EIM/S
-         5CgVP5fC7L6DkaCzLpmtYdEksy3Cd2m8u3OXZ4WBfHfyPdvXJ8WrQF5vUJ3MHQlJWHUr
-         ruTOXaYFOwaYLs+OoyPLajZ7LcHI9v3SEo8kWec13qy/MYH/3uq8o0gGo+888yFoE22+
-         nVcM/T8MauGKxw7lfVg6dgN1tcy6/4JiY8eoICpAfqAd8Qtu8/X9aTa05rJsVMsbO1dO
-         yPuBEUzFfBjQzvYQG2TJ1S3UGv/YibZJsOApC2sSy5fiTSgb1QCYHukvERtjeJh3XPrl
-         JItw==
-X-Gm-Message-State: ACgBeo002978fUwgHAhrXaMN8wy8fawmsN4oUw0hGFVQFHd7geRcDaiL
-        5eV9KWlwMnZjTyBsBbsojy2Ifg==
-X-Google-Smtp-Source: AA6agR4N7si8u20TMih2xTB+Z2+BSt/eBM4OC4TX8ZhEGP1kPVnVDh9g8o9nA0BSsYDSlm57b6YqfQ==
-X-Received: by 2002:a05:6512:3d8f:b0:48b:12f3:c9c7 with SMTP id k15-20020a0565123d8f00b0048b12f3c9c7mr161931lfv.23.1659423762780;
-        Tue, 02 Aug 2022 00:02:42 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id i17-20020a056512341100b0048a7fa5bff1sm1085463lfr.248.2022.08.02.00.02.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 00:02:42 -0700 (PDT)
-Message-ID: <34ae275e-8d4c-3735-c08c-4769caf2909c@linaro.org>
-Date:   Tue, 2 Aug 2022 10:02:41 +0300
+        with ESMTP id S232817AbiHBHGE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 03:06:04 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 636D9B1E1;
+        Tue,  2 Aug 2022 00:06:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1659423962; x=1690959962;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=4uKslXInd/LYsZkf3rMu4R9j6IPobKre4A/4EBr2oP4=;
+  b=WNkiDPnLjTkIyJX5nfX/S7QOHWZYF2bq2NuhVlqBUT1tp/UQG8XU4T8W
+   gDuMmiA9cFJrBO3nImB7M0SmZJ2qNssDhZ7WLkEoEjbnvySBKmTuHzfbL
+   oJkjsTCa9ww0L1tqJuLo7N/fi7sjJjMujPFVyYhNLBFGedXoC3g1scA2U
+   XOetq25LCVYFVAIDgYcdo2HMpygkNscew/RiJLMQJXGCRV5WMlnS0DtmB
+   WEzS5zCXpwHd44LyxYJjGON3hhaAd9TTguxF1nOZ/WVRkvN+s1HrhxEkU
+   VwU+WpakpYDDUDMNJzb2WrzJEPbhrt/cqyeXQgdECFNctqm/BpvNclhsm
+   g==;
+X-IronPort-AV: E=Sophos;i="5.93,210,1654585200"; 
+   d="scan'208";a="174531286"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Aug 2022 00:06:02 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 2 Aug 2022 00:06:00 -0700
+Received: from microchip-OptiPlex-5040.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.28 via Frontend Transport; Tue, 2 Aug 2022 00:05:57 -0700
+From:   Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor.dooley@microchip.com>
+CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>
+Subject: [PATCH v2 0/3] Add support for Microchip QSPI controller
+Date:   Tue, 2 Aug 2022 12:35:15 +0530
+Message-ID: <20220802070518.855951-1-nagasuresh.relli@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH 0/5] clk/qcom: Support gdsc collapse polling using 'reset'
- inteface
-Content-Language: en-GB
-To:     Akhil P Oommen <quic_akhilpo@quicinc.com>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        Rob Clark <robdclark@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1659172664-10345-1-git-send-email-quic_akhilpo@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1659172664-10345-1-git-send-email-quic_akhilpo@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/07/2022 12:17, Akhil P Oommen wrote:
-> 
-> Some clients like adreno gpu driver would like to ensure that its gdsc
-> is collapsed at hardware during a gpu reset sequence. This is because it
-> has a votable gdsc which could be ON due to a vote from another subsystem
-> like tz, hyp etc or due to an internal hardware signal.
+This patch enables the Microchip's FPGA QSPI and Polarfire SoC QSPI
+controller support.
 
-If this is votable, do we have any guarantee that the gdsc will collapse 
-at all? How can we proceed if it did not collapse?
+Tested spi-nand (W25N01GV) and spi-nor (MT25QL256A) on Microchip's
+ICICLE kit. tested using both FPGA QSPI and Polarfie SoC QSPI.
 
-> To allow
-> this, gpucc driver can expose an interface to the client driver using
-> reset framework. Using this the client driver can trigger a polling within
-> the gdsc driver.
+changes in v2
+------------
+1. Replaced spi_alloc_master() with devm_spi_alloc_master()
+2. Used dev_err_probe() when devm_spi_alloc_master() fails.
+3. Added shared IRQ flag in the interrupt registration.
+4. Updated the dt_bindings so that there is a differentiation
+   between FPGA QSPI IP core and hard QSPI IP core.
+5. Updated the MAINTAINERS file.
 
-Trigger the polling made me think initially that we will actually 
-trigger something in the HW. Instead the client uses reset framework to 
-poll for the gdsc to be reset.
+Naga Sureshkumar Relli (3):
+  spi: dt-binding: add Microchip CoreQSPI compatible
+  spi: microchip-core-qspi: Add support for microchip fpga qspi
+    controllers
+  MAINTAINERS: add qspi to Polarfire SoC entry
 
-> 
-> This series is rebased on top of linus's master branch.
-> 
-> Related discussion: https://patchwork.freedesktop.org/patch/493144/
-> 
-> 
-> Akhil P Oommen (5):
->    dt-bindings: clk: qcom: Support gpu cx gdsc reset
->    clk: qcom: Allow custom reset ops
->    clk: qcom: gpucc-sc7280: Add cx collapse reset support
->    clk: qcom: gdsc: Add a reset op to poll gdsc collapse
->    arm64: dts: qcom: sc7280: Add Reset support for gpu
-> 
->   arch/arm64/boot/dts/qcom/sc7280.dtsi          |  3 +++
->   drivers/clk/qcom/gdsc.c                       | 23 +++++++++++++++++++----
->   drivers/clk/qcom/gdsc.h                       |  7 +++++++
->   drivers/clk/qcom/gpucc-sc7280.c               |  6 ++++++
->   drivers/clk/qcom/reset.c                      |  6 ++++++
->   drivers/clk/qcom/reset.h                      |  2 ++
->   include/dt-bindings/clock/qcom,gpucc-sc7280.h |  3 +++
->   7 files changed, 46 insertions(+), 4 deletions(-)
-> 
-
+ .../bindings/spi/microchip,mpfs-spi.yaml      |  12 +-
+ MAINTAINERS                                   |   1 +
+ drivers/spi/Kconfig                           |   9 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-microchip-core-qspi.c         | 609 ++++++++++++++++++
+ 5 files changed, 629 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/spi/spi-microchip-core-qspi.c
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
