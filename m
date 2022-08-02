@@ -2,84 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE58258769D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 07:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C6795876B1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 07:32:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233136AbiHBFV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 01:21:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40812 "EHLO
+        id S235447AbiHBFcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 01:32:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbiHBFV5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 01:21:57 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D4251AF2B;
-        Mon,  1 Aug 2022 22:21:56 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id e12so7346014qkl.2;
-        Mon, 01 Aug 2022 22:21:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=k7svTWijbOHvAesQ0w5EVWAjAc0X5sP2sPoMjwLsgKk=;
-        b=AyTNojgznH7RvlKYPmau0BCzz169o8wYWqsBn70HAoMPN8/aWJyvyGTo7o9KwH39UJ
-         0gr45C5VdX3nfPmG8K2FrQI1P8eF0o9QKW74VigdEzcpf8lI3otJyy+S2xn/mgTJW2n0
-         arFvEWVQ02Zb6aTtoxL8JkFFSuawp7y4s8/QN2QsA1jSUwpTASFnNE+EidYMbIwGYZtE
-         0TO/suv5+trjuqnS0zt58hvnXM27egXlgTVG/n3A9vEvP1L+qggHySmw6tyjZmQFhihD
-         FWsZj5vVxR2Lyth2gC0lz/DLu4isYxtvHQRW3JwHSiH/ACfii+q8enQe86ldVe+mMyY7
-         uIgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=k7svTWijbOHvAesQ0w5EVWAjAc0X5sP2sPoMjwLsgKk=;
-        b=LRi2D2wB690LDbYfSbFKi41zoKGCid3j4DuLnbnlOneHIcCNgOURflaKzzs+an9RIa
-         HdNPU9BwLLavmLDtmFSSs167CMKp+kHUzdLRhbEqfVyCkmnt8B0qadX50IPxxVkOsEP/
-         EM1SVe6mr/EBhT6SjPh2UOBs6DySXDO92UfdVLo/Jex+e7QGxXxmnt6lQIZu0WALOm/K
-         6suaHRKlZ6poIfdeP5R79wt/A6o3IAc9yozxVqUcMI7cQcmA13eeEDDINcFKEAxGCe/L
-         wYiKoCJKdK3YsIGZ3j8fwjptvG5sBxR77QCvBMqVSClhANC0eMo2L/M/Q2A+KuZmj8dD
-         L6mA==
-X-Gm-Message-State: AJIora9m6Eb4JackTT1jT4qeWjxQ4TLAVqOdSPvRrFqujGmFaLb5JhMf
-        KoAwA+dytp38dgFW3/TjvAY=
-X-Google-Smtp-Source: AGRyM1vS/GqkW//9PDrWhcECfukLSsdFSrfigwfHztLWyzDXNbSWOeiZMRi07ZNo+/CfK63V6qP4JQ==
-X-Received: by 2002:a05:620a:28c8:b0:6b5:e327:3358 with SMTP id l8-20020a05620a28c800b006b5e3273358mr13807751qkp.365.1659417715563;
-        Mon, 01 Aug 2022 22:21:55 -0700 (PDT)
-Received: from ?IPV6:2600:4040:2036:c00:8cba:859f:2aeb:cce8? ([2600:4040:2036:c00:8cba:859f:2aeb:cce8])
-        by smtp.gmail.com with ESMTPSA id bz24-20020a05622a1e9800b003051ea4e7f6sm8377507qtb.48.2022.08.01.22.21.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Aug 2022 22:21:55 -0700 (PDT)
-Message-ID: <cbccc7c3-a45e-43d0-50d9-55776579afa1@gmail.com>
-Date:   Tue, 2 Aug 2022 01:21:54 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 2/3] ARM: dts: qcom: msm8960: add the device node of
- USB1
-Content-Language: en-US
-To:     Shinjo Park <peremen@gmail.com>
-Cc:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233023AbiHBFcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 01:32:21 -0400
+Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982671E3C2;
+        Mon,  1 Aug 2022 22:32:20 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id 8B42832002FB;
+        Tue,  2 Aug 2022 01:32:16 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Tue, 02 Aug 2022 01:32:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm1; t=1659418336; x=1659504736; bh=Ge7j60aibO5Z3y1t3igfL1XiH
+        vVASWRdGw8tdLd4ALc=; b=DqN9XOld1FRNUaNogihvjIjp+3hRdExCCEr20meH/
+        y7xjWi2mTic18LDU6jJ+rO3hx1t9RxJkAjK9aRQvIYeTlT66yKaiZPoCnbBH1bI0
+        4syLc+ds5zNTBSc2b6VjO3ohqD2/g6ZG2+kzuF/R2hdh+Z4JpXlIh9BPhSM7muwt
+        Vh/N1H9xYI9QtRTLu00JwzPbJ6bqCmKtKTlbPb+dsoZA0V5flhwkV5gy+4DQ9WSU
+        XIDcJEgyZyG/sKFxLbc83cw4nbCYiNnhT88gFu5dmEilNpW65iE1zEiLG85d+h8f
+        PyfdNd5MUtQPHErnUbE2tWrtZNsYH+q/xtiPEq0y7FKHQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+        1659418336; x=1659504736; bh=Ge7j60aibO5Z3y1t3igfL1XiHvVASWRdGw8
+        tdLd4ALc=; b=CWo9eJtmJMI7y7XwTQWQvRbspJcOEdc63kMzDpevPy7yUT0Ituo
+        cKWrTlu25+72m7F/59cmbsGZYvFYufYuNTZFh07oWvIyNerRv3w/GCp8iBQo0JEk
+        eKX142ikBnyhlHJgzmU+MpB1o1mFrNIs6iKsRHXYdPLdDRHvxRBxRbttFqAZ8DBb
+        zaFEAZcLCvq8FqtFTUO94HEExPw3zp3Y9KCWnDrqwJjED2/ZOa65t06z207QUPcv
+        zoSjuohrRd4BjCHJ3STA3RFQuturO4DpPJnjouTRhhmIDhgSP51x8yBZSg+zUSM5
+        F192WXpctQd2hP4WCO0KLFdgOh7CudUuM/w==
+X-ME-Sender: <xms:37boYqapY6ExKOM3vGG7b2TaI-iUYrf4FrbuDqwLxehLWH_bfFxiBQ>
+    <xme:37boYtZ72OL6DoLY4o2cbp5C2ZJeyIPgRoXIjxOqa5AbjliqqCEWPWu-eZmONrHbY
+    qpMeEoW_nGIi5-7xw>
+X-ME-Received: <xmr:37boYk9WF8r6zC-oh8vniP6ju-n96FJUfWoRMpzoWivgOIVU35445lNQ-9R6Q6f3D9NJ4-qrekfbxGaUZslpqokUdew5cHqwloAhIvla7qmG1vpCTTGlP2eI7JAEJBCtcCTErA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvddvgedgleejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
+    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
+    grthhtvghrnhepkeevlefhjeeuleeltedvjedvfeefteegleehueejffehgffffeekhefh
+    hfekkeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:37boYsolMlsbb02QTwRZwJhlZANqwj-RHUqWAqDdotGBvx359aRRdA>
+    <xmx:37boYlpXySBpSEI9AoRsP937PTncnjLh2KTrT5gHbDz8Hsjedxqm_g>
+    <xmx:37boYqSpE-6gfrEx8p6xMRRkJz1cQdA12IXS72zoxWps7V-8lE-b5A>
+    <xmx:4LboYih0_MpCEIFzzEaLlpp9FxBQJ8l3u6PS7RaiHBn7kaelqcuaVQ>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 2 Aug 2022 01:32:15 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <76ed8999-c211-f8ea-c70c-21fddd75a896@linaro.org>
- <20220730081412.14297-1-peremen@gmail.com>
-From:   Rudraksha Gupta <guptarud@gmail.com>
-In-Reply-To: <20220730081412.14297-1-peremen@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: [PATCH v2 0/4] regulator: Add support for Allwinner D1 LDOs
+Date:   Tue,  2 Aug 2022 00:32:09 -0500
+Message-Id: <20220802053213.3645-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- > #include <dt-bindings/clock/qcom,lcc-msm8960.h>
-Does not apply cleanly to mainline. Please include the above
+This series adds bindings and a driver for the two pairs of LDOs
+inside the Allwinner D1 SoC.
+
+A preparatory binding and driver change is required for the SRAM
+controller, so the regulators device can be its child node.
+
+Changes in v2:
+ - Remove syscon property from bindings
+ - Update binding examples to fix warnings and provide context
+ - Use decimal numbers for .n_voltages instead of field widths
+ - Get the regmap from the parent device instead of a property/phandle
+
+Samuel Holland (4):
+  dt-bindings: sram: sunxi-sram: Add optional regulators child
+  soc: sunxi: sram: Only iterate over SRAM children
+  regulator: dt-bindings: Add Allwinner D1 LDOs
+  regulator: sun20i: Add support for Allwinner D1 LDOs
+
+ .../allwinner,sun20i-d1-analog-ldos.yaml      |  65 +++++
+ .../allwinner,sun20i-d1-system-ldos.yaml      |  57 +++++
+ .../allwinner,sun4i-a10-system-control.yaml   |   3 +
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/sun20i-regulator.c          | 232 ++++++++++++++++++
+ drivers/soc/sunxi/sunxi_sram.c                |   3 +
+ 7 files changed, 369 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
+ create mode 100644 drivers/regulator/sun20i-regulator.c
+
+-- 
+2.35.1
+
