@@ -2,74 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B075878B7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:08:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0584C5878D0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 10:15:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236372AbiHBII3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 04:08:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47502 "EHLO
+        id S236277AbiHBIO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 04:14:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236323AbiHBII2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:08:28 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2666B17AAF
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:08:27 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id c17so2348384lfb.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:08:27 -0700 (PDT)
+        with ESMTP id S235685AbiHBIO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 04:14:57 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D108F43324
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 01:14:55 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id u1so10613856lfq.4
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 01:14:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=HsSHGNI5OACJwEWXjbDzjjqUsgJ2e/s83LTa6i8r0GI=;
-        b=x9+2qf4ZdKgMTZvBEcj6p1uz8yxPF/KbiP41BT7UBm02nqoaQcV08jWKe5qCE5a4K9
-         iRJ5Hx81rBXLs+eFmpXM02R8pj7Qi5ER5uGEzFauqq8zbP5hI/jNqXErDS2fDjRL3ELA
-         QdJuzdGI0AFGk7ylTyPLFuYEjpV86+tZ82bjBTnaAWNeUUTPJJDeDSJ41K6C9ejCkaSZ
-         JWp3D+OdgZTQki8hyYRZSyyEpbanEwNIHYq2WjRtFa6bUJfeQkaLu3Krk9AACkRYFuoh
-         3HpZ9ksUHPAn8tEWjWh4V0lcJ+ivfWefHK9lslCDHJb3wrGIADIufBGDDIQEMeK4etVO
-         GLlg==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=fDKHzStqwE8eIXBM4f+u8+RdNbxNddDZ81aivSoVp54=;
+        b=gZpaRd7jntGCuWBcsGd6pfaPnrjzQLicCg6LgfIiPt7uz3cx7DlupYbkJte6Ju/35a
+         hThojpJMCm+IxTXCTgROh/SFMKbGRkXW1FsjQEi2yqgH7lbIUyJnYsIONqmHpSnnWuRE
+         Gdxme83/rGL1yn0aRsb7zjJK6Q4gVKuKcZOo/NhD2xCfPgQzqX1Ez96MJvQSf7RwPkbb
+         grAy1wfBACsTWaWiUQZWocm6QEwhIaFsT5COaXujkm0wbGr3APKs2+uPGojxsiQWKKgB
+         OJMlaDOrs4yHrmv0bPfIXwWGGSiWheamSj4A0UR2ksK/FmoWBrLfTM2xHd0q+Usm6Uk/
+         UrbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=HsSHGNI5OACJwEWXjbDzjjqUsgJ2e/s83LTa6i8r0GI=;
-        b=3iYvyybUwmQR+DhgcVxsoIFXAsoUDmMVS+nKt86/zWAPQyeKJl1fN6EOcrCt1SRF84
-         8XazasHdCbZlj81EY063+QF6Nq/CgQjIQarB8TmtBxLBb9SfLPrnCwxpCuP6UQzs9sO5
-         pOEtRjIpByudDmS0J2bt3I1QyOGZuxjbpGwdkEV6xgTeoRAcK11Tt5t05WxTUI9/HZTJ
-         gX7eFiD5jyE9eFy1uR2PVUrI7LBi4Z0BxeSYfy/uT3BN6STdg7dLBJ5tdzdcjRBB7Bev
-         HXMeFq4fBeLdFpms4Zj+HgwHmAU+LPeFT3El9u0La8+aExdN0U27zwWEVQN0FiZAbV5G
-         YWow==
-X-Gm-Message-State: ACgBeo3FMdjugVwgLBefxDwEJDbAAtcqbWjppcxdh06efIIAuBWjaixc
-        ThWxxQ5oGO9xocWfrnpqOC3FBA==
-X-Google-Smtp-Source: AA6agR6fhg7bVDtnj6MaImLAqneEW0TB3bldN3JTZEOELsJkGM35fAWCQzptDK4wcs1ivPOsQuqJbg==
-X-Received: by 2002:a05:6512:3609:b0:48a:ef9f:9465 with SMTP id f9-20020a056512360900b0048aef9f9465mr4871576lfs.115.1659427705492;
-        Tue, 02 Aug 2022 01:08:25 -0700 (PDT)
-Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id f16-20020a056512361000b0048af4dc964asm894454lfs.73.2022.08.02.01.08.24
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=fDKHzStqwE8eIXBM4f+u8+RdNbxNddDZ81aivSoVp54=;
+        b=oR2BMxwEpWHwyqn7jJGR24sOux+PKjqJp7eOnpF6pPiv3ybYUAbJdPx+tqbVaObxah
+         6HwAmR9V+m2DO0O62F1rBbt3MaZ2EtQLwh/fE+JGplV3oARe7EePIMw7gEvX466obpx8
+         OMsZM5qHm/nGBsNKzryTZt6sD8bLshqlh8XdGApvHiuT6q5b0cMnZMlZ+qT4tdkbmIub
+         t2byWHxp65IbAY5S/xehzxF+4xqHLG3MaU+kn0JexqJJU6X64hTOWBMgwL6U3BTtCKoe
+         jXmC+DcvuyxT9Ed+wAnqn3/gFZOAZq24h3nIgRmsYJB4Me5J7JeUcyM8tjS0baxDY45f
+         zdgQ==
+X-Gm-Message-State: AJIora9+fl7yGJCvBoKKrubsf4AeroHFjRT1Ylv+9azvAr8K0zbg4DwP
+        h/PkDOaFaJkDLrFH/t5nqH9UWw==
+X-Google-Smtp-Source: AGRyM1vfwcW1yHGoprxTUyquFQQVttNzXpLFYJZLSVNhWKRQzqRT3PrBm3aNRegnk4UDAiZtMsQz7g==
+X-Received: by 2002:a19:7902:0:b0:48a:6872:68ab with SMTP id u2-20020a197902000000b0048a687268abmr6539769lfc.626.1659428094123;
+        Tue, 02 Aug 2022 01:14:54 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id bq30-20020a056512151e00b00489e812f05asm2026474lfb.21.2022.08.02.01.14.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 01:08:25 -0700 (PDT)
-Message-ID: <995fbb2b-2b34-d407-6bfd-4798de2251d7@linaro.org>
-Date:   Tue, 2 Aug 2022 10:08:23 +0200
+        Tue, 02 Aug 2022 01:14:53 -0700 (PDT)
+Message-ID: <250945d2-3940-9830-63e5-beec5f44010b@linaro.org>
+Date:   Tue, 2 Aug 2022 11:14:53 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 2/2] dt-bindings: gce: add gce header file for mt8188
-Content-Language: en-US
-To:     Elvis Wang <Elvis.Wang@mediatek.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
+ Thunderbird/91.10.0
+Subject: Re: [PATCH v2 07/11] gunyah: msgq: Add Gunyah message queues
+Content-Language: en-GB
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        CK Hu <ck.hu@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220729084319.6880-1-Elvis.Wang@mediatek.com>
- <20220729084319.6880-3-Elvis.Wang@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220729084319.6880-3-Elvis.Wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20220801211240.597859-1-quic_eberman@quicinc.com>
+ <20220801211240.597859-8-quic_eberman@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220801211240.597859-8-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -80,100 +89,403 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/07/2022 10:43, Elvis Wang wrote:
-> Add gce header file to define the gce subsys id, hardware event id and
-> constant for mt8188.
+On 02/08/2022 00:12, Elliot Berman wrote:
+> Gunyah message queues are unidirectional pipelines to communicate
+> between 2 virtual machines, but are typically paired to allow
+> bidirectional communication. The intended use case is for small control
+> messages between 2 VMs, as they support a maximum of 240 bytes.
 > 
-> Signed-off-by: Elvis Wang <Elvis.Wang@mediatek.com>
+> Message queues can be discovered either by resource manager or on the
+> devicetree. To support discovery on the devicetree, client drivers can
+
+devicetree and discovery do not quite match to me. The device is delared 
+in the DT, not discovered.
+
+> use gh_msgq_platform_host_attach to allocate the tx and rx message
+> queues according to
+> Documentation/devicetree/bindings/gunyah/qcom,hypervisor.yml.
+
+-ENOSUCHFILE
+
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 > ---
->  include/dt-bindings/gce/mt8188-gce.h | 1079 ++++++++++++++++++++++++++
->  1 file changed, 1079 insertions(+)
->  create mode 100644 include/dt-bindings/gce/mt8188-gce.h
+>   arch/arm64/include/asm/gunyah.h      |   4 +
+>   drivers/virt/gunyah/Makefile         |   2 +-
+>   drivers/virt/gunyah/gunyah_private.h |   3 +
+>   drivers/virt/gunyah/msgq.c           | 223 +++++++++++++++++++++++++++
+>   drivers/virt/gunyah/sysfs.c          |   9 ++
+>   include/linux/gunyah.h               |  13 ++
+>   6 files changed, 253 insertions(+), 1 deletion(-)
+>   create mode 100644 drivers/virt/gunyah/msgq.c
 > 
-> diff --git a/include/dt-bindings/gce/mt8188-gce.h b/include/dt-bindings/gce/mt8188-gce.h
+> diff --git a/arch/arm64/include/asm/gunyah.h b/arch/arm64/include/asm/gunyah.h
+> index 3aee35009910..ba7398bd851b 100644
+> --- a/arch/arm64/include/asm/gunyah.h
+> +++ b/arch/arm64/include/asm/gunyah.h
+> @@ -27,6 +27,10 @@
+>   							| ((fn) & GH_CALL_FUNCTION_NUM_MASK))
+>   
+>   #define GH_HYPERCALL_HYP_IDENTIFY		GH_HYPERCALL(0x0000)
+> +#define GH_HYPERCALL_MSGQ_SEND			GH_HYPERCALL(0x001B)
+> +#define GH_HYPERCALL_MSGQ_RECV			GH_HYPERCALL(0x001C)
+> +
+> +#define GH_HYPERCALL_MSGQ_SEND_FLAGS_PUSH	BIT(0)
+>   
+>   #define ___gh_count_args(_0, _1, _2, _3, _4, _5, _6, _7, _8, x, ...) x
+>   
+> diff --git a/drivers/virt/gunyah/Makefile b/drivers/virt/gunyah/Makefile
+> index 3869fb7371df..94dc8e738911 100644
+> --- a/drivers/virt/gunyah/Makefile
+> +++ b/drivers/virt/gunyah/Makefile
+> @@ -1,4 +1,4 @@
+>   # SPDX-License-Identifier: GPL-2.0-only
+>   
+> -gunyah-y += sysfs.o device.o
+> +gunyah-y += sysfs.o device.o msgq.o
+>   obj-$(CONFIG_GUNYAH) += gunyah.o
+> \ No newline at end of file
+
+Newline
+
+> diff --git a/drivers/virt/gunyah/gunyah_private.h b/drivers/virt/gunyah/gunyah_private.h
+> index 5f3832608020..2ade32bd9bdf 100644
+> --- a/drivers/virt/gunyah/gunyah_private.h
+> +++ b/drivers/virt/gunyah/gunyah_private.h
+> @@ -9,4 +9,7 @@
+>   int __init gunyah_bus_init(void);
+>   void gunyah_bus_exit(void);
+>   
+> +int __init gh_msgq_init(void);
+> +void gh_msgq_exit(void);
+> +
+>   #endif
+> diff --git a/drivers/virt/gunyah/msgq.c b/drivers/virt/gunyah/msgq.c
 > new file mode 100644
-> index 000000000000..b15e965fe671
+> index 000000000000..afc2572d3e7d
 > --- /dev/null
-> +++ b/include/dt-bindings/gce/mt8188-gce.h
-
-Use vendor in filename, so mediatek,mt8188-gce.h
-
-> @@ -0,0 +1,1079 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-
-Dual license.
-
+> +++ b/drivers/virt/gunyah/msgq.c
+> @@ -0,0 +1,223 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
 > +/*
-> + * Copyright (c) 2018 MediaTek Inc.
+> + * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/interrupt.h>
+> +#include <linux/gunyah.h>
+> +#include <linux/module.h>
+> +#include <linux/printk.h>
+> +#include <linux/init.h>
+> +#include <linux/slab.h>
+> +#include <linux/wait.h>
+> +
+> +#include "gunyah_private.h"
+> +
+> +struct gh_msgq {
+> +	bool ready;
+> +	wait_queue_head_t wq;
+> +	spinlock_t lock;
+> +};
+> +
+> +static irqreturn_t gh_msgq_irq_handler(int irq, void *dev)
+> +{
+> +	struct gh_msgq *msgq = dev;
+> +
+> +	spin_lock(&msgq->lock);
+> +	msgq->ready = true;
+> +	spin_unlock(&msgq->lock);
+> +	wake_up_interruptible_all(&msgq->wq);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int __gh_msgq_send(struct gunyah_device *ghdev, void *buff, size_t size, u64 tx_flags)
+> +{
+> +	unsigned long flags, gh_error;
+> +	struct gh_msgq *msgq = ghdev_get_drvdata(ghdev);
+> +	ssize_t ret;
+> +	bool ready;
+> +
+> +	spin_lock_irqsave(&msgq->lock, flags);
+> +	arch_gh_hypercall(GH_HYPERCALL_MSGQ_SEND, 5,
+> +			  ghdev->capid, size, (uintptr_t)buff, tx_flags, 0,
+> +			  gh_error, ready);
+> +	switch (gh_error) {
+> +	case GH_ERROR_OK:
+> +		ret = 0;
+> +		msgq->ready = ready;
+> +		break;
+> +	case GH_ERROR_MSGQUEUE_FULL:
+> +		ret = -EAGAIN;
+> +		msgq->ready = false;
+> +		break;
+> +	default:
+> +		ret = gh_remap_error(gh_error);
+> +		break;
+> +	}
+> +	spin_unlock_irqrestore(&msgq->lock, flags);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * gh_msgq_send() - Send a message to the client running on a different VM
+> + * @client: The client descriptor that was obtained via gh_msgq_register()
+> + * @buff: Pointer to the buffer where the received data must be placed
+> + * @buff_size: The size of the buffer space available
+> + * @flags: Optional flags to pass to receive the data. For the list of flags,
+> + *         see linux/gunyah/gh_msgq.h
 > + *
+> + * Returns: The number of bytes copied to buff. <0 if there was an error.
+> + *
+> + * Note: this function may sleep and should not be called from interrupt context
 > + */
-> +#ifndef _DT_BINDINGS_GCE_MT8188_H
-> +#define _DT_BINDINGS_GCE_MT8188_H
+> +ssize_t gh_msgq_send(struct gunyah_device *ghdev, void *buff, size_t size,
+> +		     const unsigned long flags)
+> +{
+> +	struct gh_msgq *msgq = ghdev_get_drvdata(ghdev);
+> +	ssize_t ret;
+> +	u64 tx_flags = 0;
 > +
-> +/* assign timeout 0 also means default */
-> +#define CMDQ_NO_TIMEOUT		0xffffffff
-> +#define CMDQ_TIMEOUT_DEFAULT	1000
-
-How CMDQ_TIMEOUT_DEFAULT is part of bindings? How is it related to bindings?
-
+> +	if (flags & GH_MSGQ_TX_PUSH)
+> +		tx_flags |= GH_HYPERCALL_MSGQ_SEND_FLAGS_PUSH;
 > +
-> +/* GCE thread priority */
-> +#define CMDQ_THR_PRIO_LOWEST	0
-> +#define CMDQ_THR_PRIO_1		1
-> +#define CMDQ_THR_PRIO_2		2
-> +#define CMDQ_THR_PRIO_3		3
-> +#define CMDQ_THR_PRIO_4		4
-> +#define CMDQ_THR_PRIO_5		5
-> +#define CMDQ_THR_PRIO_6		6
-> +#define CMDQ_THR_PRIO_HIGHEST	7
+> +	do {
+> +		ret = __gh_msgq_send(ghdev, buff, size, tx_flags);
 > +
-> +/* CPR count in 32bit register */
-> +#define GCE_CPR_COUNT		1312
+> +		if (ret == -EAGAIN) {
+> +			if (flags & GH_MSGQ_NONBLOCK)
+> +				goto out;
+> +			if (wait_event_interruptible(msgq->wq, msgq->ready))
+> +				ret = -ERESTARTSYS;
+> +		}
+> +	} while (ret == -EAGAIN);
 
-No register values in the bindings.
-
-
+Any limit on the amount of retries? Can the driver wait forever here?
 
 > +
-> +/* GCE subsys table */
-> +#define SUBSYS_1400XXXX		0
-> +#define SUBSYS_1401XXXX		1
-> +#define SUBSYS_1402XXXX		2
-> +#define SUBSYS_1c00XXXX		3
-> +#define SUBSYS_1c01XXXX		4
-> +#define SUBSYS_1c02XXXX		5
-> +#define SUBSYS_1c10XXXX		6
-> +#define SUBSYS_1c11XXXX		7
-> +#define SUBSYS_1c12XXXX		8
-> +#define SUBSYS_14f0XXXX		9
-> +#define SUBSYS_14f1XXXX		10
-> +#define SUBSYS_14f2XXXX		11
-> +#define SUBSYS_1800XXXX		12
-> +#define SUBSYS_1801XXXX		13
-> +#define SUBSYS_1802XXXX		14
-> +#define SUBSYS_1803XXXX		15
-> +#define SUBSYS_1032XXXX		16
-> +#define SUBSYS_1033XXXX		17
-> +#define SUBSYS_1600XXXX		18
-> +#define SUBSYS_1601XXXX		19
-> +#define SUBSYS_14e0XXXX		20
-> +#define SUBSYS_1c20XXXX		21
-> +#define SUBSYS_1c30XXXX		22
-> +#define SUBSYS_1c40XXXX		23
-> +#define SUBSYS_1c50XXXX		24
-> +#define SUBSYS_1c60XXXX		25
-> +#define SUBSYS_NO_SUPPORT	99
+> +out:
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(gh_msgq_send);
+
+Both _send and _recv functions are not well designed. Can you call 
+gh_msgq_send() on any gunyah_device? Yes. Will it work? No.
+
+Could you please check if mailbox API work for you? It seems that it is 
+what you are trying to implement on your own.
+
 > +
-> +/* GCE General Purpose Register (GPR) support
-> + * Leave note for scenario usage here
+> +static ssize_t __gh_msgq_recv(struct gunyah_device *ghdev, void *buff, size_t size)
+> +{
+> +	unsigned long flags, gh_error;
+> +	size_t recv_size;
+> +	struct gh_msgq *msgq = ghdev_get_drvdata(ghdev);
+> +	ssize_t ret;
+> +	bool ready;
+> +
+> +	spin_lock_irqsave(&msgq->lock, flags);
+> +
+> +	arch_gh_hypercall(GH_HYPERCALL_MSGQ_RECV, 4,
+> +			  ghdev->capid, (uintptr_t)buff, size, 0,
+> +			  gh_error, recv_size, ready);
+> +	switch (gh_error) {
+> +	case GH_ERROR_OK:
+> +		ret = recv_size;
+> +		msgq->ready = ready;
+> +		break;
+> +	case GH_ERROR_MSGQUEUE_EMPTY:
+> +		ret = -EAGAIN;
+> +		msgq->ready = false;
+> +		break;
+> +	default:
+> +		ret = gh_remap_error(gh_error);
+> +		break;
+> +	}
+> +	spin_unlock_irqrestore(&msgq->lock, flags);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * gh_msgq_recv() - Receive a message from the client running on a different VM
+> + * @client: The client descriptor that was obtained via gh_msgq_register()
+> + * @buff: Pointer to the buffer where the received data must be placed
+> + * @buff_size: The size of the buffer space available
+> + * @flags: Optional flags to pass to receive the data. For the list of flags,
+> + *         see linux/gunyah/gh_msgq.h
+> + *
+> + * Returns: The number of bytes copied to buff. <0 if there was an error.
+> + *
+> + * Note: this function may sleep and should not be called from interrupt context
 > + */
-> +/* GCE: write mask */
-> +#define GCE_GPR_R00		0x00
-> +#define GCE_GPR_R01		0x01
+> +ssize_t gh_msgq_recv(struct gunyah_device *ghdev, void *buff, size_t size,
+> +		     const unsigned long flags)
+> +{
+> +	struct gh_msgq *msgq = ghdev_get_drvdata(ghdev);
+> +	ssize_t ret;
+> +
+> +	do {
+> +		ret = __gh_msgq_recv(ghdev, buff, size);
+> +
+> +		if (ret == -EAGAIN) {
+> +			if (flags & GH_MSGQ_NONBLOCK)
+> +				goto out;
+> +			if (wait_event_interruptible(msgq->wq, msgq->ready))
+> +				ret = -ERESTARTSYS;
+> +		}
+> +	} while (ret == -EAGAIN);
+> +
+> +out:
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(gh_msgq_recv);
+> +
+> +static int gh_msgq_probe(struct gunyah_device *ghdev)
+> +{
+> +	struct gh_msgq *msgq;
+> +
+> +	msgq = devm_kzalloc(&ghdev->dev, sizeof(*msgq), GFP_KERNEL);
+> +	if (!msgq)
+> +		return -ENOMEM;
+> +	ghdev_set_drvdata(ghdev, msgq);
+> +
+> +	msgq->ready = true; /* Assume we can use the message queue right away */
+> +	init_waitqueue_head(&msgq->wq);
+> +	spin_lock_init(&msgq->lock);
+> +
+> +	return devm_request_irq(&ghdev->dev, ghdev->irq, gh_msgq_irq_handler, 0,
+> +				dev_name(&ghdev->dev), msgq);
+> +}
+> +
+> +static struct gunyah_driver gh_msgq_tx_driver = {
+> +	.driver = {
+> +		.name = "gh_msgq_tx",
+> +		.owner = THIS_MODULE,
+> +	},
+> +	.type = GUNYAH_DEVICE_TYPE_MSGQ_TX,
+> +	.probe = gh_msgq_probe,
+> +};
+> +
+> +static struct gunyah_driver gh_msgq_rx_driver = {
+> +	.driver = {
+> +		.name = "gh_msgq_rx",
+> +		.owner = THIS_MODULE,
+> +	},
+> +	.type = GUNYAH_DEVICE_TYPE_MSGQ_RX,
+> +	.probe = gh_msgq_probe,
 
-No. These are no bindings. Do not embed device programming model into
-bindings header. I'll stop review.
+If you have to duplicate the whole device structure just to bind to two 
+difference devices, it looks like a bad abstraction. Please check how 
+other busses have solved this issue. They did, believe me.
+
+> +};
+
+MODULE_DEVICE_TABLE() ?
+
+> +
+> +int __init gh_msgq_init(void)
+> +{
+> +	int ret;
+> +
+> +	ret = gunyah_register_driver(&gh_msgq_tx_driver);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = gunyah_register_driver(&gh_msgq_rx_driver);
+> +	if (ret)
+> +		goto err_rx;
+> +
+> +	return ret;
+> +err_rx:
+> +	gunyah_unregister_driver(&gh_msgq_tx_driver);
+> +	return ret;
+> +}
+> +
+> +void gh_msgq_exit(void)
+> +{
+> +	gunyah_unregister_driver(&gh_msgq_rx_driver);
+> +	gunyah_unregister_driver(&gh_msgq_tx_driver);
+> +}
+> diff --git a/drivers/virt/gunyah/sysfs.c b/drivers/virt/gunyah/sysfs.c
+> index 220560cb3b1c..7589689e5e92 100644
+> --- a/drivers/virt/gunyah/sysfs.c
+> +++ b/drivers/virt/gunyah/sysfs.c
+> @@ -73,6 +73,8 @@ static ssize_t features_show(struct kobject *kobj, struct kobj_attribute *attr,
+>   
+>   	if (GH_IDENTIFY_PARTITION_CSPACE(gunyah_api.flags))
+>   		len += sysfs_emit_at(buffer, len, "cspace ");
+> +	if (GH_IDENTIFY_MSGQUEUE(gunyah_api.flags))
+> +		len += sysfs_emit_at(buffer, len, "message-queue ");
+
+Again, this should go to the sysfs patch.
+
+>   
+>   	len += sysfs_emit_at(buffer, len, "\n");
+>   	return len;
+> @@ -142,7 +144,13 @@ static int __init gunyah_init(void)
+>   	if (ret)
+>   		goto err_sysfs;
+>   
+> +	ret = gh_msgq_init();
+> +	if (ret)
+> +		goto err_bus;
+> +
+
+Please stop beating everything in a single module. Having a provider 
+(bus) and a consumer (drivers for this bus) in a single module sounds 
+like an overkill. Or, a wrong abstraction.
+
+Please remind me, why do you need gunyah bus in the first place? I could 
+not find any other calls to gunyah_device_add in this series. Which 
+devices do you expect to be added in future? Would they require separate 
+drivers?
+
+>   	return ret;
+> +err_bus:
+> +	gunyah_bus_exit();
+>   err_sysfs:
+>   	gh_sysfs_unregister();
+>   	return ret;
+> @@ -151,6 +159,7 @@ module_init(gunyah_init);
+>   
+>   static void __exit gunyah_exit(void)
+>   {
+> +	gh_msgq_exit();
+>   	gunyah_bus_exit();
+>   	gh_sysfs_unregister();
+>   }
+> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
+> index ce35f4491773..099224f9d6d1 100644
+> --- a/include/linux/gunyah.h
+> +++ b/include/linux/gunyah.h
+> @@ -6,6 +6,7 @@
+>   #ifndef _GUNYAH_H
+>   #define _GUNYAH_H
+>   
+> +#include <linux/platform_device.h>
+>   #include <linux/device.h>
+>   #include <linux/types.h>
+>   #include <linux/errno.h>
+> @@ -117,4 +118,16 @@ struct gunyah_driver {
+>   int gunyah_register_driver(struct gunyah_driver *ghdrv);
+>   void gunyah_unregister_driver(struct gunyah_driver *ghdrv);
+>   
+> +#define GH_MSGQ_MAX_MSG_SIZE	1024
+> +
+> +/* Possible flags to pass for Tx or Rx */
+> +#define GH_MSGQ_TX_PUSH		BIT(0)
+> +#define GH_MSGQ_NONBLOCK	BIT(32)
+> +
+> +ssize_t gh_msgq_send(struct gunyah_device *ghdev, void *buff, size_t size,
+> +		     const unsigned long flags);
+> +ssize_t gh_msgq_recv(struct gunyah_device *ghdev, void *buff, size_t size,
+> +		     const unsigned long flags);
+> +
+> +
+>   #endif
 
 
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
