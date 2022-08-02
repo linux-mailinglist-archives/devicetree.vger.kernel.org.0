@@ -2,219 +2,473 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D56D8587581
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 04:17:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D032E58758F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 04:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235613AbiHBCR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Aug 2022 22:17:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59988 "EHLO
+        id S231784AbiHBCh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Aug 2022 22:37:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231986AbiHBCR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 22:17:26 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2130.outbound.protection.outlook.com [40.107.223.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C725D43E74;
-        Mon,  1 Aug 2022 19:17:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bMNpXqZxFtly4/rQqyj+ZDoM845lEDBKte20o8Gjyvz8hweEf8sBkrm55Hn5uvauwY1Lckk2J8qrmB8puo2F2Iawk4FkOuHuA8TFPPAYCBVeN6lmqrs+js/tRF/DAcPQEG4nEifR5HU7cDmTvvgrXmuCXHsYeauoNxhU8ikUaVK91RBYHJgIthWaOBeSsvfa01wKr9Yh1imcdSYY4wf2wJv9mRzwblq6XEOwqrYC4+oPDSfpfCWtEKARvSw1+n0V/z3K6H4FIqCreqgIgQkFyiGHBhFwIwLCzJXB3hJzHEsuR06hN0HOQNphJbC7FV/wBkuTKDRY07RgyeyHnNLlRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OrIW3dBY5vbh0Y/itGbehrxSAFo7mQAP5sUZE7W9QvA=;
- b=NDOCaYqDhLrVr2zXc7m8wIMciA9QsmdZj1nO5VzWeFuAoJnsKzHoJmyqs6/mNe+oV0dbktXK/glWWMy1UpvbdAJs2q+UIwCYWxa9Slv3iK4uTn9R9FU604yMKRtXMnhCNWtwTZtztX7rc1xFTESbUk1jROS+jQ2xRy/gt7zcxsYIKFBV4ik8F42Q2WUE9DIsFAdvycMRaw7ghhzA0A9efgSuj08sZ3wLYY4ojJq99YeAVTtIUT+OL43PHo//a1EoAEbqj3jhfIiluoBeMlrsXm+QRN3dIaJvkkekHk5ebqinnP+FDOFhA+yNqXDNB4C+fbo3zOr3/Pj+Bk3Sk8G4rg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=in-advantage.com; dmarc=pass action=none
- header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OrIW3dBY5vbh0Y/itGbehrxSAFo7mQAP5sUZE7W9QvA=;
- b=HgKMig/9CQQHjiZk0hK8Lct7aGmBATDnhd0kxxpCoVSogDxox0QXZbdYE56EL9DGXa0h7WWkeNHXWDSA3AIB9DplXy81OvbwNSPwyAsjxQFzHM+5LUfjK6BFLgseZegnpfEHUR3kOivZiaLi7M8l4Ag61+mMRSeE+pM2McKa52g=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=in-advantage.com;
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by CO6PR10MB5585.namprd10.prod.outlook.com
- (2603:10b6:303:144::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.6; Tue, 2 Aug
- 2022 02:17:21 +0000
-Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::b869:6c52:7a8d:ddee]) by MWHPR1001MB2351.namprd10.prod.outlook.com
- ([fe80::b869:6c52:7a8d:ddee%4]) with mapi id 15.20.5482.014; Tue, 2 Aug 2022
- 02:17:21 +0000
-Date:   Mon, 1 Aug 2022 19:17:16 -0700
-From:   Colin Foster <colin.foster@in-advantage.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, katie.morris@in-advantage.com
-Subject: Re: [PATCH v14 mfd 9/9] mfd: ocelot: add support for the vsc7512
- chip via spi
-Message-ID: <YuiJLK8ncbHH3OhE@euler>
-References: <20220722040609.91703-1-colin.foster@in-advantage.com>
- <20220722040609.91703-10-colin.foster@in-advantage.com>
- <CAHp75Ve-pqgb56punEL=p=PnEtjRnqTBSqgs+vVn1Zv8F94g9Q@mail.gmail.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75Ve-pqgb56punEL=p=PnEtjRnqTBSqgs+vVn1Zv8F94g9Q@mail.gmail.com>
-X-ClientProxiedBy: SJ0PR05CA0201.namprd05.prod.outlook.com
- (2603:10b6:a03:330::26) To MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37)
+        with ESMTP id S231416AbiHBCh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Aug 2022 22:37:58 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ADFA41D02;
+        Mon,  1 Aug 2022 19:37:49 -0700 (PDT)
+X-UUID: 7305bfd08916458db23097bec1684a8b-20220802
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:c8efce48-b5fb-473f-a47f-10a30b19863a,OB:0,LO
+        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
+        ON:release,TS:5
+X-CID-META: VersionHash:0f94e32,CLOUDID:fd1cfe24-a982-4824-82d2-9da3b6056c2a,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 7305bfd08916458db23097bec1684a8b-20220802
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1751676348; Tue, 02 Aug 2022 10:37:42 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Tue, 2 Aug 2022 10:37:41 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Tue, 2 Aug 2022 10:37:41 +0800
+Message-ID: <4d54b439fab8b888598677e1e52fb098c9b93e03.camel@mediatek.com>
+Subject: Re: [PATCH v15 06/11] drm/mediatek: Add MT8195 External DisplayPort
+ support
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
+        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>,
+        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 2 Aug 2022 10:37:41 +0800
+In-Reply-To: <20220727045035.32225-7-rex-bc.chen@mediatek.com>
+References: <20220727045035.32225-1-rex-bc.chen@mediatek.com>
+         <20220727045035.32225-7-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 78e75a64-5c80-49e4-5e82-08da742d2135
-X-MS-TrafficTypeDiagnostic: CO6PR10MB5585:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: klp5zM0vszVPu7BI4/RchVrUGUb53+RQSGaaa4gxF+ND0Q1dIYrKXnGflJenSDWdIwDY6QHmJW9l5u6/s7kKK6N15HaJcXR1wyCiAPoyQ7EGrWcJC5+6rdyAVEqZLUlcUBYWhL8I9emgmfjaWDHQbD7x7qAqO5NGB8rOYJjxyM5rk4R+Few7UT5iP4kOV/yXbSstr3McjHopn4k0VRkvjnjmTnHbLRgmDtpjxeDGSKMpyxgXE+vob1pRbW6Pa0o0QpXRQrMdaJdvpyDF/ZDLO1LCFFKzgov+wQACrsNWQEXIY2ZZrfnyqDeowPzkPxeWJNF1Z1AAEbAEgzzGnM40utkklOnIIAjeBydqv/tTyeoLjvZkFAd6g3oH/h16rMrKfMmMHmmUOmlVyovkxYeKZlZsHk+tAtLB6ottfZMpAFgkJdbZZSPD+lR/KuRq4yZlGqhomRyy47nmL0JXxpXZfamjnu4oAe+Cj1SseleugnDolIlIVT4gMosVZX3ulKKVkAX4c54qov/AQP+/505nUmINihxQZ9pee4Zo6j5VoCGld03HaO8DIpPVXH62On1aGFinBXd/1M67X7CcT14kkYVy7getVs6A/vKGNgJxeVch3WpnqF3iPMoXwgnEV6A7HsD1NybboQsfiW1T+jpkX92NwnHvm18NK9SFeI9s936jxW86C61xqxlsHIJ54xjDSYTVzkhibUJmsA7YsN8za8WBmS4LL7Ck3Vv1uuYlY1M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(7916004)(346002)(376002)(39830400003)(366004)(396003)(136003)(26005)(6512007)(9686003)(6666004)(41300700001)(86362001)(6506007)(54906003)(6916009)(316002)(33716001)(6486002)(478600001)(38100700002)(107886003)(186003)(83380400001)(7416002)(5660300002)(8676002)(4326008)(66556008)(66476007)(66946007)(44832011)(8936002)(2906002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?02E6em1qquWDLHx1I8zebBgWIJ71uPDQqUqdS6iOF2paisFuQ4DFaNtzdXVT?=
- =?us-ascii?Q?H/zM+cywPOYEriChdY2rGFyjC/0ABscJDfOXiH6zo4jU7tUUUlgQVOjN0E/1?=
- =?us-ascii?Q?12Ow5r7nMOttHikZzauExU0jM/J7P/xgrYgYoLSeu4wimd/mG1mIaR2l1fx2?=
- =?us-ascii?Q?VObpbB/jtUFXs/5DekGsjjiJjRiQ3LAYe3DD11KcX7Me8SBcouLSZMHClPeC?=
- =?us-ascii?Q?T7e0qw5b45M8BUWzk6lQzmp8o5xJHTR8GzdRMGk2UoXJJjYzTGVK4oS6PPEZ?=
- =?us-ascii?Q?GDeYoUKTisKyFOv8nR/KMB7eJhnJzELdiTFLohHbjX3Hdy0t5yZ4Dtsww1m+?=
- =?us-ascii?Q?9SUz5qee4QuSPdx9Jg2U8JU6WllY9RLErx72i3KTu8BFrGDvNWqPawZ7bJJc?=
- =?us-ascii?Q?bGMUsDVqEX03qyBAtIBey74UmCQ8LNDAbgXiSl9DA4JEqvcikRRDGTSKKuZj?=
- =?us-ascii?Q?f70qPLQaqOeIoO7ZnpfhXwMBVCTvCDHat44/xr13izfE2yRDgcsIZo4rB/33?=
- =?us-ascii?Q?mia/KSAOzc3UV5WNbyfzMQweBJ8c8FhzJr5+cvdVRiqBupyy15Kc3T9hsdwA?=
- =?us-ascii?Q?BSvJLyusBp5dZv0MleLonw5DcISyOTuyDeEDzqJpzM0AXZa+CMxg2Vl2fIqn?=
- =?us-ascii?Q?tFpOqb88o4W6fPPI2RuxVtxHnZ2TCxwJHN8N36H5QfaYa4Hj98ocMZrNwbjl?=
- =?us-ascii?Q?CvFUD2bbZeLtafPnr1jXKe2tMTiLyXS79ML+FQiykrkpIgMbw2d+5lwTISgg?=
- =?us-ascii?Q?ZL+M0p6tsz4ZjP+RQhky4Z7BOzuS1xQrYD8tVdm3KY8jV/j9smPFxmeBmB8N?=
- =?us-ascii?Q?m9s73v2oE3nd5jpCsjA1yRvuTrp7hsDd9kexhnOsy3oPaWH3GsMe6ccgXBPz?=
- =?us-ascii?Q?jUtj/+jSvdwtkh0DHAeI8isf9oLkh/WNwM32XjLpHGeED0UY5XCuzOzrR3/m?=
- =?us-ascii?Q?yVtkG0lfkxcBpNJ/W4ytBj4hpTcD95CGUt3HaOypnOK8MwFr+CVkb6ZLkBOG?=
- =?us-ascii?Q?RKK1X1vH4VWC2T24M4qtr8cTecTwUotNAL3L28CMVpLFllFwXbTxkaa0FLh2?=
- =?us-ascii?Q?McU6HEmOWGryZItAKIzjg/gf/3Zh7zXB/24nyKN7XlKx9JoGjZ6aju1l8Dw0?=
- =?us-ascii?Q?npPq4aIrRz4/hX+1WcA3rALPUvxLTfzdxe5j+iOrEh9SdGUVyU9+yMHxCmRE?=
- =?us-ascii?Q?xeMtW9+7xkIhR53OXbJ32qiYP+PXU0DH8XVv2x54U3wbbFjHvCZ1A8xlPy6c?=
- =?us-ascii?Q?WQEnkJLVvizS5jgxFzTNNl7ccrGmts2IpD3HtbIYv9Brmsy2mC+W95f8ilRQ?=
- =?us-ascii?Q?oNB6A8xEuHkE0oU27w9SjljD2/ahLcne06r7nvcaAyZEMHY8eGiKcKVgsDuO?=
- =?us-ascii?Q?YKfH4Nbwz53gmNuPGL5zTkWUQN8D1CZBzOmczY0UcGBgq4Y4BmMkMqL11K81?=
- =?us-ascii?Q?tZw7DldN3or38Q1QUo6L2MjzFMnO9w/y0XqMQraxBNbky6Bgn3cYbrMwYGkW?=
- =?us-ascii?Q?H/sX5Syx35vkJShGCvHWW8hZdNG6n3vIQapHLi5mdNgQ9815Q9IbOW2KAhvH?=
- =?us-ascii?Q?kT8lViP6ckPvEYQwyOCxkiQ1eP4POQ7DSAWM8O5cx9UPy68M63f49rDdzHEL?=
- =?us-ascii?Q?nw=3D=3D?=
-X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78e75a64-5c80-49e4-5e82-08da742d2135
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2022 02:17:21.0842
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pbrRDsrESAEjM8ofpt3L1PvpNd0f0Fzwhx9lxL4uZHDNJD6z+W/utVtb4JseaYA9tgXVIY7N/DZ/9h10VAJIFtzSENfBuaQY4S3Mm0cfFV0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR10MB5585
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi, Bo-Chen:
 
-Apologies for the late response. Everything seemed straightforward, but
-as I was implementing your suggestions one thing came out.
-
-I just want to make sure my implementation isn't horribly off before the
-next patch set.
-
-Specifically this question (copied from below):
-> I'm wondering if you can use in both cases
-> spi_message_init_with_transfers().
-
-> > +static int ocelot_spi_regmap_bus_read(void *context, const void *reg, size_t reg_size,
-> > +                                     void *val, size_t val_size)
-> > +{
-> > +       struct spi_transfer tx, padding, rx;
-
-struct spi_transfer xfers[3] = {0};
-struct spi_transfer *xfer_tok = xfers;
-
-> > +       struct device *dev = context;
-> > +       struct ocelot_ddata *ddata;
-> > +       struct spi_device *spi;
-> > +       struct spi_message msg;
-> > +
-> > +       ddata = dev_get_drvdata(dev);
-> > +       spi = to_spi_device(dev);
-> > +
-> > +       spi_message_init(&msg);
-> > +
-> > +       memset(&tx, 0, sizeof(tx));
-> > +
-> > +       tx.tx_buf = reg;
-> > +       tx.len = reg_size;
-
-xfer_tok->tx_buf = reg;
-xfer_tok->len = reg_size;
-xfer_tok++;
-
-> > +
-> > +       spi_message_add_tail(&tx, &msg);
-> > +
-> > +       if (ddata->spi_padding_bytes) {
-> > +               memset(&padding, 0, sizeof(padding));
-> > +
-> > +               padding.len = ddata->spi_padding_bytes;
-> > +               padding.tx_buf = ddata->dummy_buf;
-> > +               padding.dummy_data = 1;
-
-xfer_tok->len
-xfer_tok->tx_buf
-xfer_tok->dummy_data
-xfer_tok++;
-
-> > +
-> > +               spi_message_add_tail(&padding, &msg);
-> > +       }
-> > +
-> > +       memset(&rx, 0, sizeof(rx));
-> > +       rx.rx_buf = val;
-> > +       rx.len = val_size;
-
-xfer_tok->rx_buf
-xfer_tok->len
-xfer_tok++;
-
-> > +
-> > +       spi_message_add_tail(&rx, &msg);
-
-spi_message_init_with_transfers(&msg, xfers, xfer_tok - xfers);
-
+On Wed, 2022-07-27 at 12:50 +0800, Bo-Chen Chen wrote:
+> From: Guillaume Ranquet <granquet@baylibre.com>
 > 
-> I'm wondering if you can use in both cases
-> spi_message_init_with_transfers().
-
-I could see that implementation getting the response of "what the heck
-were you thinking" or "that looks alright" and I honestly have no idea
-which pool it will fall into.
-
+> This patch adds External DisplayPort support to the mt8195 eDP
+> driver.
 > 
-> > +       return spi_sync(spi, &msg);
-> > +}
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_dp.c     | 181 +++++++++++++++++++++---
+> --
+>  drivers/gpu/drm/mediatek/mtk_dp_reg.h |   1 +
+>  2 files changed, 146 insertions(+), 36 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c
+> b/drivers/gpu/drm/mediatek/mtk_dp.c
+> index 06eeecedd49e..ce817cb59445 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+> @@ -103,6 +103,11 @@ static struct regmap_config mtk_dp_regmap_config
+> = {
+>  	.name = "mtk-dp-registers",
+>  };
+>  
+> +static bool mtk_dp_is_edp(struct mtk_dp *mtk_dp)
+> +{
+> +	return mtk_dp->next_bridge;
+
+For external DP, it could also connect to a bridge IC which transfer DP
+to HDMI or some interface else. Use the compatible to judge this edp or
+dp.
+
+> +}
+> +
+>  static struct mtk_dp *mtk_dp_from_bridge(struct drm_bridge *b)
+>  {
+>  	return container_of(b, struct mtk_dp, bridge);
+> @@ -341,6 +346,19 @@ static void mtk_dp_pg_enable(struct mtk_dp
+> *mtk_dp, bool enable)
+>  			   4 << PGEN_PATTERN_SEL_SHIFT,
+> PGEN_PATTERN_SEL_MASK);
+>  }
+>  
+> +static bool mtk_dp_plug_state(struct mtk_dp *mtk_dp)
+> +{
+> +	return mtk_dp->train_info.cable_plugged_in;
+> +}
+> +
+> +static bool mtk_dp_plug_state_avoid_pulse(struct mtk_dp *mtk_dp)
+> +{
+> +	bool ret;
+> +
+> +	return !(readx_poll_timeout(mtk_dp_plug_state, mtk_dp, ret,
+> ret,
+> +				    4000, 7 * 4000));
+> +}
+> +
+>  static void mtk_dp_aux_irq_clear(struct mtk_dp *mtk_dp)
+>  {
+>  	mtk_dp_write(mtk_dp, MTK_DP_AUX_P0_3640,
+> @@ -778,35 +796,67 @@ static void mtk_dp_get_calibration_data(struct
+> mtk_dp *mtk_dp)
+>  		return;
+>  	}
+>  
+> -	cal_data->glb_bias_trim =
+> -		check_cal_data_valid(mtk_dp, 1, 0x1e,
+> -				     (buf[3] >> 27) & 0x1f, 0xf);
+> -	cal_data->clktx_impse =
+> -		check_cal_data_valid(mtk_dp, 1, 0xe,
+> -				     (buf[0] >> 9) & 0xf, 0x8);
+> -	cal_data->ln_tx_impsel_pmos[0] =
+> -		check_cal_data_valid(mtk_dp, 1, 0xe,
+> -				     (buf[2] >> 28) & 0xf, 0x8);
+> -	cal_data->ln_tx_impsel_nmos[0] =
+> -		check_cal_data_valid(mtk_dp, 1, 0xe,
+> -				     (buf[2] >> 24) & 0xf, 0x8);
+> -	cal_data->ln_tx_impsel_pmos[1] =
+> -		check_cal_data_valid(mtk_dp, 1, 0xe,
+> -				     (buf[2] >> 20) & 0xf, 0x8);
+> -	cal_data->ln_tx_impsel_nmos[1] =
+> -		check_cal_data_valid(mtk_dp, 1, 0xe,
+> -				     (buf[2] >> 16) & 0xf, 0x8);
+> -	cal_data->ln_tx_impsel_pmos[2] =
+> -		check_cal_data_valid(mtk_dp, 1, 0xe,
+> -				     (buf[2] >> 12) & 0xf, 0x8);
+> -	cal_data->ln_tx_impsel_nmos[2] =
+> -		check_cal_data_valid(mtk_dp, 1, 0xe,
+> -				     (buf[2] >> 8) & 0xf, 0x8);
+> -	cal_data->ln_tx_impsel_pmos[3] =
+> -		check_cal_data_valid(mtk_dp, 1, 0xe,
+> -				     (buf[2] >> 4) & 0xf, 0x8);
+> -	cal_data->ln_tx_impsel_nmos[3] =
+> -		check_cal_data_valid(mtk_dp, 1, 0xe, buf[2] & 0xf,
+> 0x8);
+> +	if (mtk_dp_is_edp(mtk_dp)) {
+> +		cal_data->glb_bias_trim =
+> +			check_cal_data_valid(mtk_dp, 1, 0x1e,
+> +					     (buf[3] >> 27) & 0x1f,
+> 0xf);
+> +		cal_data->clktx_impse =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[0] >> 9) & 0xf, 0x8);
+> +		cal_data->ln_tx_impsel_pmos[0] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[2] >> 28) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_nmos[0] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[2] >> 24) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_pmos[1] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[2] >> 20) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_nmos[1] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[2] >> 16) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_pmos[2] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[2] >> 12) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_nmos[2] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[2] >> 8) & 0xf, 0x8);
+> +		cal_data->ln_tx_impsel_pmos[3] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[2] >> 4) & 0xf, 0x8);
+> +		cal_data->ln_tx_impsel_nmos[3] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe, buf[2] &
+> 0xf, 0x8);
+> +	} else {
+> +		cal_data->glb_bias_trim =
+> +			check_cal_data_valid(mtk_dp, 1, 0x1e,
+> +					     (buf[0] >> 27) & 0x1f,
+> 0xf);
+
+Why not place glb_bias_trim value in nvmem buf[3] for both edp and dp
+case? Place in the same nvmem position, the driver code would be
+simple. 
+
+> +		cal_data->clktx_impse =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[0] >> 13) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_pmos[0] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[1] >> 28) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_nmos[0] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[1] >> 24) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_pmos[1] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[1] >> 20) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_nmos[1] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[1] >> 16) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_pmos[2] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[1] >> 12) & 0xf,
+> 0x8);
+> +		cal_data->ln_tx_impsel_nmos[2] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[1] >> 8) & 0xf, 0x8);
+> +		cal_data->ln_tx_impsel_pmos[3] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe,
+> +					     (buf[1] >> 4) & 0xf, 0x8);
+> +		cal_data->ln_tx_impsel_nmos[3] =
+> +			check_cal_data_valid(mtk_dp, 1, 0xe, buf[1] &
+> 0xf, 0x8);
+
+Why not place ln_tx_impsel_nmos and ln_tx_impsel_pmos value in nvmem
+buf[2] for both edp and dp case? Place in the same nvmem position, the
+driver code would be simple. 
+
+> +	}
+>  
+>  	kfree(buf);
+>  }
+> @@ -926,7 +976,10 @@ static void mtk_dp_video_mute(struct mtk_dp
+> *mtk_dp, bool enable)
+>  			   VIDEO_MUTE_SEL_DP_ENC0_P0_MASK |
+>  			   VIDEO_MUTE_SW_DP_ENC0_P0_MASK);
+>  
+> -	mtk_dp_sip_atf_call(mtk_dp, MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE,
+> enable);
+> +	mtk_dp_sip_atf_call(mtk_dp,
+> +			    mtk_dp_is_edp(mtk_dp) ?
+> +			    MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE :
+> +			    MTK_DP_SIP_ATF_VIDEO_UNMUTE, enable);
+
+Use of_device_get_match_data to select MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE
+or MTK_DP_SIP_ATF_VIDEO_UNMUTE.
+
+>  }
+>  
+>  static void mtk_dp_power_enable(struct mtk_dp *mtk_dp)
+> @@ -1226,6 +1279,9 @@ static int mtk_dp_parse_capabilities(struct
+> mtk_dp *mtk_dp)
+>  	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
+> DP_SET_POWER_D0);
+>  	usleep_range(2000, 5000);
+>  
+> +	if (!mtk_dp_plug_state(mtk_dp))
+> +		return -ENODEV;
+> +
+>  	drm_dp_read_dpcd_caps(&mtk_dp->aux, mtk_dp->rx_cap);
+>  
+>  	train_info->link_rate = min_t(int, mtk_dp->max_linkrate,
+> @@ -1277,6 +1333,9 @@ static int mtk_dp_train_start(struct mtk_dp
+> *mtk_dp)
+>  	u8 train_limit;
+>  	u8 max_link_rate;
+>  
+> +	if (!mtk_dp_plug_state_avoid_pulse(mtk_dp))
+> +		return -ENODEV;
+> +
+>  	link_rate = mtk_dp->rx_cap[1];
+>  	lane_count = mtk_dp->rx_cap[2] & 0x1F;
+>  
+> @@ -1412,6 +1471,9 @@ static irqreturn_t mtk_dp_hpd_event_thread(int
+> hpd, void *dev)
+>  {
+>  	struct mtk_dp *mtk_dp = dev;
+>  
+> +	dev_dbg(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
+> +	drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
+
+Because edp also have hpd interrupt, so I would like both edp and dp
+have the same control flow for hdp. So move this to edp patch.
+
+> +
+>  	if (mtk_dp->train_info.hpd_inerrupt) {
+>  		dev_dbg(mtk_dp->dev, "MTK_DP_HPD_INTERRUPT\n");
+>  		mtk_dp->train_info.hpd_inerrupt = false;
+> @@ -1452,9 +1514,20 @@ static irqreturn_t mtk_dp_hpd_event(int hpd,
+> void *dev)
+>  		else
+>  			train_info->cable_plugged_in = false;
+>  
+> -		mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
+> -				   DP_PWR_STATE_BANDGAP_TPLL_LANE,
+> -				   DP_PWR_STATE_MASK);
+> +		if (!train_info->cable_plugged_in) {
+> +			mtk_dp_video_mute(mtk_dp, true);
+> +
+> +			mtk_dp_initialize_priv_data(mtk_dp);
+> +			mtk_dp_set_idle_pattern(mtk_dp, true);
+> +
+> +			mtk_dp_update_bits(mtk_dp,
+> MTK_DP_TOP_PWR_STATE,
+> +					   DP_PWR_STATE_BANDGAP_TPLL,
+> +					   DP_PWR_STATE_MASK);
+> +		} else {
+> +			mtk_dp_update_bits(mtk_dp,
+> MTK_DP_TOP_PWR_STATE,
+> +					   DP_PWR_STATE_BANDGAP_TPLL_LA
+> NE,
+> +					   DP_PWR_STATE_MASK);
+> +		}
+>  	}
+>  
+>  	return IRQ_HANDLED;
+> @@ -1499,6 +1572,24 @@ static int mtk_dp_dt_parse(struct mtk_dp
+> *mtk_dp,
+>  	return 0;
+>  }
+>  
+> +static enum drm_connector_status mtk_dp_bdg_detect(struct drm_bridge
+> *bridge)
+> +{
+> +	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
+> +	enum drm_connector_status ret = connector_status_disconnected;
+> +	u8 sink_count = 0;
+> +
+> +	if (mtk_dp_is_edp(mtk_dp))
+> +		return connector_status_connected;
+
+Because edp also have hpd interrupt, so I would like both edp and dp
+have the same control flow for hdp. So remove this.
+
+> +
+> +	if (mtk_dp_plug_state_avoid_pulse(mtk_dp)) {
+> +		drm_dp_dpcd_readb(&mtk_dp->aux, DP_SINK_COUNT,
+> &sink_count);
+> +		if (DP_GET_SINK_COUNT(sink_count))
+> +			ret = connector_status_connected;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>  static struct edid *mtk_dp_get_edid(struct drm_bridge *bridge,
+>  				    struct drm_connector *connector)
+>  {
+> @@ -1512,7 +1603,8 @@ static struct edid *mtk_dp_get_edid(struct
+> drm_bridge *bridge,
+>  	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
+> DP_SET_POWER_D0);
+>  	usleep_range(2000, 5000);
+>  
+> -	new_edid = drm_get_edid(connector, &mtk_dp->aux.ddc);
+> +	if (mtk_dp_plug_state(mtk_dp))
+> +		new_edid = drm_get_edid(connector, &mtk_dp->aux.ddc);
+
+Please explain why only dp has this problem. If edp also has this
+problem, move this to edp patch.
+
+Regards,
+CK
+
+>  
+>  	if (!enabled)
+>  		drm_bridge_chain_post_disable(bridge);
+> @@ -1852,6 +1944,7 @@ static const struct drm_bridge_funcs
+> mtk_dp_bridge_funcs = {
+>  	.atomic_disable = mtk_dp_bridge_atomic_disable,
+>  	.mode_valid = mtk_dp_bridge_mode_valid,
+>  	.get_edid = mtk_dp_get_edid,
+> +	.detect = mtk_dp_bdg_detect,
+>  };
+>  
+>  static int mtk_dp_probe(struct platform_device *pdev)
+> @@ -1873,9 +1966,15 @@ static int mtk_dp_probe(struct platform_device
+> *pdev)
+>  				     "failed to request dp irq
+> resource\n");
+>  
+>  	mtk_dp->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 
+> 1, 0);
+> -	if (IS_ERR(mtk_dp->next_bridge))
+> +	if (IS_ERR(mtk_dp->next_bridge) &&
+> +	    PTR_ERR(mtk_dp->next_bridge) == -ENODEV) {
+> +		dev_info(dev,
+> +			 "No panel connected in devicetree, continue as
+> external DP\n");
+> +		mtk_dp->next_bridge = NULL;
+> +	} else if (IS_ERR(mtk_dp->next_bridge)) {
+>  		return dev_err_probe(dev, PTR_ERR(mtk_dp->next_bridge),
+>  				     "Failed to get bridge\n");
+> +	}
+>  
+>  	ret = mtk_dp_dt_parse(mtk_dp, pdev);
+>  	if (ret)
+> @@ -1918,7 +2017,10 @@ static int mtk_dp_probe(struct platform_device
+> *pdev)
+>  
+>  	mtk_dp->bridge.ops =
+>  		DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID |
+> DRM_BRIDGE_OP_HPD;
+> -	mtk_dp->bridge.type = DRM_MODE_CONNECTOR_eDP;
+> +	if (mtk_dp_is_edp(mtk_dp))
+> +		mtk_dp->bridge.type = DRM_MODE_CONNECTOR_eDP;
+> +	else
+> +		mtk_dp->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
+>  
+>  	drm_bridge_add(&mtk_dp->bridge);
+>  
+> @@ -1945,6 +2047,12 @@ static int mtk_dp_suspend(struct device *dev)
+>  {
+>  	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
+>  
+> +	if (mtk_dp_plug_state(mtk_dp)) {
+> +		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
+> DP_SET_POWER_D3);
+> +		/* Ensure the sink is off before shutting down power */
+> +		usleep_range(2000, 3000);
+> +	}
+> +
+>  	mtk_dp_power_disable(mtk_dp);
+>  
+>  	mtk_dp_hwirq_enable(mtk_dp, false);
+> @@ -1978,6 +2086,7 @@ static SIMPLE_DEV_PM_OPS(mtk_dp_pm_ops,
+> mtk_dp_suspend, mtk_dp_resume);
+>  
+>  static const struct of_device_id mtk_dp_of_match[] = {
+>  	{ .compatible = "mediatek,mt8195-edp-tx" },
+> +	{ .compatible = "mediatek,mt8195-dp-tx" },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, mtk_dp_of_match);
+> diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+> b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+> index 4ff8e9880dc9..59086eb82868 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+> +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
+> @@ -14,6 +14,7 @@
+>  #define SEC_OFFSET	0x4000
+>  
+>  #define MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE	(BIT(0) | BIT(5))
+> +#define MTK_DP_SIP_ATF_VIDEO_UNMUTE	BIT(5)
+>  
+>  #define DP_PHY_GLB_BIAS_GEN_00		0
+>  #define RG_XTP_GLB_BIAS_INTR_CTRL	GENMASK(20, 16)
+
