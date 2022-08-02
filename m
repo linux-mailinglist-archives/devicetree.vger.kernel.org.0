@@ -2,142 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA44C587D6F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 15:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D95B1587DB3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Aug 2022 15:56:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233153AbiHBNui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 09:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47954 "EHLO
+        id S237083AbiHBN40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 09:56:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235977AbiHBNug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 09:50:36 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2063.outbound.protection.outlook.com [40.107.21.63])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC2612250F;
-        Tue,  2 Aug 2022 06:50:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b/68eaU/GXboxtEoITwivodFAKWlcafB0n3nqgIBKn+em/wJ6lTYHoREQGasU25EH3a82P/SRz0DQsRy7MxsY4YQo0VDOKOAKVctrHSxatuXTXH4GPVcjoD2KKA28MjvKzXG4InAQNHYePNrZe06mo7L2wEYbV28ze/9UtnhmNzfXIAY8UGcfp+Z8AGhXkUyIruLPkqTfLGLSV9yxV7AEB+R21Z3TdFZyol68hSiQvqOVwe7s2xWinwuNr6jX0TP8qh5FUeQ6/qNFdPcd2iQ4U+sZYrgTn/KrwWcB++9ju1UMZqgBQuuDmjbvSb/L5K97GeNXgiNAewri1R8Vfg2vQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SSXM4xD5r1LdQIQmg6JcnNAucqsplspvTsOeIB5A118=;
- b=TOqUm6jkDBParX6BVcrIhTPSuIkpq4LNn3UlPu6Yc/U3tDseYTNa9BPqwyPTIk1q1rvAFvIjxavo5XmfpeEs6yVfL/Rvgyl2PZ2nT9m0zd7gd2OFRvEmUicF0ttKR/tO3ClsM5PKPfQOqbWiv4Oo8O/y+jKqPPrJJEhNgpzNjHLKRnv7HGR2StuZA48lXXegFHD/Gv5pHzdYZrbk0nuYmbaq8TIj7Exuwabh/LRMY/VWfSofqsCHKr6sKMwA27RvG2JrFPHOlZ7AAnXO0EXDzJpFX7wuUrhCzfVaRuxffqdEJHin57KwUl9yzV3AuhqUGl6ptw0rJ6EBdvmKXID41g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SSXM4xD5r1LdQIQmg6JcnNAucqsplspvTsOeIB5A118=;
- b=J/s2N73dgzYkewW0QslBvCCepehXtADjUgFdyfggB6pWgkdWiGiKP1mIkEa0nFsVjVgNZrKjVmxPppFVrzGInr6gcfGqQ2DKSvNhZXuY8irZ2QOp9sXRp2p4AdigZXMxeuyzV02VXi6TfhylMnXGzRcF1fNtrbve/zv2ZOl3pa8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by AS8PR04MB9126.eurprd04.prod.outlook.com (2603:10a6:20b:449::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5482.16; Tue, 2 Aug
- 2022 13:50:32 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::71b7:8ed1:e4e0:3857]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::71b7:8ed1:e4e0:3857%4]) with mapi id 15.20.5482.016; Tue, 2 Aug 2022
- 13:50:32 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     devicetree@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        with ESMTP id S237090AbiHBN4K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 09:56:10 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BC52B19C;
+        Tue,  2 Aug 2022 06:55:49 -0700 (PDT)
+Received: from mail-ej1-f43.google.com ([209.85.218.43]) by
+ mrelayeu.kundenserver.de (mreue109 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1N0X4c-1nXnV92TEC-00wRfU; Tue, 02 Aug 2022 15:55:47 +0200
+Received: by mail-ej1-f43.google.com with SMTP id j8so840639ejx.9;
+        Tue, 02 Aug 2022 06:55:47 -0700 (PDT)
+X-Gm-Message-State: AJIora8YtmpPlbFH9Jhq5al2EUyulVRNRiffVLDFSM7/KOi5k8PiOjFz
+        6kZ31c90YttYonYn9xkXBni5cqO8rTJuO3lPAf8=
+X-Google-Smtp-Source: AGRyM1sg5OSSuxk42kmKffHKNvxjUBcwJeG8BNdRHNFKc4WmLSSYCEYhA87Rt2osXHOB56kfJ3SZKbK9oZESz3OQKdY=
+X-Received: by 2002:a17:907:d0f:b0:72e:db1f:9b91 with SMTP id
+ gn15-20020a1709070d0f00b0072edb1f9b91mr16334680ejc.470.1659448547198; Tue, 02
+ Aug 2022 06:55:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <1656894074-15751-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <0a0a64a7-60cc-e95d-c2e3-3c11a53a6527@socionext.com> <CAK8P3a0egd9dupLFid9CsSygQyTK3KopB8m5LVgnUW9L1cF6JA@mail.gmail.com>
+ <fd6e9539-4c67-93a2-9104-018ed9703ff9@socionext.com>
+In-Reply-To: <fd6e9539-4c67-93a2-9104-018ed9703ff9@socionext.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 2 Aug 2022 15:55:31 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a2sFYvopsuNqZ5uTFNbgV+t_8ZtWVR6ziCHk7p2eRy5LA@mail.gmail.com>
+Message-ID: <CAK8P3a2sFYvopsuNqZ5uTFNbgV+t_8ZtWVR6ziCHk7p2eRy5LA@mail.gmail.com>
+Subject: Re: [PATCH 0/9] Update UniPhier armv8 devicetree
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: [PATCH] arm64: dts: ls1028a-qds-65bb: don't use in-band autoneg for 2500base-x
-Date:   Tue,  2 Aug 2022 16:50:06 +0300
-Message-Id: <20220802135006.4184820-1-vladimir.oltean@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR05CA0093.eurprd05.prod.outlook.com
- (2603:10a6:208:136::33) To VI1PR04MB5136.eurprd04.prod.outlook.com
- (2603:10a6:803:55::19)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9223d023-0af3-4256-9dc6-08da748df786
-X-MS-TrafficTypeDiagnostic: AS8PR04MB9126:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: YrLkWHF06SEZkJM5sJhbSiit83j3hd0nTGP0t1r9NOWo/CzP6lserunolctWr4+icCI23gXoV60TC9nB8o39stXEpmPrabfX39UKk6cXPL8piSWu7CNkJvyr9JJOcYbMd82TCKABxS3U2zg9k+NDCKBidHUVIAQdPNg8kY8Kh6/kSTDVgBScgbtrBkKxPIcJcS/VTgi+rxoqttyt3JKrT/ii4iUIGTOTY/eFV0tF/7LIoxKvLPmcGN164EOypaUpKOgEX5SuyEp6+NoM1KEDezFPkNfeLaAI0vmW8EAntLDuJBimRGlANz1/3EdoQqLe76/WnMf+Q9HXfCkUrfcJadvm7Rt02J39RS2d1nz4xt+2VqEl9ihgFwg/xh1bu1joX1yZGPvZI8TfinQb7M/PGkD5fGPZ8ymgEDtoIupDVV4sW06dsSX1weC67r3quT0N3X91iG/e1rBGAesUnbWUXTIHPl9UE14UPP0HdzFVV+WEmmdHxBEp/hUzL0b28drQriGx2MX9sb0Qykpw+10juV3vFDW56/CMJ3BGh+3JvPw1lFy3ZgRHu1ap8V9hhbVLuv3ljUtVeNtCjGiYl7A7LbC0qR1jFdCsLFIFm8XtzTbdR/rRtDUVr+Cj9X3a5zXcj7gSpszJttwDG4hx7fMKxbThaDqezyYoI8P/1sW0zTywx9Hp2biVhqM6fa2mSYtxi0YIdQmVCElwtbj5aFnJFPEYqPXGJ5a3Y1s+ARa4pdl8Nrrd5CjCDKK0BgLUhuHzdA3FpM/qQhPuL8iItGA5I1FikGIbxYxjxCpObxc5bWE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(39860400002)(376002)(366004)(346002)(396003)(6666004)(316002)(83380400001)(2906002)(41300700001)(8936002)(86362001)(66556008)(66946007)(66476007)(478600001)(4326008)(8676002)(5660300002)(6486002)(38350700002)(44832011)(4744005)(6506007)(2616005)(1076003)(36756003)(186003)(26005)(6916009)(54906003)(6512007)(38100700002)(52116002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RdHqeKKHeZdFfERp8H7JdkWsm+/9CfkU0JNGB9ks2DvIBxwquu5ykiAXjTgJ?=
- =?us-ascii?Q?QAaBY0nMm+K77dkIYoPQFef0bwn1h+SMRmcJGriXjnpVTzKR1l0KQjFTHxRE?=
- =?us-ascii?Q?Bo+avnw/yD7O67mCqam+gp8G5kj8kHm/nM63Tr1H4JhY+SpZXDbG/gMb82HU?=
- =?us-ascii?Q?Ng3qN7UtybQPy0MaUksHvPHvucNVQqFXMG7lndadoJlZ+B2uYl8RQdXTaA9K?=
- =?us-ascii?Q?Ivv8E0wmGRdw3hQV9IIJU2Eze1jO40Va5Jre1tl4pE7SLnmoxTVyReep8sG0?=
- =?us-ascii?Q?SE2/txKxY7ZU+rkXhk8Yyeltww8EhTdnwG7SzYJuGYdRL+DfPPaDzVnsUpRQ?=
- =?us-ascii?Q?kYNt6t5I+onB+gcEIPAIDlL5lRmN9QxODH2YRm8vXq3rzYHZdTu5Jl86E4Gk?=
- =?us-ascii?Q?yJkR6mT9++4BpewrO7R1j3yMknMGUHPcYGhNsgYdlEj2C0owFVZNdxRYH73g?=
- =?us-ascii?Q?8kuRnrBxhRPEGrqPzNZLEF9CdBt4JhP19ZknYmZPUyR2Wvls9mxs1sz71KJj?=
- =?us-ascii?Q?88BpqxAFl8TPbm8ko311Je4J8Jc1PJCiIlQoncakp53o4FIgGu3sgAYq9ob1?=
- =?us-ascii?Q?txXdnAAB7ETHmbNFtn7CMTZ3xDzzhBciouwVUki9bRGz0svhsvPM6glgqrNk?=
- =?us-ascii?Q?BJ3yJPqH6Q7tEbkSGyDhSoCZJ7PH5CB0HcT+cAeCeBjjojM4XDjhWOMLv3d9?=
- =?us-ascii?Q?RMjYNwIEDDhy71hTdr2tpXd5UZUFN708QfYe37DGSZTIa5nGyHU9gzHXKAqk?=
- =?us-ascii?Q?u41CulA3bmRcvjgS+2zpK2/ln4701jfGVxpeTJiq68Dx/QTJ1V6xsw+/SIPm?=
- =?us-ascii?Q?Fz1KC4rIp+B0m8nEPQDD0xw7RfPCI7lHXOKybWVwLpj+bYH3IhTDshaZQdFe?=
- =?us-ascii?Q?Rqcc3ATs3vFH69RAWCmsIgu7GJiKqzxQI2SEN0vCR2Igcf4177ulAjaVz5Ry?=
- =?us-ascii?Q?AlKQeswObRfOiXt56nOMTimlYEcw8INdX+d1dCyxTQaL9v9bZLzAPP07rl1q?=
- =?us-ascii?Q?/145SQIIGL8yIQ2A+P5tAkF0P8FtEvubuatdHFFFUVUyFvjUEzOkKVWp1gkE?=
- =?us-ascii?Q?qy+dn9UlNWZX/vwlbZqP2ciipaxY6y6U1HUUIPUeNAFRvRNe7STOrv6lSIMs?=
- =?us-ascii?Q?uZJQ6SYVEjX2Xj2meQlthZRzeS6oZ9wKxzv4BaQ/YvvWsEkUjc+2l55kWzxa?=
- =?us-ascii?Q?9pQB2b0Z/Kx080JR3u3WdxmMXT9BIKDj3zmD8zafUTlj0rt+KrQtnNVik0m9?=
- =?us-ascii?Q?sIpQXnbvjuMhyfv23zgizyTVMZqHVRKNdHUlAcRDQnfZQCWGFgK44hdQf3DD?=
- =?us-ascii?Q?aKMdE31b8VrxjGlrAjGO4MsWYqIJBB1tzrmbzubuHbT7opXzFGqcYh7W/cSZ?=
- =?us-ascii?Q?PA+mkc+8ZrcpRtVcxpCqqyuhxOdAr9zqJb4bPJXxbQZ6eOP9/QeufbhMsBH2?=
- =?us-ascii?Q?1k5oy0TFUItIxCzb/1SVIobCdC73Xr+jfnZDOGX5YyqNbHIYpuHzIN4ptEIx?=
- =?us-ascii?Q?ZkZJhu03TznmYRX2zsJ1g6RMxdexPXdPT13XXjAufy0PETEAV7jyOW/UKcTq?=
- =?us-ascii?Q?xt+znQCnYimbSrdOfb37hkjqZJ7fNDCV5LL/NrC9ztNNgg/jSgi+bA58tgPV?=
- =?us-ascii?Q?/w=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9223d023-0af3-4256-9dc6-08da748df786
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Aug 2022 13:50:32.0382
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Vo6BOfGFfUyrumRFUAsS6NNu9sCsrBVdM8/Pg/5mEVVq8eU/6W3y+FT/AQjbzl6v9hR7DpBhuqOikzF88eCZcg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9126
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:nxeck6+fKHfSgr0GQyASw/Fv+tmX23a9v7NOMLbgHvgrjPDXjBU
+ wzQ04UkwRBR4FvCb2nFsp2aU8zy6F080hX4uMIWzDqq958Fq5FzrfAONZ1Nfo8Ee3rjrxlp
+ hDq/tM2a4v3qcsNgLbVq0wwLkqFlyLBuixpO2M6r+mTEIVF3FTIwwfezsVQH1BJQb4jtm0l
+ J5tIxs8MRQr7/HsOyqGHg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:W+bxOYNdzvA=:IQ9NBZqgLGkkMHKcdmV7UX
+ us9vGLw0XTP24WI+fjxvzvjqqkM3ZI1eDwpSyrM+lG0s7CpSmtNhawQbmPy/oE2xs5MChXoUI
+ p7/GpTTizg0PCAkhPiWKIF1mCMSQocNH9E8f/hoqauszJ96cc4fflBjplNMfaHbIo4SrrpLX4
+ LCp0KlZN8u1H3d1JOlQsrLb8T/ZzM+p5Rf5gVEuExRXMu9kcbXPn9oFO39az19s/bH6Z4o0z7
+ /0nLaa3TuHoLv220DTHsDO28qrvNq064Si4quKrbTh5Qv+aK4v5IQ+7ocU9YUzDds+Skifclo
+ pvjo2qIgQ9upkxwO+pOZ46Uf48y50CDj28bAsMfm3qX1bHGV7qh0o+YowjbYkibFY26YyKazI
+ 2yyVNkieguxYrUuEp5KS4dfB1yBh9SE2yeUF/fDLSTKtZ9iB+nyonSedR90bpDFUV+k6+ERFr
+ eIQpK6QGJvpdJzSsa0m44wv515+eIU4l9ZW6CaEcif7q/nbbM18au689rd7gx6uc9yAGE8xkR
+ 9UnH3LTfppkji3Pz52r/SsU36/sFkgcSN4DQl8fNL9OgNNAzoUEOi5LyLQAwOFRripfQt16iR
+ H42oZglQofvAuEvfxg/9dFDK6FD7HTBGE0i4QxyfO5fflkltUF4IP8/66o7G0L1t1wqaep3T/
+ IZSQV32pS6Ia7HXBojPh8A3q4uAcyoFe0/YQYnXUqTx/jtp3llV3tbszYIlrOoxJXQYaRcf9w
+ HR+AI9k1vje4OciR0DvTHNll0RDgU5d6AncZIg==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Lynx PCS integrated with ENETC port 0 does not support in-band
-autoneg for the 2500base-x SERDES protocol, and prints errors from its
-phylink methods. Furthermore, the AQR112 card used for these boards does
-not expect in-band autoneg either. So delete the extraneous property.
+On Tue, Aug 2, 2022 at 3:24 PM Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
+> > A lot of the changes can be considered bugfixes, and I would still
+> > merge them if you
+> > think they are harmless and can fix things. In this case, also mark them as
+> > 'Cc: stable@vger.kernel.org' to be backported into lts kernels. Anything
+> > that
+> > does not qualify as a bugfix should now go into the 5.21 merge window.
+> >
+> > Please send the bugfix pull request as soon as you can so we can merge that
+> > early. The other updates should be rebased onto v5.20-rc1 once that is
+> > released in about two weeks.
+>
+> There are one bugfix patch for each series and they will be sent for "stable".
+> About the other patches, I'll rebase and send them again.
 
-Fixes: e426d63e752b ("arm64: dts: ls1028a-qds: add overlays for various serdes protocols")
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1028a-qds-65bb.dts | 1 -
- 1 file changed, 1 deletion(-)
+Ok, I picked up the two patches you just sent. Please make sure in the future to
+send all pull requests and patches that you want me to pick up to soc@kernel.org
+(Cc the usual lists) so they end up in patchwork and do not get lost.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds-65bb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds-65bb.dts
-index 40d34c8384a5..b949cac03742 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds-65bb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds-65bb.dts
-@@ -25,7 +25,6 @@ slot1_sgmii: ethernet-phy@2 {
- &enetc_port0 {
- 	phy-handle = <&slot1_sgmii>;
- 	phy-mode = "2500base-x";
--	managed = "in-band-status";
- 	status = "okay";
- };
- 
--- 
-2.34.1
-
+       Arnd
