@@ -2,99 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E2B0588ABE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:46:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECDDF588AC3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbiHCKqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 06:46:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51972 "EHLO
+        id S232706AbiHCKvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 06:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229784AbiHCKqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:46:19 -0400
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC0E1DD2
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 03:46:18 -0700 (PDT)
-Received: by mail-il1-x132.google.com with SMTP id b12so7589344ils.9
-        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 03:46:18 -0700 (PDT)
+        with ESMTP id S231537AbiHCKvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:51:44 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4599F1B79C
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 03:51:42 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id l19so1758487wms.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 03:51:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=Sdl1HDAMO7QN2zfOTcK0TKELdtFAbVwfNiLV0pjEOVM=;
-        b=gwTdoIzxxTdgP0N5qgtx/pdTIShdgMTfYdfnc9OpVMmRLjLPaMfRp34XXVZG7RnFHm
-         OI4hAkJe/jFo08ryCnrZJaat/qnfgi0zO23zm5oFG48ruOgt0TX+g5HknSuPi41f7VjZ
-         spuxXMg4yh5J+k4AqB2JPGi+7jNp2dTp+FNW+ase3QS5wvjFKeEAPLNlDCDh6QLRYL4J
-         3sWYm7rCDgSOV/1igKUhCVHz4r+vRpcuPFkxyFWOr9mVGSggjMZOzAiyfcsXnNns+FRK
-         xBhF3tNjAaNlwY/Bg7GBY0MGJ8d3tHYNid+kd23Y3/agwBJ3i3aD1zr9WJaNh4ldNcTY
-         ccVw==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=UKgtTNEBRcEuJKNYzz9fav0XLRpqgY1r5hhJ/ETR5F4=;
+        b=l1j1LNiLEHPl29Pqd5P8h+R7lQ9danPifmXUoG1hTfeY7KvWVeWx4Abd/xixiNrTZ9
+         JBlyQVkJyX80pZtlMqZ6Zbq0haNbmZHQinkkW4C8DIpLFF0kl4WJPthEg6PNo2p6eTCp
+         attrMx7gN07hxshRXfb9PDygzeU0NjnkZhcnRjJ6DAgsr6WsA9grBWaP5hMz0rPsDIlh
+         OhW7WsQJxFhhOVrOT3KtkmQqcemojHqyp6C37wCh3drpgH1D4H6IuVjlNJF8eQYJ6AY8
+         SeNbscjbVDScrpQ1WsxQGbjQLluEMJUv13H4KPRayh0XvtQIJxmLIKNRGUukTiwDLMFr
+         Oncw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=Sdl1HDAMO7QN2zfOTcK0TKELdtFAbVwfNiLV0pjEOVM=;
-        b=2CYwGVEeLH03tSI5Elr4ZkmLhfeQATswm+mKgAFD7x56kTazxeOwZPcqS6m00ToKtd
-         y+qBh181rm20tiwAUBJQJQmDaQMnWC51LK6yuBQDa2Sl8pwXcPzkc8c+dMTSmiczW4s5
-         MoQ3mXFh5XZlCAqT3VsQ7EqThGyoqcpAC+2PcI+U9UM0JIZ0/TIQa+KeOlNZCMCAskQ2
-         ft3nl9InFZmiJcUmIanW2u8GE/KflM1AxgMZHrhauSjtwvx7qZoh8BkqmEBrhpOVSu0z
-         XGuG45OVX2QswjS7TdZiiv8t/OUisznZUyrzZJCTxSWEEvHdofBXXcYJeaeLokNUe5Zb
-         k7+g==
-X-Gm-Message-State: ACgBeo2YlS022pKs0fP1KffNLykoKGE2ExtNp+knQQQFNyPSU2lINoJ7
-        5KD8ZFjZgv9qAe38B0Mlpc02NBuwMGaA1peXWzkpUhP4GYeD0ztzeG8=
-X-Google-Smtp-Source: AA6agR5Sb8mkyscBBiAfGTgCzp3wbpXMwA4TotySl5QQZm6QkPjhjhUsRaZodv3Um3jHY1wL16wO9py5LQJG9CTZXCM=
-X-Received: by 2002:a05:6e02:198f:b0:2de:91f6:f70e with SMTP id
- g15-20020a056e02198f00b002de91f6f70emr6100277ilf.80.1659523578256; Wed, 03
- Aug 2022 03:46:18 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=UKgtTNEBRcEuJKNYzz9fav0XLRpqgY1r5hhJ/ETR5F4=;
+        b=bjx7NfzGo3IcKMCL+NCuhuvzdCEzfapF9k7BcUQgNCcc2TpIxU1ISHxR1dn48KylAR
+         6wYekNi72CAdPkn+U7qa7ULoU/0JUW8ZyjLtmdo5GlN36tEF9cD2iQBRQ8BOYbtR/Jl7
+         k/C95Pydz1mf6nbheHYMD+7C2V2Y/n35/kVXERnKHmNCbZIAYRFdfpW5CmSgRBLHacEk
+         9CP3w40yqe3PcEEdjX7NLvB3p+ox0Fz1z9gUtT9mRgR/VSSZgmHbRie6n3Z4/ls2BUQh
+         VIF4AXmPLSKk5etnV0q9e9DHMDCRd7pqmpJnZzvHULcfGzVFsYw6jBJ60HO97BYtVR6y
+         orDw==
+X-Gm-Message-State: ACgBeo0w+Qs2M/QtDrhWqKbwEgWbZUcbL4K78QD9hN1xrJm72EY9anjx
+        yJIewcY07Pt/QPoxeW0G9CZR5g==
+X-Google-Smtp-Source: AA6agR4ooQgNyvGSBedKzPOVSNxL7PaXRTSiaL3eh/8HzCV27FgkpUxBQmODfbbFRFzAFLhywsacXA==
+X-Received: by 2002:a05:600c:3845:b0:3a3:227d:c1c6 with SMTP id s5-20020a05600c384500b003a3227dc1c6mr2467572wmr.9.1659523900775;
+        Wed, 03 Aug 2022 03:51:40 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:6e48:fbdd:280d:6dac? ([2a05:6e02:1041:c10:6e48:fbdd:280d:6dac])
+        by smtp.googlemail.com with ESMTPSA id g11-20020a05600c4ecb00b003a02cbf862esm2331719wmq.13.2022.08.03.03.51.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Aug 2022 03:51:40 -0700 (PDT)
+Message-ID: <57687bbc-580a-ef07-bc50-6bc9f5c14ec9@linaro.org>
+Date:   Wed, 3 Aug 2022 12:51:38 +0200
 MIME-Version: 1.0
-References: <20220731174726.72631-1-jagan@edgeble.ai> <20220731174726.72631-3-jagan@edgeble.ai>
- <4f8b8b98-c0ef-4924-6ff1-ccfeae77fc21@linaro.org> <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
- <288b4d6e-68f9-26ef-c80d-cbcdaf9d2eed@linaro.org>
-In-Reply-To: <288b4d6e-68f9-26ef-c80d-cbcdaf9d2eed@linaro.org>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Wed, 3 Aug 2022 16:16:07 +0530
-Message-ID: <CA+VMnFwO41qOCSSbghynompUYMWGExeSCMKJVP9Z5Ed6pBgYDA@mail.gmail.com>
-Subject: Re: [PATCH v2 02/20] dt-bindings: power: Add power-domain header for RV1126
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Elaine Zhang <zhangqing@rock-chips.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v8 1/6] thermal: mediatek: Relocate driver to mediatek
+ folder
+Content-Language: en-US
+To:     Balsam CHIHI <bchihi@baylibre.com>
+Cc:     rafael@kernel.org, rui.zhang@intel.com, amitk@kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+References: <20220726135506.485108-1-bchihi@baylibre.com>
+ <20220726135506.485108-2-bchihi@baylibre.com>
+ <24250d03-b25f-e521-5abd-f36109885c36@linaro.org>
+ <CAGuA+opxZ7DDrWHcnTRhMcm7YveCAypdy9MDSytt58asgekayw@mail.gmail.com>
+ <CAGuA+ooOUXaBM+uPvEEohFLtO8sRd4T=DMcc6Fvo9P92gsq4yg@mail.gmail.com>
+ <9b224465-e9e5-43d3-50eb-3614decbd8b2@linaro.org>
+ <CAGuA+op-mO5ZMz_EvSOYUNiZ_4OOwLFQqFqMrCQBVMcG3mbcPQ@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <CAGuA+op-mO5ZMz_EvSOYUNiZ_4OOwLFQqFqMrCQBVMcG3mbcPQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Aug 2022 at 16:13, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 03/08/2022 12:24, Jagan Teki wrote:
-> >> Vendor in filename is needed.
-> >
-> > Yes this follows how similar rockchip vendor notation
-> >
-> > $ ls include/dt-bindings/power/rk3* -l
-> >  include/dt-bindings/power/rk3036-power.h
-> >  include/dt-bindings/power/rk3066-power.h
-> >  include/dt-bindings/power/rk3128-power.h
-> >  include/dt-bindings/power/rk3188-power.h
-> >  include/dt-bindings/power/rk3228-power.h
-> >  include/dt-bindings/power/rk3288-power.h
-> >  include/dt-bindings/power/rk3328-power.h
-> >  include/dt-bindings/power/rk3366-power.h
-> >  include/dt-bindings/power/rk3368-power.h
-> >  include/dt-bindings/power/rk3399-power.h
-> >  include/dt-bindings/power/rk3568-power.h
->
->
-> So when are we going to switch to vendor,device pattern if you keep
-> adding files with wrong naming?
 
-Do you mean the above files are following the wrong naming pattern?
+Hi Balsam,
 
-Jagan.
+On 03/08/2022 10:41, Balsam CHIHI wrote:
+> On Fri, Jul 29, 2022 at 5:35 PM Daniel Lezcano
+> <daniel.lezcano@linaro.org> wrote:
+>>
+>> Hi Balsam,
+>>
+>> On 29/07/2022 17:21, Balsam CHIHI wrote:
+>>
+>> [ ... ]
+>>
+>> You may want to wait next week before sending a new version, I'm still
+>> reviewing your series (note you can send it anyway if you prefer)
+>>
+> 
+> Hi Daniel,
+> 
+> Thank you for the review.
+> I have finished implementing the changes requested by the maintainers
+> and would like to resubmit the series.
+> Do I still have to wait for your feedback to send it again?
+
+At your convenience, I'll review the new version if you send it
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
