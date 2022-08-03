@@ -2,61 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE94B589473
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 00:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A485589475
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 00:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229881AbiHCWgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 18:36:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57854 "EHLO
+        id S236511AbiHCWhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 18:37:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbiHCWf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 18:35:59 -0400
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150996548;
-        Wed,  3 Aug 2022 15:35:59 -0700 (PDT)
-Received: by mail-il1-f174.google.com with SMTP id j20so7728954ila.6;
-        Wed, 03 Aug 2022 15:35:59 -0700 (PDT)
+        with ESMTP id S229620AbiHCWhO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 18:37:14 -0400
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49C1B22BE3
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 15:37:13 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id c185so13983034iof.7
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 15:37:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=opKDkyi7lKJltuG48YWCzI+exumamPnJWTRLbM7FknY=;
-        b=YXLtIERrfuxVu27g0rw68DM02zNEHhi+8XwBmz4C9mL5VWBhNWicVdmAlluzyZ6aNS
-         89rLqpFijHb7jFq2OBz+4i3tC+SfbieLuIyRuNVWdBcF7GCU4Az74swjFJfiCd0f1ovJ
-         x1A95n0zYpzNt43QguS/RcwGX/6DKweRlgKKj4KoVxrQ6PQ295C5xw9g3BNQsIXbwTYO
-         +PAg1sOVyEyXfobS8IhEcucJOLdNT5ZJmzkKDNM7UpiwOa2v0w624gYobyPjMAq65v4v
-         vXlHgmBh7JHC8Cyr/Xt+0BpDpmd8p+RylgMSN5VgdjfJp5RWqMXkGPAnv9tRueNZ/84e
-         u1pw==
-X-Gm-Message-State: ACgBeo09BgBjSrwam3nRtxHfLotvoq3HSB3ajASwp/kEYHeu1rpD5xrS
-        a3Y1cy3gzLbOHX/E379sxQ==
-X-Google-Smtp-Source: AA6agR6J7aD3Fr1axinuEJMEMgZ//1CcnRFYYmCYHmkoxDAcLOTepjMYtaMIn36eWwHarpA6qTaTDw==
-X-Received: by 2002:a92:d492:0:b0:2de:2d95:a5fd with SMTP id p18-20020a92d492000000b002de2d95a5fdmr11094666ilg.111.1659566158310;
-        Wed, 03 Aug 2022 15:35:58 -0700 (PDT)
+        bh=4pz4MBcrSjB8kB9MOPhMov58tyMfLBBMG6H3f2eOpjw=;
+        b=t+CwDWg1/dqiAodC/o8N4smSg1MADqjbLCWPJwpRreEKsjJMM337TpHd9wBe1iiXY9
+         jdTOJMiVID6LsoqfYebnkGAHqEVG62ODWkd0l4LnbyKvGEEBs04HvgHpo1fQ9jfKhg3A
+         MXLraI3b1oljCgJ8qip6l6oML6oJT4f3pY/NOQcNuwOUCGvnYZYhUA+U1dtD/d5PO5Uu
+         rjmc2um9KSpHisEk5JzqOCRQuoQTetaO+FfKxXxbu3EtMQS5Sqz1IJpwSiGrzSLeGgNC
+         2pf1PM1Gnd7ohDC9089bbS2SwoPNVnzGeWCJtU9nyJlW7cf3/0BBJBVw5VY7U+zqBFKk
+         ZhEg==
+X-Gm-Message-State: AJIora9TvOISj3phQsQH/+fKxVYpnP+63O1iKYF1cQhfuAMvQq8J+ktj
+        Dx3dzQ3eR3Wjo1DzC8HK2jVAZkIjVA==
+X-Google-Smtp-Source: AGRyM1vIT2vAplfGeDRkhgbxS2UqKelL062MMS4BX6biQYqaVsZYCUdK1voS1xq8V8TPBXgUgPtQ7w==
+X-Received: by 2002:a05:6638:2410:b0:341:5daa:2bc9 with SMTP id z16-20020a056638241000b003415daa2bc9mr11576771jat.306.1659566232542;
+        Wed, 03 Aug 2022 15:37:12 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b1-20020a926701000000b002df38c1e8d8sm685134ilc.62.2022.08.03.15.35.56
+        by smtp.gmail.com with ESMTPSA id i2-20020a026002000000b0033f8af36a96sm8186583jac.165.2022.08.03.15.37.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Aug 2022 15:35:57 -0700 (PDT)
-Received: (nullmailer pid 2743980 invoked by uid 1000);
-        Wed, 03 Aug 2022 22:35:56 -0000
-Date:   Wed, 3 Aug 2022 16:35:56 -0600
+        Wed, 03 Aug 2022 15:37:12 -0700 (PDT)
+Received: (nullmailer pid 2745689 invoked by uid 1000);
+        Wed, 03 Aug 2022 22:37:10 -0000
+Date:   Wed, 3 Aug 2022 16:37:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Hui Liu <hui.liu@mediatek.com>
-Cc:     jianguo.zhang@mediatek.com, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        linux-gpio@vger.kernel.org, matthias.bgg@gmail.com,
-        zhiyong.tao@mediatek.com, sean.wang@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v5 1/2] dt-bindings: pinctrl: mediatek: add support for
- mt8188
-Message-ID: <20220803223556.GA2743930-robh@kernel.org>
-References: <20220801095215.10876-1-hui.liu@mediatek.com>
- <20220801095215.10876-2-hui.liu@mediatek.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org, robert.foss@linaro.org,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: icn6211: Add support
+ for external REFCLK
+Message-ID: <20220803223710.GA2744605-robh@kernel.org>
+References: <20220801131747.183041-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220801095215.10876-2-hui.liu@mediatek.com>
+In-Reply-To: <20220801131747.183041-1-marex@denx.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,19 +64,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 Aug 2022 17:52:14 +0800, Hui Liu wrote:
-> From: "Hui.Liu" <hui.liu@mediatek.com>
+On Mon, Aug 01, 2022 at 03:17:46PM +0200, Marek Vasut wrote:
+> The ICN6211 is capable of deriving its internal PLL clock from either
+> MIPI DSI HS clock, external REFCLK clock, or even internal oscillator.
+> Currently supported is only the first option. Document support for
+> external REFCLK clock input in addition to that.
 > 
-> Add the pinctrl header file on MediaTek mt8188.
-> Add the new binding document for pinctrl on MediaTek mt8188.
-> 
-> Signed-off-by: Hui.Liu <hui.liu@mediatek.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Jagan Teki <jagan@amarulasolutions.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: devicetree@vger.kernel.org
 > ---
->  .../pinctrl/mediatek,mt8188-pinctrl.yaml      |  226 +++
->  .../pinctrl/mediatek,mt8188-pinfunc.h         | 1280 +++++++++++++++++
->  2 files changed, 1506 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8188-pinctrl.yaml
->  create mode 100644 include/dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h
+>  .../bindings/display/bridge/chipone,icn6211.yaml         | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> index 4f0b7c71313c3..18563ebed1a96 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/chipone,icn6211.yaml
+> @@ -24,6 +24,15 @@ properties:
+>      maxItems: 1
+>      description: virtual channel number of a DSI peripheral
+>  
+> +  clock-names:
+> +    const: "refclk"
+
+Drop quotes.
+
+With that,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
