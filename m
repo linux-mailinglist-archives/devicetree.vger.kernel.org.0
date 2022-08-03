@@ -2,70 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1647588AD6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:57:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53DE2588B21
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 13:27:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232079AbiHCK5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 06:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
+        id S235816AbiHCL10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 07:27:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230272AbiHCK5t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:57:49 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACBB61A82B;
-        Wed,  3 Aug 2022 03:57:48 -0700 (PDT)
+        with ESMTP id S235899AbiHCL1X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 07:27:23 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81AE939B92
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 04:27:20 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id z25so25985602lfr.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 04:27:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1659524269; x=1691060269;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=p/skRGjQQrnR0mSCoi7h2MYUKGS79ATducaOPWm/cVs=;
-  b=zKU+74GrrbF9SfhNIducPUt+1n8nx8aL6oeYePBD6YPUMlYY7YxYyFcY
-   b+2lTazXl+5/hNAND/mkbe++Js4RayW1ypmvs4xqkWLTvp2V9B0fuAMnw
-   o3l4GZeP8qsBLLH6Q6Ak/8Xg4tPrJb5WmWvVWFTbeJHDKLghzHj2JEd+W
-   c=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 03 Aug 2022 03:57:48 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2022 03:57:48 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 3 Aug 2022 03:57:47 -0700
-Received: from [10.216.54.167] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 3 Aug 2022
- 03:57:43 -0700
-Message-ID: <22aca197-8d18-2c9e-b3c4-f6fdc893ceb1@quicinc.com>
-Date:   Wed, 3 Aug 2022 16:27:33 +0530
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=TyUDYlMCD6nO9HsC72KlId2P6A43FPCwsmRgECQAK0g=;
+        b=Zu5AGpgAIaa0tgrUyX2ydy+8VuU6XriSBrd8UEOiPftB7pvnHcOkgmiimLlOohP0lo
+         R6pV4EXMvjHTqUbcnwcyefew3YpEOTaUNy6unU9YliCyswJfsSuwsLcThxy5Vm1Pji04
+         tkI3vL723mx9q6ygg6wV9cVwE3VzxyPdIc/+0zgcXe1LKsDHUeoKtB2kV39qVezPCr/I
+         y3hm3wvVlihs1Cq+NTeVaDyATEO8md7aU0akCVxLFzXojNQ4/v/Dv/RcBnfNlbqCazxK
+         iPsePCTenjxFg6pdJ1qo+H/WLzrfGdIjwPTN6cSD+mjeqyMGfEo60UxB2rR+FO/3DsoL
+         XpbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=TyUDYlMCD6nO9HsC72KlId2P6A43FPCwsmRgECQAK0g=;
+        b=RlcgxbZ2uSBkoRdHfxZWM2WVDL6lbHrGi2IYIcvMavpi5fzfcU8zK36DfQkVO2iQt/
+         j/j0CFfgkPDlgvodx8wWP433fvtdhpzHDTgwbsusXAXx3nSuttN21R6JhzbD6xpufm1B
+         9TFjocF1fydhpZGQNAV+hBEePIOEaul1Ybpp2VTo/0AY/jCSXdNMlLnSMJywD6nyvjSB
+         /UafrV1f1RG3ayyY5bj95Sp/H/BG0gY+eT02kLaxoOqOsqEPuMdxyt7iwitvcwWGd6J2
+         D2uH+4CAe4IDbeZnKCcRaEv4CoC+2PTygr2JsISEXV6Fz5Lk1AgRE7UA8dxmQrWSkWIJ
+         47WQ==
+X-Gm-Message-State: ACgBeo0HnJ1EJkKqqlEE9KHNXQURYnk1z13uVRV530kuq015Dkljqcag
+        kywOe2S7VNm38hCDthPPb9AhEMOhqpOPZ95e
+X-Google-Smtp-Source: AA6agR4Auzuv+tQrdrveIn2E16Thixb1ggjtVWNjtYFq1nEiRybO2lDKrsJTSg1mlohl+TosLEJH2A==
+X-Received: by 2002:a05:6512:324b:b0:48b:1d7d:6874 with SMTP id c11-20020a056512324b00b0048b1d7d6874mr997450lfr.18.1659526038654;
+        Wed, 03 Aug 2022 04:27:18 -0700 (PDT)
+Received: from [192.168.1.6] ([77.222.167.48])
+        by smtp.gmail.com with ESMTPSA id q3-20020a2e9143000000b0025e0c352465sm947579ljg.82.2022.08.03.04.27.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Aug 2022 04:27:18 -0700 (PDT)
+Message-ID: <88a18350-33fb-81e9-7984-7490da83a4a3@linaro.org>
+Date:   Wed, 3 Aug 2022 13:27:16 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.0
-Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap
- regions
-To:     Mike Rapoport <rppt@kernel.org>,
-        Faiyaz Mohammed <quic_faiyazm@quicinc.com>
-CC:     <karahmed@amazon.de>, <qperret@google.com>, <robh@kernel.org>,
-        <akpm@linux-foundation.org>, <linux-mm@kvack.org>,
-        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
-        <frowand.list@gmail.com>, <devicetree@vger.kernel.org>
-References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
- <YlW2TO0O8qDHpkGW@kernel.org>
- <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
- <YnQBKPWtPa87y4NA@kernel.org>
- <42f28e7b-c001-7d01-1eb6-fe963491898e@quicinc.com>
- <Ynj+M9cRm6zdCMMi@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 02/20] dt-bindings: power: Add power-domain header for
+ RV1126
 Content-Language: en-US
-From:   Vijayanand Jitta <quic_vjitta@quicinc.com>
-In-Reply-To: <Ynj+M9cRm6zdCMMi@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Elaine Zhang <zhangqing@rock-chips.com>
+References: <20220731174726.72631-1-jagan@edgeble.ai>
+ <20220731174726.72631-3-jagan@edgeble.ai>
+ <4f8b8b98-c0ef-4924-6ff1-ccfeae77fc21@linaro.org>
+ <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
+ <288b4d6e-68f9-26ef-c80d-cbcdaf9d2eed@linaro.org>
+ <CA+VMnFwO41qOCSSbghynompUYMWGExeSCMKJVP9Z5Ed6pBgYDA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CA+VMnFwO41qOCSSbghynompUYMWGExeSCMKJVP9Z5Ed6pBgYDA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,66 +82,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 5/9/2022 5:12 PM, Mike Rapoport wrote:
-> On Mon, May 09, 2022 at 04:37:30PM +0530, Faiyaz Mohammed wrote:
+On 03/08/2022 12:46, Jagan Teki wrote:
+> On Wed, 3 Aug 2022 at 16:13, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> On 5/5/2022 10:24 PM, Mike Rapoport wrote:
->>> On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
->>>> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
->>>>> On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
->>>>>> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
->>>>>> memory region")' is keeping the no-map regions in memblock.memory with
->>>>>> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
->>>>>> but during the initialization sparse_init mark all memblock.memory as
->>>>>> present using for_each_mem_pfn_range, which is creating the memmap for
->>>>>> no-map memblock regions. To avoid it skiping the memblock.memory regions
->>>>>> set with MEMBLOCK_NOMAP set and with this change we will be able to save
->>>>>> ~11MB memory for ~612MB carve out.
->>>>> The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
->>>>> really don't like the idea if adding more implicit assumptions about how
->>>>> NOMAP memory may or may not be used in a generic iterator function.
->>>> Sorry for delayed response.
->>>> Yes, it is possible that implicit assumption can create
->>>> misunderstanding. How about adding command line option and control the
->>>> no-map region in fdt.c driver, to decide whether to keep "no-map" region
->>>> with NOMAP flag or remove?. Something like below
->>> I really don't like memblock_remove() for such cases.
->>> Pretending there is a hole when there is an actual DRAM makes things really
->>> hairy when it comes to memory map and page allocator initialization.
->>> You wouldn't want to trade system stability and random memory corruptions
->>> for 11M of "saved" memory.
+>> On 03/08/2022 12:24, Jagan Teki wrote:
+>>>> Vendor in filename is needed.
+>>>
+>>> Yes this follows how similar rockchip vendor notation
+>>>
+>>> $ ls include/dt-bindings/power/rk3* -l
+>>>  include/dt-bindings/power/rk3036-power.h
+>>>  include/dt-bindings/power/rk3066-power.h
+>>>  include/dt-bindings/power/rk3128-power.h
+>>>  include/dt-bindings/power/rk3188-power.h
+>>>  include/dt-bindings/power/rk3228-power.h
+>>>  include/dt-bindings/power/rk3288-power.h
+>>>  include/dt-bindings/power/rk3328-power.h
+>>>  include/dt-bindings/power/rk3366-power.h
+>>>  include/dt-bindings/power/rk3368-power.h
+>>>  include/dt-bindings/power/rk3399-power.h
+>>>  include/dt-bindings/power/rk3568-power.h
 >>
->> Creating memory map for holes memory is adding 11MB overhead which is
->> huge on low memory target and same time 11MB memory saving is good enough
->> on low memory target.
 >>
->> Or we can have separate list of NOMAP like reserved?.
->>
->> Any other suggestion to address this issue?.
+>> So when are we going to switch to vendor,device pattern if you keep
+>> adding files with wrong naming?
 > 
-> Make your firmware to report the memory that Linux cannot use as a hole,
-> i.e. _not_ report it as memory.
->  
+> Do you mean the above files are following the wrong naming pattern?
 
-Thanks, Mike for the comments.
+Yes, or at least discouraged naming. The recommended naming which I hope
+all new files will follow are vendor,device.h.
 
-Few concerns with this approach.
 
-1) One concern is, even if firmware doesn't report these regions as
-memory, we would need addresses for these to be part of device tree so
-that the clients would be able to get these addresses. Otherwise there
-is no way for client to know these addresses.
 
-2) This would also add a dependency on firmware to be able to pass these
-regions not as memory, though we know that these regions would be used
-by the clients. Isn't it better to have such control within the kernel ?
-
-Let me know your comments on these.
-
-Thanks,
-Vijay
->> Thanks and regards,
->> Mohammed Faiyaz
-> 
+Best regards,
+Krzysztof
