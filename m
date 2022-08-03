@@ -2,119 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76FF3588552
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 03:16:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9774158855C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 03:22:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234762AbiHCBQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Aug 2022 21:16:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39020 "EHLO
+        id S231809AbiHCBWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Aug 2022 21:22:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234696AbiHCBQc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 21:16:32 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F308550AB
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 18:16:31 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 08D872C0302;
-        Wed,  3 Aug 2022 01:16:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1659489386;
-        bh=RHb6z3FlisRbkOdYvmYzCDevXzAM2e8f7oJpOTfus7s=;
-        h=From:To:Cc:Subject:Date:From;
-        b=MKVJ1eeSOQGM+HPjKp/ksSmTeFKXY17Fz5Ee613XtBLsjL19KJx3Ew7IfFvAztMCu
-         1x+EuOeeVM6fOh7m6rE9Z8xsqm7F04WjCxDpUEvz/tZog+lOT3a4M9qqFbMCvlM6j4
-         UhCsm6qbI+1AQMfF65s1WSTDiJqDRb0vvFtEz4Jb8BpXfrZj7aCSMbSO8SdXgzhnCp
-         GiWwfNUfvuPX2QDIc5S9oJBEkPA+GrWTTAeauGJi/3jsVba0k5lhzRpDyIT0mZu6ji
-         yzdsXb2eRPXt1PbWoOVlinbeFBcK+Y16yAWrzfwmfXc6Y8r9v7rXKolduZxfhfxfjk
-         mbDCdnmxiaQSg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B62e9cc690000>; Wed, 03 Aug 2022 13:16:25 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id D54BA13ED0C;
-        Wed,  3 Aug 2022 13:16:25 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id D1EEB2A0090; Wed,  3 Aug 2022 13:16:25 +1200 (NZST)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        vadym.kochan@plvision.eu, gregory.clement@bootlin.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH] arm64: dts: marvell: Add UART1-3 for AC5/AC5X
-Date:   Wed,  3 Aug 2022 13:16:23 +1200
-Message-Id: <20220803011623.3607642-1-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.37.1
+        with ESMTP id S235262AbiHCBWu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Aug 2022 21:22:50 -0400
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com (mail-eopbgr10081.outbound.protection.outlook.com [40.107.1.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6BC8558FB;
+        Tue,  2 Aug 2022 18:22:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FfdglURrNGx93+/UdndSryk9QiKQVG1I6841LI1gxwyj29uJcc83Goetsw3rllPkHhQSLGrF94FqGO1eMxnBXhSKrKYkrnB3C22ZV5nyuftZsNr2rECcGQkRxmC5AAE+nr8gk9tXjuZC/cJ68l3l3C+X6apqRxKrj0rsx4TTmilUMhiEGsBE44GxB+vPE4pz20g2uloT38xsSAELMofth32qft3XLrnXCL+9D+vqghmVMbrhKpEu3IYALPD169h1bPtYLRQ6s4F/6TcKBUx+qxRIXvpbfslAFvwBts/8JsOeqeCjxXyyds6oUC92O52uA+I6s+0LO/WoH0iTsdAIPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iIRLbCo4lj2kOGYeDNFWOQvPXwxZY/qx3zbTHF7lLZs=;
+ b=DaRCShPtuYFlIFJRs6vEr6sXk16MSq9EB5QZydnbPFvu6aQan6kFxjE2j2L7UTHGvhMUIBjl7y8tjVZTKkaXTJLiKQOtlxZKSg/rXMS6sZR5q5tkclUNcmsW3NdmOq0Ili/XXJs0cx6bYxxXL57qycRyXMs8GuSHAiwfhjJO0peLOexyP+e7YQJDFLHlhmqgUOxbgo/8cN2Qqs0ypeCr+Irq8O5xvF1Jh1OfCIOA+o9VNDbE0keCTVsUEahGsMnEp2RWahTIkDq1V88HXPIrt7q8m9pcqHGT8N6uuXmN9kCQsGhLK7kP+SltG+9vO17jJqLiD5hQ9MlmTKFKknXFXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iIRLbCo4lj2kOGYeDNFWOQvPXwxZY/qx3zbTHF7lLZs=;
+ b=AmCrwHT92goVHIMLpWp6aAHlHpm14jm9dZa5Dhme21H4LooxMTZLsTy5XiU7Fezm/wkCidCa9P9koxz1WTxGK3Z9+y1RrbdYxC8R+d6nljRXqNhIdVStNmn4nn/unnYW9SKGlG6RwjCycF2OttIrk581rswVHdSW0WpC2nEKZYA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AM8PR04MB7780.eurprd04.prod.outlook.com (2603:10a6:20b:24c::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Wed, 3 Aug
+ 2022 01:22:45 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::2549:869e:d80b:3a1b]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::2549:869e:d80b:3a1b%6]) with mapi id 15.20.5504.014; Wed, 3 Aug 2022
+ 01:22:44 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, saravanak@google.com,
+        gregkh@linuxfoundation.org, geert+renesas@glider.be,
+        krzysztof.kozlowski@linaro.org
+Subject: [PATCH v2 0/3] drivers: bus: Add Freescale i.MX8qxp pixel link MSI bus support
+Date:   Wed,  3 Aug 2022 09:24:18 +0800
+Message-Id: <20220803012421.3410226-1-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR04CA0009.apcprd04.prod.outlook.com
+ (2603:1096:4:197::8) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=F5opiZpN c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=biHskzXt2R4A:10 a=ngK7aFzLhKCcFdMQWeYA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 79fe8d7c-baec-4b1d-f9c2-08da74eeaae0
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7780:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: c5HM54cLZNR8YMbm6Vzbx/9hbkxbPbmK0+iWnn0u649uqDqkpY0AZqG9SnxH1Hep5Xajv9hKv3wgfdBEYNsU2C9L9lu/eDQPTMM2mS2UcD/Y6dCPIhMt0u/XjYHlaChUdvJu4JsDM9V2FKCnHmyS4GW+8+QB3JjfnBgpE+JOiwhMTuwWcKSF+Ll8eQfCNBOet50qn2XNUhrxPrskWjYLqDs2qfl8epn7jU9Thht7aWAsFwSbp0jpSdi0QSAfLs5V/4i+cZk5Zl1xo5k7hLgVFOb0L6ybbFXCp/e4GQBNlwQKwEm6pG8QouWrFvZy+f+jEEBWEy5Hotr+G7TAtyf2hBN/nK4tk7u2oypSLrWdLNiLYWkpXZU2gh/GC2igCSnM/6+TwU2xhEL2CnJrSOL6QxxM/wL3JFSPhz6VuiH7U6ecTzmPH81Z0NLiePIwZi/7WA/cEWHZ2/Twmn6PF6xLavYj+LrhVJtpATNWB5i7ug8Xmll2/kmMKU4/NWB1ZyVNLtiymZCO4wchKxMM41WnlE/OxGlihrc8aDL5lpSH9ENKJ5LeIJT89xfBOTa6dpU4C6eIHqCS3l78O7APhQ5+t79hNOakjYXA7fVENN8D8F6GFjBZ0YC++9mKDv4N2A6I3YjFlyqFatRdwemggtO9afRttGTMPw2KyrGBpOVjcaYFTgWb7vXBPY8hlNbpTYA3zwT+RuSLJBoU2De3axdPMyQZBo4zHjKBvLI2jt1Vzk53SjQPzhquoU/V+AiD6LLafI/DT2lupFDZU7ZSpbECc90OZegGfNN7XXzF1tzdLCM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(346002)(396003)(376002)(366004)(39860400002)(478600001)(41300700001)(6666004)(6486002)(52116002)(6506007)(6512007)(26005)(7416002)(2906002)(36756003)(86362001)(316002)(1076003)(186003)(2616005)(38100700002)(38350700002)(8936002)(5660300002)(4326008)(66476007)(8676002)(66556008)(66946007)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lPa8r0xXmOrMIdMCMHNcuXZ7v7G0XKs7cgN8UZuAXO6+KR8IrGgJSljWXUGn?=
+ =?us-ascii?Q?dOKRMRXR0to5t2G265oGmTWvbWODL1KZl/HXjB4tkVCQkEY4fHVMDdhYB4SG?=
+ =?us-ascii?Q?xVnQCP2/KIpSBlHpB8z/fWu4h4f67dpdNBT5Necq82+/4HBozznpIK9XBjmw?=
+ =?us-ascii?Q?nNy+Y3deuK+z5TUQOhVQGS4pV9tBQrv7UkhR+rTyrilo1uuEbJ8t8jdXf1YQ?=
+ =?us-ascii?Q?/AqEViiefXNsS0ecVWpZbrMAnrccVMFihHM1OEYRIpry10Oa/a03vBk0WTYi?=
+ =?us-ascii?Q?5q2tbrDawe+77NbkI4CvZi99Qa4+nkP1G2nC00eaxdVaRpR1G6NoKdSLSRHV?=
+ =?us-ascii?Q?UKN4lBzkYfomV92rrGm7iS4j/z75Uf1utgJ1/pTlVd1p/aB1mKrY7UgRNCOJ?=
+ =?us-ascii?Q?L6QrDXTkL0d1kBzTi57HlNYo0fpLFjrImfvM9bYLsNa1Yo1cEb/TFyf6+iVm?=
+ =?us-ascii?Q?3o8rM/DOyY3kFezwuJhMbzasWDVtYaF7scoMGq3S/GYFnqqVYPHUj5iOZWKB?=
+ =?us-ascii?Q?BB/A/WU95J1ddC1gwBGzRSbihGbLV327O7VwTJGVpfVx/d8tk1t77k0ALQDb?=
+ =?us-ascii?Q?vSRAvp4yATNakZTsFVZUu7n+sIWpg6MEDZCNVNB0dK+Glf42vHdrMOP+iZLq?=
+ =?us-ascii?Q?P5EyeO1b6+lo3QjJNCwk8dlxrXoNJyC3mlWjqo9s5iXnmmWolRl7QK6sQeKP?=
+ =?us-ascii?Q?/vg3Es4EcKLfsUhSx74cBbEaTBiwjSeXxtiDFPF1/+kCM7sorR8lQpKmiuNR?=
+ =?us-ascii?Q?gLSB3vAT3GJw3jLSWT4+nG6ENTJFYVyhxuX2oas1hm3BYhiGwUVay159ZOIF?=
+ =?us-ascii?Q?bnqdG3S/C37pSkiwBYpJt5Vnuu/4KxSFWTLRUKNdYF4E4rRBFaojPNsL1euq?=
+ =?us-ascii?Q?iebDEyPti3xjfZxcdRBX/gd+hwz0ngPkOF99hWlc7aterq1or+Tek71tQEgd?=
+ =?us-ascii?Q?IqYSrjO/z4wG1xAOd7z34rf1S2cLoFlnOr7Vw1SzxVPLmigItFD893K2iiBX?=
+ =?us-ascii?Q?ijx9Lp1R6zKW/uL2upFQfkJr9t3VTHbq8X9UwFLn8SsaC/fOOxfcgjoPEfEq?=
+ =?us-ascii?Q?tlbZlA2jp6dcwI7Uxi08gDI3dG7H0vgyiHNSfSKdVnfukhmBfxjNydFypHEt?=
+ =?us-ascii?Q?8JJYEz4hbFGd3Bze0b4IL2OKHBy7MmddTnSd4LiROUpievLF+dgrEyjLTvvS?=
+ =?us-ascii?Q?4lIedV+VzMVvOUeKdCqorAQQ062zDjUIkY9WYK4CoYEpSRb8yxuGzTgD1dW/?=
+ =?us-ascii?Q?HbebRno67OG57QWkk66Rbm/SPD+svBMFQLEfHL5T0T1QFoXCjJvZFBVydgiV?=
+ =?us-ascii?Q?W4330HYg0F7bMiPk6XpoUUldfpnvqczxg/VQTFPJdjF5HZWooqeaIFNT5bGy?=
+ =?us-ascii?Q?FPDoRSTqaXyOe7WgDgpAjgzyUatf5xPxubNOqpCsQLfqD2va1JGWUJPAG7ut?=
+ =?us-ascii?Q?VDFfmqPEFs48p2gVZNNrw2pjDA4voR5Yyc+hDWj94IhbFCn3irXt8vJjmhpD?=
+ =?us-ascii?Q?I1LUEYyIW0miwKBAilpmnibJc3XHno+XTtVzBNj/SyZEiSeSFhXsQYAHtH6h?=
+ =?us-ascii?Q?KEYTqVoB2Wy/OgmlCED5pWDMSpuin070bcPYpifo?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79fe8d7c-baec-4b1d-f9c2-08da74eeaae0
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2022 01:22:44.6286
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: H0b1c2jr9feqGxIc4bkPnnvcCtI5i6aVn+g1eOnff2kS/ID65uKmDDcMUCA1UYCzxswfdqgDTVO2sJY0gNsAdQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7780
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AC5/AC5X SoC has 4 UART blocks. Add the additional UART1-3 blocks to
-the base dtsi file.
+Hi,
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+This series aims to add Freescale i.MX8qxp pixel link MSI bus support
+by using the existing simple-pm-bus driver. A power domain and two input
+clocks need to be enabled before the MSI bus accesses it's child devices,
+which matches what a simple power-managed bus is(See simple-pm-bus.yaml).
 
-Notes:
-    This applies on top of the series adding the AC5/AC5X SoC which is in
-    Gregory's mvebu/dt64 tree but hasn't made it to Linus's (yet).
+Patch 1 adds support to populate simple MFD child devices in the
+simple-pm-bus driver, since the MSI bus may connect those devices.
 
- arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+Patch 2 enables/disables functional clock(s) as a bulk in the
+simple-pm-bus driver when the simple-pm-bus is being power managed,
+since the MSI bus takes the two input clocks as functional clocks.
 
-diff --git a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi b/arch/arm64/b=
-oot/dts/marvell/ac5-98dx25xx.dtsi
-index 80b44c7df56a..914fcf9e2c24 100644
---- a/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-+++ b/arch/arm64/boot/dts/marvell/ac5-98dx25xx.dtsi
-@@ -95,6 +95,36 @@ uart0: serial@12000 {
- 				status =3D "okay";
- 			};
-=20
-+			uart1: serial@12100 {
-+				compatible =3D "snps,dw-apb-uart";
-+				reg =3D <0x11000 0x100>;
-+				reg-shift =3D <2>;
-+				interrupts =3D <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
-+				reg-io-width =3D <1>;
-+				clocks =3D <&cnm_clock>;
-+				status =3D "disabled";
-+			};
-+
-+			uart2: serial@12200 {
-+				compatible =3D "snps,dw-apb-uart";
-+				reg =3D <0x12200 0x100>;
-+				reg-shift =3D <2>;
-+				interrupts =3D <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
-+				reg-io-width =3D <1>;
-+				clocks =3D <&cnm_clock>;
-+				status =3D "disabled";
-+			};
-+
-+			uart3: serial@12300 {
-+				compatible =3D "snps,dw-apb-uart";
-+				reg =3D <0x12300 0x100>;
-+				reg-shift =3D <2>;
-+				interrupts =3D <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-+				reg-io-width =3D <1>;
-+				clocks =3D <&cnm_clock>;
-+				status =3D "disabled";
-+			};
-+
- 			mdio: mdio@22004 {
- 				#address-cells =3D <1>;
- 				#size-cells =3D <0>;
---=20
-2.37.1
+Patch 3 adds dt-bindings for the MSI bus.
+
+v1->v2:
+Address Krzysztof's comments on patch 3:
+* Add a select to explicitly select the MSI bus dt-binding.
+* List 'simple-pm-bus' explicitly as one item of compatible strings.
+* Require compatible and reg properties.
+* Put reg property just after compatible property in example.
+
+Liu Ying (3):
+  drivers: bus: simple-pm-bus: Populate simple MFD child devices
+  drivers: bus: simple-pm-bus: Use clocks
+  dt-bindings: bus: Add Freescale i.MX8qxp pixel link MSI bus binding
+
+ .../bus/fsl,imx8qxp-pixel-link-msi-bus.yaml   | 97 +++++++++++++++++++
+ drivers/bus/simple-pm-bus.c                   | 61 +++++++++++-
+ 2 files changed, 157 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
+
+-- 
+2.25.1
 
