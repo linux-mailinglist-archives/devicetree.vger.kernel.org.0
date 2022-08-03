@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9543D5894D1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 01:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27B3F5894E4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 01:37:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236656AbiHCX3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 19:29:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59560 "EHLO
+        id S236574AbiHCXhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 19:37:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbiHCX3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 19:29:44 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4392B606;
-        Wed,  3 Aug 2022 16:29:43 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id i84so1468438ioa.6;
-        Wed, 03 Aug 2022 16:29:43 -0700 (PDT)
+        with ESMTP id S233883AbiHCXhr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 19:37:47 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06C25C953;
+        Wed,  3 Aug 2022 16:37:46 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id x64so14081916iof.1;
+        Wed, 03 Aug 2022 16:37:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=sdo65sIiJ/1e4LTGR8d4rY9CIwQ/LQr23+diMXKcltg=;
-        b=sh8yRgXbaU1McnxFiT3XZSE6yTRU0LVINRfLfdg+jmJeebEla4InhzJ1NPSEt4g+TL
-         +SArWrdc70LNXUokjr8AHDbZnGKt1RD8ZsUKGW9Wu3brGZ3cvV3bAugfrK2BR/1jWv3A
-         u+g0COQaxCeavYQI4RbZwgj7CdR/qOKwk2d4JkXEFJIq4gs+EMtN8u6kgn7GLwIltvYB
-         ZcjjTX7BS+Tz/d6nvXX+Zvi+vqs38cSG2sIEV3cpq0lWZ6B++O05/nyhli59Z2nKMEIe
-         59jCFZ+PY3AeaFmXtqq/nkFfjVF9TreZY+pADQgIvew3ei4Jvpzw4Qf6Ssfa2VehsjZG
-         3NKQ==
-X-Gm-Message-State: AJIora/1RlKQTXSh39x6YK5l4UM/WQuMnfKPa5F/NMOdkoH0H/mZveFz
-        0a6i+wBVzfA2mwNT72WCiA==
-X-Google-Smtp-Source: AGRyM1sFvLFTGq9eSistBVGf0FU9EbMxueHo6TwUz7AZ8/kMHkoYCXuXqd9eF6s1NOWh7AFPU7QAdQ==
-X-Received: by 2002:a05:6638:16cf:b0:341:4543:b354 with SMTP id g15-20020a05663816cf00b003414543b354mr12103411jat.114.1659569383002;
-        Wed, 03 Aug 2022 16:29:43 -0700 (PDT)
+        bh=fLmqeRMf4JDZKs/iHkdB/euWLnNPX6ANGv/0J6rLGMw=;
+        b=eEO10LWPNnCW2Agy9hgvLGqmA7WUBCMlVPnEP3pcfySppWgsrVTWk8m9iLEcllbNnN
+         C3SZNHOfdMaFZcXV+6rUe5Aw6I+/3d83WpC24TZEEt/pS1sJX2l7Rzm6LoH0xFZywZzC
+         KRLiNDy9YNYipsYMORVZIXO8W5IAS1nJ3Gr5T7s4Fcuy0wht94f5LY7+CY0FXsBsT37z
+         TQGLfiVA8/+ICkX45uAz4toddwv5rCMK+wWzi2G2fzePfQoI/j5GWCKdcXqrlgzuzkWX
+         uDGkgjkKLgUE0mELgw+gYkvprEGEx7WHF/WUwVJc1gcYvVCdZ+WUQp4Yr8BSxLOy8C2v
+         bXCA==
+X-Gm-Message-State: ACgBeo2eZ0mMapl0i+hO4RdOkuKXUJqD2oAQh6v694hUGOyDSH5qGNht
+        hAycrIMqNCfPFReljo1y8A==
+X-Google-Smtp-Source: AA6agR53WI0LJZ+DX8d8/XcrWJ10kzKH3mPTOxxzw9arA4anUD75QNQmKl+niGSJgwxKS/uZXonCFA==
+X-Received: by 2002:a05:6638:130d:b0:342:9b04:729b with SMTP id r13-20020a056638130d00b003429b04729bmr1074641jad.59.1659569865873;
+        Wed, 03 Aug 2022 16:37:45 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j4-20020a026304000000b00341d7c43ed5sm8105880jac.73.2022.08.03.16.29.41
+        by smtp.gmail.com with ESMTPSA id a4-20020a021604000000b00339ceeec5edsm8396727jaa.12.2022.08.03.16.37.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Aug 2022 16:29:42 -0700 (PDT)
-Received: (nullmailer pid 2813125 invoked by uid 1000);
-        Wed, 03 Aug 2022 23:29:40 -0000
-Date:   Wed, 3 Aug 2022 17:29:40 -0600
+        Wed, 03 Aug 2022 16:37:45 -0700 (PDT)
+Received: (nullmailer pid 2823499 invoked by uid 1000);
+        Wed, 03 Aug 2022 23:37:43 -0000
+Date:   Wed, 3 Aug 2022 17:37:43 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Robert Foss <robert.foss@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        linux-i2c@vger.kernel.org, corbet@lwn.net
-Subject: Re: [PATCH 5/5] dt-bindings: i2c: qcom,i2c-cci: convert to dtschema
-Message-ID: <20220803232940.GA2813072-robh@kernel.org>
-References: <20220802153947.44457-1-krzysztof.kozlowski@linaro.org>
- <20220802153947.44457-6-krzysztof.kozlowski@linaro.org>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, saravanak@google.com,
+        gregkh@linuxfoundation.org, geert+renesas@glider.be,
+        krzysztof.kozlowski@linaro.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: bus: Add Freescale i.MX8qxp pixel
+ link MSI bus binding
+Message-ID: <20220803233743.GA2813240-robh@kernel.org>
+References: <20220803012421.3410226-1-victor.liu@nxp.com>
+ <20220803012421.3410226-4-victor.liu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220802153947.44457-6-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220803012421.3410226-4-victor.liu@nxp.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,22 +66,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 02 Aug 2022 17:39:47 +0200, Krzysztof Kozlowski wrote:
-> Convert the Qualcomm Camera Control Interface (CCI) I2C controller to DT
-> schema.  The original bindings were not complete, so this includes
-> changes:
-> 1. Add address/size-cells.
-> 2. Describe the clocks per variant.
-> 3. Use more descriptive example based on sdm845.
+On Wed, Aug 03, 2022 at 09:24:21AM +0800, Liu Ying wrote:
+> Freescale i.MX8qxp pixel link MSI bus is a simple memory-mapped bus.
+> It is used to access peripherals in i.MX8qm/qxp imaging, LVDS, MIPI
+> DSI and HDMI TX subsystems, like I2C controller, PWM controller,
+> MIPI DSI controller and Control and Status Registers (CSR) module.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reference simple-pm-bus bindings and add Freescale i.MX8qxp pixel
+> link MSI bus specific bindings.
+> 
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > ---
->  .../devicetree/bindings/i2c/i2c-qcom-cci.txt  |  96 -------
->  .../devicetree/bindings/i2c/qcom,i2c-cci.yaml | 242 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 243 insertions(+), 97 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-qcom-cci.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
+> v1->v2:
+> Address Krzysztof's comments:
+> * Add a select to explicitly select the MSI bus dt-binding.
+> * List 'simple-pm-bus' explicitly as one item of compatible strings.
+> * Require compatible and reg properties.
+> * Put reg property just after compatible property in example.
 > 
+>  .../bus/fsl,imx8qxp-pixel-link-msi-bus.yaml   | 97 +++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
+> new file mode 100644
+> index 000000000000..358c032041e5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8qxp Pixel Link Medium Speed Interconnect (MSI) Bus
+> +
+> +maintainers:
+> +  - Liu Ying <victor.liu@nxp.com>
+> +
+> +description: |
+> +  i.MX8qxp pixel link MSI bus is used to control settings of PHYs, I/Os
+> +  sitting together with the PHYs.  It is not the same as the MSI bus coming
+> +  from i.MX8 System Controller Unit (SCU) which is used to control power,
+> +  clock and reset through the i.MX8 Distributed Slave System Controller (DSC).
+> +
+> +  i.MX8qxp pixel link MSI bus is a simple memory-mapped bus. Two input clocks,
+> +  that is, MSI clock and AHB clock, need to be enabled so that peripherals
+> +  connected to the bus can be accessed. Also, the bus is part of a power
+> +  domain. The power domain needs to be enabled before the peripherals can
+> +  be accessed.
+> +
+> +  Peripherals in i.MX8qm/qxp imaging, LVDS, MIPI DSI and HDMI TX subsystems,
+> +  like I2C controller, PWM controller, MIPI DSI controller and Control and
+> +  Status Registers (CSR) module, are accessed through the bus.
+> +
+> +  The i.MX System Controller Firmware (SCFW) owns and uses the i.MX8qm/qxp
+> +  pixel link MSI bus controller and does not allow SCFW user to control it.
+> +  So, the controller's registers cannot be accessed by SCFW user. Hence,
+> +  the interrupts generated by the controller don't make any sense from SCFW
+> +  user's point of view.
+> +
+> +allOf:
+> +  - $ref: simple-pm-bus.yaml#
+> +
+> +# We need a select here so we don't match all nodes with 'simple-pm-bus'.
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - fsl,imx8qxp-display-pixel-link-msi-bus
+> +          - fsl,imx8qm-display-pixel-link-msi-bus
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,imx8qxp-display-pixel-link-msi-bus
+> +          - fsl,imx8qm-display-pixel-link-msi-bus
+> +      - const: simple-pm-bus
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: master gated clock from system
+> +      - description: AHB clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: msi
+> +      - const: ahb
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +
+> +unevaluatedProperties: false
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+No child nodes allowed?
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8-lpcg.h>
+> +    #include <dt-bindings/firmware/imx/rsrc.h>
+> +    bus@56200000 {
+> +        compatible = "fsl,imx8qxp-display-pixel-link-msi-bus", "simple-pm-bus";
+> +        reg = <0x56200000 0x20000>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        interrupt-parent = <&dc0_irqsteer>;
+> +        interrupts = <320>;
+> +        ranges;
+> +        clocks = <&dc0_disp_ctrl_link_mst0_lpcg IMX_LPCG_CLK_4>,
+> +                 <&dc0_disp_ctrl_link_mst0_lpcg IMX_LPCG_CLK_4>;
+> +        clock-names = "msi", "ahb";
+> +        power-domains = <&pd IMX_SC_R_DC_0>;
+> +    };
+> -- 
+> 2.25.1
+> 
+> 
