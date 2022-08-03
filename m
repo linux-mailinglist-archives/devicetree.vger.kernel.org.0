@@ -2,68 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9906358923E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 20:27:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC527589248
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 20:29:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234206AbiHCS1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 14:27:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54216 "EHLO
+        id S238096AbiHCS3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 14:29:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236188AbiHCS1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 14:27:45 -0400
+        with ESMTP id S237795AbiHCS3x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 14:29:53 -0400
 Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5565C4B0DD
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 11:27:44 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id w3so6877879edc.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 11:27:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74BAA5A2EA
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 11:29:52 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id x21so9807969edd.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 11:29:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9CgsRAN74WJvmSzS9JVuUR+OnAdqiFFQn7INDdzWbvQ=;
-        b=p+YPivVJdwo5IPFYA4JUokAgeHffkqT5hSkYYCPil+8TUnfkwyvqy/qHcCkj2yWRed
-         cPC31RWP+2YrsHLwOoxmxo1wbQSHo5MgMEMR+Un4+IFn1PHG5VRdNxmZRAatCw3y6C17
-         jYzIAV6iP5ri0GmLXLnOCr5ztOyPske70yvjsSosPVBQetQvT6fuXO7TvO+ghmnjOqfi
-         1CLCfMxx412AyzLr8gRzQnXuHi2IiWXFEyHteKnQr1vyHbAAUKdMubuJ9nRiLOuJehSn
-         FqPsUlgDvPEDObL53jHvsxylDLyvHSUZKDMFqFsuZLBuEMUZkZlvJipwrLnyGSEubZti
-         EBwQ==
+        bh=oA6nNFqtAx3x5LsiqpTHLf6wHToLYzY4zhs6wkSQF94=;
+        b=IypyMFSvUUDb3PAPYmqoU3Wkk7X2fWIhSBfvG5jIvQinuZlmeTgRHeumtg7FRDIIoL
+         DhL8pY+9yVeOgAo9uQ5Fbx9B+LuX/1gh/dDUzwK2IQzmWOUq8b1nk8tn5KvZCLyZcWHh
+         zZG8quFv4NfTj94XDMzUtyGBCrOvuuvGBMeexMEBnBBYUMMg3XTGsOTFXYPaNCZnVOvh
+         1DDufM+r6yNCFoHJ4UGElPMfd1a8/5WBtn6njSuSoo41aF1YOPo8bCLZBWmScM+3kIBW
+         VL0lQL3hCFNXTObnWCvvyFM1Gs5TW2hJ5QYpIZVVhmu0EFYcoPnbQBlmHUQhbXv2Zo0n
+         1JoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9CgsRAN74WJvmSzS9JVuUR+OnAdqiFFQn7INDdzWbvQ=;
-        b=VeOg8rM0H/z+mXdr4BrlWwyCVlRnqXSsRgYlDwHGbBpSBk9n38Ul6GANvD4zzBRnsr
-         QJc1CP6vx1Oe59f4/afKy/wIm7aQwqOnF7V/hpTnq8Y1vAbaCysgkWMJ0ebsxbcqT4RF
-         l7W7BlheM95Ha3txDIFMYWQhZA/Q6cZJTYUHtaGGLY9ZbdVHmphGftyQlQdw5lFohx2E
-         LM7ou2VybyHpH1Bryj7m7O0Sn8nYAJaZOvWh9dmhLvskN8lZcNNNQlo3bNvuCarw3jhB
-         btzp+389lKxhMD8uu0jmBJcyqLIv2wMyWauiJfuXWoYFWSKQ4jtGzBVpkk/2BcLvVTOz
-         RN+Q==
-X-Gm-Message-State: ACgBeo0E6wPIT6JJbbGEx27jFktQ/mwNax84a2UFB/PSFSZG/XySmdAK
-        4iZ0gM8i+yW6TawgrsEnZQ3b9lDuugfBhIN5QYy//A==
-X-Google-Smtp-Source: AA6agR5GO1f0s2L26bBOHH3T1rJe02UH7Rh9XGpRwEw1mQtbhhgLRwBSRWpQdMxBtw3uuck7/Zg1lU/eBQDSupW7n3I=
-X-Received: by 2002:a05:6402:1777:b0:43d:85da:2fac with SMTP id
- da23-20020a056402177700b0043d85da2facmr18062550edb.32.1659551262955; Wed, 03
- Aug 2022 11:27:42 -0700 (PDT)
+        bh=oA6nNFqtAx3x5LsiqpTHLf6wHToLYzY4zhs6wkSQF94=;
+        b=E+4A4Afez7UNXf8ioGTlbnvhNCx17K9DIyds0QdiiCcstXY7vVTKGwl9StoVDiMl/S
+         mx4hDQV4GTaDa7VNLbI6xk+NRvJFAreuUBMwFTna2KTMmFgGxq8ZV/sttwQA51d7Tbu1
+         ih/s4wC9WGGX+9Z43V18lPGJlkblZ2rGwEINRyFddTFJA5DGyc0wik5424LEBloYMT7c
+         K98k/j8OAsiPxZxAmqWNhZEgAfrV8FPNqO2URoMC0Zd5THK/Jde5OU1a+VfewsMOj9SE
+         9+rSiuGBalvg9Q7YDu40NMpSP16lnrxvmCJynPLqD52uY6QnRrINynbuIS4Zj9EHCyq8
+         Pmrg==
+X-Gm-Message-State: ACgBeo1ZK1wMgSdtbcL8gOD+uKScuU7yhtILzsWAtzxCOZhGPOMb0+fk
+        T/tBxX7qDDvXd2rN/hW99aj4sVl04zjG+ff0t/ecG6sH9f/1UA==
+X-Google-Smtp-Source: AA6agR4EcHyXPdpWatp4j51d3xayGtGdDP+Dg+Ts3yOBOxNea2vH1uz6+/hIXQUfrYTYAZ/AJMkjcIbnbAigRDbJbuQ=
+X-Received: by 2002:a05:6402:2691:b0:43d:ba10:854b with SMTP id
+ w17-20020a056402269100b0043dba10854bmr13607335edd.158.1659551391085; Wed, 03
+ Aug 2022 11:29:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1656883851.git.jahau@rocketmail.com> <69a512cf5b62b34415d5983a6406c3d5ba438a1d.1656883851.git.jahau@rocketmail.com>
- <CAHp75Ve5Z9OOx94FtXY77_Fwkp27D32Hn7bAG+Da++HXmupytA@mail.gmail.com>
- <c5643cee-8491-3fae-b9d4-ac03d86c1e8a@rocketmail.com> <CAHp75VdDdKo7rt+cik4J+_4tDRgBXhgZYc8p+dOSH4s_gtCOUg@mail.gmail.com>
- <6e13daf2-179f-d37f-ace4-db5cd37be8d3@rocketmail.com> <CAHp75VdLBowZ7=6g4aFVr5zkN5Pkv7ir68vPCdkRmoFysqRz9Q@mail.gmail.com>
- <f8071532-14c5-c2a8-ca75-f4327066817b@rocketmail.com> <CAHp75VcPMZSpDS_S_4mM2bfq4154HVMHzZHvdJnP6oUA7RtpiQ@mail.gmail.com>
- <fa6c77e9-1d22-de2f-4cad-4afadf8c6a2a@rocketmail.com> <CAHp75VcsFmzvmk93eSNUwZCDoUN8-7gRkZZ1V4vbFHgnweq5uw@mail.gmail.com>
-In-Reply-To: <CAHp75VcsFmzvmk93eSNUwZCDoUN8-7gRkZZ1V4vbFHgnweq5uw@mail.gmail.com>
+References: <20220727164251.385683-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220727164251.385683-1-krzysztof.kozlowski@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 3 Aug 2022 20:27:31 +0200
-Message-ID: <CACRpkdY9_7ayVWKSHJ7sMfZrEMjyfY30SPosca8MftGjkbiP1A@mail.gmail.com>
-Subject: Re: [PATCH v4 10/10] iio: magnetometer: yas530: Add YAS537 variant
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jakob Hauser <jahau@rocketmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Date:   Wed, 3 Aug 2022 20:29:39 +0200
+Message-ID: <CACRpkdbNr1Ja23wj99NmExG=w8_C66cT1HcmtAuwVhAbrGrEnQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: fairchild,74hc595: use spi-peripheral-props.yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -74,14 +67,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 30, 2022 at 6:36 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
+On Wed, Jul 27, 2022 at 6:43 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-> > I think the define and the formula both look strange.
+> Instead of listing directly properties typical for SPI peripherals,
+> reference the spi-peripheral-props.yaml schema.  This allows using all
+> properties typical for SPI-connected devices, even these which device
+> bindings author did not tried yet.
 >
-> Definition is available in units.h, for most of the SI prefixes.
+> Remove the spi-* properties which now come via spi-peripheral-props.yaml
+> schema, except for the cases when device schema adds some constraints
+> like maximum frequency.
+>
+> While changing additionalProperties->unevaluatedProperties, put it in
+> typical place, just before example DTS.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-WHoa news2me, I never saw that file before! Learn something new every day....
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
