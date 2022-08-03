@@ -2,63 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 249D858946E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 00:33:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE94B589473
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 00:36:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232796AbiHCWds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 18:33:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55898 "EHLO
+        id S229881AbiHCWgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 18:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbiHCWds (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 18:33:48 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2316B1109
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 15:33:47 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id i84so1393617ioa.6
-        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 15:33:47 -0700 (PDT)
+        with ESMTP id S229842AbiHCWf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 18:35:59 -0400
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150996548;
+        Wed,  3 Aug 2022 15:35:59 -0700 (PDT)
+Received: by mail-il1-f174.google.com with SMTP id j20so7728954ila.6;
+        Wed, 03 Aug 2022 15:35:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=9gI9TOdJWQOPfIpMfYTyghgtjr1K2FynC9VVJudPdrA=;
-        b=yQo4t93wP90QN40csqUuwrOEWtuGUSZXMEv5F0Mk+0VaGsAUKb58gHRJYlHSwZ7Z9V
-         bOFPVi4LQD+tLb6DPsPo9QQY+A/5JEaz9mz2LcyOmfwlUd2V29OjFkh+9gN7rae7yVgX
-         C1oujod/dmgt0aCsAx00Z0E2yT6I90lGT97zRu5gtOIZvjA0M1mx7vuh/5vTe8lbULrs
-         MuBHVuPekfJrOTsHr6bFtm9o2YEmyFXytrQllD2lSnAI+n9GaFwV/8DhFkCmZVG7FNAw
-         VNCwns3HzPPS2n/z5+qIFDmVGmqGNrbsVJ+Wy2lvq0OUJIvTnvmZyugVNwNdnuVuiS4C
-         xrCg==
-X-Gm-Message-State: ACgBeo3VlUg0lqIlH3XFgTFIAiFI/jJJa3ikHAbBfSPyW+pGRXEDasKk
-        JW1G9sSznwmZL5l+b2Ychw==
-X-Google-Smtp-Source: AA6agR4FTOsGPel7KQefqEIOVHQuKg2sQLlZIWChh3AONYgk92v0ZeAm7CWzdJNpZEXyDkHkK+uSjQ==
-X-Received: by 2002:a05:6638:3821:b0:342:968b:62d with SMTP id i33-20020a056638382100b00342968b062dmr1350017jav.302.1659566026386;
-        Wed, 03 Aug 2022 15:33:46 -0700 (PDT)
+        bh=opKDkyi7lKJltuG48YWCzI+exumamPnJWTRLbM7FknY=;
+        b=YXLtIERrfuxVu27g0rw68DM02zNEHhi+8XwBmz4C9mL5VWBhNWicVdmAlluzyZ6aNS
+         89rLqpFijHb7jFq2OBz+4i3tC+SfbieLuIyRuNVWdBcF7GCU4Az74swjFJfiCd0f1ovJ
+         x1A95n0zYpzNt43QguS/RcwGX/6DKweRlgKKj4KoVxrQ6PQ295C5xw9g3BNQsIXbwTYO
+         +PAg1sOVyEyXfobS8IhEcucJOLdNT5ZJmzkKDNM7UpiwOa2v0w624gYobyPjMAq65v4v
+         vXlHgmBh7JHC8Cyr/Xt+0BpDpmd8p+RylgMSN5VgdjfJp5RWqMXkGPAnv9tRueNZ/84e
+         u1pw==
+X-Gm-Message-State: ACgBeo09BgBjSrwam3nRtxHfLotvoq3HSB3ajASwp/kEYHeu1rpD5xrS
+        a3Y1cy3gzLbOHX/E379sxQ==
+X-Google-Smtp-Source: AA6agR6J7aD3Fr1axinuEJMEMgZ//1CcnRFYYmCYHmkoxDAcLOTepjMYtaMIn36eWwHarpA6qTaTDw==
+X-Received: by 2002:a92:d492:0:b0:2de:2d95:a5fd with SMTP id p18-20020a92d492000000b002de2d95a5fdmr11094666ilg.111.1659566158310;
+        Wed, 03 Aug 2022 15:35:58 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id n17-20020a056602341100b00674f9fb1531sm8800376ioz.30.2022.08.03.15.33.44
+        by smtp.gmail.com with ESMTPSA id b1-20020a926701000000b002df38c1e8d8sm685134ilc.62.2022.08.03.15.35.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Aug 2022 15:33:45 -0700 (PDT)
-Received: (nullmailer pid 2741031 invoked by uid 1000);
-        Wed, 03 Aug 2022 22:33:43 -0000
-Date:   Wed, 3 Aug 2022 16:33:43 -0600
+        Wed, 03 Aug 2022 15:35:57 -0700 (PDT)
+Received: (nullmailer pid 2743980 invoked by uid 1000);
+        Wed, 03 Aug 2022 22:35:56 -0000
+Date:   Wed, 3 Aug 2022 16:35:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jagan Teki <jagan@edgeble.ai>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Elaine Zhang <zhangqing@rock-chips.com>
-Subject: Re: [PATCH v2 02/20] dt-bindings: power: Add power-domain header for
- RV1126
-Message-ID: <20220803223343.GA2737695-robh@kernel.org>
-References: <20220731174726.72631-1-jagan@edgeble.ai>
- <20220731174726.72631-3-jagan@edgeble.ai>
- <4f8b8b98-c0ef-4924-6ff1-ccfeae77fc21@linaro.org>
- <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
+To:     Hui Liu <hui.liu@mediatek.com>
+Cc:     jianguo.zhang@mediatek.com, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, matthias.bgg@gmail.com,
+        zhiyong.tao@mediatek.com, sean.wang@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: pinctrl: mediatek: add support for
+ mt8188
+Message-ID: <20220803223556.GA2743930-robh@kernel.org>
+References: <20220801095215.10876-1-hui.liu@mediatek.com>
+ <20220801095215.10876-2-hui.liu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
+In-Reply-To: <20220801095215.10876-2-hui.liu@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -69,55 +67,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 03, 2022 at 03:54:56PM +0530, Jagan Teki wrote:
-> On Tue, 2 Aug 2022 at 16:08, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 31/07/2022 19:47, Jagan Teki wrote:
-> > > Add power-domain header for RV1126 SoC from description in TRM.
-> > >
-> > > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > > ---
-> > > Changes for v2:
-> > > - add blank line
-> > >
-> > >  include/dt-bindings/power/rv1126-power.h | 35 ++++++++++++++++++++++++
-> > >  1 file changed, 35 insertions(+)
-> > >  create mode 100644 include/dt-bindings/power/rv1126-power.h
-> > >
-> > > diff --git a/include/dt-bindings/power/rv1126-power.h b/include/dt-bindings/power/rv1126-power.h
-> >
-> > Vendor in filename is needed.
+On Mon, 01 Aug 2022 17:52:14 +0800, Hui Liu wrote:
+> From: "Hui.Liu" <hui.liu@mediatek.com>
 > 
-> Yes this follows how similar rockchip vendor notation
+> Add the pinctrl header file on MediaTek mt8188.
+> Add the new binding document for pinctrl on MediaTek mt8188.
 > 
-> $ ls include/dt-bindings/power/rk3* -l
->  include/dt-bindings/power/rk3036-power.h
->  include/dt-bindings/power/rk3066-power.h
->  include/dt-bindings/power/rk3128-power.h
->  include/dt-bindings/power/rk3188-power.h
->  include/dt-bindings/power/rk3228-power.h
->  include/dt-bindings/power/rk3288-power.h
->  include/dt-bindings/power/rk3328-power.h
->  include/dt-bindings/power/rk3366-power.h
->  include/dt-bindings/power/rk3368-power.h
->  include/dt-bindings/power/rk3399-power.h
->  include/dt-bindings/power/rk3568-power.h
+> Signed-off-by: Hui.Liu <hui.liu@mediatek.com>
+> ---
+>  .../pinctrl/mediatek,mt8188-pinctrl.yaml      |  226 +++
+>  .../pinctrl/mediatek,mt8188-pinfunc.h         | 1280 +++++++++++++++++
+>  2 files changed, 1506 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8188-pinctrl.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/mediatek,mt8188-pinfunc.h
 > 
-> >
-> > > new file mode 100644
-> > > index 000000000000..38a68e000d38
-> > > --- /dev/null
-> > > +++ b/include/dt-bindings/power/rv1126-power.h
-> > > @@ -0,0 +1,35 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0 */
-> >
-> > Dual license, please, unless some copyrights are no allowing this.
-> 
-> Yes, as we discussed in v1 - I'm not liable to change so I keep this as it is.
 
-I assume that would be Rockchip. Can someone from Rockchip please give 
-an okay here to dual license?
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
