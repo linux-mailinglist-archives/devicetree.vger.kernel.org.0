@@ -2,83 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECDDF588AC3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1647588AD6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:57:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232706AbiHCKvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 06:51:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54238 "EHLO
+        id S232079AbiHCK5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 06:57:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231537AbiHCKvo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:51:44 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4599F1B79C
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 03:51:42 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id l19so1758487wms.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 03:51:42 -0700 (PDT)
+        with ESMTP id S230272AbiHCK5t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:57:49 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACBB61A82B;
+        Wed,  3 Aug 2022 03:57:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=UKgtTNEBRcEuJKNYzz9fav0XLRpqgY1r5hhJ/ETR5F4=;
-        b=l1j1LNiLEHPl29Pqd5P8h+R7lQ9danPifmXUoG1hTfeY7KvWVeWx4Abd/xixiNrTZ9
-         JBlyQVkJyX80pZtlMqZ6Zbq0haNbmZHQinkkW4C8DIpLFF0kl4WJPthEg6PNo2p6eTCp
-         attrMx7gN07hxshRXfb9PDygzeU0NjnkZhcnRjJ6DAgsr6WsA9grBWaP5hMz0rPsDIlh
-         OhW7WsQJxFhhOVrOT3KtkmQqcemojHqyp6C37wCh3drpgH1D4H6IuVjlNJF8eQYJ6AY8
-         SeNbscjbVDScrpQ1WsxQGbjQLluEMJUv13H4KPRayh0XvtQIJxmLIKNRGUukTiwDLMFr
-         Oncw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=UKgtTNEBRcEuJKNYzz9fav0XLRpqgY1r5hhJ/ETR5F4=;
-        b=bjx7NfzGo3IcKMCL+NCuhuvzdCEzfapF9k7BcUQgNCcc2TpIxU1ISHxR1dn48KylAR
-         6wYekNi72CAdPkn+U7qa7ULoU/0JUW8ZyjLtmdo5GlN36tEF9cD2iQBRQ8BOYbtR/Jl7
-         k/C95Pydz1mf6nbheHYMD+7C2V2Y/n35/kVXERnKHmNCbZIAYRFdfpW5CmSgRBLHacEk
-         9CP3w40yqe3PcEEdjX7NLvB3p+ox0Fz1z9gUtT9mRgR/VSSZgmHbRie6n3Z4/ls2BUQh
-         VIF4AXmPLSKk5etnV0q9e9DHMDCRd7pqmpJnZzvHULcfGzVFsYw6jBJ60HO97BYtVR6y
-         orDw==
-X-Gm-Message-State: ACgBeo0w+Qs2M/QtDrhWqKbwEgWbZUcbL4K78QD9hN1xrJm72EY9anjx
-        yJIewcY07Pt/QPoxeW0G9CZR5g==
-X-Google-Smtp-Source: AA6agR4ooQgNyvGSBedKzPOVSNxL7PaXRTSiaL3eh/8HzCV27FgkpUxBQmODfbbFRFzAFLhywsacXA==
-X-Received: by 2002:a05:600c:3845:b0:3a3:227d:c1c6 with SMTP id s5-20020a05600c384500b003a3227dc1c6mr2467572wmr.9.1659523900775;
-        Wed, 03 Aug 2022 03:51:40 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:6e48:fbdd:280d:6dac? ([2a05:6e02:1041:c10:6e48:fbdd:280d:6dac])
-        by smtp.googlemail.com with ESMTPSA id g11-20020a05600c4ecb00b003a02cbf862esm2331719wmq.13.2022.08.03.03.51.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Aug 2022 03:51:40 -0700 (PDT)
-Message-ID: <57687bbc-580a-ef07-bc50-6bc9f5c14ec9@linaro.org>
-Date:   Wed, 3 Aug 2022 12:51:38 +0200
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1659524269; x=1691060269;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=p/skRGjQQrnR0mSCoi7h2MYUKGS79ATducaOPWm/cVs=;
+  b=zKU+74GrrbF9SfhNIducPUt+1n8nx8aL6oeYePBD6YPUMlYY7YxYyFcY
+   b+2lTazXl+5/hNAND/mkbe++Js4RayW1ypmvs4xqkWLTvp2V9B0fuAMnw
+   o3l4GZeP8qsBLLH6Q6Ak/8Xg4tPrJb5WmWvVWFTbeJHDKLghzHj2JEd+W
+   c=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 03 Aug 2022 03:57:48 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2022 03:57:48 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 3 Aug 2022 03:57:47 -0700
+Received: from [10.216.54.167] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 3 Aug 2022
+ 03:57:43 -0700
+Message-ID: <22aca197-8d18-2c9e-b3c4-f6fdc893ceb1@quicinc.com>
+Date:   Wed, 3 Aug 2022 16:27:33 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v8 1/6] thermal: mediatek: Relocate driver to mediatek
- folder
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.0
+Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap
+ regions
+To:     Mike Rapoport <rppt@kernel.org>,
+        Faiyaz Mohammed <quic_faiyazm@quicinc.com>
+CC:     <karahmed@amazon.de>, <qperret@google.com>, <robh@kernel.org>,
+        <akpm@linux-foundation.org>, <linux-mm@kvack.org>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <frowand.list@gmail.com>, <devicetree@vger.kernel.org>
+References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
+ <YlW2TO0O8qDHpkGW@kernel.org>
+ <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
+ <YnQBKPWtPa87y4NA@kernel.org>
+ <42f28e7b-c001-7d01-1eb6-fe963491898e@quicinc.com>
+ <Ynj+M9cRm6zdCMMi@kernel.org>
 Content-Language: en-US
-To:     Balsam CHIHI <bchihi@baylibre.com>
-Cc:     rafael@kernel.org, rui.zhang@intel.com, amitk@kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-References: <20220726135506.485108-1-bchihi@baylibre.com>
- <20220726135506.485108-2-bchihi@baylibre.com>
- <24250d03-b25f-e521-5abd-f36109885c36@linaro.org>
- <CAGuA+opxZ7DDrWHcnTRhMcm7YveCAypdy9MDSytt58asgekayw@mail.gmail.com>
- <CAGuA+ooOUXaBM+uPvEEohFLtO8sRd4T=DMcc6Fvo9P92gsq4yg@mail.gmail.com>
- <9b224465-e9e5-43d3-50eb-3614decbd8b2@linaro.org>
- <CAGuA+op-mO5ZMz_EvSOYUNiZ_4OOwLFQqFqMrCQBVMcG3mbcPQ@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <CAGuA+op-mO5ZMz_EvSOYUNiZ_4OOwLFQqFqMrCQBVMcG3mbcPQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+From:   Vijayanand Jitta <quic_vjitta@quicinc.com>
+In-Reply-To: <Ynj+M9cRm6zdCMMi@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,36 +74,65 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Hi Balsam,
 
-On 03/08/2022 10:41, Balsam CHIHI wrote:
-> On Fri, Jul 29, 2022 at 5:35 PM Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
+On 5/9/2022 5:12 PM, Mike Rapoport wrote:
+> On Mon, May 09, 2022 at 04:37:30PM +0530, Faiyaz Mohammed wrote:
 >>
->> Hi Balsam,
+>> On 5/5/2022 10:24 PM, Mike Rapoport wrote:
+>>> On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
+>>>> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
+>>>>> On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
+>>>>>> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
+>>>>>> memory region")' is keeping the no-map regions in memblock.memory with
+>>>>>> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
+>>>>>> but during the initialization sparse_init mark all memblock.memory as
+>>>>>> present using for_each_mem_pfn_range, which is creating the memmap for
+>>>>>> no-map memblock regions. To avoid it skiping the memblock.memory regions
+>>>>>> set with MEMBLOCK_NOMAP set and with this change we will be able to save
+>>>>>> ~11MB memory for ~612MB carve out.
+>>>>> The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
+>>>>> really don't like the idea if adding more implicit assumptions about how
+>>>>> NOMAP memory may or may not be used in a generic iterator function.
+>>>> Sorry for delayed response.
+>>>> Yes, it is possible that implicit assumption can create
+>>>> misunderstanding. How about adding command line option and control the
+>>>> no-map region in fdt.c driver, to decide whether to keep "no-map" region
+>>>> with NOMAP flag or remove?. Something like below
+>>> I really don't like memblock_remove() for such cases.
+>>> Pretending there is a hole when there is an actual DRAM makes things really
+>>> hairy when it comes to memory map and page allocator initialization.
+>>> You wouldn't want to trade system stability and random memory corruptions
+>>> for 11M of "saved" memory.
 >>
->> On 29/07/2022 17:21, Balsam CHIHI wrote:
+>> Creating memory map for holes memory is adding 11MB overhead which is
+>> huge on low memory target and same time 11MB memory saving is good enough
+>> on low memory target.
 >>
->> [ ... ]
+>> Or we can have separate list of NOMAP like reserved?.
 >>
->> You may want to wait next week before sending a new version, I'm still
->> reviewing your series (note you can send it anyway if you prefer)
->>
+>> Any other suggestion to address this issue?.
 > 
-> Hi Daniel,
+> Make your firmware to report the memory that Linux cannot use as a hole,
+> i.e. _not_ report it as memory.
+>  
+
+Thanks, Mike for the comments.
+
+Few concerns with this approach.
+
+1) One concern is, even if firmware doesn't report these regions as
+memory, we would need addresses for these to be part of device tree so
+that the clients would be able to get these addresses. Otherwise there
+is no way for client to know these addresses.
+
+2) This would also add a dependency on firmware to be able to pass these
+regions not as memory, though we know that these regions would be used
+by the clients. Isn't it better to have such control within the kernel ?
+
+Let me know your comments on these.
+
+Thanks,
+Vijay
+>> Thanks and regards,
+>> Mohammed Faiyaz
 > 
-> Thank you for the review.
-> I have finished implementing the changes requested by the maintainers
-> and would like to resubmit the series.
-> Do I still have to wait for your feedback to send it again?
-
-At your convenience, I'll review the new version if you send it
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
