@@ -2,329 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25F935889D9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 11:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD0095889CD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 11:51:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237813AbiHCJwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 05:52:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33258 "EHLO
+        id S237733AbiHCJvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 05:51:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237449AbiHCJvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 05:51:43 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ADA846D8D;
-        Wed,  3 Aug 2022 02:50:46 -0700 (PDT)
-X-UUID: 8329f5513c2d491db1e3de5bbaaee610-20220803
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=a6ri2Ytl22TV/ZfK3yMgIV7P9vbWLL3AJT+Y3T1wV2E=;
-        b=A01kveViJzzQaqyKtLiL7sQO9QUjwXIcLN+5vQPspRqJcDQFpe50/svxpKC5HC4z2t+N7yrJXe2WqNog6Yk1gK8KD/G3KHx79PAXDv2np+PITwh0aPt2xi/b+BewW/pxqxRxutOfdRI2EB2sW9GozpQxKuXYgGSafiTx8ZOwess=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:19a684b6-e19e-451d-a1a9-f30c235c28ea,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:b62b1ed1-841b-4e95-ad42-8f86e18f54fc,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 8329f5513c2d491db1e3de5bbaaee610-20220803
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 251189372; Wed, 03 Aug 2022 17:50:42 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 3 Aug 2022 17:50:40 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Wed, 3 Aug 2022 17:50:40 +0800
-Message-ID: <3d97d4c46467909739b8b69662412fe162dbe613.camel@mediatek.com>
-Subject: Re: [PATCH v2] pmic: add mt6366 regulator document
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Zhiyong Tao =?UTF-8?Q?=28=E9=99=B6=E5=BF=97=E5=8B=87=29?= 
-        <Zhiyong.Tao@mediatek.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        Eddie Huang =?UTF-8?Q?=28=E9=BB=83=E6=99=BA=E5=82=91=29?= 
-        <eddie.huang@mediatek.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "fshao@chromium.org" <fshao@chromium.org>
-CC:     Sen Chu =?UTF-8?Q?=28=E5=82=A8=E6=A3=AE=29?= 
-        <Sen.Chu@mediatek.com>,
-        Hui Liu =?UTF-8?Q?=28=E5=88=98=E8=BE=89=29?= 
-        <Hui.Liu@mediatek.com>,
-        Allen-KH Cheng =?UTF-8?Q?=28=E7=A8=8B=E5=86=A0=E5=8B=B3=29?= 
-        <Allen-KH.Cheng@mediatek.com>,
-        Hsin-Hsiung Wang =?UTF-8?Q?=28=E7=8E=8B=E4=BF=A1=E9=9B=84=29?= 
-        <Hsin-Hsiung.Wang@mediatek.com>,
-        Sean Wang <Sean.Wang@mediatek.com>,
-        Macpaul Lin =?UTF-8?Q?=28=E6=9E=97=E6=99=BA=E6=96=8C=29?= 
-        <Macpaul.Lin@mediatek.com>,
-        Wen Su =?UTF-8?Q?=28=E8=98=87=E5=86=A0=E6=96=87=29?= 
-        <Wen.Su@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        zhiyong tao <zhiyong.tao@mediatk.com>
-Date:   Wed, 3 Aug 2022 17:50:40 +0800
-In-Reply-To: <03a13ed4-e7cd-6f7d-f8f7-9b1e6193e202@linaro.org>
-References: <20220728062749.18701-1-zhiyong.tao@mediatek.com>
-         <20220728062749.18701-2-zhiyong.tao@mediatek.com>
-         <03a13ed4-e7cd-6f7d-f8f7-9b1e6193e202@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S237739AbiHCJvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 05:51:17 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80040.outbound.protection.outlook.com [40.107.8.40])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2754E5C9DA;
+        Wed,  3 Aug 2022 02:49:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Rgip0EOSsiaBRSmLeY4dvQN2JU/UhyF9wi7dghwyZjJuZHIkZtUkRGgMO1H6vvAGjMufed6A7VqSch9YHsY9PO4aJGwnpnHCfFpnGxBX/V8VumSRDhbwCcKsai6ezt19dbSJi61/GdqC0Inm3gTFpA3Zo3sbec40zis6V6kHvqzeT22DZSTny4mgRE8HlweemwneJPeCYPnGt9dymJvFZPw7tizbiEEieEI8en6EAn6mphDcWF+mQ/Ily5ozke4GPS+ZxE914SFaCmg01OXlCPle75flw+CPnO27s7+/7f3LSeRYoeMy0jZ7ZY0kxqnfHuAQYzT2OOfSM11aqLfxpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yDbqe6PXSJWyMZIC/B+QB8miZyKE75OHiDHKXsV9KxA=;
+ b=fDorSynPZywUMgsxQ/sBnTN2BvAOh/0rGpVcTnsl+ByX4P4azCLfmfRwGolr4CyWCejt85C6gWqrjTciy/CvV2c71JRsvA2AGy4xK2LQAxSukPwN3E4rwNvz/lkkRKUSDI6SJfdD7KcWZkj8FS4fSQuEiIAWpgs7xWnHiUKY5ricL3ecdI1ZNpJCADmJBjPA570GGaEe8Z8f4kxXgz73y9HDOT7noOOlqdhx9bTxIOejfIvMZsDs+wPmeR6bkJB6e7WxYf8UbhaGdElMfMsHmXw5x9LQj9LGodSvqNmjZRhocLT8exLEi3PH1ffTuqjhpXcyO76VhDi0OtXnZDKuUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yDbqe6PXSJWyMZIC/B+QB8miZyKE75OHiDHKXsV9KxA=;
+ b=bRVi0jJ9pfUJpH6KZeeX1Q65/8xqTKEK6kMKV/R3sDEUnYBkUMVr0lPLhoaDtD5haxbFiT17LZGZLRe9AMgTPPE75/B4GFpTojT1kBvhQ7iiZgSMWaR1iz9jIip86BMZY9Q8hIagX+ZGHdv01Li9lMIdGeBBDolZuo0Fw3c9TSs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by HE1PR0402MB2891.eurprd04.prod.outlook.com (2603:10a6:3:df::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Wed, 3 Aug
+ 2022 09:49:35 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::3c6c:b7e6:a93d:d442]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::3c6c:b7e6:a93d:d442%4]) with mapi id 15.20.5504.014; Wed, 3 Aug 2022
+ 09:49:35 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH 0/2] arm64: dts: imx93: clk update
+Date:   Wed,  3 Aug 2022 17:51:01 +0800
+Message-Id: <20220803095103.3883035-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SGAP274CA0021.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::33)
+ To DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 0da28922-ae5c-4277-405e-08da753578f0
+X-MS-TrafficTypeDiagnostic: HE1PR0402MB2891:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zAzdC6y7y9T33jKEBmBIL6p3K8dCo2tDtjCoIrh2bINKuccg3glUkj7hDLtHZkueYJSNGi+GJM4xDvDlOMDwW2jHVP2tiOdssSCxTPrASjpJGejz9xVcCwgk19YgQNWwhgQ6x0m4HPRFWleYA8v8KSEr/WNOkZFJuuHxrzy7YjI0xCuCBqemF1udOwZ/OPzi/cNBgeRukKOv21+94bei4iR+PgayJC8p3Nc/bTeA56y5FA1xBMAYPEQHD8+o3FvDSTkpRE9Q8EyTJTJf/KJfKnrobFLV+v/1S3wHknEZaJZWeyVUMNH83B1RidYR8zW6ZZI2N5fL4C8A2Su1BxDPPyQ5aGeGCi55MAaV31/Oq8kn/owtiwZyJ4DRJzQGSBMVF5Q7zAaQ4o4QR5hRNJRbp+4a9c2KEab5VZvHt9A5Z5aftJaW2Y99YcQDB1TXh837aBRN+6d8ch5oITPKJ/0jTz6pG2NfmKK6dGQZegtfZhXlQDBkoB5XKtNnrt+k0BcR6twpfQJPgSKLSsGCeeYdJa3aHLeewe0Z14ibJWBwHAwpMkaR+S2rslxBPmZCP0uby08kCJtUv6jWlTRtga4HxQpDC3G3dn4nSivHw/OKmhkjhqRp4ESyYzO2pJ2y1FWPec7ZeN6iqKjgY+iNgRPb1g+qXKHwVZgI+IOL3GU1mWHAuvJLXqHMeWfVyWbfsrXpbISnmi1bKTs13KKD/NT/8NXjhoAH4++9Kje9anPGEEOi5iXHT+JsYKXhAtU6spwRfy9AXN3a4Z5qFESYrUW7Ei1UGqTk3HtD748OR0st7j0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(396003)(39860400002)(366004)(376002)(136003)(6486002)(5660300002)(478600001)(4326008)(2906002)(66556008)(66476007)(66946007)(8676002)(38100700002)(8936002)(4744005)(38350700002)(52116002)(86362001)(1076003)(2616005)(186003)(41300700001)(6666004)(6512007)(6506007)(26005)(83380400001)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DieP15lNNVZkAMTfJyV/sT4VZzMAV993JZR+lWc5B21dOkYDCgxpvD7JgadX?=
+ =?us-ascii?Q?zqDMNnXSEFXczJsztYPjiSoCwARReQi8buRKCSMDflXZGsD3YJu3JBT/g6OX?=
+ =?us-ascii?Q?3YSl+zBZI8AbVPM2DlLMGCuqdpdJPU2ZfdQpNSdgijfyWe1BM4l4gAX5XeBZ?=
+ =?us-ascii?Q?qaKA/gtB8VcKGgOfccekCfcvXKw7bHvpg/3MuOBYEPdhklKwiODZKBjx5ykb?=
+ =?us-ascii?Q?zqRcErLRxpLtArmlnVScymIJdemUKFnsH7DN7CPpkud2xbqcdiaTAoJjZ9Jy?=
+ =?us-ascii?Q?vnd8x5qguOtGUZwXU3DoRgxSk04GAmUZnz5tMcnThah06vkInZOydDAUZwsp?=
+ =?us-ascii?Q?q3udJV3cWDioWBnAVq5SgmxnCAifte1xOk9q/a0Dod2PXSeswX4NPHWuv2mu?=
+ =?us-ascii?Q?jd9bl8gb7UavwCA6T3pKg3QTBQJJ+PYDCdW32Bx51bKFkvjtD2YFOi1q5UV/?=
+ =?us-ascii?Q?ckaSZNGYdHwjhyUit5BglnufQTFFO3tcj8UAlNjct69DGqDrne9Mo/1veRal?=
+ =?us-ascii?Q?qvulqPi2jgsAMQWJL2IjoKIukPhFsOhcEcHiR0/o2wzVOAGuQZ2UI2SDiTrJ?=
+ =?us-ascii?Q?DlEUesaGAaSDy2wCGo+ho4BSFOLZYyFvQzXvzOlTSRAi8mLpqEd3+tGribQH?=
+ =?us-ascii?Q?++VN6RuSNa6rdlEfMQzpIPJrVvoOvCOs6yPNIh08VtfByHLPl7goEEofcusV?=
+ =?us-ascii?Q?mYYZtQsdLPj0JlQ6Ttta1C+h2kWEoDGne9jXQm9kUyMPJU0KMGaRjQSDLjVL?=
+ =?us-ascii?Q?AOXDYeC9LLWeNo8oS8apGEYfNMjRpNi7ndztbQW4s/FWuJtfpHiBenJ7FVYq?=
+ =?us-ascii?Q?pBhhr98hnnx2ek7HgKMz8w1YTSoyBMokNieOr1H0KCJBqV4+h0tIlaL0BHV1?=
+ =?us-ascii?Q?nX2ETTDhkmKYAt6WHeNjfLAAZnbR5rW5NRcoX27exQbgQtQBSaVYSCYCtyfs?=
+ =?us-ascii?Q?DghXPjs+9QNjEopy6ZM0zdxTeamqpe3HlCQO+QnduqUtJ2+xaKi6z8/VaVIb?=
+ =?us-ascii?Q?egbygWsZVcMQFuqcqDsPyv63caowH/y1BjZsw1hd5Gj3LcZzciFm3wyYP+QP?=
+ =?us-ascii?Q?nPqyQZZ0cCBNFAsHfuavXUetPZwiHWvutkswhHsYhcS5pFgXjF8HA/58RZJy?=
+ =?us-ascii?Q?zMVhuy7KtjzIiTKw6EIrq1v9W3EZAU0p40qu+tHe8XuykwV8qCJ5b2+1cwLh?=
+ =?us-ascii?Q?sbQBirfkjT44jTyxptGS6PLaWamM6feegTMjLkla81x3pUiFKgl8diQFSwAs?=
+ =?us-ascii?Q?iwEXOz26VfmaDCwdBF8qLw1gojifjcWMIwVfLzPS6U4H63T19i21aH5h6t5d?=
+ =?us-ascii?Q?6GJZxsgTMtDjCpZhfhUVLHz/z2QrL0rWadMu9wcVsLnpxZ84WK5y7ctyxSMN?=
+ =?us-ascii?Q?GfA5zFIX+pjU0GuPmtp+nhDskAyhrPXDG1jzUR1YrDDrKVJKEyANuhm0k84q?=
+ =?us-ascii?Q?bFaNOgc1N3a32ZnKsDvFXUQQDdNTfo9WcSHzbDAU+NbU68pr8sg6v4vHoTNe?=
+ =?us-ascii?Q?ZEF5nwGNcFzc4JvAv5itW3pRJgIutXKrt04L3KXnTNDTxWTRTCWqLsgE3iqo?=
+ =?us-ascii?Q?0h8uVZ0qgcNn2Apy/swgmJaHlL0xBAMNq0wZQZ66?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0da28922-ae5c-4277-405e-08da753578f0
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2022 09:49:35.2501
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZS10PY24cafUUZfIku8Js9xSqnCJsMF63RsMHUZLW9fjmrN9p1tYOJXLXnYrkQI0uiEFLvxVeK1CsSEpZMqvvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB2891
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-07-28 at 18:46 +0800, Krzysztof Kozlowski wrote:
-> On 28/07/2022 08:27, Zhiyong Tao wrote:
-> > From: zhiyong tao <zhiyong.tao@mediatek.com>
-> > 
-> > Add mt6366 regulator document
-> 
-> As usual with Mediatek your emails fail to properly pass modern SMTP
-> checks and you end up in spam.
-> 
-> I reported it months ago to folks in Mediatek. No improvements since
-> that time.
-> 
-> I stopped checking my spam folder for Mediatek stuff and all will be
-> ignored. I will also stop complaining about it - just ignore
-> Mediatek.
-> 
-> Fix your systems, instead of putting additional effort on community
-> and
-> on reviewers.
-> 
+From: Peng Fan <peng.fan@nxp.com>
 
-Hello Krzysztof,
+Correct sdhc clk
+Add gpio clk
 
-I am Rex from MediaTek chrome project team.
-We noticed your complain of our upstream mail.
+Haibo Chen (1):
+  arm64: dts: imx93: assign the correct ipg/ahb clock for usdhc
 
-First of all, sorry for the inconvenience.
-We really want to fix this SPAM issue.
+Peng Fan (1):
+  arm64: dts: imx93: add gpio clk
 
-From our side, we can make sure mails for kernel upstream from MediaTek
-is clear and these mails pass the verification of DMARC/DKIM/SPF.
-Therefore, to identify the root cause, could you please provide us some
-mails that seen as SPAM from MediaTek?
-It's more useful if you can use the form of attachment. In that case,
-we can analyze whole mails including mail headers.
+ arch/arm64/boot/dts/freescale/imx93.dtsi | 27 ++++++++++++++++++------
+ 1 file changed, 21 insertions(+), 6 deletions(-)
 
-We really appreciate your big support, and we hope we can fix this
-issue to reduce the inconvenience for reviewing series from MediaTek.
-If you can spare some time to help us for this, it would very helpful!!
-
-Our IT also adjust the DKIM setting today. If the situation of this
-issue it much better, please also let us know.
-
-Many thanks!!
-
-BRs,
-Rex
-> 
-> > 
-> > Signed-off-by: zhiyong tao <zhiyong.tao@mediatk.com>
-> > ---
-> >  .../regulator/mediatek,mt6366-regulator.yaml  | 375
-> > ++++++++++++++++++
-> >  1 file changed, 375 insertions(+)
-> 
-> Subject does not match subsystem.
-> 
-> 
-> >  create mode 100755
-> > Documentation/devicetree/bindings/regulator/mediatek,mt6366-
-> > regulator.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/regulator/mediatek,mt6366-
-> > regulator.yaml
-> > b/Documentation/devicetree/bindings/regulator/mediatek,mt6366-
-> > regulator.yaml
-> > new file mode 100755
-> > index 000000000000..eb72c64757cf
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6366-
-> > regulator.yaml
-> > @@ -0,0 +1,375 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> >
- https://urldefense.com/v3/__http://devicetree.org/schemas/regulator/mediatek,mt6366-regulator.yaml*__;Iw!!CTRNKA9wMg0ARbw!3B-3NHQAsJc6ov022NnUIctYLEyx-BfxG5s85TBBvEfGjc4DdYDIqG_Ka_5D7scVo8CRtzLqokEX_thhM7XK_S90wg$
-> > +$schema: 
-> >
- https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!3B-3NHQAsJc6ov022NnUIctYLEyx-BfxG5s85TBBvEfGjc4DdYDIqG_Ka_5D7scVo8CRtzLqokEX_thhM7Un6TPZdw$
-> > +
-> > +title: MT6366 Regulator from MediaTek Integrated
-> > +
-> > +maintainers:
-> > +  - Zhiyong Tao <zhiyong.tao@mediatek.com>
-> > +
-> > +description: |
-> > +  List of regulators provided by this controller. It is named
-> > +  according to its regulator type, buck_<name> and ldo_<name>.
-> > +  MT6366 regulators node should be sub node of the MT6397 MFD
-> > node.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt6366-regulator
-> > +
-> > +  regulators:
-> > +    type: object
-> > +    description: List of regulators and its properties
-> > +
-> > +    patternProperties:
-> > +      "^buck-
-> > v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> 
-> No need for quotes.
-> 
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern:
-> > "^v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$"
-> 
-> Why do you enforce specific regulator-name? Remove.
-> 
-> > +
-> > +      "^ldo-v(dram2|sim1|ibr|rf12|usb|camio|camd|cn18|fe28)$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern:
-> > "^v(dram2|sim1|ibr|rf12|usb|camio|camd|cn18|fe28)$"
-> > +
-> > +      "^ldo-v(xo22|efuse|mch|vcama1|emc|a12|vcama2|mc)$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern:
-> > "^v(xo22|efuse|mch|vcama1|emc|a12|vcama2|mc)$"
-> > +
-> > +      "^buck-(vcore)-sshub$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern: "^vcore-sshub$"
-> > +
-> > +      "^ldo-vcn(28|33)-bt$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern: "^vcn(28|33)-bt$"
-> > +
-> > +      "^ldo-vcn(33)-wifi$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern: "^vcn33-wifi$"
-> > +
-> > +      "^ldo-vsram-(others)-sshub$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern: "^vsram-others-sshub$"
-> > +
-> > +      "^ldo-vsram-(proc11|others|gpu|proc12)$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern: "^vsram-(proc11|others|gpu|proc12)$"
-> > +
-> > +      "^ldo-v(aud|bif|io|ldo)28$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern: "^v(aud|bif|io|ldo)28$"
-> > +
-> > +      "^ldo-v(io|aux|rf)18$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern: "^v(io|aux|rf)18$"
-> > +
-> > +      "^ldo-vsim[2]$":
-> > +        type: object
-> > +        $ref: "regulator.yaml#"
-> > +
-> > +        properties:
-> > +          regulator-name:
-> > +            pattern: "^vsim2$"
-> > +
-> > +        required:
-> > +          - regulator-name
-> > +
-> > +required:
-> > +  - compatible
-> > +  - regulators
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    pmic {
-> > +      compatible = "mediatek,mt6366-regulator";
-> > +
-> > +      regulators {
-> > +        mt6366_vdram1_reg: buck-vdram1 {
-> > +            regulator-name = "vdram1";
-> 
-> Messed up indentation. Use only one, so 4 space for DTS example.
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
+-- 
+2.25.1
 
