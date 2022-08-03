@@ -2,145 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48D4B588870
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 10:06:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5389958888B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 10:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235905AbiHCIGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 04:06:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50832 "EHLO
+        id S231709AbiHCIQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 04:16:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233310AbiHCIGN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 04:06:13 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D38A122BC2
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 01:06:11 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id e15so15261838lfs.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 01:06:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=ZWDDdDUD/SeLY4Y1864eieW1iTgOf5yvfzhjZam9Gdo=;
-        b=UNQND0cz6Sg0ZYwWcksx3XWvJ3WA4eaJxJp4yui/nV3EMdbkFSaBpOGwZnon5itiyZ
-         eywb/D5cj+hY1KS92HUbT03Xzas2PMYxD5h5Q0Y0DXf4MLApk1H/im+q2nbWQuI/3srA
-         JbcxOqZhrwiuK+nf5i/uzmxpRWcKaxLW84wVDO6hw8G1VTgEX9mUuFsTcRgXNuqhqmED
-         QejTlDnrX6hYUCBUgZEX4fTFRURYsPw2lSkBZ7uWPUVZXutxAK4LsNlnQ14O34pEI+NI
-         I7UYa7XeYFObT79SeRKCG9CY6UvSMaYOTBdtpWbCHenXA7328Ga6gOZ+RoxN5Xg3UHFk
-         H/KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=ZWDDdDUD/SeLY4Y1864eieW1iTgOf5yvfzhjZam9Gdo=;
-        b=CiB0U5sYOTs742KwKZrLj2F2izXEYj5VauYgVeffHtrEbWLSgbO00shTKK3dtWSpW5
-         k4+ELK2+RnXlMSw86WvA0y1rEnCu54/GUn7Y0DlRUtBFi55KA3B/8G6Ktc9FfHMncRpg
-         s4p0UUS+102q5dakE2oibp8NY8oDT+5jpZY70NN2fny4tmYWR3bh8XITB2cjeHVCINQM
-         Da1jzN37NKC85QfUDpqR+O3mzwWcQZw2ayMJq1O2gupVjvON2cSB1CH07j5IeOBsbdLx
-         2So+gjZ8qLFd7d+VYD8fjnbKQ3HSomHIL1EpxF61crskqjv7UdX8L2tsoBIPWHqb+CvQ
-         Bc9g==
-X-Gm-Message-State: ACgBeo2q9Rd3MDtbA6yjjy9puz8VzR0E6kwmBFoOOj8X9zGsWFM1qyjx
-        88GWThHgJNKYCHRtWxNpZGS6iA==
-X-Google-Smtp-Source: AA6agR6YIKvmWjYaexviQIzgrn1Fy4OPtC8l6gFirTc4+daaC5Q/9KztGMbcs4zaIhmKkO0ln/EelA==
-X-Received: by 2002:ac2:43c8:0:b0:48a:f0e9:fc06 with SMTP id u8-20020ac243c8000000b0048af0e9fc06mr6238061lfl.458.1659513970078;
-        Wed, 03 Aug 2022 01:06:10 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id t9-20020ac24c09000000b0048a8586293asm2368309lfq.48.2022.08.03.01.06.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Aug 2022 01:06:09 -0700 (PDT)
-Message-ID: <89469b0d-e6aa-4d60-c93c-a99256f65445@linaro.org>
-Date:   Wed, 3 Aug 2022 11:06:08 +0300
+        with ESMTP id S229944AbiHCIPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 04:15:41 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2045.outbound.protection.outlook.com [40.107.20.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE406160;
+        Wed,  3 Aug 2022 01:15:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LFj27FqVV0AbGSq+M4nCCnXZQkM6Y3IsiT8JrkY10GY1nisI2sMi9lrjZRdLoTnYg8rAmBjp4C6bxwIwi7R2mZo4nS4fz101ju3oUrgu6BUCp7Upx+HCbibmuWyxnVCWBvanoxsRkHksHyJ/4M/8ekhf0zP/XrYl1EoEO+ETvKB5OBkfqGMfuaml4Puq7XoRYx6KVSsvmoGF2KP+BLWdIaDwuMzY7KxO3QUWdimh8Iw78/UoSt0xoQ40tH9Y3f2wFh5CnuNe43EUp0c1Jd3his+5Ju+B+orIqIpIvsvclxRJxr1zCHyARUXeE8xMM/Jbe02PrG0u/mqjJlCAHEz8ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e9amjrc4lGk9YUE3IeTbt4WcUe6TQJsVH6dqwB0KoLI=;
+ b=f4AeYaH5CffVJEgqplelTGPEAZcfdLfj69d5Yic9yJIivfJ/Jg0diV7qjaoHjRltJHBAgpVx4eh0hvCix//u8z5w51J9bgqmB3NdKSQc5Y65jYoZUyJIVWsrec0CU9wKMN9chg8brfHeyjZQ+8SV/1pV1aX1KxzU2lCsAy/2YmNXt1bQE/rIwKoPZgAcZAKXcHeDGG+GDi1gB7j0wXHHPrKIIEV5yR9t0F0NWLM3dPpEDTvlQrjekKFWGzx2/YZuWBb9IHNlq5+6yXmibmYvyXDTyMcrbSTsRggis+E56kTdGGap6aRCxClUjgdZpxpqjU6Fx3gjBQDKXMgeT7SQ6Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=e9amjrc4lGk9YUE3IeTbt4WcUe6TQJsVH6dqwB0KoLI=;
+ b=aX0nQA6Y3qKMKiZVeVwcg2yldmOX6zmPwxXUON4DbYmKe33x9MT85hjvpF17SeA4EXmtKgG+FRZLcQ7XLebM8nsPsmWMpAPo6c8gT62r0gJSWSJfGXiP21ZhGWmcP8I+UtDD7nbuRgeHT5gpTjWGenKsyiL+EW5S0GIDQl9vLdM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DB9PR04MB8233.eurprd04.prod.outlook.com (2603:10a6:10:24b::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Wed, 3 Aug
+ 2022 08:15:36 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::3c6c:b7e6:a93d:d442]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::3c6c:b7e6:a93d:d442%4]) with mapi id 15.20.5504.014; Wed, 3 Aug 2022
+ 08:15:36 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     abel.vesa@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH 0/7] clk: imx93: new gate API and composite update
+Date:   Wed,  3 Aug 2022 16:17:06 +0800
+Message-Id: <20220803081713.3504699-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0011.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:191::6) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.10.0
-Subject: Re: [PATCH v3 00/13] PM6125 regulator support
-Content-Language: en-GB
-To:     Iskren Chernev <iskren.chernev@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20220731223736.1036286-1-iskren.chernev@gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220731223736.1036286-1-iskren.chernev@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: aaecfa11-e4b4-4b2a-ed9e-08da75285829
+X-MS-TrafficTypeDiagnostic: DB9PR04MB8233:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3hv2FfmNeVOUYyWo/fZGWuKHYfO1yBH1+/zyJGIwwOyRaSF2KH/38eL+qN4ZMv4FsKHzg7CQ6hRf5mh5PJLwirMpKOs+H8y9sk9HSGQqqy4nn7QbQB2i44olsT3r49g3CJ6TdE+UQh+tUju+zaY1ArzjLMO7R+CgyszjBhpZ5xnl2P5qi3QiceG9h8zwNER69Phz+FzAjBGqWTnJFaFxIeyf+/Yv4uk/g1MhuLAYIGqB8YpH5UKf5lk1cPQfCxy7E6DzoqfjKnoaNYjRbHMqKsmgCd8m2RI6el5kVYmP9/XrQVVNDMWAvxgYMoOcCywWDueTPDnt6g3Dr5W9jWDF/Yljz9M2u3Zh33TuJUf84eAIdhjyb7O0NUx+9qTDhBU8g9QSDwYQr7+NxX6DarZHAu5R5I+W0GI2XxOxjq+rOv8D2ATOTZ3LnHMEf/MQ6arZ9CQp48D1E5S/KKt86k1FhBAHjn0+FN0n6331grCqEk4M1kbtjIYLuhIbNrvuG/z5KVRg+PJg/wNzL1or3KiQ8EiGWJk3jeST5WP5Ban4RA398dQxbEGY1UhAwrMO2hEb4imAJy9rSFseSWG05NbMnO4TYGKBPsFvFAV/mXczVSDXXbz0J6spOiUsmXGl6vAiWthHWtIIB0HMzaikqVcJ57jDEEwfMv3Bm1rys37cJrg8eWoCEp0eyD+rspQKtPLUOnFo+YTYIj7EwT4/gJ1q1/oilTIBqf6/vQvf50mOVQvmKyU9Q1LapKGVzSdyuUIpaffy3PamCTAXmvvkxgBJa/KrubLErCDOwGDgShkUUSUW0aMO73/cdiRzIA1bIK6z
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(136003)(376002)(39860400002)(346002)(396003)(366004)(7416002)(2616005)(6512007)(5660300002)(26005)(186003)(1076003)(66556008)(66476007)(8676002)(4326008)(66946007)(316002)(86362001)(6506007)(41300700001)(478600001)(8936002)(52116002)(6666004)(38100700002)(38350700002)(15650500001)(83380400001)(6486002)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DVbk0Q6ay5F4C+cRnhT/Kq+sAfOdfSuICbjgja6QDQfozaE1P/zBQQ01C5zn?=
+ =?us-ascii?Q?Sse0f+AAXGtDaVQn0LpkRvan0bvxLWvM8hcqpJDAY+F8CST/yimwCIRzs768?=
+ =?us-ascii?Q?Rxzh2H4s0mP4UgqvDsuGLE8FDjHYbfG5ttya4EftUQSzcocE72Cg9UBCyuwg?=
+ =?us-ascii?Q?UsVn1IKLB45YVftMmfDFr4C/jalFAJKnOiTxMfq62CxOuXEyXhwgu90UZdJH?=
+ =?us-ascii?Q?JeNRochFnMEw+2QWUp+DbrgKDyCi0J0DmvAo7vUZLZtn+P2NrLi1GsZwj5qZ?=
+ =?us-ascii?Q?w0jzBKLASOwVyGD/C4ufKv79ZkDC+Mm6QJ7wiAEBYX3KJdaykcLD0GdJwe00?=
+ =?us-ascii?Q?6lp6gq+va9daWwEoMgfGwfNCwMWF0/FeKn9br/g+kAedCE2iRhfsVRVAt+CT?=
+ =?us-ascii?Q?ZNgXd7J7HpGX/BWTNIOBs+1THK2ZkH7GaJDT5Tk3tlwOEykbtVfRS8q0w8Dn?=
+ =?us-ascii?Q?deOe8aDN8h9cOCLshySfBrSZU2JD2R58XYxtksnCdV2eK4347OcseT3diN/n?=
+ =?us-ascii?Q?/aA7cj/NLisSqeasjK6VFuuDGrBmOSUQG6hW9HtfCiND+O6vyLKVhbboW02i?=
+ =?us-ascii?Q?dJdSNEJhxHSZjGQ7qvCKs19mfC7jj+HSWE9aNuWHkQbEKK+hhuR/hRuu13t9?=
+ =?us-ascii?Q?RBtpT7rU3vQQYEMePbF89ElzS3na84qHJ0vhhZE4favaugt+LJWfke9cfMhZ?=
+ =?us-ascii?Q?l4fBwidYeVWJ/hSXUZsKuhfYtF1k2wuQa8mTicJvS5JtVc+bQp3k2GOTFt2d?=
+ =?us-ascii?Q?PcBD7qu2MiQ7e6LVGoBk2mInj3S2Y8LQnwAFSoJ1ig0xRw2bxIyk0eDE/vZF?=
+ =?us-ascii?Q?v+JI1Sj0i2X1ClXisIvN0BkQwUtfwSXIt5mvKG6r/DrkmliUrGlbBoJnuFbg?=
+ =?us-ascii?Q?0opWjBJN7z0/Y2twyfsvRGtauRKka0wg1xPWaepmt4SRew9gpoDgAMTCc+0V?=
+ =?us-ascii?Q?Bv/nCx2ok9DJyLcV7s+kBuNfNh/jGA8RtojP7k7mlDW4CCSRgUEp2u/diY4X?=
+ =?us-ascii?Q?3smccX9pg/60+oziSL6SHdZMrHDGauWIFOiCYsozr+u1eCxpLhYt68GCj5zo?=
+ =?us-ascii?Q?FkMI3nRdDtN/ofV/FLLv1vug+OJEWFnzLRbVGicL8y2POyNXHd824vYOd2z6?=
+ =?us-ascii?Q?8NJJ3pWpFaST2wLZQV8S51zv/cmusNP9NyoprZUhuGe5w4DCq5Orpz1qRw1H?=
+ =?us-ascii?Q?9ZO/1xLeocov8p0ykWozgENt+Jvq1zhvQdj69uI3Y1qrbX6+6KSFMhjYrgk7?=
+ =?us-ascii?Q?OaS/AphK9TjdepU77GlUs16hXP8mmiJLdaW4jF0z4IkSf92gdsDfBugpL+jS?=
+ =?us-ascii?Q?sk5TIqWmMWSzXKDaX5p7DiDDDdfRhh5ZhBxPvhrw2ypchFvKVS+t18AjDlHI?=
+ =?us-ascii?Q?MMz+95eIozAVA83k7w00CVuBF71jAYZH2uCcpckrVw6n2kqnMpg6VaMh70xt?=
+ =?us-ascii?Q?QV/ERvI3+K8T8vGQWwBejM7+jinw8Mf5ZV0OFE8+owu8OdVySNLlodSD7YCE?=
+ =?us-ascii?Q?GRsEYnTi+OlVJUg8dLg8sr+jwfIdxYB3y5o7RVJTf0Pl4pfAfuZSPbcEXVE4?=
+ =?us-ascii?Q?5y84QBTxAO1DQ9c08lvyc049RQ/PZ3iqoI5WsiB2?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aaecfa11-e4b4-4b2a-ed9e-08da75285829
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Aug 2022 08:15:36.6818
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: neIIwdXKnhHKexx9HLaJu4rJr5HFKUK389FF2q5i0D44GdnS3SMfMuouQAi/bCAsKkA22Ru0QhNYixVaAPqkRg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8233
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/08/2022 01:37, Iskren Chernev wrote:
-> This patch series adds SPMI and SMD regulator support for the PM6125 found on
-> SM4250/SM6115 SoCs from QCom.
-> 
-> This code has been tested on:
-> * OnePlus Nord N100 (oneplus,billie2, SoC sm4250)
-> * Redmi 9T (redmi,lemon, SoC sm6115)
-> 
-> The main source used for this change is qpnp pm6125 support patch from caf [1]:
-> 
-> [1]: https://source.codeaurora.org/quic/la/kernel/msm-5.4/commit/?h=kernel.lnx.5.4.r1-rel&id=d1220daeffaa440ffff0a8c47322eb0033bf54f5
-> 
-> v2: https://lkml.org/lkml/2022/7/26/885
-> v1: https://lkml.org/lkml/2021/8/28/144
-> 
-> Changes from v2:
-> - split spmi new regulator support in 2 patches
-> - FTS and LDOs now have set_load and set_pull_down ops
-> - add better commit messages on spmi patches
-> - fix sob header order
-> - fix tested device info (Redmi 9T, NOT Xiaomi 9T)
-> - improve formatting in spmi binding docs
-> - sort alphabetically in smd binding docs
-> - sort alphabetically spmi pmics
-> - sort alphabetically smd pmics
-> Changes from v1:
-> - add dt-bindings
-> - split SPMI patch into new reg types and the new PMIC
-> - add correct supply mapping
-> 
-> Iskren Chernev (13):
->    dt-bindings: regulator: qcom_spmi: Improve formatting of if-then
->      blocks
->    dt-bindings: regulator: qcom_spmi: Document PM6125 PMIC
->    dt-bindings: regulator: qcom_smd: Sort compatibles alphabetically
->    dt-bindings: regulator: qcom_smd: Document PM6125 PMIC
->    regulator: qcom_spmi: Add support for new regulator types
->    regulator: qcom_spmi: Add support for HFSMPS regulator type
->    regulator: qcom_spmi: Sort pmics alphabetically (part 1)
->    regulator: qcom_spmi: Sort pmics alphabetically (part 2)
->    regulator: qcom_spmi: Add PM6125 PMIC support
->    regulator: qcom_smd: Sort pmics alphabetically (part 1)
->    regulator: qcom_smd: Sort pmics alphabetically (part 2)
->    regulator: qcom_smd: Sort pmics alphabetically (part 3)
+From: Peng Fan <peng.fan@nxp.com>
 
-What is the reason for these part1/2 and part1/2/3 splits? I think you 
-can collapse them into two respective patches, one sorting of spmi, 
-another one sorting the smd regulators
+The current clk driver use gate API as i.MX8M*, the gate2 API use 0x3 as
+val/mask, however i.MX93 LPCG DIRECT use BIT0 as on/off gate. So clk
+disable unused actually not gate off the LPCG clocks.
+And i.MX93 has AUTHEN feature, so add a new API to support i.MX93 clk gate.
 
->    regulator: qcom_smd: Add PM6125 regulators support
-> 
->   .../regulator/qcom,smd-rpm-regulator.yaml     |  26 +-
->   .../regulator/qcom,spmi-regulator.yaml        |  32 ++
->   drivers/regulator/qcom_smd-regulator.c        | 400 ++++++++++--------
->   drivers/regulator/qcom_spmi-regulator.c       | 383 ++++++++++++-----
->   4 files changed, 556 insertions(+), 285 deletions(-)
-> 
+i.MX93 CCM ROOT has slice busy check bit when updating register value, add
+check. CCM ROOT also has AUTHEN whitelist, so add DID check.
 
+Besides the gate/composite update, add MU[X] and SAI IPG clk in this
+patchset
+
+This patchset has got reviewed in NXP internal, so I keep R-b tag here.
+For those that have some change compared with downstream, R-b tag dropped.
+
+Peng Fan (7):
+  dt-bindings: clock: imx93-clock: add more MU/SAI clocks
+  clk: imx: clk-composite-93: check slice busy
+  clk: imx: clk-composite-93: check white_list
+  clk: imx: add i.MX93 clk gate
+  clk: imx93: switch to use new clk gate API
+  clk: imx93: add MU1/2 clock
+  clk: imx93: add SAI IPG clk
+
+ drivers/clk/imx/Makefile                |   2 +-
+ drivers/clk/imx/clk-composite-93.c      | 171 +++++++++++++++++++-
+ drivers/clk/imx/clk-gate-93.c           | 199 ++++++++++++++++++++++++
+ drivers/clk/imx/clk-imx93.c             |  30 ++--
+ drivers/clk/imx/clk.h                   |   9 +-
+ include/dt-bindings/clock/imx93-clock.h |   9 +-
+ 6 files changed, 401 insertions(+), 19 deletions(-)
+ create mode 100644 drivers/clk/imx/clk-gate-93.c
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
