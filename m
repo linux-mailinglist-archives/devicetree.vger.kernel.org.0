@@ -2,83 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80B65588B7C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 13:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF98588B8B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 13:51:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231830AbiHCLpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 07:45:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34700 "EHLO
+        id S233946AbiHCLvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 07:51:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237770AbiHCLpn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 07:45:43 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D535A6424;
-        Wed,  3 Aug 2022 04:45:42 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id s11so9703275edd.13;
-        Wed, 03 Aug 2022 04:45:42 -0700 (PDT)
+        with ESMTP id S232187AbiHCLvc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 07:51:32 -0400
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51F97205E3
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 04:51:31 -0700 (PDT)
+Received: by mail-il1-x12a.google.com with SMTP id g18so8363378ilk.4
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 04:51:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=MggySC/34v95u8horOX4fhvIDiILlutWGFAft8N/YGI=;
-        b=IPDZD57KsnEyGS89rvUheSefbJXYPUJtoK0CSwXMzK58XhRxzE0DTIn7+JFvINSI42
-         jVUqGGST4/ZH9dmw39dr18oGorZ6giy5XSFBsIQ/JdDOYwgPg+47AO9lxfreDrhgOgi/
-         oZZNp7Do5VMiajL2NbDBOHfgGHnajgYfcyrDDpE2jZ45WTooSZuuGwT9pa4T7tx6f9qb
-         iCrMkpNOtQmMP4zBRJO8WZ0mENu4ggXupks4zmuysNM3ESrWA3HMMAsynmaMcb/8AuBW
-         TIICi+nukWmR4MQNbyPlsuz5Id/S/nk2VKDtYFJC0lAz3YTfm1mSIOojI+ewch+yqkCw
-         qZZw==
+        bh=EoTgeRCxBFuyoRmK/nVFvAZexnEido63F1iRgCjtE4I=;
+        b=qBWKqHfNUzZmDs+T7fVLU/8groGDK4U0c+Nyy+uJifM9msoacv9u+Zmu0k3IAp0UNM
+         uHvKfROJES2rkihqnAHchNDsEpnkt/wH14VJBPCxg6cqNzXNgTTLQ2SAyTm5/VF/7MHk
+         f+FmbRF9NinVsBjyb6uCJF5Pl+VzPz59wtEuoccBWplRbJyKSMnKyTAr6dby7HFNsxRz
+         lydwVBY18kXp5Ps1vtMV6swvmAEHsjTNgvQ3cCcCuyR0lp1FMSyAI3dxGx23aQ26PhZq
+         eLbOJy/NZL8tvVpc5LG1kIbXW9pMliv5baIjfYae2cLFdy99LYiPeddMZNLDXVyNUdcD
+         k03w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=MggySC/34v95u8horOX4fhvIDiILlutWGFAft8N/YGI=;
-        b=5nef6sVwte4YcmFmJ6JC8VdiMmYCEsznW6QbprG53Y2eypOPamTwBlKnr9Pb2opN4S
-         gMYfzvpkh8mGY3SBReGTq+xU/1wK7/v8wS61f5NmfxLNTu2o3u8Vf8kiEIpWPuMQxXFd
-         SX/PXEnu6P+Qs4QmKyTOZljTmV4vkugkTHhhQW6CEWheNKsIE+uAwbY+9p5AyIoM5CFI
-         KqG3PWXb/PrH5YEUNCIiZuLWxmbVabEonbBGsFhb9yLyAkwIuH4bNOjgCbvo/Sb54Ldx
-         +js96vY3MmVsWwCRviwc+JvUmthfPtUKBwfI3WXAMcdNoEeXPtJP64ocpq47dBxDJO4/
-         FMGg==
-X-Gm-Message-State: AJIora8Mo27HOfoTBh99ouOVd3GGDdUot1GfTOKALuVM9t/MMZ+xs895
-        7fBKXy+qfFExmiD77FCaWe97D0BFiHfp8596JDo=
-X-Google-Smtp-Source: AGRyM1v7s7fz6oebaJ8pxEnZ0Q7zm/d6bh8Ibd2cO+NgXJ6+7jUajtV6ZmbKtT/fbWSl3XVTzS4m2hKPgncfjm6Vu3M=
-X-Received: by 2002:a05:6402:280b:b0:43b:5d75:fcfa with SMTP id
- h11-20020a056402280b00b0043b5d75fcfamr24735742ede.114.1659527141436; Wed, 03
- Aug 2022 04:45:41 -0700 (PDT)
+        bh=EoTgeRCxBFuyoRmK/nVFvAZexnEido63F1iRgCjtE4I=;
+        b=cPZaV/HyPqFY45mAYJdpZurnQcvlrSbLEQBF6mPPc7I8FK5Yj+gRd/QO39RiPsm/IE
+         nX86OAked4rZj/XVUZ3AD9+3LQJiZ9xgzO2/RkIjsh20z5lWxqan6nRH+/RFoInJrV4J
+         5m4i4nRXSCOmfuWx7v4wNtz84RLFxWDfVqXR19mQhCBtMxqI2cGJyZKhoe8zZmlkZXqb
+         gsC7DSoaOTZH18fJ98Po15TjYYFnGb00BAdKfQXzx/k4JfvksG3Rmw15armevSgGEJmd
+         qENFcgfjfELYfkcUTuKwVAOIVsZJVcNFF/MAG9uAjj2UmPUWaeqbwW1B93fE/wipBpL/
+         OEZQ==
+X-Gm-Message-State: AJIora/Wjc+sg7QCztfMJ5Ao2PV9qqhJhfhb0u/06ij5LQlHugl0MPXn
+        GU//RJwSodZT5u6+3fxd5c3H4mgSDR57Aiqu4U0N7w==
+X-Google-Smtp-Source: AGRyM1sCCLNYuMs6a2Nj6JufpAZB8vlrUSi4qqDgZ+iq5JepK4E180x3DA1eYjP4c305DkZUQT3A9jYjsb25ysDe5Xo=
+X-Received: by 2002:a05:6e02:20ca:b0:2dc:90fa:af35 with SMTP id
+ 10-20020a056e0220ca00b002dc90faaf35mr10242118ilq.302.1659527490792; Wed, 03
+ Aug 2022 04:51:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220803054728.1541104-1-colin.foster@in-advantage.com> <20220803054728.1541104-10-colin.foster@in-advantage.com>
-In-Reply-To: <20220803054728.1541104-10-colin.foster@in-advantage.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 3 Aug 2022 13:45:04 +0200
-Message-ID: <CAHp75Vc30VW_dYGodyw4mrMwFgTVyDFaMP2ZJXQEB2nFOB2RWw@mail.gmail.com>
-Subject: Re: [PATCH v15 mfd 9/9] mfd: ocelot: add support for the vsc7512 chip
- via spi
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
+References: <20220731174726.72631-1-jagan@edgeble.ai> <20220731174726.72631-3-jagan@edgeble.ai>
+ <4f8b8b98-c0ef-4924-6ff1-ccfeae77fc21@linaro.org> <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
+ <288b4d6e-68f9-26ef-c80d-cbcdaf9d2eed@linaro.org> <CA+VMnFwO41qOCSSbghynompUYMWGExeSCMKJVP9Z5Ed6pBgYDA@mail.gmail.com>
+ <88a18350-33fb-81e9-7984-7490da83a4a3@linaro.org> <CA+VMnFyjwt3ojtm+42U_LzXmdgV=x=ZE7m3SWZ2_FDLR4RM2QQ@mail.gmail.com>
+ <9db34922-f3e1-1536-59ce-c95d364ffe2c@linaro.org>
+In-Reply-To: <9db34922-f3e1-1536-59ce-c95d364ffe2c@linaro.org>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Wed, 3 Aug 2022 17:21:19 +0530
+Message-ID: <CA+VMnFztFsOSJW_tuQOL_j1u+_5ZVyNqhDNf2vowR9jxCiCn3g@mail.gmail.com>
+Subject: Re: [PATCH v2 02/20] dt-bindings: power: Add power-domain header for RV1126
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, katie.morris@in-advantage.com
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Elaine Zhang <zhangqing@rock-chips.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,44 +72,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 3, 2022 at 7:48 AM Colin Foster
-<colin.foster@in-advantage.com> wrote:
+On Wed, 3 Aug 2022 at 17:09, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> The VSC7512 is a networking chip that contains several peripherals. Many of
-> these peripherals are currently supported by the VSC7513 and VSC7514 chips,
-> but those run on an internal CPU. The VSC7512 lacks this CPU, and must be
-> controlled externally.
+> On 03/08/2022 13:30, Jagan Teki wrote:
+> > On Wed, 3 Aug 2022 at 16:57, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 03/08/2022 12:46, Jagan Teki wrote:
+> >>> On Wed, 3 Aug 2022 at 16:13, Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> On 03/08/2022 12:24, Jagan Teki wrote:
+> >>>>>> Vendor in filename is needed.
+> >>>>>
+> >>>>> Yes this follows how similar rockchip vendor notation
+> >>>>>
+> >>>>> $ ls include/dt-bindings/power/rk3* -l
+> >>>>>  include/dt-bindings/power/rk3036-power.h
+> >>>>>  include/dt-bindings/power/rk3066-power.h
+> >>>>>  include/dt-bindings/power/rk3128-power.h
+> >>>>>  include/dt-bindings/power/rk3188-power.h
+> >>>>>  include/dt-bindings/power/rk3228-power.h
+> >>>>>  include/dt-bindings/power/rk3288-power.h
+> >>>>>  include/dt-bindings/power/rk3328-power.h
+> >>>>>  include/dt-bindings/power/rk3366-power.h
+> >>>>>  include/dt-bindings/power/rk3368-power.h
+> >>>>>  include/dt-bindings/power/rk3399-power.h
+> >>>>>  include/dt-bindings/power/rk3568-power.h
+> >>>>
+> >>>>
+> >>>> So when are we going to switch to vendor,device pattern if you keep
+> >>>> adding files with wrong naming?
+> >>>
+> >>> Do you mean the above files are following the wrong naming pattern?
+> >>
+> >> Yes, or at least discouraged naming. The recommended naming which I hope
+> >> all new files will follow are vendor,device.h.
+> >
+> > rockchip-rv1126-power.h
+> >
+> > Will this be Okay?
 >
-> Utilize the existing drivers by referencing the chip as an MFD. Add support
-> for the two MDIO buses, the internal phys, pinctrl, and serial GPIO.
+> After vendor prefix goes coma, so rockchip,rv1126-power.h
 
+Thanks. I will fix it in v3.
 
-...
-
-> +#include <asm/byteorder.h>
-
-Not sure I see the user of this header.
-
-...
-
-> +struct regmap *ocelot_spi_init_regmap(struct device *dev, const struct resource *res)
-> +{
-> +       struct regmap_config regmap_config;
-> +
-> +       memcpy(&regmap_config, &ocelot_spi_regmap_config, sizeof(regmap_config));
-> +
-> +       regmap_config.name = res->name;
-
-> +       regmap_config.max_register = res->end - res->start;
-
-Hmm... First of all, resource_size() is for that (with - 1 to the
-result). But don't you need to use stride in the calculations?
-
-> +       regmap_config.reg_base = res->start;
-> +
-> +       return devm_regmap_init(dev, &ocelot_spi_regmap_bus, dev, &regmap_config);
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
+Jagan.
