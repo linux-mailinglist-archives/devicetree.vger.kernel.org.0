@@ -2,527 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83F45588700
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 07:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3F41588720
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 08:09:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236889AbiHCFta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 01:49:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43284 "EHLO
+        id S234978AbiHCGJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 02:09:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236940AbiHCFtB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 01:49:01 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 270D957255;
-        Tue,  2 Aug 2022 22:47:56 -0700 (PDT)
-X-UUID: 79807b81ca1f4d33aae8bb48eb38cf49-20220803
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=iOA/4s66fPXggYvvbFsEFU2h4tEIUsDadkKc4fYP/8g=;
-        b=jKCfJTjuE/8VdBuGSOD27vao72C5llCfR0/lrYYe439XL0fT2k04W63YEaOd4VJhc/siaA9eNbn3FKf6JydVkLcpK+wa6j43vRLxQ3IicZXqbqwh+N4x9xqr7d0iMGtcQvyaonsONpZeRD3MlOuZUzugAejcODpZatj5UAlfDNM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:06e0f0a2-cbee-493d-ad21-8680a8e19013,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:5
-X-CID-META: VersionHash:0f94e32,CLOUDID:a4021f25-a982-4824-82d2-9da3b6056c2a,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 79807b81ca1f4d33aae8bb48eb38cf49-20220803
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1879355459; Wed, 03 Aug 2022 13:47:50 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 3 Aug 2022 13:47:49 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Wed, 3 Aug 2022 13:47:49 +0800
-Message-ID: <6fa5ca0d19d3ccb19061afba78e23a072319f23a.camel@mediatek.com>
-Subject: Re: [PATCH v15 06/11] drm/mediatek: Add MT8195 External DisplayPort
- support
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?= 
-        <LiangXu.Xu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 3 Aug 2022 13:47:48 +0800
-In-Reply-To: <4d54b439fab8b888598677e1e52fb098c9b93e03.camel@mediatek.com>
-References: <20220727045035.32225-1-rex-bc.chen@mediatek.com>
-         <20220727045035.32225-7-rex-bc.chen@mediatek.com>
-         <4d54b439fab8b888598677e1e52fb098c9b93e03.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229789AbiHCGJD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 02:09:03 -0400
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C863E1A3A5;
+        Tue,  2 Aug 2022 23:09:02 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-10edfa2d57dso9018517fac.0;
+        Tue, 02 Aug 2022 23:09:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=NOHSIpOzFj2CQ4DoZoKBpGpskH5cJ9I2fZ25nCXTDds=;
+        b=kwgb8ZiAAMjRcBeseTPJQYM1uwyX5cph1sxTseAwEya6BTNt/1ZBZ8Mn/ASyskeZM/
+         48yFeV7hgNQfdGM7/xfpdRQ2+43liItiye9/B2e59sXuZwz0zRo3blfVuqqIj2PD5wIb
+         04d5eNXbpattTfxFtUnJnWoa72lUxCQhj+7qs2aP/sD9UH0lyEOpV45BxZ+DOOihEFvB
+         1ay0/p7hL6oEgAOAr32B8Vmduge/x1vZTpzoZLRfvZg7otMHEdONvvuypGlTi+lYYnWF
+         oguNXdLizw4FNBwanFd8h5Ypt+YtTQ7vhq571LEApV6h5ZOhdPBpJ+ahW1Y71PUGH2Nq
+         ssjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=NOHSIpOzFj2CQ4DoZoKBpGpskH5cJ9I2fZ25nCXTDds=;
+        b=nVB7jQ7mcyA52yp6C1JPyEvHcyPvutX1p9AdOoNnx0q3sgp0xHKtWjeZ5rz+B5ZMp4
+         txCi6G3mBzFaMJXHmQvyDOcwUpKynTSlc/1oMuPN06FCMvHq0q+Xd8tPfiuFJks2C/lX
+         Xoirfd9dwHdDroooctr7ITzBdy1zvKtJynGtCI9BM4TqOeOXMmjn9ii/+f2+NO7mMfWU
+         hhPObVB4Nu80s3VmyPnbniCSG7Fx990y5L6uvwwC4QwQv/wPuLEc5E//nhd5EFE0sYaz
+         5gUOyiz7f67qIOI2K9JQD+dMBiEdoSOegntlJW6ZrtrDjuScqo+DpgOEgHKUqUNJW+qO
+         nHEQ==
+X-Gm-Message-State: ACgBeo0K5Kpi1IO0xzSSQ//KoMTWQjofx3BN2bDURo81/Yc78mNydj7W
+        TXa5xKhKj1xGAIuEYMMS93qoz3/KM81ofzXuzO54QcS0
+X-Google-Smtp-Source: AA6agR6EG3M12SD6Hj393d5YYQN3yN13JuFvJWw2BouLtXUhkmSN9c9lIvVVEZxANvUHUEwD6sqA9e/frTA+bMXh8ko=
+X-Received: by 2002:a05:6870:2323:b0:10d:2b6:3519 with SMTP id
+ w35-20020a056870232300b0010d02b63519mr1231397oao.215.1659506942070; Tue, 02
+ Aug 2022 23:09:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220801101447.86207-1-gene.chen.richtek@gmail.com>
+ <20220801101447.86207-3-gene.chen.richtek@gmail.com> <YujZATquqh0srgHm@kuha.fi.intel.com>
+In-Reply-To: <YujZATquqh0srgHm@kuha.fi.intel.com>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Wed, 3 Aug 2022 14:08:50 +0800
+Message-ID: <CAE+NS37qqAUON=GZV1Q9HisgxpzJGQai6QFBJi8Ss_rhpTjzBg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] usb: typec: tcpci_rt1711h: Fix vendor setting when
+ set vconn
+To:     Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, linux-usb@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>,
+        ChiYuan Huang <cy_huang@richtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-08-02 at 10:37 +0800, CK Hu wrote:
-> Hi, Bo-Chen:
-> 
-> On Wed, 2022-07-27 at 12:50 +0800, Bo-Chen Chen wrote:
-> > From: Guillaume Ranquet <granquet@baylibre.com>
-> > 
-> > This patch adds External DisplayPort support to the mt8195 eDP
-> > driver.
-> > 
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+Heikki Krogerus <heikki.krogerus@linux.intel.com> =E6=96=BC 2022=E5=B9=B48=
+=E6=9C=882=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=883:57=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+>
+> Hi Gene,
+>
+> On Mon, Aug 01, 2022 at 06:14:42PM +0800, Gene Chen wrote:
+> > From: Gene Chen <gene_chen@richtek.com>
+> >
+> > replace overwrite whole register with update bits
+> >
+> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
 > > ---
-> >  drivers/gpu/drm/mediatek/mtk_dp.c     | 181 +++++++++++++++++++++-
+> >  drivers/usb/typec/tcpm/tcpci_rt1711h.c | 15 +++++++++------
+> >  1 file changed, 9 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec=
+/tcpm/tcpci_rt1711h.c
+> > index b56a0880a044..6197d9a05d36 100644
+> > --- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
+> > +++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
+> > @@ -5,13 +5,15 @@
+> >   * Richtek RT1711H Type-C Chip Driver
+> >   */
+> >
+> > -#include <linux/kernel.h>
+> > -#include <linux/module.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/gpio/consumer.h>
+> >  #include <linux/i2c.h>
+> >  #include <linux/interrupt.h>
+> > -#include <linux/gpio/consumer.h>
+> > -#include <linux/usb/tcpm.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> >  #include <linux/regmap.h>
+> > +#include <linux/usb/tcpm.h>
+>
+> That header reshuffling is not necessary for this change - at least you
+> are not giving any reason for it in your commit message.
+>
+> If there is no real need for that in this patch, then please leave the
+> headers as they are. You can propose changing the order of the headers
+> in a separate patch. Though, I would not bother with it unless there
+> is some real benefit in doing so, and I'm pretty sure there isn't any.
+>
+
+ACK, I will remove reshuffling.
+It was suggested coding style by other reviewer in other driver.
+
+> >  #include "tcpci.h"
+> >
+> >  #define RT1711H_VID          0x29CF
+> > @@ -23,6 +25,7 @@
+> >  #define RT1711H_RTCTRL8_SET(ck300, ship_off, auto_idle, tout) \
+> >                           (((ck300) << 7) | ((ship_off) << 5) | \
+> >                           ((auto_idle) << 3) | ((tout) & 0x07))
+> > +#define RT1711H_AUTOIDLEEN   BIT(3)
+> >
+> >  #define RT1711H_RTCTRL11     0x9E
+> >
+> > @@ -109,8 +112,8 @@ static int rt1711h_set_vconn(struct tcpci *tcpci, s=
+truct tcpci_data *tdata,
+> >  {
+> >       struct rt1711h_chip *chip =3D tdata_to_rt1711h(tdata);
+> >
+> > -     return rt1711h_write8(chip, RT1711H_RTCTRL8,
+> > -                           RT1711H_RTCTRL8_SET(0, 1, !enable, 2));
+> > +     return regmap_update_bits(chip->data.regmap, RT1711H_RTCTRL8,
+> > +                               RT1711H_AUTOIDLEEN, enable ? 0 : RT1711=
+H_AUTOIDLEEN);
+> >  }
+> >
+> >  static int rt1711h_start_drp_toggling(struct tcpci *tcpci,
 > > --
-> > --
-> >  drivers/gpu/drm/mediatek/mtk_dp_reg.h |   1 +
-> >  2 files changed, 146 insertions(+), 36 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c
-> > b/drivers/gpu/drm/mediatek/mtk_dp.c
-> > index 06eeecedd49e..ce817cb59445 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> > @@ -103,6 +103,11 @@ static struct regmap_config
-> > mtk_dp_regmap_config
-> > = {
-> >  	.name = "mtk-dp-registers",
-> >  };
-> >  
-> > +static bool mtk_dp_is_edp(struct mtk_dp *mtk_dp)
-> > +{
-> > +	return mtk_dp->next_bridge;
-> 
-> For external DP, it could also connect to a bridge IC which transfer
-> DP
-> to HDMI or some interface else. Use the compatible to judge this edp
-> or
-> dp.
-> 
-
-Hello CK,
-
-ok, I will use of device data to do this.
-
-> > +}
-> > +
-> >  static struct mtk_dp *mtk_dp_from_bridge(struct drm_bridge *b)
-> >  {
-> >  	return container_of(b, struct mtk_dp, bridge);
-> > @@ -341,6 +346,19 @@ static void mtk_dp_pg_enable(struct mtk_dp
-> > *mtk_dp, bool enable)
-> >  			   4 << PGEN_PATTERN_SEL_SHIFT,
-> > PGEN_PATTERN_SEL_MASK);
-> >  }
-> >  
-> > +static bool mtk_dp_plug_state(struct mtk_dp *mtk_dp)
-> > +{
-> > +	return mtk_dp->train_info.cable_plugged_in;
-> > +}
-> > +
-> > +static bool mtk_dp_plug_state_avoid_pulse(struct mtk_dp *mtk_dp)
-> > +{
-> > +	bool ret;
-> > +
-> > +	return !(readx_poll_timeout(mtk_dp_plug_state, mtk_dp, ret,
-> > ret,
-> > +				    4000, 7 * 4000));
-> > +}
-> > +
-> >  static void mtk_dp_aux_irq_clear(struct mtk_dp *mtk_dp)
-> >  {
-> >  	mtk_dp_write(mtk_dp, MTK_DP_AUX_P0_3640,
-> > @@ -778,35 +796,67 @@ static void
-> > mtk_dp_get_calibration_data(struct
-> > mtk_dp *mtk_dp)
-> >  		return;
-> >  	}
-> >  
-> > -	cal_data->glb_bias_trim =
-> > -		check_cal_data_valid(mtk_dp, 1, 0x1e,
-> > -				     (buf[3] >> 27) & 0x1f, 0xf);
-> > -	cal_data->clktx_impse =
-> > -		check_cal_data_valid(mtk_dp, 1, 0xe,
-> > -				     (buf[0] >> 9) & 0xf, 0x8);
-> > -	cal_data->ln_tx_impsel_pmos[0] =
-> > -		check_cal_data_valid(mtk_dp, 1, 0xe,
-> > -				     (buf[2] >> 28) & 0xf, 0x8);
-> > -	cal_data->ln_tx_impsel_nmos[0] =
-> > -		check_cal_data_valid(mtk_dp, 1, 0xe,
-> > -				     (buf[2] >> 24) & 0xf, 0x8);
-> > -	cal_data->ln_tx_impsel_pmos[1] =
-> > -		check_cal_data_valid(mtk_dp, 1, 0xe,
-> > -				     (buf[2] >> 20) & 0xf, 0x8);
-> > -	cal_data->ln_tx_impsel_nmos[1] =
-> > -		check_cal_data_valid(mtk_dp, 1, 0xe,
-> > -				     (buf[2] >> 16) & 0xf, 0x8);
-> > -	cal_data->ln_tx_impsel_pmos[2] =
-> > -		check_cal_data_valid(mtk_dp, 1, 0xe,
-> > -				     (buf[2] >> 12) & 0xf, 0x8);
-> > -	cal_data->ln_tx_impsel_nmos[2] =
-> > -		check_cal_data_valid(mtk_dp, 1, 0xe,
-> > -				     (buf[2] >> 8) & 0xf, 0x8);
-> > -	cal_data->ln_tx_impsel_pmos[3] =
-> > -		check_cal_data_valid(mtk_dp, 1, 0xe,
-> > -				     (buf[2] >> 4) & 0xf, 0x8);
-> > -	cal_data->ln_tx_impsel_nmos[3] =
-> > -		check_cal_data_valid(mtk_dp, 1, 0xe, buf[2] & 0xf,
-> > 0x8);
-> > +	if (mtk_dp_is_edp(mtk_dp)) {
-> > +		cal_data->glb_bias_trim =
-> > +			check_cal_data_valid(mtk_dp, 1, 0x1e,
-> > +					     (buf[3] >> 27) & 0x1f,
-> > 0xf);
-> > +		cal_data->clktx_impse =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[0] >> 9) & 0xf, 0x8);
-> > +		cal_data->ln_tx_impsel_pmos[0] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[2] >> 28) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_nmos[0] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[2] >> 24) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_pmos[1] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[2] >> 20) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_nmos[1] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[2] >> 16) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_pmos[2] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[2] >> 12) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_nmos[2] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[2] >> 8) & 0xf, 0x8);
-> > +		cal_data->ln_tx_impsel_pmos[3] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[2] >> 4) & 0xf, 0x8);
-> > +		cal_data->ln_tx_impsel_nmos[3] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe, buf[2] &
-> > 0xf, 0x8);
-> > +	} else {
-> > +		cal_data->glb_bias_trim =
-> > +			check_cal_data_valid(mtk_dp, 1, 0x1e,
-> > +					     (buf[0] >> 27) & 0x1f,
-> > 0xf);
-> 
-> Why not place glb_bias_trim value in nvmem buf[3] for both edp and dp
-> case? Place in the same nvmem position, the driver code would be
-> simple. 
-> 
-
-These value are read from efuse data. do you mean change the order in
-this dp driver?
-Is so, I think it's not appropriate. It will be hard to debug if any
-issue occurs.
-
-> > +		cal_data->clktx_impse =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[0] >> 13) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_pmos[0] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[1] >> 28) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_nmos[0] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[1] >> 24) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_pmos[1] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[1] >> 20) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_nmos[1] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[1] >> 16) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_pmos[2] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[1] >> 12) & 0xf,
-> > 0x8);
-> > +		cal_data->ln_tx_impsel_nmos[2] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[1] >> 8) & 0xf, 0x8);
-> > +		cal_data->ln_tx_impsel_pmos[3] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe,
-> > +					     (buf[1] >> 4) & 0xf, 0x8);
-> > +		cal_data->ln_tx_impsel_nmos[3] =
-> > +			check_cal_data_valid(mtk_dp, 1, 0xe, buf[1] &
-> > 0xf, 0x8);
-> 
-> Why not place ln_tx_impsel_nmos and ln_tx_impsel_pmos value in nvmem
-> buf[2] for both edp and dp case? Place in the same nvmem position,
-> the
-> driver code would be simple. 
-> 
-> > +	}
-> >  
-> >  	kfree(buf);
-> >  }
-> > @@ -926,7 +976,10 @@ static void mtk_dp_video_mute(struct mtk_dp
-> > *mtk_dp, bool enable)
-> >  			   VIDEO_MUTE_SEL_DP_ENC0_P0_MASK |
-> >  			   VIDEO_MUTE_SW_DP_ENC0_P0_MASK);
-> >  
-> > -	mtk_dp_sip_atf_call(mtk_dp, MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE,
-> > enable);
-> > +	mtk_dp_sip_atf_call(mtk_dp,
-> > +			    mtk_dp_is_edp(mtk_dp) ?
-> > +			    MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE :
-> > +			    MTK_DP_SIP_ATF_VIDEO_UNMUTE, enable);
-> 
-> Use of_device_get_match_data to select
-> MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE
-> or MTK_DP_SIP_ATF_VIDEO_UNMUTE.
-> 
-
-Do you mean add a new variable to control this in of device match data?
-
-BRs,
-Bo-Chen
-
-> >  }
-> >  
-> >  static void mtk_dp_power_enable(struct mtk_dp *mtk_dp)
-> > @@ -1226,6 +1279,9 @@ static int mtk_dp_parse_capabilities(struct
-> > mtk_dp *mtk_dp)
-> >  	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
-> > DP_SET_POWER_D0);
-> >  	usleep_range(2000, 5000);
-> >  
-> > +	if (!mtk_dp_plug_state(mtk_dp))
-> > +		return -ENODEV;
-> > +
-> >  	drm_dp_read_dpcd_caps(&mtk_dp->aux, mtk_dp->rx_cap);
-> >  
-> >  	train_info->link_rate = min_t(int, mtk_dp->max_linkrate,
-> > @@ -1277,6 +1333,9 @@ static int mtk_dp_train_start(struct mtk_dp
-> > *mtk_dp)
-> >  	u8 train_limit;
-> >  	u8 max_link_rate;
-> >  
-> > +	if (!mtk_dp_plug_state_avoid_pulse(mtk_dp))
-> > +		return -ENODEV;
-> > +
-> >  	link_rate = mtk_dp->rx_cap[1];
-> >  	lane_count = mtk_dp->rx_cap[2] & 0x1F;
-> >  
-> > @@ -1412,6 +1471,9 @@ static irqreturn_t
-> > mtk_dp_hpd_event_thread(int
-> > hpd, void *dev)
-> >  {
-> >  	struct mtk_dp *mtk_dp = dev;
-> >  
-> > +	dev_dbg(mtk_dp->dev, "drm_helper_hpd_irq_event\n");
-> > +	drm_helper_hpd_irq_event(mtk_dp->bridge.dev);
-> 
-> Because edp also have hpd interrupt, so I would like both edp and dp
-> have the same control flow for hdp. So move this to edp patch.
-> 
-> > +
-> >  	if (mtk_dp->train_info.hpd_inerrupt) {
-> >  		dev_dbg(mtk_dp->dev, "MTK_DP_HPD_INTERRUPT\n");
-> >  		mtk_dp->train_info.hpd_inerrupt = false;
-> > @@ -1452,9 +1514,20 @@ static irqreturn_t mtk_dp_hpd_event(int hpd,
-> > void *dev)
-> >  		else
-> >  			train_info->cable_plugged_in = false;
-> >  
-> > -		mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> > -				   DP_PWR_STATE_BANDGAP_TPLL_LANE,
-> > -				   DP_PWR_STATE_MASK);
-> > +		if (!train_info->cable_plugged_in) {
-> > +			mtk_dp_video_mute(mtk_dp, true);
-> > +
-> > +			mtk_dp_initialize_priv_data(mtk_dp);
-> > +			mtk_dp_set_idle_pattern(mtk_dp, true);
-> > +
-> > +			mtk_dp_update_bits(mtk_dp,
-> > MTK_DP_TOP_PWR_STATE,
-> > +					   DP_PWR_STATE_BANDGAP_TPLL,
-> > +					   DP_PWR_STATE_MASK);
-> > +		} else {
-> > +			mtk_dp_update_bits(mtk_dp,
-> > MTK_DP_TOP_PWR_STATE,
-> > +					   DP_PWR_STATE_BANDGAP_TPLL_LA
-> > NE,
-> > +					   DP_PWR_STATE_MASK);
-> > +		}
-> >  	}
-> >  
-> >  	return IRQ_HANDLED;
-> > @@ -1499,6 +1572,24 @@ static int mtk_dp_dt_parse(struct mtk_dp
-> > *mtk_dp,
-> >  	return 0;
-> >  }
-> >  
-> > +static enum drm_connector_status mtk_dp_bdg_detect(struct
-> > drm_bridge
-> > *bridge)
-> > +{
-> > +	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
-> > +	enum drm_connector_status ret = connector_status_disconnected;
-> > +	u8 sink_count = 0;
-> > +
-> > +	if (mtk_dp_is_edp(mtk_dp))
-> > +		return connector_status_connected;
-> 
-> Because edp also have hpd interrupt, so I would like both edp and dp
-> have the same control flow for hdp. So remove this.
-> 
-> > +
-> > +	if (mtk_dp_plug_state_avoid_pulse(mtk_dp)) {
-> > +		drm_dp_dpcd_readb(&mtk_dp->aux, DP_SINK_COUNT,
-> > &sink_count);
-> > +		if (DP_GET_SINK_COUNT(sink_count))
-> > +			ret = connector_status_connected;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >  static struct edid *mtk_dp_get_edid(struct drm_bridge *bridge,
-> >  				    struct drm_connector *connector)
-> >  {
-> > @@ -1512,7 +1603,8 @@ static struct edid *mtk_dp_get_edid(struct
-> > drm_bridge *bridge,
-> >  	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
-> > DP_SET_POWER_D0);
-> >  	usleep_range(2000, 5000);
-> >  
-> > -	new_edid = drm_get_edid(connector, &mtk_dp->aux.ddc);
-> > +	if (mtk_dp_plug_state(mtk_dp))
-> > +		new_edid = drm_get_edid(connector, &mtk_dp->aux.ddc);
-> 
-> Please explain why only dp has this problem. If edp also has this
-> problem, move this to edp patch.
-> 
-> Regards,
-> CK
-> 
-> >  
-> >  	if (!enabled)
-> >  		drm_bridge_chain_post_disable(bridge);
-> > @@ -1852,6 +1944,7 @@ static const struct drm_bridge_funcs
-> > mtk_dp_bridge_funcs = {
-> >  	.atomic_disable = mtk_dp_bridge_atomic_disable,
-> >  	.mode_valid = mtk_dp_bridge_mode_valid,
-> >  	.get_edid = mtk_dp_get_edid,
-> > +	.detect = mtk_dp_bdg_detect,
-> >  };
-> >  
-> >  static int mtk_dp_probe(struct platform_device *pdev)
-> > @@ -1873,9 +1966,15 @@ static int mtk_dp_probe(struct
-> > platform_device
-> > *pdev)
-> >  				     "failed to request dp irq
-> > resource\n");
-> >  
-> >  	mtk_dp->next_bridge = devm_drm_of_get_bridge(dev, dev-
-> > >of_node, 
-> > 1, 0);
-> > -	if (IS_ERR(mtk_dp->next_bridge))
-> > +	if (IS_ERR(mtk_dp->next_bridge) &&
-> > +	    PTR_ERR(mtk_dp->next_bridge) == -ENODEV) {
-> > +		dev_info(dev,
-> > +			 "No panel connected in devicetree, continue as
-> > external DP\n");
-> > +		mtk_dp->next_bridge = NULL;
-> > +	} else if (IS_ERR(mtk_dp->next_bridge)) {
-> >  		return dev_err_probe(dev, PTR_ERR(mtk_dp->next_bridge),
-> >  				     "Failed to get bridge\n");
-> > +	}
-> >  
-> >  	ret = mtk_dp_dt_parse(mtk_dp, pdev);
-> >  	if (ret)
-> > @@ -1918,7 +2017,10 @@ static int mtk_dp_probe(struct
-> > platform_device
-> > *pdev)
-> >  
-> >  	mtk_dp->bridge.ops =
-> >  		DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_EDID |
-> > DRM_BRIDGE_OP_HPD;
-> > -	mtk_dp->bridge.type = DRM_MODE_CONNECTOR_eDP;
-> > +	if (mtk_dp_is_edp(mtk_dp))
-> > +		mtk_dp->bridge.type = DRM_MODE_CONNECTOR_eDP;
-> > +	else
-> > +		mtk_dp->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
-> >  
-> >  	drm_bridge_add(&mtk_dp->bridge);
-> >  
-> > @@ -1945,6 +2047,12 @@ static int mtk_dp_suspend(struct device
-> > *dev)
-> >  {
-> >  	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
-> >  
-> > +	if (mtk_dp_plug_state(mtk_dp)) {
-> > +		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
-> > DP_SET_POWER_D3);
-> > +		/* Ensure the sink is off before shutting down power */
-> > +		usleep_range(2000, 3000);
-> > +	}
-> > +
-> >  	mtk_dp_power_disable(mtk_dp);
-> >  
-> >  	mtk_dp_hwirq_enable(mtk_dp, false);
-> > @@ -1978,6 +2086,7 @@ static SIMPLE_DEV_PM_OPS(mtk_dp_pm_ops,
-> > mtk_dp_suspend, mtk_dp_resume);
-> >  
-> >  static const struct of_device_id mtk_dp_of_match[] = {
-> >  	{ .compatible = "mediatek,mt8195-edp-tx" },
-> > +	{ .compatible = "mediatek,mt8195-dp-tx" },
-> >  	{},
-> >  };
-> >  MODULE_DEVICE_TABLE(of, mtk_dp_of_match);
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> > b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> > index 4ff8e9880dc9..59086eb82868 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> > @@ -14,6 +14,7 @@
-> >  #define SEC_OFFSET	0x4000
-> >  
-> >  #define MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE	(BIT(0) | BIT(5))
-> > +#define MTK_DP_SIP_ATF_VIDEO_UNMUTE	BIT(5)
-> >  
-> >  #define DP_PHY_GLB_BIAS_GEN_00		0
-> >  #define RG_XTP_GLB_BIAS_INTR_CTRL	GENMASK(20, 16)
-> 
-> 
-
+> > 2.25.1
+>
+> thanks,
+>
+> --
+> heikki
