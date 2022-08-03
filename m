@@ -2,157 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D824F588799
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 08:55:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 265B75887A0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 08:59:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235328AbiHCGzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 02:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33490 "EHLO
+        id S233800AbiHCG7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 02:59:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233710AbiHCGzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 02:55:50 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22B7CB862
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 23:55:48 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id s9so11961347ljs.6
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 23:55:48 -0700 (PDT)
+        with ESMTP id S233079AbiHCG7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 02:59:20 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B47327FF5;
+        Tue,  2 Aug 2022 23:59:19 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id x10so14863264plb.3;
+        Tue, 02 Aug 2022 23:59:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=S4Cm3Xm7ps86QO+wm8sMu2JPYe6mqNw8F3bEMQJUUhc=;
-        b=O7q9zOMb+keix+65PNkbZrdMdNg8RruiIN6i52bJ3/4G61fat0QiJGihLnJBYb6rJe
-         JWLeQ53j3H5kjZv+9dsR/1/CtI+3O7jm2y1o4vLT6j/eTIidl8SKFoeTN6E68/metBV+
-         k8o9ZUPTqRaDEWCXCwRUunKub/t+fTDIxvVNQRvJIIp9cDOfz8vpWPuBPBDRBN5X2eZl
-         ntZ5aSlzBv00BVHlE0EUlYMBVYhayrKg8PZM04hryugMFw1z5w/BJ+F2lD/BAFiqjzC2
-         //qDr2s2bex7w//+mom1Q1MseoxDP6T89LFAQeMK/V1nv9lj/Qm79cUECHgXAGgCS5kz
-         CxHQ==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=LJeCWMPNDFa54lhhjjni8CvJbCR1cv8BE7+K+6PQWwE=;
+        b=mjUzUsPbeHIKPWm9YDLnJ8OmAZ5zDjlQPUA1SZHAEUj+Mfx/mDnJLipV/ZJOR54NUE
+         0z97qt3pqKYGBWQxJKJwGNgXDB7he0S4Swdlv0HbNM+fwtcvx1kwC6Ft7JoL1uJgYjo5
+         m7WpN3QDC48uieWJ0MAJAOHIHKFVKZ5F6k6uwvliNUZl6RXzx3SwBQn3rQYB9ucFgyp2
+         6orx86mS8IKx+44Adhp7I/xPrGs1HM5VXlB2TQ3fP8pXmNTWurdY2hiCj0K9TnfRgwq4
+         3QeAUR9VcI2MglUDwiKTF91QBPR4FGFYOy0iUPkslhfxXca50+HDYgBaJthiqwFogYUS
+         g1Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=S4Cm3Xm7ps86QO+wm8sMu2JPYe6mqNw8F3bEMQJUUhc=;
-        b=eUEAn5zldoWVpPtqsxW030s1yD+SrHHvijLQGcU310ERkcguFPz8V7e+xIIptUkeEd
-         tIR2efYuCXKaKNxwxaUs1Klp6aboHOnCksjR3GTljG/uBzC4DwVuCQ3Yp3EG9Z9C+d3C
-         Fol58kGmCQQLJzoYbXRww+lq2ssVDrGACfjdykP7YtKK5mxJkBPS0WwVMuq5nzMxJz4Z
-         0O2I+IUdwh+TpeVyP80qrYbHfZezaf8MKZadebQ9fQxK6+NYABcHylPUw+fF4ZeXmeks
-         3fs0KINJNOYNJ8fJOnxa3L4CfsBF2tfaesE+eU6YqIsrPWUwjqfoEtgWPbX83O1H9wkC
-         6U8A==
-X-Gm-Message-State: AJIora/jOcIrYTWi6b+nd7DFNQHLmodIJ90/AAOymGOA7uwLMGpJqARo
-        27FBdMn9yjvdcvpxZbvOHBr0gMU19s27aSKi
-X-Google-Smtp-Source: AGRyM1vEph3Ifvfbkg3uzqoCf0YQ14siBIj60BQr+NpQKcVngPKmsRZhSFDXn+Ia8zp9GK8enrJ02A==
-X-Received: by 2002:a05:651c:2208:b0:25d:ef2a:f092 with SMTP id y8-20020a05651c220800b0025def2af092mr8199475ljq.84.1659509746457;
-        Tue, 02 Aug 2022 23:55:46 -0700 (PDT)
-Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id f12-20020a05651c03cc00b0025e4474df71sm1457524ljp.135.2022.08.02.23.55.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 23:55:45 -0700 (PDT)
-Message-ID: <297ddf1f-8ddc-902c-ff3d-06b9d19c6a7b@linaro.org>
-Date:   Wed, 3 Aug 2022 08:55:43 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=LJeCWMPNDFa54lhhjjni8CvJbCR1cv8BE7+K+6PQWwE=;
+        b=SYlcQ25EvFXmYQmprc13rWhkOQb1k0mj1QU6Xdc/8srFZYmxQctC9VI+Zl8pGT+ck9
+         1p92hzyA/HKaahz81SOMRLzWfaWQHmb4TwHk4jCb9VomXFyCivuaMRP14tvjnCTscsfH
+         dFsb2CB7FxuAjtkxLUAMWwlulYw4yZ1ji8ibcV+SOycX3dJPOJrE2/1+0jRngSYQjbOu
+         A7H4xl8cAP7Bqtfd4oVjDdrtK/JAsudQ9HwveSiDKcmYBRLI7MVZYgzz3RPLTna6vmP2
+         1g+mM9VlKVy6k4Ho1VbR/eygISoIRXC8Oj5QiP/JKFNlXMBSba3azpP6SH6IvXeRT8yw
+         YJ4Q==
+X-Gm-Message-State: ACgBeo1XT7teXsSJeizYQxC/vCglmrrUYd55Xq1PCZh/EOGe+hJcakSs
+        b1aDWub9iSU5Kp9ylA9SUtOPfdYli9JgQh8xcHY=
+X-Google-Smtp-Source: AA6agR7x4tyrWj2jq8pw1fQVi438CHYRFx6bDJavn8MPfXnWR/2ySDbcqvnMNXHaMqwdEW2iAG7k493kb+IO2L3URXE=
+X-Received: by 2002:a17:902:7293:b0:16f:17c3:e809 with SMTP id
+ d19-20020a170902729300b0016f17c3e809mr740919pll.158.1659509958822; Tue, 02
+ Aug 2022 23:59:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add IBM OCC bindings
-Content-Language: en-US
-To:     Eddie James <eajames@linux.ibm.com>, joel@jms.id.au
-Cc:     linux@roeck-us.net, jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-fsi@lists.ozlabs.org,
-        devicetree@vger.kernel.org
-References: <20220802194656.240564-1-eajames@linux.ibm.com>
- <20220802194656.240564-2-eajames@linux.ibm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220802194656.240564-2-eajames@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20220801094255.664548-1-nagasuresh.relli@microchip.com>
+ <20220801094255.664548-2-nagasuresh.relli@microchip.com> <6d36b192-9e63-ec13-5583-22b81c99c18b@linaro.org>
+ <Yuki3jpCSJDdXcWA@sirena.org.uk> <dc7bca02-5eb3-3b33-8911-a950b630f197@linaro.org>
+In-Reply-To: <dc7bca02-5eb3-3b33-8911-a950b630f197@linaro.org>
+From:   naga sureshkumar <nagasuresh12@gmail.com>
+Date:   Wed, 3 Aug 2022 12:29:07 +0530
+Message-ID: <CAH_iE_3xfyPi4B+WopmZdFStQHeTb=31MqLs+aG12R=28yDuVg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] spi: dt-binding: add Microchip CoreQSPI compatible
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor.dooley@microchip.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2022 21:46, Eddie James wrote:
-> These bindings describe the POWER processor On Chip Controller accessed
-> from a service processor or baseboard management controller (BMC).
-> 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  .../bindings/hwmon/ibm,occ-hmwon.yaml         | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ibm,occ-hmwon.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ibm,occ-hmwon.yaml b/Documentation/devicetree/bindings/hwmon/ibm,occ-hmwon.yaml
-> new file mode 100644
-> index 000000000000..8f8c3b8d7129
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/ibm,occ-hmwon.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/ibm,occ-hwmon.yaml#
+Hi Krzysztof,
 
-typo here
+On Wed, Aug 3, 2022 at 11:42 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 02/08/2022 15:13, Mark Brown wrote:
+> > On Tue, Aug 02, 2022 at 10:52:25AM +0200, Krzysztof Kozlowski wrote:
+> >> On 01/08/2022 11:42, Naga Sureshkumar Relli wrote:
+> >
+> >>> -    enum:
+> >>> -      - microchip,mpfs-spi
+> >>> -      - microchip,mpfs-qspi
+> >>> +    oneOf:
+> >>> +      - description: Microchip's Polarfire SoC SPI controller.
+> >>> +        const: microchip,mpfs-spi
+> >>> +      - description: Microchip's Polarfire SoC QSPI controller.
+> >
+> >> Useless descriptions - they repeat compatible. Just keep it as enum and
+> >> skip descriptions. What value do they bring?
+> >
+> > Someone not familiar with the full Microchip product line might not be
+> > aware of the expansion of mpfs, it's not blindingly obvious.
+>
+> Then it should be explained in title/description of the binding, not in
+> compatible. This is the usual way of providing some text description,
+> not for each compatible by repeating the compatible text.
+Ok. In the next version I will update the bindings like below
 
-Does not look like you tested the bindings. Please run `make
-dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+-title: Microchip MPFS {Q,}SPI Controller Device Tree Bindings
++title: Microchip FPGA {Q,}SPI Controllers
++
++description:
++  SPI and QSPI controllers on the Microchip PolarFire SoC and they are based
++ on the "soft"  fabric IP cores.
+ oneOf:
+       - items:
++          - const: microchip,mpfs-qspi
++          - const: microchip,coreqspi-rtl-v2
++      - const: microchip,coreqspi-rtl-v2
+       - const: microchip,mpfs-spi
 
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: IBM On-Chip Controller (OCC) accessed from a service processor
-> +
-> +maintainers:
-> +  - Eddie James <eajames@linux.ibm.com>
-> +
-> +description: |
-> +  This binding describes a POWER processor On-Chip Controller (OCC)
+Is that ok?
 
-s/This binding describes a//
-But instead describe the hardware. What is the OCC?
-
-> +  accessed from a service processor or baseboard management controller
-> +  (BMC).
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ibm,p9-occ-hwmon
-> +      - ibm,p10-occ-hwmon
-> +
-> +  ibm,inactive-on-init:
-> +    description: This property describes whether or not the OCC should
-> +      be marked as active during device initialization. The alternative
-> +      is for user space to mark the device active based on higher level
-> +      communications between the BMC and the host processor.
-
-I find the combination property name with this description confusing. It
-sounds like init of OCC and somehow it should be inactive? I assume if
-you initialize device, it is active. Or maybe the "init" is of something
-else? What is more, non-negation is easier to understand, so rather
-"ibm,active-on-boot" (or something like that).
-
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    occ-hmwon {
-
-just "hwmon"
-
-> +        compatible = "ibm,p9-occ-hwmon";
-> +        ibm,inactive-on-init;
-> +    };
-
-
-Best regards,
-Krzysztof
+Thanks,
+Naga Sureshkumar Relli.
+>
+> Best regards,
+> Krzysztof
