@@ -2,157 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CDD9588907
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 11:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07F2258890A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 11:05:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235269AbiHCJEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 05:04:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56418 "EHLO
+        id S235609AbiHCJFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 05:05:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229602AbiHCJEx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 05:04:53 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC9AF286F3
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 02:04:51 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1oJAIx-0006Tj-DE; Wed, 03 Aug 2022 11:04:39 +0200
-Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 4F37EC1EEC;
-        Wed,  3 Aug 2022 09:04:37 +0000 (UTC)
-Date:   Wed, 3 Aug 2022 11:04:36 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
-Cc:     Vincent Mailhol <vincent.mailhol@gmail.com>,
-        Matej Vasilevski <matej.vasilevski@seznam.cz>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Jiri Novak <jnovak@fel.cvut.cz>,
-        Oliver Hartkopp <socketcan@hartkopp.net>
-Subject: Re: [PATCH v2 1/3] can: ctucanfd: add HW timestamps to RX and error
- CAN frames
-Message-ID: <20220803090436.o3c7khieckxwmj5y@pengutronix.de>
-References: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
- <20220801184656.702930-2-matej.vasilevski@seznam.cz>
- <CAMZ6RqJEBV=1iUN3dH-ZZVujOFEoJ-U1FaJ5OOJzw+aM_mkUvA@mail.gmail.com>
- <202208020937.54675.pisa@cmp.felk.cvut.cz>
+        with ESMTP id S235597AbiHCJFG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 05:05:06 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E489A2ED65;
+        Wed,  3 Aug 2022 02:05:04 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4FE2713D5;
+        Wed,  3 Aug 2022 02:05:05 -0700 (PDT)
+Received: from [10.57.88.15] (unknown [10.57.88.15])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 901113F67D;
+        Wed,  3 Aug 2022 02:05:01 -0700 (PDT)
+Message-ID: <2d7519f7-0cc6-c9ff-f9e6-f29cb264d66a@arm.com>
+Date:   Wed, 3 Aug 2022 10:05:00 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lnyqk3jichuhl7n6"
-Content-Disposition: inline
-In-Reply-To: <202208020937.54675.pisa@cmp.felk.cvut.cz>
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.11.0
+Subject: Re: [PATCH v12 0/9] Coresight: Add support for TPDM and TPDA
+To:     Trilok Soni <quic_tsoni@quicinc.com>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org
+References: <20220710021032.27455-1-quic_jinlmao@quicinc.com>
+ <3f714c34-277d-ef71-b527-f758172160f9@quicinc.com>
+ <20260db2-8c7e-e2b6-2385-74f433e4b55e@quicinc.com>
+ <23ae507d-1a01-9a33-52fb-73ac9efca8aa@quicinc.com>
+ <7ff0a9c5-b009-7b45-ac85-8ce26619a00a@arm.com>
+ <710f2b46-f30a-3d69-4a2c-2c67cb62c80b@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <710f2b46-f30a-3d69-4a2c-2c67cb62c80b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 02/08/2022 19:09, Trilok Soni wrote:
+> Hi Suzuki,
+> 
+> On 8/2/2022 10:43 AM, Suzuki K Poulose wrote:
+>> Hi Trilok,
+>>
+>> On 02/08/2022 18:33, Trilok Soni wrote:
+>>>
+>>>
+>>> On 8/2/2022 7:43 AM, Jinlong Mao wrote:
+>>>> Hi Reviewers,
+>>>>
+>>>> Please help to review V12 series of TPDM/TPDA patches.
+>>>>
+>>>> Thanks
+>>>>
+>>>
+>>> Suzuki and Mathieu, we are almost there it seems in getting the 
+>>> acceptance of these patches, so I hope you find the time to review 
+>>> these patches. I guess it is almost a year now for these patches and 
+>>> had a good amount of reviews and revisions :)
+>>
+>> This series has been reviewed for the previous versions (which is why
+>> we have it in v12) and this one depends on a series worked on by Mike
+>> Leach. We cannot push this without the dynamic Trace ID allocation
+>> scheme, which is clearly mentioned in the cover letter for this
+>> series.
+>>
+>> As such this series is in a good shape, assuming all the comments
+>> in the previous version has been addressed. So, we would rather
+>> get Mike's work priority and pull that in, so that we can eventually
+>> get this upstream.
+>>
+>>
+> 
+> I believe we have addressed all the comments in v12. Are you ok, if we 
+> post additional features series (around ~2k to ~3k SLOC)? I just want to 
+> make sure we are not creating flood of patches w/ features.
 
---lnyqk3jichuhl7n6
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You are free to post the patches, as long as you clearly mention the
+dependencies in the cover letter. Please be mindful about the merge window.
 
-On 02.08.2022 09:37:54, Pavel Pisa wrote:
-> > Hardware TX timestamps are now supported (c.f. supra).
-> >
-> > > +       info->rx_filters =3D BIT(HWTSTAMP_FILTER_NONE) |
-> > > +                          BIT(HWTSTAMP_FILTER_ALL);
->=20
-> I am not sure if it is good idea to report support for hardware
-> TX timestamps by all drivers. Precise hardware Tx timestamps
-> are important for some CAN applications but they require to be
-> exactly/properly aligned with Rx timestamps.
->=20
-> Only some CAN (FD) controllers really support that feature.
-> For M-CAN and some others it is realized as another event
-> FIFO in addition to Tx and Rx FIFOs.
-
-The mcp251xfd uses the event FIFO to signal TX completion. Timestamps
-are optional, but always enabled in the mcp251xfd driver.
-
-> For CTU CAN FD, we have decided that we do not complicate design
-> and driver by separate events channel. We have configurable
-> and possibly large Rx FIFO depth which is logical to use for
-> analyzer mode and we can use loopback to receive own messages
-> timestamped same way as external received ones.
->=20
-> See 2.14.1 Loopback mode
-> SETTINGS[ILBP]=3D1.
->=20
-> in the datasheet
->=20
->   http://canbus.pages.fel.cvut.cz/ctucanfd_ip_core/doc/Datasheet.pdf
-
-BTW: the datasheet says:
-
-| 3.1.36 RX_DATA
-|=20
-| ... this register must be read by 32 bit access.
-
-While there is a section that uses 8-bit accessed on that register:
-
-| 2.10.10 Sample code 2 - Frame reception in manual mode (8-bit access)
-
-> There is still missing information which frames are received
-> locally and from which buffer they are in the Rx message format,
-> but we plan to add that into VHDL design.
->=20
-> In such case, we can switch driver mode and release Tx buffers
-> only after corresponding message is read from Rx FIFO and
-> fill exact finegrain (10 ns in our current design) timestamps
-> to the echo skb. The order of received messages will be seen
-> exactly mathing the wire order for both transmitted and received
-> messages then. Which I consider as proper solution for the
-> most applications including CAN bus analyzers.
->=20
-> So I consider to report HW Tx timestamps for cases where exact,
-> precise timestamping is not available for loopback messages
-> as problematic because you cannot distinguish if you talk
-> with driver and HW with real/precise timestamps support
-> or only dummy implementation to make some tools happy.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
---lnyqk3jichuhl7n6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmLqOiIACgkQrX5LkNig
-011p9Af/Y1I6EmIJ8ta7aYBYf5wBk6gtXgZHszI7ySl1DuoM24QUgtK2U0VDZWtJ
-77uNsHBypWE8WaycCIFd6+k/x0ivFbaOFp/gzP7FDadpQy25uc6tR8vVZxTmBnWv
-edPN7Rjs2sBF3CInbjS1bUNZtBMfIHiiXAsXjtK8JojeGnt/h6TC/6uA1BKSwiMw
-PQaO+f6X2pqRy9P/ZGygdn+9IasCSYdMCu4I1WkPlTFba2zTudPTYxxv79A4wUia
-1AEVu5lmpxbzitOSPWASteYtwYWr/qVZ7qDTuPss6ywOZNXD/jvUmhf5VAZfZ8u1
-k1BHIq0iUCGl91bfvjiFo+yGR6+u3w==
-=WcbP
------END PGP SIGNATURE-----
-
---lnyqk3jichuhl7n6--
+Suzuki
