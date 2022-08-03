@@ -2,109 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B932588AA2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:33:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 048B4588AB7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:43:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237997AbiHCKdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 06:33:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35206 "EHLO
+        id S232079AbiHCKnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 06:43:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238047AbiHCKb1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:31:27 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D83F6140AE;
-        Wed,  3 Aug 2022 03:30:29 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 360A7113E;
-        Wed,  3 Aug 2022 03:30:30 -0700 (PDT)
-Received: from [10.57.12.36] (unknown [10.57.12.36])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4093F3F67D;
-        Wed,  3 Aug 2022 03:30:28 -0700 (PDT)
-Message-ID: <50d04f45-6aa9-dee8-6647-3f0b909049ea@arm.com>
-Date:   Wed, 3 Aug 2022 11:30:22 +0100
+        with ESMTP id S235698AbiHCKnE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:43:04 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CF8248CB
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 03:43:03 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id y23so8140664ljh.12
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 03:43:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=y8guwFRu5Cqttb+XuOtzMQ+iyWYv+5edvz/dSBNOIpg=;
+        b=LmcsdAMhL0mUMJHowkbaNxLItPQefTs8KuMWDXq1uzz4t3153ei+MhAs7InTg5l3Dv
+         3AFNxfFxX0FZQvvZWP7bnlNPNBWVjLXwsTW0Mmsu+ZBEo6HImVQ7K3JnK7rbkAZJifzU
+         8oiIxCrwH6fHzksUU3YzRZnE0OBjreW8c4dVWOx8IzTeDxINsSCmgsJ7ugccjHWK++hh
+         toIzd6hJPkZA+F2z6nQFWh5vypwfAJ463OlvG+lpKWG0NOv9JAnNE08PDyft7sN1rtXn
+         8vKtd0P5r7XQYa7+W+hwiaIvvFjgcasNpHTgRypEAc3zpnTMY1KecPcJnIJPZG512UrU
+         9Kjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=y8guwFRu5Cqttb+XuOtzMQ+iyWYv+5edvz/dSBNOIpg=;
+        b=w30SxUNwC1SPUGelHMPrccQh0fooivuFpuxbcbUQLw6lNZISbRQ0PJmpRI6kVElZUM
+         DwcLt4u1pl/8bnjoF1H1mljjPCwS/iPX71O+qDaKpcJJqqRNw2iR75lvj6murmGbySs/
+         PL76GsUAYim+HImDRxF+mMqAudIJjYjTpr783aWOcFPMGfVC5YrK4Jkvny6aMRGlgpZN
+         5QFqbfhJof/E9N5IWaREXCcyr47RyCk8yBwHp7krfzcfPaHIOanPMzIdGEfyf9mtllUK
+         0EgRag4P8O4gjM5Hwmdk/Z4Nl4A912Dyct70QV4oM0o7mBvxCaZVk+7fjWSMN9H/RyDy
+         l7Mg==
+X-Gm-Message-State: AJIora+G9pDMaBdXjxINhqWswNjGOLPVyt3J1ZS3l1uPtdcO6WD8G6pt
+        EADnw89gQr9vYPQMq/IZ2bTt/w==
+X-Google-Smtp-Source: AGRyM1u1s3fUQuSzb8gjKq34siziQh0H8dCeEG8J+QAUMdHQm9fzWYP+GaPzsnrCbXDObriKFNUPtA==
+X-Received: by 2002:a05:651c:2c1:b0:25d:79be:766a with SMTP id f1-20020a05651c02c100b0025d79be766amr7651031ljo.225.1659523382076;
+        Wed, 03 Aug 2022 03:43:02 -0700 (PDT)
+Received: from [192.168.1.6] ([77.222.167.48])
+        by smtp.gmail.com with ESMTPSA id dt9-20020a0565122a8900b0048b23c609c9sm135352lfb.102.2022.08.03.03.43.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Aug 2022 03:43:01 -0700 (PDT)
+Message-ID: <288b4d6e-68f9-26ef-c80d-cbcdaf9d2eed@linaro.org>
+Date:   Wed, 3 Aug 2022 12:42:59 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH] dt-bindings: PCI: host-generic-pci: Allow IOMMU and MSI
- properties
-Content-Language: en-GB
-To:     Rob Herring <robh@kernel.org>
-Cc:     Will Deacon <will@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 02/20] dt-bindings: power: Add power-domain header for
+ RV1126
+Content-Language: en-US
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220728175137.1172841-1-robh@kernel.org>
- <a673e846-e3d7-63e3-70cd-4adef3f761cc@arm.com>
- <CAL_JsqL37RQqGv6ZB5uxsnPFoUjKPh6uc7_SWpaqDJqvWAF4Dg@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <CAL_JsqL37RQqGv6ZB5uxsnPFoUjKPh6uc7_SWpaqDJqvWAF4Dg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Elaine Zhang <zhangqing@rock-chips.com>
+References: <20220731174726.72631-1-jagan@edgeble.ai>
+ <20220731174726.72631-3-jagan@edgeble.ai>
+ <4f8b8b98-c0ef-4924-6ff1-ccfeae77fc21@linaro.org>
+ <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-08-02 23:21, Rob Herring wrote:
-> On Tue, Aug 2, 2022 at 3:26 AM Robin Murphy <robin.murphy@arm.com> wrote:
+On 03/08/2022 12:24, Jagan Teki wrote:
+>> Vendor in filename is needed.
+> 
+> Yes this follows how similar rockchip vendor notation
+> 
+> $ ls include/dt-bindings/power/rk3* -l
+>  include/dt-bindings/power/rk3036-power.h
+>  include/dt-bindings/power/rk3066-power.h
+>  include/dt-bindings/power/rk3128-power.h
+>  include/dt-bindings/power/rk3188-power.h
+>  include/dt-bindings/power/rk3228-power.h
+>  include/dt-bindings/power/rk3288-power.h
+>  include/dt-bindings/power/rk3328-power.h
+>  include/dt-bindings/power/rk3366-power.h
+>  include/dt-bindings/power/rk3368-power.h
+>  include/dt-bindings/power/rk3399-power.h
+>  include/dt-bindings/power/rk3568-power.h
+
+
+So when are we going to switch to vendor,device pattern if you keep
+adding files with wrong naming?
+
+> 
 >>
->> On 2022-07-28 18:51, Rob Herring wrote:
->>> Allow 'iommu-map', 'iommu-map-mask', and 'msi-parent' properties for
->>> generic host. This fixes unevaluated property warnings on Arm Juno, AMD
->>> Seattle, and FSL LS1028a.
->>>
->>> Signed-off-by: Rob Herring <robh@kernel.org>
->>> ---
->>>    Documentation/devicetree/bindings/pci/host-generic-pci.yaml | 3 +++
->>>    1 file changed, 3 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
->>> index 6bcaa8f2c3cf..d25423aa7167 100644
->>> --- a/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/host-generic-pci.yaml
->>> @@ -106,6 +106,9 @@ properties:
->>>        maxItems: 3
->>>
->>>      dma-coherent: true
->>> +  iommu-map: true
->>> +  iommu-map-mask: true
->>> +  msi-parent: true
+>>> new file mode 100644
+>>> index 000000000000..38a68e000d38
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/power/rv1126-power.h
+>>> @@ -0,0 +1,35 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0 */
 >>
->> Hmm, in general this set looks suspiciously incomplete without msi-map
->> and msi-map-mask too. Am I right in thinking that the ideal thing to do
->> here would be to convert pci-msi.txt and pci-iommu.txt to schema and
->> $ref them?
+>> Dual license, please, unless some copyrights are no allowing this.
 > 
-> I already added msi-map/msi-map-mask to pci-bus.yaml[1] as well as
-> schemas for iommu-map/iommu-map-mask[2] and msi-parent[3]. Since
-> msi-map is already in the referenced schema, it is allowed here.
-> msi-parent is separate because it is used elsewhere. iommu-map is
-> separate largely to make copying pci-iommu.txt as-is easier.
-> 
-> And yes, pci-iommu.txt can now be removed. pci-msi.txt is more
-> complicated as all of it hasn't been moved into schemas.
+> Yes, as we discussed in v1 - I'm not liable to change so I keep this as it is.
 
-Ah, great! One general comment, though - iommu-map/msi-map have pretty 
-much grown into common IOMMU/MSI consumer properties by now, so IMO 
-they'd be better off living alongside their respective iommus/msi-parent 
-counterparts, so that other consumers like fsl-mc and host1x can 
-reference a common definition rather than duplicating their own. The 
-only aspect that should still belong to the PCI binding is the detail of 
-how PCI B:D:F forms the input ID for the mappings (and equivalently for 
-other bus bindings).
+OK
 
-Thanks,
-Robin.
 
-> 
-> Rob
-> 
-> [1] https://github.com/devicetree-org/dt-schema/commit/109bde712466281e8c96a4fadb0f68e7a90a6eca
-> [2] https://github.com/devicetree-org/dt-schema/commit/3d44bf2b46a9ac638550ca3916d7d7f70823bb58
-> [3] https://github.com/devicetree-org/dt-schema/commit/59f2e3103b6e776afe4f42e45897f7eabae06fa4
+Best regards,
+Krzysztof
