@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB237588A0A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:02:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D1F588A45
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234522AbiHCKCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 06:02:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44980 "EHLO
+        id S235939AbiHCKUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 06:20:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231533AbiHCKB7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:01:59 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D78F91836B;
-        Wed,  3 Aug 2022 03:01:58 -0700 (PDT)
+        with ESMTP id S233057AbiHCKUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:20:10 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A77E2656
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 03:20:09 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id x39so16147025lfu.7
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 03:20:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1659520919; x=1691056919;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=1rVxQ4eqI3N9wCVO+tgYoYxdpipoicSFsvvHXjVF02g=;
-  b=C3Cu6vOsuzPJuzImBkgFrMpA39OFtZBJnzHRhL1gPpYkCXFfM9ufo5Cm
-   f7HrPkGh/Jr7QW1INMGoqqL18jJuppc/P1JvnOESosfsiwojecjjsT1f6
-   iylDLVO+2Ny4jaDZ59bd4338xhctqw/rvWAMKsU2WR9bBE6LgbVmx+Eeu
-   E=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 03 Aug 2022 03:01:59 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Aug 2022 03:01:58 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Wed, 3 Aug 2022 03:01:57 -0700
-Received: from [10.216.24.92] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 3 Aug 2022
- 03:01:51 -0700
-Message-ID: <0f90ef4d-4b74-2746-a37c-4a661cc0d5ea@quicinc.com>
-Date:   Wed, 3 Aug 2022 15:31:48 +0530
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=T7u/vSnLYBLG2/cqPGx4+nzYlaGJoQWkAhUede1qgbE=;
+        b=dyZajjqvKdmd4vUZeecNmiaub4K5+6UqV+OCAP4uQKCkTqRR1VK5YgTlJQssOj68Nb
+         SEKK/+JG9y8NLJ0mXRBTBz2DNuJU4HdZ3szvsDW9LlKirGe1PBkbVJdDlehUiPrAOVAY
+         1wf82YnarJCnhUscFC5dkXVeUwFWoc3GCPqCJHfaoafrYhhTSvMNDcgArzmF9kmPaMgs
+         KO6+gf+thBG1PoC50WvR+7C/LLMcXEhU+Y6qprjK/kYmgYXpdcRK+vaiw6Dfw9AjRw/g
+         7GO51Dk14Mp+5OmIHT7iHQiuzzhZ9u7HJuT+SEZiJP5zClYVkc2ndYC6GOf8I5AjBtOI
+         lZRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=T7u/vSnLYBLG2/cqPGx4+nzYlaGJoQWkAhUede1qgbE=;
+        b=3gCiIbDOxK31CgxpkyL+R52FxMo87r8iP7QsoGxdVNEpepXqUtE80H3JSJv9HBSiAE
+         dZJWCbz9uvoRspnzodl0KAdB5YVnERaUbtVRayzr2RXWimBBD4125I4naOeDsX0WP4fl
+         6TE867Gt9NhBfB/uXpeOXXsK3mJMN9x+rjw+OV+9AVunEaqernxbadsUOBxQMMiobjrs
+         U79mBS8d365t4srqsTORuQkN03oUnn9mwbzLL2PWYSZRXY6EjY6QP6lYcmP3Ss1jF0pY
+         GEapQl93/e4UwZhI6uwGk4H2E2WzllL1+BUc2HZrTKohI1Ez8PVT5m2i/lpfn529LK5v
+         4stg==
+X-Gm-Message-State: ACgBeo1OEg8GkPL4VglQIfnKKnFItnDHSXJv5X2CB0YTKhQMtoSNW1bQ
+        GJwFFcnZ4Fv2vrV0/itxxfbgSQ==
+X-Google-Smtp-Source: AA6agR4+HTMc8onRirUA2Gvtf1run7QOLGwV+NRTf5J0dedKuHUNzmeyA9s6VpR+vuMrnzGH8UbMzw==
+X-Received: by 2002:ac2:44d2:0:b0:48b:18ae:7cde with SMTP id d18-20020ac244d2000000b0048b18ae7cdemr1627845lfm.193.1659522007423;
+        Wed, 03 Aug 2022 03:20:07 -0700 (PDT)
+Received: from [192.168.1.6] ([77.222.167.48])
+        by smtp.gmail.com with ESMTPSA id i15-20020a2ea36f000000b0025e6a0a504bsm216479ljn.25.2022.08.03.03.20.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Aug 2022 03:20:06 -0700 (PDT)
+Message-ID: <8afe7812-7dbd-7257-2a55-b4ae49f47381@linaro.org>
+Date:   Wed, 3 Aug 2022 12:20:04 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 0/5] clk/qcom: Support gdsc collapse polling using 'reset'
- inteface
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add binding documentation for
+ NXP IMX93 ADC
 Content-Language: en-US
-To:     Rob Clark <robdclark@gmail.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     freedreno <freedreno@lists.freedesktop.org>,
-        <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1659172664-10345-1-git-send-email-quic_akhilpo@quicinc.com>
- <34ae275e-8d4c-3735-c08c-4769caf2909c@linaro.org>
- <CAF6AEGv_cgPtaFpxSPCzWXeBcJvqE2fGucriRvMAJMbQ7ULndQ@mail.gmail.com>
-From:   Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <CAF6AEGv_cgPtaFpxSPCzWXeBcJvqE2fGucriRvMAJMbQ7ULndQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     haibo.chen@nxp.com, jic23@kernel.org, lars@metafoo.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <1659517947-11207-1-git-send-email-haibo.chen@nxp.com>
+ <1659517947-11207-2-git-send-email-haibo.chen@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1659517947-11207-2-git-send-email-haibo.chen@nxp.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,71 +76,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/3/2022 12:02 AM, Rob Clark wrote:
-> On Tue, Aug 2, 2022 at 12:02 AM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
->> On 30/07/2022 12:17, Akhil P Oommen wrote:
->>> Some clients like adreno gpu driver would like to ensure that its gdsc
->>> is collapsed at hardware during a gpu reset sequence. This is because it
->>> has a votable gdsc which could be ON due to a vote from another subsystem
->>> like tz, hyp etc or due to an internal hardware signal.
->> If this is votable, do we have any guarantee that the gdsc will collapse
->> at all? How can we proceed if it did not collapse?
-> Other potential votes should be transient.  But I guess we eventually
-> need to timeout and give up.  At which point we are no worse off than
-> before.
->
-> But hmm, we aren't using RBBM_SW_RESET_CMD for sw reset like we have
-> on previous generations?  That does seem a bit odd.  Looks like kgsl
-> does use it.
->
-> BR,
-> -R
-Like Rob mentioned there could be transient votes from other 
-clients/subsystem. It could be even stuck ON when hardware is in bad 
-shape in some very rare cases. For the worst case scenario, I have added 
-a timeout (500msec) in the gdsc reset op.
+On 03/08/2022 11:12, haibo.chen@nxp.com wrote:
+> From: Haibo Chen <haibo.chen@nxp.com>
+> 
+> The IMX93 SoC has a new ADC IP, so add binding documentation
+> for NXP IMX93 ADC.
+> 
+> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+> ---
+>  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> new file mode 100644
+> index 000000000000..e0eac5aa81d7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/nxp,imx93-adc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP ADC found on the imx93 SoC
 
-I have added the Soft reset in [1]. But this resets only the core gpu 
-blocks, not everything. For eg. GMU.
+How different it is from ADC in imx8qxp?
 
-[1] [PATCH v3 7/8] drm/msm/a6xx: Improve gpu recovery sequence
+> +
+> +maintainers:
+> +  - Haibo Chen <haibo.chen@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,imx93-adc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 4
 
->
->>> To allow
->>> this, gpucc driver can expose an interface to the client driver using
->>> reset framework. Using this the client driver can trigger a polling within
->>> the gdsc driver.
->> Trigger the polling made me think initially that we will actually
->> trigger something in the HW. Instead the client uses reset framework to
->> poll for the gdsc to be reset.
-Yes. I should replace 'trigger' with 'start' here.
+You need to describe items.
 
--Akhil.
->>
->>> This series is rebased on top of linus's master branch.
->>>
->>> Related discussion: https://patchwork.freedesktop.org/patch/493144/
->>>
->>>
->>> Akhil P Oommen (5):
->>>     dt-bindings: clk: qcom: Support gpu cx gdsc reset
->>>     clk: qcom: Allow custom reset ops
->>>     clk: qcom: gpucc-sc7280: Add cx collapse reset support
->>>     clk: qcom: gdsc: Add a reset op to poll gdsc collapse
->>>     arm64: dts: qcom: sc7280: Add Reset support for gpu
->>>
->>>    arch/arm64/boot/dts/qcom/sc7280.dtsi          |  3 +++
->>>    drivers/clk/qcom/gdsc.c                       | 23 +++++++++++++++++++----
->>>    drivers/clk/qcom/gdsc.h                       |  7 +++++++
->>>    drivers/clk/qcom/gpucc-sc7280.c               |  6 ++++++
->>>    drivers/clk/qcom/reset.c                      |  6 ++++++
->>>    drivers/clk/qcom/reset.h                      |  2 ++
->>>    include/dt-bindings/clock/qcom,gpucc-sc7280.h |  3 +++
->>>    7 files changed, 46 insertions(+), 4 deletions(-)
->>>
->>
->> --
->> With best wishes
->> Dmitry
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: ipg
 
+No need for clock-names in such case.
+
+> +
+> +  vref-supply: true
+
+Missing description.
+
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - vref-supply
+> +  - "#io-channel-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/imx93-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    soc {
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        adc@44530000 {
+> +            compatible = "nxp,imx93-adc";
+> +            reg = <0x44530000 0x10000>;
+> +            interrupts = <GIC_SPI 217 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 218 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 219 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&clk IMX93_CLK_ADC1_GATE>;
+> +            clock-names = "ipg";
+> +            vref-supply = <&reg_vref_1v8>;
+> +            status = "disabled";
+
+No status in the example.
+
+
+
+Best regards,
+Krzysztof
