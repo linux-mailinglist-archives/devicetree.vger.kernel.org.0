@@ -2,128 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC2C589107
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 19:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53FC9589102
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 19:10:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236844AbiHCRLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 13:11:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51446 "EHLO
+        id S237232AbiHCRK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 13:10:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237411AbiHCRLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 13:11:17 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C81C61ADB3;
-        Wed,  3 Aug 2022 10:11:16 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id dc19so9883537ejb.12;
-        Wed, 03 Aug 2022 10:11:16 -0700 (PDT)
+        with ESMTP id S231966AbiHCRKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 13:10:55 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12D121583D
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 10:10:53 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id i128-20020a1c3b86000000b003a3a22178beso1237908wma.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 10:10:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=8oQ+hf3D0+Iz/d+O+xc/TfT4v6mJXLjzNBvcBlenzqY=;
-        b=ov6hOt/BSeqHJycDTI4xQ8tHEssAK4e6pv8KL2MGFYp5an1I+hA2JKmORXNMnc/BC0
-         JLzyM8gGPgfC0f/MbA19BRta3K0YAMCcNkhAuj1W1f1wBbhgRqbsVg/kzQvg1YyqK49K
-         CnQKlSx/EYBXxsTJUbBnRhmHKQruwbpNZCcPSfHJpD7fw3czkgyD0E0mHiKFlijV7F7s
-         8a+IVQcSRjjkiI9aPMrKiUSZPk3jQEBZOFN4quS8DPu1Q3X25Lf2rlYUl6dZ6bxfx8SX
-         WcLv4WSddaqNFmrF39M5hln8GcLMf74Xv44vmCRoFzSM/KyBDJDIH2dyopAYijD6iiGM
-         kOtg==
+        d=conchuod.ie; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=1fAk4ASz3j0xha63REYMD8PuhThvSqQh4ahLrujukbo=;
+        b=fs8yHgiyhdA1z0EfcjsTOlbF/Qf13OpncAruAPpIot21aLel7s2ehUdyenO25g6CQj
+         NVUtOYE2bsobRFwH8pWvNKZGKGKh2++uX78eKQKbOSvpp049wjuIeULxUWj4DmU1l6Ie
+         78yNqus2CplIZdOcptHaiVXjJZjNzhv9CGbHZ55Q86RgVAuQLa8eEtZ0UDxLJyQBpXes
+         YAdyLSUklyNf/ZNpfzEOB+FUj6SEkUGmLO8kj3dc2jFTrj2U9TGfv2IGhgSXJarD1UFp
+         AAtuAJIOWf/ylmYmEWjK2c/vJ10ZklcAXN+aHqDur6Qkk6ebGjYwdLueICwtvwTbeqLP
+         Ytrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=8oQ+hf3D0+Iz/d+O+xc/TfT4v6mJXLjzNBvcBlenzqY=;
-        b=4PO8SVjxlTLp3ow2MnFF1bd8Cg/39HFoF7/L1m5gWYf1PZzwK3AAiyGWLXKMoWFlg7
-         fLx6EokIGcyZdlPqAeorPVlLvOHhDrN9UaAd9dtBYk+/zos2SVWnKhM8AMaS1QSB9bqi
-         Apzn8+7x/x34z7vwkf4PX52TaGRLON0Uv3om954eSVWXShj2cavGL4sLtg7vyT6XFSRg
-         /ykkfJzSN0Nb06A/1G/yLT1BaZjtH0y1yQ6VFhNNjPA0dX/VAGyibEOhi2tIEf+uMlBt
-         hKMpd+nq92ZPlFHrG0cXyV9EMLLWR/rRRBIAH5uUW2qfrZBd1Gl0gWbqIB7VQRMnqVxo
-         eCDQ==
-X-Gm-Message-State: AJIora9yfro7XgEuQ+7blDT8xUD/4Da/ImI2C0ulUjI70S2MxI923kgD
-        Am/qasr2upLt/n+rSielhbUc8NfYuDXZzHE6ldw=
-X-Google-Smtp-Source: AGRyM1tTTR3G9549yX73eQmQTpxd1p9fgq0l/oy3EMq/u9/1sLQ+bNeKFbPKdFBm+Otw2j6/Zefjxq05v3uZxvWohXs=
-X-Received: by 2002:a17:906:7950:b0:72f:d4a4:564d with SMTP id
- l16-20020a170906795000b0072fd4a4564dmr20739399ejo.479.1659546675350; Wed, 03
- Aug 2022 10:11:15 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=1fAk4ASz3j0xha63REYMD8PuhThvSqQh4ahLrujukbo=;
+        b=ILbcwB1yitOMW3a5j0S+S9EjehhKB5Sf7Y1E65f62GD/DogLQacxshci/E1uFbXNIn
+         tzz8Q/uc/GC+w5ZxCvHRoygjOFJvi3mZcN6s9Hy2eOvK5M1PeYqIYcSn9VfPJZPg0b4G
+         YCRX/kYAiMYquhjyQe+ILhGrIhusOuD6fb+MzhSV2pUTifoGUTqVuBCdYWQkxXpFpouV
+         9r63yw8g1Az8SQB1ikhsjuTRag+HojdpKDn9MAZzPn7IdnntKWUgzu6d7/Yu0EtUwlAK
+         NBDiDtsnXj066ns8/b3uVNPmxbkwWNYkdAA4j2yJ4vwvNQmH8BqOYoXtBfcRTboM6OdN
+         OfoA==
+X-Gm-Message-State: ACgBeo0NVXk7cu75RFFlVn0EeCBU5nb6+UDG3tp8h2d100u6EMVo9Q/g
+        gMHqUsantJPqyc8VCTX7FSV8ONkBrv1BDgSr
+X-Google-Smtp-Source: AA6agR5gNYn6xzGqz1YkXULMVMLoYYGFqBEwcNhkUvbXkMokw4Rv8B9RQK07KqPxYcYtx73VEWTlDQ==
+X-Received: by 2002:a05:600c:4fc5:b0:3a3:2d73:c147 with SMTP id o5-20020a05600c4fc500b003a32d73c147mr3525753wmq.197.1659546652339;
+        Wed, 03 Aug 2022 10:10:52 -0700 (PDT)
+Received: from [192.168.2.222] ([93.107.66.220])
+        by smtp.gmail.com with ESMTPSA id f8-20020adfb608000000b002207a0b93b4sm2791809wre.49.2022.08.03.10.10.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Aug 2022 10:10:51 -0700 (PDT)
+Message-ID: <673492ba-caad-bbaa-4952-0ad1dac6eda5@conchuod.ie>
+Date:   Wed, 3 Aug 2022 18:10:50 +0100
 MIME-Version: 1.0
-References: <20220803054728.1541104-1-colin.foster@in-advantage.com>
- <20220803054728.1541104-10-colin.foster@in-advantage.com> <CAHp75Vc30VW_dYGodyw4mrMwFgTVyDFaMP2ZJXQEB2nFOB2RWw@mail.gmail.com>
- <YuqarB067s+rqFKe@euler>
-In-Reply-To: <YuqarB067s+rqFKe@euler>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 3 Aug 2022 19:10:38 +0200
-Message-ID: <CAHp75VeXtuR=CYyPE9VEE0+QoQ3hgVYCoSu4Yb8EycvChi86BQ@mail.gmail.com>
-Subject: Re: [PATCH v15 mfd 9/9] mfd: ocelot: add support for the vsc7512 chip
- via spi
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, katie.morris@in-advantage.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: DT schema warnings on Risc-V virt machine
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20220803170552.GA2250266-robh@kernel.org>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <20220803170552.GA2250266-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 3, 2022 at 5:56 PM Colin Foster
-<colin.foster@in-advantage.com> wrote:
-> On Wed, Aug 03, 2022 at 01:45:04PM +0200, Andy Shevchenko wrote:
-> > On Wed, Aug 3, 2022 at 7:48 AM Colin Foster
-> > <colin.foster@in-advantage.com> wrote:
+On 03/08/2022 18:05, Rob Herring wrote:
+> Hey folks,
+> 
+> FYI, I ran DT validation on the Risc-V 'virt' machine and these are the 
+> warnings:
 
-...
+/sigh
+There was I thinking I was almost done with dt warnings!
+I guess I'll take a look Rob, thanks for the report.
+Conor.
 
-> > > +       regmap_config.max_register = res->end - res->start;
-> >
-> > Hmm... First of all, resource_size() is for that (with - 1 to the
-> > result). But don't you need to use stride in the calculations?
->
-> DEFINE_RES_NAMED populates the resource .end with (_start) + (_size) - 1
-> so I don't think resource_size is correct to use here.
-
-Have you read what I put in parentheses? Basically it becomes very
-well the same as a result, but in a cleaner manner (you calculate
-resource size - 1 which will be exactly the last byte offset of the
-register file), no?
-
-> reg_stride gets handled at the top of regmap_read(), so I don't think
-> that's really needed either.
-
-Okay.
-
-> For reference:
->
-> #define VSC7512_DEVCPU_ORG_RES_START    0x71000000
-> #define VSC7512_DEVCPU_ORG_RES_SIZE     0x38
-
-Right, for 0x38 you supply 0x37, which is exactly resource_size() - 1.
-
-> # cat range
-> 0-34
-
--- 
-With Best Regards,
-Andy Shevchenko
+> 
+> /home/rob/riscv-virt.dtb: cpu@0: riscv,isa:0: 'rv64imafdcsuh' is not one of ['rv64imac', 'rv64imafdc']
+>         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/riscv/cpus.yaml
+> /home/rob/riscv-virt.dtb: soc: poweroff: {'value': [[21845]], 'offset': [[0]], 'regmap': [[4]], 'compatible': ['syscon-poweroff']} should not be valid under {'type': 'object'}
+>         From schema: /home/rob/proj/git/dt-schema/dtschema/schemas/simple-bus.yaml
+> /home/rob/riscv-virt.dtb: soc: reboot: {'value': [[30583]], 'offset': [[0]], 'regmap': [[4]], 'compatible': ['syscon-reboot']} should not be valid under {'type': 'object'}
+>         From schema: /home/rob/proj/git/dt-schema/dtschema/schemas/simple-bus.yaml
+> /home/rob/riscv-virt.dtb: uart@10000000: $nodename:0: 'uart@10000000' does not match '^serial(@.*)?$'
+>         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/serial/8250.yaml
+> /home/rob/riscv-virt.dtb: plic@c000000: compatible: 'oneOf' conditional failed, one must be fixed:
+>         'sifive,plic-1.0.0' is not one of ['sifive,fu540-c000-plic', 'starfive,jh7100-plic', 'canaan,k210-plic']
+>         'sifive,plic-1.0.0' is not one of ['allwinner,sun20i-d1-plic']
+>         'sifive,plic-1.0.0' was expected
+>         'thead,c900-plic' was expected
+>         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> /home/rob/riscv-virt.dtb: plic@c000000: '#address-cells' is a required property
+>         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+> /home/rob/riscv-virt.dtb: clint@2000000: compatible:0: 'sifive,clint0' is not one of ['sifive,fu540-c000-clint', 'starfive,jh7100-clint', 'canaan,k210-clint']
+>         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> /home/rob/riscv-virt.dtb: clint@2000000: compatible:1: 'sifive,clint0' was expected
+>         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> 
+> 
+> Also from the 'spike' machine:
+> 
+> /home/rob/riscv-spike.dtb: cpu@0: riscv,isa:0: 'rv64imafdcsuh' is not one of ['rv64imac', 'rv64imafdc']
+>         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/riscv/cpus.yaml
+> /home/rob/riscv-spike.dtb: clint@2000000: compatible:0: 'sifive,clint0' is not one of ['sifive,fu540-c000-clint', 'starfive,jh7100-clint', 'canaan,k210-clint']
+>         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> /home/rob/riscv-spike.dtb: clint@2000000: compatible:1: 'sifive,clint0' was expected
+>         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> 
+> 
+> There could also be other warnings from non-default configurations.
+> 
+> To reproduce, dump the dtb and run:
+> 
+> dt-validate -p Documentation/devicetree/bindings/processed-schema.json riscv-spike.dtb 
+> 
+> (processed-schema.json is from kernel validation run)
+> 
+> Rob
