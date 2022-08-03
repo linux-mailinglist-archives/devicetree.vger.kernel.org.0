@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3977588ABD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2B0588ABE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 12:46:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233836AbiHCKpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 06:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51046 "EHLO
+        id S230272AbiHCKqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 06:46:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233605AbiHCKpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:45:18 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6008E26F4;
-        Wed,  3 Aug 2022 03:45:17 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id b21-20020a05600c4e1500b003a32bc8612fso677576wmq.3;
-        Wed, 03 Aug 2022 03:45:17 -0700 (PDT)
+        with ESMTP id S229784AbiHCKqT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 06:46:19 -0400
+Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC0E1DD2
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 03:46:18 -0700 (PDT)
+Received: by mail-il1-x132.google.com with SMTP id b12so7589344ils.9
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 03:46:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=m8278Hs6Ub3EKMJF6GHEl38sS0VhPP4vdfVJwEcQvvY=;
-        b=Cjv3D3SJgeNwX9oRHLovihTb8AsRyqpxlr+x9A+T5AWC07BI5KvyUVLF97fQdRQJVf
-         mf9zw/bGLdIG7tQ1wE4fkG565unYDF1Xn/xxZ8/Fwi4+dnQ1/G4LKb/CHSJiiOwcDpfV
-         0OLKZIyE4Nge4V3hF3sv+RcODzX5Ymi0uH12f8dYGKIbsX8+Z6EEBgM0nVBX09/l1FvX
-         vcR733pkMKZ4QU65SqvcvKG/owSHdftRMljplsovc2yncR/J4IVxNFcmBRZz7Q0FyweP
-         Gu4tdkUJY7YCP8laCAtfm9gp6e/pMpgH9a2uG1To8VvMO1vpDgyO6KXAZYotaIvFT3dA
-         zIcQ==
+        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=Sdl1HDAMO7QN2zfOTcK0TKELdtFAbVwfNiLV0pjEOVM=;
+        b=gwTdoIzxxTdgP0N5qgtx/pdTIShdgMTfYdfnc9OpVMmRLjLPaMfRp34XXVZG7RnFHm
+         OI4hAkJe/jFo08ryCnrZJaat/qnfgi0zO23zm5oFG48ruOgt0TX+g5HknSuPi41f7VjZ
+         spuxXMg4yh5J+k4AqB2JPGi+7jNp2dTp+FNW+ase3QS5wvjFKeEAPLNlDCDh6QLRYL4J
+         3sWYm7rCDgSOV/1igKUhCVHz4r+vRpcuPFkxyFWOr9mVGSggjMZOzAiyfcsXnNns+FRK
+         xBhF3tNjAaNlwY/Bg7GBY0MGJ8d3tHYNid+kd23Y3/agwBJ3i3aD1zr9WJaNh4ldNcTY
+         ccVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=m8278Hs6Ub3EKMJF6GHEl38sS0VhPP4vdfVJwEcQvvY=;
-        b=7gIOBngEzsRgkhbH1/b7+I5hfq4hGkFgXKcADc1TZP7l/aRu+rd5WdvAk7ZDUlJqJt
-         sMjDnAk3UR8rl+eJ5HDc3nJzj+JFr5VBdJsM9A4/5JiI/TJoSk3Rq367aV7L17XBgz+6
-         mVJhTebTdYnhHdZu7cCmAY3d8FJpnTgVFVLLJ1NYj7xvXPQLVZg7gS3vNtBOYlJIN7bd
-         3uEnpjSJ/mbWzH4pB2WaUUpQ92hxumzqYAP/uVFNhSXvcAn/DXMQHMDM8kfbSmJO0xpq
-         8uGi22r5twXckM6b/EW7w4/K/EXaIBVz3sG347vjHcm2OBBpTEa7C6qIys2xiV/k5ph8
-         JwaA==
-X-Gm-Message-State: ACgBeo3/d1cRFcWPrYiZ7TyWVsdXgS55cu+A0jpiZyZ5WbvmspQrTizf
-        p7RTWaBy7MGn9EB4sD5Lp8IiCki+qCNF0g==
-X-Google-Smtp-Source: AA6agR7Qfl1ygpQk+wsDGvjIMmphX8TDddKZmwv90ZS0evv7n2nA3qK7C9Bnx3Zsc2Gk/9dWcBmImA==
-X-Received: by 2002:a05:600c:284a:b0:3a2:ffb7:b56f with SMTP id r10-20020a05600c284a00b003a2ffb7b56fmr2448224wmb.134.1659523515641;
-        Wed, 03 Aug 2022 03:45:15 -0700 (PDT)
-Received: from ainazi.localnet (p200300d09706d9000384b2cb471c28f8.dip0.t-ipconnect.de. [2003:d0:9706:d900:384:b2cb:471c:28f8])
-        by smtp.gmail.com with ESMTPSA id bg7-20020a05600c3c8700b003a3186fa559sm2203463wmb.29.2022.08.03.03.45.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Aug 2022 03:45:15 -0700 (PDT)
-From:   Shinjo Park <peremen@gmail.com>
-To:     dmitry.baryshkov@linaro.org
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        mturquette@baylibre.com, quic_tdas@quicinc.com, robh+dt@kernel.org,
-        swboyd@chromium.org
-Subject: Re: [PATCH 00/15] clk: qcom: use parent_hws/_data for APQ8064 clocks
-Date:   Wed, 03 Aug 2022 12:45:14 +0200
-Message-ID: <5883539.lOV4Wx5bFT@ainazi>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=Sdl1HDAMO7QN2zfOTcK0TKELdtFAbVwfNiLV0pjEOVM=;
+        b=2CYwGVEeLH03tSI5Elr4ZkmLhfeQATswm+mKgAFD7x56kTazxeOwZPcqS6m00ToKtd
+         y+qBh181rm20tiwAUBJQJQmDaQMnWC51LK6yuBQDa2Sl8pwXcPzkc8c+dMTSmiczW4s5
+         MoQ3mXFh5XZlCAqT3VsQ7EqThGyoqcpAC+2PcI+U9UM0JIZ0/TIQa+KeOlNZCMCAskQ2
+         ft3nl9InFZmiJcUmIanW2u8GE/KflM1AxgMZHrhauSjtwvx7qZoh8BkqmEBrhpOVSu0z
+         XGuG45OVX2QswjS7TdZiiv8t/OUisznZUyrzZJCTxSWEEvHdofBXXcYJeaeLokNUe5Zb
+         k7+g==
+X-Gm-Message-State: ACgBeo2YlS022pKs0fP1KffNLykoKGE2ExtNp+knQQQFNyPSU2lINoJ7
+        5KD8ZFjZgv9qAe38B0Mlpc02NBuwMGaA1peXWzkpUhP4GYeD0ztzeG8=
+X-Google-Smtp-Source: AA6agR5Sb8mkyscBBiAfGTgCzp3wbpXMwA4TotySl5QQZm6QkPjhjhUsRaZodv3Um3jHY1wL16wO9py5LQJG9CTZXCM=
+X-Received: by 2002:a05:6e02:198f:b0:2de:91f6:f70e with SMTP id
+ g15-20020a056e02198f00b002de91f6f70emr6100277ilf.80.1659523578256; Wed, 03
+ Aug 2022 03:46:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20220731174726.72631-1-jagan@edgeble.ai> <20220731174726.72631-3-jagan@edgeble.ai>
+ <4f8b8b98-c0ef-4924-6ff1-ccfeae77fc21@linaro.org> <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
+ <288b4d6e-68f9-26ef-c80d-cbcdaf9d2eed@linaro.org>
+In-Reply-To: <288b4d6e-68f9-26ef-c80d-cbcdaf9d2eed@linaro.org>
+From:   Jagan Teki <jagan@edgeble.ai>
+Date:   Wed, 3 Aug 2022 16:16:07 +0530
+Message-ID: <CA+VMnFwO41qOCSSbghynompUYMWGExeSCMKJVP9Z5Ed6pBgYDA@mail.gmail.com>
+Subject: Re: [PATCH v2 02/20] dt-bindings: power: Add power-domain header for RV1126
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Elaine Zhang <zhangqing@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,6 +70,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tested-by: Shinjo Park <peremen@gmail.com> # tested on Gasio GzOne w/ MSM8960
+On Wed, 3 Aug 2022 at 16:13, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 03/08/2022 12:24, Jagan Teki wrote:
+> >> Vendor in filename is needed.
+> >
+> > Yes this follows how similar rockchip vendor notation
+> >
+> > $ ls include/dt-bindings/power/rk3* -l
+> >  include/dt-bindings/power/rk3036-power.h
+> >  include/dt-bindings/power/rk3066-power.h
+> >  include/dt-bindings/power/rk3128-power.h
+> >  include/dt-bindings/power/rk3188-power.h
+> >  include/dt-bindings/power/rk3228-power.h
+> >  include/dt-bindings/power/rk3288-power.h
+> >  include/dt-bindings/power/rk3328-power.h
+> >  include/dt-bindings/power/rk3366-power.h
+> >  include/dt-bindings/power/rk3368-power.h
+> >  include/dt-bindings/power/rk3399-power.h
+> >  include/dt-bindings/power/rk3568-power.h
+>
+>
+> So when are we going to switch to vendor,device pattern if you keep
+> adding files with wrong naming?
 
+Do you mean the above files are following the wrong naming pattern?
 
+Jagan.
