@@ -2,81 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4DDE5888F3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 10:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CDD9588907
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 11:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234736AbiHCI6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 04:58:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52224 "EHLO
+        id S235269AbiHCJEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 05:04:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231671AbiHCI6b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 04:58:31 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CE282251E;
-        Wed,  3 Aug 2022 01:58:30 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id ss3so30199431ejc.11;
-        Wed, 03 Aug 2022 01:58:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=FMuEkX1cuR0fLJAj2NpiHvom9cpz7zgbO733+2J3n5M=;
-        b=SGxUTOZjt0kkWQ0YjILDWUI/iQqjmr3lP5rGPGLbXvgH4MKcyRQxOsgrMBGXjzgiQs
-         MZczp4aP+enl8+HSdrOxgT7hZVQWujXQtUTtxkt8jVyvzBjleWLu7intoXYVYAys7SQD
-         GbBhJGsZtpfj0L4OlcdxSRh+N6KkhQb55I82p2H1sBrneUOEc3dybg5/vKjbA94+iqs9
-         G+C22iqkWncYAEguobYF1jfeN945IpC/2DsxfI0TFp/BRIS7cnoezkIuGrBETHv6glSn
-         0K8YF5IW5wL9waVGwWi/y3mdabmKLB0MewSpccRL2paQoR/LQ7iMZG0DaJUU5MuCi71A
-         +G2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=FMuEkX1cuR0fLJAj2NpiHvom9cpz7zgbO733+2J3n5M=;
-        b=KIkJ+UhW0DgUNQe+jiYiqN0lvDWXM0yAodhVB/58HsvBurrYVFwK/ZSSyl9L6ef79g
-         cSue8CaS942qEdumAP3s4wJH4vPzpz1Ugkg5q3oy+3kISM9ZTMXpz6YFM2UbYRgq4hnn
-         xFUhkyKmlkmoWPF7n36tHZQmvatvlOZazKJoHFPNhHRnr4YWC1ohzzK3mO4rs4DvLVv9
-         A2mSrLuUbokupDSlhfblqgeLhvmeSfjBgWqRZf7SpWmY+JAzoBfVg0lCQnY5+KRjMni8
-         KxwM/gDsVCB5t9qO3PELuGR9A+Q7ktxExmjgkB/98/qxDgmHPdV7NhEetB/zfgTgcukj
-         PZNQ==
-X-Gm-Message-State: AJIora/IRu0XMT7nAmi1bxFOyoWsvR3pV/Rb/EY/l0cT+LtPsb0f+H3j
-        s8B5eOnH8TvCS6b4wM6IgtKS0wYaRbV7tE0J
-X-Google-Smtp-Source: AGRyM1umGkFw1eJ89UsPMftjXKOKWWCI95hu2K2npgGE7MmsfMTI1ig5d5ii1qqw/Bj3tqnGkBYShQ==
-X-Received: by 2002:a17:906:8cb0:b0:72f:6ce7:3a1 with SMTP id qr48-20020a1709068cb000b0072f6ce703a1mr18951830ejc.322.1659517108472;
-        Wed, 03 Aug 2022 01:58:28 -0700 (PDT)
-Received: from [192.168.74.101] ([77.78.38.236])
-        by smtp.gmail.com with ESMTPSA id f12-20020a17090631cc00b0073086d1afe3sm3105293ejf.86.2022.08.03.01.58.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Aug 2022 01:58:27 -0700 (PDT)
-Message-ID: <f44fc6d2-9d3b-2c37-15dd-d002dc09b7b0@gmail.com>
-Date:   Wed, 3 Aug 2022 11:58:26 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 00/13] PM6125 regulator support
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S229602AbiHCJEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 05:04:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC9AF286F3
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 02:04:51 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1oJAIx-0006Tj-DE; Wed, 03 Aug 2022 11:04:39 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 4F37EC1EEC;
+        Wed,  3 Aug 2022 09:04:37 +0000 (UTC)
+Date:   Wed, 3 Aug 2022 11:04:36 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
+Cc:     Vincent Mailhol <vincent.mailhol@gmail.com>,
+        Matej Vasilevski <matej.vasilevski@seznam.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20220731223736.1036286-1-iskren.chernev@gmail.com>
- <89469b0d-e6aa-4d60-c93c-a99256f65445@linaro.org>
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-In-Reply-To: <89469b0d-e6aa-4d60-c93c-a99256f65445@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Jiri Novak <jnovak@fel.cvut.cz>,
+        Oliver Hartkopp <socketcan@hartkopp.net>
+Subject: Re: [PATCH v2 1/3] can: ctucanfd: add HW timestamps to RX and error
+ CAN frames
+Message-ID: <20220803090436.o3c7khieckxwmj5y@pengutronix.de>
+References: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
+ <20220801184656.702930-2-matej.vasilevski@seznam.cz>
+ <CAMZ6RqJEBV=1iUN3dH-ZZVujOFEoJ-U1FaJ5OOJzw+aM_mkUvA@mail.gmail.com>
+ <202208020937.54675.pisa@cmp.felk.cvut.cz>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lnyqk3jichuhl7n6"
+Content-Disposition: inline
+In-Reply-To: <202208020937.54675.pisa@cmp.felk.cvut.cz>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -84,25 +67,92 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
->>
->> Iskren Chernev (13):
->>    dt-bindings: regulator: qcom_spmi: Improve formatting of if-then
->>      blocks
->>    dt-bindings: regulator: qcom_spmi: Document PM6125 PMIC
->>    dt-bindings: regulator: qcom_smd: Sort compatibles alphabetically
->>    dt-bindings: regulator: qcom_smd: Document PM6125 PMIC
->>    regulator: qcom_spmi: Add support for new regulator types
->>    regulator: qcom_spmi: Add support for HFSMPS regulator type
->>    regulator: qcom_spmi: Sort pmics alphabetically (part 1)
->>    regulator: qcom_spmi: Sort pmics alphabetically (part 2)
->>    regulator: qcom_spmi: Add PM6125 PMIC support
->>    regulator: qcom_smd: Sort pmics alphabetically (part 1)
->>    regulator: qcom_smd: Sort pmics alphabetically (part 2)
->>    regulator: qcom_smd: Sort pmics alphabetically (part 3)
->
-> What is the reason for these part1/2 and part1/2/3 splits? I think you can collapse them into two respective patches, one sorting of spmi, another one sorting the smd regulators
+--lnyqk3jichuhl7n6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The reason is that if I do collapse them the diff looks much more
-complicated and it's not obvious that the sections are in-fact only moved.
-I'm not sure how these are reviewed, but casually reading the patch will
-not instill confidence.
+On 02.08.2022 09:37:54, Pavel Pisa wrote:
+> > Hardware TX timestamps are now supported (c.f. supra).
+> >
+> > > +       info->rx_filters =3D BIT(HWTSTAMP_FILTER_NONE) |
+> > > +                          BIT(HWTSTAMP_FILTER_ALL);
+>=20
+> I am not sure if it is good idea to report support for hardware
+> TX timestamps by all drivers. Precise hardware Tx timestamps
+> are important for some CAN applications but they require to be
+> exactly/properly aligned with Rx timestamps.
+>=20
+> Only some CAN (FD) controllers really support that feature.
+> For M-CAN and some others it is realized as another event
+> FIFO in addition to Tx and Rx FIFOs.
+
+The mcp251xfd uses the event FIFO to signal TX completion. Timestamps
+are optional, but always enabled in the mcp251xfd driver.
+
+> For CTU CAN FD, we have decided that we do not complicate design
+> and driver by separate events channel. We have configurable
+> and possibly large Rx FIFO depth which is logical to use for
+> analyzer mode and we can use loopback to receive own messages
+> timestamped same way as external received ones.
+>=20
+> See 2.14.1 Loopback mode
+> SETTINGS[ILBP]=3D1.
+>=20
+> in the datasheet
+>=20
+>   http://canbus.pages.fel.cvut.cz/ctucanfd_ip_core/doc/Datasheet.pdf
+
+BTW: the datasheet says:
+
+| 3.1.36 RX_DATA
+|=20
+| ... this register must be read by 32 bit access.
+
+While there is a section that uses 8-bit accessed on that register:
+
+| 2.10.10 Sample code 2 - Frame reception in manual mode (8-bit access)
+
+> There is still missing information which frames are received
+> locally and from which buffer they are in the Rx message format,
+> but we plan to add that into VHDL design.
+>=20
+> In such case, we can switch driver mode and release Tx buffers
+> only after corresponding message is read from Rx FIFO and
+> fill exact finegrain (10 ns in our current design) timestamps
+> to the echo skb. The order of received messages will be seen
+> exactly mathing the wire order for both transmitted and received
+> messages then. Which I consider as proper solution for the
+> most applications including CAN bus analyzers.
+>=20
+> So I consider to report HW Tx timestamps for cases where exact,
+> precise timestamping is not available for loopback messages
+> as problematic because you cannot distinguish if you talk
+> with driver and HW with real/precise timestamps support
+> or only dummy implementation to make some tools happy.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--lnyqk3jichuhl7n6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmLqOiIACgkQrX5LkNig
+011p9Af/Y1I6EmIJ8ta7aYBYf5wBk6gtXgZHszI7ySl1DuoM24QUgtK2U0VDZWtJ
+77uNsHBypWE8WaycCIFd6+k/x0ivFbaOFp/gzP7FDadpQy25uc6tR8vVZxTmBnWv
+edPN7Rjs2sBF3CInbjS1bUNZtBMfIHiiXAsXjtK8JojeGnt/h6TC/6uA1BKSwiMw
+PQaO+f6X2pqRy9P/ZGygdn+9IasCSYdMCu4I1WkPlTFba2zTudPTYxxv79A4wUia
+1AEVu5lmpxbzitOSPWASteYtwYWr/qVZ7qDTuPss6ywOZNXD/jvUmhf5VAZfZ8u1
+k1BHIq0iUCGl91bfvjiFo+yGR6+u3w==
+=WcbP
+-----END PGP SIGNATURE-----
+
+--lnyqk3jichuhl7n6--
