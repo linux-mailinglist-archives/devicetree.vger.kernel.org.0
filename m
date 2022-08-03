@@ -2,53 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A51589311
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 22:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C20258934B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 22:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230414AbiHCUR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 16:17:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59460 "EHLO
+        id S237884AbiHCUeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 16:34:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229850AbiHCUR2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 16:17:28 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49A6159242;
-        Wed,  3 Aug 2022 13:17:27 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id h139so250418iof.12;
-        Wed, 03 Aug 2022 13:17:27 -0700 (PDT)
+        with ESMTP id S236096AbiHCUeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 16:34:24 -0400
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 715715B7B8;
+        Wed,  3 Aug 2022 13:34:23 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id o2so13756969iof.8;
+        Wed, 03 Aug 2022 13:34:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=nFnsI0O1PrK2YgAMgRf5Rb1QEHWcYLli9kiS7QQAZkY=;
-        b=wknssOcYq1CM1/qIZFqbUB2Bo3kuF3Xt+azr2KRXkM/JGGOP4r54moFHkCxS9iwcR4
-         /CE39yPIUSLvy89dak/wiqd9nF+yuFJ1rQ3jYRPfVt+E9jBuOZNsnxpcXejNbANftUod
-         5mxtR3R2mPSs5Z1lS5FPz4BCKmlQPMGW+bYEWYU109vwXL3OC7zgz+K7KFigjtnHnj5q
-         vNAGILK4yTq2QEQfz5IadxilG+fM31P10p/CPV/uve70T+s1RKVY1WBpuRJy6dq59dSw
-         0K3Lxy3r66lP8p7QtseDYhINR3lwXhXTHeWouBXuW3BvRDElqk7xSN+LzR2fEpw9Y8Qe
-         ubMA==
-X-Gm-Message-State: AJIora/ud2q6+UFrh9NFcgEZBIUFDgqz70WSBSzGueOIGIKGa/5IqiAb
-        xiGaOOUG6ui0rkdZkbUHP2qUoV4kxA==
-X-Google-Smtp-Source: AGRyM1swffRWGVQulzXOS7Iy/J4naxuEl70lKHfvAz/xYcBF5ZQMgQ/br5AD5IFtUlBJpyjkMNuLWQ==
-X-Received: by 2002:a05:6602:2d92:b0:67c:b00:422 with SMTP id k18-20020a0566022d9200b0067c0b000422mr10034331iow.187.1659557846511;
-        Wed, 03 Aug 2022 13:17:26 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.248])
-        by smtp.googlemail.com with ESMTPSA id b6-20020a92c846000000b002ddf58d8828sm7225876ilq.19.2022.08.03.13.17.25
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc;
+        bh=sy0PwHGMpgR2DJVISTy8eXI/nlvufmA5Ye3PE/bOB+Q=;
+        b=z6BqM+VUvgkigkQCZ+HCBlqkT/duAG+bCHo9NmhhXyL1M9f8E05YjIPy2cSwmxN4xN
+         UNWaOvMN9gx5uk1muENlAUa8ljjbflJ0/J0lKPDQEGIkiVddlK0dG1A7JsmiIerMP+pD
+         TB6nt4vSOOwJQ+Eg3FKUb7hUHX+mhcziB2xwHLzju0UAqRp2AKKmfo2TcAAxPMtnachD
+         ++P2Wmx55nyz0T33tvgQjhiRy/8vfllundR1MO7XMbQTSEOZMcIrMriATs8ALz/whczs
+         zteyAnKp+sKkjMPfW6gGPS9FqhKSZ+q1o1UUz0rFoqPYL0a3sgX8+P3DsfT6m3782Pni
+         edZQ==
+X-Gm-Message-State: ACgBeo10IZQrflPMK6Y52mzvO7mCnavhaaCbUhzj2eoGrjNV5efTN1I3
+        uD9Cso80GJO1K6Vu0OJO5A==
+X-Google-Smtp-Source: AA6agR7LLSQANxQxTu6rbbHddUerm1lOHrVSd3soiL2HV9IzRJfpkFHye/9Vr6sjUkfF/OiI9TlfRQ==
+X-Received: by 2002:a6b:916:0:b0:67f:a5e7:68af with SMTP id t22-20020a6b0916000000b0067fa5e768afmr5081861ioi.89.1659558862764;
+        Wed, 03 Aug 2022 13:34:22 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id e5-20020a056602158500b006814fd71117sm70746iow.12.2022.08.03.13.34.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Aug 2022 13:17:26 -0700 (PDT)
+        Wed, 03 Aug 2022 13:34:22 -0700 (PDT)
+Received: (nullmailer pid 2576748 invoked by uid 1000);
+        Wed, 03 Aug 2022 20:34:18 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm: psci: Relax and simplify compatible constraints
-Date:   Wed,  3 Aug 2022 14:16:38 -0600
-Message-Id: <20220803201639.2552581-1-robh@kernel.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+To:     Jai Luthra <j-luthra@ti.com>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20220803151726.31628-1-j-luthra@ti.com>
+References: <20220803151726.31628-1-j-luthra@ti.com>
+Subject: Re: [PATCH v2] dt-bindings: sound: tlv320aic3x: Convert to dtschema
+Date:   Wed, 03 Aug 2022 14:34:18 -0600
+Message-Id: <1659558858.566275.2576747.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -59,57 +60,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Even PSCI v1.0 compliant implementations may support v0.1 clients
-(i.e. "arm,psci"). Relax the compatible schema such that an
-implementation can claim 1.0, 0.2, and 0.1 compatibility.
+On Wed, 03 Aug 2022 10:17:26 -0500, Jai Luthra wrote:
+> Convert bindings for TI's TLV320AIC3x audio codecs to dtschema.
+> 
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+>  .../bindings/sound/ti,tlv320aic3x.yaml        | 158 ++++++++++++++++++
+>  .../devicetree/bindings/sound/tlv320aic3x.txt |  97 -----------
+>  2 files changed, 158 insertions(+), 97 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/ti,tlv320aic3x.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/tlv320aic3x.txt
+> 
 
-In the process, the schema can be simplified a bit by using 'minItems'
-instead of separate 'oneOf' entries.
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/psci.yaml | 11 +++--------
- 1 file changed, 3 insertions(+), 8 deletions(-)
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-diff --git a/Documentation/devicetree/bindings/arm/psci.yaml b/Documentation/devicetree/bindings/arm/psci.yaml
-index dd83ef278af0..3a2c908ff282 100644
---- a/Documentation/devicetree/bindings/arm/psci.yaml
-+++ b/Documentation/devicetree/bindings/arm/psci.yaml
-@@ -41,31 +41,26 @@ properties:
-           For implementations complying to PSCI versions prior to 0.2.
-         const: arm,psci
- 
--      - description:
--          For implementations complying to PSCI 0.2.
--        const: arm,psci-0.2
--
-       - description:
-           For implementations complying to PSCI 0.2.
-           Function IDs are not required and should be ignored by an OS with
-           PSCI 0.2 support, but are permitted to be present for compatibility
-           with existing software when "arm,psci" is later in the compatible
-           list.
-+        minItems: 1
-         items:
-           - const: arm,psci-0.2
-           - const: arm,psci
- 
--      - description:
--          For implementations complying to PSCI 1.0.
--        const: arm,psci-1.0
--
-       - description:
-           For implementations complying to PSCI 1.0.
-           PSCI 1.0 is backward compatible with PSCI 0.2 with minor
-           specification updates, as defined in the PSCI specification[2].
-+        minItems: 1
-         items:
-           - const: arm,psci-1.0
-           - const: arm,psci-0.2
-+          - const: arm,psci
- 
-   method:
-     description: The method of calling the PSCI firmware.
--- 
-2.34.1
+Full log is available here: https://patchwork.ozlabs.org/patch/
+
+
+aic33@18: 'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/omap2420-n810.dtb
+
+codec@18: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/imx6dl-gw5903.dtb
+	arch/arm/boot/dts/imx6q-gw5903.dtb
+
+tlv320aic3104@18: 'adc-settle-ms', 'assigned-clock-parents', 'assigned-clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/am57xx-beagle-x15.dtb
+	arch/arm/boot/dts/am57xx-beagle-x15-revb1.dtb
+	arch/arm/boot/dts/am57xx-beagle-x15-revc.dtb
+
+tlv320aic3106@18: 'adc-settle-ms' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/da850-lcdk.dtb
+
+tlv320aic3106@19: 'adc-settle-ms' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/dra71-evm.dtb
+	arch/arm/boot/dts/dra72-evm.dtb
+	arch/arm/boot/dts/dra72-evm-revc.dtb
+	arch/arm/boot/dts/dra76-evm.dtb
+	arch/arm/boot/dts/dra7-evm.dtb
+
+tlv320aic3106@1b: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/am335x-sl50.dtb
 
