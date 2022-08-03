@@ -2,425 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D17BB5891C5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 19:50:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EBC75891D5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 19:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbiHCRuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 13:50:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54922 "EHLO
+        id S229519AbiHCRzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 13:55:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237658AbiHCRuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 13:50:14 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C95C7E;
-        Wed,  3 Aug 2022 10:50:12 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id e13so3484843edj.12;
-        Wed, 03 Aug 2022 10:50:12 -0700 (PDT)
+        with ESMTP id S237528AbiHCRzk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 13:55:40 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31727667
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 10:55:38 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id 17so17187968pfy.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 10:55:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=qasC3HWPx6PH1+kvajAZ6EY5Z+jLltPhwmiv29VZxXo=;
-        b=dMeflMAk0cL0Dctr4+70NE20mGXlN8sGDdJ5pgQ+ggWywPvgcx/giTjy4be/WczrK5
-         9LMe3QHVAYXpqrpsDBn1Y10R6mLNpXlYqovmU/XrlXnsgSx11hLEvQmYANryGrwkzzgM
-         hysQqsUTLHZ7wAf6bxG1nNWVHtGst4ex+3v6GV3v7KtEwnlJQL1nERhZ4/SUik3p2oi0
-         dEAnHfBbhN8GFAN6yWaOpZRwA5kB6tPd+O01cZKcj99FnvQebyELeMQpeNaBLRcO7EBp
-         9UFBMGf9efvvQT26zjGztXdBqvPEMbtWnc0KBube39otJv9mwmETfi0GbZG5aixpHQ0r
-         WUiw==
+        d=broadcom.com; s=google;
+        h=mime-version:message-id:date:subject:cc:to:from:from:to:cc;
+        bh=FgsTYohyHsb5gS1eBL4V+edFuMMK/uSRbtV1wbhUbUM=;
+        b=ERs1KtWRpwe/kcaiSMaoKS3RNvbt5QnAJPJ38dLbcPhF4T3qS796AbvnOqGqLYbxJ0
+         7W/xKrZydjCx1OUiaSilEuFnWyHIUkmqP0spEZGsnVTZnlA1OEbYqHOZH5f8+zsSkywJ
+         c+TP5pBv1PCEy6oKvTxEeHjtNhz8TKkew1ar8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=qasC3HWPx6PH1+kvajAZ6EY5Z+jLltPhwmiv29VZxXo=;
-        b=gtWt/WnxA4YpXa3/ZVEy8dae2oVZbEn/G29Gywg6fbXL8qYigEkrhdhrNsjMfzRosP
-         3F85YqsC8wDcaypuF9QfRDHqGyHdeqPwut+555j8qFeQjUF9rIaX+n+tZdpMDBm4J4Lb
-         EOO8UETYQx3l3WnoV7Q7ohLext+LqtlWdj25dn6NS90s5lwO3rIsQrk0xN3jVC0lOUSR
-         bgCzhQC7yqGB2glrm6oa7i0e1gHvPTF7Zuv3ILrt51XfdYvvUs76tOQmkKy+sMR0tW9C
-         fSN9CqVaBafgmL7sYbywmMWrZf+iRHsHiAE68BPVsS6G7ID2W0mNNkSlgE97T7jTAact
-         40dQ==
-X-Gm-Message-State: AJIora/9tnNebw35BFw+bSsYvqszB8nMzKWC2x4YGo07AYy6LPa7LRs8
-        BNpPHHT6UfDeCUXNCFMFDVYgX9gncsi2C2Caqjs=
-X-Google-Smtp-Source: AGRyM1td3UmNFzVupi/RO1oITPC3utYLr8zjoBjd5q6yDX20oWIbNN5QnEGk4lP7vVTAlWrhSzcwijqnVL20a2h9DqY=
-X-Received: by 2002:a05:6402:280b:b0:43b:5d75:fcfa with SMTP id
- h11-20020a056402280b00b0043b5d75fcfamr26157597ede.114.1659549010663; Wed, 03
- Aug 2022 10:50:10 -0700 (PDT)
+        h=mime-version:message-id:date:subject:cc:to:from:x-gm-message-state
+         :from:to:cc;
+        bh=FgsTYohyHsb5gS1eBL4V+edFuMMK/uSRbtV1wbhUbUM=;
+        b=xJDgniUSPoTUbFltdWSNxRZUNrCAOFXJmU+iYg17/Fr+mEjsZBUVVlsNZEqmCuxcKt
+         68p7QlfJ/SVzsFrQCx6jbjiGl5f54fjF+0p5Wijd476lJNP9LjSf1W1x+pf/7fZUus25
+         Oq76uXYVDz1usHaTo1wfLzpK/7Sa2Q33yw6kxXkA7bXiD5JMjoiIO4L+WfxuqoHp794s
+         YWCX51y9Q2azQ0Ly/xeuyoXVmvHC4f/K7E8knSvDUEUaG/rg9DN/QlJNjrf16UqphO/i
+         DaJLsD2H2bclVKqOzksVC+LRFj3pjH9Mgu3TIIG6FN5ylEdrue/vVyol0BVBc4Ts8V3h
+         TVnA==
+X-Gm-Message-State: AJIora+70u9RFyA+TU9am1Fujq5ldy3KSFZj2BNtpUFYm2zXWmWnHqyq
+        bTgBAZ9Y+iWuaMk0qkFBUDg6hA==
+X-Google-Smtp-Source: AGRyM1vlkoaI20p/BpkCX3BLfVXJxUkwzNyyCPxrki36VpTCnSdv/zY6bmlRD4yqhoStLPiwAvTLKg==
+X-Received: by 2002:a63:2bc4:0:b0:419:7b8c:210a with SMTP id r187-20020a632bc4000000b004197b8c210amr21830478pgr.439.1659549338018;
+        Wed, 03 Aug 2022 10:55:38 -0700 (PDT)
+Received: from ubuntu-22.localdomain ([192.19.222.250])
+        by smtp.gmail.com with ESMTPSA id iw4-20020a170903044400b0016d150c6c6dsm2238639plb.45.2022.08.03.10.55.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Aug 2022 10:55:36 -0700 (PDT)
+From:   William Zhang <william.zhang@broadcom.com>
+To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
+Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
+        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
+        f.fainelli@gmail.com, krzysztof.kozlowski@linaro.org,
+        rafal@milecki.pl, William Zhang <william.zhang@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list),
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
+        linux-mtd@lists.infradead.org (open list:MEMORY TECHNOLOGY DEVICES
+        (MTD)), netdev@vger.kernel.org (open list:NETWORKING DRIVERS),
+        linux-pci@vger.kernel.org (open list:PCI NATIVE HOST BRIDGE AND
+        ENDPOINT DRIVERS),
+        linux-phy@lists.infradead.org (open list:GENERIC PHY FRAMEWORK),
+        linux-gpio@vger.kernel.org (open list:PIN CONTROL SUBSYSTEM),
+        linux-mips@vger.kernel.org (open list:BROADCOM BMIPS MIPS ARCHITECTURE),
+        linux-serial@vger.kernel.org (open list:SERIAL DRIVERS),
+        linux-watchdog@vger.kernel.org (open list:WATCHDOG DEVICE DRIVERS),
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Subject: [PATCH v3 0/9] arm64: bcmbca: Move BCM4908 SoC support under ARCH_BCMBCA
+Date:   Wed,  3 Aug 2022 10:54:46 -0700
+Message-Id: <20220803175455.47638-1-william.zhang@broadcom.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220803131132.19630-1-ddrokosov@sberdevices.ru> <20220803131132.19630-3-ddrokosov@sberdevices.ru>
-In-Reply-To: <20220803131132.19630-3-ddrokosov@sberdevices.ru>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 3 Aug 2022 19:49:33 +0200
-Message-ID: <CAHp75VcVuC6yVoB1kycCOfqMa=JfCtbe3WYSK5qndtYcJy3vpg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] iio: add MEMSensing MSA311 3-axis accelerometer driver
-To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="000000000000cdf53305e559f085"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 3, 2022 at 3:11 PM Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
->
-> MSA311 is a tri-axial, low-g accelerometer with I2C digital output for
-> sensitivity consumer applications. It has dynamic user-selectable full
-> scales range of +-2g/+-4g/+-8g/+-16g and allows acceleration measurements
-> with output data rates from 1Hz to 1000Hz.
->
-> Spec: https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
->
-> This driver supports following MSA311 features:
->     - IIO interface
->     - Different power modes: NORMAL and SUSPEND (using pm_runtime)
->     - ODR (Output Data Rate) selection
->     - Scale and samp_freq selection
->     - IIO triggered buffer, IIO reg access
->     - NEW_DATA interrupt + trigger
->
-> Below features to be done:
->     - Motion Events: ACTIVE, TAP, ORIENT, FREEFALL
->     - Low Power mode
-
-Thanks for an update, my comments below.
-
-...
-
-> +#include <linux/i2c.h>
-
-> +#include <linux/iio/buffer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-> +#include <linux/iio/trigger.h>
-> +#include <linux/iio/trigger_consumer.h>
-> +#include <linux/iio/triggered_buffer.h>
-
-I would split this group out of generic headers...
-
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/pm.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/string_helpers.h>
-> +#include <linux/units.h>
-> +
-
-...and move it here to clearly show that the driver belongs to the IIO
-subsystem.
-
-...
-
-> +/*
-> + * Possible Full Scale ranges
-> + *
-> + * Axis data is 12-bit signed value, so
-> + *
-> + * fs0 = (2 + 2) * 9.81 / (2<<11) = 0.009580
-> + * fs1 = (4 + 4) * 9.81 / (2<<11) = 0.019160
-> + * fs2 = (8 + 8) * 9.81 / (2<<11) = 0.038320
-> + * fs3 = (16 + 16) * 9.81 / (2<<11) = 0.076641
-
-I'm not sure if you are using programming language here or math language?
-In math we refer to powers like 2^11, the 2<<11 puzzles me.
-
-> + */
-
-...
-
-> +static const struct {
-> +       int val;
-> +       int val2;
-> +} msa311_fs_table[] = {
-> +       {0, 9580}, {0, 19160}, {0, 38320}, {0, 76641}
-> +};
-
-Besides that this struct is defined not only once in the file, this is
-very well NIH struct s32_fract. Why not use the latter?
-
-...
-
-> +static const struct {
-> +       int val;
-> +       int val2;
-> +} msa311_odr_table[] = {
-> +       {1, 0}, {1, 950000}, {3, 900000}, {7, 810000}, {15, 630000},
-> +       {31, 250000}, {62, 500000}, {125, 0}, {250, 0}, {500, 0}, {1000, 0}
-> +};
-
-See above.
-
-...
-
-> +static const char * const msa311_pwr_modes[] = {
-> +       [MSA311_PWR_MODE_NORMAL] = "normal",
-> +       [MSA311_PWR_MODE_LOW] = "low",
-> +       [MSA311_PWR_MODE_UNKNOWN] = "unknown",
-> +       [MSA311_PWR_MODE_SUSPEND] = "suspend"
-
-Leave a comma here even if we know that in the nearest future it won't
-be changed.
-
-> +};
-
-...
-
-> +       .cache_type = REGCACHE_RBTREE,
-
-Tree hash is good for sparse data, do you really have it sparse (a lot
-of  big gaps in between)?
-
-> +};
-
-...
-
-> +       .datasheet_name = "ACC_"#axis                                       \
-
-Leave a comma here.
-
-...
-
-> +static const struct iio_chan_spec msa311_channels[] = {
-> +       MSA311_ACCEL_CHANNEL(X),
-> +       MSA311_ACCEL_CHANNEL(Y),
-> +       MSA311_ACCEL_CHANNEL(Z),
-> +       IIO_CHAN_SOFT_TIMESTAMP(MSA311_SI_TIMESTAMP)
-
-Ditto.
-
-> +};
-
-...
-
-> +               dev_err(dev,
-> +                       "failed to set odr %u.%uHz, not available in %s mode\n",
-> +                       msa311_odr_table[odr].val,
-> +                       msa311_odr_table[odr].val2 / 1000,
-
-KILO ?
-
-> +                       msa311_pwr_modes[pwr_mode]);
-
-...
-
-> +       static const int unintr_thresh_ms = 20;
-
-You seem not using it as _ms, but always as _us, why not define accordingly?
-Also the other one is defined as unsigned long and this is as int. Why
-not unsigned?
-
-...
-
-> +       for (fs = 0; fs < ARRAY_SIZE(msa311_fs_table); ++fs)
-
-fs++ will work as well.
-
-> +               /* Do not check msa311_fs_table[fs].val, it's always 0 */
-> +               if (val2 == msa311_fs_table[fs].val2) {
-> +                       mutex_lock(&msa311->lock);
-> +                       err = regmap_field_write(msa311->fields[F_FS], fs);
-> +                       mutex_unlock(&msa311->lock);
-
-> +                       if (err)
-> +                               dev_err(dev, "cannot update scale (%d)\n", err);
-
-This can be done after putting the device back into (auto)sleep, right?
-
-> +                       break;
-> +               }
-> +
-> +       pm_runtime_mark_last_busy(dev);
-> +       pm_runtime_put_autosuspend(dev);
-
-...
-
-> +       for (odr = 0; odr < ARRAY_SIZE(msa311_odr_table); ++odr)
-
-odr++ works well also.
-
-...
-
-> +                               dev_err(dev, "cannot update freq (%d)\n", err);
-
-frequency
-
-...
-
-> +               dev_err(dev, "cannot %s register %u from debugfs (%d)\n",
-> +                       readval ? "read" : "write", reg, err);
-
-You may consider taking [1] as a precursor here and use str_read_write().
-
-[1]: https://lore.kernel.org/linux-i2c/20220703154232.55549-1-andriy.shevchenko@linux.intel.com/
-
-...
-
-> +       struct device *dev = msa311->dev;
-
-Isn't it the same as indio_dev->dev.parent?
-Do you really need that member?
-
-...
-
-> +       int bit = 0, err, i = 0;
-
-How is the bit initial assignment used?
-
-...
-
-> +       /*
-> +        * We do not check NEW_DATA int status, because of based on
-
-because based on the
-
-> +        * specification it's cleared automatically after a fixed time.
-> +        * So just check that is enabled by driver logic.
-> +        */
-
-...
-
-> +       /* TODO: check motion interrupts status */
-
-I don't see the patches for this, so I assume they _will_ come in the
-nearest future. Otherwise, drop these TODO lines.
-
-...
-
-> +               dev_dbg(dev, "found MSA311 compatible chip[%#x]\n", partid);
-
-Useless message.
-
-...
-
-> +               return dev_err_probe(dev, err, "cannot disable set0 intrs\n");
-
-interrupts
-
-...
-
-> +               return dev_err_probe(dev, err, "cannot disable set1 intrs\n");
-
-Ditto.
-
-...
-
-> +               return dev_err_probe(dev, err, "failed to unmap map0 intrs\n");
-
-Ditto.
-
-...
-
-> +               return dev_err_probe(dev, err, "failed to unmap map1 intrs\n");
-
-Ditto.
-
-...
-
-> +       /* Disable all axis by default */
-
-axis...
-
-> +       err = regmap_update_bits(msa311->regs, MSA311_ODR_REG,
-> +                                MSA311_GENMASK(F_X_AXIS_DIS) |
-> +                                MSA311_GENMASK(F_Y_AXIS_DIS) |
-> +                                MSA311_GENMASK(F_Z_AXIS_DIS), 0);
-> +       if (err)
-> +               return dev_err_probe(dev, err, "cannot enable all axes\n");
-
-...or axes?
-
-...
-
-> +               return dev_err_probe(dev, err, "failed to set accel freq\n");
-
-frequency
-
-...
-
-> +               return dev_err_probe(dev, err, "failed to request irq\n");
-
-IRQ
-
-...
-
-> +               return dev_err_probe(dev, -ENOMEM,
-> +                                    "cannot allocate newdata trig\n");
-
-trigger
-
-...
-
-> +               return dev_err_probe(dev, err, "can't register newdata trig\n");
-
-Ditto.
-
-...
-
-> +               return dev_err_probe(dev, err, "cannot enable push-pull int\n");
-
-interrupt
-
-...
-
-> +               return dev_err_probe(dev, err, "cannot set active int level\n");
-
-Ditto.
-
-...
-
-> +               return dev_err_probe(dev, err, "cannot latch int\n");
-
-Ditto.
-
-...
-
-> +               return dev_err_probe(dev, err, "cannot reset int\n");
-
-Ditto.
-
-...
-
-> +               return dev_err_probe(dev, err, "cannot map new data int\n");
-
-interrupt
-
-...
-
-> +               return dev_err_probe(dev, -ENOMEM,
-> +                                    "iio device allocation failed\n");
-
-IIO
-
-...
-
-> +       indio_dev->modes = 0; /* setup buffered mode later */
-
-Why explicit assignment to 0? Doesn't kzalloc() do it for you?
-
-...
-
-> +               return dev_err_probe(dev, err, "cannot setup iio trig buf\n");
-
-IIO trigger buffer
-
-...
-
-> +               return dev_err_probe(dev, err, "iio device register failed\n");
-
-IIO
+--000000000000cdf53305e559f085
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+BCM4908 is one of the Broadcom Broadband origin WLAN Router/Access
+Pointer SoCs. It was originally added by Rafał before Broadcom started
+to upstream the support for broadband SoCs. All other ARM based Broadcom
+Broadband SoCs are now supported under arch ARCH_BCMBCA. This patch
+series migrate the BCM4908 support to ARCH_BCMBCA.
+
+Changes in v3:
+- Add Reviewed-by tag
+- Add Acked-by tags
+- Remove the dts break warning from commit message
+
+Changes in v2:
+- Add Acked-by tag
+- Improve commit message with more details
+- Insert the 4908 generic compatible string in alphabetical order
+
+William Zhang (9):
+  dt-bindings: arm64: bcmbca: Merge BCM4908 into BCMBCA
+  dt-bindings: arm64: bcmbca: Update BCM4908 description
+  arm64: dts: bcmbca: update BCM4908 board dts files
+  arm64: dts: Move BCM4908 dts to bcmbca folder
+  arm64: dts: Add BCM4908 generic board dts
+  arm64: bcmbca: Make BCM4908 drivers depend on ARCH_BCMBCA
+  arm64: bcmbca: Merge ARCH_BCM4908 to ARCH_BCMBCA
+  MAINTAINERS: Add BCM4908 maintainer to BCMBCA entry
+  arm64: defconfig: remove BCM4908
+
+ .../bindings/arm/bcm/brcm,bcm4908.yaml        | 42 -------------------
+ .../bindings/arm/bcm/brcm,bcmbca.yaml         | 25 +++++++++++
+ MAINTAINERS                                   |  1 +
+ arch/arm64/Kconfig.platforms                  | 10 +----
+ arch/arm64/boot/dts/broadcom/Makefile         |  1 -
+ arch/arm64/boot/dts/broadcom/bcm4908/Makefile |  5 ---
+ arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |  5 +++
+ .../bcm4906-netgear-r8000p.dts                |  2 +-
+ .../bcm4906-tplink-archer-c2300-v1.dts        |  2 +-
+ .../broadcom/{bcm4908 => bcmbca}/bcm4906.dtsi |  0
+ .../bcm4908-asus-gt-ac5300.dts                |  2 +-
+ .../bcm4908-netgear-raxe500.dts               |  2 +-
+ .../broadcom/{bcm4908 => bcmbca}/bcm4908.dtsi |  0
+ .../boot/dts/broadcom/bcmbca/bcm94908.dts     | 30 +++++++++++++
+ arch/arm64/configs/defconfig                  |  1 -
+ drivers/i2c/busses/Kconfig                    |  4 +-
+ drivers/mtd/parsers/Kconfig                   |  6 +--
+ drivers/net/ethernet/broadcom/Kconfig         |  4 +-
+ drivers/pci/controller/Kconfig                |  2 +-
+ drivers/phy/broadcom/Kconfig                  |  4 +-
+ drivers/pinctrl/bcm/Kconfig                   |  4 +-
+ drivers/reset/Kconfig                         |  2 +-
+ drivers/soc/bcm/bcm63xx/Kconfig               |  4 +-
+ drivers/tty/serial/Kconfig                    |  4 +-
+ drivers/watchdog/Kconfig                      |  2 +-
+ 25 files changed, 84 insertions(+), 80 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+ delete mode 100644 arch/arm64/boot/dts/broadcom/bcm4908/Makefile
+ rename arch/arm64/boot/dts/broadcom/{bcm4908 => bcmbca}/bcm4906-netgear-r8000p.dts (96%)
+ rename arch/arm64/boot/dts/broadcom/{bcm4908 => bcmbca}/bcm4906-tplink-archer-c2300-v1.dts (99%)
+ rename arch/arm64/boot/dts/broadcom/{bcm4908 => bcmbca}/bcm4906.dtsi (100%)
+ rename arch/arm64/boot/dts/broadcom/{bcm4908 => bcmbca}/bcm4908-asus-gt-ac5300.dts (97%)
+ rename arch/arm64/boot/dts/broadcom/{bcm4908 => bcmbca}/bcm4908-netgear-raxe500.dts (89%)
+ rename arch/arm64/boot/dts/broadcom/{bcm4908 => bcmbca}/bcm4908.dtsi (100%)
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dts
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.34.1
+
+
+--000000000000cdf53305e559f085
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+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
+TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
+fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
+BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
+YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
+BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
+MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
+YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
+Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
+HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
+BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
++EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
+abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
+ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
+W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
+1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
+MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
+VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJi7Jochq0m9DJtt7E7KnJczdnMn
+KTqhDwinhgdh42k+MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDgwMzE3NTUzOFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
+AwQCATANBgkqhkiG9w0BAQEFAASCAQCfPwsDJOMs3Zes99X6w8tgi6Z+lxLFzWKzNNkJkTbAL5jm
+RPKduRypa/oJBfkRhDkb0xYg9+o3EVEiZoddSG1U6Bh+ly3DmtKFPjKREkelem2lum0/nF9Rp/nQ
+stG5r4gFNHmHEopwK7Kce8zs19TtAVCpXraWga6mRqmC7khj5yKEBF830BxDO0T3UGAUPJ8fagr6
+jfaOUh0YqL9sQAE7XHfSaEYDt1dse+uU0grH1u2bNpPSvfQT7OaBBQc/CiIpIMVqoQf9UzsTQkY2
+NpWb7tIjpcuB9EJhaD1IsXiXvQ5SbGCQK7pvhgIGRQX5OsT2tRxLcYEpaCr7IsVwfKgw
+--000000000000cdf53305e559f085--
