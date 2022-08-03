@@ -2,126 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A48D8588848
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 09:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A963F58885E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 09:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237135AbiHCHvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 03:51:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41680 "EHLO
+        id S231671AbiHCH6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 03:58:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234663AbiHCHvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 03:51:08 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A18222B20
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 00:51:05 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id y11so25212377lfs.6
-        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 00:51:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=+qiNOnMPVcTggFsBYHaEzoH71rIPx2WFWj8O2ocXAy4=;
-        b=uq+URaz+toowYbgnRcqZtbVNfoJLMcGt0+mCMN6c4utMJEJaeA5YVcCVJC49LdS9NL
-         d5+Xn4PJqdZqZkspXztypEG/BhOpaDb9Hd81lVM2j1UHQNaFd35LeeZe/SoZ+w7bEetC
-         HWNCGeB+WRsF/UvjU2VEaipfognobec/W32odphoRvTj9ST3tgbNK2cMFTmUFrobwzv7
-         q7ffRrFFHbw2Go1lxNzrS5Ls+C4mqXdGbwDbjnKCjy5AphKWp+ntdwYY8NiTkl3p7Pxx
-         uuN73NbhqgkYqDkQo1vMKSr2Ef29rx/a/oBH/WIgrRjF3ZGBGpzDecFxWGzQi2/Me4EE
-         x++Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+qiNOnMPVcTggFsBYHaEzoH71rIPx2WFWj8O2ocXAy4=;
-        b=69KQsJNEyMj6HWS6Js+bS8qUsJ6xTF2iE6LYfWijhyiqeIfQXgymT3b2rxDf6kAHED
-         krnTIhJS5bp3QA+dmxYcV9AQJRU9rFJIUjiviYdD2HpfNiUl9DZJ6J53feIaopveUZPO
-         MJRnAdc1nX2D1T2IikZ9Yjr+PPaFeXOAzyaRomNdEC7JbzRCh9OMT6T9gj+p6/p0GAwQ
-         ZhyIl7ukZypraW4weOxV4kQVd79JmpwCIpXjITQbO4fiEdP7SMop0VmjSX9UxpdnRFTH
-         itqnDI0HpHaz3jAzory5J4aHvY5VTMN30EOKUUkcAheK2ouIurGbWI30651yx77mck4r
-         G5Jg==
-X-Gm-Message-State: AJIora/KXj0LpvugU9fjL2kjeAqStNiTEHjXQ03c09rYe43nV0p++W03
-        vVHEZYIomayLpye56lLwW+m2EQ==
-X-Google-Smtp-Source: AGRyM1siGEUEnyJJOowXE+Po+lvFcMlMH8ag+fSkZEu8Bp76hF8nWN1ylZYYQUMn2Mw72TmbBS0iFg==
-X-Received: by 2002:a05:6512:12d4:b0:48a:8d45:7208 with SMTP id p20-20020a05651212d400b0048a8d457208mr9125479lfg.192.1659513064031;
-        Wed, 03 Aug 2022 00:51:04 -0700 (PDT)
-Received: from [192.168.1.6] ([77.222.167.48])
-        by smtp.gmail.com with ESMTPSA id k6-20020ac257c6000000b0048b03012d0dsm793539lfo.254.2022.08.03.00.51.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Aug 2022 00:51:03 -0700 (PDT)
-Message-ID: <971ad767-68b7-bbb7-f147-c3cce24fbe4f@linaro.org>
-Date:   Wed, 3 Aug 2022 09:51:00 +0200
+        with ESMTP id S237324AbiHCH6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 03:58:10 -0400
+Received: from aer-iport-1.cisco.com (aer-iport-1.cisco.com [173.38.203.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9963120F;
+        Wed,  3 Aug 2022 00:58:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=cisco.com; i=@cisco.com; l=1442; q=dns/txt; s=iport;
+  t=1659513489; x=1660723089;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=y0WnfnASAaSNWqN6hhhY0Go5IWPq3oMhskgNHoWb0YE=;
+  b=lKI5gb4w5236j9/9IzMppTOGmKAZWheoFdquOJfwcXB/nWtE/XziT2K/
+   vdBMo3Ly3Yimxq3MtJq3mf5jA2ydEFtVFhiKIV+96nax5UNnheiOvZ/mn
+   SF3t4Z9Yd+nuYewoERJX7dKejVdUsTg8TlSLlpXDRpfg6LYFJir0D7wYZ
+   U=;
+X-IronPort-AV: E=Sophos;i="5.93,213,1654560000"; 
+   d="scan'208";a="3358740"
+Received: from aer-iport-nat.cisco.com (HELO aer-core-1.cisco.com) ([173.38.203.22])
+  by aer-iport-1.cisco.com with ESMTP/TLS/DHE-RSA-SEED-SHA; 03 Aug 2022 07:58:07 +0000
+Received: from office-260.rd.cisco.com ([10.47.77.162])
+        by aer-core-1.cisco.com (8.15.2/8.15.2) with ESMTP id 2737w5SB024084;
+        Wed, 3 Aug 2022 07:58:06 GMT
+From:   Erling Ljunggren <hljunggr@cisco.com>
+To:     linux-media@vger.kernel.org
+Cc:     Erling Ljunggren <hljunggr@cisco.com>, devicetree@vger.kernel.org
+Subject: [PATCH v2 3/5] dt-bindings: media: add cat24c208 bindings
+Date:   Wed,  3 Aug 2022 09:58:48 +0200
+Message-Id: <20220803075850.1196988-4-hljunggr@cisco.com>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220803075850.1196988-1-hljunggr@cisco.com>
+References: <20220803075850.1196988-1-hljunggr@cisco.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 5/8] Revert "dt-bindings: usb: dwc3: Add wakeup-source
- property support"
-Content-Language: en-US
-To:     Johan Hovold <johan@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220802151404.1797-1-johan+linaro@kernel.org>
- <20220802151404.1797-6-johan+linaro@kernel.org>
- <CAL_JsqL5ZCzfd06rxOdQodFjk4G3QpDCsxA5heM71x0q5d-hCw@mail.gmail.com>
- <YuokOn0KHEqv/CR4@hovoldconsulting.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YuokOn0KHEqv/CR4@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Outbound-SMTP-Client: 10.47.77.162, [10.47.77.162]
+X-Outbound-Node: aer-core-1.cisco.com
+X-Spam-Status: No, score=-10.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIMWL_WL_MED,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        SPF_HELO_PASS,SPF_NONE,USER_IN_DEF_DKIM_WL autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/08/2022 09:31, Johan Hovold wrote:
-> On Tue, Aug 02, 2022 at 11:17:22AM -0600, Rob Herring wrote:
->> On Tue, Aug 2, 2022 at 9:14 AM Johan Hovold <johan+linaro@kernel.org> wrote:
-> 
->>> It should also not be used to
->>> work around Linux driver implementation issues such as how to coordinate
->>> the glue and core dwc3 drivers.
->>>
->>> For the Qualcomm dwc3 controllers, it is the glue device that manages
->>> the wakeup interrupts, which may or may not be able to wake the system
->>> up from system suspend.
->>
->> While the reasoning to add this may have been for QCom, having this
->> property for other users makes sense. On some platforms, 'snps,dwc3'
->> is the only node (i.e. there's no wrapper node). So I don't think this
->> should be reverted.
-> 
-> Fair enough. Let's keep it in the core child node then where we can
-> still retrieve from the glue parent directly.
-> 
-> (I assume you're not suggesting also adding 'wakeup-source' to the qcom
-> glue node, which is where the actual wakeup interrupts live.)
-> 
-> The glue and core parts needs to work in concert even if the current
-> implementation tends to make that harder than it should be.
+Add devicetree bindings for new cat24c208 EDID EEPROM driver.
 
-I think it can still exist in the glue node (so your next patch),
-because as you said this is the place with wakeup interrupt, so it looks
-like correct hardware description. In the next patch you would need to
-disallow it for the DWC node.
+Signed-off-by: Erling Ljunggren <hljunggr@cisco.com>
+---
+ .../bindings/media/i2c/onnn,cat24c208.yaml    | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+new file mode 100644
+index 000000000000..590cdf0cbdc1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/onnn,cat24c208.yaml
+@@ -0,0 +1,40 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/onnn,cat24c208.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ON Semiconductor CAT24C208 EDID EEPROM driver
++
++maintainers:
++  - Hans Verkuil <hverkuil-cisco@xs4all.nl>
++
++description: |
++  CAT24C208 is a dual port i2c EEPROM designed for EDID storage.
++
++
++properties:
++  compatible:
++    const: onnn,cat24c208
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        cat24c208@31 {
++            compatible = "onnn,cat24c208";
++            reg = <0x31>;
++        };
++    };
++...
+-- 
+2.37.1
+
