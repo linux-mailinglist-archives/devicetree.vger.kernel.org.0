@@ -2,229 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 206A95891E4
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 19:57:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4446358920F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 20:11:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237550AbiHCR5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 13:57:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59822 "EHLO
+        id S236461AbiHCSLN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 14:11:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233102AbiHCR4x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 13:56:53 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D3E1117D
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 10:56:52 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id w185so17145046pfb.4
-        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 10:56:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc;
-        bh=R/thb/l5r1d6FNEsZjkRJUdjjv796A2Mvmam6o/myTQ=;
-        b=RpvQh7EbN8oCfK7AMC6gRdE4bh5Lr1BNe+IJnTXepLEqzxu5HlKdUd0oIdeDl7XHDb
-         UIQV8dnWhjrUs526mb+xPJWwvZkei9ypEPBor1mlLVIsNEnh99pJMRU/30V0Q8H3rV9h
-         oI/mPVXCQ1Es1bL9TlKggYBRFvXr2lAH/c6z4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc;
-        bh=R/thb/l5r1d6FNEsZjkRJUdjjv796A2Mvmam6o/myTQ=;
-        b=U2DWHHzHKNmIU/COahYX0CIqx1pe6+nyggv3bL+S7TrSCvyeuUx5sum+ph6WhfM/2A
-         H8r/yUqo4a7LqApJyvUW+Qk9JYgClAHzV0LEMj+Nts3FjcGIaypqgByrg4Iu689pADt1
-         WZJEEZAh80kvYs9H2+9X83hBgHZ7juQ9oE49pHY94/OLrkcLydc2V4jhIpsrLyFyo4NZ
-         6HklOijj1c2V3ZTWxfg401Df02YqmD88lRO1tzaxEMrKFQ3dhu6fPOYDh34iH1hS8AlS
-         SUumRnYFxsLHDHJG8J76nDIISJzyGCI1XbGb/3w/L8qGkky6xbsP0jcLvd+EXAlvh70s
-         lThw==
-X-Gm-Message-State: AJIora8L9W/OBpBA/hjFgJOGn2wfQko4Qs1/XzaIsW6jzC/U4wQTfg9D
-        QVRapOQly/KhjAotTo1bGPHU/A==
-X-Google-Smtp-Source: AGRyM1ttAkD51uy7udVHrkYNmu8LuQVeD3Cp0JAwHHCYzdZb4LBesdrnbPUyughYJw3cKaqDbZjdrQ==
-X-Received: by 2002:a05:6a00:a8b:b0:4cd:6030:4df3 with SMTP id b11-20020a056a000a8b00b004cd60304df3mr26613409pfl.40.1659549412296;
-        Wed, 03 Aug 2022 10:56:52 -0700 (PDT)
-Received: from ubuntu-22.localdomain ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id iw4-20020a170903044400b0016d150c6c6dsm2238639plb.45.2022.08.03.10.56.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Aug 2022 10:56:51 -0700 (PDT)
-From:   William Zhang <william.zhang@broadcom.com>
-To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
-Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
-        joel.peshkin@broadcom.com, dan.beygelman@broadcom.com,
-        f.fainelli@gmail.com, krzysztof.kozlowski@linaro.org,
-        rafal@milecki.pl, William Zhang <william.zhang@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 5/9] arm64: dts: Add BCM4908 generic board dts
-Date:   Wed,  3 Aug 2022 10:54:51 -0700
-Message-Id: <20220803175455.47638-6-william.zhang@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220803175455.47638-1-william.zhang@broadcom.com>
-References: <20220803175455.47638-1-william.zhang@broadcom.com>
+        with ESMTP id S236188AbiHCSLM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 14:11:12 -0400
+Received: from smtp.smtpout.orange.fr (smtp01.smtpout.orange.fr [80.12.242.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D2054B0DD
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 11:11:10 -0700 (PDT)
+Received: from [192.168.1.18] ([90.11.190.129])
+        by smtp.orange.fr with ESMTPA
+        id JIploQDLd9RnzJIpmowjJ7; Wed, 03 Aug 2022 20:11:08 +0200
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: YWZlNiIxYWMyZDliZWIzOTcwYTEyYzlhMmU3ZiQ1M2U2MzfzZDfyZTMxZTBkMTYyNDBjNDJlZmQ3ZQ==
+X-ME-Date: Wed, 03 Aug 2022 20:11:08 +0200
+X-ME-IP: 90.11.190.129
+Message-ID: <67041dbe-ad6c-c53f-9760-bd7b5988d137@wanadoo.fr>
+Date:   Wed, 3 Aug 2022 20:11:05 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000003a6ca005e559f559"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v4 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
+ driver
+Content-Language: en-US
+To:     ddrokosov@sberdevices.ru
+Cc:     andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
+        jic23@kernel.org, kernel@sberdevices.ru, lars@metafoo.de,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, stano.jakubek@gmail.com,
+        stephan@gerhold.net
+References: <20220803131132.19630-1-ddrokosov@sberdevices.ru>
+ <20220803131132.19630-3-ddrokosov@sberdevices.ru>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20220803131132.19630-3-ddrokosov@sberdevices.ru>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000003a6ca005e559f559
-Content-Transfer-Encoding: 8bit
+Le 03/08/2022 à 15:11, Dmitry Rokosov a écrit :
+> MSA311 is a tri-axial, low-g accelerometer with I2C digital output for
+> sensitivity consumer applications. It has dynamic user-selectable full
+> scales range of +-2g/+-4g/+-8g/+-16g and allows acceleration measurements
+> with output data rates from 1Hz to 1000Hz.
+> 
+> Spec: https://cdn-shop.adafruit.com/product-files/5309/MSA311-V1.1-ENG.pdf
+> 
+> This driver supports following MSA311 features:
+>      - IIO interface
+>      - Different power modes: NORMAL and SUSPEND (using pm_runtime)
+>      - ODR (Output Data Rate) selection
+>      - Scale and samp_freq selection
+>      - IIO triggered buffer, IIO reg access
+>      - NEW_DATA interrupt + trigger
+> 
+> Below features to be done:
+>      - Motion Events: ACTIVE, TAP, ORIENT, FREEFALL
+>      - Low Power mode
+> 
+> Signed-off-by: Dmitry Rokosov <ddrokosov-i4r8oA+eLlH99rHkP+FxIw@public.gmane.org>
+> ---
+>   MAINTAINERS                |    6 +
+>   drivers/iio/accel/Kconfig  |   13 +
+>   drivers/iio/accel/Makefile |    2 +
+>   drivers/iio/accel/msa311.c | 1323 ++++++++++++++++++++++++++++++++++++
+>   4 files changed, 1344 insertions(+)
+>   create mode 100644 drivers/iio/accel/msa311.c
+> 
 
-Add generic bare bone bcm94908.dts file to support any 4908 based
-design. It supports cpu subsystem, memory and an uart console. This can
-be useful for board bring-up and cpu subsystem and memory related kernel
-test as well.
+Hi,
+a few nits below.
 
-Signed-off-by: William Zhang <william.zhang@broadcom.com>
+[...]
 
----
+> +static int msa311_check_partid(struct msa311_priv *msa311)
+> +{
+> +	struct device *dev = msa311->dev;
+> +	unsigned int partid;
+> +	int err;
+> +
+> +	err = regmap_read(msa311->regs, MSA311_PARTID_REG, &partid);
+> +	if (err)
+> +		return dev_err_probe(dev, err,
+> +				     "failed to read partid (%d)\n", err);
 
-(no changes since v2)
+No need for "(%d)" and err.
 
-Changes in v2:
-- Update commit message with more details
+> +
+> +	if (partid == MSA311_WHO_AM_I)
+> +		dev_dbg(dev, "found MSA311 compatible chip[%#x]\n", partid);
+> +	else
+> +		dev_warn(dev, "invalid partid (%#x), expected (%#x)\n",
+> +			 partid, MSA311_WHO_AM_I);
+> +
+> +	return 0;
+> +}
 
- arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |  1 +
- .../boot/dts/broadcom/bcmbca/bcm94908.dts     | 30 +++++++++++++++++++
- 2 files changed, 31 insertions(+)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dts
+[...]
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-index d30fa75f0611..27741b71ba9e 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-@@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_BCMBCA) += \
- 				bcm4906-tplink-archer-c2300-v1.dtb \
- 				bcm4908-asus-gt-ac5300.dtb \
- 				bcm4908-netgear-raxe500.dtb \
-+				bcm94908.dtb \
- 				bcm4912-asus-gt-ax6000.dtb \
- 				bcm94912.dtb \
- 				bcm963158.dtb \
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dts
-new file mode 100644
-index 000000000000..fcbd3c430ace
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm94908.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2022 Broadcom Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "bcm4908.dtsi"
-+
-+/ {
-+	model = "Broadcom BCM94908 Reference Board";
-+	compatible = "brcm,bcm94908", "brcm,bcm4908", "brcm,bcmbca";
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x08000000>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
--- 
-2.34.1
+> +static int msa311_probe(struct i2c_client *i2c)
+> +{
+> +	struct device *dev = &i2c->dev;
+> +	struct msa311_priv *msa311;
+> +	struct iio_dev *indio_dev;
+> +	int err;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*msa311));
+> +	if (!indio_dev)
+> +		return dev_err_probe(dev, -ENOMEM,
+> +				     "iio device allocation failed\n");
+> +
+> +	msa311 = iio_priv(indio_dev);
+> +	msa311->dev = dev;
+> +	i2c_set_clientdata(i2c, indio_dev);
+> +
+> +	err = msa311_regmap_init(msa311);
+> +	if (err)
+> +		return err;
+> +
+> +	mutex_init(&msa311->lock);
+> +
+> +	msa311->vdd = devm_regulator_get_optional(dev, "vdd");
+> +	if (IS_ERR(msa311->vdd)) {
+> +		err = PTR_ERR(msa311->vdd);
+> +		if (err == -ENODEV)
+> +			msa311->vdd = NULL;
+> +		else
+> +			return dev_err_probe(dev, PTR_ERR(msa311->vdd),
+> +					     "cannot get vdd supply\n");
+> +	}
+> +
+> +	if (msa311->vdd) {
+> +		err = regulator_enable(msa311->vdd);
+> +		if (err)
+> +			return dev_err_probe(dev, err,
+> +					     "cannot enable vdd supply\n");
+> +
+> +		err = devm_add_action_or_reset(dev, msa311_vdd_disable,
+> +					       msa311->vdd);
+> +		if (err) {
+> +			regulator_disable(msa311->vdd);
 
+Double regulator_disable(), because of the _or_reset()?
 
---0000000000003a6ca005e559f559
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+> +			return dev_err_probe(dev, err,
+> +					     "cannot add vdd disable action\n");
+> +		}
+> +	}
+> +
+> +	err = msa311_check_partid(msa311);
+> +	if (err)
+> +		return err;
+> +
+> +	err = msa311_soft_reset(msa311);
+> +	if (err)
+> +		return err;
+> +
+> +	err = msa311_set_pwr_mode(msa311, MSA311_PWR_MODE_NORMAL);
+> +	if (err)
+> +		return dev_err_probe(dev, err,
+> +				     "failed to power on device (%d)\n", err);
 
-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
-TltlrAeBKRJ1M9O/DY5v7L1Yrs//7XIRg/d2ZPAOSGBQzFYjYTFWwNBiR1s1zP0m2y56DPbS5gwj
-fqAN/I4PJHIvTh3zUgHXNKadYoYRiPHXfaTWO9UhzysOpQIDAQABo4IB2zCCAdcwDgYDVR0PAQH/
-BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3VyZS5nbG9i
-YWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEGCCsGAQUF
-BzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAy
-MDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93d3cuZ2xv
-YmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6hjhodHRw
-Oi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNybDAlBgNV
-HREEHjAcgRp3aWxsaWFtLnpoYW5nQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAf
-BgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUohM5GmNlGWe5wpzDxzIy
-+EgzbRswDQYJKoZIhvcNAQELBQADggEBACKu9JSQAYTlmC+JTniO/C/UcXGonATI/muBjWTxtkHc
-abZtz0uwzzrRrpV+mbHLGVFFeRbXSLvcEzqHp8VomXifEZlfsE9LajSehzaqhd+np+tmUPz1RlI/
-ibZ7vW+1VF18lfoL+wHs2H0fsG6JfoqZldEWYXASXnUrs0iTLgXxvwaQj69cSMuzfFm1X5kWqWCP
-W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
-1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
-MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
-VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIA81UVKUbeMvRVTPlCXQGEv38ioG
-h4hOfw05Ww/fKplUMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDgwMzE3NTY1MlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
-CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQAdM7ZPS7aWqDVWoe1jPlIghD4UckDH59AUIs1TwwXGlOvU
-ST+Nu+U2ykq4K8iYFkhPYzKldiF6CrNzjKc19Mn3+/ZM9rD/DP5LnahV2rPc/jQp1iUu7k6bvngk
-KFZ83i+kJDmvo3HBrOn+cSs0drhLV441qahxWFlFzJzrfjJjeL1uFD4g3DLABxzri3JtpQ2QysVS
-Zy+fFa+X3OEvGcK/Tremgn8VwbkhuHa+LBDFY6E1GwFW4jFyaKQGIsyhot3ZP3BlhrIsqmm7x5Lr
-eYcV3kKuajwPZ4mi4nAoBGIQJkcnvDokyGbK1sVJH23Lo4ie4Na3LvEfWZs7p8I+JN9J
---0000000000003a6ca005e559f559--
+No need for "(%d)" and err
+
+CJ
