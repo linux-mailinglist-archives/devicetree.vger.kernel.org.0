@@ -2,141 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB39A589416
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 23:40:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7168C589431
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 23:58:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236179AbiHCVkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 17:40:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52920 "EHLO
+        id S238301AbiHCV6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 17:58:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234745AbiHCVkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 17:40:06 -0400
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8BB340BE2;
-        Wed,  3 Aug 2022 14:40:05 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id e69so13901457iof.5;
-        Wed, 03 Aug 2022 14:40:05 -0700 (PDT)
+        with ESMTP id S236415AbiHCV6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 17:58:38 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECB0E5C355
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 14:58:36 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id q19so8312513pfg.8
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 14:58:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SCTW2VGVCe70yjzOhwev7SpsmSsxdAFKcNcUxQ5cnTk=;
+        b=QvmYegVWwxzQMt9s8BVNHqdrotBTolyCG/Brqb8N2NC5qkIEgQFxdpmLRxPp+hbh4S
+         Pmc3cs1KKel2tDx+PfmPx+2gfU+Z29b0/yQYOhIXj4wPGlZYg9cp63doNcV0OlbH0C7D
+         JNQn2LB8ONdwnRZWz9ufaT1pfS/qNuZgq9Dzc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=PoAbO2TJzV0lAh1cQiBoTvQXqo+RgOhm6j9tuBM+bjI=;
-        b=O40NjtNtw/dd9gbcbHz9QJsero9lCCmpjjlsgLNi46TQ9klvRBJPk4Qnbj6u0lOTVB
-         UYZ6if6R+AyLyTVfYvzhdcHK5zjshLSlUYCql5CE+Zx1fDyRVfuWFQ4Getk7kvgfynYA
-         DsSmQTO/Utfm/SyWRgoGlxjGV4BoXwd7GUr/NJsCsEo9zq7ZvqgKZ3xP4g3v8DUm/RWf
-         1OV+NGs6jRYlhsNtVJZzow2hd4iTB6DD3mzJfHEHUdtGKnQhkiEDTrVlc9JuBlABH9nU
-         OLvNqeXAQNPGV5oh7ozL776xAnZX7P0SKLlficJA3G8wuuR/5rsl0vtUg3H5t+qmZYui
-         QH4g==
-X-Gm-Message-State: ACgBeo3lMl5AAayu0tXVl9nGrEBbo/LQCP/C65YSjqw9M2sBFOqI257u
-        l9EbwfiiTINJXdXPvURcKA==
-X-Google-Smtp-Source: AA6agR74TqLpu6rXFlxDzpXKcwaDch4+hV9VRV/8owxn5cc8tUiYTeoIQKDKrn8CMLWJddeDtM0HWg==
-X-Received: by 2002:a05:6602:154c:b0:67f:c11a:6d7c with SMTP id h12-20020a056602154c00b0067fc11a6d7cmr2511343iow.176.1659562805005;
-        Wed, 03 Aug 2022 14:40:05 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m7-20020a92c527000000b002dc3df1b345sm7339451ili.88.2022.08.03.14.40.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Aug 2022 14:40:04 -0700 (PDT)
-Received: (nullmailer pid 2667120 invoked by uid 1000);
-        Wed, 03 Aug 2022 21:40:00 -0000
-Date:   Wed, 3 Aug 2022 15:40:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lukas Wunner <lukas@wunner.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SCTW2VGVCe70yjzOhwev7SpsmSsxdAFKcNcUxQ5cnTk=;
+        b=3klmHSWd649qBSEXubycvv3kRGEEyUnMwekAbFYNtLENUmdtVUTUzbb/CqisNqEeL5
+         vaUOvefDmdhMpdn3ejcMIB4d9Q3Bg8Ldtt1bQARWgmvntW1Yw3S9wq+yyHJ2tzCE3N1a
+         7vsP11rxMQJ+Ecgv8kKQ+xxsyl2HoSbtKYYtDgxlkJvmJgUu/PtNZqyBNIJad/o4cqte
+         Oxj/LjrgkYwuowILhRTg0dU3b9QNszxD8dmleOBYO2xrRQddMvGekRy2EG0R59FMhYeR
+         AF9baxYGD/lj/Kk4LeMHRzEgUnq2NOfWjt1Gn5fLF0KjiMyDhLO9GY9n45VL1YiEtE6Z
+         ziBQ==
+X-Gm-Message-State: AJIora/m8iC3apHuObzhHx4JJDgz+cdPg1+Qxg8xYfQGfCN7o61rjaap
+        OoMiNYDDzUF7OHWh2fEl79Na4g==
+X-Google-Smtp-Source: AGRyM1v7t6ywdISV+g82lYVUwLGYI/OHQiSZ7PwIQ4O0SpDyjUA11aPQKQKyGvDOsWyGYUJnoagBlg==
+X-Received: by 2002:a05:6a00:1a44:b0:528:6af7:ff4a with SMTP id h4-20020a056a001a4400b005286af7ff4amr28142758pfv.78.1659563916450;
+        Wed, 03 Aug 2022 14:58:36 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:238b:c074:f5f8:56d0])
+        by smtp.gmail.com with UTF8SMTPSA id a8-20020a631a48000000b0040c9df2b060sm11384657pgm.30.2022.08.03.14.58.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Aug 2022 14:58:36 -0700 (PDT)
+Date:   Wed, 3 Aug 2022 14:58:33 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lucas Stankus <lucas.p.stankus@gmail.com>,
-        Puranjay Mohan <puranjay12@gmail.com>,
-        Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Alexandru Tachici <alexandru.tachici@analog.com>,
-        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Kent Gustavsson <kent@minoris.se>,
-        Tomislav Denis <tomislav.denis@avl.com>,
-        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
-        Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        Dragos Bogdan <dragos.bogdan@analog.com>,
-        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Joachim Eastwood <manabian@gmail.com>,
-        Tomas Melin <tomas.melin@vaisala.com>,
-        Sean Nyekjaer <sean@geanix.com>,
-        Beniamin Bia <beniamin.bia@analog.com>,
-        Patrick Vasseur <patrick.vasseur@c-s.fr>,
-        Charles-Antoine Couret <charles-antoine.couret@essensium.com>,
-        Vladimir Barinov <vladimir.barinov@cogentembedded.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Philippe Reynes <tremyfr@yahoo.fr>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Akinobu Mita <akinobu.mita@gmail.com>,
-        Alexandru Lazar <alazar@startmail.com>,
-        Oskar Andero <oskar.andero@gmail.com>,
-        =?UTF-8?Q?M=C3=A5rten_Lindahl?= <martenli@axis.com>,
-        Bogdan Pricop <bogdan.pricop@emutex.com>,
-        Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Phil Reid <preid@electromag.com.au>,
-        Michael Welling <mwelling@ieee.org>,
-        Robert Jones <rjones@gateworks.com>,
-        Chris Coffey <cmc@babblebit.net>,
-        Slawomir Stepien <sst@poczta.fm>,
-        Sankar Velliangiri <navin@linumiz.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v2 00/10] dt-bindings: iio: use spi-peripheral-props.yaml
-Message-ID: <20220803214000.GB2639296-robh@kernel.org>
-References: <20220727164646.387541-1-krzysztof.kozlowski@linaro.org>
- <20220730224643.GB11662@wunner.de>
- <bd829586-f052-03c3-aa68-e5a2be84b6bb@linaro.org>
- <20220801160410.GA6059@wunner.de>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] usb: dwc3: qcom: fix runtime PM wakeup
+Message-ID: <YurviWfzut9sursr@google.com>
+References: <20220802151404.1797-1-johan+linaro@kernel.org>
+ <20220802151404.1797-5-johan+linaro@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220801160410.GA6059@wunner.de>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220802151404.1797-5-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 01, 2022 at 06:04:10PM +0200, Lukas Wunner wrote:
-> On Mon, Aug 01, 2022 at 05:45:07PM +0200, Krzysztof Kozlowski wrote:
-> > On 31/07/2022 00:46, Lukas Wunner wrote:
-> > > On Wed, Jul 27, 2022 at 06:46:36PM +0200, Krzysztof Kozlowski wrote:
-> > >>  78 files changed, 324 insertions(+), 249 deletions(-)
-> > > 
-> > > Pardon me for being dense, but what is the benefit of this series
-> > > that justifies inflating the schema definitions by a total of 75 lines?
-> > 
-> > The commits were explaining rationale, so let me bring it here. The
-> > benefits are:
-> > This allows using all properties typical for SPI-connected devices, even
-> > these which device bindings author did not tried yet.
+On Tue, Aug 02, 2022 at 05:14:00PM +0200, Johan Hovold wrote:
+> A device must enable wakeups during runtime suspend regardless of
+> whether it is capable and allowed to wake the system up from system
+> suspend.
 > 
-> How do you know these untested properties work with the devices to which
-> you're adding them?
+> Fixes: 2664deb09306 ("usb: dwc3: qcom: Honor wakeup enabled/disabled state")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-How do we know anything DT works? We don't without testing on h/w. 
-That's not what the schemas provide.
+Ah, I wasn't aware that the same wakeup mechanism is used in runtime suspend.
 
-The spi-peripheral-props.yaml reference is needed in order to allow 
-controller specific timing properties and to prevent random 
-other undocumented properties from being present. There is not another 
-way to do both of those.
-
-Do I wish we didn't have these controller specific timing parameters, 
-yes! But that ship has sailed.
-
-Rob
+In how far is runtime PM actually supported/used by this driver? The device is
+set 'active' in _probe(), and there are no other pm_runtime_* calls, except
+in dwc3_qcom_remove() and qcom_dwc3_resume_irq(). How does the device get from
+'active' into 'suspended'?
