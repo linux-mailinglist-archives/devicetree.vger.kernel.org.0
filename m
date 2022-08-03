@@ -2,122 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F91C58945F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 00:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 249D858946E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 00:33:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236511AbiHCW2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 18:28:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50642 "EHLO
+        id S232796AbiHCWds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 18:33:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbiHCW2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 18:28:16 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF7495A88C
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 15:28:14 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id l4so23126793wrm.13
-        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 15:28:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=conchuod.ie; s=google;
-        h=content-transfer-encoding:in-reply-to:cc:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=zEkoao7zYU+WcR7kSm6nBvQaMYVp8naAyd32jCLqH0E=;
-        b=OY37iNsm9roYuI5Moxof5r+o8pf2Q1qn+8QLwRr4MTgwsttoZDEkjnOSv8j/NYJIeG
-         KxKOLZM8GT/VyFVqo0/v8dO4twI9bFmgrawsf4B5eXGxPSzsINYXoq4ZI5o/43WOm4Sk
-         cPQQ47hJjjnf17PAsWD6DCZ54oQO5dbtWWFU8G8u7IVeHiLaaLavZ9vPIsmrJ9XH+OBe
-         TXg5jdSbGGlTFzywMkudScDF6wWaKbmq4/G1GveRbxLw89wibZae5O4TlfptnKxyJC+y
-         A8eJDknbu2XM+gW8bHpVmb9hFOAdSharsg/+faTM0+tGZDmqR8y+XWYo0FJGUTZMt8T9
-         zvqA==
+        with ESMTP id S229579AbiHCWds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 18:33:48 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2316B1109
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 15:33:47 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id i84so1393617ioa.6
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 15:33:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:cc:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=zEkoao7zYU+WcR7kSm6nBvQaMYVp8naAyd32jCLqH0E=;
-        b=DmEMvJLdMp34w+zVI8GHLyK6vT+aG/JLFYGoLGgtZO6C39uZqQ3SAD3ryuj0+W9aFW
-         hkZ1joqIgJtwiNVGCc2cLOQUVfpKsW+B+FkpC/LomD/nzqyqbS3RDuUUiD2HoCguCAc2
-         fmG6zxR8cwVpKhm580+tB2KRxEZXacejJnyG5dWcxYaTTdCila9yTqsruca+y35HHK6z
-         wOFipsZYK4zrSNIqhRZwmqb9ncbCXNYANMr5wcnvtXjiWFxBDm+l3qJ6DtH/vLuLyzsr
-         SYH8YWbAHw9DP0NF5QrfYBK7efeEEAL65f/XH1arUGGkHL9Z4ZRSgNBJyLuOlqDgEVDS
-         tKNg==
-X-Gm-Message-State: ACgBeo0TOSWII8wvMKtTIHoJQb9nO6Bb8OW3MCVdwAAQlXLCdtFbyouy
-        dShCNCp2IF5WjzY+hyYH4I/ghA==
-X-Google-Smtp-Source: AA6agR7PNg/Odstt713wfGffYsv2eg5MMIZWjFU6weO1GXug4XZYRpKQy1TDxMimIbF9Ge9HuXobpA==
-X-Received: by 2002:adf:de05:0:b0:220:6c9e:5fd9 with SMTP id b5-20020adfde05000000b002206c9e5fd9mr7382563wrm.260.1659565693477;
-        Wed, 03 Aug 2022 15:28:13 -0700 (PDT)
-Received: from [192.168.2.222] ([93.107.66.220])
-        by smtp.gmail.com with ESMTPSA id u10-20020a05600c19ca00b003a3187a2d4csm3980993wmq.22.2022.08.03.15.27.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Aug 2022 15:28:13 -0700 (PDT)
-Message-ID: <1a9c0ecb-f841-e73e-1c43-eb4e262b9f4a@conchuod.ie>
-Date:   Wed, 3 Aug 2022 23:27:16 +0100
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=9gI9TOdJWQOPfIpMfYTyghgtjr1K2FynC9VVJudPdrA=;
+        b=yQo4t93wP90QN40csqUuwrOEWtuGUSZXMEv5F0Mk+0VaGsAUKb58gHRJYlHSwZ7Z9V
+         bOFPVi4LQD+tLb6DPsPo9QQY+A/5JEaz9mz2LcyOmfwlUd2V29OjFkh+9gN7rae7yVgX
+         C1oujod/dmgt0aCsAx00Z0E2yT6I90lGT97zRu5gtOIZvjA0M1mx7vuh/5vTe8lbULrs
+         MuBHVuPekfJrOTsHr6bFtm9o2YEmyFXytrQllD2lSnAI+n9GaFwV/8DhFkCmZVG7FNAw
+         VNCwns3HzPPS2n/z5+qIFDmVGmqGNrbsVJ+Wy2lvq0OUJIvTnvmZyugVNwNdnuVuiS4C
+         xrCg==
+X-Gm-Message-State: ACgBeo3VlUg0lqIlH3XFgTFIAiFI/jJJa3ikHAbBfSPyW+pGRXEDasKk
+        JW1G9sSznwmZL5l+b2Ychw==
+X-Google-Smtp-Source: AA6agR4FTOsGPel7KQefqEIOVHQuKg2sQLlZIWChh3AONYgk92v0ZeAm7CWzdJNpZEXyDkHkK+uSjQ==
+X-Received: by 2002:a05:6638:3821:b0:342:968b:62d with SMTP id i33-20020a056638382100b00342968b062dmr1350017jav.302.1659566026386;
+        Wed, 03 Aug 2022 15:33:46 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id n17-20020a056602341100b00674f9fb1531sm8800376ioz.30.2022.08.03.15.33.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Aug 2022 15:33:45 -0700 (PDT)
+Received: (nullmailer pid 2741031 invoked by uid 1000);
+        Wed, 03 Aug 2022 22:33:43 -0000
+Date:   Wed, 3 Aug 2022 16:33:43 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jagan Teki <jagan@edgeble.ai>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        Elaine Zhang <zhangqing@rock-chips.com>
+Subject: Re: [PATCH v2 02/20] dt-bindings: power: Add power-domain header for
+ RV1126
+Message-ID: <20220803223343.GA2737695-robh@kernel.org>
+References: <20220731174726.72631-1-jagan@edgeble.ai>
+ <20220731174726.72631-3-jagan@edgeble.ai>
+ <4f8b8b98-c0ef-4924-6ff1-ccfeae77fc21@linaro.org>
+ <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: DT schema warnings on Risc-V virt machine
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>
-References: <20220803170552.GA2250266-robh@kernel.org>
-From:   Conor Dooley <mail@conchuod.ie>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        qemu-riscv@nongnu.org
-In-Reply-To: <20220803170552.GA2250266-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/08/2022 18:05, Rob Herring wrote:
-> Hey folks,
+On Wed, Aug 03, 2022 at 03:54:56PM +0530, Jagan Teki wrote:
+> On Tue, 2 Aug 2022 at 16:08, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 31/07/2022 19:47, Jagan Teki wrote:
+> > > Add power-domain header for RV1126 SoC from description in TRM.
+> > >
+> > > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
+> > > ---
+> > > Changes for v2:
+> > > - add blank line
+> > >
+> > >  include/dt-bindings/power/rv1126-power.h | 35 ++++++++++++++++++++++++
+> > >  1 file changed, 35 insertions(+)
+> > >  create mode 100644 include/dt-bindings/power/rv1126-power.h
+> > >
+> > > diff --git a/include/dt-bindings/power/rv1126-power.h b/include/dt-bindings/power/rv1126-power.h
+> >
+> > Vendor in filename is needed.
 > 
-> FYI, I ran DT validation on the Risc-V 'virt' machine and these are the 
-> warnings:
+> Yes this follows how similar rockchip vendor notation
 > 
-> /home/rob/riscv-virt.dtb: cpu@0: riscv,isa:0: 'rv64imafdcsuh' is not one of ['rv64imac', 'rv64imafdc']
->         From schema: /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/riscv/cpus.yaml
+> $ ls include/dt-bindings/power/rk3* -l
+>  include/dt-bindings/power/rk3036-power.h
+>  include/dt-bindings/power/rk3066-power.h
+>  include/dt-bindings/power/rk3128-power.h
+>  include/dt-bindings/power/rk3188-power.h
+>  include/dt-bindings/power/rk3228-power.h
+>  include/dt-bindings/power/rk3288-power.h
+>  include/dt-bindings/power/rk3328-power.h
+>  include/dt-bindings/power/rk3366-power.h
+>  include/dt-bindings/power/rk3368-power.h
+>  include/dt-bindings/power/rk3399-power.h
+>  include/dt-bindings/power/rk3568-power.h
+> 
+> >
+> > > new file mode 100644
+> > > index 000000000000..38a68e000d38
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/power/rv1126-power.h
+> > > @@ -0,0 +1,35 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0 */
+> >
+> > Dual license, please, unless some copyrights are no allowing this.
+> 
+> Yes, as we discussed in v1 - I'm not liable to change so I keep this as it is.
 
-This one is party a QEMU problem & should've been fixed - but the fix
-was never applied:
-https://lore.kernel.org/qemu-devel/20190813225307.5792-1-palmer@sifive.com/
-I think this just needs a rebase & a resend which I can do.
-I think kernel-side we need to add a new string riscv,isa string but it
-is not the one in your error message - it's either "rv64imafdch" or
-"rv64imafdch_zicsr_zifencei_zba_zbb_zbc_zbs". Palmer, what is your
-take on that? Is only the short misa meant to go into the dt?
+I assume that would be Rockchip. Can someone from Rockchip please give 
+an okay here to dual license?
 
-For the plic/clint related warnings, documenting the
-"riscv,{plic,clint}0" variants seems to be to be the right thing to do
-as they're already in the kernel in drivers. I'll send patches for
-these.
-
-BTW Rob, what version of qemu were you using? I saw more errors on
-QEMU's master branch - like the following from a dump of the virt
-machine:
-/stuff/qemu/qemu.dtb: platform@4000000: $nodename:0: 'platform@4000000' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
-        From schema: /home/conor/.local/lib/python3.9/site-packages/dtschema/schemas/simple-bus.yaml
-
-Using a platform bus seems to be a core QEMU feature, used on multiple
-archs in hw/core/sysbus-fdt.c - but that violates the schema. Not sure
-what to do there.
-
-/stuff/qemu/qemu.dtb: soc: poweroff: {'value': [[21845]], 'offset': [[0]], 'regmap': [[4]], 'compatible': ['syscon-poweroff']} should not be valid under {'type': 'object'}
-        From schema: /home/conor/.local/lib/python3.9/site-packages/dtschema/schemas/simple-bus.yaml
-/stuff/qemu/qemu.dtb: soc: reboot: {'value': [[30583]], 'offset': [[0]], 'regmap': [[4]], 'compatible': ['syscon-reboot']} should not be valid under {'type': 'object'}
-        From schema: /home/conor/.local/lib/python3.9/site-packages/dtschema/schemas/simple-bus.yaml
-
-These two seem to be that the creation script adds them as subnodes of
-the soc bus not subnodes of the syscon. A QEMU problem rather than a dt
-bindings problem.
-
-The rest seem to be a variety of incorrect names being used in riscv's
-virt.c in QEMU. I guess I'll send fixes for those too..
-
-Thanks,
-Conor
+Rob
