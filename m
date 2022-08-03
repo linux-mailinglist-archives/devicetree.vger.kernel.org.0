@@ -2,67 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2A6D588759
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 08:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C955458876E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 08:35:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233559AbiHCG3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 02:29:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42898 "EHLO
+        id S234832AbiHCGfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 02:35:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233532AbiHCG3Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 02:29:24 -0400
+        with ESMTP id S236006AbiHCGfg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 02:35:36 -0400
 Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB8883057C
-        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 23:29:22 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id e15so14975350lfs.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 23:29:22 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACF7428E1F
+        for <devicetree@vger.kernel.org>; Tue,  2 Aug 2022 23:35:35 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id e15so14992170lfs.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Aug 2022 23:35:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=h2xnvN3rkMZcaAStopByq5FB4LTsZ0396BsEMoxv4z4=;
-        b=ovnV16wU7LJzAaYtctJMZD4GwKkovlVo2PAUjCPHLzzbcPBQ3vfsc/rYVQ3qYyXbs6
-         4oic7KpRvY672hnjYP0yEarW1MhOUVroEGQWcnNFNkhuMj2XNfrUYDtAIaO5/O5asuNf
-         5xVAzXgqwzQJtRFAOfcWlBp+KXRPpFWR6Lu0l1EtM+mqzOq2R0fBUfOtyac/zm5VoxJy
-         zt/xnq51popheJe4gkNWo1NmGZUMRkgZqPw8jDQRP10gs+Qt1yX3PkYDF8neNrBQhsBK
-         bvlflAZ4ZTbAo6JL+Td9X+iJBjQLU3Tb1O83fm6oSl9rx/v4xyAGR/13Penrf1Lp2W97
-         eElw==
+        bh=zUs5OXdpIPcafuAcFTFXwdyEVO+2P2l8GKfKDHDBCoA=;
+        b=Mkp6xLac58wQ7lQ4zUh3RlRb+2mWJONoA8PFlQ+DypHWWtrVV+j/kfMwlAMktqNKZG
+         qG+JJZD3STPt0VrmZil0kVMgCzMopo95fshSkGMAxcyaLQAJhVll1QhO7EzThEOAAmxs
+         Xd8vySHTzQ2fq5LaSUOZqoR2zWmZ2PBe1bv5DMIYl4fkyvuFZnmvB9+3wM7lNyaFxMQL
+         Tm4vWB6zzRf1ZPhy0VYLb1wCSV60GzxjY0Eg2SbEn2nJkN+VlM5am7ZbcMY/CrvRSo95
+         NBf7L7rov4OryFaLK4uv4KdB0rQKaU+XTCJ6xS/XfACfaJ2LWQ10T1ccy9kSNW15B6/x
+         ZZeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=h2xnvN3rkMZcaAStopByq5FB4LTsZ0396BsEMoxv4z4=;
-        b=vS6eN/ER95flOlhO981I4fEJbcXGykLabauBUcf3An3ZEZQOyKtqJEJzPi71qgEStV
-         DqVsgyzFoLBwc3fJ1D7oR1/igw1NMbKodxRm5mcVPZwSnF6x1+MHdQNW+gjyzVH6Qgon
-         nTTTJI1ENgT1CUc9+8q3Hf3gS37ER1G2WigPCGltv9GKY6pnuqJMe7eWrFC3F890a3d3
-         kRs6LvoryrMcoIHr5OY0bWq65zagCWCsZEUYsy+uK/hUpPPnJOqJbcZA4xkMWE2dQzht
-         +r2nnFUDbv8+1e27sf4rfp1yQJqvtyy2w/anZShPbiYutmpNDeZthPhPWRm329homomb
-         dpWQ==
-X-Gm-Message-State: AJIora96S/sv1isxr5g9aubQ3Rv/VKtdF1oKUOFISpwsM6i0Z/kJ4tAt
-        u142dicp47kj4B7iGT04hSzivw==
-X-Google-Smtp-Source: AGRyM1vsIr/v/vfg+vSqAa0rk6MpF5sy9zKVUL7orYXzO+Mvd7WPRVag2tcKP/G370pV2q4Ymk8GYw==
-X-Received: by 2002:a05:6512:2185:b0:482:b4f0:f23 with SMTP id b5-20020a056512218500b00482b4f00f23mr9445294lft.31.1659508161102;
-        Tue, 02 Aug 2022 23:29:21 -0700 (PDT)
+        bh=zUs5OXdpIPcafuAcFTFXwdyEVO+2P2l8GKfKDHDBCoA=;
+        b=sotEAarRKSYSI2axxvxMPAk1YL7QFy7Cizf6yPS5H2hyIA4SUvtAwLaJx4Tlwz/ngY
+         Qgx9iPUoytg8Xx53WsIcIK5o2prU6qdFYi6fiii3NHPXF7M7cpJ5GtPJOI5VnAQnVBel
+         mbyN5FU68d+Zv/6abK1FcCNy5Huflej9Wwcf8oHC2gpnmXVcliHfPOtCT7czdHYWFhSw
+         GvDxjJFIy83DcTqpXYNt3THI6Bt86oVw0mCHu8v4fMDrADqwQOa/RHjyXHZdm0ArQaAx
+         oGOmMtn8YxjV/W1jh0AP9EwwTDpK+bCRVWYoE0zlrDfZRYQhU+Ybo7fBRdqFX/FGCVa2
+         IUkw==
+X-Gm-Message-State: AJIora/YgqnKOGq2wwWnqC8u+/ubqHc2N88Ar4ZaxBjMd7i6IUR1orPA
+        sb/Rm5d86nMCKfSKYnXYMoARnw==
+X-Google-Smtp-Source: AGRyM1tOaCC0k3+KQSkAYDDw+fTk83oEbj8r3JVPMATVI9e6ZaKGatU/FZAj/Lp2/EVFK42jIbBvbw==
+X-Received: by 2002:a05:6512:16a1:b0:48a:87a2:103c with SMTP id bu33-20020a05651216a100b0048a87a2103cmr9541403lfb.554.1659508534020;
+        Tue, 02 Aug 2022 23:35:34 -0700 (PDT)
 Received: from [192.168.1.6] ([213.161.169.44])
-        by smtp.gmail.com with ESMTPSA id m2-20020a056512358200b0048afd0c496fsm898381lfr.156.2022.08.02.23.29.19
+        by smtp.gmail.com with ESMTPSA id u10-20020ac258ca000000b0048af6a0c159sm1158579lfo.112.2022.08.02.23.35.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Aug 2022 23:29:20 -0700 (PDT)
-Message-ID: <7effc23b-b61a-9887-3875-d102b8fa270e@linaro.org>
-Date:   Wed, 3 Aug 2022 08:29:18 +0200
+        Tue, 02 Aug 2022 23:35:33 -0700 (PDT)
+Message-ID: <b322090e-278e-7dad-a37b-f6f2953c6a08@linaro.org>
+Date:   Wed, 3 Aug 2022 08:35:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: sound: tlv320aic3x: Convert to dtschema
+Subject: Re: [PATCH 10/11] spi: dw-apb-ssi: add generic 1.03a version
 Content-Language: en-US
-To:     Jai Luthra <j-luthra@ti.com>, Rob Herring <robh+dt@kernel.org>,
+To:     Sudip Mukherjee <sudip.mukherjee@sifive.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220802214811.29033-1-j-luthra@ti.com>
+Cc:     greentime.hu@sifive.com, jude.onyenegecha@sifive.com,
+        william.salmon@sifive.com, adnan.chowdhury@sifive.com,
+        ben.dooks@sifive.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jeegar.lakhani@sifive.com
+References: <20220802175755.6530-1-sudip.mukherjee@sifive.com>
+ <20220802175755.6530-11-sudip.mukherjee@sifive.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220802214811.29033-1-j-luthra@ti.com>
+In-Reply-To: <20220802175755.6530-11-sudip.mukherjee@sifive.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -74,144 +80,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2022 23:48, Jai Luthra wrote:
-> Convert bindings for TI's TLV320AIC3x audio codecs to dtschema.
+On 02/08/2022 19:57, Sudip Mukherjee wrote:
+> From: Ben Dooks <ben.dooks@sifive.com>
 > 
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> Add new snps,dw-ssi-1.03a version to the bindings.
+
+Use subject prefix properly identifying files. I do not have enough of
+time to check 200 patches everyday if they touch or do not touch bindings.
+
+> 
+> Signed-off-by: Ben Dooks <ben.dooks@sifive.com>
+> Signed-off-by: Sudip Mukherjee <sudip.mukherjee@sifive.com>
 > ---
+>  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> index 37c3c272407d..35aa04a85813 100644
+> --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> @@ -45,6 +45,7 @@ properties:
+>          enum:
+>            - snps,dw-apb-ssi
+>            - snps,dwc-ssi-1.01a
+> +          - snps,dwc-ssi-1.03a
 
+With subject fixes:
 
-Thank you for your patch. There is something to discuss/improve.
-
-> diff --git a/Documentation/devicetree/bindings/sound/tlv320aic3x.yaml b/Documentation/devicetree/bindings/sound/tlv320aic3x.yaml
-> new file mode 100644
-> index 000000000000..6efb1d459543
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/tlv320aic3x.yaml
-> @@ -0,0 +1,145 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/tlv320aic3x.yaml#
-
-Filename with vendor prefix, so ti,tlv320aic3x.yaml
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments TLV320AIC3x Codec Device Tree Bindings
-
-s/Device Tree Bindings//
-
-> +
-> +maintainers:
-> +  - Jai Luthra <j-luthra@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,tlv320aic3x
-> +      - ti,tlv320aic33
-> +      - ti,tlv320aic3007
-> +      - ti,tlv320aic3106
-> +      - ti,tlv320aic3104
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: i2c slave address
-
-Skip description.
-
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO specification for the active low RESET input.
-> +
-> +  ai3x-gpio-func:
-> +    description: AIC3X_GPIO1 & AIC3X_GPIO2 Functionality
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minItems: 3
-
-uint32-array. Old bindings say about two items only. Mention any changes
-to binding in cover letter.
-
-> +    maxItems: 3
-> +
-
-You lost gpio-reset property. Also not explained in commit msg.
-
-> +  ai3x-micbias-vg:
-> +    description: MicBias required voltage. If node is omitted then MicBias is powered down.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    oneOf:
-> +      - const: 1
-> +        description: MICBIAS output is powered to 2.0V.
-> +      - const: 2
-> +        description: MICBIAS output is powered to 2.5V.
-> +      - const: 3
-> +        description: MICBIAS output is connected to AVDD.
-> +
-> +  ai3x-ocmv:
-> +    description: Output Common-Mode Voltage selection.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    oneOf:
-> +      - const: 0
-> +        description: 1.35V
-> +      - const: 1
-> +        description: 1.5V
-> +      - const: 2
-> +        description: 1.65V
-> +      - const: 3
-> +        description: 1.8V
-> +
-> +  AVDD-supply:
-> +    description: Analog DAC voltage.
-
-New properties?
-
-> +
-> +  IOVDD-supply:
-> +    description: I/O voltage.
-> +
-> +  DRVDD-supply:
-> +    description: ADC analog and output driver voltage.
-> +
-> +  DVDD-supply:
-> +    description: Digital core voltage.
-> +
-> +  '#sound-dai-cells':
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +#The pins can be used in referring sound node's audio-routing property.
-> +
-> +#CODEC output pins:
-> +  # LLOUT
-> +  # RLOUT
-> +  # MONO_LOUT
-> +  # HPLOUT
-> +  # HPROUT
-> +  # HPLCOM
-> +  # HPRCOM
-> +
-> +#CODEC input pins for TLV320AIC3104:
-> +  # MIC2L
-> +  # MIC2R
-> +  # LINE1L
-> +  # LINE1R
-> +
-> +#CODEC input pins for other compatible codecs:
-> +  # MIC3L
-> +  # MIC3R
-> +  # LINE1L
-> +  # LINE2L
-> +  # LINE1R
-> +  # LINE2R
-
-All this goes to top level description.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
 Best regards,
