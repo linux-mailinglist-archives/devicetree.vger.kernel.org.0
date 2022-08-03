@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EB365891DC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 19:56:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1345F5891DE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Aug 2022 19:56:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237528AbiHCR4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 13:56:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
+        id S238115AbiHCR4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 13:56:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235668AbiHCR4G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 13:56:06 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55975AE67
-        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 10:56:04 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id 15-20020a17090a098f00b001f305b453feso2799484pjo.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 10:56:04 -0700 (PDT)
+        with ESMTP id S237600AbiHCR4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 13:56:18 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF411117D
+        for <devicetree@vger.kernel.org>; Wed,  3 Aug 2022 10:56:16 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id bf13so15767355pgb.11
+        for <devicetree@vger.kernel.org>; Wed, 03 Aug 2022 10:56:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc;
-        bh=RNOxGzLpuqBo6xjZylq1FjoaxQPNRrFAh4MrHrWRtI4=;
-        b=CXctdJ/PjvdxuUp0P4sfTjhtmDYVLlg+zx6QKTqHRLNvoND0h3IAPEiYSiSpcMjgXZ
-         YCL4otsWStjTjTU4Fngz6tov5AvOj8cTFHZHpRUaHP7QX6ixJ7u4cbtIsuwUkwXlE9VX
-         OkjagNEC5nynYxfR+ooWHDh+nznFjo3AJ9wz4=
+        bh=UsIPjUJ8W/xmCeprXMrO3r//L0Dn1ewlLLmmcB1AHB0=;
+        b=Qahw0AvPq2oVPu6P234+jkIQIw/Cx7TQN1v97Q7eFeLWYP2YYUaVA75qSxfeBad1Ax
+         5bA/Q2y4u3lYJw2atNM7euBOOojk30RcUK0tSSl/LNkw+w5TbKCE0WdD8tslpfQHL6k3
+         hYuX5pGW8UiZtEyO/Bg3DPuDIttOr4HDYYiPk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc;
-        bh=RNOxGzLpuqBo6xjZylq1FjoaxQPNRrFAh4MrHrWRtI4=;
-        b=beo55ctwwFUKPmNiCHh9sFbwdeSXwDEuTkVu2cpGE90Ko+FQQVbF8IasNuZIFPNsHU
-         95Z+K+7JkTnEGbr/ANa1uYMg5yhFyuUsSI1SGoiDROfeUTd3TpTgt+Gln5JbAfZJnher
-         ahAHuJgiCocV2d/lxc9cYg8PDNkupHdaoAUoJ/yJ5tj/J9htJEGtycI1j9uD+sw+caf+
-         0Ie+kLGC8JCfdEI7ukHTy57t1R+V+Y2vePcG72Qn28aQT86EnMdXpXBUYBI7qGaLTm5o
-         B3My8CiqT8lOpk2YoKpX0F3Ja9rI6RCT8Almdp/Z+w7QWZ28S0Id4sGL4gXXD9725GrN
-         oXDA==
-X-Gm-Message-State: ACgBeo2ZFD4IAzg4qWJjel9OYRqtIYcYWVkszqGDc/XULUeZH0j0O+ma
-        4Gvvu4r9QxJ/scc/xoYGPlo08V+esGNNYQ==
-X-Google-Smtp-Source: AA6agR4pp+Jyiwoyk+HX78k+R9TzRWTbAZe7MMRVhp//C5T8j78WK3SfSl0T/xN6uljGKUqs4qTDbA==
-X-Received: by 2002:a17:903:2054:b0:16e:c85d:d86c with SMTP id q20-20020a170903205400b0016ec85dd86cmr23045045pla.39.1659549363742;
-        Wed, 03 Aug 2022 10:56:03 -0700 (PDT)
+        bh=UsIPjUJ8W/xmCeprXMrO3r//L0Dn1ewlLLmmcB1AHB0=;
+        b=gJn8bKzNyOFPaXylLkraiVHAkNA0raDpnmiF5DnZBhf9ZZm2NptHDElgb9QvBM8sMO
+         1wkDtrq53v0AaZDitjMmH4ftFOn4TIDcr1nMLAgoNZhO9ttO6UEd5ERqbBYwOUzuj6Z0
+         eC/QNF/rMxskPIDiKsFMZWaVB2lkxFSjB9mTWJdWAmZueclcsoY06F8P0N4jIFkXQr8t
+         6tCbGpdWo2TPqMXIWSSd+mkHsqpVhGTyhZL7p3ICyGC2KBYBJ71v8SRPQiatLE2Ueui/
+         Yip2/7xvGimr2ej3alb+U7eCe/vghVV+EupyuSezSrt+7E67ZbfQY57QMrcRPIwKahNC
+         evyQ==
+X-Gm-Message-State: AJIora+dQuvoS5K/szjXk8MfbFgdsxcfepzLY0Hf1SuGjWnfdh2PqFOp
+        wKR4SEPfXHBv7NJAAUr1Ev4F8A==
+X-Google-Smtp-Source: AGRyM1vRlwaEEjulz5nWWF2i5gFsM8lha+z59kAnrMiwFYB6/4SYV/INp6JBsPg/SUzrzu68cmsX+g==
+X-Received: by 2002:a63:fc1c:0:b0:415:f5f1:f7a7 with SMTP id j28-20020a63fc1c000000b00415f5f1f7a7mr21944030pgi.332.1659549375531;
+        Wed, 03 Aug 2022 10:56:15 -0700 (PDT)
 Received: from ubuntu-22.localdomain ([192.19.222.250])
-        by smtp.gmail.com with ESMTPSA id iw4-20020a170903044400b0016d150c6c6dsm2238639plb.45.2022.08.03.10.55.59
+        by smtp.gmail.com with ESMTPSA id iw4-20020a170903044400b0016d150c6c6dsm2238639plb.45.2022.08.03.10.56.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Aug 2022 10:56:00 -0700 (PDT)
+        Wed, 03 Aug 2022 10:56:13 -0700 (PDT)
 From:   William Zhang <william.zhang@broadcom.com>
 To:     Linux ARM List <linux-arm-kernel@lists.infradead.org>
 Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
@@ -56,15 +56,15 @@ Cc:     Broadcom Kernel List <bcm-kernel-feedback-list@broadcom.com>,
         Kursad Oney <kursad.oney@broadcom.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/9] dt-bindings: arm64: bcmbca: Merge BCM4908 into BCMBCA
-Date:   Wed,  3 Aug 2022 10:54:47 -0700
-Message-Id: <20220803175455.47638-2-william.zhang@broadcom.com>
+Subject: [PATCH v3 2/9] dt-bindings: arm64: bcmbca: Update BCM4908 description
+Date:   Wed,  3 Aug 2022 10:54:48 -0700
+Message-Id: <20220803175455.47638-3-william.zhang@broadcom.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220803175455.47638-1-william.zhang@broadcom.com>
 References: <20220803175455.47638-1-william.zhang@broadcom.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000055a5ac05e559f299"
+        boundary="0000000000000acfb505e559f3de"
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
@@ -74,126 +74,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000055a5ac05e559f299
+--0000000000000acfb505e559f3de
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-BCM4908 is one of the Broadcom Broadband origin WLAN Router/Access
-Pointer SoCs. It was originally added by Rafał before Broadcom
-started to upstream the support for broadband SoCs. Now that Broadcom
-Broadband SoC is supported under arch ARCH_BCMBCA, this patch moves
-BCM4908 SoC device tree descriptions into BCMBCA binding.
+Append "brcm,bcmbca" to BCM4908 chip family compatible strings to
+follow the convention of BCMBCA chip and help identifying chip family.
+
+Also add a bare bone generic 4908 board compatbile string to support any
+4908 based board. This is useful for board bring-up test and kernel test
+with CPU and memory related change.
 
 Signed-off-by: William Zhang <william.zhang@broadcom.com>
 Acked-by: Rafał Miłecki <rafal@milecki.pl>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
 ---
 
 Changes in v3:
-- Add Reviewed-by tag
+- Add Acked-by tag
 
 Changes in v2:
 - Add Acked-by tag
-- Improve commit message with more details
+- Insert the 4908 generic compatible string in alphabetical order
+- Update commit message with more details of 4908 generic board dts
 
- .../bindings/arm/bcm/brcm,bcm4908.yaml        | 42 -------------------
- .../bindings/arm/bcm/brcm,bcmbca.yaml         | 21 ++++++++++
- 2 files changed, 21 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+ Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
-deleted file mode 100644
-index 9b745531ff04..000000000000
---- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
-+++ /dev/null
-@@ -1,42 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/arm/bcm/brcm,bcm4908.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Broadcom BCM4908 device tree bindings
--
--description:
--  Broadcom BCM4906 / BCM4908 / BCM49408 Wi-Fi/network SoCs with Brahma CPUs.
--
--maintainers:
--  - Rafał Miłecki <rafal@milecki.pl>
--
--properties:
--  $nodename:
--    const: '/'
--  compatible:
--    oneOf:
--      - description: BCM4906 based boards
--        items:
--          - enum:
--              - netgear,r8000p
--              - tplink,archer-c2300-v1
--          - const: brcm,bcm4906
--          - const: brcm,bcm4908
--
--      - description: BCM4908 based boards
--        items:
--          - enum:
--              - asus,gt-ac5300
--              - netgear,raxe500
--          - const: brcm,bcm4908
--
--      - description: BCM49408 based boards
--        items:
--          - const: brcm,bcm49408
--          - const: brcm,bcm4908
--
--additionalProperties: true
--
--...
 diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-index 324e59104360..6a64afa95918 100644
+index 6a64afa95918..84866e29cab0 100644
 --- a/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
 +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcmbca.yaml
-@@ -15,6 +15,7 @@ maintainers:
-   - William Zhang <william.zhang@broadcom.com>
-   - Anand Gore <anand.gore@broadcom.com>
-   - Kursad Oney <kursad.oney@broadcom.com>
-+  - Rafał Miłecki <rafal@milecki.pl>
+@@ -36,18 +36,22 @@ properties:
+               - tplink,archer-c2300-v1
+           - const: brcm,bcm4906
+           - const: brcm,bcm4908
++          - const: brcm,bcmbca
  
- properties:
-   $nodename:
-@@ -28,6 +29,26 @@ properties:
-           - const: brcm,bcm47622
-           - const: brcm,bcmbca
- 
-+      - description: BCM4906 based boards
-+        items:
-+          - enum:
-+              - netgear,r8000p
-+              - tplink,archer-c2300-v1
-+          - const: brcm,bcm4906
-+          - const: brcm,bcm4908
-+
-+      - description: BCM4908 based boards
-+        items:
-+          - enum:
-+              - asus,gt-ac5300
-+              - netgear,raxe500
-+          - const: brcm,bcm4908
-+
-+      - description: BCM49408 based boards
-+        items:
-+          - const: brcm,bcm49408
-+          - const: brcm,bcm4908
-+
-       - description: BCM4912 based boards
+       - description: BCM4908 based boards
          items:
            - enum:
+               - asus,gt-ac5300
++              - brcm,bcm94908
+               - netgear,raxe500
+           - const: brcm,bcm4908
++          - const: brcm,bcmbca
+ 
+       - description: BCM49408 based boards
+         items:
+           - const: brcm,bcm49408
+           - const: brcm,bcm4908
++          - const: brcm,bcmbca
+ 
+       - description: BCM4912 based boards
+         items:
 -- 
 2.34.1
 
 
---00000000000055a5ac05e559f299
+--0000000000000acfb505e559f3de
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -264,13 +204,13 @@ W0KkR8025J0L5L4yXfkSO6psD/k4VcTsMJHLN4RfMuaXIT6EM0cNO6h3GypyTuPf1N1X+F6WQPKb
 1u+rvdML63P9fX7e7mwwGt5klRnf8aK2VU7mIdYCcrFHaKDTW3fkG6kIgrE1wWSgiZYL400xggJt
 MIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYD
 VQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgw28eX6TfvsbNfu
-SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIF3ByWS0cTxtVtcGnYB3dzPbxs1Y
-gMBDWXvHFA5ZR3zwMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
-MDgwMzE3NTYwNFowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
+SIMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIIIsXthV2jtFInRVrmEIog8xO8n3
+dg1WQjqx+/jCpEpNMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIy
+MDgwMzE3NTYxNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsG
 CWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFl
-AwQCATANBgkqhkiG9w0BAQEFAASCAQB4hbit0KpD7Qh2a19+U3qtgPqqJ9ksf9VPVRUIPgWzN5G9
-OJDc0tvlL9ygcPPbE7hQhI/O3KIOO/YhJuUG3oxYlBa/w0OnRzL5KQH/OGLvxpfTbgf42SF7gemN
-IfvS/RZ1xdwQjMoLbDdWGZQla3YIuL4hEKMnIuxFVDYcuHZa/bbY7sigHU17oc+oKoR5JvyKtZ2o
-kUGEukh9OO9PdZpYRn0vwZQ4BVAYM1x8h5bVyp34L4TPataRPJOCdkDytQydcisU8dnAmmF0Yz7Q
-mb4a6YRi0aJ/37NcvCecb/FQ0eSkgpeaXensySFNtj9yNpB41/iJCsGyu7AC/Y6r6dE0
---00000000000055a5ac05e559f299--
+AwQCATANBgkqhkiG9w0BAQEFAASCAQAza3wbHUG4jibg10dxUQUfMkzk4LSGyr5RkABH6Hy5RE0E
+9zD4kn0hPJdAHQ7vJ1Sk9vP8I7aQNp0zMUvDjWpOf4x0uSP6T3/3bfI0/nRKxaeG4HRdA2hzc6A9
+Q4OqCur9mNBUO2ksTqaPd8ZQTGjyPS4toTT03FaSnQxXBD6Oceo579T71+qqVumX1zQTeTBKe8DN
+BBtQW5JjMijUdwlPGwVYHSbqA4F9gPjYsGn8eDLBZ8/7NDYkNwwIjtIU2cCA15QCbN5g+Ulk0QHt
+6t8H1BsKK//lcMz7lHWfN7e6O/VewYJGN1eVe7oHKCjBiF1RZomgjQVNbMxk9L5ifnVV
+--0000000000000acfb505e559f3de--
