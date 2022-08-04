@@ -2,149 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A09E15899FB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 11:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C69589A0E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 11:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239224AbiHDJjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 05:39:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56414 "EHLO
+        id S239404AbiHDJnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 05:43:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239220AbiHDJjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 05:39:06 -0400
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70057.outbound.protection.outlook.com [40.107.7.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A538C4199C;
-        Thu,  4 Aug 2022 02:39:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nVMpJRHRsLoOsKrynHWTjQhxtsbUuJnQ9knWzUvjo097dmqXiEd0oiL7gt1I5DZzyIEjHVUe8X0DbrWgBZ81p7KetJ+7cqWoO7ZqoIyHxmuGb1Zi5TBlSAeO4hp08K5Pw0XnI9EP6+DtbNl4GzkYQzH3UodvXaE2714/3QwP7ARb90yg22C+ZOxAD40UkaEWXYL+R3TqNHwRPeTAU6MegtIByggNek+D77V3Gi5r5MpTxLmtUweidyKwQc/57/els5mTdX5lxQ5iGWwT4BWi3HR7EILKkK6uCtMZ7O3YFBQbh6aCh7Bj42FviryPEc/CedVhZW5vWVjAyWhInpzdRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1Uo+8sQk/Ln7Nj6Q+3ErF8xc7unji6Ck+KSRh39MrRM=;
- b=MhCSfrepoMmklLOenQGg9M238hdXjpkWATTwO2N23GM9u92IKNUTivF0jgLxxOv2721O7oSXervTKuSaCO9G9Izr3loyvrPo/K0fb1j1P1rhqadIGErPuZTrw3leZicp62EVQs2Yti+QXzNrmo1b8RRhWIYBxT9jwAgJ3bfqHZi/QehklTuHDxO3TOKeYpmtj2+O7hZQbh30jqs0PAZaEHWTBcWWUASurHSTMv50p0J32Fvz+RB16ChvEUZIJdeFalXiEI/sKPwMeQdxxNOID5/JI93OPECGnZALXI5+ydbnxwG65PQl1Tk8EpG+uQm4vQJ5YxYH3jnGEcuBV8drzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1Uo+8sQk/Ln7Nj6Q+3ErF8xc7unji6Ck+KSRh39MrRM=;
- b=pZYAm1z8xOx98qhmkX8SIaLLmmJdmfAlK1qPVQLixBwfaVvcmb8K0chcFnXc0TY+b4lJ8bIa/lJTCPyeXO9sx61mfwG6iM+mzDo1inVUZkMDMAyhusJ04LGaXNenMkcgb69laghm6TpBwwyHJaHZRRkYR0+RYHr7Qx+Bi5C7lVs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by AM8PR04MB7267.eurprd04.prod.outlook.com (2603:10a6:20b:1df::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.15; Thu, 4 Aug
- 2022 09:39:02 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::5db6:3f08:2e04:33c]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::5db6:3f08:2e04:33c%4]) with mapi id 15.20.5504.014; Thu, 4 Aug 2022
- 09:39:01 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     mchehab@kernel.org, mirela.rabulea@oss.nxp.com,
-        hverkuil-cisco@xs4all.nl
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, xiahong.bao@nxp.com, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] media: imx-jpeg: Disable useless interrupt to avoid kernel panic
-Date:   Thu,  4 Aug 2022 17:38:41 +0800
-Message-Id: <20220804093841.31337-1-ming.qian@nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SGXP274CA0019.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::31)
- To AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+        with ESMTP id S239395AbiHDJnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 05:43:14 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98CE6717E
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 02:43:12 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id b16so17105196edd.4
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 02:43:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=r46KFAl4TfFrC5l4SGRajq+tNuzO0BzQHbXD1x0Z/2w=;
+        b=S6+kVL8ePQUIYSD3wWZf+6Pbn/YJcO8W1A3nf+MjPxiPTw1s3u49W3+ELbyG6s/xl7
+         c+yoWpfXqGIP5xtVPCeYjZVKiKbnre0b1aTWbTRKJq4WUY/OGH8D6jNg805M3ZiIE+2J
+         i7dNgji2dSjRo21/WVTamuNS2A/Iaquww5t1XJ1aME458WiKttystKbGaEvWGEBR1drW
+         RLh7a0RPsL8OihN6VhlR5QwGOQEDuOSXxeVLX906Bewb8hDX/ANliqvPOuaB8sCVaceZ
+         UV76VYf/UNl84XpUjtvHOITS2tE2zQzBMMuxmEwZONFwxaXoMF8SZWRp7WulkBrtI92F
+         hh1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=r46KFAl4TfFrC5l4SGRajq+tNuzO0BzQHbXD1x0Z/2w=;
+        b=0AFgrN53dDzOZDd+6+qNXbgWW/qi43bI7+TOq+GUbQO3r5Y3rUKhrJV0dWLfJw9cQv
+         ZRrfYdjzEq4/OKuSJihymtW7CSPGqOcvI/zCungHlo/kfGDsAQy7ZEQzGF6XSj6WwK8v
+         i9RbF7yUJhEeDITwwK6doLZNjbNNJwTAUrlV8humrqnqtVozd+8+WVlBNefwyISjdKyc
+         Qqqko//Qp3BCg7o4yfQ+70BT3WHrokIHxY2m1NS13vvdHRkeOfkpmMVHZcKLV+GBMZGk
+         PdYevrmb9vKI1MMwq4q8TYZ4w9kWvxVoAPyBIX3pdyxkD7kFO+kBTciWtqZccnehuSlK
+         yuRw==
+X-Gm-Message-State: ACgBeo1oX+B+h1oA2YjbtipQ+dDpgCB/vRflJTSMGy53xJNkXRVjU2m+
+        kUGxaRQ3VTM1jt6lEozkRjN2XyPrMbbRYxZNrSe1Fg==
+X-Google-Smtp-Source: AA6agR5afw8s52J5k8ANiGBZ2AJghNnge3OAhhFOjfwdj/q7FYBbe8lc2YZ8qHHjL6k9udoJs2UxHbldej8aHlNUgIU=
+X-Received: by 2002:a05:6402:293:b0:43d:3936:66b0 with SMTP id
+ l19-20020a056402029300b0043d393666b0mr1134525edv.404.1659606191429; Thu, 04
+ Aug 2022 02:43:11 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5c160740-6f04-4be4-45a7-08da75fd29d0
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7267:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bNgIE7cZe7WTnF23HFq7kwsMVEeOx78o/BdfAZZlo55EVNK6QiOjPjkc/9IufyuvY6HA/rStG9eGcbt+TRiPQhlWUqn3DT98Xuc8vyI4U2p2Tby+ffKkKZLeHlaBf5036PcnP/jNVklctNKcTTqAdDqdYKR7bZPAhNGYcdLN2UzVhtJ0i+mBf3QsTavlP81uZhvpElL1RfvFx1AQceHfXe7+zPJWeIeFSBNyZs/GLYFPlebv2Dj0m+FACaTHf3ddBCShQ1t2+C9SGI3LQ4DrrgK2KcfXWxYsNCuu7picvwHfO7fAktRuGJxIRm+cJLpyq2DvZUlRKtE+vinxlp06oq0nlIjnnBqdukbT/7KaUvncpirEFhdLHg4lCS5x6I11jOXbMa8qgPzvhgi1l0icar7SSoEUYuSgRIGlISYLdiK/KVOVxU54matk086VY9MvcWxW6ZAXrffyosbbH4yo7ZIiKT1PQdU9y7gUfmNymVoDIHKl4rvqsQG6IIH0OE76p3v5Zl4RpqKzlXu73NBl+4dZgE1RBriDYUL0AICNodVxv/lHiqS1GnOyATawQcxBL9OIkow+RZFeeu4ngOSGNl0jz1OTZFXEj386KpwWZpgH+6eKiqnXB//0kxO5slCZRc7JhQuPFUXiGBo4CrdRV8nURXxY7xV7yrTnWHTumJ2trV0KtP3+JLXbfnt9N3j/3O89EG127yV1SmmZexQaEWxQr0cQVM3Aj6lcbHAAK3elfWuPjwCVvCMbWsrVesyn1Nrr6Qca54U6fspOpgjA5Z3gPlPuDAuf1J/EmkhtAC3uQL32u1qBZ3WKFKw9jvox
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(376002)(366004)(136003)(346002)(396003)(26005)(6512007)(38100700002)(38350700002)(41300700001)(44832011)(7416002)(8936002)(86362001)(5660300002)(6486002)(478600001)(6506007)(52116002)(8676002)(66556008)(4326008)(66946007)(6666004)(2906002)(1076003)(66476007)(36756003)(316002)(83380400001)(186003)(2616005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?M9jgUoiJPMZNH6GM98zpYr0XMzTf1TQgf2/KbvMR1Igs59achkKCd7dIL4HE?=
- =?us-ascii?Q?o/HowXaW9ekONURRILtrccqMLMoX7mGrS4vQeY9gZeT4Sp9H7DBA0dK/7UAj?=
- =?us-ascii?Q?YjEeMUwCSd2XPeVLFeolL3Jy8Im005tTLkHKry8PHD/XaMVwYOJKxXP97+3T?=
- =?us-ascii?Q?TZrAuzOH0VhKaeKuPyt6j8SnEXEKcOrI3QzenIQux1LrPmXcl1Zv8TBCOGgT?=
- =?us-ascii?Q?3fPZGN8+cedVA1R23bEx61g6KkRKdhI2jzYCwnnXUs308aJPk+kYwflnVd4A?=
- =?us-ascii?Q?3JV61yGVbXAhYRx7eTdlAiPWikV7MFvihTKOgC7n2BCoejPKxohAqY0qKD7P?=
- =?us-ascii?Q?Y8UIM5qKgraoNEQDtstpQ6cdieaDQxblkhHPVhdB8maM5rbyJ267/tssjF0O?=
- =?us-ascii?Q?3ueECzkkyrAjSpNUoEsl9znsqZkT6SLo/gj/jlEx1O0hrn2igSyIKptBCd5t?=
- =?us-ascii?Q?5yBa8HB0T5oPzZ/25/CxFx77zWAWUjDTFnuMX2wyAPq/+8CAc0YUGRZWiTJ2?=
- =?us-ascii?Q?ekvqmxGDEpAMK7kx7SBYrLmB6F/1EppOF9KTfYCn5Nqvd44EIQhvqBZDHBSt?=
- =?us-ascii?Q?L22of7h8KVllpSQK5PlQUiASfeg/74RxzP1usq26xN5t8kcejejkPwjMbAn2?=
- =?us-ascii?Q?eZa8si8vAu/27kIJONgkaf+gp9PUcPtwqcIrQSeBtPHxpUy8NAlng6FyMa28?=
- =?us-ascii?Q?Ro/kTcyiP+uiPFBTlekUZLMwu/7x/Lk3d4Y1EwGXaG9/hU1v1Jh7nkiplibM?=
- =?us-ascii?Q?Ui0AAyl/Judx/E46IbcPeZi5NwkHZPh+us0kIX8dEbT6Ko17+cc+78tzH/wV?=
- =?us-ascii?Q?xhMoYmfAHoZSG2zPtFTJ7IfW9weyd1EO2XcI+AqrBBNQwgGQTsqv/9qF18q5?=
- =?us-ascii?Q?RdILdlYTjcVn9yBDvGMjDFvX+3VgeU+4LicMLp7EHTp9FgVSmXKBv7Xau7WV?=
- =?us-ascii?Q?xJ5hgobjJDNNBpmb8MgtJHsureol/T2HAnv8VnzQlLpKRLgXRHca+BXQTuPJ?=
- =?us-ascii?Q?aq20fmHaKReYkcvOCBB0pc0fu8TeMkJfigBwu++uyDMclxIYK7PT/AcDZq13?=
- =?us-ascii?Q?oI0GPQFsfyToXlh7NaNzZ8txDAnpppRwzBJXJcfk3DqANOODh6FKlby0IaP+?=
- =?us-ascii?Q?wftGyq87cBDtFUViArPB5NnqTg1dEaS2XlzkFBVJtlIBYAuAPvKKvub1O6Uc?=
- =?us-ascii?Q?H3zDouXSqL7NqX0h2aCtFGJQiI031XHVvB01oAFlP/yS14beH001HX7hDjOT?=
- =?us-ascii?Q?LkzvRCzZ3ek5EpH3FQW4eHZWQflFpKwex9i3ZCdMitOFR2+jPvyCvhYW9Bhs?=
- =?us-ascii?Q?P86q3CwFkGyHBaR+k+zufkzfWoL3w9dX4nudPktIc2O2BZXHBq9iI3Z/cXmU?=
- =?us-ascii?Q?7mHRaUsjLvwMZ9dSo0HRs7wBXSSBgRs6Kt5gwtIahOrrWjqgbC6MPX2aFSA/?=
- =?us-ascii?Q?q/moPMJtgWjwaoC5vRGvSrQr/6aB9838P2P6lUIQqz/YkegPv1+dd2B23k+Z?=
- =?us-ascii?Q?Y0lI8vOqQm6q/wpgUH4/+ndFCMvh8XbzcLOiCcVxYUO+4wuk+HKZ5QOu/Nlf?=
- =?us-ascii?Q?/KI265mjent8Kxg4HBu7/OtBfGG9YOveeWvNnAKj?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c160740-6f04-4be4-45a7-08da75fd29d0
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Aug 2022 09:39:01.8162
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V0Nqh3ZINk4PziJ8nphxd1pZqWiQOajaUY0xzTWqo4Thfz3FU5YmR8ucJlc7H1QNPudLSllpT2A5PE1HqeWJug==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7267
+References: <20220802175755.6530-1-sudip.mukherjee@sifive.com> <20220803185600.76rwp4o3itb2e2dn@mobilestation>
+In-Reply-To: <20220803185600.76rwp4o3itb2e2dn@mobilestation>
+From:   Sudip Mukherjee <sudip.mukherjee@sifive.com>
+Date:   Thu, 4 Aug 2022 10:43:00 +0100
+Message-ID: <CAHyZL-ftLQNg2eTsmSXRSpHUNzNyTEt+UUGCUs2XqvRgeiWRrg@mail.gmail.com>
+Subject: Re: [PATCH 00/11] Add support for enhanced SPI for Designware SPI controllers
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
+        William Salmon <william.salmon@sifive.com>,
+        Adnan Chowdhury <adnan.chowdhury@sifive.com>,
+        Ben Dooks <ben.dooks@sifive.com>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jeegar Lakhani <jeegar.lakhani@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a hardware bug that the interrupt STMBUF_HALF may be triggered
-after or when disable interrupt.
-It may led to unexpected kernel panic.
-And interrupt STMBUF_HALF and STMBUF_RTND have no other effect.
-So disable them and the unused interrupts.
+On Wed, Aug 3, 2022 at 7:56 PM Serge Semin <fancer.lancer@gmail.com> wrote:
+>
+> Hi Sudip
+>
+> On Tue, Aug 02, 2022 at 06:57:44PM +0100, Sudip Mukherjee wrote:
+> > Some Synopsys SSI controllers support enhanced SPI which includes
+> > Dual mode, Quad mode and Octal mode. DWC_ssi includes clock stretching
+> > feature in enhanced SPI modes which can be used to prevent FIFO underflow
+> > and overflow conditions while transmitting or receiving the data respectively.
+> > This is only tested on controller version 1.03a.
+> >
+> > Ben Dooks (1):
+> >   spi: dw-apb-ssi: add generic 1.03a version
+>
+> Thanks for the patchset. It's always welcome to have a new
+> functionality support. I'll have it reviewed on the next week.
 
-meanwhile clear the interrupt status when disable interrupt.
+Thanks Sergey. I will then wait for your review before sending a v2
+with the changes Mark has suggested.
 
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
----
- drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
-index 9418fcf740a8..ef28122a5ed4 100644
---- a/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
-+++ b/drivers/media/platform/nxp/imx-jpeg/mxc-jpeg-hw.c
-@@ -76,12 +76,14 @@ void print_wrapper_info(struct device *dev, void __iomem *reg)
- 
- void mxc_jpeg_enable_irq(void __iomem *reg, int slot)
- {
--	writel(0xFFFFFFFF, reg + MXC_SLOT_OFFSET(slot, SLOT_IRQ_EN));
-+	writel(0xFFFFFFFF, reg + MXC_SLOT_OFFSET(slot, SLOT_STATUS));
-+	writel(0xF0C, reg + MXC_SLOT_OFFSET(slot, SLOT_IRQ_EN));
- }
- 
- void mxc_jpeg_disable_irq(void __iomem *reg, int slot)
- {
- 	writel(0x0, reg + MXC_SLOT_OFFSET(slot, SLOT_IRQ_EN));
-+	writel(0xFFFFFFFF, reg + MXC_SLOT_OFFSET(slot, SLOT_STATUS));
- }
- 
- void mxc_jpeg_sw_reset(void __iomem *reg)
--- 
-2.37.1
-
+--
+Regards
+Sudip
