@@ -2,95 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FF2858A191
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 21:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AAB058A1A7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 22:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239515AbiHDTvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 15:51:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51364 "EHLO
+        id S239854AbiHDUAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 16:00:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239891AbiHDTvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 15:51:14 -0400
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2EA316593;
-        Thu,  4 Aug 2022 12:50:45 -0700 (PDT)
-Received: by mail-io1-f47.google.com with SMTP id h138so462509iof.12;
-        Thu, 04 Aug 2022 12:50:45 -0700 (PDT)
+        with ESMTP id S234994AbiHDUAl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 16:00:41 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C606581D
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 13:00:38 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id gj1so806457pjb.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 13:00:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=uPKzNE7zSTqAILSSyuQ5RS5DAOTT4hKdjbxnUqUAfI4=;
+        b=I0H9xhAFu8B0PsZ2wzzp9dtRhFmaNDy2JgRcar6ZmKjHC/c5ykMQ8R40A5dsr2y0/B
+         V2x0ZFDTcqJvx0FgcTPvj7uCgEvLEg80RKdgaL6hDHSSlnD2dhNgXezAdxki/NMJQcXt
+         i52PCJT3NtE8YdPWCZWd2C6QsxqTzIEDIItv8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=VfcXQX2iRG7E6MWpE8aWtWjOWzDlHACnvOKDvtpAZuk=;
-        b=HROCspu8Cb9ilK7VMYe7Pl55gC5pDpNyEI8QELyf3KCPqz2JTzjpbNCJIpqED4yjLb
-         wtD8TW49gEvwpX6udPc9WTtP2Dk9HhKSJr9PJdEXpvpGfnLWYbJ4t3M4SQKR43WOnqzF
-         ZeV1y8h5VRuvMMqecmbVE8d5k5C8opZzkmvLb/Np1/9iD2CyBnDM25If9EAASptkLdYU
-         RvzVXDlLwNVKHumk4V4ehFzo9NvZFeKuf8lZpIntWoc61Hyg/Yi2psmOefbdl29KzB0f
-         WxYDQ+yekQolOnayE7gcTCgoyZimm3k67uxjxHUus1mLR6z7QYXbKz1WLFG4ccsYAWzB
-         vMww==
-X-Gm-Message-State: ACgBeo2JLHE24UpQLVHbBl3/eSOHfqJnKJMaivHnvmdnu37ys8bAuzef
-        anv/aISPa8+ILioJghiyxg==
-X-Google-Smtp-Source: AA6agR6uPDT96u8m5bxWMZ1urtuQfrAc4Xhd6x4d32l32wWs7f6kpjJA1wdL+wfyJNC/pu7a0igxng==
-X-Received: by 2002:a02:9408:0:b0:342:834c:6b1f with SMTP id a8-20020a029408000000b00342834c6b1fmr1535870jai.0.1659642643535;
-        Thu, 04 Aug 2022 12:50:43 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q10-20020a02b04a000000b0033f4a1114a6sm805653jah.178.2022.08.04.12.50.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Aug 2022 12:50:43 -0700 (PDT)
-Received: (nullmailer pid 259298 invoked by uid 1000);
-        Thu, 04 Aug 2022 19:50:38 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Shenwei Wang <shenwei.wang@nxp.com>
-Cc:     shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
-        festevam@gmail.com, linux-gpio@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, brgl@bgdev.pl, s.hauer@pengutronix.de,
-        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com
-In-Reply-To: <20220804184908.470216-2-shenwei.wang@nxp.com>
-References: <20220804184908.470216-1-shenwei.wang@nxp.com> <20220804184908.470216-2-shenwei.wang@nxp.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: gpio: Add imx-scu gpio driver bindings
-Date:   Thu, 04 Aug 2022 13:50:38 -0600
-Message-Id: <1659642638.751216.259297.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uPKzNE7zSTqAILSSyuQ5RS5DAOTT4hKdjbxnUqUAfI4=;
+        b=CG8bO63g8A5jV5RX4y0Us00W4cYVzfHCpAVgieWfupkPIjbTvy3fcw+9nMjSgKdhzj
+         4raE4rLEZznglYeE7Z0IADBlRVR2JQ9TFaXY3T5aPvG3XDqe+gnvtvTtgR/e1XHyJeKM
+         XxYTwpBprWtOYIzWeqN7F8j+TnkJI/hCDwpDkFEpmc5YmKQAK+pOgi2I3oljjJT2auWh
+         Oih9T9GS+vgiJHiXUBPCBZHSvnNTZw7cJIU11IOS4wH51U6lnDEgZiHCFjvdEoaqNlQr
+         c0OTMZMAc43FLA6FMeWRoE1g82OAEf0ii3fi/028VYVH1kC4ziXOMh8KSWD2Rv4dfvRw
+         tBVQ==
+X-Gm-Message-State: ACgBeo05cPrvYSAUmnRznUjwurvIECPuC4Cwkp325Mm/DO38Q4QKh0Ui
+        K+87BpENwdp++P+iJx7cFSgQ6g==
+X-Google-Smtp-Source: AA6agR7XAhmDcGQM/wvX7qqgr70EsoFmAqGZ++uJh7cLd6Ebn25QM1du7Mx7NuF3B2s4Oa4Axp1WrA==
+X-Received: by 2002:a17:902:ce8c:b0:16c:4be6:254d with SMTP id f12-20020a170902ce8c00b0016c4be6254dmr3306258plg.51.1659643237649;
+        Thu, 04 Aug 2022 13:00:37 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:87c4:32ca:84b6:e942])
+        by smtp.gmail.com with UTF8SMTPSA id z5-20020aa79e45000000b0051bc5f4df1csm1364362pfq.154.2022.08.04.13.00.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Aug 2022 13:00:37 -0700 (PDT)
+Date:   Thu, 4 Aug 2022 13:00:34 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/9] usb: dwc3: qcom: fix runtime PM wakeup
+Message-ID: <YuwlYh7b1oBoMuBT@google.com>
+References: <20220804151001.23612-1-johan+linaro@kernel.org>
+ <20220804151001.23612-6-johan+linaro@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220804151001.23612-6-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 04 Aug 2022 13:49:06 -0500, Shenwei Wang wrote:
-> Add binding document for the imx-scu gpio driver.
+On Thu, Aug 04, 2022 at 05:09:57PM +0200, Johan Hovold wrote:
+> A device must enable wakeups during runtime suspend regardless of
+> whether it is capable and allowed to wake the system up from system
+> suspend.
 > 
-> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
-> ---
->  .../bindings/gpio/fsl,imx8-scu-gpio.yaml      | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/fsl,imx8-scu-gpio.yaml
-> 
+> Fixes: 2664deb09306 ("usb: dwc3: qcom: Honor wakeup enabled/disabled state")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/gpio/fsl,imx8-scu-gpio.example.dts:18.18-22.11: Warning (unit_address_vs_reg): /example-0/gpio@scu: node has a unit name, but no reg or ranges property
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Tested-by: Matthias Kaehlcke <mka@chromium.org>
