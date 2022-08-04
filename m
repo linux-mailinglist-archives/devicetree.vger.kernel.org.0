@@ -2,65 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7A7658983B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 09:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 519E558984F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 09:25:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235032AbiHDHSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 03:18:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43368 "EHLO
+        id S239100AbiHDHZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 03:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229592AbiHDHSH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 03:18:07 -0400
-Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C8855C969;
-        Thu,  4 Aug 2022 00:18:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1659597467; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=RitbPrTTslmZ0rPk5lvqDAN+IY0eVaS9hFna7Pc9GW8iD/DSs4WLGyXaWsKTh/h0Sv33aOR5AKW24q5Wdl5EHivYpMvkPAWXQNTFV3+W0amucqlIcsHJ4Xb2tiUXzQENIRGJtOAjuFEzX32ExVYJUGDInOgN47mo3zG2/E4EVSw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1659597467; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=MCrWicY2XoCiSIKwKmcXAPX12IeBhhZabwszQBGvXqM=; 
-        b=iY2LdKOooPCVsRu0qmwu0I9Cx/CBcCd9k8jYRS6LJNNkkFSPKdLwHklx5s00McmgtKg640Tts/KS0u2P0ofjFHS2D1tfcli7+pntpEej22Djx7zOwIpm/mYQp3+SLcg4lSrLiP6ojYgcObuyF1L1VxjFqfLYZnpKm4tfo82WuhE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=linux.beauty;
-        spf=pass  smtp.mailfrom=me@linux.beauty;
-        dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1659597467;
-        s=zmail; d=linux.beauty; i=me@linux.beauty;
-        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=MCrWicY2XoCiSIKwKmcXAPX12IeBhhZabwszQBGvXqM=;
-        b=LJu2o83LsU5SFrXTdMic49rOunqaJpFgFtVKLTdIhRbHvgZsJKMunXpMjLk2r69R
-        e05WmXzI1FCI9X/uubv2HxT4UUHLv0f9c+S719GbZWyuB7h3iO/VAFUZ9TQJF5SDCWa
-        oR+tXlOIPNnOqnpIGDgCf7wN4DpfEGJr9fukWZxg=
-Received: from mail.zoho.com by mx.zohomail.com
-        with SMTP id 1659597465146222.34603720111716; Thu, 4 Aug 2022 00:17:45 -0700 (PDT)
-Date:   Thu, 04 Aug 2022 16:17:45 +0900
-From:   Li Chen <me@linux.beauty>
-To:     "Arnd Bergmann" <arnd@arndb.de>
-Cc:     "Catalin Marinas" <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Frank Rowand" <frowand.list@gmail.com>,
-        "Andrew Morton" <akpm@linux-foundation.org>,
-        "Li Chen" <lchen@ambarella.com>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "DTML" <devicetree@vger.kernel.org>,
-        "Linux-MM" <linux-mm@kvack.org>
-Message-ID: <18267b7a61f.12b26bd91245310.4476663913461696630@linux.beauty>
-In-Reply-To: <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
-References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
- <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com> <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty> <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
-Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
- page and dio support to no-map rmem
+        with ESMTP id S233316AbiHDHZj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 03:25:39 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05342BF63
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 00:25:37 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id q7so21175055ljp.13
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 00:25:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=tnOwkKfhBzXFppIxRkEPpyNln0liXtEqX58YRBpJcr8=;
+        b=KaBX5C27LU2/hiVV41fSRkEObVVMYRvfYHSIbaXVoHOpgKYVOS4QKSU78WR0R5+b9a
+         OF+nzgrQ97gospGyxLfTDJvji0fJzMtG6v4s0CH5S0dGTdF4c3VSDpo87ozuZDrlXGfz
+         hFrmYFfZti4EdlIVJ+ij29gERCwU0TCakfaI/YHBdE6kYhTw8npkUQEKxbQDKaJeEx95
+         bJpHQLNv9DmZlIrF7IrpiHo0n/gntGbQRSL8spUyRFeDqhZm8czbKSHvH0Hr658EMLX+
+         dkaJNTlUaQ+wg7SgajA3tBtf5O+v82Xjx9mcAtSZXmxRtH7D7I20Q63MYjC0Lw0TfrxF
+         KNGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=tnOwkKfhBzXFppIxRkEPpyNln0liXtEqX58YRBpJcr8=;
+        b=H+Iewe83lQg8yTXHQdS+Gg/ziK0vDWRHDSn4ZDEn1m5HpIBSxu+4a5NkyMK+umIR/k
+         Z7lfgsTh8y82HROlqHLIiQpt1p0EqQTwGjkVUd2Gs02vUVyvlML6MCZzcKclt7WcuBfB
+         UVTsSUylPCMPre4yZ9pZYSO9jLK4W5LeMu1yverdszaElTRC7Diyrxc/ogR158eamvyQ
+         0s+PI50pPFNs1bhZjDSmMC2yAq5iCpre5oW/Sd8UwmhRYV+Xmr6koJMmMNgT+RdFNkLX
+         AvbQhguuf/JmraZqEeWLsguXuKS7U5iSvYctH0fEieM4woLBudNweHU6HKwQjrhhjZ5X
+         9k9A==
+X-Gm-Message-State: ACgBeo2KcA9OWQUp7oiVF5+t/IxFJ8Df2OMZkEz/204xfbS60Mf+D5mk
+        rahKOqbBSq8Z2A1yfKA8+MMiNg==
+X-Google-Smtp-Source: AA6agR76ryk0wDxrVOrzMuTszxXgfwzTdW7WwyPRIhNvuxMuIMxK8DVdk/uToJEoH+F0vEOAkYdCdw==
+X-Received: by 2002:a2e:9e43:0:b0:25d:d8e9:7b15 with SMTP id g3-20020a2e9e43000000b0025dd8e97b15mr163697ljk.234.1659597935350;
+        Thu, 04 Aug 2022 00:25:35 -0700 (PDT)
+Received: from [192.168.1.6] ([77.222.167.48])
+        by smtp.gmail.com with ESMTPSA id bi36-20020a05651c232400b0025e5ff004a0sm17514ljb.100.2022.08.04.00.25.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Aug 2022 00:25:34 -0700 (PDT)
+Message-ID: <1d6b475b-412d-da94-8505-0fd6f8f6a2c9@linaro.org>
+Date:   Thu, 4 Aug 2022 09:25:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2] pmic: add mt6366 regulator document
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
+        =?UTF-8?B?WmhpeW9uZyBUYW8gKOmZtuW/l+WLhyk=?= 
+        <Zhiyong.Tao@mediatek.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        =?UTF-8?B?RWRkaWUgSHVhbmcgKOm7g+aZuuWCkSk=?= 
+        <eddie.huang@mediatek.com>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "fshao@chromium.org" <fshao@chromium.org>
+Cc:     =?UTF-8?B?U2VuIENodSAo5YKo5qOuKQ==?= <Sen.Chu@mediatek.com>,
+        =?UTF-8?B?SHVpIExpdSAo5YiY6L6JKQ==?= <Hui.Liu@mediatek.com>,
+        =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
+        <Allen-KH.Cheng@mediatek.com>,
+        =?UTF-8?B?SHNpbi1Ic2l1bmcgV2FuZyAo546L5L+h6ZuEKQ==?= 
+        <Hsin-Hsiung.Wang@mediatek.com>,
+        Sean Wang <Sean.Wang@mediatek.com>,
+        =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= 
+        <Macpaul.Lin@mediatek.com>,
+        =?UTF-8?B?V2VuIFN1ICjomIflhqDmlocp?= <Wen.Su@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        zhiyong tao <zhiyong.tao@mediatk.com>
+References: <20220728062749.18701-1-zhiyong.tao@mediatek.com>
+ <20220728062749.18701-2-zhiyong.tao@mediatek.com>
+ <03a13ed4-e7cd-6f7d-f8f7-9b1e6193e202@linaro.org>
+ <3d97d4c46467909739b8b69662412fe162dbe613.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <3d97d4c46467909739b8b69662412fe162dbe613.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Importance: Medium
-User-Agent: Zoho Mail
-X-Mailer: Zoho Mail
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,20 +105,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
----- On Tue, 12 Jul 2022 16:50:46 +0900  Arnd Bergmann  wrote --- 
- > Does your hardware require a fixed address for the buffer? If it can be
- > anywhere in memory (or at least within a certain range) but just has to
- > be physically contiguous, the normal way would be to use a CMA area
- > to allocate from, which gives you 'struct page' backed pages.
+On 03/08/2022 11:50, Rex-BC Chen wrote:
+> On Thu, 2022-07-28 at 18:46 +0800, Krzysztof Kozlowski wrote:
+>> On 28/07/2022 08:27, Zhiyong Tao wrote:
+>>> From: zhiyong tao <zhiyong.tao@mediatek.com>
+>>>
+>>> Add mt6366 regulator document
+>>
+>> As usual with Mediatek your emails fail to properly pass modern SMTP
+>> checks and you end up in spam.
+>>
+>> I reported it months ago to folks in Mediatek. No improvements since
+>> that time.
+>>
+>> I stopped checking my spam folder for Mediatek stuff and all will be
+>> ignored. I will also stop complaining about it - just ignore
+>> Mediatek.
+>>
+>> Fix your systems, instead of putting additional effort on community
+>> and
+>> on reviewers.
+>>
+> 
+> Hello Krzysztof,
+> 
+> I am Rex from MediaTek chrome project team.
+> We noticed your complain of our upstream mail.
+> 
+> First of all, sorry for the inconvenience.
+> We really want to fix this SPAM issue.
+> 
+> From our side, we can make sure mails for kernel upstream from MediaTek
+> is clear and these mails pass the verification of DMARC/DKIM/SPF.
+> Therefore, to identify the root cause, could you please provide us some
+> mails that seen as SPAM from MediaTek?
+> It's more useful if you can use the form of attachment. In that case,
+> we can analyze whole mails including mail headers.
+> 
+> We really appreciate your big support, and we hope we can fix this
+> issue to reduce the inconvenience for reviewing series from MediaTek.
+> If you can spare some time to help us for this, it would very helpful!!
+> 
+> Our IT also adjust the DKIM setting today. If the situation of this
+> issue it much better, please also let us know.
+> 
 
-CMA does support Direct I/O, but it has its own issue: 
-It does not guarantee that the memory previously borrowed by the OS will be returned to the device.
+Hi,
 
-We've been plagued by examples like this in the past:
-Many other kernel modules/subsystems have already allocated much memory from both non-CMA and CMA memory,
-When our DSP driver got probed then, cma_alloc will fail in that non-CMA system memory is not enough
-for CMA memory to migrate.  
+Since few days there were no @mediatek.com emails in my spam folder,
+either because nothing was sent to me, or they passed spam filters.
 
-Regards,
-Li
+If this is the result of some changes, then it seems working. Thank you.
+
+I'll let you now when I find something new in the spam.
+
+Best regards,
+Krzysztof
