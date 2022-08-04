@@ -2,68 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 395C05897A9
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 08:11:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 793625897B8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 08:26:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238221AbiHDGLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 02:11:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
+        id S237782AbiHDG0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 02:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232853AbiHDGLw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 02:11:52 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AE5661125;
-        Wed,  3 Aug 2022 23:11:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B0B69B8249A;
-        Thu,  4 Aug 2022 06:11:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D482C433D6;
-        Thu,  4 Aug 2022 06:11:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659593508;
-        bh=PivNYhd22ovz+3c6fY+dmZ86T6hM9cCpwWw+EopqWP4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=myg4Gp10acovpgRnnfSKryNqfyVKKViZXK1u0deeL6F4aa6LZ1N8UL9QvwaJ28yo6
-         Fygt4uhFxm94uQ3uytn+h5rZBQrvX42egEhWguL0i4eMWtdzmxUUVbcFpe8j/kuHUE
-         GxhRYhdEqCmH5o4J4UNNMJMesufhU34SS+FV2S775wjtDUa9bYfFG4oIwZL/2EzXgk
-         zIAUZ1SOLoAqvsPvV6TeFTUTrzCXk4mOxCnKH8rXVzbAKbUEOzgh/yyKbwY/TsdMSq
-         M8vIZwBt0mweADhcme2s4WcaM++IClUfe1aX+HC24qXMFnMGINPsjFZsElpDisrr0L
-         xzgTkGurmr1/g==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oJU5Y-0003e7-4q; Thu, 04 Aug 2022 08:12:08 +0200
-Date:   Thu, 4 Aug 2022 08:12:08 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230177AbiHDG0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 02:26:34 -0400
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7E44E3AB22;
+        Wed,  3 Aug 2022 23:26:33 -0700 (PDT)
+Received: from unknown (HELO kinkan2-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 04 Aug 2022 15:26:32 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by kinkan2-ex.css.socionext.com (Postfix) with ESMTP id 0F3DF2059027;
+        Thu,  4 Aug 2022 15:26:32 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Thu, 4 Aug 2022 15:26:32 +0900
+Received: from [10.212.245.54] (unknown [10.212.245.54])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 81CABB62A4;
+        Thu,  4 Aug 2022 15:26:31 +0900 (JST)
+Subject: Re: [PATCH 9/9] ARM: dts: uniphier: Remove compatible
+ "snps,dw-pcie-ep" from Pro5 pcie-ep node
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/8] usb: dwc3: qcom: fix broken non-host-mode suspend
-Message-ID: <YutjOESZRD+4mr3Z@hovoldconsulting.com>
-References: <20220802151404.1797-1-johan+linaro@kernel.org>
- <20220802151404.1797-4-johan+linaro@kernel.org>
- <YurIbcXHPF6K3oPa@google.com>
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <1656894026-15707-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1656894026-15707-10-git-send-email-hayashi.kunihiko@socionext.com>
+ <CAK8P3a0D4CYqZipY30scDA=KkWR_Az_5i-8avkg6EeDs1nM62w@mail.gmail.com>
+ <64e3702b-f09b-5a2e-b6a5-4c8752fbad77@linaro.org>
+ <612989a2-c6c7-5f04-a3ba-2a82667d420b@socionext.com>
+ <751115c3-086c-7207-8281-3ffbb5d45872@linaro.org>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <445840cd-84e3-40bc-223f-4feacbcbcdf6@socionext.com>
+Date:   Thu, 4 Aug 2022 15:26:31 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YurIbcXHPF6K3oPa@google.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <751115c3-086c-7207-8281-3ffbb5d45872@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,73 +56,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 03, 2022 at 12:11:41PM -0700, Matthias Kaehlcke wrote:
-> On Tue, Aug 02, 2022 at 05:13:59PM +0200, Johan Hovold wrote:
-> > A recent commit implementing wakeup support in host mode instead broke
-> > suspend for peripheral and OTG mode.
-> > 
-> > The hack that was added in the suspend path to determine the speed of
-> > any device connected to the USB2 bus not only accesses internal driver
-> > data for a child device, but also dereferences a NULL pointer when not
-> > in host mode and there is no HCD.
-> > 
-> > As the controller can switch role at any time when in OTG mode, there's
-> > no quick fix to this, and since reverting would leave us with broken
-> > suspend in host-mode (wakeup triggers immediately), keep the hack for
-> > now and only fix the NULL-pointer dereference.
-> > 
-> > Fixes: 6895ea55c385 ("usb: dwc3: qcom: Configure wakeup interrupts during suspend")
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> >  drivers/usb/dwc3/dwc3-qcom.c | 11 ++++++++++-
-> >  1 file changed, 10 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> > index be2e3dd36440..b75ff40f75a2 100644
-> > --- a/drivers/usb/dwc3/dwc3-qcom.c
-> > +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> > @@ -301,8 +301,17 @@ static void dwc3_qcom_interconnect_exit(struct dwc3_qcom *qcom)
-> >  static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
-> >  {
-> >  	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
-> > -	struct usb_hcd *hcd = platform_get_drvdata(dwc->xhci);
-> >  	struct usb_device *udev;
-> > +	struct usb_hcd *hcd;
-> > +
-> > +	if (qcom->mode != USB_DR_MODE_HOST)
-> > +		return USB_SPEED_UNKNOWN;
+On 2022/08/03 15:11, Krzysztof Kozlowski wrote:
+> On 02/08/2022 15:10, Kunihiko Hayashi wrote:
+>> On 2022/08/02 17:33, Krzysztof Kozlowski wrote:
+>>> On 30/07/2022 13:58, Arnd Bergmann wrote:
+>>>> On Mon, Jul 4, 2022 at 2:20 AM Kunihiko Hayashi
+>>>> <hayashi.kunihiko@socionext.com> wrote:
+>>>>>
+>>>>> UniPhier PCIe endpoint controller doesn't use "snps,dw-pcie-ep"
+>>>>> compatible,
+>>>>> so this is no longer needed. Remove the compatible string from the
+>>>>> pcie-ep
+>>>>> node to fix the following warning.
+>>>>>
+>>>>>     uniphier-pro5-epcore.dtb: pcie@66000000: compatible:
+>>>>> ['socionext,uniphier-pro5-pcie-ep', 'snps,dw-pcie-ep'] is too long
+>>>>>         From schema:
+>>>>> Documentation/devicetree/bindings/pci/socionext,uniphier-pcie-ep.yaml
+>>>>>
+>>>>
+>>>> This sounds like a problem with the binding rather than the dt file. Is
+>>>> this not
+>>>> a designware pci endpoint? Should it be documented in that binding
+>>>> instead?
+>>
+>> In term of the binding, it seems that the current binding doesn't allow
+>> descriptions
+>> that list two compatibles. There is something wrong with the binding.
+>>
+>>> Depends. We had one or two similar cases, where we dropped the snps/dw
+>>> generic compatible, because device was actually quite different and
+>>> could not match against snps/dw compatible. IOW, if device bound/matched
+>>> via generic compatible it would be entirely non-operational. Logically I
+>>> think it is okay to drop the generic compatible. Different question is
+>>> any ABI break.
+>>
+>> In term of the controller, we can add dw general compatible if the more
+>> generic
+>> driver (pcie-designware-plat) works on the controller.
+>>
+>> However, the generic driver can't do the initialization what the
+>> controller
+>> needs, so we can add controller-specific compatible only.
+>> The commit bf2942a8b7c3 ("arm64: tegra: Fix Tegra194 PCIe EP compatible
+>> string")
+>> removes the generic compatible for the same reason.
+>>
+>> This patch suggests removing the generic compatible for the former reason,
+>> though, I might suggest it for the controller reason.
 > 
-> Couldn't instead the below block in dwc3_qcom_suspend() be conditional on
-> the controller being in host mode?
-> 
-> 	if (device_may_wakeup(qcom->dev)) {
-> 		qcom->usb2_speed = dwc3_qcom_read_usb2_speed(qcom);
-> 		dwc3_qcom_enable_interrupts(qcom);
-> 	}
+> The patch does not explain this, though.
 
-Yeah, the authors clearly didn't consider non-host mode when
-implementing this and keeping wakeups disabled in that case probably
-doesn't break anything that was ever working.
+Yes, I'll resend the patch with an explanation of the reason for the controller
+like Tegra194.
 
-> I see, the problem is that the role switch could happen at any time as the
-> commit message says. With this patch there is also a race though, the role
-> switch could happen just after the check and before obtaining 'hcd'.
+Thank you,
 
-No, there's no race here as I'm checking the static configuration that
-comes from DT. Specifically, I'm not trying to add support for wakeup in
-OTG mode, but just prevent suspend from crashing.
-
-I may be possible address also the host-role in OTG mode, but that means
-continuing to build on this layer violation.
-
-Note that we're in the suspend callback of the parent so as long as the
-drivers for the descendant devices has disabled role switching at this
-stage during suspend, we should be good.
-
-But I'm torn about simply ripping this patch out and trying to fix it
-up. I want the feature, but the patch adding this clearly wasn't ready
-for merging.
-
-I'll take another look at this.
-
-Johan
+---
+Best Regards
+Kunihiko Hayashi
