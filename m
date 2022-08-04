@@ -2,96 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74C69589A0E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 11:43:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0494589A25
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 11:53:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239404AbiHDJnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 05:43:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59732 "EHLO
+        id S238277AbiHDJxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 05:53:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239395AbiHDJnO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 05:43:14 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98CE6717E
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 02:43:12 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id b16so17105196edd.4
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 02:43:12 -0700 (PDT)
+        with ESMTP id S232333AbiHDJxf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 05:53:35 -0400
+Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF1B926AE5;
+        Thu,  4 Aug 2022 02:53:34 -0700 (PDT)
+Received: by mail-pf1-x42f.google.com with SMTP id w185so18902174pfb.4;
+        Thu, 04 Aug 2022 02:53:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=r46KFAl4TfFrC5l4SGRajq+tNuzO0BzQHbXD1x0Z/2w=;
-        b=S6+kVL8ePQUIYSD3wWZf+6Pbn/YJcO8W1A3nf+MjPxiPTw1s3u49W3+ELbyG6s/xl7
-         c+yoWpfXqGIP5xtVPCeYjZVKiKbnre0b1aTWbTRKJq4WUY/OGH8D6jNg805M3ZiIE+2J
-         i7dNgji2dSjRo21/WVTamuNS2A/Iaquww5t1XJ1aME458WiKttystKbGaEvWGEBR1drW
-         RLh7a0RPsL8OihN6VhlR5QwGOQEDuOSXxeVLX906Bewb8hDX/ANliqvPOuaB8sCVaceZ
-         UV76VYf/UNl84XpUjtvHOITS2tE2zQzBMMuxmEwZONFwxaXoMF8SZWRp7WulkBrtI92F
-         hh1Q==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=Yj4LnoCipKdQooHDqQkSzfPq9k+SbXM64sol04d/ofU=;
+        b=qVUuazv80uczwDUpa1W45XFLKQkv6E85jaluDS0qPCqx5UqLWXVRj7NNS3iB1u5yMk
+         BpAyrdAWbjN4xan/ozEhpBngVBm4vusnJrSXS6B5BtALu4Q7w0WkatMFosToCwAp0pxw
+         peyWEmojG15dUtIHplxLrARzYTKP87+hpzEs+qJ1Skx6IUC8ArRBWfpqh5foE/L0KuT3
+         5dl0vT47WvE/YFBfLMbib+8Ia4pPLthO02aty10gTq/7cMx0IUzGT+JIGnvuHvmlqhSG
+         +z4BOs0ydQYyC+O9uk363r+pOvEqCbU9PsjpybnRv4n2q2RjbjTJIV3fBXw17xudaCYj
+         TyKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=r46KFAl4TfFrC5l4SGRajq+tNuzO0BzQHbXD1x0Z/2w=;
-        b=0AFgrN53dDzOZDd+6+qNXbgWW/qi43bI7+TOq+GUbQO3r5Y3rUKhrJV0dWLfJw9cQv
-         ZRrfYdjzEq4/OKuSJihymtW7CSPGqOcvI/zCungHlo/kfGDsAQy7ZEQzGF6XSj6WwK8v
-         i9RbF7yUJhEeDITwwK6doLZNjbNNJwTAUrlV8humrqnqtVozd+8+WVlBNefwyISjdKyc
-         Qqqko//Qp3BCg7o4yfQ+70BT3WHrokIHxY2m1NS13vvdHRkeOfkpmMVHZcKLV+GBMZGk
-         PdYevrmb9vKI1MMwq4q8TYZ4w9kWvxVoAPyBIX3pdyxkD7kFO+kBTciWtqZccnehuSlK
-         yuRw==
-X-Gm-Message-State: ACgBeo1oX+B+h1oA2YjbtipQ+dDpgCB/vRflJTSMGy53xJNkXRVjU2m+
-        kUGxaRQ3VTM1jt6lEozkRjN2XyPrMbbRYxZNrSe1Fg==
-X-Google-Smtp-Source: AA6agR5afw8s52J5k8ANiGBZ2AJghNnge3OAhhFOjfwdj/q7FYBbe8lc2YZ8qHHjL6k9udoJs2UxHbldej8aHlNUgIU=
-X-Received: by 2002:a05:6402:293:b0:43d:3936:66b0 with SMTP id
- l19-20020a056402029300b0043d393666b0mr1134525edv.404.1659606191429; Thu, 04
- Aug 2022 02:43:11 -0700 (PDT)
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=Yj4LnoCipKdQooHDqQkSzfPq9k+SbXM64sol04d/ofU=;
+        b=ewahLd3VOGPtQ3GZMq/EPtODImi2jZTqphBuCCDYg+JCH5gVokPpOQObRCVpDdMgUZ
+         rEDXp/jLA+GDqHdHEzM0xeHS6T7qcU/Tb2cHcDerozYtbX1mfGtwFns/f4GBTml2jBHK
+         s1fI0aoUNEXiLsd/GcQFwT9/b+aSb24lxmcP92hBelwINzw8MLks2NsUgyjEJQdKiwNK
+         mr0NMxeE9j7nsHXRNhor+MFJKynV8t3R5EHgB4GZjx+/Izh982dQ/nl4a+/lK9hrJWKB
+         ctDDGc79cK+1mjFcB3VMIagU8H7XjPVcvB6S/Q0OD9FgwhaQ2AQUGmkUd0mpNO/Njezz
+         l3gg==
+X-Gm-Message-State: ACgBeo3FtQjUtk8qNh02MJ6yiePvxaMUoVzkNrLu2YZLHGh2Qp95MOJY
+        P3QB1NLgFCVKolQTZYK8T/KQnEpiSWgQ4NuIvt8=
+X-Google-Smtp-Source: AA6agR6qwy7xIi0BGj0KdaE31bzJZvJiNHMC9+UQ+P/hml7eIyhBore8DXxCh12e0tZqDO9pfcvT3sY1+E56wep5ub0=
+X-Received: by 2002:a65:694f:0:b0:41c:cc1f:4440 with SMTP id
+ w15-20020a65694f000000b0041ccc1f4440mr1024346pgq.318.1659606814308; Thu, 04
+ Aug 2022 02:53:34 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220802175755.6530-1-sudip.mukherjee@sifive.com> <20220803185600.76rwp4o3itb2e2dn@mobilestation>
-In-Reply-To: <20220803185600.76rwp4o3itb2e2dn@mobilestation>
-From:   Sudip Mukherjee <sudip.mukherjee@sifive.com>
-Date:   Thu, 4 Aug 2022 10:43:00 +0100
-Message-ID: <CAHyZL-ftLQNg2eTsmSXRSpHUNzNyTEt+UUGCUs2XqvRgeiWRrg@mail.gmail.com>
-Subject: Re: [PATCH 00/11] Add support for enhanced SPI for Designware SPI controllers
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>,
-        William Salmon <william.salmon@sifive.com>,
-        Adnan Chowdhury <adnan.chowdhury@sifive.com>,
-        Ben Dooks <ben.dooks@sifive.com>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jeegar Lakhani <jeegar.lakhani@sifive.com>
+References: <20220722102407.2205-1-peterwu.pub@gmail.com> <20220722102407.2205-13-peterwu.pub@gmail.com>
+ <20220730214205.GK23307@duo.ucw.cz>
+In-Reply-To: <20220730214205.GK23307@duo.ucw.cz>
+From:   Alice Chen <szunichen@gmail.com>
+Date:   Thu, 4 Aug 2022 17:53:22 +0800
+Message-ID: <CA+hk2fbEvU2yJbowqKoozb2M0aQc9TFCaxAn++YrmEx+eWt_4w@mail.gmail.com>
+Subject: Re: [PATCH v6 12/13] leds: flash: mt6370: Add MediaTek MT6370
+ flashlight support
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     ChiaEn Wu <peterwu.pub@gmail.com>, lee.jones@linaro.org,
+        daniel.thompson@linaro.org, jingoohan1@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        matthias.bgg@gmail.com, sre@kernel.org, chunfeng.yun@mediatek.com,
+        gregkh@linuxfoundation.org, jic23@kernel.org, lars@metafoo.de,
+        lgirdwood@gmail.com, broonie@kernel.org, linux@roeck-us.net,
+        heikki.krogerus@linux.intel.com, deller@gmx.de,
+        andy.shevchenko@gmail.com, chiaen_wu@richtek.com,
+        alice_chen@richtek.com, cy_huang@richtek.com,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 3, 2022 at 7:56 PM Serge Semin <fancer.lancer@gmail.com> wrote:
->
-> Hi Sudip
->
-> On Tue, Aug 02, 2022 at 06:57:44PM +0100, Sudip Mukherjee wrote:
-> > Some Synopsys SSI controllers support enhanced SPI which includes
-> > Dual mode, Quad mode and Octal mode. DWC_ssi includes clock stretching
-> > feature in enhanced SPI modes which can be used to prevent FIFO underflow
-> > and overflow conditions while transmitting or receiving the data respectively.
-> > This is only tested on controller version 1.03a.
-> >
-> > Ben Dooks (1):
-> >   spi: dw-apb-ssi: add generic 1.03a version
->
-> Thanks for the patchset. It's always welcome to have a new
-> functionality support. I'll have it reviewed on the next week.
+Pavel Machek <pavel@ucw.cz> =E6=96=BC 2022=E5=B9=B47=E6=9C=8831=E6=97=A5 =
+=E9=80=B1=E6=97=A5 =E6=B8=85=E6=99=A85:42=E5=AF=AB=E9=81=93=EF=BC=9A
 
-Thanks Sergey. I will then wait for your review before sending a v2
-with the changes Mark has suggested.
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*
+> > + * Copyright (C) 2022 Richtek Technology Corp.
+> > + *
+> > + * Author: Alice Chen <alice_chen@richtek.com
+>
+> Add ">" at end of line.
+>
+> The series is quite big, would it be possible to submit LED changes
+> in separate series?
+>
+Hi Pavel,
 
---
-Regards
-Sudip
+Our mfd dt-bindings depends on flash and LED dt-bindings,
+but our flash and LED config depend on mfd config.
+For the dependency consideration,
+we think submitting them in a patch series is better.
+
+Best Regards,
+Alice
