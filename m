@@ -2,108 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B882589F8C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 18:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE016589F9E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 18:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233472AbiHDQx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 12:53:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56816 "EHLO
+        id S236435AbiHDQ7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 12:59:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbiHDQx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 12:53:28 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98550252B4;
-        Thu,  4 Aug 2022 09:53:24 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id 174735FD06;
-        Thu,  4 Aug 2022 19:53:22 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1659632002;
-        bh=7VqOZGtBUV2rPszzt+iOd/uivE15FHVsI8evbC3zCPg=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=eHQCywSVaPtlqKMhx494PMfhccsQ6LkWBwuqmwxX0aR3pQ9Dupxm3rEGu27kS82Yd
-         MadISbStWePQJuOT4M8KSDFhslHuOJr5ZtnHERDK9Jdg3+7eaiBhf4aMRrbpaB9qJ5
-         mEeSZsZHMnGzldlzRn3mKNNNEKxolhHlkRiLaZ6w3aeb3zKeU54qLyUM0EDIXRv7wf
-         RBou3VFs5y8L0PWsyG3CD3ulOJfeH8mQkeKwi7VUydTAMlk2QyWSF2OZMav48ytZHo
-         WtSXZDLXFlW7SwBjP/vL728whqeweaCpDwzOFbD6xiUgnh/vUoYBIKmBNR6cMfBCKc
-         B4L9ecwOLWLJQ==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Thu,  4 Aug 2022 19:53:20 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "khilman@baylibre.com" <khilman@baylibre.com>,
-        "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-        "martin.blumenstingl@googlemail.com" 
-        <martin.blumenstingl@googlemail.com>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-amlogic@lists.infradead.org" 
-        <linux-amlogic@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Dmitry Rokosov <DDRokosov@sberdevices.ru>
-Subject: [PATCH v1] arm64: dts: meson-axg: reserve memory region for Amlogic
- TrustOS
-Thread-Topic: [PATCH v1] arm64: dts: meson-axg: reserve memory region for
- Amlogic TrustOS
-Thread-Index: AQHYqCKmlgn31IcXkUK0U/+U7ZMA5w==
-Date:   Thu, 4 Aug 2022 16:52:59 +0000
-Message-ID: <20220804165317.29086-1-ddrokosov@sberdevices.ru>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S235453AbiHDQ7w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 12:59:52 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C23E67CB8
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 09:59:47 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id f11so400327pgj.7
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 09:59:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Ajh2ay/tShS0T3mEFnSZ0by+HsK7Mn/hpkM/mCvNva0=;
+        b=lz/kuCg6IRO4dLKH6V4paHzmXaWNI12uLvsnPN1lBCr6Lleqx3m6d36BH0R40kxcz0
+         qM0qFj55Q76+GJ/6Ctyh/+14pVlT91DCeYlfBOuq4v01aVb7Sc0/S98g7gAK69fVQnPo
+         jB9CGh6CqpjPkKtTIVGO8bRQoqyLxs2RDYqyI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Ajh2ay/tShS0T3mEFnSZ0by+HsK7Mn/hpkM/mCvNva0=;
+        b=oP7dH5VcuD9Uo1kRNKhkIp7H47Rp4sJnneldYIwctgASmqRGZIe9YpVOI9M4+DlpJ1
+         5oUEKif0G0jJZQqntFuKRT2EuXFA1ot5cdeU4T+1h1kCKhgs595Hz89HuOhQmLBp+XNd
+         SDAyco6hAgYixWIU6MHx2CwJPOCR1q2n47wbmQVidxdbfUMXkKmlHTU0TvrZDWjwQgwQ
+         HwVRML8MJVhdtXejK9nKJ//YkZFf2ZlB07EfEVEsWz6+9BwQTQUuwbS+WpXkwZewHOCg
+         sal4Rf36+JqvgZ4u0eQyDG8LtGR2R9BQaYbMTuZ9a8jwP5IDeSd+58/51KGP8uJ0/5dr
+         4sxw==
+X-Gm-Message-State: ACgBeo2GmSIaMhs0+kAkz4sCWgnYd8SAyVKoWxmQmI5onLt9/J2pf1zr
+        JKHkdiMJd1O6qGI9cywYrOIpIQ==
+X-Google-Smtp-Source: AA6agR7X25qLSBYYrho0ENYRQNA0Cmh8oMxWYY7cOVtOcXFu+38U/7oHiu3qGRghMajV/hSd5z2nOQ==
+X-Received: by 2002:a63:8242:0:b0:41b:e465:81dd with SMTP id w63-20020a638242000000b0041be46581ddmr2348517pgd.217.1659632386946;
+        Thu, 04 Aug 2022 09:59:46 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:87c4:32ca:84b6:e942])
+        by smtp.gmail.com with UTF8SMTPSA id nu3-20020a17090b1b0300b001f52fa1704csm14280238pjb.3.2022.08.04.09.59.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Aug 2022 09:59:46 -0700 (PDT)
+Date:   Thu, 4 Aug 2022 09:59:44 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 8/9] usb: dwc3: qcom: fix wakeup implementation
+Message-ID: <Yuv7AM/5jtO/pgcm@google.com>
+References: <20220804151001.23612-1-johan+linaro@kernel.org>
+ <20220804151001.23612-9-johan+linaro@kernel.org>
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/08/04 12:57:00 #20050432
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220804151001.23612-9-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For the all AXG SoC based boards, which run Amlogic vendor ATF and
-TrustOS this memory region 0x5300000-0x6300000 is reserved by BL32,
-so tag it as no-map in the kernel iomem.
+On Thu, Aug 04, 2022 at 05:10:00PM +0200, Johan Hovold wrote:
+> It is the Qualcomm glue wakeup interrupts that may be able to wake the
+> system from suspend and this can now be described in the devicetree.
+> 
+> Move the wakeup-source property handling over from the core driver and
+> instead propagate the capability setting to the core device during
+> probe.
+> 
+> This is needed as there is currently no way for the core driver to query
+> the wakeup setting of the glue device, but it is the core driver that
+> manages the PHY power state during suspend.
+> 
+> Also don't leave the PHYs enabled when system wakeup has been disabled
+> through sysfs.
+> 
+> Fixes: 649f5c842ba3 ("usb: dwc3: core: Host wake up support from system suspend")
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  drivers/usb/dwc3/core.c      | 5 ++---
+>  drivers/usb/dwc3/dwc3-qcom.c | 6 +++++-
+>  2 files changed, 7 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index 16d1f328775f..8c8e32651473 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -1822,7 +1822,6 @@ static int dwc3_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, dwc);
+>  	dwc3_cache_hwparams(dwc);
+> -	device_init_wakeup(&pdev->dev, of_property_read_bool(dev->of_node, "wakeup-source"));
+>  
+>  	spin_lock_init(&dwc->lock);
+>  	mutex_init(&dwc->mutex);
+> @@ -1984,7 +1983,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+>  		dwc3_core_exit(dwc);
+>  		break;
+>  	case DWC3_GCTL_PRTCAP_HOST:
+> -		if (!PMSG_IS_AUTO(msg) && !device_can_wakeup(dwc->dev)) {
+> +		if (!PMSG_IS_AUTO(msg) && !device_may_wakeup(dwc->dev)) {
 
-Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
----
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+Let me explain the rationale for why device_can_wakeup() was used here:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/d=
-ts/amlogic/meson-axg.dtsi
-index 3f5254eeb47b..1fa0d3805969 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-@@ -142,6 +142,12 @@ secmon_reserved: secmon@5000000 {
- 			reg =3D <0x0 0x05000000 0x0 0x300000>;
- 			no-map;
- 		};
-+
-+		/* 16 MiB reserved for Amlogic Trust OS (BL32) */
-+		secos_reserved: secos@5300000 {
-+			reg =3D <0x0 0x05300000 0x0 0x1000000>;
-+			no-map;
-+		};
- 	};
-=20
- 	scpi {
---=20
-2.36.0
+On QCOM SC7180 based Chromebooks we observe that the onboard USB hub consumes
+~80 mW during system suspend when the PHYs are disabled, as opposed to ~17 mW
+when the PHYs remain enabled. This is a significant delta when the device is
+on a battery power.
+
+The initial idea was to leave the PHYs always enabled (in a low power mode),
+but then I dug up commit c4a5153e87fd ("usb: dwc3: core: Power-off core/PHYs
+on system_suspend in host mode"), which provides a rationale for the PHYs
+being powered off:
+
+  Commit 689bf72c6e0d ("usb: dwc3: Don't reinitialize core during
+  host bus-suspend/resume") updated suspend/resume routines to not
+  power_off and reinit PHYs/core for host mode.
+  It broke platforms that rely on DWC3 core to power_off PHYs to
+  enter low power state on system suspend.
+
+Unfortunately we don't know which platforms are impacted by this. The idea
+behind using device_can_wakeup() was to use it as a proxy for platforms
+that are *not* impacted. If a platform supports USB wakeup supposedly the
+SoC can enter its low power mode during system suspend with the PHYs
+enabled.
+
+By now I'm not 100% sure if the above assumption is correct. I recently
+saw allegations that the power consumption of a given QC SoC with USB
+wakeup support drops significantly when wakeup is disabled (i.e. when
+the PHYs are off), but haven't confirmed this yet.
