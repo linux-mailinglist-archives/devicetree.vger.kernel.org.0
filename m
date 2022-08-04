@@ -2,83 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D49858982F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 09:11:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7A7658983B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 09:18:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239073AbiHDHLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 03:11:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39676 "EHLO
+        id S235032AbiHDHSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 03:18:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239029AbiHDHK5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 03:10:57 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9FA8606B7
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 00:10:55 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id r17so4571750lfm.11
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 00:10:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=YG61Uivcd4S6kTpt4q1QPuOIXbaUzpil99F6obZc9l0=;
-        b=Qdg6+LvUzoow/uebeV0lrwLhW/Ek8fN5tvdYyw1unnHWxJiag1xYtmbUHzByicpFUs
-         A1nLNIOZ7mY//ZeC9JcMWq+K4+ZNFJgGPyUFonZ4l9hfNCmNbvi4G2nIAy+ppIObb6Df
-         VYbrC+hUYeYpLjNOLOcLvl/OXfQe7E0yRWbUO9PszAuqMWDXkfGIgKGK4OU2xQ77v2hV
-         9vqFrTbl/hNqOuraHyZEteF3sYwfZ2Ecqc2a7TRT0kEENK87Qoq4e44BNWlq/jshB2GY
-         1qJ/ZQj2RovCVJ1rScEmXxuHr1xAv9sMVoDWROqZ+4bYzwwKyX8MvJOsRgeQEt660+qA
-         vUeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YG61Uivcd4S6kTpt4q1QPuOIXbaUzpil99F6obZc9l0=;
-        b=jev4SMqfNjd/m80hMg+KC9SyprabMPJ0/jQ7kSJyF5RCH55OCOk38MlhQPIgMKk9sm
-         74JulTX34VTNHmnU2hdlUsh0v+2aof0nncNjwIR+A/16m0LVpBjlC4cG6g3v8fpY1HaY
-         n1zHIdPau3di2A7pjyYYl97duaPVjDcat9Oudu0iog/10E4flMOkLKLldzzFIqA+uA3s
-         Wy00IBOZPYut1aa8ARqOIuvyYknQSJtNUm17ChHcVSPqcBVqTEFuuEe+aPKZh0w/0AdC
-         Yb7YRbglPBU2y58hf4oe+yTAOghmpAe+mzwsNxQwZms+dZXRzAgX1q0ozTRo7PV45i/z
-         Xh+g==
-X-Gm-Message-State: ACgBeo3uJLhuCXvXOYnd83De2+rrmGFgYQ+Po8s7AiDQhbcuZFnH3d2c
-        4HZwDgkW0calSJFzNy7hGxx4+g==
-X-Google-Smtp-Source: AA6agR5yMU9o7QNtV/y9ouJt6QHnOa6F6f9WtivIiZi0peKgzPE9TZ2w3zFvWrOxxDmX8XsrZ7Xh7Q==
-X-Received: by 2002:a05:6512:118b:b0:46b:a9ae:3a3b with SMTP id g11-20020a056512118b00b0046ba9ae3a3bmr229216lfr.188.1659597054255;
-        Thu, 04 Aug 2022 00:10:54 -0700 (PDT)
-Received: from [192.168.1.6] ([77.222.167.48])
-        by smtp.gmail.com with ESMTPSA id r2-20020a19ac42000000b0048af9576d30sm26950lfc.83.2022.08.04.00.10.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 00:10:52 -0700 (PDT)
-Message-ID: <d8fec5ab-2e03-4df0-f858-4a83c6f23233@linaro.org>
-Date:   Thu, 4 Aug 2022 09:10:49 +0200
+        with ESMTP id S229592AbiHDHSH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 03:18:07 -0400
+Received: from sender4-op-o18.zoho.com (sender4-op-o18.zoho.com [136.143.188.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C8855C969;
+        Thu,  4 Aug 2022 00:18:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1659597467; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=RitbPrTTslmZ0rPk5lvqDAN+IY0eVaS9hFna7Pc9GW8iD/DSs4WLGyXaWsKTh/h0Sv33aOR5AKW24q5Wdl5EHivYpMvkPAWXQNTFV3+W0amucqlIcsHJ4Xb2tiUXzQENIRGJtOAjuFEzX32ExVYJUGDInOgN47mo3zG2/E4EVSw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1659597467; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=MCrWicY2XoCiSIKwKmcXAPX12IeBhhZabwszQBGvXqM=; 
+        b=iY2LdKOooPCVsRu0qmwu0I9Cx/CBcCd9k8jYRS6LJNNkkFSPKdLwHklx5s00McmgtKg640Tts/KS0u2P0ofjFHS2D1tfcli7+pntpEej22Djx7zOwIpm/mYQp3+SLcg4lSrLiP6ojYgcObuyF1L1VxjFqfLYZnpKm4tfo82WuhE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=linux.beauty;
+        spf=pass  smtp.mailfrom=me@linux.beauty;
+        dmarc=pass header.from=<me@linux.beauty>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1659597467;
+        s=zmail; d=linux.beauty; i=me@linux.beauty;
+        h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=MCrWicY2XoCiSIKwKmcXAPX12IeBhhZabwszQBGvXqM=;
+        b=LJu2o83LsU5SFrXTdMic49rOunqaJpFgFtVKLTdIhRbHvgZsJKMunXpMjLk2r69R
+        e05WmXzI1FCI9X/uubv2HxT4UUHLv0f9c+S719GbZWyuB7h3iO/VAFUZ9TQJF5SDCWa
+        oR+tXlOIPNnOqnpIGDgCf7wN4DpfEGJr9fukWZxg=
+Received: from mail.zoho.com by mx.zohomail.com
+        with SMTP id 1659597465146222.34603720111716; Thu, 4 Aug 2022 00:17:45 -0700 (PDT)
+Date:   Thu, 04 Aug 2022 16:17:45 +0900
+From:   Li Chen <me@linux.beauty>
+To:     "Arnd Bergmann" <arnd@arndb.de>
+Cc:     "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Frank Rowand" <frowand.list@gmail.com>,
+        "Andrew Morton" <akpm@linux-foundation.org>,
+        "Li Chen" <lchen@ambarella.com>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        "DTML" <devicetree@vger.kernel.org>,
+        "Linux-MM" <linux-mm@kvack.org>
+Message-ID: <18267b7a61f.12b26bd91245310.4476663913461696630@linux.beauty>
+In-Reply-To: <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
+References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
+ <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com> <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty> <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
+ page and dio support to no-map rmem
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add binding documentation for
- NXP IMX93 ADC
-Content-Language: en-US
-To:     Bough Chen <haibo.chen@nxp.com>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <1659517947-11207-1-git-send-email-haibo.chen@nxp.com>
- <1659517947-11207-2-git-send-email-haibo.chen@nxp.com>
- <8afe7812-7dbd-7257-2a55-b4ae49f47381@linaro.org>
- <VI1PR04MB4016C146F9C8EF90557B362F909F9@VI1PR04MB4016.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <VI1PR04MB4016C146F9C8EF90557B362F909F9@VI1PR04MB4016.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,90 +68,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/08/2022 03:05, Bough Chen wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 2022年8月3日 18:20
->> To: Bough Chen <haibo.chen@nxp.com>; jic23@kernel.org; lars@metafoo.de;
->> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
->> shawnguo@kernel.org; s.hauer@pengutronix.de
->> Cc: kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx
->> <linux-imx@nxp.com>; linux-iio@vger.kernel.org; devicetree@vger.kernel.org
->> Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add binding documentation for
->> NXP IMX93 ADC
->>
->> On 03/08/2022 11:12, haibo.chen@nxp.com wrote:
->>> From: Haibo Chen <haibo.chen@nxp.com>
->>>
->>> The IMX93 SoC has a new ADC IP, so add binding documentation for NXP
->>> IMX93 ADC.
->>>
->>> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
->>> ---
->>>  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 65
->> +++++++++++++++++++
->>>  1 file changed, 65 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>> b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>> new file mode 100644
->>> index 000000000000..e0eac5aa81d7
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>> @@ -0,0 +1,65 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
->>> +---
->>> +$id:
->>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
->>>
->> +cetree.org%2Fschemas%2Fiio%2Fadc%2Fnxp%2Cimx93-adc.yaml%23&amp;d
->> ata=0
->>>
->> +5%7C01%7Chaibo.chen%40nxp.com%7Ca11cd128f8814929684b08da7539b
->> dbc%7C68
->>>
->> +6ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637951188101491669%
->> 7CUnknown
->>>
->> +%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
->> WwiLC
->>>
->> +JXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=JFNr4telb4AovE62YaHQu
->> KNr1ywL%2
->>> +Blc0dJMFNN1OA1U%3D&amp;reserved=0
->>> +$schema:
->>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
->>>
->> +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Chaib
->> o.che
->>>
->> +n%40nxp.com%7Ca11cd128f8814929684b08da7539bdbc%7C686ea1d3bc2
->> b4c6fa92c
->>>
->> +d99c5c301635%7C0%7C0%7C637951188101491669%7CUnknown%7CTWF
->> pbGZsb3d8eyJ
->>>
->> +WIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%
->> 7C300
->>>
->> +0%7C%7C%7C&amp;sdata=A1PPlSkOsS7nWFOPAokyA1F8%2BYFSZj5dY%2FO
->> blm0U4UA%
->>> +3D&amp;reserved=0
->>> +
->>> +title: NXP ADC found on the imx93 SoC
->>
->> How different it is from ADC in imx8qxp?
-> 
-> They are totally two different ADC IP, no similar with each other.
+Hi Arnd,
+---- On Tue, 12 Jul 2022 16:50:46 +0900  Arnd Bergmann  wrote --- 
+ > Does your hardware require a fixed address for the buffer? If it can be
+ > anywhere in memory (or at least within a certain range) but just has to
+ > be physically contiguous, the normal way would be to use a CMA area
+ > to allocate from, which gives you 'struct page' backed pages.
 
-Each submitter responds like that... how much different? What is
-different? Driver has lots of copied pieces, so actually could be
-unified as well.
+CMA does support Direct I/O, but it has its own issue: 
+It does not guarantee that the memory previously borrowed by the OS will be returned to the device.
 
+We've been plagued by examples like this in the past:
+Many other kernel modules/subsystems have already allocated much memory from both non-CMA and CMA memory,
+When our DSP driver got probed then, cma_alloc will fail in that non-CMA system memory is not enough
+for CMA memory to migrate.  
 
-
-Best regards,
-Krzysztof
+Regards,
+Li
