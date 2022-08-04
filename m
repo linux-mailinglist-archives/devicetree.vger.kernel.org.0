@@ -2,109 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29F2B589F11
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 18:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F645589F3C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 18:18:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231909AbiHDQEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 12:04:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56450 "EHLO
+        id S235219AbiHDQSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 12:18:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231303AbiHDQEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 12:04:33 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 766545F11E;
-        Thu,  4 Aug 2022 09:04:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EDEBD6145D;
-        Thu,  4 Aug 2022 16:04:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D775C433C1;
-        Thu,  4 Aug 2022 16:04:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659629071;
-        bh=6pGrc94dvYb2OgWsE5mEE++5cvcrDZCQ7oo+HRuQ4oc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=L23PPi74cYg7A9Pru0juDhfLElHtDkPcx+V+EpUZwImTPPd2BPQywkZ/tg6f6/UIi
-         cPsvdH8SeVaqjV21EcFVtCh1l2PzrnexHNMIhgZliEvYjqS/9DUAq8ZSY1ZGmCsSSU
-         wQbabANAhYo6LH3e42IVJMygya69z/mpdwTQjtuDlatocYjT1W1bwaPnHdCgwT/UdQ
-         kAkmzJTbokswMUDmLq5GY+yFwf4lZwI7sNw+8AmxtnD11aD0NAT5gVtC5ELssJ9se1
-         1wVlyWIZd5UBm6p0dpf2uuxXDMQCTnP8gFQrzOtR5KsTftcthsvCCUvk8+RU3bNLLZ
-         ijcldu9P6BAXg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oJdLB-0006dU-0n; Thu, 04 Aug 2022 18:04:53 +0200
-Date:   Thu, 4 Aug 2022 18:04:53 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232087AbiHDQSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 12:18:36 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D9AE33E2A;
+        Thu,  4 Aug 2022 09:18:35 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id i14so191065ejg.6;
+        Thu, 04 Aug 2022 09:18:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=JNzjD6Vp5LwUhvOokMc6+3eMyLZefF/Ri/vBtG0eveI=;
+        b=DHQYcgrqa2GwDeeyJeB33wUMV4b/yPgzPGYqUXFZn78l08PGfjX6q6vbCpMF0WS9Xk
+         y3GuUCqRokBLS0lnk7jotp3LMz1xUh3NF35gLYue+YoXCU6PDKFlkIcp+j7Ky4vp6vHM
+         fYApl8xYX9GHI9M46KU2igt9/GmxkvuGUyo8sttmweMTD9W4QZojLdyScpwIieUFiRlJ
+         xRCMNuxcMlEacddEAfn2mPQqq5V9WXyAl0zwvkLDBRezNV0tScv1VuyCgXyQKSRvruzo
+         1O5NqzJDhDVEopkMYPY65RyOkRSxrVblc6wC/th7r8DXqxVKx2+yW6WigDCv9F14ikbh
+         g0bg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=JNzjD6Vp5LwUhvOokMc6+3eMyLZefF/Ri/vBtG0eveI=;
+        b=sOdkzOGaN+/G3y3a7/YfWFqQOIPLmg+cHF0OzSheXs2CXJGDmyxv4au28pCGY+Nj9+
+         PzsGtXVwEjVPWlEiJDFyNGazTnL8ChdEc71iEM0RkchPA0WjklIvgTZ3xYWuXO79HprH
+         TID7Va2+bJpASMwCP4HOdv50vBfoAfjQZXOLHFUWpsxMjjkoG2GNbyp8PONPCgWOdUUi
+         BSNJXWK4bcrySOADfq8IZ4ZkPk/dWubekflonOBY0LDbyuEgZD5p66cUGrZdoSn5RoKs
+         bwMa94aPGKho+NLY4nCX2YENgigDGdnTgALO+0Nuy0zL/u6SfjZIMI54SpD8oL+xIDL9
+         bZ7A==
+X-Gm-Message-State: ACgBeo3wAMldQ8EeDBbuD/O6yk/OZ5gEbA0aJNy5WzUnbaX/0MI3Tg5t
+        LNKZf2eGR/P3Kjvk9rci32c=
+X-Google-Smtp-Source: AA6agR5ZOB8sjiTqaPDAVWzLh5ayOqoz3XnVWJIqWejRe2w8NJ0c2y7Z/5YN8Aqk/ihviXIjdVDbVQ==
+X-Received: by 2002:a17:906:6a0f:b0:730:df34:6ec4 with SMTP id qw15-20020a1709066a0f00b00730df346ec4mr753635ejc.659.1659629913878;
+        Thu, 04 Aug 2022 09:18:33 -0700 (PDT)
+Received: from felia.fritz.box (200116b826aef000cd273e5ddbcf3899.dip.versatel-1u1.de. [2001:16b8:26ae:f000:cd27:3e5d:dbcf:3899])
+        by smtp.gmail.com with ESMTPSA id v18-20020a170906293200b0072b51fb36f7sm471371ejd.196.2022.08.04.09.18.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Aug 2022 09:18:33 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Jean-Marie Verdun <verdun@hpe.com>,
+        Nick Hawkins <nick.hawkins@hpe.com>,
+        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/8] usb: dwc3: qcom: fix runtime PM wakeup
-Message-ID: <YuvuJR0ZqSvwMSi1@hovoldconsulting.com>
-References: <20220802151404.1797-1-johan+linaro@kernel.org>
- <20220802151404.1797-5-johan+linaro@kernel.org>
- <YurviWfzut9sursr@google.com>
- <Yut2tLqGfu82xcDs@hovoldconsulting.com>
- <YuvnLliIKLK71wx0@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YuvnLliIKLK71wx0@google.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org, kernel-janitors@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH] MAINTAINERS: rectify entry for ARM/HPE GXP ARCHITECTURE
+Date:   Thu,  4 Aug 2022 18:18:23 +0200
+Message-Id: <20220804161823.20912-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 08:35:10AM -0700, Matthias Kaehlcke wrote:
-> On Thu, Aug 04, 2022 at 09:35:16AM +0200, Johan Hovold wrote:
+Commit 8cc35b86546d ("spi: dt-bindings: add documentation for
+hpe,gxp-spifi") adds the spi dt-binding file hpe,gxp-spifi.yaml and commit
+a1848b0fa251 ("MAINTAINERS: add spi support to GXP") adds a file entry
+hpe,gxp-spi.yaml in ARM/HPE GXP ARCHITECTURE. Note the different file name.
 
-> After enabling runtime suspend for the dwc3 core, dwc3 glue and the xHCI
-> the dwc3-qcom enters autosuspend when the delay expires.
-> 
-> > And the controller is resumed in the wakeup-interrupt handler for the
-> > runtime PM case.
-> >
-> > It seems to work ok, and it looks like the driver has supported this
-> > since it was first merged.
-> 
-> With and without your patch dwc3-qcom enters autosuspend and stays there.
-> USB devices like a mouse or a USB to Ethernet adapter keep working while
-> the glue is suspended.
+Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about a
+broken reference.
 
-Are you sure you're looking at the right controller? And that it is
-actually suspended?
+Repair this file reference in ARM/HPE GXP ARCHITECTURE.
 
-If you plug in a keyboard, enable autosuspend for all devices in the
-path (from glue to the keyboard device) and type away, then the
-controller must remain active. Stop typing, and all devices in the chain
-should suspend.
+Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+---
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> How is the runtime resume triggered for the dwc3 glue?
+diff --git a/MAINTAINERS b/MAINTAINERS
+index cf7906eaa5ca..a0873a2d7d3d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2177,7 +2177,7 @@ M:	Jean-Marie Verdun <verdun@hpe.com>
+ M:	Nick Hawkins <nick.hawkins@hpe.com>
+ S:	Maintained
+ F:	Documentation/devicetree/bindings/arm/hpe,gxp.yaml
+-F:	Documentation/devicetree/bindings/spi/hpe,gxp-spi.yaml
++F:	Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
+ F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
+ F:	arch/arm/boot/dts/hpe-bmc*
+ F:	arch/arm/boot/dts/hpe-gxp*
+-- 
+2.17.1
 
-Either by the host driver when it needs to access the device, or by the
-device if it is remote-wakeup capable (e.g. a keyboard, but not
-necessarily a speaker).
-
-Note that the latter part is what is broken currently as the wakeup
-interrupts were not enabled and those are needed to wake up sc8280xp 
-when the dwc3 glue has been runtime suspended.
-
-Johan
