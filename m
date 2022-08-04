@@ -2,124 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49787589EC6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:35:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9387A589ED1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:41:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239962AbiHDPfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 11:35:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39510 "EHLO
+        id S231644AbiHDPk6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 11:40:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235453AbiHDPfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:35:16 -0400
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD16EB00
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 08:35:14 -0700 (PDT)
-Received: by mail-pl1-x62a.google.com with SMTP id w10so246745plq.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 08:35:14 -0700 (PDT)
+        with ESMTP id S231617AbiHDPk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:40:56 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80664F17;
+        Thu,  4 Aug 2022 08:40:55 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id s9so259650ljs.6;
+        Thu, 04 Aug 2022 08:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YMwmJ3SYguFGWEp4hAm2rBYWGtLtJTCvpovU/AIVn0A=;
-        b=Qtnq39uHyzvlwnd38DbC3LwcEUpjMXF+hgHHimscG103l15xTzdeAhdQsEhHrCXXc6
-         jZmcYvbCNSHRH02uVnFirKaBpXJB1Nt7yHmZSmHLABRrEcxUe/GNWK5CbueaHG9IMAfR
-         6mm9ZApgk6ZbXDRVcrk6xsfiBn9g5yH+QxTSw=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=1leJD2jYdoCH2YF7serqPkhW+3ZM8UEl9gxlKtZpBek=;
+        b=laH6fB3jX1QrWTXtnY0qRiG3yiIKuZ4sSkr3yP8rxh1K2TGiHIorSIQj6pXgAPPmeB
+         xjuQPlvW66l4ncnGmdARxcrcDDCuJip7fBWe/TENNYsO6wB8viV1yd7NePXWO7qdTqYx
+         8MfNKUYe0peXYXpxBRzDrWsNShuAsTnMWECNSf1keJI2JPSIsOflFQGQKG9g3i7souQ4
+         vlEEDBcYzkLA3n4eGouBn/EOQRxK7qHWWNwZIozIXzHZExLeIMgz7zNd/S4ay+07kWlX
+         Jm52skrNW+E54wGgzw53RO8RayH5aAClCL5hZm0q1mY5SUz9ja90B+8TdmhYjukln66M
+         ZsDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YMwmJ3SYguFGWEp4hAm2rBYWGtLtJTCvpovU/AIVn0A=;
-        b=bSJ/i7OnHIYE/Aqopam5tOMyYiIB/psvgYHSiQV0Q+z0WFzFwsX4L9bNuVJ0dw52pu
-         wXleRipD5+RZDRFpEY+LuvB+1ttIKPi0j6d2u91wxj5VaAqeiy0V6GEMsk+vO6Oph9Hb
-         uwSfqlP8GKHyw3w3USjVLtdcFd1k/tNb5LQXYS0IsYMBcmPpGxHJizYAyj4kwwfw3rjK
-         23KfpMYxv1388vQueLrBbqUIhaZu5hhVzwUntsnkJWFhlkq7l7cCKIXmdA2cNoXf9mGk
-         xCrOHfMpZBoEqRCBVKjBVFC3j75UjFV+OIlp4auqcU9vA70vmkUqt83wIMwvLvHkx0Sh
-         +wgw==
-X-Gm-Message-State: ACgBeo1za4k6qfqsn7vQpAsKesp6NbJjbR50kxLKXVCNI+yBWMY5aGul
-        6oQRlWfGJVe1FRp4Rabj9Wxnrg==
-X-Google-Smtp-Source: AA6agR5eBcmtuswpC9ZyuRauPZ9fC4Eka3LZy92marD/sOH7rjs76EIMqw+kflXgFAwfE3jtieqwBA==
-X-Received: by 2002:a17:902:a418:b0:16c:9ee2:8a02 with SMTP id p24-20020a170902a41800b0016c9ee28a02mr2453212plq.46.1659627313991;
-        Thu, 04 Aug 2022 08:35:13 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:87c4:32ca:84b6:e942])
-        by smtp.gmail.com with UTF8SMTPSA id j9-20020a17090a31c900b001ef7c7564fdsm3870037pjf.21.2022.08.04.08.35.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 08:35:13 -0700 (PDT)
-Date:   Thu, 4 Aug 2022 08:35:10 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=1leJD2jYdoCH2YF7serqPkhW+3ZM8UEl9gxlKtZpBek=;
+        b=yXYMGHeQzhXGY0SoI9eHRsdppCvPmnWib8jPRaQYymlhrRxryr+1oWOVxtl6YVCDvd
+         dKgHHgvmyqEjKyXLfK15IcXC1k9kxCYB/SuJy4rbbxb2bFRrXxM/44g4JGOpqnfLNVE6
+         oKMGcIKV5Diq/nOnbXlROSlDP1THoej7EE4kaaEwnYkLHzRtP4gD04nRQBlWx5o2OHp1
+         INFBUwFFHqRnrVPMWIeXuwTlhiwlEgulnoVBTlhDb1lgN77aqhcn4r+sKI35awBPLuaY
+         /RLBDhSH6PUSitRnXGw0jr7DV2+6NXRbdfb78SYMFx7aixEw+XXb7m2AI0199qeYHKq1
+         n7aw==
+X-Gm-Message-State: ACgBeo0Y1GZpjOj6zjj79gcXCrxhLqO72Vbj8RJOIILKPw8hg0lOjlnt
+        eNM5I9PxjLOYjzSNpESd2Fz8yuB87SO3j/OfHs0=
+X-Google-Smtp-Source: AA6agR5RGzkugERz/4oeLaBfhq3ArqArrOJPuit3/LvK760dfD+laKr6a9iKinniQ0NQiCL5MKgOdQhbs91FsvnJysg=
+X-Received: by 2002:a05:651c:2d0:b0:25e:6c94:59d5 with SMTP id
+ f16-20020a05651c02d000b0025e6c9459d5mr810993ljo.488.1659627653867; Thu, 04
+ Aug 2022 08:40:53 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220804145516.217482-1-tmaimon77@gmail.com> <6fef92f3-6932-5c20-57fe-9eb40d676013@molgen.mpg.de>
+In-Reply-To: <6fef92f3-6932-5c20-57fe-9eb40d676013@molgen.mpg.de>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Thu, 4 Aug 2022 18:40:42 +0300
+Message-ID: <CAP6Zq1hvDdDO3yA=rFAvKMg20EM6OuoiVnxOBMbrpB9oHaMbfw@mail.gmail.com>
+Subject: Re: [PATCH v1] dt-binding: ipmi: add fallback to npcm845 compatible
+To:     Paul Menzel <pmenzel@molgen.mpg.de>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Jonathan Cameron <jic23@kernel.org>, minyard@acm.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/8] usb: dwc3: qcom: fix runtime PM wakeup
-Message-ID: <YuvnLliIKLK71wx0@google.com>
-References: <20220802151404.1797-1-johan+linaro@kernel.org>
- <20220802151404.1797-5-johan+linaro@kernel.org>
- <YurviWfzut9sursr@google.com>
- <Yut2tLqGfu82xcDs@hovoldconsulting.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Yut2tLqGfu82xcDs@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        openipmi-developer@lists.sourceforge.net,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 09:35:16AM +0200, Johan Hovold wrote:
-> On Wed, Aug 03, 2022 at 02:58:33PM -0700, Matthias Kaehlcke wrote:
-> > On Tue, Aug 02, 2022 at 05:14:00PM +0200, Johan Hovold wrote:
-> > > A device must enable wakeups during runtime suspend regardless of
-> > > whether it is capable and allowed to wake the system up from system
-> > > suspend.
-> > > 
-> > > Fixes: 2664deb09306 ("usb: dwc3: qcom: Honor wakeup enabled/disabled state")
-> > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > 
-> > Ah, I wasn't aware that the same wakeup mechanism is used in runtime suspend.
-> > 
-> > In how far is runtime PM actually supported/used by this driver? The device is
-> > set 'active' in _probe(), and there are no other pm_runtime_* calls, except
-> > in dwc3_qcom_remove() and qcom_dwc3_resume_irq(). How does the device get from
-> > 'active' into 'suspended'?
-> 
-> It will be runtime suspended when the child (core) device suspends, but
-> you need to enable runtime PM through sysfs first.
+Hi Paul,
 
-Thanks for the clarification.
-
-After enabling runtime suspend for the dwc3 core, dwc3 glue and the xHCI
-the dwc3-qcom enters autosuspend when the delay expires.
-
-> And the controller is resumed in the wakeup-interrupt handler for the
-> runtime PM case.
+On Thu, 4 Aug 2022 at 18:01, Paul Menzel <pmenzel@molgen.mpg.de> wrote:
 >
-> It seems to work ok, and it looks like the driver has supported this
-> since it was first merged.
+> Dear Tomer,
+>
+>
+> Am 04.08.22 um 16:55 schrieb Tomer Maimon:
+> > Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatib=
+le
+> > string.
+> >
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > ---
+> >   Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt=
+ b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> > index cbc10a68ddef..4fda76e63396 100644
+> > --- a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> > +++ b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> > @@ -7,7 +7,7 @@ used to perform in-band IPMI communication with their h=
+ost.
+> >   Required properties:
+> >   - compatible : should be one of
+> >       "nuvoton,npcm750-kcs-bmc"
+> > -    "nuvoton,npcm845-kcs-bmc"
+> > +    "nuvoton,npcm845-kcs-bmc", "nuvoton,npcm750-kcs-bmc"
+>
+> Isn=E2=80=99t the added string exactly the same as the one below the comp=
+atible
+> line?
+it is not the same, it describes a fallback to NPCM7XX KCS Since
+NPCM8XX KCS and NPCM7XX KCS modules are similar.
+>
+> >   - interrupts : interrupt generated by the controller
+> >   - kcs_chan : The KCS channel number in the controller
+>
+>
+> Kind regards,
+>
+> Paul
 
-With and without your patch dwc3-qcom enters autosuspend and stays there.
-USB devices like a mouse or a USB to Ethernet adapter keep working while
-the glue is suspended.
+Best regards,
 
-How is the runtime resume triggered for the dwc3 glue?
-
-Sorry if my questions are very basic, so far I haven't dealt much with
-autosuspend and I'm trying to get a better understanding in the context
-of the dwc3 and why it is currently broken.
+Tomer
