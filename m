@@ -2,167 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2F5958A000
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 19:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E53D58A00F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 19:54:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231355AbiHDRpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 13:45:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59060 "EHLO
+        id S231563AbiHDRyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 13:54:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231248AbiHDRpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 13:45:53 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233C3634F;
-        Thu,  4 Aug 2022 10:45:52 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id i84so243362ioa.6;
-        Thu, 04 Aug 2022 10:45:52 -0700 (PDT)
+        with ESMTP id S231355AbiHDRyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 13:54:54 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD3836AA24
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 10:54:53 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id r5so240838iod.10
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 10:54:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=Q94Q2VDlGnfmsIVyKku4OjRypxckGbu+KvrwMMNdhgs=;
+        b=lvlLlE7olQ5iMWyiRKxfNMtkZzWDdxp8/mVxNcRkMZH6idmzmJ+atn9c5BDlpGUrKu
+         FVhK6HEEUsRFAHOdZY+MRmjSYBywMpoNw2sneaMMNrqkdn8AZoP1vdPmR1Ls7aHDiEyc
+         l5HOCLI+BuYNahdSsPJrSNvwqhvEx7O6pe8qE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=r5fIHS4i41Nwdm/9buRQQW9UtvOL0tkeiIZZl06Sy6s=;
-        b=1tf3mfjYc3t5TjRrRmSIIClA9J7PzvVM3SVJUgeUhmNOwzf+wAnSuvO49KXJJWS2Bt
-         /EpSnBiGgiaNC2Qt0UtXUfTjAYLW6CVEbVUaeE8v2c0FixQxj+jlTYosZ9L4HWaByVSf
-         JmQJx2gXfkzzK7QL4Jxw8ecP7odSdUGJOleRPsS2Wz1H6CQ0eH5r2K0Mj9NueOsK26Ig
-         e4MW7nLIU3JOYtAF5p/5ymVH4CYVQ3Dd0sK+jnart9hv9x7Gp3Aiu9qSqXAXDKGLSsrr
-         hE0JgNJJ9BF4CN2LaOGKuhzrIOx0iazFNyMPV9VkJca2Y6IV6C50GYkYcX4hszGI2Nak
-         ispQ==
-X-Gm-Message-State: ACgBeo3p4vRjbXEuKfALlqXt8KYra2buVhnZ3/fP6j++VNFYiDDkBKry
-        zABvYMJV0XhsLuuJzxY/YY7GjDCRbg==
-X-Google-Smtp-Source: AA6agR7ttXcmRYN0gSflgLc/FXkw/VZvIl+1z383cMJZ+v/MK9q4ScFa2ZWnHCf190zAKglHVgFrig==
-X-Received: by 2002:a5e:8811:0:b0:682:8a6a:cf40 with SMTP id l17-20020a5e8811000000b006828a6acf40mr1120481ioj.136.1659635151292;
-        Thu, 04 Aug 2022 10:45:51 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c12-20020a02330c000000b00342a03e834esm41736jae.3.2022.08.04.10.45.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Aug 2022 10:45:50 -0700 (PDT)
-Received: (nullmailer pid 96985 invoked by uid 1000);
-        Thu, 04 Aug 2022 17:45:48 -0000
-Date:   Thu, 4 Aug 2022 11:45:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Shych <michaelsh@nvidia.com>
-Cc:     "linux@roeck-us.net" <linux@roeck-us.net>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Vadim Pasternak <vadimp@nvidia.com>
-Subject: Re: [PATCH hwmon-next v4 2/3] dt-bindings: hwmon: add Microchip
- EMC2305 fan controller.
-Message-ID: <20220804174548.GB4145453-robh@kernel.org>
-References: <20220623165217.59252-1-michaelsh@nvidia.com>
- <20220623165217.59252-3-michaelsh@nvidia.com>
- <20220630221157.GA3402568-robh@kernel.org>
- <DM6PR12MB40747C492C3197BDD64027FCD48C9@DM6PR12MB4074.namprd12.prod.outlook.com>
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=Q94Q2VDlGnfmsIVyKku4OjRypxckGbu+KvrwMMNdhgs=;
+        b=C2erg/tcjgNSC03pd0w8HR7QWRIJLmtxLpcxA1X6W9Oaxs/XzZh0DMNe3JfRjz5VFw
+         ajTlMlaDhHdbvMvkwVRnG3eWaAiciaML/xNmPUA+0Tpxe8QEjEgZoKwCT0E0oF1gb35k
+         kjREj5mqOpDpsBcDuMO0nNYWzdhK+V2vr9jbSS+RO6hsmKld+KxzfuSGuKijzTbkz9Pa
+         Vuqw15DnRg/kko4wLXcDAS1VPfjDpjMPpnmpvzLtOkSqOGKfhUgRxGHj/Rc6wfj5eZyo
+         IohBkg5L59pf27PMvBBZ7JzwCORt/mDI4Z65dOm4EFAWjKM+fHS0H66Hz4Hho72kZMjq
+         IA0g==
+X-Gm-Message-State: ACgBeo2bJmAADLXelWd1VPpenSEr6kbeV6gCFvxTWTpy6j3oCM8vLVsH
+        w3iEK2xCOQlSa+ZzZga5X54mNNaPosdByN4A
+X-Google-Smtp-Source: AA6agR4sUBRJEgPr5s/YxuWsHxllqywodfwaMfwJ4XjWmCG8xdHdaJBOYdORFnN/7x6uiqiEPnV1DQ==
+X-Received: by 2002:a05:6602:2a47:b0:67c:3ea9:1a97 with SMTP id k7-20020a0566022a4700b0067c3ea91a97mr1255172iov.180.1659635692786;
+        Thu, 04 Aug 2022 10:54:52 -0700 (PDT)
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com. [209.85.166.46])
+        by smtp.gmail.com with ESMTPSA id x8-20020a026f08000000b00339dfa082a7sm703518jab.109.2022.08.04.10.54.51
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Aug 2022 10:54:51 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id c185so255992iof.7
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 10:54:51 -0700 (PDT)
+X-Received: by 2002:a05:6638:2614:b0:33f:5bc2:b385 with SMTP id
+ m20-20020a056638261400b0033f5bc2b385mr1356611jat.246.1659635690978; Thu, 04
+ Aug 2022 10:54:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM6PR12MB40747C492C3197BDD64027FCD48C9@DM6PR12MB4074.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+References: <1657544224-10680-1-git-send-email-quic_vpolimer@quicinc.com>
+ <CAD=FV=U_GStziLOCVLs_FC_2Vr=ykGfbb4ZtUp79iV8V=B0cEA@mail.gmail.com> <CAG3jFyv3up0o4S+UYMKaAjanKL6hxCNtEa5zQTQEeNREab-NRA@mail.gmail.com>
+In-Reply-To: <CAG3jFyv3up0o4S+UYMKaAjanKL6hxCNtEa5zQTQEeNREab-NRA@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 4 Aug 2022 10:54:36 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VL2ATy=Ap5fAVxMYZZ5G6_8pdFGw=gdOc=PuqiOPHMow@mail.gmail.com>
+Message-ID: <CAD=FV=VL2ATy=Ap5fAVxMYZZ5G6_8pdFGw=gdOc=PuqiOPHMow@mail.gmail.com>
+Subject: Re: [PATCH v6 00/10] Add PSR support for eDP
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
+        quic_vproddut <quic_vproddut@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
+        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 18, 2022 at 12:38:58PM +0000, Michael Shych wrote:
-> Hi,
-> 
-> Sorry for long delay in getting back to you.
-> Please see below.
-> 
-> Thanks,
->    Michael.
-> 
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Friday, July 1, 2022 1:12 AM
-> > To: Michael Shych <michaelsh@nvidia.com>
-> > Cc: linux@roeck-us.net; linux-hwmon@vger.kernel.org;
-> > devicetree@vger.kernel.org; Vadim Pasternak <vadimp@nvidia.com>
-> > Subject: Re: [PATCH hwmon-next v4 2/3] dt-bindings: hwmon: add Microchip
-> > EMC2305 fan controller.
-> > 
-> > On Thu, Jun 23, 2022 at 07:52:16PM +0300, michaelsh@nvidia.com wrote:
-> > > From: Michael Shych <michaelsh@nvidia.com>
+Hi,
+
+On Thu, Aug 4, 2022 at 9:21 AM Robert Foss <robert.foss@linaro.org> wrote:
+>
+> On Fri, 29 Jul 2022 at 02:22, Doug Anderson <dianders@chromium.org> wrote:
+> >
+> > Hi,
+> >
+> > On Mon, Jul 11, 2022 at 5:57 AM Vinod Polimera
+> > <quic_vpolimer@quicinc.com> wrote:
 > > >
-> > > Add basic description of emc2305 driver device tree binding.
+> > > Changes in v2:
+> > >   - Use dp bridge to set psr entry/exit instead of dpu_enocder.
+> > >   - Don't modify whitespaces.
+> > >   - Set self refresh aware from atomic_check.
+> > >   - Set self refresh aware only if psr is supported.
+> > >   - Provide a stub for msm_dp_display_set_psr.
+> > >   - Move dp functions to bridge code.
 > > >
-> > > Signed-off-by: Michael Shych <michaelsh@nvidia.com>
-> > > Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
-> > > ---
-> > > v2->v3
-> > > Changes pointed out by Rob Herring and Guenter Roeck:
-> > > - Describe separate channels of fan-controller;
-> > > - Remove pwm_max property;
-> > > - Fix compatible property.
-> > > Changes added by Michael Shych:
-> > > - Fix dt binding check warnings.
-> > > v1->v2
-> > > - Fix dt binding check errors;
-> > > - Add descriptions;
-> > > - Add missing fields;
-> > > - Change the patch subject name;
-> > > - Separate pwm-min, pwm-max per PWM channel.
-> > > ---
-> > >  .../bindings/hwmon/microchip,emc2305.yaml          | 106
-> > +++++++++++++++++++++
-> > >  1 file changed, 106 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> > > Changes in v3:
+> > >   - Change callback names to reflect atomic interfaces.
+> > >   - Move bridge callback change to separate patch as suggested by Dmitry.
+> > >   - Remove psr function declaration from msm_drv.h.
+> > >   - Set self_refresh_aware flag only if psr is supported.
+> > >   - Modify the variable names to simpler form.
+> > >   - Define bit fields for PSR settings.
+> > >   - Add comments explaining the steps to enter/exit psr.
+> > >   - Change DRM_INFO to drm_dbg_db.
 > > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> > > b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> > > new file mode 100644
-> > > index 000000000000..d054ba46ae23
-> > > --- /dev/null
-> > > +++
-> > b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
-> > > @@ -0,0 +1,106 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
-> > > +---
-> > > +
-> > > +$id: http://devicetree.org/schemas/hwmon/microchip,emc2305.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Microchip EMC2305 RPM-based PWM Fan Speed Controller
-> > 
-> > RPM-based? So there is a tach signal too? Don't those need the number of
-> > pulses per revolution that the fan provides.
-> > 
-> It's not relevant. The driver implements Direct setting mode according 
-> to the Datasheet: https://www.microchip.com/en-us/product/EMC2305
-> I can add this note to the documentation patch.
+> > > Changes in v4:
+> > >   - Move the get crtc functions to drm_atomic.
+> > >   - Add atomic functions for DP bridge too.
+> > >   - Add ternary operator to choose eDP or DP ops.
+> > >   - Return true/false instead of 1/0.
+> > >   - mode_valid missing in the eDP bridge ops.
+> > >   - Move the functions to get crtc into drm_atomic.c.
+> > >   - Fix compilation issues.
+> > >   - Remove dpu_assign_crtc and get crtc from drm_enc instead of dpu_enc.
+> > >   - Check for crtc state enable while reserving resources.
+> > >
+> > > Changes in v5:
+> > >   - Move the mode_valid changes into a different patch.
+> > >   - Complete psr_op_comp only when isr is set.
+> > >   - Move the DP atomic callback changes to a different patch.
+> > >   - Get crtc from drm connector state crtc.
+> > >   - Move to separate patch for check for crtc state enable while
+> > > reserving resources.
+> > >
+> > > Changes in v6:
+> > >   - Remove crtc from dpu_encoder_virt struct.
+> > >   - fix crtc check during vblank toggle crtc.
+> > >   - Misc changes.
+> > >
+> > > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+> > > Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
+> > > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> > >
+> > > Vinod Polimera (10):
+> > >   drm/msm/disp/dpu: clear dpu_assign_crtc and get crtc from connector
+> > >     state instead of dpu_enc
+> > >   drm: add helper functions to retrieve old and new crtc
+> > >   drm/msm/dp: use atomic callbacks for DP bridge ops
+> > >   drm/msm/dp: Add basic PSR support for eDP
+> > >   drm/msm/dp: use the eDP bridge ops to validate eDP modes
+> > >   drm/bridge: use atomic enable/disable callbacks for panel bridge
+> > >   drm/bridge: add psr support for panel bridge callbacks
+> > >   drm/msm/disp/dpu: use atomic enable/disable callbacks for encoder
+> > >     functions
+> > >   drm/msm/disp/dpu: add PSR support for eDP interface in dpu driver
+> > >   drm/msm/disp/dpu: check for crtc enable rather than crtc active to
+> > >     release shared resources
+> > >
+> > >  drivers/gpu/drm/bridge/panel.c              |  68 ++++++++--
+> > >  drivers/gpu/drm/drm_atomic.c                |  60 +++++++++
+> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    |  17 ++-
+> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c |  56 +++++----
+> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |   8 --
+> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     |   2 +-
+> > >  drivers/gpu/drm/msm/dp/dp_catalog.c         |  81 ++++++++++++
+> > >  drivers/gpu/drm/msm/dp/dp_catalog.h         |   4 +
+> > >  drivers/gpu/drm/msm/dp/dp_ctrl.c            |  73 +++++++++++
+> > >  drivers/gpu/drm/msm/dp/dp_ctrl.h            |   3 +
+> > >  drivers/gpu/drm/msm/dp/dp_display.c         |  31 +++--
+> > >  drivers/gpu/drm/msm/dp/dp_display.h         |   2 +
+> > >  drivers/gpu/drm/msm/dp/dp_drm.c             | 184 ++++++++++++++++++++++++++--
+> > >  drivers/gpu/drm/msm/dp/dp_drm.h             |   9 +-
+> > >  drivers/gpu/drm/msm/dp/dp_link.c            |  36 ++++++
+> > >  drivers/gpu/drm/msm/dp/dp_panel.c           |  22 ++++
+> > >  drivers/gpu/drm/msm/dp/dp_panel.h           |   6 +
+> > >  drivers/gpu/drm/msm/dp/dp_reg.h             |  27 ++++
+> > >  include/drm/drm_atomic.h                    |   7 ++
+> > >  19 files changed, 631 insertions(+), 65 deletions(-)
+> >
+>
+> Which tree does this series apply to?
 
-For the binding, it doesn't matter what a driver currently implements. 
-That's one driver at one point in time. Bindings shouldn't be evolving 
-and need to support more than 1 OS.
+It ought to apply to msm-next, but as I mentioned in my reply to patch
+#1 it doesn't apply to the top of msm-next. I think I also had to
+manually apply a few of the later patches with "patch -p1".
 
-The binding needs to be able to describe the h/w. If there's a tach 
-connection, you need to describe that and the properties of the fan's 
-tach pulses. 
-
-> 
-> > To repeat what I say for every fan controller binding now, until there's a
-> > common binding to describe fan controllers, fans and their relationship to
-> > each other, I'm not signing off on any fan binding doing its own thing.
-> > 
-> I'm confused here as I thought that I already changed to common fan-controller with advice of 
-> Gunter in patch series V3.
-> Do you mean that we should use some common FAN/PWM/ TACHO etc. generic binding
-> mechanism that fits all drivers?
-> Could you advise if it's already existed and reference to example?
-
-It doesn't exist. Probably the closest binding to something as a basis 
-for something common is npcm750-pwm-fan.txt.
-
-> If it doesn't exist, it'll be too complicated to provide such a new generic description within 
-> the submission of a driver for EMC2305 device.
-> We can just completely remove OF interface and pass the necessary configuration through
-> the platform data.
-
-That's your choice...
-
-Rob
+-Doug
