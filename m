@@ -2,119 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4536589971
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 10:45:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ACC45899BA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 11:11:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238372AbiHDIpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 04:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46448 "EHLO
+        id S237474AbiHDJLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 05:11:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239184AbiHDIop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 04:44:45 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4269567C86;
-        Thu,  4 Aug 2022 01:43:15 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id j15so16308009wrr.2;
-        Thu, 04 Aug 2022 01:43:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=Gq6/HNhAQ3BSIj0Ba+RrM6ince6+tYXHxLdu6U01oYA=;
-        b=Bz4WTRlH4WuC24dGsS4v9wUmu3j89xaxP+rFpcK9gzNyf2u7WsaEbVSkqPKTaRhp1K
-         rCtoYXRr7DMDHo0p2wuEyRK5ESAigQlLRsQK048vHx+ZN3MlEJU6NjbligKTJhlDIyCa
-         v6op2mKcqOaJnMtUnL+3EFmjIEyd8NFLRpjI+6Ajx4sstc6mkHuuGC33qfST+QgqVLe0
-         6OxL3SquzsqrtYtHJAICTDBBbSRXx+RqJU98kzovk5vUrn6uhY8GFef0H6u3EW9BCcxA
-         uVmSMsG/ujV2dJnRrdvdW8ZfxWPUNnNXim6cPFWvzprMZqohemyuebKpfnc3SWdroqHK
-         Miag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=Gq6/HNhAQ3BSIj0Ba+RrM6ince6+tYXHxLdu6U01oYA=;
-        b=wItwudil7fTvLB8tr1d2wV/0xhX9pC1yANdva35bXA/Zr0Y/MOVYSZduUUV7Gq1oRm
-         9aR2CCS19yG4SFN8HrqgqVFKMEMso9yG5FwNj37nHmi9TXyZXJ9QuRBi+/2mY71t5iS0
-         F1dXkzf6M9VmFj+usCtNPvN13U/UkbFrB2O3zRy2ObCpheAmQvIhpE2y0CwX3BnRfoW8
-         KFoympG4eTGgSgiHdH9DGl48TRlNH/atTAw+NtOc13q1dRFzYjkguHeUZ3XZ4LwxDvf/
-         sMcDrUWSCzQCQn++ldrw8CItg7S7udpponxXsdAg77Ja+C7pMYotDqpbo44T2hmHF2WB
-         HWwg==
-X-Gm-Message-State: ACgBeo2Ah2hdy7hxSChLdo/fYmq1u49Y5m4sLuKd3zjqqmquxKiboZSC
-        Gf20uGHyisVQqYiSFxAkWH0=
-X-Google-Smtp-Source: AA6agR7JMuieExtxMItJInX7x5ROJ6BsC9WvMHLa0/yaf92L6oTFOHBtIasKgc7TcO8y2gvcevC/6A==
-X-Received: by 2002:adf:f407:0:b0:21f:a7b:b81c with SMTP id g7-20020adff407000000b0021f0a7bb81cmr661641wro.42.1659602593746;
-        Thu, 04 Aug 2022 01:43:13 -0700 (PDT)
-Received: from [192.168.1.145] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id b6-20020a5d6346000000b0022063e5228bsm422563wrw.93.2022.08.04.01.43.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 01:43:12 -0700 (PDT)
-Message-ID: <11c7b04e-9837-440c-fa5b-3074a706e0ba@gmail.com>
-Date:   Thu, 4 Aug 2022 10:43:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v4 05/20] dt-bindings: power: mediatek: Update maintainer
- list
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
+        with ESMTP id S230194AbiHDJLx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 05:11:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84C8761D67
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 02:11:52 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1oJWtE-0002xs-VD; Thu, 04 Aug 2022 11:11:37 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 2F68AC2937;
+        Thu,  4 Aug 2022 09:11:34 +0000 (UTC)
+Date:   Thu, 4 Aug 2022 11:11:32 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
+Cc:     Matej Vasilevski <matej.vasilevski@seznam.cz>,
+        Ondrej Ille <ondrej.ille@gmail.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220729063208.16799-1-tinghan.shen@mediatek.com>
- <20220729063208.16799-6-tinghan.shen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220729063208.16799-6-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] can: ctucanfd: add HW timestamps to RX and error
+ CAN frames
+Message-ID: <20220804091132.qpmiulpjmvleiqqj@pengutronix.de>
+References: <20220801184656.702930-1-matej.vasilevski@seznam.cz>
+ <202208021820.17878.pisa@cmp.felk.cvut.cz>
+ <20220803083718.7bh2edmsorwuv4vu@pengutronix.de>
+ <202208041008.15122.pisa@cmp.felk.cvut.cz>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dzgkrvvap34d65mk"
+Content-Disposition: inline
+In-Reply-To: <202208041008.15122.pisa@cmp.felk.cvut.cz>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Weiyi Lu,
 
-On 29/07/2022 08:31, Tinghan Shen wrote:
-> Update the maintainer list of power controller binding.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
->   .../devicetree/bindings/power/mediatek,power-controller.yaml    | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> index 2d6afc0909473..03b7f6aa591d4 100644
-> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->   title: Mediatek Power Domains Controller
->   
->   maintainers:
-> -  - Weiyi Lu <weiyi.lu@mediatek.com>
-> +  - MandyJH Liu <mandyjh.liu@mediatek.com>
+--dzgkrvvap34d65mk
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Are you ok with this change. Can you provide a Acked-by tag for that?
+On 04.08.2022 10:08:15, Pavel Pisa wrote:
+> > > > Can the ctucan_skb_set_timestamp() and ctucan_read_timestamp_counte=
+r()
+> > > > happen concurrently? AFAICS they are all called from ctucan_rx_poll=
+(),
+> > > > right?
+> > >
+> > > I am not sure about which possible problem do you think.
+> > > But ctucan_read_timestamp_counter() is fully reentrant
+> > > and has no side effect on the core. So there is no
+> > > problem.
+> >
+> > ctucan_read_timestamp_counter() is reentrant, but on 32 bit systems the
+> > update of tc->cycle_last isn't.
+> >
+> > [...]
+>=20
+> Good catch, so we probably should use atomic there or we need to add
+> spinlock, but I think that atomic is optimal solution there.
 
-Regards,
-Matthias
+Atomic look like a good solution, but not scope of this patch, as the
+timercounter needs to be modified. So use spinlocks for now.
 
->     - Matthias Brugger <mbrugger@suse.com>
->   
->   description: |
+> > > The need for clock running should be released in ctucan_suspend()
+> > > and regained in ctucan_resume(). I see that the most CAN drivers
+> > > use there clk_disable_unprepare/clk_prepare_enable but I am not
+> > > sure, if this is right. Ma be plain clk_disable/clk_enable should
+> > > be used for suspend and resume because as I understand, the clock
+> > > frequency can be recomputed and reset during clk_prepare which
+> > > would require to recompute bitrate. Do you have some advice
+> > > what is a right option there?
+> >
+> > For the CAN clock, add a prepare_enable to ndo_open, corresponding
+> > function to ndo_stop. Or better, add these time runtime_pm.
+>=20
+> Hmm, there is problem that we have single clock for whole design,
+> so if we try to touch AXI/APB slave registers without clock setup
+> then system blocks. So I think that we need to prepare and enable
+> clocks in probe to allow registers access later.
+
+ACK, enable clocks during probe, too. There are already pm_runtime calls
+in the driver, but no runtime pm callback that handle the clocks.
+
+BTW: that pm_enable_call argument to ctucan_probe_common() looks a bit
+strange.
+
+| int ctucan_probe_common(struct device *dev, void __iomem *addr, int irq, =
+unsigned int ntxbufs,
+| 			unsigned long can_clk_rate, int pm_enable_call,
+| 			void (*set_drvdata_fnc)(struct device *dev, struct net_device *ndev))
+
+I think the caller should setup the pm stuff so that the
+ctucan_probe_common() can do a pm_runtime_get_sync(dev) call.
+
+> We need it at least
+> for core bus endian probe and version validation/quirks. May it be
+> we can disable clocks and reenable them in open.... But it is
+> a little risky play and needs to ensure that no other path
+> in the closed driver can attempt to access registers.
+
+Sure. There are basically 3 parts in the base driver to consider:
+1) ctucan_probe_common()
+2) ndo_open()...ndo_stop()
+3) do_get_berr_counter()
+
+> Due to use of AXI bridges and other peripherals in Zynq Programmable
+> Logic (FPGA) we keep forcibly clock enabled. In the fact, this
+> should be solved some way on level of APB (now renamed in Zynq DST
+> to AXI) bus mapping.=20
+>=20
+> > Has system suspend/resume been tested? I think the IP core might be
+> > powered off during system suspend, so the driver has to restore the
+> > state of the chip. The easiest would be to run through
+> > chip_start()/chip_stop().
+>=20
+> Hmm, if we do not reconfigure FPGA then it keeps state and if we
+> lose configuration then whole cycle with DTS overlay is required.
+
+Hardware IP cores might be powered down during system suspend and lose
+their configuration. So you have to configure the CAN IP core again,
+i.e. setup priorities, queues, bit timing, etc... Things that the
+ctucan_chip_start() does. So I think ctucan_resume() must call to
+ctucan_chip_start() if the interface was up while the system was
+suspended.
+
+> So basically for runtime power down wee need to unload overlay
+> which removes driver instances and then reload  overlay and instances
+> again...
+
+I've never played with softcores before, but from the theory I don't
+think you have to unload overlays etc...every driver needs to implement
+proper suspend/resume functions.
+
+> If you speak about suspend to disk, then I do not expect
+> to run this way on any platform bus based system in near future.
+> With PCIe card on PC it is possible... So it is other area to invest
+> work in future...
+
+:)
+
+> > For the possible change of clock rate between probe and ifup, we should
+> > add a CAN driver framework wide function to re-calculate the bitrates
+> > with the current clock rate after the prepare_enable.
+>=20
+> ACK
+>=20
+> > BTW: In an early version of the stm32mp1 device tree some graphics clock
+> > and the CAN clock shared the same parent clock. The configuration of the
+> > display (which happened after the probe of the CAN driver ) caused a
+> > different rate in the CAN clock, resulting in broken bit timings.
+>=20
+> So in the fact each CAN device should listen to the clock rate
+> change notifier...
+
+ACK - and strictly speaking clk_get_rate() of a clock that's not enabled
+is not valid. But that's not enforced by the common clock framework.
+
+> > > Actual omission is no problem on our systems, be the clock are used
+> > > in whole FPGA system with AXI connection and has to running already
+> > > and we use same for timestamping.
+> > >
+> > > I would prefer to allow timestamping patch as it is without clock ena=
+ble
+> > > and then correct clock enable, disable by another patch for both ts a=
+nd
+> > > core clocks.
+> >
+> > NACK - if the time stamping clock is added, please with proper handling.
+> > The core clock can be fixed in a later patch.
+>=20
+> OK, how is it with your timing plans. I have already stated to Matej=20
+> Vasilevski that slip of the patch sending after 5.19 release means
+> that we would not fit in 5.20 probably.
+
+net-next for 5.20 is closed.
+
+> If it is so and you, then I
+> expect that postpone of discussions, replies and thoughts about our
+> work after 5.20 preparation calms down is preferred on your side.
+> We focus on preparation of proper series for early 5.21/6.0 cycle.
+
+I don't mind discussing things for 5.21 now. Everything for 5.20 is now
+bug fixes only.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--dzgkrvvap34d65mk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmLrjUIACgkQrX5LkNig
+011S1Qf8CPEgvlOxHSSrzUNvqiMw5zh7LaDHyeGfhTKek7Y8f0U+Bnva8QzumvdY
+AYq7adWLmTORP1S/+FJgGem2ho2iQoNXb3+LsZipnbAMS71+eOgbBTnNqrFx9Yom
+JSmBgjxHA0l/gBReyCcTwotGZm0qZ2RvmtedUZMTEJGIgfVr3QFvTFehfaQGDMpE
+n1xKU5aWVoLl9vt/w2CDHEYlWyYyPKUvId1QJfvT9xVtw7FpTCmARA5VSvIrRPx7
+NNsaCqKqbqvG2iGHwRbRh6GP7LgEVUA9keLb94nOeGI9tgRGFnorZ2qetimxf5Bq
+281P0ySj0Byhghx5PcLTLD3TcgcLLw==
+=T2wJ
+-----END PGP SIGNATURE-----
+
+--dzgkrvvap34d65mk--
