@@ -2,109 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6343A58A04D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 20:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0799A58A055
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 20:16:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234319AbiHDSLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 14:11:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48322 "EHLO
+        id S234043AbiHDSQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 14:16:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233114AbiHDSL3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 14:11:29 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 217BA4F186;
-        Thu,  4 Aug 2022 11:11:29 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id o1so178939qkg.9;
-        Thu, 04 Aug 2022 11:11:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=37y1pNEyQ+ddREX5K3poWhk+osrjYe1S/O8gGeEYV/s=;
-        b=XcUgUM14PB1rlQx8PWU05XJdYwxpGH95vXAU1vNxBwwBGgsb5J9xX61pPBfV5V0ddc
-         B7uuHsIwFNy5VdzmEYs4+v0lNIQlUJ6IzCg7B7ZWaqgKH4X7jJRzYmPjW/FR/1C07hGo
-         FKzCQMGlZWq+oqTg8J7e1JhAo+VZI5vqD5FPqDoSnHqrx73iRxwiN/AvprUf7LNTAU1X
-         4Q7Sven4ksdBwjhdXUYtHz7xsS6X2PwGc8/ZTzGxwninwdSkfyx3kgn4/ReO+Iqf7FGh
-         mbLetj4EdRfGkqqGzSfpDINsGjm8KWaH37ksejtLjGWJ0IvHnBU2zckAVGIHuWW2CGJ+
-         JX3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=37y1pNEyQ+ddREX5K3poWhk+osrjYe1S/O8gGeEYV/s=;
-        b=Gty95mr6roseTlWV+BUpnulVPyS0TPqgdXCzs5NIjQKRPO5OQKVblOwu7HlaSdt7rF
-         BYmc9u/yn+E89BpLEuldveapqt68W0LJT0nG/jeObBZQJQflXqu9/HsZFxgyMsxqgFtU
-         DOWA3S2cXKaHQUy7Ij8PLNHOMiQZcmWAnmK864hvFOXFYVUzcSZD2ikc6oSWYAhYVPs3
-         nj7Apz3Z/IHPL0Eaylqo/UUcNAcdzdVBY8eTkOWIfEaupn29SDyJVcubtFgxGN9naoD3
-         7j6pXIq6Qg6J1rRjvpCD5gdKV7EM97lR6Ua+XA5h023p9sWLXyYTkrAoU8kv/GBr1Kg6
-         gj0A==
-X-Gm-Message-State: ACgBeo3NcMAMs7iTpbaPAqxqt1feITrszhEAcz6yk10073oU1u7uFo6w
-        WOawIok/5NOir04rVM2iTDk=
-X-Google-Smtp-Source: AA6agR4EMHKVAO4xz80mWJI5XkyalMXnqJMhr9DdtUfGt7By7jtilYYT3BzC5TDnMIh6vEefcLO2sQ==
-X-Received: by 2002:a05:620a:bcc:b0:6b6:5746:f8f9 with SMTP id s12-20020a05620a0bcc00b006b65746f8f9mr2334700qki.729.1659636688203;
-        Thu, 04 Aug 2022 11:11:28 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id bx7-20020a05622a090700b0031ef67386a5sm998062qtb.68.2022.08.04.11.11.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 11:11:26 -0700 (PDT)
-Message-ID: <143a7faf-70fc-010f-bdbd-9f96f918c280@gmail.com>
-Date:   Thu, 4 Aug 2022 11:11:23 -0700
+        with ESMTP id S240011AbiHDSP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 14:15:59 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEB4A6573;
+        Thu,  4 Aug 2022 11:15:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=OauzY5NPoVxR96fxdrgvniM7lN8jaUTrviVvH2IM4yU=; b=aT1bG0pOIRzByuU5LSozgfLcvg
+        yR/XAd4ZqQFMTxsjJVVFqVCxU1Hrcgg6VB+8gVCf92fpf2GuRCIESt+wh5CQo5DgCkep0zsUx4NoO
+        pINKsNVn9f63uQ915yotJ/D/kZO1lNT0kgi+tpgh6ZKLrs7fkuHTjMwZMBgznCW01+jSDcUFXvPXx
+        hZDDLX/Jv/92AAnEFDCekdVgOhxrs3EtBdwYE2gZyT9jIPp7i0psbIFIq/IygKr1u7wgiGaj3TgiZ
+        dUNdKey6zGGYbdwDjAqghRl/UqelGLOI1B0PCNcI1aaua+r0q7ryA/igzPS9kfoP6lI2lw01RQn42
+        WGMBHBcw==;
+Received: from [2601:1c0:6280:3f0::a6b3]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1oJfNm-0087nh-M4; Thu, 04 Aug 2022 18:15:42 +0000
+Message-ID: <30e4c6a0-cd8e-5a86-ac25-ac2af5ec53dd@infradead.org>
+Date:   Thu, 4 Aug 2022 11:15:38 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
-Subject: Re: [PATCH 2/4] dt-bindings: soc: bcm: use absolute path to other
- schema
+Subject: Re: [PATCH v8.1, 4/7] thermal: mediatek: Add LVTS driver for mt8192
+ thermal zones
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Saenz Julienne <nsaenz@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220726115841.101249-1-krzysztof.kozlowski@linaro.org>
- <20220726115841.101249-2-krzysztof.kozlowski@linaro.org>
- <a70148d3-c87f-969a-b743-11c679d161d3@gmail.com>
- <d83f7689-303f-cecd-882a-ed6e03a8db5b@linaro.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <d83f7689-303f-cecd-882a-ed6e03a8db5b@linaro.org>
+To:     bchihi@baylibre.com, rafael@kernel.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, amitk@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+References: <20220804130912.676043-1-bchihi@baylibre.com>
+ <20220804130912.676043-5-bchihi@baylibre.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20220804130912.676043-5-bchihi@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/26/22 10:31, Krzysztof Kozlowski wrote:
-> On 26/07/2022 17:59, Florian Fainelli wrote:
->> On 7/26/22 04:58, Krzysztof Kozlowski wrote:
->>> Absolute path to other DT schema is preferred over relative one.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
->> Acked-by: Florian Fainelli <f.fainelli@gmail.com>
->>
->> Are you applying those patches or do you want the SoC maintainer to do that?
-> 
-> The best if  you (SoC maintainer) would pick them up. If you cannot or
-> it is too late for this, maybe arm-soc could grab them (already Cced).
+Hi--
 
-Arnd ended up picking up patches 1 and 2, FWIW.
+On 8/4/22 06:09, bchihi@baylibre.com wrote:
+> diff --git a/drivers/thermal/mediatek/Kconfig b/drivers/thermal/mediatek/Kconfig
+> index 592c849b9fed..afef43a0e7ca 100644
+> --- a/drivers/thermal/mediatek/Kconfig
+> +++ b/drivers/thermal/mediatek/Kconfig
+> @@ -20,4 +20,28 @@ config MTK_SOC_THERMAL
+>  	  configures thermal controllers to collect temperature
+>  	  via AUXADC interface.
+>  
+> +config MTK_LVTS_THERMAL
+> +	tristate "LVTS (Low Voltage Thermal Sensor) driver for MediaTek SoCs"
+> +	depends on HAS_IOMEM
+> +	depends on NVMEM
+> +	depends on RESET_CONTROLLER
+> +	help
+> +	  Enable this option if you want to get SoC temperature
+> +	  information for MediaTek platforms. This driver configures
+> +	  LVTS (Low Voltage Thermal Sensor) thermal controllers to
+> +	  collect temperatures via ASIF (Analog Serial Interface).
+> +
+> +if MTK_LVTS_THERMAL
+> +
+> +config MTK_LVTS_V4
+> +	tristate "LVTS V4 Thermal Driver for MediaTek SoCs"
+> +	depends on HAS_IOMEM
+> +	depends on NVMEM
+> +	depends on RESET_CONTROLLER
+
+You shouldn't need to repeat all of these "depends on" lines since this
+Kconfig symbol depends on MTK_LVTS_THERMAL, which already depends on these
+3 items.
+
+Have you seen any issue that this is supposed to fix?
+
+> +	help
+> +	  Enable this option if you want to get SoC temperature
+> +	  information for LVTS V4.
+> +
+> +endif
+
+thanks.
 -- 
-Florian
+~Randy
