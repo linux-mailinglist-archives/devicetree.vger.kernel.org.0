@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E10B4589E90
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:22:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55FC1589E94
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:23:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239285AbiHDPWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 11:22:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59046 "EHLO
+        id S239864AbiHDPXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 11:23:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239604AbiHDPWP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:22:15 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 740EA25586
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 08:22:14 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id z20so217618ljq.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 08:22:14 -0700 (PDT)
+        with ESMTP id S236546AbiHDPW7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:22:59 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8E029C8F
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 08:22:58 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id y11so31250911lfs.6
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 08:22:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=cDwtWe0gIkdtSi8cNur71HHPuzn0FTWDpwW7k5ExZPw=;
-        b=Q+iGCjYR4/zG4LeeytGWsb+GidV+WjYzlUxgX8NHoygC39ZdFqdgqzSf2/rrCT2hP+
-         rqG+vffLIVNES7Dv14kBLfhyghQR0XQuliT8aTg3oBpC7ybxdIFN2y8L1HnDSuWj9XWc
-         kP7ZuVtoovFclRQRz2i7Zl46SduqV5fu2dAMfUUHOiYHRQu79rsLtzsmH/EOi8/h95A/
-         x5RYViPEmzjt3LB6d9KY/aTlF/s/VmM26/RyYQnESPL9pZsGqcypfphyjsbK6QDExaib
-         r1BEnxH6nSZo5Sl6r1qe+A5jUWu8GDx9Rgu1CTWIkJbk7X7HYiFmU97BpgFZhdLg7Ftc
-         MuXQ==
+        bh=kh4nLytH1UrA2iQs/fVrhb1nEoIoVCV9Y8jH68nXWy8=;
+        b=lZJc4JgTk8uKIZ5ux9BZ4zn7/W3yKuDdLZMrPOS4jaxt5r0rEWIgbWzk6+TkTIOEHb
+         0gHtYfRs5k+LQjl2A5GGWLja2Z6rSTHQc0XflZt6fkhkRm94K3DYE9QAxyqiNtPJ/ngR
+         4pH3gYfp9XQh6FDzdkvoH1dLJjh+00NpMK1Pkf0DuxWM0Yu6CtkcU4JqYlXghucHY8si
+         mrf3gsNnfysk9R6bkJeHYLD9HGX7zG/WFXh+CQvOv72hQL7wQk3N+tfSzw3zxbjzJxjk
+         MwdvkxGeniCowmbiYerg34tXwvQ3RqTJ7KKQPTVyrzJ6sMyBCOhKeCmVkBp74U9GEEu2
+         DQ9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=cDwtWe0gIkdtSi8cNur71HHPuzn0FTWDpwW7k5ExZPw=;
-        b=IWE9j7dIpQRQDFAPSf6iiQAIiFZghdGlmrZVZzR0d3atjTAcpyh23fEdCH0eVIpnBM
-         Ws8mlXdqI8lJMFg8YEUWAWcerV+ytHya6N+bPs/diuy7UDnNn6u6f1bjVsxU1uq1Vu6q
-         Fh8MbYRHuJCllwROcct08zRvZM82x5I4BSux8yNRPOmohdV7ei+W35np6JeJZXG+NCBQ
-         A174KLYHRTYlRIu+t+209eXe+YKUCJLH6h8mi1Ip83uiCRdqDzBVw4nZD0g7wT0j7SF0
-         D6GOZ3Q2p7N0u6e4+VO8eKte7EahESWBbO8gDEnAq6+ACEmeoTt8lEJfojC2jVHdevO1
-         q+zA==
-X-Gm-Message-State: ACgBeo3cHJAL/jXUPnjseuR1DU7lJXMVqmZ6gAOO42NeaT2SQzNnvtxO
-        0hvti4IgFM41nA13YN2CyuwvSw==
-X-Google-Smtp-Source: AA6agR6kgl6aDqL0jj5GOm3S0+pZbnR+K4i9xZIFoIoGCS9e/HTYt5sGvAxP7DXLI82RddE/CX3GXQ==
-X-Received: by 2002:a2e:597:0:b0:25e:4a64:1628 with SMTP id 145-20020a2e0597000000b0025e4a641628mr736820ljf.378.1659626532848;
-        Thu, 04 Aug 2022 08:22:12 -0700 (PDT)
+        bh=kh4nLytH1UrA2iQs/fVrhb1nEoIoVCV9Y8jH68nXWy8=;
+        b=Fy6ymfZs/kDE7fKnElQ+nkppgq/EJlX82Zii/xz3prxrFc1u6iJoyevaUxa9IVVYtb
+         eQ4cTFyOGFa98cp81mA5hGPKLumDxIUxb3GC17MMhVKplUTyyGHZrFmi7luR0YM22+CQ
+         5MiTSSVzQrt3kNKvC5cZ66uo8HMDqZ3Wh9sFEoNDv3glWE3+ZYq/NHdJgOF8xU7MUGZJ
+         AWmbUAqpxfDmKPlsUULq9iG/PR4nLK58uRRnn4nmjgnG0qowvHUq1sdlhwjvQ3n+eslz
+         g+2LnoXia7nnkxmDZqZXnmXqCnUBENu0Q5VOwamF1BsdDZuwxzpSv4+fEq1EBQBhMgNs
+         DW4Q==
+X-Gm-Message-State: ACgBeo3UYDfvStP9Z8Uk4F9DpKNEBuqj9s0oLWcbB4kgUXkMxnqi+jVi
+        AiTGGPZBvM6K2zQtO1B/7BMw8Q==
+X-Google-Smtp-Source: AA6agR4W2EpgFvOAtyhi3xOePp7AUFNalAIiGmLE6pOC8eXNjKNNM4/4aokgAwUh5QIcbpXFlff6Kw==
+X-Received: by 2002:a19:6508:0:b0:48a:71c:b6cb with SMTP id z8-20020a196508000000b0048a071cb6cbmr891768lfb.133.1659626575245;
+        Thu, 04 Aug 2022 08:22:55 -0700 (PDT)
 Received: from [192.168.1.6] ([77.222.167.48])
-        by smtp.gmail.com with ESMTPSA id b17-20020a056512219100b0048a8c907fe9sm152854lft.167.2022.08.04.08.22.10
+        by smtp.gmail.com with ESMTPSA id o16-20020a056512053000b0048af6d4e5fbsm150043lfc.275.2022.08.04.08.22.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 08:22:11 -0700 (PDT)
-Message-ID: <0991e867-10bd-56e8-c8c1-b5d0cdefbb52@linaro.org>
-Date:   Thu, 4 Aug 2022 17:22:09 +0200
+        Thu, 04 Aug 2022 08:22:54 -0700 (PDT)
+Message-ID: <f54deddd-251d-aa8c-6946-f447077d7782@linaro.org>
+Date:   Thu, 4 Aug 2022 17:22:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v8.1, 5/7] arm64: dts: mt8195: Add efuse node to mt8195
+Subject: Re: [PATCH v8.1, 6/7] arm64: dts: mt8195: Add thermal zone
 Content-Language: en-US
 To:     bchihi@baylibre.com, rafael@kernel.org, rui.zhang@intel.com,
         daniel.lezcano@linaro.org, amitk@kernel.org
@@ -65,14 +65,15 @@ Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
         fan.chen@mediatek.com, louis.yu@mediatek.com,
         rex-bc.chen@mediatek.com, abailon@baylibre.com
 References: <20220804130912.676043-1-bchihi@baylibre.com>
- <20220804130912.676043-6-bchihi@baylibre.com>
+ <20220804130912.676043-7-bchihi@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220804130912.676043-6-bchihi@baylibre.com>
+In-Reply-To: <20220804130912.676043-7-bchihi@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,31 +81,68 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 04/08/2022 15:09, bchihi@baylibre.com wrote:
-> From: Alexandre Bailon <abailon@baylibre.com>
+> From: Tinghan Shen <tinghan.shen@mediatek.com>
 > 
-> This adds the efuse node. This will be required by the thermal driver
-> to get the calibration data.
+> This adds the thermal zone for the mt8195.
 > 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
 > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
 > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 111 +++++++++++++++++++++++
+>  1 file changed, 111 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index 73a0e2103b83..cbd0401968a2 100644
+> index cbd0401968a2..5890e688eebe 100644
 > --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
 > +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
-> - * Copyright (c) 2021 MediaTek Inc.
-> + * Copyright (c) 2022 MediaTek Inc.
+> @@ -10,6 +10,7 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/phy/phy.h>
+>  #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
+> +#include <dt-bindings/reset/mt8195-resets.h>
+>  
+>  / {
+>  	compatible = "mediatek,mt8195";
+> @@ -452,6 +453,28 @@ spi0: spi@1100a000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		lvts_ap: thermal-sensor@1100b000 {
+> +			compatible = "mediatek,mt8195-lvts-ap";
+> +			#thermal-sensor-cells = <1>;
+> +			reg = <0 0x1100b000 0 0x1000>;
+> +			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
+> +			resets = <&infracfg_ao MT8195_INFRA_RST0_THERM_CTRL_SWRST>;
+> +			nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
+> +			nvmem-cell-names = "lvts_calib_data1", "lvts_calib_data2";
+> +		};
+> +
+> +		lvts_mcu: thermal-sensor@11278000 {
+> +			compatible = "mediatek,mt8195-lvts-mcu";
+> +			#thermal-sensor-cells = <1>;
+> +			reg = <0 0x11278000 0 0x1000>;
+> +			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
+> +			clocks = <&infracfg_ao CLK_INFRA_AO_THERM>;
+> +			resets = <&infracfg_ao MT8195_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
+> +			nvmem-cells = <&lvts_efuse_data1 &lvts_efuse_data2>;
+> +			nvmem-cell-names = "lvts_calib_data1", "lvts_calib_data2";
+> +		};
+> +
+>  		spi1: spi@11010000 {
+>  			compatible = "mediatek,mt8195-spi",
+>  				     "mediatek,mt6765-spi";
+> @@ -1106,4 +1129,92 @@ vencsys_core1: clock-controller@1b000000 {
+>  			#clock-cells = <1>;
+>  		};
+>  	};
+> +
+> +	thermal_zones: thermal-zones {
+> +		cpu-big1-thermal {
 
-Why changing first copyright release date? This was not explained in
-commit msg.
-
-
+Does this pass dtbs_check?
 
 Best regards,
 Krzysztof
