@@ -2,76 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB404589923
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 10:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66ED758993C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 10:24:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239427AbiHDIQq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 04:16:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60112 "EHLO
+        id S231777AbiHDIYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 04:24:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239470AbiHDIQp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 04:16:45 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 904506564F;
-        Thu,  4 Aug 2022 01:16:36 -0700 (PDT)
-Received: from mail-ej1-f49.google.com ([209.85.218.49]) by
+        with ESMTP id S229665AbiHDIYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 04:24:42 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C084C636;
+        Thu,  4 Aug 2022 01:24:38 -0700 (PDT)
+Received: from mail-ej1-f52.google.com ([209.85.218.52]) by
  mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1M7s1M-1oNNuy3ele-004z2a; Thu, 04 Aug 2022 10:16:34 +0200
-Received: by mail-ej1-f49.google.com with SMTP id gk3so23334911ejb.8;
-        Thu, 04 Aug 2022 01:16:34 -0700 (PDT)
-X-Gm-Message-State: ACgBeo2MJ/SGRoMGiPsa4MzvUq42cJCMCZ4KQSCcekc6hRMmxyk84ljm
-        unrL0+SfRGP2b4I6pTU4Sz46udLxovaSNklJufA=
-X-Google-Smtp-Source: AA6agR6Jg653+yBBOUyAYrjW3VBIXsaHZRBgf5YvZt1uhUezA9TFx1DbJkqof0fuLkHWcFEb9AVXoO4ROyCCP0sW+j0=
-X-Received: by 2002:a17:907:7395:b0:730:b636:2c89 with SMTP id
- er21-20020a170907739500b00730b6362c89mr572107ejc.547.1659600994444; Thu, 04
- Aug 2022 01:16:34 -0700 (PDT)
+ id 1MRnXY-1nqTl91Vb0-00TFTN; Thu, 04 Aug 2022 10:24:37 +0200
+Received: by mail-ej1-f52.google.com with SMTP id c24so4771700ejd.11;
+        Thu, 04 Aug 2022 01:24:37 -0700 (PDT)
+X-Gm-Message-State: ACgBeo1ODei5vSwkfmgxd+RMkNkBJYahML4QqrXyvnGlAAohjLkf5ouW
+        9HPhMcGAQfTwRweY2+WsTKG/+E51uYJRgn+Mpyg=
+X-Google-Smtp-Source: AA6agR7mx2DcqpUWDVSgizEz+I+v1CueGd21v5hR8W+ij/iiqR6AnsafECfmF4+yDDNQfg74+XRR1lx7VIfSL42tGVw=
+X-Received: by 2002:a17:907:d0f:b0:72e:db1f:9b91 with SMTP id
+ gn15-20020a1709070d0f00b0072edb1f9b91mr603460ejc.470.1659601476990; Thu, 04
+ Aug 2022 01:24:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220706231536.2041855-5-heiko@sntech.de> <mhng-d90c67dc-ace1-4413-9010-f9f26c60d3da@palmer-ri-x1c9>
-In-Reply-To: <mhng-d90c67dc-ace1-4413-9010-f9f26c60d3da@palmer-ri-x1c9>
+References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
+ <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
+ <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
+ <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com> <18267b7a61f.12b26bd91245310.4476663913461696630@linux.beauty>
+In-Reply-To: <18267b7a61f.12b26bd91245310.4476663913461696630@linux.beauty>
 From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 4 Aug 2022 10:16:18 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1kE0FAbeUoO-JwzHKPsDVyTT7GGCsLoow=V2zKdSr0_Q@mail.gmail.com>
-Message-ID: <CAK8P3a1kE0FAbeUoO-JwzHKPsDVyTT7GGCsLoow=V2zKdSr0_Q@mail.gmail.com>
-Subject: Re: [PATCH v7 4/4] riscv: implement cache-management errata for
- T-Head SoCs
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Wei Fu <wefu@redhat.com>, Guo Ren <guoren@kernel.org>,
-        Christoph Muellner <cmuellner@linux.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>,
-        Christoph Hellwig <hch@lst.de>,
-        Samuel Holland <samuel@sholland.org>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
+Date:   Thu, 4 Aug 2022 10:24:20 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0zSGqj3YEi+i9yfSLk8-aJtyiY6Bj069cxCdErk81+cw@mail.gmail.com>
+Message-ID: <CAK8P3a0zSGqj3YEi+i9yfSLk8-aJtyiY6Bj069cxCdErk81+cw@mail.gmail.com>
+Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
+ page and dio support to no-map rmem
+To:     Li Chen <me@linux.beauty>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Drew Fustini <drew@beagleboard.org>,
-        Randy Dunlap <rdunlap@infradead.org>
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Li Chen <lchen@ambarella.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, Linux-MM <linux-mm@kvack.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:MpEaQL2z72TA8qDsmM+HfNA8MYZVzn5f99pf51FMQyKL/UmAWy3
- H3u8qUyz1rgyAhXYod/ulCVxBm7WYQXYS6k8i/EfAp4onbAynCFI0EDwhc9k+KhE0x3XkRC
- 85znXWSkrxCZ6r9txHUU2lSX5z3ACjEmu6UgH4/KXiq4M/WQzGU54/XQWsYmpWbu5Y+On04
- sd+PPL1vymPEaLniMPjUQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:XC4b6I/2uvU=:hDYHUgDsPJYSVAZ2pVm6Zy
- 50QgSwFrhTNBoR++Meg+QWkWZlwyOr8FSIQlnNaAgUF3uMve9oc4CQ2p7T3U08/rhKpnkDn1Q
- HGRBJUzkvG5UgdXipdAN2V8E3ERLh0WHbfcDHR/A/A+43wg0k05EHIGHARM9wNgFANnkqmGaO
- F//sBS28SLLYdAIcU8QlP10y65iw31lzotNyquk2aMKdL1CbFKgEtLsCPpS+0qzk7Oc6MRaNu
- 8gC2sUS9nVU2imae/GdC55HYT/CWBLPLR4uZI7WeYP/F+L7FKKqJivS1hNARvRMPTcwTX3yG9
- RWY5eBalKnBldgzoSJ9Offb4j85w0dvZ1rjd7g8tDYTedD7v1oK1YG6e0WZNGHUzEg6bdmt/X
- 1WkYMbH3UnCgf99FXGkTYeTLopEcYeEKoyUZe+ETwtXFlPG7ZQy9cww8PcTLmnFlnOAzkSI+H
- dbYOEThZ2GEEReTbu2az5TaK12hsUJX6eoabTW9fhM21DWuPGBa5dc/M0A1XkS00nNURGsN0l
- LbJSCgfD5RqVaFTHG5LsGz/AQleAnaXGoMfl0TV0VdWVDSKQ3hGKUmfOAf+j2BIqkK0+C+Zkj
- nyU6YByDygUJQoI684ub+OZvDqe2RvqAFgsJj4sEX2BvwU0ri6e2iErxY83FSy12iFPMMQTv9
- ZBtKfO9y//mkWICuJHMep5q5+nutIW9rYyJolTLvnWb88Xw6165Iy+ZgWamSlDC0NjLNJhekj
- my9zekznES6iW3aLsbXoWfdKkjPBCPpAowsGYPj1NGoOjgTo+gosognJjd8ZnAObbdM9ZPxG8
- yp3m3PWKL2CiSTp2lbrlvgOfVgLgS7ADaDLydtU+0S5/51sFbvM1tNlu6g+TMJYfV1/6yafjL
- r3QkF6H6g9AMHQcdgONQ==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+X-Provags-ID: V03:K1:yzIq8vPx8ZJNLHi/8z+h6JR8GjTYb5Rb2KDVoPjo6kuFclbusm9
+ n43hDbTALvs30gNLs4/GKVw2NRxBXHG6kL5K1bR2gzPvtWxyl9RUZIEen5QdoNgQUNt9N/a
+ hnZVqZHGEVWzLPJhdGpoKlZMUFn16b02TLX+YyY8Rw4SXsUHoy1FUB0tEoeuaa1da4sDDNG
+ iWB87lCpj+48aIUj8sZzA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:yldv/sAQqdM=:EwoksoRYbM8iRTgYdnh2Yp
+ A5QecUZZ53vcBhiB3yv4FaJtYWM7cBBiXj3rQ41Eledd1Uvn7yLVKzZtJ5F5w3skDcy/qJjZD
+ NaAA4ikEEUmwoWNv9dbZXSjkmptgV5r0v1FIQoPy3cOESZHhMJW+TcqHJK9gBUmW57qf965Gq
+ PhULGktuvvzfqVB2hdg9hL+8EHNEaP2czv5Gc2GkBRvvAb7l8axDjou3VYxBlESI92Q0gCR4L
+ dnlp04UkIlzB5bBRTCFscwfMYpxByiaTVEJe8iqClIKOJym4xgegmZZNwgYFvX4a5DZYHJpIg
+ Nj3Ui4D6N0HjivDuvo5jdmjeakDxVbzoO2ZBtT6tNbmakH3/X90APX6gJKFYuoXBJzwlRTDtK
+ IEpnBB/CTeWcweaJlUXD614sFiEdhwijVvkapA/2J6evO+e7teFmfNJGE83VQ1YfTVnoJfc9z
+ IthtoNfsKKOf0vI61qvh4nBbpoiqD/i1W6Rd4Cck1jFwyyyADTXXxVb77r3eC7Pw3B+z4XIJ8
+ eCP7NAoF4fqM7Kgh2razmMMqZvCNW9h7Q7xyw/eeI6f5gdYgHQ4jmSsf9sI+ShKGPExr9Ag9k
+ TVEp8dprAzmLeu3XqwhKgQBuO3jZ9G0gQQJRXf0noZ1pKnkdgdBx83VKg8Y79U97v17DwBzER
+ Y3LlGdv8i5GAWfgMoH/fdi0JuB7wl5YC/zFARgpwxhhVwwElBa7SAcc6u2erOQr60qRxXPp6G
+ WVB7Vd+PXQKtRXs+VK2iuHrQWhvl6Hg0wrdMBzrWY1GarGNhS2zN2T+FLDFnYUvdty1EL8JCk
+ bzkUGGZVDlRKlGbFEsa4f7WUxAzccN8PB/p8XWoiTcuIFKg0husKD6e7WsAFve4+LjzuZ/dWo
+ 03bsVvPzleYJgF0zWO/g==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,17 +75,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 4, 2022 at 2:28 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+On Thu, Aug 4, 2022 at 9:17 AM Li Chen <me@linux.beauty> wrote:
+> ---- On Tue, 12 Jul 2022 16:50:46 +0900  Arnd Bergmann  wrote ---
+>  > Does your hardware require a fixed address for the buffer? If it can be
+>  > anywhere in memory (or at least within a certain range) but just has to
+>  > be physically contiguous, the normal way would be to use a CMA area
+>  > to allocate from, which gives you 'struct page' backed pages.
+>
+> CMA does support Direct I/O, but it has its own issue:
+> It does not guarantee that the memory previously borrowed by the OS will be returned to the device.
+>
+> We've been plagued by examples like this in the past:
+> Many other kernel modules/subsystems have already allocated much memory from both non-CMA and CMA memory,
+> When our DSP driver got probed then, cma_alloc will fail in that non-CMA system memory is not enough
+> for CMA memory to migrate.
 
-> I know I said I really don't want the executable .long stuff for this,
-> and IIRC that's a pretty common sentiment.  I'm not sure if I'm just fed
-> up with all the craziness, but I'm kind of inclined to just merge this
-> as-is -- at least that way we can get the hardware working.
+This part should at least be possible to solve by declaring the amount
+and location of
+CMA areas in the right way. It's not great to fine-tune the DT for a
+particular kernel's
+use, but if you know which other drivers require CMA type allocations
+you can find a lower
+bound that should suffice.
 
-There is usually not much choice here if you want to allow building
-with older toolchains. You might want to add a comment for each one
-of those to reference the (projected) binutils version that adds support
-so it can be cleaned up after you raise the minimum toolchain
-requirements, but that takes years.
+Most coherent allocations tend to be long-lived and only for very
+small memory regions.
+If you have another driver that uses large or periodic
+dma_alloc_coherent() type allocations,
+you can consider either giving that device its own CMA area, or fixing
+it to use streaming
+mappings.
 
         Arnd
