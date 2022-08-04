@@ -2,249 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF9D589A72
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 12:29:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC8BC589AC9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 13:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238920AbiHDK3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 06:29:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59488 "EHLO
+        id S233704AbiHDLNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 07:13:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232471AbiHDK3I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 06:29:08 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32083422C5;
-        Thu,  4 Aug 2022 03:29:07 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 274A9UUG023791;
-        Thu, 4 Aug 2022 10:29:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id; s=qcppdkim1;
- bh=EZe8eC3iDD3kk/ONKmOPiIysE9i0w67BBMmkWHWW3H0=;
- b=FBoIiZmGu46jChSLNNt60yA4a4inoaJYCyOSbJdw4LeZdChhTBfLw2Gh//h0nuhVHUGw
- 9BmR1qYBSBKQoTyRKUDlbJWLtvO1O72rD2uFhIUl3EZCmXQ8Mbh+9ThrUwOIFWMPOykR
- akPO7ZzQQ4i1AlsUFd0rx+3OEbpWA96gJWzV5oy+DWq2HYw7NaVrNwQp13l1qVVHmcSM
- 0WsLpNHCASVvvcm2pKJkXZJ+Jw289QtCUfZOUvBvNLm+pdMQGTBWCv0sFT2fWSv9CUIa
- BC3sPFy+ya76OqwyT79KWnHbgArzN57UQQK8qAij/WAStAU+rKur3WX7IhQWtFTpYPf3 xQ== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3hqy7r9cu3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 04 Aug 2022 10:29:03 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 274ASxPf017796;
-        Thu, 4 Aug 2022 10:28:59 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3hmwqkg9n7-1;
-        Thu, 04 Aug 2022 10:28:59 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 274ASwq7017791;
-        Thu, 4 Aug 2022 10:28:58 GMT
-Received: from kalyant-linux.qualcomm.com (kalyant-linux.qualcomm.com [10.204.66.210])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 274ASwYO017790;
-        Thu, 04 Aug 2022 10:28:58 +0000
-Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
-        id D9F5E40F4; Thu,  4 Aug 2022 03:28:57 -0700 (PDT)
-From:   Kalyan Thota <quic_kalyant@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Kalyan Thota <quic_kalyant@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_vpolimer@quicinc.com, dmitry.baryshkov@linaro.org,
-        quic_abhinavk@quicinc.com
-Subject: [v1] drm/msm/disp/dpu1: add support for hierarchical flush for dspp in sc7280
-Date:   Thu,  4 Aug 2022 03:28:50 -0700
-Message-Id: <1659608930-4370-1-git-send-email-quic_kalyant@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1ZUH6sWsyGbNWSu42OdW5FXzlwGvlRt5
-X-Proofpoint-ORIG-GUID: 1ZUH6sWsyGbNWSu42OdW5FXzlwGvlRt5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-04_03,2022-08-04_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- priorityscore=1501 spamscore=0 mlxscore=0 lowpriorityscore=0
- malwarescore=0 clxscore=1011 impostorscore=0 phishscore=0 adultscore=0
- suspectscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2206140000 definitions=main-2208040045
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230199AbiHDLNw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 07:13:52 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A42561D66
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 04:13:50 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id bq11so25205891lfb.5
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 04:13:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Ocrse2lQ6Zu05i5TSECxP89aNNukjo6UNe8sPBi1Tac=;
+        b=Y2sE4cFmB+/Hm7t80UvbhOR/3iDhNxGiy5cDtxtu9grrPVx2hr5S4QbpVJlNmxk6Nh
+         mW7pS10lAUh+BRUSydRJ0e0ES3++9AvWsbBo5QD6+KpFKfQ7qHe4FvJ4X9W6mgScBwO5
+         EY0FwScIlrnBeCj9kj59E2Zv68PyHW5L6+BOpfdqYKEgOc3G5oq5pFMzKZkm3ah4jpHi
+         QnggCBo+4a8zuLbnCkVtz934XZeLP5t5bw+AieLC+OT0Q6dv2xCCekI58pY4x5l4sck9
+         NguMsVmActDL8MZmcrH4fmHm0q5SakwlZyYMV+AO/TNd3t73mvxk5fEJa/2G05oT0a2x
+         UNQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Ocrse2lQ6Zu05i5TSECxP89aNNukjo6UNe8sPBi1Tac=;
+        b=moQSJwmnK56jSNn71sWwYDs0k6STLPjWVOmTdvzTTnBJhdXW7lYWIKkuuPb5aLcelr
+         PJOherm0zd28Dj52u5RNfBUdH2TfJOk3ta1YSaJXkdQZHAApGLNSCrqu1Iohi/J8gMyi
+         gYD5JlCCsXTbelF8VH4DJH2e27oPEO8rwkBh4zEH3pMB5dt/F55C3be+yS6y4Lhl8It5
+         Ob1AgUVBl3ENmSq4uvifXEG9MYIpbo03Py/m3Gvnrjr2XHO7ALY4t7AlWjUThFDLM4lV
+         Arefv/p4GnQUoXPAt70MdVTW6I5qLl/xf3Uyx9SJfLLxPBiKc7eQYM/4WviCSXkAWgbn
+         dn5Q==
+X-Gm-Message-State: ACgBeo2SuRl/VEwLBzY4V3mYPBCH6OqHkCX/IRctCHxKFNuV5YJqt3EP
+        VWERrT7G/jBW5PfbXo2niU5H0Q==
+X-Google-Smtp-Source: AA6agR63N/Slocyhyqr3XJV8eS2xQ5DeoyAUJHauggb0t0T4y0jeXLCPYsVQtaa2lc9r7TngPF7lIg==
+X-Received: by 2002:a05:6512:3f05:b0:48a:ca44:80f2 with SMTP id y5-20020a0565123f0500b0048aca4480f2mr519981lfa.224.1659611628451;
+        Thu, 04 Aug 2022 04:13:48 -0700 (PDT)
+Received: from [192.168.1.6] ([77.222.167.48])
+        by smtp.gmail.com with ESMTPSA id r15-20020ac25f8f000000b0048b03f9adcdsm84592lfe.309.2022.08.04.04.13.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Aug 2022 04:13:47 -0700 (PDT)
+Message-ID: <ae06f644-b988-8fc3-fde8-258299f8f2ae@linaro.org>
+Date:   Thu, 4 Aug 2022 13:13:45 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: mediatek: mt8188: Add binding for MM &
+ INFRA IOMMU
+Content-Language: en-US
+To:     "Chengci.Xu" <chengci.xu@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220804105834.626-1-chengci.xu@mediatek.com>
+ <20220804105834.626-2-chengci.xu@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220804105834.626-2-chengci.xu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Flush mechanism for DSPP blocks has changed in sc7280 family, it
-allows individual sub blocks to be flushed in coordination with
-master flush control.
+On 04/08/2022 12:58, Chengci.Xu wrote:
+> This patch adds descriptions for mt8188 IOMMU which also use ARM
+> Short-Descriptor translation table format.
+> 
 
-representation: master_flush && (PCC_flush | IGC_flush .. etc )
 
-This change adds necessary support for the above design.
+Thank you for your patch. There is something to discuss/improve.
 
-Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c       |  4 +++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c |  5 +++-
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  2 ++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c     | 40 +++++++++++++++++++++++++-
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h     |  3 ++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h    |  7 +++++
- 6 files changed, 59 insertions(+), 2 deletions(-)
+>      then:
+>        required:
+> diff --git a/include/dt-bindings/memory/mt8188-memory-port.h
+>  b/include/dt-bindings/memory/mt8188-memory-port.h
+> new file mode 100644
+> index 000000000000..612fd366c3a7
+> --- /dev/null
+> +++ b/include/dt-bindings/memory/mt8188-memory-port.h
 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-index 7763558..4eca317 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c
-@@ -703,6 +703,10 @@ static void _dpu_crtc_setup_cp_blocks(struct drm_crtc *crtc)
- 		mixer[i].flush_mask |= ctl->ops.get_bitmask_dspp(ctl,
- 			mixer[i].hw_dspp->idx);
- 
-+		if(ctl->ops.set_dspp_hierarchical_flush)
-+			ctl->ops.set_dspp_hierarchical_flush(ctl,
-+						mixer[i].hw_dspp->idx, DSPP_SUB_PCC);
-+
- 		/* stage config flush mask */
- 		ctl->ops.update_pending_flush(ctl, mixer[i].flush_mask);
- 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-index 021eb2f..3b27a87 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-@@ -58,7 +58,10 @@
- 	(PINGPONG_SDM845_MASK | BIT(DPU_PINGPONG_TE2))
- 
- #define CTL_SC7280_MASK \
--	(BIT(DPU_CTL_ACTIVE_CFG) | BIT(DPU_CTL_FETCH_ACTIVE) | BIT(DPU_CTL_VM_CFG))
-+	(BIT(DPU_CTL_ACTIVE_CFG) | \
-+	 BIT(DPU_CTL_FETCH_ACTIVE) | \
-+	 BIT(DPU_CTL_VM_CFG) | \
-+	 BIT(DPU_CTL_HIERARCHICAL_FLUSH))
- 
- #define MERGE_3D_SM8150_MASK (0)
- 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-index b85b24b..7922f6c 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-@@ -185,6 +185,7 @@ enum {
-  * @DPU_CTL_SPLIT_DISPLAY:	CTL supports video mode split display
-  * @DPU_CTL_FETCH_ACTIVE:	Active CTL for fetch HW (SSPPs)
-  * @DPU_CTL_VM_CFG:		CTL config to support multiple VMs
-+ * @DPU_CTL_HIERARCHICAL_FLUSH: CTL config to support hierarchical flush
-  * @DPU_CTL_MAX
-  */
- enum {
-@@ -192,6 +193,7 @@ enum {
- 	DPU_CTL_ACTIVE_CFG,
- 	DPU_CTL_FETCH_ACTIVE,
- 	DPU_CTL_VM_CFG,
-+	DPU_CTL_HIERARCHICAL_FLUSH,
- 	DPU_CTL_MAX
- };
- 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-index 3584f5e..b34fc30 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.c
-@@ -28,6 +28,8 @@
- #define   CTL_INTF_FLUSH                0x110
- #define   CTL_INTF_MASTER               0x134
- #define   CTL_FETCH_PIPE_ACTIVE         0x0FC
-+#define   CTL_DSPP_0_FLUSH		0x13C
-+
- 
- #define CTL_MIXER_BORDER_OUT            BIT(24)
- #define CTL_FLUSH_MASK_CTL              BIT(17)
-@@ -292,6 +294,36 @@ static uint32_t dpu_hw_ctl_get_bitmask_dspp(struct dpu_hw_ctl *ctx,
- 	return flushbits;
- }
- 
-+static uint32_t dpu_hw_ctl_get_bitmask_dspp_v1(struct dpu_hw_ctl *ctx,
-+	enum dpu_dspp dspp)
-+{
-+	return BIT(29);
-+}
-+
-+static void dpu_hw_ctl_set_dspp_hierarchical_flush(struct dpu_hw_ctl *ctx,
-+	enum dpu_dspp dspp, enum dpu_dspp_sub_blk dspp_sub_blk)
-+{
-+	uint32_t flushbits = 0, active = 0;
-+
-+	switch (dspp_sub_blk) {
-+	case DSPP_SUB_IGC:
-+		flushbits = BIT(2);
-+		break;
-+	case DSPP_SUB_PCC:
-+		flushbits = BIT(4);
-+		break;
-+	case DSPP_SUB_GC:
-+		flushbits = BIT(5);
-+		break;
-+	default:
-+		return;
-+	}
-+
-+	active = DPU_REG_READ(&ctx->hw, CTL_DSPP_0_FLUSH + ((dspp - 1) * 4));
-+
-+	DPU_REG_WRITE(&ctx->hw, CTL_DSPP_0_FLUSH + ((dspp - 1) * 4), active | flushbits);
-+}
-+
- static u32 dpu_hw_ctl_poll_reset_status(struct dpu_hw_ctl *ctx, u32 timeout_us)
- {
- 	struct dpu_hw_blk_reg_map *c = &ctx->hw;
-@@ -600,7 +632,13 @@ static void _setup_ctl_ops(struct dpu_hw_ctl_ops *ops,
- 	ops->setup_blendstage = dpu_hw_ctl_setup_blendstage;
- 	ops->get_bitmask_sspp = dpu_hw_ctl_get_bitmask_sspp;
- 	ops->get_bitmask_mixer = dpu_hw_ctl_get_bitmask_mixer;
--	ops->get_bitmask_dspp = dpu_hw_ctl_get_bitmask_dspp;
-+	if (cap & BIT(DPU_CTL_HIERARCHICAL_FLUSH)) {
-+		ops->get_bitmask_dspp = dpu_hw_ctl_get_bitmask_dspp_v1;
-+		ops->set_dspp_hierarchical_flush = dpu_hw_ctl_set_dspp_hierarchical_flush;
-+	} else {
-+		ops->get_bitmask_dspp = dpu_hw_ctl_get_bitmask_dspp;
-+	}
-+
- 	if (cap & BIT(DPU_CTL_FETCH_ACTIVE))
- 		ops->set_active_pipes = dpu_hw_ctl_set_fetch_pipe_active;
- };
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-index ac15444..8ecab91 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_ctl.h
-@@ -160,6 +160,9 @@ struct dpu_hw_ctl_ops {
- 	uint32_t (*get_bitmask_dspp)(struct dpu_hw_ctl *ctx,
- 		enum dpu_dspp blk);
- 
-+	void (*set_dspp_hierarchical_flush)(struct dpu_hw_ctl *ctx,
-+		enum dpu_dspp blk, enum dpu_dspp_sub_blk dspp_sub_blk);
-+
- 	/**
- 	 * Set all blend stages to disabled
- 	 * @ctx       : ctl path ctx pointer
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h
-index bb9cead..561e2ab 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h
-@@ -166,6 +166,13 @@ enum dpu_dspp {
- 	DSPP_MAX
- };
- 
-+enum dpu_dspp_sub_blk{
-+	DSPP_SUB_PCC = 1,
-+	DSPP_SUB_IGC,
-+	DSPP_SUB_GC,
-+	DSPP_SUB_MAX
-+};
-+
- enum dpu_ctl {
- 	CTL_0 = 1,
- 	CTL_1,
--- 
-2.7.4
+Use vendor prefix in filename, so mediatek,mt8188-memory-port.h
 
+> @@ -0,0 +1,482 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+
+
+This should be dual-license, if possible.
+
+
+> +/*
+> + * Copyright (c) 2022 MediaTek Inc.
+> + * Author: Chengci Xu <chengci.xu@mediatek.com>
+> + */
+> +#ifndef _DT_BINDINGS_MEMORY_MT8188_LARB_PORT_H_
+> +#define _DT_BINDINGS_MEMORY_MT8188_LARB_PORT_H_
+> +
+> +#include <dt-bindings/memory/mtk-memory-port.h>
+> +
+> +/*
+> + * MM IOMMU supports 16GB dma address. We separate it to four ranges:
+> + * 0 ~ 4G; 4G ~ 8G; 8G ~ 12G; 12G ~ 16G, we could adjust these masters
+> + * locate in anyone region. BUT:
+> + * a) Make sure all the ports inside a larb are in one range.
+> + * b) The iova of any master can NOT cross the 4G/8G/12G boundary.
+> + *
+> + * This is the suggested mapping in this SoC:
+> + *
+> + * modules    dma-address-region	larbs-ports
+> + * disp         0 ~ 4G                  larb0/1/2/3
+> + * vcodec      4G ~ 8G                  larb19/21/23
+> + * cam/mdp     8G ~ 12G                 the other larbs.
+> + * N/A         12G ~ 16G
+> + * CCU0   0x24000_0000 ~ 0x243ff_ffff   larb27: port 0/1
+> + * CCU1   0x24400_0000 ~ 0x247ff_ffff   larb27: port 2/3
+> + *
+> + * This SoC have two MM IOMMU HWs, this is the connected information:
+> + * iommu-vdo: larb0/2/5/9/10/11A/11C/13/16B/17B/19/21
+> + * iommu-vpp: larb1/3/4/6/7/11B/12/14/15/16A/17A/23/27
+> + */
+> +
+> +/* MM IOMMU larbs */
+> +#define SMI_L0_ID		(0)
+
+No need for ().
+
+> +#define SMI_L1_ID		(1)
+> +#define SMI_L2_ID		(2)
+> +#define SMI_L3_ID		(3)\
+
+
+Best regards,
+Krzysztof
