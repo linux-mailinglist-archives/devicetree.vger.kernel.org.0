@@ -2,145 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A82C589942
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 10:27:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4536589971
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 10:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239008AbiHDI1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 04:27:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38522 "EHLO
+        id S238372AbiHDIpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 04:45:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235042AbiHDI1D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 04:27:03 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C4801275E;
-        Thu,  4 Aug 2022 01:27:02 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d20so11297310pfq.5;
-        Thu, 04 Aug 2022 01:27:02 -0700 (PDT)
+        with ESMTP id S239184AbiHDIop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 04:44:45 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4269567C86;
+        Thu,  4 Aug 2022 01:43:15 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id j15so16308009wrr.2;
+        Thu, 04 Aug 2022 01:43:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=xzya3EEe/6JYylod91x6WeKO85+rGgr8KWB4/fkcxRs=;
-        b=XvuVmJKEG0C1dlPIOSAvTQze7oZ2YPb9VLpcZXMGcxiKUbc4bmGSj8VE6Gq45ktneS
-         PaThxMtpW4qu8tkowEPKlxNX9Z7NRUWb/vPvlQoZFmayQ9p1Eam49aCSKFg9N3JHTG2K
-         trvehHpMumAZPlGN0mPKyytdBmeAyc+ZCdDjGCyF7zio70B4PlLEdtn0C//4FBJ6B5vM
-         VBwKOzjZJ9b6ahb4QEHFiB2o3Oj7jdmAsYy/r0jtEkRIipeJwypjYlOp2VPVZhSu0/b5
-         L1hxkL6Z5OonbnKSbkv1IA6XiYdV24vA9GQWb3CXhrNWDeFIIEJBKdkPi5FrXLEy18Dh
-         zQ1g==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=Gq6/HNhAQ3BSIj0Ba+RrM6ince6+tYXHxLdu6U01oYA=;
+        b=Bz4WTRlH4WuC24dGsS4v9wUmu3j89xaxP+rFpcK9gzNyf2u7WsaEbVSkqPKTaRhp1K
+         rCtoYXRr7DMDHo0p2wuEyRK5ESAigQlLRsQK048vHx+ZN3MlEJU6NjbligKTJhlDIyCa
+         v6op2mKcqOaJnMtUnL+3EFmjIEyd8NFLRpjI+6Ajx4sstc6mkHuuGC33qfST+QgqVLe0
+         6OxL3SquzsqrtYtHJAICTDBBbSRXx+RqJU98kzovk5vUrn6uhY8GFef0H6u3EW9BCcxA
+         uVmSMsG/ujV2dJnRrdvdW8ZfxWPUNnNXim6cPFWvzprMZqohemyuebKpfnc3SWdroqHK
+         Miag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=xzya3EEe/6JYylod91x6WeKO85+rGgr8KWB4/fkcxRs=;
-        b=0rYsHadh9NmMK0Q1bmTtQq6kO0qQvnxdQtBl/ok93TaNIZggyNfwvLfAzLGj/imvlU
-         NzODl5FzGmqgSVUKdl6jTfbaioy2dDp0U1bluHWwSdg4JyuQj5o2wWj58EM46N27K1ge
-         n/0sqwsbrSJ8XOWvbwauCzltHrW7jiYkazPUcYU3dTNl0J/oqxPsXld8qSkANuLFzsMl
-         7ZJNnObklSrP+bgdE0McZtQgysvma9ITjC1Gg88ppKBMyzQtm1x2hYUzU/4CjDr1U3Qs
-         icL/Us2zx5N1KCDZ/cUmjU8hzVm57/uvkvkgo0ljJ3DxNid6+FdukguR4l/m2+8X3SOV
-         3eCg==
-X-Gm-Message-State: ACgBeo04aCE0Be8EXq/78U51ZPnecuH6h5eBJ0cxS4R4Vk89/sFZh3eN
-        5Z3S4HFJOHwEzw6bFdDjaFU=
-X-Google-Smtp-Source: AA6agR55AQyYzN/vrL8QYskLo3qoQKJDAEEqsjk7HyuP/9jgXg5I9CZXhcTXrarZcKWKwvdSjG46XA==
-X-Received: by 2002:a63:e258:0:b0:41a:d92b:64f9 with SMTP id y24-20020a63e258000000b0041ad92b64f9mr750319pgj.148.1659601622103;
-        Thu, 04 Aug 2022 01:27:02 -0700 (PDT)
-Received: from debian.me (subs02-180-214-232-23.three.co.id. [180.214.232.23])
-        by smtp.gmail.com with ESMTPSA id s3-20020a170902ea0300b0016bf803341asm267477plg.146.2022.08.04.01.27.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Aug 2022 01:27:01 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id 2A4CB103A42; Thu,  4 Aug 2022 15:26:57 +0700 (WIB)
-Date:   Thu, 4 Aug 2022 15:26:56 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=Gq6/HNhAQ3BSIj0Ba+RrM6ince6+tYXHxLdu6U01oYA=;
+        b=wItwudil7fTvLB8tr1d2wV/0xhX9pC1yANdva35bXA/Zr0Y/MOVYSZduUUV7Gq1oRm
+         9aR2CCS19yG4SFN8HrqgqVFKMEMso9yG5FwNj37nHmi9TXyZXJ9QuRBi+/2mY71t5iS0
+         F1dXkzf6M9VmFj+usCtNPvN13U/UkbFrB2O3zRy2ObCpheAmQvIhpE2y0CwX3BnRfoW8
+         KFoympG4eTGgSgiHdH9DGl48TRlNH/atTAw+NtOc13q1dRFzYjkguHeUZ3XZ4LwxDvf/
+         sMcDrUWSCzQCQn++ldrw8CItg7S7udpponxXsdAg77Ja+C7pMYotDqpbo44T2hmHF2WB
+         HWwg==
+X-Gm-Message-State: ACgBeo2Ah2hdy7hxSChLdo/fYmq1u49Y5m4sLuKd3zjqqmquxKiboZSC
+        Gf20uGHyisVQqYiSFxAkWH0=
+X-Google-Smtp-Source: AA6agR7JMuieExtxMItJInX7x5ROJ6BsC9WvMHLa0/yaf92L6oTFOHBtIasKgc7TcO8y2gvcevC/6A==
+X-Received: by 2002:adf:f407:0:b0:21f:a7b:b81c with SMTP id g7-20020adff407000000b0021f0a7bb81cmr661641wro.42.1659602593746;
+        Thu, 04 Aug 2022 01:43:13 -0700 (PDT)
+Received: from [192.168.1.145] ([207.188.167.132])
+        by smtp.gmail.com with ESMTPSA id b6-20020a5d6346000000b0022063e5228bsm422563wrw.93.2022.08.04.01.43.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Aug 2022 01:43:12 -0700 (PDT)
+Message-ID: <11c7b04e-9837-440c-fa5b-3074a706e0ba@gmail.com>
+Date:   Thu, 4 Aug 2022 10:43:06 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v4 05/20] dt-bindings: power: mediatek: Update maintainer
+ list
+Content-Language: en-US
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 00/11] Drivers for gunyah hypervisor
-Message-ID: <YuuC0NISKFVIhUD1@debian.me>
-References: <20220801211240.597859-1-quic_eberman@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220801211240.597859-1-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Lee Jones <lee@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        MandyJH Liu <mandyjh.liu@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220729063208.16799-1-tinghan.shen@mediatek.com>
+ <20220729063208.16799-6-tinghan.shen@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220729063208.16799-6-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 01, 2022 at 02:12:29PM -0700, Elliot Berman wrote:
-> Gunyah is a Type-1 hypervisor independent of any
-> high-level OS kernel, and runs in a higher CPU privilege level. It does
-> not depend on any lower-privileged OS kernel/code for its core
-> functionality. This increases its security and can support a much smaller
-> trusted computing base than a Type-2 hypervisor.
-> 
-> Gunyah is an open source hypervisor. The source repo is available at
-> https://github.com/quic/gunyah-hypervisor.
-> 
-> The diagram below shows the architecture.
-> 
-> ::
-> 
->         Primary VM           Secondary VMs
->      +-----+ +-----+  | +-----+ +-----+ +-----+
->      |     | |     |  | |     | |     | |     |
->  EL0 | APP | | APP |  | | APP | | APP | | APP |
->      |     | |     |  | |     | |     | |     |
->      +-----+ +-----+  | +-----+ +-----+ +-----+
->  ---------------------|-------------------------
->      +--------------+ | +----------------------+
->      |              | | |                      |
->  EL1 | Linux Kernel | | |Linux kernel/Other OS |   ...
->      |              | | |                      |
->      +--------------+ | +----------------------+
->  --------hvc/smc------|------hvc/smc------------
->      +----------------------------------------+
->      |                                        |
->  EL2 |            Gunyah Hypervisor           |
->      |                                        |
->      +----------------------------------------+
-> 
-> Gunyah provides these following features.
-> 
-> - Threads and Scheduling: The scheduler schedules virtual CPUs (VCPUs) on
-> physical CPUs and enables time-sharing of the CPUs.
-> - Memory Management: Gunyah tracks memory ownership and use of all memory
-> under its control. Memory partitioning between VMs is a fundamental
-> security feature.
-> - Interrupt Virtualization: All interrupts are handled in the hypervisor
-> and routed to the assigned VM.
-> - Inter-VM Communication: There are several different mechanisms provided
-> for communicating between VMs.
-> - Device Virtualization: Para-virtualization of devices is supported using
-> inter-VM communication. Low level system features and devices such as
-> interrupt controllers are supported with emulation where required.
-> 
+Weiyi Lu,
 
-Hi,
+On 29/07/2022 08:31, Tinghan Shen wrote:
+> Update the maintainer list of power controller binding.
+> 
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+>   .../devicetree/bindings/power/mediatek,power-controller.yaml    | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> index 2d6afc0909473..03b7f6aa591d4 100644
+> --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>   title: Mediatek Power Domains Controller
+>   
+>   maintainers:
+> -  - Weiyi Lu <weiyi.lu@mediatek.com>
+> +  - MandyJH Liu <mandyjh.liu@mediatek.com>
 
-I can't apply this series on top of mainline or linux-next. On what tree
-(and what commit) this series is based on? I'd like to do htmldocs test.
+Are you ok with this change. Can you provide a Acked-by tag for that?
 
-Thanks.
+Regards,
+Matthias
 
--- 
-An old man doll... just what I always wanted! - Clara
+>     - Matthias Brugger <mbrugger@suse.com>
+>   
+>   description: |
