@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A39485895F5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 04:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AFF1589623
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 04:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239067AbiHDCQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Aug 2022 22:16:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45694 "EHLO
+        id S233267AbiHDCcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Aug 2022 22:32:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238936AbiHDCQI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 22:16:08 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9536A5F9A8;
-        Wed,  3 Aug 2022 19:16:05 -0700 (PDT)
-X-UUID: d7b3afa57e5a46e9a41bbb92ab694510-20220804
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Uh8zA9qYzdLhkEz7PSDmoKHXsDWp4M8zPMX653NOOg0=;
-        b=N/UJHGhfF5cur4wB3WL//cTu8BP2WC5NW5E6L7eLK840Y0iThwEkquZpoGo16yLrqUx3FAHytKmZIJrTCljlGqC2Kv6N3LaI31woHx62CWVO7S4DlPmmaONw+H2qDgsA9ZYWD0VFrLeRIG3cKVa2fKUi+YgeEP04aaBsiS/AhYU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:47a16862-88ec-4788-8029-0e7dee7c0fe7,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACTI
-        ON:release,TS:0
-X-CID-META: VersionHash:0f94e32,CLOUDID:b5432cd1-841b-4e95-ad42-8f86e18f54fc,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: d7b3afa57e5a46e9a41bbb92ab694510-20220804
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 776350891; Thu, 04 Aug 2022 10:15:59 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 4 Aug 2022 10:15:58 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 4 Aug 2022 10:15:57 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        "Will Deacon" <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-CC:     <iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v5 18/20] arm64: dts: mt8195: Add iommu and smi nodes
-Date:   Thu, 4 Aug 2022 10:15:51 +0800
-Message-ID: <20220804021553.14867-19-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220804021553.14867-1-tinghan.shen@mediatek.com>
-References: <20220804021553.14867-1-tinghan.shen@mediatek.com>
+        with ESMTP id S229758AbiHDCcS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Aug 2022 22:32:18 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3D75FAC5;
+        Wed,  3 Aug 2022 19:32:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A6720B8227E;
+        Thu,  4 Aug 2022 02:32:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56B66C433B5;
+        Thu,  4 Aug 2022 02:32:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659580333;
+        bh=YDJGeoGJaH+aps1YMl40S0d5zjZuWvUVOXH7bdxfR4w=;
+        h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+        b=DfMByqkGVgftHeSYJjpPtSEZu7VyjZAkuGlLZL3Ja9igGRA1d76gVWZrFseAWH8vK
+         zCpi+76mCxFOnSRdLNg+mPA6OopAA5KWdThEj8QPxIAyX8l25Ke6Ky9CXSlWdOPbBq
+         Y4P087Z0sbKFzPn+j7Ca0t9MQiqK0RAP1lcAehExzPd3cIl5ciI8LUVTqw0lswUZRz
+         tBRS/7ffyZD/6Yr6W77H+wLcpp5U30L9f398eDk9/HVAiTgjdBDhRFQ9Y9fDoq1eOH
+         FFXzAFBIGO8ZfcSdNs0H1iF37j57m80ITU6kod072OKJ43pYF2RP7xRVVXwja/v4RN
+         z33Da1rpRKn1A==
+Received: by mail-vk1-f173.google.com with SMTP id x184so6729040vka.11;
+        Wed, 03 Aug 2022 19:32:13 -0700 (PDT)
+X-Gm-Message-State: AJIora+q23jbxi1bZUh4DBWJwUuzhPiQK2NfyyjBflJTx6WbnCFICYkK
+        z018I2CMKuXg5OKfxGHe5SKdCBzv8A2sc02vmFY=
+X-Google-Smtp-Source: AGRyM1u1k4KwmAXLl9ys/zYHnPBahO1X4x6oLGiy0Us7D2r6wRBA8etL1AuiKiecWpcdN3WLqG5LgHxID2Hopm2PAWw=
+X-Received: by 2002:a05:6122:2212:b0:374:2fb5:19ef with SMTP id
+ bb18-20020a056122221200b003742fb519efmr11147755vkb.2.1659580331926; Wed, 03
+ Aug 2022 19:32:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+References: <20220728062749.18701-1-zhiyong.tao@mediatek.com>
+ <20220728062749.18701-2-zhiyong.tao@mediatek.com> <03a13ed4-e7cd-6f7d-f8f7-9b1e6193e202@linaro.org>
+ <3d97d4c46467909739b8b69662412fe162dbe613.camel@mediatek.com>
+In-Reply-To: <3d97d4c46467909739b8b69662412fe162dbe613.camel@mediatek.com>
+Reply-To: wens@kernel.org
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Thu, 4 Aug 2022 10:31:59 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66eLF8WqQNWaAT-o3qQ=gvQTiq-UHryF6VuXVQG_VVD7Q@mail.gmail.com>
+Message-ID: <CAGb2v66eLF8WqQNWaAT-o3qQ=gvQTiq-UHryF6VuXVQG_VVD7Q@mail.gmail.com>
+Subject: Re: [PATCH v2] pmic: add mt6366 regulator document
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,URI_NOVOWEL autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,578 +73,452 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add iommu nodes and smi nodes for mt8195.
+(Dropping individuals from CC list)
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 449 +++++++++++++++++++++++
- 1 file changed, 449 insertions(+)
+On Wed, Aug 3, 2022 at 6:14 PM Rex-BC Chen <rex-bc.chen@mediatek.com> wrote:
+>
+> On Thu, 2022-07-28 at 18:46 +0800, Krzysztof Kozlowski wrote:
+> > On 28/07/2022 08:27, Zhiyong Tao wrote:
+> > > From: zhiyong tao <zhiyong.tao@mediatek.com>
+> > >
+> > > Add mt6366 regulator document
+> >
+> > As usual with Mediatek your emails fail to properly pass modern SMTP
+> > checks and you end up in spam.
+> >
+> > I reported it months ago to folks in Mediatek. No improvements since
+> > that time.
+> >
+> > I stopped checking my spam folder for Mediatek stuff and all will be
+> > ignored. I will also stop complaining about it - just ignore
+> > Mediatek.
+> >
+> > Fix your systems, instead of putting additional effort on community
+> > and
+> > on reviewers.
+> >
+>
+> Hello Krzysztof,
+>
+> I am Rex from MediaTek chrome project team.
+> We noticed your complain of our upstream mail.
+>
+> First of all, sorry for the inconvenience.
+> We really want to fix this SPAM issue.
+>
+> From our side, we can make sure mails for kernel upstream from MediaTek
+> is clear and these mails pass the verification of DMARC/DKIM/SPF.
+> Therefore, to identify the root cause, could you please provide us some
+> mails that seen as SPAM from MediaTek?
+> It's more useful if you can use the form of attachment. In that case,
+> we can analyze whole mails including mail headers.
+>
+> We really appreciate your big support, and we hope we can fix this
+> issue to reduce the inconvenience for reviewing series from MediaTek.
+> If you can spare some time to help us for this, it would very helpful!!
+>
+> Our IT also adjust the DKIM setting today. If the situation of this
+> issue it much better, please also let us know.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
- b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 9c14c42f07139..f1f52af3823a4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/mt8195-clk.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/memory/mt8195-memory-port.h>
- #include <dt-bindings/phy/phy.h>
- #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
- #include <dt-bindings/power/mt8195-power.h>
-@@ -724,6 +725,17 @@
- 			assigned-clock-parents = <&topckgen CLK_TOP_ULPOSC1_D10>;
- 		};
- 
-+		iommu_infra: infra-iommu@10315000 {
-+			compatible = "mediatek,mt8195-iommu-infra";
-+			reg = <0 0x10315000 0 0x5000>;
-+			interrupts = <GIC_SPI 795 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 796 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 797 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 798 IRQ_TYPE_LEVEL_HIGH 0>,
-+				     <GIC_SPI 799 IRQ_TYPE_LEVEL_HIGH 0>;
-+			#iommu-cells = <1>;
-+		};
-+
- 		scp: scp@10500000 {
- 			compatible = "mediatek,mt8195-scp";
- 			reg = <0 0x10500000 0 0x100000>,
-@@ -1438,6 +1450,64 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		smi_sub_common_vpp0_vpp1_2x1: smi@14010000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x14010000 0 0x1000>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vpp>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
-+		smi_sub_common_vdec_vpp0_2x1: smi@14011000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x14011000 0 0x1000>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vpp>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
-+		smi_common_vpp: smi@14012000 {
-+			compatible = "mediatek,mt8195-smi-common-vpp";
-+			reg = <0 0x14012000 0 0x1000>;
-+			clocks = <&vppsys0 CLK_VPP0_SMI_COMMON_LARB4>,
-+			       <&vppsys0 CLK_VPP0_SMI_COMMON_LARB4>,
-+			       <&vppsys0 CLK_VPP0_SMI_RSI>,
-+			       <&vppsys0 CLK_VPP0_SMI_RSI>;
-+			clock-names = "apb", "smi", "gals0", "gals1";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
-+		larb4: larb@14013000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14013000 0 0x1000>;
-+			mediatek,larb-id = <4>;
-+			mediatek,smi = <&smi_sub_common_vpp0_vpp1_2x1>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>,
-+			       <&vppsys0 CLK_VPP0_SMI_COMMON_LARB4>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
-+		iommu_vpp: iommu@14018000 {
-+			compatible = "mediatek,mt8195-iommu-vpp";
-+			reg = <0 0x14018000 0 0x1000>;
-+			mediatek,larbs = <&larb1 &larb3 &larb4 &larb6 &larb8
-+					  &larb12 &larb14 &larb16 &larb18
-+					  &larb20 &larb22 &larb23 &larb26
-+					  &larb27>;
-+			interrupts = <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH 0>;
-+			clocks = <&vppsys0 CLK_VPP0_SMI_IOMMU>;
-+			clock-names = "bclk";
-+			#iommu-cells = <1>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS0>;
-+		};
-+
- 		wpesys: clock-controller@14e00000 {
- 			compatible = "mediatek,mt8195-wpesys";
- 			reg = <0 0x14e00000 0 0x1000>;
-@@ -1456,24 +1526,116 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb7: larb@14e04000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14e04000 0 0x1000>;
-+			mediatek,larb-id = <7>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&wpesys CLK_WPE_SMI_LARB7>,
-+				 <&wpesys CLK_WPE_SMI_LARB7>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_WPESYS>;
-+		};
-+
-+		larb8: larb@14e05000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14e05000 0 0x1000>;
-+			mediatek,larb-id = <8>;
-+			mediatek,smi = <&smi_common_vpp>;
-+			clocks = <&wpesys CLK_WPE_SMI_LARB8>,
-+			       <&wpesys CLK_WPE_SMI_LARB8>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_WPE>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_WPESYS>;
-+		};
-+
- 		vppsys1: clock-controller@14f00000 {
- 			compatible = "mediatek,mt8195-vppsys1";
- 			reg = <0 0x14f00000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb5: larb@14f02000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14f02000 0 0x1000>;
-+			mediatek,larb-id = <5>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vppsys1 CLK_VPP1_VPPSYS1_LARB>,
-+			       <&vppsys1 CLK_VPP1_VPPSYS1_GALS>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_LARB5>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS1>;
-+		};
-+
-+		larb6: larb@14f03000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x14f03000 0 0x1000>;
-+			mediatek,larb-id = <6>;
-+			mediatek,smi = <&smi_sub_common_vpp0_vpp1_2x1>;
-+			clocks = <&vppsys1 CLK_VPP1_VPPSYS1_LARB>,
-+			       <&vppsys1 CLK_VPP1_VPPSYS1_GALS>,
-+			       <&vppsys0 CLK_VPP0_GALS_VPP1_LARB6>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VPPSYS1>;
-+		};
-+
- 		imgsys: clock-controller@15000000 {
- 			compatible = "mediatek,mt8195-imgsys";
- 			reg = <0 0x15000000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb9: larb@15001000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x15001000 0 0x1000>;
-+			mediatek,larb-id = <9>;
-+			mediatek,smi = <&smi_sub_common_img1_3x1>;
-+			clocks = <&imgsys CLK_IMG_LARB9>,
-+				 <&imgsys CLK_IMG_LARB9>,
-+				 <&imgsys CLK_IMG_GALS>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_IMG>;
-+		};
-+
-+		smi_sub_common_img0_3x1: smi@15002000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x15002000 0 0x1000>;
-+			clocks = <&imgsys CLK_IMG_IPE>,
-+				 <&imgsys CLK_IMG_IPE>,
-+				 <&vppsys0 CLK_VPP0_GALS_IMGSYS_CAMSYS>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vpp>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_IMG>;
-+		};
-+
-+		smi_sub_common_img1_3x1: smi@15003000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x15003000 0 0x1000>;
-+			clocks = <&imgsys CLK_IMG_LARB9>,
-+				 <&imgsys CLK_IMG_LARB9>,
-+				 <&imgsys CLK_IMG_GALS>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vdo>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_IMG>;
-+		};
-+
- 		imgsys1_dip_top: clock-controller@15110000 {
- 			compatible = "mediatek,mt8195-imgsys1_dip_top";
- 			reg = <0 0x15110000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb10: larb@15120000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x15120000 0 0x1000>;
-+			mediatek,larb-id = <10>;
-+			mediatek,smi = <&smi_sub_common_img1_3x1>;
-+			clocks = <&imgsys CLK_IMG_DIP0>,
-+			       <&imgsys1_dip_top CLK_IMG1_DIP_TOP_LARB10>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_DIP>;
-+		};
-+
- 		imgsys1_dip_nr: clock-controller@15130000 {
- 			compatible = "mediatek,mt8195-imgsys1_dip_nr";
- 			reg = <0 0x15130000 0 0x1000>;
-@@ -1486,18 +1648,129 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb11: larb@15230000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x15230000 0 0x1000>;
-+			mediatek,larb-id = <11>;
-+			mediatek,smi = <&smi_sub_common_img1_3x1>;
-+			clocks = <&imgsys CLK_IMG_WPE0>,
-+			       <&imgsys1_wpe CLK_IMG1_WPE_LARB11>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_DIP>;
-+		};
-+
- 		ipesys: clock-controller@15330000 {
- 			compatible = "mediatek,mt8195-ipesys";
- 			reg = <0 0x15330000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb12: larb@15340000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x15340000 0 0x1000>;
-+			mediatek,larb-id = <12>;
-+			mediatek,smi = <&smi_sub_common_img0_3x1>;
-+			clocks = <&ipesys CLK_IPE_SMI_LARB12>,
-+				 <&ipesys CLK_IPE_SMI_LARB12>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_IPE>;
-+		};
-+
- 		camsys: clock-controller@16000000 {
- 			compatible = "mediatek,mt8195-camsys";
- 			reg = <0 0x16000000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb13: larb@16001000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16001000 0 0x1000>;
-+			mediatek,larb-id = <13>;
-+			mediatek,smi = <&smi_sub_common_cam_4x1>;
-+			clocks = <&camsys CLK_CAM_LARB13>,
-+			       <&camsys CLK_CAM_LARB13>,
-+			       <&camsys CLK_CAM_CAM2MM0_GALS>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		larb14: larb@16002000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16002000 0 0x1000>;
-+			mediatek,larb-id = <14>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&camsys CLK_CAM_LARB14>,
-+				 <&camsys CLK_CAM_LARB14>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		smi_sub_common_cam_4x1: smi@16004000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x16004000 0 0x1000>;
-+			clocks = <&camsys CLK_CAM_LARB13>,
-+				 <&camsys CLK_CAM_LARB13>,
-+				 <&camsys CLK_CAM_CAM2MM0_GALS>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vdo>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		smi_sub_common_cam_7x1: smi@16005000 {
-+			compatible = "mediatek,mt8195-smi-sub-common";
-+			reg = <0 0x16005000 0 0x1000>;
-+			clocks = <&camsys CLK_CAM_LARB14>,
-+				 <&camsys CLK_CAM_CAM2MM1_GALS>,
-+				 <&vppsys0 CLK_VPP0_GALS_IMGSYS_CAMSYS>;
-+			clock-names = "apb", "smi", "gals0";
-+			mediatek,smi = <&smi_common_vpp>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		larb16: larb@16012000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16012000 0 0x1000>;
-+			mediatek,larb-id = <16>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&camsys_rawa CLK_CAM_RAWA_LARBX>,
-+				 <&camsys_rawa CLK_CAM_RAWA_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_RAWA>;
-+		};
-+
-+		larb17: larb@16013000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16013000 0 0x1000>;
-+			mediatek,larb-id = <17>;
-+			mediatek,smi = <&smi_sub_common_cam_4x1>;
-+			clocks = <&camsys_yuva CLK_CAM_YUVA_LARBX>,
-+				 <&camsys_yuva CLK_CAM_YUVA_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_RAWA>;
-+		};
-+
-+		larb27: larb@16014000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16014000 0 0x1000>;
-+			mediatek,larb-id = <27>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&camsys_rawb CLK_CAM_RAWB_LARBX>,
-+				 <&camsys_rawb CLK_CAM_RAWB_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_RAWB>;
-+		};
-+
-+		larb28: larb@16015000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16015000 0 0x1000>;
-+			mediatek,larb-id = <28>;
-+			mediatek,smi = <&smi_sub_common_cam_4x1>;
-+			clocks = <&camsys_yuvb CLK_CAM_YUVB_LARBX>,
-+				 <&camsys_yuvb CLK_CAM_YUVB_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_RAWB>;
-+		};
-+
- 		camsys_rawa: clock-controller@1604f000 {
- 			compatible = "mediatek,mt8195-camsys_rawa";
- 			reg = <0 0x1604f000 0 0x1000>;
-@@ -1528,24 +1801,103 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb25: larb@16141000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16141000 0 0x1000>;
-+			mediatek,larb-id = <25>;
-+			mediatek,smi = <&smi_sub_common_cam_4x1>;
-+			clocks = <&camsys CLK_CAM_LARB13>,
-+				 <&camsys_mraw CLK_CAM_MRAW_LARBX>,
-+				 <&camsys CLK_CAM_CAM2MM0_GALS>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_MRAW>;
-+		};
-+
-+		larb26: larb@16142000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x16142000 0 0x1000>;
-+			mediatek,larb-id = <26>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&camsys_mraw CLK_CAM_MRAW_LARBX>,
-+				 <&camsys_mraw CLK_CAM_MRAW_LARBX>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM_MRAW>;
-+
-+		};
-+
- 		ccusys: clock-controller@17200000 {
- 			compatible = "mediatek,mt8195-ccusys";
- 			reg = <0 0x17200000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb18: larb@17201000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x17201000 0 0x1000>;
-+			mediatek,larb-id = <18>;
-+			mediatek,smi = <&smi_sub_common_cam_7x1>;
-+			clocks = <&ccusys CLK_CCU_LARB18>,
-+				 <&ccusys CLK_CCU_LARB18>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_CAM>;
-+		};
-+
-+		larb24: larb@1800d000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1800d000 0 0x1000>;
-+			mediatek,larb-id = <24>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
-+				 <&vdecsys_soc CLK_VDEC_SOC_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC0>;
-+		};
-+
-+		larb23: larb@1800e000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1800e000 0 0x1000>;
-+			mediatek,larb-id = <23>;
-+			mediatek,smi = <&smi_sub_common_vdec_vpp0_2x1>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>,
-+				 <&vdecsys_soc CLK_VDEC_SOC_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC0>;
-+		};
-+
- 		vdecsys_soc: clock-controller@1800f000 {
- 			compatible = "mediatek,mt8195-vdecsys_soc";
- 			reg = <0 0x1800f000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb21: larb@1802e000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1802e000 0 0x1000>;
-+			mediatek,larb-id = <21>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vdecsys CLK_VDEC_LARB1>,
-+				 <&vdecsys CLK_VDEC_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC1>;
-+		};
-+
- 		vdecsys: clock-controller@1802f000 {
- 			compatible = "mediatek,mt8195-vdecsys";
- 			reg = <0 0x1802f000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
- 
-+		larb22: larb@1803e000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1803e000 0 0x1000>;
-+			mediatek,larb-id = <22>;
-+			mediatek,smi = <&smi_sub_common_vdec_vpp0_2x1>;
-+			clocks = <&vppsys0 CLK_VPP0_GALS_VDEC_VDEC_CORE1>,
-+				 <&vdecsys_core1 CLK_VDEC_CORE1_LARB1>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDEC2>;
-+		};
-+
- 		vdecsys_core1: clock-controller@1803f000 {
- 			compatible = "mediatek,mt8195-vdecsys_core1";
- 			reg = <0 0x1803f000 0 0x1000>;
-@@ -1564,6 +1916,17 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb19: larb@1a010000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1a010000 0 0x1000>;
-+			mediatek,larb-id = <19>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vencsys CLK_VENC_VENC>,
-+				 <&vencsys CLK_VENC_GALS>;
-+			clock-names = "apb", "smi";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
-+		};
-+
- 		vencsys_core1: clock-controller@1b000000 {
- 			compatible = "mediatek,mt8195-vencsys_core1";
- 			reg = <0 0x1b000000 0 0x1000>;
-@@ -1576,10 +1939,96 @@
- 			#clock-cells = <1>;
- 		};
- 
-+		larb20: larb@1b010000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1b010000 0 0x1000>;
-+			mediatek,larb-id = <20>;
-+			mediatek,smi = <&smi_common_vpp>;
-+			clocks = <&vencsys_core1 CLK_VENC_CORE1_LARB>,
-+				 <&vencsys_core1 CLK_VENC_CORE1_GALS>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_VDO1_VENCSYS_CORE1>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VENC_CORE1>;
-+		};
-+
-+		larb0: larb@1c018000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1c018000 0 0x1000>;
-+			mediatek,larb-id = <0>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_LARB>,
-+				 <&vdosys0 CLK_VDO0_SMI_LARB>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_LARB0>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-+		};
-+
-+		larb1: larb@1c019000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1c019000 0 0x1000>;
-+			mediatek,larb-id = <1>;
-+			mediatek,smi = <&smi_common_vpp>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_LARB>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_VDO1_VENCSYS_CORE1>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_LARB1>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-+		};
-+
- 		vdosys1: syscon@1c100000 {
- 			compatible = "mediatek,mt8195-mmsys", "syscon";
- 			reg = <0 0x1c100000 0 0x1000>;
- 			#clock-cells = <1>;
- 		};
-+
-+		smi_common_vdo: smi@1c01b000 {
-+			compatible = "mediatek,mt8195-smi-common-vdo";
-+			reg = <0 0x1c01b000 0 0x1000>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_COMMON>,
-+				 <&vdosys0 CLK_VDO0_SMI_EMI>,
-+				 <&vdosys0 CLK_VDO0_SMI_RSI>,
-+				 <&vdosys0 CLK_VDO0_SMI_GALS>;
-+			clock-names = "apb", "smi", "gals0", "gals1";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-+
-+		};
-+
-+		iommu_vdo: iommu@1c01f000 {
-+			compatible = "mediatek,mt8195-iommu-vdo";
-+			reg = <0 0x1c01f000 0 0x1000>;
-+			mediatek,larbs = <&larb0 &larb2 &larb5 &larb7 &larb9
-+					  &larb10 &larb11 &larb13 &larb17
-+					  &larb19 &larb21 &larb24 &larb25
-+					  &larb28>;
-+			interrupts = <GIC_SPI 669 IRQ_TYPE_LEVEL_HIGH 0>;
-+			#iommu-cells = <1>;
-+			clocks = <&vdosys0 CLK_VDO0_SMI_IOMMU>;
-+			clock-names = "bclk";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS0>;
-+		};
-+
-+		larb2: larb@1c102000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1c102000 0 0x1000>;
-+			mediatek,larb-id = <2>;
-+			mediatek,smi = <&smi_common_vdo>;
-+			clocks = <&vdosys1 CLK_VDO1_SMI_LARB2>,
-+				 <&vdosys1 CLK_VDO1_SMI_LARB2>,
-+				 <&vdosys1 CLK_VDO1_GALS>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-+		};
-+
-+		larb3: larb@1c103000 {
-+			compatible = "mediatek,mt8195-smi-larb";
-+			reg = <0 0x1c103000 0 0x1000>;
-+			mediatek,larb-id = <3>;
-+			mediatek,smi = <&smi_common_vpp>;
-+			clocks = <&vdosys1 CLK_VDO1_SMI_LARB3>,
-+				 <&vdosys1 CLK_VDO1_GALS>,
-+				 <&vppsys0 CLK_VPP0_GALS_VDO0_VDO1_VENCSYS_CORE1>;
-+			clock-names = "apb", "smi", "gals";
-+			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
-+		};
- 	};
- };
--- 
-2.18.0
+Tinghan's patch series [1] that was just sent out doesn't have DKIM headers.
 
+As far as I know, people complaining about patches ending up in the spam
+folder are mostly using Gmail. Gmail has gotten more strict about validating
+emails. AFAIK it now requires either SPF or DKIM to pass, _and_ that the
+passing result matches the sender domain.
+
+That means SPF is out of the question for mailing lists. DKIM should work
+if set up, but LAKML (and lists.infradead.org in general) mangles the
+headers sometimes and would cause the signature check to fail. Other
+mailing lists on vger.kernel.org or lists.linux.dev should fare better.
+
+One can also "train" their Gmail instance to not land all of the emails
+that fail validation in SPAM, but nevertheless some will end up there.
+
+Attaching the full headers of [1] at the end.
+
+
+Regards
+ChenYu
+
+[1] https://lore.kernel.org/linux-mediatek/20220804021553.14867-7-tinghan.shen@mediatek.com/
+
+
+Received: by 2002:a59:c181:0:b0:2d5:960c:5e50 with SMTP id j1csp54837vqn;
+        Wed, 3 Aug 2022 19:17:48 -0700 (PDT)
+X-Google-Smtp-Source:
+AGRyM1v5wlZ5UC+3Erd1R5AK8/4DKV9Dau0nK7xGWTXVGJhzseKMqEiK+ciebo9j7IKTo5raKO8P
+X-Received: by 2002:a05:6830:43a0:b0:61c:c25b:eb88 with SMTP id
+s32-20020a05683043a000b0061cc25beb88mr10429847otv.111.1659579468530;
+        Wed, 03 Aug 2022 19:17:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1659579468; cv=none;
+        d=google.com; s=arc-20160816;
+        b=0/a7sbxQvavDE6ZcJZ5sodj5S88yzB6m0VHx66EMPPfwV2MZTwi4nvoD/xkLEEezuZ
+         +nkZvPXPHrB8XojB4+eCtw4zCCBzWhOO8yBqyQkUeVRu2EgguOCbKLouCw5rCHoEC9WJ
+         3MtKbCIwV+TwRLfFze8lj8GKabDXhWAAnpfbB35kFevk+y8CsBIueXgFa+Lxbb/fPtyN
+         ftu1maP4uUViYBHWx8w42KUAsSl2SQcuxJpwSaiK7dSFOt/IOIibpS/ruHCKy+YHPO95
+         46Ecd0OZ1CGN+rZZS+FzfUi+8VbwYWZ7dKKFuppL93ErlozBuq4Nz2LT++CQarlHOpJ/
+         MNbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+d=google.com; s=arc-20160816;
+        h=errors-to:sender:content-transfer-encoding:list-subscribe:list-help
+         :list-post:list-archive:list-unsubscribe:list-id:precedence
+         :mime-version:references:in-reply-to:message-id:date:subject:cc:to
+         :from:dkim-signature:dmarc-filter:delivered-to;
+        bh=YugCKNbHuwbwo35Olh6mecj/5LgXHYwXhRiDSNx4g8I=;
+        b=zxhhj5x9+HVTuqp6J76Uc0445tI6tASmU5alucBY762bYJrJQPjH5GHNGpPT241D6e
+         yjFGRoAaMut74akROiHQMlhUEc1OYQSEcVCizruQgaRZupCAuzaWSJaTq2BLXicW9TFs
+         oGzOA6k54Mh18yoiOr/A6MKh+4DG8M2QKi6SIhcOJY5eBmpgO+M+JixJKXnYMqZX9Y9f
+         j8O4OW2evTjCtBpJ/pYEeKxZpWoAC+5WSnUhVuolhP4ZGjrUHFl4WTtMGwVEIdp2jCDb
+         SI2nWrAagOc08AKfBfkoHDlmwgSz3FTg3C9ldzn/SXFh1ovNFmXN8FPecTd+1SQmp3US
+         fRiw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@lists.infradead.org
+header.s=bombadil.20210309 header.b="0rFqA//U";
+       spf=pass (google.com: domain of
+srs0=w7s4=yi=lists.infradead.org=linux-arm-kernel-bounces+wens=kernel.org@kernel.org
+designates 139.178.84.217 as permitted sender)
+smtp.mailfrom="SRS0=w7S4=YI=lists.infradead.org=linux-arm-kernel-bounces+wens=kernel.org@kernel.org";
+       dmarc=fail (p=QUARANTINE sp=QUARANTINE dis=QUARANTINE)
+header.from=mediatek.com
+Return-Path: <SRS0=w7S4=YI=lists.infradead.org=linux-arm-kernel-bounces+wens=kernel.org@kernel.org>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org. [139.178.84.217])
+        by mx.google.com with ESMTPS id
+t130-20020aca5f88000000b00339fe268670si12938186oib.220.2022.08.03.19.17.48
+        for <wens213@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Aug 2022 19:17:48 -0700 (PDT)
+Received-SPF: pass (google.com: domain of
+srs0=w7s4=yi=lists.infradead.org=linux-arm-kernel-bounces+wens=kernel.org@kernel.org
+designates 139.178.84.217 as permitted sender)
+client-ip=139.178.84.217;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@lists.infradead.org
+header.s=bombadil.20210309 header.b="0rFqA//U";
+       spf=pass (google.com: domain of
+srs0=w7s4=yi=lists.infradead.org=linux-arm-kernel-bounces+wens=kernel.org@kernel.org
+designates 139.178.84.217 as permitted sender)
+smtp.mailfrom="SRS0=w7S4=YI=lists.infradead.org=linux-arm-kernel-bounces+wens=kernel.org@kernel.org";
+       dmarc=fail (p=QUARANTINE sp=QUARANTINE dis=QUARANTINE)
+header.from=mediatek.com
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+(No client certificate requested) by dfw.source.kernel.org (Postfix)
+with ESMTPS id 466CF61780 for <wens213@gmail.com>; Thu,
+  4 Aug 2022 02:17:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) id BBAB0C433C1; Thu,
+  4 Aug 2022 02:17:47 +0000 (UTC)
+Delivered-To: wens@kernel.org
+Received: from bombadil.infradead.org (bombadil.infradead.org
+[198.137.202.133]) (using TLSv1.2 with cipher
+ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)) (No client certificate
+requested) by smtp.kernel.org (Postfix) with ESMTPS id DD5F5C433D6 for
+<wens@kernel.org>; Thu,
+  4 Aug 2022 02:17:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.kernel.org DD5F5C433D6
+Authentication-Results: smtp.kernel.org; dmarc=fail (p=quarantine
+dis=none) header.from=mediatek.com
+Authentication-Results: smtp.kernel.org; spf=none
+smtp.mailfrom=lists.infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+d=lists.infradead.org; s=bombadil.20210309; h=Sender:
+Content-Transfer-Encoding:Content-Type:List-Subscribe:List-Help:List-Post:
+List-Archive:List-Unsubscribe:List-Id:MIME-Version:References:In-Reply-To:
+Message-ID:Date:Subject:CC:To:From:Reply-To:Content-ID:Content-Description:
+Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+List-Owner; bh=YugCKNbHuwbwo35Olh6mecj/5LgXHYwXhRiDSNx4g8I=;
+b=0rFqA//UuS3weT
+eLvNzNB84/VT+8I87477CB14y0czmuPtKWmPxtP4p2TMcwTTk5AMwCmSgANdQ5RGz1eKBdxUR34Rb
+IRRq0Aaeu8AAab139KLaLqXRIDzWDNAAa1GK9bbVRwPXTX0Ine+Yp6tubhWVv5VR+0c6yoqdOgpIq
+UeznQpECXWMFv//X3y05jkNdsVZdrZO5ULjhZICKofEpjJWr1oo0Y/9AnL3EgFMT9AZ7jTgHQxRLl
+nywXZwXjFwiM9cVfPlBihpB4T6bKpQyIPNkeb9CSv5m3FCD59FYkUr41gOcp9Z5yBpl705R5po0VR
+yqI2dE35ZUbhTCjbEfTA==;
+Received: from localhost ([::1] helo=bombadil.infradead.org) by
+bombadil.infradead.org with esmtp (Exim 4.94.2 #2 (Red Hat Linux)) id
+1oJQQ7-00DuEr-7h; Thu, 04 Aug 2022 02:17:07 +0000
+Received: from mailgw01.mediatek.com ([216.200.240.184]) by
+bombadil.infradead.org with esmtps (Exim 4.94.2 #2 (Red Hat Linux)) id
+1oJQQ2-00Du8m-FY; Thu, 04 Aug 2022 02:17:04 +0000
+X-UUID: 2fa656eda2a04d1ab7b69f85d53c4374-20220803
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:1d01f002-57e8-4399-98db-37702f2bfdb3,OB:0,LO
+B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+ION:release,TS:25
+X-CID-META: VersionHash:0f94e32,CLOUDID:644b2cd1-841b-4e95-ad42-8f86e18f54fc,C
+OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+,QS:nil,BEC:nil,COL:0
+X-UUID: 2fa656eda2a04d1ab7b69f85d53c4374-20220803
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by
+mailgw01.mediatek.com (envelope-from <tinghan.shen@mediatek.com>)
+(musrelay.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384
+256/256) with ESMTP id 263722393; Wed, 03 Aug 2022 19:16:59 -0700
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+15.2.792.3; Thu, 4 Aug 2022 10:15:56 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+mtkcas11.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+15.0.1497.2 via Frontend Transport; Thu, 4 Aug 2022 10:15:55 +0800
+From: Tinghan Shen <tinghan.shen@mediatek.com>
+To: Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+<krzysztof.kozlowski+dt@linaro.org>, Lee Jones <lee@kernel.org>,
+Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com>, Tinghan Shen
+<tinghan.shen@mediatek.com>, MandyJH Liu <mandyjh.liu@mediatek.com>
+CC: <iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
+<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+<linux-arm-kernel@lists.infradead.org>,
+<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v5 06/20] dt-bindings: power: mediatek: Add bindings
+for MediaTek SCPSYS
+Date: Thu, 4 Aug 2022 10:15:39 +0800
+Message-ID: <20220804021553.14867-7-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20220804021553.14867-1-tinghan.shen@mediatek.com>
+References: <20220804021553.14867-1-tinghan.shen@mediatek.com>
+MIME-Version: 1.0
+X-MTK: N
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-646709E3
+X-CRM114-CacheID: sfid-20220803_191702_550657_36D1E4D2
+X-CRM114-Status: GOOD (
+  15.13
+  )
+X-Spam-Score: -0.0 (/)
+X-Spam-Report: Spam detection software, running on the system
+"bombadil.infradead.org", has NOT identified this incoming email as
+spam.
+  The original message has been attached to this so you can view it or
+label similar future email.
+  If you have any questions, see the administrator of that system for details.
+  Content preview:
+  The System Control Processor System (SCPSYS) has several power
+    management related tasks in the system. Add the bindings for it.
+Signed-off-by:
+    Tinghan Shen <tinghan.shen@mediatek.com> Reviewed-by: Rob Herring
+<robh@kernel.org>
+    --- .../bindings/mfd/mediatek,mt8195-scpsys.yaml | 67 +++++++++++++++++++
+    .../power/mediatek,power-co [...]
+   Content analysis details:
+   (-0.0 points, 5.0 required)
+   pts rule name
+              description ---- ----------------------
+-------------------------------------------------- -0.0 SPF_PASS
+               SPF: sender matches SPF record -0.0 SPF_HELO_PASS
+          SPF: HELO matches SPF record
+  0.0 UNPARSEABLE_RELAY
+      Informational: message has unparseable relay
+                             lines
+X-BeenThere: linux-arm-kernel@lists.infradead.org
+X-Mailman-Version: 2.1.34
+Precedence: list
+List-Id: <linux-arm-kernel.lists.infradead.org>
+List-Unsubscribe:
+<http://lists.infradead.org/mailman/options/linux-arm-kernel>,
+<mailto:linux-arm-kernel-request@lists.infradead.org?subject=unsubscribe>
+List-Archive: <http://lists.infradead.org/pipermail/linux-arm-kernel/>
+List-Post: <mailto:linux-arm-kernel@lists.infradead.org>
+List-Help: <mailto:linux-arm-kernel-request@lists.infradead.org?subject=help>
+List-Subscribe:
+<http://lists.infradead.org/mailman/listinfo/linux-arm-kernel>,
+<mailto:linux-arm-kernel-request@lists.infradead.org?subject=subscribe>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Sender: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org>
+Errors-To: linux-arm-kernel-bounces+wens=kernel.org@lists.infradead.org
+
+
+
+> Many thanks!!
+>
+> BRs,
+> Rex
+> >
+> > >
+> > > Signed-off-by: zhiyong tao <zhiyong.tao@mediatk.com>
+> > > ---
+> > >  .../regulator/mediatek,mt6366-regulator.yaml  | 375
+> > > ++++++++++++++++++
+> > >  1 file changed, 375 insertions(+)
+> >
+> > Subject does not match subsystem.
+> >
+> >
+> > >  create mode 100755
+> > > Documentation/devicetree/bindings/regulator/mediatek,mt6366-
+> > > regulator.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/regulator/mediatek,mt6366-
+> > > regulator.yaml
+> > > b/Documentation/devicetree/bindings/regulator/mediatek,mt6366-
+> > > regulator.yaml
+> > > new file mode 100755
+> > > index 000000000000..eb72c64757cf
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6366-
+> > > regulator.yaml
+> > > @@ -0,0 +1,375 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > > https://urldefense.com/v3/__http://devicetree.org/schemas/regulator/mediatek,mt6366-regulator.yaml*__;Iw!!CTRNKA9wMg0ARbw!3B-3NHQAsJc6ov022NnUIctYLEyx-BfxG5s85TBBvEfGjc4DdYDIqG_Ka_5D7scVo8CRtzLqokEX_thhM7XK_S90wg$
+> > > +$schema:
+> > > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!3B-3NHQAsJc6ov022NnUIctYLEyx-BfxG5s85TBBvEfGjc4DdYDIqG_Ka_5D7scVo8CRtzLqokEX_thhM7Un6TPZdw$
+> > > +
+> > > +title: MT6366 Regulator from MediaTek Integrated
+> > > +
+> > > +maintainers:
+> > > +  - Zhiyong Tao <zhiyong.tao@mediatek.com>
+> > > +
+> > > +description: |
+> > > +  List of regulators provided by this controller. It is named
+> > > +  according to its regulator type, buck_<name> and ldo_<name>.
+> > > +  MT6366 regulators node should be sub node of the MT6397 MFD
+> > > node.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: mediatek,mt6366-regulator
+> > > +
+> > > +  regulators:
+> > > +    type: object
+> > > +    description: List of regulators and its properties
+> > > +
+> > > +    patternProperties:
+> > > +      "^buck-
+> > > v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> >
+> > No need for quotes.
+> >
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern:
+> > > "^v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$"
+> >
+> > Why do you enforce specific regulator-name? Remove.
+> >
+> > > +
+> > > +      "^ldo-v(dram2|sim1|ibr|rf12|usb|camio|camd|cn18|fe28)$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern:
+> > > "^v(dram2|sim1|ibr|rf12|usb|camio|camd|cn18|fe28)$"
+> > > +
+> > > +      "^ldo-v(xo22|efuse|mch|vcama1|emc|a12|vcama2|mc)$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern:
+> > > "^v(xo22|efuse|mch|vcama1|emc|a12|vcama2|mc)$"
+> > > +
+> > > +      "^buck-(vcore)-sshub$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern: "^vcore-sshub$"
+> > > +
+> > > +      "^ldo-vcn(28|33)-bt$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern: "^vcn(28|33)-bt$"
+> > > +
+> > > +      "^ldo-vcn(33)-wifi$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern: "^vcn33-wifi$"
+> > > +
+> > > +      "^ldo-vsram-(others)-sshub$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern: "^vsram-others-sshub$"
+> > > +
+> > > +      "^ldo-vsram-(proc11|others|gpu|proc12)$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern: "^vsram-(proc11|others|gpu|proc12)$"
+> > > +
+> > > +      "^ldo-v(aud|bif|io|ldo)28$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern: "^v(aud|bif|io|ldo)28$"
+> > > +
+> > > +      "^ldo-v(io|aux|rf)18$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern: "^v(io|aux|rf)18$"
+> > > +
+> > > +      "^ldo-vsim[2]$":
+> > > +        type: object
+> > > +        $ref: "regulator.yaml#"
+> > > +
+> > > +        properties:
+> > > +          regulator-name:
+> > > +            pattern: "^vsim2$"
+> > > +
+> > > +        required:
+> > > +          - regulator-name
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - regulators
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    pmic {
+> > > +      compatible = "mediatek,mt6366-regulator";
+> > > +
+> > > +      regulators {
+> > > +        mt6366_vdram1_reg: buck-vdram1 {
+> > > +            regulator-name = "vdram1";
+> >
+> > Messed up indentation. Use only one, so 4 space for DTS example.
+> >
+> >
+> >
+> > Best regards,
+> > Krzysztof
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
