@@ -2,67 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A47A558A078
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 20:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC3E558A07E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 20:27:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239962AbiHDS0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 14:26:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57848 "EHLO
+        id S239989AbiHDS1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 14:27:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229660AbiHDS03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 14:26:29 -0400
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6B3A1D0C4
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 11:26:27 -0700 (PDT)
-Received: by mail-io1-xd31.google.com with SMTP id z145so312185iof.9
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 11:26:27 -0700 (PDT)
+        with ESMTP id S229660AbiHDS1h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 14:27:37 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EFB31D0C4
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 11:27:36 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-2ef5380669cso3726487b3.9
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 11:27:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=edgeble-ai.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=s9D0tQ74Aa05V8FxxaIPM4SruGrj8130+5XIa4Wmvs8=;
-        b=EmKih+SAWAnsaIbzoUmlsTtIZzpu31YmTHPBdqHpLl1SUSO2BXE1j0E+/xwXaUcPZ3
-         E1637Utk4DDpqUQ2q3HwVHmlmphpr0gVb/wihqnjLbuLjIFPKGRMX/ZRLQD5jcM5iOKq
-         YSJqZ9jukqFRNvs8x6KLoIkCR2KYIqBpleMXCisyoVC8w+3Sb/GBp2nfPhIXo1517npH
-         jR7Brns0PCGWijOVIvcFgPh2kgWqHlQFfmm8QJgp3J83HCSabNWo2QyqmvZ1qPEAWeU9
-         TCw0Ymc2o7cQmcJGX5/e4LoFmL3IkaO4YEG5IQNT7s1dXfxrQ+PmDdAwXSRzHwy9ZxWJ
-         hLHQ==
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eX8vBdPif72AOCUJ7zNNVFek4nz2akIAnOhX0YOIrkY=;
+        b=LuZu0Ou/YgZIzgjMKDbHl+R0wB/6H/k9edimEwdI91oFh0iP12UJy5wg27oD9TmSik
+         AHBmMfm8N99XSQPgEVhEzhJnrWj+/i5saSv7vIOk45CUPV1kgZ0V/PHRd3LUHd8iQHwz
+         p8mNT9kgcxQQ2w5IbvvDxlxdZErHgdPMfuYWqkL4eYcKMiFhSb6LaVoN7HKKLqp3yEx5
+         iFTMpX2iffHDNdomN48pWCVnH2Kp428CANAN4rbBjvkjEkkOkuRftYjgdIbo72JPF0ZE
+         lPbr6jqt17aRChsotgl3Bjkg8x+1l00+OiKZ9CdNvMuWKCvOmONY0ng462Q0hJTLSovo
+         8/Aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=s9D0tQ74Aa05V8FxxaIPM4SruGrj8130+5XIa4Wmvs8=;
-        b=LH8YyP6FuXseCiU9iXAOh5cnzsZit87S7057dNC2vZgY5n9WKFEtIWb++3erNB/hRM
-         MRNzOS9FhbZLZin8U89HfV+KZmn7HBVa8F9NcotXra8mrdGvMJJHjw3i+5R2fCrl/P3A
-         Fd8uiMAkCWW8Ypslan9i4MKTlamxmP1UL+Tc5U8bpXQ7oaCDFl2N82vgTIrewG3Et2CH
-         yMsGGlQGU3HAHYps5FJs/arj+5KR2eS/ZsJEaL97GcS0ChuG/DWQvLyde/StU6txx94q
-         F3Lz4c0XGrEUXMlzz0HDdkQxVhqbs2i32W85ROOR1i4dYzlVhdqvxYQ9BrF7GSAdM5iD
-         /1WQ==
-X-Gm-Message-State: ACgBeo2lj53DHQPfTFjO/faVYHoNsEUSYtFNfZLXDh8/kmOejp4UJVPC
-        lF0v9IfJeKCYzNV+s8ps/D4RKOJ7iQHcd3iw6jFgLw==
-X-Google-Smtp-Source: AA6agR5WO/o7DOwqWNudivwJicstDS4jkVZeA9cf9xkke/45dOQQnhVRLBFQXaab8TmYHMkOxJ/V8NJ36MpX/b5Iyk8=
-X-Received: by 2002:a02:ac03:0:b0:342:89b5:99af with SMTP id
- a3-20020a02ac03000000b0034289b599afmr1390657jao.305.1659637586759; Thu, 04
- Aug 2022 11:26:26 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eX8vBdPif72AOCUJ7zNNVFek4nz2akIAnOhX0YOIrkY=;
+        b=X4VzVlvy5LhzulEWjpw8RNwb0oGLST1J7y9oAvEHoB94x2BQR+FOP/3LHrr93/c4Ox
+         StLOYhac7Ioxe4cdUtIs65Quq9ezD+zIR+lUQ5iv7IwHgF44cz1jcIwcSu8J+mpFQS57
+         34dGMqZHe8L+EA52+iGPP4c+U0DSLcqiGXWDnSHiPOuw/kErVbdUxOqbHTfCgu//lc7f
+         HkcA4lD38PSrla78UL7SDNS5YE9H6dJetWU95rkrMBNgBk+s+xGZ925i2a8UBLRhm942
+         FaEi+nytXo36lB+NeElVSY1vYYFY8efsYGO59O5pD6/uu+d7ebASF0Ggq8XGwtN7rkkq
+         NIiQ==
+X-Gm-Message-State: ACgBeo29WDj3099YQeIlj49+WhyBrpViaEiCmP42BRerhO5q2jWPIiUY
+        vT86elIknYPhRMFHxvxsS61AtB6OIwbGhYFiLZw9tQ==
+X-Google-Smtp-Source: AA6agR7LdJ6XIMIA+KJyTSzFSbHsNimiVZHMY8XMW1klW1NNcy0mp80qvlVqIg7vzvT4Yfv022i2v5WunDitOL7XDSQ=
+X-Received: by 2002:a81:50d4:0:b0:31f:5f85:566a with SMTP id
+ e203-20020a8150d4000000b0031f5f85566amr2783119ywb.218.1659637655607; Thu, 04
+ Aug 2022 11:27:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220731174726.72631-1-jagan@edgeble.ai> <20220731174726.72631-3-jagan@edgeble.ai>
- <4f8b8b98-c0ef-4924-6ff1-ccfeae77fc21@linaro.org> <CA+VMnFwQFLNbtgX0RR5vLq29tvU3HBpcyrtrksOsxF5s=W7=UQ@mail.gmail.com>
- <20220803223343.GA2737695-robh@kernel.org>
-In-Reply-To: <20220803223343.GA2737695-robh@kernel.org>
-From:   Jagan Teki <jagan@edgeble.ai>
-Date:   Thu, 4 Aug 2022 23:56:15 +0530
-Message-ID: <CA+VMnFz9H1RPR+wTjnhgD+DK=-5=yhn1WjGfbjZ5P6q+4gGoQw@mail.gmail.com>
-Subject: Re: [PATCH v2 02/20] dt-bindings: power: Add power-domain header for RV1126
-To:     Rob Herring <robh@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Kever Yang <kever.yang@rock-chips.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+References: <20220804061133.4110734-1-victor.liu@nxp.com> <20220804061133.4110734-2-victor.liu@nxp.com>
+ <CAL_Jsq+B5PMOmZO4hz5DyEsA4V=UkrNn-6b58h8VbcPa2iaQ1g@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+B5PMOmZO4hz5DyEsA4V=UkrNn-6b58h8VbcPa2iaQ1g@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 4 Aug 2022 11:26:58 -0700
+Message-ID: <CAGETcx94De-wofRjtPgNxa+YQoU3+j+we+4K9Evm=vtzhopX8g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] drivers: bus: simple-pm-bus: Populate simple MFD
+ child devices
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Liu Ying <victor.liu@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        Elaine Zhang <zhangqing@rock-chips.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,60 +78,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 4 Aug 2022 at 04:03, Rob Herring <robh@kernel.org> wrote:
+On Thu, Aug 4, 2022 at 5:18 AM Rob Herring <robh+dt@kernel.org> wrote:
 >
-> On Wed, Aug 03, 2022 at 03:54:56PM +0530, Jagan Teki wrote:
-> > On Tue, 2 Aug 2022 at 16:08, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> > >
-> > > On 31/07/2022 19:47, Jagan Teki wrote:
-> > > > Add power-domain header for RV1126 SoC from description in TRM.
-> > > >
-> > > > Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> > > > Signed-off-by: Jagan Teki <jagan@edgeble.ai>
-> > > > ---
-> > > > Changes for v2:
-> > > > - add blank line
-> > > >
-> > > >  include/dt-bindings/power/rv1126-power.h | 35 ++++++++++++++++++++++++
-> > > >  1 file changed, 35 insertions(+)
-> > > >  create mode 100644 include/dt-bindings/power/rv1126-power.h
-> > > >
-> > > > diff --git a/include/dt-bindings/power/rv1126-power.h b/include/dt-bindings/power/rv1126-power.h
-> > >
-> > > Vendor in filename is needed.
+> On Thu, Aug 4, 2022 at 12:10 AM Liu Ying <victor.liu@nxp.com> wrote:
 > >
-> > Yes this follows how similar rockchip vendor notation
-> >
-> > $ ls include/dt-bindings/power/rk3* -l
-> >  include/dt-bindings/power/rk3036-power.h
-> >  include/dt-bindings/power/rk3066-power.h
-> >  include/dt-bindings/power/rk3128-power.h
-> >  include/dt-bindings/power/rk3188-power.h
-> >  include/dt-bindings/power/rk3228-power.h
-> >  include/dt-bindings/power/rk3288-power.h
-> >  include/dt-bindings/power/rk3328-power.h
-> >  include/dt-bindings/power/rk3366-power.h
-> >  include/dt-bindings/power/rk3368-power.h
-> >  include/dt-bindings/power/rk3399-power.h
-> >  include/dt-bindings/power/rk3568-power.h
-> >
-> > >
-> > > > new file mode 100644
-> > > > index 000000000000..38a68e000d38
-> > > > --- /dev/null
-> > > > +++ b/include/dt-bindings/power/rv1126-power.h
-> > > > @@ -0,0 +1,35 @@
-> > > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > >
-> > > Dual license, please, unless some copyrights are no allowing this.
-> >
-> > Yes, as we discussed in v1 - I'm not liable to change so I keep this as it is.
+> > There could be simple MFD device(s) connected to a simple PM bus as child
+> > node(s), like Freescale i.MX8qxp pixel link MSI bus. Add a child match
+> > table as an argument to of_platform_populate() function call to specify
+> > the simple MFD devices so that they can be populated.
 >
-> I assume that would be Rockchip. Can someone from Rockchip please give
-> an okay here to dual license?
+> There could be a simple-bus under it as well. You should just use
+> of_platform_default_populate() instead.
 
-Kever or Heiko - any comments on this?
+I'm confused why we even need this patch. Wouldn't this driver
+automatically probe simple-mfd buses and populate its child devices?
+We already have it in simple_pm_bus_of_match.
 
-Thanks,
-Jagan.
+I'm wondering if you are trying to workaround the behavior of having
+"ONLY_BUS" set in simple_pm_bus_of_match for "simple-mfd". Have you
+tried deleting that field and see if it does what you want?
+
+And we wouldn't need to use of_platform_default_populate() because
+this driver would take care of doing that recursively. Especially when
+you need the clocks and power domain to be able to access the child
+devices, you want the driver to probe and do that at each level before
+automatically recursively adding all the grand-children devices.
+
+-Saravana
+
+>
+> >
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> > v1->v3:
+> > * No change.
+> >
+> >  drivers/bus/simple-pm-bus.c | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
+> > index 6b8d6257ed8a..ff5f8ca5c024 100644
+> > --- a/drivers/bus/simple-pm-bus.c
+> > +++ b/drivers/bus/simple-pm-bus.c
+> > @@ -13,6 +13,11 @@
+> >  #include <linux/platform_device.h>
+> >  #include <linux/pm_runtime.h>
+> >
+> > +static const struct of_device_id simple_pm_bus_child_matches[] = {
+> > +       { .compatible = "simple-mfd", },
+> > +       {}
+> > +};
+> > +
+> >  static int simple_pm_bus_probe(struct platform_device *pdev)
+> >  {
+> >         const struct device *dev = &pdev->dev;
+> > @@ -49,7 +54,7 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
+> >         pm_runtime_enable(&pdev->dev);
+> >
+> >         if (np)
+> > -               of_platform_populate(np, NULL, lookup, &pdev->dev);
+> > +               of_platform_populate(np, simple_pm_bus_child_matches, lookup, &pdev->dev);
+> >
+> >         return 0;
+> >  }
+> > --
+> > 2.25.1
+> >
