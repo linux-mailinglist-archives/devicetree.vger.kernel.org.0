@@ -2,84 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64D7E589E7B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:17:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57FA0589E8C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:21:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231148AbiHDPRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 11:17:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
+        id S239785AbiHDPVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 11:21:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237976AbiHDPPd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:15:33 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F896442;
-        Thu,  4 Aug 2022 08:15:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 66DF0B82521;
-        Thu,  4 Aug 2022 15:15:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AA4AC433D6;
-        Thu,  4 Aug 2022 15:15:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659626129;
-        bh=0WM06FlWTMrhJfmtTNAejPGE0UPGqF0VPbPowF/tSjc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=e7MA+BYE9DqiDJuH46z2MUaQvbHjG00/xCIcMqPMvBX9QkjXPWItaCq3TsLjd3iXT
-         meNp1kCnU5MnFm+rf2Ogd3TOvy9Ih1ID67A94X96iiofZe/nThFZyIoZ4s/ecxOAr9
-         iMQDn9lXJqjkxll0qAy2o88YyVLRxClQ+xkeIlPfoz7T7lCnKUYTWGkBoAkfYl2mLv
-         MycgxgDefsMRoTlJF9SQtLjJ9ZRzndyWvKbCs2Pf7zOhkEiCUQxzVcG/nqpvyHvQYy
-         yCtVcsaaDZLmvpsVf5oZaLsrqtibOK3ySLs3j0xY6MfefJIa05STib1jwtxNKqrQRj
-         SV9LjbQ+29WiQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oJcZj-0006IB-1G; Thu, 04 Aug 2022 17:15:51 +0200
-Date:   Thu, 4 Aug 2022 17:15:51 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/9] usb: dwc3: qcom: fix wakeup implementation
-Message-ID: <Yuvip8irUb9DsZ8M@hovoldconsulting.com>
-References: <20220804151001.23612-1-johan+linaro@kernel.org>
+        with ESMTP id S239604AbiHDPVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:21:42 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2EEC252BC
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 08:21:39 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id f20so24059603lfc.10
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 08:21:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=sLHXisZDzhQTu+IhZD1MGX5kdmZBF2E9OyEhDTPZJwU=;
+        b=MkFB+W3R4k/NmdzMtGvO5gm8bWIU/D3gqfEfki8sreQu/60nOhWupmHELrsdxsDNxS
+         WT7olF55X3+NnUwsGIK+/5xVeDIXpI3AZYGhlk8YbSW/qAp2+u8cYiH/JwAzsMfslxTQ
+         174s3nNsRf4FC6xCh/tS76iCgWBdiMvpYcRKkTLgY8ODyVSxWZA9kr64eG92gFiwPui2
+         hicquy9dQ4m1PDAd9L+Mp0rK9f5BbUOYYfEaiM4sX5fd8EgxoG1zIPQMhdT2u3pqsdFI
+         OTFWtje7TEcvipt37N3gDIsUQIEOPpT/CX8SEjySZASBM1mU4wCSdFM81FvEkI4yISn+
+         LVIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=sLHXisZDzhQTu+IhZD1MGX5kdmZBF2E9OyEhDTPZJwU=;
+        b=1SmEuz6zwb69K/LpaE0Xm3bUnPJhpEuUdTckRbvOFyVYpRHk3Avfz3FxOzAE7iV2KU
+         kfVLHpqdzsktYtKtwZjbWrcM1p3ErjvkoUeeKYZ6ww8Lwa+oEYNmC9hhZ3KG34FpvbeM
+         Margd9CVPHW/YXW5F85fOz+iXixuWlMeo7tVnK7/Pc/nN0it8YLwzRZul+4klQAbYYPX
+         7a1ZJlsdg6ydpYx7NyKShW8tiz/OczNOEcFcZkTiRvyLIr75BJSbcS+pnu8Sd6mGmH9Q
+         N85xvs+qxgA99+xENofhIRnfkvIsnc5Uz/24u/+hDpG19NyCK+2esbM2SmlEmmWDYSA9
+         /efg==
+X-Gm-Message-State: ACgBeo32StwDa3Dt9R16soPVAam+NPZ3jFXUzXUHbCvJN7AAxnd84BLc
+        RvvwbMT4LlCXO23+dQ+CVwrcGQ==
+X-Google-Smtp-Source: AA6agR7eeNfFMJaNN8k/ryXzsufMj3U/fkqVDVZELOmyQq1N/mh7D7XfeQg7tK35//Sy3EhyeaaZLw==
+X-Received: by 2002:a05:6512:2623:b0:48a:ac70:311 with SMTP id bt35-20020a056512262300b0048aac700311mr912828lfb.278.1659626498050;
+        Thu, 04 Aug 2022 08:21:38 -0700 (PDT)
+Received: from [192.168.1.6] ([77.222.167.48])
+        by smtp.gmail.com with ESMTPSA id v25-20020a2e4819000000b0025df04af0f0sm154942lja.51.2022.08.04.08.21.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Aug 2022 08:21:37 -0700 (PDT)
+Message-ID: <191fc051-f10c-3eb1-2810-ebfce2279bbd@linaro.org>
+Date:   Thu, 4 Aug 2022 17:21:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220804151001.23612-1-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v8.1, 2/7] dt-bindings: thermal: Add binding document for
+ LVTS thermal controllers
+Content-Language: en-US
+To:     bchihi@baylibre.com, rafael@kernel.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, amitk@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+References: <20220804130912.676043-1-bchihi@baylibre.com>
+ <20220804130912.676043-3-bchihi@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220804130912.676043-3-bchihi@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 05:09:52PM +0200, Johan Hovold wrote:
+On 04/08/2022 15:09, bchihi@baylibre.com wrote:
+> From: Alexandre Bailon <abailon@baylibre.com>
+> 
+> This patch adds dt-binding documents for mt8192 and mt8195 thermal controllers.
 
-> Changes in v2
->  - add review and ack tags
->  - fix a gadget-only build breakage (new patch)
->  - fix a use-after-free on wakeup from runtime suspend (new patch)
->  - disable wakeup completely instead of falling back to the
->    "disconnected" host configuration when not acting as host
->  - disallow 'wakeup-source' in child node in the binding
+Do not use "This commit/patch".
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
 
-Forgot to mention that I also dropped the revert of the dt-binding
-commit adding 'wakeup-source' to the core node as Rob suggested.
+> 
+> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
 
-Johan
+Please rebase your patches on recent Linux kernel (or next).
+
+> ---
+>  .../thermal/mediatek,lvts-thermal.yaml        | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> new file mode 100644
+> index 000000000000..53c44a73f3a4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/mediatek,lvts-thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek SoC LVTS thermal controller
+> +
+> +maintainers:
+> +  - Yu-Chia Chang <ethan.chang@mediatek.com>
+> +  - Ben Tseng <ben.tseng@mediatek.com>
+> +
+
+Any reason why not referencing thermal-sensor.yaml?
+
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8192-lvts-ap
+> +      - mediatek,mt8192-lvts-mcu
+> +      - mediatek,mt8195-lvts-ap
+> +      - mediatek,mt8195-lvts-mcu
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 2
+
+You need to describe the items (like nvmem-cells).
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    items:
+> +      - description: SW reset HW AP/MCU domain to clean temporary data on HW initialization/resume.
+> +
+> +  nvmem-cells:
+> +    items:
+> +      - description: LVTS calibration data 1 for thermal sensors
+> +      - description: LVTS calibration data 2 for thermal sensors
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: lvts_calib_data1
+> +      - const: lvts_calib_data2
+> +
+> +required:
+> +  - compatible
+> +  - '#thermal-sensor-cells'
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - resets
+> +  - nvmem-cells
+> +  - nvmem-cell-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/thermal/thermal.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/reset/mt8195-resets.h>
+> +
+> +      lvtsmcu: thermal-sensor@11278000 {
+
+Mixed-up indentation.
+
+Best regards,
+Krzysztof
