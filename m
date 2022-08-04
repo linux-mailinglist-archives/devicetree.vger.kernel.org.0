@@ -2,90 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CF00589FB3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 19:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2F5958A000
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 19:45:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237095AbiHDRII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 13:08:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36890 "EHLO
+        id S231355AbiHDRpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 13:45:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235288AbiHDRIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 13:08:07 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324E35FAC8
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 10:08:06 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id c139so80842pfc.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 10:08:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=xcHD0rmCevHtOXoxMV/kPS+CYB/uJh1PVeFT9PFxhEQ=;
-        b=I0rs2vQnXM/6+tMl051HmEPfv/hMCAtded5s8SZFMZkKXgfn9gKAyPs2A1FrvXVC3X
-         znNPMh5PBIL4zU0Pr88K0hsgC1xJnMsJtvnVW8fL9+DvY3kngVFbnsnCHUtZtYGfCrAW
-         oMIVFyBqQ+BtlBUSvgj7en6Ytcc+qH3abY9tE=
+        with ESMTP id S231248AbiHDRpx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 13:45:53 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233C3634F;
+        Thu,  4 Aug 2022 10:45:52 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id i84so243362ioa.6;
+        Thu, 04 Aug 2022 10:45:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xcHD0rmCevHtOXoxMV/kPS+CYB/uJh1PVeFT9PFxhEQ=;
-        b=5OxnDlJBxknIb+pAx22BCzGeoXTzLmtMQSIVsaXevH/sMx+1PP03cTNNOGnuSWqsXs
-         7xj9B+eWlGpXhi/64a8Lo3hfKaR/f/HAH3cgTS6Qvrmg5ol5rBtxO88+2TN9uaBcRStd
-         WFyd7mqHWfoILimYxlN6xwOVoTht2N/E33IyHU80nl4V4Y42gSAQaJqk9aNg5lOEkU0d
-         PKWVjUfIXKZhLo03ycMLGHrZ5lPOYa55ENj4lmFFEn+0zmPf1FU0oEiyqSzmBmhSA0fQ
-         shUxnOHzIQLkgzX2tuJoyIhh3W55ZKh4wmZTA4E6BbtvIE4Lkb5heRniYbu5scg9MUox
-         RXfA==
-X-Gm-Message-State: ACgBeo2CptGpYma+BZk1TB5zhk66F/giJNFIP8j4oa4iC7/k/KREl86x
-        OR4vUmohsPw8Kb04HGmb9QnlHQ==
-X-Google-Smtp-Source: AA6agR6fRbxYkMQznPNUtay7X2wFyuKgdxVo76mv0Vz/1wO7fvq4Mfxc6Tslh/uNJMAy75DXFnarpg==
-X-Received: by 2002:a62:5441:0:b0:52b:ab93:1f05 with SMTP id i62-20020a625441000000b0052bab931f05mr2659803pfb.30.1659632885576;
-        Thu, 04 Aug 2022 10:08:05 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:87c4:32ca:84b6:e942])
-        by smtp.gmail.com with UTF8SMTPSA id t6-20020a170902b20600b0016d7b2352desm1143873plr.244.2022.08.04.10.08.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 10:08:05 -0700 (PDT)
-Date:   Thu, 4 Aug 2022 10:08:03 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 9/9] usb: dwc3: qcom: clean up suspend callbacks
-Message-ID: <Yuv8890X5ePuRR36@google.com>
-References: <20220804151001.23612-1-johan+linaro@kernel.org>
- <20220804151001.23612-10-johan+linaro@kernel.org>
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=r5fIHS4i41Nwdm/9buRQQW9UtvOL0tkeiIZZl06Sy6s=;
+        b=1tf3mfjYc3t5TjRrRmSIIClA9J7PzvVM3SVJUgeUhmNOwzf+wAnSuvO49KXJJWS2Bt
+         /EpSnBiGgiaNC2Qt0UtXUfTjAYLW6CVEbVUaeE8v2c0FixQxj+jlTYosZ9L4HWaByVSf
+         JmQJx2gXfkzzK7QL4Jxw8ecP7odSdUGJOleRPsS2Wz1H6CQ0eH5r2K0Mj9NueOsK26Ig
+         e4MW7nLIU3JOYtAF5p/5ymVH4CYVQ3Dd0sK+jnart9hv9x7Gp3Aiu9qSqXAXDKGLSsrr
+         hE0JgNJJ9BF4CN2LaOGKuhzrIOx0iazFNyMPV9VkJca2Y6IV6C50GYkYcX4hszGI2Nak
+         ispQ==
+X-Gm-Message-State: ACgBeo3p4vRjbXEuKfALlqXt8KYra2buVhnZ3/fP6j++VNFYiDDkBKry
+        zABvYMJV0XhsLuuJzxY/YY7GjDCRbg==
+X-Google-Smtp-Source: AA6agR7ttXcmRYN0gSflgLc/FXkw/VZvIl+1z383cMJZ+v/MK9q4ScFa2ZWnHCf190zAKglHVgFrig==
+X-Received: by 2002:a5e:8811:0:b0:682:8a6a:cf40 with SMTP id l17-20020a5e8811000000b006828a6acf40mr1120481ioj.136.1659635151292;
+        Thu, 04 Aug 2022 10:45:51 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id c12-20020a02330c000000b00342a03e834esm41736jae.3.2022.08.04.10.45.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Aug 2022 10:45:50 -0700 (PDT)
+Received: (nullmailer pid 96985 invoked by uid 1000);
+        Thu, 04 Aug 2022 17:45:48 -0000
+Date:   Thu, 4 Aug 2022 11:45:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Shych <michaelsh@nvidia.com>
+Cc:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Vadim Pasternak <vadimp@nvidia.com>
+Subject: Re: [PATCH hwmon-next v4 2/3] dt-bindings: hwmon: add Microchip
+ EMC2305 fan controller.
+Message-ID: <20220804174548.GB4145453-robh@kernel.org>
+References: <20220623165217.59252-1-michaelsh@nvidia.com>
+ <20220623165217.59252-3-michaelsh@nvidia.com>
+ <20220630221157.GA3402568-robh@kernel.org>
+ <DM6PR12MB40747C492C3197BDD64027FCD48C9@DM6PR12MB4074.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220804151001.23612-10-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <DM6PR12MB40747C492C3197BDD64027FCD48C9@DM6PR12MB4074.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 05:10:01PM +0200, Johan Hovold wrote:
-> Clean up the suspend callbacks by separating the error and success paths
-> to improve readability.
+On Mon, Jul 18, 2022 at 12:38:58PM +0000, Michael Shych wrote:
+> Hi,
 > 
-> Also drop a related redundant initialisation.
+> Sorry for long delay in getting back to you.
+> Please see below.
 > 
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> Thanks,
+>    Michael.
+> 
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Friday, July 1, 2022 1:12 AM
+> > To: Michael Shych <michaelsh@nvidia.com>
+> > Cc: linux@roeck-us.net; linux-hwmon@vger.kernel.org;
+> > devicetree@vger.kernel.org; Vadim Pasternak <vadimp@nvidia.com>
+> > Subject: Re: [PATCH hwmon-next v4 2/3] dt-bindings: hwmon: add Microchip
+> > EMC2305 fan controller.
+> > 
+> > On Thu, Jun 23, 2022 at 07:52:16PM +0300, michaelsh@nvidia.com wrote:
+> > > From: Michael Shych <michaelsh@nvidia.com>
+> > >
+> > > Add basic description of emc2305 driver device tree binding.
+> > >
+> > > Signed-off-by: Michael Shych <michaelsh@nvidia.com>
+> > > Reviewed-by: Vadim Pasternak <vadimp@nvidia.com>
+> > > ---
+> > > v2->v3
+> > > Changes pointed out by Rob Herring and Guenter Roeck:
+> > > - Describe separate channels of fan-controller;
+> > > - Remove pwm_max property;
+> > > - Fix compatible property.
+> > > Changes added by Michael Shych:
+> > > - Fix dt binding check warnings.
+> > > v1->v2
+> > > - Fix dt binding check errors;
+> > > - Add descriptions;
+> > > - Add missing fields;
+> > > - Change the patch subject name;
+> > > - Separate pwm-min, pwm-max per PWM channel.
+> > > ---
+> > >  .../bindings/hwmon/microchip,emc2305.yaml          | 106
+> > +++++++++++++++++++++
+> > >  1 file changed, 106 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> > > b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> > > new file mode 100644
+> > > index 000000000000..d054ba46ae23
+> > > --- /dev/null
+> > > +++
+> > b/Documentation/devicetree/bindings/hwmon/microchip,emc2305.yaml
+> > > @@ -0,0 +1,106 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+> > > +---
+> > > +
+> > > +$id: http://devicetree.org/schemas/hwmon/microchip,emc2305.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Microchip EMC2305 RPM-based PWM Fan Speed Controller
+> > 
+> > RPM-based? So there is a tach signal too? Don't those need the number of
+> > pulses per revolution that the fan provides.
+> > 
+> It's not relevant. The driver implements Direct setting mode according 
+> to the Datasheet: https://www.microchip.com/en-us/product/EMC2305
+> I can add this note to the documentation patch.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+For the binding, it doesn't matter what a driver currently implements. 
+That's one driver at one point in time. Bindings shouldn't be evolving 
+and need to support more than 1 OS.
+
+The binding needs to be able to describe the h/w. If there's a tach 
+connection, you need to describe that and the properties of the fan's 
+tach pulses. 
+
+> 
+> > To repeat what I say for every fan controller binding now, until there's a
+> > common binding to describe fan controllers, fans and their relationship to
+> > each other, I'm not signing off on any fan binding doing its own thing.
+> > 
+> I'm confused here as I thought that I already changed to common fan-controller with advice of 
+> Gunter in patch series V3.
+> Do you mean that we should use some common FAN/PWM/ TACHO etc. generic binding
+> mechanism that fits all drivers?
+> Could you advise if it's already existed and reference to example?
+
+It doesn't exist. Probably the closest binding to something as a basis 
+for something common is npcm750-pwm-fan.txt.
+
+> If it doesn't exist, it'll be too complicated to provide such a new generic description within 
+> the submission of a driver for EMC2305 device.
+> We can just completely remove OF interface and pass the necessary configuration through
+> the platform data.
+
+That's your choice...
+
+Rob
