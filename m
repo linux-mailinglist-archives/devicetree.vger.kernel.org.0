@@ -2,108 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66ED758993C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 10:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A82C589942
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 10:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231777AbiHDIYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 04:24:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36784 "EHLO
+        id S239008AbiHDI1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 04:27:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229665AbiHDIYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 04:24:42 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01C084C636;
-        Thu,  4 Aug 2022 01:24:38 -0700 (PDT)
-Received: from mail-ej1-f52.google.com ([209.85.218.52]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MRnXY-1nqTl91Vb0-00TFTN; Thu, 04 Aug 2022 10:24:37 +0200
-Received: by mail-ej1-f52.google.com with SMTP id c24so4771700ejd.11;
-        Thu, 04 Aug 2022 01:24:37 -0700 (PDT)
-X-Gm-Message-State: ACgBeo1ODei5vSwkfmgxd+RMkNkBJYahML4QqrXyvnGlAAohjLkf5ouW
-        9HPhMcGAQfTwRweY2+WsTKG/+E51uYJRgn+Mpyg=
-X-Google-Smtp-Source: AA6agR7mx2DcqpUWDVSgizEz+I+v1CueGd21v5hR8W+ij/iiqR6AnsafECfmF4+yDDNQfg74+XRR1lx7VIfSL42tGVw=
-X-Received: by 2002:a17:907:d0f:b0:72e:db1f:9b91 with SMTP id
- gn15-20020a1709070d0f00b0072edb1f9b91mr603460ejc.470.1659601476990; Thu, 04
- Aug 2022 01:24:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220711122459.13773-1-me@linux.beauty> <20220711122459.13773-5-me@linux.beauty>
- <CAK8P3a2Mr0ZMXGDx6htYEbBBtm4mubk-meSASJjPRK1j1O-hEA@mail.gmail.com>
- <181efcca6ae.de84203d522625.7740936811073442334@linux.beauty>
- <CAK8P3a30o1RLifV1TMqDJ26vLhVdOzz3wP6yPrayLV2GPxUtwQ@mail.gmail.com> <18267b7a61f.12b26bd91245310.4476663913461696630@linux.beauty>
-In-Reply-To: <18267b7a61f.12b26bd91245310.4476663913461696630@linux.beauty>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 4 Aug 2022 10:24:20 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0zSGqj3YEi+i9yfSLk8-aJtyiY6Bj069cxCdErk81+cw@mail.gmail.com>
-Message-ID: <CAK8P3a0zSGqj3YEi+i9yfSLk8-aJtyiY6Bj069cxCdErk81+cw@mail.gmail.com>
-Subject: Re: [PATCH 4/4] sample/reserved_mem: Introduce a sample of struct
- page and dio support to no-map rmem
-To:     Li Chen <me@linux.beauty>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
+        with ESMTP id S235042AbiHDI1D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 04:27:03 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C4801275E;
+        Thu,  4 Aug 2022 01:27:02 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d20so11297310pfq.5;
+        Thu, 04 Aug 2022 01:27:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=xzya3EEe/6JYylod91x6WeKO85+rGgr8KWB4/fkcxRs=;
+        b=XvuVmJKEG0C1dlPIOSAvTQze7oZ2YPb9VLpcZXMGcxiKUbc4bmGSj8VE6Gq45ktneS
+         PaThxMtpW4qu8tkowEPKlxNX9Z7NRUWb/vPvlQoZFmayQ9p1Eam49aCSKFg9N3JHTG2K
+         trvehHpMumAZPlGN0mPKyytdBmeAyc+ZCdDjGCyF7zio70B4PlLEdtn0C//4FBJ6B5vM
+         VBwKOzjZJ9b6ahb4QEHFiB2o3Oj7jdmAsYy/r0jtEkRIipeJwypjYlOp2VPVZhSu0/b5
+         L1hxkL6Z5OonbnKSbkv1IA6XiYdV24vA9GQWb3CXhrNWDeFIIEJBKdkPi5FrXLEy18Dh
+         zQ1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=xzya3EEe/6JYylod91x6WeKO85+rGgr8KWB4/fkcxRs=;
+        b=0rYsHadh9NmMK0Q1bmTtQq6kO0qQvnxdQtBl/ok93TaNIZggyNfwvLfAzLGj/imvlU
+         NzODl5FzGmqgSVUKdl6jTfbaioy2dDp0U1bluHWwSdg4JyuQj5o2wWj58EM46N27K1ge
+         n/0sqwsbrSJ8XOWvbwauCzltHrW7jiYkazPUcYU3dTNl0J/oqxPsXld8qSkANuLFzsMl
+         7ZJNnObklSrP+bgdE0McZtQgysvma9ITjC1Gg88ppKBMyzQtm1x2hYUzU/4CjDr1U3Qs
+         icL/Us2zx5N1KCDZ/cUmjU8hzVm57/uvkvkgo0ljJ3DxNid6+FdukguR4l/m2+8X3SOV
+         3eCg==
+X-Gm-Message-State: ACgBeo04aCE0Be8EXq/78U51ZPnecuH6h5eBJ0cxS4R4Vk89/sFZh3eN
+        5Z3S4HFJOHwEzw6bFdDjaFU=
+X-Google-Smtp-Source: AA6agR55AQyYzN/vrL8QYskLo3qoQKJDAEEqsjk7HyuP/9jgXg5I9CZXhcTXrarZcKWKwvdSjG46XA==
+X-Received: by 2002:a63:e258:0:b0:41a:d92b:64f9 with SMTP id y24-20020a63e258000000b0041ad92b64f9mr750319pgj.148.1659601622103;
+        Thu, 04 Aug 2022 01:27:02 -0700 (PDT)
+Received: from debian.me (subs02-180-214-232-23.three.co.id. [180.214.232.23])
+        by smtp.gmail.com with ESMTPSA id s3-20020a170902ea0300b0016bf803341asm267477plg.146.2022.08.04.01.27.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Aug 2022 01:27:01 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+        id 2A4CB103A42; Thu,  4 Aug 2022 15:26:57 +0700 (WIB)
+Date:   Thu, 4 Aug 2022 15:26:56 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Li Chen <lchen@ambarella.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, Linux-MM <linux-mm@kvack.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:yzIq8vPx8ZJNLHi/8z+h6JR8GjTYb5Rb2KDVoPjo6kuFclbusm9
- n43hDbTALvs30gNLs4/GKVw2NRxBXHG6kL5K1bR2gzPvtWxyl9RUZIEen5QdoNgQUNt9N/a
- hnZVqZHGEVWzLPJhdGpoKlZMUFn16b02TLX+YyY8Rw4SXsUHoy1FUB0tEoeuaa1da4sDDNG
- iWB87lCpj+48aIUj8sZzA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:yldv/sAQqdM=:EwoksoRYbM8iRTgYdnh2Yp
- A5QecUZZ53vcBhiB3yv4FaJtYWM7cBBiXj3rQ41Eledd1Uvn7yLVKzZtJ5F5w3skDcy/qJjZD
- NaAA4ikEEUmwoWNv9dbZXSjkmptgV5r0v1FIQoPy3cOESZHhMJW+TcqHJK9gBUmW57qf965Gq
- PhULGktuvvzfqVB2hdg9hL+8EHNEaP2czv5Gc2GkBRvvAb7l8axDjou3VYxBlESI92Q0gCR4L
- dnlp04UkIlzB5bBRTCFscwfMYpxByiaTVEJe8iqClIKOJym4xgegmZZNwgYFvX4a5DZYHJpIg
- Nj3Ui4D6N0HjivDuvo5jdmjeakDxVbzoO2ZBtT6tNbmakH3/X90APX6gJKFYuoXBJzwlRTDtK
- IEpnBB/CTeWcweaJlUXD614sFiEdhwijVvkapA/2J6evO+e7teFmfNJGE83VQ1YfTVnoJfc9z
- IthtoNfsKKOf0vI61qvh4nBbpoiqD/i1W6Rd4Cck1jFwyyyADTXXxVb77r3eC7Pw3B+z4XIJ8
- eCP7NAoF4fqM7Kgh2razmMMqZvCNW9h7Q7xyw/eeI6f5gdYgHQ4jmSsf9sI+ShKGPExr9Ag9k
- TVEp8dprAzmLeu3XqwhKgQBuO3jZ9G0gQQJRXf0noZ1pKnkdgdBx83VKg8Y79U97v17DwBzER
- Y3LlGdv8i5GAWfgMoH/fdi0JuB7wl5YC/zFARgpwxhhVwwElBa7SAcc6u2erOQr60qRxXPp6G
- WVB7Vd+PXQKtRXs+VK2iuHrQWhvl6Hg0wrdMBzrWY1GarGNhS2zN2T+FLDFnYUvdty1EL8JCk
- bzkUGGZVDlRKlGbFEsa4f7WUxAzccN8PB/p8XWoiTcuIFKg0husKD6e7WsAFve4+LjzuZ/dWo
- 03bsVvPzleYJgF0zWO/g==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 00/11] Drivers for gunyah hypervisor
+Message-ID: <YuuC0NISKFVIhUD1@debian.me>
+References: <20220801211240.597859-1-quic_eberman@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220801211240.597859-1-quic_eberman@quicinc.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 4, 2022 at 9:17 AM Li Chen <me@linux.beauty> wrote:
-> ---- On Tue, 12 Jul 2022 16:50:46 +0900  Arnd Bergmann  wrote ---
->  > Does your hardware require a fixed address for the buffer? If it can be
->  > anywhere in memory (or at least within a certain range) but just has to
->  > be physically contiguous, the normal way would be to use a CMA area
->  > to allocate from, which gives you 'struct page' backed pages.
->
-> CMA does support Direct I/O, but it has its own issue:
-> It does not guarantee that the memory previously borrowed by the OS will be returned to the device.
->
-> We've been plagued by examples like this in the past:
-> Many other kernel modules/subsystems have already allocated much memory from both non-CMA and CMA memory,
-> When our DSP driver got probed then, cma_alloc will fail in that non-CMA system memory is not enough
-> for CMA memory to migrate.
+On Mon, Aug 01, 2022 at 02:12:29PM -0700, Elliot Berman wrote:
+> Gunyah is a Type-1 hypervisor independent of any
+> high-level OS kernel, and runs in a higher CPU privilege level. It does
+> not depend on any lower-privileged OS kernel/code for its core
+> functionality. This increases its security and can support a much smaller
+> trusted computing base than a Type-2 hypervisor.
+> 
+> Gunyah is an open source hypervisor. The source repo is available at
+> https://github.com/quic/gunyah-hypervisor.
+> 
+> The diagram below shows the architecture.
+> 
+> ::
+> 
+>         Primary VM           Secondary VMs
+>      +-----+ +-----+  | +-----+ +-----+ +-----+
+>      |     | |     |  | |     | |     | |     |
+>  EL0 | APP | | APP |  | | APP | | APP | | APP |
+>      |     | |     |  | |     | |     | |     |
+>      +-----+ +-----+  | +-----+ +-----+ +-----+
+>  ---------------------|-------------------------
+>      +--------------+ | +----------------------+
+>      |              | | |                      |
+>  EL1 | Linux Kernel | | |Linux kernel/Other OS |   ...
+>      |              | | |                      |
+>      +--------------+ | +----------------------+
+>  --------hvc/smc------|------hvc/smc------------
+>      +----------------------------------------+
+>      |                                        |
+>  EL2 |            Gunyah Hypervisor           |
+>      |                                        |
+>      +----------------------------------------+
+> 
+> Gunyah provides these following features.
+> 
+> - Threads and Scheduling: The scheduler schedules virtual CPUs (VCPUs) on
+> physical CPUs and enables time-sharing of the CPUs.
+> - Memory Management: Gunyah tracks memory ownership and use of all memory
+> under its control. Memory partitioning between VMs is a fundamental
+> security feature.
+> - Interrupt Virtualization: All interrupts are handled in the hypervisor
+> and routed to the assigned VM.
+> - Inter-VM Communication: There are several different mechanisms provided
+> for communicating between VMs.
+> - Device Virtualization: Para-virtualization of devices is supported using
+> inter-VM communication. Low level system features and devices such as
+> interrupt controllers are supported with emulation where required.
+> 
 
-This part should at least be possible to solve by declaring the amount
-and location of
-CMA areas in the right way. It's not great to fine-tune the DT for a
-particular kernel's
-use, but if you know which other drivers require CMA type allocations
-you can find a lower
-bound that should suffice.
+Hi,
 
-Most coherent allocations tend to be long-lived and only for very
-small memory regions.
-If you have another driver that uses large or periodic
-dma_alloc_coherent() type allocations,
-you can consider either giving that device its own CMA area, or fixing
-it to use streaming
-mappings.
+I can't apply this series on top of mainline or linux-next. On what tree
+(and what commit) this series is based on? I'd like to do htmldocs test.
 
-        Arnd
+Thanks.
+
+-- 
+An old man doll... just what I always wanted! - Clara
