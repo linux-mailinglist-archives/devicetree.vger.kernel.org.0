@@ -2,155 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4EE589E97
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:23:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49787589EC6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239919AbiHDPXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 11:23:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60284 "EHLO
+        id S239962AbiHDPfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 11:35:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239767AbiHDPXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:23:35 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D84F27B23
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 08:23:34 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id t22so31312626lfg.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 08:23:34 -0700 (PDT)
+        with ESMTP id S235453AbiHDPfQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:35:16 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD16EB00
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 08:35:14 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id w10so246745plq.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 08:35:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=nW461BRLiacu0fQQcbQ/ms/ezKwyN5n8RtJZv2E3pzI=;
-        b=TE/B8wyMpbf1LI41Lhn15lvfybUpLZEHXS/BLWnYha6wZrM+cxcV1SuDzGfJRc2PgY
-         EyrThtV7g6W1JZWxs4kHp8LXLUatpvhCrJ7lfxrC7EmVyuJVwJR4Dx05bIzVyMEFxdbX
-         SiJewCnfCknNi+KrQ2jgelkym/SP4B88ZpkG4kCSTiZFoS9ONf1QdulTOssBhXsaTpkm
-         24GlW7C6oaTgJcgyzaSQ1OUqi5nKKwoNrPIMOb2r+1TdE6GgwdDK2URutVX2MoRpWB2J
-         uV+8tjwPpqmhfOKPp1q3lfHVmy/rYFfRjxwlzJHRnfRJ3kb9q2BskfN3uvw5zsLu70/T
-         4HwA==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YMwmJ3SYguFGWEp4hAm2rBYWGtLtJTCvpovU/AIVn0A=;
+        b=Qtnq39uHyzvlwnd38DbC3LwcEUpjMXF+hgHHimscG103l15xTzdeAhdQsEhHrCXXc6
+         jZmcYvbCNSHRH02uVnFirKaBpXJB1Nt7yHmZSmHLABRrEcxUe/GNWK5CbueaHG9IMAfR
+         6mm9ZApgk6ZbXDRVcrk6xsfiBn9g5yH+QxTSw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=nW461BRLiacu0fQQcbQ/ms/ezKwyN5n8RtJZv2E3pzI=;
-        b=Djz/mcer20de9VY4oG0+OV1X4tkxKqmO1hjw3NXN5OkmMl4ItFb/ilkPN57lhBo9Jm
-         uwV6BrLqDmCsv7eaKfS6JIxad+L8WyWW7ZmNwiIQodq0s/XtK4HmlYyY36HwqBUoEN0D
-         ZMCfFuM8jjdihh76E8vI0ghwJgXfpbacZAOa3BxgOvBB5DdkCbbW+6luukXUlAGmewfm
-         v8OqVEYbZhKz207AkTPbK/gueq+PKmuWNxJElRATz2x6fIzd/KdpoNoW79ehWe3Zv9qZ
-         uZL0IjHJbnkwWHEPkF4Cs2wW43jJVJgLKCACd0sXl1w+6O+JUBxXrCMf7qWBTdUJyPLc
-         53AQ==
-X-Gm-Message-State: ACgBeo0QuXXyL3tiFvkFY/kBTyAjgtYrLOjoAJXXAfVrulCQhp/sgCM+
-        zOCKjqyCjOGIjC8CLNzTrZtvpg==
-X-Google-Smtp-Source: AA6agR6XRVfgI5FIRRD5dHZyN1ms60HDbZr53GF7XOvw/X/QlbaYbzoFd/8eYvuatAQOsPhrSuivHg==
-X-Received: by 2002:a19:8c04:0:b0:48a:7683:3845 with SMTP id o4-20020a198c04000000b0048a76833845mr975449lfd.297.1659626612516;
-        Thu, 04 Aug 2022 08:23:32 -0700 (PDT)
-Received: from [192.168.1.6] ([77.222.167.48])
-        by smtp.gmail.com with ESMTPSA id j9-20020a2e8249000000b0025e66a771efsm148498ljh.136.2022.08.04.08.23.29
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YMwmJ3SYguFGWEp4hAm2rBYWGtLtJTCvpovU/AIVn0A=;
+        b=bSJ/i7OnHIYE/Aqopam5tOMyYiIB/psvgYHSiQV0Q+z0WFzFwsX4L9bNuVJ0dw52pu
+         wXleRipD5+RZDRFpEY+LuvB+1ttIKPi0j6d2u91wxj5VaAqeiy0V6GEMsk+vO6Oph9Hb
+         uwSfqlP8GKHyw3w3USjVLtdcFd1k/tNb5LQXYS0IsYMBcmPpGxHJizYAyj4kwwfw3rjK
+         23KfpMYxv1388vQueLrBbqUIhaZu5hhVzwUntsnkJWFhlkq7l7cCKIXmdA2cNoXf9mGk
+         xCrOHfMpZBoEqRCBVKjBVFC3j75UjFV+OIlp4auqcU9vA70vmkUqt83wIMwvLvHkx0Sh
+         +wgw==
+X-Gm-Message-State: ACgBeo1za4k6qfqsn7vQpAsKesp6NbJjbR50kxLKXVCNI+yBWMY5aGul
+        6oQRlWfGJVe1FRp4Rabj9Wxnrg==
+X-Google-Smtp-Source: AA6agR5eBcmtuswpC9ZyuRauPZ9fC4Eka3LZy92marD/sOH7rjs76EIMqw+kflXgFAwfE3jtieqwBA==
+X-Received: by 2002:a17:902:a418:b0:16c:9ee2:8a02 with SMTP id p24-20020a170902a41800b0016c9ee28a02mr2453212plq.46.1659627313991;
+        Thu, 04 Aug 2022 08:35:13 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:87c4:32ca:84b6:e942])
+        by smtp.gmail.com with UTF8SMTPSA id j9-20020a17090a31c900b001ef7c7564fdsm3870037pjf.21.2022.08.04.08.35.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 08:23:31 -0700 (PDT)
-Message-ID: <93f32d3a-ffca-8bf1-77c2-d0f4a22f4f12@linaro.org>
-Date:   Thu, 4 Aug 2022 17:23:29 +0200
+        Thu, 04 Aug 2022 08:35:13 -0700 (PDT)
+Date:   Thu, 4 Aug 2022 08:35:10 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] usb: dwc3: qcom: fix runtime PM wakeup
+Message-ID: <YuvnLliIKLK71wx0@google.com>
+References: <20220802151404.1797-1-johan+linaro@kernel.org>
+ <20220802151404.1797-5-johan+linaro@kernel.org>
+ <YurviWfzut9sursr@google.com>
+ <Yut2tLqGfu82xcDs@hovoldconsulting.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v8.1, 3/7] arm64: dts: mt8192: Add thermal zone
-Content-Language: en-US
-To:     bchihi@baylibre.com, rafael@kernel.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, amitk@kernel.org
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-References: <20220804130912.676043-1-bchihi@baylibre.com>
- <20220804130912.676043-4-bchihi@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220804130912.676043-4-bchihi@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <Yut2tLqGfu82xcDs@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/08/2022 15:09, bchihi@baylibre.com wrote:
-> From: Balsam CHIHI <bchihi@baylibre.com>
+On Thu, Aug 04, 2022 at 09:35:16AM +0200, Johan Hovold wrote:
+> On Wed, Aug 03, 2022 at 02:58:33PM -0700, Matthias Kaehlcke wrote:
+> > On Tue, Aug 02, 2022 at 05:14:00PM +0200, Johan Hovold wrote:
+> > > A device must enable wakeups during runtime suspend regardless of
+> > > whether it is capable and allowed to wake the system up from system
+> > > suspend.
+> > > 
+> > > Fixes: 2664deb09306 ("usb: dwc3: qcom: Honor wakeup enabled/disabled state")
+> > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > 
+> > Ah, I wasn't aware that the same wakeup mechanism is used in runtime suspend.
+> > 
+> > In how far is runtime PM actually supported/used by this driver? The device is
+> > set 'active' in _probe(), and there are no other pm_runtime_* calls, except
+> > in dwc3_qcom_remove() and qcom_dwc3_resume_irq(). How does the device get from
+> > 'active' into 'suspended'?
 > 
-> This adds the thermal zone for the mt8192.
-> 
-> Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 113 ++++++++++++++++++++++-
->  1 file changed, 112 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index cbae5a5ee4a0..3320b5c14ee3 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: (GPL-2.0 OR MIT)
->  /*
-> - * Copyright (C) 2020 MediaTek Inc.
-> + * Copyright (C) 2022 MediaTek Inc.
+> It will be runtime suspended when the child (core) device suspends, but
+> you need to enable runtime PM through sysfs first.
 
-This is unexpected, so it needs careful explanation.
+Thanks for the clarification.
 
->   * Author: Seiya Wang <seiya.wang@mediatek.com>
->   */
->  
-> @@ -12,6 +12,7 @@
->  #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
->  #include <dt-bindings/phy/phy.h>
->  #include <dt-bindings/power/mt8192-power.h>
-> +#include <dt-bindings/reset/mt8192-resets.h>
->  
->  / {
->  	compatible = "mediatek,mt8192";
-> @@ -599,6 +600,28 @@ spi0: spi@1100a000 {
->  			status = "disabled";
->  		};
->  
-> +		lvts_ap: thermal-sensor@1100b000 {
-> +			compatible = "mediatek,mt8192-lvts-ap";
-> +			#thermal-sensor-cells = <1>;
-> +			reg = <0 0x1100b000 0 0x1000>;
-> +			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&infracfg CLK_INFRA_THERM>;
-> +			resets = <&infracfg MT8192_INFRA_RST0_THERM_CTRL_SWRST>;
-> +			nvmem-cells = <&lvts_e_data1>;
-> +			nvmem-cell-names = "lvts_calib_data1";
-> +		};
-> +
-> +		lvts_mcu: thermal-sensor@11278000 {
-> +			compatible = "mediatek,mt8192-lvts-mcu";
-> +			#thermal-sensor-cells = <1>;
-> +			reg = <0 0x11278000 0 0x1000>;
-> +			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			clocks = <&infracfg CLK_INFRA_THERM>;
-> +			resets = <&infracfg MT8192_INFRA_RST4_THERM_CTRL_MCU_SWRST>;
-> +			nvmem-cells = <&lvts_e_data1>;
-> +			nvmem-cell-names = "lvts_calib_data1";
-> +		};
-> +
->  		spi1: spi@11010000 {
->  			compatible = "mediatek,mt8192-spi",
->  				     "mediatek,mt6765-spi";
-> @@ -1457,4 +1480,92 @@ larb2: larb@1f002000 {
->  			power-domains = <&spm MT8192_POWER_DOMAIN_MDP>;
->  		};
->  	};
-> +
-> +	thermal_zones: thermal-zones {
-> +		cpu-big1-thermal {
+After enabling runtime suspend for the dwc3 core, dwc3 glue and the xHCI
+the dwc3-qcom enters autosuspend when the delay expires.
 
-Names look not matching DT schema.
+> And the controller is resumed in the wakeup-interrupt handler for the
+> runtime PM case.
+>
+> It seems to work ok, and it looks like the driver has supported this
+> since it was first merged.
 
+With and without your patch dwc3-qcom enters autosuspend and stays there.
+USB devices like a mouse or a USB to Ethernet adapter keep working while
+the glue is suspended.
 
-Best regards,
-Krzysztof
+How is the runtime resume triggered for the dwc3 glue?
+
+Sorry if my questions are very basic, so far I haven't dealt much with
+autosuspend and I'm trying to get a better understanding in the context
+of the dwc3 and why it is currently broken.
