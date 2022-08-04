@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3474F589E76
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64D7E589E7B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239689AbiHDPOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 11:14:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53038 "EHLO
+        id S231148AbiHDPRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 11:17:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239658AbiHDPOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:14:35 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB6EEDE3;
-        Thu,  4 Aug 2022 08:14:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1659626073; x=1691162073;
-  h=message-id:date:mime-version:subject:to:references:from:
-   in-reply-to:content-transfer-encoding;
-  bh=jAFqe63Sehp9GbhFhhgLIS51wQs7kAORe1FK2b11hTE=;
-  b=wToaNz+dJvQMmAmyL2cCU7KwXQ7OVkMctKGC3UaKqmGbzvceEzxYRji7
-   CXBLro/EX5B5YMyzlIx9Q/GLfi912V69633QAOeT3EbOCml81Tc14KEGK
-   Q/w/2zpicDut0uYMCRr/jC4lXJsAWkyY9OeW3yfOWHAcxvPvUOBO0l37X
-   I=;
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 04 Aug 2022 08:14:32 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Aug 2022 08:14:32 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Thu, 4 Aug 2022 08:14:31 -0700
-Received: from [10.110.14.105] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Thu, 4 Aug 2022
- 08:14:30 -0700
-Message-ID: <7f698b2b-bc4f-e5a4-fdf1-2de228791607@quicinc.com>
-Date:   Thu, 4 Aug 2022 08:14:28 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2] dt-bindings: arm: aspeed: adjust qcom,dc-scm-v1-bmc
- compatible after rename
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S237976AbiHDPPd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:15:33 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7F896442;
+        Thu,  4 Aug 2022 08:15:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 66DF0B82521;
+        Thu,  4 Aug 2022 15:15:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AA4AC433D6;
+        Thu,  4 Aug 2022 15:15:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659626129;
+        bh=0WM06FlWTMrhJfmtTNAejPGE0UPGqF0VPbPowF/tSjc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=e7MA+BYE9DqiDJuH46z2MUaQvbHjG00/xCIcMqPMvBX9QkjXPWItaCq3TsLjd3iXT
+         meNp1kCnU5MnFm+rf2Ogd3TOvy9Ih1ID67A94X96iiofZe/nThFZyIoZ4s/ecxOAr9
+         iMQDn9lXJqjkxll0qAy2o88YyVLRxClQ+xkeIlPfoz7T7lCnKUYTWGkBoAkfYl2mLv
+         MycgxgDefsMRoTlJF9SQtLjJ9ZRzndyWvKbCs2Pf7zOhkEiCUQxzVcG/nqpvyHvQYy
+         yCtVcsaaDZLmvpsVf5oZaLsrqtibOK3ySLs3j0xY6MfefJIa05STib1jwtxNKqrQRj
+         SV9LjbQ+29WiQ==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1oJcZj-0006IB-1G; Thu, 04 Aug 2022 17:15:51 +0200
+Date:   Thu, 4 Aug 2022 17:15:51 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "Andrew Jeffery" <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
-References: <20220804150935.121890-1-krzysztof.kozlowski@linaro.org>
-From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-In-Reply-To: <20220804150935.121890-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/9] usb: dwc3: qcom: fix wakeup implementation
+Message-ID: <Yuvip8irUb9DsZ8M@hovoldconsulting.com>
+References: <20220804151001.23612-1-johan+linaro@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220804151001.23612-1-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,40 +69,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, Aug 04, 2022 at 05:09:52PM +0200, Johan Hovold wrote:
 
-On 8/4/2022 8:09 AM, Krzysztof Kozlowski wrote:
-> The Nuvia DC-SCM BMC board compatible was renamed iin commit
-> 7f058112873e ("ARM: dts: aspeed: nuvia: rename vendor nuvia to qcom"),
-> so adjust the bindings as well.
-> 
-> Fixes: f77024c80147 ("dt-bindings: arm: aspeed: document board compatibles")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
+> Changes in v2
+>  - add review and ack tags
+>  - fix a gadget-only build breakage (new patch)
+>  - fix a use-after-free on wakeup from runtime suspend (new patch)
+>  - disable wakeup completely instead of falling back to the
+>    "disconnected" host configuration when not acting as host
+>  - disallow 'wakeup-source' in child node in the binding
 
-Acked-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+Forgot to mention that I also dropped the revert of the dt-binding
+commit adding 'wakeup-source' to the core node as Rob suggested.
 
-Thanks,
-Jae
-
-> 
-> Changes since v1:
-> 1. Use proper qcom compatible.
-> ---
->   Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> index 1895ce9de461..4f0b308e9f0f 100644
-> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> @@ -80,7 +80,7 @@ properties:
->                 - ibm,tacoma-bmc
->                 - inventec,transformer-bmc
->                 - jabil,rbp-bmc
-> -              - nuvia,dc-scm-bmc
-> +              - qcom,dc-scm-v1-bmc
->                 - quanta,s6q-bmc
->             - const: aspeed,ast2600
->   
+Johan
