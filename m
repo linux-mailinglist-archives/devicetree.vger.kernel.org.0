@@ -2,83 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6BA6589E08
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:01:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC447589E38
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 17:09:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239837AbiHDPBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 11:01:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41820 "EHLO
+        id S233333AbiHDPJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 11:09:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234497AbiHDPBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:01:33 -0400
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9F11F2EE;
-        Thu,  4 Aug 2022 08:01:31 -0700 (PDT)
-Received: from [172.18.172.87] (unknown [46.183.103.8])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id 0544D61EA1928;
-        Thu,  4 Aug 2022 17:01:21 +0200 (CEST)
-Message-ID: <6fef92f3-6932-5c20-57fe-9eb40d676013@molgen.mpg.de>
-Date:   Thu, 4 Aug 2022 17:01:08 +0200
+        with ESMTP id S234497AbiHDPJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 11:09:52 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80CAF2B18C
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 08:09:51 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id e15so21208544lfs.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 08:09:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6Ls3wmwZc27FOQS4WF8l9pDgrn7cd87DuWOgr6YV+4E=;
+        b=ry/Jo/Ok9+ZPG+82b0uF1vKq1QNAELdkGNfI7VaEYH0ZsY84RoECLsV8WP67WdFRyw
+         7FJNlhQGiady5DovDtRe/sfuxxZjHPX975QQMmgsGbP5GChZ6/Gn11+R/RlNC/CeJxob
+         ia3qIvsgLSgPGDjoR6s9sS1AH9cNjOSDO/lcwQEoV4qb0hRJ1T1mnIjOYH+DH8ZReSLf
+         35MfUIXVLmklevioSRjGU3GuukTaX50dnOeYT0LhPhVQaIjtx4vU4jVM1Ed6tpVMgoZw
+         ufTr6ccTJkc79a6LvE9SZ7WqUAqVyIq7d5qE62/EhMJGzVdjlhlsQWv1YzuKoo7eaOPQ
+         sJGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6Ls3wmwZc27FOQS4WF8l9pDgrn7cd87DuWOgr6YV+4E=;
+        b=o2tZjSwzjel4N4w1U+ZuDpfIMKkz7B2Ly8OmAN2hF0mWRpKef8dy9X0DROCtC99wDw
+         MI8HHnzYapAuhI2Q2OCWBCK+dihBi71yp/jNrlQa34yA3jh4PjguHJXWnNLgGoaaX5cV
+         kty+j5rcXkoGe0QxkmW2hoHk+2EnO2icn6hbrUHkjw5T6SRibcRYJNGqx9izxs+wQQCF
+         eZRA4x/f6XqUokDinqLdrV2ESDg8ky8uelu2jHSm7qega5sZQR6q/Zs0iVP/GCo3txkg
+         fLv1BFS9Edl8sb3Lwd/35cgzPzF8ynDX2P1FbGZNBATfmIdKJdqbcQm7RQXkEzl00X61
+         CPzg==
+X-Gm-Message-State: ACgBeo0HrBocWB3lJ+Kt6axj+fzNbywBWbBEu+kkBtOSJ/vOuGT/5Up8
+        5Nccv9IxONT3+++3oh0RyIjzixzy4AWk8GgT1CU=
+X-Google-Smtp-Source: AA6agR5X0yl7CVbndZJi7Hs/+Xnnpb6lNmxgp0Wl/kB+ntjRtZ+aQgTxPPqdoYXv4nAKYO2X3G1YBQ==
+X-Received: by 2002:a05:6512:ba4:b0:48a:f185:db17 with SMTP id b36-20020a0565120ba400b0048af185db17mr790025lfv.107.1659625789282;
+        Thu, 04 Aug 2022 08:09:49 -0700 (PDT)
+Received: from krzk-bin.. ([77.222.167.48])
+        by smtp.gmail.com with ESMTPSA id be39-20020a056512252700b0048b37d29256sm152681lfb.63.2022.08.04.08.09.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Aug 2022 08:09:48 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: arm: aspeed: adjust qcom,dc-scm-v1-bmc compatible after rename
+Date:   Thu,  4 Aug 2022 17:09:35 +0200
+Message-Id: <20220804150935.121890-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.0
-Subject: Re: [PATCH v1] dt-binding: ipmi: add fallback to npcm845 compatible
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        jic23@kernel.org, minyard@acm.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org, openipmi-developer@lists.sourceforge.net,
-        linux-kernel@vger.kernel.org
-References: <20220804145516.217482-1-tmaimon77@gmail.com>
-Content-Language: en-US
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20220804145516.217482-1-tmaimon77@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Tomer,
+The Nuvia DC-SCM BMC board compatible was renamed iin commit
+7f058112873e ("ARM: dts: aspeed: nuvia: rename vendor nuvia to qcom"),
+so adjust the bindings as well.
 
+Fixes: f77024c80147 ("dt-bindings: arm: aspeed: document board compatibles")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Am 04.08.22 um 16:55 schrieb Tomer Maimon:
-> Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
-> string.
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->   Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
-> index cbc10a68ddef..4fda76e63396 100644
-> --- a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
-> +++ b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
-> @@ -7,7 +7,7 @@ used to perform in-band IPMI communication with their host.
->   Required properties:
->   - compatible : should be one of
->       "nuvoton,npcm750-kcs-bmc"
-> -    "nuvoton,npcm845-kcs-bmc"
-> +    "nuvoton,npcm845-kcs-bmc", "nuvoton,npcm750-kcs-bmc"
+---
 
-Isn’t the added string exactly the same as the one below the compatible 
-line?
+Changes since v1:
+1. Use proper qcom compatible.
+---
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
->   - interrupts : interrupt generated by the controller
->   - kcs_chan : The KCS channel number in the controller
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index 1895ce9de461..4f0b308e9f0f 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -80,7 +80,7 @@ properties:
+               - ibm,tacoma-bmc
+               - inventec,transformer-bmc
+               - jabil,rbp-bmc
+-              - nuvia,dc-scm-bmc
++              - qcom,dc-scm-v1-bmc
+               - quanta,s6q-bmc
+           - const: aspeed,ast2600
+ 
+-- 
+2.34.1
 
-
-Kind regards,
-
-Paul
