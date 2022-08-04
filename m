@@ -2,83 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E53D58A00F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 19:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E198458A027
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 20:04:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231563AbiHDRyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 13:54:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35444 "EHLO
+        id S235091AbiHDSD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 14:03:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231355AbiHDRyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 13:54:54 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD3836AA24
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 10:54:53 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id r5so240838iod.10
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 10:54:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=Q94Q2VDlGnfmsIVyKku4OjRypxckGbu+KvrwMMNdhgs=;
-        b=lvlLlE7olQ5iMWyiRKxfNMtkZzWDdxp8/mVxNcRkMZH6idmzmJ+atn9c5BDlpGUrKu
-         FVhK6HEEUsRFAHOdZY+MRmjSYBywMpoNw2sneaMMNrqkdn8AZoP1vdPmR1Ls7aHDiEyc
-         l5HOCLI+BuYNahdSsPJrSNvwqhvEx7O6pe8qE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=Q94Q2VDlGnfmsIVyKku4OjRypxckGbu+KvrwMMNdhgs=;
-        b=C2erg/tcjgNSC03pd0w8HR7QWRIJLmtxLpcxA1X6W9Oaxs/XzZh0DMNe3JfRjz5VFw
-         ajTlMlaDhHdbvMvkwVRnG3eWaAiciaML/xNmPUA+0Tpxe8QEjEgZoKwCT0E0oF1gb35k
-         kjREj5mqOpDpsBcDuMO0nNYWzdhK+V2vr9jbSS+RO6hsmKld+KxzfuSGuKijzTbkz9Pa
-         Vuqw15DnRg/kko4wLXcDAS1VPfjDpjMPpnmpvzLtOkSqOGKfhUgRxGHj/Rc6wfj5eZyo
-         IohBkg5L59pf27PMvBBZ7JzwCORt/mDI4Z65dOm4EFAWjKM+fHS0H66Hz4Hho72kZMjq
-         IA0g==
-X-Gm-Message-State: ACgBeo2bJmAADLXelWd1VPpenSEr6kbeV6gCFvxTWTpy6j3oCM8vLVsH
-        w3iEK2xCOQlSa+ZzZga5X54mNNaPosdByN4A
-X-Google-Smtp-Source: AA6agR4sUBRJEgPr5s/YxuWsHxllqywodfwaMfwJ4XjWmCG8xdHdaJBOYdORFnN/7x6uiqiEPnV1DQ==
-X-Received: by 2002:a05:6602:2a47:b0:67c:3ea9:1a97 with SMTP id k7-20020a0566022a4700b0067c3ea91a97mr1255172iov.180.1659635692786;
-        Thu, 04 Aug 2022 10:54:52 -0700 (PDT)
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com. [209.85.166.46])
-        by smtp.gmail.com with ESMTPSA id x8-20020a026f08000000b00339dfa082a7sm703518jab.109.2022.08.04.10.54.51
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 10:54:51 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id c185so255992iof.7
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 10:54:51 -0700 (PDT)
-X-Received: by 2002:a05:6638:2614:b0:33f:5bc2:b385 with SMTP id
- m20-20020a056638261400b0033f5bc2b385mr1356611jat.246.1659635690978; Thu, 04
- Aug 2022 10:54:50 -0700 (PDT)
+        with ESMTP id S230456AbiHDSD6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 14:03:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 475BE1EC4B;
+        Thu,  4 Aug 2022 11:03:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D5D7A615A5;
+        Thu,  4 Aug 2022 18:03:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40146C433B5;
+        Thu,  4 Aug 2022 18:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659636236;
+        bh=MYvar+RB8d8gaQ5k8AOlYzIwc6GZaOiEmrr5hg1Qdf0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=pj2GxrEokLmfmcpRUg5BQQTnPUwA4OC7zwilnGvod59DLx13/5/8IjiEYHcYcRUGd
+         p7y3mv7CqmfS5dtel2qCqQK3uMiJRCVjfZKY99nkt88HQ+Gu2mZ5+0KbfZjPf+3GNV
+         9LQHLI2p4zlCDp8ZThMVRZV5Y3p/2FfCX8gv13b2qqZiySe8K5TbWvJwWZPzVSjjRq
+         QDVj0LZPhIS1q05D/aV8oaYkEwASYH98EDj+iToIUWkLEuqS/fD0nZ60DKQtYIy/y1
+         ecwLVG5DWYsBXg5FmIFRTzrG/22f9hV2AREwE/ug8mKB0121WXbv6IprvbBD+zUau1
+         C77zZVzlHXpTA==
+Received: by mail-vs1-f54.google.com with SMTP id q15so276692vsr.0;
+        Thu, 04 Aug 2022 11:03:56 -0700 (PDT)
+X-Gm-Message-State: ACgBeo3E0JXSSi1Dx5mfZSZHz557QVcedx5f4sHpOg8KZtmR+cBuEo9U
+        pvYqXe6CyYmPq2T5YMDDzPU3Fch0nlGNDokqmA==
+X-Google-Smtp-Source: AA6agR69cRryiAwhAsieD+8r8oKzDjfeK3Ow5501lanm4SG7tcgmP4MG9TxOFY29wRJIWFs1+bvO0Bjr5+J8OMKbQB4=
+X-Received: by 2002:a67:a246:0:b0:388:7e82:1d80 with SMTP id
+ t6-20020a67a246000000b003887e821d80mr206218vsh.26.1659636235156; Thu, 04 Aug
+ 2022 11:03:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <1657544224-10680-1-git-send-email-quic_vpolimer@quicinc.com>
- <CAD=FV=U_GStziLOCVLs_FC_2Vr=ykGfbb4ZtUp79iV8V=B0cEA@mail.gmail.com> <CAG3jFyv3up0o4S+UYMKaAjanKL6hxCNtEa5zQTQEeNREab-NRA@mail.gmail.com>
-In-Reply-To: <CAG3jFyv3up0o4S+UYMKaAjanKL6hxCNtEa5zQTQEeNREab-NRA@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 4 Aug 2022 10:54:36 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VL2ATy=Ap5fAVxMYZZ5G6_8pdFGw=gdOc=PuqiOPHMow@mail.gmail.com>
-Message-ID: <CAD=FV=VL2ATy=Ap5fAVxMYZZ5G6_8pdFGw=gdOc=PuqiOPHMow@mail.gmail.com>
-Subject: Re: [PATCH v6 00/10] Add PSR support for eDP
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Kuogee Hsieh (QUIC)" <quic_khsieh@quicinc.com>,
-        quic_vproddut <quic_vproddut@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "Aravind Venkateswaran (QUIC)" <quic_aravindh@quicinc.com>,
-        "Abhinav Kumar (QUIC)" <quic_abhinavk@quicinc.com>,
-        Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+References: <20220617114420.1398259-1-thierry.reding@gmail.com>
+ <20220721213732.GA1993841-robh@kernel.org> <YtrKofy+cZBQDRq3@mail.local>
+In-Reply-To: <YtrKofy+cZBQDRq3@mail.local>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 4 Aug 2022 12:03:43 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJhf32tJAfjO5Go1gmt_yoasoGg+i8rtc-ADWLRfFtfSQ@mail.gmail.com>
+Message-ID: <CAL_JsqJhf32tJAfjO5Go1gmt_yoasoGg+i8rtc-ADWLRfFtfSQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: ds1307: Convert to json-schema
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,104 +64,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Thu, Aug 4, 2022 at 9:21 AM Robert Foss <robert.foss@linaro.org> wrote:
+On Fri, Jul 22, 2022 at 10:04 AM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
 >
-> On Fri, 29 Jul 2022 at 02:22, Doug Anderson <dianders@chromium.org> wrote:
-> >
-> > Hi,
-> >
-> > On Mon, Jul 11, 2022 at 5:57 AM Vinod Polimera
-> > <quic_vpolimer@quicinc.com> wrote:
+> Hello,
+>
+> On 21/07/2022 15:37:32-0600, Rob Herring wrote:
+> > On Fri, 17 Jun 2022 13:44:19 +0200, Thierry Reding wrote:
+> > > From: Thierry Reding <treding@nvidia.com>
 > > >
+> > > Convert the DS1307 (and compatible) RTC bindings from the free-form text
+> > > format to json-schema.
+> > >
+> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > > ---
 > > > Changes in v2:
-> > >   - Use dp bridge to set psr entry/exit instead of dpu_enocder.
-> > >   - Don't modify whitespaces.
-> > >   - Set self refresh aware from atomic_check.
-> > >   - Set self refresh aware only if psr is supported.
-> > >   - Provide a stub for msm_dp_display_set_psr.
-> > >   - Move dp functions to bridge code.
+> > > - add compatible string list for [ st,m41t00, dallas,ds1338 ]
+> > > - allow second interrupt and interrupt-names
+> > > - remove commented-out section
+> > > - allow vcc-supply
 > > >
-> > > Changes in v3:
-> > >   - Change callback names to reflect atomic interfaces.
-> > >   - Move bridge callback change to separate patch as suggested by Dmitry.
-> > >   - Remove psr function declaration from msm_drv.h.
-> > >   - Set self_refresh_aware flag only if psr is supported.
-> > >   - Modify the variable names to simpler form.
-> > >   - Define bit fields for PSR settings.
-> > >   - Add comments explaining the steps to enter/exit psr.
-> > >   - Change DRM_INFO to drm_dbg_db.
+> > >  .../devicetree/bindings/rtc/rtc-ds1307.txt    |  52 ---------
+> > >  .../devicetree/bindings/rtc/rtc-ds1307.yaml   | 102 ++++++++++++++++++
+> > >  2 files changed, 102 insertions(+), 52 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-ds1307.yaml
 > > >
-> > > Changes in v4:
-> > >   - Move the get crtc functions to drm_atomic.
-> > >   - Add atomic functions for DP bridge too.
-> > >   - Add ternary operator to choose eDP or DP ops.
-> > >   - Return true/false instead of 1/0.
-> > >   - mode_valid missing in the eDP bridge ops.
-> > >   - Move the functions to get crtc into drm_atomic.c.
-> > >   - Fix compilation issues.
-> > >   - Remove dpu_assign_crtc and get crtc from drm_enc instead of dpu_enc.
-> > >   - Check for crtc state enable while reserving resources.
-> > >
-> > > Changes in v5:
-> > >   - Move the mode_valid changes into a different patch.
-> > >   - Complete psr_op_comp only when isr is set.
-> > >   - Move the DP atomic callback changes to a different patch.
-> > >   - Get crtc from drm connector state crtc.
-> > >   - Move to separate patch for check for crtc state enable while
-> > > reserving resources.
-> > >
-> > > Changes in v6:
-> > >   - Remove crtc from dpu_encoder_virt struct.
-> > >   - fix crtc check during vblank toggle crtc.
-> > >   - Misc changes.
-> > >
-> > > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-> > > Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
-> > > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> > >
-> > > Vinod Polimera (10):
-> > >   drm/msm/disp/dpu: clear dpu_assign_crtc and get crtc from connector
-> > >     state instead of dpu_enc
-> > >   drm: add helper functions to retrieve old and new crtc
-> > >   drm/msm/dp: use atomic callbacks for DP bridge ops
-> > >   drm/msm/dp: Add basic PSR support for eDP
-> > >   drm/msm/dp: use the eDP bridge ops to validate eDP modes
-> > >   drm/bridge: use atomic enable/disable callbacks for panel bridge
-> > >   drm/bridge: add psr support for panel bridge callbacks
-> > >   drm/msm/disp/dpu: use atomic enable/disable callbacks for encoder
-> > >     functions
-> > >   drm/msm/disp/dpu: add PSR support for eDP interface in dpu driver
-> > >   drm/msm/disp/dpu: check for crtc enable rather than crtc active to
-> > >     release shared resources
-> > >
-> > >  drivers/gpu/drm/bridge/panel.c              |  68 ++++++++--
-> > >  drivers/gpu/drm/drm_atomic.c                |  60 +++++++++
-> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c    |  17 ++-
-> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c |  56 +++++----
-> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.h |   8 --
-> > >  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c     |   2 +-
-> > >  drivers/gpu/drm/msm/dp/dp_catalog.c         |  81 ++++++++++++
-> > >  drivers/gpu/drm/msm/dp/dp_catalog.h         |   4 +
-> > >  drivers/gpu/drm/msm/dp/dp_ctrl.c            |  73 +++++++++++
-> > >  drivers/gpu/drm/msm/dp/dp_ctrl.h            |   3 +
-> > >  drivers/gpu/drm/msm/dp/dp_display.c         |  31 +++--
-> > >  drivers/gpu/drm/msm/dp/dp_display.h         |   2 +
-> > >  drivers/gpu/drm/msm/dp/dp_drm.c             | 184 ++++++++++++++++++++++++++--
-> > >  drivers/gpu/drm/msm/dp/dp_drm.h             |   9 +-
-> > >  drivers/gpu/drm/msm/dp/dp_link.c            |  36 ++++++
-> > >  drivers/gpu/drm/msm/dp/dp_panel.c           |  22 ++++
-> > >  drivers/gpu/drm/msm/dp/dp_panel.h           |   6 +
-> > >  drivers/gpu/drm/msm/dp/dp_reg.h             |  27 ++++
-> > >  include/drm/drm_atomic.h                    |   7 ++
-> > >  19 files changed, 631 insertions(+), 65 deletions(-)
 > >
+> > Looks like this hasn't been picked up so I've applied both patches,
+> > thanks!
 >
-> Which tree does this series apply to?
+> This was on my radar but I'm never sure what you prefer for dt-bindings
+> only series.
 
-It ought to apply to msm-next, but as I mentioned in my reply to patch
-#1 it doesn't apply to the top of msm-next. I think I also had to
-manually apply a few of the later patches with "patch -p1".
+My (or Krzysztof's) Reviewed-by/Acked-by means I expect it to go via
+subsystem tree.
 
--Doug
+Rob
