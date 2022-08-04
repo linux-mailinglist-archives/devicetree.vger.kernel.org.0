@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17A66589B13
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 13:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE57E589B1C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 13:36:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231982AbiHDLbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 07:31:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43054 "EHLO
+        id S232884AbiHDLfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 07:35:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233344AbiHDLbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 07:31:40 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A859839B88
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 04:31:38 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id s9so15837522ljs.6
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 04:31:38 -0700 (PDT)
+        with ESMTP id S231143AbiHDLfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 07:35:50 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42D671EC40
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 04:35:49 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id s9so15847862ljs.6
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 04:35:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6FA3ZfEeBAC9Kp15wqTU0k5tZ0dhaTTUmtqbwpsyYTY=;
-        b=RotSEOoQTObCi0Yo4Rk2W1EXU5o1KIIBkVg4ckpcWxwE1mIYKZWNo1qH7vuL6Hb0Lz
-         yq0rkhznpi9/8km3g3h7y956DhTFWCB6W/1MB1GJhRITv666gVAZtFN5FFpmXriJj12i
-         a9e8u8ntItsOgNRnNgNJq932KPxwL4My2QGn7dcYzTmnZYQ6m0fgnWRR16vidbbH2JJt
-         gvLq18qKywsk4wVMG6jygCQHM6bQRLrNLJ63ch4gJr4T4J8nUq881YNb6zkuii4Oz1Ws
-         nyWDolJkafj8RGzGy1UJnCPm/unjBRTNd7cxx1oLGj/KuZmYhCUuLiElb/5QOFth9Kt6
-         v1KQ==
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=0q1bitm4M5CudI85IbH4G9Zd55yJ1C186Y4eCrrx0yk=;
+        b=gT4YYAZ9xSgLdp5459oAq+PFI0Za7+SPTzB+jRk4icnwjEWiZQRFCYVYCVZ0Te6uuJ
+         /oWSpie++3gem9IxnvVf9gpT8tExhkgJhbYFB0hxGfBKLp15iWaC1iIiqp+UcUHV3fZR
+         djWOdJJz0XX4llpBqv1KSz9aHn6gJUbB2pWoDtcfT/D0iWcSmpxH6ScoQDQFgeM7MSg6
+         Ngi09PncKwCgCAKO4PWy9eBqPCtnJKM+PCnYKPnreJV5YmS7m/Mevp/eVFsIxRFBJyRP
+         R+b06I5VT3bkVwkzIt62/v7TLTPoVjC2zi+Y+QyCMH3y1kuKG27mNNKWAcawAptMylXx
+         Rf8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:from:to:cc:references:in-reply-to
          :content-transfer-encoding;
-        bh=6FA3ZfEeBAC9Kp15wqTU0k5tZ0dhaTTUmtqbwpsyYTY=;
-        b=ddMOnxvioAkrgWq48bHF3jwLKWPiw+Vz7xsyk9ncsnd1epOgBVJs8aR6R+5VTSkxPV
-         gvEiXmHh10Iom5tOR3NBFaqqSTjOw+AwkI26eEhFrIcUm5ePvI6Ag0FOjDl6DfAZk/hk
-         P5miEH1YzHGd8Oxaf0oCsx2Gcv/90EnOSUmyrw8FTTIVCrX0UOQyDX8bgQ5CbTJfbJQn
-         GVASfjytCCB2Czl383B9MdupmLsHJHMK1GqXZI+jTUllcT26dAYzpoirqK2u1UM6hRPt
-         TtbMbRh0Kzoez8Clp4bIhjxwE/Dm8/M6L3JzpiKRvwX6/TGzZvMar1KedEGCK33oWqVW
-         mW8g==
-X-Gm-Message-State: ACgBeo3o3NgIl3VKLdlMhOMHlWVJ5tOsO8qv1wJqp5EwHl7cSWCRXGxH
-        ZFQhOY6tHdAtc1X44619GnVIUQ==
-X-Google-Smtp-Source: AA6agR6qGtsHgJ27BPzUx/ISEKRhgxZ20jwAk8krk4pAMSe22eoioT7tH9INbpYDZ3Bx8ZME5cJmdA==
-X-Received: by 2002:a2e:804e:0:b0:25e:7231:c304 with SMTP id p14-20020a2e804e000000b0025e7231c304mr445863ljg.257.1659612696954;
-        Thu, 04 Aug 2022 04:31:36 -0700 (PDT)
+        bh=0q1bitm4M5CudI85IbH4G9Zd55yJ1C186Y4eCrrx0yk=;
+        b=5MXN9oxP3c4zisDviumOXacMTxpi3t+CnY6KYIJckSzfjHmFEidGw8dU2IyGAOLcnB
+         XXMVhMCm+PYAErXrQ5PdNvbczbsDip8CVt8I6fWPZG4/uAn3r2PbJBBdkOvSOofwF0wi
+         K7c0/7tLwc1ruem0iV6vHpavol6NQORyeGVJaTxi8VDAZQdiCXiCIZgOWrd+wDONiHCf
+         Nw00N9T4nShZeN9e3A1MkEQWhjY0fDunua+Nxq7X/06k5kGp62qmSZwSpgluLfRM2rVd
+         mGdfuZcxmmYmEVfZCAsiGMnHB5+3uS34J6zgkRQ8qz2doAvsIkpSbkzSg0PF+T7VZPau
+         x3SA==
+X-Gm-Message-State: ACgBeo3XrwRh9a/3oGWQQdnv0HPIDeSmEYam2vu9v9Ctgb2Y2vMqe7l7
+        kIZ4aS9O5t1vzdGAvTLs+p+cVw==
+X-Google-Smtp-Source: AA6agR60fRqF3iLSdJurOEgar8fKn1Rz/StDUIa+ttGkqSTh+i6K9BBuTHTW+mJ8+n1WnawlJ/dpEg==
+X-Received: by 2002:a2e:a4d6:0:b0:25e:439e:39d0 with SMTP id p22-20020a2ea4d6000000b0025e439e39d0mr443304ljm.169.1659612947660;
+        Thu, 04 Aug 2022 04:35:47 -0700 (PDT)
 Received: from [192.168.1.6] ([77.222.167.48])
-        by smtp.gmail.com with ESMTPSA id a17-20020a05651c031100b0025dd5b3fabesm87543ljp.102.2022.08.04.04.31.35
+        by smtp.gmail.com with ESMTPSA id bf28-20020a2eaa1c000000b0025e59f125fbsm96303ljb.53.2022.08.04.04.35.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 04:31:36 -0700 (PDT)
-Message-ID: <b9cc3290-f0cb-0423-7ff0-dae40b52a379@linaro.org>
-Date:   Thu, 4 Aug 2022 13:31:34 +0200
+        Thu, 04 Aug 2022 04:35:46 -0700 (PDT)
+Message-ID: <5b65d6c2-7ca8-b963-24f7-1d02328fcad3@linaro.org>
+Date:   Thu, 4 Aug 2022 13:35:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
 Subject: Re: [PATCH 1/2] spi: dt-binding: add Microchip CoreQSPI compatible
 Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Mark Brown <broonie@kernel.org>
 Cc:     Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -66,8 +67,8 @@ References: <20220801094255.664548-1-nagasuresh.relli@microchip.com>
  <Yuki3jpCSJDdXcWA@sirena.org.uk>
  <dc7bca02-5eb3-3b33-8911-a950b630f197@linaro.org>
  <Yup4JLh00HZxFQLc@sirena.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <Yup4JLh00HZxFQLc@sirena.org.uk>
+ <b9cc3290-f0cb-0423-7ff0-dae40b52a379@linaro.org>
+In-Reply-To: <b9cc3290-f0cb-0423-7ff0-dae40b52a379@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,68 +81,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/08/2022 15:29, Mark Brown wrote:
-> On Wed, Aug 03, 2022 at 08:11:03AM +0200, Krzysztof Kozlowski wrote:
->> On 02/08/2022 15:13, Mark Brown wrote:
->>> On Tue, Aug 02, 2022 at 10:52:25AM +0200, Krzysztof Kozlowski wrote:
->>>> On 01/08/2022 11:42, Naga Sureshkumar Relli wrote:
+On 04/08/2022 13:31, Krzysztof Kozlowski wrote:
+
+>> I'm not convinced this is a useful rule to try to enforce, and I'm not
+>> sure how well it will work if the same IP is used in several different
+>> places.  It's not clear to me what the benefit is intended to be.
 > 
->>>>> +    oneOf:
->>>>> +      - description: Microchip's Polarfire SoC SPI controller.
->>>>> +        const: microchip,mpfs-spi
->>>>> +      - description: Microchip's Polarfire SoC QSPI controller.
+> First, the description here is really not adding any useful information.
 > 
->>>> Useless descriptions - they repeat compatible. Just keep it as enum and
->>>> skip descriptions. What value do they bring?
+> "description: Microchip's Polarfire SoC SPI controller."
+> Microchip - already in comaptible
+> SPI controller - already in compatible and in device description
 > 
->>> Someone not familiar with the full Microchip product line might not be
->>> aware of the expansion of mpfs, it's not blindingly obvious.
+> The only useful piece could be extending pfs to Polarfire SoC.
 > 
->> Then it should be explained in title/description of the binding, not in
->> compatible. This is the usual way of providing some text description,
->> not for each compatible by repeating the compatible text.
+> And now imagine every binding doing the same, adding such
+> acronym-explanations in every compatible list. Basically we loose easy
+> to read, compare, analyze and check for errors enum:
+>   enum
+>     - microchip,mpfs-spi
+>     - microchip,mpfs-qspi
+>     - microchip,coreqspi-rtl-v2
+>     - microchip,mpfs-some-more-spi
+>     - microchip,mpfs-even-newer-spi
 > 
-> I'm not convinced this is a useful rule to try to enforce, and I'm not
-> sure how well it will work if the same IP is used in several different
-> places.  It's not clear to me what the benefit is intended to be.
+> into double-sized oneOf with additional descriptions each one explaining
+> "mpfs".
+> 
+>   oneOf:
+>     - description: Microchip's Polarfire SoC SPI controller.
+>       const: microchip,mpfs-spi
+>     - description: Microchip's Polarfire SoC QSPI controller.
+>       const: microchip,mpfs-qspi
+>     - description: Microchip's FPGA QSPI controller.
+>       const: microchip,coreqspi-rtl-v2
 
-First, the description here is really not adding any useful information.
+Just to be more specific - this one description actually brings useful
+information (FPGA)... This can be easily added as a comment, if anyone
+finds it useful:
 
-"description: Microchip's Polarfire SoC SPI controller."
-Microchip - already in comaptible
-SPI controller - already in compatible and in device description
-
-The only useful piece could be extending pfs to Polarfire SoC.
-
-And now imagine every binding doing the same, adding such
-acronym-explanations in every compatible list. Basically we loose easy
-to read, compare, analyze and check for errors enum:
-  enum
-    - microchip,mpfs-spi
-    - microchip,mpfs-qspi
-    - microchip,coreqspi-rtl-v2
-    - microchip,mpfs-some-more-spi
-    - microchip,mpfs-even-newer-spi
-
-into double-sized oneOf with additional descriptions each one explaining
-"mpfs".
-
-  oneOf:
-    - description: Microchip's Polarfire SoC SPI controller.
-      const: microchip,mpfs-spi
-    - description: Microchip's Polarfire SoC QSPI controller.
-      const: microchip,mpfs-qspi
-    - description: Microchip's FPGA QSPI controller.
-      const: microchip,coreqspi-rtl-v2
-    - description: Microchip's Polarfire SoC some-more SPI controller.
-      const: microchip,mpfs-some-more-spi
-    - description: Microchip's Polarfire SoC even newer SPI controller.
-      const: microchip,mpfs-even-newer-spi
-
-Why do you need to explain "mpfs" more than once? Why explaining these
-are SPI or QSPI controllers? It's obvious from compatible.
-
-Just keep it simple and small. We all have too much code to look at...
+    enum
+      - microchip,mpfs-spi
+      - microchip,mpfs-qspi
+      - microchip,coreqspi-rtl-v2  # FPGA QSPI
 
 Best regards,
 Krzysztof
