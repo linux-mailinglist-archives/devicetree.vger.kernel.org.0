@@ -2,131 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59C84589F5C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 18:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B882589F8C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 18:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236413AbiHDQZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 12:25:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41418 "EHLO
+        id S233472AbiHDQx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 12:53:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231563AbiHDQZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 12:25:08 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E55367146
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 09:25:07 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id bf13so298228pgb.11
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 09:25:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=3wVsJA9REgYaA9xqxDVynsjE4mtxXkKRS8lurVV7Rd8=;
-        b=j7IxrmwybnOOybGV1M8hTyPbW0g++4s3715LouwSbNkw72fTCLAP4AWnyrn13Ntcbh
-         uSK3ST1fETadsvXDyfQJ0WseJ/4fqAD+0a9l8UzGMPbyPjvv1zoXylGKSxjZdad6TNyV
-         7ZYo4E2gFwO7bdLcrZHlRM6BnriJJZEWtgRZU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=3wVsJA9REgYaA9xqxDVynsjE4mtxXkKRS8lurVV7Rd8=;
-        b=M2zmzeSK/C+au0FffX4Hmcg5XZW/YM7NC+n+Csr9NaD2JXmKB6QvUwcSaGduxGsy9E
-         vC2yPb22P/OGzfz0cqvysej6IgreHDQyJeynpYoratkIRA11hn37jgFEcO7B7n/ZIcQh
-         w/on13QCDPcE/Xdw3H3/4fl5bzvzdW+pddL9F5vQBzjYjRS7GzMTjqdCNSa4MigjeMcC
-         h7z7YRqpwQxEyx9iM8OW3N+lpvCC4Od7GByAS54DW1TKxSO2Clc4ylirqlMP44V/uLgF
-         bkqXzqxV/OlwALyFl5s+5iVXnlFwRd5VEFWUbOHPBGRPUy5MiRcE6O20f89rL2aQ+0hb
-         u0fg==
-X-Gm-Message-State: ACgBeo2HhHYxehBQ+/nRMwhpjF3BPp/UtjoiUiZvg+68U+PXonZWeFiN
-        WvaoqP3/xbiBVzBxBMWkfMCDGg==
-X-Google-Smtp-Source: AA6agR4VqvkmGRVsnu/p8nE6quW5fqKSSYapdhXGs+labp3XwjT+la4kPogMITPJez/PHlt/EfBBEA==
-X-Received: by 2002:a63:8ac3:0:b0:41b:ba48:e3f6 with SMTP id y186-20020a638ac3000000b0041bba48e3f6mr2151943pgd.567.1659630306651;
-        Thu, 04 Aug 2022 09:25:06 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:87c4:32ca:84b6:e942])
-        by smtp.gmail.com with UTF8SMTPSA id y1-20020a17090322c100b0016d93c84049sm1256747plg.54.2022.08.04.09.25.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 09:25:06 -0700 (PDT)
-Date:   Thu, 4 Aug 2022 09:25:04 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/8] usb: dwc3: qcom: fix runtime PM wakeup
-Message-ID: <Yuvy4CjCgs48nFnM@google.com>
-References: <20220802151404.1797-1-johan+linaro@kernel.org>
- <20220802151404.1797-5-johan+linaro@kernel.org>
- <YurviWfzut9sursr@google.com>
- <Yut2tLqGfu82xcDs@hovoldconsulting.com>
- <YuvnLliIKLK71wx0@google.com>
- <YuvuJR0ZqSvwMSi1@hovoldconsulting.com>
+        with ESMTP id S230177AbiHDQx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 12:53:28 -0400
+Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98550252B4;
+        Thu,  4 Aug 2022 09:53:24 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mail.sberdevices.ru (Postfix) with ESMTP id 174735FD06;
+        Thu,  4 Aug 2022 19:53:22 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1659632002;
+        bh=7VqOZGtBUV2rPszzt+iOd/uivE15FHVsI8evbC3zCPg=;
+        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
+        b=eHQCywSVaPtlqKMhx494PMfhccsQ6LkWBwuqmwxX0aR3pQ9Dupxm3rEGu27kS82Yd
+         MadISbStWePQJuOT4M8KSDFhslHuOJr5ZtnHERDK9Jdg3+7eaiBhf4aMRrbpaB9qJ5
+         mEeSZsZHMnGzldlzRn3mKNNNEKxolhHlkRiLaZ6w3aeb3zKeU54qLyUM0EDIXRv7wf
+         RBou3VFs5y8L0PWsyG3CD3ulOJfeH8mQkeKwi7VUydTAMlk2QyWSF2OZMav48ytZHo
+         WtSXZDLXFlW7SwBjP/vL728whqeweaCpDwzOFbD6xiUgnh/vUoYBIKmBNR6cMfBCKc
+         B4L9ecwOLWLJQ==
+Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
+        by mail.sberdevices.ru (Postfix) with ESMTP;
+        Thu,  4 Aug 2022 19:53:20 +0300 (MSK)
+From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+        "khilman@baylibre.com" <khilman@baylibre.com>,
+        "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+        "martin.blumenstingl@googlemail.com" 
+        <martin.blumenstingl@googlemail.com>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-amlogic@lists.infradead.org" 
+        <linux-amlogic@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Dmitry Rokosov <DDRokosov@sberdevices.ru>
+Subject: [PATCH v1] arm64: dts: meson-axg: reserve memory region for Amlogic
+ TrustOS
+Thread-Topic: [PATCH v1] arm64: dts: meson-axg: reserve memory region for
+ Amlogic TrustOS
+Thread-Index: AQHYqCKmlgn31IcXkUK0U/+U7ZMA5w==
+Date:   Thu, 4 Aug 2022 16:52:59 +0000
+Message-ID: <20220804165317.29086-1-ddrokosov@sberdevices.ru>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.12]
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YuvuJR0ZqSvwMSi1@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/08/04 12:57:00 #20050432
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 06:04:53PM +0200, Johan Hovold wrote:
-> On Thu, Aug 04, 2022 at 08:35:10AM -0700, Matthias Kaehlcke wrote:
-> > On Thu, Aug 04, 2022 at 09:35:16AM +0200, Johan Hovold wrote:
-> 
-> > After enabling runtime suspend for the dwc3 core, dwc3 glue and the xHCI
-> > the dwc3-qcom enters autosuspend when the delay expires.
-> > 
-> > > And the controller is resumed in the wakeup-interrupt handler for the
-> > > runtime PM case.
-> > >
-> > > It seems to work ok, and it looks like the driver has supported this
-> > > since it was first merged.
-> > 
-> > With and without your patch dwc3-qcom enters autosuspend and stays there.
-> > USB devices like a mouse or a USB to Ethernet adapter keep working while
-> > the glue is suspended.
-> 
-> Are you sure you're looking at the right controller? And that it is
-> actually suspended?
+For the all AXG SoC based boards, which run Amlogic vendor ATF and
+TrustOS this memory region 0x5300000-0x6300000 is reserved by BL32,
+so tag it as no-map in the kernel iomem.
 
-Good point! My mind was set on a SC7180 system, which has a single dwc3
-controller, but this time I was tinkering on a SC7280 board, which has
-two dwc3, and obviously I was looking at the wrong one (－‸ლ)
+Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+---
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-> If you plug in a keyboard, enable autosuspend for all devices in the
-> path (from glue to the keyboard device) and type away, then the
-> controller must remain active. Stop typing, and all devices in the chain
-> should suspend.
-
-That's what I expected, and now that I'm looking at the right controller
-I'm seeing it. I wondered whether the glue device was somehow special.
-
-> > How is the runtime resume triggered for the dwc3 glue?
-> 
-> Either by the host driver when it needs to access the device, or by the
-> device if it is remote-wakeup capable (e.g. a keyboard, but not
-> necessarily a speaker).
-> 
-> Note that the latter part is what is broken currently as the wakeup
-> interrupts were not enabled and those are needed to wake up sc8280xp 
-> when the dwc3 glue has been runtime suspended.
-
-Thanks for helping me to get a better understanding!
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/d=
+ts/amlogic/meson-axg.dtsi
+index 3f5254eeb47b..1fa0d3805969 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -142,6 +142,12 @@ secmon_reserved: secmon@5000000 {
+ 			reg =3D <0x0 0x05000000 0x0 0x300000>;
+ 			no-map;
+ 		};
++
++		/* 16 MiB reserved for Amlogic Trust OS (BL32) */
++		secos_reserved: secos@5300000 {
++			reg =3D <0x0 0x05300000 0x0 0x1000000>;
++			no-map;
++		};
+ 	};
+=20
+ 	scpi {
+--=20
+2.36.0
