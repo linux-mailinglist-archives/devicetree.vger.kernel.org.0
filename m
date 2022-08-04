@@ -2,106 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57A85589F4F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 18:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59C84589F5C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 18:25:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234596AbiHDQVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 12:21:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39638 "EHLO
+        id S236413AbiHDQZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 12:25:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230482AbiHDQVh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 12:21:37 -0400
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B53F66120;
-        Thu,  4 Aug 2022 09:21:35 -0700 (PDT)
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 6BFCA1C000D; Thu,  4 Aug 2022 18:21:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-        t=1659630093;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=kWEuEGyWD5cuZYPsK0JtmnKau5dObaXccnxnYn2McBc=;
-        b=SGsbS4acDy67iFtBrlo9VdHE2Zothsst7u8IpJjobkSnRzYB/xHfRkAY2RkGfOk63GnGb5
-        WchCTs4DNvdpnsxcRaM7w48BuJDV39s97MjMHK7bH8+/VmwXgzuzraso4iTbMbd2L2Tdi5
-        fXEQOqeFLChxY5RutWFG8SQDmCiQvQI=
-Date:   Thu, 4 Aug 2022 18:21:05 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     Joel Selvaraj <jo@jsfamily.in>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S231563AbiHDQZI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 12:25:08 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E55367146
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 09:25:07 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id bf13so298228pgb.11
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 09:25:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=3wVsJA9REgYaA9xqxDVynsjE4mtxXkKRS8lurVV7Rd8=;
+        b=j7IxrmwybnOOybGV1M8hTyPbW0g++4s3715LouwSbNkw72fTCLAP4AWnyrn13Ntcbh
+         uSK3ST1fETadsvXDyfQJ0WseJ/4fqAD+0a9l8UzGMPbyPjvv1zoXylGKSxjZdad6TNyV
+         7ZYo4E2gFwO7bdLcrZHlRM6BnriJJZEWtgRZU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=3wVsJA9REgYaA9xqxDVynsjE4mtxXkKRS8lurVV7Rd8=;
+        b=M2zmzeSK/C+au0FffX4Hmcg5XZW/YM7NC+n+Csr9NaD2JXmKB6QvUwcSaGduxGsy9E
+         vC2yPb22P/OGzfz0cqvysej6IgreHDQyJeynpYoratkIRA11hn37jgFEcO7B7n/ZIcQh
+         w/on13QCDPcE/Xdw3H3/4fl5bzvzdW+pddL9F5vQBzjYjRS7GzMTjqdCNSa4MigjeMcC
+         h7z7YRqpwQxEyx9iM8OW3N+lpvCC4Od7GByAS54DW1TKxSO2Clc4ylirqlMP44V/uLgF
+         bkqXzqxV/OlwALyFl5s+5iVXnlFwRd5VEFWUbOHPBGRPUy5MiRcE6O20f89rL2aQ+0hb
+         u0fg==
+X-Gm-Message-State: ACgBeo2HhHYxehBQ+/nRMwhpjF3BPp/UtjoiUiZvg+68U+PXonZWeFiN
+        WvaoqP3/xbiBVzBxBMWkfMCDGg==
+X-Google-Smtp-Source: AA6agR4VqvkmGRVsnu/p8nE6quW5fqKSSYapdhXGs+labp3XwjT+la4kPogMITPJez/PHlt/EfBBEA==
+X-Received: by 2002:a63:8ac3:0:b0:41b:ba48:e3f6 with SMTP id y186-20020a638ac3000000b0041bba48e3f6mr2151943pgd.567.1659630306651;
+        Thu, 04 Aug 2022 09:25:06 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:87c4:32ca:84b6:e942])
+        by smtp.gmail.com with UTF8SMTPSA id y1-20020a17090322c100b0016d93c84049sm1256747plg.54.2022.08.04.09.25.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Aug 2022 09:25:06 -0700 (PDT)
+Date:   Thu, 4 Aug 2022 09:25:04 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 0/5] Add support for Xiaomi Poco F1 EBBG variant
-Message-ID: <20220804162104.GA1189@bug>
-References: <MN2PR02MB702415D7BF12B7B7A41B2D38D9829@MN2PR02MB7024.namprd02.prod.outlook.com>
- <bb78f8fb-d6ea-5c37-0531-8d7584bc897b@somainline.org>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] usb: dwc3: qcom: fix runtime PM wakeup
+Message-ID: <Yuvy4CjCgs48nFnM@google.com>
+References: <20220802151404.1797-1-johan+linaro@kernel.org>
+ <20220802151404.1797-5-johan+linaro@kernel.org>
+ <YurviWfzut9sursr@google.com>
+ <Yut2tLqGfu82xcDs@hovoldconsulting.com>
+ <YuvnLliIKLK71wx0@google.com>
+ <YuvuJR0ZqSvwMSi1@hovoldconsulting.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <bb78f8fb-d6ea-5c37-0531-8d7584bc897b@somainline.org>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YuvuJR0ZqSvwMSi1@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+On Thu, Aug 04, 2022 at 06:04:53PM +0200, Johan Hovold wrote:
+> On Thu, Aug 04, 2022 at 08:35:10AM -0700, Matthias Kaehlcke wrote:
+> > On Thu, Aug 04, 2022 at 09:35:16AM +0200, Johan Hovold wrote:
+> 
+> > After enabling runtime suspend for the dwc3 core, dwc3 glue and the xHCI
+> > the dwc3-qcom enters autosuspend when the delay expires.
+> > 
+> > > And the controller is resumed in the wakeup-interrupt handler for the
+> > > runtime PM case.
+> > >
+> > > It seems to work ok, and it looks like the driver has supported this
+> > > since it was first merged.
+> > 
+> > With and without your patch dwc3-qcom enters autosuspend and stays there.
+> > USB devices like a mouse or a USB to Ethernet adapter keep working while
+> > the glue is suspended.
+> 
+> Are you sure you're looking at the right controller? And that it is
+> actually suspended?
 
-> > - Tianma variant with NOVATEK NT36672A panel + touchscreen manufactured
-> >   by Tianma
-> > - EBBG variant with Focaltech FT8719 panel + touchscreen manufactured
-> >   by EBBG
-> >=20
-> > The current sdm845-xiaomi-beryllium.dts represents tianma panel variant.
-> >=20
-> > To add support for the EBBG variant, let's split this into 3 files,
-> > - sdm845-xiaomi-beryllium-common.dtsi which contains all the common nod=
-es
-> > - sdm845-xiaomi-beryllium-tianma.dts for the tianma variant
-> > - sdm845-xiaomi-beryllium-ebbg.dts for the ebbg variant
-> >=20
-> > Note:
-> > -----
-> > Both the panels are already upstreamed and the split is based on them.
-> > There were patches earlier for both the touchscreens, but they are not
-> > accepted upstream yet. Once they are accepted, we will add them to
-> > respective variants.
-> Hi,
->=20
-> I believe this is not the correct approach. This may work short-term, but
-> you will have to prepare 2 separate images for the device and mistaking t=
-hem
-> may cause irreversible hw damage at worst, or lots of user complaining at=
- best.
-> Instead, I think it's about time we should look into implementing dynamic=
- panel
-> detection.
+Good point! My mind was set on a SC7180 system, which has a single dwc3
+controller, but this time I was tinkering on a SC7280 board, which has
+two dwc3, and obviously I was looking at the wrong one (－‸ლ)
 
-It is certainly better than current state. Now user will need to decide what
-panel he has.
+> If you plug in a keyboard, enable autosuspend for all devices in the
+> path (from glue to the keyboard device) and type away, then the
+> controller must remain active. Stop typing, and all devices in the chain
+> should suspend.
 
-> Qualcomm devices do this by parsing the command line [1], as LK/XBL
-> gives you a nice-ish string to work with that you can simply match
-> against a label. Other vendors may use custom mechanisms, such as
-> a resistor / GPIO to determine which panel (or generally hw config),
-> but implementing this mechanism would make upstreaming of lots of other
-> devices easier..
+That's what I expected, and now that I'm looking at the right controller
+I'm seeing it. I wondered whether the glue device was somehow special.
 
-I believe ideal solution would be bootloader passing the correct dtb to the
-kernel...
+> > How is the runtime resume triggered for the dwc3 glue?
+> 
+> Either by the host driver when it needs to access the device, or by the
+> device if it is remote-wakeup capable (e.g. a keyboard, but not
+> necessarily a speaker).
+> 
+> Note that the latter part is what is broken currently as the wakeup
+> interrupts were not enabled and those are needed to wake up sc8280xp 
+> when the dwc3 glue has been runtime suspended.
 
-Best regards,								Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
+Thanks for helping me to get a better understanding!
