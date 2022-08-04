@@ -2,120 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FEF5589B89
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 14:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FA9C589C38
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 15:10:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234356AbiHDMSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 08:18:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45898 "EHLO
+        id S239572AbiHDNKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 09:10:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233792AbiHDMS3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 08:18:29 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D71B2A731;
-        Thu,  4 Aug 2022 05:18:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 10ED9B8252E;
-        Thu,  4 Aug 2022 12:18:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA4E3C43140;
-        Thu,  4 Aug 2022 12:18:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659615505;
-        bh=VPy4gOhLAIpcEpCpUQviQR/3l5W+JOweTJEO9bhx0MM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sBCR6LBGmB88ZHFVlbP1xV3YYJDnOXIY2oBtZF9ENc9QRCvsVI0f0vpi9nbNmbeJc
-         WTIhRsZIbjakfGYlAS+/7nrvT/FAe+PycOjJicMf0+VmbnCtDz0bqn9UfQ4E7GTSxT
-         yR2Xsd1COT1p6uvqMuJlpynT2jEVzLRFzZetLN7cM0Ni9vExvHUjaZRcY/uQ4gpvJm
-         2vHhKke/Gx1Lok4j+c66Guq6F7+5Upcw6z/beeaaUwriYO67nq0Zfbe/LB46nOp0hK
-         JKjzt1FEQwd771WpQ3hl8OUiujdOujIC0HbYSuvwZ6WIVKScfoiM3/P0gcH9NMWMlZ
-         L6cLSNmWvFffQ==
-Received: by mail-vk1-f175.google.com with SMTP id l13so5968233vka.12;
-        Thu, 04 Aug 2022 05:18:25 -0700 (PDT)
-X-Gm-Message-State: ACgBeo1IcaRAjExtewGNK7QJi42UBgSiX9N7rDk9FO4V34NlQcMheSrp
-        ARPF6H7qZ9eTLmIdQwjntyYhu2Fp3xMlILsfmQ==
-X-Google-Smtp-Source: AA6agR6r3Gwd/3cMDJKLUspCXNMYclDrolN1aI8mXCLLEHHB0WH8YkK47F3HReZYbVrZbg4WFEluJ4z1fiMkfoy/SPQ=
-X-Received: by 2002:ac5:c959:0:b0:377:adad:62cb with SMTP id
- s25-20020ac5c959000000b00377adad62cbmr608849vkm.26.1659615504466; Thu, 04 Aug
- 2022 05:18:24 -0700 (PDT)
+        with ESMTP id S239598AbiHDNKA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 09:10:00 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEB82193C7
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 06:09:58 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id v5so10286911wmj.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 06:09:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/550FRoRwhwiWa23UJcURfUhwjAKd0WneHpFmZPlwqw=;
+        b=nHKiKcjX72Na/r5yh2xsHteZvjaIFfk3+PwiCpogq5p/Or0Oc//pj3zPrKYmUlEr5V
+         zLzQZ6rmU6Vfkv7uL/DnL7HAtHYnNAakGKkSMbjXhzbQs4HqtZv6UZOy2M016wbIWgOy
+         +wApUHQaQwm0NLF//egJ1amCnId7COEMhnaOMeqGrgXo926zvAgU95BqKK5Gb+xQjBT3
+         78zRJKXfTDc1hvcTOVzh3sfxdDQIiDw8zG0v8RDVUyZXLquxH67A7briquUYzekmDgs/
+         igPuK2C7sPS8vFK0ZEK4GTesaEfgxsLQ4Hxy4+Bi1uFlZI8LKWcSu89Zami5qbnQIanR
+         A5Wg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/550FRoRwhwiWa23UJcURfUhwjAKd0WneHpFmZPlwqw=;
+        b=FedIVp8iLouxjKpSqVKbbQ5SccCBhSRmczDBimsaSuB9qVweOSFB4WHp4OsEWceONR
+         kiiNB9Xe+t9e51c1dg/U4sghcZ8s7Hkprahom0XAMM46qAqwBXP7HY8FHG4VeruQe3v0
+         MnkN3sc6bD3ipqeMbTkjq7Fk5WO1dOI6hVTUhCGB9k3Z5FSRmIKyE4Ngm9QBxZ4hbiFp
+         txF1ST4Wl4XRsfWDLnr7m9Zo6U4/Am0F+oqvQL65ckO83wWjqw+H/zavo2GXwv3dJRi2
+         T35SvyNQ0eQ5amXZPDU52hsDakThevpzWxgl1bblUpf99yFMNtMt8IrCq1s66VIlz8nv
+         931Q==
+X-Gm-Message-State: ACgBeo3kyRGhwvQqz8DdU7m5wry3SkvQ9X8L8NM/EHM5J8CK7CqM2O5T
+        73Rth+tWTvn+a5lOEM6rFUqBfQ==
+X-Google-Smtp-Source: AA6agR5EDjcdFhE33k318QdP42SioQ8FJinf54Xtn+XGNTbDKaLLK6czAFeIqHHSqOI7XN4hCvAOog==
+X-Received: by 2002:a05:600c:4fd4:b0:3a3:2c30:5749 with SMTP id o20-20020a05600c4fd400b003a32c305749mr1405025wmq.62.1659618596268;
+        Thu, 04 Aug 2022 06:09:56 -0700 (PDT)
+Received: from Balsam-ThinkPad-T480.. (235.163.185.81.rev.sfr.net. [81.185.163.235])
+        by smtp.gmail.com with ESMTPSA id o15-20020adfcf0f000000b0021d6a520ce9sm1156817wrj.47.2022.08.04.06.09.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Aug 2022 06:09:55 -0700 (PDT)
+From:   bchihi@baylibre.com
+To:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amitk@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        khilman@baylibre.com, mka@chromium.org, robh+dt@kernel.org,
+        krzk+dt@kernel.org, matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+Subject: [PATCH v8.1, 0/7] Add LVTS architecture thermal
+Date:   Thu,  4 Aug 2022 15:09:05 +0200
+Message-Id: <20220804130912.676043-1-bchihi@baylibre.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220804061133.4110734-1-victor.liu@nxp.com> <20220804061133.4110734-2-victor.liu@nxp.com>
-In-Reply-To: <20220804061133.4110734-2-victor.liu@nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 4 Aug 2022 06:18:13 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+B5PMOmZO4hz5DyEsA4V=UkrNn-6b58h8VbcPa2iaQ1g@mail.gmail.com>
-Message-ID: <CAL_Jsq+B5PMOmZO4hz5DyEsA4V=UkrNn-6b58h8VbcPa2iaQ1g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] drivers: bus: simple-pm-bus: Populate simple MFD
- child devices
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 4, 2022 at 12:10 AM Liu Ying <victor.liu@nxp.com> wrote:
->
-> There could be simple MFD device(s) connected to a simple PM bus as child
-> node(s), like Freescale i.MX8qxp pixel link MSI bus. Add a child match
-> table as an argument to of_platform_populate() function call to specify
-> the simple MFD devices so that they can be populated.
+From: Balsam CHIHI <bchihi@baylibre.com>
 
-There could be a simple-bus under it as well. You should just use
-of_platform_default_populate() instead.
+This series moves thermal files related to MediaTek to the mediatek folder.
+And introduce the new architecture LVTS (low voltage thermal sensor) driver to report
+the highest temperature in the SoC and record the highest temperature sensor,
+each sensor as a hot zone.
+The LVTS body is divided into two parts, the LVTS controller and the LVTS device.
+The LVTS controller can connect up to 4 LVTS devices, and each LVTS device
+can connect up to 7 TSMCUs.
 
->
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v1->v3:
-> * No change.
->
->  drivers/bus/simple-pm-bus.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
-> index 6b8d6257ed8a..ff5f8ca5c024 100644
-> --- a/drivers/bus/simple-pm-bus.c
-> +++ b/drivers/bus/simple-pm-bus.c
-> @@ -13,6 +13,11 @@
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
->
-> +static const struct of_device_id simple_pm_bus_child_matches[] = {
-> +       { .compatible = "simple-mfd", },
-> +       {}
-> +};
-> +
->  static int simple_pm_bus_probe(struct platform_device *pdev)
->  {
->         const struct device *dev = &pdev->dev;
-> @@ -49,7 +54,7 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
->         pm_runtime_enable(&pdev->dev);
->
->         if (np)
-> -               of_platform_populate(np, NULL, lookup, &pdev->dev);
-> +               of_platform_populate(np, simple_pm_bus_child_matches, lookup, &pdev->dev);
->
->         return 0;
->  }
-> --
-> 2.25.1
->
+The architecture will be the first to be used on mt8192 and mt8195.
+
+Changelog:
+Changes in v8.1 :
+        - Fix Coding style issues
+        - Rebase on top of next-20220803
+        - Add multi-instance support :
+          - Rewrite DT-binding and DTS :
+            - Add DT-binding and DTS for LVTS_v4 (MT8192 and MT8195)
+            - One LVTS node for each HW Domain (AP and MCU)
+          - One SW Instance for each HW Domain
+          - Add a Kconfig sub-menu entry for LVTS and LVTS_v4 SoCs
+        - Replace platform_get_resource by platform_get_mem_or_io to get Base Address
+        - Replace platform_get_resource by platform_get_irq to get Interrupt Number
+        - Add "lvts_" prefix to functions and structs
+
+Changes in v7 :
+        - Fix coding style issues
+        - Rewrite dt bindings
+          - was not accurate
+          - Use mt8195 for example (instead of mt8192)
+          - Rename mt6873 to mt8192
+          - Remove clock name
+        - Rebased on top of to series:
+          - https://patchwork.kernel.org/project/linux-mediatek/list/?series=637849
+          - https://patchwork.kernel.org/project/linux-pm/list/?series=639386
+
+Changes in v6 :
+        - Remove temperature aggregation (it will be added in another series)
+        - Update the way to read the temperature (read one sensor instead of all)
+        - Add support of mt8195
+
+Changes in v5 :
+        - Use 'git mv' for the relocated file.
+
+Changes in v4 :
+        - Rebase to kernel-v5.13-rc1
+        - Resend
+
+Changes in v3 :
+        - change the expression in the lvts_temp_to_raw to dev_s64.
+
+Changes in v2 :
+        - Rebase to kernel-5.11-rc1.
+        - sort headers
+        - remove initial value 0 of msr_raw in the lvts_temp_to_raw.
+        - disconstruct the api of lvts_read_tc_msr_raw.
+        - add the initial value max_temp = 0 and compare e.q.
+          in the lvts_read_all_tc_temperature.
+        - add the return with an invalid number in the lvts_init.
+
+Alexandre Bailon (2):
+  dt-bindings: thermal: Add binding document for LVTS thermal
+    controllers
+  arm64: dts: mt8195: Add efuse node to mt8195
+
+Balsam CHIHI (1):
+  arm64: dts: mt8192: Add thermal zone
+
+Michael Kao (3):
+  thermal: mediatek: Relocate driver to mediatek folder
+  thermal: mediatek: Add LVTS driver for mt8192 thermal zones
+  thermal: mediatek: Add thermal zone settings for mt8195
+
+Tinghan Shen (1):
+  arm64: dts: mt8195: Add thermal zone
+
+ .../thermal/mediatek,lvts-thermal.yaml        |  77 ++
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      | 113 ++-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 125 ++-
+ drivers/thermal/Kconfig                       |  14 +-
+ drivers/thermal/Makefile                      |   2 +-
+ drivers/thermal/mediatek/Kconfig              |  47 +
+ drivers/thermal/mediatek/Makefile             |   3 +
+ drivers/thermal/mediatek/lvts_thermal.c       | 855 ++++++++++++++++++
+ drivers/thermal/mediatek/lvts_thermal.h       | 377 ++++++++
+ drivers/thermal/mediatek/lvts_v4.c            | 464 ++++++++++
+ .../mtxxxx_thermal.c}                         |   2 +-
+ 11 files changed, 2065 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
+ create mode 100644 drivers/thermal/mediatek/Kconfig
+ create mode 100644 drivers/thermal/mediatek/Makefile
+ create mode 100644 drivers/thermal/mediatek/lvts_thermal.c
+ create mode 100644 drivers/thermal/mediatek/lvts_thermal.h
+ create mode 100644 drivers/thermal/mediatek/lvts_v4.c
+ rename drivers/thermal/{mtk_thermal.c => mediatek/mtxxxx_thermal.c} (99%)
+
+-- 
+2.34.1
+
