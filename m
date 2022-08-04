@@ -2,162 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 519E558984F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 09:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A22C589853
+	for <lists+devicetree@lfdr.de>; Thu,  4 Aug 2022 09:27:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239100AbiHDHZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 03:25:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48260 "EHLO
+        id S234569AbiHDH1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 03:27:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233316AbiHDHZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 03:25:39 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05342BF63
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 00:25:37 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id q7so21175055ljp.13
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 00:25:36 -0700 (PDT)
+        with ESMTP id S231474AbiHDH1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 03:27:47 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A1D20BED
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 00:27:45 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id x25so879574ljm.5
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 00:27:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tnOwkKfhBzXFppIxRkEPpyNln0liXtEqX58YRBpJcr8=;
-        b=KaBX5C27LU2/hiVV41fSRkEObVVMYRvfYHSIbaXVoHOpgKYVOS4QKSU78WR0R5+b9a
-         OF+nzgrQ97gospGyxLfTDJvji0fJzMtG6v4s0CH5S0dGTdF4c3VSDpo87ozuZDrlXGfz
-         hFrmYFfZti4EdlIVJ+ij29gERCwU0TCakfaI/YHBdE6kYhTw8npkUQEKxbQDKaJeEx95
-         bJpHQLNv9DmZlIrF7IrpiHo0n/gntGbQRSL8spUyRFeDqhZm8czbKSHvH0Hr658EMLX+
-         dkaJNTlUaQ+wg7SgajA3tBtf5O+v82Xjx9mcAtSZXmxRtH7D7I20Q63MYjC0Lw0TfrxF
-         KNGg==
+        bh=aSyB3KJvrvJ0BogoctkXI4bVjQHmZ/gYUNXbje+/kOI=;
+        b=TU9evHAWie+NDvs31nlalQNM1idI+WkZwpcUz6CgiQBvPAoiFI2fyRqVlPHwBabC46
+         MGadz82yrmKN07C0zIhnmyQU+J/+O8cGd5vxvUUALAC8T1/hxIcD3DITYGbmcvCOIjty
+         i/pOoEXqxi5Pvu0s05LUVK2CBbvplob+asCuGESh0ZQHS3SXQv8NCezyjawaF6S3bdll
+         05mUpDIZ/oO9EDj015QqzR4IMsYC0dXjVdDzyzF6gdnqQ5zJSs2ULUgAvy+0a8pKI7fT
+         LPdo1vjDCi30zJI8DhsBsDj7pSnymij7ReeUrQASZX+MgXuo54tC2+ZbP1rafHAgwKXD
+         OFMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=tnOwkKfhBzXFppIxRkEPpyNln0liXtEqX58YRBpJcr8=;
-        b=H+Iewe83lQg8yTXHQdS+Gg/ziK0vDWRHDSn4ZDEn1m5HpIBSxu+4a5NkyMK+umIR/k
-         Z7lfgsTh8y82HROlqHLIiQpt1p0EqQTwGjkVUd2Gs02vUVyvlML6MCZzcKclt7WcuBfB
-         UVTsSUylPCMPre4yZ9pZYSO9jLK4W5LeMu1yverdszaElTRC7Diyrxc/ogR158eamvyQ
-         0s+PI50pPFNs1bhZjDSmMC2yAq5iCpre5oW/Sd8UwmhRYV+Xmr6koJMmMNgT+RdFNkLX
-         AvbQhguuf/JmraZqEeWLsguXuKS7U5iSvYctH0fEieM4woLBudNweHU6HKwQjrhhjZ5X
-         9k9A==
-X-Gm-Message-State: ACgBeo2KcA9OWQUp7oiVF5+t/IxFJ8Df2OMZkEz/204xfbS60Mf+D5mk
-        rahKOqbBSq8Z2A1yfKA8+MMiNg==
-X-Google-Smtp-Source: AA6agR76ryk0wDxrVOrzMuTszxXgfwzTdW7WwyPRIhNvuxMuIMxK8DVdk/uToJEoH+F0vEOAkYdCdw==
-X-Received: by 2002:a2e:9e43:0:b0:25d:d8e9:7b15 with SMTP id g3-20020a2e9e43000000b0025dd8e97b15mr163697ljk.234.1659597935350;
-        Thu, 04 Aug 2022 00:25:35 -0700 (PDT)
+        bh=aSyB3KJvrvJ0BogoctkXI4bVjQHmZ/gYUNXbje+/kOI=;
+        b=To3Qs4psmD7z0d5uj/R7TIjIUI6ARPsQj02IqXTCNDHU3j2iJVbyHt+lJtQzYNhwTf
+         ZC088AfTMnfsp/zCKiC2a/N1A0HdfN6MawPMbwN56PMWAT2BQNZvzUHoZGrFjSYZCiht
+         hw4vtwHR2GZzzjgxUOeyyBHWpwKcp6sRVNLfTMRg1sMz97grqvC4AGIAmqZRexyn+ifp
+         Tn6tAde3KlTjc5oWlcFrZgMesvWjNZlw3sup5ff90QX3t5GiNoZBbXAhkf7pVueeckmi
+         hQiWcc4gCqDhkiVACvTtWqCOTHVR6sI/o4IlLyoIb0NgSJX9/lwVo+P/Am5kdg7f+guc
+         vXxw==
+X-Gm-Message-State: ACgBeo1FdF7gjjhCEC8lZa5CFL0yVkKQ0xZ57LsBjKzz1KIKKejBWRHP
+        gEHkPV1pFBAEOCgZAPj6Id1LaA==
+X-Google-Smtp-Source: AA6agR7+xRRDz610IRndZlm62HvuIryr79N8uLtJ4lMJe0TKFOdU4fTobPtr6nSF4CDtBtL6EVRPoQ==
+X-Received: by 2002:a2e:83d0:0:b0:25e:4afd:b28d with SMTP id s16-20020a2e83d0000000b0025e4afdb28dmr152816ljh.507.1659598064158;
+        Thu, 04 Aug 2022 00:27:44 -0700 (PDT)
 Received: from [192.168.1.6] ([77.222.167.48])
-        by smtp.gmail.com with ESMTPSA id bi36-20020a05651c232400b0025e5ff004a0sm17514ljb.100.2022.08.04.00.25.31
+        by smtp.gmail.com with ESMTPSA id w4-20020ac25984000000b0048a9a756763sm32790lfn.19.2022.08.04.00.27.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 00:25:34 -0700 (PDT)
-Message-ID: <1d6b475b-412d-da94-8505-0fd6f8f6a2c9@linaro.org>
-Date:   Thu, 4 Aug 2022 09:25:30 +0200
+        Thu, 04 Aug 2022 00:27:43 -0700 (PDT)
+Message-ID: <89ea12c2-d4ef-490d-ff28-27b636adb05f@linaro.org>
+Date:   Thu, 4 Aug 2022 09:27:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v2] pmic: add mt6366 regulator document
+Subject: Re: [PATCH v2 02/10] dt-bindings: iio: accel: use
+ spi-peripheral-props.yaml
 Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>,
-        =?UTF-8?B?WmhpeW9uZyBUYW8gKOmZtuW/l+WLhyk=?= 
-        <Zhiyong.Tao@mediatek.com>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        =?UTF-8?B?RWRkaWUgSHVhbmcgKOm7g+aZuuWCkSk=?= 
-        <eddie.huang@mediatek.com>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "fshao@chromium.org" <fshao@chromium.org>
-Cc:     =?UTF-8?B?U2VuIENodSAo5YKo5qOuKQ==?= <Sen.Chu@mediatek.com>,
-        =?UTF-8?B?SHVpIExpdSAo5YiY6L6JKQ==?= <Hui.Liu@mediatek.com>,
-        =?UTF-8?B?QWxsZW4tS0ggQ2hlbmcgKOeoi+WGoOWLsyk=?= 
-        <Allen-KH.Cheng@mediatek.com>,
-        =?UTF-8?B?SHNpbi1Ic2l1bmcgV2FuZyAo546L5L+h6ZuEKQ==?= 
-        <Hsin-Hsiung.Wang@mediatek.com>,
-        Sean Wang <Sean.Wang@mediatek.com>,
-        =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= 
-        <Macpaul.Lin@mediatek.com>,
-        =?UTF-8?B?V2VuIFN1ICjomIflhqDmlocp?= <Wen.Su@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        zhiyong tao <zhiyong.tao@mediatk.com>
-References: <20220728062749.18701-1-zhiyong.tao@mediatek.com>
- <20220728062749.18701-2-zhiyong.tao@mediatek.com>
- <03a13ed4-e7cd-6f7d-f8f7-9b1e6193e202@linaro.org>
- <3d97d4c46467909739b8b69662412fe162dbe613.camel@mediatek.com>
+To:     Rob Herring <robh@kernel.org>, Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lucas Stankus <lucas.p.stankus@gmail.com>,
+        Puranjay Mohan <puranjay12@gmail.com>,
+        Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Alexandru Tachici <alexandru.tachici@analog.com>,
+        Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        Kent Gustavsson <kent@minoris.se>,
+        Tomislav Denis <tomislav.denis@avl.com>,
+        Oleksij Rempel <linux@rempel-privat.de>, kernel@pengutronix.de,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Ricardo Ribalda <ribalda@kernel.org>,
+        Dragos Bogdan <dragos.bogdan@analog.com>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Joachim Eastwood <manabian@gmail.com>,
+        Tomas Melin <tomas.melin@vaisala.com>,
+        Sean Nyekjaer <sean@geanix.com>,
+        Beniamin Bia <beniamin.bia@analog.com>,
+        Patrick Vasseur <patrick.vasseur@c-s.fr>,
+        Charles-Antoine Couret <charles-antoine.couret@essensium.com>,
+        Vladimir Barinov <vladimir.barinov@cogentembedded.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Philippe Reynes <tremyfr@yahoo.fr>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Akinobu Mita <akinobu.mita@gmail.com>,
+        Alexandru Lazar <alazar@startmail.com>,
+        Oskar Andero <oskar.andero@gmail.com>,
+        =?UTF-8?Q?M=c3=a5rten_Lindahl?= <martenli@axis.com>,
+        Bogdan Pricop <bogdan.pricop@emutex.com>,
+        Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+        Matt Ranostay <matt.ranostay@konsulko.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Phil Reid <preid@electromag.com.au>,
+        Michael Welling <mwelling@ieee.org>,
+        Lukas Wunner <lukas@wunner.de>,
+        Robert Jones <rjones@gateworks.com>,
+        Chris Coffey <cmc@babblebit.net>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Sankar Velliangiri <navin@linumiz.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        broonie@kernel.org
+References: <20220727164646.387541-1-krzysztof.kozlowski@linaro.org>
+ <20220727164646.387541-3-krzysztof.kozlowski@linaro.org>
+ <20220731164943.320babe4@jic23-huawei>
+ <20220803212926.GA2639296-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3d97d4c46467909739b8b69662412fe162dbe613.camel@mediatek.com>
+In-Reply-To: <20220803212926.GA2639296-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/08/2022 11:50, Rex-BC Chen wrote:
-> On Thu, 2022-07-28 at 18:46 +0800, Krzysztof Kozlowski wrote:
->> On 28/07/2022 08:27, Zhiyong Tao wrote:
->>> From: zhiyong tao <zhiyong.tao@mediatek.com>
->>>
->>> Add mt6366 regulator document
+On 03/08/2022 23:29, Rob Herring wrote:
+>>> I wonder if spi-3wire is device specific (not controller) and should be
+>>> rather explicitly mentioned by device schema. Just like spi-cpol/cpha.
 >>
->> As usual with Mediatek your emails fail to properly pass modern SMTP
->> checks and you end up in spam.
->>
->> I reported it months ago to folks in Mediatek. No improvements since
->> that time.
->>
->> I stopped checking my spam folder for Mediatek stuff and all will be
->> ignored. I will also stop complaining about it - just ignore
->> Mediatek.
->>
->> Fix your systems, instead of putting additional effort on community
->> and
->> on reviewers.
->>
+>> I think it is, but Mark is expert on this.
 > 
-> Hello Krzysztof,
-> 
-> I am Rex from MediaTek chrome project team.
-> We noticed your complain of our upstream mail.
-> 
-> First of all, sorry for the inconvenience.
-> We really want to fix this SPAM issue.
-> 
-> From our side, we can make sure mails for kernel upstream from MediaTek
-> is clear and these mails pass the verification of DMARC/DKIM/SPF.
-> Therefore, to identify the root cause, could you please provide us some
-> mails that seen as SPAM from MediaTek?
-> It's more useful if you can use the form of attachment. In that case,
-> we can analyze whole mails including mail headers.
-> 
-> We really appreciate your big support, and we hope we can fix this
-> issue to reduce the inconvenience for reviewing series from MediaTek.
-> If you can spare some time to help us for this, it would very helpful!!
-> 
-> Our IT also adjust the DKIM setting today. If the situation of this
-> issue it much better, please also let us know.
-> 
+> I would say yes as it's the device with a single data line.
 
-Hi,
+I will move it to device schema, just like cpol/cpha, and send a v3.
+After the merge window.
 
-Since few days there were no @mediatek.com emails in my spam folder,
-either because nothing was sent to me, or they passed spam filters.
+> 
+>> In general I'm waiting on Mark's opinion on the whole idea!
+> 
+> The prerequisite changes (except for spi-3-wire) are already queued up 
+> by Mark as are changes for other subsystems.
 
-If this is the result of some changes, then it seems working. Thank you.
-
-I'll let you now when I find something new in the spam.
 
 Best regards,
 Krzysztof
