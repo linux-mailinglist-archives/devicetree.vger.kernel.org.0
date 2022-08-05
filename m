@@ -2,115 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F169058AC13
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 16:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E730458AC22
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 16:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236448AbiHEOEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 10:04:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39090 "EHLO
+        id S236440AbiHEOJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 10:09:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230095AbiHEOEi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 10:04:38 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B3351F2CE;
-        Fri,  5 Aug 2022 07:04:36 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id DA4E85FD06;
-        Fri,  5 Aug 2022 17:04:34 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1659708274;
-        bh=KBHblqB033On8iyxviJajlqGBNdVHnA7KT9CW2gE/Lw=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=nmsuo8O3gjphxB1Y+GR8qX5k5BykpoyJSqR+ckPCrQ5Cj979RpcfWQwAaD0ZD3Q40
-         XJ3/8drpy5pv699lF8DRllZvu6LPobl3Vfc1k9AHbQSzJqlux8AsCE3xOO8OBvtgPE
-         GftZHWSXtpS4wAx9Bd7/Adj51D3qcr6ASlCCM2DEVhdrCp4ijyTXpTwndVfRaBD4/C
-         vSJk1OZGGMXuW4QcZIjCnN21XQIe+P0SP3CcQd97dKCVr1qFKw1a8eJmnIygxINnnu
-         cG2jlfmiK1e9kjrShzeLrebOSSE4MopfN2I2NhUMGyLNIgdf7NocCiEDmH309UtAPE
-         Tt5nY+m4VEGSA==
-Received: from S-MS-EXCH02.sberdevices.ru (S-MS-EXCH02.sberdevices.ru [172.16.1.5])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Fri,  5 Aug 2022 17:04:34 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel <kernel@sberdevices.ru>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
- driver
-Thread-Topic: [PATCH v4 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
- driver
-Thread-Index: AQHYpzqIoQnaRj7vNkq2cXUUGjAB/62dQgeAgAAYQICAAYHbgIAAA5UAgAFIGQA=
-Date:   Fri, 5 Aug 2022 14:04:06 +0000
-Message-ID: <20220805140430.c773smfzxg5zcj4b@CAB-WSD-L081021.sigma.sbrf.ru>
-References: <20220803131132.19630-1-ddrokosov@sberdevices.ru>
- <20220803131132.19630-3-ddrokosov@sberdevices.ru>
- <CAHp75VcVuC6yVoB1kycCOfqMa=JfCtbe3WYSK5qndtYcJy3vpg@mail.gmail.com>
- <20220803191621.tzrmndkygfe7nlpx@CAB-WSD-L081021.sigma.sbrf.ru>
- <20220804181723.4bljpxcwkj6cnn2f@CAB-WSD-L081021.sigma.sbrf.ru>
- <CAHp75Vcn6JCDDvugop2Ho1cayLi1CX78O42v3GifvnuSY5fvPA@mail.gmail.com>
-In-Reply-To: <CAHp75Vcn6JCDDvugop2Ho1cayLi1CX78O42v3GifvnuSY5fvPA@mail.gmail.com>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <2569579201B2C14EB99D8D1151005A20@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/08/05 06:43:00 #20054623
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230095AbiHEOJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 10:09:55 -0400
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0521D21E1D;
+        Fri,  5 Aug 2022 07:09:54 -0700 (PDT)
+Received: by mail-il1-f177.google.com with SMTP id g18so1429536ilk.4;
+        Fri, 05 Aug 2022 07:09:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc;
+        bh=4wU29egtLMNG+tGI0yk/oLxzbleDgRoflVboG4WD0GM=;
+        b=NQZVvYaofgHp5VxlbvAFoYynkodJJzDMvyy/pha9rLYbT6SbvfLjrCkLsHebilRX+y
+         eKj+xzXmQAlF6LQ6R5ud+BbgWEGOEI7kr6cf8nIiKhz3p4YGwCicqBNBvxsNc0CUo3oR
+         nzF/1EwwGglJ0R+j6vFwYNrrY2eomDSJ3FpUsMnXugCeaYZKM7GHA2JtZx8YzCxtaAMp
+         niT08vWY87BoCdLhQBMzrCkR1nRY7wuJiU25ZeI2Kxjn+PzdwN/yzHqNHj1uOI7H+F5m
+         Jau5boNMOoJCF0gF9fs7u+q443uq6NJdi4FQ/SufWlfh1FxXlS5TYn7GRy8MmqImmp4e
+         j4oA==
+X-Gm-Message-State: ACgBeo3I4IITGmOS6GqyuJDKqkj6/SqWFXzQYwKPB3EdO9JeOW5oPNyg
+        R0yuFl7NIWBydVtRo1/3Qw==
+X-Google-Smtp-Source: AA6agR5/LQJibOTqVIimFgDhK095NQ+fg7nigus3m4Dfff2GNYlsUbKl8lciS3gMG3znsPQfY2wOsg==
+X-Received: by 2002:a05:6e02:1a87:b0:2de:8da2:9ecf with SMTP id k7-20020a056e021a8700b002de8da29ecfmr3104073ilv.263.1659708593198;
+        Fri, 05 Aug 2022 07:09:53 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id s17-20020a92cc11000000b002ddf58d8828sm1687134ilp.19.2022.08.05.07.09.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Aug 2022 07:09:52 -0700 (PDT)
+Received: (nullmailer pid 1802483 invoked by uid 1000);
+        Fri, 05 Aug 2022 14:09:50 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        linux-phy@lists.infradead.org,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Vinod Koul <vkoul@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+In-Reply-To: <20220804220602.477589-3-sean.anderson@seco.com>
+References: <20220804220602.477589-1-sean.anderson@seco.com> <20220804220602.477589-3-sean.anderson@seco.com>
+Subject: Re: [PATCH v4 2/8] dt-bindings: phy: Add Lynx 10G phy binding
+Date:   Fri, 05 Aug 2022 08:09:50 -0600
+Message-Id: <1659708590.965354.1802482.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 08:30:12PM +0200, Andy Shevchenko wrote:
-> > > > > +               dev_err(dev, "cannot %s register %u from debugfs =
-(%d)\n",
-> > > > > +                       readval ? "read" : "write", reg, err);
-> > > >
-> > > > You may consider taking [1] as a precursor here and use str_read_wr=
-ite().
-> > > >
-> > > > [1]: https://lore.kernel.org/linux-i2c/20220703154232.55549-1-andri=
-y.shevchenko@linux.intel.com/
-> > >
-> > > Oh, really... Thank you for suggestion!
-> >
-> > I have taken it closer, and it's really helpful and nice, but looks lik=
-e
-> > it's not merged to linux-next.
-> > Please advise how I can use it in the driver. Should I provide
-> > "Depends-On:" tag as I did for my HZ units patchset?
->=20
-> No, just take that patch into your series.
+On Thu, 04 Aug 2022 18:05:56 -0400, Sean Anderson wrote:
+> This adds a binding for the SerDes module found on QorIQ processors.
+> Each phy is a subnode of the top-level device, possibly supporting
+> multiple lanes and protocols. This "thick" #phy-cells is used due to
+> allow for better organization of parameters. Note that the particular
+> parameters necessary to select a protocol-controller/lane combination
+> vary across different SoCs, and even within different SerDes on the same
+> SoC.
+> 
+> The driver is designed to be able to completely reconfigure lanes at
+> runtime. Generally, the phy consumer can select the appropriate
+> protocol using set_mode.
+> 
+> There are two PLLs, each of which can be used as the master clock for
+> each lane. Each PLL has its own reference. For the moment they are
+> required, because it simplifies the driver implementation. Absent
+> reference clocks can be modeled by a fixed-clock with a rate of 0.
+> 
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> ---
+> 
+> Changes in v4:
+> - Use subnodes to describe lane configuration, instead of describing
+>   PCCRs. This is the same style used by phy-cadence-sierra et al.
+> 
+> Changes in v3:
+> - Manually expand yaml references
+> - Add mode configuration to device tree
+> 
+> Changes in v2:
+> - Rename to fsl,lynx-10g.yaml
+> - Refer to the device in the documentation, rather than the binding
+> - Move compatible first
+> - Document phy cells in the description
+> - Allow a value of 1 for phy-cells. This allows for compatibility with
+>   the similar (but according to Ioana Ciornei different enough) lynx-28g
+>   binding.
+> - Remove minItems
+> - Use list for clock-names
+> - Fix example binding having too many cells in regs
+> - Add #clock-cells. This will allow using assigned-clocks* to configure
+>   the PLLs.
+> - Document the structure of the compatible strings
+> 
+>  .../devicetree/bindings/phy/fsl,lynx-10g.yaml | 236 ++++++++++++++++++
+>  1 file changed, 236 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-10g.yaml
+> 
 
-Do you mean include your patch to this reply-thread through the
-message-id linking? If my understanding is correct, maybe also it's better =
-to
-include HZ units series to the current series? I mean patch series on
-below link:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-https://lore.kernel.org/linux-iio/20220801143811.14817-1-ddrokosov@sberdevi=
-ces.ru/
+yamllint warnings/errors:
 
---=20
-Thank you,
-Dmitry=
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/phy/fsl,lynx-10g.example.dts:51.27-28 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:383: Documentation/devicetree/bindings/phy/fsl,lynx-10g.example.dtb] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1404: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
