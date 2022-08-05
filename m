@@ -2,125 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8651458AFA1
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 20:15:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEB0D58B04B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 21:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241042AbiHESPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 14:15:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52480 "EHLO
+        id S241150AbiHETWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 15:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbiHESPb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 14:15:31 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 206771A3B0;
-        Fri,  5 Aug 2022 11:15:31 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id e23so2638380qts.1;
-        Fri, 05 Aug 2022 11:15:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=hIkauzgt6OmvCPGlxkDP1V/+2ftR+tSiv6OMUdZBzKo=;
-        b=MRHJitL58YogjWYs6VlFCFKBYkNKnV+HkzbmP4HsstwsDGmDEeAdmt1mXb/OSftO/T
-         VxRRqyON8tIGMg1ZwZgpACMa7R1B6Z1BzSULIbzJr6FP1e5PV6/asDM4uQQrwKqVpk9D
-         jeUZIchOcgL/bIag6uieD2ik0NpvskV7Q3BY5V5sGwvYFt9SQPAvkUViQ7qAGSuAyqX0
-         9wwF2MUEUpxwO0H9/KYJrxsBxSxnEtcqwBwU8njs0rSTe8u0/1HaNSIPbwoUUOaJGlkw
-         E2p0fJ0QMTEQ6mhwG8mLitTkHE91vmoDCspZ2RKSW+3sjwnxgpTDOE8MG7aZX6hKcxLd
-         IgIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=hIkauzgt6OmvCPGlxkDP1V/+2ftR+tSiv6OMUdZBzKo=;
-        b=NdCfN409XEaL1v+f1wpSQ2jyb1trQ6hpaSfzwhifEDTdR5hH7Pee50FQO/a0+lYm5t
-         f1Nr3bhdHKY1oy7SrAjlKrMizwJYbjYHVIUqG+976p1XJzuVLU/I2YMpX50ft8nhvPlV
-         S6w8fcxhKPdMpsPm/tZkXlfr6qkAqQKBYahs8GsSAl9k4tCF1t9DbUCYcM3H341hCPCv
-         kBPwQFATiyzi/Gq8RbAns+83ijf1AAAvMoXV7JRbkmliZbNxc/arXt/NRiCJ7TZTq1NV
-         uXBoV+7yIj7swckeItAeKKDTZ4ogdKVU3Ezw6dLn2mMbO/vWoOzNTi7Il4VvjQvjAI4k
-         issw==
-X-Gm-Message-State: ACgBeo39l0e9YSh0K/wdqzQvnjOubh0f81Yj7d20Nmz8ydu0lvlAoASy
-        jJqmEROvUs13u27bgjDZoqjhW8Uo33eqlP8DgK0=
-X-Google-Smtp-Source: AA6agR4W2hc1NBaVidAmORnlyQuBUgXNo1TsYqx+zcEm7U/mOfADrMnfYr7WuGQvyoi15L+WSZOFRo0DDl7C1lMjXZk=
-X-Received: by 2002:ac8:7f88:0:b0:342:e9dc:ee77 with SMTP id
- z8-20020ac87f88000000b00342e9dcee77mr950460qtj.384.1659723330130; Fri, 05 Aug
- 2022 11:15:30 -0700 (PDT)
+        with ESMTP id S231262AbiHETWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 15:22:38 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7321C65641;
+        Fri,  5 Aug 2022 12:22:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DAE2CB829F7;
+        Fri,  5 Aug 2022 19:22:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92430C433D6;
+        Fri,  5 Aug 2022 19:22:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659727353;
+        bh=6NiXLQm8OcoUZ8csmIKR/ARQpbG7nd98ZNzdAF0IdKc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hvRVdYrVCaYzMJdZQi7TucyGzVAt9jUJykVgus5XNs0aRvS2Sq6n8kzeLrPkZN4kc
+         zdWykUkoZx6Ip1nCKjA2b4MOdGOhEJQWTPodJAjkIC2NggA5fpwOmIl6qy3v3dpD1A
+         A9T2HAT+cOpXP/WF41x+4N1+jCVUmsDQRUFoqWAKWHe/lvqU4Gnyx4IiXVxM9Kdwug
+         USFZWyRY8CHwk8jliYVI4v/jSKe+L0K7pgIf6Dmd840A4gVBzlSg9OIY335+yakyCK
+         DvyCnxnD2WLw76hyAj9Mq9DPw3hn9lnriUY673qvzbWUCjASH/L12YrXB0+93ECG2i
+         z9p6fx5K0hv8A==
+Date:   Fri, 5 Aug 2022 21:22:25 +0200
+From:   Mike Rapoport <rppt@kernel.org>
+To:     Vijayanand Jitta <quic_vjitta@quicinc.com>
+Cc:     Faiyaz Mohammed <quic_faiyazm@quicinc.com>, karahmed@amazon.de,
+        qperret@google.com, robh@kernel.org, akpm@linux-foundation.org,
+        linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, frowand.list@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap
+ regions
+Message-ID: <Yu1t8TpXT1f372v/@kernel.org>
+References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
+ <YlW2TO0O8qDHpkGW@kernel.org>
+ <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
+ <YnQBKPWtPa87y4NA@kernel.org>
+ <42f28e7b-c001-7d01-1eb6-fe963491898e@quicinc.com>
+ <Ynj+M9cRm6zdCMMi@kernel.org>
+ <22aca197-8d18-2c9e-b3c4-f6fdc893ceb1@quicinc.com>
 MIME-Version: 1.0
-References: <20220803054728.1541104-1-colin.foster@in-advantage.com>
- <20220803054728.1541104-10-colin.foster@in-advantage.com> <Yu1W8DMaP8xlyyr5@euler>
- <CAHp75VcVD4XxydmYkgybjpCKsh=0KS5+GnDGK5CJX-qZwJ06Cg@mail.gmail.com> <Yu1cSLlkXAr/t5ho@euler>
-In-Reply-To: <Yu1cSLlkXAr/t5ho@euler>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 5 Aug 2022 20:14:52 +0200
-Message-ID: <CAHp75Vftx=uF4Y-PCutjVSFYEdT3PrDVu=Vc3AX+hJaKE80LoA@mail.gmail.com>
-Subject: Re: [PATCH v15 mfd 9/9] mfd: ocelot: add support for the vsc7512 chip
- via spi
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Terry Bowman <terry.bowman@amd.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, katie.morris@in-advantage.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <22aca197-8d18-2c9e-b3c4-f6fdc893ceb1@quicinc.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 5, 2022 at 8:07 PM Colin Foster
-<colin.foster@in-advantage.com> wrote:
-> On Fri, Aug 05, 2022 at 07:58:06PM +0200, Andy Shevchenko wrote:
-> > On Fri, Aug 5, 2022 at 7:44 PM Colin Foster
-> > <colin.foster@in-advantage.com> wrote:
-> > > On Tue, Aug 02, 2022 at 10:47:28PM -0700, Colin Foster wrote:
+Hi Vijay,
 
-...
+On Wed, Aug 03, 2022 at 04:27:33PM +0530, Vijayanand Jitta wrote:
+> 
+> On 5/9/2022 5:12 PM, Mike Rapoport wrote:
+> > On Mon, May 09, 2022 at 04:37:30PM +0530, Faiyaz Mohammed wrote:
+> >>
+> >> On 5/5/2022 10:24 PM, Mike Rapoport wrote:
+> >>> On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
+> >>>> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
+> >>>>> On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
+> >>>>>> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
+> >>>>>> memory region")' is keeping the no-map regions in memblock.memory with
+> >>>>>> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
+> >>>>>> but during the initialization sparse_init mark all memblock.memory as
+> >>>>>> present using for_each_mem_pfn_range, which is creating the memmap for
+> >>>>>> no-map memblock regions. To avoid it skiping the memblock.memory regions
+> >>>>>> set with MEMBLOCK_NOMAP set and with this change we will be able to save
+> >>>>>> ~11MB memory for ~612MB carve out.
+> >>>>> The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
+> >>>>> really don't like the idea if adding more implicit assumptions about how
+> >>>>> NOMAP memory may or may not be used in a generic iterator function.
+> >>>> Sorry for delayed response.
+> >>>> Yes, it is possible that implicit assumption can create
+> >>>> misunderstanding. How about adding command line option and control the
+> >>>> no-map region in fdt.c driver, to decide whether to keep "no-map" region
+> >>>> with NOMAP flag or remove?. Something like below
+> >>> I really don't like memblock_remove() for such cases.
+> >>> Pretending there is a hole when there is an actual DRAM makes things really
+> >>> hairy when it comes to memory map and page allocator initialization.
+> >>> You wouldn't want to trade system stability and random memory corruptions
+> >>> for 11M of "saved" memory.
+> >>
+> >> Creating memory map for holes memory is adding 11MB overhead which is
+> >> huge on low memory target and same time 11MB memory saving is good enough
+> >> on low memory target.
+> >>
+> >> Or we can have separate list of NOMAP like reserved?.
+> >>
+> >> Any other suggestion to address this issue?.
+> > 
+> > Make your firmware to report the memory that Linux cannot use as a hole,
+> > i.e. _not_ report it as memory.
+> >  
+> 
+> Thanks, Mike for the comments.
+> 
+> Few concerns with this approach.
+> 
+> 1) One concern is, even if firmware doesn't report these regions as
+> memory, we would need addresses for these to be part of device tree so
+> that the clients would be able to get these addresses. Otherwise there
+> is no way for client to know these addresses.
+> 
+> 2) This would also add a dependency on firmware to be able to pass these
+> regions not as memory, though we know that these regions would be used
+> by the clients. Isn't it better to have such control within the kernel ?
 
-> > > > +int ocelot_chip_reset(struct device *dev)
-> > >
-> > > #include <linux/device.h>
-> >
-> > Nope,
-> >
-> > struct device;
+If it is memory that is used by the kernel it should be reported as memory
+and have the memory map. 
+If this is a hole in the memory layout from the kernel perspective, then
+kernel should not bother with this memory.
 
-...
-
-> > > > +static int ocelot_spi_initialize(struct device *dev)
-> > >
-> > > #include <linux/device.h>
-> >
-> > Ditto.
->
-> ocelot-spi.c uses devm_kzalloc, so that should still be included.
->
-> ocelot-core.c uses dev_get_drvdata.
->
-> So I think I still want the includes... but for different reasons.
-
-Yes in this case.
+And I'm not buying "low memory target" argument if you have enough memory
+to carve out ~600M for some mysterious clients.
+ 
+> Let me know your comments on these.
+> 
+> Thanks,
+> Vijay
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Sincerely yours,
+Mike.
