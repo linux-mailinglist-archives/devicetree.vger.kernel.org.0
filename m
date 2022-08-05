@@ -2,117 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E83558A6C0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 09:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0809458A6C6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 09:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240381AbiHEHK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 03:10:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42186 "EHLO
+        id S240258AbiHEHL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 03:11:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240199AbiHEHKj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 03:10:39 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1038474E22;
-        Fri,  5 Aug 2022 00:09:43 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8989FB80DE4;
-        Fri,  5 Aug 2022 07:09:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10733C433D6;
-        Fri,  5 Aug 2022 07:09:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659683377;
-        bh=QY/xj/dmLrpvXEfYnnD6E0lu77VY+niG/pRPN+FTJRM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Swju3PYz3cB3wLhsGTed8uo46PsMXQ6CUeuXyHwbAK/hPulOHWHst5X18xBc+A23i
-         Jqn+enSqJ8QCdi+bmdRk4vcgGvzdzrblA6AesOvDCAV8XspD7P6Qk4hyoMWnODFTFS
-         A+DrwSD+UjYtyy2r8vne0fr8FMf3NkHFqrbpGqfNygtiQN3Tf7hwQrFYuO0rr4IsXz
-         0yC+LzJ79cuJ4ZoRP+ad71FcdjWi1vy9go+q25DQT60J4ZNU3WZW6VcS/3D0vFfJir
-         hDAb2LQ4wWZZZSJ+FAa+xcwRhpR3MOOKNokZSnodck4A7K0dNL6oHtSGO60bOoZ8qd
-         gy+Zubvlu3BmQ==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oJrT6-0007hp-1M; Fri, 05 Aug 2022 09:10:00 +0200
-Date:   Fri, 5 Aug 2022 09:10:00 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     kernel test robot <lkp@intel.com>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>, kbuild-all@lists.01.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/9] usb: dwc3: qcom: fix peripheral and OTG suspend
-Message-ID: <YuzCSCr2fkTLxvAs@hovoldconsulting.com>
-References: <20220804151001.23612-7-johan+linaro@kernel.org>
- <202208050544.ijUhoUyB-lkp@intel.com>
- <Yuy/eM1Wo+gDAJPQ@hovoldconsulting.com>
+        with ESMTP id S240307AbiHEHLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 03:11:01 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00B242C67B
+        for <devicetree@vger.kernel.org>; Fri,  5 Aug 2022 00:10:50 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id bx38so2112497ljb.10
+        for <devicetree@vger.kernel.org>; Fri, 05 Aug 2022 00:10:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=100CdEkhDrosnmQz7EudbC8ZWfUwtalSJ5D3M18Q6FY=;
+        b=QC830ppYy9m2gC8NTb7waklpSdUNcb+Jxp4muQSkcH91nbEqv6CEzgsLVXhngw6luL
+         GJ/IRTssrkJi2Vkp34a97meDQzyhAjGMZfWjEsYuV1VETpWJt31UsJVhaSVZEcse34Vb
+         VaV5RLaHXMRR/sdZzNt86nqSoBTEpREwhLKBQ5jfqtTEXvGWaTf3iBVE3SMWx292BnVL
+         tOcqoE/klRPV9FcB26tahB7ikUlUko1JJmT8BIpb6GE3Dgrsbnsex2H+nZQD21soVnf+
+         vZ0yBkgqzLPA6hF3F6EvP9n4NbC5rz2n1IpNWIXBAO8O16sFapdeG/d9DuUL3IxhWc35
+         /Lnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=100CdEkhDrosnmQz7EudbC8ZWfUwtalSJ5D3M18Q6FY=;
+        b=MsCDqHwBp/hDqM9np+mWlzNlcl7sK6zfo+S1vCl0Htt5QAPzL7+aJZPvTDH9Vzh19U
+         SNsLKp5a4tWd8LLoFj+Q9j/j5dILwU3XlScSMAhgSxm2UNzVaLJA4Z2wv8iPyJLY+5Rv
+         cZvaxaEiujJ5jX5lfFMJiJD6ZnOgu6TFr7BcXnxVk9yO46PQ7DCMfDa/Ys+fLmYtRnqr
+         N9xLe7ihEcI0qni6FTwbXtrn5jNmdWGCraqArEPsBVdX97N4YFg05t9EPxpwdAKjNCad
+         DqM1qJiI82GGrPOPZUSyUjFYB05YSvuyn7wXnFHxJGuaunAvRAi1Y2SqcTjZGNs6pA1M
+         ID0A==
+X-Gm-Message-State: ACgBeo1yRs9MCPfd8GBTvcwL0EzyC3CtDH/o/ERc3LESWGmllFvINr71
+        U4Df/i5VM+TWI459IU4twau+mg==
+X-Google-Smtp-Source: AA6agR7bAellR9/ZAGMxlXj+T/e5BasXnChRj/qcqk+9/FSr4g+EdL9aKZIDF7BARWF/PCScbmh0xw==
+X-Received: by 2002:a05:651c:1a1f:b0:25d:af55:1a2b with SMTP id by31-20020a05651c1a1f00b0025daf551a2bmr1726953ljb.49.1659683449294;
+        Fri, 05 Aug 2022 00:10:49 -0700 (PDT)
+Received: from [192.168.1.6] ([77.222.167.48])
+        by smtp.gmail.com with ESMTPSA id e5-20020ac25465000000b0048ae518364dsm369552lfn.148.2022.08.05.00.10.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Aug 2022 00:10:47 -0700 (PDT)
+Message-ID: <cbd36b1b-1ddf-2d6b-40aa-88c40a41b526@linaro.org>
+Date:   Fri, 5 Aug 2022 09:10:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yuy/eM1Wo+gDAJPQ@hovoldconsulting.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] dt-bindings: iio: gyroscope: bosch,bmg160: correct number
+ of pins
+Content-Language: en-US
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220727140148.223508-1-krzysztof.kozlowski@linaro.org>
+ <20220731133034.034dced1@jic23-huawei>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220731133034.034dced1@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 05, 2022 at 08:58:00AM +0200, Johan Hovold wrote:
-> On Fri, Aug 05, 2022 at 05:38:30AM +0800, kernel test robot wrote:
-> > Hi Johan,
-> > 
-> > I love your patch! Perhaps something to improve:
-> > 
-> > [auto build test WARNING on usb/usb-testing]
-> > [also build test WARNING on linus/master next-20220804]
-> > [cannot apply to robh/for-next v5.19]
-> > [If your patch is applied to the wrong git tree, kindly drop us a note.
-> > And when submitting patch, we suggest to use '--base' as documented in
-> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> > 
-> > url:    https://github.com/intel-lab-lkp/linux/commits/Johan-Hovold/usb-dwc3-qcom-fix-wakeup-implementation/20220804-231122
-> > base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-> > config: arc-randconfig-r002-20220804 (https://download.01.org/0day-ci/archive/20220805/202208050544.ijUhoUyB-lkp@intel.com/config)
-> > compiler: arc-elf-gcc (GCC) 12.1.0
-> > reproduce (this is a W=1 build):
-> >         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-> >         chmod +x ~/bin/make.cross
-> >         # https://github.com/intel-lab-lkp/linux/commit/f3778ca026b16474e49c5e0188a0eb91d73eef2f
-> >         git remote add linux-review https://github.com/intel-lab-lkp/linux
-> >         git fetch --no-tags linux-review Johan-Hovold/usb-dwc3-qcom-fix-wakeup-implementation/20220804-231122
-> >         git checkout f3778ca026b16474e49c5e0188a0eb91d73eef2f
-> >         # save the config file
-> >         mkdir build_dir && cp config build_dir/.config
-> >         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arc SHELL=/bin/bash drivers/usb/dwc3/
-> > 
-> > If you fix the issue, kindly add following tag where applicable
-> > Reported-by: kernel test robot <lkp@intel.com>
-> > 
-> > All warnings (new ones prefixed by >>):
-> > 
-> >    drivers/usb/dwc3/dwc3-qcom.c: In function 'dwc3_qcom_read_usb2_speed':
-> > >> drivers/usb/dwc3/dwc3-qcom.c:313:25: warning: variable 'hcd' set but not used [-Wunused-but-set-variable]
-> >      313 |         struct usb_hcd *hcd;
-> >          |                         ^~~> 
+On 31/07/2022 14:30, Jonathan Cameron wrote:
+> On Wed, 27 Jul 2022 16:01:48 +0200
+> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 > 
-> I'm not seeing this one with gcc-10.3.0, but I'll slap a __maybe_unused
-> in there to keep your robot's W=1 builds quiet.
+>> BMG160 has two interrupt pins to which interrupts can be freely mapped.
+>> Correct the schema to express such case and fix warnings like:
+>>
+>>   qcom/msm8916-alcatel-idol347.dtb: gyroscope@68: interrupts: [[97, 1], [98, 1]] is too long
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> We may need more than this.  What if only INT2 is wired?  
 
-Correction: of course I'm seeing it in the affected build configuration...
+Right, thanks for pointing it out.
 
-Johan
+> I'd expect such
+> a device's binding to include interrupt-names to cover that case.
+> We'd also need a bunch of driver code to route the resulting interrupts.
+
+Yes, which is a bit out of scope of fixing schema/DTS. The driver
+supports only one interrupt and bindings are unspecific, so I think the
+author just did not care about making it correct.
+
+> 
+> I think the snag is that adding such support will break existing bindings using the
+> below.
+
+I can prepare more relaxed version of the patch.
+
+Best regards,
+Krzysztof
