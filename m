@@ -2,217 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 231A058AC95
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 16:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3590658ACF6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 17:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237817AbiHEO5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 10:57:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44130 "EHLO
+        id S233299AbiHEPRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 11:17:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240962AbiHEO5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 10:57:17 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E22184D801;
-        Fri,  5 Aug 2022 07:57:15 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.93,216,1654527600"; 
-   d="scan'208";a="128657095"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Aug 2022 23:57:15 +0900
-Received: from localhost.localdomain (unknown [10.226.92.175])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 70DF743C0900;
-        Fri,  5 Aug 2022 23:57:11 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 1/2] dt-bindings: pwm: Add RZ/G2L GPT binding
-Date:   Fri,  5 Aug 2022 15:57:03 +0100
-Message-Id: <20220805145704.951293-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220805145704.951293-1-biju.das.jz@bp.renesas.com>
-References: <20220805145704.951293-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S231845AbiHEPRO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 11:17:14 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2041.outbound.protection.outlook.com [40.107.22.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073CF1EC6C;
+        Fri,  5 Aug 2022 08:17:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cPBF0lhGvsuDs3RAvS+kpVi22DgM7ySjEtf9LMT5Ja6plL+q3l447kxPpBH+ofXZzbS+7W/Qz6Cg0TXWobuSH/GNoBsdyc0hbTCwOLYgjXc6Xq77MD24SVhKWFPQKOikq9KwkuMBdvs4xKiayInKSJ7Y3UfE+/6IxMdn/17kM6PFIp4HpZRDKcY5+nLPkqTF7Lr+Se9BvHao28HDg2K9QR6B9kJOZttuR3PoAW6sm6kbwDya/UszIqtnJgB6apMXY9jqO9PZl5w00iAppY+/t6J1sqm2KQo8L2zHtdFATI2NJgLqsr6sPjVafTIIxJgDhwSUr/L4KJCNubNJND+juw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bqw8T4MMK4xcGEMNViQD2UWL8H2UuhNzXd7V8ixlEgM=;
+ b=V8/1UU5ejj9Qh2KY6X73UEB1mOQS1WFjUsod8/No6eQr7aT9UElKGe86eRaWLl2YAP+Ng2nKWxQTcdS0BQ3DDoUetvLs+mqqZLEzmhOTzt7tXhrybUZsJC/5JI8Pt0j7H0GenB07GN7AlZ9pGsGq7J8gyrMbtCuvfqK9P5xvWDLmeQuRARiINREioQkiNK9x8Y2+YQGQUv0PvFFwKQ03AUxmF/L6a0nvcCDe/Lx0kLH1p3DB/Q1Un7lh0LGREnxDKhahUxFzCauK/7tPnnPGAwoqORumxNjp6ZblphGDOLQR9cTivbae4qd1egNtOQP+Ysnb9/5Anb6KtxOCkIsBTg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bqw8T4MMK4xcGEMNViQD2UWL8H2UuhNzXd7V8ixlEgM=;
+ b=Emps/SlQvlk+LkBRXfwbVZm9DvFtZQivrW+HtnTWTu9ITf9q+yiAH0L80ZF1JoG4xebvOUlRfbP480oZ9FFIcaoKRtgLhyYIV3mceaKORzwWkagqipq22Nblx6+/J2BvP/ZFAN5LP/B9pzZPKFVyWspN8tDl8tjzgD0UZnkr8OzEjOiCmcHk17tBc/yI6Qn40pyZhdoAribPptzwTuKiugvK5OIS7ReLcOfrAQOoTVxYkQOVYVl0sk5rMsqDvY8cUPfn5PvlQMDBj0b+qq85qupyOgixIdoQ08d6u9vA6SBqWYULmqMX38SMwR+8Wec6fp1zNHQGan52DFFKrsIVyA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
+ by HE1PR0301MB2236.eurprd03.prod.outlook.com (2603:10a6:3:1f::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.16; Fri, 5 Aug
+ 2022 15:17:09 +0000
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::ecaa:a5a9:f0d5:27a2]) by DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::ecaa:a5a9:f0d5:27a2%4]) with mapi id 15.20.5504.014; Fri, 5 Aug 2022
+ 15:17:08 +0000
+Subject: Re: [PATCH v4 3/8] dt-bindings: clock: Add ids for Lynx 10g PLLs
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-phy@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+References: <20220804220602.477589-1-sean.anderson@seco.com>
+ <20220804220602.477589-4-sean.anderson@seco.com>
+ <bee3d724-1efb-d5c7-6698-c98a198e69fd@linaro.org>
+From:   Sean Anderson <sean.anderson@seco.com>
+Message-ID: <b97f113b-f429-c8c5-96ee-7f1a68e16117@seco.com>
+Date:   Fri, 5 Aug 2022 11:17:03 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <bee3d724-1efb-d5c7-6698-c98a198e69fd@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BLAPR03CA0026.namprd03.prod.outlook.com
+ (2603:10b6:208:32b::31) To DB7PR03MB4972.eurprd03.prod.outlook.com
+ (2603:10a6:10:7d::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7d3bda76-2f40-487c-aa32-08da76f59043
+X-MS-TrafficTypeDiagnostic: HE1PR0301MB2236:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zn0DsthU294WpG0S6fxGHibAK+XlPutvrBqQc6ZZFD0qpP6dUwvHsbLTGGe3rNzbaPM2hKqXbCPMXzG7DGkGONv3iT/dpIPo8jVwYZ283gYfJXjTvoxckXZ+Aq9gkDM/3ThPT7FoWZVN29Y9kUNf9bJqzCx9SvnbrboBfiXaJzsMHcl+jCERs9FkR1xIudo106kE78y9tdxPsG3k3HY5pNs+iy9r7fMy0ENTAHoek/MnUGe/l3v1oNfD8c67f6Xep2C4NTQFVko6sWqWQa00OnSNTCJhe+2HH4pIDtLEddcmmn/51du3DwLaziDHcGQy/xgTCXxSI226ImisdMWSQiDTKXj6thQDgStj2qi+0p4vOTnT4cQt6fPs0hkOWMTisb69N6/S+us1S2bX0l6Z7QKfpjrDjAM7+I+XLhh6fN2s7jNlIor9armYM7YIGB340T4V+RRJIdQvnGpxzrdqxmN3YVARc/K1gJHX4WF4HgDzA9pj9SFdmcBZYEuzGzV7lKPJ3iOqos8xwFwlYkZr4mSoG7R0H0u3isfjBY8aH3c5DCewjZdYLT6EaKWU8vAiRnCZjFcGF8Nfj3icT+bP88smwz3c5acd/kfK9zzv7hJulDVOanmY65ae96Piumwnlu8MeLirsxLJow1TwLG9iTyPCSFgYe9STVBekJv8GCXY1ThJQAwso55+M8oCdPTdm1eJxFgIdIjb8RW5Y8jzj5B/wnS+Ly+uj0AEiOgdtUQsaWoylx17wiy9xSQF1+EtjU7+3ytxHf3dW430Q3b62W3DRLIXoFuHJXyqxDbqwYa/KW4gsURnjIEPdz4/HSfuGyIEFrYrsc7z1dpeXRhHSpWGEcfJ1CCHPzFDZeofKI0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(396003)(346002)(366004)(136003)(376002)(39850400004)(6506007)(6666004)(41300700001)(478600001)(38100700002)(38350700002)(6486002)(26005)(6512007)(53546011)(31686004)(36756003)(52116002)(4326008)(7416002)(44832011)(8936002)(186003)(86362001)(5660300002)(31696002)(2906002)(54906003)(110136005)(66946007)(316002)(66476007)(66556008)(83380400001)(8676002)(2616005)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UTVBTVp3eTh6UXJEZ0tZZlFKSHhSM3JUQWtGNiswY1h4cFZQK291SUFSNGxk?=
+ =?utf-8?B?KzJvQW5NZ1V4bTJTdnBnclFvdlA1Yk5aYU9USkcwOHNneGtxbm5DcHgzNXFv?=
+ =?utf-8?B?NnNsL3ByNlJXLzgrYmFHNDUwWEdKdjRWYS9sMW5iakV4eXVxaXAyZzFXSHA4?=
+ =?utf-8?B?QzFuR28yTmFwd2c5S0U3MmV5REtTTzZUVmR2UFhCdU9QVEt4L2FGQXkrVm5s?=
+ =?utf-8?B?eFNPU2loVW05MVZYQS9PL3VKSDA5Q3lvWTZxdG55aDRYdENJRHMyUGRmU3NV?=
+ =?utf-8?B?TDdWNmU5aW5xem92RHhISkhBcm1WODhpMTNRL0puMklFSTFYOWVJc2t1OGkw?=
+ =?utf-8?B?amRYbkpZZ0dYY1YxK1lZbyswemtKQ2tVZVFuck5EeGI4bHoyL2VvT04xOXdt?=
+ =?utf-8?B?RXJtTDhBYkQvUjM2NWJiZXhDc3pjcm9jclBOT3hMNTlLR3ZTN1ovTHR1Yk1Z?=
+ =?utf-8?B?ZFdXcmdZOFdCRUhmL0NWRTJudm1NOGw4WG5RV1haSkVlTitERG5BeCsva1hu?=
+ =?utf-8?B?c25sNllLRCtEOUZ3OWlPckZQdDBjcERXV3E1T2w4YWdBalZubjVkK0RJRU80?=
+ =?utf-8?B?Y0VmTEIycG15cTVIUTVLQk91NWY3NjdJSk40YnNsQVBWS1luaWhFM2JOODRL?=
+ =?utf-8?B?NDFaelArcmZlYXFvemRyaDNWT3B4QTNsZ25QR2t2NzhGQWNCZWN5Y083RjB1?=
+ =?utf-8?B?RWVzUHY2VWYxZjVjMjRVMTM2Q0M2S2MyL0IrTllPdjZvNDlWM1p4anNsTmhz?=
+ =?utf-8?B?MnVwR3UweEx0OHhkMDJLdnNNb2hUdEw4aVMxL2czUkZvQ0svMENvcmo3RHRv?=
+ =?utf-8?B?a2k3ZURIRXVza1F1R2F4OUozdkRvc1Z3TmhabXBkTWk1OXM5VDVta3BKUlkw?=
+ =?utf-8?B?UFVQRHlpK2RiWG5VYVRNaFlpb0F4ZTVOZzRmc2pLU1FxcnRsZHArS1BWdmE1?=
+ =?utf-8?B?MktvVHAvN1o5b0R3S3hNcklrR3dQZGRWajZtUVpHQWVhVDlSK3ZNaXpJOVRp?=
+ =?utf-8?B?MEdXRmlseTFJbEp1RTRsaEo0RWwyQjFUOHRWOUYwUmgyU004MkU0SksrQTEw?=
+ =?utf-8?B?ZW85bTlKWDhrV2haVnAvekNHL1hDZFdYZm5IUzBGZGh5Zy9uRHJ4QlhTY2x3?=
+ =?utf-8?B?THYzeURzMjFvVEo0Ujd2SnpUUmdsTDhoc2YzNUJKWWdpcWJoUkdoeFJnL2VX?=
+ =?utf-8?B?ZWtkSkJEZXNMVWFNdGtnTDZ5ZHdCclNETDR4NE5US290SEt5OWcxZVgzTWRu?=
+ =?utf-8?B?Z1dFbTYrZHp2WGZtaXVoN1AyTi83V3BlU256SDFCTDg3OHdDcHpnM3ZZYW5B?=
+ =?utf-8?B?VjhzTVY5UERsdHdxSzdaK1gxZkhOR2xGM3drQjZrUGE0TWx6WTRpOE95dWdM?=
+ =?utf-8?B?bGlSWVZEbjl5S0FrcU5CaVZSdWVwSUQvQkJHUEwvcHBWaXlySjlDbXMwRHRE?=
+ =?utf-8?B?OXVtYmdFMXNpN2syYzVHOXRucDVJanVZRzBhNUFldVlIOW5DMEE4SXJLMENk?=
+ =?utf-8?B?UTNTelFlM1ppRC92RXpsTTIraG82ZGJOTHpVRFdSckhoYnduTWtERjhiNlZM?=
+ =?utf-8?B?ZkxQcmxtN2t4bjQybTdRTTN2U0svcHlkNWc2VHBkTnU2RU9BMm5FMndOb0ZO?=
+ =?utf-8?B?Q3libjZSdytUVlQwbnk4MFc0NjVrZXhQS09CWldWL2xMWEU4TlQvQTNvSUhp?=
+ =?utf-8?B?RzZWRTN1NUUzdU9Id2h6RFZTWlpIODI1SmIxQ1B0U0w2Q2FuaDVCeTRJWW1X?=
+ =?utf-8?B?UEg1d245RHRPQ1lRUGdDQS9XcXV0Mk5ZM2Q2TlZ3MVhMU2lESTNTU25aZDN6?=
+ =?utf-8?B?bXJ2VU1LTzF2bmJyaVFwaFhhQWEwalR5NVUxZGxzRlUrRkFRV2g0dVdPcG1W?=
+ =?utf-8?B?OTBJMmtBamtDd0kzODlQQzNVOTAra1RRRlRkY0lPalFsN0JMUUFGMjdwMi91?=
+ =?utf-8?B?NGttd1MzUHpaNlNSSGkyNmxHWjhkRzh6T3pzeGxUWXZJUkpIam1jVEk3dkN2?=
+ =?utf-8?B?a2czdGhWcXFKblFSRnJYU2hLYUpqaGlFTHllVVFwYzhKYjlMdVkySVpTeGhr?=
+ =?utf-8?B?aDRVR3RHN002ald1bTJCbVA4ay95cDhuTGhCOFBHbmVOS25yVWtHNk9LSHdN?=
+ =?utf-8?B?elN3VFlKRkc1ellTZ2U0T0FzeXNHbHgzc3BNZDZZbHlGb1F4dGVqSW5jM3VM?=
+ =?utf-8?B?MXc9PQ==?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d3bda76-2f40-487c-aa32-08da76f59043
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 15:17:08.6858
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DQTzg2+8/ndcC3OiDaWagSfm9z4gfWgH0DTO7enFrQGtfCC3eADVufQMavjOheY/vzB67fvdzX++9ofSZb5M/w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0301MB2236
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the General PWM Timer (GPT).
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v4->v5:
- * No change.
-v3->v4:
- * No change.
-v2->v3:
- * Added Rb tag from Rob.
-v1->v2:
- * Added '|' after 'description:' to preserve formatting.
- * Removed description for pwm_cells as it is common property.
- * Changed the reg size in example from 0xa4->0x100
- * Added Rb tag from Geert.
-RFC->v1:
- * Added Description
- * Removed comments from reg and clock
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 129 ++++++++++++++++++
- 1 file changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-new file mode 100644
-index 000000000000..e8f7b9947eaa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/renesas,rzg2l-gpt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/G2L General PWM Timer (GPT)
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
-+  (GPT32E). It supports the following functions
-+  * 32 bits × 8 channels.
-+  * Up-counting or down-counting (saw waves) or up/down-counting
-+    (triangle waves) for each counter.
-+  * Clock sources independently selectable for each channel.
-+  * Two I/O pins per channel.
-+  * Two output compare/input capture registers per channel.
-+  * For the two output compare/input capture registers of each channel,
-+    four registers are provided as buffer registers and are capable of
-+    operating as comparison registers when buffering is not in use.
-+  * In output compare operation, buffer switching can be at crests or
-+    troughs, enabling the generation of laterally asymmetric PWM waveforms.
-+  * Registers for setting up frame cycles in each channel (with capability
-+    for generating interrupts at overflow or underflow)
-+  * Generation of dead times in PWM operation.
-+  * Synchronous starting, stopping and clearing counters for arbitrary
-+    channels.
-+  * Starting, stopping, clearing and up/down counters in response to input
-+    level comparison.
-+  * Starting, clearing, stopping and up/down counters in response to a
-+    maximum of four external triggers.
-+  * Output pin disable function by dead time error and detected
-+    short-circuits between output pins.
-+  * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
-+  * Enables the noise filter for input capture and external trigger
-+    operation.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r9a07g044-gpt  # RZ/G2{L,LC}
-+          - renesas,r9a07g054-gpt  # RZ/V2L
-+      - const: renesas,rzg2l-gpt
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#pwm-cells':
-+    const: 2
-+
-+  interrupts:
-+    items:
-+      - description: GTCCRA input capture/compare match
-+      - description: GTCCRB input capture/compare
-+      - description: GTCCRC compare match
-+      - description: GTCCRD compare match
-+      - description: GTCCRE compare match
-+      - description: GTCCRF compare match
-+      - description: GTADTRA compare match
-+      - description: GTADTRB compare match
-+      - description: GTCNT overflow/GTPR compare match
-+      - description: GTCNT underflow
-+
-+  interrupt-names:
-+    items:
-+      - const: ccmpa
-+      - const: ccmpb
-+      - const: cmpc
-+      - const: cmpd
-+      - const: cmpe
-+      - const: cmpf
-+      - const: adtrga
-+      - const: adtrgb
-+      - const: ovf
-+      - const: unf
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - power-domains
-+  - resets
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    gpt4: pwm@10048400 {
-+        compatible = "renesas,r9a07g044-gpt", "renesas,rzg2l-gpt";
-+        reg = <0x10048400 0x100>;
-+        interrupts = <GIC_SPI 270 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 271 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 272 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 273 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 274 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 275 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 276 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 277 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 278 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 279 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "ccmpa", "ccmpb", "cmpc", "cmpd",
-+                          "cmpe", "cmpf", "adtrga", "adtrgb",
-+                          "ovf", "unf";
-+        clocks = <&cpg CPG_MOD R9A07G044_GPT_PCLK>;
-+        power-domains = <&cpg>;
-+        resets = <&cpg R9A07G044_GPT_RST_C>;
-+        #pwm-cells = <2>;
-+    };
--- 
-2.25.1
+On 8/5/22 2:53 AM, Krzysztof Kozlowski wrote:
+> On 05/08/2022 00:05, Sean Anderson wrote:
+>> This adds ids for the Lynx 10g SerDes's internal PLLs. These may be used
+>> witn assigned-clock* to specify a particular frequency to use.
+>> 
+>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>> ---
+>> 
+>> Changes in v4:
+>> - New
+>> 
+>>  include/dt-bindings/clock/fsl,lynx-10g.h | 14 ++++++++++++++
+>>  1 file changed, 14 insertions(+)
+>>  create mode 100644 include/dt-bindings/clock/fsl,lynx-10g.h
+>> 
+>> diff --git a/include/dt-bindings/clock/fsl,lynx-10g.h b/include/dt-bindings/clock/fsl,lynx-10g.h
+>> new file mode 100644
+>> index 000000000000..f5b955658106
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/fsl,lynx-10g.h
+>> @@ -0,0 +1,14 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+> 
+> This should be dual license.
 
+This is just matching what the majority (263 out of 326) clock dt-bindings headers do.
+
+>> +/*
+>> + * Copyright (C) 2022 Sean Anderson <sean.anderson@seco.com>
+> 
+> It's confusing to see personal copyrights with company email. Either the
+> copyright is attributed to your employer or to you. If to you, use
+> private email.
+
+I hold the copyright, and I would like inquiries to be directed to my work
+email (as I don't have this hardware at home).
+
+>> + */
+>> +
+>> +#ifndef __DT_BINDINGS_CLK_LYNX_10G_H
+>> +#define __DT_BINDINGS_CLK_LYNX_10G_H
+>> +
+>> +#define LYNX10G_CLKS_PER_PLL 2
+>> +
+>> +#define LYNX10G_PLLa(a)		((a) * LYNX10G_CLKS_PER_PLL)
+>> +#define LYNX10G_PLLa_EX_DLY(a)	((a) * LYNX10G_CLKS_PER_PLL + 1)
+> 
+> These do not look like proper IDs for clocks for bindings. Numbering
+> starts from 0 or 1 and any "a" needs to be clearly explained. What do
+> you bind here?
+
+This matches "a" is the index of the PLL. E.g. registers PLL1RSTCTL etc.
+This matches the notation used in the reference manual. Although for
+convenience, this driver considers the PLLs to start at 0 instead of 1.
+
+--Sean
