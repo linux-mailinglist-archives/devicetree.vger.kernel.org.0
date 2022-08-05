@@ -2,121 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7239C58A408
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 02:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC69958A471
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 03:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234441AbiHEAAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 20:00:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58236 "EHLO
+        id S240110AbiHEB2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 21:28:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231256AbiHEAAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 20:00:15 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDE091C9;
-        Thu,  4 Aug 2022 17:00:10 -0700 (PDT)
-Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        with ESMTP id S240039AbiHEB2X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 21:28:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C85051BE95;
+        Thu,  4 Aug 2022 18:28:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 168826601BFA;
-        Fri,  5 Aug 2022 01:00:07 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1659657609;
-        bh=9IWOqoMZl87xKFNXdbsY2lD256+X8oemFwBtvRVYKMU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gCk84Flp/HQMm/r7Wu1xhl6K9nnsuhbKmhYnpEZFhls8m64otTleTFvTId5i3fg0J
-         n53uFS0ILVjAVjNE2AxXtF33RNeHDJiwFw4BAi0DpKfRN07o376iDyoMJ7rej8FxAV
-         cBzMNgOnjhk93Nck/64Wd61K41LZ3JthNdLcKMCuIUTOW+DOeC2xlKcunNvgiIZPhK
-         gzxuhTTlhwwTViXamwzMhNBd16XD0/CyWTVDqK17RRukKIqJlWBKuifhDFwjiQHALy
-         jig/uIpwDnMp8StHAvUDBtKHKHK4R1iX3d7oMGIg0EKNQIJpkBiIPGKGOz06se3Khr
-         Gi8NSKUhgv3EA==
-Date:   Thu, 4 Aug 2022 20:00:03 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     bchihi@baylibre.com
-Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, khilman@baylibre.com,
-        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-Subject: Re: [PATCH v8.1, 4/7] thermal: mediatek: Add LVTS driver for mt8192
- thermal zones
-Message-ID: <20220805000003.gljuut3udzed7avz@notapiano>
-References: <20220804130912.676043-1-bchihi@baylibre.com>
- <20220804130912.676043-5-bchihi@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220804130912.676043-5-bchihi@baylibre.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 67D3361985;
+        Fri,  5 Aug 2022 01:28:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C6124C433B5;
+        Fri,  5 Aug 2022 01:28:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659662901;
+        bh=AeMmp+nbQUbcHM6PLxapsSad5C9svj3hzsD5edaFZ/c=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=Lj4WO1hyciAoMSpT2tt1X1WMJKkZYrkSjImMBsd+Qz1XRiw6w7DvI0CxUn2J8Wls8
+         6VFR6Khv/eCWGZp37QwxDeJTHbqCaKBcFzCl192D2nAHR2hMRT1X4aPc0FBs2rAtU0
+         QGHX3gMsKj824OqRkz3GMnh7Iii2wpLs2TbJOnR1t3CjKTL3uPDo3RK0WqLwipp1Ow
+         dud2DHqUqtbvUt9QZEOxF1avxHtNUOKfwv4z4U/82ERfsExgvvad4xMUM1VECMbQ2H
+         4n06BjQKOsw4CSfyquRp7XHhK4widH9yaQVXODzjgRfHxKXqOTf/sMLiC3RD8bqzEn
+         LiYSmkkhpBceA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id B6791C43140;
+        Fri,  5 Aug 2022 01:28:21 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree updates for v6.0
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20220802224904.GA796923-robh@kernel.org>
+References: <20220802224904.GA796923-robh@kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20220802224904.GA796923-robh@kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.0
+X-PR-Tracked-Commit-Id: 7e7a24c3c6c98abc4425abd1dbf2a71b42dfafcf
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: da8d07af4b3e2e407c5dd13f08b64580931fd1a6
+Message-Id: <165966290174.8823.14048839297036734986.pr-tracker-bot@kernel.org>
+Date:   Fri, 05 Aug 2022 01:28:21 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Balsam,
+The pull request you sent on Tue, 2 Aug 2022 16:49:04 -0600:
 
-another thing.
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.0
 
-On Thu, Aug 04, 2022 at 03:09:09PM +0200, bchihi@baylibre.com wrote:
-[..]
-> --- /dev/null
-> +++ b/drivers/thermal/mediatek/lvts_thermal.h
-[..]
-> +#define ONE_SAMPLE							(lvts_data->counting_window_us + 2 * BUS_ACCESS_US)
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/da8d07af4b3e2e407c5dd13f08b64580931fd1a6
 
-This macro is still using a hardcoded variable.
+Thank you!
 
-> +#define NUM_OF_SAMPLE(tc_id)				((lvts_data->tc[tc_id].hw_filter < LVTS_FILTER_2) ? \
-> +	1 : ((lvts_data->tc[tc_id].hw_filter > LVTS_FILTER_16_OF_18) ? \
-> +	1 : ((lvts_data->tc[tc_id].hw_filter == LVTS_FILTER_16_OF_18) ? \
-> +	18 : ((lvts_data->tc[tc_id].hw_filter == LVTS_FILTER_8_OF_10) ? \
-> +	10 : (lvts_data->tc[tc_id].hw_filter * 2)))))
-
-Ditto.
-
-> +
-> +#define PERIOD_UNIT_US(tc_id)		((lvts_data->tc[tc_id].tc_speed->period_unit * 256 * \
-> +	CLOCK_26MHZ_CYCLE_NS) / 1000)
-> +#define FILTER_INT_US(tc_id)		(lvts_data->tc[tc_id].tc_speed->filter_interval_delay * \
-> +	PERIOD_UNIT_US(tc_id))
-> +#define SENSOR_INT_US(tc_id)		(lvts_data->tc[tc_id].tc_speed->sensor_interval_delay * \
-> +	PERIOD_UNIT_US(tc_id))
-> +#define GROUP_INT_US(tc_id)			(lvts_data->tc[tc_id].tc_speed->group_interval_delay * \
-> +	PERIOD_UNIT_US(tc_id))
-
-All of these too.
-
-> +#define SENSOR_LATENCY_US(tc_id)	((NUM_OF_SAMPLE(tc_id) - 1) * FILTER_INT_US(tc_id) + \
-[..]
-> +#define DEVICE_READ				(CK26M_ACTIVE(lvts_data) | DEVICE_ACCESS)
-
-And this.
-
-> +#define DEVICE_WRITE			(CK26M_ACTIVE(lvts_data) | DEVICE_ACCESS | WRITE_ACCESS)
-
-And this.
-
-> +#define RESET_ALL_DEVICES		(DEVICE_WRITE | RG_TSFM_RST << 8 | 0xFF)
-> +#define READ_DEVICE_REG(reg_id)	(DEVICE_READ | (reg_id) << 8 | 0x00)
-> +#define READ_BACK_DEVICE_ID		(CK26M_ACTIVE(lvts_data) | DEVICE_ACCESS | BROADCAST_ID_UPDATE | \
-
-And finally this one.
-
-I might've have missed some, so please double-check and remove any lingering
-hardcoded variable in macros.
-
-Thanks,
-Nícolas
-
-> +	RG_DID_LVTS << 8)
-[..]
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
