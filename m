@@ -2,87 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C3FC58A5A2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 07:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52B6858A5EE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 08:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235602AbiHEFbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 01:31:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45254 "EHLO
+        id S235498AbiHEGgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 02:36:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235598AbiHEFbN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 01:31:13 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60EC872ECD;
-        Thu,  4 Aug 2022 22:31:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1659677469; x=1691213469;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=X47q7DThyrWu/kkT8n4MueOYo1D/I729fdsIdMKG9zk=;
-  b=rVYPrL5qxVv3Q6unLblJnLAtc3cV9ybKdHXYVh5aGjrGtJIAOOT3l+Yi
-   vG1IUhKUqz5eJ3qdmDYREUXC6VjO5EvyV4RKUdCKAQc4Nh1qVOCZcGF2O
-   pl0An+DUMdUV216MBsj78YptrWr2HB2WiEoKx6aB0R3GK6c6qyRiT4YlT
-   57Jz2aI9x3ctMRADDvA51TbAq52zuTmg726Be+J/uJCHYlrIO49z1/Fvh
-   BD2kQvUYbKG1KWkw/oldd5ISAuyS7YpDyVvReKMoSctUhhhcl76ojOfTD
-   D56fAzQEQCyhj/bQOVrMSYh+qf4JpLsyNc2tx5V3mJDCqpD6PbJIaz+xl
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.93,216,1654585200"; 
-   d="scan'208";a="185227164"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Aug 2022 22:31:07 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Thu, 4 Aug 2022 22:31:05 -0700
-Received: from microchip-OptiPlex-5040.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2375.28 via Frontend Transport; Thu, 4 Aug 2022 22:31:02 -0700
-From:   Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor.dooley@microchip.com>
-CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Valentina.FernandezAlanis@microchip.com>,
-        Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>
-Subject: [PATCH v3 4/4] MAINTAINERS: add qspi to Polarfire SoC entry
-Date:   Fri, 5 Aug 2022 11:00:19 +0530
-Message-ID: <20220805053019.996484-5-nagasuresh.relli@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220805053019.996484-1-nagasuresh.relli@microchip.com>
-References: <20220805053019.996484-1-nagasuresh.relli@microchip.com>
+        with ESMTP id S231949AbiHEGgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 02:36:43 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9586FA14
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 23:36:38 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id d14so2064803lfl.13
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 23:36:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=FfYvonlafX3BzC9FTm8GHcqEd0hunBjPCQINuMxo2ew=;
+        b=mm4Z1yEIIfoA6xaiVC2oO4ScLt5H5u3UcwmAkGnb46WTbZkOvOiT3ai/s8Jgt1DvHu
+         TMfupJwg82ceo7urGrZlYF/gmDkvuyNy0YPd/STyVX/jy1PJ1Eo9pwFbNmiRBcisBAO1
+         DpnfmaDpngGmJRGeTIy/hYv3GnHpjmbBaVbcabTwzzacODP7GvEUKNl33a4fHDCFmRZu
+         NqgXzI0ifl5+r0ceXSIGHRvR10qWW1PtnE0uyGVugLabBxuK12xdIb+VHlEM9+SpWdAU
+         Q0POb7jcDyySSHxIdqI/kLe/P+aYxfgSW5Kw4RjCwvwzsxkKe90GDSmmJej3tGIVukLA
+         IX4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=FfYvonlafX3BzC9FTm8GHcqEd0hunBjPCQINuMxo2ew=;
+        b=ANJa+6zSyFVNfgh6OWfh9dsX+eqov0/KbAqMtRYu5alXyRrOdyOi7HrDt7bXViqojW
+         7mkKFzHrO5It5rHrHLgWiRCzVYGZQJZ3LhfY0tZjTo1Xm/g1OMNuqujkBSik2FhGOBMI
+         Tbco2w+up7yqXU/7G3hoJ2BYQXNhEZARboF1E8E5k8VqabvbAi/+mI0tMB+kx6T0g0Pm
+         j5MMRmLJSWUD43oIwvo/B4hNQP01a0WJ8tBCVbmuBLJSIqZA4ZvHcYdmoQyLLKnu8PHg
+         TZqVPn7WXSLuZRRRIDnvGHJyfpUEanAtg0sFF5dwJ52o2JUhNfO39nz3XBrxuJ9JUIS1
+         NDBQ==
+X-Gm-Message-State: ACgBeo04qy8EQUYuzJ+ITOCahgF/P75oubIvQ1q0Nsm1oWTy3loTtz1P
+        a9XrbD4uuCJQKBa4uCOzbep8xg==
+X-Google-Smtp-Source: AA6agR4SjqFpMzckvMkeXKWrrBXPyBG5d1+ymIlgWt2fIsTamlb8H3yn42SuIf/7SHZyb5RhQXW7+Q==
+X-Received: by 2002:a05:6512:2185:b0:482:b4f0:f23 with SMTP id b5-20020a056512218500b00482b4f00f23mr2027840lft.31.1659681396871;
+        Thu, 04 Aug 2022 23:36:36 -0700 (PDT)
+Received: from [192.168.1.6] ([77.222.167.48])
+        by smtp.gmail.com with ESMTPSA id o4-20020a056512230400b0048a407f41bbsm357162lfu.238.2022.08.04.23.36.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Aug 2022 23:36:35 -0700 (PDT)
+Message-ID: <10e93907-49ef-a3e6-e0b4-0b3e5f236f44@linaro.org>
+Date:   Fri, 5 Aug 2022 08:36:32 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2] dt-binding: ipmi: add fallback to npcm845 compatible
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, jic23@kernel.org,
+        minyard@acm.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     openbmc@lists.ozlabs.org, openipmi-developer@lists.sourceforge.net,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220804181800.235368-1-tmaimon77@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220804181800.235368-1-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the qspi driver to existing Polarfire SoC entry.
+On 04/08/2022 20:18, Tomer Maimon wrote:
+> Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+> string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 
-Signed-off-by: Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+Your previous commit adding that compatible was simply wrong and not
+matching the driver and it is not the first time. I think all Nuvoton
+patches need much more careful review :(
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 295ca16a415b..0329dca23fe2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17146,6 +17146,7 @@ S:	Supported
- F:	arch/riscv/boot/dts/microchip/
- F:	drivers/mailbox/mailbox-mpfs.c
- F:	drivers/soc/microchip/
-+F:	drivers/spi/spi-microchip-core-qspi.c
- F:	drivers/spi/spi-microchip-core.c
- F:	include/soc/microchip/mpfs.h
- 
--- 
-2.25.1
+You forgot the fixes tag:
 
+Fixes: 84261749e58a ("dt-bindings: ipmi: Add npcm845 compatible")
+
+
+
+
+Best regards,
+Krzysztof
