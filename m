@@ -2,134 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A26C58A629
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 08:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8BAB58A62F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 08:55:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237468AbiHEGx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 02:53:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59556 "EHLO
+        id S230492AbiHEGzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 02:55:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235981AbiHEGx2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 02:53:28 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5950E13DD5
-        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 23:53:27 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id t1so2148434lft.8
-        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 23:53:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=svGbdJtoA42vxhMw0xl6uJ/CKt4Zq7+usPD0U/PNy5Q=;
-        b=fcizwj7UD0ZDd1mZ0oDmsurKWnpaQ6W8uIjVJaOD0QvmsghpTV2mhyjgilSZfV3gfp
-         VKxKifhMNxIxkv84hkBVE/pSxJMeMj+KoWkFL2y+KDM6m2ZZWeC9sJYVxT6Eo7Xe5I1W
-         iV/F1O2wQ9eUQTVwfppVzZa0FHW+OxPbQV5/ji8lTUwWD3fxaFyFZOx4kNeQCte4KSj8
-         xKOGnH+sqff7E8e7Pb1UHtsuYRJl+IYJZbr6Ce0PeJiLzh1nHgmWeMbzZFyduUJFdbcX
-         GB7zxiqDzQ0zakdY5rGcgEwK7b7VDGioVCMp2950fn0J5lmPnn7nh8gr6S99j3QHei4p
-         vsYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=svGbdJtoA42vxhMw0xl6uJ/CKt4Zq7+usPD0U/PNy5Q=;
-        b=Tg3jqOQtb8D9oR5GLxwXVvhOTKiyomfZOhcqLpinZBV8ATmUJoq9bmoQRAdpnwcytz
-         Q2EnGGtn0+H+hugs+b9EVFLT/53BYDQ+oBFFLYWXlBLLziHWGnT8m6+q8ucKgrV6TPYh
-         bhfV7dT/Bp9zW5OxjqNUS6GYl+AEgGv6u+rbpLF9Grat/dZGr0dZhVH5/LrmTXgRsV/y
-         lPOTvGO37kZ2KVpmf4J0M983EM97MvkrEPKzMC8O/GKoajQb8nWgIHw6reQvMudlooTa
-         /YdBLckscJTzWHGUtrX6Jqo9/K/KZ4Wd5NvC8SIVMJ8CkV01WVjKDMCEmxg2fVvbF6bN
-         Bf6g==
-X-Gm-Message-State: ACgBeo3QIVS8bgU2HOmabMr2SV9Yb5Dk+8vMO0m7VwE71YcV8984wu9o
-        xwdb6pPSRXUGoS/t9XBZF/pZIQ==
-X-Google-Smtp-Source: AA6agR5PP/ENG7yXEHTvyafw/XQB2vIAh7cCSieTd83vPiy91LJfZPa5YrNOmaUMVOVwlr0V6qymXg==
-X-Received: by 2002:a05:6512:230b:b0:48a:7c11:664d with SMTP id o11-20020a056512230b00b0048a7c11664dmr2034885lfu.390.1659682405752;
-        Thu, 04 Aug 2022 23:53:25 -0700 (PDT)
-Received: from [192.168.1.6] ([77.222.167.48])
-        by smtp.gmail.com with ESMTPSA id z16-20020a2e9650000000b0025dd6c8933csm362348ljh.114.2022.08.04.23.53.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Aug 2022 23:53:23 -0700 (PDT)
-Message-ID: <bee3d724-1efb-d5c7-6698-c98a198e69fd@linaro.org>
-Date:   Fri, 5 Aug 2022 08:53:21 +0200
+        with ESMTP id S237898AbiHEGzF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 02:55:05 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9307213DD5;
+        Thu,  4 Aug 2022 23:55:03 -0700 (PDT)
+X-UUID: 5aafa9e119794ee8a52c2d6ad658eff4-20220805
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=9nir8zRQtJqQ4Wo+km5ez4xfHiBIhvwG0Vod/3Ig61E=;
+        b=SxDtcbjvEKjmuqsgPsxVvg4FW2RwLUnaAmVYYfut+ZqmHzTYFzM1CDAbkkzFBjG2waTYSl+ywu6dYHvJ5+G0CHtt0QgWAufmMMMjM75bNVXpH8tYdnE6gP0QIAwyTJq/pPuzKUmLW4Qey5cHZo0YqUahc4Ohj4ek9CSsnz/FS/0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:0b5e8034-168c-4c43-8347-b483477deaa8,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:45
+X-CID-INFO: VERSION:1.1.8,REQID:0b5e8034-168c-4c43-8347-b483477deaa8,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:45,FILE:0,RULE:Release_Ham,ACTIO
+        N:release,TS:45
+X-CID-META: VersionHash:0f94e32,CLOUDID:404b01ae-9535-44a6-aa9b-7f62b79b6ff6,C
+        OID:d028bb52bd57,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 5aafa9e119794ee8a52c2d6ad658eff4-20220805
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 318569209; Fri, 05 Aug 2022 14:55:00 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Fri, 5 Aug 2022 14:54:58 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Fri, 5 Aug 2022 14:54:58 +0800
+Message-ID: <ad9207524145fdc8338894be70228820f40a49d8.camel@mediatek.com>
+Subject: Re: [PATCH v15 03/11] drm/edid: Add cea_sad helpers for freq/length
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     Jani Nikula <jani.nikula@linux.intel.com>,
+        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <devicetree@vger.kernel.org>, <linux-fbdev@vger.kernel.org>,
+        <granquet@baylibre.com>, <jitao.shi@mediatek.com>,
+        <liangxu.xu@mediatek.com>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <msp@baylibre.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>, <wenst@chromium.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <angelogioacchino.delregno@collabora.com>
+Date:   Fri, 5 Aug 2022 14:54:57 +0800
+In-Reply-To: <87zggmenv8.fsf@intel.com>
+References: <20220727045035.32225-1-rex-bc.chen@mediatek.com>
+         <20220727045035.32225-4-rex-bc.chen@mediatek.com>
+         <87zggmenv8.fsf@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v4 3/8] dt-bindings: clock: Add ids for Lynx 10g PLLs
-Content-Language: en-US
-To:     Sean Anderson <sean.anderson@seco.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-phy@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-References: <20220804220602.477589-1-sean.anderson@seco.com>
- <20220804220602.477589-4-sean.anderson@seco.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220804220602.477589-4-sean.anderson@seco.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,UNPARSEABLE_RELAY,URIBL_CSS autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/08/2022 00:05, Sean Anderson wrote:
-> This adds ids for the Lynx 10g SerDes's internal PLLs. These may be used
-> witn assigned-clock* to specify a particular frequency to use.
+On Tue, 2022-08-02 at 17:11 +0300, Jani Nikula wrote:
+> On Wed, 27 Jul 2022, Bo-Chen Chen <rex-bc.chen@mediatek.com> wrote:
+> > From: Guillaume Ranquet <granquet@baylibre.com>
+> > 
+> > This patch adds two helper functions that extract the frequency and
+> > word
+> > length from a struct cea_sad.
+> > 
+> > For these helper functions new defines are added that help
+> > translate the
+> > 'freq' and 'byte2' fields into real numbers.
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
+> I think we should stop adding a plethora of functions that deal with
+> sads like this.
 > 
-> Changes in v4:
-> - New
+> There should probably be *one* struct that contains all the details
+> you
+> and everyone need extracted. There should be *one* function that
+> fills
+> in all the details. The struct should be placed in
+> connector->display_info, and the function should be called *once*
+> from
+> update_display_info().
 > 
->  include/dt-bindings/clock/fsl,lynx-10g.h | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->  create mode 100644 include/dt-bindings/clock/fsl,lynx-10g.h
+> Ideally, the function shouldn't even be exposed from drm_edid.c, but
+> if
+> you still need to deal with situations where you don't call connector
+> update, maybe it needs to be exposed.
 > 
-> diff --git a/include/dt-bindings/clock/fsl,lynx-10g.h b/include/dt-bindings/clock/fsl,lynx-10g.h
-> new file mode 100644
-> index 000000000000..f5b955658106
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/fsl,lynx-10g.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
+> BR,
+> Jani.
+> 
+> 
 
-This should be dual license.
+Hello Jani,
 
-> +/*
-> + * Copyright (C) 2022 Sean Anderson <sean.anderson@seco.com>
+Thanks for your review.
+After checking our patches, we found we will not use these two function
+because we remove them in patch [11/11] drm/mediatek: Use cached audio
+config when changing resolution.
 
-It's confusing to see personal copyrights with company email. Either the
-copyright is attributed to your employer or to you. If to you, use
-private email.
+I will drop [02/11] and [03/11].
 
-> + */
-> +
-> +#ifndef __DT_BINDINGS_CLK_LYNX_10G_H
-> +#define __DT_BINDINGS_CLK_LYNX_10G_H
-> +
-> +#define LYNX10G_CLKS_PER_PLL 2
-> +
-> +#define LYNX10G_PLLa(a)		((a) * LYNX10G_CLKS_PER_PLL)
-> +#define LYNX10G_PLLa_EX_DLY(a)	((a) * LYNX10G_CLKS_PER_PLL + 1)
+Thanks!
 
-These do not look like proper IDs for clocks for bindings. Numbering
-starts from 0 or 1 and any "a" needs to be clearly explained. What do
-you bind here?
+BRs,
+Bo-Chen
 
-> +
-> +#endif /* __DT_BINDINGS_CLK_LYNX_10G_H */
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
+> > ---
+> >  drivers/gpu/drm/drm_edid.c | 63
+> > ++++++++++++++++++++++++++++++++++++++
+> >  include/drm/drm_edid.h     | 14 +++++++++
+> >  2 files changed, 77 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_edid.c
+> > b/drivers/gpu/drm/drm_edid.c
+> > index bc43e1b32092..2a6f92da5ff3 100644
+> > --- a/drivers/gpu/drm/drm_edid.c
+> > +++ b/drivers/gpu/drm/drm_edid.c
+> > @@ -4916,6 +4916,69 @@ int drm_edid_to_speaker_allocation(const
+> > struct edid *edid, u8 **sadb)
+> >  }
+> >  EXPORT_SYMBOL(drm_edid_to_speaker_allocation);
+> >  
+> > +/**
+> > + * drm_cea_sad_get_sample_rate - Extract the sample rate from
+> > cea_sad
+> > + * @sad: Pointer to the cea_sad struct
+> > + *
+> > + * Extracts the cea_sad frequency field and returns the sample
+> > rate in Hz.
+> > + *
+> > + * Return: Sample rate in Hz or a negative errno if parsing
+> > failed.
+> > + */
+> > +int drm_cea_sad_get_sample_rate(const struct cea_sad *sad)
+> > +{
+> > +	switch (sad->freq) {
+> > +	case DRM_CEA_SAD_FREQ_32KHZ:
+> > +		return 32000;
+> > +	case DRM_CEA_SAD_FREQ_44KHZ:
+> > +		return 44100;
+> > +	case DRM_CEA_SAD_FREQ_48KHZ:
+> > +		return 48000;
+> > +	case DRM_CEA_SAD_FREQ_88KHZ:
+> > +		return 88200;
+> > +	case DRM_CEA_SAD_FREQ_96KHZ:
+> > +		return 96000;
+> > +	case DRM_CEA_SAD_FREQ_176KHZ:
+> > +		return 176400;
+> > +	case DRM_CEA_SAD_FREQ_192KHZ:
+> > +		return 192000;
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +}
+> > +EXPORT_SYMBOL(drm_cea_sad_get_sample_rate);
+> > +
+> > +/**
+> > + * drm_cea_sad_get_uncompressed_word_length - Extract word length
+> > + * @sad: Pointer to the cea_sad struct
+> > + *
+> > + * Extracts the cea_sad byte2 field and returns the word length
+> > for an
+> > + * uncompressed stream.
+> > + *
+> > + * Note: This function may only be called for uncompressed audio.
+> > + *
+> > + * Return: Word length in bits or a negative errno if parsing
+> > failed.
+> > + */
+> > +int drm_cea_sad_get_uncompressed_word_length(const struct cea_sad
+> > *sad)
+> > +{
+> > +	if (sad->format != HDMI_AUDIO_CODING_TYPE_PCM) {
+> > +		DRM_WARN("Unable to get the uncompressed word length
+> > for format: %u\n",
+> > +			 sad->format);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	switch (sad->byte2) {
+> > +	case DRM_CEA_SAD_UNCOMPRESSED_WORD_16BIT:
+> > +		return 16;
+> > +	case DRM_CEA_SAD_UNCOMPRESSED_WORD_20BIT:
+> > +		return 20;
+> > +	case DRM_CEA_SAD_UNCOMPRESSED_WORD_24BIT:
+> > +		return 24;
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +}
+> > +EXPORT_SYMBOL(drm_cea_sad_get_uncompressed_word_length);
+> > +
+> >  /**
+> >   * drm_av_sync_delay - compute the HDMI/DP sink audio-video sync
+> > delay
+> >   * @connector: connector associated with the HDMI/DP sink
+> > diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> > index c2c43a4af681..779b710aed40 100644
+> > --- a/include/drm/drm_edid.h
+> > +++ b/include/drm/drm_edid.h
+> > @@ -373,6 +373,18 @@ struct cea_sad {
+> >  	u8 byte2;
+> >  };
+> >  
+> > +#define DRM_CEA_SAD_FREQ_32KHZ  BIT(0)
+> > +#define DRM_CEA_SAD_FREQ_44KHZ  BIT(1)
+> > +#define DRM_CEA_SAD_FREQ_48KHZ  BIT(2)
+> > +#define DRM_CEA_SAD_FREQ_88KHZ  BIT(3)
+> > +#define DRM_CEA_SAD_FREQ_96KHZ  BIT(4)
+> > +#define DRM_CEA_SAD_FREQ_176KHZ BIT(5)
+> > +#define DRM_CEA_SAD_FREQ_192KHZ BIT(6)
+> > +
+> > +#define DRM_CEA_SAD_UNCOMPRESSED_WORD_16BIT BIT(0)
+> > +#define DRM_CEA_SAD_UNCOMPRESSED_WORD_20BIT BIT(1)
+> > +#define DRM_CEA_SAD_UNCOMPRESSED_WORD_24BIT BIT(2)
+> > +
+> >  struct drm_encoder;
+> >  struct drm_connector;
+> >  struct drm_connector_state;
+> > @@ -380,6 +392,8 @@ struct drm_display_mode;
+> >  
+> >  int drm_edid_to_sad(const struct edid *edid, struct cea_sad
+> > **sads);
+> >  int drm_edid_to_speaker_allocation(const struct edid *edid, u8
+> > **sadb);
+> > +int drm_cea_sad_get_sample_rate(const struct cea_sad *sad);
+> > +int drm_cea_sad_get_uncompressed_word_length(const struct cea_sad
+> > *sad);
+> >  int drm_av_sync_delay(struct drm_connector *connector,
+> >  		      const struct drm_display_mode *mode);
+> 
+> 
 
-
-Best regards,
-Krzysztof
