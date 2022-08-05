@@ -2,156 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E9C858AA5B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 13:54:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC7CC58AA6B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 13:58:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235939AbiHELyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 07:54:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38574 "EHLO
+        id S231347AbiHEL6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 07:58:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233602AbiHELyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 07:54:18 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C8876978
-        for <devicetree@vger.kernel.org>; Fri,  5 Aug 2022 04:54:16 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-328a1cff250so21879037b3.6
-        for <devicetree@vger.kernel.org>; Fri, 05 Aug 2022 04:54:16 -0700 (PDT)
+        with ESMTP id S230169AbiHEL6d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 07:58:33 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B14876470;
+        Fri,  5 Aug 2022 04:58:33 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id d16so1821033qtw.8;
+        Fri, 05 Aug 2022 04:58:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=B02RqxjBTQRs85a8gF2gLe9dL1JOQq3J4L0ycDQz7f4=;
-        b=ECUBjQ6a3KqW1cyowmSgFitTkNeso0Ptc6F6gnpY6N5bqbTzGXPuJcI/pfHBU2BYGG
-         7iUgbmsVaEJrs3RJuNxaMadfi+1iFQnDbL4PJ8FjroL22bN7bMNtzmxHslqP1RMmR257
-         I7k9Tt+x6e2/Cx1n/EnZ1yR2O/CXu5PcOqI9rnlUt1AiqJqp+GgAr1PzA44lJK61HbKa
-         W6D1uq7j4FWlUhlUF4DBHmg2hs/PskkOvgwqeCa25YKkXkvnVDh31JLE9jtk8YV8gFMV
-         DXdJDBdg47uYSw9SPj6TwjWL97g6mwUHBr9xO2D2g8ULIUoBudCP4o7GDa2uitv0myvE
-         Ejig==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:from:to:cc;
+        bh=12EUweBf0CXLW8+gSAKKg9xplGZSYosR37oZCD2Y1Eg=;
+        b=VT9RgJ+oVb09HdRQa6Lq62UkO+czbOAM9zhFz3mQzPOunpvHA/Dup3iDIDNBrSTcRg
+         ISw6ghOW+btNX/HqH0k2wNgSXpUg9bL7XcttzO3HDDNNozk+y3dM1mVPrsLCuGG1wDEB
+         zPDESdIoCLKl87M3ZHZOLwvWZcZCGfdRYxSeLVkv1UokGzv1nB/bnYzWf+ZQw+cvxeeO
+         puAKsVq9rrDGTJ2pP8KskFUBBm5iQIXGPWMPTn0Fzqb9UMJ5bQb/k0gtuQPFCBlS4+N1
+         kK6jb8sG7doAKbDSIiJhVitTkmnihXzpan+QM+ytoVxdChvksAv2+bOnb1FKMbKjMQbE
+         tC4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=B02RqxjBTQRs85a8gF2gLe9dL1JOQq3J4L0ycDQz7f4=;
-        b=XdFR4+sIY+2H4UlDCpWPyk/tSRI7S8gfZTVNACEiymqEsD6pDodPnxoCxrFAEtHsWH
-         QWluWXWMWhH340fSzUVuM21DyP5HVmO3IcYO59NmvbMqIIy3m716tUfESbrvTGOu4UdJ
-         DIKFO1Xp1LfWKkR8yI9tPtUOJU0HdHcAM5p4+nGtQSJzNLtB0jSARm84R4TUdeed6edK
-         uHVi05+zUz9EZI5RtivbvEhG2kcyg2IIZNAkQrLKOjCO+MK4zrq4KzOi05l6n8kNFxjO
-         9R2nrDsrra/hzxLORn0271OsehfxVOfQ0pJg8T2DkfRZ2JLtyR6cZDnO5eZntuDS9f+m
-         Xaew==
-X-Gm-Message-State: ACgBeo3INIC7EDHm8PkIVqLnXaYy1hLC+k++uhZEsVepwBpPy10gbbDw
-        6ev6Y/SSHbPzXYs05gv+NG1oxeau89WmmWg8x6JbSg==
-X-Google-Smtp-Source: AA6agR72QleJK186GhMdgMP/yTvyEphneAZ2QYvhg8nnZGfN+KY6QWW+tPlsHTl350LimpY/Cp8NATm/hRG1zpOFkm8=
-X-Received: by 2002:a0d:e88e:0:b0:328:297a:fd9e with SMTP id
- r136-20020a0de88e000000b00328297afd9emr5960768ywe.88.1659700455699; Fri, 05
- Aug 2022 04:54:15 -0700 (PDT)
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:x-gm-message-state:from
+         :to:cc;
+        bh=12EUweBf0CXLW8+gSAKKg9xplGZSYosR37oZCD2Y1Eg=;
+        b=wDByAgHNHZJ03deDYW2vEKKN/OA1nnGtxUt7DOTrHR/lVsi8rMVlIEMlGVgH88E5GU
+         A8JenB0e7ck384WpGVpOyKwjHwWnAclWHSVPn6ZEe6aHKq92+9BiXKGcKUasVVJZjloj
+         BE9uQGzUnjWznEV+XKSplBqZDmGxntS6/vc4osTcXOqMjeKYzvFFO2khP8HIp5h8ThLw
+         ZuObo52DhhJtb+bOWWN+HDgb2+l7fn0poUJQzIHZQTpoUmxMzUKa/ANwpUalcA6cAfWP
+         /pGPXM+T/fwqvAY5hK5LCvnRpoJ29Nb8+6JePLV15ZKre5summq35N5wvDNhbFQ4fxcs
+         9Ufw==
+X-Gm-Message-State: ACgBeo1gQoX60o65JtOKcTQN9vl6/Y8R8BCfCgBgE27gaHvzH+dXlOEI
+        TpCiniKe4Jqg62HbgiuuwA==
+X-Google-Smtp-Source: AA6agR4yn9VOrQApcMy/JIE89HsYzBMvrpAkEphl5ssbELPYZNrOf1zrKpwK4oe95pmrgYf1HSEKPA==
+X-Received: by 2002:a05:622a:346:b0:31f:c40:eac0 with SMTP id r6-20020a05622a034600b0031f0c40eac0mr5373701qtw.326.1659700711064;
+        Fri, 05 Aug 2022 04:58:31 -0700 (PDT)
+Received: from serve.minyard.net (serve.minyard.net. [2001:470:b8f6:1b::1])
+        by smtp.gmail.com with ESMTPSA id c8-20020ac85188000000b0031eb51dd72csm2491484qtn.85.2022.08.05.04.58.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Aug 2022 04:58:30 -0700 (PDT)
+Sender: Corey Minyard <tcminyard@gmail.com>
+Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:8c5c:a823:f5bd:8751])
+        by serve.minyard.net (Postfix) with ESMTPSA id 4CFC71800FA;
+        Fri,  5 Aug 2022 11:58:29 +0000 (UTC)
+Date:   Fri, 5 Aug 2022 06:58:27 -0500
+From:   Corey Minyard <minyard@acm.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        jic23@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, openbmc@lists.ozlabs.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-binding: ipmi: add fallback to npcm845 compatible
+Message-ID: <20220805115827.GG3834@minyard.net>
+Reply-To: minyard@acm.org
+References: <20220804181800.235368-1-tmaimon77@gmail.com>
 MIME-Version: 1.0
-References: <20220804130912.676043-1-bchihi@baylibre.com> <20220804130912.676043-2-bchihi@baylibre.com>
- <20220804230407.kwfsxy74qmmebfsj@notapiano>
-In-Reply-To: <20220804230407.kwfsxy74qmmebfsj@notapiano>
-From:   Balsam CHIHI <bchihi@baylibre.com>
-Date:   Fri, 5 Aug 2022 13:53:39 +0200
-Message-ID: <CAGuA+ornX-mt-kjYE9693PEYqCpQQGf=CdG1k4kwzaS4BBHxmg@mail.gmail.com>
-Subject: Re: [PATCH v8.1, 1/7] thermal: mediatek: Relocate driver to mediatek folder
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, khilman@baylibre.com,
-        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220804181800.235368-1-tmaimon77@gmail.com>
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 5, 2022 at 1:04 AM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
-> Hi Balsam,
->
-> On Thu, Aug 04, 2022 at 03:09:06PM +0200, bchihi@baylibre.com wrote:
-> > From: Michael Kao <michael.kao@mediatek.com>
-> >
-> > Add MediaTek proprietary folder to upstream more thermal zone and coole=
-r
-> > drivers, relocate the original thermal controller driver to it, and ren=
-ame it
-> > as "mtxxxx_thermal.c" to show its purpose more clearly.
-> >
-> > Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> > Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
-> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
-> > ---
-> >  drivers/thermal/Kconfig                       | 14 ++++-------
-> >  drivers/thermal/Makefile                      |  2 +-
-> >  drivers/thermal/mediatek/Kconfig              | 23 +++++++++++++++++++
-> >  drivers/thermal/mediatek/Makefile             |  1 +
-> >  .../mtxxxx_thermal.c}                         |  2 +-
-> >  5 files changed, 30 insertions(+), 12 deletions(-)
-> >  create mode 100644 drivers/thermal/mediatek/Kconfig
-> >  create mode 100644 drivers/thermal/mediatek/Makefile
-> >  rename drivers/thermal/{mtk_thermal.c =3D> mediatek/mtxxxx_thermal.c} =
-(99%)
-> [..]
-> > --- /dev/null
-> > +++ b/drivers/thermal/mediatek/Makefile
-> > @@ -0,0 +1 @@
-> > +obj-$(CONFIG_MTK_SOC_THERMAL)                +=3D mtxxxx_thermal.o
-> > diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mediatek/m=
-txxxx_thermal.c
->
-> When Daniel suggested using a more SoC explicit name like 'mtxxx_thermal'=
- [1]
-> the xxxx was supposed to be substituted for the actual SoC (family) that =
-makes
-> use of this driver :-).
->
-> From the compatibles looks like we have mt8173, mt2701, mt2712, mt7622, m=
-t8183.
-> So it doesn't look like it's a single SoC family... What about calling it
-> auxadc_thermal?
->
-> Thanks,
-> N=C3=ADcolas
+On Thu, Aug 04, 2022 at 09:18:00PM +0300, Tomer Maimon wrote:
+> Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+> string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> index cbc10a68ddef..4fda76e63396 100644
+> --- a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> +++ b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> @@ -7,7 +7,7 @@ used to perform in-band IPMI communication with their host.
+>  Required properties:
+>  - compatible : should be one of
+>      "nuvoton,npcm750-kcs-bmc"
+> -    "nuvoton,npcm845-kcs-bmc"
+> +    "nuvoton,npcm845-kcs-bmc", "nuvoton,npcm750-kcs-bmc"
 
-Hello N=C3=ADcolas,
+This is just wrong.  The compatible is supposed to identify the device,
+not the board the device is on.  I think compatible here should be
+"npcm7xx-kcs-bmc", and just use that everywhere.  It's fine if that is
+used on a board named npcm845.
 
-"auxadc_thermal.c" makes more sense, since we have "lvts_thermal.c".
-Thank you for the suggestion. I will take it.
+-corey
 
-Best regards,
-Balsam
-
->
-> [1] https://lore.kernel.org/linux-mediatek/24250d03-b25f-e521-5abd-f36109=
-885c36@linaro.org/
->
-> > similarity index 99%
-> > rename from drivers/thermal/mtk_thermal.c
-> > rename to drivers/thermal/mediatek/mtxxxx_thermal.c
-> > index ede94eadddda..60924f8f98e9 100644
-> > --- a/drivers/thermal/mtk_thermal.c
-> > +++ b/drivers/thermal/mediatek/mtxxxx_thermal.c
-> > @@ -23,7 +23,7 @@
-> >  #include <linux/reset.h>
-> >  #include <linux/types.h>
-> >
-> > -#include "thermal_hwmon.h"
-> > +#include "../thermal_hwmon.h"
-> >
-> >  /* AUXADC Registers */
-> >  #define AUXADC_CON1_SET_V    0x008
-> > --
-> > 2.34.1
-> >
-> >
+>  - interrupts : interrupt generated by the controller
+>  - kcs_chan : The KCS channel number in the controller
+>  
+> -- 
+> 2.33.0
+> 
