@@ -2,74 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC69958A471
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 03:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A3D358A4AC
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 04:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240110AbiHEB2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 21:28:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43588 "EHLO
+        id S234619AbiHECPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Aug 2022 22:15:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240039AbiHEB2X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 21:28:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C85051BE95;
-        Thu,  4 Aug 2022 18:28:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 67D3361985;
-        Fri,  5 Aug 2022 01:28:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C6124C433B5;
-        Fri,  5 Aug 2022 01:28:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659662901;
-        bh=AeMmp+nbQUbcHM6PLxapsSad5C9svj3hzsD5edaFZ/c=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=Lj4WO1hyciAoMSpT2tt1X1WMJKkZYrkSjImMBsd+Qz1XRiw6w7DvI0CxUn2J8Wls8
-         6VFR6Khv/eCWGZp37QwxDeJTHbqCaKBcFzCl192D2nAHR2hMRT1X4aPc0FBs2rAtU0
-         QGHX3gMsKj824OqRkz3GMnh7Iii2wpLs2TbJOnR1t3CjKTL3uPDo3RK0WqLwipp1Ow
-         dud2DHqUqtbvUt9QZEOxF1avxHtNUOKfwv4z4U/82ERfsExgvvad4xMUM1VECMbQ2H
-         4n06BjQKOsw4CSfyquRp7XHhK4widH9yaQVXODzjgRfHxKXqOTf/sMLiC3RD8bqzEn
-         LiYSmkkhpBceA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id B6791C43140;
-        Fri,  5 Aug 2022 01:28:21 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree updates for v6.0
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <20220802224904.GA796923-robh@kernel.org>
-References: <20220802224904.GA796923-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20220802224904.GA796923-robh@kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.0
-X-PR-Tracked-Commit-Id: 7e7a24c3c6c98abc4425abd1dbf2a71b42dfafcf
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: da8d07af4b3e2e407c5dd13f08b64580931fd1a6
-Message-Id: <165966290174.8823.14048839297036734986.pr-tracker-bot@kernel.org>
-Date:   Fri, 05 Aug 2022 01:28:21 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        with ESMTP id S233821AbiHECPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 22:15:31 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D3A6E0C9;
+        Thu,  4 Aug 2022 19:15:30 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id t2so1451336ply.2;
+        Thu, 04 Aug 2022 19:15:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=c1hElks0EiMPqEj2Pxzet0gd4GBC1sIlq2K90tOv6P8=;
+        b=S2UshQ0EqqI16RU+oVisaaT0G2aRtg4cUJ7NrGmuTwh5yfSUqpaPzCz3Ycntlwy12b
+         iTq/SgsqK1J/GZQUAzpk7vMBa1hgEZHv/wUq+cm5HI1hmfcamIxx+j/2iBNzMyfB/g1l
+         GMR1d/udXWgQV3IRffyIY23+S9JypxTPIcWmo0S0sakgGjsNwKV3gSvx+mP6qISxkpp6
+         anBeg+tF2kHT4030INR9EElFJSHh7JdRmP5xGFt573VttQ+mad0H94Hbrd0V9OkbkYrA
+         fwK5dlmyqkInpT7uIiO4DRPLOZOdQ7rOUESJdfl1iu3C8mTj6C8TmQVnHi+WhSxpPsrY
+         gAqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=c1hElks0EiMPqEj2Pxzet0gd4GBC1sIlq2K90tOv6P8=;
+        b=k6KTlXGi5EIKBBeFFf/3ArTK1LQuZkHUxA5dMyQugrBJwhN8WjrKfEKbQq0Dr1u+HV
+         7bXZVMBUgKwwvcVpN53/6HAzUOQnq+iOzvwYweBkXfd1Qq8LCvygmRqSDRPEf4P9MSax
+         rrwwvhwKOkf8510oPPBQqn0JiK0zjgZI3NZszE6bloBTQhXmLye1TsrJ4EhkaNGsgaZk
+         G7Lm6lK6xVWzMysN/KA7ojys8rhBKGi2BLTxjXIHCaHbHATlQ1KJFSkrqXb9+wos9qs6
+         7cNbNIAj6nKUOin5S9cUMHu4dTBs3zMoUkf4MPvu/FFoSZec79s5KcWoZfWUi5OBEFuF
+         /hBg==
+X-Gm-Message-State: ACgBeo3qTOu5/sHO8DRaCgMDR4WiliA2U+iSwufEqxJQtGcZRJkwvVvO
+        KaTg/3S2M8SiwNz0Wf/64x4=
+X-Google-Smtp-Source: AA6agR77ZHGZ+uxxpgNccpYoYp2kC5VbtTjWiRxAsLO9g70ROMk1CG91pYyGdCg3c0KLZc022PYBFw==
+X-Received: by 2002:a17:90b:3947:b0:1f5:104:f8cd with SMTP id oe7-20020a17090b394700b001f50104f8cdmr13304151pjb.26.1659665729890;
+        Thu, 04 Aug 2022 19:15:29 -0700 (PDT)
+Received: from debian.me (subs02-180-214-232-7.three.co.id. [180.214.232.7])
+        by smtp.gmail.com with ESMTPSA id j11-20020a17090a2a8b00b001ef8ea89a33sm4430792pjd.2.2022.08.04.19.15.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Aug 2022 19:15:29 -0700 (PDT)
+Received: by debian.me (Postfix, from userid 1000)
+        id DBC291047E5; Fri,  5 Aug 2022 09:15:24 +0700 (WIB)
+Date:   Fri, 5 Aug 2022 09:15:24 +0700
+From:   Bagas Sanjaya <bagasdotme@gmail.com>
+To:     Elliot Berman <quic_eberman@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 00/11] Drivers for gunyah hypervisor
+Message-ID: <Yux9PO0x+9aAVNj6@debian.me>
+References: <20220801211240.597859-1-quic_eberman@quicinc.com>
+ <YuuC0NISKFVIhUD1@debian.me>
+ <3dd4b206-8771-972b-7f4d-4935c5fbea3e@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3dd4b206-8771-972b-7f4d-4935c5fbea3e@quicinc.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Tue, 2 Aug 2022 16:49:04 -0600:
+On Thu, Aug 04, 2022 at 02:48:58PM -0700, Elliot Berman wrote:
+> > 
+> > Hi,
+> > 
+> > I can't apply this series on top of mainline or linux-next. On what tree
+> > (and what commit) this series is based on? I'd like to do htmldocs test.
+> > 
+> 
+> The series should apply cleanly on commit 4a57a8400075 ("vf/remap: return
+> the amount of bytes actually deduplicated") from Linus's tree.
+> 
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.0
+Applied, thanks.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/da8d07af4b3e2e407c5dd13f08b64580931fd1a6
-
-Thank you!
+Next time, don't forget to specify --base when using git-format-patch.
 
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+An old man doll... just what I always wanted! - Clara
