@@ -2,132 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A00FD58A935
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 12:07:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B91B458A947
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 12:15:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237621AbiHEKHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 06:07:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59482 "EHLO
+        id S240586AbiHEKPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 06:15:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236149AbiHEKHB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 06:07:01 -0400
-Received: from EUR02-VE1-obe.outbound.protection.outlook.com (mail-eopbgr20060.outbound.protection.outlook.com [40.107.2.60])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7606715E;
-        Fri,  5 Aug 2022 03:06:59 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UHPysnsO5NG18bF9KJXaUtNSPAoRKbac4nnlQYYmQYiSI0QKf4N1WYJqYnA64SSS4GgS9gR3N3De2TMHoO4+scaQZ/7OLih9Il1lFUyc1VMU2vVB7pgIGeKZw3BdXZJqaHRQMArZ5lIkHSswPlzFTR2CsCxBV198nNQml24Y+h8MM4vNwnVw5IrghY7CLNYY7l+3LRV4/5sKH0xP3QGFpKwtFCjuoRd7wl1Y6K+bfBPQudktQxJ0MRZ6gKwfwA1SYPrFdQeRzZXsA46w8FjXasrtnptL/ydWHDAV7h17QVHRyrJ+KuFb4FLkIsHOu4NK7uXmmNlGROWsEcFnX23EWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/zFM+OunDiSc7560Syte2Tu2PvPlxe9207snQOd8X7c=;
- b=oVL/QB+9EncsYuF9I1DJ/JOOG72DG4la7GzCvUENFc+E9abRBplT7+uJUeFh5oGlmpd6cdi0wI0BWJzvViEcJdToZOyhHKUCSRd2beDmC8NRzpoT11UiDmbCQrla/TCdfxbpXJNpPK2OoSYkHIOkL2ifC+UOLaJbfgyamT0o4xfS4ARnLZ3QOoLxJsORd+mEf/TNlCK/hnevecZ9Tw34K/a0GwfdFVxm4OLBIYVJ06pf20xuKVaGxx+W3uQ5vc3ToBzBp+5t5VLSfxiz0Cvtkx+ZdSWsaTCfzNh33/9xZgF1eD3lSwJEMV4rUduB85x4ew5ZUzqUcMv+3BNADgH41g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/zFM+OunDiSc7560Syte2Tu2PvPlxe9207snQOd8X7c=;
- b=sDKyTQbQkWuNePNcFDpzMF8IcY1ldljxitZdd37niNjWLNxV8DoSsq2JIzkZV3nGrYxgmNjxn4gjo7pzvVaB81oOLMJfXWNc4hIIiSbH1zn/DA42MArMlJG4exIW6RJeznruwgBV0nSiGBqUGQQp5IE9tZ8MBEDaCr6J0kyUKn4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by VI1PR04MB5215.eurprd04.prod.outlook.com (2603:10a6:803:59::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Fri, 5 Aug
- 2022 10:06:56 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::2549:869e:d80b:3a1b]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::2549:869e:d80b:3a1b%7]) with mapi id 15.20.5504.016; Fri, 5 Aug 2022
- 10:06:56 +0000
-Message-ID: <dbafe424aa9b4cdb79397476c1c4085ea2f0d242.camel@nxp.com>
-Subject: Re: [PATCH v3 1/3] drivers: bus: simple-pm-bus: Populate simple MFD
- child devices
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date:   Fri, 05 Aug 2022 18:06:46 +0800
-In-Reply-To: <CAGETcx94De-wofRjtPgNxa+YQoU3+j+we+4K9Evm=vtzhopX8g@mail.gmail.com>
-References: <20220804061133.4110734-1-victor.liu@nxp.com>
-         <20220804061133.4110734-2-victor.liu@nxp.com>
-         <CAL_Jsq+B5PMOmZO4hz5DyEsA4V=UkrNn-6b58h8VbcPa2iaQ1g@mail.gmail.com>
-         <CAGETcx94De-wofRjtPgNxa+YQoU3+j+we+4K9Evm=vtzhopX8g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2P153CA0052.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::21)
- To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+        with ESMTP id S240349AbiHEKPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 06:15:10 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83FD76D545;
+        Fri,  5 Aug 2022 03:15:08 -0700 (PDT)
+X-UUID: 4bb969e1a5b8465e89155655ce581c6f-20220805
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=lAS2O9PuTxJaCOqMglIlP/YQM9lwAM21zfkhqEBKX7Y=;
+        b=YvPT/y8Ag678zKNhTlEiYa4Hw4o2yS2kPqrXkyp/rXdk2VTKDtvkZCTPCz/lgFeMGh6KQ5ZnGiyH9fUzNsiazKXvrV3Adqxf4wxzZ34OGPr/PzeCUD2iWumtxAwIcCp1JLtGDTV7XAdWACmu2UarF0EPYJIbK6Swkq4nErzH55w=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:1f9088d0-4229-4938-af5b-de92dea24392,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:0f94e32,CLOUDID:f87007ae-9535-44a6-aa9b-7f62b79b6ff6,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:1,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 4bb969e1a5b8465e89155655ce581c6f-20220805
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 362737757; Fri, 05 Aug 2022 18:15:01 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 5 Aug 2022 18:14:59 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 5 Aug 2022 18:14:59 +0800
+From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
+        <airlied@linux.ie>
+CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
+        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
+        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
+        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-fbdev@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Bo-Chen Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH v16 0/8] drm/mediatek: Add MT8195 DisplayPort driver
+Date:   Fri, 5 Aug 2022 18:14:51 +0800
+Message-ID: <20220805101459.3386-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2ed44829-6f75-4d89-0676-08da76ca3a8e
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5215:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AUkg45XjjzOXSpmFpa8DEXLrTSS8IME87Dx3Z5rFKE/X51QsUxuvAdIfaah77vv7KAmT+tmWgLxCW0jA3JPQcpszhnxxAIq84ZoRtgniAshXQJkPIGqYwKRIEwfnDqf/Cfv7BXU0BMBwokc2Z2AbdpFDz/tBthJYoRI3ow0gWyFoJnsKZMPiruG4aG86euN/exTz2Jp5zTmnw/n7hl3D/F/qiI0AW9WuSeB59oelNcwIJOGi2zZnJ8QUYDW81kKUa2KScr+UAULFWUV7tkzmRs8vFW5gb/wwNd3trfrddX8/+qKqAXQRdE3dI5N/Tr+hCLe+REASGzgoR4axdaVVU6f2bRxRxtf4aF5SyKAzH7W7GfUI1ezlid/+EzelCfIVCK+38vM9cfoSb8XbJq/x3PVMnr9IUoq/t1B3/gXiaRFxJff6x7Dk/OX/FOGO9WOSIEMSI/1s0tdJy+gzu7yfLgQxHCxC6l7VqU4z3QBGttTDmH5emUBTV82l3vnR0micsgGWf44Gs/e6RiEJILRWuzwjyT9fFUfcmtN6nZ+2KK1Bp98cSRkSme44fv56Z+ObSfoews3mOX9/CQTsCLmpaVFBsZSS0XVMPrqfarsT8d42ar7RMyn5pgtWBjuaSJiQJ8oRfdwWO0YSsvU6A3LybhH/PJIUPypxdmNp5exbFbdAKLDv9vnhzbyhl+1eoabgG1grfgXURKW2SshW5RfeCO45f/mrzhCpXYQ2HGhbW9GR1jQarpRPBz7mps2OjCa1bxdAWQCNP1DO964ZeUbnjJ94mnG6CcXDFmVv+/KvKrmAjg8pTM/qKd8K+E6y0bRe
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(346002)(136003)(376002)(396003)(39860400002)(83380400001)(86362001)(38350700002)(38100700002)(4326008)(66946007)(110136005)(54906003)(66556008)(2906002)(66476007)(8676002)(316002)(5660300002)(53546011)(8936002)(7416002)(2616005)(26005)(6666004)(52116002)(6506007)(6512007)(186003)(41300700001)(36756003)(6486002)(478600001)(99106002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L0JhaG5qMm9WM0FwUnhLenVUc2lhNktwSUh4aDdJYzd5MFZZV2trZ1JGTDZH?=
- =?utf-8?B?ZjB6ZXkvdUxCVkplZ0JtbDNxWGRYTHl0a2xRZmh4UHFRYWpyaUdCTWNrY2JK?=
- =?utf-8?B?djVTOUIvVnpLUGpleVQ5NTBsQmRDK1J4T3kvMVF1REl6VyttRi9RWkRZQncr?=
- =?utf-8?B?N0xsd25rTHh4ZnIwbzlFRTFUK0lQYTVUODhrbXVoK2daU0ZyM3BUUjFPQUlt?=
- =?utf-8?B?dmdFemV5V2p3UHcwUFJkR21Lc1NyMjllYmcwUXNlMmN1cERXWTY2VmpvVEQ3?=
- =?utf-8?B?SGgvaTFrcDN4WGpYMWoxSlI4eWxTVHF5MkFRazRIR1lFRFdPUFllUkpXRFBu?=
- =?utf-8?B?QWxUSnpKOXBLT3p4clUxWmdlY2dWZFNhWHdVbnRjd01JNmVlakdTSEgvVXd3?=
- =?utf-8?B?K3FreGxxUWk3RFcySGJwdThpRllXa3dZVENaL1RaZlNLYWo4Qm5wbUhVU0VW?=
- =?utf-8?B?RlR5TEN2SEg4aGVUZFFiV25WNFc5N09RajlkL01YVGVtQXFOMDIwRDNVK3dY?=
- =?utf-8?B?RmsrRXdvQTl0NlZWL3RveTJIN2o4eGNHL0pVSDU5NkN1ZURLS3RMcFYyUHQ5?=
- =?utf-8?B?QnVzcngxcW9YV3o0bXAvZ3JhUkpSTkpTWUt6elFFdWpBVGFmRHlucjl1QU5E?=
- =?utf-8?B?WmNDT3JEeEdQdDFyMHJNRDdBTmtZK0FtRmo4ZVliRlZtazBHM2k1L1VYOWlp?=
- =?utf-8?B?YXRnVmtaamtObitXcnVLSElVR3Z6MkM5dWxXN2xOU3p1RnoyTlVvWDNnTG1C?=
- =?utf-8?B?bksyUk03ejNaN3JvTmhWUisvN1FGSDgrYm5Sb0sxdmt6Z1hGTlBuMGowWmxU?=
- =?utf-8?B?SjFma0VBdVZidnd4ajBXOWhmUkRaeGdmbFdWQ29GQ1BERGZ0cHMraDN3TGVm?=
- =?utf-8?B?SndpSHUvbXB5dlhnV1RwMnJYaU9Ob3ppSlRaVlk2a1ZlNjJCcHF2Nm1yMzNU?=
- =?utf-8?B?TGEyK3dKWXc5aWlDTFdLUFNoQVRtRVZFMXhEd05wYXVOQmRQYnZ5VjlVQ09B?=
- =?utf-8?B?UWE2ZDFzZUk3T0tPSGNPcG45cWVDaWUvcGtDMkd0eENsTHIwakZTcSsvQXI0?=
- =?utf-8?B?QzA4cXRESlFmUGVwM1BxcVd3TWR3VXorWVVEeWxIWC9MRjUzdHhNdFlOSGw5?=
- =?utf-8?B?NDdXUG1iY3laempVekRFbWdZY1VIdGNldG13bXhFdVBFU0N0eFFZUnB6VWgr?=
- =?utf-8?B?RzgwRkZFdnlJVnZvUFBhVTNTQzlZU0tsU0oramFpa01ZUjh2NlRDQTlTOFd2?=
- =?utf-8?B?M2FweEFJL3FMdEFSTG5ObWYvL3FPQ1loeU5WMlFSOTVEa2dGK2k5MzVGSTNs?=
- =?utf-8?B?bmRCWktDenJCL0NsZ1NSNmh0d0RXYTVkSEYwM2VPSEp6TTVzczBtOEpvTUtX?=
- =?utf-8?B?SUYrUEVvMTk2TGhOT3BUWnREMHVtaTdzNm1KTXBwdld2RWtySU1YUFZhV0RC?=
- =?utf-8?B?SnN6OVFjbWZPemVJZ3pkU09XamFVb2pOL1FGRE1kTmJZTDhKbGl4S09ZZDAz?=
- =?utf-8?B?Qm5hQ1B0akpaejlQNld2Tlg4WExIekx5MDBkZ0tYZVJMbWN6cTJiV3JLd0lD?=
- =?utf-8?B?b09UcTZnZWJ5MEMzUExzZi81VTJDeFNEcTNqVmJlbCtSL09tR1FjemZ0Q1Nv?=
- =?utf-8?B?cjI3VTBOeDZQbHJnUzZKK3dyY09JWGttUTFkWVFHd2FuWmNqYlllS0ZTdzZO?=
- =?utf-8?B?eTVSRzlPWnpzd3dhRWsyV2tValZQaW1LWm83ZjBWeVJtdnphT0lmc0ZrclBS?=
- =?utf-8?B?NTlVeUJLRkxwOUxUUVRuQzVCYlBHWDEzTDZqMVBzN3VMdDI3cnNwcEV5eFNk?=
- =?utf-8?B?OTlFVDk1ZHBheDNnNFUvRnk5VXBWakpIbUdCdCtPbmpOWFpPNW5iYnoxTTJx?=
- =?utf-8?B?MUNZWUhRZEszNWt2UWFTWnBaRmZkV1FIUGhsMTJwZEJuandhd0JJNlBlYmFJ?=
- =?utf-8?B?RCt1dGFwU0FQNjBuY2xtSjZOdlhoVkhKZ2Z2dTBwUkc0aDJrZVB4ZkYxWXl5?=
- =?utf-8?B?MnhEVEdSdVVUUzM5WU5wMjE4WitTNnhESGRIWVpSdFRnQmZpeTdGRHhTT045?=
- =?utf-8?B?RnBVQWh3UmRqR2xkd0VoMmhUZTJLT0ZWRHR5MkVOeXVzWXF1dS9LbE1zMXJq?=
- =?utf-8?Q?TIQewi3bA6sY0mleG8fsk4kAz?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ed44829-6f75-4d89-0676-08da76ca3a8e
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 10:06:56.6404
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mi9mz4ELcvUse4r1/D2vK979wmoI0anAltP8VMzCMYTVP9duMXoJ5DcgJrP1rT679UhbPs7pOcg7UmRw8hr6/w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5215
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -135,144 +70,161 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-08-04 at 11:26 -0700, Saravana Kannan wrote:
-> On Thu, Aug 4, 2022 at 5:18 AM Rob Herring <robh+dt@kernel.org>
-> wrote:
-> > 
-> > On Thu, Aug 4, 2022 at 12:10 AM Liu Ying <victor.liu@nxp.com>
-> > wrote:
-> > > 
-> > > There could be simple MFD device(s) connected to a simple PM bus
-> > > as child
-> > > node(s), like Freescale i.MX8qxp pixel link MSI bus. Add a child
-> > > match
-> > > table as an argument to of_platform_populate() function call to
-> > > specify
-> > > the simple MFD devices so that they can be populated.
-> > 
-> > There could be a simple-bus under it as well. You should just use
-> > of_platform_default_populate() instead.
-> 
-> I'm confused why we even need this patch. Wouldn't this driver
-> automatically probe simple-mfd buses and populate its child devices?
-> We already have it in simple_pm_bus_of_match.
+This patch is separated from v10 which is including dp driver, phy driver
+and dpintf driver. This series is only contained the DisplayPort driver.
 
-First of all, this driver doesn't populate simple-mfd bus's child
-devices because "ONLY_BUS" is set in simple_pm_bus_of_match[] for
-simple-mfd. 
+This series can be tested using 5.19-rc2 kernel and I test it in MT8195
+Tomato Chromebook. Modetest these modes:
 
-The device tree I'm working with is something like this:
+for eDP:
+  #0 2256x1504 60.00 2256 2304 2336 2536 1504 1507 1513 1549 235690 flags: phsync, nvsync; type: preferred, driver
+  #1 2256x1504 48.00 2256 2304 2336 2536 1504 1507 1513 1549 188550 flags: phsync, nvsync; type: driver
 
-bus@560000000 {
-	compatible = "fsl,aips-bus", "simple-bus";
-	...
+for DP:
+  #0 1920x1080 60.00 1920 2008 2052 2200 1080 1084 1089 1125 148500 flags: phsync, pvsync; type: preferred, driver
+  #1 1920x1080 59.94 1920 2008 2052 2200 1080 1084 1089 1125 148352 flags: phsync, pvsync; type: driver
+  #2 1920x1080 50.00 1920 2448 2492 2640 1080 1084 1089 1125 148500 flags: phsync, pvsync; type: driver
+  #3 1680x1050 59.95 1680 1784 1960 2240 1050 1053 1059 1089 146250 flags: nhsync, pvsync; type: driver
+  #4 1600x900 60.00 1600 1624 1704 1800 900 901 904 1000 108000 flags: phsync, pvsync; type: driver
+  #5 1280x1024 60.02 1280 1328 1440 1688 1024 1025 1028 1066 108000 flags: phsync, pvsync; type: driver
+  #6 1280x800 59.81 1280 1352 1480 1680 800 803 809 831 83500 flags: nhsync, pvsync; type: driver
+  #7 1280x720 60.00 1280 1390 1430 1650 720 725 730 750 74250 flags: phsync, pvsync; type: driver
+  #8 1280x720 59.94 1280 1390 1430 1650 720 725 730 750 74176 flags: phsync, pvsync; type: driver
+  #9 1280x720 50.00 1280 1720 1760 1980 720 725 730 750 74250 flags: phsync, pvsync; type: driver
+  #10 1024x768 60.00 1024 1048 1184 1344 768 771 777 806 65000 flags: nhsync, nvsync; type: driver
+  #11 800x600 60.32 800 840 968 1056 600 601 605 628 40000 flags: phsync, pvsync; type: driver
+  #12 720x576 50.00 720 732 796 864 576 581 586 625 27000 flags: nhsync, nvsync; type: driver
+  #13 720x480 60.00 720 736 798 858 480 489 495 525 27027 flags: nhsync, nvsync; type: driver
+  #14 720x480 59.94 720 736 798 858 480 489 495 525 27000 flags: nhsync, nvsync; type: driver
+  #15 640x480 60.00 640 656 752 800 480 490 492 525 25200 flags: nhsync, nvsync; type: driver
+  #16 640x480 59.94 640 656 752 800 480 490 492 525 25175 flags: nhsync, nvsync; type: driver
 
-	bus@562000000 {
-		compatible = "fsl,imx8qm-display-pixel-link-msi-bus", "simple-
-pm-bus";
-		...
+Changes from v15 for dp driver:
+dt-binding:
+  - Modify maintainers' comments.
+common part:
+  - Drop modification of cea_sad helpers because we don't use them anymore.
+dp drivers:
+  - Remove some unused register definitions.
+  - Extract the same drivers for training function.
+  - Use of device data for feature variables to judge what we want to do instead of using is_edp.
+  - Drop retry patch because we don't encounter this issue in current drivers.
 
-		syscon@56241000 {
-			compatible = "fsl,imx8qm-lvds-csr", "syscon", "simple-mfd";
-			...
+Changes from v14 for dp driver:
+dt-binding:
+  - Add more description for difference of edp and dp.
+  - Add description that why we don't need clock property.
+common part:
+  - Fix reviewers' comments.
+dp drivers:
+  - Expand drivers to one function of irq handle.
+  - Fix reviewers' comments.
+  - Remove some redundant check.
+  - Remove limitation of 60fps.
+  - Add one patch for adding retry.
+  - Add unregister flow of audio platform.
 
-			syscon_child {};
-		};
+Changes from v13 for dp driver:
+dt-binding:
+  - Move data-lanes to port.
+dp drivers:
+  - Reporting for data-lanes using port.
+  - Remove unnecessary drivers.
+  - Refine mtk_dp_aux_transfer().
+  - Refine mtk_dp_hpd_isr_handler().
+  - Remove fec related drivers.
 
-		/* more regular mmap devices */
-	};
-};
+Changes from v12 for dp driver:
+dt-binding:
+  - Fix build error.
+embedded dp drivers:
+  - Revise Kconfig to let this driver independent.
+  - Drop some unused/redundant drivers.
+  - Move some features to patches of external dp and audio.
+  - Refine format error control flow.
+  - Add error control of write register functions.
+  - Use mtk sip common definitions.
 
-IIUC, default buses listed in of_default_bus_match_table[], including
-simple-bus and simple-mfd, are populated by
-of_platform_default_populate() in a recursive fashion, when
-of_platform_default_populate_init() is called.  However, simple-pm-bus
-is not listed in that table.  So, bus@562000000 (simple-pm-bus) is the
-last one to be populated successfully and syscon@56241000 (simple-mfd)
-is not populated (recursion stops).
+Changes from v11 for dp driver:
+dt-binding:
+  - Use data-lanes to determine the max supported lane numbers.
+  - Add mhz to max-linkrate to show the units.
+embedded dp drivers:
+  - Modify Makefile.
+  - Drop some unused/redundant drivers.
+  - Move some features to patches of external dp and audio.
+  - Modify break condition of training loop to control cr/eq fail.
+  - Replace some function/definition with ones of common drm drivers.
+  - Remove dp_lock mutex because it's only locked in power_on/off.
+  - Add drm_dp_aux_(un)register in mtk_dp_bridge_(de)attach.
 
-Then, this patch adds a match table to populate syscon@56241000 (simple
--mfd) _and_ it's child nodes when bus@562000000 (simple-pm-bus) is
-probed.  of_platform_populate() will populate syscon@56241000 (simple-
-mfd) and it's child devices (sycon_child) together. Hence, sycon_child
-devices will be probed ok.
+Changes from v10 for dp driver:
+- Drop return value for write registers to make code more clear.
+- Refine training state.
+- Add property for dt-binding.
+- Add new bug fix patches for audio and suspend.
+- Rebase to v5.19-rc1.
 
-The problem is that syscon@56241000 (simple-mfd) fails to be probed
-with return code -ENODEV as "ONLY_BUS" is set and "simple-mfd" is the
-3rd compatible string. Even if it's probed ok, syscon@56241000 (simple-
-mfd) is not power managed, which means syscon_child devices' PM
-operations won't be propagated to bus@562000000 (simple-pm-bus) (?). 
-Anyway, somehow, syscon_child devices do work, based on my test.
-With regard to PM, simple-bus is the same if it sits at simple-mfd's
-place.  So, maybe, simple-mfd and simple-bus should be power managed as
-well?  Or, simple-pm-bus should have no simple-mfd and simple-bus child
-nodes at all? 
+Changes from v9:
+- The DP-Phy is back to being a child device of the DP driver (as in v8)
+- hot plug detection has been added back to Embedded Display Port... as
+  after discussing with mediatek experts, this is needed eventhough the
+  Embedded Display port is not un-pluggable
+- rebased on linux-next
+- simplified/split train_handler function, as suggested by Rex
+- added comments on the sleep/delays present in the code
+- removed previous patch introducing retries when receiving AUX_DEFER as
+  this is already handled in the dp_aux framework
+- added max-lane and max-linkrate device tree u8 properties instead of
+  hardcoded #defines
 
-> 
-> I'm wondering if you are trying to workaround the behavior of having
-> "ONLY_BUS" set in simple_pm_bus_of_match for "simple-mfd". Have you
-> tried deleting that field and see if it does what you want?
+Older revisions:
+RFC - https://lore.kernel.org/linux-mediatek/20210816192523.1739365-1-msp@baylibre.com/
+v1  - https://lore.kernel.org/linux-mediatek/20210906193529.718845-1-msp@baylibre.com/
+v2  - https://lore.kernel.org/linux-mediatek/20210920084424.231825-1-msp@baylibre.com/
+v3  - https://lore.kernel.org/linux-mediatek/20211001094443.2770169-1-msp@baylibre.com/
+v4  - https://lore.kernel.org/linux-mediatek/20211011094624.3416029-1-msp@baylibre.com/
+v5  - https://lore.kernel.org/all/20211021092707.3562523-1-msp@baylibre.com/
+v6  - https://lore.kernel.org/linux-mediatek/20211110130623.20553-1-granquet@baylibre.com/
+v7  - https://lore.kernel.org/linux-mediatek/20211217150854.2081-1-granquet@baylibre.com/
+v8  - https://lore.kernel.org/linux-mediatek/20220218145437.18563-1-granquet@baylibre.com/
+v9  - https://lore.kernel.org/all/20220327223927.20848-1-granquet@baylibre.com/
+v10 - https://lore.kernel.org/all/20220523104758.29531-1-granquet@baylibre.com/
+v11 - https://lore.kernel.org/r/20220610105522.13449-1-rex-bc.chen@mediatek.com
+v12 - https://lore.kernel.org/all/20220627080341.5087-1-rex-bc.chen@mediatek.com/
+v13 - https://lore.kernel.org/all/20220701062808.18596-1-rex-bc.chen@mediatek.com/
+v14 - https://lore.kernel.org/all/20220712111223.13080-1-rex-bc.chen@mediatek.com/
+v15 - https://lore.kernel.org/all/20220727045035.32225-1-rex-bc.chen@mediatek.com/
 
-Without this patch, deleting "ONLY_BUS" works for me, as syscon_child
-devices are populated when syscon@56241000 (simple-mfd) is probed.
-Deleting "ONLY_BUS" may make simple-mfd a power managed device. Is it a
-right thing to do?
+Bo-Chen Chen (2):
+  drm/mediatek: set monitor to DP_SET_POWER_D3 to avoid garbage
+  drm/mediatek: Use cached audio config when changing resolution
 
-Regards,
-Liu Ying
+Guillaume Ranquet (2):
+  drm/mediatek: Add MT8195 External DisplayPort support
+  drm/mediatek: DP audio support for MT8195
 
-> 
-> And we wouldn't need to use of_platform_default_populate() because
-> this driver would take care of doing that recursively. Especially
-> when
-> you need the clocks and power domain to be able to access the child
-> devices, you want the driver to probe and do that at each level
-> before
-> automatically recursively adding all the grand-children devices.
-> 
-> -Saravana
-> 
-> > 
-> > > 
-> > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > > ---
-> > > v1->v3:
-> > > * No change.
-> > > 
-> > >  drivers/bus/simple-pm-bus.c | 7 ++++++-
-> > >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-
-> > > bus.c
-> > > index 6b8d6257ed8a..ff5f8ca5c024 100644
-> > > --- a/drivers/bus/simple-pm-bus.c
-> > > +++ b/drivers/bus/simple-pm-bus.c
-> > > @@ -13,6 +13,11 @@
-> > >  #include <linux/platform_device.h>
-> > >  #include <linux/pm_runtime.h>
-> > > 
-> > > +static const struct of_device_id simple_pm_bus_child_matches[] =
-> > > {
-> > > +       { .compatible = "simple-mfd", },
-> > > +       {}
-> > > +};
-> > > +
-> > >  static int simple_pm_bus_probe(struct platform_device *pdev)
-> > >  {
-> > >         const struct device *dev = &pdev->dev;
-> > > @@ -49,7 +54,7 @@ static int simple_pm_bus_probe(struct
-> > > platform_device *pdev)
-> > >         pm_runtime_enable(&pdev->dev);
-> > > 
-> > >         if (np)
-> > > -               of_platform_populate(np, NULL, lookup, &pdev-
-> > > >dev);
-> > > +               of_platform_populate(np,
-> > > simple_pm_bus_child_matches, lookup, &pdev->dev);
-> > > 
-> > >         return 0;
-> > >  }
-> > > --
-> > > 2.25.1
-> > > 
+Jitao Shi (1):
+  drm/mediatek: add hpd debounce
+
+Markus Schneider-Pargmann (3):
+  dt-bindings: mediatek,dp: Add Display Port binding
+  video/hdmi: Add audio_infoframe packing for DP
+  drm/mediatek: Add MT8195 Embedded DisplayPort driver
+
+ .../display/mediatek/mediatek,dp.yaml         |  116 +
+ drivers/gpu/drm/mediatek/Kconfig              |    9 +
+ drivers/gpu/drm/mediatek/Makefile             |    2 +
+ drivers/gpu/drm/mediatek/mtk_dp.c             | 2856 +++++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_dp_reg.h         |  499 +++
+ drivers/video/hdmi.c                          |   82 +-
+ include/drm/display/drm_dp.h                  |    2 +
+ include/linux/hdmi.h                          |    7 +-
+ 8 files changed, 3553 insertions(+), 20 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_dp.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_dp_reg.h
+
+-- 
+2.18.0
 
