@@ -2,141 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0C2C58AB57
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 15:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F124158AB82
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 15:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236073AbiHENKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 09:10:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33230 "EHLO
+        id S240731AbiHENUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 09:20:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbiHENKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 09:10:18 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAEF9F74;
-        Fri,  5 Aug 2022 06:10:16 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id 17so1779884qky.8;
-        Fri, 05 Aug 2022 06:10:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=9J24cDKKqsOduTS9UUyGj2I+dc2JXq9COm3ho1bp/NE=;
-        b=NZ/lhCyR9M4uoWmE11gXdKIY5QHCgnKHevuKo4TMG1DjXmtxuHL9IGeJwZ4LfPJ5Sx
-         An9X10WyEwlH6gobWrRkcQrihAvfFo/NEkJHppMNCjVysFpqBcUQppBPmmWv/gJlRwNJ
-         AJ5R5hBz/6Z6zt3zcMCzNBlOWAFcgddiIbDO26176idaVxtdAeLEwOB83fyRhNgFshT0
-         PgEvwdsJAJBc7N5GmC3tSOdTGVFK5PY33vJvxUo6aKPI13T8ZPWktLxzYyY8DyD7/CRd
-         N6n68KF39/cpPvRO/LCj/Zk8AkuXDm7CeFfWTupOMgC5Oh24O5OoP7ydY1qxP317WUAG
-         zV8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=9J24cDKKqsOduTS9UUyGj2I+dc2JXq9COm3ho1bp/NE=;
-        b=imnwJFAhn0BzI6QmhPhz1U4EMSdkH2oU/MKgzSijN8NrAZvqPsT3SmYCIPaydWTw+W
-         C+GMV4zm+HDbL8yAK3bSXfIH9oCI0N8yLoDGYmil4Wz8nyLAwgQdvPUp0jcy4bCGFVWn
-         M/eCqLghhNqljBSHXy4itcoo9c0RP1CgGUlmLphYsDdQO4cXNKhwpaQGabHvlwHAeyBx
-         nqUHJQV6SGlz35n7NIvlJDDRfxc7pUPy/trsCkmVsxROIUbJKLs1Ry6Rd7oQCbRkWj7I
-         Sv5ATnTjtpPvfwg466Lk7ZGrOlpkE6+NswsjwEE5nYft3EmyxTiMBW2yWaYvaslAAtR2
-         jlrw==
-X-Gm-Message-State: ACgBeo0lApKLBx6Q3ehTsBJXbCCufPGZVxhm/wC5XpLUsJG5WoMhWrea
-        UYfQFHa2ttEgoUSEE/4r8eEwjRgXfaslLWLEAcI=
-X-Google-Smtp-Source: AA6agR6KCeqnEoqyKUTU9bwzHJxmJAXoC1uA/8jBqjS4KNKKgC3bBRK/UzGUzHpzrq29/PrSFNdU8y5czcT3jzWXnGE=
-X-Received: by 2002:a05:620a:254d:b0:6ab:84b8:25eb with SMTP id
- s13-20020a05620a254d00b006ab84b825ebmr5054205qko.383.1659705015729; Fri, 05
- Aug 2022 06:10:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220805070610.3516-1-peterwu.pub@gmail.com> <20220805070610.3516-13-peterwu.pub@gmail.com>
-In-Reply-To: <20220805070610.3516-13-peterwu.pub@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 5 Aug 2022 15:09:39 +0200
-Message-ID: <CAHp75VcdU6AVdksuhsHkzvD6mOBJ6G=yrmuHA9zAXLroXDFAjg@mail.gmail.com>
-Subject: Re: [PATCH v7 12/13] leds: flash: mt6370: Add MediaTek MT6370
- flashlight support
-To:     ChiaEn Wu <peterwu.pub@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S240692AbiHENUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 09:20:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F17F5FE2;
+        Fri,  5 Aug 2022 06:20:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A54AB60A69;
+        Fri,  5 Aug 2022 13:20:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47829C433D7;
+        Fri,  5 Aug 2022 13:20:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659705648;
+        bh=HW5Lw6f9czoMMC+SckAxWTPiwXMoqHH9pzjFaYeb6CU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=SzmHZZQF1IzJguvnwsVa22pzlcrAgkDAETHC+VZ3y6UYarg1fPLA3TSA/QxYEVn2E
+         qVLOeKIBxTdNrAYA4CGu/IhugVxDUjJU6zPDcpaYXcpXsaPhwoPW//oyt3knZ4W0Ze
+         Kwb2hbnJcjMSLGK5dBvsjmp98HAQgycnRg6vnl2dKBoFdNbCA8HOE00UftF2KbMOFn
+         ToEIowD+f5oEClal6ttxEXnz7urCGyRkGL6XgArm3zAOYR/FXiRtjCJW/j6Cu0T8Ro
+         9K8yG49Q61auFDs9Bvl/aVZAxR0rzpU41V62OSK/owBnVBE20irR4hb0AGjRB/CrlB
+         FWSR9A2Lx6dFg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Nick Hawkins <nick.hawkins@hpe.com>,
+        Jean-Marie Verdun <verdun@hpe.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        linux-spi@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
-        Helge Deller <deller@gmx.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Alice Chen <alice_chen@richtek.com>,
-        cy_huang <cy_huang@richtek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
-        szuni chen <szunichen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220804161823.20912-1-lukas.bulwahn@gmail.com>
+References: <20220804161823.20912-1-lukas.bulwahn@gmail.com>
+Subject: Re: [PATCH] MAINTAINERS: rectify entry for ARM/HPE GXP ARCHITECTURE
+Message-Id: <165970564600.1040888.14372925011980629843.b4-ty@kernel.org>
+Date:   Fri, 05 Aug 2022 14:20:46 +0100
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.10.0-dev-fe10a
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 5, 2022 at 9:07 AM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
->
-> From: Alice Chen <alice_chen@richtek.com>
->
-> The MediaTek MT6370 is a highly-integrated smart power management IC,
-> which includes a single cell Li-Ion/Li-Polymer switching battery
-> charger, a USB Type-C & Power Delivery (PD) controller, dual Flash
-> LED current sources, a RGB LED driver, a backlight WLED driver,
-> a display bias driver and a general LDO for portable devices.
->
-> Add a support for the MT6370 Flash LED driver. Flash LED in MT6370
-> has 2 channels and support torch/strobe mode.
+On Thu, 4 Aug 2022 18:18:23 +0200, Lukas Bulwahn wrote:
+> Commit 8cc35b86546d ("spi: dt-bindings: add documentation for
+> hpe,gxp-spifi") adds the spi dt-binding file hpe,gxp-spifi.yaml and commit
+> a1848b0fa251 ("MAINTAINERS: add spi support to GXP") adds a file entry
+> hpe,gxp-spi.yaml in ARM/HPE GXP ARCHITECTURE. Note the different file name.
+> 
+> Hence, ./scripts/get_maintainer.pl --self-test=patterns complains about a
+> broken reference.
+> 
+> [...]
 
-Same comments as per previous LED related patch.
+Applied to
 
-...
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-> +       /*
-> +        * For the flash to turn on/off, we need to wait HW ramping up/down time
-> +        * 5ms/500us to prevent the unexpected problem.
-> +        */
-> +       if (!priv->fled_strobe_used && curr)
-> +               usleep_range(5000, 6000);
-> +       else if (priv->fled_strobe_used && !curr)
-> +               usleep_range(500, 600);
+Thanks!
 
-Now it's much better!
+[1/1] MAINTAINERS: rectify entry for ARM/HPE GXP ARCHITECTURE
+      commit: 706864c99e0e2d301da9e749395909bc309c50a0
 
-...
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> +       /*
-> +        * Always configure as min level when off to
-> +        * prevent flash current spike
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-/*
- * You need to check the style
- * of multi-line comments like
- * this one.
- */
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-> +        */
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks,
+Mark
