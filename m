@@ -2,186 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6581A58AA31
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 13:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E9C858AA5B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 13:54:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240664AbiHELd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 07:33:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55040 "EHLO
+        id S235939AbiHELyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 07:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235412AbiHELd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 07:33:56 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9AA776961;
-        Fri,  5 Aug 2022 04:33:55 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id bf13so2418611pgb.11;
-        Fri, 05 Aug 2022 04:33:55 -0700 (PDT)
+        with ESMTP id S233602AbiHELyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 07:54:18 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72C8876978
+        for <devicetree@vger.kernel.org>; Fri,  5 Aug 2022 04:54:16 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-328a1cff250so21879037b3.6
+        for <devicetree@vger.kernel.org>; Fri, 05 Aug 2022 04:54:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc;
-        bh=Y1O9mOiaosEcsJLfFY3oGPxoYWZxd2G4m0wSUhxZiJY=;
-        b=OtAardi3Yua6hzMvw5Z8Xkd3+5bpYvj2r2h2/I+/onPnnMZxXbUagGqPw/gaQrEDSH
-         AYBFiNTXXiL8FDhP5yV3/cKxXTbWguwhtX5ROpuFZg9uBxcVCANiVGZflylTGzNfRGro
-         dr8nJdozlzYDKlWt5fACpTX3qbBEAy+WCVstgT1mDuCm5ePVOpksM3gGuR/gx6GJOMKA
-         LWzsJPdqrKbEFlpr290qxuQQAn+q5bufDix2YEgpBNkYOukgPXlrf3yVfGQiBRcV0hvS
-         QH/wET8ckg20y8WW6scNa5zQQnqvg9WuU89/PmMq8LhnJHmFHVRlKnhoUqJKvF26z9z4
-         u2Aw==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=B02RqxjBTQRs85a8gF2gLe9dL1JOQq3J4L0ycDQz7f4=;
+        b=ECUBjQ6a3KqW1cyowmSgFitTkNeso0Ptc6F6gnpY6N5bqbTzGXPuJcI/pfHBU2BYGG
+         7iUgbmsVaEJrs3RJuNxaMadfi+1iFQnDbL4PJ8FjroL22bN7bMNtzmxHslqP1RMmR257
+         I7k9Tt+x6e2/Cx1n/EnZ1yR2O/CXu5PcOqI9rnlUt1AiqJqp+GgAr1PzA44lJK61HbKa
+         W6D1uq7j4FWlUhlUF4DBHmg2hs/PskkOvgwqeCa25YKkXkvnVDh31JLE9jtk8YV8gFMV
+         DXdJDBdg47uYSw9SPj6TwjWL97g6mwUHBr9xO2D2g8ULIUoBudCP4o7GDa2uitv0myvE
+         Ejig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc;
-        bh=Y1O9mOiaosEcsJLfFY3oGPxoYWZxd2G4m0wSUhxZiJY=;
-        b=2A7yQNFc+sVjnW9+JIcXYSGTiQnMvs5Uylzj1UwmmE6PK61j8jC2kI4ZCW53VS/mOv
-         sW0aBY0V3hfeT8kOA5HHC5KxfA84syxcNpPf1u02F7jqbbX3vsGbuvpVRhAYMo5c76ec
-         lR0MgR2LUCS9F1S4FV9p75HOmVWC7SbCopZbAMP6VJBxDSKKO3FmKWTQ+ui5EP8w6MPY
-         d4ozKx8mKuRMjazmjsOAIiBgvNWy6jI7JccZu5pOugDE21bf9HwEU2oPtf4+fA4Wu0XA
-         viM1WnKNVh8EHCvvw/P4+ALoqB6z1T4sDzXxcGfdOw9T+qUHDofobHXxr9puxLD7rJ0j
-         bAQA==
-X-Gm-Message-State: ACgBeo3qurwPmjz6/9hwrunyYjhrlDIqmXhP6jQwk4VK5JiRe+6C25fI
-        eII2F5v4VCYjbwlyHDJfwb8=
-X-Google-Smtp-Source: AA6agR4VZ9edZH/x6RgunAD+PP6vlPVk9Sy9PtGkRSiaKLTrCvZCTh35PHVjGsKmX5nYYMCssKZAuA==
-X-Received: by 2002:a65:6bcb:0:b0:412:a68d:1083 with SMTP id e11-20020a656bcb000000b00412a68d1083mr5497387pgw.456.1659699235395;
-        Fri, 05 Aug 2022 04:33:55 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id p16-20020a63c150000000b0040ca587fe0fsm1265667pgi.63.2022.08.05.04.33.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Aug 2022 04:33:54 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 5 Aug 2022 04:33:48 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, gene_chen@richtek.com,
-        cy_huang@richtek.com
-Subject: Re: [PATCH v4 7/7] usb: typec: tcpci_rt1711h: Fix CC PHY noise
- filter of voltage level
-Message-ID: <20220805113348.GE1011279@roeck-us.net>
-References: <20220805071714.150882-1-gene.chen.richtek@gmail.com>
- <20220805071714.150882-8-gene.chen.richtek@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=B02RqxjBTQRs85a8gF2gLe9dL1JOQq3J4L0ycDQz7f4=;
+        b=XdFR4+sIY+2H4UlDCpWPyk/tSRI7S8gfZTVNACEiymqEsD6pDodPnxoCxrFAEtHsWH
+         QWluWXWMWhH340fSzUVuM21DyP5HVmO3IcYO59NmvbMqIIy3m716tUfESbrvTGOu4UdJ
+         DIKFO1Xp1LfWKkR8yI9tPtUOJU0HdHcAM5p4+nGtQSJzNLtB0jSARm84R4TUdeed6edK
+         uHVi05+zUz9EZI5RtivbvEhG2kcyg2IIZNAkQrLKOjCO+MK4zrq4KzOi05l6n8kNFxjO
+         9R2nrDsrra/hzxLORn0271OsehfxVOfQ0pJg8T2DkfRZ2JLtyR6cZDnO5eZntuDS9f+m
+         Xaew==
+X-Gm-Message-State: ACgBeo3INIC7EDHm8PkIVqLnXaYy1hLC+k++uhZEsVepwBpPy10gbbDw
+        6ev6Y/SSHbPzXYs05gv+NG1oxeau89WmmWg8x6JbSg==
+X-Google-Smtp-Source: AA6agR72QleJK186GhMdgMP/yTvyEphneAZ2QYvhg8nnZGfN+KY6QWW+tPlsHTl350LimpY/Cp8NATm/hRG1zpOFkm8=
+X-Received: by 2002:a0d:e88e:0:b0:328:297a:fd9e with SMTP id
+ r136-20020a0de88e000000b00328297afd9emr5960768ywe.88.1659700455699; Fri, 05
+ Aug 2022 04:54:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220805071714.150882-8-gene.chen.richtek@gmail.com>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220804130912.676043-1-bchihi@baylibre.com> <20220804130912.676043-2-bchihi@baylibre.com>
+ <20220804230407.kwfsxy74qmmebfsj@notapiano>
+In-Reply-To: <20220804230407.kwfsxy74qmmebfsj@notapiano>
+From:   Balsam CHIHI <bchihi@baylibre.com>
+Date:   Fri, 5 Aug 2022 13:53:39 +0200
+Message-ID: <CAGuA+ornX-mt-kjYE9693PEYqCpQQGf=CdG1k4kwzaS4BBHxmg@mail.gmail.com>
+Subject: Re: [PATCH v8.1, 1/7] thermal: mediatek: Relocate driver to mediatek folder
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        amitk@kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, khilman@baylibre.com,
+        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        rex-bc.chen@mediatek.com, abailon@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 05, 2022 at 03:17:13PM +0800, Gene Chen wrote:
-> From: Gene Chen <gene_chen@richtek.com>
-> 
-> Fix CC PHY noise filter of voltage level according to
-> current cc voltage level
-> 
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+On Fri, Aug 5, 2022 at 1:04 AM N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> wrote:
+>
+> Hi Balsam,
+>
+> On Thu, Aug 04, 2022 at 03:09:06PM +0200, bchihi@baylibre.com wrote:
+> > From: Michael Kao <michael.kao@mediatek.com>
+> >
+> > Add MediaTek proprietary folder to upstream more thermal zone and coole=
+r
+> > drivers, relocate the original thermal controller driver to it, and ren=
+ame it
+> > as "mtxxxx_thermal.c" to show its purpose more clearly.
+> >
+> > Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> > Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
+> > Signed-off-by: Balsam CHIHI <bchihi@baylibre.com>
+> > ---
+> >  drivers/thermal/Kconfig                       | 14 ++++-------
+> >  drivers/thermal/Makefile                      |  2 +-
+> >  drivers/thermal/mediatek/Kconfig              | 23 +++++++++++++++++++
+> >  drivers/thermal/mediatek/Makefile             |  1 +
+> >  .../mtxxxx_thermal.c}                         |  2 +-
+> >  5 files changed, 30 insertions(+), 12 deletions(-)
+> >  create mode 100644 drivers/thermal/mediatek/Kconfig
+> >  create mode 100644 drivers/thermal/mediatek/Makefile
+> >  rename drivers/thermal/{mtk_thermal.c =3D> mediatek/mtxxxx_thermal.c} =
+(99%)
+> [..]
+> > --- /dev/null
+> > +++ b/drivers/thermal/mediatek/Makefile
+> > @@ -0,0 +1 @@
+> > +obj-$(CONFIG_MTK_SOC_THERMAL)                +=3D mtxxxx_thermal.o
+> > diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mediatek/m=
+txxxx_thermal.c
+>
+> When Daniel suggested using a more SoC explicit name like 'mtxxx_thermal'=
+ [1]
+> the xxxx was supposed to be substituted for the actual SoC (family) that =
+makes
+> use of this driver :-).
+>
+> From the compatibles looks like we have mt8173, mt2701, mt2712, mt7622, m=
+t8183.
+> So it doesn't look like it's a single SoC family... What about calling it
+> auxadc_thermal?
+>
+> Thanks,
+> N=C3=ADcolas
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+Hello N=C3=ADcolas,
 
-> ---
->  drivers/usb/typec/tcpm/tcpci_rt1711h.c | 58 +++++++++++++++++++++++++++++++++-
->  1 file changed, 57 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/typec/tcpm/tcpci_rt1711h.c b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> index ff7deae..5dc34f9 100644
-> --- a/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> +++ b/drivers/usb/typec/tcpm/tcpci_rt1711h.c
-> @@ -24,8 +24,11 @@
->  #define RT1711H_PHYCTRL1	0x80
->  #define RT1711H_PHYCTRL2	0x81
->  
-> -#define RT1711H_RTCTRL8		0x9B
-> +#define RT1711H_RTCTRL4		0x93
-> +/* rx threshold of rd/rp: 1b0 for level 0.4V/0.7V, 1b1 for 0.35V/0.75V */
-> +#define RT1711H_BMCIO_RXDZSEL	BIT(0)
->  
-> +#define RT1711H_RTCTRL8		0x9B
->  /* Autoidle timeout = (tout * 2 + 1) * 6.4ms */
->  #define RT1711H_RTCTRL8_SET(ck300, ship_off, auto_idle, tout) \
->  			    (((ck300) << 7) | ((ship_off) << 5) | \
-> @@ -44,6 +47,10 @@
->  #define RT1711H_RTCTRL15	0xA2
->  #define RT1711H_RTCTRL16	0xA3
->  
-> +#define RT1711H_RTCTRL18	0xAF
-> +/* 1b0 as fixed rx threshold of rd/rp 0.55V, 1b1 depends on RTCRTL4[0] */
-> +#define BMCIO_RXDZEN	BIT(0)
-> +
->  struct rt1711h_chip {
->  	struct tcpci_data data;
->  	struct tcpci *tcpci;
-> @@ -164,6 +171,53 @@ static int rt1711h_set_vconn(struct tcpci *tcpci, struct tcpci_data *tdata,
->  				  RT1711H_AUTOIDLEEN, enable ? 0 : RT1711H_AUTOIDLEEN);
->  }
->  
-> +/*
-> + * Selects the CC PHY noise filter voltage level according to the remote current
-> + * CC voltage level.
-> + *
-> + * @status: The port's current cc status read from IC
-> + * Return 0 if writes succeed; failure code otherwise
-> + */
-> +static inline int rt1711h_init_cc_params(struct rt1711h_chip *chip, u8 status)
-> +{
-> +	int ret, cc1, cc2;
-> +	u8 role = 0;
-> +	u32 rxdz_en, rxdz_sel;
-> +
-> +	ret = rt1711h_read8(chip, TCPC_ROLE_CTRL, &role);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	cc1 = tcpci_to_typec_cc((status >> TCPC_CC_STATUS_CC1_SHIFT) &
-> +				TCPC_CC_STATUS_CC1_MASK,
-> +				status & TCPC_CC_STATUS_TERM ||
-> +				tcpc_presenting_rd(role, CC1));
-> +	cc2 = tcpci_to_typec_cc((status >> TCPC_CC_STATUS_CC2_SHIFT) &
-> +				TCPC_CC_STATUS_CC2_MASK,
-> +				status & TCPC_CC_STATUS_TERM ||
-> +				tcpc_presenting_rd(role, CC2));
-> +
-> +	if ((cc1 >= TYPEC_CC_RP_1_5 && cc2 < TYPEC_CC_RP_DEF) ||
-> +	    (cc2 >= TYPEC_CC_RP_1_5 && cc1 < TYPEC_CC_RP_DEF)) {
-> +		rxdz_en = BMCIO_RXDZEN;
-> +		if (chip->did == RT1715_DID)
-> +			rxdz_sel = RT1711H_BMCIO_RXDZSEL;
-> +		else
-> +			rxdz_sel = 0;
-> +	} else {
-> +		rxdz_en = 0;
-> +		rxdz_sel = RT1711H_BMCIO_RXDZSEL;
-> +	}
-> +
-> +	ret = regmap_update_bits(chip->data.regmap, RT1711H_RTCTRL18,
-> +				 BMCIO_RXDZEN, rxdz_en);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return regmap_update_bits(chip->data.regmap, RT1711H_RTCTRL4,
-> +				  RT1711H_BMCIO_RXDZSEL, rxdz_sel);
-> +}
-> +
->  static int rt1711h_start_drp_toggling(struct tcpci *tcpci,
->  				      struct tcpci_data *tdata,
->  				      enum typec_cc_status cc)
-> @@ -224,6 +278,8 @@ static irqreturn_t rt1711h_irq(int irq, void *dev_id)
->  		/* Clear cc change event triggered by starting toggling */
->  		if (status & TCPC_CC_STATUS_TOGGLING)
->  			rt1711h_write8(chip, TCPC_ALERT, TCPC_ALERT_CC_STATUS);
-> +		else
-> +			rt1711h_init_cc_params(chip, status);
->  	}
->  
->  out:
-> -- 
-> 2.7.4
-> 
+"auxadc_thermal.c" makes more sense, since we have "lvts_thermal.c".
+Thank you for the suggestion. I will take it.
+
+Best regards,
+Balsam
+
+>
+> [1] https://lore.kernel.org/linux-mediatek/24250d03-b25f-e521-5abd-f36109=
+885c36@linaro.org/
+>
+> > similarity index 99%
+> > rename from drivers/thermal/mtk_thermal.c
+> > rename to drivers/thermal/mediatek/mtxxxx_thermal.c
+> > index ede94eadddda..60924f8f98e9 100644
+> > --- a/drivers/thermal/mtk_thermal.c
+> > +++ b/drivers/thermal/mediatek/mtxxxx_thermal.c
+> > @@ -23,7 +23,7 @@
+> >  #include <linux/reset.h>
+> >  #include <linux/types.h>
+> >
+> > -#include "thermal_hwmon.h"
+> > +#include "../thermal_hwmon.h"
+> >
+> >  /* AUXADC Registers */
+> >  #define AUXADC_CON1_SET_V    0x008
+> > --
+> > 2.34.1
+> >
+> >
