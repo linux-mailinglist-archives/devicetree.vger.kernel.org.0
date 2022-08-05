@@ -2,155 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73E2858A4F4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 05:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7888B58A546
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 06:24:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236319AbiHEDS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Aug 2022 23:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44272 "EHLO
+        id S232779AbiHEEYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 00:24:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231240AbiHEDS1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Aug 2022 23:18:27 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B2B1ADBD;
-        Thu,  4 Aug 2022 20:18:26 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id p14-20020a17090a74ce00b001f4d04492faso1588739pjl.4;
-        Thu, 04 Aug 2022 20:18:26 -0700 (PDT)
+        with ESMTP id S230475AbiHEEYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 00:24:36 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13EF2205F5
+        for <devicetree@vger.kernel.org>; Thu,  4 Aug 2022 21:24:36 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id d7so1652156pgc.13
+        for <devicetree@vger.kernel.org>; Thu, 04 Aug 2022 21:24:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=dGYMCOz7SHHXIGnQZJoT2yL9F7+ItkeSLAYiEd5KAOI=;
-        b=ELs5vsFdsHHaBNhkddTaTNfbgVIbnI2C2d1WpHhJSbxQVMworf7ODpv8biIDO1XwDJ
-         WapH7MXVx9tx+txZqCvysNg/wPD9koNRG8MIjNn5NO+xiW1mSAIGPGRj29orr3K+nQQr
-         1c2gXJNo6lHzrcD2OZ/MWaGupThdmAIk4i8xtrNVAuWmFBIxW0Ps2uCnRDsSJaMm67tH
-         E2BGYGzJQsN0skjyGVCXKqYg3cCwIVFkAeZBzUfZ0BF33utsDcNCRFyM3W3dytgzpSlZ
-         l9y5i3h2jUnsBj7moErUp9HV2NHD67xNZtnI5ozvNE1CpxoEZyAruvpFiBCMgMV5RSum
-         a4mQ==
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc;
+        bh=lcZ2t0LpE/APjnxBS48DvMi6cCGFT64qJ81TBG1Fo/4=;
+        b=Go+HwIS/D1Hi2Sly8v/xYR1QtD+3/0EhX0u15wWVg2S7xcmAsLr+CtJNNyhH7SB27l
+         Dxt9Jtuu7U5I+B/21Qz4dymrXr7YEq78ln4djyWkVhp+45VS8JIrgJI0m+6wMe0AMho9
+         4F+LCwFU7kf2CdPQYybOkWe4p5aQWgW9la0shc4i2uOjDYorJQvFQb4iOBLsDtLYc/EG
+         UZP4q9S2rpuEUsGHfwEIOiQLAP2hmJ1u7SV0MrutWF3zjNoDpISJaBniSX7ua+GwSEx/
+         2h+izoFp8T/wXCCG3Y4VWAvF0ZM7JoPuDKgmmue/7WITaMvwhbzdI4ynFLJYnJiYuTc2
+         PWbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=dGYMCOz7SHHXIGnQZJoT2yL9F7+ItkeSLAYiEd5KAOI=;
-        b=q2mF1A6wXcg2wiOejZAo8UvcjqbpgONEuKp1D753K9DUG/OEU0gNL3gIP+p/n2CjKo
-         WfouFGU5ZKtLEsUMo1OB3n2RqWy+DGu7l/RvOXz35YTgx70c+ErGwV+k2c7n2zV+/UEO
-         bvBdNJDwTk+rlFw22AhLMoOavpYBkty3s5QA9FDs6J2ncPd7DsLJGSu63Iy6qiPPjeMV
-         6xOyFrVDRkMR5hkKazrbMgNzF9xbwMsCkHIWZ2J82EflMCVpYuao2+CcQiGDxRfyYBed
-         DhlDU6TbnhlZwNnSZHVqv7qgcMbJ8mlWsuKHK1IJDPQJOHjWlh8KaCOL+isSgG7AZUc4
-         BWNw==
-X-Gm-Message-State: ACgBeo0o2lvTYA07fqHuN2IwtoCcF/dBET52qpUL6hgRz9PCSvku+aI5
-        1bAM5KRlg9CO8tO7Z9yMfjU=
-X-Google-Smtp-Source: AA6agR7wqzg/IAW3j2aI3DIRX0dQJZG84zUNQ3wTDJZQ7py6klBJvNNGqj5JveAZz4Mo/yzbIsCmpw==
-X-Received: by 2002:a17:902:aa4b:b0:164:11ad:af0f with SMTP id c11-20020a170902aa4b00b0016411adaf0fmr4759329plr.54.1659669506007;
-        Thu, 04 Aug 2022 20:18:26 -0700 (PDT)
-Received: from debian.me (subs02-180-214-232-7.three.co.id. [180.214.232.7])
-        by smtp.gmail.com with ESMTPSA id z12-20020a170903018c00b0016f9355c12csm146644plg.288.2022.08.04.20.18.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Aug 2022 20:18:25 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id 43913103D6D; Fri,  5 Aug 2022 10:18:22 +0700 (WIB)
-Date:   Fri, 5 Aug 2022 10:18:21 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-doc@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 01/11] docs: gunyah: Introduce Gunyah Hypervisor
-Message-ID: <YuyL/ThXq5FTdDF/@debian.me>
-References: <20220801211240.597859-1-quic_eberman@quicinc.com>
- <20220801211240.597859-2-quic_eberman@quicinc.com>
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc;
+        bh=lcZ2t0LpE/APjnxBS48DvMi6cCGFT64qJ81TBG1Fo/4=;
+        b=kgHnGlt6Rne4z4ed58xtY8/rrj9/2gm7iSTCaNs24O6drZ+zS7rYheUyXNhIBHru9j
+         gsoyOaAmEFtSQIsutz+fwEf96nkkxn8OktWYLnBXAjuP34oika8g8Gu3jtH4GBqBEk8C
+         +kJ6uFlIbS+/0HpHDblmZtANBYvb7rFIyV7nhE8SuR678mGpAD5bCaFOPRELCjC43pBT
+         pCcyNhlRVr4xi5tvZ3IQwaoh37uotbUSEePdP9B9ZuUTNtg5Tl54mUsUAvwB32IYniaG
+         BLxpAzO5DQuxu5ykOwvVPcAOrdumlGFv1TvCNmmWhVXSDZdCenv7Sv4NHixLSMiZnshG
+         eodA==
+X-Gm-Message-State: ACgBeo0yfFts/L6XBtJ0LnWFGS4l/5w4hjugE0ChdW4MPE2WEcejO9Ex
+        BmvOXL14KmX79xWleAYIp82tYcaRc/inZd3qbQI=
+X-Google-Smtp-Source: AA6agR65cAMx1BeDeoPY0XlrIqemqfmAvktOcifnbNdr1Wec4L16+L3xNDcl8P+M0qyE8vweWPpXyIFnq2tec072CoY=
+X-Received: by 2002:a63:d409:0:b0:41b:f15:4719 with SMTP id
+ a9-20020a63d409000000b0041b0f154719mr4278040pgh.519.1659673475049; Thu, 04
+ Aug 2022 21:24:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-        protocol="application/pgp-signature"; boundary="CDe3ZMtaoNUi6bsc"
-Content-Disposition: inline
-In-Reply-To: <20220801211240.597859-2-quic_eberman@quicinc.com>
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Received: by 2002:a05:7300:bc0d:b0:6c:15c1:f63f with HTTP; Thu, 4 Aug 2022
+ 21:24:34 -0700 (PDT)
+Reply-To: stbzan@gmail.com
+From:   Sheikh Tahnoon Al Nahyan <mohasaeedmoha01@gmail.com>
+Date:   Fri, 5 Aug 2022 05:24:34 +0100
+Message-ID: <CAGbpBdcYH8mieavzetDi6jsnESfMDUx3Ch3C1MOJntGXqP4oBg@mail.gmail.com>
+Subject: Business
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:52e listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5128]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [mohasaeedmoha01[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [mohasaeedmoha01[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        *  3.2 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+-- 
+Hello,
 
---CDe3ZMtaoNUi6bsc
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Sir, i have business that i would like to share you.
 
-On Mon, Aug 01, 2022 at 02:12:30PM -0700, Elliot Berman wrote:
-> +Communication with the resource manager from each guest VM happens with =
-message-queue.rst. Details
-> +about the specific messages can be found in drivers/virt/gunyah/rsc_mgr.c
-> +
-> +::
-> +  +-------+   +--------+   +--------+
-> +  |  RM   |   |  VM_A  |   |  VM_B  |
-> +  +-.-.-.-+   +---.----+   +---.----+
-> +    | |           |            |
-> +  +-.-.-----------.------------.----+
-> +  | | \=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D/             |    |
-> +  |  \=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D/     |
-> +  |            Gunyah               |
-> +  +---------------------------------+
-> +
-=20
-Hi,
-
-The diagram above triggers htmldocs warnings:
-
-Documentation/virt/gunyah/index.rst:71: WARNING: Unexpected indentation.
-Documentation/virt/gunyah/index.rst:72: WARNING: Block quote ends without a=
- blank line; unexpected unindent.
-
-I have applied the fixup:
-
-diff --git a/Documentation/virt/gunyah/index.rst b/Documentation/virt/gunya=
-h/index.rst
-index 95ba9b71ab30d2..b74f7a6f9d4904 100644
---- a/Documentation/virt/gunyah/index.rst
-+++ b/Documentation/virt/gunyah/index.rst
-@@ -65,6 +65,7 @@ Communication with the resource manager from each guest V=
-M happens with message-
- about the specific messages can be found in drivers/virt/gunyah/rsc_mgr.c
-=20
- ::
-+
-   +-------+   +--------+   +--------+
-   |  RM   |   |  VM_A  |   |  VM_B  |
-   +-.-.-.-+   +---.----+   +---.----+
-
-Thanks.
-
---=20
-An old man doll... just what I always wanted! - Clara
-
---CDe3ZMtaoNUi6bsc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTsebsWCPCpxY9T92n/R0PGQ3AzwAUCYuyL8QAKCRD/R0PGQ3Az
-wIH4AXwMEGCNxDAFPNOHop9sYqB9aXN0jkTDhEyMg2yMS/FmHyc3YpZWZzibpTNO
-vpSWGswBgLHuROnpjtQaE+LrM3t1yFcRPbTqSAq0SROAboKu1LFGQBkZNScxtMvK
-4VnHdleViQ==
-=PK/l
------END PGP SIGNATURE-----
-
---CDe3ZMtaoNUi6bsc--
+Thank you.
