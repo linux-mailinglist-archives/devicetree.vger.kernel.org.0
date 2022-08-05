@@ -2,69 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06DAD58A957
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 12:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE14158A964
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 12:18:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240628AbiHEKPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 06:15:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35488 "EHLO
+        id S231360AbiHEKSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 06:18:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240599AbiHEKPN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 06:15:13 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 916C2FD;
-        Fri,  5 Aug 2022 03:15:10 -0700 (PDT)
-X-UUID: 3e7b18dba3fe4f4d858146a3d6ddfe5c-20220805
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=sGX6YzjigDRiefwq1x9TnO0pG3WTYmLcs7/JWY07XCk=;
-        b=dbU4CWEAgTI3N3A1dt6XycD6D57MpJUI8a4RfZTvNzY7dknN5xCfQovSOsPXSk3+/58vjJ/a0aXBQa9XHpT5+ctJCNjZ2dKvM3aq8IMVcZJnZ1nJ1rqR0PUqwfXbvFkKe1aV0uBmVdVPhSh6LVIHWwJlGhf7jRl+xt1LiX7Kybc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:d34b1369-3efb-4565-a8f0-01e15deb4436,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:-5
-X-CID-META: VersionHash:0f94e32,CLOUDID:fd10e19b-da39-4e3b-a854-56c7d2111b46,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: 3e7b18dba3fe4f4d858146a3d6ddfe5c-20220805
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1036865094; Fri, 05 Aug 2022 18:15:01 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 5 Aug 2022 18:15:01 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 5 Aug 2022 18:15:00 +0800
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>, <ck.hu@mediatek.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Bo-Chen Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH v16 8/8] drm/mediatek: Use cached audio config when changing resolution
-Date:   Fri, 5 Aug 2022 18:14:59 +0800
-Message-ID: <20220805101459.3386-9-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220805101459.3386-1-rex-bc.chen@mediatek.com>
-References: <20220805101459.3386-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S235203AbiHEKSr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 06:18:47 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2056.outbound.protection.outlook.com [40.107.20.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77C492614;
+        Fri,  5 Aug 2022 03:18:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iT3YkV+UyBL8RISV3CjtvrotJUVl7lT4GNOnw4NYCYRaocMD/JHP8/EL8vpUW6/A5igQY3Ael3hZyhkR5hapqxbrK15Q9q5APXlxJ7QbF2FO8hH1hr/6ncGW3m7lLuOkZmmAnvcu6nAGppeG8mlqjDnL41bn/qwU+Xf5DTsPNMCCCSDxOMAHByt+JQ8IEHFmVwLZeoRr3DcEjXYzzYFLxFqI90XLLnED3iCj7zgWL2UuK3iq8E5+3AymturkgCKvIuSi2AbGkCUFOo8/24e81QGSzBU/ebqI8lBF+Kcc6Wsj34C0GPJT9ly0viXozvGXX60KxUiC385tnDsjAxreSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PF8fPkdn8B19hyJaQ4M9J/P/qwqg7zbFw0U0tRtXTF4=;
+ b=JdfQxi9p4ehjeLUiVNj81Y8Yf8UV1nKGYr1xddJ5L180eHJj2k3vW/leYnXhvs+rewdJphTbhriyKQpnL46dtnmMpAdEYeil+3gg4LvLRqSYKv75mpMdqbsmF7Ss0aXXfCIMpCnxXMVyMtdUQ711TqEEqvT6l3DSNkLlzkX3a6xpfBIRXVGtfH7WK0jtXWGDbdtVMqFj4WFoFJSFNgGAtMxUp8cOyA0JM9lDeULfDrWnlPztHD53l9qJq2i6NJ/jXww72tmIi/Cc9ehbKmwDPKV8M48BvsH5OK2zL3oQv+BTsXygK6Cf6Psc8O+pj45lwU+9uIXLBJk5Ro2wTU4g9Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PF8fPkdn8B19hyJaQ4M9J/P/qwqg7zbFw0U0tRtXTF4=;
+ b=COvAjNBK5Q0ddiXiD+0xxMbySM0le4ceACVaySh17K3GM+QudAqq8IUcddMNkCAWOkQnEFkApb5xOd26F3FWymuTOfYXAdY7569XKr6R6fepYdXTsKMTNKCZzeRJS/Q9THohK51aZlFBDgHiquMCuaIzUQli82Ptn60LvQdYkYc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by DBBPR04MB7881.eurprd04.prod.outlook.com (2603:10a6:10:1ea::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.16; Fri, 5 Aug
+ 2022 10:18:43 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::2549:869e:d80b:3a1b]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::2549:869e:d80b:3a1b%7]) with mapi id 15.20.5504.016; Fri, 5 Aug 2022
+ 10:18:43 +0000
+Message-ID: <2c6161058d1253c1eabec274ca8c1c98bdc6d490.camel@nxp.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: bus: Add Freescale i.MX8qxp pixel
+ link MSI bus binding
+From:   Liu Ying <victor.liu@nxp.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, saravanak@google.com,
+        gregkh@linuxfoundation.org, geert+renesas@glider.be,
+        robh@kernel.org
+Date:   Fri, 05 Aug 2022 18:18:34 +0800
+In-Reply-To: <258c3ed7-2247-d4c3-73be-ddcddee3a3a0@linaro.org>
+References: <20220804061133.4110734-1-victor.liu@nxp.com>
+         <20220804061133.4110734-4-victor.liu@nxp.com>
+         <258c3ed7-2247-d4c3-73be-ddcddee3a3a0@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2PR02CA0022.apcprd02.prod.outlook.com
+ (2603:1096:4:195::23) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5df765d8-c3c3-4402-8b8c-08da76cbdfba
+X-MS-TrafficTypeDiagnostic: DBBPR04MB7881:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: e5t0hUBb2Rl8VOy8U+i94/08DEXbyk25GoD8y3FZAWlEhQw0o2cTK4yGCTfQdU6MevAwwPMkKgLTc91/MAavRkpmXegZySRcNpjsFYTmIelTmqjW1NI4pcCjX7ah1Jy9J6HYbwxLoBYGLklMJtTF1vbt4g+V4WUePrV/QW5XnlKB5v1HJRd3uAG5oxavnqlkQlUZcTW4dsY41MCEMT+sME02LGUl0yCaeVfWnVHOEXBVQSsFMROuv2um5OFRDXyY5RlJv3GY7ZOes09AHRvvtk8008In6BYs9O+7bN7OxUBlkXk044IFGhKUMEH3KGXEYlncQOqLz3Ec4bBfRhKA9IpwNghDRo6xDchLKvhyYImCiap5tWxEnxNzjB5Bn30pppRaFQhx5g7uU66wumxXk3UGAEuXoDtnhLNOb/pC8xqajfh2+7gs3tK6OZBPUlK5RB3XvYB6jD6EYgrNP3FrjhWdQQWLlKIg6l8+aLftXU/tfqN2aYnm6bfhM0kf8wso8hLQcatFqM0HpeF1F2wi4ZhKTOSm2i4c7AiBiSUIhkeTZEWwVMcB2kdFEkaDqbFU1x+NX6u5iTOO8/OEnHTVQrcIOjVPGF5fHqOp14bzupEm7+2RfX0VfLeahHyz5biLfHMK4XXr9RW8WxsD0u8qkkHFJaKZ5wnpxt8o0Kg61L63kvAeems8++e5zUZYjPw6ka+lhNfrTisQiPUJEKyMiwhvTGSY+AqU7fq89pZrlDjtXNHES5PlcsbpO3Y6SUM/MOFaH4q1ckaP3sQLI1C1ll0BwaRgf1txoBqfre4Fy9UZJL5qU/uSQp2sIrIUWdyJ
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(376002)(39860400002)(346002)(136003)(366004)(53546011)(6506007)(38350700002)(52116002)(38100700002)(83380400001)(2906002)(6666004)(41300700001)(186003)(2616005)(6512007)(26005)(316002)(478600001)(66476007)(66556008)(36756003)(66946007)(8676002)(86362001)(6486002)(5660300002)(7416002)(8936002)(4326008)(99106002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q1FaVkx2S1ZGWC9MV2RjMHR4ekhWekZXSjNxUUFhWXVNcnM1YmhCZERpa3o1?=
+ =?utf-8?B?VUd3RThXZFo0V0s5aFJzdWhUUVVqcnduL1NEUEp5Q0JKYkE2TlZWdExXV3A2?=
+ =?utf-8?B?d0lNSHRJRHl4UFFhcTU0NitqMjA5UXQ4aGZ6aVl5T0x1ZDN2Vmh5TEZ1V2FH?=
+ =?utf-8?B?aUUzNEJ1U3R1WW51V1FzTWIwTFNyVnFacWV0SmIzS0hkNW9DL1dyK3JZclRx?=
+ =?utf-8?B?T2c5N3FVVFczRHhGVnlucTRxSmhtZ2xzUG9WU1oyRjhxSHlHblkyTTE4d2FQ?=
+ =?utf-8?B?MkNYNHVJcm9FdUNWbldxUkN5bUpJeGxLWGM4VTR1UkRpVkFCT0FVMy9wOUVB?=
+ =?utf-8?B?bndqaGRTSGRualhuRzlJVjNobk5DTGxEUVhIWFhFcEhVaEU3ZGRreU9FbHg0?=
+ =?utf-8?B?Y0pEUlEycnpaUE1id2IrRFlnWFBxelJheTlXMDhqNnFLRVpPeHltVzJxcGxN?=
+ =?utf-8?B?UUtYK3h5QlF0MnloTFQwNWtRVXlvREFkTUcvaG43eHNzU0ZLNm9oYTAyVFlL?=
+ =?utf-8?B?UWRXUEkyODZEQTJVeEpjOWt2dlB2UGkxWFFCSG96aFVhUUthZ0VQeXpHNmlt?=
+ =?utf-8?B?WXl4ZmpkNURGSDBLSVBBWXV3Sis4cVVrdG8yZXRsL1p5MFlNSWdIRFE0T3N1?=
+ =?utf-8?B?YnQ4V2RzbjVVeGpkWmh0UmxIOVY5MTYyQlBFalpCcTJEcDFNU3diVDdhbEUw?=
+ =?utf-8?B?NU9UWGNNNjduL2tRQzA1SVVzYWZTUytpS3NMcXpNWjB0R253bGs2bVI3R0Yx?=
+ =?utf-8?B?QVVncGUvN0JMQ2NtRi9saG5rTVl6Vzd6YTltTDhMSmNHMlZZQk5iZ0pIc3Fq?=
+ =?utf-8?B?NXlIMi9PYTZhQkFFbFFMbTB6VklDdlMvaUFSZS9DVmZBajNnTzJzazgrbmRt?=
+ =?utf-8?B?OHBZK2NIcUw1OWdKSHRueGUwRlY5M2RwSnpBZ0J1YWlGSG5yQWtHUlVxM3JD?=
+ =?utf-8?B?MExEMDlNNUNqTEswTWpmbHhvVm5CdFVSSG03V1puTG9KUERWck5jU0t0M1B0?=
+ =?utf-8?B?N29DSDRYMm1uYVpVOUJFUDZHcnNxUUJSazdMSVR4RHlyZEFDZUxNUTVVbVVK?=
+ =?utf-8?B?MHBRVGJZYWdMbldkaDlzc1FTQUs2SjRhbWFXeE1BOS9WOUFLZGFDbytiRjVI?=
+ =?utf-8?B?dXBwdXNNOERkdGJIdXBEQVAzY2VjVUtnR041bmYreTZaS3VrdCsyNlRvbjgz?=
+ =?utf-8?B?enhQVE1jZW9ZY2NkMHJCbWpsY0Z0VG5yKzYyR3BzS1Z0YnR3Z2M4SUcyb0U5?=
+ =?utf-8?B?dS8yZ1hJUG9mNnlTNFp4SExmZDFITkx0ZkJUeWdKSkM1T044amxEdGp5Z3VL?=
+ =?utf-8?B?ME5xSGE2L1pEb3NpbnhmZUs5bmtpTVBHbmNxd3JtVndDczF1cUh4YmRyNWFo?=
+ =?utf-8?B?cERCVDB0dUpzU1VWd0hBZ3FtY2wwVkZ0Ymc2TlZlWWZaZy84RldvL2tVcElt?=
+ =?utf-8?B?aEV4bi8rTFc0UExKeEVSL0NaRGZpZDRyME00dmZaanZZQ1FjRC9ka1hqTDNC?=
+ =?utf-8?B?cWZ1T1psb0p2cnBtL0JnUXlHTGRkYytHYVpiTWl3YTFKUzFHZzg4MFZqbkpv?=
+ =?utf-8?B?QmxQK3puVmhvNEVuYy8zeTdwdkhDd1NRYXV2MlI5NEdNZ2JoMDJTUWVwWVNZ?=
+ =?utf-8?B?K3RsQVVjMldUMUNYekNHaVBFQ2IzUTRuOVBSYXNGQXRnZXl6QUkvdFJPZlhZ?=
+ =?utf-8?B?cXBpQU5ZbzM0L0dvSU9lMXdVeTlsRFlVQmdWT0svUnBkM1hNYlYybWtrdjRV?=
+ =?utf-8?B?S0hGYmUwY0owQzh3MkVUMjZraDBHTjhPcE5lU3luUVVxZVFXZE5mQmQ5SDZl?=
+ =?utf-8?B?T0VBUHNzYmxKbnpkVW1iR2pLTHVwOXhzYkMvNlgrOFArZWVBUmZBQWZNWXNK?=
+ =?utf-8?B?Vk1MdGoydGlDNSsyMVN1dGpiWnBoaU02YTFhOVU4dzlCNUVTRW1sTGFPL21r?=
+ =?utf-8?B?Y1VWOGtwcTRVOUEwY2wwa2Z0UHEvVlBpRTlDa0NyMmRCWGROaVU1d2VBVG1U?=
+ =?utf-8?B?bkEwYnh2cHlub0huVGpyMnN6d2lWd25mdGpDUVV1bk9GWEc5YTBYYktZRUgx?=
+ =?utf-8?B?SUdxK3d6dTArM2hoaVJuYmUxYXpYMU90TGFvV2NVTUFlRnQrbHhmeG9oYjlO?=
+ =?utf-8?Q?YdiyJwJEQ7NSlHWpCxQsDCFEy?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5df765d8-c3c3-4402-8b8c-08da76cbdfba
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 10:18:43.2360
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zhi/CWljJdEP8A6+YWQ9EKPcDR/Phx21kVku4olFCQTWuqCPByu6OV9BiltXpjr7NpY98HRFgNL5P0fbUBW4cw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7881
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,202 +129,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When the audio is playing, we need to use the original configuration to
-set the audio instead of using new configuration. Therefore, use the
-cached audio configuration during a resolution switch to avoid loss of
-sound.
+On Thu, 2022-08-04 at 13:17 +0200, Krzysztof Kozlowski wrote:
+> On 04/08/2022 08:11, Liu Ying wrote:
+> > Freescale i.MX8qxp pixel link MSI bus is a simple memory-mapped
+> > bus.
+> > It is used to access peripherals in i.MX8qm/qxp imaging, LVDS, MIPI
+> > DSI and HDMI TX subsystems, like I2C controller, PWM controller,
+> > MIPI DSI controller and Control and Status Registers (CSR) module.
+> > 
+> > Reference simple-pm-bus bindings and add Freescale i.MX8qxp pixel
+> > link MSI bus specific bindings.
+> > 
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> 
+> Thank you for your patch. There is something to discuss/improve.
 
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/mtk_dp.c | 108 +++++-------------------------
- 1 file changed, 17 insertions(+), 91 deletions(-)
+Thanks for the review.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-index 3efac9920304..e725e3104147 100644
---- a/drivers/gpu/drm/mediatek/mtk_dp.c
-+++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-@@ -45,18 +45,6 @@
- #define MTK_DP_TRAIN_DOWNSCALE_RETRY 8
- #define MTK_DP_VERSION 0x11
- 
--#define MTK_DP_CEA_SAD_FREQ_32KHZ  BIT(0)
--#define MTK_DP_CEA_SAD_FREQ_44KHZ  BIT(1)
--#define MTK_DP_CEA_SAD_FREQ_48KHZ  BIT(2)
--#define MTK_DP_CEA_SAD_FREQ_88KHZ  BIT(3)
--#define MTK_DP_CEA_SAD_FREQ_96KHZ  BIT(4)
--#define MTK_DP_CEA_SAD_FREQ_176KHZ BIT(5)
--#define MTK_DP_CEA_SAD_FREQ_192KHZ BIT(6)
--
--#define MTK_DP_CEA_SAD_UNCOMPRESSED_WORD_16BIT BIT(0)
--#define MTK_DP_CEA_SAD_UNCOMPRESSED_WORD_20BIT BIT(1)
--#define MTK_DP_CEA_SAD_UNCOMPRESSED_WORD_24BIT BIT(2)
--
- struct mtk_dp_train_info {
- 	bool tps3;
- 	bool tps4;
-@@ -106,7 +94,7 @@ struct mtk_dp_info {
- 	struct videomode vm;
- 	u8 frame_rate;
- 	u32 pix_rate_khz;
--	struct mtk_dp_audio_cfg audio_caps;
-+	struct mtk_dp_audio_cfg audio_cur_cfg;
- };
- 
- struct dp_cal_data {
-@@ -413,48 +401,6 @@ static void mtk_dp_pg_enable(struct mtk_dp *mtk_dp, bool enable)
- 			   4 << PGEN_PATTERN_SEL_SHIFT, PGEN_PATTERN_SEL_MASK);
- }
- 
--static int mtk_dp_cea_sad_get_sample_rate(const struct cea_sad *sad)
--{
--	switch (sad->freq) {
--	case MTK_DP_CEA_SAD_FREQ_32KHZ:
--		return 32000;
--	case MTK_DP_CEA_SAD_FREQ_44KHZ:
--		return 44100;
--	case MTK_DP_CEA_SAD_FREQ_48KHZ:
--		return 48000;
--	case MTK_DP_CEA_SAD_FREQ_88KHZ:
--		return 88200;
--	case MTK_DP_CEA_SAD_FREQ_96KHZ:
--		return 96000;
--	case MTK_DP_CEA_SAD_FREQ_176KHZ:
--		return 176400;
--	case MTK_DP_CEA_SAD_FREQ_192KHZ:
--		return 192000;
--	default:
--		return -EINVAL;
--	}
--}
--
--static int mtk_dp_cea_sad_get_uncompressed_word_length(const struct cea_sad *sad)
--{
--	if (sad->format != HDMI_AUDIO_CODING_TYPE_PCM) {
--		pr_err("Unable to get the uncompressed word length for format: %u\n",
--		       sad->format);
--		return -EINVAL;
--	}
--
--	switch (sad->byte2) {
--	case MTK_DP_CEA_SAD_UNCOMPRESSED_WORD_16BIT:
--		return 16;
--	case MTK_DP_CEA_SAD_UNCOMPRESSED_WORD_20BIT:
--		return 20;
--	case MTK_DP_CEA_SAD_UNCOMPRESSED_WORD_24BIT:
--		return 24;
--	default:
--		return -EINVAL;
--	}
--}
--
- static void mtk_dp_audio_setup_channels(struct mtk_dp *mtk_dp,
- 					struct mtk_dp_audio_cfg *cfg)
- {
-@@ -1859,9 +1805,7 @@ static bool mtk_dp_edid_parse_audio_capabilities(struct mtk_dp *mtk_dp,
- 						 struct mtk_dp_audio_cfg *cfg)
- {
- 	struct cea_sad *sads;
--	int sad_count;
--	int i;
--	bool ret = false;
-+	int ret;
- 
- 	if (!mtk_dp->data->audio_supported)
- 		return false;
-@@ -1872,36 +1816,16 @@ static bool mtk_dp_edid_parse_audio_capabilities(struct mtk_dp *mtk_dp,
- 		dev_err(mtk_dp->dev, "EDID not found!\n");
- 		return false;
- 	}
--	sad_count = drm_edid_to_sad(mtk_dp->edid, &sads);
--	mutex_unlock(&mtk_dp->edid_lock);
- 
--	if (sad_count <= 0) {
-+	ret = drm_edid_to_sad(mtk_dp->edid, &sads);
-+	mutex_unlock(&mtk_dp->edid_lock);
-+	if (ret <= 0) {
- 		drm_info(mtk_dp->drm_dev, "The SADs is NULL\n");
- 		return false;
- 	}
--
--	for (i = 0; i < sad_count; i++) {
--		int sample_rate, word_length;
--
--		/* Only PCM supported at the moment */
--		if (sads[i].format != HDMI_AUDIO_CODING_TYPE_PCM)
--			continue;
--
--		sample_rate = mtk_dp_cea_sad_get_sample_rate(&sads[i]);
--		word_length =
--			mtk_dp_cea_sad_get_uncompressed_word_length(&sads[i]);
--		if (sample_rate <= 0 || word_length <= 0)
--			continue;
--
--		cfg->channels = sads[i].channels;
--		cfg->word_length_bits = word_length;
--		cfg->sample_rate = sample_rate;
--		ret = true;
--		break;
--	}
- 	kfree(sads);
- 
--	return ret;
-+	return true;
- }
- 
- static void mtk_dp_train_change_mode(struct mtk_dp *mtk_dp)
-@@ -2070,13 +1994,13 @@ static int mtk_dp_training(struct mtk_dp *mtk_dp)
- 
- 	mtk_dp->audio_enable =
- 		mtk_dp_edid_parse_audio_capabilities(mtk_dp,
--						     &mtk_dp->info.audio_caps);
-+						     &mtk_dp->info.audio_cur_cfg);
- 	if (mtk_dp->audio_enable) {
--		mtk_dp_audio_setup(mtk_dp, &mtk_dp->info.audio_caps);
-+		mtk_dp_audio_setup(mtk_dp, &mtk_dp->info.audio_cur_cfg);
- 		mtk_dp_audio_mute(mtk_dp, false);
- 	} else {
--		memset(&mtk_dp->info.audio_caps, 0,
--		       sizeof(mtk_dp->info.audio_caps));
-+		memset(&mtk_dp->info.audio_cur_cfg, 0,
-+		       sizeof(mtk_dp->info.audio_cur_cfg));
- 	}
- 
- 	return 0;
-@@ -2442,6 +2366,9 @@ static void mtk_dp_bridge_atomic_disable(struct drm_bridge *bridge,
- 	if (mtk_dp_plug_state(mtk_dp)) {
- 		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER, DP_SET_POWER_D3);
- 		usleep_range(2000, 3000);
-+	} else {
-+		memset(&mtk_dp->info.audio_cur_cfg, 0,
-+		       sizeof(mtk_dp->info.audio_cur_cfg));
- 	}
- 
- 	mtk_dp_video_mute(mtk_dp, true);
-@@ -2641,18 +2568,17 @@ static int mtk_dp_audio_hw_params(struct device *dev, void *data,
- 				  struct hdmi_codec_params *params)
- {
- 	struct mtk_dp *mtk_dp = dev_get_drvdata(dev);
--	struct mtk_dp_audio_cfg cfg;
- 
- 	if (!mtk_dp->enabled) {
- 		dev_err(mtk_dp->dev, "%s, DP is not ready!\n", __func__);
- 		return -ENODEV;
- 	}
- 
--	cfg.channels = params->cea.channels;
--	cfg.sample_rate = params->sample_rate;
--	cfg.word_length_bits = 24;
-+	mtk_dp->info.audio_cur_cfg.channels = params->cea.channels;
-+	mtk_dp->info.audio_cur_cfg.sample_rate = params->sample_rate;
-+	mtk_dp->info.audio_cur_cfg.word_length_bits = 24;
- 
--	mtk_dp_audio_setup(mtk_dp, &cfg);
-+	mtk_dp_audio_setup(mtk_dp, &mtk_dp->info.audio_cur_cfg);
- 
- 	return 0;
- }
--- 
-2.18.0
+> 
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/imx8-lpcg.h>
+> > +    #include <dt-bindings/firmware/imx/rsrc.h>
+> > +    bus@56200000 {
+> > +        compatible = "fsl,imx8qxp-display-pixel-link-msi-bus",
+> > "simple-pm-bus";
+> > +        reg = <0x56200000 0x20000>;
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +        interrupt-parent = <&dc0_irqsteer>;
+> > +        interrupts = <320>;
+> > +        ranges;
+> > +        clocks = <&dc0_disp_ctrl_link_mst0_lpcg IMX_LPCG_CLK_4>,
+> > +                 <&dc0_disp_ctrl_link_mst0_lpcg IMX_LPCG_CLK_4>;
+> > +        clock-names = "msi", "ahb";
+> > +        power-domains = <&pd IMX_SC_R_DC_0>;
+> 
+> The example should be complete, so you should have here children.
+> Otherwise it is not a bus.
+
+I may add some children whose compatible strings are in-tree for
+i.MX8qxp. It seems that simple-pm-bus driver part(patch 1) will be
+changed due to comments, so maybe I'll respin when it's ready.
+
+Regards,
+Liu Ying
+
+> 
+> Best regards,
+> Krzysztof
 
