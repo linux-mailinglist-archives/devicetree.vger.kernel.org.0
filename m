@@ -2,108 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 925E358A78B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 09:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C9BC58A7D0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 10:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240355AbiHEHzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 03:55:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54516 "EHLO
+        id S240447AbiHEIKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 04:10:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240425AbiHEHzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 03:55:10 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 856A174DD4
-        for <devicetree@vger.kernel.org>; Fri,  5 Aug 2022 00:55:09 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id z4so2225121ljn.8
-        for <devicetree@vger.kernel.org>; Fri, 05 Aug 2022 00:55:09 -0700 (PDT)
+        with ESMTP id S240433AbiHEIKd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 04:10:33 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC3EB2315F
+        for <devicetree@vger.kernel.org>; Fri,  5 Aug 2022 01:10:30 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id j1so2399345wrw.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Aug 2022 01:10:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=fp5QsMZSik6FokJnE0Ar1IWeqs2yo1QrPVgBHPxM4Yg=;
-        b=FWo0U9XpmnM/c3x5b05yMxNxNWw3LqzARt7sBEAGzgZMDf6xyBYCMNld6VBXAitefS
-         u+QeoCCX2Aak5H7CfdOClGQ62oSWKYXvvAaSb2RkPsFTIyPluopN4CRsP6RvrXKPaDmj
-         bQ5LaKtH1SV4fX+zFVYPRjRwCzKO78JJTj7NsiUN9S+niyPOMruQeISr/VKhF+buLMsy
-         2uBaKYodk8MLo3B5ymvTZJYNjtuAOBdTEMLJOfGkeQzBpsLV3vObNMxzZ6cr3RAmOAyd
-         gkkB6KA7LBb8yoBjWDTcuodXN1zNAj8Om5HEfjAjplSnHNUj9w+SUeIPllKfwpxvl1lw
-         LF6Q==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc;
+        bh=mIzmvdk7HOX9VETFYuqPj2UDBU0QS3AoESbRivQAHl8=;
+        b=gcnZiSxD9R67ltN8OoA+C/zdBHeNV2JGZ5D4MFVRoggMTlWEXjC8QXvSX8eg1vcuRz
+         Caj/+1bNiL5CnkIl7SBWYCr9W/qDpwY+nBgLfAYbsJq0Nxg1lVo2ClSi0+pA4tYGJGh9
+         p0OvePOWRB+0GgRHpIecPgrhx8j3Hvr0eHVrYe0dqDG6HPsQWNcvbcMwX5vuGuGcdiib
+         7fjEQr4gJSctW5r/8bXGXFZteM8+MRO07f9TbHyHjymC4i6/pGVyFjf4t+7UpPPwYbu6
+         hk46+qZTaKh8A6Z/QRFCFgQxdgVoVxUN4GnJLrtji0mBS+4ezKV3qsSJs93wf8Wi1ns9
+         W/eQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=fp5QsMZSik6FokJnE0Ar1IWeqs2yo1QrPVgBHPxM4Yg=;
-        b=pucxtKJEHKRc70M5arCgYceB6CD+9GmQvtjewavP1VrUbdGPj/qm8HKo/PtRcGLIul
-         FLaUUBr7dM64js04Q4x18j/Z4ZuLB5yYV5MNPaZRyhN8KAQrDV0WsIiFPBhzO+Kn5GzM
-         sOuBhlg8NP0A0br7SclTdTBOsOH2lPdkrwQxAY10k1EMcSevQVHv3Fdryeu03oAXjxII
-         6FHDzJ75ZEWBHQMzAsRFySczQgcKEm8WYcy0DyKn1uK4SqzPnJBqjtlcCBoKUv3eKtMX
-         DtpvqfzUwRpQr2/1RlXXwxTvfAZE95CazRI+LSMXtID9on44T69+G9tEqGrvNJtPiAF7
-         C66A==
-X-Gm-Message-State: ACgBeo2fwFGlnNDz9ON7kL9ABQ4a0SLVxMscs/s+r13PgiaNswmM+aPR
-        LBNVdLKpihfALQWl8NQjuHRfCg==
-X-Google-Smtp-Source: AA6agR5g8P6iwFH2TCVcFcTTf1165g9vkFTe2815uoS6iADkSdjrLz3zVOLOOsZFpj756akHhVpFng==
-X-Received: by 2002:a2e:b010:0:b0:25e:65b3:b24d with SMTP id y16-20020a2eb010000000b0025e65b3b24dmr1803174ljk.292.1659686107839;
-        Fri, 05 Aug 2022 00:55:07 -0700 (PDT)
-Received: from krzk-bin.. ([77.222.167.48])
-        by smtp.gmail.com with ESMTPSA id cf40-20020a056512282800b0048a8f119e7esm378566lfb.233.2022.08.05.00.55.05
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc;
+        bh=mIzmvdk7HOX9VETFYuqPj2UDBU0QS3AoESbRivQAHl8=;
+        b=4UY2SjEkQOtxMGytysU93Lvt2+XVLqZ2MupVw9THSvOkJD+/HKtdEPY5Yk5vPAI2tM
+         5XDpjiBolUlPLOsmgC2oC2rO6zBo8qUuP16hzOQXLejQEq7Z5dy0C85zDvP4NzD+Eud3
+         AmgD5oNOmGgtl6QLLwBxuUWV55Ztuy6hkcuN9Q4hsdJUJ7B9DeahDVfvMoRKqdy0mHWF
+         Bvw8pAu8n7yHcXVFDV3QW9epBR1s3+o/QMthTPrj5sdXwlvaiLTDVl8OQoMxI9owaEGj
+         UH3SUWt6BHr/Fac3H8zhDV/CIaUk37CixGAATiWowf/5dYB9tx0TBheMr7EEY6p3QMkS
+         JlPg==
+X-Gm-Message-State: ACgBeo3OfoUyHfUghCguFu4gV97DD2XdDTJl6jueHmyGrAxGecymq7Gu
+        /cDg2N9f5yfymK44nA67CY5xxQ==
+X-Google-Smtp-Source: AA6agR7qv51ZP9RGn/h1aDDrkZoeyDiQrc41IP88SLryVi0tdHoioq6EljJsFm41m24QUrNDBazkzA==
+X-Received: by 2002:a5d:5403:0:b0:21e:ea93:234d with SMTP id g3-20020a5d5403000000b0021eea93234dmr3409730wrv.125.1659687029497;
+        Fri, 05 Aug 2022 01:10:29 -0700 (PDT)
+Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id o5-20020a056000010500b0021f0af83142sm3134358wrx.91.2022.08.05.01.10.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Aug 2022 00:55:06 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2] dt-bindings: iio: gyroscope: bosch,bmg160: correct number of pins
-Date:   Fri,  5 Aug 2022 09:55:03 +0200
-Message-Id: <20220805075503.16983-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Fri, 05 Aug 2022 01:10:28 -0700 (PDT)
+References: <20220804165317.29086-1-ddrokosov@sberdevices.ru>
+User-agent: mu4e 1.8.7; emacs 27.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+        "khilman@baylibre.com" <khilman@baylibre.com>,
+        "martin.blumenstingl@googlemail.com" 
+        <martin.blumenstingl@googlemail.com>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-amlogic@lists.infradead.org" 
+        <linux-amlogic@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1] arm64: dts: meson-axg: reserve memory region for
+ Amlogic TrustOS
+Date:   Fri, 05 Aug 2022 10:03:34 +0200
+In-reply-to: <20220804165317.29086-1-ddrokosov@sberdevices.ru>
+Message-ID: <1jfsibqfez.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BMG160 has two interrupt pins to which interrupts can be freely mapped.
-Correct the schema to express such case and fix warnings like:
 
-  qcom/msm8916-alcatel-idol347.dtb: gyroscope@68: interrupts: [[97, 1], [98, 1]] is too long
+On Thu 04 Aug 2022 at 16:52, Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
 
-However the basic issue still persists - the interrupts should come in a
-defined order.
+> For the all AXG SoC based boards, which run Amlogic vendor ATF and
+> TrustOS this memory region 0x5300000-0x6300000 is reserved by BL32,
+> so tag it as no-map in the kernel iomem.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This may be true for the boards you have seen so far but not all ship
+with this specific AML TEE. Some don't have TEE at all, other may have
+different TEE regions.
 
----
+16 MB may be a significant part of the available memory on some AXG
+devices. Reserving that memory on all AXG devices, regardless of what is
+actually running does not seem appropriate.
 
-Changes since v1:
-1. Accept also INT2 as one interrupt (Jonathan).
----
- .../devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
+I know the same has been done for other devices but I don't think we should
+continue to do so. This should be set either
+* per device if it is fixed
+* dynamically by the bootloader depending on the ATF (which is probably better)
 
-diff --git a/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml b/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml
-index b6bbc312a7cf..1414ba9977c1 100644
---- a/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml
-+++ b/Documentation/devicetree/bindings/iio/gyroscope/bosch,bmg160.yaml
-@@ -24,8 +24,10 @@ properties:
- 
-   interrupts:
-     minItems: 1
-+    maxItems: 2
-     description:
-       Should be configured with type IRQ_TYPE_EDGE_RISING.
-+      If two interrupts are provided, expected order is INT1 and INT2.
- 
- required:
-   - compatible
--- 
-2.34.1
+>
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 3f5254eeb47b..1fa0d3805969 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -142,6 +142,12 @@ secmon_reserved: secmon@5000000 {
+>  			reg = <0x0 0x05000000 0x0 0x300000>;
+>  			no-map;
+>  		};
+> +
+> +		/* 16 MiB reserved for Amlogic Trust OS (BL32) */
+> +		secos_reserved: secos@5300000 {
+> +			reg = <0x0 0x05300000 0x0 0x1000000>;
+> +			no-map;
+> +		};
+>  	};
+>  
+>  	scpi {
 
