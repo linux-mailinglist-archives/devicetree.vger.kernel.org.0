@@ -2,59 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEB0D58B04B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 21:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B1CE58B099
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 21:59:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241150AbiHETWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 15:22:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39188 "EHLO
+        id S241363AbiHET67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 15:58:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231262AbiHETWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 15:22:38 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7321C65641;
-        Fri,  5 Aug 2022 12:22:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DAE2CB829F7;
-        Fri,  5 Aug 2022 19:22:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92430C433D6;
-        Fri,  5 Aug 2022 19:22:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659727353;
-        bh=6NiXLQm8OcoUZ8csmIKR/ARQpbG7nd98ZNzdAF0IdKc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hvRVdYrVCaYzMJdZQi7TucyGzVAt9jUJykVgus5XNs0aRvS2Sq6n8kzeLrPkZN4kc
-         zdWykUkoZx6Ip1nCKjA2b4MOdGOhEJQWTPodJAjkIC2NggA5fpwOmIl6qy3v3dpD1A
-         A9T2HAT+cOpXP/WF41x+4N1+jCVUmsDQRUFoqWAKWHe/lvqU4Gnyx4IiXVxM9Kdwug
-         USFZWyRY8CHwk8jliYVI4v/jSKe+L0K7pgIf6Dmd840A4gVBzlSg9OIY335+yakyCK
-         DvyCnxnD2WLw76hyAj9Mq9DPw3hn9lnriUY673qvzbWUCjASH/L12YrXB0+93ECG2i
-         z9p6fx5K0hv8A==
-Date:   Fri, 5 Aug 2022 21:22:25 +0200
-From:   Mike Rapoport <rppt@kernel.org>
-To:     Vijayanand Jitta <quic_vjitta@quicinc.com>
-Cc:     Faiyaz Mohammed <quic_faiyazm@quicinc.com>, karahmed@amazon.de,
-        qperret@google.com, robh@kernel.org, akpm@linux-foundation.org,
-        linux-mm@kvack.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] mm: memblock: avoid to create memmap for memblock nomap
- regions
-Message-ID: <Yu1t8TpXT1f372v/@kernel.org>
-References: <1649704172-13181-1-git-send-email-quic_faiyazm@quicinc.com>
- <YlW2TO0O8qDHpkGW@kernel.org>
- <7b18bea8-b996-601d-f490-cb8aadfffa1b@quicinc.com>
- <YnQBKPWtPa87y4NA@kernel.org>
- <42f28e7b-c001-7d01-1eb6-fe963491898e@quicinc.com>
- <Ynj+M9cRm6zdCMMi@kernel.org>
- <22aca197-8d18-2c9e-b3c4-f6fdc893ceb1@quicinc.com>
+        with ESMTP id S230437AbiHET6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 15:58:52 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0534A1E3C6
+        for <devicetree@vger.kernel.org>; Fri,  5 Aug 2022 12:58:50 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oK3Sz-0001L6-Kr; Fri, 05 Aug 2022 21:58:41 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oK3Sv-001xCF-PI; Fri, 05 Aug 2022 21:58:40 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1oK3Sx-009msZ-De; Fri, 05 Aug 2022 21:58:39 +0200
+Date:   Fri, 5 Aug 2022 21:58:36 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Conor.Dooley@microchip.com
+Cc:     Daire.McNamara@microchip.com, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lee.jones@linaro.org,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-riscv@lists.infradead.org, robh+dt@kernel.org,
+        thierry.reding@gmail.com
+Subject: Re: [PATCH v7 3/4] pwm: add microchip soft ip corePWM driver
+Message-ID: <20220805195836.vh3wv4xbpwjhuvfs@pengutronix.de>
+References: <20220721172109.941900-1-mail@conchuod.ie>
+ <20220721172109.941900-4-mail@conchuod.ie>
+ <20220802084619.wunl3nglcpgo6j5i@pengutronix.de>
+ <e55e4a7f-b0bc-f48a-b555-d4b96d69bb87@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gci3n4sxshtnuiph"
 Content-Disposition: inline
-In-Reply-To: <22aca197-8d18-2c9e-b3c4-f6fdc893ceb1@quicinc.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <e55e4a7f-b0bc-f48a-b555-d4b96d69bb87@microchip.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,77 +58,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vijay,
 
-On Wed, Aug 03, 2022 at 04:27:33PM +0530, Vijayanand Jitta wrote:
-> 
-> On 5/9/2022 5:12 PM, Mike Rapoport wrote:
-> > On Mon, May 09, 2022 at 04:37:30PM +0530, Faiyaz Mohammed wrote:
-> >>
-> >> On 5/5/2022 10:24 PM, Mike Rapoport wrote:
-> >>> On Thu, May 05, 2022 at 08:46:15PM +0530, Faiyaz Mohammed wrote:
-> >>>> On 4/12/2022 10:56 PM, Mike Rapoport wrote:
-> >>>>> On Tue, Apr 12, 2022 at 12:39:32AM +0530, Faiyaz Mohammed wrote:
-> >>>>>> This 'commit 86588296acbf ("fdt: Properly handle "no-map" field in the
-> >>>>>> memory region")' is keeping the no-map regions in memblock.memory with
-> >>>>>> MEMBLOCK_NOMAP flag set to use no-map memory for EFI using memblock api's,
-> >>>>>> but during the initialization sparse_init mark all memblock.memory as
-> >>>>>> present using for_each_mem_pfn_range, which is creating the memmap for
-> >>>>>> no-map memblock regions. To avoid it skiping the memblock.memory regions
-> >>>>>> set with MEMBLOCK_NOMAP set and with this change we will be able to save
-> >>>>>> ~11MB memory for ~612MB carve out.
-> >>>>> The MEMBLOCK_NOMAP is very fragile and caused a lot of issues already. I
-> >>>>> really don't like the idea if adding more implicit assumptions about how
-> >>>>> NOMAP memory may or may not be used in a generic iterator function.
-> >>>> Sorry for delayed response.
-> >>>> Yes, it is possible that implicit assumption can create
-> >>>> misunderstanding. How about adding command line option and control the
-> >>>> no-map region in fdt.c driver, to decide whether to keep "no-map" region
-> >>>> with NOMAP flag or remove?. Something like below
-> >>> I really don't like memblock_remove() for such cases.
-> >>> Pretending there is a hole when there is an actual DRAM makes things really
-> >>> hairy when it comes to memory map and page allocator initialization.
-> >>> You wouldn't want to trade system stability and random memory corruptions
-> >>> for 11M of "saved" memory.
-> >>
-> >> Creating memory map for holes memory is adding 11MB overhead which is
-> >> huge on low memory target and same time 11MB memory saving is good enough
-> >> on low memory target.
-> >>
-> >> Or we can have separate list of NOMAP like reserved?.
-> >>
-> >> Any other suggestion to address this issue?.
-> > 
-> > Make your firmware to report the memory that Linux cannot use as a hole,
-> > i.e. _not_ report it as memory.
-> >  
-> 
-> Thanks, Mike for the comments.
-> 
-> Few concerns with this approach.
-> 
-> 1) One concern is, even if firmware doesn't report these regions as
-> memory, we would need addresses for these to be part of device tree so
-> that the clients would be able to get these addresses. Otherwise there
-> is no way for client to know these addresses.
-> 
-> 2) This would also add a dependency on firmware to be able to pass these
-> regions not as memory, though we know that these regions would be used
-> by the clients. Isn't it better to have such control within the kernel ?
+--gci3n4sxshtnuiph
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If it is memory that is used by the kernel it should be reported as memory
-and have the memory map. 
-If this is a hole in the memory layout from the kernel perspective, then
-kernel should not bother with this memory.
+Hello Conor,
 
-And I'm not buying "low memory target" argument if you have enough memory
-to carve out ~600M for some mysterious clients.
- 
-> Let me know your comments on these.
-> 
-> Thanks,
-> Vijay
+On Tue, Aug 02, 2022 at 12:34:14PM +0000, Conor.Dooley@microchip.com wrote:
+> I'll fix it all up & submit v8 after -rc1.
 
--- 
-Sincerely yours,
-Mike.
+I discard the whole series in patchwork in the expectation that all
+patches will be part of your v8.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--gci3n4sxshtnuiph
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmLtdmkACgkQwfwUeK3K
+7AlcuQf+PzHja618Q4oqXducHw/jRkMygZFPSXlBZTRuIoMQZ/pMHPLAlMHM5pkw
+LXJbuMYpU/F7n42/VVs9CsnI1xLmpUTSRFfrJB4YEkiDUBsw0h46rZHKL04vZKRh
+y/0TmS4YBcoeSVUyylpD5J0ngNwTcpqG7LRjCfrCPYsXRDi90t6IUYw5e1aJ01hH
+zHTAKzv4tdXT4JWO6lnNBuwa/Px1AMvtTg476WI7YlVV9ekIM6pNPIzBb+SsrDJL
+LD/EnTBopac1x1qDSv9ZYwJqODqMYWBPxtXKFdZhw9yyWutXLE7eu5E/HpkMDIBx
+ZU3e0rIV8+7YfqTZPGxu3+qaG8YLkw==
+=txLA
+-----END PGP SIGNATURE-----
+
+--gci3n4sxshtnuiph--
