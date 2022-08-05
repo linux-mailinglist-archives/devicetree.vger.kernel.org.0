@@ -2,85 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5188B58A850
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 10:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEBD458A861
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 10:58:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237286AbiHEItF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 04:49:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35164 "EHLO
+        id S237631AbiHEI6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 04:58:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229899AbiHEItE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 04:49:04 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF3A7205FC;
-        Fri,  5 Aug 2022 01:49:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8B3E1B8275D;
-        Fri,  5 Aug 2022 08:49:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 319E1C433D6;
-        Fri,  5 Aug 2022 08:48:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659689341;
-        bh=QV2T3OgNhSLSxJ+SL9EEf8c34jK/JO3wBghCapg8t5o=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=sSvMNYmA33n1k21Ws5eZ1oDJSeOQbqX3HY+kdNH54GuCS1+owWIUZtcQg77HhzjcE
-         aSSM8ABQZv/Mu5ho3x0aIbreKRc6BdHdNM4I20clcG+4FIXzu9hEdBKJsUeOvAeeY6
-         kXI8YgHw8QOV/parqBed4LxkJHrJOxsUDnmOtFIv14JUTzTVX3rPxgHks2NEY2+spq
-         ItmTemqm0LePFMIumon8bOBUOfSfwSF+4rUAIj5aSoBpMV9VT9YMB3N9bMcgmRKv45
-         5tgoyzB5yqIK1UjtSknhhVlFHbHRLzK4yjv6Q4PTYU2FZXymMoUSX190gR/NA/CBj9
-         DP7sqeQwkffAg==
-Message-ID: <d681bcab-da6e-4cd9-f3f1-438e9a7481cd@kernel.org>
-Date:   Fri, 5 Aug 2022 10:48:51 +0200
+        with ESMTP id S234856AbiHEI6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 04:58:55 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C543B74E26;
+        Fri,  5 Aug 2022 01:58:53 -0700 (PDT)
+Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.9; Fri, 5 Aug 2022
+ 16:58:51 +0800
+From:   Yu Tu <yu.tu@amlogic.com>
+To:     <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     Yu Tu <yu.tu@amlogic.com>
+Subject: [PATCH V3 0/6] Add S4 SoC PLL and Peripheral clock controller
+Date:   Fri, 5 Aug 2022 16:57:10 +0800
+Message-ID: <20220805085716.5635-1-yu.tu@amlogic.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v8.1, 2/7] dt-bindings: thermal: Add binding document for
- LVTS thermal controllers
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, bchihi@baylibre.com
-Cc:     rafael@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, khilman@baylibre.com,
-        mka@chromium.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, james.lo@mediatek.com,
-        fan.chen@mediatek.com, louis.yu@mediatek.com,
-        rex-bc.chen@mediatek.com, abailon@baylibre.com
-References: <20220804130912.676043-1-bchihi@baylibre.com>
- <20220804130912.676043-3-bchihi@baylibre.com>
- <20220804231119.x6l2nl362rqvlk6u@notapiano>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220804231119.x6l2nl362rqvlk6u@notapiano>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.18.11.248]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/08/2022 01:11, Nícolas F. R. A. Prado wrote:
->> diff --git a/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
->> new file mode 100644
->> index 000000000000..53c44a73f3a4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/thermal/mediatek,lvts-thermal.yaml
-> [..]
->> +  nvmem-cells:
-> 
->        minItems: 1
-> 
-> since mt8192 only has one of them.
+1. Add PLL and Peripheral clock controller driver for S4 SOC.
 
-Then add allOf:if:then: which will constrain it per variant/compatible.
+Yu Tu (6):
+  dt-bindings: clock: meson: add S4 SoC PLL clock controller bindings
+  arm64: dts: meson: add S4 Soc PLL clock controller in DT
+  clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver
+  dt-bindings: clk: meson: add S4 SoC peripheral clock controller
+    bindings
+  arm64: dts: meson: add S4 Soc Peripheral clock controller in DT
+  clk: meson: s4: add s4 SoC peripheral clock controller driver
 
-Best regards,
-Krzysztof
+V2 -> V3: Use two clock controller.
+V1 -> V2: Change format as discussed in the email.
+
+Link:https://lore.kernel.org/all/20220728054202.6981-1-yu.tu@amlogic.com/
+
+ .../bindings/clock/amlogic,s4-clkc.yaml       |   92 +
+ .../bindings/clock/amlogic,s4-pll-clkc.yaml   |   51 +
+ MAINTAINERS                                   |    1 +
+ arch/arm64/boot/dts/amlogic/meson-s4.dtsi     |   34 +
+ drivers/clk/meson/Kconfig                     |   25 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/s4-pll.c                    |  891 ++++
+ drivers/clk/meson/s4-pll.h                    |   88 +
+ drivers/clk/meson/s4.c                        | 3878 +++++++++++++++++
+ drivers/clk/meson/s4.h                        |  232 +
+ include/dt-bindings/clock/amlogic,s4-clkc.h   |  131 +
+ .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |   30 +
+ 12 files changed, 5455 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/s4-pll.c
+ create mode 100644 drivers/clk/meson/s4-pll.h
+ create mode 100644 drivers/clk/meson/s4.c
+ create mode 100644 drivers/clk/meson/s4.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
+
+
+base-commit: 08fc500fe3d4b1f0603fb97ad353f246a3d52d2d
+-- 
+2.33.1
+
