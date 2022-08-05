@@ -2,126 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE14158A964
-	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 12:18:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F250E58A9B3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Aug 2022 12:51:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231360AbiHEKSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Aug 2022 06:18:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39652 "EHLO
+        id S240152AbiHEKvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Aug 2022 06:51:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235203AbiHEKSr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 06:18:47 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2056.outbound.protection.outlook.com [40.107.20.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77C492614;
-        Fri,  5 Aug 2022 03:18:45 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iT3YkV+UyBL8RISV3CjtvrotJUVl7lT4GNOnw4NYCYRaocMD/JHP8/EL8vpUW6/A5igQY3Ael3hZyhkR5hapqxbrK15Q9q5APXlxJ7QbF2FO8hH1hr/6ncGW3m7lLuOkZmmAnvcu6nAGppeG8mlqjDnL41bn/qwU+Xf5DTsPNMCCCSDxOMAHByt+JQ8IEHFmVwLZeoRr3DcEjXYzzYFLxFqI90XLLnED3iCj7zgWL2UuK3iq8E5+3AymturkgCKvIuSi2AbGkCUFOo8/24e81QGSzBU/ebqI8lBF+Kcc6Wsj34C0GPJT9ly0viXozvGXX60KxUiC385tnDsjAxreSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PF8fPkdn8B19hyJaQ4M9J/P/qwqg7zbFw0U0tRtXTF4=;
- b=JdfQxi9p4ehjeLUiVNj81Y8Yf8UV1nKGYr1xddJ5L180eHJj2k3vW/leYnXhvs+rewdJphTbhriyKQpnL46dtnmMpAdEYeil+3gg4LvLRqSYKv75mpMdqbsmF7Ss0aXXfCIMpCnxXMVyMtdUQ711TqEEqvT6l3DSNkLlzkX3a6xpfBIRXVGtfH7WK0jtXWGDbdtVMqFj4WFoFJSFNgGAtMxUp8cOyA0JM9lDeULfDrWnlPztHD53l9qJq2i6NJ/jXww72tmIi/Cc9ehbKmwDPKV8M48BvsH5OK2zL3oQv+BTsXygK6Cf6Psc8O+pj45lwU+9uIXLBJk5Ro2wTU4g9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PF8fPkdn8B19hyJaQ4M9J/P/qwqg7zbFw0U0tRtXTF4=;
- b=COvAjNBK5Q0ddiXiD+0xxMbySM0le4ceACVaySh17K3GM+QudAqq8IUcddMNkCAWOkQnEFkApb5xOd26F3FWymuTOfYXAdY7569XKr6R6fepYdXTsKMTNKCZzeRJS/Q9THohK51aZlFBDgHiquMCuaIzUQli82Ptn60LvQdYkYc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by DBBPR04MB7881.eurprd04.prod.outlook.com (2603:10a6:10:1ea::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.16; Fri, 5 Aug
- 2022 10:18:43 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::2549:869e:d80b:3a1b]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::2549:869e:d80b:3a1b%7]) with mapi id 15.20.5504.016; Fri, 5 Aug 2022
- 10:18:43 +0000
-Message-ID: <2c6161058d1253c1eabec274ca8c1c98bdc6d490.camel@nxp.com>
-Subject: Re: [PATCH v3 3/3] dt-bindings: bus: Add Freescale i.MX8qxp pixel
- link MSI bus binding
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, saravanak@google.com,
-        gregkh@linuxfoundation.org, geert+renesas@glider.be,
-        robh@kernel.org
-Date:   Fri, 05 Aug 2022 18:18:34 +0800
-In-Reply-To: <258c3ed7-2247-d4c3-73be-ddcddee3a3a0@linaro.org>
-References: <20220804061133.4110734-1-victor.liu@nxp.com>
-         <20220804061133.4110734-4-victor.liu@nxp.com>
-         <258c3ed7-2247-d4c3-73be-ddcddee3a3a0@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR02CA0022.apcprd02.prod.outlook.com
- (2603:1096:4:195::23) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+        with ESMTP id S237666AbiHEKvi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Aug 2022 06:51:38 -0400
+Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6E6811C03;
+        Fri,  5 Aug 2022 03:51:36 -0700 (PDT)
+Received: by mail-qt1-x82c.google.com with SMTP id b21so1707818qte.12;
+        Fri, 05 Aug 2022 03:51:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=t6fXAhWVUFAuj9fGZxy9SW8dxs2cVUbQslkXYvZLT+w=;
+        b=O9VzxhCkEHHB8OFxr9GvZKHnDiomK3qEuWR7pUzw2hB+0X9CBFlifvyIaM9mDy4nCO
+         la/vWCEN6rpYojHsH4rEKsMQZsIHjToOoqEHu0Af3R8eq2qZAqnOVaM1H+97rdouLwkx
+         Ozt0YL23GvxiQP7RVfJJG58KFwIOsknow2DXLTfHBQGlz36jhezD5F24tUBd0OMioQge
+         OSrUOHyghaXqQoTFy69qcTwKHUVY3EOIQL80GOl27jDh27LFQsXr/iukdVdUSUp7gfCJ
+         oUwSwk3ntoO8FtXaOvWeiGPycaUw2QqTjfWuavbPDSR0pncTLyDrRlQYA46Vq1Ex+/oL
+         He6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=t6fXAhWVUFAuj9fGZxy9SW8dxs2cVUbQslkXYvZLT+w=;
+        b=G3syfdSy/NkriZd7wRYTS+KmPi8LiBGATTu5wFGvpVzQxzdVwnLE9IiJYTNeqhKjWR
+         TOllPC6GjspT1nGqsM7C/BTXwiTw+/fxlmUVc77Gh0LWj/tEezWqynj/jOxxKSG7k27A
+         gz1BOit7N1iA527PCx6MfkuHCeWdFlWYuUu7X4xQEMhNpjoxe33BPhr/n2zAIwtnmrz7
+         bhyYX/i0mtLecwOeABbG++DpJJSA5TScaz7E40kbrcXSrqQOSqCmCkZ0jyiecpH3MUgI
+         xU2l1HoXvov7+pAb0CkfiVQqhPQoCOyK9iwmt4RsnphFmB1hDwAt2GMJbiVvW9axAWdm
+         b3Og==
+X-Gm-Message-State: ACgBeo1IRhw8E1aUwYNiWwbZl9A/3hmcZC7HJIbAUMvWc7fi2KoMXe5c
+        RpZp9VzqQmavMTOapZPS2ebrwAzvsYF0Hmy2bmk=
+X-Google-Smtp-Source: AA6agR5K3dv/wqvSJHsdvtimgpDw6LDloHXKTbPrFyY/hLxfC65YOp0ehjqgYs6C7QzUOyT9KMDQsDyHqMEiIgtFDo0=
+X-Received: by 2002:ac8:7d49:0:b0:340:81b1:e320 with SMTP id
+ h9-20020ac87d49000000b0034081b1e320mr5211944qtb.61.1659696695901; Fri, 05 Aug
+ 2022 03:51:35 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5df765d8-c3c3-4402-8b8c-08da76cbdfba
-X-MS-TrafficTypeDiagnostic: DBBPR04MB7881:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: e5t0hUBb2Rl8VOy8U+i94/08DEXbyk25GoD8y3FZAWlEhQw0o2cTK4yGCTfQdU6MevAwwPMkKgLTc91/MAavRkpmXegZySRcNpjsFYTmIelTmqjW1NI4pcCjX7ah1Jy9J6HYbwxLoBYGLklMJtTF1vbt4g+V4WUePrV/QW5XnlKB5v1HJRd3uAG5oxavnqlkQlUZcTW4dsY41MCEMT+sME02LGUl0yCaeVfWnVHOEXBVQSsFMROuv2um5OFRDXyY5RlJv3GY7ZOes09AHRvvtk8008In6BYs9O+7bN7OxUBlkXk044IFGhKUMEH3KGXEYlncQOqLz3Ec4bBfRhKA9IpwNghDRo6xDchLKvhyYImCiap5tWxEnxNzjB5Bn30pppRaFQhx5g7uU66wumxXk3UGAEuXoDtnhLNOb/pC8xqajfh2+7gs3tK6OZBPUlK5RB3XvYB6jD6EYgrNP3FrjhWdQQWLlKIg6l8+aLftXU/tfqN2aYnm6bfhM0kf8wso8hLQcatFqM0HpeF1F2wi4ZhKTOSm2i4c7AiBiSUIhkeTZEWwVMcB2kdFEkaDqbFU1x+NX6u5iTOO8/OEnHTVQrcIOjVPGF5fHqOp14bzupEm7+2RfX0VfLeahHyz5biLfHMK4XXr9RW8WxsD0u8qkkHFJaKZ5wnpxt8o0Kg61L63kvAeems8++e5zUZYjPw6ka+lhNfrTisQiPUJEKyMiwhvTGSY+AqU7fq89pZrlDjtXNHES5PlcsbpO3Y6SUM/MOFaH4q1ckaP3sQLI1C1ll0BwaRgf1txoBqfre4Fy9UZJL5qU/uSQp2sIrIUWdyJ
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(376002)(39860400002)(346002)(136003)(366004)(53546011)(6506007)(38350700002)(52116002)(38100700002)(83380400001)(2906002)(6666004)(41300700001)(186003)(2616005)(6512007)(26005)(316002)(478600001)(66476007)(66556008)(36756003)(66946007)(8676002)(86362001)(6486002)(5660300002)(7416002)(8936002)(4326008)(99106002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q1FaVkx2S1ZGWC9MV2RjMHR4ekhWekZXSjNxUUFhWXVNcnM1YmhCZERpa3o1?=
- =?utf-8?B?VUd3RThXZFo0V0s5aFJzdWhUUVVqcnduL1NEUEp5Q0JKYkE2TlZWdExXV3A2?=
- =?utf-8?B?d0lNSHRJRHl4UFFhcTU0NitqMjA5UXQ4aGZ6aVl5T0x1ZDN2Vmh5TEZ1V2FH?=
- =?utf-8?B?aUUzNEJ1U3R1WW51V1FzTWIwTFNyVnFacWV0SmIzS0hkNW9DL1dyK3JZclRx?=
- =?utf-8?B?T2c5N3FVVFczRHhGVnlucTRxSmhtZ2xzUG9WU1oyRjhxSHlHblkyTTE4d2FQ?=
- =?utf-8?B?MkNYNHVJcm9FdUNWbldxUkN5bUpJeGxLWGM4VTR1UkRpVkFCT0FVMy9wOUVB?=
- =?utf-8?B?bndqaGRTSGRualhuRzlJVjNobk5DTGxEUVhIWFhFcEhVaEU3ZGRreU9FbHg0?=
- =?utf-8?B?Y0pEUlEycnpaUE1id2IrRFlnWFBxelJheTlXMDhqNnFLRVpPeHltVzJxcGxN?=
- =?utf-8?B?UUtYK3h5QlF0MnloTFQwNWtRVXlvREFkTUcvaG43eHNzU0ZLNm9oYTAyVFlL?=
- =?utf-8?B?UWRXUEkyODZEQTJVeEpjOWt2dlB2UGkxWFFCSG96aFVhUUthZ0VQeXpHNmlt?=
- =?utf-8?B?WXl4ZmpkNURGSDBLSVBBWXV3Sis4cVVrdG8yZXRsL1p5MFlNSWdIRFE0T3N1?=
- =?utf-8?B?YnQ4V2RzbjVVeGpkWmh0UmxIOVY5MTYyQlBFalpCcTJEcDFNU3diVDdhbEUw?=
- =?utf-8?B?NU9UWGNNNjduL2tRQzA1SVVzYWZTUytpS3NMcXpNWjB0R253bGs2bVI3R0Yx?=
- =?utf-8?B?QVVncGUvN0JMQ2NtRi9saG5rTVl6Vzd6YTltTDhMSmNHMlZZQk5iZ0pIc3Fq?=
- =?utf-8?B?NXlIMi9PYTZhQkFFbFFMbTB6VklDdlMvaUFSZS9DVmZBajNnTzJzazgrbmRt?=
- =?utf-8?B?OHBZK2NIcUw1OWdKSHRueGUwRlY5M2RwSnpBZ0J1YWlGSG5yQWtHUlVxM3JD?=
- =?utf-8?B?MExEMDlNNUNqTEswTWpmbHhvVm5CdFVSSG03V1puTG9KUERWck5jU0t0M1B0?=
- =?utf-8?B?N29DSDRYMm1uYVpVOUJFUDZHcnNxUUJSazdMSVR4RHlyZEFDZUxNUTVVbVVK?=
- =?utf-8?B?MHBRVGJZYWdMbldkaDlzc1FTQUs2SjRhbWFXeE1BOS9WOUFLZGFDbytiRjVI?=
- =?utf-8?B?dXBwdXNNOERkdGJIdXBEQVAzY2VjVUtnR041bmYreTZaS3VrdCsyNlRvbjgz?=
- =?utf-8?B?enhQVE1jZW9ZY2NkMHJCbWpsY0Z0VG5yKzYyR3BzS1Z0YnR3Z2M4SUcyb0U5?=
- =?utf-8?B?dS8yZ1hJUG9mNnlTNFp4SExmZDFITkx0ZkJUeWdKSkM1T044amxEdGp5Z3VL?=
- =?utf-8?B?ME5xSGE2L1pEb3NpbnhmZUs5bmtpTVBHbmNxd3JtVndDczF1cUh4YmRyNWFo?=
- =?utf-8?B?cERCVDB0dUpzU1VWd0hBZ3FtY2wwVkZ0Ymc2TlZlWWZaZy84RldvL2tVcElt?=
- =?utf-8?B?aEV4bi8rTFc0UExKeEVSL0NaRGZpZDRyME00dmZaanZZQ1FjRC9ka1hqTDNC?=
- =?utf-8?B?cWZ1T1psb0p2cnBtL0JnUXlHTGRkYytHYVpiTWl3YTFKUzFHZzg4MFZqbkpv?=
- =?utf-8?B?QmxQK3puVmhvNEVuYy8zeTdwdkhDd1NRYXV2MlI5NEdNZ2JoMDJTUWVwWVNZ?=
- =?utf-8?B?K3RsQVVjMldUMUNYekNHaVBFQ2IzUTRuOVBSYXNGQXRnZXl6QUkvdFJPZlhZ?=
- =?utf-8?B?cXBpQU5ZbzM0L0dvSU9lMXdVeTlsRFlVQmdWT0svUnBkM1hNYlYybWtrdjRV?=
- =?utf-8?B?S0hGYmUwY0owQzh3MkVUMjZraDBHTjhPcE5lU3luUVVxZVFXZE5mQmQ5SDZl?=
- =?utf-8?B?T0VBUHNzYmxKbnpkVW1iR2pLTHVwOXhzYkMvNlgrOFArZWVBUmZBQWZNWXNK?=
- =?utf-8?B?Vk1MdGoydGlDNSsyMVN1dGpiWnBoaU02YTFhOVU4dzlCNUVTRW1sTGFPL21r?=
- =?utf-8?B?Y1VWOGtwcTRVOUEwY2wwa2Z0UHEvVlBpRTlDa0NyMmRCWGROaVU1d2VBVG1U?=
- =?utf-8?B?bkEwYnh2cHlub0huVGpyMnN6d2lWd25mdGpDUVV1bk9GWEc5YTBYYktZRUgx?=
- =?utf-8?B?SUdxK3d6dTArM2hoaVJuYmUxYXpYMU90TGFvV2NVTUFlRnQrbHhmeG9oYjlO?=
- =?utf-8?Q?YdiyJwJEQ7NSlHWpCxQsDCFEy?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5df765d8-c3c3-4402-8b8c-08da76cbdfba
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Aug 2022 10:18:43.2360
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zhi/CWljJdEP8A6+YWQ9EKPcDR/Phx21kVku4olFCQTWuqCPByu6OV9BiltXpjr7NpY98HRFgNL5P0fbUBW4cw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7881
+References: <20220805070610.3516-1-peterwu.pub@gmail.com> <20220805070610.3516-9-peterwu.pub@gmail.com>
+In-Reply-To: <20220805070610.3516-9-peterwu.pub@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 5 Aug 2022 12:50:59 +0200
+Message-ID: <CAHp75Ve7OOaVU=Xm5D7nRsCAhDYi3Eq3x4YscPYdJrBqO+AM-g@mail.gmail.com>
+Subject: Re: [PATCH v7 08/13] usb: typec: tcpci_mt6370: Add MediaTek MT6370
+ tcpci driver
+To:     ChiaEn Wu <peterwu.pub@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "Krogerus, Heikki" <heikki.krogerus@linux.intel.com>,
+        Helge Deller <deller@gmx.de>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Alice Chen <alice_chen@richtek.com>,
+        cy_huang <cy_huang@richtek.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+        szuni chen <szunichen@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -129,54 +97,288 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-08-04 at 13:17 +0200, Krzysztof Kozlowski wrote:
-> On 04/08/2022 08:11, Liu Ying wrote:
-> > Freescale i.MX8qxp pixel link MSI bus is a simple memory-mapped
-> > bus.
-> > It is used to access peripherals in i.MX8qm/qxp imaging, LVDS, MIPI
-> > DSI and HDMI TX subsystems, like I2C controller, PWM controller,
-> > MIPI DSI controller and Control and Status Registers (CSR) module.
-> > 
-> > Reference simple-pm-bus bindings and add Freescale i.MX8qxp pixel
-> > link MSI bus specific bindings.
-> > 
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> 
-> Thank you for your patch. There is something to discuss/improve.
+On Fri, Aug 5, 2022 at 9:07 AM ChiaEn Wu <peterwu.pub@gmail.com> wrote:
+>
+> From: ChiYuan Huang <cy_huang@richtek.com>
+>
+> The MediaTek MT6370 is a highly-integrated smart power management IC,
+> which includes a single cell Li-Ion/Li-Polymer switching battery
+> charger, a USB Type-C & Power Delivery (PD) controller, dual
+> Flash LED current sources, a RGB LED driver, a backlight WLED driver,
+> a display bias driver and a general LDO for portable devices.
+>
+> Add a support for the Type-C & Power Delivery controller in
+> MediaTek MT6370 IC.
 
-Thanks for the review.
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-> 
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/imx8-lpcg.h>
-> > +    #include <dt-bindings/firmware/imx/rsrc.h>
-> > +    bus@56200000 {
-> > +        compatible = "fsl,imx8qxp-display-pixel-link-msi-bus",
-> > "simple-pm-bus";
-> > +        reg = <0x56200000 0x20000>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +        interrupt-parent = <&dc0_irqsteer>;
-> > +        interrupts = <320>;
-> > +        ranges;
-> > +        clocks = <&dc0_disp_ctrl_link_mst0_lpcg IMX_LPCG_CLK_4>,
-> > +                 <&dc0_disp_ctrl_link_mst0_lpcg IMX_LPCG_CLK_4>;
-> > +        clock-names = "msi", "ahb";
-> > +        power-domains = <&pd IMX_SC_R_DC_0>;
-> 
-> The example should be complete, so you should have here children.
-> Otherwise it is not a bus.
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> Signed-off-by: ChiaEn Wu <chiaen_wu@richtek.com>
+> ---
+>
+> v7
+> - Revise 'devm_add_action_or_reset(dev, ...)' to one line
+> - Revise 'return regmap_update_bits(...)' with using positive
+>   conditional
+> ---
+>  drivers/usb/typec/tcpm/Kconfig        |  11 ++
+>  drivers/usb/typec/tcpm/Makefile       |   1 +
+>  drivers/usb/typec/tcpm/tcpci_mt6370.c | 207 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 219 insertions(+)
+>  create mode 100644 drivers/usb/typec/tcpm/tcpci_mt6370.c
+>
+> diff --git a/drivers/usb/typec/tcpm/Kconfig b/drivers/usb/typec/tcpm/Kconfig
+> index 073fd2e..e6b88ca 100644
+> --- a/drivers/usb/typec/tcpm/Kconfig
+> +++ b/drivers/usb/typec/tcpm/Kconfig
+> @@ -35,6 +35,17 @@ config TYPEC_MT6360
+>           USB Type-C. It works with Type-C Port Controller Manager
+>           to provide USB PD and USB Type-C functionalities.
+>
+> +config TYPEC_TCPCI_MT6370
+> +       tristate "MediaTek MT6370 Type-C driver"
+> +       depends on MFD_MT6370
+> +       help
+> +         MediaTek MT6370 is a multi-functional IC that includes
+> +         USB Type-C. It works with Type-C Port Controller Manager
+> +         to provide USB PD and USB Type-C functionalities.
+> +
+> +         This driver can also be built as a module. The module
+> +         will be called "tcpci_mt6370".
+> +
+>  config TYPEC_TCPCI_MAXIM
+>         tristate "Maxim TCPCI based Type-C chip driver"
+>         help
+> diff --git a/drivers/usb/typec/tcpm/Makefile b/drivers/usb/typec/tcpm/Makefile
+> index 7d499f3..906d9dc 100644
+> --- a/drivers/usb/typec/tcpm/Makefile
+> +++ b/drivers/usb/typec/tcpm/Makefile
+> @@ -6,4 +6,5 @@ typec_wcove-y                           := wcove.o
+>  obj-$(CONFIG_TYPEC_TCPCI)              += tcpci.o
+>  obj-$(CONFIG_TYPEC_RT1711H)            += tcpci_rt1711h.o
+>  obj-$(CONFIG_TYPEC_MT6360)             += tcpci_mt6360.o
+> +obj-$(CONFIG_TYPEC_TCPCI_MT6370)       += tcpci_mt6370.o
+>  obj-$(CONFIG_TYPEC_TCPCI_MAXIM)                += tcpci_maxim.o
+> diff --git a/drivers/usb/typec/tcpm/tcpci_mt6370.c b/drivers/usb/typec/tcpm/tcpci_mt6370.c
+> new file mode 100644
+> index 0000000..c5bb201
+> --- /dev/null
+> +++ b/drivers/usb/typec/tcpm/tcpci_mt6370.c
+> @@ -0,0 +1,207 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2022 Richtek Technology Corp.
+> + *
+> + * Author: ChiYuan Huang <cy_huang@richtek.com>
+> + */
+> +
+> +#include <linux/bits.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_wakeup.h>
+> +#include <linux/pm_wakeirq.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/usb/tcpci.h>
+> +#include <linux/usb/tcpm.h>
+> +
+> +#define MT6370_REG_SYSCTRL8    0x9B
+> +
+> +#define MT6370_AUTOIDLE_MASK   BIT(3)
+> +
+> +#define MT6370_VENDOR_ID       0x29CF
+> +#define MT6370_TCPC_DID_A      0x2170
+> +
+> +struct mt6370_priv {
+> +       struct device *dev;
+> +       struct regulator *vbus;
+> +       struct tcpci *tcpci;
+> +       struct tcpci_data tcpci_data;
+> +};
+> +
+> +static const struct reg_sequence mt6370_reg_init[] = {
+> +       REG_SEQ(0xA0, 0x1, 1000),
+> +       REG_SEQ(0x81, 0x38, 0),
+> +       REG_SEQ(0x82, 0x82, 0),
+> +       REG_SEQ(0xBA, 0xFC, 0),
+> +       REG_SEQ(0xBB, 0x50, 0),
+> +       REG_SEQ(0x9E, 0x8F, 0),
+> +       REG_SEQ(0xA1, 0x5, 0),
+> +       REG_SEQ(0xA2, 0x4, 0),
+> +       REG_SEQ(0xA3, 0x4A, 0),
+> +       REG_SEQ(0xA4, 0x01, 0),
+> +       REG_SEQ(0x95, 0x01, 0),
+> +       REG_SEQ(0x80, 0x71, 0),
+> +       REG_SEQ(0x9B, 0x3A, 1000),
+> +};
+> +
+> +static int mt6370_tcpc_init(struct tcpci *tcpci, struct tcpci_data *data)
+> +{
+> +       u16 did;
+> +       int ret;
+> +
+> +       ret = regmap_register_patch(data->regmap, mt6370_reg_init,
+> +                                   ARRAY_SIZE(mt6370_reg_init));
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = regmap_raw_read(data->regmap, TCPC_BCD_DEV, &did, sizeof(u16));
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (did == MT6370_TCPC_DID_A)
+> +               return regmap_write(data->regmap, TCPC_FAULT_CTRL, 0x80);
+> +
+> +       return 0;
+> +}
+> +
+> +static int mt6370_tcpc_set_vconn(struct tcpci *tcpci, struct tcpci_data *data,
+> +                                bool enable)
+> +{
+> +       return regmap_update_bits(data->regmap, MT6370_REG_SYSCTRL8,
+> +                                 MT6370_AUTOIDLE_MASK,
+> +                                 enable ? 0 : MT6370_AUTOIDLE_MASK);
+> +}
+> +
+> +static int mt6370_tcpc_set_vbus(struct tcpci *tcpci, struct tcpci_data *data,
+> +                               bool source, bool sink)
+> +{
+> +       struct mt6370_priv *priv = container_of(data, struct mt6370_priv,
+> +                                               tcpci_data);
+> +       int ret;
+> +
+> +       ret = regulator_is_enabled(priv->vbus);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       if (ret && !source)
+> +               return regulator_disable(priv->vbus);
+> +
+> +       if (!ret && source)
+> +               return regulator_enable(priv->vbus);
+> +
+> +       return 0;
+> +}
+> +
+> +static irqreturn_t mt6370_irq_handler(int irq, void *dev_id)
+> +{
+> +       struct mt6370_priv *priv = dev_id;
+> +
+> +       return tcpci_irq(priv->tcpci);
+> +}
+> +
+> +static int mt6370_check_vendor_info(struct mt6370_priv *priv)
+> +{
+> +       struct regmap *regmap = priv->tcpci_data.regmap;
+> +       u16 vid;
+> +       int ret;
+> +
+> +       ret = regmap_raw_read(regmap, TCPC_VENDOR_ID, &vid, sizeof(u16));
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (vid != MT6370_VENDOR_ID)
+> +               return dev_err_probe(priv->dev, -ENODEV,
+> +                                    "Vendor ID not correct 0x%02x\n", vid);
+> +
+> +       return 0;
+> +}
+> +
+> +static void mt6370_unregister_tcpci_port(void *tcpci)
+> +{
+> +       tcpci_unregister_port(tcpci);
+> +}
+> +
+> +static int mt6370_tcpc_probe(struct platform_device *pdev)
+> +{
+> +       struct mt6370_priv *priv;
+> +       struct device *dev = &pdev->dev;
+> +       int irq, ret;
+> +
+> +       priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +       if (!priv)
+> +               return -ENOMEM;
+> +
+> +       priv->dev = dev;
+> +
+> +       priv->tcpci_data.regmap = dev_get_regmap(dev->parent, NULL);
+> +       if (!priv->tcpci_data.regmap)
+> +               return dev_err_probe(dev, -ENODEV, "Failed to init regmap\n");
+> +
+> +       ret = mt6370_check_vendor_info(priv);
+> +       if (ret)
+> +               return ret;
+> +
+> +       irq = platform_get_irq(pdev, 0);
+> +       if (irq < 0)
+> +               return dev_err_probe(dev, irq, "Failed to get irq\n");
+> +
+> +       /* Assign TCPCI feature and ops */
+> +       priv->tcpci_data.auto_discharge_disconnect = 1;
+> +       priv->tcpci_data.init = mt6370_tcpc_init;
+> +       priv->tcpci_data.set_vconn = mt6370_tcpc_set_vconn;
+> +
+> +       priv->vbus = devm_regulator_get_optional(dev, "vbus");
+> +       if (!IS_ERR(priv->vbus))
+> +               priv->tcpci_data.set_vbus = mt6370_tcpc_set_vbus;
+> +
+> +       priv->tcpci = tcpci_register_port(dev, &priv->tcpci_data);
+> +       if (IS_ERR(priv->tcpci))
+> +               return dev_err_probe(dev, PTR_ERR(priv->tcpci),
+> +                                    "Failed to register tcpci port\n");
+> +
+> +       ret = devm_add_action_or_reset(dev, mt6370_unregister_tcpci_port, priv->tcpci);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = devm_request_threaded_irq(dev, irq, NULL, mt6370_irq_handler,
+> +                                       IRQF_ONESHOT, dev_name(dev), priv);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret, "Failed to allocate irq\n");
+> +
+> +       device_init_wakeup(dev, true);
+> +       dev_pm_set_wake_irq(dev, irq);
+> +
+> +       return 0;
+> +}
+> +
+> +static int mt6370_tcpc_remove(struct platform_device *pdev)
+> +{
+> +       dev_pm_clear_wake_irq(&pdev->dev);
+> +       device_init_wakeup(&pdev->dev, false);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id mt6370_tcpc_devid_table[] = {
+> +       { .compatible = "mediatek,mt6370-tcpc" },
+> +       {}
+> +};
+> +MODULE_DEVICE_TABLE(of, mt6370_tcpc_devid_table);
+> +
+> +static struct platform_driver mt6370_tcpc_driver = {
+> +       .driver = {
+> +               .name = "mt6370-tcpc",
+> +               .of_match_table = mt6370_tcpc_devid_table,
+> +       },
+> +       .probe = mt6370_tcpc_probe,
+> +       .remove = mt6370_tcpc_remove,
+> +};
+> +module_platform_driver(mt6370_tcpc_driver);
+> +
+> +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
+> +MODULE_DESCRIPTION("MT6370 USB Type-C Port Controller Interface Driver");
+> +MODULE_LICENSE("GPL v2");
+> --
+> 2.7.4
+>
 
-I may add some children whose compatible strings are in-tree for
-i.MX8qxp. It seems that simple-pm-bus driver part(patch 1) will be
-changed due to comments, so maybe I'll respin when it's ready.
 
-Regards,
-Liu Ying
-
-> 
-> Best regards,
-> Krzysztof
-
+-- 
+With Best Regards,
+Andy Shevchenko
