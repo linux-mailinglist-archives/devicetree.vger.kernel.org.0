@@ -2,82 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DC6C58B5FF
-	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 16:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCCE358B5F8
+	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 16:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230349AbiHFOPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Aug 2022 10:15:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39572 "EHLO
+        id S230132AbiHFOOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Aug 2022 10:14:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229983AbiHFOPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 10:15:48 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EABCD65B9
-        for <devicetree@vger.kernel.org>; Sat,  6 Aug 2022 07:15:46 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id 13so4894785pgc.8
-        for <devicetree@vger.kernel.org>; Sat, 06 Aug 2022 07:15:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=AdmoEx+WmT67i1BIIL03YLuO83QgajHTg/kt7epiFgg=;
-        b=VrZJ2jGiKcVNK94TZNAGg/tkmL38wNQtqKf1THHLxvabAuue0RgYwgLjqMlPwYJPwr
-         deDcuS/h4N+T+kUZ1zX+bKB6wUO8FseklOntC5piKZ2TBQXA+rDUSkYQyJamrMZ4szC4
-         keWYVLrynR5M35re6QSxMrHFCuncmrp+JoLVjK2k2SlTzRYqJIcchVo36wfjSnctADoa
-         xXLnAGuLJhUVz/NhozC9XK+6Sziz3RJNO+6pYDcF657f5KRrEJqe5hKTQOf/q3sInf4L
-         AQ9TNGqMj0SVJBi/kJN4Q0FY4CvxGad5RLpwYq1a9DhRtI7QM/E3yk58J1ji5u9WyHP5
-         KSLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=AdmoEx+WmT67i1BIIL03YLuO83QgajHTg/kt7epiFgg=;
-        b=HfTnt0xINmNyEiiOSD4a464L/ZrEqaBd0iuiPceA9n9YzGuR8NYdZQyl9M11etP69j
-         zHzjE5i4TvnC4s6uuuYZFnA4mOWU6JtC8s0C/KNn+JYdl0ZV/HqYRlvHAFJvNTCGbQCM
-         t1qPir0G0GFPs/R1ga7slo99OwqEkW/fSya1QwG+l9pib45uXxcErkAyqDJgTtCgMJYS
-         Khrr/2TV0cnrIGg+j7JCywXyNvD0oh/F+jfYLtBTDmcUvnLr4U3FEKTlDINIiFxrBkPF
-         oDYtnO1sKTd3RyRL4VzV/kLcsRypxGokyiyg8dLWPhukQUaDkA5TA/Twx2BkbE7dFKB7
-         IJZg==
-X-Gm-Message-State: ACgBeo2P1wIH9lb+W2PgVodlJGm8kPtMFmqTIG6yWBVWoqzkTbJi+qh7
-        T9qe4Z8njF2NCFpZ7NLEw2xn
-X-Google-Smtp-Source: AA6agR53FZGAkMJLYJQ36JfX/HuotRuqldhgQsqY+teYfZJBmLRHMgEFBpkrxL9w0zZ1OKME5h++eQ==
-X-Received: by 2002:a63:560e:0:b0:41c:590a:62ed with SMTP id k14-20020a63560e000000b0041c590a62edmr9686308pgb.250.1659795346368;
-        Sat, 06 Aug 2022 07:15:46 -0700 (PDT)
-Received: from thinkpad ([117.202.188.20])
-        by smtp.gmail.com with ESMTPSA id z10-20020a6553ca000000b0041c1965dd96sm3207803pgr.27.2022.08.06.07.15.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Aug 2022 07:15:45 -0700 (PDT)
-Date:   Sat, 6 Aug 2022 19:45:36 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229983AbiHFOOD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 10:14:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA79311A22;
+        Sat,  6 Aug 2022 07:14:02 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4692761045;
+        Sat,  6 Aug 2022 14:14:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2994C433C1;
+        Sat,  6 Aug 2022 14:13:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659795241;
+        bh=TcspVgJMCYgRJe1eMgJY0EQUSYj1o9t3RcgqBFaD6jM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=E7HEm/cxP5ga25D9GTx/My1OddhV+gPSXfH+W3eQVgvrbODGwJzexiZDm6N5Kko/f
+         Z/MXzV1bm2Ls0ps/zf82Cp4Vv04LNzyKlB26JVREqMJ5+RqDOx0NDmrle4rjhkn0uX
+         d975ui65x8MuEfkUD/WzuURxnUlHBsGOAaF5UpGc65zwRFaKA7ezax1DQRfxiPBfiG
+         NU7OX9GyLJISqj6Iopd3mhmvsgAqad4+NgYBsKFFHs6mP0kp5Qz6OYsy7r26J0cOf1
+         9G1t+ke+oeCw1F/GpD+CWomewHuvRJSatpJF2YALZmnIwU0klyBWq7U4EHhG7g+/Vp
+         cBxH7bjBGcpAA==
+Date:   Sat, 6 Aug 2022 15:24:19 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Randy Dunlap <rdunlap@infradead.org>
-Subject: Re: [PATCH v2 3/9] usb: dwc3: qcom: fix gadget-only builds
-Message-ID: <20220806141536.GD14384@thinkpad>
-References: <20220804151001.23612-1-johan+linaro@kernel.org>
- <20220804151001.23612-4-johan+linaro@kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] iio: adc: qcom-spmi-adc5: Add missing
+ VCOIN/GPIO[134] channels
+Message-ID: <20220806152419.15a578be@jic23-huawei>
+In-Reply-To: <20220805135729.1037079-3-marijn.suijten@somainline.org>
+References: <20220805135729.1037079-1-marijn.suijten@somainline.org>
+        <20220805135729.1037079-3-marijn.suijten@somainline.org>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220804151001.23612-4-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,49 +67,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 05:09:55PM +0200, Johan Hovold wrote:
-> A recent change added a dependency to the USB host stack and broke
-> gadget-only builds of the driver.
-> 
-> Fixes: 6895ea55c385 ("usb: dwc3: qcom: Configure wakeup interrupts during suspend")
-> Reported-by: Randy Dunlap <rdunlap@infradead.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> --`-
-> 
-> Changes in v2
->  - new patch
-> 
->  drivers/usb/dwc3/dwc3-qcom.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index be2e3dd36440..e9364141661b 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -310,8 +310,11 @@ static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
->  	 * currently supports only 1 port per controller. So
->  	 * this is sufficient.
->  	 */
-> +#ifdef CONFIG_USB
->  	udev = usb_hub_find_child(hcd->self.root_hub, 1);
-> -
-> +#else
-> +	udev = NULL;
-> +#endif
+On Fri,  5 Aug 2022 15:57:26 +0200
+Marijn Suijten <marijn.suijten@somainline.org> wrote:
 
-Perhaps the check should be moved to the caller instead? This function still
-references "usb_hcd" struct and I don't think that's intended for gadget only
-mode.
+> These channels are specified in downstream kernels [1] and actively used
+> by e.g. the Sony Seine platform on the SM6125 SoC.  Note that GPIO2
+> isn't used on this platform and, while the definition downstream is
+> identical to the other GPIOx_100K_PU definitions, has been omitted for
+> lack of proper testing.
+> 
+> [1]: https://source.codeaurora.org/quic/la/kernel/msm-4.14/tree/drivers/iio/adc/qcom-spmi-adc5.c?h=LA.UM.7.11.r1-05200-NICOBAR.0#n688
+> 
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+Applied to the togreg branch of iio.git.  Note that I'll only push it out as testing
+for now as I plan to rebase after rc1 is available.
 
 Thanks,
-Mani
 
->  	if (!udev)
->  		return USB_SPEED_UNKNOWN;
->  
-> -- 
-> 2.35.1
+Jonathan
+
+> ---
+>  drivers/iio/adc/qcom-spmi-adc5.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
+> diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
+> index 87438d1e5c0b..0dc4fe612433 100644
+> --- a/drivers/iio/adc/qcom-spmi-adc5.c
+> +++ b/drivers/iio/adc/qcom-spmi-adc5.c
+> @@ -526,6 +526,8 @@ static const struct adc5_channels adc5_chans_pmic[ADC5_MAX_CHANNEL] = {
+>  					SCALE_HW_CALIB_DEFAULT)
+>  	[ADC5_VBAT_SNS]		= ADC5_CHAN_VOLT("vbat_sns", 1,
+>  					SCALE_HW_CALIB_DEFAULT)
+> +	[ADC5_VCOIN]		= ADC5_CHAN_VOLT("vcoin", 1,
+> +					SCALE_HW_CALIB_DEFAULT)
+>  	[ADC5_DIE_TEMP]		= ADC5_CHAN_TEMP("die_temp", 0,
+>  					SCALE_HW_CALIB_PMIC_THERM)
+>  	[ADC5_USB_IN_I]		= ADC5_CHAN_VOLT("usb_in_i_uv", 0,
+> @@ -549,6 +551,12 @@ static const struct adc5_channels adc5_chans_pmic[ADC5_MAX_CHANNEL] = {
+>  					SCALE_HW_CALIB_THERM_100K_PULLUP)
+>  	[ADC5_AMUX_THM2]	= ADC5_CHAN_TEMP("amux_thm2", 0,
+>  					SCALE_HW_CALIB_PM5_SMB_TEMP)
+> +	[ADC5_GPIO1_100K_PU]	= ADC5_CHAN_TEMP("gpio1_100k_pu", 0,
+> +					SCALE_HW_CALIB_THERM_100K_PULLUP)
+> +	[ADC5_GPIO3_100K_PU]	= ADC5_CHAN_TEMP("gpio3_100k_pu", 0,
+> +					SCALE_HW_CALIB_THERM_100K_PULLUP)
+> +	[ADC5_GPIO4_100K_PU]	= ADC5_CHAN_TEMP("gpio4_100k_pu", 0,
+> +					SCALE_HW_CALIB_THERM_100K_PULLUP)
+>  };
+>  
+>  static const struct adc5_channels adc7_chans_pmic[ADC5_MAX_CHANNEL] = {
 
--- 
-மணிவண்ணன் சதாசிவம்
