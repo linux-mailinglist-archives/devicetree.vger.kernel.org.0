@@ -2,122 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A18F58B4E3
-	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 12:01:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF1E558B4EC
+	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 12:03:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbiHFKA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Aug 2022 06:00:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57312 "EHLO
+        id S241823AbiHFKDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Aug 2022 06:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230133AbiHFKA5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 06:00:57 -0400
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1157155A8;
-        Sat,  6 Aug 2022 03:00:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1659780056; x=1691316056;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DArrsJl+igQhfiejk3LBgfFW4Irk33+l5lRq4yjeRtA=;
-  b=EDUnbtVZjxmb/o8UZs2ufBDLxQLWKM9Zq5rwg5rqeDyycaLDhkcPVcm3
-   FzJToJny9MVymesJhCV6QnHQlBSYgw3+HhDpYPX2X0Xd4N3dAFVmUFNa4
-   oJ+X5c9zTt8h3Xprzuu8L7+RlZ89NnXitrIc6BlUOCOQDC1c7s8iskOFI
-   ZjvoqINjBbxF6i482MtWFvadGER64oLqq8Evp1emaja7DQ1rVgQ4bH1GM
-   1GG5eoDkFta6isP6XXJZcxtU8V04k5b7EgE5xaZ99MgGyIWCtZLMVL0ty
-   +o/UYla4ccd4NgMcZsOj6OaZxRut/ZUwqrB7Vi+DyXQNtj/Jy7tjeFowZ
-   g==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10430"; a="273404064"
-X-IronPort-AV: E=Sophos;i="5.93,217,1654585200"; 
-   d="scan'208";a="273404064"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2022 03:00:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,217,1654585200"; 
-   d="scan'208";a="746113166"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by fmsmga001.fm.intel.com with ESMTP; 06 Aug 2022 03:00:52 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oKGc0-000KG7-0R;
-        Sat, 06 Aug 2022 10:00:52 +0000
-Date:   Sat, 6 Aug 2022 18:00:32 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee.jones@linaro.org>,
-        u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha --subject-prefix=PATCH v3 
-        <jude.onyenegecha@sifive.com>, Ben Dooks <ben.dooks@sifive.com>
-Subject: Re: [PATCH 4/8] pwm: dwc: add of/platform support
-Message-ID: <202208061741.ALGAZYcD-lkp@intel.com>
-References: <20220805165033.140958-5-ben.dooks@sifive.com>
+        with ESMTP id S241822AbiHFKDP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 06:03:15 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 888F012085;
+        Sat,  6 Aug 2022 03:03:06 -0700 (PDT)
+X-UUID: 05949a68c2a84d1d9015b508fcf76e9b-20220806
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=9XA/gsfa3bVWlGBTrX3L0wvV5sWXhFo0p+9okDM5jAo=;
+        b=YtnFeZyBy7w/4sOG27OvHYFBGqkJ3suZ3YRXHbxVreGQ/yzqspmLmB3nilnfWUtuUJKsSDGTlBA3j+Xn3YHBQUFNHOk5m7QzNLOCFN7bEKwrqKKluULhwZpw0VMi8tKLcX08syEM+0RLN3Mj3THcT2t1AeSgSbsuzcVTlk6WURs=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.8,REQID:0dd9b4c6-afbb-447c-8c3f-188047bc90ed,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
+        ION:release,TS:-5
+X-CID-META: VersionHash:0f94e32,CLOUDID:8a85ef9b-da39-4e3b-a854-56c7d2111b46,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,QS:nil,BEC:nil,COL:0
+X-UUID: 05949a68c2a84d1d9015b508fcf76e9b-20220806
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 453748640; Sat, 06 Aug 2022 18:03:00 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 6 Aug 2022 18:02:58 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 6 Aug 2022 18:02:58 +0800
+From:   <kewei.xu@mediatek.com>
+To:     <wsa@the-dreams.de>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <caiyu.chen@mediatek.com>, <housong.zhang@mediatek.com>,
+        <yuhan.wei@mediatek.com>, <kewei.xu@mediatek.com>,
+        <ryan-jh.yu@mediatek.com>, <david-yh.chiu@mediatek.com>
+Subject: [PATCH v5 1/2] dt-bindngs: i2c: update bindings for mt8188 soc
+Date:   Sat, 6 Aug 2022 18:02:48 +0800
+Message-ID: <20220806100249.12375-1-kewei.xu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220805165033.140958-5-ben.dooks@sifive.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ben,
+From: Kewei Xu <kewei.xu@mediatek.com>
 
-I love your patch! Yet something to improve:
+Add a DT binding documentation for the mt8188 soc.
 
-[auto build test ERROR on thierry-reding-pwm/for-next]
-[also build test ERROR on linus/master v5.19 next-20220805]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+v5: add Acked-by owner
+v4: resend patch
+v3: add reviewed-by owner
+v2: no changes
+---
+ Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ben-Dooks/dt-bindings-pwm-Document-Synopsys-DesignWare-snps-pwm-dw-apb-timers-pwm2/20220806-015142
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/thierry.reding/linux-pwm.git for-next
-config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20220806/202208061741.ALGAZYcD-lkp@intel.com/config)
-compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project 26dd42705c2af0b8f6e5d6cdb32c9bd5ed9524eb)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/3bd100d711908b7d16a2c4793b4f5b597acb8d7f
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Ben-Dooks/dt-bindings-pwm-Document-Synopsys-DesignWare-snps-pwm-dw-apb-timers-pwm2/20220806-015142
-        git checkout 3bd100d711908b7d16a2c4793b4f5b597acb8d7f
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/
-
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/pwm/pwm-dwc.c:321:1: error: type specifier missing, defaults to 'int'; ISO C99 and later do not support implicit int [-Wimplicit-int]
-   module_pci_driver(dwc_pwm_driver);
-   ^
-   int
->> drivers/pwm/pwm-dwc.c:321:19: error: a parameter list without types is only allowed in a function definition
-   module_pci_driver(dwc_pwm_driver);
-                     ^
-   2 errors generated.
-
-
-vim +/int +321 drivers/pwm/pwm-dwc.c
-
-1ed2b3fca64516 Jarkko Nikula 2020-10-02  320  
-1ed2b3fca64516 Jarkko Nikula 2020-10-02 @321  module_pci_driver(dwc_pwm_driver);
-1ed2b3fca64516 Jarkko Nikula 2020-10-02  322  
-
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
+index 16a1a3118204..4e730fb7be56 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
+@@ -27,6 +27,7 @@ properties:
+       - const: mediatek,mt8173-i2c
+       - const: mediatek,mt8183-i2c
+       - const: mediatek,mt8186-i2c
++      - const: mediatek,mt8188-i2c
+       - const: mediatek,mt8192-i2c
+       - items:
+           - enum:
 -- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+2.18.0
+
