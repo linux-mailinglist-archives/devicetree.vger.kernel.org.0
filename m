@@ -2,74 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14A4358B59F
-	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 14:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 089FE58B5C1
+	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 15:48:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231532AbiHFMqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Aug 2022 08:46:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56996 "EHLO
+        id S230388AbiHFNs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Aug 2022 09:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231837AbiHFMqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 08:46:53 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB3412607
-        for <devicetree@vger.kernel.org>; Sat,  6 Aug 2022 05:46:51 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id l64so4838521pge.0
-        for <devicetree@vger.kernel.org>; Sat, 06 Aug 2022 05:46:51 -0700 (PDT)
+        with ESMTP id S230422AbiHFNsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 09:48:25 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36B97E01D
+        for <devicetree@vger.kernel.org>; Sat,  6 Aug 2022 06:48:22 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id bh13so4875048pgb.4
+        for <devicetree@vger.kernel.org>; Sat, 06 Aug 2022 06:48:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=qsklU7puwKi+Yd6/+1o5XsxRxWXrAL68fJT2EOEFYfI=;
-        b=i/xFdU/9nWHQdP1/oqKGulhnpjQLr3tmm3PlGI/nOxOmsMIjcUcSWFoZ3atF0Pw4Ue
-         MReqrh8oWykYEfpypUiGjIB0dQNa37mkIl5ztG9BSijzqtfZpEnIxXVn414xQmtHTh/3
-         rA3DN5h+wowuBTm7yuFKrSEihHjDd1HkjdtwO7EQG9Tem18dwZRtv076oqpXohBCfn+5
-         FZypNwaXbUyJogS13xNqVd1mOMmxb4JM4ilfLmDPjfc9MA0gmV2XHA8FVodUwoZXnriJ
-         VuZiDq3cVrfckG60FY4vUBauP0mvUncJ4k8Hhe9cZ8ScVkkqDdLywo+fyPIJtMRiAYnf
-         9bwA==
+        bh=TvgStXa3vG7bi+uh32sGsPJgv8LsfCjRHZ5xxTji6lE=;
+        b=ES3bR2McfzepqYPSSNZOJNByBNU66z7MPhvQimFx/YBeXozBQ6nqrnDlDbGbWmPwSk
+         jF4AdnNySCbx+TDceM4oFR52qxYMPnSx7jmX/XQKO+sY0PuyxqAVZNmRGnyIU2wmdkx7
+         hDVIJPE6RdXG2SN+O3oftHsK2uHvwrAkTXmGdD20/1QNRd9WyipNhksqSZ0YVj4sZvKc
+         zfmAFbEB72Bj1nhfml0x1z0w5AI3814EtRv3vMPdgDfroYP1WYcjTt7rJ/WMwrUduNfQ
+         p5X7GKIr3sWEGAxQkhqNKUBnhB8H8OoPuHLACJWTsPT6lYwUdt7LBWYI9DGGiZaMrI0a
+         FOLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=qsklU7puwKi+Yd6/+1o5XsxRxWXrAL68fJT2EOEFYfI=;
-        b=Od6mWTVABEWgA9m3DlJXofwfJ+S5VzIsC8d3nFwb7EqbXSpEI9aPmjofj+R95nnuKe
-         AEUYC6ZcxNZUDq+fMq2ovmGJm+e9CQkJiL3o5goOdWOmQYVmwNJObvcF4n0nNZw+B5jV
-         ZD+GFo02xRTQbnQ7fbw9234B+l/V79TViWVYXL+fU5Dlvuc1TIpfiNDjAFeKZOPnVQsD
-         +EuYsCWpeueRnpSdZuJingzQ1P/dswoOwbooIc+D8ZJ+YQavtf8qgJhTmhYnSH1iXl5A
-         MBfpdrNw9s/AlVFtw2wRsXX9lXaMGZLaZCG4+tlp21DjufEnF4iRcxaZ4a7zVBbAvZBJ
-         EfoQ==
-X-Gm-Message-State: ACgBeo2KBwWo73C1+cVAIjRdcujGwBuLEXZ8Qfi7zpDYSON24omYohcX
-        QqBsldoaq4Ol8p6zcuYHlndD
-X-Google-Smtp-Source: AA6agR4GsZeWy42hOH1uTKr1ALE/0Rew/Mb3UP4Y+qUM7Iz+5cHRIoaYN6dtdJASYp1eX84wow5oEg==
-X-Received: by 2002:a63:5903:0:b0:41a:767:7adc with SMTP id n3-20020a635903000000b0041a07677adcmr9400400pgb.615.1659790010722;
-        Sat, 06 Aug 2022 05:46:50 -0700 (PDT)
+        bh=TvgStXa3vG7bi+uh32sGsPJgv8LsfCjRHZ5xxTji6lE=;
+        b=hNkdXqJB3bjIKW67KmomYtGfiX1pG/sqo6hry3CG41e1uQp2gNt2V3iqocZZcfvwmE
+         A7rPdumjre/hyPVLeZEtjVHczAUfIBy4z2Dn/q4RPjqVc1a5Ry2Dh0q3MdBwg3toHg+u
+         oLZLlGMNnzqsTHG0E8dZqW/3rHv+z/mN1WUHNhxRhnxlxUD2RZtWT3kz/CHM5U3zfFq6
+         keAkiaNPmwgFj+JIbdWzHN3roPnsuBC9T447iz9Qhm1C+KtNW/TM4xVJOkMhcxGibZs0
+         lTuGwUJ//7iM88xUMXpAj+LW/MYTkOhrcPQJIDFmgZ5TnDmj5yQu1qHPKLbXFT3OcwM4
+         Kd6g==
+X-Gm-Message-State: ACgBeo1fzjkyStnOQOL9WG9mFXYQ5ZHv/t1AeBcVdVEMwqS5kExmFFO2
+        bsl/MU1VwvhI7VjESW5N8jeJPn+TZin8
+X-Google-Smtp-Source: AA6agR4fxjllwhUaGWVmBM/fFPtDlHG357VCe4ud9OsIE0eNpij3HDe+s37YBQUhgIivve2UUInYvQ==
+X-Received: by 2002:a63:85c8:0:b0:41b:f27f:5a7e with SMTP id u191-20020a6385c8000000b0041bf27f5a7emr9588798pgd.590.1659793701451;
+        Sat, 06 Aug 2022 06:48:21 -0700 (PDT)
 Received: from thinkpad ([117.202.188.20])
-        by smtp.gmail.com with ESMTPSA id k187-20020a6284c4000000b005292729cc5csm4895404pfd.160.2022.08.06.05.46.47
+        by smtp.gmail.com with ESMTPSA id k92-20020a17090a4ce500b001f506804af3sm3276667pjh.52.2022.08.06.06.48.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Aug 2022 05:46:50 -0700 (PDT)
-Date:   Sat, 6 Aug 2022 18:16:45 +0530
+        Sat, 06 Aug 2022 06:48:21 -0700 (PDT)
+Date:   Sat, 6 Aug 2022 19:18:10 +0530
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mauri Sandberg <maukka@ext.kapsi.fi>,
-        devicetree@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: How to correctly define memory range of PCIe config space
-Message-ID: <20220806124645.GA14384@thinkpad>
-References: <20220710225108.bgedria6igtqpz5l@pali>
- <20220806110613.GB4516@thinkpad>
- <20220806111702.ezzknr76a4imej4u@pali>
- <20220806121614.GA11359@thinkpad>
- <20220806122330.aqn7zu2qgq23g3iz@pali>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>
+Subject: Re: [PATCH v2 1/9] usb: dwc3: fix PHY disable sequence
+Message-ID: <20220806134810.GB14384@thinkpad>
+References: <20220804151001.23612-1-johan+linaro@kernel.org>
+ <20220804151001.23612-2-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220806122330.aqn7zu2qgq23g3iz@pali>
+In-Reply-To: <20220804151001.23612-2-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,150 +86,84 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 06, 2022 at 02:23:30PM +0200, Pali Rohár wrote:
-> On Saturday 06 August 2022 17:46:14 Manivannan Sadhasivam wrote:
-> > On Sat, Aug 06, 2022 at 01:17:02PM +0200, Pali Rohár wrote:
-> > > On Saturday 06 August 2022 16:36:13 Manivannan Sadhasivam wrote:
-> > > > Hi Pali,
-> > > > 
-> > > > On Mon, Jul 11, 2022 at 12:51:08AM +0200, Pali Rohár wrote:
-> > > > > Hello!
-> > > > > 
-> > > > > Together with Mauri we are working on extending pci-mvebu.c driver to
-> > > > > support Orion PCIe controllers as these controllers are same as mvebu
-> > > > > controller.
-> > > > > 
-> > > > > There is just one big difference: Config space access on Orion is
-> > > > > different. mvebu uses classic Intel CFC/CF8 registers for indirect
-> > > > > config space access but Orion has direct memory mapped config space.
-> > > > > So Orion DTS files need to have this memory range for config space and
-> > > > > pci-mvebu.c driver have to read this range from DTS and properly map it.
-> > > > > 
-> > > > > So my question is: How to properly define config space range in device
-> > > > > tree file? In which device tree property and in which format? Please
-> > > > > note that this memory range of config space is PCIe root port specific
-> > > > > and it requires its own MBUS_ID() like memory range of PCIe MEM and PCIe
-> > > > > IO mapping. Please look e.g. at armada-385.dtsi how are MBUS_ID() used:
-> > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/armada-385.dtsi
-> > > > > 
-> > > > 
-> > > > On most of the platforms, the standard "reg" property is used to specify the
-> > > > config space together with other device specific memory regions. For instance,
-> > > > on the Qcom platforms based on Designware IP, we have below regions:
-> > > > 
-> > > >       reg = <0xfc520000 0x2000>,
-> > > >             <0xff000000 0x1000>,
-> > > >             <0xff001000 0x1000>,
-> > > >             <0xff002000 0x2000>;
-> > > >       reg-names = "parf", "dbi", "elbi", "config";
-> > > > 
-> > > > Where "parf" and "elbi" are Qcom controller specific regions, while "dbi" and
-> > > > "config" (config space) are common to all Designware IPs.
-> > > > 
-> > > > These properties are documented in: Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> > > > 
-> > > > Hope this helps!
-> > > 
-> > > Hello! I have already looked at this. But as I pointed in above
-> > > armada-385.dtsi file, mvebu is quite complicated. First it does not use
-> > > explicit address ranges, but rather macros MBUS_ID() which assign
-> > > addresses at kernel runtime by mbus driver. Second issue is that config
-> > > space range (like any other resources) are pcie root port specific. So
-> > > it cannot be in pcie controller node and in pcie devices is "reg"
-> > > property reserved for pci bdf address.
-> > > 
-> > > In last few days, I spent some time on this issue and after reading lot
-> > > of pcie dts files, including bindings and other documents (including
-> > > open firmware pci2_1.pdf) and I'm proposing following definition:
-> > > 
-> > > soc {
-> > >   pcie-mem-aperture = <0xe0000000 0x08000000>; /* 128 MiB memory space */
-> > >   pcie-cfg-aperture = <0xf0000000 0x01000000>; /*  16 MiB config space */
-> > >   pcie-io-aperture  = <0xf2000000 0x00100000>; /*   1 MiB I/O space */
-> > > 
-> > >   pcie {
-> > >     ranges = <0x82000000 0 0x40000     MBUS_ID(0xf0, 0x01) 0x40000  0x0 0x2000>,    /* Port 0.0 Internal registers */
-> > >              <0x82000000 0 0xf0000000  MBUS_ID(0x04, 0x79) 0        0x0 0x1000000>, /* Port 0.0 Config space */
-> > >              <0x82000000 1 0x0         MBUS_ID(0x04, 0x59) 0        0x1 0x0>,       /* Port 0.0 Mem */
-> > >              <0x81000000 1 0x0         MBUS_ID(0x04, 0x51) 0        0x1 0x0>,       /* Port 0.0 I/O */
-> > > 
-> > >     pcie@1,0 {
-> > >       reg = <0x0800 0 0 0 0>; /* BDF 0:1.0 */
-> > >       assigned-addresses =     <0x82000800 0 0x40000     0x0 0x2000>,     /* Port 0.0 Internal registers */
-> > >                                <0x82000800 0 0xf0000000  0x0 0x1000000>;  /* Port 0.0 Config space */
-> > >       ranges = <0x82000000 0 0  0x82000000 1 0           0x1 0x0>,        /* Port 0.0 Mem */
-> > >                 0x81000000 0 0  0x81000000 1 0           0x1 0x0>;        /* Port 0.0 I/O */
-> > >     };
-> > >   };
-> > > };
-> > > 
-> > > So the pci config space address range would be defined in
-> > > "assigned-addresses" property as the _second_ value. First value is
-> > > already used for specifying internal registers (similar what is "parf"
-> > > for qcom).
-> > > 
-> > 
-> > Sounds reasonable to me. Another option would be to introduce a mvebu specific
-> > property but that would be the least preferred option I guess.
-> > 
-> > But the fact that "assigned-addresses" property is described as "MMIO registers"
-> > also adds up to the justification IMO.
-> > 
-> > Rob/Krzysztof could always correct that during binding review.
+On Thu, Aug 04, 2022 at 05:09:53PM +0200, Johan Hovold wrote:
+> Generic PHYs must be powered-off before they can be tore down.
 > 
-> Ok!
+> Similarly, suspending legacy PHYs after having powered them off makes no
+> sense.
 > 
-> > > config space is currently limited to 16 MB (without extended PCIe), but
-> > > after we find free continuous physical address window of size 256MB we
-> > > can extend it to full PCIe config space range.
-> > > 
-> > > Any objections to above device tree definition?
-> > > 
-> > 
-> > Are you also converting the binding to YAML for validation?
+> Fix the dwc3_core_exit() (e.g. called during suspend) and open-coded
+> dwc3_probe() error-path sequences that got this wrong.
 > 
-> I still have an issue to understand YAML scheme declaration and do not
-> know how to express all those properties in this scheme language
-> correctly. Also I was not able to setup infrastructure for running
-> scheme binding tests. So I'm currently not planning to do this.
+> Note that this makes dwc3_core_exit() match the dwc3_core_init() error
+> path with respect to powering off the PHYs.
 > 
+> Fixes: 03c1fd622f72 ("usb: dwc3: core: add phy cleanup for probe error handling")
+> Fixes: c499ff71ff2a ("usb: dwc3: core: re-factor init and exit paths")
+> Cc: stable@vger.kernel.org      # 4.8
+> Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 
-Okay!
-
-> It would be really a good idea to provide some web service where people
-> could upload their work-in-progress DTS files and YAML schemes for
-> automatic validation.
-> 
-
-Not sure what issues you are facing, but I find it easy to install and validate
-the devicetree files and schemas using the "dt-schema" tool. And I always run it
-together with "make dtbs" so that I know if my changes are violating the
-binding or not.
-
-I'm aware that folks have been using the validator on popular distributions like
-Ubuntu, Debian, Fedora, Kali etc...
-
-If you have a specific issue, you can raise the Github issue on the repo to
-get some help: https://github.com/devicetree-org/dt-schema/issues
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 Thanks,
 Mani
 
-> > Thanks,
-> > Mani
-> > 
-> > > > Thanks,
-> > > > Mani
-> > > > 
-> > > > > Krzysztof, would you be able to help with proper definition of this
-> > > > > property, so it would be fine also for schema checkers or other
-> > > > > automatic testing tools?
-> > > > 
-> > > > -- 
-> > > > மணிவண்ணன் சதாசிவம்
-> > 
-> > -- 
-> > மணிவண்ணன் சதாசிவம்
+> ---
+>  drivers/usb/dwc3/core.c | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index c5c238ab3083..16d1f328775f 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -833,15 +833,16 @@ static void dwc3_core_exit(struct dwc3 *dwc)
+>  {
+>  	dwc3_event_buffers_cleanup(dwc);
+>  
+> +	usb_phy_set_suspend(dwc->usb2_phy, 1);
+> +	usb_phy_set_suspend(dwc->usb3_phy, 1);
+> +	phy_power_off(dwc->usb2_generic_phy);
+> +	phy_power_off(dwc->usb3_generic_phy);
+> +
+>  	usb_phy_shutdown(dwc->usb2_phy);
+>  	usb_phy_shutdown(dwc->usb3_phy);
+>  	phy_exit(dwc->usb2_generic_phy);
+>  	phy_exit(dwc->usb3_generic_phy);
+>  
+> -	usb_phy_set_suspend(dwc->usb2_phy, 1);
+> -	usb_phy_set_suspend(dwc->usb3_phy, 1);
+> -	phy_power_off(dwc->usb2_generic_phy);
+> -	phy_power_off(dwc->usb3_generic_phy);
+>  	dwc3_clk_disable(dwc);
+>  	reset_control_assert(dwc->reset);
+>  }
+> @@ -1879,16 +1880,16 @@ static int dwc3_probe(struct platform_device *pdev)
+>  	dwc3_debugfs_exit(dwc);
+>  	dwc3_event_buffers_cleanup(dwc);
+>  
+> -	usb_phy_shutdown(dwc->usb2_phy);
+> -	usb_phy_shutdown(dwc->usb3_phy);
+> -	phy_exit(dwc->usb2_generic_phy);
+> -	phy_exit(dwc->usb3_generic_phy);
+> -
+>  	usb_phy_set_suspend(dwc->usb2_phy, 1);
+>  	usb_phy_set_suspend(dwc->usb3_phy, 1);
+>  	phy_power_off(dwc->usb2_generic_phy);
+>  	phy_power_off(dwc->usb3_generic_phy);
+>  
+> +	usb_phy_shutdown(dwc->usb2_phy);
+> +	usb_phy_shutdown(dwc->usb3_phy);
+> +	phy_exit(dwc->usb2_generic_phy);
+> +	phy_exit(dwc->usb3_generic_phy);
+> +
+>  	dwc3_ulpi_exit(dwc);
+>  
+>  err4:
+> -- 
+> 2.35.1
+> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
