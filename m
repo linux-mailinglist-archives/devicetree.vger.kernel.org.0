@@ -2,82 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A70858B5C4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 15:52:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19FAA58B5C9
+	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 15:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231261AbiHFNwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Aug 2022 09:52:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55464 "EHLO
+        id S230133AbiHFN6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Aug 2022 09:58:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230211AbiHFNwL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 09:52:11 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB23610FCE
-        for <devicetree@vger.kernel.org>; Sat,  6 Aug 2022 06:52:09 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id z187so4470907pfb.12
-        for <devicetree@vger.kernel.org>; Sat, 06 Aug 2022 06:52:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=RSxdi8xvKopT4hYxNJXBxrYk0uMobA98LNnzcb7HFVY=;
-        b=L+iEfobGTIaZdBDTSWhiVWJAZiZ8J3cHBW5T7IMiYfbYWN6pMGIpn4ibaosnyacFo8
-         lj56/jZr80p2dQSxieT0G8Nu44GDc5SNf06Ky1AEO0wJzgBKSC7Amd37CgGErQazzyXN
-         GJBkiXSMD8sjCFwt6TtJC+149MEsZy7JQojiPyp3ZDmLHjZWaQvirxTScxBsFBLddSYS
-         0Zc+2XXYAUr0oEZbd0kzYuPjrrv7FWgr7XzvGAog+cmJImXnYKRHeqAsn/M0qtb8fICr
-         lsnsFFfNysyxqWMiEiXtDmSrUwZPfOIQUcsWh/s0M3HuYdkhqaI8vM6d+l7e0KMP74LN
-         yofw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=RSxdi8xvKopT4hYxNJXBxrYk0uMobA98LNnzcb7HFVY=;
-        b=7cmr2Hi2Lvlb5U/uCVJf0VwbxIwLFEDn+Dwyah7IofSFzc42BfK9ocmGY9v/4g8ySK
-         Ov/MA+p7ZabbqU3uRLuSJ7l5lxXpiPk2qm2tbBg/CYVHktwAw+U30P8K34FmJ4lxOzKo
-         gEy3ywXMOkd844RJOeMH1cHt7w+0Sq2XgKDNVkxyjXpDHvLG0vuN09Iy/S4bMGneT286
-         mRepNrrS2iobcI9iCtXZ/KzCTWGXYs/AU/Gc/YJ8SZlzBxdovUgAOqqXz/Di40NqbDCD
-         natCtMOf3jRPcyBy/Goham7lckgiLlhzdSh1SnC5T2m341j08Td9W2kUtJGdq628ZT/r
-         8kgg==
-X-Gm-Message-State: ACgBeo1sr/BZArR2lLVnLVWIjPeEzYZ/tpwMYVgy7SFoHiixQvm5F6GN
-        aUlqkzVksCUAJbsTklPjDi1G
-X-Google-Smtp-Source: AA6agR4llsfdiV0e9G+rpfDan2dDPwXhlGV/pR1ZWerFm73wdHeBTQAbJhZg+U3ergp2R/NH+VAzlg==
-X-Received: by 2002:a05:6a00:21c8:b0:52b:ffc0:15e7 with SMTP id t8-20020a056a0021c800b0052bffc015e7mr11353080pfj.29.1659793929300;
-        Sat, 06 Aug 2022 06:52:09 -0700 (PDT)
-Received: from thinkpad ([117.202.188.20])
-        by smtp.gmail.com with ESMTPSA id u11-20020a17090341cb00b0016be14a776asm4965153ple.286.2022.08.06.06.52.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Aug 2022 06:52:08 -0700 (PDT)
-Date:   Sat, 6 Aug 2022 19:22:00 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
+        with ESMTP id S230018AbiHFN6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 09:58:13 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3FB410FC3;
+        Sat,  6 Aug 2022 06:58:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 838F6B8068F;
+        Sat,  6 Aug 2022 13:58:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99664C433D6;
+        Sat,  6 Aug 2022 13:58:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659794289;
+        bh=CLAku9OxZB+wAiKP6hS1ulXo84boQr4PJwDDM0jjDZ0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bTkxT/hRoxSSXIMfNZP0dO4FMnWfvPegCIB0yD0g+iuYTl9WgGUPYM4y/1rq73nal
+         xKmiL5YrvnjgzEcZl0u4OIIOLXvGQ9wPqlAmL/ajj/WeSAEtTp23NWUDtavAkyVOMZ
+         BQAYqNh+Oe3RIbe7AEqEbU0XYJ4rUU2TNX3brcPhs0aILXVlgDWmburvX47HcqIhI7
+         7h2FCkJAx+QZaFOSAJZHZUTUQUQ38mYbWPYYUvqC/0V7RJ+wgb1h7ItLQSCuSLDc2Q
+         xjNv/fIAIGlLFbJs8iLUiOMVhCOVwcfZE/BkshEQDDcUv17i2gcT3r2F86QfUL4uKb
+         3VDk+hCloYKpw==
+Date:   Sat, 6 Aug 2022 15:08:27 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc:     Kent Gustavsson <kent@minoris.se>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/9] Revert "usb: dwc3: qcom: Keep power domain on to
- retain controller status"
-Message-ID: <20220806135200.GC14384@thinkpad>
-References: <20220804151001.23612-1-johan+linaro@kernel.org>
- <20220804151001.23612-3-johan+linaro@kernel.org>
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/9] Improve MCP3911 driver
+Message-ID: <20220806150827.1b28db62@jic23-huawei>
+In-Reply-To: <YueEg0tmKpc4kdLO@gmail.com>
+References: <20220722130726.7627-1-marcus.folkesson@gmail.com>
+        <20220731174112.072345e3@jic23-huawei>
+        <YueEg0tmKpc4kdLO@gmail.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220804151001.23612-3-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,101 +61,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 05:09:54PM +0200, Johan Hovold wrote:
-> This reverts commit d9be8d5c5b032e5383ff5c404ff4155e9c705429.
-> 
-> Generic power-domain flags must be set before the power-domain is
-> initialised and must specifically not be modified by drivers for devices
-> that happen to be in the domain.
-> 
-> To make sure that USB power-domains are left enabled during system
-> suspend when a device in the domain is in the wakeup path, the
-> GENPD_FLAG_ACTIVE_WAKEUP flag should instead be set for the domain
-> unconditionally when it is registered.
-> 
-> Note that this also avoids keeping power-domains on during suspend when
-> wakeup has not been enabled (e.g. through sysfs).
-> 
-> For the runtime PM case, making sure that the PHYs are not suspended and
-> that they are in the same domain as the controller prevents the domain
-> from being suspended. If there are cases where this is not possible or
-> desirable, the genpd implementation may need to be extended.
-> 
-> Fixes: d9be8d5c5b03 ("usb: dwc3: qcom: Keep power domain on to retain controller status")
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+On Mon, 1 Aug 2022 09:45:07 +0200
+Marcus Folkesson <marcus.folkesson@gmail.com> wrote:
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> On Sun, Jul 31, 2022 at 05:41:12PM +0100, Jonathan Cameron wrote:
+> > On Fri, 22 Jul 2022 15:07:17 +0200
+> > Marcus Folkesson <marcus.folkesson@gmail.com> wrote:
+> >   
+> > > Hi,
+> > > 
+> > > This patch series intend to fix bugs and improve functionality of the
+> > > MCP3911 driver.
+> > > The main features added are
+> > > - Support for buffers
+> > > - Interrupt driven readings
+> > > - Support for oversampling ratio
+> > > - Support for set scale values (Gain)
+> > > 
+> > > Among the bug fixes, there are changes in the formula for calculate raw
+> > > value and a fix for mismatch in the devicetree property.
+> > > 
+> > > Another general improvement for the driver is to use managed resources
+> > > for all allocated resources.
+> > >   
+> > Hi Marcus,
+> > 
+> > The first 3 fixes look good to me.  Do you want me to pick those up to
+> > go in after rc1 via my togreg-fixes branch?  The side effect of doing
+> > that is it'll be a little while before they are upstream in the branch
+> > I'll want to pick the rest of the series on top of.
+> > 
+> > So it's a trade off between getting fixes in as soon as possible and
+> > slowing down other improvements a little.  
+> 
+> Both ways works for me.
+> I guess it is preferable to get the fixes in as soon as possible?
+> 
+> If so, do you want me to rebase the series on your togreg-fixes branch
+> or wait to send v5 until the patches are upstream?
+> 
+> Or simply keep sending the whole series?
+
+For now resend the whole series. I don't want to pick anything up onto the fixes-togreg
+branch until rc1 (as good time to get it to a more recent base).  So I'll sit on these
+for another week anyway.
 
 Thanks,
-Mani
 
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 28 +++++++---------------------
->  1 file changed, 7 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index c5e482f53e9d..be2e3dd36440 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -17,7 +17,6 @@
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy/phy.h>
-> -#include <linux/pm_domain.h>
->  #include <linux/usb/of.h>
->  #include <linux/reset.h>
->  #include <linux/iopoll.h>
-> @@ -757,13 +756,12 @@ dwc3_qcom_create_urs_usb_platdev(struct device *dev)
->  
->  static int dwc3_qcom_probe(struct platform_device *pdev)
->  {
-> -	struct device_node *np = pdev->dev.of_node;
-> -	struct device *dev = &pdev->dev;
-> -	struct dwc3_qcom *qcom;
-> -	struct resource	*res, *parent_res = NULL;
-> -	int ret, i;
-> -	bool ignore_pipe_clk;
-> -	struct generic_pm_domain *genpd;
-> +	struct device_node	*np = pdev->dev.of_node;
-> +	struct device		*dev = &pdev->dev;
-> +	struct dwc3_qcom	*qcom;
-> +	struct resource		*res, *parent_res = NULL;
-> +	int			ret, i;
-> +	bool			ignore_pipe_clk;
->  
->  	qcom = devm_kzalloc(&pdev->dev, sizeof(*qcom), GFP_KERNEL);
->  	if (!qcom)
-> @@ -772,8 +770,6 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
->  	platform_set_drvdata(pdev, qcom);
->  	qcom->dev = &pdev->dev;
->  
-> -	genpd = pd_to_genpd(qcom->dev->pm_domain);
-> -
->  	if (has_acpi_companion(dev)) {
->  		qcom->acpi_pdata = acpi_device_get_match_data(dev);
->  		if (!qcom->acpi_pdata) {
-> @@ -881,17 +877,7 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto interconnect_exit;
->  
-> -	if (device_can_wakeup(&qcom->dwc3->dev)) {
-> -		/*
-> -		 * Setting GENPD_FLAG_ALWAYS_ON flag takes care of keeping
-> -		 * genpd on in both runtime suspend and system suspend cases.
-> -		 */
-> -		genpd->flags |= GENPD_FLAG_ALWAYS_ON;
-> -		device_init_wakeup(&pdev->dev, true);
-> -	} else {
-> -		genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
-> -	}
-> -
-> +	device_init_wakeup(&pdev->dev, 1);
->  	qcom->is_suspended = false;
->  	pm_runtime_set_active(dev);
->  	pm_runtime_enable(dev);
-> -- 
-> 2.35.1
-> 
 
--- 
-மணிவண்ணன் சதாசிவம்
+Jonathan
+
+> 
+> Thanks,
+> Marcus Folkesson
+> 
+> > 
+> > Jonathan
+> >   
+
