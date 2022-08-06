@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20FFD58B649
-	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 17:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A16558B681
+	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 17:32:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbiHFPJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Aug 2022 11:09:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37328 "EHLO
+        id S232588AbiHFPcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Aug 2022 11:32:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231879AbiHFPJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 11:09:02 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3703A101D1
-        for <devicetree@vger.kernel.org>; Sat,  6 Aug 2022 08:08:59 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id h132so4969639pgc.10
-        for <devicetree@vger.kernel.org>; Sat, 06 Aug 2022 08:08:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=uU4q+1kcLLtSx8+NPQzdu8kyauS2SIpK22Q1e7AOuwQ=;
-        b=VSAHKMeN2BFKXhSB9mCom3orXUV6CDkNpa4g8LCmLWnwRbHujmQtNX8Y6V8rSf/56q
-         6T/avkIb0/OHfFSlt5KI/XadFRTEWFxL6W3dw1jXevlfQRPGNJdjGVHqh4yj9GoC/hvq
-         t5vMkJeQaojH8X9crW3APgOxuDTqFRnWf+qnXY/xiOsBBOmnDBkmU0BdQV14mSeOHpwZ
-         alGlTDNR0pWi9N1eGNXZE4R3UpPulij3sIo1BxLPw2C2DFbGKuRSceEAw8Tzcp/lc5Ga
-         Z1ddTWJv/1YgCd01l+LtwexpoNmsaC+f1KMSO/LQfdLdz+bRWqXZ6y0NEzesnpqNRKDC
-         hvHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=uU4q+1kcLLtSx8+NPQzdu8kyauS2SIpK22Q1e7AOuwQ=;
-        b=KMNQkiJP2WpRcdhCpj6sffko2btDuUT+jcUADH6jyZz+ntzUoKpNHHtIF2C1CTPJRF
-         yzv94RVklX7fUOGf4M8kQqlwb8yngmrYiD3uRWIPnPOB39AGWug9WwTtK/As+A/2K5Zb
-         4aVg81NRldmSj5IY/8F9lh2/nTfsbPhwLDS50z5cMXzDMsXzDjNbzMB/+pXXt2zSt/M6
-         jyoWPL2eYIHQNAe5IJiGcJmNEq7uFQIbo09xY6FupVtPPUuMTx9Qv5mQH8l+i4dQj4nC
-         kNg4+2dD/zoaMdvw3YrFXCFnz+WHStqRp7kM8WeftYX6+2xsIhU2pMGk71eMBvWBQ+ai
-         Z8xA==
-X-Gm-Message-State: ACgBeo1ofvZEP9xyny9R5sdmODXwhn9QJMEQmnPqB5VBY9m9/1oaKath
-        KgWaeWaxCMvk6aOxzuh1zGJk
-X-Google-Smtp-Source: AA6agR6HkJfzjY4xHcQDLXq9sUwFM7dPJqu+aUYTXPgnE+DcB+YVXM9CNjgMSNPlGgwdJ4qDOVdL5w==
-X-Received: by 2002:a63:8c47:0:b0:40d:2d4:e3a2 with SMTP id q7-20020a638c47000000b0040d02d4e3a2mr9868130pgn.2.1659798538271;
-        Sat, 06 Aug 2022 08:08:58 -0700 (PDT)
-Received: from thinkpad ([117.202.188.20])
-        by smtp.gmail.com with ESMTPSA id h20-20020aa796d4000000b0052d4afc4302sm5253854pfq.175.2022.08.06.08.08.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Aug 2022 08:08:57 -0700 (PDT)
-Date:   Sat, 6 Aug 2022 20:38:48 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S232240AbiHFPcF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 11:32:05 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED68E60ED;
+        Sat,  6 Aug 2022 08:32:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1659799924; x=1691335924;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vu6Y2qO+FKc1QzYLh0uE+Z7hKMHTWrM2Cu3ji9kmzag=;
+  b=lZTEGDWobUMLTrszQnVLxpsd8gvmy4c9fqUAQEijBmNhopr1zbqZwLa4
+   +GnQ4Xgh/sFKlGJle9zCQdzHkwl/4eJa+0aFVqAPCw3r2kKZgM/B/J0Il
+   PHZJDFeZ2rybct2CS9oUQ+eyLdLZxdC82xgLV5Qnlp808TQqiZVhw1gQ9
+   9hXjQu9f1JGOqIUbiLdeHncMzxN0CobpMyPqaXbdO+nHxfWaqoMduQRT8
+   5FToH0Dj3AatrnE+2p9vSrVRz3upn/uSSncH8D2aova5h1NhEnrowY+3L
+   5HQbYokExRuetqP4maa60mFt8xTrcPymCbRINmXG3Fay6ECyGlcvbUZaq
+   g==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10431"; a="270148834"
+X-IronPort-AV: E=Sophos;i="5.93,217,1654585200"; 
+   d="scan'208";a="270148834"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Aug 2022 08:32:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.93,217,1654585200"; 
+   d="scan'208";a="603901993"
+Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
+  by orsmga002.jf.intel.com with ESMTP; 06 Aug 2022 08:32:00 -0700
+Received: from kbuild by e0eace57cfef with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1oKLmR-000KU3-1p;
+        Sat, 06 Aug 2022 15:31:59 +0000
+Date:   Sat, 6 Aug 2022 23:31:13 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Elliot Berman <quic_eberman@quicinc.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 7/9] dt-bindings: usb: qcom,dwc3: add wakeup-source
- property
-Message-ID: <20220806150848.GH14384@thinkpad>
-References: <20220804151001.23612-1-johan+linaro@kernel.org>
- <20220804151001.23612-8-johan+linaro@kernel.org>
+        linux-doc@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>
+Cc:     kbuild-all@lists.01.org, Elliot Berman <quic_eberman@quicinc.com>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 01/11] docs: gunyah: Introduce Gunyah Hypervisor
+Message-ID: <202208062327.dI3HuYk5-lkp@intel.com>
+References: <20220801211240.597859-2-quic_eberman@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220804151001.23612-8-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220801211240.597859-2-quic_eberman@quicinc.com>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,56 +78,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 05:09:59PM +0200, Johan Hovold wrote:
-> Add a wakeup-source property to the binding to describe whether the
-> wakeup interrupts can wake the system from suspend.
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+Hi Elliot,
 
-So this is based on the fact that Qcom glue wrapper is supplying the wakeup
-interrupts. But isn't it possible that on other platform, the DWC IP can supply
-wakeup interrupts?
+I love your patch! Perhaps something to improve:
 
-In the driver, the wakeup-source parsing has been moved to the Qcom glue driver.
-But this contradicts with the binding.
+[auto build test WARNING on arm64/for-next/core]
+[also build test WARNING on v5.19]
+[cannot apply to linus/master next-20220805]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Thanks,
-Mani
+url:    https://github.com/intel-lab-lkp/linux/commits/Elliot-Berman/Drivers-for-gunyah-hypervisor/20220802-051534
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/arm64/linux.git for-next/core
+reproduce: make htmldocs
 
-> ---
-> 
-> Changes in v2
->  - disallow 'wakeup-source' in child node (Krzysztof)
-> 
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index fea3e7092ace..d5959bdea63e 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -108,12 +108,17 @@ properties:
->        HS/FS/LS modes are supported.
->      type: boolean
->  
-> +  wakeup-source: true
-> +
->  # Required child node:
->  
->  patternProperties:
->    "^usb@[0-9a-f]+$":
->      $ref: snps,dwc3.yaml#
->  
-> +    properties:
-> +      wakeup-source: false
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.35.1
-> 
+If you fix the issue, kindly add following tag where applicable
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> Documentation/virt/gunyah/index.rst:71: WARNING: Unexpected indentation.
+>> Documentation/virt/gunyah/index.rst:72: WARNING: Block quote ends without a blank line; unexpected unindent.
+
+vim +71 Documentation/virt/gunyah/index.rst
+
+    66	
+    67	::
+    68	  +-------+   +--------+   +--------+
+    69	  |  RM   |   |  VM_A  |   |  VM_B  |
+    70	  +-.-.-.-+   +---.----+   +---.----+
+  > 71	    | |           |            |
+  > 72	  +-.-.-----------.------------.----+
+    73	  | | \==========/             |    |
+    74	  |  \========================/     |
+    75	  |            Gunyah               |
+    76	  +---------------------------------+
+    77	
 
 -- 
-மணிவண்ணன் சதாசிவம்
+0-DAY CI Kernel Test Service
+https://01.org/lkp
