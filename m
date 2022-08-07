@@ -2,117 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5420D58B85D
-	for <lists+devicetree@lfdr.de>; Sat,  6 Aug 2022 23:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F193C58B8E6
+	for <lists+devicetree@lfdr.de>; Sun,  7 Aug 2022 03:33:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233670AbiHFVCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Aug 2022 17:02:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45292 "EHLO
+        id S230455AbiHGBdn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Aug 2022 21:33:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232650AbiHFVCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 17:02:47 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66BA311833;
-        Sat,  6 Aug 2022 14:02:47 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id y141so5078256pfb.7;
-        Sat, 06 Aug 2022 14:02:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=LnCYxidkbqPSIhSju2tTZKFe01JSQbzeOLwbX11AAGA=;
-        b=X4SjB28poocY80XBxfAS4UQBWvh89vlmp+kEbdLqdAy34xD/m9ryGH0elE2B5WsBml
-         FrmXfF6fR/rBexMEuo7zWEmANf4o6Ww9TkRuC9m8gsfA3iNd7olBmUWaIR4+rdO0g7GC
-         nkyMEg8u66d8Y5QW/8s/phgRzZDLTl72bV/HtpgI1y32PsSKGi7XJI6/vYSUJtjc7YUp
-         sbDUeKedHgmjiPXhr4sa0oVagt/Rvt7HfmESQNeq9S3zVS6teThicb8+zVAJWO0jRDbI
-         oci44NiGNZo1+IWJwx5Z2ks5FfOKVevJ0TahJRqUH2p/NjErWXe4IQ/SxN7+6RTYJzwm
-         f6DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LnCYxidkbqPSIhSju2tTZKFe01JSQbzeOLwbX11AAGA=;
-        b=MB3qMRjkf7biLzieJSGB2fg8TCvd1Mtvw35pVnfR28Z7oWai/D982+BtqQBKFhkycl
-         KRmQqFe5nchhqfz5iXcl6aDfmYrLmmXqm1fkUOZBNbroRQiExS7YrjV9/pHMRaY4ya/P
-         OpXzSpIXUwdquUR9ynI6citG6+pb/L5WOL0ZtT5o/Azf3myRGtNISFCnRrIK/kUmDbHn
-         qT3GJio8A4werC4TZT3kwpHe3GG5F7rVXLjTBU8pFX+NIviGMb48ujD6zr/B3ItkeaJc
-         hPLkytJtZ/TW8A1c0sTzKM5hG/qHDhMUu/+oZDHvpR2kJe055Xc/iI5APwo0BVXK9g2S
-         j8nw==
-X-Gm-Message-State: ACgBeo0CTs/vnGulmqcPnA+xBHAzS6G6O8H0lN/BgoDfjfa84yL7lWvY
-        HBES1a1V5wvWUvh8QvGecL5T1EgxwmFiEg==
-X-Google-Smtp-Source: AA6agR72Gz7vEJVNeKZ1E7yqvPrB0xhFZbxFctqWWpBUcJkuh50bKes31Khl2Vt0d/VyttYOzZOrqQ==
-X-Received: by 2002:a63:6a41:0:b0:41c:86b0:596b with SMTP id f62-20020a636a41000000b0041c86b0596bmr10045444pgc.582.1659819766925;
-        Sat, 06 Aug 2022 14:02:46 -0700 (PDT)
-Received: from fedora.. ([2405:201:e01d:6040:3f6e:eaa:537b:816f])
-        by smtp.gmail.com with ESMTPSA id c203-20020a624ed4000000b0052ea306a1e8sm4538815pfb.210.2022.08.06.14.02.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Aug 2022 14:02:46 -0700 (PDT)
-From:   Joel Selvaraj <joelselvaraj.oss@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Joel Selvaraj <joelselvaraj.oss@gmail.com>
-Subject: [PATCH v3 2/2] arm64: dts: qcom: sdm845-xiaomi-beryllium-ebbg: introduce Xiaomi Poco F1 EBBG variant
-Date:   Sun,  7 Aug 2022 02:32:20 +0530
-Message-Id: <20220806210220.31565-3-joelselvaraj.oss@gmail.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220806210220.31565-1-joelselvaraj.oss@gmail.com>
-References: <20220806210220.31565-1-joelselvaraj.oss@gmail.com>
+        with ESMTP id S229505AbiHGBdm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Aug 2022 21:33:42 -0400
+Received: from mail.rv.npu.gov.ua (mail.rv.npu.gov.ua [85.159.5.210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20F0FBE18;
+        Sat,  6 Aug 2022 18:33:41 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.rv.npu.gov.ua (Postfix) with ESMTP id 9025A40B8327;
+        Sun,  7 Aug 2022 04:32:29 +0300 (EEST)
+Received: from mail.rv.npu.gov.ua ([127.0.0.1])
+        by localhost (mail.rv.npu.gov.ua [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id ugeNIBtFC6NM; Sun,  7 Aug 2022 04:32:28 +0300 (EEST)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.rv.npu.gov.ua (Postfix) with ESMTP id EEC6E40B8329;
+        Sun,  7 Aug 2022 04:32:27 +0300 (EEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rv.npu.gov.ua EEC6E40B8329
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rv.npu.gov.ua;
+        s=D9C6921A-69F2-11EB-967E-80F8358BD1FC; t=1659835948;
+        bh=rXKZG/8bQHY28IslpDmB9+1lxzhBpWrTxjnUDTFW+HM=;
+        h=MIME-Version:To:From:Date:Message-Id;
+        b=DcuanWopeaPxQkyu8XR+GWMBT4ZI3SlU2Tc80ZA0m6sp3WOqgH4r3R+jzUaR5YUwo
+         tF+xlh0gbkjX/Z9K/8N1TGAwehzv7Zi6RiOsIhnELTdQVL3bYNHBKUqN1KR2P8j71i
+         nmIsnTpVwnQ9iudZia7o6QK5yFLrcVrrYNyIxnXWKsny2MddgezKe5xfKERZPqLXwg
+         s4ZAgzRgREXfSVBYGtzudRH82EIKGVEMQLlRH9bWYzPS1T7L8npCTogTjpE7OhyvFW
+         UYASQK5sW4dtQOFlaCSgPVlELxiquefVlwNpSh2uJJJ1C1mWg5I57OPkf7uoH+/kV+
+         s9A8Jec9b6d2g==
+X-Virus-Scanned: amavisd-new at rv.npu.gov.ua
+Received: from mail.rv.npu.gov.ua ([127.0.0.1])
+        by localhost (mail.rv.npu.gov.ua [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id czwAUP6YBsZy; Sun,  7 Aug 2022 04:32:27 +0300 (EEST)
+Received: from DESKTOP-CJHK18M.home (gateway [101.19.1.22])
+        by mail.rv.npu.gov.ua (Postfix) with ESMTPSA id 1AAF340B8328;
+        Sun,  7 Aug 2022 04:32:24 +0300 (EEST)
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Description: Mail message body
+Subject: Re:
+To:     Recipients <kt@rv.npu.gov.ua>
+From:   "MacKenzie Scott" <kt@rv.npu.gov.ua>
+Date:   Sun, 07 Aug 2022 09:32:43 +0800
+Reply-To: mackenziescott@reservasgoldenwayki.com
+Message-Id: <20220807013225.1AAF340B8328@mail.rv.npu.gov.ua>
+X-Spam-Status: No, score=2.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,LOTS_OF_MONEY,RCVD_IN_BL_SPAMCOP_NET,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce support for the Xiaomi Poco F1 EBBG variant. The EBBG variant
-uses EBBG FT8719 panel manufactured by EBBG.
+Hello, =
 
-Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile                      |  1 +
- .../boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts     | 10 ++++++++++
- 2 files changed, 11 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
+                          =
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 02db413b228c..29f15031a199 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -106,6 +106,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-fajita.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-akari.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-akatsuki.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-sony-xperia-tama-apollo.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium-ebbg.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium-tianma.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-new file mode 100644
-index 000000000000..1e0be481b9da
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts
-@@ -0,0 +1,10 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/dts-v1/;
-+
-+#include "sdm845-xiaomi-beryllium-common.dtsi"
-+
-+&display_panel {
-+	compatible = "ebbg,ft8719";
-+	status = "okay";
-+};
--- 
-2.37.1
+I'm MacKenzie Scott Ex-wife of Amazon CEO and founder, I'm donating $ 4 bil=
+lion Dollars to charities, individuals, colleges across the Globe from Scot=
+t's foundation, to provide immediate support to people suffering economical=
+ly from COVID-19 pandemic and you're one of the lucky winners, i have a don=
+ation grant worth $100,800,000.00 Dollars for you, you can contact me for m=
+ore information if you're interested.
 
+Regards,
+MacKenzie Scott.
