@@ -2,118 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 713EA58BAB9
-	for <lists+devicetree@lfdr.de>; Sun,  7 Aug 2022 13:56:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B104158BAC6
+	for <lists+devicetree@lfdr.de>; Sun,  7 Aug 2022 14:11:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233998AbiHGL41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Aug 2022 07:56:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37854 "EHLO
+        id S233665AbiHGMLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Aug 2022 08:11:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233954AbiHGL40 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 07:56:26 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46F2D632F;
-        Sun,  7 Aug 2022 04:56:25 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id p10so8018045wru.8;
-        Sun, 07 Aug 2022 04:56:25 -0700 (PDT)
+        with ESMTP id S233412AbiHGMLn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 08:11:43 -0400
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9702BF50;
+        Sun,  7 Aug 2022 05:11:42 -0700 (PDT)
+Received: by mail-qk1-x732.google.com with SMTP id v1so4771711qkg.11;
+        Sun, 07 Aug 2022 05:11:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=GiLNVtCZ/comMeKOF/hrTe2K4Wy7cDxvkOFs3YEqxbU=;
-        b=EK4hhOdLGrSuSVmZeu6uVQOHvg65LOK+IUqnc2cF5SLGB59YlwaN299i6A1StvCqV4
-         sUw+HOMbWDg6lHqCWIgZZuiJ0qp/PTain9MnFV19dzTgj4536xvGfhzHm62V3ZywVkJW
-         4ffgCd8rCdsdQoOkPhMWOpV/jfoZ/ZXbSlfXtY2P9OQvNeztchKhGZQcP2aXZqwT4f6L
-         w9hR/TlijVpdWBZOAvw443qxgCyvIFJyiwxmv6hZtQtEJB8TdOaPomGmetq3HZGdn599
-         3oSF4lf6MnzK/4kZ8YDhf2upZW3SupoX/w3vpxb6sNpxTFC9OvXTzEoctNiuY7rvpMSF
-         qITA==
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:from:to:cc;
+        bh=zQGkdKu5K+mMGtINb8IUwXhsmEcLqR+snZ46Vc8nWxk=;
+        b=X8rltdjmNBHQeJgcjT5qKvzBk79eACG1asdlFesZiy6mpB7LeCJF7SKsbdbpwbbRGU
+         L5JPWtm6ii7OHXAzUWdcpmbBkfv9U6p1dxIbRbxH0ypFHqyTDdp5hx+UgzNqLvo3kt/q
+         id4+yVLZ6A9XqLg4LE5kn5bB6eCDMWaXeK5W4IwzFhzV310nTnhLk4m1lBrYmCz5n3Ye
+         ewSU1EmiL4x5YlqhdlFo7BTHk3sBl9jJj3NmnOirRC5pG9IBweefeZw3NBV6JpUoKHCY
+         sPLKEk8/am2VcYKbwolANziEuKRbNbGGRN+bvhbPgQL9e+Mum1TwIOeuzII7ALtG4bfd
+         yzNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=GiLNVtCZ/comMeKOF/hrTe2K4Wy7cDxvkOFs3YEqxbU=;
-        b=cCjP/vawTWICLWRNXaQZ+plkKM77paXlL7zpXvqoDId/uuthG7PRI5gWDVFsBRIbEi
-         IK49RFfVMS2yvF7RHCqmDaRoLRNv/D3MnGjy6N8R8QaQnR4m5OAfw+jbZx/1mpHqeV+M
-         8aPq9z9z71lN1MxiRYmoDqXk03Y+gKUXGZ/mbbLCrtlFncVpvSdiO12r+DtndmjDZX2L
-         n37SmP2vO3Ow6IFWfZcMIktY1hxkcRGf1uUr+6Cph8UEQRezrUjny5AWHKZcbmt311tt
-         Tv/Yv4og9b5Plh+xs/86ewey0Ymx/2b39+hORH/0VJHB4bV0fX4eMsaU130SZ8b6qkwb
-         aFsQ==
-X-Gm-Message-State: ACgBeo1rQ99tT8sO3BdOW23NWKiwXlo1feP2mRdXavG4zkG2JEpHOzEK
-        ksBmq4rt1RQZfRYW7RB3wiXB8mpmQEo=
-X-Google-Smtp-Source: AA6agR4eyw8QvS+cb6eOmsYp0LvPKcnTjZIkkRDGdJ3vct/edVg8MQfzD3Or6zY/JUR7hBMuWs0KPA==
-X-Received: by 2002:a5d:4804:0:b0:21f:bf7:83be with SMTP id l4-20020a5d4804000000b0021f0bf783bemr9180075wrq.94.1659873383365;
-        Sun, 07 Aug 2022 04:56:23 -0700 (PDT)
-Received: from DreamMachine2.lan (188.red-83-35-57.dynamicip.rima-tde.net. [83.35.57.188])
-        by smtp.gmail.com with ESMTPSA id m6-20020a05600c4f4600b003a4eea0aa48sm11164014wmq.0.2022.08.07.04.56.22
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:x-gm-message-state:from
+         :to:cc;
+        bh=zQGkdKu5K+mMGtINb8IUwXhsmEcLqR+snZ46Vc8nWxk=;
+        b=YZNc9sascoXrx+qZZYc/chycZEqYqBcoxnf5kcRCpFqtUVS5hcGlQA2pr/NbyEmXVC
+         WwlWuL1fOC3U6bcUO5KnrxrMFoYwhmqVv4Hc7m826pC0GdkjflLbH8Sj6t5bu36ueILS
+         BkukxnMRTj5G9hWwfC7CJyX3O0X28pXBuA1KE9eugexP0YwnYdqbNccni/aWUVWXjvj5
+         1/yZPOq0t9qUBObjZiDVU2dSpFbHyUdJ9YOK6fEey1Dv4tc8XgO4XEsNdmqnuXJedgLx
+         7kQc3BbPfQvGOwCRQR38vgdT+QQhiz98Yx5utOdSlwKm0ehmpTjh57e8YP4pyqXf5Pic
+         LofA==
+X-Gm-Message-State: ACgBeo2AufVBSRETOvYB6zPFG47a8PSc9JzWVxM/ZhWoMD5ox0LoYM36
+        HTE6ZA4eFBfJWDtFc4Jg5g==
+X-Google-Smtp-Source: AA6agR6tyvVQVxivjpXI2f1/rmVg+DidYfAL1meKadBKrz4FxbrEPGrSK2B9b9rWSowTqapwQ782xQ==
+X-Received: by 2002:a05:620a:460c:b0:6b8:fbfd:b963 with SMTP id br12-20020a05620a460c00b006b8fbfdb963mr11002856qkb.140.1659874301700;
+        Sun, 07 Aug 2022 05:11:41 -0700 (PDT)
+Received: from serve.minyard.net (serve.minyard.net. [2001:470:b8f6:1b::1])
+        by smtp.gmail.com with ESMTPSA id y8-20020a37f608000000b006b66510f4f7sm6896108qkj.6.2022.08.07.05.11.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Aug 2022 04:56:22 -0700 (PDT)
-From:   Angel Iglesias <ang.iglesiasg@gmail.com>
-To:     linux-iio <linux-iio@vger.kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sun, 07 Aug 2022 05:11:41 -0700 (PDT)
+Sender: Corey Minyard <tcminyard@gmail.com>
+Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:18ee:4123:89ce:5c5d])
+        by serve.minyard.net (Postfix) with ESMTPSA id B96051800FA;
+        Sun,  7 Aug 2022 12:11:39 +0000 (UTC)
+Date:   Sun, 7 Aug 2022 07:11:38 -0500
+From:   Corey Minyard <minyard@acm.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
         Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andreas Klinger <ak@it-klinger.de>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 4/5] dt-bindings: iio: pressure: bmp085: Add BMP380 compatible string
-Date:   Sun,  7 Aug 2022 13:56:20 +0200
-Message-Id: <4bc2c39b0ec0453ecffd090fdef5b6c8d771d69a.1659872590.git.ang.iglesiasg@gmail.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <cover.1659872590.git.ang.iglesiasg@gmail.com>
-References: <cover.1659872590.git.ang.iglesiasg@gmail.com>
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        openipmi-developer@lists.sourceforge.net,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] dt-binding: ipmi: add fallback to npcm845 compatible
+Message-ID: <20220807121138.GL3834@minyard.net>
+Reply-To: minyard@acm.org
+References: <20220804181800.235368-1-tmaimon77@gmail.com>
+ <20220805115827.GG3834@minyard.net>
+ <CAP6Zq1gfvEpUF-TKhA8EdJqBtwaVvJR3qxtn=8Li4swHB6sDYQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAP6Zq1gfvEpUF-TKhA8EdJqBtwaVvJR3qxtn=8Li4swHB6sDYQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bosch,bmp380 compatible string for the new family of sensors.
-This family includes the BMP380, BMP384 and BMP388. The register map
-in this family changes substantially and introduces new features
-but core concepts and operations carryover from the previous iterations
+On Sun, Aug 07, 2022 at 11:03:56AM +0300, Tomer Maimon wrote:
+> Hi Corey,
+> 
+> Thanks for your comment.
+> 
+> On Fri, 5 Aug 2022 at 14:58, Corey Minyard <minyard@acm.org> wrote:
+> >
+> > On Thu, Aug 04, 2022 at 09:18:00PM +0300, Tomer Maimon wrote:
+> > > Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+> > > string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
+> > >
+> > > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> > > index cbc10a68ddef..4fda76e63396 100644
+> > > --- a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> > > +++ b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> > > @@ -7,7 +7,7 @@ used to perform in-band IPMI communication with their host.
+> > >  Required properties:
+> > >  - compatible : should be one of
+> > >      "nuvoton,npcm750-kcs-bmc"
+> > > -    "nuvoton,npcm845-kcs-bmc"
+> > > +    "nuvoton,npcm845-kcs-bmc", "nuvoton,npcm750-kcs-bmc"
+> >
+> > This is just wrong.  The compatible is supposed to identify the device,
+> > not the board the device is on.  I think compatible here should be
+> > "npcm7xx-kcs-bmc", and just use that everywhere.  It's fine if that is
+> > used on a board named npcm845.
+> The NPCM8XX is not a board, The Nuvoton NPCM8XX is a fourth-generation
+> BMC SoC device family.
 
-Signed-off-by: Angel Iglesias <ang.iglesiasg@gmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/iio/pressure/bmp085.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Ok, but same principle applies.
 
-diff --git a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-index 49257f9251e8..72cd2c2d3f17 100644
---- a/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-+++ b/Documentation/devicetree/bindings/iio/pressure/bmp085.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/iio/pressure/bmp085.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: BMP085/BMP180/BMP280/BME280 pressure iio sensors
-+title: BMP085/BMP180/BMP280/BME280/BMP380 pressure iio sensors
- 
- maintainers:
-   - Andreas Klinger <ak@it-klinger.de>
-@@ -16,6 +16,7 @@ description: |
-     https://www.bosch-sensortec.com/bst/products/all_products/bmp180
-     https://www.bosch-sensortec.com/bst/products/all_products/bmp280
-     https://www.bosch-sensortec.com/bst/products/all_products/bme280
-+    https://www.bosch-sensortec.com/bst/products/all_products/bmp380
- 
- properties:
-   compatible:
-@@ -24,6 +25,7 @@ properties:
-       - bosch,bmp180
-       - bosch,bmp280
-       - bosch,bme280
-+      - bosch,bmp380
- 
-   reg:
-     maxItems: 1
--- 
-2.37.1
+If the device is exactly the same, then you would only use one of the
+"npcm7xx-kcs-bmc" and put that in both device trees.  You can use
+"nuvoton,npcm750-kcs-bmc", it's really not that important.  Or even
+"nuvoton,npcm-kcs-bmc"
 
+If the device has a minor difference that can be expressed in a 
+parameter, then create a parameter for it.
+
+If the device has enough differences that a parameter or two doesn't
+cover it, then you put either nuvoton,npcm750-kcs-bmc or
+nuvoton,npcm750-kcs-bmc in the device tree.  Not both.  Then you need
+two entries in the of_device_id array and you use the data field or
+something to express the difference.
+
+Since there appears to be no difference, just put
+"nuvoton,npcm750-kcs-bmc" in the npcm845 and I will drop the patch
+adding all this.  Then a patch can be added saying it applies to both
+the 7xx and 8xx series of BMC SOCs.  If you want to change the name,
+then a patch will be needed for that, but then you will need multiple
+entries in your device tree, but you would not document it as such, as
+there would only be one that applies for this kernel.
+
+I'm pretty sure the only reason to have muliple compatible entries in a
+device tree is to cover multiple kernels where the name changed.
+
+-corey
+
+> >
+> > -corey
+> >
+> > >  - interrupts : interrupt generated by the controller
+> > >  - kcs_chan : The KCS channel number in the controller
+> > >
+> > > --
+> > > 2.33.0
+> > >
+> 
+> Best regards,
+> 
+> Tomer
