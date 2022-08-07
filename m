@@ -2,124 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 843F758BB2D
-	for <lists+devicetree@lfdr.de>; Sun,  7 Aug 2022 16:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41EEE58BB66
+	for <lists+devicetree@lfdr.de>; Sun,  7 Aug 2022 16:54:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231958AbiHGONx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Aug 2022 10:13:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34676 "EHLO
+        id S234914AbiHGOyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Aug 2022 10:54:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbiHGONw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 10:13:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76AFF65A6;
-        Sun,  7 Aug 2022 07:13:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 155B160F11;
-        Sun,  7 Aug 2022 14:13:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39A69C433C1;
-        Sun,  7 Aug 2022 14:13:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659881630;
-        bh=xMZq75Du6rS5lyJPiJ67r965UxA+2sRNdhec7Gf4viI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=aBSXR+ObfXzeVSyIXSOsc0z/gDlkPtyKbhiOX3IL/hGQ2Xg8ikti5jkSkQOYmCxPN
-         6W5QabnOziS2qpvacT11QGhDNTefDUfnvaMP4RhO4ZkeLddHeNZKYUlt0pFMPZWjcW
-         ReXKoLCFRrqgH0eTeRzJliCBM0T9CVyYlOXVIWxI2j7GiaVyG/BHqyK8hGdWEjGs5F
-         f+V9VVSp8qhu3LXfrdr9VBgfDhVxSDSi75645tV8fHuSVXonBuEPe2jBDK7Q+sM24n
-         0kBpbSorrs2QoF0dm2N//tfZ+eNUQ/DG1+39DkkTqzSb+mBUfMXrrWZ/O3djtkb2qu
-         L7eNEcSEjzwCA==
-Date:   Sun, 7 Aug 2022 15:24:10 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc:     Kent Gustavsson <kent@minoris.se>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S234658AbiHGOyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 10:54:43 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4977DA443;
+        Sun,  7 Aug 2022 07:54:42 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id c17so9462332lfb.3;
+        Sun, 07 Aug 2022 07:54:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=X+zhTBewnBwAZ0gofQrf7ORuRinYGAAL513LlgG86O8=;
+        b=m4x10IEX8aE70An0kEaihnvqapU6S/pdtbtry7gpY0hEFprtgBrPgcbHk0+2UHV/x7
+         Ws8hZhz5ZeWzBebeGYSCWaDHmG1Mgex/6i0ehkhoSZ6HTTDn0AWicby4j+iYH9JIZwef
+         mmWRhL8teZMM3UuA7xFR7dhpidw5HCIGxAtgPij8/32dZfAeSjBV/RgAfMN/59Avbddk
+         JVKbhTxNL9WhOYSR1wVVSGQVXJ2Yq0/Mj/yLKeEagIZ2WD5rFO9gj1froDBzHpAAVcds
+         wysfNx1YmPr/+yHrYjKhACLJ21PjMGki9YUCRws5cHkAAZ1J+0CsFXWIJJNkOsM34N2N
+         m5LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=X+zhTBewnBwAZ0gofQrf7ORuRinYGAAL513LlgG86O8=;
+        b=pL1MeFVk1+A5GzN1j8yu9fQcSJX3Iqut/M+LaYomv7SEqM6ynIlBZDp3OOYDHh/7h2
+         phT72ShLtKsut4QinquZVo83ZJPq5nQ0nHeHBPb52SjxwmhE3B4wMXCWoS+gdvn5MF3+
+         Apsa6nSpaQmm73gavFsd6uFtWb6a7wkm7RFydUeixv2ppwZaoYQSPOvq2Xh3xdVilukv
+         PzmYdaDDO0UPeVsf6SxJQy/6JYgz7BSJk0wNGx1IrWS3ZUWHBucDykSskkVXtsLaBMYR
+         m/s9jVGX2/cX238Z4Z7fHntj8HtvVvxx7SqerVnT7b+2PbJMgY343V0GTNcXGJrRiV2V
+         CYKg==
+X-Gm-Message-State: ACgBeo0c2DBMS4v72ZVMPDhTFqUHqhKkmFOUsUBvkaox5ZmsLLqVsp2a
+        plLLwLUSqxOGeArdSX7Ch/gqjRHs9nmw/YVRUws=
+X-Google-Smtp-Source: AA6agR7We5PalU4zjjHMXJd5bxSNXx2tDuED1Tt+AS9hZRH2ejZC0M3Y/ZY1QTHV0ss3gWSpNMHH7YPOJAY/thAuQRo=
+X-Received: by 2002:ac2:5f77:0:b0:48b:3886:5d55 with SMTP id
+ c23-20020ac25f77000000b0048b38865d55mr4487858lfc.668.1659884080506; Sun, 07
+ Aug 2022 07:54:40 -0700 (PDT)
+MIME-Version: 1.0
+References: <20220804181800.235368-1-tmaimon77@gmail.com> <20220805115827.GG3834@minyard.net>
+ <CAP6Zq1gfvEpUF-TKhA8EdJqBtwaVvJR3qxtn=8Li4swHB6sDYQ@mail.gmail.com> <20220807121138.GL3834@minyard.net>
+In-Reply-To: <20220807121138.GL3834@minyard.net>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Sun, 7 Aug 2022 17:54:28 +0300
+Message-ID: <CAP6Zq1iL7okjGU8_-CnrBnRUzjLKPD8FNw_oYso-jbthbeR1iQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-binding: ipmi: add fallback to npcm845 compatible
+To:     minyard@acm.org
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/9] iio: adc: mcp3911: use correct formula for AD
- conversion
-Message-ID: <20220807152410.01722574@jic23-huawei>
-In-Reply-To: <20220722130726.7627-4-marcus.folkesson@gmail.com>
-References: <20220722130726.7627-1-marcus.folkesson@gmail.com>
-        <20220722130726.7627-4-marcus.folkesson@gmail.com>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        openipmi-developer@lists.sourceforge.net,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 22 Jul 2022 15:07:20 +0200
-Marcus Folkesson <marcus.folkesson@gmail.com> wrote:
+On Sun, 7 Aug 2022 at 15:11, Corey Minyard <minyard@acm.org> wrote:
+>
+> On Sun, Aug 07, 2022 at 11:03:56AM +0300, Tomer Maimon wrote:
+> > Hi Corey,
+> >
+> > Thanks for your comment.
+> >
+> > On Fri, 5 Aug 2022 at 14:58, Corey Minyard <minyard@acm.org> wrote:
+> > >
+> > > On Thu, Aug 04, 2022 at 09:18:00PM +0300, Tomer Maimon wrote:
+> > > > Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+> > > > string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
+> > > >
+> > > > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> > > > index cbc10a68ddef..4fda76e63396 100644
+> > > > --- a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> > > > +++ b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+> > > > @@ -7,7 +7,7 @@ used to perform in-band IPMI communication with their host.
+> > > >  Required properties:
+> > > >  - compatible : should be one of
+> > > >      "nuvoton,npcm750-kcs-bmc"
+> > > > -    "nuvoton,npcm845-kcs-bmc"
+> > > > +    "nuvoton,npcm845-kcs-bmc", "nuvoton,npcm750-kcs-bmc"
+> > >
+> > > This is just wrong.  The compatible is supposed to identify the device,
+> > > not the board the device is on.  I think compatible here should be
+> > > "npcm7xx-kcs-bmc", and just use that everywhere.  It's fine if that is
+> > > used on a board named npcm845.
+> > The NPCM8XX is not a board, The Nuvoton NPCM8XX is a fourth-generation
+> > BMC SoC device family.
+>
+> Ok, but same principle applies.
+>
+> If the device is exactly the same, then you would only use one of the
+> "npcm7xx-kcs-bmc" and put that in both device trees.  You can use
+> "nuvoton,npcm750-kcs-bmc", it's really not that important.  Or even
+> "nuvoton,npcm-kcs-bmc"
+If we use "nuvoton, npcm-kcs-bmc" we should take care of backward dts
+compatibility, and I am not sure we like to change NPCM KCS driver.
+>
+> If the device has a minor difference that can be expressed in a
+> parameter, then create a parameter for it.
+>
+> If the device has enough differences that a parameter or two doesn't
+> cover it, then you put either nuvoton,npcm750-kcs-bmc or
+> nuvoton,npcm750-kcs-bmc in the device tree.  Not both.  Then you need
+> two entries in the of_device_id array and you use the data field or
+> something to express the difference.
+>
+> Since there appears to be no difference, just put
+> "nuvoton,npcm750-kcs-bmc" in the npcm845 and I will drop the patch
+> adding all this.  Then a patch can be added saying it applies to both
+> the 7xx and 8xx series of BMC SOCs.  If you want to change the name,
+> then a patch will be needed for that, but then you will need multiple
+> entries in your device tree, but you would not document it as such, as
+> there would only be one that applies for this kernel.
 
-> The ADC conversion is actually not rail-to-rail but with a factor 1.5.
-> Make use of this factor when calculating actual voltage.
-> 
-> Fixes: 3a89b289df5d ("iio: adc: add support for mcp3911")
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-Patches 1-3 now applied to the fixes-togreg branch of iio.git
-which is currently based on char-misc-linus which is at
-Linus' tree just after he took the char-misc pull requests for
-the merge window.  I might rebase this on rc1 once available
-or I might just use the base as is.  Either way, it should be
-fine in linux-next
+It little bit confusing to use nuvoton,npcm750-kcs-bmc that are
+related to NPCM7XX for NPCM8XX KCS.
+We can use the generic name "nuvoton, npcm-kcs-bmc" as you suggested
+above but we should take care of backward dts compatibility, and I am
+not sure we like to change NPCM KCS driver.
 
-Thanks,
+We had a disscation with Arnd, Arnd asked us to use a fallback as we
+did here if NPCM8XX device module is similar to NPCM7XX module:
+https://lore.kernel.org/lkml/20220522155046.260146-5-tmaimon77@gmail.com/
 
-Jonathan
+I think we should use a fallback to describe the NPCM8XX KCS in the
+dt-binding document.
+>
+> I'm pretty sure the only reason to have muliple compatible entries in a
+> device tree is to cover multiple kernels where the name changed.
+>
+> -corey
+>
+> > >
+> > > -corey
+> > >
+> > > >  - interrupts : interrupt generated by the controller
+> > > >  - kcs_chan : The KCS channel number in the controller
+> > > >
+> > > > --
+> > > > 2.33.0
+> > > >
+> >
+> > Best regards,
+> >
+> > Tomer
 
-> ---
->  drivers/iio/adc/mcp3911.c | 17 ++++++++++++-----
->  1 file changed, 12 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/mcp3911.c b/drivers/iio/adc/mcp3911.c
-> index f8875076ae80..890af7dca62d 100644
-> --- a/drivers/iio/adc/mcp3911.c
-> +++ b/drivers/iio/adc/mcp3911.c
-> @@ -40,8 +40,8 @@
->  #define MCP3911_CHANNEL(x)		(MCP3911_REG_CHANNEL0 + x * 3)
->  #define MCP3911_OFFCAL(x)		(MCP3911_REG_OFFCAL_CH0 + x * 6)
->  
-> -/* Internal voltage reference in uV */
-> -#define MCP3911_INT_VREF_UV		1200000
-> +/* Internal voltage reference in mV */
-> +#define MCP3911_INT_VREF_MV		1200
->  
->  #define MCP3911_REG_READ(reg, id)	((((reg) << 1) | ((id) << 5) | (1 << 0)) & 0xff)
->  #define MCP3911_REG_WRITE(reg, id)	((((reg) << 1) | ((id) << 5) | (0 << 0)) & 0xff)
-> @@ -139,11 +139,18 @@ static int mcp3911_read_raw(struct iio_dev *indio_dev,
->  
->  			*val = ret / 1000;
->  		} else {
-> -			*val = MCP3911_INT_VREF_UV;
-> +			*val = MCP3911_INT_VREF_MV;
->  		}
->  
-> -		*val2 = 24;
-> -		ret = IIO_VAL_FRACTIONAL_LOG2;
-> +		/*
-> +		 * For 24bit Conversion
-> +		 * Raw = ((Voltage)/(Vref) * 2^23 * Gain * 1.5
-> +		 * Voltage = Raw * (Vref)/(2^23 * Gain * 1.5)
-> +		 */
-> +
-> +		/* val2 = (2^23 * 1.5) */
-> +		*val2 = 12582912;
-> +		ret = IIO_VAL_FRACTIONAL;
->  		break;
->  	}
->  
+Best regards,
 
+Tomer
