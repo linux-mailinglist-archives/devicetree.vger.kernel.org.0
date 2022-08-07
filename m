@@ -2,215 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD3CB58BAF2
-	for <lists+devicetree@lfdr.de>; Sun,  7 Aug 2022 15:17:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 843F758BB2D
+	for <lists+devicetree@lfdr.de>; Sun,  7 Aug 2022 16:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234111AbiHGNRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Aug 2022 09:17:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40722 "EHLO
+        id S231958AbiHGONx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Aug 2022 10:13:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232691AbiHGNRd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 09:17:33 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D89B63F6;
-        Sun,  7 Aug 2022 06:17:30 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id s11so8442656edd.13;
-        Sun, 07 Aug 2022 06:17:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:from:to:subject:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=zfLHI7kFYa9QqzX7jm3Dg9uXF+tlKoVCc88jlw3/8KQ=;
-        b=oVLItqJws2allNf5cNYLRsBjpe4cMJxw3wyvlDesdNvOtva6JdH5tYs8uRlvw4kbJf
-         f29NtFqbkJAaD9UsgZjDLKxdWapHtuAln4azG0nl8ztNN1gkZ8kIw+8rFK29tU9eBmz6
-         W8oo8bG35OMlBkaYqz0LxIdR8eKBp1LXSJWux1OL7okrr5raclBeI/kQUSHMsQ0KQScC
-         0Jv6XvjOwhq9YbNcxMbRCNxe4zCaVjMu5XtDrub+b+YzvtttjbLuLrAZOZ7PzqBUZdWK
-         XKzdmUTV36KAp0XdGGBlKH25zyd8llkWxncXcdz/E+s2Nnve4UaWm4Qh7AnnjwyEei2J
-         cKbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:from:to:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zfLHI7kFYa9QqzX7jm3Dg9uXF+tlKoVCc88jlw3/8KQ=;
-        b=6dOywnvAyO+cW3sGENnyAhTLs4G1s1PEzXugQyqPnsoCUn8xVPigjVveA5b+1etVkd
-         RHBKhTLOsUTMBpCgk0fHos5lH9D2+1EdewQPOgXBahfWat4U45snyXU/RDCnBECr62+o
-         aWL8NSYVjYDtC67Dndmyvcejuy3rcUk7eDkw6P5Bvgs7wOyjQg2s/6X98n+OELV4vFmM
-         tWKStA7MH0V44T3Max3lX/5D4nmnGWH2Et1/RoRgSrZku9ufLsTgAPuZj4mEe5bo+mUR
-         PPYvUQqSBgtYICSgsOKiDzGXlB4k123/g/fjIJlna34pA7DObSqfoBSiDHQ/VjBpAMdK
-         QmoQ==
-X-Gm-Message-State: ACgBeo3OgVxoHKEbzA7JujCK4nUEitLh33cpzqhiwQ3+oUvsQqs4NfmQ
-        mzxiwkVJO+YGAw2QayFXpM4=
-X-Google-Smtp-Source: AA6agR4onaAEfG8SYXpc3i+szZ7HPi7aOmntQ9idJByRZWNmdzi8I27IsQWkDZ0PFTl66W32C/s4qQ==
-X-Received: by 2002:a05:6402:378a:b0:431:6d8d:9023 with SMTP id et10-20020a056402378a00b004316d8d9023mr14512494edb.98.1659878248925;
-        Sun, 07 Aug 2022 06:17:28 -0700 (PDT)
-Received: from Ansuel-xps. (host-87-20-249-30.retail.telecomitalia.it. [87.20.249.30])
-        by smtp.gmail.com with ESMTPSA id a4-20020a1709063a4400b006fe8c831632sm3786523ejf.73.2022.08.07.06.17.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Aug 2022 06:17:28 -0700 (PDT)
-Message-ID: <62efbb68.170a0220.88a00.8207@mx.google.com>
-X-Google-Original-Message-ID: <Yu+3UG8OqWPaHB55@Ansuel-xps.>
-Date:   Sun, 7 Aug 2022 15:00:00 +0200
-From:   Christian Marangi <ansuelsmth@gmail.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S230020AbiHGONw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 10:13:52 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76AFF65A6;
+        Sun,  7 Aug 2022 07:13:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 155B160F11;
+        Sun,  7 Aug 2022 14:13:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39A69C433C1;
+        Sun,  7 Aug 2022 14:13:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659881630;
+        bh=xMZq75Du6rS5lyJPiJ67r965UxA+2sRNdhec7Gf4viI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=aBSXR+ObfXzeVSyIXSOsc0z/gDlkPtyKbhiOX3IL/hGQ2Xg8ikti5jkSkQOYmCxPN
+         6W5QabnOziS2qpvacT11QGhDNTefDUfnvaMP4RhO4ZkeLddHeNZKYUlt0pFMPZWjcW
+         ReXKoLCFRrqgH0eTeRzJliCBM0T9CVyYlOXVIWxI2j7GiaVyG/BHqyK8hGdWEjGs5F
+         f+V9VVSp8qhu3LXfrdr9VBgfDhVxSDSi75645tV8fHuSVXonBuEPe2jBDK7Q+sM24n
+         0kBpbSorrs2QoF0dm2N//tfZ+eNUQ/DG1+39DkkTqzSb+mBUfMXrrWZ/O3djtkb2qu
+         L7eNEcSEjzwCA==
+Date:   Sun, 7 Aug 2022 15:24:10 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc:     Kent Gustavsson <kent@minoris.se>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] ARM: dts: qcom: ipq8064: add v2 dtsi variant
-References: <20220718161826.4943-1-ansuelsmth@gmail.com>
+Subject: Re: [PATCH v4 3/9] iio: adc: mcp3911: use correct formula for AD
+ conversion
+Message-ID: <20220807152410.01722574@jic23-huawei>
+In-Reply-To: <20220722130726.7627-4-marcus.folkesson@gmail.com>
+References: <20220722130726.7627-1-marcus.folkesson@gmail.com>
+        <20220722130726.7627-4-marcus.folkesson@gmail.com>
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220718161826.4943-1-ansuelsmth@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 18, 2022 at 06:18:24PM +0200, Christian Marangi wrote:
-> Add ipq8064-v2.0 dtsi variant that differ from original ipq8064 SoC for
-> some additional pcie, sata and usb configuration values, additional
-> reserved memory and serial output.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+On Fri, 22 Jul 2022 15:07:20 +0200
+Marcus Folkesson <marcus.folkesson@gmail.com> wrote:
 
-Any news for this?
+> The ADC conversion is actually not rail-to-rail but with a factor 1.5.
+> Make use of this factor when calculating actual voltage.
+> 
+> Fixes: 3a89b289df5d ("iio: adc: add support for mcp3911")
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Patches 1-3 now applied to the fixes-togreg branch of iio.git
+which is currently based on char-misc-linus which is at
+Linus' tree just after he took the char-misc pull requests for
+the merge window.  I might rebase this on rc1 once available
+or I might just use the base as is.  Either way, it should be
+fine in linux-next
+
+Thanks,
+
+Jonathan
 
 > ---
->  .../boot/dts/qcom-ipq8064-v2.0-smb208.dtsi    | 37 ++++++++++
->  arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi      | 69 +++++++++++++++++++
->  2 files changed, 106 insertions(+)
->  create mode 100644 arch/arm/boot/dts/qcom-ipq8064-v2.0-smb208.dtsi
->  create mode 100644 arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
+>  drivers/iio/adc/mcp3911.c | 17 ++++++++++++-----
+>  1 file changed, 12 insertions(+), 5 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom-ipq8064-v2.0-smb208.dtsi b/arch/arm/boot/dts/qcom-ipq8064-v2.0-smb208.dtsi
-> new file mode 100644
-> index 000000000000..0442580b22de
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom-ipq8064-v2.0-smb208.dtsi
-> @@ -0,0 +1,37 @@
-> +// SPDX-License-Identifier: GPL-2.0
+> diff --git a/drivers/iio/adc/mcp3911.c b/drivers/iio/adc/mcp3911.c
+> index f8875076ae80..890af7dca62d 100644
+> --- a/drivers/iio/adc/mcp3911.c
+> +++ b/drivers/iio/adc/mcp3911.c
+> @@ -40,8 +40,8 @@
+>  #define MCP3911_CHANNEL(x)		(MCP3911_REG_CHANNEL0 + x * 3)
+>  #define MCP3911_OFFCAL(x)		(MCP3911_REG_OFFCAL_CH0 + x * 6)
+>  
+> -/* Internal voltage reference in uV */
+> -#define MCP3911_INT_VREF_UV		1200000
+> +/* Internal voltage reference in mV */
+> +#define MCP3911_INT_VREF_MV		1200
+>  
+>  #define MCP3911_REG_READ(reg, id)	((((reg) << 1) | ((id) << 5) | (1 << 0)) & 0xff)
+>  #define MCP3911_REG_WRITE(reg, id)	((((reg) << 1) | ((id) << 5) | (0 << 0)) & 0xff)
+> @@ -139,11 +139,18 @@ static int mcp3911_read_raw(struct iio_dev *indio_dev,
+>  
+>  			*val = ret / 1000;
+>  		} else {
+> -			*val = MCP3911_INT_VREF_UV;
+> +			*val = MCP3911_INT_VREF_MV;
+>  		}
+>  
+> -		*val2 = 24;
+> -		ret = IIO_VAL_FRACTIONAL_LOG2;
+> +		/*
+> +		 * For 24bit Conversion
+> +		 * Raw = ((Voltage)/(Vref) * 2^23 * Gain * 1.5
+> +		 * Voltage = Raw * (Vref)/(2^23 * Gain * 1.5)
+> +		 */
 > +
-> +#include "qcom-ipq8064-v2.0.dtsi"
-> +
-> +&rpm {
-> +	smb208_regulators: regulators {
-> +		compatible = "qcom,rpm-smb208-regulators";
-> +
-> +		smb208_s1a: s1a {
-> +			regulator-min-microvolt = <1050000>;
-> +			regulator-max-microvolt = <1150000>;
-> +
-> +			qcom,switch-mode-frequency = <1200000>;
-> +		};
-> +
-> +		smb208_s1b: s1b {
-> +			regulator-min-microvolt = <1050000>;
-> +			regulator-max-microvolt = <1150000>;
-> +
-> +			qcom,switch-mode-frequency = <1200000>;
-> +		};
-> +
-> +		smb208_s2a: s2a {
-> +			regulator-min-microvolt = < 800000>;
-> +			regulator-max-microvolt = <1250000>;
-> +
-> +			qcom,switch-mode-frequency = <1200000>;
-> +		};
-> +
-> +		smb208_s2b: s2b {
-> +			regulator-min-microvolt = < 800000>;
-> +			regulator-max-microvolt = <1250000>;
-> +
-> +			qcom,switch-mode-frequency = <1200000>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi b/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
-> new file mode 100644
-> index 000000000000..2f117d576daf
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
-> @@ -0,0 +1,69 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include "qcom-ipq8064.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. IPQ8064-v2.0";
-> +
-> +	aliases {
-> +		serial0 = &gsbi4_serial;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		rsvd@41200000 {
-> +			reg = <0x41200000 0x300000>;
-> +			no-map;
-> +		};
-> +	};
-> +};
-> +
-> +&gsbi4 {
-> +	qcom,mode = <GSBI_PROT_I2C_UART>;
-> +	status = "okay";
-> +
-> +	serial@16340000 {
-> +		status = "okay";
-> +	};
-> +	/*
-> +	 * The i2c device on gsbi4 should not be enabled.
-> +	 * On ipq806x designs gsbi4 i2c is meant for exclusive
-> +	 * RPM usage. Turning this on in kernel manifests as
-> +	 * i2c failure for the RPM.
-> +	 */
-> +};
-> +
-> +&pcie0 {
-> +	compatible = "qcom,pcie-ipq8064-v2";
-> +};
-> +
-> +&pcie1 {
-> +	compatible = "qcom,pcie-ipq8064-v2";
-> +};
-> +
-> +&pcie2 {
-> +	compatible = "qcom,pcie-ipq8064-v2";
-> +};
-> +
-> +&sata {
-> +	ports-implemented = <0x1>;
-> +};
-> +
-> +&ss_phy_0 {
-> +	qcom,rx-eq = <2>;
-> +	qcom,tx-deamp_3_5db = <32>;
-> +	qcom,mpll = <5>;
-> +};
-> +
-> +&ss_phy_1 {
-> +	qcom,rx-eq = <2>;
-> +	qcom,tx-deamp_3_5db = <32>;
-> +	qcom,mpll = <5>;
-> +};
-> -- 
-> 2.36.1
-> 
+> +		/* val2 = (2^23 * 1.5) */
+> +		*val2 = 12582912;
+> +		ret = IIO_VAL_FRACTIONAL;
+>  		break;
+>  	}
+>  
 
--- 
-	Ansuel
