@@ -2,129 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0F8A58CFE1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 23:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A757D58CFED
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 23:52:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236856AbiHHVp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 17:45:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36586 "EHLO
+        id S244379AbiHHVwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 17:52:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236234AbiHHVp0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 17:45:26 -0400
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [IPv6:2001:67c:2178:6::1c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6228F5F55;
-        Mon,  8 Aug 2022 14:45:25 -0700 (PDT)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out1.suse.de (Postfix) with ESMTP id DBD49345DB;
-        Mon,  8 Aug 2022 21:45:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1659995123; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=DN7ifBF3lT4yinqLuCuSySW0xM2vuY23IO9TR81zg0s=;
-        b=C1QqPvqgdkuktIvJHIPThIyVf9jBTYqPCnVu3dzwCFCyyCGySfprsX+7TOSm7cFDuRu8PO
-        zivSwh2q3pt4QdcKVi6m+JYKIG1P2Q0MJcUaA+wPJetl35FpFDk8ZfgwzC8RXJqip5r89D
-        yw1wzkfuV5CWLuFZDgk8M+hoM0W8hWg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1659995123;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=DN7ifBF3lT4yinqLuCuSySW0xM2vuY23IO9TR81zg0s=;
-        b=UER6q+yd3dId7WoIDOmOD1pMlduTlU7pRYXNrWldkBEsNAdpWGDuuEpPe6SideKWd87YnR
-        I8jrvb7b+HNA6LAQ==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id B14C72C143;
-        Mon,  8 Aug 2022 21:45:23 +0000 (UTC)
-Date:   Mon, 8 Aug 2022 23:45:22 +0200
-From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
-To:     Stephen Hemminger <stephen@networkplumber.org>
-Cc:     Sean Anderson <sean.anderson@seco.com>,
-        Tim Harvey <tharvey@gateworks.com>,
-        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
-Message-ID: <20220808214522.GQ17705@kitsune.suse.cz>
-References: <CAJ+vNU05_xH4b8DFVJLpiDTkJ_z9MrBFvf1gSz9P1KXy9POU7w@mail.gmail.com>
- <5914cae0-e87b-fb94-85dd-33311fc84c52@seco.com>
- <20220808210945.GP17705@kitsune.suse.cz>
- <20220808143835.41b38971@hermes.local>
+        with ESMTP id S238812AbiHHVwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 17:52:31 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33AA11837D;
+        Mon,  8 Aug 2022 14:52:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=dvNfVeFM68NeDGpgWDR8lvpLIiBjBMnhp8o6sKAZx70=; b=yLmyMG0H9VbI3XPyB2a0F0I2UL
+        U4uDMErbfNWJneBM5manH5HbGJmUKlIPGlSAq9glYPJX7OU6D4NOeI97RwRBKLHXs+bfiHCczFvAi
+        89QGyZtfz33xlVskllnFS/3kPhH9Fhyuyg4nTLCg1vNAfN+shp3TLS6ogfa2ldpBTEN/d0EQDr983
+        uyL+rXpC5Iy+hZWsYv82w77Q4ojWY0UVKX5SvnyxAD1hV6WuJOYXWuE1vvCHmV9qAeUFVjRaqOCT2
+        PwcgMT7p+foybUyhbRlRxCp5kJC/SBlo9wzaZWAfhk5sRWzaiHliJy9oU3/NtSt7HoJprUi5qGvUz
+        KYX6nMOg==;
+Received: from [2601:1c0:6280:3f0::a6b3]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1oLAfW-00GEjJ-04; Mon, 08 Aug 2022 21:52:14 +0000
+Message-ID: <a7a08d22-e04a-d3c2-f245-b676aac9e551@infradead.org>
+Date:   Mon, 8 Aug 2022 14:52:13 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220808143835.41b38971@hermes.local>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [RFC PATCH 6/6] crypto: sa2ul_pka: Add SA2UL PKA driver
+Content-Language: en-US
+To:     Daniel Parks <danielrparks@ti.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1659985696.git.danielrparks@ti.com>
+ <b16fdaee8bcaaaa25d01c2e981ddf782ccf726b4.1659985696.git.danielrparks@ti.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <b16fdaee8bcaaaa25d01c2e981ddf782ccf726b4.1659985696.git.danielrparks@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 08, 2022 at 02:38:35PM -0700, Stephen Hemminger wrote:
-> On Mon, 8 Aug 2022 23:09:45 +0200
-> Michal Suchánek <msuchanek@suse.de> wrote:
-> 
-> > On Mon, Aug 08, 2022 at 03:57:55PM -0400, Sean Anderson wrote:
-> > > Hi Tim,
-> > > 
-> > > On 8/8/22 3:18 PM, Tim Harvey wrote:  
-> > > > Greetings,
-> > > > 
-> > > > I'm trying to understand if there is any implication of 'ethernet<n>'
-> > > > aliases in Linux such as:
-> > > >         aliases {
-> > > >                 ethernet0 = &eqos;
-> > > >                 ethernet1 = &fec;
-> > > >                 ethernet2 = &lan1;
-> > > >                 ethernet3 = &lan2;
-> > > >                 ethernet4 = &lan3;
-> > > >                 ethernet5 = &lan4;
-> > > >                 ethernet6 = &lan5;
-> > > >         };
-> > > > 
-> > > > I know U-Boot boards that use device-tree will use these aliases to
-> > > > name the devices in U-Boot such that the device with alias 'ethernet0'
-> > > > becomes eth0 and alias 'ethernet1' becomes eth1 but for Linux it
-> > > > appears that the naming of network devices that are embedded (ie SoC)
-> > > > vs enumerated (ie pci/usb) are always based on device registration
-> > > > order which for static drivers depends on Makefile linking order and
-> > > > has nothing to do with device-tree.
-> > > > 
-> > > > Is there currently any way to control network device naming in Linux
-> > > > other than udev?  
-> > > 
-> > > You can also use systemd-networkd et al. (but that is the same kind of mechanism)
-> > >   
-> > > > Does Linux use the ethernet<n> aliases for anything at all?  
-> > > 
-> > > No :l  
-> > 
-> > Maybe it's a great opportunity for porting biosdevname to DT based
-> > platforms ;-)
-> 
-> Sorry, biosdevname was wrong way to do things.
-> Did you look at the internals, it was dumpster diving as root into BIOS.
+Hi--
 
-When it's BIOS what defines the names then you have to read them from
-the BIOS. Recently it was updated to use some sysfs file or whatver.
-It's not like you would use any of that code with DT, anyway.
+On 8/8/22 12:12, Daniel Parks wrote:
+> diff --git a/drivers/crypto/sa2ul_pka/Kconfig b/drivers/crypto/sa2ul_pka/Kconfig
+> new file mode 100644
+> index 000000000000..c4f87b14878e
+> --- /dev/null
+> +++ b/drivers/crypto/sa2ul_pka/Kconfig
+> @@ -0,0 +1,26 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +
+> +config CRYPTO_DEV_SA2UL_PKA
+> +	tristate "Support for TI security accelerator public-key module"
+> +	depends on CRYPTO_DEV_SA2UL || COMPILE_TEST
+> +	select ARM64_CRYPTO
+> +	select CRYPTO_AKCIPHER
+> +	select CRYPTO_RSA
+> +	select PACKING
+> +	select CRYPTO_DH
+> +	help
+> +		The K3 security accelerator engine contains a public-key
+> +		cryptography module. Select this if you want to use hardware
+> +		acceleration for asymmetric cryptography on these devices. This
+> +		engine is not available to the Linux cores on most devices; check
+> +		your device tree if unsure.
+> +
+> +config CRYPTO_DEV_SA2UL_PKA_DEBUG
+> +	bool "Debugging options for TI security accelerator public-key module"
+> +	depends on CRYPTO_DEV_SA2UL_PKA
+> +	default n
+> +	help
+> +		Enables the module options 'snapshot' and 'poison_mem' to assist
+> +		in debugging the PKA driver. Choosing "y" will allow the root user
+> +		to extract cryptographic keys from the driver, so do not enable in
+> +		a production build.
 
-> Systemd-networkd does things in much more supportable manner using existing
-> sysfs API's.
+Too much help text indentation.
 
-Which is a dumpster of systemd code, no thanks.
+from Documentation/process/coding-style.rst:
 
-I want my device naming independent of the init system, especially if
-it's systemd.
+For all of the Kconfig* configuration files throughout the source tree,
+the indentation is somewhat different.  Lines under a ``config`` definition
+are indented with one tab, while help text is indented an additional two
+spaces.
 
-Thanks
-
-Michal
+-- 
+~Randy
