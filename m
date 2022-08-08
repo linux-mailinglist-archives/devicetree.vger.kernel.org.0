@@ -2,65 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95E9358C172
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 04:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E32B58C180
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 04:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243737AbiHHCIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Aug 2022 22:08:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41956 "EHLO
+        id S243914AbiHHCUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Aug 2022 22:20:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243731AbiHHCHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 22:07:47 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C32C813F4F;
-        Sun,  7 Aug 2022 18:45:59 -0700 (PDT)
-X-UUID: c56062a36b584b8388a020143d5e2296-20220808
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=/LV9X3K0473c6ImlEQLa2K80dlVlE+kCm+u2RLt7EbA=;
-        b=VUQVrPNITSWK3FZXpkp1manvZyIBgf3h1hFVLeIWbt5rbvXujFgMOOQqhdHQA7qCxG5OcjsQRbIGj6oUhdPAl7X7azxkR/baMfcHVmkk2RgdJRVZO1lcWmQ5db4X8OxQrGli5ppy4H1OqGBusrcvvBnrs1AoNxhWJ+6Ey9rE7X8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.8,REQID:a13da187-3f06-4279-a06b-25bdd4079267,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:12,EDM:0,RT:0,SF:0,FILE:0,RULE:Release_Ham,ACT
-        ION:release,TS:17
-X-CID-META: VersionHash:0f94e32,CLOUDID:ad6d029c-da39-4e3b-a854-56c7d2111b46,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:3,EDM:-3,IP:nil,URL:1,File:nil
-        ,QS:nil,BEC:nil,COL:0
-X-UUID: c56062a36b584b8388a020143d5e2296-20220808
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <qii.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 850141803; Mon, 08 Aug 2022 09:45:34 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 8 Aug 2022 09:45:33 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 8 Aug 2022 09:45:32 +0800
-Message-ID: <4e7fb6b799182d2dc088d94385faf1ec0b81b6bb.camel@mediatek.com>
-Subject: Re: [PATCH v5 1/2] dt-bindngs: i2c: update bindings for mt8188 soc
-From:   Qii Wang <qii.wang@mediatek.com>
-To:     <kewei.xu@mediatek.com>, <wsa@the-dreams.de>
-CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <liguo.zhang@mediatek.com>, <caiyu.chen@mediatek.com>,
-        <housong.zhang@mediatek.com>, <yuhan.wei@mediatek.com>,
-        <ryan-jh.yu@mediatek.com>, <david-yh.chiu@mediatek.com>
-Date:   Mon, 8 Aug 2022 09:45:30 +0800
-In-Reply-To: <20220806100249.12375-1-kewei.xu@mediatek.com>
-References: <20220806100249.12375-1-kewei.xu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S243921AbiHHCUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 22:20:10 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17188371B3
+        for <devicetree@vger.kernel.org>; Sun,  7 Aug 2022 18:58:14 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 00B3281F4E;
+        Mon,  8 Aug 2022 03:57:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1659923860;
+        bh=pmbwwpNpeueT+ISdq9JYGWZKBeNckBvZC95Cyj0u2Sg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=swPqynnQcZz6+SlHvETz+dwhUjz4urK9u64r73z6XvsUYdAbGVkP/mtbkhRWgHRh6
+         OJXN7pa1wXLMrlZfyJ2y17VJsGqlajeEysgl3ZVDNjh2DxBXRkoJqjSU82j8zDfzSg
+         343BA8tTQsKh8Bn4QTK4hWaVGqZc9ZKAkbHrlTLXT5p6GnOn5L6u+Fwi+TNLpp2L2s
+         9o8/BSNbSgHNWA8qqTBi6DrYg+jR5jU0x/SsG1ghUA+lPs5xDbJ/W9pG0RsHE14rMI
+         JKJZeke5ayJVD2eO/6wmkvTMrzNoUCOurRSuyZRcCXcczQ+6LsEdjgA/zGM+yH+HsA
+         MsW3EsXkplYvA==
+Message-ID: <4788af3e-b36d-fbe9-bd17-db1db85f1b7f@denx.de>
+Date:   Mon, 8 Aug 2022 03:57:39 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: icn6211: Add support
+ for RGB/BGR swap
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+References: <20220801131901.183090-1-marex@denx.de>
+ <20220801163238.GA1130127-robh@kernel.org>
+ <4d917546-23a2-a33a-1f59-ec78305aa854@denx.de>
+ <CAL_JsqLHKnL80spDSAqMq0cOkVNztv0MjVsR-Rs83qd_q7_MQg@mail.gmail.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAL_JsqLHKnL80spDSAqMq0cOkVNztv0MjVsR-Rs83qd_q7_MQg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,37 +65,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2022-08-06 at 18:02 +0800, kewei.xu@mediatek.com wrote:
-> From: Kewei Xu <kewei.xu@mediatek.com>
+On 8/4/22 00:41, Rob Herring wrote:
+> On Tue, Aug 2, 2022 at 5:33 AM Marek Vasut <marex@denx.de> wrote:
+>>
+>> On 8/1/22 18:32, Rob Herring wrote:
+>>> On Mon, Aug 01, 2022 at 03:19:00PM +0200, Marek Vasut wrote:
+>>>> The ICN6211 is capable of swapping the output DPI RGB/BGR color channels,
+>>>> document a DT property to select this swap in DT. This can be useful on
+>>>> hardware where such swap happens.
+>>>
+>>> We should ensure this series[1] works for you instead.
+>>
+>> [...]
+>>
+>>> Rob
+>>>
+>>> [1] https://lore.kernel.org/r/20220628181838.2031-3-max.oss.09@gmail.com
+>>
+>> I'm still not convinced that we should encode this pixel format value
+>> directly into the DT instead of trying to describe the DPI bus color
+>> channel width/order/shift in the DT instead. I think I mentioned that
+>> before in one of the previous versions of that series.
 > 
-> Add a DT binding documentation for the mt8188 soc.
-> 
-> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+> I worry that it gets pretty verbose, but worth having the discussion.
+> In any case, let's have that discussion and not add yet another one
+> off property.
 
-Reviewed-by: Qii Wang <qii.wang@mediatek.com>
-
-> ---
-> v5: add Acked-by owner
-> v4: resend patch
-> v3: add reviewed-by owner
-> v2: no changes
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> index 16a1a3118204..4e730fb7be56 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-> @@ -27,6 +27,7 @@ properties:
->        - const: mediatek,mt8173-i2c
->        - const: mediatek,mt8183-i2c
->        - const: mediatek,mt8186-i2c
-> +      - const: mediatek,mt8188-i2c
->        - const: mediatek,mt8192-i2c
->        - items:
->            - enum:
-
+Done, I replied
