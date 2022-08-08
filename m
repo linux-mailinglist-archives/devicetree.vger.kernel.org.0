@@ -2,68 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A34A58C2ED
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 07:40:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74C9758C2F2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 07:42:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232167AbiHHFkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 01:40:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35498 "EHLO
+        id S233697AbiHHFml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 01:42:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230461AbiHHFkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 01:40:15 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 679F3FA;
-        Sun,  7 Aug 2022 22:40:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1659937212; x=1691473212;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=L0AEyjOdy+rECcp7lQwc01b4Y++VmDWGY8GDnPBcItw=;
-  b=PtDNetw3BGlt0zYr7H7nH8HxSncsOjnaf4cA6yWqSQP/8SNXUmYdV1Ve
-   E4FohQwsQ/dipryXmo4sTT0MmBfaCu/DIX+QrnzF2iuVy+532xccQr+Qw
-   8VjXsFNWUZpJGFDRFl+IfF/hKOn9m2O4pEi0ZeZZarqZzFh0t5H9Ynd+G
-   owOE4q1psU2juqOMGh9r6GjWS0SfJliL82NsNfYiug6l5Takr3q6/7+lm
-   b8U9nQN3rzMDHwDbsgS+pHbTffRom5jTFxt7Dgq1lHwxhBRC5f/J3BpPQ
-   h7SfW1/15Rr+ABtV8+szIE9jhvrI00Vx8B2wamc4NuiOF/pUO7RSKaKTb
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10432"; a="288072216"
-X-IronPort-AV: E=Sophos;i="5.93,221,1654585200"; 
-   d="scan'208";a="288072216"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Aug 2022 22:40:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,221,1654585200"; 
-   d="scan'208";a="637165336"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by orsmga001.jf.intel.com with ESMTP; 07 Aug 2022 22:40:09 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oKvUm-000Lwf-1R;
-        Mon, 08 Aug 2022 05:40:08 +0000
-Date:   Mon, 8 Aug 2022 13:39:16 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jakob Hauser <jahau@rocketmail.com>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Jakob Hauser <jahau@rocketmail.com>
-Subject: Re: [PATCH v5 09/14] iio: magnetometer: yas530: Introduce
- "chip_info" structure
-Message-ID: <202208081346.EWHUWCSa-lkp@intel.com>
-References: <8f5f58c9bf0f4006fabd01b5564af071d20f2a2d.1659909060.git.jahau@rocketmail.com>
+        with ESMTP id S230461AbiHHFmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 01:42:40 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B0CDFAC
+        for <devicetree@vger.kernel.org>; Sun,  7 Aug 2022 22:42:39 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id r17so11082418lfm.11
+        for <devicetree@vger.kernel.org>; Sun, 07 Aug 2022 22:42:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=8K1ox/jV0U8nj81jXXePp8rlDteCuzxR7Q+od8bNCV8=;
+        b=plOy+iz7wRUwWnwhYqa/ufkw/Wbt6L0dQuP0xtjoDNQ3OfJF5Pu2fx0xmq6Z5rkFmC
+         82KGS9AX+PhcZVT7IhnXHrX6Hz5fnmcD6iqP6rJCFZi0N8FchcFZzC5zZMvpn0fPqqsL
+         zI+LvxdxNC2imAlN9V4R88YKxSIFMt3yZ8R6T+NfH9brk2W/+5oLcKdFyQMlgpjp/aw4
+         fht4+EHvG8P7R51rtGElVugX0Ne0b2cFi3RwVWKdRsO3eI0qUfJAX9YmxbrljzW5V2Pw
+         zjDLOc/WGAnyE4ijdiZusIrJHUXL0LckVxWAQYgpDtlrsMsBSN3cLWM1EBuRBFwy3z4C
+         bpYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=8K1ox/jV0U8nj81jXXePp8rlDteCuzxR7Q+od8bNCV8=;
+        b=Pu/Fpqio92LIDuJOSe8THzbBLiBEDewQ3GVRrfPETo8+gevBy9gkscwogE54T/CDaR
+         1mE20sAq5C2oSopVXeqB/Jb70XgFe+cTZKEh17bL3yq/L79iQOol+/JeCZuVRYgRi1aQ
+         VOcXo5S3u8VNflRc4CAxke8gz9SNL4q47TnONUSUchDfSjpLnt1KXbq7N4a56rGpvQ1f
+         I8cKWPJEI3lMIvU/Xt6N8eh2NIGXSzJxde6R6JqOqwNS6iCRjjXfXmezDNqR6kFmbYOl
+         FhSko2ec3Gq8ckQ5FOUih0iG9Zpps9oj6CaMHGDDSIpDgjzTvlW0EygoBs48iVNlPxNe
+         U9IA==
+X-Gm-Message-State: ACgBeo06lKjVDvm/DmTt8IkZjhMuhRBOlE5Ymxs7AxR/PlEr2fOoSnF5
+        BbBmoY2gMI044NvqMGl4eX0yaw==
+X-Google-Smtp-Source: AA6agR5GkCqH+omv0iLbVmZwmb1QVcZqCsjnJehLjyT2RmHFI1rH4HUOes1EsBGzfyrKVi3eGdEaqw==
+X-Received: by 2002:ac2:5cd9:0:b0:48b:18dd:c41f with SMTP id f25-20020ac25cd9000000b0048b18ddc41fmr6114318lfq.112.1659937357211;
+        Sun, 07 Aug 2022 22:42:37 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id q1-20020a2eb4a1000000b0025e6d665a3fsm1260107ljm.18.2022.08.07.22.42.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 Aug 2022 22:42:36 -0700 (PDT)
+Message-ID: <eb153484-6216-c4bd-deb2-c25e177b2d59@linaro.org>
+Date:   Mon, 8 Aug 2022 07:42:35 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8f5f58c9bf0f4006fabd01b5564af071d20f2a2d.1659909060.git.jahau@rocketmail.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v4 1/4] perf/amlogic: Add support for Amlogic meson G12
+ SoC DDR PMU driver
+Content-Language: en-US
+To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chris Healy <cphealy@gmail.com>,
+        kernel test robot <lkp@intel.com>
+References: <20220805071426.2598818-1-jiucheng.xu@amlogic.com>
+ <3597d068-2c44-9450-4a0c-4704f3639a37@linaro.org>
+ <4119d339-0570-2132-3e9f-19ec45ef6e8d@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <4119d339-0570-2132-3e9f-19ec45ef6e8d@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,65 +86,209 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jakob,
+On 05/08/2022 11:55, Jiucheng Xu wrote:
+>>> +static int __init g12_ddr_pmu_probe(struct platform_device *pdev)
+>>> +{
+>>> +	struct ddr_pmu *pmu;
+>>> +
+>>> +	if (of_device_is_compatible(pdev->dev.of_node,
+>>> +				    "amlogic,g12a-ddr-pmu")) {
+>>> +		format_attr_nna.attr.mode = 0;
+>>> +		format_attr_gdc.attr.mode = 0;
+>>> +		format_attr_arm1.attr.mode = 0;
+>>> +		format_attr_mipi_isp.attr.mode = 0;
+>> No. That's not correct patter. You must use variant specific driver data.
+> 
+> Do you mean use of_device_id.data? Could your please give me an
+> 
+> example code in kernel source?
 
-Thank you for the patch! Yet something to improve:
+90% of Linux kernel drivers?
 
-[auto build test ERROR on v5.19]
-[also build test ERROR on next-20220805]
-[cannot apply to jic23-iio/togreg linus/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+>>
+>>> +	} else if (of_device_is_compatible(pdev->dev.of_node,
+>>> +					   "amlogic,sm1-ddr-pmu")) {
+>>> +		format_attr_gdc.attr.mode = 0;
+>>> +		format_attr_arm1.attr.mode = 0;
+>>> +		format_attr_mipi_isp.attr.mode = 0;
+>> No. That's not correct patter. You must use variant specific driver data.
+>>
+>>> +	}
+>>> +
+>>> +	pmu = devm_kzalloc(&pdev->dev, sizeof(struct ddr_pmu), GFP_KERNEL);
+>>> +	if (!pmu)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	/*
+>>> +	 * G12 series Soc have single dmc controller and
+>>> +	 * 4x ddr bandwidth monitor channels
+>>> +	 */
+>>> +	pmu->info.dmc_nr = 1;
+>>> +	pmu->info.chann_nr = 4;
+>>> +	pmu->info.ops = &g12_ops;
+>>> +	pmu->info.fmt_attr = g12_pmu_format_attrs;
+>>> +
+>>> +	return meson_ddr_pmu_create(pdev, pmu);
+>>> +}
+>>> +
+>>> +static int __exit g12_ddr_pmu_remove(struct platform_device *pdev)
+>>> +{
+>>> +	meson_ddr_pmu_remove(pdev);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +static const struct of_device_id meson_ddr_pmu_dt_match[] = {
+>>> +	{
+>>> +		.compatible = "amlogic,g12-ddr-pmu",
+>> Undocumented compatible. Did you run checkpatch and fix all the errors?
+> 
+> Yes, I run "./scripts/checkpatch --strict *.patch", and no errors/warnings.
+> 
+> Any other options should be used to check strictly?
+> 
+> I think it could be removed.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jakob-Hauser/iio-magnetometer-yas530-Change-data-type-of-hard_offsets-to-signed/20220808-080209
-base:    3d7cb6b04c3f3115719235cc6866b10326de34cd
-config: hexagon-randconfig-r045-20220807 (https://download.01.org/0day-ci/archive/20220808/202208081346.EWHUWCSa-lkp@intel.com/config)
-compiler: clang version 16.0.0 (https://github.com/llvm/llvm-project 5f1c7e2cc5a3c07cbc2412e851a7283c1841f520)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/2e5a660a127b0fa7ca71e3e30356dc2254ec13eb
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Jakob-Hauser/iio-magnetometer-yas530-Change-data-type-of-hard_offsets-to-signed/20220808-080209
-        git checkout 2e5a660a127b0fa7ca71e3e30356dc2254ec13eb
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash drivers/iio/magnetometer/
+Either you document it or drop it. It anyway looks a bit odd -
+unspecific (neither for g12a, nor for g12b).
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+> 
+>>
+>>> +	},
+>>> +	{
+>>> +		.compatible = "amlogic,g12a-ddr-pmu",
+>>> +	},
+>>> +	{
+>>> +		.compatible = "amlogic,g12b-ddr-pmu",
+>>> +	},
+>>> +	{
+>>> +		.compatible = "amlogic,sm1-ddr-pmu",
+>> Why four different entries for the same devices without driver data?
+>> This is confusing.
+> Do you mean use a common compatible and different driver data?
 
-All errors (new ones prefixed by >>):
+What I meant is that current version this is useless and confusing.
+Different devices have different compatibles with different driver data.
+Same devices have just the same compatible (so same driver data). You
+mixed two different approaches.
 
->> drivers/iio/magnetometer/yamaha-yas530.c:933:19: error: initializer element is not a compile-time constant
-                   .product_name = yas5xx_product_name[yas530],
-                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   1 error generated.
+>>
+>>> +	},
+>>> +	{}
+>>> +};
+>>> +
+>>> +static struct platform_driver g12_ddr_pmu_driver = {
+>>> +	.driver = {
+>>> +		.name = "amlogic,ddr-pmu",
+>>> +		.of_match_table = meson_ddr_pmu_dt_match,
+>>> +	},
+>>> +	.remove = __exit_p(g12_ddr_pmu_remove),
+>> You made the driver non-hotpluggable - why?
+>> In the same time it is still unbindable, whis is a bit confusing. If you
+>> can unbind it, you should be able to hot-unplug it.
+> Sorry, I couldn't know why the driver is non-hotpluggable. Could you 
+> tell the detail?
+
+You used module_platform_driver_probe, so the one with documentation:
+ /* non-hotpluggable platform devices may use this so that probe() and
+
+  * its support may live in __init sections, conserving runtime memory.
+
+  */
 
 
-vim +933 drivers/iio/magnetometer/yamaha-yas530.c
 
-   929	
-   930	static const struct yas5xx_chip_info yas5xx_chip_info_tbl[] = {
-   931		[yas530] = {
-   932			.devid = YAS530_DEVICE_ID,
- > 933			.product_name = yas5xx_product_name[yas530],
-   934			.version_name = yas5xx_version_names[yas530],
-   935		},
-   936		[yas532] = {
-   937			.devid = YAS532_DEVICE_ID,
-   938			.product_name = yas5xx_product_name[yas532],
-   939			.version_name = yas5xx_version_names[yas532],
-   940		},
-   941		[yas533] = {
-   942			.devid = YAS532_DEVICE_ID,
-   943			.product_name = yas5xx_product_name[yas533],
-   944			.version_name = yas5xx_version_names[yas533],
-   945		},
-   946	};
-   947	
+>>> +};
+>>> +
+>>> +module_platform_driver_probe(g12_ddr_pmu_driver, g12_ddr_pmu_probe);
+>>> +MODULE_AUTHOR("Jiucheng Xu");
+>>> +MODULE_LICENSE("GPL");
+>>> +MODULE_DESCRIPTION("Amlogic G12 series SoC DDR PMU");
+>>> diff --git a/include/soc/amlogic/meson_ddr_pmu.h b/include/soc/amlogic/meson_ddr_pmu.h
+>>> new file mode 100644
+>>> index 000000000000..882efe3c2f58
+>>> --- /dev/null
+>>> +++ b/include/soc/amlogic/meson_ddr_pmu.h
+>>> @@ -0,0 +1,76 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0 */
+>>> +/*
+>>> + * Copyright (c) 2022 Amlogic, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +#ifndef __MESON_DDR_PMU_H__
+>>> +#define __MESON_DDR_PMU_H__
+>>> +
+>>> +#define MAX_CHANNEL_NUM		8
+>>> +
+>>> +enum {
+>>> +	ALL_CHAN_COUNTER_ID,
+>>> +	CHAN1_COUNTER_ID,
+>>> +	CHAN2_COUNTER_ID,
+>>> +	CHAN3_COUNTER_ID,
+>>> +	CHAN4_COUNTER_ID,
+>>> +	CHAN5_COUNTER_ID,
+>>> +	CHAN6_COUNTER_ID,
+>>> +	CHAN7_COUNTER_ID,
+>>> +	CHAN8_COUNTER_ID,
+>>> +	COUNTER_MAX_ID,
+>>> +};
+>>> +
+>>> +struct dmc_hw_info;
+>>> +
+>>> +struct dmc_counter {
+>>> +	u64 all_cnt;	/* The count of all requests come in/out ddr controller */
+>>> +	union {
+>>> +		u64 all_req;
+>>> +		struct {
+>>> +			u64 all_idle_cnt;
+>>> +			u64 all_16bit_cnt;
+>>> +		};
+>>> +	};
+>>> +	u64 channel_cnt[MAX_CHANNEL_NUM]; /* To save a DMC bandwidth-monitor channel counter */
+>>> +};
+>>> +
+>>> +struct dmc_pmu_hw_ops {
+>>> +	void (*enable)(struct dmc_hw_info *info);
+>>> +	void (*disable)(struct dmc_hw_info *info);
+>>> +	/* Bind an axi line to a bandwidth-monitor channel */
+>>> +	void (*config_axi_id)(struct dmc_hw_info *info, int axi_id, int chann);
+>>> +	int (*irq_handler)(struct dmc_hw_info *info,
+>>> +			   struct dmc_counter *counter);
+>>> +	void (*get_counters)(struct dmc_hw_info *info,
+>>> +			     struct dmc_counter *counter);
+>>> +};
+>>> +
+>>> +struct dmc_hw_info {
+>>> +	struct dmc_pmu_hw_ops *ops;
+>>> +	void __iomem *ddr_reg[4];
+>>> +	unsigned long timer_value;	/* Timer value in TIMER register */
+>>> +	void __iomem *pll_reg;
+>>> +	int irq_num;			/* irq vector number */
+>>> +	int dmc_nr;			/* The number of dmc controller */
+>>> +	int chann_nr;			/* The number of dmc bandwidth monitor channels */
+>>> +	int id;				/* The number of supported channels */
+>>> +	struct attribute **fmt_attr;
+>>> +};
+>>> +
+>>> +struct ddr_pmu {
+>>> +	struct pmu pmu;
+>>> +	struct dmc_hw_info info;
+>>> +	struct dmc_counter counters;	/* save counters from hw */
+>>> +	bool pmu_enabled;
+>>> +	struct device *dev;
+>>> +	char *name;
+>>> +	struct hlist_node node;
+>>> +	enum cpuhp_state cpuhp_state;
+>>> +	int cpu;			/* for cpu hotplug */
+>>> +};
+>> Linux-wide headers should not include your private data structures.
+>> Entier header looks unused - should be made private.
+> Do you mean the header should be in driver dir, or the structures should 
+> be within .c file?
 
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+This or that, up to you. Definitely not in include/linux/.
+
+
+Best regards,
+Krzysztof
