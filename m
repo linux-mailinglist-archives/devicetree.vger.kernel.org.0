@@ -2,112 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95FD858C48C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 10:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55C4458C48E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 10:03:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236299AbiHHICs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 04:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34676 "EHLO
+        id S235837AbiHHIDf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 04:03:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235395AbiHHICm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 04:02:42 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D7A113D39
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 01:02:41 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id h186-20020a1c21c3000000b003a5360f218fso98860wmh.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 01:02:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc;
-        bh=vXUJQjP8rIx7XMDcV6JeoOjYhMPphCp5ZaeIbtzf1SU=;
-        b=Y8xGQgsL0+8ozA/PboFCLxqEV1ccae13qv1viY0jKcoIRP8LhAwoG7OEDNza2oWBl2
-         Vzi4sORm6stH94wkD0YGZJJ+4tR+WWPR7/ssqkdTX1vO5bj7bY8/TJrPSBlTb5i0b4PE
-         064/D3Low7IoU+9OB9MjhawakqM3YlN32unnjN4tAfJKbIYrTp6fPkT58vBy82N7J8EU
-         8A/PRwqU/8s+gIWqzmlTWXLCgE8ghuIoZ3ZoSnrO6r+UTie1Rkob+du7ki4lUjy1YhQ6
-         DLgoe8Go/BN/MdQW+7QC606k1wZphCO/+deXMxuSlGMHA8gk5mfZpyMU4x7QngZm3b4i
-         4xKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc;
-        bh=vXUJQjP8rIx7XMDcV6JeoOjYhMPphCp5ZaeIbtzf1SU=;
-        b=ThN2rkKWelIg6n5YzQjPX1Hs1Pvxle62IXWuel2gYOn4Bdu/mZ+A6Kk1z6FxphqdSV
-         KIDQNCvWD4OBcDzJ7H2cMViSWqfUJ8iuClZFYR7UThFp5ZQAvGOClyWI4huYV8AF68S+
-         wliscbVHFJkc1DP6c6e+1nc+Tt5dYFKrs8FS8luN1FnQV1S74Z7cjlUINTUyCfiSsJgB
-         F1wfJtEXHx5way0Xr9cpN5ShgkUBd6cXPRNSsHxOwea5JI7ONrp1abOeBi3iFDH0KPUB
-         vVDoG0bYDn8HDvPc8o8R6158+HwO8qWy0ZPSmipAvoPRUQS7HHRZSQU4rKfrAHf9Nac0
-         Jytg==
-X-Gm-Message-State: ACgBeo3HpY7p+rCTHEt/t1kVRc89Ut0iOrQK/31lZqw33sQEa1Ld+fU+
-        r7bk70eWGRow0WHyisdplsjbPw==
-X-Google-Smtp-Source: AA6agR5FmhT0LFUR/NvsFfllLgfYQR/8xQFufjsSQmEx+sGyw8puVUGhAN/bLv3HOPx4dJ3EYWp++g==
-X-Received: by 2002:a7b:c417:0:b0:3a5:1639:f2a8 with SMTP id k23-20020a7bc417000000b003a51639f2a8mr10844823wmi.112.1659945760083;
-        Mon, 08 Aug 2022 01:02:40 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id j5-20020adfa545000000b002211fc70174sm12049748wrb.99.2022.08.08.01.02.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 01:02:39 -0700 (PDT)
-Date:   Mon, 8 Aug 2022 09:02:37 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Ben Dooks <ben.dooks@sifive.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+        with ESMTP id S231496AbiHHIDf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 04:03:35 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C0AC13D42
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 01:03:34 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1oKxjI-00013K-AU; Mon, 08 Aug 2022 10:03:16 +0200
+Received: from pengutronix.de (unknown [IPv6:2a01:4f8:1c1c:29e9:22:41ff:fe00:1400])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 45B26C45C4;
+        Mon,  8 Aug 2022 08:03:12 +0000 (UTC)
+Date:   Mon, 8 Aug 2022 10:03:10 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, Mark Brown <broonie@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
         Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha --subject-prefix=PATCH v3 
-        <jude.onyenegecha@sifive.com>, Lee Jones <lee@kernel.org>
-Subject: Re: DesignWare PWM support for device-tree probing
-Message-ID: <YvDDHUJdBRSRjbRh@google.com>
-References: <20220805165033.140958-1-ben.dooks@sifive.com>
- <YvDCwOPLoSdxorhZ@google.com>
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH] MAINTAINERS: add PolarFire SoC dt bindings
+Message-ID: <20220808080310.ets2zqhgjbymajkx@pengutronix.de>
+References: <20220805134908.749935-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="akuyayyjxuecv7hz"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YvDCwOPLoSdxorhZ@google.com>
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220805134908.749935-1-conor.dooley@microchip.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 Aug 2022, Lee Jones wrote:
 
-> On Fri, 05 Aug 2022, Ben Dooks wrote:
-> 
-> > This series is tidying up and adding device-tree support for the
-> > DesignWare DW-APB-timers block.
-> > 
-> > Changes:
-> > 
-> > v3:
-> > - change the compatible name
-> > - squash down pwm count patch
-> > - fixup patch naming
-> > 
-> > v2:
-> > - fix #pwm-cells count to be 3
-> > - fix indetation 
-> > - merge the two clock patches
-> > - add HAS_IOMEM as a config dependency
-> 
-> Can you use the front-cover option provided by Git please Ben?
+--akuyayyjxuecv7hz
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-git format-patch --cover-letter ...
+On 05.08.2022 14:49:09, Conor Dooley wrote:
+> So far when I added bindings for the platform I never added them to
+> our MAINTAINERS entry. No time like the present to improve the coverage.
+>=20
+> Suggested-by: Mark Brown <broonie@kernel.org>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> I have another maintainers change queued, I'll send this via soc along
+> with it unless there are any objections.
+>=20
+> CC: Mark Brown <broonie@kernel.org>
+> CC: Wolfram Sang <wsa@kernel.org>
+> CC: Thierry Reding <thierry.reding@gmail.com>
+> CC: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
+> CC: Jassi Brar <jassisinghbrar@gmail.com>
+> CC: Linus Walleij <linus.walleij@linaro.org>
+> CC: Bartosz Golaszewski <brgl@bgdev.pl>
+> CC: Wolfgang Grandegger <wg@grandegger.com>
+> CC: Marc Kleine-Budde <mkl@pengutronix.de>
 
-> It gives you proper formatting and a diff-stat that is very useful.
+Acked-by: Marc Kleine-Budde <mkl@pengutronix.de> # for can
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--akuyayyjxuecv7hz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEBsvAIBsPu6mG7thcrX5LkNig010FAmLwwzwACgkQrX5LkNig
+013l+wgApwvDL8b9qW0m6aPWs7WXpXGzFfqR5PZFh+o3IpIYaQurj3KbQ9S0rSRP
+iRq2vTbwdn/9aVMaiXRGm0ueJ0MJbZ4qLXQlUQ3ZCvC41Laobgm6AXaZwerwrINe
+sCQm+ruJUoVvf2I7zDEjYx1OaCrIS8slPOHXHnN2EZk+PqNzXuKy3BShRACjsAyw
+SKxCgmfoiKlSTM+nEw6QOmEkPKHf2Nz6aqmOeNNVZ7wocMU8jmwYdBMrK1X2fNpQ
+xXNUFTRALOW/CS/dLohurp5hpnBzzufYu/mO8hCDCfgSSdF25ZjzJWhYE3YdORTO
+11gCmKQ41hHEz92LOr94vyPPl0QfZg==
+=udbm
+-----END PGP SIGNATURE-----
+
+--akuyayyjxuecv7hz--
