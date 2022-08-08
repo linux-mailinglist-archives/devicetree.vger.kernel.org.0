@@ -2,49 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64FD558BF38
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 03:36:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E51F358BF8D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 03:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242475AbiHHBgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Aug 2022 21:36:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58586 "EHLO
+        id S242679AbiHHBmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Aug 2022 21:42:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242268AbiHHBfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 21:35:41 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A6D9CE0E;
-        Sun,  7 Aug 2022 18:33:18 -0700 (PDT)
+        with ESMTP id S242810AbiHHBlD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 21:41:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C414212AB6;
+        Sun,  7 Aug 2022 18:35:00 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1AC1EB80E06;
-        Mon,  8 Aug 2022 01:33:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95310C433D6;
-        Mon,  8 Aug 2022 01:33:14 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6ED8060E08;
+        Mon,  8 Aug 2022 01:34:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF12DC433D7;
+        Mon,  8 Aug 2022 01:34:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659922395;
-        bh=rwkTHpB1djJ8Tb2+9cwpD8csB2WM2/iWjGaLWOtDMeQ=;
+        s=k20201202; t=1659922498;
+        bh=iErS5oo2Oc5DNTVd9UDyKVUFsYmh4vo+LGU2SJ245lM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Xrdh5vTUyLVz2Z+NMNbXG1ahXRA1VnDfDF3xFFtHofO0fjHZtoGAtZhGyYVa1kkdQ
-         UIj2iQwuPuDd+QkkHJuFGtvT9ixMieR8DtOO2PRWY/VDNOv1WAhW9tNCPM/MW4rKqf
-         Ht2XzCSd1mB4gT8oRwIp3g8NaNQ6DNLSujI/o2zcrwS6LaqaN5ZRN8oRjsRMBze6M4
-         Vq0UcoqWqk6TUyC5S2RvGZKqcQBbXvrudTwGRLqQ48CxVytIupVzj8wQ6QoGB7a12r
-         Kf3EZwIcmdxG8YmQznYP8EVywSlLNKVI9Aq0TIAwN77MSFDwTiW4C3llt8uDRlO2W1
-         y1k+AtuyE0jcA==
+        b=A3iLjyIFTaB6dmSdimB8kcLYZGKsMN3FeeD2s70x6cgENoTl3CFNj7hL32k22M76k
+         q660B78oN0V+3gHbvRxmmcBuA7NoTUftsJqIXmTYYRVFyvPCHEjCJr4pI8ApQ7rj+T
+         fxl2QtBjZLs0BHH0+07pcaWmp4vR4PKGuGHmQEUebzK+nonQILmKCyDQQSQ6t8F1Tl
+         AQPFFt8Y/9NC8hMNFLv58pzIUXDmQm+/SGzTvsCrojRxXkibYyf54GY6zr+z2eZUoz
+         75GfH6AdIZcFNiZXb2v2hbBxqfb0DioH42AdVRt4qBxbc120H7XLNuRrD1lEdHRVVX
+         gwg7h2avK8hLg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Shawn Guo <shawnguo@kernel.org>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, wens@csie.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev
-Subject: [PATCH AUTOSEL 5.19 45/58] arm64: dts: allwinner: a64: orangepi-win: Fix LED node name
-Date:   Sun,  7 Aug 2022 21:31:03 -0400
-Message-Id: <20220808013118.313965-45-sashal@kernel.org>
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.18 22/53] ARM: dts: imx6ul: add missing properties for sram
+Date:   Sun,  7 Aug 2022 21:33:17 -0400
+Message-Id: <20220808013350.314757-22-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220808013118.313965-1-sashal@kernel.org>
-References: <20220808013118.313965-1-sashal@kernel.org>
+In-Reply-To: <20220808013350.314757-1-sashal@kernel.org>
+References: <20220808013350.314757-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -59,35 +58,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Samuel Holland <samuel@sholland.org>
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-[ Upstream commit b8eb2df19fbf97aa1e950cf491232c2e3bef8357 ]
+[ Upstream commit 5655699cf5cff9f4c4ee703792156bdd05d1addf ]
 
-"status" does not match any pattern in the gpio-leds binding. Rename the
-node to the preferred pattern. This fixes a `make dtbs_check` error.
+All 3 properties are required by sram.yaml. Fixes the dtbs_check
+warning:
+sram@900000: '#address-cells' is a required property
+sram@900000: '#size-cells' is a required property
+sram@900000: 'ranges' is a required property
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Link: https://lore.kernel.org/r/20220702132816.46456-1-samuel@sholland.org
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm/boot/dts/imx6ul.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-index c519d9fa6967..3d2c68d58f49 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-orangepi-win.dts
-@@ -40,7 +40,7 @@ hdmi_con_in: endpoint {
- 	leds {
- 		compatible = "gpio-leds";
- 
--		status {
-+		led-0 {
- 			label = "orangepi:green:status";
- 			gpios = <&pio 7 11 GPIO_ACTIVE_HIGH>; /* PH11 */
+diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+index afeec01f6522..1d435a46fc5c 100644
+--- a/arch/arm/boot/dts/imx6ul.dtsi
++++ b/arch/arm/boot/dts/imx6ul.dtsi
+@@ -149,6 +149,9 @@ soc {
+ 		ocram: sram@900000 {
+ 			compatible = "mmio-sram";
+ 			reg = <0x00900000 0x20000>;
++			ranges = <0 0x00900000 0x20000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
  		};
+ 
+ 		intc: interrupt-controller@a01000 {
 -- 
 2.35.1
 
