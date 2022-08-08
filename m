@@ -2,75 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A06C58CE55
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 21:09:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1C4258CE65
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 21:13:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244249AbiHHTJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 15:09:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59752 "EHLO
+        id S244308AbiHHTN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 15:13:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244191AbiHHTJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 15:09:18 -0400
-Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4AF119C28
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 12:09:17 -0700 (PDT)
-Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-10ec41637b3so11589682fac.4
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 12:09:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
-         :from:references:in-reply-to:mime-version:from:to:cc;
-        bh=4l9i4XlbJ+5mmKTKFgWECtlXoLq4GTjM56DrApQ3zMc=;
-        b=WXnldZ6iOBHOrddzUwoQRxgam/JBzwyx71/OjpN+S0nPQiCYjfVHsJak5hpqrKugdI
-         sz6jv8KOXTrlq54eF2VH5UdV7Ril0q3866QyHAGP7YLmCKcZCn4etUrQKuvkYj3xEFbR
-         IZrXnD+WpPDpLEeukyzKmLWA37sTIZb1PT660=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:user-agent
-         :from:references:in-reply-to:mime-version:x-gm-message-state:from:to
-         :cc;
-        bh=4l9i4XlbJ+5mmKTKFgWECtlXoLq4GTjM56DrApQ3zMc=;
-        b=XfooPnd9IN/wYYD7iHFqJHaM/d+kPz8s0hmRyS1rxPaIq0y6zN3JfAb9pHDOcI1W9s
-         4lFcmeTV74XjTL+WLA6HA6DIPSkGYLUp5m28xldaR5JRRogjUZL2ApVpXwSWYE0Hm8En
-         JQEod0WkVvGXgBkUoFZKiY4HlR/Yej98CQY+Cn6jLanITD5SwCoeTLfcrNCw4zYISe23
-         12n/BLIAIrIprOyL7qDvT5ajbAULmjaGCTP0IKdbGOP0+/mg4wnY9p9JjzPc+iwfxZha
-         K5z0phXTFk79fDntL9GUTjwncZs+WovTcZFox29wP0t7nDqmtG3V5dR0QxxYlkmhihTI
-         pYwg==
-X-Gm-Message-State: ACgBeo0Gd7T4vEaRoWexptJfWSW9cQ5ytfXr1tuFrxU3on8YMVHOvZLn
-        XugI360mOKn1UIV5OSdIOtt5cn5st6qkBbm+GaWeJg==
-X-Google-Smtp-Source: AA6agR5mBX/UZhs7o/pIA55lLsdbPNZPdEc7fmUEWwPyqYNUtxSkx623SBa9QmGpQH54M7wu3v9gLmG6aUnL+1cjbiU=
-X-Received: by 2002:a05:6870:9a17:b0:e9:3d1:f91a with SMTP id
- fo23-20020a0568709a1700b000e903d1f91amr9076366oab.44.1659985756290; Mon, 08
- Aug 2022 12:09:16 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 8 Aug 2022 14:09:15 -0500
-MIME-Version: 1.0
-In-Reply-To: <Yuz2O+lZ5W7RviuA@google.com>
-References: <Yr6oLlmfWRkiAZG7@google.com> <Yr66ZZqEnBApHYMA@google.com>
- <0481d3cc-4bb9-4969-0232-76ba57ff260d@quicinc.com> <YsLhxx+L3+GJDRyO@google.com>
- <bcc5f059-b991-296a-bba6-9cb1236097f2@quicinc.com> <Ys1tYAO39LKzEAOE@google.com>
- <dc737abb-041b-491a-14f1-a584f9e64a3d@quicinc.com> <CAE-0n528QaTtZFp=WAaHShegFRpKVN_67jQfUJTtsRPr6s--zA@mail.gmail.com>
- <52039cd1-4390-7abb-d296-0eb7ac0c3b15@quicinc.com> <Yuz2O+lZ5W7RviuA@google.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 8 Aug 2022 14:09:15 -0500
-Message-ID: <CAE-0n507SLeYB7XVzGFk=RO6YjOPoGpux+_N2AyrmL354mQJ-g@mail.gmail.com>
-Subject: Re: [PATCH V15 6/9] mfd: pm8008: Use i2c_new_dummy_device() API
-To:     Lee Jones <lee.jones@linaro.org>,
-        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S244297AbiHHTNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 15:13:54 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5706A1706C;
+        Mon,  8 Aug 2022 12:13:52 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 278JDbqa053362;
+        Mon, 8 Aug 2022 14:13:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1659986017;
+        bh=VaYzGM0wSLKYt3hbuBD2/xE/BVQiPQJv7qVXQ0swYNo=;
+        h=From:To:CC:Subject:Date;
+        b=s7Qd7XUrsuoZOQKqmTsOf0cNX4bet7KhJcKfZNRFBVLuawceavJRA5Hof0qVVpNui
+         oCjweZuhnNZ9BSqeiIsyoUA16sFrsXUPA9/iXRO9xO6MetI92Vb3115EStTvwIFCa4
+         lqCDLyZpg1RqJznQcWzqJSvkdTY0dHwkNwhIBoIk=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 278JDbuh016515
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 8 Aug 2022 14:13:37 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 8
+ Aug 2022 14:13:36 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 8 Aug 2022 14:13:36 -0500
+Received: from uda0500628.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 278JDaYN054740;
+        Mon, 8 Aug 2022 14:13:36 -0500
+From:   Daniel Parks <danielrparks@ti.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com,
-        Lee Jones <lee@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [RFC PATCH 0/6] Add SA2UL Public Key Accelerator driver
+Date:   Mon, 8 Aug 2022 14:12:49 -0500
+Message-ID: <cover.1659985696.git.danielrparks@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,112 +67,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Lee Jones (2022-08-05 03:51:39)
-> On Tue, 02 Aug 2022, Satya Priya Kakitapalli (Temp) wrote:
->
-> >
-> > On 7/27/2022 6:49 AM, Stephen Boyd wrote:
-> > > Quoting Satya Priya Kakitapalli (Temp) (2022-07-21 23:31:16)
-> > > >   =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 regulato=
-r-name =3D "pm8008_l6";
-> > > >   =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > >
-> > > >   =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 pm8008_l7: ldo7@4600 {
-> > > >   =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 reg =3D =
-<0x4600>;
-> > > >   =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 regulato=
-r-name =3D "pm8008_l7";
-> > > >   =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 };
-> > > >   =C2=A0=C2=A0 =C2=A0};
-> > > > };
-> > > >
-> > > >
-> > > > Stephen/Mark, Please do let me know if you are OK with this design.
-> > > >
-> > > I was happy with the previous version of the DT node. That had one no=
-de
-> > > for the "pm8008 chip", which is important because it really is one
-> > > package. Why isn't that possible to implement and also register i2c
-> > > devices on the i2c bus for the second address?
->
-> If devices have different addresses, they should have their own nodes, no=
-?
+The PKA is a subdevice of the SA2UL that provides hardware acceleration
+for asymmetric cryptography algorithms. RSA and Diffie-Hellman are
+enabled in this patch series.
 
-There are nodes for the devices at different addresses in the design we
-had settled on earlier.
+Tested using these configurations:
+- CONFIG_CRYPTO_MANAGER_DISABLE_TESTS=n
+- CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
 
-        pm8008: pmic@8 {
-                compatible =3D "qcom,pm8008";
-                reg =3D <0x8>;
-                #address-cells =3D <2>;
-                #size-cells =3D <0>;
-                #interrupt-cells =3D <2>;
+These patches are RFC for now because we're waiting for legal to clear
+us to release the firmware.
 
-                pm8008_l1: ldo1@1,4000 {
-                        compatible =3D "qcom,pm8008-regulator";
-                        reg =3D <0x1 0x4000>;
-                        regulator-name =3D "pm8008_ldo1";
-                };
+The dts patches depend on [1] and [2], respectively, to apply without
+fuzz.
 
-		...
+[1]: https://www.spinics.net/lists/devicetree/msg523234.html
+[2]: https://www.spinics.net/lists/devicetree/msg523233.html
 
-	};
+Daniel Parks (6):
+  dt-bindings: crypto: ti,sa2ul: add pka subdevice
+  dt-bindings: crypto: add binding for eip29t2 public key accelerator
+    (PKA)
+  arm64: dts: ti: k3-am64-main: add SA2UL public key accelerator
+    subdevice
+  arm64: dts: ti: k3-j721e-main: add SA2UL public key accelerator
+    subdevice
+  crypto: sa2ul: turn on PKA engine
+  crypto: sa2ul_pka: Add SA2UL PKA driver
 
-pmic@8 is the i2c device at i2c address 8. ldo1@1,4000 is the i2c device
-at address 9 (8 + 1) with control for ldo1 at register offset 0x4000.
+ .../inside-secure,safexcel-eip29t2.yaml       |  49 ++
+ .../devicetree/bindings/crypto/ti,sa2ul.yaml  |   6 +
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi      |   8 +
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |   7 +
+ drivers/crypto/Kconfig                        |   2 +
+ drivers/crypto/Makefile                       |   1 +
+ drivers/crypto/sa2ul.c                        |   2 +-
+ drivers/crypto/sa2ul_pka/Kconfig              |  26 +
+ drivers/crypto/sa2ul_pka/Makefile             |   3 +
+ drivers/crypto/sa2ul_pka/sa2ul_pka.h          | 135 +++++
+ drivers/crypto/sa2ul_pka/sa2ul_pka_base.c     | 564 ++++++++++++++++++
+ drivers/crypto/sa2ul_pka/sa2ul_pka_dh.c       | 150 +++++
+ drivers/crypto/sa2ul_pka/sa2ul_pka_op.c       | 205 +++++++
+ drivers/crypto/sa2ul_pka/sa2ul_pka_op.h       |  28 +
+ drivers/crypto/sa2ul_pka/sa2ul_pka_rsa.c      | 193 ++++++
+ drivers/crypto/sa2ul_pka/sa2ul_pka_sg.c       | 316 ++++++++++
+ 16 files changed, 1694 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip29t2.yaml
+ create mode 100644 drivers/crypto/sa2ul_pka/Kconfig
+ create mode 100644 drivers/crypto/sa2ul_pka/Makefile
+ create mode 100644 drivers/crypto/sa2ul_pka/sa2ul_pka.h
+ create mode 100644 drivers/crypto/sa2ul_pka/sa2ul_pka_base.c
+ create mode 100644 drivers/crypto/sa2ul_pka/sa2ul_pka_dh.c
+ create mode 100644 drivers/crypto/sa2ul_pka/sa2ul_pka_op.c
+ create mode 100644 drivers/crypto/sa2ul_pka/sa2ul_pka_op.h
+ create mode 100644 drivers/crypto/sa2ul_pka/sa2ul_pka_rsa.c
+ create mode 100644 drivers/crypto/sa2ul_pka/sa2ul_pka_sg.c
 
-I think your concern is more about the fact that the regulator sub-nodes
-are platform device drivers instead of i2c device drivers. I'm not an
-i2c expert but from what I can tell we only describe one i2c address in
-DT and then do something like this to describe the other i2c addresses
-when one physical chip responds to multiple addresses on the i2c bus.
-See i2c_new_dummy_device() and i2c_new_ancillary_device() kerneldoc for
-slightly more background.
+-- 
+2.17.1
 
-It may need some modifications to the i2c core to make the regulator
-nodes into i2c devices. I suspect the qcom,pm8008 i2c driver needs to
-look at the 'reg' property and translate that to the parent node's reg
-property (8) plus the first cell (1) to determine the i2c device's final
-i2c address. Then the i2c core needs to register i2c devices that are
-bound to the lifetime of the "primary" i2c device (pmic@8). The driver
-for the regulator can parse the second cell of the reg property to
-determine the register offset within that i2c address to use to control
-the regulator. That would make it possible to create an i2c device for
-each regulator node, but I don't think that is correct because the
-second reg property isn't an i2c address, it's a register offset inside
-the i2c address.
-
-It sort of looks like we need to use i2c_new_ancillary_device() here. IF
-we did that the DT would look like this:
-
-        pm8008: pmic@8 {
-                compatible =3D "qcom,pm8008";
-                reg =3D <0x8>, <0x9>;
-		reg-names =3D "core", "regulators";
-                #address-cells =3D <2>;
-                #size-cells =3D <0>;
-                #interrupt-cells =3D <2>;
-
-                pm8008_l1: ldo1@1,4000 {
-                        compatible =3D "qcom,pm8008-regulator";
-                        reg =3D <0x1 0x4000>;
-                        regulator-name =3D "pm8008_ldo1";
-                };
-
-		...
-
-	};
-
-And a dummy i2c device would be created for i2c address 0x9 bound to the
-dummy i2c driver when we called i2c_new_ancillary_device() with
-"regulators" for the name. The binding of the dummy driver is preventing
-us from binding another i2c driver to the i2c address. Why can't we call
-i2c_new_client_device() but avoid binding a dummy driver to it like
-i2c_new_ancillary_device() does? If that can be done, then the single
-i2c device at 0x9 can be a pm8008-regulators (plural) device that probes
-a single i2c driver that parses the subnodes looking for regulator
-nodes.
-
-Note: There is really one i2c device at address 0x9, that corresponds to
-the regulators, but in DT we need to have one node per regulator so we
-can configure constraints.
