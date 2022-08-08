@@ -2,200 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 085F058CCA2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 19:22:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38BF758CCC2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 19:37:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236070AbiHHRWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 13:22:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60774 "EHLO
+        id S243544AbiHHRhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 13:37:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233696AbiHHRWO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 13:22:14 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBDA315FC8
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 10:22:11 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id 202so2371230pgc.8
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 10:22:11 -0700 (PDT)
+        with ESMTP id S243542AbiHHRho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 13:37:44 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 361CF17058
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 10:37:43 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id u9so11108586oiv.12
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 10:37:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=4ISRmfPuzAq5iPA9W7SoAaYtOXEzjnhWi555d7SJED8=;
-        b=nY3cdk1gWCUthARunn+1V5ONlEaJCy1aeQA+5MIdzACrZnvUMxuvRRGrBP8vmXW716
-         KEwygp7xRisTAS1k8qmj7xeHcaG4KkSGfbHhM8pBHkUFiJaS/v3cwWb9su+SqtTlAZu/
-         k3I2I1qk80aFlw2YsI5Ai9QRQDlq/U3MgxLDs=
+        d=dionne-riel-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :references:in-reply-to:mime-version:from:to:cc;
+        bh=8El6/y4C2ZPX2yELljyvmJcdy/glzkw03crtz7p/8Qg=;
+        b=jWz9m/Lv1SCw0u+cyWggoKLtc6jD1VDjJvJO9/FV9obfAgL9mUyhChzEwGtuWTCCXg
+         PZ/JxxHyvTiizWtXX4XRmcTlB6C7fDFQaSZDaK+H7w753KHQSZkH8cDp9fb0RgJR8ess
+         34yR08qYiLQg5YFMKtKKue0wkyaHOA2Kpm28gEcSUbf81MFjMLU6i5v/ergbu+2hyPCO
+         o4nq1pRdgck77FAXBa/xx1nKBT9+g7mp+zsMX0R5Z/jq2S8WxjaPo0LeqDNtDZmheq+e
+         s3okpjjQWz2Ek9BHhEHvT4vRQHO1cDq9YAmrjiqHy/7RW+Zbbe554gwEUJTpxwGR966x
+         fqHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4ISRmfPuzAq5iPA9W7SoAaYtOXEzjnhWi555d7SJED8=;
-        b=JIH2q//FhPFADqimePvmQbG3vpUvoSwVioXvwTx6l92S95p3KVryBSJYJPLUK9N0hr
-         HkPvfrqjr4Tx9vwZcY3OBwg/vBViBbzVnixvdYE0dWvxBhUU/b6MIJJjRsxyGCP/ddRE
-         HbXDFh5qsggkqUNGXJOAaGeZll5hWR+jbVSoFEBbv7VAcQj70Uk3gNhNgAHTX+z+sMMJ
-         o4a5zUPMTbTgMyhqx6xdFxWMln4Ug/IR0o1FuNbw1ZsAJ+bBMr0Burlg81tZ7ex48W7E
-         3wGNA649WuKaumYy3sQTa4xUZ+l5ofkCy5LZ4p/FHZ3WLoVZdhi32wDev9GkQJTw03wi
-         kwuw==
-X-Gm-Message-State: ACgBeo0Ry1+/71Q/F9fTducmUvvpQiKjlDOnzNg2cXIxX8vlluL5Yipq
-        jPqifXcO69AsWDh6zcEAg/lxxA==
-X-Google-Smtp-Source: AA6agR66v0hA8Eemx2dKzdaVrT6+rtDHvVGdEsmUWrdfx899jKGr/hzPQxI3VEKvhRUidNhEM1Uhzg==
-X-Received: by 2002:a63:2244:0:b0:41d:a9c4:e83 with SMTP id t4-20020a632244000000b0041da9c40e83mr1943438pgm.271.1659979331250;
-        Mon, 08 Aug 2022 10:22:11 -0700 (PDT)
-Received: from localhost ([2620:15c:11a:202:7a1:96b:e08b:5ba0])
-        by smtp.gmail.com with UTF8SMTPSA id cp2-20020a170902e78200b0016db7f49cc2sm9008576plb.115.2022.08.08.10.22.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 10:22:10 -0700 (PDT)
-Date:   Mon, 8 Aug 2022 10:22:07 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 8/9] usb: dwc3: qcom: fix wakeup implementation
-Message-ID: <YvFGP90eyXoPbcy8@google.com>
-References: <20220804151001.23612-1-johan+linaro@kernel.org>
- <20220804151001.23612-9-johan+linaro@kernel.org>
- <Yuv7AM/5jtO/pgcm@google.com>
- <Yu1MO9sgPslEDAjR@google.com>
- <Yu6VTYn2/cG79dvl@hovoldconsulting.com>
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :references:in-reply-to:mime-version:x-gm-message-state:from:to:cc;
+        bh=8El6/y4C2ZPX2yELljyvmJcdy/glzkw03crtz7p/8Qg=;
+        b=B/FrHt8jmf99ZwEJ0zsbiwkESQjeCFsAB+lCPkROca49TGuUr66E+T5dw00LWAD/8X
+         qiyF9wa8xFKKPBmXvaqeJu8uXzni2KcIbX27qP+vzl0qSw6h7n1jhqMB/L0nx6jiM3vY
+         tuisiM30OqlGjEJtnxx6+q35IDIYtBY5P2M1urMcN6cYkzCDZ6gT3RxehCRZx6wuZJSU
+         6fxg95Lpf+TKWfono8TR3oFMF/axhNot++i00xKCvhVT3STwxfkwtMm6ixmGmUBeYFsC
+         uL6G2zfjBX3BrkU2l6IyzRT+Yj6q9IMXZJNxmcOhzhFBJ59jiIBp2bqCjza9m/3+exA7
+         i1/A==
+X-Gm-Message-State: ACgBeo3Mh32aSXuUJoUTlynWl9hVp1Hrq6u+sCo+LtkIwE3eTDSwrjLM
+        KK40wTnn1LP0bXHOfcyhxcgVfx+5yggFTJdEhmrbPA==
+X-Google-Smtp-Source: AA6agR5VGE9b/GImxZUVPrnUDL9A0fPYyjIJ7qbfFUuxtb5lEJHnUwNddOG/L6gIvkW5VR3rDSjgDEcDCIUoZnzrjb8=
+X-Received: by 2002:a05:6808:aad:b0:342:9a85:882c with SMTP id
+ r13-20020a0568080aad00b003429a85882cmr10463249oij.80.1659980262465; Mon, 08
+ Aug 2022 10:37:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Yu6VTYn2/cG79dvl@hovoldconsulting.com>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Received: by 2002:a4a:d58c:0:0:0:0:0 with HTTP; Mon, 8 Aug 2022 10:37:41 -0700 (PDT)
+In-Reply-To: <20220808142549.tdoc76vrcqcf2dxu@core>
+References: <20220805234411.303055-1-tom@tom-fitzhenry.me.uk>
+ <20220805234411.303055-2-tom@tom-fitzhenry.me.uk> <20220808142549.tdoc76vrcqcf2dxu@core>
+From:   Samuel Dionne-Riel <samuel@dionne-riel.com>
+Date:   Mon, 8 Aug 2022 13:37:41 -0400
+Message-ID: <CAN1fySWVVTeGHAD=_hFH+ZdcR_AEiBc0wqes9Y4VRzB=zcdvSw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] arm64: dts: rockchip: Add RK3399-T opp
+To:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megi@xff.cz>,
+        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
+        martijn@brixit.nl, ayufan@ayufan.eu, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Samuel Dionne-Riel <samuel@dionne-riel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 06, 2022 at 06:22:37PM +0200, Johan Hovold wrote:
-> On Fri, Aug 05, 2022 at 09:58:35AM -0700, Matthias Kaehlcke wrote:
-> > On Thu, Aug 04, 2022 at 09:59:44AM -0700, Matthias Kaehlcke wrote:
-> > > On Thu, Aug 04, 2022 at 05:10:00PM +0200, Johan Hovold wrote:
-> > > > It is the Qualcomm glue wakeup interrupts that may be able to wake the
-> > > > system from suspend and this can now be described in the devicetree.
-> > > > 
-> > > > Move the wakeup-source property handling over from the core driver and
-> > > > instead propagate the capability setting to the core device during
-> > > > probe.
-> > > > 
-> > > > This is needed as there is currently no way for the core driver to query
-> > > > the wakeup setting of the glue device, but it is the core driver that
-> > > > manages the PHY power state during suspend.
-> > > > 
-> > > > Also don't leave the PHYs enabled when system wakeup has been disabled
-> > > > through sysfs.
-> > > > 
-> > > > Fixes: 649f5c842ba3 ("usb: dwc3: core: Host wake up support from system suspend")
-> > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > > > ---
-> > > >  drivers/usb/dwc3/core.c      | 5 ++---
-> > > >  drivers/usb/dwc3/dwc3-qcom.c | 6 +++++-
-> > > >  2 files changed, 7 insertions(+), 4 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> > > > index 16d1f328775f..8c8e32651473 100644
-> > > > --- a/drivers/usb/dwc3/core.c
-> > > > +++ b/drivers/usb/dwc3/core.c
-> > > > @@ -1822,7 +1822,6 @@ static int dwc3_probe(struct platform_device *pdev)
-> > > >  
-> > > >  	platform_set_drvdata(pdev, dwc);
-> > > >  	dwc3_cache_hwparams(dwc);
-> > > > -	device_init_wakeup(&pdev->dev, of_property_read_bool(dev->of_node, "wakeup-source"));
-> > > >  
-> > > >  	spin_lock_init(&dwc->lock);
-> > > >  	mutex_init(&dwc->mutex);
-> > > > @@ -1984,7 +1983,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
-> > > >  		dwc3_core_exit(dwc);
-> > > >  		break;
-> > > >  	case DWC3_GCTL_PRTCAP_HOST:
-> > > > -		if (!PMSG_IS_AUTO(msg) && !device_can_wakeup(dwc->dev)) {
-> > > > +		if (!PMSG_IS_AUTO(msg) && !device_may_wakeup(dwc->dev)) {
-> > > 
-> > > Let me explain the rationale for why device_can_wakeup() was used here:
-> > > 
-> > > On QCOM SC7180 based Chromebooks we observe that the onboard USB hub consumes
-> > > ~80 mW during system suspend when the PHYs are disabled, as opposed to ~17 mW
-> > > when the PHYs remain enabled. This is a significant delta when the device is
-> > > on a battery power.
-> > > 
-> > > The initial idea was to leave the PHYs always enabled (in a low power mode),
-> > > but then I dug up commit c4a5153e87fd ("usb: dwc3: core: Power-off core/PHYs
-> > > on system_suspend in host mode"), which provides a rationale for the PHYs
-> > > being powered off:
-> > > 
-> > >   Commit 689bf72c6e0d ("usb: dwc3: Don't reinitialize core during
-> > >   host bus-suspend/resume") updated suspend/resume routines to not
-> > >   power_off and reinit PHYs/core for host mode.
-> > >   It broke platforms that rely on DWC3 core to power_off PHYs to
-> > >   enter low power state on system suspend.
-> > > 
-> > > Unfortunately we don't know which platforms are impacted by this. The idea
-> > > behind using device_can_wakeup() was to use it as a proxy for platforms
-> > > that are *not* impacted. If a platform supports USB wakeup supposedly the
-> > > SoC can enter its low power mode during system suspend with the PHYs
-> > > enabled.
-> > > 
-> > > By now I'm not 100% sure if the above assumption is correct. I recently
-> > > saw allegations that the power consumption of a given QC SoC with USB
-> > > wakeup support drops significantly when wakeup is disabled (i.e. when
-> > > the PHYs are off), but haven't confirmed this yet.
-> > 
-> > So far power measurements don't support the claim that SoC power
-> > consumption is substantially lower with USB wakeup disabled/the PHYs
-> > off. I asked the person who made that claim to provide more
-> > details/data (the discussion is in an internal forum).
-> 
-> Thanks for the background on this. So clearly it has nothing to with
-> supporting wakeup as the commit summary claimed, and this should
-> probably never have been made to depend on wakeup capability either.
+Hi,
 
-To be clear, there are two different (supposed) impacts on suspend power:
+On 8/8/22, Ond=C5=99ej Jirman <megi@xff.cz> wrote:
+> Hi,
+>
+> On Sat, Aug 06, 2022 at 09:44:09AM +1000, Tom Fitzhenry wrote:
+>> From: Samuel Dionne-Riel <samuel@dionne-riel.com>
+>>
+>> These tables were derived from the regular RK3399 table, by dropping
+>> entries exceeding recommended operating conditions from the datasheet,
+>> and clamping the last exceeding value where it made sense.
+>
+> Do we really need to duplicate the whole OPP table of rk3399-opp.dtsi
+> just to disable a few top opp## entries?
+>
+> This will make it more annoying to add PVTM/eFuse leakage based voltage
+> selection support later on, because then there would have to be identical
+> multi-level operating points across multiple files. And that sounds like
+> a LOT of dupplication for little benefit.
+>
+> Also Pinephone Pro has RK3399S not -T. RK3399 seems to be RK3399 selected
+> for
+> low leakage (values I've seen from eFuses indicate the leakage is half th=
+at
+> of
+> RK3399 available in Pinebook Pro)
 
-1. with the PHYs powered off an onboard hub on SC7180/SC7280 boards draws
-   ~80mW during system suspend, vs. ~17mW with the PHYs being on. This is
-   confirmed.
+The vendor (PINE64) asked me to make these changes while stating specifical=
+ly
+that the Pinephone Pro uses the RK3399-T. Though earlier units and current
+batches use the RK3399[s], the design was reportedly made with the RK3399-T
+in mind.
 
-   For SC7180/SC7280 Chrome OS boards in particular it would be ok to
-   power the PHYs off based on device_may_wakeup(), since Chrome OS
-   leaves USB wakeup enabled, hence the PHYs would remain powered as
-   desired.
+The device was also designed to use the OPP from the RK3399-T on RK3399[s]
+for the designed thermal operation of the device, reportedly.
 
-   However boards that opt for disabling USB wakeup could be impacted
-   by increased power consumption of USB peripherals, as seen with the
-   hub of SC7180/SC7280 Chrome OS boards.
+> I'd suggest just adding references to select operating point nodes that
+> are "too much" and disabling them with status =3D "disabled". This
+> can be done from the pinephone device tree file directly.
+>
+> Otherwise we'll eventually end up with several files containing
+> something like this [1] and only differing in absence of some opp## nodes
+> and not their actual useful content.
 
-2. with the PHYs on during system suspend allegedly some QC SoCs can't
-   reach their lowest power mode (commit c4a5153e87fd). I don't know
-   which SoCs are impacted.
+As to why this is a new file? I have assumed it would be preferable since
+this is how it was done for the "OP1" variant of the RK3399. I will defer t=
+o
+the Rockchip and ARM maintainers to determine which way is better.
 
-   Someone from QC claims that SC7280 has significantly lower power
-   consumption with "USB wakeup disabled", so far this has not been
-   confirmed by my colleague who takes power measurements, I'm in
-   the process of clarifying what "USB wakeup disabled" exactly
-   means in this context (e.g. no wakeup source flag vs. no wakeup
-   capable device plugged).
+I will note that in practice I agree here.
 
-> I'll revisit this after the merge window, but perhaps we should just rip
-> this out completely and use a more descriptive property to configure the
-> PHY suspend state. But depending on the results from your internal
-> measurements, perhaps not even that is needed.
+Cheers,
 
-Ok, I'll keep you posted on power findings on our side, though that will
-only cover SC7180/SC7280.
+> [1]
+> https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boo=
+t/dts/rockchip/rk3399-opp.dtsi#L6
+>
+> kind regards,
+> 	o.
+>
+>> Signed-off-by: Samuel Dionne-Riel <samuel@dionne-riel.com>
+>> ---
+>>  .../arm64/boot/dts/rockchip/rk3399-t-opp.dtsi | 118 ++++++++++++++++++
+>>  1 file changed, 118 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
+>> b/arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
+>> new file mode 100644
+>> index 0000000000000..ec153015d9d13
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
+>> @@ -0,0 +1,118 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (c) 2016-2017 Fuzhou Rockchip Electronics Co., Ltd
+>> + * Copyright (c) 2022 Samuel Dionne-Riel <samuel@dionne-riel.com>
+>> + */
+>> +
+>> +/ {
+>> +	cluster0_opp: opp-table-0 {
+>> +		compatible =3D "operating-points-v2";
+>> +		opp-shared;
+>> +
+>> +		opp00 {
+>> +			opp-hz =3D /bits/ 64 <408000000>;
+>> +			opp-microvolt =3D <825000 825000 925000>;
+>> +			clock-latency-ns =3D <40000>;
+>> +		};
+>> +		opp01 {
+>> +			opp-hz =3D /bits/ 64 <600000000>;
+>> +			opp-microvolt =3D <825000 825000 925000>;
+>> +		};
+>> +		opp02 {
+>> +			opp-hz =3D /bits/ 64 <816000000>;
+>> +			opp-microvolt =3D <850000 850000 925000>;
+>> +		};
+>> +		opp03 {
+>> +			opp-hz =3D /bits/ 64 <1008000000>;
+>> +			opp-microvolt =3D <925000 925000 925000>;
+>> +		};
+>> +	};
+>> +
+>> +	cluster1_opp: opp-table-1 {
+>> +		compatible =3D "operating-points-v2";
+>> +		opp-shared;
+>> +
+>> +		opp00 {
+>> +			opp-hz =3D /bits/ 64 <408000000>;
+>> +			opp-microvolt =3D <825000 825000 1150000>;
+>> +			clock-latency-ns =3D <40000>;
+>> +		};
+>> +		opp01 {
+>> +			opp-hz =3D /bits/ 64 <600000000>;
+>> +			opp-microvolt =3D <825000 825000 1150000>;
+>> +		};
+>> +		opp02 {
+>> +			opp-hz =3D /bits/ 64 <816000000>;
+>> +			opp-microvolt =3D <825000 825000 1150000>;
+>> +		};
+>> +		opp03 {
+>> +			opp-hz =3D /bits/ 64 <1008000000>;
+>> +			opp-microvolt =3D <875000 875000 1150000>;
+>> +		};
+>> +		opp04 {
+>> +			opp-hz =3D /bits/ 64 <1200000000>;
+>> +			opp-microvolt =3D <950000 950000 1150000>;
+>> +		};
+>> +		opp05 {
+>> +			opp-hz =3D /bits/ 64 <1416000000>;
+>> +			opp-microvolt =3D <1025000 1025000 1150000>;
+>> +		};
+>> +		opp06 {
+>> +			opp-hz =3D /bits/ 64 <1500000000>;
+>> +			opp-microvolt =3D <1100000 1100000 1150000>;
+>> +		};
+>> +	};
+>> +
+>> +	gpu_opp_table: opp-table-2 {
+>> +		compatible =3D "operating-points-v2";
+>> +
+>> +		opp00 {
+>> +			opp-hz =3D /bits/ 64 <200000000>;
+>> +			opp-microvolt =3D <825000 825000 975000>;
+>> +		};
+>> +		opp01 {
+>> +			opp-hz =3D /bits/ 64 <297000000>;
+>> +			opp-microvolt =3D <825000 825000 975000>;
+>> +		};
+>> +		opp02 {
+>> +			opp-hz =3D /bits/ 64 <400000000>;
+>> +			opp-microvolt =3D <825000 825000 975000>;
+>> +		};
+>> +		opp03 {
+>> +			opp-hz =3D /bits/ 64 <500000000>;
+>> +			opp-microvolt =3D <875000 875000 975000>;
+>> +		};
+>> +		opp04 {
+>> +			opp-hz =3D /bits/ 64 <600000000>;
+>> +			opp-microvolt =3D <925000 925000 975000>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&cpu_l0 {
+>> +	operating-points-v2 =3D <&cluster0_opp>;
+>> +};
+>> +
+>> +&cpu_l1 {
+>> +	operating-points-v2 =3D <&cluster0_opp>;
+>> +};
+>> +
+>> +&cpu_l2 {
+>> +	operating-points-v2 =3D <&cluster0_opp>;
+>> +};
+>> +
+>> +&cpu_l3 {
+>> +	operating-points-v2 =3D <&cluster0_opp>;
+>> +};
+>> +
+>> +&cpu_b0 {
+>> +	operating-points-v2 =3D <&cluster1_opp>;
+>> +};
+>> +
+>> +&cpu_b1 {
+>> +	operating-points-v2 =3D <&cluster1_opp>;
+>> +};
+>> +
+>> +&gpu {
+>> +	operating-points-v2 =3D <&gpu_opp_table>;
+>> +};
+>> --
+>> 2.37.1
+>>
+>
+
+--=20
+=E2=80=94 Samuel Dionne-Riel
