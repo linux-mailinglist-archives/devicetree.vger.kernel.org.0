@@ -2,73 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0258958CF02
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 22:17:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39BE058CF0C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 22:24:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244238AbiHHURf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 16:17:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42090 "EHLO
+        id S244263AbiHHUX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 16:23:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244201AbiHHURb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 16:17:31 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DA7F1A801
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 13:17:30 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id q30so12055841wra.11
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 13:17:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=+dc2Wr5R8DkIR7Sm+I5+T7mhvoBamdjHee3gcWWSuJo=;
-        b=uabJrolrTPyF1qLICQ8TpBepRoWYZnlEAhQgFjivjeMzBVzfD93dk6u6l8O2xkJVHQ
-         4RGVeoNcpPWfyHL+mbwcYM4R3BT+evvCv3E/f0UKOQKmzTi0bZZQ0TmodcOsKf09S3sp
-         loVX0/zXg1eJcZaO2wvA4/V/DlTtrxPP9U73KmgeOr4TElRHAuJmEdWA1Y9sSs4mOK5L
-         LD6mtxQfeHX7W7n6PDQB+c7Qx5bHiS9SIf9Ky/bIe7F5AyyR0xS94kQbPSeneY5PqxJS
-         v7BfapRw+gr31Zdw8wcbwZHbVrAQHtowq623som7SWXlSgpT9r++LAXsUeG4vULA15rt
-         +Bdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=+dc2Wr5R8DkIR7Sm+I5+T7mhvoBamdjHee3gcWWSuJo=;
-        b=fgjmBDzUIgZnJNMRQp1UQYGv2mORhIUSAHjWQlFYrI2e+FyrAqbvQJbNLLMv6MDtr6
-         jW0epmhxCiQKDyBb8zWA/PcMyAvZwBMpU6D4ydnc1riwaXvHYpY1NshO+zeIVFYiq5WT
-         i1kn+66GgoEmNm4Uk2KnhqwOTowEVlP6xQa19RCLleblxdznN8GiDn+7KsVbdq1WRACM
-         V7qwnsqr+23RxGemzGCzGux4FnDLOM4mRvuRrvjqi2lbqsIfGWPwHzhfE42T2HRT5nFt
-         c+kzutNqnA2+GNjkgMxITA7oIsNW9Sbr/7E7YNFmF5NmuRR5xOex424HzWqo77MXLrrm
-         J/Dg==
-X-Gm-Message-State: ACgBeo2w2XrGUMGegXcyh/5Yui/84AoJvmYN7HZ/1giWjZf2GqTpkCuW
-        EtPrh+xmuxhHTF53zGttigwNfA==
-X-Google-Smtp-Source: AA6agR4El7NQSSoWoZfNjns26MLZnLRuSF49GPdQbZYqrN61O2+SXmNc/xvHVZO+ufi4KB42EnCdJA==
-X-Received: by 2002:a5d:6d0e:0:b0:21e:fc95:3dfc with SMTP id e14-20020a5d6d0e000000b0021efc953dfcmr12458195wrq.112.1659989848614;
-        Mon, 08 Aug 2022 13:17:28 -0700 (PDT)
-Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id j20-20020adfd214000000b0021ec32d130asm11868629wrh.74.2022.08.08.13.17.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 13:17:28 -0700 (PDT)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: exynos: Add SysMMU nodes for Exynos850
-Date:   Mon,  8 Aug 2022 23:17:24 +0300
-Message-Id: <20220808201724.27831-3-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220808201724.27831-1-semen.protsenko@linaro.org>
-References: <20220808201724.27831-1-semen.protsenko@linaro.org>
+        with ESMTP id S243020AbiHHUX5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 16:23:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2C431A3BB;
+        Mon,  8 Aug 2022 13:23:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3C38860BD6;
+        Mon,  8 Aug 2022 20:23:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75191C433D6;
+        Mon,  8 Aug 2022 20:23:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1659990235;
+        bh=EclEpHX49VYDq26eqhYIz6y6CsaMJTKwhdUyP+ZlCJw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NdI1anmNxnZ5m4gNkxeFi8NA8LUBI1dM8SDaetRD8flq/vJ52WC+faqgTl8DfGB3R
+         lvTSQfw+LuIvnrmEVSR6ceFIdaOEA3y8yKGfZIyOGBeVquWmTA1a7uEh6Dr2P/I3Ey
+         ko9h3WbKha+x6P4fO5CmVRGyFKS8Uc9QIkwiS9mt+kR72kjDvG33eiY3PLBmh3xVv1
+         IST1Uy2pdQ4bCQ11yqfw/ORNUkpF6Bp/FxwagOD1bvI5G4gLAhzb+XzYEo2RQSmJkC
+         37ZAVar4GtUuKXVHFFwmri9+CDZexWDUjaXoR1ziFk4Lm/cpRLgMovA1A4O1ZjOZ8d
+         vfUkG+tLynQQQ==
+Received: by pali.im (Postfix)
+        id 71893F13; Mon,  8 Aug 2022 22:23:52 +0200 (CEST)
+Date:   Mon, 8 Aug 2022 22:23:52 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: marvell: Update Armada 37xx platform
+ bindings
+Message-ID: <20220808202352.iimhb2q6yawi35y6@pali>
+References: <20220713200123.22612-1-pali@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220713200123.22612-1-pali@kernel.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,69 +58,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add all SysMMU nodes to Exynos850 SoC device tree.
+PING?
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
- arch/arm64/boot/dts/exynos/exynos850.dtsi | 45 +++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/exynos850.dtsi b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-index 8e78b50416d8..4204a443ea4a 100644
---- a/arch/arm64/boot/dts/exynos/exynos850.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos850.dtsi
-@@ -503,6 +503,51 @@ i2c_6: i2c@13890000 {
- 			status = "disabled";
- 		};
- 
-+		sysmmu_aud: sysmmu@14850000 {
-+			compatible = "samsung,exynos-sysmmu";
-+			reg = <0x14850000 0x9000>;
-+			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "sysmmu";
-+			clocks = <&cmu_aud CLK_GOUT_AUD_SYSMMU_CLK>;
-+			#iommu-cells = <0>;
-+		};
-+
-+		sysmmu_dpu: sysmmu@130c0000 {
-+			compatible = "samsung,exynos-sysmmu";
-+			reg = <0x130c0000 0x9000>;
-+			interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "sysmmu";
-+			clocks = <&cmu_dpu CLK_GOUT_DPU_SMMU_CLK>;
-+			#iommu-cells = <0>;
-+		};
-+
-+		sysmmu_is0: sysmmu@14550000 {
-+			compatible = "samsung,exynos-sysmmu";
-+			reg = <0x14550000 0x9000>;
-+			interrupts = <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "sysmmu";
-+			clocks = <&cmu_is CLK_GOUT_IS_SYSMMU_IS0_CLK>;
-+			#iommu-cells = <0>;
-+		};
-+
-+		sysmmu_is1: sysmmu@14570000 {
-+			compatible = "samsung,exynos-sysmmu";
-+			reg = <0x14570000 0x9000>;
-+			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "sysmmu";
-+			clocks = <&cmu_is CLK_GOUT_IS_SYSMMU_IS1_CLK>;
-+			#iommu-cells = <0>;
-+		};
-+
-+		sysmmu_mfcmscl: sysmmu@12c50000 {
-+			compatible = "samsung,exynos-sysmmu";
-+			reg = <0x12c50000 0x9000>;
-+			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-names = "sysmmu";
-+			clocks = <&cmu_mfcmscl CLK_GOUT_MFCMSCL_SYSMMU_CLK>;
-+			#iommu-cells = <0>;
-+		};
-+
- 		sysreg_peri: syscon@10020000 {
- 			compatible = "samsung,exynos850-sysreg", "syscon";
- 			reg = <0x10020000 0x10000>;
--- 
-2.30.2
-
+On Wednesday 13 July 2022 22:01:23 Pali Rohár wrote:
+> Distinguish between Armada 3700 family, Armada 3710 SoC and Armada 3720 SoC.
+> Armada 3720 DB is name of the board with Armada 3720 SoC, so correctly
+> indicate SoC in example.
+> 
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> ---
+>  .../devicetree/bindings/arm/marvell/armada-37xx.txt        | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+> index f6d6642d81c0..d2ca008de266 100644
+> --- a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+> @@ -4,6 +4,11 @@ Marvell Armada 37xx Platforms Device Tree Bindings
+>  Boards using a SoC of the Marvell Armada 37xx family must carry the
+>  following root node property:
+>  
+> + - compatible: must contain "marvell,armada3700"
+> +
+> +In addition, boards using the Marvell Armada 3710 SoC shall have the
+> +following property before the previous one:
+> +
+>   - compatible: must contain "marvell,armada3710"
+>  
+>  In addition, boards using the Marvell Armada 3720 SoC shall have the
+> @@ -13,7 +18,7 @@ following property before the previous one:
+>  
+>  Example:
+>  
+> -compatible = "marvell,armada-3720-db", "marvell,armada3720", "marvell,armada3710";
+> +compatible = "marvell,armada-3720-db", "marvell,armada3720", "marvell,armada3700";
+>  
+>  
+>  Power management
+> -- 
+> 2.20.1
+> 
