@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5486558C4B8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 10:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E525D58C4BB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 10:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235829AbiHHIKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 04:10:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41876 "EHLO
+        id S242066AbiHHILX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 04:11:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241925AbiHHIKk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 04:10:40 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 339EF120A0
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 01:10:38 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id b133so7466116pfb.6
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 01:10:38 -0700 (PDT)
+        with ESMTP id S242052AbiHHILU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 04:11:20 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C4911A3F
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 01:11:19 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id e15so11626954lfs.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 01:11:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=61wTd6iB1lutkPoWBA+yNb5GJiX4LQ0YZJHDvzEfwJo=;
-        b=rYf8fWuSN/mCGpRIDR8FhDoVZlKtDJhkYAdROcl+ijtu5VN5vqTbOkZjPrVMf53rBi
-         ul4xuoXnAnwGC3tG+B1tgq1xqO09Ku/8U6W5mxyEc0w4kQfJ5CvE1qXCH7vCDUnFh5JV
-         u/GaONj0Ji6aVghQWWK3hK/iD2oerRnBt5Y/kKZr3nUlgVb8CSOkFyeNDtfMKR9QV5fj
-         DUZJdY5wUdhTIoZRChlmjDMU7aWZILR8bnv8lBoxFuu9qebl7/nicPEEauKAURUbEXTh
-         BYQTzw7BCZkFzoasBXZpzJ6seOYy+Tr8D+MUQZTgIsl8/cTP4ynXniJth6hVrCv0Tgii
-         x78A==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=LHJDhYsv/Rim92S/FLUstvQVcHoVL1DwvCgvhFMIJQU=;
+        b=Po+JD5H4qJluYvs2Tmlpq493Ucl5fpb4S8tltzUbKWLlzYnEiaXX5qVYmZrJYq4qjD
+         EFGzPhrOizK2t9B4lE9hPGZXAG8w8DxJUiqgrkS8wEvW7gNVO7zjJvYt7sllloSty+e6
+         uCbMv3FYmM4UoQlXhmfF8EiREzHEni/+4tMnTfmDES7ESdgczr0MUj8WFCPUswV+p+H5
+         bFRsveOIOjy48Za84wbo7tw7m4HxyTwrE0bVB2zpG8eUWoMAlfh/cNVyg/wwarGr+hUI
+         7tge4rfDNlnah0y2s+4lxyeNK9stb/QwK7wcdr8swDlABzFGv17uDiGPdoQUpn3qI/IS
+         YvOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=61wTd6iB1lutkPoWBA+yNb5GJiX4LQ0YZJHDvzEfwJo=;
-        b=TnX7bWLSec9YOQNYeIdKWr5xsU3RCQ5lt2aGuPACUQWg/+T81zxAH3IWosuZry+dt/
-         YGtmRvA1HpqQKAEJ97c3AI6G0OjWDUCA3ztzlR/CQvOT/2risXH18N9EGt+Ftj4v0IeF
-         8UotmbAkmYIElQy8dTIBNHJx05ZXGggWnwTavL1dyzORma+Co1IES8a5aCz/SLez2G8u
-         OIwaQvfvzAQqx1EMciBWRUHiWJz7vqfbrbrVYMuvD/4n9fzq1urg0CtQEMWaL7Vcbo7A
-         G4UTzGqg2tgFA3JVuOpt6zYEUH0ix/fCYLukuFc8eCttUUo3CjcGFLpVmCEOgfI9PMMC
-         9meg==
-X-Gm-Message-State: ACgBeo1ydyFd1CgOSUQw3yMo90MlMYmdRpzllhfCaMIc4i60trn8OtYd
-        lXYDZShLO6nXFyaSXqwg63GaRZmRDLDb
-X-Google-Smtp-Source: AA6agR7erfXbt9N0hJC1f6BSSrFufGw7URJVj+V609D1DFTG1vKqT9PN+25+gpi+NpxGg3Eu6DkF6Q==
-X-Received: by 2002:a65:6b8a:0:b0:3db:7dc5:fec2 with SMTP id d10-20020a656b8a000000b003db7dc5fec2mr14133518pgw.223.1659946237660;
-        Mon, 08 Aug 2022 01:10:37 -0700 (PDT)
-Received: from thinkpad ([117.193.212.254])
-        by smtp.gmail.com with ESMTPSA id bd15-20020a656e0f000000b0041d2966a0cdsm4303833pgb.23.2022.08.08.01.10.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 01:10:37 -0700 (PDT)
-Date:   Mon, 8 Aug 2022 13:40:31 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] arm64: dts: qcom: sc8280xp: disallow regulator mode
- switches
-Message-ID: <20220808081031.GC7601@thinkpad>
-References: <20220803121942.30236-1-johan+linaro@kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=LHJDhYsv/Rim92S/FLUstvQVcHoVL1DwvCgvhFMIJQU=;
+        b=6jVfJk1BHd5UoDKDbkULUaFVC62se3WdGUR6bIDUp4onq0KpJemh70jJJamoKKWQWJ
+         FSgwmj1RcdCdG5d2onnZo6wel4W47+9dlrjG1auK4lsGtwBqDYMDrPntCm+RRIuA0/B6
+         Ipn4iIjrTcdlK9tZ8OaZld/w27mOy9WUf4m/pbSln1XpDY4D4rrQcv+KVQG/fteARdSx
+         vMc8/z79n0ltkqvL5pXlSjDe9yP/ttJRWfSo/Og0gHlUENCuhhwz26OT9WlsajL/G80Q
+         0/e20taTH581N6XyyuGluEf/u0tsfYjifLSnavdBoUqnAJgySPFvLY7mC+TSTxQzf3xW
+         J/Dg==
+X-Gm-Message-State: ACgBeo0Wiz1DID8hpyzKCxJBKBJsDgW0vBjPyErGzH4DNgskn7FyyoM8
+        GKWygbEbprXxZ8en2qRwZDk/pw==
+X-Google-Smtp-Source: AA6agR5xjV4h1UPMDBLzbNYDD1moY7ObuTURyWbiZuieFApJ57aRZHApeXAgEKvYt+fNNLR2yhJf2Q==
+X-Received: by 2002:a05:6512:32c5:b0:48b:fa9f:a98f with SMTP id f5-20020a05651232c500b0048bfa9fa98fmr2334042lfg.335.1659946278217;
+        Mon, 08 Aug 2022 01:11:18 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id k3-20020a2eb743000000b0025e48907929sm1293653ljo.23.2022.08.08.01.11.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Aug 2022 01:11:17 -0700 (PDT)
+Message-ID: <da83671e-08b9-2d68-e5d3-d9b09c105bb4@linaro.org>
+Date:   Mon, 8 Aug 2022 11:11:16 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220803121942.30236-1-johan+linaro@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3] dt-binding: ipmi: add fallback to npcm845 compatible
+Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, jic23@kernel.org,
+        minyard@acm.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     openbmc@lists.ozlabs.org, openipmi-developer@lists.sourceforge.net,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220808075452.115907-1-tmaimon77@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220808075452.115907-1-tmaimon77@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,48 +77,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 03, 2022 at 02:19:39PM +0200, Johan Hovold wrote:
-> A recent change in a USB/DP PHY driver that started specifying regulator
-> loads caused the regulators that were also shared with the PCIe and USB
-> PHYs to be put in low-power mode, something which broke PCIe and USB on
-> sa8295p-adp.
+On 08/08/2022 09:54, Tomer Maimon wrote:
+> Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+> string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
 > 
-> As was discussed in the following thread:
-> 
-> 	https://lore.kernel.org/all/YtkrDcjTGhpaU1e0@hovoldconsulting.com
-> 
-> regulators should generally not be allowed to switch to low-power mode
-> unless some of the consumers can actually support an idle mode.
-> 
-> This series disables mode-switching for all regulators on sc8280xp-crd,
-> sc8280xp-lenovo-thinkpad-x13s and sa8295p-adp except for the ones used
-> by the UFS controllers which do support an idle mode.
-> 
+> Fixes: 84261749e58a ("dt-bindings: ipmi: Add npcm845 compatible")
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 
-For the series,
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks,
-Mani
 
-> Johan
-> 
-> 
-> Johan Hovold (3):
->   arm64: dts: qcom: sc8280xp-crd: disallow regulator mode switches
->   arm64: dts: qcom: sc8280xp-lenovo-thinkpad-x13s: disallow regulator
->     mode switches
->   arm64: dts: qcom: sa8295p-adp: disallow regulator mode switches
-> 
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts              | 11 -----------
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts             |  9 ---------
->  .../boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts   | 10 ----------
->  3 files changed, 30 deletions(-)
-> 
-> -- 
-> 2.35.1
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+Best regards,
+Krzysztof
