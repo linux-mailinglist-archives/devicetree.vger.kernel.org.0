@@ -2,82 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAB5D58C334
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 08:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AA3758C337
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 08:20:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235118AbiHHGRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 02:17:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53200 "EHLO
+        id S235675AbiHHGUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 02:20:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235522AbiHHGRU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 02:17:20 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0A263E9
-        for <devicetree@vger.kernel.org>; Sun,  7 Aug 2022 23:17:17 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id bq11so11230344lfb.5
-        for <devicetree@vger.kernel.org>; Sun, 07 Aug 2022 23:17:17 -0700 (PDT)
+        with ESMTP id S235666AbiHHGUw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 02:20:52 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC5F272B
+        for <devicetree@vger.kernel.org>; Sun,  7 Aug 2022 23:20:50 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id t1so11213524lft.8
+        for <devicetree@vger.kernel.org>; Sun, 07 Aug 2022 23:20:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=T8rNmdfGQpLyT9LR1PlSucPj1KAkeGsYwmxlQxDnSLI=;
-        b=n81MxZvnNSuI3qedxwTMbxCFELlr2YlwnyP2qLYqK1c/SiDxMXsTtUG3FtobrlPbYP
-         MqpGRBS7hjPRvy5ZbJcmxV3y+h4X55ggJZGQsx1ZzRI19tyuNRIp0m3YrIyb9gFIdECT
-         OwpOT7oR+kzjXXn1347GjVpsS9NpKCCLugjrkK8VCkbryi/Vg+dAD9nFbYB4y3yXoNEx
-         Xl0qk28VL2+ndU05Pa/NdmtNyu07O0NewSgFCMOQUvyH9vS1nvVj4LpzYKfnVqm2XQXB
-         EMZ+3RO9+IUyO7wZvyLdupA2MsUVmfwlaNY1ipTkBVGTW/AO6rlODxdELiXJM/y/Eoem
-         BhPw==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=XC78ZDlakVYcKsRbmvJPak0U0EpBMvZ3QPItIdCOy78=;
+        b=EkjnZok9jUlLyEZhGeMG8MpZ5jVm25V3QfaxyB7EEziQ1nzFwpQuKMJXpXqDfLkSEK
+         Ttjgw74JkvtZMtQcYpbJWwkol5uPP5rU9jqMFsHixR7GxAD6dSnEOW9v8ttIkTIuqUN9
+         OwXHsMK5Y0dgOyWKRRmOh1GEooU+a+xOYFS12Um9U04RHc2Wyn1uEqc3msvmOBHnuWCt
+         UpGHuCT3B6orPTTaJI6aNdixX6fz4itlx9m2BeFowvzA72dEcA6J987m0qM32cfRTig+
+         OJUq1E+xvsPyKkXvmqTL5AXD/JlkjEyXC2A0Gn0En+8hEgea8JzkGvZhCr2h/3mQafAF
+         PFtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=T8rNmdfGQpLyT9LR1PlSucPj1KAkeGsYwmxlQxDnSLI=;
-        b=rls5w5t5KcCj9l8AMvJhheIJrntBN/H1R5fY2sSNWKWSDnW/pd8UEiE1O7ed7eUjMQ
-         nzloZpYk3TURy4iOr0Apicr6L1+KxLxS45bK2QfeAtsPWnqZ7My8nEp81Viqeyav2nPX
-         SaIIsZfkaHobz9Q0O7hZ5nv/Zm6igMoi33w2YHQrgLw5sM7jZ0nztm11xABzFlQcMc+X
-         bx/QeKXyT9kbTCo2nO0MawaqjyzQE5b9ByhH4KbnB9vf4elrvcGYZZIL0v6qkDTdTfhC
-         eb1VJKHiymzIH0O7PpkcPrsX31Cgmv8EXlrUR5xBVeRl48XFSrREhocs+qHt4YOFU5Nr
-         SkEg==
-X-Gm-Message-State: ACgBeo3jS+UYZcKEJwdjrieyLM2d24f8/jaKMmd90qUF4Qyq02Fhobw8
-        JsxeitjyU+td3DNy8NRFS9AYKQ==
-X-Google-Smtp-Source: AA6agR6wuDSwNpJO7sX9bE+MUbq7BFPZE72HpVs62s7NS6I5udUt1KcwXlyjOTAa/6+TRhKTd/fxMA==
-X-Received: by 2002:ac2:43d4:0:b0:48a:f6bf:1185 with SMTP id u20-20020ac243d4000000b0048af6bf1185mr5938168lfl.197.1659939436119;
-        Sun, 07 Aug 2022 23:17:16 -0700 (PDT)
+        bh=XC78ZDlakVYcKsRbmvJPak0U0EpBMvZ3QPItIdCOy78=;
+        b=afmNwMKcTlDLS6+AertnB2Bc9rnzQdQTKcJyOLhuobHKp6TXLAWlYzUJrDqTpNTjX8
+         qCO0B4lZRNtj06CRYMYt+3VOhOVJPtW2j62Q76oaZsmTP0fIFwAMsTFyXds8QzvR46WS
+         TdWTzQWBPwMJwByy0E8YAR0k9mO9rVnzzezu8H3L+Fvaij7TG0BY9jcdCdjDf5tHj/TR
+         Idwwu17jEx+JF5G2gv7DDeXpZSesz0psTTDtcyOsLgzi1iwWBDx0EnqBlDu6IlhAfxpD
+         7vDv8KyrbpaZf+i0PNwY45wWcdnbl8BeaLI7ZFh6pxjetP8LaZttdJk7QK0b+Ydggspb
+         xEgA==
+X-Gm-Message-State: ACgBeo2rlrl1DpIBkdPLrjkvKjJHB9QyE8wlaPCLoiQaOfYXT4YOQdVg
+        3Eu0Ki1uakzIQZZVJnI1j8mAfkBmrO494R5A
+X-Google-Smtp-Source: AA6agR7OZmOpXS7+02tNqFitUFXXGQkqNUYoDp/ZzRjdPwPpDTOkj/3epSojRdpeY2k8fI2W5HiwSw==
+X-Received: by 2002:a05:6512:2023:b0:48a:f7e5:8ca2 with SMTP id s3-20020a056512202300b0048af7e58ca2mr6500767lfs.592.1659939649359;
+        Sun, 07 Aug 2022 23:20:49 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id f12-20020a056512360c00b0047f77eb8f0csm1310277lfs.36.2022.08.07.23.17.15
+        by smtp.gmail.com with ESMTPSA id f37-20020a0565123b2500b0048b29b24761sm1310605lfv.91.2022.08.07.23.20.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Aug 2022 23:17:15 -0700 (PDT)
-Message-ID: <fe04e8ab-f8de-2c03-17e8-8960e5b460af@linaro.org>
-Date:   Mon, 8 Aug 2022 09:17:14 +0300
+        Sun, 07 Aug 2022 23:20:48 -0700 (PDT)
+Message-ID: <09264520-15fc-fd35-c1d6-9e9d0230ea4a@linaro.org>
+Date:   Mon, 8 Aug 2022 09:20:47 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH V3 5/6] arm64: dts: meson: add S4 Soc Peripheral clock
- controller in DT
+Subject: Re: [PATCH v2] dt-binding: ipmi: add fallback to npcm845 compatible
 Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-References: <20220805085716.5635-1-yu.tu@amlogic.com>
- <20220805085716.5635-6-yu.tu@amlogic.com>
- <60f30470-ca14-1e12-3ed2-7b34c7a93f8a@linaro.org>
- <759c681e-ec03-4230-b34e-0b2ee67ac870@amlogic.com>
+To:     minyard@acm.org, Tomer Maimon <tmaimon77@gmail.com>
+Cc:     avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        jic23@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, openbmc@lists.ozlabs.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220804181800.235368-1-tmaimon77@gmail.com>
+ <20220805115827.GG3834@minyard.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <759c681e-ec03-4230-b34e-0b2ee67ac870@amlogic.com>
+In-Reply-To: <20220805115827.GG3834@minyard.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,22 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/08/2022 11:36, Yu Tu wrote:
->>> @@ -100,6 +102,30 @@ clkc_pll: pll-clock-controller@8000 {
->>>   				#clock-cells = <1>;
->>>   			};
->>>   
->>> +			clkc_periphs: periphs-clock-controller {
+On 05/08/2022 13:58, Corey Minyard wrote:
+> On Thu, Aug 04, 2022 at 09:18:00PM +0300, Tomer Maimon wrote:
+>> Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+>> string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
 >>
->> Node names should be generic, so "clock-controller"
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
 >>
->> You miss here unit address. Test your DTS with dtbs check and with
->> regular compile with W=1.
-> I will change to clkc_periphs: clock-controller@0 {.
-> Is that okay?
+>> diff --git a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+>> index cbc10a68ddef..4fda76e63396 100644
+>> --- a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+>> +++ b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+>> @@ -7,7 +7,7 @@ used to perform in-band IPMI communication with their host.
+>>  Required properties:
+>>  - compatible : should be one of
+>>      "nuvoton,npcm750-kcs-bmc"
+>> -    "nuvoton,npcm845-kcs-bmc"
+>> +    "nuvoton,npcm845-kcs-bmc", "nuvoton,npcm750-kcs-bmc"
+> 
+> This is just wrong.  The compatible is supposed to identify the device,
+> not the board the device is on.  I think compatible here should be
+> "npcm7xx-kcs-bmc", and just use that everywhere.  It's fine if that is
 
-I cut the context, so if "0" was the value in reg, then it is OK.
+No, because you propose to use wildcards as compatible which is not
+correct. Compatibles must be specific.
 
 Best regards,
 Krzysztof
