@@ -2,49 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A667F58CA7D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 16:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6931558CA83
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 16:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243391AbiHHOZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 10:25:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54616 "EHLO
+        id S243515AbiHHO0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 10:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243635AbiHHOZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 10:25:55 -0400
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991722AC4;
-        Mon,  8 Aug 2022 07:25:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-        t=1659968749; bh=tQJR0APZve8GyPCYp1vfEqZlsyI/nEE7VyB1CAlKPeI=;
-        h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-        b=f818sH6UcK1WUegmdhIZbwewDaHR1AEl0lKmQ29R9MWgjp6OrIEhLiAaQpyhNjYU5
-         DezgoSLvqLXib3CofzfF8KmS4fgK86zCENkh8uBmTjbx2SllWSEPjqYYi6SZRuG3vw
-         RJ9B4vZhWQz7Uk2MaAcrfN9mt6y9Qhqht6wCa8qI=
-Date:   Mon, 8 Aug 2022 16:25:49 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To:     Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        heiko@sntech.de, martijn@brixit.nl, ayufan@ayufan.eu,
+        with ESMTP id S243614AbiHHO0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 10:26:32 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D93F92DEC;
+        Mon,  8 Aug 2022 07:26:31 -0700 (PDT)
+Received: from notapiano (unknown [146.70.107.217])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 9064B6601C2B;
+        Mon,  8 Aug 2022 15:26:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1659968790;
+        bh=Lmjj/9K8hJ+k57oyBTvp50eiDRhA1CHDdzzZVR6NtzI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FRPEtsltcdWXIRiiNjCASxDq9fs5Y6Ne/ysFGC4LQbfgq9f7giVHJYbJOdK6tB4x+
+         /AvVFGJ9zfg87z7cNnaD51MqHIrWGVK6ZTaUa5JK4PbeGm9aGd1Fsnv7xZi5D4MAKZ
+         dH023pAzCEP9IN7TAC5Hr1XFEkuoRHL7Vru0PFaacFc5yBwLPJWIddV73lQVTotwti
+         c4/qXZlDBkXwgN+vCzc8cTgtybeF8SEXx2VrczXoaAngd7IQk2HG7QyXBbIzAxDlbd
+         f9gPWVA0JafEaBFG627bOKOcw97ehWDWPyZySA1s2QQNFQL0nXQwEVqz0kd3e9zlED
+         OfrwLpyXxjGaw==
+Date:   Mon, 8 Aug 2022 10:26:24 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Samuel Dionne-Riel <samuel@dionne-riel.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: rockchip: Add RK3399-T opp
-Message-ID: <20220808142549.tdoc76vrcqcf2dxu@core>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        martijn@brixit.nl, ayufan@ayufan.eu, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Samuel Dionne-Riel <samuel@dionne-riel.com>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20220805234411.303055-1-tom@tom-fitzhenry.me.uk>
- <20220805234411.303055-2-tom@tom-fitzhenry.me.uk>
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>, hsinyi@chromium.org
+Subject: Re: [PATCH v13 1/1] arm64: dts: Add MediaTek MT8186 dts and
+ evaluation board and Makefile
+Message-ID: <20220808142624.rdwx7gh5ntlr6oy2@notapiano>
+References: <20220802085152.31284-1-allen-kh.cheng@mediatek.com>
+ <20220802085152.31284-2-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20220805234411.303055-2-tom@tom-fitzhenry.me.uk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220802085152.31284-2-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -54,170 +61,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Sat, Aug 06, 2022 at 09:44:09AM +1000, Tom Fitzhenry wrote:
-> From: Samuel Dionne-Riel <samuel@dionne-riel.com>
+On Tue, Aug 02, 2022 at 04:51:52PM +0800, Allen-KH Cheng wrote:
+> Add basic chip support for MediaTek MT8186.
 > 
-> These tables were derived from the regular RK3399 table, by dropping
-> entries exceeding recommended operating conditions from the datasheet,
-> and clamping the last exceeding value where it made sense.
+> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
 
-Do we really need to duplicate the whole OPP table of rk3399-opp.dtsi
-just to disable a few top opp## entries?
+Reviewed-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
-This will make it more annoying to add PVTM/eFuse leakage based voltage
-selection support later on, because then there would have to be identical
-multi-level operating points across multiple files. And that sounds like
-a LOT of dupplication for little benefit.
-
-Also Pinephone Pro has RK3399S not -T. RK3399 seems to be RK3399 selected for
-low leakage (values I've seen from eFuses indicate the leakage is half that of
-RK3399 available in Pinebook Pro)
-
-I'd suggest just adding references to select operating point nodes that
-are "too much" and disabling them with status = "disabled". This
-can be done from the pinephone device tree file directly.
-
-Otherwise we'll eventually end up with several files containing
-something like this [1] and only differing in absence of some opp## nodes
-and not their actual useful content.
-
-[1] https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boot/dts/rockchip/rk3399-opp.dtsi#L6
-
-kind regards,
-	o.
-
-> Signed-off-by: Samuel Dionne-Riel <samuel@dionne-riel.com>
-> ---
->  .../arm64/boot/dts/rockchip/rk3399-t-opp.dtsi | 118 ++++++++++++++++++
->  1 file changed, 118 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
-> new file mode 100644
-> index 0000000000000..ec153015d9d13
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
-> @@ -0,0 +1,118 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2016-2017 Fuzhou Rockchip Electronics Co., Ltd
-> + * Copyright (c) 2022 Samuel Dionne-Riel <samuel@dionne-riel.com>
-> + */
-> +
-> +/ {
-> +	cluster0_opp: opp-table-0 {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp00 {
-> +			opp-hz = /bits/ 64 <408000000>;
-> +			opp-microvolt = <825000 825000 925000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp01 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <825000 825000 925000>;
-> +		};
-> +		opp02 {
-> +			opp-hz = /bits/ 64 <816000000>;
-> +			opp-microvolt = <850000 850000 925000>;
-> +		};
-> +		opp03 {
-> +			opp-hz = /bits/ 64 <1008000000>;
-> +			opp-microvolt = <925000 925000 925000>;
-> +		};
-> +	};
-> +
-> +	cluster1_opp: opp-table-1 {
-> +		compatible = "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp00 {
-> +			opp-hz = /bits/ 64 <408000000>;
-> +			opp-microvolt = <825000 825000 1150000>;
-> +			clock-latency-ns = <40000>;
-> +		};
-> +		opp01 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <825000 825000 1150000>;
-> +		};
-> +		opp02 {
-> +			opp-hz = /bits/ 64 <816000000>;
-> +			opp-microvolt = <825000 825000 1150000>;
-> +		};
-> +		opp03 {
-> +			opp-hz = /bits/ 64 <1008000000>;
-> +			opp-microvolt = <875000 875000 1150000>;
-> +		};
-> +		opp04 {
-> +			opp-hz = /bits/ 64 <1200000000>;
-> +			opp-microvolt = <950000 950000 1150000>;
-> +		};
-> +		opp05 {
-> +			opp-hz = /bits/ 64 <1416000000>;
-> +			opp-microvolt = <1025000 1025000 1150000>;
-> +		};
-> +		opp06 {
-> +			opp-hz = /bits/ 64 <1500000000>;
-> +			opp-microvolt = <1100000 1100000 1150000>;
-> +		};
-> +	};
-> +
-> +	gpu_opp_table: opp-table-2 {
-> +		compatible = "operating-points-v2";
-> +
-> +		opp00 {
-> +			opp-hz = /bits/ 64 <200000000>;
-> +			opp-microvolt = <825000 825000 975000>;
-> +		};
-> +		opp01 {
-> +			opp-hz = /bits/ 64 <297000000>;
-> +			opp-microvolt = <825000 825000 975000>;
-> +		};
-> +		opp02 {
-> +			opp-hz = /bits/ 64 <400000000>;
-> +			opp-microvolt = <825000 825000 975000>;
-> +		};
-> +		opp03 {
-> +			opp-hz = /bits/ 64 <500000000>;
-> +			opp-microvolt = <875000 875000 975000>;
-> +		};
-> +		opp04 {
-> +			opp-hz = /bits/ 64 <600000000>;
-> +			opp-microvolt = <925000 925000 975000>;
-> +		};
-> +	};
-> +};
-> +
-> +&cpu_l0 {
-> +	operating-points-v2 = <&cluster0_opp>;
-> +};
-> +
-> +&cpu_l1 {
-> +	operating-points-v2 = <&cluster0_opp>;
-> +};
-> +
-> +&cpu_l2 {
-> +	operating-points-v2 = <&cluster0_opp>;
-> +};
-> +
-> +&cpu_l3 {
-> +	operating-points-v2 = <&cluster0_opp>;
-> +};
-> +
-> +&cpu_b0 {
-> +	operating-points-v2 = <&cluster1_opp>;
-> +};
-> +
-> +&cpu_b1 {
-> +	operating-points-v2 = <&cluster1_opp>;
-> +};
-> +
-> +&gpu {
-> +	operating-points-v2 = <&gpu_opp_table>;
-> +};
-> -- 
-> 2.37.1
-> 
+Thanks,
+Nícolas
