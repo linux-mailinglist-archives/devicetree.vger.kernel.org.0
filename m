@@ -2,60 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89BE858CBFC
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 18:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE3558CC05
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 18:19:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243758AbiHHQRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 12:17:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47734 "EHLO
+        id S243519AbiHHQTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 12:19:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243960AbiHHQPi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 12:15:38 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA6CAB871;
-        Mon,  8 Aug 2022 09:15:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9B406B80FE4;
-        Mon,  8 Aug 2022 16:15:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DE6EC433C1;
-        Mon,  8 Aug 2022 16:15:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659975334;
-        bh=XSBNzbT6LXKAr8IpvipaSnA2f5Z9VpcdM9dEEX8beb8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=brRulXjV7S/0t0z/EaJxObEiPu1kZTXIMbkxiRKI61TYA7zex7B53B55Cr4qqH0yU
-         TSN3MqtwvcbfEYL7PP5SNxJGCiTjvOhDiOPKWeYIZOV+0rGXzXJAYwxNMNQKDxhQC7
-         Swq8XleUL3JYsZfEDzTpx6eS2SbWWJAI0U5G6JByAstSB71/CJrzB9H+/WpzUmLnfL
-         XNgvePW9QpveDKEk2towuejHl9LXrR0PfX5zk2GSlEskEzYRxKRQMnoCtEWHr6Bazu
-         vdd1euNH1wHIZqwME/l3M7mgCVCeNFShlu5wMc6zvUTPvWL+GM2YOn96+j+G+L9oTt
-         putHF/JjQNwSw==
-Date:   Mon, 8 Aug 2022 17:15:28 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Patrice CHOTARD <patrice.chotard@foss.st.com>
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-spi@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        christophe.kerello@foss.st.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] spi: stm32_qspi: Add transfer_one_message() spi
- callback
-Message-ID: <YvE2oN7EDDFLlxyv@sirena.org.uk>
-References: <20220808074051.44736-1-patrice.chotard@foss.st.com>
- <20220808074051.44736-3-patrice.chotard@foss.st.com>
- <YvEP15/7KmQGyPgL@sirena.org.uk>
- <bbe8f91e-35f4-fe80-4b6e-25d21a6547fc@foss.st.com>
+        with ESMTP id S242955AbiHHQTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 12:19:46 -0400
+Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9208CE32
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 09:19:43 -0700 (PDT)
+Received: by mail-qt1-x82b.google.com with SMTP id z3so6858180qtv.5
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 09:19:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=TMxAwwBuDIuNTxYXTvn6eaPztP+oVubZ7rDA0wooS+Q=;
+        b=II9WETClrsRAiCDqhnZmFzp1dBw++qogq2DHDbZTVQ6u1MGeIW8LBDr6DuqzJJbmRr
+         fEa9bgZTFe1Kl6rpEnyKMRbAEoMxDKm3NQawfMCiPvmDEdM+KYjh3aXWnr/aEIoyfEZf
+         lUL6JxZrVrn+VMSQLB1m6LOptKn/U10O5EBdvS3QAcWV1iWuFI2eNgKcEXFCg4i2rVBd
+         N/m4/qaF2eY3Da+9tut1Aa6ZwxQ/+bOziUg7Zu5Gio9/kPI+CbZPjCVAPe7vAyZp1UBc
+         2nYLWSozLq4iYAtFvyRW5fIevEWig+KzhDxt1Ct7RFKrZkVxVwO9miw6IE2U0/Rez0z0
+         IX5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=TMxAwwBuDIuNTxYXTvn6eaPztP+oVubZ7rDA0wooS+Q=;
+        b=w3DjWoL+ga6hFNUDvkNBDMsuKsP43J7Vtm5KSSjf8JpV+2Exu0MnXI/infY88AGU+h
+         8R41rw2bqQokBIi3ZmRqbIbVYCRJmVjC/ECkAs5yIwIJJrFQx9ToIdfWw2gNpYWbGMR7
+         xHNi+QN5Upt6yNn6NrpangQ6cOrMeMRMVaKciN6Ki0iq1cs1uR+xEJCZzqO+v9p9iBWp
+         LI9AYquUF3Mfup+IAnTWZ2yf/c2sHXDyvgKbKq4hmkhhAsbr8QAJi/efXraLqQ8FPPto
+         MSY4ahC/GeWWdsqFvKjT6k8uKAPn05sAj/NxIO+4OB4BZ+J+lkQepfpCGruuyi8kr/X0
+         +TlQ==
+X-Gm-Message-State: ACgBeo2FgE588x3UHRII7JTGFzrzJtZRrBgiAUZWewav4BtzOnpuVWmu
+        KirOuuTF4qtnkPv1ifB/pcEX1g==
+X-Google-Smtp-Source: AA6agR7XpylISJIhNtARrNWh9HAl2hX/LKk2L4+LIK4bFsg8V4DIyTe58ZP2EqdcKK84EuzKnCkQ9w==
+X-Received: by 2002:ac8:5ad0:0:b0:342:fc73:2aa4 with SMTP id d16-20020ac85ad0000000b00342fc732aa4mr3071075qtd.207.1659975582802;
+        Mon, 08 Aug 2022 09:19:42 -0700 (PDT)
+Received: from fedora ([23.82.142.208])
+        by smtp.gmail.com with ESMTPSA id y1-20020a05620a44c100b006b8c575ce27sm4105856qkp.109.2022.08.08.09.19.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Aug 2022 09:19:41 -0700 (PDT)
+Date:   Mon, 8 Aug 2022 12:19:39 -0400
+From:   William Breathitt Gray <william.gray@linaro.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mranostay@ti.com
+Subject: Re: [PATCH v3 2/2] iio: time: capture-tiecap: capture driver support
+ for ECAP
+Message-ID: <YvE3m+jLPuLvXXdS@fedora>
+References: <20220728175124.468461-1-jpanis@baylibre.com>
+ <20220728175124.468461-3-jpanis@baylibre.com>
+ <20220731164116.30e91f34@jic23-huawei>
+ <11b7436b-5c31-671e-ba77-435fe8e3b767@baylibre.com>
+ <98d17617-72b5-6330-d4f5-1bece928ceab@baylibre.com>
+ <YvBZQsiAm6f3yxME@fedora>
+ <d47c842b-579d-b119-73f9-e8c95984b30b@baylibre.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uC8gnb5PKUmB6mjc"
+        protocol="application/pgp-signature"; boundary="6X5vf6Fz1F42Rx02"
 Content-Disposition: inline
-In-Reply-To: <bbe8f91e-35f4-fe80-4b6e-25d21a6547fc@foss.st.com>
-X-Cookie: Flee at once, all is discovered.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <d47c842b-579d-b119-73f9-e8c95984b30b@baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,39 +80,190 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---uC8gnb5PKUmB6mjc
+--6X5vf6Fz1F42Rx02
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 08, 2022 at 06:09:51PM +0200, Patrice CHOTARD wrote:
-> On 8/8/22 15:29, Mark Brown wrote:
-> > On Mon, Aug 08, 2022 at 09:40:50AM +0200, patrice.chotard@foss.st.com wrote:
+On Mon, Aug 08, 2022 at 10:58:22AM +0200, Julien Panis wrote:
+> On 08/08/2022 02:30, William Breathitt Gray wrote:
+> > Hi Julien,
+> >=20
+> > I've taken a cursory look over the TI ECAP reference guide and your
+> > descriptions in this thread. I think a device driver for this would fit
+> > better in the Counter subsystem than IIO.
+> >=20
+> > First I want to correct a minor misunderstanding: the "timestamp"
+> > member of struct counter_event is simply a way to identify Counter
+> > events on the system as a way of grouping multiple Counter watches. In
+> > other words, the "timestamp" member here represents when a Counter event
+> > was detected by the system, not when an event was logged on the counter
+> > device hardware. Instead, hardware timestamps such as the CAPx registers
+> > would be provided by the "value" member of struct counter_event.
+> >=20
+> > Now, I have a few ideas for how we could expose the timestamps using a
+> > Counter device driver, but first I want to make sure I understand
+> > correctly what's happening in this device. If I understand correctly, we
+> > have the following device components:
+> >=20
+> > * CTR: 32-bit counter timer
+> > * Mod4: 2-bit counter
+> > * CAP1-CAP4: four 32-bit registers, each indepedently store a timestamp
+> > * ECAP: input signal providing event trigger edges
+> >=20
+> > Four edge polarities are configured corresponding to each CAPx register,
+> > yet the input signal is still the same single ECAP pin. The event that
+> > is fired is instead determined by the Mod4 counter: when Mod4 is 0 and
+> > the edge of ECAP matches the polarity configured for CAP1 then an event
+> > is triggered which saves the current CTR value to CAP1 and increments
+> > Mod4 to 1, etc.
+> >=20
+> > Is my understanding of how this device behaves correct?
+>=20
+> Hi William. Thank you for your help.
+> Yes, your understanding of how this device behaves is correct.
+>=20
+> >=20
+> > If so, then one possible way to represent this device in the Counter
+> > sysfs tree is something like this:
+> >=20
+> > * CTR: /sys/bus/counter/devices/counterX/count0/count
+> > * Mod4: /sys/bus/counter/devices/counterX/count1/count
+> > * CAP1: /sys/bus/counter/devices/counterX/count1/cap1
+> > * CAP2: /sys/bus/counter/devices/counterX/count1/cap2
+> > * CAP3: /sys/bus/counter/devices/counterX/count1/cap3
+> > * CAP4: /sys/bus/counter/devices/counterX/count1/cap4
+> > * ECAP: /sys/bus/counter/devices/counterX/signal0/signal
+> > * polarity1: /sys/bus/counter/devices/counterX/signal0/cap1_polarity
+> > * polarity2: /sys/bus/counter/devices/counterX/signal0/cap2_polarity
+> > * polarity3: /sys/bus/counter/devices/counterX/signal0/cap3_polarity
+> > * polarity4: /sys/bus/counter/devices/counterX/signal0/cap4_polarity
+> >=20
+> > This is just a tentative arrangement (you could also include "enable"
+> > attributes as well), but it should give you an idea of how it could be
+> > organized.
+> >=20
+> > In your driver, you could then use counter_push_event() whenever you get
+> > an event triggered. In userspace, your application will add Counter
+> > watches for the CAPx registers they want. When an event triggers,
+> > userspace can then received all four CAP register values at the same
+> > time via the respective /dev/counterX character device node.
+> >=20
+> > Would this design work for your needs?
+>=20
+> Yes, that would work for my needs.
+> The "how" is not fully clear to me yet, since I never used counter
+> subsystem. But the
+> best way to understand better how it works is probably to start working w=
+ith
+> it. :-)
+> So, next patch version will be based on counter subsystem.
 
-> >> +	ret = pm_runtime_get_sync(qspi->dev);
-> >> +	if (ret < 0) {
-> >> +		pm_runtime_put_noidle(qspi->dev);
-> >> +		return ret;
-> >> +	}
+The Counter subsystem is relatively nascent so the number of existing
+Counter device drivers to study is unfortunately sparse. If you
+encounter any trouble along the way as you work on this, please don't
+hestitate to reach out and I'll be happy to answer any questions you may
+have. That said, here are some more hints that can help guide you. :-)
 
-> > Use the core runtime PM, there should be no need to open code.
+Although we've been using CAPx to refer to these registers, in the
+context of sysfs it'll be better to call the attributes "capture1",
+"capture2", etc.; that will make their use as capture buffers more
+obvious. Furthermore, despite my previous example, I think it's better
+to have these exist underneath the CTR hierarchy rather than Mod4
+because they are captures of the CTR value:
 
-> Right, i will use pm_runtime_resume_and_get() instead.
+* CTR: /sys/bus/counter/devices/counterX/count0/count
+* CAP1: /sys/bus/counter/devices/counterX/count0/capture1
+* CAP2: /sys/bus/counter/devices/counterX/count0/capture2
+* CAP3: /sys/bus/counter/devices/counterX/count0/capture3
+* CAP4: /sys/bus/counter/devices/counterX/count0/capture4
 
-There's also core SPI support for calling this - set auto_runtime_pm.
+In your device driver, you would define a struct counter_count to
+represent CTR. In this struct counter_count there is an "ext" member
+where you provide an array of struct count_comp. Each CAPx will have a
+corresponding struct count_comp; it'll look something like this::
 
---uC8gnb5PKUmB6mjc
+        static struct counter_comp ctr_count_ext[] =3D {
+                COUNTER_COMP_COUNT_U64("capture1", cap1_read, NULL),
+                COUNTER_COMP_COUNT_U64("capture2", cap2_read, NULL),
+                COUNTER_COMP_COUNT_U64("capture3", cap3_read, NULL),
+                COUNTER_COMP_COUNT_U64("capture4", cap4_read, NULL),
+        };
+
+As you already know, counter_push_event() lets you push Counter events
+in your interrupt handler. I recommend introducing a new event type
+under enum counter_event_type in the include/uapi/linux/counter.h header
+file; something like COUNTER_EVENT_CAPTURE should be descriptive enough.
+
+The "channel" member of struct counter_watch refers to Counter event
+channels; The purpose here is to allow us to support concurrent events
+of the same type (e.g. two COUNTER_EVENT_OVERFLOW but for different
+Counts). If I understand the TI ECAP device correctly, we'll be getting
+a COUNTER_EVENT_CAPTURE event whenever a CAPx register is updated with a
+new capture. It's up to you if you want to group them under the same
+channel or separate channels for each CAPx; you would just pass the
+channel in counter_push_event() to indicate which COUNTER_EVENT_CAPTURE
+event is being handled.
+
+Finally, you can take a look at tools/counter/counter_example.c as an
+example userspace application. The interesting bits for you are
+COUNTER_ADD_WATCH_IOCTL/COUNTER_ENABLE_EVENTS_IOCTL ioctl calls and
+reading the event data out of the queue. You will need to first define
+an array of struct counter_watch indicating that you want to watch the
+"capture" attributes of the CTR count; something like this (assuming
+event channel 0)::
+
+        /* assuming capture attributes are under the count0 directory */
+        #define CAPTURE_WATCH(_id, _channel) \
+        { \
+                .component.type =3D COUNTER_COMPONENT_EXTENSION, \
+                .component.scope =3D COUNTER_SCOPE_COUNT, \
+                .component.parent =3D 0, \
+                .component.id =3D _id, \
+                .event =3D COUNTER_EVENT_CAPTURE, \
+                .channel =3D _channel, \
+        }
+        /* get id from respective "captureX_component_id" attributes */
+        static struct counter_watch watches[4] =3D {
+                CAPTURE_WATCH(42, 0),
+                CAPTURE_WATCH(43, 0),
+                CAPTURE_WATCH(44, 0),
+                CAPTURE_WATCH(45, 0),
+        };
+
+Later you add the watches, enable events, and finally read the event
+data as it arrives::
+
+	struct counter_event event_data[4];
+       =20
+        ioctl(fd, COUNTER_ADD_WATCH_IOCTL, &watches[0]);
+        ioctl(fd, COUNTER_ADD_WATCH_IOCTL, &watches[1]);
+        ioctl(fd, COUNTER_ADD_WATCH_IOCTL, &watches[2]);
+        ioctl(fd, COUNTER_ADD_WATCH_IOCTL, &watches[3]);
+	ioctl(fd, COUNTER_ENABLE_EVENTS_IOCTL);
+       =20
+	for (;;) {
+	        read(fd, event_data, sizeof(event_data));
+		printf("cap1: %llu", event_data[0].value);
+		printf("cap2: %llu", event_data[1].value);
+		printf("cap3: %llu", event_data[2].value);
+		printf("cap4: %llu", event_data[3].value);
+	}
+
+If you want to keep track of channel, you can take a look under the
+event_data[i].watch.channel member.
+
+William Breathitt Gray
+
+--6X5vf6Fz1F42Rx02
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLxNp8ACgkQJNaLcl1U
-h9AyFAf/c/JlPakgNi2pE4cLX1TuxOSGJ8lGkAMOizwJksSpHV6k+e1iN+dhc9NK
-fSxOjFkXL6gKyzPwpoO1hgr09RdmibswfrpsqZ9S8YdZ3F2DTZusCayYJKM7qHku
-Kjh8ZcTqk1rWhJqzMB6I6V+zRzJgvFkim48znIMJ1iNdkvHjS0NbTAhy3spmCR5D
-yUu2eejgpD3rgKTMd92KOXKabBMUAcVekHCXOjVrcx3Z2Yr9C4X3+TXY6N3eh5SS
-+v6OMOjAHGlv8msMj3t+b68Zt4+kQ0/IVnIRHenhU1rmOL3PAKH7+FtTFchVA0UT
-PphizwOFmcTie/b8CHLMS32uIYEbKA==
-=fz/n
+iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYvE3mwAKCRC1SFbKvhIj
+K/WxAP0RwkJd1BCye6EEjgg5pbBwk0uqoySGkHk/jt05NIx7nQD9Hl45FUL/NSy1
+vPrsUe9n5lcrJ4pR8w+USLnvPkCfJQ8=
+=Swu5
 -----END PGP SIGNATURE-----
 
---uC8gnb5PKUmB6mjc--
+--6X5vf6Fz1F42Rx02--
