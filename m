@@ -2,157 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5824B58C527
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 10:58:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19C2358C536
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 11:01:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239196AbiHHI63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 04:58:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41066 "EHLO
+        id S236621AbiHHJBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 05:01:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233665AbiHHI62 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 04:58:28 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F97F10CF
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 01:58:26 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id j7so10113805wrh.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 01:58:26 -0700 (PDT)
+        with ESMTP id S234370AbiHHJBf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 05:01:35 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A54A11C26
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 02:01:32 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id z6so4254175lfu.9
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 02:01:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :content-language:from:in-reply-to:content-transfer-encoding;
-        bh=GQr0TU/IAVWDYyerbKDk2A4nRN/cuRVyH3JCTSeJRIM=;
-        b=EuBRrAcGUlDphP9CSvUyKBNPjkzGNXI7F3QQF5sh29Yxwb0+f6aSzzYondl0RNGGA0
-         AK8yTSwb/BGA/3uMesmUuey5epWFb/Ainl7SLizlmBi+U4CAXfarqQ1wdZ9htmTPW6MJ
-         9rcM4TE34R6rWF/GQKJFuAgm5sTJm43v81ET61GlEhb7uNCMlN6yEQoVX1Z3ar6BOuLC
-         fW1wYRzRZSHB1cXimCVuIW4cKQhh7OYArOgSH5F84mh76Rl19ImJg7AoSb6V/cKVkZK6
-         DSa7FhhyILldxbzYOYzjj5lQapQGkshTBLKjEcsZevVWy2r+eV8B8rFvTPvZyWr3ti3k
-         XveQ==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=tAR6MlMDHmDQO73lbvVKnLotbZsWUuiG6QGGNmumCB8=;
+        b=gWVR2Kps4D8nn0alN5B/hZGj94MWs7kU7Gwqnnl2BvuVMokaEcekKRrxTI5hOCdM7K
+         PhgHi4f15Zc1B7KE8+KVwzj6YPXUPs4qDSzBYRNmcEhc0d1FG3Ay90Dh3A6U70M/4mm2
+         SP3fmkuUL1t/hD4oHqurrdKK+bN3wDgIx7b7HS0vy+/Hpo95vdj6sK6rey97Jf022eDq
+         wol4+vnqdptvdGx0D4jEZTmFdLSe5VPfWINbZAAa7nM/tLL6+tXSQocSdFli84RofZ5j
+         LZM5IefgJuEsPr7IG3MV+NXR8Artn3/kDPgFGBKdpu6BWQeBB/v9MbPySJctKuwK2Dp+
+         tRcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:content-language:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=GQr0TU/IAVWDYyerbKDk2A4nRN/cuRVyH3JCTSeJRIM=;
-        b=zxqlM4nF+8L/Eikto5bVchXz18ThukDQKOMak1/yFdypQqo7HVdQxd/XAwiqNaInv0
-         2SPKNte33WrtyrZ2DiHWcpExJ8oCYp5qvDJVLTwA3Te/sLlwMmDKq7JcVM4cZZtwetHb
-         zbyrZtbxVjgufrhwc8UIN/lg2qSz1lQ2y+VGNzIKP9Oo8G6tQdomk7dvNX0g6E+Q9cG8
-         gIfz+/zxTz9IBP5BQ9QSjpMvT3wqrTSXCE/iTSJDBayxnaW+Zjr2nRacFjpW3roWO0ov
-         K2cinhh70otHXiMsD5+kNYGmm+DA8i9ettTFpoSll+BFd+0q+DY6vZDgxtMIQUl6H4jh
-         7FUw==
-X-Gm-Message-State: ACgBeo0ncfSLIm/81/WGdElev67Hs4QQkFapfbqpyS3+0zytFDpz2ijc
-        zqoTLxaP/kiPbJLsDaiVmq9/qA==
-X-Google-Smtp-Source: AA6agR4i2A+kqBXuCD9aj5Ri69ZxHbZNvma6EaMsn3YjRzRG8ctjqqPsyJYmw6fbBPbiUP8EyE8CuA==
-X-Received: by 2002:adf:fc88:0:b0:220:61dc:d297 with SMTP id g8-20020adffc88000000b0022061dcd297mr10341186wrr.660.1659949104853;
-        Mon, 08 Aug 2022 01:58:24 -0700 (PDT)
-Received: from [192.168.1.69] (32.31.102.84.rev.sfr.net. [84.102.31.32])
-        by smtp.gmail.com with ESMTPSA id a5-20020a1cf005000000b003a500b612fcsm16407224wmb.12.2022.08.08.01.58.23
+        bh=tAR6MlMDHmDQO73lbvVKnLotbZsWUuiG6QGGNmumCB8=;
+        b=3rZMpsP64MENaTmEPs3ChK65z8MQxK1YYKmxMNckt6Ga+cBah8y2lsRLYaeMQq+Tyb
+         F9fQMwyfBKQi4ugFQKs1RXJ8kCk/EE2+9w2Q/DXNb2FYuWr7q5FrI9oWmb4srMv2q54O
+         w9IOFKEjS974Wn/C1MQAMvUSnGi34ougL7Y4gNpsY8arMysUUoNfarnI9+zFU3+N5mtc
+         pfzjC9Sch6NhWKnHVO052hoeG6wM/If3YYhivF20eULCMvy494jZFirvaMzkdFhH6piL
+         0l7Edqxi/Yi1WbVegVseHkKaAW/baxB6TixpmFBFIr38OZ2Q9c4u8rBFq4yxbCCpD/PC
+         l6RQ==
+X-Gm-Message-State: ACgBeo0lIukBBq/vWzE06HEgATWYOzqvDgfM72cVCN8VixOaTdpowi2v
+        reGnxM8C/fm92BASEcth39LKxA==
+X-Google-Smtp-Source: AA6agR6JGWYSid7rm3XtqM4yDPbb3OxW1R/HkQ9bGdK161ybakPEk9MBDB6c00tdGP8rOZd5G05GEA==
+X-Received: by 2002:a05:6512:2201:b0:48a:7440:aaf6 with SMTP id h1-20020a056512220100b0048a7440aaf6mr6169290lfu.472.1659949290876;
+        Mon, 08 Aug 2022 02:01:30 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id 201-20020a2e09d2000000b0025e5fd96bf6sm1281379ljj.15.2022.08.08.02.01.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 01:58:24 -0700 (PDT)
-Message-ID: <d47c842b-579d-b119-73f9-e8c95984b30b@baylibre.com>
-Date:   Mon, 8 Aug 2022 10:58:22 +0200
+        Mon, 08 Aug 2022 02:01:30 -0700 (PDT)
+Message-ID: <9ad4b4a8-988e-f185-f80c-6f15f341ce8c@linaro.org>
+Date:   Mon, 8 Aug 2022 12:01:28 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.0
-Subject: Re: [PATCH v3 2/2] iio: time: capture-tiecap: capture driver support
- for ECAP
-To:     William Breathitt Gray <william.gray@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mranostay@ti.com
-References: <20220728175124.468461-1-jpanis@baylibre.com>
- <20220728175124.468461-3-jpanis@baylibre.com>
- <20220731164116.30e91f34@jic23-huawei>
- <11b7436b-5c31-671e-ba77-435fe8e3b767@baylibre.com>
- <98d17617-72b5-6330-d4f5-1bece928ceab@baylibre.com> <YvBZQsiAm6f3yxME@fedora>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: spi: stm32: Add st,dual-flash property
+ in st,stm32-qspi.yaml
 Content-Language: en-US
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <YvBZQsiAm6f3yxME@fedora>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     patrice.chotard@foss.st.com, Mark Brown <broonie@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-spi@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        christophe.kerello@foss.st.com, devicetree@vger.kernel.org
+References: <20220808074051.44736-1-patrice.chotard@foss.st.com>
+ <20220808074051.44736-2-patrice.chotard@foss.st.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220808074051.44736-2-patrice.chotard@foss.st.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08/08/2022 10:40, patrice.chotard@foss.st.com wrote:
+> From: Patrice Chotard <patrice.chotard@foss.st.com>
+> 
+> Add new property st,dual-flash which allows to use the QSPI interface as a
+> communication channel using up to 8 qspi line.
+> This mode can only be used if cs-gpios property is defined.
+> 
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> ---
+>  Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
+> index 6ec6f556182f..5e4f9109799e 100644
+> --- a/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
+> @@ -46,6 +46,14 @@ properties:
+>        - const: tx
+>        - const: rx
+>  
+> +  st,dual-flash:
+> +    type: boolean
+> +    description:
+> +      Allows to use 8 data lines in case cs-gpios property is defined.
 
+It's named dual-flash, but what if you want to use QSPI to connect for
+example to FPGA?
 
-On 08/08/2022 02:30, William Breathitt Gray wrote:
-> Hi Julien,
->
-> I've taken a cursory look over the TI ECAP reference guide and your
-> descriptions in this thread. I think a device driver for this would fit
-> better in the Counter subsystem than IIO.
->
-> First I want to correct a minor misunderstanding: the "timestamp"
-> member of struct counter_event is simply a way to identify Counter
-> events on the system as a way of grouping multiple Counter watches. In
-> other words, the "timestamp" member here represents when a Counter event
-> was detected by the system, not when an event was logged on the counter
-> device hardware. Instead, hardware timestamps such as the CAPx registers
-> would be provided by the "value" member of struct counter_event.
->
-> Now, I have a few ideas for how we could expose the timestamps using a
-> Counter device driver, but first I want to make sure I understand
-> correctly what's happening in this device. If I understand correctly, we
-> have the following device components:
->
-> * CTR: 32-bit counter timer
-> * Mod4: 2-bit counter
-> * CAP1-CAP4: four 32-bit registers, each indepedently store a timestamp
-> * ECAP: input signal providing event trigger edges
->
-> Four edge polarities are configured corresponding to each CAPx register,
-> yet the input signal is still the same single ECAP pin. The event that
-> is fired is instead determined by the Mod4 counter: when Mod4 is 0 and
-> the edge of ECAP matches the polarity configured for CAP1 then an event
-> is triggered which saves the current CTR value to CAP1 and increments
-> Mod4 to 1, etc.
->
-> Is my understanding of how this device behaves correct?
+Also how is this related to parallel-memories property?
 
-Hi William. Thank you for your help.
-Yes, your understanding of how this device behaves is correct.
-
->
-> If so, then one possible way to represent this device in the Counter
-> sysfs tree is something like this:
->
-> * CTR: /sys/bus/counter/devices/counterX/count0/count
-> * Mod4: /sys/bus/counter/devices/counterX/count1/count
-> * CAP1: /sys/bus/counter/devices/counterX/count1/cap1
-> * CAP2: /sys/bus/counter/devices/counterX/count1/cap2
-> * CAP3: /sys/bus/counter/devices/counterX/count1/cap3
-> * CAP4: /sys/bus/counter/devices/counterX/count1/cap4
-> * ECAP: /sys/bus/counter/devices/counterX/signal0/signal
-> * polarity1: /sys/bus/counter/devices/counterX/signal0/cap1_polarity
-> * polarity2: /sys/bus/counter/devices/counterX/signal0/cap2_polarity
-> * polarity3: /sys/bus/counter/devices/counterX/signal0/cap3_polarity
-> * polarity4: /sys/bus/counter/devices/counterX/signal0/cap4_polarity
->
-> This is just a tentative arrangement (you could also include "enable"
-> attributes as well), but it should give you an idea of how it could be
-> organized.
->
-> In your driver, you could then use counter_push_event() whenever you get
-> an event triggered. In userspace, your application will add Counter
-> watches for the CAPx registers they want. When an event triggers,
-> userspace can then received all four CAP register values at the same
-> time via the respective /dev/counterX character device node.
->
-> Would this design work for your needs?
-
-Yes, that would work for my needs.
-The "how" is not fully clear to me yet, since I never used counter 
-subsystem. But the
-best way to understand better how it works is probably to start working 
-with it. :-)
-So, next patch version will be based on counter subsystem.
-
->
-> William Breathitt Gray
-
+Best regards,
+Krzysztof
