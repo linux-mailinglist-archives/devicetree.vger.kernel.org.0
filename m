@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3364458CD71
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 20:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6285858CD75
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 20:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244115AbiHHSQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 14:16:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48180 "EHLO
+        id S243665AbiHHSQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 14:16:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230062AbiHHSQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 14:16:01 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3976AB7D7
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 11:16:00 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id ay36-20020a05600c1e2400b003a4e30d7995so7816833wmb.5
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 11:16:00 -0700 (PDT)
+        with ESMTP id S244156AbiHHSQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 14:16:03 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6693B7DF
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 11:16:01 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id c22so5193156wmr.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 11:16:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc;
-        bh=QRWRO8agMBm5i20KyVm3mywJyV1BaORmn3HrLI4GpCc=;
-        b=pwqMX7Q9CHrO7SpRd5ToAko8dl6oZZDH80VvBOh5clpHnWpVs8NYF+2Lkcj/Jw0LFg
-         4Xtg6KIDgW8qhTgvAPdYszHFLRiKAjIqAnt/HZ8rQXwdCG6EmEIplo+avaxIuNqeQX68
-         Zu0ZKXPRcC8uYjCkBUd8qnhxmeYOVU0p9gJWjaphj713cnryNMs6wZ7sqe/7XAb0ZjmO
-         QuevMnxxe7c8L0tEm0bcVRFPfnziEaJJPaVhkvGlU+T0WEUV8ksHddoi1B43e2szwym8
-         sTXGjTcFxw3GY781nUbWgkzvVahVhEWor/v2H2pbzTZeOyFA2KtH9304WtRPyAIdjIQw
-         XMUg==
+        bh=LxdWIrp6h2qjt0XVQVzdJXERuzfBADuhugCm++L0IwA=;
+        b=N86YZZzuDnayOOaNi0efsePGXbiSOgAKze9kj85wpmPnFsUWscz6Lt4mKGpZ+r9z4Q
+         r/p/F+B9TunZGM7AYbeUGvs29EYQCJleei5hT9/XacRD6Knr9jY5PkbaKy3OP0LdyRsU
+         Pn+NZynHTpnAeV7gkSaxUGdZpthYL5Y0BNlgtWXVxZx3svBLFoSABI3DMbXE58c0v3tB
+         +8wriagIXcoGQn/Grf3Vu4ga65fFlwxbji/Yo4/jFKGRA/XuCDmZMtb/7CyW5QfeV4Vg
+         4auHyMeFrvYg2j9VFuKZgJB8Ha3Y+DZq1ZsJT1NE9OWhF6r+SF3DQhrFQL4Z2UdP81AV
+         xpeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc;
-        bh=QRWRO8agMBm5i20KyVm3mywJyV1BaORmn3HrLI4GpCc=;
-        b=eKCL1EamqpnTimYMBlozjb2m5b9hBhcWEIDX0OxLWZJAkl8eneIy5lahrBcz8vyWob
-         Dwodomp5MjuKl5PvAMMZICLgrRBE0JmQfp6sV2T/EqOO+B9LIozfQT2IKPbPJ3EyK5L6
-         DASg06Ng3NsBYUheFZKpf7xN8PZuY9th4ZY/4B1HX3+01ny/ztZOk0vdvyDTpMpubo0c
-         +YrQHJ/xiG6dkt1VWTeknvxcG60W05MhDPFrLc1q8NC9iG1psa7UBLALvtZmHOeRcfT4
-         eOwoZXVZNs4uDP8QYh3nM/V4sP77uj66j45qLGzV8YlROJfxap0gvT6o1tzwqjEY98T2
-         6BSw==
-X-Gm-Message-State: ACgBeo2gNb6wci5V+YXdRAgeQ0bsG7dNYsAiunoSyy8LcDpRvMnQfJ3O
-        hDbilZ7SvuzlhpVSlJH+70JY/A==
-X-Google-Smtp-Source: AA6agR4Wuu50Mj+pYnt7tY3CJjHpyNSUyGeVjSHsZ5J4loZftwx36rOlwB40WstVF6ooDbr2f8BTRA==
-X-Received: by 2002:a05:600c:4f07:b0:3a3:2277:7064 with SMTP id l7-20020a05600c4f0700b003a322777064mr13267433wmq.181.1659982558784;
-        Mon, 08 Aug 2022 11:15:58 -0700 (PDT)
+        bh=LxdWIrp6h2qjt0XVQVzdJXERuzfBADuhugCm++L0IwA=;
+        b=sExALlPjkte2FrkNDhG0+kOXvvBD+/JCVP1X0qPILrVd3HE7dJfr9sP3i/8RJbK1yD
+         YzzMkT7O8paNPCZBSeSyUCgvAPDxDFk4Ikvh0SK4MGQdsr7R6aU+iqDUekbmIDO0Pvwv
+         lo2UpYCBcUhKa5n6uNHUVjJXdpf88z2T7nfGsgFgmZo5FSVxxYsvYXb/KZxOMErRgvkR
+         AoHiO3bAeaTgFthFRP2qOIsk8PoPzGYHDClGRWDVLtipHrv9eXg2ho61eIwV8ib2/42m
+         Y8Ms6h1rg8wuqaEXNzfGHitfqIG0qJR5LHXYQs9dT/WuAUfKHsabRG1jJ90jTVUDQs2N
+         +AyA==
+X-Gm-Message-State: ACgBeo0Gp4K7QW0oJX0ixRQAu4DruKuvOE6fPA6g28d74L/rZanC8iJd
+        XpulabNkrN+PekQCohaqAMi6SQ==
+X-Google-Smtp-Source: AA6agR7762jwygrYknaBhp5g+DOZxc8wyUU/dys/HAGUHbSlGQMGaOy9oH6+cmlbhZmUTQG4Hw7sWg==
+X-Received: by 2002:a05:600c:1c19:b0:3a5:51aa:d041 with SMTP id j25-20020a05600c1c1900b003a551aad041mr444559wms.172.1659982560243;
+        Mon, 08 Aug 2022 11:16:00 -0700 (PDT)
 Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id m1-20020a7bcb81000000b003a3278d5cafsm18572351wmi.28.2022.08.08.11.15.58
+        by smtp.gmail.com with ESMTPSA id c5-20020adfe705000000b0021f1522c93bsm14273227wrm.45.2022.08.08.11.15.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 11:15:58 -0700 (PDT)
+        Mon, 08 Aug 2022 11:15:59 -0700 (PDT)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Sylwester Nawrocki <s.nawrocki@samsung.com>,
@@ -60,15 +60,15 @@ Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
         linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 1/7] dt-bindings: clock: Add bindings for Exynos850 CMU_AUD
-Date:   Mon,  8 Aug 2022 21:15:57 +0300
-Message-Id: <20220808181557.10385-1-semen.protsenko@linaro.org>
+Subject: [PATCH 2/7] dt-bindings: clock: Add bindings for Exynos850 CMU_IS
+Date:   Mon,  8 Aug 2022 21:15:59 +0300
+Message-Id: <20220808181559.10438-1-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,138 +76,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CMU_AUD generates Cortex-A32 clock, bus clock and audio clocks for
-BLK_AUD. Add clock indices and binding documentation for CMU_AUD.
+CMU_IS generates CSIS, IPP, ITP, VRA and GDC clocks for BLK_IS. Add
+clock indices and bindings documentation for CMU_IS domain.
 
 Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 ---
- .../clock/samsung,exynos850-clock.yaml        | 19 ++++++
- include/dt-bindings/clock/exynos850.h         | 68 ++++++++++++++++++-
- 2 files changed, 86 insertions(+), 1 deletion(-)
+ .../clock/samsung,exynos850-clock.yaml        | 25 ++++++++++++
+ include/dt-bindings/clock/exynos850.h         | 40 ++++++++++++++++++-
+ 2 files changed, 64 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-index 80ba60838f2b..523fdfaae891 100644
+index 523fdfaae891..c9f78ae7a9fa 100644
 --- a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
 +++ b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-@@ -33,6 +33,7 @@ properties:
-     enum:
-       - samsung,exynos850-cmu-top
-       - samsung,exynos850-cmu-apm
-+      - samsung,exynos850-cmu-aud
-       - samsung,exynos850-cmu-cmgp
+@@ -38,6 +38,7 @@ properties:
        - samsung,exynos850-cmu-core
        - samsung,exynos850-cmu-dpu
-@@ -88,6 +89,24 @@ allOf:
-             - const: oscclk
-             - const: dout_clkcmu_apm_bus
+       - samsung,exynos850-cmu-hsi
++      - samsung,exynos850-cmu-is
+       - samsung,exynos850-cmu-peri
+ 
+   clocks:
+@@ -191,6 +192,30 @@ allOf:
+             - const: dout_hsi_mmc_card
+             - const: dout_hsi_usb20drd
  
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
-+            const: samsung,exynos850-cmu-aud
++            const: samsung,exynos850-cmu-is
 +
 +    then:
 +      properties:
 +        clocks:
 +          items:
 +            - description: External reference clock (26 MHz)
-+            - description: AUD clock (from CMU_TOP)
++            - description: CMU_IS bus clock (from CMU_TOP)
++            - description: Image Texture Processing core clock (from CMU_TOP)
++            - description: Visual Recognition Accelerator clock (from CMU_TOP)
++            - description: Geometric Distortion Correction clock (from CMU_TOP)
 +
 +        clock-names:
 +          items:
 +            - const: oscclk
-+            - const: dout_aud
++            - const: dout_is_bus
++            - const: dout_is_itp
++            - const: dout_is_vra
++            - const: dout_is_gdc
 +
    - if:
        properties:
          compatible:
 diff --git a/include/dt-bindings/clock/exynos850.h b/include/dt-bindings/clock/exynos850.h
-index 0b6a3c6a7c90..3dc55d4e5b9e 100644
+index 3dc55d4e5b9e..f8bf26f118c1 100644
 --- a/include/dt-bindings/clock/exynos850.h
 +++ b/include/dt-bindings/clock/exynos850.h
-@@ -58,7 +58,10 @@
- #define CLK_MOUT_CLKCMU_APM_BUS		46
- #define CLK_DOUT_CLKCMU_APM_BUS		47
- #define CLK_GOUT_CLKCMU_APM_BUS		48
--#define TOP_NR_CLK			49
-+#define CLK_MOUT_AUD			49
-+#define CLK_GOUT_AUD			50
-+#define CLK_DOUT_AUD			51
-+#define TOP_NR_CLK			52
+@@ -61,7 +61,19 @@
+ #define CLK_MOUT_AUD			49
+ #define CLK_GOUT_AUD			50
+ #define CLK_DOUT_AUD			51
+-#define TOP_NR_CLK			52
++#define CLK_MOUT_IS_BUS			52
++#define CLK_MOUT_IS_ITP			53
++#define CLK_MOUT_IS_VRA			54
++#define CLK_MOUT_IS_GDC			55
++#define CLK_GOUT_IS_BUS			56
++#define CLK_GOUT_IS_ITP			57
++#define CLK_GOUT_IS_VRA			58
++#define CLK_GOUT_IS_GDC			59
++#define CLK_DOUT_IS_BUS			60
++#define CLK_DOUT_IS_ITP			61
++#define CLK_DOUT_IS_VRA			62
++#define CLK_DOUT_IS_GDC			63
++#define TOP_NR_CLK			64
  
  /* CMU_APM */
  #define CLK_RCO_I3C_PMIC		1
-@@ -87,6 +90,69 @@
- #define CLK_GOUT_SYSREG_APM_PCLK	24
- #define APM_NR_CLK			25
+@@ -187,6 +199,32 @@
+ #define CLK_GOUT_SYSREG_HSI_PCLK	13
+ #define HSI_NR_CLK			14
  
-+/* CMU_AUD */
-+#define CLK_DOUT_AUD_AUDIF		1
-+#define CLK_DOUT_AUD_BUSD		2
-+#define CLK_DOUT_AUD_BUSP		3
-+#define CLK_DOUT_AUD_CNT		4
-+#define CLK_DOUT_AUD_CPU		5
-+#define CLK_DOUT_AUD_CPU_ACLK		6
-+#define CLK_DOUT_AUD_CPU_PCLKDBG	7
-+#define CLK_DOUT_AUD_FM			8
-+#define CLK_DOUT_AUD_FM_SPDY		9
-+#define CLK_DOUT_AUD_MCLK		10
-+#define CLK_DOUT_AUD_UAIF0		11
-+#define CLK_DOUT_AUD_UAIF1		12
-+#define CLK_DOUT_AUD_UAIF2		13
-+#define CLK_DOUT_AUD_UAIF3		14
-+#define CLK_DOUT_AUD_UAIF4		15
-+#define CLK_DOUT_AUD_UAIF5		16
-+#define CLK_DOUT_AUD_UAIF6		17
-+#define CLK_FOUT_AUD_PLL		18
-+#define CLK_GOUT_AUD_ABOX_ACLK		19
-+#define CLK_GOUT_AUD_ASB_CCLK		20
-+#define CLK_GOUT_AUD_CA32_CCLK		21
-+#define CLK_GOUT_AUD_CNT_BCLK		22
-+#define CLK_GOUT_AUD_CODEC_MCLK		23
-+#define CLK_GOUT_AUD_DAP_CCLK		24
-+#define CLK_GOUT_AUD_GPIO_PCLK		25
-+#define CLK_GOUT_AUD_PPMU_ACLK		26
-+#define CLK_GOUT_AUD_PPMU_PCLK		27
-+#define CLK_GOUT_AUD_SPDY_BCLK		28
-+#define CLK_GOUT_AUD_SYSMMU_CLK		29
-+#define CLK_GOUT_AUD_SYSREG_PCLK	30
-+#define CLK_GOUT_AUD_TZPC_PCLK		31
-+#define CLK_GOUT_AUD_UAIF0_BCLK		32
-+#define CLK_GOUT_AUD_UAIF1_BCLK		33
-+#define CLK_GOUT_AUD_UAIF2_BCLK		34
-+#define CLK_GOUT_AUD_UAIF3_BCLK		35
-+#define CLK_GOUT_AUD_UAIF4_BCLK		36
-+#define CLK_GOUT_AUD_UAIF5_BCLK		37
-+#define CLK_GOUT_AUD_UAIF6_BCLK		38
-+#define CLK_GOUT_AUD_WDT_PCLK		39
-+#define CLK_MOUT_AUD_CPU		40
-+#define CLK_MOUT_AUD_CPU_HCH		41
-+#define CLK_MOUT_AUD_CPU_USER		42
-+#define CLK_MOUT_AUD_FM			43
-+#define CLK_MOUT_AUD_PLL		44
-+#define CLK_MOUT_AUD_TICK_USB_USER	45
-+#define CLK_MOUT_AUD_UAIF0		46
-+#define CLK_MOUT_AUD_UAIF1		47
-+#define CLK_MOUT_AUD_UAIF2		48
-+#define CLK_MOUT_AUD_UAIF3		49
-+#define CLK_MOUT_AUD_UAIF4		50
-+#define CLK_MOUT_AUD_UAIF5		51
-+#define CLK_MOUT_AUD_UAIF6		52
-+#define IOCLK_AUDIOCDCLK0		53
-+#define IOCLK_AUDIOCDCLK1		54
-+#define IOCLK_AUDIOCDCLK2		55
-+#define IOCLK_AUDIOCDCLK3		56
-+#define IOCLK_AUDIOCDCLK4		57
-+#define IOCLK_AUDIOCDCLK5		58
-+#define IOCLK_AUDIOCDCLK6		59
-+#define TICK_USB			60
-+#define AUD_NR_CLK			61
++/* CMU_IS */
++#define CLK_MOUT_IS_BUS_USER		1
++#define CLK_MOUT_IS_ITP_USER		2
++#define CLK_MOUT_IS_VRA_USER		3
++#define CLK_MOUT_IS_GDC_USER		4
++#define CLK_DOUT_IS_BUSP		5
++#define CLK_GOUT_IS_CMU_IS_PCLK		6
++#define CLK_GOUT_IS_CSIS0_ACLK		7
++#define CLK_GOUT_IS_CSIS1_ACLK		8
++#define CLK_GOUT_IS_CSIS2_ACLK		9
++#define CLK_GOUT_IS_TZPC_PCLK		10
++#define CLK_GOUT_IS_CSIS_DMA_CLK	11
++#define CLK_GOUT_IS_GDC_CLK		12
++#define CLK_GOUT_IS_IPP_CLK		13
++#define CLK_GOUT_IS_ITP_CLK		14
++#define CLK_GOUT_IS_MCSC_CLK		15
++#define CLK_GOUT_IS_VRA_CLK		16
++#define CLK_GOUT_IS_PPMU_IS0_ACLK	17
++#define CLK_GOUT_IS_PPMU_IS0_PCLK	18
++#define CLK_GOUT_IS_PPMU_IS1_ACLK	19
++#define CLK_GOUT_IS_PPMU_IS1_PCLK	20
++#define CLK_GOUT_IS_SYSMMU_IS0_CLK	21
++#define CLK_GOUT_IS_SYSMMU_IS1_CLK	22
++#define CLK_GOUT_IS_SYSREG_PCLK		23
++#define IS_NR_CLK			24
 +
- /* CMU_CMGP */
- #define CLK_RCO_CMGP			1
- #define CLK_MOUT_CMGP_ADC		2
+ /* CMU_PERI */
+ #define CLK_MOUT_PERI_BUS_USER		1
+ #define CLK_MOUT_PERI_UART_USER		2
 -- 
 2.30.2
 
