@@ -2,107 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E6758C7BA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 13:42:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75ABC58C7C1
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 13:43:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238156AbiHHLm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 07:42:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46490 "EHLO
+        id S242816AbiHHLnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 07:43:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236544AbiHHLm1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 07:42:27 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DBE413D71
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 04:42:26 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id u1so12263855lfq.4
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 04:42:25 -0700 (PDT)
+        with ESMTP id S242214AbiHHLm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 07:42:59 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7844213EBD
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 04:42:57 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id w196so4974400oiw.10
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 04:42:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=pL87Fqs9PTMJ304pFnGS1YWG0FPpYwtTQJEDWykJS1Y=;
-        b=hsC2y+8dl47fq/cyB5jqNdU+9t5zOkxnPhby5pK5ozIpOHz+vbhw8qEGoCKQ+ukChK
-         AdcXQFjnSZWDHmf5JqFjmd/wWvx9zeSY0qWc7LwvYhHO8B5f7dM1sXMDz56q3m2EMnj/
-         YPqxuihQZMbpJZbqAh+xJ077M/zyM67hcjjzvVJM1sqi1nSrnBf1CKAukDInEM1/ywDy
-         qMkEjz4aUbWQiKJ3plo73b0100VDwKvCNh2Mwl0/HX7vpg0v0vcoottO+FK4Hygdyxkr
-         cnytxlUKjEalMUKguRxakNA/XhmQirbAZXC+aa9gQforfnp7QLLElbPWuuc5egnpA/HT
-         Ir0Q==
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cb3aojTBCwoqKlf094zVcQ2du9p5QhcXe/9+P5qaCEM=;
+        b=6lCQtmq3qHD6ntjoqdPsNsunQbRdVlgv8kcXIDChgaHS/X5Ahm1e15cStzPFUvM7LB
+         BslTu8dOueL2cpwUqCTbX7BcmknAV1PRkBWkCLS9qeyzq9mPtJ0d611/rP+4VhCYQ/CX
+         2j2ao6RPXdTg4PZ26chs+2yz5bUK6KnlFfmAvxsrDpxkJm+4ZGMZR9llKUtLgNVFtPeu
+         gqpv+tAH95oI9ooHUgnuOXgVSqiPiAgsyjjQCGTCpReekQQxcpUU5N7nBFl6m/xyoudv
+         WEUxJqJt1DCzmBOjbToutZ2X6Rsx3/F4EZE7MZebdysFYdViTIcP/ALV5HUP4rieFRYs
+         YiOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=pL87Fqs9PTMJ304pFnGS1YWG0FPpYwtTQJEDWykJS1Y=;
-        b=744YllSj6i8S2brL1DZdJNP7dY0b0p4vpMxTlO1iWixusR9V8Um2CocyW2SEUxCay5
-         IoJNLPgZK90SZa9qca1F5k34i2EKymYt3RA2gh1JsBSip9MBPBPRbgKACKcvMyG8Ewfc
-         xfl7Pmp+6iXbIfOVFj3fRiSMwDtVBiq7WFN/yODG76AGr771Pypv1YU+QyNoxj7ZoEO7
-         7aoT6FKHQFqQt910j5SstxsZxp4KwZhKKlWqW+Pwb5AGSGbjl3VFMjcK+jk8SyVGqJTe
-         s3ucC3sk054xULBMC4hNMsnNnYsWlWZPQ/sfXl9nrjmWQMPFaaFfKJhxeKvBvM3vucZT
-         nyqg==
-X-Gm-Message-State: ACgBeo0GhYvWhxMEKrQFpKJ9PKCitXAGOTsb8QTWm4irN5gw/DwCez/T
-        cKwsDqRcCyJgnOD7bEr+VZPpcg==
-X-Google-Smtp-Source: AA6agR7uQY9shl0hp2+z5QHs2BFUW0aA/OjGjkksM04+e/jE05tULLxoVs/bZclB54fR84ZQE3wJ/Q==
-X-Received: by 2002:a05:6512:2622:b0:481:5b17:58e7 with SMTP id bt34-20020a056512262200b004815b1758e7mr6154823lfb.600.1659958944435;
-        Mon, 08 Aug 2022 04:42:24 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id h28-20020ac24d3c000000b0048b18700dddsm1401868lfk.106.2022.08.08.04.42.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 04:42:23 -0700 (PDT)
-Message-ID: <727e15b9-cc6a-5117-2c8f-3e78e9992565@linaro.org>
-Date:   Mon, 8 Aug 2022 14:42:21 +0300
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cb3aojTBCwoqKlf094zVcQ2du9p5QhcXe/9+P5qaCEM=;
+        b=VOJ4wHGipbSpuid0GRspO5Itl16CvootBTS0o0Fld/XTUtdHnpBjvlxm1Svw0ifLX5
+         8l8k8hkw5HTqxcIreht/VrjSCGsm1r2qk3E5JFRAIzXY5wTLoq0/bsVd2qZgOzgGyT1c
+         VbkBGWQ4M6udtRqsrDF/MR5FbFrwSBNjR3mXe10iywrDT/4u9QjyDYjta/0bdjf3vKp/
+         3IagaYmGURteqeUSTVJNpAJJDgmvFv6Dprug+MW8WqzYcCwMlKRxq0ji3lE8mtY0uWkt
+         zoU/aKE/zJiyGIUM7/gRb+59yZ1XjgRVr3DXukdgZvddZyL8krAJCYTb63hJFIl86GYO
+         V4xw==
+X-Gm-Message-State: ACgBeo2vmIbur2XqeMRg33CP4A0o8acyLOXlmlTwb3ANQg8Hyy+a0dnM
+        7/nppb/N7/1XzYFXVzj9WOgEQfX+rN9gytxeMhbW+w==
+X-Google-Smtp-Source: AA6agR5qWSIS/V2l90gz5qriUGRu8VKG7dafu2Bm67MdJ6eD6CnDbSd8Q3lKbR44OLqDkBzBDre9oflGaKuwuj7aaX8=
+X-Received: by 2002:a05:6808:1b20:b0:33a:b9ab:30d8 with SMTP id
+ bx32-20020a0568081b2000b0033ab9ab30d8mr11076530oib.8.1659958976764; Mon, 08
+ Aug 2022 04:42:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add initial support for
- Pine64 PinePhone Pro
-Content-Language: en-US
-To:     =?UTF-8?Q?Ond=c5=99ej_Jirman?= <megi@xff.cz>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        martijn@brixit.nl, ayufan@ayufan.eu, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220805234411.303055-1-tom@tom-fitzhenry.me.uk>
- <20220805234411.303055-4-tom@tom-fitzhenry.me.uk>
- <6461a695-171a-b160-5406-b8ac31c5ba0e@linaro.org>
- <20220808111225.pslgct22eltiakiv@core>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220808111225.pslgct22eltiakiv@core>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220516124828.45144-1-robert.marko@sartura.hr> <20220516124828.45144-10-robert.marko@sartura.hr>
+In-Reply-To: <20220516124828.45144-10-robert.marko@sartura.hr>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Mon, 8 Aug 2022 13:42:46 +0200
+Message-ID: <CA+HBbNF2R--984SdB0v42GMQOwAx4pTEz_FHifTtebN05ELU-Q@mail.gmail.com>
+Subject: Re: [PATCH v4 10/10] arm64: dts: marvell: add support for Methode eDPU
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, kostap@marvell.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2022 14:12, Ondřej Jirman wrote:
-> Hello,
-> 
-> On Mon, Aug 08, 2022 at 09:35:55AM +0300, Krzysztof Kozlowski wrote:
->> On 06/08/2022 01:44, Tom Fitzhenry wrote:
->>
->> [...]
->>
->>> +
->>> +	/* Power tree */
->>> +	/* Root power source */
->>> +	vcc_sysin: vcc-sysin {
->>
->> regulator-vcc-sysin
-> 
-> Interestingly, most DTS files in rockchip/ use a -regulator
-> suffix and none use regulator- prefix. And this is inconsistent
-> across the larger DTS tree, because outside of rockchip/ most
-> DTS use a prefix.
-> 
-> Checked by grep -R 'regulator.*{' | grep -v state-me
+On Mon, May 16, 2022 at 2:48 PM Robert Marko <robert.marko@sartura.hr> wrote:
+>
+> Methode eDPU is an Armada 3720 powered board based on the Methode uDPU.
+>
+> They feature the same CPU, RAM, and storage as well as the form factor.
+>
+> However, eDPU only has one SFP slot plus a copper G.hn port.
+>
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+> Changes in v2:
+> * Make the DTS split a separate commit
+> ---
+>  arch/arm64/boot/dts/marvell/Makefile             |  1 +
+>  arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts | 14 ++++++++++++++
+>  2 files changed, 15 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+>
+> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+> index 1c794cdcb8e6..104d7d7e8215 100644
+> --- a/arch/arm64/boot/dts/marvell/Makefile
+> +++ b/arch/arm64/boot/dts/marvell/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  # Mvebu SoC Family
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
+> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-eDPU.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+> new file mode 100644
+> index 000000000000..57fc698e55d0
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-eDPU.dts
+> @@ -0,0 +1,14 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include "armada-3720-uDPU.dtsi"
+> +
+> +/ {
+> +       model = "Methode eDPU Board";
+> +       compatible = "methode,edpu", "marvell,armada3720", "marvell,armada3710";
+> +};
+> +
+> +&eth0 {
+> +       phy-mode = "2500base-x";
+> +};
+> --
+> 2.36.1
+>
 
-Can be a suffix. Just pick one pattern.
+Hi Gregory,
+Is there something else that I can improve in the series?
 
-Best regards,
-Krzysztof
+Regards,
+Robert
+
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
