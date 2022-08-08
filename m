@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E277B58C374
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 08:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6366258C39C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:01:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236898AbiHHGqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 02:46:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43072 "EHLO
+        id S231720AbiHHHB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 03:01:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236542AbiHHGqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 02:46:48 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B38112772;
-        Sun,  7 Aug 2022 23:46:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1659941207; x=1691477207;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=X47q7DThyrWu/kkT8n4MueOYo1D/I729fdsIdMKG9zk=;
-  b=p2iJVroYzdNxtGlyOgLFWbG3MpfJrHzHFm/IDtdfBhFEVvH+RwHeL+r/
-   DGVPL8ckkXB6II9kUdcn5fc/2q+sLRlMU/xi4+VcuEj6UX3aGbKnTw7xo
-   Gxbz8O6cakOUcZc7ecq023NL5/C3xsvPKopFfkQAp4UH+bwINEAAAlaHA
-   q5tnRW7yYaa4+IxdRSjFzoSiEpPEHXVAIFGjKUn135xurbxQbXTwJeNHd
-   YIs9NjY0rVpQlKlKMtlUUkFc6uhHx81n1KUcpvhmJzR/ZxGYpUoxgvyZp
-   lBpuXrNjConPIvA0fCgqV8mUQjX0LL8izsa7MCNyu8QKl5E5IhFo1rUfu
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,221,1654585200"; 
-   d="scan'208";a="107987926"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Aug 2022 23:46:46 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Sun, 7 Aug 2022 23:46:46 -0700
-Received: from microchip-OptiPlex-5040.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.28 via Frontend Transport; Sun, 7 Aug 2022 23:46:42 -0700
-From:   Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor.dooley@microchip.com>
-CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Valentina.FernandezAlanis@microchip.com>,
-        Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>
-Subject: [PATCH v4 4/4] MAINTAINERS: add qspi to Polarfire SoC entry
-Date:   Mon, 8 Aug 2022 12:16:03 +0530
-Message-ID: <20220808064603.1174906-5-nagasuresh.relli@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220808064603.1174906-1-nagasuresh.relli@microchip.com>
-References: <20220808064603.1174906-1-nagasuresh.relli@microchip.com>
+        with ESMTP id S230520AbiHHHBX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:01:23 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A1EE2DA
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 00:01:21 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id o2so4011721lfb.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 00:01:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=TNens4dzDr8b/FfgJaaPeV+Bo1fmiGV2IZIds2mzQ4U=;
+        b=wCXfwUw2QoMuar6lfHymOJQ8aEuO4kEu28Jxk6Z5wZsnirHtVyXBcML6Xyfg49wBK8
+         N5wqK8o7ffRno6O91+gydq3gTYpcvPbfL2rE5+I57n90uZKwQrBcL7pKZQ7zg/sI2CM3
+         mtWxa2dOBHEJanRYj1xdLXeF4mNeQzpNppgE+syKltZPk4RXkhHKlsOamOU7Fq4QPHae
+         iS2KQ5I0EydknwCd7OUd5oN+aJTkJict9d/a2jrzu/nPE26mvTe8JKBK7Wv/u3BaHJa6
+         xo+/NkF7qTMgFsUlRJ2DCmXaiACWTpBaYpguNQFFdfEefSByeuDHSMQxHrFsIIHRWq9K
+         h+jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=TNens4dzDr8b/FfgJaaPeV+Bo1fmiGV2IZIds2mzQ4U=;
+        b=QEsOJyznA1Zsbp1qv+fXHHs0Q4X1u9RdtfeIquAPdl9HVmvUfgRNS4/62CtKJaSwHQ
+         jd2pfla+8t1EqbfBYtuwZ4dBUtJ3BxCyaeQe5IIAb6n90VZEz1KathsynvbGe351PI+D
+         HM1ixSxfBE860vNdlHH67SPOem4QA0/mbc3mA41QogGoXeLC4ibNqLXSwu+/+1+XLJVT
+         ItgSOtmvauUSizAXspppjpU7b54tJGjKmh2uNDMOx7PeUIXzVgM/RSFnGb3w0wMScGNa
+         9fWXZiw9gNfpyQNrfEXwiuurp9FZjiS4TYEPjraFrPCMCuQssGxA78VYzQtQxODfmpLq
+         fxCw==
+X-Gm-Message-State: ACgBeo2PAvczc7i7FTVLUO1BQ51bfSa5ZqrXWHp4od4xEz62jhWIaT2z
+        PJ2ymOqHIzTRr0Xe7w7x0B5hEw==
+X-Google-Smtp-Source: AA6agR7h9f9j7kJmy4eXv6HRMrXlzHuLszLtzEP+dX+EERyr5T4kuPtlqmFellRKW1jKlCQpBzg0rA==
+X-Received: by 2002:a05:6512:158f:b0:48b:714:5efa with SMTP id bp15-20020a056512158f00b0048b07145efamr6383704lfb.354.1659942079749;
+        Mon, 08 Aug 2022 00:01:19 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id h11-20020a056512054b00b0048b12f65672sm1319094lfl.272.2022.08.08.00.01.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Aug 2022 00:01:19 -0700 (PDT)
+Message-ID: <9a1f19f5-e17f-d8f6-8010-e399bdd6c6b9@linaro.org>
+Date:   Mon, 8 Aug 2022 10:01:18 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: mailbox: fix the mpfs' reg property
+Content-Language: en-US
+To:     Conor.Dooley@microchip.com, jassisinghbrar@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     Daire.McNamara@microchip.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20220805125618.733628-1-conor.dooley@microchip.com>
+ <20220805125618.733628-2-conor.dooley@microchip.com>
+ <04b697b5-d344-0191-f511-c0f8e0c247ef@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <04b697b5-d344-0191-f511-c0f8e0c247ef@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,26 +76,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the qspi driver to existing Polarfire SoC entry.
+On 05/08/2022 15:01, Conor.Dooley@microchip.com wrote:
+> On 05/08/2022 13:56, Conor Dooley wrote:
+>> The "data" region of the PolarFire SoC's system controller mailbox is
+>> not one continuous register space - the system controller's QSPI sits
+>> between the control and data registers. Split the "data" reg into two
+>> parts: "data" & "control".
+>>
+>> Fixes: 213556235526 ("dt-bindings: soc/microchip: update syscontroller compatibles")
+> 
+> I omitted the second fixes tag:
+> Fixes: ed9543d6f2c4 ("dt-bindings: add bindings for polarfire soc mailbox")
+> 
+>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>>   .../bindings/mailbox/microchip,mpfs-mailbox.yaml  | 15 +++++++++++----
+>>   1 file changed, 11 insertions(+), 4 deletions(-)
+>>
 
-Signed-off-by: Naga Sureshkumar Relli <nagasuresh.relli@microchip.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 295ca16a415b..0329dca23fe2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17146,6 +17146,7 @@ S:	Supported
- F:	arch/riscv/boot/dts/microchip/
- F:	drivers/mailbox/mailbox-mpfs.c
- F:	drivers/soc/microchip/
-+F:	drivers/spi/spi-microchip-core-qspi.c
- F:	drivers/spi/spi-microchip-core.c
- F:	include/soc/microchip/mpfs.h
- 
--- 
-2.25.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+Best regards,
+Krzysztof
