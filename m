@@ -2,231 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AE2E58CC7C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 19:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 085F058CCA2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 19:22:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233053AbiHHREH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 13:04:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51296 "EHLO
+        id S236070AbiHHRWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 13:22:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233701AbiHHREG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 13:04:06 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DE213F20;
-        Mon,  8 Aug 2022 10:04:04 -0700 (PDT)
-Received: from notapiano (unknown [146.70.107.217])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id B3DBE6601C27;
-        Mon,  8 Aug 2022 18:03:59 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1659978242;
-        bh=AOBMWXeEPuQq3ZkcDyCVKu0KfdYQt+8GMh7UuYGyUlA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QAXpTmuOrhR9WNkqgtGuSOTXQ2my/hjzyBuy6wIRHeVgPlasJwPozXYRvHy09ySVM
-         pKCfmuKVSXYmCbmHYmoRbvA0EeSXONnSSIdXYXdOfuMGJ6yDV0uJIk+vknBOYrgI6K
-         dmZ+UATZnPRwffDsgKBogVmOFDg8Vsj06ge8d39IC3peCw7XlnHlNwXm2pZ/CKKuBB
-         ZHR2forxuhlkxGDOAkKPswXhwuBOiVDPk1diDich6qr98erlzJ4Ei/0XLT9DxB31fb
-         KrmOACSyeozJ1AXbJ9kz71GcyiQUTawCfV6XDPjQe2tZuxpxBgf+wWGMZeqXhaqv1t
-         ywRlDqp5+BqFw==
-Date:   Mon, 8 Aug 2022 13:03:55 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+        with ESMTP id S233696AbiHHRWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 13:22:14 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBDA315FC8
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 10:22:11 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id 202so2371230pgc.8
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 10:22:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4ISRmfPuzAq5iPA9W7SoAaYtOXEzjnhWi555d7SJED8=;
+        b=nY3cdk1gWCUthARunn+1V5ONlEaJCy1aeQA+5MIdzACrZnvUMxuvRRGrBP8vmXW716
+         KEwygp7xRisTAS1k8qmj7xeHcaG4KkSGfbHhM8pBHkUFiJaS/v3cwWb9su+SqtTlAZu/
+         k3I2I1qk80aFlw2YsI5Ai9QRQDlq/U3MgxLDs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4ISRmfPuzAq5iPA9W7SoAaYtOXEzjnhWi555d7SJED8=;
+        b=JIH2q//FhPFADqimePvmQbG3vpUvoSwVioXvwTx6l92S95p3KVryBSJYJPLUK9N0hr
+         HkPvfrqjr4Tx9vwZcY3OBwg/vBViBbzVnixvdYE0dWvxBhUU/b6MIJJjRsxyGCP/ddRE
+         HbXDFh5qsggkqUNGXJOAaGeZll5hWR+jbVSoFEBbv7VAcQj70Uk3gNhNgAHTX+z+sMMJ
+         o4a5zUPMTbTgMyhqx6xdFxWMln4Ug/IR0o1FuNbw1ZsAJ+bBMr0Burlg81tZ7ex48W7E
+         3wGNA649WuKaumYy3sQTa4xUZ+l5ofkCy5LZ4p/FHZ3WLoVZdhi32wDev9GkQJTw03wi
+         kwuw==
+X-Gm-Message-State: ACgBeo0Ry1+/71Q/F9fTducmUvvpQiKjlDOnzNg2cXIxX8vlluL5Yipq
+        jPqifXcO69AsWDh6zcEAg/lxxA==
+X-Google-Smtp-Source: AA6agR66v0hA8Eemx2dKzdaVrT6+rtDHvVGdEsmUWrdfx899jKGr/hzPQxI3VEKvhRUidNhEM1Uhzg==
+X-Received: by 2002:a63:2244:0:b0:41d:a9c4:e83 with SMTP id t4-20020a632244000000b0041da9c40e83mr1943438pgm.271.1659979331250;
+        Mon, 08 Aug 2022 10:22:11 -0700 (PDT)
+Received: from localhost ([2620:15c:11a:202:7a1:96b:e08b:5ba0])
+        by smtp.gmail.com with UTF8SMTPSA id cp2-20020a170902e78200b0016db7f49cc2sm9008576plb.115.2022.08.08.10.22.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Aug 2022 10:22:10 -0700 (PDT)
+Date:   Mon, 8 Aug 2022 10:22:07 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     Johan Hovold <johan+linaro@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        angelogioacchino.delregno@collabora.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: mediatek: watchdog: Fix compatible
- fallbacks and example
-Message-ID: <20220808170355.c2ih3xwqxlddsal7@notapiano>
-References: <20220721014845.19044-1-allen-kh.cheng@mediatek.com>
- <20220721014845.19044-2-allen-kh.cheng@mediatek.com>
- <CAGXv+5HXwVpaJPV-4Z6qw14xZzEkx_E7dVks6-GBa7bQyN8hCg@mail.gmail.com>
- <5dac39d1-3b42-40e9-5693-0c127e8c689a@gmail.com>
- <0fadcd9f50d49ecbb329e76a9ceb6ee689648955.camel@mediatek.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 8/9] usb: dwc3: qcom: fix wakeup implementation
+Message-ID: <YvFGP90eyXoPbcy8@google.com>
+References: <20220804151001.23612-1-johan+linaro@kernel.org>
+ <20220804151001.23612-9-johan+linaro@kernel.org>
+ <Yuv7AM/5jtO/pgcm@google.com>
+ <Yu1MO9sgPslEDAjR@google.com>
+ <Yu6VTYn2/cG79dvl@hovoldconsulting.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0fadcd9f50d49ecbb329e76a9ceb6ee689648955.camel@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <Yu6VTYn2/cG79dvl@hovoldconsulting.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Wed, Aug 03, 2022 at 05:23:57PM +0800, Allen-KH Cheng wrote:
-> Hi Chen-Yu and Mathias,
-> 
-> Sincere apologies for the delayed response.
-> 
-> On Tue, 2022-08-02 at 13:04 +0200, Matthias Brugger wrote:
-> > 
-> > On 01/08/2022 11:29, Chen-Yu Tsai wrote:
-> > > On Thu, Jul 21, 2022 at 10:50 AM Allen-KH Cheng
-> > > <allen-kh.cheng@mediatek.com> wrote:
+On Sat, Aug 06, 2022 at 06:22:37PM +0200, Johan Hovold wrote:
+> On Fri, Aug 05, 2022 at 09:58:35AM -0700, Matthias Kaehlcke wrote:
+> > On Thu, Aug 04, 2022 at 09:59:44AM -0700, Matthias Kaehlcke wrote:
+> > > On Thu, Aug 04, 2022 at 05:10:00PM +0200, Johan Hovold wrote:
+> > > > It is the Qualcomm glue wakeup interrupts that may be able to wake the
+> > > > system from suspend and this can now be described in the devicetree.
 > > > > 
-> > > > The watchdog timer of mt8186. mt8195 and mt7986 have their DT
-> > > > data.
-> > > > We should not use 'mediatek,mt6589-wdt' as fallback.
+> > > > Move the wakeup-source property handling over from the core driver and
+> > > > instead propagate the capability setting to the core device during
+> > > > probe.
 > > > > 
-> > > > For mediatek,wdt example of mt8183, We remove mediatek,mt6589-wdt 
-> > > > fallback.
-> > > 
-> > > I think this needs some more information.
-> > > 
-> > > Right now on the kernel side, mt6589-wdt provides just watchdog
-> > > support.
-> > > The SoC-specific compatibles that are touched by this patch provide
-> > > reset
-> > > controls in addition to the standard watchdog, which remains the
-> > > same.
-> > > 
-> > > If that is the case, then the fallback compatibles are correct. A
-> > > fallback
-> > > says that the new hardware is compatible with some older hardware,
-> > > and
-> > > can be run with the driver supporting that older hardware, likely
-> > > with
-> > > reduced functionality.
-> > > 
-> > 
-> > My understanding is, that we add a fallback because although at the
-> > time we 
-> > entered the compatible, the functionality of the device is the same
-> > as the 
-> > fallback. Nonetheless we add a compatible specific for the device in
-> > case in the 
-> > future we realize that the device has some functionality that is not
-> > and can not 
-> > be covered by the fallback.
-> > 
-> > This is the case here. Actually adding the fallback in the first
-> > place was 
-> > wrong, because the driver since ever supports the extra function for
-> > the device, 
-> > the reset.
-> > 
-> > So this is a mere cleanup of the binding to reflect what was always
-> > present in 
-> > the driver.
-> > 
-> > Regards,
-> > Matthias
-> > 
-> 
-> mt6589-wdt dosen't contains a reset control for other modules, like
-> chen-yu mention "mt6589-wdt provides just watchdog support."
-> 
-> For instance, there is a reset control in mt8195-wdt and we have a DT
-> data to define its reset number of TOPRGU. I thought it's better not
-> use mt6589-wdt as fallback.
-> 
-> Please let me know if this works and if you have any suggestions or
-> comments.
-
-The only practical usecase that I can think of that relies on keeping the
-fallback compatibles is using the current DT with an older kernel that didn't
-yet support the specific watchdog compatibles. In this case, dropping the
-fallback compatibles would make the watchdog not work at all in such a kernel.
-
-I'm not sure how relevant/common of a usecase that would be, but maybe it's
-worth considering given that the advantage of removing the fallback compatible
-is purely aesthetic?
-
-Thanks,
-Nícolas
-
-> 
-> Thanks,
-> Allen
-> 
-> > > As an example, if mt8195-wdt is backward compatible with mt6589-
-> > > wdt,
-> > > then it should run as mt6589-wdt, and would just be missing new
-> > > functionality, in this case the reset controls.
-> > > 
-> > > So either mt6589-wdt also contains a reset control that is not the
-> > > same
-> > > as the other newer chips, or has some other functionality that the
-> > > other
-> > > chips contain, and justifies the removal of the fallback, or this
-> > > patch
-> > > is incorrect. Note that mt2701-wdt and mt762*-wdt are still listed
-> > > as
-> > > compatible with mt6589-wdt. So I think a better explanation is
-> > > required.
-> > > 
-> > > 
-> > > Regards
-> > > ChenYu
-> > > 
-> > > 
-> > > > Fixes:a45b408a020b("dt-bindings: watchdog: Add compatible for
-> > > > MediaTek MT8186")
-> > > > Fixes:b326f2c85f3d("dt-bindings: watchdog: Add compatible for
-> > > > Mediatek MT8195")
-> > > > Fixes:41e73feb1024("dt-bindings: watchdog: Add compatible for
-> > > > Mediatek MT7986")
-> > > > Fixes:f43f97a0fc0e("dt-bindings: mediatek: mt8183: Add #reset-
-> > > > cells")
-> > > > Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-> > > > Reviewed-by: AngeloGioacchino Del Regno <
-> > > > angelogioacchino.delregno@collabora.com>
+> > > > This is needed as there is currently no way for the core driver to query
+> > > > the wakeup setting of the glue device, but it is the core driver that
+> > > > manages the PHY power state during suspend.
+> > > > 
+> > > > Also don't leave the PHYs enabled when system wakeup has been disabled
+> > > > through sysfs.
+> > > > 
+> > > > Fixes: 649f5c842ba3 ("usb: dwc3: core: Host wake up support from system suspend")
+> > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
 > > > > ---
-> > > >   Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 9
-> > > > ++++-----
-> > > >   1 file changed, 4 insertions(+), 5 deletions(-)
+> > > >  drivers/usb/dwc3/core.c      | 5 ++---
+> > > >  drivers/usb/dwc3/dwc3-qcom.c | 6 +++++-
+> > > >  2 files changed, 7 insertions(+), 4 deletions(-)
 > > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/watchdog/mtk-
-> > > > wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-> > > > index 762c62e428ef..67ef991ec4cf 100644
-> > > > --- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-> > > > +++ b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
-> > > > @@ -14,12 +14,12 @@ Required properties:
-> > > >          "mediatek,mt7622-wdt", "mediatek,mt6589-wdt": for MT7622
-> > > >          "mediatek,mt7623-wdt", "mediatek,mt6589-wdt": for MT7623
-> > > >          "mediatek,mt7629-wdt", "mediatek,mt6589-wdt": for MT7629
-> > > > -       "mediatek,mt7986-wdt", "mediatek,mt6589-wdt": for MT7986
-> > > > +       "mediatek,mt7986-wdt": for MT7986
-> > > >          "mediatek,mt8183-wdt": for MT8183
-> > > > -       "mediatek,mt8186-wdt", "mediatek,mt6589-wdt": for MT8186
-> > > > +       "mediatek,mt8186-wdt": for MT8186
-> > > >          "mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
-> > > >          "mediatek,mt8192-wdt": for MT8192
-> > > > -       "mediatek,mt8195-wdt", "mediatek,mt6589-wdt": for MT8195
-> > > > +       "mediatek,mt8195-wdt": for MT8195
-> > > > 
-> > > >   - reg : Specifies base physical address and size of the
-> > > > registers.
-> > > > 
-> > > > @@ -32,8 +32,7 @@ Optional properties:
-> > > >   Example:
-> > > > 
-> > > >   watchdog: watchdog@10007000 {
-> > > > -       compatible = "mediatek,mt8183-wdt",
-> > > > -                    "mediatek,mt6589-wdt";
-> > > > +       compatible = "mediatek,mt8183-wdt";
-> > > >          mediatek,disable-extrst;
-> > > >          reg = <0 0x10007000 0 0x100>;
-> > > >          interrupts = <GIC_SPI 139 IRQ_TYPE_NONE>;
-> > > > --
-> > > > 2.18.0
-> > > > 
-> > > > 
+> > > > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> > > > index 16d1f328775f..8c8e32651473 100644
+> > > > --- a/drivers/usb/dwc3/core.c
+> > > > +++ b/drivers/usb/dwc3/core.c
+> > > > @@ -1822,7 +1822,6 @@ static int dwc3_probe(struct platform_device *pdev)
+> > > >  
+> > > >  	platform_set_drvdata(pdev, dwc);
+> > > >  	dwc3_cache_hwparams(dwc);
+> > > > -	device_init_wakeup(&pdev->dev, of_property_read_bool(dev->of_node, "wakeup-source"));
+> > > >  
+> > > >  	spin_lock_init(&dwc->lock);
+> > > >  	mutex_init(&dwc->mutex);
+> > > > @@ -1984,7 +1983,7 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
+> > > >  		dwc3_core_exit(dwc);
+> > > >  		break;
+> > > >  	case DWC3_GCTL_PRTCAP_HOST:
+> > > > -		if (!PMSG_IS_AUTO(msg) && !device_can_wakeup(dwc->dev)) {
+> > > > +		if (!PMSG_IS_AUTO(msg) && !device_may_wakeup(dwc->dev)) {
+> > > 
+> > > Let me explain the rationale for why device_can_wakeup() was used here:
+> > > 
+> > > On QCOM SC7180 based Chromebooks we observe that the onboard USB hub consumes
+> > > ~80 mW during system suspend when the PHYs are disabled, as opposed to ~17 mW
+> > > when the PHYs remain enabled. This is a significant delta when the device is
+> > > on a battery power.
+> > > 
+> > > The initial idea was to leave the PHYs always enabled (in a low power mode),
+> > > but then I dug up commit c4a5153e87fd ("usb: dwc3: core: Power-off core/PHYs
+> > > on system_suspend in host mode"), which provides a rationale for the PHYs
+> > > being powered off:
+> > > 
+> > >   Commit 689bf72c6e0d ("usb: dwc3: Don't reinitialize core during
+> > >   host bus-suspend/resume") updated suspend/resume routines to not
+> > >   power_off and reinit PHYs/core for host mode.
+> > >   It broke platforms that rely on DWC3 core to power_off PHYs to
+> > >   enter low power state on system suspend.
+> > > 
+> > > Unfortunately we don't know which platforms are impacted by this. The idea
+> > > behind using device_can_wakeup() was to use it as a proxy for platforms
+> > > that are *not* impacted. If a platform supports USB wakeup supposedly the
+> > > SoC can enter its low power mode during system suspend with the PHYs
+> > > enabled.
+> > > 
+> > > By now I'm not 100% sure if the above assumption is correct. I recently
+> > > saw allegations that the power consumption of a given QC SoC with USB
+> > > wakeup support drops significantly when wakeup is disabled (i.e. when
+> > > the PHYs are off), but haven't confirmed this yet.
+> > 
+> > So far power measurements don't support the claim that SoC power
+> > consumption is substantially lower with USB wakeup disabled/the PHYs
+> > off. I asked the person who made that claim to provide more
+> > details/data (the discussion is in an internal forum).
 > 
-> 
+> Thanks for the background on this. So clearly it has nothing to with
+> supporting wakeup as the commit summary claimed, and this should
+> probably never have been made to depend on wakeup capability either.
+
+To be clear, there are two different (supposed) impacts on suspend power:
+
+1. with the PHYs powered off an onboard hub on SC7180/SC7280 boards draws
+   ~80mW during system suspend, vs. ~17mW with the PHYs being on. This is
+   confirmed.
+
+   For SC7180/SC7280 Chrome OS boards in particular it would be ok to
+   power the PHYs off based on device_may_wakeup(), since Chrome OS
+   leaves USB wakeup enabled, hence the PHYs would remain powered as
+   desired.
+
+   However boards that opt for disabling USB wakeup could be impacted
+   by increased power consumption of USB peripherals, as seen with the
+   hub of SC7180/SC7280 Chrome OS boards.
+
+2. with the PHYs on during system suspend allegedly some QC SoCs can't
+   reach their lowest power mode (commit c4a5153e87fd). I don't know
+   which SoCs are impacted.
+
+   Someone from QC claims that SC7280 has significantly lower power
+   consumption with "USB wakeup disabled", so far this has not been
+   confirmed by my colleague who takes power measurements, I'm in
+   the process of clarifying what "USB wakeup disabled" exactly
+   means in this context (e.g. no wakeup source flag vs. no wakeup
+   capable device plugged).
+
+> I'll revisit this after the merge window, but perhaps we should just rip
+> this out completely and use a more descriptive property to configure the
+> PHY suspend state. But depending on the results from your internal
+> measurements, perhaps not even that is needed.
+
+Ok, I'll keep you posted on power findings on our side, though that will
+only cover SC7180/SC7280.
