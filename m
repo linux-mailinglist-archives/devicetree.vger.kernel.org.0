@@ -2,174 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A11EB58CD49
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 20:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B79758CD5D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 20:09:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237665AbiHHSFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 14:05:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39676 "EHLO
+        id S244153AbiHHSJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 14:09:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237423AbiHHSFA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 14:05:00 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0411ABBD;
-        Mon,  8 Aug 2022 11:04:58 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id d8so2433398qkk.1;
-        Mon, 08 Aug 2022 11:04:57 -0700 (PDT)
+        with ESMTP id S244148AbiHHSJi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 14:09:38 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 443FB6154
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 11:09:37 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id j15so11784877wrr.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 11:09:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=iKTl1boGXs81S0XIZGy9zuT1guUTlkRSt68bNtAyj48=;
-        b=I1giIXQaXzxH7goOQX5E/XNsipIYPuw8rQam8eTB35oVRAp1WJs1nUSQXCxU5Kj/Ms
-         Mr8nKe4A3xA7orOG4APqoOrzzVYZjsbCOnem5ZnZYAkGRtRUev054yPmEPsSsbVGN+b4
-         8P6YqLmqOU5YQkGgmY5YKUNxd55gsihSVg0H/8d0l5PNRvhN/X0Wuma3Zgtz0pHmXKqv
-         a+JVOCG2Np3fNNpyi0SWhFamI48pFOcXMRY0L7g/TPBovXWQqYCqSV+dLDbJ15G+KLk/
-         5TGQi129z584uijis3a0oKfMC9Q7czqEnAUZc2U18fYtgV0IsEZYedX2mdxvDujaHoYp
-         ClIg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=bXLpXmWL+T2aMJD2mxacKkNa6+tQMtWwj5lWrNrsUB4=;
+        b=sTQk0D9ap6qPXsbbc6gc9Lwix4N6t5K3zjEXm6UMlU8kddKs0CZT5uccYMQ0U1u7J5
+         jRhlVXq1FJHridxx5BWhG1nuGPeF80RjBDmWq1KOYhXRYiuQZNu/pKQwcrVO2TbAU6K8
+         djQQ6Fj4OF7lHYI72Tg3mj+yjCNYYtFya6S+MINazNvDJ+zCubNKMv90RsO6tW9nyRLJ
+         oMykHF50/umhW9nwZOb9FMvTJVTkzKLUTlkn+9KngOM8fLoVswOB6I70sp1MpnkqjA7O
+         AuWc1cKM5yAxbwMdGoPXHJ0aYejlezI0Mko8xzhL6ljI1MAe7bFR6Om4ozwLnAIuTDLr
+         RDKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=iKTl1boGXs81S0XIZGy9zuT1guUTlkRSt68bNtAyj48=;
-        b=221DgUaBnGVTS0uD1hK+I56pr0MdSzn4cgz1swvU93Jgb9pqExzLgLVM1X6AgaKUfz
-         cLY3OnRi6rs6OE4SdqIiv84g6HK936wwSV03PMO5SQaH0NTsIYSopYUK9E8Cwo0eomDR
-         45UVZICctBPHTYIwq0m0zVCNHvpIu8bDmUBmzPYOlG2dc2z05qVVBd3ff68x0WZYhAKQ
-         weedw/L69kDXOCyl9UJv0XvnWxaWPskIlJQrIx1M3Brw/FVzQw7dR6rh84wxdJQ6kK3h
-         PivUhV7c0WWFir2gnJHj3wUYGIdUsaJ2ad4PCIg5ml2Io04fwns010iev7XMVaSc0z/W
-         aFyw==
-X-Gm-Message-State: ACgBeo0NvXXV6j3T5nIiB7G87zhm2JknpKD6CZcBTixMOYRyYBPFSjXv
-        xO9CGBX7O8WgmkKbzd2MsktwwFTg8Xf0zaA8mDk=
-X-Google-Smtp-Source: AA6agR4a8AS6ZBY7Z9sWtHuV87khvS3reFLLGtpNLhyD4PMToqruZflY6B1UOYmD7cykvxPVLd9qSltfW+ghkgL6MQE=
-X-Received: by 2002:a05:620a:254d:b0:6ab:84b8:25eb with SMTP id
- s13-20020a05620a254d00b006ab84b825ebmr14918080qko.383.1659981897015; Mon, 08
- Aug 2022 11:04:57 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=bXLpXmWL+T2aMJD2mxacKkNa6+tQMtWwj5lWrNrsUB4=;
+        b=ory3GE69Ywhnca2Qj5WwqWb+5mI8rYjGHxl25IV9AMCj37e2x7SuHNYv3iej6uPcl1
+         4bETb4xiYvsJQlmky9/5TT37E9FrIL4LH1Yb9Jt5XNnqAessQqKUMj/+Ii7ZCTYoBPqb
+         YBWGCM16O4XL4Loaw4iG+ITAU17sVhCVT/+0YZmd/z9vU1f146oD74JedbEqoV/E4Hiv
+         1wT5cwXMMhyBQ9SG3MfWMGoxML9oh88OLv9EBbfdktSK22ZnsU5FIhrTPHuS9h2mzHOj
+         doUsikO8o9K0k3C2pP0ww/1EkKcPxzjsUYAnOm6J3eLs7tj6FpavQUdPIb4FwHedg4Vn
+         yhzQ==
+X-Gm-Message-State: ACgBeo1TwELZxrggObLI67tmjfAJpJvkB1buVvXOJ9mLbrvhvhoSasUm
+        nsKXBiDGYvONYvRtIoF18RhhEw==
+X-Google-Smtp-Source: AA6agR4I/bXgBepeo1o0a13B/Jri3xvGvMkTdvdZ65KGJj/SdJVqx28l6X62d2QaLrBXhMPB2hV1qA==
+X-Received: by 2002:a05:6000:1f07:b0:21f:1403:a59d with SMTP id bv7-20020a0560001f0700b0021f1403a59dmr11833777wrb.46.1659982175729;
+        Mon, 08 Aug 2022 11:09:35 -0700 (PDT)
+Received: from mai.. (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.gmail.com with ESMTPSA id c5-20020a5d4f05000000b002205a5de337sm11937309wru.102.2022.08.08.11.09.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Aug 2022 11:09:35 -0700 (PDT)
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+To:     daniel.lezcano@linaro.org, rafael@kernel.org
+Cc:     michael@walle.cc, dan.carpenter@oracle.com, linux@roeck-us.net,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH 3/4] dt-bindings: thermal: Fix missing required property
+Date:   Mon,  8 Aug 2022 20:09:14 +0200
+Message-Id: <20220808180915.446053-3-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220808180915.446053-1-daniel.lezcano@linaro.org>
+References: <20220808180915.446053-1-daniel.lezcano@linaro.org>
 MIME-Version: 1.0
-References: <8f5f58c9bf0f4006fabd01b5564af071d20f2a2d.1659909060.git.jahau@rocketmail.com>
- <202208081346.EWHUWCSa-lkp@intel.com> <CAHp75VecMvtHwkA6=JxHbX0oeRg+-fXNraggBCaOxqhf9WUdzQ@mail.gmail.com>
- <YvEy9uq49ZiBHtFd@dev-arch.thelio-3990X>
-In-Reply-To: <YvEy9uq49ZiBHtFd@dev-arch.thelio-3990X>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 8 Aug 2022 20:04:20 +0200
-Message-ID: <CAHp75VePJ2iKDx0Sj5SErW4nfpx-9KrN3c5yRFyfwgpfnMCkEg@mail.gmail.com>
-Subject: Re: [PATCH v5 09/14] iio: magnetometer: yas530: Introduce "chip_info" structure
-To:     Nathan Chancellor <nathan@kernel.org>
-Cc:     kernel test robot <lkp@intel.com>,
-        Jakob Hauser <jahau@rocketmail.com>,
-        Jonathan Cameron <jic23@kernel.org>, llvm@lists.linux.dev,
-        kbuild-all@lists.01.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 8, 2022 at 5:59 PM Nathan Chancellor <nathan@kernel.org> wrote:
-> On Mon, Aug 08, 2022 at 01:18:06PM, +0200, Andy Shevchenko wrote:
-> > On Mon, Aug 8, 2022 at 7:40 AM kernel test robot <lkp@intel.com> wrote:
-> >
-> > ...
-> >
-> > > All errors (new ones prefixed by >>):
-> > >
-> > > >> drivers/iio/magnetometer/yamaha-yas530.c:933:19: error: initialize=
-r element is not a compile-time constant
-> > >                    .product_name =3D yas5xx_product_name[yas530],
-> > >                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-> > >    1 error generated.
-> >
-> > What?!
-> >
-> > The yas530 is a part of the enum, how come that compiler can't see
-> > this? Looks like a Clang bug.
->
-> That is not what clang is complaining about here, you'll see the same
-> error even if you used '0', '1', or '2' here:
->
->   drivers/iio/magnetometer/yamaha-yas530.c:933:19: error: initializer ele=
-ment is not a compile-time constant
->                   .product_name =3D yas5xx_product_name[0],
->                                   ^~~~~~~~~~~~~~~~~~~~~~
->   1 error generated.
->
-> It is complaining that the initializer element
-> ('yas5xx_product_name[yas530]', rather than just 'yas530') is not
-> constant, which is a true complaint if I am reading C11 standard 6.6.7
-> correctly.
->
-> GCC 8+ has chosen to accept const structures as constant expressions in
-> designated initializers, which it is allowed to do per 6.6.10. Nick did
-> have a patch to try and match this behavior in clang but the work that
-> was requested doesn't seem to be trivial so it was never finalized:
-> https://reviews.llvm.org/D76096
->
-> You'll see the same error with GCC 7:
->
->   drivers/iio/magnetometer/yamaha-yas530.c:933:19: error: initializer ele=
-ment is not constant
->      .product_name =3D yas5xx_product_name[yas530],
->                      ^~~~~~~~~~~~~~~~~~~
->   drivers/iio/magnetometer/yamaha-yas530.c:933:19: note: (near initializa=
-tion for =E2=80=98yas5xx_chip_info_tbl[0].product_name=E2=80=99)
->   drivers/iio/magnetometer/yamaha-yas530.c:938:19: error: initializer ele=
-ment is not constant
->      .product_name =3D yas5xx_product_name[yas532],
->                      ^~~~~~~~~~~~~~~~~~~
->   drivers/iio/magnetometer/yamaha-yas530.c:938:19: note: (near initializa=
-tion for =E2=80=98yas5xx_chip_info_tbl[1].product_name=E2=80=99)
->   drivers/iio/magnetometer/yamaha-yas530.c:943:19: error: initializer ele=
-ment is not constant
->      .product_name =3D yas5xx_product_name[yas533],
->                      ^~~~~~~~~~~~~~~~~~~
->   drivers/iio/magnetometer/yamaha-yas530.c:943:19: note: (near initializa=
-tion for =E2=80=98yas5xx_chip_info_tbl[2].product_name=E2=80=99)
+When the thermal zone description was converted to yaml schema, the
+required 'trips' property was forgotten.
 
-> > >    930  static const struct yas5xx_chip_info yas5xx_chip_info_tbl[] =
-=3D {
-> > >    931          [yas530] =3D {
-> > >    932                  .devid =3D YAS530_DEVICE_ID,
-> > >  > 933                  .product_name =3D yas5xx_product_name[yas530]=
-,
-> > >    934                  .version_name =3D yas5xx_version_names[yas530=
-],
+The initial text bindings was describing:
 
-Would then
+"
+[ ... ]
 
-  .product_name =3D "YAS530 MS-3E",
-  .version_names =3D { "A", "B" },
+* Thermal zone nodes
 
-work?
+The thermal zone node is the node containing all the required info
+for describing a thermal zone, including its cooling device bindings. The
+thermal zone node must contain, apart from its own properties, one sub-node
+containing trip nodes and one sub-node containing all the zone cooling maps.
 
-Jakob, note 's' in the field name as well.
+Required properties:
+- polling-delay:        The maximum number of milliseconds to wait between polls
+  Type: unsigned        when checking this thermal zone.
+  Size: one cell
 
-> > >    935          },
-> > >    936          [yas532] =3D {
-> > >    937                  .devid =3D YAS532_DEVICE_ID,
-> > >    938                  .product_name =3D yas5xx_product_name[yas532]=
-,
-> > >    939                  .version_name =3D yas5xx_version_names[yas532=
-],
-> > >    940          },
-> > >    941          [yas533] =3D {
-> > >    942                  .devid =3D YAS532_DEVICE_ID,
-> > >    943                  .product_name =3D yas5xx_product_name[yas533]=
-,
-> > >    944                  .version_name =3D yas5xx_version_names[yas533=
-],
-> > >    945          },
-> > >    946  };
+- polling-delay-passive: The maximum number of milliseconds to wait
+  Type: unsigned        between polls when performing passive cooling.
+  Size: one cell
 
---=20
-With Best Regards,
-Andy Shevchenko
+- thermal-sensors:      A list of thermal sensor phandles and sensor specifier
+  Type: list of         used while monitoring the thermal zone.
+  phandles + sensor
+  specifier
+
+- trips:                A sub-node which is a container of only trip point nodes
+  Type: sub-node        required to describe the thermal zone.
+
+Optional property:
+- cooling-maps:         A sub-node which is a container of only cooling device
+  Type: sub-node        map nodes, used to describe the relation between trips
+                        and cooling devices.
+  [ ... ]
+
+"
+
+Now the schema describes:
+
+"
+    [ ... ]
+
+    required:
+      - polling-delay
+      - polling-delay-passive
+      - thermal-sensors
+
+    [ ... ]
+"
+
+Add the missing 'trips' property in the required properties.
+
+Fixed: 1202a442a31fd ("dt-bindings: thermal: Add yaml bindings for thermal zones")
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ Documentation/devicetree/bindings/thermal/thermal-zones.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+index 2d34f3ccb257..8d2c6d74b605 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -214,6 +214,7 @@ patternProperties:
+       - polling-delay
+       - polling-delay-passive
+       - thermal-sensors
++      - trips
+ 
+     additionalProperties: false
+ 
+-- 
+2.34.1
+
