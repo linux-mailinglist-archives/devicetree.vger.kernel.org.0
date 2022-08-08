@@ -2,71 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9033A58C8E6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 15:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D549158C8F7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 15:05:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242737AbiHHNAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 09:00:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43544 "EHLO
+        id S243106AbiHHNFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 09:05:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242359AbiHHNAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 09:00:01 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12AC911C1D;
-        Mon,  8 Aug 2022 05:59:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1659963569; x=1691499569;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=SM3M98v9UuODC8UzTTQHTkKNyrbmYERVbOpPcEz1zWg=;
-  b=PR6gRuDHFGq/VG7m4OWtVi9aiehPa3fD+2y5S+ZaZSBd2DIFz5e6oTYG
-   MLO1D5cMRBlo+c7z4fFZI9gChtcUuZOKBkv7PLuoTfjlDTAHCLqeymPm1
-   yR3fQkxBkET5BFB1yZ6hBFa4zcXnAH+9jJSCIkkHm8kotC+CdSErXlbD9
-   6qelw7cnqzcaMkpfRK3UT9e2UZ2wVKVRxOBW83WoYUD6hmlackoSQqbTS
-   DOw/RPabib/D0yLWbhVs/FVbFqESBYCD5KC0rfps/59mUfEuQ6sxEMZZ8
-   S0aWoY6X2ygr0cfQq2JA6Ug8jAO+GLV/gdU93nFn2N+/MVq7gwosJqUtP
-   Q==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10432"; a="270358281"
-X-IronPort-AV: E=Sophos;i="5.93,222,1654585200"; 
-   d="scan'208";a="270358281"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2022 05:59:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,222,1654585200"; 
-   d="scan'208";a="554911922"
-Received: from lkp-server01.sh.intel.com (HELO e0eace57cfef) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 08 Aug 2022 05:59:24 -0700
-Received: from kbuild by e0eace57cfef with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oL2Lr-000MHx-2l;
-        Mon, 08 Aug 2022 12:59:23 +0000
-Date:   Mon, 8 Aug 2022 20:58:35 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jiucheng Xu <jiucheng.xu@amlogic.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>,
-        Jiucheng Xu <jiucheng.xu@amlogic.com>
-Subject: Re: [PATCH v4 2/4] docs/perf: Add documentation for the Amlogic G12
- DDR PMU
-Message-ID: <202208082004.zjwtaGvN-lkp@intel.com>
-References: <20220805071426.2598818-2-jiucheng.xu@amlogic.com>
+        with ESMTP id S243073AbiHHNFm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 09:05:42 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA5DBAE;
+        Mon,  8 Aug 2022 06:05:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id BB096B80DDE;
+        Mon,  8 Aug 2022 13:05:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF838C433C1;
+        Mon,  8 Aug 2022 13:05:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1659963939;
+        bh=YopFz7vgFlUtdQVWfCGUYhY4nRi11uEOqzfp9ekNOZU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ddotj7ibW0VfGX2PLydzyRMIVLUENRDo5GSFrTqRtFurJHsF+YqCLSaIzWijv5dBQ
+         ZYWlgM+95IjdUugnuiT7ojUfgExcacV1Yf2BzO5yI49/dKNX/VRRuKfXOaNnrpKO6p
+         t5fpLEUUuSTv3wSo2EI7HFaTMxJ56VLyC2v4XAFM=
+Date:   Mon, 8 Aug 2022 15:05:36 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Felipe Balbi <balbi@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
+        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v2 3/9] usb: dwc3: qcom: fix gadget-only builds
+Message-ID: <YvEKIJ+GujHt7XvT@kroah.com>
+References: <20220804151001.23612-1-johan+linaro@kernel.org>
+ <20220804151001.23612-4-johan+linaro@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220805071426.2598818-2-jiucheng.xu@amlogic.com>
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220804151001.23612-4-johan+linaro@kernel.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,35 +64,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jiucheng,
+On Thu, Aug 04, 2022 at 05:09:55PM +0200, Johan Hovold wrote:
+> A recent change added a dependency to the USB host stack and broke
+> gadget-only builds of the driver.
+> 
+> Fixes: 6895ea55c385 ("usb: dwc3: qcom: Configure wakeup interrupts during suspend")
+> Reported-by: Randy Dunlap <rdunlap@infradead.org>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+> 
+> Changes in v2
+>  - new patch
+> 
+>  drivers/usb/dwc3/dwc3-qcom.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+> index be2e3dd36440..e9364141661b 100644
+> --- a/drivers/usb/dwc3/dwc3-qcom.c
+> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+> @@ -310,8 +310,11 @@ static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
+>  	 * currently supports only 1 port per controller. So
+>  	 * this is sufficient.
+>  	 */
+> +#ifdef CONFIG_USB
+>  	udev = usb_hub_find_child(hcd->self.root_hub, 1);
 
-I love your patch! Perhaps something to improve:
+If a gadget driver needs this for some reason, then the #ifdef should be
+put in a .h file, not in a .c file.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on arm/for-next arm64/for-next/core clk/clk-next kvmarm/next rockchip/for-next shawnguo/for-next soc/for-next linus/master v5.19 next-20220808]
-[cannot apply to xilinx-xlnx/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+But step back a minute and ask why a host-config-only function is being
+called when a device is in gadget-only mode?  This feels like a
+design/logic issue in this file, NOT something to paper over with a
+#ifdef in a .c file
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jiucheng-Xu/perf-amlogic-Add-support-for-Amlogic-meson-G12-SoC-DDR-PMU-driver/20220805-151704
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-reproduce: make htmldocs
+This implies that if this device is NOT in a host configuration, then
+the suspend path of it is not configured properly at all, as why would
+it be checking or caring about this at all if this is in gadget-only
+mode?
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
+Something else is wrong here, let's fix the root problem please.  Maybe
+this driver should just never be built in gadget-only mode, as it is
+never intended to support that option?
 
-All warnings (new ones prefixed by >>):
+thanks,
 
->> Documentation/admin-guide/perf/meson-ddr-pmu.rst:2: WARNING: Explicit markup ends without a blank line; unexpected unindent.
-
-vim +2 Documentation/admin-guide/perf/meson-ddr-pmu.rst
-
-   > 2	===========================================================
-     3	Amlogic SoC DDR Bandwidth Performance Monitoring Unit (PMU)
-     4	===========================================================
-     5	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+greg k-h
