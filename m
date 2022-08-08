@@ -2,172 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA32958C300
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 07:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0855658C2FD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 07:46:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235452AbiHHFqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 01:46:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38850 "EHLO
+        id S235454AbiHHFqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 01:46:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233140AbiHHFqv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 01:46:51 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC5C5DFD4;
-        Sun,  7 Aug 2022 22:46:42 -0700 (PDT)
-X-UUID: 5f9f0a52b07f45639a2c320be271104a-20220808
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=VYf6ezy+/tgRHSxGzJXfNlPkkPg4ZknRRAkBfdbZORU=;
-        b=jDvh4+64DMoZeeiCyFLavW6xLEs1PQPUnXjuZEqNk4jUFU0YnroyL0xZAg70bt+KNlyNpvw8JJpAsAM2wwm5FSxrsJ8U1pJMxCizUF45TyJ7xRC+dpg1iwc/kpgKFKpH+0g1+cvz193a7fgwNShpkzyI7BaK5jC/WXtU1TpHSsM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.9,REQID:1145f007-8b2c-427d-be21-a07512c8074d,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_H
-        am,ACTION:release,TS:0
-X-CID-META: VersionHash:3d8acc9,CLOUDID:38fb2fae-9535-44a6-aa9b-7f62b79b6ff6,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 5f9f0a52b07f45639a2c320be271104a-20220808
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 902237526; Mon, 08 Aug 2022 13:46:39 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Mon, 8 Aug 2022 13:46:39 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Mon, 8 Aug 2022 13:46:39 +0800
-Message-ID: <d9eb673132f643e39caeb422309bf4315f0c136e.camel@mediatek.com>
-Subject: Re: [PATCH v16 3/8] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bo-Chen Chen <rex-bc.chen@mediatek.com>, <chunkuang.hu@kernel.org>,
-        <p.zabel@pengutronix.de>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>, <deller@gmx.de>,
-        <airlied@linux.ie>
-CC:     <msp@baylibre.com>, <granquet@baylibre.com>,
-        <jitao.shi@mediatek.com>, <wenst@chromium.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <liangxu.xu@mediatek.com>, <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-fbdev@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Mon, 8 Aug 2022 13:46:39 +0800
-In-Reply-To: <20220805101459.3386-4-rex-bc.chen@mediatek.com>
-References: <20220805101459.3386-1-rex-bc.chen@mediatek.com>
-         <20220805101459.3386-4-rex-bc.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S233845AbiHHFqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 01:46:44 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15C4CDFD5
+        for <devicetree@vger.kernel.org>; Sun,  7 Aug 2022 22:46:43 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id v7so8722028ljj.4
+        for <devicetree@vger.kernel.org>; Sun, 07 Aug 2022 22:46:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xOqrRkUDHjSPuj9i4H6o8TBLA4yLo5iNF5pKCqfxIWk=;
+        b=w2pEwR1FFLzI//sm8jmTeFJ4Px5SM4423RgpSEXsyRj/Z2hRJebM9KtVWuyfDGuAXe
+         jcaG0Q5QCJYPvc5nmx+AW8tu4Lxa4DFmlhxoYTRGmDMS4tF5kDeZM2XICPX1m3BxzbhT
+         2OljNkW/IMOcfyl1k/wx8oGs0EeiXcr9O/Y4ev7VPe2fVsnugj9zFXoWRyn9+jqOsmm2
+         PcYhEjclXti52j4KCKnl+Kd3cluDe6QxlE3OZb9sy8giizcPKhRd2hMS944KIYQhxnfw
+         gOXw3ww3YkOwBEv2vqXKZRoMCDRiUJVoCGp3WJaRUNwJGYYnxOlD7KVb6+w+LNi64AcA
+         Ak+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xOqrRkUDHjSPuj9i4H6o8TBLA4yLo5iNF5pKCqfxIWk=;
+        b=VuAtHrBCKmKaI8aRdL1/lypjKYK+BUBbXyox8HZlJJ82SCs7/rVnNBZapyw4GXhxDK
+         0pPU23QomuR4FP5xuL0ZgKRkPaEezoQyIhHOMqXanT7MYlcM3GgyyfJcPtz2RvAzsPuJ
+         Mtx+Cm6lSIEXtUGZ+krwIs2Exi6/lh7SJ9hoqF4hOVRbhkvZnhY1oHPmj7plPXxfHsXQ
+         wT87/h0q21t8Cip4ASEER9Wun7dtoLgCUDB4aGNPkbstOHyTNgig05UWMU8zkIlh1SG/
+         Hmx9Afv7axrpsaifGUlnJkSwy86TqtV7odYc3KemlftZOod3H4mWwniT6NQKjE8deKBy
+         1Tuw==
+X-Gm-Message-State: ACgBeo1SqNJvg204ArB/BziHD8VBvl27JlFtaI8UQDzbjl6RKWL0Uv7r
+        bbm3Tvim1EYOnoprX2j/vCPKOw==
+X-Google-Smtp-Source: AA6agR5JYOLMzw/XuGStP7L2CF8XiWX/3bJ6dgIuD4q16mY6f7h3TcfBzWO5PAF/CuZhlkN1TZO6eA==
+X-Received: by 2002:a2e:7e0a:0:b0:25e:63f2:bbb0 with SMTP id z10-20020a2e7e0a000000b0025e63f2bbb0mr5699446ljc.77.1659937601371;
+        Sun, 07 Aug 2022 22:46:41 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id o14-20020a05651205ce00b0048ad0ad627asm1301868lfo.128.2022.08.07.22.46.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 Aug 2022 22:46:40 -0700 (PDT)
+Message-ID: <6aac8854-599e-c43f-0a49-0650fce91179@linaro.org>
+Date:   Mon, 8 Aug 2022 07:46:39 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v4 3/8] dt-bindings: clock: Add ids for Lynx 10g PLLs
+Content-Language: en-US
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-phy@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+References: <20220804220602.477589-1-sean.anderson@seco.com>
+ <20220804220602.477589-4-sean.anderson@seco.com>
+ <bee3d724-1efb-d5c7-6698-c98a198e69fd@linaro.org>
+ <b97f113b-f429-c8c5-96ee-7f1a68e16117@seco.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b97f113b-f429-c8c5-96ee-7f1a68e16117@seco.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bo-Chen:
-
-On Fri, 2022-08-05 at 18:14 +0800, Bo-Chen Chen wrote:
-> From: Markus Schneider-Pargmann <msp@baylibre.com>
+On 05/08/2022 17:17, Sean Anderson wrote:
 > 
-> This patch adds a embedded displayport driver for the MediaTek mt8195
-> SoC.
 > 
-> It supports the MT8195, the embedded DisplayPort units. It offers
-> DisplayPort 1.4 with up to 4 lanes.
+> On 8/5/22 2:53 AM, Krzysztof Kozlowski wrote:
+>> On 05/08/2022 00:05, Sean Anderson wrote:
+>>> This adds ids for the Lynx 10g SerDes's internal PLLs. These may be used
+>>> witn assigned-clock* to specify a particular frequency to use.
+>>>
+>>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>>> ---
+>>>
+>>> Changes in v4:
+>>> - New
+>>>
+>>>  include/dt-bindings/clock/fsl,lynx-10g.h | 14 ++++++++++++++
+>>>  1 file changed, 14 insertions(+)
+>>>  create mode 100644 include/dt-bindings/clock/fsl,lynx-10g.h
+>>>
+>>> diff --git a/include/dt-bindings/clock/fsl,lynx-10g.h b/include/dt-bindings/clock/fsl,lynx-10g.h
+>>> new file mode 100644
+>>> index 000000000000..f5b955658106
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/clock/fsl,lynx-10g.h
+>>> @@ -0,0 +1,14 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>>
+>> This should be dual license.
 > 
-> The driver creates a child device for the phy. The child device will
-> never exist without the parent being active. As they are sharing a
-> register range, the parent passes a regmap pointer to the child so
-> that
-> both can work with the same register range. The phy driver sets
-> device
-> data that is read by the parent to get the phy device that can be
-> used
-> to control the phy properties.
+> This is just matching what the majority (263 out of 326) clock dt-bindings headers do.
+
+Then please license it just like bindings, so dual license with BSD.
+
 > 
-> This driver is based on an initial version by
-> Jitao shi <jitao.shi@mediatek.com>
+>>> +/*
+>>> + * Copyright (C) 2022 Sean Anderson <sean.anderson@seco.com>
+>>
+>> It's confusing to see personal copyrights with company email. Either the
+>> copyright is attributed to your employer or to you. If to you, use
+>> private email.
 > 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> Tested-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> Reviewed-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> ---
+> I hold the copyright, and I would like inquiries to be directed to my work
+> email (as I don't have this hardware at home).
 
-[snip]
+OK, I guess I won't be the only one confused :). This entry here is not
+parsed for any tools and only sometimes people look at it. The questions
+are directed via entry in maintainers file or via git history, so you
+can put company email just there.
 
-> +
-> +static irqreturn_t mtk_dp_hpd_event(int hpd, void *dev)
-> +{
-> +	struct mtk_dp *mtk_dp = dev;
-> +	struct mtk_dp_train_info *train_info = &mtk_dp->train_info;
-> +	u32 irq_status;
-> +
-> +	irq_status = mtk_dp_read(mtk_dp, MTK_DP_TOP_IRQ_STATUS);
-> +
-> +	if (!(irq_status & RGS_IRQ_STATUS_TRANSMITTER))
-> +		return IRQ_HANDLED;
+> 
+>>> + */
+>>> +
+>>> +#ifndef __DT_BINDINGS_CLK_LYNX_10G_H
+>>> +#define __DT_BINDINGS_CLK_LYNX_10G_H
+>>> +
+>>> +#define LYNX10G_CLKS_PER_PLL 2
+>>> +
+>>> +#define LYNX10G_PLLa(a)		((a) * LYNX10G_CLKS_PER_PLL)
+>>> +#define LYNX10G_PLLa_EX_DLY(a)	((a) * LYNX10G_CLKS_PER_PLL + 1)
+>>
+>> These do not look like proper IDs for clocks for bindings. Numbering
+>> starts from 0 or 1 and any "a" needs to be clearly explained. What do
+>> you bind here?
+> 
+> This matches "a" is the index of the PLL. E.g. registers PLL1RSTCTL etc.
+> This matches the notation used in the reference manual.
 
-If one of MTK_DP_HPD_INTERRUPT, MTK_DP_HPD_CONNECT,
-MTK_DP_HPD_DISCONNECT exist, does it imply RGS_IRQ_STATUS_TRANSMITTER
-exist? If so, I think this checking is redundant because we could
-directly check MTK_DP_HPD_INTERRUPT, MTK_DP_HPD_CONNECT,
-MTK_DP_HPD_DISCONNECT.
+This is a file for bindings, not for storing register values. There is
+no single need to store register values (offsets, indexes) as bindings
+as it is not appropriate. Therefore if you do not use it as an ID, just
+remove the bindings header.
 
-> +
-> +	irq_status = mtk_dp_swirq_get_clear(mtk_dp) |
-> +		     mtk_dp_hwirq_get_clear(mtk_dp);
-> +
-> +	if (!irq_status)
-> +		return IRQ_HANDLED;
-> +
-> +	if (irq_status & MTK_DP_HPD_INTERRUPT)
-> +		train_info->hpd_inerrupt = true;
+> Although for
+> convenience, this driver considers the PLLs to start at 0 instead of 1.
 
-train_info->hpd_inerrupt is useless, so drop it.
-
-> +
-> +	if (!(irq_status & MTK_DP_HPD_CONNECT ||
-> +	      irq_status & MTK_DP_HPD_DISCONNECT))
-> +		return IRQ_WAKE_THREAD;
-
-this could be changed to
-
-if (irq_status == MTK_DP_HPD_INTERRUPT)
-	return IRQ_WAKE_THREAD;
-
-But I find one problem. If irq_status == MTK_DP_HPD_INTERRUPT |
-MTK_DP_HPD_CONNECT, the thread would not be waked up. Is this what you
-want?
-
-Regards,
-CK
-
-> +
-> +	if (!!(mtk_dp_read(mtk_dp, MTK_DP_TRANS_P0_3414) &
-> +	       HPD_DB_DP_TRANS_P0_MASK))
-> +		train_info->cable_plugged_in = true;
-> +	else
-> +		train_info->cable_plugged_in = false;
-> +
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_TOP_PWR_STATE,
-> +			   DP_PWR_STATE_BANDGAP_TPLL_LANE,
-> +			   DP_PWR_STATE_MASK);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-
+Best regards,
+Krzysztof
