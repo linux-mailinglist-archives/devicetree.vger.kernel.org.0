@@ -2,111 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D549158C8F7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 15:05:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 404CC58C907
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 15:08:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243106AbiHHNFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 09:05:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49168 "EHLO
+        id S242800AbiHHNIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 09:08:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243073AbiHHNFm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 09:05:42 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA5DBAE;
-        Mon,  8 Aug 2022 06:05:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BB096B80DDE;
-        Mon,  8 Aug 2022 13:05:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF838C433C1;
-        Mon,  8 Aug 2022 13:05:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1659963939;
-        bh=YopFz7vgFlUtdQVWfCGUYhY4nRi11uEOqzfp9ekNOZU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ddotj7ibW0VfGX2PLydzyRMIVLUENRDo5GSFrTqRtFurJHsF+YqCLSaIzWijv5dBQ
-         ZYWlgM+95IjdUugnuiT7ojUfgExcacV1Yf2BzO5yI49/dKNX/VRRuKfXOaNnrpKO6p
-         t5fpLEUUuSTv3wSo2EI7HFaTMxJ56VLyC2v4XAFM=
-Date:   Mon, 8 Aug 2022 15:05:36 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Johan Hovold <johan+linaro@kernel.org>
-Cc:     Felipe Balbi <balbi@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Randy Dunlap <rdunlap@infradead.org>
-Subject: Re: [PATCH v2 3/9] usb: dwc3: qcom: fix gadget-only builds
-Message-ID: <YvEKIJ+GujHt7XvT@kroah.com>
-References: <20220804151001.23612-1-johan+linaro@kernel.org>
- <20220804151001.23612-4-johan+linaro@kernel.org>
+        with ESMTP id S229690AbiHHNIX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 09:08:23 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00F785FC3;
+        Mon,  8 Aug 2022 06:08:21 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id v2so3953756lfi.6;
+        Mon, 08 Aug 2022 06:08:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=kuwKOcuHMSa3dQs4wZk02jLSCcVnoSCO8BTxrJsZ3Y4=;
+        b=IYwHZ8LA2fZ7gErBWUeZRWrXrXcZ6uS3hcMeDarJm6ToovrHlgcqqP/eWdXpacp202
+         xwIn6d7/Luovgbo/HgFzReARSGvhONTCDx3JdOr1llSLDhQvdWzfS1mN9sl34zCdZJNd
+         1DsRdBdoDF92Eradj/s/i375nOTe+T1T7Ep8I2/DuzbVE16Hxdl/6cIyXh02/TY/roNi
+         W/zIpQ6rXCnZTLS+TJPf7acziyb2sJboIX+OLKAvLwFm5y6kABAFEV2ync5FcUqoMnIa
+         kW9ueMp78HO9crFMJURQp9Zi7SAyTfOTP0Rqk41mQXUhVvc/gy/Z+cgBDOe27t6VLZM8
+         N+rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=kuwKOcuHMSa3dQs4wZk02jLSCcVnoSCO8BTxrJsZ3Y4=;
+        b=FmtHphtqTPjVu33qb9c921RBQChXSsn/7LaG47eH4tZb9Rr5PUvAGrl9uHmlzdxQeJ
+         ok5/dGhGH6zBTgK9vpVyDAG+YpKAZFE49FEmasJq7sXWWTvPlXkmEa8tLgIx/qgpke9i
+         YcQhiAhqMpWOcLfAjCwEaPrxw42bEzTiy7W90Srhg4HzIxUdfqot7ffFs//Lsv9VfqYQ
+         FURJpSxVBsRq60ka0ysdxsYE5kM+MuKQ8lLPfZ4iLL5jLbN7I/9Ctw43CIQoGusENWB3
+         MCyJkcdn66FRLF2mefltlJeTVKJLXIsDoFVohJJBaflqffTT64LlnFlWsDToH+J6bPGh
+         GgvA==
+X-Gm-Message-State: ACgBeo27Su7+SjptgJdQb5t9yxO3s8q4HGnMX5WaM6X2y1swVNKR72jG
+        pzQTJz9Mw/6HxU+LwJ6Ev5TfUw/72sllrusMDlg=
+X-Google-Smtp-Source: AA6agR7S/N6SzCu6WvUjst8DGTx8TkblKLEFyaeVt8VBRNP4uVQsWXwmfnx40tW0I14GvvaFNjJgxmSK42sdlLgTy00=
+X-Received: by 2002:a05:6512:168b:b0:48a:9f4a:9d37 with SMTP id
+ bu11-20020a056512168b00b0048a9f4a9d37mr6462916lfb.576.1659964100152; Mon, 08
+ Aug 2022 06:08:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220804151001.23612-4-johan+linaro@kernel.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220711123519.217219-1-tmaimon77@gmail.com> <20220711123519.217219-5-tmaimon77@gmail.com>
+ <20220711195544.70A30C34115@smtp.kernel.org> <CAP6Zq1ie_RgJ_9S3ftoVJ=eJHX1xR4_O_czKZghNPKVEFOzC8Q@mail.gmail.com>
+ <20220718191454.5B5D3C341C0@smtp.kernel.org> <CAP6Zq1ju08GSjNnEG+zDUC8W6aQMJxd5He7QJxy9++hTy0Dc7A@mail.gmail.com>
+ <20220723030226.8E43CC341C6@smtp.kernel.org> <CAP6Zq1gUvMFG9BNObVNLpVgbMRpV7e--HFxknP8kvL4nGk8Hsw@mail.gmail.com>
+ <20220729225603.12528C433D6@smtp.kernel.org> <CAP6Zq1hOxG+2X-qTbvPkrVHQ5zf04GO21m1n328Jiqgzns2CMA@mail.gmail.com>
+ <20220804200549.60512C433C1@smtp.kernel.org> <CAP6Zq1j2r9df0CpT7pi32JuVLQBDjt7cCK7LmDJehtufG8M4-Q@mail.gmail.com>
+In-Reply-To: <CAP6Zq1j2r9df0CpT7pi32JuVLQBDjt7cCK7LmDJehtufG8M4-Q@mail.gmail.com>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Mon, 8 Aug 2022 16:08:08 +0300
+Message-ID: <CAP6Zq1ib==k_E3XaS2bZB3m=yn0B_3hL2XuaHe1UiyM670snoA@mail.gmail.com>
+Subject: Re: [PATCH v8 04/16] clk: npcm8xx: add clock controller
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Olof Johansson <olof@lixom.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Robert Hancock <robert.hancock@calian.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Thomas G leixner <tglx@linutronix.de>,
+        Patrick Venture <venture@google.com>,
+        Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Nancy Yuen <yuenn@google.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        SERIAL DRIVERS <linux-serial@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 05:09:55PM +0200, Johan Hovold wrote:
-> A recent change added a dependency to the USB host stack and broke
-> gadget-only builds of the driver.
-> 
-> Fixes: 6895ea55c385 ("usb: dwc3: qcom: Configure wakeup interrupts during suspend")
-> Reported-by: Randy Dunlap <rdunlap@infradead.org>
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
-> 
-> Changes in v2
->  - new patch
-> 
->  drivers/usb/dwc3/dwc3-qcom.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index be2e3dd36440..e9364141661b 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -310,8 +310,11 @@ static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
->  	 * currently supports only 1 port per controller. So
->  	 * this is sufficient.
->  	 */
-> +#ifdef CONFIG_USB
->  	udev = usb_hub_find_child(hcd->self.root_hub, 1);
+Hi Stephen,
 
-If a gadget driver needs this for some reason, then the #ifdef should be
-put in a .h file, not in a .c file.
+Sorry, just to make it clear.
 
-But step back a minute and ask why a host-config-only function is being
-called when a device is in gadget-only mode?  This feels like a
-design/logic issue in this file, NOT something to paper over with a
-#ifdef in a .c file
+On Mon, 8 Aug 2022 at 15:37, Tomer Maimon <tmaimon77@gmail.com> wrote:
+>
+> Hi Stephen,
+>
+> Thanks for your reply.
+>
+> On Thu, 4 Aug 2022 at 23:05, Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> > Quoting Tomer Maimon (2022-08-04 07:01:30)
+> > > On Sat, 30 Jul 2022 at 01:56, Stephen Boyd <sboyd@kernel.org> wrote:
+> > > >
+> > > > Because it is jumbled in some range?
+> > > Yes.
+> > > >
+> > > > >
+> > > > > I do see a way to combine the clock and the reset driver, the NPCM
+> > > > > reset driver is serving other NPCM BMC's.
+> > > > > Should we use regmap to handle the clock registers instead of ioremap?
+> > > >
+> > > > Sure? Using regmap or not looks like a parallel discussion. How does it
+> > > > help use platform APIs?
+> > > I mean to use regmap API instead of platform API for handing the clock
+> > > and reset registers.
+> > > the regmap API gives only one user access to R/W (lock).
+> > > I will be happy to get more suggestions, on how should we solve this situation.
+> > >
+> >
+> > Using platform APIs means using platform_*() functions, not of_*()
+> > functions, which are open-firmware/DT related. Regmap can be used to
+> > operate on registers mapped as __iomem, which is different from platform
+> > APIs.
+> I will use platform_get_resource() and devm_ioremap_resource()
+> functions in the next version.
+I will use platform_get_resource() and ioremap() function next
+veriosn, is it fine?
+>
+> >
+> > Is having a lock even necessary? Do the reset and clk controls live
+> You are right,  lock use is not necessary.
+> > within a shared register where we would need to prevent one driver from
+> > accessing that register at the same time as the other?
+> reset and clk drivers are living fine with shared registers, we don't
+> need to handle the register access between the clk and the reset
+> drivers.
+>
+> Best regards,
+>
+> Tomer
 
-This implies that if this device is NOT in a host configuration, then
-the suspend path of it is not configured properly at all, as why would
-it be checking or caring about this at all if this is in gadget-only
-mode?
+Best regards,
 
-Something else is wrong here, let's fix the root problem please.  Maybe
-this driver should just never be built in gadget-only mode, as it is
-never intended to support that option?
-
-thanks,
-
-greg k-h
+Tomer
