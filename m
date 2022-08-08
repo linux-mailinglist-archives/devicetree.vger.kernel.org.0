@@ -2,45 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BF5958C07C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 03:52:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD8658C081
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 03:52:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243282AbiHHBw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Aug 2022 21:52:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35350 "EHLO
+        id S243299AbiHHBwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Aug 2022 21:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243504AbiHHBvH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 21:51:07 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C196D10F;
-        Sun,  7 Aug 2022 18:38:07 -0700 (PDT)
+        with ESMTP id S243583AbiHHBvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Aug 2022 21:51:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BA41192BD;
+        Sun,  7 Aug 2022 18:38:19 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4CD9760DF3;
-        Mon,  8 Aug 2022 01:38:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CED95C433D6;
-        Mon,  8 Aug 2022 01:38:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 46D0660EB4;
+        Mon,  8 Aug 2022 01:38:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B0FFC433C1;
+        Mon,  8 Aug 2022 01:38:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659922686;
-        bh=chmQ/QxK3qmOWMj+owMuXHL1OP1NT36bYWpNDyJ2YCw=;
+        s=k20201202; t=1659922698;
+        bh=NZXzu7cVGXXB/nusfk8PNhWsU7Tedr6sdn/56oyxKnY=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OSak4nV6KNA3GfCCrz7sdE5kqtTB7XNTYbC9wkINofGgcnvPK4XbyZJsUe1zMHUM4
-         N2ZnadIpntg8Yk14Mwt5zSvSnkPqGnMfzGWUvEmGkydRoIuCtFrZzD/I8AvkI9tG/l
-         Bcz2814QEQbeehQUjOb5DZaXN6THC6fv9n+Ot0aADzEBeNDTi3MuguURl24u00698G
-         c6hEdsq0a/DTVjrcghX0zvCP6DWJB4I6R1wN8kCQ/ktEd2tlLt6lTjqCkkjFvsVvhP
-         mf8++ChAsLmgbFbFyzityLFe7TKDtZz1psLYlvoMY+0rfVNYA58gYm9efiL5zZShII
-         G1DGST0ucS1jQ==
+        b=J11KcqXfLX9zPXJobcUkrlXBGWMYujSCDRRl2cDtmf+Orn5JcT4llYpaEA8ep2FKS
+         eFoQp6MkKd/aoBGxr6pBT5NTGaI15/jGENEDqRTUcquB12jL1hwA3RaxucWHjs8jjp
+         J6YYffWFCvFZ2Pff0xFiB9X8CncGlqJ5S87gjya3ZLT1Drm8z8pMj8UFnv4p0B7Ib2
+         HdRqBuUMCuJxUbFmajS25IIwy3dnwxBdYE/f+AoeFKoo8W9A/q2BS6MIZJEUCFL5Kg
+         wanZHas+ewQcqVdoURKyw0p6ax/olrULDeRQNMaWKcaqwj3VZEj2liZJhc8mZhR/SD
+         HqTGL/9m4vTeA==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.10 15/29] ARM: dts: imx6ul: fix qspi node compatible
-Date:   Sun,  7 Aug 2022 21:37:25 -0400
-Message-Id: <20220808013741.316026-15-sashal@kernel.org>
+Cc:     Robert Marko <robimarko@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sasha Levin <sashal@kernel.org>, agross@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 23/29] arm64: dts: qcom: ipq8074: fix NAND node name
+Date:   Sun,  7 Aug 2022 21:37:33 -0400
+Message-Id: <20220808013741.316026-23-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220808013741.316026-1-sashal@kernel.org>
 References: <20220808013741.316026-1-sashal@kernel.org>
@@ -58,40 +59,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
+From: Robert Marko <robimarko@gmail.com>
 
-[ Upstream commit 0c6cf86e1ab433b2d421880fdd9c6e954f404948 ]
+[ Upstream commit b39961659ffc3c3a9e3d0d43b0476547b5f35d49 ]
 
-imx6ul is not compatible to imx6sx, both have different erratas.
-Fixes the dt_binding_check warning:
-spi@21e0000: compatible: 'oneOf' conditional failed, one must be fixed:
-['fsl,imx6ul-qspi', 'fsl,imx6sx-qspi'] is too long
-Additional items are not allowed ('fsl,imx6sx-qspi' was unexpected)
-'fsl,imx6ul-qspi' is not one of ['fsl,ls1043a-qspi']
-'fsl,imx6ul-qspi' is not one of ['fsl,imx8mq-qspi']
-'fsl,ls1021a-qspi' was expected
-'fsl,imx7d-qspi' was expected
+Per schema it should be nand-controller@79b0000 instead of nand@79b0000.
+Fix it to match nand-controller.yaml requirements.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
+Signed-off-by: Robert Marko <robimarko@gmail.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Link: https://lore.kernel.org/r/20220621120642.518575-1-robimarko@gmail.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/imx6ul.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-index 51de36b4125a..c40684ad11b8 100644
---- a/arch/arm/boot/dts/imx6ul.dtsi
-+++ b/arch/arm/boot/dts/imx6ul.dtsi
-@@ -1025,7 +1025,7 @@ pxp: pxp@21cc000 {
- 			qspi: spi@21e0000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
--				compatible = "fsl,imx6ul-qspi", "fsl,imx6sx-qspi";
-+				compatible = "fsl,imx6ul-qspi";
- 				reg = <0x021e0000 0x4000>, <0x60000000 0x10000000>;
- 				reg-names = "QuadSPI", "QuadSPI-memory";
- 				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index dca040f66f5f..99e2488b92dc 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -383,7 +383,7 @@ qpic_bam: dma@7984000 {
+ 			status = "disabled";
+ 		};
+ 
+-		qpic_nand: nand@79b0000 {
++		qpic_nand: nand-controller@79b0000 {
+ 			compatible = "qcom,ipq8074-nand";
+ 			reg = <0x079b0000 0x10000>;
+ 			#address-cells = <1>;
 -- 
 2.35.1
 
