@@ -2,100 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6366258C39C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:01:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E6B058C3E7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:24:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231720AbiHHHB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 03:01:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49904 "EHLO
+        id S233045AbiHHHYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 03:24:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230520AbiHHHBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:01:23 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A1EE2DA
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 00:01:21 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id o2so4011721lfb.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 00:01:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TNens4dzDr8b/FfgJaaPeV+Bo1fmiGV2IZIds2mzQ4U=;
-        b=wCXfwUw2QoMuar6lfHymOJQ8aEuO4kEu28Jxk6Z5wZsnirHtVyXBcML6Xyfg49wBK8
-         N5wqK8o7ffRno6O91+gydq3gTYpcvPbfL2rE5+I57n90uZKwQrBcL7pKZQ7zg/sI2CM3
-         mtWxa2dOBHEJanRYj1xdLXeF4mNeQzpNppgE+syKltZPk4RXkhHKlsOamOU7Fq4QPHae
-         iS2KQ5I0EydknwCd7OUd5oN+aJTkJict9d/a2jrzu/nPE26mvTe8JKBK7Wv/u3BaHJa6
-         xo+/NkF7qTMgFsUlRJ2DCmXaiACWTpBaYpguNQFFdfEefSByeuDHSMQxHrFsIIHRWq9K
-         h+jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=TNens4dzDr8b/FfgJaaPeV+Bo1fmiGV2IZIds2mzQ4U=;
-        b=QEsOJyznA1Zsbp1qv+fXHHs0Q4X1u9RdtfeIquAPdl9HVmvUfgRNS4/62CtKJaSwHQ
-         jd2pfla+8t1EqbfBYtuwZ4dBUtJ3BxCyaeQe5IIAb6n90VZEz1KathsynvbGe351PI+D
-         HM1ixSxfBE860vNdlHH67SPOem4QA0/mbc3mA41QogGoXeLC4ibNqLXSwu+/+1+XLJVT
-         ItgSOtmvauUSizAXspppjpU7b54tJGjKmh2uNDMOx7PeUIXzVgM/RSFnGb3w0wMScGNa
-         9fWXZiw9gNfpyQNrfEXwiuurp9FZjiS4TYEPjraFrPCMCuQssGxA78VYzQtQxODfmpLq
-         fxCw==
-X-Gm-Message-State: ACgBeo2PAvczc7i7FTVLUO1BQ51bfSa5ZqrXWHp4od4xEz62jhWIaT2z
-        PJ2ymOqHIzTRr0Xe7w7x0B5hEw==
-X-Google-Smtp-Source: AA6agR7h9f9j7kJmy4eXv6HRMrXlzHuLszLtzEP+dX+EERyr5T4kuPtlqmFellRKW1jKlCQpBzg0rA==
-X-Received: by 2002:a05:6512:158f:b0:48b:714:5efa with SMTP id bp15-20020a056512158f00b0048b07145efamr6383704lfb.354.1659942079749;
-        Mon, 08 Aug 2022 00:01:19 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id h11-20020a056512054b00b0048b12f65672sm1319094lfl.272.2022.08.08.00.01.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 00:01:19 -0700 (PDT)
-Message-ID: <9a1f19f5-e17f-d8f6-8010-e399bdd6c6b9@linaro.org>
-Date:   Mon, 8 Aug 2022 10:01:18 +0300
+        with ESMTP id S231720AbiHHHYU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:24:20 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A2CD10DD;
+        Mon,  8 Aug 2022 00:24:15 -0700 (PDT)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 8BCC25C010C;
+        Mon,  8 Aug 2022 03:24:13 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Mon, 08 Aug 2022 03:24:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        tom-fitzhenry.me.uk; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to; s=fm1; t=1659943453; x=1660029853; bh=cfXKwT2L2W
+        iIMULrPjrMghFNOd45gLJ8rGZDCFh9GPU=; b=Yxus/l2iuHs/pwJkTM5C2gwHgL
+        UrFT8YFfm0lEgdIxeujotqg9e211oeMqw1iTPt5eHJtNmiPbXkSMkhP/M/d0xfi6
+        32BnX5MwKINQ299Z8EjoTH6Qo3uzAL0yQNp+CL4BbmnNFAOXgHIViwQ5gzHIOoFX
+        rF7EnTDAwwNOaHb84ds/aatwnUJbYCz195mKMxTNc5lYvYPoQ5WRYjUIGb5vrzPR
+        ApqgH/sU3iRE1hWJNfsTenoVwRKCK7Su48oHa5v5j9d9Uhe78DsDb/T75T9+ex+i
+        HHL0mcmZmUCZ4Nm+Qh30R5dDDMtRNwrhZJc48gwZNfBUfGOdh22iID48qFmg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:feedback-id:feedback-id:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1659943453; x=
+        1660029853; bh=cfXKwT2L2WiIMULrPjrMghFNOd45gLJ8rGZDCFh9GPU=; b=C
+        rxpsC7Yb13DKjBueJjjiYgKO9XsT4cFdLaILTPN9er+gboMsVHqfCnn75oteoJ+S
+        o/vx5xd+du0zwxLCdEypAheFShKgLZnt+JDEv+f6oa72sctaqGXwK/2zYcONNon6
+        j6Wx2iaq7KFZu95Saeyodpd0OjEL1F6LZl9vf0milcS83keP3RQZrZdL8Gw+/5yT
+        Y4yEXkbeH/BtHDIQX7d26knJtwWbtL5HZQYxP5cRhSK4qTLrvrsjfQIkMPAa9o3m
+        kARXmoETQ8437f9GxYStnZ5/wLSruPIhWZbFpelZHkC+P53UtSTWQWHRCuRtTO/4
+        fqXn/kXl9z3IiifxQceOA==
+X-ME-Sender: <xms:HLrwYgB62IxBquFN-LI7ebW5i4FFdTztOfuh0HaW8NSspyWZpEjPuw>
+    <xme:HLrwYigOvjW2NutFojZXfH8WkDUJjggmUe3GFBbDziAH37yE1U9TL0ISfLfKQ9DaW
+    IC2kqxmqmCljPQDkw>
+X-ME-Received: <xmr:HLrwYjlP5FbLSr5uzkG5xcYlRZ8aWT0Qn_Mc8M2aRIdWxzsTyILkPAqt3ww7LZQTk6ZzRTWtfrHNS4Ppx2Vn4tVk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdefjedguddujecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepvfho
+    mhcuhfhithiihhgvnhhrhicuoehtohhmsehtohhmqdhfihhtiihhvghnrhihrdhmvgdruh
+    hkqeenucggtffrrghtthgvrhhnpedvgeehhefhtdffuddvtddvhfdtudeuhfejhfetvdeg
+    teelfeduheejfefgtdekieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluh
+    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhomhesthhomhdq
+    fhhithiihhgvnhhrhidrmhgvrdhukh
+X-ME-Proxy: <xmx:HLrwYmxd0tnTDdadZDzkGmBfDKfDMsTa--QtOxp2g_Sf5pmicu5WTg>
+    <xmx:HLrwYlSTVMIk-abDMxsck8i9-PWeQDPDlSQYUn8mKDKLeVkXPp6Rdw>
+    <xmx:HLrwYhbPtuQaSXKNA5d6fjfQhWw6Z7kzi2QeGU_hCZ6yLJ5q42VUVQ>
+    <xmx:HbrwYhqO5YY-HidK0Q7p-sb0UFfuB3VhDqvkkKDlxA43D4sOz_Zvdg>
+Feedback-ID: iefc945ae:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 8 Aug 2022 03:24:09 -0400 (EDT)
+Message-ID: <88cea6f0-c76a-a1e6-48bf-1c0598df4df6@tom-fitzhenry.me.uk>
+Date:   Mon, 8 Aug 2022 17:24:06 +1000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: mailbox: fix the mpfs' reg property
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.0.3
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add initial support for
+ Pine64 PinePhone Pro
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Caleb Connolly <kc@postmarketos.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de
+Cc:     megi@xff.cz, martijn@brixit.nl, ayufan@ayufan.eu,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220805234411.303055-1-tom@tom-fitzhenry.me.uk>
+ <20220805234411.303055-4-tom@tom-fitzhenry.me.uk>
+ <f9cbc047-f30f-e711-3213-56fcbb7bbc8a@postmarketos.org>
+ <9a168a20-1fd1-5d73-1d33-bd2f054d60d7@tom-fitzhenry.me.uk>
+ <cf320916-c88b-0c4a-7515-24318f1b85b2@linaro.org>
 Content-Language: en-US
-To:     Conor.Dooley@microchip.com, jassisinghbrar@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     Daire.McNamara@microchip.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20220805125618.733628-1-conor.dooley@microchip.com>
- <20220805125618.733628-2-conor.dooley@microchip.com>
- <04b697b5-d344-0191-f511-c0f8e0c247ef@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <04b697b5-d344-0191-f511-c0f8e0c247ef@microchip.com>
-Content-Type: text/plain; charset=UTF-8
+From:   Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
+In-Reply-To: <cf320916-c88b-0c4a-7515-24318f1b85b2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/08/2022 15:01, Conor.Dooley@microchip.com wrote:
-> On 05/08/2022 13:56, Conor Dooley wrote:
->> The "data" region of the PolarFire SoC's system controller mailbox is
->> not one continuous register space - the system controller's QSPI sits
->> between the control and data registers. Split the "data" reg into two
->> parts: "data" & "control".
->>
->> Fixes: 213556235526 ("dt-bindings: soc/microchip: update syscontroller compatibles")
+On 8/8/22 16:38, Krzysztof Kozlowski wrote:
+>> I agree authorship is important, and thus Kamil, Martijn and Megi are
+>> listed as Co-developed-by in this patch.
 > 
-> I omitted the second fixes tag:
-> Fixes: ed9543d6f2c4 ("dt-bindings: add bindings for polarfire soc mailbox")
-> 
->> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->>   .../bindings/mailbox/microchip,mpfs-mailbox.yaml  | 15 +++++++++++----
->>   1 file changed, 11 insertions(+), 4 deletions(-)
->>
+> But you miss their SoB... Without them you should not send it. It does
+> not pass checkpatch, does it?
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+Sorry, my bad. I see 
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html 
+lists to use checkpatch. I had read this but had since forgotten. I will 
+ensure future patches pass checkpatch.
