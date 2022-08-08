@@ -2,241 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BDA9358C426
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9229258C439
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:41:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241017AbiHHHhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 03:37:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43324 "EHLO
+        id S235736AbiHHHlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 03:41:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239287AbiHHHgu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:36:50 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFE1120BC;
-        Mon,  8 Aug 2022 00:36:44 -0700 (PDT)
-Received: from [10.88.19.200] (10.88.19.200) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2507.6; Mon, 8 Aug 2022
- 15:36:39 +0800
-Message-ID: <0431a041-17b8-39d5-ed03-3036d556ec05@amlogic.com>
-Date:   Mon, 8 Aug 2022 15:36:39 +0800
+        with ESMTP id S241712AbiHHHk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:40:57 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C72CA188;
+        Mon,  8 Aug 2022 00:40:56 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id x19so3180240lfq.7;
+        Mon, 08 Aug 2022 00:40:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=FjsHMZLmb/GlaNd8HwMmgPgxm5PKMOsuOi0WmrXGSlA=;
+        b=JqTFHcQRg/bGHymFtU2WjDYJSsnpJgc/Lp7I7n/hQQeWcePrxqiIQR5cNxhPg2h1ut
+         htB15WfjEEwuKWc7sdDDXmbzTmofeYlFPANeBKqdk1VHR9uCXwElMoM0JklCoaI3qWMN
+         gQhsmb9JzoLTr87eW3W3c6OVDvF9zO3haq79hyuHy/VE9xQ8Y6yVf9y42YItsUMDAqQ9
+         166ZC3NW5xtzZ3OFRejKhc26XmPizgB+upAILwR/A0sP4+vySjIucPwLU2tVdCjE4tLu
+         DvpMnJl3Rc2MaeO665FBi39ofY2m5oUeJHsqE795Bb0l+ezONdj9U0TuWpJkC8vVUpO3
+         nj4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=FjsHMZLmb/GlaNd8HwMmgPgxm5PKMOsuOi0WmrXGSlA=;
+        b=fliy6sNaSJs14QvTEtZvhX3VRdOxeBI9EOUjo57y0mSNbjPZKf23wD+ZUxaku6CmIo
+         gE75tmnEteGC1ZiX8cBxU7GsRzPdk5sXTHhwl6TjUfewdHiXvolhd994O6lKF+wlUqh1
+         pRJCDWQ2Ilg8uaOcCXqzbavKqXNo5y+0IicEt4OB6Flr3n42rby4qG67AP7wV0MvcAd+
+         5cFv4s77FMeusOp/x5gITAsdG5672a5dw9nuuURGW/T/w0rB+5ZBvgdxxuitZQJwVVgP
+         jGsDPKRvEGD3Gt31jkYKHMTPMYmQ6lpRHOoj6NHygTCI42gC594FVkH1oWdMJAdj2DOZ
+         Lg6A==
+X-Gm-Message-State: ACgBeo1sp2lcxXValBZssae+NapUUcYxuVl3t+TL9seJB9nDrjqMegxx
+        olG/lB/UUapkP9uUqIsl/mcMbekbQwSjUO2+raU=
+X-Google-Smtp-Source: AA6agR40Oh1NkhpUPn/DplmuJHV4cYNWsZv3q3H5l9lDrB6jd+rIc9i/qlub2Q8awNxbIRVZPkwwKYyjZAZB/NCm7Rw=
+X-Received: by 2002:ac2:5f77:0:b0:48b:3886:5d55 with SMTP id
+ c23-20020ac25f77000000b0048b38865d55mr5402059lfc.668.1659944454775; Mon, 08
+ Aug 2022 00:40:54 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.2
-Subject: Re: [PATCH v4 1/4] perf/amlogic: Add support for Amlogic meson G12
- SoC DDR PMU driver
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+References: <20220804181800.235368-1-tmaimon77@gmail.com> <10e93907-49ef-a3e6-e0b4-0b3e5f236f44@linaro.org>
+ <CAP6Zq1ju4=PSiCuDaCi2NQTniaXBwmv5Qn6LoLayGmiayDCvYg@mail.gmail.com> <83bbcb33-1f6e-47cc-54bc-e0a5444c3609@linaro.org>
+In-Reply-To: <83bbcb33-1f6e-47cc-54bc-e0a5444c3609@linaro.org>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Mon, 8 Aug 2022 10:40:43 +0300
+Message-ID: <CAP6Zq1ggN_ep7nVLVc3d7D9Jnu2aaBTKmZnvO38-+m7gSvpMDw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-binding: ipmi: add fallback to npcm845 compatible
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Jonathan Cameron <jic23@kernel.org>, minyard@acm.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chris Healy <cphealy@gmail.com>,
-        kernel test robot <lkp@intel.com>
-References: <20220805071426.2598818-1-jiucheng.xu@amlogic.com>
- <3597d068-2c44-9450-4a0c-4704f3639a37@linaro.org>
- <4119d339-0570-2132-3e9f-19ec45ef6e8d@amlogic.com>
- <eb153484-6216-c4bd-deb2-c25e177b2d59@linaro.org>
-From:   Jiucheng Xu <jiucheng.xu@amlogic.com>
-In-Reply-To: <eb153484-6216-c4bd-deb2-c25e177b2d59@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.88.19.200]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        openipmi-developer@lists.sourceforge.net,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
-On 2022/8/8 13:42, Krzysztof Kozlowski wrote:
-> [ EXTERNAL EMAIL ]
+Thanks for your reply.
+
+
+On Mon, 8 Aug 2022 at 09:26, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 05/08/2022 11:55, Jiucheng Xu wrote:
->>>> +static int __init g12_ddr_pmu_probe(struct platform_device *pdev)
->>>> +{
->>>> +	struct ddr_pmu *pmu;
->>>> +
->>>> +	if (of_device_is_compatible(pdev->dev.of_node,
->>>> +				    "amlogic,g12a-ddr-pmu")) {
->>>> +		format_attr_nna.attr.mode = 0;
->>>> +		format_attr_gdc.attr.mode = 0;
->>>> +		format_attr_arm1.attr.mode = 0;
->>>> +		format_attr_mipi_isp.attr.mode = 0;
->>> No. That's not correct patter. You must use variant specific driver data.
->> Do you mean use of_device_id.data? Could your please give me an
->>
->> example code in kernel source?
-> 90% of Linux kernel drivers?
+> On 07/08/2022 09:51, Tomer Maimon wrote:
+> > Hi Krzysztof,
+> >
+> > Thanks for your review.
+> >
+> > On Fri, 5 Aug 2022 at 09:36, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 04/08/2022 20:18, Tomer Maimon wrote:
+> >>> Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+> >>> string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
+> >>>
+> >>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> >>
+> >> Your previous commit adding that compatible was simply wrong and not
+> >> matching the driver and it is not the first time. I think all Nuvoton
+> >> patches need much more careful review :(
+> > Will do and sorry about all the mess...
+> >>
+> >> You forgot the fixes tag:
+> >>
+> >> Fixes: 84261749e58a ("dt-bindings: ipmi: Add npcm845 compatible")
+> > Will add the tag next version.
 >
->>>> +	},
->>>> +	{
->>>> +		.compatible = "amlogic,g12a-ddr-pmu",
->>>> +	},
->>>> +	{
->>>> +		.compatible = "amlogic,g12b-ddr-pmu",
->>>> +	},
->>>> +	{
->>>> +		.compatible = "amlogic,sm1-ddr-pmu",
->>> Why four different entries for the same devices without driver data?
->>> This is confusing.
->> Do you mean use a common compatible and different driver data?
-> What I meant is that current version this is useless and confusing.
-> Different devices have different compatibles with different driver data.
-> Same devices have just the same compatible (so same driver data). You
-> mixed two different approaches.
-
-Does the driver data must be necessary? Although G12A, G12B and SM1 are 
-different devices,
-
-but they have the same control interface. The only difference is that 
-G12B has
-
-4 extra modules be supported than G12A.
-
->
->>>> +	},
->>>> +	{}
->>>> +};
->>>> +
->>>> +static struct platform_driver g12_ddr_pmu_driver = {
->>>> +	.driver = {
->>>> +		.name = "amlogic,ddr-pmu",
->>>> +		.of_match_table = meson_ddr_pmu_dt_match,
->>>> +	},
->>>> +	.remove = __exit_p(g12_ddr_pmu_remove),
->>> You made the driver non-hotpluggable - why?
->>> In the same time it is still unbindable, whis is a bit confusing. If you
->>> can unbind it, you should be able to hot-unplug it.
->> Sorry, I couldn't know why the driver is non-hotpluggable. Could you
->> tell the detail?
-> You used module_platform_driver_probe, so the one with documentation:
->   /* non-hotpluggable platform devices may use this so that probe() and
->
->    * its support may live in __init sections, conserving runtime memory.
->
->    */
-
-Okay, module_platform_driver_probe（) was suggested by Robin Murphy 
-<robin.murphy@arm.com>,
-
-but you gave the reason. module_platform_driver() is okay?
-
->
->
->>>> +};
->>>> +
->>>> +module_platform_driver_probe(g12_ddr_pmu_driver, g12_ddr_pmu_probe);
->>>> +MODULE_AUTHOR("Jiucheng Xu");
->>>> +MODULE_LICENSE("GPL");
->>>> +MODULE_DESCRIPTION("Amlogic G12 series SoC DDR PMU");
->>>> diff --git a/include/soc/amlogic/meson_ddr_pmu.h b/include/soc/amlogic/meson_ddr_pmu.h
->>>> new file mode 100644
->>>> index 000000000000..882efe3c2f58
->>>> --- /dev/null
->>>> +++ b/include/soc/amlogic/meson_ddr_pmu.h
->>>> @@ -0,0 +1,76 @@
->>>> +/* SPDX-License-Identifier: GPL-2.0 */
->>>> +/*
->>>> + * Copyright (c) 2022 Amlogic, Inc. All rights reserved.
->>>> + */
->>>> +
->>>> +#ifndef __MESON_DDR_PMU_H__
->>>> +#define __MESON_DDR_PMU_H__
->>>> +
->>>> +#define MAX_CHANNEL_NUM		8
->>>> +
->>>> +enum {
->>>> +	ALL_CHAN_COUNTER_ID,
->>>> +	CHAN1_COUNTER_ID,
->>>> +	CHAN2_COUNTER_ID,
->>>> +	CHAN3_COUNTER_ID,
->>>> +	CHAN4_COUNTER_ID,
->>>> +	CHAN5_COUNTER_ID,
->>>> +	CHAN6_COUNTER_ID,
->>>> +	CHAN7_COUNTER_ID,
->>>> +	CHAN8_COUNTER_ID,
->>>> +	COUNTER_MAX_ID,
->>>> +};
->>>> +
->>>> +struct dmc_hw_info;
->>>> +
->>>> +struct dmc_counter {
->>>> +	u64 all_cnt;	/* The count of all requests come in/out ddr controller */
->>>> +	union {
->>>> +		u64 all_req;
->>>> +		struct {
->>>> +			u64 all_idle_cnt;
->>>> +			u64 all_16bit_cnt;
->>>> +		};
->>>> +	};
->>>> +	u64 channel_cnt[MAX_CHANNEL_NUM]; /* To save a DMC bandwidth-monitor channel counter */
->>>> +};
->>>> +
->>>> +struct dmc_pmu_hw_ops {
->>>> +	void (*enable)(struct dmc_hw_info *info);
->>>> +	void (*disable)(struct dmc_hw_info *info);
->>>> +	/* Bind an axi line to a bandwidth-monitor channel */
->>>> +	void (*config_axi_id)(struct dmc_hw_info *info, int axi_id, int chann);
->>>> +	int (*irq_handler)(struct dmc_hw_info *info,
->>>> +			   struct dmc_counter *counter);
->>>> +	void (*get_counters)(struct dmc_hw_info *info,
->>>> +			     struct dmc_counter *counter);
->>>> +};
->>>> +
->>>> +struct dmc_hw_info {
->>>> +	struct dmc_pmu_hw_ops *ops;
->>>> +	void __iomem *ddr_reg[4];
->>>> +	unsigned long timer_value;	/* Timer value in TIMER register */
->>>> +	void __iomem *pll_reg;
->>>> +	int irq_num;			/* irq vector number */
->>>> +	int dmc_nr;			/* The number of dmc controller */
->>>> +	int chann_nr;			/* The number of dmc bandwidth monitor channels */
->>>> +	int id;				/* The number of supported channels */
->>>> +	struct attribute **fmt_attr;
->>>> +};
->>>> +
->>>> +struct ddr_pmu {
->>>> +	struct pmu pmu;
->>>> +	struct dmc_hw_info info;
->>>> +	struct dmc_counter counters;	/* save counters from hw */
->>>> +	bool pmu_enabled;
->>>> +	struct device *dev;
->>>> +	char *name;
->>>> +	struct hlist_node node;
->>>> +	enum cpuhp_state cpuhp_state;
->>>> +	int cpu;			/* for cpu hotplug */
->>>> +};
->>> Linux-wide headers should not include your private data structures.
->>> Entier header looks unused - should be made private.
->> Do you mean the header should be in driver dir, or the structures should
->> be within .c file?
-> This or that, up to you. Definitely not in include/linux/.
-
-I see other PMU drivers' header are in include/soc/xxx/. I just follow them.
-
-meson G12 series SoC DDR PMU driver is the first PMU driver got upstream,
-
-and other series will be got upstream in the future. So I think the 
-structures are public.
-
-Does this make sense?
-
->
+> You received a bit different review from Corey, so to be clear:
+> 1. Your approach is correct, assuming the devices are really compatible.
+> 2. Add a fixes tag and send a v3, to get my ack.
+Will do.
 >
 > Best regards,
 > Krzysztof
->
--- 
-Thanks,
-Jiucheng
 
+Best regards,
+
+Tomer
