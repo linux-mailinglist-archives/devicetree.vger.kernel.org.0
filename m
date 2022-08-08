@@ -2,118 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 487CF58CA03
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 15:59:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3451858CA77
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 16:23:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243485AbiHHN7c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 09:59:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34326 "EHLO
+        id S243415AbiHHOXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 10:23:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243247AbiHHN7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 09:59:30 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35635E0FF;
-        Mon,  8 Aug 2022 06:59:28 -0700 (PDT)
-Received: from fraeml708-chm.china.huawei.com (unknown [172.18.147.201])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4M1d4N2Sxyz67Y4H;
-        Mon,  8 Aug 2022 21:55:00 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
- fraeml708-chm.china.huawei.com (10.206.15.36) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.24; Mon, 8 Aug 2022 15:59:25 +0200
-Received: from localhost (10.122.247.231) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.24; Mon, 8 Aug
- 2022 14:59:24 +0100
-Date:   Mon, 8 Aug 2022 14:59:24 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@huawei.com>
+        with ESMTP id S243228AbiHHOXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 10:23:33 -0400
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D4F810FDD;
+        Mon,  8 Aug 2022 07:23:32 -0700 (PDT)
+Received: by mail-ot1-x32c.google.com with SMTP id y10-20020a9d634a000000b006167f7ce0c5so6608462otk.0;
+        Mon, 08 Aug 2022 07:23:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:from:to:cc;
+        bh=c4sdWPDGZh2lpcz0JPsH1RxILtP+3NzhgDmzZEzhFwU=;
+        b=ZnLmow2wQ4sURptG6gn+2TtbvfsVwBPnjNh04IBl4k64MgxlFvSvUC+wp+vboN3FgO
+         ZyzRtpw9HTFDSJFU034ypntElaqBvXbVjdm6be2TRrV7uK16N99P1EchihnkRoKVliBv
+         8GPCh+Cfbd5UnCYx4nUQfWm3niPkbwQoKkNBKaNVXIw+u4CP7aMrxBGpmDm79s1VSoSA
+         UiPRyNaRR/wMj53t/PjOxllk2TJrO0AEUzOkw2dCBTrfbgVAfMHFdUe/xgp/HVbunerL
+         TOsm01vtfLxY0tyde5qMUJ1Q267z+JxC2cJNOEpgBI8FwHIQPZxY08ZWIUvoyhQxNAN4
+         Du/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:x-gm-message-state:from
+         :to:cc;
+        bh=c4sdWPDGZh2lpcz0JPsH1RxILtP+3NzhgDmzZEzhFwU=;
+        b=5wwcMJcdS+iRaMctNi2ttckacXt1wCH5N1K2V8/40KJtrX7V8m9tLH1lGnZtjSqaSk
+         TF2ykpMVvzZV4RDAa7yMMtB0Q83AV+zsvyE5wbXf1MA46idGg6lutDotjuFZRopLvmuW
+         nQwMYiQD0C1xbopcmpxtiRnlXBIrOIvw5WmoaanYRk84oJM9GtEvqo/fZGJChu5DpYPU
+         czZAMwqr9TX/nVfAGXxNLnpLBQ8ArHKmaXIDhDRLKBghpIoC8cN4VNJCnVniTRBB0oFb
+         TEEaCYBUdUPRD7YKdmDOg/qvCEf1SWXoJ/ivqFioyPpKgVbABu3G1t91+4TEO0OoN8kJ
+         NQDQ==
+X-Gm-Message-State: ACgBeo03smLK9vMs7cx2MKmIhjb0OvBXNsFvKhU2mF908/OeDIdHMopT
+        CXRGwV6bqNdNeu6cNPMoJw==
+X-Google-Smtp-Source: AA6agR5il2qTkCti/3qg75D5Tbky90Do0XQ9veQVqgQYxxPzZdL+FNKM8OV8jU27apltAUSE8fZdRA==
+X-Received: by 2002:a9d:73d0:0:b0:61c:8d31:6981 with SMTP id m16-20020a9d73d0000000b0061c8d316981mr7149505otk.99.1659968610070;
+        Mon, 08 Aug 2022 07:23:30 -0700 (PDT)
+Received: from serve.minyard.net ([47.184.144.75])
+        by smtp.gmail.com with ESMTPSA id fo34-20020a0568709a2200b0010e47737471sm2295305oab.49.2022.08.08.07.23.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Aug 2022 07:23:29 -0700 (PDT)
+Sender: Corey Minyard <tcminyard@gmail.com>
+Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:3153:e085:df0f:abc2])
+        by serve.minyard.net (Postfix) with ESMTPSA id B79DE1800FA;
+        Mon,  8 Aug 2022 14:23:28 +0000 (UTC)
+Date:   Mon, 8 Aug 2022 09:23:27 -0500
+From:   Corey Minyard <minyard@acm.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Pavel Machek <pavel@ucw.cz>,
-        "Tim Harvey" <tharvey@gateworks.com>,
-        Robert Jones <rjones@gateworks.com>,
-        "Lee Jones" <lee@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Eric Dumazet" <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "Paolo Abeni" <pabeni@redhat.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Ricardo Rivera-Matos" <r-rivera-matos@ti.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <linux-fbdev@vger.kernel.org>, <linux-leds@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH 1/5] dt-bindings: iio: Drop Joachim Eastwood
-Message-ID: <20220808145924.00005e14@huawei.com>
-In-Reply-To: <20220808104712.54315-2-krzysztof.kozlowski@linaro.org>
-References: <20220808104712.54315-1-krzysztof.kozlowski@linaro.org>
-        <20220808104712.54315-2-krzysztof.kozlowski@linaro.org>
-Organization: Huawei Technologies R&D (UK) Ltd.
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.29; x86_64-w64-mingw32)
+Cc:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, jic23@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        openbmc@lists.ozlabs.org, openipmi-developer@lists.sourceforge.net,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] dt-binding: ipmi: add fallback to npcm845 compatible
+Message-ID: <20220808142327.GR3834@minyard.net>
+Reply-To: minyard@acm.org
+References: <20220808075452.115907-1-tmaimon77@gmail.com>
+ <da83671e-08b9-2d68-e5d3-d9b09c105bb4@linaro.org>
+ <20220808122652.GO3834@minyard.net>
+ <937b6737-5d55-2185-a4bc-7535fa6da85c@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.122.247.231]
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <937b6737-5d55-2185-a4bc-7535fa6da85c@linaro.org>
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  8 Aug 2022 13:47:08 +0300
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> Emails to Joachim Eastwood bounce ("552 5.2.2 The email account that you
-> tried to reach is over quota and inactive.").
+On Mon, Aug 08, 2022 at 03:38:45PM +0300, Krzysztof Kozlowski wrote:
+> On 08/08/2022 15:26, Corey Minyard wrote:
+> > On Mon, Aug 08, 2022 at 11:11:16AM +0300, Krzysztof Kozlowski wrote:
+> >> On 08/08/2022 09:54, Tomer Maimon wrote:
+> >>> Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+> >>> string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
+> >>>
+> >>> Fixes: 84261749e58a ("dt-bindings: ipmi: Add npcm845 compatible")
+> >>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> >>
+> >>
+> >> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > 
+> > Ok, I think I understand how this is supposed to work.  It's not
+> > altogether clear from the device tree documentation.  It says in
+> > Documentation/devicetree/bindings/writing-bindings.rst:
+> > 
+> > - DO make 'compatible' properties specific. DON'T use wildcards in compatible
+> >   strings. DO use fallback compatibles when devices are the same as or a subset
+> >   of prior implementations. DO add new compatibles in case there are new
+> >   features or bugs.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-
-> ---
->  Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml   | 1 -
->  Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml | 2 +-
->  2 files changed, 1 insertion(+), 2 deletions(-)
+> This documentation is short, so it explains what should be done, not
+> exactly why it should be done. If we wanted "why" this would not be set
+> of 4 sentences but twice more...
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml b/Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml
-> index 7c8f8bdc2333..9c7c66feeffc 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml
-> @@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: Freescale MMA7455 and MMA7456 three axis accelerometers
->  
->  maintainers:
-> -  - Joachim Eastwood <manabian@gmail.com>
->    - Jonathan Cameron <jic23@kernel.org>
->  
->  description:
-> diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml
-> index 6404fb73f8ed..43abb300fa3d 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml
-> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->  title: NXP LPC1850 ADC bindings
->  
->  maintainers:
-> -  - Joachim Eastwood <manabian@gmail.com>
-> +  - Jonathan Cameron <jic23@kernel.org>
->  
->  description:
->    Supports the ADC found on the LPC1850 SoC.
+> > 
+> > AFAICT, there are no new features or bugs, just a new SOC with the same
+> > device.  In general usage I have seen, you would just use the same
+> > compatible.  
+> 
+> Most of the usages are like shown here. There are several other cases.
+> It's the same with poor or good code - you will always find both patterns.
 
-lore
+It is true, but lack of specified good examples makes it hard for people
+like me to know what is right and wrong.
+
+> 
+> > However, if I understand this, that last sentence should say:
+> > 
+> >   DO add new compatibles in case there is a new version of hardware with
+> >   the possibility of new features and/or bugs.
+> > 
+> > Also, the term "specific" is, ironically, vague.  Specific to what?
+> 
+> To me it is rather clear. Specific as in first meanings of the word (1,
+> 3, 4 and 5):
+> https://en.wiktionary.org/wiki/specific
+
+Everything is always clear when you understand something :).
+The really hard part about technical documentation is forgetting what
+you know and approaching it from a newbie's context.
+
+> 
+> nuvoton,npcm7xx-kcs-bmc would not be definite (allows more meanings),
+> unique (in terms of devices it expresses), distinctive (as two different
+> devices use the same) or serving to identify one thing (again - two SoCs).
+> 
+> What other meaning do you think of?
+
+It is not the definition of specific that is vague, it is what
+"specific" applies to.  Is it specific to a SOC?  Specific to a board?
+Specific to a particular device implementation?  Specific to a rev of
+the silicon?
+
+I will say that when I read that sentence, it means nothing to me.
+If it said "DO make compatible properties as specific as possible to the
+particular hardware implementation of the device" that would have more
+meaning, but still leaves the reader wondering exactly how to do this.
+
+For instance, should I put board/rev specific compatibles in?  Would it
+be:
+
+   "mycompany,myboard-rev1-npcm845-kcs-bmc", "mycompany,myboard-npcm845-kcs-bmc",
+   "nuvoton,npcm845-revb-kcs-bmc", "nuvoton,npcm845-kcs-bmc",
+   "nuvoton,npcm750-kcs-bmc"
+
+That's about as specific as you can get with fallbacks for everything,
+but it is too specific?  How far do you go?  There might be wiring
+differences on specific board, maybe that makes a difference.
+
+That's where good (and identified bad) examples and rationale come in.
+Tell the user why something is being done and it's easier to understand
+what to do in different situations.  It's not a matter of number of
+sentences.  Just like code, shorter is not always better.
+
+Anyway, I have ranted for too long.  Thank you for clearing this up for
+me.
+
+-corey
+
+> 
+> > 
+> > It would be nice to have something added to "Typical cases and caveats"
+> > that says:
+> > 
+> > - If you are writing a binding for a new device that is the same as, or
+> >   a superset of another existing device, add a new specific compatible
+> >   for the new device followed by a compatible for the existing device.
+> >   That way, if the device has new bugs or new specific features are
+> >   added, you can add workarounds without modifying the device tree.
+> > 
+> > Anyway, I have added this to my tree with your ack.
+> 
+> Fantastic, thanks!
+> 
+> 
+> Best regards,
+> Krzysztof
