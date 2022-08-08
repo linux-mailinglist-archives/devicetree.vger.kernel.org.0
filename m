@@ -2,102 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72F7F58C3F6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:31:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE27958C40F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:35:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233625AbiHHHbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 03:31:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
+        id S235426AbiHHHfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 03:35:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231756AbiHHHbT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:31:19 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77AE35599;
-        Mon,  8 Aug 2022 00:31:18 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id k26so15004048ejx.5;
-        Mon, 08 Aug 2022 00:31:18 -0700 (PDT)
+        with ESMTP id S236299AbiHHHfb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:35:31 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D57762F2;
+        Mon,  8 Aug 2022 00:35:30 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id ay36-20020a05600c1e2400b003a4e30d7995so6976808wmb.5;
+        Mon, 08 Aug 2022 00:35:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=tgetifgbBTUwaHUUNxKhDY+i5+I0QQCMcg7l3wjWxzY=;
-        b=UTJmMy8wlZ8ar7ug6ycvZxzXHMuzQ3ccBZgVA5yaRBGGjOgthZyyYPMxB08CeQ87l6
-         wGCPkpjDbw4thwhjnyGr/n57UtRmMmqFDk98cmj76C8hnM34OpDgmqHZjJK1tjkTvt9M
-         H3L1Y76TJIGmj1mhsU1XE8xl6ORANOc1Jru+5l8+/9L1vYuMJLy09T8maKhxxv+ec8go
-         dW1Pf5bm2VMEsLEMYQca4zQOIwbuznRdw5txE5QUrfL3WXpgvwNwPnvI8riPbI4LgP3Z
-         h7rxYYR6Ba0b9L6n/uifAKXLO0vxiciVSxn3u81oXYHPoLMCYhJmJnxvEzPpv5dOST3J
-         odvw==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=pLEgpHosko6zu68c6+83D0WlNXTrwkqBiWooJQ+HKoQ=;
+        b=cq8Fvz9C8dLGc6CoNBTF+yrNT1H8Tn+yQYmIQGBUgXdaXAMTBGLYBCUnfWAp1CI1b6
+         dLqkHUFfhLQgykuG906XpztRXRLu/6N66uLz+eoFCnAOM08YCx9K+dwLQSyGjfa3/MPS
+         Daip3brjzwOqDj7u8MMDuhwarPFkz7yUzCAQV1GN9ZY1mO4d4jo4+s4MsJEs5GfnnxqD
+         D3gAMyln9hmlpQA1TRZAahCZK29B5Zzynho9AgHS8UwZSJH8tWd48gHCuBRKyfDSiKB6
+         XzvjgpzIpH67I5ldfoDgY7ieQi7wfgy4f3uBQSL5wqc3zhsJImUkIQuh2j/A9hmGgBkO
+         DKZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tgetifgbBTUwaHUUNxKhDY+i5+I0QQCMcg7l3wjWxzY=;
-        b=Rhd367xNsletjcJbg4wnAfAa3qss/snZbRoFSlK2sNmg/M2CsfQVMsGTnGQeKFxdRR
-         OAOPlP/691Gwu7HymwH196Yai1qas5x5cdjj6+Hkgqs3d10h8eq7KXD4VAxWxt/zY6lm
-         kKTJ8jNhC5sseBWe8mpsqPh9nNY7vopcyu4rEWI9lBzv5uqfz6hV7RohK6XcTwU4Hfis
-         Y4nSSkXBrle8uo2aCwqppckNhKj1L9w1Tl19PefvcXmXN0oozjpS6wqWItYMEEUKUd1g
-         ryBuNNW8UafV/hMHSUK5LHE7pA+02vLvvaRS/EStQ0+GE5xitbf+2yuYLdTyKXMB8LTy
-         aUHQ==
-X-Gm-Message-State: ACgBeo2xX+DKGy/+kBFBSm6Vl6feXPcH78OiwYrmqYljBKsrmUn3N8ub
-        HKVxm/LzKTMMo8FDCFH+HVY=
-X-Google-Smtp-Source: AA6agR74/72PZxy2KSi8pJBrl2fnYKZanlnWDpQ15tSBhcIHChFc/Ji9ZCqdzJ1ioYtI3EUEdZKWng==
-X-Received: by 2002:a17:907:a42c:b0:730:9e5c:b457 with SMTP id sg44-20020a170907a42c00b007309e5cb457mr13380283ejc.666.1659943876709;
-        Mon, 08 Aug 2022 00:31:16 -0700 (PDT)
-Received: from skbuf ([188.27.185.133])
-        by smtp.gmail.com with ESMTPSA id a15-20020a056402168f00b0043aba618bf6sm4178218edv.80.2022.08.08.00.31.12
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=pLEgpHosko6zu68c6+83D0WlNXTrwkqBiWooJQ+HKoQ=;
+        b=SE/MeDxaUdrm9ReBzoDqQfPlJ/H0j+mqIGk4I8u0GdQAS59AVSH5WFO+65oDZpJaq7
+         6lDUOn5KS371VYE7Y+3Cr6MZZWlCNL7xqOnh8Ymgt40cM5uPitZB1n9p7n0VboShLJZY
+         oOpnjsLB/tsQMvX32fr6YWZlBT4OX6OmmPIVwttOUngiEI1ImsqH4dus6kRwq+dYV4LS
+         IawjXGeFFjPxWbdk4AKPfWimRpCz1hnuweljnDvfAEkGJi7GVzhUQQtH79wA/sBaEu8e
+         Gcm5Hzp6dKjqO/Ah9dLbnZwfNYwWSFlTcxo7tJEDXCSRfbFuA6oABo84mEt8ZJ0uvJVZ
+         ktFQ==
+X-Gm-Message-State: ACgBeo30Dp/r3QRXeWfkDbBvO7MoFXeUJ3GfA2luetT/V8R+pidjtOZ+
+        R47GR9OTEYryZTaREWP5C1w=
+X-Google-Smtp-Source: AA6agR7kVfS/9XyLbPXQt2uarhmODIi0OmqVGWosfq2GffwDrR1g/fyPlTEGtvz1TmjY+gG4nmjmQA==
+X-Received: by 2002:a05:600c:4e92:b0:3a3:2a1c:d005 with SMTP id f18-20020a05600c4e9200b003a32a1cd005mr16859487wmq.170.1659944128671;
+        Mon, 08 Aug 2022 00:35:28 -0700 (PDT)
+Received: from localhost.localdomain ([105.235.133.111])
+        by smtp.gmail.com with ESMTPSA id cc11-20020a5d5c0b000000b002205ffe88edsm8333364wrb.31.2022.08.08.00.35.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 00:31:14 -0700 (PDT)
-Date:   Mon, 8 Aug 2022 10:31:10 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christian Marangi <ansuelsmth@gmail.com>
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
+        Mon, 08 Aug 2022 00:35:28 -0700 (PDT)
+From:   Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        John Crispin <john@phrozen.org>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Mans Rullgard <mans@mansr.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Aleksander Jan Bajkowski <olek2@wp.pl>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Pawel Dembicki <paweldembicki@gmail.com>,
-        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        Marcin Wojtas <mw@semihalf.com>, Marek Vasut <marex@denx.de>,
-        linux-renesas-soc@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [RFC PATCH v3 net-next 10/10] net: dsa: make phylink-related OF
- properties mandatory on DSA and CPU ports
-Message-ID: <20220808073110.wv4nm3fllwcxl5nq@skbuf>
-References: <20220806141059.2498226-1-vladimir.oltean@nxp.com>
- <20220806141059.2498226-11-vladimir.oltean@nxp.com>
- <62eeca98.170a0220.601cd.70ac@mx.google.com>
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
+        Yassine Oudjana <yassine.oudjana@gmail.com>,
+        Alejandro Tafalla <atafalla@dnyon.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/8] power: supply: Add driver for Qualcomm SMBCHG
+Date:   Mon,  8 Aug 2022 08:34:51 +0100
+Message-Id: <20220808073459.396278-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <62eeca98.170a0220.601cd.70ac@mx.google.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -108,44 +77,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 06, 2022 at 09:58:16PM +0200, Christian Marangi wrote:
-> > qca8k
-> > ~~~~~
-> > 
-> >     compatible strings:
-> >     - qca,qca8327
-> >     - qca,qca8328
-> >     - qca,qca8334
-> >     - qca,qca8337
-> > 
-> >     5 occurrences in mainline device trees, none of the descriptions are
-> >     problematic.
-> > 
-> >     Verdict: opt into validation.
-> 
-> I notice some have strict validation and other simple validation. I
-> didn't understand from the commit description where strict is used
-> instead of simple one.
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
-There is no difference between "opt into validation" and "opt into
-strict validation" in the verdicts for each driver. It all means the
-same thing, which is that we won't apply DSA's workaround to skip
-phylink registration for them (and implicitly fail the probing, if they
-have lacking device trees, but the assumption is that they don't).
-I suppose I could improve the wording.
+This series adds a driver for the switch-mode battery charger found on PMICs
+such as PMI8994, and referred to in the vendor kernel[1] as smbcharger or
+SMBCHG. More details on this block can be found in the last patch message.
 
-> I'm asking this for qca8k as from what we notice with device that use
-> qca8k the master ports always needs to have info in dt as we reset the
-> switch and always need to correctly setup the port.
+This driver currently supports the charger blocks of PMI8994 and PMI8996.
+PMI8950 was also to be supported, but it was dropped due to some last minute
+issues, to be brought back at a later time once ready.
 
-How sure are you about this? I am noticing the following commits:
-79a4ed4f0f93 ("net: dsa: qca8k: Force CPU port to its highest bandwidth")
-9bb2289f90e6 ("net: dsa: qca8k: Allow overwriting CPU port setting")
+The OTG regulator remains unused on devices where the charger is enabled in
+this series due to lack of a consumer. Applying a patch[2] adding vbus-supply
+to DWC3 allows it to enable the OTG regulator making USB host without
+external power possible.
 
-which suggests at at least at some point, the qca8k driver didn't rely
-on device tree information for the CPU port. Now if that information was
-available in the device tree in the first place, I don't know.
-The phy-mode seems to have been; I'm looking at the initial commit
-6b93fb46480a ("net-next: dsa: add new driver for qca8xxx family") and
-there is an of_get_phy_mode() with a hard error on missing property for
-the CPU port.
+[1] https://github.com/android-linux-stable/msm-3.18/blob/kernel.lnx.3.18.r34-rel/drivers/power/qpnp-smbcharger.c
+[2] https://lore.kernel.org/linux-usb/20200805061744.20404-1-mike.looijmans@topic.nl/
+
+Yassine Oudjana (8):
+  dt-bindings: power: supply: Add DT schema for Qualcomm SMBCHG
+  arm64: dts: qcom: pmi8994: Add SMBCHG
+  arm64: dts: qcom: pmi8996: Add SMBCHG
+  arm64: dts: qcom: msm8996-xiaomi-*: Add battery data
+  arm64: dts: qcom: msm8996-xiaomi-*: Enable SMBCHG
+  soc: qcom: Add PMIC secure register write helpers
+  util_macros.h: Add macro to find closest smaller value in array
+  power: supply: Add driver for Qualcomm SMBCHG
+
+ .../bindings/power/supply/qcom,smbchg.yaml    |  205 ++
+ MAINTAINERS                                   |   16 +
+ .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  |   15 +
+ .../boot/dts/qcom/msm8996-xiaomi-gemini.dts   |    5 +
+ .../boot/dts/qcom/msm8996-xiaomi-natrium.dts  |    5 +
+ .../boot/dts/qcom/msm8996-xiaomi-scorpio.dts  |    5 +
+ arch/arm64/boot/dts/qcom/pmi8994.dtsi         |   72 +
+ arch/arm64/boot/dts/qcom/pmi8996.dtsi         |    4 +
+ drivers/power/supply/Kconfig                  |   11 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/qcom-smbchg.c            | 1664 +++++++++++++++++
+ drivers/power/supply/qcom-smbchg.h            |  428 +++++
+ drivers/soc/qcom/Kconfig                      |    4 +
+ drivers/soc/qcom/Makefile                     |    1 +
+ drivers/soc/qcom/pmic-sec-write.c             |   82 +
+ include/linux/util_macros.h                   |   22 +
+ include/soc/qcom/pmic-sec-write.h             |    9 +
+ 17 files changed, 2549 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/qcom,smbchg.yaml
+ create mode 100644 drivers/power/supply/qcom-smbchg.c
+ create mode 100644 drivers/power/supply/qcom-smbchg.h
+ create mode 100644 drivers/soc/qcom/pmic-sec-write.c
+ create mode 100644 include/soc/qcom/pmic-sec-write.h
+
+-- 
+2.37.1
+
