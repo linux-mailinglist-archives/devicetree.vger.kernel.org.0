@@ -2,121 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9C958C840
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 14:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E26E558C852
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 14:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242757AbiHHMTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 08:19:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45164 "EHLO
+        id S242798AbiHHM06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 08:26:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242684AbiHHMTP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 08:19:15 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2297814D0C
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 05:19:14 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id a11so4693444wmq.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 05:19:14 -0700 (PDT)
+        with ESMTP id S242315AbiHHM05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 08:26:57 -0400
+Received: from mail-oa1-x2f.google.com (mail-oa1-x2f.google.com [IPv6:2001:4860:4864:20::2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C248DEC4;
+        Mon,  8 Aug 2022 05:26:56 -0700 (PDT)
+Received: by mail-oa1-x2f.google.com with SMTP id 586e51a60fabf-10bd4812c29so10292026fac.11;
+        Mon, 08 Aug 2022 05:26:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc;
-        bh=BU0eUpWvwjsciDbDnUCPcx6z5KF2k8GjlyBCulnxcOc=;
-        b=iJo8Mjw+PRifkwxM3mvPJGOKlbx+IKSdW1z18bl4OxvzU6lVotY5E4FPx5V7PfQVZ2
-         e5u6f+jsn67cFAL3yKhXBUZZtceAfVaWijVNgOaS7qaq7YZmGiQI0sCwD/c0n7hEma5u
-         rxqwQFCvmvM42qtVV7G7uRAeGo9R8ztqOPVQ0tJD5xJZWBHOdi3gI0zgZDBOtbhyls91
-         igmXXFodUHofaZhfN+UpPJ7GuMyZr8ogbvr774CRwKdmS6V0mupAhIxVXa/F3YBmv0HU
-         fkUJ+I266I/Fpox9fSqdbs2NwJIYYAYYOT8E/gDDtU6BSENSHW2X3GVESUS2IPsr1xJP
-         8U2Q==
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:from:to:cc;
+        bh=lsnBErhuU0r6TlMRuprIA+8yllP/XwwhzP1dc85oLRo=;
+        b=X6XEAuWxtEVncbUVnM4LteJBd0Dc1i8ZXlHAd1Db9JERJMXK+jn6zh8haWzEIuTpvJ
+         e/9/5EnD48wz+guGpkQRTgeoenkEyewYZArRr/c7jrvN1dcARmCLjrh4q/3i65j5ecMl
+         4t8TF1kiziTLb8j/fmXYCP0A0hcZz8qBPzuMYdGGJbkOEXhCMXTmyH6nxZMv9x8qFdMX
+         9pKfdk1mcDa4qdfycOqjp/NJrRbF5ydbVaDE/8lS6PRBApv3xypLwonIMevUMHieOeWF
+         VVO7h5QdmzvdUbKZ4sSxTO5wr3dsgYJA5TDsNHXuRO3PkcuFs/xSFxLw93tZLRvY0W2e
+         M9DQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc;
-        bh=BU0eUpWvwjsciDbDnUCPcx6z5KF2k8GjlyBCulnxcOc=;
-        b=SXAV4O5xjG2/eOGr1T09Xwbfm5t7o+G5GXhhtXWv+Ko3rouIElrbtNW1PxpFiOgDXD
-         1gd2lqiXRvaoJsheqOXT6xWs+kssJJRZXqVsd1TKYMxS39eHO5m9HjaQ5MgSZdGDyIoT
-         92vOdofTBg86bebhHY0kmvVDP5pwpGhbIjdOZPuudxP2V+NZU5PjgCQ1til6de4JWdRo
-         NL9YnNHWgF8YgTOhMnup48Hus7F4hkYwlnOgOJBN/GQgbAIVr9Z9sdAW8DlcEqH1CP+G
-         dxpngAydO3wZtK7AjzYpsh02PMPOEPqsOK7Jo6qyBqikx3mL5KZi/KLLWGKGY41QeW1X
-         HFpA==
-X-Gm-Message-State: ACgBeo3Y+NuZLp4+hgmt65G+4u+vztdMM946RfGZgOG+Am2LW1ZeXZXS
-        Qu6Cfq0MC72BJIFNxuCIF5C4GA==
-X-Google-Smtp-Source: AA6agR6JDjefK+H+sW5x4qd7I2Vsv3DgpuOKdUabDEc4bp+UOQm9M+qGcTfZDsqwkCpzBLwgkmy39A==
-X-Received: by 2002:a05:600c:3caa:b0:394:8fb8:716 with SMTP id bg42-20020a05600c3caa00b003948fb80716mr16742450wmb.105.1659961152644;
-        Mon, 08 Aug 2022 05:19:12 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id be8-20020a05600c1e8800b003a3270735besm13595687wmb.28.2022.08.08.05.19.11
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:sender:x-gm-message-state:from
+         :to:cc;
+        bh=lsnBErhuU0r6TlMRuprIA+8yllP/XwwhzP1dc85oLRo=;
+        b=ZVtWLkrThjjd1JMQSjlKEKN52h8yfEeOc3q7HvrQt6OfDNcLVouGfiKdjU44DYfQPE
+         HZ03YfhFkkLFLgWY60G6DL+D3oRgEepfuRTppFwehAb+wFRJiSBL8NqVL6e0hKGbzKCv
+         5v/E1FclDCgTt5hZX2sSNc3o2SgMUgO+U4xpFnW7O8oyo7XLpyE/JFZLgWEvkgewXYpw
+         5xJV7Cng0J0zlobT0VCkYUEx0CkpXWhnOIqNmGKsu9Zck4nxDjIb3lICHoOp80ODqR5L
+         ZKEB7tOfOMVTyqDiCBTPsk6WucwjHGxOM3U+ZGhenBNJoAPW43YthhX/1MVSI5Wfchj/
+         Cf3w==
+X-Gm-Message-State: ACgBeo3hPapme2CSkchK+4cYyPYe/ybTxWaMiFuUAvanHrbKp8EedhMV
+        bxjQjJ/lntY3/lAQKgBIAw==
+X-Google-Smtp-Source: AA6agR50jq+nfiCg6C40xQ7OLmWG0uCJ0WEwg5bSHfc4fFU87YwMbz6vkTdnumtoDH5wUQXXhydsnA==
+X-Received: by 2002:a05:6870:c596:b0:101:6409:ae62 with SMTP id ba22-20020a056870c59600b001016409ae62mr11777265oab.112.1659961615326;
+        Mon, 08 Aug 2022 05:26:55 -0700 (PDT)
+Received: from serve.minyard.net (serve.minyard.net. [2001:470:b8f6:1b::1])
+        by smtp.gmail.com with ESMTPSA id p84-20020acaf157000000b00342df642fd3sm916967oih.48.2022.08.08.05.26.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 05:19:12 -0700 (PDT)
-Date:   Mon, 8 Aug 2022 13:19:10 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Ben Dooks <ben.dooks@sifive.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha --subject-prefix=PATCH v3 
-        <jude.onyenegecha@sifive.com>, Lee Jones <lee@kernel.org>
-Subject: Re: DesignWare PWM support for device-tree probing
-Message-ID: <YvD/PtkntcYosUUm@google.com>
-References: <20220805165033.140958-1-ben.dooks@sifive.com>
- <YvDCwOPLoSdxorhZ@google.com>
- <YvDDHUJdBRSRjbRh@google.com>
- <b78e07bc-70ca-6ddd-5b80-2f6865d242ec@sifive.com>
+        Mon, 08 Aug 2022 05:26:54 -0700 (PDT)
+Sender: Corey Minyard <tcminyard@gmail.com>
+Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:3153:e085:df0f:abc2])
+        by serve.minyard.net (Postfix) with ESMTPSA id A861A1800FA;
+        Mon,  8 Aug 2022 12:26:53 +0000 (UTC)
+Date:   Mon, 8 Aug 2022 07:26:52 -0500
+From:   Corey Minyard <minyard@acm.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Tomer Maimon <tmaimon77@gmail.com>, avifishman70@gmail.com,
+        tali.perry1@gmail.com, joel@jms.id.au, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, jic23@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        openbmc@lists.ozlabs.org, openipmi-developer@lists.sourceforge.net,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] dt-binding: ipmi: add fallback to npcm845 compatible
+Message-ID: <20220808122652.GO3834@minyard.net>
+Reply-To: minyard@acm.org
+References: <20220808075452.115907-1-tmaimon77@gmail.com>
+ <da83671e-08b9-2d68-e5d3-d9b09c105bb4@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b78e07bc-70ca-6ddd-5b80-2f6865d242ec@sifive.com>
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <da83671e-08b9-2d68-e5d3-d9b09c105bb4@linaro.org>
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 Aug 2022, Ben Dooks wrote:
-
-> On 08/08/2022 09:02, Lee Jones wrote:
-> > On Mon, 08 Aug 2022, Lee Jones wrote:
+On Mon, Aug 08, 2022 at 11:11:16AM +0300, Krzysztof Kozlowski wrote:
+> On 08/08/2022 09:54, Tomer Maimon wrote:
+> > Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+> > string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
 > > 
-> > > On Fri, 05 Aug 2022, Ben Dooks wrote:
-> > > 
-> > > > This series is tidying up and adding device-tree support for the
-> > > > DesignWare DW-APB-timers block.
-> > > > 
-> > > > Changes:
-> > > > 
-> > > > v3:
-> > > > - change the compatible name
-> > > > - squash down pwm count patch
-> > > > - fixup patch naming
-> > > > 
-> > > > v2:
-> > > > - fix #pwm-cells count to be 3
-> > > > - fix indetation
-> > > > - merge the two clock patches
-> > > > - add HAS_IOMEM as a config dependency
-> > > 
-> > > Can you use the front-cover option provided by Git please Ben?
-> > 
-> > git format-patch --cover-letter ...
+> > Fixes: 84261749e58a ("dt-bindings: ipmi: Add npcm845 compatible")
+> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 > 
-> I thought git-send-email --compose did that.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-gse's --compose will open up your editor on the series before sending.
+Ok, I think I understand how this is supposed to work.  It's not
+altogether clear from the device tree documentation.  It says in
+Documentation/devicetree/bindings/writing-bindings.rst:
 
-gfp's --cover-letter creates the 0th patch with a nice format.
+- DO make 'compatible' properties specific. DON'T use wildcards in compatible
+  strings. DO use fallback compatibles when devices are the same as or a subset
+  of prior implementations. DO add new compatibles in case there are new
+  features or bugs.
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+AFAICT, there are no new features or bugs, just a new SOC with the same
+device.  In general usage I have seen, you would just use the same
+compatible.  However, if I understand this, that last sentence should say:
+
+  DO add new compatibles in case there is a new version of hardware with
+  the possibility of new features and/or bugs.
+
+Also, the term "specific" is, ironically, vague.  Specific to what?
+
+It would be nice to have something added to "Typical cases and caveats"
+that says:
+
+- If you are writing a binding for a new device that is the same as, or
+  a superset of another existing device, add a new specific compatible
+  for the new device followed by a compatible for the existing device.
+  That way, if the device has new bugs or new specific features are
+  added, you can add workarounds without modifying the device tree.
+
+Anyway, I have added this to my tree with your ack.
+
+-corey
+
+> 
+> 
+> Best regards,
+> Krzysztof
