@@ -2,91 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D40CF58CF3F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 22:39:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DBB358CF46
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 22:42:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236282AbiHHUjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 16:39:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55796 "EHLO
+        id S244396AbiHHUmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 16:42:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231742AbiHHUje (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 16:39:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD809596;
-        Mon,  8 Aug 2022 13:39:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 61FEE60C63;
-        Mon,  8 Aug 2022 20:39:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88607C433D6;
-        Mon,  8 Aug 2022 20:39:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659991172;
-        bh=bOsZl8AcXb7mOFin6B3q83VOzh/KjSu7QJBidaDPK/U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UVVq7nQ09hqex1SsBRtyBQ4G0DVWHOX9y4wVMS+M3xx0lWasENUMZ7yRLa4j5edt6
-         EkbdXOhjrYEX6vcNqiU7dU+6O7kQE54LKQrgX08EbQQddxMLQlzRMdpJVD2wMmj4cU
-         6n3IYP9YQXJHE9ltQmHCc0mMX56HoBsImnGMOJBMlSFfXz7fyDz7jbx+10de61nTVN
-         3RBnGH42xDxHy/nTsgvf1Om0tsLNdIeHIqphuNcChEFmbJqhNTYWgAt/juggZrTGsM
-         aC52pKN7GuKYXYZ2LnZrJCEsWiaLVmWTJql5/3TRb7gJ4BAl/ezgKK4hjesV6G2F1Y
-         /Sy1ED9lJnnnw==
-Received: by pali.im (Postfix)
-        id A08BFF13; Mon,  8 Aug 2022 22:39:29 +0200 (CEST)
-Date:   Mon, 8 Aug 2022 22:39:29 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        with ESMTP id S236282AbiHHUmO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 16:42:14 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF0A10FDF;
+        Mon,  8 Aug 2022 13:42:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=ZgX1+MCfF/NQe7YV4mbEzfn++YyLm+UWvyG7V14DLis=; b=Pfpag1Q+1mAb5ZtJYQawOMXgQn
+        OZvFLMYkavguq+1zGabZnEWkneHoBQqVWWji7PZvNWv+BItB0EceSVLsNHS+hpPDDWmHKeaZ7rIaT
+        q8JaLhyby8v1vHiyXONUKSr2NVY9gZxB9xxWkt9jvn81d+w4Oj1pAORjRrL7HKZin3eE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oL9Yv-00ClV1-To; Mon, 08 Aug 2022 22:41:21 +0200
+Date:   Mon, 8 Aug 2022 22:41:21 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Andrew Davis <afd@ti.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: Fix compatible strings for Armada
- 3720 boards
-Message-ID: <20220808203929.ci4eardma3jwnroc@pali>
-References: <20220713125644.3117-1-pali@kernel.org>
- <20220808202456.lpwvhq22edb56ptf@pali>
- <YvFzGhBRPTXgdCd8@lunn.ch>
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Pavel Machek <pavel@ucw.cz>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Robert Jones <rjones@gateworks.com>,
+        Lee Jones <lee@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        linux-leds@vger.kernel.org, netdev@vger.kernel.org,
+        linux-pm@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: Re: [PATCH 5/5] dt-bindings: Drop Dan Murphy
+Message-ID: <YvF08ft7GiXr6Hd2@lunn.ch>
+References: <20220808104712.54315-1-krzysztof.kozlowski@linaro.org>
+ <20220808104712.54315-6-krzysztof.kozlowski@linaro.org>
+ <43b3c497-97fd-29aa-a07b-bcd6413802c4@linaro.org>
+ <6ae15e00-36a4-09a8-112e-553ed8c5f4da@ti.com>
+ <YvFtJRJHToDrfpkN@lunn.ch>
+ <8b577a8e-26e3-c9db-dae1-7d74fc3334ad@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YvFzGhBRPTXgdCd8@lunn.ch>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <8b577a8e-26e3-c9db-dae1-7d74fc3334ad@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 08 August 2022 22:33:30 Andrew Lunn wrote:
-> On Mon, Aug 08, 2022 at 10:24:56PM +0200, Pali Rohár wrote:
-> > PING?
-> 
-> It is too late for the merge window.
-> 
-> > > diff --git a/arch/arm64/boot/dts/marvell/armada-372x.dtsi b/arch/arm64/boot/dts/marvell/armada-372x.dtsi
-> > > index 5ce55bdbb995..02ae1e153288 100644
-> > > --- a/arch/arm64/boot/dts/marvell/armada-372x.dtsi
-> > > +++ b/arch/arm64/boot/dts/marvell/armada-372x.dtsi
-> > > @@ -13,7 +13,7 @@
-> > >  
-> > >  / {
-> > >  	model = "Marvell Armada 3720 SoC";
-> > > -	compatible = "marvell,armada3720", "marvell,armada3710";
-> > > +	compatible = "marvell,armada3720", "marvell,armada3700";
-> 
-> Does it make sense to have a compatible here? The board .dts should
-> provide it. And if the board does not provide it, we probably want the
-> board to not boot because it does not have a compatible.
-> 
->    Andrew
+> I'm not seeing his name in the latest MAINTAINERS, seem they all got
+> dropped in 57a9006240b2.
 
-Sounds like there should not be a compatible string and model string.
+Ah, great.
 
-I can prepare a followup patch to remove those strings from SoC dtsi file.
+And there does not appear to be a MAINTAINERS entry for any of the TI
+PHYs, so giving the correct impression they are without a Maintainer.
+
+	Andrew
