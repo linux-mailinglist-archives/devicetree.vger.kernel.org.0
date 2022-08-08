@@ -2,71 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19C2358C536
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 11:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44DBF58C562
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 11:17:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236621AbiHHJBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 05:01:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44344 "EHLO
+        id S242285AbiHHJRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 05:17:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234370AbiHHJBf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 05:01:35 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A54A11C26
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 02:01:32 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id z6so4254175lfu.9
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 02:01:32 -0700 (PDT)
+        with ESMTP id S234107AbiHHJRN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 05:17:13 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7795213F2B
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 02:17:12 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id x25so9148972ljm.5
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 02:17:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=tAR6MlMDHmDQO73lbvVKnLotbZsWUuiG6QGGNmumCB8=;
-        b=gWVR2Kps4D8nn0alN5B/hZGj94MWs7kU7Gwqnnl2BvuVMokaEcekKRrxTI5hOCdM7K
-         PhgHi4f15Zc1B7KE8+KVwzj6YPXUPs4qDSzBYRNmcEhc0d1FG3Ay90Dh3A6U70M/4mm2
-         SP3fmkuUL1t/hD4oHqurrdKK+bN3wDgIx7b7HS0vy+/Hpo95vdj6sK6rey97Jf022eDq
-         wol4+vnqdptvdGx0D4jEZTmFdLSe5VPfWINbZAAa7nM/tLL6+tXSQocSdFli84RofZ5j
-         LZM5IefgJuEsPr7IG3MV+NXR8Artn3/kDPgFGBKdpu6BWQeBB/v9MbPySJctKuwK2Dp+
-         tRcA==
+        bh=pMpurfdUFUXUf7fmwUQBIqLSWGdQDW67AVZBUmy36+k=;
+        b=r1xUYo+L0qxJxm9/dIt6wup1Dpe9Iqw3qDUSVLixLXaD9QnyWNaW4VNjsbYKbLWG3m
+         +q1yNGFsnSUXflkalaqeWqEBgelbQNnpDPmaAoi6GLIcxwMfzVjgTYfmavGrl2i/pnW0
+         ikrVqDzQ6vhUgeAjf9nvoPt6MqZeO8D5UKUItp34rlp2tWDJ7uRwbcWQAyK3Gw1Ftg1+
+         6m+ezM2bRgBygZCRf5C2hNWtlDJkRL4OmClSWoOZTINDNnx7jHSWBdwCoZID2laakvdC
+         d/yOvWPt7cwGbIwrby0E5TYRWXuW7NizeqFUpc2Xv0iV9pkmO0bEquvydNBKJAcXp9XD
+         qG5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=tAR6MlMDHmDQO73lbvVKnLotbZsWUuiG6QGGNmumCB8=;
-        b=3rZMpsP64MENaTmEPs3ChK65z8MQxK1YYKmxMNckt6Ga+cBah8y2lsRLYaeMQq+Tyb
-         F9fQMwyfBKQi4ugFQKs1RXJ8kCk/EE2+9w2Q/DXNb2FYuWr7q5FrI9oWmb4srMv2q54O
-         w9IOFKEjS974Wn/C1MQAMvUSnGi34ougL7Y4gNpsY8arMysUUoNfarnI9+zFU3+N5mtc
-         pfzjC9Sch6NhWKnHVO052hoeG6wM/If3YYhivF20eULCMvy494jZFirvaMzkdFhH6piL
-         0l7Edqxi/Yi1WbVegVseHkKaAW/baxB6TixpmFBFIr38OZ2Q9c4u8rBFq4yxbCCpD/PC
-         l6RQ==
-X-Gm-Message-State: ACgBeo0lIukBBq/vWzE06HEgATWYOzqvDgfM72cVCN8VixOaTdpowi2v
-        reGnxM8C/fm92BASEcth39LKxA==
-X-Google-Smtp-Source: AA6agR6JGWYSid7rm3XtqM4yDPbb3OxW1R/HkQ9bGdK161ybakPEk9MBDB6c00tdGP8rOZd5G05GEA==
-X-Received: by 2002:a05:6512:2201:b0:48a:7440:aaf6 with SMTP id h1-20020a056512220100b0048a7440aaf6mr6169290lfu.472.1659949290876;
-        Mon, 08 Aug 2022 02:01:30 -0700 (PDT)
+        bh=pMpurfdUFUXUf7fmwUQBIqLSWGdQDW67AVZBUmy36+k=;
+        b=QunEcdSrYuj11ledROeC9xw40X3je5ij+eduMDlDKSaHKVUQs7BtwBXp1ZTnmN3Psj
+         61vsiP8crW+Yo+0Ug+RGzHLutpecs927SsQsVCJBGi6b3xOc5BHzsW3eU0T5HSxSIaVQ
+         KX6nDQuHd4ReO22rkZrK0zafZE5ShR6H7h2jNemi0Jr1xZtr8tXdOPpTUpsXWHLjKkzI
+         0VtKpORS4vImCHgAqIPJU6j0jKFJqYNRHh5tn+SdTnXfQwBKaEYn8a8R2tbxlSD3k23s
+         5mzzx1NLfi/yWVV6uYJYUUN9tbnQe4jodTTQAavExM4IaIH31y52DmwEm/QNtoeZOyrv
+         jLcA==
+X-Gm-Message-State: ACgBeo3c82UTV9S2m5DzSY5VTbJRP2W/K3c8wduj4+0/cHAfRgOrqtoF
+        P1PLVZYLreuCDoYcR3nWM9Qehg==
+X-Google-Smtp-Source: AA6agR75FWgUDhN/Zq3dwh05o1Z/nJwA53vV5D3Tos8WHvDReDd8edBsXQCUqvN2Ob/upYWd966uvQ==
+X-Received: by 2002:a2e:8404:0:b0:250:cde7:e9e3 with SMTP id z4-20020a2e8404000000b00250cde7e9e3mr5291223ljg.289.1659950230860;
+        Mon, 08 Aug 2022 02:17:10 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id 201-20020a2e09d2000000b0025e5fd96bf6sm1281379ljj.15.2022.08.08.02.01.29
+        by smtp.gmail.com with ESMTPSA id s13-20020a056512314d00b00477c0365b20sm1353560lfi.188.2022.08.08.02.17.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 02:01:30 -0700 (PDT)
-Message-ID: <9ad4b4a8-988e-f185-f80c-6f15f341ce8c@linaro.org>
-Date:   Mon, 8 Aug 2022 12:01:28 +0300
+        Mon, 08 Aug 2022 02:17:09 -0700 (PDT)
+Message-ID: <4cef00b4-c184-ae78-3709-5ed520ca3375@linaro.org>
+Date:   Mon, 8 Aug 2022 12:17:06 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: spi: stm32: Add st,dual-flash property
- in st,stm32-qspi.yaml
+Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: Add PM6125 PMIC
 Content-Language: en-US
-To:     patrice.chotard@foss.st.com, Mark Brown <broonie@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     linux-spi@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        christophe.kerello@foss.st.com, devicetree@vger.kernel.org
-References: <20220808074051.44736-1-patrice.chotard@foss.st.com>
- <20220808074051.44736-2-patrice.chotard@foss.st.com>
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+References: <20220805135729.1037079-1-marijn.suijten@somainline.org>
+ <20220805135729.1037079-4-marijn.suijten@somainline.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220808074051.44736-2-patrice.chotard@foss.st.com>
+In-Reply-To: <20220805135729.1037079-4-marijn.suijten@somainline.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,35 +87,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2022 10:40, patrice.chotard@foss.st.com wrote:
-> From: Patrice Chotard <patrice.chotard@foss.st.com>
+On 05/08/2022 16:57, Marijn Suijten wrote:
+> This PMIC is commonly used on boards with an SM6125 SoC and looks very
+> similar in layout to the PM6150.
 > 
-> Add new property st,dual-flash which allows to use the QSPI interface as a
-> communication channel using up to 8 qspi line.
-> This mode can only be used if cs-gpios property is defined.
+> Downstream declares more nodes to be available, but these have been
+> omitted from this patch: the pwm/lpg block is unused on my reference
+> device making it impossible to test/validate, and the spmi-clkdiv does
+> not have a single device-tree binding using this driver yet, hence
+> inclusion is better postponed until ie. audio which uses these clocks is
+> brought up.
 > 
-> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> ---
->  Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
-> index 6ec6f556182f..5e4f9109799e 100644
-> --- a/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml
-> @@ -46,6 +46,14 @@ properties:
->        - const: tx
->        - const: rx
->  
-> +  st,dual-flash:
-> +    type: boolean
-> +    description:
-> +      Allows to use 8 data lines in case cs-gpios property is defined.
 
-It's named dual-flash, but what if you want to use QSPI to connect for
-example to FPGA?
+Thank you for your patch. There is something to discuss/improve.
 
-Also how is this related to parallel-memories property?
+> +
+> +			xo-therm@4c {
+> +				reg = <ADC5_XO_THERM_100K_PU>;
+> +				qcom,pre-scaling = <1 1>;
+> +				qcom,hw-settle-time = <200>;
+> +				qcom,ratiometric;
+> +			};
+> +		};
+> +
+> +		pm6125_adc_tm: adc-tm@3500 {
+
+Generic node names, so either this is adc or thermal-sensor. Looks like
+thermal-sensor.
+
+> +			compatible = "qcom,spmi-adc-tm5";
+> +			reg = <0x3500>;
+> +			interrupts = <0x0 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			#thermal-sensor-cells = <1>;
+> +			status = "disabled";
+> +		};
+> +
+> +		pm6125_rtc: rtc@6000 {
+> +			compatible = "qcom,pm8941-rtc";
+> +			reg = <0x6000>, <0x6100>;
+> +			reg-names = "rtc", "alarm";
+> +			interrupts = <0x0 0x61 0x1 IRQ_TYPE_EDGE_RISING>;
+> +			status = "disabled";
+> +		};
+> +
+> +		pm6125_gpio: gpios@c000 {
+
+s/gpios/gpio/
+
+> +			compatible = "qcom,pm6125-gpio", "qcom,spmi-gpio";
+> +			reg = <0xc000>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pm6125_gpio 0 0 9>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> +	pmic@1 {
+> +		compatible = "qcom,pm6125", "qcom,spmi-pmic";
+> +		reg = <0x1 SPMI_USID>;
+> +	};
+> +};
+
 
 Best regards,
 Krzysztof
