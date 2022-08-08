@@ -2,89 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EF8958C49C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 10:05:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 187D058C4AB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 10:07:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242066AbiHHIFn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 04:05:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37006 "EHLO
+        id S242145AbiHHIHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 04:07:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241995AbiHHIFc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 04:05:32 -0400
-Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37965D10F
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 01:05:31 -0700 (PDT)
-Received: by mail-pj1-x102e.google.com with SMTP id c19-20020a17090ae11300b001f2f94ed5c6so11794740pjz.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 01:05:31 -0700 (PDT)
+        with ESMTP id S242219AbiHHIGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 04:06:48 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39CFD13E98
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 01:06:46 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id h13so9948558wrf.6
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 01:06:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=O+SVGz/QwwQDImSPbxMLknJVY6/6roIp/5evt7khqi8=;
-        b=TVmki4I1dSb+1aSt1UwuAmwywPp5Ykpxef49+Z58uTNcDh8SGKkS9NuaKfCpkNQcDO
-         0tjc/PD0zoncnQ47Jw/ZZ5EiC+1o/ngsmXCZkFoMpDlUu9vs0UBSQdH2xtSn0CpPJfMw
-         jA4cTlIU+7xx7PB0Q9QLrJP+fiB6IIHkBNwiO05czQmuFbVquBEAu8MIVFeBGNvdEqfP
-         FLPihOKNSZpCyWseKw9wa4vwhHg+NAwf7KjuSC2xJmCbxX4c5+Y2ozps/QCvwnqB4ULE
-         6TMWUGzT4Obt/kknCXCQLMf0rs0AM0Qsven6S6lvmv/CEE7CcIAU/O/V3cPCBs3wwPeV
-         Ljrw==
+        d=sifive.com; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=E/imfulZV4VdZtp3bNUda6W+x0wKRPhCeOXH1Jx2YFs=;
+        b=I9Dy394DwMUv0jhqSz9hSemGy+gBaP30VkiwCE7ceUSC72qxAn67nIyIUiGEqo6/fv
+         y0uWxk9C/m8Uq4tGhu7rCyTJ54S+WIK5QTUZtO1Zg8r8pxPeL6qKi1Fnms4bKZWCowuT
+         2dNKWWjGq/o3j4t32mnvULsIsRie6LDQqs6wKMOGLnzM10N5gBsMUFr1bcLltzf4SNLb
+         UlkNDxs5OafuxS5hqNmeUD7+nWVQ+uTIVBqgxPzqF5cJaGFkfiMEgMph1BihcAAWbstu
+         O4Vd68eOMKG14aJqosUHsh3XE/UrFakxELbHAchZ+asFXwPtmnK83K8PvFjQkc21ZAxg
+         4FHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=O+SVGz/QwwQDImSPbxMLknJVY6/6roIp/5evt7khqi8=;
-        b=K9LO6IpRgW/4FyUCnEVtL0orIAPllbPVG3UdH8PZjAY6QaxLfkLPlPW/u9NwzIEbuN
-         G1y0w7Ze3Ur2qv6kSNLqohh3iXagCGdREsm4aOCqmGZKwjgaB6VzvUhJeZhbot/CHp9G
-         xeLyGzWqF3nVX5MA43CkCDoUQR/21AtZVTf9k+shn8wV7XrrDEsKcaXrhooiGw06pl/4
-         8SxGvT3ST3fKrsXR8u1lYQBFV/LZBZJrvBXI7wgO4LI0pmhFa9vCtrUDClt2Tn/0xosp
-         6qQicMWJ7QY4lPFIE+6vr5EZFm7XHXYsa1rzO8Yise1Lxj8ouO1Lld7rWTNj1449WVIZ
-         ClTQ==
-X-Gm-Message-State: ACgBeo2+DhEoahC8PHIwVbYbwadBeg2ILF/lt9ycKKl4/wa5br/vSKWh
-        IeAMS14FQAkQkhRs5FjdnpPExXP5cDa1
-X-Google-Smtp-Source: AA6agR6PMY+p1aipPNjyAQdBqThMo10eyPly8Z14382u1rTR3VO8S+wL5KHwN9bEEiP3taFf2dKwOg==
-X-Received: by 2002:a17:902:aa89:b0:16b:e514:54d2 with SMTP id d9-20020a170902aa8900b0016be51454d2mr17993521plr.127.1659945930573;
-        Mon, 08 Aug 2022 01:05:30 -0700 (PDT)
-Received: from thinkpad ([117.193.212.254])
-        by smtp.gmail.com with ESMTPSA id l21-20020a17090a599500b001f4d4a1b494sm7516034pji.7.2022.08.08.01.05.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 01:05:30 -0700 (PDT)
-Date:   Mon, 8 Aug 2022 13:35:22 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 7/9] dt-bindings: usb: qcom,dwc3: add wakeup-source
- property
-Message-ID: <20220808080522.GB7601@thinkpad>
-References: <20220804151001.23612-1-johan+linaro@kernel.org>
- <20220804151001.23612-8-johan+linaro@kernel.org>
- <20220806150848.GH14384@thinkpad>
- <Yu6ZwePzzkl7tewV@hovoldconsulting.com>
- <20220806165238.GM14384@thinkpad>
- <Yu6gWHt5BphADaNR@hovoldconsulting.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=E/imfulZV4VdZtp3bNUda6W+x0wKRPhCeOXH1Jx2YFs=;
+        b=n89hI3CAv0Hv1LYlZFZCu07ZmTL1ubUewIW2evMz894gzVL2fx5wOv2wT3dLMSQJth
+         8qvOWCaW52X/YNeXoD60doiejRzVQIvnCo8dqSLRXbX50xtySt2mJKW9clrxslDAZqe6
+         d8fNkrlDTk2L3W9KXI5fvxj8cJFbCeRNthwWkxQu6XJ/PXAJYn1BseejCCrQ6S+nIWHR
+         Pzlx1XOgH4w7Oax7aCMO64KvPOY8j6GHTglCy8sUokhegp36t1ZSc1XdwJ96z1NEbfFE
+         Wxgpre1TCMMLqyTTY0IeCUzX+KW7XQsXzOG9OV7LRo1PSAKg6eTVI5bwSl1Hq4UyTchV
+         6uNg==
+X-Gm-Message-State: ACgBeo1JMCR/gI6SKnqilDlnU6diJOY2hKURRnhFT7jAqFIaHDkC6QWy
+        mQLxjXHuTwCuXKVAY4vmSxEgZA==
+X-Google-Smtp-Source: AA6agR5T/J2nGgk3gPquXIqNudB0uPwmFf3dtFSu0n8k3nmvHueFCOFrc+G44I7JHZaFuunNHWTrsg==
+X-Received: by 2002:a5d:52cb:0:b0:21a:3cc5:f5f4 with SMTP id r11-20020a5d52cb000000b0021a3cc5f5f4mr10890723wrv.367.1659946005328;
+        Mon, 08 Aug 2022 01:06:45 -0700 (PDT)
+Received: from [10.35.5.6] ([167.98.27.226])
+        by smtp.gmail.com with ESMTPSA id d15-20020adfe84f000000b00220628ef654sm10505163wrn.24.2022.08.08.01.06.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Aug 2022 01:06:44 -0700 (PDT)
+Message-ID: <b78e07bc-70ca-6ddd-5b80-2f6865d242ec@sifive.com>
+Date:   Mon, 8 Aug 2022 09:06:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yu6gWHt5BphADaNR@hovoldconsulting.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: DesignWare PWM support for device-tree probing
+Content-Language: en-GB
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha --subject-prefix=PATCH v3 
+        <jude.onyenegecha@sifive.com>, Lee Jones <lee@kernel.org>
+References: <20220805165033.140958-1-ben.dooks@sifive.com>
+ <YvDCwOPLoSdxorhZ@google.com> <YvDDHUJdBRSRjbRh@google.com>
+From:   Ben Dooks <ben.dooks@sifive.com>
+In-Reply-To: <YvDDHUJdBRSRjbRh@google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,76 +82,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 06, 2022 at 07:09:44PM +0200, Johan Hovold wrote:
-> On Sat, Aug 06, 2022 at 10:22:38PM +0530, Manivannan Sadhasivam wrote:
-> > On Sat, Aug 06, 2022 at 06:41:37PM +0200, Johan Hovold wrote:
-> > > On Sat, Aug 06, 2022 at 08:38:48PM +0530, Manivannan Sadhasivam wrote:
-> > > > On Thu, Aug 04, 2022 at 05:09:59PM +0200, Johan Hovold wrote:
-> > > > > Add a wakeup-source property to the binding to describe whether the
-> > > > > wakeup interrupts can wake the system from suspend.
-> > > > > 
-> > > > > Acked-by: Rob Herring <robh@kernel.org>
-> > > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > > > 
-> > > > So this is based on the fact that Qcom glue wrapper is supplying the wakeup
-> > > > interrupts. But isn't it possible that on other platform, the DWC IP can supply
-> > > > wakeup interrupts?
-> > > 
-> > > Yeah, possibly, and that's why Rob suggested keeping the 'wakeup-source'
-> > > property also in the core node.
-> > > 
-> > > > In the driver, the wakeup-source parsing has been moved to the Qcom glue driver.
-> > > > But this contradicts with the binding.
-> > > 
-> > > That's irrelevant. The core driver does not implement wakeup support. It
-> > > was just added as a hack for the Qualcomm driver, and you won't get
-> > > wakeup-capability for other platforms by just parsing the property in
-> > > the core driver.
-> > > 
-> > > When/if wakeup support for such a platform is added, then the core
-> > > driver may need to look at the property again.
-> > > 
-> > 
-> > My point is, the platform drivers are free to add "wakeup-source" property in
-> > the DWC node. Then in that case, the DWC driver should handle the capability,
-> > isn't it?
+On 08/08/2022 09:02, Lee Jones wrote:
+> On Mon, 08 Aug 2022, Lee Jones wrote:
 > 
-> No, not really. They wouldn't violate the current binding, but it would
-> arguably still be wrong to do so unless that platform actually supports
-> wakeup without involvement from a glue layer.
+>> On Fri, 05 Aug 2022, Ben Dooks wrote:
+>>
+>>> This series is tidying up and adding device-tree support for the
+>>> DesignWare DW-APB-timers block.
+>>>
+>>> Changes:
+>>>
+>>> v3:
+>>> - change the compatible name
+>>> - squash down pwm count patch
+>>> - fixup patch naming
+>>>
+>>> v2:
+>>> - fix #pwm-cells count to be 3
+>>> - fix indetation
+>>> - merge the two clock patches
+>>> - add HAS_IOMEM as a config dependency
+>>
+>> Can you use the front-cover option provided by Git please Ben?
 > 
-> Perhaps we should reconsider reverting the binding update adding this
-> property to the core node and only add it selectively for the platforms
-> for which is actually applies (if they even exist).
-> 
+> git format-patch --cover-letter ...
 
-That sounds right to me.
-
-> > I know it is broken currently, but moving the wakeup parsing code is not
-> > helping either.
-> 
-> It's not even broken. It has never even been implemented.
-> 
-> Just because someone added a hack that should probably never have been
-> merged in the first place, doesn't mean we should somehow pretend that
-> we support it.
-> 
-> > And... I'm aware of the fact that the binding should describe the hardware and
-> > not the limitation of the driver. So perhaps we should document it in the
-> > driver as a TODO or something?
-> 
-> I'd rather just revert the binding update to avoid having discussions
-> like this. We don't even know if it's possible to support on any
-> platform yet (and remember that none of this has even been in an rc
-> release yet).
-> 
-
-Okay.
-
-Thanks,
-Mani
-
-> Johan
-
--- 
-மணிவண்ணன் சதாசிவம்
+I thought git-send-email --compose did that.
