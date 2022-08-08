@@ -2,392 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55DDC58CFC4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 23:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D1AA58CFCB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 23:38:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244493AbiHHVhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 17:37:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59442 "EHLO
+        id S234108AbiHHVij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 17:38:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244450AbiHHVha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 17:37:30 -0400
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 778121A062;
-        Mon,  8 Aug 2022 14:37:29 -0700 (PDT)
-Received: by mail-qt1-x831.google.com with SMTP id e23so7530577qts.1;
-        Mon, 08 Aug 2022 14:37:29 -0700 (PDT)
+        with ESMTP id S244493AbiHHVii (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 17:38:38 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C9E1B7A7
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 14:38:37 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id p125so5646749pfp.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 14:38:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:sender:from:to:cc;
-        bh=Q9PKtfstb3IaH3UDQ2Oh3oWLE6JBB39oUjolcp8WJoM=;
-        b=cnV1pvEvXh5HnU2ss5eLswHpz9CsKbEe0HUXDSpEdKLdYQxv5hL4W9Ch0G3LuaYibo
-         HRs+2IFOjhfFtMshePef6TfRcEuQunx0l3/XEWNIlOZhTOlmQj1lZCqFPXORhic+ul7n
-         zwcBmo7I4twRJKLXhcLxAqJhZSmdgCmqx6QwxxDUgcBPoh9FtZNNQAsUdu38u99HLfP+
-         Ct+5dF3ZHTYAW6P+N8S6W3vL8uhkzUl++c0Tz8JRMmbuawZd/vUwKV1XSA6IQLywKf3I
-         iAnPCeo90axEXvRBUru6csJHN00zjA0ni15Abm8NFhu+C2TXQ0XY+JUPn8dXTJSApU4N
-         Xqmg==
+        d=networkplumber-org.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Zz8kiYSatQgY9tT99NzUrQ7DcijbybOWLRkr13aOxuk=;
+        b=KTRhzP+wvhVd45fwQMOikTFddkItYjQCwJ35FXIUt5/J2uxwy9ffmg2gXeiU12IqWI
+         9Jt4K3dgnrUFEr7sQjlvtdm/3reBLRNoiBHaA0PlZ5VCX98HbU+TTTZangvFMKn4KyQU
+         Ya56eaJ+Tg5BzfmlqTYUEYPGsaewj0hEEhqzVHw4ZiI1Iql4U1DKrfnYNl4E70ebdqFu
+         +LPtBo33/VRXzh1NFuxZA2ZOqTon0hH/ieVzegWbufdQiDQjBLF+hdpHSvtK+ZYaismp
+         6i9fuSJ0mugfIj13cB32Dc5cZq1695/NSdjv8+2j+8KjEfsAdjfJnosp1n27H+vwQ3by
+         ftoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:sender:x-gm-message-state:from:to
-         :cc;
-        bh=Q9PKtfstb3IaH3UDQ2Oh3oWLE6JBB39oUjolcp8WJoM=;
-        b=EbDePol7Wuxm77sPRmHQ6avKatMReUWuE/3S5ne2h0TLVci3HBCB0OW9EYi7l1Kmbu
-         eHcjQRuJRrtJrVVGOgQH1G4O+XOQUMS2ZFcY9ETzDv6+5dvsj+YcJ+3L1a+ymuHRscPp
-         D3UytXhuu9jRLSx83iaEKXx551nQijbP/AeK4rphPBBHjLt90UV0yRp0PAuZEfpgsoxs
-         ReU2SzAT0bL+iN25PEUJo2hBEB1OUWbfrFjjZK12ZlPvvMR7jT1W4lNbRe/fZ10PHCQB
-         73D/Anmy3Huq7zpXzMaVKmpHz6U2VYvyA9QES5ao1Ty1JoIf7kU+s5DCswXu+rJfO4pY
-         jm8Q==
-X-Gm-Message-State: ACgBeo3Gv5n63Il1+llbczxA/WLfN0TBm/wh2PznGIQx1YbEOEJpwZQ8
-        IIe8UAtrJ605m7v5Fqh5Gp0=
-X-Google-Smtp-Source: AA6agR5An55LBn0ChO0mUR4t+VVt6Bb7URGonGhlMAWqADocP9TpbTn+D3h07ZCYcAOMSlecPsmWXw==
-X-Received: by 2002:a05:622a:100a:b0:342:9a3d:cd58 with SMTP id d10-20020a05622a100a00b003429a3dcd58mr15376507qte.479.1659994648534;
-        Mon, 08 Aug 2022 14:37:28 -0700 (PDT)
-Received: from kubuntu-desktop.. (108-215-65-189.lightspeed.dybhfl.sbcglobal.net. [108.215.65.189])
-        by smtp.gmail.com with ESMTPSA id e13-20020a05622a110d00b00339163a06fcsm9146656qty.6.2022.08.08.14.37.27
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Zz8kiYSatQgY9tT99NzUrQ7DcijbybOWLRkr13aOxuk=;
+        b=ukDkolkCh+KLcBgiNbbmezpUtp1Ruvo3dq+wsqtIwma3iE+E3gym7YxatDpLd3pmnn
+         zg8lgrgQ55JQoVk7N5bqFR6hB/HlGqg7zqmqACMZqyT073Fxsf76eAu/JVCqawSf59vU
+         wFzuhgHhaG0cnKHiNPUnWpvsXxb06hp6wnJA2MeJA2oQcim3uudf2p9tkg42sQq6/sEJ
+         VyXjiVoZC5tus6RBtMmViyskwYwXK3iZjsKClntlAeUlbRuJgZXd9Pm2wM8zEuxLxyAT
+         mEyfl8UOCOpsHOnwfg9ZQRYKB+CF4A+rX/wjVb7oAFX5c4Opx5viW7qeiQBGAqBc+R3u
+         AZyw==
+X-Gm-Message-State: ACgBeo2O8+WJMhY3BuacjQduyfTER85zYpOsyBAefdLLEVaASTEM5CxZ
+        KjHdSWuOw/02S9LGp+/G9lzzJQ==
+X-Google-Smtp-Source: AA6agR7kOibBeEJB2eheY9mMxYDLmXrv07UCg+re6gr7A0DGnuucCoP4OdcRsLWtjp1hAE4kpnQmag==
+X-Received: by 2002:a63:d703:0:b0:41a:8d7a:eb3d with SMTP id d3-20020a63d703000000b0041a8d7aeb3dmr17650667pgg.59.1659994717317;
+        Mon, 08 Aug 2022 14:38:37 -0700 (PDT)
+Received: from hermes.local (204-195-120-218.wavecable.com. [204.195.120.218])
+        by smtp.gmail.com with ESMTPSA id d7-20020a170903230700b0016bdc98730bsm9352942plh.151.2022.08.08.14.38.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 14:37:28 -0700 (PDT)
-Sender: Julian Braha <julian.braha@gmail.com>
-From:   Julian Braha <julianbraha@gmail.com>
-To:     sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
-        thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 2/2] drm/panel/tianma-tl057fvxp01: add panel for Motorola Moto G6
-Date:   Mon,  8 Aug 2022 17:37:26 -0400
-Message-Id: <20220808213726.883003-2-julianbraha@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220808213726.883003-1-julianbraha@gmail.com>
-References: <20220808213726.883003-1-julianbraha@gmail.com>
+        Mon, 08 Aug 2022 14:38:37 -0700 (PDT)
+Date:   Mon, 8 Aug 2022 14:38:35 -0700
+From:   Stephen Hemminger <stephen@networkplumber.org>
+To:     Michal =?UTF-8?B?U3VjaMOhbmVr?= <msuchanek@suse.de>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
+Message-ID: <20220808143835.41b38971@hermes.local>
+In-Reply-To: <20220808210945.GP17705@kitsune.suse.cz>
+References: <CAJ+vNU05_xH4b8DFVJLpiDTkJ_z9MrBFvf1gSz9P1KXy9POU7w@mail.gmail.com>
+        <5914cae0-e87b-fb94-85dd-33311fc84c52@seco.com>
+        <20220808210945.GP17705@kitsune.suse.cz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a 5.7" 2160x1080 panel found on the Motorola Moto G6.
-There may be other smartphones using it, as well.
+On Mon, 8 Aug 2022 23:09:45 +0200
+Michal Such=C3=A1nek <msuchanek@suse.de> wrote:
 
-Signed-off-by: Julian Braha <julianbraha@gmail.com>
----
-v3:
-Fixed kconfig dependencies.
+> On Mon, Aug 08, 2022 at 03:57:55PM -0400, Sean Anderson wrote:
+> > Hi Tim,
+> >=20
+> > On 8/8/22 3:18 PM, Tim Harvey wrote: =20
+> > > Greetings,
+> > >=20
+> > > I'm trying to understand if there is any implication of 'ethernet<n>'
+> > > aliases in Linux such as:
+> > >         aliases {
+> > >                 ethernet0 =3D &eqos;
+> > >                 ethernet1 =3D &fec;
+> > >                 ethernet2 =3D &lan1;
+> > >                 ethernet3 =3D &lan2;
+> > >                 ethernet4 =3D &lan3;
+> > >                 ethernet5 =3D &lan4;
+> > >                 ethernet6 =3D &lan5;
+> > >         };
+> > >=20
+> > > I know U-Boot boards that use device-tree will use these aliases to
+> > > name the devices in U-Boot such that the device with alias 'ethernet0'
+> > > becomes eth0 and alias 'ethernet1' becomes eth1 but for Linux it
+> > > appears that the naming of network devices that are embedded (ie SoC)
+> > > vs enumerated (ie pci/usb) are always based on device registration
+> > > order which for static drivers depends on Makefile linking order and
+> > > has nothing to do with device-tree.
+> > >=20
+> > > Is there currently any way to control network device naming in Linux
+> > > other than udev? =20
+> >=20
+> > You can also use systemd-networkd et al. (but that is the same kind of =
+mechanism)
+> >  =20
+> > > Does Linux use the ethernet<n> aliases for anything at all? =20
+> >=20
+> > No :l =20
+>=20
+> Maybe it's a great opportunity for porting biosdevname to DT based
+> platforms ;-)
 
-v2:
-Fixed accidental whitespace deletion.
----
- drivers/gpu/drm/panel/Kconfig                 |   9 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../gpu/drm/panel/panel-tianma-tl057fvxp01.c  | 262 ++++++++++++++++++
- 3 files changed, 272 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-tianma-tl057fvxp01.c
+Sorry, biosdevname was wrong way to do things.
+Did you look at the internals, it was dumpster diving as root into BIOS.
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index a9043eacce97..f7d637084d96 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -658,6 +658,15 @@ config DRM_PANEL_TDO_TL070WSH30
- 	  24 bit RGB per pixel. It provides a MIPI DSI interface to
- 	  the host, a built-in LED backlight and touch controller.
+Systemd-networkd does things in much more supportable manner using existing
+sysfs API's.
 
-+config DRM_PANEL_TIANMA_TL057FVXP01
-+	tristate "Tianma TL057FVXP01 panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	help
-+	  Say Y here if you want to enable support for the Tianma TL057FVXP01
-+	  2160x1080 5.7" panel (found on the Motorola Moto G6)
-+
- config DRM_PANEL_TPO_TD028TTEC1
- 	tristate "Toppoly (TPO) TD028TTEC1 panel driver"
- 	depends on OF && SPI
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 34e717382dbb..8f9228082c32 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -66,6 +66,7 @@ obj-$(CONFIG_DRM_PANEL_SITRONIX_ST7789V) += panel-sitronix-st7789v.o
- obj-$(CONFIG_DRM_PANEL_SONY_ACX565AKM) += panel-sony-acx565akm.o
- obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) += panel-sony-tulip-truly-nt35521.o
- obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) += panel-tdo-tl070wsh30.o
-+obj-$(CONFIG_DRM_PANEL_TIANMA-TL057FVXP01) += panel-tianma-tl057fvxp01.o
- obj-$(CONFIG_DRM_PANEL_TPO_TD028TTEC1) += panel-tpo-td028ttec1.o
- obj-$(CONFIG_DRM_PANEL_TPO_TD043MTEA1) += panel-tpo-td043mtea1.o
- obj-$(CONFIG_DRM_PANEL_TPO_TPG110) += panel-tpo-tpg110.o
-diff --git a/drivers/gpu/drm/panel/panel-tianma-tl057fvxp01.c b/drivers/gpu/drm/panel/panel-tianma-tl057fvxp01.c
-new file mode 100644
-index 000000000000..92238defa9ad
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-tianma-tl057fvxp01.c
-@@ -0,0 +1,262 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021 Julian Braha <julianbraha@gmail.com>
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+struct tianma_tl057fvxp01 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+	struct gpio_desc *reset_gpio;
-+	bool prepared;
-+};
-+
-+static inline struct tianma_tl057fvxp01 *to_tianma_tl057fvxp01(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct tianma_tl057fvxp01, panel);
-+}
-+
-+#define dsi_dcs_write_seq(dsi, seq...) do {				\
-+		static const u8 d[] = { seq };				\
-+		int ret;						\
-+		ret = mipi_dsi_dcs_write_buffer(dsi, d, ARRAY_SIZE(d));	\
-+		if (ret < 0)						\
-+			return ret;					\
-+	} while (0)
-+
-+static void tianma_tl057fvxp01_reset(struct tianma_tl057fvxp01 *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(5000, 6000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(1000, 2000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(10000, 11000);
-+}
-+
-+static int tianma_tl057fvxp01_on(struct tianma_tl057fvxp01 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	dsi_dcs_write_seq(dsi, 0x00, 0x00);
-+	dsi_dcs_write_seq(dsi, 0xff, 0x19, 0x11, 0x01);
-+	dsi_dcs_write_seq(dsi, 0x00, 0x80);
-+	dsi_dcs_write_seq(dsi, 0xff, 0x19, 0x11);
-+	dsi_dcs_write_seq(dsi, 0x00, 0xb0);
-+	dsi_dcs_write_seq(dsi, 0xb3, 0x04, 0x38, 0x08, 0x70);
-+	dsi_dcs_write_seq(dsi, 0x00, 0x00);
-+	dsi_dcs_write_seq(dsi, 0xff, 0xff, 0xff, 0xff);
-+	dsi_dcs_write_seq(dsi, 0x35, 0x00);
-+	dsi_dcs_write_seq(dsi, 0x51, 0xcc, 0x08);
-+	dsi_dcs_write_seq(dsi, 0x53, 0x2c);
-+	dsi_dcs_write_seq(dsi, 0x55, 0x01);
-+
-+	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(120);
-+
-+	ret = mipi_dsi_dcs_set_display_on(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display on: %d\n", ret);
-+		return ret;
-+	}
-+	usleep_range(10000, 11000);
-+
-+	return 0;
-+}
-+
-+static int tianma_tl057fvxp01_off(struct tianma_tl057fvxp01 *ctx)
-+{
-+	struct mipi_dsi_device *dsi = ctx->dsi;
-+	struct device *dev = &dsi->dev;
-+	int ret;
-+
-+	ret = mipi_dsi_dcs_set_display_off(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to set display off: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(50);
-+
-+	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to enter sleep mode: %d\n", ret);
-+		return ret;
-+	}
-+	msleep(70);
-+
-+	return 0;
-+}
-+
-+static int tianma_tl057fvxp01_prepare(struct drm_panel *panel)
-+{
-+	struct tianma_tl057fvxp01 *ctx = to_tianma_tl057fvxp01(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (ctx->prepared)
-+		return 0;
-+
-+	tianma_tl057fvxp01_reset(ctx);
-+
-+	ret = tianma_tl057fvxp01_on(ctx);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+		return ret;
-+	}
-+
-+	ctx->prepared = true;
-+	return 0;
-+}
-+
-+static int tianma_tl057fvxp01_unprepare(struct drm_panel *panel)
-+{
-+	struct tianma_tl057fvxp01 *ctx = to_tianma_tl057fvxp01(panel);
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	if (!ctx->prepared)
-+		return 0;
-+
-+	ret = tianma_tl057fvxp01_off(ctx);
-+	if (ret < 0)
-+		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-+
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+
-+	ctx->prepared = false;
-+	return 0;
-+}
-+
-+static const struct drm_display_mode tianma_tl057fvxp01_mode = {
-+	.clock = (1080 + 53 + 4 + 53) * (2160 + 14 + 1 + 11) * 60 / 1000,
-+	.hdisplay = 1080,
-+	.hsync_start = 1080 + 53,
-+	.hsync_end = 1080 + 53 + 4,
-+	.htotal = 1080 + 53 + 4 + 53,
-+	.vdisplay = 2160,
-+	.vsync_start = 2160 + 14,
-+	.vsync_end = 2160 + 14 + 1,
-+	.vtotal = 2160 + 14 + 1 + 11,
-+	.width_mm = 62,
-+	.height_mm = 110,
-+};
-+
-+static int tianma_tl057fvxp01_get_modes(struct drm_panel *panel,
-+				   struct drm_connector *connector)
-+{
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(connector->dev, &tianma_tl057fvxp01_mode);
-+	if (!mode)
-+		return -ENOMEM;
-+
-+	drm_mode_set_name(mode);
-+
-+	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
-+	connector->display_info.width_mm = mode->width_mm;
-+	connector->display_info.height_mm = mode->height_mm;
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1;
-+}
-+
-+static const struct drm_panel_funcs tianma_tl057fvxp01_panel_funcs = {
-+	.prepare = tianma_tl057fvxp01_prepare,
-+	.unprepare = tianma_tl057fvxp01_unprepare,
-+	.get_modes = tianma_tl057fvxp01_get_modes,
-+};
-+
-+static int tianma_tl057fvxp01_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct tianma_tl057fvxp01 *ctx;
-+	int ret;
-+
-+	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-+	if (!ctx)
-+		return -ENOMEM;
-+
-+	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
-+			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
-+
-+	drm_panel_init(&ctx->panel, dev, &tianma_tl057fvxp01_panel_funcs,
-+		       DRM_MODE_CONNECTOR_DSI);
-+
-+	ret = drm_panel_of_backlight(&ctx->panel);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ret = mipi_dsi_attach(dsi);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
-+		drm_panel_remove(&ctx->panel);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int tianma_tl057fvxp01_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct tianma_tl057fvxp01 *ctx = mipi_dsi_get_drvdata(dsi);
-+	int ret;
-+
-+	ret = mipi_dsi_detach(dsi);
-+	if (ret < 0)
-+		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+	drm_panel_remove(&ctx->panel);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id tianma_tl057fvxp01_of_match[] = {
-+	{ .compatible = "tianma,tl057fvxp01" }, // FIXME
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, tianma_tl057fvxp01_of_match);
-+
-+static struct mipi_dsi_driver tianma_tl057fvxp01_driver = {
-+	.probe = tianma_tl057fvxp01_probe,
-+	.remove = tianma_tl057fvxp01_remove,
-+	.driver = {
-+		.name = "panel-tianma-tl057fvxp01",
-+		.of_match_table = tianma_tl057fvxp01_of_match,
-+	},
-+};
-+module_mipi_dsi_driver(tianma_tl057fvxp01_driver);
-+
-+MODULE_AUTHOR("Julian Braha <julianbraha@gmail.com>");
-+MODULE_DESCRIPTION("Tianma TL057FVXP01 panel driver");
-+MODULE_LICENSE("GPL v2");
---
-2.34.1
