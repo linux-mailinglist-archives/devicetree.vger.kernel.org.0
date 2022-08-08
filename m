@@ -2,271 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38BF758CCC2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 19:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BF0C58CCC4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 19:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243544AbiHHRhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 13:37:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40534 "EHLO
+        id S236351AbiHHRiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 13:38:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243542AbiHHRho (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 13:37:44 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 361CF17058
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 10:37:43 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id u9so11108586oiv.12
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 10:37:43 -0700 (PDT)
+        with ESMTP id S230034AbiHHRiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 13:38:19 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D7C4140B5;
+        Mon,  8 Aug 2022 10:38:19 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id cb12-20020a056830618c00b00616b871cef3so6946530otb.5;
+        Mon, 08 Aug 2022 10:38:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dionne-riel-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :references:in-reply-to:mime-version:from:to:cc;
-        bh=8El6/y4C2ZPX2yELljyvmJcdy/glzkw03crtz7p/8Qg=;
-        b=jWz9m/Lv1SCw0u+cyWggoKLtc6jD1VDjJvJO9/FV9obfAgL9mUyhChzEwGtuWTCCXg
-         PZ/JxxHyvTiizWtXX4XRmcTlB6C7fDFQaSZDaK+H7w753KHQSZkH8cDp9fb0RgJR8ess
-         34yR08qYiLQg5YFMKtKKue0wkyaHOA2Kpm28gEcSUbf81MFjMLU6i5v/ergbu+2hyPCO
-         o4nq1pRdgck77FAXBa/xx1nKBT9+g7mp+zsMX0R5Z/jq2S8WxjaPo0LeqDNtDZmheq+e
-         s3okpjjQWz2Ek9BHhEHvT4vRQHO1cDq9YAmrjiqHy/7RW+Zbbe554gwEUJTpxwGR966x
-         fqHA==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=LaM1Il9dI8a8vYNX4gN0hH1DxnTq/+g/W65fQiFlt+c=;
+        b=Z6p5g/sMyWvF87n/OmuxEhJ9JDvumylNRBB2ncNdH40u0+UYGtMFzYgtjg4IVfMWUW
+         AulNd1DjTSmjzyd02JziOQkILZLab9y4hrpP7ciiFc8pEoUzSggNv4Wk/d1onvlhkdIx
+         joT2GezLn0/CLTuMHA1LAEnpE3zujurhMVp1vXhK8cgrRsWDewQED1L9ass2cQxQ4qTV
+         ybbbpYqaKvGYdzSpNzsKJaux2GiDcnhTFv6Jy4SFticomdxfkBrspqplZMHUPZitGyx/
+         cx/cNks1ZBihvMd02iFxHm1+aQMxijB40cids0DYSxmFhK+PyPP4O840vC9S0MhVHmtL
+         qmAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :references:in-reply-to:mime-version:x-gm-message-state:from:to:cc;
-        bh=8El6/y4C2ZPX2yELljyvmJcdy/glzkw03crtz7p/8Qg=;
-        b=B/FrHt8jmf99ZwEJ0zsbiwkESQjeCFsAB+lCPkROca49TGuUr66E+T5dw00LWAD/8X
-         qiyF9wa8xFKKPBmXvaqeJu8uXzni2KcIbX27qP+vzl0qSw6h7n1jhqMB/L0nx6jiM3vY
-         tuisiM30OqlGjEJtnxx6+q35IDIYtBY5P2M1urMcN6cYkzCDZ6gT3RxehCRZx6wuZJSU
-         6fxg95Lpf+TKWfono8TR3oFMF/axhNot++i00xKCvhVT3STwxfkwtMm6ixmGmUBeYFsC
-         uL6G2zfjBX3BrkU2l6IyzRT+Yj6q9IMXZJNxmcOhzhFBJ59jiIBp2bqCjza9m/3+exA7
-         i1/A==
-X-Gm-Message-State: ACgBeo3Mh32aSXuUJoUTlynWl9hVp1Hrq6u+sCo+LtkIwE3eTDSwrjLM
-        KK40wTnn1LP0bXHOfcyhxcgVfx+5yggFTJdEhmrbPA==
-X-Google-Smtp-Source: AA6agR5VGE9b/GImxZUVPrnUDL9A0fPYyjIJ7qbfFUuxtb5lEJHnUwNddOG/L6gIvkW5VR3rDSjgDEcDCIUoZnzrjb8=
-X-Received: by 2002:a05:6808:aad:b0:342:9a85:882c with SMTP id
- r13-20020a0568080aad00b003429a85882cmr10463249oij.80.1659980262465; Mon, 08
- Aug 2022 10:37:42 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=LaM1Il9dI8a8vYNX4gN0hH1DxnTq/+g/W65fQiFlt+c=;
+        b=VT65WNMjjB9Cq8jHGTCWJcVhVTJtIx69cbu5igbHBAJ8u5BkAsymsB+YcCnjtL9q8I
+         4Ae6q4qhJhSWVqsu9BD2R8xFJ0nrc295LrzNcrxrDyrjha0dEP9VSDr3HzUdA1uLkxpE
+         gCfgKs1to9QxftPTu0gb1/KO9P+WsJksqwsPpS2a5HshJHRIfEbdTD8ZfVnCPCH5TlVb
+         htDU+wbBK6Ol7emOolH6h3oh9cXzgDkK2HAgGKD4A/5w1MHreLLxzUmg85tUf6QXndJU
+         PkMRcYVTanVerSusNQ2OEO/UnFmA8vksxoKLvnDaH1LEOkWbo2yvNVIHIzMwp2PBahQb
+         Z+aQ==
+X-Gm-Message-State: ACgBeo2841Doc7J05fwNPaGZSjHrSZxDTiPXH77fYJRtHAQ/8qZa6lOJ
+        p0pqhwBa/ctIDnDkh2q/oXn45ftrZI4=
+X-Google-Smtp-Source: AA6agR5MuwogWldfhAEFDPCabgQgOauUPdObIKhTacG+jHpPPPLkq1/PT8nVYQmcPFBYAZ//j50u0A==
+X-Received: by 2002:a05:6830:44a2:b0:61c:bc05:3158 with SMTP id r34-20020a05683044a200b0061cbc053158mr7257342otv.370.1659980298058;
+        Mon, 08 Aug 2022 10:38:18 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id s2-20020a056870248200b0010edfa2b0e8sm2429202oaq.50.2022.08.08.10.38.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Aug 2022 10:38:17 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-pm@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        zhangqing@rock-chips.com, zyw@rock-chips.com,
+        jon.lin@rock-chips.com, sre@kernel.org, heiko@sntech.de,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        lee@kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v8 0/4] power: supply: Add Support for RK817 Charger
+Date:   Mon,  8 Aug 2022 12:38:05 -0500
+Message-Id: <20220808173809.11320-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Received: by 2002:a4a:d58c:0:0:0:0:0 with HTTP; Mon, 8 Aug 2022 10:37:41 -0700 (PDT)
-In-Reply-To: <20220808142549.tdoc76vrcqcf2dxu@core>
-References: <20220805234411.303055-1-tom@tom-fitzhenry.me.uk>
- <20220805234411.303055-2-tom@tom-fitzhenry.me.uk> <20220808142549.tdoc76vrcqcf2dxu@core>
-From:   Samuel Dionne-Riel <samuel@dionne-riel.com>
-Date:   Mon, 8 Aug 2022 13:37:41 -0400
-Message-ID: <CAN1fySWVVTeGHAD=_hFH+ZdcR_AEiBc0wqes9Y4VRzB=zcdvSw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] arm64: dts: rockchip: Add RK3399-T opp
-To:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megi@xff.cz>,
-        Tom Fitzhenry <tom@tom-fitzhenry.me.uk>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de,
-        martijn@brixit.nl, ayufan@ayufan.eu, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Samuel Dionne-Riel <samuel@dionne-riel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Chris Morgan <macromorgan@hotmail.com>
 
-On 8/8/22, Ond=C5=99ej Jirman <megi@xff.cz> wrote:
-> Hi,
->
-> On Sat, Aug 06, 2022 at 09:44:09AM +1000, Tom Fitzhenry wrote:
->> From: Samuel Dionne-Riel <samuel@dionne-riel.com>
->>
->> These tables were derived from the regular RK3399 table, by dropping
->> entries exceeding recommended operating conditions from the datasheet,
->> and clamping the last exceeding value where it made sense.
->
-> Do we really need to duplicate the whole OPP table of rk3399-opp.dtsi
-> just to disable a few top opp## entries?
->
-> This will make it more annoying to add PVTM/eFuse leakage based voltage
-> selection support later on, because then there would have to be identical
-> multi-level operating points across multiple files. And that sounds like
-> a LOT of dupplication for little benefit.
->
-> Also Pinephone Pro has RK3399S not -T. RK3399 seems to be RK3399 selected
-> for
-> low leakage (values I've seen from eFuses indicate the leakage is half th=
-at
-> of
-> RK3399 available in Pinebook Pro)
+This series is to add support for the Rockchip rk817 battery charger
+which is present in all Rockchip RK817 PMICs. The driver was written
+as a joint effort by Maya Matuszczyk <maccraft123mc@gmail.com> and
+myself Chris Morgan <macromorgan@hotmail.com>.
 
-The vendor (PINE64) asked me to make these changes while stating specifical=
-ly
-that the Pinephone Pro uses the RK3399-T. Though earlier units and current
-batches use the RK3399[s], the design was reportedly made with the RK3399-T
-in mind.
+The driver requires some basic parameters be described about the
+battery in the devicetree such as the maximum capacity, the minimum
+and maximum voltage for the battery, the maximum charge current, the
+maximum charge voltage, and the value of sample resistors and sleep
+currents.
 
-The device was also designed to use the OPP from the RK3399-T on RK3399[s]
-for the designed thermal operation of the device, reportedly.
+The hardware itself contains an ADC capable of measuring the voltage,
+current, and temperature of the battery (though my implementation of an
+Odroid Go Advance lacks a thermistor for temperature). It also contains
+a columb counter, registers for tracking the measured voltage and
+current at boot, and a few bytes of nvram for storing data.
 
-> I'd suggest just adding references to select operating point nodes that
-> are "too much" and disabling them with status =3D "disabled". This
-> can be done from the pinephone device tree file directly.
->
-> Otherwise we'll eventually end up with several files containing
-> something like this [1] and only differing in absence of some opp## nodes
-> and not their actual useful content.
+Changes from V7:
+ - Fix error reported by kernel test robot <lkp@intel.com> in patch v7.
+   Problem appeared to be related to incomplete removal of fields I
+   used previously in debugging.
 
-As to why this is a new file? I have assumed it would be preferable since
-this is how it was done for the "OP1" variant of the RK3399. I will defer t=
-o
-the Rockchip and ARM maintainers to determine which way is better.
+Changes from V6:
+ - Updated devicetree binding patch to reference the required
+   prerequisite patch in the correct manner (relocated it below the ---
+   and pointed it to lore.kernel.org).
 
-I will note that in practice I agree here.
+Changes from V5:
+ - Renamed mfd-cell from "battery" to "charger".
+ - Added note for devicetree binding documentation that it requires
+   application of an additional pending patch (to convert documentation
+   to yaml).
 
-Cheers,
+Changes from V4:
+ - Massively redesigned the battery driver to improve measurement
+   accuracy and reliability. Driver now checks values every 8
+   seconds (mimicking BSP driver behavior), or whenever a plug event
+   is detected.
+ - Removed OCV, boot voltage, and boot current as values were found
+   to be unreliable.
+ - Updated first-boot behavior to perform a "best guess" at capacity.
+ - Added ability to calibrate columb counter to full state of charge
+   when charger reports full, and added ability calibrate full charge
+   capacity when battery discharges from full charge to minimum
+   voltage.
+ - Expose state of charge as capacity (in percents).
+ - Updated storing of values to nvram to preserve compatibility with
+   BSP kernel.
 
-> [1]
-> https://github.com/rockchip-linux/kernel/blob/develop-4.19/arch/arm64/boo=
-t/dts/rockchip/rk3399-opp.dtsi#L6
->
-> kind regards,
-> 	o.
->
->> Signed-off-by: Samuel Dionne-Riel <samuel@dionne-riel.com>
->> ---
->>  .../arm64/boot/dts/rockchip/rk3399-t-opp.dtsi | 118 ++++++++++++++++++
->>  1 file changed, 118 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
->> b/arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
->> new file mode 100644
->> index 0000000000000..ec153015d9d13
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-t-opp.dtsi
->> @@ -0,0 +1,118 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2016-2017 Fuzhou Rockchip Electronics Co., Ltd
->> + * Copyright (c) 2022 Samuel Dionne-Riel <samuel@dionne-riel.com>
->> + */
->> +
->> +/ {
->> +	cluster0_opp: opp-table-0 {
->> +		compatible =3D "operating-points-v2";
->> +		opp-shared;
->> +
->> +		opp00 {
->> +			opp-hz =3D /bits/ 64 <408000000>;
->> +			opp-microvolt =3D <825000 825000 925000>;
->> +			clock-latency-ns =3D <40000>;
->> +		};
->> +		opp01 {
->> +			opp-hz =3D /bits/ 64 <600000000>;
->> +			opp-microvolt =3D <825000 825000 925000>;
->> +		};
->> +		opp02 {
->> +			opp-hz =3D /bits/ 64 <816000000>;
->> +			opp-microvolt =3D <850000 850000 925000>;
->> +		};
->> +		opp03 {
->> +			opp-hz =3D /bits/ 64 <1008000000>;
->> +			opp-microvolt =3D <925000 925000 925000>;
->> +		};
->> +	};
->> +
->> +	cluster1_opp: opp-table-1 {
->> +		compatible =3D "operating-points-v2";
->> +		opp-shared;
->> +
->> +		opp00 {
->> +			opp-hz =3D /bits/ 64 <408000000>;
->> +			opp-microvolt =3D <825000 825000 1150000>;
->> +			clock-latency-ns =3D <40000>;
->> +		};
->> +		opp01 {
->> +			opp-hz =3D /bits/ 64 <600000000>;
->> +			opp-microvolt =3D <825000 825000 1150000>;
->> +		};
->> +		opp02 {
->> +			opp-hz =3D /bits/ 64 <816000000>;
->> +			opp-microvolt =3D <825000 825000 1150000>;
->> +		};
->> +		opp03 {
->> +			opp-hz =3D /bits/ 64 <1008000000>;
->> +			opp-microvolt =3D <875000 875000 1150000>;
->> +		};
->> +		opp04 {
->> +			opp-hz =3D /bits/ 64 <1200000000>;
->> +			opp-microvolt =3D <950000 950000 1150000>;
->> +		};
->> +		opp05 {
->> +			opp-hz =3D /bits/ 64 <1416000000>;
->> +			opp-microvolt =3D <1025000 1025000 1150000>;
->> +		};
->> +		opp06 {
->> +			opp-hz =3D /bits/ 64 <1500000000>;
->> +			opp-microvolt =3D <1100000 1100000 1150000>;
->> +		};
->> +	};
->> +
->> +	gpu_opp_table: opp-table-2 {
->> +		compatible =3D "operating-points-v2";
->> +
->> +		opp00 {
->> +			opp-hz =3D /bits/ 64 <200000000>;
->> +			opp-microvolt =3D <825000 825000 975000>;
->> +		};
->> +		opp01 {
->> +			opp-hz =3D /bits/ 64 <297000000>;
->> +			opp-microvolt =3D <825000 825000 975000>;
->> +		};
->> +		opp02 {
->> +			opp-hz =3D /bits/ 64 <400000000>;
->> +			opp-microvolt =3D <825000 825000 975000>;
->> +		};
->> +		opp03 {
->> +			opp-hz =3D /bits/ 64 <500000000>;
->> +			opp-microvolt =3D <875000 875000 975000>;
->> +		};
->> +		opp04 {
->> +			opp-hz =3D /bits/ 64 <600000000>;
->> +			opp-microvolt =3D <925000 925000 975000>;
->> +		};
->> +	};
->> +};
->> +
->> +&cpu_l0 {
->> +	operating-points-v2 =3D <&cluster0_opp>;
->> +};
->> +
->> +&cpu_l1 {
->> +	operating-points-v2 =3D <&cluster0_opp>;
->> +};
->> +
->> +&cpu_l2 {
->> +	operating-points-v2 =3D <&cluster0_opp>;
->> +};
->> +
->> +&cpu_l3 {
->> +	operating-points-v2 =3D <&cluster0_opp>;
->> +};
->> +
->> +&cpu_b0 {
->> +	operating-points-v2 =3D <&cluster1_opp>;
->> +};
->> +
->> +&cpu_b1 {
->> +	operating-points-v2 =3D <&cluster1_opp>;
->> +};
->> +
->> +&gpu {
->> +	operating-points-v2 =3D <&gpu_opp_table>;
->> +};
->> --
->> 2.37.1
->>
->
+Changes from V3:
 
---=20
-=E2=80=94 Samuel Dionne-Riel
+ - Corrected issues in device tree documentation.
+ - Added additional logic to battery to correct for columb counter
+   drift when the device stays plugged in at a full charge state.
+
+Changes from V2:
+
+ - Updated devicetree bindings to use common property units.
+ - Removed unneeded includes.
+ - Updated rk817_chg_cur_to_reg to make more legible.
+ - Simplified formula for displaying calibrated voltage.
+ - Updated power supply type to POWER_SUPPLY_TYPE_USB.
+ - Implemented get/put_unaligned macros for bulk reads and writes.
+ - Changed numerous dev_err() to dev_err_probe().
+ - Call power_supply_put_battery_info() at end of probe function.
+ - Removed unneeded whitespace.
+
+Changes from V1:
+
+ - Fixed a CLANG warning regarding an uninitalized variable.
+ - Fixed a CLANG warning regarding a pointer as a bool value always
+   returning as true.
+ - Added Maya Matuszczyk to the Signed-off-by.
+
+Chris Morgan (4):
+  dt-bindings: Add Rockchip rk817 battery charger support
+  mfd: Add Rockchip rk817 battery charger support
+  power: supply: Add charger driver for Rockchip RK817
+  arm64: dts: rockchip: add rk817 chg to Odroid Go Advance
+
+ .../bindings/mfd/rockchip,rk817.yaml          |   48 +
+ .../boot/dts/rockchip/rk3326-odroid-go2.dts   |   26 +
+ drivers/mfd/rk808.c                           |   16 +-
+ drivers/power/supply/Kconfig                  |    6 +
+ drivers/power/supply/Makefile                 |    1 +
+ drivers/power/supply/rk817_charger.c          | 1151 +++++++++++++++++
+ include/linux/mfd/rk808.h                     |   91 ++
+ 7 files changed, 1338 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/power/supply/rk817_charger.c
+
+-- 
+2.25.1
+
