@@ -2,70 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61B6158C98C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 15:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E21A58C9A4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 15:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236098AbiHHNeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 09:34:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44236 "EHLO
+        id S243448AbiHHNmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 09:42:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242958AbiHHNeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 09:34:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB93E62EE;
-        Mon,  8 Aug 2022 06:34:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5732A61238;
-        Mon,  8 Aug 2022 13:34:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF151C433D7;
-        Mon,  8 Aug 2022 13:34:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1659965654;
-        bh=LBRn0PznnW2ya4z0sPhw5JpQP8WyMUBJTDHeeK7woag=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PNifi5K7Jm7FwC1RVc1vW5qDVCs/ySS9i+m27qTGqtkfGcc4xz6VIhzlEmRxwe8Q3
-         nAg/U8GrgNY/rVdyJ2vsNi3bAeQMsMgP0GvmjvZLo/KRbG/B2c6prdd1fINYg9Q5/b
-         hljRnV2sqAH2kzmrBMezphZqMNo48qm5m+bxOb928n4i2+dSpwP0wyB/8/DSvMU0DJ
-         xa0/qRasW0LXk+hLUkfB7FH5h0xMIW9zV+/Vp65qzeTziTKSC4e63dc0JVZY392KAI
-         4ETCV+JK93RyZWT0usaBxXV+lnZGzZKSrr8jxKzKisF6MG69DNA0ff/uu6q62eWWBK
-         ommQpb0xEGG+Q==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1oL2tW-0000vp-Iv; Mon, 08 Aug 2022 15:34:11 +0200
-Date:   Mon, 8 Aug 2022 15:34:10 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Johan Hovold <johan+linaro@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
+        with ESMTP id S242910AbiHHNme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 09:42:34 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9C65BE2E
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 06:42:32 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id r14so9875320ljp.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 06:42:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=5H5TR7yfLLVGjO2fI6qniVBtadkhJI8/3v58NZ4+aeg=;
+        b=bXnvRJ6nOxFzSC03Dcmjii23iewhz/xPMP7mmNk40sy/2AJKnuZzqL0EDpvUGeDqb/
+         binXxXc8RW/lSPUkXLVqhu5er/MNiwqZwp/vrJZCwTGtcO5czhs8JW3MsvyjizesezH9
+         aoolBtrW1JlePDeHYPBYGqFc5VPWSRcbcjVJ5CY8x9+AQhQJVugDLttPyBce9HhO8zu1
+         DDCQ3E8qIlxi4VBrThQzAHr52rfslCZGffC5BKzyWbXnsYTJyDbrGoOXMLY1kyvppXgZ
+         vsIseXn2CRl2KBcYYl4FPmr1VD0I+kKg22MgoJJdb4r8/5WkdDE3Z3V/Z8i3Mlw2MJWD
+         J+bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=5H5TR7yfLLVGjO2fI6qniVBtadkhJI8/3v58NZ4+aeg=;
+        b=wW4D5z0AksmA0fSdvgsl5z0HdloysQVXf1n6eEsN6sq0bWyBVSH2AqJRszgp7pTrgC
+         NHkmm0abRsBSVCGO601CDo7u5oJ1svE2+FazCkAqsHpvmJrUjKMjWf+td9aPdlAllmso
+         77N5zka/SiLbHm2q7a3ZaqVNwPrz9EhvRbPiOZ8pnPyTgoD6269PAYcv7kGkwP0OhMx4
+         0e4KmumGFFKPNmUrEqWhDcjAgbWFd1ANyDyxNC29WVbpXEeh9MeIqptRbVLXCKb9YE53
+         infZDM3qajGaJnhw5/x6wCeSJz+98+GQBSbU+IqPP2wzvsRZ1d267vzzsXOZlCJMKW8G
+         Th/g==
+X-Gm-Message-State: ACgBeo14NEfjLVmQWwRIS3Qq3y6Ik+POcMHwMfkfv35wbbtRAADGdd8p
+        I+hEvT5Jf/iomOOFEydWnbSLQw==
+X-Google-Smtp-Source: AA6agR5A2GynCEEZbEtFP8UiibR/fWKXFnx5kgKUiZ9UHHnA0JhCbjjzFv+icaTSaByKlBRw5mHQGg==
+X-Received: by 2002:a2e:b8d3:0:b0:25f:e94d:10ae with SMTP id s19-20020a2eb8d3000000b0025fe94d10aemr767505ljp.331.1659966151058;
+        Mon, 08 Aug 2022 06:42:31 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id t7-20020a05651c204700b0025e5a65afbbsm1369551ljo.120.2022.08.08.06.42.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Aug 2022 06:42:30 -0700 (PDT)
+Message-ID: <e62e2f08-5b1e-6488-375f-d4c46d7ce785@linaro.org>
+Date:   Mon, 8 Aug 2022 16:42:29 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 8/8] power: supply: Add driver for Qualcomm SMBCHG
+Content-Language: en-US
+To:     Yassine Oudjana <yassine.oudjana@gmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Alejandro Tafalla <atafalla@dnyon.com>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krishna Kurapati <quic_kriskura@quicinc.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Pavankumar Kondeti <quic_pkondeti@quicinc.com>,
-        quic_ppratap@quicinc.com, quic_vpulyala@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Randy Dunlap <rdunlap@infradead.org>
-Subject: Re: [PATCH v2 3/9] usb: dwc3: qcom: fix gadget-only builds
-Message-ID: <YvEQ0hpTRvAPStHU@hovoldconsulting.com>
-References: <20220804151001.23612-1-johan+linaro@kernel.org>
- <20220804151001.23612-4-johan+linaro@kernel.org>
- <YvEKIJ+GujHt7XvT@kroah.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YvEKIJ+GujHt7XvT@kroah.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220808073459.396278-1-y.oudjana@protonmail.com>
+ <20220808073459.396278-9-y.oudjana@protonmail.com>
+ <02243d57-d7aa-7aa9-4f95-24c417ff8c69@linaro.org>
+ <S0KAGR.INJ75H9K5FWO1@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <S0KAGR.INJ75H9K5FWO1@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,70 +85,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 08, 2022 at 03:05:36PM +0200, Greg Kroah-Hartman wrote:
-> On Thu, Aug 04, 2022 at 05:09:55PM +0200, Johan Hovold wrote:
-> > A recent change added a dependency to the USB host stack and broke
-> > gadget-only builds of the driver.
-> > 
-> > Fixes: 6895ea55c385 ("usb: dwc3: qcom: Configure wakeup interrupts during suspend")
-> > Reported-by: Randy Dunlap <rdunlap@infradead.org>
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> > 
-> > Changes in v2
-> >  - new patch
-> > 
-> >  drivers/usb/dwc3/dwc3-qcom.c | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> > index be2e3dd36440..e9364141661b 100644
-> > --- a/drivers/usb/dwc3/dwc3-qcom.c
-> > +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> > @@ -310,8 +310,11 @@ static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
-> >  	 * currently supports only 1 port per controller. So
-> >  	 * this is sufficient.
-> >  	 */
-> > +#ifdef CONFIG_USB
-> >  	udev = usb_hub_find_child(hcd->self.root_hub, 1);
+On 08/08/2022 13:05, Yassine Oudjana wrote:
 > 
-> If a gadget driver needs this for some reason, then the #ifdef should be
-> put in a .h file, not in a .c file.
+> On Mon, Aug 8 2022 at 11:55:02 +03:00:00, Krzysztof Kozlowski 
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> On 08/08/2022 10:34, Yassine Oudjana wrote:
+>>>  From: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>
+>>>  Add a driver for the switch-mode battery charger found on
+>>>  PMICs such as PMI8994. This block is referred to in the vendor
+>>>  kernel[1] as smbcharger or SMBCHG. It has USB and DC inputs,
+>>>  and can generate VBUS for USB OTG with a boost regulator.
+>>>  It supports Qualcomm Quick Charge 2.0, and can operate along
+>>>  with a parallel charger (SMB1357, or SMB1351 for added Quick
+>>>  Charge 3.0 support) for improved efficiency at higher currents.
+>>>
+>>>  At the moment, this driver supports charging off of the USB input
+>>>  at 5V with input current limit up to 3A. It also includes support
+>>>  for operating the OTG boost regulator as well as extcon
+>>>  functionality, reporting states of USB and USB_HOST with VBUS and
+>>>  charge port types.
+>>>
+>>>  Co-developed-by: Alejandro Tafalla <atafalla@dnyon.com>
+>>>  Signed-off-by: Alejandro Tafalla <atafalla@dnyon.com>
+>>>  Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+>>>
+>>>  [1] 
+>>> https://github.com/android-linux-stable/msm-3.18/blob/kernel.lnx.3.18.r34-rel/drivers/power/qpnp-smbcharger.c
+>>>  ---
+>>>   MAINTAINERS                        |    2 +
+>>>   drivers/power/supply/Kconfig       |   11 +
+>>>   drivers/power/supply/Makefile      |    1 +
+>>>   drivers/power/supply/qcom-smbchg.c | 1664 
+>>> ++++++++++++++++++++++++++++
+>>>   drivers/power/supply/qcom-smbchg.h |  428 +++++++
+>>>   5 files changed, 2106 insertions(+)
+>>>   create mode 100644 drivers/power/supply/qcom-smbchg.c
+>>>   create mode 100644 drivers/power/supply/qcom-smbchg.h
+>>>
+>>>  diff --git a/MAINTAINERS b/MAINTAINERS
+>>>  index f6cf3a27d132..9b8693050890 100644
+>>>  --- a/MAINTAINERS
+>>>  +++ b/MAINTAINERS
+>>>  @@ -16964,6 +16964,8 @@ L:	linux-pm@vger.kernel.org
+>>>   L:	linux-arm-msm@vger.kernel.org
+>>>   S:	Maintained
+>>>   F:	Documentation/devicetree/bindings/power/supply/qcom,smbchg.yaml
+>>>  +F:	drivers/power/supply/qcom-smbchg.c
+>>>  +F:	drivers/power/supply/qcom-smbchg.h
+>>>
+>>>   QUALCOMM TSENS THERMAL DRIVER
+>>>   M:	Amit Kucheria <amitk@kernel.org>
+>>>  diff --git a/drivers/power/supply/Kconfig 
+>>> b/drivers/power/supply/Kconfig
+>>>  index 1aa8323ad9f6..246bfc118d9f 100644
+>>>  --- a/drivers/power/supply/Kconfig
+>>>  +++ b/drivers/power/supply/Kconfig
+>>>  @@ -633,6 +633,17 @@ config CHARGER_QCOM_SMBB
+>>>   	  documentation for more detail.  The base name for this driver is
+>>>   	  'pm8941_charger'.
+>>>
+>>>  +config CHARGER_QCOM_SMBCHG
+>>>  +	tristate "Qualcomm Switch-Mode Battery Charger"
+>>
+>> As I mentioned in cover letter, this should be either squashed into
+>> Caleb's work, merged into some common part or kept separate but with
+>> clear explaining why it cannot be merged.
+>>
+>> Some incomplete review follows:
+>>
+>>>  +	depends on MFD_SPMI_PMIC || COMPILE_TEST
+>>>  +	depends on OF
+>>>  +	depends on EXTCON
+>>>  +	depends on REGULATOR
+>>>  +	select QCOM_PMIC_SEC_WRITE
+>>>  +	help
+>>>  +	  Say Y to include support for the Switch-Mode Battery Charger 
+>>> block
+>>>  +	  found in Qualcomm PMICs such as PMI8994.
+>>>  +
+>>>   config CHARGER_BQ2415X
+>>>   	tristate "TI BQ2415x battery charger driver"
+>>>   	depends on I2C
+>>>  diff --git a/drivers/power/supply/Makefile 
+>>> b/drivers/power/supply/Makefile
+>>>  index 7f02f36aea55..7c2c037cd8b1 100644
+>>>  --- a/drivers/power/supply/Makefile
+>>>  +++ b/drivers/power/supply/Makefile
+>>>  @@ -83,6 +83,7 @@ obj-$(CONFIG_CHARGER_MAX8998)	+= max8998_charger.o
+>>>   obj-$(CONFIG_CHARGER_MP2629)	+= mp2629_charger.o
+>>>   obj-$(CONFIG_CHARGER_MT6360)	+= mt6360_charger.o
+>>>   obj-$(CONFIG_CHARGER_QCOM_SMBB)	+= qcom_smbb.o
+>>>  +obj-$(CONFIG_CHARGER_QCOM_SMBCHG)	+= qcom-smbchg.o
+>>>   obj-$(CONFIG_CHARGER_BQ2415X)	+= bq2415x_charger.o
+>>>   obj-$(CONFIG_CHARGER_BQ24190)	+= bq24190_charger.o
+>>>   obj-$(CONFIG_CHARGER_BQ24257)	+= bq24257_charger.o
+>>>  diff --git a/drivers/power/supply/qcom-smbchg.c 
+>>> b/drivers/power/supply/qcom-smbchg.c
+>>>  new file mode 100644
+>>>  index 000000000000..23a9667953c9
+>>>  --- /dev/null
+>>>  +++ b/drivers/power/supply/qcom-smbchg.c
+>>>  @@ -0,0 +1,1664 @@
+>>>  +// SPDX-License-Identifier: GPL-2.0-only
+>>
+>> Several things look like based from original sources, so please retain
+>> original copyright.
+> 
+> Do I replace the existing copyright here with the original one, just 
+> add it, or mention that this driver is based on downstream sources 
+> (maybe putting a link as well) then add it?
 
-Yeah, if we're keeping this long-term then yes, and possibly also
-otherwise.
+Add original copyright and optionally mention that it is based on
+downstream source. Links are not needed.
 
-> But step back a minute and ask why a host-config-only function is being
-> called when a device is in gadget-only mode?  This feels like a
-> design/logic issue in this file, NOT something to paper over with a
-> #ifdef in a .c file
+>>
+>>>  +
+>>>  +static int smbchg_probe(struct platform_device *pdev)
+>>>  +{
+>>>  +	struct smbchg_chip *chip;
+>>>  +	struct regulator_config config = {};
+>>>  +	struct power_supply_config supply_config = {};
+>>>  +	int i, irq, ret;
+>>>  +
+>>>  +	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
+>>>  +	if (!chip)
+>>>  +		return -ENOMEM;
+>>>  +
+>>>  +	chip->dev = &pdev->dev;
+>>>  +
+>>>  +	chip->regmap = dev_get_regmap(chip->dev->parent, NULL);
+>>>  +	if (!chip->regmap) {
+>>>  +		dev_err(chip->dev, "Failed to get regmap\n");
+>>>  +		return -ENODEV;
+>>>  +	}
+>>>  +
+>>>  +	ret = of_property_read_u32(chip->dev->of_node, "reg", 
+>>> &chip->base);
+>>
+>> First: device_xxx
+> 
+> Okay.
+> 
+>> Second: what if address is bigger than u32? Shouldn't this be
+>> of_read_number or something similar in device_xxx API?
+> 
+> The address wouldn't exceed sizeof(u16). Actually now I think I 
+> should've used property_read_u16 instead. I couldn't find a device_* 
+> equivalent of of_read_number (or at least not a direct one), are you 
+> sure it exists?
 
-We're not as I'm fixing that bug in later in the series. I should
-probably have put this one after that fix, but figured fixing the build
-was more important than a harder-to-hit NULL-deref due to non-host mode
-not being considered when the offending series was merged.
+I think u16 would be confusing as reg size is minimum u32 (with
+address-cells==1). Instead of of_read_number(), maybe this should be
+of_get_address() (see pm8941-pwrkey.c), but there is no device_xxx()
+equivalent. Still I think it would be the most appropriate to parse
+actual address.
 
-> This implies that if this device is NOT in a host configuration, then
-> the suspend path of it is not configured properly at all, as why would
-> it be checking or caring about this at all if this is in gadget-only
-> mode?
 
-Right, so see path 6/9 which addresses this by only calling this hack
-when in host mode:
 
-	https://lore.kernel.org/all/20220804151001.23612-7-johan+linaro@kernel.org/
-
-> Something else is wrong here, let's fix the root problem please.  Maybe
-> this driver should just never be built in gadget-only mode, as it is
-> never intended to support that option?
-
-The problem is commit 6895ea55c385 ("usb: dwc3: qcom: Configure wakeup
-interrupts during suspend"), which I considered simply reverting but as
-that breaks suspend completely on some boards I decided to try and fix
-it up while we work on a proper long-term solution (i.e. for how the
-dwc/xhci layers should be communicating to implement this).
-
-Remember that it took two years and 21 revisions to get to the state
-we're at now after you merged the wakeup series in June.
-
-Johan
+Best regards,
+Krzysztof
