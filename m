@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EE7658C5C2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 11:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E5BE58C5E6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 11:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242563AbiHHJk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 05:40:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43896 "EHLO
+        id S232190AbiHHJup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 05:50:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242531AbiHHJkY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 05:40:24 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1F310CE
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 02:40:20 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id s9so9205048ljs.6
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 02:40:20 -0700 (PDT)
+        with ESMTP id S242158AbiHHJuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 05:50:37 -0400
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDCD82657;
+        Mon,  8 Aug 2022 02:50:36 -0700 (PDT)
+Received: by mail-qk1-x72c.google.com with SMTP id w6so6040819qkf.3;
+        Mon, 08 Aug 2022 02:50:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=jzQCeQzK/z2ziiZ85EHCo+LQwjQf8yM8fO70yS7S3mY=;
-        b=aJ33SGVv3zJ5x6IbLuz/X8sbsCMX05NZMt/w+pQnD/9POpmCMCQzEJPLNyzriq2F/b
-         HPzQQ8udkoR6ThjaeWhKAyxlKRe06XVz83s7q2wdaJ9Y3lA8+G93avNeygiLd3EK4sQJ
-         AucIBWd/3zX1/ORNIitoV0gnbMlW115lMwc//a/yFNWJVis5tSrtysX6hmZZNJ13vk9e
-         IhBJ50USTjo5BXJLgfck9tLWohBAhoDzAICXOok4hd86N3VgX238KHjTeq55yMxgx4nN
-         8yIvH9oDVKKx4m5fxxB6HtdJF6g4qzD42puzuFmOUhVn0/aWi0b0b7W8viOXgFoFktBf
-         1spw==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=CHwnBGdAKbmhhJxDHk3aaM0ofkDZoUEAXm8AbvSBBQM=;
+        b=m4uPMfQLUFaZLoWlQVsZjZ3OBalSzne51fU4Kwe6EBPP/McVsMTWSf1ymNlbiA7JxY
+         9xzZlLLuOhMD1HxN032h8e6WgOA9mXmjwW7kdqB1e+LgbCkF2rKimUC6ciLkTSsvBC0Z
+         HdIRDSOJx16ya9qXuUbuEx2+DArfunEHJqO6Wv/KcOmyXqPs1iT/IF6Jp5OySS4A8Nj2
+         b2AyX2uyZs5TLrUw1GBs4K9f9d1t4ExC4PKZ2WpACd6YEhXmvg9v0D7OKXKY6Na4bYM7
+         Y880JC0Vi9+vUOv7yyojV4E9o0XHuFJr+GYcVdem6Rk8GKy6DnJUagwRpzXVm33FgR4z
+         pkLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=jzQCeQzK/z2ziiZ85EHCo+LQwjQf8yM8fO70yS7S3mY=;
-        b=1xCIbdkpB3t8dDwiQJ8hTEDalXvxIHgcR4VXKfgg+lsUQC1RLPMyuSV76VM0wT6hxz
-         9L78mPBWECN18w5PqTvryuotOqB3Z1FiySF1w07Jk4099LGYntyg3vGbfqbfkt7VYxAB
-         ccumX5tOldCYX3tQG/B6bOIu09lGqCrEDDmaGAWVwHK7B+BRBHThfzJqXuBogkGo10Hv
-         EAyY0/X3OJS6/L1KBlo2TqKqUgs2j0sjE3OaMJuVC5nBqgxQDHucKNRpG7km+l2BNM1h
-         RjV3571Q5v2v3pacHxFdKkFwM5EEB8xMbMaZEeBZcwAVnhoA5BymA+G21a4piWMtJDNG
-         YVGw==
-X-Gm-Message-State: ACgBeo0VSXdl4C0wiGlPftvPl/sC3kYMRqQHg0vfLiykRNDfyi4AR2gH
-        SvK4A32ccbnO4mem/hqzS+MLhQ==
-X-Google-Smtp-Source: AA6agR7WLbgFwVjA/ymihQczoZK2cQ5claVhqrToENvPaPxybFoFLHUGgAFZVtf8HXX0Mrfd6pqrBg==
-X-Received: by 2002:a2e:87cc:0:b0:25e:4425:54e2 with SMTP id v12-20020a2e87cc000000b0025e442554e2mr5731584ljj.72.1659951619216;
-        Mon, 08 Aug 2022 02:40:19 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id be10-20020a056512250a00b0048af7e58c9dsm1363565lfb.278.2022.08.08.02.40.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 02:40:18 -0700 (PDT)
-Message-ID: <eb2f574d-0dd8-e2b2-ee2b-d6f60f14bdc9@linaro.org>
-Date:   Mon, 8 Aug 2022 12:40:16 +0300
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=CHwnBGdAKbmhhJxDHk3aaM0ofkDZoUEAXm8AbvSBBQM=;
+        b=FmbDq7eqiSRrzK1WdLObl/OTEW7kWjH8WIiWhZFsaVm/PMq7XJYia3kGt/s75z+nwy
+         9OZeV9Q1DLz0Ds6zorsC6JS9h7bU0w5uoXJhUdeBkz4VOuCuYy0scVQ4h1Y58lAmeIF1
+         y9m4QJisJZrspiia/SvEKsUkz9A+Eexe5hmhR3cUu7DGizA+tP3XVHNdPdgia4Qg3VqY
+         WS3AQESOG37Hn8n5l5Noe8erfxYSFKLhfSYsDDmaMBL8VkO0SAU7yRSCUYUxJBbOkPJc
+         KhRepc4e4R4hibuuO5raDU7hp+AsWpiXK5cC8ctGlwkqJDAE5QTNdKKkG6H30E36zZAA
+         mAKQ==
+X-Gm-Message-State: ACgBeo3OUAlJ6UbBPHSp5LyMa3OYym6XB0JoPthQ23uqwx3aMlX84OQB
+        ZUHv/s0YJ2fOSinhs5NDtaR6GEwHWhDNGxZtdUk=
+X-Google-Smtp-Source: AA6agR6UiufbX2bvdAG1id5uzkpijJNCr5BbV6vqhTeJJdohphljx4L7qfNVjXctF/SfuApqthUJfLTskMNr8jTkfXc=
+X-Received: by 2002:a05:620a:288a:b0:6b8:fcfe:db02 with SMTP id
+ j10-20020a05620a288a00b006b8fcfedb02mr13561200qkp.504.1659952235916; Mon, 08
+ Aug 2022 02:50:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
+References: <20220728125435.3336618-1-potin.lai.pt@gmail.com>
+ <20220728125435.3336618-3-potin.lai.pt@gmail.com> <20220731130959.50826fc4@jic23-huawei>
+ <4ea235d1-46c1-87de-760f-dc4775007ae0@gmail.com> <CAHp75VcZqTpmvVV=u4t=fdx=ffzksoWVDFZmq6Lfr6DrFrB2aA@mail.gmail.com>
+ <Yuf7UAVrIJCnO40X@heinlein.stwcx.org.github.beta.tailscale.net>
+ <CAHp75Vfe33oJAf1j27B-pTd84kX5JNPd+e16ygLYgZjCs=ZJfQ@mail.gmail.com>
+ <CAHp75VfOPgDbTdt1EXJ5+exGXCZeT9VdtcOUDt_g4fn20S2Qwg@mail.gmail.com>
+ <20220806181252.7633f19d@jic23-huawei> <eb2f574d-0dd8-e2b2-ee2b-d6f60f14bdc9@linaro.org>
+In-Reply-To: <eb2f574d-0dd8-e2b2-ee2b-d6f60f14bdc9@linaro.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 8 Aug 2022 11:49:58 +0200
+Message-ID: <CAHp75VfEfs+Np2XOQDWYmTACXQALGBd9aAsx7PO6Z1pa=5WpWg@mail.gmail.com>
 Subject: Re: [PATCH v5 2/2] iio: humidity: hdc100x: add manufacturer and
  device ID check
-Content-Language: en-US
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Patrick Williams <patrick@stwcx.xyz>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Patrick Williams <patrick@stwcx.xyz>,
         Potin Lai <potin.lai.pt@gmail.com>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Potin Lai <potin.lai@quantatw.com>,
@@ -66,106 +68,36 @@ Cc:     Patrick Williams <patrick@stwcx.xyz>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org
-References: <20220728125435.3336618-1-potin.lai.pt@gmail.com>
- <20220728125435.3336618-3-potin.lai.pt@gmail.com>
- <20220731130959.50826fc4@jic23-huawei>
- <4ea235d1-46c1-87de-760f-dc4775007ae0@gmail.com>
- <CAHp75VcZqTpmvVV=u4t=fdx=ffzksoWVDFZmq6Lfr6DrFrB2aA@mail.gmail.com>
- <Yuf7UAVrIJCnO40X@heinlein.stwcx.org.github.beta.tailscale.net>
- <CAHp75Vfe33oJAf1j27B-pTd84kX5JNPd+e16ygLYgZjCs=ZJfQ@mail.gmail.com>
- <CAHp75VfOPgDbTdt1EXJ5+exGXCZeT9VdtcOUDt_g4fn20S2Qwg@mail.gmail.com>
- <20220806181252.7633f19d@jic23-huawei>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220806181252.7633f19d@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/08/2022 20:12, Jonathan Cameron wrote:
-> On Mon, 1 Aug 2022 18:30:16 +0200
-> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> 
->> On Mon, Aug 1, 2022 at 6:26 PM Andy Shevchenko
->> <andy.shevchenko@gmail.com> wrote:
->>> On Mon, Aug 1, 2022 at 6:12 PM Patrick Williams <patrick@stwcx.xyz> wrote:  
->>>> On Mon, Aug 01, 2022 at 10:22:16AM +0200, Andy Shevchenko wrote:  
->>>>> On Mon, Aug 1, 2022 at 3:52 AM Potin Lai <potin.lai.pt@gmail.com> wrote:  
->>>>>> On 7/31/22 20:09, Jonathan Cameron wrote:
->>>>>> In our hardware board, we have "ti,hdc1080" as main source, and "silabs,si7020"
->>>>>> for 2nd source. This two chip are locate at same bus and same slave address,
->>>>>> and we want to use multiple compatibles to support both chips with single device
->>>>>> node in device tree.
->>>>>>
->>>>>> Ex:
->>>>>> compatible = "ti,hdc1099", "silabs,si7020";  
->>>>>
->>>>> This is simply broken DT, you must not put incompatible hardware on
->>>>> the same compatible string. DT is by definition the description of a
->>>>> certain platform. What you showed is a combination of incompatible
->>>>> chips in a single DT.  
->>>>
->>>> We were mistaken that this is the appropriate way to specify this
->>>> behavior, partially because it works as long as the probe functions
->>>> return an error the next matching driver from the compatible will probe.
->>>> It does seem that specifying two different compatibles like this would
->>>> violate the intention of the DT spec:
->>>>
->>>>     The property value consists of a concatenated list of null terminated
->>>>     strings, from most specific to most general. They allow a device to
->>>>     express its compatibility with a family of similar devices, potentially
->>>>     allowing a single device driver to match against several devices.
->>>>  
->>>>>  
->>>>>> In order to support this, I need to add ID checking mechanism into the current
->>>>>> hdc100x driver, so the si7020 chip will fail to probe with hdc100x driver
->>>>>> (because the ID checking is not failed), then success probe with si7020.
->>>>>>
->>>>>> Base on you explanation, it looks multiple compatibles is not suitable in this
->>>>>> case? Would you mind advise us what would be the better approach for our case?  
->>>>>
->>>>> If I may advise... fix your DT by dropping the wrong compatible item.  
->>>>
->>>> This doesn't really give any helpful advice.  
->>>
->>> Sorry to hear this, but it's the best and correct solution to your
->>> problem. Believe me, many Linux people will tell you the same.
->>>  
->>>> The reality is that these two chips are pin compatible and function
->>>> compatible but not driver compatible.
+On Mon, Aug 8, 2022 at 11:40 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 06/08/2022 20:12, Jonathan Cameron wrote:
 
-There is no such thing as driver compatible, in the terms of Devicetree.
-Implementation does not matter. The compatibles and binding should
-reflect the hardware (and its programming model).
+...
 
->  Boards have been manufactured
->>>> which are identical except for this chip replaced, due various to chip
->>>> shortages.
+> >>>>>> compatible = "ti,hdc1099", "silabs,si7020";
 
-The question is - whether the programming model (e.g. all I2C registers)
-are similar or exactly the same?
+...
 
->>>>
->>>> Making probe fail so that the next 'compatible' is chosen sounds like it
->>>> isn't desired. 
+> Or if second device is so different, why you want to support different
+> hardware with the same device node. This contradicts the very basic of
+> Devicetree - description of hardware.
 
-Yes, it is not desired because any probe failure is indication of test
-failures in automated systems, so you do not develop a system which in
-normal conditions has a failure.
+Briefly looking into the above mentioned drivers points to the above
+case, broken DT principles ==> broken DT ==> nothing to fix in the
+Linux kernel.
 
-I don't understand why you cannot include in this driver support for
-second device?
-Or if second device is so different, why you want to support different
-hardware with the same device node. This contradicts the very basic of
-Devicetree - description of hardware.
-
-Best regards,
-Krzysztof
+-- 
+With Best Regards,
+Andy Shevchenko
