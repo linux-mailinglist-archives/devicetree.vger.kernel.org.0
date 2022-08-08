@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4036A58C56B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 11:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77ED758C575
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 11:21:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235886AbiHHJS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 05:18:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55672 "EHLO
+        id S239457AbiHHJVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 05:21:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233925AbiHHJS5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 05:18:57 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCE68FD2A
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 02:18:56 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id v10so5662601ljh.9
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 02:18:56 -0700 (PDT)
+        with ESMTP id S231195AbiHHJVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 05:21:03 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B322AFD
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 02:21:01 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id z25so11813338lfr.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 02:21:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kgXxmrAF+Qnsh3G9vJiLHv3StfM+xchFUzG/QuzHdIs=;
-        b=hWOntp3Okx/AnzV9tzyG85H0qr1WUkBlFJjZRr3Vf78wLlyO3b/Oo5EE9OEacwDI3F
-         EFfmqE0aEEnnYkSr50Iw647ujQ5T10nOiHO2Idig2cGPB5GjM9H9lF0GHNbpQF+19G26
-         mAD9q5Z94iZSYo+an8vSolD7gXmzudOxjre22t2ppnSyVzyWTNthtt+RmYHtK2qT7+Mu
-         UjrnIsqxPh1hFXygP12oDs8WB9TKv7dbDSVy40jGNjsW2WqZ/tzamKgHxRoxz4VbVLnt
-         A8gquSpnKVERnbRHdVbieiyH3KA/0KhiHJu0BOqZrmfYeAKhwuM3ShOJNwWZxcED9OLh
-         tZag==
+        bh=KbDeu52KPmgVgu/lw0Cv2B69kyTMziYKw+U1DuKuJDs=;
+        b=WqwLYVk0xB8vhuj0dKOaK4G9IX3Xl8gM7IWXOndZUKRgBU619KUKKu1j+YI4WEv5z+
+         KSha6lUp3LOO7XAEdX7FIAG8HGUftfNq7Yh5ijqv7QmKgpSP+lfBTj8EC4Dx6bJtS1Cr
+         CKqvY9FJOuTXBkrHnbwN6nj2wZ/3RoaAbjEn7JCrMy9wd3V/OKHGF6J+leCEqTNR/8Bg
+         YGqwLYSVq9QgUr05wdH9BBMIOAKF7Ppc70v4W76iD/9lTSLRb5v1gVSD/gjVxJt/cFuf
+         uQeVaLIb/L2HxojDLZNenprZAlMKg+RvTHkJpAb4NEPQlQeGMj6OLhihgOnkOh4lmEYu
+         QMcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=kgXxmrAF+Qnsh3G9vJiLHv3StfM+xchFUzG/QuzHdIs=;
-        b=nTRoFe/LEHHY9tWJFQoXhdjwDkIyHHRnubQKuahs/BAVDYwwh9PoaWLtGaP0uZwuFv
-         OHh3rXegHgcp1Kxr7qpSjy51tUgJ9LiIO8siOXt9prH8XICcrWU74UiIp6VuLmbruEId
-         uS5DFWexM5OM2zj/ihcMyMuW4ikW8SOkdC1xvcLk3omRMDUFT2E10wE8HQXDbpzslB2M
-         o6w18bxY3oJGM8e40DUXWj3+J8+HF8Fyx5+e5EeSMOBTLQxq7rSQ22VETxYV27HdOwf4
-         jxqEmudJn05TYGNjQ5n53orFCOa7vn9GM2GtYB0YX5uLx2Gvm18BnSgcFyRuH6/5IC1/
-         w2rg==
-X-Gm-Message-State: ACgBeo15Stz5lfFcssys8FRm00AW8M6q7+PjFbU42hj01W879PbwLO1T
-        Z2Mj9zDA1jcxRh/CEJnf7f2XRA==
-X-Google-Smtp-Source: AA6agR6YVF6CbHdahMcx9zQ+eRS778ipAhFVIIKo01J1CFpDRepShWjIyUnmpuNlXa56p0tx61QsrQ==
-X-Received: by 2002:a05:651c:210c:b0:25e:6a39:23ed with SMTP id a12-20020a05651c210c00b0025e6a3923edmr5353015ljq.43.1659950335288;
-        Mon, 08 Aug 2022 02:18:55 -0700 (PDT)
+        bh=KbDeu52KPmgVgu/lw0Cv2B69kyTMziYKw+U1DuKuJDs=;
+        b=wH1D90zoufoc+Lt/ZbpLM5plfFwiN3S5Kfs/ZCWh1qYveCxF54NCuKWHgOrf/5kdui
+         GLr2ngcwfjfWbWvgxL/3ZxhNvkL5AnhPWDJMNpN5h56VHxQVJpDDN625YEPAltPacMx1
+         F+zA2QL2lP2Sa+6iKEfl4Y5lfu4ipBIFWxzjlt06vq2hUwYS7xUc7Rs02UTPTUGXi+3J
+         oQ4c/ZPiAHZDkqnV3LEJmhZN8Z00VmK2qK9664iXF1Kb53fGODiPvU+gdIrTxIaKOoKp
+         iO+H38CQt3ED/dnvR2IEC8O1B3KnYDrS+HMIMCx0anwStPQni4P071SeaniRkv/X/D1x
+         q5cQ==
+X-Gm-Message-State: ACgBeo1VOiOzMdNpiXbUN7LnKar20NmqMS7Ir1Fd+zMZS/9Gf7kZAu15
+        oANjTY270+hJSzra5YLO39Uceg==
+X-Google-Smtp-Source: AA6agR4fDMob8SbCSrNCdZBei8wfMJcs9MEi4sll4cCqXkEGDBLdssLAhUGAwm8qqaga/vUu4R3NFQ==
+X-Received: by 2002:ac2:5324:0:b0:48b:9643:3838 with SMTP id f4-20020ac25324000000b0048b96433838mr3907673lfh.373.1659950458721;
+        Mon, 08 Aug 2022 02:20:58 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id p26-20020ac246da000000b0048a9d0242afsm1361541lfo.32.2022.08.08.02.18.52
+        by smtp.gmail.com with ESMTPSA id j9-20020a2e8249000000b0025e66a771efsm1294660ljh.136.2022.08.08.02.20.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 02:18:53 -0700 (PDT)
-Message-ID: <33f5b621-af3b-b6a2-5e3d-c01fe40eb5be@linaro.org>
-Date:   Mon, 8 Aug 2022 12:18:51 +0300
+        Mon, 08 Aug 2022 02:20:57 -0700 (PDT)
+Message-ID: <9fd7fcfd-16fb-0f3a-238d-bd6f97026277@linaro.org>
+Date:   Mon, 8 Aug 2022 12:20:55 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: xenon: Add compatible string for
- Xenon SDHCI on AC5 SoC
+Subject: Re: [PATCH 2/3] mmc: sdhci-xenon: Try to fix 2G address limitation on
+ AC5 SoC
 Content-Language: en-US
 To:     Vadym Kochan <vadym.kochan@plvision.eu>,
         Hu Ziji <huziji@marvell.com>,
@@ -66,9 +66,9 @@ To:     Vadym Kochan <vadym.kochan@plvision.eu>,
         linux-kernel@vger.kernel.org
 Cc:     Elad Nachman <enachman@marvell.com>
 References: <20220806085818.9873-1-vadym.kochan@plvision.eu>
- <20220806085818.9873-2-vadym.kochan@plvision.eu>
+ <20220806085818.9873-3-vadym.kochan@plvision.eu>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220806085818.9873-2-vadym.kochan@plvision.eu>
+In-Reply-To: <20220806085818.9873-3-vadym.kochan@plvision.eu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,28 +82,119 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 06/08/2022 11:58, Vadym Kochan wrote:
-> It indicates the Xenon SDHCI on AC5 SoC so the driver will try to fixup
-> the 2G address space limitation issue.
+> There is a limitation on AC5 SoC that Xenon SDHC can address only
+> first 2GB of memory. Turning to the SDMA mode to use the bounce_buffer
+> causes ext_csd recognition to fail on init.
+> 
+> Using of swiotlb=force also does not help as it is allocated at the
+> end of the memory.
+> 
+> So it was decided to use reserved-memory as a bounce buffer in case
+> if the board has more than 2G of memory, or turn on the PIO
+> mode if such memory region does not exist in the device-tree.
+> 
+> It was tested that this approach is 1.5 times faster than PIO.
 > 
 > Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
 > ---
->  Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  drivers/mmc/host/sdhci-xenon.c | 36 ++++++++++++++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> index 3ee758886558..17cda847e0a3 100644
-> --- a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> @@ -34,6 +34,9 @@ properties:
->            - const: marvell,armada-3700-sdhci
->            - const: marvell,sdhci-xenon
+> diff --git a/drivers/mmc/host/sdhci-xenon.c b/drivers/mmc/host/sdhci-xenon.c
+> index 08e838400b52..fbbd1a045002 100644
+> --- a/drivers/mmc/host/sdhci-xenon.c
+> +++ b/drivers/mmc/host/sdhci-xenon.c
+> @@ -14,8 +14,10 @@
+>  #include <linux/acpi.h>
+>  #include <linux/delay.h>
+>  #include <linux/ktime.h>
+> +#include <linux/mm.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_reserved_mem.h>
+>  #include <linux/pm.h>
+>  #include <linux/pm_runtime.h>
 >  
-> +      - items:
-> +          - const: marvell,ac5-sdhci
+> @@ -486,6 +488,31 @@ static void xenon_sdhc_unprepare(struct sdhci_host *host)
+>  	xenon_disable_sdhc(host, sdhc_id);
+>  }
+>  
+> +static int xenon_ac5_probe(struct sdhci_host *host)
+> +{
+> +	struct device *dev = mmc_dev(host->mmc);
+> +	struct sysinfo si;
+> +	int err;
+> +
+> +	si_meminfo(&si);
+> +
+> +	if ((si.totalram * si.mem_unit) > SZ_2G) {
+> +		struct device_node *dma_bounce_np;
+> +
+> +		dma_bounce_np = of_parse_phandle(dev->of_node,
+> +						 "marvell,ac5-sdhci-dma-bounce-pool", 0);
 
-These are not items. Should be part of existing enum.
+No. Undocumented property. Please document all bindings, not only pieces.
 
-You missed updating allOf:if:then.
+> +		err = of_reserved_mem_device_init_by_idx(dev, dma_bounce_np, 0);
+> +		of_node_put(dma_bounce_np);
+> +		if (err) {
+> +			dev_warn(dev, "Disabling DMA because of 2GB DMA access limit and missing DMA bounce region\n");
+> +			host->quirks |= SDHCI_QUIRK_BROKEN_ADMA;
+> +			host->quirks |= SDHCI_QUIRK_BROKEN_DMA;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int xenon_probe(struct platform_device *pdev)
+>  {
+>  	struct sdhci_pltfm_host *pltfm_host;
+> @@ -531,6 +558,12 @@ static int xenon_probe(struct platform_device *pdev)
+>  			if (err)
+>  				goto err_clk;
+>  		}
+> +
+> +		if (of_device_is_compatible(dev->of_node, "marvell,ac5-sdhci")) {
+
+Don't code compatible comparing in the driver. This is done by matching,
+only once. You should use driver data/variant type.
+
+> +			err = xenon_ac5_probe(host);
+> +			if (err)
+> +				goto err_clk_axi;
+> +		}
+>  	}
+>  
+>  	err = mmc_of_parse(host->mmc);
+> @@ -570,6 +603,7 @@ static int xenon_probe(struct platform_device *pdev)
+>  	pm_runtime_put_noidle(&pdev->dev);
+>  	xenon_sdhc_unprepare(host);
+>  err_clk_axi:
+> +	of_reserved_mem_device_release(&pdev->dev);
+>  	clk_disable_unprepare(priv->axi_clk);
+>  err_clk:
+>  	clk_disable_unprepare(pltfm_host->clk);
+> @@ -591,6 +625,7 @@ static int xenon_remove(struct platform_device *pdev)
+>  	sdhci_remove_host(host, 0);
+>  
+>  	xenon_sdhc_unprepare(host);
+> +	of_reserved_mem_device_release(&pdev->dev);
+>  	clk_disable_unprepare(priv->axi_clk);
+>  	clk_disable_unprepare(pltfm_host->clk);
+>  
+> @@ -682,6 +717,7 @@ static const struct of_device_id sdhci_xenon_dt_ids[] = {
+>  	{ .compatible = "marvell,armada-ap807-sdhci", .data = (void *)XENON_AP807},
+>  	{ .compatible = "marvell,armada-cp110-sdhci", .data =  (void *)XENON_CP110},
+>  	{ .compatible = "marvell,armada-3700-sdhci", .data =  (void *)XENON_A3700},
+> +	{ .compatible = "marvell,ac5-sdhci", .data = (void *)XENON_AP806},
+
+It's not the same.
+
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, sdhci_xenon_dt_ids);
+
 
 Best regards,
 Krzysztof
