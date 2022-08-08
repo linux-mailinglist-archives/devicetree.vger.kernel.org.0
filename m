@@ -2,123 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7F058C46B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B35358C470
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:55:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238981AbiHHHwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 03:52:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56148 "EHLO
+        id S241017AbiHHHzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 03:55:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234289AbiHHHwj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:52:39 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2914E273E
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 00:52:38 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1oKxYk-0007h1-RS; Mon, 08 Aug 2022 09:52:22 +0200
-Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1oKxYj-0005lW-J7; Mon, 08 Aug 2022 09:52:21 +0200
-Date:   Mon, 8 Aug 2022 09:52:21 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Shenwei Wang <shenwei.wang@nxp.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [EXT] Re: [PATCH v1 2/3] dt-bindings: firmware: imx: Add imx-scu
- gpio node
-Message-ID: <20220808075221.hijtkvubgtw3wirf@pengutronix.de>
-References: <20220804184908.470216-1-shenwei.wang@nxp.com>
- <20220804184908.470216-3-shenwei.wang@nxp.com>
- <8e1ffa95-686b-ca4b-1a2b-b7115dc41c98@linaro.org>
- <AM9PR04MB8274CE6735619BD6B8FB0143899E9@AM9PR04MB8274.eurprd04.prod.outlook.com>
+        with ESMTP id S235426AbiHHHy7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:54:59 -0400
+Received: from maillog.nuvoton.com (maillog.nuvoton.com [202.39.227.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3814313CFD;
+        Mon,  8 Aug 2022 00:54:58 -0700 (PDT)
+Received: from NTHCCAS04.nuvoton.com (NTHCCAS04.nuvoton.com [10.1.8.29])
+        by maillog.nuvoton.com (Postfix) with ESMTP id 359EC1C811BB;
+        Mon,  8 Aug 2022 15:54:56 +0800 (CST)
+Received: from NTHCCAS02.nuvoton.com (10.1.9.121) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 8 Aug
+ 2022 15:54:55 +0800
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS02.nuvoton.com
+ (10.1.9.121) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Mon, 8 Aug 2022
+ 15:54:55 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS04.nuvoton.com
+ (10.1.12.25) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Mon, 8 Aug 2022 15:54:55 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id C0EA862EFD; Mon,  8 Aug 2022 10:54:54 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <jic23@kernel.org>, <minyard@acm.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <openbmc@lists.ozlabs.org>,
+        <openipmi-developer@lists.sourceforge.net>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v3] dt-binding: ipmi: add fallback to npcm845 compatible
+Date:   Mon, 8 Aug 2022 10:54:52 +0300
+Message-ID: <20220808075452.115907-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM9PR04MB8274CE6735619BD6B8FB0143899E9@AM9PR04MB8274.eurprd04.prod.outlook.com>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22-08-05, Shenwei Wang wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Sent: Friday, August 5, 2022 1:56 AM
-> > To: Shenwei Wang <shenwei.wang@nxp.com>; robh+dt@kernel.org;
-> > krzysztof.kozlowski+dt@linaro.org; linus.walleij@linaro.org; brgl@bgdev.pl;
-> > shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
-> > festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>
-> > Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
-> > gpio@vger.kernel.org; linux-arm-kernel@lists.infradead.org
-> > Subject: [EXT] Re: [PATCH v1 2/3] dt-bindings: firmware: imx: Add imx-scu gpio
-> > node
-> > 
-> > Caution: EXT Email
-> > 
-> > On 04/08/2022 20:49, Shenwei Wang wrote:
-> > > Add the description for imx-scu gpio subnode.
-> > >
-> > > Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/firmware/fsl,scu.yaml | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/firmware/fsl,scu.yaml
-> > b/Documentation/devicetree/bindings/firmware/fsl,scu.yaml
-> > > index b40b0ef56978..080955b6edd8 100644
-> > > --- a/Documentation/devicetree/bindings/firmware/fsl,scu.yaml
-> > > +++ b/Documentation/devicetree/bindings/firmware/fsl,scu.yaml
-> > > @@ -30,6 +30,11 @@ properties:
-> > >        Clock controller node that provides the clocks controlled by the SCU
-> > >      $ref: /schemas/clock/fsl,scu-clk.yaml
-> > >
-> > > +  gpio:
-> > > +    description:
-> > > +      GPIO control over the SCU firmware APIs
-> > 
-> > I don't understand this description. How GPIO can control some API?
-> 
-> How about change to "Control the GPIO PINs on SCU domain over the firmware APIs"?
+Add to npcm845 KCS compatible string a fallback to npcm750 KCS compatible
+string becuase NPCM845 and NPCM750 BMCs are using identical KCS modules.
 
-For linux it doesn't matter how the GPIOs are controlled. They can be
-controlled by a co-processor like this SCU or by an I2C expander or they
-are native, the list goes on. All those details are hidden.
+Fixes: 84261749e58a ("dt-bindings: ipmi: Add npcm845 compatible")
+Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+---
+ Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Regards,
-  Marco
+diff --git a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+index cbc10a68ddef..4fda76e63396 100644
+--- a/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
++++ b/Documentation/devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt
+@@ -7,7 +7,7 @@ used to perform in-band IPMI communication with their host.
+ Required properties:
+ - compatible : should be one of
+     "nuvoton,npcm750-kcs-bmc"
+-    "nuvoton,npcm845-kcs-bmc"
++    "nuvoton,npcm845-kcs-bmc", "nuvoton,npcm750-kcs-bmc"
+ - interrupts : interrupt generated by the controller
+ - kcs_chan : The KCS channel number in the controller
+ 
+-- 
+2.33.0
 
-> 
-> Thanks,
-> Shenwei
-> 
-> > 
-> > Best regards,
-> > Krzysztof
