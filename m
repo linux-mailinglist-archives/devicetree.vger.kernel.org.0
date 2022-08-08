@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACF0658CF7E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 23:09:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D34058CF8F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 23:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243812AbiHHVJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 17:09:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43652 "EHLO
+        id S243749AbiHHVSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 17:18:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238516AbiHHVJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 17:09:49 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9F2DDF56;
-        Mon,  8 Aug 2022 14:09:48 -0700 (PDT)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out2.suse.de (Postfix) with ESMTP id A43E81FEAE;
-        Mon,  8 Aug 2022 21:09:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1659992987; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=e4EKm8CZUskClhI2ZmVw8UVQVjqsShuHhEQWHRMmGpE=;
-        b=SaUFl5kO3i6ZSK6KGNznghKuL1zM0JSShyzhijdo6uv4zefohwAEQBvrGUEblLniInaGzt
-        fHoNtrDhvkSOZQA5G1XJnXfyBWa+Jq8IsZco5MezQSCrKrtzusFUveo0sWbP4S8ptFU72r
-        wOGseieupbVdGk2ccJamWr0EupAsyBk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1659992987;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=e4EKm8CZUskClhI2ZmVw8UVQVjqsShuHhEQWHRMmGpE=;
-        b=JwTACEWFXgiGowGvZUqGHxlgaFPsP/xVprnJ9Ur3yqvMBo+Hjs9L0t01UP4yg2Ex+ThdmT
-        jAYukaJkPnXx7pCw==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id 952722C143;
-        Mon,  8 Aug 2022 21:09:46 +0000 (UTC)
-Date:   Mon, 8 Aug 2022 23:09:45 +0200
-From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Tim Harvey <tharvey@gateworks.com>,
-        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
-Message-ID: <20220808210945.GP17705@kitsune.suse.cz>
+        with ESMTP id S238069AbiHHVSb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 17:18:31 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08EA618B09
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 14:18:31 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id p125so5609987pfp.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 14:18:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=aiU3knaJe/5mq9tQWMQcztgnEvFZa6TXWO4FCkyBl2g=;
+        b=Il5GG1ZHoNLmwNQ+x1mDxXsbZlCjA0vPDav/8L4R3GuMtqxekTJTRSoyVOTSO7ZOQa
+         HEWqQTOzLflUNSIx6jSOx11/WsTCS5PFUWfxv52NUSIxTmzUOpVDL0riWS61jHFJaeli
+         e5W5ZbTP/q8aKDKjai3GTaNZkaVrlK/2fJ85+apd3DMGTyUmEGhPUrSagkm42mGn6ovo
+         SC9Pm1+ZM8KWzIcM05l2j23g53P6ZpDzBDEypIDaALqIpryHGlilwK+eKiH4LVNwPKbF
+         4kkTX3jTGy7HU/58qdNyJKen5TOFquJXlrQzcnnY3bGHYML4Yv29z/4+R1NwaU5dSMoZ
+         jr0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=aiU3knaJe/5mq9tQWMQcztgnEvFZa6TXWO4FCkyBl2g=;
+        b=o+/zFXxpsT0/b4pr8urycUvUDKXgv7P4RDRp9I4vupKQyFrKLjlBfj/72h72OPvLZx
+         /eCUSwB/WxazqkRlUwwNipvbepV3JK99ra9saRtk/rAwmEg89PDv9W9sfuz4oRqOTlq+
+         tqd0HdUvuTIgYNuXscmEPxC3iR5uSEGfL2ANSHtKdk3PE1cZcnIZJrAoF+vEHkJ7G9C3
+         9QHcitg3UfJonY4bTXqNoM/7Flw/2U7YKojVb7KnihoCmTw1UesthmaULCtjoyMsKhB1
+         pjeVXKptxmXfGwIThJjBS31K+DWIFESpnSw91zc0HEDpiDzwTnGJ8JPk/NAyg+GXul1H
+         ZSqw==
+X-Gm-Message-State: ACgBeo0pZBpMaAGalsoPQlVcII9Ru1JQTZLMa6lWJDvyuiZqDVmy+FOU
+        TThmDaPofUv9gffyNqvksdFEde3O4sNHeoOq1ywKnQ==
+X-Google-Smtp-Source: AA6agR61Nc+esj8//GcCCO8bAmwgAIWkx8DFTG3Ngs/UdGDEcuHG7wKKkL5LpFl8+w3GvuGPLTdh5+gPEVJ7z8QN6Ww=
+X-Received: by 2002:a63:fd0b:0:b0:415:f76b:a2cd with SMTP id
+ d11-20020a63fd0b000000b00415f76ba2cdmr16736503pgh.440.1659993510425; Mon, 08
+ Aug 2022 14:18:30 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAJ+vNU05_xH4b8DFVJLpiDTkJ_z9MrBFvf1gSz9P1KXy9POU7w@mail.gmail.com>
  <5914cae0-e87b-fb94-85dd-33311fc84c52@seco.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 In-Reply-To: <5914cae0-e87b-fb94-85dd-33311fc84c52@seco.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Mon, 8 Aug 2022 14:18:18 -0700
+Message-ID: <CAJ+vNU2HOtMOA7JC08AKperVNzbpcavoc8uKmC5YL6B+GH7dJA@mail.gmail.com>
+Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 08, 2022 at 03:57:55PM -0400, Sean Anderson wrote:
+On Mon, Aug 8, 2022 at 12:58 PM Sean Anderson <sean.anderson@seco.com> wrote:
+>
 > Hi Tim,
-> 
+>
 > On 8/8/22 3:18 PM, Tim Harvey wrote:
 > > Greetings,
-> > 
+> >
 > > I'm trying to understand if there is any implication of 'ethernet<n>'
 > > aliases in Linux such as:
 > >         aliases {
@@ -80,7 +83,7 @@ On Mon, Aug 08, 2022 at 03:57:55PM -0400, Sean Anderson wrote:
 > >                 ethernet5 = &lan4;
 > >                 ethernet6 = &lan5;
 > >         };
-> > 
+> >
 > > I know U-Boot boards that use device-tree will use these aliases to
 > > name the devices in U-Boot such that the device with alias 'ethernet0'
 > > becomes eth0 and alias 'ethernet1' becomes eth1 but for Linux it
@@ -88,19 +91,21 @@ On Mon, Aug 08, 2022 at 03:57:55PM -0400, Sean Anderson wrote:
 > > vs enumerated (ie pci/usb) are always based on device registration
 > > order which for static drivers depends on Makefile linking order and
 > > has nothing to do with device-tree.
-> > 
+> >
 > > Is there currently any way to control network device naming in Linux
 > > other than udev?
-> 
+>
 > You can also use systemd-networkd et al. (but that is the same kind of mechanism)
-> 
+>
 > > Does Linux use the ethernet<n> aliases for anything at all?
-> 
+>
 > No :l
+>
 
-Maybe it's a great opportunity for porting biosdevname to DT based
-platforms ;-)
+Sean,
 
-Thanks
+Ok - thanks for the confirmation!
 
-Michal
+Best Regards,
+
+Tim
