@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67A0A58C627
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 12:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B71158C62A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 12:16:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237529AbiHHKQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 06:16:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40764 "EHLO
+        id S242349AbiHHKQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 06:16:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235395AbiHHKQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 06:16:22 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1746BFD2E
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 03:16:21 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id z6so4509609lfu.9
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 03:16:21 -0700 (PDT)
+        with ESMTP id S242219AbiHHKQX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 06:16:23 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CEC0FD34
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 03:16:22 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id d14so11908299lfl.13
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 03:16:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZSWhWVIMTdJmNV7dT9qbKSPZrPrjVzwG2y9B/jqm4bI=;
-        b=wGcPgMyieO9cFvxTr79rS8AREemXIwc2wUFNElRfqEBdu9/xR5fsJEYyDhTDCpnFU5
-         5XQthhQY2MGzL+JC/gVaFgeMpiHud6rGrIfIArCUVLUxFgpBiR+OT3G0n3jgDS9pGxqY
-         24uzj13OFJGEuWH7D51hwsfbRXhSrGL61Ri87xWfoZEnwTjUmcKJ9Md6qb+El90tUsp0
-         qRdiqyG1WDavMTJtM9WybGesHfpCnseXWIhvasJxOuzkhjQ3TTJkiYTsqugKCDTuV5WC
-         0wvpdFIKSTfIb9VJwK6AdgDQfLBmXlRopfSfJRJn/8ekWknLSVL7XSE9mJMWcth8Vmo+
-         KNSQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=JWyHWpRZ1Kh32AMhlQIk7pyHBxJVf8IzTt5zqpwObhY=;
+        b=MrROKyLJJ83f3Rr2mGc49Yse06wHtSB+UZ/fdnVkIROrdgd6G5U0BHv6wZCH0y/ELG
+         AJ/m/Z/4Q7nc+d7bJBHuSjCXT9hyjQr6FsJpynKeTu7fw5UTIUgWnyB4ROV6D1v5kGxH
+         vKTPX90RZrqPKvjtOl/EiKG71FvteMwCGWYOobnquUOQm8jIHa9oCCfQu+PvxlH5NrCW
+         iwRFPN/ePSPg8LUGx4iyC/fG14Oske8ipp/nAcCYTlFCM7MokuuK008QWNlC2JyW29WO
+         FHjxT9M+nzbkNOPuHVaA9LMMz6lcaIpnRfAwa8DyvaqiF6QwEl9fAi1PbdzqmFR0fH97
+         EVPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ZSWhWVIMTdJmNV7dT9qbKSPZrPrjVzwG2y9B/jqm4bI=;
-        b=O5ZLhlw2gsPhuSFiWaDJkwS6tieOjkSfWUWkfLa+5EG3CEhH6x8AqEKmAY/zYyt5Mt
-         10aSyNYHh5tuK4zWUyrKXg7JCCggtGWTQfMXGYN+Z1fEVFsYrMOdAkOCq6OUZ/j7Erpg
-         dWZwwNw3vqFw1YvV1FzTOJJ6fwYxpMqGJBVd0FkB+OLZWgD+70lp/RDLlszYyxdP0Ga3
-         WSUJE7j/T+bJACQBuV0tCce63aMQ5ElGp0eqsXtO0DYmfIHW+xO2Guw2PHlg7vOG42ga
-         +lPFpe/qI4pdYNE+i8iQBbW5110W2oe9R7BDFGcn2RfUdPOZQ/eE6YtCPfcgw6Lp1iSB
-         754g==
-X-Gm-Message-State: ACgBeo3SCa90C3s6Bc3hq/ePB0taQy5e8iLXgv6Z+FhRK5uiIc2yybAf
-        RKIfl18HEr1yyJh8DHloceWAOJCsUrDYwbJH
-X-Google-Smtp-Source: AA6agR6WbH/uUBPu/P11zqkM//sK+ay53hJ55+HI/jBG+cpCuOejT7yCoIJ5LI688QEEuBe0vJLETA==
-X-Received: by 2002:a05:6512:13a0:b0:48c:e86e:fe1a with SMTP id p32-20020a05651213a000b0048ce86efe1amr57526lfa.594.1659953779439;
-        Mon, 08 Aug 2022 03:16:19 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=JWyHWpRZ1Kh32AMhlQIk7pyHBxJVf8IzTt5zqpwObhY=;
+        b=c8ihdoKqaRxwGwcAiHX7rcOkA4wAs5sR4VXxbrgRSoHGrdtBvN8tSk5vRR9GNqm5xB
+         KT7sltlIFFqo5F2jAfcKNHDPeZtFM3Cl9FPkQP7Effs+4tcQ7ILNsB8NdgDFVAyUJyZU
+         lNRRTL5KqxvRESRPn7vp57s95HBYiUQ3GicGpsi1C+EIonBkLC3Kh5es/VgNTf2zl9CT
+         XxICAReLSnI1ZxRHGR46iwek51Jx2VAs+qEj4WllvSNHz5xQ6rlWoc2nOEeqM3a30VNU
+         U8c0DesI1mpK8YfxSMp1Uz0b0ck2IRPOy78Qx/qErRbrq7gbE31DykdYBmUrxuTRiAGx
+         0jQg==
+X-Gm-Message-State: ACgBeo0WoPPgYoZE0AAWTPQ0NjOvmAf2/j4NgiYVF5ltYoaYibou/71e
+        6W6pinIQL8nivnoy5FofeUkXPg==
+X-Google-Smtp-Source: AA6agR7cfm64Y6GBFeSO18v6MzV1E5WMXn0USHffiVixm1IpLgTYtoCxMdxCHJ8TpfOA7GHPubr/eg==
+X-Received: by 2002:a05:6512:2349:b0:48c:ee14:7fc with SMTP id p9-20020a056512234900b0048cee1407fcmr1125838lfu.71.1659953780871;
+        Mon, 08 Aug 2022 03:16:20 -0700 (PDT)
 Received: from localhost.localdomain ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id b2-20020a056512070200b0048b193f677dsm1377489lfs.178.2022.08.08.03.16.17
+        by smtp.gmail.com with ESMTPSA id b2-20020a056512070200b0048b193f677dsm1377489lfs.178.2022.08.08.03.16.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 03:16:18 -0700 (PDT)
+        Mon, 08 Aug 2022 03:16:20 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         Lee Jones <lee@kernel.org>, linux-samsung-soc@vger.kernel.org,
@@ -61,15 +61,17 @@ To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>
-Subject: [PATCH 1/3] MAINTAINERS: Drop Bartlomiej Zolnierkiewicz
-Date:   Mon,  8 Aug 2022 13:15:24 +0300
-Message-Id: <20220808101526.46556-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/3] MAINTAINERS: pwm-fan: Drop Bartlomiej Zolnierkiewicz
+Date:   Mon,  8 Aug 2022 13:15:25 +0300
+Message-Id: <20220808101526.46556-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220808101526.46556-1-krzysztof.kozlowski@linaro.org>
+References: <20220808101526.46556-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,47 +91,28 @@ Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 I assume that if other change was preferred, there was quite enough of
 time to send a patch for this. :)
 ---
- MAINTAINERS | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ MAINTAINERS | 8 --------
+ 1 file changed, 8 deletions(-)
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 2180312fe0a4..423c81f8ba61 100644
+index 423c81f8ba61..4832b317fe05 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -5369,8 +5369,8 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git
- F:	drivers/cpuidle/cpuidle-big_little.c
+@@ -16529,14 +16529,6 @@ T:	git git://linuxtv.org/media_tree.git
+ F:	drivers/media/usb/pwc/*
+ F:	include/trace/events/pwc.h
  
- CPUIDLE DRIVER - ARM EXYNOS
+-PWM FAN DRIVER
 -M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
- M:	Daniel Lezcano <daniel.lezcano@linaro.org>
-+R:	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
- M:	Kukjin Kim <kgene@kernel.org>
- L:	linux-pm@vger.kernel.org
- L:	linux-samsung-soc@vger.kernel.org
-@@ -12404,7 +12404,6 @@ F:	drivers/power/supply/max77976_charger.c
- 
- MAXIM MUIC CHARGER DRIVERS FOR EXYNOS BASED BOARDS
- M:	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
--M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
- L:	linux-pm@vger.kernel.org
- S:	Supported
- B:	mailto:linux-samsung-soc@vger.kernel.org
-@@ -12416,7 +12415,6 @@ F:	drivers/power/supply/max77693_charger.c
- MAXIM PMIC AND MUIC DRIVERS FOR EXYNOS BASED BOARDS
- M:	Chanwoo Choi <cw00.choi@samsung.com>
- M:	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
--M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
- L:	linux-kernel@vger.kernel.org
- S:	Supported
- B:	mailto:linux-samsung-soc@vger.kernel.org
-@@ -17973,7 +17971,6 @@ F:	drivers/platform/x86/samsung-laptop.c
- 
- SAMSUNG MULTIFUNCTION PMIC DEVICE DRIVERS
- M:	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
--M:	Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
- L:	linux-kernel@vger.kernel.org
- L:	linux-samsung-soc@vger.kernel.org
- S:	Supported
+-L:	linux-hwmon@vger.kernel.org
+-S:	Supported
+-F:	Documentation/devicetree/bindings/hwmon/pwm-fan.txt
+-F:	Documentation/hwmon/pwm-fan.rst
+-F:	drivers/hwmon/pwm-fan.c
+-
+ PWM IR Transmitter
+ M:	Sean Young <sean@mess.org>
+ L:	linux-media@vger.kernel.org
 -- 
 2.34.1
 
