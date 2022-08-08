@@ -2,165 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD79958D052
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 00:51:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E02DE58D085
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 01:38:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233125AbiHHWv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 18:51:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41100 "EHLO
+        id S236278AbiHHXif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 19:38:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238982AbiHHWvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 18:51:25 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB81BCA6
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 15:51:22 -0700 (PDT)
-From:   =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1659998578; bh=aQrCd+ijZmlO1Kgsm6C6rwa65AVL97zN0C3e6zixLi4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=DiIM2ZSDHO+5xRGl9iDX/udWRADomI2tu+BybuCkpI19KgpSGU89WsAHxovyXE0Ah
-         g+ErzsGRNeNXpTMl1lmrKQso5rqM8P0AzrKMDWTXjucDNpQ3aYJGEOGUUW2j+r85Gr
-         fzgKJ/0j82AmKlTVa5mrjzO13NgdfuWy2cxdpivY=
-To:     =?UTF-8?q?Martin=20Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     asahi@lists.linux.dev, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] ASoC: apple: mca: Add locks on foreign cluster access
-Date:   Tue,  9 Aug 2022 00:41:53 +0200
-Message-Id: <20220808224153.3634-4-povik+lin@cutebit.org>
-In-Reply-To: <20220808224153.3634-1-povik+lin@cutebit.org>
-References: <20220808224153.3634-1-povik+lin@cutebit.org>
+        with ESMTP id S230072AbiHHXie (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 19:38:34 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FD09186EF;
+        Mon,  8 Aug 2022 16:38:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1660001913; x=1691537913;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=MRQYQ5qm0My1GulFFcuKwexjA94B/X+aTj0mHtEL70s=;
+  b=NUz6j95RxkZPls8lxz8vHyV5o7UPZ9lq+Apik1kYAMLALSRfZBSJS3Sb
+   k1sw3XS2O1f3GU4nQZn7Vc65XojqUGDVwgASX4xxBaxCVn8t7Ex8KKRLn
+   6dwWPYxs6b/7McNC5kc1acIHltJB7b7kadcVX7F0trzDJMGYXnVLwBaR5
+   w=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 08 Aug 2022 16:38:32 -0700
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Aug 2022 16:38:32 -0700
+Received: from [10.134.65.5] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 8 Aug 2022
+ 16:38:31 -0700
+Message-ID: <62073cb8-0211-3b49-11cb-aceea6df0845@quicinc.com>
+Date:   Mon, 8 Aug 2022 16:38:31 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 00/11] Drivers for gunyah hypervisor
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Marc Zyngier" <maz@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Will Deacon <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+References: <20220801211240.597859-1-quic_eberman@quicinc.com>
+ <50230652-c1ae-4ce2-907c-9bdc6b827f8e@linaro.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <50230652-c1ae-4ce2-907c-9bdc6b827f8e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In DAI ops, accesses to the native cluster (of the DAI), and to data of
-clusters related to it by a DPCM frontend-backend link, should have
-been synchronized by the 'pcm_mutex' lock at ASoC level.
 
-What is not covered are the 'port_driver' accesses on foreign clusters
-to which the current cluster has no a priori relation, so fill in
-locking for that. (This should only matter in bizarre configurations of
-sharing one MCA peripheral between ASoC cards.)
 
-Signed-off-by: Martin Povišer <povik+lin@cutebit.org>
----
- sound/soc/apple/mca.c | 27 ++++++++++++++++++++++++---
- 1 file changed, 24 insertions(+), 3 deletions(-)
+On 8/2/2022 2:24 AM, Dmitry Baryshkov wrote:
+> On 02/08/2022 00:12, Elliot Berman wrote:
+>> Gunyah is a Type-1 hypervisor independent of any
+>> high-level OS kernel, and runs in a higher CPU privilege level. It does
+>> not depend on any lower-privileged OS kernel/code for its core
+>> functionality. This increases its security and can support a much smaller
+>> trusted computing base than a Type-2 hypervisor.
+>>
+>> Gunyah is an open source hypervisor. The source repo is available at
+>> https://github.com/quic/gunyah-hypervisor.
+>>
+>> The diagram below shows the architecture.
+>>
+>> ::
+>>
+>>          Primary VM           Secondary VMs
+> 
+> Is there any significant difference between Primary VM and other VMs?
+> 
 
-diff --git a/sound/soc/apple/mca.c b/sound/soc/apple/mca.c
-index ab41fd1a2444..1e2464e89d1c 100644
---- a/sound/soc/apple/mca.c
-+++ b/sound/soc/apple/mca.c
-@@ -159,6 +159,9 @@ struct mca_data {
- 	struct reset_control *rstc;
- 	struct device_link *pd_link;
- 
-+	/* Mutex for accessing port_driver of foreign clusters */
-+	struct mutex port_mutex;
-+
- 	int nclusters;
- 	struct mca_cluster clusters[];
- };
-@@ -297,16 +300,21 @@ static bool mca_fe_clocks_in_use(struct mca_cluster *cl)
- 	struct mca_cluster *be_cl;
- 	int stream, i;
- 
-+	mutex_lock(&mca->port_mutex);
- 	for (i = 0; i < mca->nclusters; i++) {
- 		be_cl = &mca->clusters[i];
- 
- 		if (be_cl->port_driver != cl->no)
- 			continue;
- 
--		for_each_pcm_streams(stream)
--			if (be_cl->clocks_in_use[stream])
-+		for_each_pcm_streams(stream) {
-+			if (be_cl->clocks_in_use[stream]) {
-+				mutex_unlock(&mca->port_mutex);
- 				return true;
-+			}
-+		}
- 	}
-+	mutex_unlock(&mca->port_mutex);
- 	return false;
- }
- 
-@@ -331,8 +339,10 @@ static int mca_be_prepare(struct snd_pcm_substream *substream,
- 	 */
- 	if (!mca_fe_clocks_in_use(fe_cl)) {
- 		ret = mca_fe_enable_clocks(fe_cl);
--		if (ret < 0)
-+		if (ret < 0) {
-+			mutex_unlock(&mca->port_mutex);
- 			return ret;
-+		}
- 	}
- 
- 	cl->clocks_in_use[substream->stream] = true;
-@@ -350,6 +360,11 @@ static int mca_be_hw_free(struct snd_pcm_substream *substream,
- 	if (cl->port_driver < 0)
- 		return -EINVAL;
- 
-+	/*
-+	 * We are operating on a foreign cluster here, but since we
-+	 * belong to the same PCM, accesses should have been
-+	 * synchronized at ASoC level.
-+	 */
- 	fe_cl = &mca->clusters[cl->port_driver];
- 	if (!mca_fe_clocks_in_use(fe_cl))
- 		return 0; /* Nothing to do */
-@@ -722,7 +737,9 @@ static int mca_be_startup(struct snd_pcm_substream *substream,
- 		       cl->base + REG_PORT_CLOCK_SEL);
- 	writel_relaxed(PORT_DATA_SEL_TXA(fe_cl->no),
- 		       cl->base + REG_PORT_DATA_SEL);
-+	mutex_lock(&mca->port_mutex);
- 	cl->port_driver = fe_cl->no;
-+	mutex_unlock(&mca->port_mutex);
- 	cl->port_started[substream->stream] = true;
- 
- 	return 0;
-@@ -732,6 +749,7 @@ static void mca_be_shutdown(struct snd_pcm_substream *substream,
- 			    struct snd_soc_dai *dai)
- {
- 	struct mca_cluster *cl = mca_dai_to_cluster(dai);
-+	struct mca_data *mca = cl->host;
- 
- 	cl->port_started[substream->stream] = false;
- 
-@@ -742,7 +760,9 @@ static void mca_be_shutdown(struct snd_pcm_substream *substream,
- 		 */
- 		writel_relaxed(0, cl->base + REG_PORT_ENABLES);
- 		writel_relaxed(0, cl->base + REG_PORT_DATA_SEL);
-+		mutex_lock(&mca->port_mutex);
- 		cl->port_driver = -1;
-+		mutex_unlock(&mca->port_mutex);
- 	}
- }
- 
-@@ -963,6 +983,7 @@ static int apple_mca_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	mca->dev = &pdev->dev;
- 	mca->nclusters = nclusters;
-+	mutex_init(&mca->port_mutex);
- 	platform_set_drvdata(pdev, mca);
- 	clusters = mca->clusters;
- 
--- 
-2.33.0
+The primary VM is started by RM. Secondary VMs are not otherwise special 
+except that they are (usually) launched by the primary VM.
+
+>>       +-----+ +-----+  | +-----+ +-----+ +-----+
+>>       |     | |     |  | |     | |     | |     |
+>>   EL0 | APP | | APP |  | | APP | | APP | | APP |
+>>       |     | |     |  | |     | |     | |     |
+>>       +-----+ +-----+  | +-----+ +-----+ +-----+
+>>   ---------------------|-------------------------
+>>       +--------------+ | +----------------------+
+>>       |              | | |                      |
+>>   EL1 | Linux Kernel | | |Linux kernel/Other OS |   ...
+>>       |              | | |                      |
+>>       +--------------+ | +----------------------+
+>>   --------hvc/smc------|------hvc/smc------------
+>>       +----------------------------------------+
+>>       |                                        |
+>>   EL2 |            Gunyah Hypervisor           |
+>>       |                                        |
+>>       +----------------------------------------+
+>>
+>> Gunyah provides these following features.
+>>
+>> - Threads and Scheduling: The scheduler schedules virtual CPUs (VCPUs) on
+>> physical CPUs and enables time-sharing of the CPUs.
+> 
+> Is the scheduling provided behind the back of the OS or does it require 
+> cooperation?
+> 
+
+Gunyah supports both of these scheduling models. For instance, 
+scheduling of resource manager and the primary VM are done by Gunyah 
+itself. A VM that the primary VM launches could be scheduled by the 
+primary VM itself (by making a hypercall requesting a vCPU be switched 
+in), or by Gunyah itself. We've been calling the former "proxy 
+scheduling" and this would be the default behavior of VMs.
+
+>> - Memory Management: Gunyah tracks memory ownership and use of all memory
+>> under its control. Memory partitioning between VMs is a fundamental
+>> security feature.
+>> - Interrupt Virtualization: All interrupts are handled in the hypervisor
+>> and routed to the assigned VM.
+>> - Inter-VM Communication: There are several different mechanisms provided
+>> for communicating between VMs.
+>> - Device Virtualization: Para-virtualization of devices is supported 
+>> using
+>> inter-VM communication. Low level system features and devices such as
+>> interrupt controllers are supported with emulation where required.
+> 
+> After reviewing some of the patches from the series, I'd like to 
+> understand, what does it provide (and can be provided) to the VMs.
+> > I'd like to understand it first, before going deep into the API issues.
+> 
+> 1) The hypervisor provides message queues, doorbells and vCPUs
+> 
+> Each of resources has it's own capability ID.
+> Why is it called capability? Is it just a misname for the resource ID, 
+> or has it any other meaning behind? If it is a capability, who is 
+> capable of what?
+> 
+
+We are following Gunyah's naming convention here. For each virtual 
+machine, Gunyah maintains a table of resources which can be accessed by 
+that VM. An entry in this table is called a "capability" and VMs can 
+only access resources via this capability table. Hence, they get called 
+"capability IDs" and not "resource IDs". A VM can have multiple 
+capability IDs mapping to the same resource. If 2 VMs have access to the 
+same resource, they may not be using the same capability ID to access 
+that resource since the tables are independent per VM.
+
+> At this moment you create allocate two message queues with fixed IDs for 
+> communication with resource manager. Then you use these message queues 
+> to organize a console and a pack of tty devices.
+> 
+> What other kinds of services does RM provide to the guest OS?
+> Do you expect any other drivers to be calling into the RM?
+> 
+
+I want to establish the framework to build a VM loader for Gunyah. 
+Internally, we are working with a prototype of a "generic VM loader" 
+which works with crosvm [1]. In this generic VM loader, memory sharing, 
+memory lending, cooperative scheduling, and raising virtual interrupts 
+are all supported. Emulating virtio devices in userspace is supported in 
+a way which feels very similar to KVM. Our internal VM loader uses an 
+IOCTL interface which is similar to KVM's.
+
+> What is the usecase for the doorbells? Who provides doorbells? >
+
+The basic use case I'll start with is for userspace to create an IRQFD. 
+Userspace can use the IRQFD to raise a doorbell (interrupt) on the other VM.
+
+> You mentioned that the RM generates DT overlays. What kind of 
+> information goes to the overlay?
+> 
+
+The info is described in 
+Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml.
+
+> My current impression of this series is that you have misused the 
+> concept of devices. Rather than exporting MSGQs and BELLs as 
+> gunyah_devices and then using them from other drivers, I'd suggest 
+> turning them into resources provided by the gunyah driver core. I 
+> mentioned using the mailbox API for this. Another subsystem that might 
+> ring the bell for you is the remoteproc, especially the rproc_subdev. >
+
+I had an offline discussion with Bjorn and he agreed with this approach 
+here. He suggested avoiding using the device bus model and will go with 
+smaller approach in v3.
+
+> I might be completely wrong about this, but if my in-mind picture of 
+> Gunyah is correct, I'd have implemented the gunyah core subsytem as 
+> mailbox provider, RM as a separate platform driver consuming these 
+> mailboxes and in turn being a remoteproc driver, and consoles as 
+> remoteproc subdevices. >
+
+The mailbox framework can only fit with message queues and not doorbells 
+or vCPUs. The mailbox framework also relies on the mailbox being defined 
+in the devicetree. RM is an exceptional case in that it is described in 
+the devicetree. Message queues for other VMs would be dynamically 
+created at runtime as/when that VM is created. Thus, the client of the 
+message queue would need to "own" both the controller and client ends of 
+the mailbox.
+
+RM is not loaded or managed by Linux, so I don't think remoteproc 
+framework provides us any code re-use except for the subdevices code. 
+Remoteproc is much larger framework than just the subdevices code, so I 
+don't think it fits well overall.
+
+> I can assume that at some point you would like to use Gunyah to boot 
+> secondary VMs from the primary VM by calling into RM, etc.
+> Most probably at this moment a VM would be allocated other bells, 
+> message queues, etc. If this assumption is correct, them the VM can 
+> become a separate device (remoteproc?) in the Linux device tree.
+> 
+> I might be wrong in any of the assumptions above. Please feel free to 
+> correct me. We can then think about a better API for your usecase.
+> 
+
+We don't want to limit VM configuration to the devicetree as this limits 
+the number and kinds of VMs that can be launched to build time. I'm not 
+sure if you might have seen an early presentation of Gunyah at Linaro? 
+In the early days of Gunyah, we had static configuration of VMs and many 
+properties of the VMs were described in the devicetree. We are moving 
+away from static configuration of VMs as much as possible.
+
+[1]: https://chromium.googlesource.com/chromiumos/platform/crosvm
 
