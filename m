@@ -2,145 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB8AA58CDD1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 20:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B814F58CDEA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 20:44:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244247AbiHHSmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 14:42:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37650 "EHLO
+        id S243732AbiHHSom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 14:44:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244406AbiHHSmI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 14:42:08 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBFFB1929A
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 11:41:39 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id w196so6261057oiw.10
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 11:41:39 -0700 (PDT)
+        with ESMTP id S244363AbiHHSo1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 14:44:27 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B9CB26F4
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 11:44:24 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id k14so6812695pfh.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 11:44:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=+jov4sDK8fqguLcdGEtCS3PX7Z+/XUaiZu5mjGAoBwc=;
-        b=jQh0ZktlrsGJDfa5sjbq2FHvzf4mdvXfFgJm/+h4G+SV2anYSa8bfoSW0x4cZ+a3Aw
-         l0RRwnm4nakH4bXp8NL0oOLZJ9X2/pY+yndrdlsPeLyxZh/ViMnKFbDOXVx/nMOZ3cKv
-         ceY+U9j3d8UqgTT7Mwyo4gRiFfM9J+QRO6t5Cg1dbWKXaphwir4V2MbeP/89G33WRA+N
-         gelXSFx7JFODRcl3YrPC8cGsN7ItGYTyrXZ575oNF0+odf1LDKxLLKGQ4X6GPFW3SZHF
-         m/3Y2Lopfg0cwERPa5gJWPnQOWwBWBvQIG6zrBuR4751Tjv+mDN+PExBB8PTuQP+jw75
-         MChA==
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc;
+        bh=F0L5wESdEB15bbQTjB4qJhg9thxlyPcAj1DCSHYQyJE=;
+        b=oeDV60WoW3v+zJWUuSdEJCVDuLjPViYOgfAOfN1xzeI6WLMSlvtr4lislQsmbDfTE+
+         RPpdWIvzycfpCr8qh57MaqL6v+0Qgen2u9gXdNfd6X3VNHtwwNfMGltzpWfE4q25OTW9
+         ZFX3c2uYw0t3L78hFmUvzCdGiBbPooR0+55dlvXUDjgWvG7Jpl1FTG2nEQbBZ8P+qg+Q
+         mTs9QPH/Nw7H+nh/OxUnyaAi9KjlOqaPxOM7omArL8Mu3OIPwOjM86yCLzSMl/UbDfuZ
+         hII2++g0kOwLc8QTwkSD3tJxtIfnetizzX3YmawHPBwSqTZofvwLG2hifyPeC9OfV551
+         dtbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=+jov4sDK8fqguLcdGEtCS3PX7Z+/XUaiZu5mjGAoBwc=;
-        b=ok1T6JEuYr7HYS4qOOZ7DKupG+ieGIZohqbzzzWNRwAQucBtH7hdeFSyON6oH/b/6s
-         mLDJ2K+tGGSc/oSR60J85xav6iikJznoAWN+367IgU1WWMPzZsQw+xg5qMIDy7qI0LIx
-         9wtkIfG9XA5B3HhXZstRH1ih/hDYghQ7kz2LiRbWvoXlQy1BLYPKryc3yiEDgQPRNwWF
-         EV5LYlqz0B6oFbcAcTBwd2uo2mTFEtlwANIbNrPMgqHanetRT+gN6heIFc1JNGWpBnWu
-         Yz+0fJG9DaJw0h0nbfVDgXjArS/vMEexk8EL4bkb5zTMJJWbrmytDknfq+68QKH6C8lO
-         WC0A==
-X-Gm-Message-State: ACgBeo1Exi5UILNy6/NxDnz3K7OMnsqw4PGUgI6FRO0LHBLg7D+mTWT8
-        OYfWGYaRpUDt7s+AQIhYy38zGA==
-X-Google-Smtp-Source: AA6agR5bJmLFgnGWaH7lWQ9cZrofG2bX3oeGvmJg+5K1A0TzfoRbCFeR6iE+6t9h5yKMa98pNuVKGQ==
-X-Received: by 2002:a05:6808:2114:b0:343:665:d54e with SMTP id r20-20020a056808211400b003430665d54emr1187227oiw.71.1659984099106;
-        Mon, 08 Aug 2022 11:41:39 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id y12-20020a4a650c000000b00440ed1f8c45sm2295292ooc.43.2022.08.08.11.41.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 11:41:38 -0700 (PDT)
-Date:   Mon, 8 Aug 2022 11:44:18 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        robh@kernel.org, pavel@ucw.cz, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH] dt-bindings: leds: Describe optional 'reg' property used
- for Qualcomm LPG nodes
-Message-ID: <YvFZgr1RRq6tYaVC@ripper>
-References: <20220721195502.1525214-1-bhupesh.sharma@linaro.org>
- <CAA8EJppGS38aP7gyd1c3kNgraAVJDoqUef2cDfZpu2aL_iwW0g@mail.gmail.com>
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc;
+        bh=F0L5wESdEB15bbQTjB4qJhg9thxlyPcAj1DCSHYQyJE=;
+        b=uucQVic9vyQ/s3dAtaGErzj82i9KULfzzM2Jwio/PTYrtJGs6hZFHwrD9bsUTji/Xw
+         AEpvbNtFv8pjSpN/3+tKAdpDQqhxeh6v8i9lWxxS6qbaADpj2P70lrmkthEiCOmnOzDT
+         v144uO24Im7kScw+4ZUp6l8EtBNWW64dAB8C0IHF2efJ2CFAsHBkfsWibLiQHZkGWbat
+         5FOnU3f4gfQgGCo1smchwYdHUVVrKgET92wF7z1a7T2/D2dkg5368/grLm8Yfl+PP4l9
+         7WyGG+KQiEwtZfEpH8e3lcvK1W0LxxbTj++r9WAsSoZbkYiODZUVoKTnAxG1Y07qMJ6P
+         ZK7Q==
+X-Gm-Message-State: ACgBeo2p9cWLvvcWaBHyKwEwpZhW+66zngqO/qlnfbjztMUl12E7y8Bd
+        Cu2cmb65RG4Szc4ZJ/DjHokTrMeteVEha9Q4Mz7SRJ+gFlrWoA24
+X-Google-Smtp-Source: AA6agR4IYIYnM/djEyE3rMhIBR4c3AcNmoEKSMjZZrCjnNDZ66WyqX3Yep8xyPgaYiJKup+nplvQrboHrxVV08FBgcs=
+X-Received: by 2002:a63:191f:0:b0:41c:e4a0:1e1d with SMTP id
+ z31-20020a63191f000000b0041ce4a01e1dmr16383755pgl.618.1659984263559; Mon, 08
+ Aug 2022 11:44:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJppGS38aP7gyd1c3kNgraAVJDoqUef2cDfZpu2aL_iwW0g@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Received: by 2002:a05:7022:6885:b0:43:7e4e:521d with HTTP; Mon, 8 Aug 2022
+ 11:44:23 -0700 (PDT)
+Reply-To: mrsvickyandy470@gmail.com
+From:   "MRS. VICKY ANDY" <godwinasaa77@gmail.com>
+Date:   Mon, 8 Aug 2022 11:44:23 -0700
+Message-ID: <CACWg3ZXWOJMf11tzxz7VERq79vk=no0a_iHf=66Vh9TskRNY_Q@mail.gmail.com>
+Subject: Your Abandoned Package For Delivery
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_HK_NAME_FM_MR_MRS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:430 listed in]
+        [list.dnswl.org]
+        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5818]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [mrsvickyandy470[at]gmail.com]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [godwinasaa77[at]gmail.com]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [godwinasaa77[at]gmail.com]
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
+        *  3.1 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 21 Jul 13:19 PDT 2022, Dmitry Baryshkov wrote:
+-- 
+Hello My Friend,
 
-> On Thu, 21 Jul 2022 at 22:55, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
-> >
-> > As Bjorn noted in [1], it is useful to describe the optional
-> > 'reg' property for Qualcomm LPG nodes as it is used in
-> > some Qualcomm dts files.
-> 
-> I don't think this is correct. LPG block maps to several regions, so
-> using just one of them in reg doesn't look correct.
-> 
+I am Mrs. Vicky Andy, I am the Assistance Inspection Director,
+McCarran International Airport, Las Vegas, Nevada USA. There is a
+package which has your name in it and after some search, I came across
+you and decided to contact you via email. For more details, send
+contact me on my email: mrsandyvic@gmail.com or whatsApp me on: +1 312
+960 4348
 
-I agree, but I also like the uniformity of having unit addresses for the
-devices on the spmi buses.
+I wait to hear from you soon.
 
-> > This fixes the following 'make dtbs_check' error reported for
-> > pm8350c & sc8280xp pwm nodes:
-> >
-> > arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb:
-> >  pwm@e800: 'reg' does not match any of the regexes:
-> >  '^led@[0-9a-f]$', 'pinctrl-[0-9]+'
-> 
-> I'd prefer to follow the existing schema and to drop the region from
-> those files.
-> 
+Best Regards,
 
-I'm fine either way, but we have more of these nodes, so I would like to
-hear from the DT maintainers on the direction to take. All nodes on the
-spmi bus has an (at least one) address, so it would be accurate to state
-this in the node.
-
-It does however not seem like devicetree@, nor Krzysztof is Cc'ed on
-this patch, so I've added them...
-
-Regards,
-Bjorn
-
-> >
-> > [1]. https://lore.kernel.org/linux-arm-msm/Ytg3tIaL5h5b9ewH@builder.lan/
-> >
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: robh@kernel.org
-> > Cc: pavel@ucw.cz
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> > index fe336fa16518..f394ab7a757b 100644
-> > --- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
-> > @@ -27,6 +27,9 @@ properties:
-> >        - qcom,pmi8994-lpg
-> >        - qcom,pmi8998-lpg
-> >
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> >    "#pwm-cells":
-> >      const: 2
-> >
-> > --
-> > 2.35.3
-> >
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
+Mrs. Vicky Andy
