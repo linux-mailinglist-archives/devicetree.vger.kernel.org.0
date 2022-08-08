@@ -2,108 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E6B058C3E7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72F7F58C3F6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Aug 2022 09:31:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233045AbiHHHYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 03:24:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34178 "EHLO
+        id S233625AbiHHHbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 03:31:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231720AbiHHHYU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:24:20 -0400
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A2CD10DD;
-        Mon,  8 Aug 2022 00:24:15 -0700 (PDT)
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 8BCC25C010C;
-        Mon,  8 Aug 2022 03:24:13 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Mon, 08 Aug 2022 03:24:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        tom-fitzhenry.me.uk; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm1; t=1659943453; x=1660029853; bh=cfXKwT2L2W
-        iIMULrPjrMghFNOd45gLJ8rGZDCFh9GPU=; b=Yxus/l2iuHs/pwJkTM5C2gwHgL
-        UrFT8YFfm0lEgdIxeujotqg9e211oeMqw1iTPt5eHJtNmiPbXkSMkhP/M/d0xfi6
-        32BnX5MwKINQ299Z8EjoTH6Qo3uzAL0yQNp+CL4BbmnNFAOXgHIViwQ5gzHIOoFX
-        rF7EnTDAwwNOaHb84ds/aatwnUJbYCz195mKMxTNc5lYvYPoQ5WRYjUIGb5vrzPR
-        ApqgH/sU3iRE1hWJNfsTenoVwRKCK7Su48oHa5v5j9d9Uhe78DsDb/T75T9+ex+i
-        HHL0mcmZmUCZ4Nm+Qh30R5dDDMtRNwrhZJc48gwZNfBUfGOdh22iID48qFmg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1659943453; x=
-        1660029853; bh=cfXKwT2L2WiIMULrPjrMghFNOd45gLJ8rGZDCFh9GPU=; b=C
-        rxpsC7Yb13DKjBueJjjiYgKO9XsT4cFdLaILTPN9er+gboMsVHqfCnn75oteoJ+S
-        o/vx5xd+du0zwxLCdEypAheFShKgLZnt+JDEv+f6oa72sctaqGXwK/2zYcONNon6
-        j6Wx2iaq7KFZu95Saeyodpd0OjEL1F6LZl9vf0milcS83keP3RQZrZdL8Gw+/5yT
-        Y4yEXkbeH/BtHDIQX7d26knJtwWbtL5HZQYxP5cRhSK4qTLrvrsjfQIkMPAa9o3m
-        kARXmoETQ8437f9GxYStnZ5/wLSruPIhWZbFpelZHkC+P53UtSTWQWHRCuRtTO/4
-        fqXn/kXl9z3IiifxQceOA==
-X-ME-Sender: <xms:HLrwYgB62IxBquFN-LI7ebW5i4FFdTztOfuh0HaW8NSspyWZpEjPuw>
-    <xme:HLrwYigOvjW2NutFojZXfH8WkDUJjggmUe3GFBbDziAH37yE1U9TL0ISfLfKQ9DaW
-    IC2kqxmqmCljPQDkw>
-X-ME-Received: <xmr:HLrwYjlP5FbLSr5uzkG5xcYlRZ8aWT0Qn_Mc8M2aRIdWxzsTyILkPAqt3ww7LZQTk6ZzRTWtfrHNS4Ppx2Vn4tVk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdefjedguddujecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefkffggfgfuvfevfhfhjggtgfesthejredttdefjeenucfhrhhomhepvfho
-    mhcuhfhithiihhgvnhhrhicuoehtohhmsehtohhmqdhfihhtiihhvghnrhihrdhmvgdruh
-    hkqeenucggtffrrghtthgvrhhnpedvgeehhefhtdffuddvtddvhfdtudeuhfejhfetvdeg
-    teelfeduheejfefgtdekieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepthhomhesthhomhdq
-    fhhithiihhgvnhhrhidrmhgvrdhukh
-X-ME-Proxy: <xmx:HLrwYmxd0tnTDdadZDzkGmBfDKfDMsTa--QtOxp2g_Sf5pmicu5WTg>
-    <xmx:HLrwYlSTVMIk-abDMxsck8i9-PWeQDPDlSQYUn8mKDKLeVkXPp6Rdw>
-    <xmx:HLrwYhbPtuQaSXKNA5d6fjfQhWw6Z7kzi2QeGU_hCZ6yLJ5q42VUVQ>
-    <xmx:HbrwYhqO5YY-HidK0Q7p-sb0UFfuB3VhDqvkkKDlxA43D4sOz_Zvdg>
-Feedback-ID: iefc945ae:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 8 Aug 2022 03:24:09 -0400 (EDT)
-Message-ID: <88cea6f0-c76a-a1e6-48bf-1c0598df4df6@tom-fitzhenry.me.uk>
-Date:   Mon, 8 Aug 2022 17:24:06 +1000
+        with ESMTP id S231756AbiHHHbT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 03:31:19 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77AE35599;
+        Mon,  8 Aug 2022 00:31:18 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id k26so15004048ejx.5;
+        Mon, 08 Aug 2022 00:31:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tgetifgbBTUwaHUUNxKhDY+i5+I0QQCMcg7l3wjWxzY=;
+        b=UTJmMy8wlZ8ar7ug6ycvZxzXHMuzQ3ccBZgVA5yaRBGGjOgthZyyYPMxB08CeQ87l6
+         wGCPkpjDbw4thwhjnyGr/n57UtRmMmqFDk98cmj76C8hnM34OpDgmqHZjJK1tjkTvt9M
+         H3L1Y76TJIGmj1mhsU1XE8xl6ORANOc1Jru+5l8+/9L1vYuMJLy09T8maKhxxv+ec8go
+         dW1Pf5bm2VMEsLEMYQca4zQOIwbuznRdw5txE5QUrfL3WXpgvwNwPnvI8riPbI4LgP3Z
+         h7rxYYR6Ba0b9L6n/uifAKXLO0vxiciVSxn3u81oXYHPoLMCYhJmJnxvEzPpv5dOST3J
+         odvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tgetifgbBTUwaHUUNxKhDY+i5+I0QQCMcg7l3wjWxzY=;
+        b=Rhd367xNsletjcJbg4wnAfAa3qss/snZbRoFSlK2sNmg/M2CsfQVMsGTnGQeKFxdRR
+         OAOPlP/691Gwu7HymwH196Yai1qas5x5cdjj6+Hkgqs3d10h8eq7KXD4VAxWxt/zY6lm
+         kKTJ8jNhC5sseBWe8mpsqPh9nNY7vopcyu4rEWI9lBzv5uqfz6hV7RohK6XcTwU4Hfis
+         Y4nSSkXBrle8uo2aCwqppckNhKj1L9w1Tl19PefvcXmXN0oozjpS6wqWItYMEEUKUd1g
+         ryBuNNW8UafV/hMHSUK5LHE7pA+02vLvvaRS/EStQ0+GE5xitbf+2yuYLdTyKXMB8LTy
+         aUHQ==
+X-Gm-Message-State: ACgBeo2xX+DKGy/+kBFBSm6Vl6feXPcH78OiwYrmqYljBKsrmUn3N8ub
+        HKVxm/LzKTMMo8FDCFH+HVY=
+X-Google-Smtp-Source: AA6agR74/72PZxy2KSi8pJBrl2fnYKZanlnWDpQ15tSBhcIHChFc/Ji9ZCqdzJ1ioYtI3EUEdZKWng==
+X-Received: by 2002:a17:907:a42c:b0:730:9e5c:b457 with SMTP id sg44-20020a170907a42c00b007309e5cb457mr13380283ejc.666.1659943876709;
+        Mon, 08 Aug 2022 00:31:16 -0700 (PDT)
+Received: from skbuf ([188.27.185.133])
+        by smtp.gmail.com with ESMTPSA id a15-20020a056402168f00b0043aba618bf6sm4178218edv.80.2022.08.08.00.31.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Aug 2022 00:31:14 -0700 (PDT)
+Date:   Mon, 8 Aug 2022 10:31:10 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christian Marangi <ansuelsmth@gmail.com>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        John Crispin <john@phrozen.org>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Mans Rullgard <mans@mansr.com>,
+        Arun Ramadoss <arun.ramadoss@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Aleksander Jan Bajkowski <olek2@wp.pl>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Pawel Dembicki <paweldembicki@gmail.com>,
+        =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        Marcin Wojtas <mw@semihalf.com>, Marek Vasut <marex@denx.de>,
+        linux-renesas-soc@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [RFC PATCH v3 net-next 10/10] net: dsa: make phylink-related OF
+ properties mandatory on DSA and CPU ports
+Message-ID: <20220808073110.wv4nm3fllwcxl5nq@skbuf>
+References: <20220806141059.2498226-1-vladimir.oltean@nxp.com>
+ <20220806141059.2498226-11-vladimir.oltean@nxp.com>
+ <62eeca98.170a0220.601cd.70ac@mx.google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.0.3
-Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add initial support for
- Pine64 PinePhone Pro
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Caleb Connolly <kc@postmarketos.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, heiko@sntech.de
-Cc:     megi@xff.cz, martijn@brixit.nl, ayufan@ayufan.eu,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220805234411.303055-1-tom@tom-fitzhenry.me.uk>
- <20220805234411.303055-4-tom@tom-fitzhenry.me.uk>
- <f9cbc047-f30f-e711-3213-56fcbb7bbc8a@postmarketos.org>
- <9a168a20-1fd1-5d73-1d33-bd2f054d60d7@tom-fitzhenry.me.uk>
- <cf320916-c88b-0c4a-7515-24318f1b85b2@linaro.org>
-Content-Language: en-US
-From:   Tom Fitzhenry <tom@tom-fitzhenry.me.uk>
-In-Reply-To: <cf320916-c88b-0c4a-7515-24318f1b85b2@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <62eeca98.170a0220.601cd.70ac@mx.google.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/8/22 16:38, Krzysztof Kozlowski wrote:
->> I agree authorship is important, and thus Kamil, Martijn and Megi are
->> listed as Co-developed-by in this patch.
+On Sat, Aug 06, 2022 at 09:58:16PM +0200, Christian Marangi wrote:
+> > qca8k
+> > ~~~~~
+> > 
+> >     compatible strings:
+> >     - qca,qca8327
+> >     - qca,qca8328
+> >     - qca,qca8334
+> >     - qca,qca8337
+> > 
+> >     5 occurrences in mainline device trees, none of the descriptions are
+> >     problematic.
+> > 
+> >     Verdict: opt into validation.
 > 
-> But you miss their SoB... Without them you should not send it. It does
-> not pass checkpatch, does it?
+> I notice some have strict validation and other simple validation. I
+> didn't understand from the commit description where strict is used
+> instead of simple one.
 
-Sorry, my bad. I see 
-https://www.kernel.org/doc/html/latest/process/submitting-patches.html 
-lists to use checkpatch. I had read this but had since forgotten. I will 
-ensure future patches pass checkpatch.
+There is no difference between "opt into validation" and "opt into
+strict validation" in the verdicts for each driver. It all means the
+same thing, which is that we won't apply DSA's workaround to skip
+phylink registration for them (and implicitly fail the probing, if they
+have lacking device trees, but the assumption is that they don't).
+I suppose I could improve the wording.
+
+> I'm asking this for qca8k as from what we notice with device that use
+> qca8k the master ports always needs to have info in dt as we reset the
+> switch and always need to correctly setup the port.
+
+How sure are you about this? I am noticing the following commits:
+79a4ed4f0f93 ("net: dsa: qca8k: Force CPU port to its highest bandwidth")
+9bb2289f90e6 ("net: dsa: qca8k: Allow overwriting CPU port setting")
+
+which suggests at at least at some point, the qca8k driver didn't rely
+on device tree information for the CPU port. Now if that information was
+available in the device tree in the first place, I don't know.
+The phy-mode seems to have been; I'm looking at the initial commit
+6b93fb46480a ("net-next: dsa: add new driver for qca8xxx family") and
+there is an of_get_phy_mode() with a hard error on missing property for
+the CPU port.
