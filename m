@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DCE658D17C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 02:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84E0958D197
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 02:58:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244767AbiHIAxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 20:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46750 "EHLO
+        id S233226AbiHIA6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 20:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238516AbiHIAxc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 20:53:32 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 999FC186D2;
-        Mon,  8 Aug 2022 17:53:30 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id e13so13247398edj.12;
-        Mon, 08 Aug 2022 17:53:30 -0700 (PDT)
+        with ESMTP id S229783AbiHIA6n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 20:58:43 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED8731BEAF;
+        Mon,  8 Aug 2022 17:58:42 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id s11so13254486edd.13;
+        Mon, 08 Aug 2022 17:58:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language:subject
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc;
-        bh=XvyFwW8Ho60oSZew5uOeBihtI9BfP1sOrcezBlDDeak=;
-        b=FHz67+toURTh0Yb7HzDZsHG/8r/QpytqYb81DRGPQ2LKOapSzVsx3mOi+drwD0xM1n
-         lKouoiEbLATMokRYfoIGu7hq0NKsdEmQ+6mSyXoq5z16lkjs1z1K/edLL195z6TkPeL/
-         Y4BAxcClmkrnzTa9GKaJ2AfFOpeowPDaOVsQsXXj0S/XhXMO50kveGTaCXB1sdLlYXFt
-         5+qrxMcEgkYmy7XwpuzBsp/EMIe42FoyMs0OnTS+9vb9AhwwI4ILUVX/O2rB/1wUlhfl
-         Tg67MdR6zN7sXKe3CsRefnMkWhVNTSpb1yibneiIkE8G9KLN4OSFVNfJMOAUvJCtB433
-         ccpQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=vivogvUanLqf/+xeQKp88FPAZ7ZllTwvRVZ+ptlXqkY=;
+        b=j1p1Ia6v5EBGIpl2oD43/FdFRIRl0/LQ0wJc5fito9bY1la3rf9Tu1Wg16hgsDyNuD
+         8scWmOy5uXiq49/X8WWES+D8qWH0fKiXQzYAWhWrhfFWBrGQUe8jSyy+gJ+7AfT9p2Eh
+         Y3VemtSfXGy1bjWMmP9W14bodaxRwGdHNzry4Ue0GGCOQjuQf9Jm4eLOyH4sn6fQbXc8
+         ATfqgKHeQ4D+N2oP923BnzqNvnEuNmMGQlDF+F4mgDMfFL3K+CjfdCmNhQrOBWs/fk+0
+         YAbJcqNUgvy1C0cTFzexI2xNAIyniRaAXcgu/rtcCtGPywAjmY/pM2mg2qE+17KfVhO5
+         rzEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language:subject
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=XvyFwW8Ho60oSZew5uOeBihtI9BfP1sOrcezBlDDeak=;
-        b=diriGKsqVzvVucM4x5L8FdySVoXAQxXSgG8nRxbz9bM/dC+MjaO2BDyEtArzw3YtNS
-         Nt518oa/FcYR4La8LdGWAlOSj/09mH9x1D/fWlkqz2vNGwtq4efgewp3f0bf0kR7ZwNY
-         AEaebH0yiZiQuOUyccJyNDxFWePtIp7H4C/ifPAM+NMZ+T5P9KIC1KkIJamYK3xJmDF4
-         n8okrP4VHeZQxOe/2/UgCFW9jc0ehVDiGahLolthaqtdwo0P+Pj6rJAkE4VQ81TH3Q3q
-         qQiCZbhaDcC3Ne7NKdIQ1tZWdOVtnGJEHGTLd1ZPSlcqW6hnTxF0xtF/jziU9Hb0MJ0W
-         8mMw==
-X-Gm-Message-State: ACgBeo0FabPObJs1J6QvO7fTQR/ofp55B2n66g6sMho/HkXf7U7Uqp29
-        /9zm0sHJ1OihWd1qWXn0c6A=
-X-Google-Smtp-Source: AA6agR6zpoOnCSipuQNy365yK44T2T67w/iZRbUIxiPeDhazTpbtt/k1Hg/MPlnC8AgmV2cIgFRStg==
-X-Received: by 2002:a05:6402:40ce:b0:43d:f8a0:9c4f with SMTP id z14-20020a05640240ce00b0043df8a09c4fmr19970504edb.95.1660006409086;
-        Mon, 08 Aug 2022 17:53:29 -0700 (PDT)
-Received: from [10.21.0.9] ([37.120.217.82])
-        by smtp.gmail.com with ESMTPSA id d23-20020a05640208d700b0043a7134b381sm5176218edz.11.2022.08.08.17.53.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 17:53:28 -0700 (PDT)
-Message-ID: <86b63b7b-afda-d7f4-7bfa-175085d5a8ef@gmail.com>
-Date:   Tue, 9 Aug 2022 02:53:26 +0200
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=vivogvUanLqf/+xeQKp88FPAZ7ZllTwvRVZ+ptlXqkY=;
+        b=cRShuSFv4NJ+erS9mNAgHY66AgaelaMZn8hoc5CEVerdj990Y7qqW85FemHpHcDYBd
+         eU/OIzKtvBzMxPrIbZFW/FKaacUYRYaHo+0IAwwAUE5N4jZSGT6WJtzz4ESadPtJOhrT
+         uOVJToO/KH68VScORotqSmEv2tZixaEoF1KGbL/XFzK0dYSdJl7Gahb+tocbNAbgTKVa
+         GJWWFCDWlbGeyvQI8gXJ6mmU7KTW+CGP9Drcfrf2PK5nr4AFxr6MlChHTxKC7vcqJbkS
+         PV7OCOHoay+eNvcxTdqrWfzK9RpkPwEN+o21xUOGDSQNNCLZMQV6TEt3MP1spkv041u/
+         /Ykw==
+X-Gm-Message-State: ACgBeo0cVMtfZ51V9OibSnMRh4zd72LPUI3KmS1BuF+QSf5OKGOnWVmA
+        W19dfZL+vnlGNdPE+eeR/cSVulsya9FQkL0imVw=
+X-Google-Smtp-Source: AA6agR4u+PwcE5Rt/E2Iw8gTIqyGOStyp3TcXeqQ7JtzNfC9nIjngdT+CDuIWjdizmLyndyNQ/e5KbErR2lBatKjaa4=
+X-Received: by 2002:a05:6402:428c:b0:440:8259:7a2b with SMTP id
+ g12-20020a056402428c00b0044082597a2bmr9071167edc.329.1660006721482; Mon, 08
+ Aug 2022 17:58:41 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-To:     jaschultzms@gmail.com
-Cc:     benjamin.tissoires@redhat.com, biju.das.jz@bp.renesas.com,
-        bjorn.andersson@linaro.org, catalin.marinas@arm.com,
-        corbet@lwn.net, devicetree@vger.kernel.org, dmanti@microsoft.com,
-        dmitry.baryshkov@linaro.org, dmitry.torokhov@gmail.com,
-        geert+renesas@glider.be, jaschultz@microsoft.com, jikos@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        marcel.ziswiler@toradex.com, robh+dt@kernel.org,
-        shawnguo@kernel.org, vkoul@kernel.org, will@kernel.org
-References: <20220707165902.3184-1-jaschultzMS@gmail.com>
-Subject: Re: [PATCH v5 0/6] Add spi-hid, transport for HID over SPI bus
-Content-Language: en-US
-From:   Maximilian Luz <luzmaximilian@gmail.com>
-In-Reply-To: <20220707165902.3184-1-jaschultzMS@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20220610084340.2268-1-ctcchien@nuvoton.com> <20220610084340.2268-2-ctcchien@nuvoton.com>
+ <YrCi1fg+mUPwZ7sX@zn.tnic> <CAHpyw9dkE65vUiyG-=gvQHGCZ-=nm1AX2EwANGPDAJmfn7sZkQ@mail.gmail.com>
+In-Reply-To: <CAHpyw9dkE65vUiyG-=gvQHGCZ-=nm1AX2EwANGPDAJmfn7sZkQ@mail.gmail.com>
+From:   Kun-Fa Lin <milkfafa@gmail.com>
+Date:   Tue, 9 Aug 2022 08:58:30 +0800
+Message-ID: <CADnNmFre-rhBYKtqFs9JEgDYj8iAr5YZ0qs4MqXRczsL1Z65OA@mail.gmail.com>
+Subject: Re: [PATCH v12 1/3] dt-bindings: edac: nuvoton: add NPCM memory controller
+To:     Borislav Petkov <bp@alien8.de>
+Cc:     Medad Young <medadyoung@gmail.com>, rric@kernel.org,
+        James Morse <james.morse@arm.com>, tony.luck@intel.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>,
+        CS20 KWLiu <KWLIU@nuvoton.com>, YSCHU@nuvoton.com,
+        JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        linux-edac <linux-edac@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,24 +80,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/7/22 09:58, Jarrett Schultz <jaschultzms@gmail.com> wrote:
-> Surface Duo devices use a touch digitizer that communicates to the main
-> SoC via SPI and presents itself as a HID device. This patch's goal is to
-> add the spi-hid transport driver to drivers/hid. The driver follows the
-> publically available HID Over SPI Protocol Specification version 1.0.
+Hi Borislav,
 
-As far as I can tell based on the downstream code you provide in [1],
-your proposed driver (and v1.0 spec) is incompatible with the version
-used on current Surface devices (Surface Duo 1 and 2, Surface Pro X, and
-I assume some AMD/x86 based devices on which you also use spi-hid for the
-digitizer). On those, SPI_HID_SUPPORTED_VERSION is 0x0100 whereas it is
-0x0300 for the driver proposed here, along with at least some protocol
-struct changes.
-
-Do you have any plans on supporting those devices (i.e. protocol version
-0x0100) at some point?
+Thanks for the review. I'll address the problems you have mentioned
+and send v13.
 
 Regards,
-Max
-
-[1]: https://github.com/microsoft/surface-duo-oss-kernel.msm-5..4/tree/surfaceduo2/11/2022.108.8/drivers/hid/spi-hid
+Marvin
