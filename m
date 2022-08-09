@@ -2,181 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2497F58D51D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A8358D537
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:15:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237469AbiHIIGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 04:06:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50662 "EHLO
+        id S239907AbiHIIP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 04:15:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229963AbiHIIGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:06:30 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA0EE00D;
-        Tue,  9 Aug 2022 01:06:25 -0700 (PDT)
-X-UUID: 51b02bc78b574cc186146b642013d65d-20220809
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=3jeezdODHoDq/n+1k33XTZuIqbvhdPjitEJXsCEjp9I=;
-        b=JhClGLG9oxQ/KDj9hbNHQpIlMQ8FJ/qZRdIhpznzlVCFSInvZSPStMRyYyzHuyOLRlEuQ9daQTeExBPnNE2dz6cZ2/3DWqQaYT0q2r1kM/jhgULcvFj3S054llJsjmuxdeW3pjHVctYafcwL3hdJta/h0UR65Z/ySQXGq+EGMyk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.9,REQID:9ed45b08-8b63-46af-9824-7971ecc00656,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_H
-        am,ACTION:release,TS:0
-X-CID-META: VersionHash:3d8acc9,CLOUDID:5768289c-da39-4e3b-a854-56c7d2111b46,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 51b02bc78b574cc186146b642013d65d-20220809
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 598252204; Tue, 09 Aug 2022 16:06:19 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
- Tue, 9 Aug 2022 16:06:17 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Tue, 9 Aug 2022 16:06:17 +0800
-Message-ID: <eb0c9fd00a09efeb50676a0291bed09e0f77bf6c.camel@mediatek.com>
-Subject: Re: [PATCH v16 3/8] drm/mediatek: Add MT8195 Embedded DisplayPort
- driver
-From:   Bo-Chen Chen <rex-bc.chen@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "deller@gmx.de" <deller@gmx.de>,
-        "airlied@linux.ie" <airlied@linux.ie>
-CC:     "msp@baylibre.com" <msp@baylibre.com>,
-        "granquet@baylibre.com" <granquet@baylibre.com>,
-        Jitao Shi =?UTF-8?Q?=28=E7=9F=B3=E8=AE=B0=E6=B6=9B=29?= 
-        <jitao.shi@mediatek.com>,
-        "wenst@chromium.org" <wenst@chromium.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        LiangXu Xu =?UTF-8?Q?=28=E5=BE=90=E4=BA=AE=29?= 
-        <LiangXu.Xu@mediatek.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 9 Aug 2022 16:06:12 +0800
-In-Reply-To: <150988eef41cac1e1c4b422cf1ad65c10309f472.camel@mediatek.com>
-References: <20220805101459.3386-1-rex-bc.chen@mediatek.com>
-         <20220805101459.3386-4-rex-bc.chen@mediatek.com>
-         <150988eef41cac1e1c4b422cf1ad65c10309f472.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S240721AbiHIIPz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:15:55 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC606310
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 01:15:54 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id v10so8746345ljh.9
+        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 01:15:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=i4iQuVbI+9d0zd0b0jhQFCRBZoVGPueKM3RZjVMejCI=;
+        b=WcPB8C9Wpy4JKS+wa3ogqDTCTitNjB5xjbl3GVmJmBFnwN57erFosPTxu4Bghu9Gvd
+         hWhwv0ojAxwP6jOEiri1EAKImG5N+yBtIHLuRUkZsWEn/Kvf9pBA09AehAP7swtTHk+v
+         ryY8ZsTY+cFpzv51ckXN9xnCOKSC/oGHjvNmxHuVN+viA7vudsmpY2fHuPLz7u4RDKRE
+         cUC96d/urQdJGb+GvEkBG4k+GLTjVjZTrdI6N2UpgpMXTXulCXiOBuvcWVuzGogD+9fD
+         2vMoj/aE7Ony9MFMdKoVLyg5tsiVL8deafhCdTSszOFZkw5gnwqIsek0OyJonNc5F7kG
+         OSTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=i4iQuVbI+9d0zd0b0jhQFCRBZoVGPueKM3RZjVMejCI=;
+        b=FNPQd2cktqA6AqYBgKiyXkdQiaXUL0loVMmxKIEf5fpztNB7QHPEHloE0TEOiZ3DTP
+         TdJkEMQIb0aNcAzY9lyw5NtH///okbBLdONg8BFWPJg6UTWKnhlMi/F5wLb4fmO40Tq6
+         xkmD3NFYFfjgpXGvyrDi8313eagAkZOx9+twdnhg8wvM7yPrfM/v3CaNlsP37oqES8TS
+         AQrnM41YBgiVnZSv7L+8BKuRQl/8F1bMND/SmzOpIxTK0/KhAq25q3uIbggCP7tNQoqa
+         FCLWQjGXLT0o9Y5IhRrsx34LHa8dgxUZ6woeZsgMeqej8+gz0A674F/0k2LHxSH2YoU1
+         itHw==
+X-Gm-Message-State: ACgBeo2/umksKl4ch2a69jskiXWxhoUvcU/tI+0GtOo/7iwbdLKSdZcE
+        T/Wx/2wZ2DetxCYSpbIcOYHSgw==
+X-Google-Smtp-Source: AA6agR6d09fbMfwW14RfB+trmeqi+0SytmqBmON06AUpmV6tqXMlZsMQJgE6vxkA86T2hfetncSzNA==
+X-Received: by 2002:a05:651c:92:b0:25f:f326:f2c1 with SMTP id 18-20020a05651c009200b0025ff326f2c1mr633512ljq.273.1660032952859;
+        Tue, 09 Aug 2022 01:15:52 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id k21-20020ac24f15000000b0048ae66976ffsm1672088lfr.47.2022.08.09.01.15.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Aug 2022 01:15:51 -0700 (PDT)
+Message-ID: <8ce59940-f559-35cb-5f86-37399da166a1@linaro.org>
+Date:   Tue, 9 Aug 2022 11:15:49 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: sound: Add Apple MCA I2S transceiver
+Content-Language: en-US
+To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     asahi@lists.linux.dev, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220808224153.3634-1-povik+lin@cutebit.org>
+ <20220808224153.3634-2-povik+lin@cutebit.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220808224153.3634-2-povik+lin@cutebit.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-08-08 at 13:21 +0800, CK Hu wrote:
-> Hi, Bo-Chen:
-> 
-> On Fri, 2022-08-05 at 18:14 +0800, Bo-Chen Chen wrote:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> > 
-> > This patch adds a embedded displayport driver for the MediaTek
-> > mt8195
-> > SoC.
-> > 
-> > It supports the MT8195, the embedded DisplayPort units. It offers
-> > DisplayPort 1.4 with up to 4 lanes.
-> > 
-> > The driver creates a child device for the phy. The child device
-> > will
-> > never exist without the parent being active. As they are sharing a
-> > register range, the parent passes a regmap pointer to the child so
-> > that
-> > both can work with the same register range. The phy driver sets
-> > device
-> > data that is read by the parent to get the phy device that can be
-> > used
-> > to control the phy properties.
-> > 
-> > This driver is based on an initial version by
-> > Jitao shi <jitao.shi@mediatek.com>
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > Signed-off-by: Bo-Chen Chen <rex-bc.chen@mediatek.com>
-> > Tested-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
-> > Reviewed-by: AngeloGioacchino Del Regno <
-> > angelogioacchino.delregno@collabora.com>
-> > ---
-> 
-> [snip]
-> 
-> > +
-> > +static void mtk_dp_hpd_sink_event(struct mtk_dp *mtk_dp)
-> > +{
-> > +	ssize_t ret;
-> > +	u8 link_status[DP_LINK_STATUS_SIZE] = {};
-> > +	u32 link_status_reg = DP_LANE0_1_STATUS;
-> > +
-> > +	ret = drm_dp_dpcd_read(&mtk_dp->aux, link_status_reg,
-> > link_status,
-> > +			       sizeof(link_status));
-> > +	if (!ret) {
-> > +		drm_err(mtk_dp->drm_dev, "Read link status failed\n");
-> > +		return;
-> > +	}
-> > +
-> > +	if (!drm_dp_channel_eq_ok(link_status, mtk_dp-
-> > > train_info.lane_count)) {
-> > 
-> > +		drm_err(mtk_dp->drm_dev, "Channel EQ failed\n");
-> > +		return;
-> > +	}
-> > +
-> > +	if (link_status[1] & DP_REMOTE_CONTROL_COMMAND_PENDING)
-> 
-> I does not see any other DP driver process
-> DP_REMOTE_CONTROL_COMMAND_PENDING, why mtk dp driver process it? If
-> this is an advanced function, separate this to an independent patch.
-> 
-> Regards,
-> CK
-> 
+On 09/08/2022 01:41, Martin Povišer wrote:
+> Add binding schema for MCA I2S transceiver found on Apple M1 and other
+> chips.
 
-Hello CK,
 
-We are not using this. The dpcd write is just for clearing the irq
-status of sink device, but we are not doing anything for this hpd
-event. So I will drop this.
+Thank you for your patch. There is something to discuss/improve.
 
-BRs,
-Bo-Chen
+> +title: Apple MCA I2S transceiver
+> +
+> +description: |
+> +  MCA is an I2S transceiver peripheral found on M1 and other Apple chips. It is
+> +  composed of a number of identical clusters which can operate independently
+> +  or in an interlinked fashion. Up to 6 clusters have been seen on an MCA.
+> +
+> +maintainers:
+> +  - Martin Povišer <povik+lin@cutebit.org>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,t8103-mca
+> +          - apple,t6000-mca
 
-> > +		drm_dp_dpcd_writeb(&mtk_dp->aux,
-> > DP_DEVICE_SERVICE_IRQ_VECTOR,
-> > +				   DP_REMOTE_CONTROL_COMMAND_PENDING);
-> > +}
-> > +
-> > 
-> 
-> 
+How about alphabetical order?
 
+> +      - const: apple,mca
+> +
+> +  reg:
+> +    items:
+> +      - description: Register region of the MCA clusters proper
+> +      - description: Register region of the DMA glue and its FIFOs
+> +
+> +  interrupts:
+> +    minItems: 4
+> +    maxItems: 6
+> +    description:
+> +      One interrupt per each cluster
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  dmas:
+> +    minItems: 16
+> +    maxItems: 24
+> +    description:
+> +      DMA channels corresponding to the SERDES units in the peripheral. They are
+> +      listed in groups of four per cluster, and within the group they are given
+> +      as associated to the TXA, RXA, TXB, RXB units.
+> +
+> +  dma-names:
+> +    minItems: 16
+> +    maxItems: 24
+> +    items:
+> +      pattern: '^(tx|rx)[0-5][ab]$'
+
+Use consistent quotes (everywhere " or ').
+
+Describe the items because otherwise you allow any order. The list will
+be unfortunately quite long, but still readable enough.
+
+
+> +    description: |
+> +      Names for the DMA channels: 'tx'/'rx', then cluster number, then 'a'/'b'
+> +      based on the associated SERDES unit.
+> +
+> +  clocks:
+> +    minItems: 4
+> +    maxItems: 6
+> +    description:
+> +      Clusters' input reference clock.
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    minItems: 5
+> +    maxItems: 7
+> +    description:
+> +      First a general power domain for register access, then the power
+> +      domains of individual clusters for their operation.
+> +
+> +  "#sound-dai-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - dmas
+> +  - dma-names
+> +  - clocks
+> +  - power-domains
+> +  - '#sound-dai-cells'
+
+Use consistent quotes (everywhere " or ').
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mca: mca@9b600000 {
+
+You called it I2S transceiver but isn't it also actually I2S controller?
+If yes, then the node name should be probably "i2s".
+
+> +      compatible = "apple,t6000-mca", "apple,mca";
+> +      reg = <0x9b600000 0x10000>,
+> +            <0x9b200000 0x20000>;
+> +
+
+
+Best regards,
+Krzysztof
