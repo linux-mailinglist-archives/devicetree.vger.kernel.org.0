@@ -2,104 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E15EC58D9F0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 15:53:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7EFF58DA1C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 16:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244596AbiHINxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 09:53:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32804 "EHLO
+        id S243292AbiHIOOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 10:14:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239746AbiHINxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 09:53:23 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E3D02610;
-        Tue,  9 Aug 2022 06:53:20 -0700 (PDT)
-Received: from notapiano (unknown [193.27.14.109])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 31A1C6601C45;
-        Tue,  9 Aug 2022 14:53:16 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1660053198;
-        bh=R+CpuZN1Sl+R1CObLrG1wLITHiTzHmjmpta/SIREkdM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SjuY2JQzbM0PFwmAXUkG2NewMPwh5uPBzPQkoYv8b+NViFKYoRaSGYgXA6YSAWYna
-         qSBCjU78IGhJ0uGfuZn1Dm3GK3sBSeTGvJn1h4XdjaUwFgk2W+FEOhGkRDDJFRzjOJ
-         h6KRVfb+d4ZURdxwDr4dcpUa4or57PdiFRkAIwdaxAEEn9Px2t9oVIl/E5wlAs04f8
-         X9cns2SgL1slzGdaZ5yS6uInTQxTVkc37bwEle4BoVpSUOeSYyFPhU4OJDaxvVrrlC
-         7CWGQFRiCPv/rrgLzG7f46/tSSyyk5QXckkaePiEdtklThsMY+ItVw04TaYHAG3H3X
-         XVOk1qLihA2aA==
-Date:   Tue, 9 Aug 2022 09:53:12 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>, iommu@lists.linux.dev,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v5 02/20] dt-bindings: memory: mediatek: Update condition
- for mt8195 smi node
-Message-ID: <20220809135312.hadcs7ti2cgyyuez@notapiano>
-References: <20220804021553.14867-1-tinghan.shen@mediatek.com>
- <20220804021553.14867-3-tinghan.shen@mediatek.com>
- <96e66425-ff2a-4640-8b96-48fa39943bf9@linaro.org>
- <6a1977971317059fcfad685869b6ccf233edcb68.camel@mediatek.com>
+        with ESMTP id S232158AbiHIOOk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 10:14:40 -0400
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24BE5DEDF;
+        Tue,  9 Aug 2022 07:14:40 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id e69so9662799iof.5;
+        Tue, 09 Aug 2022 07:14:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=Qgyr+32CceGsT0l+h5ryRLscX/cbGb6A+xgqfxNnSjE=;
+        b=uzd7OniKT7wJWEw5o23AGZgkWDwj/z2FPVxsUsyGOPRLpON+Mvz4l10tgPPTWhjnan
+         5O3ihB9NEBop/gVmRW+hnvEoD9t5NVRFvQsz7HL5ZgF/KAwI7SfOB9s24Uxc9BR1t1uv
+         jyNGu3b7N0ZeZS+c0U2VsW0+zntrLvz3VPyRHu7thWI0UBGitK5vf1AkghIUsL4ThnSN
+         IRFl74dElhjaca1/qTq3KbPgKdCNkNaYKQsUso8y2V5RRrNds/F6anVmy089tWT8XxqG
+         a2AVXVgan6jzGxZTJLCQVntASaydQEk0o8u29eJifuCDQEARKEupyxy738HNMERg8svB
+         2kdA==
+X-Gm-Message-State: ACgBeo0raATBnJdnLBGMNNeZLUHHeg4gYuW2nt2hLnlCWepBjTE5OeES
+        UE4/WuuKKKxLrJ46+LzxRw==
+X-Google-Smtp-Source: AA6agR4Ha6qVwthQuAETuobnGoOie1LPqRZXH3lXZnPOwMUi0rO7JQSfIeH7D7YvlZQ/DynOPNiZxw==
+X-Received: by 2002:a05:6638:1386:b0:342:8d69:71c2 with SMTP id w6-20020a056638138600b003428d6971c2mr10163189jad.315.1660054479123;
+        Tue, 09 Aug 2022 07:14:39 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id c20-20020a0566022d1400b0068226bcb7aasm1151011iow.38.2022.08.09.07.14.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Aug 2022 07:14:38 -0700 (PDT)
+Received: (nullmailer pid 1746668 invoked by uid 1000);
+        Tue, 09 Aug 2022 14:14:36 -0000
+Date:   Tue, 9 Aug 2022 08:14:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Conor.Dooley@microchip.com
+Cc:     jrtc27@jrtc27.com, tglx@linutronix.de, maz@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
+        daniel.lezcano@linaro.org, anup@brainfault.org, guoren@kernel.org,
+        sagar.kadam@sifive.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        qemu-riscv@nongnu.org
+Subject: Re: [PATCH 0/3] Fix dt-validate issues on qemu dtbdumps due to
+ dt-bindings
+Message-ID: <20220809141436.GA1706120-robh@kernel.org>
+References: <20220805162844.1554247-1-mail@conchuod.ie>
+ <YvGBYKZyW0B2/wSr@Jessicas-MacBook-Pro>
+ <94fe7e46-6156-1cc5-a4dc-1eee78e99bc4@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6a1977971317059fcfad685869b6ccf233edcb68.camel@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <94fe7e46-6156-1cc5-a4dc-1eee78e99bc4@microchip.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 09, 2022 at 07:01:10PM +0800, Tinghan Shen wrote:
-> Hi Krzysztof,
+On Mon, Aug 08, 2022 at 10:01:11PM +0000, Conor.Dooley@microchip.com wrote:
+> On 08/08/2022 22:34, Jessica Clarke wrote:
+> > On Fri, Aug 05, 2022 at 05:28:42PM +0100, Conor Dooley wrote:
+> >> From: Conor Dooley <conor.dooley@microchip.com>
+> >>
+> >> The device trees produced automatically for the virt and spike machines
+> >> fail dt-validate on several grounds. Some of these need to be fixed in
+> >> the linux kernel's dt-bindings, but others are caused by bugs in QEMU.
+> >>
+> >> Patches been sent that fix the QEMU issues [0], but a couple of them
+> >> need to be fixed in the kernel's dt-bindings. The first patches add
+> >> compatibles for "riscv,{clint,plic}0" which are present in drivers and
+> >> the auto generated QEMU dtbs.
+> > 
+> > IMO the correct thing is to have QEMU use a qemu,plicX rather than to
+> > weaken the requirement that a non-generic compatible be used. Otherwise
+> > you end up with QEMU using something that's marked as deprecated and
+> > either the warning remains and annoys people still or it becomes too
+> > weak and people ignore it when creating real hardware.
 > 
-> On Thu, 2022-08-04 at 17:12 +0200, Krzysztof Kozlowski wrote:
-> > On 04/08/2022 04:15, Tinghan Shen wrote:
-> > > 
-> > > It's because the 'mediatek,mt8195-smi-sub-common' compatible incorrectly
-> > > matches the 'else' conditions for gen2 HW without gals.
-> > > 
-> > > Rewrite the 'else' condition to specifically identify the compatibles
-> > > that utilizing gen2 HW without gals.
-> > > 
-> > > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> > > Reviewed-by: AngeloGioacchino Del Regno
-> > >  <angelogioacchino.delregno@collabora.com>
-> > 
-> > Unfortunately, your patches got corrupted.
-> > 
-> > 
-> > Best regards,
-> > Krzysztof
+> It's already in a driver so I figure it should be in the bindings too.
 > 
-> Do you mean rebase to the latest linux-next?
-> I'll rebase in the next version, thanks!
+> In arm's virt.c they use the generic gic compatible & I don't see any
+> evidence of other archs using "qemu,foo" bindings. I suppose there's
+> always the option of just removing the "riscv,plic0" from the riscv's
+> virt.c
 
-Hi TingHan,
+I think we're pretty much stuck with what's in use already.
 
-the issue is that some line wrapping happened on your patches, which broke tags
-and also the diffs themselves (it's very obvious on patch 3). So you need to
-sort out your setup so that no longer happens, and resend the patch.
+I'm on the fence whether to mark it deprecated though if there is no 
+plan to 'fix' it. Doesn't really matter until the tools can selectively 
+remove deprecated properties from validation.
 
-Thanks,
-Nícolas
+> >> The final patch adds some new ISA strings
+> >> which needs scruitiny from someone with more knowledge about what ISA
+> >> extension strings should be reported in a dt than I have.
+> > 
+> > Listing every possible ISA string supported by the Linux kernel really
+> > is not going to scale...
+
+How does the kernel scale? (No need to answer)
+
+> Yeah, totally correct there. Case for adding a regex I suppose, but I
+> am not sure how to go about handling the multi-letter extensions or
+> if parsing them is required from a binding compliance point of view.
+> Hoping for some input from Palmer really.
+
+Yeah, looks like a regex pattern is needed.
+
+Rob
