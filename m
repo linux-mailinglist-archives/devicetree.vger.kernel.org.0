@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE11F58DBEA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 18:28:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3D2A58DBEE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 18:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245027AbiHIQ2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 12:28:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44352 "EHLO
+        id S245033AbiHIQ2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 12:28:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244965AbiHIQ2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 12:28:02 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C52231EED2
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 09:28:00 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id bx38so13487070ljb.10
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 09:28:00 -0700 (PDT)
+        with ESMTP id S245013AbiHIQ2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 12:28:03 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0778F1F2DB
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 09:28:02 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id z6so10259568lfu.9
+        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 09:28:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=vvjM538Lt57aPAtY3bjfgbW8emF1tmOhCzp45F4HTBs=;
-        b=ICG/3Y0P4RWgA/0Gi/4UlpWVRyTdyma//p23F60dT0+Zmw3VXvEqVGA5ukzEv+cw2t
-         PnWHJ99YeOEmlzLjMF9eAACAKuU7E1VvZ8UeYybhftlXIDyduv8eOqYd7Fm+zF+1mXws
-         bzmQoxqiwasnz+YqZtVqpfpQacvrfybziWBylA2q9ia2G/5HJiSA+mqhSx4FIBF0yYEK
-         b8Xkwbr0Mh61hsjdAUOMku/GiQW51z6ykQ/t9abh5f+VkoRpAP7VfIEEu0R2AAgysp7O
-         UA1RmYBz2NzfEidhLjPpQ5vQ3muEqkJ5DE7PX6mVHQuay4bboakfxaxkS5MZB6JEhCuz
-         SgMg==
+        bh=VQqWBeEw3qmpRlqqPzE7ts9pNLZupNqxFvrZxuptWIw=;
+        b=j79cXYWF8zWqA57u666uDxDQhQSxVG4iHrBRVvIitGuWL3K37eFf18TlAp2CYAcAvf
+         k/cvVQQag/Jn2M+i8GJ41Ar4NcO7nre1mhTl3A36V6Xpsz5Bni6NO6pWjwavxsWPrVKH
+         tI2kusCmuH3F6Uj10cVQ7EftmfmtzZqnopM958bWnpYTWKObaSzu8zXuyOITi5j/onEB
+         Z5plD+zVaKsjLLhb1QmZOqK/3L6VJq4eVxpgqk2QwugxZCTU4evWptwT62bEmnhwWHa3
+         npd0xSDsOVJhgvboIJTo/8h8iegXTYZgZPwn74VBjOtej/oGhF6hMzRQwVs/4J0epcPt
+         5XAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=vvjM538Lt57aPAtY3bjfgbW8emF1tmOhCzp45F4HTBs=;
-        b=e//t4NI3W7/vw+hwrImc/ptKv4Pvk1ARS59kzRew9Fw1MzVsPH47nCfmY1OMm5Yrtn
-         Jm3HmZ+1Pjxtkc/3FRxAQdJuE12c4l1YMcZ0mqG4MEEwwI+8vpUe3SYA3CRX5zE+1K6C
-         5x7VDwoR9CxTEXM6GnW09Y0LkkMEbU3BJIe6jKl4EJT6caMsxCtJVgFY3Qb4SSR1+sgu
-         hb5DeoHRwsoBsna2dFmiLLzqCsfl92B7sEupFZXE6dJbFlJ48viqUqVvT1gwrxUMb0Tp
-         CIEdWLtfaZy776u6Ov/GxPJMFDP7B9TkHZhplgExSM1dRTUob468EaW0m8T95VjmzxPN
-         CjvA==
-X-Gm-Message-State: ACgBeo2OUEFCjHwfsbTMUesO9qalGcYq7tjgfXqEUttY/iKAO33Xd/LJ
-        b+qhVnPtS2Paic4UfV9+9E5mXg==
-X-Google-Smtp-Source: AA6agR4nSP4Nvz03+ppBOMLl8U1WhyjNooB6UiKwR/ZbuBfV0W58Zp1a5YPASidYywxtpOignuTHhw==
-X-Received: by 2002:a2e:a884:0:b0:25d:d8a2:d18c with SMTP id m4-20020a2ea884000000b0025dd8a2d18cmr6982978ljq.305.1660062478560;
-        Tue, 09 Aug 2022 09:27:58 -0700 (PDT)
+        bh=VQqWBeEw3qmpRlqqPzE7ts9pNLZupNqxFvrZxuptWIw=;
+        b=vl/pNbf/dQb447ih6yIdKMYOwCG47oAijYnVTowe6wYs0CdyEZB8rM4xXtaxorHu8E
+         /54aP6ZQj0VhiW7vIm/m1hdoms4V7SYcY/0iEvxPTx42RA9OvY5tGTsezSp1Sb/28+4t
+         vUtqpvXQBe5eS4RU6k1n+HzE6umWylw71jKF6YXB6h5SPfIdDuQLzszcej4bgD7zfJFy
+         OKsNIx4BBpOOs7LeaQEgE+Fz6vfLiiZg61lwq4pN5PSzn3tRR8Uko7ocN9NrutBcLicM
+         DY1Tl9y5E2wQjptTdMk/1f9huMxtKDw5CDHWnc+LnOReJPO+pjvs3UnF3KcB1cueQciU
+         O9+g==
+X-Gm-Message-State: ACgBeo2VuO5UIPD4xj+eXiwjNXVdA3moV08KwdsRc8jQzZbFWwFtKT4q
+        qrEwBJ+gbDM7aPlnH0BxvjKVqQ==
+X-Google-Smtp-Source: AA6agR7eDE6idEdhMhZWlMx2pyUpEsLs29Q4eIc0ackncepXx/MXNZjkccFDQoE9WCyEbZAey+9A4A==
+X-Received: by 2002:a05:6512:3b06:b0:48b:239e:be with SMTP id f6-20020a0565123b0600b0048b239e00bemr8058254lfv.586.1660062480249;
+        Tue, 09 Aug 2022 09:28:00 -0700 (PDT)
 Received: from localhost.localdomain ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id h7-20020ac24d27000000b0048a8c907fe9sm20999lfk.167.2022.08.09.09.27.56
+        by smtp.gmail.com with ESMTPSA id h7-20020ac24d27000000b0048a8c907fe9sm20999lfk.167.2022.08.09.09.27.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 09:27:57 -0700 (PDT)
+        Tue, 09 Aug 2022 09:27:59 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Michael Hennerich <Michael.Hennerich@analog.com>,
         Jean Delvare <jdelvare@suse.com>,
@@ -71,9 +71,9 @@ To:     Michael Hennerich <Michael.Hennerich@analog.com>,
         alsa-devel@alsa-project.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: [PATCH v2 1/5] dt-bindings: iio: Drop Joachim Eastwood
-Date:   Tue,  9 Aug 2022 19:27:48 +0300
-Message-Id: <20220809162752.10186-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 2/5] dt-bindings: iio: Drop Bogdan Pricop
+Date:   Tue,  9 Aug 2022 19:27:49 +0300
+Message-Id: <20220809162752.10186-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220809162752.10186-1-krzysztof.kozlowski@linaro.org>
 References: <20220809162752.10186-1-krzysztof.kozlowski@linaro.org>
@@ -81,7 +81,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,41 +89,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Emails to Joachim Eastwood bounce ("552 5.2.2 The email account that you
-tried to reach is over quota and inactive.").
+Emails to Bogdan Pricop bounce ("550 5.4.1 Recipient address rejected:
+Access denied. AS(201806281)").
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 ---
- Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml   | 1 -
- Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml | 2 +-
- 2 files changed, 1 insertion(+), 2 deletions(-)
+ Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml b/Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml
-index 7c8f8bdc2333..9c7c66feeffc 100644
---- a/Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml
-+++ b/Documentation/devicetree/bindings/iio/accel/fsl,mma7455.yaml
-@@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: Freescale MMA7455 and MMA7456 three axis accelerometers
- 
- maintainers:
--  - Joachim Eastwood <manabian@gmail.com>
-   - Jonathan Cameron <jic23@kernel.org>
- 
- description:
-diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml
-index 6404fb73f8ed..43abb300fa3d 100644
---- a/Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml b/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml
+index 54955f03df93..ae5ce60987fe 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,adc108s102.yaml
 @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
- title: NXP LPC1850 ADC bindings
+ title: Texas Instruments ADC108S102 and ADC128S102
  
  maintainers:
--  - Joachim Eastwood <manabian@gmail.com>
+-  - Bogdan Pricop <bogdan.pricop@emutex.com>
 +  - Jonathan Cameron <jic23@kernel.org>
  
- description:
-   Supports the ADC found on the LPC1850 SoC.
+ description: |
+   Family of 8 channel, 10/12 bit, SPI, single ended ADCs.
 -- 
 2.34.1
 
