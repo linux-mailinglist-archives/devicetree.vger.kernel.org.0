@@ -2,79 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B849E58D354
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 07:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D17958D364
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 07:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235135AbiHIFrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 01:47:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44626 "EHLO
+        id S230022AbiHIF5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 01:57:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231970AbiHIFrG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 01:47:06 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70871CB01
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 22:47:04 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id o2so8265537lfb.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 22:47:04 -0700 (PDT)
+        with ESMTP id S235428AbiHIF5h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 01:57:37 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BE181D323
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 22:57:34 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id u6so6611113ljk.8
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 22:57:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5LBQJymvxNHE24FaPTYPnqJCdE1pFFrxPDyluiIfEnc=;
-        b=kBvlTxpCOc5yaYvsppc8dS4mw7EXR/4QpqKBKhq00yO3Jv5hBVhBuwd6ub3f2wxDYk
-         nkAxBhpDh6d0aZl3Iq5V7ZxwsxD3XzbAxz00VeASRTPVjw5CiP0zEAKYuimVwln1UBb3
-         sA9ytrIe1SxMnvtdI3mrLXE2PMKzH5s/Jo1+zUojl1Sz3ypUMEESTKGQ2lS/8mc7lX4m
-         D7Tn8un3arGcnF2TdIk4EzGBzuAlFY9PL1ssbRjP51oy3ZWU0KFhxnkfUD3yMfr5tZG9
-         oQhGqI2HTvlFhfuQvbOhad1ourha+qmSa9OrmEJ2FtN1/9qpunXSgjm49s83X6B/ZqnG
-         MqsA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KINEf/W4t5TWaccuFrwzG0MR+MtGhaWK/ta0M81cluM=;
+        b=MxCoAZKOsuXIqZOJdYt2kNL0DAGOO+nQDd7odztJ2+5gsNxZnCkX0hZ39iiWe4fmLK
+         PN2XSwjFXHrcMXU+luitYQSbZ5Q7zc9xM2KEEnJy8QBJeG/t4n+4Po+gi2SVkWtV2YeL
+         D5RU1JXYfdqasVZAUfkhKy42hrG5a2OLT+4tT1maT9zrL2q8/eRFbrS4qpUw6YCvBxyq
+         jx1+rUoubhiq/HUcdhOdAs3aUAwcZAPntEr5nLTXQRaqphPM3VuxPoahYGAe2R8tTpi0
+         /vEUkpfKYZup9qfFFj7AdeLEaVgzmEevwrMuM47DwcqxpuHfscESOcNhjr/81UHXXMKX
+         iM8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=5LBQJymvxNHE24FaPTYPnqJCdE1pFFrxPDyluiIfEnc=;
-        b=EgL7xZJ7szQcWBYh4z5PYfMPyRQJJWAEpIYfcrN6jK9YVGseHKHvR7c9UGLXwUv2GH
-         xItuyqhYUjkiyA7XuGYztvrIKxxTIrlUeDiM4YKgq+S0dFBhz7/8ODBuhwbqsJ+2MEl7
-         GNa9dypsolWb+xLbo5FhfOHCK3In2DeUp80jeX8ttZK+iApi9q7C9MMDkGiMhqXnALsV
-         Itd2NibCBV7Y8L80sCPUrm9ITDp2ooRNMAHpzhrUTkgFrEwN3m6iat7qoz6GEnjaylbJ
-         ILDgKe6hmTGIhipmxXdwP5nBaC3EkPH7HqX6BYoM+OrlqmmRSx+3C2WoqAUqlvWMkZ2o
-         998w==
-X-Gm-Message-State: ACgBeo3fyTYqBgQtk+u0jgeKrI2uIUNCMUQiiwYJWusxMUuVoXE8YkXr
-        KUitz0Vx7F1h1d1VTtYmUxnb4w==
-X-Google-Smtp-Source: AA6agR499O4vzQhRHFVBRwbN0SJDy9NXAQre2YictNprW6je38pUaKfxM07XbZ/bVPFhFXBEHu92hA==
-X-Received: by 2002:ac2:59c2:0:b0:48b:1827:dd43 with SMTP id x2-20020ac259c2000000b0048b1827dd43mr7951297lfn.132.1660024023224;
-        Mon, 08 Aug 2022 22:47:03 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id z18-20020a2e3512000000b0025e2ff06c19sm1549428ljz.50.2022.08.08.22.47.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 22:47:02 -0700 (PDT)
-Message-ID: <c2ce0563-86fc-6049-ee53-b45753335352@linaro.org>
-Date:   Tue, 9 Aug 2022 08:47:01 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [RFC PATCH 2/6] dt-bindings: crypto: add binding for eip29t2
- public key accelerator (PKA)
-Content-Language: en-US
-To:     Daniel Parks <danielrparks@ti.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
+        bh=KINEf/W4t5TWaccuFrwzG0MR+MtGhaWK/ta0M81cluM=;
+        b=Qwusia2JspEJFm53YIrl4h8/+eBcMWdUjM+n4FjQJiOrqEruKGPuFLLmBSe99HI6PB
+         ff/51HP1G4Ufjx3El4tBu6Rcms+nvCbgiVa8F+eGfbNUPK78lu/aiugSdmDVwFNfoRBD
+         7vDdGCPjI591izOPj45sPR2u39zD3zVZR2K1vUHkwn6tH08hWZuCk40B9t9IquaZ6/Ce
+         Y2Cqtqq00SDCAWQfwKScyiKtXxjwpiAWM0AnTLdf1mQlwTcka9rQWqdsokuOYtGAYNSi
+         AU/Eh3QX9EhXlvpUCn/UnTeiS1eFEBYYwPckpKKMwQE+DDrhQO67Om9PpIHl1Z7l6P9G
+         ajCA==
+X-Gm-Message-State: ACgBeo0B02eDXtWMSm1ayqfYmvK3mGJa0QpBHqXZcY2lp0/ism2ffWtG
+        KUzSaENR5ojbn6BsMmqaAPcN+TwjKq+ubYrY
+X-Google-Smtp-Source: AA6agR7Tf8hS9GdPkMqpMPlR2hA5a+tL4eVunhSXBds31WlgEuQinLuKuMUhl7PB7BYl4BonmilNGg==
+X-Received: by 2002:a2e:93c8:0:b0:24d:b348:b070 with SMTP id p8-20020a2e93c8000000b0024db348b070mr7145942ljh.434.1660024652823;
+        Mon, 08 Aug 2022 22:57:32 -0700 (PDT)
+Received: from localhost.localdomain ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id w27-20020a05651c119b00b0025e01ee7229sm1558012ljo.54.2022.08.08.22.57.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Aug 2022 22:57:32 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>
-Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <cover.1659985696.git.danielrparks@ti.com>
- <856cbf3a002b5d400bbbdb7aa914ab5b8681a96e.1659985696.git.danielrparks@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <856cbf3a002b5d400bbbdb7aa914ab5b8681a96e.1659985696.git.danielrparks@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] MAINTAINERS: ARM: marvell: include bindings
+Date:   Tue,  9 Aug 2022 08:57:29 +0300
+Message-Id: <20220809055729.19242-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,55 +74,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2022 22:12, Daniel Parks wrote:
-> The PKA is a mmio-only asymmetric crypto accelerator available on
-> certain K3 devices.
-> 
-> Signed-off-by: Daniel Parks <danielrparks@ti.com>
-> ---
->  .../inside-secure,safexcel-eip29t2.yaml       | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip29t2.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip29t2.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip29t2.yaml
-> new file mode 100644
-> index 000000000000..b1e195a108cc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip29t2.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/crypto/inside-secure,safexcel-eip29t2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: K3 SoC SA2UL PKA crypto module
+Include top-level Marvell bindings in Marvell maintainer entries.
 
-If this is the child mentioned in patch #1, then this should be first
-patch and your next one should reference it.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ MAINTAINERS | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> +
-> +maintainers:
-> +  - Daniel Parks <danielrparks@ti.com>
-> +
-> +description: |
-> +  Asymmetric crypto accelerator
-> +
-> +properties:
-> +  compatible:
-> +    const: inside-secure,safexcel-eip29t2
-> +
-> +  reg:
-> +    items:
-> +      - description: control registers
-> +      - description: mapped memory
-> +
-> +  interrupts:
-> +    items:
-> +      - description: PKA interrupt
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ee8f04918d44..b087994f8783 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2301,6 +2301,8 @@ M:	Gregory Clement <gregory.clement@bootlin.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/gclement/mvebu.git
++F:	Documentation/devicetree/bindings/arm/marvell/marvell,dove.txt
++F:	Documentation/devicetree/bindings/arm/marvell/marvell,orion5x.txt
+ F:	Documentation/devicetree/bindings/soc/dove/
+ F:	arch/arm/boot/dts/dove*
+ F:	arch/arm/boot/dts/orion5x*
+@@ -2317,6 +2319,7 @@ M:	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+ S:	Maintained
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/gclement/mvebu.git
++F:	Documentation/devicetree/bindings/arm/marvell/
+ F:	arch/arm/boot/dts/armada*
+ F:	arch/arm/boot/dts/kirkwood*
+ F:	arch/arm/configs/mvebu_*_defconfig
+-- 
+2.34.1
 
-This could be "maxItems:1" because your description actually does not
-bring anything new, but current choice is also OK.
-
-Best regards,
-Krzysztof
