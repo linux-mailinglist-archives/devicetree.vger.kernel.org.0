@@ -2,313 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D628358E38E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 01:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8036558E39F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 01:17:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229589AbiHIXFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 19:05:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51224 "EHLO
+        id S229485AbiHIXRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 19:17:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbiHIXFs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 19:05:48 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3641C1583B;
-        Tue,  9 Aug 2022 16:05:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1660086344; x=1691622344;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=yQyg0KFxf+7334XyLs4bya45KPJ+B01o9xQYzlgJTz4=;
-  b=k2eWLIeD5g5JCqT2vL/z+zMZv7CSt89w6ol2LisVpXlZlgv2TBM6qeqE
-   3Aa6w7KsqqmwHDYXV5DXkC8TCa1EXYdV59kYuOp0EkgI9rrOZ1CqfhIZ2
-   aLPxffM4UWdLpZPchkKFUR+EP9BTAkva8a8tH6jQwRH9g+qqybNV9WELs
-   ObcVvrUdifge65DzrZSAl3SRZXPGjm+EYa3Ndskj/MNcpTDAt6sbb02tO
-   qzvtzX8kH3z8eYTpZVMN5CvQ7sLdJDqoZnyCa2Uuq4tMDdFCFFGRgYIl7
-   fdnK/0d0HstbGlQcyNS6F4ODxlcbwbqV5zPaFiX5El7jX8T4m81RoJhye
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,225,1654585200"; 
-   d="scan'208";a="185816293"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Aug 2022 16:05:38 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Tue, 9 Aug 2022 16:05:37 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
- Transport; Tue, 9 Aug 2022 16:05:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bo0qD6OUXuaiB3bgdgITlRUxU/jX5NpVUyO5tMUwvs/Mnykizm1rMCS0uSHZdhoN9pXsT7tinMBXUvus5yWUFrREbeqNG3KjUR5bPeFOA3eKzVzIBpA4VQJtT7iD5Vji8L7d+HAnzljC0K0k+77wlQ6fE043SA6/YCn5KOClhQOhz/ujvc4AppQTlCZDCIALsMIMp/9Yce57gviqcaTB6Ufb+dz6MM/XfHGNMOltlUzA8LdzTmWmhbpHIDw6BTTT0wpOToX7LZBgYkTBl4QJyIEHzp3jWCVamBCfZXQLzblZt0Q6TafeECa3MiiL93kcUO5+7x2GzJCoh6IA/rkrCg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yQyg0KFxf+7334XyLs4bya45KPJ+B01o9xQYzlgJTz4=;
- b=Z1pR3JYAsiZUCx2rpPdNab/02kJz/uEUEkPkg68akDskViWsMoNCSu92fgX7FL/nKMW5eaA8OYYjI9ZYU48IfgR1ZAExIG14nI9nMFHPTp0dGr9SJx5I9x6UFRgc/oWeSwhuaE/Y3lpTyydqOkzh9TUEek4XMKZNMbbPVR5ROtFhqypgRIk0JeZ7tlcMkys/5qEQfwqUHJQHr/S6HtLMXxUmZVYO/zHAuBOQf2uC5e+bMl+5bnOrYIrhmD/PjdDLJ/ZRaNqqa0RsOKUmqEzJoTTGjiHfZvuGD0uRNX751MxqLQbfmSfpm5l9uuEHGpI+f6hpYbDnGMhpylPGRs7DJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        with ESMTP id S229449AbiHIXRP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 19:17:15 -0400
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7476D6E2C9
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 16:17:14 -0700 (PDT)
+Received: by mail-pf1-x436.google.com with SMTP id q19so12139639pfg.8
+        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 16:17:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yQyg0KFxf+7334XyLs4bya45KPJ+B01o9xQYzlgJTz4=;
- b=ZM4/OvUyKcznis1p6QZ+X3YmSSc8+5ZWG1aMkel7QxRiCRZJTDgnKFkvgkf+jTRp5QNeL29WJUrden5PXqy9kj9rPpL84Xl5oj05YDjvAcfCUEpNEn91x7y1wzJctmVMrwan5mtPGV1X0KH84zhVQH9q0vlcGCFTJ8bIHOy/s40=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
- by SN6PR11MB2895.namprd11.prod.outlook.com (2603:10b6:805:cd::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.16; Tue, 9 Aug
- 2022 23:05:32 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ac89:75cd:26e0:51c3]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ac89:75cd:26e0:51c3%8]) with mapi id 15.20.5504.020; Tue, 9 Aug 2022
- 23:05:32 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <nathan@kernel.org>, <ndesaulniers@google.com>,
-        <llvm@lists.linux.dev>
-CC:     <mturquette@baylibre.com>, <Conor.Dooley@microchip.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <paul.walmsley@sifive.com>,
-        <aou@eecs.berkeley.edu>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <Daire.McNamara@microchip.com>, <palmer@dabbelt.com>
-Subject: Re: [PATCH v2 00/12] PolarFire SoC reset controller & clock cleanups
-Thread-Topic: [PATCH v2 00/12] PolarFire SoC reset controller & clock cleanups
-Thread-Index: AQHYj5/vIrxOVV1EL0SoHOsgiQHkyK2nacwA
-Date:   Tue, 9 Aug 2022 23:05:32 +0000
-Message-ID: <bd14f1a2-750d-2511-df0a-85a9f5925f84@microchip.com>
-References: <20220704121558.2088698-1-conor.dooley@microchip.com>
-In-Reply-To: <20220704121558.2088698-1-conor.dooley@microchip.com>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8fba6742-dfa7-413d-25af-08da7a5ba923
-x-ms-traffictypediagnostic: SN6PR11MB2895:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: d7VdJHmOk26nlrnP+SgVFmHUMBR+klmXKPRuaplcI4M10P8GzZq5Sf3EFpJ3ip+9kbqxzG21yozMU7NYP3l239CWsuB4o+qh0aquUABuVHSTmA/5nN09pDBKDzOaWfL0O9kwTy5+1ZWOvUxcD1NUVfX8lVRfyVT6YW2ztL3N5/1BGz3O2t5bVc93Bh44NvGq7/P9uNMgFjRuWzVjtG0e+ke94sOZ9nwD84//IZGg0lIynaWz6Ste2fuwMruvuP7DrjR9uV0mwJfTeQ101tnbyOHH5KbsYg1w2GKBBVKruaSsmeVQuAuytC8XLCtCnvsJXOs1vOn0bjNto7oEf5jhYVyLUtZFXdYOeJJCIeAVtLDnWtHYZHa4+01F88TTPkEeIw0zJIlBA6IZwG7PZ13V9N7Ddg1AFgm0TrcBG9ZvimEQ1tc02okN/NVKtHRmJ8YuxikKsAPa9xDyUNkSNYkyhEiFCOSQoDvHp2PmQgy8+WZib6EJrNBQi3lxZ1WBl7qAQiGdmjtEVDd2eavh5XOjoQmA+spCtSMw7sEXb1XJdg2TGd444ullZ17Q/R7GpfdcIiVz9hO9zo8kiAocEUtVdROXtN4BtfDP+i4r4G4VveTXFHSNQznlzG+YLCuWHPBwyihlYw+4XHxhYaNEHuHDV5WLuObGFDtMqcZF2retOdFxBnLCvqwXAicNBNB1IwNe2SK4Xki1CnuCsOqGINAcvn2k2P3H/7FpSttNPcbF7q2Mq9/9cK/3J6Lx9NXdOCkJV8NlQG7KJc8v0QPcSZYsKFPNlyYyxhjOH972vM0enfjYH7N43VZBM3uZbQgfbDg+TQHVMxtRspjX5nDllFS5Ut6fQ+S3vLOBR2xe4kbK6gC/Zo4+h4tcpy1YUfLij/Xv9hF2+yzomke8gUpflkq+Tf7GVQ4mG7jnJwA9MlSWDp5CUTz8kKbDdFO2qLBkpK4G
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(39860400002)(366004)(346002)(396003)(376002)(136003)(83380400001)(31686004)(26005)(6512007)(36756003)(2616005)(186003)(91956017)(4326008)(110136005)(76116006)(86362001)(316002)(8936002)(966005)(41300700001)(6506007)(2906002)(53546011)(6486002)(66946007)(38100700002)(66446008)(71200400001)(66476007)(66556008)(7416002)(64756008)(122000001)(31696002)(5660300002)(54906003)(8676002)(38070700005)(478600001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TmdJWmtZUWp4TGMrOUlSaVRhbHZKYXlBcm96ZWJjQW5GVVZqb2FTbjNnSGFl?=
- =?utf-8?B?TTcwMEw0YkpEd2pmcEFqMi9xK1E3Y0VWbXZzZENlbmJlMGtPczVadmMvZFAw?=
- =?utf-8?B?MzlkcG1vc1djdXlMVHd0RVE2VzdjUnJnODVXR1ErWTNqS3Y0SjlFUEdBazVv?=
- =?utf-8?B?c0hxU09hU1hnRGkrbzlnRDdFZWs1aE9uR0tiajQyK2VndkVUS1Zya21zOEhI?=
- =?utf-8?B?S1NETDAzNFNidmQ1STJmUEhsSDMxYVZEbzhSWElxeVByYUxKYlBtRHVzMkxU?=
- =?utf-8?B?Zktzb0djd1F3YkE5Z0R2ejhDRVZPQitjamIyM0JBRFkzdU5Bck9VUzRPV0dp?=
- =?utf-8?B?WXA5SDhKMDRka0ZsZkFYejdHWTFoWkVNMngrZFZWd2VQdWpocUNzNStlQVBL?=
- =?utf-8?B?empLYmNCdk5LZkdLOFVhUGpqMnIrZUtnOEF6NmN0eGx6dzRHN2NNMStXc2w3?=
- =?utf-8?B?cE9TZUNNcFZDeTJVaWorL0l6Q1cxcHZEOGRBRytKZm1XSHlsL2Rvc1FSckE3?=
- =?utf-8?B?Y0J0UVZXVFkvYXNZQnBIUHN3c29WYVpnR2Z1VEtndHovWjV4Q3ZVMDBycXFv?=
- =?utf-8?B?NkVOejByVGNoWmJXOGVjVThCR3Y2VjUzcWxyT2hxTTQ0YmFuNXpNUml6VFJW?=
- =?utf-8?B?anhGN2d2NHlhdjBHMkpHbjR4bFNqU3RrMTZrMS9odVJOOVBHbnV3czkxczY5?=
- =?utf-8?B?M3BoaUZLL2tVOHhxZ3ppa3BJWEdKS1cyOHQ0bjhaV0lWSER2UXYrWGNlSHRY?=
- =?utf-8?B?WnRkc0JyNlJTWTl0MXpmQzVxZXFCZkpNWDBoajQwYXJmQlB2aDlwdEJ0WElC?=
- =?utf-8?B?cStYOU9uTmFzYjl0Q09mN3Vyd1lteVkrZC9MUWFZODhKcytLSXlkZGVFWkNy?=
- =?utf-8?B?dDRvMk55UXA1ZEpEOG43a25NT2NCd1hVSnlIT2pCdXlSZVQvdDlwdTREYlFC?=
- =?utf-8?B?dGk1VHdKakFPTWN5STJKMVRHemFnM2hiL29mZXpUbkxYZUNLWkl5bXlyK1VK?=
- =?utf-8?B?RTJUbDBwSjhUcmVnaURCMmtKaVlHdHdVQWlVYlNnR3RPRlFqc0VITFZBOFNM?=
- =?utf-8?B?N29zSEJ6V0NvNHBNc0UxZUJwVlZjRGM2UEMrZ2tHUHM1MU5OaEREVDJzM2ZV?=
- =?utf-8?B?bG00cFBwaER6UVhscXhpZ0ZPU21jUlgyVWJTZUVVVHJzYWFZeFdmRWNBT2tK?=
- =?utf-8?B?YWlWOFk2bFM5N01LUzQwaHgxNFBLenIrRm1TVk9kRHd6OWtyTHU2UmtCUXEx?=
- =?utf-8?B?WlByTWlWL2lUeThIc2drVDRwakh2bkorZ0RRYWdtZ09tcnF4QUtpUWI4Ui9I?=
- =?utf-8?B?Y3dva2FqRkFHTjhyS1dzOWpoTEhxWkVnbWtNTDFOK3FWQmFUeFFka3llNjNr?=
- =?utf-8?B?b3d5ZFhQbG12QSsvZWR4ekd4b0hURFVRbFdkT1BJMVFpTVdYNXBOdWZoNits?=
- =?utf-8?B?ZkZGc1ZZanZkdFdydytNWGdNSmxXUUlxbWlCWitSbGVJSWt3MVMrS2NTeUg2?=
- =?utf-8?B?Q1YzNGhHWlplUzM5K2RudDlsdklOWHhDdW5ISjZ2UklsUjVlMk43OHh3aDE0?=
- =?utf-8?B?L2hob09CMXRaN0dHdkRxeHZGQWdCSVRQOVdVZXp6TGlqTWw2K3NSWWVmZkRD?=
- =?utf-8?B?VDJ0ZUZYc0JpN3ZvTFFxVWNkYTM3L2dyNklUV0F5RFJlWXJXL01HNjNyYVVj?=
- =?utf-8?B?R29JK0dUNWxpM0Z2aDEyRFpHRkhqYW1zcHFCcUk4TVZiUzJ5MlJjU01aOTJF?=
- =?utf-8?B?NUF2dGZ4cEpmbW9VK1N0bTRKOHY1M2FtQTFFdzlMOFJQVUJlVzRlNndmeFpy?=
- =?utf-8?B?QzdobUdBOEJIV0ZUcU1SbmJoUXErQ0kxd2pLOEpYU0orcEw5ODhkM0t4bTkx?=
- =?utf-8?B?SURnL2FZOHFWK0JuV3EzRmhOcDBBNlBla2hKWnRMOEZHOFVJK3J3QUluN1Zt?=
- =?utf-8?B?VGROTms0Q0wxMXRBSTZLZ0JsK0Nvc1lyWEE5Q005WExnekFZbmlsb0RiTWFY?=
- =?utf-8?B?TWdtbUFucCtPdmpjTE9pTGo5UkI3QUZjSG52L0NmODE5d01pK3krd2ZxWGJU?=
- =?utf-8?B?MVJkT2dTTm5IUVExTkV3aXNYNmo4ek4zODdTTm1paTQvUW9mVW51R0RzN2dG?=
- =?utf-8?Q?8aZsjfANoH8UEkhjpgTt4lzzg?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6B383115CC99FB4BA9DC7A4439801266@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=daLNzzCB7AX87ZyaYQTjDFBHl0T6MLp6fE5NbbRrRsM=;
+        b=w+KDOfleBXEUK4IDctSrW5ruwe3EDeVNCYIMKvZx4vDN5XnbR4mOMvDgPcjNxDBKS0
+         4QXOKHbQWtahsRvAs/TV/3ZORGDMHcS5ycmeCQWhR+vl5uFIsX6CgXfoRd8TN7t6KhLb
+         HySvTJmIcuKES/D/8IqKjgDGLzvDQQFxMazvie7KLIEeNpogTxugrnGvQ05eXGWWlFBg
+         3WkkZMoAi3MNqeD8u5k3b+TCOX3o8KD27svSoztDB0T42BckuDvma2ZBaYzozaF+zVJE
+         c6foZfnbbYQuUHnaZrs5P7pMrJG6YiGGVL4ZRF61DgGy4vJrchBJ7lotdTArTOfd8GTR
+         2Wzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=daLNzzCB7AX87ZyaYQTjDFBHl0T6MLp6fE5NbbRrRsM=;
+        b=m0xhcARs9vCb9AGAzGDFsfewmd7jaZMWyd6FmokKlVxvT6PsRaPS5zhk0dONzvY4WT
+         1qZ94duQV8sJCGyCGczXRDfLG6XRyV3UB5hJ4sfy9CMeh7pzwEgtqOw9Nt+Dmpm1VVmh
+         Cj2E4Yg/JJfQKyNfvJfViIy1x4s8AtOoriRxIFeOmRwXS2u9hyS223Ow3cl41u2Yy5iN
+         /5dwjO9LDgSwJOjx58T2lV1XFzhGmX4nC0UjQLG9T1rNNMZS+uyi3KxJg6gJr4vnxDU7
+         KgiSKqO/uyrbAlp76HQEy+1I/2UlUWb0wYG5+ESmoAswjZ6RNUpCTAC+F1R7c55PPo5v
+         P+/A==
+X-Gm-Message-State: ACgBeo1VcDodQI/i+/lZKr3/Pe5NAlme3oOZlaJq5i+oKVyEULKac/pr
+        1EkdpP1Hi3oJ3Ligh59BKQDKsEsjylCtKmzRW6hxHQ==
+X-Google-Smtp-Source: AA6agR7Hnh/WcdUNm07KPgIvehWPa4Zt0MSkBqXq36EgPig1TYD5pg+U1nm/trqnR5P7C7HgptApO50hl9OrM8la3Gw=
+X-Received: by 2002:a63:fd0b:0:b0:415:f76b:a2cd with SMTP id
+ d11-20020a63fd0b000000b00415f76ba2cdmr20661547pgh.440.1660087033850; Tue, 09
+ Aug 2022 16:17:13 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8fba6742-dfa7-413d-25af-08da7a5ba923
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2022 23:05:32.4143
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bfXD3HYQqpuxq2PULuwV11DrbFTmcqrrJvG5ak4Hr6++eYGqH+4YroyYzET+6wnEA0wCN/i4HRYEJJcPYkP0Xs9mhoZqtttwaNfDwk16S+s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2895
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <CAJ+vNU05_xH4b8DFVJLpiDTkJ_z9MrBFvf1gSz9P1KXy9POU7w@mail.gmail.com>
+ <5914cae0-e87b-fb94-85dd-33311fc84c52@seco.com> <20220808210945.GP17705@kitsune.suse.cz>
+ <20220808143835.41b38971@hermes.local> <20220808214522.GQ17705@kitsune.suse.cz>
+ <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com> <20220809213146.m6a3kfex673pjtgq@pali>
+ <b1b33912-8898-f42d-5f30-0ca050fccf9a@seco.com> <20220809214207.bd4o7yzloi4npzf7@pali>
+ <2083d6d6-eecf-d651-6f4f-87769cd3d60d@seco.com> <20220809224535.ymzzt6a4v756liwj@pali>
+In-Reply-To: <20220809224535.ymzzt6a4v756liwj@pali>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 9 Aug 2022 16:17:01 -0700
+Message-ID: <CAJ+vNU2xBthJHoD_-tPysycXZMchnXoMUBndLg4XCPrHOvgsDA@mail.gmail.com>
+Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
+To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
+Cc:     Sean Anderson <sean.anderson@seco.com>,
+        =?UTF-8?Q?Michal_Such=C3=A1nek?= <msuchanek@suse.de>,
+        Stephen Hemminger <stephen@networkplumber.org>,
+        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-K0NDIGNsYW5nIHBlb3BsZSA6KQ0KDQpHb3QgYW4gb2RkIG9uZSBoZXJlIGFuZCB3b3VsZCBhcHBy
-ZWNpYXRlIHNvbWUgcG9pbnRlcnMgZm9yIHdoZXJlIHRvDQpsb29rLiBUaGlzIGNvZGUgd2hlbiBi
-dWlsdCB3aXRoIGdjYyBib290cyBmaW5lLCBmb3IgZXhhbXBsZSB3aXRoOg0KcmlzY3Y2NC11bmtu
-b3duLWxpbnV4LWdudS1nY2MgKGc1OTY0YjVjZDcyNykgMTEuMS4wDQpUaGUgc2FtZSBjb2RlIGJ1
-dCBidWlsZCB3aXRoIGNsYW5nIGJ1aWxkIGl0IGZhaWxzIHRvIGJvb3QgYnV0IHByaW9yIHRvDQp0
-aGF0IGFwcGx5aW5nIHRoaXMgcGF0Y2hzZXQgaXQgYm9vdHMgZmluZS4gU3BlY2lmaWNhbGx5IGl0
-IGlzIHRoZSBwYXRjaA0KImNsazogbWljcm9jaGlwOiBtcGZzOiBtb3ZlIGlkICYgb2Zmc2V0IG91
-dCBvZiBjbG9jayBzdHJ1Y3RzIg0KDQpJIGFwcGxpZWQgdGhpcyBwYXRjaHNldCBvbiB0b3Agb2Yg
-dG9uaWdodCdzIG1hc3RlciAoMTUyMDVjMjgyOWNhKSBidXQNCkkndmUgYmVlbiBzZWVpbmcgdGhl
-IHNhbWUgcHJvYmxlbSBmb3IgYSBmZXcgd2Vla3Mgb24gLW5leHQgdG9vLiBJIHRyaWVkDQp0aGUg
-Zm9sbG93aW5nIDIgdmVyc2lvbnMgb2YgY2xhbmcvbGx2bToNCkNsYW5nQnVpbHRMaW51eCBjbGFu
-ZyB2ZXJzaW9uIDE1LjAuMCAoNWIwNzg4ZmVmODZlZDcwMDhhMTFmNmVlMTliOWQ4NmQ0MmI2ZmNm
-YSksIExMRCAxNS4wLjANCkNsYW5nQnVpbHRMaW51eCBjbGFuZyB2ZXJzaW9uIDE1LjAuMCAoYmFi
-OGFmOGVhMDYyZjYzMzJiNWM1ZDEzYWU2ODhiYjg5MDBmMjQ0YSksIExMRCAxNS4wLjANCg0KSXQn
-cyBwcm9iYWJseSBzb21ldGhpbmcgc2lsbHkgdGhhdCBJJ3ZlIG92ZXJsb29rZWQgYnV0IEkgYW0g
-bm90IGF1DQpmYWl0IHdpdGggdGhlc2Ugc29ydCBvZiB0aGluZ3MgdW5mb3J0dW5hdGVseSwgYnV0
-IGhleSAtIGF0IGxlYXN0IEknbGwNCmxlYXJuIHNvbWV0aGluZyB0aGVuLg0KDQpUaGFua3MsDQpD
-b25vci4NCg0KVGhlIGJvb3QgbG9nIGlzIGZhaXJseSBzaG9ydCBzbyBoZXJlIHlhIGdvOg0KDQpb
-ICAgIDAuMDAwMDAwXSBMaW51eCB2ZXJzaW9uIDUuMTkuMC0xMzI1My1nMzc0YjUwOGVlMzE4IChj
-b25vckBzcHVkKSAoQ2xhbmdCdWlsdExpbnV4IGNsYW5nIHZlcnNpb24gMTUuMC4wIChnaXRAZw0K
-aXRodWIuY29tOmxsdm0vbGx2bS1wcm9qZWN0LmdpdCA1YjA3ODhmZWY4NmVkNzAwOGExMWY2ZWUx
-OWI5ZDg2ZDQyYjZmY2ZhKSwgTExEIDE1LjAuMCkgIzEgU01QIFR1ZSBBdWcgOSAyMjo0MjoxMCBJ
-U1QgDQoyMDIyDQpbICAgIDAuMDAwMDAwXSBPRjogZmR0OiBJZ25vcmluZyBtZW1vcnkgcmFuZ2Ug
-MHg4MDAwMDAwMCAtIDB4ODAyMDAwMDANClsgICAgMC4wMDAwMDBdIE1hY2hpbmUgbW9kZWw6IE1p
-Y3JvY2hpcCBQb2xhckZpcmUtU29DIEljaWNsZSBLaXQNClsgICAgMC4wMDAwMDBdIGVhcmx5Y29u
-OiBuczE2NTUwYTAgYXQgTU1JTzMyIDB4MDAwMDAwMDAyMDEwMDAwMCAob3B0aW9ucyAnMTE1MjAw
-bjgnKQ0KWyAgICAwLjAwMDAwMF0gcHJpbnRrOiBib290Y29uc29sZSBbbnMxNjU1MGEwXSBlbmFi
-bGVkDQpbICAgIDAuMDAwMDAwXSBlZmk6IFVFRkkgbm90IGZvdW5kLg0KWyAgICAwLjAwMDAwMF0g
-Wm9uZSByYW5nZXM6DQpbICAgIDAuMDAwMDAwXSAgIERNQTMyICAgIFttZW0gMHgwMDAwMDAwMDgw
-MjAwMDAwLTB4MDAwMDAwMDBmZmZmZmZmZl0NClsgICAgMC4wMDAwMDBdICAgTm9ybWFsICAgW21l
-bSAweDAwMDAwMDAxMDAwMDAwMDAtMHgwMDAwMDAxMDNmZmZmZmZmXQ0KWyAgICAwLjAwMDAwMF0g
-TW92YWJsZSB6b25lIHN0YXJ0IGZvciBlYWNoIG5vZGUNClsgICAgMC4wMDAwMDBdIEVhcmx5IG1l
-bW9yeSBub2RlIHJhbmdlcw0KWyAgICAwLjAwMDAwMF0gICBub2RlICAgMDogW21lbSAweDAwMDAw
-MDAwODAyMDAwMDAtMHgwMDAwMDAwMGFkZmZmZmZmXQ0KWyAgICAwLjAwMDAwMF0gICBub2RlICAg
-MDogW21lbSAweDAwMDAwMDEwMDAwMDAwMDAtMHgwMDAwMDAxMDNmZmZmZmZmXQ0KWyAgICAwLjAw
-MDAwMF0gSW5pdG1lbSBzZXR1cCBub2RlIDAgW21lbSAweDAwMDAwMDAwODAyMDAwMDAtMHgwMDAw
-MDAxMDNmZmZmZmZmXQ0KWyAgICAwLjAwMDAwMF0gT24gbm9kZSAwLCB6b25lIE5vcm1hbDogMTYw
-NjQ1MTIgcGFnZXMgaW4gdW5hdmFpbGFibGUgcmFuZ2VzDQpbICAgIDAuMDAwMDAwXSBTQkkgc3Bl
-Y2lmaWNhdGlvbiB2MC4zIGRldGVjdGVkDQpbICAgIDAuMDAwMDAwXSBTQkkgaW1wbGVtZW50YXRp
-b24gSUQ9MHgxIFZlcnNpb249MHg5DQpbICAgIDAuMDAwMDAwXSBTQkkgVElNRSBleHRlbnNpb24g
-ZGV0ZWN0ZWQNClsgICAgMC4wMDAwMDBdIFNCSSBJUEkgZXh0ZW5zaW9uIGRldGVjdGVkDQpbICAg
-IDAuMDAwMDAwXSBTQkkgUkZFTkNFIGV4dGVuc2lvbiBkZXRlY3RlZA0KWyAgICAwLjAwMDAwMF0g
-U0JJIEhTTSBleHRlbnNpb24gZGV0ZWN0ZWQNClsgICAgMC4wMDAwMDBdIENQVSB3aXRoIGhhcnRp
-ZD0wIGlzIG5vdCBhdmFpbGFibGUNClsgICAgMC4wMDAwMDBdIENQVSB3aXRoIGhhcnRpZD0wIGlz
-IG5vdCBhdmFpbGFibGUNClsgICAgMC4wMDAwMDBdIHJpc2N2OiBiYXNlIElTQSBleHRlbnNpb25z
-IGFjZGZpbQ0KWyAgICAwLjAwMDAwMF0gcmlzY3Y6IEVMRiBjYXBhYmlsaXRpZXMgYWNkZmltDQpb
-ICAgIDAuMDAwMDAwXSBwZXJjcHU6IEVtYmVkZGVkIDE4IHBhZ2VzL2NwdSBzMzQxNjggcjgxOTIg
-ZDMxMzY4IHU3MzcyOA0KWyAgICAwLjAwMDAwMF0gcGNwdS1hbGxvYzogczM0MTY4IHI4MTkyIGQz
-MTM2OCB1NzM3MjggYWxsb2M9MTgqNDA5Ng0KWyAgICAwLjAwMDAwMF0gcGNwdS1hbGxvYzogWzBd
-IDAgWzBdIDEgWzBdIDIgWzBdIDMNClsgICAgMC4wMDAwMDBdIENQVSBub2RlIGZvciAvY3B1cy9j
-cHVAMCBleGlzdCBidXQgdGhlIHBvc3NpYmxlIGNwdSByYW5nZSBpcyA6MC0zDQpbICAgIDAuMDAw
-MDAwXSBCdWlsdCAxIHpvbmVsaXN0cywgbW9iaWxpdHkgZ3JvdXBpbmcgb24uICBUb3RhbCBwYWdl
-czogMjI0MjYzDQpbICAgIDAuMDAwMDAwXSBLZXJuZWwgY29tbWFuZCBsaW5lOiByb290PS9kZXYv
-bmZzIGlwPWRoY3AgZGVidWcgbmZzcm9vdD0xOTIuMTY4LjIuNTovc3R1ZmYvbmZzX3NoYXJlIGVh
-cmx5Y29uDQpbICAgIDAuMDAwMDAwXSBEZW50cnkgY2FjaGUgaGFzaCB0YWJsZSBlbnRyaWVzOiAx
-MzEwNzIgKG9yZGVyOiA4LCAxMDQ4NTc2IGJ5dGVzLCBsaW5lYXIpDQpbICAgIDAuMDAwMDAwXSBJ
-bm9kZS1jYWNoZSBoYXNoIHRhYmxlIGVudHJpZXM6IDY1NTM2IChvcmRlcjogNywgNTI0Mjg4IGJ5
-dGVzLCBsaW5lYXIpDQpbICAgIDAuMDAwMDAwXSBtZW0gYXV0by1pbml0OiBzdGFjazphbGwoemVy
-byksIGhlYXAgYWxsb2M6b2ZmLCBoZWFwIGZyZWU6b2ZmDQpbICAgIDAuMDAwMDAwXSBzb2Z0d2Fy
-ZSBJTyBUTEI6IGFyZWEgbnVtIDQuDQpbICAgIDAuMDAwMDAwXSBzb2Z0d2FyZSBJTyBUTEI6IG1h
-cHBlZCBbbWVtIDB4MDAwMDAwMDBhYTAwMDAwMC0weDAwMDAwMDAwYWUwMDAwMDBdICg2NE1CKQ0K
-WyAgICAwLjAwMDAwMF0gVmlydHVhbCBrZXJuZWwgbWVtb3J5IGxheW91dDoNClsgICAgMC4wMDAw
-MDBdICAgICAgIGZpeG1hcCA6IDB4ZmZmZmZmYzZmZWUwMDAwMCAtIDB4ZmZmZmZmYzZmZjAwMDAw
-MCAgICgyMDQ4IGtCKQ0KWyAgICAwLjAwMDAwMF0gICAgICAgcGNpIGlvIDogMHhmZmZmZmZjNmZm
-MDAwMDAwIC0gMHhmZmZmZmZjNzAwMDAwMDAwICAgKCAgMTYgTUIpDQpbICAgIDAuMDAwMDAwXSAg
-ICAgIHZtZW1tYXAgOiAweGZmZmZmZmM3MDAwMDAwMDAgLSAweGZmZmZmZmM4MDAwMDAwMDAgICAo
-NDA5NiBNQikNClsgICAgMC4wMDAwMDBdICAgICAgdm1hbGxvYyA6IDB4ZmZmZmZmYzgwMDAwMDAw
-MCAtIDB4ZmZmZmZmZDgwMDAwMDAwMCAgICggIDY0IEdCKQ0KWyAgICAwLjAwMDAwMF0gICAgICAg
-bG93bWVtIDogMHhmZmZmZmZkODAwMDAwMDAwIC0gMHhmZmZmZmZlN2JmZTAwMDAwICAgKCAgNjIg
-R0IpDQpbICAgIDAuMDAwMDAwXSAgICAgICBrZXJuZWwgOiAweGZmZmZmZmZmODAwMDAwMDAgLSAw
-eGZmZmZmZmZmZmZmZmZmZmYgICAoMjA0NyBNQikNClsgICAgMC4wMDAwMDBdIE1lbW9yeTogODAz
-MDMySy8xODAwMTkySyBhdmFpbGFibGUgKDc0ODVLIGtlcm5lbCBjb2RlLCAyODU4SyByd2RhdGEs
-IDQwOTZLIHJvZGF0YSwgMjE4MUsgaW5pdCwgMzk0SyBic3MsIDk5NzE2MEsgcmVzZXJ2ZWQsIDBL
-IGNtYS1yZXNlcnZlZCkNClsgICAgMC4wMDAwMDBdIFNMVUI6IEhXYWxpZ249NjQsIE9yZGVyPTAt
-MywgTWluT2JqZWN0cz0wLCBDUFVzPTQsIE5vZGVzPTENClsgICAgMC4wMDAwMDBdIHJjdTogSGll
-cmFyY2hpY2FsIFJDVSBpbXBsZW1lbnRhdGlvbi4NClsgICAgMC4wMDAwMDBdIHJjdTogICAgIFJD
-VSByZXN0cmljdGluZyBDUFVzIGZyb20gTlJfQ1BVUz04IHRvIG5yX2NwdV9pZHM9NC4NClsgICAg
-MC4wMDAwMDBdIHJjdTogICAgIFJDVSBkZWJ1ZyBleHRlbmRlZCBRUyBlbnRyeS9leGl0Lg0KWyAg
-ICAwLjAwMDAwMF0gIFRyYWNpbmcgdmFyaWFudCBvZiBUYXNrcyBSQ1UgZW5hYmxlZC4NClsgICAg
-MC4wMDAwMDBdIHJjdTogUkNVIGNhbGN1bGF0ZWQgdmFsdWUgb2Ygc2NoZWR1bGVyLWVubGlzdG1l
-bnQgZGVsYXkgaXMgMjUgamlmZmllcy4NClsgICAgMC4wMDAwMDBdIHJjdTogQWRqdXN0aW5nIGdl
-b21ldHJ5IGZvciByY3VfZmFub3V0X2xlYWY9MTYsIG5yX2NwdV9pZHM9NA0KWyAgICAwLjAwMDAw
-MF0gTlJfSVJRUzogNjQsIG5yX2lycXM6IDY0LCBwcmVhbGxvY2F0ZWQgaXJxczogMA0KWyAgICAw
-LjAwMDAwMF0gQ1BVIHdpdGggaGFydGlkPTAgaXMgbm90IGF2YWlsYWJsZQ0KWyAgICAwLjAwMDAw
-MF0gcmlzY3YtaW50YzogdW5hYmxlIHRvIGZpbmQgaGFydCBpZCBmb3IgL2NwdXMvY3B1QDAvaW50
-ZXJydXB0LWNvbnRyb2xsZXINClsgICAgMC4wMDAwMDBdIHJpc2N2LWludGM6IDY0IGxvY2FsIGlu
-dGVycnVwdHMgbWFwcGVkDQpbICAgIDAuMDAwMDAwXSBwbGljOiBpbnRlcnJ1cHQtY29udHJvbGxl
-ckBjMDAwMDAwOiBtYXBwZWQgMTg2IGludGVycnVwdHMgd2l0aCA0IGhhbmRsZXJzIGZvciA5IGNv
-bnRleHRzLg0KWyAgICAwLjAwMDAwMF0gcmN1OiBzcmN1X2luaXQ6IFNldHRpbmcgc3JjdV9zdHJ1
-Y3Qgc2l6ZXMgYmFzZWQgb24gY29udGVudGlvbi4NClsgICAgMC4wMDAwMDBdIHJpc2N2X3RpbWVy
-X2luaXRfZHQ6IFJlZ2lzdGVyaW5nIGNsb2Nrc291cmNlIGNwdWlkIFswXSBoYXJ0aWQgWzRdDQpb
-ICAgIDAuMDAwMDAwXSBjbG9ja3NvdXJjZTogcmlzY3ZfY2xvY2tzb3VyY2U6IG1hc2s6IDB4ZmZm
-ZmZmZmZmZmZmZmZmZiBtYXhfY3ljbGVzOiAweDFkODU0ZGY0MCwgbWF4X2lkbGVfbnM6IDM1MjYz
-NjE2MTY5NjAgbnMNClsgICAgMC4wMDAwMDNdIHNjaGVkX2Nsb2NrOiA2NCBiaXRzIGF0IDEwMDBr
-SHosIHJlc29sdXRpb24gMTAwMG5zLCB3cmFwcyBldmVyeSAyMTk5MDIzMjU1NTAwbnMNClsgICAg
-MC4wMDk3MTNdIENvbnNvbGU6IGNvbG91ciBkdW1teSBkZXZpY2UgODB4MjUNClsgICAgMC4wMTQ2
-NzZdIHByaW50azogY29uc29sZSBbdHR5MF0gZW5hYmxlZA0KWyAgICAwLjAxOTIxN10gcHJpbnRr
-OiBib290Y29uc29sZSBbbnMxNjU1MGEwXSBkaXNhYmxlZA0KDQpGV0lXIHRoaXMgaXMgcmlnaHQg
-YWJvdXQgd2hlbiB0aGUgY2xvY2sgZHJpdmVyIGdldHMgbG9hZGVkDQphcyB5b3UgbWlnaHQgaW1h
-Z2luZS4NCg0KTXkgY29uZmlnIGlzIGhlcmUsIGJ1dCBpdCdzIGJlZW4gcmVwcm9kdWNlZCBvbiBh
-IGZldyBkaWZmZXJlbnQNCmRlZmNvbmZpZ3M6DQpodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVu
-dC5jb20vQ29uY2h1T0QvcG9sYXJmaXJlLXNvYy1idWlsZHJvb3Qtc2RrL2Rldi9jb25mL2xvd21l
-bS9kZWZjb25maWcNCg0KT24gMDQvMDcvMjAyMiAxMzoxNSwgQ29ub3IgRG9vbGV5IHdyb3RlOg0K
-PiBIZXkgYWxsLA0KPiBJIGtub3cgSSBoYXZlIG5vdCBzYXQgb24gdGhlIFJGQyBJIHNlbnQgYWJv
-dXQgdGhlIGF1eC4gYnVzIHBhcnRzDQo+IGZvciB0b28gbG9uZywgYnV0IGZpZ3VyZWQgSSdkIGp1
-c3Qgc2VuZCB0aGUgd2hvbGUgdGhpbmcgYW55d2F5IHRvIGFsbA0KPiBsaXN0cyBldGMuDQo+IA0K
-PiBLaW5kYSB0d28gdGhpbmdzIGhhcHBlbmluZyBpbiB0aGlzIHNlcmllcywgYnV0IEkgc2VudCBp
-dCB0b2dldGhlciB0bw0KPiBlbnN1cmUgdGhlIHNlY29uZCBwYXJ0IHdvdWxkIGFwcGx5IGNvcnJl
-Y3RseS4NCj4gDQo+IFRoZSBmaXJzdCBpcyB0aGUgcmVzZXQgY29udHJvbGxlciB0aGF0IEkgcHJv
-bWlzZWQgYWZ0ZXIgZGlzY292ZXJpbmcgdGhlDQo+IGlzc3VlIHRyaWdnZXJlZCBieSBDT05GSUdf
-UE0gJiB0aGUgcGh5IG5vdCBjb21pbmcgdXAgY29ycmVjdGx5LiBJIGhhdmUNCj4gbm93IHJlbW92
-ZWQgYWxsIHRoZSBtZXNzaW5nIHdpdGggcmVzZXRzIGZyb20gY2xvY2sgZW5hYmxlL2Rpc2FibGUN
-Cj4gZnVuY3Rpb25zICYgbm93IHVzZSB0aGUgYXV4IGJ1cyB0byBzZXQgdXAgYSByZXNldCBjb250
-cm9sbGVyIGRyaXZlci4NCj4gU2luY2UgSSBuZWVkZWQgc29tZXRoaW5nIHRvIHRlc3QgaXQsIEkg
-aG9va2VkIHVwIHRoZSByZXNldCBmb3IgdGhlDQo+IENhZGVuY2UgTUFDQiBvbiBQb2xhckZpcmUg
-U29DLiBUaGlzIGhhcyBiZWVuIHNwbGl0IGludG8gYSBzZWNvbmQgc2VyaWVzDQo+IGZvciB2MjoN
-Cj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjIwNzA0MTE0NTExLjE4OTIzMzItMS1j
-b25vci5kb29sZXlAbWljcm9jaGlwLmNvbS8NCj4gDQo+IFRoZSBzZWNvbmQgcGFydCBhZGRzIHJh
-dGUgY29udHJvbCBmb3IgdGhlIE1TUyBQTEwgY2xvY2ssIGZvbGxvd2VkIGJ5DQo+IHNvbWUgc2lt
-cGxpZmljYXRpb25zIHRvIHRoZSBkcml2ZXIgJiBjb252ZXJzaW9ucyBvZiBzb21lIGN1c3RvbSBz
-dHJ1Y3RzDQo+IHRvIHRoZSBjb3JyZXNwb25kaW5nIHN0cnVjdHMgaW4gdGhlIGZyYW1ld29yay4N
-Cj4gDQo+IFRoYW5rcywNCj4gQ29ub3IuDQo+IA0KPiBDaGFuZ2VzIHNpbmNlIHYxOg0KPiAtIHNw
-bGl0IG9mZiB0aGUgbmV0IHBhdGNoZXMNCj4gLSBjbGs6IGFjdHVhbGx5IHBhc3MgdGhlIHNwaW5s
-b2NrIHRvIHRoZSBjb252ZXJ0ZWQgZGl2aWRlcnMgJiBnYXRlcw0KPiAtIHJlc2V0OiBhZGRlZCBh
-IHNwaW5sb2NrIGFyb3VuZCBSTVcgYWNjZXNzIHRvIHJlZ2lzdGVycw0KPiAtIHJlc2V0OiBzd2l0
-Y2hlZCB0byBCSVQoaSkgbWFjcm9zDQo+IC0gcmVzZXQ6IHVzZWQgbG9jYWwgY29waWVzIG9mIHNv
-bWUgdmFyaWFibGVzIGFzIHBvaW50ZWQgb3V0IGJ5IFBoaWxpcHANCj4gLSByZXNldDogZHJvcHBl
-ZCB0aGUgc3VjY2VzcyBwcmludG91dA0KPiANCj4gQ29ub3IgRG9vbGV5ICgxMik6DQo+ICAgZHQt
-YmluZGluZ3M6IGNsazogbWljcm9jaGlwOiBtcGZzOiBhZGQgcmVzZXQgY29udHJvbGxlciBzdXBw
-b3J0DQo+ICAgY2xrOiBtaWNyb2NoaXA6IG1wZnM6IGFkZCByZXNldCBjb250cm9sbGVyDQo+ICAg
-cmVzZXQ6IGFkZCBwb2xhcmZpcmUgc29jIHJlc2V0IHN1cHBvcnQNCj4gICBNQUlOVEFJTkVSUzog
-YWRkIHBvbGFyZmlyZSBzb2MgcmVzZXQgY29udHJvbGxlcg0KPiAgIHJpc2N2OiBkdHM6IG1pY3Jv
-Y2hpcDogYWRkIG1wZnMgc3BlY2lmaWMgbWFjYiByZXNldCBzdXBwb3J0DQo+ICAgY2xrOiBtaWNy
-b2NoaXA6IG1wZnM6IGFkZCBtb2R1bGVfYXV0aG9ycyBlbnRyaWVzDQo+ICAgY2xrOiBtaWNyb2No
-aXA6IG1wZnM6IGFkZCBNU1MgcGxsJ3Mgc2V0ICYgcm91bmQgcmF0ZQ0KPiAgIGNsazogbWljcm9j
-aGlwOiBtcGZzOiBtb3ZlIGlkICYgb2Zmc2V0IG91dCBvZiBjbG9jayBzdHJ1Y3RzDQo+ICAgY2xr
-OiBtaWNyb2NoaXA6IG1wZnM6IHNpbXBsaWZ5IGNvbnRyb2wgcmVnIGFjY2Vzcw0KPiAgIGNsazog
-bWljcm9jaGlwOiBtcGZzOiBkZWxldGUgMiBsaW5lIG1wZnNfY2xrX3JlZ2lzdGVyX2ZvbygpDQo+
-ICAgY2xrOiBtaWNyb2NoaXA6IG1wZnM6IGNvbnZlcnQgY2ZnX2NsayB0byBjbGtfZGl2aWRlcg0K
-PiAgIGNsazogbWljcm9jaGlwOiBtcGZzOiBjb252ZXJ0IHBlcmlwaF9jbGsgdG8gY2xrX2dhdGUN
-Cj4gDQo+ICAuLi4vYmluZGluZ3MvY2xvY2svbWljcm9jaGlwLG1wZnMueWFtbCAgICAgICAgfCAg
-MTcgKy0NCj4gIE1BSU5UQUlORVJTICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8
-ICAgMSArDQo+ICBhcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3JvY2hpcC9tcGZzLmR0c2kgICAgICAg
-fCAgIDcgKy0NCj4gIGRyaXZlcnMvY2xrL21pY3JvY2hpcC9LY29uZmlnICAgICAgICAgICAgICAg
-ICB8ICAgMSArDQo+ICBkcml2ZXJzL2Nsay9taWNyb2NoaXAvY2xrLW1wZnMuYyAgICAgICAgICAg
-ICAgfCAzNzkgKysrKysrKysrLS0tLS0tLS0tDQo+ICBkcml2ZXJzL3Jlc2V0L0tjb25maWcgICAg
-ICAgICAgICAgICAgICAgICAgICAgfCAgIDcgKw0KPiAgZHJpdmVycy9yZXNldC9NYWtlZmlsZSAg
-ICAgICAgICAgICAgICAgICAgICAgIHwgICAyICstDQo+ICBkcml2ZXJzL3Jlc2V0L3Jlc2V0LW1w
-ZnMuYyAgICAgICAgICAgICAgICAgICAgfCAxNTcgKysrKysrKysNCj4gIGluY2x1ZGUvc29jL21p
-Y3JvY2hpcC9tcGZzLmggICAgICAgICAgICAgICAgICB8ICAgOCArDQo+ICA5IGZpbGVzIGNoYW5n
-ZWQsIDM4NiBpbnNlcnRpb25zKCspLCAxOTMgZGVsZXRpb25zKC0pDQo+ICBjcmVhdGUgbW9kZSAx
-MDA2NDQgZHJpdmVycy9yZXNldC9yZXNldC1tcGZzLmMNCj4gDQo+IA0KPiBiYXNlLWNvbW1pdDog
-YjEzYmFjY2MzODUwY2E4YjhjY2NiZjhlZDk5MTJkYmFhMGZkZjdmMw0K
+On Tue, Aug 9, 2022 at 3:45 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
+>
+> On Tuesday 09 August 2022 18:41:25 Sean Anderson wrote:
+> >
+> >
+> > On 8/9/22 5:42 PM, Pali Roh=C3=A1r wrote:
+> > > On Tuesday 09 August 2022 17:36:52 Sean Anderson wrote:
+> > >> On 8/9/22 5:31 PM, Pali Roh=C3=A1r wrote:
+> > >> > On Tuesday 09 August 2022 16:48:23 Sean Anderson wrote:
+> > >> >> On 8/8/22 5:45 PM, Michal Such=C3=A1nek wrote:
+> > >> >> > On Mon, Aug 08, 2022 at 02:38:35PM -0700, Stephen Hemminger wro=
+te:
+> > >> >> >> On Mon, 8 Aug 2022 23:09:45 +0200
+> > >> >> >> Michal Such=C3=A1nek <msuchanek@suse.de> wrote:
+> > >> >> >>
+> > >> >> >> > On Mon, Aug 08, 2022 at 03:57:55PM -0400, Sean Anderson wrot=
+e:
+> > >> >> >> > > Hi Tim,
+> > >> >> >> > >
+> > >> >> >> > > On 8/8/22 3:18 PM, Tim Harvey wrote:
+> > >> >> >> > > > Greetings,
+> > >> >> >> > > >
+> > >> >> >> > > > I'm trying to understand if there is any implication of =
+'ethernet<n>'
+> > >> >> >> > > > aliases in Linux such as:
+> > >> >> >> > > >         aliases {
+> > >> >> >> > > >                 ethernet0 =3D &eqos;
+> > >> >> >> > > >                 ethernet1 =3D &fec;
+> > >> >> >> > > >                 ethernet2 =3D &lan1;
+> > >> >> >> > > >                 ethernet3 =3D &lan2;
+> > >> >> >> > > >                 ethernet4 =3D &lan3;
+> > >> >> >> > > >                 ethernet5 =3D &lan4;
+> > >> >> >> > > >                 ethernet6 =3D &lan5;
+> > >> >> >> > > >         };
+> > >> >> >> > > >
+> > >> >> >> > > > I know U-Boot boards that use device-tree will use these=
+ aliases to
+> > >> >> >> > > > name the devices in U-Boot such that the device with ali=
+as 'ethernet0'
+> > >> >> >> > > > becomes eth0 and alias 'ethernet1' becomes eth1 but for =
+Linux it
+> > >> >> >> > > > appears that the naming of network devices that are embe=
+dded (ie SoC)
+> > >> >> >> > > > vs enumerated (ie pci/usb) are always based on device re=
+gistration
+> > >> >> >> > > > order which for static drivers depends on Makefile linki=
+ng order and
+> > >> >> >> > > > has nothing to do with device-tree.
+> > >> >> >> > > >
+> > >> >> >> > > > Is there currently any way to control network device nam=
+ing in Linux
+> > >> >> >> > > > other than udev?
+> > >> >> >> > >
+> > >> >> >> > > You can also use systemd-networkd et al. (but that is the =
+same kind of mechanism)
+> > >> >> >> > >
+> > >> >> >> > > > Does Linux use the ethernet<n> aliases for anything at a=
+ll?
+> > >> >> >> > >
+> > >> >> >> > > No :l
+> > >> >> >> >
+> > >> >> >> > Maybe it's a great opportunity for porting biosdevname to DT=
+ based
+> > >> >> >> > platforms ;-)
+> > >> >> >>
+> > >> >> >> Sorry, biosdevname was wrong way to do things.
+> > >> >> >> Did you look at the internals, it was dumpster diving as root =
+into BIOS.
+> > >> >> >
+> > >> >> > When it's BIOS what defines the names then you have to read the=
+m from
+> > >> >> > the BIOS. Recently it was updated to use some sysfs file or wha=
+tver.
+> > >> >> > It's not like you would use any of that code with DT, anyway.
+> > >> >> >
+> > >> >> >> Systemd-networkd does things in much more supportable manner u=
+sing existing
+> > >> >> >> sysfs API's.
+> > >> >> >
+> > >> >> > Which is a dumpster of systemd code, no thanks.
+> > >> >> >
+> > >> >> > I want my device naming independent of the init system, especia=
+lly if
+> > >> >> > it's systemd.
+> > >> >>
+> > >> >> Well, there's always nameif...
+> > >> >>
+> > >> >> That said, I have made [1] for people using systemd-networkd.
+> > >> >>
+> > >> >> --Sean
+> > >> >>
+> > >> >> [1] https://github.com/systemd/systemd/pull/24265
+> > >> >
+> > >> > Hello!
+> > >> >
+> > >> > In some cases "label" DT property can be used also as interface na=
+me.
+> > >> > For example this property is already used by DSA kernel driver.
+> > >> >
+> > >> > I created very simple script which renames all interfaces in syste=
+m to
+> > >> > their "label" DT property (if there is any defined).
+> > >> >
+> > >> > #!/bin/sh
+> > >> > for iface in `ls /sys/class/net/`; do
+> > >> >  for of_node in of_node device/of_node; do
+> > >> >          if test -e /sys/class/net/$iface/$of_node/; then
+> > >> >                  label=3D`cat /sys/class/net/$iface/$of_node/label=
+ 2>/dev/null`
+> > >> >                  if test -n "$label" && test "$label" !=3D "$iface=
+"; then
+> > >> >                          echo "Renaming net interface $iface to $l=
+abel..."
+> > >> >                          up=3D$((`cat /sys/class/net/$iface/flags =
+2>/dev/null || echo 1` & 0x1))
+> > >> >                          if test "$up" !=3D "0"; then
+> > >> >                                  ip link set dev $iface down
+> > >> >                          fi
+> > >> >                          ip link set dev $iface name "$label" && i=
+face=3D$label
+> > >> >                          if test "$up" !=3D "0"; then
+> > >> >                                  ip link set dev $iface up
+> > >> >                          fi
+> > >> >                  fi
+> > >> >                  break
+> > >> >          fi
+> > >> >  done
+> > >> > done
+> > >> >
+> > >> > Maybe it would be better first to use "label" and then use etherne=
+t alias?
+> > >> >
+> > >>
+> > >> It looks like there is already precedent for using ID_NET_LABEL_ONBO=
+ARD for
+> > >> this purpose (on SMBios boards). It should be a fairly simple extens=
+ion to
+> > >> add that as well. However, I didn't find any uses of this in Linux o=
+r U-Boot
+> > >> (although I did find plenty of ethernet LEDs). Do you have an exampl=
+e you
+> > >> could point me to?
+> > >>
+> > >> --Sean
+> > >
+> > > In linux:
+> > > $ git grep '"label"' net/dsa/dsa2.c
+> > > net/dsa/dsa2.c: const char *name =3D of_get_property(dn, "label", NUL=
+L);
+> > >
+> >
+> > Hm, if Linux is using the label, then do we need to rename things in us=
+erspace?
+>
+> It uses it _only_ for DSA drivers. For all other drivers (e.g. USB or
+> PCIe based network adapters) it does not use label.
+
+and to my point it doesn't use label for platform devices.
+
+Is something like the following really that crazy of an idea?
+diff --git a/net/core/dev.c b/net/core/dev.c
+index e0878a500aa9..a679c74a63c6 100644
+--- a/net/core/dev.c
++++ b/net/core/dev.c
+@@ -1151,6 +1151,15 @@ static int dev_alloc_name_ns(struct net *net,
+        int ret;
+
+        BUG_ON(!net);
++#ifdef CONFIG_OF
++       if (dev->dev.parent && dev->dev.parent->of_node) {
++               const char *name =3D
+of_get_property(dev->dev.parent->of_node, "label", NULL);
++               if (name) {
++                       strlcpy(dev->name, name, IFNAMSIZ);
++                       return 0;
++               }
++       }
++#endif
+        ret =3D __dev_alloc_name(net, name, buf);
+        if (ret >=3D 0)
+                strlcpy(dev->name, buf, IFNAMSIZ);
+
+I still like using the index from aliases/ethernet* instead as there
+is a precedence for that in other Linux drivers as well as U-Boot
+
+Best Regards,
+
+Tim
