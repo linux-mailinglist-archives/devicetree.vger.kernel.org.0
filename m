@@ -2,75 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86A9558D65B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 11:21:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1A5B58D69B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 11:40:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239245AbiHIJVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 05:21:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50048 "EHLO
+        id S235278AbiHIJkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 05:40:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241009AbiHIJVm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 05:21:42 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B9E7237D2;
-        Tue,  9 Aug 2022 02:21:39 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2799LGWa109399;
-        Tue, 9 Aug 2022 04:21:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1660036876;
-        bh=hfbtiO0EGYT9rydsnbIHnRIPn49CnRcZUdyHAXazk5M=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=QOeHcDMjwY+yXlzJ7Gv1oCwZZXkXy/TJOcShWfrptDCJxjf+IvOnaMSoX9KrmW1G1
-         Y4ljlEjEvXWoEd4HNKYpvH26yd7jGKNMJMTvJfUupVOYOSruj9k2EbV9zNiFQECIES
-         AzA/yNgbnqke8XpsBnqIKoPWEBq5FVdeGJf78tJM=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2799LGmK058928
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 9 Aug 2022 04:21:16 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 9
- Aug 2022 04:21:16 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 9 Aug 2022 04:21:16 -0500
-Received: from [172.24.157.172] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2799LCkI071919;
-        Tue, 9 Aug 2022 04:21:12 -0500
-Message-ID: <52edcdda-35ee-ae04-4991-0978b7d06c21@ti.com>
-Date:   Tue, 9 Aug 2022 14:51:11 +0530
+        with ESMTP id S232615AbiHIJkb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 05:40:31 -0400
+Received: from mail-qt1-x82d.google.com (mail-qt1-x82d.google.com [IPv6:2607:f8b0:4864:20::82d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72AC3108D;
+        Tue,  9 Aug 2022 02:40:30 -0700 (PDT)
+Received: by mail-qt1-x82d.google.com with SMTP id h22so2831442qtu.2;
+        Tue, 09 Aug 2022 02:40:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=13gZ9Mf5RvWypABlt58TTnGhakk4LYMYk1XGCyVkqlk=;
+        b=iA2CDbJ7gAw1Gae5y9ub7vzKUQqYazw0kpXgsJh24IQWG9+4To7IyPkLqxP3FnTVHo
+         mFCrhzgf0li/LpWqo5s1JKmSJnWVxyBzvzKH3GZG/IitzdDUV36LrQN6p7a1ZQANovsz
+         TNodTTLbJHZsKV3zT8jyHzgq3Bg55061g4iOXrj0xEs1wWDeoRKPM4MBBWHb623Saa+f
+         ZsYQ8vgM1+r+SX6lxBEMWdhooFwtrvASRm5QCNp1f2+J+Ag43zf4RMQR8/d9TWBgZGAC
+         Yzrr/TyA/+21UR2gfmcLZW34jx8xaWG671+zUgxrWx2aRwHQqY/drmJ8bowDD4j7Uaa1
+         siQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=13gZ9Mf5RvWypABlt58TTnGhakk4LYMYk1XGCyVkqlk=;
+        b=xuSRhxhp5cM1hJ8s9djWf5b0PYJ2XVnuN61Sw0ly48c1HboNqsy+ZOQtX4uVgRjNmg
+         VGJf2aMBdz0/BU333BdDcxUc41ddEtbLcwInRuJR5GPI4hYsgwawICgdZeG2qLrOqNPd
+         ivUv0czHBRlJ7qriVbF23WQx4yOiWmvbzNLnXHts73kJ0LE20hxUkBw6f6JiApuNj2rg
+         ChQezFKIT1Dj9f4l/LHmn0p0cOFGxShl/i7jDMvH5OPWq2EkoDuTIfbeP/p/ygFpqnMF
+         Lab8l0kFtpr29RPgqOkvEwnRS872ZzVV+lcxqR1AcwE08xvKEc3XtIE3qWk3PnhZSVBA
+         vWtg==
+X-Gm-Message-State: ACgBeo37pd4DSrkVP/L6xZP0450PjyEevAWNX1CSPjyPHnxfbj9llE0F
+        PxuvL0W+LSqd0DQOwkmY64jamC2D+G2SUGUcr10=
+X-Google-Smtp-Source: AA6agR7fxKuQxdyQ/VhFQtXYM3r/jBAY2fxH0L4/R2MIx+u7pw9VvZxYi5GkgaDvFzh/VwSAoEj2VE/3QvO1k5PWa84=
+X-Received: by 2002:ac8:7f88:0:b0:342:e9dc:ee77 with SMTP id
+ z8-20020ac87f88000000b00342e9dcee77mr13553601qtj.384.1660038029553; Tue, 09
+ Aug 2022 02:40:29 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.0
-Subject: Re: [PATCH v3 2/2] drm/tidss: Add support for AM625 DSS
-Content-Language: en-US
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC:     Jyri Sarha <jyri.sarha@iki.fi>, Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+References: <20220809073648.167821-1-marcus.folkesson@gmail.com> <20220809073648.167821-5-marcus.folkesson@gmail.com>
+In-Reply-To: <20220809073648.167821-5-marcus.folkesson@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 9 Aug 2022 11:39:53 +0200
+Message-ID: <CAHp75Vc-cd_-+qyd62tcJGdXh917AgZY5VB0ztXR3zwrGoMCRQ@mail.gmail.com>
+Subject: Re: [PATCH v5 4/9] iio: adc: mcp3911: use resource-managed version of iio_device_register
+To:     Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc:     Kent Gustavsson <kent@minoris.se>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Rahul T R <r-ravikumar@ti.com>
-References: <20220627151200.4693-1-a-bhatia1@ti.com>
- <20220627151200.4693-3-a-bhatia1@ti.com>
- <4382b760-418f-4033-97f2-47e082a30232@ideasonboard.com>
- <cb9ada9f-9673-2039-c22b-fa0d3345fe41@ti.com>
- <1a394a4d-1099-400f-2b52-e7a02e379cba@ideasonboard.com>
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-In-Reply-To: <1a394a4d-1099-400f-2b52-e7a02e379cba@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,109 +71,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
+On Tue, Aug 9, 2022 at 9:32 AM Marcus Folkesson
+<marcus.folkesson@gmail.com> wrote:
+>
+> Keep using managed resources as much as possible.
 
-On 09-Aug-22 12:01, Tomi Valkeinen wrote:
-> On 09/08/2022 09:08, Aradhya Bhatia wrote:
->> Hi Tomi,
->>
->> On 28-Jul-22 17:34, Tomi Valkeinen wrote:
->>> On 27/06/2022 18:12, Aradhya Bhatia wrote:
->>>> Add support for the DSS IP on TI's new AM625 SoC in the tidss driver.
->>>>
->>>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->>>> Reviewed-by: Rahul T R <r-ravikumar@ti.com>
->>>> ---
->>>>   drivers/gpu/drm/tidss/tidss_dispc.c | 56 
->>>> ++++++++++++++++++++++++++++-
->>>>   drivers/gpu/drm/tidss/tidss_dispc.h |  2 ++
->>>>   drivers/gpu/drm/tidss/tidss_drv.c   |  1 +
->>>>   3 files changed, 58 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
->>>> b/drivers/gpu/drm/tidss/tidss_dispc.c
->>>> index dae47853b728..f084f0688a54 100644
->>>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
->>>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
->>>> @@ -272,6 +272,55 @@ const struct dispc_features dispc_j721e_feats = {
->>>>       .vid_order = { 1, 3, 0, 2 },
->>>>   };
->>>> +const struct dispc_features dispc_am625_feats = {
->>>> +    .max_pclk_khz = {
->>>> +        [DISPC_VP_DPI] = 165000,
->>>> +        [DISPC_VP_OLDI] = 165000,
->>>> +    },
->>>> +
->>>> +    .scaling = {
->>>> +        .in_width_max_5tap_rgb = 1280,
->>>> +        .in_width_max_3tap_rgb = 2560,
->>>> +        .in_width_max_5tap_yuv = 2560,
->>>> +        .in_width_max_3tap_yuv = 4096,
->>>> +        .upscale_limit = 16,
->>>> +        .downscale_limit_5tap = 4,
->>>> +        .downscale_limit_3tap = 2,
->>>> +        /*
->>>> +         * The max supported pixel inc value is 255. The value
->>>> +         * of pixel inc is calculated like this: 1+(xinc-1)*bpp.
->>>> +         * The maximum bpp of all formats supported by the HW
->>>> +         * is 8. So the maximum supported xinc value is 32,
->>>> +         * because 1+(32-1)*8 < 255 < 1+(33-1)*4.
->>>> +         */
->>>> +        .xinc_max = 32,
->>>> +    },
->>>> +
->>>> +    .subrev = DISPC_AM625,
->>>> +
->>>> +    .common = "common",
->>>> +    .common_regs = tidss_am65x_common_regs,
->>>> +
->>>> +    .num_vps = 2,
->>>> +    .vp_name = { "vp1", "vp2" },
->>>> +    .ovr_name = { "ovr1", "ovr2" },
->>>> +    .vpclk_name =  { "vp1", "vp2" },
->>>> +    .vp_bus_type = { DISPC_VP_OLDI, DISPC_VP_DPI },
->>>
->>> This looks correct, but with the two OLDI TXes, I think there will be 
->>> some interesting issues.
->>>
->>> The tidss_kms.c associates a DSS VP and a DT port, but that's no 
->>> longer true if you add the ports for both OLDI TXes, as they both use 
->>> the same VP. I think fixing that won't affect this patch, though, and 
->>> merging this patch will, afaik, enable similar DSS functionality as 
->>> we have for AM65x.
->>>
->>> So, I think these two patches could be merged, or we could wait a bit 
->>> until the OLDI situation becomes more clear. Up to you. In any case, 
->>> for both patches:
->>>
->>> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>\
->>
->> Thank you for the review!
->>
->> This patch set is required for the dss DT patches to be upstreamed for
->> the AM625-SK, so I would like them to get merged.
->>
->> Since these were posted in the previous merge window, I will re-send 
->> with your tag.
-> 
-> I'd like to understand better the dual OLDI TX case before merging any 
-> AM625 dss changes.
-> 
-> At the moment you have only one port in the DT for the OLDI TX for 
-> AM625, right? I don't see how that is supposed to work as there are two 
-> OLDI outputs. 
-The OLDI node doesn't have node of its own at all. Its the dss port that
-gets directly connected to the panel ports.
+...
 
-> And if we do add a new port, it perhaps makes sense to 
-> have two OLDI TX ports as ports 0 and 1, and the DPI as port 2, which is 
-> then different from AM65x.
-The DSS still has a single (DPI) VP for the OLDI outputs. Both the OLDI 
-TXes receive the same input from the DSS VP.
+> +static void mcp3911_cleanup_clock(void *_adc)
+> +{
+> +       struct mcp3911 *adc = _adc;
+> +       clk_disable_unprepare(adc->clki);
+> +}
 
-Wouldn't having them modeled as videp ports 0 and 1 would mean that the
-DSS is capable of driving 2 different OLDI displays? (which is not the
-case here).
+You may rather switch to devm_clk_get_enabled() and drop this.
 
-Regards
-Aradhya
+...
+
+>                         dev_err(&adc->spi->dev,
+>                                 "failed to get adc clk (%ld)\n",
+>                                 PTR_ERR(adc->clki));
+> -                       ret = PTR_ERR(adc->clki);
+> -                       goto reg_disable;
+> +                       return PTR_ERR(adc->clki);
+>                 }
+>         } else {
+>                 ret = clk_prepare_enable(adc->clki);
+>                 if (ret < 0) {
+>                         dev_err(&adc->spi->dev,
+>                                 "Failed to enable clki: %d\n", ret);
+> -                       goto reg_disable;
+> +                       return ret;
+>                 }
+> +
+> +               ret = devm_add_action_or_reset(&spi->dev,
+> +                               mcp3911_cleanup_clock, adc);
+> +               if (ret)
+> +                       return ret;
+>         }
+
+As per above.
+
+-- 
+With Best Regards,
+Andy Shevchenko
