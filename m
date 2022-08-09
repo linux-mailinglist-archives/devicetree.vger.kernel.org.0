@@ -2,128 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC1CD58D6F6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 11:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8273258D71B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 12:05:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236190AbiHIJ65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 05:58:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49402 "EHLO
+        id S241137AbiHIKFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 06:05:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233784AbiHIJ64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 05:58:56 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74FA822BCC
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 02:58:55 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id o2so8966195lfb.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 02:58:55 -0700 (PDT)
+        with ESMTP id S240524AbiHIKFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 06:05:50 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38F7A1EAC9;
+        Tue,  9 Aug 2022 03:05:50 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id h4so1526352qtj.11;
+        Tue, 09 Aug 2022 03:05:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dNKI0alQrhjS9L9F86wgRZLWLDDwbvdm53vSyGV+VS4=;
-        b=VhMw8Rgdr+ABmi3Y576qLby0119i9K2rnMNLgJVMYDkOe8lWHUAdPHSJb3GxrjaX/Z
-         G65bSFLOoeTD8sDHc9I4MWY5WhPn1qz3C278MibJzNs9kJ17stkjDzn1wBxx8Kq1EcB6
-         2SVIuwcrIst1UyNe0LSGc/wj2waD+ZbI5JKgTPnyQMPTrYRPcdjCZT2JU6OIA8DLdu4d
-         MgfoeqCKkmcLShXV3xVZ+dYzF073w2GZfbMysaRQLv4hy6Dv86THbDtJgQEE/j/MpanL
-         GtZRRLMMH3kbUASiQ48JoOWfzdf9XVcfKIVLN9zMlAa2em4anGLFbBZhWnoiQh0oOlB6
-         bM/A==
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=HpV0EZlE6e2eMaIDjSXTXeDXEgMdjAMNL8wCEK+p54E=;
+        b=mvMw6HWzHYGqJL1YzvSDBuaEdia2JKkV0rDdQ5umIkSddHt3+PpIwToiaGCieH/W2X
+         +NadBjIyiPUd0dEJjmjmEYQIgu/+VARH9C5jOxS0+FvXBVxSquQY5qf921j73td5q/ZS
+         2RqbWhE9XAOSDThaTP6m8jAtmAHJAESdpwO3GYujg0Sg9GkdCF5oLJIz+9Hzy5VIm/g0
+         mDUsNt2epRrD3yJwzBqiMiP1Icu6c+w0fLTq/nNUDRKh8T72nZYtriPQdi7b7o4WrvUp
+         ZpbeOV9l1ul7xbiIoERIiSa8n+8xBiqaAEclpdWWjsiimQ3brrXczqbf+H8Rg5hLO8Qs
+         fmMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dNKI0alQrhjS9L9F86wgRZLWLDDwbvdm53vSyGV+VS4=;
-        b=G05p+L0oLbhxhTwA/HEPGluGB3VYtUlITfASPUR8ZdJ2ttMPJ2ie1evnDDp8/ixIlA
-         ++zFB/yHQCPKkLFM7soWMtSUerMGpDp8SKZaIU7LGKQa7qIxhTUiqZt9wolVF5R8xksv
-         aA+G1a8S2DivSi7mg70MsuX3wUq2vQML8JDlhVha8WDpZuR/IaAbSvR9OkVNWcjhs0GT
-         gIR9d68W7k/RNeWOBOph7pHQRypOSMS0/2dJftbUyoOmIZ5pXKgeDmY9JPMMEKa0qjto
-         LxgTsVuawrDLyq68nHPLgDJOdpsPksXF4UfOlRIUcaUf8UF8EGghvpDf+oaa5N9Iu48v
-         f27w==
-X-Gm-Message-State: ACgBeo0RnedfIcJsGj+iNzWGlSMcqNe1tVqiS9gPwT6o1CscXQSqd/gS
-        W7yKbPtjDW9wdXivB5EAWZmy8g==
-X-Google-Smtp-Source: AA6agR44h8B1/uwdCyXQkdtIOlFe25gbtHpOlAJmp/D1KFFnmNubjQd6v8FYZkEJPiQhaJLwxPt4Ww==
-X-Received: by 2002:a05:6512:10d0:b0:48b:80d:849b with SMTP id k16-20020a05651210d000b0048b080d849bmr8261320lfg.399.1660039133661;
-        Tue, 09 Aug 2022 02:58:53 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id v22-20020a197416000000b0048ad4c718f3sm1709823lfe.30.2022.08.09.02.58.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Aug 2022 02:58:52 -0700 (PDT)
-Message-ID: <26ad247d-a4b3-4051-b8d9-505c09b76f6b@linaro.org>
-Date:   Tue, 9 Aug 2022 12:58:51 +0300
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=HpV0EZlE6e2eMaIDjSXTXeDXEgMdjAMNL8wCEK+p54E=;
+        b=r5JTgwGeIDL5N5K/EZ+o0vTUKwEmM8hHw/16qg6usehRV+E51r/0+bY3xe1Gur5HTD
+         +3cgL0icutmNBK1tb/DFTegp1p8i6Y+4+CHTMnqY0/uZrAfG8U8krdxdd91MFTG8LkaY
+         JC1SMCdjKgPeohBaL6jhEygCDXD4tAU6nX9bBjMorJSRYR50ToN9uqf+hB6Zt08GCGRa
+         KmRC3XcLP+P8kvg2pvlmqgaCvZXPAWoYhrDOAxBSj+pFc0r5eOJgrz+qfdxz2kGGm4Qe
+         5xaVd+3cJgLxcHNX9SN7qb3+7JF8EVtmSbDk1Pe38XhgL91JRlSxisvgs+2mzRDRRteF
+         FXgw==
+X-Gm-Message-State: ACgBeo2pKTIfOMNJ7t/drKa4omeOgMBmoHtAtqYMr7J0574qmjoUCM4o
+        9CKb/ZHzjtX81sWzLJryY6/1HUVCWQnwbDavDp0=
+X-Google-Smtp-Source: AA6agR4MsNhXIU3cv2AEBAfhtZglFFnZ4N4k6S92h6seiRzhEB7hemu1tcOyGGvXMKc7cToH6wPh2DSMAYzKS5e9t6o=
+X-Received: by 2002:a05:622a:14cf:b0:343:5b6:68ca with SMTP id
+ u15-20020a05622a14cf00b0034305b668camr2654179qtx.195.1660039549237; Tue, 09
+ Aug 2022 03:05:49 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 3/3] memory: Add Broadcom STB memory controller driver
-Content-Language: en-US
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20220801220931.181531-1-f.fainelli@gmail.com>
- <20220801220931.181531-4-f.fainelli@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220801220931.181531-4-f.fainelli@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220803131132.19630-1-ddrokosov@sberdevices.ru>
+ <20220803131132.19630-3-ddrokosov@sberdevices.ru> <CAHp75VcVuC6yVoB1kycCOfqMa=JfCtbe3WYSK5qndtYcJy3vpg@mail.gmail.com>
+ <20220803191621.tzrmndkygfe7nlpx@CAB-WSD-L081021.sigma.sbrf.ru>
+ <20220806155523.37c3e587@jic23-huawei> <20220809095251.vpp6arac3pkntdlo@CAB-WSD-L081021.sigma.sbrf.ru>
+In-Reply-To: <20220809095251.vpp6arac3pkntdlo@CAB-WSD-L081021.sigma.sbrf.ru>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 9 Aug 2022 12:05:12 +0200
+Message-ID: <CAHp75Vc9LGX-=Y2smOrKuAgSRrhA0AgGuBE-0=_-q78FpSB6ag@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] iio: add MEMSensing MSA311 3-axis accelerometer driver
+To:     Dmitry Rokosov <DDRokosov@sberdevices.ru>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "stephan@gerhold.net" <stephan@gerhold.net>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/08/2022 01:09, Florian Fainelli wrote:
-> Add support for configuring the Self Refresh Power Down (SRPD)
-> inactivity timeout on Broadcom STB chips. This is used to conserve power
-> when the DRAM activity is reduced.
-> 
+On Tue, Aug 9, 2022 at 11:52 AM Dmitry Rokosov <DDRokosov@sberdevices.ru> wrote:
+> On Sat, Aug 06, 2022 at 03:55:23PM +0100, Jonathan Cameron wrote:
+> > > > > +       indio_dev->modes = 0; /* setup buffered mode later */
+> > > >
+> > > > Why explicit assignment to 0? Doesn't kzalloc() do it for you?
+> > >
+> > > kzalloc() will do it for me, of course. Previously, I initialized modes to
+> > > INDIO_DIRECT_MODE to just provide default value for that. Jonathan
+> > > suggested to replace it with 0.
+> >
+> > I did?  I wonder what I was smoking that day.
+> > Should be set to INDIO_DIRECT_MODE as you had it previously.
+> >
+> > (From what I recall it will work either way but we have in the past had
+> > core code that checked this and may do again in the future so drivers should
+> > still be setting it to specify they provide sysfs interfaces to directly read
+> > the channels).
+>
+> Jonathan, really sorry I referred to you. I'm confused. This comment was
+> from Andy in the v3 discussion:
+>
+> https://lore.kernel.org/linux-iio/CAHp75Vc0+ckNnm2tzLMPrjeFRjwoj3zy0C4koNShFRG3kP8b6w@mail.gmail.com/
 
+Indeed. I was confused by the comment. My understanding at that time
+was that the triggered mode is inevitable and hence assigning to
+something which _will_ be reassigned later makes a little sense. So,
+does it mean that triggered mode is optional and might not be set? In
+such a case the comment is misleading.
 
-> +static int __maybe_unused brcmstb_memc_resume(struct device *dev)
-> +{
-> +	struct brcmstb_memc *memc = dev_get_drvdata(dev);
-> +
-> +	if (memc->timeout_cycles == 0)
-> +		return 0;
-> +
-> +	return brcmstb_memc_srpd_config(memc, memc->timeout_cycles);
-> +}
-> +
-> +static SIMPLE_DEV_PM_OPS(brcmstb_memc_pm_ops, brcmstb_memc_suspend,
-> +			 brcmstb_memc_resume);
-> +
-> +static struct platform_driver brcmstb_memc_driver = {
-> +	.probe = brcmstb_memc_probe,
-> +	.remove = brcmstb_memc_remove,
-> +	.driver = {
-> +		.name		= "brcmstb_memc",
-> +		.owner		= THIS_MODULE,
-
-No need, run coccinelle.
-
-> +		.of_match_table	= brcmstb_memc_of_match,
-> +		.pm		= &brcmstb_memc_pm_ops,
-
-Shouldn't this be pm_ptr()? and then no need for __maybe_unused in
-brcmstb_memc_resume/suspend.
-
-> +	},
-> +};
-> +module_platform_driver(brcmstb_memc_driver);
-> +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("Broadcom");
-> +MODULE_DESCRIPTION("DDR SRPD driver for Broadcom STB chips");
-
-
-Best regards,
-Krzysztof
+-- 
+With Best Regards,
+Andy Shevchenko
