@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD3DC58D338
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 07:35:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6148F58D34F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 07:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234809AbiHIFfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 01:35:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38740 "EHLO
+        id S235010AbiHIFoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 01:44:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234770AbiHIFfX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 01:35:23 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FF2410FEA
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 22:35:21 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id bq11so15586451lfb.5
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 22:35:21 -0700 (PDT)
+        with ESMTP id S232887AbiHIFoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 01:44:19 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A91851F2D7
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 22:44:18 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id v10so8451248ljh.9
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 22:44:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=CLBtSz5zowSZP2ptgXBelVuwhiidhEQF9DkU5FwAQ2o=;
-        b=MIpIA6sm7TY729nBdnH4Wjr8uM1YUZ558QURpKR1u4L6EukE1jenbkTuOPMgrdlh7I
-         y64Rd1JDLgrBmydt+dOufa6MsrJ8A0KKSQKIz1ym3JS+Tm72PR+sAbNLdqeh81rVeiV6
-         0oIPXwJyLmtA0jIq5cDmoiQrlGiriLCxmIyTsP5W38yajddj+q316fl2NnVSUZsBCTsb
-         U7onCSrDA3qRVMG91zDQv2bixKEo96W4h94qKqJO+uNe2XsH79owEtjkBd6yaYRpSSNU
-         OStd7KBlAMSexeY3jL0xH4PDeBsLHx9OjWzTB9DW3mO2Rlzpe+wssVNThK9J93hgw/y9
-         qJwA==
+        bh=FI4To5jHqN39miuQQ5GtcgN7QV66DDmgPD6y4XMVAQo=;
+        b=euJ2qWDssIx9t21bUsosyWW2rBWJfg1GZDgAuP3pH2TugwNXbTPZnC6kEzfPX8cpNG
+         3faVNP+EbRsgKelYIJSiK77ASPCFxEfvPdz7VJjYEPiJjJTjLc3aySFOjQ8R7A68hjTF
+         2bZUdSX48Y7QTGXi2a9Yw3AMCAKvYe8zfZJ03tb2UOopBlidLObIs1c4QAi9yhxMmQkO
+         Q+8qsAdc/G8QXntNLSqphuVp4XZjg91VZgSn0+mP9kKfgMkE9CyJDLG4JwQkSL/6bY/C
+         czaI9v4zznSy0QeM9ajDbBagnhgVvx6gAtbEdqf6zyS1dbyKH0wiSQKQDbp+fsKzFYoM
+         2IgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=CLBtSz5zowSZP2ptgXBelVuwhiidhEQF9DkU5FwAQ2o=;
-        b=CDI31FSL0aihq98FXxSLTslEmNhSWhULeaf79B1zMfw4Xplxu6F8NnjMETHiVFH7wk
-         qq1EguBT9wPZpMi65NEsIi7Ktbl52Vp3fHqByhbAoj8zHAT0nXLUAUnAaGKKU1jms74T
-         X3hTIJKdUsdUC8sk7IVEytaZWgciC0P2gr+G6NVQlRjoNrpT62RvqW7wu1cxy3iRnX92
-         X+aV7lUEE0nZqbLZH3WRsKddltgvD6Tr8cHzmm2VkJVOozQ1CdFeNvjKmoRAmQh15kUW
-         8JXGabrjF+iYaCo+/IgkjsDxL3TUsVGTnHndKsOMYGL911WjpqCyxPiuclqeZWi41x5f
-         h0Qg==
-X-Gm-Message-State: ACgBeo0gyFqdSzMEmamckhtNg8qtFz2oMbuYcCOkw5rJuuDp3C7g3iGd
-        xlWNfsFn52FWuMqwnrWnqDqCGw==
-X-Google-Smtp-Source: AA6agR5fYMdcvjSWJZrYBeyOmmE7yWtMoqDT5jX7CoahSz6MfG2ZP8zWFR9aonG3W/hDYJLVtWYDBw==
-X-Received: by 2002:a05:6512:2390:b0:48c:ef98:4103 with SMTP id c16-20020a056512239000b0048cef984103mr2172907lfv.265.1660023319961;
-        Mon, 08 Aug 2022 22:35:19 -0700 (PDT)
+        bh=FI4To5jHqN39miuQQ5GtcgN7QV66DDmgPD6y4XMVAQo=;
+        b=rYQ7ROTtLne0B9i6O+El/iZOZHz/aQWEVPsCGTlXKt1mSr2oCFUJg6EH4bVrcUHLEA
+         QlDz2yIQOk15BPBCeb3fgdS97NMZn9RpTQmBSUEMHqjS97l+TSa1s5dLP2qpTiAMQCqa
+         i7pRyQpNrrDaHt36prGgUMiEToaeO9Il1JlizNnw9FZdz3rJOZMy/FiJxedN/YcQp7ko
+         1t5+RYrWoGwWMd9Q0Uzvnnpu52uKrxCMIGrx0XFFIVvknauDG64qZJDOEHM/LCPiIK56
+         1JcE0Eeh5Gfn1hhq0iDvXGJE8phH8FVyhP+ZZBTGM9ro2UUIMcB1E7ALtZMbsJwBeVws
+         d64Q==
+X-Gm-Message-State: ACgBeo3aXD61iMITQboRsM/JrZTRNnXn4relUZgeaDGXVlsOo27S5L8o
+        KSCBYt9TXzahMu/t8hPOFN/myA==
+X-Google-Smtp-Source: AA6agR4wDGK9Bd2zYgQEapxkPv3dwBhu40WO1DHuINBqElReoxpFMuyYkVUCq7NHklvH00Roa6cUPw==
+X-Received: by 2002:a2e:9884:0:b0:25e:4b41:75da with SMTP id b4-20020a2e9884000000b0025e4b4175damr6505032ljj.339.1660023857070;
+        Mon, 08 Aug 2022 22:44:17 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id e15-20020a05651236cf00b0047255d211b2sm1633301lfs.225.2022.08.08.22.35.18
+        by smtp.gmail.com with ESMTPSA id d10-20020a196b0a000000b0048b003c4bf7sm1631645lfa.169.2022.08.08.22.44.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 22:35:19 -0700 (PDT)
-Message-ID: <27f83048-ac75-97eb-c9f0-0829de30e1ad@linaro.org>
-Date:   Tue, 9 Aug 2022 08:35:18 +0300
+        Mon, 08 Aug 2022 22:44:16 -0700 (PDT)
+Message-ID: <c97e7080-9d93-ae09-9bb2-106539f9b1ae@linaro.org>
+Date:   Tue, 9 Aug 2022 08:44:15 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v2 2/2] ARM: msm8960: Add Samsung Galaxy Express support
+Subject: Re: [RFC PATCH 1/6] dt-bindings: crypto: ti,sa2ul: add pka subdevice
 Content-Language: en-US
-To:     Rudraksha Gupta <guptarud@gmail.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, david@ixit.cz,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org
-References: <20220808234723.5184-2-guptarud@gmail.com>
- <20220809000300.6384-1-guptarud@gmail.com>
- <20220809000300.6384-2-guptarud@gmail.com>
+To:     Daniel Parks <danielrparks@ti.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <cover.1659985696.git.danielrparks@ti.com>
+ <42d04e9ec43d10f978cee1dd974bbfdccf121d85.1659985696.git.danielrparks@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220809000300.6384-2-guptarud@gmail.com>
+In-Reply-To: <42d04e9ec43d10f978cee1dd974bbfdccf121d85.1659985696.git.danielrparks@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,95 +81,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2022 03:03, Rudraksha Gupta wrote:
-> This adds a very basic device tree file for the Samsung Galaxy Express
-> SGH-I437. Currently, the following things work: UART, eMMC, SD Card, and
-> USB.
-
-Use subject prefix matching the subsystem.
-
+On 08/08/2022 22:12, Daniel Parks wrote:
+> The PKA (aka eip29t2) is a subdevice of the SA2UL on k3.
 > 
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+> Signed-off-by: Daniel Parks <danielrparks@ti.com>
 > ---
-> v2:
->  - Group the correct changes together
+>  Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../dts/qcom-msm8960-samsung-expressatt.dts   | 337 ++++++++++++++++++
->  2 files changed, 338 insertions(+)
->  create mode 100644 arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 05d8aef6e5d2..d55f196ad733 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1049,6 +1049,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
->  	qcom-msm8660-surf.dtb \
->  	qcom-msm8916-samsung-serranove.dtb \
->  	qcom-msm8960-cdp.dtb \
-> +	qcom-msm8960-samsung-expressatt.dtb \
->  	qcom-msm8974-lge-nexus5-hammerhead.dtb \
->  	qcom-msm8974-sony-xperia-rhine-amami.dtb \
->  	qcom-msm8974-sony-xperia-rhine-honami.dtb \
-> diff --git a/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
-> new file mode 100644
-> index 000000000000..cf557f0c9a59
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom-msm8960-samsung-expressatt.dts
-> @@ -0,0 +1,337 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +#include <dt-bindings/input/input.h>
-> +#include "qcom-msm8960.dtsi"
-> +
-> +/ {
-> +	model = "Samsung Galaxy S3 SGH-I437";
-> +	compatible = "samsung,expressatt", "qcom,msm8960";
+> diff --git a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+> index 02f47c2e7998..e4adb8192608 100644
+> --- a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+> @@ -64,8 +64,14 @@ patternProperties:
+>      type: object
+>      description:
+>        Child RNG node for SA2UL
+>  
+> +patternProperties:
+> +  "^pka@[a-f0-9]+$":
+> +    type: object
+> +    description:
+> +      Child PKA node for SA2UL
 
-Undocumented compatible. Run checkpatch.
+If PKA is from "Public Key Accelerator", could you include here full
+name of the abbreviation?
 
-> +
-> +	aliases {
-> +		serial0 = &gsbi5_serial;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-
-These three properties are confusing. Why adding them?
-
-
-> +	};
-> +
-> +	soc {
-> +		gsbi@16400000 {
-
-Override by alias.
-
-> +			status = "ok";
-
-okay, not ok. Status goes at the end of properties.
-
-
-> +			qcom,mode = <GSBI_PROT_I2C_UART>;
-> +			serial@16440000 {
-> +				status = "ok";
-
-Same comments.
-
-> +			};
-> +		};
-> +
-> +		amba {
-> +			/* eMMC */
-> +			sdcc1: mmc@12400000 {
-
-OK, I'll abandon the review. This file is really not matching anything
-in the upstream. Please start your work from a proper upstreamed, recent
-board.
+Anyway you need here reference to schema for your node or describe the
+contents.
 
 Best regards,
 Krzysztof
