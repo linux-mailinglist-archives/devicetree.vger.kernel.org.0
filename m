@@ -2,161 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 302F858DC4D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 18:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E125858DCAF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 19:02:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235725AbiHIQmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 12:42:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56944 "EHLO
+        id S245213AbiHIRCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 13:02:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230272AbiHIQl7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 12:41:59 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2065.outbound.protection.outlook.com [40.107.22.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE7CF1A818
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 09:41:57 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z01Anr8BK92/LicI+loUH63paItXdkBYVLzheYowl0r2qXQBMKm4iYjVh+JYita81sY7H5vQiQW84x3zouXWtrDKDc/rEEIQ7cvotjwOSDGAvhptd01rrRzgJVg7ywyOu1H/+d9CDJYbiWAdtofIm7ZfDs0p98kiaqBgyyD+UnYSbTvYVX59FDfMp4cGj1wSI1LvSQWo6jtr6igQcErFTofnAjOizZX2RqiSoltMuHMEi+ulbqoPCJTdlNhmNW2DrU1xsdtEwRfThR1/Ra1JdkrG23UiFUeko+rKzErhR0tIN6Fn+rZ1FGwoGZeHdzuNXA23lpKZFoZwHMteajijGw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sBkC1+zgxFq1xobV9z9WYV2HrKlq/2Ctz0YHgCvUoGA=;
- b=Q3WQW9yiL9tdSRBW6lnnfHI4hNiAQS1G2VhlqSbblmNV3UTqMDVLu81DS+9mvrz1LD2EKbwA0MQfrU37/PCNLMQjZl9FLnaa144dSygu4BoZPtNpURnLukjW3w9AO6mHqWZpCzSk4KI6AkK4swA/7UbVu454S0/uH/YXf0/WkPbSmLJZwal3G+Uz0pXmnIlaJCzKt8Nu2WelOGA7B1RC10FUIpjFgOZoZXVckQ2J/tmqb9L0vPq8hIp1p2b1OV7qI2otBk923yN/te5mCsYxM3rPNa3Zs7N5Fb2PmuJlgWFz7KhgF72S0duDK8Z7324DhLujESpauzh/jZsU1lgzKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sBkC1+zgxFq1xobV9z9WYV2HrKlq/2Ctz0YHgCvUoGA=;
- b=qqcFiW8SyInN8SxeSiyDGUNyLmtRGhWiSz4NMHsM0DIosz+yVHDxwfDaqMwPGitvRySBy9wPWjsTV8hr3tDbWhvgcD2KNoG8//gJivtnH/wnEk29MkgwIjxXwpBpb+DfKuFZARqx9Ha96Aymi0GkowCAHsnF+GSegEFveyBjYbo=
-Received: from AM9PR04MB8274.eurprd04.prod.outlook.com (2603:10a6:20b:3e8::23)
- by PA4PR04MB9415.eurprd04.prod.outlook.com (2603:10a6:102:2aa::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.20; Tue, 9 Aug
- 2022 16:41:55 +0000
-Received: from AM9PR04MB8274.eurprd04.prod.outlook.com
- ([fe80::747c:397f:a003:dbca]) by AM9PR04MB8274.eurprd04.prod.outlook.com
- ([fe80::747c:397f:a003:dbca%5]) with mapi id 15.20.5525.010; Tue, 9 Aug 2022
- 16:41:55 +0000
-From:   Shenwei Wang <shenwei.wang@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S245523AbiHIRCP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 13:02:15 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 950941125;
+        Tue,  9 Aug 2022 10:02:06 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 279EJXd4005332;
+        Tue, 9 Aug 2022 17:01:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=PsUe4sDedM4Xf0wEjxfdqjMyNjCBD2aCwnE+h/dNytU=;
+ b=ijP+3kXYkLqmYj0zdFJ7LpYQl2jpApcBf8Nm6RlBptwtmUs7mT4cMw3wIGEE6ckeBQCz
+ ejl5xnTaGY6DA185b7RLIOL57A8fw+1FB4lKhjs8FagKtUr0s913a/L/dm/JpM0OU7P2
+ HHUsGQ/Sk1W0mL1tuJY67ZN3vK6o5ZJ2MKutLxmyxjxApRgWmoJYkxuVJLUzWLuxJfLQ
+ eCN7kv5hLM5tM9dTMS9rYUSiOIUILcbVJZsEgbY0jy5VQsYVBU+z5K8FCig6ITzrr9od
+ RnTyT2i4Bi9HzUx7J3IdNrVGkcRPSDl4h8QIKdsLaaN+OAFquYrmV8pRwv5fo+khmNkP vA== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3hudy5a8k4-12
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 Aug 2022 17:01:42 +0000
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 279Go4Dh020626
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 9 Aug 2022 16:50:04 GMT
+Received: from [10.110.34.230] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 9 Aug 2022
+ 09:50:03 -0700
+Message-ID: <68e241fd-16f0-96b4-eab8-369628292e03@quicinc.com>
+Date:   Tue, 9 Aug 2022 09:50:02 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 07/11] gunyah: msgq: Add Gunyah message queues
+Content-Language: en-US
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: RE: [EXT] Re: [PATCH v5 3/3] arm64: dts: imx: add imx8dxl support
-Thread-Topic: [EXT] Re: [PATCH v5 3/3] arm64: dts: imx: add imx8dxl support
-Thread-Index: AQHYpeGDYpiKQ0qZsEaieFkUBk0ctq2ggR7ggAQHwACAAM2G8IAAq2+AgADOohA=
-Date:   Tue, 9 Aug 2022 16:41:55 +0000
-Message-ID: <AM9PR04MB82744F2CE2C3B7FD99BA94BD89629@AM9PR04MB8274.eurprd04.prod.outlook.com>
-References: <20220801200121.672619-1-shenwei.wang@nxp.com>
- <20220801200121.672619-4-shenwei.wang@nxp.com>
- <DB9PR04MB8284548EFC5EBBA826B55F34899E9@DB9PR04MB8284.eurprd04.prod.outlook.com>
- <5d7f44e5-9114-65b6-af7d-4bac75c62a46@linaro.org>
- <AM9PR04MB827446CA7B2887414A5C641C89639@AM9PR04MB8274.eurprd04.prod.outlook.com>
- <781cf213-0ca8-6b03-2d60-280bfeb6d39d@linaro.org>
-In-Reply-To: <781cf213-0ca8-6b03-2d60-280bfeb6d39d@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bfdfeaab-9c59-4dd6-34bd-08da7a2611e9
-x-ms-traffictypediagnostic: PA4PR04MB9415:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: VghH9ls9OluWn5LCUUjA3iFKIHKO2ySESNH58gS8i6l0LsEXee+YnIZphD3nFSScPfDZDTqODYJiMj5LwDqRoWmL1fdNnEUvvfsucdgDNEwgUZltM3mqwCpJqw9F4JtHXZ88YyQvHcYOqFYkW1oRwPGGJHxkqMY0329yTL/IQx2dSNKoBp20ydNNbit9v+9Xs3yv2aSwZ2f14Ex5tlCYYF+CT4L1785+Paa7T2/6TwE8kvZckPBN2hXWBrIHHdvVvpUSSnm1NFosqDFvZjF3d/NAWKFLpGnWluunE7LLfg4iSTzT8Au1s1OB5VUUTARaj7P9IiKWKrPqDIgH2uBEVrwrkNZqhJzq7xL0RqZ22KidvIH4Gsre1IedU/4qGo86uH6sxOXcXDLcfyzYeXGWeIhjPg+7iND1bXDUk34ncVbyS6wXqf1gd8P+jpjfip1+HbxLKpZx05oKe4XlVzH0oJx534NtdwxAteR6Z54K7QvGygnSN8sYJLzCv6JTsz88pVuZ59MWsET5m6HmOHc5OmJ2SAYlZjBUJIMDKrxNNKWkc+syXcse/08jmvMmVx1YkP3tEk/dYkigQIPyyswYUIzXadK3dj1LLcJzT+Q3ifBXOQ4vhjpGvQbSAyWTHRSYRKBUi6ZujwjTjKzfBx56lE3WMho9m6EURqm/8OjVWi/pAeAtzqBwGrWH1rqOoxuH9cQ+O3y2ly4Ewi3/wk4NvcyBuMFWCF4YxN0A2mT1e1/U6fuebUWSsH9tYhqWX+RkNsU8mXcoln6YkOZqU+bDIv2mMGnuaQP/QY4gEB4fJXWpMtgiTCgt3aLLPK8kDmSGS35AWp8zuTXya1qOEksEcA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8274.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(136003)(376002)(396003)(366004)(346002)(44832011)(5660300002)(52536014)(2906002)(76116006)(66946007)(33656002)(6636002)(71200400001)(110136005)(55016003)(316002)(478600001)(54906003)(8936002)(38100700002)(55236004)(122000001)(38070700005)(26005)(86362001)(41300700001)(53546011)(6506007)(7696005)(9686003)(66476007)(4326008)(66556008)(64756008)(66446008)(8676002)(186003)(83380400001)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?V2I2VGV2WkNjblBaaEZnNzVPaXJDcDhoMnZzWnlQVlNONmxyNVN1NEszTXUv?=
- =?utf-8?B?WldiUzViZ3R5UDJacktEOEVxc0V0dEZpQUtkalUrVEpyeDRIbUFnbHdYK1Fj?=
- =?utf-8?B?SUZ4eEdwMlMwU3Y0UjZJdFJ0Q2hYcCtuVGJKZDRGL01mUXJIZGI2V1JhMjRR?=
- =?utf-8?B?VHlXZlVadnBBdjFxNkl5TzdFUFVwNm0wNVJKVjl5U1pxS2RkUjJ5Wms4UCtv?=
- =?utf-8?B?R3hpaVdmV0MrYUwyQVlFQWcyMHVScW4zNm9UQWpnUEdOUDdmaWFEVFIyWGg2?=
- =?utf-8?B?T1JkRXFDWTJrODdVRjZIM3l4SkI4ajdhTlh3QSs4VjVNQzY3UW5TK3FIc3dD?=
- =?utf-8?B?ZUcveGtHSXJRaFRtd3B6MkNqN045SVZESjZwY0krNFFJeHgyV2RBaFVwR2tD?=
- =?utf-8?B?NmdkZzgwNDNLbXY2TWI2a0IxWnJwMTNXNFpaSEZYNWdGblIvcGRuOWJZZmpF?=
- =?utf-8?B?Yko4d3h1RFRHUHBjM2JYWGdGTWwydjY3Z1lGakZTSWVIVnB5cnltNldCcFA5?=
- =?utf-8?B?eUU0eDNoNWRlUVdyak4vemR5ckJlRzVFTWpyMkJhSWRFc2d1M3NlVGo3L05X?=
- =?utf-8?B?TWw5d1RSeWQzdHhsSzlCWlQzekJKOFY4M2g2NUdqOS9pWlpkc1JuajY3RUE2?=
- =?utf-8?B?MnBXdTlqSVl1aVFoclpEOG51VnAzK2JIQUFzdys0dUxUN3lFMk5kY2l2UUVm?=
- =?utf-8?B?M0RZbVRQNFU1czJSODJXeldvUjQ2elFaK2VVVGR0ZmJEd05vNEl6Zi9mT2Ir?=
- =?utf-8?B?QnlRU0lXdElCb2l2djRIU1VzU05GTmRrTGhXQW0rcWtmR1BvS2R4eVR2d2Y0?=
- =?utf-8?B?S0NFME50UEZQejJ3TEtGVDhTTk41YkdOSk9QR2NjbURnVUVEM2ZrQm5oWjI1?=
- =?utf-8?B?dUZ6aEpzK1g3R25mbHNLcjdCd3dmZWJkWFN1LzZoMGRmS3Ivdk9NTE50Qmhs?=
- =?utf-8?B?eWdvTjg0ZUdQMVZSMmk4bWdJYU1SSnBLUk5YalBtVllaZHU3TnhYWVRHM1BQ?=
- =?utf-8?B?RGptWlNzTC9PcmoyQWpwNWpjOVZwakRnNC9MSnJ5NVM4QzUvS0RaNFFMaGtk?=
- =?utf-8?B?NWRvZnovd1cwdEhFNCtkRzdCaFJVM2cvY3g3TEx3QXNTbzJZRDVtM2JMNk9v?=
- =?utf-8?B?V1pNL1JqdHRqVHkxRVdIc3lOQmkyM1dLTmRWb0NkQy9oUk1nK3R3Z3BwYTdN?=
- =?utf-8?B?cXNJL2R2K0U0YUgxNktoWThmRWpMSExzVnIxaVZhb05NUGdUbjcrZVQ4V295?=
- =?utf-8?B?SzY0WFkrSlFRQ2VIeE9hNFVqSmlHQkxvc0o5b29GNWhOY05FZWxWdUs1NUlt?=
- =?utf-8?B?MHdNNk9Ldm1nc0tEMlFUdWs4dThZRytzSG9URDdIRU80dXBiL0JzNUhPdEc0?=
- =?utf-8?B?UGNkM2lCVUhuSWlaQi9HOHNZQjFzcUVuZ2x5b1F3ZlBZMmpkRUNyL2Z0emdW?=
- =?utf-8?B?YkhhU1BOL3p2M20rU3JIaWJ1dUNDSnFSUTdIK2hqa3R2SXZQNFpoT2NPZlI3?=
- =?utf-8?B?empVeWRJSFFKM2lzLzNGMmVMak5oWkNUcFpzRzZ5czFiVjhHSGtrMmhUS3dn?=
- =?utf-8?B?ayt2M2Z6NUZBQXVJc2x6YW5WMVJ4L0ZkZWlBbjU1YzhITkwvUWNPNmJ6Z1I4?=
- =?utf-8?B?VFhiSWVxd0NMVVhGTWZKOFFWOHlhVTYwY3BxWThjb0p1Z2t0RGpOZmIwcDU3?=
- =?utf-8?B?N3c5d1hOUVZLRlhSNVlUWDRLOHFyQzBuM1BrTmFyMjFTMTFpRkhXenNpR0Fj?=
- =?utf-8?B?eVl5UW1GOEFXYVRhL210YXc3SG5tM2lIMWVwU0MzK1FyaHV0S3puYlYzMTE2?=
- =?utf-8?B?Ni9sYTFHczZuRWhyYVRtRzl3ZmdXT2JoOEdRdW1lbFRCUnhsM2ZQM3EzWG1J?=
- =?utf-8?B?Z0p6QWlWd2d6dkkyQ2ZnblY4UkttVEZpUFVvQ2JYS0VKZzduK2xyK0dXVXdE?=
- =?utf-8?B?QjAyT25qdjI2dHlacG4rUzF6dzZsRVRJU1BMRGJzL1JZYlhVN3RFU1ArM3lT?=
- =?utf-8?B?OEUxamVTQ3JzOXBBM1VtbWpFL2FPOTduaWhGRTR5U05KWisvS1VvS1RTdDFK?=
- =?utf-8?B?cWdhMkljTklYeVdrcVBQRzVvSkJzWFh0N29NSnVWdmh6d0lPT3I4RC9GQzVj?=
- =?utf-8?Q?y0+Q5g7dAWldSLrIew+fCB2/i?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8274.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bfdfeaab-9c59-4dd6-34bd-08da7a2611e9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2022 16:41:55.3563
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DQ67suEJ2IwWW000TWS3JOqMjcMP9Q94ubambYYU/BFCGnIeXrGlqEej3cxStTNj6yJyoH9mveiENaNuX3bFGw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9415
+        Jonathan Corbet <corbet@lwn.net>,
+        "Will Deacon" <will@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+References: <20220801211240.597859-1-quic_eberman@quicinc.com>
+ <20220801211240.597859-8-quic_eberman@quicinc.com>
+ <250945d2-3940-9830-63e5-beec5f44010b@linaro.org>
+ <6fa6c86d-5b4c-4048-2df8-49a36c86e7d6@quicinc.com>
+ <87zggdven5.wl-maz@kernel.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <87zggdven5.wl-maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Y3DNha-5qTiN3rzu3I9OAriHyDmQgVHK
+X-Proofpoint-ORIG-GUID: Y3DNha-5qTiN3rzu3I9OAriHyDmQgVHK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-09_05,2022-08-09_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ bulkscore=0 spamscore=0 priorityscore=1501 impostorscore=0 clxscore=1011
+ lowpriorityscore=0 mlxlogscore=578 adultscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2206140000 definitions=main-2208090068
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgU2hhd24sDQoNCkFueSBjb21tZW50cyByZWdhcmRpbmcgdGhpcyBwYXRjaD8NCg0KVGhhbmtz
-LA0KU2hlbndlaQ0KDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6
-eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50
-OiBNb25kYXksIEF1Z3VzdCA4LCAyMDIyIDExOjE2IFBNDQo+IFRvOiBTaGVud2VpIFdhbmcgPHNo
-ZW53ZWkud2FuZ0BueHAuY29tPjsgUm9iIEhlcnJpbmcNCj4gPHJvYmgrZHRAa2VybmVsLm9yZz47
-IEtyenlzenRvZiBLb3psb3dza2kNCj4gPGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9y
-Zz47IFNoYXduIEd1byA8c2hhd25ndW9Aa2VybmVsLm9yZz47DQo+IFNhc2NoYSBIYXVlciA8cy5o
-YXVlckBwZW5ndXRyb25peC5kZT47IFBlbmd1dHJvbml4IEtlcm5lbCBUZWFtDQo+IDxrZXJuZWxA
-cGVuZ3V0cm9uaXguZGU+OyBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gQ2M6IGRldmlj
-ZXRyZWVAdmdlci5rZXJuZWwub3JnOyBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPg0K
-PiBTdWJqZWN0OiBSZTogW0VYVF0gUmU6IFtQQVRDSCB2NSAzLzNdIGFybTY0OiBkdHM6IGlteDog
-YWRkIGlteDhkeGwgc3VwcG9ydA0KPiANCj4gQ2F1dGlvbjogRVhUIEVtYWlsDQo+IA0KPiBPbiAw
-OC8wOC8yMDIyIDIxOjE2LCBTaGVud2VpIFdhbmcgd3JvdGU6DQo+ID4+IE9uIDA1LzA4LzIwMjIg
-MTg6MjIsIFNoZW53ZWkgV2FuZyB3cm90ZToNCj4gPj4+IEEga2luZCBwaW5nLiDwn5iKDQo+ID4+
-Pg0KPiA+Pj4NCj4gPj4NCj4gPj4gVG8gd2hvbT8gV2hhdCBkbyB5b3UgbmVlZCBmcm9tIG1lPw0K
-PiA+Pg0KPiA+DQo+ID4gVGhpcyB0aGUgdmVyc2lvbiA1IG9mIHRoZSBzZXJpZXMgb2YgcGF0Y2hl
-cywgYW5kIHNob3VsZCBoYXZlIGFkZHJlc3NlZCBhbGwgdGhvc2UNCj4gY29tbWVudHMgZnJvbSB5
-b3UgYW5kIG90aGVyIHJldmlld2Vycy4gVGhlIG90aGVyIHR3byBjb21taXRzIHdlcmUgYWNrZWQg
-YnkNCj4geW91IGFuZCBSb2IuIFRoaXMgb25lIGhhc24ndCBnb3R0ZW4gYW55IGZlZWRiYWNrIG9y
-IGFjayBzbyBmYXIuICBJIHdvdWxkIGdyZWF0bHkNCj4gYXBwcmVjaWF0ZSBpdCBpZiB5b3Ugb3Ig
-Um9iIGNvdWxkIGFjayBpdCBvciBsZXQgbWUga25vdyB3aGVyZSB0byBpbXByb3ZlLg0KPiANCj4g
-VGhpcyBpcyBub3QgYSBEVCBiaW5kaW5ncyBwYXRjaC4gV2h5IGRvIHlvdSBuZWVkIG9yIGV4cGVj
-dCBteSBhY2s/DQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0K
+
+
+On 8/9/2022 4:29 AM, Marc Zyngier wrote:
+> On Mon, 08 Aug 2022 23:22:48 +0100,
+> Elliot Berman <quic_eberman@quicinc.com> wrote:
+>>
+>> In a future series, I'll add the support to load other virtual
+>> machines. When running other virtual machines, additional gunyah
+>> devices are needed for doorbells (e.g. to emulate interrupts for
+>> paravirtualized devices) and to represent the vCPUs of that other
+>> VM. Other gunyah devices are also possible, but those are the
+>> immediate devices coming over the horizon.
+> 
+> Can you elaborate on this "doorbell" aspect? If you signal interrupts
+> to guests, they should be signalled as actual interrupts, not as some
+> hypervisor-specific events, as we rely on the interrupt semantics for
+> most things.
+> 
+> Or are you talking about injecting an interrupt from a guest into
+> another, the doorbell representing an interrupt source?
+> 
+
+Doorbells can operate either of these modes:
+  1. As simple interrupt sources. The doorbell sender makes a hypercall
+     and an interrupt is raised on the receiver. The hypervisor can be
+     configured to raise a specific SPI on the receiver VM and simply
+     acknowledging the SPI is enough to clear the interrupt assert. No
+     hypervisor-specific code is needed on the receiver to handle these
+     interrupts. This is the mode one would expect to use for
+     paravirtualized devices.
+  2. As hypervisor-specific events which must be acknowledged using
+     hypercalls. We aren't currently using this advanced use-case and no
+     plans currently to post these. However, I can try to briefly
+     explain: These doorbells can operate on a bitfield and the sender
+     can assert flags on the bitmask; the receiver can decide which bits
+     should trigger the interrupt and which SPI the doorbell "runs" on.
+     The "user story" for this doorbell is to support multiple sender
+     using the same doorbell object. Each sender has a few designated
+     bits they should set. The receiver can choose which events it wants
+     an interrupt to be raised for and then can process all the pending
+     events. To re-iterate, we don't have an interesting use-case for
+     this yet, so don't plan on post patches for this second mode of
+     doorbell.
+
+
+> Thanks,
+> 
+> 	M.
+> 
