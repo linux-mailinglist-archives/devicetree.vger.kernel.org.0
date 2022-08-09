@@ -2,129 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5D9058E00C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 21:19:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F9458E031
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 21:29:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345879AbiHITSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 15:18:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49076 "EHLO
+        id S1344077AbiHIT25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 15:28:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348561AbiHITRD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 15:17:03 -0400
-Received: from EUR02-HE1-obe.outbound.protection.outlook.com (mail-eopbgr10082.outbound.protection.outlook.com [40.107.1.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D78442C10B;
-        Tue,  9 Aug 2022 12:10:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CKmI9pwVWIpne97GLF3tYwA7ru/BPxptcJ+SKBc9ax0FZsybQqGyI0TdbnNO6VudFioViAqgk0AHgl+tcQQ5CM1MercY/2x6AL329/jlQorFmZLBUZbQF9TOg37ZrO6Taw8qLMLfCEYlK7yVVFRZTnsZObtQqCQ+37R2wzzB+ZTMwyR70Zzu1ZO8ThjBURYUFmUFZxsAm26mho9edXkeD7oNTfpRYDXEjg4mtlFZI2g4bomCNfnPtRiBe2FFXDwGSg6Gmy8NnXZHRvOH52UOfStBe1aAV/zX8uM7eJtUa4NouFGHqmqHIGgoiIUq86VdIVOwEpqjC33xZtPcVepbkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VvZUOVT/+f6VK9QSBpgOueBibD9UsD+iOGlOJ6a41hY=;
- b=lre8F59AsE6HqYExt0MF6dSBFDDAJjPEf7x+sKCitrY6N9ibJm8jwdZ+yYEeWsr8qTz1q1eCYPmamCIrfDHpJ66EsmPsQOY0DIvWI8VII6U542wIt4uXUoEm3UZEs3Hna17vRCiWp/NhNQDVuoBOtew6/vIDlzQWgp6soO75n9YTF2OejKQxzxJ8MZm8vY5cA/uLJt0nkff+G9/P1+kL8y1Qq42NC/d5lhA0dFu0wt9YLYrNpv5EIz5ST9b8B8j11dPG4wUkMkYA5x1RLhevlJUyltme4Kmwx14rD/Vu+CsaQyPY8Rws/Uzffnea3EmmL3YHevNAwv6JXSm1uVI8Rg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VvZUOVT/+f6VK9QSBpgOueBibD9UsD+iOGlOJ6a41hY=;
- b=AZWOXOyhyBsQeH+JyzPy1c6GX6zwInoVTJfdemsC3e2PW+gy9PF4EjTlWiouqPmoyCdoKFxPCMNoPa+oNuYVyvLisV1xZD0o9xu24d3Smb5iPnXquD2/B3C7A1fIqAxGfu2DPONtIpp+IiPv08F5JO2jApMInt+QyFrD5btRlJk=
-Received: from AM9PR04MB8274.eurprd04.prod.outlook.com (2603:10a6:20b:3e8::23)
- by AM0PR04MB5346.eurprd04.prod.outlook.com (2603:10a6:208:116::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.21; Tue, 9 Aug
- 2022 19:10:34 +0000
-Received: from AM9PR04MB8274.eurprd04.prod.outlook.com
- ([fe80::747c:397f:a003:dbca]) by AM9PR04MB8274.eurprd04.prod.outlook.com
- ([fe80::747c:397f:a003:dbca%5]) with mapi id 15.20.5525.010; Tue, 9 Aug 2022
- 19:10:33 +0000
-From:   Shenwei Wang <shenwei.wang@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: RE: [EXT] Re: [PATCH v2 1/3] dt-bindings: gpio: Add imx-scu gpio
- driver bindings
-Thread-Topic: [EXT] Re: [PATCH v2 1/3] dt-bindings: gpio: Add imx-scu gpio
- driver bindings
-Thread-Index: AQHYq/y3hjQZyrerhEOc0N3FD1GMnq2mu6cAgAAzTFA=
-Date:   Tue, 9 Aug 2022 19:10:33 +0000
-Message-ID: <AM9PR04MB827455A25D76A21D1CAB6D3489629@AM9PR04MB8274.eurprd04.prod.outlook.com>
-References: <20220809143105.17967-1-shenwei.wang@nxp.com>
- <20220809143105.17967-2-shenwei.wang@nxp.com>
- <5eb4d4a0-9895-dc0b-ba6a-ac435674892d@linaro.org>
-In-Reply-To: <5eb4d4a0-9895-dc0b-ba6a-ac435674892d@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a62006c0-f4df-4b4a-d77b-08da7a3ad56b
-x-ms-traffictypediagnostic: AM0PR04MB5346:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6MUpcGmV1CEyCCQoBFnhNK2BtD801DDa+PBlSnncquFO17G7JZw9u72Sc1IZbeR92wo3KhBTcZpRKtc3fqtEvIqHAdoMARkU5ugUjuJHn/o81hFlIKt7nLqy6VKCndVqdGTSDQW477JHiybU90guWCyLUXAMwsYXgUyPnebdvfWhHxeoFsbt0qKkC8vvgXqf3yRu/rvmHH8OsNfMxYKbbW/vzCEgqCJup3Df3a7MpXG90FETAj74UeFqfLwgUkUy/7FJ4DuNavRmMpBhOOPL5ZzLqya1EeCA+EoQVynFnuTA1d4h9eO42ThhjhCgoSnw4z1sskh1UkqCNsslUklVAAhFSq0pFATl5P1c1c9AGWNUF/asQ25QIxGu5+4kMX62BOylNEeidFXU1A+i+q0Z2bXQGtqwzvGh5y3scYMTqvULuICGUNMZUifCoAzv9pISRFcGxirlZG4YUQ9O/baxgTaZttXhufkIalNFt7G/NNSo9QepPEthGTFwj0un+EAIBej2TWUSqCP8x7YfpijDJcW/2xeGbXSrFfhkbyshT5rDX2bXdI6i6vuJvXK68amUX2YzeaT4R7mIz8HKWxD7QNHyNJTDUIueMqhV1uWzLwgOaQ3QLnvc61F1yviOzrEsoqgAz/+caBlSXc8aG7ckicHZCh9frx2S4kvw1VO6FuQEiYGEZ8PDAJMfSDSm5MEqctSnsp0HobxNqDjPHOF54xdan4uD2XYe18oELpMwxscAUSdYsr4IQt4ZZudUT4g4ZaN1A3OKqi8nuKc5Fef8TCwk4sehfSvZJ01lm80lboTwhuHI+l7dTVyQD9lOVXVsxDKHjKny8BaQVujRmWNNqg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8274.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(39860400002)(136003)(346002)(396003)(366004)(376002)(110136005)(6636002)(54906003)(478600001)(316002)(2906002)(71200400001)(41300700001)(55016003)(64756008)(66476007)(8676002)(4326008)(66946007)(66556008)(66446008)(44832011)(76116006)(5660300002)(52536014)(4744005)(8936002)(7416002)(38100700002)(122000001)(38070700005)(921005)(9686003)(33656002)(86362001)(186003)(53546011)(7696005)(26005)(55236004)(83380400001)(6506007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?P13Z1HT6VFc6CVGkGT96KcnDhD7qHcICWFoOOZVQRqcWUCqPo7CbrZjGqZcu?=
- =?us-ascii?Q?1Bpyx7Kr9x34noSYqAFFkInItUFpf02PJLFX45Ir0+WPcjOJ/LoJB3oSHXfl?=
- =?us-ascii?Q?G6ftn0llnrsvyFz/QGd3M3hv6a+p4nCuGKLBGHCbv8P4xAGQuAiw7/sF3IUE?=
- =?us-ascii?Q?aRtSe6UA3VAodbsHZ9Qh4yaKNPOQuk1y5XlIf2mcFoR1uMXo8u/Y4nKIqsgr?=
- =?us-ascii?Q?IzDmZ0fr0gMtGsKyQOsZxHMXKP9TAsCGWc5e+LKQy/MlNYCAmLV4IDMVgkW7?=
- =?us-ascii?Q?Iw0KJYGVrKe8KNMkIenHGa0fDGB+7tgAQC2lN2d1UgqGgdHbHI0SyynXXQFH?=
- =?us-ascii?Q?PyZVD8awaExBAiUHxNiht5SswFTYadYHTsumbs5UI4RiRkA+3QiCUsux/pHP?=
- =?us-ascii?Q?1uV3CjfqzM0EiRMNDgRxppCmHU8xydted6+pux8qiI7OLOmTMohps17foG9q?=
- =?us-ascii?Q?XsOQFv9hdRPyu4rAw2fDpg02FhJFylG1DFWYejsypRCmzON0+LE/Wj9ei7KE?=
- =?us-ascii?Q?UK5RWI8gKxAt8eQViJR8vB8yE++0aHNAdJ4rNv+5TXLxQbkitvS7/1Wk6Fmh?=
- =?us-ascii?Q?dW6HdqIk9dXuG0mqaE9T3aAHSYqlwCtbPkjsiUyIaQ9WPqb8UiejA83p3hJy?=
- =?us-ascii?Q?jNi7tLUcPwifNYyc/JjtP/Oey9B0yC+R9SOtM0NVi0dvqyhHLdLe1U8jriL3?=
- =?us-ascii?Q?oqXJ3g52L5JgbP5rq41SmZfPpV43li8JHpyBbzSsr/DV6HUsg1wK4hHSjQUG?=
- =?us-ascii?Q?C4ualbCN28+7L8pTfyx/nw3l6sdVdHzx79S38/g0nPXNi70iJmsXxYYqF2GO?=
- =?us-ascii?Q?/Ii1+LI+9osRnKifv7pZDFbsfSKEq7AwooN483IksQQ88GLsz/1vkxsQI4FW?=
- =?us-ascii?Q?amBPxtGR9DU8cNq9zNX1lTdzZAbRXfFVRQGJSmGXy2wo8jlVNig9y5usA2SE?=
- =?us-ascii?Q?berLS8K4BvTtD/Ch2wEawYHjIE7U7cRdX4OARIMzYrc9DUEaV8Mee2/ZRli5?=
- =?us-ascii?Q?BkrMa0VPTBiMSBs4P9KQsIrQ7HXJA0xnz0jShgO9mm9Y7lBH2QeIe2AW5BvP?=
- =?us-ascii?Q?bIpZOvgp/4K8gDQOqfHg6Cguv5D/w+cUZ7w5EEQi49DloLBajGvYGXVbp1DG?=
- =?us-ascii?Q?s/QUci81VRniQWyvKkBeEQcu1yq04x+CIf3WZ/Hi63k7mXnw8zfq5UCnB1Bk?=
- =?us-ascii?Q?0WF64fcm/X1VPLiV/3QaT5i9/dr7jXzxIPSOqEQT6S3thrOQrK0okMYKR8JA?=
- =?us-ascii?Q?9QyB97Sj7NJq4P4KIDQDb6+1sPJCG9eYAY2+uLhm7Qu8JJ2gQzaNVl9teFn1?=
- =?us-ascii?Q?vmRtUsL1V7CgfvexEsGJ3webXdMlrURRHPlpMAnbxiuA6K/ZeEMJzqdTa+k4?=
- =?us-ascii?Q?ayz46j4hql5cDu+IlXDIRiVONdzMYl4mvoCigTefW3CcSGc++9lG8WQyxGov?=
- =?us-ascii?Q?roTCyJO5o8dz0+7MikNpJYrzy+0QPkrDVHC4tHLmgANeCCYYnhSXkKpgQpKM?=
- =?us-ascii?Q?kI5W5Bz9Sca7hwVtv1FPn5Hm3DmJQFPvIM/uqKeds4TR3JAOOuRk+ev192n+?=
- =?us-ascii?Q?nsDGS5uNnCDLTb1ENbqvShXdaZAs2PWnl074j5Bs?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S1344056AbiHIT2z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 15:28:55 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98A6518384;
+        Tue,  9 Aug 2022 12:28:52 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id f20so18294450lfc.10;
+        Tue, 09 Aug 2022 12:28:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=UpQrpm/ApIaRZ0s83gslfbMpGpJb7iuWgZQqWYQz1bo=;
+        b=j/wbu5CDa6aI24ATri9dmT+G9srGDf3ToFayz3PQkJXhsOEltEIJC1fGMPe9Gw2OKp
+         exOVVYl6h/VeZjg+V+IfnSNiYudOoIsc6For3s3xtD5h17kHDSmQdk3D4dXYKvnlvT/h
+         iU26xSi3AiOPDPBuzF1rBLDaFZ0leEjzKLx/XopJFBqvs/+wcmTGkekaRZ8rmq8dVb+7
+         XYnGAaAAV5a3UVf3Brzia4mhMAMYFdUSuc4sLOv/g/Fufz4BIZYvKgeMGwsM2chODmK4
+         hUIPWFiLVlpC+S/Az6Msw8U/VZ5QqPeTO3U+RjaolOaG7Ypz9jGirUeu8GNHw1p26OcU
+         2Bwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=UpQrpm/ApIaRZ0s83gslfbMpGpJb7iuWgZQqWYQz1bo=;
+        b=MG8PCuatVECMoDB30A/++JxWP1PVMbhjtrwgUJGkskv14gz5J9QDjBI25PWrmgxpdq
+         kBYlzW1XOQpzOC0cOkHKayjxfmec6N2fNeDslu6rEvlOTIv4GuHS00bk/LvaHGZNwsPR
+         a8NZ/xPwj724GxvKRCzYJ40jmxufrlecSxONOHqXP57OxjpsG3Pd4j+/NtG6BP8abmFu
+         g/4Ttvz0Apqo3lAoYAO9kJaE3vDWHp92so2KcCZrAGZDt82Fq29BPj5pqKWEbsu5q5ii
+         PcSUA0xC9WukcpfSkvqs9Ap6xT7zIB5O5Lz3FpGlM3cbHQZM8gbh60JPLGzRsGYUzclq
+         C9Iw==
+X-Gm-Message-State: ACgBeo3aLDKQ4oDVd67ZiZFebMkZGwZ4HQKOKdejFXI3MVYtwBOUKde+
+        YLXp5GRjO64K9M630qvay1nAtnbqXzaHGQ==
+X-Google-Smtp-Source: AA6agR7WvusrH8G8KEzjm+A0NlFvp6eT0993uhqXFqv9uiEDstp67r6aTLJP4MiBT8975b71Vv8RXg==
+X-Received: by 2002:ac2:5324:0:b0:48b:9643:3838 with SMTP id f4-20020ac25324000000b0048b96433838mr6409291lfh.373.1660073330623;
+        Tue, 09 Aug 2022 12:28:50 -0700 (PDT)
+Received: from mobilestation (ip1.ibrae.ac.ru. [91.238.191.1])
+        by smtp.gmail.com with ESMTPSA id n24-20020a05651203f800b00489da512f5asm72305lfq.86.2022.08.09.12.28.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Aug 2022 12:28:48 -0700 (PDT)
+Date:   Tue, 9 Aug 2022 22:28:46 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Frank Li <Frank.Li@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 12/17] dt-bindings: PCI: dwc: Add Baikal-T1 PCIe Root
+ Port bindings
+Message-ID: <20220809192846.ozixf6kgs242dbvl@mobilestation>
+References: <20220728143427.13617-1-Sergey.Semin@baikalelectronics.ru>
+ <20220728143427.13617-13-Sergey.Semin@baikalelectronics.ru>
+ <20220801181311.GA1266390-robh@kernel.org>
+ <20220808160118.m5ka7o7gdhei2yzl@mobilestation>
+ <CAL_JsqJSYAsotjzvOUy_f7ZRfsSrfZyuEzq7eRwwKk12FBgxYg@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8274.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a62006c0-f4df-4b4a-d77b-08da7a3ad56b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2022 19:10:33.3027
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: C5EM+d3I4ilD+7+gdyfiTELfnoOfVRqoDmihTmJ1Bvo2tuAmBZ1UYp18i1MVb82XeP3uzPqiJx3VGqqABJm7lw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5346
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJSYAsotjzvOUy_f7ZRfsSrfZyuEzq7eRwwKk12FBgxYg@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -132,38 +85,179 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 09, 2022 at 09:12:31AM -0600, Rob Herring wrote:
+> On Mon, Aug 8, 2022 at 10:01 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+> >
+> > On Mon, Aug 01, 2022 at 12:13:11PM -0600, Rob Herring wrote:
+> > > On Thu, Jul 28, 2022 at 05:34:22PM +0300, Serge Semin wrote:
+> > > > Baikal-T1 SoC is equipped with DWC PCIe v4.60a Root Port controller, which
+> > > > link can be trained to work on up to Gen.3 speed over up to x4 lanes. The
+> > > > controller is supposed to be fed up with four clock sources: DBI
+> > > > peripheral clock, AXI application Tx/Rx clocks and external PHY/core
+> > > > reference clock generating the 100MHz signal. In addition to that the
+> > > > platform provide a way to reset each part of the controller:
+> > > > sticky/non-sticky bits, host controller core, PIPE interface, PCS/PHY and
+> > > > Hot/Power reset signal. The Root Port controller is equipped with multiple
+> > > > IRQ lines like MSI, system AER, PME, HP, Bandwidth change, Link
+> > > > equalization request and eDMA ones. The registers space is accessed over
+> > > > the DBI interface. There can be no more than four inbound or outbound iATU
+> > > > windows configured.
+> > > >
+> > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > >
+> > > > ---
+> > > >
+> > > > Changelog v2:
+> > > > - Rename 'syscon' property to 'baikal,bt1-syscon'.
+> > > > - Fix the 'compatible' property definition to being more specific about
+> > > >   what strings are supposed to be used. Due to that we had to add the
+> > > >   select property to evaluate the schema against the Baikal-T1 PCIe DT
+> > > >   nodes only.
+> > > > ---
+> > > >  .../bindings/pci/baikal,bt1-pcie.yaml         | 154 ++++++++++++++++++
+> > > >  1 file changed, 154 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml b/Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..23bd1d0aa5c5
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/pci/baikal,bt1-pcie.yaml
+> > > > @@ -0,0 +1,154 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/pci/baikal,bt1-pcie.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Baikal-T1 PCIe Root Port Controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Serge Semin <fancer.lancer@gmail.com>
+> > > > +
+> > > > +description:
+> > > > +  Embedded into Baikal-T1 SoC Root Complex controller. It's based on the
+> > > > +  DWC RC PCIe v4.60a IP-core, which is configured to have just a single Root
+> > > > +  Port function and is capable of establishing the link up to Gen.3 speed
+> > > > +  on x4 lanes. It doesn't have embedded clock and reset control module, so
+> > > > +  the proper interface initialization is supposed to be performed by software.
+> > > > +
+> > > > +select:
+> > > > +  properties:
+> > > > +    compatible:
+> > > > +      contains:
+> > > > +        const: baikal,bt1-pcie
+> > > > +
+> > > > +  required:
+> > > > +    - compatible
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    items:
+> > > > +      - const: baikal,bt1-pcie
+> > > > +      - const: snps,dw-pcie-4.60a
+> > > > +      - const: snps,dw-pcie
+> > >
+> >
+> > > Again, these fallbacks simply aren't useful.
+> >
+> > Ok. I give up. You are the boss. I'll drop them =)
+> >
+> > >
+> > > > +
+> > > > +  reg:
+> > > > +    description:
+> > > > +      DBI, DBI2 and at least 4KB outbound iATU-capable region.
+> > >
+> >
+> > > 'iATU-capable region' means config space? That's not very clear.
+> >
+> > No 'iATU-capable region' means the region, which can be used as a
+> > source address for the iATU engine. In general it can be used for any
+> > accesses (IO, MEM, CFG). But the DW PCIe driver will indeed use it for
+> > the config-space accesses.
+> >
+> > IMO the 'config' reg space is kind of virtual. Due to the outbound
+> > iATU capability the driver could use any free outbound iATU region it
+> > found instead.
+> 
+> It is and in hindsight, we maybe should have described the whole
+> address space and let the OS alloc the config space out of it. But
+> then again, original OpenFirmware PCI binding reflects what the
+> firmware discovered AND how it is configured. So specifying where
+> config space is makes sense.
+> 
+> Bottom line is the binding defines putting the config space region in
+> 'reg', not an iATU region.
+> 
+> > > > +    maxItems: 3
+> > > > +
+> > > > +  reg-names:
+> > > > +    minItems: 3
+> > > > +    maxItems: 3
+> > > > +    items:
+> > > > +      enum: [ dbi, dbi2, config ]
+> > >
+> >
+> > > Define the order. Here, and the rest.
+> >
+> > Ok. I will, but please answer to my question, I asked you in the
+> > previous email thread:
+> >
+> > Serge Semin wrote:
+> > > Rob Herring wrote:
+> > > > ...
+> > > > Tell me why you need random order.
+> > >
+> > > Because I don't see a need in constraining the order. If we get to set
+> > > the order requirement, then why do we need to have the "*-names"
+> > > property at all?
+> 
+> Originally, it was for cases where you have a variable number of
+> entries and can't determine what each entry is. IOW, when you have
+> optional entries in the middle of required entries. But then everyone
+> *loves* -names even when not needed or useful such as 'phy-names =
+> "pcie"' (the phy subsys requiring names was part of the problem there,
+> but that's been fixed).
+> 
+> > > IMO having "reg" with max/minItems restriction plus generic
+> > > description and "reg-names" with possible values enumerated seems very
+> > > suitable pattern in this case. Don't you think?
+> 
+> No, I think this is just as concise and defines the order too:
+> 
+> reg-names:
+>   items:
+>     - const: dbi
+>     - const: dbi2
+>     - const: config
+> 
+> >
+> > In addition to that what about optional names? How would you suggest
+> > to handle such case without the non-ordered pattern?
+> 
 
+> Sorry, I don't follow.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Tuesday, August 9, 2022 11:05 AM
-> To: Shenwei Wang <shenwei.wang@nxp.com>; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; linus.walleij@linaro.org; brgl@bgdev.p=
-l;
-> shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
-> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>
-> Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
-> gpio@vger.kernel.org; linux-arm-kernel@lists.infradead.org; imx@lists.lin=
-ux.dev
-> Subject: [EXT] Re: [PATCH v2 1/3] dt-bindings: gpio: Add imx-scu gpio dri=
-ver
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,imx8-scu-gpio
->=20
-> This should be rather a specific imx8 chip. See other imx8 SCU bindings.
-> Strictly speaking there is no "imx8" SoC and compatible should be derived=
- from
-> SoC.
+I meant exactly the case you've described as the main goal of the
+named properties. My worry was that by using the pattern:
 
-Make sense. Thank you very much for the comments.
+reg-names:
+  items:
+    - const: name
+    - const: another_name
+    - const: one_more_name
 
-Regards
-Shenwei
+you get to fix the names order, which they were invented to get rid
+from. If you get to use that pattern the only optional names could be
+the names at the tail of the array, which isn't always applicable. In
+that case you'd have no choice but to use the pattern suggested by
+me.
 
->=20
->=20
->=20
-> Best regards,
-> Krzysztof
+-Sergey
+
+> 
+> Rob
