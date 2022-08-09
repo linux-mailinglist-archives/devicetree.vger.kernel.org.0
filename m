@@ -2,56 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B0058DF99
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 21:02:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D288D58DF9F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 21:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245278AbiHITCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 15:02:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38514 "EHLO
+        id S1345088AbiHITDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 15:03:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348299AbiHITBc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 15:01:32 -0400
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE5392AE32
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 11:34:15 -0700 (PDT)
-Received: by mail-il1-f170.google.com with SMTP id x2so873047ilp.10
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 11:34:15 -0700 (PDT)
+        with ESMTP id S1345262AbiHITCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 15:02:50 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF5FA22BD6;
+        Tue,  9 Aug 2022 11:36:39 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id l24so10272076ion.13;
+        Tue, 09 Aug 2022 11:36:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=8ogzPNWERYDaKhNvvgajn1anoN29b7H+hifJpwoGmHM=;
-        b=ng9yJBK3MTV/2az8H9hy0vSAeNWETpIr4xGU8hj5+FTnrsXa/HjAjG4p3iH1sV0jrE
-         wxLJ72ZD4VC2w6MLqFmrf4JUwXcrYIRy8QBJktnlgwspMIIG6e9pyJBsyiXdWPs7yE6C
-         dy2TNo1Mo5R4urBl9KUUaXYxxpNORGayY0fWGfo6nK1TXYdrDxydSA+XR3cQmy+PmfOW
-         WJTS4acZm0bub2G47fSq2Isdekr3wWaaQ73mwOOB+/yxtMOvO8uTSeTCnnY5hlpjGGp1
-         oCx8vyecVJ121LgwFWmkv5MovPlPlOxx3k0Qur4RCwLIyqEfFibQRncxM+7mdH/dGhxr
-         2POA==
-X-Gm-Message-State: ACgBeo0YJzcJJ4eyDtsxIWLT81AUtusCkT52LrP8B/Qqsk736cIPpcki
-        9KwxGRI1/jb2oDK/mINiqA==
-X-Google-Smtp-Source: AA6agR4PJWlLwUSgKHl9yVe2aHvPKGPlQc+9w37Y+GpjWSGItjiB5WV6pAjqzQQreJ8yjLm/o937fQ==
-X-Received: by 2002:a05:6e02:1a6f:b0:2de:b54a:1ce4 with SMTP id w15-20020a056e021a6f00b002deb54a1ce4mr10551590ilv.284.1660070054833;
-        Tue, 09 Aug 2022 11:34:14 -0700 (PDT)
+        bh=5EdrWPjpBP3VYdnyEWUwLGGLE7oilUX8uvXCZ6ZG7Vg=;
+        b=6RW5BOXGNi3cvgKJQTeeH9nKUXIVJWsOvSFA73IR7h34oX4dOA1qJiM48ZLA64pm4X
+         o90T+vVIlDLnrz1OZhUxyhlypynNN64bU1QlrzWfTBnhgu5uMH1T2VaY03LDrvid0WSh
+         4OOES+ah9aUHJj86K+3VpIH3BobxNUUDezxyjdiKCHG7+qfU8Yf+JOsztt3q6WrJzUvL
+         G0Xv9jWADOxjuPo7H5xTCxWb/nHWON+hN0getMabFRoPLd8kHv/7UAdns+SvXJT4OPTz
+         tzLLN5tJrqtENmOlJ9cAtn4ojp/4wbtapWH86KXml7LWS1+7ydIialM1FpVNuzKOHSSl
+         y9mA==
+X-Gm-Message-State: ACgBeo07gm4EcGOk9L0wmqPX7tToKSgdmruF3MKtb0QcmSpqJLlLj73Q
+        Bn1a8Xwnb9Zv4S97Qx3EUbQwDA8bNg==
+X-Google-Smtp-Source: AA6agR5yPwtVmgqurmOG5Cpbap2+YlmJxk40xTsHVhmWulzBqkcUJkTyNz/+N2CLRsLMSt09UQhcZw==
+X-Received: by 2002:a02:ccb2:0:b0:342:6ec9:491e with SMTP id t18-20020a02ccb2000000b003426ec9491emr10888479jap.241.1660070199149;
+        Tue, 09 Aug 2022 11:36:39 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id n16-20020a056602341000b00684f4b808ffsm1394696ioz.39.2022.08.09.11.34.13
+        by smtp.gmail.com with ESMTPSA id i63-20020a6bb842000000b00684384bfcbbsm1399728iof.24.2022.08.09.11.36.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 11:34:14 -0700 (PDT)
-Received: (nullmailer pid 2158221 invoked by uid 1000);
-        Tue, 09 Aug 2022 18:34:12 -0000
-Date:   Tue, 9 Aug 2022 12:34:12 -0600
+        Tue, 09 Aug 2022 11:36:38 -0700 (PDT)
+Received: (nullmailer pid 2162023 invoked by uid 1000);
+        Tue, 09 Aug 2022 18:36:36 -0000
+Date:   Tue, 9 Aug 2022 12:36:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Zhu Ning <zhuning0077@gmail.com>
-Cc:     alsa-devel@alsa-project.org, pierre-louis.bossart@linux.intel.com,
-        tiwai@suse.com, broonie@kernel.org, devicetree@vger.kernel.org,
-        David Yang <yangxiaohua@everest-semi.com>,
-        Zhu Ning <zhuning@everest-semi.com>
-Subject: Re: [PATCH v5 1/2] ASoC: dt-bindings: Add Everest ES8326 audio CODEC
-Message-ID: <20220809183412.GA2152771-robh@kernel.org>
-References: <20220804091800.744316-1-zhuning0077@gmail.com>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     linux-remoteproc@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, quic_plai@quicinc.com, bgoswami@quicinc.com,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        quic_rohkumar@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/8] dt-bindings: remoteproc: qcom: adsp: Make ADSP
+ pil loader as generic
+Message-ID: <20220809183636.GA2158474-robh@kernel.org>
+References: <1659611751-7928-1-git-send-email-quic_srivasam@quicinc.com>
+ <1659611751-7928-2-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220804091800.744316-1-zhuning0077@gmail.com>
+In-Reply-To: <1659611751-7928-2-git-send-email-quic_srivasam@quicinc.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -63,84 +68,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 04, 2022 at 05:17:59PM +0800, Zhu Ning wrote:
-> Add device tree binding documentation for Everest ES8326
+On Thu, Aug 04, 2022 at 04:45:44PM +0530, Srinivasa Rao Mandadapu wrote:
+> Rename sdm845 adsp pil bindings to generic name, for using same binings
+> file for subsequent SoCs.
 > 
-> Signed-off-by: David Yang <yangxiaohua@everest-semi.com>
-> Signed-off-by: Zhu Ning <zhuning@everest-semi.com>
-> ----
-> v5 tested by dtschema
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > ---
->  .../bindings/sound/everest,es8326.yaml        | 116 ++++++++++++++++++
->  1 file changed, 116 insertions(+)
->  create mode 100755 Documentation/devicetree/bindings/sound/everest,es8326.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/everest,es8326.yaml b/Documentation/devicetree/bindings/sound/everest,es8326.yaml
-> new file mode 100755
-> index 000000000000..07781408e788
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/everest,es8326.yaml
-> @@ -0,0 +1,116 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/everest,es8326.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Everest ES8326 audio CODEC
-> +
-> +maintainers:
-> +  - David Yang <yangxiaohua@everest-semi.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: everest,es8326
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: clock for master clock (MCLK)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mclk
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +  everest,jack-pol:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description: |
-> +      just the value of reg 57. Bit(3) decides whether the jack polarity is inverted.
-> +      Bit(2) decides whether the button on the headset is inverted.
-> +      Bit(1)/(0) decides the mic properity to be OMTP/CTIA or auto.
-> +    minimum: 0x00
-> +    maximum: 0x0f
-> +    default: 0x0f
-> +
-> +  everest,mic1-src:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description:
-> +      the value of reg 2A when headset plugged.
-> +    minimum: 0x00
-> +    maximum: 0x77
-> +    default: 0x22
-> +
-> +  everest,mic2-src:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description:
-> +      the value of reg 2A when headset unplugged.
-> +    minimum: 0x00
-> +    maximum: 0x77
-> +    default: 0x44
-> +
-> +  everest,jack-detect-inverted:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Defined to invert the jack detection.
+>  .../bindings/remoteproc/qcom,lpass-adsp-pil.yaml   | 160 +++++++++++++++++++++
+>  .../bindings/remoteproc/qcom,sdm845-adsp-pil.yaml  | 160 ---------------------
+>  2 files changed, 160 insertions(+), 160 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,lpass-adsp-pil.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sdm845-adsp-pil.yaml
 
-No response to my questions on v3?
+Please use the git-format-patch -M option so I'm not reviewing the whole 
+doc again. You also can (and should) change your git config to default 
+to this.
 
 Rob
