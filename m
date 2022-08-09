@@ -2,88 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E0958D197
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 02:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4584A58D1B5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 03:25:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233226AbiHIA6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Aug 2022 20:58:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49860 "EHLO
+        id S231282AbiHIBZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Aug 2022 21:25:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229783AbiHIA6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 20:58:43 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED8731BEAF;
-        Mon,  8 Aug 2022 17:58:42 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id s11so13254486edd.13;
-        Mon, 08 Aug 2022 17:58:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=vivogvUanLqf/+xeQKp88FPAZ7ZllTwvRVZ+ptlXqkY=;
-        b=j1p1Ia6v5EBGIpl2oD43/FdFRIRl0/LQ0wJc5fito9bY1la3rf9Tu1Wg16hgsDyNuD
-         8scWmOy5uXiq49/X8WWES+D8qWH0fKiXQzYAWhWrhfFWBrGQUe8jSyy+gJ+7AfT9p2Eh
-         Y3VemtSfXGy1bjWMmP9W14bodaxRwGdHNzry4Ue0GGCOQjuQf9Jm4eLOyH4sn6fQbXc8
-         ATfqgKHeQ4D+N2oP923BnzqNvnEuNmMGQlDF+F4mgDMfFL3K+CjfdCmNhQrOBWs/fk+0
-         YAbJcqNUgvy1C0cTFzexI2xNAIyniRaAXcgu/rtcCtGPywAjmY/pM2mg2qE+17KfVhO5
-         rzEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=vivogvUanLqf/+xeQKp88FPAZ7ZllTwvRVZ+ptlXqkY=;
-        b=cRShuSFv4NJ+erS9mNAgHY66AgaelaMZn8hoc5CEVerdj990Y7qqW85FemHpHcDYBd
-         eU/OIzKtvBzMxPrIbZFW/FKaacUYRYaHo+0IAwwAUE5N4jZSGT6WJtzz4ESadPtJOhrT
-         uOVJToO/KH68VScORotqSmEv2tZixaEoF1KGbL/XFzK0dYSdJl7Gahb+tocbNAbgTKVa
-         GJWWFCDWlbGeyvQI8gXJ6mmU7KTW+CGP9Drcfrf2PK5nr4AFxr6MlChHTxKC7vcqJbkS
-         PV7OCOHoay+eNvcxTdqrWfzK9RpkPwEN+o21xUOGDSQNNCLZMQV6TEt3MP1spkv041u/
-         /Ykw==
-X-Gm-Message-State: ACgBeo0cVMtfZ51V9OibSnMRh4zd72LPUI3KmS1BuF+QSf5OKGOnWVmA
-        W19dfZL+vnlGNdPE+eeR/cSVulsya9FQkL0imVw=
-X-Google-Smtp-Source: AA6agR4u+PwcE5Rt/E2Iw8gTIqyGOStyp3TcXeqQ7JtzNfC9nIjngdT+CDuIWjdizmLyndyNQ/e5KbErR2lBatKjaa4=
-X-Received: by 2002:a05:6402:428c:b0:440:8259:7a2b with SMTP id
- g12-20020a056402428c00b0044082597a2bmr9071167edc.329.1660006721482; Mon, 08
- Aug 2022 17:58:41 -0700 (PDT)
+        with ESMTP id S230441AbiHIBZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Aug 2022 21:25:19 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3328CB3B;
+        Mon,  8 Aug 2022 18:25:15 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 94CB1845A5;
+        Tue,  9 Aug 2022 03:25:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1660008311;
+        bh=goK8Xyy9CXnnnf5aAlKG6fKJPnCIUrulzRORKlgOilg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=OJyY+JZVJF8GVtbbz92GXnTeWynqEa2Gfb6K0/BOUVjuV/WpEnqWXxNIrw4CcX1bZ
+         3LypYW6m/ynPf82BIJfOSZr4TP+oAbw4yCc2i40BUx34a5LJhKswMymFLhwdfg1LW+
+         QFwR549mlYbg5BcDir8gmDt6x1ycjgchvmxFUIo2ygDFOdhj8bH2a3fUOqFmG2Np4e
+         8XY5utnnYKQkltJjJYNFFQiTf+/tHsT239xyKvp26bRwgSZXCK//R5qmu4RyszmrTJ
+         3J2oIVr+hhVkJnf64RfBAdhy7rEHXdNjtrSBFp0mLarDL6570BzGik6nefc6udnZed
+         yjOaHTC4lvbwg==
+Message-ID: <aa288917-9841-aab8-0a6a-764b775d8c02@denx.de>
+Date:   Tue, 9 Aug 2022 03:25:10 +0200
 MIME-Version: 1.0
-References: <20220610084340.2268-1-ctcchien@nuvoton.com> <20220610084340.2268-2-ctcchien@nuvoton.com>
- <YrCi1fg+mUPwZ7sX@zn.tnic> <CAHpyw9dkE65vUiyG-=gvQHGCZ-=nm1AX2EwANGPDAJmfn7sZkQ@mail.gmail.com>
-In-Reply-To: <CAHpyw9dkE65vUiyG-=gvQHGCZ-=nm1AX2EwANGPDAJmfn7sZkQ@mail.gmail.com>
-From:   Kun-Fa Lin <milkfafa@gmail.com>
-Date:   Tue, 9 Aug 2022 08:58:30 +0800
-Message-ID: <CADnNmFre-rhBYKtqFs9JEgDYj8iAr5YZ0qs4MqXRczsL1Z65OA@mail.gmail.com>
-Subject: Re: [PATCH v12 1/3] dt-bindings: edac: nuvoton: add NPCM memory controller
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     Medad Young <medadyoung@gmail.com>, rric@kernel.org,
-        James Morse <james.morse@arm.com>, tony.luck@intel.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 2/4] dt-bindings: display: add new bus-format property
+ for panel-dpi
+Content-Language: en-US
+To:     Max Krummenacher <max.oss.09@gmail.com>
+Cc:     max.krummenacher@toradex.com,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>,
-        CS20 KWLiu <KWLIU@nuvoton.com>, YSCHU@nuvoton.com,
-        JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        linux-edac <linux-edac@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org
+References: <20220628181838.2031-1-max.oss.09@gmail.com>
+ <20220628181838.2031-3-max.oss.09@gmail.com>
+ <7e30f558-d42e-9751-7729-f0422f3926fa@denx.de>
+ <CAEHkU3WJ75W0RAtSKECNHmr-KLmZyziPz_t80wFNubxvGvD21g@mail.gmail.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAEHkU3WJ75W0RAtSKECNHmr-KLmZyziPz_t80wFNubxvGvD21g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.6 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Borislav,
+On 8/8/22 15:56, Max Krummenacher wrote:
+> Hi Marek
 
-Thanks for the review. I'll address the problems you have mentioned
-and send v13.
+Hello Max,
 
-Regards,
-Marvin
+[...]
+
+>>> +        properties:
+>>> +          bus-format:
+>>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>>> +            minimum: 0x1001
+>>> +            maximum: 0x1fff
+>>> +            description: |
+>>> +              Describes how the display panel is connected to the display interface.
+>>> +              Valid values are defined in <dt-bindings/display/dt-media-bus-format.h>.
+>>> +              The mapping between the color/significance of the panel lines to the
+>>> +              parallel data lines are defined in:
+>>> +              https://www.kernel.org/doc/html/v5.17/userspace-api/media/v4l/subdev-formats.html#packed-rgb-formats
+>>
+>> I am not sure whether I should re-open this discussion, but I still
+>> wonder, wouldn't it be better to describe the DPI bus color channel
+>> ordering (RGB, BGR, ...), width of each color channel in bits, pixel
+>> format (RGB, YUV, ...) instead of using specific constants for the
+>> entire format ?
+> 
+>>From a system view it would be hard to define that structure which
+> will catch any and all future requirements. Assume that there will be
+> 3D panels and they will need an additional depth field.
+
+You can very much say you have panels which require Y/U/V color channels 
+instead of R/G/B , and then just add more color channels as needed. But 
+that -- color channel, their order, offset, bit width, can be described 
+rather easily, something like:
+
+color-channel-names = "R", "G", "B";
+color-channel-width = <8 8 8>;
+color-channel-shift = <16 8 0>;
+
+> Or in
+> in addition to RGB data there will be a fourth color component. Or
+> whatever the panel manufacturers might come up with...
+> Or consider the Tegra 30 example I brought up in this thread. Tegras can
+> output RGB666 for 18bit panels, and then use the next 8 bits to extend
+> to 24bit (Maybe RGB666RGB222 ?).
+
+I think there are two options here:
+
+1) Look at 'data-lanes' property on DSI ? Both the DSI host and DSI
+    device define the 'data-lanes' property per endpoint and they might
+    not be the same.
+
+But with DPI, the better option might be:
+
+2) Implement something like LVDS codec, some sort of transparent DPI
+    bridge driver which can be defined in DT and represent the "glue"
+    wiring adapter between the mismatched DPI source and sink formats.
+
+> https://lore.kernel.org/all/71ef1b35301330d0bbb64844247b6c4c2237ad1c.camel@gmail.com/
+> If such requirements pop up the enumeration can be extended with a new
+> value without changing the binding in any way, with a structured
+> approach this will require changed bindings, maybe even with issues
+> in backward compatibility.
+
+If we have 2) which would describe how the DPI wires were connected, 
+like "channel R got shifted by two bits, bottom two bits got replicated, 
+etc.", then maybe we can avoid introducing new non-standard formats 
+altogether ?
+
+>>From an implementation perspective for Linux the busformat in code is
+> currently an enumeration. So one would have to take the device tree
+> structured busformat and run it through a potentially complicated
+> function to get to the Linux busformat enumeration value. The final
+> consumer has no advantage over what is there today.
+> 
+> IMHO a change away from one enumeration value to a structured approach
+> creates some drawbacks without any obvious advantages.
+> 
+> Comments, other views on that?
+
+See above.
