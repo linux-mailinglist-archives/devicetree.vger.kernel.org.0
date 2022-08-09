@@ -2,85 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B3B758D83C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 13:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A394258D857
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 13:45:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242079AbiHILfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 07:35:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56884 "EHLO
+        id S242425AbiHILpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 07:45:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242651AbiHILfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 07:35:24 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4E9924080
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 04:34:54 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id f20so16545792lfc.10
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 04:34:54 -0700 (PDT)
+        with ESMTP id S242878AbiHILpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 07:45:47 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 488D81CB1D
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 04:45:46 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id z20so12718892ljq.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 04:45:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=kY0VW7WRH6OusbkpplS07Fdtd4JYKcNiADl2/iZxNM4=;
-        b=KJK0csbJ8X8iQUolwDewaQzJioe6tf+1Sc3oMKJRyphO8GNc5fAs8O9MdaLYQySOaa
-         zwbXKjGxRnY5fGqIecaQHibZTxQOXUuzaI98Tv9mzYJcpPUAWa2fU+IzLuWzsI19Zs1u
-         +P5+btFkh6Sy0kqfHmpN00+r2IgJL2ddRUJh6Tkb0A7/3nBIIcWbCgrPALKXIX9U0RL9
-         Yg8yk8k5Zs87kPRl7UmCbOk2wsNG8S9wJQmvyHmQC1DuHCYKzQWYnt+LnU3lqTr8599m
-         hOaI4yd2d+Rh2Ds4mClFiZzeT9l6I7KSVMJ3X5Hcn937rJsXvzpgabeGjlcxfC9Rzn/S
-         i8xA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=zUYPLrsI2jiauKzG2M7v5iOa2wbC7ozeiUu0l4qgI+w=;
+        b=c7tJt01hfgCM3eVG34V8C3/1/MVeYqu2TxvqhJ40kl5/oT81KhKRDS2VoiEwQsfD2R
+         AI1f43V5NjI/YBAdSUOtrA/f5Y216fN1kQVBpUJVbayKCaPJD6MK4UwzNBaOPSZuThV6
+         cARWDyz4l0x4i8Gclnn+5K6cbj7seJloZ4WZmFDkq4z2YXtU3zxtUciloyud003+mTp+
+         Hj49JgIdG6rDLBZCFyunxvl9A2gvkGMyiiIiTo9c3tC/G7e/73w2mT1cniJrFzjWxJMc
+         wjFdYkvQjLdukxsNxQvU6aeOpZkxvo0lFUJGzUOtknBnJhy80CSKehQQH9vpBb3RA7tl
+         ZdBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=kY0VW7WRH6OusbkpplS07Fdtd4JYKcNiADl2/iZxNM4=;
-        b=HobExEFRZ2stLh6xo01QhvGdQlbl0xQFK7V1eZsJEIrwA9c9KDxB+l9eAWmW9wkR/C
-         dOFZ0X27VMM6d1yYA5bEVHlJzT4WEmF03j6ern1LyHTbkZTbLVlTKGcrD0l4qWWRxR00
-         jNUQcjAwEFIZqaVnUAdedh2C8sYQ9HPQN6NwR6c5/KPHu3cIDfcBVsGK8oLHWcx9+jeR
-         VoPs2+fx/zzQ/Zzv2uSB0/PD1+Vz6AZDa9z5RJhRY6lQuuqo/8EC37MkTy1PZfNsBQa0
-         wzartC7j8uEg96C/qkKGVPAULxytfv5twIw9Nq2waPk6S1BocuuPRjOOQA44AUtE/JN1
-         MLVQ==
-X-Gm-Message-State: ACgBeo34f4r7YyWuayk/r9zinNFZWbqTLCyEG9fdueJAqbNEBwJOhVo6
-        GTRsFpen9hO4MUHZc78l0DCwPA==
-X-Google-Smtp-Source: AA6agR646I5X0CTuqa55/u440pAF2eLYRijfxQzVMpjwQVklzq7IlNiFuXKLdtPE9t5FEybrYt56ig==
-X-Received: by 2002:a05:6512:6c8:b0:48a:f375:9ecc with SMTP id u8-20020a05651206c800b0048af3759eccmr7515767lff.206.1660044893124;
-        Tue, 09 Aug 2022 04:34:53 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id p8-20020a2eb7c8000000b0025e42f8e771sm1670846ljo.34.2022.08.09.04.34.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Aug 2022 04:34:52 -0700 (PDT)
-Message-ID: <3a9c6f63-64c7-d95d-496a-79516cce3939@linaro.org>
-Date:   Tue, 9 Aug 2022 14:34:51 +0300
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=zUYPLrsI2jiauKzG2M7v5iOa2wbC7ozeiUu0l4qgI+w=;
+        b=J0f/KnWj7CoA9yn1pmOi+ARPfSY1VEjrvzhI9C6vHGLD35fvHmVhVn1AZFvciwddHx
+         7HoZR7OkLVS8x1qQRfcNJSwrUxDYavELszC3SovLw+k9z5KQX0WingHAPKY6tSPFdY+K
+         BHCqFHSNDRVZpXA9Fd1jMCGGMK3WIBAz/ltalZ/w8f/EGqhv0XNyOIfVywvc2nf94gu5
+         WBS3ZDJVEQLtCoON2Rt1JWCxZZe+oq1jXL9I+OsS7AP5XEKqt73ObQRCpNCLU9e7v8jM
+         gAGIKgoapnsDHCfMFBInM5vR0UuOkcPnD0RbrJN0slp8vgxWb65pvSMFUohT+FuDuOtl
+         Tjyw==
+X-Gm-Message-State: ACgBeo2KD1dGWJz8L1s8mtmLO8FP5xWNhAycT5j+l4ck+yjHVIhtfbvX
+        v7eTaqwcSl1JpIh/uCKPT1/vnfKKV6c+s4wXso+3MA==
+X-Google-Smtp-Source: AA6agR6xzLjWyUFZQ9pgjFN8td8td7t9e2m7P04bImaQQqG/sXobBxAJTALBV0Pp5hY/l0hahcUvZbFdlCM9pimnrdg=
+X-Received: by 2002:a2e:aaa2:0:b0:25e:5083:eb9a with SMTP id
+ bj34-20020a2eaaa2000000b0025e5083eb9amr7078976ljb.283.1660045544571; Tue, 09
+ Aug 2022 04:45:44 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v5 02/20] dt-bindings: memory: mediatek: Update condition
- for mt8195 smi node
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>
-Cc:     iommu@lists.linux.dev, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220804021553.14867-1-tinghan.shen@mediatek.com>
- <20220804021553.14867-3-tinghan.shen@mediatek.com>
- <96e66425-ff2a-4640-8b96-48fa39943bf9@linaro.org>
- <6a1977971317059fcfad685869b6ccf233edcb68.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6a1977971317059fcfad685869b6ccf233edcb68.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20220808201724.27831-1-semen.protsenko@linaro.org>
+In-Reply-To: <20220808201724.27831-1-semen.protsenko@linaro.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Tue, 9 Aug 2022 14:45:33 +0300
+Message-ID: <CAPLW+4kdgrVyE5jTXPRWCKdr_A+C_EGLLp1AjSe3OfHoX8jEvw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] arm64: dts: exynos850: Add cmu and sysmmu nodes
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -89,37 +72,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2022 14:01, Tinghan Shen wrote:
-> Hi Krzysztof,
-> 
-> On Thu, 2022-08-04 at 17:12 +0200, Krzysztof Kozlowski wrote:
->> On 04/08/2022 04:15, Tinghan Shen wrote:
->>>
->>> It's because the 'mediatek,mt8195-smi-sub-common' compatible incorrectly
->>> matches the 'else' conditions for gen2 HW without gals.
->>>
->>> Rewrite the 'else' condition to specifically identify the compatibles
->>> that utilizing gen2 HW without gals.
->>>
->>> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
->>> Reviewed-by: AngeloGioacchino Del Regno
->>>  <angelogioacchino.delregno@collabora.com>
->>
->> Unfortunately, your patches got corrupted.
->>
->>
->> Best regards,
->> Krzysztof
-> 
-> Do you mean rebase to the latest linux-next?
-> I'll rebase in the next version, thanks!
-> 
+On Mon, 8 Aug 2022 at 23:17, Sam Protsenko <semen.protsenko@linaro.org> wrote:
+>
+> Now that all clock domains needed for SysMMUs are implemented [1]
+> (pending), and the basic SysMMU v7 support is ready as well [2], let's
+> add all related CMU and SysMMU nodes to Exynos850 SoC device tree.
+>
+> All those SysMMU instances were tested with "emulated translation"
+> driver [4] on E850-96 board: both the emulated translation and fault
+> handling were verified.
+>
+> This patch series depends on [1], so it must be taken into the account
+> when merging it.
+>
+> [1] https://lkml.org/lkml/2022/8/8/752
+> [2] https://lkml.org/lkml/2022/7/14/1215
+> [3] https://lkml.org/lkml/2022/7/26/950
+> [4] https://github.com/joe-skb7/linux/tree/e850-96-mainline-iommu
+>
+> Sam Protsenko (2):
+>   arm64: dts: exynos: Add CMU_AUD, CMU_IS and CMU_MFCMSCL for Exynos850
+>   arm64: dts: exynos: Add SysMMU nodes for Exynos850
+>
+>  arch/arm64/boot/dts/exynos/exynos850.dtsi | 83 +++++++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>
+> --
+> 2.30.2
+>
 
-No, I mean look at the line above. And many other lines. That's not a
-proper patch file.
+This patch series is superseded by v2 here: [1].
 
-It's not my email client. Lore reports the same.
-
-
-Best regards,
-Krzysztof
+[1] https://lkml.org/lkml/2022/8/9/328
