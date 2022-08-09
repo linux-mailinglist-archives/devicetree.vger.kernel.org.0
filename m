@@ -2,160 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F58358DD36
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 19:31:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54BBB58DD6C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 19:47:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245445AbiHIRbU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 13:31:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40254 "EHLO
+        id S234359AbiHIRrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 13:47:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245443AbiHIRae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 13:30:34 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CBEEE1D;
-        Tue,  9 Aug 2022 10:30:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1660066231; x=1691602231;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=IW9iAsJ10mJ3/tDxLNeEDD6taNj2dQOZTDtnbMSTUxw=;
-  b=qoq+Hd89clhTGy1b85eCpZ4KyGuekVjbCyLwGkYXbS/fkWc4v6nf0sfD
-   Z80Xj2iQ0Gah5MqGO5LAf+d/oWJ5Pqm5j+N4lS+rBs07X20AtBzmQU0tg
-   t0YayJ5eJzKXs5A/vrxE45C9DNtlU+2XyLyz7C1Z4Zdd3XCschXM7Kbcp
-   Pf0AXJ4f0H3OIXkqvaomBw69OW8A/aEikjfLg0gekFxuzeEhEQsCrARDP
-   wvO4q2CBChIyXKmykTEqRsEr1/61ixoz8xO6E6JRycgHyAdNejFzinCn6
-   6Kb0M6h+TjakPqfMV9G4FuvHoLwAw/8aDcypVw/XrGk+A99Ky+FW6EM3D
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,225,1654585200"; 
-   d="scan'208";a="168519781"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Aug 2022 10:30:31 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Tue, 9 Aug 2022 10:30:25 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28 via Frontend Transport; Tue, 9 Aug 2022 10:30:25 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cGfBoMq+HStrV7FV5XjiWnr6jVQaFv3Kw0LypQi4+wyDG6CLruB3+hC+EHSy3pL2QOaVdiZJ5YhrdQ0LIIOeWjF3oZQgJxdMJZtmeTjzEIwVF/fD91AWBZ7jAb7q3oF3JmTzPHW9T5To47Z8hD5xY7RRpiRRrJisVIERZBAtNXUkJFA4FChnysloP2ekWs7WewwQSko9QZy78AUdelx6ANWfqUzx0zs3bdAQNbwa9XR27YRHejQbjfGAOxwQZ0P0asHbubSPAtML1a8wipM67qgBs5FKtVE4h/YrM4UwsA4b2DvdmprPiNVRmNvxdgjHxrICPXXBiR/2hJvca+j+7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IW9iAsJ10mJ3/tDxLNeEDD6taNj2dQOZTDtnbMSTUxw=;
- b=McmgIQIeAEqarC8fEniiPxmSwqMBh04ywNYCzaq9fQ6AHf7VNT7dA6upBeLIJjuS9yQ112oXcO+1pIKoOosWhK/5HhfnsIOeafriAGVO2B9W04tUIKsrvfeeY8XOFu4n6wDQryfflEFPmeoh9auf5kZZQGxLEDjfam2b5yk5ljy3nE3WO8m98pvOL6s1Q96ogY4wptQYtWtZn1+QC3sQYtsV1GjvX50pFm51UD8XLksDxhmTee9Jy3iRo3ji2DewdRreg+m8JiboPOTzKR9pvE78OjbvK0wOPmP6h23w/UqEl3TTQgsfjBoOgfe+tZrOZdjrdGAZRudFtOp4jq3s9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IW9iAsJ10mJ3/tDxLNeEDD6taNj2dQOZTDtnbMSTUxw=;
- b=lkx0II8dpxyAbfn2DFTQ7AlzYKQJbFAwmBYfJYpXnKWLCbDtV91LDyzyZy1LECtrMOotU7EABJj8VrEROEg3nv7O4KONv4WsAqyn7t/YKu6qSEd8LC9F9wuTpXALUeZ4K8DEdRvR+tFB5salLJCoiONitOQAn22PWg7TkAXHbLM=
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com (2603:10b6:303:99::15)
- by MN2PR11MB4695.namprd11.prod.outlook.com (2603:10b6:208:260::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.14; Tue, 9 Aug
- 2022 17:30:23 +0000
-Received: from CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ac89:75cd:26e0:51c3]) by CO1PR11MB5154.namprd11.prod.outlook.com
- ([fe80::ac89:75cd:26e0:51c3%8]) with mapi id 15.20.5504.020; Tue, 9 Aug 2022
- 17:30:23 +0000
-From:   <Conor.Dooley@microchip.com>
-To:     <robh@kernel.org>
-CC:     <tglx@linutronix.de>, <maz@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mail@conchuod.ie>,
-        <palmer@dabbelt.com>, <paul.walmsley@sifive.com>,
-        <aou@eecs.berkeley.edu>, <daniel.lezcano@linaro.org>,
-        <anup@brainfault.org>, <guoren@kernel.org>,
-        <sagar.kadam@sifive.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <qemu-riscv@nongnu.org>
-Subject: Re: [PATCH 1/3] dt-bindings: timer: sifive,clint: add legacy riscv
- compatible
-Thread-Topic: [PATCH 1/3] dt-bindings: timer: sifive,clint: add legacy riscv
- compatible
-Thread-Index: AQHYqOiTfnLvLugGpkCEOv+1M1wBVK2mo24AgAA2KYA=
-Date:   Tue, 9 Aug 2022 17:30:23 +0000
-Message-ID: <13df168d-e414-e167-c3c9-c04eb29c675a@microchip.com>
-References: <20220805162844.1554247-1-mail@conchuod.ie>
- <20220805162844.1554247-2-mail@conchuod.ie>
- <20220809141632.GB1706120-robh@kernel.org>
-In-Reply-To: <20220809141632.GB1706120-robh@kernel.org>
-Accept-Language: en-IE, en-US
-Content-Language: en-IE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cdc48bff-75b9-4784-bd1c-08da7a2cd76e
-x-ms-traffictypediagnostic: MN2PR11MB4695:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: KzOViSdVkFtks1garL+zt0XrWZPbdGbK9CAx6yrytc8AX1PKoitj4jJTEZ6uXGrY55ibLBseXmazMxzh+kejUCmmJNhI46PKxKMA7cA02RVJ0wKuEe8ROb/K2du3Tr3XGPUBI0VXd1yfHR6xQoy2/avKdN8FfK78I9bJ94DMzzEcwq/7BU5UKp04j5c4cEXwesJkESp+Wm327UbIUh5NS5hFaoRNezLfWrubLrCqMEyhu/CEPpeP0sRKjgQB5vSF5Q/EgHm1kMZzKxEHpiM5/6/0xr57sjdb3opAR3A6TkGmQlzU0c9RCrQela2nJIwyZFskek4sIXR8sq8dMxoFkQR3cm7u1OltxV8EuN0JYWplUDNXUA24yP+w9FM45mMYd1FHNZBjtaUc/0MvJiSBfhn+Fh4lkNHMJj8O/l8rK7GwFzvIs+DG4dg0cVLNUEQHFpPd+jwAVcCnjiYEC4oR4ZIEdpHY4OM+hOynGDE86WohpwM67ucvo6dxH/KM1n6zZFughG81EP1snVMokWL4a5WJmMMJb3NWMY2gJImNSmmhHrmZUgEOlrJXdOm3KuMKj22K3AVbeZ9gKphDGmeI1QDsL8nE4i21obbAPeZ5Hjq3qOg5IOz0hROb4bATfBh3k55w9g29AFae+arGezhPsxgQzvt2V5GHApNLKXXAUo/4cZq2oZ2tblvG1RUf17mqPVhlHkR518a+IIBOFqK5F2JOom05b6X2rdT5pzCr0XYObeRfvk1EiktRZTc0q0j+vCziZIb7hhKgq+mEAjwBKGeKYjfAWXilIJ4EDiuyFQIG3cH3LGcVBmRPFYXHtsaev5AMiryJlesv9EMBx7QN9bf/bgznrtXuvLN5UywPpPqRA0byPq6sJ9E6sMnNgrSkbln3uqfSvdXMaigmoI+Cnw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5154.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(39860400002)(376002)(346002)(136003)(366004)(396003)(6506007)(41300700001)(53546011)(2906002)(6512007)(26005)(86362001)(31696002)(38070700005)(38100700002)(2616005)(83380400001)(66476007)(66446008)(122000001)(186003)(6486002)(66556008)(5660300002)(8676002)(76116006)(64756008)(66946007)(966005)(7416002)(54906003)(4326008)(31686004)(6916009)(71200400001)(91956017)(478600001)(8936002)(36756003)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Lzdqa2JWSmtNb3JET2FFMDRlbkxUaGFiVmJMVkx0SklseGxaV3hZNk1DUjZs?=
- =?utf-8?B?T3RKMGxzYU5HVE1FbHFXcGpQU0UxZ0N4R1Y3VlhlOGJldWNGZktCRGlXT1Zp?=
- =?utf-8?B?L3dyMUVJOGNDRWY2U0Y2WkxaS2NWQmhqbG9OMnRkZXpISkpmdU5yMzNvTlha?=
- =?utf-8?B?MUVucXVlam9nc0NJRi9GeHhaRWhIM3FzV2NsNmw1d0xSUEZBdlpuZ1V2aXV2?=
- =?utf-8?B?ekRhcWt0QjErZmpWSjZ5V2FhRHcxT1lzbkRoMXNVMk9jRllCcmtBbVAzSmps?=
- =?utf-8?B?aGFaVE9MODRIc1M1M2FsdVJMSVo2ZEV3NGZlalkvZHpNUEE3SkxxWXUwYnNx?=
- =?utf-8?B?SVQxOVZLbVUxZHMrUU5kSktkVjBURjVOdTVLQmdHajhDSlViQWwvMzFNWXZ3?=
- =?utf-8?B?a3BGR2kzSnhyYnJyNFQzcC9BaHFzbkJ1SXJybjVQYUNrT1gzM0hEa1d1c1JW?=
- =?utf-8?B?NWpNanFKcFYzOEhnalhKaXZ3L2RaMWVPQ29vbkxFeGE1YU1mZ1UwQWo2RHJM?=
- =?utf-8?B?VmgzN0pFVDNHa1hwSHNKTGdxWEN6WmVUUmprcG51a3NkWTZMNnR0aHJObFYr?=
- =?utf-8?B?VG9NeWJXTW9jRjZQTXdsT1F2cS8xNTcwMnN4cDFkOC93NmJyNm1IQ3NzeUFs?=
- =?utf-8?B?U1Rnd3FsT3lmNnFTZW5BRXRFU0VvOEl6NGFoandzMFhWQ0s1cGtRMVRTY3Bs?=
- =?utf-8?B?Zk55anlSZDJ1Nnp0N2FIbStPTDZCS1pJbWtsU09hWk1GbVVmUUFlWUU4S25C?=
- =?utf-8?B?TU5oeTJWa2dkczlNWDdEWEg4Vi96Z0dvVDF5UUNOQXlKTzdJYkpSQ083dkY2?=
- =?utf-8?B?dGpIaEhaa3lSSHM5U2tNMzdCaVRkckN4dmE3cmdJUEw4b3pjQ2k4eHhNK04w?=
- =?utf-8?B?NU0zNUNYZVk1UjFZd2hyR3pCM0F5bmdnQ3crV1JIZ2lCOWY1U29TWUpmK1JK?=
- =?utf-8?B?Ky9EM25iL095K3M1dWNTNVlhQjJZamhoSnVFVmk3R0NQWDdoaHEraDdMYUVJ?=
- =?utf-8?B?OEk1QmdsRmZRazhyd0xuTUVaSVY1R1RFS0JaMm5RdDViMHRMTjA3MW11ZzVU?=
- =?utf-8?B?ZHhCU3RWWGRKaDhKdTltQ2FxUE15UFkrKy92VEhtYkVxM0pWaHhCTTFyRWhW?=
- =?utf-8?B?M0U0RkI3RG14b1Zvb3NSS2RGRGMrQ1JWaVJqTkhVUG9QK0gyZkF3WXhYV0dI?=
- =?utf-8?B?TU9yU1Avb1NPNzFKcHlnR2pxV1kzSVhJK2drMWU5N1JFckVDVE1TUkRJR0tV?=
- =?utf-8?B?UDFxcHA5MjBXeUJaYUJqa1QvcWM0RXBvQ2JjZjhaalI2c0VPbnZ0Y1RqbFpj?=
- =?utf-8?B?WFhFbFBKUFZ5OE1wRVRyZVpCL21zdDM0RmkxTHRpaFVoU0w5eE1OWU9mOElI?=
- =?utf-8?B?Q204d3gvWTNhU3hNdm5yWnBWeFk3dEZleGYrODc5SFBhbjg3Y0NZbmRLYzdj?=
- =?utf-8?B?Ly95bWxrTGlhd1A2WDdWOEFhQmxJUTZ3aXQ0dHBneWxtbGtjclprNHNTakhu?=
- =?utf-8?B?Y2liUkxTZXN5MzFhQzdFSXJBS2x3R1o0TXFVV1VBeWZXNkd6eDF2ZlZIZkQr?=
- =?utf-8?B?YnQ3cFI1L0N4L0tLbi81eW4zVmxGYVRqOXgzNGNIdU91YUJ3R0tvZEx1VGJ1?=
- =?utf-8?B?bzhnNFNoZ0RDTnd3Rnc4M0k5dW84OFAyUzJKcVd2S1Y2Z0ZPV1grYkh5eEFN?=
- =?utf-8?B?Umo1VnVlQWk3eUJJZkNKL3E2UE9pRS9pVVJGcmhCNVc2S1Z2ZUwyWjhyRHBO?=
- =?utf-8?B?TzBvUTdIbUQxWVNIcG9CMWk2R3A1cG16TUNlKzgyblc4NVd6ZmZwYlBnRlBU?=
- =?utf-8?B?RG1yMktmekxhM0RjYWtYenoxajNFUkdqVGxsaDl4Mkw2NjBHTUJlT2JZK3VQ?=
- =?utf-8?B?VEJrTjVQRkVuZWZXNXFmK0xXQ0xIUU9pdEFjV3pIMTcrcks2TlR4R283YTF0?=
- =?utf-8?B?UEEraXZoS0lEazlSdjJmYUs5em1wSmtVMGZiUFUxTm9JUWRUNzZWYUtlc2pS?=
- =?utf-8?B?RXdNS0xPdlIyZHU0TVFBZldoTXBtRXlKN1BoN2hlZFp6MWRJSFQ4djdxcXo5?=
- =?utf-8?B?RThwWkFYN2FjV0dPOEVxcU5KNXdKVnJxQjhhaHJwY3BTTlhZYlBkNS9uRGpa?=
- =?utf-8?Q?SR3uDn+L4VAP8F9M6CK+4hN7p?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E4AC4EDA49CC644A9A90EEADB7EEE295@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229452AbiHIRrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 13:47:23 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EFFC635E;
+        Tue,  9 Aug 2022 10:47:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 3FAB8B816ED;
+        Tue,  9 Aug 2022 17:47:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A3CCC433D6;
+        Tue,  9 Aug 2022 17:47:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660067239;
+        bh=sCYFax7xosUfnTTBkdUZkMAmXYC2WUcTZX0vZI4CHHw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=loax2lmNo5MYQn285bvFsUK+7jSVgtR+cfqv4WlPvJbQhzR3p87P0S4PGMEvdTLsj
+         tv1JbcDv3vZGJ2EeBIfuLFuKXN2WZaOU+NMmeZrwEeSVTAqRCaGbtfo2bUXrkONARM
+         w/yttC3f4ugm+kozUZ13U+D2tVW4HqxcTPxJQL+WdLImzJ1txm3/NQbZTE4ZtzXFgg
+         sPjrK1lM6RvJJ8WR6yvDVrMwDjVYFKIyszJZmuY0eCLQ2D5GcIzNvP9PPNXAcyHPMn
+         em07J3Q8usJIFfpLpqKKbLZJjmQrZShT0g4Y0MhRCXv9CsZKJ7ZeaEAV3x3TTWw/MO
+         pgK4Nd+Mp9YLw==
+Received: by pali.im (Postfix)
+        id AAB84C1F; Tue,  9 Aug 2022 19:47:16 +0200 (CEST)
+Date:   Tue, 9 Aug 2022 19:47:16 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauri Sandberg <maukka@ext.kapsi.fi>,
+        devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>
+Subject: Re: How to correctly define memory range of PCIe config space
+Message-ID: <20220809174716.amypqna5vgwumidh@pali>
+References: <20220710225108.bgedria6igtqpz5l@pali>
+ <20220806110613.GB4516@thinkpad>
+ <20220806111702.ezzknr76a4imej4u@pali>
+ <CAL_JsqL9dNtEtAvfRBPBRqgatheoyrEF+wx_kQiTbASxOPAQTA@mail.gmail.com>
+ <20220809162939.vemxmk2qxjnmnagh@pali>
+ <CAL_JsqKs9PidpikBBVjvK9T+8i96JT+hydjgNs2nLpazuYes6A@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5154.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cdc48bff-75b9-4784-bd1c-08da7a2cd76e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2022 17:30:23.7386
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Vk3MzSbAPzmeE6QVEipQ17esaZLni/qNNvqcFlTywBAIS3WHTzlZ6NQA+U2tZ+/uq5/++V0rREX1IfQmJ1ylePeJyf5Y6pwWy4P23ycyjF8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4695
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqKs9PidpikBBVjvK9T+8i96JT+hydjgNs2nLpazuYes6A@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -163,43 +64,243 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDkvMDgvMjAyMiAxNToxNiwgUm9iIEhlcnJpbmcgd3JvdGU6DQo+IEVYVEVSTkFMIEVNQUlM
-OiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IGtub3cg
-dGhlIGNvbnRlbnQgaXMgc2FmZQ0KPiANCj4gT24gRnJpLCBBdWcgMDUsIDIwMjIgYXQgMDU6Mjg6
-NDNQTSArMDEwMCwgQ29ub3IgRG9vbGV5IHdyb3RlOg0KPj4gRnJvbTogQ29ub3IgRG9vbGV5IDxj
-b25vci5kb29sZXlAbWljcm9jaGlwLmNvbT4NCj4+DQo+PiBXaGlsZSAicmVhbCIgaGFyZHdhcmUg
-bWlnaHQgbm90IHVzZSB0aGUgY29tcGF0aWJsZSBzdHJpbmcgInJpc2N2LGNsaW50MCINCj4+IGl0
-IGlzIHByZXNlbnQgaW4gdGhlIGRyaXZlciAmIFFFTVUgdXNlcyBpdCBmb3IgYXV0b21hdGljYWxs
-eSBnZW5lcmF0ZWQNCj4+IHZpcnQgbWFjaGluZSBkdGJzLiBUbyBhdm9pZCBkdC12YWxpZGF0ZSBw
-cm9ibGVtcyB3aXRoIFFFTVUgcHJvZHVjZWQNCj4+IGR0YnMsIHN1Y2ggYXMgdGhlIGZvbGxvd2lu
-ZywgYWRkIGl0IHRvIHRoZSBiaW5kaW5nLg0KPj4NCj4+IHJpc2N2LXZpcnQuZHRiOiBjbGludEAy
-MDAwMDAwOiBjb21wYXRpYmxlOjA6ICdzaWZpdmUsY2xpbnQwJyBpcyBub3Qgb25lIG9mIFsnc2lm
-aXZlLGZ1NTQwLWMwMDAtY2xpbnQnLCAnc3RhcmZpdmUsamg3MTAwLWNsaW50JywgJ2NhbmFhbixr
-MjEwLWNsaW50J10NCj4+DQo+PiBSZXBvcnRlZC1ieTogUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVs
-Lm9yZz4NCj4+IExpbms6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXJpc2N2LzIwMjIw
-ODAzMTcwNTUyLkdBMjI1MDI2Ni1yb2JoQGtlcm5lbC5vcmcvDQo+PiBTaWduZWQtb2ZmLWJ5OiBD
-b25vciBEb29sZXkgPGNvbm9yLmRvb2xleUBtaWNyb2NoaXAuY29tPg0KPj4gLS0tDQo+PiAgLi4u
-L2JpbmRpbmdzL3RpbWVyL3NpZml2ZSxjbGludC55YW1sICAgICAgICAgICB8IDE4ICsrKysrKysr
-KysrKy0tLS0tLQ0KPj4gIDEgZmlsZSBjaGFuZ2VkLCAxMiBpbnNlcnRpb25zKCspLCA2IGRlbGV0
-aW9ucygtKQ0KPj4NCj4+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
-ZGluZ3MvdGltZXIvc2lmaXZlLGNsaW50LnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
-YmluZGluZ3MvdGltZXIvc2lmaXZlLGNsaW50LnlhbWwNCj4+IGluZGV4IGU2NGY0NjMzOTA3OS4u
-OWZjZjIwOTQyNTgyIDEwMDY0NA0KPj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL3RpbWVyL3NpZml2ZSxjbGludC55YW1sDQo+PiArKysgYi9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvdGltZXIvc2lmaXZlLGNsaW50LnlhbWwNCj4+IEBAIC0yMiwxMiAr
-MjIsMTggQEAgZGVzY3JpcHRpb246DQo+Pg0KPj4gIHByb3BlcnRpZXM6DQo+PiAgICBjb21wYXRp
-YmxlOg0KPj4gLSAgICBpdGVtczoNCj4+IC0gICAgICAtIGVudW06DQo+PiAtICAgICAgICAgIC0g
-c2lmaXZlLGZ1NTQwLWMwMDAtY2xpbnQNCj4+IC0gICAgICAgICAgLSBzdGFyZml2ZSxqaDcxMDAt
-Y2xpbnQNCj4+IC0gICAgICAgICAgLSBjYW5hYW4sazIxMC1jbGludA0KPj4gLSAgICAgIC0gY29u
-c3Q6IHNpZml2ZSxjbGludDANCj4+ICsgICAgb25lT2Y6DQo+PiArICAgICAgLSBpdGVtczoNCj4+
-ICsgICAgICAgICAgLSBlbnVtOg0KPj4gKyAgICAgICAgICAgICAgLSBzaWZpdmUsZnU1NDAtYzAw
-MC1jbGludA0KPj4gKyAgICAgICAgICAgICAgLSBzdGFyZml2ZSxqaDcxMDAtY2xpbnQNCj4+ICsg
-ICAgICAgICAgICAgIC0gY2FuYWFuLGsyMTAtY2xpbnQNCj4+ICsgICAgICAgICAgLSBjb25zdDog
-c2lmaXZlLGNsaW50MA0KPj4gKyAgICAgIC0gaXRlbXM6DQo+PiArICAgICAgICAgIC0gY29uc3Q6
-IHNpZml2ZSxjbGludDANCj4+ICsgICAgICAgICAgLSBjb25zdDogcmlzY3YsY2xpbnQwDQo+PiAr
-ICAgICAgICBkZXByZWNhdGVkOiB0cnVlDQo+PiArICAgICAgICBkZXNjcmlwdGlvbjogRm9yIGxl
-Z2FjeSBzeXN0ZW1zICYgdGhlIHFlbXUgdmlydCBtYWNoaW5lIG9ubHkNCj4gDQo+IEkgd291bGQg
-ZHJvcCAnbGVnYWN5IHN5c3RlbXMnLg0KDQpJIHRvb2sgdGhpcyBmcm9tIGEgY29tbWVudCBpbiB0
-aGUgZHJpdmVyIGFnYWluc3QgInJpc2N2LHBsaWMwIi4gVGhvdWdodA0KaXQgYXBwbGllZCB0byBi
-b3RoIHBsaWMgYW5kIGNsaW50IGJpbmRpbmdzIHNvIHB1dCBpdCBpbiBoZXJlLiBIYXBweSB0bw0K
-ZHJvcCB0aGVtIGZvciB2MiA6KQ0KDQpUaGFua3MsDQpDb25vci4NCg0K
+On Tuesday 09 August 2022 11:06:18 Rob Herring wrote:
+> On Tue, Aug 9, 2022 at 10:29 AM Pali Rohár <pali@kernel.org> wrote:
+> >
+> > Hello!
+> >
+> > On Tuesday 09 August 2022 09:59:49 Rob Herring wrote:
+> > > On Sat, Aug 6, 2022 at 5:17 AM Pali Rohár <pali@kernel.org> wrote:
+> > > >
+> > > > On Saturday 06 August 2022 16:36:13 Manivannan Sadhasivam wrote:
+> > > > > Hi Pali,
+> > > > >
+> > > > > On Mon, Jul 11, 2022 at 12:51:08AM +0200, Pali Rohár wrote:
+> > > > > > Hello!
+> > > > > >
+> > > > > > Together with Mauri we are working on extending pci-mvebu.c driver to
+> > > > > > support Orion PCIe controllers as these controllers are same as mvebu
+> > > > > > controller.
+> > > > > >
+> > > > > > There is just one big difference: Config space access on Orion is
+> > > > > > different. mvebu uses classic Intel CFC/CF8 registers for indirect
+> > > > > > config space access but Orion has direct memory mapped config space.
+> > > > > > So Orion DTS files need to have this memory range for config space and
+> > > > > > pci-mvebu.c driver have to read this range from DTS and properly map it.
+> > > > > >
+> > > > > > So my question is: How to properly define config space range in device
+> > > > > > tree file? In which device tree property and in which format? Please
+> > > > > > note that this memory range of config space is PCIe root port specific
+> > > > > > and it requires its own MBUS_ID() like memory range of PCIe MEM and PCIe
+> > > > > > IO mapping. Please look e.g. at armada-385.dtsi how are MBUS_ID() used:
+> > > > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/armada-385.dtsi
+> > > > > >
+> > > > >
+> > > > > On most of the platforms, the standard "reg" property is used to specify the
+> > > > > config space together with other device specific memory regions. For instance,
+> > > > > on the Qcom platforms based on Designware IP, we have below regions:
+> > > > >
+> > > > >       reg = <0xfc520000 0x2000>,
+> > > > >             <0xff000000 0x1000>,
+> > > > >             <0xff001000 0x1000>,
+> > > > >             <0xff002000 0x2000>;
+> > > > >       reg-names = "parf", "dbi", "elbi", "config";
+> > > > >
+> > > > > Where "parf" and "elbi" are Qcom controller specific regions, while "dbi" and
+> > > > > "config" (config space) are common to all Designware IPs.
+> > > > >
+> > > > > These properties are documented in: Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> > > > >
+> > > > > Hope this helps!
+> > > >
+> > > > Hello! I have already looked at this. But as I pointed in above
+> > > > armada-385.dtsi file, mvebu is quite complicated. First it does not use
+> > > > explicit address ranges, but rather macros MBUS_ID() which assign
+> > > > addresses at kernel runtime by mbus driver. Second issue is that config
+> > > > space range (like any other resources) are pcie root port specific. So
+> > > > it cannot be in pcie controller node and in pcie devices is "reg"
+> > > > property reserved for pci bdf address.
+> > > >
+> > > > In last few days, I spent some time on this issue and after reading lot
+> > > > of pcie dts files, including bindings and other documents (including
+> > > > open firmware pci2_1.pdf) and I'm proposing following definition:
+> > > >
+> > > > soc {
+> > > >   pcie-mem-aperture = <0xe0000000 0x08000000>; /* 128 MiB memory space */
+> > > >   pcie-cfg-aperture = <0xf0000000 0x01000000>; /*  16 MiB config space */
+> > > >   pcie-io-aperture  = <0xf2000000 0x00100000>; /*   1 MiB I/O space */
+> > > >
+> > > >   pcie {
+> > > >     ranges = <0x82000000 0 0x40000     MBUS_ID(0xf0, 0x01) 0x40000  0x0 0x2000>,    /* Port 0.0 Internal registers */
+> > > >              <0x82000000 0 0xf0000000  MBUS_ID(0x04, 0x79) 0        0x0 0x1000000>, /* Port 0.0 Config space */
+> > >
+> > > IMO, this should be 0 for first cell as this is config space. What is
+> > > 0xf0000000 as that's supposed to be an address in PCI address space.
+> >
+> > Which value should be 0? I did not catch it here.
+> 
+> s/0x82000000/0/
+> 
+> But really that's 0 for the hi byte and BDF for the lower bytes.
+
+But then, this line would describe "PCI device", not the address range
+(if we should follow that pci2_1.pdf).
+
+Also note that kernel accept only 0xX2000000 and 0xX1000000 values (MEM
+and IO).
+
+> > 0xf0000000 is just start offset for the child address range. I chose it
+> > "randomly" to not conflict with 0x40000 offset for child address range
+> > which describe internal PCIe controller registers.
+> >
+> > > >              <0x82000000 1 0x0         MBUS_ID(0x04, 0x59) 0        0x1 0x0>,       /* Port 0.0 Mem */
+> > > >              <0x81000000 1 0x0         MBUS_ID(0x04, 0x51) 0        0x1 0x0>,       /* Port 0.0 I/O */
+> > >
+> > > I/O space at 4GB? It's only 32-bits. I guess this is already there
+> > > from the mvebu binding, but it seems kind of broken...
+> >
+> > You have not looked how it works. mvebu is 32-bit CPU and this describe
+> > whole address range which could possibly used for IO or MEM for any
+> > (unspecified) PCIe controller.
+> 
+> I did look. It's just an intermediate virtual/random/made-up address
+> space. It kind of follows PCI bus addressing, but then not really.
+
+Exactly!
+
+> > Every PCIe controller has its own PCIe MEM and PCIe IO address range
+> > which are not shared with other PCIe controllers. (non-mvebu platforms
+> > use for this different PCI domains; mvebu not)
+> 
+> Except there's this shared 'PCI like' bus each port is on.
+
+I mean that in HW.
+
+> > These "shared" ranges are then dynamically split into PCIe controllers
+> > like their drivers ask. So at the end all 10 PCIe controllers which are
+> > on AXP ask for maximum (64 kB) of PCIe IO and allocator then choose 10
+> > 64kB non-interleaving ranges from this "big" master range. Same for PCIe
+> > MEM.
+> >
+> > So basically those two lines (one for MEM and one for IO) just says that
+> > "unspecified" amount of PCIe MEM is mapped to MBUS_ID(0x04, 0x59) and
+> > another "unspecified" amount of PCIe IO is mapped to MBUS_ID(0x04, 0x51)
+> > mbus and pci-mvebu.c drivers than takes care for proper allocation of
+> > required memory from dynamic pool defined in pcie-mem-aperture and
+> > pcie-io-aperture properties.
+> 
+> That sounds shared to me...
+
+In device tree it looks like shared, but in HW it is not shared.
+
+> >
+> > Note that this is not something which I invented, this is used for a
+> > long time by mvebu drivers and device tree files.
+> >
+> > > >
+> > > >     pcie@1,0 {
+> > > >       reg = <0x0800 0 0 0 0>; /* BDF 0:1.0 */
+> > > >       assigned-addresses =     <0x82000800 0 0x40000     0x0 0x2000>,     /* Port 0.0 Internal registers */
+> > > >                                <0x82000800 0 0xf0000000  0x0 0x1000000>;  /* Port 0.0 Config space */
+> > >
+> > > This says it is memory space, not config space.
+> >
+> > "config space" for Orion (in from driver point of view) is just ordinary
+> > "memory space".
+> 
+> "memory space" means PCI memory space which it is not. Almost every
+> Arm platform has config space in ordinary host/cpu address space.
+
+Yes. This is not PCI (memory space). And it applies also for internal
+registers range, which is prevent in all existing mvebu dts files.
+
+Both assigned-addresses in above example (and also in all existing mvebu
+dts files) describes host/cpu address space. Not PCI address space.
+
+> > "memory space" is accessed by load/store instructions. I/O space is
+> > accessed by inb/outb (IO instructions or what architecture has) and
+> > "config space" is accessed by kernel drivers by its own drivers.
+> >
+> > So I think it is correct to declare this range of address space as
+> > "memory".
+> 
+> It is not if we are talking PCI addresses. If this is Marvell pseudo
+> virtual PCI addresses, then you can declare it whatever you want.
+
+Yes, lets say it is "marvell pseudo pci address" which is not pci
+address at all. But is of type "memory", not "io".
+
+> > > But the PCI binding
+> > > says config space is not allowed in assigned-addresses.
+> >
+> > Exactly. And this is because it does not make sense to assign "config
+> > space" into "assigned-addresses" as described in:
+> > https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf
+> >
+> > My understanding of above document is that "reg" property in following
+> > code describes "config space".
+> >
+> >   pcie@1,0 {
+> >     reg = <0x0800 0 0 0 0>; /* BDF 0:1.0 */
+> >   }
+> >
+> > And reason is that because above document use "config space" terminology
+> > for describing specific PCI device on the bus.
+> >
+> > Address part after the at-char (@1,0) in device tree should match "reg"
+> > property and by all above definitions from pci2_1.pdf this pass because:
+> >
+> > 1) that document describes @1,0 format that is "config space" for PCI
+> >    device with BDF X:1.0 where X is the parent bus
+> >
+> > 2) 0x0800 is really describes BDF X:1.0
+> >
+> > And then the "config space is not allowed in assigned-addresses" makes
+> > sense as there is absolutely no need to put "pointer" to PCI device
+> > (with BDF address) into "assigned-addresses" property. In this property
+> > should be some memory range and not reference to some PCI device.
+> >
+> > > I think the parent ranges needs a config space entry with the BDF for
+> > > each root port and then this entry should be dropped. It really looks
+> > > to me like the mvebu binding created these fake PCI addresses to map
+> > > root ports back to MBUS addresses when BDF could have been used
+> > > instead.
+> > >
+> > > Rob
+> >
+> > The reason is that in mvebu there are X independent single-root-port
+> > PCIe controllers (PCIe host bridges; PCI domains; ...) and device tree
+> > binding was defined that all root ports (with their host bridges) would
+> > be put into one "virtual" DT node which would act as one PCI domain.
+> 
+> If they are independent, why is there 1 mem and i/o aperture?
+> 
+> I don't know how a virtual DT node for purposes of creating a single
+> PCI domain ever passed review. Must have been explained differently at
+> the time.
+
+Well, I do not know. I took that pci mvebu code as it was. I spend lot
+of time understanding how is that marvell pcie hw working and how it is
+implemented in linux kernel drivers and how it is defined in device
+tree.
+
+And I already saw that even marvell people did not understand how their
+pcie hw is working; so it possible that nobody had all architecture and
+hw information about this design at the time of device tree review.
+
+Anyway, this is something which already exists, it is used and cannot be
+changed for backward compatibility.
+
+> > And this leads to the fact that all controller specific settings must be
+> > defined in pci root ports.
+> 
+> Not necessarily. There's no reason settings can't be in the parent node.
+> 
+> Rob
+
+Well, you can put it also into the parent node, but then you need to
+somehow say which internal registers range describe which pcie root port
+(=pcie controller). For me the logical option is to describe it is in
+root port (=pcie controller) node as it the node, which needs it in hw.
+
+But also this is how it is already used.
