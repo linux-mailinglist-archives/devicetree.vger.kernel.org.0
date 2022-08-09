@@ -2,182 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 35CA758D6EC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 11:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC1CD58D6F6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 11:58:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231887AbiHIJ5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 05:57:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48302 "EHLO
+        id S236190AbiHIJ65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 05:58:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236261AbiHIJ5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 05:57:47 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82D8D220CA;
-        Tue,  9 Aug 2022 02:57:46 -0700 (PDT)
-Received: from [192.168.1.111] (91-158-154-79.elisa-laajakaista.fi [91.158.154.79])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C923F481;
-        Tue,  9 Aug 2022 11:57:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1660039064;
-        bh=AYFA8tcMi2LZnHlEWUX2E2FwrgpZvIPMpJivPfDx1w4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=VBuKNFMmyEAuVVY9DB8royWh4lugtGmv68yVKG3LrfilA3Sgubko5ywXENMQtaTIZ
-         ftiZvXnvkl19Mtu8a0UUFi3tFLm+kz7byZYcrVoWoMCnbC8BJcP5WqVBfr0WmJNRNN
-         072mBPUw/5Qrb5DfoKqu2wgCK5PnYLhIS7h+Mzs0=
-Message-ID: <54c62926-d501-35f8-f135-477216bf3444@ideasonboard.com>
-Date:   Tue, 9 Aug 2022 12:57:41 +0300
+        with ESMTP id S233784AbiHIJ64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 05:58:56 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74FA822BCC
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 02:58:55 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id o2so8966195lfb.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 02:58:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=dNKI0alQrhjS9L9F86wgRZLWLDDwbvdm53vSyGV+VS4=;
+        b=VhMw8Rgdr+ABmi3Y576qLby0119i9K2rnMNLgJVMYDkOe8lWHUAdPHSJb3GxrjaX/Z
+         G65bSFLOoeTD8sDHc9I4MWY5WhPn1qz3C278MibJzNs9kJ17stkjDzn1wBxx8Kq1EcB6
+         2SVIuwcrIst1UyNe0LSGc/wj2waD+ZbI5JKgTPnyQMPTrYRPcdjCZT2JU6OIA8DLdu4d
+         MgfoeqCKkmcLShXV3xVZ+dYzF073w2GZfbMysaRQLv4hy6Dv86THbDtJgQEE/j/MpanL
+         GtZRRLMMH3kbUASiQ48JoOWfzdf9XVcfKIVLN9zMlAa2em4anGLFbBZhWnoiQh0oOlB6
+         bM/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=dNKI0alQrhjS9L9F86wgRZLWLDDwbvdm53vSyGV+VS4=;
+        b=G05p+L0oLbhxhTwA/HEPGluGB3VYtUlITfASPUR8ZdJ2ttMPJ2ie1evnDDp8/ixIlA
+         ++zFB/yHQCPKkLFM7soWMtSUerMGpDp8SKZaIU7LGKQa7qIxhTUiqZt9wolVF5R8xksv
+         aA+G1a8S2DivSi7mg70MsuX3wUq2vQML8JDlhVha8WDpZuR/IaAbSvR9OkVNWcjhs0GT
+         gIR9d68W7k/RNeWOBOph7pHQRypOSMS0/2dJftbUyoOmIZ5pXKgeDmY9JPMMEKa0qjto
+         LxgTsVuawrDLyq68nHPLgDJOdpsPksXF4UfOlRIUcaUf8UF8EGghvpDf+oaa5N9Iu48v
+         f27w==
+X-Gm-Message-State: ACgBeo0RnedfIcJsGj+iNzWGlSMcqNe1tVqiS9gPwT6o1CscXQSqd/gS
+        W7yKbPtjDW9wdXivB5EAWZmy8g==
+X-Google-Smtp-Source: AA6agR44h8B1/uwdCyXQkdtIOlFe25gbtHpOlAJmp/D1KFFnmNubjQd6v8FYZkEJPiQhaJLwxPt4Ww==
+X-Received: by 2002:a05:6512:10d0:b0:48b:80d:849b with SMTP id k16-20020a05651210d000b0048b080d849bmr8261320lfg.399.1660039133661;
+        Tue, 09 Aug 2022 02:58:53 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id v22-20020a197416000000b0048ad4c718f3sm1709823lfe.30.2022.08.09.02.58.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Aug 2022 02:58:52 -0700 (PDT)
+Message-ID: <26ad247d-a4b3-4051-b8d9-505c09b76f6b@linaro.org>
+Date:   Tue, 9 Aug 2022 12:58:51 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v3 2/2] drm/tidss: Add support for AM625 DSS
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 3/3] memory: Add Broadcom STB memory controller driver
 Content-Language: en-US
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-Cc:     Jyri Sarha <jyri.sarha@iki.fi>, Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Nishanth Menon <nm@ti.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        Rahul T R <r-ravikumar@ti.com>
-References: <20220627151200.4693-1-a-bhatia1@ti.com>
- <20220627151200.4693-3-a-bhatia1@ti.com>
- <4382b760-418f-4033-97f2-47e082a30232@ideasonboard.com>
- <cb9ada9f-9673-2039-c22b-fa0d3345fe41@ti.com>
- <1a394a4d-1099-400f-2b52-e7a02e379cba@ideasonboard.com>
- <52edcdda-35ee-ae04-4991-0978b7d06c21@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <52edcdda-35ee-ae04-4991-0978b7d06c21@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20220801220931.181531-1-f.fainelli@gmail.com>
+ <20220801220931.181531-4-f.fainelli@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220801220931.181531-4-f.fainelli@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2022 12:21, Aradhya Bhatia wrote:
-> Hi Tomi,
+On 02/08/2022 01:09, Florian Fainelli wrote:
+> Add support for configuring the Self Refresh Power Down (SRPD)
+> inactivity timeout on Broadcom STB chips. This is used to conserve power
+> when the DRAM activity is reduced.
 > 
-> On 09-Aug-22 12:01, Tomi Valkeinen wrote:
->> On 09/08/2022 09:08, Aradhya Bhatia wrote:
->>> Hi Tomi,
->>>
->>> On 28-Jul-22 17:34, Tomi Valkeinen wrote:
->>>> On 27/06/2022 18:12, Aradhya Bhatia wrote:
->>>>> Add support for the DSS IP on TI's new AM625 SoC in the tidss driver.
->>>>>
->>>>> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
->>>>> Reviewed-by: Rahul T R <r-ravikumar@ti.com>
->>>>> ---
->>>>>   drivers/gpu/drm/tidss/tidss_dispc.c | 56 
->>>>> ++++++++++++++++++++++++++++-
->>>>>   drivers/gpu/drm/tidss/tidss_dispc.h |  2 ++
->>>>>   drivers/gpu/drm/tidss/tidss_drv.c   |  1 +
->>>>>   3 files changed, 58 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c 
->>>>> b/drivers/gpu/drm/tidss/tidss_dispc.c
->>>>> index dae47853b728..f084f0688a54 100644
->>>>> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
->>>>> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
->>>>> @@ -272,6 +272,55 @@ const struct dispc_features dispc_j721e_feats = {
->>>>>       .vid_order = { 1, 3, 0, 2 },
->>>>>   };
->>>>> +const struct dispc_features dispc_am625_feats = {
->>>>> +    .max_pclk_khz = {
->>>>> +        [DISPC_VP_DPI] = 165000,
->>>>> +        [DISPC_VP_OLDI] = 165000,
->>>>> +    },
->>>>> +
->>>>> +    .scaling = {
->>>>> +        .in_width_max_5tap_rgb = 1280,
->>>>> +        .in_width_max_3tap_rgb = 2560,
->>>>> +        .in_width_max_5tap_yuv = 2560,
->>>>> +        .in_width_max_3tap_yuv = 4096,
->>>>> +        .upscale_limit = 16,
->>>>> +        .downscale_limit_5tap = 4,
->>>>> +        .downscale_limit_3tap = 2,
->>>>> +        /*
->>>>> +         * The max supported pixel inc value is 255. The value
->>>>> +         * of pixel inc is calculated like this: 1+(xinc-1)*bpp.
->>>>> +         * The maximum bpp of all formats supported by the HW
->>>>> +         * is 8. So the maximum supported xinc value is 32,
->>>>> +         * because 1+(32-1)*8 < 255 < 1+(33-1)*4.
->>>>> +         */
->>>>> +        .xinc_max = 32,
->>>>> +    },
->>>>> +
->>>>> +    .subrev = DISPC_AM625,
->>>>> +
->>>>> +    .common = "common",
->>>>> +    .common_regs = tidss_am65x_common_regs,
->>>>> +
->>>>> +    .num_vps = 2,
->>>>> +    .vp_name = { "vp1", "vp2" },
->>>>> +    .ovr_name = { "ovr1", "ovr2" },
->>>>> +    .vpclk_name =  { "vp1", "vp2" },
->>>>> +    .vp_bus_type = { DISPC_VP_OLDI, DISPC_VP_DPI },
->>>>
->>>> This looks correct, but with the two OLDI TXes, I think there will 
->>>> be some interesting issues.
->>>>
->>>> The tidss_kms.c associates a DSS VP and a DT port, but that's no 
->>>> longer true if you add the ports for both OLDI TXes, as they both 
->>>> use the same VP. I think fixing that won't affect this patch, 
->>>> though, and merging this patch will, afaik, enable similar DSS 
->>>> functionality as we have for AM65x.
->>>>
->>>> So, I think these two patches could be merged, or we could wait a 
->>>> bit until the OLDI situation becomes more clear. Up to you. In any 
->>>> case, for both patches:
->>>>
->>>> Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>\
->>>
->>> Thank you for the review!
->>>
->>> This patch set is required for the dss DT patches to be upstreamed for
->>> the AM625-SK, so I would like them to get merged.
->>>
->>> Since these were posted in the previous merge window, I will re-send 
->>> with your tag.
->>
->> I'd like to understand better the dual OLDI TX case before merging any 
->> AM625 dss changes.
->>
->> At the moment you have only one port in the DT for the OLDI TX for 
->> AM625, right? I don't see how that is supposed to work as there are 
->> two OLDI outputs. 
-> The OLDI node doesn't have node of its own at all. Its the dss port that
-> gets directly connected to the panel ports.
-> 
->> And if we do add a new port, it perhaps makes sense to have two OLDI 
->> TX ports as ports 0 and 1, and the DPI as port 2, which is then 
->> different from AM65x.
-> The DSS still has a single (DPI) VP for the OLDI outputs. Both the OLDI 
-> TXes receive the same input from the DSS VP.
 
-Yes, but don't mix the DSS VP and the DT port. They are not the same thing.
 
-> Wouldn't having them modeled as videp ports 0 and 1 would mean that the
-> DSS is capable of driving 2 different OLDI displays? (which is not the
-> case here).
+> +static int __maybe_unused brcmstb_memc_resume(struct device *dev)
+> +{
+> +	struct brcmstb_memc *memc = dev_get_drvdata(dev);
+> +
+> +	if (memc->timeout_cycles == 0)
+> +		return 0;
+> +
+> +	return brcmstb_memc_srpd_config(memc, memc->timeout_cycles);
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(brcmstb_memc_pm_ops, brcmstb_memc_suspend,
+> +			 brcmstb_memc_resume);
+> +
+> +static struct platform_driver brcmstb_memc_driver = {
+> +	.probe = brcmstb_memc_probe,
+> +	.remove = brcmstb_memc_remove,
+> +	.driver = {
+> +		.name		= "brcmstb_memc",
+> +		.owner		= THIS_MODULE,
 
-If you use the OLDI cloning, the AM625 is driving two OLDI displays, no? 
-In theory the panels could be of different model, as long as they both 
-support the same video mode, and they could be managed by different 
-drivers. This requires two ports so that you can connect the panels in 
-the DT.
+No need, run coccinelle.
 
-But let's continue this discussion in the "[PATCH 4/8] drm/tidss: Add 
-support for Dual Link LVDS Bus Format" thread, no need to discuss the 
-same things in two threads =).
+> +		.of_match_table	= brcmstb_memc_of_match,
+> +		.pm		= &brcmstb_memc_pm_ops,
 
-  Tomi
+Shouldn't this be pm_ptr()? and then no need for __maybe_unused in
+brcmstb_memc_resume/suspend.
+
+> +	},
+> +};
+> +module_platform_driver(brcmstb_memc_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Broadcom");
+> +MODULE_DESCRIPTION("DDR SRPD driver for Broadcom STB chips");
+
+
+Best regards,
+Krzysztof
