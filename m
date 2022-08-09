@@ -2,51 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D14458D3F4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 08:42:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D0A958D412
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 08:52:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238173AbiHIGmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 02:42:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51014 "EHLO
+        id S238680AbiHIGwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 02:52:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237760AbiHIGmf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 02:42:35 -0400
-Received: from mx1.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 411F9201AC;
-        Mon,  8 Aug 2022 23:42:33 -0700 (PDT)
-Received: from [192.168.0.2] (ip5f5aecbd.dynamic.kabel-deutschland.de [95.90.236.189])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        (Authenticated sender: pmenzel)
-        by mx.molgen.mpg.de (Postfix) with ESMTPSA id D747D61EA192A;
-        Tue,  9 Aug 2022 08:42:29 +0200 (CEST)
-Message-ID: <6d1576c9-f105-2aff-4497-2c2e7bed2f3b@molgen.mpg.de>
-Date:   Tue, 9 Aug 2022 08:42:29 +0200
+        with ESMTP id S239066AbiHIGwI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 02:52:08 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCE0D20BFE
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 23:51:58 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id d14so15695275lfl.13
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 23:51:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=YKNZDEH28vo2hOp+yO+5ohq8JvJ2Azq963eWNXEueng=;
+        b=YPnO3aOsjoKfoky+lJWcp8X+Ot6taMNcOMdzc20QiXMA0XVsHV1mF8SfHypERbMgvP
+         VLvqaGFDuOXjroTO4Hx9SOM085qQ/9ApiXpvQPfFym/MYjpM6pkGvsVF3P4eNl6x2RCV
+         2ahSiq+69pCAiV7nHTCTi3JCjFVsIAbm35PlGTw58/e6sqlHCKPsLce5yPlNeVh/2N/2
+         oycRIeUbS9c+iuD7xVdk9eZyFxtpRNuch3gWt00CIF9BnyKKBQrcuO+SGS5HbSfFrht6
+         satS+5Yclxa/Ni7BmrC5osAGmGdykqzgU2zr9yfxwRS+9dlJ2c401Eih5kyHfgNZV+yA
+         snBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=YKNZDEH28vo2hOp+yO+5ohq8JvJ2Azq963eWNXEueng=;
+        b=IRdBnEeQDt2lKcv4OnAxAzLWaUvbxAvEizE2IDz/aeHGPGDkug6kczfsai99qIb82b
+         4Hzu/Xvjp3nG4P2cPr1USGJxBBsHHKjdlYngVwTamoJR/K8pYjh0NKl9P/bUb0xRmnV1
+         aIxQc4gK2iPaEDIKqQIJIwni2H8PdyVn5c6YncnLll7UUan9uPyIt/0LuvtcNUvytXDY
+         ZWPOioJnMV2u21W35cmVCtGZMn3Uz7zhnN3vDTjl62JiKj0bQKCcSFo3pseF3z0b+UVt
+         c0jgs4gNQeUkGnABvxNJjbRFX7y/bmVGs2pgEmo+gkP9mUeNSQZFNQwu1yImM3Ke+bHw
+         jZ9Q==
+X-Gm-Message-State: ACgBeo0MBIfyvVNa94Mi+j/IAGpiO93d7IRJJfD5vexWRgT+hoRavrFE
+        14teShD0PEs7mVY8nRrUDaKgxw==
+X-Google-Smtp-Source: AA6agR5JNym3jZqwEXK+XRc6gZGTBrm4grb5Lt43yb7sd2tQ2mwtU0gNBV8G9SDZYNmBeRsUMlQVjg==
+X-Received: by 2002:a05:6512:3fa0:b0:48a:c45:275f with SMTP id x32-20020a0565123fa000b0048a0c45275fmr7180583lfa.566.1660027917050;
+        Mon, 08 Aug 2022 23:51:57 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id j16-20020ac25510000000b0048af3154456sm1653751lfk.146.2022.08.08.23.51.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Aug 2022 23:51:56 -0700 (PDT)
+Message-ID: <a35dc076-e33f-1b31-2a01-27bb37301039@linaro.org>
+Date:   Tue, 9 Aug 2022 09:51:54 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.1.1
-Subject: Referencing non-public datasheets in commit messages (was: [PATCH v12
- 3/3] EDAC: nuvoton: Add NPCM memory controller driver)
-To:     Borislav Petkov <bp@alien8.de>
-Cc:     medadyoung@gmail.com, KWLIU@nuvoton.com, tony.luck@intel.com,
-        rric@kernel.org, benjaminfair@google.com,
-        linux-edac@vger.kernel.org, KFTING@nuvoton.com,
-        avifishman70@gmail.com, venture@google.com,
-        openbmc@lists.ozlabs.org, JJLIU0@nuvoton.com, ctcchien@nuvoton.com,
-        tali.perry1@gmail.com, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, james.morse@arm.com, YSCHU@nuvoton.com,
-        mchehab@kernel.org, linux-kernel@vger.kernel.org,
-        tmaimon77@gmail.com
-References: <20220610084340.2268-1-ctcchien@nuvoton.com>
- <20220610084340.2268-4-ctcchien@nuvoton.com> <YrDIimW0gW1j03WG@zn.tnic>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] dt-bindings: leds: Describe optional 'reg' property used
+ for Qualcomm LPG nodes
 Content-Language: en-US
-From:   Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <YrDIimW0gW1j03WG@zn.tnic>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        robh@kernel.org, pavel@ucw.cz, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+References: <20220721195502.1525214-1-bhupesh.sharma@linaro.org>
+ <CAA8EJppGS38aP7gyd1c3kNgraAVJDoqUef2cDfZpu2aL_iwW0g@mail.gmail.com>
+ <YvFZgr1RRq6tYaVC@ripper>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YvFZgr1RRq6tYaVC@ripper>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,27 +80,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Borislav,
-
-
-Am 20.06.22 um 21:20 schrieb Borislav Petkov:
-> On Fri, Jun 10, 2022 at 04:43:40PM +0800, medadyoung@gmail.com wrote:
-
-[…]
-
->> Datasheet:
->>      Cadence DDR Controller Register Reference Manual For DDR4 Memories
->>      Chapter 2: Detailed Register Map
+On 08/08/2022 21:44, Bjorn Andersson wrote:
+> On Thu 21 Jul 13:19 PDT 2022, Dmitry Baryshkov wrote:
 > 
-> If that datasheet is not public, no need to mention it here. At least a
-> quick web search cannot find something relevant.
+>> On Thu, 21 Jul 2022 at 22:55, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+>>>
+>>> As Bjorn noted in [1], it is useful to describe the optional
+>>> 'reg' property for Qualcomm LPG nodes as it is used in
+>>> some Qualcomm dts files.
+>>
+>> I don't think this is correct. LPG block maps to several regions, so
+>> using just one of them in reg doesn't look correct.
+>>
+> 
+> I agree, but I also like the uniformity of having unit addresses for the
+> devices on the spmi buses.
 
-Maybe it could be denoted, that is not public (and also the version), 
-but even mentioning non-public datasheets is useful, as they could be 
-made public in the future, and allows everyone to contact people with 
-access to these datasheets to take a look into the specific datasheet.
+regulators also do not have reg, so I guess consistency is already gone.
+
+I vote here to reflect the real hardware/device which means:
+1. IIUC, the design of entire SPMI bindings and its implementation is
+around parent device sitting on SPMI bus and children using its
+regmap/io space.
+2. The children are not really re-usable for different cases/devices
+(e.g. standalone WLED or LPG, outside of PMIC).
+3. This means entire design is tightly coupled and LPG (or wled,
+regulators) bindings describe the piece of PMIC, thus I find appropriate
+skipping "reg".
+4. If we want to keep the "reg", then it should rather reflect reality,
+so if Dmitry said - multiple items for separate IO address ranges.
+
+> 
+>>> This fixes the following 'make dtbs_check' error reported for
+>>> pm8350c & sc8280xp pwm nodes:
+>>>
+>>> arch/arm64/boot/dts/qcom/sc7280-herobrine-herobrine-r1.dtb:
+>>>  pwm@e800: 'reg' does not match any of the regexes:
+>>>  '^led@[0-9a-f]$', 'pinctrl-[0-9]+'
+>>
+>> I'd prefer to follow the existing schema and to drop the region from
+>> those files.
+>>
+> 
+> I'm fine either way, but we have more of these nodes, so I would like to
+> hear from the DT maintainers on the direction to take. All nodes on the
+> spmi bus has an (at least one) address, so it would be accurate to state
+> this in the node.
+> 
+> It does however not seem like devicetree@, nor Krzysztof is Cc'ed on
+> this patch, so I've added them...
+>
+
+Anyway this patch has to be resent to properly reach DT patchwork.
+
+Bhupesh,
+
+Please use scripts/get_maintainer.pl to Cc relevant folks and mailing
+lists. While resending, add appropriate device prefix to subject, so:
+dt-bindings: leds: qcom-lpg:
 
 
-Kind regards,
-
-Paul
+Best regards,
+Krzysztof
