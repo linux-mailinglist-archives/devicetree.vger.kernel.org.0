@@ -2,128 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E5458D5AA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:47:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5950A58D5B4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:52:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239184AbiHIIr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 04:47:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49962 "EHLO
+        id S240409AbiHIIwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 04:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241127AbiHIIrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:47:49 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA61222AF
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 01:47:48 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id t1so16070018lft.8
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 01:47:48 -0700 (PDT)
+        with ESMTP id S231282AbiHIIw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:52:28 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B9FB38B7
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 01:52:27 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id j15so13564069wrr.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 01:52:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=5ZRqoSrGd+BoiYjAKUkI728rotE5kN9fSo4lEQOI+8g=;
-        b=e/vdzEJtB1SxPZDhfRGHx30J19/pApV7RI9Lxl4m7eRLimeRmgkEdJtwR7BdT3fM+x
-         oDBNdrUKj8TMdURTdwOe4eh9buM5Ow196l0vHWvk//YSyj2pH1Yknob9RfDH/WMimZEK
-         BByitWQFDuKFJljHKxEirForcLNpkBSNdM0H00Ov4sQR1swxmH/bR8b0wuMs+G/fQ0hv
-         NBb0vYl8GmBq8pDqqncy8CFfCy7hcTiDsEu9hwEo+YRHDsgv+pPNvTyKG9oBS1lcSM/T
-         a4/x7RvfqdUgD29yEhrwneZgtIpiImnRa9yS2umOHlVBtnQWXFEZb4kOL1HIUHebCsSz
-         N96A==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=8Ou04ju9WzWPDN0A9A1ViSUt6uT5liKE7OV5Ktj6+Ew=;
+        b=ZTSSMGLIszA3cSPcygspeCZshz1kCpapXSGX5tJUCYXOHK4xR+1LN5evv9RI2xFaO5
+         5vCSWFQLV1z3j8+WuepqnIZsNNq8EAQnCfDBAdXPjonukS1x+xBmNPjC1WGy8S7yeCWI
+         MV/wl5YVn69CwaQFEPROfVkbdTVf1QKMCZUyStfGxAvnGqr7GVuIZINEp98CKMce/xAD
+         3JGauh5E6LqcXMoiHANyKSiwGDD5KyFPu0WIQ3IRY6OiKpuyCvulgOKsB9QHPIoAUZ10
+         WJ1tG35rudqbL8yMgwwAo9m3m0QXIvd94UIoYDiVKWFlb4c7lBT2aJBAWeeXs3RH2EVS
+         N1Tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=5ZRqoSrGd+BoiYjAKUkI728rotE5kN9fSo4lEQOI+8g=;
-        b=6+6FP9eGMFjJ53BjIC0oYO9kR/8aqVu5UwhkVHmskBNmDBnFI7CGkSeNAIj926Hlcv
-         9tQ/T1im/+OxF5oZo3T7OWg79MTRGrp4I4WUZIvFpdetF/hOdi02j5O0HblbEdfITr/7
-         p8RK5EYhPVaClNj7c6TFadTCCAtoB+zIes591Win8tXxNnkBIz4tl+OQndMa/dhXay8K
-         CcNlLE6pNbwuwkrL0CrJgNnTl4FEoJJ70fTaASZSS+/JWGrGnGhzCADQ/ry/umRPvfVx
-         gJcTZcZwiCRWX/rh2yIRxPHCVnDdFMEMUVHbnI8brcPR9A5zEo0h6tQSHgYomUAMj1b0
-         pupQ==
-X-Gm-Message-State: ACgBeo36IaKMHn9l4P+iUWPcjyrVLJAI5iMROqUHu4xINz3a/tI9cbct
-        OrIlOkwour5d/D7Na/WWRus0kQ==
-X-Google-Smtp-Source: AA6agR57Vn8Xw6JF+3882osCvRfCsBG2iGD79k+lEHgjvxuNyg827VQ/Js1yrlfXCIevi5KIpnLazg==
-X-Received: by 2002:a05:6512:3b8e:b0:48b:23c6:9b0 with SMTP id g14-20020a0565123b8e00b0048b23c609b0mr8176669lfv.470.1660034866470;
-        Tue, 09 Aug 2022 01:47:46 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id v22-20020a197416000000b0048ad4c718f3sm1687682lfe.30.2022.08.09.01.47.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Aug 2022 01:47:45 -0700 (PDT)
-Message-ID: <cbe80ae1-3ae8-eccf-89f7-4506e3f44ca7@linaro.org>
-Date:   Tue, 9 Aug 2022 11:47:44 +0300
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=8Ou04ju9WzWPDN0A9A1ViSUt6uT5liKE7OV5Ktj6+Ew=;
+        b=2XsPFu5ZfFhYCtuqgfmEpQJ1vW7NFNkQ6F0QeYbQlhZounlr2d+qKrZWd70424FUI/
+         Zn/7HZaihMvpeGVJvvNHFpmLcOzUzSzVn8KJzfY3QKf2ZeqMyvnBr0eargxnXPaFPXgX
+         7A+DmlMt6r7iRkfz3oWIwiwMWDP+xhki3SDkkpUov9nFeOaZX1vhGRdBt4jb6j6iGFvt
+         D037ws1MPGK0euOytTdzYh1IyK73oPl62MZ66ZMUkC/R4pAWQaeViY522XV5bhfxcl5I
+         hAeO8X554W1y+fiNCByP2tCj3xCUIcoHzYUrlp+vh6dVJebU770CAP/9j9l6lD+wKCfv
+         LE7g==
+X-Gm-Message-State: ACgBeo26CcsMblEu1hRO/7D9HUSSZsaTAXpHBENDGLe6uCQh4XqIC1YN
+        NSs/bzfGX0FrqS2q8zVxfdYjlykxo6dRhw==
+X-Google-Smtp-Source: AA6agR5mcuhtovx41DqwYdsZrPlvGfFXfZp70LDfByyQuh3ivcleUFJA5OuIeJlKYe7jai9QvT2fCw==
+X-Received: by 2002:a5d:6988:0:b0:21f:bbc:65f8 with SMTP id g8-20020a5d6988000000b0021f0bbc65f8mr13721179wru.537.1660035145931;
+        Tue, 09 Aug 2022 01:52:25 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id bg21-20020a05600c3c9500b003a4efb794d7sm18494010wmb.36.2022.08.09.01.52.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Aug 2022 01:52:25 -0700 (PDT)
+Date:   Tue, 9 Aug 2022 09:52:23 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        broonie@kernel.org, dmitry.torokhov@gmail.com, lgirdwood@gmail.com,
+        cy_huang@richtek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Lee Jones <lee@kernel.org>
+Subject: Re: [PATCH v3 2/3] mfd: rt5120: Add Richtek PMIC support
+Message-ID: <YvIgR9RBDMp9VJ6B@google.com>
+References: <1657780937-20891-1-git-send-email-u0084500@gmail.com>
+ <1657780937-20891-3-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: sound: Add Apple MCA I2S transceiver
-Content-Language: en-US
-To:     =?UTF-8?Q?Martin_Povi=c5=a1er?= <povik+lin@cutebit.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>, asahi@lists.linux.dev,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220808224153.3634-1-povik+lin@cutebit.org>
- <20220808224153.3634-2-povik+lin@cutebit.org>
- <8ce59940-f559-35cb-5f86-37399da166a1@linaro.org>
- <DCBCB694-F5A3-4E76-9518-89E9A1A4AB55@cutebit.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DCBCB694-F5A3-4E76-9518-89E9A1A4AB55@cutebit.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1657780937-20891-3-git-send-email-u0084500@gmail.com>
+X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FSL_HELO_FAKE,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2022 11:40, Martin Povišer wrote:
->> Describe the items because otherwise you allow any order. The list will
->> be unfortunately quite long, but still readable enough.
-> 
-> Well, I would assume the ‘dmas’ property as described above has an implicit
-> natural order, and the dma-names are tied to it. You order it like the other
-> per-cluster properties, and then within the cluster the order is fixed to
-> 'TXA, RXA, TXB, RXB’ (maybe the word ‘respectively’ thrown into the description
-> would have made it clearer).
-> 
-> Anyway that’s just discussing my assumptions. I can roll out the items list
-> for ‘dma-names’, if that’s what you mean. Or do you mean explicitly describing
-> the items in ‘dmas’ too?
+On Thu, 14 Jul 2022, cy_huang wrote:
 
-The text description of 'dmas' does not mean it will be followed by DTS
-author. In current bindings DTS author can therefore put any order of
-dmas/dma-names. Unrolling the dma-names forces this order to be fixed
-and validated by dtschema.
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Add Richtek RT5120 PMIC I2C driver.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+> Since v3:
+> - Use a 'dev' variable and dev_err_probe to decrease the LOC in mfd.
+> 
+> ---
+>  drivers/mfd/Kconfig  |  12 +++++
+>  drivers/mfd/Makefile |   1 +
+>  drivers/mfd/rt5120.c | 121 +++++++++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 134 insertions(+)
+>  create mode 100644 drivers/mfd/rt5120.c
 
-> 
->>> +    description: |
->>> +      Names for the DMA channels: 'tx'/'rx', then cluster number, then 'a'/'b'
->>> +      based on the associated SERDES unit.
->>> +
-> 
-> (...)
-> 
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    mca: mca@9b600000 {
->>
->> You called it I2S transceiver but isn't it also actually I2S controller?
->> If yes, then the node name should be probably "i2s".
-> 
-> It’s a peripheral you use to transmit and receive samples over I2S, frankly
-> I don't know the nomenclature.
+Mostly good, couple of nits.
 
-Looking at other devices, it's i2s.
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 3b59456..866619c 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -1127,6 +1127,18 @@ config MFD_RT5033
+>  	  sub-devices like charger, fuel gauge, flash LED, current source,
+>  	  LDO and Buck.
+>  
+> +config MFD_RT5120
+> +	tristate "Richtek RT5120 Power Management IC"
+> +	depends on I2C
+> +	select MFD_CORE
+> +	select REGMAP_I2C
+> +	select REGMAP_IRQ
+> +	help
+> +	  The enables support for Richtek RT5120 PMIC. It includes four high
+> +	  efficiency buck converters and one LDO voltage regulator. The device
+> +	  is targeted at providing the CPU voltage, memory, I/O and peripheral
+> +	  power rails in home entertainment devices.
+> +
+>  config MFD_RC5T583
+>  	bool "Ricoh RC5T583 Power Management system device"
+>  	depends on I2C=y
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index 858cacf..27e8add 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -234,6 +234,7 @@ obj-$(CONFIG_MFD_HI655X_PMIC)   += hi655x-pmic.o
+>  obj-$(CONFIG_MFD_DLN2)		+= dln2.o
+>  obj-$(CONFIG_MFD_RT4831)	+= rt4831.o
+>  obj-$(CONFIG_MFD_RT5033)	+= rt5033.o
+> +obj-$(CONFIG_MFD_RT5120)	+= rt5120.o
+>  obj-$(CONFIG_MFD_SKY81452)	+= sky81452.o
+>  
+>  intel-soc-pmic-objs		:= intel_soc_pmic_core.o intel_soc_pmic_crc.o
+> diff --git a/drivers/mfd/rt5120.c b/drivers/mfd/rt5120.c
+> new file mode 100644
+> index 00000000..12372fa
+> --- /dev/null
+> +++ b/drivers/mfd/rt5120.c
+> @@ -0,0 +1,121 @@
+> +// SPDX-License-Identifier: GPL-2.0+
 
-Best regards,
-Krzysztof
+No Copyright?
+
+> +#include <linux/i2c.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/regmap.h>
+> +
+> +#define RT5120_REG_INTENABLE	0x1D
+> +#define RT5120_REG_INTSTAT	0x1E
+> +#define RT5120_REG_FZCMODE	0x44
+> +
+> +#define RT5120_INT_HOTDIE	0
+> +#define RT5120_INT_PWRKEY_REL	5
+> +#define RT5120_INT_PWRKEY_PRESS	6
+> +
+> +static const struct regmap_range rt5120_rd_yes_ranges[] = {
+> +	regmap_reg_range(0x03, 0x13),
+> +	regmap_reg_range(0x1c, 0x20),
+> +	regmap_reg_range(0x44, 0x44)
+> +};
+> +
+> +static const struct regmap_range rt5120_wr_yes_ranges[] = {
+> +	regmap_reg_range(0x06, 0x13),
+> +	regmap_reg_range(0x1c, 0x20),
+> +	regmap_reg_range(0x44, 0x44)
+> +};
+> +
+> +static const struct regmap_access_table rt5120_rd_table = {
+> +	.yes_ranges = rt5120_rd_yes_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(rt5120_rd_yes_ranges),
+> +};
+> +
+> +static const struct regmap_access_table rt5120_wr_table = {
+> +	.yes_ranges = rt5120_wr_yes_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(rt5120_wr_yes_ranges),
+> +};
+> +
+> +static const struct regmap_config rt5120_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = RT5120_REG_FZCMODE,
+> +
+> +	.wr_table = &rt5120_wr_table,
+> +	.rd_table = &rt5120_rd_table,
+> +};
+> +
+> +static const struct regmap_irq rt5120_irqs[] = {
+> +	REGMAP_IRQ_REG_LINE(RT5120_INT_HOTDIE, 8),
+> +	REGMAP_IRQ_REG_LINE(RT5120_INT_PWRKEY_REL, 8),
+> +	REGMAP_IRQ_REG_LINE(RT5120_INT_PWRKEY_PRESS, 8)
+> +};
+> +
+> +static const struct regmap_irq_chip rt5120_irq_chip = {
+> +	.name = "rt5120-pmic",
+> +	.status_base = RT5120_REG_INTSTAT,
+> +	.mask_base = RT5120_REG_INTENABLE,
+> +	.ack_base = RT5120_REG_INTSTAT,
+> +	.mask_invert = true,
+> +	.use_ack = true,
+> +	.num_regs = 1,
+> +	.irqs = rt5120_irqs,
+> +	.num_irqs = ARRAY_SIZE(rt5120_irqs),
+> +};
+> +
+> +static const struct resource rt5120_regulator_resources[] = {
+> +	DEFINE_RES_IRQ(RT5120_INT_HOTDIE)
+> +};
+> +
+> +static const struct resource rt5120_pwrkey_resources[] = {
+> +	DEFINE_RES_IRQ_NAMED(RT5120_INT_PWRKEY_PRESS, "pwrkey-press"),
+> +	DEFINE_RES_IRQ_NAMED(RT5120_INT_PWRKEY_REL, "pwrkey-release")
+> +};
+> +
+> +static const struct mfd_cell rt5120_devs[] = {
+> +	MFD_CELL_RES("rt5120-regulator", rt5120_regulator_resources),
+> +	MFD_CELL_OF("rt5120-pwrkey", rt5120_pwrkey_resources, NULL, 0, 0,
+> +		    "richtek,rt5120-pwrkey")
+
+This can be on one line if you want.
+
+> +};
+> +
+> +static int rt5120_probe(struct i2c_client *i2c)
+> +{
+> +	struct device *dev = &i2c->dev;
+> +	struct regmap *regmap;
+> +	struct regmap_irq_chip_data *irq_data;
+> +	int ret;
+> +
+> +	regmap = devm_regmap_init_i2c(i2c, &rt5120_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap),
+> +				     "Failed to init regmap\n");
+> +
+> +	ret = devm_regmap_add_irq_chip(dev, regmap, i2c->irq, IRQF_ONESHOT, 0,
+> +				       &rt5120_irq_chip, &irq_data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to add irq chip\n");
+
+"IRQ"
+
+> +	return devm_mfd_add_devices(dev, PLATFORM_DEVID_AUTO, rt5120_devs,
+> +				    ARRAY_SIZE(rt5120_devs), NULL, 0,
+> +				    regmap_irq_get_domain(irq_data));
+> +}
+> +
+> +static const struct of_device_id rt5120_device_match_table[] = {
+> +	{ .compatible = "richtek,rt5120" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, rt5120_device_match_table);
+> + 
+> +static struct i2c_driver rt5120_driver = {
+> +	.driver = {
+> +		.name = "rt5120",
+> +		.of_match_table = rt5120_device_match_table,
+> +	},
+> +	.probe_new = rt5120_probe,
+> +};
+> +module_i2c_driver(rt5120_driver);
+> +
+> +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
+> +MODULE_DESCRIPTION("Richtek RT5120 I2C driver");
+> +MODULE_LICENSE("GPL v2");
+
+-- 
+DEPRECATED: Please use lee@kernel.org
