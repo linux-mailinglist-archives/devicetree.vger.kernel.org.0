@@ -2,156 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7504358D6C4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 11:51:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39F1058D6D0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 11:53:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240814AbiHIJvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 05:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42884 "EHLO
+        id S241040AbiHIJw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 05:52:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240176AbiHIJvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 05:51:17 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CEC31EC7B;
-        Tue,  9 Aug 2022 02:51:16 -0700 (PDT)
-Received: from [192.168.1.111] (91-158-154-79.elisa-laajakaista.fi [91.158.154.79])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C2C8481;
-        Tue,  9 Aug 2022 11:51:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1660038674;
-        bh=r2sdgyuhzqotsEz/pACTyQCNacvrrwjhRBMGFPAHOqE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=O7h2FKBjjAc9l33om8vVHf+MwJNoHWfqMy7RO9Hq0c8XGI00KcfLktFxoIGSyCssg
-         iw5onPCppQwZFyuYL4IuWp4hdxLbNvkk6UjEUn9UgIT4Nx5zxMmT8sSVqswRQo6fCh
-         Kjp3KRR3vjbv6JDpH7AUxBlju4oViuDMFnJXSn7o=
-Message-ID: <ff7448fd-e50c-1c6d-ad28-ea7e555cdd24@ideasonboard.com>
-Date:   Tue, 9 Aug 2022 12:51:10 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 4/8] drm/tidss: Add support for Dual Link LVDS Bus Format
+        with ESMTP id S239708AbiHIJw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 05:52:58 -0400
+Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36D391F2E5;
+        Tue,  9 Aug 2022 02:52:56 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mail.sberdevices.ru (Postfix) with ESMTP id 8CB585FD05;
+        Tue,  9 Aug 2022 12:52:54 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1660038774;
+        bh=M0hVkGi9BnyS4U+M2LNgZ5Fw0ElaAi8kx2AmE3MExoY=;
+        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
+        b=RLqx64yr+XsKPVSFbN1Zoz+3FLdJgMubI21Aq+SJIsEC2E1uym6n/NVPoiPrlVGP9
+         B8LlJnnR9OjItI/KeSgXDkdLqj8ja5L/5mWQgFsy+FrMEp2wZLkIoTTmTYDwL59Pot
+         eX6EacdMlAfUZbwSmgLgmLqL1wRsFXqVR10lxrV4Agp289ISAsctR3c9YoZ2GV81Ru
+         gLTRs3Gss4f+GNIiXMJfKM2wsdQnjFY7BffJvbznRlVUAu7mhSi5YFGpO5je4W2zOR
+         w54KKIzntduQqyPaV5DTzsMaK9vrpqTwX0fJvB0daSJO5IE5kVb68NeGbFBX3ZguO/
+         y2lbqWHDsQ/XQ==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mail.sberdevices.ru (Postfix) with ESMTP;
+        Tue,  9 Aug 2022 12:52:54 +0300 (MSK)
+From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
+To:     Jonathan Cameron <jic23@kernel.org>
+CC:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "stephan@gerhold.net" <stephan@gerhold.net>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel <kernel@sberdevices.ru>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
+ driver
+Thread-Topic: [PATCH v4 2/3] iio: add MEMSensing MSA311 3-axis accelerometer
+ driver
+Thread-Index: AQHYpzqIoQnaRj7vNkq2cXUUGjAB/62dQgeAgAAYQICABG4VgIAEYneA
+Date:   Tue, 9 Aug 2022 09:52:49 +0000
+Message-ID: <20220809095251.vpp6arac3pkntdlo@CAB-WSD-L081021.sigma.sbrf.ru>
+References: <20220803131132.19630-1-ddrokosov@sberdevices.ru>
+ <20220803131132.19630-3-ddrokosov@sberdevices.ru>
+ <CAHp75VcVuC6yVoB1kycCOfqMa=JfCtbe3WYSK5qndtYcJy3vpg@mail.gmail.com>
+ <20220803191621.tzrmndkygfe7nlpx@CAB-WSD-L081021.sigma.sbrf.ru>
+ <20220806155523.37c3e587@jic23-huawei>
+In-Reply-To: <20220806155523.37c3e587@jic23-huawei>
+Accept-Language: ru-RU, en-US
 Content-Language: en-US
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-Cc:     Darren Etheridge <detheridge@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Krunal Bhargav <k-bhargav@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        DRI Development List <dri-devel@lists.freedesktop.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jyri Sarha <jyri.sarha@iki.fi>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-References: <20220719080845.22122-1-a-bhatia1@ti.com>
- <20220719080845.22122-5-a-bhatia1@ti.com>
- <f2909af1-be23-009b-ba71-34206f099473@ideasonboard.com>
- <ec8dce9b-51d6-a566-67bb-b76f6f3458d7@ideasonboard.com>
- <1f9de2d8-7507-bdc2-93c1-470c8e060586@ti.com>
- <b8fd1719-b0ec-495b-54f9-1d591ff8af9e@ideasonboard.com>
- <09682120-632a-1bfb-c0d7-034f5f076421@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <09682120-632a-1bfb-c0d7-034f5f076421@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.12]
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <12645F490CB8B346AFD6E29545FC300A@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/08/09 07:32:00 #20083496
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2022 12:06, Aradhya Bhatia wrote:
+On Sat, Aug 06, 2022 at 03:55:23PM +0100, Jonathan Cameron wrote:
 
->>> Even in DT, the dss port (for OLDI) connects to the panel port's
->>> endpoint directly. Even in cases of dual link or cloning, it's only a
->>> singular remote-to-endpoint connection between the (OLDI) VP and the
->>> panel port. Hence the requirement of the properties in the earlier
->>> patches of the series.
->>
->> Sorry, I don't follow. If you use cloning, you have two TX outputs, 
->> going to two panels, right? So you need two panel DT nodes, and those 
->> would connect to two OLDI TX ports in the DSS.
->>  > Afaics the existing dual link bridge/panel drivers also use two ports
->> for the connection, so to use the dual link you need two ports in the 
->> DSS.
->>
->> I admit I'm not familiar with LVDS dual link, but it's not clear to me 
->> how you see the dual OLDI TX being used with other drivers if you have 
->> only one port. What kind of setups have you tested?
->>
-> In the DTs, the OLDIs are not modeled at all. Since the DSS only has a
-> single VP for OLDI, the DT dss port (for OLDI) is connected to a single
-> simple-panel node for dual link, bypassing the OLDI TX in DT. I have
-> this same OLDI setup and have been testing on this.
+[...]
 
-A DSS VP is a DSS internal port, whereas a port node in the DT is an 
-external port. There doesn't have to be a 1:1 match between those.
+> >=20
+> > > > +       indio_dev->modes =3D 0; /* setup buffered mode later */ =20
+> > >=20
+> > > Why explicit assignment to 0? Doesn't kzalloc() do it for you? =20
+> >=20
+> > kzalloc() will do it for me, of course. Previously, I initialized modes=
+ to
+> > INDIO_DIRECT_MODE to just provide default value for that. Jonathan
+> > suggested to replace it with 0.=20
+>=20
+> I did?  I wonder what I was smoking that day.=20
+> Should be set to INDIO_DIRECT_MODE as you had it previously.
+>=20
+> (From what I recall it will work either way but we have in the past had
+> core code that checked this and may do again in the future so drivers sho=
+uld
+> still be setting it to specify they provide sysfs interfaces to directly =
+read
+> the channels).
 
-The port in the DT represents some kind of "connector" to the outside 
-world, which is usually a collection of pins that provide a video bus.
+Jonathan, really sorry I referred to you. I'm confused. This comment was
+from Andy in the v3 discussion:
 
-Here, as far as I can see, the DSS clearly has three external ports, two 
-OLDI ports and one DPI port.
+https://lore.kernel.org/linux-iio/CAHp75Vc0+ckNnm2tzLMPrjeFRjwoj3zy0C4koNSh=
+FRG3kP8b6w@mail.gmail.com/
 
-> I do not have a cloning display setup with me, but I have seen DT DSS
-> port connected to one of 2 panel nodes while the other panel (remains as
-> a companion panel to the first) without any endpoint connections. Since,
-> the OLDI TXes (0 and 1), receive the same clocks and inputs from DSS
-> OLDI VP, this 'method' has worked too.
+I will revert this change. Thank you for feedback.
 
-This, and using simple-panel for dual link with single port connection, 
-sounds like a hack.
-
-A practical example: TI's customer wants to use AM625 and THC63LVD1024 
-bridge. How does it work? THC63LVD1024 driver uses two LVDS ports for 
-input, both of which are used in dual-link mode.
-
->>> The use of lvds helper functions does not seem feasible in this case,
->>> because even they read DT properties to determine the dual link
->>> connection and those properties need to be a part of a lvds bridge
->>> device.
->>
->> Can you elaborate a bit more why the DRM helpers couldn't be used here?
->>
-> The drm_of.c helpers use DT properties to ascertain the presence of a
-> dual-link connection. While there wasn't a specific helper to determine
-> dual-link or not, the drivers use the odd/even pixel order helper which
-> is based on the properties "dual-lvds-odd-pixels" and "dual-lvds-odd-
-> pixels". If either of the properties are absent, the helper returns an
-> error making the driver to use single link.
-> 
-> These properties are LVDS specific, but they could not be added in the
-> DT because there is no OLDI TX DT node for our case.
-
-If I'm not mistaken, those properties are in the port node, not the 
-device node, and also, I believe those properties are on the sink side, 
-so they wouldn't even be in the AM625 data. See, for example:
-
-arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts
-
->>> I have also been considering the idea of implementing a new device
->>> driver for the OLDI TXes, not unlike the renesas' one. That way the
->>> driver could have the properties and the lvds helper functions at their
->>> disposal. I am just slightly unsure if that would allow space for any
->>> conflicts because of the shared register space.
->>
->> No, I don't think new devices are needed here.
-> Okay...
-> 
-> I am not quite sure I understand completely what you are recommending
-> the OLDI to be. It seems to me that you want the OLDI TXes to be modeled
-> as nodes, right? Wouldn't that automatically require some sort of
-> standalone driver arrangement for them? Or am I missing something
-> important here?
-
-No, I'm only talking about the DT port nodes. At the moment the AM65x DT 
-bindings doc says that there are two ports, port@0 for OLDI and port@1 
-for DPI. I'm saying AM625 needs three ports.
-
-  Tomi
+--=20
+Thank you,
+Dmitry=
