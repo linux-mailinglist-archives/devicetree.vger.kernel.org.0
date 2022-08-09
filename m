@@ -2,128 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EB3F58DA23
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 16:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECBBA58DA35
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 16:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232126AbiHIOQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 10:16:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44878 "EHLO
+        id S234514AbiHIOVp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 10:21:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229715AbiHIOQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 10:16:37 -0400
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DB746453;
-        Tue,  9 Aug 2022 07:16:37 -0700 (PDT)
-Received: by mail-il1-f177.google.com with SMTP id b12so6567081ils.9;
-        Tue, 09 Aug 2022 07:16:37 -0700 (PDT)
+        with ESMTP id S231130AbiHIOVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 10:21:44 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C297812745;
+        Tue,  9 Aug 2022 07:21:43 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id c19-20020a17090ae11300b001f2f94ed5c6so1305137pjz.1;
+        Tue, 09 Aug 2022 07:21:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc;
+        bh=bEh+wwLVHA5bFmeGIiv3pq/kyT0bJnwEWBvwDkgXm6g=;
+        b=HHzzaBhUEV9ZA0bnSyzbjihYJV0FW/lD7Di40zWTTS8aBbRJOjP0CAGQ1BGZkSGG8Q
+         jWV3nNmtuIiTCus+Av5mFEp6Ybc2lf4ro/rJyvPob2KZ/LyezvLuKjEMzl2Widmio4Ub
+         CUB6IkVIFPnCjSt4kFJTbVpNYtsUR8mIpa27SAqjVRBWJS/QDFM7VucLLARp/4zq1Qqv
+         lETbWuIBUaqHNZKqFYnpCVKOOdgcSK4HvOi3nNakQg2IF4yqD72qW3i9sdg0B2yPmLNp
+         0FBrdikul9Tf29TC4Pz0bjZulJIbyfRwh4kD+/WR6cFydb2GOpZsi0OXgc6q8W2YKNlm
+         TryQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=Q9mXyBIsDcHFkxvhhPAewKIvUVNC7xu4zQ9cHub7pU8=;
-        b=L+Q0xSno4l3YN7yCMKBA9ezYbfeRxMhcAL/zOwqBID+fz4/6w+PCUMTYvngTQOHkm/
-         SZb7S1R2MQox/aICzMwzHtiYtG7F/lpkyZwgkbvzXXIszvTWhYYwh5d/MER6faI2o8Wb
-         odmg2Ln8O/98BMYd9xxVTRm3XGJIpYCjoEwEnlRPsMzTwCZRtHO8YC5npybnIQUD03+L
-         F4PjsgfcNLevkQIY01EHjwqnsoSbh2RDRhappV0oQhawRO9LuG5UsHR1nAXPiRuVMHxM
-         mK+88zrwn36rOuvwZHxH4XEZavhqnz/Frf7fkaLJnlEhFt+PdWqGo+XIJyTHg3rQbUUL
-         x40Q==
-X-Gm-Message-State: ACgBeo3uaLP4Wacg+T2YV8HZRZQsi474IplvcWgMUvzGjmc93WDGSTBm
-        lpnOynW+YRa0QRTkLLiAOQ==
-X-Google-Smtp-Source: AA6agR5sKNiD1jY7asRAYAJjA4Ioov1LBgXDA+f5syLv9nnxp52HOBVCeed/e86Hnn99NJMdjRx1Dw==
-X-Received: by 2002:a92:c247:0:b0:2df:2e4d:5930 with SMTP id k7-20020a92c247000000b002df2e4d5930mr10661115ilo.229.1660054596321;
-        Tue, 09 Aug 2022 07:16:36 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b16-20020a05660214d000b00684a7617f14sm1144598iow.10.2022.08.09.07.16.33
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc;
+        bh=bEh+wwLVHA5bFmeGIiv3pq/kyT0bJnwEWBvwDkgXm6g=;
+        b=dwt0tlqbRRTjZgEy75dWNORyqrOfRK/kSXHgcc1fTpOeAvKj4vp9BRxJlKzTd6M//V
+         sDiHlXYHXgKKuTspdxS7CtdXeKZNBBssEgPHpue+fuI7j+d0P/PYAn3sbk8XuE+Ap0ee
+         F5voRPzMU4dKByxE1z3LFNGxreSMNtXmvZJ4e1pdi3kgkiX9TYZJNbA5YCiTcBFlwoCq
+         NT53MFiEdcP7ha+4r0lKrfPvOYFdQLjD+HdAITYBcyoZPkVW29pty5Sfs5NsZSWyopec
+         92FsVFwbv7Xi1J1cZAULGvAoglM8h42Tq+aQbfyagizb1SgORFob4X9tygM5+JJUOHSU
+         bgxw==
+X-Gm-Message-State: ACgBeo1x7BZaOa1JhPMTqjiYk5/Ucctbi+/56fdpYEoJzRhtWgb6Q9nH
+        b737jQx/YcYCf55CeaRyGsY=
+X-Google-Smtp-Source: AA6agR6bbPT492glnh8e1KF/bFik6WFEaYwUy+ijzOEiB+PSGLMMb1oVudpZL1GuyNmIOwsjmiVJKw==
+X-Received: by 2002:a17:902:d48f:b0:16f:a73:bf04 with SMTP id c15-20020a170902d48f00b0016f0a73bf04mr23963872plg.43.1660054903206;
+        Tue, 09 Aug 2022 07:21:43 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id x66-20020a626345000000b0052e987c64efsm10352651pfb.174.2022.08.09.07.21.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 07:16:35 -0700 (PDT)
-Received: (nullmailer pid 1749632 invoked by uid 1000);
-        Tue, 09 Aug 2022 14:16:32 -0000
-Date:   Tue, 9 Aug 2022 08:16:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Anup Patel <anup@brainfault.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Guo Ren <guoren@kernel.org>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org
-Subject: Re: [PATCH 1/3] dt-bindings: timer: sifive,clint: add legacy riscv
- compatible
-Message-ID: <20220809141632.GB1706120-robh@kernel.org>
-References: <20220805162844.1554247-1-mail@conchuod.ie>
- <20220805162844.1554247-2-mail@conchuod.ie>
+        Tue, 09 Aug 2022 07:21:41 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 9 Aug 2022 07:21:39 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lars.povlsen@microchip.com,
+        Steen.Hegelund@microchip.com, UNGLinuxDriver@microchip.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        luka.perkov@sartura.hr
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: sparx5: use correct clock
+Message-ID: <20220809142139.GA2105857@roeck-us.net>
+References: <20220809112209.241045-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220805162844.1554247-2-mail@conchuod.ie>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220809112209.241045-1-robert.marko@sartura.hr>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 05, 2022 at 05:28:43PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Tue, Aug 09, 2022 at 01:22:08PM +0200, Robert Marko wrote:
+> SparX-5 temperature sensor uses system reference clock and not the AHB bus
+> clock as indicated by the register information [1].
 > 
-> While "real" hardware might not use the compatible string "riscv,clint0"
-> it is present in the driver & QEMU uses it for automatically generated
-> virt machine dtbs. To avoid dt-validate problems with QEMU produced
-> dtbs, such as the following, add it to the binding.
+> So, correct the clock description as well the included example.
 > 
-> riscv-virt.dtb: clint@2000000: compatible:0: 'sifive,clint0' is not one of ['sifive,fu540-c000-clint', 'starfive,jh7100-clint', 'canaan,k210-clint']
+> [1] https://microchip-ung.github.io/sparx-5_reginfo/reginfo_sparx-5.html?select=hsiowrap,temp_sensor,temp_sensor_cfg,clk_cycles_1us
 > 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Link: https://lore.kernel.org/linux-riscv/20220803170552.GA2250266-robh@kernel.org/
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Fixes: f5520753c16f ("dt-bindings: hwmon: Add Sparx5 temperature sensor")
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Applied.
+
+Thanks,
+Guenter
+
 > ---
->  .../bindings/timer/sifive,clint.yaml           | 18 ++++++++++++------
->  1 file changed, 12 insertions(+), 6 deletions(-)
+>  .../devicetree/bindings/hwmon/microchip,sparx5-temp.yaml      | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> index e64f46339079..9fcf20942582 100644
-> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> @@ -22,12 +22,18 @@ description:
+> diff --git a/Documentation/devicetree/bindings/hwmon/microchip,sparx5-temp.yaml b/Documentation/devicetree/bindings/hwmon/microchip,sparx5-temp.yaml
+> index 76be625d5646..51e8619dbf3c 100644
+> --- a/Documentation/devicetree/bindings/hwmon/microchip,sparx5-temp.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/microchip,sparx5-temp.yaml
+> @@ -22,7 +22,7 @@ properties:
 >  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - sifive,fu540-c000-clint
-> -          - starfive,jh7100-clint
-> -          - canaan,k210-clint
-> -      - const: sifive,clint0
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - sifive,fu540-c000-clint
-> +              - starfive,jh7100-clint
-> +              - canaan,k210-clint
-> +          - const: sifive,clint0
-> +      - items:
-> +          - const: sifive,clint0
-> +          - const: riscv,clint0
-> +        deprecated: true
-> +        description: For legacy systems & the qemu virt machine only
-
-I would drop 'legacy systems'.
-
+>    clocks:
+>      items:
+> -      - description: AHB reference clock
+> +      - description: System reference clock
 >  
->      description:
->        Should be "<vendor>,<chip>-clint" and "sifive,clint<version>".
-> -- 
-> 2.37.1
-> 
-> 
+>    '#thermal-sensor-cells':
+>      const: 0
+> @@ -40,5 +40,5 @@ examples:
+>          compatible = "microchip,sparx5-temp";
+>          reg = <0x10508110 0xc>;
+>          #thermal-sensor-cells = <0>;
+> -        clocks = <&ahb_clk>;
+> +        clocks = <&sys_clk>;
+>      };
