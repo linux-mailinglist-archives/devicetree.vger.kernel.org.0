@@ -2,63 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 947A258E1FF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 23:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB4258E20A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 23:46:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229452AbiHIVpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 17:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53252 "EHLO
+        id S229701AbiHIVqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 17:46:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiHIVpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 17:45:24 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DB7D459BD;
-        Tue,  9 Aug 2022 14:45:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D4564B8136E;
-        Tue,  9 Aug 2022 21:45:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E815C433C1;
-        Tue,  9 Aug 2022 21:45:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660081521;
-        bh=BxV6es5XUO4R0NAkjmVm8NmpX0FBwuRIHZ0aOQhnu3w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FAusAI3FxlxEf4ofnn4IIzYt0ZKbrbg7l/FMG3dFglb0uPZILAHjRJp2nPHnL8wPL
-         VeoaytK5xdadx2tanJlEgWC3QgjZnSeJUDURpTxZvpw+/1zq+tfsGrYnp4rEWwOhhX
-         CBJXr4Xl81BXvvYuIqb/F/aRztA7JiezadBqqavZsmP8xK8VM5p0pFtVqm3gfifCNb
-         Arc3WZiMOiz52O79poSdgb6ovkbDMQzpYQnQJ27sE6lUHTHvls0Imp+ohcbcNA9/Sd
-         8r9A1gCNCisST7jM5D5NOkqQP6B6W8ZWG7SotkD3UbpvLlf0rmHQ+TXZASX8kO+/LE
-         Pvj9XK/+R5OBg==
-Received: by pali.im (Postfix)
-        id E52F720B2; Tue,  9 Aug 2022 23:45:18 +0200 (CEST)
-Date:   Tue, 9 Aug 2022 23:45:18 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Sean Anderson <sean.anderson@seco.com>,
-        Michal =?utf-8?B?U3VjaMOhbmVr?= <msuchanek@suse.de>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
-Message-ID: <20220809214518.i6od5zbkmup76feb@pali>
-References: <CAJ+vNU05_xH4b8DFVJLpiDTkJ_z9MrBFvf1gSz9P1KXy9POU7w@mail.gmail.com>
- <5914cae0-e87b-fb94-85dd-33311fc84c52@seco.com>
- <20220808210945.GP17705@kitsune.suse.cz>
- <20220808143835.41b38971@hermes.local>
- <20220808214522.GQ17705@kitsune.suse.cz>
- <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com>
- <20220809213146.m6a3kfex673pjtgq@pali>
- <CAJ+vNU3bFNRiyhV_w_YWP+sjMTpU28PsX=BTkT7_Q=79=yR1gg@mail.gmail.com>
+        with ESMTP id S229646AbiHIVqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 17:46:30 -0400
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 869EA6AA37;
+        Tue,  9 Aug 2022 14:46:28 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id x64so10732766iof.1;
+        Tue, 09 Aug 2022 14:46:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=XayUQlMIJx4xqOBJefuvZF3U4IgYP7XvIIx28FpBAnA=;
+        b=eLE1Er+Tjxy0sqv7FEaqa1z67i9nZMaFmlaSucZ0xq2zgOa0FZXcle+BRMnoQOlpSN
+         AMy91AFhDar6o9qE+FBHSur/E7r7EJZV62/6M0BjPd0krk4lZHG9Lq2QFoJ0J0qOAnkG
+         otkhnN4J36gD16lCxXIZ/jBwCmkOWkXdXjz/QP86mOSjmdjQAau+IZqLDQeI7V9PHazq
+         PFGaL3uLWokvYVHXDYuLJU+OfLgCDB7QWZXGe5xq9zxnERGjLXUAIsqg+G2FY7PvfnXz
+         STxcaqHhwDVMiO7RxiM5clCFyPykyr2EeDRqhxtw+bL42yG9UmzbzJar5FeQbqvVw8CD
+         aa+A==
+X-Gm-Message-State: ACgBeo1pF64TJf0LX2wJ6wmNEahDfr74EboiyGtWBKBtyyZsn/hAoRPg
+        WKgcyQWWOiio2x2YP00XOhrg5OBsWg==
+X-Google-Smtp-Source: AA6agR6R8kEAP+IPIQBOiX7Ad+dvYoKbJlhBhksjCpkjIYXd3lyzd52WO+7FVBtQSJ6kMmEEugnQWA==
+X-Received: by 2002:a05:6638:41a9:b0:342:e3ac:b242 with SMTP id az41-20020a05663841a900b00342e3acb242mr6664252jab.295.1660081587753;
+        Tue, 09 Aug 2022 14:46:27 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.248])
+        by smtp.googlemail.com with ESMTPSA id h15-20020a05660208cf00b006842e02b527sm1588648ioz.16.2022.08.09.14.46.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Aug 2022 14:46:27 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Sricharan R <sricharan@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: pinctrl: qcom,ipq6018: Fix example 'gpio-ranges' size
+Date:   Tue,  9 Aug 2022 15:45:56 -0600
+Message-Id: <20220809214556.2489822-1-robh@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJ+vNU3bFNRiyhV_w_YWP+sjMTpU28PsX=BTkT7_Q=79=yR1gg@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,17 +62,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tuesday 09 August 2022 14:39:05 Tim Harvey wrote:
-> I've been wondering the same as well which made me wonder what the
-> history of the 'aliases' node is and why its not used in most cases in
-> Linux. I know for the SOC's I work with we've always defined aliases
-> for ethernet<n>, gpio<n>, serial<n>, spi<n>, i2c<n>, mmc<n> etc. Where
-> did this practice come from and why are we putting that in Linux dts
-> files it if it's not used by Linux?
+'gpio-ranges' entries have a fixed size of 1 phandle plus arg 3 cells.
+The qcom,ipq6018-pinctrl example is a cell short:
 
-U-Boot can modify on-the-fly Linux's DTB file when booting Linux kernel.
-For example it can put permanent MAC address into ethernet nodes from
-U-Boot env. Similarly it can modify other DT nodes.
+Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.example.dtb: pinctrl@1000000: gpio-ranges:0: [1, 0, 80] is too short
+	From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/gpio/gpio.yaml
 
-So even when Linux itself does not use particular alias, it is used by
-the bootloader.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Please ack and I can send to Linus before rc1.
+---
+ .../devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.yaml       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.yaml
+index b83c7f476e19..931e5c190ead 100644
+--- a/Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,ipq6018-pinctrl.yaml
+@@ -144,7 +144,7 @@ examples:
+               #interrupt-cells = <2>;
+               gpio-controller;
+               #gpio-cells = <2>;
+-              gpio-ranges = <&tlmm 0 80>;
++              gpio-ranges = <&tlmm 0 0 80>;
+ 
+               serial3-pinmux {
+                       pins = "gpio44", "gpio45";
+-- 
+2.34.1
+
