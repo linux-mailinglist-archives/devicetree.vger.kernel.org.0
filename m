@@ -2,317 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AE8158E135
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 22:37:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C554358E13D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 22:42:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235880AbiHIUhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 16:37:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57736 "EHLO
+        id S243296AbiHIUmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 16:42:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234285AbiHIUhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 16:37:12 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E9B812D15;
-        Tue,  9 Aug 2022 13:37:11 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id j20so7186507ila.6;
-        Tue, 09 Aug 2022 13:37:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=pY+C9vONR9Qj4GAbUoRFOfpVvcsMJ1yvkqH3xXgdv6A=;
-        b=ErGhkf0bhTIlc8NLEx5i18aH4oRuxEexdj4IDRTj1Id3n4MsONtskKi+/XgrKKuy04
-         pW7Y20wd6vui0Kf6gP5WwEMw7MSzzhxoEXQAD6TBLK6Db/uN+/tSVpTNYN9dCqFd/5YK
-         d3wBp2EjP8syDfnxAA9a5kY5+l1Cxy5c8BPDHKGyDrW5916LaPgfwgpLMarv62kHzd0m
-         3C6qbImpvW/JrWhsK9thk3FmqQZJV8deVlKWndqwa7bWxrT8sBP64UInWfLZ/Rv2Mt4p
-         sJkUACzYQ+uFnpYNFbBArfMc13/YpiU3hADsCObNTQIPgAZmUBaIkDBWJSx1DOggT2AE
-         L8mg==
-X-Gm-Message-State: ACgBeo3PRUDW8Vin2Cit5YFRgyHZu/iIAwwOelN7fqWsm+eNf57Zr5Fm
-        XmgdbDQjC0ZmbERqiq0VJg==
-X-Google-Smtp-Source: AA6agR5Ppmth+Lg164h9uGEX2uXGyayBPre4N1yTywCH7PJjT8/5lY5fff+RGrRVKWVD0q0ltTfUgQ==
-X-Received: by 2002:a05:6e02:e14:b0:2de:60af:e408 with SMTP id a20-20020a056e020e1400b002de60afe408mr11328414ilk.170.1660077430201;
-        Tue, 09 Aug 2022 13:37:10 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id y9-20020a056602048900b0068463d9e33csm1504251iov.8.2022.08.09.13.37.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 13:37:09 -0700 (PDT)
-Received: (nullmailer pid 2353917 invoked by uid 1000);
-        Tue, 09 Aug 2022 20:37:05 -0000
-Date:   Tue, 9 Aug 2022 14:37:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Neeli <srinivas.neeli@xilinx.com>
-Cc:     shubhrajyoti.datta@xilinx.com, michal.simek@xilinx.com,
-        linus.walleij@linaro.org, brgl@bgdev.pl,
-        krzysztof.kozlowski+dt@linaro.org, srinivas.neeli@amd.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        git@xilinx.com, git@amd.com
-Subject: Re: [PATCH] dt-bindings: gpio: gpio-xilinx: Convert Xilinx axi gpio
- binding to YAML
-Message-ID: <20220809203705.GA2340911-robh@kernel.org>
-References: <20220809130842.27975-1-srinivas.neeli@xilinx.com>
+        with ESMTP id S242373AbiHIUmD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 16:42:03 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AFB71EEE9;
+        Tue,  9 Aug 2022 13:42:01 -0700 (PDT)
+Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 279JWNlh003455;
+        Tue, 9 Aug 2022 20:41:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=B6mRnnWo1suxCrUqt9vYJL76ZNWbx4MAKXH9o83uMH4=;
+ b=Zb6FDQguQWg7SEqnZIH1DE08XintRdYM9K5zm2wuGDCfFPvLKxS/MomlIAAYLGStQh+0
+ 6Zt5tbo5n2JP10q/gfFZw61rGXR2PkTjoLAhYeffMhaSluSepwNXideiuxuDQUW4oRzf
+ wv46HeYGVgidDfvIdmyGD2IwA4KMgDrp5rGsagL/J1JMJQ7O0YNIT3o/5S6QBAevYLI0
+ mfi9K2RwNlgdeBYkDYGse8cFoP435SwGLaDcyUwNoz6MdsK9RliylKt5WG+rCDNq/vsj
+ CE1SIcXPmXEi/29WDgmGTObM8jqUEx/sNToGCQSPKNMsEgB8rgRrsw7s07hjUF/a/7Ny Vg== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3huwu11vmc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 Aug 2022 20:41:50 +0000
+Received: from m0187473.ppops.net (m0187473.ppops.net [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 279KG6kn034724;
+        Tue, 9 Aug 2022 20:41:50 GMT
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
+        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3huwu11vkv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 Aug 2022 20:41:50 +0000
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 279KLHWw031604;
+        Tue, 9 Aug 2022 20:41:49 GMT
+Received: from b01cxnp23032.gho.pok.ibm.com (b01cxnp23032.gho.pok.ibm.com [9.57.198.27])
+        by ppma03dal.us.ibm.com with ESMTP id 3huwvk8e1y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 Aug 2022 20:41:49 +0000
+Received: from b01ledav001.gho.pok.ibm.com (b01ledav001.gho.pok.ibm.com [9.57.199.106])
+        by b01cxnp23032.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 279KfmGl3211808
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 9 Aug 2022 20:41:48 GMT
+Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 3D60128060;
+        Tue,  9 Aug 2022 20:41:48 +0000 (GMT)
+Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 8704A2805A;
+        Tue,  9 Aug 2022 20:41:47 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.160.17.179])
+        by b01ledav001.gho.pok.ibm.com (Postfix) with ESMTP;
+        Tue,  9 Aug 2022 20:41:47 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au,
+        wsa+renesas@sang-engineering.com, eajames@linux.ibm.com
+Subject: [PATCH v5 0/2] input: misc: Add IBM Operation Panel driver
+Date:   Tue,  9 Aug 2022 15:41:45 -0500
+Message-Id: <20220809204147.238132-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220809130842.27975-1-srinivas.neeli@xilinx.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: runN4XRMR4H1nubwfbxbn8vqXbPlzAgJ
+X-Proofpoint-ORIG-GUID: R9ZzoPkD5prD5ZK_Yfz3HPqwssB-zDQu
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-09_05,2022-08-09_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 suspectscore=0
+ impostorscore=0 mlxscore=0 adultscore=0 clxscore=1011 phishscore=0
+ priorityscore=1501 mlxlogscore=999 bulkscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208090076
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 09, 2022 at 06:38:42PM +0530, Srinivas Neeli wrote:
-> Convert Xilinx axi gpio binding documentation to YAML.
-> 
-> Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
-> ---
->  .../devicetree/bindings/gpio/gpio-xilinx.txt  |  48 ------
->  .../bindings/gpio/xlnx,gpio-xilinx.yaml       | 140 ++++++++++++++++++
->  2 files changed, 140 insertions(+), 48 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-xilinx.txt
->  create mode 100644 Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-xilinx.txt b/Documentation/devicetree/bindings/gpio/gpio-xilinx.txt
-> deleted file mode 100644
-> index e506f30e1a95..000000000000
-> --- a/Documentation/devicetree/bindings/gpio/gpio-xilinx.txt
-> +++ /dev/null
-> @@ -1,48 +0,0 @@
-> -Xilinx plb/axi GPIO controller
-> -
-> -Dual channel GPIO controller with configurable number of pins
-> -(from 1 to 32 per channel). Every pin can be configured as
-> -input/output/tristate. Both channels share the same global IRQ but
-> -local interrupts can be enabled on channel basis.
-> -
-> -Required properties:
-> -- compatible : Should be "xlnx,xps-gpio-1.00.a"
-> -- reg : Address and length of the register set for the device
-> -- #gpio-cells : Should be two. The first cell is the pin number and the
-> -  second cell is used to specify optional parameters (currently unused).
-> -- gpio-controller : Marks the device node as a GPIO controller.
-> -
-> -Optional properties:
-> -- clocks : Input clock specifier. Refer to common clock bindings.
-> -- interrupts : Interrupt mapping for GPIO IRQ.
-> -- xlnx,all-inputs : if n-th bit is setup, GPIO-n is input
-> -- xlnx,dout-default : if n-th bit is 1, GPIO-n default value is 1
-> -- xlnx,gpio-width : gpio width
-> -- xlnx,tri-default : if n-th bit is 1, GPIO-n is in tristate mode
-> -- xlnx,is-dual : if 1, controller also uses the second channel
-> -- xlnx,all-inputs-2 : as above but for the second channel
-> -- xlnx,dout-default-2 : as above but the second channel
-> -- xlnx,gpio2-width : as above but for the second channel
-> -- xlnx,tri-default-2 : as above but for the second channel
-> -
-> -
-> -Example:
-> -gpio: gpio@40000000 {
-> -	#gpio-cells = <2>;
-> -	compatible = "xlnx,xps-gpio-1.00.a";
-> -	clocks = <&clkc25>;
-> -	gpio-controller ;
-> -	interrupt-parent = <&microblaze_0_intc>;
-> -	interrupts = < 6 2 >;
-> -	reg = < 0x40000000 0x10000 >;
-> -	xlnx,all-inputs = <0x0>;
-> -	xlnx,all-inputs-2 = <0x0>;
-> -	xlnx,dout-default = <0x0>;
-> -	xlnx,dout-default-2 = <0x0>;
-> -	xlnx,gpio-width = <0x2>;
-> -	xlnx,gpio2-width = <0x2>;
-> -	xlnx,interrupt-present = <0x1>;
-> -	xlnx,is-dual = <0x1>;
-> -	xlnx,tri-default = <0xffffffff>;
-> -	xlnx,tri-default-2 = <0xffffffff>;
-> -} ;
-> diff --git a/Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml b/Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml
-> new file mode 100644
-> index 000000000000..089e297aa530
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/xlnx,gpio-xilinx.yaml
-> @@ -0,0 +1,140 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/xlnx,gpio-xilinx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx Axi GPIO controller Device Tree Bindings
+This series adds support for input from the IBM Operation Panel, which is
+a simple controller with three buttons and an LCD display meant for
+interacting with a server. It's connected over I2C, typically to a service
+processor. This series only supports the input from the panel, in which the
+panel masters the I2C bus and sends data to the host system when someone
+presses a button on the controller.
 
-AXI
+Changes since v4:
+ - Fix missing input include in dt binding resulting in make check failure
 
-Drop 'Device Tree Bindings'
+Changes since v3:
+ - Document linux,keycodes property
+ - Use linux,keycodes property to map the buttons
+ - Put the checksumming in a seperate function
+ - Don't do unneccessary input_unregister calls
+ - Minor cleanup and add debug data to dev_dbg calls
 
-> +
-> +maintainers:
-> +  - Neeli Srinivas <srinivas.neeli@amd.com>
+Changes since v2:
+ - Add "additionalProperties: false" to dts doc
+ - Refactor switch statement in the input driver; check command size and call
+   the processing function within the STOP case
+ - Use a different definition name for Aspeed interrupt status mask
 
-Which is the right name? This or your S-o-b/author?
+Changes since v1:
+ - Redo DTS documentation example to use I2C_OWN_SLAVE_ADDRESS
+ - Reject commands received in the input driver that are too long
+ - Add a definition for the interrupt status mask in the Aspeed I2C driver
+ - Use I2C_OWN_SLAVE_ADDRESS for both dts additions
 
-> +
-> +description:
-> +  The AXI GPIO design provides a general purpose input/output interface
-> +  to an AXI4-Lite interface. The AXI GPIO can be configured as either
-> +  a single or a dual-channel device. The width of each channel is
-> +  independently configurable. The channels can be configured to
-> +  generate an interrupt when a transition on any of their inputs occurs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - xlnx,xps-gpio-1.00.a
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  gpio-line-names:
-> +    description: strings describing the names of each gpio line
-> +    minItems: 1
-> +    maxItems: 64
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupt-names: true
-> +
-> +  xlnx,all-inputs:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+Eddie James (2):
+  dt-bindings: input: Add documentation for IBM Operation Panel
+  input: misc: Add IBM Operation Panel driver
 
-Don't need quotes.
+ .../bindings/input/ibm,op-panel.yaml          |  50 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/input/misc/Kconfig                    |  18 ++
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/ibm-panel.c                | 198 ++++++++++++++++++
+ 5 files changed, 274 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/ibm,op-panel.yaml
+ create mode 100644 drivers/input/misc/ibm-panel.c
 
-> +    description: This option sets this GPIO channel1 bits in input mode.
-> +
-> +  xlnx,all-inputs-2:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: This option sets this GPIO channel2 bits in input mode.
-> +
-> +  xlnx,all-outputs:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: This option sets this GPIO channel1 bits in output mode.
-> +
-> +  xlnx,all-outputs-2:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: This option sets this GPIO channel2 bits in output mode.
-> +
-> +  xlnx,dout-default:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: Sets the default value of all the enabled bits of
-> +                 channel1. By default, this parameter is set to 0x0.
+-- 
+2.31.1
 
-default: 0
-
-> +
-> +  xlnx,dout-default-2:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: Sets the default value of all the enabled bits of
-> +                 channel2. By default, this parameter is set to 0x0.
-
-default: 0
-
-> +
-> +  xlnx,gpio-width:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: The value defines the bit width of the GPIO channel1.
-> +                 Its value can be from 1 to 32, and default value is 32.
-
-Express as constraints instead:
-
-minimum: 1
-maximum: 32
-default: 32
-
-> +
-> +  xlnx,gpio2-width:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: The value defines the bit width of the GPIO channel2.
-> +                 Its value can be from 1 to 32, and default value is 32.
-> +
-> +  xlnx,interrupt-present:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: This parameter enables interrupt control logic
-> +                 and interrupt registers in GPIO module. By default it is 0.
-
-blank line
-
-Constraints? Only 0 or 1?
-
-> +  xlnx,is-dual:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: This parameter enables a second GPIO channel (GPIO2).
-
-Constraints?
-
-> +
-> +  xlnx,tri-default:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: This value configures the input or output mode
-> +                 of each bit of GPIO channel1.
-> +
-> +  xlnx,tri-default-2:
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    description: This value configures the input or output mode
-> +                 of each bit of GPIO channel2.
-> +
-> +required:
-> +  - reg
-> +  - compatible
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +        gpio@e000a000 {
-> +            #gpio-cells = <2>;
-> +            #interrupt-cells = <0x2>;
-> +            clocks = <&zynqmp_clk 71>;
-> +            compatible = "xlnx,xps-gpio-1.00.a";
-> +            gpio-controller;
-> +            interrupt-controller;
-> +            interrupt-names = "ip2intc_irpt";
-> +            interrupt-parent = <&gic>;
-> +            interrupts = <0 89 4>;
-> +            reg = <0xa0020000 0x10000>;
-
-Normal order is 'compatible' first, then 'reg', then everything else.
-
-> +            xlnx,all-inputs = <0x0>;
-> +            xlnx,all-inputs-2 = <0x0>;
-> +            xlnx,all-outputs = <0x0>;
-> +            xlnx,all-outputs-2 = <0x0>;
-> +            xlnx,dout-default = <0x0>;
-> +            xlnx,dout-default-2 = <0x0>;
-> +            xlnx,gpio-width = <0x20>;
-> +            xlnx,gpio2-width = <0x20>;
-> +            xlnx,interrupt-present = <0x1>;
-> +            xlnx,is-dual = <0x1>;
-> +            xlnx,tri-default = <0xFFFFFFFF>;
-> +            xlnx,tri-default-2 = <0xFFFFFFFF>;
-> +        };
-> +
-> +...
-> -- 
-> 2.17.1
-> 
-> 
