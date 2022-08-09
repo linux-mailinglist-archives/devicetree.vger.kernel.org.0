@@ -2,93 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4E1258D2F3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 06:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBA6C58D31A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 07:22:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230456AbiHIEe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 00:34:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41464 "EHLO
+        id S232199AbiHIFWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 01:22:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbiHIEeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 00:34:24 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E42F81AF20
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 21:34:20 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id u1so15454815lfq.4
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 21:34:20 -0700 (PDT)
+        with ESMTP id S229612AbiHIFWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 01:22:00 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56101EAC7
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 22:21:58 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id x25so11908894ljm.5
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 22:21:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=A2cJx4TzfVfLcjEZf5Am6QDuHfwBw6Iwol89LnoU7nc=;
-        b=Jj76Z/jKDUcmTCulxZCqo/LuRjfbdQf1qvEHt1HWkgnmwQAefjhDHIaaiCqEFvEYTN
-         LIRqrtBLpyDQ8XmzpE1wcv+p+OKdW6SOW/w9GO5PylbeCuI0ZpiUAHUNJLq5Gkzmwhv/
-         6n1C7kFTUqpWcEJ8OAyQ+Ang5aSyQJE6G0fB1tWDKiErdTS3TLHiMS4avkS+93E8vxaW
-         aqjdfDBBywZwi8o2eJWlhThCoJNNrrRzb4W5HfyWBg3IquciIg+hMO42TV9o6XKvXVys
-         s32eXG5huF8fXFNYFtyZcqyKdwWUDqkztx7dK4X0ml/kis8bFJll6EFESaMA9Q3vxNBi
-         GiNg==
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=w/IFf/K/9OkURHHOs9WHITZ5E+GducqFMehZENmcMms=;
+        b=Q45jxuuCA3JYTRwNdbj8vKCeun3j9XXgjpX+PbR9MLO9z73W9A+o+9UIympLc/+Yrw
+         awg9LkC1NBelWb+6zWghPSRUAM1OGNMqVnaHivQie203kYO6tgIw6ermK1m+ZNMp+dbK
+         CKvXXs0uDwNsMsufqOZo59ZZG5l7uXkk1QIjSRJmu3EkdB9kaA16qyy2HjtIVW7GRAE1
+         0g3XAjMaPKBOakKHQSfOGuD15dVATMVncTwRIj2Iuh831tepvdNcVjlpXkShKsy4D8kI
+         igb6EVvXurEZcPdc2kdPuo7M1yjdAYMZsvbnzNAgMHgFyXQU97gmFVpIMvmT/YDPM6ml
+         gLjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=A2cJx4TzfVfLcjEZf5Am6QDuHfwBw6Iwol89LnoU7nc=;
-        b=42No6Eo2IegtEsnEwNdMbZw0IVKeg8xH/2nYVhz7QGHNoE3LJqrmrCc1YiUsaOJfsD
-         TpBDtLwLgRtt8Z3H9wSuFRbwi+KNaXTBj/H0+rIEUDe9gh9QgchxbvYsyxVOKkvyHcNK
-         POgkmhVneZFs8lh7tAqQrvCxHj2MJgMVYJg/juoGarNtkuGbcYgrAwHBwkB5nFnMnetd
-         Sr70h3x76gEgiBXLA3AFZV0L8zJimrPb+w24z9Ycuq5gLQ+RG8yrlQJqdRhXHns0AZWO
-         WHn7Fcsi51cBjynMknb0C7YlSSLkadgZ0UyrTT8F3N3xVvVbNRweoNHrqKYXoOMqrvBx
-         AOIw==
-X-Gm-Message-State: ACgBeo1E85OaCKmrQbIgHZg27i11Nl8DCeTp/LOj5wm1z/4Ijg7vct8s
-        0ntzmmeJ843k/0MJxYppOnteRg==
-X-Google-Smtp-Source: AA6agR4BZyPN7vBEUxb+Ezny+n+osGnBvWSa4FG9wknX3U75cx2BkOZ/jdDmNcMZm3gyQUiR3bv27A==
-X-Received: by 2002:a05:6512:ac5:b0:48c:ecd1:4f14 with SMTP id n5-20020a0565120ac500b0048cecd14f14mr2407443lfu.287.1660019659041;
-        Mon, 08 Aug 2022 21:34:19 -0700 (PDT)
+        bh=w/IFf/K/9OkURHHOs9WHITZ5E+GducqFMehZENmcMms=;
+        b=DnsNxS65I1K8bQIFaKLmOOJyk3J7vl+vbGcDbBlI5Xl0WzdX9ZPgM8Akv01t+fiz/B
+         VRQMDlLjHAoavharek2aU6IEzA8kMqdWvm9CDptk43iUlXeXVshjNzDO0q2Wx4E33fim
+         DYKvustzbEaPQg8FAgt4xIVpvF0USHPIUyWCeaW1HVZ510AE8aCCe0wUkk+FxXx1lAbU
+         R+m8F37b8ni5WWsLPmumQW7dsAI6zZ/nWr0NXr47kfu/eku9eqibsSNVXd+DIIF84fv0
+         HVjxFJ89x1Sy9CPAVX2nup55MExmBuPHSeVS8sqtuhgRdRLTl+y5mUTFUUUJnJPRH9Cx
+         0KDA==
+X-Gm-Message-State: ACgBeo1dNb79K07kYsTijdBUritwUQZh8jFu3Eb7al1kldatGgVY4wv6
+        CwA7MsJgmsSIzcQKUZw9zuDmEA==
+X-Google-Smtp-Source: AA6agR4nyxXV6UENxnka0n+jYHLHQ8Snp/LpQLG2xkyn/vQhrsmbZO2MAsK8dD6JtMDOLbg2HkoREg==
+X-Received: by 2002:a2e:918d:0:b0:25e:c884:6a96 with SMTP id f13-20020a2e918d000000b0025ec8846a96mr4178935ljg.157.1660022516960;
+        Mon, 08 Aug 2022 22:21:56 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id s30-20020a05651c201e00b0025e778f6f13sm1431364ljo.4.2022.08.08.21.34.17
+        by smtp.gmail.com with ESMTPSA id cf40-20020a056512282800b0048a8f119e7esm1624381lfb.233.2022.08.08.22.21.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Aug 2022 21:34:18 -0700 (PDT)
-Message-ID: <a2136b83-2c96-27c4-c262-d4e75614f9a7@linaro.org>
-Date:   Tue, 9 Aug 2022 07:34:16 +0300
+        Mon, 08 Aug 2022 22:21:56 -0700 (PDT)
+Message-ID: <a387164a-d42c-fc1e-529c-6000aa2db33e@linaro.org>
+Date:   Tue, 9 Aug 2022 08:21:54 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 5/5] dt-bindings: Drop Dan Murphy
+Subject: Re: [PATCH v4 3/8] dt-bindings: clock: Add ids for Lynx 10g PLLs
 Content-Language: en-US
-To:     Andrew Davis <afd@ti.com>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Sean Anderson <sean.anderson@seco.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        linux-phy@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Madalin Bucur <madalin.bucur@nxp.com>,
+        Camelia Alexandra Groza <camelia.groza@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Pavel Machek <pavel@ucw.cz>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Robert Jones <rjones@gateworks.com>,
-        Lee Jones <lee@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        linux-leds@vger.kernel.org, netdev@vger.kernel.org,
-        linux-pm@vger.kernel.org, alsa-devel@alsa-project.org
-References: <20220808104712.54315-1-krzysztof.kozlowski@linaro.org>
- <20220808104712.54315-6-krzysztof.kozlowski@linaro.org>
- <43b3c497-97fd-29aa-a07b-bcd6413802c4@linaro.org>
- <6ae15e00-36a4-09a8-112e-553ed8c5f4da@ti.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+References: <20220804220602.477589-1-sean.anderson@seco.com>
+ <20220804220602.477589-4-sean.anderson@seco.com>
+ <bee3d724-1efb-d5c7-6698-c98a198e69fd@linaro.org>
+ <b97f113b-f429-c8c5-96ee-7f1a68e16117@seco.com>
+ <6aac8854-599e-c43f-0a49-0650fce91179@linaro.org>
+ <04b08e1c-4af2-581e-7be5-96c5b7b00ae5@seco.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6ae15e00-36a4-09a8-112e-553ed8c5f4da@ti.com>
+In-Reply-To: <04b08e1c-4af2-581e-7be5-96c5b7b00ae5@seco.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,48 +87,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2022 18:04, Andrew Davis wrote:
-> On 8/8/22 6:08 AM, Krzysztof Kozlowski wrote:
->> On 08/08/2022 13:47, Krzysztof Kozlowski wrote:
->>> Emails to Dan Murphy bounce ("550 Invalid recipient <dmurphy@ti.com>
->>> (#5.1.1)").
->>
->>
->> (...)
->>
->>>   description: |
->>> diff --git a/Documentation/devicetree/bindings/power/supply/bq25980.yaml b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
->>> index 4883527ab5c7..509a0667b04e 100644
->>> --- a/Documentation/devicetree/bindings/power/supply/bq25980.yaml
->>> +++ b/Documentation/devicetree/bindings/power/supply/bq25980.yaml
->>> @@ -8,7 +8,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>   title: TI BQ25980 Flash Charger
->>>   
->>>   maintainers:
->>> -  - Dan Murphy <dmurphy@ti.com>
->>>     - Ricardo Rivera-Matos <r-rivera-matos@ti.com>
->>
->> Ricardo's also bounces... Does it mean TI is not interested in
->> maintaining mainline support for its drivers?
->>
+On 08/08/2022 18:16, Sean Anderson wrote:
 > 
-> TI is still interested in maintaining support here. But as we know folks
-> come and go, so giving specific emails might not be the best option.
-> Doesn't look like the schema here allows free-form strings, but if it did
-> I'd recommend the TI E2E Power-Management support forum[0] added. Any
-> questions on Linux/DT for these parts posted there would land on my desk
-> just the same, or to whomever is assigned in the future with maintaining
-> these drivers.
+>> This entry here is not
+>> parsed for any tools and only sometimes people look at it. The questions
+>> are directed via entry in maintainers file or via git history, so you
+>> can put company email just there.
+> 
+> As I understand it, the email is simply informative. There are literally
+> hundreds of examples of mixing a "personal" copyright with a company email.
+> It is easy to find if you grep. If you are so opposed to it, then I will
+> remove the email and simply use my name.
 
-Currently an email address is required. I am not sure if there is
-intention to change it, because similarly to MAINTAINERS file email is
-the way of our communication. Also in MAINTAINERS we expect to have
-person's address (with M:) and for the lists there is a separate entry.
+No, no problem for me.
 
-> Either way, I have several of these parts and can support these. Feel free
-> to replace Dan's email with my email if that works better.
+> 
+>>>
+>>>>> + */
+>>>>> +
+>>>>> +#ifndef __DT_BINDINGS_CLK_LYNX_10G_H
+>>>>> +#define __DT_BINDINGS_CLK_LYNX_10G_H
+>>>>> +
+>>>>> +#define LYNX10G_CLKS_PER_PLL 2
+>>>>> +
+>>>>> +#define LYNX10G_PLLa(a)		((a) * LYNX10G_CLKS_PER_PLL)
+>>>>> +#define LYNX10G_PLLa_EX_DLY(a)	((a) * LYNX10G_CLKS_PER_PLL + 1)
+>>>>
+>>>> These do not look like proper IDs for clocks for bindings. Numbering
+>>>> starts from 0 or 1 and any "a" needs to be clearly explained. What do
+>>>> you bind here?
+>>>
+>>> This matches "a" is the index of the PLL. E.g. registers PLL1RSTCTL etc.
+>>> This matches the notation used in the reference manual.
+>>
+>> This is a file for bindings, not for storing register values. There is
+>> no single need to store register values (offsets, indexes) as bindings
+>> as it is not appropriate. Therefore if you do not use it as an ID, just
+>> remove the bindings header.
+> 
+> This *is* just for IDs, as stated in the commit message. The above example
+> was only to illustrate that the clock controlled via the PLL1RSTCTL register
+> (among others) would have an ID of LYNX10G_PLLa(0).
+> 
+> If you doubt it, review the driver.
 
-Yes, that would be great, thanks!
+Indeed, thanks. Except the driver, where is the DTS user of these
+bindings? It's neither in bindings example, nor in the DTS patches.
 
 Best regards,
 Krzysztof
