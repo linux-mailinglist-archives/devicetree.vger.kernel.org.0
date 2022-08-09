@@ -2,92 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 405CA58E0C8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 22:12:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20FDD58E0D7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 22:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245653AbiHIUMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 16:12:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36494 "EHLO
+        id S245395AbiHIUP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 16:15:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245425AbiHIUMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 16:12:43 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B06CC1A041;
-        Tue,  9 Aug 2022 13:12:42 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id 68so3852615iou.2;
-        Tue, 09 Aug 2022 13:12:42 -0700 (PDT)
+        with ESMTP id S1345151AbiHIUPd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 16:15:33 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 586E710AD;
+        Tue,  9 Aug 2022 13:15:28 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id e69so10516115iof.5;
+        Tue, 09 Aug 2022 13:15:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=2S4gHgCzeKx3rsprRQrYWjwhMs+dYZT9zKQ8myXpKKo=;
-        b=VjBD+PPw4nCSoi9mOhiXgobCDRxpjf4GR0Ib3iAekOueV9p45SEs30gAvLEk+wpgTI
-         RybWC+E2Cw04mKaTPiMbgH1NfQJcMcjKvLhpzEyOEpZkdbpe91Qm8KQVSvVkSrz1veaR
-         eo560wuaGQyqKIvR8u2/Mv+bwC28YPmS0a9O6jiop0oqxClaaHc74bg2uW2tVo3dHmbV
-         f1W9PV1iGnvGa/Kgw5e3Y42o5i+AtsjZbj3sSjlXgG9ozCocF26aCjcgD9l/GMI6Ih1Z
-         w6ePJajY13bMYcOPNfTfJgM+XVc09XNHtGBnQcShoezUv+4W9FksbJVFkCQY4XouWX1L
-         GAfw==
-X-Gm-Message-State: ACgBeo1rjrNYjJxqZLeTefVN7qtRq7USdFI/WkqbHvaVTPRA66LweSgW
-        BYEAThWiPsCRFgkq2tNiKQ==
-X-Google-Smtp-Source: AA6agR5qhHkStSfTAX8Vbjn1ZGp7rzbiHGpxeho3BOYk+JNvqlVS5dP0qzhlr4+y0qwKX+uzL9q/AQ==
-X-Received: by 2002:a02:9997:0:b0:342:7631:be49 with SMTP id a23-20020a029997000000b003427631be49mr11222504jal.39.1660075960558;
-        Tue, 09 Aug 2022 13:12:40 -0700 (PDT)
+        bh=6MO20EzScGnTRTFMIDq+lQJgeu9wszakkNnV5YIR2mo=;
+        b=tGf/lndFs6FHn86DWKPt5hFZZzcrrmWvXeZ1JesiZkwxob3V+Qqm505AdDeNd4MNWp
+         g76rgNI4ATL6ndsUauXYi1MuQNwLufVyoytq6UoGxeuZXl1ewVlvXEGc5NSSwfvJYEzU
+         fabAPWaDGPxQLix1DI401qiR9qMUiokrPJU4bDPMTQ1Wa9ctd8hzPBtmtuMk29yU+sH5
+         rMde3pN4FJSKNV9a54dFePNtRebGWvss3mq4mwrdkK4ndlJNRqLwz2+qN5BETZWcs7nS
+         5oaEtjC7F0qDx6zYldXB7jbECk6sQroqAJRZBNRxUevctzpDX6xVu2tDpX45aox6KZe/
+         1OvA==
+X-Gm-Message-State: ACgBeo3kTI/6wMFnLcc/qvwnFJ1kJ9zdUQdcC3W2t47OcWgOgUPVx+K5
+        kAlI/AyMd9oAMFdBJyl1lA==
+X-Google-Smtp-Source: AA6agR597B8yeSa4lMVWO5AwtWeuOtTJ6yRuWKBbxenIXOizC9/dKRK5JA5BWW+4WDcWtE8BByaQBg==
+X-Received: by 2002:a05:6638:1a8d:b0:342:884f:5a35 with SMTP id ce13-20020a0566381a8d00b00342884f5a35mr10956175jab.289.1660076127579;
+        Tue, 09 Aug 2022 13:15:27 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id f1-20020a028481000000b003426eb18d1dsm6653730jai.105.2022.08.09.13.12.36
+        by smtp.gmail.com with ESMTPSA id r5-20020a92cd85000000b002ddafe492e5sm1384795ilb.41.2022.08.09.13.15.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 13:12:40 -0700 (PDT)
-Received: (nullmailer pid 2314197 invoked by uid 1000);
-        Tue, 09 Aug 2022 20:12:35 -0000
-Date:   Tue, 9 Aug 2022 14:12:35 -0600
+        Tue, 09 Aug 2022 13:15:27 -0700 (PDT)
+Received: (nullmailer pid 2318869 invoked by uid 1000);
+        Tue, 09 Aug 2022 20:15:25 -0000
+Date:   Tue, 9 Aug 2022 14:15:25 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Pawel Dembicki <paweldembicki@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        DENG Qingfang <dqfext@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        John Crispin <john@phrozen.org>, Marek Vasut <marex@denx.de>,
-        Aleksander Jan Bajkowski <olek2@wp.pl>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        UNGLinuxDriver@microchip.com, Marcin Wojtas <mw@semihalf.com>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
-        George McCollister <george.mccollister@gmail.com>,
-        Kurt Kanzenbach <kurt@linutronix.de>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Mans Rullgard <mans@mansr.com>
-Subject: Re: [RFC PATCH v3 net-next 07/10] of: base: export
- of_device_compatible_match() for use in modules
-Message-ID: <20220809201235.GA2314138-robh@kernel.org>
-References: <20220806141059.2498226-1-vladimir.oltean@nxp.com>
- <20220806141059.2498226-8-vladimir.oltean@nxp.com>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        tiwai@suse.com, robh+dt@kernel.org, broonie@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        perex@perex.cz, kuninori.morimoto.gx@renesas.com,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH v3 1/3] ASoC: dt-bindings: Definitions for DAI params
+Message-ID: <20220809201525.GA2318816-robh@kernel.org>
+References: <1659936452-2254-1-git-send-email-spujar@nvidia.com>
+ <1659936452-2254-2-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220806141059.2498226-8-vladimir.oltean@nxp.com>
+In-Reply-To: <1659936452-2254-2-git-send-email-spujar@nvidia.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -99,24 +65,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 06 Aug 2022 17:10:56 +0300, Vladimir Oltean wrote:
-> Modules such as net/dsa/dsa_core.ko might want to iterate through an
-> array of compatible strings for things such as validation (or rather,
-> skipping it for some potentially broken drivers).
+On Mon, 08 Aug 2022 10:57:30 +0530, Sameer Pujar wrote:
+> The "convert-channels" and "convert-rate" bindings are available for
+> audio-graph-card and are documented in the audio-graph-port.yaml and
+> the audio-graph.yaml. There is duplication of property details at
+> multiple places.
 > 
-> of_device_is_compatible() is exported, by of_device_compatible_match()
-> isn't. Export the latter as well, so we don't have to open-code the
-> iteration.
+> Introduce a new schema to have common definitions for DAI params and
+> these can be re-used in other schemas wherever applicable. Presently
+> update audio-graph-card bindings to use these definitions. If required
+> simple-card bindings can be extended to make use of common definitions.
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > ---
-> v1->v2: patch is new
-> v2->v3: none
-> 
->  drivers/of/base.c | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/sound/audio-graph-port.yaml           | 13 ++++------
+>  .../devicetree/bindings/sound/audio-graph.yaml     |  7 +++--
+>  .../devicetree/bindings/sound/dai-params.yaml      | 30 ++++++++++++++++++++++
+>  3 files changed, 38 insertions(+), 12 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/dai-params.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
