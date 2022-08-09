@@ -2,132 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D379A58D54E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1564858D56A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:33:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234019AbiHIIYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 04:24:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32810 "EHLO
+        id S239186AbiHIIdJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 9 Aug 2022 04:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbiHIIYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:24:50 -0400
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5570462EE;
-        Tue,  9 Aug 2022 01:24:48 -0700 (PDT)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1660033486;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=XOANnQIgW3aAbW5LfRI6DNFCWo8HlrGXax9XfkwIOvw=;
-        b=J0qc2M5dFGUOfEMj/pHfg3Bj3A12SAXDIneYAOi1AyVHT+NK1irTS97V1AWO8Ni/yAp/DS
-        pGzEmNb5PR2k4EPimzq9wwfG2Ed0gZbtgZ2mvN60tjzf3ciRDdl9PNqJi6k9hv7TxWYdcz
-        Hume5zUzJDzUcf5OEXYmhybRPhoxX1cqToy/39/xW1yViTjlBVuNgJytHLrD3Fb+0l8ixl
-        lgTtMTcREGvu+mTSc8mGQSZFMHJQc+B5hV04pqqyDIdZBSO+sFUhcE/DZI/C1vbfIYintn
-        zY8dId0N6tVkNlgg6OZXk9kCDFcI02L1GYfMSmvs4FFu7KZFXze45WoEaKe1GA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1660033486;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=XOANnQIgW3aAbW5LfRI6DNFCWo8HlrGXax9XfkwIOvw=;
-        b=lru1oi1+CrBYjUdcetVA6g9asvhuotMjj7MKBbPgSl+JQrs3qBjqzlOls27OY8Wpna1O4T
-        BX8lJbWkJAh2wCDA==
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>, netdev@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
+        with ESMTP id S240571AbiHIIdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:33:08 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B21A6205E7
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 01:33:07 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1oLKfR-0006K1-7S; Tue, 09 Aug 2022 10:32:49 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1oLKfM-002fas-63; Tue, 09 Aug 2022 10:32:46 +0200
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1oLKfN-0001Qi-La; Tue, 09 Aug 2022 10:32:45 +0200
+Message-ID: <b18ef07670c09d4a58b70dc3671549a9b7d5b4e2.camel@pengutronix.de>
+Subject: Re: [PATCH 2/3] ASoC: apple: mca: Start new platform driver
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Martin =?UTF-8?Q?Povi=C5=A1er?= <povik+lin@cutebit.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Mans Rullgard <mans@mansr.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Aleksander Jan Bajkowski <olek2@wp.pl>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Pawel Dembicki <paweldembicki@gmail.com>,
-        =?utf-8?Q?Cl=C3=A9ment_L=C3=A9ger?= <clement.leger@bootlin.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Marek =?utf-8?Q?Beh=C3=BAn?= <kabel@kernel.org>,
-        Marcin Wojtas <mw@semihalf.com>, Marek Vasut <marex@denx.de>,
-        linux-renesas-soc@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [RFC PATCH v3 net-next 10/10] net: dsa: make phylink-related OF
- properties mandatory on DSA and CPU ports
-In-Reply-To: <20220806141059.2498226-11-vladimir.oltean@nxp.com>
-References: <20220806141059.2498226-1-vladimir.oltean@nxp.com>
- <20220806141059.2498226-11-vladimir.oltean@nxp.com>
-Date:   Tue, 09 Aug 2022 10:24:43 +0200
-Message-ID: <87h72lx1ro.fsf@kurt>
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     asahi@lists.linux.dev, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Tue, 09 Aug 2022 10:32:45 +0200
+In-Reply-To: <20220808224153.3634-3-povik+lin@cutebit.org>
+References: <20220808224153.3634-1-povik+lin@cutebit.org>
+         <20220808224153.3634-3-povik+lin@cutebit.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Hi Martin,
 
-On Sat Aug 06 2022, Vladimir Oltean wrote:
-[...]
-> +static const char * const dsa_switches_dont_enforce_validation[] =3D {
-> +#if IS_ENABLED(CONFIG_NET_DSA_HIRSCHMANN_HELLCREEK)
-> +	"hirschmann,hellcreek-de1soc-r1",
-> +#endif
+On Di, 2022-08-09 at 00:41 +0200, Martin Povišer wrote:
+> +	mca->rstc = devm_reset_control_get_shared(&pdev->dev, NULL);
+> +	if (IS_ERR(mca->rstc)) {
+> +		dev_dbg(&pdev->dev, "couldn't obtain reset control: %pe\n", mca->rstc);
+> +		mca->rstc = NULL;
+> +	}
 
-You can safely remove that one. I've updated all downstream DTS files accor=
-dingly.=20
+Please don't ignore errors, this could be -ENOMEM.
 
-Thanks,
-Kurt
+For optional resets, use devm_reset_control_get_optional_shared(),
+which returns NULL if there is no resets property in the device tree.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJHBAEBCgAxFiEEvLm/ssjDfdPf21mSwZPR8qpGc4IFAmLyGcsTHGt1cnRAbGlu
-dXRyb25peC5kZQAKCRDBk9HyqkZzgnetD/sHUuK8jc/OsCLUnFTJPln0wEOg1gWn
-Xn9qOw8eN/OurTvefVq1CSJDc4JgdW9zKJF+OmkBbhvIHkIO0x8HACWvYpaIfc4/
-YdYuFUmsVgDxWQU/Gc3k7WoHEPa75IMqBofyp2xbq2cVUAquti9+x4rwmSXZk5WJ
-UGr+kWkEWTYqHFpi+fEQh7CA91Hh6T3Dx7If7p/Nlfc6EmRD5hz+wUNlbiOf6sL2
-17FkCAA1Yybekpmz18zVAS4eO8FrproyuvfXi/AlGRpapjoxSB/JdNUnNGIKbe5h
-ji5I/vq4+wW/NazAh/F+diMRURn4dmwA2zX9hygJ1Voe4TXBdFqi5dj3p81OAeAr
-lNjU1wWahJVQQOvxvdMjS6FjtQBY8bQz//SmyhZt5qNnGEsxcsyHKkmBV7YkA+wD
-qqx8/ei3Fm7uI1FW7+GQm1+XX9FeS7CoUJ5oOEVSxkCchnxKO2mQAZHmtxtOXmFZ
-96lI5kKZV1OAil2/JyEfZzhfgrovRDXbVlAUpP2He1GkIi7GNTQZNiGaeAQYW17L
-JbslFc+D8Qs6Bk+Zvilt7PSLYxccKwK1CGl+TB9dRQE2eACS/hf+6i1bUzH9LmL8
-1VeaCF6L2UPV2e7phL+UB5862qaW7gEWy2KlqNTtd2KzKS9zvKLxLwpmdydG7ped
-v5X2tRdpar2kfw==
-=oPLD
------END PGP SIGNATURE-----
---=-=-=--
+regards
+Philipp
