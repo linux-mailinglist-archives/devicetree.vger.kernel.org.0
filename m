@@ -2,78 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC1DF58E040
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 21:34:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B656758E05C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 21:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245253AbiHITdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 15:33:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37028 "EHLO
+        id S1344721AbiHITn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 15:43:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245292AbiHITdS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 15:33:18 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD52523163;
-        Tue,  9 Aug 2022 12:33:13 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id v185so10397110ioe.11;
-        Tue, 09 Aug 2022 12:33:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=KbbQmWU4qA4C5SAgaTHau91UtMwlzzGKrvvzwpZ4910=;
-        b=viBznppw7y61QCnj+xTZZdr757B/JP6jEnsX6XssUNjUZhOFYBb2O313TC8hIxGodN
-         jSE1lnyxs2Sro7bWlMtGWph9Nt6/INvS6MFz3bHpQ8dqXZgU8fPeiCUHHQPG/CmIZfu4
-         B7yrBKIIvqpqfFysOD4QTvkm85tf+XeM4usYO8ZkCPYSVm5WqeWFw/sk1iSXTwpPmyEH
-         rb24GvAeB7bNQF6Qd10nS/vZLneofN0oF04+Od/Imluqk1ZvO57HV+ktZQBvE6f3Rh/D
-         AtFwzRThKvG0EbCg8epK3G32Z6SJa7/csFAl3bBLWDRMeXE3+zi54kBYnqjZYUjruQXm
-         fcgg==
-X-Gm-Message-State: ACgBeo3Xz+JHx1PLR/fJq40bxECP+kDkjnJECR5ZkEF4eg0YAruhbvtY
-        eNTG/1cxQocKGgImzLe6SM/m+LQNHA==
-X-Google-Smtp-Source: AA6agR5gwwnr/r/AZS7KgL3Iw9NgQckA8lPV0+OriPK7Db+sj37t3wV972uRUfF92jolGMkuLTiqcg==
-X-Received: by 2002:a05:6602:4192:b0:684:6256:e892 with SMTP id bx18-20020a056602419200b006846256e892mr6315524iob.89.1660073593070;
-        Tue, 09 Aug 2022 12:33:13 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b3-20020a056638388300b00342f67a4789sm3436507jav.164.2022.08.09.12.33.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 12:33:11 -0700 (PDT)
-Received: (nullmailer pid 2251083 invoked by uid 1000);
-        Tue, 09 Aug 2022 19:33:10 -0000
-Date:   Tue, 9 Aug 2022 13:33:10 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Kestrel <kestrelseventyfour@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] dt-bindings: remoteproc: Add AVM WASP
-Message-ID: <20220809193310.GA2251034-robh@kernel.org>
-References: <20220804210806.4053-1-kestrelseventyfour@gmail.com>
- <20220804210806.4053-3-kestrelseventyfour@gmail.com>
+        with ESMTP id S1344958AbiHITmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 15:42:52 -0400
+Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF7D2656F;
+        Tue,  9 Aug 2022 12:42:51 -0700 (PDT)
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 279JZ8CR010407;
+        Tue, 9 Aug 2022 19:42:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ subject : to : cc : references : from : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=pp1;
+ bh=8GHTxJxSue6pJbphfO1vtqP9e/vY/kGFFepmcQaEPF0=;
+ b=WEb4jQEfYo3CMrJWUVnl4X/IZVXLfgWqK8d5w32XYzvcPdGFIAZeFFbMt2AFi3uqtEqB
+ ToydP7hGovJhQ2ey6yzWm7XbNhlocPoLaf/n8kJoT3Zx217Fw8CQzq2NGIMvWPasPNpU
+ tL8naG3jymFMbTo5Mwy2pdfMHW2uCbI12xyrU16lxOMGAltd6BK4MgqMIl+HOtAm0duP
+ glTuV+h3akIe8xnGX1kJ/pQFUFTwRiU5SVecjqqDZoIpcPN2n3szQpcDm4KpYAMkYQDF
+ EbAvyvtHd563O3I07uoQbxywkiDznUr10GD/IxODwAHlpNA2mekHrbt+qyNxR4Eonnwg YA== 
+Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
+        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3huwv6r69s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 Aug 2022 19:42:21 +0000
+Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
+        by ppma03dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 279JZjcE031712;
+        Tue, 9 Aug 2022 19:42:20 GMT
+Received: from b03cxnp07028.gho.boulder.ibm.com (b03cxnp07028.gho.boulder.ibm.com [9.17.130.15])
+        by ppma03dal.us.ibm.com with ESMTP id 3huwvk8190-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 09 Aug 2022 19:42:20 +0000
+Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
+        by b03cxnp07028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 279JgJrL34865624
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 9 Aug 2022 19:42:19 GMT
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 3047CBE051;
+        Tue,  9 Aug 2022 19:42:19 +0000 (GMT)
+Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 248BDBE04F;
+        Tue,  9 Aug 2022 19:42:18 +0000 (GMT)
+Received: from [9.160.17.179] (unknown [9.160.17.179])
+        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Tue,  9 Aug 2022 19:42:17 +0000 (GMT)
+Message-ID: <59ee8c2f-3d6c-14ed-c9f8-2bbd9377a7da@linux.ibm.com>
+Date:   Tue, 9 Aug 2022 14:42:17 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add IBM OCC bindings
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        joel@jms.id.au
+Cc:     linux@roeck-us.net, jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+        devicetree@vger.kernel.org
+References: <20220802194656.240564-1-eajames@linux.ibm.com>
+ <20220802194656.240564-2-eajames@linux.ibm.com>
+ <297ddf1f-8ddc-902c-ff3d-06b9d19c6a7b@linaro.org>
+From:   Eddie James <eajames@linux.ibm.com>
+In-Reply-To: <297ddf1f-8ddc-902c-ff3d-06b9d19c6a7b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: uvO5j0nznAN3zuD0hi5jl8v32rvo6bQD
+X-Proofpoint-ORIG-GUID: uvO5j0nznAN3zuD0hi5jl8v32rvo6bQD
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220804210806.4053-3-kestrelseventyfour@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-09_05,2022-08-09_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
+ malwarescore=0 adultscore=0 clxscore=1011 priorityscore=1501
+ suspectscore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0 mlxscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208090073
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 04 Aug 2022 23:08:05 +0200, Daniel Kestrel wrote:
-> AVM Fritzbox router boards may contain an additional ATH79
-> based SoC that has the wifi cards connected.
-> This patch adds bindings for this remote processor.
-> 
-> Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
-> ---
->  .../bindings/remoteproc/avm,wasp-rproc.yaml   | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 8/3/22 01:55, Krzysztof Kozlowski wrote:
+> On 02/08/2022 21:46, Eddie James wrote:
+>> These bindings describe the POWER processor On Chip Controller accessed
+>> from a service processor or baseboard management controller (BMC).
+>>
+>> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+>> ---
+>>   .../bindings/hwmon/ibm,occ-hmwon.yaml         | 40 +++++++++++++++++++
+>>   1 file changed, 40 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/hwmon/ibm,occ-hmwon.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/ibm,occ-hmwon.yaml b/Documentation/devicetree/bindings/hwmon/ibm,occ-hmwon.yaml
+>> new file mode 100644
+>> index 000000000000..8f8c3b8d7129
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/hwmon/ibm,occ-hmwon.yaml
+>> @@ -0,0 +1,40 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/hwmon/ibm,occ-hwmon.yaml#
+> typo here
+>
+> Does not look like you tested the bindings. Please run `make
+> dt_binding_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst for instructions).
+
+
+I actually did but it didn't catch that somehow. I had to use a somewhat 
+hacked together python/pip on my system so perhaps that's to blame.
+
+
+>
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: IBM On-Chip Controller (OCC) accessed from a service processor
+>> +
+>> +maintainers:
+>> +  - Eddie James <eajames@linux.ibm.com>
+>> +
+>> +description: |
+>> +  This binding describes a POWER processor On-Chip Controller (OCC)
+> s/This binding describes a//
+> But instead describe the hardware. What is the OCC?
+
+
+OK I'll fix that. It's a management engine for system power and thermals.
+
+
+>
+>> +  accessed from a service processor or baseboard management controller
+>> +  (BMC).
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - ibm,p9-occ-hwmon
+>> +      - ibm,p10-occ-hwmon
+>> +
+>> +  ibm,inactive-on-init:
+>> +    description: This property describes whether or not the OCC should
+>> +      be marked as active during device initialization. The alternative
+>> +      is for user space to mark the device active based on higher level
+>> +      communications between the BMC and the host processor.
+> I find the combination property name with this description confusing. It
+> sounds like init of OCC and somehow it should be inactive? I assume if
+> you initialize device, it is active. Or maybe the "init" is of something
+> else? What is more, non-negation is easier to understand, so rather
+> "ibm,active-on-boot" (or something like that).
+
+
+Well, the host processor initializes the OCC during it's boot, but this 
+document is describing a binding to be used by a service processor 
+talking to the OCC. So the OCC may be in any state. The init meant 
+driver init, but I will simply the description and change the property 
+to be more explicit: ibm,no-poll-on-init since that is what is actually 
+happening. Similar to the FSI binding for no-scan-on-init.
+
+
+>
+>> +    type: boolean
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    occ-hmwon {
+> just "hwmon"
+>
+>> +        compatible = "ibm,p9-occ-hwmon";
+>> +        ibm,inactive-on-init;
+>> +    };
+
+
+Thanks for the review!
+
+Eddie
+
+
+>
+> Best regards,
+> Krzysztof
