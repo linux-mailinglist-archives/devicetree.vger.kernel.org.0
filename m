@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7832E58D5C4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D93158D5CD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241226AbiHIIyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 04:54:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54980 "EHLO
+        id S241205AbiHIIzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 04:55:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241178AbiHIIyc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:54:32 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [185.8.165.127])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE7ED22508;
-        Tue,  9 Aug 2022 01:54:30 -0700 (PDT)
+        with ESMTP id S236411AbiHIIzi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:55:38 -0400
+Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45CED21270;
+        Tue,  9 Aug 2022 01:55:37 -0700 (PDT)
 Content-Type: text/plain;
         charset=utf-8
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1660035268; bh=HTSQxyjdTff+5nKPgMwzEpelY+3eet5R/sdeOOVWrTc=;
+        t=1660035335; bh=gC4GNArn5L/+qSmbqUbjWxF4hXj6UbOzOdSVGC9cgDE=;
         h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=GV5wgq6SeyFBiWZhXtg2xXQJhx94BbQOIGfNwWbOq1g9j4sHeM/lKE9/e+uWJ3clQ
-         kyFU/VV8EyPOcEzGetL87wmnbeVd9fefTVslcKypKvn8kLkx8i8OhBhqeyWep+5HfN
-         tGcmJXUKaS6JggqfY9Xo9ZZWoU+vbWUmSaoI8O0k=
+        b=ZajEXVjp7mPMMG2eOn3wmWnNtyDDnBp6T+mh3Lh7LDgJkT00oLqeXkpQkzqJk4Tdb
+         Q31ajC+zOqJEr6HgWWNNIXqDtjUn5onK4CiWqrqUJ4ukSUOYk6AkOziyznRr5ywn31
+         qQTwzcFLfOLG5AFWJHC4utUEbbWrT1nIUfpjjz58=
 Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [PATCH 2/3] ASoC: apple: mca: Start new platform driver
+Subject: Re: [PATCH 1/3] dt-bindings: sound: Add Apple MCA I2S transceiver
 From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <53c8f062-a760-c65f-479e-53e7991b3f66@linaro.org>
-Date:   Tue, 9 Aug 2022 10:54:27 +0200
+In-Reply-To: <cbe80ae1-3ae8-eccf-89f7-4506e3f44ca7@linaro.org>
+Date:   Tue, 9 Aug 2022 10:55:35 +0200
 Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -37,14 +37,16 @@ Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <82B580B4-85BF-4ABA-B098-98E3CA9EE247@cutebit.org>
+Message-Id: <C55ADB0F-0894-4A3B-BDD2-6A20BB1F4A4F@cutebit.org>
 References: <20220808224153.3634-1-povik+lin@cutebit.org>
- <20220808224153.3634-3-povik+lin@cutebit.org>
- <53c8f062-a760-c65f-479e-53e7991b3f66@linaro.org>
+ <20220808224153.3634-2-povik+lin@cutebit.org>
+ <8ce59940-f559-35cb-5f86-37399da166a1@linaro.org>
+ <DCBCB694-F5A3-4E76-9518-89E9A1A4AB55@cutebit.org>
+ <cbe80ae1-3ae8-eccf-89f7-4506e3f44ca7@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -55,45 +57,66 @@ X-Mailing-List: devicetree@vger.kernel.org
 > On 9. 8. 2022, at 10:47, Krzysztof Kozlowski =
 <krzysztof.kozlowski@linaro.org> wrote:
 >=20
-> On 09/08/2022 01:41, Martin Povi=C5=A1er wrote:
-
->> +	mca->switch_base =3D
->> +		devm_platform_ioremap_resource_byname(pdev, "switch");
->> +	if (IS_ERR(mca->switch_base))
->> +		return PTR_ERR(mca->switch_base);
+> On 09/08/2022 11:40, Martin Povi=C5=A1er wrote:
+>>> Describe the items because otherwise you allow any order. The list =
+will
+>>> be unfortunately quite long, but still readable enough.
+>>=20
+>> Well, I would assume the =E2=80=98dmas=E2=80=99 property as described =
+above has an implicit
+>> natural order, and the dma-names are tied to it. You order it like =
+the other
+>> per-cluster properties, and then within the cluster the order is =
+fixed to
+>> 'TXA, RXA, TXB, RXB=E2=80=99 (maybe the word =E2=80=98respectively=E2=80=
+=99 thrown into the description
+>> would have made it clearer).
+>>=20
+>> Anyway that=E2=80=99s just discussing my assumptions. I can roll out =
+the items list
+>> for =E2=80=98dma-names=E2=80=99, if that=E2=80=99s what you mean. Or =
+do you mean explicitly describing
+>> the items in =E2=80=98dmas=E2=80=99 too?
 >=20
-> How does it work exactly? There is no such property... Can you submit
-> also DTS using the bindings so we can validate they are real/correct?
+> The text description of 'dmas' does not mean it will be followed by =
+DTS
+> author. In current bindings DTS author can therefore put any order of
+> dmas/dma-names. Unrolling the dma-names forces this order to be fixed
+> and validated by dtschema.
 
-Ah, I thought I fixed that. There=E2=80=99s supposed to be
+OK
 
-	mca->switch_base =3D devm_platform_ioremap_resource(pdev, 1);
-
-of course. My bad, I guess didn=E2=80=99t reexport the patches after =
-these last
-minute changes.
-
->> +
->> +	mca->rstc =3D devm_reset_control_get_shared(&pdev->dev, NULL);
->> +	if (IS_ERR(mca->rstc)) {
->> +		dev_dbg(&pdev->dev, "couldn't obtain reset control: =
-%pe\n", mca->rstc);
->> +		mca->rstc =3D NULL;
->> +	}
+>>=20
+>>>> +    description: |
+>>>> +      Names for the DMA channels: 'tx'/'rx', then cluster number, =
+then 'a'/'b'
+>>>> +      based on the associated SERDES unit.
+>>>> +
+>>=20
+>> (...)
+>>=20
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    mca: mca@9b600000 {
+>>>=20
+>>> You called it I2S transceiver but isn't it also actually I2S =
+controller?
+>>> If yes, then the node name should be probably "i2s".
+>>=20
+>> It=E2=80=99s a peripheral you use to transmit and receive samples =
+over I2S, frankly
+>> I don't know the nomenclature.
 >=20
-> Similar question.
+> Looking at other devices, it's i2s.
 
-Same as above, there=E2=80=99s supposed to be
-
-  resets:
-    maxItems: 1
-
-in the schema.
-
+OK, thanks.
 
 > Best regards,
 > Krzysztof
->=20
 
+Best,
 Martin
 
