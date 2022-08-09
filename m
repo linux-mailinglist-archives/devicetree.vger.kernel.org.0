@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 17FA958D442
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 09:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFF2A58D488
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 09:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235482AbiHIHMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 03:12:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41314 "EHLO
+        id S238726AbiHIH3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 03:29:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbiHIHMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 03:12:47 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6CF41F617;
-        Tue,  9 Aug 2022 00:12:44 -0700 (PDT)
-Content-Type: text/plain;
-        charset=us-ascii
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1660029159; bh=cDApK5hmdG5/n12lVn89OuKR5PmgY/qsf/gyfBRzWuo=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=QtUiVtrSeVGFlOCcxuaC4OAl/+jssyZYOmznmpaVVGB9lXDf7lSTqjyVpaRhWT9Jg
-         9Rb79S3wkhZUnmTg9MctQmNkwB0P+FmsAARSKZXAG1KSbMga0CeFRucrwh9UYNOGnN
-         aVCoXCc/KGfGY64/nni984A1WnO8cQMz6Z9DdgV4=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [PATCH 3/3] ASoC: apple: mca: Add locks on foreign cluster access
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <20220808224153.3634-4-povik+lin@cutebit.org>
-Date:   Tue, 9 Aug 2022 09:12:37 +0200
-Cc:     asahi@lists.linux.dev, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        with ESMTP id S237469AbiHIH3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 03:29:49 -0400
+Received: from mail-40130.protonmail.ch (mail-40130.protonmail.ch [185.70.40.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5735820F55
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 00:29:48 -0700 (PDT)
+Date:   Tue, 09 Aug 2022 07:29:42 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1660030186; x=1660289386;
+        bh=fayOQDMd/PIWFyagVAiWbk5bupPGTprmhHwG5PCk1bw=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:Feedback-ID:From:To:
+         Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID;
+        b=FchnhQikPHAKTypNXdxlTYoDTEgnwpJWiARJBcC6HumYp3CtbRFKCN1DrItE7lKSE
+         WuWfhPVL9usmzp8Xvf7CYVCdqKvwoc2PaC3DDr3Atc1ij5+/YEIdW9SYs7bghbq7y6
+         wN30muvHp4HWXe/2Q1JZup3LB5O8SeuhdZR2Goxj8+zPJkYrc/60hdb6NF/nXfD96V
+         iRSRRBZ3pB0Tx8eKmTKDipzLIathMNqhLWUHRDLSgishweMBJnNxrJLNFV48dvWZ0W
+         sdiNuMgvf3If0NptmZ58ewdNvkDAL/S0aXUZvhP+hZAxlUwA8AXH8bnnOBuVdvw2wn
+         E2yCxcBqB3UGA==
+To:     markuss.broks@gmail.com
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, linmengbo0689@protonmail.com,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, robh+dt@kernel.org,
+        rydberg@bitmath.org, ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Subject: Re: [PATCH 0/3] Add support for Imagis IST3038B
+Message-ID: <20220809072845.9855-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <D63678FD-92EB-42E1-B04F-CCA563F4596A@cutebit.org>
-References: <20220808224153.3634-1-povik+lin@cutebit.org>
- <20220808224153.3634-4-povik+lin@cutebit.org>
-To:     =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,21 +50,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> Tested by Lin Meng-Bo on Samsung Galaxy Core Prime.
+>
+> Cc: Lin Meng-Bo <linmengbo0689@protonmail.com>
 
-> @@ -331,8 +339,10 @@ static int mca_be_prepare(struct =
-snd_pcm_substream *substream,
-> 	 */
-> 	if (!mca_fe_clocks_in_use(fe_cl)) {
-> 		ret =3D mca_fe_enable_clocks(fe_cl);
-> -		if (ret < 0)
-> +		if (ret < 0) {
-> +			mutex_unlock(&mca->port_mutex);
-> 			return ret;
-> +		}
-> 	}
+As we discussed before, actually it's not real IST3038B.
+Instead, it should be IST30XXB with chip ID 0x300b300b, which can be
+identified with
+(0x40000000 | IST3038C_DIRECT_ACCESS)
+, while IST3038C uses
+(0x40001000 | IST3038C_DIRECT_ACCESS), similarly.
 
-Stray unlock here
+So I would suggest to hold IST3038B patches since I don't really have one.
 
---
-Martin
+Best regards,
 
+Lin
