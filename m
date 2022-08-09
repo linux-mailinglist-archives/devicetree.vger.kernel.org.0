@@ -2,120 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CF4D58DB3F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 17:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7300558DB53
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 17:46:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243665AbiHIPhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 11:37:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40928 "EHLO
+        id S244742AbiHIPqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 11:46:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244698AbiHIPhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 11:37:34 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B728A192
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 08:37:32 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id p10so14726205wru.8
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 08:37:32 -0700 (PDT)
+        with ESMTP id S244455AbiHIPqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 11:46:10 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33702219C
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 08:46:09 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id bq11so17580766lfb.5
+        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 08:46:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=PtkDAKuLYtipKso/qtzcAxoyZFXE+gtPjmSjF2+dZT8=;
-        b=B4aSdALX+HOfDoK2RMhVxwCMY75Lvw/KvYO3H2Pp836XdkT7RwzrmfbytDbKOOJQIE
-         kiMgeho3WTxF0lRCKxiry19SGg4wVqXaXWhIpPGTRLVtf24VQH2yQ1da/InL1+a/vFUT
-         vbQh2m+R4oXo/CnacHGLNfs3MZc8MugsgbKxkPIWF++cNeCS8W+dju0WKSHHbQ4QDmd/
-         MVhzo3+9dqoCYaptzlMx78HrArs6dvvz/PAOgJSyNAmjOE4FneuFdiuYPoghL10e9mHF
-         V/Dw+/z785JI4VGewE/j8verPHsuw6KdmoWbb6Bb75cmiHRPxU2ONacU7fcILAbXcwcT
-         LXuA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=CUedU6kMASw5REsAcuy2rO2+Wp5ASMICS1gAQM+BXYY=;
+        b=P1QkEOL1WUP4tnuF7Y1xar4/FEns/eDHcVaXALqbiZj+gZh03Zd9CncqLUbsqGDeNT
+         yriUelceut0gw2L6IliSMNBkjt7XrqlycfxJR97uEcPzCIaBquqRdjZ5ej7SA7v2urjX
+         Gu52fMzfMUmmSPOdtRCIHTqagbWXZ60mWYdtn5FGEJJinmg9Fmf7qSaFsy0B/IJqtpke
+         aH68xD7YBmH1MnpMx/6WlW2NwUjdCzb0zzEutqOpgivm1KEE1MhSRzgfsT1hc0jNVKok
+         DUmgtqM/s2fGxLtChxHkvY0hGHFwDJQXxewMDHIm5lu+2dapjkgrD8TclBV+h+w2RKLw
+         YvEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=PtkDAKuLYtipKso/qtzcAxoyZFXE+gtPjmSjF2+dZT8=;
-        b=8CwMp49ZJ3EtA+pEIibZpUASCsv8jKcR2vtSc17pYLrDocRGuzMkNDnBRF3+2FtmHB
-         qdfXMNODxhPh5VL+O9BJZzg26ZVYCZTPhq9Q7CyohsjIVF/ERCzm0RjcM3G5bmPJhvQE
-         pFgKOsnahN0F4O1xo3b6BWQ3j5z+PUxItN1ukk6We4dO6z7/Z1yVVDKbWiE30//1VUmf
-         bhciC+WVxUvEDt6AGGEIhTkPNKbfLXVC461jFPXP2GEhUcnFs31CdSxCxB+oMbWbliJ8
-         Nvp1K45BgAUqIUC0jfzxpwiZ1tqtNd1phv8R39WR4CugQy3tr7GmLF1Nnhc/PwzAZWBO
-         nhnw==
-X-Gm-Message-State: ACgBeo2vHPYrjIjDzjyKV4+3qq5vdCP863Cf8F0XvNVAgA7w1Bho8Q2i
-        EAvyU2CIhD1rzO7OY2EGVASe8g==
-X-Google-Smtp-Source: AA6agR7Rl6LrXJMccHtrODxJmUsBl/OXTkCxpvd9qLdL2g6K1oFbc81PrOCebZAftVyGx6FprERcaw==
-X-Received: by 2002:adf:fc08:0:b0:21e:d133:3500 with SMTP id i8-20020adffc08000000b0021ed1333500mr15478038wrr.353.1660059450864;
-        Tue, 09 Aug 2022 08:37:30 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id l8-20020a05600c4f0800b003a17ab4e7c8sm24014628wmq.39.2022.08.09.08.37.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 08:37:29 -0700 (PDT)
-Date:   Tue, 9 Aug 2022 16:37:27 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-input@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v2 4/5] dt-bindings: iio: adc: stmpe: Remove node name
- requirement
-Message-ID: <YvJ/N2zulizbiU6u@google.com>
-References: <20220712163345.445811-1-francesco.dolcini@toradex.com>
- <20220712163345.445811-5-francesco.dolcini@toradex.com>
- <20220809134607.GA44926@francesco-nb.int.toradex.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=CUedU6kMASw5REsAcuy2rO2+Wp5ASMICS1gAQM+BXYY=;
+        b=lVOWLPoXxI/VFz86sNWkHZcB1YM3rFvR3wn/NFINwqdWc7Mu5jf3FKkL3T0yF2x6PU
+         FmI95rZkfWe5G5kx705xnvUY2bZ/PE8OyDd/E/ctpd466U+SpypVNHZQjOPI2IO4d0Ad
+         +2WuGAs80FT+19NvdAb14on+JuLrO4dfVxQQ0kDpfklmHQevEKWafS0Y6d/Im2HGQ4M/
+         PQ97t4s4NxX774PwjBZif3MVMD2WgIn7zFRvnPhflJTvJJea7KANrOw2/AG5UqzfcN5w
+         SAfHUerAYK7p7CZUrgR+gs+BO6hJ7EcBLmk81GGxzlKcEgTftw0iEXNLAHx20lQ8Vv9H
+         48hg==
+X-Gm-Message-State: ACgBeo2X2T4RC7uSDD01NQHureitzCGLJ3k3eNfvgBJlC8zntvYwG8gL
+        trE0KQCS9eS9o67LSl/EZ4niZQ==
+X-Google-Smtp-Source: AA6agR4rsgnglfBObga0gxJ1sKawFYHi0syINQ0jiop/OCEHI1VG//5n8L7ed33EWhXywjENTTaFtQ==
+X-Received: by 2002:a19:f007:0:b0:48a:f479:af01 with SMTP id p7-20020a19f007000000b0048af479af01mr8209712lfc.59.1660059967109;
+        Tue, 09 Aug 2022 08:46:07 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id c18-20020a05651221b200b0048afa5daaf3sm13026lft.123.2022.08.09.08.46.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Aug 2022 08:46:06 -0700 (PDT)
+Message-ID: <400b78db-17ac-b9d8-fcf9-3a4dc7821ea8@linaro.org>
+Date:   Tue, 9 Aug 2022 18:46:04 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220809134607.GA44926@francesco-nb.int.toradex.com>
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] dt-bindings: marvell: Update Armada 37xx platform
+ bindings
+Content-Language: en-US
+To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220713200123.22612-1-pali@kernel.org>
+ <20220808202352.iimhb2q6yawi35y6@pali>
+ <20a349c9-a479-ad5b-fe33-4758a773972e@linaro.org>
+ <20220809131357.u3dfsy3gu3iamiv7@pali>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220809131357.u3dfsy3gu3iamiv7@pali>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 Aug 2022, Francesco Dolcini wrote:
-
-> Hello Jonathan, can you pick this? Patches 1 and 2 were applied to MFD
-> tree.
-
-Sending out nags whilst the merge-window is open is seldom helpful.
-
-Also, please refrain from top-posting.
-
-Thanks.
-
-> On Tue, Jul 12, 2022 at 06:33:44PM +0200, Francesco Dolcini wrote:
-> > STMPE driver does not require a specific node name anymore, only the
-> > compatible is checked, update binding according to this.
-> > 
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > ---
-> >  Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml | 3 +--
-> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml b/Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml
-> > index 9049c699152f..333744a2159c 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml
-> > @@ -13,8 +13,7 @@ description:
-> >    This ADC forms part of an ST microelectronics STMPE multifunction device .
-> >    The ADC is shared with the STMPE touchscreen. As a result some ADC related
-> >    settings are specified in the parent node.
-> > -  The node name myst be stmpe_adc and should be a child node of the stmpe node
-> > -  to which it belongs.
-> > +  The node should be a child node of the stmpe node to which it belongs.
-> >  
-> >  properties:
-> >    compatible:
+On 09/08/2022 16:13, Pali Rohár wrote:
+> On Tuesday 09 August 2022 08:58:50 Krzysztof Kozlowski wrote:
+>> On 08/08/2022 23:23, Pali Rohár wrote:
+>>> PING?
+>>>
+>>> On Wednesday 13 July 2022 22:01:23 Pali Rohár wrote:
+>>>> Distinguish between Armada 3700 family, Armada 3710 SoC and Armada 3720 SoC.
+>>>> Armada 3720 DB is name of the board with Armada 3720 SoC, so correctly
+>>>> indicate SoC in example.
+>>>>
+>>>> Signed-off-by: Pali Rohár <pali@kernel.org>
+>>>> ---
+>>>>  .../devicetree/bindings/arm/marvell/armada-37xx.txt        | 7 ++++++-
+>>>>  1 file changed, 6 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+>>>> index f6d6642d81c0..d2ca008de266 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+>>>> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+>>>> @@ -4,6 +4,11 @@ Marvell Armada 37xx Platforms Device Tree Bindings
+>>>>  Boards using a SoC of the Marvell Armada 37xx family must carry the
+>>>>  following root node property:
+>>>>  
+>>>> + - compatible: must contain "marvell,armada3700"
+>>>> +
+>>>> +In addition, boards using the Marvell Armada 3710 SoC shall have the
+>>>> +following property before the previous one:
+>>>> +
+>>
+>> The change is an ABI break, which looks reasonable, but still platform
+>> maintainer should comment on it. Especially on the aspect why the
+>> marvell,armada3710 fallback was chosen at the first place.
 > 
+> I do not think this is ABI break but rather incorrect documentation and
+> bug in some board dts files.
 
--- 
-DEPRECATED: Please use lee@kernel.org
+This documentation is the ABI, especially if actually implemented in the
+DTS files, therefore by all definitions of DT ABI this is an ABI break.
+
+What you are saying about "incorrect documentation and bug in some DTS
+files" is a good reason to break the ABI, but it is still a break.
+
+Best regards,
+Krzysztof
