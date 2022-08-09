@@ -2,368 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7C8758E140
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 22:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8548858E155
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 22:48:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242511AbiHIUmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 16:42:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60256 "EHLO
+        id S245384AbiHIUsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 16:48:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242240AbiHIUmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 16:42:03 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 103241EEFA;
-        Tue,  9 Aug 2022 13:42:02 -0700 (PDT)
-Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 279KbmGZ001213;
-        Tue, 9 Aug 2022 20:41:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=mm/bcT1C2yHhWetnHksi+91BYuyqpZ16akRoaKY20wo=;
- b=jfwaXHd43mIpOxs0CuV59Mr+94jsP9Q04tpRcE4px345dnirJUZtBOXqOfM+Sh2p9XdZ
- NAF57y04yQqHNHPlftfzgQmcRIEcfXjnyRzmH/cD4COITE4Q2c7UUUpq11yN/dvcZAUc
- SNtUlH5bgTNSTz+tyjuOhT66UM+o+hvVKE3UrJUlmd6k8MPKhGRqy9NjFic3KMBt1YYR
- ZYpk7EgS6VWlwrmUvrRx+4sByHVXEm5DyCxbOYCbmUtN7Nj9deaxoiJY3qLp8JGWWRr8
- kRT2Ue6XtxTHKFWorRmL0x9XL8KoZ+YEDGnrSlccDTUE4hWyO5LI0Wyk1JdIzsX/w7Hy JQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3huwv6sp93-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 09 Aug 2022 20:41:51 +0000
-Received: from m0098420.ppops.net (m0098420.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 279KcMIG004036;
-        Tue, 9 Aug 2022 20:41:51 GMT
-Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3huwv6sp8u-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 09 Aug 2022 20:41:51 +0000
-Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
-        by ppma04wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 279KKP74030677;
-        Tue, 9 Aug 2022 20:41:50 GMT
-Received: from b01cxnp23034.gho.pok.ibm.com (b01cxnp23034.gho.pok.ibm.com [9.57.198.29])
-        by ppma04wdc.us.ibm.com with ESMTP id 3huww3raxc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 09 Aug 2022 20:41:50 +0000
-Received: from b01ledav001.gho.pok.ibm.com (b01ledav001.gho.pok.ibm.com [9.57.199.106])
-        by b01cxnp23034.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 279KfooI64094660
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 9 Aug 2022 20:41:50 GMT
-Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id E311A2805A;
-        Tue,  9 Aug 2022 20:41:49 +0000 (GMT)
-Received: from b01ledav001.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 2F98628058;
-        Tue,  9 Aug 2022 20:41:49 +0000 (GMT)
-Received: from slate16.aus.stglabs.ibm.com (unknown [9.160.17.179])
-        by b01ledav001.gho.pok.ibm.com (Postfix) with ESMTP;
-        Tue,  9 Aug 2022 20:41:49 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-input@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au,
-        wsa+renesas@sang-engineering.com, eajames@linux.ibm.com
-Subject: [PATCH v5 2/2] input: misc: Add IBM Operation Panel driver
-Date:   Tue,  9 Aug 2022 15:41:47 -0500
-Message-Id: <20220809204147.238132-3-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220809204147.238132-1-eajames@linux.ibm.com>
-References: <20220809204147.238132-1-eajames@linux.ibm.com>
-MIME-Version: 1.0
+        with ESMTP id S242698AbiHIUsb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 16:48:31 -0400
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com (mail-eopbgr00068.outbound.protection.outlook.com [40.107.0.68])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 698CCB0F;
+        Tue,  9 Aug 2022 13:48:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lIAoZDVSnPJEEXI4xttVMwiBzaqRv2y3Dd4z89ZbwXo38ysjsNmCMmVCsjuNQlxpaddiFb0W4WfLujGtZVWdDabI1bK9MY2jq+7XO/YVG07SKtpuDNHCH2BnCa6R17c8brNCobnO6L7QyHI2uqB898K4mXVbL9rw3Bl8LTW2VITaIso27bEeQhTSYltErjBT5nym2keZ7yzWLVVp43PwUzrs/BFCQhyVLX8V7PQr3X+ZZvRKGfGKyEb8GLhvsnO7TFB7bsMMebVQgIcaOaUbAo31oc8MgFJwG2GpC7lXnbP86478cNoP6aaZ3UQ+J2hVQGRKlu3E0c8RX6BQM86hrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JuLduqI5UWpcSCmdwukzgjWErUgNxX1tP5RsOOqaVFM=;
+ b=EErqnzQ1eFKqbldf0rw5CnCGToTqtJ75TinjtjdAJ7sRfY2w8GFZBSAHe7YvdYi1nogfx7ERmIw/qdskKvUO90gr5/iSylsr5Ovwe7wDwrg+RK8AImJNi7stSAM75a2YVNn6QeUeWJZ8sJAu8NRBgjxyPuvc/FSIgWblWM9q+4u5dwRETttGzLvdRXUhuZeV5IGODE9zEDsTd79gQJvU0cvIk0Oftj+dYy0LvfVw5Vq6KKt9I0s8aqoBcJwvtqkcvorX+hx2Q5EnHXLFmMa7LWIYApyq17i0GDfOtDvFcRGnpckUKJyECXfb/hE+NS2wG7Ip4Dg5dNZRhx8slhbNGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JuLduqI5UWpcSCmdwukzgjWErUgNxX1tP5RsOOqaVFM=;
+ b=HoG7KOdr/23oYlN7H78HV2mD5hZw2/zcSVOgQ03kfU9hxiPexMrXHHTnT0QqgVxaZhf4xiMfq3QfyEB1ggGwMUelbDPGv63z3V0x9p4c8fOFILQM/E9qQuo3okagoXEla9m49yFu846AZd7R3NfqlMnnM6kW7qo7tl2m39axft+0zYdH8nQ3cIEHFRu5Sba+heecMUqVLO9EIa9FrlMhE/vM9X/2vpl5jRcH7rrxTp93GKi06BDu7ek+jeJfNEQKPqx27POwsUM0JYfow/wNdtY6aHnvpWSeUFuhL/0UYXjJoyzo/lP5diFQRoBX5K7mMy3SaWFEq1P6NgicWTZlkw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com (2603:10a6:10:7d::22)
+ by PAXPR03MB7611.eurprd03.prod.outlook.com (2603:10a6:102:205::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.20; Tue, 9 Aug
+ 2022 20:48:27 +0000
+Received: from DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::ecaa:a5a9:f0d5:27a2]) by DB7PR03MB4972.eurprd03.prod.outlook.com
+ ([fe80::ecaa:a5a9:f0d5:27a2%4]) with mapi id 15.20.5504.019; Tue, 9 Aug 2022
+ 20:48:27 +0000
+Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
+To:     =?UTF-8?Q?Michal_Such=c3=a1nek?= <msuchanek@suse.de>,
+        Stephen Hemminger <stephen@networkplumber.org>
+Cc:     Tim Harvey <tharvey@gateworks.com>,
+        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+References: <CAJ+vNU05_xH4b8DFVJLpiDTkJ_z9MrBFvf1gSz9P1KXy9POU7w@mail.gmail.com>
+ <5914cae0-e87b-fb94-85dd-33311fc84c52@seco.com>
+ <20220808210945.GP17705@kitsune.suse.cz>
+ <20220808143835.41b38971@hermes.local>
+ <20220808214522.GQ17705@kitsune.suse.cz>
+From:   Sean Anderson <sean.anderson@seco.com>
+Message-ID: <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com>
+Date:   Tue, 9 Aug 2022 16:48:23 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <20220808214522.GQ17705@kitsune.suse.cz>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: OB6icZ9O4PziAax73DUxf4ag9t6kEdLK
-X-Proofpoint-ORIG-GUID: JcDUONQOIUSNN_YcnA-pfNiZWEQ1bWgj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-09_05,2022-08-09_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
- malwarescore=0 adultscore=0 clxscore=1015 priorityscore=1501
- suspectscore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0 mlxscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208090076
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: BLAPR03CA0101.namprd03.prod.outlook.com
+ (2603:10b6:208:32a::16) To DB7PR03MB4972.eurprd03.prod.outlook.com
+ (2603:10a6:10:7d::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 79968b25-3175-4bd5-06b7-08da7a488251
+X-MS-TrafficTypeDiagnostic: PAXPR03MB7611:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pFZRvSv8kfowU083LFHDyZvagu7BxRnjX3CQ1ZYlebp6Xk4HkUqLpeswCe6jS6NDe+OBW90pgwlu3cSaq+LN7XCHAmJNeDLwcKzGXpP56EcXTBHRlr+FsQfA0LAkdz3+lHfcMM2GVA0NFTpKwW4ulpmJc8QA554P1cxP5onAT6NS7bRT+hiXM050OOISIec81WFJXdckMLJ0+jGeqwLiGc6kl5vRG++EdNTTlQnjbTOIKX3W0lOKRPqeneZXN3X0UfChIQwVwc5ww0dmf/0AXFtqGAuCBTbWkZ/CByK7QTxPcBlzjQW+5CY836YRgHjaJC3ybkB3cOhiTJrZ8lozkaGQKGAcjUbEgvPp/c0IE0vyUVJ24Z/HDJY24kVHsjut9LOtLZgNhIn7ALVlU9emKcCRKed4ZViiL3uZ2cjNBiAag4u2wE7rLZoxtjBlvBPu0UONRVmqOSd3A2gGugxiCnppkNLyjI+X/0JhJnvbE/9TFKRX0rMUIqUJFPTnWL9n9q+awQ2E4jNE/0hggjYHO7nGaPMIVUt1ODv1OuxKsdfBZzBEIVfIH0UZEuMkd7KtBJMi5Qk0HwFrok+3/b9BEk74MECytCK1eIwh3/nt6nberl5ixjSqE0+XteDDUK+GUMWzWYjGMATnv6qe96LmJErD/fNaecRtaFnpnT7iuwvjsq744/qcq9TMufu1FxSNYFNTH0KuTM2zcfjFC13whthFVaalSaHSmIkdc0cG3NW0IDgNPWUWk1kf7MkYyHgm2iEsvh315+PJtZqX33NlJBL5Lu7NG//y3+8QxWcHh+2rQQJShuqZfD38Y0cvUtbc3ELf38iQqcNg+Zn62oCyyWXQB1Ahjf5NvD+jCt+sA5wkjGmFhNqdBYB/EQkPj6eASmOxnOXxvq7RqNYEBS5OkQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4972.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(376002)(39850400004)(366004)(396003)(136003)(346002)(5660300002)(6486002)(4326008)(44832011)(478600001)(66946007)(26005)(52116002)(8676002)(41300700001)(66476007)(6512007)(6666004)(2616005)(66556008)(31696002)(6506007)(2906002)(53546011)(86362001)(8936002)(966005)(38350700002)(38100700002)(110136005)(66574015)(186003)(36756003)(316002)(54906003)(83380400001)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UWpyTU5HWjNPU1BQVkFub0xGcGpyazZPQXZWR1BhRERrYXYrTSt6dlBlM1Np?=
+ =?utf-8?B?M2xWOFUxeTd2Nk9SczlzN0gyVmhjb3FOK21QNFovTkJQR09DVDhTYUpWKzRQ?=
+ =?utf-8?B?ZW5pTWJpS0wvalB0eHdjSERHOGppN2Nyei9GdElDWmJTN3htV3BDcGNCMVpn?=
+ =?utf-8?B?dWZqUHYxdUtOemk2QW50OENCWVFtUWcxV2o0Z2YzRlNFZ2hYMEk2a1haUSti?=
+ =?utf-8?B?RTIxUDcyTzQwZm8yTnFZMmhyY21QajhabTNSZTZLMzdPNWkybkRqb3RZUFRa?=
+ =?utf-8?B?UURzRVBPUU9MNzAvMGFmTzhCcWJmZHNWdld4UEY1SmNiK3ZuYlMvdS8rYUd3?=
+ =?utf-8?B?c1ltd2RJTkN2ald1QXRDRWl6RHJKTHRCWmg1eUpRdkpObGpndXdlUktHL3Vw?=
+ =?utf-8?B?V045L0ZkV1JuVENnSlhVNTRBOEVzazdEbzNrM05uTHBxV09mNnh3WWlnQnNY?=
+ =?utf-8?B?ZDRJdCtwK1VVUncwV0dSczJBRUZlUjVRQUh3NjJxamtxdlZ2bmVwamdYNnh6?=
+ =?utf-8?B?N2l0bEEvUmJWaTRYWml2KzRDS3czSGlpeTBoaGkxZEN4emgyRXYwbmtTNU5T?=
+ =?utf-8?B?SG00TzNFcUxhcXN4Y29palNyR3VNdlhHYjAxU0oveEpyY29Hb3JuWHZUVTNp?=
+ =?utf-8?B?Ui9iQzkrdFh3bjRDc2FuT2VKclZlbk4xTUdHNXNPMEhNY1NDTktqRldHNFhG?=
+ =?utf-8?B?eEVhSWlFb2lNemN4a2JCWG92YkdoaWFXd0RramN3L2w4cFN5K3RBR2w1bHU5?=
+ =?utf-8?B?TEVzd2YrSkJxRCs5RENzSGFZdVNwemljdm44czZDb2pEYXEva0wxVUlTY0cr?=
+ =?utf-8?B?dEI1M25BeVI0azh1OWNHVEY1ZmtLUWNPOHZwWnFIYWM4ekFpYkU1Tm1yTVcz?=
+ =?utf-8?B?M1FMZy9rUUNsNmRDRFY3M0lxQmxrd2JzbGVUa25mQ0NPU0dKTkxsMXhsbE1k?=
+ =?utf-8?B?Q3FVcGZiVDBjeDBTNnAzaVJ4eGd6a0EvUUhnSzhWZW1VQ3hmcXp5ZGxtT0E2?=
+ =?utf-8?B?bmUxTFFBWEM3bnRjQTJzMTVVQkZKcStKLzBZK085VDVncTdGeElLZUViUE1F?=
+ =?utf-8?B?dUlJZVlpb3AzNzNoLzV6RGsxMDRjMi90aFg4MmNNaGVtSmFYcXN2WEpmNmo1?=
+ =?utf-8?B?RlZjNzltOWRaNVlQRmFVdjhucTNZR2hEeE41VnRCd0tWM1IwcGQweHhaSXM4?=
+ =?utf-8?B?M25GZjhGWkVFdGtSMjExMktIZnZWQkhCbE85dXdKMkVIUjRlMXN3b0ZMN2FM?=
+ =?utf-8?B?UkdsSEFubnZYKzJMd3VEb0ZrTitmUVozN05oQ0xWSjg3aW1GMStvc3JycE5I?=
+ =?utf-8?B?VXFORnZFa1FUM1J0RmRjRi9OTGpRSVVmd1Z0UXU1SjdwYXNoNmZ3d2dUYmFZ?=
+ =?utf-8?B?QnloT094L3FoMmNRbTF1MmlBcDgvNm5uQVJCWXhEQ3VJVjBlb1hCNGZkSlhS?=
+ =?utf-8?B?SWd5YkpmQ21kNkkzc0JsTjBVVjlITU9GeTF5WWxkYUNWN0pPMEJhRkc2b04r?=
+ =?utf-8?B?M0w5WVlPQmtERnV0bG9aRzdQRk5HRmJIQTRYelEyL002ck5VZ3QxczZ1U0lU?=
+ =?utf-8?B?VGxPUERFY3VYckhEZksyV2RzdFBkN05JSzc4UUNHaW9YeEtDWm5qOVVpNHlH?=
+ =?utf-8?B?a0RtTUh6b2pqN3J5bHg4RHdaS3l2cXRpRVh2ZlVhSjVCc3JWRnU3RHpsRE16?=
+ =?utf-8?B?WC9zSGY3eHlvY1FOSVpUb0ErN2xRQXpIMVByRnhVaW50NUZBSTBXeW9sZFBz?=
+ =?utf-8?B?Sm91REVWL3ZqRVdkeURaSXMxTHRwME5kb0RjaE84ZHh0YmtpTEorS08vWVNY?=
+ =?utf-8?B?NWNraVZqU1dCTG56RndkUTdXQnM1aC9McHZEcVNNcGdlZmdPL3BkeDlmcElR?=
+ =?utf-8?B?ME1YR2Q4TmdRVDlEYnJsVDR6N0pyYmUvRS9lcXk0amhlQlhUNHJNN1FFT2RP?=
+ =?utf-8?B?Yy9oK3lKK2N0TjhmUGhJRVhMWndWbkJXSlpQNmYzQzZwTmhrbytJYzY5S3pW?=
+ =?utf-8?B?dWZ4d2tDaHR4K1c0blNPU1hBbnU4Vjlvd1RzWGs5am5JWHI3MFZCNUJPMTB4?=
+ =?utf-8?B?Z2ZsTEtNd1BLTzRQOUloUmRINlFNbFBtSEw5VXFaUkNJaUlKN3pEMVgyOTFZ?=
+ =?utf-8?B?SkFKdFAzM1lwekpXc1BLM01CY3NwTDFORnF0VVNXUCtOMm9Idi81R2dXVm9l?=
+ =?utf-8?B?TVE9PQ==?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79968b25-3175-4bd5-06b7-08da7a488251
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4972.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2022 20:48:26.9866
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pyZiV5w7vTXjFeM5rOD5TvEP8/yIDMrrH9iPAhqjd7YcQXedvwx15R8BKdCgISaSS7wnGQ4MDMDUAaYu2TVdtg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR03MB7611
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a driver to get the button events from the panel and provide
-them to userspace with the input subsystem. The panel is
-connected with I2C and controls the bus, so the driver registers
-as an I2C slave device.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
-Reviewed-by: Joel Stanley <joel@jms.id.au>
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com> # I2C slave parts
----
- MAINTAINERS                    |   1 +
- drivers/input/misc/Kconfig     |  18 +++
- drivers/input/misc/Makefile    |   1 +
- drivers/input/misc/ibm-panel.c | 198 +++++++++++++++++++++++++++++++++
- 4 files changed, 218 insertions(+)
- create mode 100644 drivers/input/misc/ibm-panel.c
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4dc90f22eb54..aec90a44c044 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9647,6 +9647,7 @@ M:	Eddie James <eajames@linux.ibm.com>
- L:	linux-input@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/input/ibm,op-panel.yaml
-+F:	drivers/input/misc/ibm-panel.c
- 
- IBM Power 842 compression accelerator
- M:	Haren Myneni <haren@us.ibm.com>
-diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-index a18ab7358d8f..8901528bbeb0 100644
---- a/drivers/input/misc/Kconfig
-+++ b/drivers/input/misc/Kconfig
-@@ -730,6 +730,24 @@ config INPUT_ADXL34X_SPI
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called adxl34x-spi.
- 
-+config INPUT_IBM_PANEL
-+	tristate "IBM Operation Panel driver"
-+	depends on I2C_SLAVE || COMPILE_TEST
-+	help
-+	  Say Y here if you have an IBM Operation Panel connected to your system
-+	  over I2C. The panel is typically connected only to a system's service
-+	  processor (BMC).
-+
-+	  If unsure, say N.
-+
-+	  The Operation Panel is a controller with some buttons and an LCD
-+	  display that allows someone with physical access to the system to
-+	  perform various administrative tasks. This driver only supports the part
-+	  of the controller that sends commands to the system.
-+
-+	  To compile this driver as a module, choose M here: the module will be
-+	  called ibm-panel.
-+
- config INPUT_IMS_PCU
- 	tristate "IMS Passenger Control Unit driver"
- 	depends on USB
-diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-index 28dfc444f0a9..9eea13e98d48 100644
---- a/drivers/input/misc/Makefile
-+++ b/drivers/input/misc/Makefile
-@@ -41,6 +41,7 @@ obj-$(CONFIG_INPUT_GPIO_DECODER)	+= gpio_decoder.o
- obj-$(CONFIG_INPUT_GPIO_VIBRA)		+= gpio-vibra.o
- obj-$(CONFIG_INPUT_HISI_POWERKEY)	+= hisi_powerkey.o
- obj-$(CONFIG_HP_SDC_RTC)		+= hp_sdc_rtc.o
-+obj-$(CONFIG_INPUT_IBM_PANEL)		+= ibm-panel.o
- obj-$(CONFIG_INPUT_IMS_PCU)		+= ims-pcu.o
- obj-$(CONFIG_INPUT_IQS269A)		+= iqs269a.o
- obj-$(CONFIG_INPUT_IQS626A)		+= iqs626a.o
-diff --git a/drivers/input/misc/ibm-panel.c b/drivers/input/misc/ibm-panel.c
-new file mode 100644
-index 000000000000..c77cb9b12ebc
---- /dev/null
-+++ b/drivers/input/misc/ibm-panel.c
-@@ -0,0 +1,198 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) IBM Corporation 2020
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/input.h>
-+#include <linux/kernel.h>
-+#include <linux/limits.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/spinlock.h>
-+
-+#define DEVICE_NAME		"ibm-panel"
-+#define PANEL_KEYCODES_COUNT	3
-+
-+struct ibm_panel {
-+	u8 idx;
-+	u8 command[11];
-+	u32 keycodes[PANEL_KEYCODES_COUNT];
-+	spinlock_t lock;	/* protects writes to idx and command */
-+	struct input_dev *input;
-+};
-+
-+static u8 ibm_panel_calculate_checksum(struct ibm_panel *panel)
-+{
-+	u8 chksum;
-+	u16 sum = 0;
-+	unsigned int i;
-+
-+	for (i = 0; i < sizeof(panel->command) - 1; ++i) {
-+		sum += panel->command[i];
-+		if (sum & 0xff00) {
-+			sum &= 0xff;
-+			sum++;
-+		}
-+	}
-+
-+	chksum = sum & 0xff;
-+	chksum = ~chksum;
-+	chksum++;
-+
-+	return chksum;
-+}
-+
-+static void ibm_panel_process_command(struct ibm_panel *panel)
-+{
-+	u8 button;
-+	u8 chksum;
-+
-+	if (panel->command[0] != 0xff && panel->command[1] != 0xf0) {
-+		dev_dbg(&panel->input->dev, "command invalid: %02x %02x\n",
-+			panel->command[0], panel->command[1]);
-+		return;
-+	}
-+
-+	chksum = ibm_panel_calculate_checksum(panel);
-+	if (chksum != panel->command[sizeof(panel->command) - 1]) {
-+		dev_dbg(&panel->input->dev,
-+			"command failed checksum: %u != %u\n", chksum,
-+			panel->command[sizeof(panel->command) - 1]);
-+		return;
-+	}
-+
-+	button = panel->command[2] & 0xf;
-+	if (button < PANEL_KEYCODES_COUNT) {
-+		input_report_key(panel->input, panel->keycodes[button],
-+				 !(panel->command[2] & 0x80));
-+		input_sync(panel->input);
-+	} else {
-+		dev_dbg(&panel->input->dev, "unknown button %u\n",
-+			button);
-+	}
-+}
-+
-+static int ibm_panel_i2c_slave_cb(struct i2c_client *client,
-+				  enum i2c_slave_event event, u8 *val)
-+{
-+	unsigned long flags;
-+	struct ibm_panel *panel = i2c_get_clientdata(client);
-+
-+	dev_dbg(&panel->input->dev, "event: %u data: %02x\n", event, *val);
-+
-+	spin_lock_irqsave(&panel->lock, flags);
-+
-+	switch (event) {
-+	case I2C_SLAVE_STOP:
-+		if (panel->idx == sizeof(panel->command))
-+			ibm_panel_process_command(panel);
-+		else
-+			dev_dbg(&panel->input->dev,
-+				"command incorrect size %u\n", panel->idx);
-+		fallthrough;
-+	case I2C_SLAVE_WRITE_REQUESTED:
-+		panel->idx = 0;
-+		break;
-+	case I2C_SLAVE_WRITE_RECEIVED:
-+		if (panel->idx < sizeof(panel->command))
-+			panel->command[panel->idx++] = *val;
-+		else
-+			/*
-+			 * The command is too long and therefore invalid, so set the index
-+			 * to it's largest possible value. When a STOP is finally received,
-+			 * the command will be rejected upon processing.
-+			 */
-+			panel->idx = U8_MAX;
-+		break;
-+	case I2C_SLAVE_READ_REQUESTED:
-+	case I2C_SLAVE_READ_PROCESSED:
-+		*val = 0xff;
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	spin_unlock_irqrestore(&panel->lock, flags);
-+
-+	return 0;
-+}
-+
-+static int ibm_panel_probe(struct i2c_client *client,
-+			   const struct i2c_device_id *id)
-+{
-+	int i;
-+	int rc;
-+	struct ibm_panel *panel = devm_kzalloc(&client->dev, sizeof(*panel),
-+					       GFP_KERNEL);
-+
-+	if (!panel)
-+		return -ENOMEM;
-+
-+	panel->input = devm_input_allocate_device(&client->dev);
-+	if (!panel->input)
-+		return -ENOMEM;
-+
-+	panel->input->name = client->name;
-+	panel->input->id.bustype = BUS_I2C;
-+
-+	rc = device_property_read_u32_array(&client->dev, "linux,keycodes",
-+					    panel->keycodes,
-+					    PANEL_KEYCODES_COUNT);
-+	if (rc) {
-+		/*
-+		 * Use gamepad buttons as defaults for compatibility with
-+		 * existing applications.
-+		 */
-+		panel->keycodes[0] = BTN_NORTH;
-+		panel->keycodes[1] = BTN_SOUTH;
-+		panel->keycodes[2] = BTN_SELECT;
-+	}
-+
-+	for (i = 0; i < PANEL_KEYCODES_COUNT; ++i)
-+		input_set_capability(panel->input, EV_KEY, panel->keycodes[i]);
-+
-+	rc = input_register_device(panel->input);
-+	if (rc) {
-+		dev_err(&client->dev, "Failed to register input device: %d\n",
-+			rc);
-+		return rc;
-+	}
-+
-+	spin_lock_init(&panel->lock);
-+
-+	i2c_set_clientdata(client, panel);
-+	rc = i2c_slave_register(client, ibm_panel_i2c_slave_cb);
-+	if (rc)
-+		dev_err(&client->dev, "Failed to register as i2c slave: %d\n",
-+			rc);
-+
-+	return rc;
-+}
-+
-+static int ibm_panel_remove(struct i2c_client *client)
-+{
-+	i2c_slave_unregister(client);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ibm_panel_match[] = {
-+	{ .compatible = "ibm,op-panel" },
-+	{ }
-+};
-+
-+static struct i2c_driver ibm_panel_driver = {
-+	.driver = {
-+		.name = DEVICE_NAME,
-+		.of_match_table = ibm_panel_match,
-+	},
-+	.probe = ibm_panel_probe,
-+	.remove = ibm_panel_remove,
-+};
-+module_i2c_driver(ibm_panel_driver);
-+
-+MODULE_AUTHOR("Eddie James <eajames@linux.ibm.com>");
-+MODULE_DESCRIPTION("IBM Operation Panel Driver");
-+MODULE_LICENSE("GPL");
--- 
-2.31.1
+On 8/8/22 5:45 PM, Michal Suchánek wrote:
+> On Mon, Aug 08, 2022 at 02:38:35PM -0700, Stephen Hemminger wrote:
+>> On Mon, 8 Aug 2022 23:09:45 +0200
+>> Michal Suchánek <msuchanek@suse.de> wrote:
+>> 
+>> > On Mon, Aug 08, 2022 at 03:57:55PM -0400, Sean Anderson wrote:
+>> > > Hi Tim,
+>> > > 
+>> > > On 8/8/22 3:18 PM, Tim Harvey wrote:  
+>> > > > Greetings,
+>> > > > 
+>> > > > I'm trying to understand if there is any implication of 'ethernet<n>'
+>> > > > aliases in Linux such as:
+>> > > >         aliases {
+>> > > >                 ethernet0 = &eqos;
+>> > > >                 ethernet1 = &fec;
+>> > > >                 ethernet2 = &lan1;
+>> > > >                 ethernet3 = &lan2;
+>> > > >                 ethernet4 = &lan3;
+>> > > >                 ethernet5 = &lan4;
+>> > > >                 ethernet6 = &lan5;
+>> > > >         };
+>> > > > 
+>> > > > I know U-Boot boards that use device-tree will use these aliases to
+>> > > > name the devices in U-Boot such that the device with alias 'ethernet0'
+>> > > > becomes eth0 and alias 'ethernet1' becomes eth1 but for Linux it
+>> > > > appears that the naming of network devices that are embedded (ie SoC)
+>> > > > vs enumerated (ie pci/usb) are always based on device registration
+>> > > > order which for static drivers depends on Makefile linking order and
+>> > > > has nothing to do with device-tree.
+>> > > > 
+>> > > > Is there currently any way to control network device naming in Linux
+>> > > > other than udev?  
+>> > > 
+>> > > You can also use systemd-networkd et al. (but that is the same kind of mechanism)
+>> > >   
+>> > > > Does Linux use the ethernet<n> aliases for anything at all?  
+>> > > 
+>> > > No :l  
+>> > 
+>> > Maybe it's a great opportunity for porting biosdevname to DT based
+>> > platforms ;-)
+>> 
+>> Sorry, biosdevname was wrong way to do things.
+>> Did you look at the internals, it was dumpster diving as root into BIOS.
+> 
+> When it's BIOS what defines the names then you have to read them from
+> the BIOS. Recently it was updated to use some sysfs file or whatver.
+> It's not like you would use any of that code with DT, anyway.
+> 
+>> Systemd-networkd does things in much more supportable manner using existing
+>> sysfs API's.
+> 
+> Which is a dumpster of systemd code, no thanks.
+> 
+> I want my device naming independent of the init system, especially if
+> it's systemd.
 
+Well, there's always nameif...
+
+That said, I have made [1] for people using systemd-networkd.
+
+--Sean
+
+[1] https://github.com/systemd/systemd/pull/24265
