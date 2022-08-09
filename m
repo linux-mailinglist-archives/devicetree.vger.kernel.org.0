@@ -2,75 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7300558DB53
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 17:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5BB858DB56
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 17:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244742AbiHIPqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 11:46:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47650 "EHLO
+        id S241136AbiHIPsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 11:48:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244455AbiHIPqK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 11:46:10 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33702219C
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 08:46:09 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id bq11so17580766lfb.5
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 08:46:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=CUedU6kMASw5REsAcuy2rO2+Wp5ASMICS1gAQM+BXYY=;
-        b=P1QkEOL1WUP4tnuF7Y1xar4/FEns/eDHcVaXALqbiZj+gZh03Zd9CncqLUbsqGDeNT
-         yriUelceut0gw2L6IliSMNBkjt7XrqlycfxJR97uEcPzCIaBquqRdjZ5ej7SA7v2urjX
-         Gu52fMzfMUmmSPOdtRCIHTqagbWXZ60mWYdtn5FGEJJinmg9Fmf7qSaFsy0B/IJqtpke
-         aH68xD7YBmH1MnpMx/6WlW2NwUjdCzb0zzEutqOpgivm1KEE1MhSRzgfsT1hc0jNVKok
-         DUmgtqM/s2fGxLtChxHkvY0hGHFwDJQXxewMDHIm5lu+2dapjkgrD8TclBV+h+w2RKLw
-         YvEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=CUedU6kMASw5REsAcuy2rO2+Wp5ASMICS1gAQM+BXYY=;
-        b=lVOWLPoXxI/VFz86sNWkHZcB1YM3rFvR3wn/NFINwqdWc7Mu5jf3FKkL3T0yF2x6PU
-         FmI95rZkfWe5G5kx705xnvUY2bZ/PE8OyDd/E/ctpd466U+SpypVNHZQjOPI2IO4d0Ad
-         +2WuGAs80FT+19NvdAb14on+JuLrO4dfVxQQ0kDpfklmHQevEKWafS0Y6d/Im2HGQ4M/
-         PQ97t4s4NxX774PwjBZif3MVMD2WgIn7zFRvnPhflJTvJJea7KANrOw2/AG5UqzfcN5w
-         SAfHUerAYK7p7CZUrgR+gs+BO6hJ7EcBLmk81GGxzlKcEgTftw0iEXNLAHx20lQ8Vv9H
-         48hg==
-X-Gm-Message-State: ACgBeo2X2T4RC7uSDD01NQHureitzCGLJ3k3eNfvgBJlC8zntvYwG8gL
-        trE0KQCS9eS9o67LSl/EZ4niZQ==
-X-Google-Smtp-Source: AA6agR4rsgnglfBObga0gxJ1sKawFYHi0syINQ0jiop/OCEHI1VG//5n8L7ed33EWhXywjENTTaFtQ==
-X-Received: by 2002:a19:f007:0:b0:48a:f479:af01 with SMTP id p7-20020a19f007000000b0048af479af01mr8209712lfc.59.1660059967109;
-        Tue, 09 Aug 2022 08:46:07 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id c18-20020a05651221b200b0048afa5daaf3sm13026lft.123.2022.08.09.08.46.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Aug 2022 08:46:06 -0700 (PDT)
-Message-ID: <400b78db-17ac-b9d8-fcf9-3a4dc7821ea8@linaro.org>
-Date:   Tue, 9 Aug 2022 18:46:04 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: marvell: Update Armada 37xx platform
- bindings
-Content-Language: en-US
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>
+        with ESMTP id S234503AbiHIPsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 11:48:22 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94243115A;
+        Tue,  9 Aug 2022 08:48:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4D413B80B7F;
+        Tue,  9 Aug 2022 15:48:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3D29C433C1;
+        Tue,  9 Aug 2022 15:48:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660060098;
+        bh=jzxpOtEPbQM8mbY4SedlJQVQXOxJmNcc1pN13oORODs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nV15EUVI7mCkEaWl1Zy+XOTgtawbJNPw/pFkEtXA7gD0PYSYcu7g7YtRf2j+M8A0P
+         hJ87HwNnj1lAXc+6EDt6FAPQx/tEgm91qH3fllxplCnyNwUmhm5/ozh7bJJGUdwG/f
+         MNLDk/pvMAiBrjj3WS2ewvFQTyGV8mAY+Nbaf19Onr6fcZex6Br/Y3N7ZH3/3XL2tR
+         eZt4C0RnEerkG9Ea+2u11W91GJrZ2fe49BkTRRxbXg1Y0A2/7NBXjRpZI6kMaIxbJw
+         O+B/KxQomxz3/hcpgipI/FHtj8Vd9dDok8OZ60dXA3ZUpv2aFb/PMydSQs2A12djpq
+         Pf/r0o8sf3Y0Q==
+Received: by pali.im (Postfix)
+        id E920FC1F; Tue,  9 Aug 2022 17:48:15 +0200 (CEST)
+Date:   Tue, 9 Aug 2022 17:48:15 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: marvell: Update Armada 37xx platform
+ bindings
+Message-ID: <20220809154815.ja2mu6ponqxnubsd@pali>
 References: <20220713200123.22612-1-pali@kernel.org>
  <20220808202352.iimhb2q6yawi35y6@pali>
  <20a349c9-a479-ad5b-fe33-4758a773972e@linaro.org>
  <20220809131357.u3dfsy3gu3iamiv7@pali>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220809131357.u3dfsy3gu3iamiv7@pali>
-Content-Type: text/plain; charset=UTF-8
+ <400b78db-17ac-b9d8-fcf9-3a4dc7821ea8@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <400b78db-17ac-b9d8-fcf9-3a4dc7821ea8@linaro.org>
+User-Agent: NeoMutt/20180716
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,47 +63,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2022 16:13, Pali Rohár wrote:
-> On Tuesday 09 August 2022 08:58:50 Krzysztof Kozlowski wrote:
->> On 08/08/2022 23:23, Pali Rohár wrote:
->>> PING?
->>>
->>> On Wednesday 13 July 2022 22:01:23 Pali Rohár wrote:
->>>> Distinguish between Armada 3700 family, Armada 3710 SoC and Armada 3720 SoC.
->>>> Armada 3720 DB is name of the board with Armada 3720 SoC, so correctly
->>>> indicate SoC in example.
->>>>
->>>> Signed-off-by: Pali Rohár <pali@kernel.org>
->>>> ---
->>>>  .../devicetree/bindings/arm/marvell/armada-37xx.txt        | 7 ++++++-
->>>>  1 file changed, 6 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
->>>> index f6d6642d81c0..d2ca008de266 100644
->>>> --- a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
->>>> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
->>>> @@ -4,6 +4,11 @@ Marvell Armada 37xx Platforms Device Tree Bindings
->>>>  Boards using a SoC of the Marvell Armada 37xx family must carry the
->>>>  following root node property:
->>>>  
->>>> + - compatible: must contain "marvell,armada3700"
->>>> +
->>>> +In addition, boards using the Marvell Armada 3710 SoC shall have the
->>>> +following property before the previous one:
->>>> +
->>
->> The change is an ABI break, which looks reasonable, but still platform
->> maintainer should comment on it. Especially on the aspect why the
->> marvell,armada3710 fallback was chosen at the first place.
+On Tuesday 09 August 2022 18:46:04 Krzysztof Kozlowski wrote:
+> On 09/08/2022 16:13, Pali Rohár wrote:
+> > On Tuesday 09 August 2022 08:58:50 Krzysztof Kozlowski wrote:
+> >> On 08/08/2022 23:23, Pali Rohár wrote:
+> >>> PING?
+> >>>
+> >>> On Wednesday 13 July 2022 22:01:23 Pali Rohár wrote:
+> >>>> Distinguish between Armada 3700 family, Armada 3710 SoC and Armada 3720 SoC.
+> >>>> Armada 3720 DB is name of the board with Armada 3720 SoC, so correctly
+> >>>> indicate SoC in example.
+> >>>>
+> >>>> Signed-off-by: Pali Rohár <pali@kernel.org>
+> >>>> ---
+> >>>>  .../devicetree/bindings/arm/marvell/armada-37xx.txt        | 7 ++++++-
+> >>>>  1 file changed, 6 insertions(+), 1 deletion(-)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+> >>>> index f6d6642d81c0..d2ca008de266 100644
+> >>>> --- a/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+> >>>> +++ b/Documentation/devicetree/bindings/arm/marvell/armada-37xx.txt
+> >>>> @@ -4,6 +4,11 @@ Marvell Armada 37xx Platforms Device Tree Bindings
+> >>>>  Boards using a SoC of the Marvell Armada 37xx family must carry the
+> >>>>  following root node property:
+> >>>>  
+> >>>> + - compatible: must contain "marvell,armada3700"
+> >>>> +
+> >>>> +In addition, boards using the Marvell Armada 3710 SoC shall have the
+> >>>> +following property before the previous one:
+> >>>> +
+> >>
+> >> The change is an ABI break, which looks reasonable, but still platform
+> >> maintainer should comment on it. Especially on the aspect why the
+> >> marvell,armada3710 fallback was chosen at the first place.
+> > 
+> > I do not think this is ABI break but rather incorrect documentation and
+> > bug in some board dts files.
 > 
-> I do not think this is ABI break but rather incorrect documentation and
-> bug in some board dts files.
+> This documentation is the ABI, especially if actually implemented in the
+> DTS files, therefore by all definitions of DT ABI this is an ABI break.
 
-This documentation is the ABI, especially if actually implemented in the
-DTS files, therefore by all definitions of DT ABI this is an ABI break.
+Ok.
 
-What you are saying about "incorrect documentation and bug in some DTS
-files" is a good reason to break the ABI, but it is still a break.
+> What you are saying about "incorrect documentation and bug in some DTS
+> files" is a good reason to break the ABI, but it is still a break.
+> 
+> Best regards,
+> Krzysztof
 
-Best regards,
-Krzysztof
+I think it is now clear what we both mean, just we used different
+terminology for the same thing.
