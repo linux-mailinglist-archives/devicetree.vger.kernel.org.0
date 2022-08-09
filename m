@@ -2,155 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBDCD58D57F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:40:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E45BD58D599
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 10:45:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235573AbiHIIkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 04:40:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42294 "EHLO
+        id S235252AbiHIIpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 04:45:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231240AbiHIIkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:40:15 -0400
-Received: from hutie.ust.cz (unknown [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B652B25A;
-        Tue,  9 Aug 2022 01:40:12 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1660034408; bh=ocENm80MLW5PFFZzg4otiD+/O1XDTvMnr6yPMkKdupI=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=ZI5tbbVAk8aEHnffQ8NGMg5OJj0LvJlOP9dZhS378eclIt12/zkCM2QGsS8RwymIU
-         2BqgLJ/prI99QcthrBWHWNDXeWO18k4vjBgehVgE6/fNGhl+uSl68aF2KKNU5Rl7Gx
-         l8dBKAp3/sAd0ZWjiH3JVm4rQ09O8PdaTKcjTbcw=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.80.82.1.1\))
-Subject: Re: [PATCH 1/3] dt-bindings: sound: Add Apple MCA I2S transceiver
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <8ce59940-f559-35cb-5f86-37399da166a1@linaro.org>
-Date:   Tue, 9 Aug 2022 10:40:07 +0200
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>, asahi@lists.linux.dev,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <DCBCB694-F5A3-4E76-9518-89E9A1A4AB55@cutebit.org>
-References: <20220808224153.3634-1-povik+lin@cutebit.org>
- <20220808224153.3634-2-povik+lin@cutebit.org>
- <8ce59940-f559-35cb-5f86-37399da166a1@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_FAIL,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S230519AbiHIIpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 04:45:15 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 566D127B;
+        Tue,  9 Aug 2022 01:45:11 -0700 (PDT)
+X-UUID: 74151f9dd63743758b3fee8ac54b4786-20220809
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=kFDmMzyEzTYNBwRWu31AZJ5AbILkXUIXqRV/7NlKW30=;
+        b=tXot6WlNqHKyuOwJuIHG4ew6TkosoM9Q+50/xiizMxehC82lv31sj29CqfdpjAurI1lY6u7tJUta4oScN6lPapywCIUYaI4KHomz/XKiWc4xlcOPMd2il7H364VjgWjDmo9yNsepuKLSLY/xg+pS+b/fobzpxOX8FKo13U38Nt0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.9,REQID:3d170f10-b9fe-4dda-8c65-06ebc539b389,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Release
+        _Ham,ACTION:release,TS:100
+X-CID-INFO: VERSION:1.1.9,REQID:3d170f10-b9fe-4dda-8c65-06ebc539b389,OB:0,LOB:
+        0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:100,FILE:0,BULK:0,RULE:Spam_GS98
+        1B3D,ACTION:quarantine,TS:100
+X-CID-META: VersionHash:3d8acc9,CLOUDID:43eb4fae-9535-44a6-aa9b-7f62b79b6ff6,C
+        OID:84513465f887,Recheck:0,SF:28|17|19|48,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 74151f9dd63743758b3fee8ac54b4786-20220809
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <kewei.xu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 537277632; Tue, 09 Aug 2022 16:45:07 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 9 Aug 2022 16:45:06 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 9 Aug 2022 16:45:05 +0800
+From:   <kewei.xu@mediatek.com>
+To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <caiyu.chen@mediatek.com>, <kewei.xu@mediatek.com>,
+        <david-yh.chiu@mediatek.com>
+Subject: [PATCH v2 1/1] dt-binding: serial: mediatek,uart: update bingding for MT8188
+Date:   Tue, 9 Aug 2022 16:44:57 +0800
+Message-ID: <20220809084457.31381-1-kewei.xu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Kewei Xu <kewei.xu@mediatek.com>
 
+Add a DT binding documentation for the MT8188 soc.
 
-> On 9. 8. 2022, at 10:15, Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org> wrote:
->=20
-> On 09/08/2022 01:41, Martin Povi=C5=A1er wrote:
->> Add binding schema for MCA I2S transceiver found on Apple M1 and =
-other
->> chips.
->=20
->=20
-> Thank you for your patch. There is something to discuss/improve.
->=20
->> +title: Apple MCA I2S transceiver
->> +
->> +description: |
->> +  MCA is an I2S transceiver peripheral found on M1 and other Apple =
-chips. It is
->> +  composed of a number of identical clusters which can operate =
-independently
->> +  or in an interlinked fashion. Up to 6 clusters have been seen on =
-an MCA.
->> +
->> +maintainers:
->> +  - Martin Povi=C5=A1er <povik+lin@cutebit.org>
+Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
+---
+v2: Resumbit the patch based on the linux-next branch.
+---
+ Documentation/devicetree/bindings/serial/mediatek,uart.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-(...)
-
->> +  dmas:
->> +    minItems: 16
->> +    maxItems: 24
->> +    description:
->> +      DMA channels corresponding to the SERDES units in the =
-peripheral. They are
->> +      listed in groups of four per cluster, and within the group =
-they are given
->> +      as associated to the TXA, RXA, TXB, RXB units.
->> +
->> +  dma-names:
->> +    minItems: 16
->> +    maxItems: 24
->> +    items:
->> +      pattern: '^(tx|rx)[0-5][ab]$'
->=20
-> Use consistent quotes (everywhere " or ').
-
-OK
-
-> Describe the items because otherwise you allow any order. The list =
-will
-> be unfortunately quite long, but still readable enough.
-
-Well, I would assume the =E2=80=98dmas=E2=80=99 property as described =
-above has an implicit
-natural order, and the dma-names are tied to it. You order it like the =
-other
-per-cluster properties, and then within the cluster the order is fixed =
-to
-'TXA, RXA, TXB, RXB=E2=80=99 (maybe the word =E2=80=98respectively=E2=80=99=
- thrown into the description
-would have made it clearer).
-
-Anyway that=E2=80=99s just discussing my assumptions. I can roll out the =
-items list
-for =E2=80=98dma-names=E2=80=99, if that=E2=80=99s what you mean. Or do =
-you mean explicitly describing
-the items in =E2=80=98dmas=E2=80=99 too?
-
->> +    description: |
->> +      Names for the DMA channels: 'tx'/'rx', then cluster number, =
-then 'a'/'b'
->> +      based on the associated SERDES unit.
->> +
-
-(...)
-
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    mca: mca@9b600000 {
->=20
-> You called it I2S transceiver but isn't it also actually I2S =
-controller?
-> If yes, then the node name should be probably "i2s".
-
-It=E2=80=99s a peripheral you use to transmit and receive samples over =
-I2S, frankly
-I don't know the nomenclature.
-
->> +      compatible =3D "apple,t6000-mca", "apple,mca";
->> +      reg =3D <0x9b600000 0x10000>,
->> +            <0x9b200000 0x20000>;
->> +
->=20
->=20
-> Best regards,
-> Krzysztof
-
-All best,
-Martin
+diff --git a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+index 4ff27d6d4d5b..fe098d98af6e 100644
+--- a/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
++++ b/Documentation/devicetree/bindings/serial/mediatek,uart.yaml
+@@ -42,6 +42,7 @@ properties:
+               - mediatek,mt8173-uart
+               - mediatek,mt8183-uart
+               - mediatek,mt8186-uart
++              - mediatek,mt8188-uart
+               - mediatek,mt8192-uart
+               - mediatek,mt8195-uart
+               - mediatek,mt8516-uart
+-- 
+2.18.0
 
