@@ -2,115 +2,456 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36BEA58D85A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 13:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 283DF58D8CE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 14:40:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242740AbiHILqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 07:46:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36564 "EHLO
+        id S238858AbiHIMkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 08:40:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242613AbiHILqO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 07:46:14 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE92B248ED
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 04:46:12 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id by6so4310075ljb.11
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 04:46:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=QsmUqL/K7yU3SMzZ0FTopGj6zj1tOvzFKhz171z4vRY=;
-        b=QTHzvwv/41mQMSEBfjxOTjKs8N4fwJGEfzsaCC0mt/Ihiv3I3PcDjCpAmjDTbs/uxF
-         EIn0/mCBPJTSgtJ9ICMCNob8aGvq6IUlcNqhH5EbJliIytnq1AY+nL9nr1QZ+Bedc31v
-         NlDQf0q31jKIfztN03g1jZxVeAiLIsLNxqJxg3HK2vkS6i8TNHvqGap0+MOHhxL5bRwK
-         13POO0aAlCuOhu8p7ZTlPoPj/K8v40sLuvINWM6DyDlHldBkLUU92pHrWgjTV7x9B7C/
-         J8pjg0kDs46WT1AwPDzQYQrBguHsRBBZZDkbpzvoZS7cyVx+PkUZxkUU5ernSavqaQ4u
-         x6vQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=QsmUqL/K7yU3SMzZ0FTopGj6zj1tOvzFKhz171z4vRY=;
-        b=E2UeHIJV0+6J3AoojzcvAdq+f9RdubkHSSskOtjSgM9zlFpotOophnw1iPyQ7BDz+V
-         xwJlgYyApqCKKshhurteWVKmeufAua7R8teLXk75ZBtRdI+w71zx/slXSmeDBnEit1Ze
-         nR1MJ6GuBsCGGTlaVtqDEEB5bOXfmz6W2sf3D3/99M+ov1PtEYzU0hRTV2M31/RS0gUY
-         6nCuXP9jJW3ILmvPnPiCYHJn8fSa9C4hrKwM31eym0vMHfAzYpzJ+1CWJTHTxBlphKt9
-         cFkidvHAMTEwDOdPC97ya/GC3xd8svgPKt02c6Hbd1qjy2XIbVSrGbLdCixNtvp06h94
-         uTwQ==
-X-Gm-Message-State: ACgBeo0N+3eApGLTyTpREdMn8uRS5s2pP+QwQLZ/EmXmwMK10FXZhLrg
-        QC2qZoERTb1BjcT3Y0apaAyfflkO9LIzuH5gBgXPs7bpEunWhQ==
-X-Google-Smtp-Source: AA6agR64z/0ZB46ZAz00rHuh7z2Dk81PNldSaQZLPyWTwsm2PmcCZAGxyQg2VQnsxR5Tdof9+9x2LT0E/6IFrcwwqFk=
-X-Received: by 2002:a2e:a4d6:0:b0:25e:439e:39d0 with SMTP id
- p22-20020a2ea4d6000000b0025e439e39d0mr7029084ljm.169.1660045571001; Tue, 09
- Aug 2022 04:46:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220808181555.10333-1-semen.protsenko@linaro.org>
-In-Reply-To: <20220808181555.10333-1-semen.protsenko@linaro.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Tue, 9 Aug 2022 14:45:59 +0300
-Message-ID: <CAPLW+4nFzxa6gH_uxRuypWFS3WzrENS5Wz5j32L6q53T7eZG_Q@mail.gmail.com>
-Subject: Re: [PATCH 0/7] clk: samsung: exynos850: Add CMUs needed for SysMMU
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        with ESMTP id S230178AbiHIMkD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 08:40:03 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E031118355;
+        Tue,  9 Aug 2022 05:39:58 -0700 (PDT)
+Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.56])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4M2CJ03w5ZzlVqJ;
+        Tue,  9 Aug 2022 20:37:04 +0800 (CST)
+Received: from kwepemm600005.china.huawei.com (7.193.23.191) by
+ dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Tue, 9 Aug 2022 20:39:56 +0800
+Received: from [10.67.102.118] (10.67.102.118) by
+ kwepemm600005.china.huawei.com (7.193.23.191) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.24; Tue, 9 Aug 2022 20:39:55 +0800
+Subject: Re: [PATCH v8 1/5] crypto: aspeed: Add HACE hash driver
+To:     Neal Liu <neal_liu@aspeedtech.com>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        Dhananjay Phadke <dhphadke@microsoft.com>,
+        "Johnny Huang" <johnny_huang@aspeedtech.com>
+CC:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+References: <20220726113448.2964968-1-neal_liu@aspeedtech.com>
+ <20220726113448.2964968-2-neal_liu@aspeedtech.com>
+ <5ca081b1-9a96-5b58-7a27-75c94af119d2@huawei.com>
+ <HK0PR06MB32026709F521B1D2F6A1B95C80639@HK0PR06MB3202.apcprd06.prod.outlook.com>
+ <256d64d6-0a27-7714-60ac-580b371c2502@huawei.com>
+ <HK0PR06MB320261A52E2B8B9151ADDE4D80629@HK0PR06MB3202.apcprd06.prod.outlook.com>
+From:   liulongfang <liulongfang@huawei.com>
+Message-ID: <100bb780-39e9-bb8e-f568-e8d8d9112abf@huawei.com>
+Date:   Tue, 9 Aug 2022 20:39:55 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <HK0PR06MB320261A52E2B8B9151ADDE4D80629@HK0PR06MB3202.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="gbk"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.67.102.118]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ kwepemm600005.china.huawei.com (7.193.23.191)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 8 Aug 2022 at 21:15, Sam Protsenko <semen.protsenko@linaro.org> wrote:
->
-> This patch series implements some missing Exynos850 clock domains. Right
-> now those are mainly required for SysMMU clocks, although of course
-> there is a lot of other clocks generated by those CMUs.
->
-> Exynos850 has next SysMMU instances:
->   - SYSMMU_AUD
->   - SYSMMU_DPU
->   - SYSMMU_IS0
->   - SYSMMU_IS1
->   - SYSMMU_MFCMSCL
->
-> As CMU_DPU is already implemented, that leaves CMU_AUD, CMU_IS and
-> CMU_MFCMSCL to be implemented, which is done in this series:
->   - CMU_AUD: audio clocks
->   - CMU_IS: camera clocks (Image Signal Processing)
->   - CMU_MFCMSCL: multi-format codec and scaler clocks
->
-> Sam Protsenko (7):
->   dt-bindings: clock: Add bindings for Exynos850 CMU_AUD
->   dt-bindings: clock: Add bindings for Exynos850 CMU_IS
->   dt-bindings: clock: Add bindings for Exynos850 CMU_MFCMSCL
->   clk: samsung: exynos850: Style fixes
->   clk: samsung: exynos850: Implement CMU_AUD domain
->   clk: samsung: exynos850: Implement CMU_IS domain
->   clk: samsung: exynos850: Implement CMU_MFCMSCL domain
->
->  .../clock/samsung,exynos850-clock.yaml        |  69 ++
->  drivers/clk/samsung/clk-exynos850.c           | 682 +++++++++++++++++-
->  include/dt-bindings/clock/exynos850.h         | 136 +++-
->  3 files changed, 883 insertions(+), 4 deletions(-)
->
-> --
-> 2.30.2
->
+On 2022/8/9 15:39, Neal Liu wrote:
+>>>> On 2022/7/26 19:34, Neal Liu wrote:
+>>>>> Hash and Crypto Engine (HACE) is designed to accelerate the
+>>>>> throughput of hash data digest, encryption, and decryption.
+>>>>>
+>>>>> Basically, HACE can be divided into two independently engines
+>>>>> - Hash Engine and Crypto Engine. This patch aims to add HACE hash
+>>>>> engine driver for hash accelerator.
+>>>>>
+>>>>> Signed-off-by: Neal Liu <neal_liu@aspeedtech.com>
+>>>>> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
+>>>>> ---
+>>>>>  MAINTAINERS                              |    7 +
+>>>>>  drivers/crypto/Kconfig                   |    1 +
+>>>>>  drivers/crypto/Makefile                  |    1 +
+>>>>>  drivers/crypto/aspeed/Kconfig            |   32 +
+>>>>>  drivers/crypto/aspeed/Makefile           |    6 +
+>>>>>  drivers/crypto/aspeed/aspeed-hace-hash.c | 1389
+>>>> ++++++++++++++++++++++
+>>>>>  drivers/crypto/aspeed/aspeed-hace.c      |  213 ++++
+>>>>>  drivers/crypto/aspeed/aspeed-hace.h      |  186 +++
+>>>>>  8 files changed, 1835 insertions(+)  create mode 100644
+>>>>> drivers/crypto/aspeed/Kconfig  create mode 100644
+>>>>> drivers/crypto/aspeed/Makefile  create mode 100644
+>>>>> drivers/crypto/aspeed/aspeed-hace-hash.c
+>>>>>  create mode 100644 drivers/crypto/aspeed/aspeed-hace.c
+>>>>>  create mode 100644 drivers/crypto/aspeed/aspeed-hace.h
+>>>>>
+>>>>> diff --git a/MAINTAINERS b/MAINTAINERS index
+>>>>> f55aea311af5..23a0215b7e42 100644
+>>>>> --- a/MAINTAINERS
+>>>>> +++ b/MAINTAINERS
+>>>>> @@ -3140,6 +3140,13 @@ S:	Maintained
+>>>>>  F:	Documentation/devicetree/bindings/media/aspeed-video.txt
+>>>>>  F:	drivers/media/platform/aspeed/
+>>>>>
+>>>>> +ASPEED CRYPTO DRIVER
+>>>>> +M:	Neal Liu <neal_liu@aspeedtech.com>
+>>>>> +L:	linux-aspeed@lists.ozlabs.org (moderated for non-subscribers)
+>>>>> +S:	Maintained
+>>>>> +F:
+>>>> 	Documentation/devicetree/bindings/crypto/aspeed,ast2500-hace.yaml
+>>>>> +F:	drivers/crypto/aspeed/
+>>>>> +
+>>>>>  ASUS NOTEBOOKS AND EEEPC ACPI/WMI EXTRAS DRIVERS
+>>>>>  M:	Corentin Chary <corentin.chary@gmail.com>
+>>>>>  L:	acpi4asus-user@lists.sourceforge.net
+>>>>> diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig index
+>>>>> ee99c02c84e8..b9f5ee126881 100644
+>>>>> --- a/drivers/crypto/Kconfig
+>>>>> +++ b/drivers/crypto/Kconfig
+>>>>> @@ -933,5 +933,6 @@ config CRYPTO_DEV_SA2UL
+>>>>>  	  acceleration for cryptographic algorithms on these devices.
+>>>>>
+>>>>>  source "drivers/crypto/keembay/Kconfig"
+>>>>> +source "drivers/crypto/aspeed/Kconfig"
+>>>>>
+>>>>>  endif # CRYPTO_HW
+>>>>> diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile index
+>>>>> f81703a86b98..116de173a66c 100644
+>>>>> --- a/drivers/crypto/Makefile
+>>>>> +++ b/drivers/crypto/Makefile
+>>>>> @@ -1,5 +1,6 @@
+>>>>>  # SPDX-License-Identifier: GPL-2.0
+>>>>>  obj-$(CONFIG_CRYPTO_DEV_ALLWINNER) += allwinner/
+>>>>> +obj-$(CONFIG_CRYPTO_DEV_ASPEED) += aspeed/
+>>>>>  obj-$(CONFIG_CRYPTO_DEV_ATMEL_AES) += atmel-aes.o
+>>>>>  obj-$(CONFIG_CRYPTO_DEV_ATMEL_SHA) += atmel-sha.o
+>>>>>  obj-$(CONFIG_CRYPTO_DEV_ATMEL_TDES) += atmel-tdes.o diff --git
+>>>>> a/drivers/crypto/aspeed/Kconfig b/drivers/crypto/aspeed/Kconfig new
+>>>>> file mode 100644 index 000000000000..059e627efef8
+>>>>> --- /dev/null
+>>>>> +++ b/drivers/crypto/aspeed/Kconfig
+>>>>> @@ -0,0 +1,32 @@
+>>>>> +config CRYPTO_DEV_ASPEED
+>>>>> +	tristate "Support for Aspeed cryptographic engine driver"
+>>>>> +	depends on ARCH_ASPEED
+>>>>> +	help
+>>>>> +	  Hash and Crypto Engine (HACE) is designed to accelerate the
+>>>>> +	  throughput of hash data digest, encryption and decryption.
+>>>>> +
+>>>>> +	  Select y here to have support for the cryptographic driver
+>>>>> +	  available on Aspeed SoC.
+>>>>> +
+>>>>> +config CRYPTO_DEV_ASPEED_HACE_HASH
+>>>>> +	bool "Enable Aspeed Hash & Crypto Engine (HACE) hash"
+>>>>> +	depends on CRYPTO_DEV_ASPEED
+>>>>> +	select CRYPTO_ENGINE
+>>>>> +	select CRYPTO_SHA1
+>>>>> +	select CRYPTO_SHA256
+>>>>> +	select CRYPTO_SHA512
+>>>>> +	select CRYPTO_HMAC
+>>>>> +	help
+>>>>> +	  Select here to enable Aspeed Hash & Crypto Engine (HACE)
+>>>>> +	  hash driver.
+>>>>> +	  Supports multiple message digest standards, including
+>>>>> +	  SHA-1, SHA-224, SHA-256, SHA-384, SHA-512, and so on.
+>>>>> +
+>>>>> +config CRYPTO_DEV_ASPEED_HACE_HASH_DEBUG
+>>>>> +	bool "Enable HACE hash debug messages"
+>>>>> +	depends on CRYPTO_DEV_ASPEED_HACE_HASH
+>>>>> +	help
+>>>>> +	  Print HACE hash debugging messages if you use this option
+>>>>> +	  to ask for those messages.
+>>>>> +	  Avoid enabling this option for production build to
+>>>>> +	  minimize driver timing.
+>>>>> diff --git a/drivers/crypto/aspeed/Makefile
+>>>> b/drivers/crypto/aspeed/Makefile
+>>>>> new file mode 100644
+>>>>> index 000000000000..8bc8d4fed5a9
+>>>>> --- /dev/null
+>>>>> +++ b/drivers/crypto/aspeed/Makefile
+>>>>> @@ -0,0 +1,6 @@
+>>>>> +obj-$(CONFIG_CRYPTO_DEV_ASPEED) += aspeed_crypto.o
+>>>>> +aspeed_crypto-objs := aspeed-hace.o \
+>>>>> +		      $(hace-hash-y)
+>>>>> +
+>>>>> +obj-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_HASH) +=
+>> aspeed-hace-hash.o
+>>>>> +hace-hash-$(CONFIG_CRYPTO_DEV_ASPEED_HACE_HASH) :=
+>>>> aspeed-hace-hash.o
+>>>>> diff --git a/drivers/crypto/aspeed/aspeed-hace-hash.c
+>>>> b/drivers/crypto/aspeed/aspeed-hace-hash.c
+>>>>> new file mode 100644
+>>>>> index 000000000000..63a8ad694996
+>>>>> --- /dev/null
+>>>>> +++ b/drivers/crypto/aspeed/aspeed-hace-hash.c
+>>>>> @@ -0,0 +1,1389 @@
+> 
+> [...]
+> 
+>>>>> +static int aspeed_ahash_dma_prepare_sg(struct aspeed_hace_dev
+>>>> *hace_dev)
+>>>>> +{
+>>>>> +	struct aspeed_engine_hash *hash_engine =
+>> &hace_dev->hash_engine;
+>>>>> +	struct ahash_request *req = hash_engine->req;
+>>>>> +	struct aspeed_sham_reqctx *rctx = ahash_request_ctx(req);
+>>>>> +	struct aspeed_sg_list *src_list;
+>>>>> +	struct scatterlist *s;
+>>>>> +	int length, remain, sg_len, i;
+>>>>> +	int rc = 0;
+>>>>> +
+>>>>> +	remain = (rctx->total + rctx->bufcnt) % rctx->block_size;
+>>>>> +	length = rctx->total + rctx->bufcnt - remain;
+>>>>> +
+>>>>> +	AHASH_DBG(hace_dev, "%s:0x%x, %s:0x%x, %s:0x%x, %s:0x%x\n",
+>>>>> +		  "rctx total", rctx->total, "bufcnt", rctx->bufcnt,
+>>>>> +		  "length", length, "remain", remain);
+>>>>> +
+>>>>> +	sg_len = dma_map_sg(hace_dev->dev, rctx->src_sg, rctx->src_nents,
+>>>>> +			    DMA_TO_DEVICE);
+>>>>> +	if (!sg_len) {
+>>>>> +		dev_warn(hace_dev->dev, "dma_map_sg() src error\n");
+>>>>> +		rc = -ENOMEM;
+>>>>> +		goto end;
+>>>>> +	}
+>>>>> +
+>>>>> +	src_list = (struct aspeed_sg_list *)hash_engine->ahash_src_addr;
+>>>>> +	rctx->digest_dma_addr = dma_map_single(hace_dev->dev,
+>> rctx->digest,
+>>>>> +					       SHA512_DIGEST_SIZE,
+>>>>> +					       DMA_BIDIRECTIONAL);
+>>>>> +	if (dma_mapping_error(hace_dev->dev, rctx->digest_dma_addr)) {
+>>>>> +		dev_warn(hace_dev->dev, "dma_map() rctx digest error\n");
+>>>>> +		rc = -ENOMEM;
+>>>>> +		goto free_src_sg;
+>>>>> +	}
+>>>>> +
+>>>>> +	if (rctx->bufcnt != 0) {
+>>>>> +		rctx->buffer_dma_addr = dma_map_single(hace_dev->dev,
+>>>>> +						       rctx->buffer,
+>>>>> +						       rctx->block_size * 2,
+>>>>> +						       DMA_TO_DEVICE);
+>>>>> +		if (dma_mapping_error(hace_dev->dev,
+>> rctx->buffer_dma_addr)) {
+>>>>> +			dev_warn(hace_dev->dev, "dma_map() rctx buffer
+>> error\n");
+>>>>> +			rc = -ENOMEM;
+>>>>> +			goto free_rctx_digest;
+>>>>> +		}
+>>>>> +
+>>>>> +		src_list[0].phy_addr = rctx->buffer_dma_addr;
+>>>>> +		src_list[0].len = rctx->bufcnt;
+>>>>> +		length -= src_list[0].len;
+>>>>> +
+>>>>> +		/* Last sg list */
+>>>>> +		if (length == 0)
+>>>>> +			src_list[0].len |= HASH_SG_LAST_LIST;
+>>>>> +
+>>>>> +		src_list[0].phy_addr = cpu_to_le32(src_list[0].phy_addr);
+>>>>> +		src_list[0].len = cpu_to_le32(src_list[0].len);
+>>>>> +		src_list++;
+>>>>> +	}
+>>>>> +
+>>>>> +	if (length != 0) {
+>>>>> +		for_each_sg(rctx->src_sg, s, sg_len, i) {
+>>>>> +			src_list[i].phy_addr = sg_dma_address(s);
+>>>>> +
+>>>>> +			if (length > sg_dma_len(s)) {
+>>>>> +				src_list[i].len = sg_dma_len(s);
+>>>>> +				length -= sg_dma_len(s);
+>>>>> +
+>>>>> +			} else {
+>>>>> +				/* Last sg list */
+>>>>> +				src_list[i].len = length;
+>>>>> +				src_list[i].len |= HASH_SG_LAST_LIST;
+>>>>> +				length = 0;
+>>>>> +			}
+>>>>> +
+>>>>> +			src_list[i].phy_addr = cpu_to_le32(src_list[i].phy_addr);
+>>>>> +			src_list[i].len = cpu_to_le32(src_list[i].len);
+>>>>> +		}
+>>>>> +	}
+>>>>> +
+>>>>> +	if (length != 0) {
+>>>>> +		rc = -EINVAL;
+>>>>> +		goto free_rctx_buffer;
+>>>>> +	}
+>>>>> +
+>>>>> +	rctx->offset = rctx->total - remain;
+>>>>> +	hash_engine->src_length = rctx->total + rctx->bufcnt - remain;
+>>>>> +	hash_engine->src_dma = hash_engine->ahash_src_dma_addr;
+>>>>> +	hash_engine->digest_dma = rctx->digest_dma_addr;
+>>>>> +
+>>>>> +	goto end;
+>>>> Exiting via "goto xx" is not recommended in normal code logic (this
+>>>> requires two jumps), exiting via "return 0" is more efficient.
+>>>> This code method has many times in your entire driver, it is
+>>>> recommended to modify it.
+>>>
+>>> If not exiting via "goto xx", how to release related resources without any
+>> problem?
+>>> Is there any proper way to do this?
+>> maybe I didn't describe it clearly enough.
+>> "in normal code logic"  means rc=0
+>> In this scenario (rc=0), "goto xx" is no longer required, it can be replaced with
+>> "return 0"
+> 
+> Okay, I got your point. In this case, "goto end" is no longer required of course.
+> I would send next patch with this fixed included.
+> 
+>>>
+>>>>> +
+>>>>> +free_rctx_buffer:
+>>>>> +	if (rctx->bufcnt != 0)
+>>>>> +		dma_unmap_single(hace_dev->dev, rctx->buffer_dma_addr,
+>>>>> +				 rctx->block_size * 2, DMA_TO_DEVICE);
+>>>>> +free_rctx_digest:
+>>>>> +	dma_unmap_single(hace_dev->dev, rctx->digest_dma_addr,
+>>>>> +			 SHA512_DIGEST_SIZE, DMA_BIDIRECTIONAL);
+>>>>> +free_src_sg:
+>>>>> +	dma_unmap_sg(hace_dev->dev, rctx->src_sg, rctx->src_nents,
+>>>>> +		     DMA_TO_DEVICE);
+>>>>> +end:
+>>>>> +	return rc;
+>>>>> +}
+>>>>> +
+>>>>> +static int aspeed_ahash_complete(struct aspeed_hace_dev *hace_dev)
+>>>>> +{
+>>>>> +	struct aspeed_engine_hash *hash_engine =
+>> &hace_dev->hash_engine;
+>>>>> +	struct ahash_request *req = hash_engine->req;
+>>>>> +
+>>>>> +	AHASH_DBG(hace_dev, "\n");
+>>>>> +
+>>>>> +	hash_engine->flags &= ~CRYPTO_FLAGS_BUSY;
+>>>>> +
+>>>>> +	crypto_finalize_hash_request(hace_dev->crypt_engine_hash, req, 0);
+>>>>> +
+>>>>> +	return 0;
+>>>>> +}
+>>>>> +
+>>>>> +/*
+>>>>> + * Copy digest to the corresponding request result.
+>>>>> + * This function will be called at final() stage.
+>>>>> + */
+>>>>> +static int aspeed_ahash_transfer(struct aspeed_hace_dev *hace_dev)
+>>>>> +{
+>>>>> +	struct aspeed_engine_hash *hash_engine =
+>> &hace_dev->hash_engine;
+>>>>> +	struct ahash_request *req = hash_engine->req;
+>>>>> +	struct aspeed_sham_reqctx *rctx = ahash_request_ctx(req);
+>>>>> +
+>>>>> +	AHASH_DBG(hace_dev, "\n");
+>>>>> +
+>>>>> +	dma_unmap_single(hace_dev->dev, rctx->digest_dma_addr,
+>>>>> +			 SHA512_DIGEST_SIZE, DMA_BIDIRECTIONAL);
+>>>>> +
+>>>>> +	dma_unmap_single(hace_dev->dev, rctx->buffer_dma_addr,
+>>>>> +			 rctx->block_size * 2, DMA_TO_DEVICE);
+>>>>> +
+>>>>> +	memcpy(req->result, rctx->digest, rctx->digsize);
+>>>>> +
+>>>>> +	return aspeed_ahash_complete(hace_dev); }
+>>>>> +
+>>>>> +/*
+>>>>> + * Trigger hardware engines to do the math.
+>>>>> + */
+>>>>> +static int aspeed_hace_ahash_trigger(struct aspeed_hace_dev
+>> *hace_dev,
+>>>>> +				     aspeed_hace_fn_t resume)
+>>>>> +{
+>>>>> +	struct aspeed_engine_hash *hash_engine =
+>> &hace_dev->hash_engine;
+>>>>> +	struct ahash_request *req = hash_engine->req;
+>>>>> +	struct aspeed_sham_reqctx *rctx = ahash_request_ctx(req);
+>>>>> +
+>>>>> +	AHASH_DBG(hace_dev, "src_dma:0x%x, digest_dma:0x%x,
+>>>> length:0x%x\n",
+>>>>> +		  hash_engine->src_dma, hash_engine->digest_dma,
+>>>>> +		  hash_engine->src_length);
+>>>>> +
+>>>>> +	rctx->cmd |= HASH_CMD_INT_ENABLE;
+>>>>> +	hash_engine->resume = resume;
+>>>>> +
+>>>>> +	ast_hace_write(hace_dev, hash_engine->src_dma,
+>>>> ASPEED_HACE_HASH_SRC);
+>>>>> +	ast_hace_write(hace_dev, hash_engine->digest_dma,
+>>>>> +		       ASPEED_HACE_HASH_DIGEST_BUFF);
+>>>>> +	ast_hace_write(hace_dev, hash_engine->digest_dma,
+>>>>> +		       ASPEED_HACE_HASH_KEY_BUFF);
+>>>>> +	ast_hace_write(hace_dev, hash_engine->src_length,
+>>>>> +		       ASPEED_HACE_HASH_DATA_LEN);
+>>>>> +
+>>>>> +	/* Memory barrier to ensure all data setup before engine starts */
+>>>>> +	mb();
+>>>>> +
+>>>>> +	ast_hace_write(hace_dev, rctx->cmd, ASPEED_HACE_HASH_CMD);
+>>>> A hardware service sending requires 5 hardware commands to complete.
+>>>> In a multi-concurrency scenario, how to ensure the order of commands?
+>>>> (If two processes send hardware task at the same time, How to ensure
+>>>> that the hardware recognizes which task the current command belongs
+>>>> to?)
+>>>
+>>> Linux crypto engine would guarantee that only one request at each time to
+>> be dequeued from engine queue to process.
+>>> And there has lock mechanism inside Linux crypto engine to prevent the
+>> scenario you mentioned.
+>>> So only 1 aspeed_hace_ahash_trigger() hardware service would go through
+>> at a time.
+>>>
+>>> [...]
+>>> .
+>>>
+>> You may not understand what I mean, the command flow in a normal scenario:
+>> request_A: Acmd1-->Acmd2-->Acmd3-->Acmd4-->Acmd5
+>> request_B: Bcmd1-->Bcmd2-->Bcmd3-->Bcmd4-->Bcmd5
+>> In a multi-process concurrent scenario, multiple crypto engines can be enabled,
+>> and each crypto engine sends a request. If multiple requests here enter
+>> aspeed_hace_ahash_trigger() at the same time, the command flow will be
+>> intertwined like this:
+>> request_A, request_B:
+>> Acmd1-->Bcmd1-->Acmd2-->Acmd3-->Bcmd2-->Acmd4-->Bcmd3-->Bcmd4-->A
+>> cmd5-->Bcmd5
+>>
+>> In this command flow, how does your hardware identify whether these
+>> commands belong to request_A or request_B?
+>> Thanks.
+>> Longfang.
+> 
+> For my understanding, all requests will transfer into engine queue through crypto_transfer_hash_request_to_engine().
+> In your example, request_A & request_B would also enqueue into the engine queue, and pump out 1 request which might be FIFO to handle it.
+> crypto_pump_requests() will dequeue only 1 request at a time and to prepare_request() & do_one_request() if it's registered.
+> And aspeed_hace_ahash_trigger() is inside do_one_request(), so that means no other requests would come in during aspeed_hace_ahash_trigger() whole process.
+> The command flow intertwined
+> Acmd1-->Bcmd1-->Acmd2-->Acmd3-->Bcmd2-->Acmd4-->Bcmd3-->Bcmd4-->Acmd5-->Bcmd5 would not exist in any scenario.
+> Correct me if I'm misunderstanding, Thanks.
+> 
+> .
+> 
+At first£¬You need to understand the difference between threads and processes that I said.
+In a multi-threaded scenario, all threads will share the engine of a process, there will only be one engine queue
+to send cmds at the same time. However, in a multi-process scenario, each process will have its own engine queue,
+and when running at the same time, there will be multiple queues sending cmds.
 
-This patch series is superseded by v2 here: [1].
-
-[1] https://lkml.org/lkml/2022/8/9/328
+Then, I understand what you mean. Your driver uses the software queue of the encryption engine to ensure the cmds order.
+This method can ensure that the cmds of multiple threads in one process are sent in order.
+But you still need to consider the problem of multiple processes, when using your device for hash operations
+in multiple user processes, there will be multiple crypto engine software queues sending commands at the same time.
+Thanks
+Longfang.
