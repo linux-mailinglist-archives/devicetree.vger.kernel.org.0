@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B23658D829
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 13:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F4E358D826
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 13:33:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241261AbiHILdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S241596AbiHILdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 9 Aug 2022 07:33:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54692 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241406AbiHILdb (ORCPT
+        with ESMTP id S241416AbiHILdb (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 07:33:31 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 546C223BFF
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9092B248C5
         for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 04:33:29 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id kb8so21691641ejc.4
+Received: by mail-ed1-x52d.google.com with SMTP id f22so14684432edc.7
         for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 04:33:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=cCwcywsP+Q8pFGrRpLkItK7/GuA7qeDKcbe6OfitMjM=;
-        b=KvAZ2IoN1+wzhpsZ0h0PV3rsQPdKrLYpQ3uUqeLn5AH02NLpINpz+MgZdOpt0L1Jdt
-         td5FTY4B8C8Pfh6coO9BKCViM9tSNNasY3wOoo/+CTIo92vlmAsU9Y0D4HFc5RVGyRq7
-         AVTb5tt/wlentTkjjQFDsNSa9XNZANoh/R4jrSo9VRIDBWGn+/Eju2GgkZjKrZPgWA7a
-         zq3Rq0AuLvjyF5MrPFK5LR+CNif+2tP24G8iFVvbt0qKlGhmA2lzDdZOjALb551Sj7d4
-         tBym/H2tjsFdSj9PEDuYwrLxjrMrlNDKHCNyqQ48/OXV5BJDT4pLPEnkagq2YvUlmR/D
-         smFQ==
+        bh=889hlD1ho6n/GA784dTSvUCYoqPA1nuSRX9iN5LTl7I=;
+        b=s+VQYwlTtMncZwIaDlzTeyk4S2iK9jzrnMXdaNYlJye1sbKxeMHhcfHZC/bz8vpm9l
+         IcCbKoyFgltNeGROjglwvzaX3CapMq7mSWeaQf5aLKh+tE093UuKRrwKMq11zPF7thcX
+         r/1zAPLj4OyTwAdohRWY6Jmh4bOkTZIPG1o3qJmSRIQZXgtk5SBQzLrignB1WWivFd/e
+         PkD+Rfke3huZbSoZkkcAyTmHuW2DYnY6n1wuYhkMfM0zSqqltEVxZb1WsfCslRIWfLG5
+         Y1v2kDK1JBKhlbWVfyMvmQt+XeVhhwElmVQpo/mjVP4wOzQ21i3JNwTRbrgnqs9D3xis
+         5DqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=cCwcywsP+Q8pFGrRpLkItK7/GuA7qeDKcbe6OfitMjM=;
-        b=63LTSLbWANT9+0cr7ZCymldVbZwYUDEKRKh4bZvkcGZ+uGUQrJ5iS8th165dh4ye8j
-         B7ypEbr69QrA3pOmPv5Wdg5TO3FqPY0E1iMLnrF1aKntibUyek1gzicCT0W6ypdV4Ao6
-         j0gXtHBURjx1/udIlRuNQ8UJNKS0+t2dYH3wcQ0AxMGtkB0IaNaMMFCn3hPumW9hV90T
-         Xs+ql8ysg4JXxwAYun1OW4ZjcK5/b+ATFCNPKPN7h24s1N8ieCQmY+ZTORhYFamWd7JY
-         KVwmm9cqdsM3fNxg/dcc93vnE02m5BGv66RjzD09GIjodVSvzDashh6KCbX79wJuVffa
-         KYiQ==
-X-Gm-Message-State: ACgBeo3/X0OFdqCMxTd5M4wyqsDXnq0hPAtEuD4g0ZVzRgbnbjNBZY/3
-        PBFB6xCZmRWBoImBX20mUSb6uA==
-X-Google-Smtp-Source: AA6agR5aWq4lEiBZ+pUNHwi+9fOXDG9GgzYd9TTDQ+m7U/IpGDc0h5iU+Ror21mdqx1LP4Mw3+90pA==
-X-Received: by 2002:a17:907:e8d:b0:730:a4e8:27ed with SMTP id ho13-20020a1709070e8d00b00730a4e827edmr16038849ejc.58.1660044807880;
-        Tue, 09 Aug 2022 04:33:27 -0700 (PDT)
+        bh=889hlD1ho6n/GA784dTSvUCYoqPA1nuSRX9iN5LTl7I=;
+        b=tPA9G0jtMgLTiXomzPkW6tIss3JgZ7NXimGJ7vGP3CJjx6lmsXeN7RAnJL27husZJ/
+         mhhUt2K4D1RArAq2eRJ87Vv7XQuV3n9HI1nOqxECYqOFdqINptJ5aVvH4cui9l32GdDS
+         vjCF5DLvHF88hD4prDMmzCK2PQe2weiTxWfbudSyYeo/EF+Pp9jrcaF/GzB9o5zz2ptQ
+         7t62RMeGEUwrmGVDtJiYv+q7VQ5nz+DP+ORo3eOElkWf6MiPV1WhbKwJFVqtLHepYEkn
+         rUScy2YNNpTNi5EFJk7B+d6TTaYd+CvohGzCYx7HOMK5Sn2yz6Ml3RdrSzd2U8AmkcfS
+         GGUQ==
+X-Gm-Message-State: ACgBeo0MDMw8w0N5UeSKeJZM6iO2X/YNCISoQ8Uv67TWIGd1NYCXb0mQ
+        52h8HpHxNQOPVXNpOMOdF29WGA==
+X-Google-Smtp-Source: AA6agR64lvncagWgUfaaLzpJdMGks7RtcI5cEH5eDUzB7/BxgSwGU/2FDYKyxLysPXYt4yc0tmYluw==
+X-Received: by 2002:a05:6402:26c5:b0:43e:2f1b:31c2 with SMTP id x5-20020a05640226c500b0043e2f1b31c2mr21261884edd.424.1660044809162;
+        Tue, 09 Aug 2022 04:33:29 -0700 (PDT)
 Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id lb5-20020a170907784500b0072b13ac9ca3sm1012099ejc.183.2022.08.09.04.33.27
+        by smtp.gmail.com with ESMTPSA id o3-20020a170906768300b007304d084c5esm1006993ejm.166.2022.08.09.04.33.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 04:33:27 -0700 (PDT)
+        Tue, 09 Aug 2022 04:33:28 -0700 (PDT)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -63,9 +63,9 @@ Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 3/9] dt-bindings: clock: Add bindings for Exynos850 CMU_MFCMSCL
-Date:   Tue,  9 Aug 2022 14:33:17 +0300
-Message-Id: <20220809113323.29965-4-semen.protsenko@linaro.org>
+Subject: [PATCH v2 4/9] clk: samsung: exynos850: Style fixes
+Date:   Tue,  9 Aug 2022 14:33:18 +0300
+Message-Id: <20220809113323.29965-5-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220809113323.29965-1-semen.protsenko@linaro.org>
 References: <20220809113323.29965-1-semen.protsenko@linaro.org>
@@ -81,111 +81,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CMU_MFCMSCL generates MFC, M2M, MCSC and JPEG clocks for BLK_MFCMSCL.
-Add clock indices and binding documentation for CMU_MFCMSCL.
+Fix some typos in comments and do small coding style improvements.
 
 Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 ---
 Changes in v2:
   - (none)
 
- .../clock/samsung,exynos850-clock.yaml        | 25 +++++++++++++++
- include/dt-bindings/clock/exynos850.h         | 32 ++++++++++++++++++-
- 2 files changed, 56 insertions(+), 1 deletion(-)
+ drivers/clk/samsung/clk-exynos850.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-index 7f2e0b1c764c..141cf173f87d 100644
---- a/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/samsung,exynos850-clock.yaml
-@@ -39,6 +39,7 @@ properties:
-       - samsung,exynos850-cmu-dpu
-       - samsung,exynos850-cmu-hsi
-       - samsung,exynos850-cmu-is
-+      - samsung,exynos850-cmu-mfcmscl
-       - samsung,exynos850-cmu-peri
+diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
+index cd9725f1dbf7..ef32546d3090 100644
+--- a/drivers/clk/samsung/clk-exynos850.c
++++ b/drivers/clk/samsung/clk-exynos850.c
+@@ -173,7 +173,6 @@ PNAME(mout_peri_uart_p)		= { "oscclk", "dout_shared0_div4",
+ 				    "dout_shared1_div4", "oscclk" };
+ PNAME(mout_peri_ip_p)		= { "oscclk", "dout_shared0_div4",
+ 				    "dout_shared1_div4", "oscclk" };
+-
+ /* List of parent clocks for Muxes in CMU_TOP: for CMU_DPU */
+ PNAME(mout_dpu_p)		= { "dout_shared0_div3", "dout_shared1_div3",
+ 				    "dout_shared0_div4", "dout_shared1_div4" };
+@@ -599,7 +598,7 @@ static const unsigned long hsi_clk_regs[] __initconst = {
+ 	CLK_CON_GAT_GOUT_HSI_USB20DRD_TOP_BUS_CLK_EARLY,
+ };
  
-   clocks:
-@@ -216,6 +217,30 @@ allOf:
-             - const: dout_is_vra
-             - const: dout_is_gdc
+-/* List of parent clocks for Muxes in CMU_PERI */
++/* List of parent clocks for Muxes in CMU_HSI */
+ PNAME(mout_hsi_bus_user_p)	= { "oscclk", "dout_hsi_bus" };
+ PNAME(mout_hsi_mmc_card_user_p)	= { "oscclk", "dout_hsi_mmc_card" };
+ PNAME(mout_hsi_usb20drd_user_p)	= { "oscclk", "dout_hsi_usb20drd" };
+@@ -963,7 +962,7 @@ static const unsigned long dpu_clk_regs[] __initconst = {
+ 	CLK_CON_GAT_GOUT_DPU_SYSREG_PCLK,
+ };
  
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,exynos850-cmu-mfcmscl
-+
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: External reference clock (26 MHz)
-+            - description: Multi-Format Codec clock (from CMU_TOP)
-+            - description: Memory to Memory Scaler clock (from CMU_TOP)
-+            - description: Multi-Channel Scaler clock (from CMU_TOP)
-+            - description: JPEG codec clock (from CMU_TOP)
-+
-+        clock-names:
-+          items:
-+            - const: oscclk
-+            - const: dout_mfcmscl_mfc
-+            - const: dout_mfcmscl_m2m
-+            - const: dout_mfcmscl_mcsc
-+            - const: dout_mfcmscl_jpeg
-+
-   - if:
-       properties:
-         compatible:
-diff --git a/include/dt-bindings/clock/exynos850.h b/include/dt-bindings/clock/exynos850.h
-index f8bf26f118c1..88d5289883d3 100644
---- a/include/dt-bindings/clock/exynos850.h
-+++ b/include/dt-bindings/clock/exynos850.h
-@@ -73,7 +73,19 @@
- #define CLK_DOUT_IS_ITP			61
- #define CLK_DOUT_IS_VRA			62
- #define CLK_DOUT_IS_GDC			63
--#define TOP_NR_CLK			64
-+#define CLK_MOUT_MFCMSCL_MFC		64
-+#define CLK_MOUT_MFCMSCL_M2M		65
-+#define CLK_MOUT_MFCMSCL_MCSC		66
-+#define CLK_MOUT_MFCMSCL_JPEG		67
-+#define CLK_GOUT_MFCMSCL_MFC		68
-+#define CLK_GOUT_MFCMSCL_M2M		69
-+#define CLK_GOUT_MFCMSCL_MCSC		70
-+#define CLK_GOUT_MFCMSCL_JPEG		71
-+#define CLK_DOUT_MFCMSCL_MFC		72
-+#define CLK_DOUT_MFCMSCL_M2M		73
-+#define CLK_DOUT_MFCMSCL_MCSC		74
-+#define CLK_DOUT_MFCMSCL_JPEG		75
-+#define TOP_NR_CLK			76
+-/* List of parent clocks for Muxes in CMU_CORE */
++/* List of parent clocks for Muxes in CMU_DPU */
+ PNAME(mout_dpu_user_p)		= { "oscclk", "dout_dpu" };
  
- /* CMU_APM */
- #define CLK_RCO_I3C_PMIC		1
-@@ -225,6 +237,24 @@
- #define CLK_GOUT_IS_SYSREG_PCLK		23
- #define IS_NR_CLK			24
- 
-+/* CMU_MFCMSCL */
-+#define CLK_MOUT_MFCMSCL_MFC_USER		1
-+#define CLK_MOUT_MFCMSCL_M2M_USER		2
-+#define CLK_MOUT_MFCMSCL_MCSC_USER		3
-+#define CLK_MOUT_MFCMSCL_JPEG_USER		4
-+#define CLK_DOUT_MFCMSCL_BUSP			5
-+#define CLK_GOUT_MFCMSCL_CMU_MFCMSCL_PCLK	6
-+#define CLK_GOUT_MFCMSCL_TZPC_PCLK		7
-+#define CLK_GOUT_MFCMSCL_JPEG_ACLK		8
-+#define CLK_GOUT_MFCMSCL_M2M_ACLK		9
-+#define CLK_GOUT_MFCMSCL_MCSC_CLK		10
-+#define CLK_GOUT_MFCMSCL_MFC_ACLK		11
-+#define CLK_GOUT_MFCMSCL_PPMU_ACLK		12
-+#define CLK_GOUT_MFCMSCL_PPMU_PCLK		13
-+#define CLK_GOUT_MFCMSCL_SYSMMU_CLK		14
-+#define CLK_GOUT_MFCMSCL_SYSREG_PCLK		15
-+#define MFCMSCL_NR_CLK				16
-+
- /* CMU_PERI */
- #define CLK_MOUT_PERI_BUS_USER		1
- #define CLK_MOUT_PERI_UART_USER		2
+ static const struct samsung_mux_clock dpu_mux_clks[] __initconst = {
 -- 
 2.30.2
 
