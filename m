@@ -2,75 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E073158E181
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 23:08:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE95158E18A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 23:12:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229450AbiHIVHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 17:07:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
+        id S229487AbiHIVLy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 17:11:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229934AbiHIVFx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 17:05:53 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C6154599D
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 14:05:49 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-10ee900cce0so15494259fac.5
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 14:05:49 -0700 (PDT)
+        with ESMTP id S229711AbiHIVLm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 17:11:42 -0400
+Received: from mail-oa1-x2b.google.com (mail-oa1-x2b.google.com [IPv6:2001:4860:4864:20::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A3F85E31D
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 14:11:39 -0700 (PDT)
+Received: by mail-oa1-x2b.google.com with SMTP id 586e51a60fabf-10ea9ef5838so15510742fac.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 14:11:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc;
-        bh=46DbGyQMRqNHGkxsacJCotXRTrnXUBQPUgKwQCTQR8k=;
-        b=hKJ9CRNm64FZ36uHItRlkf0idiXTuCMHIGEr6dAZWogMfifrszy0oFCa8H7K6Cah9D
-         55TjcK/iPn+BvOBQtb3mTI/51rUKzCQKkeAftF7q4oAP41j2EtShrtivvHKSpR5bfZer
-         kKomkfpi78zEBQWdUTGBQsWZoO1hLcqLrubVg3hbnYziSqG7Np8t99DOzJt15uvfu4DH
-         lIl3P/v4VaAuXaU2DVxn1GSS9n3BdSp8H0AaoYSW06MbcdfjeAjzYF6jJv0KLF0567nM
-         IvcbioXxyho8pz1HTFTb4zgU+MfEOO3JI1a95UB3T4VXsLIsG9LxbQS1K6baKYW1BMBZ
-         sV8g==
+        bh=0RDlI0yOZFKLzfsXOiJhSEf3VmQ/yEncp6iJ3cB4fto=;
+        b=gMasx+0sDjRymuLWGt9b7mXSG5oWJydXMpw9X46dcNXprWjNn48EPwebcrs61YCsgv
+         0rCLP6e5Z6aVOtJKVpYWqBFdk9JTfPWxh4Dx6aecrZXlwWaqMSfmUEaYBgrDmWK4gyv7
+         s/1CoZljQU/Xv48NHvR/z9cFORA+T+mDbX3JmnE8mfvQhVO4mhDnIDnlrmC/fln4L8Ky
+         Ku/GzFC+NkTh/IXenqQPvCJcWPcrpyNkhSTr2tI4xYdpofLdSj9RFkS13/2K6xOlwAbn
+         kIVpAaV6354QUOirWlVKniNri7W5et4VYRcd5M87hQlMJXcu26xskMLjwKkXHAN2ljH9
+         1ofQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=46DbGyQMRqNHGkxsacJCotXRTrnXUBQPUgKwQCTQR8k=;
-        b=QxtbWVbCd4LJMZKQ3H9Mxdgv9CBtbSqUaTxhW08XYM+VK6+Y+LFGqAHUNDYOFcz5nT
-         vMzyeeJspQ6QajOCzoGJ4c4R0uCsXfRqBBg9cY/8eB/xBM93rWSWPja/bZ83cCoR52uM
-         xSUlnToD983SUNDitjuvyGTqemiZuCWNHdL6HnMVtqCDqiEZxSXJ3zlczqHMfbEgTAdD
-         YmB/Oq7fA3KXPlrgeBBY/WQQM/u8D5k6Dbi6xBFPAIATTbH3abADxK/cb1s906ZXvwf7
-         9DP6INsMgvW/nPuDmX3uoQkidT6PEG6qpvaqUOr+0Kb9i45qpL2y48BV+x/1RkKJa2md
-         T5yw==
-X-Gm-Message-State: ACgBeo1BnX/GVxxYqIkFAWxGVK2eJs04KQlZvNQYawBJBcLtz5X0/fXm
-        yFHCLF2vjwmyOdFSvWffqLXB3g==
-X-Google-Smtp-Source: AA6agR7/jfhQKdcyS9t/lnwAnJxheoLryGMKECjJwkUJ1IJiQ9e3xVupz1MV7wbT5OutnB3H7N+IWA==
-X-Received: by 2002:a05:6870:5818:b0:116:a478:7f6a with SMTP id r24-20020a056870581800b00116a4787f6amr170549oap.204.1660079148210;
-        Tue, 09 Aug 2022 14:05:48 -0700 (PDT)
+        bh=0RDlI0yOZFKLzfsXOiJhSEf3VmQ/yEncp6iJ3cB4fto=;
+        b=bovZSaRr9PjkW1QLTEv7RclUebrMuV/cdboRgboiSVwsxxodTkzw8sSeV/nrEoYgyd
+         8nJx+mtGOyJtxQlZBAt3wQpxVpXaWm+v7hpRU59EL9PHcXlBGv56znQywfTFymyKfMCv
+         HUPH+57/lCV3rjyLOumbIw1Y9MdUSx07s5psimK566XQn8hdN+Jddk4Gae46qtX4OIS3
+         Ri6f3cKs9ogaF+7vyHsfSvPzidnhT0dceefxt6wOToQOXg24Eo/2W3ymC0iNrZJbEUeE
+         YclVZUXs2MiTbObf23H0wLnQhnl3Y69w4xBHUvFEaWXDPjuNdW0C0T4m3UruCMWI9C0h
+         5qrw==
+X-Gm-Message-State: ACgBeo0W8780ZZDxDy0LtjkW8dpSYqm7RhSWVq7azhnH4F88sPslhNUm
+        n1JzCsL4MSQjjX4HoiKoYq47xQ==
+X-Google-Smtp-Source: AA6agR5Dm0fRPPYug/WAD/FJ+8g5sch6O4DIf560RcIw2R1zzt4YkkkbsV4kVW1csUcD7MQX3u72qg==
+X-Received: by 2002:a05:6870:3281:b0:10e:4d35:dcb2 with SMTP id q1-20020a056870328100b0010e4d35dcb2mr149316oac.283.1660079499050;
+        Tue, 09 Aug 2022 14:11:39 -0700 (PDT)
 Received: from baldur ([2600:380:785a:7aa8:200:ff:fe00:0])
-        by smtp.gmail.com with ESMTPSA id s70-20020acaa949000000b0032e3cca8561sm214842oie.21.2022.08.09.14.05.45
+        by smtp.gmail.com with ESMTPSA id s9-20020a056870630900b0010c17e6c699sm3391992oao.47.2022.08.09.14.11.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 14:05:47 -0700 (PDT)
-Date:   Tue, 9 Aug 2022 16:05:43 -0500
+        Tue, 09 Aug 2022 14:11:38 -0700 (PDT)
+Date:   Tue, 9 Aug 2022 16:11:32 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc:     freedreno <freedreno@lists.freedesktop.org>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        Rob Clark <robdclark@gmail.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
+To:     Shinjo Park <peremen@gmail.com>
+Cc:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/5] clk/qcom: Support gdsc collapse polling using
- 'reset' inteface
-Message-ID: <YvLMJ2yQRhBFp2y9@baldur>
-References: <1659172664-10345-1-git-send-email-quic_akhilpo@quicinc.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] ARM: dts: qcom: msm8960: add the device node of
+ USB1
+Message-ID: <YvLNhO4DmeaF2GyM@baldur>
+References: <2654048.mvXUDI8C0e@ainazi>
+ <20220803074608.21048-1-peremen@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1659172664-10345-1-git-send-email-quic_akhilpo@quicinc.com>
+In-Reply-To: <20220803074608.21048-1-peremen@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -81,49 +75,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 30 Jul 04:17 CDT 2022, Akhil P Oommen wrote:
+On Wed 03 Aug 02:46 CDT 2022, Shinjo Park wrote:
 
-> 
-> Some clients like adreno gpu driver would like to ensure that its gdsc
-> is collapsed at hardware during a gpu reset sequence. This is because it
-> has a votable gdsc which could be ON due to a vote from another subsystem
-> like tz, hyp etc or due to an internal hardware signal. To allow
-> this, gpucc driver can expose an interface to the client driver using
-> reset framework. Using this the client driver can trigger a polling within
-> the gdsc driver.
-> 
-> This series is rebased on top of linus's master branch.
-> 
-> Related discussion: https://patchwork.freedesktop.org/patch/493144/
+> Use the same USB definition as qcom-apq8064.dtsi, tested on Casio GzOne.
 > 
 
-Forgive me if I'm assuming too much, but isn't this an extension of:
+I think this looks good, but I have a v2 of patch 1 and a v3 of patch 2,
+and I don't seem to have patch 3 in my inbox(?)
 
-85a3d920d30a ("clk: qcom: Add a dummy enable function for GX gdsc")
+Can you please resubmit the 3 patches with a --cover-letter, instead of
+each patch being a reply of the previous instance of that particular
+patch? This will make it much easier for me to merge the end result.
 
-With the additional requirement that disable should really ensure that
-the GDSC is turned off?
-
-Regards,
+Thanks,
 Bjorn
 
+> Signed-off-by: Shinjo Park <peremen@gmail.com>
+> Reviewed-by: David Heidelberg <david@ixit.cz>
+> ---
 > 
-> Akhil P Oommen (5):
->   dt-bindings: clk: qcom: Support gpu cx gdsc reset
->   clk: qcom: Allow custom reset ops
->   clk: qcom: gpucc-sc7280: Add cx collapse reset support
->   clk: qcom: gdsc: Add a reset op to poll gdsc collapse
->   arm64: dts: qcom: sc7280: Add Reset support for gpu
+> v3:
+>  - Include missing clock/qcom,lcc-msm8960.h to make cleanly applicable
 > 
->  arch/arm64/boot/dts/qcom/sc7280.dtsi          |  3 +++
->  drivers/clk/qcom/gdsc.c                       | 23 +++++++++++++++++++----
->  drivers/clk/qcom/gdsc.h                       |  7 +++++++
->  drivers/clk/qcom/gpucc-sc7280.c               |  6 ++++++
->  drivers/clk/qcom/reset.c                      |  6 ++++++
->  drivers/clk/qcom/reset.h                      |  2 ++
->  include/dt-bindings/clock/qcom,gpucc-sc7280.h |  3 +++
->  7 files changed, 46 insertions(+), 4 deletions(-)
+> v2:
+>  - Rewrite commit message
+>  - Reorder status line
 > 
+>  arch/arm/boot/dts/qcom-msm8960.dtsi | 33 +++++++++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
+> index e14e1c5d1..0e099aa7c 100644
+> --- a/arch/arm/boot/dts/qcom-msm8960.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
+> @@ -3,6 +3,8 @@
+>  
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/clock/qcom,gcc-msm8960.h>
+> +#include <dt-bindings/clock/qcom,lcc-msm8960.h>
+> +#include <dt-bindings/reset/qcom,gcc-msm8960.h>
+>  #include <dt-bindings/mfd/qcom-rpm.h>
+>  #include <dt-bindings/soc/qcom,gsbi.h>
+>  
+> @@ -167,6 +169,37 @@ regulators {
+>  			};
+>  		};
+>  
+> +		usb1: usb@12500000 {
+> +			compatible = "qcom,ci-hdrc";
+> +			reg = <0x12500000 0x200>,
+> +			      <0x12500200 0x200>;
+> +			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc USB_HS1_XCVR_CLK>, <&gcc USB_HS1_H_CLK>;
+> +			clock-names = "core", "iface";
+> +			assigned-clocks = <&gcc USB_HS1_XCVR_CLK>;
+> +			assigned-clock-rates = <60000000>;
+> +			resets = <&gcc USB_HS1_RESET>;
+> +			reset-names = "core";
+> +			phy_type = "ulpi";
+> +			ahb-burst-config = <0>;
+> +			phys = <&usb_hs1_phy>;
+> +			phy-names = "usb-phy";
+> +			#reset-cells = <1>;
+> +			status = "disabled";
+> +
+> +			ulpi {
+> +				usb_hs1_phy: phy {
+> +					compatible = "qcom,usb-hs-phy-msm8960",
+> +						     "qcom,usb-hs-phy";
+> +					clocks = <&sleep_clk>, <&cxo_board>;
+> +					clock-names = "sleep", "ref";
+> +					resets = <&usb1 0>;
+> +					reset-names = "por";
+> +					#phy-cells = <0>;
+> +				};
+> +			};
+> +		};
+> +
+>  		acc0: clock-controller@2088000 {
+>  			compatible = "qcom,kpss-acc-v1";
+>  			reg = <0x02088000 0x1000>, <0x02008000 0x1000>;
 > -- 
-> 2.7.4
+> 2.34.1
 > 
