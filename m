@@ -2,94 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1BD958D3B0
-	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 08:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 085AF58D3B2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Aug 2022 08:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbiHIGX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 02:23:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38490 "EHLO
+        id S237168AbiHIGYA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 02:24:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237021AbiHIGX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 02:23:57 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754051FCEF
-        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 23:23:56 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id z16so13123187wrh.12
-        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 23:23:56 -0700 (PDT)
+        with ESMTP id S237021AbiHIGX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 02:23:59 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 986481FCF7
+        for <devicetree@vger.kernel.org>; Mon,  8 Aug 2022 23:23:57 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id l4so13144142wrm.13
+        for <devicetree@vger.kernel.org>; Mon, 08 Aug 2022 23:23:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=d7+2BSYxyvsSLuCik/VVlPelVR4UOsw6NIEHox7wPO0=;
-        b=Pm7E7LVPZOui+XqGS+iSnFHLsVC0m9fKA6j6vlG0FupasZ5jNnZMUjpFr7oaTTpDaD
-         zu2cSJioK1RFw+B5wiC1I46qmqsMEpR/yOmQgyrhbyUYNHOdQY4eynJkJVRNqdrwa4QJ
-         5HGrROeLsjUaYb8QHHo/w3b74/3GsiFfuz3oyuKjSiER0Cu/wIE4q/xK8ohfIVNS+OKy
-         kGktnnk5s0juxmle6+4LVDvi+sGU4tcwalqxW0Yzv08FY70D+2m5/g0M/5IH3eXiXRet
-         bBtH0NpEAmwNUZblhiTcJHNfDPLkQm5MwreoYzxwOgE7PTdQBH8qcXYPREOr+rXqx9t/
-         OAhQ==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=yotL3mJO3oRsefgOEKukS5n6DJlaFZd6MhQAm/UDvHI=;
+        b=KfIvNwN1ilmfDmcBQzIhYyet0Uijw7QbGc5oSzdw7FKaISqdHq0PezMGxDwailSxcy
+         ifLwaq/47CWb49or0IwCpEYI4a3t5xNH6SdapIrNcdxCgOK2wNiPvCo7AK/Q9/yNmyNV
+         ixdhbXCVFPqlcngxLTVlPZpWH8O0LHUKrhp6wkIpk/6M0NVMdw09g+v6yxzCHWW4Pbwj
+         Sn61PJ+nWdWGJ8lkrBDW0XX9hla5F2Qqm/fGD3VkErYWvl1Om0HQxD4NeS/z5B/9zVWX
+         WQHCEsgmipHfk78SNm3SuM51Z25rdoSegfOdwyIiKBtuAVtOBbOt0uklhvol/4iF5JFx
+         KbAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=d7+2BSYxyvsSLuCik/VVlPelVR4UOsw6NIEHox7wPO0=;
-        b=3lszr3MvbUz78havtfevAAYSQ7KIWj6jUpuBGtyPEMT3iXPrWq71QQnfOcfSeMU82k
-         v4givEgx42QdEZYLRmh6cSrB3Zvwo4J6ps7m+N5UIfaYJyhKiEF1nPK0nmMK4xB8BZlk
-         FFc/tsuU9XeefH7mRYTybIvS85iaZNmKZQmkrF3NqRl5t6/1miCQjYeccizCFYwFNpOu
-         L8iwj7WxeNkbxQGou7+FATUefcvdcNy6y+IqNpxs8MYELuZS/Sy53NXzIC6nOjtVRMzj
-         Pi0Es1ynnp8h69iL0JuSzo4XnadV9Gy1gDqiVesScldRXURfClgk/ynvRypb7AgwWsGu
-         I76A==
-X-Gm-Message-State: ACgBeo1BzPRehCkxMHYE44S1x8Zmgbqe4RcC49nss1jILs5gbcN/F6L6
-        U40LeGJsvMDB8463f9SBBZxm1/n1yoOfaQ==
-X-Google-Smtp-Source: AA6agR5OcfCcf9sUliZFsaAZbqUkuQw4bg/isuHefok+vpOJ7L4ipnYw5h3ASa+mZJ5qkyVioR2gzg==
-X-Received: by 2002:a5d:4301:0:b0:21b:8af6:4a21 with SMTP id h1-20020a5d4301000000b0021b8af64a21mr13999974wrq.296.1660026234952;
-        Mon, 08 Aug 2022 23:23:54 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id bh19-20020a05600c3d1300b003a2f6367049sm15650781wmb.48.2022.08.08.23.23.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Aug 2022 23:23:54 -0700 (PDT)
-Date:   Tue, 9 Aug 2022 07:23:52 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, zhangqing@rock-chips.com,
-        zyw@rock-chips.com, jon.lin@rock-chips.com, sre@kernel.org,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, lee@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
-Subject: Re: [PATCH v8 2/4] mfd: Add Rockchip rk817 battery charger support
-Message-ID: <YvH9eGYefSiS4N9z@google.com>
-References: <20220808173809.11320-1-macroalpha82@gmail.com>
- <20220808173809.11320-3-macroalpha82@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=yotL3mJO3oRsefgOEKukS5n6DJlaFZd6MhQAm/UDvHI=;
+        b=EhSqgd4kIHDOSSTMhQrU3Lm/C7RB0rQhOG6i+A/jLSrwSBxCFHes6IX/lS+oLpnBUd
+         gySdIrwwGNcKgbOk4nAqxF53eKbl3T63cIln2HYOFsMoEPtpOwEkHpVTm5IIUaOoLT/a
+         Oh7iPWYvyrGzCA85QTSZOg21pgjkZW/SavwF171vQPgdPnOU34yWZEnPkd7Gy/9OnMSp
+         5Ts8Yuosw7gUg6iGpn/fYGATvqPwllxH4xUSAIiXragJK8/NL9vc2miX+0I/hRgh4ZA1
+         u4IIIXkMMABztVp6kKI9QIoQz8BqOlmj+3WxZHwtc2Mbk5AxuPZcOiA42Tbt6EM4+mIL
+         99Dg==
+X-Gm-Message-State: ACgBeo1Z6E9GMl3an584DP9DcWLzf4nOpgofj9+gP7Xyq6cQrh5JZFFx
+        7Ryi5B+y9S2wYe/Zg3tv3LHkiQSiNBfMUD4M
+X-Google-Smtp-Source: AA6agR5DlKMWvaY6PzdTHOrY+X1rfox5Qx6YPUaBb7mCDuQBwvAjha0SF9PponGLroBeylMwXOwpGQ==
+X-Received: by 2002:a5d:6da6:0:b0:220:78fd:eedb with SMTP id u6-20020a5d6da6000000b0022078fdeedbmr12899656wrs.580.1660026236131;
+        Mon, 08 Aug 2022 23:23:56 -0700 (PDT)
+Received: from [192.168.1.69] (32.31.102.84.rev.sfr.net. [84.102.31.32])
+        by smtp.gmail.com with ESMTPSA id b4-20020adff904000000b0021e9fafa601sm12641999wrr.22.2022.08.08.23.23.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Aug 2022 23:23:55 -0700 (PDT)
+Message-ID: <ee85e515-1265-22d7-109f-5cef94571d76@baylibre.com>
+Date:   Tue, 9 Aug 2022 08:23:53 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220808173809.11320-3-macroalpha82@gmail.com>
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.1.0
+Subject: Re: [PATCH v3 2/2] iio: time: capture-tiecap: capture driver support
+ for ECAP
+Content-Language: en-US
+From:   Julien Panis <jpanis@baylibre.com>
+To:     William Breathitt Gray <william.gray@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, lars@metafoo.de,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mranostay@ti.com
+References: <20220728175124.468461-1-jpanis@baylibre.com>
+ <20220728175124.468461-3-jpanis@baylibre.com>
+ <20220731164116.30e91f34@jic23-huawei>
+ <11b7436b-5c31-671e-ba77-435fe8e3b767@baylibre.com>
+ <98d17617-72b5-6330-d4f5-1bece928ceab@baylibre.com> <YvBZQsiAm6f3yxME@fedora>
+ <d47c842b-579d-b119-73f9-e8c95984b30b@baylibre.com> <YvE3m+jLPuLvXXdS@fedora>
+ <733242ec-2f17-e843-5e36-2f804c040a9d@baylibre.com>
+In-Reply-To: <733242ec-2f17-e843-5e36-2f804c040a9d@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 Aug 2022, Chris Morgan wrote:
 
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add rk817 charger support cell to rk808 mfd driver.
-> 
-> Acked-for-mfd-by: Lee Jones <lee.jones@linaro.org>
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> ---
->  drivers/mfd/rk808.c       | 16 ++++++-
->  include/linux/mfd/rk808.h | 91 +++++++++++++++++++++++++++++++++++++++
->  2 files changed, 106 insertions(+), 1 deletion(-)
 
-Applied, thanks.
+On 09/08/2022 08:19, Julien Panis wrote:
+>
+>
+> On 08/08/2022 18:19, William Breathitt Gray wrote:
+>> The Counter subsystem is relatively nascent so the number of existing
+>> Counter device drivers to study is unfortunately sparse. If you
+>> encounter any trouble along the way as you work on this, please don't
+>> hestitate to reach out and I'll be happy to answer any questions you may
+>> have. That said, here are some more hints that can help guide you. :-)
+>>
+>> Although we've been using CAPx to refer to these registers, in the
+>> context of sysfs it'll be better to call the attributes "capture1",
+>> "capture2", etc.; that will make their use as capture buffers more
+>> obvious. Furthermore, despite my previous example, I think it's better
+>> to have these exist underneath the CTR hierarchy rather than Mod4
+>> because they are captures of the CTR value:
+>>
+>> * CTR: /sys/bus/counter/devices/counterX/count0/count
+>> * CAP1: /sys/bus/counter/devices/counterX/count0/capture1
+>> * CAP2: /sys/bus/counter/devices/counterX/count0/capture2
+>> * CAP3: /sys/bus/counter/devices/counterX/count0/capture3
+>> * CAP4: /sys/bus/counter/devices/counterX/count0/capture4
+>>
+>> In your device driver, you would define a struct counter_count to
+>> represent CTR. In this struct counter_count there is an "ext" member
+>> where you provide an array of struct count_comp. Each CAPx will have a
+>> corresponding struct count_comp; it'll look something like this::
+>>
+>>          static struct counter_comp ctr_count_ext[] = {
+>>                  COUNTER_COMP_COUNT_U64("capture1", cap1_read, NULL),
+>>                  COUNTER_COMP_COUNT_U64("capture2", cap2_read, NULL),
+>>                  COUNTER_COMP_COUNT_U64("capture3", cap3_read, NULL),
+>>                  COUNTER_COMP_COUNT_U64("capture4", cap4_read, NULL),
+>>          };
+>>
+>> As you already know, counter_push_event() lets you push Counter events
+>> in your interrupt handler. I recommend introducing a new event type
+>> under enum counter_event_type in the include/uapi/linux/counter.h header
+>> file; something like COUNTER_EVENT_CAPTURE should be descriptive enough.
+>>
+>> The "channel" member of struct counter_watch refers to Counter event
+>> channels; The purpose here is to allow us to support concurrent events
+>> of the same type (e.g. two COUNTER_EVENT_OVERFLOW but for different
+>> Counts). If I understand the TI ECAP device correctly, we'll be getting
+>> a COUNTER_EVENT_CAPTURE event whenever a CAPx register is updated with a
+>> new capture. It's up to you if you want to group them under the same
+>> channel or separate channels for each CAPx; you would just pass the
+>> channel in counter_push_event() to indicate which COUNTER_EVENT_CAPTURE
+>> event is being handled.
+>
+> 2 options, indeed :
+> 1) By grouping them under the same channel, the only thing I'm not a 
+> great fan of is that
+> I will need to use separate functions to read capture registers 
+> (cap1_read/cap2_read/
+> cap3_read/cap4_read), and also to set/get polarity.
+> 2) By using separate channels, code will look more simple but it is 
+> likely to be a little bit
+> confusing for the user.
+> I will probably use option 2.
 
--- 
-DEPRECATED: Please use lee@kernel.org
+[ERRATUM] : Sorry, I meant that I will probably use option 1 (not 2), to 
+avoid confusion for the user.
