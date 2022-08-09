@@ -2,263 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8036558E39F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 01:17:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8DE158E3AD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 01:22:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229485AbiHIXRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 19:17:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35996 "EHLO
+        id S229602AbiHIXWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 19:22:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbiHIXRP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 19:17:15 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7476D6E2C9
-        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 16:17:14 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id q19so12139639pfg.8
-        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 16:17:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=daLNzzCB7AX87ZyaYQTjDFBHl0T6MLp6fE5NbbRrRsM=;
-        b=w+KDOfleBXEUK4IDctSrW5ruwe3EDeVNCYIMKvZx4vDN5XnbR4mOMvDgPcjNxDBKS0
-         4QXOKHbQWtahsRvAs/TV/3ZORGDMHcS5ycmeCQWhR+vl5uFIsX6CgXfoRd8TN7t6KhLb
-         HySvTJmIcuKES/D/8IqKjgDGLzvDQQFxMazvie7KLIEeNpogTxugrnGvQ05eXGWWlFBg
-         3WkkZMoAi3MNqeD8u5k3b+TCOX3o8KD27svSoztDB0T42BckuDvma2ZBaYzozaF+zVJE
-         c6foZfnbbYQuUHnaZrs5P7pMrJG6YiGGVL4ZRF61DgGy4vJrchBJ7lotdTArTOfd8GTR
-         2Wzg==
+        with ESMTP id S229599AbiHIXWO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 19:22:14 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 214BE6E8B4;
+        Tue,  9 Aug 2022 16:22:13 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id g18so7406965ilk.4;
+        Tue, 09 Aug 2022 16:22:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=daLNzzCB7AX87ZyaYQTjDFBHl0T6MLp6fE5NbbRrRsM=;
-        b=m0xhcARs9vCb9AGAzGDFsfewmd7jaZMWyd6FmokKlVxvT6PsRaPS5zhk0dONzvY4WT
-         1qZ94duQV8sJCGyCGczXRDfLG6XRyV3UB5hJ4sfy9CMeh7pzwEgtqOw9Nt+Dmpm1VVmh
-         Cj2E4Yg/JJfQKyNfvJfViIy1x4s8AtOoriRxIFeOmRwXS2u9hyS223Ow3cl41u2Yy5iN
-         /5dwjO9LDgSwJOjx58T2lV1XFzhGmX4nC0UjQLG9T1rNNMZS+uyi3KxJg6gJr4vnxDU7
-         KgiSKqO/uyrbAlp76HQEy+1I/2UlUWb0wYG5+ESmoAswjZ6RNUpCTAC+F1R7c55PPo5v
-         P+/A==
-X-Gm-Message-State: ACgBeo1VcDodQI/i+/lZKr3/Pe5NAlme3oOZlaJq5i+oKVyEULKac/pr
-        1EkdpP1Hi3oJ3Ligh59BKQDKsEsjylCtKmzRW6hxHQ==
-X-Google-Smtp-Source: AA6agR7Hnh/WcdUNm07KPgIvehWPa4Zt0MSkBqXq36EgPig1TYD5pg+U1nm/trqnR5P7C7HgptApO50hl9OrM8la3Gw=
-X-Received: by 2002:a63:fd0b:0:b0:415:f76b:a2cd with SMTP id
- d11-20020a63fd0b000000b00415f76ba2cdmr20661547pgh.440.1660087033850; Tue, 09
- Aug 2022 16:17:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAJ+vNU05_xH4b8DFVJLpiDTkJ_z9MrBFvf1gSz9P1KXy9POU7w@mail.gmail.com>
- <5914cae0-e87b-fb94-85dd-33311fc84c52@seco.com> <20220808210945.GP17705@kitsune.suse.cz>
- <20220808143835.41b38971@hermes.local> <20220808214522.GQ17705@kitsune.suse.cz>
- <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com> <20220809213146.m6a3kfex673pjtgq@pali>
- <b1b33912-8898-f42d-5f30-0ca050fccf9a@seco.com> <20220809214207.bd4o7yzloi4npzf7@pali>
- <2083d6d6-eecf-d651-6f4f-87769cd3d60d@seco.com> <20220809224535.ymzzt6a4v756liwj@pali>
-In-Reply-To: <20220809224535.ymzzt6a4v756liwj@pali>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Tue, 9 Aug 2022 16:17:01 -0700
-Message-ID: <CAJ+vNU2xBthJHoD_-tPysycXZMchnXoMUBndLg4XCPrHOvgsDA@mail.gmail.com>
-Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
-To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     Sean Anderson <sean.anderson@seco.com>,
-        =?UTF-8?Q?Michal_Such=C3=A1nek?= <msuchanek@suse.de>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        h=message-id:date:subject:references:in-reply-to:cc:to:from
+         :x-gm-message-state:from:to:cc;
+        bh=0gqfclkM9w96CKNu+kWPE5mtyoud9Rxaii1uoxzqUi8=;
+        b=ZLAl9cfvKvhkYYW4nWnD41fCULkFp7zsU+RrLc0mZPBRIY81impmWcRaR1Geb+H8dD
+         TDBwmVEcldejXCBtAsZGz7M6DjY3ohamqZA9shRHL87544xre6BQ3fbRUlA8SHTFtyTt
+         HjyB9K+IJB234n4T2I1za5uO8Cl07jMCSUpf+/9Yi/XPXjdtlAh8Rvi4vRemBrPbjomN
+         btWdwRYLqpBzpu2ZbdspwisR39a/Xd5fen+9nAli7BW5CHycEOo/BxPPoXpDemTSk4dx
+         rk+50jnGjxZ4XuBERMtXrginWI5xZEkPTtr3PExte6HWl9xPOd+nvZmlfLXiFW95N0PR
+         6XBA==
+X-Gm-Message-State: ACgBeo3Y7fO1gIDpQcaL7E0GzFhtQEyED4uwZuF+qhvMmUyVfROaGY/i
+        WicmBfAxHqtlvKdmIcipHw==
+X-Google-Smtp-Source: AA6agR6EzvkqHRmTfVQEyJwp0EiSnaqiLgSo4zvnnjVg/5k6vTEczrItSmgXtcXf3D8tBH7d/dL/mA==
+X-Received: by 2002:a92:b742:0:b0:2de:14d8:e801 with SMTP id c2-20020a92b742000000b002de14d8e801mr11952646ilm.105.1660087332355;
+        Tue, 09 Aug 2022 16:22:12 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id s23-20020a0566022bd700b006849908ca7dsm1667845iov.36.2022.08.09.16.22.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Aug 2022 16:22:11 -0700 (PDT)
+Received: (nullmailer pid 2675473 invoked by uid 1000);
+        Tue, 09 Aug 2022 23:22:06 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Parks <danielrparks@ti.com>
+Cc:     linux-crypto@vger.kernel.org, Tero Kristo <kristo@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <856cbf3a002b5d400bbbdb7aa914ab5b8681a96e.1659985696.git.danielrparks@ti.com>
+References: <cover.1659985696.git.danielrparks@ti.com> <856cbf3a002b5d400bbbdb7aa914ab5b8681a96e.1659985696.git.danielrparks@ti.com>
+Subject: Re: [RFC PATCH 2/6] dt-bindings: crypto: add binding for eip29t2 public key accelerator (PKA)
+Date:   Tue, 09 Aug 2022 17:22:06 -0600
+Message-Id: <1660087326.267606.2675470.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 9, 2022 at 3:45 PM Pali Roh=C3=A1r <pali@kernel.org> wrote:
->
-> On Tuesday 09 August 2022 18:41:25 Sean Anderson wrote:
-> >
-> >
-> > On 8/9/22 5:42 PM, Pali Roh=C3=A1r wrote:
-> > > On Tuesday 09 August 2022 17:36:52 Sean Anderson wrote:
-> > >> On 8/9/22 5:31 PM, Pali Roh=C3=A1r wrote:
-> > >> > On Tuesday 09 August 2022 16:48:23 Sean Anderson wrote:
-> > >> >> On 8/8/22 5:45 PM, Michal Such=C3=A1nek wrote:
-> > >> >> > On Mon, Aug 08, 2022 at 02:38:35PM -0700, Stephen Hemminger wro=
-te:
-> > >> >> >> On Mon, 8 Aug 2022 23:09:45 +0200
-> > >> >> >> Michal Such=C3=A1nek <msuchanek@suse.de> wrote:
-> > >> >> >>
-> > >> >> >> > On Mon, Aug 08, 2022 at 03:57:55PM -0400, Sean Anderson wrot=
-e:
-> > >> >> >> > > Hi Tim,
-> > >> >> >> > >
-> > >> >> >> > > On 8/8/22 3:18 PM, Tim Harvey wrote:
-> > >> >> >> > > > Greetings,
-> > >> >> >> > > >
-> > >> >> >> > > > I'm trying to understand if there is any implication of =
-'ethernet<n>'
-> > >> >> >> > > > aliases in Linux such as:
-> > >> >> >> > > >         aliases {
-> > >> >> >> > > >                 ethernet0 =3D &eqos;
-> > >> >> >> > > >                 ethernet1 =3D &fec;
-> > >> >> >> > > >                 ethernet2 =3D &lan1;
-> > >> >> >> > > >                 ethernet3 =3D &lan2;
-> > >> >> >> > > >                 ethernet4 =3D &lan3;
-> > >> >> >> > > >                 ethernet5 =3D &lan4;
-> > >> >> >> > > >                 ethernet6 =3D &lan5;
-> > >> >> >> > > >         };
-> > >> >> >> > > >
-> > >> >> >> > > > I know U-Boot boards that use device-tree will use these=
- aliases to
-> > >> >> >> > > > name the devices in U-Boot such that the device with ali=
-as 'ethernet0'
-> > >> >> >> > > > becomes eth0 and alias 'ethernet1' becomes eth1 but for =
-Linux it
-> > >> >> >> > > > appears that the naming of network devices that are embe=
-dded (ie SoC)
-> > >> >> >> > > > vs enumerated (ie pci/usb) are always based on device re=
-gistration
-> > >> >> >> > > > order which for static drivers depends on Makefile linki=
-ng order and
-> > >> >> >> > > > has nothing to do with device-tree.
-> > >> >> >> > > >
-> > >> >> >> > > > Is there currently any way to control network device nam=
-ing in Linux
-> > >> >> >> > > > other than udev?
-> > >> >> >> > >
-> > >> >> >> > > You can also use systemd-networkd et al. (but that is the =
-same kind of mechanism)
-> > >> >> >> > >
-> > >> >> >> > > > Does Linux use the ethernet<n> aliases for anything at a=
-ll?
-> > >> >> >> > >
-> > >> >> >> > > No :l
-> > >> >> >> >
-> > >> >> >> > Maybe it's a great opportunity for porting biosdevname to DT=
- based
-> > >> >> >> > platforms ;-)
-> > >> >> >>
-> > >> >> >> Sorry, biosdevname was wrong way to do things.
-> > >> >> >> Did you look at the internals, it was dumpster diving as root =
-into BIOS.
-> > >> >> >
-> > >> >> > When it's BIOS what defines the names then you have to read the=
-m from
-> > >> >> > the BIOS. Recently it was updated to use some sysfs file or wha=
-tver.
-> > >> >> > It's not like you would use any of that code with DT, anyway.
-> > >> >> >
-> > >> >> >> Systemd-networkd does things in much more supportable manner u=
-sing existing
-> > >> >> >> sysfs API's.
-> > >> >> >
-> > >> >> > Which is a dumpster of systemd code, no thanks.
-> > >> >> >
-> > >> >> > I want my device naming independent of the init system, especia=
-lly if
-> > >> >> > it's systemd.
-> > >> >>
-> > >> >> Well, there's always nameif...
-> > >> >>
-> > >> >> That said, I have made [1] for people using systemd-networkd.
-> > >> >>
-> > >> >> --Sean
-> > >> >>
-> > >> >> [1] https://github.com/systemd/systemd/pull/24265
-> > >> >
-> > >> > Hello!
-> > >> >
-> > >> > In some cases "label" DT property can be used also as interface na=
-me.
-> > >> > For example this property is already used by DSA kernel driver.
-> > >> >
-> > >> > I created very simple script which renames all interfaces in syste=
-m to
-> > >> > their "label" DT property (if there is any defined).
-> > >> >
-> > >> > #!/bin/sh
-> > >> > for iface in `ls /sys/class/net/`; do
-> > >> >  for of_node in of_node device/of_node; do
-> > >> >          if test -e /sys/class/net/$iface/$of_node/; then
-> > >> >                  label=3D`cat /sys/class/net/$iface/$of_node/label=
- 2>/dev/null`
-> > >> >                  if test -n "$label" && test "$label" !=3D "$iface=
-"; then
-> > >> >                          echo "Renaming net interface $iface to $l=
-abel..."
-> > >> >                          up=3D$((`cat /sys/class/net/$iface/flags =
-2>/dev/null || echo 1` & 0x1))
-> > >> >                          if test "$up" !=3D "0"; then
-> > >> >                                  ip link set dev $iface down
-> > >> >                          fi
-> > >> >                          ip link set dev $iface name "$label" && i=
-face=3D$label
-> > >> >                          if test "$up" !=3D "0"; then
-> > >> >                                  ip link set dev $iface up
-> > >> >                          fi
-> > >> >                  fi
-> > >> >                  break
-> > >> >          fi
-> > >> >  done
-> > >> > done
-> > >> >
-> > >> > Maybe it would be better first to use "label" and then use etherne=
-t alias?
-> > >> >
-> > >>
-> > >> It looks like there is already precedent for using ID_NET_LABEL_ONBO=
-ARD for
-> > >> this purpose (on SMBios boards). It should be a fairly simple extens=
-ion to
-> > >> add that as well. However, I didn't find any uses of this in Linux o=
-r U-Boot
-> > >> (although I did find plenty of ethernet LEDs). Do you have an exampl=
-e you
-> > >> could point me to?
-> > >>
-> > >> --Sean
-> > >
-> > > In linux:
-> > > $ git grep '"label"' net/dsa/dsa2.c
-> > > net/dsa/dsa2.c: const char *name =3D of_get_property(dn, "label", NUL=
-L);
-> > >
-> >
-> > Hm, if Linux is using the label, then do we need to rename things in us=
-erspace?
->
-> It uses it _only_ for DSA drivers. For all other drivers (e.g. USB or
-> PCIe based network adapters) it does not use label.
+On Mon, 08 Aug 2022 14:12:51 -0500, Daniel Parks wrote:
+> The PKA is a mmio-only asymmetric crypto accelerator available on
+> certain K3 devices.
+> 
+> Signed-off-by: Daniel Parks <danielrparks@ti.com>
+> ---
+>  .../inside-secure,safexcel-eip29t2.yaml       | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip29t2.yaml
+> 
 
-and to my point it doesn't use label for platform devices.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Is something like the following really that crazy of an idea?
-diff --git a/net/core/dev.c b/net/core/dev.c
-index e0878a500aa9..a679c74a63c6 100644
---- a/net/core/dev.c
-+++ b/net/core/dev.c
-@@ -1151,6 +1151,15 @@ static int dev_alloc_name_ns(struct net *net,
-        int ret;
+yamllint warnings/errors:
 
-        BUG_ON(!net);
-+#ifdef CONFIG_OF
-+       if (dev->dev.parent && dev->dev.parent->of_node) {
-+               const char *name =3D
-of_get_property(dev->dev.parent->of_node, "label", NULL);
-+               if (name) {
-+                       strlcpy(dev->name, name, IFNAMSIZ);
-+                       return 0;
-+               }
-+       }
-+#endif
-        ret =3D __dev_alloc_name(net, name, buf);
-        if (ret >=3D 0)
-                strlcpy(dev->name, buf, IFNAMSIZ);
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip29t2.example.dtb: pka@40920000: reg: [[0, 1083310080], [0, 8192], [0, 1083326464], [0, 32768]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip29t2.yaml
 
-I still like using the index from aliases/ethernet* instead as there
-is a precedence for that in other Linux drivers as well as U-Boot
+doc reference errors (make refcheckdocs):
 
-Best Regards,
+See https://patchwork.ozlabs.org/patch/
 
-Tim
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
