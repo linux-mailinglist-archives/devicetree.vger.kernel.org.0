@@ -2,61 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69AA858EF89
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:42:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A27E58EF8D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:43:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230050AbiHJPmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 11:42:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34074 "EHLO
+        id S231429AbiHJPnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 11:43:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231213AbiHJPme (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:42:34 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3132C30F52;
-        Wed, 10 Aug 2022 08:42:34 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id o14so8494793ilt.2;
-        Wed, 10 Aug 2022 08:42:34 -0700 (PDT)
+        with ESMTP id S231213AbiHJPnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:43:07 -0400
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A7BB5A3D7
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 08:43:07 -0700 (PDT)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-116c7286aaaso2338495fac.11
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 08:43:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc;
+        bh=FlmWTYw3/xh3vpaf0ITQZcFdn3jiWTilvaIzda+vquA=;
+        b=gP8IopvwF++4nHY5g9Q9M2/EZO4hp9snQqbqx6iZCX3S0KMDC+fE3+6GgXGXIfjyue
+         Zxz/asDdYOcuqwbFiHPzAL1kv8EsrIyRgdUDMKAFMHKb8wqHHdP12zxUiufqRC16+Hdq
+         Fz+ELgZRml0tCpsH6m80xhthiwaBCQSuVqQj6pPlPRsfxisn5vAn5TUkXkwmWRD8NaO+
+         fe40cB4eUKnxl+FOqZf1LOnAsjZ1FayTzToqBjW4uxOl8SEvMTZtIoFETiDaew6kMiSU
+         f/qKaul2i0jIm4S521mgbbR1A9h9GdguRF6rpzDtiB7eIqLmcL4j97alPU0m0Qlgsv6S
+         mB4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=lkS5zvLcljQjnjjOHPAoy1vsRnFJ0Grs3H/nJs4gz4c=;
-        b=54e0eO1HSW6vvy1dp3X4UV152ds7hln2adFQxVdUHo0+9NJP27dHbr9u475Mi0dQu1
-         L6Oh8DC9gdpU6a8chljF0SoT3CiQe18j7BFzZps/ht26JajZc0DKz0jH7fLaDpsdPnV9
-         1Dbb52ryzrcHQO+u3Ovc4UYHvK0Y03wXKGXAkcETeDGLkxrTwqQEm2tQOLGjCtT3+dyx
-         4J5Fot0oIwEZL4V0yiVssyhkqbSlmGJ5sVEma74KRIiiHGDIH+3JWdJajiumli3qGOVi
-         V1kW2pe85t5OQ6h/d17HuQGtjnbybMPQHUeqpybotHFCN2+pMOQMs1rWYYK6PQNVwpnO
-         qHHg==
-X-Gm-Message-State: ACgBeo3K/Jwpki22B9mzabwsPsPe62bFcRosuGhKY/EKKeMCdxIjejxl
-        d2tC3AUro2G0GsKXkRrSzXQHTA+7Tw==
-X-Google-Smtp-Source: AA6agR766L+G/DmfEJHQx2uTOkZHXshafK1MLBI/ihgSqeChJYk2oM42hj/91O0+xfMGZMhZBO1LZg==
-X-Received: by 2002:a92:c501:0:b0:2de:69e6:4143 with SMTP id r1-20020a92c501000000b002de69e64143mr13569520ilg.262.1660146153460;
-        Wed, 10 Aug 2022 08:42:33 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p23-20020a02b017000000b003427daba276sm887045jah.129.2022.08.10.08.42.32
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc;
+        bh=FlmWTYw3/xh3vpaf0ITQZcFdn3jiWTilvaIzda+vquA=;
+        b=KNf2VLvwXIIw+o8jNysbsE32V6erhdnmx8wSezsPXmHWIfvUCbOF6l8qe+G4KlDMtU
+         ahQXmEFOa7QPXZHXBvLunrds5UEd+jem3b3cGZT7E7OwppT9T8Y6vAXlqoMqtNv8eFOM
+         OKfD8SnS0ivWCbmYWEARwXdde5U2ozkoTx93gom4UOQkkcrhzsglrHe5odLCkvl0g2ys
+         Yjx/FPHF1OFT9at2hU78biRvqFWeODZ0ulB/LiXopbvdo2UyUJ6Ul/EQRyKQAG8P5B6c
+         R4gn6SGK7sIQbi+tFWgS1X5/NBxrsFfqb8FHBHJJlTGxHC4U9Q0zBFiN2VmrsPKALH6t
+         qzwA==
+X-Gm-Message-State: ACgBeo0uIf/SOlctESZRrUMWpLQvjF3TdT2zjxzgVKziDtS42IizSap2
+        AA56rc/l+gMNL3cJmXE2dmb0EQ==
+X-Google-Smtp-Source: AA6agR525BCxU7jVP2f3Ax1rwULslvscxmIdsGURzbMK84D9WkeX+w6/rxBEuj/LVdsvgO5k9Ugjnw==
+X-Received: by 2002:a05:6870:961f:b0:10b:ad08:8909 with SMTP id d31-20020a056870961f00b0010bad088909mr1657778oaq.269.1660146186397;
+        Wed, 10 Aug 2022 08:43:06 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 12-20020aca0d0c000000b0033b15465357sm682644oin.5.2022.08.10.08.43.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 08:42:32 -0700 (PDT)
-Received: (nullmailer pid 17851 invoked by uid 1000);
-        Wed, 10 Aug 2022 15:42:31 -0000
-Date:   Wed, 10 Aug 2022 09:42:31 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Julian Braha <julianbraha@gmail.com>
-Cc:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        thierry.reding@gmail.com, devicetree@vger.kernel.org,
-        airlied@linux.ie, sam@ravnborg.org, daniel@ffwll.ch,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: panel-simple-dsi: add Tianma
- TL057FVXP01
-Message-ID: <20220810154231.GA17369-robh@kernel.org>
-References: <20220810041354.691896-1-julianbraha@gmail.com>
+        Wed, 10 Aug 2022 08:43:05 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     konrad.dybcio@somainline.org, krzysztof.kozlowski+dt@linaro.org,
+        krzysztof.kozlowski@linaro.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: smd: reference SMD edge schema
+Date:   Wed, 10 Aug 2022 10:43:04 -0500
+Message-Id: <166014617672.2836654.2552710779449608400.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220723082358.39544-1-krzysztof.kozlowski@linaro.org>
+References: <20220723082358.39544-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220810041354.691896-1-julianbraha@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,29 +71,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Aug 2022 00:13:53 -0400, Julian Braha wrote:
-> Adds the bindings for the Tianma TL057FVXP01 DSI panel,
-> found on the Motorola Moto G6.
+On Sat, 23 Jul 2022 10:23:57 +0200, Krzysztof Kozlowski wrote:
+> The child node of smd is an SMD edge representing remote subsystem.
+> Bring back missing reference from previously sent patch (disappeared
+> when applying).
 > 
-> Signed-off-by: Julian Braha <julianbraha@gmail.com>
-> ---
-> v4:
-> Fixed makefile entry.
-> 
-> v3:
-> Fixed kconfig dependencies.
-> 
-> v2:
-> Fixed accidental whitespace deletion.
-> ---
->  .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
->  1 file changed, 2 insertions(+)
 > 
 
+Applied, thanks!
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+[1/2] dt-bindings: soc: qcom: smd: reference SMD edge schema
+      commit: 568f83ffe69ba38cc10f36417d6cbb6eee4dc802
+[2/2] dt-bindings: soc: qcom: smd-rpm: extend example
+      commit: 56e07c0c9e4a4b59a47a848b021a42cf203c982c
 
-If a tag was not added on purpose, please state why and what changed.
-
+Best regards,
+-- 
+Bjorn Andersson <bjorn.andersson@linaro.org>
