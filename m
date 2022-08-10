@@ -2,56 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 490A258F29B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 20:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4551758F2D6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 21:13:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231573AbiHJS4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 14:56:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59328 "EHLO
+        id S232561AbiHJTNR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 15:13:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230095AbiHJS4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 14:56:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC328D3D5;
-        Wed, 10 Aug 2022 11:56:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD74D61491;
-        Wed, 10 Aug 2022 18:56:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32EC4C433D6;
-        Wed, 10 Aug 2022 18:56:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660157809;
-        bh=rcTCkFaa5mnwnbCSMET43K9fqBB3KokZWCSy5dHR5GQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HcWvZR/cP6oJBqzJ9rwSKxG1FjJzBUlrrE/oD/IC3Klzkl4HWAaNgPqZY/dMUMyiL
-         4OBWnUnbZM67jfvgZ1REdlMc11QNRSLKwap2pXWMSJzHl7w2DMS4JhkAjutQ3zxIYH
-         QURRecZ4LiXjHkkckWyhenKID3bYBTIwjFp5fL2ebRLAGJiwyBRPogCUIhPaADJmbu
-         m0VldOfvHey+P5zNVMqbC1nMWU5PuvJi7JlJ+kalY4RXB1Z+ddcKkUNKEiUzFmxBQs
-         i03AnhVKLsTDHHdIwvZaRTRj+mp4ey4gtU3OOxalEdqSpjPY1wPVagH/1T4/9Wn7ck
-         IUQbO1QxmypHg==
-Date:   Wed, 10 Aug 2022 11:56:46 -0700
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     Conor.Dooley@microchip.com
-Cc:     ndesaulniers@google.com, llvm@lists.linux.dev,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Daire.McNamara@microchip.com, palmer@dabbelt.com
-Subject: Re: [PATCH v2 00/12] PolarFire SoC reset controller & clock cleanups
-Message-ID: <YvP/bjh+wXihlrdG@dev-arch.thelio-3990X>
-References: <20220704121558.2088698-1-conor.dooley@microchip.com>
- <bd14f1a2-750d-2511-df0a-85a9f5925f84@microchip.com>
+        with ESMTP id S232604AbiHJTNQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 15:13:16 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6E6FEE19
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 12:13:13 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-f2a4c51c45so18894578fac.9
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 12:13:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=KuLf+etUhT8CcgIrZoHXO32gzepZ3ln/4TrZlz8orFg=;
+        b=u5lEkBau5ums583shjRAJhrdbIjintCen6qFp4XH5imxJ+M8xX8H8MQ+5NIMhZBZ8i
+         IeQN/5+ZiBbLVpnL/7xXFhH7xRoUbK0KetOMetUjHenIqQkyw54DJsvuA3z98GvAE9iH
+         G0VEdnytyPseQBthMahRq+EFibRw4CB+uK4VWF72mRoXGJmV4vNdWD3JHmHRxpP+ACle
+         6b5GLgxfxjOnvDTUikGtWEhDDGi4TAD5fObpvDyF1/LQLrBR1CHMddWmVd63y1I5VcnA
+         WpkvX8puvnJPaELZz8V9QCipettf+POKSz9BDONtQo43feT+1fWaBJCaVwgM9SGBxHe2
+         vcTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=KuLf+etUhT8CcgIrZoHXO32gzepZ3ln/4TrZlz8orFg=;
+        b=weflC3IGjRLII/k1dFCkQ4YDC6Ikt9uSXZS+qQCeLhUk+6SRUY5NDSTqQwpMAQpuQu
+         thTE6q37464JPRbJs176tR/5yful7qeQaF9yiuTROHfOmGpuh8Hba1KSyzy1H7LOY2eF
+         fqKmeOvleDFAdnUHM3yVqrfyZSRr8CvqqwgnxZZf8cdAjEUMTghZjNW8VJ74cVOlP8Am
+         1A0G0JroUncw1jCOCkYZbz45bTZVmOEoc+F2JDJI/ryDYmAfuSDelugFrhGAfiSI8Eig
+         qmrXuSGntSKgD4mpK199j9WZRJxGzsGy+rJxh4Jk3gqMVofvMAyXcZZviZO4LFl8FTD+
+         l4aw==
+X-Gm-Message-State: ACgBeo2T9zIv7OhykWxY4t4OfRdHmG8OY4WPbRnnPO/8wVICg90/FiC8
+        NYTuEo8qb8xNRb/Vhti0EcGPRg==
+X-Google-Smtp-Source: AA6agR7Nri3uTxawS16Y0qws9GGPb++KL1oO57PREQCriDiGj2oEfmlndbYlomXZr8j21bdRn38m3Q==
+X-Received: by 2002:a05:6870:e390:b0:10e:893b:f1d9 with SMTP id x16-20020a056870e39000b0010e893bf1d9mr2028913oad.88.1660158793139;
+        Wed, 10 Aug 2022 12:13:13 -0700 (PDT)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n15-20020a4ad12f000000b00425678b9c4bsm789575oor.0.2022.08.10.12.13.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Aug 2022 12:13:12 -0700 (PDT)
+Date:   Wed, 10 Aug 2022 12:15:49 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Steev Klimaszewski <steev@kali.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 0/2] power: supply: Lenovo Yoga C630 EC
+Message-ID: <YvQD5S8m6290EcEJ@ripper>
+References: <20220810030500.2793882-1-bjorn.andersson@linaro.org>
+ <b06adc0e-6e24-5419-4e6f-33ae2029b828@kali.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bd14f1a2-750d-2511-df0a-85a9f5925f84@microchip.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <b06adc0e-6e24-5419-4e6f-33ae2029b828@kali.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,174 +73,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+On Tue 09 Aug 21:04 PDT 2022, Steev Klimaszewski wrote:
 
-On Tue, Aug 09, 2022 at 11:05:32PM +0000, Conor.Dooley@microchip.com wrote:
-> +CC clang people :)
 > 
-> Got an odd one here and would appreciate some pointers for where to
-> look. This code when built with gcc boots fine, for example with:
-> riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0
-> The same code but build with clang build it fails to boot but prior to
-> that applying this patchset it boots fine. Specifically it is the patch
-> "clk: microchip: mpfs: move id & offset out of clock structs"
+> On 8/9/22 10:04 PM, Bjorn Andersson wrote:
+> > This adds binding and driver for the Lenovo Yoga C630 Embedded Controller, to
+> > provide battery information and DisplayPort support.
+> > 
+> > Bjorn Andersson (2):
+> >    dt-bindings: power: supply: Add Lenovo Yoga C630 EC
+> >    power: supply: Add Lenovo Yoga C630 EC driver
+> > 
+> >   .../power/supply/lenovo,yoga-c630-ec.yaml     |  88 +++
+> >   drivers/power/supply/Kconfig                  |  11 +
+> >   drivers/power/supply/Makefile                 |   1 +
+> >   drivers/power/supply/yoga-c630-ec.c           | 547 ++++++++++++++++++
+> >   4 files changed, 647 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
+> >   create mode 100644 drivers/power/supply/yoga-c630-ec.c
+> > 
+> It will be so nice to drop the "some-battery" patches that I've been
+> carrying in my kernel sources since 5.7 :D
 > 
-> I applied this patchset on top of tonight's master (15205c2829ca) but
-> I've been seeing the same problem for a few weeks on -next too. I tried
-> the following 2 versions of clang/llvm:
-> ClangBuiltLinux clang version 15.0.0 (5b0788fef86ed7008a11f6ee19b9d86d42b6fcfa), LLD 15.0.0
-> ClangBuiltLinux clang version 15.0.0 (bab8af8ea062f6332b5c5d13ae688bb8900f244a), LLD 15.0.0
 
-Good to know that it reproduces with fairly recent versions of LLVM :)
+Not only that, this is the only patch I've been carrying ont op of
+Torvalds' tree for a couple of releases now. As such, if this lands, I
+expect to be able to run an unmodified v6.1 straight off on my laptop.
 
-> It's probably something silly that I've overlooked but I am not au
-> fait with these sort of things unfortunately, but hey - at least I'll
-> learn something then.
+Regards,
+Bjorn
 
-I took a quick glance at the patch you mentioned above and I don't
-immediately see anything as problematic... I was going to see if I could
-reproduce this locally in QEMU since I do see there is a machine
-'microchip-icicle-kit' but I am not having much success getting the
-machine past SBI. Does this reproduce in QEMU or are you working with
-the real hardware? If QEMU, do you happen to have a working invocation
-handy?
-
-Cheers,
-Nathan
-
-> The boot log is fairly short so here ya go:
+> Tested-by: Steev Klimaszewski <steev@kali.org>
 > 
-> [    0.000000] Linux version 5.19.0-13253-g374b508ee318 (conor@spud) (ClangBuiltLinux clang version 15.0.0 (git@g
-> ithub.com:llvm/llvm-project.git 5b0788fef86ed7008a11f6ee19b9d86d42b6fcfa), LLD 15.0.0) #1 SMP Tue Aug 9 22:42:10 IST 
-> 2022
-> [    0.000000] OF: fdt: Ignoring memory range 0x80000000 - 0x80200000
-> [    0.000000] Machine model: Microchip PolarFire-SoC Icicle Kit
-> [    0.000000] earlycon: ns16550a0 at MMIO32 0x0000000020100000 (options '115200n8')
-> [    0.000000] printk: bootconsole [ns16550a0] enabled
-> [    0.000000] efi: UEFI not found.
-> [    0.000000] Zone ranges:
-> [    0.000000]   DMA32    [mem 0x0000000080200000-0x00000000ffffffff]
-> [    0.000000]   Normal   [mem 0x0000000100000000-0x000000103fffffff]
-> [    0.000000] Movable zone start for each node
-> [    0.000000] Early memory node ranges
-> [    0.000000]   node   0: [mem 0x0000000080200000-0x00000000adffffff]
-> [    0.000000]   node   0: [mem 0x0000001000000000-0x000000103fffffff]
-> [    0.000000] Initmem setup node 0 [mem 0x0000000080200000-0x000000103fffffff]
-> [    0.000000] On node 0, zone Normal: 16064512 pages in unavailable ranges
-> [    0.000000] SBI specification v0.3 detected
-> [    0.000000] SBI implementation ID=0x1 Version=0x9
-> [    0.000000] SBI TIME extension detected
-> [    0.000000] SBI IPI extension detected
-> [    0.000000] SBI RFENCE extension detected
-> [    0.000000] SBI HSM extension detected
-> [    0.000000] CPU with hartid=0 is not available
-> [    0.000000] CPU with hartid=0 is not available
-> [    0.000000] riscv: base ISA extensions acdfim
-> [    0.000000] riscv: ELF capabilities acdfim
-> [    0.000000] percpu: Embedded 18 pages/cpu s34168 r8192 d31368 u73728
-> [    0.000000] pcpu-alloc: s34168 r8192 d31368 u73728 alloc=18*4096
-> [    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3
-> [    0.000000] CPU node for /cpus/cpu@0 exist but the possible cpu range is :0-3
-> [    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 224263
-> [    0.000000] Kernel command line: root=/dev/nfs ip=dhcp debug nfsroot=192.168.2.5:/stuff/nfs_share earlycon
-> [    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
-> [    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
-> [    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
-> [    0.000000] software IO TLB: area num 4.
-> [    0.000000] software IO TLB: mapped [mem 0x00000000aa000000-0x00000000ae000000] (64MB)
-> [    0.000000] Virtual kernel memory layout:
-> [    0.000000]       fixmap : 0xffffffc6fee00000 - 0xffffffc6ff000000   (2048 kB)
-> [    0.000000]       pci io : 0xffffffc6ff000000 - 0xffffffc700000000   (  16 MB)
-> [    0.000000]      vmemmap : 0xffffffc700000000 - 0xffffffc800000000   (4096 MB)
-> [    0.000000]      vmalloc : 0xffffffc800000000 - 0xffffffd800000000   (  64 GB)
-> [    0.000000]       lowmem : 0xffffffd800000000 - 0xffffffe7bfe00000   (  62 GB)
-> [    0.000000]       kernel : 0xffffffff80000000 - 0xffffffffffffffff   (2047 MB)
-> [    0.000000] Memory: 803032K/1800192K available (7485K kernel code, 2858K rwdata, 4096K rodata, 2181K init, 394K bss, 997160K reserved, 0K cma-reserved)
-> [    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
-> [    0.000000] rcu: Hierarchical RCU implementation.
-> [    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=8 to nr_cpu_ids=4.
-> [    0.000000] rcu:     RCU debug extended QS entry/exit.
-> [    0.000000]  Tracing variant of Tasks RCU enabled.
-> [    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
-> [    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
-> [    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
-> [    0.000000] CPU with hartid=0 is not available
-> [    0.000000] riscv-intc: unable to find hart id for /cpus/cpu@0/interrupt-controller
-> [    0.000000] riscv-intc: 64 local interrupts mapped
-> [    0.000000] plic: interrupt-controller@c000000: mapped 186 interrupts with 4 handlers for 9 contexts.
-> [    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
-> [    0.000000] riscv_timer_init_dt: Registering clocksource cpuid [0] hartid [4]
-> [    0.000000] clocksource: riscv_clocksource: mask: 0xffffffffffffffff max_cycles: 0x1d854df40, max_idle_ns: 3526361616960 ns
-> [    0.000003] sched_clock: 64 bits at 1000kHz, resolution 1000ns, wraps every 2199023255500ns
-> [    0.009713] Console: colour dummy device 80x25
-> [    0.014676] printk: console [tty0] enabled
-> [    0.019217] printk: bootconsole [ns16550a0] disabled
-> 
-> FWIW this is right about when the clock driver gets loaded
-> as you might imagine.
-> 
-> My config is here, but it's been reproduced on a few different
-> defconfigs:
-> https://raw.githubusercontent.com/ConchuOD/polarfire-soc-buildroot-sdk/dev/conf/lowmem/defconfig
-> 
-> On 04/07/2022 13:15, Conor Dooley wrote:
-> > Hey all,
-> > I know I have not sat on the RFC I sent about the aux. bus parts
-> > for too long, but figured I'd just send the whole thing anyway to all
-> > lists etc.
-> > 
-> > Kinda two things happening in this series, but I sent it together to
-> > ensure the second part would apply correctly.
-> > 
-> > The first is the reset controller that I promised after discovering the
-> > issue triggered by CONFIG_PM & the phy not coming up correctly. I have
-> > now removed all the messing with resets from clock enable/disable
-> > functions & now use the aux bus to set up a reset controller driver.
-> > Since I needed something to test it, I hooked up the reset for the
-> > Cadence MACB on PolarFire SoC. This has been split into a second series
-> > for v2:
-> > https://lore.kernel.org/all/20220704114511.1892332-1-conor.dooley@microchip.com/
-> > 
-> > The second part adds rate control for the MSS PLL clock, followed by
-> > some simplifications to the driver & conversions of some custom structs
-> > to the corresponding structs in the framework.
-> > 
-> > Thanks,
-> > Conor.
-> > 
-> > Changes since v1:
-> > - split off the net patches
-> > - clk: actually pass the spinlock to the converted dividers & gates
-> > - reset: added a spinlock around RMW access to registers
-> > - reset: switched to BIT(i) macros
-> > - reset: used local copies of some variables as pointed out by Philipp
-> > - reset: dropped the success printout
-> > 
-> > Conor Dooley (12):
-> >   dt-bindings: clk: microchip: mpfs: add reset controller support
-> >   clk: microchip: mpfs: add reset controller
-> >   reset: add polarfire soc reset support
-> >   MAINTAINERS: add polarfire soc reset controller
-> >   riscv: dts: microchip: add mpfs specific macb reset support
-> >   clk: microchip: mpfs: add module_authors entries
-> >   clk: microchip: mpfs: add MSS pll's set & round rate
-> >   clk: microchip: mpfs: move id & offset out of clock structs
-> >   clk: microchip: mpfs: simplify control reg access
-> >   clk: microchip: mpfs: delete 2 line mpfs_clk_register_foo()
-> >   clk: microchip: mpfs: convert cfg_clk to clk_divider
-> >   clk: microchip: mpfs: convert periph_clk to clk_gate
-> > 
-> >  .../bindings/clock/microchip,mpfs.yaml        |  17 +-
-> >  MAINTAINERS                                   |   1 +
-> >  arch/riscv/boot/dts/microchip/mpfs.dtsi       |   7 +-
-> >  drivers/clk/microchip/Kconfig                 |   1 +
-> >  drivers/clk/microchip/clk-mpfs.c              | 379 +++++++++---------
-> >  drivers/reset/Kconfig                         |   7 +
-> >  drivers/reset/Makefile                        |   2 +-
-> >  drivers/reset/reset-mpfs.c                    | 157 ++++++++
-> >  include/soc/microchip/mpfs.h                  |   8 +
-> >  9 files changed, 386 insertions(+), 193 deletions(-)
-> >  create mode 100644 drivers/reset/reset-mpfs.c
-> > 
-> > 
-> > base-commit: b13baccc3850ca8b8cccbf8ed9912dbaa0fdf7f3
