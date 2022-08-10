@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92FB958EDD2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68FB558EDD3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:04:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232420AbiHJOED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 10:04:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41212 "EHLO
+        id S232845AbiHJOEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 10:04:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232919AbiHJODv (ORCPT
+        with ESMTP id S232862AbiHJODv (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:03:51 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668B86CD37
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:03:47 -0700 (PDT)
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1944B6CD35
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:03:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1660140228; x=1691676228;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=j+ubEaa4d6letw3k0c6vUxa4al5aj0IPLS7HTum/LzY=;
-  b=aUi8E5FVi9zWM6i/zmLTYW+skS+rSGjyRaU6hZ3719pgzkFVPHZ9Q0jQ
-   /+bkn7pJTPaP0KhmsUB+ISra+Bm5U8gKjUzRYJiUK0UFYyoXOE739yjuR
-   WSeC27duvELZ6k7Xhg+r033VnjPyoZNQKeTovrZr6Nbbi7UlLSOi9/Iu/
-   /uZjsqV9J0jLE0wcqoaIUKy4QQOnjGX8Vidhg9PNI+s03i5GI8qhykmK0
-   UUNPewn6A6kOceLZXozE3ISGuBBWAvRCLR2qxBTIToUyqgSv6zg1h2YqB
-   gNFEOH/y+1Xd86oozLctW2lC1PwerDPvb4DUvqal/u2XyNRO5tZRU9K4e
-   A==;
+  t=1660140229; x=1691676229;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=6wm8qFNBUY4i8KtmlFHnTGwoCmChYaNk0zbrd4k51PQ=;
+  b=t6/98NUowJVZvpMlgO30HlLiQa12CmHeitYXZ0i8TWjuRx51Emrrvk6x
+   +2i3dNhi6HyfE8C3nRNbebbBNjaHjGhEy+RvWhSjORQeo/TWOQJIY1pYJ
+   QJfEDhlrSAiNqupal9hQCOFSYDDkHRD7n6SJGYnRgO7IuLi/j39wGdt6s
+   wwKnkl/E0uIs+Mlqfzsizhdh159eeWyBrteYOVvPqbzGF9IHxCT6EcWp2
+   2orPVdcg63uKuEfqNzoqc0a4Kl+LyMVoriDcR5MGQ/J99PXOpgeyYbVo/
+   vnKSmLbEfnYyAWG9o+NrrZC/kafiTiWETU8qbb7KX7PjnCAs/gxAUQmxB
+   g==;
 X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; 
-   d="scan'208";a="175691467"
+   d="scan'208";a="108427959"
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Aug 2022 07:03:46 -0700
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Aug 2022 07:03:48 -0700
 Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 10 Aug 2022 07:03:45 -0700
+ 15.1.2375.28; Wed, 10 Aug 2022 07:03:48 -0700
 Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
  (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Wed, 10 Aug 2022 07:03:42 -0700
+ Transport; Wed, 10 Aug 2022 07:03:45 -0700
 From:   Conor Dooley <conor.dooley@microchip.com>
 To:     <soc@kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>
 CC:     Mark Brown <broonie@kernel.org>, Wolfram Sang <wsa@kernel.org>,
@@ -52,11 +52,14 @@ CC:     Mark Brown <broonie@kernel.org>, Wolfram Sang <wsa@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
         <linux-riscv@lists.infradead.org>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [RESEND/PULL PATCH 0/2] MAINTAINERS updates for PolarFire SoC
-Date:   Wed, 10 Aug 2022 15:02:42 +0100
-Message-ID: <20220810140243.2685416-1-conor.dooley@microchip.com>
+        Conor Dooley <conor.dooley@microchip.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+Subject: [RESEND PATCH 1/2] MAINTAINERS: add PolarFire SoC dt bindings
+Date:   Wed, 10 Aug 2022 15:02:43 +0100
+Message-ID: <20220810140243.2685416-2-conor.dooley@microchip.com>
 X-Mailer: git-send-email 2.36.1
+In-Reply-To: <20220810140243.2685416-1-conor.dooley@microchip.com>
+References: <20220810140243.2685416-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
@@ -70,33 +73,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Arnd,
+So far when I added bindings for the platform I never added them to
+our MAINTAINERS entry. No time like the present to improve the coverage.
 
-Could you please take the following two patches via the soc tree when
-you get a chance?
+CC: Mark Brown <broonie@kernel.org>
+CC: Wolfram Sang <wsa@kernel.org>
+CC: Thierry Reding <thierry.reding@gmail.com>
+CC: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+CC: Jassi Brar <jassisinghbrar@gmail.com>
+CC: Linus Walleij <linus.walleij@linaro.org>
+CC: Bartosz Golaszewski <brgl@bgdev.pl>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: Arnd Bergmann <arnd@arndb.de>
+CC: Olof Johansson <olof@lixom.net>
+CC: Michael Turquette <mturquette@baylibre.com>
+CC: Stephen Boyd <sboyd@kernel.org>
+Suggested-by: Mark Brown <broonie@kernel.org>
+Acked-by: Marc Kleine-Budde <mkl@pengutronix.de> # for can
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ MAINTAINERS | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-The first is adding coverage for "my" dt-bindings as suggested by Mark.
-I CCed all the subsystem maintainers on a V1 a week ago & I've added
-them explicity to the patch text this time as CCs. Correct me if I am
-wrong, but I am operating on the assumption that their Acks are not
-required here. Hopefully increasing the binding coverage is non
-controversial!
-
-The second patch is a resend of a patch that was deferred to later in
-the merge window avoid messing about with a 4th conflict in the entry.
-
-Thanks,
-Conor.
-
-Conor Dooley (2):
-  MAINTAINERS: add PolarFire SoC dt bindings
-  MAINTAINERS: add the Polarfire SoC's i2c driver
-
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-
-base-commit: 4e23eeebb2e57f5a28b36221aa776b5a1122dde5
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 868bbf31603d..fd0f10a110e7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -17512,6 +17512,15 @@ M:	Conor Dooley <conor.dooley@microchip.com>
+ M:	Daire McNamara <daire.mcnamara@microchip.com>
+ L:	linux-riscv@lists.infradead.org
+ S:	Supported
++F:	Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
++F:	Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
++F:	Documentation/devicetree/bindings/i2c/microchip,corei2c.yaml
++F:	Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
++F:	Documentation/devicetree/bindings/net/can/microchip,mpfs-can.yaml
++F:	Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml
++F:	Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
++F:	Documentation/devicetree/bindings/spi/microchip,mpfs-spi.yaml
++F:	Documentation/devicetree/bindings/usb/microchip,mpfs-musb.yaml
+ F:	arch/riscv/boot/dts/microchip/
+ F:	drivers/char/hw_random/mpfs-rng.c
+ F:	drivers/clk/microchip/clk-mpfs.c
 -- 
 2.36.1
 
