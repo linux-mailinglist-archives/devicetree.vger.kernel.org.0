@@ -2,66 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B7458EB08
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 13:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93B6D58EB2C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 13:22:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231482AbiHJLMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 07:12:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41008 "EHLO
+        id S231190AbiHJLW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 07:22:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231392AbiHJLLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 07:11:37 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32DD6580B
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 04:11:33 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id l10so11141553lje.7
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 04:11:33 -0700 (PDT)
+        with ESMTP id S231828AbiHJLW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 07:22:26 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE24774DE7
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 04:22:24 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id z25so20818207lfr.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 04:22:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=MTvbXjWSZdoTdxi/MGUg+5CYiWwb+h69AxhprDFl7dg=;
-        b=ji00btkdbQCHm8ePTKk8JGslms699uCMzw48PWG5K0BlNNTW1378zkcKX+Khyon9lJ
-         xBNpo9MT649Cnyx1brkYeh60sED0Skz3qFyJvHQ1SQDkE+fHGM15yNrR4m2a1FVOKCGT
-         5z+L3AchbHVT8aPDyRjmXo7T1bkJ4KmiNK+5u5/5xtFi0H4etJjqYPB79QKyMjbZDsFt
-         IHS+SOi6D17uqVo2x7Jds9WaMODbqbg0/JjbA/++GHp1MZwxUYw7bAWpeG8b+jje8pD0
-         NHOJv2yuftWUNPoqDY0lpyXWaQXo1D41hZNqOZCcXCKpqO4xEZlRrniNqKiP22Bb3t65
-         D4Ng==
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=KJVvJs/hdcnNTEwCF+Y2HOBUXT3s0+UCv0dsySn/kTc=;
+        b=Wc6xwPj14r6834HGH06kBOKr+qJOUEjLLLFWPKNrfoTPN8zWQS2+uRj1SPdiGIof0z
+         s64Fqt86/H8ud+6jATOixEykMP5zx4babwJaLYHxvxOjOz1pGnMiVFuAUwdrNsvWIPoI
+         tlerqScsK+OTQy52wmGf6Zp48yDF29XG4dCPb4zUOEt0/L+Z9lfN4x2x0K1+36JCe6/M
+         qlVFDwlPllTgTSxO8ft/gctYqGJ2xJeiktkCEliPjW2O+5WYwHsP4SUS6qqxv2fB2oiM
+         rqjFES6VXDuYcgTmSafmFIX8ovwakhhEAlic102vVpYtp6bFSbgpFLjf5IJ1kX5pB2uw
+         DiiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=MTvbXjWSZdoTdxi/MGUg+5CYiWwb+h69AxhprDFl7dg=;
-        b=CRYDQFfuPAAMd47Xw7kgMUlqU3cnqNG5urM5gDUpLDaC9vihMozIck6Hh1xTvPz9Os
-         ZZKV5y/qbUDui1B5CaqwNt4gV3iaQyVBGY3hcNhZpnjMvMp1sn9KrKaChUoBN9Cc8tqs
-         t3CR6ZwyCIaQfUa5PhdOlOl1O4pPisTuvPgqf81rtE6fEigemHZXucR5cIeEJS5nUAZ4
-         y3Z4eFT9Pv53yjIJ6zvmnlyxY8mmEP8A/BuNtno1W22pPb7m8q0tUtIkmUpNYLcbs9HH
-         XFOWyCSLIzE3JWsf1iTFxBTkjDSNRS5ojVlx9ImGiKiz4Udk4V2UUqo6qv0KxmiMpWNx
-         VCdw==
-X-Gm-Message-State: ACgBeo1j6zbAHeG4CvsHGaCqunUNhOuvsmD3VyS4OXHBHtUgNEk2dbAn
-        EM+RLb1G5f9KzSYGIAMkSlw0Xw==
-X-Google-Smtp-Source: AA6agR6sYbkUd4hpt0tN0uHYQXMQ6CcLADQReCb0ugSZqyXlxkc++xWQN0SSbi4NbLLIgDzkcupPRA==
-X-Received: by 2002:a2e:a58e:0:b0:25f:d8c5:3898 with SMTP id m14-20020a2ea58e000000b0025fd8c53898mr4614556ljp.302.1660129893525;
-        Wed, 10 Aug 2022 04:11:33 -0700 (PDT)
-Received: from localhost.localdomain ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id z24-20020a196518000000b0048afbe9d0fasm308577lfb.45.2022.08.10.04.11.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 04:11:33 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Qin Jian <qinjian@cqplus1.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: sunplus: sp7021: drop incorrect spi-max-frequency
-Date:   Wed, 10 Aug 2022 14:11:31 +0300
-Message-Id: <20220810111131.281262-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=KJVvJs/hdcnNTEwCF+Y2HOBUXT3s0+UCv0dsySn/kTc=;
+        b=SQjLrcH5aNQS7nXbVK92T0ixEWvbA68iuTrusoFJ/X1/ccxU0PoYB98PjvlpEwzZ+j
+         PU1tz31BTSYvSn7mfV3hQV48fmlyzjO7cqGMsYV1k1E5qyJRLC+oWVUZhhwMLnkOOVJ6
+         0LXM1/dHW/S5Z2u9mtJgbcVwKDkWt6I5rcC/+pox5M3Ak//cvZ3KaBMUTlTsRtUyxZOg
+         Lz9ca3jm1hv0wC/gTRQklFzSefwH+W/pcYrzjGIydK3EfN7s5qVZER7rDVts3xySgAEj
+         qHrLI2f6yBbh2h97Fl/x7Cio+eRIdpmfYSkA8rQwsLZiFWzIwi5U7eL7ZoVDGvHkhYOe
+         pmeA==
+X-Gm-Message-State: ACgBeo2+WkHiVkFID4Pg3qKPyeTzdPoSzXtdwbMRtGRWnkkjHRaQLg/t
+        dBukwQ61NmTbsvk0L5ys6q27dQ==
+X-Google-Smtp-Source: AA6agR5sBpeeQBdFjzS2wtiHcwYuXfYhIEICyKLtIACFba5DjV5ePna+qqSY3kuQDsfF0uLZsjdGdg==
+X-Received: by 2002:a05:6512:c13:b0:48b:3b30:637d with SMTP id z19-20020a0565120c1300b0048b3b30637dmr8195257lfu.447.1660130543208;
+        Wed, 10 Aug 2022 04:22:23 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id u18-20020ac258d2000000b0048af464559esm299979lfo.293.2022.08.10.04.22.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Aug 2022 04:22:22 -0700 (PDT)
+Message-ID: <f69bf678-0188-7178-7542-9773c15c1463@linaro.org>
+Date:   Wed, 10 Aug 2022 14:22:20 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 4/5] dt-bindings: Drop Robert Jones
+Content-Language: en-US
+To:     Lee Jones <lee@kernel.org>
+Cc:     Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Pavel Machek <pavel@ucw.cz>,
+        Tim Harvey <tharvey@gateworks.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Andrew Davis <afd@ti.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
+        netdev@vger.kernel.org, linux-pm@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20220809162752.10186-1-krzysztof.kozlowski@linaro.org>
+ <20220809162752.10186-5-krzysztof.kozlowski@linaro.org>
+ <YvOP9qr2CR9n1FCe@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YvOP9qr2CR9n1FCe@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,43 +96,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-spi-max-frequency is a property of a SPI slave device, not controller:
+On 10/08/2022 14:01, Lee Jones wrote:
+> On Tue, 09 Aug 2022, Krzysztof Kozlowski wrote:
+> 
+>> Emails to Robert Jones bounce ("550 5.2.1 The email account that you
+>> tried to reach is disabled").
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+>>
+>> ---
+>>
+>> For maintainers entry see:
+>> https://lore.kernel.org/all/20220808111113.71890-1-krzysztof.kozlowski@linaro.org/
+>> ---
+>>  Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml | 2 +-
+>>  Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml    | 1 -
+> 
+> Any reason to submit these as one patch?
 
-  sunplus-sp7021-demo-v3.dtb: spi@f480: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
+Less work for me, less work for maintainer applying and sending fixes. I
+think this could go via Rob's tree as fixes for current cycle.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/sunplus-sp7021.dtsi | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/arch/arm/boot/dts/sunplus-sp7021.dtsi b/arch/arm/boot/dts/sunplus-sp7021.dtsi
-index 7dc4ce3619c7..ae9bbe0320b8 100644
---- a/arch/arm/boot/dts/sunplus-sp7021.dtsi
-+++ b/arch/arm/boot/dts/sunplus-sp7021.dtsi
-@@ -211,7 +211,6 @@ spi_controller1: spi@f480 {
- 			interrupt-names = "dma_w", "master_risc", "slave_risc";
- 			clocks = <&clkc CLK_SPI_COMBO_1>;
- 			resets = <&rstc RST_SPI_COMBO_1>;
--			spi-max-frequency = <25000000>;
- 			status = "disabled";
- 		};
- 
-@@ -225,7 +224,6 @@ spi_controller2: spi@f600 {
- 			interrupt-names = "dma_w", "master_risc", "slave_risc";
- 			clocks = <&clkc CLK_SPI_COMBO_2>;
- 			resets = <&rstc RST_SPI_COMBO_2>;
--			spi-max-frequency = <25000000>;
- 			status = "disabled";
- 		};
- 
-@@ -239,7 +237,6 @@ spi_controller3: spi@f780 {
- 			interrupt-names = "dma_w", "master_risc", "slave_risc";
- 			clocks = <&clkc CLK_SPI_COMBO_3>;
- 			resets = <&rstc RST_SPI_COMBO_3>;
--			spi-max-frequency = <25000000>;
- 			status = "disabled";
- 		};
- 
--- 
-2.34.1
-
+Best regards,
+Krzysztof
