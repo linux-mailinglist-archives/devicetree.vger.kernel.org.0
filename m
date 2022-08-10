@@ -2,72 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B329A58EEB2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E056B58EEB8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:48:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232796AbiHJOqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 10:46:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59634 "EHLO
+        id S232387AbiHJOsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 10:48:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232523AbiHJOq1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:46:27 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE0854A80E
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:46:24 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id z6so14109710lfu.9
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:46:24 -0700 (PDT)
+        with ESMTP id S232801AbiHJOsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:48:00 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC457332D
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:47:56 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id l21so4868879ljj.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:47:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=1vigc/s4YfDj/ooJiN5THmcp5/HApro9MC2TGzeGn+E=;
-        b=l57E6NKmXHlM4aUQ7FGA8/Y/QyaX3WmDuqINA3dE8lt6G/sYNCr+cwrZla7AUCeBMW
-         ZyDDBgE3SCGylJBHCZZFJ+/YVFQ/q6cVpX5ifRyvUQR3cVGkEjIWzQF50GWOsstaj6Vf
-         /oIc4VB5swBCuk01aItKRiLSYBFIrKvcvJDdqGLHGycgMwinPQWM7ptvHFvwL1kTRxxG
-         YZKQXcz4aRfaXD98cPnY/P68xstD10wCcgvRWhwwJ+tYcVBx5hzP6Txuui8CsMZyP71e
-         n75lVzP+1zm0qUHpd3jm+CpmF4A8USKVOkH6Gq2R4Q80gM6tbGj74a5nn6GLV1PHTOrj
-         6LAw==
+        bh=xAWbyrjApOISWNxRGXk8EYQy587Toi36q77R+G3hDzc=;
+        b=eEDtTm8qxAkipar2MHl4PYLASIA8YnYRV2ynvJSiM4Cct5aihxVp5/IQCKXhqdp+H+
+         crJH4GADLjpldQYcCFk4KHWZ0PCBK8UjwPs1PNt91XEnTqv273JxLSijKMf+R8APDndc
+         eyxHSrbVogq5Bm81JJEY8hbY5PRrJW4WrfXx/yylwBNsp4FAJOvQObHs42d41jY2MG7A
+         9iItnkHxxYqp1fz/CgS1Dz1WcMXDVR2q/0WMytQV2SqsaIyi8MdP8giUEa0MUAGMWP5u
+         RG22sj9kqJaGPxZIAA69HQXNPliPxltu159ZYkwkBWTBAD4xhDRpJirL7ews7lJznrUy
+         5rsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=1vigc/s4YfDj/ooJiN5THmcp5/HApro9MC2TGzeGn+E=;
-        b=OQnP2hn/npvByDutT/FDXqjK3e35/ODvnO2XezVZgPRIE1VvOhpTgGcCAaYiseQZVo
-         3TQWBD7KENIU1pO60pr/P8aCqnIWsG9jElPT/7T7VOxFIoyesrXaz5NEnlBP/iHSUIOe
-         GGhbnkZT25HOeBhHFepcvXPUYOIXonvG3rM5UGPmMZImKzI5bdsaJDsS9F0DKz037pkA
-         M3NaIuFwawiK67zJgMs5hQh8zQo22VfimIfhMgRHXKPdHZq8EnBHmoo53IDqRbfShdE1
-         wveVS5daDgu7w2jDvcKKC9/5HiU7ilggr3WP2Mw2QNIutHCOIMJt8OaTypcvytyjP1Ko
-         EKdw==
-X-Gm-Message-State: ACgBeo1hTn7EzXZmqnK2jQwv1hARpxO2yckDcuLY9Q4t/Qcpx/iBldkn
-        kSWMJnymB5LzrgJU2eRGXB0UgQ==
-X-Google-Smtp-Source: AA6agR6LYCcCivkpQBtG3mxaAFGMdHK3AIxWo3GuoswWqe5xC8JKwFW+OOjOpEb+qX/xVEjYpB/c7Q==
-X-Received: by 2002:a05:6512:3d20:b0:48b:9e72:fb42 with SMTP id d32-20020a0565123d2000b0048b9e72fb42mr7308138lfv.299.1660142783294;
-        Wed, 10 Aug 2022 07:46:23 -0700 (PDT)
+        bh=xAWbyrjApOISWNxRGXk8EYQy587Toi36q77R+G3hDzc=;
+        b=MY+EJ+iPtGhjbHHBIa5U+Iy7pR8muFkVKBFMF44YeFC3G8nd9xiNRdiFc33+JQgDDn
+         l+mI/wuVLWBa3Go9TmmyjcE5GYBF0NKiAFXuJ1/1Yb/dSBwcNg1+MZTk9gnYJ+JoLmuf
+         V/P1PLbCshyTfyR873qXrOWPGMMqB6iP4ORs3MuUr3lZJAspt4o05g5gVO7ztHRgVNlJ
+         0ORd4/BjohvKQipcm5oeyXXDeBO/GvNBgYLleNaz43UtQCvSxEfbYn1MiGSO1ORgDPLK
+         MGCpvWiNG+h8jbOqV+8glMEUYEknvhIh6Z26e9yPqRVov0+zPCwBv/nQXDW2T6XlU1Ys
+         QpQA==
+X-Gm-Message-State: ACgBeo2JIPfeiSl5EkkSeNBsSa9WtyPKQeaoiiEdJTlvlpjPUgIrwj4j
+        UsnMW0hQeFtUINZjtBBsYvvxtQ==
+X-Google-Smtp-Source: AA6agR5+VKezNQWlbJ5jGG0wOWbGdljEwN+NvnLLR8ppNZnwuZNWvZOlx4TkI6EEuuwMpFiWwy3z/g==
+X-Received: by 2002:a2e:b0c9:0:b0:25e:71e3:8441 with SMTP id g9-20020a2eb0c9000000b0025e71e38441mr9604841ljl.156.1660142874467;
+        Wed, 10 Aug 2022 07:47:54 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id e2-20020ac25462000000b00489d1896c06sm365688lfn.125.2022.08.10.07.46.22
+        by smtp.gmail.com with ESMTPSA id p12-20020a2ea4cc000000b0025d743eb0c5sm429749ljm.112.2022.08.10.07.47.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Aug 2022 07:46:22 -0700 (PDT)
-Message-ID: <ec6fd9eb-f46d-afa9-b08b-15e202b3a624@linaro.org>
-Date:   Wed, 10 Aug 2022 17:46:21 +0300
+        Wed, 10 Aug 2022 07:47:53 -0700 (PDT)
+Message-ID: <c5cc8752-d7e2-b870-6887-c025137ed8a1@linaro.org>
+Date:   Wed, 10 Aug 2022 17:47:52 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: gpio: Add imx scu gpio driver
- bindings
+Subject: Re: [PATCH 1/7] dt-bindings: msm/dp: Add SDM845 and SC8280XP
+ compatibles
 Content-Language: en-US
-To:     Shenwei Wang <shenwei.wang@nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
-        brgl@bgdev.pl, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        imx@lists.linux.dev
-References: <20220810133005.74653-1-shenwei.wang@nxp.com>
- <20220810133005.74653-2-shenwei.wang@nxp.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+Cc:     Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220810035013.3582848-1-bjorn.andersson@linaro.org>
+ <20220810035013.3582848-2-bjorn.andersson@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220810133005.74653-2-shenwei.wang@nxp.com>
+In-Reply-To: <20220810035013.3582848-2-bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,46 +86,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2022 16:30, Shenwei Wang wrote:
-> Add binding document for the imx scu gpio driver.
+On 10/08/2022 06:50, Bjorn Andersson wrote:
+> Add compatibles for the DisplayPort and Embedded DisplayPort blocks in
+> Qualcomm SDM845 and SC8280XP platforms.
 > 
-> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  .../bindings/gpio/fsl,imx-sc-gpio.yaml        | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
+>  .../devicetree/bindings/display/msm/dp-controller.yaml         | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
-> new file mode 100644
-> index 000000000000..66abff316c0c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/fsl,imx-sc-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO driver over IMX SCU firmware API
-> +
-> +maintainers:
-> +  - Shenwei Wang <shenwei.wang@nxp.com>
-> +
-> +description: |
-> +  This module provides the standard interface to control the
-> +  resource pins in SCU domain on i.MX8 platforms.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8qxp-sc-gpio
-> +      - fsl,imx-scu-gpio
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index 94bc6e1b6451..90f9302d1731 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -16,11 +16,14 @@ description: |
+>  properties:
+>    compatible:
+>      enum:
+> +      - qcom,sdm845-dp
+>        - qcom,sc7180-dp
 
+Alphabetical order, please.
 
-This is too generic compatible and it even conflicts with the above...
-Your driver binds to both without driver data which is even more
-confusing. Make the compatible specific for one, given SoC.
+The DTS warnings from the bot look unrelated to this patch.
+
 
 
 Best regards,
