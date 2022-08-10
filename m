@@ -2,66 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63FDC58F356
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 21:51:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E2058F3A2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 22:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233195AbiHJTvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 15:51:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48150 "EHLO
+        id S233090AbiHJUpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 16:45:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbiHJTvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 15:51:12 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FE386C3E
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 12:51:11 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id cb12-20020a056830618c00b00616b871cef3so11331078otb.5
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 12:51:11 -0700 (PDT)
+        with ESMTP id S232579AbiHJUpP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 16:45:15 -0400
+Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F0F15702
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 13:45:14 -0700 (PDT)
+Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-10ea9ef5838so19225910fac.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 13:45:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=wufSRqh/QVijGNaq/aAL4S6kr3FJOGsDXoMinL9NFkQ=;
-        b=LXS7pfWVJyH5+9g4Izlsrw3QCK89LKUhaAHp5PyyAybFmK+2tcHA6rw4Qhm3UpQHLg
-         dNr+xBXZVwW5tdJ5LNEpA5dFjcQ6aiuAnYIFqZBfm4KTzmx0X6M67UWHgAO5DKnCt5ct
-         zX9KsxzwDqU/wIREG0lFidsRNh1UAjHYzHpF5rwWmfHA6Awz7PYTk4QslNbpBuvC3SQ9
-         PU4vqDIE30AI9OomcvRsYk/JJITDIv3oSAQnGzoUMQNzJaGh1Oexs8iWx7v6uzbOxOf8
-         Q4i+9pyUxUq4kNWQcloP+g98YZTZsjqLc4FhPQOGcIk/zlClbgYXupz5AGUvpY45sQGp
-         5qLQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=/Tb8rXUIwGiSR5Mp63C1iN3z6zJu5WryqQsj3M2SVRg=;
+        b=Q9AFEMh19+uvchGr3kAscMNtmOvF3UcLNJrpS8Q5hLvtT/YdMM7ENd6DjjRLHuvNOL
+         0LMyVuT3q9mnbUQmzJ0zoQEoLfE8fdc61WnbEU7OQKKAuNnUQ1HuAPVEdrrM3sSChHWt
+         hs7JdP5X2s0YvHaULZr82zbLpXfmRkWxil55IzHvFdGh1ltbsfcacSD8NPJdoWoar2gj
+         e4C1Nb58hBOKtfpe+R6GcRS8IbS8+W6xgTvExAM/GLzGFMVIEOMrRXIfe8kz+INtxoeZ
+         LuJJKLxYT+R6QHeOBSLeSu6xSmTV7XF/sRCi77BXAZdJBqaX59TLEmb+RhNL3Vx4ZsfO
+         FjPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=wufSRqh/QVijGNaq/aAL4S6kr3FJOGsDXoMinL9NFkQ=;
-        b=KLet0mqe8OLXF64juN4Dxp2o/a3zCai4l+tmpNwUVdBzDGFdwKe6tzjvkAaXlQ+atU
-         SAbE4lfIVJQREpUn6x8XpzpRoEGVgaEuCGtpR8OLc1f/q5tvItACwfOmh7D7ipkCTcNy
-         FgL2zFHelM+2bdFqnD27DVo3lgUmFMIEH3cEdrQlIABtBPtg6IIeJCxyQSkNvcqe9T/v
-         ZFkrKZ9Q/lMwg5yuRTmBnFZ63JTsylHxeDS9syV4BncC28G6eVOrAAp/ttj005dRmPgp
-         jmhKXdu9XSRG5DDkt5XFSG2SNueFg6anDfBLPQz3Bfng0gc96bLlA8yt4nD6zJFXqVxl
-         WyGg==
-X-Gm-Message-State: ACgBeo3CQAKEG0Oh5Lsfoxtkd3sTa6uWVgN/rtx80xJMp0IjVGENTE7+
-        V2pE26/GjMWH+zenJQu1gTMKqA==
-X-Google-Smtp-Source: AA6agR6PRtN3JeugTc37Fb3rdblC9rYxMYOE9wdMFW9tBCBxJ51atqOVkmRgev2zizv/QACpsCOqjw==
-X-Received: by 2002:a9d:53c8:0:b0:61e:ddc0:bfae with SMTP id i8-20020a9d53c8000000b0061eddc0bfaemr10427715oth.266.1660161070280;
-        Wed, 10 Aug 2022 12:51:10 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id bk12-20020a056830368c00b00636e6dea5e5sm819363otb.23.2022.08.10.12.51.08
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=/Tb8rXUIwGiSR5Mp63C1iN3z6zJu5WryqQsj3M2SVRg=;
+        b=gWzutD8dbD+eC2aIZ5if+skUdmhiljY1LQd4cV4ij2LjJP+avjQfQfpSGYEh/3E8Mb
+         /mR7V3Xl1yvyGt1nVS9dRY+V8aO82IGKEXL7bBCBlj7aFfiKUW783380m1zvxWUwQCnN
+         d5mSbAMdDsk5jyvdSDEUEFZqMuWfuVQHOlP66kHcGKGEqHvUQ7+lEmbx9FwulU4RMjNB
+         z1bmY2MHh+ELzZoSWl2prGyPHVtVGCbg0kQnp/veMTd0UBIzy+RlC6kWKahvfSAYY9tm
+         E3990c+oj7qIE1u6G2f1hfTiJdCRHAIzGGUWvBz7yfVGH8v4vCtebCWisJW38rvibN50
+         6btw==
+X-Gm-Message-State: ACgBeo17LWRZrbHu45kPL22JV9Whxs97t183HetNaVZQjxs/dX6oihbq
+        1s8AkY1hhY3Q6T8Hyak0UrA1Bg==
+X-Google-Smtp-Source: AA6agR5KR+MQJmPIBH24l2i6zKt8CyhlzpT30Va14Lpv2RPY+mSG77c/ZvfnJUnOTLxhLbdj4GJIHw==
+X-Received: by 2002:a05:6870:a181:b0:116:da6b:b3b9 with SMTP id a1-20020a056870a18100b00116da6bb3b9mr1418910oaf.179.1660164313523;
+        Wed, 10 Aug 2022 13:45:13 -0700 (PDT)
+Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id f12-20020a056870548c00b000f2455e26acsm3968218oan.48.2022.08.10.13.45.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 12:51:09 -0700 (PDT)
-Date:   Wed, 10 Aug 2022 12:53:45 -0700
+        Wed, 10 Aug 2022 13:45:12 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rudraksha Gupta <guptarud@gmail.com>
-Cc:     agross@kernel.org, david@ixit.cz, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2 1/2] ARM: msm8960: Rename cxo_board to cxo-board and
- add alias
-Message-ID: <YvQMyQLohqcc8Fug@ripper>
-References: <20220808234723.5184-2-guptarud@gmail.com>
- <20220809000300.6384-1-guptarud@gmail.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH 0/2] usb: typec: mux: GPIO-based SBU mux
+Date:   Wed, 10 Aug 2022 13:47:48 -0700
+Message-Id: <20220810204750.3672362-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220809000300.6384-1-guptarud@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -72,61 +70,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 08 Aug 17:02 PDT 2022, Rudraksha Gupta wrote:
+A design found in various Qualcomm boards is to use a USB switch, controlled
+through a pair of GPIO lines to connect, disconnect and switch the orientation
+of the SBU lines in USB Type-C applications.
 
-> This patch renames cxo_board to be up to date with the current naming
-> style. It also adds an alias.
-> 
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
-> ---
-> v2:
->  - Group the correct changes together
-> 
->  arch/arm/boot/dts/qcom-msm8960.dtsi | 2 +-
->  drivers/clk/qcom/gcc-msm8960.c      | 2 +-
+This series introduces a generic GPIO-driver for handling these designs.
 
-Clock and dts patches goes through two different paths towards mainline,
-so they should be separated.
+Bjorn Andersson (2):
+  dt-bindings: usb: Introduce GPIO-based SBU mux
+  usb: typec: mux: Introduce GPIO-based SBU mux
 
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom-msm8960.dtsi
-> index 0e099aa7c889..2ed969785b78 100644
-> --- a/arch/arm/boot/dts/qcom-msm8960.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8960.dtsi
-> @@ -58,7 +58,7 @@ cpu-pmu {
->  	};
->  
->  	clocks {
-> -		cxo_board {
-> +		cxo_board: cxo-board {
->  			compatible = "fixed-clock";
->  			#clock-cells = <0>;
->  			clock-frequency = <19200000>;
-> diff --git a/drivers/clk/qcom/gcc-msm8960.c b/drivers/clk/qcom/gcc-msm8960.c
-> index 051745ef99c8..56ce05a846dd 100644
-> --- a/drivers/clk/qcom/gcc-msm8960.c
-> +++ b/drivers/clk/qcom/gcc-msm8960.c
-> @@ -3624,7 +3624,7 @@ static int gcc_msm8960_probe(struct platform_device *pdev)
->  	if (!match)
->  		return -EINVAL;
->  
-> -	ret = qcom_cc_register_board_clk(dev, "cxo_board", "cxo", 19200000);
-> +	ret = qcom_cc_register_board_clk(dev, "cxo-board", "cxo", 19200000);
+ .../devicetree/bindings/usb/gpio-sbu-mux.yaml |  77 ++++++++
+ drivers/usb/typec/mux/Kconfig                 |   6 +
+ drivers/usb/typec/mux/Makefile                |   1 +
+ drivers/usb/typec/mux/gpio-sbu-mux.c          | 171 ++++++++++++++++++
+ 4 files changed, 255 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+ create mode 100644 drivers/usb/typec/mux/gpio-sbu-mux.c
 
-This breaks compatibility with existing DTB files.
+-- 
+2.35.1
 
-What you probably want is to make sure that any clocks with parent name
-of "cxo", should have a .fw_name = "cxo", then you can make a
-phandle-based reference in DT and these global names doesn't matter (and
-in the end we can remove this board_clk from the driver).
-
-Regards,
-Bjorn
-
->  	if (ret)
->  		return ret;
->  
-> -- 
-> 2.25.1
-> 
