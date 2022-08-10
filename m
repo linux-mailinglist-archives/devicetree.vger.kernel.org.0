@@ -2,122 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FA7358EAD0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 12:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43ED058EADD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 13:01:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbiHJK6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 06:58:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57772 "EHLO
+        id S231723AbiHJLBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 07:01:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231812AbiHJK5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 06:57:51 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D55BF5A3D1
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 03:57:48 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id bv3so17293154wrb.5
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 03:57:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=sxO6pBYMFyCO8T9Rpok+/sK67wCwRESAbANsHwqKpSI=;
-        b=K7Y8Tm9kITFF/BFyTFH0V6bfW4oaN3MI/h6E4kW+InWiIm1nIsbbfRLTAqsB5YeH+z
-         NRHoXt8Tuw1tXRC9lH7jT7SbSl8ocfduH217oNtUuKrmdDCuLxf/0+N83TQSUPBKfe+J
-         iFQG4Lg4u+zKrovIfuojKYkendOtYj1tjxnAbXMNwucP4L3t6Yk1csEjg/0jSLwQgRP0
-         VqLAplSd0rKICVrRA1mqsUoBw39p16tnGFglFUBBmHMiIliGbIEIcWbAa2npPuBnA+nG
-         enwxwP8ED2TMFPAvskKOxGom0Ltbsm74wsjywsswptWAVOK6G/s33PrTfb0ok0lsgXpy
-         b3/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=sxO6pBYMFyCO8T9Rpok+/sK67wCwRESAbANsHwqKpSI=;
-        b=2N8LYg2RrXG7EF35EOqxjWD1mwjxpJ6FEPE99YQ2s+LiiO6mlIqC0DfDx50/5nHpv6
-         HE9hakavBXbf8YOyDQQGW2C11qb4YNZvRJrnT4MjtDPSEnMvoIqjqVUecqvz6NrUqzkR
-         qnpezcvrXipNvMoQQsPLHJJAR4wyJxORa54Zo5oeonBXnO6Obb6VGgm6VCx0QDmivg07
-         la1VXkr0hQhu9StPzEOnviZu0G/pGp/nixqpf7xWuC9KyxMTGYlV+JIlpG2Uu1J0BraL
-         Mi73QTV6ptpV1w2Saul263dye5n9GteCtq8W6UVyfsWrXEqp74+2kz+QJ6dBnYucc15I
-         uF9w==
-X-Gm-Message-State: ACgBeo1DhMwFtM3wOFkizd23MjtUGFOf92hXuaC0cxEWCoXxfzXRSD3H
-        BYkhPoCt+e+gtg+v+dsqX1ZLFA==
-X-Google-Smtp-Source: AA6agR4xTdof6Q0yg3dmcZLmnb1tj/648aGhpZ33nJUTW6ltxt5UMrIJl1FFK6j9lsHxVBnEXwDWsw==
-X-Received: by 2002:a5d:638b:0:b0:220:6e1a:8794 with SMTP id p11-20020a5d638b000000b002206e1a8794mr17165169wru.193.1660129067349;
-        Wed, 10 Aug 2022 03:57:47 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id j14-20020adfe50e000000b0021e4829d359sm15892580wrm.39.2022.08.10.03.57.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 03:57:46 -0700 (PDT)
-Date:   Wed, 10 Aug 2022 11:57:44 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     David Heidelberg <david@ixit.cz>, linux-kernel@vger.kernel.org,
+        with ESMTP id S231658AbiHJLBX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 07:01:23 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBCDA6BD6F;
+        Wed, 10 Aug 2022 04:01:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 985E3B81B5B;
+        Wed, 10 Aug 2022 11:01:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EE0CC433D6;
+        Wed, 10 Aug 2022 11:01:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660129279;
+        bh=6x6su5oHn4WjBSWBtUvgxfhKdMjczpssjP15rky0Ucc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KMY2BViRwxO+LS6lTNRSgjQQ0lxdAhWdIrWx87oKITfqA8c3unrpEe7yDrvdit6aP
+         LAJh1oADLa4m6DCanxivY6NzKxMsGIuHST3i3MzzmjjgMVlog/k0ZPOuyoDeIpgEXx
+         UZ8VIDuSks9qlXahIc5IeJ5OVKApkhOtMLYZl/glbvW2lmz4Q7fkrhkSzpM5OdrLs1
+         vOKs3vJGcttXSz343CpoH1x0KvOn8EnpiFTNHcpw5q4kgTWmAzyFstxLwmo0z9ctHY
+         DkBAqyv5xIbwGRFXuxNQ2reCX6YRtl9sY824SJ4PaxHM3m8ht49/FEZms4NYXFEnvJ
+         Xg4XqbbvEYd+w==
+Date:   Wed, 10 Aug 2022 12:01:10 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        linux-arm-msm@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        ~okias/devicetree@lists.sr.ht,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: mfd: convert to yaml Qualcomm SPMI PMIC
-Message-ID: <YvOPKKw60F4qEKM6@google.com>
-References: <20220626191630.176835-1-david@ixit.cz>
- <20220809235625.GA2775377-robh@kernel.org>
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Pavel Machek <pavel@ucw.cz>,
+        Tim Harvey <tharvey@gateworks.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Andrew Davis <afd@ti.com>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-fbdev@vger.kernel.org, linux-leds@vger.kernel.org,
+        netdev@vger.kernel.org, linux-pm@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v2 4/5] dt-bindings: Drop Robert Jones
+Message-ID: <YvOP9qr2CR9n1FCe@google.com>
+References: <20220809162752.10186-1-krzysztof.kozlowski@linaro.org>
+ <20220809162752.10186-5-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220809235625.GA2775377-robh@kernel.org>
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220809162752.10186-5-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 Aug 2022, Rob Herring wrote:
+On Tue, 09 Aug 2022, Krzysztof Kozlowski wrote:
 
-> On Sun, 26 Jun 2022 21:16:30 +0200, David Heidelberg wrote:
-> > Convert Qualcomm SPMI PMIC binding to yaml format.
-> > 
-> > Additional changes:
-> >  - filled many missing compatibles
-> > 
-> > Co-developed-by: Caleb Connolly <caleb@connolly.tech>
-> > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > ---
-> > v3:
-> >  - added subnodes, there are two not converted to YAML yet, but it works
-> >  - now it prints milion directly unrelated warning to this binding
-> >    (it's related to the included subnodes bindings, can be merged,
-> >     but it'll generate more warnings and preferably anyone can takeover
-> >     from here)
-> >  - add qcom,pmx65
-> > 
-> > v2:
-> >  - changed author to myself, kept Caleb as co-author
-> >  - moved nodename to properties
-> >  - add nodenames for pm* with deprecated property
-> >  - add ^$ to pattern properties
-> >  - dropped interrupt-names property
-> >  - added reg prop. to the nodes which have register in nodename
-> >  - added compatible pmx55
-> > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > ---
-> >  .../bindings/mfd/qcom,spmi-pmic.txt           |  94 ---------
-> >  .../bindings/mfd/qcom,spmi-pmic.yaml          | 191 ++++++++++++++++++
-> >  2 files changed, 191 insertions(+), 94 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
-> > 
+> Emails to Robert Jones bounce ("550 5.2.1 The email account that you
+> tried to reach is disabled").
 > 
-> As this hasn't been picked up, I applied it. Thanks!
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> ---
+> 
+> For maintainers entry see:
+> https://lore.kernel.org/all/20220808111113.71890-1-krzysztof.kozlowski@linaro.org/
+> ---
+>  Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml | 2 +-
+>  Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml    | 1 -
 
-I'd prefer to take it via MFD if it's all the same to you.
+Any reason to submit these as one patch?
 
-In case there are additional fix-ups required during the next cycle.
+>  2 files changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
+> index 479e7065d4eb..0203b83b8587 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/nxp,fxos8700.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  title: Freescale FXOS8700 Inertial Measurement Unit
+>  
+>  maintainers:
+> -  - Robert Jones <rjones@gateworks.com>
+> +  - Jonathan Cameron <jic23@kernel.org>
+>  
+>  description: |
+>    Accelerometer and magnetometer combo device with an i2c and SPI interface.
+> diff --git a/Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml b/Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
+> index 5a1e8d21f7a0..5e0fe3ebe1d2 100644
+> --- a/Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml
+> @@ -19,7 +19,6 @@ description: |
+>  
+>  maintainers:
+>    - Tim Harvey <tharvey@gateworks.com>
+> -  - Robert Jones <rjones@gateworks.com>
+>  
+>  properties:
+>    $nodename:
 
 -- 
-DEPRECATED: Please use lee@kernel.org
+Lee Jones [李琼斯]
