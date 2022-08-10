@@ -2,134 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEA9A58EBA3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 14:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2C858EC0A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 14:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231646AbiHJMGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 08:06:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36504 "EHLO
+        id S229487AbiHJMc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 08:32:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230000AbiHJMGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 08:06:31 -0400
-Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3E8311463;
-        Wed, 10 Aug 2022 05:06:29 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 9E6DD320016F;
-        Wed, 10 Aug 2022 08:06:26 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Wed, 10 Aug 2022 08:06:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stwcx.xyz; h=cc
-        :cc:content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to; s=fm3; t=1660133186; x=1660219586; bh=3XbRmvT48M
-        pdRH2ywGW3ehrhy3CjGTqx3lHdeyY6c4c=; b=SXj98chvzemW2+D+giV//Vm4lf
-        r0EJ0mMccOw9xMl0/NXENd7eVaYfQ1DK1HRkBEM8KjHAlXil4CEmBiGCrwPNC+Kh
-        hdahInc6BNxj3+bgqo+qiQy3a2MuRbkMaVbxVTTfDDjaHhca/P4swZ80ycTQgIP0
-        604VoWI9WvUmBiGdjB80uacucJML0c4713e0o9R4bdQi+56kcU9DYg0uRw4eglis
-        qbIXoi+9w7g/9+gT5L4L2sgjwhOahqygyo/49KVLLkeFfHhp8A6o7Qoyir2X+5Mq
-        6W8dxW2k7Lvd2qMAtmeEvB2tHGjRBgChap1El0CZI2m45ugdRZyf9ZnTNU6w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:date:date:feedback-id
-        :feedback-id:from:from:in-reply-to:in-reply-to:message-id
-        :mime-version:references:reply-to:sender:subject:subject:to:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; t=1660133186; x=1660219586; bh=3XbRmvT48MpdRH2ywGW3ehrhy3Cj
-        GTqx3lHdeyY6c4c=; b=C4MvPgfFs+BmCzMgV9dR95NpWJBJABmCxPG4pWCiPbl8
-        69YgY7X/ywibwO4u3aUcngLbqOzs8bw21VZCUnAL0Cygb1IhJYA1Icdmur/WTwY9
-        ZUaVmJft7S26teaKS62PW3J3/L8qPLjkznmRb4g/7odmOU+016c0KvtzVpEX/zS6
-        WN7g2aQTWccy0801bi6LM8XMO000IvULM4v5i5APIsjylQiBS3H8CJFnB9bV2vws
-        guhzECP9VxdGWjhW2ZkXygBD2cXmpaGmZBfOIfUo8r07ouAKJPaF2z4GA15x/+8M
-        n+YsI8Wx6HrhkiiKF7gyhHuDQquoswTwSrBhaOlrKg==
-X-ME-Sender: <xms:QZ_zYkgQaZkPKw8JtSWIBwz6vNWku9vl9MqjBGGpTZmDOxuBH9IGmA>
-    <xme:QZ_zYtC6snDGOa6mrvRLMdy-93orr09baR-9wBpGI7lADlAMHGcJ-60FPfcW7xTMv
-    e7T6SKMXLtuWmKksvA>
-X-ME-Received: <xmr:QZ_zYsHCEB9z1_b6YnGWuGDlnFmEV7roc5fGggXpgEBZ9ATbMG-C-ywEv6jOscqBEtAsdma45N1f4GAoa7mds781xm0gNAbM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdegvddggeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    gfrhhlucfvnfffucdlfeehmdenucfjughrpeffhffvvefukfhfgggtuggjsehgtderredt
-    tddvnecuhfhrohhmpefrrghtrhhitghkucghihhllhhirghmshcuoehprghtrhhitghkse
-    hsthiftgigrdighiiiqeenucggtffrrghtthgvrhhnpeehfeejheeftdejiedvfeekffeh
-    ledukeduleelffekgfdtleduledvtdegtdehkeenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehprghtrhhitghksehsthiftgigrdighiii
-X-ME-Proxy: <xmx:QZ_zYlS-63UCptcj1fEp1ZNjvHjt0bce7xWTP4hogKk2rjd36sJxEQ>
-    <xmx:QZ_zYhxGE4xrlLKojS2ICOQ-aNFMEGNK5xqvKbKHU2bBXS0lywT51A>
-    <xmx:QZ_zYj6e6F-ell4eS8bcMiK6iLM9_30ZCoMFOga4emjmHKycLwVd9g>
-    <xmx:Qp_zYokX29Hu51nRVBWwF7ZxD-zykgNnZehGy0mL6zPu1dJ67UE65Q>
-Feedback-ID: i68a1478a:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 10 Aug 2022 08:06:25 -0400 (EDT)
-Date:   Wed, 10 Aug 2022 07:06:24 -0500
-From:   Patrick Williams <patrick@stwcx.xyz>
-To:     Potin Lai <potin.lai.pt@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Update Facebook Bletchley BMC devicetree
-Message-ID: <YvOfQEqj+XsYkuUH@heinlein.stwcx.org.github.beta.tailscale.net>
-References: <20220810004338.329832-1-potin.lai.pt@gmail.com>
+        with ESMTP id S229446AbiHJMc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 08:32:57 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ADA47695E;
+        Wed, 10 Aug 2022 05:32:51 -0700 (PDT)
+X-UUID: 52b81401940747069a6db42f422caf24-20220810
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=TtWR+yg+ag6c4ySzzvo2nUeXBN5GFbEppUG3w7dP/gc=;
+        b=CO0ufijyH0LMbYLByIfDiWu+w1sN/AsjupYVghxxT0TbjGHCAQOI/SAYJ3U160o9ls2IDwxINq+duY9LYFVmWIIkjxC1IHHt/sf1o/K9ftT7xkNpmj/ysV8ttVzSq+c5gSkTHHeF6+5UY9NtbNUpOJa4eaB+x3sTXAj1z8iCOec=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.9,REQID:18091ccc-f505-4a59-ad45-9e1794a43c0b,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
+        Ham,ACTION:release,TS:-5
+X-CID-META: VersionHash:3d8acc9,CLOUDID:0c2270ae-9535-44a6-aa9b-7f62b79b6ff6,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 52b81401940747069a6db42f422caf24-20220810
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1112623319; Wed, 10 Aug 2022 20:32:47 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 10 Aug 2022 20:32:46 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Wed, 10 Aug 2022 20:32:46 +0800
+Message-ID: <e85295cb7a7a0dc928337b88a14af377c34b6108.camel@mediatek.com>
+Subject: Re: [PATCH v2 0/2] Add mt8186 mutex support for mdp3
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Wed, 10 Aug 2022 20:32:45 +0800
+In-Reply-To: <20220711123247.15807-1-allen-kh.cheng@mediatek.com>
+References: <20220711123247.15807-1-allen-kh.cheng@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="DZeXxxwZnmqG9svL"
-Content-Disposition: inline
-In-Reply-To: <20220810004338.329832-1-potin.lai.pt@gmail.com>
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Matthias.
 
---DZeXxxwZnmqG9svL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Gentle ping on this series.
 
-On Wed, Aug 10, 2022 at 12:43:36AM +0000, Potin Lai wrote:
-> This patch series add modifications as below
-> 1. add a IPMB node for USB debug card communication.
-> 2. remove hdc1080 node due to incompatible 2nd source (si7021).=20
->=20
-> Potin Lai (2):
->   ARM: dts: aspeed: bletchley: add USB debug card IPMB node
->   ARM: dts: aspeed: bletchley: remove hdc1080 node
->=20
->  arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts | 13 ++++++++-----
->  1 file changed, 8 insertions(+), 5 deletions(-)
->=20
-> --=20
-> 2.31.1
->=20
+Is this series ok for you?
 
-Reviewed-by: Patrick Williams <patrick@stwcx.xyz>
+BRs,
+Allen
 
---=20
-Patrick Williams
+On Mon, 2022-07-11 at 20:32 +0800, Allen-KH Cheng wrote:
+> This series are based on matthias.bgg/linux.git, for-next and provide
+> mt8186 mutex support for Media Data Path 3 (MDP3).
+> 
+> As discussed, we add data field (mt8186_mdp_mutex_driver_data) for 
+> mt8186 mdp3 mutex support instead of adding mutex_table_mod into
+> mt8186
+> disp mutex data.
+> 
+> changes since v1:
+>  - add mt8186_mdp_mutex_table_mod
+>  - add mt8186_mdp_mutex_driver_data for mt8186-mdp3-mutex
+> 
+> Allen-KH Cheng (2):
+>   dt-bindings: soc: mediatek: add mdp3 mutex support for mt8186
+>   soc: mediatek: mutex: add mt8186 mutex mod settings for mdp3
+> 
+>  .../bindings/soc/mediatek/mediatek,mutex.yaml |  1 +
+>  drivers/soc/mediatek/mtk-mutex.c              | 28
+> +++++++++++++++++++
+>  include/linux/soc/mediatek/mtk-mutex.h        |  2 ++
+>  3 files changed, 31 insertions(+)
+> 
 
---DZeXxxwZnmqG9svL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEBGD9ii4LE9cNbqJBqwNHzC0AwRkFAmLznz4ACgkQqwNHzC0A
-wRnPuQ/+PcGTpWhfDtWXamXrYywWWaX0ZK9HYuuwLnUyBv9SR9TL/MNpX6i8mKQ4
-YyY5eiCc9Y9WDlO5sqc6rNluye39Yvo9C87QPRWNj0tjAm7sGwKMl0MuKLx0G0sQ
-9l5Bi2I3MX6XRKnn1F0O/XlAoaG8vwSwK+9q+RYc5tqeZ/lZ5Creh54Egrh234gz
-v3nbGIoN1dIkJFwOScUTzz9SPv/i2jLIzIFJ8yrZ+uDa0gOYLkQVLyRXSNKnFzHD
-taWGhCHxEokkap+iIPjeWtzUgSli7Z/FsBwqZjNLPXGTbH1KxILuuB+ehrAqwXe2
-yBgKVum4GdFLG2/7AEJgd+atBHQ9RadrrY3ufELtM8J5Bi29qs1jG1yRklqp9r3N
-8c8zhU52qQXgMYXEQg6XIzXxZYR/qxb6DfebUJXBvJCGmr6fa3JrXmoEveqcWGpH
-KTCPN8SeziJ7yoFR5nu8NTCg/mLQ5aXi8OefTMQI8hxi3MpdNV+TUf3JUsRhuDbn
-lSQJu8MW7MFtafta+Xw2ljVQd8Wfwe2V9P3r9cDfXJZtxawVs2RJUjmjcLhutk/v
-lcUY75KCnpUhTsdxtOOjWVfO8XMQVZ+JzqugkbkxrlbamFh8D6cjtvZu+PQEq0tW
-f5uhyZhUjOYoGRN0borG4VItlm69bpUeUKOgbYbbfmDfk1CB0HU=
-=egzp
------END PGP SIGNATURE-----
-
---DZeXxxwZnmqG9svL--
