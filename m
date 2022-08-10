@@ -2,90 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9A958EABF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 12:55:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC1FD58EAC3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 12:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbiHJKzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 06:55:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55236 "EHLO
+        id S231580AbiHJK5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 06:57:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiHJKzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 06:55:53 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15189A1A1
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 03:55:52 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id ay12so4781374wmb.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 03:55:52 -0700 (PDT)
+        with ESMTP id S230234AbiHJK5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 06:57:23 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B34456BB1
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 03:57:22 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id q30so17273917wra.11
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 03:57:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=uLzHaOsqO+V47sNsu3NQ7eOVEKNreR7vrk1orA6ZleY=;
-        b=fozMa+ze0kLO/rq0XhZh+UySZWY2WbbHTkW3ovbLOxDDjwkI/o2txXCccacp1NYYGd
-         4zJjgRFOP94WG41v25ReDutUY1Pi/PTALr9UB/9rzNXkwMLCnagNw6rjik720Wyx/iSz
-         C9cfZDxdPD1r2Kr00F+MoIBXkSWf17JWx44nbVpAkuNKqMRulWhMtdalwRF5ZO976jgW
-         eHar4gwM5PODKbjx8AFgv0QEnbwffpiLPH92ugpONZlI52h8OngB0ACZwrJaQ9/v30gC
-         AryZpXS7ecVDBHMfcOcFPRx2jQ+cyAYrYlGoI5yIOfOmeCfRwrUinb9tMQPRYwXEQLSr
-         GvWg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=0ysaBA2f8fvfJ+bdCl24YEvB2OkWOdw+12iTq6pAuz0=;
+        b=O/ar/o42qj4hribZl7qVTa+3SUQCAymYUcOKFzt4k/JTRljYqgHhKrPgkpU6RXX2sP
+         x2/dCw1EJM2O2ufjdy4rcix55cZIgLvd+nJths5RLsrS1RvAfDtV034jbgbgCNRNaZlY
+         d146OK3/8QnFvL0da7AnQo9m01IiYUhmWqzVxPBFbMf4ofc0eUZzt32zv+mkXK7GbqjG
+         osceCdHLY1spkl1jZpEnjvi6T4T+w69Mpa3KNZUF9TP6c6R8o/+9HhjJFj2IGuVQKCkb
+         k5tSEqrfKOJ9Ph/jLws4a9vWHVJfRvEke2QwW+g5DZQQrd+4eqVf15O+7pBqGiXxfS5Y
+         K7dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=uLzHaOsqO+V47sNsu3NQ7eOVEKNreR7vrk1orA6ZleY=;
-        b=ScqkPl94Nh/QzYYwOrTNHVTS01qww/5hMaF0+xs+wE+4JZLz2VPPqcB/4HmA7tFpSA
-         LJTMS23gke/aG9bhDCnhcsW2GumiAHNcksY4Obi45BskyNG4Kswvq90RGQ/KClytRcnZ
-         t//P17VN62/us/uRMzD1q3EDaWnBjT/QYX29UvW3ZvGuB+VxW+nTsq6+AZ1DOVFXPonz
-         3MOV+lKaZ3XuQv+HXCMIYi0ZrZDTJEuNMRRVfxNHO6zWScuIfzU3R6Syr8Y1WCF9gtFS
-         go6KutRDcu+umtcfTZjJLqDpwMFsHX9fScV7BdCfbnAHILk9WtF3tJWAlEodCdDKqMqX
-         N8tQ==
-X-Gm-Message-State: ACgBeo0wbdsHbb1iwBuXYscv5X8q9KV2scWSa0EEOVH/yQmuIS0DqLnj
-        uyoLHnWXWNn3oJqUu/KMDlTgeg==
-X-Google-Smtp-Source: AA6agR42eTIQeJpfVwcTcfO1vOI9DkuwkBCklpdyITuI2iuhyEyXlE1deKN+pkT+XQwsDg0XVmzLog==
-X-Received: by 2002:a05:600c:4e51:b0:3a4:e094:2520 with SMTP id e17-20020a05600c4e5100b003a4e0942520mr1996068wmq.123.1660128950692;
-        Wed, 10 Aug 2022 03:55:50 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id c16-20020adffb50000000b002205c907474sm15899709wrs.107.2022.08.10.03.55.49
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=0ysaBA2f8fvfJ+bdCl24YEvB2OkWOdw+12iTq6pAuz0=;
+        b=Qozq/lv5mrITRAnRUVmLXjE9t60lZTJvWJBRjZEwiQHX9fgeeRbkNc7ONSXUG+8fg+
+         7aJQuDx3NVeS6DeBIfaLPlMvSB9TtO79B2jkXfWv7ioTXbwVHpmJzc77MLn9ho+kyp6M
+         GksBZFlVR9k1P8qqGne+0wngeW00T6I5LjNghKoVPeQBpRL9XPCSm3/WqgKM/IlLU7c5
+         KMiFHPU/Ie8rWHEqeIONoPb2lfG32/S0uZcfpq/9wTBLkWtdcPPH8whC5lT1tQZybII9
+         rdvYzaYMwj4zqR92253xRNorMWeIVohsBC3HxqCnFTW0emLCrsSwFZo12hkVRTTLqgFq
+         2zWQ==
+X-Gm-Message-State: ACgBeo20YNYXeMoBsYDTgsrtB9icJo2jK460n86ciILXz/4fPlVkL1qO
+        61pVG+W1I4dgwEHkg3tmRwTNoA==
+X-Google-Smtp-Source: AA6agR54QCklcVRkNUhWXuEjVZu6HNm3T3OH+eFNyznYsPqC/KEkf/YyJUJceY7xTUGxfxy1lrE7ZQ==
+X-Received: by 2002:adf:ef8c:0:b0:21e:f504:6e54 with SMTP id d12-20020adfef8c000000b0021ef5046e54mr16862258wro.476.1660129040803;
+        Wed, 10 Aug 2022 03:57:20 -0700 (PDT)
+Received: from localhost.localdomain ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id bd6-20020a05600c1f0600b003a53731f273sm2101446wmb.31.2022.08.10.03.57.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 03:55:50 -0700 (PDT)
-Date:   Wed, 10 Aug 2022 11:55:48 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mfd: x-powers,axp152: Document the AXP228
- variant
-Message-ID: <YvOOtGN7c7oBwZis@google.com>
-References: <20220810013430.27061-1-samuel@sholland.org>
+        Wed, 10 Aug 2022 03:57:20 -0700 (PDT)
+From:   abel.vesa@linaro.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Maulik Shah <mkshah@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH 1/4] arm64: dts: qcom: sdm845: Reduce reg size for aoss_qmp
+Date:   Wed, 10 Aug 2022 13:57:15 +0300
+Message-Id: <20220810105718.2137015-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220810013430.27061-1-samuel@sholland.org>
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FSL_HELO_FAKE,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 Aug 2022, Samuel Holland wrote:
+From: Abel Vesa <abel.vesa@linaro.org>
 
-> AXP228 is a PMIC used on boards such as the Clockwork ClockworkPi and
-> DevTerm. Its register map appears to be identical to the AXP221 variant.
-> The only known difference is in the default values for regulator on/off
-> states and voltages.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
-> 
->  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+Like on the other platforms that provide RPMh stats, on SDM845, the
+aoss_qmp reg size needs to be reduced to its actual size of 0x400,
+otherwise it will overlap with the RPMh stats reg base, node that will
+be added later on.
 
-Applied, thanks.
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index f0e286715d1b..5bea96a9ce06 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4836,7 +4836,7 @@ aoss_reset: reset-controller@c2a0000 {
+ 
+ 		aoss_qmp: power-controller@c300000 {
+ 			compatible = "qcom,sdm845-aoss-qmp", "qcom,aoss-qmp";
+-			reg = <0 0x0c300000 0 0x100000>;
++			reg = <0 0x0c300000 0 0x400>;
+ 			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+ 			mboxes = <&apss_shared 0>;
+ 
 -- 
-DEPRECATED: Please use lee@kernel.org
+2.34.1
+
