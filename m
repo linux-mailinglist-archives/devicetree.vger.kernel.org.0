@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E00C58F003
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 18:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 931EB58F02A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 18:16:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233332AbiHJQER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 12:04:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60736 "EHLO
+        id S232411AbiHJQQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 12:16:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233222AbiHJQDt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 12:03:49 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA10C6717C;
-        Wed, 10 Aug 2022 09:03:47 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id x2so2390803ilp.10;
-        Wed, 10 Aug 2022 09:03:47 -0700 (PDT)
+        with ESMTP id S229501AbiHJQQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 12:16:42 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12C3642EE;
+        Wed, 10 Aug 2022 09:16:37 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id q124so12542478iod.3;
+        Wed, 10 Aug 2022 09:16:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=IrtUFJXfmfdQKeaT5ZVd35+tzRi7zWIlb+Wsybvtzfw=;
-        b=fn+NgPYvpGMKGvWn9AH2CClpLqWAjiHwa2xgbuFOJJZWDO6tNkmAKxqUaevcrn4r1T
-         cWOWDFHioJOhuEwgVV1qw/W4TBcntibjMdhW9Irnc24GGPQOx9OrJTZz8XKXinu45rmE
-         jh48CaEL4LARoctezmsFIJCT32iAL7LYicdjpj1oJbZQIyRYwJfeRxyfWopcsJIHdPTm
-         YCtfGjx9BuILxq3yHuJmEG0TveVUG6yJgfLdjWl0HoU6qt1fIRIIT6WPllfKZ4IJ8a3D
-         RtttFGH4R+Hah8yWXk6w6l0LcGioOL0/Y27W3EQrpOZF2/DHjDD3KjG3IKg/x8Wd+ury
-         tRhg==
-X-Gm-Message-State: ACgBeo0lXBH12HaixuZuOrA1xhqMVkqX76759u0uL3JtlH8T7Q0fVaWk
-        0BPNKvnEhLWO5qAlEFEATg==
-X-Google-Smtp-Source: AA6agR5L6UDKesXHoDGK9TS6LftDSNWSGOXJ/sv+fkC0JxoXQwGpeO5paASudn/YE/O29MWZ9eM0Eg==
-X-Received: by 2002:a05:6e02:198b:b0:2e0:d13c:b508 with SMTP id g11-20020a056e02198b00b002e0d13cb508mr8053060ilf.315.1660147426681;
-        Wed, 10 Aug 2022 09:03:46 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=ZagmBS3RLt2DXFkUdXpb10O2Q5NOyVHzikxsSq4fGZA=;
+        b=M4q/YO/6tEPsFQEMOXDgJY+zfEmRW4whGGIt8QEaS/r30E88wyTrPdbxtwJJAkpVLh
+         cpTgw8EASQJe/BuVQtP524bL/9Kp8+GAf8JvO2quMhpYolv2vTN6YpoErdqQSnsnjiHV
+         dEhflEk5qu+McL6NdZA+JW4wSeJaVb8PmhwjSEkfFtiMZW4obiUHH6W2ZvIZOptb78G/
+         Cy5+aYIiBrQb2cb4m7OjoBdzZIw4hlRUdW/gLnLVcWxEsgHkaGGKX5MzI/SVgD3CoYML
+         vPzYodHiYngsTLIwQtoZDrlPXbYxCg2JPZN1elR6HRxRUjN+V6UiqM2g9phFnGETdfnD
+         ol8Q==
+X-Gm-Message-State: ACgBeo1yVHFBhsqyNPPB3g2OTUlfwAK9jTRJKuNJJ1LlsyJMuuv/QQb7
+        mj+qk6lJYWXPC55/+eME9w==
+X-Google-Smtp-Source: AA6agR4kCFOTWJkv/aLqwv49A93iQlmHKnG0uw1j2GURDbroSYw9a37PQ3f8uQ610PQLJqel4WWV9g==
+X-Received: by 2002:a6b:7412:0:b0:67d:1da6:b498 with SMTP id s18-20020a6b7412000000b0067d1da6b498mr11392424iog.14.1660148196881;
+        Wed, 10 Aug 2022 09:16:36 -0700 (PDT)
 Received: from xps15.herring.priv ([64.188.179.248])
-        by smtp.googlemail.com with ESMTPSA id a27-20020a02735b000000b00341a215d3cesm7617629jae.63.2022.08.10.09.03.45
+        by smtp.googlemail.com with ESMTPSA id z17-20020a056602081100b0067885c5fd94sm2496974iow.29.2022.08.10.09.16.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 09:03:46 -0700 (PDT)
+        Wed, 10 Aug 2022 09:16:36 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: arm,versatile-sysreg: Convert to DT schema format
-Date:   Wed, 10 Aug 2022 10:03:41 -0600
-Message-Id: <20220810160341.51995-3-robh@kernel.org>
+To:     Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Convert Aspeed SCU to DT schema
+Date:   Wed, 10 Aug 2022 10:16:33 -0600
+Message-Id: <20220810161635.73936-1-robh@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220810160341.51995-1-robh@kernel.org>
-References: <20220810160341.51995-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
@@ -62,76 +61,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the arm,versatile-sysreg binding to DT schema format.
+This short series converts the aspeed,ast2x00-scu binding to DT schema.
+The binding is already in use in examples which unsurprisingly need fixes
+with the schema added.
 
-The original binding was missing 'simple-mfd' and a 'panel' sub node which
-the only user (versatile-ab.dts) of this binding has.
+If someone wants to convert the remaining child node bindings, that would
+be nice.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/arm/arm,versatile-sysreg.yaml    | 35 +++++++++++++++++++
- .../bindings/arm/versatile-sysreg.txt         | 10 ------
- 2 files changed, 35 insertions(+), 10 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml
- delete mode 100644 Documentation/devicetree/bindings/arm/versatile-sysreg.txt
+This is part of getting rid of the remaining ~40 cases of compatibles
+without a schema in the examples.
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml b/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml
-new file mode 100644
-index 000000000000..491eef1e1b10
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml
-@@ -0,0 +1,35 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/arm,versatile-sysreg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Arm Versatile system registers
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  This is a system control registers block, providing multiple low level
-+  platform functions like board detection and identification, software
-+  interrupt generation, MMC and NOR Flash control, etc.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: arm,versatile-sysreg
-+      - const: syscon
-+      - const: simple-mfd
-+
-+  reg:
-+    maxItems: 1
-+
-+  panel:
-+    type: object
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+...
-diff --git a/Documentation/devicetree/bindings/arm/versatile-sysreg.txt b/Documentation/devicetree/bindings/arm/versatile-sysreg.txt
-deleted file mode 100644
-index a4f15262d717..000000000000
---- a/Documentation/devicetree/bindings/arm/versatile-sysreg.txt
-+++ /dev/null
-@@ -1,10 +0,0 @@
--ARM Versatile system registers
----------------------------------------
--
--This is a system control registers block, providing multiple low level
--platform functions like board detection and identification, software
--interrupt generation, MMC and NOR Flash control etc.
--
--Required node properties:
--- compatible value : = "arm,versatile-sysreg", "syscon"
--- reg : physical base address and the size of the registers window
--- 
+Rob
+
+
+Rob Herring (2):
+  dt-bindings: pinctrl: aspeed: Add missing properties to examples
+  dt-bindings: mfd: aspeed,ast2x00-scu: Convert to DT schema format
+
+ .../bindings/mfd/aspeed,ast2x00-scu.yaml      | 110 ++++++++++++++++++
+ .../devicetree/bindings/mfd/aspeed-scu.txt    |  48 --------
+ .../pinctrl/aspeed,ast2400-pinctrl.yaml       |   6 +
+ .../pinctrl/aspeed,ast2500-pinctrl.yaml       |   4 +
+ .../pinctrl/aspeed,ast2600-pinctrl.yaml       |   6 +
+ 5 files changed, 126 insertions(+), 48 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/aspeed-scu.txt
+
+--
 2.34.1
-
