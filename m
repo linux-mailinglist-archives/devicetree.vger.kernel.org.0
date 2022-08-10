@@ -2,120 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27DF158ED6A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 15:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3D3C58ED6D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 15:35:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232883AbiHJNfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 09:35:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45994 "EHLO
+        id S229611AbiHJNft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 09:35:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232442AbiHJNff (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 09:35:35 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07BA842AFF
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 06:35:33 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id v3so17860407wrp.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 06:35:32 -0700 (PDT)
+        with ESMTP id S232871AbiHJNfp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 09:35:45 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8FCE49B74
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 06:35:42 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id a9so21239286lfm.12
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 06:35:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:from:to:cc;
-        bh=J1VWGzexY5E6UsX9vQ6bQ6ebcpD459VexpuSjd0X1xk=;
-        b=vheOj5OqXAuJQuxThF4rG1C5oUbDBkg0eqaP81N1/zP/d2jZa9v1ALY9/A2MUhuEw9
-         smJunFTKU1AjT2aJIV80QHIj44qIjzbF8BiwJdd9175ExWaVpB2pQMQgB8P3sVxRoyyx
-         F2QHG8UKw3o9mEzmLhxDu40YuNFpnUMlTgd0wTwAuKQS5VftwnWN2itTX5Hlyztm1Da2
-         QDtIIhHm6SWFzmnEw+ab+XdPgrEo8qti39g1Uqje0M0IihYpePyJCqAgHrVQYLqT4iAa
-         iAQvZ6Mnj4DjnEcBRkd5Qjs2LZ9DlwccP2qwZLY04iUhgjojRWRH+4UYOf8Qm2Z1eUuG
-         g6hQ==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=Z4Hyw0PpOR6PyJk1gjcDRkxS9uvIdkaJI9TxqqUTdNM=;
+        b=EmHL0gXeZg/tY6cp1ad7Qz+P8jaNZEWRdP5kE08nJz1GpMYMky8aEjpvMR2NOA6TV+
+         tAJrgmqDIh9mJkW4ydro1SX9eou5VZ0vfiDDk+5XAkItgg1s1uKFyDYC5v8wvV+FQhD7
+         vzCUY/Yp1exv0xf0lqZ27CH2tq2U0L8csiDixD0Y/EeyxwPvtamzX0RgW5n0ymDHfAvf
+         eeeraHS+3Z0Ze60G0chUDGXCkDzMiqgE5GFn/yCZuzjMC0603pDPchDW8RPMZTxy9l0e
+         7zo3OCIzFsX0ScKhl7AsOAjRz9P0Yuouw0UeWrLOFH8wT7KlqmnXe+96q6d7Ci8YOH7w
+         83Iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:message-id:in-reply-to:date:subject:to:from:user-agent
-         :references:x-gm-message-state:from:to:cc;
-        bh=J1VWGzexY5E6UsX9vQ6bQ6ebcpD459VexpuSjd0X1xk=;
-        b=txQmytsegpvCrZ+fdJ9vCPQ8p99aSm2W9EAjsWyb19v09UXBO76yh8b+OYOzn1ESIc
-         fzbQdyiVWLJQoYLTt1REjJWsaycBpo/Cbd14Vj1BCsHydnjDbqghcRvSLUpRLQmxoD9g
-         yT9PBT0GBpfiloypxKbX/JQKHZayZW973QH/ab/ZLs9nCPzGJZ2UfUewUKq9ty8p2QNv
-         HhmcIcsaFizehAMygFLngo6ywf7MKqLj/Kk1P/hPgo19ouqt7wkhcTNib6C4we8/HmsB
-         jt5mOEe4MwdF22NGRqKpxtI6GjziO29Hv8uDruABsQ5HboBfV+UDAyYyZgqKB1bYkVrv
-         28nw==
-X-Gm-Message-State: ACgBeo2CdXkfb+XKryohz6335rg46eVwq/LqfyW2GrdgmkFCZf6FHCAq
-        0K6/6sgY5ooD9WrDt9vhYHwKjg==
-X-Google-Smtp-Source: AA6agR7NHyGKRqIxWGpE5gY+PnqJiMudQi/uUaPx51qSYupKoqvqy+xNZdCloeF+K4jcJJQZh2S9sA==
-X-Received: by 2002:a5d:5a1a:0:b0:21f:a9b:62c6 with SMTP id bq26-20020a5d5a1a000000b0021f0a9b62c6mr16898673wrb.20.1660138531570;
-        Wed, 10 Aug 2022 06:35:31 -0700 (PDT)
-Received: from localhost (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id bd26-20020a05600c1f1a00b003a2ed2a40e4sm89768wmb.17.2022.08.10.06.35.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 06:35:30 -0700 (PDT)
-References: <20220805085716.5635-1-yu.tu@amlogic.com>
- <20220805085716.5635-3-yu.tu@amlogic.com>
- <19654574-bdc0-9fa5-6465-fc88b20e20c5@linaro.org>
- <c223a85a-b76e-0e82-9a8c-6b60588dc03a@amlogic.com>
-User-agent: mu4e 1.8.7; emacs 27.1
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: Re: [PATCH V3 2/6] arm64: dts: meson: add S4 Soc PLL clock
- controller in DT
-Date:   Wed, 10 Aug 2022 15:32:08 +0200
-In-reply-to: <c223a85a-b76e-0e82-9a8c-6b60588dc03a@amlogic.com>
-Message-ID: <1jmtccz0f4.fsf@starbuckisacylon.baylibre.com>
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=Z4Hyw0PpOR6PyJk1gjcDRkxS9uvIdkaJI9TxqqUTdNM=;
+        b=Au9/eu1Dl7t1qlfH0o2aGfdBpXw1WR+Bc1Bh+zjxr6cHDxb4dNx0dSmaq3v2Z8WrZA
+         5lOcjOK9M7jWYNmAvSZOPyddnotYStJS8apugeSEx+EszGfnFmbh9I8JovQ+8HWJELJS
+         bZbu0GPSk3maqVUckYm4GdtP7UeBSIpA0IGIyJi5VMPGhOe4+MBajDjkbV8e0sBd1vpQ
+         eTcK23ugApkCapy8FzQQa+EOfFeT0RrlcH7ZK2ZoalJYMY81OzIH+bMsLpXgh8hXUInH
+         gsD4h1zF22/EePL5fYKcEoQweWVEyqPJRW+XGMsd0ZXeg0V3LGWIoT1DP3sDCuhuj9T0
+         rftQ==
+X-Gm-Message-State: ACgBeo0YsT5pHDclFNAl4UKK+8kyT+wqImGbNo9h7lzpAB0Dqc+AAXfz
+        VZKkiFOlWFWJTMSg5b3o2BQt9w==
+X-Google-Smtp-Source: AA6agR7Xb+gSzY7JGPzXu79FTugxe0V6vHQvgxEbfahRo/DjkhgUTsq3isQGyHRtuh9QfpWxIdkYig==
+X-Received: by 2002:a05:6512:31c5:b0:48b:38cf:51f8 with SMTP id j5-20020a05651231c500b0048b38cf51f8mr9876793lfe.315.1660138541295;
+        Wed, 10 Aug 2022 06:35:41 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id a4-20020a056512390400b0048a9356cd63sm353115lfu.11.2022.08.10.06.35.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Aug 2022 06:35:40 -0700 (PDT)
+Message-ID: <ceb74aee-6436-f1f6-2408-fd01475cb234@linaro.org>
+Date:   Wed, 10 Aug 2022 16:35:39 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/2] dt-bindings: power: supply: Add Lenovo Yoga C630 EC
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20220810030500.2793882-1-bjorn.andersson@linaro.org>
+ <20220810030500.2793882-2-bjorn.andersson@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220810030500.2793882-2-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/08/2022 06:04, Bjorn Andersson wrote:
+> Add binding for the Embedded Controller found in the Qualcomm
+> Snapdragon-based Lenovo Yoga C630.
 
-On Fri 05 Aug 2022 at 17:39, Yu Tu <yu.tu@amlogic.com> wrote:
+Thank you for your patch. There is something to discuss/improve.
 
-> Hi Krzysztof,
->     Thank you for your reply.
->
-> On 2022/8/5 17:16, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->> On 05/08/2022 10:57, Yu Tu wrote:
->>> Added information about the S4 SOC PLL Clock controller in DT.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>> ---
->>>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 8 ++++++++
->>>   1 file changed, 8 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>> index ff213618a598..a816b1f7694b 100644
->>> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
->>> @@ -92,6 +92,14 @@ apb4: apb4@fe000000 {
->>>   			#size-cells = <2>;
->>>   			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->>>   +			clkc_pll: pll-clock-controller@8000 {
->> Node names should be generic - clock-controller.
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->> 
-> I will change to clkc_pll: clock-controller@8000, in next version.
+> +
+> +description:
+> +  The Qualcomm Snapdragon-based Lenovo Yoga C630 has an Embedded Controller
+> +  (EC) which handles things such as battery and USB Type-C. This binding
+> +  describes the interface, on an I2C bus, to this EC.
+> +
+> +properties:
+> +  compatible:
+> +    const: lenovo,yoga-c630-ec
+> +
+> +  reg:
+> +    const: 0x70
+> +
+> +  '#address-cells':
+> +    const: 1
 
-Same comment applies to the binding doc.
+Just to clarify: the EC have physically two USB connectors?
 
-Also it would be nice to split this in two series.
-Bindings and drivers in one, arm64 dt in the other. These changes goes
-in through different trees.
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  '^connector@\d$':
+> +    $ref: /schemas/connector/usb-connector.yaml#
 
->> Best regards,
->> Krzysztof
->> .
+unevaluatedProperties:false inside connector (on its level)
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |+
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c1 {
+> +      clock-frequency = <400000>;
+> +
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      embedded-controller@70 {
+> +        compatible = "lenovo,yoga-c630-ec";
+> +        reg = <0x70>;
+> +
+> +        interrupts-extended = <&tlmm 20 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        connector@0 {
+> +          compatible = "usb-c-connector";
+> +          reg = <0>;
+> +          power-role = "source";
+> +          data-role = "host";
+> +        };
+> +
+> +        connector@1 {
+> +          compatible = "usb-c-connector";
+> +          reg = <1>;
+> +          power-role = "source";
+> +          data-role = "host";
+> +
+> +          ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            port@1 {
+> +              reg = <1>;
+> +              lenovo_ec_dp_in: endpoint {
+> +                   remote-endpoint = <&mdss_dp_out>;
+
+You have inconsistent indentation. Use 4-spaces for entire DTS example.
+
+Best regards,
+Krzysztof
