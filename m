@@ -2,61 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F37F58EDE3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 424C158EDE5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232958AbiHJOHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232960AbiHJOHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 10 Aug 2022 10:07:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45374 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232902AbiHJOHp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:07:45 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B23E6E2CB
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:07:42 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id n4so16121382wrp.10
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:07:42 -0700 (PDT)
+        with ESMTP id S232942AbiHJOHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:07:46 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14DFC6E2F8
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:07:44 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id z17so17876725wrq.4
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:07:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=+X/pid24gIjSOOJVEmO9iW9i2TMfPX6OSEZMbd1Ah4A=;
-        b=gnyGClV2Eo+ylgbSznKAc5xS0/tmKZAO4UhCDTCl41U/p55TPKgwPR205jZ/5T0NNe
-         mY3nqNo1qLOKluMW3UrnNj8ixMO4DPxNfeG78dWzCFlMpZwy0An3nPbqnMH/Pu3k3jHe
-         K6GZFuvkoavj36ycCk9OyOKuS8RV7Hz+XfMN4mWzTEoU6bVjwG+pectg5fg8LeXHYfj+
-         bvKrrxRZuCt+QCZmTWQeXmDgN9yYvDHPiFy4eo6rhPjVWfARxcEdDk7WVDHB5ZnWP2er
-         IZQRHo7eE3F4P/gUv3jyBC86Buv49fczLcrVszX/rb860r6Li9Nh0mPfO7PrlPsMhvOq
-         Usgw==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=pqhA8o+boQJA8OSHBFOoAbjBpl0hxdmasRE4keRadHE=;
+        b=cTw+eVTyPlg5bzYxedeopN4BqOZpMeSPQWJvU78DKS+jhKJfslT4pMC4XUU/O/863n
+         C+0yxkWzB//75y41NTcZgZEeEWdEBzAdZy2LMxgsMbjMvp16r2bdA4ZCFN5VLiZqrjcK
+         yC5aa31sJdh6olAqmnuDtKQ2sdIs76SYH7JgAKKqxBR3HoMr9sPctN9pGYh5l0dVsvQE
+         o956Rx7AMAQdzqszqEa/pIcfc/tC4Fn/0pSa9HLdSRVKzaxIcbod2juyE0+LWV212LP1
+         qHxgjZeERN5vk3Vd3E+pYtfHK7ywlq4/dWf4/9A9/LSX0DywNzo6wVCFSHj5ifIE4OYg
+         ZeNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=+X/pid24gIjSOOJVEmO9iW9i2TMfPX6OSEZMbd1Ah4A=;
-        b=zwNh64iTfH847Q8263QZda5XdJgutREPG4DEAP71OIB5C7uePd3M9abLQ1NPz56e64
-         0shppw/FahWnNIv30+bRxZgcfe4WgatVoKxF/c6TyH7MlHGMQFLlG/oAjj7mHY1uR5cM
-         RE/pWR/EZqqNVwqtbzHD+r4N5JpHbEeWoyuzsKaVyI3fTF6cf8c3WCNrw6LclufovQXl
-         7lad+66NjfNpTq7eds0Ww5Iti4ZFB0ERWQHjOabi/IZajHrXWi8ff5e3CZRq805j2Jri
-         Mb0wnU/m3kh6S6KUtqiDGmeG/4AW4QjClasuGwa5YOEK0OUHUNWI+vS40EPsYYFZSsmY
-         rXMg==
-X-Gm-Message-State: ACgBeo15upET5RGy96rmFsus3EXZvgFta9ZyRrVmaEE1Q3HtzreGSF9a
-        wUxAEhkettM+FCf1ABrAbAUlJA==
-X-Google-Smtp-Source: AA6agR568HfoJRNkXemPCbfg6p3C2Czwqa7Z3xR7SRRYgOaUQkt3jPpCLL397aCfk2kqvqSLfbNdaQ==
-X-Received: by 2002:a05:6000:2a4:b0:220:687a:cda9 with SMTP id l4-20020a05600002a400b00220687acda9mr17324057wry.187.1660140460789;
-        Wed, 10 Aug 2022 07:07:40 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=pqhA8o+boQJA8OSHBFOoAbjBpl0hxdmasRE4keRadHE=;
+        b=g/TguD42SNbzA/CDNeDd4O8fU7+hOZtEbnDipm1JSdgna9wbtYMKl0Cv50p19KChZd
+         05AenVdw+M3wSC8UEaJKeNic0Ix99bRtvyvrG7NzlKqlWe51UZFPcGc3p0BMFPkXMGut
+         lHWJgchPHb8GSx5uHnTFIfHFbIU4JzlO5BAQXyPjjhrj4F/y2tQHZOM0sX0WN/sxh/cs
+         riHRvvnha4nsDS2YKqy6RdSm5ci+TFc2FtuffqBCDapBAgVPxbAtMXZFGGuG+4w1iwRF
+         UU6LiyXAaK3fk8FMaN/bl7O0X+vC40VVJ1IlxNxw4kMp6b+3wol1XlyRp7y1sFTtwFO1
+         Tvzw==
+X-Gm-Message-State: ACgBeo1O0dWKu1f2Vdi4cOZkI8rPrVs5EyEsuItjhRF5uY/v1wqEx60r
+        UIUdwJWyAQ1G6e1FDIMu655xbQ==
+X-Google-Smtp-Source: AA6agR7Au3nWd8WrJiE+4lhi3rDCe2+VabP8fkIHAszisl0dnDTnBDb7/9Wu5f4TS1TR4ua3rpOzGg==
+X-Received: by 2002:adf:fdcb:0:b0:21f:ae9:bbd1 with SMTP id i11-20020adffdcb000000b0021f0ae9bbd1mr16199087wrs.506.1660140462630;
+        Wed, 10 Aug 2022 07:07:42 -0700 (PDT)
 Received: from localhost.localdomain (32.31.102.84.rev.sfr.net. [84.102.31.32])
-        by smtp.gmail.com with ESMTPSA id o15-20020adfcf0f000000b0021d6a520ce9sm16258229wrj.47.2022.08.10.07.07.38
+        by smtp.gmail.com with ESMTPSA id o15-20020adfcf0f000000b0021d6a520ce9sm16258229wrj.47.2022.08.10.07.07.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 07:07:39 -0700 (PDT)
+        Wed, 10 Aug 2022 07:07:41 -0700 (PDT)
 From:   Julien Panis <jpanis@baylibre.com>
 To:     vilhelm.gray@gmail.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org
 Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, mranostay@ti.com,
-        Julien Panis <jpanis@baylibre.com>
-Subject: [PATCH v4 0/3] ECAP support on TI AM62x SoC
-Date:   Wed, 10 Aug 2022 16:07:21 +0200
-Message-Id: <20220810140724.182389-1-jpanis@baylibre.com>
+        Julien Panis <jpanis@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 1/3] dt-binding: counter: add ti,am62-ecap-capture.yaml
+Date:   Wed, 10 Aug 2022 16:07:22 +0200
+Message-Id: <20220810140724.182389-2-jpanis@baylibre.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220810140724.182389-1-jpanis@baylibre.com>
+References: <20220810140724.182389-1-jpanis@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -68,87 +71,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Enhanced Capture (ECAP) module can be used to timestamp events
-detected on signal input pin. It can be used for time measurements
-of pulse train signals.
+This commit adds a YAML binding for TI ECAP used in capture operating mode.
 
-ECAP module includes 4 timestamp capture registers. For all 4 sequenced
-timestamp capture events (1->2->3->4->1->...), edge polarity (falling/rising
-edge) can be selected.
-
-This driver leverages counter subsystem to :
-- select edge polarity for all 4 capture events (event mode)
-- log timestamps for each capture event
-Event polarity, and CAP1/2/3/4 timestamps give all the information
-about the input pulse train. Further information can easily be computed :
-period and/or duty cycle if frequency is constant, elapsed time between
-pulses, etc...
-
-Modifications since v3:
-	- Migrate driver from IIO to Counter subsystem
-	- Minor modification in yaml ($id) to match Counter subsystem
-	- Add ABI documentation
-
-Userspace commands :
-	### SIGNAL ###
-	cd /sys/bus/counter/devices/counter0/signal0
-
-	# Get available polarities for each capture event
-	cat polarity1_available
-	cat polarity2_available
-	cat polarity3_available
-	cat polarity4_available
-
-	# Get polarity for each capture event
-	cat polarity1
-	cat polarity2
-	cat polarity3
-	cat polarity4
-
-	# Set polarity for each capture event
-	echo rising > polarity1
-	echo falling > polarity2
-	echo rising > polarity3
-	echo falling > polarity4
-
-	### COUNT ###
-	cd /sys/bus/counter/devices/counter0/count0
-
-	# Run ECAP
-	echo 1 > enable
-
-	# Get current timebase counter value
-	cat count
-
-	# Get captured timestamps
-	cat capture1
-	cat capture2
-	cat capture3
-	cat capture4
-
-	# Note that counter watches can also be used to get
-	# data from userspace application
-	# -> see tools/counter/counter_example.c
-
-	# Stop ECAP
-	echo 0 > enable
-
-Julien Panis (3):
-  dt-binding: counter: add ti,am62-ecap-capture.yaml
-  Documentation: ABI: add sysfs-bus-counter-ecap
-  counter: capture-tiecap: capture driver support for ECAP
-
- .../ABI/testing/sysfs-bus-counter-ecap        |  64 ++
- .../counter/ti,am62-ecap-capture.yaml         |  61 ++
- drivers/counter/Kconfig                       |  14 +
- drivers/counter/Makefile                      |   1 +
- drivers/counter/capture-tiecap.c              | 634 ++++++++++++++++++
- include/uapi/linux/counter.h                  |   2 +
- 6 files changed, 776 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-counter-ecap
+Signed-off-by: Julien Panis <jpanis@baylibre.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../counter/ti,am62-ecap-capture.yaml         | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
- create mode 100644 drivers/counter/capture-tiecap.c
 
+diff --git a/Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml b/Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
+new file mode 100644
+index 000000000000..4e0b2d2b303e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/counter/ti,am62-ecap-capture.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments Enhanced Capture (eCAP) Module
++
++maintainers:
++  - Julien Panis <jpanis@baylibre.com>
++
++description: |
++  The eCAP module resources can be used to capture timestamps
++  on input signal events (falling/rising edges).
++
++properties:
++  compatible:
++    const: ti,am62-ecap-capture
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: fck
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/soc/ti,sci_pm_domain.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        capture@23100000 { /* eCAP in capture mode on am62x */
++            compatible = "ti,am62-ecap-capture";
++            reg = <0x00 0x23100000 0x00 0x100>;
++            interrupts = <GIC_SPI 113 IRQ_TYPE_EDGE_RISING>;
++            power-domains = <&k3_pds 51 TI_SCI_PD_EXCLUSIVE>;
++            clocks = <&k3_clks 51 0>;
++            clock-names = "fck";
++        };
++    };
 -- 
 2.25.1
 
