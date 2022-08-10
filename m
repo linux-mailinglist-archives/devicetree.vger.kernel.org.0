@@ -2,137 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B642D58F3B4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 23:03:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9374F58F411
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 00:01:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232320AbiHJVDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 17:03:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44038 "EHLO
+        id S230251AbiHJWBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 18:01:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232280AbiHJVDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 17:03:11 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B38BF7AC17
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 14:03:10 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id q184so19144718oif.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 14:03:10 -0700 (PDT)
+        with ESMTP id S231508AbiHJWBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 18:01:42 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841D5804AC
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 15:01:41 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id m2so15427961pls.4
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 15:01:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=3O5723dkVhZLUhIPrwxrZWvj7oA/jyzk8I9qZDVTL9s=;
-        b=simohxoQtu2o0mF7GAUapceEMdlBm/ZteU9ZEx1NCu74LCmKyLKxoiEYpx/mK8QSNI
-         EMKhW02fYgjONjMXNZHNZVRp5FX31HDo0tpKvQxfGvoW01JbiTu/262P6/rd+tJphdd3
-         /cqpzHDJfbR6Y6y8eZsOwDux343ZpzZpdDoKyWYzxoRbuJyVfV/FxNb3pbZbmSmpGEYB
-         EjrjqyJQiLTDo6s1+9Vg18S+rPywF85VpldKkNfYg7372QUXdSn5+eYdSGl9QmhL8om3
-         8pgo3jS0He0cm01F+TW6MHfcb6LlcOzfFv9bx8qefd/yWa2l5Cd50qloMM+zg7Ro9cm9
-         lXaQ==
+        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc;
+        bh=jp9l0Ro/JdxDhmDJRS2kwEBWz37R0gfYtLWESZmTTdo=;
+        b=pR/Uz73diROtKoK45pSsnr9gDkyqdToZ6bxo/wDiwdfGMSRghz3CDbk46kMtQwAFO3
+         x22iXNjmkw6auGPluUNkD2GpzL9z734QfkCy9bn0Gv+2AgX5bsK1CBg+TTz2q4Lb8a0u
+         3T6PRK5CoElkC2XrFW0em//AvrYpm+7+C4IJZVYZJR71jicazAfVHoEokRhkpuEu2OiY
+         CCXQUmnc6fWyvGdzopEWFni24vLVkD1UncUMn+2pHen8sb5PGlGazWUWsWvcPabpO10+
+         F1qMKGxOoXI3JW1qYA6ANnXZml7AHYP11NQa0uG/wg33C4hNlUfavJ68c6gZ3kNZaK36
+         SQug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=3O5723dkVhZLUhIPrwxrZWvj7oA/jyzk8I9qZDVTL9s=;
-        b=rpyoZ235a/MzHnjJOrenIrtzisseWOezF2fB75qucBF/RwFIG7NA+W5UFTl4OplJhX
-         Gnzof1VKQFlglau7i4Qms+qPlz1s/2UD1hViNlOcH8MMansEXn3aa075MVO6lciBytF2
-         h/dexJ9hklLVjr2rXUW/BxIK9f/Z5JJh+PiGejW6SKDCHaoOWs1x5jvsOjgihkWqv7Uh
-         jyb72IxqcJJrnQi3Dhw72uv+D2bo7ayzD8fSOzFZi1kbWDfWtgYZLygP9fG6NJEwz9z8
-         74mVsT1ATMKQBWnC5AyDDs2fgCq3nt1xkr19BONhRRy7kVBRfemAaJkcelXEEDQ+3uVq
-         lGGQ==
-X-Gm-Message-State: ACgBeo06hbviv2MjM4InyrO97nPsh+lERYpCFxgasRBcGl36moNsC8qx
-        zPoE6NElZebtDc9NQIJxZN4P8Q==
-X-Google-Smtp-Source: AA6agR6gFO6aPJuT1MXGa56aIiXlTPvkZsdZGG3diWvM7M/mpkZcJ4iVm/xVXebRJA5pXxJ3uaFbyw==
-X-Received: by 2002:aca:ad0c:0:b0:342:f3e2:32a9 with SMTP id w12-20020acaad0c000000b00342f3e232a9mr2220993oie.261.1660165390059;
-        Wed, 10 Aug 2022 14:03:10 -0700 (PDT)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w10-20020a056871060a00b0010bf07976c9sm3951726oan.41.2022.08.10.14.03.09
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc;
+        bh=jp9l0Ro/JdxDhmDJRS2kwEBWz37R0gfYtLWESZmTTdo=;
+        b=5o9NObsbjCGExiu2/zwx0jZ5DWgE0Bbzm2YuSY1pupiPilMtoiHmGtt5Z9KA2alYSv
+         u/8o5S4TnBV41673a79eT89ooC6ARfW/Pd852c1ESbU4hBsHalg6ylzM5cLTA2f23nLO
+         TpS6vekxLOCbDg/Byb6Ibzw8XtLGX7TRCde9qz9fdiM2u0mYFpr3P/aiNMsJNXvkPTkz
+         vfQ6kp9x+x0fT/p2s5MjnR773tpveJTaih3EIvqdRfDHicJF1lEdZXeXteQj9pWZDftL
+         hjDLkGSrHLFoz1iRBszx+RxHcKWFUty6jJUrUjPMLK6OF7sIOHCft6zeXAE4XG4cptC5
+         aaQg==
+X-Gm-Message-State: ACgBeo2mlwqwu7ukiTMgVAprpfclRGGzbAeygJ3uLw/69QWtgzy2ceU8
+        /by1MlEjrUyoLQeDO/3nX75xcA==
+X-Google-Smtp-Source: AA6agR7JMJRtaF35vTSx4M/wwukmZAy0p6XS3yEu9BKdT7sblcvfXr74D3tJ4lir0IU2VY1RyB2MJQ==
+X-Received: by 2002:a17:902:dac7:b0:16f:13c6:938d with SMTP id q7-20020a170902dac700b0016f13c6938dmr29705635plx.11.1660168900898;
+        Wed, 10 Aug 2022 15:01:40 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id j6-20020a170902da8600b001618b70dcc9sm13779572plx.101.2022.08.10.15.01.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 14:03:09 -0700 (PDT)
-Date:   Wed, 10 Aug 2022 14:05:46 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        Das Srinagesh <quic_gurus@quicinc.com>,
-        ~okias/devicetree@lists.sr.ht, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5] dt-bindings: firmware: convert Qualcomm SCM binding
- to the yaml
-Message-ID: <YvQdqsOutzYs+Ulb@ripper>
-References: <20220708090431.30437-1-david@ixit.cz>
- <20220711225705.GA422079-robh@kernel.org>
- <b228bc62-c307-0662-3a6e-e3408c328178@ixit.cz>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b228bc62-c307-0662-3a6e-e3408c328178@ixit.cz>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Wed, 10 Aug 2022 15:01:40 -0700 (PDT)
+Date:   Wed, 10 Aug 2022 15:01:40 -0700 (PDT)
+X-Google-Original-Date: Wed, 10 Aug 2022 14:38:28 PDT (-0700)
+Subject:     Re: [PATCH v5 00/13] Canaan devicetree fixes
+In-Reply-To: <338e4fd5-9d6d-6f83-30fb-3ab3ed0ead31@microchip.com>
+CC:     airlied@linux.ie, robh+dt@kernel.org, vkoul@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, daniel@ffwll.ch,
+        thierry.reding@gmail.com, sam@ravnborg.org,
+        Eugeniy.Paltsev@synopsys.com, fancer.lancer@gmail.com,
+        daniel.lezcano@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, masahiroy@kernel.org,
+        damien.lemoal@opensource.wdc.com, geert@linux-m68k.org,
+        niklas.cassel@wdc.com, dillon.minfei@gmail.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+From:   Palmer Dabbelt <palmer@rivosinc.com>
+To:     Conor.Dooley@microchip.com
+Message-ID: <mhng-1373d9c2-ae29-488e-b2c1-032ab2cd52ba@palmer-mbp2014>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 22 Jul 14:34 PDT 2022, David Heidelberg wrote:
-
-> On 12/07/2022 00:57, Rob Herring wrote:
-> > On Fri, Jul 08, 2022 at 11:04:31AM +0200, David Heidelberg wrote:
-> > > Convert Qualcomm SCM firmware binding to the yaml format.
-> > > 
-> > > This commit also:
-> > >   - adds qcom,scm-mdm9607 into list which has only core clock
-> > >   - adds qcom,scm-sm6125, qcom,scm-ipq6018
-> > >   - #reset-cells, because the property is already used
-> > > 
-> > > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > > --
-> > Should be '---' in order to be removed automatically when applying.
-> typo, sorry.
-
-No worries, I fixed it up as I applied the patch.
-
-Thanks for fixing up yet another binding David!
-
-Regards,
-Bjorn
-
-> > 
-> > > v5:
-> > >   - add qcom,scm-sdx65 from new commit to txt binding
-> > >   - add freshly merged qcom,scm-sc8280xp
-> > >   - add interconnects
-> > >   - add accidentally removed # from #include directive
-> > >   - move mdm9607 to 3 clocks (thx @Guru)
-> > >   - fix compatible string in example
-> > > v4:
-> > >   - added clocks minItems and maxItems
-> > >   - removed quotes from $id and $schema
-> > >   - adjusted description of TCSR HW block
-> > > v3:
-> > >   - add preceding patches for ARM and arm64 adding missing compatible strings
-> > >   - extended with missing compatible strings
-> > >   - added two additional maintainers, see https://lkml.org/lkml/2022/6/23/1969
-> > > v2:
-> > >   - changed maintainer to Bjorn
-> > >   - document #reset-cells
-> > > 
-> > >   .../devicetree/bindings/firmware/qcom,scm.txt |  61 --------
-> > >   .../bindings/firmware/qcom,scm.yaml           | 147 ++++++++++++++++++
-> > >   2 files changed, 147 insertions(+), 61 deletions(-)
-> > >   delete mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.txt
-> > >   create mode 100644 Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> > Doesn't apply for me, so I'm assuming this will go via QCom tree.
-> if you want to merge it, I can rebase it against your tree?
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
+On Fri, 05 Aug 2022 10:51:00 PDT (-0700), Conor.Dooley@microchip.com wrote:
+> On 14/07/2022 23:11, Conor Dooley - M52691 wrote:
+>> On 14/07/2022 23:04, Palmer Dabbelt wrote:
+>>> I'm trying to sort out how to merge this one.  I'm not opposed to taking it through the RISC-V tree as Rob's reviewed/acked the bindings, but just figured I'd say something before putting anything on for-next to try and minimize confusion.
+>>>
+>>> Unless I'm missing something it's just patch 3 that's been taken so far, via Vinod's tree.  I've dropped that one and put the rest on palmer/riscv-canaan_dt_schema, if that looks good then I'll take it into riscv/for-next when this loops back to the top of my queue.
+>>>
+>>> Thanks!
+>> 
+>> Patches 1 & 2 never got review from the DRM side and patch 12
+>> depends on those. If it comes to it, you could drop those three
+>> (and patch 3 that Vinod took). The only other one is patch 4,
+>> which has Krzysztof's ack as memory-controller maintainer, so
+>> that one should be okay.
 > 
-> -- 
-> David Heidelberg
-> Consultant Software Engineer
-> 
-> Matrix: @okias:matrix.org
-> 
+> Hey Palmer,
+> These fixes have been sitting on palmer/riscv-canaan_dt_schema for
+> a few weeks now, without an autobuilder complaint etc. Could you
+> move it onto for-next?
+
+These are on for-next.
