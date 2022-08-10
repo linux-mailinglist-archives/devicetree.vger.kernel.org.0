@@ -2,100 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9374F58F411
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 00:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FAD958F434
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 00:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230251AbiHJWBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 18:01:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35388 "EHLO
+        id S230251AbiHJWMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 18:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231508AbiHJWBm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 18:01:42 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841D5804AC
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 15:01:41 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id m2so15427961pls.4
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 15:01:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc;
-        bh=jp9l0Ro/JdxDhmDJRS2kwEBWz37R0gfYtLWESZmTTdo=;
-        b=pR/Uz73diROtKoK45pSsnr9gDkyqdToZ6bxo/wDiwdfGMSRghz3CDbk46kMtQwAFO3
-         x22iXNjmkw6auGPluUNkD2GpzL9z734QfkCy9bn0Gv+2AgX5bsK1CBg+TTz2q4Lb8a0u
-         3T6PRK5CoElkC2XrFW0em//AvrYpm+7+C4IJZVYZJR71jicazAfVHoEokRhkpuEu2OiY
-         CCXQUmnc6fWyvGdzopEWFni24vLVkD1UncUMn+2pHen8sb5PGlGazWUWsWvcPabpO10+
-         F1qMKGxOoXI3JW1qYA6ANnXZml7AHYP11NQa0uG/wg33C4hNlUfavJ68c6gZ3kNZaK36
-         SQug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc;
-        bh=jp9l0Ro/JdxDhmDJRS2kwEBWz37R0gfYtLWESZmTTdo=;
-        b=5o9NObsbjCGExiu2/zwx0jZ5DWgE0Bbzm2YuSY1pupiPilMtoiHmGtt5Z9KA2alYSv
-         u/8o5S4TnBV41673a79eT89ooC6ARfW/Pd852c1ESbU4hBsHalg6ylzM5cLTA2f23nLO
-         TpS6vekxLOCbDg/Byb6Ibzw8XtLGX7TRCde9qz9fdiM2u0mYFpr3P/aiNMsJNXvkPTkz
-         vfQ6kp9x+x0fT/p2s5MjnR773tpveJTaih3EIvqdRfDHicJF1lEdZXeXteQj9pWZDftL
-         hjDLkGSrHLFoz1iRBszx+RxHcKWFUty6jJUrUjPMLK6OF7sIOHCft6zeXAE4XG4cptC5
-         aaQg==
-X-Gm-Message-State: ACgBeo2mlwqwu7ukiTMgVAprpfclRGGzbAeygJ3uLw/69QWtgzy2ceU8
-        /by1MlEjrUyoLQeDO/3nX75xcA==
-X-Google-Smtp-Source: AA6agR7JMJRtaF35vTSx4M/wwukmZAy0p6XS3yEu9BKdT7sblcvfXr74D3tJ4lir0IU2VY1RyB2MJQ==
-X-Received: by 2002:a17:902:dac7:b0:16f:13c6:938d with SMTP id q7-20020a170902dac700b0016f13c6938dmr29705635plx.11.1660168900898;
-        Wed, 10 Aug 2022 15:01:40 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id j6-20020a170902da8600b001618b70dcc9sm13779572plx.101.2022.08.10.15.01.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 15:01:40 -0700 (PDT)
-Date:   Wed, 10 Aug 2022 15:01:40 -0700 (PDT)
-X-Google-Original-Date: Wed, 10 Aug 2022 14:38:28 PDT (-0700)
-Subject:     Re: [PATCH v5 00/13] Canaan devicetree fixes
-In-Reply-To: <338e4fd5-9d6d-6f83-30fb-3ab3ed0ead31@microchip.com>
-CC:     airlied@linux.ie, robh+dt@kernel.org, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, daniel@ffwll.ch,
-        thierry.reding@gmail.com, sam@ravnborg.org,
-        Eugeniy.Paltsev@synopsys.com, fancer.lancer@gmail.com,
-        daniel.lezcano@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, masahiroy@kernel.org,
-        damien.lemoal@opensource.wdc.com, geert@linux-m68k.org,
-        niklas.cassel@wdc.com, dillon.minfei@gmail.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-From:   Palmer Dabbelt <palmer@rivosinc.com>
-To:     Conor.Dooley@microchip.com
-Message-ID: <mhng-1373d9c2-ae29-488e-b2c1-032ab2cd52ba@palmer-mbp2014>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        with ESMTP id S230163AbiHJWMz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 18:12:55 -0400
+Received: from dev.flatmax.com (41.68.233.220.static.exetel.com.au [220.233.68.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3802D832DC
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 15:12:54 -0700 (PDT)
+Received: by dev.flatmax.com (Postfix, from userid 1000)
+        id 0E2EC3846DF8; Thu, 11 Aug 2022 08:12:51 +1000 (AEST)
+From:   Matt Flax <flatmax@flatmax.com>
+To:     devicetree@vger.kernel.org
+Cc:     broonie@kernel.org, alsa-devel@alsa-project.org,
+        Matt Flax <flatmax@flatmax.com>
+Subject: [PATCH v2] ASoC: codecs: dt bind. doc for the new TI SRC4392 codec
+Date:   Thu, 11 Aug 2022 08:12:32 +1000
+Message-Id: <20220810221232.1596488-1-flatmax@flatmax.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 05 Aug 2022 10:51:00 PDT (-0700), Conor.Dooley@microchip.com wrote:
-> On 14/07/2022 23:11, Conor Dooley - M52691 wrote:
->> On 14/07/2022 23:04, Palmer Dabbelt wrote:
->>> I'm trying to sort out how to merge this one.  I'm not opposed to taking it through the RISC-V tree as Rob's reviewed/acked the bindings, but just figured I'd say something before putting anything on for-next to try and minimize confusion.
->>>
->>> Unless I'm missing something it's just patch 3 that's been taken so far, via Vinod's tree.  I've dropped that one and put the rest on palmer/riscv-canaan_dt_schema, if that looks good then I'll take it into riscv/for-next when this loops back to the top of my queue.
->>>
->>> Thanks!
->> 
->> Patches 1 & 2 never got review from the DRM side and patch 12
->> depends on those. If it comes to it, you could drop those three
->> (and patch 3 that Vinod took). The only other one is patch 4,
->> which has Krzysztof's ack as memory-controller maintainer, so
->> that one should be okay.
-> 
-> Hey Palmer,
-> These fixes have been sitting on palmer/riscv-canaan_dt_schema for
-> a few weeks now, without an autobuilder complaint etc. Could you
-> move it onto for-next?
+Signed-off-by: Matt Flax <flatmax@flatmax.com>
+---
 
-These are on for-next.
+Notes:
+    v2:
+    * Added myself as the maintainer
+
+ .../devicetree/bindings/sound/src4xxx.yaml    | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/src4xxx.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/src4xxx.yaml b/Documentation/devicetree/bindings/sound/src4xxx.yaml
+new file mode 100644
+index 000000000000..368bb4ba1a77
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/src4xxx.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/src4xxx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments SRC4392 Device Tree Bindings
++
++description: |
++  The SRC4392 is a digital audio codec that can be connected via
++  I2C or SPI. Currently, only I2C bus is supported.
++
++maintainers:
++  - Matt Flax <flatmax@flatmax.com>
++
++allOf:
++  - $ref: name-prefix.yaml#
++
++properties:
++  compatible:
++    const: ti,src4392
++
++  "#sound-dai-cells":
++    const: 0
++
++  reg:
++    description:
++      The I2C address of the device
++    maxItems: 1
++
++required:
++  - "#sound-dai-cells"
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        src4392@70 {
++            #sound-dai-cells = <0>;
++            compatible = "ti,src4392";
++            reg = <0x70>;
++        };
++    };
++...
+-- 
+2.34.1
+
