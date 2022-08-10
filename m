@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15E2058F3A2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 22:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B81BA58F3A9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 22:45:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233090AbiHJUpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 16:45:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33510 "EHLO
+        id S233407AbiHJUpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 16:45:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232579AbiHJUpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 16:45:15 -0400
-Received: from mail-oa1-x29.google.com (mail-oa1-x29.google.com [IPv6:2001:4860:4864:20::29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F0F15702
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 13:45:14 -0700 (PDT)
-Received: by mail-oa1-x29.google.com with SMTP id 586e51a60fabf-10ea9ef5838so19225910fac.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 13:45:14 -0700 (PDT)
+        with ESMTP id S232579AbiHJUpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 16:45:17 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 667171901F
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 13:45:15 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id z22-20020a056830129600b0063711f456ceso3497451otp.7
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 13:45:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=/Tb8rXUIwGiSR5Mp63C1iN3z6zJu5WryqQsj3M2SVRg=;
-        b=Q9AFEMh19+uvchGr3kAscMNtmOvF3UcLNJrpS8Q5hLvtT/YdMM7ENd6DjjRLHuvNOL
-         0LMyVuT3q9mnbUQmzJ0zoQEoLfE8fdc61WnbEU7OQKKAuNnUQ1HuAPVEdrrM3sSChHWt
-         hs7JdP5X2s0YvHaULZr82zbLpXfmRkWxil55IzHvFdGh1ltbsfcacSD8NPJdoWoar2gj
-         e4C1Nb58hBOKtfpe+R6GcRS8IbS8+W6xgTvExAM/GLzGFMVIEOMrRXIfe8kz+INtxoeZ
-         LuJJKLxYT+R6QHeOBSLeSu6xSmTV7XF/sRCi77BXAZdJBqaX59TLEmb+RhNL3Vx4ZsfO
-         FjPg==
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=0jz01lGJEb0t3lu10zSjIgJPn+MnHrxkIduNnoao9H4=;
+        b=GeyWze8A/Hj6zZTRKWs43aYe2s2c2hOLFuen/89ktPtJe/C0cZIvHbaw8dVdRS21zT
+         z+tYFsbYoQKV1lQdgPQQmljNT2/lJcoBBksJ+wGbfMCVOL3YJnLFxjehw7RFSyNQtFZh
+         QT5V1hruB1vcoQV796EbHngJ+k4GkMTbamPR2OWGINtEGQPKj1skB1SzGZx2mxXn/jix
+         ApRVTeqf9G1o51ZH3sR3cPUToyEiToCUDcO7h5bmMFzPfPVCU8duDCfeJWWi/h4DkBH6
+         mXnxA0Q38v2xoW7YpN6It+DoreRLALYLviMbDGzRgNhc6/nwIaSFwjwjH55fnU/6QW45
+         tI4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=/Tb8rXUIwGiSR5Mp63C1iN3z6zJu5WryqQsj3M2SVRg=;
-        b=gWzutD8dbD+eC2aIZ5if+skUdmhiljY1LQd4cV4ij2LjJP+avjQfQfpSGYEh/3E8Mb
-         /mR7V3Xl1yvyGt1nVS9dRY+V8aO82IGKEXL7bBCBlj7aFfiKUW783380m1zvxWUwQCnN
-         d5mSbAMdDsk5jyvdSDEUEFZqMuWfuVQHOlP66kHcGKGEqHvUQ7+lEmbx9FwulU4RMjNB
-         z1bmY2MHh+ELzZoSWl2prGyPHVtVGCbg0kQnp/veMTd0UBIzy+RlC6kWKahvfSAYY9tm
-         E3990c+oj7qIE1u6G2f1hfTiJdCRHAIzGGUWvBz7yfVGH8v4vCtebCWisJW38rvibN50
-         6btw==
-X-Gm-Message-State: ACgBeo17LWRZrbHu45kPL22JV9Whxs97t183HetNaVZQjxs/dX6oihbq
-        1s8AkY1hhY3Q6T8Hyak0UrA1Bg==
-X-Google-Smtp-Source: AA6agR5KR+MQJmPIBH24l2i6zKt8CyhlzpT30Va14Lpv2RPY+mSG77c/ZvfnJUnOTLxhLbdj4GJIHw==
-X-Received: by 2002:a05:6870:a181:b0:116:da6b:b3b9 with SMTP id a1-20020a056870a18100b00116da6bb3b9mr1418910oaf.179.1660164313523;
-        Wed, 10 Aug 2022 13:45:13 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=0jz01lGJEb0t3lu10zSjIgJPn+MnHrxkIduNnoao9H4=;
+        b=Qe7+SnytjK31qI3UK3EudY/cw9K0grsjD57QQwyy6gyff88/JbebIS4WRD4Ic8lbAD
+         uJ+YM61Pdxg427/UNkCa7EaOdIXC63XCOR18QBBgeIp+oQMCTg3RLL2hdTbRrzPuwHLe
+         zjfNjz+3OeD4WJ2nh69KHGJHVzIQywH/Rh8pTelO2CD5zLmouwBl5TOtT/TVIfDyiGj7
+         gG5HYcAANoqp9tiBBmImXV5HMsna86fTQPLwfeKRO5c5flBtR4JDa2Q03uAO6jHjsXY0
+         a1yV375KvafcZunlb0IQuStmQj1Vh8F+OM3Fphnl/RNHR3Ubs++1RBxn+NmxzhwcE7E6
+         iiuw==
+X-Gm-Message-State: ACgBeo0pqiF6PWJNva65DckoM6MtCK3VyugieIe+bgsLVPhZdacB7zVO
+        VX3bUGAoavPny9kvscGCczIb6g==
+X-Google-Smtp-Source: AA6agR4FNziH2P6cq4N36i/TFPUjoiNAxeZK4Lo3AxFzZPDeuO3auzQOKNEPXW3fcfLEX6WnV8yqKg==
+X-Received: by 2002:a9d:6314:0:b0:614:d56f:c7a with SMTP id q20-20020a9d6314000000b00614d56f0c7amr11273906otk.281.1660164314682;
+        Wed, 10 Aug 2022 13:45:14 -0700 (PDT)
 Received: from ripper.. (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id f12-20020a056870548c00b000f2455e26acsm3968218oan.48.2022.08.10.13.45.12
+        by smtp.gmail.com with ESMTPSA id f12-20020a056870548c00b000f2455e26acsm3968218oan.48.2022.08.10.13.45.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 13:45:12 -0700 (PDT)
+        Wed, 10 Aug 2022 13:45:14 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -54,10 +54,12 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Heikki Krogerus <heikki.krogerus@linux.intel.com>
 Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH 0/2] usb: typec: mux: GPIO-based SBU mux
-Date:   Wed, 10 Aug 2022 13:47:48 -0700
-Message-Id: <20220810204750.3672362-1-bjorn.andersson@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: usb: Introduce GPIO-based SBU mux
+Date:   Wed, 10 Aug 2022 13:47:49 -0700
+Message-Id: <20220810204750.3672362-2-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220810204750.3672362-1-bjorn.andersson@linaro.org>
+References: <20220810204750.3672362-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -70,24 +72,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A design found in various Qualcomm boards is to use a USB switch, controlled
-through a pair of GPIO lines to connect, disconnect and switch the orientation
-of the SBU lines in USB Type-C applications.
+Introduce a binding for GPIO-based mux hardware used for connecting,
+disconnecting and switching orientation of the SBU lines in USB Type-C
+applications.
 
-This series introduces a generic GPIO-driver for handling these designs.
-
-Bjorn Andersson (2):
-  dt-bindings: usb: Introduce GPIO-based SBU mux
-  usb: typec: mux: Introduce GPIO-based SBU mux
-
- .../devicetree/bindings/usb/gpio-sbu-mux.yaml |  77 ++++++++
- drivers/usb/typec/mux/Kconfig                 |   6 +
- drivers/usb/typec/mux/Makefile                |   1 +
- drivers/usb/typec/mux/gpio-sbu-mux.c          | 171 ++++++++++++++++++
- 4 files changed, 255 insertions(+)
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ .../devicetree/bindings/usb/gpio-sbu-mux.yaml | 77 +++++++++++++++++++
+ 1 file changed, 77 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
- create mode 100644 drivers/usb/typec/mux/gpio-sbu-mux.c
 
+diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+new file mode 100644
+index 000000000000..7d8aca40c7ca
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+@@ -0,0 +1,77 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/usb/gpio-sbu-mux.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: GPIO-based SBU mux
++
++maintainers:
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++description:
++  In USB Type-C applications the SBU lines needs to be connected, disconnected
++  and swapped depending on the altmode and orientation. This binding describes
++  a family of hardware which perform this based on GPIO controls.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - onnn,fsusb43l10x
++          - pericom,pi3usb102
++      - const: gpio-sbu-mux
++
++  enable-gpios:
++    description: Switch enable GPIO
++
++  select-gpios:
++    description: Orientation select
++
++  vcc-supply:
++    description: power supply
++
++  mode-switch:
++    description: Flag the port as possible handle of altmode switching
++    type: boolean
++
++  orientation-switch:
++    description: Flag the port as possible handler of orientation switching
++    type: boolean
++
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    description:
++      A port node to link the SBU mux to a TypeC controller for the purpose of
++      handling altmode muxing and orientation switching.
++
++required:
++  - compatible
++  - enable-gpios
++  - select-gpios
++  - mode-switch
++  - orientation-switch
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    sbu-mux {
++      compatible = "pericom,pi3usb102", "gpio-sbu-mux";
++
++      enable-gpios = <&tlmm 101 GPIO_ACTIVE_LOW>;
++      select-gpios = <&tlmm 164 GPIO_ACTIVE_HIGH>;
++
++      mode-switch;
++      orientation-switch;
++
++      port {
++        endpoint {
++          remote-endpoint = <&pmic_glink_dp0_sbu>;
++        };
++      };
++    };
++...
 -- 
 2.35.1
 
