@@ -2,43 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5BE158EE19
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92FB958EDD2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:04:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230209AbiHJOTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 10:19:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56626 "EHLO
+        id S232420AbiHJOED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 10:04:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbiHJOTO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:19:14 -0400
-Received: from mo-csw-fb.securemx.jp (mo-csw-fb1514.securemx.jp [210.130.202.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9B8C72867;
-        Wed, 10 Aug 2022 07:19:12 -0700 (PDT)
-Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1514) id 27ADYBu0001630; Wed, 10 Aug 2022 22:34:11 +0900
-Received: by mo-csw.securemx.jp (mx-mo-csw1515) id 27ADXWQt004392; Wed, 10 Aug 2022 22:33:32 +0900
-X-Iguazu-Qid: 34trbpZOfxdrYAuJt4
-X-Iguazu-QSIG: v=2; s=0; t=1660138412; q=34trbpZOfxdrYAuJt4; m=JZGbdTzhMCopwAS/kSRkstYoG19+c9pcH1uvin1I6zQ=
-Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
-        by relay.securemx.jp (mx-mr1510) id 27ADXVpQ039291
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 10 Aug 2022 22:33:31 +0900
-X-SA-MID: 43725403
-From:   Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        yuji2.ishikawa@toshiba.co.jp
-Subject: [PATCH v3 4/4] MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
-Date:   Wed, 10 Aug 2022 22:28:22 +0900
-X-TSB-HOP2: ON
-Message-Id: <20220810132822.32534-5-yuji2.ishikawa@toshiba.co.jp>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220810132822.32534-1-yuji2.ishikawa@toshiba.co.jp>
-References: <20220810132822.32534-1-yuji2.ishikawa@toshiba.co.jp>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        with ESMTP id S232919AbiHJODv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:03:51 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 668B86CD37
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:03:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1660140228; x=1691676228;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=j+ubEaa4d6letw3k0c6vUxa4al5aj0IPLS7HTum/LzY=;
+  b=aUi8E5FVi9zWM6i/zmLTYW+skS+rSGjyRaU6hZ3719pgzkFVPHZ9Q0jQ
+   /+bkn7pJTPaP0KhmsUB+ISra+Bm5U8gKjUzRYJiUK0UFYyoXOE739yjuR
+   WSeC27duvELZ6k7Xhg+r033VnjPyoZNQKeTovrZr6Nbbi7UlLSOi9/Iu/
+   /uZjsqV9J0jLE0wcqoaIUKy4QQOnjGX8Vidhg9PNI+s03i5GI8qhykmK0
+   UUNPewn6A6kOceLZXozE3ISGuBBWAvRCLR2qxBTIToUyqgSv6zg1h2YqB
+   gNFEOH/y+1Xd86oozLctW2lC1PwerDPvb4DUvqal/u2XyNRO5tZRU9K4e
+   A==;
+X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; 
+   d="scan'208";a="175691467"
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Aug 2022 07:03:46 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 10 Aug 2022 07:03:45 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
+ Transport; Wed, 10 Aug 2022 07:03:42 -0700
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     <soc@kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>
+CC:     Mark Brown <broonie@kernel.org>, Wolfram Sang <wsa@kernel.org>,
+        "Thierry Reding" <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Arnd Bergmann" <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [RESEND/PULL PATCH 0/2] MAINTAINERS updates for PolarFire SoC
+Date:   Wed, 10 Aug 2022 15:02:42 +0100
+Message-ID: <20220810140243.2685416-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.36.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -47,43 +70,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added entries for visconti Video Input Interface driver, including;
-* device tree bindings
-* source files
-* documentation files
+Hey Arnd,
 
-Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
----
-Changelog v2:
-- no change
+Could you please take the following two patches via the soc tree when
+you get a chance?
 
-Changelog v3:
-- added entry for driver API documentation
----
- MAINTAINERS | 3 +++
- 1 file changed, 3 insertions(+)
+The first is adding coverage for "my" dt-bindings as suggested by Mark.
+I CCed all the subsystem maintainers on a V1 a week ago & I've added
+them explicity to the patch text this time as CCs. Correct me if I am
+wrong, but I am operating on the assumption that their Acks are not
+required here. Hopefully increasing the binding coverage is non
+controversial!
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index dd36acc87..04423ae9a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2792,12 +2792,15 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Supported
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/iwamatsu/linux-visconti.git
- F:	Documentation/devicetree/bindings/arm/toshiba.yaml
-+F:	Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
- F:	Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
- F:	Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
- F:	Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
- F:	Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
- F:	Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
-+F:	Documentation/driver-api/media/drivers/visconti-viif.rst
- F:	arch/arm64/boot/dts/toshiba/
-+F:	drivers/media/platform/visconti/
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-visconti.c
- F:	drivers/gpio/gpio-visconti.c
- F:	drivers/pci/controller/dwc/pcie-visconti.c
+The second patch is a resend of a patch that was deferred to later in
+the merge window avoid messing about with a 4th conflict in the entry.
+
+Thanks,
+Conor.
+
+Conor Dooley (2):
+  MAINTAINERS: add PolarFire SoC dt bindings
+  MAINTAINERS: add the Polarfire SoC's i2c driver
+
+ MAINTAINERS | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+
+base-commit: 4e23eeebb2e57f5a28b36221aa776b5a1122dde5
 -- 
-2.17.1
-
+2.36.1
 
