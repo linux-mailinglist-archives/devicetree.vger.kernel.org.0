@@ -2,100 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1EBA58E46E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 03:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A46F158E45F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 03:13:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbiHJBVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 21:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44848 "EHLO
+        id S229917AbiHJBM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 21:12:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229947AbiHJBU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 21:20:57 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E7E1147C;
-        Tue,  9 Aug 2022 18:20:56 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id q19so12343559pfg.8;
-        Tue, 09 Aug 2022 18:20:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=K8PB1ciS662o1jhXEW/30/xnIB1fBOdqWTq+opSx6m8=;
-        b=K5ZL9QYOWSZsR/ShTSrILo4k4ZAWTcKhdo8r/L9sgegOaH4Kagm2nvicjb/KBScaoa
-         OxQHtMrxRnj1OPOH0sxeqCkQG5k6Lt0Gy+zXx55QneuNCTN+caP02M/Pme2oHr9f+UjF
-         vJtcfBZLC5PMA5ENvK9lrwI8cDkPMlK7GWCOFX+Ovjoys0DY9S3E0aaQ3wlunzRE0l59
-         0xlK5p0mzbkuPId9nt9BEkPgDCQTJbIGQ+ttogMkxVGmjWGNcJZuo6XOxwZlh/PxrcHl
-         d/l1FPhk0mgA2mH/EZIPA4LL3B2P40QcoO+bURitbAtJ3FiIThP06msuHcUSi66iecbx
-         LHGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=K8PB1ciS662o1jhXEW/30/xnIB1fBOdqWTq+opSx6m8=;
-        b=hkAOIzh7hqYCYmcMQBxAOHjMHKPyUdV6GVC0YdE5I9Q51Rv00tYUsW++XDdwdpbk/n
-         LLI41G6L5j5NTPscVbxGxw2ed4WqOrKLZyhogI1dvIUDSE16AsBrAKEf0QHzHovOrNoI
-         Nvx1iPpSo9y0vY2K9bnt8jEBk62oT1yoGtMK26QKCjzPofe9+2Et1L/I0RIMS7FPXwlf
-         k3HF2ol4YbcTRDz40E14JKdwDCaf95G/+R7me4EoMWzB5PnT5GX/61BjY8owBNOvVAUp
-         UMSyXmIuqBh8MutXBTUR+LLXoU/0xd9GP7N5m00GBvKeRWce6hhPA8oYtyEO4oXNWh+5
-         BycA==
-X-Gm-Message-State: ACgBeo3Axj4l8zRc8dymz/N7Mj3MDBZFAgwRsyEhYYLAfxWXzKBIoeAN
-        0QvBF1AXpZqWK6+BbarxbHffCW5cVSLAwg==
-X-Google-Smtp-Source: AA6agR4GqR70FuMvJ7suELLr5AKo8xKVh84iqXtuNR07KxSiTtk66QetWIgLvl0R1XQOM1kT482y0g==
-X-Received: by 2002:a05:6a00:1948:b0:525:45e3:2eb7 with SMTP id s8-20020a056a00194800b0052545e32eb7mr25750251pfk.77.1660094455911;
-        Tue, 09 Aug 2022 18:20:55 -0700 (PDT)
-Received: from localhost.localdomain (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
-        by smtp.gmail.com with ESMTPSA id s18-20020a170903215200b0016c3affe60esm11356754ple.46.2022.08.09.18.20.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Aug 2022 18:20:55 -0700 (PDT)
-From:   Potin Lai <potin.lai.pt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Patrick Williams <patrick@stwcx.xyz>,
-        Potin Lai <potin.lai.pt@gmail.com>
-Subject: [PATCH 2/2] ARM: dts: aspeed: bletchley: remove hdc1080 node
-Date:   Wed, 10 Aug 2022 00:43:38 +0000
-Message-Id: <20220810004338.329832-3-potin.lai.pt@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220810004338.329832-1-potin.lai.pt@gmail.com>
-References: <20220810004338.329832-1-potin.lai.pt@gmail.com>
+        with ESMTP id S229862AbiHJBMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 21:12:02 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AED254647;
+        Tue,  9 Aug 2022 18:12:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=wsVLLgzkz3GDUeRDpLJYtX2KkZ5PxL+g/u552PnAlyA=; b=JHOqdE8gC/7zLKeEQ4sjg6NCXE
+        ChNgrLOSptC0Uw9mnyQsvFYKm8QY8c8l6I/PfjO2uiClGXzHENEAjdQdF5ECXmXA2JWvHVaQEl4bW
+        wCxmsgne9yzK/TDgXovNHicpQndkdSkp/AitKCgop69mYx8nwylRA3aJuf2nTREWw4bA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oLaGC-00CtN6-8q; Wed, 10 Aug 2022 03:11:48 +0200
+Date:   Wed, 10 Aug 2022 03:11:48 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>,
+        Stephen Hemminger <stephen@networkplumber.org>,
+        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
+Message-ID: <YvMF1JW3RzRbOhlx@lunn.ch>
+References: <20220808210945.GP17705@kitsune.suse.cz>
+ <20220808143835.41b38971@hermes.local>
+ <20220808214522.GQ17705@kitsune.suse.cz>
+ <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com>
+ <20220809213146.m6a3kfex673pjtgq@pali>
+ <b1b33912-8898-f42d-5f30-0ca050fccf9a@seco.com>
+ <20220809214207.bd4o7yzloi4npzf7@pali>
+ <2083d6d6-eecf-d651-6f4f-87769cd3d60d@seco.com>
+ <20220809224535.ymzzt6a4v756liwj@pali>
+ <CAJ+vNU2xBthJHoD_-tPysycXZMchnXoMUBndLg4XCPrHOvgsDA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJ+vNU2xBthJHoD_-tPysycXZMchnXoMUBndLg4XCPrHOvgsDA@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Because of incompatible 2nd source si7021, removing hdc1080 node from
-devicetree, and move node probe to user-space layer.
+> Is something like the following really that crazy of an idea?
+> diff --git a/net/core/dev.c b/net/core/dev.c
+> index e0878a500aa9..a679c74a63c6 100644
+> --- a/net/core/dev.c
+> +++ b/net/core/dev.c
+> @@ -1151,6 +1151,15 @@ static int dev_alloc_name_ns(struct net *net,
+>         int ret;
+> 
+>         BUG_ON(!net);
+> +#ifdef CONFIG_OF
+> +       if (dev->dev.parent && dev->dev.parent->of_node) {
+> +               const char *name =
+> of_get_property(dev->dev.parent->of_node, "label", NULL);
+> +               if (name) {
+> +                       strlcpy(dev->name, name, IFNAMSIZ);
+> +                       return 0;
+> +               }
+> +       }
+> +#endif
+>         ret = __dev_alloc_name(net, name, buf);
+>         if (ret >= 0)
+>                 strlcpy(dev->name, buf, IFNAMSIZ);
+> 
+> I still like using the index from aliases/ethernet* instead as there
+> is a precedence for that in other Linux drivers as well as U-Boot
 
-Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
----
- arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts | 5 -----
- 1 file changed, 5 deletions(-)
+I guess you are new to the netdev list :-)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-index 54c9f182f6a5c..1f72017c1e2d9 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-@@ -882,11 +882,6 @@ tmp421@4f {
- 		reg = <0x4f>;
- 	};
- 
--	hdc1080@40 {
--		compatible = "ti,hdc1080";
--		reg = <0x40>;
--	};
--
- 	front_leds: pca9552@67 {
- 		compatible = "nxp,pca9552";
- 		reg = <0x67>;
--- 
-2.31.1
+This is one of those FAQ sort of things, discussed every
+year. Anything like this is always NACKed. I don't see why this time
+should be any different.
 
+DSA is somewhat special because it is very old. It comes from before
+the times of DT. Its DT binding was proposed relatively earl in DT
+times, and would be rejected in modern days. But the rules of ABI mean
+the label property will be valid forever. But i very much doubt it
+will spread to interfaces in general.
+
+     Andrew
