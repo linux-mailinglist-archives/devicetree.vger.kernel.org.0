@@ -2,139 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66CFC58EDB2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 15:57:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22FA158EDC8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:01:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232691AbiHJN5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 09:57:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35500 "EHLO
+        id S231821AbiHJOBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 10:01:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231854AbiHJN5P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 09:57:15 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B32B59275;
-        Wed, 10 Aug 2022 06:57:14 -0700 (PDT)
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27AD4HG8029931;
-        Wed, 10 Aug 2022 13:56:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=kiy7WXqD6IJTKwOY8MP6pKu62ib325Ly8oJCzgZBf7E=;
- b=Vw2tLpK+1iqXPowS/3JnjNh45F+mjbA3LUt2A2gkfCPbYBcF4bZY9Qktj3D/3pRJzaYt
- tSXJy/+yzPlMqnzbFJYCLt9o8J6yUZ7T1hwlPhMkC0SR9poajw0+wFUOKtgaPPMatcjX
- 6d2B1lj3xm0yN3+5wZpxj5Q4rs6vEwk+3Jfox12AEHPVx6VGQmNguxG+rDeVStra6H7c
- E0l8Jd/0PjV8YYhoWGXixq+OaJ+dksAR/OOoT8JjEjY5oDtKAL3F5HOzCi+l5IzkSbD1
- eHFx1OXxf8+xY6Vl5LvT13m2vu0XaAF4bri7K4wLBVacmBYsxWlAtFb1epwJdihxgX5y vA== 
-Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
-        by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3hv31vv4fp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Aug 2022 13:56:48 +0000
-Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
-        by ppma05wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 27ADohvB001640;
-        Wed, 10 Aug 2022 13:56:47 GMT
-Received: from b03cxnp07027.gho.boulder.ibm.com (b03cxnp07027.gho.boulder.ibm.com [9.17.130.14])
-        by ppma05wdc.us.ibm.com with ESMTP id 3hvcmr8e35-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Aug 2022 13:56:47 +0000
-Received: from b03ledav005.gho.boulder.ibm.com (b03ledav005.gho.boulder.ibm.com [9.17.130.236])
-        by b03cxnp07027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 27ADukQa31064362
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 10 Aug 2022 13:56:46 GMT
-Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 426C1BE054;
-        Wed, 10 Aug 2022 13:56:46 +0000 (GMT)
-Received: from b03ledav005.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 2096DBE051;
-        Wed, 10 Aug 2022 13:56:44 +0000 (GMT)
-Received: from [9.160.17.179] (unknown [9.160.17.179])
-        by b03ledav005.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Wed, 10 Aug 2022 13:56:44 +0000 (GMT)
-Message-ID: <8b2fcd61-16d6-09d1-e6ef-f5964378ab9f@linux.ibm.com>
-Date:   Wed, 10 Aug 2022 08:56:44 -0500
+        with ESMTP id S232917AbiHJOBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:01:45 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A1416CF5B;
+        Wed, 10 Aug 2022 07:01:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id AE3E6B81C96;
+        Wed, 10 Aug 2022 14:01:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F179C433C1;
+        Wed, 10 Aug 2022 14:01:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660140101;
+        bh=vVk3smFP0yDqyAhoxqkKU2XVUV0vThugwov15K5VhNQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nPfBIfBMAhOgPnfZsovb1vlKEvp0FTp52k+W4RElRxa8R5ObDjDbXGNK7iQymqWnb
+         1mCOZjWGjnFxCicpK6eyRLotfLtrNuXt3XKW+jvDDFtPz0NhKi//N/DU9F/vVrsGRH
+         swBS4VzJhc0cu0+eIGeIrGEa36AJYHX9BJW1PnDYXomN0ew9+L1UKQfpfZrJ9xUhS/
+         ky/0yqVl1AoL9DtXQnEE8k5KQBvtG8LV0qcz5uSe9SnQqvp0lPiHKuEXy+mQa6yo7/
+         nt6zfjDiEMQsOCrN0JAOR/mahpWQ5XQRnaO8WT1ki5NNzEmI+z+FjtpYIVQ+HbkPY+
+         xz0Jfj4gNZhIw==
+Received: by mail-ua1-f46.google.com with SMTP id c19so5825939uat.6;
+        Wed, 10 Aug 2022 07:01:41 -0700 (PDT)
+X-Gm-Message-State: ACgBeo2b35It26Xq2pN1uaWTy8UIGmeOlPAdPUeTiZIvM7VycEslFaW9
+        BEfIcOmhrX3WbI0qQxgwDTfiuos8vuCV7afYtw==
+X-Google-Smtp-Source: AA6agR5q3hDFDuGlmEq0UN3fTzwMJ+SVnwvkm2Pu+mSf5pciJB26bJjNIcUR+po4kBl8EYcd3Rp3BvU/1sAAwlh4oSw=
+X-Received: by 2002:a05:6130:291:b0:383:3b9:7024 with SMTP id
+ q17-20020a056130029100b0038303b97024mr12388093uac.43.1660140100430; Wed, 10
+ Aug 2022 07:01:40 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 1/3] dt-bindings: hwmon: Add IBM OCC bindings
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        joel@jms.id.au
-Cc:     linux@roeck-us.net, jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-fsi@lists.ozlabs.org,
-        devicetree@vger.kernel.org
-References: <20220802194656.240564-1-eajames@linux.ibm.com>
- <20220802194656.240564-2-eajames@linux.ibm.com>
- <297ddf1f-8ddc-902c-ff3d-06b9d19c6a7b@linaro.org>
- <59ee8c2f-3d6c-14ed-c9f8-2bbd9377a7da@linux.ibm.com>
- <25eefb70-a7ae-876e-c05a-bd308d41053e@linaro.org>
-From:   Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <25eefb70-a7ae-876e-c05a-bd308d41053e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: mIRS1J6dM9Y4FJFn5qM3iaMOMkC0WZsK
-X-Proofpoint-ORIG-GUID: mIRS1J6dM9Y4FJFn5qM3iaMOMkC0WZsK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-10_08,2022-08-10_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- spamscore=0 adultscore=0 mlxscore=0 lowpriorityscore=0 bulkscore=0
- phishscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208100042
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220720213036.1738628-1-Frank.Li@nxp.com> <20220720213036.1738628-4-Frank.Li@nxp.com>
+In-Reply-To: <20220720213036.1738628-4-Frank.Li@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 10 Aug 2022 08:01:29 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ_yAW=noPVe3LuG-ojG5ENe27to5OEzQSgGx6jHon43A@mail.gmail.com>
+Message-ID: <CAL_JsqJ_yAW=noPVe3LuG-ojG5ENe27to5OEzQSgGx6jHon43A@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: irqchip: imx mu work as msi controller
+To:     Frank Li <Frank.Li@nxp.com>, Marc Zyngier <maz@kernel.org>
+Cc:     Jon Mason <jdmason@kudzu.us>, Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Krzysztof Wilczynski <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "linux-kernel@vger.kernel.org" <kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        PCI <linux-pci@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        ntb@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 8/10/22 02:43, Krzysztof Kozlowski wrote:
-> On 09/08/2022 22:42, Eddie James wrote:
->>>> +  ibm,inactive-on-init:
->>>> +    description: This property describes whether or not the OCC should
->>>> +      be marked as active during device initialization. The alternative
->>>> +      is for user space to mark the device active based on higher level
->>>> +      communications between the BMC and the host processor.
->>> I find the combination property name with this description confusing. It
->>> sounds like init of OCC and somehow it should be inactive? I assume if
->>> you initialize device, it is active. Or maybe the "init" is of something
->>> else? What is more, non-negation is easier to understand, so rather
->>> "ibm,active-on-boot" (or something like that).
->>
->> Well, the host processor initializes the OCC during it's boot, but this
->> document is describing a binding to be used by a service processor
->> talking to the OCC. So the OCC may be in any state. The init meant
->> driver init, but I will simply the description and change the property
->> to be more explicit: ibm,no-poll-on-init since that is what is actually
->> happening. Similar to the FSI binding for no-scan-on-init.
-> no-scan-on-init is not a good example. It wasn't even reviewed by Rob
-> (looking at commit). In both cases you describe driver behavior which is
-> not appropriate for bindings. Instead you should describe the hardware
-> characteristics/feature/bug/state which require skipping the initialization.
-
-
-Yep... there is no such hardware thing. The driver should never poll the 
-OCC during driver initialization (since host state isn't known), but it 
-did for the first couple of years of the drivers existence because we 
-didn't catch that it could cause problems. I submitted a patch to change 
-the driver behavior, but it does change the user space interface, so the 
-argument is that the new behavior should be optional.
-
-I suppose one correct way to control that would be a module parameter, 
-but that really doesn't work well on embedded-like systems like ours.
-
-Thanks very much for your feedback Krzysztof. Joel, any suggestions here?
-
-Eddie
-
-
+On Wed, Jul 20, 2022 at 3:31 PM Frank Li <Frank.Li@nxp.com> wrote:
 >
+> imx mu support generate irq by write a register.
+> provide msi controller support so other driver
+> can use it by standard msi interface.
 >
-> Best regards,
-> Krzysztof
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../interrupt-controller/fsl,mu-msi.yaml      | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
+
+This is failing in linux-next now, but I'm wondering why it is there
+given all the comments.
+
+Error: Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dts:31.41-42
+syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:396:
+Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dtb]
+Error 1
+
+Rob
