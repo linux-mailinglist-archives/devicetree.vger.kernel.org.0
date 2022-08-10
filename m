@@ -2,106 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B279658EF1E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD25B58EF64
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:24:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229631AbiHJPSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 11:18:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32898 "EHLO
+        id S233252AbiHJPYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 11:24:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233044AbiHJPSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:18:15 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD577822A;
-        Wed, 10 Aug 2022 08:18:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=vU64N8DAFoU6IdwvHRJh/4vbxbob+2V1zkE7ziRWxUw=; b=2PMpDtz5ERp83GMxo38pVEkg+B
-        M7WEl+BcdKtJLSfmynMY+g+4CGa/lt0APxc/UnPF/UAOBokPmVNbdkoPhWwZYtopSqUiBeHpzbTn9
-        JQOn1zxMX5d0mTi1UwmPDA9I6nPJNYjx7dWcaDeLI0qR7SF8JmBDtEDj4mVTYUAQN+FQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1oLnT2-00CwWr-9i; Wed, 10 Aug 2022 17:17:56 +0200
-Date:   Wed, 10 Aug 2022 17:17:56 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
-Cc:     Tim Harvey <tharvey@gateworks.com>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
-Message-ID: <YvPMJLSuG3CBC//n@lunn.ch>
-References: <20220808214522.GQ17705@kitsune.suse.cz>
- <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com>
- <20220809213146.m6a3kfex673pjtgq@pali>
- <b1b33912-8898-f42d-5f30-0ca050fccf9a@seco.com>
- <20220809214207.bd4o7yzloi4npzf7@pali>
- <2083d6d6-eecf-d651-6f4f-87769cd3d60d@seco.com>
- <20220809224535.ymzzt6a4v756liwj@pali>
- <CAJ+vNU2xBthJHoD_-tPysycXZMchnXoMUBndLg4XCPrHOvgsDA@mail.gmail.com>
- <YvMF1JW3RzRbOhlx@lunn.ch>
- <20220810071603.GR17705@kitsune.suse.cz>
+        with ESMTP id S233437AbiHJPXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:23:53 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8419649B66;
+        Wed, 10 Aug 2022 08:23:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 35260B81CF2;
+        Wed, 10 Aug 2022 15:23:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EA8EC433D6;
+        Wed, 10 Aug 2022 15:23:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660145028;
+        bh=mmcvq0IvE4uO5WYMgBDaxxrgQXyvkI0OYgYpgNtf0KE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WXPjS6Z/AYYSRkJLGptjvgYpDpOnrBDbou1MwP3hOfrHC9Am4ufWcWtNB8mIQ5aXt
+         uFHtZGrttwerW1nyvUBRnjcsCEIuhoHuG/y949CqZyMBxaboSBcuanlivqlxFMx4sl
+         yU5kY9BnxlGXeydAXwsccxqHkhhN+rh+e9u0iMRZotNY0YCiv+ifFEj0nWa3/03g14
+         wzp4bSYWI+HZqdqk1W12apuQdQz5uH5uZYDH9HjSwjmMV015dI2FG5d+PEtFhU/tmg
+         /DJ2bg3wl3hW1uzAx+2gp4flgwz/wxhADEtbvTI4Hn5ZIa5u1kLI8lhM8zl9bxpwDu
+         QyvKhnYlBJAEg==
+Date:   Wed, 10 Aug 2022 16:23:43 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, David Heidelberg <david@ixit.cz>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        ~okias/devicetree@lists.sr.ht,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: mfd: convert to yaml Qualcomm SPMI PMIC
+Message-ID: <YvPNf9qL+zdXEyK+@google.com>
+References: <20220626191630.176835-1-david@ixit.cz>
+ <20220809235625.GA2775377-robh@kernel.org>
+ <YvOPKKw60F4qEKM6@google.com>
+ <CAL_JsqL54yLFApJHZodEPUc4MucFg=0qMXr=koiprJB8z4dY-w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220810071603.GR17705@kitsune.suse.cz>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqL54yLFApJHZodEPUc4MucFg=0qMXr=koiprJB8z4dY-w@mail.gmail.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > I guess you are new to the netdev list :-)
-> > 
-> > This is one of those FAQ sort of things, discussed every
-> > year. Anything like this is always NACKed. I don't see why this time
-> > should be any different.
-> > 
-> > DSA is somewhat special because it is very old. It comes from before
-> > the times of DT. Its DT binding was proposed relatively earl in DT
-> > times, and would be rejected in modern days. But the rules of ABI mean
-> > the label property will be valid forever. But i very much doubt it
-> > will spread to interfaces in general.
+On Wed, 10 Aug 2022, Rob Herring wrote:
+
+> On Wed, Aug 10, 2022 at 4:57 AM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Tue, 09 Aug 2022, Rob Herring wrote:
+> >
+> > > On Sun, 26 Jun 2022 21:16:30 +0200, David Heidelberg wrote:
+> > > > Convert Qualcomm SPMI PMIC binding to yaml format.
+> > > >
+> > > > Additional changes:
+> > > >  - filled many missing compatibles
+> > > >
+> > > > Co-developed-by: Caleb Connolly <caleb@connolly.tech>
+> > > > Signed-off-by: David Heidelberg <david@ixit.cz>
+> > > > ---
+> > > > v3:
+> > > >  - added subnodes, there are two not converted to YAML yet, but it works
+> > > >  - now it prints milion directly unrelated warning to this binding
+> > > >    (it's related to the included subnodes bindings, can be merged,
+> > > >     but it'll generate more warnings and preferably anyone can takeover
+> > > >     from here)
+> > > >  - add qcom,pmx65
+> > > >
+> > > > v2:
+> > > >  - changed author to myself, kept Caleb as co-author
+> > > >  - moved nodename to properties
+> > > >  - add nodenames for pm* with deprecated property
+> > > >  - add ^$ to pattern properties
+> > > >  - dropped interrupt-names property
+> > > >  - added reg prop. to the nodes which have register in nodename
+> > > >  - added compatible pmx55
+> > > > Signed-off-by: David Heidelberg <david@ixit.cz>
+> > > > ---
+> > > >  .../bindings/mfd/qcom,spmi-pmic.txt           |  94 ---------
+> > > >  .../bindings/mfd/qcom,spmi-pmic.yaml          | 191 ++++++++++++++++++
+> > > >  2 files changed, 191 insertions(+), 94 deletions(-)
+> > > >  delete mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
+> > > >  create mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+> > > >
+> > >
+> > > As this hasn't been picked up, I applied it. Thanks!
+> >
+> > I'd prefer to take it via MFD if it's all the same to you.
+> >
+> > In case there are additional fix-ups required during the next cycle.
 > 
-> And if this is a FAQ maybe you can point to a summary (perhaps in
-> previous mail discusssion) that explains how to provide stable interface
-> names for Ethernet devices on a DT based platform?
+> I'm going to send it to Linus this week for rc1 so that won't be an issue.
 
-As far so the kernel is concerned, interface names are unstable. They
-have never been truly stable, but they have got more unstable in the
-past decade with multiple busses being probed in parallel, which did
-not happen before so much.
+Works for me then, thanks.
 
-> On x86 there is a name derived from the device location in the bus
-> topology
+Acked-by: Lee Jones <lee@kernel.org>
 
-This is nothing to do with x86. That is userspace, e.g. systemd,
-renaming the interfaces. This applies for any architecture for which
-systemd runs on.
-
-> which may be somewhat stable but it is not clear that it
-> cannot change, and there is an optional BIOS provided table that can
-> asssign meaningful names to the interfaces.
-
-I doubt the kernel is looking at ACPI tables. It is user space which
-does that.
-
-The kernel provides udev with a bunch of information about the
-interface, its bus location, MAC address, etc. Userspace can then
-decide what it wants to call it, and what its alternative names are,
-etc.
-
-Also, this is not just a network interface name problem. Any device
-with a number/letter in it is unstable. I2C bus devices: i2c0,
-i2c1... SPI bus deviceS: spi0, spi1..., Block devices, sda, sdb, sdc,
-TPM device, tpm0, tpm1. Nothing is stable in the kernel.
-
-       Andrew
+-- 
+Lee Jones [李琼斯]
