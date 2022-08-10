@@ -2,38 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D078A58F039
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 18:19:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8351258F09F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 18:44:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231286AbiHJQS7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 12:18:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46764 "EHLO
+        id S231687AbiHJQok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 12:44:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230359AbiHJQS6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 12:18:58 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFA7A7C773;
-        Wed, 10 Aug 2022 09:18:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 93A43B81D67;
-        Wed, 10 Aug 2022 16:18:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42FF3C433D6;
-        Wed, 10 Aug 2022 16:18:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660148335;
-        bh=WOQyPg8F0GVppRHtF6EF9IpQjF8KSCRpyTeSvQhMwxg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S89LvgN8qVLeqDRD2w8AhD8yUAPYdHlfhL6whMkMxakEohbZ+Un4+LjsfKKaIaUe7
-         EJsJZeZPXTn3F6xD/lHbj5AEBAPRflPFS0IdDB/1GtTyuKpu6AG9Blr/jff7Dbl+ZC
-         G1adPQFCuYz404oBBoeY4IjfH5FrDXs9fnje8W/WQ8dLSYq3Oykw/u6P686Omusjzl
-         KZYjpx612gkx65/8XkAzwHWLoeJ/KLAZapG4/G7VFgkV9wdCkZ1hAXN3rF34y6D/rG
-         Eo3ONAbz+SMT+pkve212jW7LMzFgPVgtBEub//Gg0L3+sJQUFVQn2oMIX44rB/uapM
-         MjeFMq3Bc9cuw==
-Date:   Wed, 10 Aug 2022 17:18:48 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        with ESMTP id S231584AbiHJQok (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 12:44:40 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA85654D
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 09:44:38 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id by6so8279683ljb.11
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 09:44:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=VOLDuPix/0lVR9yaNuPldPK7FBAubvn5P7aOtNnMozY=;
+        b=PxOmy31FMgnLAPzakLjut5vLpoUvufDZnrYVP17Y48jyHAinJzMIaKywcuoaJwPKTg
+         eQCMfxVEJA2L/CK8eGRqltCaWjIRMUQglFpEZvF+ERgJxnOwpG/cbVif0yKnx9z7Snow
+         SIM9KFxcdIhwV7AXsMMc1Py8OH9T+iO7fMMrI0eSP2w2qB+CTnnXbjcQrYDo7TQY9vfA
+         D51wlzvZ+klATs1G6HpGHcegPyR7hZCN7A4kOVmw6nEHCxN0XNAZIkPJshHFg9Qi1hsM
+         T08q9GkKN8t7TvEF/iUm+ruwky/ZEt0E6lvjtiRTroHzQjvUXDeK9aj1XR2+5kgZORG3
+         Tosg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=VOLDuPix/0lVR9yaNuPldPK7FBAubvn5P7aOtNnMozY=;
+        b=JdE3MVQg8pN8ViASflXX/6nIQBQotB84Vgecr+nCcipX8cbkMlY6F9+qlRTpD/YIPW
+         IJxgIQxJVHOok/iLtt5UtQ+golERvFXGexBXzOCBgaorjfUPgb+bEqw3NrKudPniaGIs
+         A1b9PiADkD3ChqMrcPfSD3b97cUqUC1VlTsadOFhnge1mz7DNZOpQu85TFCIYc/P/Rs7
+         cisZZHfaXblavosC0Kqj4fpCQ+7if4ujK/sZZzILJWquHaKXVVwOG0OJ50hfSSW+2p4N
+         OooG75iHQUVTrGj1+npQbaowpKKDx8H51p5jOO6ocd4IIbsbx1yJrvEwdlP17TRld1bk
+         QRCg==
+X-Gm-Message-State: ACgBeo1N3WO1pAJecOa3w44Bz5Hqud0jzFkeGB6+yfJTUneNv5JiUfwS
+        tIHcy/PIaFoySpFfV6dKBLH8cA==
+X-Google-Smtp-Source: AA6agR4eoACd1ljMRqSIXs9EqFqbtjFc5gnzr+PoO1i7OTkPo+HY2BZ5YR46FSliA7NymB0fqOuUTg==
+X-Received: by 2002:a2e:81d2:0:b0:25e:68c3:f434 with SMTP id s18-20020a2e81d2000000b0025e68c3f434mr9196641ljg.526.1660149876935;
+        Wed, 10 Aug 2022 09:44:36 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id 13-20020a05651c128d00b0025e0396786dsm466556ljc.93.2022.08.10.09.44.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Aug 2022 09:44:36 -0700 (PDT)
+Message-ID: <4e096cc4-a012-8ef0-d5a2-1a32d1f6c83e@linaro.org>
+Date:   Wed, 10 Aug 2022 19:44:34 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] spi/panel: dt-bindings: drop 3-wire from common
+ properties
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>,
         David Airlie <airlied@linux.ie>,
@@ -46,18 +70,14 @@ Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Pratyush Yadav <p.yadav@ti.com>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
-Subject: Re: [PATCH] spi/panel: dt-bindings: drop 3-wire from common
- properties
-Message-ID: <YvPaaOgCUABREOcX@sirena.org.uk>
 References: <20220810131311.428645-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="C7paN41YzbGadmb4"
-Content-Disposition: inline
-In-Reply-To: <20220810131311.428645-1-krzysztof.kozlowski@linaro.org>
-X-Cookie: First pull up, then pull down.
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+ <YvPaaOgCUABREOcX@sirena.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YvPaaOgCUABREOcX@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,35 +86,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 10/08/2022 19:18, Mark Brown wrote:
+> On Wed, Aug 10, 2022 at 04:13:11PM +0300, Krzysztof Kozlowski wrote:
+>> The spi-3wire property is device specific and should be accepted only if
+>> device really needs them.  Drop it from common spi-peripheral-props.yaml
+>> schema, mention in few panel drivers which use it and include instead in
+>> the SPI controller bindings.  The controller bindings will provide
+>> spi-3wire type validation and one place for description.  Each device
+>> schema must list the property if it is applicable.
+> 
+> What's the plan for getting this merged?  I can just apply it at -rc1 if
+> that works for people?
 
---C7paN41YzbGadmb4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Ah, I should mention it before, my bad. There are no dependencies, no
+stoppers. I hope this will go via your SPI tree.
 
-On Wed, Aug 10, 2022 at 04:13:11PM +0300, Krzysztof Kozlowski wrote:
-> The spi-3wire property is device specific and should be accepted only if
-> device really needs them.  Drop it from common spi-peripheral-props.yaml
-> schema, mention in few panel drivers which use it and include instead in
-> the SPI controller bindings.  The controller bindings will provide
-> spi-3wire type validation and one place for description.  Each device
-> schema must list the property if it is applicable.
-
-What's the plan for getting this merged?  I can just apply it at -rc1 if
-that works for people?
-
---C7paN41YzbGadmb4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmLz2mgACgkQJNaLcl1U
-h9ChMQf9H6LPOdfGbu1FptjroVm8hHLsgruU3wnuUkhB1F1WtZkMEbcb9zAEutl7
-JxSo0Fu8wBzvndSpzXzOyZlQsukueeOcTXd9lFZI3NQmKRSD7DAgl9UzMeXnETdx
-aarr1MxJYaTONXaMvQxrCLMLuaqNZ7eQ4XexnuXrv52Lh6LYp52/IAijKwfH19oz
-E79hMp+bVng67iZRNwn+0HuZgbR83ZCyDqFJpP9li7m756PseyEU2nf1F3cYP0D6
-Y8hVZ02benHf+kIxA0nQR4FjM2OV1tuzvDobJikC3V3OLg8VVGoM4aZEbM6rEiaP
-gTGuMwxcZU0NSsmxTd30vnu3YkgzCg==
-=keHt
------END PGP SIGNATURE-----
-
---C7paN41YzbGadmb4--
+Best regards,
+Krzysztof
