@@ -2,123 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F22BA58E4B4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 03:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAA2658E4F8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 04:55:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbiHJBvs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Aug 2022 21:51:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42638 "EHLO
+        id S229534AbiHJCzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Aug 2022 22:55:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229736AbiHJBvo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 21:51:44 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53CD853D30;
-        Tue,  9 Aug 2022 18:51:37 -0700 (PDT)
-X-UUID: e78040478acc42bd83fbf7e6f2122c14-20220810
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Z48Z/6BJ44USMBjWFHetu114Y1YDE9zrqDWzGJN6TIE=;
-        b=qX6H7K3rikADL0LoouX5RiB9bp4veNnZ7ANj8Nz1+tlSEl1633b3edOm2ONWTXYe6IlkThgYLXRr51964OwMB9DnxffOkZHnxZvi7GcVnvIoFLGtTq5kjFspxZmmBB3Hm9jgxIiZckRPsb3YIQeuj0rOE4B4tb6hNf+Pp0yxFyw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.9,REQID:bae890a1-6131-4e6f-acf0-edca531d5bc9,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_H
-        am,ACTION:release,TS:0
-X-CID-META: VersionHash:3d8acc9,CLOUDID:59a05eae-9535-44a6-aa9b-7f62b79b6ff6,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: e78040478acc42bd83fbf7e6f2122c14-20220810
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1860812105; Wed, 10 Aug 2022 09:51:33 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Wed, 10 Aug 2022 09:51:32 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Wed, 10 Aug 2022 09:51:32 +0800
-Message-ID: <1238beb0a140a0987b8fdda6e7bbadfbb2415ed4.camel@mediatek.com>
-Subject: Re: [PATCH v5 02/20] dt-bindings: memory: mediatek: Update
- condition for mt8195 smi node
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>,
-        <iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 10 Aug 2022 09:51:32 +0800
-In-Reply-To: <20220809135312.hadcs7ti2cgyyuez@notapiano>
-References: <20220804021553.14867-1-tinghan.shen@mediatek.com>
-         <20220804021553.14867-3-tinghan.shen@mediatek.com>
-         <96e66425-ff2a-4640-8b96-48fa39943bf9@linaro.org>
-         <6a1977971317059fcfad685869b6ccf233edcb68.camel@mediatek.com>
-         <20220809135312.hadcs7ti2cgyyuez@notapiano>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229456AbiHJCzv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Aug 2022 22:55:51 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 658FE6E894;
+        Tue,  9 Aug 2022 19:55:50 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id m2so13068719pls.4;
+        Tue, 09 Aug 2022 19:55:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:subject:cc:to:from:from:to:cc;
+        bh=WO6tQqM10EHYIi2tDllBbfU+5oiZu0xp+kjAXZmD9VQ=;
+        b=fGPt2iWbKcUPtUbpJePn5tIAHZ7SdQUi4IxwD/UgqI6GkyvPx2GK9kw8OY1NgtdqB2
+         K/4m070tKHcKSzpKYwu6kYf94You4aJiu2Tj5SWDzC0n2Dxo06CWzFkb3/Sq5KPlERO/
+         8oR36xbflcLxc9GIIXBAsEEpRvns/d4zESYVOxDVrcWFY87gOPzA4+3N40cKNugxk/1r
+         M75hZwcTHrx32b8KqJ9GwmtxaKaaYkETRjxC7yW3GUVQeA0bwndkN+fPT9T9eotqu3gB
+         SaoOj2RYZ7bJS1xPfMbyFzIXONW05Rv6KxvbUNVFgH9pse20VGGpMWbsEO5ASlImolyG
+         bOIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=WO6tQqM10EHYIi2tDllBbfU+5oiZu0xp+kjAXZmD9VQ=;
+        b=G1pFzw//G5X/HWriL7jnPtD7kKYXxJZYZ/fWUDNjz+9WsllbrOu0PZXieiHqeosANN
+         QeMAiWQcLj9SdiTki2aWXwBWRtTl7Ff5vZ+Tt2WZJy9XXKShwuEsmkMpH/NQoXsYAxNi
+         qB9WIkfEX+7PTTpaN1m3dXx2PySGz0nJ/NQ6RaKGX3hcsUeiYkaq+rNQBxQVSyI4pMTj
+         V3bHTmf4H0Kym1zYXEee02dNDPJ705JSZoV9UMUF9sTUnJ70vew+UtaeYjqVADkAQ6O1
+         dlIK0bH7d5sqwS8H9YXhZL3mwt6JgX41Ey99DKFcw0Jr9S67ZHFGW61WLzVGireXRDTD
+         Z5Ow==
+X-Gm-Message-State: ACgBeo1WEHLXWFBK2ifLPGyBNtFs9KVA5wl8G7aXWWKnCNA95EUy9Wr8
+        fEHgNHGa/8i27ssRKzK0nr4=
+X-Google-Smtp-Source: AA6agR4ccL0bsqHiZDiLBp/aEdJ0eH5feiNRFH/CTpVYuJNPArD7GDNymKRIs9b+Mu54CQzhqlsYcQ==
+X-Received: by 2002:a17:90b:38cc:b0:1f7:2835:d45e with SMTP id nn12-20020a17090b38cc00b001f72835d45emr1413068pjb.177.1660100149685;
+        Tue, 09 Aug 2022 19:55:49 -0700 (PDT)
+Received: from localhost.localdomain ([2402:7500:577:d15f:416a:c0:aecd:5d6e])
+        by smtp.gmail.com with ESMTPSA id i5-20020a170902c94500b0016d1f474653sm11785654pla.52.2022.08.09.19.55.46
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 09 Aug 2022 19:55:49 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, dmitry.torokhov@gmail.com
+Cc:     cy_huang@richtek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
+Subject: [PATCH v4 0/3] Add Richtek RT5120 PMIC support
+Date:   Wed, 10 Aug 2022 10:55:39 +0800
+Message-Id: <1660100142-32493-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-08-09 at 09:53 -0400, Nícolas F. R. A. Prado wrote:
-> On Tue, Aug 09, 2022 at 07:01:10PM +0800, Tinghan Shen wrote:
-> > Hi Krzysztof,
-> > 
-> > On Thu, 2022-08-04 at 17:12 +0200, Krzysztof Kozlowski wrote:
-> > > On 04/08/2022 04:15, Tinghan Shen wrote:
-> > > > 
-> > > > It's because the 'mediatek,mt8195-smi-sub-common' compatible incorrectly
-> > > > matches the 'else' conditions for gen2 HW without gals.
-> > > > 
-> > > > Rewrite the 'else' condition to specifically identify the compatibles
-> > > > that utilizing gen2 HW without gals.
-> > > > 
-> > > > Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> > > > Reviewed-by: AngeloGioacchino Del Regno
-> > > >  <angelogioacchino.delregno@collabora.com>
-> > > 
-> > > Unfortunately, your patches got corrupted.
-> > > 
-> > > 
-> > > Best regards,
-> > > Krzysztof
-> > 
-> > Do you mean rebase to the latest linux-next?
-> > I'll rebase in the next version, thanks!
-> 
-> Hi TingHan,
-> 
-> the issue is that some line wrapping happened on your patches, which broke tags
-> and also the diffs themselves (it's very obvious on patch 3). So you need to
-> sort out your setup so that no longer happens, and resend the patch.
-> 
-> Thanks,
-> Nícolas
+From: ChiYuan Huang <cy_huang@richtek.com>
 
-I see. I'll send the next version after fix the weired wrapping...
-Thank you.
+This patch series is to add Richtek RT5120 PMIC support.
+In RT5120, it integrates four channels of buck converter, one channel of LDO,
+and one external enable channel to control the external power source.
 
+rt5120-regulator can be referred in the below link
+Link: https://lore.kernel.org/lkml/165599062767.127406.12571486984170083213.b4-ty@kernel.org/
 
-Best regards,
-TingHan
+Since v4:
+- Add "Copyright" string and refine for GPL version string.
+- Refine the comma usage in mfd. For the last uncertain terminated element in
+  struct arrays, put the comma for it to keep the extensibility.
 
+Since v3:
+- Use a 'dev' variable and dev_err_probe to decrease the LOC in mfd.
+- Simplify the power key irq handler key report
+- Since press and release irq not needed to keep in private data, change 'press',
+  'release' irq as local variable only.
+- Fix Kconfig typo for pwrkey.
+
+Since v2:
+- Add 'unevaluatedProperties: false' for regulator buck1~4/ldo/exten.
+- Fix indention and remove status for powerkey.
+- Refine powerkey description for more HW details.
+- For the regulator property parsing, use of_property_read_u32 instead.
+- Not to overwrite regulator constraint.
+- Refine regulator desc coding.
+
+ChiYuan Huang (3):
+  dt-binding: mfd: Add Richtek RT5120 PMIC support
+  mfd: rt5120: Add Richtek PMIC support
+  input: misc: rt5120: Add power key support
+
+ .../devicetree/bindings/mfd/richtek,rt5120.yaml    | 178 +++++++++++++++++++++
+ drivers/input/misc/Kconfig                         |   9 ++
+ drivers/input/misc/Makefile                        |   1 +
+ drivers/input/misc/rt5120-pwrkey.c                 | 109 +++++++++++++
+ drivers/mfd/Kconfig                                |  12 ++
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/rt5120.c                               | 124 ++++++++++++++
+ 7 files changed, 434 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/richtek,rt5120.yaml
+ create mode 100644 drivers/input/misc/rt5120-pwrkey.c
+ create mode 100644 drivers/mfd/rt5120.c
+
+-- 
+2.7.4
 
