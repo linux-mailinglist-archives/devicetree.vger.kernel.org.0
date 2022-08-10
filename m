@@ -2,125 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B07A558E686
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 07:06:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 965B658E6E8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 08:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230510AbiHJFFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 01:05:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50844 "EHLO
+        id S230506AbiHJGB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 02:01:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230504AbiHJFFn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 01:05:43 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928B217A9C;
-        Tue,  9 Aug 2022 22:05:39 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27A2NCdm007964;
-        Wed, 10 Aug 2022 05:05:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=d2zL0+vPYoY83eHFWOpk8iGA/oCIsL6rEcPi6amsHiU=;
- b=GE30WMHVE3oS2V0zHJWBEgyIwxMU3haNHhaNCMbVZllrq8eQSPz3wdznW9PX30u7FnSd
- E5qfbx/LMHRoFZw5pLIEdD6Lq46Z+NrK5SJyvpMMsyCUhneRRDCDfEzUhL1ympCUgF/Z
- SlVwfDAd275eSy4RxUupib9tn51cP1OHx0wjle5OQxX23EBhQJTSQ/0lkvYxzD4kKNii
- aM85TnXE3uwwF8J/qDvgZL485VeONkrsFJJCR3HMDmCGC5OFBlHkAUScP+GjdQfdXFdF
- LyAtWBDYPKe9QmpraC/3oPFjwvxku+mRIBu3uxsMEhseXxBH89WNcaWOioAbYB/RfOLj Pg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3huwqm96ev-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Aug 2022 05:05:36 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.47.97.222])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27A55Zv0019830
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 10 Aug 2022 05:05:36 GMT
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 9 Aug 2022 22:05:35 -0700
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 9 Aug 2022 22:05:32 -0700
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     Rob Herring <robh@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Douglas Anderson <dianders@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_tdas@quicinc.com>, <quic_c_skakit@quicinc.com>
-Subject: [RESEND PATCH V4 3/3] arm64: dts: qcom: sc7280: Update lpasscore node
-Date:   Wed, 10 Aug 2022 10:35:09 +0530
-Message-ID: <1660107909-27947-4-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1660107909-27947-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1660107909-27947-1-git-send-email-quic_c_skakit@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: b1UHrMbHD8LrzPL4U7Z28Ed_xT21R98y
-X-Proofpoint-ORIG-GUID: b1UHrMbHD8LrzPL4U7Z28Ed_xT21R98y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-10_01,2022-08-09_02,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- impostorscore=0 mlxlogscore=737 bulkscore=0 malwarescore=0
- priorityscore=1501 suspectscore=0 mlxscore=0 clxscore=1015 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2207270000 definitions=main-2208100015
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230477AbiHJGAx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 02:00:53 -0400
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72ED5E51
+        for <devicetree@vger.kernel.org>; Tue,  9 Aug 2022 23:00:48 -0700 (PDT)
+Received: by mail-yb1-xb49.google.com with SMTP id u44-20020a25ab2f000000b0067c1b3e9fceso3738369ybi.17
+        for <devicetree@vger.kernel.org>; Tue, 09 Aug 2022 23:00:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:from:subject:mime-version:message-id:date:from:to:cc;
+        bh=TCO2xyxVuPd3/tBUV+s0EeQJwLyZQsGvsrrIoFAUabA=;
+        b=BvFe715tdJHTFzLiuUTS/Q7VYOCApMDwcI0d8adcuT6VY23Mzv0LjVB/oCe1EYUH6I
+         GrUEBHGuCyX9om+3m+2zl2rmB8DHkIoDhCoJHkxwfbcimGGF2Au9Yt8rAFlE5vLE4zOT
+         FBke0i6x4PfWRbfl2D3iR0cCU4z0WmA3iKlcfcXB0BYjlIhk2JqckwGp1G7FtAQR48/7
+         pqJ0XtbeVUishXdC4XToLF9FWmAVWf/m/3RJfH4tl7k3Jd+oE21AZHO7Wt0qAh9vtQ8/
+         piA6XmFBChiJiUmunvUDrKZvlyy2Mu3J3SrWw8IQ6KPqPhlxUX1s7KWZK+OvnRu3v5v3
+         Y72Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:from:subject:mime-version:message-id:date:x-gm-message-state
+         :from:to:cc;
+        bh=TCO2xyxVuPd3/tBUV+s0EeQJwLyZQsGvsrrIoFAUabA=;
+        b=CdXNFcKOkK7vnxNRQr+/K9m9e1FZ0e/vttlkk0VygMJK8DGmzOL2SGF3z3Tm/GQyZJ
+         5gud5Kqh5QITjKWjVj92+EIGFkFWweHefVAly2cCocBPqYJRLViE5Sh0X+7VvTQLbR4O
+         Kg8+4kKUvsEgHD1kpKmpe3tBS42o849+f2W7gqlCeMxLq/HJQb04Ph+co03nHp87LTWE
+         uucXVxZ3NRM6KQsOEXE+SsHPQKTHe33CjGB905aHcg5WIHwZhDI9O4XFrBEdO4dV/a7p
+         gxhLtj4PhFhaVIwLivaCYREHy3nJimwj3JTLigfhDYpQIm5x9rZM+pJqCEOpQ55/EleN
+         KEQQ==
+X-Gm-Message-State: ACgBeo3fa11Wq4L+bZ/LtiW7zlCiVw8d3tk9YtUPVYLKN8TnQ5kAc/4x
+        MrC/DyuDEH0SXfZGKy9FzZsIGKahytjxEsE=
+X-Google-Smtp-Source: AA6agR4Luo9mfYOGUmow5n6t7VfAyPObtMuTRPi8OYX4fTwH65RIMuWKTPOsfnkREdcPNXAbTsM3U3vFPMT0E+A=
+X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:f21:76ca:766f:e0ab])
+ (user=saravanak job=sendgmr) by 2002:a25:7613:0:b0:67a:700a:f9e1 with SMTP id
+ r19-20020a257613000000b0067a700af9e1mr23778556ybc.53.1660111247299; Tue, 09
+ Aug 2022 23:00:47 -0700 (PDT)
+Date:   Tue,  9 Aug 2022 23:00:29 -0700
+Message-Id: <20220810060040.321697-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.37.1.559.g78731f0fdb-goog
+Subject: [PATCH v1 0/9] fw_devlink improvements
+From:   Saravana Kannan <saravanak@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To maintain consistency with other lpass nodes(lpass_audiocc,
-lpass_aon and lpass_hm), update lpasscore to lpass_core.
+This patch series improves fw_devlink in the following ways:
 
-Fixes: 9499240d15f2 ("arm64: dts: qcom: sc7280: Add lpasscore & lpassaudio clock controllers")
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
-Changes since v4:
- - None.
+1. It no longer cares about a fwnode having a "compatible" property. It
+   figures this our more dynamically. The only expectation is that
+   fwnode that are converted to devices actually get probed by a driver
+   for the dependencies to be enforced correctly.
 
-Changes since v3:
- - This is newly added in v4, inorder to update the lpasscore node in a
-   separate patch.
+2. Finer grained dependency tracking. fw_devlink will now create device
+   links from the consumer to the actual resource's device (if it has one,
+   Eg: gpio_device) instead of the parent supplier device. This improves
+   things like async suspend/resume ordering, potentially remove the need
+   for frameworks to create device links, more parallelized async probing,
+   and better sync_state() tracking.
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+3. Handle hardware/software quirks where a child firmware node gets
+   populated as a device before its parent firmware node AND actually
+   supplies a non-optional resource to the parent firmware node's
+   device.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 4652f28..880217c 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2192,13 +2192,13 @@
- 			reg = <0 0x03380000 0 0x30000>;
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
- 			       <&rpmhcc RPMH_CXO_CLK_A>,
--			       <&lpasscore LPASS_CORE_CC_CORE_CLK>;
-+			       <&lpass_core LPASS_CORE_CC_CORE_CLK>;
- 			clock-names = "bi_tcxo", "bi_tcxo_ao", "iface";
- 			#clock-cells = <1>;
- 			#power-domain-cells = <1>;
- 		};
- 
--		lpasscore: clock-controller@3900000 {
-+		lpass_core: clock-controller@3900000 {
- 			compatible = "qcom,sc7280-lpasscorecc";
- 			reg = <0 0x03900000 0 0x50000>;
- 			clocks = <&rpmhcc RPMH_CXO_CLK>;
+4. Way more robust at cycle handling (see patch for the insane cases).
+
+5. Stops depending on OF_POPULATED to figure out some corner cases.
+
+6. Simplifies the work that needs to be done by the firmware specific
+   code.
+
+This took way too long to get done due to typo bugs I had in my rewrite or
+corner cases I had to find and handle. But it's fairly well tested at this
+point and I expect this to work properly.
+
+Abel & Doug,
+
+This should fix your cyclic dependency issues with your display. Can you
+give it a shot please?
+
+Alexander,
+
+This should fix your issue where the power domain device not having a
+compatible property. Can you give it a shot please?
+
+Tony,
+
+This should handle the odd case of the child being the supplier of the
+parent. Can you please give this a shot? I want to make sure the cycle
+detection code handles this properly and treats it like it's NOT a cycle.
+
+Geert,
+
+Can you test the renesas stuff I changed please? They should continue
+working like before. Any other sanity test on other hardware would be
+great too.
+
+Sudeep,
+
+I don't think there are any unfixed issues you had reported in my other
+patches that this series might fix, but it'll be nice if you could give
+this a sanity test.
+
+Guenter,
+
+I don't think this will fix the issue you reported in the amba patch, but
+it's worth a shot because it improves a bunch of corner case handling. So
+it might be better at handling whatever corner cases you might have in the
+qemu platforms.
+
+Thanks,
+Saravana
+
+Cc: Abel Vesa <abel.vesa@linaro.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Tony Lindgren <tony@atomide.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: John Stultz <jstultz@google.com>
+Cc: Doug Anderson <dianders@chromium.org>
+Cc: Guenter Roeck <linux@roeck-us.net>
+
+Saravana Kannan (9):
+  driver core: fw_devlink: Don't purge child fwnode's consumer links
+  driver core: fw_devlink: Improve check for fwnode with no
+    device/driver
+  soc: renesas: Move away from using OF_POPULATED for fw_devlink
+  gpiolib: Clear the gpio_device's fwnode initialized flag before adding
+  driver core: fw_devlink: Add DL_FLAG_CYCLE support to device links
+  driver core: fw_devlink: Allow marking a fwnode link as being part of
+    a cycle
+  driver core: fw_devlink: Consolidate device link flag computation
+  driver core: fw_devlink: Make cycle detection more robust
+  of: property: Simplify of_link_to_phandle()
+
+ drivers/base/core.c             | 437 +++++++++++++++++++++-----------
+ drivers/gpio/gpiolib.c          |   6 +
+ drivers/of/property.c           |  84 +-----
+ drivers/soc/renesas/rcar-sysc.c |   2 +-
+ include/linux/device.h          |   1 +
+ include/linux/fwnode.h          |  12 +-
+ 6 files changed, 323 insertions(+), 219 deletions(-)
+
 -- 
-2.7.4
+2.37.1.559.g78731f0fdb-goog
 
