@@ -2,105 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE37058E934
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 11:00:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44FB658E9AE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 11:32:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231854AbiHJJAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 05:00:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56690 "EHLO
+        id S232118AbiHJJcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 05:32:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231893AbiHJJAU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 05:00:20 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EF061AF06;
-        Wed, 10 Aug 2022 02:00:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1660122019; x=1691658019;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=c2PE8iAmkH1Oin6CAU5HGkAjPeE646cGNzdZY+RUVJE=;
-  b=Fvs1ad2/F30RaGRq+xTBsaILfwopkHMilluA7w/4fav6NBXoVer+ry9G
-   RPx5AsXT/sLkJpd4p02VUJyKF7aVT1oZHXk1AXfm1jLeuu0bFHB6N0WMj
-   RjI2t8NRNnGvf4JF1Oyksp23xCpKUPR4bMEglCaWMuisW846kWfPOhlyX
-   SsXm8CjSFzKZ7V2uyf0y+S8NdFVGAbptQxdTBwc5kaB0G6FpWNis0dAKW
-   66OB1jul6hIbeNF/W3KN1CBKLXzARmh1YKPtMUcaDSboZ23JdBdT0KAYL
-   ZGV2k1ZkgS3R1siSZFOXcPBWA4NkbrUAqF0b4vNusJXMpsF4esRCgCKhQ
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,226,1654585200"; 
-   d="scan'208";a="108383200"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Aug 2022 02:00:18 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 10 Aug 2022 02:00:13 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Wed, 10 Aug 2022 02:00:11 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>
-CC:     <nagasuresh.relli@microchip.com>,
-        <valentina.fernandezalanis@microchip.com>, <broonie@kernel.org>,
-        <devicetree@vger.kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: [PATCH] riscv: dts: microchip: add qspi compatible fallback
-Date:   Wed, 10 Aug 2022 09:59:15 +0100
-Message-ID: <20220810085914.801170-1-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.36.1
+        with ESMTP id S232120AbiHJJcq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 05:32:46 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2C16DF89;
+        Wed, 10 Aug 2022 02:32:44 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27A68jdC004798;
+        Wed, 10 Aug 2022 11:32:21 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=JGY5zWrfCCK8U/3zgAroqF0FgJuxZGbZAnLQqoBRrso=;
+ b=0j8S3SNqXOkek34mkUPW7uFbheMJ/q/UayZS01EQTvKX2ZCKctNple+tOvUt6NQ3XLgy
+ iflhYECKtF1WaeZkpZa7A2PzvLnKvBSfKcYcnyoPUHeMxaIH0o2ttriPdHBOZojroaeW
+ +R930MK1dlNNsgsbpbrJDhrc1c9ERT7wW1bTVTYSFBvAErdiYoWKTFnv13DItzFUo7ht
+ VOczuZv9+G37EtoMeFnkwukUOC1VQnpWfnrjx2iCkeFgDx/9gbflsMtE/l0ko4Q/eTN2
+ Uids09E37dl1rnUjsntBDXd0iw5cv5S/k0aSaZ9l+vVfDaUgshaxn/rocxeYTc9OPDud AQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3huwpmbmm8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 10 Aug 2022 11:32:21 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E49A110002A;
+        Wed, 10 Aug 2022 11:32:20 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CF39421B52F;
+        Wed, 10 Aug 2022 11:32:20 +0200 (CEST)
+Received: from localhost (10.75.127.46) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Wed, 10 Aug
+ 2022 11:32:20 +0200
+From:   <patrice.chotard@foss.st.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
+CC:     <linux-spi@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <christophe.kerello@foss.st.com>,
+        <patrice.chotard@foss.st.com>, <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/2] spi: stm32_qspi: use QSPI bus as 8 lines communication channel
+Date:   Wed, 10 Aug 2022 11:32:13 +0200
+Message-ID: <20220810093215.794977-1-patrice.chotard@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-10_03,2022-08-09_02,2022-06-22_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "hard" QSPI peripheral on PolarFire SoC is derived from version 2
-of the FPGA IP core. The original binding had no fallback etc, so this
-device tree is valid as is. There was also no functional driver for the
-QSPI IP, so no device with a devicetree from a previous mainline
-release will regress.
+From: Patrice Chotard <patrice.chotard@foss.st.com>
 
-Link: https://lore.kernel.org/linux-spi/7c9f0d96-2882-964a-cd1f-916ddb3f0410@linaro.org/
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-See the link for binding discussion. I'll apply this at some point once
-the driver makes it upstream.
 
-CC: nagasuresh.relli@microchip.com
-CC: valentina.fernandezalanis@microchip.com
-CC: broonie@kernel.org
-CC: devicetree@vger.kernel.org
-CC: krzysztof.kozlowski+dt@linaro.org
-CC: robh+dt@kernel.org
-CC: linux-kernel@vger.kernel.org
-CC: linux-spi@vger.kernel.org
-CC: linux-riscv@lists.infradead.org
----
- arch/riscv/boot/dts/microchip/mpfs.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The goal of this series is to allow to use QSPI bus as a 8 lines communication 
+channel for specific purpose.
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index 499c2e63ad35..45e3cc659882 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -330,7 +330,7 @@ spi1: spi@20109000 {
- 		};
- 
- 		qspi: spi@21000000 {
--			compatible = "microchip,mpfs-qspi";
-+			compatible = "microchip,mpfs-qspi", "microchip,coreqspi-rtl-v2";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <0x0 0x21000000 0x0 0x1000>;
+The QSPI block offers the possibility to communicate with 2 flashes in 
+parrallel using the dual flash mode, 8 data lines are then used.
+Usage of DT parallel-memories property is needed to enable dual flash mode.
+
+The addition of the legacy transfer_one_message() spi callback is also needed
+as currently the stm32-qspi driver only supports spi_controller_mem_ops API.
+
+
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi |  50 +++++++----
+ arch/arm/boot/dts/stm32mp157c-ev1.dts    |  12 ++-
+ drivers/spi/spi-stm32-qspi.c             | 103 +++++++++++++++++++++--
+ 3 files changed, 139 insertions(+), 26 deletions(-)
+
 -- 
-2.36.1
+2.25.1
 
