@@ -2,129 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC78558EF76
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA6FE58EF7E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:38:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbiHJPfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 11:35:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55566 "EHLO
+        id S231728AbiHJPiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 11:38:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231264AbiHJPfQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:35:16 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0579B639D;
-        Wed, 10 Aug 2022 08:35:13 -0700 (PDT)
-Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
-        by smtp-out2.suse.de (Postfix) with ESMTP id 810665C2C0;
-        Wed, 10 Aug 2022 15:35:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1660145712; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=phOPmviTrSVc6Big96eHWPdI379M+oLowb8bvheVGbk=;
-        b=vSpntsQOQb7xiH283KdJV4ICFJAnKibgpEsUzpyvzMg9yKRTkJOc0RotVWc+2f/8ScxThn
-        Wb0ZlORQrZU4hf2Dl9uxGJQiLwvQ14MECuQjYwHtMDM8lr2M3y1KL5ptvlPjCBvdXVsc6N
-        C8nS1J/17jgzCASRdtPjWpC/BizWc90=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1660145712;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=phOPmviTrSVc6Big96eHWPdI379M+oLowb8bvheVGbk=;
-        b=tIhRSNwZTHtQ7eWJ2iK6vAbvSyWZW937veYhvnORwW6g+nKtDWys0huEb+5vzXm6wIRFZu
-        FcoolSUJmbuYdcDg==
-Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by relay2.suse.de (Postfix) with ESMTPS id 279E32C1CD;
-        Wed, 10 Aug 2022 15:35:12 +0000 (UTC)
-Date:   Wed, 10 Aug 2022 17:35:10 +0200
-From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Tim Harvey <tharvey@gateworks.com>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Stephen Hemminger <stephen@networkplumber.org>,
-        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
-Message-ID: <20220810153510.GS17705@kitsune.suse.cz>
-References: <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com>
- <20220809213146.m6a3kfex673pjtgq@pali>
- <b1b33912-8898-f42d-5f30-0ca050fccf9a@seco.com>
- <20220809214207.bd4o7yzloi4npzf7@pali>
- <2083d6d6-eecf-d651-6f4f-87769cd3d60d@seco.com>
- <20220809224535.ymzzt6a4v756liwj@pali>
- <CAJ+vNU2xBthJHoD_-tPysycXZMchnXoMUBndLg4XCPrHOvgsDA@mail.gmail.com>
- <YvMF1JW3RzRbOhlx@lunn.ch>
- <20220810071603.GR17705@kitsune.suse.cz>
- <YvPMJLSuG3CBC//n@lunn.ch>
+        with ESMTP id S231707AbiHJPiH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:38:07 -0400
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 237B528E02;
+        Wed, 10 Aug 2022 08:38:06 -0700 (PDT)
+Received: by mail-il1-f169.google.com with SMTP id s16so8478450ilp.3;
+        Wed, 10 Aug 2022 08:38:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=d703OGIAWaJFqE2Rp42TVQVb31FLKdiwbLrmUlLlcDE=;
+        b=L5i95qjc+Nm9zcx0eoQ8Za5h+H8IF/L2ssP9GwAMs8WNO1+LsrBr0IfbK6PZOYCc/H
+         tM2SBhEk6t8ODqzobklRqrBYKFh3o5u08aymsTW1/Ol+XBhTazlTJP/dYAFuVA2tESGu
+         cXXY8KGZv543UmtrI3fWIJoFnk05br1v8Zr66ut2vRgJIJUNEQW1VGzV9BHIgaQ1hPIT
+         dDgJe8U0PEs9slu4IrlVtocp5mIPfTea39kejQuzQxL3ix7ImzTIGMFWkUYt5eY4ud5P
+         GEUB5vO724bGpuYT+3eIlZQvV5nN5QY1tRswnEzMboxbshshg7RdCHU/a+mWw9Cg8kf1
+         6uzg==
+X-Gm-Message-State: ACgBeo3o/V0wVaI/LvXck0iIrEc046AyWt+7R+L5EQ5d/Rdu6LHdgRGa
+        WKnwwcrIB7S1gZLj+txpmvs18t1Qfw==
+X-Google-Smtp-Source: AA6agR7D2VESWtQ+d0hSJfH8s2E2QhlG9jzS2sKVav6VMuiuI2rzKmJsWkaPbCLm1IMZS1BYGQfocA==
+X-Received: by 2002:a92:d950:0:b0:2df:afdb:3908 with SMTP id l16-20020a92d950000000b002dfafdb3908mr9158360ilq.319.1660145885264;
+        Wed, 10 Aug 2022 08:38:05 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id n12-20020a056638110c00b003433846796esm1317158jal.5.2022.08.10.08.38.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Aug 2022 08:38:04 -0700 (PDT)
+Received: (nullmailer pid 6576 invoked by uid 1000);
+        Wed, 10 Aug 2022 15:38:02 -0000
+Date:   Wed, 10 Aug 2022 09:38:02 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface bindings
+Message-ID: <20220810153802.GA585-robh@kernel.org>
+References: <20220810132822.32534-1-yuji2.ishikawa@toshiba.co.jp>
+ <20220810132822.32534-2-yuji2.ishikawa@toshiba.co.jp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YvPMJLSuG3CBC//n@lunn.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220810132822.32534-2-yuji2.ishikawa@toshiba.co.jp>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 10, 2022 at 05:17:56PM +0200, Andrew Lunn wrote:
-> > > I guess you are new to the netdev list :-)
-> > > 
-> > > This is one of those FAQ sort of things, discussed every
-> > > year. Anything like this is always NACKed. I don't see why this time
-> > > should be any different.
-> > > 
-> > > DSA is somewhat special because it is very old. It comes from before
-> > > the times of DT. Its DT binding was proposed relatively earl in DT
-> > > times, and would be rejected in modern days. But the rules of ABI mean
-> > > the label property will be valid forever. But i very much doubt it
-> > > will spread to interfaces in general.
-> > 
-> > And if this is a FAQ maybe you can point to a summary (perhaps in
-> > previous mail discusssion) that explains how to provide stable interface
-> > names for Ethernet devices on a DT based platform?
+On Wed, Aug 10, 2022 at 10:28:19PM +0900, Yuji Ishikawa wrote:
+> Adds the Device Tree binding documentation that allows to describe
+> the Video Input Interface found in Toshiba Visconti SoCs.
 > 
-> As far so the kernel is concerned, interface names are unstable. They
-> have never been truly stable, but they have got more unstable in the
-> past decade with multiple busses being probed in parallel, which did
-> not happen before so much.
+> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> ---
+> Chengelog v2:
+> - no change
 > 
-> > On x86 there is a name derived from the device location in the bus
-> > topology
+> Changelog v3:
+> - no change
+> ---
+>  .../bindings/media/toshiba,visconti-viif.yaml | 103 ++++++++++++++++++
+>  1 file changed, 103 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
 > 
-> This is nothing to do with x86. That is userspace, e.g. systemd,
-> renaming the interfaces. This applies for any architecture for which
-> systemd runs on.
-> 
-> > which may be somewhat stable but it is not clear that it
-> > cannot change, and there is an optional BIOS provided table that can
-> > asssign meaningful names to the interfaces.
-> 
-> I doubt the kernel is looking at ACPI tables. It is user space which
-> does that.
-> 
-> The kernel provides udev with a bunch of information about the
-> interface, its bus location, MAC address, etc. Userspace can then
-> decide what it wants to call it, and what its alternative names are,
-> etc.
-> 
-> Also, this is not just a network interface name problem. Any device
-> with a number/letter in it is unstable. I2C bus devices: i2c0,
-> i2c1... SPI bus deviceS: spi0, spi1...,
+> diff --git a/Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml b/Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
+> new file mode 100644
+> index 000000000..848ea5019
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/toshiba,visconti-viif.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Toshiba Visconti5 SoC Video Input Interface Device Tree Bindings
+> +
+> +maintainers:
+> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> +
+> +description: |
 
-Thees do have numbered aliases in the DT. I don't know if the kernel
-uses them for anything.
+Don't need '|' if no formatting.
 
-> Block devices, sda, sdb, sdc,
+> +  Toshiba Visconti5 SoC Video Input Interface (VIIF) receives MIPI CSI2 video stream,
+> +  processes the stream with embedded image signal processor (L1ISP, L2ISP), then stores pictures to main memory.
 
-These too, at least mmc.
+Wrap lines at 80 char.
 
-Thanks
+> +
+> +properties:
+> +  compatible:
+> +    const: toshiba,visconti-viif
+> +
+> +  reg:
+> +    items:
+> +      - description: registers for capture control
+> +      - description: registers for CSI2 receiver control
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Sync Interrupt
+> +      - description: Status (Error) Interrupt
+> +      - description: CSI2 Receiver Interrupt
+> +      - description: L1ISP Interrupt
+> +
+> +  index:
+> +    enum: [0, 1]
 
-Michal
+No, we don't do indices in DT. Why do you need this?
+
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    unevaluatedProperties: false
+> +    description: Input port node, single endpoint describing the CSI-2 transmitter.
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            description: VIIF supports 2 or 4 data lines
+> +            items:
+> +              minItems: 1
+> +              maxItems: 4
+> +              items:
+> +                - const: 1
+> +                - const: 2
+> +                - const: 3
+> +                - const: 4
+
+blank line
+
+> +          clock-lanes:
+> +            description: VIIF supports 1 clock line
+> +            const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        viif0: viif@1c000000 {
+
+Drop unused labels.
+
+> +            compatible = "toshiba,visconti-viif";
+> +            reg = <0 0x1c000000 0 0x6000>,
+> +                  <0 0x1c008000 0 0x400>;
+> +            interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
+> +            index = <0>;
+> +            status = "disabled";
+
+Why is your example disabled? Don't put 'status' in examples.
+
+> +
+> +            port {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                csi_in0: endpoint {
+> +                    remote-endpoint = <&imx219_out0>;
+> +                    bus-type = <4>;
+> +                    data-lanes = <1 2>;
+> +                    clock-lanes = <0>;
+> +                    clock-noncontinuous;
+> +                    link-frequencies = /bits/ 64 <456000000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> -- 
+> 2.17.1
+> 
+> 
+> 
