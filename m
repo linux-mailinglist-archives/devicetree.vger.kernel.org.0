@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C70B758E9BE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 11:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CA4458E9C2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 11:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231513AbiHJJhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 05:37:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37434 "EHLO
+        id S231615AbiHJJkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 05:40:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232233AbiHJJhf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 05:37:35 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C25D6EF22;
-        Wed, 10 Aug 2022 02:37:33 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27A9bNJp044357;
-        Wed, 10 Aug 2022 04:37:23 -0500
+        with ESMTP id S231228AbiHJJkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 05:40:17 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C68AB1C9;
+        Wed, 10 Aug 2022 02:40:15 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27A9eBeo091533;
+        Wed, 10 Aug 2022 04:40:11 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1660124243;
-        bh=LRZK/W/kDEs0O3d9V+G9LZ2YPLkzstDnPMZlHEQHeKg=;
+        s=ti-com-17Q1; t=1660124411;
+        bh=X29vcjWFhF4UVgvsFJrukUPzgpktPiXJ72hCk4ztzTE=;
         h=From:To:CC:Subject:Date;
-        b=etq9DihoImGq+l40TzPW09pAejpP3HT7dmKGb+IOQTD4n8LhA4DYvnlrAPPEVhxd3
-         vD7jhQdxlk+l+DetOsG2jfdq384ZKpzHmLhWJ/Z3qKuCDYyfdqOJSWK+NjUlXGGYwB
-         HEoBBbrGdUHQITZNGPvxtRDzpUbGWjBOKW9YD+rI=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27A9bNL2022228
+        b=XUIlmLqN/8G4QIu55VacPa/R9V/83MeZxa0BTiaOk7+RkMtbNCtStQ3SIjEar/9ma
+         cEyFWuLMx+UIqR3zMPvAXmCkIyis2eoQyOitlK/RVEyfYe2x3AWUgGSKbuPO5BJdaK
+         7EZfc/Vdxim4im4wsq9HaakFSR8EOOYiZB9rjWsg=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27A9eB8a039120
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 10 Aug 2022 04:37:23 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 10 Aug 2022 04:40:11 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 10
- Aug 2022 04:37:22 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2022 04:40:10 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 10 Aug 2022 04:37:22 -0500
+ Frontend Transport; Wed, 10 Aug 2022 04:40:10 -0500
 Received: from ubuntu.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27A9bF6B105196;
-        Wed, 10 Aug 2022 04:37:17 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27A9e2Po121822;
+        Wed, 10 Aug 2022 04:40:05 -0500
 From:   Matt Ranostay <mranostay@ti.com>
 To:     <vigneshr@ti.com>
-CC:     Matt Ranostay <mranostay@ti.com>, <devicetree@vger.kernel.org>,
+CC:     <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH RESEND 0/6] J721S2: Add support for additional IPs
-Date:   Wed, 10 Aug 2022 02:37:06 -0700
-Message-ID: <20220810093712.248425-1-mranostay@ti.com>
+        <linux-kernel@vger.kernel.org>, Nishanth Menon <nm@ti.com>,
+        Matt Ranostay <mranostay@ti.com>
+Subject: [PATCH RESEND 1/6] arm64: dts: ti: k3-j721s2-main: Add support for USB
+Date:   Wed, 10 Aug 2022 02:39:55 -0700
+Message-ID: <20220810094000.248487-1-mranostay@ti.com>
 X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -62,27 +63,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following series of patches add support for the following
-on J721S2 common processor board,
+From: Aswath Govindraju <a-govindraju@ti.com>
 
-- USB
-- SerDes
-- OSPI
+Add support for single instance of USB 3.0 controller in J721S2 SoC.
 
-Aswath Govindraju (6):
-  arm64: dts: ti: k3-j721s2-main: Add support for USB
-  arm64: dts: ti: k3-j721s2-main: Add SERDES and WIZ device tree node
-  arm64: dts: ti: k3-j721s2-mcu-wakeup: Add support of OSPI
-  arm64: dts: ti: k3-j721s2-common-proc-board: Enable SERDES0
-  arm64: dts: ti: k3-j721s2-common-proc-board: Add USB support
-  arm64: dts: ti: k3-j721s2: Add support for OSPI Flashes
+Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Nishanth Menon <nm@ti.com>
+Acked-by: Matt Ranostay <mranostay@ti.com>
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 42 ++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
 
- .../dts/ti/k3-j721s2-common-proc-board.dts    |  78 ++++++++++++
- arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 112 ++++++++++++++++++
- .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  40 +++++++
- arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  |  42 +++++++
- 4 files changed, 272 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+index 34e7d577ae13..f7e359da8690 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+@@ -26,6 +26,20 @@ l3cache-sram@200000 {
+ 		};
+ 	};
+ 
++	scm_conf: scm-conf@104000 {
++		compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
++		reg = <0x00 0x00104000 0x00 0x18000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x00 0x00 0x00104000 0x18000>;
++
++		usb_serdes_mux: mux-controller@0 {
++			compatible = "mmio-mux";
++			#mux-control-cells = <1>;
++			mux-reg-masks = <0x0 0x8000000>; /* USB0 to SERDES0 lane 1/3 mux */
++		};
++	};
++
+ 	gic500: interrupt-controller@1800000 {
+ 		compatible = "arm,gic-v3";
+ 		#address-cells = <2>;
+@@ -686,6 +700,34 @@ cpts@310d0000 {
+ 		};
+ 	};
+ 
++	usbss0: cdns-usb@4104000 {
++		compatible = "ti,j721e-usb";
++		reg = <0x00 0x04104000 0x00 0x100>;
++		clocks = <&k3_clks 360 16>, <&k3_clks 360 15>;
++		clock-names = "ref", "lpm";
++		assigned-clocks = <&k3_clks 360 16>; /* USB2_REFCLK */
++		assigned-clock-parents = <&k3_clks 360 17>;
++		power-domains = <&k3_pds 360 TI_SCI_PD_EXCLUSIVE>;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++		dma-coherent;
++
++		usb0: usb@6000000 {
++			compatible = "cdns,usb3";
++			reg = <0x00 0x06000000 0x00 0x10000>,
++			      <0x00 0x06010000 0x00 0x10000>,
++			      <0x00 0x06020000 0x00 0x10000>;
++			reg-names = "otg", "xhci", "dev";
++			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "host", "peripheral", "otg";
++			maximum-speed = "super-speed";
++			dr_mode = "otg";
++		};
++	};
++
+ 	main_mcan0: can@2701000 {
+ 		compatible = "bosch,m_can";
+ 		reg = <0x00 0x02701000 0x00 0x200>,
 -- 
 2.36.1
 
