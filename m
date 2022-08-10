@@ -2,99 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D40A58EF05
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B279658EF1E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:18:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232449AbiHJPLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 11:11:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54528 "EHLO
+        id S229631AbiHJPSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 11:18:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232387AbiHJPLj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:11:39 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 840186555E;
-        Wed, 10 Aug 2022 08:11:38 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id v185so12351366ioe.11;
-        Wed, 10 Aug 2022 08:11:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=VdGy62arhSt+BL4EouUN4IOHP2gTgnK0/wSx3k0+9GQ=;
-        b=p37LXXtLjMmIAU65imJU+wvg6/LUkO86YE89axN8BOwgPRTamgDuZl6PptzZ75cZIw
-         RijsKK4+zwCMTAR9Jesc81TptEB3ScbH7OxFD8X1Ja7qxcPAa6w0X9GFcLZyIzG5AvXK
-         4MoAVHocMX5EAF5kHOjx55dbDEoxnumfL0Bjtujx6rKvTc55ewAZ37DzrKdyWp7uWB4v
-         Y+HyW7QYVipqmnCP4gFfBQLj3mbSPRz1e3Y+wOwGp0/P8rTb7L7q/njtSG69Z78OPzEX
-         LnAeiAyBPxscaIeUtbyW4s2EhGntNCvJi377S5W++5NRtyXKbSrHNqM9wA89JAnuMWQF
-         zdGw==
-X-Gm-Message-State: ACgBeo0qIJod+uWvEc4Y5W99mjYgq2xTf+5bC0pv/0Y0RXtCGwxZAty2
-        M/4pNjix1FfFZ4ieS0n2NmVipX2g0g==
-X-Google-Smtp-Source: AA6agR7WvN3Kq0NUIrMMMSYd3sVfG//5Whijw3XcGTtSkmrFdqmuuuPSGfS3vF6YdeztcytZilJZnQ==
-X-Received: by 2002:a05:6638:380c:b0:342:ceb9:7af2 with SMTP id i12-20020a056638380c00b00342ceb97af2mr9653346jav.227.1660144297690;
-        Wed, 10 Aug 2022 08:11:37 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id bs27-20020a056638451b00b0033f51f165e3sm7487923jab.140.2022.08.10.08.11.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 08:11:37 -0700 (PDT)
-Received: (nullmailer pid 4155387 invoked by uid 1000);
-        Wed, 10 Aug 2022 15:11:36 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-pm@vger.kernel.org, Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-In-Reply-To: <20220810030500.2793882-2-bjorn.andersson@linaro.org>
-References: <20220810030500.2793882-1-bjorn.andersson@linaro.org> <20220810030500.2793882-2-bjorn.andersson@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: power: supply: Add Lenovo Yoga C630 EC
-Date:   Wed, 10 Aug 2022 09:11:36 -0600
-Message-Id: <1660144296.239515.4155386.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233044AbiHJPSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:18:15 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD577822A;
+        Wed, 10 Aug 2022 08:18:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=vU64N8DAFoU6IdwvHRJh/4vbxbob+2V1zkE7ziRWxUw=; b=2PMpDtz5ERp83GMxo38pVEkg+B
+        M7WEl+BcdKtJLSfmynMY+g+4CGa/lt0APxc/UnPF/UAOBokPmVNbdkoPhWwZYtopSqUiBeHpzbTn9
+        JQOn1zxMX5d0mTi1UwmPDA9I6nPJNYjx7dWcaDeLI0qR7SF8JmBDtEDj4mVTYUAQN+FQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oLnT2-00CwWr-9i; Wed, 10 Aug 2022 17:17:56 +0200
+Date:   Wed, 10 Aug 2022 17:17:56 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
+Cc:     Tim Harvey <tharvey@gateworks.com>,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Stephen Hemminger <stephen@networkplumber.org>,
+        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
+Message-ID: <YvPMJLSuG3CBC//n@lunn.ch>
+References: <20220808214522.GQ17705@kitsune.suse.cz>
+ <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com>
+ <20220809213146.m6a3kfex673pjtgq@pali>
+ <b1b33912-8898-f42d-5f30-0ca050fccf9a@seco.com>
+ <20220809214207.bd4o7yzloi4npzf7@pali>
+ <2083d6d6-eecf-d651-6f4f-87769cd3d60d@seco.com>
+ <20220809224535.ymzzt6a4v756liwj@pali>
+ <CAJ+vNU2xBthJHoD_-tPysycXZMchnXoMUBndLg4XCPrHOvgsDA@mail.gmail.com>
+ <YvMF1JW3RzRbOhlx@lunn.ch>
+ <20220810071603.GR17705@kitsune.suse.cz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220810071603.GR17705@kitsune.suse.cz>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 Aug 2022 22:04:59 -0500, Bjorn Andersson wrote:
-> Add binding for the Embedded Controller found in the Qualcomm
-> Snapdragon-based Lenovo Yoga C630.
+> > I guess you are new to the netdev list :-)
+> > 
+> > This is one of those FAQ sort of things, discussed every
+> > year. Anything like this is always NACKed. I don't see why this time
+> > should be any different.
+> > 
+> > DSA is somewhat special because it is very old. It comes from before
+> > the times of DT. Its DT binding was proposed relatively earl in DT
+> > times, and would be rejected in modern days. But the rules of ABI mean
+> > the label property will be valid forever. But i very much doubt it
+> > will spread to interfaces in general.
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  .../power/supply/lenovo,yoga-c630-ec.yaml     | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
-> 
+> And if this is a FAQ maybe you can point to a summary (perhaps in
+> previous mail discusssion) that explains how to provide stable interface
+> names for Ethernet devices on a DT based platform?
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+As far so the kernel is concerned, interface names are unstable. They
+have never been truly stable, but they have got more unstable in the
+past decade with multiple busses being probed in parallel, which did
+not happen before so much.
 
-yamllint warnings/errors:
+> On x86 there is a name derived from the device location in the bus
+> topology
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.example.dtb: embedded-controller@70: connector@1:ports: 'port@0' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/supply/lenovo,yoga-c630-ec.example.dtb: connector@1: ports: 'port@0' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/connector/usb-connector.yaml
+This is nothing to do with x86. That is userspace, e.g. systemd,
+renaming the interfaces. This applies for any architecture for which
+systemd runs on.
 
-doc reference errors (make refcheckdocs):
+> which may be somewhat stable but it is not clear that it
+> cannot change, and there is an optional BIOS provided table that can
+> asssign meaningful names to the interfaces.
 
-See https://patchwork.ozlabs.org/patch/
+I doubt the kernel is looking at ACPI tables. It is user space which
+does that.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+The kernel provides udev with a bunch of information about the
+interface, its bus location, MAC address, etc. Userspace can then
+decide what it wants to call it, and what its alternative names are,
+etc.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Also, this is not just a network interface name problem. Any device
+with a number/letter in it is unstable. I2C bus devices: i2c0,
+i2c1... SPI bus deviceS: spi0, spi1..., Block devices, sda, sdb, sdc,
+TPM device, tpm0, tpm1. Nothing is stable in the kernel.
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+       Andrew
