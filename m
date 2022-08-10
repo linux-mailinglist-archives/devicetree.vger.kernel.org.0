@@ -2,61 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2686D58EB53
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 13:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F412B58EB61
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 13:39:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbiHJLcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 07:32:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59720 "EHLO
+        id S229782AbiHJLjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 07:39:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232100AbiHJLcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 07:32:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CC6D75FFB;
-        Wed, 10 Aug 2022 04:32:20 -0700 (PDT)
+        with ESMTP id S229447AbiHJLjq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 07:39:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF7276949;
+        Wed, 10 Aug 2022 04:39:46 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 15B40611FA;
-        Wed, 10 Aug 2022 11:32:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBB0FC433D7;
-        Wed, 10 Aug 2022 11:32:15 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C99AE612A4;
+        Wed, 10 Aug 2022 11:39:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19797C433D6;
+        Wed, 10 Aug 2022 11:39:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660131139;
-        bh=NkcJyERgdIfhg4FFRFHacZj2nr13SGeMr4Bp2YOafuY=;
+        s=k20201202; t=1660131585;
+        bh=KA6QqoATlRfAAZ7bUCq/+kmWXNGltuff8660hhoplWQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sJot657ZGnx73hIykDoU0y5vR+HN2FlwGhJKqUgKv2ZKYqs2KeD1zqtMCIUMdLZxc
-         ZbsVgtgjmI9eKPiZ6kSwrgseW0TZoatADvoT0eqb3fRf/HswgSrdwUN5988GLFtLpw
-         Q3dPupRicyECL1m5qhAhUwLBg+q13c8ra/HYV0MM6xBSrFs7uHWsuCp7r/2/+Kte10
-         a32UmFANFxr65ghbDPwhkPvnPmRYwdkglZVx5RG0PAEIA7FvC6paR0UARs5SMDyi3r
-         5oAz6rHnPWA433OE2i9+gAqvNsz1CbrOB4gGb5qBokcLEuCqAMX+b7hWhGHZkVZI4h
-         tHHWMD8DS2e0Q==
-Date:   Wed, 10 Aug 2022 12:32:12 +0100
+        b=YQPLKSPughz9Qn+Mfu19Z7lvYLVY+DGvrM3ut+bFMiBsH76YIqq1eBDozYulspfFC
+         tuNOPOwsYdK7f7F/DsA73WNXjy5nXdSbOXfoIAzJTNJeoEpgedrw8oYnAfk5CV/zzY
+         XhSI/Q87j/I2L+d1mderyG+VoL/5z86SIfNxIXoVoQ1abQHYySdPrNi+8yG5AFDmva
+         L5GSjqI1nuPZBsuGaXYme9pd/K93oqkqZeZ61z0uFozlA85HEl4C4xNtLPjzIvAS39
+         7WVQkwigfI41h44+81nskKV4zN5jrRXA5NjUtaZ6eJty9qDpiBVmTfGtHeBq9kW82D
+         MRHNAP/KJVlLQ==
+Date:   Wed, 10 Aug 2022 12:39:39 +0100
 From:   Lee Jones <lee@kernel.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org
-Cc:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        MandyJH Liu <mandyjh.liu@mediatek.com>, iommu@lists.linux.dev,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v5 06/20] dt-bindings: power: mediatek: Add bindings for
- MediaTek SCPSYS
-Message-ID: <YvOXPOidrbySvFwZ@google.com>
-References: <20220804021553.14867-1-tinghan.shen@mediatek.com>
- <20220804021553.14867-7-tinghan.shen@mediatek.com>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        dmitry.torokhov@gmail.com, cy_huang@richtek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] mfd: rt5120: Add Richtek PMIC support
+Message-ID: <YvOY++4KsVtd7rOz@google.com>
+References: <1660100142-32493-1-git-send-email-u0084500@gmail.com>
+ <1660100142-32493-3-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220804021553.14867-7-tinghan.shen@mediatek.com>
+In-Reply-To: <1660100142-32493-3-git-send-email-u0084500@gmail.com>
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -67,24 +57,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 04 Aug 2022, Tinghan Shen wrote:
+On Wed, 10 Aug 2022, cy_huang wrote:
 
-> The System Control Processor System (SCPSYS) has several power
-> management related tasks in the system. Add the bindings for it.
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Add Richtek RT5120 PMIC I2C driver.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > ---
->  .../bindings/mfd/mediatek,mt8195-scpsys.yaml  | 67 +++++++++++++++++++
->  .../power/mediatek,power-controller.yaml      |  2 +-
+> Since v4:
+> - Add "Copyright" string and refine for GPL version string.
+> - For the last uncertain terminated element in struct arrays, put the comma
+>   for it to keep the extensibility.
+> 
+> Since v3:
+> - Use a 'dev' variable and dev_err_probe to decrease the LOC in mfd.
+> 
+> ---
+>  drivers/mfd/Kconfig  |  12 +++++
+>  drivers/mfd/Makefile |   1 +
+>  drivers/mfd/rt5120.c | 124 +++++++++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 137 insertions(+)
+>  create mode 100644 drivers/mfd/rt5120.c
 
-Sebastian,
-
-Any issues with me applying this?
-
->  2 files changed, 68 insertions(+), 1 deletion(-)
->  create mode 100644
->  Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
+Applied, thanks.
 
 -- 
 Lee Jones [李琼斯]
