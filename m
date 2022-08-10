@@ -2,78 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38AA658E60E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 06:13:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADAD958E612
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 06:14:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230476AbiHJENP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 00:13:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42436 "EHLO
+        id S230263AbiHJEOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 00:14:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230263AbiHJEMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 00:12:41 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4D5A74DE4;
-        Tue,  9 Aug 2022 21:12:40 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id j8so25536657ejx.9;
-        Tue, 09 Aug 2022 21:12:40 -0700 (PDT)
+        with ESMTP id S230488AbiHJEN6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 00:13:58 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2CD676467;
+        Tue,  9 Aug 2022 21:13:57 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id x5so2676209qtv.9;
+        Tue, 09 Aug 2022 21:13:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=TrFjVqflz6+wQGcWavh3EQvquqkQRAgCycEBYuU2UTo=;
-        b=i2pGvVH+FOi/R2alPbVQa3dXjN45ZlmOWsqBJiBGgY3UhBXJ6nrlKJHH8/95NKF38l
-         G2kGd9/Kb/9pPDnxdd9sDjC0uXqnWXTm2Tr+qfUcu3FmvAJC+trdvOxGqnImAhc9NRTt
-         R16Ufnh8swi2ySTlZ7QEMhgmpWCa8a1MDuXGbnsQ6LQr6ZkaPTXjHCXCNRnbdiMpatkD
-         QY9NNTidctlNXIIwfTyktS6xD0gg/bcsBphzJD0GNwYu6mE+ZuLPFjTeRag0Wh1YSbda
-         nh+96uE0NEZXNCx7Z365a/ZLkIXAOfqBoi0CCn+SjlIja3O/pyWGTu1TvysIlCcypOen
-         R29w==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:sender:from:to:cc;
+        bh=7Z8E1tRy8DEO4L44K4+rES+Wo27HhEwi3F5Zd1Y62lo=;
+        b=Omh2cHOc9YzBsiCv5UIi/fmV5MSwotRu0fgS64CeaZn640zaZByRqtRgW1f8abDe4S
+         YgWmwwY6PwlhMaQTBNwnWlqtY4fNBYBGTe5cGKoezSij+hO0fXW+2Fo8I+kJxMTTlH6f
+         vEcXI8VOpV6NwveWlSmXvaLHBATKJEL9yFuuyjbGdI1uNzH6MfI/TRh1ejIKEIGGTlPF
+         NdZzskbkoT1zHMSiI0pJpujBvXKqE7PgG8CU7uGkpIhBjoip26ix6RBTULQM4z4PV0v6
+         sTEjG41ZIlt4dU7gBXtqT63Jk1FovO4eUpzKFxn8fIIP9FBL7+bB+dPwEun79f2BKJ0q
+         MMNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=TrFjVqflz6+wQGcWavh3EQvquqkQRAgCycEBYuU2UTo=;
-        b=zmp69EklaXlNfUC+sEvmkMD8CBLCD+vBebrgwLEdNFYnugSaehY5rSNZh5JDSMBjZI
-         MtTdRMM/Opu+C87atQDFn5CkJbmqYPxSPVvxYzkJkFRsBqEAyhlpnRfCwBTKbePKJDSN
-         rA2aDcuRzrXzja+o9V7UfvTYjhUT9ARJNNjZCuaFXu7JDJK9Fx696CVF29vf4NW5WrOd
-         FvCr96vXMMM50JAGdn9nY99bSw2DziXzZ8J5q/PhymhX9vxh3xEuqAyBc9Eq6Q/301Yp
-         ZAuoX7svED2rmbgCbe3hmWsWQWriYIHo//JEVQsuzJlD9kYS/AzUF2X24SH+X0eQUHxS
-         lMow==
-X-Gm-Message-State: ACgBeo206zpGO+SYwvSorRFueJbNdk7JUcDXL944MdXt9gkpw5v0txOh
-        5fEd3tx15ZwFIDZtOf4ozrq8U0izGGiFY+Nii08=
-X-Google-Smtp-Source: AA6agR57Tqz8I7fcOeweGZq8o7N7WtanULxpiLpAZJVwRn6LNp+Md9gja04FimwmnIJqoqIMfnF6EaA98rqnqZbAoWE=
-X-Received: by 2002:a17:907:9809:b0:733:1ce:9564 with SMTP id
- ji9-20020a170907980900b0073301ce9564mr1865820ejc.363.1660104759290; Tue, 09
- Aug 2022 21:12:39 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:sender:x-gm-message-state:from:to:cc;
+        bh=7Z8E1tRy8DEO4L44K4+rES+Wo27HhEwi3F5Zd1Y62lo=;
+        b=GAXCJ3VKC1Lr/ACwGtP/PLH+18/SAIXJoj0DhcsVhnYGw9iyL9zqgWkLaUm3uKZYln
+         /ahok3fVLGqG+yBWpVFNs2hyvukpbIm62lbhAkIsGQT/pjBLlNGEvlbrO2v2hN+Jy2zg
+         9JfozyyKgX7j145VuCxuX7rhiRktkUdhmhJmBgGdQfPx01AgWnqqexBTeyPG6mZthnZI
+         mx0k896bC71ZS8hrX2HrPqupIEs/5krsGuysfcVJdTUONBP3TpFA7saQlT0sibPr4u0/
+         ZflnalZU9rueyWOtj0kA29gtdGFPVOxhTrggRF7oSWGwTz3y9t4NhB9Lq/I0kVqpcAvp
+         4sNQ==
+X-Gm-Message-State: ACgBeo2BAoI6qOAKOsuZctZMy2bvRFqQjGnSMSfx/t0+0Y5kansbTZm/
+        OXhMgqD6tpvsXBpT80Yzpx6z6JOFYIQ2iw==
+X-Google-Smtp-Source: AA6agR6waT3oAVnaEr8qa9BZnbHjoNMUkqD1Co1VFcDx22E7UewBgzLHIlEvdmIgk8KAATEoUYGsbQ==
+X-Received: by 2002:ac8:5891:0:b0:342:e991:e89b with SMTP id t17-20020ac85891000000b00342e991e89bmr17813674qta.406.1660104836808;
+        Tue, 09 Aug 2022 21:13:56 -0700 (PDT)
+Received: from localhost.localdomain (2603-9001-6802-6005-37b9-aa24-2dc4-90c5.inf6.spectrum.com. [2603:9001:6802:6005:37b9:aa24:2dc4:90c5])
+        by smtp.gmail.com with ESMTPSA id bl9-20020a05620a1a8900b006b905e003a4sm13741422qkb.135.2022.08.09.21.13.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Aug 2022 21:13:56 -0700 (PDT)
+Sender: Julian Braha <julian.braha@gmail.com>
+From:   Julian Braha <julianbraha@gmail.com>
+To:     sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
+        thierry.reding@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v4 1/2] dt-bindings: panel-simple-dsi: add Tianma TL057FVXP01
+Date:   Wed, 10 Aug 2022 00:13:53 -0400
+Message-Id: <20220810041354.691896-1-julianbraha@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220801211240.597859-1-quic_eberman@quicinc.com>
- <50230652-c1ae-4ce2-907c-9bdc6b827f8e@linaro.org> <62073cb8-0211-3b49-11cb-aceea6df0845@quicinc.com>
- <a71bea49-130f-61d8-2692-23ab9a8fe939@arm.com> <36303c20-5d30-2edd-0863-0cad804e3f8f@quicinc.com>
-In-Reply-To: <36303c20-5d30-2edd-0863-0cad804e3f8f@quicinc.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Tue, 9 Aug 2022 23:12:27 -0500
-Message-ID: <CABb+yY3MESqeZveYg5e18PWTLNcg82r4AtaRYJh-9c==mysw7w@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] Drivers for gunyah hypervisor
-To:     Elliot Berman <quic_eberman@quicinc.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Will Deacon <will@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -84,31 +69,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 9, 2022 at 7:07 PM Elliot Berman <quic_eberman@quicinc.com> wrote:
->
-> On 8/9/2022 6:13 AM, Robin Murphy wrote:
-> > [drive-by observation since one thing caught my interest...] >
->
-> Appreciate all the comments.
->
-> Jassi,
->
-> I understood you have talked with some of our folks (Trilok and Carl) a
-> few years ago about using the mailbox APIs. We were steered away from
-> using mailboxes then. Is that still the recommendation today?
->
-Neither I nor Google remember any such conversation.
+Adds the bindings for the Tianma TL057FVXP01 DSI panel,
+found on the Motorola Moto G6.
 
-Doorbell had always been supported by the api. It was the
-doorbell-mode of _mhu_ controller that had some contention.
+Signed-off-by: Julian Braha <julianbraha@gmail.com>
+---
+v4:
+Fixed makefile entry.
 
-I haven't read the complete history of Gunyah yet, but from a quick
-look it uses the hvc/smc instruction as the "physical link" between
-entities (?).    zynqmp-ipi-mailbox.c is one driver that uses smc in
-such a manner. And I know there are some platforms that don't call
-hvc/smc under mailbox api and I don't blame them.
+v3:
+Fixed kconfig dependencies.
 
-Let me educate myself with the background and get back.... unless you
-want to summarize a usecase that you doubt is supported.
+v2:
+Fixed accidental whitespace deletion.
+---
+ .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thanks.
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+index 2c00813f5d20..1b3d5e5acefd 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+@@ -57,6 +57,8 @@ properties:
+       - samsung,sofef00
+         # Shangai Top Display Optoelectronics 7" TL070WSH30 1024x600 TFT LCD panel
+       - tdo,tl070wsh30
++        # Tianma Micro-electronics TL057FVXP01 5.7" 2160x1080 LCD panel
++      - tianma,tl057fvxp01
+
+   reg:
+     maxItems: 1
+--
+2.34.1
