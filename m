@@ -2,60 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA6FE58EF7E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69AA858EF89
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:42:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231728AbiHJPiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 11:38:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57874 "EHLO
+        id S230050AbiHJPmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 11:42:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231707AbiHJPiH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:38:07 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 237B528E02;
-        Wed, 10 Aug 2022 08:38:06 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id s16so8478450ilp.3;
-        Wed, 10 Aug 2022 08:38:06 -0700 (PDT)
+        with ESMTP id S231213AbiHJPme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:42:34 -0400
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3132C30F52;
+        Wed, 10 Aug 2022 08:42:34 -0700 (PDT)
+Received: by mail-il1-f180.google.com with SMTP id o14so8494793ilt.2;
+        Wed, 10 Aug 2022 08:42:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=d703OGIAWaJFqE2Rp42TVQVb31FLKdiwbLrmUlLlcDE=;
-        b=L5i95qjc+Nm9zcx0eoQ8Za5h+H8IF/L2ssP9GwAMs8WNO1+LsrBr0IfbK6PZOYCc/H
-         tM2SBhEk6t8ODqzobklRqrBYKFh3o5u08aymsTW1/Ol+XBhTazlTJP/dYAFuVA2tESGu
-         cXXY8KGZv543UmtrI3fWIJoFnk05br1v8Zr66ut2vRgJIJUNEQW1VGzV9BHIgaQ1hPIT
-         dDgJe8U0PEs9slu4IrlVtocp5mIPfTea39kejQuzQxL3ix7ImzTIGMFWkUYt5eY4ud5P
-         GEUB5vO724bGpuYT+3eIlZQvV5nN5QY1tRswnEzMboxbshshg7RdCHU/a+mWw9Cg8kf1
-         6uzg==
-X-Gm-Message-State: ACgBeo3o/V0wVaI/LvXck0iIrEc046AyWt+7R+L5EQ5d/Rdu6LHdgRGa
-        WKnwwcrIB7S1gZLj+txpmvs18t1Qfw==
-X-Google-Smtp-Source: AA6agR7D2VESWtQ+d0hSJfH8s2E2QhlG9jzS2sKVav6VMuiuI2rzKmJsWkaPbCLm1IMZS1BYGQfocA==
-X-Received: by 2002:a92:d950:0:b0:2df:afdb:3908 with SMTP id l16-20020a92d950000000b002dfafdb3908mr9158360ilq.319.1660145885264;
-        Wed, 10 Aug 2022 08:38:05 -0700 (PDT)
+        bh=lkS5zvLcljQjnjjOHPAoy1vsRnFJ0Grs3H/nJs4gz4c=;
+        b=54e0eO1HSW6vvy1dp3X4UV152ds7hln2adFQxVdUHo0+9NJP27dHbr9u475Mi0dQu1
+         L6Oh8DC9gdpU6a8chljF0SoT3CiQe18j7BFzZps/ht26JajZc0DKz0jH7fLaDpsdPnV9
+         1Dbb52ryzrcHQO+u3Ovc4UYHvK0Y03wXKGXAkcETeDGLkxrTwqQEm2tQOLGjCtT3+dyx
+         4J5Fot0oIwEZL4V0yiVssyhkqbSlmGJ5sVEma74KRIiiHGDIH+3JWdJajiumli3qGOVi
+         V1kW2pe85t5OQ6h/d17HuQGtjnbybMPQHUeqpybotHFCN2+pMOQMs1rWYYK6PQNVwpnO
+         qHHg==
+X-Gm-Message-State: ACgBeo3K/Jwpki22B9mzabwsPsPe62bFcRosuGhKY/EKKeMCdxIjejxl
+        d2tC3AUro2G0GsKXkRrSzXQHTA+7Tw==
+X-Google-Smtp-Source: AA6agR766L+G/DmfEJHQx2uTOkZHXshafK1MLBI/ihgSqeChJYk2oM42hj/91O0+xfMGZMhZBO1LZg==
+X-Received: by 2002:a92:c501:0:b0:2de:69e6:4143 with SMTP id r1-20020a92c501000000b002de69e64143mr13569520ilg.262.1660146153460;
+        Wed, 10 Aug 2022 08:42:33 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id n12-20020a056638110c00b003433846796esm1317158jal.5.2022.08.10.08.38.03
+        by smtp.gmail.com with ESMTPSA id p23-20020a02b017000000b003427daba276sm887045jah.129.2022.08.10.08.42.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 08:38:04 -0700 (PDT)
-Received: (nullmailer pid 6576 invoked by uid 1000);
-        Wed, 10 Aug 2022 15:38:02 -0000
-Date:   Wed, 10 Aug 2022 09:38:02 -0600
+        Wed, 10 Aug 2022 08:42:32 -0700 (PDT)
+Received: (nullmailer pid 17851 invoked by uid 1000);
+        Wed, 10 Aug 2022 15:42:31 -0000
+Date:   Wed, 10 Aug 2022 09:42:31 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: media: platform: visconti: Add
- Toshiba Visconti Video Input Interface bindings
-Message-ID: <20220810153802.GA585-robh@kernel.org>
-References: <20220810132822.32534-1-yuji2.ishikawa@toshiba.co.jp>
- <20220810132822.32534-2-yuji2.ishikawa@toshiba.co.jp>
+To:     Julian Braha <julianbraha@gmail.com>
+Cc:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
+        thierry.reding@gmail.com, devicetree@vger.kernel.org,
+        airlied@linux.ie, sam@ravnborg.org, daniel@ffwll.ch,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: panel-simple-dsi: add Tianma
+ TL057FVXP01
+Message-ID: <20220810154231.GA17369-robh@kernel.org>
+References: <20220810041354.691896-1-julianbraha@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220810132822.32534-2-yuji2.ishikawa@toshiba.co.jp>
+In-Reply-To: <20220810041354.691896-1-julianbraha@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,152 +64,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 10, 2022 at 10:28:19PM +0900, Yuji Ishikawa wrote:
-> Adds the Device Tree binding documentation that allows to describe
-> the Video Input Interface found in Toshiba Visconti SoCs.
+On Wed, 10 Aug 2022 00:13:53 -0400, Julian Braha wrote:
+> Adds the bindings for the Tianma TL057FVXP01 DSI panel,
+> found on the Motorola Moto G6.
 > 
-> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> Signed-off-by: Julian Braha <julianbraha@gmail.com>
 > ---
-> Chengelog v2:
-> - no change
+> v4:
+> Fixed makefile entry.
 > 
-> Changelog v3:
-> - no change
+> v3:
+> Fixed kconfig dependencies.
+> 
+> v2:
+> Fixed accidental whitespace deletion.
 > ---
->  .../bindings/media/toshiba,visconti-viif.yaml | 103 ++++++++++++++++++
->  1 file changed, 103 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
+>  .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml b/Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
-> new file mode 100644
-> index 000000000..848ea5019
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/toshiba,visconti-viif.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Toshiba Visconti5 SoC Video Input Interface Device Tree Bindings
-> +
-> +maintainers:
-> +  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> +
-> +description: |
 
-Don't need '|' if no formatting.
 
-> +  Toshiba Visconti5 SoC Video Input Interface (VIIF) receives MIPI CSI2 video stream,
-> +  processes the stream with embedded image signal processor (L1ISP, L2ISP), then stores pictures to main memory.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-Wrap lines at 80 char.
+If a tag was not added on purpose, please state why and what changed.
 
-> +
-> +properties:
-> +  compatible:
-> +    const: toshiba,visconti-viif
-> +
-> +  reg:
-> +    items:
-> +      - description: registers for capture control
-> +      - description: registers for CSI2 receiver control
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Sync Interrupt
-> +      - description: Status (Error) Interrupt
-> +      - description: CSI2 Receiver Interrupt
-> +      - description: L1ISP Interrupt
-> +
-> +  index:
-> +    enum: [0, 1]
-
-No, we don't do indices in DT. Why do you need this?
-
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    unevaluatedProperties: false
-> +    description: Input port node, single endpoint describing the CSI-2 transmitter.
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            description: VIIF supports 2 or 4 data lines
-> +            items:
-> +              minItems: 1
-> +              maxItems: 4
-> +              items:
-> +                - const: 1
-> +                - const: 2
-> +                - const: 3
-> +                - const: 4
-
-blank line
-
-> +          clock-lanes:
-> +            description: VIIF supports 1 clock line
-> +            const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        viif0: viif@1c000000 {
-
-Drop unused labels.
-
-> +            compatible = "toshiba,visconti-viif";
-> +            reg = <0 0x1c000000 0 0x6000>,
-> +                  <0 0x1c008000 0 0x400>;
-> +            interrupts = <GIC_SPI 64 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
-> +            index = <0>;
-> +            status = "disabled";
-
-Why is your example disabled? Don't put 'status' in examples.
-
-> +
-> +            port {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                csi_in0: endpoint {
-> +                    remote-endpoint = <&imx219_out0>;
-> +                    bus-type = <4>;
-> +                    data-lanes = <1 2>;
-> +                    clock-lanes = <0>;
-> +                    clock-noncontinuous;
-> +                    link-frequencies = /bits/ 64 <456000000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> -- 
-> 2.17.1
-> 
-> 
-> 
