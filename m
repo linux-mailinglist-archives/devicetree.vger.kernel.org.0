@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A123D58EB09
+	by mail.lfdr.de (Postfix) with ESMTP id 02B7458EB08
 	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 13:12:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229867AbiHJLMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 07:12:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40792 "EHLO
+        id S231482AbiHJLMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 07:12:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231894AbiHJLLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 07:11:33 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10B803204A
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 04:11:31 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id l21so4262283ljj.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 04:11:30 -0700 (PDT)
+        with ESMTP id S231392AbiHJLLh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 07:11:37 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F32DD6580B
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 04:11:33 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id l10so11141553lje.7
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 04:11:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc;
-        bh=Ch7MLzjtjxDAnl8q0BHET3tRA6bodCqHcVbiwE3Oe4g=;
-        b=KiNK2omd8DLq4fRawlv2UlQGC3ixt2SOv3WoamhbOn4/WJIHBztUaYvcdEcoEXaeWV
-         n3qT5h4eX4/7LFps12YmPYQ0TjGoRatvvtXHp9STxIeeb526zUYTI0ILSYwEL49rB1zK
-         4nLLLR+SvRw6OTAIL1Ocw6OHB9fmfsD2dG8PIpnjXmOUKRGmgz83XR6g9snA9M7VcLOS
-         jECd8j9D3LrusZc2qHwL1B/d9cDKh3RgSdyRmV3y6f+uoMC+EIqxFAWYD0wckIXH8B3I
-         VNO1+2CuFnXqSsXlUCayvwEqU0IXCvVWHZomrQGBc8k3ihJEHi9G700l32EWd7H1xPtX
-         /Gxw==
+        bh=MTvbXjWSZdoTdxi/MGUg+5CYiWwb+h69AxhprDFl7dg=;
+        b=ji00btkdbQCHm8ePTKk8JGslms699uCMzw48PWG5K0BlNNTW1378zkcKX+Khyon9lJ
+         xBNpo9MT649Cnyx1brkYeh60sED0Skz3qFyJvHQ1SQDkE+fHGM15yNrR4m2a1FVOKCGT
+         5z+L3AchbHVT8aPDyRjmXo7T1bkJ4KmiNK+5u5/5xtFi0H4etJjqYPB79QKyMjbZDsFt
+         IHS+SOi6D17uqVo2x7Jds9WaMODbqbg0/JjbA/++GHp1MZwxUYw7bAWpeG8b+jje8pD0
+         NHOJv2yuftWUNPoqDY0lpyXWaQXo1D41hZNqOZCcXCKpqO4xEZlRrniNqKiP22Bb3t65
+         D4Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc;
-        bh=Ch7MLzjtjxDAnl8q0BHET3tRA6bodCqHcVbiwE3Oe4g=;
-        b=2ZiB0tMriuoAC1dvqjdqx6Le/e17SQsy37MAdilwSelk1qXdJ1qQekhCz6mjDPeXAd
-         ehrZL9jHeheIdNZbENIByosALvhLBOA8p95IR1UdjOmk7mNIp7ToF1gjYhWuLf9oa7ge
-         HHhBFkh8DgdR4/TBj/o6Qtimx5bPqZ+dBlMwgpBKydDGV3gFYKfxM5ZTz/Phnr/uraKd
-         TcO168q+8YWyjaLFHgebWLxc9P7CQvVZ1JEF56xrt/tkjOY7/4kgSJ4Ogc/Um4tlL3pE
-         U59ynXGTXAW+sP5rZ2bAtHW+hJ5rBEjeU9zwe64sF7HwBTYt704h8LlZR/GyTExlDyvQ
-         VaYg==
-X-Gm-Message-State: ACgBeo1qEj2uugrsJcf0ZNDKV/ve/hJ9f2Et1kIvlfQuCqMPPOFjTK+u
-        zko6FfJG9ec5ypy7MLTR4OfMyQ==
-X-Google-Smtp-Source: AA6agR4Yhps3ifFoUzNeZ4v4pfsf5foycFIjE22kBxaGVNAFDbW82io8VHx2WQvR01APu6a1u0hMIA==
-X-Received: by 2002:a05:651c:1503:b0:24c:81df:e1f2 with SMTP id e3-20020a05651c150300b0024c81dfe1f2mr8137090ljf.182.1660129889284;
-        Wed, 10 Aug 2022 04:11:29 -0700 (PDT)
+        bh=MTvbXjWSZdoTdxi/MGUg+5CYiWwb+h69AxhprDFl7dg=;
+        b=CRYDQFfuPAAMd47Xw7kgMUlqU3cnqNG5urM5gDUpLDaC9vihMozIck6Hh1xTvPz9Os
+         ZZKV5y/qbUDui1B5CaqwNt4gV3iaQyVBGY3hcNhZpnjMvMp1sn9KrKaChUoBN9Cc8tqs
+         t3CR6ZwyCIaQfUa5PhdOlOl1O4pPisTuvPgqf81rtE6fEigemHZXucR5cIeEJS5nUAZ4
+         y3Z4eFT9Pv53yjIJ6zvmnlyxY8mmEP8A/BuNtno1W22pPb7m8q0tUtIkmUpNYLcbs9HH
+         XFOWyCSLIzE3JWsf1iTFxBTkjDSNRS5ojVlx9ImGiKiz4Udk4V2UUqo6qv0KxmiMpWNx
+         VCdw==
+X-Gm-Message-State: ACgBeo1j6zbAHeG4CvsHGaCqunUNhOuvsmD3VyS4OXHBHtUgNEk2dbAn
+        EM+RLb1G5f9KzSYGIAMkSlw0Xw==
+X-Google-Smtp-Source: AA6agR6sYbkUd4hpt0tN0uHYQXMQ6CcLADQReCb0ugSZqyXlxkc++xWQN0SSbi4NbLLIgDzkcupPRA==
+X-Received: by 2002:a2e:a58e:0:b0:25f:d8c5:3898 with SMTP id m14-20020a2ea58e000000b0025fd8c53898mr4614556ljp.302.1660129893525;
+        Wed, 10 Aug 2022 04:11:33 -0700 (PDT)
 Received: from localhost.localdomain ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id p20-20020ac24ed4000000b0048a7c86f4e7sm298221lfr.291.2022.08.10.04.11.28
+        by smtp.gmail.com with ESMTPSA id z24-20020a196518000000b0048afbe9d0fasm308577lfb.45.2022.08.10.04.11.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 04:11:28 -0700 (PDT)
+        Wed, 10 Aug 2022 04:11:33 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Qin Jian <qinjian@cqplus1.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: aspeed: align SPI node name with dtschema
-Date:   Wed, 10 Aug 2022 14:11:26 +0300
-Message-Id: <20220810111126.281214-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: sunplus: sp7021: drop incorrect spi-max-frequency
+Date:   Wed, 10 Aug 2022 14:11:31 +0300
+Message-Id: <20220810111131.281262-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -71,82 +69,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The node names should be generic and DT schema expects certain pattern.
+spi-max-frequency is a property of a SPI slave device, not controller:
+
+  sunplus-sp7021-demo-v3.dtb: spi@f480: Unevaluated properties are not allowed ('spi-max-frequency' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts | 2 +-
- arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts      | 2 +-
- arch/arm/boot/dts/aspeed-bmc-facebook-fuji.dts        | 2 +-
- arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts    | 2 +-
- arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+ arch/arm/boot/dts/sunplus-sp7021.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts
-index 9c6271a17ae8..5cd060029ea9 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-cloudripper.dts
-@@ -77,7 +77,7 @@ aliases {
- 		i2c55 = &imux55;
- 	};
+diff --git a/arch/arm/boot/dts/sunplus-sp7021.dtsi b/arch/arm/boot/dts/sunplus-sp7021.dtsi
+index 7dc4ce3619c7..ae9bbe0320b8 100644
+--- a/arch/arm/boot/dts/sunplus-sp7021.dtsi
++++ b/arch/arm/boot/dts/sunplus-sp7021.dtsi
+@@ -211,7 +211,6 @@ spi_controller1: spi@f480 {
+ 			interrupt-names = "dma_w", "master_risc", "slave_risc";
+ 			clocks = <&clkc CLK_SPI_COMBO_1>;
+ 			resets = <&rstc RST_SPI_COMBO_1>;
+-			spi-max-frequency = <25000000>;
+ 			status = "disabled";
+ 		};
  
--	spi_gpio: spi-gpio {
-+	spi_gpio: spi {
- 		num-chipselects = <2>;
- 		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>,
- 			   <&gpio0 ASPEED_GPIO(X, 1) GPIO_ACTIVE_HIGH>;
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-index 27b43fe099f1..4b520d7ce3e1 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-elbert.dts
-@@ -44,7 +44,7 @@ chosen {
- 		stdout-path = &uart5;
- 	};
+@@ -225,7 +224,6 @@ spi_controller2: spi@f600 {
+ 			interrupt-names = "dma_w", "master_risc", "slave_risc";
+ 			clocks = <&clkc CLK_SPI_COMBO_2>;
+ 			resets = <&rstc RST_SPI_COMBO_2>;
+-			spi-max-frequency = <25000000>;
+ 			status = "disabled";
+ 		};
  
--	spi_gpio: spi-gpio {
-+	spi_gpio: spi {
- 		num-chipselects = <1>;
- 		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>;
- 	};
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-fuji.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-fuji.dts
-index af58a73bbc49..6b319f34a9b9 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-fuji.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-fuji.dts
-@@ -207,7 +207,7 @@ aliases {
- 		i2c143 = &imux143;
- 	};
+@@ -239,7 +237,6 @@ spi_controller3: spi@f780 {
+ 			interrupt-names = "dma_w", "master_risc", "slave_risc";
+ 			clocks = <&clkc CLK_SPI_COMBO_3>;
+ 			resets = <&rstc RST_SPI_COMBO_3>;
+-			spi-max-frequency = <25000000>;
+ 			status = "disabled";
+ 		};
  
--	spi_gpio: spi-gpio {
-+	spi_gpio: spi {
- 		num-chipselects = <3>;
- 		cs-gpios = <&gpio0 ASPEED_GPIO(X, 0) GPIO_ACTIVE_LOW>,
- 			   <0>,	/* device reg=<1> does not exist */
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts
-index a901c8be49b9..ed305948386f 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge400.dts
-@@ -67,7 +67,7 @@ ast-adc-hwmon {
- 	 * full-duplex SPI transactions are not supported by ASPEED SPI
- 	 * Controllers.
- 	 */
--	spi_gpio: spi-gpio {
-+	spi_gpio: spi {
- 		status = "okay";
- 		compatible = "spi-gpio";
- 		#address-cells = <1>;
-diff --git a/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi b/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
-index 051de5bec345..31590d3186a2 100644
---- a/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
-+++ b/arch/arm/boot/dts/ast2600-facebook-netbmc-common.dtsi
-@@ -25,7 +25,7 @@ memory@80000000 {
- 	 * full-duplex SPI transactions are not supported by ASPEED SPI
- 	 * Controllers.
- 	 */
--	spi_gpio: spi-gpio {
-+	spi_gpio: spi {
- 		status = "okay";
- 		compatible = "spi-gpio";
- 		#address-cells = <1>;
 -- 
 2.34.1
 
