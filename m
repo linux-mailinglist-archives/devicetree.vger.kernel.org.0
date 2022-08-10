@@ -2,185 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7F358EF65
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC78558EF76
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 17:35:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233195AbiHJPYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 11:24:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38774 "EHLO
+        id S229924AbiHJPfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 11:35:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233167AbiHJPXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:23:51 -0400
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150047.outbound.protection.outlook.com [40.107.15.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDCA5B7B1;
-        Wed, 10 Aug 2022 08:23:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nxrixJjbrsFqBww6KcZSSL8T4/tMnXbOJDye5lZS4bxr1hB58JgdssO8+xU9BRdhg9+TqJ/JwAEsTCRkIVHHGwRjJoN7m4Gz7UCMWVQtOmejchYOqbP7OYjXNG5SP2PrW4KKcyyyqTG6j2qkYBTzra2kq8AtqzPuBv49FrYTTrhlJWZBiduc9d4wSzw6U0jKdtJ70ki+BIto3sO/NoJwHdwRzgL6JQ+RMwWHKADYd35bq8Bl+VHaAy+0jQDHpmwm0YVmNjbwE/GnRjHdPOK9tWLmKvUl4Yho0uEHxwbeYhsFeOm9I8voM70VPDZAf9+fnESwiyZq1SQ/YZbudS00Vw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=thZVAxL3JQqT8hTOGIG1pOYpdUEh8XmxyhmxpIS+TVo=;
- b=d9u/y6yDCxxA7L7RH6m1cf+lNSzErkyynKCJH+v5UN9uMZqPx0v8L8xtawdoDja83JiBMTFKeaFU7HAUD6HmYb3cxebG+3OyFaTja+tyBT9TpiNaotrX/2yu/qb9gc34h+xrLxE+AnodqLciSOWtcgAC2Xs4hCBEWfhBayB58sjJ6j1o0RJ7sDO2CUN018r8PiZqxdT7QigGeJ2kxh8gRk7EbrI30ASjeksipD4WJ+iTPQNyOEvKdWwXeTtHnXaSbOpxYDcIngUkiRusZspHj/PHD4Ux1w03w4dlMfrGZu9xC4COB1jzWO/EkYkfi9OrBGAqiiVLRvM1u6ca30XNrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=thZVAxL3JQqT8hTOGIG1pOYpdUEh8XmxyhmxpIS+TVo=;
- b=pN9XdfsF4gth+N7LG9IQovoyAYTSoTY/FUADJVYT2WyPgWx7P58FD16a4exJ1mbK3KjTTljTLxQvGp3DXZNbM05zVzNvZRHL8PhbvoxVxjDUDqGnT9exqxrNayWaE8+8Ikb8CoT0yZLwdT1EjQMoauc3EVPl1E2JQVCfC3Kt+uY=
-Received: from AM9PR04MB8274.eurprd04.prod.outlook.com (2603:10a6:20b:3e8::23)
- by PAXPR04MB9074.eurprd04.prod.outlook.com (2603:10a6:102:227::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5504.21; Wed, 10 Aug
- 2022 15:23:47 +0000
-Received: from AM9PR04MB8274.eurprd04.prod.outlook.com
- ([fe80::747c:397f:a003:dbca]) by AM9PR04MB8274.eurprd04.prod.outlook.com
- ([fe80::747c:397f:a003:dbca%5]) with mapi id 15.20.5525.010; Wed, 10 Aug 2022
- 15:23:47 +0000
-From:   Shenwei Wang <shenwei.wang@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: RE: [EXT] Re: [PATCH v3 1/3] dt-bindings: gpio: Add imx scu gpio
- driver bindings
-Thread-Topic: [EXT] Re: [PATCH v3 1/3] dt-bindings: gpio: Add imx scu gpio
- driver bindings
-Thread-Index: AQHYrL17Pas5Q+nPyEWWoebmGoM+lq2oNm6AgAAHPuA=
-Date:   Wed, 10 Aug 2022 15:23:47 +0000
-Message-ID: <AM9PR04MB827495CB596427BD86A1522B89659@AM9PR04MB8274.eurprd04.prod.outlook.com>
-References: <20220810133005.74653-1-shenwei.wang@nxp.com>
- <20220810133005.74653-2-shenwei.wang@nxp.com>
- <ec6fd9eb-f46d-afa9-b08b-15e202b3a624@linaro.org>
-In-Reply-To: <ec6fd9eb-f46d-afa9-b08b-15e202b3a624@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 643fe480-cad7-41c2-9e20-08da7ae45227
-x-ms-traffictypediagnostic: PAXPR04MB9074:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 7nR8RQn1QZ6tjsKlWXjQwGoiK/kIBB4a+/Dd9OkkqhS1aq2DBhKFikkdqIpjjGh9iSQsUbjEzedjXJVH3JY1Xs4hwET4gOy1n3pyes70KqeR9MZGb4ESOdgsSdUBfBhkk7TL79++OIy4CCIKQW52byJ8YyBq72bKrudEkI0QnOgWFubvNU6dbdFrtx4NiQ3ZDzjUeMc2fEmct0t5NNripzR28gCq6iNiE9XpKkfT0CDmV2vs2/0QcyEXJ4IrBEScP6bzGbpgjcjaKQ65p5hFwFtOgiOpbU6QwO4oDackqU3sy2MifztHzG8WlU0HtzmnSQaTJxDljkwB2UdFAGCuTbGeHw1Flf0ZQeAJH0JXW4Ntw/e587nQn1TF8ToWsLFfNXqr0r7iaVCoIP+FngKVWWgVaP/u5a4mua/AmIhEQKuLVsu4f6EWcx1VD9Ogz/lFowXzzGs+Mty2pc3GXIXxUO5ANBTAAicA6bxJJEXqyDuOgi4XpEqR0DgFu48MmcUtZAkGMrKIYoiCvu+2dGiRZ0a3ig43ni9txmX9Tmxj6PoFcjIxVL7cgQDJ4fEWZrIFQyKXVS4GdW20npRE7l4GveQiNWDv+WLCNEonA/l2MqSsmKZ3+MdV28iqI3jly0Uklq9GX+zGS5n0Jm1xJa5d0nbE75O8AUXHoxhLMgsGVD/x/vJeLlIyGBz/Fl1/Gld1REXNJsHQOzKbQpekwJVMk7XbbbYV5jCiMHhl/PNYUOEjSFq4ziH8IPd/+KnO6xCY68rzjcvb0erX1aZHCaWBkqH9lzuO3pj8uq4qBQiqhw0BWBSin55KZMJIONL9vrkTUVNhmNssLkKVg4TmDCKmMQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8274.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(346002)(39860400002)(376002)(366004)(396003)(136003)(41300700001)(26005)(478600001)(71200400001)(921005)(38070700005)(9686003)(186003)(83380400001)(53546011)(55236004)(110136005)(7696005)(6506007)(54906003)(33656002)(55016003)(66556008)(66476007)(66446008)(5660300002)(64756008)(4326008)(66946007)(76116006)(6636002)(316002)(8676002)(52536014)(122000001)(86362001)(2906002)(7416002)(44832011)(8936002)(38100700002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?yvTkywv8d/7q1MX4X3vGMGRn1vXTNgOsSaXyb1lHNW0z2FMOj4FpdS0rUv7j?=
- =?us-ascii?Q?eTFhzkWqtt3sf3RCA8w6TqlWc3EyNmys2Xy9Ysc7vHpOFZDXAaxW+lTFZZlN?=
- =?us-ascii?Q?Fd0KN1W32r3xpM2ygchka+WMegLu6jx+mug0pGEwPODcTM1u5WO5BEr/KCHN?=
- =?us-ascii?Q?qTPwRSd/h7YC7cIRWLqVHoocAYc6DsdzbnsWsFPOUyBHz7ndflQh4yHT1xZY?=
- =?us-ascii?Q?clDr2NMdbfpAZzWltFv/yv3NG8Oq2BKNjGA/pHI/Wx+kYSEHo0u4IOhab2FH?=
- =?us-ascii?Q?9YPeo3Yt38aB4JloprmSA3wJRcHsIeSxK3DBuD6zr2upnAj2M2aWDjLuQaG5?=
- =?us-ascii?Q?6tnud957d6HEB0xqGpmFCMbPC0sd7/pukQ7DAhiEXGECNybvyDaCamF+9SF9?=
- =?us-ascii?Q?YJZMl5Id9eFOmrU859XHl+A39QC9H0v+aRjLA9ptEzZk0nodwQUmU5KEg6IN?=
- =?us-ascii?Q?++DcFTuTIYW9/C1ilgv0NsGmSi6ck8fUmSXd/t/TI5qfkGrxiecdgGLSJQl4?=
- =?us-ascii?Q?ZY0g5C1ktq4PTo4AKmJyRYxUemghx2IdMOv8Bakp+rWAEt5v0SrUee7UbIgK?=
- =?us-ascii?Q?SSpHHxfAX0b1X+eh4kNOz/P3Hn6BVXKKX3d6oNNeAXpl4GJri+pcQIP5DtXA?=
- =?us-ascii?Q?kpHztCE1aYEPnndeCBt80Nel5bSHirPDnNP2KishRfNi9wAXHYUCreYagWj2?=
- =?us-ascii?Q?spffnOygkQdtmO3fA1JGFHlvc0zLHv42C0Ddysi0cdNUVIEqxiLO76K7oT/M?=
- =?us-ascii?Q?dlN2TpLBubTfcN9fcSyL1sigWdK+rWwRVbUBvtyakHXm441B5Ts1Fvczqsev?=
- =?us-ascii?Q?JaOu4eYFuerqUprjxDXcxPELFT6Sqx9lqy7FHzrSO4Ow7iuUILrPjqra5xfU?=
- =?us-ascii?Q?79Irdbsql1i31T/L8nR7YRsvKD7vGVe2M2AyoiZ4HD/mJapFcUOFtoYnJSD4?=
- =?us-ascii?Q?4YsphSCA8zsHSXLxiUoCrI68pKMhyohve1M/Bcv0CH6ZmGmA6VXAJTNBbVVJ?=
- =?us-ascii?Q?oVrpPiQJ+5K8VdwR90UuDF1FvFkjvx5wzSV4XZZokY0Sj/O0Kcl9yLYVC4/G?=
- =?us-ascii?Q?3guWu7M1Uy4N+Qvvo+U0Uov3J/WxyCu6P3bgehN9vblLdiGJaLzUfs29Mpe0?=
- =?us-ascii?Q?HjZQogIYfDouXv4U4NjM6EyjKH93NdQCnUY4jbupidBAlt3gLODP9OmuN5Kb?=
- =?us-ascii?Q?JHar70lQLP/nzTQh63IJb9mxCzaQr5jwnp1COaWUsrwZoUHs39WNc1RGxAU2?=
- =?us-ascii?Q?x870utWOuAH7m9OhYjohJ/GBNRIaXdPW1GaOwUoC76laotgbqgDOrGq9GuZy?=
- =?us-ascii?Q?sW/0y58npiB+xXU/Z8RiEGfvTOFhmU5CD4Y6DztfJP+HWypkNUIwyKiFNnrL?=
- =?us-ascii?Q?WlZq5XrKmF6D70IcZHeJaTz8qwPU4jx6PtUAkCdiZs6VsO615+mvrEC2fUF4?=
- =?us-ascii?Q?yPGS+HHvTkKQsv58OtH9aV69hla3Ae4qdI42AABLzKL2lCIjzk1M5etqbLWG?=
- =?us-ascii?Q?kfjI43A7Q/1ltPZXbRH1ffYZN/L+nipfojrH2p2ZOgiJpj581BxJ6jcFejuz?=
- =?us-ascii?Q?t1eX6QFuxR0/+rgma5z2slrCDzIiF3yaxsISLUZ+?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S231264AbiHJPfQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 11:35:16 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0579B639D;
+        Wed, 10 Aug 2022 08:35:13 -0700 (PDT)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out2.suse.de (Postfix) with ESMTP id 810665C2C0;
+        Wed, 10 Aug 2022 15:35:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1660145712; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=phOPmviTrSVc6Big96eHWPdI379M+oLowb8bvheVGbk=;
+        b=vSpntsQOQb7xiH283KdJV4ICFJAnKibgpEsUzpyvzMg9yKRTkJOc0RotVWc+2f/8ScxThn
+        Wb0ZlORQrZU4hf2Dl9uxGJQiLwvQ14MECuQjYwHtMDM8lr2M3y1KL5ptvlPjCBvdXVsc6N
+        C8nS1J/17jgzCASRdtPjWpC/BizWc90=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1660145712;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=phOPmviTrSVc6Big96eHWPdI379M+oLowb8bvheVGbk=;
+        b=tIhRSNwZTHtQ7eWJ2iK6vAbvSyWZW937veYhvnORwW6g+nKtDWys0huEb+5vzXm6wIRFZu
+        FcoolSUJmbuYdcDg==
+Received: from kitsune.suse.cz (kitsune.suse.cz [10.100.12.127])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by relay2.suse.de (Postfix) with ESMTPS id 279E32C1CD;
+        Wed, 10 Aug 2022 15:35:12 +0000 (UTC)
+Date:   Wed, 10 Aug 2022 17:35:10 +0200
+From:   Michal =?iso-8859-1?Q?Such=E1nek?= <msuchanek@suse.de>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Tim Harvey <tharvey@gateworks.com>,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Stephen Hemminger <stephen@networkplumber.org>,
+        netdev <netdev@vger.kernel.org>, u-boot <u-boot@lists.denx.de>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: Re: ethernet<n> dt aliases implications in U-Boot and Linux
+Message-ID: <20220810153510.GS17705@kitsune.suse.cz>
+References: <53f91ad4-a0d1-e223-a173-d2f59524e286@seco.com>
+ <20220809213146.m6a3kfex673pjtgq@pali>
+ <b1b33912-8898-f42d-5f30-0ca050fccf9a@seco.com>
+ <20220809214207.bd4o7yzloi4npzf7@pali>
+ <2083d6d6-eecf-d651-6f4f-87769cd3d60d@seco.com>
+ <20220809224535.ymzzt6a4v756liwj@pali>
+ <CAJ+vNU2xBthJHoD_-tPysycXZMchnXoMUBndLg4XCPrHOvgsDA@mail.gmail.com>
+ <YvMF1JW3RzRbOhlx@lunn.ch>
+ <20220810071603.GR17705@kitsune.suse.cz>
+ <YvPMJLSuG3CBC//n@lunn.ch>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8274.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 643fe480-cad7-41c2-9e20-08da7ae45227
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Aug 2022 15:23:47.5650
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: o24aJDGt4Bk5LKWoYoQY/MGDS+vBK6A5kTzNxXOp/jugPnSBNIVbyaIfbb+dkyNGYizAc7NEYg1xXZTFIrwgxQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9074
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YvPMJLSuG3CBC//n@lunn.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Aug 10, 2022 at 05:17:56PM +0200, Andrew Lunn wrote:
+> > > I guess you are new to the netdev list :-)
+> > > 
+> > > This is one of those FAQ sort of things, discussed every
+> > > year. Anything like this is always NACKed. I don't see why this time
+> > > should be any different.
+> > > 
+> > > DSA is somewhat special because it is very old. It comes from before
+> > > the times of DT. Its DT binding was proposed relatively earl in DT
+> > > times, and would be rejected in modern days. But the rules of ABI mean
+> > > the label property will be valid forever. But i very much doubt it
+> > > will spread to interfaces in general.
+> > 
+> > And if this is a FAQ maybe you can point to a summary (perhaps in
+> > previous mail discusssion) that explains how to provide stable interface
+> > names for Ethernet devices on a DT based platform?
+> 
+> As far so the kernel is concerned, interface names are unstable. They
+> have never been truly stable, but they have got more unstable in the
+> past decade with multiple busses being probed in parallel, which did
+> not happen before so much.
+> 
+> > On x86 there is a name derived from the device location in the bus
+> > topology
+> 
+> This is nothing to do with x86. That is userspace, e.g. systemd,
+> renaming the interfaces. This applies for any architecture for which
+> systemd runs on.
+> 
+> > which may be somewhat stable but it is not clear that it
+> > cannot change, and there is an optional BIOS provided table that can
+> > asssign meaningful names to the interfaces.
+> 
+> I doubt the kernel is looking at ACPI tables. It is user space which
+> does that.
+> 
+> The kernel provides udev with a bunch of information about the
+> interface, its bus location, MAC address, etc. Userspace can then
+> decide what it wants to call it, and what its alternative names are,
+> etc.
+> 
+> Also, this is not just a network interface name problem. Any device
+> with a number/letter in it is unstable. I2C bus devices: i2c0,
+> i2c1... SPI bus deviceS: spi0, spi1...,
 
+Thees do have numbered aliases in the DT. I don't know if the kernel
+uses them for anything.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Wednesday, August 10, 2022 9:46 AM
-> To: Shenwei Wang <shenwei.wang@nxp.com>; robh+dt@kernel.org;
-> krzysztof.kozlowski+dt@linaro.org; linus.walleij@linaro.org; brgl@bgdev.p=
-l;
-> shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
-> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>
-> Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
-> gpio@vger.kernel.org; linux-arm-kernel@lists.infradead.org; imx@lists.lin=
-ux.dev
-> Subject: [EXT] Re: [PATCH v3 1/3] dt-bindings: gpio: Add imx scu gpio dri=
-ver
-> bindings
->=20
-> Caution: EXT Email
->=20
-> On 10/08/2022 16:30, Shenwei Wang wrote:
-> > Add binding document for the imx scu gpio driver.
-> >
-> > Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
-> > ---
-> >  .../bindings/gpio/fsl,imx-sc-gpio.yaml        | 40 +++++++++++++++++++
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - fsl,imx8qxp-sc-gpio
-> > +      - fsl,imx-scu-gpio
->=20
->=20
-> This is too generic compatible and it even conflicts with the above...
-> Your driver binds to both without driver data which is even more confusin=
-g.
-> Make the compatible specific for one, given SoC.
->=20
+> Block devices, sda, sdb, sdc,
 
-Oh, that's my bad. It is a typo. The generic compatible should be "fsl,imx-=
-sc-gpio". =20
-So far there is no driver data required for both imx8qxp and imx8dxl, but i=
-t might be
-required sometimes later in case the scu firmware is customized for a speci=
-fied use case.
-That's why I put the generic one here.
+These too, at least mmc.
 
-Thanks,
-Shenwei
+Thanks
 
->=20
-> Best regards,
-> Krzysztof
+Michal
