@@ -2,113 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F68D58E861
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 10:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A1B558E891
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 10:18:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230506AbiHJIF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 04:05:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54608 "EHLO
+        id S230208AbiHJISs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 04:18:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231337AbiHJIF0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 04:05:26 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95DFD27B3B
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 01:05:24 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id y23so15257309ljh.12
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 01:05:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=b288XWNSqBMApoeh+XjyRkXNonxHbmNcMipW3aFN8V0=;
-        b=z50SFZcygtyBvQCgqQgd3LYcRf50PshwjIXeeJIdfx/5vjhdUvzLLbHdZ2pE1YNu7T
-         BRObKtVX18NmOjhCXalI7i1PwUV8ajDNc8U88xQHqZj0WguMLye56DW1IqQE/UqkxTgU
-         xayVaMAdNwVNBGewiKHpSm84Fo5+R7D1XTPL8er/mHMuU68iNGSZ6dbr+kaG84KXAVxz
-         HuYUnu5QlhXNWeD7/0LZ3WKZR2z075PhNpfAHmgQWvj8wxgwQDmHFkLCaQJ0wc6CBRl4
-         s0wii3TXQFKx0NkI5+O1Ji01swsreUV5aaRhObt/l2MN0yhwN70IXA1j1X9gqSlhsY/3
-         MkJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=b288XWNSqBMApoeh+XjyRkXNonxHbmNcMipW3aFN8V0=;
-        b=ZgtCsUwDc9e91NSYC+8Dy/VdqUOtIKi7Ijx8T/o1E4XvdzxsulmeqUQIwQfzMEfLuK
-         g4IvZHXaW1geF9Y1oU2UxL+RUeCsrgcyaWdyu4bLdMKH0RYN79YjWzab8ia/3sNXrRnz
-         sYzbSgjD/7/oyFaWEQHBCO+ifLqgTSd4LKzVooHheFlcQ4ULKxY0WF3JhstjLZn25tXb
-         YUtmWRXyuJ4YcgwtHPkJxABFR7iECZSRff0Z9JMEw0Sje5lVMF8HU/2jiBXiFAUDANHF
-         lPvk10WiHF3dVraFGwTZ+IfQLSbKeVbofxMxzEM1b2Xjntkas+2uWSbWL8i3E0tujtor
-         ODvg==
-X-Gm-Message-State: ACgBeo0XXnVBWMrSDcPKenFeL4Et1Tn4ovpF8QDgXGcUvuNyv/E0wDJC
-        hknpCKj+ruqYHfOETTq7jTOm1Q==
-X-Google-Smtp-Source: AA6agR4pYmCEarPFE/nntgiaSJnKpL5k1y2SHONUiqSR4mVkriKF+WzK37ov/Fn+C9KVMndmIPmQfQ==
-X-Received: by 2002:a05:651c:886:b0:25e:3440:9518 with SMTP id d6-20020a05651c088600b0025e34409518mr8855935ljq.248.1660118722926;
-        Wed, 10 Aug 2022 01:05:22 -0700 (PDT)
-Received: from localhost.localdomain ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id h12-20020a2ea48c000000b0025e040510e7sm309571lji.74.2022.08.10.01.05.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 01:05:22 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231514AbiHJISr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 04:18:47 -0400
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 758AB83F3D;
+        Wed, 10 Aug 2022 01:18:46 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AD0E9C010E;
+        Wed, 10 Aug 2022 10:18:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+        t=1660119523; h=from:subject:date:message-id:to:cc:mime-version:
+         content-transfer-encoding; bh=FnhAaCJj1LfrfmWPWI224zJGw++9nfoQ3otxs6xa9sk=;
+        b=expopMW6lTTRTWKJgkWkHMOZdxUEPMG5+b2CHBxTapdhP0reEruuL+EChoNl/NM0fu/gOh
+        Q+mVilMmiddGMlx/KlKMRUWTw6pZ361Tvgehg75QqR1HQHBKMVDgqGtxoL5bRSw7QHNDdm
+        NO5jf6ZqmwdmW2GO74jPMVhwnzNVElNoJ625cUy6dm4KG80snqhnmHEOmRz1zmPyR0GCWw
+        DblkRvsuYJ78qZUK6nVgsLSXEIasm49exRMii1QuS4SzVs1McYikqFA2Ltr3hdfn3cKn4s
+        u4wf0DSNs4V9TlyPDIyJdq4cOJDEAdcn2a0xM4SWuPj9c91An8sOO89YQBkUVQ==
+From:   Frieder Schrempf <frieder@fris.de>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Arnd Bergmann <arnd@arndb.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/4] ARM: dts: qcom: msm8660-surf: move fixed regulator out of soc
-Date:   Wed, 10 Aug 2022 11:05:16 +0300
-Message-Id: <20220810080516.166866-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220810080516.166866-1-krzysztof.kozlowski@linaro.org>
-References: <20220810080516.166866-1-krzysztof.kozlowski@linaro.org>
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>, soc@kernel.org
+Subject: [PATCH v2 0/3] ARM: dts: imx6ul-kontron: Improve devicetrees
+Date:   Wed, 10 Aug 2022 10:18:20 +0200
+Message-Id: <20220810081825.19051-1-frieder@fris.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixed regulators, like stub for SDCC Power, are not part of SoC, so they
-should be outside of the soc node.
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series contains some simplifications to the devicetree file structure
+and updates the model names, compatibles and devicetree file names to match
+what is used officially by the Kontron marketing.
+
+This is a somewhat breaking change (for out-of-tree devicetrees that include
+the SoM files) but it reduces the complexity quite a bit, makes things easier
+to read and lets people discover the devicetree matching their hardware more
+easily.
+
+The first patch also updates the bindings to match up with the changes applied
+in the following patches.
+
+This series doesn't contain any functional changes.
 ---
- arch/arm/boot/dts/qcom-msm8660-surf.dts | 16 +++++++---------
- 1 file changed, 7 insertions(+), 9 deletions(-)
+Changes in v2:
+* Also rename compatibles to get rid of N6xxx notation
+* Also rename devicetree files for consistency
+* Squash model renaming patch into patch 2
+* Move part of Makefile changes to patch 2
 
-diff --git a/arch/arm/boot/dts/qcom-msm8660-surf.dts b/arch/arm/boot/dts/qcom-msm8660-surf.dts
-index 63b8f4285ace..be18f1be29a1 100644
---- a/arch/arm/boot/dts/qcom-msm8660-surf.dts
-+++ b/arch/arm/boot/dts/qcom-msm8660-surf.dts
-@@ -15,15 +15,13 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	soc {
--		/* Temporary fixed regulator */
--		vsdcc_fixed: vsdcc-regulator {
--			compatible = "regulator-fixed";
--			regulator-name = "SDCC Power";
--			regulator-min-microvolt = <2700000>;
--			regulator-max-microvolt = <2700000>;
--			regulator-always-on;
--		};
-+	/* Temporary fixed regulator */
-+	vsdcc_fixed: vsdcc-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "SDCC Power";
-+		regulator-min-microvolt = <2700000>;
-+		regulator-max-microvolt = <2700000>;
-+		regulator-always-on;
- 	};
- };
- 
+Frieder Schrempf (3):
+  dt-bindings: arm: fsl: imx6ul-kontron: Update bindings
+  ARM: dts: imx6ul-kontron: Simplify devicetree structure
+  ARM: dts: imx6ul-kontron: Add imx6ull-kontron-bl to Makefile
+
+ .../devicetree/bindings/arm/fsl.yaml          | 31 ++++++--------
+ arch/arm/boot/dts/Makefile                    |  5 ++-
+ ...6310-s-43.dts => imx6ul-kontron-bl-43.dts} |  8 ++--
+ ...x-s.dtsi => imx6ul-kontron-bl-common.dtsi} |  0
+ ...tron-n6310-s.dts => imx6ul-kontron-bl.dts} |  9 ++--
+ .../boot/dts/imx6ul-kontron-n6310-som.dtsi    | 41 -------------------
+ arch/arm/boot/dts/imx6ul-kontron-n6311-s.dts  | 16 --------
+ .../boot/dts/imx6ul-kontron-n6311-som.dtsi    | 40 ------------------
+ ...mon.dtsi => imx6ul-kontron-sl-common.dtsi} | 15 +++++++
+ arch/arm/boot/dts/imx6ul-kontron-sl.dtsi      | 14 +++++++
+ arch/arm/boot/dts/imx6ull-kontron-bl.dts      | 15 +++++++
+ arch/arm/boot/dts/imx6ull-kontron-n6411-s.dts | 16 --------
+ .../boot/dts/imx6ull-kontron-n6411-som.dtsi   | 40 ------------------
+ arch/arm/boot/dts/imx6ull-kontron-sl.dtsi     | 13 ++++++
+ 14 files changed, 80 insertions(+), 183 deletions(-)
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6310-s-43.dts => imx6ul-kontron-bl-43.dts} (93%)
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6x1x-s.dtsi => imx6ul-kontron-bl-common.dtsi} (100%)
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6310-s.dts => imx6ul-kontron-bl.dts} (52%)
+ delete mode 100644 arch/arm/boot/dts/imx6ul-kontron-n6310-som.dtsi
+ delete mode 100644 arch/arm/boot/dts/imx6ul-kontron-n6311-s.dts
+ delete mode 100644 arch/arm/boot/dts/imx6ul-kontron-n6311-som.dtsi
+ rename arch/arm/boot/dts/{imx6ul-kontron-n6x1x-som-common.dtsi => imx6ul-kontron-sl-common.dtsi} (90%)
+ create mode 100644 arch/arm/boot/dts/imx6ul-kontron-sl.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-kontron-bl.dts
+ delete mode 100644 arch/arm/boot/dts/imx6ull-kontron-n6411-s.dts
+ delete mode 100644 arch/arm/boot/dts/imx6ull-kontron-n6411-som.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ull-kontron-sl.dtsi
+
 -- 
-2.34.1
-
+2.37.1
