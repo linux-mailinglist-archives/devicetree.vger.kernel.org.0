@@ -2,92 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29E1D58E7FE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 09:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FFA558E82D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 09:52:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229498AbiHJHpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 03:45:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37668 "EHLO
+        id S231497AbiHJHwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 03:52:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbiHJHpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 03:45:23 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C80D321269
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 00:45:21 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id bx38so15229022ljb.10
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 00:45:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=4Y8I/o2ZbiCR2XoMPvfK2Mfm06LP8ATnJlBaZaL2WHs=;
-        b=ZPY3vZrZ8hfIfAKR0pHDDnplr3AJ0h5vaoF072rkhn/U+6pqhT/wRJ9o9tyGJsPz7R
-         qkSLwvL2Hnj97oxpl/z2GYLfUUXIdoCs5zPPo9ELk7jm2lsNmmYMg+RcAmuyTSIPjPeZ
-         uoyeWXFLbXar6ODfT6wr25kab3akxPDlGMqO3RKne6tRgNlSsK+ncKwjoqgQkfKnW/iL
-         xnUiepF+ox5Igd7zPp1NRbCxR2i2xCQUISY7YZ033V4C7DMCsrQ4Ml5WyHatKEcZY73C
-         lQez4RsUV98ozXfwhVIZ0GhG9LE/Zp0cKSA9GS2Bg1W3JnUxDiOjLDFSUCNQE3DTLtH8
-         No3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=4Y8I/o2ZbiCR2XoMPvfK2Mfm06LP8ATnJlBaZaL2WHs=;
-        b=4d/0zAfVTkIvkQ+oE5Ht+LVOUyiHra1CWXRQBujAjB4OdQp3enVcaPSvSBXHcnE7iW
-         vz6G4a5CEnzJeagUoDEJbMLT29LLmwtdYz65tICeIcGa0rIUIEirTEr6qrN5mua7jzz5
-         jDWLXk1pHBT6Y1D9URoIQJySaQ2uR07OhjJ51puJfgGBBYJwO/XNEBBj0MGe79qhyDhO
-         rh1WqrkWf66L9wjT+sPmrIyrlZE0Xot9sALU3ypMQUOg03l6cSRxN5/ZKb+wHOhNx8i3
-         JeoCz0UIjfA063NhrbfArmjjGc42+GRmuDAf4gupQrnvNWjGe7XLGowhN8fMhDCTpNWT
-         BAcw==
-X-Gm-Message-State: ACgBeo31hxcUBwd+QhWoyn5E79nTwraVvFRfR26HYwOtPIURF28qGFTn
-        lIk1laawRQ7kcPttfM8CFlyuCijoMDYFkmjU
-X-Google-Smtp-Source: AA6agR7B5+SnMSke7I7OLX8tC2RJaujbBSE5MWsv2wnEiHh8r7AIqvCB6ZCQ66mKP71PVcQhW/VGLg==
-X-Received: by 2002:a2e:9cc2:0:b0:25e:4ec0:19cc with SMTP id g2-20020a2e9cc2000000b0025e4ec019ccmr8160991ljj.401.1660117520209;
-        Wed, 10 Aug 2022 00:45:20 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id u17-20020ac243d1000000b0048b0975ac7asm240813lfl.151.2022.08.10.00.45.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Aug 2022 00:45:19 -0700 (PDT)
-Message-ID: <6771dc13-36ab-dc86-e231-4f9caaa06bcd@linaro.org>
-Date:   Wed, 10 Aug 2022 10:45:18 +0300
+        with ESMTP id S230518AbiHJHwH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 03:52:07 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09A0D73935;
+        Wed, 10 Aug 2022 00:52:07 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27A7no6r025439;
+        Wed, 10 Aug 2022 07:51:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=mXiw2l7Tdc0UgcxNFM2/Pn4qIDfrMrHGobWSFy/DNDM=;
+ b=Npvgpd3v8VC/36g0drWt6DH2vOAEVnnHEpDgWhwvpkCBfTvIe3R5TKtc6pvBE4QgCISn
+ Qec3TvDaTYTuvSSfvkCDJ6w87yoXAMUKEUDBnaMoqTh67OhE3wO23/bCmD+bb/LnaUQK
+ OmaOGaTRF2tWd9eGAq7kOS6on7YRWpBeqN9fAbsuKRxoTAKS3zOV0YZnukvnFJJDFQc9
+ dENY3GPsrZdAfp/Q4YqgEgvCpYFs4lzvX8ROYcMDVsQpucEQgS7uvOFNlcKamOHF3/2q
+ QzOlVaoDfkqgRQoXNyDDMffAI+KwRTkU2ZBnAdZYd1Ywibaadf80Se9y/bAUk5gHYZMj gA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3huwqgsm0r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 10 Aug 2022 07:51:25 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.47.97.222])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27A7kPkO007268
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 10 Aug 2022 07:46:25 GMT
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 10 Aug 2022 00:46:24 -0700
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Wed, 10 Aug 2022 00:46:19 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v3 0/8] Update ADSP pil loader for SC7280 platform
+Date:   Wed, 10 Aug 2022 13:15:50 +0530
+Message-ID: <1660117558-21829-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: mfd: x-powers,axp152: Document the AXP228
- variant
-Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Lee Jones <lee.jones@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220810013430.27061-1-samuel@sholland.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220810013430.27061-1-samuel@sholland.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cu1wbHRlW-oTzEWb5Iv5bsKyp5xIBWyY
+X-Proofpoint-ORIG-GUID: cu1wbHRlW-oTzEWb5Iv5bsKyp5xIBWyY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-10_03,2022-08-09_02,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0 bulkscore=0
+ mlxlogscore=980 mlxscore=0 phishscore=0 impostorscore=0 clxscore=1015
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2207270000 definitions=main-2208100022
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2022 04:34, Samuel Holland wrote:
-> AXP228 is a PMIC used on boards such as the Clockwork ClockworkPi and
-> DevTerm. Its register map appears to be identical to the AXP221 variant.
-> The only known difference is in the default values for regulator on/off
-> states and voltages.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+Update ADSP pil loader driver for SC7280 platforms.
 
+Changes since V2:
+	-- Generated patch with -M flag.
+	-- Add Clock property in dt bindings.
+	-- Add qcom,adsp-memory-regions property.
+	-- Add is_adsp_sb_needed flag instead of is_wpss.
+	-- Initialize is_adsp_sb_needed flag.
+	-- Remove empty proxy pds array.
+	-- Replace platform_bus_type with adsp->dev->bus.
+	-- Use API of_parse_phandle_with_args() instead of 
+	    of_parse_phandle_with_fixed_args().
+	-- Replace adsp->is_wpss with adsp->is_adsp.
+	-- Update error handling in adsp_start().
+Changes since V1:
+	-- Change reg property maxItems to minItems and update description.
+	-- Fix typo errors.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Srinivasa Rao Mandadapu (8):
+  dt-bindings: remoteproc: qcom: adsp: Make ADSP pil loader as generic
+  dt-bindings: remoteproc: qcom: adsp: Add required bindings for SC7280
+  remoteproc: qcom: Add flag in adsp private data structure
+  remoteproc: qcom: Add compatible name for SC7280 ADSP
+  remoteproc: qcom: Replace hard coded values with macros
+  remoteproc: qcom: Add efuse evb selection control
+  remoteproc: qcom: Add support for memory sandbox
+  remoteproc: qcom: Update QDSP6 out-of-reset timeout value
 
+ ...m845-adsp-pil.yaml => qcom,lpass-adsp-pil.yaml} |  19 ++-
+ drivers/remoteproc/qcom_q6v5_adsp.c                | 150 ++++++++++++++++++++-
+ 2 files changed, 158 insertions(+), 11 deletions(-)
+ rename Documentation/devicetree/bindings/remoteproc/{qcom,sdm845-adsp-pil.yaml => qcom,lpass-adsp-pil.yaml} (90%)
 
-Best regards,
-Krzysztof
+-- 
+2.7.4
+
