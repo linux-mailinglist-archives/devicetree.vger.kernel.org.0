@@ -2,73 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22FA158EDC8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04F3058EE72
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:36:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231821AbiHJOBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 10:01:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39616 "EHLO
+        id S229797AbiHJOgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 10:36:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232917AbiHJOBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:01:45 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A1416CF5B;
-        Wed, 10 Aug 2022 07:01:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AE3E6B81C96;
-        Wed, 10 Aug 2022 14:01:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F179C433C1;
-        Wed, 10 Aug 2022 14:01:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660140101;
-        bh=vVk3smFP0yDqyAhoxqkKU2XVUV0vThugwov15K5VhNQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nPfBIfBMAhOgPnfZsovb1vlKEvp0FTp52k+W4RElRxa8R5ObDjDbXGNK7iQymqWnb
-         1mCOZjWGjnFxCicpK6eyRLotfLtrNuXt3XKW+jvDDFtPz0NhKi//N/DU9F/vVrsGRH
-         swBS4VzJhc0cu0+eIGeIrGEa36AJYHX9BJW1PnDYXomN0ew9+L1UKQfpfZrJ9xUhS/
-         ky/0yqVl1AoL9DtXQnEE8k5KQBvtG8LV0qcz5uSe9SnQqvp0lPiHKuEXy+mQa6yo7/
-         nt6zfjDiEMQsOCrN0JAOR/mahpWQ5XQRnaO8WT1ki5NNzEmI+z+FjtpYIVQ+HbkPY+
-         xz0Jfj4gNZhIw==
-Received: by mail-ua1-f46.google.com with SMTP id c19so5825939uat.6;
-        Wed, 10 Aug 2022 07:01:41 -0700 (PDT)
-X-Gm-Message-State: ACgBeo2b35It26Xq2pN1uaWTy8UIGmeOlPAdPUeTiZIvM7VycEslFaW9
-        BEfIcOmhrX3WbI0qQxgwDTfiuos8vuCV7afYtw==
-X-Google-Smtp-Source: AA6agR5q3hDFDuGlmEq0UN3fTzwMJ+SVnwvkm2Pu+mSf5pciJB26bJjNIcUR+po4kBl8EYcd3Rp3BvU/1sAAwlh4oSw=
-X-Received: by 2002:a05:6130:291:b0:383:3b9:7024 with SMTP id
- q17-20020a056130029100b0038303b97024mr12388093uac.43.1660140100430; Wed, 10
- Aug 2022 07:01:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220720213036.1738628-1-Frank.Li@nxp.com> <20220720213036.1738628-4-Frank.Li@nxp.com>
-In-Reply-To: <20220720213036.1738628-4-Frank.Li@nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 10 Aug 2022 08:01:29 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ_yAW=noPVe3LuG-ojG5ENe27to5OEzQSgGx6jHon43A@mail.gmail.com>
-Message-ID: <CAL_JsqJ_yAW=noPVe3LuG-ojG5ENe27to5OEzQSgGx6jHon43A@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] dt-bindings: irqchip: imx mu work as msi controller
-To:     Frank Li <Frank.Li@nxp.com>, Marc Zyngier <maz@kernel.org>
-Cc:     Jon Mason <jdmason@kudzu.us>, Thomas Gleixner <tglx@linutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Wilczynski <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        "linux-kernel@vger.kernel.org" <kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        PCI <linux-pci@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        ntb@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        with ESMTP id S230209AbiHJOgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:36:16 -0400
+Received: from mo-csw-fb.securemx.jp (mo-csw-fb1114.securemx.jp [210.130.202.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0543F43E7B;
+        Wed, 10 Aug 2022 07:36:13 -0700 (PDT)
+Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1114) id 27ADYBGu020076; Wed, 10 Aug 2022 22:34:12 +0900
+Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 27ADXWhZ014082; Wed, 10 Aug 2022 22:33:32 +0900
+X-Iguazu-Qid: 2wHHz477PyFEYarLUG
+X-Iguazu-QSIG: v=2; s=0; t=1660138411; q=2wHHz477PyFEYarLUG; m=E9rBbVvUdv6UzhKaYRBXrg+ovzk64kCsispHtHAspvg=
+Received: from imx12-a.toshiba.co.jp ([38.106.60.135])
+        by relay.securemx.jp (mx-mr1110) id 27ADXUWd034960
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 10 Aug 2022 22:33:30 +0900
+X-SA-MID: 40425323
+From:   Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        yuji2.ishikawa@toshiba.co.jp
+Subject: [PATCH v3 0/4] Add Toshiba Visconti Video Input Interface driver
+Date:   Wed, 10 Aug 2022 22:28:18 +0900
+X-TSB-HOP2: ON
+Message-Id: <20220810132822.32534-1-yuji2.ishikawa@toshiba.co.jp>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,26 +45,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 20, 2022 at 3:31 PM Frank Li <Frank.Li@nxp.com> wrote:
->
-> imx mu support generate irq by write a register.
-> provide msi controller support so other driver
-> can use it by standard msi interface.
->
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../interrupt-controller/fsl,mu-msi.yaml      | 88 +++++++++++++++++++
->  1 file changed, 88 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
+This series is the Video Input Interface driver
+for Toshiba's ARM SoC, Visconti[0].
+This provides DT binding documentation,
+device driver, documentation and MAINTAINER files.
 
-This is failing in linux-next now, but I'm wondering why it is there
-given all the comments.
+A visconti VIIF driver instance exposes
+1 media control device file and 3 video device files
+for a VIIF hardware. 
+Detailed HW/SW are described in documentation directory.
+The VIIF hardware has CSI2 receiver,
+image signal processor and DMAC inside.
+The subdevice for image signal processor provides
+vendor specific V4L2 controls.
 
-Error: Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dts:31.41-42
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:396:
-Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.example.dtb]
-Error 1
+The device driver depends on two other drivers under development;
+clock framework driver and IOMMU driver.
+Corresponding features will be added later.
 
-Rob
+Best regards,
+Yuji
+
+Changelog v2:
+- Resend v1 because a patch exceeds size limit.
+
+Changelog v3:
+- Add documentation to describe SW and HW
+- Adapted to media control framework
+- Introduced ISP subdevice, capture device
+- Remove private IOCTLs and add vendor specific V4L2 controls
+- Change function name avoiding camelcase and uppercase letters
+
+[0]: https://toshiba.semicon-storage.com/ap-en/semiconductor/product/image-recognition-processors-visconti.html
+
+Yuji Ishikawa (4):
+  dt-bindings: media: platform: visconti: Add Toshiba Visconti Video
+    Input Interface bindings
+  media: platform: visconti: Add Toshiba Visconti Video Input Interface
+    driver
+  documentation: media: add documentation for Toshiba Visconti Video
+    Input Interface driver
+  MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
+
+ .../bindings/media/toshiba,visconti-viif.yaml |  103 +
+ .../driver-api/media/drivers/index.rst        |    1 +
+ .../media/drivers/visconti-viif.rst           |  455 +++
+ MAINTAINERS                                   |    3 +
+ drivers/media/platform/Kconfig                |    2 +
+ drivers/media/platform/Makefile               |    4 +
+ drivers/media/platform/visconti/Kconfig       |    9 +
+ drivers/media/platform/visconti/Makefile      |    9 +
+ drivers/media/platform/visconti/hwd_viif.c    | 1791 +++++++++++
+ drivers/media/platform/visconti/hwd_viif.h    |  701 +++++
+ .../media/platform/visconti/hwd_viif_csi2rx.c |  723 +++++
+ .../platform/visconti/hwd_viif_internal.h     |  348 ++
+ .../media/platform/visconti/hwd_viif_l1isp.c  | 2727 ++++++++++++++++
+ .../media/platform/visconti/hwd_viif_reg.h    | 2802 +++++++++++++++++
+ drivers/media/platform/visconti/viif.c        |  479 +++
+ drivers/media/platform/visconti/viif.h        |  195 ++
+ .../media/platform/visconti/viif_capture.c    | 1215 +++++++
+ .../media/platform/visconti/viif_controls.c   | 1149 +++++++
+ drivers/media/platform/visconti/viif_isp.c    |  852 +++++
+ include/uapi/linux/visconti_viif.h            | 1724 ++++++++++
+ 20 files changed, 15292 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
+ create mode 100644 Documentation/driver-api/media/drivers/visconti-viif.rst
+ create mode 100644 drivers/media/platform/visconti/Kconfig
+ create mode 100644 drivers/media/platform/visconti/Makefile
+ create mode 100644 drivers/media/platform/visconti/hwd_viif.c
+ create mode 100644 drivers/media/platform/visconti/hwd_viif.h
+ create mode 100644 drivers/media/platform/visconti/hwd_viif_csi2rx.c
+ create mode 100644 drivers/media/platform/visconti/hwd_viif_internal.h
+ create mode 100644 drivers/media/platform/visconti/hwd_viif_l1isp.c
+ create mode 100644 drivers/media/platform/visconti/hwd_viif_reg.h
+ create mode 100644 drivers/media/platform/visconti/viif.c
+ create mode 100644 drivers/media/platform/visconti/viif.h
+ create mode 100644 drivers/media/platform/visconti/viif_capture.c
+ create mode 100644 drivers/media/platform/visconti/viif_controls.c
+ create mode 100644 drivers/media/platform/visconti/viif_isp.c
+ create mode 100644 include/uapi/linux/visconti_viif.h
+
+-- 
+2.17.1
+
+
