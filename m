@@ -2,68 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3C6D58F274
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 20:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 490A258F29B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 20:56:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232064AbiHJShO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 14:37:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43856 "EHLO
+        id S231573AbiHJS4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 14:56:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233556AbiHJShD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 14:37:03 -0400
-Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B30E98FD4A
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 11:36:46 -0700 (PDT)
-Received: by mail-pl1-x62b.google.com with SMTP id 13so13548510plo.12
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 11:36:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc;
-        bh=z73/wP9z665YsaV/uDYD+wi6MjcJk/XyGVgycD2feRY=;
-        b=GCesbzgRbUeNcglykgQOzG+Q2EGPGkSq1JQG9RGFGHXpvf/Xub+RfbVhbB4Onwq59z
-         lfAW+gLONLo9sprR3soPhZr076B7uZ+VxQ2kB/ZyHNi5NsuVhGSY5yrzT6GS9OJcJSv3
-         NUYsxm0PRK+/jrK5SPJ8u5WFQfetM7KeATnCA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=z73/wP9z665YsaV/uDYD+wi6MjcJk/XyGVgycD2feRY=;
-        b=OTpgoE99zFgeHfxlAh727aBqjg3zfCuIK0I20rDA0lSXIsQC4ZlK3riv7ZjR/ez2uL
-         Av7K6FXELQitLqZlGf01jfc1ozHJGQnOtNWXB1eC0nIsl1kJ4zKe90v5fSxjrqQ/3P5t
-         cAnv+mjLpCguv39TR4w6CbKLhfQEzAnEM8OqweXAVxm2wvw0qJDgDwNnUj/pHhVfPrRa
-         cbEhIznokil7rNZJWYVF4ARUbHH2XBKKhp8QHw7zbSF3iIm0x4eKSCDaheRTxurl2Rd5
-         flie8m003dJOQh7t9jmhBTTAEgf7kK9V65Y+Ou1d92rmyuR5UUxT4/8ccr5vuLvJ7YZ1
-         EnZA==
-X-Gm-Message-State: ACgBeo2/D6qbWah6YU6UcIUdWdAQeUdaDUWSik42DEwQy7k9TowSm/6D
-        KLSLUvU3m4EySLeIEHp1YxIhzA==
-X-Google-Smtp-Source: AA6agR6CqEED+d1nIP977dwhdcJatfkdkn8f/WnJslQTl/9kRO5X2uQslJIZAvUqqjXMmKvJtwTn7A==
-X-Received: by 2002:a17:902:cf0c:b0:16f:9023:e07b with SMTP id i12-20020a170902cf0c00b0016f9023e07bmr25466298plg.143.1660156605778;
-        Wed, 10 Aug 2022 11:36:45 -0700 (PDT)
-Received: from chromium.org (137.22.168.34.bc.googleusercontent.com. [34.168.22.137])
-        by smtp.gmail.com with ESMTPSA id n2-20020a170902d2c200b0016db774e702sm13413462plc.93.2022.08.10.11.36.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 11:36:45 -0700 (PDT)
-Date:   Wed, 10 Aug 2022 18:36:43 +0000
-From:   Prashant Malani <pmalani@chromium.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH] dt-bindings: chrome: google,cros-ec-type: restrict
- allowed properties
-Message-ID: <YvP6u8SRHswA1Iva@chromium.org>
-References: <20220810143613.482724-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S230095AbiHJS4v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 14:56:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC328D3D5;
+        Wed, 10 Aug 2022 11:56:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD74D61491;
+        Wed, 10 Aug 2022 18:56:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32EC4C433D6;
+        Wed, 10 Aug 2022 18:56:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660157809;
+        bh=rcTCkFaa5mnwnbCSMET43K9fqBB3KokZWCSy5dHR5GQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HcWvZR/cP6oJBqzJ9rwSKxG1FjJzBUlrrE/oD/IC3Klzkl4HWAaNgPqZY/dMUMyiL
+         4OBWnUnbZM67jfvgZ1REdlMc11QNRSLKwap2pXWMSJzHl7w2DMS4JhkAjutQ3zxIYH
+         QURRecZ4LiXjHkkckWyhenKID3bYBTIwjFp5fL2ebRLAGJiwyBRPogCUIhPaADJmbu
+         m0VldOfvHey+P5zNVMqbC1nMWU5PuvJi7JlJ+kalY4RXB1Z+ddcKkUNKEiUzFmxBQs
+         i03AnhVKLsTDHHdIwvZaRTRj+mp4ey4gtU3OOxalEdqSpjPY1wPVagH/1T4/9Wn7ck
+         IUQbO1QxmypHg==
+Date:   Wed, 10 Aug 2022 11:56:46 -0700
+From:   Nathan Chancellor <nathan@kernel.org>
+To:     Conor.Dooley@microchip.com
+Cc:     ndesaulniers@google.com, llvm@lists.linux.dev,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Daire.McNamara@microchip.com, palmer@dabbelt.com
+Subject: Re: [PATCH v2 00/12] PolarFire SoC reset controller & clock cleanups
+Message-ID: <YvP/bjh+wXihlrdG@dev-arch.thelio-3990X>
+References: <20220704121558.2088698-1-conor.dooley@microchip.com>
+ <bd14f1a2-750d-2511-df0a-85a9f5925f84@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220810143613.482724-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <bd14f1a2-750d-2511-df0a-85a9f5925f84@microchip.com>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,17 +59,174 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Conor,
 
-On Aug 10 17:36, Krzysztof Kozlowski wrote:
-> Describe exactly what properties are allowed in Google Chrome OS EC Type
-> C port, so the schema can properly validate the DTS.  Existing DTS
-> defines always connectors with unit addresses, not a sole "connector"
-> child.
+On Tue, Aug 09, 2022 at 11:05:32PM +0000, Conor.Dooley@microchip.com wrote:
+> +CC clang people :)
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Got an odd one here and would appreciate some pointers for where to
+> look. This code when built with gcc boots fine, for example with:
+> riscv64-unknown-linux-gnu-gcc (g5964b5cd727) 11.1.0
+> The same code but build with clang build it fails to boot but prior to
+> that applying this patchset it boots fine. Specifically it is the patch
+> "clk: microchip: mpfs: move id & offset out of clock structs"
+> 
+> I applied this patchset on top of tonight's master (15205c2829ca) but
+> I've been seeing the same problem for a few weeks on -next too. I tried
+> the following 2 versions of clang/llvm:
+> ClangBuiltLinux clang version 15.0.0 (5b0788fef86ed7008a11f6ee19b9d86d42b6fcfa), LLD 15.0.0
+> ClangBuiltLinux clang version 15.0.0 (bab8af8ea062f6332b5c5d13ae688bb8900f244a), LLD 15.0.0
 
-Micro-nit: the tag in the commit message is missing a trailing "c" in
-"cros-ec-typec". Other than that,
+Good to know that it reproduces with fairly recent versions of LLVM :)
 
-Acked-by: Prashant Malani <pmalani@chromium.org>
+> It's probably something silly that I've overlooked but I am not au
+> fait with these sort of things unfortunately, but hey - at least I'll
+> learn something then.
+
+I took a quick glance at the patch you mentioned above and I don't
+immediately see anything as problematic... I was going to see if I could
+reproduce this locally in QEMU since I do see there is a machine
+'microchip-icicle-kit' but I am not having much success getting the
+machine past SBI. Does this reproduce in QEMU or are you working with
+the real hardware? If QEMU, do you happen to have a working invocation
+handy?
+
+Cheers,
+Nathan
+
+> The boot log is fairly short so here ya go:
+> 
+> [    0.000000] Linux version 5.19.0-13253-g374b508ee318 (conor@spud) (ClangBuiltLinux clang version 15.0.0 (git@g
+> ithub.com:llvm/llvm-project.git 5b0788fef86ed7008a11f6ee19b9d86d42b6fcfa), LLD 15.0.0) #1 SMP Tue Aug 9 22:42:10 IST 
+> 2022
+> [    0.000000] OF: fdt: Ignoring memory range 0x80000000 - 0x80200000
+> [    0.000000] Machine model: Microchip PolarFire-SoC Icicle Kit
+> [    0.000000] earlycon: ns16550a0 at MMIO32 0x0000000020100000 (options '115200n8')
+> [    0.000000] printk: bootconsole [ns16550a0] enabled
+> [    0.000000] efi: UEFI not found.
+> [    0.000000] Zone ranges:
+> [    0.000000]   DMA32    [mem 0x0000000080200000-0x00000000ffffffff]
+> [    0.000000]   Normal   [mem 0x0000000100000000-0x000000103fffffff]
+> [    0.000000] Movable zone start for each node
+> [    0.000000] Early memory node ranges
+> [    0.000000]   node   0: [mem 0x0000000080200000-0x00000000adffffff]
+> [    0.000000]   node   0: [mem 0x0000001000000000-0x000000103fffffff]
+> [    0.000000] Initmem setup node 0 [mem 0x0000000080200000-0x000000103fffffff]
+> [    0.000000] On node 0, zone Normal: 16064512 pages in unavailable ranges
+> [    0.000000] SBI specification v0.3 detected
+> [    0.000000] SBI implementation ID=0x1 Version=0x9
+> [    0.000000] SBI TIME extension detected
+> [    0.000000] SBI IPI extension detected
+> [    0.000000] SBI RFENCE extension detected
+> [    0.000000] SBI HSM extension detected
+> [    0.000000] CPU with hartid=0 is not available
+> [    0.000000] CPU with hartid=0 is not available
+> [    0.000000] riscv: base ISA extensions acdfim
+> [    0.000000] riscv: ELF capabilities acdfim
+> [    0.000000] percpu: Embedded 18 pages/cpu s34168 r8192 d31368 u73728
+> [    0.000000] pcpu-alloc: s34168 r8192 d31368 u73728 alloc=18*4096
+> [    0.000000] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3
+> [    0.000000] CPU node for /cpus/cpu@0 exist but the possible cpu range is :0-3
+> [    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 224263
+> [    0.000000] Kernel command line: root=/dev/nfs ip=dhcp debug nfsroot=192.168.2.5:/stuff/nfs_share earlycon
+> [    0.000000] Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+> [    0.000000] Inode-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+> [    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+> [    0.000000] software IO TLB: area num 4.
+> [    0.000000] software IO TLB: mapped [mem 0x00000000aa000000-0x00000000ae000000] (64MB)
+> [    0.000000] Virtual kernel memory layout:
+> [    0.000000]       fixmap : 0xffffffc6fee00000 - 0xffffffc6ff000000   (2048 kB)
+> [    0.000000]       pci io : 0xffffffc6ff000000 - 0xffffffc700000000   (  16 MB)
+> [    0.000000]      vmemmap : 0xffffffc700000000 - 0xffffffc800000000   (4096 MB)
+> [    0.000000]      vmalloc : 0xffffffc800000000 - 0xffffffd800000000   (  64 GB)
+> [    0.000000]       lowmem : 0xffffffd800000000 - 0xffffffe7bfe00000   (  62 GB)
+> [    0.000000]       kernel : 0xffffffff80000000 - 0xffffffffffffffff   (2047 MB)
+> [    0.000000] Memory: 803032K/1800192K available (7485K kernel code, 2858K rwdata, 4096K rodata, 2181K init, 394K bss, 997160K reserved, 0K cma-reserved)
+> [    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+> [    0.000000] rcu: Hierarchical RCU implementation.
+> [    0.000000] rcu:     RCU restricting CPUs from NR_CPUS=8 to nr_cpu_ids=4.
+> [    0.000000] rcu:     RCU debug extended QS entry/exit.
+> [    0.000000]  Tracing variant of Tasks RCU enabled.
+> [    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+> [    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+> [    0.000000] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+> [    0.000000] CPU with hartid=0 is not available
+> [    0.000000] riscv-intc: unable to find hart id for /cpus/cpu@0/interrupt-controller
+> [    0.000000] riscv-intc: 64 local interrupts mapped
+> [    0.000000] plic: interrupt-controller@c000000: mapped 186 interrupts with 4 handlers for 9 contexts.
+> [    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+> [    0.000000] riscv_timer_init_dt: Registering clocksource cpuid [0] hartid [4]
+> [    0.000000] clocksource: riscv_clocksource: mask: 0xffffffffffffffff max_cycles: 0x1d854df40, max_idle_ns: 3526361616960 ns
+> [    0.000003] sched_clock: 64 bits at 1000kHz, resolution 1000ns, wraps every 2199023255500ns
+> [    0.009713] Console: colour dummy device 80x25
+> [    0.014676] printk: console [tty0] enabled
+> [    0.019217] printk: bootconsole [ns16550a0] disabled
+> 
+> FWIW this is right about when the clock driver gets loaded
+> as you might imagine.
+> 
+> My config is here, but it's been reproduced on a few different
+> defconfigs:
+> https://raw.githubusercontent.com/ConchuOD/polarfire-soc-buildroot-sdk/dev/conf/lowmem/defconfig
+> 
+> On 04/07/2022 13:15, Conor Dooley wrote:
+> > Hey all,
+> > I know I have not sat on the RFC I sent about the aux. bus parts
+> > for too long, but figured I'd just send the whole thing anyway to all
+> > lists etc.
+> > 
+> > Kinda two things happening in this series, but I sent it together to
+> > ensure the second part would apply correctly.
+> > 
+> > The first is the reset controller that I promised after discovering the
+> > issue triggered by CONFIG_PM & the phy not coming up correctly. I have
+> > now removed all the messing with resets from clock enable/disable
+> > functions & now use the aux bus to set up a reset controller driver.
+> > Since I needed something to test it, I hooked up the reset for the
+> > Cadence MACB on PolarFire SoC. This has been split into a second series
+> > for v2:
+> > https://lore.kernel.org/all/20220704114511.1892332-1-conor.dooley@microchip.com/
+> > 
+> > The second part adds rate control for the MSS PLL clock, followed by
+> > some simplifications to the driver & conversions of some custom structs
+> > to the corresponding structs in the framework.
+> > 
+> > Thanks,
+> > Conor.
+> > 
+> > Changes since v1:
+> > - split off the net patches
+> > - clk: actually pass the spinlock to the converted dividers & gates
+> > - reset: added a spinlock around RMW access to registers
+> > - reset: switched to BIT(i) macros
+> > - reset: used local copies of some variables as pointed out by Philipp
+> > - reset: dropped the success printout
+> > 
+> > Conor Dooley (12):
+> >   dt-bindings: clk: microchip: mpfs: add reset controller support
+> >   clk: microchip: mpfs: add reset controller
+> >   reset: add polarfire soc reset support
+> >   MAINTAINERS: add polarfire soc reset controller
+> >   riscv: dts: microchip: add mpfs specific macb reset support
+> >   clk: microchip: mpfs: add module_authors entries
+> >   clk: microchip: mpfs: add MSS pll's set & round rate
+> >   clk: microchip: mpfs: move id & offset out of clock structs
+> >   clk: microchip: mpfs: simplify control reg access
+> >   clk: microchip: mpfs: delete 2 line mpfs_clk_register_foo()
+> >   clk: microchip: mpfs: convert cfg_clk to clk_divider
+> >   clk: microchip: mpfs: convert periph_clk to clk_gate
+> > 
+> >  .../bindings/clock/microchip,mpfs.yaml        |  17 +-
+> >  MAINTAINERS                                   |   1 +
+> >  arch/riscv/boot/dts/microchip/mpfs.dtsi       |   7 +-
+> >  drivers/clk/microchip/Kconfig                 |   1 +
+> >  drivers/clk/microchip/clk-mpfs.c              | 379 +++++++++---------
+> >  drivers/reset/Kconfig                         |   7 +
+> >  drivers/reset/Makefile                        |   2 +-
+> >  drivers/reset/reset-mpfs.c                    | 157 ++++++++
+> >  include/soc/microchip/mpfs.h                  |   8 +
+> >  9 files changed, 386 insertions(+), 193 deletions(-)
+> >  create mode 100644 drivers/reset/reset-mpfs.c
+> > 
+> > 
+> > base-commit: b13baccc3850ca8b8cccbf8ed9912dbaa0fdf7f3
