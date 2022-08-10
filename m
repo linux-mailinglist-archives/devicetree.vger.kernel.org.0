@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3933A58E85E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 10:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F68D58E861
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 10:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230383AbiHJIF2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 04:05:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54600 "EHLO
+        id S230506AbiHJIF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 04:05:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230506AbiHJIF0 (ORCPT
+        with ESMTP id S231337AbiHJIF0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 04:05:26 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 882F026136
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 01:05:23 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id f20so20121241lfc.10
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 01:05:23 -0700 (PDT)
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95DFD27B3B
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 01:05:24 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id y23so15257309ljh.12
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 01:05:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=BpcLPBAGuiZcpVrA8pcR24viGnpJaVJd3XMXiJb1Rfg=;
-        b=huxWhU8+f11jDxhBwD0M/5LlAFH+ebBTILIwhjbkIe0sEzWtGUi7Rw4KpaIs2JvgTG
-         OcC2MiMXatY5dRFtuFsC12r8sRuOO97nA7JptuozHen0gHM94+uF4UVzJ1cZql0aNpeE
-         6vjuxGrA+K0FUYg4z0gY5uGsNpmdM+dGEQBpm1xYY8GqMevp2rRlv1plnAndv6lgsm2n
-         6xnZt1naQN89p2EDZdnpmUMnMeahCzvDck4eUcU80IE8W/tvO4+x5BThnJNS8eDUpHds
-         HmuUIYk++sPiL3jUBmou8Qc3c1yHHqQ4OpfoQ/k/lY1ygVqv6gPFcNbk5L4Qw62qD+jL
-         VcgA==
+        bh=b288XWNSqBMApoeh+XjyRkXNonxHbmNcMipW3aFN8V0=;
+        b=z50SFZcygtyBvQCgqQgd3LYcRf50PshwjIXeeJIdfx/5vjhdUvzLLbHdZ2pE1YNu7T
+         BRObKtVX18NmOjhCXalI7i1PwUV8ajDNc8U88xQHqZj0WguMLye56DW1IqQE/UqkxTgU
+         xayVaMAdNwVNBGewiKHpSm84Fo5+R7D1XTPL8er/mHMuU68iNGSZ6dbr+kaG84KXAVxz
+         HuYUnu5QlhXNWeD7/0LZ3WKZR2z075PhNpfAHmgQWvj8wxgwQDmHFkLCaQJ0wc6CBRl4
+         s0wii3TXQFKx0NkI5+O1Ji01swsreUV5aaRhObt/l2MN0yhwN70IXA1j1X9gqSlhsY/3
+         MkJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=BpcLPBAGuiZcpVrA8pcR24viGnpJaVJd3XMXiJb1Rfg=;
-        b=wCqNP7VXn2qddRR1gWIKM1YFmWvXpHfa90SAhOuRbcJ/84SHzZWTtw2hFeZDllFXIT
-         iGLNGJGKplw9o1JHU+Q/gePodQpa9PVTXO0T5ZzX5VJZCJviw6cpd09gNVq6C6yLZeaS
-         sDHnKlwJnf0NX7QjEshHeTeqlkokySCvPqVG6dqdFfSPLsNvL9bBj60aFCEvknJE3s4/
-         a+CxEi2qQDcxGALpw66/K5jBBXHalKjxTbXXe68G6khFhaqEVZxu/1K+s1dHh6M4G3Qz
-         zq2DwmZRWjCf0UXbep8czx2rrH+8e+Hb/+01VWapfijj2eILh2lwdaxiNclPOIP9MObQ
-         3UBQ==
-X-Gm-Message-State: ACgBeo0nZV1fR/tzEpL9ki9P1c+CE5I3BlOTO1UT4HlrQrz41wH34WNf
-        kipOShe1Ak97enwWuwf+a2bfkg==
-X-Google-Smtp-Source: AA6agR4u4BvlM/9iAHgtwXaT7uSI8+FBhSL8xrlmU3bF+vRMEGIsIBnljKY7isbFKHhLwk9D2IpIOg==
-X-Received: by 2002:a05:6512:2989:b0:48a:f4b9:84bf with SMTP id du9-20020a056512298900b0048af4b984bfmr9836809lfb.39.1660118721868;
-        Wed, 10 Aug 2022 01:05:21 -0700 (PDT)
+        bh=b288XWNSqBMApoeh+XjyRkXNonxHbmNcMipW3aFN8V0=;
+        b=ZgtCsUwDc9e91NSYC+8Dy/VdqUOtIKi7Ijx8T/o1E4XvdzxsulmeqUQIwQfzMEfLuK
+         g4IvZHXaW1geF9Y1oU2UxL+RUeCsrgcyaWdyu4bLdMKH0RYN79YjWzab8ia/3sNXrRnz
+         sYzbSgjD/7/oyFaWEQHBCO+ifLqgTSd4LKzVooHheFlcQ4ULKxY0WF3JhstjLZn25tXb
+         YUtmWRXyuJ4YcgwtHPkJxABFR7iECZSRff0Z9JMEw0Sje5lVMF8HU/2jiBXiFAUDANHF
+         lPvk10WiHF3dVraFGwTZ+IfQLSbKeVbofxMxzEM1b2Xjntkas+2uWSbWL8i3E0tujtor
+         ODvg==
+X-Gm-Message-State: ACgBeo0XXnVBWMrSDcPKenFeL4Et1Tn4ovpF8QDgXGcUvuNyv/E0wDJC
+        hknpCKj+ruqYHfOETTq7jTOm1Q==
+X-Google-Smtp-Source: AA6agR4pYmCEarPFE/nntgiaSJnKpL5k1y2SHONUiqSR4mVkriKF+WzK37ov/Fn+C9KVMndmIPmQfQ==
+X-Received: by 2002:a05:651c:886:b0:25e:3440:9518 with SMTP id d6-20020a05651c088600b0025e34409518mr8855935ljq.248.1660118722926;
+        Wed, 10 Aug 2022 01:05:22 -0700 (PDT)
 Received: from localhost.localdomain ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id h12-20020a2ea48c000000b0025e040510e7sm309571lji.74.2022.08.10.01.05.20
+        by smtp.gmail.com with ESMTPSA id h12-20020a2ea48c000000b0025e040510e7sm309571lji.74.2022.08.10.01.05.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 01:05:21 -0700 (PDT)
+        Wed, 10 Aug 2022 01:05:22 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -56,9 +56,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/4] ARM: dts: qcom: msm8660: override nodes by label
-Date:   Wed, 10 Aug 2022 11:05:15 +0300
-Message-Id: <20220810080516.166866-3-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 4/4] ARM: dts: qcom: msm8660-surf: move fixed regulator out of soc
+Date:   Wed, 10 Aug 2022 11:05:16 +0300
+Message-Id: <20220810080516.166866-4-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220810080516.166866-1-krzysztof.kozlowski@linaro.org>
 References: <20220810080516.166866-1-krzysztof.kozlowski@linaro.org>
@@ -74,87 +74,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Using node paths to extend or override a device tree node is error
-prone.  If there was a typo error, a new node will be created instead of
-extending the existing node.  This will lead to run-time errors that
-could be hard to detect.
-
-A mistyped label on the other hand, will cause a dtc compile error
-(during build time).  This also reduces the indentation making the code
-easier to read.
-
-The pre/post DTBS are the same.
+Fixed regulators, like stub for SDCC Power, are not part of SoC, so they
+should be outside of the soc node.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/qcom-msm8660-surf.dts | 41 ++++++++++++-------------
- 1 file changed, 20 insertions(+), 21 deletions(-)
+ arch/arm/boot/dts/qcom-msm8660-surf.dts | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
 
 diff --git a/arch/arm/boot/dts/qcom-msm8660-surf.dts b/arch/arm/boot/dts/qcom-msm8660-surf.dts
-index 414280d9bdba..63b8f4285ace 100644
+index 63b8f4285ace..be18f1be29a1 100644
 --- a/arch/arm/boot/dts/qcom-msm8660-surf.dts
 +++ b/arch/arm/boot/dts/qcom-msm8660-surf.dts
-@@ -16,14 +16,6 @@ chosen {
+@@ -15,15 +15,13 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
  	};
  
- 	soc {
--		gsbi@19c00000 {
--			status = "okay";
--			qcom,mode = <GSBI_PROT_I2C_UART>;
--			serial@19c40000 {
--				status = "okay";
--			};
+-	soc {
+-		/* Temporary fixed regulator */
+-		vsdcc_fixed: vsdcc-regulator {
+-			compatible = "regulator-fixed";
+-			regulator-name = "SDCC Power";
+-			regulator-min-microvolt = <2700000>;
+-			regulator-max-microvolt = <2700000>;
+-			regulator-always-on;
 -		};
--
- 		/* Temporary fixed regulator */
- 		vsdcc_fixed: vsdcc-regulator {
- 			compatible = "regulator-fixed";
-@@ -32,21 +24,16 @@ vsdcc_fixed: vsdcc-regulator {
- 			regulator-max-microvolt = <2700000>;
- 			regulator-always-on;
- 		};
-+	};
-+};
- 
--		amba {
--			/* eMMC */
--			sdcc1: mmc@12400000 {
--				status = "okay";
--				vmmc-supply = <&vsdcc_fixed>;
--			};
-+&gsbi12 {
-+	qcom,mode = <GSBI_PROT_I2C_UART>;
-+	status = "okay";
-+};
- 
--			/* External micro SD card */
--			sdcc3: mmc@12180000 {
--				status = "okay";
--				vmmc-supply = <&vsdcc_fixed>;
--			};
--		};
--	};
-+&gsbi12_serial {
-+	status = "okay";
- };
- 
- &pm8058 {
-@@ -76,3 +63,15 @@ MATRIX_KEY(5, 4, KEY_MENU)
- 		keypad,num-columns = <5>;
++	/* Temporary fixed regulator */
++	vsdcc_fixed: vsdcc-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "SDCC Power";
++		regulator-min-microvolt = <2700000>;
++		regulator-max-microvolt = <2700000>;
++		regulator-always-on;
  	};
  };
-+
-+/* eMMC */
-+&sdcc1 {
-+	vmmc-supply = <&vsdcc_fixed>;
-+	status = "okay";
-+};
-+
-+/* External micro SD card */
-+&sdcc3 {
-+	vmmc-supply = <&vsdcc_fixed>;
-+	status = "okay";
-+};
+ 
 -- 
 2.34.1
 
