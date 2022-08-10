@@ -2,100 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8317858EDD6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:04:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F37F58EDE3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Aug 2022 16:07:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232936AbiHJOEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 10:04:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41506 "EHLO
+        id S232958AbiHJOHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 10:07:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232932AbiHJOEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:04:10 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B90046D556;
-        Wed, 10 Aug 2022 07:04:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1660140249; x=1691676249;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=essceR54I1P1+uwnMKusOBNBSYj2G5avgwzUHp9FtEE=;
-  b=maxWKfJ7NkDpa3HvXwkrz4jAxN+MBn77S3CrPD9n2EKmD1BRg5XCPkFy
-   1UFJxSeIYH7Od4i83EaHEF0wzLu8bnJSOlaJM1eRXXTyzror4u6uxR/7E
-   x47ijTIotaAVGBPICI1tVLs18LbmvF/sP/WGihv+k4ac68TnTANUyVe6p
-   4YjkOBhRo3kXTC/CBqPjL8NCtO1FLfZkvaVGEpedml33OA8Hn98fZfqFZ
-   WY784DZay/slOWziwM9cHI89qmF1QO+84Gi61XYMs0Tl5f6KVmlgxRrM0
-   me+R8irhT9dbK8jWtWpu3w+LHz4FasYsWIG/L07bFGula2WDQ0bf4leAy
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,227,1654585200"; 
-   d="scan'208";a="108428032"
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Aug 2022 07:04:08 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.28; Wed, 10 Aug 2022 07:03:52 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.28 via Frontend
- Transport; Wed, 10 Aug 2022 07:03:48 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <soc@kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>
-CC:     Mark Brown <broonie@kernel.org>, Wolfram Sang <wsa@kernel.org>,
-        "Thierry Reding" <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Arnd Bergmann" <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        <linux-i2c@vger.kernel.org>
-Subject: [RESEND PATCH 2/2] MAINTAINERS: add the Polarfire SoC's i2c driver
-Date:   Wed, 10 Aug 2022 15:02:44 +0100
-Message-ID: <20220810140243.2685416-3-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220810140243.2685416-1-conor.dooley@microchip.com>
-References: <20220810140243.2685416-1-conor.dooley@microchip.com>
+        with ESMTP id S232902AbiHJOHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 10:07:45 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B23E6E2CB
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:07:42 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id n4so16121382wrp.10
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 07:07:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=+X/pid24gIjSOOJVEmO9iW9i2TMfPX6OSEZMbd1Ah4A=;
+        b=gnyGClV2Eo+ylgbSznKAc5xS0/tmKZAO4UhCDTCl41U/p55TPKgwPR205jZ/5T0NNe
+         mY3nqNo1qLOKluMW3UrnNj8ixMO4DPxNfeG78dWzCFlMpZwy0An3nPbqnMH/Pu3k3jHe
+         K6GZFuvkoavj36ycCk9OyOKuS8RV7Hz+XfMN4mWzTEoU6bVjwG+pectg5fg8LeXHYfj+
+         bvKrrxRZuCt+QCZmTWQeXmDgN9yYvDHPiFy4eo6rhPjVWfARxcEdDk7WVDHB5ZnWP2er
+         IZQRHo7eE3F4P/gUv3jyBC86Buv49fczLcrVszX/rb860r6Li9Nh0mPfO7PrlPsMhvOq
+         Usgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=+X/pid24gIjSOOJVEmO9iW9i2TMfPX6OSEZMbd1Ah4A=;
+        b=zwNh64iTfH847Q8263QZda5XdJgutREPG4DEAP71OIB5C7uePd3M9abLQ1NPz56e64
+         0shppw/FahWnNIv30+bRxZgcfe4WgatVoKxF/c6TyH7MlHGMQFLlG/oAjj7mHY1uR5cM
+         RE/pWR/EZqqNVwqtbzHD+r4N5JpHbEeWoyuzsKaVyI3fTF6cf8c3WCNrw6LclufovQXl
+         7lad+66NjfNpTq7eds0Ww5Iti4ZFB0ERWQHjOabi/IZajHrXWi8ff5e3CZRq805j2Jri
+         Mb0wnU/m3kh6S6KUtqiDGmeG/4AW4QjClasuGwa5YOEK0OUHUNWI+vS40EPsYYFZSsmY
+         rXMg==
+X-Gm-Message-State: ACgBeo15upET5RGy96rmFsus3EXZvgFta9ZyRrVmaEE1Q3HtzreGSF9a
+        wUxAEhkettM+FCf1ABrAbAUlJA==
+X-Google-Smtp-Source: AA6agR568HfoJRNkXemPCbfg6p3C2Czwqa7Z3xR7SRRYgOaUQkt3jPpCLL397aCfk2kqvqSLfbNdaQ==
+X-Received: by 2002:a05:6000:2a4:b0:220:687a:cda9 with SMTP id l4-20020a05600002a400b00220687acda9mr17324057wry.187.1660140460789;
+        Wed, 10 Aug 2022 07:07:40 -0700 (PDT)
+Received: from localhost.localdomain (32.31.102.84.rev.sfr.net. [84.102.31.32])
+        by smtp.gmail.com with ESMTPSA id o15-20020adfcf0f000000b0021d6a520ce9sm16258229wrj.47.2022.08.10.07.07.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Aug 2022 07:07:39 -0700 (PDT)
+From:   Julien Panis <jpanis@baylibre.com>
+To:     vilhelm.gray@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org
+Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mranostay@ti.com,
+        Julien Panis <jpanis@baylibre.com>
+Subject: [PATCH v4 0/3] ECAP support on TI AM62x SoC
+Date:   Wed, 10 Aug 2022 16:07:21 +0200
+Message-Id: <20220810140724.182389-1-jpanis@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the newly added i2c controller driver to the existing entry for
-PolarFire SoC.
+The Enhanced Capture (ECAP) module can be used to timestamp events
+detected on signal input pin. It can be used for time measurements
+of pulse train signals.
 
-Acked-by: Wolfram Sang <wsa@kernel.org>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-CC: linux-i2c@vger.kernel.org
+ECAP module includes 4 timestamp capture registers. For all 4 sequenced
+timestamp capture events (1->2->3->4->1->...), edge polarity (falling/rising
+edge) can be selected.
 
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+This driver leverages counter subsystem to :
+- select edge polarity for all 4 capture events (event mode)
+- log timestamps for each capture event
+Event polarity, and CAP1/2/3/4 timestamps give all the information
+about the input pulse train. Further information can easily be computed :
+period and/or duty cycle if frequency is constant, elapsed time between
+pulses, etc...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fd0f10a110e7..148c9b03759a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17524,6 +17524,7 @@ F:	Documentation/devicetree/bindings/usb/microchip,mpfs-musb.yaml
- F:	arch/riscv/boot/dts/microchip/
- F:	drivers/char/hw_random/mpfs-rng.c
- F:	drivers/clk/microchip/clk-mpfs.c
-+F:	drivers/i2c/busses/i2c-microchip-core.c
- F:	drivers/mailbox/mailbox-mpfs.c
- F:	drivers/pci/controller/pcie-microchip-host.c
- F:	drivers/soc/microchip/
+Modifications since v3:
+	- Migrate driver from IIO to Counter subsystem
+	- Minor modification in yaml ($id) to match Counter subsystem
+	- Add ABI documentation
+
+Userspace commands :
+	### SIGNAL ###
+	cd /sys/bus/counter/devices/counter0/signal0
+
+	# Get available polarities for each capture event
+	cat polarity1_available
+	cat polarity2_available
+	cat polarity3_available
+	cat polarity4_available
+
+	# Get polarity for each capture event
+	cat polarity1
+	cat polarity2
+	cat polarity3
+	cat polarity4
+
+	# Set polarity for each capture event
+	echo rising > polarity1
+	echo falling > polarity2
+	echo rising > polarity3
+	echo falling > polarity4
+
+	### COUNT ###
+	cd /sys/bus/counter/devices/counter0/count0
+
+	# Run ECAP
+	echo 1 > enable
+
+	# Get current timebase counter value
+	cat count
+
+	# Get captured timestamps
+	cat capture1
+	cat capture2
+	cat capture3
+	cat capture4
+
+	# Note that counter watches can also be used to get
+	# data from userspace application
+	# -> see tools/counter/counter_example.c
+
+	# Stop ECAP
+	echo 0 > enable
+
+Julien Panis (3):
+  dt-binding: counter: add ti,am62-ecap-capture.yaml
+  Documentation: ABI: add sysfs-bus-counter-ecap
+  counter: capture-tiecap: capture driver support for ECAP
+
+ .../ABI/testing/sysfs-bus-counter-ecap        |  64 ++
+ .../counter/ti,am62-ecap-capture.yaml         |  61 ++
+ drivers/counter/Kconfig                       |  14 +
+ drivers/counter/Makefile                      |   1 +
+ drivers/counter/capture-tiecap.c              | 634 ++++++++++++++++++
+ include/uapi/linux/counter.h                  |   2 +
+ 6 files changed, 776 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-counter-ecap
+ create mode 100644 Documentation/devicetree/bindings/counter/ti,am62-ecap-capture.yaml
+ create mode 100644 drivers/counter/capture-tiecap.c
+
 -- 
-2.36.1
+2.25.1
 
