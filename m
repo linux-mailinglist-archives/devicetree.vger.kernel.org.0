@@ -2,75 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89401590766
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 22:33:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2B51590779
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 22:41:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235363AbiHKUd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 16:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37086 "EHLO
+        id S235933AbiHKUlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 16:41:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235878AbiHKUd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 16:33:26 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1DBB9F18E
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 13:33:21 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id bs25so4100918wrb.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 13:33:21 -0700 (PDT)
+        with ESMTP id S231131AbiHKUlM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 16:41:12 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607B2647C
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 13:41:11 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id v3so22643420wrp.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 13:41:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=ClSH5MXXgUZguA19Coz32EYS83xElJy9jIFIyLAmeC4=;
-        b=HHhe+yarKbkwIYZ1mXaOthZ0VXyo310D1cBk8s8PGKXtS+FAnYRo1gNG6ylVj/7gLo
-         BD1+qLMXw3jHjaKmycrt6e1OAv4CCWriwslsnWnsihoR/ceQgpKaw/ZZ6agol8h0tpdV
-         l02Ole49suUd2QEsa7+uNZY+ANEboqWovjQ41L3onQLVlcUDQTarQNGtsJLt8FArM1MM
-         H2MDT+rXQSH4wqI56vlK6Bwt19CVBV2XqoaYwT8ClmSccYovi+z7rS+pap22DWMy7KMA
-         jJBA8lhBOgEw9qEA4SepES7pXBFrOAfewHEorcKXkVi7YaO9c1U7I4skrO+n+EWweBdU
-         rtFA==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=v65TxKsCBooVHdoEozViTk8e8Jlbg0tbZcJ4XTkHA9Q=;
+        b=UUw0P6y4EVVg3hSO5g1xxA0buwiU3NfFunLUxWYXGTc7EdsPQc8SlO1HZ4xr90lqEk
+         +NwqlyVyC0eL8gR2/XPe6/BTLzMaRRUtJDX09W+Sm8OEdXbQGXC9R5+9uwIatHXVl2vN
+         kskdHTXwoc61oZ/GFsoUkRWtUGokNebzDIwnXFzPUvCzYKuUN8GIb1eKhk2sl6Vetaiy
+         oN7UuyTXGZvcYkUyfV7AuxMUi2TrY5nNgyz15XMXWLp/LCPlFODZMqkUQpPsh//bsYsa
+         yIgbS4fdIfZR3Y7zNQI6TxrYHf304TS7ZxBBwFOlTHsTL0enqbNq7wZcPQ/uj8whmx9O
+         IivA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=ClSH5MXXgUZguA19Coz32EYS83xElJy9jIFIyLAmeC4=;
-        b=7kcIBRaI+zwEFCVLioFhLCNykUkg2ESDqH6r1t630f1b7okCrdqwZUY6aZEnn6UQcb
-         JQ8pZBJpeFY8RQptAE4jH78aLglcqthH6zj6zQXICxj6HQMdOTLiHpZfqif0sUyD/YU+
-         OPFpgnRLDlFiFQFW/NQN9qY3ENsfCMpM0opcqkAU7FzmCRhkBXrsPH7tSOGcGXWB4Tv/
-         Khx/9Gkg160vp2yHZioUtDVvXGYuayEh8JSu8FVDFDSowuFrAI8tFLV51uvhA7ZwidDP
-         KFCDwDHZLvmshVq2W2yMpFdAoy82RlE3/cvO7k0USWnjyyIkEBNENSWFkxI9d4+WsrV7
-         KNbQ==
-X-Gm-Message-State: ACgBeo2OVS23PtZ93U0skzTJqluXyNYemvGSNj5sjXfBXdMrLLTSIDKq
-        kHT4gQt2uRXl6dF0PMkKOynstA==
-X-Google-Smtp-Source: AA6agR4uUqIg2eHjtpt4HwLt+LlA2AAP/WjAN+bsQ7P2wHGzFMVwBV3+ZG92fs39ZgDOkKMy3JKrZg==
-X-Received: by 2002:a5d:4345:0:b0:21a:3b82:ad57 with SMTP id u5-20020a5d4345000000b0021a3b82ad57mr361149wrr.176.1660250000231;
-        Thu, 11 Aug 2022 13:33:20 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=v65TxKsCBooVHdoEozViTk8e8Jlbg0tbZcJ4XTkHA9Q=;
+        b=JPVlQpPPPXUmnT9bakrKpXQ3frnmToOPzek2oaoh1yXbVY3Qn+461O/vImdlohLLfP
+         BY9ID4k9Is4F90aKHp++2enAjc9h1gOaydhn1GHwIxAYGiavZTiDK61L6BIQCmcZGHK4
+         XweOyXnsqNeuYHq3v+UE7nS2bUHFtvD2/s7KbgMdg9phf7SRIx3Mu8Zyv34KSz8E1PYp
+         nH5Zp1PnYeu1yjg0BBIuSgrOoY7EEohDqjsQPmsh69MMyD9s3mcTpLqH8IZumHolm00z
+         3yrdnpBArrNLTfDalt+JyZfMJEZxIljGEjeO55IuqyrcTwI6KfiIAdz7JNkoyfsPHKqX
+         zktg==
+X-Gm-Message-State: ACgBeo3CJWmnqYeeEvuK0fse1R45yZhxiWwwre65mIrlbEnH+ExVszNI
+        psc6e/FUzQTETo7TqkAHhmloSA==
+X-Google-Smtp-Source: AA6agR6lpzSQl0I67ePvjSIBO0Obd6xiyVZ5YQEY/ZBqrqs7lEllEDAiTUTW7qGxMjPrmrSfdG2OtQ==
+X-Received: by 2002:a5d:6b12:0:b0:21f:1568:c7e1 with SMTP id v18-20020a5d6b12000000b0021f1568c7e1mr352199wrw.532.1660250469981;
+        Thu, 11 Aug 2022 13:41:09 -0700 (PDT)
 Received: from henark71.. ([109.76.58.63])
-        by smtp.gmail.com with ESMTPSA id i12-20020adfefcc000000b0021f1ec8776fsm86643wrp.61.2022.08.11.13.33.19
+        by smtp.gmail.com with ESMTPSA id g10-20020a05600c4eca00b003a3199c243bsm11213544wmq.0.2022.08.11.13.41.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Aug 2022 13:33:19 -0700 (PDT)
+        Thu, 11 Aug 2022 13:41:09 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
-To:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Piotr Sroka <piotrs@cadence.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Conor Dooley <conor.dooley@microchip.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: [PATCH 4/4] dt-bindings: PCI: microchip,pcie-host: fix missing address translation property
-Date:   Thu, 11 Aug 2022 21:33:07 +0100
-Message-Id: <20220811203306.179744-5-mail@conchuod.ie>
+Subject: [PATCH] dt-bindings: mmc: cdns: remove Piotr Sroka as a maintainer
+Date:   Thu, 11 Aug 2022 21:40:24 +0100
+Message-Id: <20220811204024.182453-1-mail@conchuod.ie>
 X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20220811203306.179744-1-mail@conchuod.ie>
-References: <20220811203306.179744-1-mail@conchuod.ie>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,46 +73,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-When the PCI controller node was added to the PolarFire SoC dtsi,
-dt-schema was not able to detect the presence of some undocumented
-properties due to how it handled unevaluatedProperties. v2022.08
-introduces better validation, producing the following error:
+Mails to Piotr bounce with a :550 5.1.1 User Unknown and the last
+mention of him on lore is the orphaning of Cadence NFC drivers.
+Remove him from the binding too.
 
-arch/riscv/boot/dts/microchip/mpfs-polarberry.dtb: pcie@2000000000: Unevaluated properties are not allowed ('clock-names', 'microchip,axi-m-atr0' were unexpected)
-        From schema: Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-
-Fixes: 528a5b1f2556 ("riscv: dts: microchip: add new peripherals to icicle kit device tree")
+Link: https://lore.kernel.org/all/20200510122430.19105-1-miquel.raynal@bootlin.com/
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-I feel like there's a pretty good chance that this is not the way this
-should have been done and the property should be marked as deprecated
-but I don't know enough about PCI to answer that.
----
- .../devicetree/bindings/pci/microchip,pcie-host.yaml  | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-index 9b123bcd034c..9ac34b33c4b2 100644
---- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-+++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-@@ -71,6 +71,17 @@ properties:
-   msi-parent:
-     description: MSI controller the device is capable of using.
+diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+index 99f89eb19356..7124e77617c9 100644
+--- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+@@ -8,7 +8,6 @@ title: Cadence SD/SDIO/eMMC Host Controller (SD4HC)
  
-+  microchip,axi-m-atr0:
-+    description: |
-+      Depending on the FPGA bitstream, the AXIM address translation table in the
-+      PCIe controllers bridge layer may need to be configured. Use this property
-+      to set the address offset. For more information, see Section 1.3.3,
-+      "PCIe/AXI4 Address Translation" of the PolarFire SoC PCIe User Guide:
-+      https://www.microsemi.com/document-portal/doc_download/1245812-polarfire-fpga-and-polarfire-soc-fpga-pci-express-user-guide
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    minItems: 2
-+    maxItems: 2
-+
-   legacy-interrupt-controller:
-     type: object
-     properties:
+ maintainers:
+   - Masahiro Yamada <yamada.masahiro@socionext.com>
+-  - Piotr Sroka <piotrs@cadence.com>
+ 
+ allOf:
+   - $ref: mmc-controller.yaml
 -- 
 2.37.1
 
