@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8936D58F9A8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 11:02:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6026F58F9BA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 11:07:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234836AbiHKJCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 05:02:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45134 "EHLO
+        id S234905AbiHKJHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 05:07:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234385AbiHKJCy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 05:02:54 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA3A71706F
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 02:02:51 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id fy5so1584564ejc.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 02:02:51 -0700 (PDT)
+        with ESMTP id S234307AbiHKJHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 05:07:24 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB0F16E2E1
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 02:07:20 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id w19so32412834ejc.7
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 02:07:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc;
-        bh=pPnoh77QEcb+sKjdUBUVtHO5SMPJaPgXOLcl+ed6QOk=;
-        b=IXX6jMMZyMHVMk0TiNF4dt/q+pPM6XZ8yg81aYk029NESvkf12Emw9btUPkil0WEsR
-         1PMsQYO3PUCDYDfz81FzleYvJu9C3c03jCBPzl1ijNceaeE6bJX3o0Hca9Jxiw8yEQbx
-         h2UPY1i+ss4F9YZlzZB/qlZmF5zfClDJqZl1RVycUixhb5d57s5YhFIyuVntEeoHTy1c
-         jvokit9Y2qe1qFgn6RkshFkMYyAwBtSTaNO2JYG5eCad4tafI3zXVnlW3EBU+qOAQdSy
-         ZJIPxKeLkt2QIZCy/ieehi0trHlCci1uPzvqgvgoRFF00YWE2cg/M+l/viKARC3jLOpT
-         oWMA==
+        bh=AMPkpS8XZ9CZD7YiSg9zmbD0TWPYAuMvL4cZq8GvvrE=;
+        b=62a0C5PIahTCbPIksLIFFasCo8TkJnD0NrXBn75/X87Qr/o+/1NPhqnBEbWnu5Wcdk
+         lRYIYl5fXk0Dw9eEbPB1bObIWPebpURMO/843tj5b1d96igg9QQGJREzgVkUEQBd48r1
+         kxKpJKprjM5cQJlGQYHR2VbK+7+9No/cw7W3kOJZb+hNVit8SW9PG6zuwzPCxel/IOlU
+         x4Lj9TjdZwOgBZJn24Ou+97ylNvzLEaRNuj+hDRyPzdMqUWlkbPsCq/VA1u/yB0TsI/s
+         EbDs0yBi+n5roSPaQhaT3pbbdy0H7oramsx+uZ7R9vaKvyP1zLu85dJVZhVje0elW2YR
+         HHqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=pPnoh77QEcb+sKjdUBUVtHO5SMPJaPgXOLcl+ed6QOk=;
-        b=WuV33c8celcTFbspLDfsayAmcXtXjTH4DOFwAhyoHySMybWwe0lenq3x3kfV+MMciX
-         rMh2dtFLu6saWJel66yuNx97+fZ415GLAntzCmL5H84+sk8hxqczcPNftURh4CEi4LQw
-         6HumnB26oyvasHKEMRHPWgN50ZBoh/KRE86sCzUo3mfMMdUf5vmygm5DhkqgOVBc/lLk
-         lXoA2x0zYl6yjf76XPCyrL92GxRV/km8g+6WIqbvVFF9JZ5UWDMWgSNnX+r/agxXM8V/
-         /dXfeC+ri7FmN9x+iaTYovJX/VeGaXEVnnuwk0GNsJ2y3iBdjWWV8IWQ7Hry34RsWgov
-         Qnrg==
-X-Gm-Message-State: ACgBeo0KER+J9MrmroX8XKseu5IlSJtvixEkbZkUHixFzkzJEspCTcWG
-        sMCuEPrvLtigwdWZe27koJw/uA==
-X-Google-Smtp-Source: AA6agR6sVb8BEuxDhpl4+d5fPlqr2RhhkvOY8mq+n60l4jTmNyzMGtr3zfbk0tsLoxqb7bKLwfs+2w==
-X-Received: by 2002:a17:907:7292:b0:733:1965:3176 with SMTP id dt18-20020a170907729200b0073319653176mr3867288ejc.318.1660208570424;
-        Thu, 11 Aug 2022 02:02:50 -0700 (PDT)
+        bh=AMPkpS8XZ9CZD7YiSg9zmbD0TWPYAuMvL4cZq8GvvrE=;
+        b=pN4b3K2lQraeNh4BSJJzCWtrfKvT68i+nf0wOvlEERi1ioFd5QoPa/zIxoeLFbD9oX
+         2U/uacgegrJaUPYbIs/d/82TEIXkBSxgiNhzK3oizL7OgwKkoBRo8QR75nVnqyaVX+NE
+         XDm1GIPVKsFoIZm8N812BOxY+xJEh91DyoRaM5xI55i7DkWuxVCkFKQlZFkj6ULy/Okc
+         QCMQFL8e6XcDxIImPazcm3C+LABFzLZ84SD/yXm87qclkNNAxBG3UlIjHhox+4pmqkcJ
+         ifbHmDw5TidVyiai31GegcsiBWoYwUeyluK5yX1ICWlJhcOkoNK31fUFL/GvpJIIo550
+         IOgA==
+X-Gm-Message-State: ACgBeo1XVIdrn8QRZ4Iw4rDvF+U2NhTGX8Yny6T5WaMOsIcExBU3tH0Z
+        aop1CwZkQm2uaOfDcnaWpFRx4A==
+X-Google-Smtp-Source: AA6agR6FPq1KkD0ldPcxaEg0KRXTEf6/cyaUQQuox6k2VfpKYxcf47DjxelzwSrXqEQDqVxug6WiiA==
+X-Received: by 2002:a17:907:763c:b0:730:c378:b860 with SMTP id jy28-20020a170907763c00b00730c378b860mr22547616ejc.97.1660208839498;
+        Thu, 11 Aug 2022 02:07:19 -0700 (PDT)
 Received: from blmsp ([2001:4090:a243:8036:200c:a862:4253:884])
-        by smtp.gmail.com with ESMTPSA id n6-20020aa7c786000000b0043a554818afsm8782252eds.42.2022.08.11.02.02.49
+        by smtp.gmail.com with ESMTPSA id m26-20020aa7c2da000000b0043c0fbdcd8esm8876699edp.70.2022.08.11.02.07.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Aug 2022 02:02:49 -0700 (PDT)
-Date:   Thu, 11 Aug 2022 11:02:49 +0200
+        Thu, 11 Aug 2022 02:07:18 -0700 (PDT)
+Date:   Thu, 11 Aug 2022 11:07:18 +0200
 From:   Markus Schneider-Pargmann <msp@baylibre.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Cc:     Michael Turquette <mturquette@baylibre.com>,
@@ -62,16 +62,15 @@ Cc:     Michael Turquette <mturquette@baylibre.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         Fabien Parent <fparent@baylibre.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: mediatek: add bindings for
- MT8365 SoC
-Message-ID: <20220811090249.ymetmw5xacc2dhin@blmsp>
+Subject: Re: [PATCH v3 4/4] clk: mediatek: add driver for MT8365 SoC
+Message-ID: <20220811090718.spieeqcb5ogknlfc@blmsp>
 References: <20220811084433.2598575-1-msp@baylibre.com>
- <20220811084433.2598575-2-msp@baylibre.com>
- <efe20cbf-485c-548c-933c-ffddb6c81d02@linaro.org>
+ <20220811084433.2598575-5-msp@baylibre.com>
+ <dc7a4f78-4244-7425-a1c2-509172ec97de@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <efe20cbf-485c-548c-933c-ffddb6c81d02@linaro.org>
+In-Reply-To: <dc7a4f78-4244-7425-a1c2-509172ec97de@linaro.org>
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
@@ -84,51 +83,44 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Krzysztof,
 
-On Thu, Aug 11, 2022 at 11:50:05AM +0300, Krzysztof Kozlowski wrote:
+On Thu, Aug 11, 2022 at 11:53:19AM +0300, Krzysztof Kozlowski wrote:
 > On 11/08/2022 11:44, Markus Schneider-Pargmann wrote:
 > > From: Fabien Parent <fparent@baylibre.com>
 > > 
-> > Add the clock bindings for the MediaTek MT8365 SoC.
+> > Add clock drivers for MT8365 SoC.
 > > 
 > > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > > ---
-> >  .../bindings/clock/mediatek,mt8365-clock.yaml |  42 ++
-> >  .../clock/mediatek,mt8365-sys-clock.yaml      |  47 +++
-> >  .../dt-bindings/clock/mediatek,mt8365-clk.h   | 374 ++++++++++++++++++
-> >  3 files changed, 463 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8365-clock.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8365-sys-clock.yaml
-> >  create mode 100644 include/dt-bindings/clock/mediatek,mt8365-clk.h
 > > 
-> > diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8365-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8365-clock.yaml
-> > new file mode 100644
-> > index 000000000000..31cd248e772b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8365-clock.yaml
-> > @@ -0,0 +1,42 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: "http://devicetree.org/schemas/clock/mediatek,mt8365-clock.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > Notes:
+> >     Changes in v3:
+> >     - Changed all Kconfig options to be tristate
+> >     - Do not depend on ARM64
+> >     - Fix order of frees on probe errors.
+> >     - Use mtk_clk_register_gates_with_dev
+> >     - Fixed null clocks
+> >     - Removed clk26m_ck
+> >     - Use MUX_GATE_CLR_SET_UPD instead of custom MT8365_MUX_CLR_SET_UPD
+> >     - Use devm_clk_hw_register_mux for top_misc_muxes
+> >     - Use devm_clk_hw_register_gate for peri_clks and top_clks
+> >     - Fix checkpatch warnings
+> >     - Add missing MODULE_LICENSEs in all files
+> > 
+> >  drivers/clk/mediatek/Kconfig                  |   50 +
+> >  drivers/clk/mediatek/Makefile                 |    7 +
+> >  drivers/clk/mediatek/clk-mt8365-apu.c         |   55 +
+> >  drivers/clk/mediatek/clk-mt8365-cam.c         |   57 +
+> >  drivers/clk/mediatek/clk-mt8365-mfg.c         |   63 +
+> >  drivers/clk/mediatek/clk-mt8365-mm.c          |  112 ++
+> >  drivers/clk/mediatek/clk-mt8365-vdec.c        |   63 +
+> >  drivers/clk/mediatek/clk-mt8365-venc.c        |   52 +
+> >  drivers/clk/mediatek/clk-mt8365.c             | 1155 +++++++++++++++++
+> >  .../dt-bindings/clock/mediatek,mt8365-clk.h   |  179 ++-
 > 
-> No quotes needed in both lines.
-> 
-> > +
-> > +title: MediaTek Functional Clock Controller for MT8365
-> > +
-> > +maintainers:
-> > +  - Fabien Parent <fparent@baylibre.com>
-> 
-> Are you sure this is correct and working email? Let's try not to add
-> non-existing emails to Git maintainers. It's a bit of pain to fix it
-> later. :/
+> No, bindings are always separate.
 
-thank you, good point. I will fix everything you mentioned here and
-above and below for v4.
+Of course, I screwed up my rebasing here, sorry. Fixed for v4.
 
 Best,
 Markus
-
