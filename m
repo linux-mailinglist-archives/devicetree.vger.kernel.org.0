@@ -2,74 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18AB158F5FE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 04:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E776558F61A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 04:58:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232823AbiHKCv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Aug 2022 22:51:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37330 "EHLO
+        id S233695AbiHKC6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Aug 2022 22:58:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229867AbiHKCvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 22:51:55 -0400
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E591C883C5;
-        Wed, 10 Aug 2022 19:51:54 -0700 (PDT)
-Received: by mail-qv1-xf2c.google.com with SMTP id d1so12464452qvs.0;
-        Wed, 10 Aug 2022 19:51:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=MaRTXfYyFqr0HiXCCqqjA5Tp2gofP6+S10DAm5IeLT4=;
-        b=A1Ywx5+d6yl1vB1SqyqWKvyOpgv+mfVVheGmkvUrQJC5qkmBzjHMaM2n1NC2EWPUyg
-         SZS09u2yr71Dv/ueyxwbBjGFWvC6lGbR2cCPAP8K/u9XKfs/q8ijOUpkFcO959ZYnxUA
-         NaJ5+HES9ZlkPmCcrhfnhD3h6HG8BH+ng8ElxFxnSYOd+8s3ocaJIZL7prHzi/xgWF8w
-         QmLENU1eBGrFSnRN9uyTx0kuHnGWpeMPs09ZX8gjUCCBiIzN0M0+rfbhMtoPk3SH+3vS
-         AIVjnQaBIWlDnzzDuV/zHwW/0znh05/8U/jBK3O0yHhj3wNSEGPORAzZkH/VzBl5vPC8
-         JVuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=MaRTXfYyFqr0HiXCCqqjA5Tp2gofP6+S10DAm5IeLT4=;
-        b=7fwSqHpKNhK7qzXe9oNyTNkJIBIw2oZgsLwCyVyq97sbvi/nHoOxg/SgPXX3EhShlb
-         GQ8x1SJgc0ZtH5U52tiCeMN5hwtCto1b0EK13fh1HRgMPQw0Ok/cyC5i8bwEbi/HnTCL
-         bpoM0h0z+XKX097CHR/gFJC8iK+nhqjCQ6Gqvi0QMV3mEDp6XYsYFTs9jRFDb+e5gdUI
-         WeEvpFjLMCTPmYbEpxrJX4rFSjQ9bMtwLM5C86nNMdu4upyOArAiuZAHiYPvbiRtnOv6
-         dNpZPxugXaHuqYcDvhdkv+lA4fJJrbx3jzrdJwvaof985RZJrnSbN7njWTcx3jPLp/wS
-         6FEg==
-X-Gm-Message-State: ACgBeo0CQVL0eEcYUg5ql5JAbX4IcdPKpREB+9fqtz34+fd0B8vknxL9
-        iwEGzWJmkm9tCEO4zEqZNRn/0t3B1brCKP0IsSs=
-X-Google-Smtp-Source: AA6agR4AgzQzC7Ec26xU8Xdd3LO5LAt4FVM3x6beEWkiuAGReSYSVbm6ydAFwrTFMcKIwg4ZhXuZtA==
-X-Received: by 2002:a05:6214:27ca:b0:476:c754:6288 with SMTP id ge10-20020a05621427ca00b00476c7546288mr26008634qvb.54.1660186313920;
-        Wed, 10 Aug 2022 19:51:53 -0700 (PDT)
-Received: from ?IPV6:2600:4040:2036:c00:c070:f2e9:e1e5:7d17? ([2600:4040:2036:c00:c070:f2e9:e1e5:7d17])
-        by smtp.gmail.com with ESMTPSA id t25-20020ac87399000000b00342f80223adsm877426qtp.89.2022.08.10.19.51.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Aug 2022 19:51:52 -0700 (PDT)
-Message-ID: <499c8b49-a09e-e775-3242-13d37a13877e@gmail.com>
-Date:   Wed, 10 Aug 2022 22:51:51 -0400
+        with ESMTP id S233747AbiHKC62 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Aug 2022 22:58:28 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1357488DEA;
+        Wed, 10 Aug 2022 19:58:22 -0700 (PDT)
+X-UUID: 13fa66fbd5064fb4bf6ef72373fceb16-20220811
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=e5yTUFYEnBr3npJrCXzl+sChLO/A0Il8k7OnI7Xpsxk=;
+        b=N4hQdygMbmZwD7H1tD+JTlUpHNpQZiZbBnMTlgyYPuzr2p5UBuoLIKVm47dTzqwiqTQvYbcLMAoxvVOul0I8gxyMThM8XLsp5aFKOWEQ02gslYHR4Wxs78Ta6qUfeXHln1zub+5q0FaScFNJUBzqmkpTtDSMC4GaSihAaqgbS/A=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.9,REQID:9e704666-de8c-45b8-8720-268058ac9118,OB:0,LO
+        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_H
+        am,ACTION:release,TS:0
+X-CID-META: VersionHash:3d8acc9,CLOUDID:fd077cae-9535-44a6-aa9b-7f62b79b6ff6,C
+        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
+        ,Bulk:nil,QS:nil,BEC:nil,COL:0
+X-UUID: 13fa66fbd5064fb4bf6ef72373fceb16-20220811
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 892676233; Thu, 11 Aug 2022 10:58:16 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 11 Aug 2022 10:58:14 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 11 Aug 2022 10:58:14 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        MandyJH Liu <mandyjh.liu@mediatek.com>
+CC:     <iommu@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v6 00/20] Add driver nodes for MT8195 SoC
+Date:   Thu, 11 Aug 2022 10:57:53 +0800
+Message-ID: <20220811025813.21492-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH v2 1/2] ARM: msm8960: Rename cxo_board to cxo-board and
- add alias
-Content-Language: en-US
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, david@ixit.cz, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-References: <20220808234723.5184-2-guptarud@gmail.com>
- <20220809000300.6384-1-guptarud@gmail.com> <YvQMyQLohqcc8Fug@ripper>
-From:   Rudraksha Gupta <guptarud@gmail.com>
-In-Reply-To: <YvQMyQLohqcc8Fug@ripper>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_CSS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,23 +70,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
- > Clock and dts patches goes through two different paths towards mainline,
+Add driver nodes for MT8195 SoC.
 
- > so they should be separated.
+---
+v5 -> v6:
+  - rebased on linux-next/next-20220809
+  - update the if/else condition comment in iommu.yaml
+  - some v5 patches are corrupted caused by extra line wrapping
 
-Gotcha, thanks. I will do that.
+v4 -> v5:
+  - rebased on linux-next/next-20220802
+  - fix indentation in scpsys.yaml
+  - rewrite if/else condition for infra iommu in iommu.yaml
+  - remove unused clock from infra iommu node
 
+v3 -> v4:
+  - remove unit address of power-controller node name from v3 scpsys bindings
+  - v3 patchset 7 and v3 patchset 6 are combined as v4 patchset 6
+  - add more commit descriptions for updating mt81xx scpsys node 
 
- > This breaks compatibility with existing DTB files.
+v2 -> v3:
+  - fix dsp node name
+  - add descriptions for iommu interrupts
+  - limit the levels of power domain nodes
+  - update maintainer list of power controller yaml
+  - support naming power controller node with unit address
+  - add SoC specific compatible string to scpsys yaml
 
- > What you probably want is to make sure that any clocks with parent name
+v1 -> v2:
+  - add new dt-bindings: mfd/mediatek,scpsys.yaml
+    - update compatible string for mt81xx scpsys nodes
+  - apply comments for yaml files: iommu, smi-common, and power-controller
+  - apply comments for dts nodes: power domain, vdosys0. 
+  - apply comments for commit message of watchdog, i2c, and smi-common. 
+  - add review-by tags
 
- > of "cxo", should have a .fw_name = "cxo", then you can make a
+---
+Jason-JH.Lin (2):
+  arm64: dts: mt8195: Add gce node
+  arm64: dts: mt8195: Add display node for vdosys0
 
- > phandle-based reference in DT and these global names doesn't matter (and
+Tinghan Shen (14):
+  dt-bindings: iommu: mediatek: Increase max interrupt number
+  dt-bindings: memory: mediatek: Update condition for mt8195 smi node
+  dt-bindings: power: mediatek: Refine multiple level power domain nodes
+  dt-bindings: power: mediatek: Support naming power controller node
+    with unit address
+  dt-bindings: power: mediatek: Update maintainer list
+  dt-bindings: power: mediatek: Add bindings for MediaTek SCPSYS
+  arm64: dts: mediatek: Update mt81xx scpsys node to align with
+    dt-bindings
+  arm64: dts: mt8195: Disable watchdog external reset signal
+  arm64: dts: mt8195: Add vdosys and vppsys clock nodes
+  arm64: dts: mt8195: Add power domains controller
+  arm64: dts: mt8195: Add spmi node
+  arm64: dts: mt8195: Add scp node
+  arm64: dts: mt8195: Add audio related nodes
+  arm64: dts: mt8195: Add iommu and smi nodes
 
- > in the end we can remove this board_clk from the driver).
+Trevor Wu (1):
+  arm64: dts: mt8195: Specify audio reset controller
 
-Ah, I see. If I understand correctly, it should be something like this, 
-right?
-https://github.com/torvalds/linux/blob/master/drivers/clk/qcom/gcc-msm8996.c#L169-L172
+Tzung-Bi Shih (1):
+  arm64: dts: mt8195: Disable I2C0 node
+
+YC Hung (1):
+  arm64: dts: mt8195: Add adsp node and adsp mailbox nodes
+
+YT Lee (1):
+  arm64: dts: mt8195: Add cpufreq node
+
+ .../bindings/iommu/mediatek,iommu.yaml        |   29 +-
+ .../mediatek,smi-common.yaml                  |   11 +-
+ .../bindings/mfd/mediatek,mt8195-scpsys.yaml  |   67 ++
+ .../power/mediatek,power-controller.yaml      |  137 +--
+ arch/arm64/boot/dts/mediatek/mt8167.dtsi      |    3 +-
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |    3 +-
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |    3 +-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |    3 +-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 1054 ++++++++++++++++-
+ 9 files changed, 1176 insertions(+), 134 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt8195-scpsys.yaml
+
+-- 
+2.18.0
+
