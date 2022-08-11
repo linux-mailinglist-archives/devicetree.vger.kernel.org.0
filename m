@@ -2,92 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95C8E5907D1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 23:08:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8767F5907D3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 23:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236574AbiHKVIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 17:08:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42072 "EHLO
+        id S236585AbiHKVID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 17:08:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236418AbiHKVHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 17:07:44 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA46398C9C
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 14:07:02 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id h21-20020a17090aa89500b001f31a61b91dso6519459pjq.4
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 14:07:02 -0700 (PDT)
+        with ESMTP id S236583AbiHKVHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 17:07:47 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 713D398D01
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 14:07:04 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id d16so17937089pll.11
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 14:07:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:to:from:cc
          :in-reply-to:subject:date:from:to:cc;
-        bh=DVb1z5kbBA1ujjv+xteyYloR7hoULhfIuEQt2vBqJwI=;
-        b=pNYmvDNysYVnE4y5bj1U2pPQKZhnczdw1WnTDfu9aNj1/nEdGinf042LPTih/OaFlE
-         V4h26+g7TJFlK35T0cyNlZpbfK3Mv0wvUrHmErAczQbmnLnnGvLm0Hdy7G2rbWhAY99N
-         7gIzo5l+Uz9j7uJ61XUPc3O1uP3nlXc4IEic3n/xnfDrqfeKp78nopWEkgHXFENdgQ10
-         17Pt9pzKV1a38XwgA1ZwNNdJR+L5JYcwLBZhYaCpHBw5j+E4XTkEUtGAaiWdYIMSE6WC
-         kcqJCw04jzdvuHwAd4Nr0qPOaknSJVD+aJ8gyRtaul0GqOGYqX8mP6LvqkV3aYssrBIU
-         W1QQ==
+        bh=JrHUTkJyQWr1jJIPcxndllMl3ULcPf+kBB+IZh69boA=;
+        b=QyByDNzU0LLWSP3pCHqJuo1AUxkE432ctIaCVFEaqbh6KSme27t2bncc2YpexJzZZN
+         D6Gzxaxx7+JmrmOshKQv5Wiakv025CZocwBVBjYGpOwwmNdh0ZkXePLRcn9mihdwd3bV
+         JYriUdKzNglB+n7gKMAfrwGGEaJuS6+aZ3+oaIrtoUIo3GWbRjtnTVOmZTvb4w12LhVW
+         1kWtv3jiY/xu+rOKc6Iiv5dznAh21pBsLZ0z4meReseuplORjfdbWe8XFzatF1301QGT
+         PGzPxWxX73FVuCnSeN8l9iEU2iLi1i753hcqWHCKNi/F7nOibf+/oKShN+7FyEvIQqrK
+         69qA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:to:from:cc
          :in-reply-to:subject:date:x-gm-message-state:from:to:cc;
-        bh=DVb1z5kbBA1ujjv+xteyYloR7hoULhfIuEQt2vBqJwI=;
-        b=M0U5jsvgFJnQh2MT4wI8jYBQfB/8C9MYROGcLn3wCfVadxLP/P5NB0s2xfxT/07oem
-         Oyg9/HeKXGtMi/INrtulWomP9VCnWE4nHSJoCzJTj9CtswsuD7Io2+facbf2XOCCGFMe
-         t4n8Khr/bTLLs21vKi2/QW8otGiujEGKCVFi/6syE345Mf/4sgmMlv3DWtY8rTCphGl+
-         ZTBBmdl6i8iru7wbOVjRJelUJ780B+U3PkPO3oBxuWCo7qSOhLBYnb0WY7f5IqwF34oq
-         4E7efipQ5WSDrp4d7WcEZWgJQasGK8A9qvFNgJtkedZlSl51f457rt/6pjVJ3tOqZJhD
-         ERFA==
-X-Gm-Message-State: ACgBeo2CQwUyrWV54ZVAlT8bTlUlFBE6faQbZsyIxtSOhcMf7AweX3aI
-        VXjUYeqmR80D9qlTVqtuYkRK+Q==
-X-Google-Smtp-Source: AA6agR721/2w32bRDonI7TCGaPitO08W/FFsdL1xIehUgwWUxXReEgXRnl8nsgo7Emy01/s6+rWZSg==
-X-Received: by 2002:a17:90a:2b42:b0:1f4:fc9a:be32 with SMTP id y2-20020a17090a2b4200b001f4fc9abe32mr10310074pjc.221.1660252015738;
-        Thu, 11 Aug 2022 14:06:55 -0700 (PDT)
+        bh=JrHUTkJyQWr1jJIPcxndllMl3ULcPf+kBB+IZh69boA=;
+        b=Y7Y8Iz5rCazqyDaK+qPiQV5tf53nXZm1Tg21zrtF6ZonVyWEiC73jk++5Z/WosFDlM
+         vwrWcisonRDJSEwdjCmx0Rttghcwh2EfteWqRzjkPHmG4UUWpGzdGs6LD01Uiv1pCPFQ
+         l8/4G/gGBXke8QpR81z0XcAs+mADewPcmqj1ScJBKWQoBRtGh6jYtIWzPtdU104PFV8x
+         Kwdv8/5NmMqxxVdAfvts9GOkohU9KMXR0KbMmOqOXol59A70TiVVTkuqhT2wrddcNIwQ
+         0x3da6Q2LOMxM3loaxCti9adoC2un3ujUkj8GMlQI6CQhGIO51cs8OJtE/mr1RtYOZZR
+         6LoQ==
+X-Gm-Message-State: ACgBeo0FX71thzL8cqe3sSaUKm7jHTaK6A+XORK72NsWNV0Sa10/YxR7
+        BGyimJQwaFyz0y7LjrV4XTzrUA==
+X-Google-Smtp-Source: AA6agR6XAQlEc6RM9lomCPThmIuzbW7YQlUvuKU4lrWhPm22PyZgoIEmGk2m2jQZ59bDV3Rt0+Hb7g==
+X-Received: by 2002:a17:902:8502:b0:16c:c5c5:a198 with SMTP id bj2-20020a170902850200b0016cc5c5a198mr898604plb.88.1660252016890;
+        Thu, 11 Aug 2022 14:06:56 -0700 (PDT)
 Received: from localhost ([50.221.140.186])
-        by smtp.gmail.com with ESMTPSA id y22-20020a170902b49600b0016ee4b0bd60sm107352plr.166.2022.08.11.14.06.55
+        by smtp.gmail.com with ESMTPSA id lj7-20020a17090b344700b001f731a1ed88sm4150322pjb.2.2022.08.11.14.06.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Aug 2022 14:06:55 -0700 (PDT)
-Date:   Thu, 11 Aug 2022 14:06:55 -0700 (PDT)
-X-Google-Original-Date: Thu, 11 Aug 2022 11:35:28 PDT (-0700)
-Subject:     Re: [PATCH v1 0/4] Add HiFive Unmatched LEDs
-In-Reply-To: <20220717110249.GF14285@duo.ucw.cz>
-CC:     emil.renner.berthing@canonical.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        Thu, 11 Aug 2022 14:06:56 -0700 (PDT)
+Date:   Thu, 11 Aug 2022 14:06:56 -0700 (PDT)
+X-Google-Original-Date: Thu, 11 Aug 2022 12:09:15 PDT (-0700)
+Subject:     Re: [PATCH v2] riscv: dts: starfive: correct number of external interrupts
+In-Reply-To: <20220707185529.19509-1-kettenis@openbsd.org>
+CC:     mail@conchuod.ie, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        plr.vincent@gmail.com, bin.meng@windriver.com,
-        aurelien@aurel32.net, w6rz@comcast.net, qiuwenbo@kylinos.com.cn,
-        geert@linux-m68k.org, nerdboy@gentoo.org,
-        jianlong.huang@starfivetech.com, kettenis@openbsd.org,
-        sven.schwermer@disruptive-technologies.com,
-        andy.shevchenko@gmail.com, davidlt@rivosinc.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
+        aou@eecs.berkeley.edu, kernel@esmil.dk, kettenis@openbsd.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
 From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     pavel@ucw.cz
-Message-ID: <mhng-ac0025f9-3572-432f-9e8d-64ef87730b45@palmer-ri-x1c9>
+To:     kettenis@openbsd.org
+Message-ID: <mhng-4117ac1c-2f8c-4011-91df-c920e6ab6aad@palmer-ri-x1c9>
 Mime-Version: 1.0 (MHng)
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 17 Jul 2022 04:02:49 PDT (-0700), pavel@ucw.cz wrote:
-> Hi!
+On Thu, 07 Jul 2022 11:55:28 PDT (-0700), kettenis@openbsd.org wrote:
+> The PLIC integrated on the Vic_U7_Core integrated on the StarFive
+> JH7100 SoC actually supports 133 external interrupts.  127 of these
+> are exposed to the outside world; the remainder are used by other
+> devices that are part of the core-complex such as the L2 cache
+> controller.  But all 133 interrupts are external interrupts as far
+> as the PLIC is concerned.  Fix the property so that the driver can
+> manage these additional interrupts, which is important since the
+> interrupts for the L2 cache controller are enabled by default.
 >
->> This series adds support for the two LEDs on the HiFive Unmatched
->> RISC-V board.
->> 
->> Emil Renner Berthing (4):
->>   leds: pwm-multicolor: Don't show -EPROBE_DEFER as errors
->>   dt-bindings: leds: pwm-multicolor: Add active-low property
->>   leds: pwm-multicolor: Support active-low LEDs
+> Fixes: ec85362fb121 ("RISC-V: Add initial StarFive JH7100 device tree")
+> Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> ---
 >
-> Thank you, applied. Not taking the dts change
+> ChangeLog:
+>
+> v2: - Fix commit message
+>
+>
+>  arch/riscv/boot/dts/starfive/jh7100.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> index 69f22f9aad9d..f48e232a72a7 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
+> @@ -118,7 +118,7 @@ plic: interrupt-controller@c000000 {
+>  			interrupt-controller;
+>  			#address-cells = <0>;
+>  			#interrupt-cells = <1>;
+> -			riscv,ndev = <127>;
+> +			riscv,ndev = <133>;
+>  		};
+>
+>  		clkgen: clock-controller@11800000 {
 
-I took the DTS change (#4) on riscv/for-next.  Thanks!
+Thanks, this is on for-next.
