@@ -2,73 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 098A558FC22
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 14:24:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36EA958FC87
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 14:41:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235162AbiHKMY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 08:24:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59536 "EHLO
+        id S234760AbiHKMlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 08:41:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235026AbiHKMY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 08:24:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA6E19411D;
-        Thu, 11 Aug 2022 05:24:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5654161389;
-        Thu, 11 Aug 2022 12:24:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02690C433C1;
-        Thu, 11 Aug 2022 12:24:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660220665;
-        bh=imOzuUIc7EQ+6p3fVe0hZdP5nW1V/MvoWcIAVWreMKI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lX8rAn5p8GWbniVRQNn+fru2dTZniW/TGmfBD32NoOBdDTCoQ8eI7CLy/NJx5fEzj
-         JN4ZuwzkBpP7+hg8GVbIkcRTyrXcL/7oxomD7gE2ly8TsOcRGqV6H6WK7Z+ZERU4v+
-         qRjkFChxvLxQXxgKx2jInsWBD8/bki2luAISQG/rk+LQk1eL1IvsHnI325BS33iukG
-         UfDkjpD8GndNEZ0WphjXerLbmR5gOKANIw3wJj6sZShV6N7cSn82FgC3lhgGV8eOIq
-         KSdFZxexnY7QQa+TJcr4ECb3524wRtxvt/EjobL9IrhYuGDPQEy0FoyAkCYWgq4U43
-         AsnmGMUgiQalg==
-Date:   Thu, 11 Aug 2022 14:24:21 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        with ESMTP id S231638AbiHKMlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 08:41:10 -0400
+X-Greylist: delayed 418 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 11 Aug 2022 05:41:10 PDT
+Received: from pokefinder.org (pokefinder.org [135.181.139.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3801555BF
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 05:41:09 -0700 (PDT)
+Received: from localhost (dynamic-046-114-180-205.46.114.pool.telefonica.de [46.114.180.205])
+        by pokefinder.org (Postfix) with ESMTPSA id A2272A42806;
+        Thu, 11 Aug 2022 14:34:09 +0200 (CEST)
+Date:   Thu, 11 Aug 2022 14:34:08 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     kewei.xu@mediatek.com
+Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
         linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        corbet@lwn.net
-Subject: Re: [PATCH 5/5] dt-bindings: i2c: qcom,i2c-cci: convert to dtschema
-Message-ID: <YvT09UvCAabej09i@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        leilk.liu@mediatek.com, qii.wang@mediatek.com,
+        liguo.zhang@mediatek.com, caiyu.chen@mediatek.com,
+        housong.zhang@mediatek.com, yuhan.wei@mediatek.com,
+        ryan-jh.yu@mediatek.com, david-yh.chiu@mediatek.com
+Subject: Re: [PATCH v5 1/2] dt-bindngs: i2c: update bindings for mt8188 soc
+Message-ID: <YvT3QLUy8uAhXL9H@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@the-dreams.de>, kewei.xu@mediatek.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
         linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        corbet@lwn.net
-References: <20220802153947.44457-1-krzysztof.kozlowski@linaro.org>
- <20220802153947.44457-6-krzysztof.kozlowski@linaro.org>
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        leilk.liu@mediatek.com, qii.wang@mediatek.com,
+        liguo.zhang@mediatek.com, caiyu.chen@mediatek.com,
+        housong.zhang@mediatek.com, yuhan.wei@mediatek.com,
+        ryan-jh.yu@mediatek.com, david-yh.chiu@mediatek.com
+References: <20220806100249.12375-1-kewei.xu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0P50Fl9kCVCqrS0k"
+        protocol="application/pgp-signature"; boundary="oJ0A9glfvOseagF4"
 Content-Disposition: inline
-In-Reply-To: <20220802153947.44457-6-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220806100249.12375-1-kewei.xu@mediatek.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,42 +56,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---0P50Fl9kCVCqrS0k
+--oJ0A9glfvOseagF4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 02, 2022 at 05:39:47PM +0200, Krzysztof Kozlowski wrote:
-> Convert the Qualcomm Camera Control Interface (CCI) I2C controller to DT
-> schema.  The original bindings were not complete, so this includes
-> changes:
-> 1. Add address/size-cells.
-> 2. Describe the clocks per variant.
-> 3. Use more descriptive example based on sdm845.
+On Sat, Aug 06, 2022 at 06:02:48PM +0800, kewei.xu@mediatek.com wrote:
+> From: Kewei Xu <kewei.xu@mediatek.com>
 >=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add a DT binding documentation for the mt8188 soc.
+>=20
+> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Northern patch applied to for-current, thanks!
+Applied to for-current, thanks!
 
 
---0P50Fl9kCVCqrS0k
+--oJ0A9glfvOseagF4
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmL09PUACgkQFA3kzBSg
-Kbbumw//TC38BvIbLl40+ATY33sH9w9guDGNk3QerypHH3FnlvT0pCY7XaxYPEr9
-qx4/39g3kr2BxwNdnZIQoxbaJKsyQ399plHlzCXXquniJlGuHulX8T1CE4faTKwo
-4vkzZPCMFMZorCNosW9YpCpgO0VOucipzLnvycK4DFJ32e4DE9M0ozIV6nRpE5kw
-0xDTIzjTcZmgzj+up2Zux7x5EmStwnFBSR8/U3izFVonBJYiXdfTAdCA5hJInzDi
-myArCjy2bRqAp0C7ikKtoRpPyr1vDK2B883Ad7Rxe556H20jDVq9m5UkdLqmybcJ
-bGBKpfOk0RQLRpPzMnK+D54f6tcu2k7Qhgnkx9nF/HaSgpR3EtKEy/f3svMJZkAK
-ZuTD52VisOXORd5kMb6uYLc8/6Dnq2IX2IxGsS9h19r5crtKUN0JkojFubk0x3EV
-AkV+69sDO4Gfdy1G8plQZdth7KZmUxcT7xQFjqKAsZdpl3dtEmDrT8yoQEc2RGI2
-L8hUZh8syTIp1Iy6tQObRqJznpnF/aRQd2LzkraaJvGJgLom3E4HFFLgaW8X5Qd0
-nPpx8EAFwj7nxtPvxzNmWv9hEXc8QOVKyAY25SpFmaKIeRO3ILzgNtUJwSqSAMuN
-fvd6VTgN6iTuKIMFvLLhQzSgGjyzgGojEFsWKMV8I1vYU8FHgLA=
-=/CAh
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmL09zsACgkQFA3kzBSg
+KbYntQ//eg9wrHGBn57xXarTYXfwt20eCl5kw8+z+tbQgnnzmjLf6PQgtJO/Vr+9
+z1rXnMu+SUy7rFPhYt5IG5Ph6a+yI3cin2Pmv14xSxC2lWaTJQol3SK1YGxKgzqd
+vAsiBoxGupNteESyHKsk0NLYuzuzC2XrMFnfrFFAnnSPEpZRnRfzYrkHOf8oJbbI
+Z5Zw+ge3FR9z1Qnv+Q2lhWnCechxttWzoCgSNyBOBJmTh/gevjLz/3XFIxcaaXAZ
+UAYSE0vC9uu5zHSle1DMpu+ORNmaUv+cFvmn9gFHhe0Un8SM6EB3vxTQ0mynT9wm
+uJy99KBBWHSGBle7pQSFV5WMSX7pNjf5YizEHm/9glpTy8fop1LZxgBXYz33IOgE
+4518LARC7XnN+qD1rCjR71h05YLlEFa6VW3Y3Ej24qw5zo7U4U2aWKhutswYJpZ7
+857LkJCsz49OZCe3n3qvhpyelajT13jgHPACYaV/9BiiwUFShotOnzbYuEqL40e9
++OEdftfIYX6CJ0Fi+ry3Fm9+smN9Y8txx7dmdsjnYiws+MIkHwR2PTiG/gFt8GYc
+OJPnAK53fGHOlgDF4Zdt4NFijhihnOKSt4LstygrHUsHBwJyYUQF9RhCikGdgwVc
+JusHQKkZZt1Gohi3sCYaCo+6a108mlQwMgOAslJxK7Et//JM1V8=
+=+seE
 -----END PGP SIGNATURE-----
 
---0P50Fl9kCVCqrS0k--
+--oJ0A9glfvOseagF4--
