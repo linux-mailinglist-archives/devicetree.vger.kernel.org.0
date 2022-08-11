@@ -2,149 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8719958F6FD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 06:36:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB87F58F70B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 06:52:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231707AbiHKEg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 00:36:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38234 "EHLO
+        id S233863AbiHKEwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 00:52:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbiHKEg2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 00:36:28 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEB748EBD
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 21:36:25 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id tl27so31464160ejc.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 21:36:25 -0700 (PDT)
+        with ESMTP id S233815AbiHKEwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 00:52:19 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900DF65651
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 21:52:17 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id o3so16046702ple.5
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 21:52:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=wbQAeMQOJ4LfSIWECGQFyUhqjfpSoLI8AfopCaQiJEU=;
-        b=G2Svss+8NtmivkCOl4Bh6T8tY5W084Z2nlXQ31QrJ6LZyKPy2WaINasfEgMBwOxRtb
-         7SFYLbAM+NhjMLdjquQr1/Y6LIZQlP1j/aI+enQPlzLAy7k2QQwB2Q4wDbANkwZGvwOF
-         fsSaXcGgaqc3LSOwBeGoMAMPlhKHKQDl1a6THh7/kek/2AHn0ylR3zV9K61bQ6ecRJ4k
-         WRqJvY6Gnkv+aXANNFxwpWbxaPy1atzV5pOKxDyXdGqv7bqwbyKSCkWyecybU/VTaHoe
-         A3sTBV9vizJ7LfPXsEkOI25uvnog+uhUhnof911XHQB9wHkikqAfkLgsCBIXfiUI2lpr
-         bD6Q==
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc;
+        bh=f9lKlYHVcsMmtqSXgvKZOc7zNWpHzbugb2ZvOggm7+8=;
+        b=S4gcGXoUOmKHDv7mFl6eUlG9J/CJI3jZ30sxu4tI7jxbsBvGExLMnbZKnJivB6YDwh
+         7A69bemlu4GU+2S8fOGcqweOrlqe1X3U7nd+qD7TLdKOOyp90ZKpNcAMnlvVEMqi6d9/
+         vuO50kb2z+nkMJd9lwWR032rWCz8BgRieK1bZGd0hgEUCPkYwiK5tieI70SRir4XPQ5m
+         17UGyABv6pu1/7YyiwBUNMx8Pk3EDi3p7URwERFthkOtIYIxmhdQ+Ew9c39bS3dyR3ik
+         zsBAdWUml+ClfZ1v8bL5gDT4BRfYYiQGijXZ32sOKVQRUX2HtL+cxuNhJp6zgTr8AB6p
+         L1Zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=wbQAeMQOJ4LfSIWECGQFyUhqjfpSoLI8AfopCaQiJEU=;
-        b=MK0SE2NNIvidO4Y2vZmwHjSRyArpAO57LX/rrJvAg+p+9/yL0lJypsq5CwrO6VLrvO
-         oDeXqS451uWcfTwf+p0JsVvz9DOLUXW+nYKBwVmi55DgtWgVFoZs+39QXyYhvroNhyZD
-         h6Py2ex0MjbEYjrmRpBDBP2P1U3/X0rYDFapjdhY1RRD/9ePYf0jwWhOkBbz1hpsd9A0
-         YxddyJdpD8U7eQBXe4mHVYYwlXE27+beCrVb4Syddwi72N9LeNiikhB397tYG6cWXcjf
-         K+3YX2JXhksBUdChvBlQ+VYSlfeFdJR0qJVtZ4m/uwPldgjELxNpK92oKZN7dSK3ik72
-         viaQ==
-X-Gm-Message-State: ACgBeo1cLoPE4ZxkhLYHxIyvx1ISrTBci6CuKgp9Du/WH4OawDuCLHn6
-        OLs2YVp1yl5EgZKwfGAw0imHtSERgNrmubzaYWyedA==
-X-Google-Smtp-Source: AA6agR7nmtkC3H2rGXWkVc5MPJ5csNAZDDyaJhdrIQp6wcJA9xfLEfa8hMO5cs2oGCS5/++TiKn6sJspoXwqiADL1Aw=
-X-Received: by 2002:a17:907:929:b0:731:3bb6:d454 with SMTP id
- au9-20020a170907092900b007313bb6d454mr14771971ejc.96.1660192584299; Wed, 10
- Aug 2022 21:36:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220811040121.3775613-1-bjorn.andersson@linaro.org>
- <20220811040121.3775613-4-bjorn.andersson@linaro.org> <CAKXuJqhWn8bcG3x-xvyJ5-1kGXBVqCEuG31aHNidCqKA81NSqQ@mail.gmail.com>
-In-Reply-To: <CAKXuJqhWn8bcG3x-xvyJ5-1kGXBVqCEuG31aHNidCqKA81NSqQ@mail.gmail.com>
-From:   Steev Klimaszewski <steev@kali.org>
-Date:   Wed, 10 Aug 2022 23:36:13 -0500
-Message-ID: <CAKXuJqiTQxwBdT+ZDkOuRy3+s+XTjWevJr=7+wZN7HKsy6EGbA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm/msm/dpu: Introduce SC8280XP
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc;
+        bh=f9lKlYHVcsMmtqSXgvKZOc7zNWpHzbugb2ZvOggm7+8=;
+        b=gJ9LuamiVHoZ+4XxWgjwzE8JkhEcN4Bh4bz7064vSGa2kOGxRFas5yiwdxoPfH2PXm
+         ayRLdNJKZe3jb8/90jgulG4/iJVsFs+nxTfh/LYJZ+DGADFMrHyjlKzrH1H2U+9mnf9a
+         BECe33q+UtkTLMuHBgEGV/jHd1JztEfr9gebVUDoO0aezJx7U9SS60fG0bdwuyD/xLb6
+         iOf9USAn7Q5eHwYXA1fRuIAiBEAHUN8rAiHMj5uf50P0SPek2FNeXaH0r8mvgKwFbrcc
+         KkKJAqPdDzEYwNUwAkkbIUCwPD5R1La3BEIDY/L73+eoV7JzCY3u8ciBv6Fq7BxJFQZr
+         HcEg==
+X-Gm-Message-State: ACgBeo17vUmw0xIZ5MO3bOK8vPsWBDpktmjly8XaoHnytHerbsgZsTNF
+        SowaGw4LJVYFCYtE7ExRMzYv8/OOCcYXVQ==
+X-Google-Smtp-Source: AA6agR49u3UFrXcLzjikkseLWSPFxFzGbnFqnrRqM5nDSGc27oRG4AhuNkUD/YKHXYE+RICXLuszxw==
+X-Received: by 2002:a17:903:1207:b0:170:96d4:ac1d with SMTP id l7-20020a170903120700b0017096d4ac1dmr20466454plh.11.1660193536910;
+        Wed, 10 Aug 2022 21:52:16 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id ok3-20020a17090b1d4300b001f23db09351sm2615106pjb.46.2022.08.10.21.52.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Aug 2022 21:52:16 -0700 (PDT)
+Date:   Wed, 10 Aug 2022 21:52:16 -0700 (PDT)
+X-Google-Original-Date: Wed, 10 Aug 2022 21:52:13 PDT (-0700)
+Subject:     Re: [PATCH v7 0/4] riscv: implement Zicbom-based CMO instructions + the t-head variant
+In-Reply-To: <20220706231536.2041855-1-heiko@sntech.de>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        wefu@redhat.com, guoren@kernel.org, cmuellner@linux.com,
+        philipp.tomsich@vrull.eu, Christoph Hellwig <hch@lst.de>,
+        samuel@sholland.org, atishp@atishpatra.org, anup@brainfault.org,
+        mick@ics.forth.gr, robh+dt@kernel.org, krzk+dt@kernel.org,
+        devicetree@vger.kernel.org, drew@beagleboard.org,
+        rdunlap@infradead.org, heiko@sntech.de
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     heiko@sntech.de
+Message-ID: <mhng-2f62428c-544a-4908-a91d-fb8788ae67b3@palmer-mbp2014>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 10, 2022 at 11:28 PM Steev Klimaszewski <steev@kali.org> wrote:
+On Wed, 06 Jul 2022 16:15:32 PDT (-0700), heiko@sntech.de wrote:
+> This series is based on the alternatives changes done in my svpbmt series
+> and thus also depends on Atish's isa-extension parsing series.
 >
-> Hi Bjorn,
+> It implements using the cache-management instructions from the  Zicbom-
+> extension to handle cache flush, etc actions on platforms needing them.
+>
+> SoCs using cpu cores from T-Head like the Allwinne D1 implement a
+> different set of cache instructions. But while they are different,
+> instructions they provide the same functionality, so a variant can
+> easly hook into the existing alternatives mechanism on those.
 >
 >
-> On Wed, Aug 10, 2022 at 10:58 PM Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > The Qualcomm SC8280XP platform contains DPU version 8.0.0, has 9
-> > interfaces, 2 DSI controllers and 4 DisplayPort controllers. Extend the
-> > necessary definitions and describe the DPU in the SC8280XP.
-> >
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> >
-> > Note that MSM_DP_CONTROLLER_3 is also defined in the DP series and as such a
-> > trivial conflict will occur when merging the latter of the two series.
-> >
-> >  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    | 211 ++++++++++++++++++
-> >  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   1 +
-> >  .../gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.c |  18 ++
-> >  .../gpu/drm/msm/disp/dpu1/dpu_hw_interrupts.h |   3 +
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_mdss.h   |   2 +
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   1 +
-> >  drivers/gpu/drm/msm/msm_drv.h                 |   1 +
-> >  drivers/gpu/drm/msm/msm_mdss.c                |   2 +
-> >  8 files changed, 239 insertions(+)
-> >
-> <snip>
-> >
-> > diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
-> > index b3689a2d27d7..5978c6e26a1e 100644
-> > --- a/drivers/gpu/drm/msm/msm_drv.h
-> > +++ b/drivers/gpu/drm/msm/msm_drv.h
-> > @@ -55,6 +55,7 @@ enum msm_dp_controller {
-> >         MSM_DP_CONTROLLER_0,
-> >         MSM_DP_CONTROLLER_1,
-> >         MSM_DP_CONTROLLER_2,
-> > +       MSM_DP_CONTROLLER_3,
-> >         MSM_DP_CONTROLLER_COUNT,
-> >  };
-> >
-> This seems to also be part of
-> https://lore.kernel.org/r/20220810040745.3582985-6-bjorn.andersson@linaro.org
-> (but only th msm_drv.h hunk
-Sorry, wrong copy buffer - it's part of this patchset -
-https://lore.kernel.org/all/20220810035013.3582848-4-bjorn.andersson@linaro.org/
+> An ongoing discussion is about the currently used pre-coded
+> instructions. Palmer's current thinking is that we should wait
+> until the relevant instructions have landed in binutils.
+>
+> The main Zicbom instructions are in toolchains now and at least
+> Debian also carries a binutils snapshot with it, but the T-Head
+> variant still uses pre-coded instructions for now.
+>
+> The series sits on top of my svpbmt fixup series, which
+> for example includes the conversion away from function pointers
+> for the check-functions.
+>
+>
+> It also uses my nops-series to shorten multiple nop statements:
+> https://lore.kernel.org/r/20220607143059.1054074-1-heiko@sntech.de
+>
+>
+> A new dma-noncoherent property was added for the devicetree-specification
+> and dt-schema in:
+> - https://www.spinics.net/lists/devicetree-spec/msg01053.html
+> - https://github.com/devicetree-org/dt-schema/pull/78
+>
+> The dtschema-patch was already merged and patch1 in this series
+> got a reviewed-by from Rob, so I guess that new property should be
+> ok to use.
+>
+> changes in v7:
+> - add recently received review-tags
+> - fix wrong rv32 mabi when testing for Zicbom in Kconfig
+>
+> changes in v6:
+> - add recently received review-tags
+> - adapt non-coherent patch subject as suggested by Christoph Hellwig
+>
+> changes in v5:
+> - beautify of_dma_is_coherent as suggested by Christoph Hellwig
+> - WARN_TAINT when ARCH_DMA_MINALIGN smaller than riscv,cbom-block-size
+>   (similar to how arm64 does this)
+> - add a function to track if non-coherent handling is available
+> - WARN_TAINT if a device is non-coherent but no non-coherent handling
+> - use clean instead of inval in arch_sync_dma_for_device:DMA_FROM_DEVICE
+>   hopefully I understood
+>     https://lore.kernel.org/linux-arm-kernel/20220610151228.4562-1-will@kernel.org/T/
+>   correctly in this
+>
+> changes in v4:
+> - modify of_dma_is_coherent() also handle coherent system
+>   with maybe noncoherent devices
+> - move Zicbom to use real instructions
+> - split off the actual dma-noncoherent code from the Zicbom
+>   extension
+> - Don't assumes devices are non-coherent, instead default to
+>   coherent and require the non-coherent ones to be marked
+> - CPUFEATURE_ZICBOM instead of CPUFEATURE_CMO
+> - fix used cache addresses
+> - drop some unused headers from dma-noncoherent.c
+> - move unsigned long cast when calling ALT_CMO_OP
+> - remove unneeded memset-0
+> - define ARCH_DMA_MINALIGN
+> - use flush instead of inval in arch_sync_dma_for_cpu()
+> - depend on !XIP_KERNEL
+> - trim some line lengths
+> - improve Kconfig description
+>
+> changes in v3:
+> - rebase onto 5.19-rc1 + svpbmt-fixup-series
+> - adapt wording for block-size binding
+> - include asm/cacheflush.h into dma-noncoherent to fix the
+>   no-prototype error clang seems to generate
+> - use __nops macro for readability
+> - add some received tags
+> - add a0 to the clobber list
+>
+> changes in v2:
+> - cbom-block-size is hardware-specific and comes from firmware
+> - update Kconfig name to use the ISA extension name
+> - select the ALTERNATIVES symbol when enabled
+> - shorten the line lengths of the errata-assembly
+>
+> Heiko Stuebner (4):
+>   of: also handle dma-noncoherent in of_dma_is_coherent()
+>   dt-bindings: riscv: document cbom-block-size
+>   riscv: Add support for non-coherent devices using zicbom extension
+>   riscv: implement cache-management errata for T-Head SoCs
+>
+>  .../devicetree/bindings/riscv/cpus.yaml       |   5 +
+>  arch/riscv/Kconfig                            |  31 +++++
+>  arch/riscv/Kconfig.erratas                    |  11 ++
+>  arch/riscv/Makefile                           |   4 +
+>  arch/riscv/errata/thead/errata.c              |  20 ++++
+>  arch/riscv/include/asm/cache.h                |   4 +
+>  arch/riscv/include/asm/cacheflush.h           |  10 ++
+>  arch/riscv/include/asm/errata_list.h          |  59 ++++++++-
+>  arch/riscv/include/asm/hwcap.h                |   1 +
+>  arch/riscv/kernel/cpu.c                       |   1 +
+>  arch/riscv/kernel/cpufeature.c                |  24 ++++
+>  arch/riscv/kernel/setup.c                     |   2 +
+>  arch/riscv/mm/Makefile                        |   1 +
+>  arch/riscv/mm/dma-noncoherent.c               | 112 ++++++++++++++++++
+>  drivers/of/address.c                          |  17 +--
+>  15 files changed, 293 insertions(+), 9 deletions(-)
+>  create mode 100644 arch/riscv/mm/dma-noncoherent.c
 
->
-> >
-> > diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
-> > index e13c5c12b775..7c391fab6263 100644
-> > --- a/drivers/gpu/drm/msm/msm_mdss.c
-> > +++ b/drivers/gpu/drm/msm/msm_mdss.c
-> > @@ -208,6 +208,7 @@ static int msm_mdss_enable(struct msm_mdss *msm_mdss)
-> >                 writel_relaxed(0x420, msm_mdss->mmio + UBWC_STATIC);
-> >                 break;
-> >         case DPU_HW_VER_600:
-> > +       case DPU_HW_VER_800:
-> >                 /* TODO: 0x102e for LP_DDR4 */
-> >                 writel_relaxed(0x103e, msm_mdss->mmio + UBWC_STATIC);
-> >                 writel_relaxed(2, msm_mdss->mmio + UBWC_CTRL_2);
-> > @@ -445,6 +446,7 @@ static const struct of_device_id mdss_dt_match[] = {
-> >         { .compatible = "qcom,sc7180-mdss" },
-> >         { .compatible = "qcom,sc7280-mdss" },
-> >         { .compatible = "qcom,sc8180x-mdss" },
-> > +       { .compatible = "qcom,sc8280xp-mdss" },
-> >         { .compatible = "qcom,sm8150-mdss" },
-> >         { .compatible = "qcom,sm8250-mdss" },
-> >         {}
-> > --
-> > 2.35.1
-> >
-> -- steev
+Thanks, this is on for-next.  I had to fix up a few things, nothing big 
+but I did end up making Zicbom depend on MMU -- that's probably not 
+strictly necessary, but it looks like the dma_noncoherent stuff pulls in 
+some MMU dependencies.  Since the only hardware that has Zicbom also has 
+an MMU I figured it's OK for now, but happy to take an improvement if 
+someone has one.
+
+Since there's a new extension it also requires updating sparse, I sent a 
+patch (linked in the merge commit).
