@@ -2,94 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 669EF58FEBE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 17:04:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A20858FEDD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 17:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234676AbiHKPEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 11:04:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50852 "EHLO
+        id S235278AbiHKPKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 11:10:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234070AbiHKPE3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 11:04:29 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 983092B242;
-        Thu, 11 Aug 2022 08:04:28 -0700 (PDT)
-Received: by mail-qk1-f172.google.com with SMTP id b2so936683qkh.12;
-        Thu, 11 Aug 2022 08:04:28 -0700 (PDT)
+        with ESMTP id S235544AbiHKPKq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 11:10:46 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D15A25C76
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 08:10:44 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id z6so18504821lfu.9
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 08:10:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=ythLCoVb9L2vBawwAE87aN65NfOERO7MePsawDGE0HM=;
+        b=GpHMp+mUorkB7eVPzZYP3xQ08kbw0mkr0pImGlClMbek72EeegLNz+nhuMZOo7wuLu
+         qzOjPuzyDt/Y/ThaKW3KFd16H+SO0VVDwWvTJKnr73a1nhQo8fQr0LvCzR+VBl1QL9f6
+         m1xSxv7/TpzHVngyUuhfrCYcVrAK0M2o8pR9d67WHzKPntTsGTIjYLMSd2BMshgaNv7f
+         ZwfuvnLKFxkSo6EY4u84KS6jhrXCMD1PO9/uETlCO0Tac3Ey02V40jeHKh4uN13U3XOU
+         3gsVNo/HiWRRtRqs/cJtjtlwzh93ZwtURmiGfAm95rmKR13v4hPOrhsG13yhr0GvZotH
+         SfTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=lm785/4LPbs1NDnlAeewo858fZRcKAan2W90C0EIZ80=;
-        b=IIRxhIa7Ibb07sMCowGUMxUN25XGxDDVCvYNGSQyVPtz/0oyWam40Y2tHcJRyWV52Y
-         qXnsS9DHCDS0ekg8oDW7U6vuqZqVRxXIx2FGtqlwZzCg122MqbnUHEqzeJ8yVUlVnBq9
-         u200bWqXZTuRnU6AN093dRCnZp92jhuwH0YS4pOGx09bFM+j2duPpOW5oSoFCs4XOiTA
-         3RVmTu70KtZVHimJVtYbsplBNmyy/c3b/SIxYo6JUuzrqW5ZTp/5yZff8WIWqvj+f4zI
-         5QrmbeSjPt2Dwf4IgJiOez99k31mArTI34qzyt0Z77TJsihnuaw6YBOeYuMkrc/y0llF
-         IinQ==
-X-Gm-Message-State: ACgBeo0GO3WyXD0sC9IXZdwjONtzfZFzYbXurmIAas4yobHxKq+3owSI
-        oLL4FqlwIniSj2TGUnP0XUQQ9cDvm2mSAU01
-X-Google-Smtp-Source: AA6agR4+LzpsWWc5e02gdgNaUU33K68XRYMCmYfc0l51PVz2pc6hgTX/ocBfO6Ll6DELm8OFfTHycA==
-X-Received: by 2002:a05:620a:4611:b0:6b5:fefb:5fb5 with SMTP id br17-20020a05620a461100b006b5fefb5fb5mr24924795qkb.71.1660230267500;
-        Thu, 11 Aug 2022 08:04:27 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id m18-20020a05620a291200b006b5e45ff82csm1159578qkp.93.2022.08.11.08.04.27
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=ythLCoVb9L2vBawwAE87aN65NfOERO7MePsawDGE0HM=;
+        b=UMrnv9NA5OFhF2Y17WN9bzX8S+S5jbQLytbM+zRMmERacOnrBOa6gzdKdxyC7XiGTP
+         yXIHmYuygID/NcWcEvcTFWzqb0YWr/nHaN73A0Obr7qFuoqA0pUBeUUgNl3L+NYlzh/V
+         WyC7qg+UWV/QS6T5+cGncV34R6aHa3CCFupr+ua4y5Cdcz8RSHvxDK9Pl/2o499u0anw
+         Y0nv+ZPQDrZaIR5/a21hW4Wnr+YRUxGVZBqrCF0sTAnxm3qAJ3bV1d/FjhMTuncmnSOS
+         ZHfaFH81F6Ds66oS7fZPwrCurzZHXxO9DwOpdMV/o3PAjlbsaLNY9ipv35uv1lb4zUCs
+         si5w==
+X-Gm-Message-State: ACgBeo2+NAW93ndKLFKk7M6b3v73YkJpiIjSoFCTNeIJdgo2WmeWS5T6
+        CWUEs8Wz9cy1TCQe2ZUcTmdJLA==
+X-Google-Smtp-Source: AA6agR7oR08zhJzkZ8rf5MkbjaIHuaVnR+OLR5jaO9Pq5H4A3inAXP8eN7ZQLCJOAcsPhXzgtxQT9w==
+X-Received: by 2002:a05:6512:2316:b0:48a:f2e3:be97 with SMTP id o22-20020a056512231600b0048af2e3be97mr10845161lfu.383.1660230642636;
+        Thu, 11 Aug 2022 08:10:42 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id w12-20020a05651234cc00b0048137a6486bsm726277lfr.228.2022.08.11.08.10.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Aug 2022 08:04:27 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id 123so28679814ybv.7;
-        Thu, 11 Aug 2022 08:04:27 -0700 (PDT)
-X-Received: by 2002:a05:6902:100a:b0:676:ed53:25b0 with SMTP id
- w10-20020a056902100a00b00676ed5325b0mr27586122ybt.365.1660230266927; Thu, 11
- Aug 2022 08:04:26 -0700 (PDT)
+        Thu, 11 Aug 2022 08:10:42 -0700 (PDT)
+Message-ID: <01c832c4-6631-4865-30b3-7f060e27a7ff@linaro.org>
+Date:   Thu, 11 Aug 2022 18:10:36 +0300
 MIME-Version: 1.0
-References: <20220722141506.20171-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220722141506.20171-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220722141506.20171-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 11 Aug 2022 17:04:15 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUdMHvYiC+aL-W6F9DjZycY5LCjMpJdCJBdyzUi41ONFw@mail.gmail.com>
-Message-ID: <CAMuHMdUdMHvYiC+aL-W6F9DjZycY5LCjMpJdCJBdyzUi41ONFw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] soc: renesas: Identify RZ/Five SoC
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [EXT] Re: [PATCH v4 1/3] dt-bindings: gpio: Add imx scu gpio
+ driver bindings
+Content-Language: en-US
+To:     Shenwei Wang <shenwei.wang@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>
+References: <20220811124135.95299-1-shenwei.wang@nxp.com>
+ <20220811124135.95299-2-shenwei.wang@nxp.com>
+ <db3020ef-7321-e171-b5bc-9c1795c2cced@linaro.org>
+ <AM9PR04MB82741882E177387DB95AE3B589649@AM9PR04MB8274.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <AM9PR04MB82741882E177387DB95AE3B589649@AM9PR04MB8274.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 22, 2022 at 4:15 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add support for identifying the (R9A07G043) RZ/Five SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2
-> * Replaced RISCV -> RISCV
-> * Reused "renesas,r9a07g043-sysc" string for RZ/Five detection
+On 11/08/2022 17:52, Shenwei Wang wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Thursday, August 11, 2022 9:36 AM
+>> To: Shenwei Wang <shenwei.wang@nxp.com>; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; linus.walleij@linaro.org; brgl@bgdev.pl;
+>> shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
+>> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>
+>> Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
+>> gpio@vger.kernel.org; linux-arm-kernel@lists.infradead.org; imx@lists.linux.dev
+>> Subject: [EXT] Re: [PATCH v4 1/3] dt-bindings: gpio: Add imx scu gpio driver
+>> bindings
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
+>>> b/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
+>>> new file mode 100644
+>>> index 000000000000..a1b024cddc97
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
+>>> +description: |
+>>> +  This module provides the standard interface to control the
+>>> +  resource pins in SCU domain on i.MX8 platforms.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - fsl,imx8qxp-sc-gpio
+>>
+>> Now the filename does not match compatible. Use the same compatible as
+>> filename.
+> 
+> The subnodes under fsl,scu.yaml have their own naming rule. For example, the watchdog
+> compatible is "fsl,imx-sc-wdt", but the file name is "fsl,scu-wdt.yaml". 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.1.
+The other files have for example fsl,imx-sc-wdt, so they match compatible.
 
-Gr{oetje,eeting}s,
+> Is the filename required 
+> to match its compatible?
 
-                        Geert
+Yes, that's the convention. Otherwise people tend to name the files in
+whatever way they like...
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
