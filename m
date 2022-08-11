@@ -2,76 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61FD258F7DC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 08:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EC6958F809
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 09:02:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234265AbiHKGqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 02:46:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56164 "EHLO
+        id S234298AbiHKHCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 03:02:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbiHKGqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 02:46:50 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5714B1AF25
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 23:46:49 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id e15so24403191lfs.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 23:46:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=Ze5ZL6mhZA/038hc0sNqOpFFP77DQHoANtqwTyyYtwo=;
-        b=RY/pf8JiaZcQkcC+P2qhQc18MJw/HJn+xkkoDUToY9iW1xgqkbfMZGFlUormKUpqrK
-         fySHe77hclKqS7plk8bEuO2w5dMq+nzVrXi2vkwToJ7nNjC/wTsQxXWnwwo7q/2zjtLY
-         K/QCdeHkzzzVl4KNzUENfRuvntkgrjAYNyyZ9GgQe1zFXzf3gL4Q6VhrH4KRMwq3dBZ6
-         K1axPKKBY6Dtruxw0COScRdQIVkOfxsIZjoQSKBVqWpMBqpuknzewebRrT6+POoysB1d
-         dk0fYROZ0+Yblz8e7/Qeqq7TIVMdCALvJ4P2o6LsOyqWFIub1sKb1uBPJJ6orVJlazed
-         krYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=Ze5ZL6mhZA/038hc0sNqOpFFP77DQHoANtqwTyyYtwo=;
-        b=BFe7ETMxwE4s44fqwZrWuSM733uC/8tM9CnZAHBqOeLiINxf/YcF0WVmeMNkil41Gu
-         jM1B7RbHaFJNiHOQW73xUlPtxQFuSjbszsNiUzrnpZpmIBw2a6ZqSHtRbeORysfQVC61
-         ioX0nxg2Nln/JBm29zSEGwqSbL9/cjlwQR+2uzSVMmoqH9G8tAfVhmhO0Au5MjyCZCWc
-         g6SMVmqhykS2O7SvIwjpKOSHQhbXw3AYIb6ZwFYKD4nZfsIjkvWIONBxhes69rRGJ2U7
-         rl+0FRjPUvUwfdYArgGSBWwt+9mT5KWvDDj1jyLUuHHNgvyE3b3Jn2K1nkovsrf6yCB8
-         T1YA==
-X-Gm-Message-State: ACgBeo1P4IgY9Nq/k9iIEbXuNzvbxQQ8jr1vfz6RoK1bBSdmQDVrE9p6
-        F2T35ZmyM75CsM6dlhY80ZpnyQ==
-X-Google-Smtp-Source: AA6agR7URPCr/SYdpLGcqmjqS9vKnv4ta1Zr4nypW+uAe3yWDyfZdPtxX9/38lQaUQqi5eAYJnh4eg==
-X-Received: by 2002:a05:6512:688:b0:48b:967a:8266 with SMTP id t8-20020a056512068800b0048b967a8266mr8002229lfe.243.1660200407731;
-        Wed, 10 Aug 2022 23:46:47 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id j24-20020ac253b8000000b0048b28acab8csm600703lfh.64.2022.08.10.23.46.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Aug 2022 23:46:47 -0700 (PDT)
-Message-ID: <f6fb0920-facf-05b0-9901-e23df71d3175@linaro.org>
-Date:   Thu, 11 Aug 2022 09:46:46 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 2/2] dt-bindings: arm,versatile-sysreg: Convert to DT
+        with ESMTP id S233931AbiHKHB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 03:01:59 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AB4B41D1A;
+        Thu, 11 Aug 2022 00:01:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5413DB81F79;
+        Thu, 11 Aug 2022 07:01:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B76B9C433D6;
+        Thu, 11 Aug 2022 07:01:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660201316;
+        bh=0LegDg7v4fhM4AuETmhue5pPKRXRoWa9Os6m6U3leVk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JDLwtv923XLawqePcp/VWanKefYB8r8l7P57dxcFStR9MG78QOnnv0TvfCCCbG0a9
+         98RPu2VUgzM4t75DZo+YBXAPqmuiQhz5j2PCDMnOW4w+PPZt39ATf7wo+adGM/VLC7
+         Juqsrokr+L2iSObcRhYYBNDRrBvAZVh878F5U1S+6X0oUObP6j757Nq8aa+7rcjdUv
+         I293YWSd+yC5/TCnXsacUaHHFtEAdi9UsH5lmKIxIJkKtHNpS7W36e8vYBGo3ORfRE
+         467WVSyBtYfj9JwCzgrOD7A/0gaIZ/GnK+Ri7lKjflWO+SofeqxJ9Xe4qAyaQ+Jmpz
+         VwKrclwl8BmqA==
+Date:   Thu, 11 Aug 2022 08:01:49 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: mfd: aspeed,ast2x00-scu: Convert to DT
  schema format
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220810160341.51995-1-robh@kernel.org>
- <20220810160341.51995-3-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220810160341.51995-3-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Message-ID: <YvSpXfA8o+3FfiPb@google.com>
+References: <20220810161635.73936-1-robh@kernel.org>
+ <20220810161635.73936-3-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220810161635.73936-3-robh@kernel.org>
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,17 +61,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2022 19:03, Rob Herring wrote:
-> Convert the arm,versatile-sysreg binding to DT schema format.
+On Wed, 10 Aug 2022, Rob Herring wrote:
+
+> Convert the aspeed,ast2[456]00-scu binding to DT schema format.
 > 
-> The original binding was missing 'simple-mfd' and a 'panel' sub node which
-> the only user (versatile-ab.dts) of this binding has.
+> The original binding was missing '#address-cells', '#size-cells',
+> 'ranges', and child nodes, so add them.
 > 
 > Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/mfd/aspeed,ast2x00-scu.yaml      | 110 ++++++++++++++++++
+>  .../devicetree/bindings/mfd/aspeed-scu.txt    |  48 --------
+>  2 files changed, 110 insertions(+), 48 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/aspeed-scu.txt
 
+Applied, thanks.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
+-- 
+Lee Jones [李琼斯]
