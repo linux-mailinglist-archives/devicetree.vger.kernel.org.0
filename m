@@ -2,145 +2,528 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42DAF58F9D6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 11:16:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD0958FA02
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 11:26:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234937AbiHKJP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 05:15:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58316 "EHLO
+        id S234737AbiHKJZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 05:25:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234945AbiHKJPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 05:15:55 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51AD7419B8
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 02:15:54 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id x9so14987476ljj.13
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 02:15:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=eWYdVQgTkSshr+LnqPUerx5UBYrvRFihiIrrHfJRObk=;
-        b=V7SzdIVQUah6XvBKizvA1mVgIky9pI9QACts5UE/xHSbnXlzv5qvmt06tCaJpfdMEp
-         8LVG9IdKWBoImtN747jLTjxZsqEQ3SS/svIo8rGmJ/oEiKFkPfEhGmqErGXM58Zmaa3U
-         QgDqrWPMumitFhDxY4nqBRzTUmIUcSJnPGQoXXrYfpa+OvCbBU+5lbHFUthxydyGFpb4
-         wtkR+UzFC43D/+M/57s9tDYzX9kYGHpnFadSkFEFqkBFBkIpsa8vn8ngxL5OU9QgljRO
-         l2JghWSevhNV7NWvHiuF2PdGHxD2BVmk3WYK8lMj8nPIqWFkmNR/66LgmlSScYfjUelZ
-         YxeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=eWYdVQgTkSshr+LnqPUerx5UBYrvRFihiIrrHfJRObk=;
-        b=MOftQSWmVu6gw+CdbkpGZSD7dMo9ai5zRmoV2/i7fOG+mGBfZ3lnxFPwogdffwzITa
-         BchtCbbiTboO739XAfOD0T5gNEs/e22KLUgj30fV5rDclxDXY5DWtgpSHsEA1FzZv3zj
-         1j72DJ28uSuD2IBlM5EtFGi5rdcMmJaKOtyatifU3FzoQWi6F/GM9OYJ7l9MvnV34Y/z
-         PGMuBpfTLHZhqJ4J/ydh+gQwlswQdKWIrftDYvh+fQt7MSK74R0To1lK0ffeD0/NoThB
-         x30BcCa4pRI84b4xtYH/zu7a78Zwg/QyFqVpn8wNPpeI1gx1mFGlVJ54oA+vsqj0S5lh
-         6u5Q==
-X-Gm-Message-State: ACgBeo1wGmRNkx7uNmDH+E9rXN4qRjqejyzpW8qK3Fgz/G0yAnTAY3/l
-        WsxlgStHvpF7p4ANiw06FgN6hw==
-X-Google-Smtp-Source: AA6agR53XfRpjtqJX/e2qIzfPhAibPRJPgQbeXyD0yMC1ANb0zWWn7gz9PDlDZC9gFwqwtlCvsKCCQ==
-X-Received: by 2002:a2e:2ac1:0:b0:25e:4b39:e3cb with SMTP id q184-20020a2e2ac1000000b0025e4b39e3cbmr10344846ljq.458.1660209352649;
-        Thu, 11 Aug 2022 02:15:52 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id j15-20020a056512028f00b0048b2be5320csm641183lfp.118.2022.08.11.02.15.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Aug 2022 02:15:51 -0700 (PDT)
-Message-ID: <a063d48a-2096-ba5b-7f65-d55fec49d534@linaro.org>
-Date:   Thu, 11 Aug 2022 12:15:50 +0300
+        with ESMTP id S234662AbiHKJZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 05:25:41 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8F8AD3D588;
+        Thu, 11 Aug 2022 02:25:39 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1154B106F;
+        Thu, 11 Aug 2022 02:25:40 -0700 (PDT)
+Received: from [10.162.43.7] (unknown [10.162.43.7])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E8C3E3F70D;
+        Thu, 11 Aug 2022 02:25:33 -0700 (PDT)
+Message-ID: <fe9d9673-e133-3230-01b5-df463c315026@arm.com>
+Date:   Thu, 11 Aug 2022 14:55:30 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2] pmic: add mt6366 regulator document
+ Thunderbird/91.11.0
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sm8250: Add Coresight support
 Content-Language: en-US
-To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>, lee.jones@linaro.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-        broonie@kernel.org, eddie.huang@mediatek.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, fshao@chromium.org
-Cc:     sen.chu@mediatek.com, hui.liu@mediatek.com,
-        allen-kh.cheng@mediatek.com, hsin-hsiung.wang@mediatek.com,
-        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
-        wen.su@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        zhiyong tao <zhiyong.tao@mediatk.com>
-References: <20220728062749.18701-1-zhiyong.tao@mediatek.com>
- <20220728062749.18701-2-zhiyong.tao@mediatek.com>
- <03a13ed4-e7cd-6f7d-f8f7-9b1e6193e202@linaro.org>
- <111e1073e1ce689e289e52c645a1be2e7dc7fe12.camel@mediatek.com>
- <86ab77f5-8beb-7237-d6e2-734f52ca176b@linaro.org>
- <3d120fdb5d26d1211f797e5a26e8af3f34439424.camel@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3d120fdb5d26d1211f797e5a26e8af3f34439424.camel@mediatek.com>
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Mike Leach <mike.leach@linaro.org>, Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Mao Jinlong <quic_jinlmao@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>
+References: <1632477981-13632-1-git-send-email-quic_taozha@quicinc.com>
+ <1632477981-13632-3-git-send-email-quic_taozha@quicinc.com>
+From:   Anshuman Khandual <anshuman.khandual@arm.com>
+In-Reply-To: <1632477981-13632-3-git-send-email-quic_taozha@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2022 12:14, zhiyong.tao wrote:
-> On Thu, 2022-08-11 at 11:58 +0300, Krzysztof Kozlowski wrote:
->> On 11/08/2022 11:42, zhiyong.tao wrote:
->>>>
->>>>>
->>>>> Signed-off-by: zhiyong tao <zhiyong.tao@mediatk.com>
->>>>> ---
->>>>>  .../regulator/mediatek,mt6366-regulator.yaml  | 375
->>>>> ++++++++++++++++++
->>>>>  1 file changed, 375 insertions(+)
->>>>
->>>> Subject does not match subsystem.
->>>
->>> Hi Krzysztof,
->>>
->>> Do you mean that we should change the title like this:
->>> regulator: dt-bindings: mediatek: add mt6366 regulator document
->>> is it right?
->>
->> Yes. And remove redundant pieces so for example:
->>
->> regulator: dt-bindings: mediatek: add mt6366
->> or:
->> regulator: dt-bindings: add mediatek,mt6366
-> ==>
-> Thanks for your suggestion, we will fix it in next verison.
->>
->>
->> (...)
->>
->>>>> +    patternProperties:
->>>>> +      "^buck-
->>>>> v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$":
->>>>> +        type: object
->>>>> +        $ref: "regulator.yaml#"
->>>>
->>>> No need for quotes.
->>>
->>> ==>
->>> We will remove the line "$ref: "regulator.yaml#"" in next verison,
->>> is
->>> it right?
->>
->> No, it is not. Why do you want to remove it?
-> ==>
-> We don't understand "No need for quotes."which means.
-> Do you mean that we should remove the quotation marks.
-> We will change it like this:$ref: regulator.yaml#
-> is it right?
 
-Yes, remove the quotation marks. You wanted to remove entire line which
-is not correct. $ref should stay.
 
-Best regards,
-Krzysztof
+On 9/24/21 15:36, Tao Zhang wrote:
+> Add the basic coresight components found on Qualcomm SM8250 Soc. The
+> basic coresight components include ETF, ETMs,STM and the related
+> funnels.
+
+Hello,
+
+Seems like this patch never merged mainline, what happened ? This change is
+required to enable coresight devices on RB5 platform.
+
+- Anshuman
+
+> 
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 439 +++++++++++++++++++++++++++++++
+>  1 file changed, 439 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index 5f41de2..1e1579a 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -223,6 +223,445 @@
+>  		regulator-max-microvolt = <1800000>;
+>  		regulator-always-on;
+>  	};
+> +
+> +	stm@6002000 {
+> +		compatible = "arm,coresight-stm", "arm,primecell";
+> +		reg = <0 0x06002000 0 0x1000>,
+> +		      <0 0x16280000 0 0x180000>;
+> +		reg-names = "stm-base", "stm-stimulus-base";
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +
+> +		out-ports {
+> +			port {
+> +				stm_out: endpoint {
+> +					remote-endpoint =
+> +					  <&funnel0_in7>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@6041000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		reg = <0 0x06041000 0 0x1000>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +
+> +		out-ports {
+> +			port {
+> +				funnel0_out: endpoint {
+> +					remote-endpoint =
+> +					  <&merge_funnel_in0>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@7 {
+> +				reg = <7>;
+> +				funnel0_in7: endpoint {
+> +					remote-endpoint = <&stm_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@6042000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		reg = <0 0x06042000 0 0x1000>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +
+> +		out-ports {
+> +			port {
+> +				funnel2_out: endpoint {
+> +					remote-endpoint =
+> +					  <&merge_funnel_in2>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@4 {
+> +				reg = <4>;
+> +				funnel2_in5: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_merge_funnel_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@6b04000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		arm,primecell-periphid = <0x000bb908>;
+> +
+> +		reg = <0 0x6b04000 0 0x1000>;
+> +		reg-names = "funnel-base";
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +
+> +		out-ports {
+> +			port {
+> +				merge_funnel_out: endpoint {
+> +					remote-endpoint =
+> +						<&etf_in>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@7 {
+> +				reg = <7>;
+> +				swao_funnel_in7: endpoint {
+> +					slave-mode;
+> +					remote-endpoint=
+> +						<&merg_funnel_out>;
+> +				};
+> +			};
+> +		};
+> +
+> +	};
+> +
+> +	funnel@6045000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		reg = <0 0x06045000 0 0x1000>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +
+> +		out-ports {
+> +			port {
+> +				merg_funnel_out: endpoint {
+> +					remote-endpoint = <&swao_funnel_in7>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				merge_funnel_in0: endpoint {
+> +					remote-endpoint =
+> +					  <&funnel0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				merge_funnel_in2: endpoint {
+> +					remote-endpoint =
+> +					  <&funnel2_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etf@6b05000 {
+> +		compatible = "arm,coresight-tmc", "arm,primecell";
+> +		reg = <0 0x06b05000 0 0x1000>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +
+> +		in-ports {
+> +			port {
+> +				etf_in: endpoint {
+> +					remote-endpoint =
+> +					  <&merge_funnel_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7040000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0 0x07040000 0 0x1000>;
+> +
+> +		cpu = <&CPU0>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +		arm,coresight-loses-context-with-cpu;
+> +
+> +		out-ports {
+> +			port {
+> +				etm0_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in0>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7140000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0 0x07140000 0 0x1000>;
+> +
+> +		cpu = <&CPU1>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +		arm,coresight-loses-context-with-cpu;
+> +
+> +		out-ports {
+> +			port {
+> +				etm1_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in1>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7240000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0 0x07240000 0 0x1000>;
+> +
+> +		cpu = <&CPU2>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +		arm,coresight-loses-context-with-cpu;
+> +
+> +		out-ports {
+> +			port {
+> +				etm2_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in2>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7340000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0 0x07340000 0 0x1000>;
+> +
+> +		cpu = <&CPU3>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +		arm,coresight-loses-context-with-cpu;
+> +
+> +		out-ports {
+> +			port {
+> +				etm3_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in3>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7440000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0 0x07440000 0 0x1000>;
+> +
+> +		cpu = <&CPU4>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +		arm,coresight-loses-context-with-cpu;
+> +
+> +		out-ports {
+> +			port {
+> +				etm4_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in4>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7540000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0 0x07540000 0 0x1000>;
+> +
+> +		cpu = <&CPU5>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +		arm,coresight-loses-context-with-cpu;
+> +
+> +		out-ports {
+> +			port {
+> +				etm5_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in5>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7640000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0 0x07640000 0 0x1000>;
+> +
+> +		cpu = <&CPU6>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +		arm,coresight-loses-context-with-cpu;
+> +
+> +		out-ports {
+> +			port {
+> +				etm6_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in6>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	etm@7740000 {
+> +		compatible = "arm,coresight-etm4x", "arm,primecell";
+> +		reg = <0 0x07740000 0 0x1000>;
+> +
+> +		cpu = <&CPU7>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +		arm,coresight-loses-context-with-cpu;
+> +
+> +		out-ports {
+> +			port {
+> +				etm7_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_in7>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@7800000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		reg = <0 0x07800000 0 0x1000>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +
+> +		out-ports {
+> +			port {
+> +				apss_funnel_out: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_merge_funnel_in>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				apss_funnel_in0: endpoint {
+> +					remote-endpoint =
+> +					  <&etm0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				apss_funnel_in1: endpoint {
+> +					remote-endpoint =
+> +					  <&etm1_out>;
+> +				};
+> +			};
+> +
+> +			port@2 {
+> +				reg = <2>;
+> +				apss_funnel_in2: endpoint {
+> +					remote-endpoint =
+> +					  <&etm2_out>;
+> +				};
+> +			};
+> +
+> +			port@3 {
+> +				reg = <3>;
+> +				apss_funnel_in3: endpoint {
+> +					remote-endpoint =
+> +					  <&etm3_out>;
+> +				};
+> +			};
+> +
+> +			port@4 {
+> +				reg = <4>;
+> +				apss_funnel_in4: endpoint {
+> +					remote-endpoint =
+> +					  <&etm4_out>;
+> +				};
+> +			};
+> +
+> +			port@5 {
+> +				reg = <5>;
+> +				apss_funnel_in5: endpoint {
+> +					remote-endpoint =
+> +					  <&etm5_out>;
+> +				};
+> +			};
+> +
+> +			port@6 {
+> +				reg = <6>;
+> +				apss_funnel_in6: endpoint {
+> +					remote-endpoint =
+> +					  <&etm6_out>;
+> +				};
+> +			};
+> +
+> +			port@7 {
+> +				reg = <7>;
+> +				apss_funnel_in7: endpoint {
+> +					remote-endpoint =
+> +					  <&etm7_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	funnel@7810000 {
+> +		compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +		reg = <0 0x07810000 0 0x1000>;
+> +
+> +		clocks = <&aoss_qmp>;
+> +		clock-names = "apb_pclk";
+> +
+> +		out-ports {
+> +			port {
+> +				apss_merge_funnel_out: endpoint {
+> +					remote-endpoint =
+> +					  <&funnel2_in5>;
+> +				};
+> +			};
+> +		};
+> +
+> +		in-ports {
+> +			port {
+> +				apss_merge_funnel_in: endpoint {
+> +					remote-endpoint =
+> +					  <&apss_funnel_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &adsp {
