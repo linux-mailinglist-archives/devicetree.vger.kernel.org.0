@@ -2,125 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83C8658F95A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 10:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7984C58F972
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 10:45:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234665AbiHKIn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 04:43:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49010 "EHLO
+        id S234756AbiHKIpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 04:45:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234666AbiHKIn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 04:43:56 -0400
+        with ESMTP id S234761AbiHKIoy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 04:44:54 -0400
 Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A9B690C72
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 01:43:44 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id t1so24647026lft.8
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 01:43:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F07D90C69
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 01:44:52 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id t1so24650401lft.8
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 01:44:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=ooM7y6v9J6zgXgg6OqlmVWX6M0IPHPI6lI2ab0c9pDA=;
-        b=d4tvCxgrvq0CXKar5cnmPvhPR5M9QrNQCbiuAr0vViRXBOQvDWi5Hgfk45hiB7Sh3+
-         YDNN5v4Qw/iogPERl3ywwvSQaR/jBFtNNKUujqIGW/q7jBrvLhSYK1xa83prb9SC5khx
-         UQNcQWM5cAXyS3nX93hC2PSqhNma4LrF9szVkjQKzYwGvM3OrBaJIDrWTzV9LpghS3E6
-         b1B9M7lyGXZBd5sljALlvj0Pq+XgKZMqqkHpUQ0gQMbcLmYKyovpg5fc7knns2nOTnoq
-         d4IDsNbw7M8rOnGMSOHtHh+ozfYAoKLcZ3L3zRaAPNh2JKb8g5cYsgIxkP+S29uyZId8
-         OmEg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=ynpT2u7FSHsjUUbW/rTosphDOzEZ4ibPFW5PkzVc0cc=;
+        b=7cMsM2ZGmT08GpiDMYW+Ucm2C8Wq1ba3l8M1fQY0wFlhRkgJXU0Y/j92/R3IZNia4L
+         9MO8vS7suGciXw0Xq4jSTvGtIeYDanHitUMUjjEqhuQbz+fdJXXjfLfgEJFbpYbnwnaO
+         Ck7xlqc/ClH4VXfQLmNJ6oE7QMCQ4WfS+XoblvLcj+H27zX4Eb3UWhD2+5PNy7OKcqPX
+         FelnqQ2/n/T6p87fmiv5R7KnWFcZyg7Vj3CXyD5NHA6XPqSQb2VaBPNkNw7FQbU518t/
+         O6w0CwIys1Ek3/Rv9G7gjOLU1xNtPN5SFvn5w17ZfI+mCJJaVv6t0QvxQ9k1mdOWEkFt
+         FLDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=ooM7y6v9J6zgXgg6OqlmVWX6M0IPHPI6lI2ab0c9pDA=;
-        b=MkXBuhq0s9U9URF8PvTmohbkKPAjlGzuxNOD+kfnBlVpW34WjPke6+bpKqT/r1rDmb
-         9yyt1tvhYDQJeXCQ2GnM+BpA9oaMRpQYc4sZkxHD1lMCpEkAxN6z/sTNu3BYghicRR1i
-         iyKWcv+VlHrrXKcLxTOo3Rc8H1yrsNC140Nusd52HQMKLiZBO4t5oRDfYQMOXTYQ/lvS
-         +FNOY0d5gDs8Ujsu1eMUH7QPN7UIgfR/H9mv32VIoCVIjsm1r6g6EMM4sNhMuGJq2Zya
-         yTdhslbbt4lo+EP1sJ9DMbtLVlwiQ8Mlaky4DbB+jSnD+4oE8i6blkfeS/csXYZOGULx
-         F5Ng==
-X-Gm-Message-State: ACgBeo1uivZ8S0yvAdm/856LWYfMzcJ7tzAkxqS8tBg/1BgIdYRa5H1O
-        Dg6Mp2YJDMi8VbWq3SYCqskZsA==
-X-Google-Smtp-Source: AA6agR5mO3DiFZ3t4Lgk1NnmeQ8cSRVtzF9qwzrrk5oLi5kRvefXVkYodaLJf5t1o/M2ohExFwDVIA==
-X-Received: by 2002:a05:6512:108f:b0:48b:a169:d291 with SMTP id j15-20020a056512108f00b0048ba169d291mr8339394lfg.198.1660207422686;
-        Thu, 11 Aug 2022 01:43:42 -0700 (PDT)
-Received: from localhost.localdomain ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id f4-20020a056512360400b0048af379957asm631077lfs.72.2022.08.11.01.43.41
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=ynpT2u7FSHsjUUbW/rTosphDOzEZ4ibPFW5PkzVc0cc=;
+        b=uGQkTYUgqzbBwspFjfi5ynUHNk9+KYPw8Z6T07/htzVx3vPqzzce2Q6Kjg3rvztUb3
+         TAbBUZ79ma9D/Gq9KJD2OORPgZk0in3uFZ7F3zC6UcEr/now8ycJsNDPy+Vey0UIcLgS
+         j7d7G8UOKxpDqM4hVoN2MzeAVg8EeAarxyisy5cmKigOodNlhmJplfu06F80t+waYcsB
+         4kn1g7WGP6s20LFVWZrdM+wz/c7lMRgDkt4YlNH/tF7itRgu+V+pO807wDck8tDxOESP
+         JmNssHI1FOjNgE1bO0YgxQtb+MSDkvohINPBlWGrlfhCaU1CeORyxY7MB2XA1rOBnAUz
+         hGIA==
+X-Gm-Message-State: ACgBeo36ak4WoptoPBkBTOjgvWMKFjxi9SXieEcKi9pi32OjYYJe0JbM
+        CFegQ/6Qc7NIC+4p2FPrzTrbS9l9/Pi0ow==
+X-Google-Smtp-Source: AA6agR41NqYZDGykDDjqTUYpGVxwq4m0Fa6wrajT2ypGNG2Kpp29w64LKpS46XhbgoSwniJNqNZOlQ==
+X-Received: by 2002:a17:906:8445:b0:730:ba5a:ef59 with SMTP id e5-20020a170906844500b00730ba5aef59mr24540364ejy.182.1660207480710;
+        Thu, 11 Aug 2022 01:44:40 -0700 (PDT)
+Received: from blmsp.fritz.box ([2001:4090:a243:8036:200c:a862:4253:884])
+        by smtp.gmail.com with ESMTPSA id d15-20020aa7d5cf000000b0043d6ece495asm8799314eds.55.2022.08.11.01.44.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Aug 2022 01:43:42 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        Thu, 11 Aug 2022 01:44:40 -0700 (PDT)
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Del Regno <angelogioacchino.delregno@somainline.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 5/5] dt-bindings: display/msm: dpu-sdm845: add missing DPU opp-table
-Date:   Thu, 11 Aug 2022 11:43:31 +0300
-Message-Id: <20220811084331.83715-6-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220811084331.83715-1-krzysztof.kozlowski@linaro.org>
-References: <20220811084331.83715-1-krzysztof.kozlowski@linaro.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fabien Parent <parent.f@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH v3 0/4] clk: mediatek: Add mt8365 support
+Date:   Thu, 11 Aug 2022 10:44:29 +0200
+Message-Id: <20220811084433.2598575-1-msp@baylibre.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 'display-controller' child (DPU) of Display SubSystem (MDSS) uses
-opp-table, so reference it which allows restricting DPU schema to fixed
-list of properties.
+Hi,
 
-Fixes: 3d7a0dd8f39b ("dt-bindings: msm: disp: add yaml schemas for DPU bindings")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series adds a clock driver for the mt8365 SoC. I took over the series from
+Fabien who posted v1 and v2.
 
----
+Thanks you Angelo for the feedback on v2. I think I fixed everything you
+mentioned.
 
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>
-Cc: Sean Paul <sean@poorly.run>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
----
- Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Changes are listed in the individual patches.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
-index 2bb8896beffc..aa99201dae3f 100644
---- a/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dpu-sdm845.yaml
-@@ -65,6 +65,7 @@ patternProperties:
-   "^display-controller@[0-9a-f]+$":
-     type: object
-     description: Node containing the properties of DPU.
-+    additionalProperties: false
- 
-     properties:
-       compatible:
-@@ -102,6 +103,8 @@ patternProperties:
-         maxItems: 1
- 
-       operating-points-v2: true
-+      opp-table: true
-+
-       ports:
-         $ref: /schemas/graph.yaml#/properties/ports
-         description: |
+Best,
+Markus
+
+v2 - https://lore.kernel.org/linux-mediatek/20220530214434.1012889-1-fparent@baylibre.com/
+
+Fabien Parent (2):
+  dt-bindings: clock: mediatek: add bindings for MT8365 SoC
+  clk: mediatek: add driver for MT8365 SoC
+
+Markus Schneider-Pargmann (2):
+  clk: mediatek: Provide mtk_devm_alloc_clk_data
+  clk: mediatek: Export required common code symbols
+
+ .../bindings/clock/mediatek,mt8365-clock.yaml |   42 +
+ .../clock/mediatek,mt8365-sys-clock.yaml      |   47 +
+ drivers/clk/mediatek/Kconfig                  |   50 +
+ drivers/clk/mediatek/Makefile                 |    7 +
+ drivers/clk/mediatek/clk-gate.c               |    1 +
+ drivers/clk/mediatek/clk-mt8365-apu.c         |   55 +
+ drivers/clk/mediatek/clk-mt8365-cam.c         |   57 +
+ drivers/clk/mediatek/clk-mt8365-mfg.c         |   63 +
+ drivers/clk/mediatek/clk-mt8365-mm.c          |  112 ++
+ drivers/clk/mediatek/clk-mt8365-vdec.c        |   63 +
+ drivers/clk/mediatek/clk-mt8365-venc.c        |   52 +
+ drivers/clk/mediatek/clk-mt8365.c             | 1155 +++++++++++++++++
+ drivers/clk/mediatek/clk-mtk.c                |   37 +-
+ drivers/clk/mediatek/clk-mtk.h                |    2 +
+ .../dt-bindings/clock/mediatek,mt8365-clk.h   |  373 ++++++
+ 15 files changed, 2111 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8365-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8365-sys-clock.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-apu.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-cam.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-mfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-mm.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-vdec.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365-venc.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8365.c
+ create mode 100644 include/dt-bindings/clock/mediatek,mt8365-clk.h
+
 -- 
-2.34.1
+2.36.1
 
