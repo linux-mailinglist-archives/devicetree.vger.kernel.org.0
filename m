@@ -2,84 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8249658FAE5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 12:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADE7858FAF2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 12:52:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234073AbiHKKuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 06:50:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54424 "EHLO
+        id S234216AbiHKKw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 06:52:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234050AbiHKKuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 06:50:16 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9A42DF8
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 03:50:14 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id w15so18926930ljw.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 03:50:14 -0700 (PDT)
+        with ESMTP id S233884AbiHKKw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 06:52:28 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD27293526
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 03:52:27 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id r17so24977157lfm.11
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 03:52:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=GdgqiZBfPIDpg/0XLqydNQp/hkRsk27jfUbq0hJePtg=;
-        b=X1sOG4x9fMmz51abok9SE1Ca6DqFWsew9xPmWQaF4tV67GAbU7ERN8UF25AtDT8ppm
-         ENrw4iirJ98N+J03JV9ebyS/Y9029T9+xAT/ObxREloELVVYocyVk4LgLqPmIn9rHtKP
-         M1iaCn74q3+sYIO+lMswRWt8UZWxTYh4Z7UG79kL4oX+T7iIjAx8gRWsUaKO0B3aU2NP
-         8Vol9//rVjsCWKsC5pTejKO4JG3wGTnw5hNC30jrL4yRPPAITOjfP0aZhbjv7O05geeL
-         oPzPR/EJVDB2p8BtTW7JcYHIvAsA1ISrHU+6jph+0meHNwMIZ/18xO7BlUD3Z8g1+8Ao
-         ZFxA==
+        bh=d7iRjX2D2keNI8slfz7qoQsCGpwSEtSMwIfU6YyWGks=;
+        b=wM7xc0UlLu2qxdJx92iZEMR+Gi0HdbTzS+WEzrfl555Mbl2HEMTogGhtSMJy6Rtydv
+         AzmxJAS/bA9DsBr/rMDV35nITUAs3/EIsDf+HRJexTuYpttsVIh4wAATcFPF2zJDptPw
+         7g55dImwQd9A36IuU17wCQYcnM5mSDcSZHTM6mHl1BY7qvi4ddXegD6qwIWxw48ulZrA
+         YEtFK8CXNDspr68xzqUBcT21jF0awZF077ZUJ7wEv6shXty/euV0Wkbkz5W/Enk9ZngZ
+         tZ5qGcao76DNRWCYRXGZHhjrwUCjLyE4gX/SBtG7UdKnI9CAlR/wlYYf8qFgmQ8qAezb
+         VmuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=GdgqiZBfPIDpg/0XLqydNQp/hkRsk27jfUbq0hJePtg=;
-        b=B31TMdGqNhkRN4eec2xKiWIrpPdONAJMPAnJ//gAMM8Cul+Q6sSblUDV58U/8NapBy
-         UTNB21bHUY4RNLOh/IHCQodQh7iiqtgYlEhxeAfIj1W1FY2kBbNEEJRfTjG+rAGoT2r0
-         yxdvW6i06pGARGw/DthfmySbUV84D2aXLUjD1Qy3ZSk0o0cxGnainpHl27TwNivSXOkE
-         99bUCYYjziyeRwUblsIdiIcp3isMHEnEZNpGeD9NG+PqSqkuYtb7I8/vspIscT7qqyCO
-         Dr4iBmHrrrHT5VHD1uReLbPSVdj2m6JV33P0+G39JHuaFMatcCC0nEVGCEHWDyWr8I4Z
-         tCUA==
-X-Gm-Message-State: ACgBeo3afGlh3ZaCQN3m0Yq7LnmvF39xFwPrrfs3gwvXZVJEyqY4Fe1Y
-        S1UneJaAJSLuXVxFuwlFCru6zYDQHLWeTWYo
-X-Google-Smtp-Source: AA6agR4hd28Wh6s8G5kRM4zOdEwX9i78Sjkjyx5T1pLILHB44dabc9d/NooBeZ8cqu7k0z4g5NxdBA==
-X-Received: by 2002:a05:651c:b10:b0:25f:ddb7:694 with SMTP id b16-20020a05651c0b1000b0025fddb70694mr6098335ljr.75.1660215013234;
-        Thu, 11 Aug 2022 03:50:13 -0700 (PDT)
+        bh=d7iRjX2D2keNI8slfz7qoQsCGpwSEtSMwIfU6YyWGks=;
+        b=3VMWkEdN6GnEiiEiaYpYkPI9fnNpThZDBlomjI73vd/STFvk+L1iOHCLS5Sj6kS6yM
+         UR1iJ5pY7wQznlpfxeyyFu8CoQYTWZGCvL1BxKd1yaZYZwgu7Aqjwo8j+5Fs++2HGxge
+         7j9bAP1I87FpC8zjbNjbQdH0Vh09HKBnki8X8ai/AtkeYngEOKBzwbnvYP/lE+3Scn5q
+         fayQAzGOhkc91MH5qMrf5vXwfqff/IQp2pnlfXKnRK9pr3qtiz0eCeagNvCltx9yKq0y
+         627M89AFV1Qiwat/rJG5OtGFL8s3o3x9NZfmx3QgihxwFPXV1Lf+FQpOuj+HZfQizakI
+         0mWg==
+X-Gm-Message-State: ACgBeo36wVrukfaRwOdudpC7H7dTezxLMI2eNRcf2DWZqH4iTTm+m6T3
+        zKmvWyaQ95lNReOWOeeVhWPM7DusrHq+DO5A
+X-Google-Smtp-Source: AA6agR7dL4LIkbOwC+Z4uacUEGODwrWrQ0fm3+nLjVtBLlPmq4l/QPZ4hvKbEI/PzYUR2pBShKTjIQ==
+X-Received: by 2002:a19:674a:0:b0:47f:863d:5bc2 with SMTP id e10-20020a19674a000000b0047f863d5bc2mr10519629lfj.92.1660215146230;
+        Thu, 11 Aug 2022 03:52:26 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id t8-20020a199108000000b0048af39ff3edsm664335lfd.122.2022.08.11.03.50.11
+        by smtp.gmail.com with ESMTPSA id v9-20020a2e4809000000b0025fe2049beesm745940lja.60.2022.08.11.03.52.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Aug 2022 03:50:12 -0700 (PDT)
-Message-ID: <3a4eb13d-f764-f32d-02a5-38f62ce2a3f2@linaro.org>
-Date:   Thu, 11 Aug 2022 13:50:11 +0300
+        Thu, 11 Aug 2022 03:52:25 -0700 (PDT)
+Message-ID: <d8e512c3-2a96-0fa0-6c2a-d404a9abd8f5@linaro.org>
+Date:   Thu, 11 Aug 2022 13:52:24 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v2 2/3] ARM: dts: imx6ul-kontron: Simplify devicetree
- structure
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: fsl: imx6ul-kontron: Update
+ bindings
 Content-Language: en-US
-To:     Frieder Schrempf <frieder@fris.de>, Arnd Bergmann <arnd@arndb.de>,
-        devicetree@vger.kernel.org,
+To:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Olof Johansson <olof@lixom.net>,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, soc@kernel.org
+        Shawn Guo <shawnguo@kernel.org>
 Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
         Denys Drozdov <denys.drozdov@toradex.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Thierry Reding <treding@nvidia.com>
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Marek Vasut <marex@denx.de>,
+        Matthias Schiffer <matthias.schiffer@tq-group.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>
 References: <20220810081825.19051-1-frieder@fris.de>
- <20220810081825.19051-3-frieder@fris.de>
+ <20220810081825.19051-2-frieder@fris.de>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220810081825.19051-3-frieder@fris.de>
+In-Reply-To: <20220810081825.19051-2-frieder@fris.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -95,38 +90,19 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 10/08/2022 11:18, Frieder Schrempf wrote:
 > From: Frieder Schrempf <frieder.schrempf@kontron.de>
 > 
-> There is no need in differentiating between the different SoM versions
-> that only differ in memory size, etc. It's much cleaner to simplify
-> the devicetrees and let them be more generic.
+> This updates the bindings in order to simplify the devicetree
+> structure and to add names for the boards that follow the latest
+> convention used by Kontron marketing.
 > 
-> If necessary the bootloader will update the devicetree dynamically
-> to contain the correct size of the memory.
-> 
-> We also get rid of the N6xxx notation in the compatibles and file
-> names, as they are not really used anymore and often result in
-> confusion.
+> It also gets rid of the N6xxx notation in the compatibles and
+> file names, as they are not really used anymore and often result
+> in confusion.
 > 
 > Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
-> ---
->  arch/arm/boot/dts/Makefile                    |  4 +-
->  ...6310-s-43.dts => imx6ul-kontron-bl-43.dts} |  8 ++--
->  ...x-s.dtsi => imx6ul-kontron-bl-common.dtsi} |  0
->  ...tron-n6310-s.dts => imx6ul-kontron-bl.dts} |  9 ++--
->  .../boot/dts/imx6ul-kontron-n6310-som.dtsi    | 41 -------------------
->  arch/arm/boot/dts/imx6ul-kontron-n6311-s.dts  | 16 --------
->  .../boot/dts/imx6ul-kontron-n6311-som.dtsi    | 40 ------------------
->  ...mon.dtsi => imx6ul-kontron-sl-common.dtsi} | 15 +++++++
->  arch/arm/boot/dts/imx6ul-kontron-sl.dtsi      | 14 +++++++
->  arch/arm/boot/dts/imx6ull-kontron-bl.dts      | 15 +++++++
->  arch/arm/boot/dts/imx6ull-kontron-n6411-s.dts | 16 --------
->  .../boot/dts/imx6ull-kontron-n6411-som.dtsi   | 40 ------------------
->  arch/arm/boot/dts/imx6ull-kontron-sl.dtsi     | 13 ++++++
 
-Most of these should be renames with small amount of changes. You should
-experiment with -B/-M/-C format-patch arguments so the end diff is easy
-to read.
+This affects the ABI, so you should be sure that it is desired...
 
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
