@@ -2,121 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6FBE5905E3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 19:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E56C590657
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 20:47:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235268AbiHKRaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 13:30:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38092 "EHLO
+        id S235322AbiHKSUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 14:20:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234627AbiHKRaI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 13:30:08 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F35A45071;
-        Thu, 11 Aug 2022 10:30:07 -0700 (PDT)
-Received: from notapiano (pool-98-113-53-228.nycmny.fios.verizon.net [98.113.53.228])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id E2F956601C04;
-        Thu, 11 Aug 2022 18:30:04 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1660239006;
-        bh=lvFb3qNxbflRt6kaIIDY/QEgJF+f1L7YQ9FOa4oivHY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Cc4NnNdE6paaHjMAGFeShTe+BYkDfMv1a3Ujpqdy7c2Vgapkj+1+jvMPU8n7zcTVY
-         p92B/v5t7v0x+f6NgYQ8/nmUfcaEugp2uLd7mZfWaFuevFkfwc/QmIcomBgu25dJyR
-         OAKebNwFcGk/ihZslkA6k5O1/MlnznGLAjpY5qwTiOQELealARpz2pLWkj0sEDiWTN
-         XdTzsaCKExiWK7FmcL8G9/ksrvypsv7nWVHRpEI6jQEiWElFLBlp6BChqiFIicz8Cy
-         jfbNju5+9SuAz0St33VwrGwWE8HvDzk9pspdkUPM0MiTkEKuzxmaiKU433qPI+BVdT
-         eGnm2lpZeZsUw==
-Date:   Thu, 11 Aug 2022 13:30:00 -0400
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>, hsinyi@chromium.org
-Subject: Re: [PATCH v14 1/1] arm64: dts: Add MediaTek MT8186 dts and
- evaluation board and Makefile
-Message-ID: <20220811173000.kiplkbqzawlbreqf@notapiano>
-References: <20220811125805.28577-1-allen-kh.cheng@mediatek.com>
- <20220811125805.28577-2-allen-kh.cheng@mediatek.com>
+        with ESMTP id S235061AbiHKSUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 14:20:22 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE9D4192;
+        Thu, 11 Aug 2022 11:20:17 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id x10so17614964plb.3;
+        Thu, 11 Aug 2022 11:20:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=FpI8YDT9XUTrgzXW1iia7ZfG1laXPlpeHaemReIIN70=;
+        b=gUE17ymq2xcxrLr+YljATLtxpJ/YF8hKGNVLz1hqpsZ8jcUOdUcgZ9CF6b6FXjZAcF
+         6i28ERwl20oLbre3LFFKvtSdWHHhQfyZCF0m7fz2xNzo/+lNGElUihzT9r8+FNsvx1ka
+         yIy4jnJByTOVpNLZHhX59ikscYId8GK8yYb50L6FHg0w+zaQ95DULvVqcXc5ofbYl/aT
+         9IsSIbTMc0R0V4wqUNTd7jItDpMzXlAuI1Sd+vUTfBPQ1+ulHrZjUPEV/HW9Ip3oBoV/
+         s+g6t/qtI1moijAU4IdUSuDt9fFJI6WF5n/ycNTJOhpgDLyWtP/ift4Vtk5zOPtOdkHb
+         8DeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=FpI8YDT9XUTrgzXW1iia7ZfG1laXPlpeHaemReIIN70=;
+        b=KDPr9hlzUpLFbwgMNGGAgA01YPZV6yaPJ6D8wFs2JCbYlTlDj80Uwg0Zwxa//XB4Ra
+         r51sFD3NJA1cvWnzTXCT5lDR/tUREoJAwfH/FZTnvkjmIz8cTe75ilGq8UJ4C5XEF3TI
+         JHGpAcAK38ihSOHVtz21/Ti+e5nS6dxytredoDCrmHnMCSUzR+aTI6UWZpBVNDxF20qh
+         p/E2DN5r9gOwNvxJ1T+Xpw2embzWDhurci1LCjmxfo4W9lyAZw56ZdEX5OpzSxJskMcq
+         W12//EJYgqz7SHF/0qJfSuaAouEeJct7tEswVrQPsh3Fez3RgkcjmXFMFpvYKLU0KIoF
+         +qDg==
+X-Gm-Message-State: ACgBeo3+ImjKBcE/bTa0C4HEEFG4PWzksKDypfmtuV4g1VrIfQ3ERaSH
+        I8XRV6c8l4YZsu7pbLLrazQ=
+X-Google-Smtp-Source: AA6agR7C5UlsbDWUXMwNgJzzqzyyhLATto0xUMmJRK37NarXgenY7qeVSTsTHxN57Mty94+hf+xgTA==
+X-Received: by 2002:a17:902:b704:b0:16e:f05d:411e with SMTP id d4-20020a170902b70400b0016ef05d411emr389092pls.38.1660242017198;
+        Thu, 11 Aug 2022 11:20:17 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:c348:229d:7b9:f9dd])
+        by smtp.gmail.com with ESMTPSA id c7-20020a170903234700b0016a7b9558f7sm15311784plh.136.2022.08.11.11.20.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Aug 2022 11:20:16 -0700 (PDT)
+Date:   Thu, 11 Aug 2022 11:20:13 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: input: ariel-pwrbutton: use
+ spi-peripheral-props.yaml
+Message-ID: <YvVIXdXEwIq7aKZh@google.com>
+References: <20220727164230.385614-1-krzysztof.kozlowski@linaro.org>
+ <20220728151942.GA903363-robh@kernel.org>
+ <YvQ3viBmbzuai+LC@google.com>
+ <219a875c-f46c-fde9-4370-4168d440e614@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220811125805.28577-2-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <219a875c-f46c-fde9-4370-4168d440e614@linaro.org>
+X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 11, 2022 at 08:58:05PM +0800, Allen-KH Cheng wrote:
-> Add basic chip support for MediaTek MT8186.
+On Thu, Aug 11, 2022 at 09:21:35AM +0300, Krzysztof Kozlowski wrote:
+> On 11/08/2022 01:57, Dmitry Torokhov wrote:
+> > On Thu, Jul 28, 2022 at 09:19:42AM -0600, Rob Herring wrote:
+> >> On Wed, 27 Jul 2022 18:42:30 +0200, Krzysztof Kozlowski wrote:
+> >>> Instead of listing directly properties typical for SPI peripherals,
+> >>> reference the spi-peripheral-props.yaml schema.  This allows using all
+> >>> properties typical for SPI-connected devices, even these which device
+> >>> bindings author did not tried yet.
+> >>>
+> >>> Remove the spi-* properties which now come via spi-peripheral-props.yaml
+> >>> schema, except for the cases when device schema adds some constraints
+> >>> like maximum frequency.
+> >>>
+> >>> While changing additionalProperties->unevaluatedProperties, put it in
+> >>> typical place, just before example DTS.a
+> >>>
+> >>> The binding references also input.yaml and lists explicitly allowed
+> >>> properties, thus here reference only spi-peripheral-props.yaml for
+> >>> purpose of documenting the SPI slave device and bringing
+> >>> spi-max-frequency type validation.
+> >>>
+> >>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>>
+> >>> ---
+> >>>
+> >>> Technically, this depends on [1] merged to SPI tree, if we want to
+> >>> preserve existing behavior of not allowing SPI CPHA and CPOL in each of
+> >>> schemas in this patch.
+> > 
+> > Could we merge this through SPI tree as well?
+> > 
+> >>>
+> >>> If this patch comes independently via different tree, the SPI CPHA and
+> >>> CPOL will be allowed for brief period of time, before [1] is merged.
+> >>> This will not have negative impact, just DT schema checks will be
+> >>> loosened for that period.
+> >>>
+> >>> [1] https://lore.kernel.org/all/20220722191539.90641-2-krzysztof.kozlowski@linaro.org/
+> >>> ---
+> >>>  Documentation/devicetree/bindings/input/ariel-pwrbutton.yaml | 1 +
+> >>>  1 file changed, 1 insertion(+)
+> >>>
+> >>
+> >> Acked-by: Rob Herring <robh@kernel.org>
+> > 
+> > Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> > 
 > 
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-> ---
->  arch/arm64/boot/dts/mediatek/Makefile       |   1 +
->  arch/arm64/boot/dts/mediatek/mt8186-evb.dts | 228 ++++++
->  arch/arm64/boot/dts/mediatek/mt8186.dtsi    | 858 ++++++++++++++++++++
->  3 files changed, 1087 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-evb.dts
->  create mode 100644 arch/arm64/boot/dts/mediatek/mt8186.dtsi
-[..]
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-evb.dts
-[..]
-> +		xhci0: usb@11200000 {
-> +			compatible = "mediatek,mt8186-xhci",
-> +				     "mediatek,mtk-xhci";
-> +			reg = <0 0x11200000 0 0x1000>,
-> +			      <0 0x11203e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts = <GIC_SPI 294 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			phys = <&u2port0 PHY_TYPE_USB2>;
-> +			clocks = <&topckgen CLK_TOP_USB_TOP>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_REF>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_HCLK>,
-> +				 <&infracfg_ao CLK_INFRA_AO_ICUSB>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_TOP_XHCI>;
-> +			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
-> +			mediatek,syscon-wakeup = <&pericfg 0x420 2>;
-> +			wakeup-source;
-> +			status = "disabled";
-> +		};
+> There is no dependency anymore (and actually that time it was not really
+> dependency), so you can take it freely for next cycle.
 
-You mention in the cover letter that the DSI node was removed from the patch
-since it requires a power domain, and so will be added later when the MTK power
-controller binding is sorted out. But the XHCI controller nodes also depend on
-power domains:
+Hm, it turns out I already applied it and even included in pull request
+for Linus. But for some reason my "applied" email was not bcc-ed to me
+and so I got terribly confused.
 
-	MT8186_POWER_DOMAIN_SSUSB
-	MT8186_POWER_DOMAIN_SSUSB_P1
-
-You're omitting the power domain for the xhci nodes here to avoid the dependency
-on the power controller, which means you're relying on the bootloader to leave
-them on for them to work.
-
-I don't see any problem with adding the nodes without the reference to the
-power domain for now, and just adding those later when the binding is sorted
-out. The DT will be incomplete for a while, but that's usually the case anyway.
-
-This is to say I think you should keep the DSI node in the patch without the
-power-domain for now, like in the previous version. But let's see what others
-think, in case omitting the power domain isn't acceptable, then you should
-remove the XHCI nodes as well.
-
-Matthias, any thoughts on this?
-
-Thanks,
-Nícolas
+-- 
+Dmitry
