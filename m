@@ -2,121 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E2258FE6C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 16:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D17258FE82
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 16:48:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235322AbiHKOfp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 10:35:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50578 "EHLO
+        id S234733AbiHKOsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 10:48:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235605AbiHKOfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 10:35:41 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43CE460521
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 07:35:38 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id r17so25765353lfm.11
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 07:35:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=HWMkKiacAbXjZCW+QJBi//SaWZp5PUOfX91uKaY6Quw=;
-        b=i08qZIzkDjlyMcEr83N9FdfpC7GXHP6+EAQH9CtohrVz0PE4/DYz+HbJF6+LZ3OQIV
-         MvSB2dyiTOB38WYENrugl//eOxaesLxw10GSd0Rzkyud9fZGIvTGxlI4j/0ARTg35+CF
-         nRhGxbVs0Utcs5+ly4R5O0+DmJqex9tBlT1mlNKP/5KmIFb+0Ta0Y5+4/hHIaiChMOcn
-         /JZHk5KN32SFnEPaQyeEMwVbh2n+jd4C841xw9CJkMGAw5fkK6n0rr5UNVig++coSbzM
-         jOUP7k5TMRyYH6wDC/ndyXyaZzFBINGZYyHtNJW9gBcvcqCVmOMmpWtrGb2O0zlCkgpI
-         pEjA==
+        with ESMTP id S229594AbiHKOsF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 10:48:05 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D35B27823E;
+        Thu, 11 Aug 2022 07:48:03 -0700 (PDT)
+Received: by mail-qt1-f173.google.com with SMTP id e28so5599818qts.1;
+        Thu, 11 Aug 2022 07:48:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=HWMkKiacAbXjZCW+QJBi//SaWZp5PUOfX91uKaY6Quw=;
-        b=UW/PRwE68x+0zhf2/naaC2tin3y/TzvMcgzwzRFoQUH058YsHXb1jSCxK8JOJsGi/E
-         KEbp4tXGyixe7YMkSF9TxGdeIfKyj0peZ1DqsXnAfKUmUkAWu5TNpVjUbId8dDS8SOBE
-         rrqTKebMbAjHSExSKYWBZzv2PDDoB8GQ5CD8tcRgzoTehfAe3tzWgYUsl/fgMitO8YRS
-         S1RvN/ZZlq6pB+wWoeCK7o9zzvwgVAqaCmAGAtYpPZ97+zOrGdzudKDC4SAOBzRG0m+h
-         NXnZd6FNPuum2Vnbg+xDFxCb6zctn0plX23SB/ensV5slS4l2YnHK9v1Bmthuu44fBPH
-         gF3Q==
-X-Gm-Message-State: ACgBeo0sMcz3ScTBiikOIDA0I03koeT8XENxOapgTgUTC3nHiUwB6sfG
-        QRf/3pp9wcIpSD9h2or+GtCadA==
-X-Google-Smtp-Source: AA6agR6ax8Cjk2ujPg8qHxbuGs/UavTCyEJl64W43pl6T6CSD61e92QRzGzWgHg0T6+nr2YLakjgxQ==
-X-Received: by 2002:a05:6512:3048:b0:48b:745:621c with SMTP id b8-20020a056512304800b0048b0745621cmr10507626lfb.620.1660228537208;
-        Thu, 11 Aug 2022 07:35:37 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id x6-20020a2e8806000000b0025e6fbf4a07sm857710ljh.7.2022.08.11.07.35.36
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=OY6kXjlT/4YU1tqALSVt6+oYPv3FKO3xFRDEkjpCRDs=;
+        b=MmP7abxo1qPw+BpPRzvjqj5df5agTUdeHROw7TLY45ttT7OkfMBr6YsrJgbCV6/zdf
+         aJ9AlcS13d6E1hZv6QmlfBPpBufn3pijtiRW/W2twXuPUBZgEtY27oW0ErFnBJnjQYbt
+         bP4KMrvJYx8Nc2NFxQJiAB3OtjMX1BbsWZmidAcjBMG0miRpxYrQn2j/VJBlVeNVH1UV
+         kRteV0v7zGF3cPlrI6WXJw0GhmWeoQ+CFouUBDyyEET9HgK3o3LJ537LY9gR5ukL3m+o
+         77v9RkGElFNqVGEPkkw0rOgLcuseekbWuTmS3A4ezLmIPH/jpnGxli2tIZBLMdi+riea
+         0FYQ==
+X-Gm-Message-State: ACgBeo3zNjCNku+5aHob+CpKfW4yX3IUuhdHJu2cBxm/Bpf6U+e8ILRT
+        pAljcMwrS5LFzoWEJ3jk7WusKkBiiZcfzUqK
+X-Google-Smtp-Source: AA6agR5WsZPMiittHx0u+9sWKGxLBiyDSuXNZMsMYEbe7hezZ64I9xN2CWcicsTlHnBVPTC+Q/PE3Q==
+X-Received: by 2002:ac8:5881:0:b0:342:e993:89b2 with SMTP id t1-20020ac85881000000b00342e99389b2mr23597205qta.0.1660229282889;
+        Thu, 11 Aug 2022 07:48:02 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id gd8-20020a05622a5c0800b0031eeecd21d6sm1771582qtb.69.2022.08.11.07.48.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Aug 2022 07:35:36 -0700 (PDT)
-Message-ID: <db3020ef-7321-e171-b5bc-9c1795c2cced@linaro.org>
-Date:   Thu, 11 Aug 2022 17:35:35 +0300
+        Thu, 11 Aug 2022 07:48:02 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 7so28648414ybw.0;
+        Thu, 11 Aug 2022 07:48:02 -0700 (PDT)
+X-Received: by 2002:a25:d811:0:b0:676:fffb:979 with SMTP id
+ p17-20020a25d811000000b00676fffb0979mr27343882ybg.604.1660229282091; Thu, 11
+ Aug 2022 07:48:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: gpio: Add imx scu gpio driver
- bindings
-Content-Language: en-US
-To:     Shenwei Wang <shenwei.wang@nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
-        brgl@bgdev.pl, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        imx@lists.linux.dev
-References: <20220811124135.95299-1-shenwei.wang@nxp.com>
- <20220811124135.95299-2-shenwei.wang@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220811124135.95299-2-shenwei.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220722151155.21100-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20220722151155.21100-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220722151155.21100-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 11 Aug 2022 16:47:50 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWG6FkNVYsbkvqHZHQd_XNNOKX0=fy-UdZjg62gzH4jrw@mail.gmail.com>
+Message-ID: <CAMuHMdWG6FkNVYsbkvqHZHQd_XNNOKX0=fy-UdZjg62gzH4jrw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: renesas: rzg2l-smarc-som: Add PHY
+ interrupt support for ETH{0/1}
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2022 15:41, Shenwei Wang wrote:
-> Add binding document for the imx scu gpio driver.
-> 
-> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+On Fri, Jul 22, 2022 at 5:12 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> The PHY interrupt (INT_N) pin is connected to IRQ2 and IRQ3 for ETH0
+> and ETH1 respectively.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../bindings/gpio/fsl,imx-sc-gpio.yaml        | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
-> new file mode 100644
-> index 000000000000..a1b024cddc97
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/fsl,imx-sc-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: GPIO driver over IMX SCU firmware API
-> +
-> +maintainers:
-> +  - Shenwei Wang <shenwei.wang@nxp.com>
-> +
-> +description: |
-> +  This module provides the standard interface to control the
-> +  resource pins in SCU domain on i.MX8 platforms.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8qxp-sc-gpio
+> v2->v3
+> * Included irqc-rzg2l.h header
 
-Now the filename does not match compatible. Use the same compatible as
-filename.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.1.
 
-Best regards,
-Krzysztof
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
