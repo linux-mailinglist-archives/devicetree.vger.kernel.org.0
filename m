@@ -2,63 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E649059075D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 22:32:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 623AD590760
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 22:32:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235627AbiHKUcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 16:32:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35844 "EHLO
+        id S235689AbiHKUcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 16:32:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235626AbiHKUcD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 16:32:03 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B91248A7F6
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 13:32:01 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id bs25so4097809wrb.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 13:32:01 -0700 (PDT)
+        with ESMTP id S235701AbiHKUcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 16:32:15 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E249F0F2
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 13:32:13 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id ay39-20020a05600c1e2700b003a5503a80cfso3198783wmb.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 13:32:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=conchuod.ie; s=google;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc;
-        bh=NRC10trzuqulg2mbWP7/9kZe6SgJG6yhrQ9QCsgz3RY=;
-        b=XCutOpnPVVZAhqOaRWoHNzRAgMQx51l0/PCcMxYRlNOseA+OItbKcHJEKWbm+xLZ6Y
-         1O3hD1vVHJ81uZVSSVt1e3UDPKJkaZS1SChDX43YOC61XGyLqDTk5IUVkJFcPLiLFdL1
-         NvtfvEjj+pgrlyHICggcJiGSX6A7ubcIgUCSEE1VQyG76VLdbUYxgGMB5gpKj2gbwZa/
-         nMdM4F3m7kJ7wIP7spW01DrV0sYRbHjF5mLuvv+GT5xwDiM1dyhYbyp9UzGHRdIB9RiB
-         VOAVcTmrRjcjEY+F5lib/jjC21Rz+7G5QE2/aTsk/g8DKnF3iQxhtkP5+1kBsu2raXJb
-         9bQw==
+        bh=9cA4nPyy+3oc8csp/5WI6MWGRIz8pwoP//Q0NeWm1pQ=;
+        b=dRJ6nmCzs4/bVQQeyYikvOMhwX+qBAjdKkM6h1FZYIRz7AQtdUfctdNkP+omUlEAfv
+         fM5EF7t1oRTXw1dpzjpRFYZHlQfl0FrG6WGes7inhzrk6McQ/4U6jyywhJRxX3QyuXod
+         nFdEFP++Z7dO3/pcm62XZyVRqUrEIq9q37NqQOctD+frwr6rZTtfF1gFM1AfDz5V+bUU
+         ReWnPW3FiByNKy5y3aMTJ+YhvbInIZ/tlMhzUBZ/IFiRfipdl1WANgKPQlyjGiLYSO+6
+         J1znoOVXInn248WAp28EZHhzz2ZlJ4g2hkT/ece/hEDH1a+qmWP6pRYZ5W6QHswZZ8ao
+         UcxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc;
-        bh=NRC10trzuqulg2mbWP7/9kZe6SgJG6yhrQ9QCsgz3RY=;
-        b=py5L+4p5MWw40BDG+d/WRGvc0TOM6awNia64QXQsreKXZWc8woGxwwnbpYoWOG4xLK
-         00yyfkHvbJE9HBX0bTJmkRcIaKdGYBC3ZRhl30z2gZ357wyi+gmQBu7XVB0IROyh2HcJ
-         HoKgIJxd4gQT0/0Qdq3tANsmLKHtoOo635FooH1zSyp3Wyk7UGt+9wDWUkWLO32Uqx4i
-         hOl/RDIUfCEKIaLW/8r4DSVWP+1eL54XUmwv4nKYJ1Hx3uJUuXVi71d16hseFhh6fC8F
-         oF3X/eluAxFmcGy1MayU95f8BIl8ZFloT3e2so6jcYftDyuCd/Y59SFNKrgVaTLaOZTc
-         4A3Q==
-X-Gm-Message-State: ACgBeo0M86GyTlH6yQcmgnp90qI1Dvtn+tRNygCxujWu9j2aAat6pP7Y
-        I9RAlqxMSwCXMgKSyDd+4yJzDg==
-X-Google-Smtp-Source: AA6agR6GlDpUiPt5PzjH7aZTJbryfnMlgfg7zCpD/CJubC7Re1tH3mrv1P6fO36cNnFdc4wpXfFkbQ==
-X-Received: by 2002:adf:e112:0:b0:21d:7195:3a8d with SMTP id t18-20020adfe112000000b0021d71953a8dmr333222wrz.371.1660249920196;
-        Thu, 11 Aug 2022 13:32:00 -0700 (PDT)
+        bh=9cA4nPyy+3oc8csp/5WI6MWGRIz8pwoP//Q0NeWm1pQ=;
+        b=hzqEQSXP7Ka4HHv0H0zRORDl4R9CEI5Azi8O0TdRSYnDMSx62RnnCgvu0eRXc5q5aV
+         yQElFTAfwx6aIPamNePzXH+/9FysMzDSJNsNPa/xQzjXmINgIPbiO1IKkQJvmni9N709
+         Qx6cSgQ+raKN1hen0SXiSFQXTkvC8D+I4xD/aflHRnJJz+Vmmfo82MmAsIid63HKzJC7
+         rq/6e8RwymiuH+GjAtI8dqNNzZcLb4TgDbKFoxkpQRo6pW6MhhiuJ63Csojp4b+ifBJl
+         hXB70ZDXfp9AKXWwW22mN/cjiJ+bqAYT2X40ZJ5Ll+0rWwoC5ax7KDAeRolZl5zl8Rsb
+         B4LQ==
+X-Gm-Message-State: ACgBeo3Ed5djd/bVYSw6KR7XRcmeePu6YJDeo+UmbDkGncyJpjAxW1MA
+        mJuhncCZR98ihShQ9R6SIX3OPj+vPc8Vqgnv
+X-Google-Smtp-Source: AA6agR5ZW6U+wgHEyk2sIKMDaM5dl4O7s3S9HPf5I4c+4RPoHVA6W6ojaNVCyERE/MuRFYtOHU7lUQ==
+X-Received: by 2002:a7b:c453:0:b0:3a5:b42e:c4fb with SMTP id l19-20020a7bc453000000b003a5b42ec4fbmr486780wmi.167.1660249932431;
+        Thu, 11 Aug 2022 13:32:12 -0700 (PDT)
 Received: from henark71.. ([109.76.58.63])
-        by smtp.gmail.com with ESMTPSA id n18-20020a05600c4f9200b003a1980d55c4sm8480521wmq.47.2022.08.11.13.31.58
+        by smtp.gmail.com with ESMTPSA id j42-20020a05600c1c2a00b003a30c3d0c9csm8417365wms.8.2022.08.11.13.32.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Aug 2022 13:31:59 -0700 (PDT)
+        Thu, 11 Aug 2022 13:32:11 -0700 (PDT)
 From:   Conor Dooley <mail@conchuod.ie>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Piotr Sroka <piotrs@cadence.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH] dt-bindings: mmc: cdns: add card-detect-delay property
-Date:   Thu, 11 Aug 2022 21:31:52 +0100
-Message-Id: <20220811203151.179258-1-mail@conchuod.ie>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] riscv: dts: microchip: remove ti,fifo-depth property
+Date:   Thu, 11 Aug 2022 21:32:07 +0100
+Message-Id: <20220811203207.179470-1-mail@conchuod.ie>
 X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -76,37 +75,56 @@ From: Conor Dooley <conor.dooley@microchip.com>
 
 Upgrading dt-schema to v2022.08 brings with it better handling of
 unevaluatedProperties, exposing a previously undetected missing
-property in the cadence sdhci dt-binding:
-arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: mmc@20008000: Unevaluated properties are not allowed ('card-detect-delay' was unexpected)
-        From schema: Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+property in the cadence macb dt-binding:
 
+arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: ethernet@20112000: ethernet-phy@8: Unevaluated properties are not allowed ('ti,fifo-depth' was unexpected)
+        From schema: Documentation/devicetree/bindings/net/cdns,macb.yaml
+
+I know what you're thinking, the binding doesn't look to be the problem
+and I agree. I am not sure why a TI vendor property was ever actually
+added since it has no meaning... just get rid of it.
+
+Fixes: 0fa6107eca41 ("RISC-V: Initial DTS for Microchip ICICLE board")
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
-Should this have a fixes tag? If anything, it'd be
-Fixes: 84723eec251d ("dt-bindings: mmc: cdns: document Microchip MPFS MMC/SDHCI controller")
-but idk.
----
- Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts | 2 --
+ arch/riscv/boot/dts/microchip/mpfs-polarberry.dts | 2 --
+ 2 files changed, 4 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-index 4207fed62dfe..99f89eb19356 100644
---- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-@@ -112,6 +112,13 @@ properties:
-     minimum: 0
-     maximum: 0x7f
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+index 044982a11df5..ee548ab61a2a 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dts
+@@ -84,12 +84,10 @@ &mac1 {
  
-+  card-detect-delay:
-+    description:
-+      Delay in milli-seconds before detecting card after card
-+      insert event. The default value is 0.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+
- required:
-   - compatible
-   - reg
+ 	phy1: ethernet-phy@9 {
+ 		reg = <9>;
+-		ti,fifo-depth = <0x1>;
+ 	};
+ 
+ 	phy0: ethernet-phy@8 {
+ 		reg = <8>;
+-		ti,fifo-depth = <0x1>;
+ 	};
+ };
+ 
+diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+index 82c93c8f5c17..dc11bb8fc833 100644
+--- a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
++++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
+@@ -54,12 +54,10 @@ &mac1 {
+ 
+ 	phy1: ethernet-phy@5 {
+ 		reg = <5>;
+-		ti,fifo-depth = <0x01>;
+ 	};
+ 
+ 	phy0: ethernet-phy@4 {
+ 		reg = <4>;
+-		ti,fifo-depth = <0x01>;
+ 	};
+ };
+ 
 -- 
 2.37.1
 
