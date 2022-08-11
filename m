@@ -2,200 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB87F58F70B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 06:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9301758F782
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 08:21:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233863AbiHKEwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 00:52:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50110 "EHLO
+        id S233926AbiHKGVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 02:21:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233815AbiHKEwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 00:52:19 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900DF65651
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 21:52:17 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id o3so16046702ple.5
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 21:52:17 -0700 (PDT)
+        with ESMTP id S233889AbiHKGVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 02:21:40 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 747187D7B5
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 23:21:39 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id z20so18343178ljq.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 23:21:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc;
-        bh=f9lKlYHVcsMmtqSXgvKZOc7zNWpHzbugb2ZvOggm7+8=;
-        b=S4gcGXoUOmKHDv7mFl6eUlG9J/CJI3jZ30sxu4tI7jxbsBvGExLMnbZKnJivB6YDwh
-         7A69bemlu4GU+2S8fOGcqweOrlqe1X3U7nd+qD7TLdKOOyp90ZKpNcAMnlvVEMqi6d9/
-         vuO50kb2z+nkMJd9lwWR032rWCz8BgRieK1bZGd0hgEUCPkYwiK5tieI70SRir4XPQ5m
-         17UGyABv6pu1/7YyiwBUNMx8Pk3EDi3p7URwERFthkOtIYIxmhdQ+Ew9c39bS3dyR3ik
-         zsBAdWUml+ClfZ1v8bL5gDT4BRfYYiQGijXZ32sOKVQRUX2HtL+cxuNhJp6zgTr8AB6p
-         L1Zg==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=lyTs0msMVRVl1NUIwPFvCz6xKYL3ajDC0cSoOz8c7XI=;
+        b=FDV+lVhjw2kjDqTw4xfkooXjCluNrUuws4Xo5sbG5kfTLntDeDFgHP+PGT4OmaGMAQ
+         cP20yptfuT0hLFAlcJ8UlBjqxXhvcaxEOCK6dIBAdQjqwXKvi57z4JtK+Xo/Q996qfiA
+         VpD8Q8hFnyu06jHrhOGHMvzP0ygb6w1Hmw4KcVTFjQwb6vSh/oOGo5yQcKEM9kuegtx6
+         lvUUouNQ4njGlvJTQOo/NPafJ99G/faXb6FwndWk0ZNA+CBIYhZlbjaNgw5tgr/qs4qb
+         nfYlFAK179k+PGlmniTnKrWiFc2nCPq1J/BHXMuHly89aeNYK3h+s4Rafx+mjVn6F6Fv
+         Noig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc;
-        bh=f9lKlYHVcsMmtqSXgvKZOc7zNWpHzbugb2ZvOggm7+8=;
-        b=gJ9LuamiVHoZ+4XxWgjwzE8JkhEcN4Bh4bz7064vSGa2kOGxRFas5yiwdxoPfH2PXm
-         ayRLdNJKZe3jb8/90jgulG4/iJVsFs+nxTfh/LYJZ+DGADFMrHyjlKzrH1H2U+9mnf9a
-         BECe33q+UtkTLMuHBgEGV/jHd1JztEfr9gebVUDoO0aezJx7U9SS60fG0bdwuyD/xLb6
-         iOf9USAn7Q5eHwYXA1fRuIAiBEAHUN8rAiHMj5uf50P0SPek2FNeXaH0r8mvgKwFbrcc
-         KkKJAqPdDzEYwNUwAkkbIUCwPD5R1La3BEIDY/L73+eoV7JzCY3u8ciBv6Fq7BxJFQZr
-         HcEg==
-X-Gm-Message-State: ACgBeo17vUmw0xIZ5MO3bOK8vPsWBDpktmjly8XaoHnytHerbsgZsTNF
-        SowaGw4LJVYFCYtE7ExRMzYv8/OOCcYXVQ==
-X-Google-Smtp-Source: AA6agR49u3UFrXcLzjikkseLWSPFxFzGbnFqnrRqM5nDSGc27oRG4AhuNkUD/YKHXYE+RICXLuszxw==
-X-Received: by 2002:a17:903:1207:b0:170:96d4:ac1d with SMTP id l7-20020a170903120700b0017096d4ac1dmr20466454plh.11.1660193536910;
-        Wed, 10 Aug 2022 21:52:16 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id ok3-20020a17090b1d4300b001f23db09351sm2615106pjb.46.2022.08.10.21.52.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Aug 2022 21:52:16 -0700 (PDT)
-Date:   Wed, 10 Aug 2022 21:52:16 -0700 (PDT)
-X-Google-Original-Date: Wed, 10 Aug 2022 21:52:13 PDT (-0700)
-Subject:     Re: [PATCH v7 0/4] riscv: implement Zicbom-based CMO instructions + the t-head variant
-In-Reply-To: <20220706231536.2041855-1-heiko@sntech.de>
-CC:     Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        wefu@redhat.com, guoren@kernel.org, cmuellner@linux.com,
-        philipp.tomsich@vrull.eu, Christoph Hellwig <hch@lst.de>,
-        samuel@sholland.org, atishp@atishpatra.org, anup@brainfault.org,
-        mick@ics.forth.gr, robh+dt@kernel.org, krzk+dt@kernel.org,
-        devicetree@vger.kernel.org, drew@beagleboard.org,
-        rdunlap@infradead.org, heiko@sntech.de
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     heiko@sntech.de
-Message-ID: <mhng-2f62428c-544a-4908-a91d-fb8788ae67b3@palmer-mbp2014>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=lyTs0msMVRVl1NUIwPFvCz6xKYL3ajDC0cSoOz8c7XI=;
+        b=RjlEaVLuzmi4VOWuNxXNX71wVNsPzC0mD/UekZUiseBSehxaBqGgEnfGnZN+fv92uJ
+         DrkPQ1grV21KbQ5+SvmjMLlkTWtnLY9bBWU8wzCzDEEZJ8gJK6mWlV8ez+JLvEgq6hO+
+         aFWvUQiqSVzAMrrrtt+HqBgmfRqR1H97kEUVkdvv0egvoLTmIdFXIIGsRA4syDctG0BE
+         NzvSP8aooQfwGLUjnw29NiycTyuZLPw5r3qv+hOHYxyROgG+D7eTiA00d6OcjuN1bDgL
+         NHu572ISom9ujUzMBAh07zCaRfw+NyRzr0wL98l8OVOhWdmCl9ox8v6hydWOWVW5I61H
+         pQIg==
+X-Gm-Message-State: ACgBeo2lUXa4jCHFfJ1xCFg8L6m6lVol6DmtpYj7OzY59VNDXODOOZyk
+        M2A1W2ok07ABnCQeLbatIhSXqbRIF9s610CY
+X-Google-Smtp-Source: AA6agR5PfCABBMzNdydhDAoRM7n+bYDqAckQIGcBfUqUJzialeclBQo6ABctsz1WRiMUt4Tcp3sWiw==
+X-Received: by 2002:a2e:a411:0:b0:25e:5798:9fd with SMTP id p17-20020a2ea411000000b0025e579809fdmr9591658ljn.502.1660198897767;
+        Wed, 10 Aug 2022 23:21:37 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id a5-20020a056512390500b0048aeafde9b8sm589362lfu.108.2022.08.10.23.21.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Aug 2022 23:21:36 -0700 (PDT)
+Message-ID: <219a875c-f46c-fde9-4370-4168d440e614@linaro.org>
+Date:   Thu, 11 Aug 2022 09:21:35 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH] dt-bindings: input: ariel-pwrbutton: use
+ spi-peripheral-props.yaml
+Content-Language: en-US
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Lubomir Rintel <lkundrak@v3.sk>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-input@vger.kernel.org
+References: <20220727164230.385614-1-krzysztof.kozlowski@linaro.org>
+ <20220728151942.GA903363-robh@kernel.org> <YvQ3viBmbzuai+LC@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <YvQ3viBmbzuai+LC@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Jul 2022 16:15:32 PDT (-0700), heiko@sntech.de wrote:
-> This series is based on the alternatives changes done in my svpbmt series
-> and thus also depends on Atish's isa-extension parsing series.
->
-> It implements using the cache-management instructions from the  Zicbom-
-> extension to handle cache flush, etc actions on platforms needing them.
->
-> SoCs using cpu cores from T-Head like the Allwinne D1 implement a
-> different set of cache instructions. But while they are different,
-> instructions they provide the same functionality, so a variant can
-> easly hook into the existing alternatives mechanism on those.
->
->
-> An ongoing discussion is about the currently used pre-coded
-> instructions. Palmer's current thinking is that we should wait
-> until the relevant instructions have landed in binutils.
->
-> The main Zicbom instructions are in toolchains now and at least
-> Debian also carries a binutils snapshot with it, but the T-Head
-> variant still uses pre-coded instructions for now.
->
-> The series sits on top of my svpbmt fixup series, which
-> for example includes the conversion away from function pointers
-> for the check-functions.
->
->
-> It also uses my nops-series to shorten multiple nop statements:
-> https://lore.kernel.org/r/20220607143059.1054074-1-heiko@sntech.de
->
->
-> A new dma-noncoherent property was added for the devicetree-specification
-> and dt-schema in:
-> - https://www.spinics.net/lists/devicetree-spec/msg01053.html
-> - https://github.com/devicetree-org/dt-schema/pull/78
->
-> The dtschema-patch was already merged and patch1 in this series
-> got a reviewed-by from Rob, so I guess that new property should be
-> ok to use.
->
-> changes in v7:
-> - add recently received review-tags
-> - fix wrong rv32 mabi when testing for Zicbom in Kconfig
->
-> changes in v6:
-> - add recently received review-tags
-> - adapt non-coherent patch subject as suggested by Christoph Hellwig
->
-> changes in v5:
-> - beautify of_dma_is_coherent as suggested by Christoph Hellwig
-> - WARN_TAINT when ARCH_DMA_MINALIGN smaller than riscv,cbom-block-size
->   (similar to how arm64 does this)
-> - add a function to track if non-coherent handling is available
-> - WARN_TAINT if a device is non-coherent but no non-coherent handling
-> - use clean instead of inval in arch_sync_dma_for_device:DMA_FROM_DEVICE
->   hopefully I understood
->     https://lore.kernel.org/linux-arm-kernel/20220610151228.4562-1-will@kernel.org/T/
->   correctly in this
->
-> changes in v4:
-> - modify of_dma_is_coherent() also handle coherent system
->   with maybe noncoherent devices
-> - move Zicbom to use real instructions
-> - split off the actual dma-noncoherent code from the Zicbom
->   extension
-> - Don't assumes devices are non-coherent, instead default to
->   coherent and require the non-coherent ones to be marked
-> - CPUFEATURE_ZICBOM instead of CPUFEATURE_CMO
-> - fix used cache addresses
-> - drop some unused headers from dma-noncoherent.c
-> - move unsigned long cast when calling ALT_CMO_OP
-> - remove unneeded memset-0
-> - define ARCH_DMA_MINALIGN
-> - use flush instead of inval in arch_sync_dma_for_cpu()
-> - depend on !XIP_KERNEL
-> - trim some line lengths
-> - improve Kconfig description
->
-> changes in v3:
-> - rebase onto 5.19-rc1 + svpbmt-fixup-series
-> - adapt wording for block-size binding
-> - include asm/cacheflush.h into dma-noncoherent to fix the
->   no-prototype error clang seems to generate
-> - use __nops macro for readability
-> - add some received tags
-> - add a0 to the clobber list
->
-> changes in v2:
-> - cbom-block-size is hardware-specific and comes from firmware
-> - update Kconfig name to use the ISA extension name
-> - select the ALTERNATIVES symbol when enabled
-> - shorten the line lengths of the errata-assembly
->
-> Heiko Stuebner (4):
->   of: also handle dma-noncoherent in of_dma_is_coherent()
->   dt-bindings: riscv: document cbom-block-size
->   riscv: Add support for non-coherent devices using zicbom extension
->   riscv: implement cache-management errata for T-Head SoCs
->
->  .../devicetree/bindings/riscv/cpus.yaml       |   5 +
->  arch/riscv/Kconfig                            |  31 +++++
->  arch/riscv/Kconfig.erratas                    |  11 ++
->  arch/riscv/Makefile                           |   4 +
->  arch/riscv/errata/thead/errata.c              |  20 ++++
->  arch/riscv/include/asm/cache.h                |   4 +
->  arch/riscv/include/asm/cacheflush.h           |  10 ++
->  arch/riscv/include/asm/errata_list.h          |  59 ++++++++-
->  arch/riscv/include/asm/hwcap.h                |   1 +
->  arch/riscv/kernel/cpu.c                       |   1 +
->  arch/riscv/kernel/cpufeature.c                |  24 ++++
->  arch/riscv/kernel/setup.c                     |   2 +
->  arch/riscv/mm/Makefile                        |   1 +
->  arch/riscv/mm/dma-noncoherent.c               | 112 ++++++++++++++++++
->  drivers/of/address.c                          |  17 +--
->  15 files changed, 293 insertions(+), 9 deletions(-)
->  create mode 100644 arch/riscv/mm/dma-noncoherent.c
+On 11/08/2022 01:57, Dmitry Torokhov wrote:
+> On Thu, Jul 28, 2022 at 09:19:42AM -0600, Rob Herring wrote:
+>> On Wed, 27 Jul 2022 18:42:30 +0200, Krzysztof Kozlowski wrote:
+>>> Instead of listing directly properties typical for SPI peripherals,
+>>> reference the spi-peripheral-props.yaml schema.  This allows using all
+>>> properties typical for SPI-connected devices, even these which device
+>>> bindings author did not tried yet.
+>>>
+>>> Remove the spi-* properties which now come via spi-peripheral-props.yaml
+>>> schema, except for the cases when device schema adds some constraints
+>>> like maximum frequency.
+>>>
+>>> While changing additionalProperties->unevaluatedProperties, put it in
+>>> typical place, just before example DTS.a
+>>>
+>>> The binding references also input.yaml and lists explicitly allowed
+>>> properties, thus here reference only spi-peripheral-props.yaml for
+>>> purpose of documenting the SPI slave device and bringing
+>>> spi-max-frequency type validation.
+>>>
+>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>
+>>> ---
+>>>
+>>> Technically, this depends on [1] merged to SPI tree, if we want to
+>>> preserve existing behavior of not allowing SPI CPHA and CPOL in each of
+>>> schemas in this patch.
+> 
+> Could we merge this through SPI tree as well?
+> 
+>>>
+>>> If this patch comes independently via different tree, the SPI CPHA and
+>>> CPOL will be allowed for brief period of time, before [1] is merged.
+>>> This will not have negative impact, just DT schema checks will be
+>>> loosened for that period.
+>>>
+>>> [1] https://lore.kernel.org/all/20220722191539.90641-2-krzysztof.kozlowski@linaro.org/
+>>> ---
+>>>  Documentation/devicetree/bindings/input/ariel-pwrbutton.yaml | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>>
+>>
+>> Acked-by: Rob Herring <robh@kernel.org>
+> 
+> Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> 
 
-Thanks, this is on for-next.  I had to fix up a few things, nothing big 
-but I did end up making Zicbom depend on MMU -- that's probably not 
-strictly necessary, but it looks like the dma_noncoherent stuff pulls in 
-some MMU dependencies.  Since the only hardware that has Zicbom also has 
-an MMU I figured it's OK for now, but happy to take an improvement if 
-someone has one.
+There is no dependency anymore (and actually that time it was not really
+dependency), so you can take it freely for next cycle.
 
-Since there's a new extension it also requires updating sparse, I sent a 
-patch (linked in the merge commit).
+Best regards,
+Krzysztof
