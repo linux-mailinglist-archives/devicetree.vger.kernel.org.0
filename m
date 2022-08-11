@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36EB258F785
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 08:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2878C58F789
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 08:22:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234005AbiHKGV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 02:21:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56446 "EHLO
+        id S234040AbiHKGWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 02:22:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234012AbiHKGV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 02:21:59 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3228A6EF
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 23:21:58 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id z20so18343758ljq.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 23:21:57 -0700 (PDT)
+        with ESMTP id S234037AbiHKGWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 02:22:51 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED0CC7D7B5
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 23:22:49 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id x19so15976942lfq.7
+        for <devicetree@vger.kernel.org>; Wed, 10 Aug 2022 23:22:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=8hursMRXMAUUQjiQSUj1tnEyeQwqGDBpoW+39gp5mPg=;
-        b=BfgQnUDurI1+TRka7634zdVW5kG0nSusGWy1dxJFfL56jhD1lQUWBkv8ImBSIMI500
-         j1SxrhgzQDbbmc76vh/RjUUTg3bDkAy/Y15M0OwMjgF1mm6X0MHtFAYquZx21ggVXgQq
-         vgy/quPIAgLfY0QTt4NI3QJv9rHZrrDrEm+34KE3rJmwgmy6zOt+nd1TUK3OPCZmZuJP
-         0PYoktJsqDfpsUCfHhQFCPBEubFmhs8wDkXNlafgeLSMNDo037oZIw22dMAjaahATmmR
-         GmM0XA9bfv5lG7pAZRYC5BgvmW0Gr+Tfd0idLtqg9gJFcPKmD9HAwZNuzH02jVGDF0Zp
-         H9KQ==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=myFQW53lMmz4JFfwdyKhJU7fW2/r53OOlYHkexRkvk0=;
+        b=kZmCoibdXDwo4VCyOg9H0i19ofJ6qNDdkCQKf+d1OPhuqCtgDoV6C6DRPM1jdhzjgY
+         5bzViit6EBDmSkGAMgvUMW49/h3KqkdEDySZjfnyp2Jdut+26LunAq5pH4eZwrA54UvD
+         3WTIWaLi8yCDzMPSFRIxRcPDsC/IkJGkv49+tZGfLn9X/QvjmDXJQwswDELsdUvakJ6q
+         GzAXtxgm3HLV6dhgOLlrmO9SgY+w12A3nWcl0Tl4bqSBJWLA7UnyxWpXkkBcihOzO3B2
+         /vmR293FkhOwLmyWOueapAyyv80CT7mIDMHSLOsOc6HIpV1d6aii8UASVBDNHiiIGBxn
+         sOTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=8hursMRXMAUUQjiQSUj1tnEyeQwqGDBpoW+39gp5mPg=;
-        b=q+TbBCAiP8+kWgpH4cRC1TVlYZxHx+6UFujOaXPgb8W1DNgNiuiJX5DMJlSXdO0Y+U
-         9+7srF8FF/Jsj9OCnPGOPUDROLHri+5uocH5RBk22VaJqaPCGEsdXrlxEyVJeMg1cB/Y
-         3FNWTM8hgm+SuR6LWZhPN08fCHVoLytMPlz9Jm9TCppPZCTckequL6c2/QLoDsGZtOTN
-         pxLbTD+VumGDC28avicvnkK3y7EpBX15Pr+zFJ1jK2HEFqtyiwnRQ+phBzt4a8Vk5Obd
-         cPlnv9nZUdFxlsWtUpUd2fuRENHxl2D72l385o7gaS3NGsXS6J1QbCU/aEGMVf93lGbA
-         CInw==
-X-Gm-Message-State: ACgBeo1ZTaHAtiU1wqoQRhgbAxfPxqSW68dQh64dVM5uCWXQiEg3ItIS
-        ntufszyadoEaWo9kKC5GcY/tKQ==
-X-Google-Smtp-Source: AA6agR720MOWvhibrkPPJh59VRmmw03TaKDN9hUt4FC2DPrhGE67ihwWpCEX4HtMhLVhjDlq1ZtQfg==
-X-Received: by 2002:a2e:a58e:0:b0:25f:d8c5:3898 with SMTP id m14-20020a2ea58e000000b0025fd8c53898mr5715269ljp.302.1660198917599;
-        Wed, 10 Aug 2022 23:21:57 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id t7-20020a2e9d07000000b0025e0c352465sm681240lji.82.2022.08.10.23.21.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Aug 2022 23:21:56 -0700 (PDT)
-Message-ID: <d602099c-d054-d5d9-53dc-b7900f6567f8@linaro.org>
-Date:   Thu, 11 Aug 2022 09:21:55 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] dt-bindings: chrome: google,cros-ec-type: restrict
- allowed properties
-Content-Language: en-US
-To:     Prashant Malani <pmalani@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=myFQW53lMmz4JFfwdyKhJU7fW2/r53OOlYHkexRkvk0=;
+        b=ECd1WcQi45ZWiblTueDGKekZ/SV1tNBD7WIeefr1RpfE49B17ens87WTyCwuv6TeUk
+         GCQ5AeRNR35xW3ZsVDBQhsoAYOca0rdHk2BvuKFqAPfvOs636tJ/7qr4mefF9nd6SKPn
+         4jcv1HdWz7AdOgFUGJRrlN2J4H11+chGWUzrPwlJ3wleS356cUN0dxQtkmRa15DxCJJy
+         ojBX39pvPDqhLH2B3l0ePfKsA7kwQxi2Cnqsu+SLyGWMb2zqzOlKEPBzZFFIuCtsOY/H
+         mEssKHNwMEyY2K+QDrGeA+bnD7GvfKQoWXRK4ZKkYtjQfmyP1q4YsxWluoZQNqM8gfgw
+         UXzA==
+X-Gm-Message-State: ACgBeo2NctsM3YVV9H9FuwU7kEECVEcVqolkrCMPtgstWQ7AjNesZlQf
+        TIldI6wzJGYmGFtQcol4My9DRw==
+X-Google-Smtp-Source: AA6agR4X0ticYh1ve9WR7Oyr9gn0xA8WLBimiNGSbaMBCfletyAhGK0Yi1ukgPyk4mAp57e8TWv4Ow==
+X-Received: by 2002:a05:6512:3991:b0:48b:3313:2576 with SMTP id j17-20020a056512399100b0048b33132576mr11420442lfu.136.1660198968341;
+        Wed, 10 Aug 2022 23:22:48 -0700 (PDT)
+Received: from localhost.localdomain ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id bj36-20020a2eaaa4000000b0025e66a771efsm677755ljb.136.2022.08.10.23.22.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Aug 2022 23:22:47 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Benson Leung <bleung@chromium.org>,
         Guenter Roeck <groeck@chromium.org>,
+        Prashant Malani <pmalani@chromium.org>,
         devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-kernel@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>
-References: <20220810143613.482724-1-krzysztof.kozlowski@linaro.org>
- <YvP6u8SRHswA1Iva@chromium.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YvP6u8SRHswA1Iva@chromium.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: [PATCH v2] dt-bindings: chrome: google,cros-ec-typec: restrict allowed properties
+Date:   Thu, 11 Aug 2022 09:22:45 +0300
+Message-Id: <20220811062245.4316-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,25 +73,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2022 21:36, Prashant Malani wrote:
-> Hi Krzysztof,
-> 
-> On Aug 10 17:36, Krzysztof Kozlowski wrote:
->> Describe exactly what properties are allowed in Google Chrome OS EC Type
->> C port, so the schema can properly validate the DTS.  Existing DTS
->> defines always connectors with unit addresses, not a sole "connector"
->> child.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Micro-nit: the tag in the commit message is missing a trailing "c" in
-> "cros-ec-typec". Other than that,
+Describe exactly what properties are allowed in Google Chrome OS EC Type
+C port, so the schema can properly validate the DTS.  Existing DTS
+defines always connectors with unit addresses, not a sole "connector"
+child.
 
-Thanks.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Prashant Malani <pmalani@chromium.org>
 
-> 
-> Acked-by: Prashant Malani <pmalani@chromium.org>
+---
 
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Best regards,
-Krzysztof
+Changes since v1:
+1. Correct subject prefix
+---
+ .../bindings/chrome/google,cros-ec-typec.yaml     | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
+index 2d98f7c4d3bc..50ebd8c57795 100644
+--- a/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
++++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.yaml
+@@ -20,13 +20,24 @@ properties:
+   compatible:
+     const: google,cros-ec-typec
+ 
+-  connector:
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++patternProperties:
++  '^connector@[0-9a-f]+$':
+     $ref: /schemas/connector/usb-connector.yaml#
++    unevaluatedProperties: false
++    properties:
++      reg:
++        maxItems: 1
+ 
+ required:
+   - compatible
+ 
+-additionalProperties: true #fixme
++additionalProperties: false
+ 
+ examples:
+   - |+
+-- 
+2.34.1
+
