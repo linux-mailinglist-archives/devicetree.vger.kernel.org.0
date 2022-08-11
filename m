@@ -2,144 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 868CF58FA4D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 11:56:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF8CC58FA89
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 12:14:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234543AbiHKJ4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 05:56:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35638 "EHLO
+        id S233535AbiHKKOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 06:14:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbiHKJ4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 05:56:49 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE1790C7C;
-        Thu, 11 Aug 2022 02:56:41 -0700 (PDT)
-X-UUID: dd9479c8580a4834ad6a1424f0a85f36-20220811
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=orX+YD+2Tvqn6+Tuj+MFgYJbcYh0B7itt3I1h7rJ9U0=;
-        b=tgLDkNQ3oJ3KE5kW9slZrLhE+oid4ZB20ELKTn6hBianObZ0DrUSQnPOcXoG8HAj8UVVQ9e+GV7qq4gETjK7dpCOuhKtmf0Z0d1EmaJ2IYZ0W0lAHKIR9sYRCIP45MgyxvNbZAOWkRmucKR/tO6ckl85ilhjrRzwSF3ixYz+FTk=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.9,REQID:55875548-051a-4c8e-be92-b7a98d45b22c,OB:0,LO
-        B:0,IP:0,URL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_H
-        am,ACTION:release,TS:0
-X-CID-META: VersionHash:3d8acc9,CLOUDID:7179619c-da39-4e3b-a854-56c7d2111b46,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:0,File:nil
-        ,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: dd9479c8580a4834ad6a1424f0a85f36-20220811
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1476812866; Thu, 11 Aug 2022 17:56:37 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 11 Aug 2022 17:56:35 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 11 Aug 2022 17:56:35 +0800
-Message-ID: <14d0e1be2fbd7bbacb7553a2e2e5b9d941403c4f.camel@mediatek.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: mediatek: watchdog: Fix compatible
- fallbacks and example
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "=?ISO-8859-1?Q?N=EDcolas?= F. R. A. Prado" <nfraprado@collabora.com>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        "Guenter Roeck" <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        <angelogioacchino.delregno@collabora.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 11 Aug 2022 17:56:35 +0800
-In-Reply-To: <815b03aa-ab39-ec8b-294b-68dff36e2d54@kernel.org>
-References: <20220721014845.19044-1-allen-kh.cheng@mediatek.com>
-         <20220721014845.19044-2-allen-kh.cheng@mediatek.com>
-         <CAGXv+5HXwVpaJPV-4Z6qw14xZzEkx_E7dVks6-GBa7bQyN8hCg@mail.gmail.com>
-         <5dac39d1-3b42-40e9-5693-0c127e8c689a@gmail.com>
-         <0fadcd9f50d49ecbb329e76a9ceb6ee689648955.camel@mediatek.com>
-         <20220808170355.c2ih3xwqxlddsal7@notapiano>
-         <6271732eb27824c5b841760243738ceb062f4c4a.camel@mediatek.com>
-         <815b03aa-ab39-ec8b-294b-68dff36e2d54@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S233309AbiHKKOr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 06:14:47 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E18E1400E
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 03:14:46 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id j8so32650111ejx.9
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 03:14:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=UpvdQiXiaoWE7lmdI46FMRRQoH8NCO0q4oDKow84fM0=;
+        b=UMK/Hou07kBp+Xwl3DSQCFMY2dhZk3AM02CB+Y/hkhC9tRM4tNcdrdtrheQxQTs+nV
+         bTbKOcgpLsq3iXo1nfrWs75vuxP3NhqbDotrKZb6Mg3gY8zrBrvAyM16Cw9cTD5Na1KH
+         /7KCdEwvErJFkCgG/yvinPxkkkX/UR6rqSYOThIhRm1CsWJ2HJQ08tB7P2kV+aySQg3n
+         dhFEkWsSRRUQl4bgHrgUs1uyfDYsG7Rlfi5n/jBtATPNk3lMuBF1ePQfj8CrH5tkPABj
+         3rxhuPzhvuj14cmrZtz1QEDjEw0+SobtvG5u4Eopx2CRN9lg89Tz2gKB5xgoriu2dSwx
+         gKaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=UpvdQiXiaoWE7lmdI46FMRRQoH8NCO0q4oDKow84fM0=;
+        b=Ro7azGfUwW0o+pLqPM7W7UBizL8MLD4xQW+E9pqIBhyKowjfzLdewafIn6TeF0msxu
+         p1i0gbs06avzLw35EU4sL6bUUBB0A+F6YULz9kj9qpydeUw/OXpy9TaQ/3gx29tGi3xt
+         8cH1RLpRTI2qiv8xJbCueM3OdYnyeaiS/H0+0wAbUKllGreWhHkG025UC4hjoPyLPT+P
+         d2pBtrKGYSKA3V85FDS1xkyyUFSOW7gHqVE4K4jgu6ITqV4C7L01HYfHyA5FwY3dZBLx
+         /IbbnNJLmTlGTCMQjanv8cekGqxf0OKLx2zu0j5eql83gJ5iblV7JOuLFVuY1lj7qsXW
+         UmOA==
+X-Gm-Message-State: ACgBeo3y3mdG1bR/NypVv2a7tUD8+5udPnmBjQMsCLuI5dr/8nGbg9Mb
+        ANHZ/RI+Wwut66BPAbkJtIpbqw==
+X-Google-Smtp-Source: AA6agR5L2wWzNcCPE7/bJF3PDQb95PoMLxtTDASXrh6z5KvVlnXynNFIDpNjNBO239jdMWu9vzaw7Q==
+X-Received: by 2002:a17:907:209c:b0:731:27bb:da8c with SMTP id pv28-20020a170907209c00b0073127bbda8cmr16525790ejb.555.1660212884692;
+        Thu, 11 Aug 2022 03:14:44 -0700 (PDT)
+Received: from blmsp ([2001:4090:a243:8036:200c:a862:4253:884])
+        by smtp.gmail.com with ESMTPSA id x17-20020a1709060ef100b0072b6d91b056sm3386837eji.142.2022.08.11.03.14.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Aug 2022 03:14:44 -0700 (PDT)
+Date:   Thu, 11 Aug 2022 12:14:43 +0200
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: power: Add MT8365 power domains
+Message-ID: <20220811101443.eevyf5xnctmo5y4f@blmsp>
+References: <20220725081853.1636444-1-msp@baylibre.com>
+ <20220725081853.1636444-2-msp@baylibre.com>
+ <bbdde7ce-4512-2e61-5e1a-e22e5cb91184@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY,URIBL_CSS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <bbdde7ce-4512-2e61-5e1a-e22e5cb91184@collabora.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-he SoC-specific compatibles Hi Krzysztof,
+Hi Angelo,
 
-On Wed, 2022-08-10 at 19:50 +0300, Krzysztof Kozlowski wrote:
-> On 10/08/2022 15:58, Allen-KH Cheng wrote:
-> > I agree the advantage of patch is aesthetic. Since I also want to
-> > send
-> > another "watchdog: Convert binding to YAML" PATCH, it's better let
-> > all
-> > wdt compatibles in the binding match the contents of mtk_wdt_dt_ids
-> > in
-> > drivers/watchdog/mtk_wdt.c
+On Mon, Jul 25, 2022 at 10:54:58AM +0200, AngeloGioacchino Del Regno wrote:
+> Il 25/07/22 10:18, Markus Schneider-Pargmann ha scritto:
+> > From: Fabien Parent <fparent@baylibre.com>
 > > 
-> > static const struct of_device_id mtk_wdt_dt_ids[] = {
-> > 	{ .compatible = "mediatek,mt2712-wdt", .data = &mt2712_data },
-> > 	{ .compatible = "mediatek,mt6589-wdt" },
-> > 	{ .compatible = "mediatek,mt7986-wdt", .data = &mt7986_data },
-> > 	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
-> > 	{ .compatible = "mediatek,mt8186-wdt", .data = &mt8186_data },
-> > 	{ .compatible = "mediatek,mt8192-wdt", .data = &mt8192_data },
-> > 	{ .compatible = "mediatek,mt8195-wdt", .data = &mt8195_data },
-> > 	{ /* sentinel */ }
-> > };
+> > Add power domains dt-bindings for MT8365.
 > > 
-> > We have "mediatek,mt8186-wdt" "mediatek,mt8195-wdt" and
-> > "mediatek,mt7986-wdt" now and they have their DT data for the reset
-> > control.
+> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > ---
 > > 
-> > It's weird and unuseful to add "mediatek,mt6589-wdt" as fallback. 
+> > Notes:
+> >      Changes in v2:
+> >      - Made include/dt-bindings/power/mt8365-power.h dual-license.
 > > 
+> >   .../power/mediatek,power-controller.yaml      |  2 ++
+> >   include/dt-bindings/power/mt8365-power.h      | 19 +++++++++++++++++++
+> >   2 files changed, 21 insertions(+)
+> >   create mode 100644 include/dt-bindings/power/mt8365-power.h
 > > 
-> > Please kindly let me know if I missed anything
+> > diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> > index 135c6f722091..2c6d3e4246b2 100644
+> > --- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> > +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+> > @@ -29,6 +29,7 @@ properties:
+> >         - mediatek,mt8186-power-controller
+> >         - mediatek,mt8192-power-controller
+> >         - mediatek,mt8195-power-controller
+> > +      - mediatek,mt8365-power-controller
+> >     '#power-domain-cells':
+> >       const: 1
+> > @@ -67,6 +68,7 @@ patternProperties:
+> >                 "include/dt-bindings/power/mt8183-power.h" - for MT8183 type power domain.
+> >                 "include/dt-bindings/power/mt8192-power.h" - for MT8192 type power domain.
+> >                 "include/dt-bindings/power/mt8195-power.h" - for MT8195 type power domain.
+> > +              "include/dt-bindings/power/mt8365-power.h" - for MT8365 type power domain.
+> >           maxItems: 1
+> >         clocks:
+> > diff --git a/include/dt-bindings/power/mt8365-power.h b/include/dt-bindings/power/mt8365-power.h
+> > new file mode 100644
+> > index 000000000000..e6cfd0ec7871
+> > --- /dev/null
+> > +++ b/include/dt-bindings/power/mt8365-power.h
 > 
-> How the driver arranges it should not be a reason to use or not to
-> use
-> specific fallback. Although Rob acked it, but I still think you did
-> not
-> provide valid reason for the change.
+> Please rename this file to add the vendor prefix.
 > 
-> Valid reason is usually the actual hardware (so they are actually not
-> compatible with mt6589), not exactly how once someone did it in the
-> driver.
-> 
-> Best regards,
-> Krzysztof
+> mediatek,mt8365-power.h
 
-Thank you for your detailed and clear explanation.
+Thank you for your feedback.
 
-"mediatek,mt6589-wdt" provides the mtk watchdog support and the SoC-
-specific compatibles is for reset controls to standard wdt.
+There are currently 12 'mt*-power.h' files without vendor prefix in that
+directory. I can change it, but it seems very inconsistent.
 
-"mediatek,mt6589-wdt" is compatible with mt8186, mt8195 and mt7986 and
-just not support the reset controls. 
-
-Based on the discussion of email thread, please drop my series.
-
-
-Thanks to everyone for your comments.
-
-Best regards,
-Allen
-
-
-
+Best,
+Markus
