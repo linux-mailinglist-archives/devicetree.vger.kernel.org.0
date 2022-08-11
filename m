@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A83CB58F99C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 10:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDC7858F9A3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 11:00:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234810AbiHKI6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 04:58:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38454 "EHLO
+        id S234824AbiHKJAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 05:00:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233839AbiHKI6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 04:58:15 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B3091D19
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 01:58:13 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id s9so18653803ljs.6
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 01:58:13 -0700 (PDT)
+        with ESMTP id S234129AbiHKJAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 05:00:05 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E5A09350C
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 02:00:04 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id x19so16408572lfq.7
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 02:00:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=N5Ft5sVhLXeWT9idHrJs9i/WomNuOkmhDhB2xyIuVDk=;
-        b=wVyaWMWBQECdMUBpp7ZCsMs+ygcvsTNhL3QyN1Hd3bVN+jIscsZW1+Sk5718mb7T+9
-         5AvoXULMa/v55wb0yPGXxOKYOpF2dD8DByh6BHnnFRwEo9FTZCwL/FfnNPwdlv2EtPhK
-         Q24/SOHs2lrjO5qbXSWNhq0jwyFvovuBAP59gMTjZx0wv6dD48qGNpTcGnmvRUqYcJ9I
-         Txg8SUshCo8Aq0AFZu6itRg0fhDD6HS2y8ctI6VTgtGZvXurw+bJWIc+HbktjkPk1LtD
-         Tr1aTOpwiSRo0M/KuHjWW09YYo5AzUEy6njjIloYn9DnAOkE1+3YkWkSzi1LnMkyWfmr
-         fZNQ==
+        bh=5WjgcK5eYVPFMLFJ11aVeFu0Bby9kbbjoEryld0yZRM=;
+        b=IjMYLXXTgqW2YJAI8+nq7IHzhh2jmwEYXPd5d05xMSxhXA7m0HLnwpOgH0Z2azqYlo
+         f7rxHCdZ5BLkXtkSdqwwVqxWZ/xxAumK9pjsvnKj94Q1fRi0f4Y//bmcVZUvW4DeRGgy
+         zcREEStRNU3KFKnzTl639hXXoBJY1DEBIeSuOLGvqv7HBwiw6KyAykQlOUp+Bjs0C+Ek
+         1aVx7wYJB+cqwlfB53/p8vNURnAONFYWHKEs6FY9Jn1my1ZylOpn/TJneY+tKLG76POg
+         vcO81I5/Gf0Q3eLZR/LL6pHqeUULCMpg7zxADRQ77j1CM4M1pVgOdI7o7fC4WSmBsWwz
+         ut2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=N5Ft5sVhLXeWT9idHrJs9i/WomNuOkmhDhB2xyIuVDk=;
-        b=SuYJvnR2z9xBx+CYgNnZ3sYBPFd002Kw2AdyPlc5I4QIQNn1hZI8Yr0LkXNVsAB4/E
-         spBFF4qzOKszopd5l9SBObbLqEa6Rf8nRzsA02O+2MejF+QWfHbVn77NIhhA93S9ZDZD
-         Hz+ga6FUtjcG4nGzuCSKvVSWfUSPh1Npi0BwHq5Go5GiDh8ro+4WDye8zBOz/vGXsdhP
-         Au5OS/5OQ/VpR6TdJFKjpFQV/d3Ew49hV4g5t5Mpcf2w84WXeBtPl79HjS9esah4DiBL
-         0bq3ayEod7Gz2DdBLbPABk2RnEUuYAdI+7MzZL6G0iFHKR+KLiY8301XSWzgGRObvGw6
-         OT0Q==
-X-Gm-Message-State: ACgBeo0/wN86Ne7o0D8Paz5OhHLvHqFRY8c6bp4SIRJPcOJURCywqPCs
-        qHk/cTDA7IgvKFafe74oM6CxBA==
-X-Google-Smtp-Source: AA6agR5IG/BKNBEX72bjzs3bSYNizTV99VINIDm/s2LxtwxR86KNQn9gvYNlkjqA9dNJgl+dksY4+A==
-X-Received: by 2002:a2e:9e17:0:b0:25d:7654:4c6b with SMTP id e23-20020a2e9e17000000b0025d76544c6bmr10392843ljk.130.1660208292382;
-        Thu, 11 Aug 2022 01:58:12 -0700 (PDT)
+        bh=5WjgcK5eYVPFMLFJ11aVeFu0Bby9kbbjoEryld0yZRM=;
+        b=hXAfoRy4u6e0Q1aoT2OQfB4lTCnpHtQkM+tVmK+t6vgCzFhjOxar/UMX/shI/yxEYM
+         UKU56CfafbNaDVNVgTLkC/KKupTWkrVOLmDzt1HPRbq92k+qy9z6DsouXguTQaoYuErQ
+         d4JGn3B7iHUfjkUlsoUUfUCvOKswbW2U8gCb9Iv3fZLhWPsTt7cMhWgyHjJoG3jhOmps
+         c2ny4s4qJfu42Up4lBoUnKejQkjsrqfoQpL0uXnXL6Uk7KLvOLNn3JTqlape5/U8dqwl
+         8QyjtFiDZFnkQp9xZhaft2YyRD/ubawJAJB1Xz1V7TraVKwu+nLROQmBhKx2qo9bzjkr
+         NvLA==
+X-Gm-Message-State: ACgBeo0koLQzQLmpXOW2hxlnohlagFysnZdwoY6xvpC/ac89q+fc4vRI
+        1cHLs9eYaAaLjyJUGuMv1owQjQ==
+X-Google-Smtp-Source: AA6agR6S5yUrkTRapcPMXpUd01M/KOAE0CJfD3/X8dJUf0WmsecENjUCniEzdzXJG0kjhW/Ca0HNPg==
+X-Received: by 2002:a05:6512:3fa8:b0:48c:ffd1:625d with SMTP id x40-20020a0565123fa800b0048cffd1625dmr4637794lfa.251.1660208402628;
+        Thu, 11 Aug 2022 02:00:02 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id du14-20020a056512298e00b0048cf7e8145asm635053lfb.117.2022.08.11.01.58.10
+        by smtp.gmail.com with ESMTPSA id v13-20020a056512348d00b0048355942defsm630300lfr.249.2022.08.11.02.00.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Aug 2022 01:58:11 -0700 (PDT)
-Message-ID: <86ab77f5-8beb-7237-d6e2-734f52ca176b@linaro.org>
-Date:   Thu, 11 Aug 2022 11:58:10 +0300
+        Thu, 11 Aug 2022 02:00:02 -0700 (PDT)
+Message-ID: <ec906e4d-776b-1a96-bcda-c53c0b338562@linaro.org>
+Date:   Thu, 11 Aug 2022 12:00:00 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v2] pmic: add mt6366 regulator document
+Subject: Re: [PATCH v3 2/2] arm64: dts: imx8mp-msc-sm2s: Add device trees for
+ MSC SM2S-IMX8PLUS SoM and carrier board
 Content-Language: en-US
-To:     "zhiyong.tao" <zhiyong.tao@mediatek.com>, lee.jones@linaro.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-        broonie@kernel.org, eddie.huang@mediatek.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, fshao@chromium.org
-Cc:     sen.chu@mediatek.com, hui.liu@mediatek.com,
-        allen-kh.cheng@mediatek.com, hsin-hsiung.wang@mediatek.com,
-        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
-        wen.su@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        zhiyong tao <zhiyong.tao@mediatk.com>
-References: <20220728062749.18701-1-zhiyong.tao@mediatek.com>
- <20220728062749.18701-2-zhiyong.tao@mediatek.com>
- <03a13ed4-e7cd-6f7d-f8f7-9b1e6193e202@linaro.org>
- <111e1073e1ce689e289e52c645a1be2e7dc7fe12.camel@mediatek.com>
+To:     Martyn Welch <martyn.welch@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220721101050.2362811-1-martyn.welch@collabora.com>
+ <20220721101050.2362811-2-martyn.welch@collabora.com>
+ <eade56c1-bf4e-0ece-9b67-02f01a95c741@linaro.org>
+ <5d2aacb5b0a06a4ad63fe28f4b34e4fb41f955f5.camel@collabora.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <111e1073e1ce689e289e52c645a1be2e7dc7fe12.camel@mediatek.com>
+In-Reply-To: <5d2aacb5b0a06a4ad63fe28f4b34e4fb41f955f5.camel@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,45 +85,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2022 11:42, zhiyong.tao wrote:
->>
+On 11/08/2022 11:49, Martyn Welch wrote:
+> On Thu, 2022-07-21 at 18:34 +0200, Krzysztof Kozlowski wrote:
+>> On 21/07/2022 12:10, Martyn Welch wrote:
+>>> Add device trees for one of a number of MSC's (parent company,
+>>> Avnet)
+>>> variants of the SM2S-IMX8PLUS system on module along with the
+>>> compatible
+>>> SM2S-SK-AL-EP1 carrier board. As the name suggests, this family of
+>>> SoMs use
+>>> the NXP i.MX8MP SoC and provide the SMARC module interface.
 >>>
->>> Signed-off-by: zhiyong tao <zhiyong.tao@mediatk.com>
+>>> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
 >>> ---
->>>  .../regulator/mediatek,mt6366-regulator.yaml  | 375
->>> ++++++++++++++++++
->>>  1 file changed, 375 insertions(+)
 >>
->> Subject does not match subsystem.
 > 
-> Hi Krzysztof,
+> Is there anything else I need to do to get this ready for inclusion?
 > 
-> Do you mean that we should change the title like this:
-> regulator: dt-bindings: mediatek: add mt6366 regulator document
-> is it right?
 
-Yes. And remove redundant pieces so for example:
-
-regulator: dt-bindings: mediatek: add mt6366
-or:
-regulator: dt-bindings: add mediatek,mt6366
-
-
-(...)
-
->>> +    patternProperties:
->>> +      "^buck-
->>> v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$":
->>> +        type: object
->>> +        $ref: "regulator.yaml#"
->>
->> No need for quotes.
-> ==>
-> We will remove the line "$ref: "regulator.yaml#"" in next verison, is
-> it right?
-
-No, it is not. Why do you want to remove it?
-
+One thing could be - do not ping during the merge window. :) And if
+pinging be a bit more specific whom you ping.
 
 Best regards,
 Krzysztof
