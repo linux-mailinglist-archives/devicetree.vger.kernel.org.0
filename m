@@ -2,139 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A20858FEDD
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 17:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1957C58FF46
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 17:26:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235278AbiHKPKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 11:10:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55726 "EHLO
+        id S234164AbiHKP0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 11:26:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235544AbiHKPKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 11:10:46 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D15A25C76
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 08:10:44 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id z6so18504821lfu.9
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 08:10:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=ythLCoVb9L2vBawwAE87aN65NfOERO7MePsawDGE0HM=;
-        b=GpHMp+mUorkB7eVPzZYP3xQ08kbw0mkr0pImGlClMbek72EeegLNz+nhuMZOo7wuLu
-         qzOjPuzyDt/Y/ThaKW3KFd16H+SO0VVDwWvTJKnr73a1nhQo8fQr0LvCzR+VBl1QL9f6
-         m1xSxv7/TpzHVngyUuhfrCYcVrAK0M2o8pR9d67WHzKPntTsGTIjYLMSd2BMshgaNv7f
-         ZwfuvnLKFxkSo6EY4u84KS6jhrXCMD1PO9/uETlCO0Tac3Ey02V40jeHKh4uN13U3XOU
-         3gsVNo/HiWRRtRqs/cJtjtlwzh93ZwtURmiGfAm95rmKR13v4hPOrhsG13yhr0GvZotH
-         SfTQ==
+        with ESMTP id S234925AbiHKP0q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 11:26:46 -0400
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E46D6B166;
+        Thu, 11 Aug 2022 08:26:45 -0700 (PDT)
+Received: by mail-qv1-f53.google.com with SMTP id u8so13585916qvv.1;
+        Thu, 11 Aug 2022 08:26:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=ythLCoVb9L2vBawwAE87aN65NfOERO7MePsawDGE0HM=;
-        b=UMrnv9NA5OFhF2Y17WN9bzX8S+S5jbQLytbM+zRMmERacOnrBOa6gzdKdxyC7XiGTP
-         yXIHmYuygID/NcWcEvcTFWzqb0YWr/nHaN73A0Obr7qFuoqA0pUBeUUgNl3L+NYlzh/V
-         WyC7qg+UWV/QS6T5+cGncV34R6aHa3CCFupr+ua4y5Cdcz8RSHvxDK9Pl/2o499u0anw
-         Y0nv+ZPQDrZaIR5/a21hW4Wnr+YRUxGVZBqrCF0sTAnxm3qAJ3bV1d/FjhMTuncmnSOS
-         ZHfaFH81F6Ds66oS7fZPwrCurzZHXxO9DwOpdMV/o3PAjlbsaLNY9ipv35uv1lb4zUCs
-         si5w==
-X-Gm-Message-State: ACgBeo2+NAW93ndKLFKk7M6b3v73YkJpiIjSoFCTNeIJdgo2WmeWS5T6
-        CWUEs8Wz9cy1TCQe2ZUcTmdJLA==
-X-Google-Smtp-Source: AA6agR7oR08zhJzkZ8rf5MkbjaIHuaVnR+OLR5jaO9Pq5H4A3inAXP8eN7ZQLCJOAcsPhXzgtxQT9w==
-X-Received: by 2002:a05:6512:2316:b0:48a:f2e3:be97 with SMTP id o22-20020a056512231600b0048af2e3be97mr10845161lfu.383.1660230642636;
-        Thu, 11 Aug 2022 08:10:42 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id w12-20020a05651234cc00b0048137a6486bsm726277lfr.228.2022.08.11.08.10.37
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=DTtQnNq6ywRHsZZL/uujOqWlFtBnXuiLlCZYEJfCk7M=;
+        b=YRRJwoNP/uegJz2mkcBcT7O54hXRzqirgIvKluwiDTt51aB+9UTmVu1k26Ws3a9xYt
+         mqkvAz3guhYyqsgsxuVK5oXi7RkfGSynL/QubWggPR+fstZ3EL0pXu4aMNayPsCJhuPO
+         yimsLbKRRKKUWnVAIHBcZftXwdntEWZp6zmOo8FfuYBxvGFN87Qy3jJXo2iYk5Ci5qNc
+         0hTGBXdAt+EeO/xBPBSM7jhhWdkT/nniTPe/Hqj3h0uRJodT99tQE0t0aiKohVGS3YZp
+         wMTxjAoW7YgWbNyqgB4P8xb1rgaJaNDBao4Q8SXb+r/hTLdRar1OK1M1St8W7eV538hn
+         svgw==
+X-Gm-Message-State: ACgBeo3AHJd2X/nWpXBIuqA4OJEwXOru0x1k22S+79TT6IwfCDAODefb
+        UGa6Z0p/1/KiuQF01WB7CvrySdYETj+1RrD2
+X-Google-Smtp-Source: AA6agR4bYlU0/EITs/MY4AcXHnUfMbG/kUQgczbthvLfPtSBLiBOUmHFfIeYi5a2Uv+GTaeWJxH+vA==
+X-Received: by 2002:a05:6214:e4e:b0:476:c48f:ad7 with SMTP id o14-20020a0562140e4e00b00476c48f0ad7mr28306940qvc.33.1660231604396;
+        Thu, 11 Aug 2022 08:26:44 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id d7-20020a05620a240700b006b93ef659c3sm2310349qkn.39.2022.08.11.08.26.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Aug 2022 08:10:42 -0700 (PDT)
-Message-ID: <01c832c4-6631-4865-30b3-7f060e27a7ff@linaro.org>
-Date:   Thu, 11 Aug 2022 18:10:36 +0300
+        Thu, 11 Aug 2022 08:26:44 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-32194238c77so176451937b3.4;
+        Thu, 11 Aug 2022 08:26:43 -0700 (PDT)
+X-Received: by 2002:a81:af42:0:b0:31f:4e9a:74ad with SMTP id
+ x2-20020a81af42000000b0031f4e9a74admr33633524ywj.358.1660231603773; Thu, 11
+ Aug 2022 08:26:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [EXT] Re: [PATCH v4 1/3] dt-bindings: gpio: Add imx scu gpio
- driver bindings
-Content-Language: en-US
-To:     Shenwei Wang <shenwei.wang@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "brgl@bgdev.pl" <brgl@bgdev.pl>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>
-References: <20220811124135.95299-1-shenwei.wang@nxp.com>
- <20220811124135.95299-2-shenwei.wang@nxp.com>
- <db3020ef-7321-e171-b5bc-9c1795c2cced@linaro.org>
- <AM9PR04MB82741882E177387DB95AE3B589649@AM9PR04MB8274.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <AM9PR04MB82741882E177387DB95AE3B589649@AM9PR04MB8274.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220726180623.1668-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <952a85ec-d1e9-7c14-6404-bc087723252f@linaro.org> <CA+V-a8vb+za1Zckk5aTxz0hKkd5fHQk7gtfV+HR_2YMZ5JuJEQ@mail.gmail.com>
+ <3e3c0c80-48eb-098d-977d-a1801036fc0c@linaro.org> <CA+V-a8tJVGz57FcJVnbksMot=pg5dXALo4QEyqO+57HnOTJLfQ@mail.gmail.com>
+In-Reply-To: <CA+V-a8tJVGz57FcJVnbksMot=pg5dXALo4QEyqO+57HnOTJLfQ@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 11 Aug 2022 17:26:32 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWih6XiVfLT0g=k8QrMmVzb2sqv9hxqtGE1t1F1Jvj_QA@mail.gmail.com>
+Message-ID: <CAMuHMdWih6XiVfLT0g=k8QrMmVzb2sqv9hxqtGE1t1F1Jvj_QA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: arm: renesas: Ignore the schema for
+ RISC-V arch
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/08/2022 17:52, Shenwei Wang wrote:
-> 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Thursday, August 11, 2022 9:36 AM
->> To: Shenwei Wang <shenwei.wang@nxp.com>; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; linus.walleij@linaro.org; brgl@bgdev.pl;
->> shawnguo@kernel.org; s.hauer@pengutronix.de; kernel@pengutronix.de;
->> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>
->> Cc: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
->> gpio@vger.kernel.org; linux-arm-kernel@lists.infradead.org; imx@lists.linux.dev
->> Subject: [EXT] Re: [PATCH v4 1/3] dt-bindings: gpio: Add imx scu gpio driver
->> bindings
->>> diff --git
->>> a/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
->>> b/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
->>> new file mode 100644
->>> index 000000000000..a1b024cddc97
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/gpio/fsl,imx-sc-gpio.yaml
->>> +description: |
->>> +  This module provides the standard interface to control the
->>> +  resource pins in SCU domain on i.MX8 platforms.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - fsl,imx8qxp-sc-gpio
->>
->> Now the filename does not match compatible. Use the same compatible as
->> filename.
-> 
-> The subnodes under fsl,scu.yaml have their own naming rule. For example, the watchdog
-> compatible is "fsl,imx-sc-wdt", but the file name is "fsl,scu-wdt.yaml". 
+Hi Prabhakar,
 
-The other files have for example fsl,imx-sc-wdt, so they match compatible.
+On Wed, Jul 27, 2022 at 11:48 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Wed, Jul 27, 2022 at 10:31 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> > On 27/07/2022 11:00, Lad, Prabhakar wrote:
+> > > On Wed, Jul 27, 2022 at 9:53 AM Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >> On 26/07/2022 20:06, Lad Prabhakar wrote:
+> > >>> Ignore the ARM renesas.yaml schema if the board is RZ/Five SMARC EVK
+> > >>> (RISC-V arch).
+> > >>>
+> > >>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >>> ---
+> > >>>  Documentation/devicetree/bindings/arm/renesas.yaml | 9 +++++++++
+> > >>>  1 file changed, 9 insertions(+)
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
+> > >>> index ff80152f092f..f646df1a23af 100644
+> > >>> --- a/Documentation/devicetree/bindings/arm/renesas.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
+> > >>> @@ -9,6 +9,15 @@ title: Renesas SH-Mobile, R-Mobile, and R-Car Platform Device Tree Bindings
+> > >>>  maintainers:
+> > >>>    - Geert Uytterhoeven <geert+renesas@glider.be>
+> > >>>
+> > >>> +# We want to ignore this schema if the board is of RISC-V arch
+> > >>> +select:
+> > >>> +  not:
+> > >>> +    properties:
+> > >>> +      compatible:
+> > >>> +        contains:
+> > >>> +          items:
+> > >>> +            - const: renesas,r9a07g043f01
+> > >>
+> > >> Second issue - why not renesas,r9a07g043?
+> > >>
+> > > We have two R9A07G043 SOC'S one is based on ARM64 and other on RISC-V.
+> > >
+> > > RZ/G2UL ARM64:
+> > > Type-1 Part Number: R9A07G043U11GBG#BC0
+> > > Type-2 Part Number: R9A07G043U12GBG#BC0
+> > >
+> > > RZ/Five RISCV:
+> > > 13 x 13 mm Package Part Number: R9A07G043F01GBG#BC0
+> > >
+> > > So to differentiate in ARM schema I am using  renesas,r9a07g043f01.
+> >
+> > What is the point to keep then r9a07g043 fallback? The two SoCs are not
+> > compatible at all, so they must not use the same fallback.
+> >
+> Agreed, I wanted to keep it consistent with what was done with ARM64
+> (since both the SoCs shared R9A07G043 part number).
+>
+> Geert - What are your thoughts on the above?
 
-> Is the filename required 
-> to match its compatible?
+"renesas,r9a07g043" is the CPU-less SoC base containing I/O devices.
+"renesas,r9a07g043f01", "renesas,r9a07g043u11", and
+"renesas,r9a07g043u12" are SoCs built by integrating one or more
+RV64 or ARM64 CPU cores and the related interrupt controllers with
+the CPU-less SoC base.
 
-Yes, that's the convention. Otherwise people tend to name the files in
-whatever way they like...
+Gr{oetje,eeting}s,
 
-Best regards,
-Krzysztof
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
