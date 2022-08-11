@@ -2,97 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B530D58FE0F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 16:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3110B58FE1C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 16:12:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234385AbiHKOIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 10:08:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53478 "EHLO
+        id S235164AbiHKOMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 10:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234280AbiHKOIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 10:08:09 -0400
-Received: from smtp-190f.mail.infomaniak.ch (smtp-190f.mail.infomaniak.ch [IPv6:2001:1600:3:17::190f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE6B58D3CE
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 07:08:06 -0700 (PDT)
-Received: from smtp-3-0001.mail.infomaniak.ch (unknown [10.4.36.108])
-        by smtp-2-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4M3TD421tWzMqd6N;
-        Thu, 11 Aug 2022 16:08:04 +0200 (CEST)
-Received: from philippe-pc.toradex.int (unknown [31.10.206.125])
-        by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4M3TD33qzwzlnSCp;
-        Thu, 11 Aug 2022 16:08:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pschenker.ch;
-        s=20220412; t=1660226884;
-        bh=4P5wFVHP/eifLMBuIeuCofL/rr2vQY8FapKBSxxQcyg=;
-        h=From:To:Cc:Subject:Date:From;
-        b=XYaPGguxH+lQL1/6W4Ph0J7UjMEKkgfqsM9TjrbrUCxamCHTrmtUTdXbFRsgMCqTX
-         efm06gZ3YdCrMnKGI3D7y/FQk+cOBYDGpCFBuEFSzbHQcWtKDk+WACqldIsQ1ssjIS
-         YnGSskjl/3mDE36/Ti9Ki4dgKzhLtDUHeWL3FqNw=
-From:   Philippe Schenker <dev@pschenker.ch>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Peter Chen <peter.chen@kernel.org>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: verdin-imx8mm: add otg2 pd to usbphy
-Date:   Thu, 11 Aug 2022 16:07:38 +0200
-Message-Id: <20220811140738.96348-1-dev@pschenker.ch>
-X-Mailer: git-send-email 2.37.1
+        with ESMTP id S234734AbiHKOMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 10:12:43 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47E3089812
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 07:12:42 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id y23so19394243ljh.12
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 07:12:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=Fy9PTke51Zg9523WNK0IhcOTzgepLlEhCDidUwNqgkc=;
+        b=P95w+mFAwgJ0FxxXxzex66rQi6nyYIcEZJb2oYfGMSDpipqZAT0uLiwWDeD787QhM3
+         KroYLUjytW1C9lXHIPVrP7YaPGllx695Qb4Trl32HZWcbW6ZbD9dcBBdjGCA+b5+5imc
+         5Ao4r//YZVPdXrb4nQf1MWnvkTsFCvVBCkueiXtnB1XeC+/nI96TxdVQmaT25CRrCRy3
+         Min1eLP45HkjmHH0lqRcBgFIhEPpiK60Iah0ya92rmjnXMJhZoIn0Nh+FwpOCAVX75lS
+         QawDS5rhhX1aEOOV4ZzhcGhQwZtJMzK0zCqwTMy0RnHQJLq//f1izcx2AYFp/Qfwvr46
+         WVhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=Fy9PTke51Zg9523WNK0IhcOTzgepLlEhCDidUwNqgkc=;
+        b=5ghs3Hca03mlmovE9q3obYPD8Y+VSmlo7E+neNsJhl6yIG8NPZsNw356EOz0K9C3h7
+         gbyKFJY/t+/42uHcNWiV++nrp17GprzNtzlyqUVfSeoUpWO/6OckTotwnIGMnvkDp/Ho
+         ZR3bxCLcvZBDCRAzqH6XXJH51NMmY69ZSiHXpVJUKbkt7d6C2PTghIXH4RbEmHLqtaQN
+         DmyFILsrAhHVmQOVFBzdLtM0HTYVI2gMCEq5C/LzNDBLMhz8qHztDJmqQCz3l5fPCGF2
+         eSF5PzsdimNGITqjeXpH7J0wVTEwKY/eOYpqVvFPWLx5KAKYH/n+uLYIkwZ4+LExE8DO
+         m0Lg==
+X-Gm-Message-State: ACgBeo1jmEhXGPuiTC5KfVjJEmYqNrEaUqnEptqKqkW6E9twpUxTcnf1
+        PBm1xqlAuPAouqiXBtu3uTorlA==
+X-Google-Smtp-Source: AA6agR6MmknBLMsVUHGH9/LrrAYp8zz2C+2v5BuMQmzCUIrbx148w42aUH1UDSV9iibiYHLOFLnd0Q==
+X-Received: by 2002:a2e:be88:0:b0:25f:e9a8:44b8 with SMTP id a8-20020a2ebe88000000b0025fe9a844b8mr4932199ljr.92.1660227160351;
+        Thu, 11 Aug 2022 07:12:40 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id g2-20020a19ac02000000b0048b2cde8c08sm712098lfc.244.2022.08.11.07.12.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Aug 2022 07:12:39 -0700 (PDT)
+Message-ID: <3cae9d60-4012-1dfd-abd9-4d0b9379e6bb@linaro.org>
+Date:   Thu, 11 Aug 2022 17:12:38 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/2] dt-bindings: power: supply: Add Richtek RT9471
+ battery charger
+Content-Language: en-US
+To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, sre@kernel.org
+Cc:     alina_yu@richtek.com, cy_huang@richtek.com, alinayu829@gmail.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1660225318-4063-1-git-send-email-u0084500@gmail.com>
+ <1660225318-4063-2-git-send-email-u0084500@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1660225318-4063-2-git-send-email-u0084500@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Philippe Schenker <philippe.schenker@toradex.com>
+On 11/08/2022 16:41, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Add bindings for the Richtek RT9471 I2C controlled battery charger.
+> 
 
-The Verdin iMX8M Mini System on Module does not have USB-ID signal
-connected on Verdin USB_2 (usbotg2). On Verdin Development board this is
-no problem, as we have connected a USB-Hub that is always connected.
+Thank you for your patch. There is something to discuss/improve.
 
-However, if Verdin USB_2 is desired to be used as a single USB-Host port
-the chipidea driver does not detect if a USB device is plugged into this
-port, due to runtime pm shutting down the PHY.
+> +properties:
+> +  compatible:
+> +    const: richtek,rt9471
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ceb-gpios:
+> +    maxItems: 1
 
-Add the power-domain &pgc_otg2 to &usbphynop2 in order to detect
-plugging events and enumerate the usb device.
+This looks not standard, so please provide a description.
 
-Fixes: 6a57f224f734 ("arm64: dts: freescale: add initial support for verdin imx8m mini")
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+> +
+> +  wakeup-source: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 1
 
----
+Why a charger driver is a interrupt-controller?
 
-Changes in v2:
-- Changed word VBUS to USB-ID, as from mailinglist discussions I
-  obviously mixed that up before.
+> +
+> +  usb-otg-vbus-regulator:
+> +    type: object
+> +    unevaluatedProperties: false
+> +    $ref: /schemas/regulator/regulator.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - wakeup-source
+> +  - interrupts
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      charger@53 {
+> +        compatible = "richtek,rt9471";
+> +        reg = <0x53>;
+> +        ceb-gpios = <&gpio26 1 0>;
 
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Isn't the last value a GPIO flag? If yes, use appropriate define.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index d1b4582f44c4..34808aa36c2b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -745,6 +745,7 @@ &usbphynop1 {
- };
- 
- &usbphynop2 {
-+	power-domains = <&pgc_otg2>;
- 	vcc-supply = <&reg_vdd_3v3>;
- };
- 
--- 
-2.37.1
 
+
+Best regards,
+Krzysztof
