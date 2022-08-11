@@ -2,107 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADE7858FAF2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 12:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852F058FB08
+	for <lists+devicetree@lfdr.de>; Thu, 11 Aug 2022 13:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234216AbiHKKw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Aug 2022 06:52:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56992 "EHLO
+        id S229594AbiHKLA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Aug 2022 07:00:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233884AbiHKKw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 06:52:28 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD27293526
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 03:52:27 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id r17so24977157lfm.11
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 03:52:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=d7iRjX2D2keNI8slfz7qoQsCGpwSEtSMwIfU6YyWGks=;
-        b=wM7xc0UlLu2qxdJx92iZEMR+Gi0HdbTzS+WEzrfl555Mbl2HEMTogGhtSMJy6Rtydv
-         AzmxJAS/bA9DsBr/rMDV35nITUAs3/EIsDf+HRJexTuYpttsVIh4wAATcFPF2zJDptPw
-         7g55dImwQd9A36IuU17wCQYcnM5mSDcSZHTM6mHl1BY7qvi4ddXegD6qwIWxw48ulZrA
-         YEtFK8CXNDspr68xzqUBcT21jF0awZF077ZUJ7wEv6shXty/euV0Wkbkz5W/Enk9ZngZ
-         tZ5qGcao76DNRWCYRXGZHhjrwUCjLyE4gX/SBtG7UdKnI9CAlR/wlYYf8qFgmQ8qAezb
-         VmuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=d7iRjX2D2keNI8slfz7qoQsCGpwSEtSMwIfU6YyWGks=;
-        b=3VMWkEdN6GnEiiEiaYpYkPI9fnNpThZDBlomjI73vd/STFvk+L1iOHCLS5Sj6kS6yM
-         UR1iJ5pY7wQznlpfxeyyFu8CoQYTWZGCvL1BxKd1yaZYZwgu7Aqjwo8j+5Fs++2HGxge
-         7j9bAP1I87FpC8zjbNjbQdH0Vh09HKBnki8X8ai/AtkeYngEOKBzwbnvYP/lE+3Scn5q
-         fayQAzGOhkc91MH5qMrf5vXwfqff/IQp2pnlfXKnRK9pr3qtiz0eCeagNvCltx9yKq0y
-         627M89AFV1Qiwat/rJG5OtGFL8s3o3x9NZfmx3QgihxwFPXV1Lf+FQpOuj+HZfQizakI
-         0mWg==
-X-Gm-Message-State: ACgBeo36wVrukfaRwOdudpC7H7dTezxLMI2eNRcf2DWZqH4iTTm+m6T3
-        zKmvWyaQ95lNReOWOeeVhWPM7DusrHq+DO5A
-X-Google-Smtp-Source: AA6agR7dL4LIkbOwC+Z4uacUEGODwrWrQ0fm3+nLjVtBLlPmq4l/QPZ4hvKbEI/PzYUR2pBShKTjIQ==
-X-Received: by 2002:a19:674a:0:b0:47f:863d:5bc2 with SMTP id e10-20020a19674a000000b0047f863d5bc2mr10519629lfj.92.1660215146230;
-        Thu, 11 Aug 2022 03:52:26 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id v9-20020a2e4809000000b0025fe2049beesm745940lja.60.2022.08.11.03.52.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Aug 2022 03:52:25 -0700 (PDT)
-Message-ID: <d8e512c3-2a96-0fa0-6c2a-d404a9abd8f5@linaro.org>
-Date:   Thu, 11 Aug 2022 13:52:24 +0300
+        with ESMTP id S234569AbiHKLA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Aug 2022 07:00:26 -0400
+Received: from uho.ysoft.cz (uho.ysoft.cz [81.19.3.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1DB725C5D;
+        Thu, 11 Aug 2022 04:00:22 -0700 (PDT)
+Received: from [10.1.22.96] (unknown [10.1.22.96])
+        by uho.ysoft.cz (Postfix) with ESMTP id 04335A0536;
+        Thu, 11 Aug 2022 13:00:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1660215620;
+        bh=VKrMgfvRFgRq3NRX02KHVaAotdQVRUjqfk24MssBOr0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=JXW+vlIQyA26nFiEn20Br9LOw+zCb7Sln6x1bJh0qhMeL5unjMxkEv5lP/3byyc4U
+         mGalqVnwMmCJ82cWBT6SPp913HSDeCNBTBLTmBquCwgNUK3MCxc4ImUzWU/rC6Hl7W
+         elQfbHGiizm5ajuNvxl4WEHXhZhvbqIQ4fwOJm1c=
+Message-ID: <4d2de843-4895-9276-aef5-6d9ea60c689b@ysoft.com>
+Date:   Thu, 11 Aug 2022 13:00:19 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: fsl: imx6ul-kontron: Update
- bindings
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] ARM: dts: imx6dl-yapp4: Bind the backlight controller to
+ the LCD panel
 Content-Language: en-US
-To:     Frieder Schrempf <frieder@fris.de>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
-        Denys Drozdov <denys.drozdov@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Marek Vasut <marex@denx.de>,
-        Matthias Schiffer <matthias.schiffer@tq-group.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>
-References: <20220810081825.19051-1-frieder@fris.de>
- <20220810081825.19051-2-frieder@fris.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220810081825.19051-2-frieder@fris.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1657815915-1872-1-git-send-email-michal.vokac@ysoft.com>
+From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+In-Reply-To: <1657815915-1872-1-git-send-email-michal.vokac@ysoft.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/08/2022 11:18, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+On 14. 07. 22 18:25, Michal Vokáč wrote:
+> Add connection between the backlight controller and LCD panel.
+> With that the backlight is automatically switched on when the panel
+> is on or switched off when the panel is blanked.
 > 
-> This updates the bindings in order to simplify the devicetree
-> structure and to add names for the boards that follow the latest
-> convention used by Kontron marketing.
+> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> ---
+>   arch/arm/boot/dts/imx6dl-yapp4-common.dtsi | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> It also gets rid of the N6xxx notation in the compatibles and
-> file names, as they are not really used anymore and often result
-> in confusion.
-> 
-> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+> index 5054e4ab82e2..0afd6647484a 100644
+> --- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+> +++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+> @@ -55,6 +55,7 @@
+>   	panel: panel {
+>   		compatible = "dataimage,scf0700c48ggu18";
+>   		power-supply = <&sw2_reg>;
+> +		backlight = <&backlight>;
+>   		status = "disabled";
+>   
+>   		port {
 
-This affects the ABI, so you should be sure that it is desired...
+Just a gentle ping..
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+Regards,
+Michal
