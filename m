@@ -2,86 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24940591314
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 17:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15E1A591323
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 17:36:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235029AbiHLPde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 11:33:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56798 "EHLO
+        id S236116AbiHLPgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 11:36:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237168AbiHLPdc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 11:33:32 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF4E4816A4;
-        Fri, 12 Aug 2022 08:33:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7ABC6B8246D;
-        Fri, 12 Aug 2022 15:33:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 295FDC433C1;
-        Fri, 12 Aug 2022 15:33:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660318409;
-        bh=YymeiL+WDfDKCoj1tmnKtG9kNBYdc1gBFHeYC0V+36Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=K8V0UPAN+767lxx0acYoJqE+0nqYT8S/28FkXA+2dhyHIkj0cmlwGFdW8HOgKhZ/3
-         rZn4L6q/ry3Ncn0qo8FCf2hP5BF6D+MltiC7F19CTg5CyaNh028dy2xo2oJDKWBm6t
-         u9IseS5Ausd5jty8iasPLw3M+mioKnPZuwZNxVPC3kDAwCBRF+ekMlq+EhEBBDxvbV
-         mjUofxNQbWe55E/Sqhy4zODtvgRORcTxT67pdRInsW6xv1Avj206NzxxbjgwQ2f2Zy
-         WoLm4Toj83jjA8zGklaTvQldMELaB1a9x7wgukXXag6lTGCj6yUeTiauHia38asQjC
-         qvBn07Y1iUrUQ==
-Received: by mail-ua1-f47.google.com with SMTP id f15so434947uao.12;
-        Fri, 12 Aug 2022 08:33:29 -0700 (PDT)
-X-Gm-Message-State: ACgBeo2HoIPn5yDqW8w5oN92ft9RW58d2zG4sy2fwLLVl8DkAdrnJTtY
-        VmsDAvAjE7cajGE/fUpBHCXXIJQxH4qxPT0LGA==
-X-Google-Smtp-Source: AA6agR66vMv23MxHlhU/il+hwIYBXtv92JhHAY7m+89EGlZ5dlwcJwMP0buqMazwUiLaB7y24s6RjJRmgxBq8ONC6fs=
-X-Received: by 2002:ab0:2505:0:b0:384:cc62:9a75 with SMTP id
- j5-20020ab02505000000b00384cc629a75mr2089792uan.36.1660318408105; Fri, 12 Aug
- 2022 08:33:28 -0700 (PDT)
+        with ESMTP id S230141AbiHLPgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 11:36:37 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4D352DF6;
+        Fri, 12 Aug 2022 08:36:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=tZiCBSbwBqTOJKgCUdOCzKrZdzh7JNhfWJyMmmQhiSo=; b=Ud+hEThvKtIN5qh+Tft2LlJC6m
+        NT3NWsrfDsQ2DxwF8+/BDPEDlagfe2x7BQXnaesnWF9bxuG4fM43OQXvRc6oP/C6gXZC1iLfEP4Xh
+        SY4LYt9ZDcJF73akCViFPAqzbbNyTXzURUquw07S1eVZGpO90tURLCvZ4ofGWNWFkTx4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1oMWi0-00D8uy-MD; Fri, 12 Aug 2022 17:36:24 +0200
+Date:   Fri, 12 Aug 2022 17:36:24 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     wei.fang@nxp.com
+Cc:     hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        f.fainelli@gmail.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net 1/2] dt: ar803x: Document disable-hibernation property
+Message-ID: <YvZzeDaeHC0W7+Mh@lunn.ch>
+References: <20220812145009.1229094-1-wei.fang@nxp.com>
+ <20220812145009.1229094-2-wei.fang@nxp.com>
 MIME-Version: 1.0
-References: <20220811203151.179258-1-mail@conchuod.ie>
-In-Reply-To: <20220811203151.179258-1-mail@conchuod.ie>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 12 Aug 2022 09:33:17 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLOGLZD6vrNPqDUqYypkz8xoCPJ4DA4JF-BrG=WHWPurw@mail.gmail.com>
-Message-ID: <CAL_JsqLOGLZD6vrNPqDUqYypkz8xoCPJ4DA4JF-BrG=WHWPurw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: cdns: add card-detect-delay property
-To:     Conor Dooley <mail@conchuod.ie>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Piotr Sroka <piotrs@cadence.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220812145009.1229094-2-wei.fang@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 11, 2022 at 2:32 PM Conor Dooley <mail@conchuod.ie> wrote:
->
-> From: Conor Dooley <conor.dooley@microchip.com>
->
-> Upgrading dt-schema to v2022.08 brings with it better handling of
-> unevaluatedProperties, exposing a previously undetected missing
-> property in the cadence sdhci dt-binding:
-> arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: mmc@20008000: Unevaluated properties are not allowed ('card-detect-delay' was unexpected)
->         From schema: Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+On Sat, Aug 13, 2022 at 12:50:08AM +1000, wei.fang@nxp.com wrote:
+> From: Wei Fang <wei.fang@nxp.com>
+> 
+> The hibernation mode of Atheros AR803x PHYs is default enabled.
+> When the cable is unplugged, the PHY will enter hibernation
+> mode and the PHY clock does down. For some MACs, it needs the
+> clock to support it's logic. For instance, stmmac needs the PHY
+> inputs clock is present for software reset completion. Therefore,
+> It is reasonable to add a DT property to disable hibernation mode.
+> 
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
 > ---
-> Should this have a fixes tag? If anything, it'd be
-> Fixes: 84723eec251d ("dt-bindings: mmc: cdns: document Microchip MPFS MMC/SDHCI controller")
-> but idk.
+>  Documentation/devicetree/bindings/net/qca,ar803x.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/qca,ar803x.yaml b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> index b3d4013b7ca6..d08431d79b83 100644
+> --- a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> +++ b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+> @@ -40,6 +40,12 @@ properties:
+>        Only supported on the AR8031.
+>      type: boolean
+>  
+> +  qca,disable-hibernation:
+> +    description: |
+> +    If set, the PHY will not enter hibernation mode when the cable is
+> +    unplugged.
+> +    type: boolean
 
-No, the common property 'cd-debounce-delay-ms' should be used instead.
+The description itself needs indenting 2 space.
 
-Rob
+I would suggest you do what the bot suggests and install the dtschema
+tools.
+
+	Andrew
