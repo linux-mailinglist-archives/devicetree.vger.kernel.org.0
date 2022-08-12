@@ -2,120 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F3F8590E5E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:47:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D738E590E69
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:49:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238103AbiHLJrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 05:47:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35192 "EHLO
+        id S237761AbiHLJtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 05:49:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237704AbiHLJry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:47:54 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E231A5C69
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:47:53 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id r17so611711lfm.11
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:47:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=R575C1qhTHoSbi+3zD4RrbyhHb3virAcspXTDvQnKy4=;
-        b=JSxzpeNWLiRQSjxYlGfMrQtjKLO8g8dzulwQExNLFeDwD4tVqoHkk8P5XG1Findb/G
-         0AdZXA7FJ4cXF/xqOg/eNsJt5VyLRdYKYniCzXpYeknBCzZGu3xM+UtHeCJj9Y+z/Rr1
-         ty0/9msxB8WzbQGrXdX1FtEom9AXtYzN48Udp9d3NXwJQiYPmUzQOOfO7Tuk3iaC0/BY
-         Z6F+EURDhtSHHrX4dKWijogHbw7+LQI55Tp465P4AXe5bBKTvwOMY6sw3yA6xLMbuD4l
-         SsCYyA7stKTmpe/b4tXi5uBiLCeGc3jLmOKNZxsocpQQzxnobb39ANKxmr6fXN6cJRCk
-         GNXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=R575C1qhTHoSbi+3zD4RrbyhHb3virAcspXTDvQnKy4=;
-        b=Dej0aoSVytSw6TTBNJC6hbfkzraGoNwh07G8SLPD8UI9mhWX6oIBytDXRr7Uu5LcHY
-         SA9u/RF7bgM6zMelyqP/lN8v1WMrn8SWl2F3Zkb/gh5ZjPNXF5Wwq+Ok5VnZ1ML/cnRB
-         2D2omQS0YAoXgd1d17fV4WFZtnJP2cU83o8QNGv/5r7apbZORfLh523y8/UcAuh71FUr
-         K1dYfHdGvHgUYtb80s0Bu2nxpMaGspPvxm9HhOSZHjo+up4dsyYHDf1w4+NB2A8/kmqv
-         Ehd3KHpkRj9vcWFP6onGgWlAhZtCzWQRmAfsjZvTcIkD9u71x7YlRVhMer2ZTTeKxP58
-         JeBg==
-X-Gm-Message-State: ACgBeo3JPqfJ/zCYoBzMnY2HLtzAzGjG985QEcAB9btrbnTmriDtiTUD
-        7Pi3Ugq2QEVRykqLlnKofFbEAw==
-X-Google-Smtp-Source: AA6agR5/2t+Z5sXLTq/FW0vwRSzdGa6Lmy3xVzBDbS50S1sEDvE57meU4TbXikGJPucThSN+EvX0ig==
-X-Received: by 2002:ac2:47f1:0:b0:48a:ea6e:b8fd with SMTP id b17-20020ac247f1000000b0048aea6eb8fdmr968658lfp.26.1660297671829;
-        Fri, 12 Aug 2022 02:47:51 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id u17-20020a056512041100b0047f7419de4asm153741lfk.180.2022.08.12.02.47.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 02:47:50 -0700 (PDT)
-Message-ID: <bac57cb8-6d3f-63b0-f504-eb65956d6422@linaro.org>
-Date:   Fri, 12 Aug 2022 12:47:46 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v2 5/9] clk: samsung: exynos850: Implement CMU_AUD domain
-Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        with ESMTP id S229966AbiHLJtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:49:13 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EB7CFA5C69;
+        Fri, 12 Aug 2022 02:49:12 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id E89D080E1;
+        Fri, 12 Aug 2022 09:42:27 +0000 (UTC)
+Date:   Fri, 12 Aug 2022 12:49:11 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220809113323.29965-1-semen.protsenko@linaro.org>
- <20220809113323.29965-6-semen.protsenko@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220809113323.29965-6-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v1 0/9] fw_devlink improvements
+Message-ID: <YvYiF36M09dX9ASm@atomide.com>
+References: <20220810060040.321697-1-saravanak@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220810060040.321697-1-saravanak@google.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2022 14:33, Sam Protsenko wrote:
-> CMU_AUD clock domain provides clocks for ABOX IP-core (audio subsystem).
-> According to Exynos850 TRM, CMU_AUD generates Cortex-A32 clock, bus
-> clock and audio clocks for BLK_AUD.
+* Saravana Kannan <saravanak@google.com> [220810 05:54]:
+> Tony,
 > 
-> This patch adds next clocks:
->   - bus clocks in CMU_TOP needed for CMU_AUD
->   - all internal CMU_AUD clocks
->   - leaf clocks for Cortex-A32, Speedy FM, UAIF0..UAIF6 (Unified Audio
->     Interface), CNT (counter), ABOX IP-core, ASB (Asynchronous Bridge),
->     DAP (Debug Access Port), I2S Codec MCLK, D_TZPC (TrustZone
->     Protection Controller), GPIO, PPMU (Platform Performance Monitoring
->     Unit), SysMMU, SysReg and WDT
-> 
-> ABOX clock was marked as CLK_IGNORE_UNUSED, as system hangs on boot
-> otherwise. Once ABOX driver is implemented, maybe it can be handled
-> there instead.
-> 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v2:
->   - (none)
-> 
->  drivers/clk/samsung/clk-exynos850.c | 302 ++++++++++++++++++++++++++++
->  1 file changed, 302 insertions(+)
+> This should handle the odd case of the child being the supplier of the
+> parent. Can you please give this a shot? I want to make sure the cycle
+> detection code handles this properly and treats it like it's NOT a cycle.
 
+Yup, this series works for me, so feel free to add:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Tested-by: Tony Lindgren <tony@atomide.com>
 
+I have some concerns though on how do we get a working -rc1 with the
+earlier series applied? See the comments in the last patch of this
+series.
 
-Best regards,
-Krzysztof
+Regards,
+
+Tony
