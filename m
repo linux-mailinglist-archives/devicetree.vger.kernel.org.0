@@ -2,144 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61B21591501
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 19:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 608F759150A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 19:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238539AbiHLRgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 13:36:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42450 "EHLO
+        id S236232AbiHLRo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 13:44:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239532AbiHLRgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 13:36:22 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7F2493520
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 10:36:20 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id s9so1588702ljs.6
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 10:36:20 -0700 (PDT)
+        with ESMTP id S229719AbiHLRo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 13:44:26 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A131F1261E
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 10:44:21 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id 73so1352347pgb.9
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 10:44:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=sPoCXoEPjVdi3UX8o+CKN3COMpK80dSqlJMLAgMeBSQ=;
-        b=w1HNI2SI01RkJsc+GOIrNFu4b55e15l59HLqtxFwT1MGnsEEpeFgw9Rr9hJ5fGV/A+
-         2jMURIa5+rFOfXj4CDiVpvYs8Mxm5R42NFJbRuAzediJMHV84H8fLBdqK5KIOKrVKZpc
-         g2oFfr4+6+eMwYFMTz/9QIG/o6Z/5nMrmxGPSKa0JhMzENH9e+6ctlyG2RYdY5zWFdD4
-         xQIsN9b9+yyUFcfIGTUGFa2y3oYSk+T4i1gmDQh7vcEfFgVPpKL6JXBryovAQtiO7lYV
-         AcKcYynUoDfqt+L306v+gKeUlvJmIiK9bd/ilsbQejBSv06InZdL4ytbicXbo7B8rAsT
-         4zzg==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=eg4O+lUqSgQjO8nXVbPprUy9GOqPze3ptelQzcMBZ3E=;
+        b=dgbQUeUBzObk/twVOnvdV2e4rxd1DIB2foGp9FDqbzd3U/rLQxAjKY/go2bZAqy7re
+         bnQgLOn7k+f+di33ZH0eQh5u168u2s0sfnZvfjsGN0BnVFN6Lh+WtNHXKFeQ/iWxstxo
+         wiIhtBoiHXZbtT6bxCyVBRx9AhL8z/TFlv3djQGDKx6ir9rTHz+OIVd2QoWBEJtFrqIw
+         1siruUlQRX3mejoJ3L+j7abj6vk9oCqRlt+YcfCg5wV7FfBjpSi2Nyx766leAm7c/fWx
+         mvcESQmUlDRnUHFNKbzZMSNrrJnqu/0CcbbQPHg5OAsxpGaTI3FLHgaIUUCvzIum2MCj
+         UEWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=sPoCXoEPjVdi3UX8o+CKN3COMpK80dSqlJMLAgMeBSQ=;
-        b=FjVjwo5XACq4csVg8fUWodFMe3/N78F9u1JxS7uSelJ2z3nqoGq9+MV47v6zA0vIz9
-         Isv+Aizzof1RF9qD89nqF0Tv5dGDxaRpVEqC4Tir5m8osmVmi4bp3IQhggxe3ltG484f
-         Jje8nKzBEwrXdZcPXM3AK+C69DkaHusr0/RW6IwlXgtaPTng8LAK16au5gbJHJC0i0sX
-         tv1u+SEdJZ2di38dLXa53W0SRm8OWdDz5CS1tIqJG0A4uXIRchORqO5NgKd/8vnlMsPy
-         /cAE4pKrcJM5+FRPqMJ5dbgacv1va5hk8PYrdUbD8xr7MeIARKfeG9PE8VgSDodF8nzt
-         pnQQ==
-X-Gm-Message-State: ACgBeo1UEfdvnsTDrGZfhhN7J3kPzOt1BvcU0RnMiGTQ/cbL+4Uzckvj
-        SS5/sLpWaQ8QjfuDgFfXq1bDuw==
-X-Google-Smtp-Source: AA6agR6Ntr7DfLarmW/01EpUFop8S/1w/186IyXW4A2vdYQRBOxkijBIo1rChSEBW8aEp5kxtz5DSA==
-X-Received: by 2002:a2e:9b47:0:b0:25e:4887:648b with SMTP id o7-20020a2e9b47000000b0025e4887648bmr1393777ljj.414.1660325779159;
-        Fri, 12 Aug 2022 10:36:19 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id a25-20020a056512201900b0048a1f17916esm272753lfb.300.2022.08.12.10.36.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 10:36:18 -0700 (PDT)
-Message-ID: <fa283e3c-5b96-b0a4-95c5-a7230d16d8ca@linaro.org>
-Date:   Fri, 12 Aug 2022 20:36:14 +0300
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=eg4O+lUqSgQjO8nXVbPprUy9GOqPze3ptelQzcMBZ3E=;
+        b=SZ4/djAIOrknEaiAI4sWG1ynra7XUf3+JNzgYcT1dVGUeht9JEO79QhqIp90dZDy8q
+         viMs9FITROSBPZM3TFTfVZe1uwnk68ozg3UqcQhiT1teHsw/ik4B5SRj5IU+O4LjPh1K
+         RMDp+NSF+GDMuGxZIltgh7vo52ASDvCYyqDscpAq2xdRMOCbHlb9g+6PHMOJktibGXus
+         rB8bw9iLpk5H5nRFCDr9s1TeczuB0SkSoHefd/En7SlueV5fUQMPWA2NY+IR2ToV4/L/
+         WT1SFxZgYuaRm9b8NQ9YjhNsGDVt4pZ2m87CFwSESPfNABRHUQJp4t8zYqwxKzpzi5CI
+         6XJw==
+X-Gm-Message-State: ACgBeo13BBJzArf5o0Bbv1XH9GfMiVFVeBg26Y4Q8VdeelbKOsoKRmg3
+        vhnVK+mXejt4qpadu70Wt4u6Jg==
+X-Google-Smtp-Source: AA6agR7Dyd+8rj/dm58maQ2aj+yUNIPdvdd8c5R3h1OiaobrEVcOKAVBj0ukowd0+VHQYAKAho49QA==
+X-Received: by 2002:a65:648e:0:b0:41d:fc09:4a5c with SMTP id e14-20020a65648e000000b0041dfc094a5cmr3930463pgv.262.1660326261083;
+        Fri, 12 Aug 2022 10:44:21 -0700 (PDT)
+Received: from localhost ([76.146.1.42])
+        by smtp.gmail.com with ESMTPSA id 1-20020a170902c20100b0016b81679c1fsm2023174pll.216.2022.08.12.10.44.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Aug 2022 10:44:20 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        =?UTF-8?q?P=C3=A9ter=20Ujfalusi?= <peter.ujfalusi@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-omap@vger.kernel.org
+Subject: [PATCH] of: irq: Export of_msi_get_domain
+Date:   Fri, 12 Aug 2022 10:44:20 -0700
+Message-Id: <20220812174420.2706827-1-khilman@baylibre.com>
+X-Mailer: git-send-email 2.34.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v3 3/3] memory: Add Broadcom STB memory controller driver
-Content-Language: en-US
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <20220801220931.181531-1-f.fainelli@gmail.com>
- <20220801220931.181531-4-f.fainelli@gmail.com>
- <26ad247d-a4b3-4051-b8d9-505c09b76f6b@linaro.org>
- <375eac04-dbfd-080a-3003-cae3eda1f42b@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <375eac04-dbfd-080a-3003-cae3eda1f42b@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 20:29, Florian Fainelli wrote:
-> On 8/9/22 02:58, Krzysztof Kozlowski wrote:
->> On 02/08/2022 01:09, Florian Fainelli wrote:
->>> Add support for configuring the Self Refresh Power Down (SRPD)
->>> inactivity timeout on Broadcom STB chips. This is used to conserve power
->>> when the DRAM activity is reduced.
->>>
->>
->>
->>> +static int __maybe_unused brcmstb_memc_resume(struct device *dev)
->>> +{
->>> +	struct brcmstb_memc *memc = dev_get_drvdata(dev);
->>> +
->>> +	if (memc->timeout_cycles == 0)
->>> +		return 0;
->>> +
->>> +	return brcmstb_memc_srpd_config(memc, memc->timeout_cycles);
->>> +}
->>> +
->>> +static SIMPLE_DEV_PM_OPS(brcmstb_memc_pm_ops, brcmstb_memc_suspend,
->>> +			 brcmstb_memc_resume);
->>> +
->>> +static struct platform_driver brcmstb_memc_driver = {
->>> +	.probe = brcmstb_memc_probe,
->>> +	.remove = brcmstb_memc_remove,
->>> +	.driver = {
->>> +		.name		= "brcmstb_memc",
->>> +		.owner		= THIS_MODULE,
->>
->> No need, run coccinelle.
->>
->>> +		.of_match_table	= brcmstb_memc_of_match,
->>> +		.pm		= &brcmstb_memc_pm_ops,
->>
->> Shouldn't this be pm_ptr()? and then no need for __maybe_unused in
->> brcmstb_memc_resume/suspend.
-> 
-> How can one can remove __maybe_unused without causing a warning for the 
-> CONFIG_PM=n case, not that I needed to build to convince myself, but 
-> still did anyway:
-> 
-> drivers/memory/brcmstb_memc.c:275:12: warning: 'brcmstb_memc_resume' 
-> defined but not used [-Wunused-function]
->   static int brcmstb_memc_resume(struct device *dev)
->              ^~~~~~~~~~~~~~~~~~~
-> drivers/memory/brcmstb_memc.c:252:12: warning: 'brcmstb_memc_suspend' 
-> defined but not used [-Wunused-function]
->   static int brcmstb_memc_suspend(struct device *dev)
->              ^~~~~~~~~~~~~~~~~~~~
-> 
-> unless you also implied enclosing those functions under an #if 
-> IS_ENABLED(CONFIG_PM) or something which is IMHO less preferable.
+From: Matthias Brugger <matthias.bgg@gmail.com>
 
-Are you sure you added also pm_ptr()? I don't see such warnings with W=1
-and final object does not have the functions (for a different driver but
-same principle).
+Export of_mis_get_domain to enable it for users from outside.
 
-Best regards,
-Krzysztof
+Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Link: https://lore.kernel.org/r/20200122104723.16955-1-peter.ujfalusi@ti.com
+Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+---
+Peter tried to resurrect this in 2020 (c.f. Link tag in log) but it
+didn't work.  Here's one more attempt.  I need this enable building
+some TI DMA drivers as modules.
+
+ drivers/of/irq.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index d22f605fa7ee..c9308baa32c5 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -727,6 +727,7 @@ struct irq_domain *of_msi_get_domain(struct device *dev,
+ 
+ 	return NULL;
+ }
++EXPORT_SYMBOL_GPL(of_msi_get_domain);
+ 
+ /**
+  * of_msi_configure - Set the msi_domain field of a device
+-- 
+2.34.0
+
