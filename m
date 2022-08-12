@@ -2,76 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE7E5590C22
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 08:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD3A5590C2F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 08:57:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235319AbiHLGyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 02:54:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54466 "EHLO
+        id S237040AbiHLG5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 02:57:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234733AbiHLGyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 02:54:19 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93B48A598F
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 23:54:17 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id f20so122160lfc.10
-        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 23:54:17 -0700 (PDT)
+        with ESMTP id S236346AbiHLG5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 02:57:23 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04A3A59B9
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 23:57:21 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id x19so144450lfq.7
+        for <devicetree@vger.kernel.org>; Thu, 11 Aug 2022 23:57:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=t3EERWAoHc/0sJzUnWIG/VXJqbeUHXe35Iq8kCfIwJ8=;
-        b=H0Rll6qOqs0V2BmA7/rXq8aEvL568CpvV8lKQ3Rn5KRJjcfJsvnHeU6JN6ie3e+jQb
-         KqVSjL28MvNTNAeD+f9a7p92RM33993ChXnC30O2V4iPLa4A0OpxfXLo6VnZD5mVX8j9
-         /mMs1KTE0M5xc5WVU0k7fH5YQbXIq4fBoNpYtztfLhZSob7Gk0NpSsvY9YNaagKTiGwM
-         I9EcusoqsELsaNje/phNRiMzW2n/gsxSKDzrAhAbT3hRUa8n5dP4+yPB2DKjvPF9yX6S
-         VR67nq/yClD4vERkuYuOmMD9YpDMf1R7iQqS3gt/3m2V+g6B3KzEgh87FPpqJAw6wbYc
-         Hzvg==
+        bh=FrfRi2+lHDlBxwVVMHzDrJHx7Q3p2G+5d8uDewrRAEw=;
+        b=sv21mxYeoodQClvyUh7rxGuN1p6MH+kcL/yXUdot4DG3rVyYkWJmX2BjDNru9Y7F8C
+         uGX7LfFwRVLlzPO9kL6GayHvRTvYULX2sNmDJvSKpKQ6mW2Cl0xC8qvBoWP3sAIfMTEH
+         RDWbpGlytbQaMqhsE/QjhqKAK/lf5SJCWcy+m+qjEa/lr1j9HnyXS7mEseGk0Nn5YMLK
+         /F6kfzhoAsF6mdjN1x5Zzxs6Q8YlQs0QQyC38mwJXEAg7O2liFQJWO/tLPLMM4NSHONP
+         OfsTvhfZhqAIGu0vJUm/wj3ZNinVfv3y166ukJl5qN+A0acnLYI9soA+02cR8Yu8NFBS
+         WxeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=t3EERWAoHc/0sJzUnWIG/VXJqbeUHXe35Iq8kCfIwJ8=;
-        b=AWLMV5SySqiFmU/58lg6tvyPpo21cLmhxvE/Pzg31iBbve2neGL4qPl0MqDJA4/8ud
-         mp7f5hPwiWX33D8kMgLnT1g5UFTmAt2YMxjeC/Taj0BRk6VJazIXPQyA8GlekNTQfdmz
-         qgjFzZHYw1XhnjyLrA8MThqrEA/z3thaoH05MhwQS2B4NgLoENaEeOnntyOdfGlcBwJk
-         BtUwoR/HBUvZZN0y0cBsmuAoz2cFGHmgjKHvOLz0EKlm38W6z6wDf0F8AM8hjUhDXUZn
-         l746T1bD4CJGIMFq8J6M7gkw9oz1HsqKAZVFAVBR2sPk2tnoJzR2RquTpn67trHiGrxD
-         J/TQ==
-X-Gm-Message-State: ACgBeo10A3hnvpZ3UGp6WMe9UFJ/coIblbUMK3Cp30b/p5CG6qvBumdV
-        yiqjT0FXxv3zYGhHVqI6YHTX2y5cXFAe4PSu
-X-Google-Smtp-Source: AA6agR6TWxarEea/EB4pqn9N8km5hXjJnqltHNgS5yLpYpMOPAOSyNuQ9fhHFdZxk7o0iINjK3m8vw==
-X-Received: by 2002:a05:6512:ac3:b0:48a:fa85:7b20 with SMTP id n3-20020a0565120ac300b0048afa857b20mr801551lfu.340.1660287255892;
-        Thu, 11 Aug 2022 23:54:15 -0700 (PDT)
+        bh=FrfRi2+lHDlBxwVVMHzDrJHx7Q3p2G+5d8uDewrRAEw=;
+        b=p1WgNR+ozWqo1EHsLrTDckbK6WI4kABdymm5rmtVYth4CDr7BPS7VDDPLlO3SBEn20
+         q15KHqnIZsUkmEwNo7qrnmP33Soqpm/199Bz+j3vUcuYjsUrAgK/RIMyZ8hTWRuOnD7A
+         Ki9zUO/QsS3jmICar02FadI8GvUF10dMLU/pz6irib3EvgOud4o5IGbu97gQ32pfBRAO
+         Zt4WiAaHk9rRTbA6IoQd5cKCC+MDooxaRdDevf8GMYJyC57PYlYBmh0s3di1NBAUPcpd
+         xRsSFPXZVW0eIaKEGiihMfjUu0myAMrWAgLL3mfM1fmkT+TAQS3wI2vO2AYd9UCfd7O7
+         DpMQ==
+X-Gm-Message-State: ACgBeo1ePlbIH86pTG9Iwcbfu0ex1tgV4alfj9mgnIunRBkafZ43LtWp
+        4znG53IbJDX6gBK8TlyvJuS9UA==
+X-Google-Smtp-Source: AA6agR7M20SFyNF/dOFK27C0pl8a1ofriwmlGVRzgSCjE4kMy8Af4Pq+4LTBh+RSlfRCn9zUfdDZfg==
+X-Received: by 2002:a19:740c:0:b0:48b:374:987a with SMTP id v12-20020a19740c000000b0048b0374987amr874185lfe.690.1660287440281;
+        Thu, 11 Aug 2022 23:57:20 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id q30-20020ac2511e000000b0048dacaa8c36sm107895lfb.149.2022.08.11.23.54.12
+        by smtp.gmail.com with ESMTPSA id o17-20020ac25e31000000b0048ceb3836d4sm114182lfg.6.2022.08.11.23.57.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Aug 2022 23:54:15 -0700 (PDT)
-Message-ID: <40261b95-637a-1304-2e06-8c8ff7fc377b@linaro.org>
-Date:   Fri, 12 Aug 2022 09:54:11 +0300
+        Thu, 11 Aug 2022 23:57:19 -0700 (PDT)
+Message-ID: <8a665b7a-bbd0-99ce-658e-bc78568bdca2@linaro.org>
+Date:   Fri, 12 Aug 2022 09:57:14 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: supply: Add Richtek RT9471
- battery charger
+Subject: Re: [PATCH 4/4] dt-bindings: net: dsa: mediatek,mt7530: update
+ json-schema
 Content-Language: en-US
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        =?UTF-8?B?5ri45a2Q6aao?= <alina_yu@richtek.com>,
-        cy_huang <cy_huang@richtek.com>, alinayu829@gmail.com,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
-References: <1660225318-4063-1-git-send-email-u0084500@gmail.com>
- <1660225318-4063-2-git-send-email-u0084500@gmail.com>
- <3cae9d60-4012-1dfd-abd9-4d0b9379e6bb@linaro.org>
- <CADiBU3_depGDZtiyizU3MB939A3oH1uTWzTMyruUy0z=u6BZkQ@mail.gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220730142627.29028-1-arinc.unal@arinc9.com>
+ <20220730142627.29028-5-arinc.unal@arinc9.com>
+ <e5cf8a19-637c-95cf-1527-11980c73f6c0@linaro.org>
+ <bb60608a-7902-99fa-72aa-5765adabd300@arinc9.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CADiBU3_depGDZtiyizU3MB939A3oH1uTWzTMyruUy0z=u6BZkQ@mail.gmail.com>
+In-Reply-To: <bb60608a-7902-99fa-72aa-5765adabd300@arinc9.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,106 +99,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 04:32, ChiYuan Huang wrote:
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> 於 2022年8月11日 週四 晚上10:12寫道：
+On 12/08/2022 01:09, Arınç ÜNAL wrote:
+>>> -patternProperties:
+>>> -  "^(ethernet-)?ports$":
+>>> -    type: object
 >>
->> On 11/08/2022 16:41, cy_huang wrote:
->>> From: ChiYuan Huang <cy_huang@richtek.com>
->>>
->>> Add bindings for the Richtek RT9471 I2C controlled battery charger.
->>>
+>> Actually four patches...
 >>
->> Thank you for your patch. There is something to discuss/improve.
+>> I don't find this change explained in commit msg. What is more, it looks
+>> incorrect. All properties and patternProperties should be explained in
+>> top-level part.
 >>
->>> +properties:
->>> +  compatible:
->>> +    const: richtek,rt9471
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  ceb-gpios:
->>> +    maxItems: 1
->>
->> This looks not standard, so please provide a description.
-> It's the external 'charge enable' pin that's used to control battery charging.
-> The priority is higher than the register 'CHG_EN' control.
-> In the word, 'b' means it's reverse logic, low to allow charging, high
-> to force disable charging.
+>> Defining such properties (with big piece of YAML) in each if:then: is no
+>> readable.
+> 
+> I can't figure out another way. I need to require certain properties for 
+> a compatible string AND certain enum/const for certain properties which 
+> are inside patternProperties for "^(ethernet-)?port@[0-9]+$" by reading 
+> the compatible string.
 
-Isn't this standard enable-gpios property?
+requiring properties is not equal to defining them and nothing stops you
+from defining all properties top-level and requiring them in
+allOf:if:then:patternProperties.
+
+
+> If I put allOf:if:then under patternProperties, I can't do the latter.
+
+You can.
 
 > 
-> description:
->   External charge enable pin that can force control not to charge the battery.
->   Low to allow charging, high to disable charging.
-> 
->>
->>> +
->>> +  wakeup-source: true
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  interrupt-controller: true
->>> +
->>> +  "#interrupt-cells":
->>> +    const: 1
->>
->> Why a charger driver is a interrupt-controller?
-> There're 32 nested IRQs from RT9471.
-> The original thought is to make the user easy to bind the interrupt
-> into their driver.
+> Other than readability to human eyes, binding check works as intended, 
+> in case there's no other way to do it.
 
-Bindings are not related to the driver but to hardware...
-
-> 
-> For charger driver, does it mean legacy IRQ handler is more preferred?
-
-Who is the consumer of these interrupts? Can you show the DTS with the
-interrupt consumer?
-
->>
->>> +
->>> +  usb-otg-vbus-regulator:
->>> +    type: object
->>> +    unevaluatedProperties: false
->>> +    $ref: /schemas/regulator/regulator.yaml#
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - wakeup-source
->>> +  - interrupts
->>> +  - interrupt-controller
->>> +  - "#interrupt-cells"
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>> +    i2c {
->>> +      #address-cells = <1>;
->>> +      #size-cells = <0>;
->>> +
->>> +      charger@53 {
->>> +        compatible = "richtek,rt9471";
->>> +        reg = <0x53>;
->>> +        ceb-gpios = <&gpio26 1 0>;
->>
->> Isn't the last value a GPIO flag? If yes, use appropriate define.
-> I already specify GPIOD_OUT_LOW in the gpiod_request flag.
-
-It is not related to the DTS. Anyway writing "low" for a meaning of high
-is not correct usually...
-
-> Do I need to convert the gpio request code to GPIOD_OUT_HIGH,
-> and specify here as GPIO_ACTIVE_LOW?
-
-You need to properly describe the hardware. The polarity of logical
-signal is defined by DTS, not by driver. It does not make sense to do it
-in driver. What if on some board the signal is inverted?
+I don't see the problem in doing it and readability is one of main
+factors of code admission to Linux kernel.
 
 Best regards,
 Krzysztof
