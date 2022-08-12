@@ -2,125 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE11D5914B0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 19:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C436D5914FF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 19:37:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238659AbiHLRPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 13:15:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49684 "EHLO
+        id S239549AbiHLRhj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 13:37:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234019AbiHLRPe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 13:15:34 -0400
-Received: from mail.sberdevices.ru (mail.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A7F76A4B6;
-        Fri, 12 Aug 2022 10:15:32 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mail.sberdevices.ru (Postfix) with ESMTP id C74905FD07;
-        Fri, 12 Aug 2022 20:15:30 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1660324530;
-        bh=eWXwqhgdPV1eTqKNnJQ+Ha5K6D1MKORyyBt4mURjNrM=;
-        h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version;
-        b=HxwwIYCzaqSnF3otq8qXX6bd095sQtfpl9hVBF0XApCRm/XHNyHePuYll5ruLa57t
-         dvhJY/Zfwx4Ag3PPbJ6oQv3vPHn20M9IYXoKCx7JYTVo5MTurpV0qKtjHC0geMq7xC
-         Br2ETjqfXVzs2tnyHBUXlhaP76sxz+Eh/zPa2LqOJO86MXiMfP8r5Z6sGYArd3cwSF
-         AkpcH7qZ0sItcBiza1/VgfBzotanjjUKIFUbA3fDDn/IEyPHoGqjKdO5RBSWZP5SLv
-         0kQFjF6rBRB3L3RT457bTBkJmVLSupCveJ+krDDjms8ZDl29EU0Qsj2XBwK0xe9u5/
-         aElLADejzqOzw==
-Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
-        by mail.sberdevices.ru (Postfix) with ESMTP;
-        Fri, 12 Aug 2022 20:15:30 +0300 (MSK)
-From:   Dmitry Rokosov <DDRokosov@sberdevices.ru>
-To:     "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>
-CC:     "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "akpm@linux-foundation.org" <akpm@linux-foundation.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-        "stano.jakubek@gmail.com" <stano.jakubek@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "stephan@gerhold.net" <stephan@gerhold.net>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "wsa@kernel.org" <wsa@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "Michael.Hennerich@analog.com" <Michael.Hennerich@analog.com>,
-        "jbhayana@google.com" <jbhayana@google.com>,
-        "lucas.demarchi@intel.com" <lucas.demarchi@intel.com>,
-        "jani.nikula@intel.com" <jani.nikula@intel.com>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        kernel <kernel@sberdevices.ru>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 1/7] lib/string_helpers: Add str_read_write() helper
-Thread-Topic: [PATCH v5 1/7] lib/string_helpers: Add str_read_write() helper
-Thread-Index: AQHYrmvlXLMGJM4ctk2gw8SerH637a2rTxcA
-Date:   Fri, 12 Aug 2022 17:15:00 +0000
-Message-ID: <20220812171526.anjszroov76z4hrt@CAB-WSD-L081021.sigma.sbrf.ru>
-References: <20220812165243.22177-1-ddrokosov@sberdevices.ru>
- <20220812165243.22177-2-ddrokosov@sberdevices.ru>
-In-Reply-To: <20220812165243.22177-2-ddrokosov@sberdevices.ru>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.1.12]
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <CD67D4ABED2DDE43A341CCD57C13E484@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S239540AbiHLRhi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 13:37:38 -0400
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45FAAAA4EB;
+        Fri, 12 Aug 2022 10:37:38 -0700 (PDT)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1oMYLA-00FqJb-ME; Fri, 12 Aug 2022 17:20:56 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8mm-venice-gw7901: fix port/phy validation
+Date:   Fri, 12 Aug 2022 10:20:54 -0700
+Message-Id: <20220812172054.13858-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2022/08/12 13:28:00 #20103614
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andy,
+Since commit 65ac79e18120 ("net: dsa: microchip: add the phylink
+get_caps") the phy-mode must be set otherwise the switch driver will
+assume "NA" mode and invalidate the port.
 
-Please be informed, I've patched commit msg a little bit, replaced
-'retun' misstyping to 'return'.
+Fixes: 65ac79e18120 ("net: dsa: microchip: add the phylink get_caps")
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-On Fri, Aug 12, 2022 at 04:52:25PM +0000, Dmitry Rokosov wrote:
-> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
->=20
-> Add str_read_write() helper to return 'read' or 'write' string literal.
->=20
-> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> ---
->  include/linux/string_helpers.h | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/include/linux/string_helpers.h b/include/linux/string_helper=
-s.h
-> index 4d72258d42fd..9e22cd78f3b8 100644
-> --- a/include/linux/string_helpers.h
-> +++ b/include/linux/string_helpers.h
-> @@ -126,4 +126,9 @@ static inline const char *str_enabled_disabled(bool v=
-)
->  	return v ? "enabled" : "disabled";
->  }
-> =20
-> +static inline const char *str_read_write(bool v)
-> +{
-> +	return v ? "read" : "write";
-> +}
-> +
->  #endif
-> --=20
-> 2.36.0
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+index 24737e89038a..96cac0f969a7 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
+@@ -626,24 +626,28 @@ ports {
+ 			lan1: port@0 {
+ 				reg = <0>;
+ 				label = "lan1";
++				phy-mode = "internal";
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+ 
+ 			lan2: port@1 {
+ 				reg = <1>;
+ 				label = "lan2";
++				phy-mode = "internal";
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+ 
+ 			lan3: port@2 {
+ 				reg = <2>;
+ 				label = "lan3";
++				phy-mode = "internal";
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+ 
+ 			lan4: port@3 {
+ 				reg = <3>;
+ 				label = "lan4";
++				phy-mode = "internal";
+ 				local-mac-address = [00 00 00 00 00 00];
+ 			};
+ 
+-- 
+2.25.1
 
---=20
-Thank you,
-Dmitry=
