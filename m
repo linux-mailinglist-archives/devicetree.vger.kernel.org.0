@@ -2,106 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30CD8590E71
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:50:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E719590E7C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:54:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237540AbiHLJuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 05:50:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37428 "EHLO
+        id S230257AbiHLJys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 05:54:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236835AbiHLJuS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:50:18 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 761AF2722;
-        Fri, 12 Aug 2022 02:50:17 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id 21so695889ybf.4;
-        Fri, 12 Aug 2022 02:50:17 -0700 (PDT)
+        with ESMTP id S237527AbiHLJyY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:54:24 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C37AA4FF
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:54:22 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id l10so448877lje.7
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:54:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=Q5LlMwsyUspPj+LtUVoQu26MZFGsOb33CHbaqq1+4jY=;
-        b=HLc75iYp79U1+RfhEBEOhwMlcov52UCcyU+25l5nIgSE4ZPcnkp3oEkZQa1i+IqCy3
-         reG28bNyQGn7hxdj7H/0fK8bSv1k6AnOmynkI2yzau3lzhdKQW3qTM58UQD00qyUNUCh
-         eRApV/QCT8+C50xMZ/WnA9QUkmqnk0PNev9mrqEbnB8/s0Ky59r6NQC9+3bzs72p0rtl
-         wauKGWXFx/3Xfw2XRThy4QMjAJA4mdquushkxg3kt/mvmsRbul11EzI9GuUL9Jbm79Di
-         310jC6boc8ZKwICI780E0W9rybi02aINiEOR5O8CxYz8fC1YopKdcHy7cLthXX4W2G1R
-         QL6w==
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=KQyn0RodOS4Z7mbBmKSGk+3CQFuX7185+IAFDULFYP0=;
+        b=dcsz4nm0oGvcqsjbArKZf7DZBrgiFTodubs9Q5huSVd0mOlW+WPVD3dDkgF1U+bJYU
+         MxVA2yd3eYTDERH7J7yg6d00iBcYKitRED90zKLHawYjpdCOVcc+nFiPfd2Lu0OTncuX
+         Wu1NCk9KB179SuHh734VldSCKuj1vcT6KixYnIdPFBBwkMAOL+jPkW4rG+xu0p/F21iS
+         w7ZUsOVSA+GixrPfV+X83osnGxZRC8PnDi9K4KR2zpRXbAeoi/G7073jMt2YNe61ezyc
+         kasbox8P1yPi8mlcRdtnJdFZdDITgCFFOFWwnVK5TeYq4hnwM2EQvJhAMsE9K2nfZgSG
+         Q7MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=Q5LlMwsyUspPj+LtUVoQu26MZFGsOb33CHbaqq1+4jY=;
-        b=h/U0LYPR2GbXF9JSEGpF3ssnowOvVL+VrLLufBCLrwOgdELKaNMXJB/MtJ6ohZsIkM
-         Li0ccEE62ESYjielNJ7vQB1YZ5j/+5hDAdYWs1wVeCGG1Keu4vyXcdgCuIjfJiACNjdt
-         0KO0OdSeTSCMAUaEWtE7m4Xk4aQeUi0f9aXZoYW4G53SoyLT1cwgWipe9eQwqWstCiP8
-         jKg2MTk/oGe277fIyJfyNXSiuqmRXdiFt3Ap6nYscRxXWaqdAXcVNb/q6HSTMl5WPDRo
-         2nwf/ltCdGCrWjeSMVsSmk5EyBToHsH5f8aAXaFZSWKrafXfN1Rj24JLEIzo0pMICGlg
-         5VVg==
-X-Gm-Message-State: ACgBeo2FH3sH3WCrDPKswdztqL/5l3ZmPAuvoNqVYYQ0XSAqbEoDEjJo
-        FY938wnZ4mEg48Z0uvtP3pYzzBKZ4TKMYw8UYmY=
-X-Google-Smtp-Source: AA6agR5Qds9HYZib7WpLaLPtA8FNj+szouC4DQXZ2jOMC4iomnaw1mEjO7ET2cQ/CJgVkEcs1O6l22bXprmAG+HAMCA=
-X-Received: by 2002:a25:2245:0:b0:67b:7758:808b with SMTP id
- i66-20020a252245000000b0067b7758808bmr2793684ybi.279.1660297816681; Fri, 12
- Aug 2022 02:50:16 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=KQyn0RodOS4Z7mbBmKSGk+3CQFuX7185+IAFDULFYP0=;
+        b=YVlR8aWIkboe1/bVLwOiUrNBzK3F3Bf7NpXnHPB2Mk86v0W25D4KgYaurSTxBx0Sm/
+         e6oaoZYcEJI4nANHrMV3DURPH5FIaxQvTjBd/KP5Tsv4f0LQI6be9BUYYP3jq+VFAWfq
+         zVreQ1J0enK5016r8D/KyhgRD1kRdxeaeABOdV4CJq5pxZcnZ4i8apcoTg82fL8PIDmE
+         zhm9p0w1Dfv3RWinSvCto9GsZy7A8osDksXwl9710MRFO/i7l7usMb33CJnYgd/apo9T
+         dGaM0tOT5YIoTeiZ96S8odjOlEFVeAHJENw1yyvbRzXEPKOwKGvtifk3h/eK0KHlUafy
+         Hj4A==
+X-Gm-Message-State: ACgBeo2rBhUiGEm5QHfCKnukmtht5D427R/ktqRr6ke7v0UyjDdcL82g
+        xDdyc0JYcukpgDn63KbaW5L16Q==
+X-Google-Smtp-Source: AA6agR6p3V0W44ksExZdzwIE1+7JtpcHI6uB/he93FBDIY49ZArtZkgflUJI8528C/Vlyfd2QmpCHA==
+X-Received: by 2002:a2e:321a:0:b0:25f:e93a:eb2f with SMTP id y26-20020a2e321a000000b0025fe93aeb2fmr890836ljy.493.1660298060648;
+        Fri, 12 Aug 2022 02:54:20 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id c25-20020ac25f79000000b0048b2915471bsm149266lfc.306.2022.08.12.02.54.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Aug 2022 02:54:20 -0700 (PDT)
+Message-ID: <7beeeba5-35ec-7159-1313-6fc8d4f975af@linaro.org>
+Date:   Fri, 12 Aug 2022 12:54:15 +0300
 MIME-Version: 1.0
-References: <20220726180623.1668-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220726180623.1668-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <636e9214-4b36-e9a6-3c6b-b6edb944335e@linaro.org> <CA+V-a8sTw1qzuTeD2vb7RgDmmNdEP5qEcxXCjrFgkyrBrLrt5Q@mail.gmail.com>
- <e64cc15e-b31e-876d-b3cf-b60d255c495b@linaro.org> <CA+V-a8u1VW9xaj2KjySyMuegpisLVENO_6uJOpAFZGbKziYLYw@mail.gmail.com>
- <e31e0c1f-4755-704e-8428-93970877d8f5@linaro.org> <CA+V-a8sX=Frs_cds9MriauTFRvcZUNCvoeZ+SaC0GUpL7L6qhg@mail.gmail.com>
- <9f32a4a9-66b4-ba2e-1713-436103c2faf8@linaro.org> <OS0PR01MB5922763582B836DA45CDFF0886979@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <80f08089-e3bb-983e-313b-45613364829e@linaro.org> <CAMuHMdWOdQ5HNU8CuWYXHqYs-UfdggTuCf1AARdJC-3WMTy7Hg@mail.gmail.com>
- <1aa477b2-1d91-066e-5fcd-849ece62388d@linaro.org>
-In-Reply-To: <1aa477b2-1d91-066e-5fcd-849ece62388d@linaro.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 12 Aug 2022 10:49:49 +0100
-Message-ID: <CA+V-a8uK3=Ca_1O_gQOm-5hUB1L95Wh_uXm5fpbAS0cbuVJE2w@mail.gmail.com>
-Subject: Re: [PATCH 4/6] dt-bindings: riscv: Add DT binding documentation for
- Renesas RZ/Five SoC and SMARC EVK
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v2 6/9] clk: samsung: exynos850: Implement CMU_IS domain
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20220809113323.29965-1-semen.protsenko@linaro.org>
+ <20220809113323.29965-7-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220809113323.29965-7-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof and Geert,
+On 09/08/2022 14:33, Sam Protsenko wrote:
+> CMU_IS clock domain provides clocks for IS IP-core (Image Signal
+> Processing Subsystem). According to Exynos850 TRM, CMU_IS generates
+> CSIS, IPP, ITP, VRA and GDC clocks for BLK_IS.
+> 
+> This patch adds next clocks:
+>   - bus clocks in CMU_TOP needed for CMU_IS
+>   - all internal CMU_IS clocks
+>   - leaf clocks for IS IP-core, CSIS (Camera Serial Interface Slave),
+>     D_TZPC (TrustZone Protection Controller), CSIS DMA, GDC (Geometric
+>     Distortion Correction), IPP (Image Preprocessing Processing core),
+>     ITP (Image Texture Processing core), MCSC (Multi-Channel Scaler),
+>     VRA (Visual Recognition Accelerator), PPMU (Platform Performance
+>     Monitoring Unit), SysMMU and SysReg
+> 
+> IS related gate clocks in CMU_TOP were marked as CLK_IS_CRITICAL,
+> because:
+>   1. All of those have to be enabled in order to read
+>      /sys/kernel/debug/clk/clk_summary file
 
-On Fri, Aug 12, 2022 at 7:23 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 11/08/2022 18:42, Geert Uytterhoeven wrote:
-> > At the DT validation level, I think the proper solution is to
-> > merge Documentation/devicetree/bindings/arm/renesas.yaml and
-> > Documentation/devicetree/bindings/riscv/renesas.yaml into a single
-> > file under Documentation/devicetree/bindings/soc/renesas/.
-> >
-> > What do other people think?
->
-> I am ok with it.
->
-Thanks, I'll move this to the soc folder in v2.
+This sounds exactly like previous ISP clock hangs:
+https://lore.kernel.org/all/20171011092515.1698-1-m.szyprowski@samsung.com/
 
-Cheers,
-Prabhakar
+It looks like missing power domain references and your CLK_IS_CRITICAL
+is not correct. These are not critical clocks.
+
+>   2. When some user driver (e.g. exynos-sysmmu) disables some derived
+>      leaf clock, it can lead to CMU_TOP clocks disable, which then makes
+>      the system hang. To prevent that, the CLK_IS_CRITICAL flag is used,
+>      as CLK_IGNORE_UNUSED is not enough.
+
+These are not critical clocks and usage of CLK_IS_CRITICAL is not
+appropriate. This looks like the same has as with other ISP, so it
+should be handled in similar way.
+
+Best regards,
+Krzysztof
