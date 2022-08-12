@@ -2,96 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 295915915B2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 20:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAAA55916C2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 23:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238890AbiHLS6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 14:58:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58912 "EHLO
+        id S234308AbiHLVjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 17:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237734AbiHLS6S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 14:58:18 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEBAE792C3
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 11:58:16 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id r17so2464122lfm.11
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 11:58:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=0T4LEUf9g9JExx3ypW6bMQEGQ4KwlOj22ZYnNW8hJ0M=;
-        b=qlbem+f5/BkpCRDfrefN/n7Y9dO49InR2/wWpo/bdPKeSsUH1jpYLpjn0TcZW5ihka
-         I0RqqTpdQxurQHvmOlTixWFmVPikSrNm9N0T+LLiUIZlEOuC1s87gXWa4AkeLnYq53z5
-         sy6kpPQTHE11PQmOhAa2LjMLkscK0Bo2CYn8PAvQew1o7whi6NgehPba/xzXO9nTb8hP
-         urpXQeiNnueerXLr7xR2C4xjhLIqWR1aWQPrAmNAEENWwEUFsyU2F6yrhdvG34XD+X2N
-         FShYWucn/2YxeBTLHE3zueskvhOwIpch3X8jMQyl/ihwlYojLW+p8pGl8IP98zJNUWIk
-         Am+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=0T4LEUf9g9JExx3ypW6bMQEGQ4KwlOj22ZYnNW8hJ0M=;
-        b=yaxpzkRQrZII102ILWrkp6jQUXCF9ZTHGCPjnoa5zbNsWlaWGoWhVPbVSSuHyPrUBI
-         06qFtcn9BsozEj3UwppR6vFuIZ7FmsdZ0s4HemF9Ixk/wm9xX5QexZlFm6ZwbynWioOB
-         PngFR4HtBi94Evq/PAaJusqBDvRSvBvlnCOe+TYhYE3h9N7FKMT2zYlhjbGRLsgJcDGM
-         ZgseC4uIJwStmTxsS3/3QbIIyvoSc6unjyC+n9TapAZJ8QGS30FaYsTbXUDTx+N3zn41
-         +ZwSpTvjCSOTs1WasbvXnS9f3K7Dd1XYJENSEoNJU9i8gJazLhdk0OZyDsyV0ikqQ9vP
-         C1hw==
-X-Gm-Message-State: ACgBeo1eszyG1rIrBpl8fjV40TxVruQmRBxJczUBq2H6TbdyZsaRmuFe
-        1Szc4r1bh+h/nWtslEG3vJN2gg==
-X-Google-Smtp-Source: AA6agR5wj+d2nQJtyJqxzr4mCH5yDVT3DYcZmKTqO46NuZSod1ujbmiKuERxRAG8Ds2Z97ywhBR63w==
-X-Received: by 2002:a05:6512:2a8d:b0:48b:7f1:fe46 with SMTP id dt13-20020a0565122a8d00b0048b07f1fe46mr1543360lfb.261.1660330695069;
-        Fri, 12 Aug 2022 11:58:15 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id p20-20020ac24ed4000000b0048b998be041sm293755lfr.309.2022.08.12.11.58.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 11:58:14 -0700 (PDT)
-Message-ID: <f8b756ce-984b-2185-6354-b4de3a3350d2@linaro.org>
-Date:   Fri, 12 Aug 2022 21:58:10 +0300
+        with ESMTP id S230445AbiHLVjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 17:39:41 -0400
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718AA9F1BE;
+        Fri, 12 Aug 2022 14:39:40 -0700 (PDT)
+Received: from toolbox.int.toradex.com ([81.221.243.92]) by mrelay.perfora.net
+ (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0LaVlh-1nfLDD35Rf-00mMKb;
+ Fri, 12 Aug 2022 23:39:13 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Olof Johansson <olof@lixom.net>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] arm64: dts: freescale: verdin-imx8mm/p: fix atmel_mxt_ts reset polarity
+Date:   Fri, 12 Aug 2022 23:39:03 +0200
+Message-Id: <20220812213905.216065-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 6/6] i2c: imx-lpi2c: handle IPG clock
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, aisheng.dong@nxp.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        xiaoning.wang@nxp.com, Peng Fan <peng.fan@nxp.com>
-References: <20220812043424.4078034-1-peng.fan@oss.nxp.com>
- <20220812043424.4078034-7-peng.fan@oss.nxp.com>
- <c2991370-b55f-c782-d62c-f9c667e40389@linaro.org>
-In-Reply-To: <c2991370-b55f-c782-d62c-f9c667e40389@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:BvH86vIzHnF0Ev4yFtzt0ehaInOmIA51RxXGpGnqroqThlI+wKn
+ HxeOrStKIPnchO3aXszf0pLsRZs5aybBKemSwIddaO7D/uoy6c+Y1vPRTOOGtiHcDBK856U
+ yRecUMKM/8u7FVjPJKR9pBrsVlz2lcy7t4He/4Nc7ccaMUlsygVqhuRKiVxKMy2FOg4oApr
+ EiExLrqu7BEZZanjiCdeQ==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:rMhfLbtZ3fc=:x/xuQtTJqRNgBT7ShyTz+S
+ SwZw8VAZ7RZWq7yeIwCwYQtdwYIL1BVZuzHI6xWFRuXTZJxfKLsGi3ro18JEVaIKRc9OJ719f
+ KSeQjnm8SK41YWMGWJkPFfEYRlYwgOPLjRgcgHl/vk5/bOJ2qpn96qLabmQ4AhKXFCx88XEGG
+ dWrRWnN8i6MIcvGL3os5R73cL+ewfzhv5HNgn8U3WEp0VCeUAaYc50AOfROn89ibzvvCQYGOD
+ 8aSvQ1q38CVjrCKdiT/WdKIjCqAld0cjHADg5i0XTOekcJvM5Du/aM9vEJ8CDQFCVj5sNVnUd
+ RneKeO7VisKYrmUqg78Ju4kk3LIhLC2DlJcF50UHLge+yG6ttoBeqDlt5tmNu42tnngdVrjSQ
+ E2Zp60yil5VbFzg0Y9/D2F+xBR6Zi7I3kINUM9BuWC6ejP+y3g6jT9MGBUHX1ug2OBMMVcdLW
+ f96hjm4e7D4qKr2hONoRSza1RlSLUo/CuUitawwUNMT/yoqZ+2US6hdrUEmzyNxz2e7iJLByv
+ 4Bq08P+el7MOiLd8Td7PkFu/bRLlwSbfm5jQ3MHVvXgrFppPtojZj/xEjVywN7DR+OD/WwFfw
+ PmNCYyVJiF8M87aX0kLbgw30Du+F4ND7RPMZhDqaBkvZY68QQbkPyPdwDvBPNOBlUmqrQhknt
+ tkrdUmbD3eqbXuU7orh8CVlolL+8cgvlIMLGhMc0mAac9KRSHOvN9Xh/qwgSNOYAYtHWezMAr
+ dMOhg0tziu7QNl3E5nzRy3/1p5Tgc1rT94E6nGLPZBi/+gIK3Qvw5+GPMHM=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 13:13, Krzysztof Kozlowski wrote:
->> +
->> +	lpi2c_imx->clk_ipg = devm_clk_get(&pdev->dev, "ipg");
->> +	if (IS_ERR(lpi2c_imx->clk_ipg)) {
->> +		dev_err(&pdev->dev, "can't get I2C ipg clock\n");
->> +		return PTR_ERR(lpi2c_imx->clk_ipg);
->>  	}
-> 
-> You just broke all DTS...
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-And Rob's bot agrees (through bindings):
-https://lore.kernel.org/all/1660317233.465911.168987.nullmailer@robh.at.kernel.org/
 
-Best regards,
-Krzysztof
+Unfortunately, I was not aware of this reset GPIO polarity fix when
+I submitted initial support. Let us correct this oversight. Thanks!
+
+
+Marcel Ziswiler (2):
+  arm64: dts: freescale: verdin-imx8mm: fix atmel_mxt_ts reset polarity
+  arm64: dts: freescale: verdin-imx8mp: fix atmel_mxt_ts reset polarity
+
+ arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 2 +-
+ arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+-- 
+2.36.1
+
