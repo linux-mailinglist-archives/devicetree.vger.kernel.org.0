@@ -2,145 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D83DB591553
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 20:12:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95FCF591578
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 20:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236480AbiHLSMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 14:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48348 "EHLO
+        id S238439AbiHLS3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 14:29:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229464AbiHLSMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 14:12:06 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F81B2871;
-        Fri, 12 Aug 2022 11:12:01 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id s10so866856ilq.5;
-        Fri, 12 Aug 2022 11:12:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc;
-        bh=vPDP46SbD5PMcyL1dEuWf5iKsofXHoY5Pt8XyHeL+Ho=;
-        b=ymy1MjYeENA/iG6ie7GCZpkNIC20g1cmOZ8mH0E+eQH/yojmD+9RwU9Bg2POmIwiI7
-         3GNBDyUWzi7MBU66wcarj5/1/NJbux5q3oNX1NHJIFL/6HRipAZE2ifMRYRO2lE8vnTI
-         qhXRU54qlZ723tV04t4w5kFfdydyohUlinldwUWv5iIGjRDyd9CUSjjLEmDpBxEZKhEJ
-         gGgldR6p0DAkXuXWPyF8OVCLj4lHPRD+AwegxmX7ziejf9hzkKz7n8HkviSiogUyF2Y3
-         C3JDBVD90JAlqd0g3n3pqj6NA4r5gHRLX1ct6xHBzLDzOsP6c5X0JbEbGLD793pQYExs
-         xn4Q==
-X-Gm-Message-State: ACgBeo3T7UBQrEq1hf86DLqUQJ8wN+SVl8RI9LHsuxcI+KTdgsuw6hi8
-        FFrTEWhSZw3Y7POYXqImsw==
-X-Google-Smtp-Source: AA6agR7Iogo68hWdtZvlYHAq3kuETNChIpkR/cUVPhgEQ27Q565iwm/ZxwYiFtBuuoHtdJ3bi3Ik+g==
-X-Received: by 2002:a05:6e02:1208:b0:2df:38d1:cb5b with SMTP id a8-20020a056e02120800b002df38d1cb5bmr2452528ilq.65.1660327920358;
-        Fri, 12 Aug 2022 11:12:00 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b24-20020a02a598000000b0034334c61c96sm150726jam.106.2022.08.12.11.11.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Aug 2022 11:11:59 -0700 (PDT)
-Received: (nullmailer pid 465319 invoked by uid 1000);
-        Fri, 12 Aug 2022 18:11:58 -0000
-Date:   Fri, 12 Aug 2022 12:11:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.0, take 1
-Message-ID: <20220812181158.GA462401-robh@kernel.org>
+        with ESMTP id S230105AbiHLS3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 14:29:05 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E726B2DBC;
+        Fri, 12 Aug 2022 11:29:04 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 25B892076B;
+        Fri, 12 Aug 2022 18:29:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1660328943; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=tPX04jbC0BQlROGb55mEQeAkYdO/pUMQJcyP6P8yDMg=;
+        b=Dnk3QtxahbVc8N9Wb+mg3LWpIqkL3j324Xp+zLN1b3scdy/6qC3SQRFK8mueXE9dOR3bzD
+        kJVAa0mCRV10Ey1xRS0KdJiaA9Wz8rqTWrRnCe1cOw0qo+FQTx1rfRhSaWUJljn9CEbQwD
+        xzFf5Tca5Jc7aJLzQhyTBqFAUhyiUPw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1660328943;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=tPX04jbC0BQlROGb55mEQeAkYdO/pUMQJcyP6P8yDMg=;
+        b=RKeJHxsr+7BAG6RlGp765vCQzZKzbcl/KDPcaPksygxZXVLn3ATBYyju64TDEMjTHB+oX2
+        LKozQGXN/hssDQAw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 14F5C13AAE;
+        Fri, 12 Aug 2022 18:29:03 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id Is0VBe+b9mLdIgAAMHmgww
+        (envelope-from <bp@suse.de>); Fri, 12 Aug 2022 18:29:03 +0000
+Date:   Fri, 12 Aug 2022 20:28:58 +0200
+From:   Borislav Petkov <bp@suse.de>
+To:     Stefan Berger <stefanb@linux.ibm.com>
+Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
+        nasastry@in.ibm.com, mpe@ellerman.id.au,
+        Jonathan McDowell <noodles@fb.com>,
+        Mimi Zohar <zohar@linux.ibm.com>
+Subject: Re: [PATCH v7 3/6] x86/kexec: Carry forward IMA measurement log on
+ kexec
+Message-ID: <Yvab6lC9BUbmp4a8@zn.tnic>
+References: <20220812164305.2056641-1-stefanb@linux.ibm.com>
+ <20220812164305.2056641-4-stefanb@linux.ibm.com>
+ <YvaJc7bQjz61Y1jj@zn.tnic>
+ <935988a4-c245-7cb1-4e14-bc99d39220a1@linux.ibm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <935988a4-c245-7cb1-4e14-bc99d39220a1@linux.ibm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+On Fri, Aug 12, 2022 at 01:14:38PM -0400, Stefan Berger wrote:
+> Yes, so this series can be tested by krobot.
 
-Please pull a few DT fixes and one missed schema conversion.
+You mean Intel's 0day robot?
 
-Rob
+I believe that thing has by now enough logic to figure out which branch
+to base patches ontop. Or maybe there's some magic incantation to tell
+it which base commit to use so that you can simply do your patches ontop
+of latest linux-next instead of having to carry upstreamed patches.
 
+Also, there's a little point in testing against 5.19 when you wanna test
+it against v6.0-rc1...
 
-The following changes since commit eb555cb5b794f4e12a9897f3d46d5a72104cd4a7:
+-- 
+Regards/Gruss,
+    Boris.
 
-  Merge tag '5.20-rc-ksmbd-server-fixes' of git://git.samba.org/ksmbd (2022-08-08 20:15:13 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.0-1
-
-for you to fetch changes up to 8f426582e0e0c9bbd58e170e1b209334eb5df79e:
-
-  dt-bindings: chrome: google,cros-ec-typec: restrict allowed properties (2022-08-12 11:13:32 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v6.0, take 1:
-
-- Fix schema warnings in qcom,ipq6018-pinctrl and sdhci-msm
-
-- Convert Qualcomm SPMI PMIC to DT schema
-
-- Make secure interrupt optional for arm,mhu
-
-- Fix google,cros-ec-typec binding allowed properties
-
-- Update a bunch of bouncing email addresses
-
-----------------------------------------------------------------
-Bhupesh Sharma (1):
-      dt-bindings: mmc: sdhci-msm: Fix 'operating-points-v2 was unexpected' issue
-
-David Heidelberg (1):
-      dt-bindings: mfd: convert to yaml Qualcomm SPMI PMIC
-
-Krzysztof Kozlowski (7):
-      dt-bindings: display: simple-framebuffer: Drop Bartlomiej Zolnierkiewicz
-      dt-bindings: iio: Drop Joachim Eastwood
-      dt-bindings: iio: Drop Bogdan Pricop
-      dt-bindings: Drop Beniamin Bia and Stefan Popa
-      dt-bindings: Drop Robert Jones
-      dt-bindings: Drop Dan Murphy and Ricardo Rivera-Matos
-      dt-bindings: chrome: google,cros-ec-typec: restrict allowed properties
-
-Rob Herring (3):
-      dt-bindings: Drop DT_MK_SCHEMA_FLAGS conditional selecting schema files
-      dt-bindings: pinctrl: qcom,ipq6018: Fix example 'gpio-ranges' size
-      dt-bindings: mailbox: arm,mhu: Make secure interrupt optional
-
- Documentation/devicetree/bindings/Makefile         |   4 +-
- .../bindings/chrome/google,cros-ec-typec.yaml      |  15 +-
- .../bindings/display/simple-framebuffer.yaml       |   1 -
- .../devicetree/bindings/hwmon/adi,adm1177.yaml     |   1 -
- .../devicetree/bindings/iio/accel/fsl,mma7455.yaml |   1 -
- .../devicetree/bindings/iio/adc/adi,ad7091r5.yaml  |   2 +-
- .../devicetree/bindings/iio/adc/adi,ad7606.yaml    |   3 +-
- .../bindings/iio/adc/nxp,lpc1850-adc.yaml          |   2 +-
- .../devicetree/bindings/iio/adc/ti,adc108s102.yaml |   2 +-
- .../devicetree/bindings/iio/adc/ti,ads124s08.yaml  |   2 +-
- .../bindings/iio/amplifiers/adi,hmc425a.yaml       |   1 -
- .../devicetree/bindings/iio/imu/nxp,fxos8700.yaml  |   2 +-
- .../bindings/leds/leds-class-multicolor.yaml       |   2 +-
- .../devicetree/bindings/leds/leds-lp50xx.yaml      |   2 +-
- .../devicetree/bindings/mailbox/arm,mhu.yaml       |   1 +
- .../devicetree/bindings/mfd/gateworks-gsc.yaml     |   1 -
- .../devicetree/bindings/mfd/qcom,spmi-pmic.txt     |  94 ----------
- .../devicetree/bindings/mfd/qcom,spmi-pmic.yaml    | 190 +++++++++++++++++++++
- .../devicetree/bindings/mmc/sdhci-msm.yaml         |   2 +
- .../devicetree/bindings/net/ti,dp83822.yaml        |   2 +-
- .../devicetree/bindings/net/ti,dp83867.yaml        |   2 +-
- .../devicetree/bindings/net/ti,dp83869.yaml        |   2 +-
- .../bindings/pinctrl/qcom,ipq6018-pinctrl.yaml     |   2 +-
- .../devicetree/bindings/power/supply/bq2515x.yaml  |   3 +-
- .../devicetree/bindings/power/supply/bq256xx.yaml  |   2 +-
- .../devicetree/bindings/power/supply/bq25980.yaml  |   3 +-
- .../devicetree/bindings/sound/tas2562.yaml         |   2 +-
- .../devicetree/bindings/sound/tlv320adcx140.yaml   |   2 +-
- 28 files changed, 224 insertions(+), 124 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+SUSE Software Solutions Germany GmbH
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Martje Boudien Moerman
+(HRB 36809, AG Nürnberg)
