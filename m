@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BC96590FAD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ADBA590FC3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:55:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237663AbiHLKt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 06:49:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55618 "EHLO
+        id S233355AbiHLKzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 06:55:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237852AbiHLKt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:49:27 -0400
+        with ESMTP id S229793AbiHLKzU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:55:20 -0400
 Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1F4A98E2
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:49:26 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id e15so872310lfs.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:49:26 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A731DEEB
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:55:18 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id o2so864697lfb.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:55:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=UJnFvf2CipkkOM+lYgM36L0ZtmP7Hx57QaN536b3YCw=;
-        b=GOKMFNg1REVIwFrExYqDnxeUxvmN6E6p1tHUohNkXRce3yIDW9omFNKeKDn50YdSj7
-         jR+iLaL7K7o1v1j+HwmvXdLnGwH/Z4n7sra00irgT2f7Wk4Bv28PT1fqBGO0XV2WQSRH
-         FtIqjm63bbe8hZEAVGKm+hELlLOmxMqxInFpYj27Ap1mRoWRDVEvzIbAM9fCd8njNmYw
-         ZLy1OQXmqj9WtiJM2UEdbgb+9QJJGrhPewkdoh7QsIclb1Ip0jSPzjdZ7z3fSmGF4Aq1
-         syIo5izG7Mk7/uh40LPecqsMusRl25/M2WVcFcl+iVulYvxUi9jx4q5FEjRLv/M8fs0G
-         Z5Ig==
+        bh=aaNl+ijT1LjwDfHOCxRP8aD4iO5jOkHMfS/PbY8NG5o=;
+        b=vxyPj+cWREDjzPfHlMEI4ETGGS++oBpkkT/Z8ItZIeGbY/auOJ9VffjXi3vILLOXOD
+         Mo4fOrJX19n83rdKW55y3kMoxJXPsW3VNDMufG/BYD9YgGQXmwHnmVezKLYcSGjilxPr
+         uTtUnjgaFRPTeCuer2xpXcUcR4Iw1HiDwKfM5sin/m7ISRpv1gn7LOs3dkOCFjorV73C
+         ICUKRGn9+UdbtjCNfViIond8iPgwL+QYjeZNWrAKBWo1QSEULnQppVROKOfORzgCTplG
+         9Igbk9lj21TDOx4yUz2dBCthY4WnoQWvta6ymrNWlz2t6jYvzUu865fqNAfTrbZsVquO
+         Ms0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=UJnFvf2CipkkOM+lYgM36L0ZtmP7Hx57QaN536b3YCw=;
-        b=avAlXR4Vwd7/bOGUspYi/nN0wNJWA+bzUNEMyNcpJOSZIzQ4nYpeEeYiEVCbFkWPTT
-         K19xu2wKa36BvVIZBGPCvYSPCXq9kIW+8OHeRPrJLp8B5Y+qGZ3S7BBsTZAeLxN4m4i1
-         NF8zB/+d+B9T45PlHWOR5WqJ9wFh/dGCENFR0EepGjd/2MosXjynX/UmAtlDmILSn/nc
-         BkaSOomLIcxOVX9I2YU/U5kA7OLbJEqUs4am9rp3Bewutlwby6kBmaS3rJhc5EibzQs0
-         7vOMGoiADy6Q73yOZEfjbldr0DTF8PNXScPfeLSJDv+qZzS6d1SBemEkJo8cehMM2uYH
-         xUOA==
-X-Gm-Message-State: ACgBeo1D9OWSOW5+X8kFyeEM0bUaCRyLDp/s5FhI4HWho0ZFbsYT9C86
-        kA2qqr/jg5db1nBr2J/rWZcT9Q==
-X-Google-Smtp-Source: AA6agR5b1udKMfU6HMSFMRaqG2/gb4fi6eYQzjti5Wtvya5ucwIJC/D1/rchFHsRLMSOw7dMOtSjPw==
-X-Received: by 2002:ac2:5cc6:0:b0:48a:f879:f6ef with SMTP id f6-20020ac25cc6000000b0048af879f6efmr1018055lfq.347.1660301364948;
-        Fri, 12 Aug 2022 03:49:24 -0700 (PDT)
+        bh=aaNl+ijT1LjwDfHOCxRP8aD4iO5jOkHMfS/PbY8NG5o=;
+        b=dFGrb8rX2Kx5eoYH+6lpoMSYWtSEVeaz5vCy2ttiwqXZvx7aaKqHdNZaFwmVSQOGxF
+         W/BmNPvnijlq/IV1/P52sJAmZTgoL6sS/LwBcA3yQ0otDwNv+wW1wWR4evBElsOr77/y
+         BSwUorISanz/UpuBNuR/7aTjoliJODZht6d4hAJUBJAoQvZF84zsagP1aH6g8dfZh5y1
+         8lHB0lzqaYHB0geaHXYblh5c8IkPcuqr+oG6Ye38/uS4l2A9ehMVF9W3RcUjqqGot1v+
+         Pv/0YH/ITu/huC5eYiQPNABHcMvr++4Xkbgd6PB2X2SEOC1cix+NwCUADWi01QZniP+F
+         tDVg==
+X-Gm-Message-State: ACgBeo1npU0L36kxaWhXry8GuhyJZflUHE4lglPrynf5lv9sg3zXulwW
+        FNv+uCHQFpU4bX3RCWfMvy86jg==
+X-Google-Smtp-Source: AA6agR6nxVAvP/ztJ9CWdcMb5byQai/Ut0mSg3vYquS5IM5ugPUQ8jhyJXPddJBUAd9gQCzcpJbNfA==
+X-Received: by 2002:a05:6512:2313:b0:48a:e615:289b with SMTP id o19-20020a056512231300b0048ae615289bmr1069198lfu.201.1660301716964;
+        Fri, 12 Aug 2022 03:55:16 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id p8-20020ac24ec8000000b0048b29b13d22sm166371lfr.299.2022.08.12.03.49.20
+        by smtp.gmail.com with ESMTPSA id l9-20020a056512110900b0048af3154456sm173419lfg.146.2022.08.12.03.55.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 03:49:24 -0700 (PDT)
-Message-ID: <13fcaa01-d2c0-e57f-bedc-b2e0536a55f9@linaro.org>
-Date:   Fri, 12 Aug 2022 13:49:19 +0300
+        Fri, 12 Aug 2022 03:55:16 -0700 (PDT)
+Message-ID: <cbe761af-5011-83a2-0509-2b3c4fe0a79c@linaro.org>
+Date:   Fri, 12 Aug 2022 13:55:10 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 2/4] dt-bindings: display: sun6i-dsi: Add the A100 variant
+Subject: Re: [PATCH v3 1/1] regulator: dt-bindings: mediatek: add mt6366
 Content-Language: en-US
-To:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220812074257.58254-1-samuel@sholland.org>
- <20220812074257.58254-3-samuel@sholland.org>
+To:     Zhiyong Tao <zhiyong.tao@mediatek.com>, lee.jones@linaro.org,
+        robh+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+        broonie@kernel.org, eddie.huang@mediatek.com, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, fshao@chromium.org
+Cc:     sen.chu@mediatek.com, hui.liu@mediatek.com,
+        allen-kh.cheng@mediatek.com, hsin-hsiung.wang@mediatek.com,
+        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
+        wen.su@mediatek.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20220812092901.6429-1-zhiyong.tao@mediatek.com>
+ <20220812092901.6429-2-zhiyong.tao@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220812074257.58254-3-samuel@sholland.org>
+In-Reply-To: <20220812092901.6429-2-zhiyong.tao@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,86 +84,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 10:42, Samuel Holland wrote:
-> The "40nm" MIPI DSI controller found in the A100 and D1 SoCs has the
-> same register layout as previous SoC integrations. However, its module
-> clock now comes from the TCON, which means it no longer runs at a fixed
-> rate, so this needs to be distinguished in the driver.
+On 12/08/2022 12:29, Zhiyong Tao wrote:
+> Add mt6366 regulator document
 > 
-> The controller also now uses pins on Port D instead of dedicated pins,
-> so it drops the separate power domain.
-> 
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
-> Removal of the vcc-dsi-supply is maybe a bit questionable. Since there
-> is no "VCC-DSI" pin anymore, it's not obvious which pin actually does
-> power the DSI controller/PHY. Possibly power comes from VCC-PD or VCC-IO
-> or VCC-LVDS. So far, all boards have all of these as always-on supplies,
-> so it is hard to test.
-> 
->  .../display/allwinner,sun6i-a31-mipi-dsi.yaml | 28 +++++++++++++++----
->  1 file changed, 23 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> index ae55ef3fb1fe..c53c25b87bd4 100644
-> --- a/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/allwinner,sun6i-a31-mipi-dsi.yaml
-> @@ -12,9 +12,14 @@ maintainers:
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - allwinner,sun6i-a31-mipi-dsi
-> -      - allwinner,sun50i-a64-mipi-dsi
-> +    oneOf:
-> +      - enum:
-> +          - allwinner,sun6i-a31-mipi-dsi
-> +          - allwinner,sun50i-a64-mipi-dsi
-> +          - allwinner,sun50i-a100-mipi-dsi
 
-While you are moving code, how about bringing alphabetical order?
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6366-regulator
+> +
+> +  regulators:
+> +    type: object
+> +    description: List of regulators and its properties
+> +
+> +    patternProperties:
+> +      "^buck-v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      "^ldo-v(dram2|sim1|ibr|rf12|usb|camio|camd|cn18|fe28)$":
+> +        type: object
+> +        $ref: regulator.yaml#
 
-> +      - items:
-> +          - const: allwinner,sun20i-d1-mipi-dsi
-> +          - const: allwinner,sun50i-a100-mipi-dsi
->  
->    reg:
->      maxItems: 1
-> @@ -59,7 +64,6 @@ required:
->    - phys
->    - phy-names
->    - resets
-> -  - vcc-dsi-supply
->    - port
->  
->  allOf:
-> @@ -68,7 +72,9 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: allwinner,sun6i-a31-mipi-dsi
-> +            enum:
-> +              - allwinner,sun6i-a31-mipi-dsi
-> +              - allwinner,sun50i-a100-mipi-dsi
-
-Here as well
-
->  
->      then:
->        properties:
-> @@ -83,6 +89,18 @@ allOf:
->          clocks:
->            maxItems: 1
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - allwinner,sun6i-a31-mipi-dsi
-> +              - allwinner,sun50i-a64-mipi-dsi
-
-and here
+You miss unevaluatedProperties in most of the places.
 
 
 Best regards,
