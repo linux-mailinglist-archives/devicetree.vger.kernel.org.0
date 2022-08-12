@@ -2,77 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FB04591191
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 15:33:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E204591198
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 15:34:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238927AbiHLNdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 09:33:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52086 "EHLO
+        id S238952AbiHLNeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 09:34:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238926AbiHLNdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 09:33:51 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 457E99D8F2
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:33:50 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id d14so1337535lfl.13
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:33:50 -0700 (PDT)
+        with ESMTP id S238951AbiHLNeu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 09:34:50 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4EB09E12A
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:34:48 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id d14so1340813lfl.13
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:34:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=z4AiGXr3REDL7GqtsJx8F6rnRjSDdT6RG1gWREQhBcU=;
-        b=LNiDUfWcQ1zJEDigf9MHidZGHQZEF9w2jrTfHHie35FEIQd7SFr6eKZDbUV9Fd028I
-         HoPige8CFELxe298FMaQQRHvmZIjIDTLdss/3Vk8Rk+D749uIJVDR5Tb5C+sich3ipPI
-         J37PHl1IJYaNBCQsCJMpr3ilGc4JgWQMW84RKhUq/633snvu1oBjVpbXypMdOyfZOmPL
-         I9F9+jK164lpYZjdJg5TrLawHtxvDZWWvSoYoCp9VMTZjwcJeJR/DB7fzSoHIFvBT8os
-         vptZ+TkErC2Jx5lPe0+Fkg96I4aDLZYlKZwIj63Ib0Dv9PE7cUxHu/YrGjpVQShdl0OE
-         ordg==
+        bh=BZWPu5Gd//RL+Fh9taZwYOP97Z5i1BsHH/FWdANRQTQ=;
+        b=zQz2gZCK/5ZJh9ivkAAuyGjG4hCSJBu7jU5wR5UXWpCIdruZMgyn6VuTm1QqWh8x6h
+         HasBqW0BJks2PPnztLww2524JDH1d7jjoeGsvxikXYxJYJFjk8BIfrhBpfjGxpZK/M9c
+         i/XHY2xZVnfl3MUBoRVQ93hjGX176jC+gF8hAmvbNaq8yR1l4ibEIM4tQ0LuMQYZ3Av6
+         C2mARZuJz1sjPhoFQTQMRAfzR9vvJdrVu8rXsT7aBemuKm+iY2DRz94VkQFi0ogfgfQX
+         2TuTBSeSVjWH98xo6xxXmr1B5FGooSs1InWSlqWPzlK/wUQNfApOMUurC8nSP8DIpW7X
+         UTqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=z4AiGXr3REDL7GqtsJx8F6rnRjSDdT6RG1gWREQhBcU=;
-        b=W63icNFWoWF57vssAfCXJriUzu/Ul4lu/FdZa/2CE6wUUkU+Coxi47mdpv1w2Yz4I5
-         pwM2wW2Yl9Kw6IFvYZkQmHTxk0IbrfLU1cSG7r/LKs2aounNfsfLUcVquZbHJDfy5c45
-         Qnpoj4nbqUq1vXLqNGGB3dePNFtr0/NqXOj8HoSUZHX63/Q7YopmQ07AsJ+U50SAZKma
-         vqV5f0ApeuYap6rGAkJlmyVRJq5umcEcRaSur00Xc6RK5sHKOwhQ1Ew4fQ5YWYIFQqXF
-         4xByhGH33eGEmIH7bw96FKOKxSRPm5jh8p3kvdsyTBWuRNU031KAJWdG7QvGXoGJNyeG
-         7Utw==
-X-Gm-Message-State: ACgBeo3nkCR2zGiU6RCIy0kT6poDR28wxA169xqIdC1AlpGqk8dGgZzE
-        zpn9szZ84HJzYN9Q02ghyWiQDg==
-X-Google-Smtp-Source: AA6agR6dcnjIyMjXY7sw25RY0+ACHWmwCBnp0P8UXC5ActW0pLzPbQcX4BL0V9dI83AkFguHOGga/Q==
-X-Received: by 2002:a05:6512:ba4:b0:48a:f185:db17 with SMTP id b36-20020a0565120ba400b0048af185db17mr1191578lfv.107.1660311228578;
-        Fri, 12 Aug 2022 06:33:48 -0700 (PDT)
+        bh=BZWPu5Gd//RL+Fh9taZwYOP97Z5i1BsHH/FWdANRQTQ=;
+        b=pX57BHHEqTfnEMZ5YgBDCF1uckEQGve3OKmWwb7KkqS141t4DpfsNlELA6a6lwQijR
+         pkB8Fmqa5skCW40QwKACmtOfeyR7n8nP8V/SRQk8yTW1SN9RhxhEgeZEY0yH5WWQ2ujH
+         +trNckMu9AsvBtzrKU88QxPoXmkRHwVvVI1xSOpQvaOLb8JJjma5wlc4Sx9aMVsyrANs
+         TR7JW9NUf9OJqK8QU8n1d+To+IrjnUnWo8uCqb6VH0NPyFzlV04lWZ25VCHWnoNaNgVP
+         WOxjyJ1vFSMXDzTfvKcrS6py9lmSC/cEB1JsYAVqQpKZzhkOM3zg17PKvuUvWL1lqKph
+         96jw==
+X-Gm-Message-State: ACgBeo3PTIZM1WYBNaK8/OALxGwfHe9uWmsy8eIuucMMf2X4bYTQw8dF
+        MBbGzgneO/zM+nXRhfk9r2z9GA==
+X-Google-Smtp-Source: AA6agR58fBX3co0zBUriZQcv0W0Vcn+Jz7pblBOBdMET79vrEFBlHlAawrlSdkJOdpXfFE+cQE60vw==
+X-Received: by 2002:a19:f505:0:b0:48b:2bfb:9a99 with SMTP id j5-20020a19f505000000b0048b2bfb9a99mr1201171lfb.101.1660311287068;
+        Fri, 12 Aug 2022 06:34:47 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id bg25-20020a05651c0b9900b0025e4e2a5bbesm365108ljb.1.2022.08.12.06.33.45
+        by smtp.gmail.com with ESMTPSA id s2-20020a056512202200b0048ae8e4cebdsm218224lfs.139.2022.08.12.06.34.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 06:33:47 -0700 (PDT)
-Message-ID: <fc1fa817-d17b-2cb1-cd9d-b31f79753e70@linaro.org>
-Date:   Fri, 12 Aug 2022 16:33:43 +0300
+        Fri, 12 Aug 2022 06:34:46 -0700 (PDT)
+Message-ID: <5ac47ae7-ab49-5413-e489-b8b5f053697a@linaro.org>
+Date:   Fri, 12 Aug 2022 16:34:41 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v5 1/3] dt-bindings: gpio: Add imx scu gpio driver
- bindings
+Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: sm6350: Add interconnect support
 Content-Language: en-US
-To:     Shenwei Wang <shenwei.wang@nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linus.walleij@linaro.org,
-        brgl@bgdev.pl, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        imx@lists.linux.dev
-References: <20220812133012.7283-1-shenwei.wang@nxp.com>
- <20220812133012.7283-2-shenwei.wang@nxp.com>
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220525144404.200390-1-luca.weiss@fairphone.com>
+ <20220525144404.200390-6-luca.weiss@fairphone.com>
+ <CM41EUB650GB.YO1J30NYO5NU@otso>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220812133012.7283-2-shenwei.wang@nxp.com>
+In-Reply-To: <CM41EUB650GB.YO1J30NYO5NU@otso>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,14 +81,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 16:30, Shenwei Wang wrote:
-> Add binding document for the imx scu gpio driver.
+On 12/08/2022 15:09, Luca Weiss wrote:
+> Hi Bjorn,
 > 
-> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> On Wed May 25, 2022 at 4:44 PM CEST, Luca Weiss wrote:
+>> Add all the different NoC providers that are found in SM6350 and
+>> populate different nodes that use the interconnect properties.
+>>
+>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> 
+> The other patches (1-4) from this series have been merged into torvalds'
+> repo already, so just this one is missing from 5.20/6.0.
+> 
+> Could you please pick it up for the next merge window if everything's
+> alright with it?
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+It's still a merge window...
 
 Best regards,
 Krzysztof
