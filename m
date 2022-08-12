@@ -2,117 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C97559137D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 18:07:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C59E2591384
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 18:08:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239110AbiHLQGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 12:06:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59770 "EHLO
+        id S238512AbiHLQH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 12:07:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239098AbiHLQF5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 12:05:57 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47D6D57221
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 09:05:55 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id gj1so1423669pjb.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 09:05:55 -0700 (PDT)
+        with ESMTP id S234501AbiHLQH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 12:07:28 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B5492BB01;
+        Fri, 12 Aug 2022 09:07:27 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id fy5so2804899ejc.3;
+        Fri, 12 Aug 2022 09:07:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc;
-        bh=4OVNFUuImLLig/MGlX7vlR8weBzwek79DqD1BdLgOpk=;
-        b=hXdOxhnDhpBegqyCoNLEwbn81PWOhosp82gYxw3LUcdKmADMMMEvM8eJldJcSFhZE1
-         Z5dRCKke8PHj6jXb6TPIVae6NpQ54/qQzufcn2nzN6JWSGimbxBPyyA3bGN8+bDHuiuZ
-         XeAUdTST31jiYPcDve/nvcp4PlPjwnuX1fRImN+0pZMoqzp8SCqekeFVGnfAmKBcO8QB
-         UFLnIEZBmQQb9imQ/6qGNY70F1h+1Af98cCgt6qB3FyZg7H6g15ROmRG4ayeCxXeN5o4
-         vsFV5z50xf4BA2JPkDedx2vUoU2OOV0wrXqo2euDhmmMzobdlIeqJdzg6N/L0GOrN72k
-         mIeg==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=e6zJEVJOtrs5jr41jffgUoYBgFxyThTIoik0RUHXuCw=;
+        b=b4fQeI7L6yFpe/zUPCjsDzLVQ1wyNnZOADEB9EruvZ/VpoZXIgnKnLe8Mk42lZjbBL
+         9hsFo8ET1u+f4g8H6BBJi++4a+ZUA5KiQt0EaN/ZS1WdZRcAgsEJ+AdxmbHX5cwIYbZq
+         lUX2/qvEg2Nx95P+HRiM43aaMJxPQ5fWhVg/dOkHvbSiU4cmj1LEvNy/ydhWw1iu+5Pt
+         6TfC6avTFtnPWBvxtJkk+f5bEEVvJvFzLH9Xc3KFUznflVd0/g0fF/Od5rrnc6SpucHf
+         q76pGXdWs4CromZLZH7MFB7G/N4gdNSR+vbYtHuGc+jXBxIb8pB9CktAskY4GqjlVLZm
+         3ecQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc;
-        bh=4OVNFUuImLLig/MGlX7vlR8weBzwek79DqD1BdLgOpk=;
-        b=mIXbUkzRMJMo2c7YgBMr5efMZ4+LDUdQ9r6MXCr7Zc3z+ljsybPbbZv5JTwJowEpiG
-         GXxJw1v685cEvc38W4MNbhXJMyYas5jyNYL1igOhcI1ZJ+C3Z5x/19oJRUe0Fb1VR8e7
-         CD6W+8MjPOrRgP8cS/tgnTC77f+ZoyP9TnPM3WP1WZvd0BLH0Q3JPr9cY2gTOkd+o86J
-         lqpB1h+2qyRHLJqxmy8M4o3LOW5MOmeH6ZGRs1KA9AF9IXNlIoIXG9VVHbtlPuWN3jVd
-         DTLA3wq4pnoygaOqi7Bow0gGJK954gDHdsO7XNnKEqo9QVyQOu6rQOGPT9aSwQFi9TpX
-         YdVA==
-X-Gm-Message-State: ACgBeo2S8uzicS1DfU9Gja0oJQS/Lda4rGIU0lIkWGMtiPKZlc2k9l2l
-        WFx+X82Y3+XDei2zEUnBT4Ul3w==
-X-Google-Smtp-Source: AA6agR5/COUTRoAh0UyVgQkf61YCv93x/r8lJgd5f8JFsaDvoPs//RQJEaMQhT8zl7lBJEwuv/cQgQ==
-X-Received: by 2002:a17:90b:1e42:b0:1f3:297c:c65c with SMTP id pi2-20020a17090b1e4200b001f3297cc65cmr4993940pjb.208.1660320354716;
-        Fri, 12 Aug 2022 09:05:54 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id f6-20020a170902684600b0016d01c133e1sm1885809pln.248.2022.08.12.09.05.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Aug 2022 09:05:54 -0700 (PDT)
-Date:   Fri, 12 Aug 2022 09:05:54 -0700 (PDT)
-X-Google-Original-Date: Fri, 12 Aug 2022 09:00:14 PDT (-0700)
-Subject:     Re: [PATCH v4] dt-bindings: gpio: sifive: add gpio-line-names
-In-Reply-To: <20220803155539.800766-1-mail@conchuod.ie>
-CC:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, conor.dooley@microchip.com,
-        atulkhare@rivosinc.com, sagar.kadam@sifive.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     mail@conchuod.ie
-Message-ID: <mhng-5813099c-bd9f-4122-aec9-44adb5d280f5@palmer-mbp2014>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=e6zJEVJOtrs5jr41jffgUoYBgFxyThTIoik0RUHXuCw=;
+        b=Dihuaf7U4Bo3rQhG4mPHtovWjxpj5MEEr6RZnEgNgbdLH5b0xBymMAN5Hjd7ryb79e
+         H8BVbNHE9gPrUll3kE7MyrxJ2Y9IBH2+MWhkZCSPUjh7XtkiE12fHrwLVwPi/3koP5BU
+         Et/wUtNBA55AjBkrXREDvnqc/EUqp8xh9+jgLP/qh5TSTYl996hPN+mvnUP9gGMLYgc2
+         xMOCLQHbNWWLuTmcDE6TdQbdl54yBdy1CeWwpZCydOYR3uBha+R+uEnZ2ivIPq/zGqyr
+         3wnRRn0zddjw7lmZdwQLRkjaM2eVJRrleshW11mG6gtUV/1AhMctTBF92MJ2QYUnX5t3
+         eAIA==
+X-Gm-Message-State: ACgBeo1O4A90nXyc0A0uQKkm3kmmTbtKrKFbIYWIg//pIE3+Ulb9tI2o
+        MqqFA9igOANLN89LcVnKhOja1UgSVdWjyjJRSsk=
+X-Google-Smtp-Source: AA6agR4AcEvxsXoTW9XaaW1kokpsHtfsvfgZsZcSyJznwn9ZupVzTjGrJ6LGs6nECaBM1TmqWzPLesYjbEwBjSQLmAY=
+X-Received: by 2002:a17:907:8b97:b0:730:9480:972a with SMTP id
+ tb23-20020a1709078b9700b007309480972amr3200458ejc.648.1660320445418; Fri, 12
+ Aug 2022 09:07:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <1660225318-4063-1-git-send-email-u0084500@gmail.com>
+ <1660225318-4063-2-git-send-email-u0084500@gmail.com> <1660317233.429908.168977.nullmailer@robh.at.kernel.org>
+In-Reply-To: <1660317233.429908.168977.nullmailer@robh.at.kernel.org>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Sat, 13 Aug 2022 00:07:14 +0800
+Message-ID: <CADiBU39-4xdaMO5fOXOZyhC3w0TxdzZyfsFZXbcFw3=i+6UOMQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: supply: Add Richtek RT9471
+ battery charger
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?5ri45a2Q6aao?= <alina_yu@richtek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, alinayu829@gmail.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        cy_huang <cy_huang@richtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 03 Aug 2022 08:55:40 PDT (-0700), mail@conchuod.ie wrote:
-> From: Atul Khare <atulkhare@rivosinc.com>
+Rob Herring <robh@kernel.org> =E6=96=BC 2022=E5=B9=B48=E6=9C=8812=E6=97=A5 =
+=E9=80=B1=E4=BA=94 =E6=99=9A=E4=B8=8A11:13=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> Fix device tree schema validation messages like 'gpio-line-names'
-> does not match any of the regexes: 'pinctrl-[0-9]+' From schema: ...
-> sifive,gpio.yaml'.
+> On Thu, 11 Aug 2022 21:41:57 +0800, cy_huang wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> >
+> > Add bindings for the Richtek RT9471 I2C controlled battery charger.
+> >
+> > Co-developed-by: Alina Yu <alina_yu@richtek.com>
+> > Signed-off-by: Alina Yu <alina_yu@richtek.com>
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> >  .../bindings/power/supply/richtek,rt9471.yaml      | 78 ++++++++++++++=
+++++++++
+> >  1 file changed, 78 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/power/supply/rich=
+tek,rt9471.yaml
+> >
 >
-> The bindings were missing the gpio-line-names element, which was
-> causing the dt-schema checker to trip-up.
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 >
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Atul Khare <atulkhare@rivosinc.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Changes since v3[0]:
-> - Dropped patch 1 & the now unneeded cover letter
-> - Added Rob's Ack
-> - Changed the patch title to include the subsystem
+> yamllint warnings/errors:
 >
-> 0 - https://lore.kernel.org/all/20220726170725.3245278-3-mail@conchuod.ie/
-> ---
->  Documentation/devicetree/bindings/gpio/sifive,gpio.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/powe=
+r/supply/richtek,rt9471.example.dtb: charger@53: usb-otg-vbus-regulator: Un=
+evaluated properties are not allowed ('regulator-compatible' was unexpected=
+)
+>         From schema: /builds/robherring/linux-dt-review/Documentation/dev=
+icetree/bindings/power/supply/richtek,rt9471.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-> index 939e31c48081..fc095646adea 100644
-> --- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
-> @@ -46,6 +46,10 @@ properties:
->      maximum: 32
->      default: 16
+> doc reference errors (make refcheckdocs):
 >
-> +  gpio-line-names:
-> +    minItems: 1
-> +    maxItems: 32
-> +
->    gpio-controller: true
+> See https://patchwork.ozlabs.org/patch/
 >
->  required:
+Thanks, after I add 'DT_CHECKER_FLAGS=3D-m', it also can be found for this =
+error.
 
-Thanks, this is on for-next.
+This is typo, not 'regulator-compatible', it's 'regulator-name'.
+
+Will be fixed in next revision.
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
+>
