@@ -2,86 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AAE55910DE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 14:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2F585910EB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 14:48:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235653AbiHLMkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 08:40:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54328 "EHLO
+        id S238136AbiHLMsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 08:48:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234719AbiHLMkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 08:40:20 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE9A2FFF8
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 05:40:18 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id x19so1183148lfq.7
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 05:40:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=YIfVk5qV6IbraaZwFyYTdjJsLosoEwiwnWTuuewGKd0=;
-        b=VwWImj/vpxXTYulf5oM9HbksWEM7P3NAlvpGxheI3yGdygbm5LJrFQhnHXqdOYmNJy
-         6nuA76C8u27+Kfdws/QR02EKqu2s25lH1omR3Gz9oXyzQ8YpP512w6uD5zyHIz6ykGyu
-         Tnj4yq7mvkNxK2C234kaIngg9FjiXjvqYBmWELtltMbiB4qoiJMrK4UdfL41o9t1OtVc
-         q6x0KoPOWCZxdFw2XfQr591ZmhOenocyiL19LUDkCFDxvN+88WH7lsvSefxsgpIdUkUq
-         37noCLlhTMwLcMRHd5Kq9HAyVvydyXA2pbhdWAPu817QV3hMaQf52ZFB+nwnZSJg8haV
-         ZkcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=YIfVk5qV6IbraaZwFyYTdjJsLosoEwiwnWTuuewGKd0=;
-        b=4eufMWjjBmbx+wBS2y4rZ+rtSyGFvtlsi7E4+dUPPcQcr86BSinvnDV/Wy7fdLIaMw
-         BLZAYkAIfIglMUJrlZfLBGU7lfFuiNElKEAfN66OZnLskw3J30EoLe/sxSXhdbkkl9o/
-         ITAVVY1bnLOfHYonOarhwa2uOx9xhhvW330QEpkSomi6zusJCcETYlCPHoK651B/fNCj
-         CCADkNKpVJ11y/OlAWHUsM2Qt5kUzm/Wvgxu/2X+i8WD6mfuLWKjoRw7oBd/OAz8FEcl
-         hePTblm+zYh1g75Jv2DA7UjQdZLqF6GKL8HCNZhvwNUEW18eDNyYTGgSmR5tpOpSn0D9
-         uSXQ==
-X-Gm-Message-State: ACgBeo1ew9r7sQCxXUguYOfRUthOB4EUxTJlaB+ZQGWjRR3og/n253Wg
-        KIuW/56Y9tZokAM1/gL+fQB5Aw==
-X-Google-Smtp-Source: AA6agR4UqqikmP8ZbS4wWLYJAG6gvzcVxMKj9RfEA9uWOeRHCu89xYNR9VJlR6rA/hDlVVzFQscGbw==
-X-Received: by 2002:a05:6512:1320:b0:488:8fcc:e196 with SMTP id x32-20020a056512132000b004888fcce196mr1208711lfu.602.1660308016982;
-        Fri, 12 Aug 2022 05:40:16 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id q7-20020a056512210700b0048cf0fef301sm196719lfr.301.2022.08.12.05.40.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 05:40:16 -0700 (PDT)
-Message-ID: <039fc122-613c-093f-f89a-6479f76825dd@linaro.org>
-Date:   Fri, 12 Aug 2022 15:40:12 +0300
+        with ESMTP id S234491AbiHLMsU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 08:48:20 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E19BAA59A0;
+        Fri, 12 Aug 2022 05:48:19 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27C8wEa6027970;
+        Fri, 12 Aug 2022 12:48:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=9HuFECbn/JSsLUCvjsP5xzUYX/vLXvOb4wkgS6om6R0=;
+ b=Euusw8RKTFXhdO+fYd0fTQoqrUW0CTSiKeSG64clIFDlJKSQKAlw8fW2ytCkZfc5Qprd
+ O3s2weo+HSuNo08iJBYM1CGtM46SruiMIVZ2kisZLxFpC0D7R6XkiDsXQNIQI1krE+8Q
+ ANY1kDjmOPzNnvJsEB2BmtpthBIR0S14xF8Q19//Us8QqBlcXMwlFHYfLF0ot4QA0ijH
+ TwgZLcHaMZwG4CDTxSRJzcm0s9DToaCUCoK21EdE09kOMX+i/ZXYlfhreppHglkhqCtQ
+ 12r1XoMq355CetZPygyGfRWsiV+wAl+Wr5uCdL/VKDUUAKwEqBz0XrOwHVJhtHo0hc/S hg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3hw011m7bf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 12 Aug 2022 12:48:09 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 27CCm8Du022495
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 12 Aug 2022 12:48:08 GMT
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Fri, 12 Aug 2022 05:48:02 -0700
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <linux-remoteproc@vger.kernel.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@quicinc.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <srinivas.kandagatla@linaro.org>,
+        <quic_rohkumar@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <swboyd@chromium.org>,
+        <judyhsiao@chromium.org>, <devicetree@vger.kernel.org>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v4 0/7] Update ADSP pil loader for SC7280 platform
+Date:   Fri, 12 Aug 2022 18:17:39 +0530
+Message-ID: <1660308466-410-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add binding documentation for
- NXP IMX93 ADC
-Content-Language: en-US
-To:     Bough Chen <haibo.chen@nxp.com>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <1659517947-11207-1-git-send-email-haibo.chen@nxp.com>
- <1659517947-11207-2-git-send-email-haibo.chen@nxp.com>
- <8afe7812-7dbd-7257-2a55-b4ae49f47381@linaro.org>
- <VI1PR04MB4016C146F9C8EF90557B362F909F9@VI1PR04MB4016.eurprd04.prod.outlook.com>
- <d8fec5ab-2e03-4df0-f858-4a83c6f23233@linaro.org>
- <VI1PR04MB40163F952AD90A73664A560A90679@VI1PR04MB4016.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <VI1PR04MB40163F952AD90A73664A560A90679@VI1PR04MB4016.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: vsL4CBjo6D_SJjCrUwxSDInpuocJuqJG
+X-Proofpoint-GUID: vsL4CBjo6D_SJjCrUwxSDInpuocJuqJG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
+ definitions=2022-08-12_08,2022-08-11_01,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=963 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 bulkscore=0 impostorscore=0 spamscore=0
+ phishscore=0 priorityscore=1501 mlxscore=0 adultscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
+ definitions=main-2208120034
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,163 +78,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 14:51, Bough Chen wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 2022年8月4日 15:11
->> To: Bough Chen <haibo.chen@nxp.com>; jic23@kernel.org; lars@metafoo.de;
->> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
->> shawnguo@kernel.org; s.hauer@pengutronix.de
->> Cc: kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx
->> <linux-imx@nxp.com>; linux-iio@vger.kernel.org; devicetree@vger.kernel.org
->> Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add binding documentation for
->> NXP IMX93 ADC
->>
->> On 04/08/2022 03:05, Bough Chen wrote:
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>> Sent: 2022年8月3日 18:20
->>>> To: Bough Chen <haibo.chen@nxp.com>; jic23@kernel.org;
->>>> lars@metafoo.de;
->>>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
->>>> shawnguo@kernel.org; s.hauer@pengutronix.de
->>>> Cc: kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx
->>>> <linux-imx@nxp.com>; linux-iio@vger.kernel.org;
->>>> devicetree@vger.kernel.org
->>>> Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add binding
->>>> documentation for NXP IMX93 ADC
->>>>
->>>> On 03/08/2022 11:12, haibo.chen@nxp.com wrote:
->>>>> From: Haibo Chen <haibo.chen@nxp.com>
->>>>>
->>>>> The IMX93 SoC has a new ADC IP, so add binding documentation for NXP
->>>>> IMX93 ADC.
->>>>>
->>>>> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
->>>>> ---
->>>>>  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 65
->>>> +++++++++++++++++++
->>>>>  1 file changed, 65 insertions(+)
->>>>>  create mode 100644
->>>>> Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>>>>
->>>>> diff --git
->>>>> a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>>>> b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..e0eac5aa81d7
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
->>>>> @@ -0,0 +1,65 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
->>>>> +---
->>>>> +$id:
->>>>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fde
->>>>> +vi
->>>>>
->>>>
->> +cetree.org%2Fschemas%2Fiio%2Fadc%2Fnxp%2Cimx93-adc.yaml%23&amp;d
->>>> ata=0
->>>>>
->>>>
->> +5%7C01%7Chaibo.chen%40nxp.com%7Ca11cd128f8814929684b08da7539b
->>>> dbc%7C68
->>>>>
->>>> +6ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637951188101491669%
->>>> 7CUnknown
->>>>>
->>>> +%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
->>>> WwiLC
->>>>>
->>>>
->> +JXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=JFNr4telb4AovE62YaHQu
->>>> KNr1ywL%2
->>>>> +Blc0dJMFNN1OA1U%3D&amp;reserved=0
->>>>> +$schema:
->>>>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fde
->>>>> +vi
->>>>>
->>>>
->> +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Chaib
->>>> o.che
->>>>>
->>>> +n%40nxp.com%7Ca11cd128f8814929684b08da7539bdbc%7C686ea1d3bc2
->>>> b4c6fa92c
->>>>>
->>>> +d99c5c301635%7C0%7C0%7C637951188101491669%7CUnknown%7CTWF
->>>> pbGZsb3d8eyJ
->>>>>
->>>>
->> +WIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%
->>>> 7C300
->>>>>
->>>>
->> +0%7C%7C%7C&amp;sdata=A1PPlSkOsS7nWFOPAokyA1F8%2BYFSZj5dY%2FO
->>>> blm0U4UA%
->>>>> +3D&amp;reserved=0
->>>>> +
->>>>> +title: NXP ADC found on the imx93 SoC
->>>>
->>>> How different it is from ADC in imx8qxp?
->>>
->>> They are totally two different ADC IP, no similar with each other.
->>
->> Each submitter responds like that... how much different? What is different?
->> Driver has lots of copied pieces, so actually could be unified as well.
-> 
-> HI Krzysztof,
-> 
-> Sorry for the delay, high loading on my current work.
-> 
-> For the difference, in general,
->  First, the register define is totally different.
->  Second, the ADC architecture is different, For imx8qxp, it contains ADC input ctrl + ADC core + ADC out control
->         For imx93 ADC, it called SAR_ADC, contain ADCD + ADCA, in detail, it also contain calibration/self-test/watch dog timer IP logic, 
->  Third, different conversion mode, 8QXP ADC support single and continue conversion, support average conversion.
->         For imx93 ADC, it support normal mode, include single and average conversion, inject mode, hardware trigger mode.
-> 
-> These two drivers architecture looks similar, because they all under IIO subsystem.
-> 
-> For 8qxp ADC, it's feature list in RM:
-> ? Support up to 16 analog inputs
-> ? Support five conversion pairs, can work simultaneously, with different conversion
-> priority.
-> ? Word size is 12-bits.
-> ? Support Single and Continue conversion.
-> ? Support Compare mode and channel auto disable if data match the requirement.
-> ? Support Average conversion, Support flexible 4, 8, 16, 32 number of conversion
-> data.
-> ? Configurable sample time and conversion speed / power. The ADC core clock can
-> vary from 300 kHz to 6 MHz, and the maximum sample rate is 1/6 ADC core clock.
-> ? Conversion complete, hardware average complete, compare, DMA, time out flag and
-> interrupt.
-> ? Automatic compare with interrupt for less than, greater than, and equal to, within
-> range, or out-of-range, programmable value.
-> 
-> For imx93 ADC, it's feature list in RM
-> ? 4'd12-bit resolution
-> ?Multiple modes of starting conversion (Normal, Injected)
-> —Normal mode supports One-Shot and Scan (continuous) conversions
-> —Injected mode supports One-Shot conversions only
-> ?Software-initiated conversions in Normal and Injected modes, or external hardware trigger
-> ?Two different abort features for either a single or chain conversion in Normal and Injected modes
-> ?Independent data registers for each channel contain information about mode of conversion, data validity, overwrite status, and conversion data
-> ?Alternate analog watchdog thresholds (threshold selected through input ports)
-> ?Programmable DMA enables for each channel
-> ?Individual interrupt flags for the following conditions:
-> —End of conversion of a single channel for Normal and Injected modes
-> —End of chain conversion for both Normal and Injected modes
-> —Watchdog threshold violations
-> ?Programmable presampling for channels
-> ?Auto-Clock-Off feature for improved power performance
-> ?Power-Down mode to place the SAR_ADC in power-down state
-> ?Programmable clock prescaler for SAR_ADC (bus clock, or bus clock divided by two or four)
-> ?Software-initiated calibration
-> ?Self-test feature
+Update ADSP pil loader driver for SC7280 platforms.
 
-By pasting big pieces of description from RM you do not prove what are
-the differences and it is not my task to find that one line which shows
-the decisive difference (e.g. support or lack of support for DMA).
+Changes since V3:
+	-- Rename is_adsp_sb_needed to adsp_sandbox_needed.
+	-- Update sc7280 compatible name entry in sorted order.
+	-- Add smmu unmapping in error case and in adsp stop.
+	-- Revert converting sdm845 dt bindings to generic and 
+	   create new dt bindings for sc7280.
+Changes since V2:
+	-- Generated patch with -M flag.
+	-- Add Clock property in dt bindings.
+	-- Add qcom,adsp-memory-regions property.
+	-- Add is_adsp_sb_needed flag instead of is_wpss.
+	-- Initialize is_adsp_sb_needed flag.
+	-- Remove empty proxy pds array.
+	-- Replace platform_bus_type with adsp->dev->bus.
+	-- Use API of_parse_phandle_with_args() instead of 
+	    of_parse_phandle_with_fixed_args().
+	-- Replace adsp->is_wpss with adsp->is_adsp.
+	-- Update error handling in adsp_start().
+Changes since V1:
+	-- Change reg property maxItems to minItems and update description.
+	-- Fix typo errors.
+Srinivasa Rao Mandadapu (7):
+  dt-bindings: remoteproc: qcom: Add SC7280 ADSP support
+  remoteproc: qcom: Add flag in adsp private data structure
+  remoteproc: qcom: Add compatible name for SC7280 ADSP
+  remoteproc: qcom: Replace hard coded values with macros
+  remoteproc: qcom: Add efuse evb selection control
+  remoteproc: qcom: Add support for memory sandbox
+  remoteproc: qcom: Update QDSP6 out-of-reset timeout value
 
-Best regards,
-Krzysztof
+ .../bindings/remoteproc/qcom,sc7280-adsp-pil.yaml  | 189 ++++++++++++++++++
+ drivers/remoteproc/qcom_q6v5_adsp.c                | 215 ++++++++++++++++++++-
+ 2 files changed, 398 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-adsp-pil.yaml
+
+-- 
+2.7.4
+
