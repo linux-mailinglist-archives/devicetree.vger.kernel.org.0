@@ -2,65 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E45CE590F1C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:18:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D677B590F9D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238336AbiHLKSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 06:18:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45706 "EHLO
+        id S229704AbiHLKqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 06:46:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238381AbiHLKSZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:18:25 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5C8ABD68;
-        Fri, 12 Aug 2022 03:18:23 -0700 (PDT)
-X-UUID: afc2ab8757ae49e7b17dcb7b58e74bc2-20220812
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=B+FTuluiWmDsVQOUqUaDNHxDaF82USCHWPcShjP7BSg=;
-        b=podX01h/X/elH/y1UR3zYDop7sVhdoJAzfSP2AQDFFqP8O5jGQhsYz+eR+RcwsHVIuO5Z4bRuCLtMtHeqxvPsSQwFo2obShscqkbuZsMHJgUIPLzKOKB/fPTNwNzppU3H6DSTXO0LhNhTpWZ6zCJUdI/UggFj93eHgeDbqOx1xY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.9,REQID:90b5856b-07f5-4065-b7d9-76d81486f2e5,OB:0,LO
-        B:0,IP:0,URL:5,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_H
-        am,ACTION:release,TS:5
-X-CID-META: VersionHash:3d8acc9,CLOUDID:74c57c9c-da39-4e3b-a854-56c7d2111b46,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
-        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: afc2ab8757ae49e7b17dcb7b58e74bc2-20220812
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1983268181; Fri, 12 Aug 2022 18:18:17 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 12 Aug 2022 18:18:16 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 12 Aug 2022 18:18:16 +0800
-Message-ID: <9173e1755f76d1fc34e3822eda138749ebbc7f73.camel@mediatek.com>
-Subject: Re: [PATCH 3/3] dt-bindings: nvmem: mediatek: efuse: Add support
- for MT8188
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     <broonie@kernel.org>, <srinivas.kandagatla@linaro.org>,
-        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 12 Aug 2022 18:18:16 +0800
-In-Reply-To: <20220715120114.4243-3-johnson.wang@mediatek.com>
-References: <20220715120114.4243-1-johnson.wang@mediatek.com>
-         <20220715120114.4243-3-johnson.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S231346AbiHLKqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:46:10 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A356B14B
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:46:07 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id y23so540769ljh.12
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:46:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=HcymQXHxdtVOcEgBn0VssZp+OhA8MUztfXg3luej/30=;
+        b=KQyT9gkSS80tNswQCnw26mDxHyeZJq9+pzb2ka9Yzwn9zYkidpK61b6E9pz3isHsO0
+         +6TmO5PpQtw4Qm2WypxV4fdSEueXnoeAbgzQxtlee25FcWCBQYRN+4jd8QIKLsPi0czG
+         WLbpWCuvqMr2R/lW2afcZkC9f77xJpEq7FL0AxBKVVNyPSrs1zcLohk35ateRH6k0prb
+         +3T59aW2f1cm129xT+z5xk3wzHUO7AFzBzvFxjRqLefAxHTF3EdpjZ0gGa4GgCgVERul
+         uMyJjr8ytyBkO2bkXG/EXgcXMVTwsJIcoPS6T3YcjqZD1XIc6gGPcfaC5QaEWRc74fKS
+         yUKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=HcymQXHxdtVOcEgBn0VssZp+OhA8MUztfXg3luej/30=;
+        b=O53roS49a48upIO0SSkR9PRaft1BixrLbJpgrNEqmjt3yqC2ZMQa604VxwHlYiG8jK
+         uIlLqlBS6QDvVc9E25draoDfyR2FfcQxYiyW/ysFXE43Ic3srmK0zFwTTmrImyY6seBW
+         NuyYPvrVjEmECFt5bhhNDT4GH8JE4yLtWHTtd/t9CcafSNftdI97fjGQ4bgq7FJQ2Fjl
+         1Ss+gmImPbBco+QAHjdZV+1HmJMBTqtbP/cGfGsFy398eEXbyUTZU30fb7ChYkyAFeeU
+         3kB5wqD4jR1FHBsB5jdKeh+3i9tLnbsA7CHXM5kwUdtLQ8aI92aLc3ck7DjlhoW3IR+Y
+         tlzQ==
+X-Gm-Message-State: ACgBeo0XOCnmFRf1Y+GpAzzhUUOFh7T/KgGnWunJ+2Eyo7kzEYPQ0+7a
+        09Bza+/s6TRw/DFYqIsR2V9TOg==
+X-Google-Smtp-Source: AA6agR6bi6AwFioTlQi1smxD8HeUMQmnbOqDkeVxg95idAlpnE1omPwD1bXNcdWThP0ZO5GBYtYk9A==
+X-Received: by 2002:a2e:9c8a:0:b0:25f:84fb:c98f with SMTP id x10-20020a2e9c8a000000b0025f84fbc98fmr1043315lji.478.1660301166150;
+        Fri, 12 Aug 2022 03:46:06 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id x9-20020a19f609000000b0048a9603399csm172667lfe.116.2022.08.12.03.46.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Aug 2022 03:46:05 -0700 (PDT)
+Message-ID: <c85ec3a3-fa6e-aa71-a847-22062b9683e9@linaro.org>
+Date:   Fri, 12 Aug 2022 13:45:56 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 1/8] dt-bindings: sun6i-a31-mipi-dphy: Add the interrupts
+ property
+Content-Language: en-US
+To:     Samuel Holland <samuel@sholland.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-sunxi@lists.linux.dev
+References: <20220812075603.59375-1-samuel@sholland.org>
+ <20220812075603.59375-2-samuel@sholland.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220812075603.59375-2-samuel@sholland.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,40 +85,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-07-15 at 20:01 +0800, Johnson Wang wrote:
-> Add compatible for MT8188 SoC.
+On 12/08/2022 10:55, Samuel Holland wrote:
+> The sun6i DPHY can generate several interrupts, mostly for reporting
+> error conditions, but also for detecting BTA and UPLS sequences.
+> Document this capability in order to accurately describe the hardware.
 > 
-> Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> ---
-> This patch is based on "linux-next"[1].
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-> ---
->  Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> The DPHY has no interrupt number provided in the vendor documentation
+> because its interrupt line is shared with the DSI controller.
 > 
-> diff --git
-> a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> index b5a1109f2ee1..75e0a516e59a 100644
-> --- a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
-> @@ -30,6 +30,7 @@ properties:
->                - mediatek,mt8173-efuse
->                - mediatek,mt8183-efuse
->                - mediatek,mt8186-efuse
-> +              - mediatek,mt8188-efuse
->                - mediatek,mt8192-efuse
->                - mediatek,mt8195-efuse
->                - mediatek,mt8516-efuse
+> Fixes: c25b84c00826 ("dt-bindings: display: Convert Allwinner DSI to a schema")
 
-Hi Srinivas,
+I don't understand what is being fixed in that commit. That commit did
+not have interrupts in D-PHY, so what was broken by it?
 
-Just a gentle ping on this.
-Could you please give me some suggestion on this patch?
+The Fixes tag annotates the commit which introduced a bug.
 
-Thank you very much.
-
-BRs,
-Johnson Wang
-
+Best regards,
+Krzysztof
