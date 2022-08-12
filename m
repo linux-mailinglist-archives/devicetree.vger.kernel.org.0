@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE2B4590EEB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5076590EEF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:13:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238295AbiHLKNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 06:13:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34964 "EHLO
+        id S238304AbiHLKNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 06:13:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238258AbiHLKNX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:13:23 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC46DABF1A
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:12:45 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id b6so360531wmq.5
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:12:45 -0700 (PDT)
+        with ESMTP id S238220AbiHLKNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:13:30 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A664ABF02
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:12:46 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id b21-20020a05600c4e1500b003a32bc8612fso301667wmq.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:12:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=B9cGc19KPCzbp/HnQ1cU37r4MPElwTFqiMBa6G8MiPE=;
-        b=tTWGw1QpiBtbmYksvkCkzZiRzC+Y/f9E42V6KmREw+A9r8MVkUqGxIRRCr1sYcM1HZ
-         VxI0f6kDp80bXW6/ASgGBuFQ+A7+++SQLVk6GuFcZS3hs23ZQ7osZZME/ADpknDN2dhI
-         hzYWdozqmx1NXZwwbvrHDbIW1KRadpPWpBtGo+A/HJBLkuS7wNtCpjHDRA8ZQVBwgMJA
-         42qAQgPL+/Ya19NLUZUKaD2OLge7hOnrH/pWuVCbmzAxxNfzDHAxvW3VaAQDKJNNTAA3
-         nIvVv7qhIxGDA9kBYFuD74cViwP0o4zcQ0cBUAp7ObZW4eJJE0oHs6PKWLcCqh82V2yd
-         070w==
+        bh=6PlnIBUoC6w69T/PkaQ57uV9UcjokVo67ltYXeOmdTw=;
+        b=ILzrRoIQ9aEUYRndgjQZU/vRVEvksDk/76BWsCnIcxWYCpuk+7TTChZeBE/9Z5xPPY
+         Q3jeDHaJtVMMPJmzwmDt7JKiaozQcY1rA7IEMKaad7u9Xd1xNeQMbnoyzSn1jSc/57JL
+         zXtoEaiK7MVqOnwEilg44kiI0mpAVR5szF5WOzCrhCNdYsNT5y3Y/JZ7nRVOXX95uKea
+         soBbp+VkBKbqFRv37Pn76810GYnWSLbuScBc2mxhB8OvFl66HF3GMtIYDYHCHZx7Pcup
+         /OIUSvaAp1qaY3IrVUjkPRAv4v82gJaP6xDT1VUjsp6JAV9/BiW8t080Ppcieq6TEMMN
+         OPDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=B9cGc19KPCzbp/HnQ1cU37r4MPElwTFqiMBa6G8MiPE=;
-        b=Afdrg4SzrV1GQHVYG5c+2hcfv13C38NSwn1//iGtl8L9P7g14OzjRues2T9hPFGe/2
-         eDt4cY15k1s/8dI0qcJAbWKTsERHfGMVTJYdaCL2FKeJ0siRQnO2pWFqf+aNWvG+gyKI
-         HIvjG+V0qnA8YH8dcrRiKHod8cP2k8EA/r8NkBjeHmLNXeL+42rd+9id0YXvQGoqOpFC
-         AAiWtbdJgA5A4qivweKfCsDtGqa5NqejU0WZGeMmD2ciz4xmp+Unk/S1rTmevAXFAhVf
-         9Ayf3Tg58sTw+1p4QP4lnz3sf+UWtMsDGSGRIWQEoWynFEZ64I9CicqjofPy/LFR3PXo
-         jsCQ==
-X-Gm-Message-State: ACgBeo278kGcv6jRwEFBLxKOaUwqPDUZvAXwwpn9mPkFlw/Uj6KbvSNx
-        9c2ImYs0pWxPVlbGJbmqoq6b2A==
-X-Google-Smtp-Source: AA6agR4FELZEIhz1T2y8FvYHLJ3zpVGgKHLujHkbOItmTebVTb7bB9U5VYqTYifyO4nB3p3SkoymCA==
-X-Received: by 2002:a1c:7401:0:b0:3a3:182f:7be9 with SMTP id p1-20020a1c7401000000b003a3182f7be9mr8359047wmc.189.1660299163675;
-        Fri, 12 Aug 2022 03:12:43 -0700 (PDT)
+        bh=6PlnIBUoC6w69T/PkaQ57uV9UcjokVo67ltYXeOmdTw=;
+        b=Dq07E+k8JTm5gkVvy7wZivbiWFPuYParWug7WfNC65KEp0N7YJyZL6/K1so9udpwYJ
+         dwiryt6rRWYh79/p5ZymWv754VjUBz7AG9nPFP+C4H2ByPrDn7tM7uQenmvi+CTlcID8
+         LFfjRMViLhA1Wwe0BVL/nL6/MJm1cNYeeBNBvCuRaE7Iqdgjw+P/xPVffZl/ECDpa936
+         w8dyFvdPFfFmjcwLcpTkN7cWSQnbiEnwyZGeGX90gD4VlASe/WQGOCIj3Rh0LJTVxkNZ
+         4HFIkP5Xm8XZISDIgASJCerCYAnyOa10hTooEdszxQ8kd1x4Z/ilwJ403QUHYWMWNUtu
+         rQZA==
+X-Gm-Message-State: ACgBeo0QzQldeuiwGIog1RdBUz09ml3UPBMBcjIhArpJmr8lgUVRVkcJ
+        e9k6EVRzs0kn53bb+lknOrfG1w==
+X-Google-Smtp-Source: AA6agR6urUu4cJ7lC76MKC4djtyGFfgFjj2UjRR9XzO9H7PeEVCUAA9AdaYrcMFImtWm4uS5uV2Ymg==
+X-Received: by 2002:a1c:44d5:0:b0:3a5:4fa3:b260 with SMTP id r204-20020a1c44d5000000b003a54fa3b260mr2122859wma.165.1660299165181;
+        Fri, 12 Aug 2022 03:12:45 -0700 (PDT)
 Received: from hackbox.lan ([94.52.112.99])
-        by smtp.gmail.com with ESMTPSA id e25-20020a05600c219900b003a541d893desm2193204wme.38.2022.08.12.03.12.42
+        by smtp.gmail.com with ESMTPSA id e25-20020a05600c219900b003a541d893desm2193204wme.38.2022.08.12.03.12.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Aug 2022 03:12:43 -0700 (PDT)
+        Fri, 12 Aug 2022 03:12:44 -0700 (PDT)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -55,9 +55,9 @@ To:     Andy Gross <agross@kernel.org>,
         Maulik Shah <quic_mkshah@quicinc.com>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/4] soc: qcom: stats: Add SDM845 stats config and compatible
-Date:   Fri, 12 Aug 2022 13:12:38 +0300
-Message-Id: <20220812101240.1869605-2-abel.vesa@linaro.org>
+Subject: [PATCH v2 3/4] arm64: dts: qcom: sdm845: Add the RPMh stats node
+Date:   Fri, 12 Aug 2022 13:12:39 +0300
+Message-Id: <20220812101240.1869605-3-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220812101240.1869605-1-abel.vesa@linaro.org>
 References: <20220812101240.1869605-1-abel.vesa@linaro.org>
@@ -65,7 +65,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,8 +77,8 @@ SDM845 is a special case compared to the other platforms that use RPMh
 stats, since it only has 2 stats (aosd and cxsd), while the others have
 a 3rd one (ddr).
 
-So lets add dedicated stats config and compatible for SDM845 to make the
-driver aware of this num_records difference.
+So lets add the node but with a SDM845 dedicated compatible to make
+the driver aware of the different stats config.
 
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
@@ -86,36 +86,25 @@ Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 Changed qcom,rpmh-stats-sdm845 to qcom,sdm845-rpmh-stats, as suggested
 by Krzysztof.
 
- drivers/soc/qcom/qcom_stats.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/soc/qcom/qcom_stats.c b/drivers/soc/qcom/qcom_stats.c
-index d6bfd1bbdc2a..121ea409fafc 100644
---- a/drivers/soc/qcom/qcom_stats.c
-+++ b/drivers/soc/qcom/qcom_stats.c
-@@ -246,6 +246,14 @@ static const struct stats_config rpm_data_dba0 = {
- 	.subsystem_stats_in_smem = false,
- };
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 5bea96a9ce06..67fe08b837be 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4851,6 +4851,11 @@ ebi_cdev: ebi {
+ 			};
+ 		};
  
-+static const struct stats_config rpmh_data_sdm845 = {
-+	.stats_offset = 0x48,
-+	.num_records = 2,
-+	.appended_stats_avail = false,
-+	.dynamic_offset = false,
-+	.subsystem_stats_in_smem = true,
-+};
++		sram@c3f0000 {
++			compatible = "qcom,sdm845-rpmh-stats";
++			reg = <0 0x0c3f0000 0 0x400>;
++		};
 +
- static const struct stats_config rpmh_data = {
- 	.stats_offset = 0x48,
- 	.num_records = 3,
-@@ -261,6 +269,7 @@ static const struct of_device_id qcom_stats_table[] = {
- 	{ .compatible = "qcom,msm8974-rpm-stats", .data = &rpm_data_dba0 },
- 	{ .compatible = "qcom,rpm-stats", .data = &rpm_data },
- 	{ .compatible = "qcom,rpmh-stats", .data = &rpmh_data },
-+	{ .compatible = "qcom,sdm845-rpmh-stats", .data = &rpmh_data_sdm845 },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, qcom_stats_table);
+ 		spmi_bus: spmi@c440000 {
+ 			compatible = "qcom,spmi-pmic-arb";
+ 			reg = <0 0x0c440000 0 0x1100>,
 -- 
 2.34.1
 
