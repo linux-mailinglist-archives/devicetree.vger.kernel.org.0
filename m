@@ -2,106 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DDC45916C3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 23:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DC2C5916CC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 23:43:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234712AbiHLVjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 17:39:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55608 "EHLO
+        id S234164AbiHLVnb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 17:43:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234256AbiHLVjl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 17:39:41 -0400
-Received: from mout.perfora.net (mout.perfora.net [74.208.4.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0DFF9FAB4;
-        Fri, 12 Aug 2022 14:39:40 -0700 (PDT)
-Received: from toolbox.int.toradex.com ([81.221.243.92]) by mrelay.perfora.net
- (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id 0Lg24j-1nc3Qa0vil-00pda5;
- Fri, 12 Aug 2022 23:39:19 +0200
-From:   Marcel Ziswiler <marcel@ziswiler.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Francesco Dolcini <francesco.dolcini@toradex.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Olof Johansson <olof@lixom.net>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: freescale: verdin-imx8mp: fix atmel_mxt_ts reset polarity
-Date:   Fri, 12 Aug 2022 23:39:05 +0200
-Message-Id: <20220812213905.216065-3-marcel@ziswiler.com>
-X-Mailer: git-send-email 2.36.1
-In-Reply-To: <20220812213905.216065-1-marcel@ziswiler.com>
-References: <20220812213905.216065-1-marcel@ziswiler.com>
+        with ESMTP id S233836AbiHLVna (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 17:43:30 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D87FB0B0C
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 14:43:28 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id i14so4066251ejg.6
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 14:43:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=VvRFceTANJWQeLG+LoGv/yVOevHtvwLrEgSV4FirR5w=;
+        b=J9cNAKCkzLz4gHqE62ACXGjorUEOL5wrzetBYv50p1cLZtpOhDMC8s7D9e8BOcsHkR
+         0TwGB6fPE287eLSlhEtlmy3YimW4uGzDFN0wz+WY2vwOnTaSuRfxT+2I6jgBptmIubHd
+         eogHj6RH9rWTNkaNfebzrbgS5glLb0E3CGiqYaN8fUzHiU+4cLt7wIMyUStMqeG30CQw
+         xxPznY26NbSM5YYDIrNQsrKrdkpWvtZbbbiRysmYex9p66LBH9rnlUulQefzb6qJis1t
+         ZreDDEtazo9VTB/MQEPNgNGL0Zmxwcw815XFrEUa2cUjof0IEo/lTZFLDzWADsl1RDf1
+         k/tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=VvRFceTANJWQeLG+LoGv/yVOevHtvwLrEgSV4FirR5w=;
+        b=FCwCVtXNaTYVDJW7ZWxKS5kj822XQLDOhToflI34Ix/60NyPSqPUGHPZC7BYbWhwA6
+         ok2Ydqekwj3INruyXEWKeSnvdBgvoSP7bGfoevYLlleClynkRi+Nx+ewVLD7EHVOoysJ
+         HrhQlc18GdGgFSp5LZVbG254+0pCB8/1gwcFO6qQ0IGSbgA8vFWS9eTcwz3m1ek21Fkp
+         wYwRKmqHoiLEYgIfSNzJgZY1BjyAQpkTpEpQnGFCH4WEIuV3ahj98L4jqE8gDF+8T0uc
+         ocPNDPtzay0hIrrV/GTFRr41PzGFGSGzllyefXxz3PF4bu0DMxbYW/pvudTcJDNi+fMe
+         p4qg==
+X-Gm-Message-State: ACgBeo1gItkArKfBig8zPhOE0SDyIgfzdS1hjaC3lpeJd0VYZrL8Gg7L
+        5ZuJbcZ4uh9dhJufB7MYaQOMlGsirNCDlT4ZvIIf7g==
+X-Google-Smtp-Source: AA6agR6X712x7TRB9fPQH2VDoUCEy1+d1Q7vla31HwrkzpfwMH7RbpdF1avnqsBEW4N6wKOcuAkn2F3m+b4FpR6Gi64=
+X-Received: by 2002:a17:907:3dab:b0:730:933d:ae69 with SMTP id
+ he43-20020a1709073dab00b00730933dae69mr3899423ejc.500.1660340606911; Fri, 12
+ Aug 2022 14:43:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:S17GK/XSAzYGodzyvabz4JvWX5PFty20mLQHnNRLhhhX3R/50kM
- kx5z78l5QyxQe05X8UziHJvzkfjj7yFjpPdT0bTnkH+mRSxSkql99sjjusfvOKaqokr594k
- /uzh8UkqhAYdfbUqIA1AdqVy9B81kxT15EtQnt5DszdVlRjmyD96kp0KyfMCt8ZXYzqze7a
- H5rgJ98JIKtkU1QHfsy8w==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:S3tfj6Zh64s=:D/v5w1R7ecM6UlodKj8xI2
- LNrCZhTkpwezc+Tkf3cY9jE4Ak5nysJCRy1wTVZjxQHP0CrtgsGXiT6VpXCPNt4PqaKnYUt8E
- 3A0pURDKoX5ZWS1GkJd0jIETn/faLXAA+t+sBwFsnt4HB+ca6VseCjQsKSIzgvjRQKeQsfxAO
- wWxOif/M833EZDEFHOjou8NWdAdYhw4dBov4T0IbUdXyLfRLkSUvPsQl9Nyp0/YAxAagK05X3
- nrkTuPvaSMFfocrgvPZjle3MAipPpiBTeNiho0steKqHz/pQ18NeIAPRVymxIfE5btXRIwm+T
- COcean+6gR3/vKbDchJa8MZS75weKSAwOc2+FxsDwjt57WHx9JProcIUBJX/LRM1pthzWR/6y
- GD3f2gJ6PrNh4OnHPexRJV50lKe9mxzx6f0zrRAh4kBXgZIPq9eZqqQgH+/VQeB77bvvlMuCJ
- Upb2Ge1AiBTm/XycTWH0OEc+/5VPoe/hKPPK5KOGdxPLQsWR2pqK1J3LrPigriVFTxaM84PaG
- 3+EsSewsRen0QrQpb3PAmz+9fmZ+tJsSdyN4ZmDBvYPr/Gan6W3ghRBH0sckrfaKZ8h8JPzE1
- axD1gOmr7kYj4Pg+puhwhCfplq9+PUtadrpzWobMznvNC/Myq4g95XYZn5JBpIzqJ/NZ5kcaX
- OrdXCbZ0aM9PR+nSS1X4sE8r34qrzWn9qWuFMRFPGiwGWfFWiDb96Fs5vtbUDFYj7ZoifvrZw
- Cptn2iZlRbBRV69VXnkOqvEuke6IriGr8fk5AHZgTNaEPzWZQD7cE6YmxIs=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <cover.1659909060.git.jahau@rocketmail.com> <a7bc9d7a7bb12a76fb217a1709fb09abd2b45892.1659909060.git.jahau@rocketmail.com>
+ <CAHp75VegA6zzvQXEi_9-K3832o+j48Af3X8LivYY47Xav+w-xQ@mail.gmail.com> <850de937-8fe6-ebce-4e9d-35a617c3ade6@rocketmail.com>
+In-Reply-To: <850de937-8fe6-ebce-4e9d-35a617c3ade6@rocketmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 12 Aug 2022 23:43:15 +0200
+Message-ID: <CACRpkdbXNE17cOM2Kd+mUf7JMefZE+NBWxyHt4vkQWEF_3BtjA@mail.gmail.com>
+Subject: Re: [PATCH v5 14/14] iio: magnetometer: yas530: Add YAS537 variant
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+On Wed, Aug 10, 2022 at 1:41 AM Jakob Hauser <jahau@rocketmail.com> wrote:
+> On 08.08.22 13:47, Andy Shevchenko wrote:
 
-Fix reset GPIO polarity in-line with the following commit feedaacdadfc
-("Input: atmel_mxt_ts - fix up inverted RESET handler").
+> > P.S. Do you see now how your series and the end result become better?
+>
+> The driver improves. Though we kind of get lost in details, I have the
+> impression we could go on like this forever.
 
-Fixes: a39ed23bdf6e ("arm64: dts: freescale: add initial support for verdin imx8m plus")
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+I think at one point Jonathan mentioned the phenomenon "perfect is the
+enemy of good", which even has its own Wikipedia article:
+https://en.wikipedia.org/wiki/Perfect_is_the_enemy_of_good
 
----
+When I feel (for some intuitive definition of "feeling") that a patch
+series to my subsystem is getting over-reviewed, I usually just
+merge it and tell everyone involved to write and/or request
+additional patches if they are troubled by the result. It's a fine line,
+admittedly, it's not like I can define the trigger point.
 
- arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I wished some core parts of the kernel get as much attention
+and review as some IIO drivers get.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-index c5987bdbb383..1c74c6a19449 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-verdin.dtsi
-@@ -628,7 +628,7 @@ atmel_mxt_ts_mezzanine: touch-mezzanine@4a {
- 		interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
- 		reg = <0x4a>;
- 		/* Verdin GPIO_2 (SODIMM 208) */
--		reset-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
- 		status = "disabled";
- 	};
- };
-@@ -705,7 +705,7 @@ atmel_mxt_ts: touch@4a {
- 		pinctrl-0 = <&pinctrl_gpio_9_dsi>, <&pinctrl_i2s_2_bclk_touch_reset>;
- 		reg = <0x4a>;
- 		/* Verdin I2S_2_BCLK (TOUCH_RESET#, SODIMM 42) */
--		reset-gpios = <&gpio5 0 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
- 		status = "disabled";
- 	};
- 
--- 
-2.36.1
-
+Yours,
+Linus Walleij
