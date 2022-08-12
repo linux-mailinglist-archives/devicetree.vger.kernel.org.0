@@ -2,50 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F0D259152C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 20:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3767E591542
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 20:09:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234019AbiHLSAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 14:00:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35546 "EHLO
+        id S238718AbiHLSJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 14:09:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238880AbiHLSAQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 14:00:16 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94530F1B;
-        Fri, 12 Aug 2022 11:00:15 -0700 (PDT)
+        with ESMTP id S236842AbiHLSJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 14:09:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43FA1B287D;
+        Fri, 12 Aug 2022 11:09:36 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4FB9FB82525;
-        Fri, 12 Aug 2022 18:00:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FAE4C433C1;
-        Fri, 12 Aug 2022 18:00:10 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CD03E6175D;
+        Fri, 12 Aug 2022 18:09:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 373CCC433D6;
+        Fri, 12 Aug 2022 18:09:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660327213;
-        bh=RUyifO+SuzkUG8vhy8bG0g4+yNHSyLeRRkgb2Ml0tfM=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=XE7THWHBMCj2imEQ/4KKcPf+ZyA/Ot8+Q+hDrYQDsb6KMNKjBwKgfUMatMQL0qC/x
-         753NX84Os9k8nvXZHXLuVLzONfNvuNomjBFyXceZLU6tf1zuUdopWNKM78XwTaTDG4
-         bKjNy+kNuU2YNEiJpXGJ9Hcl8d5Az7psxKJMi/3X/T+adCsqOiPPJv8KEurb5dolEr
-         E6W8MNCMnQJSYdTZtPTjj0BjiD93xW/4yMZpjNvigxP0Uv6j3aBaEUXr9AEkRvnh1x
-         82buIN8l7TuPV/vRbFRot+0xd4sCqhFN7GIsM5ywLtW32qRUCl25CxL3U+0AkQH5xC
-         qn+/t4t8rCONg==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-spi@vger.kernel.org, Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20220811063826.7620-1-krzysztof.kozlowski@linaro.org>
-References: <20220811063826.7620-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] spi: dt-bindings: Drop Pratyush Yadav
-Message-Id: <166032720990.92213.8782937797034359058.b4-ty@kernel.org>
-Date:   Fri, 12 Aug 2022 19:00:09 +0100
+        s=k20201202; t=1660327775;
+        bh=1eSXvEZnukSKTGZe7faWqcL1475O0ngKFVeI9su/VAw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Hn4q3fEUQCsyyZm+CYqMeKikc96Jq4GliVXAfnoz6Ngc5A4ivDXPz8RX4xTigNaLy
+         cfDLuqLz3Oh45DkhjDAYCjCSUZ2A8TaPGJu7IHt8nSBrP1iucbaz4z4FqOqbAU8vvc
+         UustajZhWF4WcQtQrpxSyjFOz9YPHXioH6B/PLKly2+kR8i3OhGg8i480TQJ0bM/3y
+         J5Dd87Va0YkfIM0DDWZC9PkfmEuImBIPfabqvSuAgCEAOnvYd8FQhwz7JzRqxcRlQP
+         ixfdIIQ6hqAI+Hh++guZX3sQpQyasqrn3R4ZEFHFTCdGDqrXUS921ILWc1pXOVq1kI
+         UWTLa7HNQeG9Q==
+Received: by mail-vs1-f42.google.com with SMTP id v128so1550224vsb.10;
+        Fri, 12 Aug 2022 11:09:35 -0700 (PDT)
+X-Gm-Message-State: ACgBeo2gjFhq9jFjkdWVd/X9GkkfQlG6j3w4Hntff7aE55A+ETlMeOGo
+        E539ZCxrcbsHy0jquQYsNi3wlx9dryV9xnz+Bw==
+X-Google-Smtp-Source: AA6agR6gAxDp5EROI0oYJQFMogqYJdz05fwV9p3hLUFxkUsgWcC2eUmq8Ku3c8UFTfaktZD96oZzFoCpWskHhruVGz8=
+X-Received: by 2002:a67:c08f:0:b0:38a:8c1c:45aa with SMTP id
+ x15-20020a67c08f000000b0038a8c1c45aamr2280715vsi.85.1660327774173; Fri, 12
+ Aug 2022 11:09:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.10.0-dev-fe10a
+References: <20220812174420.2706827-1-khilman@baylibre.com>
+In-Reply-To: <20220812174420.2706827-1-khilman@baylibre.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 12 Aug 2022 12:09:22 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+DDPTYodAk-TKs61AUpdYhocWq+EoRGgVwgc1hz5gk0A@mail.gmail.com>
+Message-ID: <CAL_Jsq+DDPTYodAk-TKs61AUpdYhocWq+EoRGgVwgc1hz5gk0A@mail.gmail.com>
+Subject: Re: [PATCH] of: irq: Export of_msi_get_domain
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-omap@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -56,37 +64,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Aug 2022 09:38:26 +0300, Krzysztof Kozlowski wrote:
-> Emails to Pratyush Yadav bounce ("550 Invalid recipient").  Generic SPI
-> properties should be maintained by subsystem maintainer (Mark).  Add
-> recent contributor Vaishnav Achath to the Cadence SPI bindings.
-> 
-> 
+On Fri, Aug 12, 2022 at 11:44 AM Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> From: Matthias Brugger <matthias.bgg@gmail.com>
+>
+> Export of_mis_get_domain to enable it for users from outside.
 
-Applied to
+typo
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+>
+> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Link: https://lore.kernel.org/r/20200122104723.16955-1-peter.ujfalusi@ti.com
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> ---
+> Peter tried to resurrect this in 2020 (c.f. Link tag in log) but it
+> didn't work.  Here's one more attempt.  I need this enable building
+> some TI DMA drivers as modules.
 
-Thanks!
+Then apply this with that enabling. I've already acked it (which keeps
+it out of my queue, so drop that if you want to ensure I see it).
 
-[1/1] spi: dt-bindings: Drop Pratyush Yadav
-      commit: 2fd92c7b8fe2cfc634613dc093d0f507c7389ea8
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Rob
