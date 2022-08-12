@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4CE6590EDF
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12309590EEA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:13:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238061AbiHLKMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 06:12:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34616 "EHLO
+        id S238251AbiHLKNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 06:13:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232010AbiHLKL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:11:58 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F11979EF
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:11:57 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id x9so466443ljj.13
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:11:56 -0700 (PDT)
+        with ESMTP id S237974AbiHLKNW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:13:22 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDA3CAB1BF
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:12:43 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 186-20020a1c02c3000000b003a34ac64bdfso4095599wmc.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:12:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=X3Z0i+bzqyd9jkgK2caR27Vz7nwccHaSiGiUTsoE8nA=;
-        b=vAw/iHE6ytIOXRXjeN67GwiSEbQA0ctQIwMNSnUafKvpOuljVrJ7vzVm/7sbrBA0Rq
-         9W2cgG+jL3RBmB5NEcyu5lMUuVivS36k1XHf3AlImINw7POiSJHt+k0cjXeXMWbzjzI8
-         4DbWMTdY2CckYmFjISEC/JQhcrDAU2nl5yNlK37oSg0oRL2rRaZai16iBru+0FbR+THZ
-         MHA+XhzhYLsqP/KcE8q+o7RlrZWIg0wVz6878gIJjP33XJbt139OIFaens+nMgkZLaxa
-         XpEwjB21sqL5KTW4ekDFDt/YmfuRamdGpkj8VUxH5NlvNTEq0vQZgMQLOYrs6CSzdkpO
-         y7Zg==
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=/baD4T2Xvbw5aG3hrD8e631/CGqG+7CyLxE9ixUCKNA=;
+        b=zF4+7WvPYPbP19vhZJfJU5/gMyjua4wMNYXUD0fdQV/O6VT0DCGgRSmhl1DUvvjTgZ
+         NFLaV7CHJO3iMvinSJCO4bq/Yymo6qHrrWHpbOjE/dM1LDZ2wPIDg4Aod8CkwRMRpwk+
+         do2BUymZ/kGSvWx8zrSFhMXI+0OeJNKURKQGBrwosU9rkAV9MXE7o7HYAPJk8aEV0GZ6
+         YEcB/NLXYodRdvOF1JC3OE0vn+1sI5SWRJVYb8UGMPpIMajp0YmEfYVKENfsIv2flc1F
+         slm4y5gdBu6lDQPrpXAWwWoRa7AHVQA4Mc5XIWoS0yQ5Z2IH+UBYpjUeAharCWQwMCLv
+         h9jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=X3Z0i+bzqyd9jkgK2caR27Vz7nwccHaSiGiUTsoE8nA=;
-        b=ZLbXn0iEbYG2FGIz9Psec/dVXJKAq2coV7bwqhMm9tqyaojT5lKmTtaDQ2RSVkNuJQ
-         JS5OwmG4ZKAfLUbUCqjizyjKpoQWOzh5yJSgQzpi310G5DwqceKw6uTws6dpXpGV7E9d
-         iH3hEFaZGYQgo30kLcs3hA6krTjW4MVPiZq78e5ly2hiVGqjIMRV6YHdck5plO73E4cR
-         spxggPo+ykbE0HFiWt707zHSFt/UWHDtWvXVFK8EqGDjNCd8tLcfWRB0N65xAVyVGiuH
-         J2FJ8FW42PqBAa6LQSgq43sl+2+xpQBMOclsiMHziAqKhovn9xwzyiyv3Bi92pvsL+ZP
-         qYhw==
-X-Gm-Message-State: ACgBeo0o6+5gUYl16msVWer7+wxvNkpPp91p1s9tDf2oPQXjkJ6RBCmJ
-        bqZCihbARF0Bp+mydzO+MSS6Pg==
-X-Google-Smtp-Source: AA6agR6qtRCwidZpSuqbgG905ivGtqwXa5YBWgMlvaWcKMi1Z7GJ4rwJwfHHDDGohyfeQPJ4RGY2/A==
-X-Received: by 2002:a2e:a7d4:0:b0:25e:cc18:caf7 with SMTP id x20-20020a2ea7d4000000b0025ecc18caf7mr874022ljp.107.1660299115508;
-        Fri, 12 Aug 2022 03:11:55 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id a25-20020a056512201900b0048a1f17916esm155162lfb.300.2022.08.12.03.11.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 03:11:54 -0700 (PDT)
-Message-ID: <f596077e-81d2-211d-258d-7fa7be85d759@linaro.org>
-Date:   Fri, 12 Aug 2022 13:11:49 +0300
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=/baD4T2Xvbw5aG3hrD8e631/CGqG+7CyLxE9ixUCKNA=;
+        b=8OBwudrZ/u4XOd9t5RwA6Yu+bINWeU8zh3cTya3U7lkoP52iReXieOatUCDrGMHpJw
+         5Na98BOSScOO0RYLwMIN60MFWTylKTXVZWB61IhRbU8E6cozTQn3QJWwmJLdYOsB/6r0
+         mFdJM0C3ANxDvpPRfP7iP9eSAopUGDUxEj6ShaiB0iUC5NEyoiH3r7AdbXLzavP+381X
+         T5jLbSl9VQoYuJ+LZ8OjTA5Zyg5bc2DVVHqOtqvpoYrETx++ExkQmGWi7KEn4TrodJEU
+         85V0by9jgIEhzqOP8nlKnDmuOCtuvQD1Sy8+Vm10AERKN06x5vvVsY5/WfTbcx4PkZHg
+         8xuQ==
+X-Gm-Message-State: ACgBeo1a3MBWABvGPPLwxLSN3RTVJtYR2xUBD8EArtarvzVWXBBg4akP
+        xBWIX6n82sKr/7T8R+8otZfsvw==
+X-Google-Smtp-Source: AA6agR5refm7abOpJRHUMi7R1wY5PeY6g6GVPeUjoVLj1v+XfGSFN14+EpCRZkHIDjyfAbRLHbQzXw==
+X-Received: by 2002:a05:600c:1e8f:b0:3a4:e0f0:4bad with SMTP id be15-20020a05600c1e8f00b003a4e0f04badmr2127432wmb.133.1660299162292;
+        Fri, 12 Aug 2022 03:12:42 -0700 (PDT)
+Received: from hackbox.lan ([94.52.112.99])
+        by smtp.gmail.com with ESMTPSA id e25-20020a05600c219900b003a541d893desm2193204wme.38.2022.08.12.03.12.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Aug 2022 03:12:41 -0700 (PDT)
+From:   Abel Vesa <abel.vesa@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Maulik Shah <quic_mkshah@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 1/4] arm64: dts: qcom: sdm845: Reduce reg size for aoss_qmp
+Date:   Fri, 12 Aug 2022 13:12:37 +0300
+Message-Id: <20220812101240.1869605-1-abel.vesa@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 3/6] dt-bindings: i2c: i2c-imx-lpi2c: add i.MX93
-Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, aisheng.dong@nxp.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        xiaoning.wang@nxp.com, Peng Fan <peng.fan@nxp.com>
-References: <20220812043424.4078034-1-peng.fan@oss.nxp.com>
- <20220812043424.4078034-4-peng.fan@oss.nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220812043424.4078034-4-peng.fan@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,18 +71,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 07:34, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add i.MX93 LPI2C compatible string.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml | 1 +
+Like on the other platforms that provide RPMh stats, on SDM845, the
+aoss_qmp reg size needs to be reduced to its actual size of 0x400,
+otherwise it will overlap with the RPMh stats reg base, node that will
+be added later on.
 
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No changes since v1.
 
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index f0e286715d1b..5bea96a9ce06 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4836,7 +4836,7 @@ aoss_reset: reset-controller@c2a0000 {
+ 
+ 		aoss_qmp: power-controller@c300000 {
+ 			compatible = "qcom,sdm845-aoss-qmp", "qcom,aoss-qmp";
+-			reg = <0 0x0c300000 0 0x100000>;
++			reg = <0 0x0c300000 0 0x400>;
+ 			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+ 			mboxes = <&apss_shared 0>;
+ 
+-- 
+2.34.1
+
