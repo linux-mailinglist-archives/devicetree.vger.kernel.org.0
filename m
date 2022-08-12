@@ -2,84 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAF765915AD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 20:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 295915915B2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 20:58:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238995AbiHLSxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 14:53:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54784 "EHLO
+        id S238890AbiHLS6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 14:58:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238931AbiHLSxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 14:53:23 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AADF2AC4D
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 11:53:21 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id c17so2478373lfb.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 11:53:21 -0700 (PDT)
+        with ESMTP id S237734AbiHLS6S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 14:58:18 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEBAE792C3
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 11:58:16 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id r17so2464122lfm.11
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 11:58:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=H2hFHauRZ+2L1/8Jn5Q0JcmOqrApxd8gqlCGFKCdAM4=;
-        b=PBfBUmCCqcFOkJncUdtapjWauTPUiKTDxV8oZ1lYEW8xc3KN7Gru9WcRttJJrZKU1v
-         puewIC/RAT4riMzrbYZNMmChbVUy0NVo4m3lT43eIzZTcMVjUMT0/X5alIayZosShy4a
-         A2DBnUKi2Oa3ha/9X7/FiezFCFP3q9i/vcYoE/Mi3Y4AdJPYaYItnAvzdaooEn9rDIZN
-         7pAj20HghfJsz2LY4CVKj1QhkKHqoUmLnisWbFU4dQIds7kZm8k1S6Yg29dGSpwT2wDf
-         ivyfgtn7IX0vPdhw51VB0i1Mn8hENHdS9HJxKH7sP6kJG94PPgGibl4u+FRAAJc+Wg71
-         YtFw==
+        bh=0T4LEUf9g9JExx3ypW6bMQEGQ4KwlOj22ZYnNW8hJ0M=;
+        b=qlbem+f5/BkpCRDfrefN/n7Y9dO49InR2/wWpo/bdPKeSsUH1jpYLpjn0TcZW5ihka
+         I0RqqTpdQxurQHvmOlTixWFmVPikSrNm9N0T+LLiUIZlEOuC1s87gXWa4AkeLnYq53z5
+         sy6kpPQTHE11PQmOhAa2LjMLkscK0Bo2CYn8PAvQew1o7whi6NgehPba/xzXO9nTb8hP
+         urpXQeiNnueerXLr7xR2C4xjhLIqWR1aWQPrAmNAEENWwEUFsyU2F6yrhdvG34XD+X2N
+         FShYWucn/2YxeBTLHE3zueskvhOwIpch3X8jMQyl/ihwlYojLW+p8pGl8IP98zJNUWIk
+         Am+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=H2hFHauRZ+2L1/8Jn5Q0JcmOqrApxd8gqlCGFKCdAM4=;
-        b=4TmiGnF/MuUMMMSRFjkuoMSuDml9j/PlLT0ONISL0t4XpDew/flhRKdjYV7WX4QBA5
-         BV06UVwE6WI7+Fn7JDYdps+ay1YaoEROSzH7l2gRfLzR0EjxWCmKmzD1MWZ0P4VRGW+h
-         1FrEDM+Wdzrvy2y/KX5ULyhRsINhx63G6s+Tj+2CZqkOy530gbMYYPFiX7dAkT1khwKD
-         6ZaABHi4ODm1YzkVbDxUgp+ZE95nvvR/YVzr+RqYQdo25sPTwxQoFUSvdu71XSGOGTuQ
-         6ZFoCxs6NbJclT9jlDxm0HZkqFkoJEVZsJJrt8LvIMG+Rjs4fxNwooogs3H/2rskVA2z
-         OGSQ==
-X-Gm-Message-State: ACgBeo1qcomFsfGetjHiVttPJw5eUC4VNeuCObufq8RLUueXUXGiUIMy
-        PSlS/Byf90Kmq7ypq0ECTUOi4g==
-X-Google-Smtp-Source: AA6agR6ZIpyoLa852PCDDPN1ueyFqhPzbfJsN8zaQTOoB7GiCdBw7o8HRvVEUWrz3UjuDNBYcfEFlw==
-X-Received: by 2002:ac2:4d18:0:b0:48b:4a2d:a378 with SMTP id r24-20020ac24d18000000b0048b4a2da378mr1611866lfi.304.1660330399661;
-        Fri, 12 Aug 2022 11:53:19 -0700 (PDT)
+        bh=0T4LEUf9g9JExx3ypW6bMQEGQ4KwlOj22ZYnNW8hJ0M=;
+        b=yaxpzkRQrZII102ILWrkp6jQUXCF9ZTHGCPjnoa5zbNsWlaWGoWhVPbVSSuHyPrUBI
+         06qFtcn9BsozEj3UwppR6vFuIZ7FmsdZ0s4HemF9Ixk/wm9xX5QexZlFm6ZwbynWioOB
+         PngFR4HtBi94Evq/PAaJusqBDvRSvBvlnCOe+TYhYE3h9N7FKMT2zYlhjbGRLsgJcDGM
+         ZgseC4uIJwStmTxsS3/3QbIIyvoSc6unjyC+n9TapAZJ8QGS30FaYsTbXUDTx+N3zn41
+         +ZwSpTvjCSOTs1WasbvXnS9f3K7Dd1XYJENSEoNJU9i8gJazLhdk0OZyDsyV0ikqQ9vP
+         C1hw==
+X-Gm-Message-State: ACgBeo1eszyG1rIrBpl8fjV40TxVruQmRBxJczUBq2H6TbdyZsaRmuFe
+        1Szc4r1bh+h/nWtslEG3vJN2gg==
+X-Google-Smtp-Source: AA6agR5wj+d2nQJtyJqxzr4mCH5yDVT3DYcZmKTqO46NuZSod1ujbmiKuERxRAG8Ds2Z97ywhBR63w==
+X-Received: by 2002:a05:6512:2a8d:b0:48b:7f1:fe46 with SMTP id dt13-20020a0565122a8d00b0048b07f1fe46mr1543360lfb.261.1660330695069;
+        Fri, 12 Aug 2022 11:58:15 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id u9-20020ac251c9000000b0048b003c4bf7sm298508lfm.169.2022.08.12.11.53.17
+        by smtp.gmail.com with ESMTPSA id p20-20020ac24ed4000000b0048b998be041sm293755lfr.309.2022.08.12.11.58.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 11:53:19 -0700 (PDT)
-Message-ID: <f2a664be-71e9-7a26-2f0c-5f654d9cb3cb@linaro.org>
-Date:   Fri, 12 Aug 2022 21:53:15 +0300
+        Fri, 12 Aug 2022 11:58:14 -0700 (PDT)
+Message-ID: <f8b756ce-984b-2185-6354-b4de3a3350d2@linaro.org>
+Date:   Fri, 12 Aug 2022 21:58:10 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: supply: Add Richtek RT9471
- battery charger
+Subject: Re: [PATCH 6/6] i2c: imx-lpi2c: handle IPG clock
 Content-Language: en-US
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        =?UTF-8?B?5ri45a2Q6aao?= <alina_yu@richtek.com>,
-        cy_huang <cy_huang@richtek.com>, alinayu829@gmail.com,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
-References: <1660225318-4063-1-git-send-email-u0084500@gmail.com>
- <1660225318-4063-2-git-send-email-u0084500@gmail.com>
- <3cae9d60-4012-1dfd-abd9-4d0b9379e6bb@linaro.org>
- <CADiBU3_depGDZtiyizU3MB939A3oH1uTWzTMyruUy0z=u6BZkQ@mail.gmail.com>
- <40261b95-637a-1304-2e06-8c8ff7fc377b@linaro.org>
- <CADiBU38+9sR1r20=YWt-9s2+u7maHH+1VudCnV1-0+F4jYKdQQ@mail.gmail.com>
- <CADiBU3_Jt6n6tm=oVvjk5vsoEAneH7t-37S6skepA6v6bVVYUw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CADiBU3_Jt6n6tm=oVvjk5vsoEAneH7t-37S6skepA6v6bVVYUw@mail.gmail.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, aisheng.dong@nxp.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        xiaoning.wang@nxp.com, Peng Fan <peng.fan@nxp.com>
+References: <20220812043424.4078034-1-peng.fan@oss.nxp.com>
+ <20220812043424.4078034-7-peng.fan@oss.nxp.com>
+ <c2991370-b55f-c782-d62c-f9c667e40389@linaro.org>
+In-Reply-To: <c2991370-b55f-c782-d62c-f9c667e40389@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,31 +80,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 19:05, ChiYuan Huang wrote:
->> It's the same usage like as TI charger.
->>>>
->>>> For charger driver, does it mean legacy IRQ handler is more preferred?
->>>
->>> Who is the consumer of these interrupts? Can you show the DTS with the
->>> interrupt consumer?
->>>
-> Sorry, I forget to reply this question.
-> Some battery driver may need to know the 'full', 'recharge' , 'ieoc' status.
-> The usage will  be like as below
+On 12/08/2022 13:13, Krzysztof Kozlowski wrote:
+>> +
+>> +	lpi2c_imx->clk_ipg = devm_clk_get(&pdev->dev, "ipg");
+>> +	if (IS_ERR(lpi2c_imx->clk_ipg)) {
+>> +		dev_err(&pdev->dev, "can't get I2C ipg clock\n");
+>> +		return PTR_ERR(lpi2c_imx->clk_ipg);
+>>  	}
 > 
-> battery {
->   interrupts-extended = <&rt9471_chg 2 0>, <&rt9471_chg 3 0>, &(rt9471_chg 5 0>;
->   interrupt-names = "chg-done", "chg-recharge", "chg-ieoc";
-> };
-> 
-> Some gauge HW needs this information to enhance the battery capacity accuracy.
+> You just broke all DTS...
 
-Other supply stack pieces do it via supplies (supplied to/from in
-include/linux/power_supply.h) and reporting power_supply_changed().
-
-With such explanation, your device is an interrupt source, but it is not
-an interrupt controller. If your device is interrupt controller, it
-means someone routes the interrupt line to your device. Physical line.
+And Rob's bot agrees (through bindings):
+https://lore.kernel.org/all/1660317233.465911.168987.nullmailer@robh.at.kernel.org/
 
 Best regards,
 Krzysztof
