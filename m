@@ -2,376 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1387590E0C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCDCF590E23
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:32:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237392AbiHLJ3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 05:29:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41412 "EHLO
+        id S237987AbiHLJct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 05:32:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237236AbiHLJ3R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:29:17 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A4EEA59B2;
-        Fri, 12 Aug 2022 02:29:15 -0700 (PDT)
-X-UUID: 358622b96f8d4c48bb341f1a522b35e6-20220812
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=6JcgjhjZNCTsjD1D/EeQevXt6fD9ihFu9vlD2ChX6j4=;
-        b=S81x63JqakAWM0FYtXzxwgf5Z7MPBfIf8p1043b5H+YoUBjVBB8mtFRinN/3mKi53dQbT4mItKEAyM+ugw7ngZMhX/4FxElfTuOiDyxV8UVWsoA0zb51sbL5MUW4DIYvuVey+15+jUP8q7iBsDfdJUSZyUwOU1gl2xbkCGJz0TM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.9,REQID:bfee81d0-f0e6-404a-a04c-923771f8fd35,OB:0,LO
-        B:0,IP:0,URL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_
-        Ham,ACTION:release,TS:25
-X-CID-META: VersionHash:3d8acc9,CLOUDID:187f20fd-9e71-4a0f-ba6b-417998daea35,C
-        OID:IGNORED,Recheck:0,SF:nil,TC:nil,Content:0,EDM:-3,IP:nil,URL:11|1,File:
-        nil,Bulk:nil,QS:nil,BEC:nil,COL:0
-X-UUID: 358622b96f8d4c48bb341f1a522b35e6-20220812
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1768179320; Fri, 12 Aug 2022 17:29:07 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Fri, 12 Aug 2022 17:29:05 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Fri, 12 Aug 2022 17:29:04 +0800
-From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
-To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <eddie.huang@mediatek.com>,
-        <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
-        <fshao@chromium.org>
-CC:     <sen.chu@mediatek.com>, <hui.liu@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>, <zhiyong.tao@mediatek.com>,
-        <hsin-hsiung.wang@mediatek.com>, <sean.wang@mediatek.com>,
-        <macpaul.lin@mediatek.com>, <wen.su@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-rtc@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Subject: [PATCH v3 1/1] regulator: dt-bindings: mediatek: add mt6366
-Date:   Fri, 12 Aug 2022 17:29:01 +0800
-Message-ID: <20220812092901.6429-2-zhiyong.tao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220812092901.6429-1-zhiyong.tao@mediatek.com>
-References: <20220812092901.6429-1-zhiyong.tao@mediatek.com>
+        with ESMTP id S232153AbiHLJct (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:32:49 -0400
+Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3177211825;
+        Fri, 12 Aug 2022 02:32:48 -0700 (PDT)
+Received: by mail-qv1-f48.google.com with SMTP id u8so221212qvv.1;
+        Fri, 12 Aug 2022 02:32:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=+hBgnelb9rhjkbt7mU640/9Id4DX3C6HryE5K4mmUKE=;
+        b=wRUaG5PoSKkv/k13qPcX3yEDfeBWNOHumFmaHewAJXOxeRxJBDPX/sLtEmFSHWqYA/
+         N9TeQZPEpU57fIQ4AoVGEbSPjUry3yIFILRtwOsPXcVuNdKRYobdFU81hQ6WjOtIr9mq
+         eMWXEe948rA+0QiUTFFoDyKMdk8lxJocRnNCAs+B53sttAuuP8j3Rnw7lFv5X/CLYuvU
+         WCNesqI7zjyq0GNqF1mdJoUIXc2Z0R1ai0d602Nx1Mf1N8Qi46aeMkGQOy2wnm1Dp0sO
+         OLm6BBO+lDzFcHcYvSFP0kwP4pGCVdAj2NFu944E5hs+QDu5TD6gYf0GBXBU0mkAdDp6
+         kXcg==
+X-Gm-Message-State: ACgBeo2HWDO3zSS5+Za3fJqxPRxd7vFQHxx1CzHy0sicVP7t/QlBypPO
+        yBOHcOVkd+dtancRUvy5edo12/e9FJBJNg==
+X-Google-Smtp-Source: AA6agR6XbJYGPJlnFIXO3BaqnHa+oeJ5fGopTMcsrri7p8cq5g0E0f0Nto8MmBORk9hHfVMu3cqyIg==
+X-Received: by 2002:ad4:5c8b:0:b0:474:97fb:c4e6 with SMTP id o11-20020ad45c8b000000b0047497fbc4e6mr2561499qvh.68.1660296767152;
+        Fri, 12 Aug 2022 02:32:47 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id u13-20020a37ab0d000000b006b9629dc10asm1313428qke.103.2022.08.12.02.32.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Aug 2022 02:32:46 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-324ec5a9e97so4639487b3.7;
+        Fri, 12 Aug 2022 02:32:46 -0700 (PDT)
+X-Received: by 2002:a81:b049:0:b0:324:7408:94b with SMTP id
+ x9-20020a81b049000000b003247408094bmr2973449ywk.283.1660296765944; Fri, 12
+ Aug 2022 02:32:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,RDNS_NONE,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220726174525.620-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220727153738.GA2696116-robh@kernel.org> <CA+V-a8t2LJ1qSsJWK4S-434cLfp0AuqkSKLjk7VgtwrMrNr2SA@mail.gmail.com>
+In-Reply-To: <CA+V-a8t2LJ1qSsJWK4S-434cLfp0AuqkSKLjk7VgtwrMrNr2SA@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 12 Aug 2022 11:32:34 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWxSGn7Hohn2oU1i2eiO+LOSHm7gXCX5OByvSgXm+00SA@mail.gmail.com>
+Message-ID: <CAMuHMdWxSGn7Hohn2oU1i2eiO+LOSHm7gXCX5OByvSgXm+00SA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clock: renesas,rzg2l: Document RZ/Five SoC
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mt6366 regulator document
+Hi Rob,
 
-Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
----
- .../regulator/mediatek,mt6366-regulator.yaml  | 287 ++++++++++++++++++
- 1 file changed, 287 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6366-regulator.yaml
+On Fri, Aug 12, 2022 at 10:48 AM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Wed, Jul 27, 2022 at 4:37 PM Rob Herring <robh@kernel.org> wrote:
+> > On Tue, Jul 26, 2022 at 06:45:25PM +0100, Lad Prabhakar wrote:
+> > > The CPG block on the RZ/Five SoC is almost identical to one found on the
+> > > RZ/G2UL SoC. "renesas,r9a07g043-cpg" compatible string will be used on
+> > > the RZ/Five SoC so to make this clear, update the comment to include
+> > > RZ/Five SoC.
+> >
+> > It's either the same part or it isn't. 'almost identical' doesn't sound
+> > like the former. Unless it's the former, it's a nak for me.
+> >
+> It's the latter.
 
-diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6366-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6366-regulator.yaml
-new file mode 100644
-index 000000000000..78a224a2cd5a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6366-regulator.yaml
-@@ -0,0 +1,287 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/mediatek,mt6366-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MT6366 Regulator from MediaTek Integrated
-+
-+maintainers:
-+  - Zhiyong Tao <zhiyong.tao@mediatek.com>
-+
-+description: |
-+  List of regulators provided by this controller. It is named
-+  according to its regulator type, buck_<name> and ldo_<name>.
-+  MT6366 regulators node should be sub node of the MT6397 MFD node.
-+
-+properties:
-+  compatible:
-+    const: mediatek,mt6366-regulator
-+
-+  regulators:
-+    type: object
-+    description: List of regulators and its properties
-+
-+    patternProperties:
-+      "^buck-v(dram1|core|coresshub|proc11|proc12|gpu|s2|modem|s1)$":
-+        type: object
-+        $ref: regulator.yaml#
-+        unevaluatedProperties: false
-+
-+      "^ldo-v(dram2|sim1|ibr|rf12|usb|camio|camd|cn18|fe28)$":
-+        type: object
-+        $ref: regulator.yaml#
-+
-+      "^ldo-v(xo22|efuse|mch|vcama1|emc|a12|vcama2|mc)$":
-+        type: object
-+        $ref: regulator.yaml#
-+
-+      "^buck-(vcore)-sshub$":
-+        type: object
-+        $ref: regulator.yaml#
-+        unevaluatedProperties: false
-+
-+      "^ldo-vcn(28|33)-bt$":
-+        type: object
-+        $ref: regulator.yaml#
-+        unevaluatedProperties: false
-+
-+      "^ldo-vcn(33)-wifi$":
-+        type: object
-+        $ref: regulator.yaml#
-+        unevaluatedProperties: false
-+
-+      "^ldo-vsram-(others)-sshub$":
-+        type: object
-+        $ref: regulator.yaml#
-+        unevaluatedProperties: false
-+
-+      "^ldo-vsram-(proc11|others|gpu|proc12)$":
-+        type: object
-+        $ref: regulator.yaml#
-+        unevaluatedProperties: false
-+
-+      "^ldo-v(aud|bif|io|ldo)28$":
-+        type: object
-+        $ref: regulator.yaml#
-+
-+      "^ldo-v(io|aux|rf)18$":
-+        type: object
-+        $ref: regulator.yaml#
-+
-+      "^ldo-vsim[2]$":
-+        type: object
-+        $ref: regulator.yaml#
-+
-+required:
-+  - compatible
-+  - regulators
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pmic {
-+        compatible = "mediatek,mt6366-regulator";
-+
-+        regulators {
-+            mt6366_vdram1_reg: buck-vdram1 {
-+                regulator-ramp-delay = <12500>;
-+                regulator-enable-ramp-delay = <0>;
-+                regulator-allowed-modes = <0 1>;
-+            };
-+
-+            mt6366_vcore_reg: buck-vcore {
-+                regulator-ramp-delay = <6250>;
-+                regulator-enable-ramp-delay = <200>;
-+                regulator-allowed-modes = <0 1>;
-+            };
-+
-+           mt6366_vproc11_reg: buck-vproc11 {
-+                regulator-ramp-delay = <6250>;
-+                regulator-enable-ramp-delay = <200>;
-+                regulator-allowed-modes = <0 1>;
-+            };
-+
-+            mt6366_vproc12_reg: buck-vproc12 {
-+                regulator-ramp-delay = <6250>;
-+                regulator-enable-ramp-delay = <200>;
-+                regulator-allowed-modes = <0 1>;
-+            };
-+
-+            mt6366_vgpu_reg: buck-vgpu {
-+                regulator-ramp-delay = <6250>;
-+                regulator-enable-ramp-delay = <200>;
-+                regulator-allowed-modes = <0 1>;
-+            };
-+
-+            mt6366_vs2_reg: buck-vs2 {
-+                regulator-ramp-delay = <12500>;
-+                regulator-enable-ramp-delay = <0>;
-+            };
-+
-+           mt6366_vmodem_reg: buck-vmodem {
-+                regulator-ramp-delay = <6250>;
-+                regulator-enable-ramp-delay = <900>;
-+                regulator-allowed-modes = <0 1>;
-+            };
-+
-+            mt6366_vs1_reg: buck-vs1 {
-+                regulator-ramp-delay = <12500>;
-+                regulator-enable-ramp-delay = <0>;
-+            };
-+
-+            mt6366_vdram2_reg: ldo-vdram2 {
-+                regulator-enable-ramp-delay = <3300>;
-+            };
-+
-+            mt6366_vsim1_reg: ldo-vsim1 {
-+                regulator-enable-ramp-delay = <540>;
-+            };
-+
-+            mt6366_vibr_reg: ldo-vibr {
-+                regulator-enable-ramp-delay = <60>;
-+            };
-+
-+            mt6366_vrf12_reg: ldo-vrf12 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <120>;
-+            };
-+
-+            mt6366_vio18_reg: ldo-vio18 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <2700>;
-+            };
-+
-+            mt6366_vusb_reg: ldo-vusb {
-+                regulator-name = "vusb";
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vcamio_reg: ldo-vcamio {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <325>;
-+            };
-+
-+            mt6366_vcamd_reg: ldo-vcamd {
-+                regulator-enable-ramp-delay = <325>;
-+            };
-+
-+            mt6366_vcn18_reg: ldo-vcn18 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vfe28_reg: ldo-vfe28 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vsram_proc11_reg: ldo-vsram-proc11 {
-+                regulator-ramp-delay = <6250>;
-+                regulator-enable-ramp-delay = <240>;
-+            };
-+
-+            mt6366_vcn28_reg: ldo-vcn28 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vsram_others_reg: ldo-vsram-others {
-+                regulator-ramp-delay = <6250>;
-+                regulator-enable-ramp-delay = <240>;
-+            };
-+
-+            mt6366_vsram_gpu_reg: ldo-vsram-gpu {
-+                regulator-ramp-delay = <6250>;
-+                regulator-enable-ramp-delay = <240>;
-+            };
-+
-+            mt6366_vxo22_reg: ldo-vxo22 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <120>;
-+            };
-+
-+            mt6366_vefuse_reg: ldo-vefuse {
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vaux18_reg: ldo-vaux18 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vmch_reg: ldo-vmch {
-+                regulator-enable-ramp-delay = <60>;
-+            };
-+
-+            mt6366_vbif28_reg: ldo-vbif28 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vsram_proc12_reg: ldo-vsram-proc12 {
-+                regulator-ramp-delay = <6250>;
-+                regulator-enable-ramp-delay = <240>;
-+            };
-+
-+            mt6366_vcama1_reg: ldo-vcama1 {
-+                regulator-enable-ramp-delay = <325>;
-+            };
-+
-+            mt6366_vemc_reg: ldo-vemc {
-+                regulator-enable-ramp-delay = <60>;
-+            };
-+
-+            mt6366_vio28_reg: ldo-vio28 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_va12_reg: ldo-va12 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vrf18_reg: ldo-vrf18 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <120>;
-+            };
-+
-+            mt6366_vcn33_bt_reg: ldo-vcn33-bt {
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vcn33_wifi_reg: ldo-vcn33-wifi {
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vcama2_reg: ldo-vcama2 {
-+                regulator-enable-ramp-delay = <325>;
-+            };
-+
-+            mt6366_vmc_reg: ldo-vmc {
-+                regulator-enable-ramp-delay = <60>;
-+            };
-+
-+            mt6366_vldo28_reg: ldo-vldo28 {
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vaud28_reg: ldo-vaud28 {
-+                compatible = "regulator-fixed";
-+                regulator-enable-ramp-delay = <270>;
-+            };
-+
-+            mt6366_vsim2_reg: ldo-vsim2 {
-+                regulator-enable-ramp-delay = <540>;
-+            };
-+
-+            mt6366_vcore_sshub_reg: buck-vcore-sshub {
-+            };
-+
-+            mt6366_vsram_others_sshub_reg: ldo-vsram-others-sshub {
-+            };
-+        };
-+    };
-+...
--- 
-2.18.0
+To me, it looks like both blocks are identical, and the differences
+are in the integration into the SoC:
+  1. Some clocks do not exist (are not documented?) on RZ/Five,
+     because the consumer blocks do not exist (are not documented?).
+  2. Some interrupt controller clocks and resets have different names,
+     but use the exact same registers and bits.
 
+For 1, probably we could have kept those clocks anyway (they would
+be disabled by CCF due to being unused). But I'm not 100% sure it is
+safe to write to the corresponding registers (probably the hardware
+engineers would recommend not to access the registers, regardless if
+it is safe or not ;-), so we do not instantiate these clocks on RISC-V.
+
+For 2, we decided to play it safe, too, and follow the naming in the
+documentation, in both bindings and driver.
+
+> > Litering the drivers with #ifdef CONFIG_ARM64/CONFIG_RISCV is not great
+> > either. That's not great for compile coverage and they have nothing to
+> > do with the architecture.
+
+I agree #ifdef's do have disadvantages.  But they seemed to be the
+best pragmatic solution, to avoid two separate drivers.
+
+And the architecture does specify SoC integration.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
