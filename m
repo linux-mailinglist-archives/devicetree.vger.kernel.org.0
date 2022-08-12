@@ -2,55 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63C7759123B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 16:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 276AC59123E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 16:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237771AbiHLOcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 10:32:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51900 "EHLO
+        id S229664AbiHLOcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 10:32:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237689AbiHLOcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 10:32:00 -0400
-Received: from 7of9.schinagl.nl (7of9.connected.by.freedominter.net [185.238.129.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 146CC1CB10;
-        Fri, 12 Aug 2022 07:31:58 -0700 (PDT)
-Received: from [10.2.12.24] (unknown [10.2.12.24])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by 7of9.schinagl.nl (Postfix) with ESMTPSA id 8257118639E5;
-        Fri, 12 Aug 2022 16:31:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=schinagl.nl; s=7of9;
-        t=1660314715; bh=D6RB9U1iKUoe2tUrXz01h0DPHQCF1eWpqhyWVKhnHA4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=P+n1Gnhl5UkCsJv6vHQRKHEZ91RhLOSySaxtS5GJTBk4v4M5baXPKsFDK9OA21+NU
-         aL0Aa/w5UHpDdLMJ1sZ/Jo0C5iyMkb9/Yj/10rF+1jWO93hQbwoksKGLzvY2/wvTQS
-         86DHZ9ZluQ0BjbSRI9rWzTk/ofqIoLa1VEnxquBg=
-Message-ID: <6ec9eaa1-2bc2-a32f-6685-4a2a645a5a59@schinagl.nl>
-Date:   Fri, 12 Aug 2022 16:31:55 +0200
+        with ESMTP id S229464AbiHLOcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 10:32:52 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 589E39A996
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 07:32:52 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id cb12-20020a056830618c00b00616b871cef3so673955otb.5
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 07:32:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc;
+        bh=hTos8OHgwFshY7dxk6YkVaVl45UAbrAfHyN2eZ+ZjUc=;
+        b=DFtvGARmm+GsyUAA3dGxfVZOL3HaJlJjuzo5fkGeRjK1IBhyqZxNK5MsHPZE5TnCeP
+         5pgK0WZF1wEJkfwf5fn1OU4cw+/d/vzFq69g3cJyiD2j1G3TnSoBFzAhQ27pMSxIuhnH
+         h0PWCibH5HVdSPe0lVy8LSIebmlgHfrejSDkZ6+s1XM41mUcxzHXEWbK9l/M9Sgf6WiX
+         EGNjXA4RTdEbcf9jBrj9SiUBRZXTfnjdl42M/HAvezBVX+soLPsn6XGIfiLI5AkmK+eK
+         f3ITY+y53bC0R86QHqgvXVmog0yBpLFSxZ9s9QFTJiI86/m4xpsXlBhOpCb+thM11kju
+         iLWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc;
+        bh=hTos8OHgwFshY7dxk6YkVaVl45UAbrAfHyN2eZ+ZjUc=;
+        b=0HN4OBzkfIlCvBnIIvMaf28wUdEKsYF55glZ+Voa76JYdqvCo7SFS7x4g9kr2QDbuG
+         5OO4l6dgyYEXfjVgwnF0MNSqJTZIJoARW3xzhQFoIW8gdLlRKp8BpZvTlSMmqqC54lra
+         /i1zL469R3YWbhcIYuiu+7SkdVKAA66pQAhIEE9T66iocBwIg1aFebxvmhCq2d2J3Uf9
+         Mbj1lz+K731VtfGKymGNb/FpwxZwkX0ixyFfLURLev56QrQIWvLmEb7vc00uwoU2CnRE
+         4FFmljlc4Fimn1pdMHFRt/AbWXjnRWfRA9bAvh8tjk8WGR1OzY8rLllcySAgk5BnBh/J
+         zFrw==
+X-Gm-Message-State: ACgBeo3oq2YK+rcNonEREhYQBtS1/hepyeM/3vJpd9pvo+xSKMggFMEd
+        9/RVXLwfy9wDWQEpDbzFDGo=
+X-Google-Smtp-Source: AA6agR4gGe3vsOcQQhWRpqOHohyJTInaQR4HayXakB9KjD3urVkHTl1NNhMiBgegZArCRWUv7LE8FQ==
+X-Received: by 2002:a05:6830:1699:b0:637:1f6c:f9eb with SMTP id k25-20020a056830169900b006371f6cf9ebmr1555004otr.17.1660314771414;
+        Fri, 12 Aug 2022 07:32:51 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id n28-20020a0568080a1c00b003436fa2c23bsm282879oij.7.2022.08.12.07.32.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Aug 2022 07:32:50 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, vkoul@kernel.org, kishon@ti.com,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        daniel@ffwll.ch, airlied@linux.ie, heiko@sntech.de,
+        hjc@rock-chips.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: [RFC 0/4] rockchip-dsi for rk3568
+Date:   Fri, 12 Aug 2022 09:32:43 -0500
+Message-Id: <20220812143247.25825-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: [PATCH v2] dt-bindings: leds: Expand LED_COLOR_ID definitions
-Content-Language: nl
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Daniel Mack <daniel@zonque.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Oleh Kravchenko <oleg@kaa.org.ua>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Simon Shields <simon@lineageos.org>,
-        Olliver Schinagl <oliver+list@schinagl.nl>,
-        devicetree@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <7c688821-140b-4b05-651b-337f602dc1fe@schinagl.nl>
-From:   Olliver Schinagl <oliver@schinagl.nl>
-In-Reply-To: <7c688821-140b-4b05-651b-337f602dc1fe@schinagl.nl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,77 +70,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In commit 853a78a7d6c7 (dt-bindings: leds: Add LED_COLOR_ID definitions,
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Sun Jun 9 20:19:04 2019 +0200) the most basic color definitions where
-added. However, there's a little more very common LED colors.
+This series adds support for the dsi and dphy controllers on the
+Rockchip RK3568. I can confirm that for the Rockchip RK3568 this
+current series DOES NOT WORK properly yet. The image on the screen
+is shifted about 100 pixels to the right and does not appear to be
+a timing issue. This behavior was observed on both the Anbernic RG503
+and RG353 portable gaming devices with different screens. These changes
+were also tested on an RK3326 based device (an Odroid Go Advance) with
+no noticeable regressions.
 
-While the documentation states 'add what is missing', engineers tend to
-be lazy and will just use what currently exists. So this patch will take
-(a) list from online retailers [0], [1], [2] and use the common LED 
-colors from
-there, this being reasonable as this is what is currently available to 
-purchase.
+An example of the issue on multiple devices:
+https://media.discordapp.net/attachments/973914035890290718/1007407064647221299/IMG_1999.jpg
+https://media.discordapp.net/attachments/995430498677571604/1003754966932008960/AB25898E-73EC-40A9-BD47-3FB970DDFB31.jpg
 
-Note, that LIME seems to be the modern take to 'Yellow-green' or
-'Yellowish-green' from some older datasheets.
 
-[0]: https://www.digikey.com/en/products/filter/led-lighting-color/125
-[1]: 
-https://eu.mouser.com/c/optoelectronics/led-lighting/led-emitters/standard-leds-smd
-[2]: 
-https://nl.farnell.com/en-NL/c/optoelectronics-displays/led-products/standard-single-colour-leds-under-75ma
+Given the fact that the DSI controller is identical on the PX30 and
+RK3568 aside from different grf registers I am assuming the PHY is
+likely where the bugs are currently. I'm posting this as an RFC in the
+hopes that someone more knowledgeable than I can help identify the
+problem.
 
-Signed-off-by: Olliver Schinagl <oliver@schinagl.nl>
----
+Chris Morgan (4):
+  dt-bindings: display: rockchip-dsi: add rk3568 compatible
+  dt-bindings: phy: phy-rockchip-inno-dsidphy: add compatible for rk3568
+  drm/rockchip: dsi: add rk3568 support
+  phy/rockchip: inno-dsidphy: Add support for rk3568
 
-Changes since v1: Unbreak existing definitions.
+ .../display/rockchip/dw_mipi_dsi_rockchip.txt |   1 +
+ .../bindings/phy/rockchip,px30-dsi-dphy.yaml  |   1 +
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |  51 ++++-
+ .../phy/rockchip/phy-rockchip-inno-dsidphy.c  | 204 ++++++++++++++----
+ 4 files changed, 209 insertions(+), 48 deletions(-)
 
-  include/dt-bindings/leds/common.h | 28 ++++++++++++++++------------
-  1 file changed, 16 insertions(+), 12 deletions(-)
-
-diff --git a/include/dt-bindings/leds/common.h 
-b/include/dt-bindings/leds/common.h
-index 3be89a7c20a9..04bf94523ea3 100644
---- a/include/dt-bindings/leds/common.h
-+++ b/include/dt-bindings/leds/common.h
-@@ -22,18 +22,22 @@
-  #define LEDS_BOOST_FIXED    2
-
-  /* Standard LED colors */
--#define LED_COLOR_ID_WHITE    0
--#define LED_COLOR_ID_RED    1
--#define LED_COLOR_ID_GREEN    2
--#define LED_COLOR_ID_BLUE    3
--#define LED_COLOR_ID_AMBER    4
--#define LED_COLOR_ID_VIOLET    5
--#define LED_COLOR_ID_YELLOW    6
--#define LED_COLOR_ID_IR        7
--#define LED_COLOR_ID_MULTI    8    /* For multicolor LEDs */
--#define LED_COLOR_ID_RGB    9    /* For multicolor LEDs that can do 
-arbitrary color,
--                       so this would include RGBW and similar */
--#define LED_COLOR_ID_MAX    10
-+#define LED_COLOR_ID_WHITE      0
-+#define LED_COLOR_ID_RED        1
-+#define LED_COLOR_ID_GREEN      2
-+#define LED_COLOR_ID_BLUE       3
-+#define LED_COLOR_ID_AMBER      4
-+#define LED_COLOR_ID_VIOLET     5
-+#define LED_COLOR_ID_YELLOW     6
-+#define LED_COLOR_ID_IR         7
-+#define LED_COLOR_ID_MULTI      8 /* For multicolor LEDs */
-+#define LED_COLOR_ID_RGB        9 /* For multicolor LEDs that can do 
-arbitrary color, including RGBW etc. */
-+#define LED_COLOR_ID_PUPRPLE   10
-+#define LED_COLOR_ID_ORANGE    11
-+#define LED_COLOR_ID_PINK      12
-+#define LED_COLOR_ID_CYAN      13
-+#define LED_COLOR_ID_LIME      14
-+#define LED_COLOR_ID_MAX       15
-
-  /* Standard LED functions */
-  /* Keyboard LEDs, usually it would be input4::capslock etc. */
 -- 
-2.37.1
+2.25.1
 
