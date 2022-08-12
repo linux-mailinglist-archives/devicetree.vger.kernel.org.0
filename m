@@ -2,80 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C902590E5C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:47:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F3F8590E5E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:47:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237536AbiHLJr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 05:47:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34612 "EHLO
+        id S238103AbiHLJrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 05:47:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237173AbiHLJrY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:47:24 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 398D7AA3DB
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:47:23 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id c17so647018lfb.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:47:23 -0700 (PDT)
+        with ESMTP id S237704AbiHLJry (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:47:54 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E231A5C69
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:47:53 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id r17so611711lfm.11
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:47:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=DywEXydriB9RHQfiUoHdykArQLV4TBJt7mtn5YtjZoE=;
-        b=LwBHdnO1aRo+0D4D+H6G/KpkkhcLYKCY5twp4lafcbV2iNbBewTSuDHWAicBUVyZ6k
-         XD8W67AyOXCddFyRPbPFxX2NebnYA8KEpp5Bv1Uh9wvmz3oLqEDa6EGVrbCQmkmAdSUr
-         EGjZXkJ2DQHVf2RSr3780Kkzyl1edtbSVocJT6VzGItAQ6VoQ+9Z+gaRbWBDXkp1YsBz
-         JevUOIXgRV99bgu4/HsyvOTB7UNcUJ1vMtw9ObV0ZAadxCMhg/p12YxZ5xKeVDbCtuY+
-         2w0sy1R7C0exFVZAMQp1oHgeQ3MBNp6OdxY5twq70XNaD7QKfqQqwY6cZ5LNxMH01tpc
-         1O9w==
+        bh=R575C1qhTHoSbi+3zD4RrbyhHb3virAcspXTDvQnKy4=;
+        b=JSxzpeNWLiRQSjxYlGfMrQtjKLO8g8dzulwQExNLFeDwD4tVqoHkk8P5XG1Findb/G
+         0AdZXA7FJ4cXF/xqOg/eNsJt5VyLRdYKYniCzXpYeknBCzZGu3xM+UtHeCJj9Y+z/Rr1
+         ty0/9msxB8WzbQGrXdX1FtEom9AXtYzN48Udp9d3NXwJQiYPmUzQOOfO7Tuk3iaC0/BY
+         Z6F+EURDhtSHHrX4dKWijogHbw7+LQI55Tp465P4AXe5bBKTvwOMY6sw3yA6xLMbuD4l
+         SsCYyA7stKTmpe/b4tXi5uBiLCeGc3jLmOKNZxsocpQQzxnobb39ANKxmr6fXN6cJRCk
+         GNXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=DywEXydriB9RHQfiUoHdykArQLV4TBJt7mtn5YtjZoE=;
-        b=3z0yiSZAynQVc4xGmn8bjfPtu+Y6J/HJ+0EOzpu9yrN2ZiyHaRv0R9mMo1mVo5f6Fn
-         trKkow2Mtpb000TDtDGwrbCRojLn2cYHPQJZP0YGmC0kL5q8APGkRjd4PaZ78hmzPH5r
-         orthRDr9el0OQ4XYZS1WHc1Mc3zW1csN9jR7wzb+fql4myE82yQ9Ersc3ckvBss6XJA/
-         lRly0eZkxpMBNzO9tm/WzFCL1+l5K+62jKadmZffgrW+ZTuVBBq8MMMcmI77sIG/9WrD
-         2xAm6Us/xilVFBorD8AUB2vRKo3RfeNijLY9rqZnsWlRlJJy2M0DWv/db3gbKLW/zajy
-         ZsaA==
-X-Gm-Message-State: ACgBeo3T6CfKFUcnbr0CSJCRkQpuGBCveOilFt+twj7xVsjS5G5fc8no
-        4IAaFhIbFjjnaDOOkxE7xs9Vdw==
-X-Google-Smtp-Source: AA6agR7eHNAVuLG1Tzwad6XCZn0/j6CytzXhWajS9DLvUg5eG94lCgboTQKVISVSGSj5oeRbZaww8g==
-X-Received: by 2002:a05:6512:3fa8:b0:48c:ffd1:625d with SMTP id x40-20020a0565123fa800b0048cffd1625dmr925593lfa.251.1660297641606;
-        Fri, 12 Aug 2022 02:47:21 -0700 (PDT)
+        bh=R575C1qhTHoSbi+3zD4RrbyhHb3virAcspXTDvQnKy4=;
+        b=Dej0aoSVytSw6TTBNJC6hbfkzraGoNwh07G8SLPD8UI9mhWX6oIBytDXRr7Uu5LcHY
+         SA9u/RF7bgM6zMelyqP/lN8v1WMrn8SWl2F3Zkb/gh5ZjPNXF5Wwq+Ok5VnZ1ML/cnRB
+         2D2omQS0YAoXgd1d17fV4WFZtnJP2cU83o8QNGv/5r7apbZORfLh523y8/UcAuh71FUr
+         K1dYfHdGvHgUYtb80s0Bu2nxpMaGspPvxm9HhOSZHjo+up4dsyYHDf1w4+NB2A8/kmqv
+         Ehd3KHpkRj9vcWFP6onGgWlAhZtCzWQRmAfsjZvTcIkD9u71x7YlRVhMer2ZTTeKxP58
+         JeBg==
+X-Gm-Message-State: ACgBeo3JPqfJ/zCYoBzMnY2HLtzAzGjG985QEcAB9btrbnTmriDtiTUD
+        7Pi3Ugq2QEVRykqLlnKofFbEAw==
+X-Google-Smtp-Source: AA6agR5/2t+Z5sXLTq/FW0vwRSzdGa6Lmy3xVzBDbS50S1sEDvE57meU4TbXikGJPucThSN+EvX0ig==
+X-Received: by 2002:ac2:47f1:0:b0:48a:ea6e:b8fd with SMTP id b17-20020ac247f1000000b0048aea6eb8fdmr968658lfp.26.1660297671829;
+        Fri, 12 Aug 2022 02:47:51 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id bf31-20020a2eaa1f000000b0025e496dad47sm295617ljb.26.2022.08.12.02.47.18
+        by smtp.gmail.com with ESMTPSA id u17-20020a056512041100b0047f7419de4asm153741lfk.180.2022.08.12.02.47.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 02:47:21 -0700 (PDT)
-Message-ID: <8962b7ed-a21c-0b7f-7a6d-5db3db84e4cb@linaro.org>
-Date:   Fri, 12 Aug 2022 12:47:17 +0300
+        Fri, 12 Aug 2022 02:47:50 -0700 (PDT)
+Message-ID: <bac57cb8-6d3f-63b0-f504-eb65956d6422@linaro.org>
+Date:   Fri, 12 Aug 2022 12:47:46 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v4 2/2] arm64: dts: imx8mp-msc-sm2s: Add device trees for
- MSC SM2S-IMX8PLUS SoM and carrier board
+Subject: Re: [PATCH v2 5/9] clk: samsung: exynos850: Implement CMU_AUD domain
 Content-Language: en-US
-To:     Martyn Welch <martyn.welch@collabora.com>,
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220812084120.376042-1-martyn.welch@collabora.com>
- <20220812084120.376042-2-martyn.welch@collabora.com>
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20220809113323.29965-1-semen.protsenko@linaro.org>
+ <20220809113323.29965-6-semen.protsenko@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220812084120.376042-2-martyn.welch@collabora.com>
+In-Reply-To: <20220809113323.29965-6-semen.protsenko@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,71 +87,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 11:41, Martyn Welch wrote:
-> Add device trees for one of a number of MSC's (parent company, Avnet)
-> variants of the SM2S-IMX8PLUS system on module along with the compatible
-> SM2S-SK-AL-EP1 carrier board. As the name suggests, this family of SoMs use
-> the NXP i.MX8MP SoC and provide the SMARC module interface.
+On 09/08/2022 14:33, Sam Protsenko wrote:
+> CMU_AUD clock domain provides clocks for ABOX IP-core (audio subsystem).
+> According to Exynos850 TRM, CMU_AUD generates Cortex-A32 clock, bus
+> clock and audio clocks for BLK_AUD.
 > 
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> This patch adds next clocks:
+>   - bus clocks in CMU_TOP needed for CMU_AUD
+>   - all internal CMU_AUD clocks
+>   - leaf clocks for Cortex-A32, Speedy FM, UAIF0..UAIF6 (Unified Audio
+>     Interface), CNT (counter), ABOX IP-core, ASB (Asynchronous Bridge),
+>     DAP (Debug Access Port), I2S Codec MCLK, D_TZPC (TrustZone
+>     Protection Controller), GPIO, PPMU (Platform Performance Monitoring
+>     Unit), SysMMU, SysReg and WDT
+> 
+> ABOX clock was marked as CLK_IGNORE_UNUSED, as system hangs on boot
+> otherwise. Once ABOX driver is implemented, maybe it can be handled
+> there instead.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
+> Changes in v2:
+>   - (none)
 > 
-> Changes in v2
->   - Added compatibles
->   - Removed underscores from node names
->   - Make node names more generic
->   - Reorder properties
->   - Fix issues found by dtbs_check in these files
-> 
-> Changes in v3:
->   - Switched to avnet vendor string in compatibles
->   - Corrected patch description
-> 
-> Changes in v4:
->   - Switched from phy-reset-gpios to reset-gpios, removing duplication
->   - Removed unneeded sdma1 node
-> 
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../freescale/imx8mp-msc-sm2s-14N0600E.dts    |  72 ++
->  .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     |  53 ++
->  .../boot/dts/freescale/imx8mp-msc-sm2s.dtsi   | 812 ++++++++++++++++++
->  4 files changed, 938 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-14N0600E.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-ep1.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 8bf7f7ecebaa..139c8b95c9c9 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -83,6 +83,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-14N0600E.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-14N0600E.dts
-> new file mode 100644
-> index 000000000000..9e976e8baaee
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-14N0600E.dts
-> @@ -0,0 +1,72 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2022 Avnet Embedded GmbH
-> + */
-> +/dts-v1/;
-> +
-> +#include "imx8mp-msc-sm2s.dtsi"
-> +
-> +/ {
-> +	model = "MSC SM2S-IMX8PLUS-QC6-14N0600E SoM";
-> +	compatible = "avnet,sm2s-imx8mp-14N0600E", "avnet,sm2s-imx8mp",
-> +		     "fsl,imx8mp";
+>  drivers/clk/samsung/clk-exynos850.c | 302 ++++++++++++++++++++++++++++
+>  1 file changed, 302 insertions(+)
 
-This does not match your bindings. Please test your DTS.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
