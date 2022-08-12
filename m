@@ -2,107 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1057C590DE2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07FB1590DF6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231843AbiHLJIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 05:08:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51826 "EHLO
+        id S232010AbiHLJSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 05:18:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231586AbiHLJIV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:08:21 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D766EA723D;
-        Fri, 12 Aug 2022 02:08:20 -0700 (PDT)
-Received: by mail-qt1-f180.google.com with SMTP id h4so320322qtj.11;
-        Fri, 12 Aug 2022 02:08:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=ESERLkLG3l6qeYhdj3kGjg5yZs+39sPAfuNqaDJii3o=;
-        b=y7Gsc1ZAtT6g09ReXTrPkPL9YjjsSLBAaPQcHWR4L+zaRnvU3S3Bs/xvpYLBsPc7la
-         AkW92CIL2URuIK/pZ8XBQeHnxNXlU0Hiidk6UhD2MCvihWRsHR34KfD8KODSjfACRn9D
-         iVzEOJkI06F4SITC8CXaGoCXfx7GOe3g+r8glozX7JFFjxuNRNhpv34SlBJuoQ5q/+WJ
-         jl02QEDyrygBUUaezxdU951RMT54EUVDbK9Zpt9oNpqXb7jkBqoWil+8m16LPygcQf04
-         h5gZF2GwRf7h3fLPiylVShzt9KJeV3P9/pLk0VcQdazTHVbmlmb4X0q8uolS0AMP77rI
-         uJNQ==
-X-Gm-Message-State: ACgBeo24Ouldul2q6hLij/5YAgSrCnypdtIJ3BgmfsVP3pJaoqCBZiSd
-        6AkdAeEx98Oo9aO96eLj2J5m3HM8Zo6FTw==
-X-Google-Smtp-Source: AA6agR6LoVrmrzg0XIwzkFerXt0mANGUHbterUUfp/R5IqCJx77WEJjAv2JNJ1zCi/S4jH6Q9cLD5w==
-X-Received: by 2002:a05:622a:8e:b0:31f:371f:e6a1 with SMTP id o14-20020a05622a008e00b0031f371fe6a1mr2658605qtw.565.1660295299921;
-        Fri, 12 Aug 2022 02:08:19 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id o2-20020ac86982000000b0033a5048464fsm1329513qtq.11.2022.08.12.02.08.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 02:08:19 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id 204so574967yba.1;
-        Fri, 12 Aug 2022 02:08:19 -0700 (PDT)
-X-Received: by 2002:a25:880f:0:b0:67c:2727:7e3c with SMTP id
- c15-20020a25880f000000b0067c27277e3cmr2679433ybl.36.1660295299180; Fri, 12
- Aug 2022 02:08:19 -0700 (PDT)
+        with ESMTP id S231515AbiHLJST (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:18:19 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05BF2A8302;
+        Fri, 12 Aug 2022 02:18:17 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 27C9I60U016371;
+        Fri, 12 Aug 2022 04:18:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1660295886;
+        bh=P7wWzcIh1+Yf2Aevr38WIeunD/omf4ucYJkM7zuVXlI=;
+        h=Date:Subject:To:References:From:In-Reply-To;
+        b=yE5pwbN7FXAgc6taYSPZSuX7Kyp+CzEITgBnufhUTKozTr0MZrWpsrzfh6Z1vR902
+         TDmp6ka2uRQ8gHjf/3ZCakF/p5ZAtlt7YA0bwoTgt5G9DWTtEJP+BZwutqZIMGRIT2
+         gIe9QD1B4ainynp97W+A46wLa//CR0JuRnl4py2I=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 27C9I6MG063002
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 12 Aug 2022 04:18:06 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 12
+ Aug 2022 04:18:05 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Fri, 12 Aug 2022 04:18:05 -0500
+Received: from [10.24.69.12] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 27C9I3kQ001924;
+        Fri, 12 Aug 2022 04:18:03 -0500
+Message-ID: <2e8f74eb-ea0b-bf4a-d5a9-715b30474a7e@ti.com>
+Date:   Fri, 12 Aug 2022 14:48:02 +0530
 MIME-Version: 1.0
-References: <20220726175315.1147-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220726175315.1147-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 12 Aug 2022 11:08:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWOL75DNP9NWfFpe4FkT56=p1e5qh7tfOy+hn=u9xeg=w@mail.gmail.com>
-Message-ID: <CAMuHMdWOL75DNP9NWfFpe4FkT56=p1e5qh7tfOy+hn=u9xeg=w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: renesas: Document RZ/Five SoC
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH] spi: dt-bindings: Drop Pratyush Yadav
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220811063826.7620-1-krzysztof.kozlowski@linaro.org>
+From:   Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <20220811063826.7620-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 26, 2022 at 7:53 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> RZ/Five SoC is pin compatible with RZ/G2UL (Type 1) SoC. This patch
-> updates the comment to include RZ/Five SoC so that we make it clear
-> "renesas,r9a07g043-pinctrl" compatible string will be used for RZ/Five
-> SoC.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Hi Krzysztof,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-pinctrl-for-v6.1.
+On 11/08/22 12:08, Krzysztof Kozlowski wrote:
+> Emails to Pratyush Yadav bounce ("550 Invalid recipient").  Generic SPI
+> properties should be maintained by subsystem maintainer (Mark).  Add
+> recent contributor Vaishnav Achath to the Cadence SPI bindings.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Vaishnav Achath, are you ok with that?
+Yes, I am good with that.
+> ---
+>   .../devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml | 2 +-
+>   Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml        | 2 +-
+>   Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml | 2 +-
+>   3 files changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml
+> index 553601a441a7..510b82c177c0 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml
+> @@ -10,7 +10,7 @@ description:
+>     See spi-peripheral-props.yaml for more info.
+>   
+>   maintainers:
+> -  - Pratyush Yadav <p.yadav@ti.com>
+> +  - Vaishnav Achath <vaishnav.a@ti.com>
+>   
+>   properties:
+>     # cdns,qspi-nor.yaml
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> index 0a537fa3a641..4707294d8f59 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>   title: Cadence Quad SPI controller
+>   
+>   maintainers:
+> -  - Pratyush Yadav <p.yadav@ti.com>
+> +  - Vaishnav Achath <vaishnav.a@ti.com>
+>   
+>   allOf:
+>     - $ref: spi-controller.yaml#
+> diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> index ce048e782e80..a4abe1588005 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+> @@ -16,7 +16,7 @@ description:
+>     their own separate schema that should be referenced from here.
+>   
+>   maintainers:
+> -  - Pratyush Yadav <p.yadav@ti.com>
+> +  - Mark Brown <broonie@kernel.org>
+>   
+>   properties:
+>     reg:
 
-> --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
-> @@ -23,7 +23,7 @@ properties:
->      oneOf:
->        - items:
->            - enum:
-> -              - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2}
-> +              - renesas,r9a07g043-pinctrl # RZ/G2UL{Type-1,Type-2} and RZ/Five
->                - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
->
->        - items:
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Regards,
+Vaishnav
