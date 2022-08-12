@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E204591198
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 15:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 690DD5911A1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 15:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238952AbiHLNeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 09:34:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53108 "EHLO
+        id S238998AbiHLNgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 09:36:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238951AbiHLNeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 09:34:50 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4EB09E12A
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:34:48 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id d14so1340813lfl.13
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:34:48 -0700 (PDT)
+        with ESMTP id S238992AbiHLNgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 09:36:50 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293D49E13B
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:36:48 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id l21so987245ljj.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:36:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=BZWPu5Gd//RL+Fh9taZwYOP97Z5i1BsHH/FWdANRQTQ=;
-        b=zQz2gZCK/5ZJh9ivkAAuyGjG4hCSJBu7jU5wR5UXWpCIdruZMgyn6VuTm1QqWh8x6h
-         HasBqW0BJks2PPnztLww2524JDH1d7jjoeGsvxikXYxJYJFjk8BIfrhBpfjGxpZK/M9c
-         i/XHY2xZVnfl3MUBoRVQ93hjGX176jC+gF8hAmvbNaq8yR1l4ibEIM4tQ0LuMQYZ3Av6
-         C2mARZuJz1sjPhoFQTQMRAfzR9vvJdrVu8rXsT7aBemuKm+iY2DRz94VkQFi0ogfgfQX
-         2TuTBSeSVjWH98xo6xxXmr1B5FGooSs1InWSlqWPzlK/wUQNfApOMUurC8nSP8DIpW7X
-         UTqQ==
+        bh=yKajFgqA9LCPMjtPdVJnnC8O+xs2E9xJBgChlA4S+78=;
+        b=vXjOFsF0gE+TQeOzNb6csMqf1tmqDsrfApypwXBy6WylaS3lFMowP3OffYL2s9AElJ
+         agZB3uUG2pS7lgdIz4kNe8LHX0MQtq1aKdMK/fHAZpSE5DrtPocZ2/6TWgucb9AS5Qbt
+         /NPIF6zeqgAPSz92VtLiNgcgOEkcHado30Zs7wAgWJkRetiIHJUhJZvERtwX5Dfp+9fw
+         fydjrXW6w3j/CEbOcAeRnC+v+ZxVUxih/BmAju97IFaWi3qan4RXvAN/lx/PQyaX+OR9
+         Q2Xm/pUfEw23q84ODaloyXvyn9qBN9ne2wfyA9qAq5+Aj37t3DY6DIDzSeitjNS00kOd
+         vuPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=BZWPu5Gd//RL+Fh9taZwYOP97Z5i1BsHH/FWdANRQTQ=;
-        b=pX57BHHEqTfnEMZ5YgBDCF1uckEQGve3OKmWwb7KkqS141t4DpfsNlELA6a6lwQijR
-         pkB8Fmqa5skCW40QwKACmtOfeyR7n8nP8V/SRQk8yTW1SN9RhxhEgeZEY0yH5WWQ2ujH
-         +trNckMu9AsvBtzrKU88QxPoXmkRHwVvVI1xSOpQvaOLb8JJjma5wlc4Sx9aMVsyrANs
-         TR7JW9NUf9OJqK8QU8n1d+To+IrjnUnWo8uCqb6VH0NPyFzlV04lWZ25VCHWnoNaNgVP
-         WOxjyJ1vFSMXDzTfvKcrS6py9lmSC/cEB1JsYAVqQpKZzhkOM3zg17PKvuUvWL1lqKph
-         96jw==
-X-Gm-Message-State: ACgBeo3PTIZM1WYBNaK8/OALxGwfHe9uWmsy8eIuucMMf2X4bYTQw8dF
-        MBbGzgneO/zM+nXRhfk9r2z9GA==
-X-Google-Smtp-Source: AA6agR58fBX3co0zBUriZQcv0W0Vcn+Jz7pblBOBdMET79vrEFBlHlAawrlSdkJOdpXfFE+cQE60vw==
-X-Received: by 2002:a19:f505:0:b0:48b:2bfb:9a99 with SMTP id j5-20020a19f505000000b0048b2bfb9a99mr1201171lfb.101.1660311287068;
-        Fri, 12 Aug 2022 06:34:47 -0700 (PDT)
+        bh=yKajFgqA9LCPMjtPdVJnnC8O+xs2E9xJBgChlA4S+78=;
+        b=KdjcHLXp4Cy09Djzb2IBBToCXSGkxeA2Yc0tAWGVn7fvIPi0IFY5KsQJbz/4y0I1dp
+         TmmIiD5jj0ATRabBIO5yetd2FedETrQAdc7IJ9JwLGK0cWL0MRkep9dmILvofbEmqy7p
+         6vDUo4Ay8H78WM0/8/VeKYq1OAPUVGOaoSYKnAuWgP2ZAx7pezOJgc+YV0yy9UH9/tBf
+         eXmW2T/JBf/6JF5ZjaKqQ0fcne7Z24j2XFHyt22gJOiCPfzIa5rDrC4GjhQeVMRCpSyy
+         2t4rMG2aV7d8GV9RG22K4tdJCYb/cKnO/JztB3ugaqoZMfb2RH6PH+WFPVFvSsIWdGys
+         AqRw==
+X-Gm-Message-State: ACgBeo2ABBxcnDRVW3D92PKCufOO4Gu11eE9kTJTT+AaQMT2VsahWABZ
+        NDyCwh4CuLo1gh0O36QDYHALVg==
+X-Google-Smtp-Source: AA6agR5PgU5SgucPEDFTmFEXoayTaIKrClk7PcXY11AbJBNssKpGE2bD62bnRk9ZnenQ+ddczAaqMA==
+X-Received: by 2002:a2e:7a1a:0:b0:25e:52fe:952f with SMTP id v26-20020a2e7a1a000000b0025e52fe952fmr1278393ljc.519.1660311406593;
+        Fri, 12 Aug 2022 06:36:46 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id s2-20020a056512202200b0048ae8e4cebdsm218224lfs.139.2022.08.12.06.34.43
+        by smtp.gmail.com with ESMTPSA id bi34-20020a05651c232200b0025debf2a59asm349237ljb.108.2022.08.12.06.36.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 06:34:46 -0700 (PDT)
-Message-ID: <5ac47ae7-ab49-5413-e489-b8b5f053697a@linaro.org>
-Date:   Fri, 12 Aug 2022 16:34:41 +0300
+        Fri, 12 Aug 2022 06:36:46 -0700 (PDT)
+Message-ID: <81ae6a31-1f37-a677-f8f8-2340e37d3a63@linaro.org>
+Date:   Fri, 12 Aug 2022 16:36:42 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: sm6350: Add interconnect support
+Subject: Re: [PATCH] arm64: dts: qcom: pm6350: add temp sensor and thermal
+ zone config
 Content-Language: en-US
 To:     Luca Weiss <luca.weiss@fairphone.com>,
         linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220525144404.200390-1-luca.weiss@fairphone.com>
- <20220525144404.200390-6-luca.weiss@fairphone.com>
- <CM41EUB650GB.YO1J30NYO5NU@otso>
+References: <20220812114421.1195044-1-luca.weiss@fairphone.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CM41EUB650GB.YO1J30NYO5NU@otso>
+In-Reply-To: <20220812114421.1195044-1-luca.weiss@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,22 +81,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 15:09, Luca Weiss wrote:
-> Hi Bjorn,
+On 12/08/2022 14:44, Luca Weiss wrote:
+> Add temp-alarm device tree node and a default configuration for the
+> corresponding thermal zone for this PMIC. Temperatures are based on
+> downstream values.
 > 
-> On Wed May 25, 2022 at 4:44 PM CEST, Luca Weiss wrote:
->> Add all the different NoC providers that are found in SM6350 and
->> populate different nodes that use the interconnect properties.
->>
->> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+> With this config I'm getting this in dmesg, not sure if it's a warning
+> that should be solved or just an informative warning.
 > 
-> The other patches (1-4) from this series have been merged into torvalds'
-> repo already, so just this one is missing from 5.20/6.0.
+> [    0.268256] spmi-temp-alarm c440000.spmi:pmic@0:temp-alarm@2400: No ADC is configured and critical temperature is above the maximum stage 2 threshold of 140 C! Configuring stage 2 shutdown at 140 C.
 > 
-> Could you please pick it up for the next merge window if everything's
-> alright with it?
+> As far as I can tell, based on downstream dts this PMIC doesn't have an
+> ADC.
 
-It's still a merge window...
+You configure 145 and driver believes 140 is the limit, so it seems
+warning should be addressed.
+
+From where did you get 145 degrees as limit? Downstream DTS?
 
 Best regards,
 Krzysztof
