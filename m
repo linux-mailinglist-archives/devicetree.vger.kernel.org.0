@@ -2,99 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 188685911B6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 15:49:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F01E95911E6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 16:09:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237759AbiHLNtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 09:49:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36804 "EHLO
+        id S239074AbiHLOGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 10:06:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237430AbiHLNs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 09:48:59 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 704C0A4078
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:48:55 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id e15so1469011lfs.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:48:55 -0700 (PDT)
+        with ESMTP id S239054AbiHLOGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 10:06:51 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 466AD8980B
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 07:06:50 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id qn6so2196139ejc.11
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 07:06:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=C60Y/Psn2DfbYSl6cZKqaTCQ7Sgqzh8lKtssMlfhgdo=;
-        b=pWbMOWv12SncgQnIuIVOZIuOGhZs9m4NIgAH4gt6ZLQlOYjrJkkrpfmGlGCsIisBzI
-         x/v8DlJwMigklZslZraUmAV3o3EudTu6miObF37SapiaOyQ7qROqopSG36e739kWIR7w
-         JJD6EAb9D0Wzj4lYQx6qyLJVCE8AOvJfpDEYCmPZeUn+tmgP3zoa9TCJ3qI4TQidCQzh
-         A3WWOzYXKKX64DYzpcg9y635CEsUDPsNh/89xvbckuKi0dbRGta8wpqRK3MSOwQcj2ka
-         jioKGTP+gwvfVng2HwS+LbU1WM/BicwUT0gtxiXvDGzrnx51rOIp5qDvT7EuLpFj65Eq
-         45Ow==
+        d=fairphone.com; s=fair;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc;
+        bh=Pv1Kl4JS+ZMoTNGLHszpnd7VfT3QEgm6cYLyuxdf2mQ=;
+        b=ovrc2tsidM2Puk4E7t0O/YjnXHqLxj+xQuv1Ttuai8VY3eJF0YSy0FPL3vorntUW2B
+         0QZn6B/Ie8Ofbcepoqnh3FkHCFrw6j/32xfhLo0b7u3aysa4h7i4K507OnTChayDA1+A
+         fRCTefwionwJDUlj1Sg+yvkiyDaCM6/ya/2XQR7/8GOlvm3dvQqSwLR9vmTBWLqlmwYk
+         fMh6Ts45sPJFmDmDYdjTe3DN9goZ5aZtEbb9xe/38FgBJ/J4JVXxXz0JNjV9Fk/Hdtaq
+         qo3lK2imkdAmhxjlKtFpkjM+4DUSHBzrz/70/fCMJCjbXpeB+KqJPC0WKnnYs/xv3AAV
+         omUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=C60Y/Psn2DfbYSl6cZKqaTCQ7Sgqzh8lKtssMlfhgdo=;
-        b=rMutW/uov1rXjsudDGmw/RtX8weERolKyfZNmlNOqJbz1ejr4yRxnmLZnYnUvjlqaM
-         zLUn8gyrQXu2RlrBS5kh5sn9t4AHkDBt/Pev94MbBCamDsUUEQz+HmzXflhcgpDyauB3
-         TN9+qsaiFg9/VLmhOH2yesZAYNlPObdkF8usP/trTNwQlLJ10FxcEU2YEv72GagyTP1x
-         x03pgddNezXzXk1UA4i6UXWbDcLaNQSCahLXWU5ul7odDJKkFhAknkU8B044vhbBXjgx
-         bq+hwpr6UxTmRIXJFuEQ1sM1wy0VgY25b0XC0VtuYW3Tq9UuySUfcVMXwfwMg8pg7rql
-         oXVA==
-X-Gm-Message-State: ACgBeo2t5gdHIn3D0/EojlaT3iqlohQPwsEpm6sY+3Q+RRDPvm7gRWFG
-        0Z7fsHiiFsJpsSll583XSEYxQA==
-X-Google-Smtp-Source: AA6agR64G+c5wbFPsOJpNw8i8kydU4HW7gKVfY0L7wZs/5J9GKNtG7Gd/wPYjnf5eFU18oI1+UgbUQ==
-X-Received: by 2002:a05:6512:1155:b0:48a:fb9a:32d8 with SMTP id m21-20020a056512115500b0048afb9a32d8mr1340962lfg.672.1660312133710;
-        Fri, 12 Aug 2022 06:48:53 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id b19-20020ac24113000000b0048b03d1ca4asm221323lfi.161.2022.08.12.06.48.45
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc;
+        bh=Pv1Kl4JS+ZMoTNGLHszpnd7VfT3QEgm6cYLyuxdf2mQ=;
+        b=HWdmsgSPwc72EVQ4uKpp2SjGBJVb9qWTr00tjHh4ChSegF8//uFMwTMsSMTx26QnFk
+         lTtE7WO7oaDJkuIAGZerO00GwXQFpg0E565zBnkzU1AlVNfdwlU60e0BGr3XQhrSFWE6
+         33tJmRBqZOF4xwJPQjfVZbEQejGjeNyAjV/5bLzqTktjFqorghs6bfeXmszqPk325zXq
+         qUREEJKTDQjLHNsPjcSycVIlH9b/9In8m32U5peZwQ0hVMGZnOVWcFqP1iKoVpACixJY
+         O2xcCoJeMwdXJ9ZQefG/OQ1ZCe+jjjSl8nxucmUqp055VGseisSiUdK1UYohoxCrX1Ag
+         5MXg==
+X-Gm-Message-State: ACgBeo128uxsX/lsqv4n4BDkgsj3fSD1SOqEtS/sAYI60xi0q5TJ449K
+        VIsnYxDTgqFzzEyESt2tzi8kVA==
+X-Google-Smtp-Source: AA6agR6jRgNj+aT1UFQqpNRlUCku/01/4MHvqLsJFEpTOd0bsqzM73svFr8xWsCn2iRCHnaJmzahqQ==
+X-Received: by 2002:a17:907:9710:b0:731:67b1:dc3b with SMTP id jg16-20020a170907971000b0073167b1dc3bmr2831119ejc.709.1660313208660;
+        Fri, 12 Aug 2022 07:06:48 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id d24-20020a17090694d800b007030c97ae62sm802745ejy.191.2022.08.12.07.06.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 06:48:53 -0700 (PDT)
-Message-ID: <3731cd56-f7e8-6807-06b5-b8b176b078b6@linaro.org>
-Date:   Fri, 12 Aug 2022 16:48:43 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH 4/4] dt-bindings: net: dsa: mediatek,mt7530: update
- json-schema
-Content-Language: en-US
-To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Sander Vanheule <sander@svanheule.net>,
-        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
-        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220730142627.29028-1-arinc.unal@arinc9.com>
- <20220730142627.29028-5-arinc.unal@arinc9.com>
- <e5cf8a19-637c-95cf-1527-11980c73f6c0@linaro.org>
- <bb60608a-7902-99fa-72aa-5765adabd300@arinc9.com>
- <8a665b7a-bbd0-99ce-658e-bc78568bdca2@linaro.org>
- <40130c63-1e36-bb43-43b4-444a8f287226@linaro.org>
- <70e246af-c336-0896-95b5-9e42a17a239d@arinc9.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <70e246af-c336-0896-95b5-9e42a17a239d@arinc9.com>
+        Fri, 12 Aug 2022 07:06:48 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date:   Fri, 12 Aug 2022 16:06:47 +0200
+Message-Id: <CM43WTWNP8MM.3145TGVN4208B@otso>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>
+Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        "Konrad Dybcio" <konrad.dybcio@somainline.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Matthias Kaehlcke" <mka@chromium.org>
+Subject: Re: [PATCH] arm64: dts: qcom: pm6350: add temp sensor and thermal
+ zone config
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.11.0
+References: <20220812114421.1195044-1-luca.weiss@fairphone.com>
+ <81ae6a31-1f37-a677-f8f8-2340e37d3a63@linaro.org>
+In-Reply-To: <81ae6a31-1f37-a677-f8f8-2340e37d3a63@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -102,103 +80,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 16:41, Arınç ÜNAL wrote:
-> On 12.08.2022 10:01, Krzysztof Kozlowski wrote:
->> On 12/08/2022 09:57, Krzysztof Kozlowski wrote:
->>> On 12/08/2022 01:09, Arınç ÜNAL wrote:
->>>>>> -patternProperties:
->>>>>> -  "^(ethernet-)?ports$":
->>>>>> -    type: object
->>>>>
->>>>> Actually four patches...
->>>>>
->>>>> I don't find this change explained in commit msg. What is more, it looks
->>>>> incorrect. All properties and patternProperties should be explained in
->>>>> top-level part.
->>>>>
->>>>> Defining such properties (with big piece of YAML) in each if:then: is no
->>>>> readable.
->>>>
->>>> I can't figure out another way. I need to require certain properties for
->>>> a compatible string AND certain enum/const for certain properties which
->>>> are inside patternProperties for "^(ethernet-)?port@[0-9]+$" by reading
->>>> the compatible string.
->>>
->>> requiring properties is not equal to defining them and nothing stops you
->>> from defining all properties top-level and requiring them in
->>> allOf:if:then:patternProperties.
->>>
->>>
->>>> If I put allOf:if:then under patternProperties, I can't do the latter.
->>>
->>> You can.
-> 
-> Am I supposed to do something like this:
-> 
-> patternProperties:
->    "^(ethernet-)?ports$":
->      type: object
-> 
->      patternProperties:
->        "^(ethernet-)?port@[0-9]+$":
->          type: object
->          description: Ethernet switch ports
-> 
->          unevaluatedProperties: false
-> 
->          properties:
->            reg:
->              description:
->                Port address described must be 5 or 6 for CPU port and
->                from 0 to 5 for user ports.
-> 
->          allOf:
->            - $ref: dsa-port.yaml#
->            - if:
->                properties:
->                  label:
->                    items:
->                      - const: cpu
->              then:
->                allOf:
->                  - if:
->                      properties:
+Hi Krzysztof,
 
-Not really, this is absolutely unreadable.
++CC Matthias Kaehlcke (author of patch mentioned further below)
 
-Usually the way it is handled is:
+On Fri Aug 12, 2022 at 3:36 PM CEST, Krzysztof Kozlowski wrote:
+> On 12/08/2022 14:44, Luca Weiss wrote:
+> > Add temp-alarm device tree node and a default configuration for the
+> > corresponding thermal zone for this PMIC. Temperatures are based on
+> > downstream values.
+> >=20
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > ---
+> > With this config I'm getting this in dmesg, not sure if it's a warning
+> > that should be solved or just an informative warning.
+> >=20
+> > [    0.268256] spmi-temp-alarm c440000.spmi:pmic@0:temp-alarm@2400: No =
+ADC is configured and critical temperature is above the maximum stage 2 thr=
+eshold of 140 C! Configuring stage 2 shutdown at 140 C.
+> >=20
+> > As far as I can tell, based on downstream dts this PMIC doesn't have an
+> > ADC.
+>
+> You configure 145 and driver believes 140 is the limit, so it seems
+> warning should be addressed.
 
-patternProperties:
-   "^(ethernet-)?ports$":
-     type: object
+Hm...
 
-     patternProperties:
-       "^(ethernet-)?port@[0-9]+$":
-         type: object
-         description: Ethernet switch ports
-         unevaluatedProperties: false
-         ... regular stuff follows
+>
+> From where did you get 145 degrees as limit? Downstream DTS?
 
-allOf:
- - if:
-     properties:
-       compatible:
-         .....
-   then:
-     patternProperties:
-       "^(ethernet-)?ports$":
-         patternProperties:
-           "^(ethernet-)?port@[0-9]+$":
-             properties:
-               reg:
-                 const: 5
+Yes, downstream dts[0].
 
+From what I can see in the downstream driver, it always disabled this
+"software override of stage 2 and 3 shutdowns"[1]
 
-I admit that it is still difficult to parse, which could justify
-splitting to separate schema. Anyway the point of my comment was to
-define all properties in top level, not in allOf.
+In mainline only since f1599f9e4cd6 ("thermal: qcom-spmi: Use PMIC
+thermal stage 2 for critical trip points") this check exists, which is
+not part of downstream (wasn't in 4.19 yet), where this software
+override tries to get enabled so that thermal core can handle this.
 
-allOf should be used to constrain these properties.
+Any suggestion what I can do here? Maybe looking at msm-5.4 sources (and
+associated dts) might reveal something..? Maybe newer SoCs/PMICs have a
+different config?
 
-Best regards,
-Krzysztof
+Regards
+Luca
+
+[0] https://android.googlesource.com/kernel/msm-extra/devicetree/+/refs/hea=
+ds/android-msm-barbet-4.19-android12L/qcom/pm6350.dtsi#126
+[1] https://gerrit-public.fairphone.software/plugins/gitiles/kernel/msm-4.1=
+9/+/refs/heads/kernel/11/fp4/drivers/thermal/qcom-spmi-temp-alarm.c#251
+
+>
+> Best regards,
+> Krzysztof
+
