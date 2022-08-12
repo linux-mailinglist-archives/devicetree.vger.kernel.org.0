@@ -2,99 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95FCF591578
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 20:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7509759158E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 20:41:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238439AbiHLS3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 14:29:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60332 "EHLO
+        id S234282AbiHLSlq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 14:41:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230105AbiHLS3F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 14:29:05 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E726B2DBC;
-        Fri, 12 Aug 2022 11:29:04 -0700 (PDT)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 25B892076B;
-        Fri, 12 Aug 2022 18:29:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1660328943; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=tPX04jbC0BQlROGb55mEQeAkYdO/pUMQJcyP6P8yDMg=;
-        b=Dnk3QtxahbVc8N9Wb+mg3LWpIqkL3j324Xp+zLN1b3scdy/6qC3SQRFK8mueXE9dOR3bzD
-        kJVAa0mCRV10Ey1xRS0KdJiaA9Wz8rqTWrRnCe1cOw0qo+FQTx1rfRhSaWUJljn9CEbQwD
-        xzFf5Tca5Jc7aJLzQhyTBqFAUhyiUPw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1660328943;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=tPX04jbC0BQlROGb55mEQeAkYdO/pUMQJcyP6P8yDMg=;
-        b=RKeJHxsr+7BAG6RlGp765vCQzZKzbcl/KDPcaPksygxZXVLn3ATBYyju64TDEMjTHB+oX2
-        LKozQGXN/hssDQAw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 14F5C13AAE;
-        Fri, 12 Aug 2022 18:29:03 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id Is0VBe+b9mLdIgAAMHmgww
-        (envelope-from <bp@suse.de>); Fri, 12 Aug 2022 18:29:03 +0000
-Date:   Fri, 12 Aug 2022 20:28:58 +0200
-From:   Borislav Petkov <bp@suse.de>
-To:     Stefan Berger <stefanb@linux.ibm.com>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com, mpe@ellerman.id.au,
-        Jonathan McDowell <noodles@fb.com>,
-        Mimi Zohar <zohar@linux.ibm.com>
-Subject: Re: [PATCH v7 3/6] x86/kexec: Carry forward IMA measurement log on
- kexec
-Message-ID: <Yvab6lC9BUbmp4a8@zn.tnic>
-References: <20220812164305.2056641-1-stefanb@linux.ibm.com>
- <20220812164305.2056641-4-stefanb@linux.ibm.com>
- <YvaJc7bQjz61Y1jj@zn.tnic>
- <935988a4-c245-7cb1-4e14-bc99d39220a1@linux.ibm.com>
+        with ESMTP id S231237AbiHLSlo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 14:41:44 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B3CAE9D1
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 11:41:33 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id z6so2428781lfu.9
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 11:41:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=AVMExjC/PZ+IN90kCT2j4IDPkufVZOCe6pOQAghuGnM=;
+        b=kNStvDU4SbWI3BtJsp7e0HJyLYsswIgEe6Q48/DACT6mca2ExpeOlccGEneA2kTZ16
+         HXHY39V4qcYbCX9Rc8ro9lGLMVijTzNRqlPpRXs40v7YfjmTPxQPwh8DUacWqXaZGjm6
+         aw9Jf57kGHjCUxnWw6cN7mhWPKhv3PnN2tSCv7iw5chP9U6spmuWnkdTLr/byFdp9zLA
+         UpYHYHlo1fwGZcWUWXwgdUUK0JVAA9yDieXtPUxCIz/+ADJzqf21Ap3RaeUxnAQqqMqE
+         EHozSiOHy4ulFAUpT1XMYAzHWbFjVALkMN4LQGfUIzoBdpaCmgV9kC7RWtW2R9ZA81Ex
+         tfeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=AVMExjC/PZ+IN90kCT2j4IDPkufVZOCe6pOQAghuGnM=;
+        b=E+jp+fL99LhIj3PnN7fjNwzyU3qofEgCk2tChJblSINjxLEMlp9i6bu7L+MEHO/0dl
+         ukm+LTZkpJI8anaGHHGxOQ2uAsxscDNJbPX7SYjt8rfLtnhU9lA6HLz+YFiqGOgfHBwr
+         NWl/OUxhq+VV3zHT6LRZWMAV70WR8XqPAcgcYL8dCmLKnpSJP8MTqmv9Yd7rL2mU0TYZ
+         y06SMVZHkt5UsTGBA1MpKjeIeOlemD2fgv7k4+nq9ryuInX1J7Xa8YJdWmwHyUhuUkJ+
+         DaWzI/uDatjEKIogMgk5ZpXhsK6Ngg0kflLelnFL6Jb7iVwAY0cbHgwuNi19/YJaLfKg
+         yW/Q==
+X-Gm-Message-State: ACgBeo0L19lRQoWZ+FdPzdN/14ZE3YByBELe15xBGX6Lx2vxeTX1qbwa
+        /ZX+726Rn8FMQGb17oeOnh2JMQ==
+X-Google-Smtp-Source: AA6agR5TGMC3pAxFYMqF0pg6wHiqcx21KuEoRtHiCPRcFUtj3sn7nZUcoZK1Ent4J6EwV596ZAGq6Q==
+X-Received: by 2002:a05:6512:12c9:b0:48b:3e0f:7a79 with SMTP id p9-20020a05651212c900b0048b3e0f7a79mr1772348lfg.52.1660329691834;
+        Fri, 12 Aug 2022 11:41:31 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id n26-20020a05651203fa00b0048b0526070fsm300281lfq.71.2022.08.12.11.41.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Aug 2022 11:41:31 -0700 (PDT)
+Message-ID: <c51c360e-a73f-9333-ffa1-3461de29f41f@linaro.org>
+Date:   Fri, 12 Aug 2022 21:41:22 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <935988a4-c245-7cb1-4e14-bc99d39220a1@linux.ibm.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v3 3/3] memory: Add Broadcom STB memory controller driver
+Content-Language: en-US
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20220801220931.181531-1-f.fainelli@gmail.com>
+ <20220801220931.181531-4-f.fainelli@gmail.com>
+ <26ad247d-a4b3-4051-b8d9-505c09b76f6b@linaro.org>
+ <375eac04-dbfd-080a-3003-cae3eda1f42b@gmail.com>
+ <fa283e3c-5b96-b0a4-95c5-a7230d16d8ca@linaro.org>
+ <ec06e9c6-f475-fe19-9046-d57a6168e72b@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ec06e9c6-f475-fe19-9046-d57a6168e72b@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 12, 2022 at 01:14:38PM -0400, Stefan Berger wrote:
-> Yes, so this series can be tested by krobot.
+On 12/08/2022 20:52, Florian Fainelli wrote:
 
-You mean Intel's 0day robot?
+>>> unless you also implied enclosing those functions under an #if
+>>> IS_ENABLED(CONFIG_PM) or something which is IMHO less preferable.
+>>
+>> Are you sure you added also pm_ptr()? I don't see such warnings with W=1
+>> and final object does not have the functions (for a different driver but
+>> same principle).
+> 
+> Yes I am sure I added pm_ptr() see the v4 I just submitted. I don't see 
+> how the compiler cannot warn about the functions being unused the day 
+> they stop being referenced by the pm_ops structure which is eliminated?
 
-I believe that thing has by now enough logic to figure out which branch
-to base patches ontop. Or maybe there's some magic incantation to tell
-it which base commit to use so that you can simply do your patches ontop
-of latest linux-next instead of having to carry upstreamed patches.
+I don't have the answer how it exactly works (or which gcc version
+introduced it), but I tested it and the functions were not present in
+the object file, thus of course no warnings.
 
-Also, there's a little point in testing against 5.19 when you wanna test
-it against v6.0-rc1...
+The driver change I am referring to is:
+https://lore.kernel.org/all/20220808174107.38676-15-paul@crapouillou.net/
 
--- 
-Regards/Gruss,
-    Boris.
+I think the only difference against your v4 is:
+DEFINE_SIMPLE_DEV_PM_OPS
+and lack of __maybe_unused on the functions.
 
-SUSE Software Solutions Germany GmbH
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Martje Boudien Moerman
-(HRB 36809, AG Nürnberg)
+The DEFINE_SIMPLE_DEV_PM_OPS itself adds __maybe_unused for !CONFIG_PM
+case, but I don't think it is relevant.
+
+Best regards,
+Krzysztof
