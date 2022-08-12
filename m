@@ -2,92 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A3DB590E54
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2849F590E58
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:47:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237568AbiHLJqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 05:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33638 "EHLO
+        id S237633AbiHLJrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 05:47:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232812AbiHLJqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:46:02 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAD23321
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:46:01 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id x9so409142ljj.13
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:46:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=HnIwDlX/JVtrallIUFUhoxgC7/rC4uW7G6kTzn+y9Kc=;
-        b=fRrc83dABxCIedBFCkJR4KrcJ6EsoBjay0O9ApFu02EC/3pSx1DI5FWhHts4mCxlGy
-         5+iV6+XPfv2zGCzwA5gR/q79wjifndv/4Ut9jFVdMDhTfErbxq4NcPjwPPIVfNfUF2rT
-         u/nhZmfeNJzFry2PMuA1JFjp9Dfdr1jcObsSYkzEUsJf9/s2xGriaheByd8ayp1RmLXh
-         Pqa5K4i7T/UWbNcSPytTFiRUf76zq/e82FvCYMh7rUszghrIMLifPFBmhowYF8smPPv0
-         0p4DMylY277cSCt0CVMmUp22qgW53MdH42oZB6doErBIuYcgCxpXE4msd85XLorXcgoI
-         mixA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=HnIwDlX/JVtrallIUFUhoxgC7/rC4uW7G6kTzn+y9Kc=;
-        b=5882lolRXV4PdOqzm9IK7B1xN0vk+iQ0+IJuAzaIUWSIJeLCisminh30vObOpZxHSh
-         0tBswlHXUt0RqLowGprcFi8EPrUggi4kOt/0bPhNvG7kdTGPQ2FAjc4haVhaJtEiz5cz
-         qEas9TEop20WIgfUy6WOTATct6FRXJeSPHMJ4pQl79pJaEVwP2n8DWY4okTd0OOghags
-         gieC6T2M3/QDE1lBWozH/hSJ/sNBFuklI3mtPkPhRf6ViyAjkt1v052WQWGwVxwl3jW2
-         EeIbNPPWIXkZJ3ZLQP9JYQNXo+TQpa9w4FmLvofsFv7k3OCsoCLP2JpbZHJWwqdTaY2b
-         ssdA==
-X-Gm-Message-State: ACgBeo0z/UhoIu+XdUo04pc29ZOmPSN4df5BqqFxIC70BwlQvHVarADl
-        HHEOAMpuARj6DaFsqtVIGhmXqg==
-X-Google-Smtp-Source: AA6agR5nsQJw3hCnA/C5NhEoOLK+EQ1boJ+MFa4vGfmppLxUjoXGmYFFuol9O/BdFML65udzNfGzkQ==
-X-Received: by 2002:a2e:7e02:0:b0:25f:f8fa:53bb with SMTP id z2-20020a2e7e02000000b0025ff8fa53bbmr941575ljc.6.1660297560279;
-        Fri, 12 Aug 2022 02:46:00 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id z23-20020a195057000000b0048b08f0c4e9sm152554lfj.176.2022.08.12.02.45.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 02:45:59 -0700 (PDT)
-Message-ID: <8fafda4e-cb4d-1e89-cd26-1778c84841b2@linaro.org>
-Date:   Fri, 12 Aug 2022 12:45:56 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: fsl: Add MSC SM2S-IMX8PLUS SoM
- and SM2-MB-EP1 Carrier
-Content-Language: en-US
-To:     Martyn Welch <martyn.welch@collabora.com>,
+        with ESMTP id S232876AbiHLJrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:47:16 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D71B1321;
+        Fri, 12 Aug 2022 02:47:14 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 9093080E1;
+        Fri, 12 Aug 2022 09:40:29 +0000 (UTC)
+Date:   Fri, 12 Aug 2022 12:47:12 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>
-Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220812084120.376042-1-martyn.welch@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220812084120.376042-1-martyn.welch@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v1 9/9] of: property: Simplify of_link_to_phandle()
+Message-ID: <YvYhoGdemyKEx++d@atomide.com>
+References: <20220810060040.321697-1-saravanak@google.com>
+ <20220810060040.321697-10-saravanak@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220810060040.321697-10-saravanak@google.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 11:41, Martyn Welch wrote:
-> Add DT compatible strings for a combination of the 14N0600E variant of
-> the Avnet (MSC branded) SM2S-IMX8PLUS SoM on it's own and in combination
-> with the SM2-MB-EP1 carrier board.
+Hi,
+
+* Saravana Kannan <saravanak@google.com> [220810 05:54]:
+> The driver core now:
+> - Has the parent device of a supplier pick up the consumers if the
+>   supplier never has a device created for it.
+> - Ignores a supplier if the supplier has no parent device and will never
+>   be probed by a driver
 > 
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+> And already prevents creating a device link with the consumer as a
+> supplier of a parent.
+> 
+> So, we no longer need to find the "compatible" node of the supplier or
+> do any other checks in of_link_to_phandle(). We simply need to make sure
+> that the supplier is available in DT.
 
+This patch fixes booting for me, so it should be applied as a fix and
+tagged with:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Fixes: 5a46079a9645 ("PM: domains: Delete usage of driver_deferred_probe_check_state()")
 
+If there are dependencies to the other patches in this series, it might
+make sense to revert commit 5a46079a9645 instead.
 
-Best regards,
-Krzysztof
+Anyways, thanks for fixing the issue, for this patch:
+
+Reviewed-by: Tony Lindgren <tony@atomide.com>
+Tested-by: Tony Lindgren <tony@atomide.com>
+
+For the process, looks like the earlier series got merged despite the
+issues reported. And we had non-booting Linux next for at least some SoCs
+for weeks. And now we are about to have a non-booting -rc1 unless things
+get fixed fast. Annoying glitches, sigh..
+
+Regards,
+
+Tony
+
