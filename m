@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D103B590E85
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 11:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8AF2590EAC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:06:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237974AbiHLJzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 05:55:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43556 "EHLO
+        id S230160AbiHLKF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 06:05:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237612AbiHLJzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 05:55:24 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91E6311C32
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:55:22 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id v2so661101lfi.6
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 02:55:22 -0700 (PDT)
+        with ESMTP id S237700AbiHLKF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:05:58 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F301A9753C
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:05:56 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id c17so705577lfb.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:05:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=T5iIzTCDVHqt30FHfCBf7QyCkBoOs7GPL9+XgJpnyHY=;
-        b=wzhT+buoDcE5KBLNi6WAqq2oLZi0r2AKjAMCS+H+73hksv87Nlik8u7vCpU7xCGkTK
-         dbcrW/+mteB6uMRvRmsI/DfdobEjH2Wnom7i3hOCWUTPkbQCBZ01C2nVnEWWndW0NNX8
-         Vy6PYOdE9cf5pXDtLm/MlNkuiIWbd0qZoFH95l7i8aeyMi+DqpKI7NWazSRwg/JaR+nT
-         We4m8IRm5bg4qOtwNGwEJFJHVoCaxIxqbxEL6jhbnsDmXV59L6FIK8eCm79/6gaSy/gl
-         +/amH1RU58cCY2dclZUCOu9cHem5YidgDAH7eR9xifYlXAWe2F1zdLwHZYXBJWMCNc4o
-         OxWw==
+        bh=IO7so1201LCfMcIFny+9ruzvEPMZiRRert/i7tnBZi8=;
+        b=hGkEc8OoOo4q8ohhtTgulAqSMGWFmQV7Kp+Hqhe5r9kdgSYD+x5QgyuJ89ZvNjtMYY
+         7N/SGx8r4gdeAABgtKSfLvL13ubXlOqDPe/fIOL6QycTjezx4Q53UkWT8rMpoGRVDBlx
+         tJlKtSfkN4qEhkCM7P+p/ZHu9i5w36/blNVKZWfaGz+HriLRW/fdLOP4szer9hJsrMPe
+         Y7mcrCizGa5j4m4/gXJU3zNpH/mBa+U8bMzN7yn34LgaAjGetvgkfYa8TfsuxhEGJHxC
+         QCdAX1PGrkPtz7iWCXPMbWf8FLSzSsdku9tbl3/rt13s9K7GrOwkx2SeV1idImXvE+lr
+         ++0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=T5iIzTCDVHqt30FHfCBf7QyCkBoOs7GPL9+XgJpnyHY=;
-        b=cm0PIRr+BVsEVh9PJMIlIVbS2vamyYwbV/i1GikQWwvrEqOuq96m4JAmolmxdJuIb6
-         zlaqxWh0DqOXCVmdHX5SPWnxcLEvYEjMD7GuVwzPJWWq+tm4lrFAVVWI3lXEqmX6tGFY
-         hWsesTfPKrAycToWpo4/VJtRYAOgvlzD5+TwSt5ehwPizBUONbdUvWz1JF8IM/rFh59J
-         E3qDNIvl+1sAdUK0YcLWqzIFXvLm7gNFdZMVQJsWYTOXHuHlwZGzEyIzaOaIb51v+gMC
-         WMkqdQu7NGc5mjSlaUjZNWKAVKk9wuCbiXI2UYtt+jVGHu8ld+DYf+TmiDvJFiXkmIH7
-         gkcA==
-X-Gm-Message-State: ACgBeo39Prsdzu7eky5LD4OFiqvOFD+13G6+Nmo78qcvpMmuKVjzzjdT
-        A5ZRYXox2KJxZ2ojwl9kp7omHQ==
-X-Google-Smtp-Source: AA6agR7+AJPeAcWzIKKPAUQqUNDiGibnaRRiY1ldxGkU5iEvz7Z8KODNoh3VQbhU39rSPYcKl7QjEg==
-X-Received: by 2002:a05:6512:1585:b0:48d:158:7013 with SMTP id bp5-20020a056512158500b0048d01587013mr1116184lfb.536.1660298120968;
-        Fri, 12 Aug 2022 02:55:20 -0700 (PDT)
+        bh=IO7so1201LCfMcIFny+9ruzvEPMZiRRert/i7tnBZi8=;
+        b=jpOh50OdnNjtV2Ga7zJ2rko0IGuSXtbVQYTyBO1yxwAm4ffsXbsnasdQOaDSsizyoS
+         whJgWGfOeBusii/y0HcSoHttGAyWYa3rsM+nRQW1oT/9gaasW42QUCWYH1sUXl5QemyR
+         /yxk2VLPme9cPjhGPFNH1uj2vFi2U77lvFHyCLISQDSRoj9GJpdJx8+1W5MNeXjiSPqG
+         hP1HykO0+HSxiMJ0hi/H8TKcgPjigSVOgipanRwhCcQMUxG5o1oK0aod+du+K2eckViC
+         rFWNVdRK/Mj5xVubyud/BiF6AjNNCze9lf+xnSqXI37vLgW7BDL6ADnNylLgMKvgpy45
+         bNpA==
+X-Gm-Message-State: ACgBeo29seJYQmiCv0m9n/7B9N5iUikrPVMqWwnG9JTxJlUT3/O76s8G
+        YY7g0fZjJO8NVlkAH4M0m48ASg==
+X-Google-Smtp-Source: AA6agR6fzUskvP6InRv+oxetqHdNsHTS4o7mioyPTv9TSP3493LiUEJKces/OsoPzUKEazRp8tWuow==
+X-Received: by 2002:a05:6512:260e:b0:47d:ae43:62b3 with SMTP id bt14-20020a056512260e00b0047dae4362b3mr1170146lfb.77.1660298754958;
+        Fri, 12 Aug 2022 03:05:54 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id s12-20020a05651c048c00b0025e4ed638dcsm301594ljc.59.2022.08.12.02.55.16
+        by smtp.gmail.com with ESMTPSA id x27-20020a0565123f9b00b0048a77a2c4b2sm158340lfa.158.2022.08.12.03.05.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 02:55:20 -0700 (PDT)
-Message-ID: <af463efe-1656-5638-b41a-5daea3099812@linaro.org>
-Date:   Fri, 12 Aug 2022 12:55:15 +0300
+        Fri, 12 Aug 2022 03:05:54 -0700 (PDT)
+Message-ID: <2ee101f8-7466-c437-76f0-ae480b921cff@linaro.org>
+Date:   Fri, 12 Aug 2022 13:05:28 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v2 7/9] clk: samsung: exynos850: Implement CMU_MFCMSCL
- domain
+Subject: Re: [PATCH 1/3] dt-bindings: dmaengine: qcom: gpi: add compatible for
+ SM6350
 Content-Language: en-US
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20220809113323.29965-1-semen.protsenko@linaro.org>
- <20220809113323.29965-8-semen.protsenko@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220812082721.1125759-1-luca.weiss@fairphone.com>
+ <20220812082721.1125759-2-luca.weiss@fairphone.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220809113323.29965-8-semen.protsenko@linaro.org>
+In-Reply-To: <20220812082721.1125759-2-luca.weiss@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,29 +84,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/08/2022 14:33, Sam Protsenko wrote:
-> CMU_MFCMSCL clock domain provides clocks for MFC (Multi-Format Codec),
-> JPEG Codec and Scaler IP-cores. According to Exynos850 TRM, CMU_MFCMSCL
-> generates MFC, M2M, MCSC and JPEG clocks for BLK_MFCMSCL.
+On 12/08/2022 11:27, Luca Weiss wrote:
+> Document the compatible for GPI DMA controller on SM6350 SoC.
 > 
-> This patch adds next clocks:
->   - bus clocks in CMU_TOP for CMU_MFCMSCL
->   - all internal CMU_MFCMSCL clocks
->   - leaf clocks for MFCMSCL, TZPC (TrustZone Protection Controller),
->     JPEG codec, M2M (Memory-to-Memory), MCSC (Multi-Channel Scaler),
->     MFC (Multi-Format Codec), PPMU (Platform Performance Monitoring
->     Unit), SysMMU and SysReg
-> 
-> MFCMSCL related gate clocks in CMU_TOP were marked as CLK_IS_CRITICAL,
-> because:
->   1. All of those have to be enabled in order to read
->      /sys/kernel/debug/clk/clk_summary file
->   2. When some user driver (e.g. exynos-sysmmu) disables some derived
->      leaf clock, it can lead to CMU_TOP clocks disable, which then makes
->      the system hang. To prevent that, the CLK_IS_CRITICAL flag is used,
->      as CLK_IGNORE_UNUSED is not enough.
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-No, same as with ISP these are not critical clocks.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
