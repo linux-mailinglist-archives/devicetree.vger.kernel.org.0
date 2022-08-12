@@ -2,70 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DE5C590EFB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19DAF590F08
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:17:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238253AbiHLKPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 06:15:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35078 "EHLO
+        id S238279AbiHLKRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 06:17:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238247AbiHLKPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:15:01 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC6B5ACA22
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:14:16 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id u6so489162ljk.8
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:14:16 -0700 (PDT)
+        with ESMTP id S238244AbiHLKRN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:17:13 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1009FAB413
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:17:12 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id s9so500789ljs.6
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:17:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=YECTb53HoAndkqalMbx34St39877VlDrPNwS4SEDszE=;
-        b=NTCmuPg9QBXs4OUITXOwFvC8p3cx4CDvPjB2vSwJXYKNEVXu1EKVcG/se9FTnIZkLb
-         3AUqiq75S6ACbH2HIGCRLGBR5bTS2bkXV5Af9aG3inlxaZMFKDXXlrnfhYY7vZWwTY+w
-         XlDTCHfsfsLaGCfxYhCAxsncqC5OKRis2l/hat7uXslLWTMso11XQDm1CYU9kCndmATO
-         zCfXvwNtFFtniU+E81uPbhNoIgi0iu4nfhSozZp6ioZ7977Xn/UYACbJTO1Nert6mIdJ
-         fhHVVQn+m+frZR16vq2hTLuciKeVTFeJIdTmjGh39y+sN6uddiW6xjUOfKwPSxltKVdQ
-         Qgfg==
+        bh=3EuQ0CN8gezdE1pLa5bohB3s+q1EfiKeLKioA/7ZW00=;
+        b=WKYYtNr/fa3IFP/Or/737fG9GGEhxZxmhu02n1Q9c4HHLYb2q91fSOrxynDFym8xVb
+         n9oL8meW0KxtjHKtbLCvJSHd2xOGiFTFkm1+rN57utNFwMCRa2ydVYDIf0L9k9t27Im0
+         McpJFKCy9D3tWMGYDQOcT/BIFHhMF8sa2ET0rm0zKWJrNvKPeezxtIwRFAq+rFfqR0Hy
+         vLzV811iUKC1/ZwKmTjtdw0JkuUbvvQyyMhgSksbtLEIt1OgSr96xDbwYcXY3Cf9YjMJ
+         ql/MHAatWTLbVitN5uoVKW5iDWluTxIEiMB0iEZh1790XvR+9Xkx1dGI1Kq39m7GlSz3
+         qkig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=YECTb53HoAndkqalMbx34St39877VlDrPNwS4SEDszE=;
-        b=E+7DnzVpJqhRAWkUeuT3U/Vm9XLnU/f6imuWfNvCPs90sGEnWWQC67RKscj3VNninH
-         ll4b5fDSTcfn/cqeoQXGKdD5pQ2GfeGUgLSxM3sAHxwxtWHi464vtteBhQJ1X6T6sIg9
-         ZJXQKUCE3VRbFNJUwxA60IIQUrnkiUa12Efkq3Z2x35sk77P8BFvBD9DWGr3tUJTH2E5
-         jVw1ZaFbt5x5pw0wipZf9vBmwSHi7KpWcMTQPIsQNGXvnw36ceu+g1CzxvlR+ted7mcW
-         FryrrWuEYRx96c0V+kPy346yJpna/vqLjml02o8IIxuvPgUCJ5ozCzDtXpUvvQS9QX9S
-         jnqQ==
-X-Gm-Message-State: ACgBeo3etIZh2+e5EdUV1vMQ0s98CpjJLV6CMPJI6OPxEg3w0ju8lyV0
-        SOXTwvcP+eUkKvugH1znv92dPA==
-X-Google-Smtp-Source: AA6agR5D1bNCHC+hBXhXpTaGgi4e/aTbcE+ZqG+Q6dhV4Z92pG5tLSg+X3pPpBZGuykQMTfFqvxI+g==
-X-Received: by 2002:a2e:9b42:0:b0:25e:59a7:6734 with SMTP id o2-20020a2e9b42000000b0025e59a76734mr903621ljj.346.1660299255073;
-        Fri, 12 Aug 2022 03:14:15 -0700 (PDT)
+        bh=3EuQ0CN8gezdE1pLa5bohB3s+q1EfiKeLKioA/7ZW00=;
+        b=F1dCTVKiDA/b0mnLnN4q8S1S4f3T5nvQaQbZEhJ4ENh7nVj0cxmhLgJsE9BdCTO3iF
+         wZbmO+I8uySZ/7act3vuq1pxROz6M3VEaBrqA5vhOdCPFx2iZHwVVXlO/kpTmTukrqeN
+         dN32PV7r64vT854cjAEY/n8QmGOs1UOBQMWW68WNNpgX7pFup6WaUd/HJJSfspGn4lB8
+         99FEjLUjadDdHq4RrRiIXLlZGwIUz+2pUGtN9VOAgf63AvE95xSR2LtqcgTO6IXOoyX0
+         k5Rzl192p+W8Krk60HnrVcPULpcv302XyabiGtkohyayN1EvB68j8//rpRNeXUJkLGZe
+         +r2g==
+X-Gm-Message-State: ACgBeo0EPGFJHhnwwWORXMNyYjXr8mgpx+6O4/dtu4IRLpIVvl3YuAPO
+        nd11ZfqVF7fole2hTRACNtk2jA==
+X-Google-Smtp-Source: AA6agR6/eKxyf9cCc2YXWWqIL4n4jU5prTkHu2Rbp6sqmc8P5deaTbYdRI6xrB/8qoK93hfORnbFow==
+X-Received: by 2002:a05:651c:1544:b0:25f:5036:ece2 with SMTP id y4-20020a05651c154400b0025f5036ece2mr1022900ljp.73.1660299430454;
+        Fri, 12 Aug 2022 03:17:10 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id x25-20020a056512131900b0048a0e948c34sm160957lfu.195.2022.08.12.03.14.10
+        by smtp.gmail.com with ESMTPSA id h18-20020ac24d32000000b0048b304d2a75sm156644lfk.292.2022.08.12.03.17.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 03:14:14 -0700 (PDT)
-Message-ID: <f1add9c7-fc2e-a600-49a6-a6579f17db1b@linaro.org>
-Date:   Fri, 12 Aug 2022 13:14:08 +0300
+        Fri, 12 Aug 2022 03:17:10 -0700 (PDT)
+Message-ID: <0ce8b731-6cbb-ee3d-0075-b24332deceae@linaro.org>
+Date:   Fri, 12 Aug 2022 13:17:06 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 0/6] i2c-imx-lpi2c: add IPG clock
+Subject: Re: [PATCH v2 4/4] dt-bindings: soc: qcom: stats: Document SDM845
+ compatible
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, aisheng.dong@nxp.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        xiaoning.wang@nxp.com, Peng Fan <peng.fan@nxp.com>
-References: <20220812043424.4078034-1-peng.fan@oss.nxp.com>
+To:     Abel Vesa <abel.vesa@linaro.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Maulik Shah <quic_mkshah@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220812101240.1869605-1-abel.vesa@linaro.org>
+ <20220812101240.1869605-4-abel.vesa@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220812043424.4078034-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20220812101240.1869605-4-abel.vesa@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,14 +79,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 07:34, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+On 12/08/2022 13:12, Abel Vesa wrote:
+> SDM845 is a special case compared to the other platforms that use RPMh
+> stats, since it only has 2 stats (aosd and cxsd), while the others have
+> a 3rd one (ddr).
 > 
-> The i.MX LPI2C needs PER and IPG clock, not just PER or IPG clock.
-> This patch is to enable both PER and IPG clock for imx-i2c-lpi2c.
+> So in order for the driver to use the dedicated stats config, we added
+> the SDM845 dedicated compatible, which we document here.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-This patchset breaks the ABI and is not bisectable. The justification is
-very limited (one sentence), so not really enough.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
