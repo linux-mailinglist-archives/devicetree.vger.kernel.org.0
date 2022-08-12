@@ -2,81 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05C9A5911AD
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 15:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B7495911B0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 15:42:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236639AbiHLNmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 09:42:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59880 "EHLO
+        id S239047AbiHLNmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 09:42:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236979AbiHLNmb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 09:42:31 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54E79F752;
-        Fri, 12 Aug 2022 06:42:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1660311705; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=RCWQQd2W+BbLuz5xnRGzN5nde0a/4N8SOuCNOPnBrFQK5sIwKtHtZl7jj5J0U4E+f6AWv7ZpvlvVdIPu9yzlhtCaNP0RWBwoDUQAV5PiMGZEUP2t+bdCMOhv6BesuSMCznMByJY1ilDUseRlneb9dT9R6X7XK0FJWDsWZvAIRcM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1660311705; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
-        bh=Lj0r/qXRysJ3YO0LbUMCHmWO7t0y8zEQ459Z3a0BMSw=; 
-        b=J6VOKszni1qY2HvcyxWkl0LEFBaGYm18L11gkaXfy4anMBXOdrqm8jiHzB4xCNUpajuDKijpYTItAxe1fLUrzG7OTPdygMHOEo0Y3Opp1Bm1SB63oi6egkPDoTphGCjmP9GDPbqznX5DdDMyX0g6bqQOR/z7DovGvSplzvg2jbo=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1660311705;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-        bh=Lj0r/qXRysJ3YO0LbUMCHmWO7t0y8zEQ459Z3a0BMSw=;
-        b=C0IsFf4zWi3W9Ou+RjcsTpTsDYH6IbhIOwlh4d/oRqjlPsR/GPYf7uDlCp6TlXjw
-        QGOgZkFWCk1NQyFgebl+KO4LxVmWTNycgpW0SSsLCoGizt5969njm4XfGrU2ehF3uBt
-        XIJseeo3eomKasB85Xo4xtvOSRT9V85s1xe0NGrs=
-Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
-        with SMTPS id 1660311704339513.651743389957; Fri, 12 Aug 2022 06:41:44 -0700 (PDT)
-Message-ID: <70e246af-c336-0896-95b5-9e42a17a239d@arinc9.com>
-Date:   Fri, 12 Aug 2022 16:41:37 +0300
+        with ESMTP id S238688AbiHLNmn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 09:42:43 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC781A00CE
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:42:42 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id y23so965425ljh.12
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:42:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=E4Pg30doPvdVeGQvtCtboZjqaFRUOqRz10bPbmMhTH0=;
+        b=k2WP5Q8EiXoM0UV+CAz2nOK4C9X9xG99qfdfJUJ6Szswwpp7yQuhrDkAO8M3RmdMqP
+         z5V0tzoIbjICD+6IgxXk6TUL5CvugAkJIMO13vZ0TvjkBbXrGTv5/e0d+qLUbOujwJDQ
+         wJb0cGjzVXHL//fx0EnLVdhHichHIsJR0lF0taLrrJJXl5tQJoyR8+DIDqs/YomAs5AV
+         BywXICwyIv3NWSvwciddJf0oVjYbrIDMPQsmyBZi/Z+5lQl80iZ34Xpb0BeYuNWrWWFc
+         A4T3zNVmlvGlo1ZSyg96nlXUcQFdR1AugMh34YKkIETdyHGqApKLHx7NS1DM/yycG4JO
+         Jizg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=E4Pg30doPvdVeGQvtCtboZjqaFRUOqRz10bPbmMhTH0=;
+        b=1i/HrzqSm4YQtnACZDGXhvGQ1s2vKeHd4bulvpaHGFOo2YZ1IosW73Y/KR7qoGL5oq
+         wdY7mOs59ppk/iJ0uxofnAXZR1GYFeTlZl9Wg5TOeJbzD2amWXaxkO8bsjegJzi3uLPb
+         NX4RWzYef/7ukz0OuUtPiFbDRFDij6EHkHJusKDh/rNvnR97OBrkEDGhIylS3E/iYjKA
+         OPmgMTEn5Yo+6a4RojIQ7YZRHa3I8zwognQz8GiBILOKsEAP44clIdMgvyzg3LukSqob
+         HsktlP6ieKT8NRllJTCVOFsFFRsoBcro21oJajlV6Sk3GluFJ0CNVadlMTfw8ILnD8Wb
+         G8XA==
+X-Gm-Message-State: ACgBeo3BL/mUg0Q21gvOokXEERjqMUKWGNlgZKoUrPn7UgK9sRBn2KKW
+        X1tmr0yn/LFUWI90yhUKYts8Pg==
+X-Google-Smtp-Source: AA6agR5WKO4cNO5LSwR4p7rSjt3eXEu9RHC8dN/CpQFXoYBWuJHzEo5d6g/ieTaaW4mi6XPqHcxmdQ==
+X-Received: by 2002:a05:651c:1241:b0:25d:5484:75d3 with SMTP id h1-20020a05651c124100b0025d548475d3mr1278012ljh.45.1660311761060;
+        Fri, 12 Aug 2022 06:42:41 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id 18-20020a2eb952000000b0025ec44d1371sm365108ljs.80.2022.08.12.06.42.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Aug 2022 06:42:40 -0700 (PDT)
+Message-ID: <15ddd798-873e-d90d-11e9-c6dd46ca03f4@linaro.org>
+Date:   Fri, 12 Aug 2022 16:42:36 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH 4/4] dt-bindings: net: dsa: mediatek,mt7530: update
- json-schema
+ Thunderbird/91.12.0
+Subject: Re: [PATCH v4 2/2] arm64: dts: imx8mp-msc-sm2s: Add device trees for
+ MSC SM2S-IMX8PLUS SoM and carrier board
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+To:     Martyn Welch <martyn.welch@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        Sander Vanheule <sander@svanheule.net>,
-        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
-        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220730142627.29028-1-arinc.unal@arinc9.com>
- <20220730142627.29028-5-arinc.unal@arinc9.com>
- <e5cf8a19-637c-95cf-1527-11980c73f6c0@linaro.org>
- <bb60608a-7902-99fa-72aa-5765adabd300@arinc9.com>
- <8a665b7a-bbd0-99ce-658e-bc78568bdca2@linaro.org>
- <40130c63-1e36-bb43-43b4-444a8f287226@linaro.org>
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <40130c63-1e36-bb43-43b4-444a8f287226@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20220812084120.376042-1-martyn.welch@collabora.com>
+ <20220812084120.376042-2-martyn.welch@collabora.com>
+ <8962b7ed-a21c-0b7f-7a6d-5db3db84e4cb@linaro.org>
+ <65a094d5d03ad8f7b35196c9dff6ffc6cf0ea151.camel@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <65a094d5d03ad8f7b35196c9dff6ffc6cf0ea151.camel@collabora.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -87,149 +85,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.08.2022 10:01, Krzysztof Kozlowski wrote:
-> On 12/08/2022 09:57, Krzysztof Kozlowski wrote:
->> On 12/08/2022 01:09, Arınç ÜNAL wrote:
->>>>> -patternProperties:
->>>>> -  "^(ethernet-)?ports$":
->>>>> -    type: object
->>>>
->>>> Actually four patches...
->>>>
->>>> I don't find this change explained in commit msg. What is more, it looks
->>>> incorrect. All properties and patternProperties should be explained in
->>>> top-level part.
->>>>
->>>> Defining such properties (with big piece of YAML) in each if:then: is no
->>>> readable.
+On 12/08/2022 14:35, Martyn Welch wrote:
+> On Fri, 2022-08-12 at 12:47 +0300, Krzysztof Kozlowski wrote:
+>> On 12/08/2022 11:41, Martyn Welch wrote:
+>>> Add device trees for one of a number of MSC's (parent company,
+>>> Avnet)
+>>> variants of the SM2S-IMX8PLUS system on module along with the
+>>> compatible
+>>> SM2S-SK-AL-EP1 carrier board. As the name suggests, this family of
+>>> SoMs use
+>>> the NXP i.MX8MP SoC and provide the SMARC module interface.
 >>>
->>> I can't figure out another way. I need to require certain properties for
->>> a compatible string AND certain enum/const for certain properties which
->>> are inside patternProperties for "^(ethernet-)?port@[0-9]+$" by reading
->>> the compatible string.
->>
->> requiring properties is not equal to defining them and nothing stops you
->> from defining all properties top-level and requiring them in
->> allOf:if:then:patternProperties.
->>
->>
->>> If I put allOf:if:then under patternProperties, I can't do the latter.
->>
->> You can.
-
-Am I supposed to do something like this:
-
-patternProperties:
-   "^(ethernet-)?ports$":
-     type: object
-
-     patternProperties:
-       "^(ethernet-)?port@[0-9]+$":
-         type: object
-         description: Ethernet switch ports
-
-         unevaluatedProperties: false
-
-         properties:
-           reg:
-             description:
-               Port address described must be 5 or 6 for CPU port and
-               from 0 to 5 for user ports.
-
-         allOf:
-           - $ref: dsa-port.yaml#
-           - if:
-               properties:
-                 label:
-                   items:
-                     - const: cpu
-             then:
-               allOf:
-                 - if:
-                     properties:
-                       compatible:
-                         items:
-                           - const: mediatek,mt7530
-                           - const: mediatek,mt7621
-                   then:
-                     allOf:
-                       - if:
-                           properties:
-                             reg:
-                               const: 5
-                         then:
-                           properties:
-                             phy-mode:
-                               enum:
-                                 - gmii
-                                 - mii
-                                 - rgmii
-
-                       - if:
-                           properties:
-                             reg:
-                               const: 6
-                         then:
-                           properties:
-                             phy-mode:
-                               enum:
-                                 - rgmii
-                                 - trgmii
-
-                 - if:
-                     properties:
-                       compatible:
-                         items:
-                           - const: mediatek,mt7531
-                   then:
-                     allOf:
-                       - if:
-                           properties:
-                             reg:
-                               const: 5
-                         then:
-                           properties:
-                             phy-mode:
-                               enum:
-                                 - 1000base-x
-                                 - 2500base-x
-                                 - rgmii
-                                 - sgmii
-
-                       - if:
-                           properties:
-                             reg:
-                               const: 6
-                         then:
-                           properties:
-                             phy-mode:
-                               enum:
-                                 - 1000base-x
-                                 - 2500base-x
-                                 - sgmii
-
-               properties:
-                 reg:
-                   enum:
-                     - 5
-                     - 6
-
-               required:
-                 - phy-mode
-
->>
+>>> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+>>> ---
 >>>
->>> Other than readability to human eyes, binding check works as intended,
->>> in case there's no other way to do it.
+>>> Changes in v2
+>>>   - Added compatibles
+>>>   - Removed underscores from node names
+>>>   - Make node names more generic
+>>>   - Reorder properties
+>>>   - Fix issues found by dtbs_check in these files
+>>>
+>>> Changes in v3:
+>>>   - Switched to avnet vendor string in compatibles
+>>>   - Corrected patch description
+>>>
+>>> Changes in v4:
+>>>   - Switched from phy-reset-gpios to reset-gpios, removing
+>>> duplication
+>>>   - Removed unneeded sdma1 node
+>>>
+>>>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>>>  .../freescale/imx8mp-msc-sm2s-14N0600E.dts    |  72 ++
+>>>  .../dts/freescale/imx8mp-msc-sm2s-ep1.dts     |  53 ++
+>>>  .../boot/dts/freescale/imx8mp-msc-sm2s.dtsi   | 812
+>>> ++++++++++++++++++
+>>>  4 files changed, 938 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-
+>>> 14N0600E.dts
+>>>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-
+>>> ep1.dts
+>>>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-msc-
+>>> sm2s.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/Makefile
+>>> b/arch/arm64/boot/dts/freescale/Makefile
+>>> index 8bf7f7ecebaa..139c8b95c9c9 100644
+>>> --- a/arch/arm64/boot/dts/freescale/Makefile
+>>> +++ b/arch/arm64/boot/dts/freescale/Makefile
+>>> @@ -83,6 +83,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-
+>>> gw7902.dtb
+>>>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
+>>>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+>>>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
+>>> +dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
+>>>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
+>>>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-tqma8mpql-mba8mpxl.dtb
+>>>  dtb-$(CONFIG_ARCH_MXC) += imx8mp-venice-gw74xx.dtb
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-
+>>> 14N0600E.dts b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-
+>>> 14N0600E.dts
+>>> new file mode 100644
+>>> index 000000000000..9e976e8baaee
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp-msc-sm2s-14N0600E.dts
+>>> @@ -0,0 +1,72 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright (C) 2022 Avnet Embedded GmbH
+>>> + */
+>>> +/dts-v1/;
+>>> +
+>>> +#include "imx8mp-msc-sm2s.dtsi"
+>>> +
+>>> +/ {
+>>> +       model = "MSC SM2S-IMX8PLUS-QC6-14N0600E SoM";
+>>> +       compatible = "avnet,sm2s-imx8mp-14N0600E", "avnet,sm2s-
+>>> imx8mp",
+>>> +                    "fsl,imx8mp";
 >>
->> I don't see the problem in doing it and readability is one of main
->> factors of code admission to Linux kernel.
+>> This does not match your bindings. Please test your DTS.
+>>
 > 
-> One more thought - if your schema around allOf:if:then grows too much,
-> it is actually a sign that it might benefit from splitting. Either into
-> two separate schemas or into common+two separate.
+> Hi Krzysztof,
 > 
-> Best regards,
-> Krzysztof
+> I'm not sure I follow. This is the DTS for the SoM. 
 
-Arınç
+SoMs usually do not have DTSes because they cannot be run on their own.
+SoMs almost always require a baseboard/carrier. Therefore this should
+not be DTS, but that was not my comment.
+
+> The only way I can
+> test the SoM at the moment is on combination with the "EP1" carrier
+> board. 
+
+... so you basically say it cannot be a DTS.
+
+> That has been tested. The strings match those specified in the
+> bindings unless I'm being blind to something.
+
+Test the DTS - make dtbs_check (there are several
+variations/arguments/helpers):
+Documentation/devicetree/bindings/writing-schema.rst
+
+> 
+> I guess I can build the DTB for just the SoM 
+
+But you just did it, didn't you? This is a DTS.
+
+> and boot with that or
+> thinking about it, rename this as a .dtsi, given that it's unlikely
+> that anyone is going to have a carrier barebones enough that it could
+> be considered just the SoM?
+
+Anyway, I wanted DT bindings tests for DTS. Not actual tests on
+hardware, because the compatibles do not matter in that aspect.
+
+Best regards,
+Krzysztof
