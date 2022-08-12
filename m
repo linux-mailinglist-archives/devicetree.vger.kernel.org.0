@@ -2,222 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97DB2591372
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 18:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C97559137D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 18:07:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237116AbiHLQFa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 12:05:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58740 "EHLO
+        id S239110AbiHLQGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 12:06:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239054AbiHLQFS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 12:05:18 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F861131;
-        Fri, 12 Aug 2022 09:05:16 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id k26so2784171ejx.5;
-        Fri, 12 Aug 2022 09:05:15 -0700 (PDT)
+        with ESMTP id S239098AbiHLQF5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 12:05:57 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47D6D57221
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 09:05:55 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id gj1so1423669pjb.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 09:05:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=tBGqIkeRgghZUQUYq0Zr0U0ccBzTylH6xaA7Tnvk2uY=;
-        b=QnqEe11jRaRXP4zO2urJdVzNze8KVnV9SmPxcdrdcqS3fIvyaIVTjchdBv9HT4U2qz
-         axc/V8P+1M7CtnC+Eginf8/WxCebQINdvhOjDTn2PwrUF7sOIoDhaDW79tTgpqdB7foJ
-         oz5vihUWsEAKIaVNLtTdrqjVTKfZipx/M3Q/cP541RjgA48KLlcsFu0zKXAHyRS0gO1v
-         2k6bWhxqWtAMH0uTsBnlNeVUx9IfTkQOAy1iVsYP71thy7KQ05owphFnFTm6F3v+hQUT
-         zXT8ZQuk17y/RcJKoZiCiXJOwkGbaH76ZGBVV1cF1l5Q0MS706rn1D6BDXnptmBRFciK
-         A1Mg==
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc;
+        bh=4OVNFUuImLLig/MGlX7vlR8weBzwek79DqD1BdLgOpk=;
+        b=hXdOxhnDhpBegqyCoNLEwbn81PWOhosp82gYxw3LUcdKmADMMMEvM8eJldJcSFhZE1
+         Z5dRCKke8PHj6jXb6TPIVae6NpQ54/qQzufcn2nzN6JWSGimbxBPyyA3bGN8+bDHuiuZ
+         XeAUdTST31jiYPcDve/nvcp4PlPjwnuX1fRImN+0pZMoqzp8SCqekeFVGnfAmKBcO8QB
+         UFLnIEZBmQQb9imQ/6qGNY70F1h+1Af98cCgt6qB3FyZg7H6g15ROmRG4ayeCxXeN5o4
+         vsFV5z50xf4BA2JPkDedx2vUoU2OOV0wrXqo2euDhmmMzobdlIeqJdzg6N/L0GOrN72k
+         mIeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=tBGqIkeRgghZUQUYq0Zr0U0ccBzTylH6xaA7Tnvk2uY=;
-        b=QEPF3/dFzMT+TJcPSdbuJRERWmgdMKsYNxnQQ2ashXJO+QS6Omgprr2zN6yALQ5WfY
-         pDnLxi7uXCc6snK2ynp0EEBYi9EVuKFQ45Y74weiv+qRH+Cuykx02AMuN1odMy2t8r9T
-         e9E6ZGqy2pM6chzPaxKjdyJDsbI5mNPyA09bmMNh2NXERn99055ttgn7KTJhtQiU9qUs
-         9J1vWZyrpT8uN1miYJzSKNRJPJaJy1QxOp7A6B83J9DODpV+dtRSiKoZe+RPo3/0uDhy
-         lk7NePhj+vwQfTcAJIdSJaCHmd4ZB90mLm5yYbMRoiPopmoFk5ihn0c9sXzKf98KkVbW
-         DiEQ==
-X-Gm-Message-State: ACgBeo1YeFhDSvQX34gZ9MjqMtbwFIq9A0rRPdh45Ahpu1CRViLVYq62
-        BmVWQOsDec4cvbdNbBgEfAHD2xpQgFeKIBerxteb3+jiXPQ=
-X-Google-Smtp-Source: AA6agR6OgNIbWRwBbYcLWb8bT6C/tK5kH6jSp7i96DIYp9hzSB7xTnnqzWqPHcVqJPHHFuasQpxJh9uNBnlTauFcJIA=
-X-Received: by 2002:a17:906:4796:b0:734:b5b5:96ed with SMTP id
- cw22-20020a170906479600b00734b5b596edmr3080431ejc.251.1660320314459; Fri, 12
- Aug 2022 09:05:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <1660225318-4063-1-git-send-email-u0084500@gmail.com>
- <1660225318-4063-2-git-send-email-u0084500@gmail.com> <3cae9d60-4012-1dfd-abd9-4d0b9379e6bb@linaro.org>
- <CADiBU3_depGDZtiyizU3MB939A3oH1uTWzTMyruUy0z=u6BZkQ@mail.gmail.com>
- <40261b95-637a-1304-2e06-8c8ff7fc377b@linaro.org> <CADiBU38+9sR1r20=YWt-9s2+u7maHH+1VudCnV1-0+F4jYKdQQ@mail.gmail.com>
-In-Reply-To: <CADiBU38+9sR1r20=YWt-9s2+u7maHH+1VudCnV1-0+F4jYKdQQ@mail.gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Sat, 13 Aug 2022 00:05:03 +0800
-Message-ID: <CADiBU3_Jt6n6tm=oVvjk5vsoEAneH7t-37S6skepA6v6bVVYUw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: power: supply: Add Richtek RT9471
- battery charger
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        =?UTF-8?B?5ri45a2Q6aao?= <alina_yu@richtek.com>,
-        cy_huang <cy_huang@richtek.com>, alinayu829@gmail.com,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc;
+        bh=4OVNFUuImLLig/MGlX7vlR8weBzwek79DqD1BdLgOpk=;
+        b=mIXbUkzRMJMo2c7YgBMr5efMZ4+LDUdQ9r6MXCr7Zc3z+ljsybPbbZv5JTwJowEpiG
+         GXxJw1v685cEvc38W4MNbhXJMyYas5jyNYL1igOhcI1ZJ+C3Z5x/19oJRUe0Fb1VR8e7
+         CD6W+8MjPOrRgP8cS/tgnTC77f+ZoyP9TnPM3WP1WZvd0BLH0Q3JPr9cY2gTOkd+o86J
+         lqpB1h+2qyRHLJqxmy8M4o3LOW5MOmeH6ZGRs1KA9AF9IXNlIoIXG9VVHbtlPuWN3jVd
+         DTLA3wq4pnoygaOqi7Bow0gGJK954gDHdsO7XNnKEqo9QVyQOu6rQOGPT9aSwQFi9TpX
+         YdVA==
+X-Gm-Message-State: ACgBeo2S8uzicS1DfU9Gja0oJQS/Lda4rGIU0lIkWGMtiPKZlc2k9l2l
+        WFx+X82Y3+XDei2zEUnBT4Ul3w==
+X-Google-Smtp-Source: AA6agR5/COUTRoAh0UyVgQkf61YCv93x/r8lJgd5f8JFsaDvoPs//RQJEaMQhT8zl7lBJEwuv/cQgQ==
+X-Received: by 2002:a17:90b:1e42:b0:1f3:297c:c65c with SMTP id pi2-20020a17090b1e4200b001f3297cc65cmr4993940pjb.208.1660320354716;
+        Fri, 12 Aug 2022 09:05:54 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id f6-20020a170902684600b0016d01c133e1sm1885809pln.248.2022.08.12.09.05.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Aug 2022 09:05:54 -0700 (PDT)
+Date:   Fri, 12 Aug 2022 09:05:54 -0700 (PDT)
+X-Google-Original-Date: Fri, 12 Aug 2022 09:00:14 PDT (-0700)
+Subject:     Re: [PATCH v4] dt-bindings: gpio: sifive: add gpio-line-names
+In-Reply-To: <20220803155539.800766-1-mail@conchuod.ie>
+CC:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, conor.dooley@microchip.com,
+        atulkhare@rivosinc.com, sagar.kadam@sifive.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     mail@conchuod.ie
+Message-ID: <mhng-5813099c-bd9f-4122-aec9-44adb5d280f5@palmer-mbp2014>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2022=E5=B9=B48=E6=9C=8812=E6=
-=97=A5 =E9=80=B1=E4=BA=94 =E6=99=9A=E4=B8=8A11:57=E5=AF=AB=E9=81=93=EF=BC=
-=9A
+On Wed, 03 Aug 2022 08:55:40 PDT (-0700), mail@conchuod.ie wrote:
+> From: Atul Khare <atulkhare@rivosinc.com>
 >
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=E5=B9=
-=B48=E6=9C=8812=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=882:54=E5=AF=AB=
-=E9=81=93=EF=BC=9A
-> >
-> > On 12/08/2022 04:32, ChiYuan Huang wrote:
-> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> =E6=96=BC 2022=
-=E5=B9=B48=E6=9C=8811=E6=97=A5 =E9=80=B1=E5=9B=9B =E6=99=9A=E4=B8=8A10:12=
-=E5=AF=AB=E9=81=93=EF=BC=9A
-> > >>
-> > >> On 11/08/2022 16:41, cy_huang wrote:
-> > >>> From: ChiYuan Huang <cy_huang@richtek.com>
-> > >>>
-> > >>> Add bindings for the Richtek RT9471 I2C controlled battery charger.
-> > >>>
-> > >>
-> > >> Thank you for your patch. There is something to discuss/improve.
-> > >>
-> > >>> +properties:
-> > >>> +  compatible:
-> > >>> +    const: richtek,rt9471
-> > >>> +
-> > >>> +  reg:
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +  ceb-gpios:
-> > >>> +    maxItems: 1
-> > >>
-> > >> This looks not standard, so please provide a description.
-> > > It's the external 'charge enable' pin that's used to control battery =
-charging.
-> > > The priority is higher than the register 'CHG_EN' control.
-> > > In the word, 'b' means it's reverse logic, low to allow charging, hig=
-h
-> > > to force disable charging.
-> >
-> > Isn't this standard enable-gpios property?
-> Not the same thing, this charger includes power patch control.
-> This gpio is used to 'force disable' charge the battery.
-> >
-> > >
-> > > description:
-> > >   External charge enable pin that can force control not to charge the=
- battery.
-> > >   Low to allow charging, high to disable charging.
-> > >
-> > >>
-> > >>> +
-> > >>> +  wakeup-source: true
-> > >>> +
-> > >>> +  interrupts:
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +  interrupt-controller: true
-> > >>> +
-> > >>> +  "#interrupt-cells":
-> > >>> +    const: 1
-> > >>
-> > >> Why a charger driver is a interrupt-controller?
-> > > There're 32 nested IRQs from RT9471.
-> > > The original thought is to make the user easy to bind the interrupt
-> > > into their driver.
-> >
-> > Bindings are not related to the driver but to hardware...
-> >
-> Sorry, I mislead  your comment.
-> Refer to bq2515x.yaml, I think it's better to change this property to
-> 'charge-enable-gpios'.
-> It's the same usage like as TI charger.
-> > >
-> > > For charger driver, does it mean legacy IRQ handler is more preferred=
-?
-> >
-> > Who is the consumer of these interrupts? Can you show the DTS with the
-> > interrupt consumer?
-> >
-Sorry, I forget to reply this question.
-Some battery driver may need to know the 'full', 'recharge' , 'ieoc' status=
-.
-The usage will  be like as below
-
-battery {
-  interrupts-extended =3D <&rt9471_chg 2 0>, <&rt9471_chg 3 0>, &(rt9471_ch=
-g 5 0>;
-  interrupt-names =3D "chg-done", "chg-recharge", "chg-ieoc";
-};
-
-Some gauge HW needs this information to enhance the battery capacity accura=
-cy.
-
-> > >>
-> > >>> +
-> > >>> +  usb-otg-vbus-regulator:
-> > >>> +    type: object
-> > >>> +    unevaluatedProperties: false
-> > >>> +    $ref: /schemas/regulator/regulator.yaml#
-> > >>> +
-> > >>> +required:
-> > >>> +  - compatible
-> > >>> +  - reg
-> > >>> +  - wakeup-source
-> > >>> +  - interrupts
-> > >>> +  - interrupt-controller
-> > >>> +  - "#interrupt-cells"
-> > >>> +
-> > >>> +additionalProperties: false
-> > >>> +
-> > >>> +examples:
-> > >>> +  - |
-> > >>> +    #include <dt-bindings/interrupt-controller/irq.h>
-> > >>> +    i2c {
-> > >>> +      #address-cells =3D <1>;
-> > >>> +      #size-cells =3D <0>;
-> > >>> +
-> > >>> +      charger@53 {
-> > >>> +        compatible =3D "richtek,rt9471";
-> > >>> +        reg =3D <0x53>;
-> > >>> +        ceb-gpios =3D <&gpio26 1 0>;
-> > >>
-> > >> Isn't the last value a GPIO flag? If yes, use appropriate define.
-> > > I already specify GPIOD_OUT_LOW in the gpiod_request flag.
-> >
-> > It is not related to the DTS. Anyway writing "low" for a meaning of hig=
-h
-> > is not correct usually...
-> >
-> > > Do I need to convert the gpio request code to GPIOD_OUT_HIGH,
-> > > and specify here as GPIO_ACTIVE_LOW?
-> >
-> > You need to properly describe the hardware. The polarity of logical
-> > signal is defined by DTS, not by driver. It does not make sense to do i=
-t
-> > in driver. What if on some board the signal is inverted?
-> >
-> From our discussion, binding example just keep the active level that the =
-pin is.
-> So 'GPIO_ACTIVE_LOW', thanks.
+> Fix device tree schema validation messages like 'gpio-line-names'
+> does not match any of the regexes: 'pinctrl-[0-9]+' From schema: ...
+> sifive,gpio.yaml'.
 >
-> All of the above will be fixed in the next revision.
+> The bindings were missing the gpio-line-names element, which was
+> causing the dt-schema checker to trip-up.
 >
-> > Best regards,
-> > Krzysztof
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Atul Khare <atulkhare@rivosinc.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changes since v3[0]:
+> - Dropped patch 1 & the now unneeded cover letter
+> - Added Rob's Ack
+> - Changed the patch title to include the subsystem
+>
+> 0 - https://lore.kernel.org/all/20220726170725.3245278-3-mail@conchuod.ie/
+> ---
+>  Documentation/devicetree/bindings/gpio/sifive,gpio.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> index 939e31c48081..fc095646adea 100644
+> --- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> @@ -46,6 +46,10 @@ properties:
+>      maximum: 32
+>      default: 16
+>
+> +  gpio-line-names:
+> +    minItems: 1
+> +    maxItems: 32
+> +
+>    gpio-controller: true
+>
+>  required:
+
+Thanks, this is on for-next.
