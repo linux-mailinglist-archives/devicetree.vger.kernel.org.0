@@ -2,78 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 690DD5911A1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 15:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05C9A5911AD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 15:42:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238998AbiHLNgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 09:36:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56046 "EHLO
+        id S236639AbiHLNmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 09:42:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238992AbiHLNgu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 09:36:50 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 293D49E13B
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:36:48 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id l21so987245ljj.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 06:36:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=yKajFgqA9LCPMjtPdVJnnC8O+xs2E9xJBgChlA4S+78=;
-        b=vXjOFsF0gE+TQeOzNb6csMqf1tmqDsrfApypwXBy6WylaS3lFMowP3OffYL2s9AElJ
-         agZB3uUG2pS7lgdIz4kNe8LHX0MQtq1aKdMK/fHAZpSE5DrtPocZ2/6TWgucb9AS5Qbt
-         /NPIF6zeqgAPSz92VtLiNgcgOEkcHado30Zs7wAgWJkRetiIHJUhJZvERtwX5Dfp+9fw
-         fydjrXW6w3j/CEbOcAeRnC+v+ZxVUxih/BmAju97IFaWi3qan4RXvAN/lx/PQyaX+OR9
-         Q2Xm/pUfEw23q84ODaloyXvyn9qBN9ne2wfyA9qAq5+Aj37t3DY6DIDzSeitjNS00kOd
-         vuPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=yKajFgqA9LCPMjtPdVJnnC8O+xs2E9xJBgChlA4S+78=;
-        b=KdjcHLXp4Cy09Djzb2IBBToCXSGkxeA2Yc0tAWGVn7fvIPi0IFY5KsQJbz/4y0I1dp
-         TmmIiD5jj0ATRabBIO5yetd2FedETrQAdc7IJ9JwLGK0cWL0MRkep9dmILvofbEmqy7p
-         6vDUo4Ay8H78WM0/8/VeKYq1OAPUVGOaoSYKnAuWgP2ZAx7pezOJgc+YV0yy9UH9/tBf
-         eXmW2T/JBf/6JF5ZjaKqQ0fcne7Z24j2XFHyt22gJOiCPfzIa5rDrC4GjhQeVMRCpSyy
-         2t4rMG2aV7d8GV9RG22K4tdJCYb/cKnO/JztB3ugaqoZMfb2RH6PH+WFPVFvSsIWdGys
-         AqRw==
-X-Gm-Message-State: ACgBeo2ABBxcnDRVW3D92PKCufOO4Gu11eE9kTJTT+AaQMT2VsahWABZ
-        NDyCwh4CuLo1gh0O36QDYHALVg==
-X-Google-Smtp-Source: AA6agR5PgU5SgucPEDFTmFEXoayTaIKrClk7PcXY11AbJBNssKpGE2bD62bnRk9ZnenQ+ddczAaqMA==
-X-Received: by 2002:a2e:7a1a:0:b0:25e:52fe:952f with SMTP id v26-20020a2e7a1a000000b0025e52fe952fmr1278393ljc.519.1660311406593;
-        Fri, 12 Aug 2022 06:36:46 -0700 (PDT)
-Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id bi34-20020a05651c232200b0025debf2a59asm349237ljb.108.2022.08.12.06.36.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 06:36:46 -0700 (PDT)
-Message-ID: <81ae6a31-1f37-a677-f8f8-2340e37d3a63@linaro.org>
-Date:   Fri, 12 Aug 2022 16:36:42 +0300
+        with ESMTP id S236979AbiHLNmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 09:42:31 -0400
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A54E79F752;
+        Fri, 12 Aug 2022 06:42:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1660311705; cv=none; 
+        d=zohomail.com; s=zohoarc; 
+        b=RCWQQd2W+BbLuz5xnRGzN5nde0a/4N8SOuCNOPnBrFQK5sIwKtHtZl7jj5J0U4E+f6AWv7ZpvlvVdIPu9yzlhtCaNP0RWBwoDUQAV5PiMGZEUP2t+bdCMOhv6BesuSMCznMByJY1ilDUseRlneb9dT9R6X7XK0FJWDsWZvAIRcM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+        t=1660311705; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To; 
+        bh=Lj0r/qXRysJ3YO0LbUMCHmWO7t0y8zEQ459Z3a0BMSw=; 
+        b=J6VOKszni1qY2HvcyxWkl0LEFBaGYm18L11gkaXfy4anMBXOdrqm8jiHzB4xCNUpajuDKijpYTItAxe1fLUrzG7OTPdygMHOEo0Y3Opp1Bm1SB63oi6egkPDoTphGCjmP9GDPbqznX5DdDMyX0g6bqQOR/z7DovGvSplzvg2jbo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+        dkim=pass  header.i=arinc9.com;
+        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
+        dmarc=pass header.from=<arinc.unal@arinc9.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1660311705;
+        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
+        h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+        bh=Lj0r/qXRysJ3YO0LbUMCHmWO7t0y8zEQ459Z3a0BMSw=;
+        b=C0IsFf4zWi3W9Ou+RjcsTpTsDYH6IbhIOwlh4d/oRqjlPsR/GPYf7uDlCp6TlXjw
+        QGOgZkFWCk1NQyFgebl+KO4LxVmWTNycgpW0SSsLCoGizt5969njm4XfGrU2ehF3uBt
+        XIJseeo3eomKasB85Xo4xtvOSRT9V85s1xe0NGrs=
+Received: from [10.10.10.3] (37.120.152.236 [37.120.152.236]) by mx.zohomail.com
+        with SMTPS id 1660311704339513.651743389957; Fri, 12 Aug 2022 06:41:44 -0700 (PDT)
+Message-ID: <70e246af-c336-0896-95b5-9e42a17a239d@arinc9.com>
+Date:   Fri, 12 Aug 2022 16:41:37 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: pm6350: add temp sensor and thermal
- zone config
+ Thunderbird/91.11.0
+Subject: Re: [PATCH 4/4] dt-bindings: net: dsa: mediatek,mt7530: update
+ json-schema
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220812114421.1195044-1-luca.weiss@fairphone.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220812114421.1195044-1-luca.weiss@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        Sander Vanheule <sander@svanheule.net>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Daniel Golle <daniel@makrotopia.org>, erkin.bozoglu@xeront.com,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220730142627.29028-1-arinc.unal@arinc9.com>
+ <20220730142627.29028-5-arinc.unal@arinc9.com>
+ <e5cf8a19-637c-95cf-1527-11980c73f6c0@linaro.org>
+ <bb60608a-7902-99fa-72aa-5765adabd300@arinc9.com>
+ <8a665b7a-bbd0-99ce-658e-bc78568bdca2@linaro.org>
+ <40130c63-1e36-bb43-43b4-444a8f287226@linaro.org>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <40130c63-1e36-bb43-43b4-444a8f287226@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,25 +87,149 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 14:44, Luca Weiss wrote:
-> Add temp-alarm device tree node and a default configuration for the
-> corresponding thermal zone for this PMIC. Temperatures are based on
-> downstream values.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-> With this config I'm getting this in dmesg, not sure if it's a warning
-> that should be solved or just an informative warning.
-> 
-> [    0.268256] spmi-temp-alarm c440000.spmi:pmic@0:temp-alarm@2400: No ADC is configured and critical temperature is above the maximum stage 2 threshold of 140 C! Configuring stage 2 shutdown at 140 C.
-> 
-> As far as I can tell, based on downstream dts this PMIC doesn't have an
-> ADC.
+On 12.08.2022 10:01, Krzysztof Kozlowski wrote:
+> On 12/08/2022 09:57, Krzysztof Kozlowski wrote:
+>> On 12/08/2022 01:09, Arınç ÜNAL wrote:
+>>>>> -patternProperties:
+>>>>> -  "^(ethernet-)?ports$":
+>>>>> -    type: object
+>>>>
+>>>> Actually four patches...
+>>>>
+>>>> I don't find this change explained in commit msg. What is more, it looks
+>>>> incorrect. All properties and patternProperties should be explained in
+>>>> top-level part.
+>>>>
+>>>> Defining such properties (with big piece of YAML) in each if:then: is no
+>>>> readable.
+>>>
+>>> I can't figure out another way. I need to require certain properties for
+>>> a compatible string AND certain enum/const for certain properties which
+>>> are inside patternProperties for "^(ethernet-)?port@[0-9]+$" by reading
+>>> the compatible string.
+>>
+>> requiring properties is not equal to defining them and nothing stops you
+>> from defining all properties top-level and requiring them in
+>> allOf:if:then:patternProperties.
+>>
+>>
+>>> If I put allOf:if:then under patternProperties, I can't do the latter.
+>>
+>> You can.
 
-You configure 145 and driver believes 140 is the limit, so it seems
-warning should be addressed.
+Am I supposed to do something like this:
 
-From where did you get 145 degrees as limit? Downstream DTS?
+patternProperties:
+   "^(ethernet-)?ports$":
+     type: object
 
-Best regards,
-Krzysztof
+     patternProperties:
+       "^(ethernet-)?port@[0-9]+$":
+         type: object
+         description: Ethernet switch ports
+
+         unevaluatedProperties: false
+
+         properties:
+           reg:
+             description:
+               Port address described must be 5 or 6 for CPU port and
+               from 0 to 5 for user ports.
+
+         allOf:
+           - $ref: dsa-port.yaml#
+           - if:
+               properties:
+                 label:
+                   items:
+                     - const: cpu
+             then:
+               allOf:
+                 - if:
+                     properties:
+                       compatible:
+                         items:
+                           - const: mediatek,mt7530
+                           - const: mediatek,mt7621
+                   then:
+                     allOf:
+                       - if:
+                           properties:
+                             reg:
+                               const: 5
+                         then:
+                           properties:
+                             phy-mode:
+                               enum:
+                                 - gmii
+                                 - mii
+                                 - rgmii
+
+                       - if:
+                           properties:
+                             reg:
+                               const: 6
+                         then:
+                           properties:
+                             phy-mode:
+                               enum:
+                                 - rgmii
+                                 - trgmii
+
+                 - if:
+                     properties:
+                       compatible:
+                         items:
+                           - const: mediatek,mt7531
+                   then:
+                     allOf:
+                       - if:
+                           properties:
+                             reg:
+                               const: 5
+                         then:
+                           properties:
+                             phy-mode:
+                               enum:
+                                 - 1000base-x
+                                 - 2500base-x
+                                 - rgmii
+                                 - sgmii
+
+                       - if:
+                           properties:
+                             reg:
+                               const: 6
+                         then:
+                           properties:
+                             phy-mode:
+                               enum:
+                                 - 1000base-x
+                                 - 2500base-x
+                                 - sgmii
+
+               properties:
+                 reg:
+                   enum:
+                     - 5
+                     - 6
+
+               required:
+                 - phy-mode
+
+>>
+>>>
+>>> Other than readability to human eyes, binding check works as intended,
+>>> in case there's no other way to do it.
+>>
+>> I don't see the problem in doing it and readability is one of main
+>> factors of code admission to Linux kernel.
+> 
+> One more thought - if your schema around allOf:if:then grows too much,
+> it is actually a sign that it might benefit from splitting. Either into
+> two separate schemas or into common+two separate.
+> 
+> Best regards,
+> Krzysztof
+
+Arınç
