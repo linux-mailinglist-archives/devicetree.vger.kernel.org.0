@@ -2,86 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E2115910D3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 14:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AAE55910DE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 14:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237986AbiHLMgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 08:36:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51800 "EHLO
+        id S235653AbiHLMkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 08:40:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237472AbiHLMgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 08:36:51 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B62A3465
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 05:36:49 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id v10so804968ljh.9
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 05:36:49 -0700 (PDT)
+        with ESMTP id S234719AbiHLMkU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 08:40:20 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BE9A2FFF8
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 05:40:18 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id x19so1183148lfq.7
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 05:40:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=2Tr6s6oL+tsJZTa2fS1ZrFcsPmdVMztbv0oSJXbRlXA=;
-        b=FwnpfPvU0mr6T2+sNySqjij72Ea3ibh6EfoI4nRmF2+EnuB4vPoGgl0XCl9+/I8zJS
-         MeusBGqCgyx77QPPt26Y3P4E/yihI+MwKoWf5sMolOoUivOpBqkomTiOAPAkkOqEVWDx
-         /dauYc/ZSD2Div6Im4iBUaka1PSIzemPTCy8FcbYoVK7T83VgCxVNrWWO7c2i6b0mMOZ
-         E+rsvY/NK8O12PrSuXu9u7eMBeq5bB07/2fipqaqPbYDYPmle8p5r8BRGpWUPSPtf4vn
-         SWgLg3IzHEoSm9nf3QXfyo7tFWzSFBf6theP2tmI8W8UyD1LTOjXR4xryxU0o/KJ8dLK
-         DW2w==
+        bh=YIfVk5qV6IbraaZwFyYTdjJsLosoEwiwnWTuuewGKd0=;
+        b=VwWImj/vpxXTYulf5oM9HbksWEM7P3NAlvpGxheI3yGdygbm5LJrFQhnHXqdOYmNJy
+         6nuA76C8u27+Kfdws/QR02EKqu2s25lH1omR3Gz9oXyzQ8YpP512w6uD5zyHIz6ykGyu
+         Tnj4yq7mvkNxK2C234kaIngg9FjiXjvqYBmWELtltMbiB4qoiJMrK4UdfL41o9t1OtVc
+         q6x0KoPOWCZxdFw2XfQr591ZmhOenocyiL19LUDkCFDxvN+88WH7lsvSefxsgpIdUkUq
+         37noCLlhTMwLcMRHd5Kq9HAyVvydyXA2pbhdWAPu817QV3hMaQf52ZFB+nwnZSJg8haV
+         ZkcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=2Tr6s6oL+tsJZTa2fS1ZrFcsPmdVMztbv0oSJXbRlXA=;
-        b=GjedCYXaY6/s+YXCUByLnaO0BQyis1MJuWPEYZHQFHw7gjtDZOaLbUYDSuwwsv31X1
-         nrnIQHPZgPWcLgRw/OnuL29BUeKyqLTOzjloaKOM+GX49mCaUJ42RuyqxXXYWkKDD56o
-         8n/kimkdAkwk+3/+CD8vwhftHVguQfG5O/+kdg5IVz1WnsDEhmjOLJ/n18Zx7wfVkD/H
-         e4G8jnSbqEUDeNXl3SUogb2qRwHG4oryXiXcZBn6n4lDBeFSSFt30kxJH/y62SS+U2FZ
-         jPrIsBPy671muub9WtaCRW8b60Qh/1Liou0TFQXVTI7yvXvS7M9cG5ZJlFco3InoLhjN
-         S0Uw==
-X-Gm-Message-State: ACgBeo0F2GCe+0H9xcjZLr20yuYCfCXQQtkzRt1WNLs43jssyINbADQs
-        ebhyhULpPVgU1RhDTvyaQJjdng==
-X-Google-Smtp-Source: AA6agR78QUiU7vpTO8Aqve0sIQhhsaLLDdk1wAfRnsgtfOx1KMpbzpIIP5CArpfpjrSkQ97qI8rOgA==
-X-Received: by 2002:a2e:712:0:b0:25e:c39b:45cf with SMTP id 18-20020a2e0712000000b0025ec39b45cfmr1196685ljh.511.1660307807962;
-        Fri, 12 Aug 2022 05:36:47 -0700 (PDT)
+        bh=YIfVk5qV6IbraaZwFyYTdjJsLosoEwiwnWTuuewGKd0=;
+        b=4eufMWjjBmbx+wBS2y4rZ+rtSyGFvtlsi7E4+dUPPcQcr86BSinvnDV/Wy7fdLIaMw
+         BLZAYkAIfIglMUJrlZfLBGU7lfFuiNElKEAfN66OZnLskw3J30EoLe/sxSXhdbkkl9o/
+         ITAVVY1bnLOfHYonOarhwa2uOx9xhhvW330QEpkSomi6zusJCcETYlCPHoK651B/fNCj
+         CCADkNKpVJ11y/OlAWHUsM2Qt5kUzm/Wvgxu/2X+i8WD6mfuLWKjoRw7oBd/OAz8FEcl
+         hePTblm+zYh1g75Jv2DA7UjQdZLqF6GKL8HCNZhvwNUEW18eDNyYTGgSmR5tpOpSn0D9
+         uSXQ==
+X-Gm-Message-State: ACgBeo1ew9r7sQCxXUguYOfRUthOB4EUxTJlaB+ZQGWjRR3og/n253Wg
+        KIuW/56Y9tZokAM1/gL+fQB5Aw==
+X-Google-Smtp-Source: AA6agR4UqqikmP8ZbS4wWLYJAG6gvzcVxMKj9RfEA9uWOeRHCu89xYNR9VJlR6rA/hDlVVzFQscGbw==
+X-Received: by 2002:a05:6512:1320:b0:488:8fcc:e196 with SMTP id x32-20020a056512132000b004888fcce196mr1208711lfu.602.1660308016982;
+        Fri, 12 Aug 2022 05:40:16 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id f14-20020a05651232ce00b0048b2a5a65d0sm198830lfg.256.2022.08.12.05.36.44
+        by smtp.gmail.com with ESMTPSA id q7-20020a056512210700b0048cf0fef301sm196719lfr.301.2022.08.12.05.40.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 05:36:47 -0700 (PDT)
-Message-ID: <01021dde-106c-5660-ea96-a8b8fd89ad50@linaro.org>
-Date:   Fri, 12 Aug 2022 15:36:43 +0300
+        Fri, 12 Aug 2022 05:40:16 -0700 (PDT)
+Message-ID: <039fc122-613c-093f-f89a-6479f76825dd@linaro.org>
+Date:   Fri, 12 Aug 2022 15:40:12 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH net 1/2] dt: ar803x: Document disable-hibernation property
+Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add binding documentation for
+ NXP IMX93 ADC
 Content-Language: en-US
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc:     Wei Fang <wei.fang@nxp.com>, "andrew@lunn.ch" <andrew@lunn.ch>,
-        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
+To:     Bough Chen <haibo.chen@nxp.com>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "krzysztof.kozlowski+dt@linaro.org" 
         <krzysztof.kozlowski+dt@linaro.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220812145009.1229094-1-wei.fang@nxp.com>
- <20220812145009.1229094-2-wei.fang@nxp.com>
- <0cd22a17-3171-b572-65fb-e9d3def60133@linaro.org>
- <DB9PR04MB81060AF4890DEA9E2378940288679@DB9PR04MB8106.eurprd04.prod.outlook.com>
- <14cf568e-d7ee-886e-5122-69b2e58b8717@linaro.org>
- <YvY7Vjtj+WV3BI59@shell.armlinux.org.uk>
- <4cf8d73e-9f14-fe8d-d6e2-551920c1f29e@linaro.org>
- <YvZH9avGaZ3z5B5H@shell.armlinux.org.uk>
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <1659517947-11207-1-git-send-email-haibo.chen@nxp.com>
+ <1659517947-11207-2-git-send-email-haibo.chen@nxp.com>
+ <8afe7812-7dbd-7257-2a55-b4ae49f47381@linaro.org>
+ <VI1PR04MB4016C146F9C8EF90557B362F909F9@VI1PR04MB4016.eurprd04.prod.outlook.com>
+ <d8fec5ab-2e03-4df0-f858-4a83c6f23233@linaro.org>
+ <VI1PR04MB40163F952AD90A73664A560A90679@VI1PR04MB4016.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <YvZH9avGaZ3z5B5H@shell.armlinux.org.uk>
+In-Reply-To: <VI1PR04MB40163F952AD90A73664A560A90679@VI1PR04MB4016.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -92,35 +90,163 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 15:30, Russell King (Oracle) wrote:
-> On Fri, Aug 12, 2022 at 03:04:41PM +0300, Krzysztof Kozlowski wrote:
->> I did not propose a property to enable hibernation. The property must
->> describe hardware, so this piece is missing, regardless whether the
->> logic in the driver is "enable" or "disable".
+On 12/08/2022 14:51, Bough Chen wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: 2022年8月4日 15:11
+>> To: Bough Chen <haibo.chen@nxp.com>; jic23@kernel.org; lars@metafoo.de;
+>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+>> shawnguo@kernel.org; s.hauer@pengutronix.de
+>> Cc: kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx
+>> <linux-imx@nxp.com>; linux-iio@vger.kernel.org; devicetree@vger.kernel.org
+>> Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add binding documentation for
+>> NXP IMX93 ADC
 >>
->> The hardware property for example is: "broken foo, so hibernation should
->> be disabled" or "engineer forgot to wire cables, so hibernation won't
->> work"...
+>> On 04/08/2022 03:05, Bough Chen wrote:
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Sent: 2022年8月3日 18:20
+>>>> To: Bough Chen <haibo.chen@nxp.com>; jic23@kernel.org;
+>>>> lars@metafoo.de;
+>>>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+>>>> shawnguo@kernel.org; s.hauer@pengutronix.de
+>>>> Cc: kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx
+>>>> <linux-imx@nxp.com>; linux-iio@vger.kernel.org;
+>>>> devicetree@vger.kernel.org
+>>>> Subject: Re: [PATCH 2/3] dt-bindings: iio: adc: Add binding
+>>>> documentation for NXP IMX93 ADC
+>>>>
+>>>> On 03/08/2022 11:12, haibo.chen@nxp.com wrote:
+>>>>> From: Haibo Chen <haibo.chen@nxp.com>
+>>>>>
+>>>>> The IMX93 SoC has a new ADC IP, so add binding documentation for NXP
+>>>>> IMX93 ADC.
+>>>>>
+>>>>> Signed-off-by: Haibo Chen <haibo.chen@nxp.com>
+>>>>> ---
+>>>>>  .../bindings/iio/adc/nxp,imx93-adc.yaml       | 65
+>>>> +++++++++++++++++++
+>>>>>  1 file changed, 65 insertions(+)
+>>>>>  create mode 100644
+>>>>> Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>>>
+>>>>> diff --git
+>>>>> a/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>>> b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..e0eac5aa81d7
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/iio/adc/nxp,imx93-adc.yaml
+>>>>> @@ -0,0 +1,65 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+>>>>> +---
+>>>>> +$id:
+>>>>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fde
+>>>>> +vi
+>>>>>
+>>>>
+>> +cetree.org%2Fschemas%2Fiio%2Fadc%2Fnxp%2Cimx93-adc.yaml%23&amp;d
+>>>> ata=0
+>>>>>
+>>>>
+>> +5%7C01%7Chaibo.chen%40nxp.com%7Ca11cd128f8814929684b08da7539b
+>>>> dbc%7C68
+>>>>>
+>>>> +6ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637951188101491669%
+>>>> 7CUnknown
+>>>>>
+>>>> +%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1ha
+>>>> WwiLC
+>>>>>
+>>>>
+>> +JXVCI6Mn0%3D%7C3000%7C%7C%7C&amp;sdata=JFNr4telb4AovE62YaHQu
+>>>> KNr1ywL%2
+>>>>> +Blc0dJMFNN1OA1U%3D&amp;reserved=0
+>>>>> +$schema:
+>>>>> +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fde
+>>>>> +vi
+>>>>>
+>>>>
+>> +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=05%7C01%7Chaib
+>>>> o.che
+>>>>>
+>>>> +n%40nxp.com%7Ca11cd128f8814929684b08da7539bdbc%7C686ea1d3bc2
+>>>> b4c6fa92c
+>>>>>
+>>>> +d99c5c301635%7C0%7C0%7C637951188101491669%7CUnknown%7CTWF
+>>>> pbGZsb3d8eyJ
+>>>>>
+>>>>
+>> +WIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%
+>>>> 7C300
+>>>>>
+>>>>
+>> +0%7C%7C%7C&amp;sdata=A1PPlSkOsS7nWFOPAokyA1F8%2BYFSZj5dY%2FO
+>>>> blm0U4UA%
+>>>>> +3D&amp;reserved=0
+>>>>> +
+>>>>> +title: NXP ADC found on the imx93 SoC
+>>>>
+>>>> How different it is from ADC in imx8qxp?
+>>>
+>>> They are totally two different ADC IP, no similar with each other.
+>>
+>> Each submitter responds like that... how much different? What is different?
+>> Driver has lots of copied pieces, so actually could be unified as well.
 > 
-> From the problem description, the PHY itself isn't broken. The stmmac
-> hardware doesn't reset properly when the clock from the PHY is stopped.
-
-There is nothing like that in the property name or property description.
-Again - DT is not for describing driver behavior or driver policy.
-
-> That could hardly be described as "broken" - it's quite common for
-> hardware specifications to state that clocks must be running for the
-> hardware to operate correctly.
+> HI Krzysztof,
 > 
-> This is a matter of configuring the hardware to inter-operate correctly.
-> Isn't that the whole purpose of DT?
+> Sorry for the delay, high loading on my current work.
 > 
-> So, nothing is broken. Nothing has forgotten to be wired. It's a matter
-> of properly configuring the hardware. Just the same as selecting the
-> correct interface mode to connect two devices together.
+> For the difference, in general,
+>  First, the register define is totally different.
+>  Second, the ADC architecture is different, For imx8qxp, it contains ADC input ctrl + ADC core + ADC out control
+>         For imx93 ADC, it called SAR_ADC, contain ADCD + ADCA, in detail, it also contain calibration/self-test/watch dog timer IP logic, 
+>  Third, different conversion mode, 8QXP ADC support single and continue conversion, support average conversion.
+>         For imx93 ADC, it support normal mode, include single and average conversion, inject mode, hardware trigger mode.
+> 
+> These two drivers architecture looks similar, because they all under IIO subsystem.
+> 
+> For 8qxp ADC, it's feature list in RM:
+> ? Support up to 16 analog inputs
+> ? Support five conversion pairs, can work simultaneously, with different conversion
+> priority.
+> ? Word size is 12-bits.
+> ? Support Single and Continue conversion.
+> ? Support Compare mode and channel auto disable if data match the requirement.
+> ? Support Average conversion, Support flexible 4, 8, 16, 32 number of conversion
+> data.
+> ? Configurable sample time and conversion speed / power. The ADC core clock can
+> vary from 300 kHz to 6 MHz, and the maximum sample rate is 1/6 ADC core clock.
+> ? Conversion complete, hardware average complete, compare, DMA, time out flag and
+> interrupt.
+> ? Automatic compare with interrupt for less than, greater than, and equal to, within
+> range, or out-of-range, programmable value.
+> 
+> For imx93 ADC, it's feature list in RM
+> ? 4'd12-bit resolution
+> ?Multiple modes of starting conversion (Normal, Injected)
+> —Normal mode supports One-Shot and Scan (continuous) conversions
+> —Injected mode supports One-Shot conversions only
+> ?Software-initiated conversions in Normal and Injected modes, or external hardware trigger
+> ?Two different abort features for either a single or chain conversion in Normal and Injected modes
+> ?Independent data registers for each channel contain information about mode of conversion, data validity, overwrite status, and conversion data
+> ?Alternate analog watchdog thresholds (threshold selected through input ports)
+> ?Programmable DMA enables for each channel
+> ?Individual interrupt flags for the following conditions:
+> —End of conversion of a single channel for Normal and Injected modes
+> —End of chain conversion for both Normal and Injected modes
+> —Watchdog threshold violations
+> ?Programmable presampling for channels
+> ?Auto-Clock-Off feature for improved power performance
+> ?Power-Down mode to place the SAR_ADC in power-down state
+> ?Programmable clock prescaler for SAR_ADC (bus clock, or bus clock divided by two or four)
+> ?Software-initiated calibration
+> ?Self-test feature
 
-I just gave you two examples what could be written, don't need to stick
-them. You can use some real one...
+By pasting big pieces of description from RM you do not prove what are
+the differences and it is not my task to find that one line which shows
+the decisive difference (e.g. support or lack of support for DMA).
 
 Best regards,
 Krzysztof
