@@ -2,383 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1CA45916E5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 23:53:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0A715916E9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 23:55:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232302AbiHLVx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 17:53:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37808 "EHLO
+        id S235476AbiHLVzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 17:55:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233805AbiHLVx1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 17:53:27 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2086.outbound.protection.outlook.com [40.107.22.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D59D9B2854;
-        Fri, 12 Aug 2022 14:53:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NI66fSACgQXKNA4vl3YwE9BkSBUHFsfA2bN3S47jCi9tEMu/rz2QHKmBQ7g5D4MK09AWjwhvE8qWWOmfuswRr/N9Wua8e4S3vjt0kByXUssN5gaUNPtHU58eEFCm9iSR0Jf2T2xDPTFBuAFS4eAoQFvLpzzW5W5KvzZcOiXPFGlgn2rSfID+Jk2AP9bZiNhxeUUjNiHMKHKk+k1l8shy3vLgZFpok5Iba68Do7f4ocJ5CMbLuy/FZc2tUod5T2T0xsnRfGVXdD7fFjaLyLCHwLLcH3XQ5zEVJxopvKqS82YXUd5QKuZ7dVyZfG0SDbcXO1DvqGNfUdEPu4BV7KzpQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g1NdUcLeUXF4fzJDgh+3FCiqhJxBXQ8qbrSj5WgwzKo=;
- b=TXS4SIhdz6uvtMSpEGwcp2cum2jAqKiNIC1QrcGye+poGklJkcvgqHXb2SYJZOqw3N0HLIDaO7wH4K8rsOZwOXY/7j5WYmmqEhnQyifv8WDF2/svAhTqF90+vr5Mj8x3nWH62XX0xIhdsta2NK4Y7FYkn/ryEgsEJX8zG7KN8C0m+MZDQmy9Jkz1Qpw1HnUZkT+iKo9aJRjU+Ad0D80A+3dt+Vfs3B5Hv1Ll8P1aPSokF9ygGWKs45gbNdGKxoUDYO08jA44CGYa8P0kL9SrDpNO4dD+gCm1LJtnFFh4Ar23UFcL4yOyA38ElJEor1yGQifLE14wuGoNTJslLU1bLQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g1NdUcLeUXF4fzJDgh+3FCiqhJxBXQ8qbrSj5WgwzKo=;
- b=DExiNgjMySEevPKjerBKQzDk3TMPsLrldUgL5oH2vBeS+lwPDQJ2B7BLnWZ986HugzPuYNKPHn2J7ElGUhd6YIe8vnTKy6xygCpjZGvn5maKSgM6234UDW6u/YjF+POmb440B9L/cU9MfKylUCkfBmGPic5b7NTDuNc+cvqYK+I=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9186.eurprd04.prod.outlook.com (2603:10a6:102:232::18)
- by GV1PR04MB9087.eurprd04.prod.outlook.com (2603:10a6:150:22::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5525.10; Fri, 12 Aug
- 2022 21:53:23 +0000
-Received: from PAXPR04MB9186.eurprd04.prod.outlook.com
- ([fe80::c5f1:b708:61db:a004]) by PAXPR04MB9186.eurprd04.prod.outlook.com
- ([fe80::c5f1:b708:61db:a004%6]) with mapi id 15.20.5504.023; Fri, 12 Aug 2022
- 21:53:23 +0000
-From:   Frank Li <Frank.Li@nxp.com>
-To:     maz@kernel.org, tglx@linutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com
-Cc:     kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev,
-        lznuaa@gmail.com
-Subject: [PATCH v4 4/4] pcie: endpoint: pci-epf-vntb: add endpoint MSI support
-Date:   Fri, 12 Aug 2022 16:52:42 -0500
-Message-Id: <20220812215242.2255824-5-Frank.Li@nxp.com>
+        with ESMTP id S233851AbiHLVyp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 17:54:45 -0400
+Received: from sonic306-21.consmr.mail.ir2.yahoo.com (sonic306-21.consmr.mail.ir2.yahoo.com [77.238.176.207])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39CAB2D87
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 14:54:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1660341280; bh=yj8ErZ91Kf7sDoBoW+AE1OMOXweGwX2bNGxKY81H8DQ=; h=From:To:Cc:Subject:Date:References:From:Subject:Reply-To; b=Gx30bgJG/ACatWXW/Mq3w642+w22yrBx4bF4EHUGEATWtqkvrLzXmXMw+UlZCzy/N3X1iyiZhBX6p3HBz4fKTHZay8tNR6YAOyPbiMlw6LJrg9lIcIsRqgbDF0S0PnkJO7BH1I+V6KYZk73I9EzzPkVJyJWS8c11qX2aK4FW+TN9g6Cg9nJhmT1pMDd1R8eghll+KLx+eMtmsSYyghmrfnuqCUs2PCUFq1Kot7mD06cQTV4ab0C+GKgOvSHLN3gdW2uF2pdcKbyLBkklUuY63X/gdyIhdz65Ip61wWJ2kke3cDF7OYTQmXe6Q5YLyWW+2dMGsSwg9hdB+Dg3475jTg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1660341280; bh=74eWSff/udTV/XSeHTra+ZwVJ9W3bsEtlJAm5d/ETbx=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=GdCOlE4TIf8s1fbm0ETkXjB4hjq/1UfumsD27UxgJINMQvIPsVGObgAOEMVWIoVKGfqO2xkDEe3Yckt2pDBYEqzjjFKibqbmOTpzYo7hZei494CS77gKDsf2GPjAYoi4ZWkq56rJ81DFurHtX5BN8E1lPVbJWXdkWCpiPOa/spScs+JmwjqeA19rca9dnJyhO0mWkVeJMQNEHnEzEuQnyJr0R/CqdijMoS/W+aIzmWl7ZGnRzWE2E9W4gRlX6/4PbU9b4MPWlP5sn8yAePJLnZL+qrp0GdU8O1xyBjyNUttkCjfsiwDVWey8flzCtP0Ad0rTsifOGFR8D8z79QKQGQ==
+X-YMail-OSG: w_8xIBoVM1lk2o4ujcfKxfFaA8_DV40a3nAF3wd9oNkmkgzn.IjFmu6XymkzJ2c
+ vYZMUEuXh2bDaVkPkCMsjmapIVTT6nkwxq52.95.21cxG7K78Xj_X5TUYauOpxuOIoDE12xHqTVY
+ 8GOk_BLgYTzOYdR.omwOq3LwpZ6hnDk0e8eJoNan_XTgu9snZB354ldnzpkfG3b_GjibzJfauMov
+ cwQLvubvpnEtGH548Gdxxv67qr9gpHFYb6bg_.wU55vRnclXQVhozrGDXYe.MysVi_33rLGS9TPe
+ mMnjAv4dq1NGCSGIuQR0OmaDsvb_BrBKfb_nP8WfUlzZGOqu2f0ajsXIzm8ig5dpJERhsFzQBcW_
+ 96RwSGDWg5rK_zuV3Y5nmZNf9ndx4H5cCa8cFe5hJlnSQUkuaMrv76Bi6TndnYtTQurlv4OACpTU
+ nkOM_RTpZMPHV1es6S8yekMYQaBZHCmVKXx0QHzWB.3B4IJrrkb6EzgcoXH4YftSS2r62eTJ6WzE
+ 3h7Pf78pUF45rHxvpi2ErT_rhgEFcpYBRmifcJIuKQPOoUwYzB4dRkt2y0pnPgTBBCn9Ymu2ycQA
+ 7B4TzCqBtkOw210dGZnGqYGuhqhl3LUsdyMnRzWBzG86winwxYF9IobHd4gCROMkXIQ3IfZ3g25D
+ i24ArnhbNlMTxTZAYPaQ7oqtTUYWO6G0kF8YZBLQrgLe_9Pvubn9pSMD1T8sh2m_savKwcWvBazX
+ _uPq42mPKgjVHdoWZOGY8jR1nJW4bgHMu4vYHTjvOd.Faf9QKXt_1m.AJkZdgGL8kOBn6ccGORpd
+ 4d2S5fcBkLLX0yYU0h6yqSzdX5diPSG8QjGtLsoUPqicfgd0GToxUIK07M1HpXpctOnc7I1QJLNl
+ 3VCTkD5bsRnGIZNc126rlDZkOZ4vRR28FLHkkdEBGbcyBELiY.32i5YZP5yA3g3XKcbEfzo_oYiB
+ H.f9pVZdpZnURxzBuLeLOLBpv.Xm0sYNRA5V9cHKm1jEG1Rw.DXgcQmyJcRPFQwf8G2Q8ppUqyh9
+ H6jzObUz5AsnN27LEucyfHTepHThA4QaN83sMDSBEFrptWikCJUnoJSxTAI15CItTUEczeHzrm8s
+ ue1R6cSgVGU0Uo8Lwd65c_bQ1j6NssfWWz50CpBp82TvVM_jL18GdTTKbdJTuomE7VIRippOkSFO
+ wK5XGxVTbyaK5dnqAr.NjuHA9b_HyqmXDp3fM3RBVmLnRxn7YcND7QvTINmXld5Mpwc9B8phIyMT
+ DWm4h42G2jac.1YpbTQgPmu4CRtQ4OhWFLkn9CU0sgo.xaxMeAw_nZnuoN92c_bYA3f1wCKoNdA5
+ 8nZ.dHVcC9oyWA6h5mJvf.ifHVjb3Xv6wyjM5W70noubEkQKtp.rWCFvjVB6O2leJHoEAviKH6K1
+ g.cL9zcRfMdh826.4KPGGMuSGR4qmW4mszt4ggY_blZpdSTqx_Wl5UKK.yQeUi0rGBzCWjbSO73K
+ aWAyfrU2SbALYBZmPdnyqjZDzAhhuHAgGFCsQx.XZXgea8wixEvwkvMi3dc_hEHQO96LdVHFcC3z
+ 2fPg_2X1tfdFgVx3IxwaG9AUGldk7v2.KU6BkgoBr3kCbL4sZcuJaORnFEjsKpelIifAU3.jRyBt
+ ROWTqvCwoOXQ19wdkrluFKx9Uh34WBFnr7c0.u0E9V6Qlf5HtgFIons4ZfsSFp08CW_oHYqXDaVJ
+ gBHiFjAb0qLHdHunJ5qvFfYOE6rdkB_5L04UIC6OSgAGJIBnuhtFEhudMOv.28RkjFbfZRppXAN9
+ WX40KVkeBIA2xUOyACGq6SRKWbSz_fu1Uzi3uGEsHimdX3AypDoeN3Hq9H8kLBa3jp3IpC_YhGeq
+ UFQrKiZq3quL.ypdrsLB_4SwS.U1lXz4DUrAb8tj56gmBBYWXYspzR9YHDwwnbUfXSoa0M0OFjAh
+ b3amUdYH8cMKGK.puT3IbUpxKjRmhaS3_3vrnFMU4eq1Vx2VXoDPasV6noILVune2sH0pr6Dymtd
+ CCbslsO9Bnxg0QzP1AljWLhYSyiqUL6itvfMcjVUYLdjFwpDkZiqGFjw9vjgo.NsCESrgzHP_ZEj
+ Ndw0NgjvEfckCdEozhxHk_W5Sjat.BLQ.zADpTs2xFJgbuKXttWNy6DAu2_0RyzVnP8T.9xarmjo
+ gEI08r9FCN3DaWtk2uNpVoZ9bCeD_WPPpOX1XH7PYaZSaQj9.Ghb9w7leZQnGxc5NwBC086SZewk
+ RuOs_5rPVY8f0eIrWAiu34BZQnFiwZoz0MtAdURDAL6Bv4OoJSdV.JYxIm5WZ1JJkcVhO1pVdf48
+ YtGqOEuyU40UHB6aCkV7RRv7L46PIVsipaIZPIudnrW0i.aw3tcN3oJ2Fc71j3aGknAUqCjwdhAX
+ BJUSkj1tTGkonrEZfdmsnGcM-
+X-Sonic-MF: <jahau@rocketmail.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.ir2.yahoo.com with HTTP; Fri, 12 Aug 2022 21:54:40 +0000
+Received: by hermes--canary-production-ir2-f74ffc99c-sqjll (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 4374eb8c565a32f837f1ffd0e5de4e7d;
+          Fri, 12 Aug 2022 21:54:37 +0000 (UTC)
+From:   Jakob Hauser <jahau@rocketmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jakob Hauser <jahau@rocketmail.com>
+Subject: [PATCH v6 00/14] Add support for magnetometer Yamaha YAS537
+Date:   Fri, 12 Aug 2022 23:54:05 +0200
+Message-Id: <cover.1660337264.git.jahau@rocketmail.com>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220812215242.2255824-1-Frank.Li@nxp.com>
-References: <20220812215242.2255824-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BYAPR06CA0064.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::41) To PAXPR04MB9186.eurprd04.prod.outlook.com
- (2603:10a6:102:232::18)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7bf5f465-c90e-47a2-f90a-08da7cad13a4
-X-MS-TrafficTypeDiagnostic: GV1PR04MB9087:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7wMA9gCi2eNtjiYzt490ih+RRsh16spqdjyE4Fzr9zka1vEXcANc/r+ofDMyQaqVJx7gvRJeU5BPJRWDe2ftVkZHO7lR5VwehyhQ5e2CFkOdPZHcAUfY9H2Tfn8PFvN32M7jdFX+Zh7zrDljke78tKVY6dXd3qEjN/jLIOMqGkzRJc6Uoru23BKP/M4C7FMoXZ/tROjnNxSx704lFU7lwCC0WBOHjEhveARteNwG06f5RZGQtDzHekfXWBMBMWtHB5e+eD37N3hl5yczkV9ipwTUTJYKQ5xPXZRdtXAYSNEyL4aYNp4m0ap4+U7RNiWc8uGjVNpodZWGibmjRnDL+AwmiJQ990nuHeTFsaccYI3RNT42MbZY2qyR1JjiEIClDghfhyq/uP8RFkf/WWFrmdCRNgd76j8z+u/2nEBCZcG261vNvYB6O7XXsRuEHQFsPszGUaiRCw6OqLcMYjz2Le0GhOPCVBO99znA6QBLNDIwYCxWmIYstg5i5xEOCGoreKPS870LgxQIuNhHRJ9YpWQAqIAQmza2OCYPdUo1xhNJG6TyhOU+dYzjM7y0hvKDuffmdYhrQQ9abuHYgk9ttNizeYStExayTRoebbuWZqga9Sgz/mGF3KuTM2oM0uUrW1XoHVBQ7dzsZooSPlnUIhj/RC3GyRTY3szwAze7zteTDjv8tpyN6nwAd0V77Nrama52YBlVsZPpExu1csFLWT5moo568Wl187kY4nMTvLQGkptgQgqrKTF39B616qpNV4punMUxzd2jXY/OZrQmGL652R0lTogptIjzBOqGr14=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9186.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(366004)(396003)(346002)(136003)(39860400002)(376002)(1076003)(2616005)(186003)(83380400001)(38100700002)(6486002)(478600001)(38350700002)(316002)(66556008)(41300700001)(6666004)(7416002)(5660300002)(52116002)(2906002)(8936002)(26005)(6512007)(66946007)(8676002)(6506007)(4326008)(66476007)(86362001)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y1o5dG5DWHBsK0JSdllSdFNxTDF5SXhWUTRic0pnVENMTnoyck9KdFNaV24w?=
- =?utf-8?B?REN3WmFSMTgvYUplWm9LU2pkUHlvd0pKQlZjWlZldnNJaU9jaUJoSVpMUVdO?=
- =?utf-8?B?RktWU2hTczlMUlNGQ2Vwd0g3VTQxNlF5WVM3dUR4MytYYWNVYndpME85QkU5?=
- =?utf-8?B?WVlNL0YzSnRFMFNjQ0V2dmIwSFc0QXVreWo1Nno4WjZMQlJqcmhMak1INUM0?=
- =?utf-8?B?VHp2R1lMS3FaU21DR1FzQ1daOG1nM1l2aHFEWktsVnR2clZ6TkJpTExhRFRv?=
- =?utf-8?B?Y2F5dXJ1UzRJaDl2dkRmVXJuVTVXKzBOQjRiSXFxTG82R1c3UWxCWWFQL3lv?=
- =?utf-8?B?REhCaUxZUmdyMEw1dTNxMU4xVlFablpZS09qTFVqaXNpNC9BdXduV3lMeG9C?=
- =?utf-8?B?TGwzWTlvZkxONzVaR3F6RnNhb1BoNlMzd21CNzlSRlE5TSt2T3BuZzZIY3p5?=
- =?utf-8?B?WC9FT2tIODhPc011TC84SmUvV05oWXdmRkVpY2k5YVQzd2NoTTRFRTlZNGhk?=
- =?utf-8?B?ZHZrR1BacHVrMlB3MjVGMlYvU0VjQ3A4UC92WGhrdzJqRWd5WDU3RlhvVHhi?=
- =?utf-8?B?Wk9PN1FaK3d2TDFYS3FUdUI3NTkyZ3Q5QzlrckhSZWowcUN6SG91dnNtaldO?=
- =?utf-8?B?Vktpc1A4bmpTZUQzaG9ZYlBBZDJieU9mUHRZVzMvRmpVTHZQZ2xzcDVNcEZ0?=
- =?utf-8?B?MnM1Tm9DcVNvZnV4U090WjYzbnkvQVBoODY0aElhSXM4NFdEYSt5M1lQSkhV?=
- =?utf-8?B?RFJBbzZGTFRDd296Rit3bUZLVXpSQS8xR0ZWVDVWNVRQcVRFc1Jtbkk4dVJW?=
- =?utf-8?B?SWtWWjQ1WGlseisxZFp3SW92RWNpQmNidjVVM1NWbVBodDNOU1RNdTBBbTVD?=
- =?utf-8?B?bFRIdFQ4RVJ6TnNwU0xDalRxMGUwcHkrRk53bnRxKzJSTDZKNkpIWmtVbmhK?=
- =?utf-8?B?a1NFVkxsNGpXTFNIWFRmVitWK1ZyRmpKRWpkd1NHR0lMRVY5aEdzNENQVzRG?=
- =?utf-8?B?MHRsMGRnLzdSa1B5ZjZnRCtGVlFoWVpLaEIvVDZXSW1VM3FJUk05MERuOTMy?=
- =?utf-8?B?SFpYb2RDVzVXTWJTbFphQS8rOGJRUm9pc0JkSUtUeFM4bzBSek4zTDR1RTJK?=
- =?utf-8?B?ZDNZbjN4ZzZCN0orWTBJSjE0dUQwUm9rVlQ5YU5FUG9Dckg1WjBndDNoaTlS?=
- =?utf-8?B?QWVjd1B4VkFhZFFZVTdpRmJ5ak5RVFI3Y0UzdFIrVVJURzhpUXpWTEoyUFpa?=
- =?utf-8?B?Y2FaZno5OTVlOFExQkpOM1NvK1hPSEszemlqZ0pKaG8zaFhXTHNJTHpEM2J2?=
- =?utf-8?B?VUNJbHFjdHFYZU5mRTBNc0pzNVhTa0VnditvVktoOGpNRjErTEhwd0dBQXJY?=
- =?utf-8?B?QTBPMmRzYkYyRVh4TmRUSTZBU09DQ1RhVGJxa1ViZWtLL1VHa2RxdjA1Tjgx?=
- =?utf-8?B?L1dvVDNvbjlaOEhGTnVKU2hMNzFkK09VN0dvM25Va0FnRktMSC9SVDVMV0ts?=
- =?utf-8?B?eUtmdE5OUnNpcDU5NmgzWHNxdWE5US9BR2RRTHN5Umk4Z3g1cVFYREMwMWRN?=
- =?utf-8?B?ZE0rUSsramFYNWJJc1hmMXF0Zjl0WVk2bWYzVlJXejJKSWJvL0s2N2pGQlFO?=
- =?utf-8?B?UmhpL1ZlQnhDUjhQcTF0M1pJS29TU1VMSExFUVU1WUdJQzJ2T2E4VnpFaitl?=
- =?utf-8?B?dk9TYjc4Zk9qa0QzMkJTT2I3VUd4Nmg4bnp6Y1RDbjBaWlNkTlRtWWNQWWZW?=
- =?utf-8?B?N3h1dlBGUmJHN1FUWkw4eHJCQU5TdVMyMWVVS2h0T3kyVGV2ZnZpZUZlYjRy?=
- =?utf-8?B?MHhsMkl3ODVtVjlKUFJGMExNWGI4eXNMYm1TMkFZZURVVER3UUxsQVdUWDZr?=
- =?utf-8?B?amFlckFRdkFaWEJmYXEvaEhzUGszdkl5TGlibzlzSlZPZlBud1FteGYwQlYv?=
- =?utf-8?B?RXZoZHVQV0VKeWsyVXBwa1ZQQUxYWW9TWXgzRjNDclhBRnc1dlUxRjJmYmdv?=
- =?utf-8?B?MFd0MXllT3dndkNBb1dkRUxweU9YLzl2R0JuMzBLZG1FbjlPTk95bnVYSGFa?=
- =?utf-8?B?Tkh3djhCcG1iSXkyNjRwUk0ySzdzNCsxczhsc2JaRzRrRDJhQ1NIUllNTlNs?=
- =?utf-8?Q?oWQA=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7bf5f465-c90e-47a2-f90a-08da7cad13a4
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9186.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Aug 2022 21:53:22.9611
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qA3t+/egv0/Edliz5LrSyKe2xapLVQmFF0i8QvmCv3BUJqqyfeROXcnMNxfFik8s5lT3b4w+uYbMrpi1pOIO+Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB9087
+Content-Transfer-Encoding: 8bit
+References: <cover.1660337264.git.jahau.ref@rocketmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-                        ┌───────┐          ┌──────────┐
-                        │       │          │          │
-      ┌─────────────┐   │       │          │ PCI Host │
-      │ MSI         │◄┐ │       │          │          │
-      │ Controller  │ │ │       │          │          │
-      └─────────────┘ └─┼───────┼──────────┼─BAR0     │
-                        │ PCI   │          │ BAR1     │
-                        │ Func  │          │ BAR2     │
-                        │       │          │ BAR3     │
-                        │       │          │ BAR4     │
-                        │       ├─────────►│          │
-                        └───────┘          └──────────┘
+This patchset adds YAS537 variant to the already existing driver for
+Yamaha YAS magnetometers.
 
-Linux supports endpoint functions. PCI Host write BAR<n> space like write
-to memory. The EP side can't know memory changed by the host driver.
+Patch 1 is a fix on the current driver.
+Patches 2-13 are cleanups and refactoring.
+Patch 14 finally adds the YAS537 variant.
 
-PCI Spec has not defined a standard method to do that. Only define MSI(x)
-to let EP notified RC status change.
+Changes in v6:
+ - Rebased to torvalds/linux master (shortly before releasing v5.20-rc1)
+   to include Jonathan's patch "iio: magn: yas530: Use
+   DEFINE_RUNTIME_DEV_PM_OPS() and pm_ptr() macros"
+ - Patch 6: In commit message corrected "This is a preparation for adding
+   the YAS537 variant."
+ - Patch 6: Added period at the end of multi-line comments (3x "Used by
+   YAS530, YAS532 and YAS533.")
+ - Patch 7: In commit message replaced "Additionally" by "While at it".
+ - Patch 9: Moved content of "product_name" and "version_names" from array
+   directly into chip_info table due to C11 standard 6.6.7 considering array
+   calls not as constant expression.
+ - Patch 9: In commit message replaced "This commit introduces" by "Introduce".
+ - Patch 9 & following: Introduced variable "ci" to substitute
+   "yas5xx->chip_info".
+ - Patch 9: Removed introduction of "enum chip_ids" as "yas5xx->chip". Instead,
+   in the function yas5xx_probe(), used "id->driver_data" directly to
+   initialize enumeration of "yas5xx_chip_info_tbl[]".
+ - Patch 12: Moved values "t_ref" and "min_temp_x10" from array directly into
+   chip_info table due to C11 standard 6.6.7 considering array calls not as
+   constant expression. Comments were partially moved into the kernel doc of
+   struct yas5xx_chip_info.
+ - Patch 12: In the function yas5xx_calc_temperature(), changed data type of
+   min_temp_x10 from int to s16 (as it's declared in struct yas5xx_chip_info).
+ - Patch 13: In commit message corrected typo in word "function".
+ - Patch 14: In commit message changed "This adds support" to "Add support".
+ - Patch 14: In commit message changed wording "for YAS537 in the mainline".
 
-The basic idea is to trigger an IRQ when PCI RC writes to a memory
-address. That's what MSI controller provided. EP drivers just need to
-request a platform MSI interrupt, struct msi_msg *msg will pass down a
-memory address and data. EP driver will map such memory address to one of
-PCI BAR<n>.  Host just writes such an address to trigger EP side irq.
+Changes in v5:
+ - Rebased to torvalds/linux v5.19.
+ - Patch 6: Moved 3x comment "Used by YAS530, YAS532 and YAS533" into
+   kernel doc.
+ - Patch 6: Corrected missing renaming of 2x "yas530_get_measure",
+   1x "yas530_power_on", 1x "YAS530_ACTUATE_INIT_COIL", 1x "YAS530_MEASURE".
+ - Patch 7: Added "Suggested-by:" tag.
+ - Split patch 9 v4 "Introduce 'chip_info' structure" into five patches 9-13.
+ - Patch 9: In commit message changed wording "Device Tree".
+ - Patch 9: Added commas to non-terminating arrays of "yas5xx_product_name",
+   "yas5xx_version_name", and "yas5xx_chip_info".
+ - Patch 9: Added "product_name" and "version_name" to "chip_info" struct.
+ - Patch 9: Added "s" to array name "yas5xx_version_names".
+ - Patch 9: Added indices to array "yas5xx_version_names".
+ - Patch 9: For strings in arrays "yas5xx_product_name" and
+   "yas5xx_version_names", applied char * instead of char [].
+ - Patch 9: Initialize struct "chip_info" as const.
+ - Patch 9: In function yas5xx_probe(), moved declaration of "id_check"
+   to a new line.
+ - Patch 9: In function yas5xx_probe(), after "if (id_check !=
+   yas5xx->chip_info->devid)" applied dev_err_probe().
+ - Patch 10: In function yas5xx_volatile_reg(), renamed integer "j" into
+   "reg_qty".
+ - Patch 12: Improved comments on arrays "t_ref_counts" and
+   "min_temp_celsius_x10".
+ - Patch 12: Changed arrays "t_ref_counts" and "min_temp_celsius_x10"
+   to static.
+ - Patch 12: Corrected wrong spelling of "celcius" with "c" in array
+   "min_temp_celsius_x10"
+ - Patch 13: In function yas5xx_probe(), added the conditional
+   "if (yas5xx->chip_info->measure_offsets)" as a preparatory step for YAS537.
+ - Patch 14: In function yas537_power_on(), replaced comment "Write registers
+   according to Android driver" by "Writing ADCCAL and TRM registers".
+ - Patch 14: In function yas537_power_on(), write register ADCCAL as a
+   bulk write.
+ - Patch 14: In function yas537_power_on(), in formula for "intrvl" replaced
+   value "1000" by MILLI. Added "linux/units.h" to includes.
 
-Add MSI support for pci-epf-vntb. pci-epf-vntb driver query if system
-have MSI controller. Setup doorbell address according to struct msi_msg.
+Changes in v4:
+ - Rebased to torvalds/linux v5.19-rc4, as this now includes Linus' patch
+   "Fix memchr_inv() misuse" on driver yamaha-yas530.
+ - Removed redundant Cc tags.
+ - Patch 2: Replaced "<= ... + 7" by "< ... + 8" and adapted commit message.
+ - Patch 3: Added default for switch statement, I forgot to add this.
+ - Patch 4: In function yas5xx_get_measure(), changed wording "milli degrees"
+   to "millidegrees".
+ - Patch 6: Changed the renaming of function from "yas530_532_" to "yas530_".
+   Same for registers. Added additional comments where appropriate.
+ - Patch 6: Removed "Reviewed-by:" tag of Andy.
+ - Split patch 7 v3 into two patches -> patch 7 v4 and patch 8 v4.
+ - Patch 8: Applied "if (a && b)" suggestion at memchr_inv() by Andy in
+   function yas532_get_calibration_data().
+ - Patch 8: Removed defines for device IDs YAS537 and YAS539 and accordingly
+   the comment "These variant IDs are known from code dumps".
+ - Patch 9: New patch to introduce the "chip_info" approach.
+ - Patch 10: In function yas537_get_calibration_data(), removed "the exact
+   meaning is unknown" from comment "Writing SRST register".
+ - Patch 10: Also applied "if (a && b)" suggestion at memchr_inv() by Andy
+   in function yas537_get_calibration_data(). Additionally changed the second
+   condition from "== 0" to "!".
+ - Patch 10: In function yas537_get_calibration_data(), removed empty lines
+   within switch statement. In that context, removed comment "Get data into
+   these four blocks val1 to val4".
+ - Patch 10: In Kconfig, simplified wording.
+ - Patch 10: In function yas537_get_calibration_data() "case YAS537_VERSION_0",
+   reduced indent of "for" loop by splitting it into multiple loops. I didn't
+   use integer j, as it was suggested by Jonathan, because only using integer i
+   is more consistant with the loop in "case YAS537_VERSION_1".
+ - Accordingly, split the "for" loop in "case YAS537_VERSION_1" into two loops
+   as well. Technically this isn't neccessary but it improves readability.
+ - Patch 10: Added new defines of masks for YAS537 and applied these by
+   FIELD_PREP and FIELD_GET in function yas537_get_calibration_data()
+   within "case YAS537_VERSION_1".
+ - Patch 10: In function yas537_power_on(), added spaced at "YAS537_ADCCAL + 1".
 
-So PCIe host can write this doorbell address to triger EP side's irq.
+Changes in v3:
+ - In patch 3 fixed 2x typo "Divide".
+ - In commit message of patch 4 fixed wording "in the yas5xx_get_measure()
+   function".
+ - In patch 4 in the comment for the temperature calculation fixed wording
+   "is the number of counts".
+ - In patch 4 added defaults to switch statements.
+ - Splitted stray changes into new patch 7 v3. "Add YAS537 variant" is now
+   patch 8 v3. I haven't added "Reviewed-by:" tag of Linus to patch 7 v3
+   because as a separate patch these changes appear in a different context.
+ - In new patch 7 v3, changed printk format specifiers in the function
+   yas530_get_calibration_data() to "%16ph" and in the function
+   yas532_get_calibration_data() to "%14ph". The first one is also a minor
+   correction in behaviour, as the calibration data array size of YAS530
+   is 16 (the dev_dbg printed 14 before).
+ - Rebased to linux-next to include patch bb52d3691db8 "iio: magnetometer:
+   yas530: Fix memchr_inv() misuse".
+ - In patch 7 v3, changed memchr_inv() line for YAS532.
+ - In patch 8 v3 in the function yas537_get_calibration_data(), changed
+   memchr_inv() line for YAS537.
+ - Removed comment "corresponds to 0x70" at define YAS537_MAG_AVERAGE_32_MASK.
+ - Added suffixes _US and _MS in defines for YAS537.
+ - In the function yas537_measure(), removed comments "Read data", "Arrange
+   data", "Assign data".
+ - In the function yas537_measure(), replaced bitwise shift by
+   get_unaligned_be16().
+ - Replaced "if (h[i] < -8192)" etc. by clamp_val().
+ - In the functions yas537_measure() and yas537_get_measure(), replaced 8192
+   by BIT(13) and 16384 by BIT(14).
+ - Fixed typo "resolution" in the function yas5xx_read_raw().
+ - Fixed typo "Divide" in patch 8 v3 in the function yas5xx_read_raw().
+ - In patch 8 v3 in the yas537_get_calibration_data(), changed printk format
+   specifier to "%17ph"
+ - In the functions yas537_measure() and yas537_get_calibration_data(), drop
+   some parentheses in regmap_write().
+ - In the function yas537_power_on(), added comment "Wait until the coil has
+   ramped up".
+ - In the function yas5xx_probe(), put YAS537 variant and version printings
+   into one print.
+ - In the function yas537_get_measure(), fixed wording "is the number of
+   counts" in the comment for the temperature calculation.
+ - In the function yas537_get_measure(), added product description document No.
+   into the comment for the temperature calculation (as I first thought the
+   review comment "the number" is related to this).
+ - In the function yas537_get_calibration_data(), corrected comment "Get data
+   into these four blocks val1 to val4".
 
-If no MSI controller exist, fall back to software polling.
+Changes in v2:
+ - Reordered the patchset by moving patch 4 v1 to patch 1 v2.
+ - Removed patch 6 v1 ("Remove redundant defaults on switch devid")
+ - Accordingly, added "default:" to each switch statement in patch 7.
+ - Moved renamings in patch 7 v1 into a separate new patch 6 v2. I added
+   the "Reviewed-by:" tag of Linus to both patches, hope that's ok, else
+   feel free to comment.
+ - Removed regmap reads and related debug dumps in patch 7 in function
+   yas537_dump_calibration(). As this function now applies to version 1
+   only, replaced switch statement by if clause.
+ - Also removed "hard_offsets" debug dumps in that function.
+ - Fixed typo "initialized" in commit message of patch 7.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- drivers/pci/endpoint/functions/pci-epf-vntb.c | 134 +++++++++++++++---
- 1 file changed, 112 insertions(+), 22 deletions(-)
+v5: https://lore.kernel.org/linux-iio/cover.1659909060.git.jahau@rocketmail.com/T/#t
+v4: https://lore.kernel.org/linux-iio/cover.1656883851.git.jahau@rocketmail.com/T/#t
+v3: https://lore.kernel.org/linux-iio/cover.1655509425.git.jahau@rocketmail.com/T/#t
+v2: https://lore.kernel.org/linux-iio/cover.1655081082.git.jahau@rocketmail.com/T/#t
+v1: https://lore.kernel.org/linux-iio/cover.1654727058.git.jahau@rocketmail.com/T/#t
 
-diff --git a/drivers/pci/endpoint/functions/pci-epf-vntb.c b/drivers/pci/endpoint/functions/pci-epf-vntb.c
-index 1466dd1904175..ad4f7ec8a39fc 100644
---- a/drivers/pci/endpoint/functions/pci-epf-vntb.c
-+++ b/drivers/pci/endpoint/functions/pci-epf-vntb.c
-@@ -44,6 +44,7 @@
- #include <linux/pci-epc.h>
- #include <linux/pci-epf.h>
- #include <linux/ntb.h>
-+#include <linux/msi.h>
- 
- static struct workqueue_struct *kpcintb_workqueue;
- 
-@@ -143,6 +144,8 @@ struct epf_ntb {
- 	void __iomem *vpci_mw_addr[MAX_MW];
- 
- 	struct delayed_work cmd_handler;
-+
-+	int msi_virqbase;
- };
- 
- #define to_epf_ntb(epf_group) container_of((epf_group), struct epf_ntb, group)
-@@ -253,7 +256,7 @@ static void epf_ntb_cmd_handler(struct work_struct *work)
- 
- 	ntb = container_of(work, struct epf_ntb, cmd_handler.work);
- 
--	for (i = 1; i < ntb->db_count; i++) {
-+	for (i = 1; i < ntb->db_count && !ntb->epf_db_phy; i++) {
- 		if (readl(ntb->epf_db + i * 4)) {
- 			if (readl(ntb->epf_db + i * 4))
- 				ntb->db |= 1 << (i - 1);
-@@ -454,11 +457,9 @@ static int epf_ntb_config_spad_bar_alloc(struct epf_ntb *ntb)
- 	ctrl->num_mws = ntb->num_mws;
- 	ntb->spad_size = spad_size;
- 
--	ctrl->db_entry_size = 4;
--
- 	for (i = 0; i < ntb->db_count; i++) {
- 		ntb->reg->db_data[i] = 1 + i;
--		ntb->reg->db_offset[i] = 0;
-+		ntb->reg->db_offset[i] = 4 * i;
- 	}
- 
- 	return 0;
-@@ -509,6 +510,28 @@ static int epf_ntb_configure_interrupt(struct epf_ntb *ntb)
- 	return 0;
- }
- 
-+static int epf_ntb_db_size(struct epf_ntb *ntb)
-+{
-+	const struct pci_epc_features *epc_features;
-+	size_t size = 4 * ntb->db_count;
-+	u32 align;
-+
-+	epc_features = pci_epc_get_features(ntb->epf->epc,
-+					    ntb->epf->func_no,
-+					    ntb->epf->vfunc_no);
-+	align = epc_features->align;
-+
-+	if (size < 128)
-+		size = 128;
-+
-+	if (align)
-+		size = ALIGN(size, align);
-+	else
-+		size = roundup_pow_of_two(size);
-+
-+	return size;
-+}
-+
- /**
-  * epf_ntb_db_bar_init() - Configure Doorbell window BARs
-  * @ntb: NTB device that facilitates communication between HOST and vHOST
-@@ -520,35 +543,33 @@ static int epf_ntb_db_bar_init(struct epf_ntb *ntb)
- 	struct device *dev = &ntb->epf->dev;
- 	int ret;
- 	struct pci_epf_bar *epf_bar;
--	void __iomem *mw_addr;
-+	void __iomem *mw_addr = NULL;
- 	enum pci_barno barno;
--	size_t size = 4 * ntb->db_count;
-+	size_t size;
- 
- 	epc_features = pci_epc_get_features(ntb->epf->epc,
- 					    ntb->epf->func_no,
- 					    ntb->epf->vfunc_no);
- 	align = epc_features->align;
--
--	if (size < 128)
--		size = 128;
--
--	if (align)
--		size = ALIGN(size, align);
--	else
--		size = roundup_pow_of_two(size);
-+	size = epf_ntb_db_size(ntb);
- 
- 	barno = ntb->epf_ntb_bar[BAR_DB];
-+	epf_bar = &ntb->epf->bar[barno];
- 
--	mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
--	if (!mw_addr) {
--		dev_err(dev, "Failed to allocate OB address\n");
--		return -ENOMEM;
-+	if (!ntb->epf_db_phy) {
-+		mw_addr = pci_epf_alloc_space(ntb->epf, size, barno, align, 0);
-+		if (!mw_addr) {
-+			dev_err(dev, "Failed to allocate OB address\n");
-+			return -ENOMEM;
-+		}
-+	} else {
-+		epf_bar->phys_addr = ntb->epf_db_phy;
-+		epf_bar->barno = barno;
-+		epf_bar->size = size;
- 	}
- 
- 	ntb->epf_db = mw_addr;
- 
--	epf_bar = &ntb->epf->bar[barno];
--
- 	ret = pci_epc_set_bar(ntb->epf->epc, ntb->epf->func_no, ntb->epf->vfunc_no, epf_bar);
- 	if (ret) {
- 		dev_err(dev, "Doorbell BAR set failed\n");
-@@ -704,6 +725,74 @@ static int epf_ntb_init_epc_bar(struct epf_ntb *ntb)
- 	return 0;
- }
- 
-+static void epf_ntb_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
-+{
-+	struct epf_ntb *ntb = dev_get_drvdata(desc->dev);
-+	struct epf_ntb_ctrl *reg = ntb->reg;
-+	int size = epf_ntb_db_size(ntb);
-+	u64 addr;
-+
-+	addr = msg->address_hi;
-+	addr <<= 32;
-+	addr |= msg->address_lo;
-+
-+	reg->db_data[desc->msi_index] = msg->data;
-+
-+	if (desc->msi_index == 0)
-+		ntb->epf_db_phy = round_down(addr, size);
-+
-+	reg->db_offset[desc->msi_index] = addr - ntb->epf_db_phy;
-+}
-+
-+static irqreturn_t epf_ntb_interrupt_handler(int irq, void *data)
-+{
-+	struct epf_ntb *ntb = data;
-+	int index;
-+
-+	index = irq - ntb->msi_virqbase;
-+	ntb->db |= 1 << (index - 1);
-+	ntb_db_event(&ntb->ntb, index);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void epf_ntb_epc_msi_init(struct epf_ntb *ntb)
-+{
-+	struct device *dev = &ntb->epf->dev;
-+	struct irq_domain *domain;
-+	int virq;
-+	int ret;
-+	int i;
-+
-+	domain = dev_get_msi_domain(ntb->epf->epc->dev.parent);
-+	if (!domain)
-+		return;
-+
-+	dev_set_msi_domain(dev, domain);
-+
-+	if (platform_msi_domain_alloc_irqs(&ntb->epf->dev,
-+		ntb->db_count,
-+		epf_ntb_write_msi_msg)) {
-+		dev_info(dev, "Can't allocate MSI, fall back to poll mode\n");
-+		return;
-+	}
-+
-+	dev_info(dev, "vntb use MSI as doorbell\n");
-+
-+	for (i = 0; i < ntb->db_count; i++) {
-+		virq = msi_get_virq(dev, i);
-+		ret = devm_request_irq(dev, virq,
-+			       epf_ntb_interrupt_handler, 0,
-+			       "ntb", ntb);
-+
-+		if (ret)
-+			dev_err(dev, "devm_request_irq() failure\n");
-+
-+		if (!i)
-+			ntb->msi_virqbase = virq;
-+	}
-+}
-+
- /**
-  * epf_ntb_epc_init() - Initialize NTB interface
-  * @ntb: NTB device that facilitates communication between HOST and vHOST2
-@@ -1299,14 +1388,15 @@ static int epf_ntb_bind(struct pci_epf *epf)
- 		goto err_bar_alloc;
- 	}
- 
-+	epf_set_drvdata(epf, ntb);
-+	epf_ntb_epc_msi_init(ntb);
-+
- 	ret = epf_ntb_epc_init(ntb);
- 	if (ret) {
- 		dev_err(dev, "Failed to initialize EPC\n");
- 		goto err_bar_alloc;
- 	}
- 
--	epf_set_drvdata(epf, ntb);
--
- 	pci_space[0] = (ntb->vntb_pid << 16) | ntb->vntb_vid;
- 	pci_vntb_table[0].vendor = ntb->vntb_vid;
- 	pci_vntb_table[0].device = ntb->vntb_pid;
+Jakob Hauser (14):
+  iio: magnetometer: yas530: Change data type of hard_offsets to signed
+  iio: magnetometer: yas530: Change range of data in volatile register
+  iio: magnetometer: yas530: Correct scaling of magnetic axes
+  iio: magnetometer: yas530: Correct temperature handling
+  iio: magnetometer: yas530: Change data type of calibration
+    coefficients
+  iio: magnetometer: yas530: Rename functions and registers
+  iio: magnetometer: yas530: Move printk %*ph parameters out from stack
+  iio: magnetometer: yas530: Apply documentation and style fixes
+  iio: magnetometer: yas530: Introduce "chip_info" structure
+  iio: magnetometer: yas530: Add volatile registers to "chip_info"
+  iio: magnetometer: yas530: Add IIO scaling to "chip_info"
+  iio: magnetometer: yas530: Add temperature calculation to "chip_info"
+  iio: magnetometer: yas530: Add function pointers to "chip_info"
+  iio: magnetometer: yas530: Add YAS537 variant
+
+ drivers/iio/magnetometer/Kconfig         |   4 +-
+ drivers/iio/magnetometer/yamaha-yas530.c | 830 +++++++++++++++++++----
+ 2 files changed, 703 insertions(+), 131 deletions(-)
+
 -- 
 2.35.1
 
