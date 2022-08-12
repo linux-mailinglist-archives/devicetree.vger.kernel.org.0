@@ -2,70 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F316A590ECC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D47A5590ED7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:12:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230257AbiHLKK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 06:10:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32976 "EHLO
+        id S238123AbiHLKMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 06:12:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237707AbiHLKKq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:10:46 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E438966A67
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:10:44 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id s9so487029ljs.6
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:10:44 -0700 (PDT)
+        with ESMTP id S238099AbiHLKLi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:11:38 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A934FAB1B2
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:11:32 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id v2so713752lfi.6
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:11:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=YnO1pHHfHsEauYn5PrVwI+I0to4oCTaqbSSyaQD5RLo=;
-        b=WVsn2whuyB88Cve/nDe+ywf+uEa2BJop+sV9sFgjhtG/w1GN32q6ARUvsItjNidHaL
-         uc0xM2DKVXHJSXP0pHsO8Yup8ps1JlZRPDZnBNM81S6aM7N/J3QgpQkcY5ZOcJCnOoKt
-         pMIqUgkt98Dmp2I66ARBoEG2aFg2cEU/787Cq1MlpC36+OU3jRPa2+YqM9GlJEClxZas
-         cWKQxReBIiYNA1/sPzXfcfuxrI9+wsvB4hrvyCPLGRegpi/UlB4TTAaultJc3+itjkGt
-         LBueZQnZiJmoI0iP7nN+6OrR+gPUUaaY1GEw57Vv6eXMde8E3yxBvPYSqNcuVnJYmD1z
-         mo5w==
+        bh=Efu/CGbKWLuL1Oe01pB0RYSwFNW/cJjMMoDyXY2YB+8=;
+        b=UovoUapPrLkcqnkkaewW2fA9sa7b0agJjyYN2uN2fyGJ/+5GXbV5mfm3DhIrXDv+TY
+         bpYDRc4LEA+jkTWpDhNcFyZMxQhAN0XQorBeXLN/sxLMTBpm6fD2h9CNWCxvbhosu5Ew
+         aQC8zR0DyaqoF+R6W1hrq3QUX+gGInRKpZIfpm+D1/pJxjKEvPMzQi89IqXkx0j+h/UV
+         paWLdEDGCJ67sHBITh361Z6JVAR6cgDyKNUneB0HY8ZCqN/xl+qMt3yxHMET8g4vGPWn
+         BQhc3GuptxmB3HdG+FlU105IEyDOmtk4o3ehXiqfu3DVnrbFKhe9yVl/OxwY0Iy06dkm
+         f1VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=YnO1pHHfHsEauYn5PrVwI+I0to4oCTaqbSSyaQD5RLo=;
-        b=YCVxuoowcf2PsXI4OtaB0WK86jjjVfL3NdHuYGpjI51Hvi1EnxRxzkAcC3aeBlfYSn
-         SqmSwSmotIKAO8GHRjUAOxjpKuGjWkpMZzU60SzW6+qwgpm6xvsRyNT/oHSe6JClQW4D
-         PlmXcU4m4YG2F3aR37adOeMdP3pYGJu6kExjotOdSfgvG2FgWZco927aimwtvwXIiucD
-         qiJEELVqrWOug8rXLukGtj3ilyD5PN/0nBb/9d6HPmTRZUwsEVDj0VbKTIdfozjT1kTQ
-         Jz2BxtYhsyKKRq/gKmEHw9ZFctRgvebnc5Qv0xIyA1H80XHEpNKM8MW+QW5MOuidPDo+
-         FeTw==
-X-Gm-Message-State: ACgBeo3HRluMS5WXQ8AGCCCnShXcroFYjz19uI1lZtYVhE2bjRpVD4by
-        Z54QAFdAFlvlvbVSS8oQNxWjpg==
-X-Google-Smtp-Source: AA6agR71WlXo8RsCEA9Nx5arAER4oXqUS6Of5aWMDbEM/uO7zcEMcnui/bpouYwl9Y2gMm59oj7bhA==
-X-Received: by 2002:a2e:9884:0:b0:25e:5a7a:42c5 with SMTP id b4-20020a2e9884000000b0025e5a7a42c5mr1014439ljj.2.1660299043268;
-        Fri, 12 Aug 2022 03:10:43 -0700 (PDT)
+        bh=Efu/CGbKWLuL1Oe01pB0RYSwFNW/cJjMMoDyXY2YB+8=;
+        b=jkyteeKZ9VxXPYl7PfLTHt05zLTKZnz6C93kzpStgmSFvYR+RXAYyoN9vyfKbm9xxV
+         a1H+snsstQoETBfY5WIxTc9J7ywLuwU/Okx5ESj1eCXkskiNYwkcfKiBzj4EQA8oRAMQ
+         DYuHAe0JZ265Clm0fqmLJQZ5CPgAuDCzJ3unna0w3i1QSpWVlZlD6KLoIN5NEszEuFws
+         jYU6pQM/pKGUg1+7g1UL8IbfoAr7L+3XRgtlgNOMxs3DV4rp83Gbcq5AjVqIn4CNRWOZ
+         kEXd9qgOFCN7bCi2pjsO/OKURvauqukyqyQh0TtBynO/bsOW/NmbEpv+4FjJ2x7W3iRO
+         wsVw==
+X-Gm-Message-State: ACgBeo0W8D8mQXhmhdbwjAPlBUa1qkSiF6ZpkW8204ZTeKoT/XXOsrsm
+        jq9FIa5Rwwg0uU4vs0NjHHelLA==
+X-Google-Smtp-Source: AA6agR6OCwgKtAvaUtyDKb4jwrDWlW1JbYl8B3jrWJdzx5BDw4hWWiPHrUmCEc3VuMH3EXpbXKwoyw==
+X-Received: by 2002:a05:6512:3050:b0:48c:e580:4421 with SMTP id b16-20020a056512305000b0048ce5804421mr1129450lfb.34.1660299090986;
+        Fri, 12 Aug 2022 03:11:30 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id f11-20020a05651c02cb00b0025a70f7ea3asm300948ljo.138.2022.08.12.03.10.39
+        by smtp.gmail.com with ESMTPSA id 25-20020ac25f59000000b0048b05882c28sm157345lfz.271.2022.08.12.03.11.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 03:10:42 -0700 (PDT)
-Message-ID: <f8a35b0d-593b-2439-585a-34b5d49068b5@linaro.org>
-Date:   Fri, 12 Aug 2022 13:10:38 +0300
+        Fri, 12 Aug 2022 03:11:30 -0700 (PDT)
+Message-ID: <1153cb3a-4f1c-5a54-cd3d-13a1ca9992e9@linaro.org>
+Date:   Fri, 12 Aug 2022 13:11:26 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH 7/7] arm64: dts: imx93: add lpspi nodes
+Subject: Re: [PATCH 1/6] dt-bindings: i2c: i2c-imx-lpi2c: add ipg clk
 Content-Language: en-US
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, aisheng.dong@nxp.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
 Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-References: <20220812074609.53131-1-peng.fan@oss.nxp.com>
- <20220812074609.53131-8-peng.fan@oss.nxp.com>
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        xiaoning.wang@nxp.com, Peng Fan <peng.fan@nxp.com>
+References: <20220812043424.4078034-1-peng.fan@oss.nxp.com>
+ <20220812043424.4078034-2-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220812074609.53131-8-peng.fan@oss.nxp.com>
+In-Reply-To: <20220812043424.4078034-2-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -78,33 +79,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 10:46, Peng Fan (OSS) wrote:
+On 12/08/2022 07:34, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> Add i.MX93 lpspi nodes
+> i.MX LPI2C actually requires dual clock: per clock and ipg clock, so add
+> both.
 > 
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> index 3d1309d393a4..64fae970bfdd 100644
-> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -166,6 +166,30 @@ lpi2c2: i2c@44350000 {
->  				status = "disabled";
->  			};
->  
-> +			lpspi1: spi@44360000 {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
+>  Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml | 9 ++++++---
 
-First compatible, then reg, then the rest of properties.
 
-> +				compatible = "fsl,imx93-spi", "fsl,imx7ulp-spi";
-
-Undocumented compatible.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
