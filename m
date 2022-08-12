@@ -2,196 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DEF8590C9F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 09:37:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E66590CA9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 09:42:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237361AbiHLHhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 03:37:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41080 "EHLO
+        id S237409AbiHLHmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 03:42:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236987AbiHLHhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 03:37:08 -0400
-Received: from out2-smtp.messagingengine.com (out2-smtp.messagingengine.com [66.111.4.26])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544AE9E13C;
-        Fri, 12 Aug 2022 00:37:07 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id B98575C0185;
-        Fri, 12 Aug 2022 03:37:04 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Fri, 12 Aug 2022 03:37:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
-         s=fm2; t=1660289824; x=1660376224; bh=0vomSWUYgz25cq0M/5SuumlfH
-        1NhqVcmcXAH78BG0Ro=; b=CSCNL4vjOfBWUBIKzMHLUdL5JO72UJcw5KFlg/69j
-        CF5KU+84gaRWu0+rTWpVH6NduN5x/MAA0b8mzT7BAu+4P504QpDIILGG10Uj9mYQ
-        mdGsTfqHPqEZYGmTTLjQyLuuqps7TzaQqttMGtYAz+sxO1IfLWe3OOpLex5VizKf
-        zGqB+CDYHOh4yKniX7Muv78ELx71ihGCD1Ah7YOqtHkZOSBuUnQmdVEiH/BP/uRA
-        dPsEfCn1a83wPwsNFxQvezOJKTnGhGbtPTJs317ktf/25MViiaTpkQJtkyGxZN++
-        s2Enhe5t/TjrnFHfs1w+qbef4NJOxXuaZxA5Hg3pTvbmg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:message-id
-        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-        1660289824; x=1660376224; bh=0vomSWUYgz25cq0M/5SuumlfH1NhqVcmcXA
-        H78BG0Ro=; b=f9h1J5ARtHOZZVRwp2sHuWrsT22gk5MWMwe2V7JK/RB33DSSmvc
-        8LsAPI59jG7eviCgsbd/wUGrmtpQzVw3Y1S0Q+bDo8wNjFiAw+RuzZriauO2mf5v
-        8k5sFJj/d4rvJkqQqKwcXM5+Fhmsl6SexiojDe+LzRXUl2krEHCQxc5rDf2t5GGv
-        5YofMLj9KqE6sjshEIY/wf4Fe1REBnE3V+GZrzamefoS8V6/b8ULgFzSj8HU2BtH
-        xQgSMTEQ0Lua266bJXmDAiy/Tfb/4VGcuflIaK2J/umwKErYH+1x68eAKe2BlCLL
-        aPBvrAAWtRH/fZDVP226C3LcvqGV1C0+Emg==
-X-ME-Sender: <xms:IAP2YoiprmhceXYihmGNyokxR2u5bP7m4xu63M4hZaeAtpiSq4q_4A>
-    <xme:IAP2YhB7BAC0E3Bg_Mre68J5GVDZMtnx7zUexUd7AZfxh0jJ3vNuVJI3v7ddq1dck
-    uJptI0bTfY0hCnXlw>
-X-ME-Received: <xmr:IAP2YgEemVKtLl3JziUzXnc1TCan_9_jFB-QUTNI3DOZuy5wqscUF6W11p7s3-23asyNTfDZucfP0TIEnYFJYNUpOHQkBZjpXHUsuPxgDWPgntf72iXs6TstPdXTzdX7l8YXDA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdeghedguddvvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhvfevufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeekveelhfejueelleetvdejvdeffeetgeelheeujeffhefgffefkeeh
-    hffhkeekgeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:IAP2YpQY9ofEqq7c6NrJ0gi3rv-PZ3CI7ccDRlu_paY48e9qX4tjtw>
-    <xmx:IAP2YlwzkTq5TtKGzMkiGP9ZrVJuSuoQ50MjXXR1qn_fGjCL0Df4VQ>
-    <xmx:IAP2Yn4irgWWHCp8oDUVPtl1TJsG4JrI60dkPTug07019q8nxhn4Jg>
-    <xmx:IAP2Yr7QKe2bW58vetWDAUcgVy9ACiOo5M-H09QqEsnp_PuamCBfAw>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 12 Aug 2022 03:37:03 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: [PATCH] dt-bindings: display: sun4i: Add D1 TCONs to conditionals
-Date:   Fri, 12 Aug 2022 02:37:02 -0500
-Message-Id: <20220812073702.57618-1-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S236601AbiHLHml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 03:42:41 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFEAAA61C0
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 00:42:39 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id v10so154935ljh.9
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 00:42:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=sBayUxRV4uPcA67ScjufKHzSC2Zb9c963r0CFb87BtI=;
+        b=ZxmhqxbLyYEKBoaek1kELjS9zWam3584fB7+hC/D/yOL5VIzNTYK2p+l0hnDNec9la
+         PwxLpp7lD6asWrVMYpbxrj8CbVyUjv+NVMDvJQ01IIQ3ojDKu3SMAzbB9PvJGAfK3fCK
+         lkPqvEEQ8nOZyQOfiBSseOBQ7ZNyvByQ1xgfkWez5dbQam9X0jF7DEuJvdUItPIMj2D2
+         8ZDjhhQJFeNyqQOi02JzoFx5Kx2hfyqAuoAih/KeJAK3t/ha771sLC3pi1DeUhwxVRiF
+         9/iQ6NkHA47vsEsZ2Tl7BU0G13wAuZtxRxVCb6yhix5INR8JKJEsY1rHWI+KVd/0i0pu
+         9dSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=sBayUxRV4uPcA67ScjufKHzSC2Zb9c963r0CFb87BtI=;
+        b=6SGfWbtk/pCA4mbujomf2zmcVonNy2y12GvUsXtgktr0oNfoc7DOfxGF6YvaxZ2936
+         2jX6a7vQ+qzdIDJGCI44mfhsdRYXV5jE+u87zBmi3r2oLzu/yTSpN2iV3DxvwF7oZAPn
+         F+Pb/SUR9X4gRmEC3bA8QS8MZUqDJfq18YzwcPG4vAZGf3aILGTmqB3cbX/Od1Fz8SqE
+         Sl4fG/J8WFM1SsPkitItFVyVrbSghizfTFGJsrBv97qRmPxEfI7YSE439huVaDTiiqNy
+         w7PT5dVC7VgrtBAoobCo6bvpdzcH/dt9Cj3pGti6fkpuf757X7p7RHIRdn3Pv2uuW0oB
+         pSuQ==
+X-Gm-Message-State: ACgBeo2AxJxY3Z0ZFr5yfq+Kfl0x4EpZWRX0uqjEYdz33FQHCwP5z2Qm
+        iXpHiQ7FjsvfIdZccRxRh5cnyA==
+X-Google-Smtp-Source: AA6agR5MQ83Hq/A33QupzFIOLxPxAA89VBM9ILO2jMHCQZcILllbnmG9wAY/i+GQ4ZHqX8XArqLi1Q==
+X-Received: by 2002:a2e:9941:0:b0:247:dce8:b0ec with SMTP id r1-20020a2e9941000000b00247dce8b0ecmr871902ljj.404.1660290158243;
+        Fri, 12 Aug 2022 00:42:38 -0700 (PDT)
+Received: from [192.168.1.39] ([83.146.140.105])
+        by smtp.gmail.com with ESMTPSA id b19-20020a056512071300b0048b16fb79a0sm118602lfs.214.2022.08.12.00.42.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Aug 2022 00:42:37 -0700 (PDT)
+Message-ID: <721ccb76-c162-30ee-68cc-3316a2d62554@linaro.org>
+Date:   Fri, 12 Aug 2022 10:42:28 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.12.0
+Subject: Re: [PATCH 3/4] dt-bindings: PCI: microchip,pcie-host: fix incorrect
+ child node name
+Content-Language: en-US
+To:     Conor Dooley <mail@conchuod.ie>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20220811203306.179744-1-mail@conchuod.ie>
+ <20220811203306.179744-4-mail@conchuod.ie>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20220811203306.179744-4-mail@conchuod.ie>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When adding the D1 TCON bindings, I missed the conditional blocks that
-restrict the binding for TCON LCD vs TCON TV hardware. Add the D1 TCON
-variants to the appropriate blocks for DE2 TCON LCDs and TCON TVs.
+On 11/08/2022 23:33, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> v2022.08 of dt-schema improved checking of unevaluatedProperties, and
+> exposed a previously unseen warning for the PCIe controller's interrupt
+> controller node name:
+> 
+> arch/riscv/boot/dts/microchip/mpfs-icicle-kit.dtb: pcie@2000000000: Unevaluated properties are not allowed ('clock-names', 'clocks', 'legacy-interrupt-controller', 'microchip,axi-m-atr0' were unexpected)
+>         From schema: Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> 
+> Make the property in the binding match the node name actually used in
+> the dts.
+> 
+> Fixes: dcd49679fb3a ("dt-bindings: PCI: Fix 'unevaluatedProperties' warnings")
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> This is another one Rob where I feel like I'm doing the wrong thing.
+> The Linux driver gets the child node without using the name, but
+> another OS etc could in theory (or reality), right?
 
-Fixes: ae5a5d26c15c ("dt-bindings: display: Add D1 display engine compatibles")
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+Yes and we had such cases when renaming device nodes caused regression.
+My interpretation is that node name is not part of ABI, so anyone
+depending on it made a mistake and they need to fix their stuff. I think
+actually that is really poor coding and poor solution to parse device
+node names and expect specific name.
 
- .../devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+Other folks interpretation is that we never break the users of kernel,
+regardless what is documented in the ABI... so it depends. :)
 
-diff --git a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-index 4a92a4c7dcd7..f8168986a0a9 100644
---- a/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-+++ b/Documentation/devicetree/bindings/display/allwinner,sun4i-a10-tcon.yaml
-@@ -224,43 +224,45 @@ allOf:
-             - const: ahb
-             - const: tcon-ch0
-             - const: lvds-alt
- 
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-               - allwinner,sun8i-a83t-tcon-lcd
-               - allwinner,sun8i-v3s-tcon
-               - allwinner,sun9i-a80-tcon-lcd
-+              - allwinner,sun20i-d1-tcon-lcd
- 
-     then:
-       properties:
-         clocks:
-           minItems: 2
- 
-         clock-names:
-           items:
-             - const: ahb
-             - const: tcon-ch0
- 
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-               - allwinner,sun8i-a83t-tcon-tv
-               - allwinner,sun8i-r40-tcon-tv
-               - allwinner,sun9i-a80-tcon-tv
-+              - allwinner,sun20i-d1-tcon-tv
- 
-     then:
-       properties:
-         clocks:
-           minItems: 2
- 
-         clock-names:
-           items:
-             - const: ahb
-             - const: tcon-ch1
- 
-   - if:
-@@ -269,40 +271,42 @@ allOf:
-           contains:
-             enum:
-               - allwinner,sun5i-a13-tcon
-               - allwinner,sun6i-a31-tcon
-               - allwinner,sun6i-a31s-tcon
-               - allwinner,sun7i-a20-tcon
-               - allwinner,sun8i-a23-tcon
-               - allwinner,sun8i-a33-tcon
-               - allwinner,sun8i-v3s-tcon
-               - allwinner,sun9i-a80-tcon-lcd
-               - allwinner,sun4i-a10-tcon
-               - allwinner,sun8i-a83t-tcon-lcd
-+              - allwinner,sun20i-d1-tcon-lcd
- 
-     then:
-       required:
-         - "#clock-cells"
-         - clock-output-names
- 
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-               - allwinner,sun6i-a31-tcon
-               - allwinner,sun6i-a31s-tcon
-               - allwinner,sun8i-a23-tcon
-               - allwinner,sun8i-a33-tcon
-               - allwinner,sun8i-a83t-tcon-lcd
-+              - allwinner,sun20i-d1-tcon-lcd
- 
-     then:
-       properties:
-         resets:
-           minItems: 2
- 
-         reset-names:
-           items:
-             - const: lcd
-             - const: lvds
- 
-   - if:
--- 
-2.35.1
+Here however it is not a device node name, but a property name (although
+still a node). Bindings require these to be specific, thus such name is
+a part of ABI.
 
+For your case, I wonder why it was called "legacy-interrupt-controller"
+in the first place? Node names - also for properties - should be
+generic, so generic name is just "interrupt-controller".
+
+> ---
+>  .../devicetree/bindings/pci/microchip,pcie-host.yaml          | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> index 2a2166f09e2c..9b123bcd034c 100644
+> --- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
+> @@ -71,7 +71,7 @@ properties:
+>    msi-parent:
+>      description: MSI controller the device is capable of using.
+>  
+> -  interrupt-controller:
+> +  legacy-interrupt-controller:
+
+
+Best regards,
+Krzysztof
