@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24F3C590D5E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 10:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 492D2590D5A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 10:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237440AbiHLI2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 04:28:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39210 "EHLO
+        id S237415AbiHLI2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 04:28:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237434AbiHLI2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 04:28:09 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0990AA8335
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 01:28:03 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id y13so767791ejp.13
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 01:28:03 -0700 (PDT)
+        with ESMTP id S237402AbiHLI2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 04:28:07 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C3C5A0331
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 01:28:05 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id fy5so818641ejc.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 01:28:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc;
-        bh=/UoqSEAsTHkqoWWs7/M5jpw98+8CpunSRLbcHfAbHAI=;
-        b=U1GHKKJ6mexj4ZkoYkCxMnXrayjvvJCSL9lpj1svT4E7titpWsDYjkI0nyKvAXDpqE
-         uhkxhnWXKFd6yvnULVSpGC2wZTO70BklauX03huRyXaP5iDNGBtcu57x3YrwBoOZ2qHN
-         x1UMLYcvHv06KWJZ47FGcyhXw6uU+e4dMugeuNrwCVW1wSQwHf3CVwRcKeo1h0vTPnOG
-         MHjspl8jKP1S4RE4rpDcUMFKhkmp9ssjuf4gtDtucZu1BN0heayJw4a4vk+aWLCFz1+q
-         wzrAo2qnv2B9TH3mdmAr8oka/cM0+YlI07rQZqbhN6l+YVwLaOQe53qMVR33n7pho3Zy
-         DOrA==
+        bh=YtXfWrLU1BZPc0rfRaWUKHk31M+JfVKZR86pVQ/2Egk=;
+        b=UzrkX0IxhkIOXzUyXy0xY8Pll/YDDoDIG7iHl3U+UObYWU6CeqAZ3hcuERe48Eg4qj
+         cV2/S/42bnyKsJY1Si7MlZEp5/u4Wrf87aCqSvdBIulw5gLv/3RRZ3uJZYOiJofkZ9Y2
+         KEhuG+yWXpjouBuYLYdfniUlwiOWgmCv6E00nCK+SPNXnWJ/sdthIkFtZTnhRkuzTBJz
+         n0MPn7fLsJU7m2vNk/p07lG0AK1qejrV3+dRBJxRmDPU38AO3Ifuu7uVk4JARAkrruB8
+         3SBPXHwiQIkGe0dhUtIBBZWwFvkzYroUPIJcpzxCqd/9r13jF+8wFglO+UmMWtrGYEz9
+         kvKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
-        bh=/UoqSEAsTHkqoWWs7/M5jpw98+8CpunSRLbcHfAbHAI=;
-        b=y9/Ea/Q1QugqX1wLmfBCZh6qMZrfRAVNFXa/AkbBIQrjXAd+6Jh1aFKDULlXE4pdkv
-         toEh/NA7ELFjL93A8g9k2PbWLI7lputY43yLbxBp9IQzy7F+ITfcMzVp8qxY5Rf9QAqd
-         95xUKG3D7OTE6EE5mEXSAp/N8tEleEKq9IpNb/A087u01zC1ij52CcLQE5XJIhmom6D6
-         NqU4q0kTGnlpLFoWg8+Sfl/8xDMSEyNf6iaZYMXXXta0yWf3QL+Uzr9kuTvp5yQsMrYz
-         LqAkbfdpXjd2JkHPDdwPRPmzGrQh6pG85QtCg9KZDo2Dm0OMnybkbe6BewWvi9gc1O70
-         +EJw==
-X-Gm-Message-State: ACgBeo1LgsyjbZaWGssqZeQku6oaA3fwT5xFUIvx4ExDh1PlxWjdMu1D
-        pFtaU3LqFkXRRDWS6CL0SOoz/g==
-X-Google-Smtp-Source: AA6agR4FXQQ4aqaIoLj1wXTkm1i8iEZPWyRrMq3qFrqX0RpW955wp6U4Qr94op3EwFQSIYy6fLHz/A==
-X-Received: by 2002:a17:907:2707:b0:730:af0b:3572 with SMTP id w7-20020a170907270700b00730af0b3572mr1896043ejk.411.1660292882373;
-        Fri, 12 Aug 2022 01:28:02 -0700 (PDT)
+        bh=YtXfWrLU1BZPc0rfRaWUKHk31M+JfVKZR86pVQ/2Egk=;
+        b=rn13vmoqqjuJwP9Kp75/YMiDOSEP3FBT5KJpJQoxwX+bjenRuKv9OJC5jGTpJLCs0p
+         MdybwusPZHOeGloZ4wgEmOJISYCzuamtUBNTOcwyU9zQ0dAtdlHSXWDHR7y/vkKux3Jx
+         ln6muqawwVy7EDgwoZVoq0juLBicafDOKrpmTcSYGgCHU8+fB4N2PBsp7LRo86pxKN8F
+         vqLZ+VyWi8zq8FwLxrKZ+L7dFA0YjA7JvEBA4XybdnzUygiKvuLKT6OG8Sp7yfnRg+++
+         T3ZIXUEEqdUqf+v57C8j02KPPyVAe1yylMVeNjDDIrRQLhdLWUEH5lnMO0SajEr5DlHS
+         13XA==
+X-Gm-Message-State: ACgBeo2kFh5HtXqSf0qT/0rQ9+F0yea1QY3QLMG+Kw3qAp8TjxMozfmN
+        T6o0PSvlkW8yFCpYpy2YSauxbg==
+X-Google-Smtp-Source: AA6agR7S1IBFsA6x0Q1AZL0/ULItvXSqg/Ku54We6vkcsLprZSGLimKyiRcd6EL7RotjPHmIr9Qkow==
+X-Received: by 2002:a17:907:842:b0:731:3310:4187 with SMTP id ww2-20020a170907084200b0073133104187mr1879973ejb.578.1660292884039;
+        Fri, 12 Aug 2022 01:28:04 -0700 (PDT)
 Received: from otso.arnhem.chello.nl (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id y6-20020a056402134600b0043cf1c6bb10sm971326edw.25.2022.08.12.01.28.01
+        by smtp.gmail.com with ESMTPSA id y6-20020a056402134600b0043cf1c6bb10sm971326edw.25.2022.08.12.01.28.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Aug 2022 01:28:02 -0700 (PDT)
+        Fri, 12 Aug 2022 01:28:03 -0700 (PDT)
 From:   Luca Weiss <luca.weiss@fairphone.com>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
@@ -54,14 +54,12 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: dmaengine: qcom: gpi: add compatible for SM6350
-Date:   Fri, 12 Aug 2022 10:27:19 +0200
-Message-Id: <20220812082721.1125759-2-luca.weiss@fairphone.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 3/3] arm64: dts: qcom: sm6350: Add GPI DMA nodes
+Date:   Fri, 12 Aug 2022 10:27:21 +0200
+Message-Id: <20220812082721.1125759-4-luca.weiss@fairphone.com>
 X-Mailer: git-send-email 2.37.1
 In-Reply-To: <20220812082721.1125759-1-luca.weiss@fairphone.com>
 References: <20220812082721.1125759-1-luca.weiss@fairphone.com>
@@ -69,7 +67,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,25 +75,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the compatible for GPI DMA controller on SM6350 SoC.
+Add nodes for the gpi_dma0 and gpi_dma1 which are (optionally) used for
+various i2c busses based on the qup firmware configuration.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/qcom/sm6350.dtsi | 59 ++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-index 7d2fc4eb5530..eabf8a76d3a0 100644
---- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-+++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
-@@ -21,6 +21,7 @@ properties:
-     enum:
-       - qcom,sc7280-gpi-dma
-       - qcom,sdm845-gpi-dma
-+      - qcom,sm6350-gpi-dma
-       - qcom,sm8150-gpi-dma
-       - qcom,sm8250-gpi-dma
-       - qcom,sm8350-gpi-dma
+diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+index 76f14d54ae1c..5de6eb26f904 100644
+--- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
+@@ -5,6 +5,7 @@
+ 
+ #include <dt-bindings/clock/qcom,gcc-sm6350.h>
+ #include <dt-bindings/clock/qcom,rpmh.h>
++#include <dt-bindings/dma/qcom-gpi.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/mailbox/qcom-ipcc.h>
+@@ -517,6 +518,26 @@ opp-384000000 {
+ 			};
+ 		};
+ 
++		gpi_dma0: dma-controller@800000 {
++			compatible = "qcom,sm6350-gpi-dma";
++			reg = <0 0x00800000 0 0x60000>;
++			interrupts = <GIC_SPI 244 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 245 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 246 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 247 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 248 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 249 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 250 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 251 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 252 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 253 IRQ_TYPE_LEVEL_HIGH>;
++			dma-channels = <10>;
++			dma-channel-mask = <0x1f>;
++			iommus = <&apps_smmu 0x56 0x0>;
++			#dma-cells = <3>;
++			status = "disabled";
++		};
++
+ 		qupv3_id_0: geniqup@8c0000 {
+ 			compatible = "qcom,geni-se-qup";
+ 			reg = <0x0 0x8c0000 0x0 0x2000>;
+@@ -537,6 +558,9 @@ i2c0: i2c@880000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&qup_i2c0_default>;
+ 				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
++				dmas = <&gpi_dma0 0 0 QCOM_GPI_I2C>,
++				       <&gpi_dma0 1 0 QCOM_GPI_I2C>;
++				dma-names = "tx", "rx";
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				status = "disabled";
+@@ -550,12 +574,35 @@ i2c2: i2c@888000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&qup_i2c2_default>;
+ 				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
++				dmas = <&gpi_dma0 0 2 QCOM_GPI_I2C>,
++				       <&gpi_dma0 1 2 QCOM_GPI_I2C>;
++				dma-names = "tx", "rx";
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				status = "disabled";
+ 			};
+ 		};
+ 
++		gpi_dma1: dma-controller@900000 {
++			compatible = "qcom,sm6350-gpi-dma";
++			reg = <0 0x00900000 0 0x60000>;
++			interrupts = <GIC_SPI 645 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 646 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 647 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 648 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 649 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 650 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 651 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 652 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 653 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 654 IRQ_TYPE_LEVEL_HIGH>;
++			dma-channels = <10>;
++			dma-channel-mask = <0x3f>;
++			iommus = <&apps_smmu 0x4d6 0x0>;
++			#dma-cells = <3>;
++			status = "disabled";
++		};
++
+ 		qupv3_id_1: geniqup@9c0000 {
+ 			compatible = "qcom,geni-se-qup";
+ 			reg = <0x0 0x9c0000 0x0 0x2000>;
+@@ -576,6 +623,9 @@ i2c6: i2c@980000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&qup_i2c6_default>;
+ 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
++				dmas = <&gpi_dma1 0 0 QCOM_GPI_I2C>,
++				       <&gpi_dma1 1 0 QCOM_GPI_I2C>;
++				dma-names = "tx", "rx";
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				status = "disabled";
+@@ -589,6 +639,9 @@ i2c7: i2c@984000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&qup_i2c7_default>;
+ 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
++				dmas = <&gpi_dma1 0 1 QCOM_GPI_I2C>,
++				       <&gpi_dma1 1 1 QCOM_GPI_I2C>;
++				dma-names = "tx", "rx";
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				status = "disabled";
+@@ -602,6 +655,9 @@ i2c8: i2c@988000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&qup_i2c8_default>;
+ 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
++				dmas = <&gpi_dma1 0 2 QCOM_GPI_I2C>,
++				       <&gpi_dma1 1 2 QCOM_GPI_I2C>;
++				dma-names = "tx", "rx";
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				status = "disabled";
+@@ -626,6 +682,9 @@ i2c10: i2c@990000 {
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&qup_i2c10_default>;
+ 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
++				dmas = <&gpi_dma1 0 4 QCOM_GPI_I2C>,
++				       <&gpi_dma1 1 4 QCOM_GPI_I2C>;
++				dma-names = "tx", "rx";
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				status = "disabled";
 -- 
 2.37.1
 
