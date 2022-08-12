@@ -2,80 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36DC2590FD0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 12:57:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0730590FFE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Aug 2022 13:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237438AbiHLK5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 06:57:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36910 "EHLO
+        id S234319AbiHLLZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 07:25:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237449AbiHLK5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 06:57:00 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5705AA3D0
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:56:58 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id e15so895079lfs.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 03:56:58 -0700 (PDT)
+        with ESMTP id S229704AbiHLLZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 07:25:50 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABB082A436
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 04:25:49 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id d14so909916lfl.13
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 04:25:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc;
-        bh=mChUjQTtXHpc2A+QlFmH2j/MWN0EZMkc2lSHpOXeQrA=;
-        b=Y9ftosvW+/lXOfo2DHn/iOKLY+DKnzGTJ/du2uR/xcqHW5eEuf/MhEfhmLloPHjwCO
-         oBbJry4O8PjVfaJ5FODDfz5T+LNbcxuJs5Gd0cZfk1nKVp8go/D2FeOtJU+2sXQ3rJLv
-         NDSu+WYXb0U/rhC1Ph+3m/FOizpJlCkHFVx5wsNrFRYQ3UkbZpmeNGHh8sIoAnLenkh+
-         vndZxXrtL+c/XXlsiLfZSyuiYiQ0KKvZJLZJgwiuvEr8HjkHJSwgAJa2LemBKUlEWxtd
-         xISOy5mUZ7ESoOE8vzF8bHvZ0mY+jnuLvpJC3CsD/hI21t4DKdjdnRBgIcmxkgPQcgQU
-         a5IQ==
+        bh=CicaxzhBFo0KPREhpr4TXcueTsn2K/vZuDdXuzYsKWU=;
+        b=ZSjkS3G57jOr2ZUgBUg647LpswyGyUyOyxiv0qFWeuWeUxKsfjmjUXDseiTfsQeItA
+         C7ge0PECV1KDT/YzTpu722jyDhSyTkdFC9Tz1gGtysf3KxHqSztEfFLFt2lBu7DmBQo4
+         is0MZePlBzlABtDsifedY/+Z3wAkjtKPZ+7kvVg62lftbaHeyB2zFH0GKgXkK/osYma0
+         KMRoFx5V+/YgxcE2CHqMv/q1MXffwjHDhg7RRANtqkqntp+ZcsYIkO2B6lSFUrO0jcxl
+         nUp2kC2MVEEazP4SXMIreFRMBeyz+1HSNrbsCona9am1KL+dpyWbCzXSVezdHj/fIpqp
+         rNCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc;
-        bh=mChUjQTtXHpc2A+QlFmH2j/MWN0EZMkc2lSHpOXeQrA=;
-        b=XM0HzKo7nNucmF4EGTNN13h3mYdwO19h+6rtKZUN4eP+S1eOkAQ4aSwzprMg1sB5no
-         0OJVn6VX+2w3X4esBYKbDRhxaDgD01eKGZF/bI+qMTUCZEHsGZdpjyDbpv24RRJJ7Q9v
-         QfyU8bVDEIOgVMZtlLzHrnCC9Sf5FqB7Ep1SeMBCGQ3tFOY/kAVAMSsdHdTC84/oZNbu
-         Maom7AJXKjY5LqVJ5TbHIbThwtkmvKLSgWCNIjXLMjNhdZmT9abLb8YebmjgyzNgn25S
-         byh4ehllga6j5eFUvJh3GywTTY5Rp6dKdfbVId8UaTNcENjVBNGDderLRz5cz2OjjCI5
-         GpqQ==
-X-Gm-Message-State: ACgBeo2olEAd3Ia8SkkZFCaFLj7BwjsVuk+nujpHUK3aiTZHAAudZgw0
-        D/sF1rdY3iuems1DJJocJr2zNw==
-X-Google-Smtp-Source: AA6agR4c+dqcuuneKDezG2XNuToIgmi+wQmcMT9vCnGaJvx1lSq90f0pUvfTgcx6kKuGrwL9SZQRYA==
-X-Received: by 2002:a05:6512:3fa8:b0:48c:ffd1:625d with SMTP id x40-20020a0565123fa800b0048cffd1625dmr998883lfa.251.1660301817252;
-        Fri, 12 Aug 2022 03:56:57 -0700 (PDT)
+        bh=CicaxzhBFo0KPREhpr4TXcueTsn2K/vZuDdXuzYsKWU=;
+        b=u90HBExs22q4dYK0SS+0ro8p4gYVIsz7o0TBCnVQCCea0fYPdjSaUWRJYh5S/y6dVV
+         XuSopPHePtVdj7WTWya00eokrjxsjsEZ2bM8TfVeQHo+xKt+/4UAg01iUnn0WFvdzAdJ
+         6VibE5TJgQHfvkwpSYxFRB+arXTgSkGZVuKrr9qFNRJPxXz2PpUBbb3keve26dp93LFm
+         Z82Joa5HSP8FRoXb7AYiEK5Yilqosn9V9W7xobevonTYaMOoxN+fgVYNJ6LgY4kt6H3t
+         yw8aTtVAB7bgfTfazWWLvWiUxzMqLQeTwH6oK+DmBY80Sne8H6puC2ufZ2yYuZiIhLKu
+         aq1w==
+X-Gm-Message-State: ACgBeo1mBRRpwwbE5Z37H6OYpn8G7fsyv+NdKOJ2iut1PYlPTIHqsCF3
+        1D0qs0sXamcchwL9A4TMAY500w==
+X-Google-Smtp-Source: AA6agR7nbIA1W9kvuTBrsjatx+y+trLViCt2NS014KwbWMIhl7WPsCOj2Q0c6fDtZvYCVRpwve0F1w==
+X-Received: by 2002:ac2:4f03:0:b0:48a:6061:bd8e with SMTP id k3-20020ac24f03000000b0048a6061bd8emr1247397lfr.647.1660303548058;
+        Fri, 12 Aug 2022 04:25:48 -0700 (PDT)
 Received: from [192.168.1.39] ([83.146.140.105])
-        by smtp.gmail.com with ESMTPSA id f7-20020a056512360700b0048b0f2dc35asm178317lfs.75.2022.08.12.03.56.52
+        by smtp.gmail.com with ESMTPSA id b20-20020a196714000000b0048a9a756763sm188699lfc.19.2022.08.12.04.25.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Aug 2022 03:56:56 -0700 (PDT)
-Message-ID: <3a26be5c-04c5-cd67-1154-dfd7d99fb5d0@linaro.org>
-Date:   Fri, 12 Aug 2022 13:56:50 +0300
+        Fri, 12 Aug 2022 04:25:47 -0700 (PDT)
+Message-ID: <14cf568e-d7ee-886e-5122-69b2e58b8717@linaro.org>
+Date:   Fri, 12 Aug 2022 14:25:42 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.12.0
-Subject: Re: [PATCH v3 0/1] Mediatek MT6366 Regulator patch
+Subject: Re: [PATCH net 1/2] dt: ar803x: Document disable-hibernation property
 Content-Language: en-US
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>, lee.jones@linaro.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-        broonie@kernel.org, eddie.huang@mediatek.com, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, fshao@chromium.org
-Cc:     sen.chu@mediatek.com, hui.liu@mediatek.com,
-        allen-kh.cheng@mediatek.com, hsin-hsiung.wang@mediatek.com,
-        sean.wang@mediatek.com, macpaul.lin@mediatek.com,
-        wen.su@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220812092901.6429-1-zhiyong.tao@mediatek.com>
+To:     Wei Fang <wei.fang@nxp.com>, "andrew@lunn.ch" <andrew@lunn.ch>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220812145009.1229094-1-wei.fang@nxp.com>
+ <20220812145009.1229094-2-wei.fang@nxp.com>
+ <0cd22a17-3171-b572-65fb-e9d3def60133@linaro.org>
+ <DB9PR04MB81060AF4890DEA9E2378940288679@DB9PR04MB8106.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20220812092901.6429-1-zhiyong.tao@mediatek.com>
+In-Reply-To: <DB9PR04MB81060AF4890DEA9E2378940288679@DB9PR04MB8106.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,16 +88,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/08/2022 12:29, Zhiyong Tao wrote:
-> Add mt6366 binding documentation
+On 12/08/2022 12:02, Wei Fang wrote:
 > 
-> Changes in patch v3:
-> 1)change patch title
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: 2022年8月12日 15:28
+>> To: Wei Fang <wei.fang@nxp.com>; andrew@lunn.ch; hkallweit1@gmail.com;
+>> linux@armlinux.org.uk; davem@davemloft.net; edumazet@google.com;
+>> kuba@kernel.org; pabeni@redhat.com; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; f.fainelli@gmail.com;
+>> netdev@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-kernel@vger.kernel.org
+>> Subject: Re: [PATCH net 1/2] dt: ar803x: Document disable-hibernation
+>> property
+>>
+>> On 12/08/2022 17:50, wei.fang@nxp.com wrote:
+>>> From: Wei Fang <wei.fang@nxp.com>
+>>>
+>>
+>> Please use subject prefix matching subsystem.
+>>
+> Ok, I'll add the subject prefix.
+> 
+>>> The hibernation mode of Atheros AR803x PHYs is default enabled.
+>>> When the cable is unplugged, the PHY will enter hibernation mode and
+>>> the PHY clock does down. For some MACs, it needs the clock to support
+>>> it's logic. For instance, stmmac needs the PHY inputs clock is present
+>>> for software reset completion. Therefore, It is reasonable to add a DT
+>>> property to disable hibernation mode.
+>>>
+>>> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/net/qca,ar803x.yaml | 6 ++++++
+>>>  1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+>>> b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+>>> index b3d4013b7ca6..d08431d79b83 100644
+>>> --- a/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/qca,ar803x.yaml
+>>> @@ -40,6 +40,12 @@ properties:
+>>>        Only supported on the AR8031.
+>>>      type: boolean
+>>>
+>>> +  qca,disable-hibernation:
+>>> +    description: |
+>>> +    If set, the PHY will not enter hibernation mode when the cable is
+>>> +    unplugged.
+>>
+>> Wrong indentation. Did you test the bindings?
+>>
+> Sorry, I just checked the patch and forgot to check the dt-bindings.
+> 
+>> Unfortunately the property describes driver behavior not hardware, so it is not
+>> suitable for DT. Instead describe the hardware
+>> characteristics/features/bugs/constraints. Not driver behavior. Both in property
+>> name and property description.
+>>
+> Thanks for your review and feedback. Actually, the hibernation mode is a feature of hardware, I will modify the property name and description to be more in line with the requirements of the DT property. 
 
-Where is the driver?
-
-Don't ignore feedback:
-https://lore.kernel.org/all/YuJsDI8rqkHuysIT@sirena.org.uk/
+hibernation is a feature, but 'disable-hibernation' is not. DTS
+describes the hardware, not policy or driver bejhvior. Why disabling
+hibernation is a property of hardware? How you described, it's not,
+therefore either property is not for DT or it has to be phrased
+correctly to describe the hardware.
 
 Best regards,
 Krzysztof
