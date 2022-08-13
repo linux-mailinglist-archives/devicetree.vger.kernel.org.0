@@ -2,57 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A889C591B93
-	for <lists+devicetree@lfdr.de>; Sat, 13 Aug 2022 17:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82C1B591C71
+	for <lists+devicetree@lfdr.de>; Sat, 13 Aug 2022 21:57:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239835AbiHMPnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Aug 2022 11:43:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56170 "EHLO
+        id S234164AbiHMT5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Aug 2022 15:57:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239780AbiHMPnL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Aug 2022 11:43:11 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD4572B265;
-        Sat, 13 Aug 2022 08:43:10 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 76D8DB80689;
-        Sat, 13 Aug 2022 15:43:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5571DC433C1;
-        Sat, 13 Aug 2022 15:43:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660405388;
-        bh=7np7mJqPeBgv041i57B2DM02CHOQuh0GruFHQCNsAZQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=g8NX46prV5L64TYWoXuLSki7hBqvTAPMfFav3YUVIqZ2j6vUrtRmcq3fxPTvNrF6A
-         y9sYm3CWSgNN+Pyw3DarW1QW44u3pKDjflPsdI5ozsM0BeH0J6UYTliC+Q6F5dlqqz
-         IxaSrYxkY1rTsBPrKwGbhFXwwDdVxo85PPD2LvbUwIirwEz6JO+SyJVjrOTyx82/c/
-         Ybu3MYTBEeC6Dtlt6JWlfwR2rDH5u0cLHcnH5UyUfR2XE5mL0QvZbQrRbDJm7+fXDH
-         ed02TYnRMcn/S4QOKgpccJTiz/RpcUDdOUkzUSWP8PuXBUMHblYqBNasQ9uAnFVsYB
-         FKp3L9eunhwPg==
-Date:   Sat, 13 Aug 2022 16:53:36 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: iio: gyroscope: bosch,bmg160: correct
- number of pins
-Message-ID: <20220813165336.40870468@jic23-huawei>
-In-Reply-To: <1ab7b38d-e356-6cb8-f101-9499eb34e026@linaro.org>
-References: <20220805075503.16983-1-krzysztof.kozlowski@linaro.org>
-        <20220806153221.1a90bd28@jic23-huawei>
-        <1ab7b38d-e356-6cb8-f101-9499eb34e026@linaro.org>
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.34; x86_64-pc-linux-gnu)
+        with ESMTP id S233851AbiHMT5i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Aug 2022 15:57:38 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDD713CC7
+        for <devicetree@vger.kernel.org>; Sat, 13 Aug 2022 12:57:37 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id qn6so7245719ejc.11
+        for <devicetree@vger.kernel.org>; Sat, 13 Aug 2022 12:57:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=JGYHeKzOnPNjlc3OvvMKt2SLhpqG2CadqQbgqAwYLc8=;
+        b=cBu1gX955Ca5O0bgIBvDOeVQmOF+rnz03U2tY9avsgtMrBGu4SqEZOYSQN7zVxHoxp
+         zMYINRKP8R63yRW+WUQxe1bY/Ooy3Bw64feqNJ/2kk14MSeUuWOteO+y5r4dN+uzJTK4
+         LeoGB0XQM6xHxXKJE51Tz6/NwLY1vhbim6561V54zz9L6PqDmeE6wuCMWnbMkFLuA1bA
+         xJPd5CtB+WKYE27WuCUl6vxHmKetIfMF5TISbZRKrmdGsA9wV21lLAPyzPlB4dQaAKvc
+         wuP/zW6nWPfXhWAY7kjCeknHDRFiWXF45q5DKjlDVI+/rwSPOt0YBLz4wl8Yuq7rTKbt
+         2qSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=JGYHeKzOnPNjlc3OvvMKt2SLhpqG2CadqQbgqAwYLc8=;
+        b=KphbHA9iUgNO0+53eH7Q7wE8ZrMHo6k/8tMO1F4++wem0KJciXYLcy2+bG7rxHo3bU
+         vpVyzBVtV2c2ygIkjZ3u23KuhkZ3KFLXqLWfDFTE8nzzOGX7MD8FlQfAebRBdVtlrGIL
+         hppbMWkDr1+93ffyUR6lI5ZAGAk4PXNUv8jzIzvp5lky86QXJ+yiQNqYxVJWvBk89EZ5
+         zOeaeDfA+awkvKkAXv+H4Il25/86TP9TeRVFPXy2aehl1ZM1gIHOs4B2UHRaXnCtt57M
+         aHpo3hO2sgopSzOQti5O81/Te/+DTLe/UzQCDZJkJtbcCzcZJ0VHUoen/ULLCbvMACzw
+         Qa8w==
+X-Gm-Message-State: ACgBeo0dvroGfPAGe6eogkK1F4GxI7r5gL2q+/5bmQq+aE1PDgh9/ele
+        9fhc/3y9nUVG/gvQTNxF+Pbm4u7cWVsB2J1ZA0KAGTGGeYA=
+X-Google-Smtp-Source: AA6agR6byjWAkLF7RgcR8NnyDLpre6XNFIhaJVHwkXh8pa1vGfcsOAPQBNsnrWL7KbaJndQU0ecWXrunsUrX1jcv9Ag=
+X-Received: by 2002:a17:906:5a71:b0:730:aaa1:a9ec with SMTP id
+ my49-20020a1709065a7100b00730aaa1a9ecmr6168817ejc.440.1660420656213; Sat, 13
+ Aug 2022 12:57:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <cover.1660337264.git.jahau@rocketmail.com> <93b50c20adb1b2acb4cddb1ab25755070edd7c07.1660337264.git.jahau@rocketmail.com>
+In-Reply-To: <93b50c20adb1b2acb4cddb1ab25755070edd7c07.1660337264.git.jahau@rocketmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 13 Aug 2022 21:57:25 +0200
+Message-ID: <CACRpkdZbbyiRBbdEGJAZwM7cWDWKaLLxyHV92j263cM6aQKwbw@mail.gmail.com>
+Subject: Re: [PATCH v6 07/14] iio: magnetometer: yas530: Move printk %*ph
+ parameters out from stack
+To:     Jakob Hauser <jahau@rocketmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,65 +70,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 8 Aug 2022 07:48:31 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Fri, Aug 12, 2022 at 11:56 PM Jakob Hauser <jahau@rocketmail.com> wrote:
 
-> On 06/08/2022 16:32, Jonathan Cameron wrote:
-> > On Fri,  5 Aug 2022 09:55:03 +0200
-> > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> >   
-> >> BMG160 has two interrupt pins to which interrupts can be freely mapped.
-> >> Correct the schema to express such case and fix warnings like:
-> >>
-> >>   qcom/msm8916-alcatel-idol347.dtb: gyroscope@68: interrupts: [[97, 1], [98, 1]] is too long
-> >>
-> >> However the basic issue still persists - the interrupts should come in a
-> >> defined order.
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> ---
-> >>
-> >> Changes since v1:
-> >> 1. Accept also INT2 as one interrupt (Jonathan).  
-> > 
-> > This doesn't work. If we are going to support either interrupt, at the very least
-> > we need to require interrupt-names if the first one isn't INT1.  So your fix
-> > is right but not enough.
-> > 
-> > Driver may ignore interrupt-names for now (would be good to have a sanity check in driver
-> > though so the driver explicitly checks for INT2 and doesn't use the interrupt if
-> > it is INT2 - support for that being for a future 'feature' addition).
-> > 
-> > A hacky solution would be to require the first one to always be INT1 but that
-> > gives us no (backwards compatible) path forwards if someone does have a board
-> > where only INT2 is wired.
-> > 
-> > So minimum change I think will be to provide interrupt-names allowing any of
-> > INT1 (default if not specified)
-> > INT1, INT2
-> > INT2  
-> 
-> This is exactly what my fix is doing. What else do you need?
-> interrupt-names is just a helper which anyway driver does not use, so
-> enforcing it now does not change much.
+> Use less stack by modifying %*ph parameters.
+>
+> While at it, in the function yas530_get_calibration_data(), the debug dump was
+> extended to 16 elements as this is the size of the calibration data array of
+> YAS530.
+>
+> Suggested-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-Ok. I guess this sort of papers over it in a vague fashion and
-avoids pointing out there that there is breakage in the one interrupt case
-beyond a hint in the commit message.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Better than nothing but only a partial fix for the actual issue
-(where that issue isn't a binding warning!)
-
-Applied to the fixes-togreg branch of iio.git
-
-Thanks,
-
-Jonathan
-
-
-> 
-> 
-> Best regards,
-> Krzysztof
-
+Yours,
+Linus Walleij
