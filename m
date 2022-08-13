@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BE2D5917D8
-	for <lists+devicetree@lfdr.de>; Sat, 13 Aug 2022 02:37:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A04125917E3
+	for <lists+devicetree@lfdr.de>; Sat, 13 Aug 2022 02:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236246AbiHMAhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Aug 2022 20:37:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59938 "EHLO
+        id S237044AbiHMAwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Aug 2022 20:52:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236346AbiHMAhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 20:37:46 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0117FA894B
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 17:37:43 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id 64so887894ybl.9
-        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 17:37:42 -0700 (PDT)
+        with ESMTP id S232177AbiHMAwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Aug 2022 20:52:33 -0400
+Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1557CB845
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 17:52:32 -0700 (PDT)
+Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-3246910dac3so24407217b3.12
+        for <devicetree@vger.kernel.org>; Fri, 12 Aug 2022 17:52:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=uEJMlpNek7i3LOabGfVfDJzU9omVsDJB8WJ8KQU8dlQ=;
-        b=Sve28P4PqhXjk4ce663qu3BvVMqDHjCi61dQeacdpv1MmyLZIemKSXmz1ouaidH+nD
-         DCGdK5i4Ch7HgoQYu2+MuRZb1hdCO0/FPhd9qeDOqxjkVCHGg2R+Gnyeg0Iehbqrq3fI
-         BhTdclcBc6ylCKogS/Xb+6Ruw4y4rGUEfX4OWrb5LgSN7uaBCCsL7CaIRVhf/yoCdZwY
-         5yStn2+EnssoA4TZt9WEjTFainIwqSVJQcvvM/z7JPDA18RNrlU1B40NxbCV3SSxlaB9
-         fAzavnCk0q+JcNw+3GICKmVdS44T263eRwHsX5a+YURPIwUo3W7ZuZzltZC4DnsAXB3j
-         CY9Q==
+        bh=WbYPnHR9HxWi35dBvBrbYSupoHoVU6IHkJrer8aofZg=;
+        b=G36nprOTrr0PmY/r2BwuoDf4i3WasiJ4cZpmd9acCRnpeqyMKO2a6Fbu6B7C9Lp8BN
+         JqK+IWDfeW/cPhqLQW8MW2s+9+sK8RYowQwHglCVnXxkWP6Yla7w9T9f8gNmAMhtpArf
+         D13lz7D0k0zBYfPP3xccYAUJkJlvOKXVKawXgLHZ/uGJbp04DKf629ue/aX3iZCcMKMU
+         0gT1wKrlqfHWG0QUsgPuhcrD8YYbvIsZiJn8SeV0GcSvHaj6kiMpmr0q1C4THEnkSE3N
+         75aTb9x1yo2ooD5T2ctqo531ZpQqCzAFDLlXIJCZb1riOg3Flv8EKmVV9ltmbWPPFyve
+         ppwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=uEJMlpNek7i3LOabGfVfDJzU9omVsDJB8WJ8KQU8dlQ=;
-        b=aiNS5YpJGOTkQvMcIAeY0sa4bTD4k9xBE+5JvKiHEjAUtVlOOPAbNyvxW91+fGnZ9E
-         qRhwT9IcwAoDEqYXJa2XvC2GIHYPgU95TY0EbSev7SFojyD2vSvHDUa42xJHwKhw9G0e
-         3YglxG1tdwD45Fgf10wNqXjReVE9rZFW9bUwHhNosndiN9+6881hRYBb06IZ9+iWkc7M
-         MzI6pYQNkfHxCyk6AarWxxRElvn6ycpALFMmhLZA6TCHrC7vf69hfVbvmX0o83i+0teM
-         XAtSzlRj192wfb7mfLGuR7oc+CceGH8FZK0H1h50fyPUPk7rue7wxRaSEwFErs2SY3fv
-         GiYQ==
-X-Gm-Message-State: ACgBeo1QYx55s+X8rJ9/wE5llUxFYCpBpDAZS8CkKK6VUbuz0+0415WZ
-        5pCnlI7uWk2qydd1Yj28p7sH/jMyPG5uzFN9RBZc2g==
-X-Google-Smtp-Source: AA6agR60geMZ3H7nVfNHvTy7tQRFJxetMdVj0FGkYr3EoFl8eIXK86kZZzELtTaeP+s+WgwLZRZMnfoqUVBwXNCqVYY=
-X-Received: by 2002:a05:6902:2cb:b0:684:aebe:49ab with SMTP id
- w11-20020a05690202cb00b00684aebe49abmr2097251ybh.242.1660351061876; Fri, 12
- Aug 2022 17:37:41 -0700 (PDT)
+        bh=WbYPnHR9HxWi35dBvBrbYSupoHoVU6IHkJrer8aofZg=;
+        b=Hpn5jItgvCJ45iDUdwLFjhX+QaEB1C5F7PI+OtEwjMZ0V14JUeFsob6b79VHCe1ZoR
+         8EuEomWq6vYKrdfwHU1S7/WzblWNLPHZ+cYP8SX5YUrp4aoUWujtG/OAcnR99MUtW4gC
+         qSSWPF805xdLN2qLB0egvdbdOUabjQ+xvQKuqc8u8IaJkrENTBXd8fHYDJOQgSgG+mAX
+         4zP92y7kGVQFLp8diuTJAwhFexAuyaszrMBxU5SHaS2Lzp+w4MXMNfN6tYCsj9aUL0vy
+         n0SlMmPjcWWhEO/w69XTjfoUojV+d0tgFYBArf32oVczyN3qZh+n79KiIbl3v5BhaV5j
+         8gNQ==
+X-Gm-Message-State: ACgBeo1IlQxyx0qKXRq3BpxxIDvAY3J+VDbYALJK90iVbBVsnMB0hepX
+        9lgfIdN45SMT0UI038rdITuuZb08zyncDO6SiH5SrA==
+X-Google-Smtp-Source: AA6agR6k6YUMLYwWVgKkXkzA9eQcDh7PvZyVqo7+64YRZILB50qMGsLs3wg/aVWSq5qiOyNQ+Uwd8c5jcYUTJUBcQ7k=
+X-Received: by 2002:a81:998c:0:b0:326:5dab:df3f with SMTP id
+ q134-20020a81998c000000b003265dabdf3fmr6066292ywg.126.1660351951117; Fri, 12
+ Aug 2022 17:52:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220810060040.321697-1-saravanak@google.com> <20220810060040.321697-10-saravanak@google.com>
- <YvYhoGdemyKEx++d@atomide.com>
-In-Reply-To: <YvYhoGdemyKEx++d@atomide.com>
+References: <20220810060040.321697-1-saravanak@google.com> <YvYiF36M09dX9ASm@atomide.com>
+In-Reply-To: <YvYiF36M09dX9ASm@atomide.com>
 From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 12 Aug 2022 17:37:05 -0700
-Message-ID: <CAGETcx_SdxJKV56jGSx8GbmA4y_zaoP6z8n8xKZGZbCcmewvDQ@mail.gmail.com>
-Subject: Re: [PATCH v1 9/9] of: property: Simplify of_link_to_phandle()
+Date:   Fri, 12 Aug 2022 17:51:55 -0700
+Message-ID: <CAGETcx-t0O0B+5i0FWwm5w2=ccOD5zVAaUvgQoP8PT9SOT_btw@mail.gmail.com>
+Subject: Re: [PATCH v1 0/9] fw_devlink improvements
 To:     Tony Lindgren <tony@atomide.com>
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -80,71 +79,40 @@ X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 12, 2022 at 2:47 AM Tony Lindgren <tony@atomide.com> wrote:
->
-> Hi,
+On Fri, Aug 12, 2022 at 2:49 AM Tony Lindgren <tony@atomide.com> wrote:
 >
 > * Saravana Kannan <saravanak@google.com> [220810 05:54]:
-> > The driver core now:
-> > - Has the parent device of a supplier pick up the consumers if the
-> >   supplier never has a device created for it.
-> > - Ignores a supplier if the supplier has no parent device and will never
-> >   be probed by a driver
+> > Tony,
 > >
-> > And already prevents creating a device link with the consumer as a
-> > supplier of a parent.
-> >
-> > So, we no longer need to find the "compatible" node of the supplier or
-> > do any other checks in of_link_to_phandle(). We simply need to make sure
-> > that the supplier is available in DT.
+> > This should handle the odd case of the child being the supplier of the
+> > parent. Can you please give this a shot? I want to make sure the cycle
+> > detection code handles this properly and treats it like it's NOT a cycle.
 >
-> This patch fixes booting for me, so it should be applied as a fix and
-> tagged with:
+> Yup, this series works for me, so feel free to add:
 >
-> Fixes: 5a46079a9645 ("PM: domains: Delete usage of driver_deferred_probe_check_state()")
->
-> If there are dependencies to the other patches in this series, it might
-> make sense to revert commit 5a46079a9645 instead.
-
-Yes, there are dependencies on the rest of the patches in this series.
-For linux-next, I think we should pick up this series once we get more
-Tested-bys.
-
- So if 5a46079a9645 is causing any regression in stable branches, we
-should pick up the revert series [1] instead of this series we are
-replying to.
-
-[1] - https://lore.kernel.org/all/20220727185012.3255200-1-saravanak@google.com/
-
-> Anyways, thanks for fixing the issue, for this patch:
->
-> Reviewed-by: Tony Lindgren <tony@atomide.com>
 > Tested-by: Tony Lindgren <tony@atomide.com>
 
-Thanks!
+Thanks for testing!
 
-> For the process, looks like the earlier series got merged despite the
-> issues reported.
+Btw, out of curiosity, how many different boards did you test this on?
+IIRC you had an issue only in one board, right? Not to say I didn't
+break anything else, I'm just trying to see how much confidence we
+have on this series so far. I'm hoping the rest of the folks I listed
+in the email will get around to testing this series.
 
-If I'm not mistaken, the issues were reported after the series got
-picked up. And the series got some tested-by s before it was picked
-up. And once it's in git history, we obviously can't drop it.
+-Saravana
 
-> And we had non-booting Linux next for at least some SoCs
-> for weeks. And now we are about to have a non-booting -rc1 unless things
-> get fixed fast. Annoying glitches, sigh..
+> I have some concerns though on how do we get a working -rc1 with the
+> earlier series applied? See the comments in the last patch of this
+> series.
 
-Sorry for breaking some boards -- so mean "creative" corner cases :)
-
-This rewrite is way more flexible (removes a lot of limitations in
-fw_devlink) and hopefully this handles all the corner cases. We'll
-see.
+I tried to reply, but not sure if it helps. We'll continue the discussion there.
 
 -Saravana
