@@ -2,169 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E39D5919EA
-	for <lists+devicetree@lfdr.de>; Sat, 13 Aug 2022 12:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A830F591A10
+	for <lists+devicetree@lfdr.de>; Sat, 13 Aug 2022 13:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239271AbiHMKpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Aug 2022 06:45:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55308 "EHLO
+        id S239284AbiHML5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Aug 2022 07:57:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239331AbiHMKpK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Aug 2022 06:45:10 -0400
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8644627FF9;
-        Sat, 13 Aug 2022 03:45:09 -0700 (PDT)
-Date:   Sat, 13 Aug 2022 10:44:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1660387504; x=1660646704;
-        bh=mr68/NsAdXC+G9X9bG8jF/vpINHVnEQJpv90ExGKKdA=;
-        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
-         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
-         Feedback-ID:Message-ID;
-        b=sPTb7QdnrMFKFLTxJiv9LuHcKHXbKBlTYsJHejRrkAUAV5Vmpih9IN1+QZNDG4Za3
-         ImsN0zxdTjD0AmiHohdOyBA42ulCa+cMR9Y6Nxed8ee01z7X6JNvTazf9IV9xakLI+
-         LuQ31sYYBz1r1Y5kW+7lFK2CP7jprsDtqME8lSzDjeGTmWUSyIuChl06+HxZrpU667
-         I/y763WUz1i4bHA3C9TXJLiw4rl1M7rUKhGEBknQMjZDRKDgn64BpeaVfDqsGKpGBh
-         PQzjAZVRAUkXlpN8MvfKyaxXE/1jB0OYtWhXTc7yZ/YsOvP3g42wjJocCdFu0Oej0F
-         RKC+f4Dekb9Aw==
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Miles Chen <miles.chen@mediatek.com>, yassine.oudjana@gmail.com,
-        bgolaszewski@baylibre.com, chun-jie.chen@mediatek.com,
-        devicetree@vger.kernel.org, ikjn@chromium.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        matthias.bgg@gmail.com, mturquette@baylibre.com,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, sam.shih@mediatek.com,
-        sboyd@kernel.org, tinghan.shen@mediatek.com, weiyi.lu@mediatek.com,
-        wenst@chromium.org, ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: Re: [PATCH v2 4/4] clk: mediatek: Add drivers for MediaTek MT6735 main clock drivers
-Message-ID: <lAB8fLfWTwUu6FUqPZWoKNEC0ZPYHnvo05u6BGriYQVjanlTzorHaZAflEbzoml-0UVZe-02r6CfzKwGdBCp7E0YeT_hF86P26r-Zeivda4=@protonmail.com>
-In-Reply-To: <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
-References: <NJC6CR.M4CF312LSXXV1@gmail.com> <20220520093501.28758-1-miles.chen@mediatek.com> <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
-Feedback-ID: 6882736:user:proton
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229719AbiHML5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Aug 2022 07:57:31 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE7892BB0C;
+        Sat, 13 Aug 2022 04:57:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5EEF1B80025;
+        Sat, 13 Aug 2022 11:57:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BE80C433C1;
+        Sat, 13 Aug 2022 11:57:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660391848;
+        bh=kXrxgYD20mXl/zNB8s8zhxuWo31IQt1azVzBjNTDzWE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Cr/Sh05hkal2JjfmFNjVOoNWn5yXFAG2PzZ2rH+N9SmV97xYBgrxD2nGlcLtXH0vc
+         yFuY3hY1hBA+zx3HoBHTEY5NEXwgQ3L+azhExkHz8x5kcNw5NKftSqh99235HVoiz4
+         J+6LqpxtgQqizRTfFbMnEbM9PyWiip4yYGCc6HQ6BqLmqLAGZaWPkF+XMkdq3j5FN8
+         CPDjLRtzxov8MNh50ettdZh9OREG2ieReIb+58gPR7Sc6ewU5LcUnAco7ur0vwb7Zv
+         lU2EZMVEDoe/VQL5Vx07ew7q0pvGJKEMbX4fZ4McpNE2bHiuz7505AwRDMjGrF+ETV
+         m3bxXmgobxI6Q==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1oMpld-002i67-Vn;
+        Sat, 13 Aug 2022 12:57:26 +0100
+Date:   Sat, 13 Aug 2022 12:57:25 +0100
+Message-ID: <874jygs6e2.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com,
+        jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
+        ntb@lists.linux.dev, lznuaa@gmail.com
+Subject: Re: [PATCH v4 2/4] irqchip: imx mu worked as msi controller
+In-Reply-To: <20220812215242.2255824-3-Frank.Li@nxp.com>
+References: <20220812215242.2255824-1-Frank.Li@nxp.com>
+        <20220812215242.2255824-3-Frank.Li@nxp.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: Frank.Li@nxp.com, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us, kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev, lznuaa@gmail.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday, May 20th, 2022 at 11:26 AM, AngeloGioacchino Del Regno <angelogi=
-oacchino.delregno@collabora.com> wrote:
+On Fri, 12 Aug 2022 22:52:40 +0100,
+Frank Li <Frank.Li@nxp.com> wrote:
+> 
+> MU support generate irq by write data to a register.
+> This patch make mu worked as msi controller.
+> So MU can do doorbell by using standard msi api.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-> Il 20/05/22 11:35, Miles Chen ha scritto:
->
-> > > > Thanks for submitting this patch.
-> > > >
-> > > > I compare this with drivers/clk/mediatek/clk-mt7986-apmixed.c,
-> > > > and other clk files are using macros to make the mtk_pll_data array
-> > > > more readable.
-> > >
-> > > I'd actually argue that macros make it less readable. While reading
-> > > other drivers I had a lot of trouble figuring out which argument
-> > > is which field of the struct, and had to constantly go back to the
-> > > macro definitions and count arguments to find it. Having it this
-> > > way, each value is labeled clearly with the field it's in. I think
-> > > the tradeoff between line count and readability here is worth it.
-> >
-> > It is easier for multiple developers to work together if we have a comm=
-on style.
-> >
-> > How do you think?
->
->
-> In my opinion, Yassine is definitely right about this one: unrolling thes=
-e macros
-> will make the code more readable, even though this has the side effect of=
- making
-> it bigger in the source code form (obviously, when compiled, it's going t=
-o be the
-> exact same size).
->
-> I wouldn't mind getting this clock driver in without the usage of macros,=
- as much
-> as I wouldn't mind converting all of the existing drivers to open-code ev=
-erything
-> instead of using macros that you have to find in various headers... this =
-practice
-> was done in multiple drivers (clock or elsewhere), so I don't think that =
-it would
-> actually be a bad idea to do it here on MediaTek too, even though I'm not=
- aware of
-> any rule that may want us to do that: if you check across drivers/clk/*, =
-there's
-> a big split in how drivers are made, where some are using macros (davinci=
-, renesas,
-> samsung, sprd, etc), and some are not (bcm, sunxi-ng, qcom, tegra, versat=
-ile, etc),
-> so it's really "do it as you wish"...
->
-> ... but:
->
-> Apart from that, I also don't think that it is a good idea to convert the=
- other
-> MTK clock drivers right now, as this would make the upstreaming of MediaT=
-ek clock
-> drivers harder for some of the community in this moment... especially whe=
-n we look
-> at how many MTK SoCs are out there in the wild, and how many we have upst=
-ream:
-> something like 10% of them, or less.
->
-> I see the huge benefit of having a bigger community around MediaTek platf=
-orms as
-> that's beneficial to get a way better support and solidity for all SoCs a=
-s they
-> are sharing the same drivers and same framework, and expanding the suppor=
-t to more
-> of them will only make it better with highly valuable community contribut=
-ions.
->
->
-> That said, Yassine, you should've understood that you have my full suppor=
-t on
-> unrolling these macros - but it's not time to do that yet: you definitely=
- know
-> that MediaTek clock drivers are going through a big cleanup phase which i=
-s, at
-> this point, unavoidable... if we are able to get the aid of scripts (cocc=
-i and
-> others), that will make our life easier in this cleanup, and will also ma=
-ke us
-> able to perform the entire cleanup with less effort and in less overall t=
-ime.
->
-> With that, I'm sad but I have to support Miles' decision on this one, and=
- I also
-> have to ask you to use macros in this driver.
+May I add that it wouldn't hurt if you checked what addresses you send
+your patches to? For example, 'kernel@vger.kernel.org' doesn't exist
+(maybe you meant linux-kernel@...).
 
-I'm picking up this series again now after taking a long break to allow for
-ongoing cleanup and refactoring work to settle down. I was going to make th=
-is
-change but then I couldn't find the PLL macro defined in any common header.
-It seems that it is defined in every driver that uses it, with slight varia=
-tions
-in some of them. Should I just do the same, or would it be better to define=
- it
-in clk-pll.h? Also, would now be a good time to unroll the macros in all dr=
-ivers,
-or is it still too soon?
+I will not take patches that haven't been posted to LKML (and I
+shouldn't have reviewed it the first place).
 
-Another thing: Since I've been out of touch with the cleanup work for a whi=
-le,
-it would be great if someone makes me aware of any pending cleanup patches =
-that
-I should know of so that I base my patches on them and avoid duplicating wo=
-rk.
+Thanks,
 
-> ...
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
