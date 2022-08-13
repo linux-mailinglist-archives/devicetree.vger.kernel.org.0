@@ -2,135 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32F105919BD
-	for <lists+devicetree@lfdr.de>; Sat, 13 Aug 2022 12:04:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E39D5919EA
+	for <lists+devicetree@lfdr.de>; Sat, 13 Aug 2022 12:45:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238887AbiHMKEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Aug 2022 06:04:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54120 "EHLO
+        id S239271AbiHMKpa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Aug 2022 06:45:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238659AbiHMKET (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Aug 2022 06:04:19 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18696B1C8;
-        Sat, 13 Aug 2022 03:04:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1660385059; x=1691921059;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Sx0SSML7cg2bVL2w/xbWJw6733DiD1Fcno0ewbF4vbI=;
-  b=HxHW4T15KDruGk11FntwhvcI9X6tu8+T5C7BmLcQA3KUs7E5ooS4yyAb
-   ei6L1hVDf8le7IwPp9tvioWeIj1DYMVU/zgfhsLiLv3Wis0dQ0YIowmWJ
-   1cfexE5C6STIyGSo65JrqpAKs85zyv3qFeMWAK9TpHSs0SeI4NbXeUWlu
-   +iTMs1ftEKgSs3urUzLb+omtJWsBdOneeGHzWl5HOIZxkbbtCqOgMHmNy
-   x/vKzXDBhjW/mbUrI/gEoHY6+zHlsdJYBol1rg90dO//ni9V44sxXmLfa
-   /e7TImLDG302MybA9ahnM75/ULi3uy5Kk1XUVen9kvXw91XFPELxIkREg
-   A==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10437"; a="289312154"
-X-IronPort-AV: E=Sophos;i="5.93,233,1654585200"; 
-   d="scan'208";a="289312154"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Aug 2022 03:04:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.93,233,1654585200"; 
-   d="scan'208";a="851807988"
-Received: from lkp-server02.sh.intel.com (HELO 8745164cafc7) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 13 Aug 2022 03:04:14 -0700
-Received: from kbuild by 8745164cafc7 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1oMo06-0001YP-0p;
-        Sat, 13 Aug 2022 10:04:14 +0000
-Date:   Sat, 13 Aug 2022 18:03:23 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        linux-remoteproc@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@quicinc.com, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, quic_rohkumar@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org,
-        devicetree@vger.kernel.org
-Cc:     kbuild-all@lists.01.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: Re: [PATCH v4 6/7] remoteproc: qcom: Add support for memory sandbox
-Message-ID: <202208131734.HEn8peGd-lkp@intel.com>
-References: <1660308466-410-7-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S239331AbiHMKpK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Aug 2022 06:45:10 -0400
+Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8644627FF9;
+        Sat, 13 Aug 2022 03:45:09 -0700 (PDT)
+Date:   Sat, 13 Aug 2022 10:44:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1660387504; x=1660646704;
+        bh=mr68/NsAdXC+G9X9bG8jF/vpINHVnEQJpv90ExGKKdA=;
+        h=Date:To:From:Cc:Reply-To:Subject:Message-ID:In-Reply-To:
+         References:Feedback-ID:From:To:Cc:Date:Subject:Reply-To:
+         Feedback-ID:Message-ID;
+        b=sPTb7QdnrMFKFLTxJiv9LuHcKHXbKBlTYsJHejRrkAUAV5Vmpih9IN1+QZNDG4Za3
+         ImsN0zxdTjD0AmiHohdOyBA42ulCa+cMR9Y6Nxed8ee01z7X6JNvTazf9IV9xakLI+
+         LuQ31sYYBz1r1Y5kW+7lFK2CP7jprsDtqME8lSzDjeGTmWUSyIuChl06+HxZrpU667
+         I/y763WUz1i4bHA3C9TXJLiw4rl1M7rUKhGEBknQMjZDRKDgn64BpeaVfDqsGKpGBh
+         PQzjAZVRAUkXlpN8MvfKyaxXE/1jB0OYtWhXTc7yZ/YsOvP3g42wjJocCdFu0Oej0F
+         RKC+f4Dekb9Aw==
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+From:   Yassine Oudjana <y.oudjana@protonmail.com>
+Cc:     Miles Chen <miles.chen@mediatek.com>, yassine.oudjana@gmail.com,
+        bgolaszewski@baylibre.com, chun-jie.chen@mediatek.com,
+        devicetree@vger.kernel.org, ikjn@chromium.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        matthias.bgg@gmail.com, mturquette@baylibre.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, sam.shih@mediatek.com,
+        sboyd@kernel.org, tinghan.shen@mediatek.com, weiyi.lu@mediatek.com,
+        wenst@chromium.org, ~postmarketos/upstreaming@lists.sr.ht
+Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
+Subject: Re: [PATCH v2 4/4] clk: mediatek: Add drivers for MediaTek MT6735 main clock drivers
+Message-ID: <lAB8fLfWTwUu6FUqPZWoKNEC0ZPYHnvo05u6BGriYQVjanlTzorHaZAflEbzoml-0UVZe-02r6CfzKwGdBCp7E0YeT_hF86P26r-Zeivda4=@protonmail.com>
+In-Reply-To: <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
+References: <NJC6CR.M4CF312LSXXV1@gmail.com> <20220520093501.28758-1-miles.chen@mediatek.com> <c7b98ee4-cd4f-d7b7-726d-1acd4fafd50a@collabora.com>
+Feedback-ID: 6882736:user:proton
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1660308466-410-7-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivasa,
+On Friday, May 20th, 2022 at 11:26 AM, AngeloGioacchino Del Regno <angelogi=
+oacchino.delregno@collabora.com> wrote:
 
-Thank you for the patch! Perhaps something to improve:
+> Il 20/05/22 11:35, Miles Chen ha scritto:
+>
+> > > > Thanks for submitting this patch.
+> > > >
+> > > > I compare this with drivers/clk/mediatek/clk-mt7986-apmixed.c,
+> > > > and other clk files are using macros to make the mtk_pll_data array
+> > > > more readable.
+> > >
+> > > I'd actually argue that macros make it less readable. While reading
+> > > other drivers I had a lot of trouble figuring out which argument
+> > > is which field of the struct, and had to constantly go back to the
+> > > macro definitions and count arguments to find it. Having it this
+> > > way, each value is labeled clearly with the field it's in. I think
+> > > the tradeoff between line count and readability here is worth it.
+> >
+> > It is easier for multiple developers to work together if we have a comm=
+on style.
+> >
+> > How do you think?
+>
+>
+> In my opinion, Yassine is definitely right about this one: unrolling thes=
+e macros
+> will make the code more readable, even though this has the side effect of=
+ making
+> it bigger in the source code form (obviously, when compiled, it's going t=
+o be the
+> exact same size).
+>
+> I wouldn't mind getting this clock driver in without the usage of macros,=
+ as much
+> as I wouldn't mind converting all of the existing drivers to open-code ev=
+erything
+> instead of using macros that you have to find in various headers... this =
+practice
+> was done in multiple drivers (clock or elsewhere), so I don't think that =
+it would
+> actually be a bad idea to do it here on MediaTek too, even though I'm not=
+ aware of
+> any rule that may want us to do that: if you check across drivers/clk/*, =
+there's
+> a big split in how drivers are made, where some are using macros (davinci=
+, renesas,
+> samsung, sprd, etc), and some are not (bcm, sunxi-ng, qcom, tegra, versat=
+ile, etc),
+> so it's really "do it as you wish"...
+>
+> ... but:
+>
+> Apart from that, I also don't think that it is a good idea to convert the=
+ other
+> MTK clock drivers right now, as this would make the upstreaming of MediaT=
+ek clock
+> drivers harder for some of the community in this moment... especially whe=
+n we look
+> at how many MTK SoCs are out there in the wild, and how many we have upst=
+ream:
+> something like 10% of them, or less.
+>
+> I see the huge benefit of having a bigger community around MediaTek platf=
+orms as
+> that's beneficial to get a way better support and solidity for all SoCs a=
+s they
+> are sharing the same drivers and same framework, and expanding the suppor=
+t to more
+> of them will only make it better with highly valuable community contribut=
+ions.
+>
+>
+> That said, Yassine, you should've understood that you have my full suppor=
+t on
+> unrolling these macros - but it's not time to do that yet: you definitely=
+ know
+> that MediaTek clock drivers are going through a big cleanup phase which i=
+s, at
+> this point, unavoidable... if we are able to get the aid of scripts (cocc=
+i and
+> others), that will make our life easier in this cleanup, and will also ma=
+ke us
+> able to perform the entire cleanup with less effort and in less overall t=
+ime.
+>
+> With that, I'm sad but I have to support Miles' decision on this one, and=
+ I also
+> have to ask you to use macros in this driver.
 
-[auto build test WARNING on remoteproc/rproc-next]
-[also build test WARNING on linus/master v5.19 next-20220812]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I'm picking up this series again now after taking a long break to allow for
+ongoing cleanup and refactoring work to settle down. I was going to make th=
+is
+change but then I couldn't find the PLL macro defined in any common header.
+It seems that it is defined in every driver that uses it, with slight varia=
+tions
+in some of them. Should I just do the same, or would it be better to define=
+ it
+in clk-pll.h? Also, would now be a good time to unroll the macros in all dr=
+ivers,
+or is it still too soon?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Srinivasa-Rao-Mandadapu/Update-ADSP-pil-loader-for-SC7280-platform/20220812-205239
-base:   git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux.git rproc-next
-config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20220813/202208131734.HEn8peGd-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.1.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/1d330f9a7446932416d55d93ebba00e3d16bbef9
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Srinivasa-Rao-Mandadapu/Update-ADSP-pil-loader-for-SC7280-platform/20220812-205239
-        git checkout 1d330f9a7446932416d55d93ebba00e3d16bbef9
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash drivers/remoteproc/
+Another thing: Since I've been out of touch with the cleanup work for a whi=
+le,
+it would be great if someone makes me aware of any pending cleanup patches =
+that
+I should know of so that I base my patches on them and avoid duplicating wo=
+rk.
 
-If you fix the issue, kindly add following tag where applicable
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   drivers/remoteproc/qcom_q6v5_adsp.c: In function 'adsp_of_unmap_smmu':
->> drivers/remoteproc/qcom_q6v5_adsp.c:343:13: warning: variable 'access_level' set but not used [-Wunused-but-set-variable]
-     343 |         int access_level;
-         |             ^~~~~~~~~~~~
->> drivers/remoteproc/qcom_q6v5_adsp.c:340:23: warning: variable 'mem_phys' set but not used [-Wunused-but-set-variable]
-     340 |         unsigned long mem_phys;
-         |                       ^~~~~~~~
-
-
-vim +/access_level +343 drivers/remoteproc/qcom_q6v5_adsp.c
-
-   337	
-   338	static void adsp_of_unmap_smmu(struct iommu_domain *iommu_dom, const __be32 *prop, int len)
-   339	{
- > 340		unsigned long mem_phys;
-   341		unsigned long iova;
-   342		unsigned int mem_size;
- > 343		int access_level;
-   344		int i;
-   345	
-   346		for (i = 0; i < len; i++) {
-   347			iova = be32_to_cpu(prop[i++]);
-   348			mem_phys = be32_to_cpu(prop[i++]);
-   349			mem_size = be32_to_cpu(prop[i++]);
-   350			access_level = be32_to_cpu(prop[i]);
-   351			iommu_unmap(iommu_dom, iova, mem_size);
-   352		}
-   353	}
-   354	
-
--- 
-0-DAY CI Kernel Test Service
-https://01.org/lkp
+> ...
