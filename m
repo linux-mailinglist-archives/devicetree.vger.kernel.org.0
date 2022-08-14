@@ -2,196 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ED9859265B
-	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 22:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8459C592662
+	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 22:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231849AbiHNUls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Aug 2022 16:41:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57230 "EHLO
+        id S229990AbiHNUpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Aug 2022 16:45:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbiHNUls (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 16:41:48 -0400
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2CEA15FC9;
-        Sun, 14 Aug 2022 13:41:43 -0700 (PDT)
-Received: by mail-oi1-f174.google.com with SMTP id u14so6875918oie.2;
-        Sun, 14 Aug 2022 13:41:43 -0700 (PDT)
+        with ESMTP id S229379AbiHNUpM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 16:45:12 -0400
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53F0415FC9;
+        Sun, 14 Aug 2022 13:45:11 -0700 (PDT)
+Received: by mail-ot1-f41.google.com with SMTP id q6-20020a05683033c600b0061d2f64df5dso4292251ott.13;
+        Sun, 14 Aug 2022 13:45:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=9Mv3SYsV787hG2zwBPi7bzT81bYQL5Y4bZ2g9jjPhSI=;
-        b=3Nz4UXQNVfZVqTaOhV9cjkr6lfEKJdp0mGXfNZl9HW2HP+uNZ4yy3nnXK2QolQNxEg
-         U9qgQYjHmipVEyyMQz4Ck+zIsJNRK+5x+ZCuZu3LsC8Fe3dyE/zuBEYMzCoKKS5rAS26
-         KLMLLB0O4jAG9ir7lB8hNU7Z78CYScZ00VOPi7/EfDbWin8UkQJQazl+8rNQoHcSQKDb
-         EUynKP3eQZUZGl/Oi9U0dXx3yN57CpvNll5QFGY/RXlzqeKdAwlJGMj3zuIeDHN5Lkhz
-         MPbk6wqBJ+GLAQ+25sV0FDf7TsdcNngE1HeBV/ecLPoVJkeFSw7enT0u+SOIU6wWGXKd
-         8/lA==
-X-Gm-Message-State: ACgBeo1JWhyoZw/cL8s2dHGWzRXpVMu3l+Jcx3iV0I+7aKSGZWUfkqfR
-        NrADyTYS3ekwAQakabNFTQ==
-X-Google-Smtp-Source: AA6agR4uHGL9LB7gP7Q+Ajfe9FgPloWZ0Sz4kuzRLczXQqy+Qp+hbqAqrIq7K9g49rj7+MI+CQqFBQ==
-X-Received: by 2002:a05:6808:10ce:b0:342:a33c:fcc with SMTP id s14-20020a05680810ce00b00342a33c0fccmr5836922ois.250.1660509702872;
-        Sun, 14 Aug 2022 13:41:42 -0700 (PDT)
+        bh=YQ24aMe/dl9r0PZh5GuKRz4u2A7KWVezV59s4/QRS2I=;
+        b=EnswMA2T+f32Cj+qzcAFIZGze77HdYNXcDch/lHu7FnhfJG+42TggjA+g/UyABWHBA
+         V8Eo/54K1+QYJW/IbosqqIhPlc1yL4bDPSQLzbhTGAvMSjMPpUpdsXDcQvD/OLyIE5EE
+         xNrRrVRdXSBFQQ/Qrx/fin5+DQNCubRsKWOZFMsFIum+T2ECW6NHdX9RyFSLe0pLTRqp
+         SHY7mINnnrJFFR96FwjekthiOmCpt3OUbm9p5GMtb5C/tV6pOvoSNiRkwFBfcDlpfTDp
+         YYvgKkKoIn9xS4jjaOe4p66koAVc+aX0SkmXw1jKKgPtSg4V4OrVX8bAf/+xpdkHcaxl
+         Bmlw==
+X-Gm-Message-State: ACgBeo2ENQWP3qqyb513R4myy6XHFxyCFRImbol+YZFgakI6epqkJ+pY
+        aeUYhg01/Wj7yHXgFX2L3Q==
+X-Google-Smtp-Source: AA6agR77dO+eZKZQyuXR5uxJOVdoQGt5EmocLw+lc/TntWA731e8TDoVyWZA5XWjInQmbdTHKP436A==
+X-Received: by 2002:a9d:5e83:0:b0:636:dcb4:6c2a with SMTP id f3-20020a9d5e83000000b00636dcb46c2amr4871205otl.242.1660509910621;
+        Sun, 14 Aug 2022 13:45:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([172.58.176.57])
-        by smtp.gmail.com with ESMTPSA id r14-20020a05687032ce00b0011b98fa9ab5sm396327oac.50.2022.08.14.13.41.39
+        by smtp.gmail.com with ESMTPSA id e17-20020a9d7311000000b006371a0ff355sm1724619otk.77.2022.08.14.13.45.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Aug 2022 13:41:42 -0700 (PDT)
-Received: (nullmailer pid 672588 invoked by uid 1000);
-        Sun, 14 Aug 2022 20:41:38 -0000
-Date:   Sun, 14 Aug 2022 14:41:38 -0600
+        Sun, 14 Aug 2022 13:45:10 -0700 (PDT)
+Received: (nullmailer pid 677581 invoked by uid 1000);
+        Sun, 14 Aug 2022 20:45:05 -0000
+Date:   Sun, 14 Aug 2022 14:45:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     maz@kernel.org, tglx@linutronix.de,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kw@linux.com, bhelgaas@google.com,
-        kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        peng.fan@nxp.com, aisheng.dong@nxp.com, jdmason@kudzu.us,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        kishon@ti.com, lorenzo.pieralisi@arm.com, ntb@lists.linux.dev,
-        lznuaa@gmail.com
-Subject: Re: [PATCH v4 3/4] dt-bindings: irqchip: imx mu work as msi
- controller
-Message-ID: <20220814204138.GA664328-robh@kernel.org>
-References: <20220812215242.2255824-1-Frank.Li@nxp.com>
- <20220812215242.2255824-4-Frank.Li@nxp.com>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org, broonie@kernel.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        quic_plai@quicinc.com, linux-remoteproc@vger.kernel.org,
+        robh+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+        quic_rohkumar@quicinc.com, bgoswami@quicinc.com,
+        swboyd@chromium.org, srinivas.kandagatla@linaro.org,
+        linux-arm-msm@vger.kernel.org, judyhsiao@chromium.org
+Subject: Re: [PATCH v3 1/8] dt-bindings: remoteproc: qcom: adsp: Make ADSP
+ pil loader as generic
+Message-ID: <20220814204505.GA677523-robh@kernel.org>
+References: <1660117558-21829-1-git-send-email-quic_srivasam@quicinc.com>
+ <1660117558-21829-2-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220812215242.2255824-4-Frank.Li@nxp.com>
+In-Reply-To: <1660117558-21829-2-git-send-email-quic_srivasam@quicinc.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 12, 2022 at 04:52:41PM -0500, Frank Li wrote:
-> I.MX mu support generate irq by write a register. Provide msi controller
-> support so other driver such as PCI EP can use it by standard msi
-> interface as doorbell.
+On Wed, 10 Aug 2022 13:15:51 +0530, Srinivasa Rao Mandadapu wrote:
+> Rename sdm845 adsp pil bindings to generic name, for using same binings
+> file for subsequent SoCs.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 > ---
->  .../interrupt-controller/fsl,mu-msi.yaml      | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
+> Changes since V2:
+> 	-- Generate patch with -M flag.
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
-> new file mode 100644
-> index 0000000000000..f60fa8b686879
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,mu-msi.yaml
-> @@ -0,0 +1,93 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/fsl,mu-msi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX Messaging Unit (MU) work as msi controller
-> +
-> +maintainers:
-> +  - Frank Li <Frank.Li@nxp.com>
-> +
-> +description: |
-> +  The Messaging Unit module enables two processors within the SoC to
-> +  communicate and coordinate by passing messages (e.g. data, status
-> +  and control) through the MU interface. The MU also provides the ability
-> +  for one processor (A side) to signal the other processor (B side) using
-> +  interrupts.
-> +
-> +  Because the MU manages the messaging between processors, the MU uses
-> +  different clocks (from each side of the different peripheral buses).
-> +  Therefore, the MU must synchronize the accesses from one side to the
-> +  other. The MU accomplishes synchronization using two sets of matching
-> +  registers (Processor A-facing, Processor B-facing).
-> +
-> +  MU can work as msi interrupt controller to do doorbell
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx6sx-mu-msi
-> +      - fsl,imx7ulp-mu-msi
-> +      - fsl,imx8ulp-mu-msi
-> +      - fsl,imx8ulp-mu-msi-s4
-> +
-> +  reg:
-> +    items:
-> +      - description: a side register base address
-> +      - description: b side register base address
-> +
-> +  reg-names:
-> +    items:
-> +      - const: a
-> +      - const: b
-> +
-> +  interrupts:
-> +    description: a side interrupt number.
-
-How many?
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    items:
-> +      - description: a side power domain
-> +      - description: b side power domain
-> +
-> +  power-domain-names:
-> +    items:
-> +      - const: a
-> +      - const: b
-> +
-> +  interrupt-controller: true
-> +
-> +  msi-controller: true
-
-#msi-cells?
-
-(Missing is treated as 0, but new bindings should be explicit)
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - msi-controller
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/firmware/imx/rsrc.h>
-> +
-> +    lsio_mu12: msi-controller@5d270000 {
-
-Drop unused labels.
-
-> +        compatible = "fsl,imx6sx-mu-msi";
-> +        msi-controller;
-> +        interrupt-controller;
-> +        reg = <0x5d270000 0x10000>,     /* A side */
-> +              <0x5d300000 0x10000>;     /* B side */
-> +        reg-names = "a", "b";
-> +        interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_HIGH>;
-> +        power-domains = <&pd IMX_SC_R_MU_12A>,
-> +                        <&pd IMX_SC_R_MU_12B>;
-> +        power-domain-names = "a", "b";
-> +    };
-> -- 
-> 2.35.1
+>  .../{qcom,sdm845-adsp-pil.yaml => qcom,lpass-adsp-pil.yaml}           | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>  rename Documentation/devicetree/bindings/remoteproc/{qcom,sdm845-adsp-pil.yaml => qcom,lpass-adsp-pil.yaml} (97%)
 > 
-> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
