@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FEF9592601
-	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 20:35:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1C3C59261C
+	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 21:16:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229769AbiHNSfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Aug 2022 14:35:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44888 "EHLO
+        id S229891AbiHNTQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Aug 2022 15:16:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiHNSfJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 14:35:09 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A893E186DF;
-        Sun, 14 Aug 2022 11:35:06 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id f18so1147297ilj.11;
-        Sun, 14 Aug 2022 11:35:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=message-id:date:subject:references:in-reply-to:cc:to:from
-         :x-gm-message-state:from:to:cc;
-        bh=gVW85/KDaANkBY2qCn0Fjp04/BEeNokQszStw+tvDH0=;
-        b=Hgug6en0aQBzDWOrSc3r8/mFR0PuRcjHata3McUZyq+my9XubakKloyelf+0BNcUhH
-         kbzI+uNjGjAGL9Qu7QCDc4i1zrcTX4Gr+5z2t6Dzh1P+ViWrR8YhaWSwr1ZSANTehoyM
-         rd4lGYa3CSyNIPa9iuor5XX35DukKcS0Q2Eog4z+t0uLIDyihuOL0JTm3a+ztvwB4UHp
-         V3UyhKhAb9VejTKHmTgPGbqWBI4/2hyXozPN4eg9ONdGGpZH7/msFFIT04hMiO4gfMeT
-         aRAMTSD7I+uqCvJaS4drBo5RHcXZKKwasLdX/+0hVK2zpgZF3HzU6Goltl/W1SVEHJSx
-         QQ+A==
-X-Gm-Message-State: ACgBeo2Lo4jlDkU6gAvVFYmIKEJolKK3xCL8MgVDHcF+vs1e3kpHj18f
-        8cw9qjvudPHk/WJJXtoqLg==
-X-Google-Smtp-Source: AA6agR7Y1di0eWxnpj0zfbAvLFxAvmjIxcBDVB44qAyLxZqqOTVzWXub5XeNFypIKZNsMxAYflc0sA==
-X-Received: by 2002:a92:c26a:0:b0:2e5:b7e4:7e52 with SMTP id h10-20020a92c26a000000b002e5b7e47e52mr775729ild.299.1660502105860;
-        Sun, 14 Aug 2022 11:35:05 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h12-20020a056e021d8c00b002e127d59f63sm3063758ila.74.2022.08.14.11.35.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Aug 2022 11:35:04 -0700 (PDT)
-Received: (nullmailer pid 546325 invoked by uid 1000);
-        Sun, 14 Aug 2022 18:35:02 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     gregkh@linuxfoundation.org, linux-arm-kernel@lists.infradead.org,
-        kernel@pengutronix.de, festevam@gmail.com,
-        krzysztof.kozlowski@linaro.org, saravanak@google.com,
-        geert+renesas@glider.be, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        shawnguo@kernel.org, krzysztof.kozlowski+dt@linaro.org
-In-Reply-To: <20220814074338.453608-3-victor.liu@nxp.com>
-References: <20220814074338.453608-1-victor.liu@nxp.com> <20220814074338.453608-3-victor.liu@nxp.com>
-Subject: Re: [PATCH v4 2/2] dt-bindings: bus: Add Freescale i.MX8qxp pixel link MSI bus binding
-Date:   Sun, 14 Aug 2022 12:35:02 -0600
-Message-Id: <1660502102.287520.546324.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S229558AbiHNTQL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 15:16:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A1917065;
+        Sun, 14 Aug 2022 12:16:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A7F560DB6;
+        Sun, 14 Aug 2022 19:16:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5606CC433D6;
+        Sun, 14 Aug 2022 19:16:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1660504568;
+        bh=ABHWdeN5kbBwaABRfpPqr1SEtY3rGLBqaZeYRMLDsT8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Puy8147/8znYlJOJjSUEn4IoSaBuj/qpm22FygIauQQyraPpj5VVII3+X2IOAaZ4W
+         zoT3jc4/7g0rl7pcoRl+id1es5i6vJxtVxLI3J8fsrDNRM5BKAzLjRhpSdjgmElPxL
+         s6dHJJlm4IIC1QgfwBDaFuVUkH9DfKTVWiM9AAVDnou9bkR4aT9ucEuvgaNkX5IApA
+         Q4VZnzT1AZZV+gz0Ap8FtzEhzFRH7LvXc3rS/JzNrdQo3MwrbtX+96j4ixoNakTVat
+         39kJlFrO5suoEsuP/InDICTBoElmUxxZ7DNXt5E+uoiFfqvq0xmxM3zhQiK8Uh/w6G
+         GfuRSll7/60NQ==
+Date:   Sun, 14 Aug 2022 22:16:05 +0300
+From:   Jarkko Sakkinen <jarkko@kernel.org>
+To:     Stefan Berger <stefanb@linux.ibm.com>
+Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
+        nasastry@in.ibm.com, mpe@ellerman.id.au,
+        Jason Gunthorpe <jgg@ziepe.ca>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Nageswara R Sastry <rnsastry@linux.ibm.com>
+Subject: Re: [PATCH v7 4/6] tpm: of: Make of-tree specific function commonly
+ available
+Message-ID: <YvlJ9T+a0b18rRos@kernel.org>
+References: <20220812164305.2056641-1-stefanb@linux.ibm.com>
+ <20220812164305.2056641-5-stefanb@linux.ibm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220812164305.2056641-5-stefanb@linux.ibm.com>
+X-Spam-Status: No, score=-7.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,57 +62,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 14 Aug 2022 15:43:38 +0800, Liu Ying wrote:
-> Freescale i.MX8qxp pixel link MSI bus is a simple memory-mapped bus.
-> It is used to access peripherals in i.MX8qm/qxp imaging, LVDS, MIPI
-> DSI and HDMI TX subsystems, like I2C controller, PWM controller,
-> MIPI DSI controller and Control and Status Registers (CSR) module.
+On Fri, Aug 12, 2022 at 12:43:03PM -0400, Stefan Berger wrote:
+> Simplify tpm_read_log_of() by moving reusable parts of the code into
+> an inline function that makes it commonly available so it can be
+> used also for kexec support. Call the new of_tpm_get_sml_parameters()
+> function from the TPM Open Firmware driver.
 > 
-> Reference simple-pm-bus bindings and add Freescale i.MX8qxp pixel
-> link MSI bus specific bindings.
+> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
+> Cc: Jarkko Sakkinen <jarkko@kernel.org>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>
+> Tested-by: Nageswara R Sastry <rnsastry@linux.ibm.com>
 > 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > ---
-> v3->v4:
-> * Add child nodes in the example MSI bus node of the MSI bus dt-binding. (Krzysztof)
+> v7:
+>  - Added original comment back into inlined function
 > 
-> v2->v3:
-> * Add a pattern property to allow child nodes. (Rob)
+> v4:
+>  - converted to inline function
+> ---
+>  drivers/char/tpm/eventlog/of.c | 31 +++++------------------------
+>  include/linux/tpm.h            | 36 ++++++++++++++++++++++++++++++++++
+>  2 files changed, 41 insertions(+), 26 deletions(-)
 > 
-> v1->v2:
-> Address Krzysztof's comments:
-> * Add a select to explicitly select the MSI bus dt-binding.
-> * List 'simple-pm-bus' explicitly as one item of compatible strings.
-> * Require compatible and reg properties.
-> * Put reg property just after compatible property in example.
+> diff --git a/drivers/char/tpm/eventlog/of.c b/drivers/char/tpm/eventlog/of.c
+> index a9ce66d09a75..f9462d19632e 100644
+> --- a/drivers/char/tpm/eventlog/of.c
+> +++ b/drivers/char/tpm/eventlog/of.c
+> @@ -12,6 +12,7 @@
+>  
+>  #include <linux/slab.h>
+>  #include <linux/of.h>
+> +#include <linux/tpm.h>
+>  #include <linux/tpm_eventlog.h>
+>  
+>  #include "../tpm.h"
+> @@ -20,11 +21,10 @@
+>  int tpm_read_log_of(struct tpm_chip *chip)
+>  {
+>  	struct device_node *np;
+> -	const u32 *sizep;
+> -	const u64 *basep;
+>  	struct tpm_bios_log *log;
+>  	u32 size;
+>  	u64 base;
+> +	int ret;
+>  
+>  	log = &chip->log;
+>  	if (chip->dev.parent && chip->dev.parent->of_node)
+> @@ -35,30 +35,9 @@ int tpm_read_log_of(struct tpm_chip *chip)
+>  	if (of_property_read_bool(np, "powered-while-suspended"))
+>  		chip->flags |= TPM_CHIP_FLAG_ALWAYS_POWERED;
+>  
+> -	sizep = of_get_property(np, "linux,sml-size", NULL);
+> -	basep = of_get_property(np, "linux,sml-base", NULL);
+> -	if (sizep == NULL && basep == NULL)
+> -		return -ENODEV;
+> -	if (sizep == NULL || basep == NULL)
+> -		return -EIO;
+> -
+> -	/*
+> -	 * For both vtpm/tpm, firmware has log addr and log size in big
+> -	 * endian format. But in case of vtpm, there is a method called
+> -	 * sml-handover which is run during kernel init even before
+> -	 * device tree is setup. This sml-handover function takes care
+> -	 * of endianness and writes to sml-base and sml-size in little
+> -	 * endian format. For this reason, vtpm doesn't need conversion
+> -	 * but physical tpm needs the conversion.
+> -	 */
+> -	if (of_property_match_string(np, "compatible", "IBM,vtpm") < 0 &&
+> -	    of_property_match_string(np, "compatible", "IBM,vtpm20") < 0) {
+> -		size = be32_to_cpup((__force __be32 *)sizep);
+> -		base = be64_to_cpup((__force __be64 *)basep);
+> -	} else {
+> -		size = *sizep;
+> -		base = *basep;
+> -	}
+> +	ret = of_tpm_get_sml_parameters(np, &base, &size);
+> +	if (ret < 0)
+> +		return ret;
+>  
+>  	if (size == 0) {
+>  		dev_warn(&chip->dev, "%s: Event log area empty\n", __func__);
+> diff --git a/include/linux/tpm.h b/include/linux/tpm.h
+> index dfeb25a0362d..6356baaa1393 100644
+> --- a/include/linux/tpm.h
+> +++ b/include/linux/tpm.h
+> @@ -460,4 +460,40 @@ static inline struct tpm_chip *tpm_default_chip(void)
+>  	return NULL;
+>  }
+>  #endif
+> +
+> +#ifdef CONFIG_OF
+> +static inline int of_tpm_get_sml_parameters(struct device_node *np,
+> +					    u64 *base, u32 *size)
+> +{
+> +	const u32 *sizep;
+> +	const u64 *basep;
+> +
+> +	sizep = of_get_property(np, "linux,sml-size", NULL);
+> +	basep = of_get_property(np, "linux,sml-base", NULL);
+> +	if (sizep == NULL && basep == NULL)
+> +		return -ENODEV;
+> +	if (sizep == NULL || basep == NULL)
+> +		return -EIO;
+> +
+> +	/*
+> +	 * For both vtpm/tpm, firmware has log addr and log size in big
+> +	 * endian format. But in case of vtpm, there is a method called
+> +	 * sml-handover which is run during kernel init even before
+> +	 * device tree is setup. This sml-handover function takes care
+> +	 * of endianness and writes to sml-base and sml-size in little
+> +	 * endian format. For this reason, vtpm doesn't need conversion
+> +	 * but physical tpm needs the conversion.
+> +	 */
+> +	if (of_property_match_string(np, "compatible", "IBM,vtpm") < 0 &&
+> +	    of_property_match_string(np, "compatible", "IBM,vtpm20") < 0) {
+> +		*size = be32_to_cpup((__force __be32 *)sizep);
+> +		*base = be64_to_cpup((__force __be64 *)basep);
+> +	} else {
+> +		*size = *sizep;
+> +		*base = *basep;
+> +	}
+> +	return 0;
+> +}
+> +#endif
+> +
+>  #endif
+> -- 
+> 2.35.1
 > 
->  .../bus/fsl,imx8qxp-pixel-link-msi-bus.yaml   | 232 ++++++++++++++++++
->  1 file changed, 232 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.yaml
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Reviewed-by: Jarkko Sakkinen <jarkko@kernel.org>
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.example.dtb:0:0: /example-0/bus@56200000/syscon@56221000: failed to match any schema with compatible: ['fsl,imx8qxp-mipi-lvds-csr', 'syscon', 'simple-mfd']
-Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.example.dtb:0:0: /example-0/bus@56200000/syscon@56221000/pxl2dpi: failed to match any schema with compatible: ['fsl,imx8qxp-pxl2dpi']
-Documentation/devicetree/bindings/bus/fsl,imx8qxp-pixel-link-msi-bus.example.dtb:0:0: /example-0/bus@56200000/syscon@56221000/ldb: failed to match any schema with compatible: ['fsl,imx8qxp-ldb']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+BR, Jarkkko
