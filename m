@@ -2,207 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E1735925D0
-	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 19:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A349E5925E6
+	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 20:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231181AbiHNRhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Aug 2022 13:37:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54700 "EHLO
+        id S239276AbiHNSAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Aug 2022 14:00:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232048AbiHNRhL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 13:37:11 -0400
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CB7218E32;
-        Sun, 14 Aug 2022 10:37:11 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id B2BFF32005CA;
-        Sun, 14 Aug 2022 13:37:09 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Sun, 14 Aug 2022 13:37:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1660498629; x=1660585029; bh=49
-        dhIZfr5q8v+hGU8cuF1niSFm1wGL2iaQ0mMKaC1Us=; b=KMrjwpl8IyD45VewM0
-        dnahvq08KfsO25Cnb/NS7UvZIdllLvu08CkJfT1IJRn+RauKE5ROgPXzcLoAiPbz
-        GG8x351g5x40BbTEE4fd1BN0E/bac9JP1l5OqMBTwLGNfmhczFib9iGTh3GLmy3V
-        XmV69ZIXLPW74p1KKcwojNrkasQok2SPbX77ECRBQqtftiO/XGl4OmmMXzP24rlF
-        yL9wxa8ipCWVvid7XN6jHf0uPnGWw9YYKeD61p1/nQTDW3TPodE7Rs7nHn/5ixTD
-        U+IxN+38eMNvnJFEe6KGosSZWIrtOO2q79E05Fdf6kTIFHWVMvChvKmNFQfJ8X0X
-        1NDA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; t=1660498629; x=1660585029; bh=49dhIZfr5q8v+
-        hGU8cuF1niSFm1wGL2iaQ0mMKaC1Us=; b=RuQ9kyJ9nsUTo/A8HY226w+V00dU+
-        QdHGVJOLVr2M9qocaY5Z4cMX5XD9AMI1Fj08k47MlL0PjmsS7Ssu81c+vK7M3IaW
-        1RaxCyJBMvjjay4GWXNp0AOfg86Go3xI9DfuyJCPJ8KAeMwRxxxoYsPMDyCjH1Jo
-        1b/bUWAs6vSbgjAa0ib/ILDeujgYWhjpXw6d1FyXo07teXesVwvxA3y6X4xYjmoS
-        ix6ASTAZXNv5ONtUw4V7GA2Zk7BeHKfnU3z0FhXHeYsOhJANAy6/J9TbEXOgB2j+
-        Dhavxe9oT/eil+udKtY7y8DRiCwp7pvobX0m0xf+0MgVOVr0Ej1vcUn7g==
-X-ME-Sender: <xms:xTL5YkxODX12D1Aq4EyfkqSJ1C6d3iVT2IIeVTIO8-3WC5O37FAOdg>
-    <xme:xTL5YoS6CJEARSd6d0zqgeKm9CrN9EYaXpHUF_jKUQzs-3BSjv4XhfPGG_I1Kz9Ok
-    T64-Nog92hkYHp5dg>
-X-ME-Received: <xmr:xTL5YmVaWvkZOf31BDT9kuUCP9PgjQRIGdpaoeh2IvWwcH3WBKfVCzu0RXX6KFSWsqQSrmbqSeWO9VkZYLIbihspEU3v32V24hmU7mlYmixZixGlukNeEgFwQ0XzV_8NVq0EeQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehtddgudduiecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpedukeetueduhedtleetvefguddvvdejhfefudelgfduveeggeeh
-    gfdufeeitdevteenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:xTL5YiinrohnMCAtfOeDbJQzUrS3hkEBoac7wJVm5vLjellUHXYlXQ>
-    <xmx:xTL5YmDgriE-MUY-RnNbLeC1ctcdkVHXVqnsGi4_pfly8Ahf8VoYMg>
-    <xmx:xTL5YjJlcg75im5-1bXtZHqFZRjvUYjh_IfOxFikbAgA2YxPh9rimg>
-    <xmx:xTL5Yuvh2-za21XwMcj3mjnmNf5knNWjpxT53cp5A-tc_Nzvo_WTfg>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 14 Aug 2022 13:37:08 -0400 (EDT)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-Subject: [PATCH 4/4] nvmem: core: Support reading cells with >= 8 bit offsets
-Date:   Sun, 14 Aug 2022 12:36:55 -0500
-Message-Id: <20220814173656.11856-5-samuel@sholland.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220814173656.11856-1-samuel@sholland.org>
-References: <20220814173656.11856-1-samuel@sholland.org>
+        with ESMTP id S231387AbiHNSAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 14:00:32 -0400
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A83FE10FCD
+        for <devicetree@vger.kernel.org>; Sun, 14 Aug 2022 11:00:29 -0700 (PDT)
+Received: by mail-qk1-x72d.google.com with SMTP id j6so4235755qkl.10
+        for <devicetree@vger.kernel.org>; Sun, 14 Aug 2022 11:00:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=qbgoZeZmViWvFKGo3vDKiMkLriw1iy/wD7V+tnwIV3E=;
+        b=F0gsWapUFAmXsS70/FT2w7UJfE2rokB7ixzPGczQfI07TuC1fc2U11uuBywngI/3jB
+         AFUpGhI20FQluH0MY1YaEo2CgZhfbMKboyXTDOyq386fsex/ELLlbbMIlMgzfzZfI6Kv
+         gkeNk+TmY40Cx7Rg6AeYI43982jGwi3XT1hv2vUQkJxW6aaYQvC8qaYN6x2gaaT4aZI3
+         ngaaN09zSOcTOnodJvLUORhTCtK5d/IJyhBAVekcWSRmcusK8/96so880hWPSkv7h+Dj
+         gqhwX70G3VFnYgxom2F9wWfPBgvgoQhPYNEkRwgXNndPiFaMrXcTUhazcMMUYqzUx75g
+         c/bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=qbgoZeZmViWvFKGo3vDKiMkLriw1iy/wD7V+tnwIV3E=;
+        b=t3cK7H9Z71rBnNbM8xw1PImLsUz6Dg1RfQKESzrYYeQ3JgnV/ZfmfZQSDIQkD2//gT
+         rqSpKvb5OT3HhBORf7wL56mvjIWTHsTT2eCeIiSjSg/bNEtAiAK83wKMwdWizlm8Cn0m
+         6SRnYrrAkOv+CwI6H2lbHOUYV4OO4aMdDOPz2GssbWilYAuZjc3VdVL5Rmin18yQ0ZuK
+         51+Ut1OVIm7amdHM2fPFoNUTOm40GIcrDpSXYqyBOodt2KUbzAmTbcsDHLZE8GhMRJls
+         ANDwHBg3fycmXHJcztq83FE+59Dlak5f/n1wGXEfqaJayYMA14QX8k+Hy5aaN9M46pRG
+         U91A==
+X-Gm-Message-State: ACgBeo2oYxzkcMzFpwkdWXZye36l9lJ9jsxJ/qURQO3YVIXs8gHjJsBO
+        fTZZn30B4VqrrWo/0hmG8F1zXA==
+X-Google-Smtp-Source: AA6agR6yLu/QXtwon8Xp97JiVrlbGGdQdxYfHlgqI4icqpn3WSS1oA2Q8E+Mb8lZGhB4SpB3uShoVw==
+X-Received: by 2002:a05:620a:288f:b0:6b6:4e6e:c68c with SMTP id j15-20020a05620a288f00b006b64e6ec68cmr8883748qkp.240.1660500028773;
+        Sun, 14 Aug 2022 11:00:28 -0700 (PDT)
+Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
+        by smtp.gmail.com with ESMTPSA id s16-20020a05620a255000b006b5f06186aesm6672551qko.65.2022.08.14.11.00.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Aug 2022 11:00:28 -0700 (PDT)
+Date:   Sun, 14 Aug 2022 14:00:26 -0400
+From:   William Breathitt Gray <william.gray@linaro.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     robh+dt@kernel.org, jic23@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mranostay@ti.com
+Subject: Re: [PATCH v4 0/3] ECAP support on TI AM62x SoC
+Message-ID: <Yvk4OijjBj+Wa7fT@fedora>
+References: <20220810140724.182389-1-jpanis@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="T5liTN5OdHlrk5BP"
+Content-Disposition: inline
+In-Reply-To: <20220810140724.182389-1-jpanis@baylibre.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For NVMEM devices with .stride > 1, some cell values may not be aligned
-to the device's stride. In this case, it is necessary to use bit_offset
-to access the cell. For example, to access the third byte of an NVMEM
-device with .stride == 4, we need "bits = <16 8>;" in the devicetree.
 
-Implement this on the read side. The write side implementation would be
-more complicated, and it is not necessary for read-only NVMEM devices.
-For now, reject writes for these cells to avoid any incorrect behavior.
+--T5liTN5OdHlrk5BP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+On Wed, Aug 10, 2022 at 04:07:21PM +0200, Julien Panis wrote:
+> The Enhanced Capture (ECAP) module can be used to timestamp events
+> detected on signal input pin. It can be used for time measurements
+> of pulse train signals.
+>=20
+> ECAP module includes 4 timestamp capture registers. For all 4 sequenced
+> timestamp capture events (1->2->3->4->1->...), edge polarity (falling/ris=
+ing
+> edge) can be selected.
+>=20
+> This driver leverages counter subsystem to :
+> - select edge polarity for all 4 capture events (event mode)
+> - log timestamps for each capture event
+> Event polarity, and CAP1/2/3/4 timestamps give all the information
+> about the input pulse train. Further information can easily be computed :
+> period and/or duty cycle if frequency is constant, elapsed time between
+> pulses, etc...
+>=20
+> Modifications since v3:
+> 	- Migrate driver from IIO to Counter subsystem
+> 	- Minor modification in yaml ($id) to match Counter subsystem
+> 	- Add ABI documentation
+>=20
+> Userspace commands :
+> 	### SIGNAL ###
+> 	cd /sys/bus/counter/devices/counter0/signal0
+>=20
+> 	# Get available polarities for each capture event
+> 	cat polarity1_available
+> 	cat polarity2_available
+> 	cat polarity3_available
+> 	cat polarity4_available
+>=20
+> 	# Get polarity for each capture event
+> 	cat polarity1
+> 	cat polarity2
+> 	cat polarity3
+> 	cat polarity4
+>=20
+> 	# Set polarity for each capture event
+> 	echo rising > polarity1
+> 	echo falling > polarity2
+> 	echo rising > polarity3
+> 	echo falling > polarity4
+>=20
+> 	### COUNT ###
+> 	cd /sys/bus/counter/devices/counter0/count0
+>=20
+> 	# Run ECAP
+> 	echo 1 > enable
+>=20
+> 	# Get current timebase counter value
+> 	cat count
+>=20
+> 	# Get captured timestamps
+> 	cat capture1
+> 	cat capture2
+> 	cat capture3
+> 	cat capture4
+>=20
+> 	# Note that counter watches can also be used to get
+> 	# data from userspace application
+> 	# -> see tools/counter/counter_example.c
+>=20
+> 	# Stop ECAP
+> 	echo 0 > enable
+>=20
+> Julien Panis (3):
+>   dt-binding: counter: add ti,am62-ecap-capture.yaml
+>   Documentation: ABI: add sysfs-bus-counter-ecap
+>   counter: capture-tiecap: capture driver support for ECAP
+>=20
+>  .../ABI/testing/sysfs-bus-counter-ecap        |  64 ++
+>  .../counter/ti,am62-ecap-capture.yaml         |  61 ++
+>  drivers/counter/Kconfig                       |  14 +
+>  drivers/counter/Makefile                      |   1 +
+>  drivers/counter/capture-tiecap.c              | 634 ++++++++++++++++++
+>  include/uapi/linux/counter.h                  |   2 +
+>  6 files changed, 776 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-bus-counter-ecap
+>  create mode 100644 Documentation/devicetree/bindings/counter/ti,am62-eca=
+p-capture.yaml
+>  create mode 100644 drivers/counter/capture-tiecap.c
+>=20
+> --=20
+> 2.25.1
 
- drivers/nvmem/core.c | 43 ++++++++++++++++++++++++-------------------
- 1 file changed, 24 insertions(+), 19 deletions(-)
+Something that has become apparent to me is the code repetition in this
+driver in order to support the capture buffer. Buffers are common
+components in devices, so it'll be good for us to standardize some of
+what we're exploring here into an interface that other drivers can also
+use. We have two ABIs to consider: the driver interface and the sysfs
+interface.
 
-diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-index 1e3c754efd0d..309beba8c9f0 100644
---- a/drivers/nvmem/core.c
-+++ b/drivers/nvmem/core.c
-@@ -1373,63 +1373,67 @@ void nvmem_cell_put(struct nvmem_cell *cell)
- }
- EXPORT_SYMBOL_GPL(nvmem_cell_put);
- 
--static void nvmem_shift_read_buffer_in_place(struct nvmem_cell_entry *cell, void *buf)
-+static int nvmem_shift_read_buffer_in_place(struct nvmem_cell_entry *cell, void *buf)
- {
-+	int bit_offset = cell->bit_offset, bytes, i;
- 	u8 *p, *b;
--	int i, extra, bit_offset = cell->bit_offset;
- 
- 	p = b = buf;
- 	if (bit_offset) {
-+		int byte_offset = bit_offset / BITS_PER_BYTE;
-+
-+		b += byte_offset;
-+		bit_offset %= BITS_PER_BYTE;
-+		bytes = cell->bytes - byte_offset;
-+
- 		/* First shift */
--		*b++ >>= bit_offset;
-+		*p = *b++ >> bit_offset;
- 
- 		/* setup rest of the bytes if any */
--		for (i = 1; i < cell->bytes; i++) {
-+		for (i = 1; i < bytes; i++) {
- 			/* Get bits from next byte and shift them towards msb */
--			*p |= *b << (BITS_PER_BYTE - bit_offset);
--
--			p = b;
--			*b++ >>= bit_offset;
-+			*p++ |= *b << (BITS_PER_BYTE - bit_offset);
-+			*p = *b++ >> bit_offset;
- 		}
--	} else {
--		/* point to the msb */
--		p += cell->bytes - 1;
- 	}
- 
- 	/* result fits in less bytes */
--	extra = cell->bytes - DIV_ROUND_UP(cell->nbits, BITS_PER_BYTE);
--	while (--extra >= 0)
--		*p-- = 0;
-+	bytes = DIV_ROUND_UP(cell->nbits, BITS_PER_BYTE);
-+	p = buf + bytes;
-+	memset(p, 0, cell->bytes - bytes);
- 
- 	/* clear msb bits if any leftover in the last byte */
- 	if (cell->nbits % BITS_PER_BYTE)
--		*p &= GENMASK((cell->nbits % BITS_PER_BYTE) - 1, 0);
-+		p[-1] &= GENMASK((cell->nbits % BITS_PER_BYTE) - 1, 0);
-+
-+	return bytes;
- }
- 
- static int __nvmem_cell_read(struct nvmem_device *nvmem,
- 		      struct nvmem_cell_entry *cell,
- 		      void *buf, size_t *len, const char *id)
- {
-+	int bytes = cell->bytes;
- 	int rc;
- 
--	rc = nvmem_reg_read(nvmem, cell->offset, buf, cell->bytes);
-+	rc = nvmem_reg_read(nvmem, cell->offset, buf, bytes);
- 
- 	if (rc)
- 		return rc;
- 
- 	/* shift bits in-place */
- 	if (cell->bit_offset || cell->nbits)
--		nvmem_shift_read_buffer_in_place(cell, buf);
-+		bytes = nvmem_shift_read_buffer_in_place(cell, buf);
- 
- 	if (nvmem->cell_post_process) {
- 		rc = nvmem->cell_post_process(nvmem->priv, id,
--					      cell->offset, buf, cell->bytes);
-+					      cell->offset, buf, bytes);
- 		if (rc)
- 			return rc;
- 	}
- 
- 	if (len)
--		*len = cell->bytes;
-+		*len = bytes;
- 
- 	return 0;
- }
-@@ -1526,6 +1530,7 @@ static int __nvmem_cell_entry_write(struct nvmem_cell_entry *cell, void *buf, si
- 	int rc;
- 
- 	if (!nvmem || nvmem->read_only ||
-+	    cell->bit_offset >= BITS_PER_BYTE ||
- 	    (cell->bit_offset == 0 && len != cell->bytes))
- 		return -EINVAL;
- 
--- 
-2.35.1
+For the sysfs interface, I think we'll have to expose each element
+individually (e.g. capture1, capture2, etc.) because sysfs attributes
+are suppose to expose only a single datum for any given attribute.
 
+For the driver side, we might want to introduce a new Counter component
+type for buffers and respective macros to streamline some of the code
+for driver authors. For example, a new COUNTER_COMP_BUFFER_U64 enum
+counter_comp_type constant could be introduced to represent a u64 buffer
+element; respective struct counter_comp read callbacks could be
+introduced::
+
+    int (*count_buffer_u64_read)(struct counter_device *counter,
+                                 struct counter_count *count,
+				 size_t index, u64 *val);
+
+So a driver author can use the "index" parameter to locate the buffer
+element and pass back its value via the "val" parameter. To define the
+buffer, maybe helper macros like this could be introduced::
+
+    COUNTER_COMP_COUNT_BUFFER_U64("capture", ecap_cnt_cap_read, 4)
+
+This would define four u64 buffer elements each named prefixed with
+"capture" and with their read callbacks set to ecap_cnt_cap_read().
+
+One problem however is that I'm not sure if the C preprocessor would be
+able to unroll the COUNTER_COMP_COUNT_BUFFER_U64 to a dynamic number of
+elements based on a macro parameter (maybe there is a GCC extension).
+
+I'm just throwing out ideas, so I'd like to hear some comments and
+suggestions from others about how we should add buffer support to the
+Counter subsystem.
+
+William Breathitt Gray
+
+--T5liTN5OdHlrk5BP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYvk4OgAKCRC1SFbKvhIj
+K1puAQCKVF17W73GrxMBUVmEpZBsMchm0VgY1hKbIVPA69IlsQEAxjCytel3C7oB
+cPBVwjGnEm0sDNveEi6Tbs+QjkxUNgI=
+=X96e
+-----END PGP SIGNATURE-----
+
+--T5liTN5OdHlrk5BP--
