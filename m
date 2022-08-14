@@ -2,137 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11D91591E17
-	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 06:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98EDD591E95
+	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 07:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbiHNE0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Aug 2022 00:26:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46524 "EHLO
+        id S240149AbiHNF7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Aug 2022 01:59:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35304 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbiHNE0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 00:26:33 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A199018383
-        for <devicetree@vger.kernel.org>; Sat, 13 Aug 2022 21:26:32 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oN5CU-0002Nu-2M; Sun, 14 Aug 2022 06:26:10 +0200
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1oN5CS-0007qk-2t; Sun, 14 Aug 2022 06:26:08 +0200
-Date:   Sun, 14 Aug 2022 06:26:08 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Woojung Huh <woojung.huh@microchip.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        Eric Dumazet <edumazet@google.com>,
-        Vladimir Oltean <olteanv@gmail.com>, kernel@pengutronix.de,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v1 07/10] net: dsa: microchip: warn about not
- supported synclko properties on KSZ9893 chips
-Message-ID: <20220814042608.GC12534@pengutronix.de>
-References: <20220729130346.2961889-1-o.rempel@pengutronix.de>
- <20220729130346.2961889-8-o.rempel@pengutronix.de>
- <20220802113633.73rxlb2kmihivwpx@skbuf>
- <20220805115601.GB10667@pengutronix.de>
- <20220805134234.ps4qfjiachzm7jv4@skbuf>
- <20220813143215.GA12534@pengutronix.de>
- <Yve/MSMc/4klJPFL@lunn.ch>
- <20220813161850.GB12534@pengutronix.de>
- <YvgMnfSkEeD8jwIG@lunn.ch>
+        with ESMTP id S230152AbiHNF7p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 01:59:45 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 785FC1EEC9
+        for <devicetree@vger.kernel.org>; Sat, 13 Aug 2022 22:59:40 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-32868f43dd6so42697787b3.8
+        for <devicetree@vger.kernel.org>; Sat, 13 Aug 2022 22:59:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=5oLColQvmc38EgwYlwNaR7xBXm39Ucdba1pf+UlgEWM=;
+        b=q558+3KYcrL9bSgXbqgz+VMfCDEAs5hVJ5ccWO//m+mAokgegGdQBnpL3jxS+nIvOY
+         qEoMF5tpHG433ffy1Vr6SFeg8zDPLv/qwEbO7l1qL2HpplmRX8NDRJmzhkVJ9CbwwyZx
+         aJe6qOinM4F+sPLgPpwG5yh4iE7oE4HU+JmaENM/Dj05J+lWvcw5FESz2GzQ4s75YlFW
+         uWaueRVofMCpZUXjaI3zV1hB8/xifg2KyHvaLraJug1K1R0X17Ao7qB3vftV83DEutHS
+         8z5i2In2F71MzT2IvXtLy18B7lggPdaxaEm3cQoL2E978jXxBens3Xc9ct8HV1xQsM6U
+         bzsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=5oLColQvmc38EgwYlwNaR7xBXm39Ucdba1pf+UlgEWM=;
+        b=Nw/kJ1FRhNWahwhzBzqcVRWhpidApG50W60bmxSYhtn7zNtgr9ZDdN0P0CeoWu0TGb
+         18qXD5K/cT6ebzl9sW0s6Sknblb9EE+3cMd2+SpWvzocZ6pFUqfZoPU6fFxKMVGFxIUC
+         GLYqx/iA9L9z8tYumoUboBx+wYNBBL3Xsic/qpxi+BKHcisnYubPEOvsfuLCJYztpqoF
+         JZsEUD/l02B/NjBEDGkoNMHgheGMvuK3CsrZ6JrMevnm+Slh/hHZ1/QKr7wJIQ0onlia
+         Eq9uEU+LGfTQj+evUbRiJkvz8om7sHXKICphe+afNVcrds+fj5TXC3w3GDSwJkyFjw65
+         WcVw==
+X-Gm-Message-State: ACgBeo3IcRH4lyAW1pqgDHQCfw7mC1vSgZ23zoH6Ylq0ls4wvw8WCKtB
+        Sfb6V/crBJam/l6eQKK8M/+OADvVxn1Tn6mW1D+dBw==
+X-Google-Smtp-Source: AA6agR4ruZp6kLLHNNcriPdt5yfdexRiAWfgjuySPdNmZUSR6mw/ugLvr7aOQkMBoJG00d4Yxeu6h7IlNmfH6rYiWRo=
+X-Received: by 2002:a0d:fd05:0:b0:329:3836:53ac with SMTP id
+ n5-20020a0dfd05000000b00329383653acmr9498030ywf.455.1660456779360; Sat, 13
+ Aug 2022 22:59:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: attachment
-In-Reply-To: <YvgMnfSkEeD8jwIG@lunn.ch>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220810060040.321697-1-saravanak@google.com>
+In-Reply-To: <20220810060040.321697-1-saravanak@google.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Sat, 13 Aug 2022 22:59:04 -0700
+Message-ID: <CAGETcx_nVXbHzZ3+_aR4SZtSnSBU=Rfp8Qm2jOs7zGZRaH_88A@mail.gmail.com>
+Subject: Re: [PATCH v1 0/9] fw_devlink improvements
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>
+Cc:     Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org,
+        Naresh Kamboju <naresh.kamboju@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ccing Rob Herring.
++Naresh Kamboju
 
-On Sat, Aug 13, 2022 at 10:42:05PM +0200, Andrew Lunn wrote:
-> On Sat, Aug 13, 2022 at 06:18:50PM +0200, Oleksij Rempel wrote:
-> > On Sat, Aug 13, 2022 at 05:11:45PM +0200, Andrew Lunn wrote:
-> > > On Sat, Aug 13, 2022 at 04:32:15PM +0200, Oleksij Rempel wrote:
-> > > > On Fri, Aug 05, 2022 at 04:42:34PM +0300, Vladimir Oltean wrote:
-> > > > > On Fri, Aug 05, 2022 at 01:56:01PM +0200, Oleksij Rempel wrote:
-> > > > > > Hm, if we will have any random not support OF property in the switch
-> > > > > > node. We won't be able to warn about it anyway. So, if it is present
-> > > > > > but not supported, we will just ignore it.
-> > > > > > 
-> > > > > > I'll drop this patch.
-> > > > > 
-> > > > > To continue, I think the right way to go about this is to edit the
-> > > > > dt-schema to say that these properties are only applicable to certain
-> > > > > compatible strings, rather than for all. Then due to the
-> > > > > "unevaluatedProperties: false", you'd get the warnings you want, at
-> > > > > validation time.
-> > > > 
-> > > > Hm, with "unevaluatedProperties: false" i have no warnings. Even if I
-> > > > create examples with random strings as properties. Are there some new
-> > > > json libraries i should use?
-> > > 
-> > > Try
-> > > 
-> > > additionalProperties: False
-> > 
-> > Yes, it works. But in this case I'll do more changes. Just wont to make
-> > sure I do not fix not broken things.
-> 
-> I've been working on converting some old SoCs bindings from .txt to
-> .yaml. My observations is that the yaml is sometimes more restrictive
-> than what the drivers actually imposes. So you might need to change
-> perfectly working .dts files to get it warning free. Or you just
-> accept the warnings and move on. At lot will depend on the number of
-> warnings and how easy it is to see real problems mixed in with
-> warnings you never intend to fix.
+On Tue, Aug 9, 2022 at 11:00 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> This patch series improves fw_devlink in the following ways:
+>
+> 1. It no longer cares about a fwnode having a "compatible" property. It
+>    figures this our more dynamically. The only expectation is that
+>    fwnode that are converted to devices actually get probed by a driver
+>    for the dependencies to be enforced correctly.
+>
+> 2. Finer grained dependency tracking. fw_devlink will now create device
+>    links from the consumer to the actual resource's device (if it has one,
+>    Eg: gpio_device) instead of the parent supplier device. This improves
+>    things like async suspend/resume ordering, potentially remove the need
+>    for frameworks to create device links, more parallelized async probing,
+>    and better sync_state() tracking.
+>
+> 3. Handle hardware/software quirks where a child firmware node gets
+>    populated as a device before its parent firmware node AND actually
+>    supplies a non-optional resource to the parent firmware node's
+>    device.
+>
+> 4. Way more robust at cycle handling (see patch for the insane cases).
+>
+> 5. Stops depending on OF_POPULATED to figure out some corner cases.
+>
+> 6. Simplifies the work that needs to be done by the firmware specific
+>    code.
+>
+> This took way too long to get done due to typo bugs I had in my rewrite or
+> corner cases I had to find and handle. But it's fairly well tested at this
+> point and I expect this to work properly.
+>
+> Abel & Doug,
+>
+> This should fix your cyclic dependency issues with your display. Can you
+> give it a shot please?
+>
+> Alexander,
+>
+> This should fix your issue where the power domain device not having a
+> compatible property. Can you give it a shot please?
+>
+> Tony,
+>
+> This should handle the odd case of the child being the supplier of the
+> parent. Can you please give this a shot? I want to make sure the cycle
+> detection code handles this properly and treats it like it's NOT a cycle.
+>
+> Geert,
+>
+> Can you test the renesas stuff I changed please? They should continue
+> working like before. Any other sanity test on other hardware would be
+> great too.
+>
+> Sudeep,
+>
+> I don't think there are any unfixed issues you had reported in my other
+> patches that this series might fix, but it'll be nice if you could give
+> this a sanity test.
+>
+> Guenter,
+>
+> I don't think this will fix the issue you reported in the amba patch, but
+> it's worth a shot because it improves a bunch of corner case handling. So
+> it might be better at handling whatever corner cases you might have in the
+> qemu platforms.
 
-Heh :) Currently with "unevaluatedProperties: false" restrictions do not
-work at all. At least for me. For example with this change I have no
-warnings:
-diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-index 1e26d876d1463..da38ad98a152f 100644
---- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-@@ -120,6 +120,7 @@ examples:
-             ethernet-switch@1 {
-                     reg = <0x1>;
-                     compatible = "nxp,sja1105t";
-+                    something-random-here;
- 
-                     ethernet-ports {
-                             #address-cells = <1>;
+Hi Naresh,
 
-make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+Thanks for testing these patches in the other thread. Mind giving your
+tested-by here? I know you tested these patches in X15, but were there
+also other boards these patches were tested on as part of the run?
 
-So the main question is, is it broken for all or just for me? If it is
-just me, what i'm doing wrong?
+Thanks,
+Saravana
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
+>
+> Thanks,
+> Saravana
+>
+> Cc: Abel Vesa <abel.vesa@linaro.org>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Tony Lindgren <tony@atomide.com>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+> Cc: John Stultz <jstultz@google.com>
+> Cc: Doug Anderson <dianders@chromium.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+>
+> Saravana Kannan (9):
+>   driver core: fw_devlink: Don't purge child fwnode's consumer links
+>   driver core: fw_devlink: Improve check for fwnode with no
+>     device/driver
+>   soc: renesas: Move away from using OF_POPULATED for fw_devlink
+>   gpiolib: Clear the gpio_device's fwnode initialized flag before adding
+>   driver core: fw_devlink: Add DL_FLAG_CYCLE support to device links
+>   driver core: fw_devlink: Allow marking a fwnode link as being part of
+>     a cycle
+>   driver core: fw_devlink: Consolidate device link flag computation
+>   driver core: fw_devlink: Make cycle detection more robust
+>   of: property: Simplify of_link_to_phandle()
+>
+>  drivers/base/core.c             | 437 +++++++++++++++++++++-----------
+>  drivers/gpio/gpiolib.c          |   6 +
+>  drivers/of/property.c           |  84 +-----
+>  drivers/soc/renesas/rcar-sysc.c |   2 +-
+>  include/linux/device.h          |   1 +
+>  include/linux/fwnode.h          |  12 +-
+>  6 files changed, 323 insertions(+), 219 deletions(-)
+>
+> --
+> 2.37.1.559.g78731f0fdb-goog
+>
