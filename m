@@ -2,148 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC36E592675
-	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 23:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E35EB592677
+	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 23:10:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238017AbiHNVGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Aug 2022 17:06:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47248 "EHLO
+        id S229479AbiHNVKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Aug 2022 17:10:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231444AbiHNVGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 17:06:32 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C157F640C;
-        Sun, 14 Aug 2022 14:06:30 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id r4so7435312edi.8;
-        Sun, 14 Aug 2022 14:06:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:to
-         :content-language:user-agent:mime-version:date:message-id:from:to:cc;
-        bh=U9zu/JtT0d8b3qRvVOQocUaAbgnWxV8K6AQ9ZDWSs+4=;
-        b=IuVLFuDAzjNugdsduyZIXzAv+kSZrBleD/CaOhKMh90xCCkqL9C4pEZ76NFCqO5Rwx
-         i5O57epZnfLeEQEme6TWgj/hEWZIuVPzRIn6JyCMlEWt6oq6H21LcWe+C5Kx+K5tdMmd
-         1AC5MVxoEEipxlCx543cNaFEDb0/Q4oTE5n8ODmcPumt1nFe1yThnioxI3h4IKi60L1f
-         LkW95Xo3veRSOgd1QjVShmVtdqZ2+A2lVmRXjlvbGr6l2Ywokolu9+herto+zTW4CV3F
-         cgTFuh2ttpG+4f+4sxg/m7IkabqMNzLPbbu3WdxKSdMCBJYleuks0T0h5o4K7/eEKPoM
-         79fg==
+        with ESMTP id S231417AbiHNVKW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 17:10:22 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1FB1C02
+        for <devicetree@vger.kernel.org>; Sun, 14 Aug 2022 14:10:20 -0700 (PDT)
+Received: by mail-oi1-f179.google.com with SMTP id w197so6916292oie.5
+        for <devicetree@vger.kernel.org>; Sun, 14 Aug 2022 14:10:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:subject:from:references:to
-         :content-language:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=U9zu/JtT0d8b3qRvVOQocUaAbgnWxV8K6AQ9ZDWSs+4=;
-        b=lW38npwfiBvuoydtJATEnoSGuKZd/p1tioVhokyU6qi6TU7My7TZlDlW4QCxWp7+/i
-         ni3+SylN7pmhmUK8vIut9S1FK6hb0/pAWEvWFBFerGjpL09rPFxtNjlMJ26DgKNNrIf7
-         vjLrAx5UuOYzVczIR2vCaadNCmto/OCzd/8MizOyjv/MhIekdHbeXKizzYe6g9mkjBVy
-         ZyXaHqKKOEbkqREdSwJNo6+Ayu7sL1m9hBc/ceheDjBcr1uNxD6O8Xfjh0XUy58/tBzZ
-         mm7Lpo19cNU7HfhcdB/QYt6qD55haQ9xLBOXItHYYoM2QMxcUnZzUc67svvxMhTzIkbB
-         x7uw==
-X-Gm-Message-State: ACgBeo20/lRMvtIX8B+TSL5LylfWCJPRUiOzPTXjsEuUBMqP992QHDVu
-        U+er58gQ2oJUvhXt3TwgMXI=
-X-Google-Smtp-Source: AA6agR40E7soW7BH8KRzi+LNAv2/doovv1eAaH4VG6rbnTVqIayfAzXV7eg3lVpQJVFIaOBuNpqPhw==
-X-Received: by 2002:aa7:c946:0:b0:43d:3038:1381 with SMTP id h6-20020aa7c946000000b0043d30381381mr12130254edt.354.1660511188967;
-        Sun, 14 Aug 2022 14:06:28 -0700 (PDT)
-Received: from ?IPV6:2a01:c23:c1a2:1a00:2049:10ba:dbb:6620? (dynamic-2a01-0c23-c1a2-1a00-2049-10ba-0dbb-6620.c23.pool.telefonica.de. [2a01:c23:c1a2:1a00:2049:10ba:dbb:6620])
-        by smtp.googlemail.com with ESMTPSA id bk19-20020a170906b0d300b0072a881b21d8sm3310789ejb.119.2022.08.14.14.06.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Aug 2022 14:06:28 -0700 (PDT)
-Message-ID: <7a15288c-20df-5873-e982-28d200a2b471@gmail.com>
-Date:   Sun, 14 Aug 2022 23:06:19 +0200
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=NgZLm2cWgYFq+9oanwDv8zaUrcdQCdnFsnMaWhgPe20=;
+        b=2GUoXVkUCe+NFgW4RAhIAwd+vGTFP4IRXmCQJW9rUV0bsgssLJs93YRTwPY3qjgxB8
+         JHUsDA9kyxJVNygY+eyBsqJZc8TwkCn54/MBt9ZRT9Bqoq5xgHQ4sRE9JEdf3M6Ux26K
+         6lTBVKRO7+Itd96ZGaOCiaS2ZyVgKychPshOsCmArHZw2RnjOq9quqMti/ITUXE1GnbU
+         vssdaKlOqtOi97Y8fr9JVdc4fIzki3AbcT9SCQ7GPthdd6FbYwMwufN/WKvqEPYG8emh
+         2uS+ekP6EzSBTw0pflPFYCVCLHlzkgUJDD/OLUBW70d5kcoDFUbinUeyCPggeLUJhu+b
+         dJVw==
+X-Gm-Message-State: ACgBeo1Dk/4JxmyPtQXhRyKijOJFUg2GLAGzj4aUirOcQ2e2XhG0+BH0
+        ixVMdRBvRm0U0DjMSyZpocDoACUevA==
+X-Google-Smtp-Source: AA6agR5MTEa1TMRTzJKx2Kru9JKl91A72OXDu1QQBPhfyNV94oMqdRGcpcBZHYhlMtdRXgP+tIAGlg==
+X-Received: by 2002:a05:6808:118e:b0:337:b6f3:67ca with SMTP id j14-20020a056808118e00b00337b6f367camr5544667oil.111.1660511419988;
+        Sun, 14 Aug 2022 14:10:19 -0700 (PDT)
+Received: from robh.at.kernel.org ([172.58.176.57])
+        by smtp.gmail.com with ESMTPSA id 19-20020aca0d13000000b0033ad6ea8d11sm1492702oin.47.2022.08.14.14.10.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Aug 2022 14:10:19 -0700 (PDT)
+Received: (nullmailer pid 715238 invoked by uid 1000);
+        Sun, 14 Aug 2022 21:10:15 -0000
+Date:   Sun, 14 Aug 2022 15:10:15 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Matt Flax <flatmax@flatmax.com>
+Cc:     devicetree@vger.kernel.org, broonie@kernel.org,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH v2] ASoC: codecs: dt bind. doc for the new TI SRC4392
+ codec
+Message-ID: <20220814211015.GA712258-robh@kernel.org>
+References: <20220810221232.1596488-1-flatmax@flatmax.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Content-Language: en-US
-To:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <3e6c934e-5298-42c5-c346-31b1acaa06ba@gmail.com>
- <2adcd797-f3cc-c8c7-c18c-d3726b2db4c0@gmail.com> <YoKmmIz7qJbD+hPY@kunai>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v2 2/3] i2c: algo: bit: allow getsda to be NULL
-In-Reply-To: <YoKmmIz7qJbD+hPY@kunai>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220810221232.1596488-1-flatmax@flatmax.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.05.2022 21:31, Wolfram Sang wrote:
-> Hi Heiner,
+On Thu, Aug 11, 2022 at 08:12:32AM +1000, Matt Flax wrote:
+> Signed-off-by: Matt Flax <flatmax@flatmax.com>
+> ---
 > 
-Hi Wolfram,
+> Notes:
+>     v2:
+>     * Added myself as the maintainer
+> 
+>  .../devicetree/bindings/sound/src4xxx.yaml    | 50 +++++++++++++++++++
 
-sorry for answering quite late ..
+ti,src4xxx.yaml
 
->>  	/* read ack: SDA should be pulled down by slave, or it may
->>  	 * NAK (usually to report problems with the data we wrote).
->> +	 * Report ACK if SDA is write-only.
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/src4xxx.yaml
 > 
-> Minor nit: On first read, I didn't understand. "Always report ACK..." is
-> maybe a tad clearer.
-> 
+> diff --git a/Documentation/devicetree/bindings/sound/src4xxx.yaml b/Documentation/devicetree/bindings/sound/src4xxx.yaml
+> new file mode 100644
+> index 000000000000..368bb4ba1a77
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/src4xxx.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-OK
+Dual license new bindings. (GPL-2.0-only OR BSD-2-Clause)
 
->>  	 */
->> @@ -203,6 +204,9 @@ static int i2c_inb(struct i2c_adapter *i2c_adap)
->>  	unsigned char indata = 0;
->>  	struct i2c_algo_bit_data *adap = i2c_adap->algo_data;
->>  
->> +	if (!adap->getsda)
->> +		return -EOPNOTSUPP;
-> 
-> Wouldn't it be better in 'readbytes' returning an errno there?
-> 
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/src4xxx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments SRC4392 Device Tree Bindings
+> +
+> +description: |
+> +  The SRC4392 is a digital audio codec that can be connected via
+> +  I2C or SPI. Currently, only I2C bus is supported.
+> +
+> +maintainers:
+> +  - Matt Flax <flatmax@flatmax.com>
+> +
+> +allOf:
+> +  - $ref: name-prefix.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,src4392
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  reg:
+> +    description:
+> +      The I2C address of the device
 
-I think that's something we can do in addition. We have other users of i2c_inb()
-than readbytes() (in i2c_algo_pcf), therefore I'd prefer to let i2c_inb()
-return an error instead of relying on upper layers only.
+No need for generic descriptions.
 
->> -	/* Complain if SCL can't be read */
->> -	if (bit_adap->getscl == NULL) {
->> +	if (bit_adap->getscl == NULL && bit_adap->getsda == NULL)
->> +		dev_info(&adap->dev, "I2C-like interface, SDA and SCL are write-only\n");
->> +	else if (bit_adap->getscl == NULL) {
->> +		/* Complain if SCL can't be read */
->>  		dev_warn(&adap->dev, "Not I2C compliant: can't read SCL\n");
->>  		dev_warn(&adap->dev, "Bus may be unreliable\n");
-> 
-> Hmm, this is a bit inconsistent with dev_warn and dev_info. How about
-> this?
-> 
-Right, it would be a bit inconsistent. My thought was:
-If both getscl and getsda are NULL, then the driver is intentionally used this way
-and it reflects the design of the respective system.
-It's expected that both are NULL and there's nothing wrong with it.
-At least to me a warning means: Something isn't ok and requires an action.
+> +    maxItems: 1
+> +
+> +required:
+> +  - "#sound-dai-cells"
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        src4392@70 {
 
-However I could also understand the point of view that everything not being really
-I2C-compliant should trigger a warning.
+audio-codec@70
 
-I'm fine with both options, please advise.
-
->  	if (bit_adap->getscl == NULL)
->   		dev_warn(&adap->dev, "Not I2C compliant: can't read SCL\n");
+> +            #sound-dai-cells = <0>;
+> +            compatible = "ti,src4392";
+> +            reg = <0x70>;
+> +        };
+> +    };
+> +...
+> -- 
+> 2.34.1
 > 
->  	if (bit_adap->getsda == NULL)
->   		dev_warn(&adap->dev, "Not I2C compliant: can't read SDA\n");
 > 
->  	if (bit_adap->getscl == NULL || bit_adap->getsda == NULL)
->   		dev_warn(&adap->dev, "Bus may be unreliable\n");
-> 
-> The above code can surely be simplified. I just wanted to show this
-> simple approach so we can discuss my suggestion.
-> 
-> All the best,
-> 
->    Wolfram
-> 
-
