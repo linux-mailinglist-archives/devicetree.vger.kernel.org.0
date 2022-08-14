@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04F6159237C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 18:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E7D2592390
+	for <lists+devicetree@lfdr.de>; Sun, 14 Aug 2022 18:23:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241406AbiHNQWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Aug 2022 12:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50596 "EHLO
+        id S241757AbiHNQW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Aug 2022 12:22:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240818AbiHNQVi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 12:21:38 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94944140CC;
-        Sun, 14 Aug 2022 09:20:04 -0700 (PDT)
+        with ESMTP id S241210AbiHNQWB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Aug 2022 12:22:01 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF5BDC1;
+        Sun, 14 Aug 2022 09:20:37 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 4B786B80B37;
-        Sun, 14 Aug 2022 16:20:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62147C433C1;
-        Sun, 14 Aug 2022 16:20:00 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 309E2B80AEE;
+        Sun, 14 Aug 2022 16:20:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2597AC433C1;
+        Sun, 14 Aug 2022 16:20:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660494002;
-        bh=DwkobU+BMVJXJJWUeB8LPhbQL15JLQM4IwAWMPhJRpA=;
+        s=k20201202; t=1660494034;
+        bh=Q1zVQVYleee82rkIel2HjFE+uGlWimn78jrehPBVYNw=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HC9Lo8NuhW6O6Mwvx067K3FL1AXcnyMxHJS7PzeUuabs2gmN7Ndidh5oMuuzEdNOs
-         vUEP4mGag/Wo1gEraZI72BTihkdNML5XaFlO/Q3s+ylHjK+yFYoeWc/1a7Vrw4u7Wz
-         Uxz15VPgUst+H0WK8oxOo3o+ttMWqxOXG/ffc27K8hOikdPVSHV9/X9TeY2Vvaqac0
-         duOBPMWrqtDwKMmUe3+jivpOaIYwF1G+UFQNAAXwvrKjGwdXOnho55mc2Eo81bSPjN
-         Lux4AtDH/By1qqnBPeml6iXe8BSpq6eRTU4AcWAgfI8XJ6NFOCm5h6qmhgfGZI8WyC
-         Yovb1FFDBrNGw==
+        b=TvTaDml2c+xUCuJmqeJFtuqn/GQ2c1rMw8Hv8MHYudL0gsK47zNSXz3j/DxZFZ+iG
+         t+TWkvBLkD/ny0DOWi0bANaJyGPKes0ad/UqrfzqCT+bbpVZsynEEBK2lpHVnc43Wz
+         kJRp38TCWGyjBj2gp+kq3qND2DIPWG7JuzkhPssSQ3ysEbrlpFAH0HQio0KWs6aQim
+         INyDa8Rs4UQh/qwoJrwbFS+ndjcCSK/QHiNKIM3ecKaBQ66UJfYxNfxFaCZsJmgwDI
+         xb2AYTkGhgeSUDqfZadBW/+vaVTqG0fnEzuCustkp/F4ASWO0f6y0i/OY81ODj59j/
+         02rMfPJGe4Nzw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Conor Dooley <conor.dooley@microchip.com>,
         Brice Goglin <Brice.Goglin@inria.fr>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Sasha Levin <sashal@kernel.org>, daire.mcnamara@microchip.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.19 08/48] riscv: dts: microchip: Add mpfs' topology information
-Date:   Sun, 14 Aug 2022 12:19:01 -0400
-Message-Id: <20220814161943.2394452-8-sashal@kernel.org>
+        Palmer Dabbelt <palmer@rivosinc.com>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu,
+        geert@linux-m68k.org, zong.li@sifive.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.19 16/48] riscv: dts: sifive: Add fu540 topology information
+Date:   Sun, 14 Aug 2022 12:19:09 -0400
+Message-Id: <20220814161943.2394452-16-sashal@kernel.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220814161943.2394452-1-sashal@kernel.org>
 References: <20220814161943.2394452-1-sashal@kernel.org>
@@ -63,25 +63,26 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-[ Upstream commit 88d319c6abaeb37f0e2323275eaf57a8388e0265 ]
+[ Upstream commit af8f260abc608c06e4466a282b53f1e2dc09f042 ]
 
-The mpfs has no cpu-map node, so tools like hwloc cannot correctly
+The fu540 has no cpu-map node, so tools like hwloc cannot correctly
 parse the topology. Add the node using the existing node labels.
 
 Reported-by: Brice Goglin <Brice.Goglin@inria.fr>
 Link: https://github.com/open-mpi/hwloc/issues/536
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
+Link: https://lore.kernel.org/r/20220705190435.1790466-3-mail@conchuod.ie
+Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/riscv/boot/dts/microchip/mpfs.dtsi | 24 ++++++++++++++++++++++++
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 24 ++++++++++++++++++++++
  1 file changed, 24 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index 496d3b7642bd..e3793916a1e5 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -142,6 +142,30 @@ cpu4_intc: interrupt-controller {
+diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+index e3172d0ffac4..24bba83bec77 100644
+--- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
++++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
+@@ -133,6 +133,30 @@ cpu4_intc: interrupt-controller {
  				interrupt-controller;
  			};
  		};
@@ -110,8 +111,8 @@ index 496d3b7642bd..e3793916a1e5 100644
 +			};
 +		};
  	};
- 
- 	refclk: mssrefclk {
+ 	soc {
+ 		#address-cells = <2>;
 -- 
 2.35.1
 
