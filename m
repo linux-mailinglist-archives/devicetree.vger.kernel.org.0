@@ -2,166 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C39E0592F0C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 14:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7746F592F44
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 14:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231339AbiHOMjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 08:39:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49756 "EHLO
+        id S231552AbiHOM7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 08:59:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232239AbiHOMja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 08:39:30 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 511C2237DD;
-        Mon, 15 Aug 2022 05:39:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1660567167; x=1692103167;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ZoeSgVqYecYa8dOXcwGrIo4k9Ip/Bxok4jHfP0iqk0s=;
-  b=RxRiPoIBIcCDT1kDI/YX1hV7vf8ExuPtme+aHhJIqCHSN8ma928khbT0
-   Eez9zl6oULI6EzEc1HCuHizcE+GVmv55luGurc9EbZ7aaPlBIjOysGqpU
-   K0TDS1l28lWsFi7tNBeVCKOwDp9uzgJdVd2sBxjhVQvA4IsSlqLFmxFKi
-   fSuMJjCIYbpIdkhUOo298dO4riLw/bMH6swlbwPo5Zr7+ckxEepLwxfo6
-   X8+2yFDghGyJZElnIjW8hvzznBoL2jke5nlQbGUn0py3/ptpTWXuopu39
-   ncLvisAFh8kMFtxWy0k1/8xxG6CFbGDqHe4aDHoEx36J4yQOckGtnQS8u
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,238,1654552800"; 
-   d="scan'208";a="25605305"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 15 Aug 2022 14:39:24 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 15 Aug 2022 14:39:24 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 15 Aug 2022 14:39:24 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1660567164; x=1692103164;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ZoeSgVqYecYa8dOXcwGrIo4k9Ip/Bxok4jHfP0iqk0s=;
-  b=SRYuP5tro2Iq3C5Ct21jG0BwrComttqC0+848iBBB5Rxzj5oLDsXCf6s
-   JF4ghFCSvsmxuLGW+HEaie5rlZKfJbykLh2zr/AmAuAzLYPXuzbyhFC8c
-   gVFgpEOhr6GMabGQXphj25oizxKT7ZQSl5xHXv10/G2N7Zum0ngCeXUYZ
-   lwclTWC/9linzmcWvJdWWPLJW5J6c86I/hUkkZGJxOkWPNCEcb3lOsqqZ
-   Ja81xBdUzxOJ3b50lS6fahYhKG2h614sQKfCxRzqb5jM9n0H1BmEjivYd
-   x3YI1hJlrFdY9QQBKUFPSoSXGqhZOCT240LZiirg3gv82dbhYXSgcNs0U
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,238,1654552800"; 
-   d="scan'208";a="25605304"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 15 Aug 2022 14:39:24 +0200
-Received: from steina-w.localnet (unknown [10.123.49.11])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DCF8A280056;
-        Mon, 15 Aug 2022 14:39:23 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v1 0/9] fw_devlink improvements
-Date:   Mon, 15 Aug 2022 14:39:23 +0200
-Message-ID: <3601760.iIbC2pHGDl@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20220810060040.321697-1-saravanak@google.com>
-References: <20220810060040.321697-1-saravanak@google.com>
+        with ESMTP id S242647AbiHOM7v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 08:59:51 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5C50813D30
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 05:59:50 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id CADBA80FB;
+        Mon, 15 Aug 2022 12:52:58 +0000 (UTC)
+Date:   Mon, 15 Aug 2022 15:59:48 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Keerthy <j-keerthy@ti.com>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am65: Add general purpose timers
+ for am65
+Message-ID: <YvpDRLLp7rVkMDAu@atomide.com>
+References: <20220407104725.41755-1-tony@atomide.com>
+ <20220407104725.41755-2-tony@atomide.com>
+ <20220706232157.thvbsr6emvyy6i5o@resend>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220706232157.thvbsr6emvyy6i5o@resend>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Saravana,
+Hi,
 
-Am Mittwoch, 10. August 2022, 08:00:29 CEST schrieb Saravana Kannan:
-> Alexander,
+* Nishanth Menon <nm@ti.com> [220706 23:16]:
+> On 13:47-20220407, Tony Lindgren wrote:
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > @@ -271,6 +271,114 @@ main_spi4: spi@2140000 {
+> >  		#size-cells = <0>;
+> >  	};
+> >  
+> > +	main_timer0: timer@2400000 {
+> > +		compatible = "ti,am6-timer";
+> > +		reg = <0x00 0x2400000 0x00 0x400>;
+> > +		interrupts = <GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>;
+> > +		clocks = <&k3_clks 23 12>;
+> > +		clock-names = "fck";
+> > +		ti,timer-pwm;
+> > +	};
 > 
-> This should fix your issue where the power domain device not having a
-> compatible property. Can you give it a shot please?
+> Tony,
+> Lets hold this back one more window.. ti,am6-timer should come
+> in the next rc1, but I still dont see this yet in next-20220706, So, i am
+> going to have to skip this window at least.
 
-thanks for the update. Unfortunately this does not work:
+I'm seeing the clock being too fast although debugfs reports the timer
+source clock at 32k. Not quite sure what is wrong, maybe the clock index
+should be 1 instead of 12 here. Best to wait with the dts patches until
+the clock issue has bee sorted out.
 
-> [    0.774838] PM: Added domain provider from /soc@0/bus@30000000/
-gpc@303a0000/pgc/power-domain@0
-> [    0.775100] imx-pgc imx-pgc-domain.1: __genpd_dev_pm_attach() failed to 
-find PM domain: -2
-> [    0.775324] PM: Added domain provider from /soc@0/bus@30000000/
-gpc@303a0000/pgc/power-domain@2
-> [    0.775601] PM: Added domain provider from /soc@0/bus@30000000/
-gpc@303a0000/pgc/power-domain@3
-> [    0.775842] PM: Added domain provider from /soc@0/bus@30000000/
-gpc@303a0000/pgc/power-domain@4
-> [    0.776642] PM: Added domain provider from /soc@0/bus@30000000/
-gpc@303a0000/pgc/power-domain@7
-> [    0.776897] PM: Added domain provider from /soc@0/bus@30000000/
-gpc@303a0000/pgc/power-domain@8
-> [    0.777158] PM: Added domain provider from /soc@0/bus@30000000/
-gpc@303a0000/pgc/power-domain@9
-> [    0.777405] PM: Added domain provider from /soc@0/bus@30000000/
-gpc@303a0000/pgc/power-domain@a
-> [    0.779342] genpd genpd:0:38320000.blk-ctrl: __genpd_dev_pm_attach() 
-failed to find PM domain: -2
-> [    0.779422] imx8m-blk-ctrl 38320000.blk-ctrl: error -ENODEV: failed to 
-attach power domain "bus"
-> [    0.848785] etnaviv-gpu 38000000.gpu: __genpd_dev_pm_attach() failed to 
-find PM domain: -2
-> [    1.114220] pfuze100-regulator 0-0008: Full layer: 2, Metal layer: 1
-> [    1.122267] pfuze100-regulator 0-0008: FAB: 0, FIN: 0
-> [    1.132970] pfuze100-regulator 0-0008: pfuze100 found.
-> [    1.157011] imx-gpcv2 303a0000.gpc: Failed to create device link with 
-0-0008
-> [    1.164094] imx-gpcv2 303a0000.gpc: Failed to create device link with 
-0-0008
+Regards,
 
-The required power-supply for the power domains is still not yet available.
-Does this series require some other patches as well?
-
-Whats worse, starting with commit 9/9 [of: property: Simplify 
-of_link_to_phandle()], other drivers fail to probe waiting for pinctrl to be 
-available.
-> $ cat /sys/kernel/debug/devices_deferred
-> gpio-leds       platform: wait for supplier gpioledgrp
-> extcon-usbotg0  platform: wait for supplier usb0congrp
-> gpio-keys       platform: wait for supplier gpiobuttongrp
-> regulator-otg-vbus      platform: wait for supplier reggotgvbusgrp
-> regulator-vdd-arm       platform: wait for supplier dvfsgrp
-
-Apparently for some reason they are not probed again, once the pinctrl driver 
-probed.
-
-Best reagrds,
-Alexander
-
-
-
+Tony
