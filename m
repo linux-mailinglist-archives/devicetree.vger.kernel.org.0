@@ -2,125 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4891E592899
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 06:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E905928D2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 06:34:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230466AbiHOESP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 00:18:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49250 "EHLO
+        id S229844AbiHOEek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 00:34:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230367AbiHOESO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 00:18:14 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0496E6393
-        for <devicetree@vger.kernel.org>; Sun, 14 Aug 2022 21:18:13 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id 13so5449958plo.12
-        for <devicetree@vger.kernel.org>; Sun, 14 Aug 2022 21:18:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc;
-        bh=E+SbdWKle26nrNTvjrwjORRMK5B3fUHqQoLgOh5gagc=;
-        b=YCiOrOI4t57JroaK+DvgxUd40PqFb566csy0KZpoHxIAjL/vPPk6J1m/YLVAQJgafF
-         MBc/BEm1UbTvtrczItUPUi4//hLIjk/GfM4ooAEfFoZVAo14khCxzIa/7Xg2+FZDNVLe
-         Wc5wsr2o66GeVKuXZe7WjOqecyDFXKE0pAno4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc;
-        bh=E+SbdWKle26nrNTvjrwjORRMK5B3fUHqQoLgOh5gagc=;
-        b=w0J78mGGsNZSxHjrvF2u00hfZBMwwTsSJiREEOpciBqzg2lJkMZ/4eZ9pNL/kcWH7a
-         l40gziH+1V1KZmZTnspd0hEtdAmcLtaq1n64vVTsYhvx1ZF6dtwUVDIh4NDOuyCaJvIx
-         TTI3UnAvPWoO4I4Mi1IqS3tOSY4F0DpDQ8wah4lt5PIUPq9TbjMBDZU5v4odgqk2HW9G
-         WBQr9mTPAmpP4lL1qpt5+gurBBj0W2TIUikj/5qMw+iOYyVb61LMqygggBv2pGUeNaCd
-         PzOOiC/7LDVU6ISCHIqYSDHv5Rk0exMTC5GWB51JSkq8q3wcZ5WeI2XlGGZqO1/rLm7Y
-         PnKQ==
-X-Gm-Message-State: ACgBeo27RLIBBmopoMIgNgQj4jR9awRVKm/twsVwmW2JK5rVPwISxO95
-        L3x7qvxzgni+2ulEsZw36tUS2w==
-X-Google-Smtp-Source: AA6agR6GXAxP7HE9fOcv7/Zk0pGt69h2rxMcVW4JHZ34d0rGzZis2n5ZicCc9p418kS+2Tm2EbU2Cw==
-X-Received: by 2002:a17:90b:3807:b0:1f4:ecf7:5987 with SMTP id mq7-20020a17090b380700b001f4ecf75987mr15932324pjb.13.1660537092524;
-        Sun, 14 Aug 2022 21:18:12 -0700 (PDT)
-Received: from judyhsiao0523.c.googlers.com.com (21.160.199.104.bc.googleusercontent.com. [104.199.160.21])
-        by smtp.gmail.com with ESMTPSA id 6-20020a170902c20600b0016d2d0ce376sm6114433pll.215.2022.08.14.21.18.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Aug 2022 21:18:11 -0700 (PDT)
-From:   Judy Hsiao <judyhsiao@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, mka@chromium.org, cychiang@google.com,
-        judyhsiao@google.com, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Judy Hsiao <judyhsiao@chromium.org>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Subject: [PATCH v1] arm64: dts: qcom: sc7280: Use "PP1800_L2C" as the DMIC power source.
-Date:   Mon, 15 Aug 2022 04:18:04 +0000
-Message-Id: <20220815041804.583181-1-judyhsiao@chromium.org>
-X-Mailer: git-send-email 2.37.1.595.g718a3a8f04-goog
+        with ESMTP id S229668AbiHOEek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 00:34:40 -0400
+Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70D8A14D00;
+        Sun, 14 Aug 2022 21:34:39 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id E3CCB320039A;
+        Mon, 15 Aug 2022 00:34:37 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Mon, 15 Aug 2022 00:34:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        cc:cc:content-transfer-encoding:date:date:from:from:in-reply-to
+        :message-id:mime-version:reply-to:sender:subject:subject:to:to;
+         s=fm2; t=1660538077; x=1660624477; bh=SZ5v7SwKxKRGgP+cCIUCQcwi+
+        uzQ6nY+5CX8LY/PRvU=; b=r0dmwSkDzL2DJSVK1OllhF1cmFKiWGI1fsuZQTYeC
+        yunxoXucbTAowbsN0JMLq6MfQdfl2dfUedoM7Stu+dSq6d3S+0au//HvXpt9kTAx
+        rKUN8oqDITU+D+yJPeao0jqqrapbumDV4+H+5enHQ5GqWTKp26p/IjUGHndwqGTV
+        upMKbLozzGtW3wKqbl8ml9omlKJ38zWZyRXnRMNa0KMcC/FXf4p5mhf2kLGEQK8d
+        NVCOLrwXkNwvp9TviSTDZjF4IGEEIMRbWa9DoibgGBndLeWn9YUUU0ch8NcOu5uN
+        Al7xzYsM5rVik9F2NxedANzEQwFKUlBXWCed4n4hbfjUQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:message-id
+        :mime-version:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+        1660538077; x=1660624477; bh=SZ5v7SwKxKRGgP+cCIUCQcwi+uzQ6nY+5CX
+        8LY/PRvU=; b=a+As4MBWRZZfnaH6SVQ3b8RutI94ecUfSFXawbhGynFHGXSI1HC
+        Fz5IXhM8+xjurIbi1GGGXeUOPAzxLHJ0K8UkBqX4hiWorgdUTZKQmFQW6XuHWYff
+        7T7R6NS/IzSJkGBHvMhPmli8AqkoGf/e5qKR1+t2OjCd6N/sMt8nvXntTzzjfFe8
+        Ytza7W40iKMLG6zeDqJaKyiJPov3r0fGLDyi3Da9VDUNuWGSjMdmkBApBK9YcuMH
+        E5GxPsw1Fcg04anucc9tRUwK8nA0vknL9nAp4WYSgfNS0uf7y4YiPG+6vu51En88
+        G9zlw7fvAQRCIEWRfRX6J2OGAgHQccmLxwQ==
+X-ME-Sender: <xms:3cz5YsfU42jqkGMhuwz9vnNuHy6qGoULUR0vhntqT9bEn-VEifMong>
+    <xme:3cz5YuN-llvgbuNsq8xZ4pIJUvE5JG-AmSjWiqsYV_6ZEvbiP3vA5cP0JY6pI-87R
+    0-LQ4COMXKWueMiHg>
+X-ME-Received: <xmr:3cz5YthQuP-OHPZ9buI8jCqfnez0A_6ycCCm25pE1scdHl9rbCKK8nQ4MrumnjjOYz_uxkdmq7Wnm7QGmu-CM77ULu-9Xxzu_9oDPzDAApcweAxHSMf2or-Lj0hKkRCcWxruTw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehuddgkeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvvefufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
+    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
+    grthhtvghrnhepkeehffethedtteffgfefteetjedvfeelueevudffgfeutdejvdehledv
+    vdffhfevnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiii
+    gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgrnhgu
+    rdhorhhg
+X-ME-Proxy: <xmx:3cz5Yh_oH5azO04EomE9h090QZhDRgJHW-_SgF-r3gJf5iBA2PRcnA>
+    <xmx:3cz5Yotz-bA9P3SLvjrIKM9LQ1l5-EJGbqlvsZV80xSVxdAPaCfLEw>
+    <xmx:3cz5YoGwDwexOHo5h0F0AkmIWiVhKUCNU1olsXUJGXlNQn0rv17dew>
+    <xmx:3cz5Ypn-n-1O4CCcTAUH6-vo_gUpejwOZUNo_AT9yBz5F97RUYuAWg>
+Feedback-ID: i0ad843c9:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 15 Aug 2022 00:34:36 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@lists.linux.dev
+Subject: [PATCH v3 0/4] regulator: Add support for Allwinner D1 LDOs
+Date:   Sun, 14 Aug 2022 23:34:31 -0500
+Message-Id: <20220815043436.20170-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use "PP1800_L2C" as the DMIC power source.
+This series adds bindings and a driver for the two pairs of LDOs
+inside the Allwinner D1 SoC.
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
----
-This patch depends on:
-arm64: dts: qcom: sc7280: Add herobrine-villager-r1. [1]
+A binding and driver change is required for the SRAM controller, to
+accept the regulators device as its child node. The new example in the
+SRAM controller binding uses the compatible string added in this series:
+https://lore.kernel.org/lkml/20220815041248.53268-1-samuel@sholland.org/
 
-[1]
-https://patchwork.kernel.org/patch/12926099/
+Changes in v3:
+ - Add "reg" property to bindings
+ - Add "unevaluatedProperties: true" to regulator nodes
+ - Minor changes to regulator node name patterns
+ - Remove system-ldos example (now added in patch 3)
+ - Adjust control flow in sun20i_regulator_get_regmap() for clarity
+ - Require the regulators node to have a unit address
+ - Reference the regulator schema from the SRAM controller schema
+ - Move the system LDOs example to the SRAM controller schema
+ - Reorder the patches so the example passes validation
 
+Changes in v2:
+ - Remove syscon property from bindings
+ - Update binding examples to fix warnings and provide context
+ - Use decimal numbers for .n_voltages instead of field widths
+ - Get the regmap from the parent device instead of a property/phandle
 
- .../dts/qcom/sc7280-herobrine-villager-r1.dts | 28 +++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Samuel Holland (4):
+  regulator: dt-bindings: Add Allwinner D1 LDOs
+  regulator: sun20i: Add support for Allwinner D1 LDOs
+  dt-bindings: sram: sunxi-sram: Add optional regulators child
+  soc: sunxi: sram: Only iterate over SRAM children
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
-index c03b3ae4de50..983defa7c76d 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-villager-r1.dts
-@@ -12,3 +12,31 @@ / {
- 	model = "Google Villager (rev1+)";
- 	compatible = "google,villager", "qcom,sc7280";
- };
-+
-+&lpass_va_macro {
-+	vdd-micb-supply = <&pp1800_l2c>;
-+};
-+
-+&sound {
-+	audio-routing =
-+			"IN1_HPHL", "HPHL_OUT",
-+			"IN2_HPHR", "HPHR_OUT",
-+			"AMIC1", "MIC BIAS1",
-+			"AMIC2", "MIC BIAS2",
-+			"VA DMIC0", "vdd-micb",
-+			"VA DMIC1", "vdd-micb",
-+			"VA DMIC2", "vdd-micb",
-+			"VA DMIC3", "vdd-micb",
-+			"TX SWR_ADC0", "ADC1_OUTPUT",
-+			"TX SWR_ADC1", "ADC2_OUTPUT",
-+			"TX SWR_ADC2", "ADC3_OUTPUT",
-+			"TX SWR_DMIC0", "DMIC1_OUTPUT",
-+			"TX SWR_DMIC1", "DMIC2_OUTPUT",
-+			"TX SWR_DMIC2", "DMIC3_OUTPUT",
-+			"TX SWR_DMIC3", "DMIC4_OUTPUT",
-+			"TX SWR_DMIC4", "DMIC5_OUTPUT",
-+			"TX SWR_DMIC5", "DMIC6_OUTPUT",
-+			"TX SWR_DMIC6", "DMIC7_OUTPUT",
-+			"TX SWR_DMIC7", "DMIC8_OUTPUT";
-+
-+};
+ .../allwinner,sun20i-d1-analog-ldos.yaml      |  74 ++++++
+ .../allwinner,sun20i-d1-system-ldos.yaml      |  37 +++
+ .../allwinner,sun4i-a10-system-control.yaml   |  29 +++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/sun20i-regulator.c          | 232 ++++++++++++++++++
+ drivers/soc/sunxi/sunxi_sram.c                |   3 +
+ 7 files changed, 384 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-analog-ldos.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/allwinner,sun20i-d1-system-ldos.yaml
+ create mode 100644 drivers/regulator/sun20i-regulator.c
+
 -- 
-2.31.0
+2.35.1
 
