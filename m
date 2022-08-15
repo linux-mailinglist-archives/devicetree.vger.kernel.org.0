@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58B94593050
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 15:55:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FC31593054
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 15:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240428AbiHONzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 09:55:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39518 "EHLO
+        id S241742AbiHON5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 09:57:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232281AbiHONzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 09:55:21 -0400
+        with ESMTP id S229527AbiHON5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 09:57:09 -0400
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D674110B1;
-        Mon, 15 Aug 2022 06:55:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F253221E19;
+        Mon, 15 Aug 2022 06:57:07 -0700 (PDT)
 Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
         by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <heiko@sntech.de>)
-        id 1oNaYe-0003xX-VX; Mon, 15 Aug 2022 15:55:09 +0200
+        id 1oNaaR-0003zX-9O; Mon, 15 Aug 2022 15:56:59 +0200
 From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
 To:     Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
@@ -32,11 +32,11 @@ Cc:     Samuel Holland <samuel@sholland.org>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-sunxi@lists.linux.dev, Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v2 02/10] dt-bindings: sram: sunxi-sram: Add D1 compatible string
-Date:   Mon, 15 Aug 2022 15:55:08 +0200
-Message-ID: <8650738.VV5PYv0bhD@diego>
-In-Reply-To: <20220815041248.53268-3-samuel@sholland.org>
-References: <20220815041248.53268-1-samuel@sholland.org> <20220815041248.53268-3-samuel@sholland.org>
+Subject: Re: [PATCH v2 03/10] soc: sunxi: sram: Actually claim SRAM regions
+Date:   Mon, 15 Aug 2022 15:56:58 +0200
+Message-ID: <2604705.q0ZmV6gNhb@diego>
+In-Reply-To: <20220815041248.53268-4-samuel@sholland.org>
+References: <20220815041248.53268-1-samuel@sholland.org> <20220815041248.53268-4-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -49,13 +49,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 15. August 2022, 06:12:39 CEST schrieb Samuel Holland:
-> D1 needs to export a register for managing some LDO regulators, so it
-> needs a unique compatible.
+Am Montag, 15. August 2022, 06:12:40 CEST schrieb Samuel Holland:
+> sunxi_sram_claim() checks the sram_desc->claimed flag before updating
+> the register, with the intent that only one device can claim a region.
+> However, this was ineffective because the flag was never set.
 > 
+> Fixes: 4af34b572a85 ("drivers: soc: sunxi: Introduce SoC driver to map SRAMs")
+> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 > Signed-off-by: Samuel Holland <samuel@sholland.org>
 
 Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-
+Tested-by: Heiko Stuebner <heiko@sntech.de>
 
 
