@@ -2,118 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A0A0594F28
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 05:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90779595115
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 06:52:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbiHPDpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 23:45:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43640 "EHLO
+        id S231777AbiHPEwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Aug 2022 00:52:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229550AbiHPDpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 23:45:07 -0400
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8990832CA8B;
-        Mon, 15 Aug 2022 17:16:40 -0700 (PDT)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id B801632006F5;
-        Mon, 15 Aug 2022 20:16:38 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Mon, 15 Aug 2022 20:16:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; t=1660608998; x=
-        1660695398; bh=aoST6YOZ6PDdCieixstTPtUnoofjKIkv3U3vVtPuCBU=; b=W
-        n6i3GsbCD3i2+eWaAbryXhrR+MXC4Kf+mLqwwIy50ccUyfxp3FUkbFH/d16Wpt7r
-        rbnfMiYmQH0F03Sq9xjs+RuicAsTLwZCHG/iU10KgaP3wXpJVKj5RJQ23QhRyz3X
-        PblUb7KdhsWpJMguc7J+R/b9Zd7Gry51+FrVpXNbVcPlFbN+uAlCZO5juNqOZtGP
-        gM5l605TlYbDEmODJzz1W0BDbsSc4/ztoIp/Qf4kObSFfZ4i3+6CLSVxOkhLoPtO
-        aJ0WGJBSGrQQH6OAO9U5pPaWybzFjlFYbjBd4mIoWw5kbZhUbmDMnpQlsAjRUsWh
-        AOEDsWWkgd7Vz/TsYt5UQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:feedback-id:feedback-id:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1660608998; x=
-        1660695398; bh=aoST6YOZ6PDdCieixstTPtUnoofjKIkv3U3vVtPuCBU=; b=I
-        uui4JHE2w3Q5aOtlS0mJKHkX7E3CT7lnKnzYPp6XSx2+CRCwvyc9iLrRvTqnxH3g
-        q0V/PfNb/50q4r3ouPsGXbuK9asqWXl4/SpDSz5s7oQEFFpyn4vA6aIV46fjC+9w
-        6xh0JtlgiZLFzZNlHpTDmhagX1Mnxaq7EMYWCL7J4gouPsHrg9rhp0qNdJfpswts
-        VYQ6Uj5g35qNBp1qT85DGMxIM4txN7xv0cbLZA79tMHZwGX8B+jr10uI/8axHwkq
-        W22zELSdxB1okRINLhWsBA0V44ti/cn5HWFZWB1nk8ispa7wnt6jwkHb/L0YAoWi
-        HYJ2NSebG5G2nwG/5Wz6Q==
-X-ME-Sender: <xms:5eH6YvONICDQc3jEqN1H12KHSiW24R_J5FV4yzFj57TRwP-xPCM3zg>
-    <xme:5eH6Yp_eXssUmZlZGH-tucU9uragBTdF4KppXThhDknuu_ko-MA4SOqG-Vn3qLOUu
-    X-QeoTCbAqw6rugTw>
-X-ME-Received: <xmr:5eH6YuT7W-f_VyPsDB9-513rqOevdKJhVVvgkqiOPt42inDIUdbP0TGAuFVRvEjw3_LFk1bvEfDP3FqtrYBL4wjXomSagprBmBv8AlfUGKKRlDBA3gcMXRAxwQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvfedrvdehfedgfeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvvehfhffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghm
-    uhgvlhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenuc
-    ggtffrrghtthgvrhhnpedtvefhheehgfdvkeetffeludeuudehudeuvddtveelleekvedv
-    uedviefhkeeuheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
-    hrohhmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:5eH6YjuEjFmLlpIQmlRo-gm1_wCA5zDQVSSHyunBlzQn47fchITiKg>
-    <xmx:5eH6YncTSayEm20ncq2nqlD8BfdXW1O36HKOmyareyUBbcqjoivGfg>
-    <xmx:5eH6Yv3PNKfyVvWJKMDPVmovDG0uu9hGYOGqyL4ejp011xThgs0uGQ>
-    <xmx:5uH6Yr4ph_1XG2n3O6LSwtGbHT-Wo3wTX9I0mQPWaOp3rNId1FW6fQ>
-Feedback-ID: i0ad843c9:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 15 Aug 2022 20:16:37 -0400 (EDT)
-Subject: Re: [PATCH 2/4] nvmem: sunxi_sid: Drop the workaround on A64
-To:     Icenowy Zheng <uwu@icenowy.me>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@lists.linux.dev
-References: <20220814173656.11856-1-samuel@sholland.org>
- <20220814173656.11856-3-samuel@sholland.org>
- <197d58ed8b674d622e5c6a049905cd88e40659bc.camel@icenowy.me>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <dd9d439d-06a8-b25c-9cea-9065f67a628b@sholland.org>
-Date:   Mon, 15 Aug 2022 19:16:37 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S233741AbiHPEvn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Aug 2022 00:51:43 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09937DB07C
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 13:49:16 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id g21so2819940qka.5
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 13:49:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc;
+        bh=ej3T27wdcOl5hgxFKEEvscpLUDARFbq7IX1O4+1Fbq8=;
+        b=BEFvQCt0f63kw5eeVup3KAVBKhpf++rbLrvVI0tD1CxTVWuv5Rudcu+JjjUDGbdZ32
+         YlBbbScJ1mi3sD5XJfJ1PGAMu6KOv/S7Sbi1HGJIu543q1cnpLlKXcmALmfvy/tNxRP5
+         Q64GyzEPju1ZJykHQFTXx8uINrt5K3TTj9J6h9AoiK4QAdzQ9SufLteRWF7TPz17ZVw8
+         VEAG6avDIVw5xoEe5rv1EfSAc+zoXzCSo5fdQtBoGbuaDnTaKgrkPqN37iAjkS9o6BBf
+         LNN8WNPLUH90Am1EuQaYuPaRRdCK2hxPkrmqFghps44ys9/Pp5i+vRG6Xc1d+BEwyxej
+         I02w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :x-gm-message-state:from:to:cc;
+        bh=ej3T27wdcOl5hgxFKEEvscpLUDARFbq7IX1O4+1Fbq8=;
+        b=4Xlv22Mt7ZEDvapLMBSDa7ZmmqLb0XDf/G+efjQqWQCAbM5l00Wyy1YsWfQ/v7kcO1
+         wO3C5p+MP+gSW89vh+IdG2d1fNy8+QUwWzxUNau63OR9WxAa6T1TzK0AUh+HSgyMD6Xc
+         eG8AuTyEcv9z6tamzkxaHdEwHw0nQsRK23+3kY3ni46NX6k3p4e+J0vnaCErzbI4Sb7l
+         M2xBZGEqKV9+Rx0BV0OxIZyQb94PE4X+ykxhbfUrodUcx83841yMf8bRu9Km+v7SLWHn
+         UKP23yDs1kh6lJsFgGHNmBVoBktb2zowT3fI5w2DW0tQsNsW7dfpQjGprILM7iNRHmLR
+         kycw==
+X-Gm-Message-State: ACgBeo34LoqcwNgDNxKqHnhwMBhCyS6253W/bSqIhnDEYzOqcrmCBGlx
+        Qc/YOZiLc4hUxqjypUHWYkL3/78KlOf+EOj9sm0=
+X-Google-Smtp-Source: AA6agR7ndOrZjMDBJwIxxDqcamWI0ULmp0y7gaZJ2pOjsC8D1v4MDjLRzOokz6xmZ8oifLQeyIah3K/su8jEPklZWYI=
+X-Received: by 2002:a37:5481:0:b0:6b9:573e:a813 with SMTP id
+ i123-20020a375481000000b006b9573ea813mr12478593qkb.197.1660596550234; Mon, 15
+ Aug 2022 13:49:10 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <197d58ed8b674d622e5c6a049905cd88e40659bc.camel@icenowy.me>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Received: by 2002:ab3:ef88:0:b0:46d:3a61:256e with HTTP; Mon, 15 Aug 2022
+ 13:49:08 -0700 (PDT)
+Reply-To: wijh555@gmail.com
+From:   "Prof. Chin Guang" <dmitrybogdanv07@gmail.com>
+Date:   Mon, 15 Aug 2022 13:49:08 -0700
+Message-ID: <CAPi14yJvGA2=bmp3J6Jke-6XMMcPdNT_WT5w9yJCSznB-X6FRw@mail.gmail.com>
+Subject: Good Day,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: Yes, score=5.2 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Report: *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+        *      [score: 0.5000]
+        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
+        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+        *      digit
+        *      [wijh555[at]gmail.com]
+        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+        *      provider
+        *      [dmitrybogdanv07[at]gmail.com]
+        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+        *       in digit
+        *      [dmitrybogdanv07[at]gmail.com]
+        * -0.0 SPF_PASS SPF: sender matches SPF record
+        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+        *       valid
+        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+        *      author's domain
+        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
+        *      envelope-from domain
+        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+        * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+        *      https://www.dnswl.org/, no trust
+        *      [2607:f8b0:4864:20:0:0:0:733 listed in]
+        [list.dnswl.org]
+        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
+        *  3.1 UNDISC_FREEM Undisclosed recipients + freemail reply-to
+        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
+        *      different freemails
+X-Spam-Level: *****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Icenowy,
+-- 
+Hello,
+We the Board Directors believe you are in good health, doing great and
+with the hope that this mail will meet you in good condition, We are
+privileged and delighted to reach you via email" And we are urgently
+waiting to hear from you. and again your number is not connecting.
 
-On 8/15/22 3:37 AM, Icenowy Zheng wrote:
-> 在 2022-08-14星期日的 12:36 -0500，Samuel Holland写道：
->> Now that the SRAM readout code is fixed by using 32-bit accesses, it
->> always returns the same values as register readout, so the A64
->> variant
->> no longer needs the workaround. This makes the D1 variant structure
->> redundant, so remove it.
-> 
-> Is this really tested on A64?
-
-Yes, I tested this on a Pine A64-LTS. You can see the difference easily with
-md.{b,w,l,q} in the U-Boot shell.
-
-I verified that all three of the following are identical:
- - NVMEM exported to sysfs with the register readout method
- - NVMEM exported to sysfs with this patch series applied
- - SRAM dump made with md.l in the U-Boot shell
-
-Regards,
-Samuel
+Sincerely,
+Prof. Chin Guang
