@@ -2,130 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D2085947DF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 02:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 732A2594B54
+	for <lists+devicetree@lfdr.de>; Tue, 16 Aug 2022 02:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354641AbiHOXzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 19:55:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53358 "EHLO
+        id S1352032AbiHPAOn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 20:14:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355367AbiHOXv7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 19:51:59 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A602D92F4B;
-        Mon, 15 Aug 2022 13:16:41 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-32a17d3bba2so100485077b3.9;
-        Mon, 15 Aug 2022 13:16:41 -0700 (PDT)
+        with ESMTP id S1357269AbiHPANS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 20:13:18 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C72017651D
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 13:29:53 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id bd26-20020a05600c1f1a00b003a5e82a6474so2770441wmb.4
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 13:29:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=F3WR7fgDxcCodVgsjoOsS+f77Gv20JzgJQeYT8zBw8Y=;
-        b=m4GdyZOqTzEPFE5ZNoXqTb7eVjWUfyZNn3ENU/zHMsrwZhp3Byl1BKCAW+70SAfFlX
-         7/EnRFBWxMB+0PFZFjCFYokpp3R6JFLkyEt7jKdgUe3iREKIe2pwbnnEQKGdq9zSi/Rk
-         8eRe2Y2oLaOqAyYlPvVRk5Dtbl/ti9cBijHFqsXdih7YukZVF22d5LMh2iNLnv1op0mO
-         eAFtV1e+FeT9O3GtU65MlTg4wC+BxRO5o4bPRQ/FaMXPRNu0/3PBw2+xt6gnYop4UatJ
-         /2kZkldAP8qpB7fze71ZA2XURtodoYr5XChHX6Es3I896c5gDy65wASUMMfjRHpWbtU9
-         mSDw==
+        d=conchuod.ie; s=google;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc;
+        bh=Xr+UfO+qh4isF9IlG5bCz7LtZXBHMAXoplA9/7WZzXo=;
+        b=W4xaU/BQRB9QDvjZod3/K3AWAoKIGLhJ9kSF6a1Iya5gjWDxGbWWn/dZ285MabIA9M
+         ay2Id7daU2+BUbMKABA3ixnJor0fQfOk85SxhM22w47UmU/gksLCG4KajVtQfVRAvri7
+         YkMbZ+/h+pF+dbho4ih9LjpsT6URElhZmiKctKEqOqehyEgr2Ew0L+uTpfy58iXpjCOm
+         X3QIZwo2PtKT/6AldR1qYt/qgDL217r7mHpzBLNi8p1yyZd7pBF9XVyVoVKQWyVFY5yW
+         Xk5ag8m8afmpc2Uipn/qL3gC55NG/b780t1nk9B0pVPxSREuswL5T6zhJ/5elaga/BX3
+         iOPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=F3WR7fgDxcCodVgsjoOsS+f77Gv20JzgJQeYT8zBw8Y=;
-        b=wLh0XxfeOvD68bwRu8MMpuYR3RFBkzFstxulgJAZeKpaDDlIJrFQDhPA00vR70rp6q
-         mFiNiQCbK5/cEIOfZZHUpRZek0Dfee/50q3a5+yKt6rLCgItpVI6+2NcGuYzTRTJ5k4J
-         Q/KEYdiKqjQ2vKGMLrfNVXOc/Zdy7ucOQSGsg9cAnlI6ZZaBmOJwMrfldp5STsKQMLck
-         7JLcEYeOCiVYZswGJI3FVooP8SqTi0oAZ2+0ZrdSJXE/yABxxaYmlf+3iagt9ZIFhLcS
-         fC8VyPtpCYJLQlWVq47nIx9p3YvOHjqueOL8GslZdDbconSloe0V9w7c/v1uyHD+6PFb
-         WpzA==
-X-Gm-Message-State: ACgBeo00DAU/KFS5fyXSw7kVxFcJXih9z8OZ019/wZDbQkikvxK6I4jg
-        BkWYsu6Tx5NRvrKcE7TS+nkUKutNIiSo5DS+lwE=
-X-Google-Smtp-Source: AA6agR53x6Ky5DFoyiOZsi1UNCdLAREHkkmy3+pa3bj7rCyr5qdJmXVXVMo0vrQdOzqePpsCUG0fqZm8CD4XyiuvFwk=
-X-Received: by 2002:a25:3206:0:b0:677:2480:ffa6 with SMTP id
- y6-20020a253206000000b006772480ffa6mr13207204yby.335.1660594600950; Mon, 15
- Aug 2022 13:16:40 -0700 (PDT)
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc;
+        bh=Xr+UfO+qh4isF9IlG5bCz7LtZXBHMAXoplA9/7WZzXo=;
+        b=Lp1OUrx+mHlH4aH69cydq4cbIYmDyBXEwKemYCg9OimDSEvTnqEiUko0b3hFE/jEIt
+         ekW5jteQNj/Pu7NKIIF5xiYFjZXNLr+q+yFKye+TRp4HU0p0CkAB0ME8t+bmQ0QgZ+XJ
+         6UqGNuXly41SKm7SyxxjzbKXY6AVC7C/ztefkKZVTF1nNg8Gjrw/yRBzs3ki/Umw5bGw
+         31O1F2pzcfIUjuXpxf4+LgEYKOsdpK7Bi+TB1ZTms6IU/VebrZ2+4wgeWN3KVBoKwYfe
+         em6kyjH64h+Bz2HHVsGdsK6H7jQsc+Cj6115cJYNNHzJkeVbvnxwgkbPdo7lDJ+/dbzC
+         5wkA==
+X-Gm-Message-State: ACgBeo1g9y5sfT+oNhBoQQsBC/0EuFpbLQ7lwUY4n7pUT481tXaKGxTB
+        IhA7SxmWTVPhzBW3vF8v5iNPQg==
+X-Google-Smtp-Source: AA6agR7dfZyQkZTV2Qp0fB4jebLEk+ydPCl/oc9p/QV2VmrnbmA80BIWxTHmCnHaPLjxKiwjgswSig==
+X-Received: by 2002:a1c:3b46:0:b0:3a5:a92d:9e62 with SMTP id i67-20020a1c3b46000000b003a5a92d9e62mr10852053wma.175.1660595391981;
+        Mon, 15 Aug 2022 13:29:51 -0700 (PDT)
+Received: from henark71.. ([109.76.58.63])
+        by smtp.gmail.com with ESMTPSA id e10-20020adf9bca000000b0022515d9e2ddsm323905wrc.45.2022.08.15.13.29.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Aug 2022 13:29:51 -0700 (PDT)
+From:   Conor Dooley <mail@conchuod.ie>
+To:     conor.dooley@microchip.com, daire.mcnamara@microchip.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, broonie@kernel.org,
+        nagasuresh.relli@microchip.com,
+        valentina.fernandezalanis@microchip.com,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH] riscv: dts: microchip: add qspi compatible fallback
+Date:   Mon, 15 Aug 2022 21:29:37 +0100
+Message-Id: <166059535262.2709508.15329793193826864091.b4-ty@microchip.com>
+X-Mailer: git-send-email 2.37.1
+In-Reply-To: <20220810085914.801170-1-conor.dooley@microchip.com>
+References: <20220810085914.801170-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
-References: <20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220815151451.23293-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <07342070-d96c-59fc-f9dd-b65cd742d97a@microchip.com>
-In-Reply-To: <07342070-d96c-59fc-f9dd-b65cd742d97a@microchip.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 15 Aug 2022 21:16:13 +0100
-Message-ID: <CA+V-a8uNRr+WPX=YC+UMT4ch4S5XwsatHCzUoSt+hTk4C=cheA@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] riscv: dts: renesas: Add minimal DTS for Renesas
- RZ/Five SMARC EVK
-To:     Conor.Dooley@microchip.com
-Cc:     "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Anup Patel <anup@brainfault.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On Mon, Aug 15, 2022 at 8:00 PM <Conor.Dooley@microchip.com> wrote:
->
-> On 15/08/2022 16:14, Lad Prabhakar wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >
-> > Enable the minimal blocks required for booting the Renesas RZ/Five
-> > SMARC EVK with initramfs.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > v1->v2
-> > * New patch
-> > ---
-> >  arch/riscv/boot/dts/Makefile                  |  1 +
-> >  arch/riscv/boot/dts/renesas/Makefile          |  2 ++
-> >  .../boot/dts/renesas/r9a07g043f01-smarc.dts   | 16 ++++++++++
-> >  .../boot/dts/renesas/rzfive-smarc-som.dtsi    | 22 +++++++++++++
-> >  arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi | 32 +++++++++++++++++++
-> >  5 files changed, 73 insertions(+)
-> >  create mode 100644 arch/riscv/boot/dts/renesas/Makefile
-> >  create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dts
-> >  create mode 100644 arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
->
-> Just to sort out some of my own confusion here - is the smarc EVK
-> shared between your arm boards and the riscv ones? Or just the
-> peripherals etc on the soc?
->
-RZ/Five SoC is pin compatible with RZ/G2UL Type 1 SoC (ARM64). RZ/G2UL
-SMARC EVK carrier board can be swapped with RZ/Five or RZ/G2UL SMARC
-SoM and still be used.
+On Wed, 10 Aug 2022 09:59:15 +0100, Conor Dooley wrote:
+> The "hard" QSPI peripheral on PolarFire SoC is derived from version 2
+> of the FPGA IP core. The original binding had no fallback etc, so this
+> device tree is valid as is. There was also no functional driver for the
+> QSPI IP, so no device with a devicetree from a previous mainline
+> release will regress.
+> 
+> 
+> [...]
 
-> If it is the forver, does the approach suggested here for the
-> allwinner stuff make sense to also use for risc-v stuff with
-> shared parts of devicetrees?
-> https://lore.kernel.org/linux-riscv/3cd9ed5b-8348-38ac-feb1-9a7da858cebc@microchip.com/
->
-it does make sense. But I wonder where we would place the common
-shared dtsi that can be used by two arch's.
+Applied to dt-for-next, thanks!
 
-> Would at least be interesting in hearing more opinions from the dt
-> people, Geert & Palmer. We have some SOM based stuff too with carriers
-> so I am interested in seeing how the cross platform part of that works
-> out.
->
-Yep, that would be interesting.
+[1/1] riscv: dts: microchip: add qspi compatible fallback
+      https://git.kernel.org/conor/c/7eac0081a8e9
 
-Cheers,
-Prabhakar
+Thanks,
+Conor.
