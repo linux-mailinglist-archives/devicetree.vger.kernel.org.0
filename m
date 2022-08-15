@@ -2,52 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 92DAF593259
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 17:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 900C6593331
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 18:26:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232966AbiHOPp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 11:45:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33366 "EHLO
+        id S236157AbiHOQZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 12:25:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233234AbiHOPpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 11:45:18 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A165AC28;
-        Mon, 15 Aug 2022 08:45:16 -0700 (PDT)
+        with ESMTP id S232761AbiHOQZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 12:25:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6A67240A0;
+        Mon, 15 Aug 2022 09:23:00 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BE3ADB80F2B;
-        Mon, 15 Aug 2022 15:45:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C419C4347C;
-        Mon, 15 Aug 2022 15:45:09 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D879611E8;
+        Mon, 15 Aug 2022 16:23:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF0C1C433D6;
+        Mon, 15 Aug 2022 16:22:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1660578313;
-        bh=JwjxJ7MOVdbsgqpb/k0rGtudkHpbtxGUbAtOmA+7kb4=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=tsqfhZF0byibwTSWDbd8UBOt4qmu251PmImxGxyvih5jtAVHspXV8Bu51VzsPeM1U
-         oq8g/FuG5Hj72UVtFgziDO9U27EZZRnKIvdFF6g0RAmp+IsSkcZNelH3ffc7HAg0qw
-         1YPMFyCGw0I8cN27fVVcGCuhFtRUDuZo1rI2yNfIgBmyigj0ra2Gpzh7WrTia0H4vB
-         v5/GQn5Xhb3dSct2jCO56KXXGQqzOEuG8Wg7EVqgb7HEWTRIZufGztGmUf3YWb7mGw
-         Yc2gVUl2s1eNjrWS6zlQSyORnqVoFFb2UNHG7mJcdl17dcMQXoNODBQBVSSsEBfODd
-         p3d1SN03bHSbA==
+        s=k20201202; t=1660580579;
+        bh=00opu7Jl4uqjr0Td6sGAV8yEUvH/0wMplSwVn+zuZJo=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=TMZL/lvEj6KGpWG+ScvbPm2kNPrt22Zd+6oorYe74odqhJaC2eoYvuRnLwGxdg4BE
+         4wfKXP3/SFbWiX34QwyMWMOo+iQtaEZkN2ly3d3lEZfdtc6Hxq+/Imo6AcO5X4a7bA
+         PUpHlBBUjkdrVt7l7ZajC1eUWSryKdfaZUZLmJeW5a+h9m9LMFpR0CEBX1L9QL+eLI
+         6vGVs01tCOFzu5GVvZj3fSblMrAFNuCLMnOgCZ7A2tTih3YvCzIZvNC+hTfpG02FN9
+         YRgng/mBacC1pj/v1kNkknjvPW0jkM4Fc4Yd8swflvmFBknCYQ2IiyWgkVlCfpfi9D
+         vMHAEw8hTRv4w==
 From:   Mark Brown <broonie@kernel.org>
-To:     linux-kernel@vger.kernel.org, Paul Cercueil <paul@crapouillou.net>,
-        devicetree@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        Christophe Branchereau <cbranchereau@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-spi@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>
-In-Reply-To: <20220810131311.428645-1-krzysztof.kozlowski@linaro.org>
-References: <20220810131311.428645-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] spi/panel: dt-bindings: drop 3-wire from common properties
-Message-Id: <166057830909.697678.2981260978895066117.b4-ty@kernel.org>
-Date:   Mon, 15 Aug 2022 16:45:09 +0100
+To:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        alsa-devel@alsa-project.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        devicetree@vger.kernel.org
+Cc:     shengjiu.wang@gmail.com
+In-Reply-To: <1659443394-9838-1-git-send-email-shengjiu.wang@nxp.com>
+References: <1659443394-9838-1-git-send-email-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH v4] ASoC: dt-bindings: fsl,sai: Convert format to json-schema
+Message-Id: <166058057756.769843.7829360954309157566.b4-ty@kernel.org>
+Date:   Mon, 15 Aug 2022 17:22:57 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -62,24 +57,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Aug 2022 16:13:11 +0300, Krzysztof Kozlowski wrote:
-> The spi-3wire property is device specific and should be accepted only if
-> device really needs them.  Drop it from common spi-peripheral-props.yaml
-> schema, mention in few panel drivers which use it and include instead in
-> the SPI controller bindings.  The controller bindings will provide
-> spi-3wire type validation and one place for description.  Each device
-> schema must list the property if it is applicable.
+On Tue, 2 Aug 2022 20:29:54 +0800, Shengjiu Wang wrote:
+> Convert the NXP SAI binding to DT schema format using json-schema.
+> 
+> The Synchronous Audio Interface (SAI) provides an interface that
+> supports full-duplex serial interfaces with frame synchronization
+> formats such as I2S, AC97, TDM, and codec/DSP interfaces.
+> 
+> Beside conversion, 'fsl,shared-interrupt' and '#sound-dai-cells'
+> are added for they are already used by some dts.
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-[1/1] spi/panel: dt-bindings: drop 3-wire from common properties
-      commit: 41f53a65444997f55c82c67f71a9cff05c1dee31
+[1/1] ASoC: dt-bindings: fsl,sai: Convert format to json-schema
+      commit: d563336877b21ede46053103c726f50a0206d155
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
