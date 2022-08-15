@@ -2,205 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AF06593664
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 21:24:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EF7C5937B7
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 21:29:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240745AbiHOSmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 14:42:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35952 "EHLO
+        id S243521AbiHOSrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 14:47:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241836AbiHOSkN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 14:40:13 -0400
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E93EF3DBE5
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:24:12 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-32269d60830so93796567b3.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:24:12 -0700 (PDT)
+        with ESMTP id S244195AbiHOSqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 14:46:44 -0400
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E6A141992
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:28:20 -0700 (PDT)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-10cf9f5b500so9036610fac.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 11:28:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
+        d=linaro.org; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=BJt/vOP9OHL0y+jrzm5cg2sCaG+27wsaXcgILhgn7lo=;
-        b=p5i2uxjK2NzMF+6PIEOLJxbFor9NpM8loKbuBWNdYO5TWdrtkHdgD/du41IQW6+PjG
-         AbEW1vxV3zYLc1nK4Er6j8q1ZlcyqWbgeHKCT8HBFBhFplvn+iSTAsGzFfS3Qk1YpWdH
-         l70Fy/+CAa3SCs0eCx+hFGYG8vbueikjPrrZDuYi5VGHfeL/oDpaGwYwzF7U6d4mT3G4
-         ZX1BI5kKPewL+vCx6YML/AQ46tisemqNuM/TLnprheAuNFkjoidWQ3BHdwR1o/WT+a9q
-         AVF2DI5Nv3FWGggxRWvspruaWnDLJLPovT7bn/ehMNzJDYfIHV2wBuxYHNqtTxme5CQG
-         2EfA==
+        bh=nzkiEUN15yoqYwUDSmfmqqu1RJj8u2Ige+qgLeq8dNM=;
+        b=FnOF2oSIHjQvZrwpfABWIYj5vm/rL+xzLQN5tdxF2TYxqZl7qfG/TuxzlBQYurEeLV
+         I7stWMJfvgdP2wA7mAtXJl9tEcWoBK6sRrn29p4ZXtpm86Xn1LRa07Zfat736zBxea/S
+         s8FIVp85dDCCT3qWBTQjjrkzZfdG/qlXPvPclxM6ugvyfNVmBxHVIwuDgaRtCz2eoMnX
+         BnF8b9Joa5itybCca04tGBL0/1r9KU/W10Q048cHl6o7ETTrp/cMXBqvk8MpjULc+rw9
+         aEgf54uj6sh0mhJTk7OKhGYLUOP6Gy7n7d+zCu8cqJAWwsGvDGE80moCkuDC4Ea4SJzP
+         ndAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=BJt/vOP9OHL0y+jrzm5cg2sCaG+27wsaXcgILhgn7lo=;
-        b=NJMkhk35tDxyGGEFDHb2xlNz6/eTgraXAQgqU7InQAcPGHnwC9dtHBsK9qWNxz87RY
-         Xr4cMzNPpUayoMDCh1yMbPPjV9/ap3693YpPPWH1J0BrlysPAiUITzAKtDwlssc9jp11
-         8FKiBmzjHeoU510krPwQp9+w9XJjsIO0GkPhaZHbsCwfBq7JB2yb1fPJBuCPVGvUnGpz
-         pMOSbKmMsNqooEWjNZJRplEgYVCYdZ7t2D+RqfeiGOAfzAxiVOilTPEKWwuvIfg0LPoX
-         0YOk8wjG4Q8Pp9BI0EJrvl4/nN7LqiEBQjZFn9XkCzsdiwX8PDbG10mXqtfdbAwsai0C
-         zC1w==
-X-Gm-Message-State: ACgBeo0TAMAcTrDEfLxOfs2DUXVp5AoMeXRqDugtwgrYwsnhDpT97JYm
-        gPmb1L/bAddP/6hxjhmN5mwakTd96z9vhYKQrxddsA==
-X-Google-Smtp-Source: AA6agR45xoYO6Hu5/U+BI3ADwqpB9ej+KA64Yt7nhN1oYI2fH7yVe/vv25x6B4XIjaCcCmIdDBDKwXtcWBGPauCLrBc=
-X-Received: by 2002:a81:998c:0:b0:326:5dab:df3f with SMTP id
- q134-20020a81998c000000b003265dabdf3fmr14329271ywg.126.1660587851957; Mon, 15
- Aug 2022 11:24:11 -0700 (PDT)
+        bh=nzkiEUN15yoqYwUDSmfmqqu1RJj8u2Ige+qgLeq8dNM=;
+        b=oWX6B5ABsM+0nISiB3+ckp6cGD/XrhFQhY3O82ev0YfSPj3ohh8GIxv7/y90YcNXNK
+         vidDkLvXxNVKt7r6PCdTdpCmLxNV0K/LjT8zg8SNdPHb12QavxvOHcYj+67anvPWeXrk
+         FqDEWLTyjfaFBxbJEw80TKbRzvGwpZ8lOnSKANa6avbsvK05kHVAs//OrySVHRyq0L/n
+         OmvkwjNW+y7xYw1/L1/noEEQM7gNxdqbwkNgIlNBUhiY/nzsFqD7DWJAd5UzfmqOQIUO
+         W9lnmPUslVJXDKsIScfKzVeFarXZzLn3j1K+PF9ZKP2VglF1w9yIP44YjDj6tJvEFd26
+         ZYfQ==
+X-Gm-Message-State: ACgBeo2uOkGIbsK1J40fkOwD+OutcP7ku72x0bBQilfOz8uH84QLPjsf
+        Twnb9Y9Qmevqw3bYWzexdF0vHHPpKJ1rWDdfkla8VRnbWSU=
+X-Google-Smtp-Source: AA6agR4FscaLC2K7CnGdFK/q1e0Cm8YfPFt5HcTAN/4NAB1QfTL5GPe7+vLFjgDWtK8eYVDrTdv0xm2Bk5gFEK24ec4=
+X-Received: by 2002:a05:6870:a18c:b0:118:5b96:1cc6 with SMTP id
+ a12-20020a056870a18c00b001185b961cc6mr6865278oaf.105.1660588099459; Mon, 15
+ Aug 2022 11:28:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220810060040.321697-1-saravanak@google.com> <YvonlAwXAoXTUTZe@linaro.org>
-In-Reply-To: <YvonlAwXAoXTUTZe@linaro.org>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 15 Aug 2022 11:23:36 -0700
-Message-ID: <CAGETcx8AApnpQOsKgGoC=WyLCWH4AzpQQ-qNpu41F+czxi=_pQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/9] fw_devlink improvements
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Len Brown <lenb@kernel.org>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        John Stultz <jstultz@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-acpi@vger.kernel.org
+References: <20220726084520.2895454-1-bhupesh.sharma@linaro.org>
+In-Reply-To: <20220726084520.2895454-1-bhupesh.sharma@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 15 Aug 2022 20:27:42 +0200
+Message-ID: <CAPDyKFqK3ywB9HW_FDdHTLNJ0rcVt3t7uMfJsBwfC1p0YhLrXg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mmc: Set maximum documented operating
+ frequency as 384MHz
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, robh@kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        bjorn.andersson@linaro.org, agross@kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 15, 2022 at 4:01 AM Abel Vesa <abel.vesa@linaro.org> wrote:
+On Tue, 26 Jul 2022 at 10:45, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
 >
-> On 22-08-09 23:00:29, Saravana Kannan wrote:
-> > This patch series improves fw_devlink in the following ways:
-> >
-> > 1. It no longer cares about a fwnode having a "compatible" property. It
-> >    figures this our more dynamically. The only expectation is that
-> >    fwnode that are converted to devices actually get probed by a driver
-> >    for the dependencies to be enforced correctly.
-> >
-> > 2. Finer grained dependency tracking. fw_devlink will now create device
-> >    links from the consumer to the actual resource's device (if it has one,
-> >    Eg: gpio_device) instead of the parent supplier device. This improves
-> >    things like async suspend/resume ordering, potentially remove the need
-> >    for frameworks to create device links, more parallelized async probing,
-> >    and better sync_state() tracking.
-> >
-> > 3. Handle hardware/software quirks where a child firmware node gets
-> >    populated as a device before its parent firmware node AND actually
-> >    supplies a non-optional resource to the parent firmware node's
-> >    device.
-> >
-> > 4. Way more robust at cycle handling (see patch for the insane cases).
-> >
-> > 5. Stops depending on OF_POPULATED to figure out some corner cases.
-> >
-> > 6. Simplifies the work that needs to be done by the firmware specific
-> >    code.
-> >
-> > This took way too long to get done due to typo bugs I had in my rewrite or
-> > corner cases I had to find and handle. But it's fairly well tested at this
-> > point and I expect this to work properly.
-> >
-> > Abel & Doug,
-> >
-> > This should fix your cyclic dependency issues with your display. Can you
-> > give it a shot please?
+> As Ulf noted in [1], the maximum operating frequency
+> documented in the mmc-controller device-tree bindings
+> should be updated to the maximum frequency supported
+> by the mmc controller(s).
 >
-> Tested the specific case we discussed about here:
-> https://lore.kernel.org/all/CAGETcx8F0wP+RA0KpjOJeZfc=DVG-MbM_=SkRHD4UhD2ReL7Kw@mail.gmail.com/raw
+> Without this fix in place, the 'make dtbs_check' reports
+> issues with 'max-frequency' value for ipq8074 sdhci node:
 >
-> Thanks for fixing this.
+>   arch/arm64/boot/dts/qcom/ipq8074-hk01.dtb: mmc@7824900:
+>    max-frequency:0:0: 384000000 is greater than the maximum of 200000000
 >
-> Tested-by: Abel Vesa <abel.vesa@linaro.org>
+> [1]. https://www.spinics.net/lists/kernel/msg4442049.html
+>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 
-Thanks!
+Applied for next, thanks!
 
--Saravana
+Kind regards
+Uffe
 
+
+> ---
+>  - v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20220725180916.2850228-1-bhupesh.sharma@linaro.org/
+>  - Rebased on linux-next/master
 >
-> >
-> > Alexander,
-> >
-> > This should fix your issue where the power domain device not having a
-> > compatible property. Can you give it a shot please?
-> >
-> > Tony,
-> >
-> > This should handle the odd case of the child being the supplier of the
-> > parent. Can you please give this a shot? I want to make sure the cycle
-> > detection code handles this properly and treats it like it's NOT a cycle.
-> >
-> > Geert,
-> >
-> > Can you test the renesas stuff I changed please? They should continue
-> > working like before. Any other sanity test on other hardware would be
-> > great too.
-> >
-> > Sudeep,
-> >
-> > I don't think there are any unfixed issues you had reported in my other
-> > patches that this series might fix, but it'll be nice if you could give
-> > this a sanity test.
-> >
-> > Guenter,
-> >
-> > I don't think this will fix the issue you reported in the amba patch, but
-> > it's worth a shot because it improves a bunch of corner case handling. So
-> > it might be better at handling whatever corner cases you might have in the
-> > qemu platforms.
-> >
-> > Thanks,
-> > Saravana
-> >
-> > Cc: Abel Vesa <abel.vesa@linaro.org>
-> > Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Cc: Tony Lindgren <tony@atomide.com>
-> > Cc: Sudeep Holla <sudeep.holla@arm.com>
-> > Cc: Geert Uytterhoeven <geert@linux-m68k.org>
-> > Cc: John Stultz <jstultz@google.com>
-> > Cc: Doug Anderson <dianders@chromium.org>
-> > Cc: Guenter Roeck <linux@roeck-us.net>
-> >
-> > Saravana Kannan (9):
-> >   driver core: fw_devlink: Don't purge child fwnode's consumer links
-> >   driver core: fw_devlink: Improve check for fwnode with no
-> >     device/driver
-> >   soc: renesas: Move away from using OF_POPULATED for fw_devlink
-> >   gpiolib: Clear the gpio_device's fwnode initialized flag before adding
-> >   driver core: fw_devlink: Add DL_FLAG_CYCLE support to device links
-> >   driver core: fw_devlink: Allow marking a fwnode link as being part of
-> >     a cycle
-> >   driver core: fw_devlink: Consolidate device link flag computation
-> >   driver core: fw_devlink: Make cycle detection more robust
-> >   of: property: Simplify of_link_to_phandle()
-> >
-> >  drivers/base/core.c             | 437 +++++++++++++++++++++-----------
-> >  drivers/gpio/gpiolib.c          |   6 +
-> >  drivers/of/property.c           |  84 +-----
-> >  drivers/soc/renesas/rcar-sysc.c |   2 +-
-> >  include/linux/device.h          |   1 +
-> >  include/linux/fwnode.h          |  12 +-
-> >  6 files changed, 323 insertions(+), 219 deletions(-)
-> >
-> > --
-> > 2.37.1.559.g78731f0fdb-goog
-> >
+>  .../devicetree/bindings/mmc/mmc-controller.yaml     | 13 ++++++++++---
+>  1 file changed, 10 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> index ff5ce89e5111..802e3ca8be4d 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> @@ -88,11 +88,18 @@ properties:
+>      default: 1
+>
+>    max-frequency:
+> -    description:
+> -      Maximum operating frequency of the bus.
+> +    description: |
+> +      Maximum operating frequency of the bus:
+> +        - for eMMC, the maximum supported frequency is 200MHz,
+> +        - for SD/SDIO cards the SDR104 mode has a max supported
+> +          frequency of 208MHz,
+> +        - some mmc host controllers do support a max frequency upto
+> +          384MHz.
+> +      So, lets keep the maximum supported value here.
+> +
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      minimum: 400000
+> -    maximum: 200000000
+> +    maximum: 384000000
+>
+>    disable-wp:
+>      $ref: /schemas/types.yaml#/definitions/flag
+> --
+> 2.35.3
+>
