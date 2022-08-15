@@ -2,192 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91353592E0F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 13:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 881FD592E12
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 13:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242358AbiHOLT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 07:19:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37746 "EHLO
+        id S232431AbiHOLUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 07:20:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242493AbiHOLTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 07:19:53 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62E9E201B6;
-        Mon, 15 Aug 2022 04:19:50 -0700 (PDT)
+        with ESMTP id S231398AbiHOLUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 07:20:46 -0400
+Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40444643D
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 04:20:45 -0700 (PDT)
+Received: by mail-qt1-x82a.google.com with SMTP id h4so5191887qtj.11
+        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 04:20:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1660562390; x=1692098390;
-  h=subject:from:to:cc:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=oZ5xxUQ+f57vwf6Qh7Cn8/uhDXucWmOcZyd+FGFgtXs=;
-  b=NepDGG+EP35Mxzz5fxhHyjlHOW0xcDzOTOHoGz8+9lvYlvLewrZoAO36
-   EuT+/BYQNp5XB0oL/rHhxCUBLufIZdonsBuEqYy0yGHWpyCnFuAjIgQIK
-   2lDREEEjh5hWajQclMsZY7cED45IfQlv0BAHl3qCKxzkWQ+U8GzqGsngH
-   v8nXfswPBy8pqbwLJEt3Z+P+T1Z44DpUtphfU5h1HArQRc+nlv9QEP7iO
-   phQty0YMPwQtTkYruwgfNDikH8pwUQ6oPsHMmGgfLCch0/6k8Pa0jdJOt
-   m8q4iZsMUyF2DVkbB0ldn0AGJB7WFc6hUVtup/wmicr5UMCARjHKdeWWw
-   A==;
-X-IronPort-AV: E=Sophos;i="5.93,238,1654552800"; 
-   d="scan'208";a="25604535"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 15 Aug 2022 13:19:48 +0200
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 15 Aug 2022 13:19:48 +0200
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 15 Aug 2022 13:19:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1660562388; x=1692098388;
-  h=from:to:cc:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding:subject;
-  bh=oZ5xxUQ+f57vwf6Qh7Cn8/uhDXucWmOcZyd+FGFgtXs=;
-  b=l0B6Wa1StnU6Ac5t7rD4zyof5KYj05ey5CalmxiIFG/IyENvaDzGAEeA
-   G+o8mt7BVO30B+Y2Z4XjmjgGyoS1usOLWIdk9dgkxd7jglfFgWLXsjwUt
-   kU04zDnquJCMyhPP93Zw/yB2EmTDwKAhT5JO6rg5RZgMcidBu356KduKG
-   5K4CaLjuhCCllDN0y1vK6d+mZWw04jmeTC3tHoUBElPMAjiJh77+jysH/
-   tGk7U6llYzwIr7pMfTyAVl/joTLqqDhoU0QXo0AdRKLpAWPkam5boVaRN
-   mpWKkbZfWQW79YGEVosBASKmJbm6xPObi81qLlxVoHgHUaPotLoj3RiZp
-   g==;
-X-IronPort-AV: E=Sophos;i="5.93,238,1654552800"; 
-   d="scan'208";a="25604534"
-Subject: Re: Re: [PATCH v4 3/7] media: i2c: ov9282: Add ov9281 compatible
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 15 Aug 2022 13:19:48 +0200
-Received: from steina-w.localnet (unknown [10.123.49.11])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 43AF6280056;
-        Mon, 15 Aug 2022 13:19:48 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "Paul J . Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Naushir Patuck <naush@raspberrypi.com>
-Date:   Mon, 15 Aug 2022 13:19:47 +0200
-Message-ID: <2403639.ElGaqSPkdT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <0a1e8af3-6c55-8a4a-ec85-9ba6bff22520@linaro.org>
-References: <20220728130237.3396663-1-alexander.stein@ew.tq-group.com> <Yuje6wip8KEZG6Af@valkosipuli.retiisi.eu> <0a1e8af3-6c55-8a4a-ec85-9ba6bff22520@linaro.org>
+        d=linaro.org; s=google;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=bJIP1g+hM09ON1k9gg6gh/O38Wa2udi8wQnWVY2ihvc=;
+        b=df+rQmaCa/dDyhG2nv+cI1HBd1c962nhrgGBa+PujJ6Kh909sF4JHBvuiNrCITJl9q
+         46IQR81rpbeGKpyQC8/40DoTp5eKsChnFFEdOGMaglFLMXl/cX6NWkfNiJ/XEYXuj1Fy
+         VhokwlfDO7m3+p13ki78qU7lAs6JltwPt+FK0wS8bQMxDDn00r8BNBDnK+n9GXZxyCV4
+         wfwRYz7hEY9Tg7/BwJWoRfFW/eSMGYodoOCMq4+9xqXq97m6OnsE2ru7de3v38SUDQYp
+         US46t29f0L/fX4PN0pp6wNeO6euIlZi5KAVrQ0Oh6Bi6ycVFT+HPpKZVlKF3mcw9Wr9p
+         qayw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=bJIP1g+hM09ON1k9gg6gh/O38Wa2udi8wQnWVY2ihvc=;
+        b=M24hR42jNShsS7hBSCmXnjlaWiiCoEr7krfkmazvxYmT/fSgyJCMBEZ2EoTA/bk84r
+         AVLD0h8FwwiLeRuOKa4ASfGoWaD2Xqta24auMgkJk5HqJ+Mnu6PtR/rYx4Vx+4EnZ5LA
+         WQ2LlCVipxSPDCMqYaHglrvhWcL4Msdeegkxv5C/JExqiRzQqzY0DvoPizfUPRd6kbJu
+         SyqC8UEatB2MUT5iPk3CoeRPtfEdGGONjACHWc/em0NvCvGvNigZIThRghdH8H+54lSb
+         rhs3/aMTmmVnN+IXC1aoK0TZc6xsj5TotrkDw3E0g+6ZeA1GNAVsAFmnRSIko6x/fF02
+         /xAg==
+X-Gm-Message-State: ACgBeo2YlwHrEE68WuuGXO1WsikuE35Nl+W37HTZm9ZFwWkkbXnc0RRq
+        Su9AlNyzBKhhWA3lHY+mf8FILg==
+X-Google-Smtp-Source: AA6agR6Uo4gOQmYOHVKq6A4bRccs3tlswCW1D9T7mB39zGFLyLZbdz/TCQRBVlIlo+IetyP5h2iAbg==
+X-Received: by 2002:ac8:5d8b:0:b0:31e:ed61:b5a7 with SMTP id d11-20020ac85d8b000000b0031eed61b5a7mr13086482qtx.259.1660562444404;
+        Mon, 15 Aug 2022 04:20:44 -0700 (PDT)
+Received: from fedora (69-109-179-158.lightspeed.dybhfl.sbcglobal.net. [69.109.179.158])
+        by smtp.gmail.com with ESMTPSA id v3-20020a05620a440300b006b945519488sm6524983qkp.88.2022.08.15.04.20.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Aug 2022 04:20:43 -0700 (PDT)
+Date:   Mon, 15 Aug 2022 07:20:41 -0400
+From:   William Breathitt Gray <william.gray@linaro.org>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     vilhelm.gray@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mranostay@ti.com
+Subject: Re: [PATCH v4 3/3] counter: capture-tiecap: capture driver support
+ for ECAP
+Message-ID: <YvosCeuntEKXJz+e@fedora>
+References: <20220810140724.182389-1-jpanis@baylibre.com>
+ <20220810140724.182389-4-jpanis@baylibre.com>
+ <Yvkq9Hy+hxAPQd8J@fedora>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="31ldM9lRLLqWjxLp"
+Content-Disposition: inline
+In-Reply-To: <Yvkq9Hy+hxAPQd8J@fedora>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
 
-Am Dienstag, 2. August 2022, 10:30:40 CEST schrieb Krzysztof Kozlowski:
-> On 02/08/2022 10:23, Sakari Ailus wrote:
-> > On Mon, Aug 01, 2022 at 08:08:58PM +0200, Krzysztof Kozlowski wrote:
-> >> On 01/08/2022 20:07, Krzysztof Kozlowski wrote:
-> >>> On 29/07/2022 10:18, Laurent Pinchart wrote:
-> >>>> Hi Sakari,
-> >>>> 
-> >>>> (Adding Dave and Naush to the CC list)
-> >>>> 
-> >>>> On Fri, Jul 29, 2022 at 10:07:36AM +0300, Sakari Ailus wrote:
-> >>>>> On Thu, Jul 28, 2022 at 03:13:11PM +0200, Krzysztof Kozlowski wrote:
-> >>>>>> On 28/07/2022 15:02, Alexander Stein wrote:
-> >>>>>>> According to product brief they are identical from software point of
-> >>>>>>> view.
-> >>>>>>> Differences are a different chief ray angle (CRA) and the package.
-> >>>>>>> 
-> >>>>>>> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >>>>>>> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> >>>>>>> ---
-> >>>>>>> 
-> >>>>>>>  drivers/media/i2c/ov9282.c | 1 +
-> >>>>>>>  1 file changed, 1 insertion(+)
-> >>>>>>> 
-> >>>>>>> diff --git a/drivers/media/i2c/ov9282.c b/drivers/media/i2c/ov9282.c
-> >>>>>>> index 8a252bf3b59f..c8d83a29f9bb 100644
-> >>>>>>> --- a/drivers/media/i2c/ov9282.c
-> >>>>>>> +++ b/drivers/media/i2c/ov9282.c
-> >>>>>>> @@ -1113,6 +1113,7 @@ static const struct dev_pm_ops ov9282_pm_ops =
-> >>>>>>> {
-> >>>>>>> 
-> >>>>>>>  };
-> >>>>>>>  
-> >>>>>>>  static const struct of_device_id ov9282_of_match[] = {
-> >>>>>>> 
-> >>>>>>> +	{ .compatible = "ovti,ov9281" },
-> >>>>>> 
-> >>>>>> The devices seem entirely compatible, so why you add a new compatible
-> >>>>>> and not re-use existing?
-> >>>>>> 
-> >>>>>> The difference in lens does not explain this.
-> >>>>> 
-> >>>>> It is typically necessary to know what kind of related hardware can be
-> >>>>> found in the system, beyond just the device's register interface.
-> >>>>> Apart
-> >>>>> from USB cameras, less integrated cameras require low-level software
-> >>>>> control in which specific device properties are important. In this
-> >>>>> case it
-> >>>>> could be the lens shading table, among other things.
-> >>>>> 
-> >>>>> 	https://www.ovt.com/sensor/ov9282/
-> >>>>> 
-> >>>>> Therefore I think adding a specific compatible string for this one is
-> >>>>> justified.
-> >>> 
-> >>> Specific compatible in binding is a requirement. No one discussed this.
-> >>> However not in the driver. None of the arguments above justify adding
-> >>> such binding, unless user-space depends on matching compatible, but not
-> >>> real compatible?
-> >> 
-> >> Eh, now I used vague words. This should be instead:
-> >> 
-> >> "However not in the driver. None of the arguments above justify adding
-> >> such compatible to driver, unless user-space depends on matching
-> >> compatible, but not real compatible?"
-> > 
-> > If I understand you right, you'd put the more specific model name as well
-> > as the more generic one to the compatible property and let the driver
-> > match
-> > against the more generic one?
-> 
-> Yes.
-> 
-> > But in this case neither of these models is more generic than the other.
-> 
-> It's not a problem. Also the spec explains it similar way:
-> "They
->  allow a device to express its compatibility with a family of similar
-> devices, potentially allowing a single
->  device driver to match against several devices."
-> 
-> Of course the numbers would suggest that ov9281 should be the family (as
-> lower number usually means designed earlier), but it is a matter of
-> convention which here can be skipped. The point is that ov9281 and
-> ov9282 are compatible between each other, therefore they belong to
-> single family.
-> 
-> Best regards,
-> Krzysztof
+--31ldM9lRLLqWjxLp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-So what is the conclusion of this?
-If using the "family" name there is no way for userspace to see the actual 
-device name rather than the driver name. This might be confusing, especially 
-of both ov9281 and ov9282 are attached to the same platform. The only 
-difference would be the i2c-bus-address.
-You can also go for ov928x but this is not a real improvement.
+On Sun, Aug 14, 2022 at 01:03:48PM -0400, William Breathitt Gray wrote:
+> On Wed, Aug 10, 2022 at 04:07:24PM +0200, Julien Panis wrote:
+> > +static int ecap_cnt_function_read(struct counter_device *counter,
+> > +				  struct counter_count *count,
+> > +				  enum counter_function *function)
+> > +{
+> > +	*function =3D COUNTER_FUNCTION_INCREASE;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int ecap_cnt_action_read(struct counter_device *counter,
+> > +				struct counter_count *count,
+> > +				struct counter_synapse *synapse,
+> > +				enum counter_synapse_action *action)
+> > +{
+> > +	*action =3D COUNTER_SYNAPSE_ACTION_BOTH_EDGES;
+> > +
+> > +	return 0;
+> > +}
+>=20
+> Right now you have a Signal defined for the ECAPSIG line, but there is
+> at least one more relevant Signal to define: the clock updating ECAPCNT.
+> The Synapse action of COUNTER_SYNAPSE_ACTION_BOTH_EDGES is for that
+> clock Signal, but for the ECAPSIG Signal you will need to report a
+> Synapse action based on the polarity of the next capture (i.e. whether
+> high or low).
 
-Best regards,
-Alexander
+I need to make a correction here. IIUC, the ECAPSIG signal doesn't
+affect the count value of ECAPCNT (ECAPSIG only triggers the captures),
+so the Synapse action for ECAPSIG should always be
+COUNTER_SYNAPSE_ACTION_NONE. You don't need to account for the capture
+polarities because they're not relevant in this particular situation:
+ECAPSIG doesn't trigger the ECAPCNT count function.
 
+William Breathitt Gray
 
+--31ldM9lRLLqWjxLp
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCYvosCQAKCRC1SFbKvhIj
+K6snAQCnHLXtaeFz7kheVRLMBzRZFRj428itPpXaS1E++G1YzQEA2He0P9PTIO3Z
+/8rNAGJz0tq11HR2c//Aw5ROzM5DWQw=
+=zMXK
+-----END PGP SIGNATURE-----
+
+--31ldM9lRLLqWjxLp--
