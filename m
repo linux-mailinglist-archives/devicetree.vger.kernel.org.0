@@ -2,110 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 524C3593135
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 17:00:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 197F8593175
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 17:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242691AbiHOPA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 11:00:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40980 "EHLO
+        id S232573AbiHOPP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 11:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242952AbiHOPAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 11:00:21 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 323AEF2A
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 08:00:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1660575620;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=gkp6W0UnvJNbc+E/frEsC8/SAoG8aGkv8tG/23+JfF4=;
-        b=jFHaktwaOMIunwglABonDBZJynxrs7F9QiaiSm/ym6grBqym8GPk4Mma0F/tla0Mr3dDxL
-        6km+Y6bY82iufKy2r/XG9zbLQB9ul0PhUxKwM7deoncb8RT71tWo00KdE6Q0TI3PV6poZB
-        qW+bUji0byA9dUi8dARQWW1bFy3utJc=
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
- us-mta-447-4XnwZzsENdecQtHBd0692w-1; Mon, 15 Aug 2022 11:00:18 -0400
-X-MC-Unique: 4XnwZzsENdecQtHBd0692w-1
-Received: by mail-qv1-f70.google.com with SMTP id p14-20020a0cfd8e000000b004747f93486bso2658638qvr.13
-        for <devicetree@vger.kernel.org>; Mon, 15 Aug 2022 08:00:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc;
-        bh=gkp6W0UnvJNbc+E/frEsC8/SAoG8aGkv8tG/23+JfF4=;
-        b=JHkoi2NatXgjYhlgHpWb6L0I/ahnrNS8u7gBp2xBU3y/G3MehA1igSdWlLNCT3rLSC
-         OjTr8KoUh3shVZ0lKtqWknMuyOwnkeTFbcmJV8QZXOpTv3QbNL8Zf5xaUxcIOFCHzskN
-         HA5cbbixJPu/d4g7DpEqL117fXL9R6QYYIohYdWurmgcNMafrJRO8S1qLtqPDD35UZVc
-         mqbM2+j5aXDAbA1cWqMGsf2AtpFqtdg2K+5/Z7Kk83+ry40tDl8S1BaS8LJaVGSLCw1i
-         Zrp/gUruOO88dF+nP/ObNPsONV6VFHkbAwH3qrxWZGk7fr/vS87Otvz5IG2Jb8jKWLbg
-         P2zw==
-X-Gm-Message-State: ACgBeo2X4QW/T4sODgDNN7CKwz8rdnrjhEiRFMs/S+b8KK1HHC8rKfJp
-        4r70P62oMGpb3WOAK7uQZVJugrIOZfv1XhykZgMH1nxBv1LgpbU8rYnxXUrjnWdgsHtze/NHgN8
-        pPy/BuQkh2WTKqg+poYCVHA==
-X-Received: by 2002:a05:620a:459e:b0:6ba:c5a7:485c with SMTP id bp30-20020a05620a459e00b006bac5a7485cmr11298141qkb.267.1660575617713;
-        Mon, 15 Aug 2022 08:00:17 -0700 (PDT)
-X-Google-Smtp-Source: AA6agR5vLK2IsSc5T3esQZcOlGhUNLYtZ2weQin9eem0kTWU742yhnPNdz0yjaOkJuyqisTE/LZdfA==
-X-Received: by 2002:a05:620a:459e:b0:6ba:c5a7:485c with SMTP id bp30-20020a05620a459e00b006bac5a7485cmr11298120qkb.267.1660575617465;
-        Mon, 15 Aug 2022 08:00:17 -0700 (PDT)
-Received: from xps13 (c-98-239-145-235.hsd1.wv.comcast.net. [98.239.145.235])
-        by smtp.gmail.com with ESMTPSA id fb6-20020a05622a480600b00342fcdc2d46sm8312778qtb.56.2022.08.15.08.00.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Aug 2022 08:00:17 -0700 (PDT)
-Date:   Mon, 15 Aug 2022 11:00:16 -0400
-From:   Brian Masney <bmasney@redhat.com>
-To:     Parikshit Pareek <quic_ppareek@quicinc.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231861AbiHOPP6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 11:15:58 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4DA03EE3D;
+        Mon, 15 Aug 2022 08:15:56 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.93,238,1654527600"; 
+   d="scan'208";a="131484119"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 16 Aug 2022 00:15:55 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 3E4FF403965B;
+        Tue, 16 Aug 2022 00:15:50 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Andrew Halaney <ahalaney@redhat.com>
-Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sa8295p: move common nodes to
- dtsi
-Message-ID: <YvpfgGh7T7jZTn2R@xps13>
-References: <20220812165453.11608-1-quic_ppareek@quicinc.com>
- <20220812165453.11608-3-quic_ppareek@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220812165453.11608-3-quic_ppareek@quicinc.com>
-User-Agent: Mutt/2.2.6 (2022-06-05)
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Conor Dooley <Conor.Dooley@microchip.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/8] Add support for Renesas RZ/Five SoC
+Date:   Mon, 15 Aug 2022 16:14:43 +0100
+Message-Id: <20220815151451.23293-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 12, 2022 at 10:24:52PM +0530, Parikshit Pareek wrote:
-> There are many ADP boards with lot of common features. Move common
-> nodes to sa8540p-adp.dtsi file. This will be base for many ADP boards
-> to be introduced in near future.
-> 
-> Signed-off-by: Parikshit Pareek <quic_ppareek@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts  | 377 +--------------------
->  arch/arm64/boot/dts/qcom/sa8540p-adp.dtsi | 384 ++++++++++++++++++++++
->  2 files changed, 385 insertions(+), 376 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/qcom/sa8540p-adp.dtsi
+Hi All,
 
-My understanding of the sa8295p auto board is that it has a single SoC.
-The sa8540p auto board has dual SoCs (same SoC variant as the sa8295p)
-with a PCIe interconnect between the two SoCs. I hate to bike shed on
-the name but perhaps the name sa8295p would be more fitting like you
-had it in v2, but ultimately leave it up to the maintainers on which
-name to use here.
+The RZ/Five microprocessor includes a RISC-V CPU Core (AX45MP Single)
+1.0 GHz, 16-bit DDR3L/DDR4 interface. And it also has many interfaces such
+as Gbit-Ether, CAN, and USB 2.0, making it ideal for applications such as
+entry-class social infrastructure gateway control and industrial gateway
+control.
 
-How will the dual SoCs in the sa8540p be represented in device tree?
-I assume just document the PCI endpoint to the other SoC? Then run
-the two SoCs independently and let them see the other SoC through
-PCIe?
+This patch series adds initial SoC DTSi support for Renesas RZ/Five
+(R9A07G043) SoC and updates the bindings for the same. Below is the list
+of IP blocks added in the initial SoC DTSI which can be used to boot via
+initramfs on RZ/Five SMARC EVK:
+- AX45MP CPU
+- CPG
+- PINCTRL
+- PLIC
+- SCIF0
+- SYSC
 
-Brian
+Useful links:
+-------------
+[0] https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rz-mpus/rzfive-risc-v-general-purpose-microprocessors-risc-v-cpu-core-andes-ax45mp-single-10-ghz-2ch-gigabit-ethernet
+[1] http://www.andestech.com/en/products-solutions/andescore-processors/riscv-ax45mp/
+
+Patch series depends on:
+-----------------------
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/cover/20220722141506.20171-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220726174525.620-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[2] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220726174929.950-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[3] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220726175315.1147-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[4] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220815111708.22302-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Below are the logs from RZ/Five SMARC EVK:
+------------------------------------------
+/ # uname -ra
+Linux (none) 5.19.0-next-20220815-00072-ge2dccecbe54f #256 SMP Mon Aug 15 15:12:03 BST 2022 riscv64 GNU/Linux
+/ #
+/ # cat /proc/cpuinfo
+processor       : 0
+hart            : 0
+isa             : rv64imafdc
+mmu             : sv39
+uarch           : andestech,ax45mp
+mvendorid       : 0x31e
+marchid         : 0x8000000000008a45
+mimpid          : 0x500
+
+/ # cat /proc/interrupts
+           CPU0
+  1:          0  SiFive PLIC 412 Level     1004b800.serial:rx err
+  2:          1  SiFive PLIC 414 Level     1004b800.serial:rx full
+  3:        181  SiFive PLIC 415 Level     1004b800.serial:tx empty
+  4:          0  SiFive PLIC 413 Level     1004b800.serial:break
+  5:       2435  RISC-V INTC   5 Edge      riscv-timer
+  6:         38  SiFive PLIC 416 Level     1004b800.serial:rx ready
+IPI0:         0  Rescheduling interrupts
+IPI1:         0  Function call interrupts
+IPI2:         0  CPU stop interrupts
+IPI3:         0  IRQ work interrupts
+IPI4:         0  Timer broadcast interrupts
+/ # cat /proc/meminfo
+MemTotal:         882356 kB
+MemFree:          861996 kB
+MemAvailable:     859744 kB
+Buffers:               0 kB
+Cached:             1796 kB
+SwapCached:            0 kB
+Active:                0 kB
+Inactive:             80 kB
+Active(anon):          0 kB
+Inactive(anon):       80 kB
+Active(file):          0 kB
+Inactive(file):        0 kB
+Unevictable:        1796 kB
+Mlocked:               0 kB
+SwapTotal:             0 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:           116 kB
+Mapped:             1136 kB
+Shmem:                 0 kB
+KReclaimable:       6732 kB
+Slab:              11904 kB
+SReclaimable:       6732 kB
+SUnreclaim:         5172 kB
+KernelStack:         556 kB
+PageTables:           32 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:      441176 kB
+Committed_AS:        592 kB
+VmallocTotal:   67108864 kB
+VmallocUsed:         716 kB
+VmallocChunk:          0 kB
+Percpu:               84 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+/ #
+/ # for i in machine family soc_id revision; do echo -n "$i: ";cat /sys/devices/
+soc0/$i; done
+machine: Renesas SMARC EVK based on r9a07g043f01
+family: RZ/Five
+soc_id: r9a07g043
+revision: 0
+/ #
+
+Lad Prabhakar (8):
+  dt-bindings: riscv: Sort the CPU core list alphabetically
+  dt-bindings: riscv: Add Andes AX45MP core to the list
+  dt-bindings: soc: renesas: renesas.yaml: Document Renesas RZ/Five SoC
+  RISC-V: Kconfig.socs: Add Renesas RZ/Five SoC kconfig option
+  riscv: dts: renesas: Add initial devicetree for Renesas RZ/Five SoC
+  riscv: dts: renesas: Add minimal DTS for Renesas RZ/Five SMARC EVK
+  MAINTAINERS: Add entry for Renesas RISC-V architecture
+  RISC-V: configs: defconfig: Enable Renesas RZ/Five SoC
+
+ .../devicetree/bindings/arm/renesas.yaml      |   3 +-
+ .../devicetree/bindings/riscv/cpus.yaml       |  11 +-
+ MAINTAINERS                                   |  10 ++
+ arch/riscv/Kconfig.socs                       |  14 ++
+ arch/riscv/boot/dts/Makefile                  |   1 +
+ arch/riscv/boot/dts/renesas/Makefile          |   2 +
+ arch/riscv/boot/dts/renesas/r9a07g043.dtsi    | 121 ++++++++++++++++++
+ .../boot/dts/renesas/r9a07g043f01-smarc.dts   |  16 +++
+ .../boot/dts/renesas/rzfive-smarc-som.dtsi    |  22 ++++
+ arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi |  32 +++++
+ arch/riscv/configs/defconfig                  |   2 +
+ 11 files changed, 228 insertions(+), 6 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/renesas/Makefile
+ create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043.dtsi
+ create mode 100644 arch/riscv/boot/dts/renesas/r9a07g043f01-smarc.dts
+ create mode 100644 arch/riscv/boot/dts/renesas/rzfive-smarc-som.dtsi
+ create mode 100644 arch/riscv/boot/dts/renesas/rzfive-smarc.dtsi
+
+-- 
+2.25.1
 
