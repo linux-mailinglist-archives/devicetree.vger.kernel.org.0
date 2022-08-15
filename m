@@ -2,112 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0230E593005
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 15:34:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38B27593045
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 15:53:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231610AbiHONem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 09:34:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46748 "EHLO
+        id S232903AbiHONx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 09:53:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbiHONel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 09:34:41 -0400
-Received: from mx0a-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B114920F58;
-        Mon, 15 Aug 2022 06:34:40 -0700 (PDT)
-Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 27FDEIQ1027150;
-        Mon, 15 Aug 2022 13:32:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=uZ/gxg4vwNI6HXYTM5WtTwqBD5xiz145jUdLuTNzlO8=;
- b=K+vfDuUO+MnNMVtKMlY95pl7vMYTvxjNayVwBZPhe91x8k0IjdiCAxhUEmY4eyymlahh
- xUx/DwupRRNVtajezziJOYoHrmOL69zoivO8lPv2crRN4is4pFOphY/wRRiPiOwzMwqi
- 6rWDwM/B1BaFWUgBTggMmY88b6EhW3tDO89JB0pF03An5VOmXtbd6EgWDsCFbPzFQM6Q
- uZvGzoqtSAIk+sQZkzQz290aHr2cCMFGKfCUdQiw1i4M46leqJKQs36E3RicJtSRgvIw
- DlaQNyowDfmowsIkE2nBg/HlYfdFukxsVyLa2IyngNjOp0ecwHknE8Hflk/pe6BDkU7R jw== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3hyny39s47-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 Aug 2022 13:32:22 +0000
-Received: from m0098419.ppops.net (m0098419.ppops.net [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 27FDTcdW019263;
-        Mon, 15 Aug 2022 13:32:21 GMT
-Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com [169.63.214.131])
-        by mx0b-001b2d01.pphosted.com (PPS) with ESMTPS id 3hyny39s3v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 Aug 2022 13:32:21 +0000
-Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
-        by ppma01dal.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 27FDM3Qr006945;
-        Mon, 15 Aug 2022 13:32:20 GMT
-Received: from b01cxnp23033.gho.pok.ibm.com (b01cxnp23033.gho.pok.ibm.com [9.57.198.28])
-        by ppma01dal.us.ibm.com with ESMTP id 3hx3ka76kc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 15 Aug 2022 13:32:20 +0000
-Received: from b01ledav003.gho.pok.ibm.com (b01ledav003.gho.pok.ibm.com [9.57.199.108])
-        by b01cxnp23033.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 27FDWJVB35913988
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 15 Aug 2022 13:32:19 GMT
-Received: from b01ledav003.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id A55ECB2068;
-        Mon, 15 Aug 2022 13:32:19 +0000 (GMT)
-Received: from b01ledav003.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 7EE68B2064;
-        Mon, 15 Aug 2022 13:32:19 +0000 (GMT)
-Received: from [9.47.158.152] (unknown [9.47.158.152])
-        by b01ledav003.gho.pok.ibm.com (Postfix) with ESMTP;
-        Mon, 15 Aug 2022 13:32:19 +0000 (GMT)
-Message-ID: <94d1ba97-3fcf-bb75-ce3e-d6a8ca712ece@linux.ibm.com>
-Date:   Mon, 15 Aug 2022 09:32:19 -0400
+        with ESMTP id S230447AbiHONxZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 09:53:25 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 637FE1EAE8;
+        Mon, 15 Aug 2022 06:53:22 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DC6F01D6F;
+        Mon, 15 Aug 2022 06:53:22 -0700 (PDT)
+Received: from bogus (unknown [10.57.44.62])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 55DBC3F66F;
+        Mon, 15 Aug 2022 06:53:17 -0700 (PDT)
+Date:   Mon, 15 Aug 2022 14:52:51 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Len Brown <lenb@kernel.org>, Abel Vesa <abel.vesa@linaro.org>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        John Stultz <jstultz@google.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Guenter Roeck <linux@roeck-us.net>, kernel-team@android.com,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v1 0/9] fw_devlink improvements
+Message-ID: <20220815135251.i3pejjtnd3nqeolo@bogus>
+References: <20220810060040.321697-1-saravanak@google.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.12.0
-Subject: Re: [PATCH v7 0/6] tpm: Preserve TPM measurement log across kexec
- (ppc64)
-Content-Language: en-US
-To:     Coiby Xu <coxu@redhat.com>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com, mpe@ellerman.id.au
-References: <20220812164305.2056641-1-stefanb@linux.ibm.com>
- <20220815064813.77g6icbkygrbmapa@Rk>
-From:   Stefan Berger <stefanb@linux.ibm.com>
-In-Reply-To: <20220815064813.77g6icbkygrbmapa@Rk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: 4ptO3BKkSCoh7-5bQX2n7qnM51LmKpyR
-X-Proofpoint-ORIG-GUID: SjJwR0iv4r6SJJUKhXKap-xyAeb2ZD_C
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.883,Hydra:6.0.517,FMLib:17.11.122.1
- definitions=2022-08-15_08,2022-08-15_01,2022-06-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- lowpriorityscore=0 clxscore=1015 mlxscore=0 spamscore=0 mlxlogscore=999
- phishscore=0 priorityscore=1501 suspectscore=0 malwarescore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2207270000
- definitions=main-2208150051
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220810060040.321697-1-saravanak@google.com>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/15/22 02:48, Coiby Xu wrote:
-> I can confirm this patch set fixes an issue that guest kdump kernel
-> crashes on POWER9 host by applying it to 5.19.1 (there is a conflict
-> when applying this patch set to latest kernel i.e. 6.0.0-rc1)
-
-I rebased it. 2 of the borrowed patches disappeared now since they are 
-upstream already and the rest applied without conflict...
-
+On Tue, Aug 09, 2022 at 11:00:29PM -0700, Saravana Kannan wrote:
+> This patch series improves fw_devlink in the following ways:
 > 
-> Tested-by: Coiby Xu <coxu@redhat.com>
+> 1. It no longer cares about a fwnode having a "compatible" property. It
+>    figures this our more dynamically. The only expectation is that
+>    fwnode that are converted to devices actually get probed by a driver
+>    for the dependencies to be enforced correctly.
+> 
+> 2. Finer grained dependency tracking. fw_devlink will now create device
+>    links from the consumer to the actual resource's device (if it has one,
+>    Eg: gpio_device) instead of the parent supplier device. This improves
+>    things like async suspend/resume ordering, potentially remove the need
+>    for frameworks to create device links, more parallelized async probing,
+>    and better sync_state() tracking.
+> 
+> 3. Handle hardware/software quirks where a child firmware node gets
+>    populated as a device before its parent firmware node AND actually
+>    supplies a non-optional resource to the parent firmware node's
+>    device.
+> 
+> 4. Way more robust at cycle handling (see patch for the insane cases).
+> 
+> 5. Stops depending on OF_POPULATED to figure out some corner cases.
+> 
+> 6. Simplifies the work that needs to be done by the firmware specific
+>    code.
+> 
+> This took way too long to get done due to typo bugs I had in my rewrite or
+> corner cases I had to find and handle. But it's fairly well tested at this
+> point and I expect this to work properly.
+> 
+> Abel & Doug,
+> 
+> This should fix your cyclic dependency issues with your display. Can you
+> give it a shot please?
+> 
+> Alexander,
+> 
+> This should fix your issue where the power domain device not having a
+> compatible property. Can you give it a shot please?
+> 
+> Tony,
+> 
+> This should handle the odd case of the child being the supplier of the
+> parent. Can you please give this a shot? I want to make sure the cycle
+> detection code handles this properly and treats it like it's NOT a cycle.
+> 
+> Geert,
+> 
+> Can you test the renesas stuff I changed please? They should continue
+> working like before. Any other sanity test on other hardware would be
+> great too.
+> 
+> Sudeep,
+> 
+> I don't think there are any unfixed issues you had reported in my other
+> patches that this series might fix, but it'll be nice if you could give
+> this a sanity test.
+> 
 
-Thanks.
+Sure tested this on Juno on top of v6.0-rc1 and found no regressions.
+So,
+
+Tested-by: Sudeep Holla <sudeep.holla@arm.com>
+
+Just wanted to check if the logs are intentional or do you plan to make
+them debug. On Juno with hardly few such dependencies I get below extra
+logs during boot, it may add loads on other platforms. I am fine either
+way, just thought of checking.
+
+| amba 20040000.funnel: Fixed dependency cycle(s) with /etf@20010000/in-ports/port/endpoint
+| amba 20120000.replicator: Fixed dependency cycle(s) with /etr@20070000/in-ports/port/endpoint
+| amba 20120000.replicator: Fixed dependency cycle(s) with /tpiu@20030000/in-ports/port/endpoint
+| amba 220c0000.funnel: Fixed dependency cycle(s) with /etm@22040000/out-ports/port/endpoint
+| amba 220c0000.funnel: Fixed dependency cycle(s) with /funnel@20040000/in-ports/port@0/endpoint
+| amba 22140000.etm: Fixed dependency cycle(s) with /funnel@220c0000/in-ports/port@1/endpoint
+| amba 230c0000.funnel: Fixed dependency cycle(s) with /etm@23040000/out-ports/port/endpoint
+| amba 230c0000.funnel: Fixed dependency cycle(s) with /funnel@20040000/in-ports/port@1/endpoint
+| amba 23140000.etm: Fixed dependency cycle(s) with /funnel@230c0000/in-ports/port@1/endpoint
+| amba 23240000.etm: Fixed dependency cycle(s) with /funnel@230c0000/in-ports/port@2/endpoint
+| amba 23340000.etm: Fixed dependency cycle(s) with /funnel@230c0000/in-ports/port@3/endpoint
+| amba 20130000.funnel: Fixed dependency cycle(s) with /stm@20100000/out-ports/port/endpoint
+| amba 20140000.etf: Fixed dependency cycle(s) with /funnel@20130000/out-ports/port/endpoint
+| amba 20150000.funnel: Fixed dependency cycle(s) with /etf@20140000/out-ports/port/endpoint
+| amba 20150000.funnel: Fixed dependency cycle(s) with /etf@20010000/out-ports/port/endpoint
+| amba 20150000.funnel: Fixed dependency cycle(s) with /replicator@20120000/in-ports/port/endpoint
+| i2c 0-0070: Fixed dependency cycle(s) with /hdlcd@7ff60000/port/endpoint
+| i2c 0-0071: Fixed dependency cycle(s) with /hdlcd@7ff50000/port/endpoint
+
+-- 
+Regards,
+Sudeep
