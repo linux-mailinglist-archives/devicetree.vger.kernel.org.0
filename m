@@ -2,250 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC627592930
-	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 07:53:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CB8A59293F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Aug 2022 08:03:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240643AbiHOFxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Aug 2022 01:53:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52284 "EHLO
+        id S230059AbiHOGCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Aug 2022 02:02:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229709AbiHOFxn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 01:53:43 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B403315FC5;
-        Sun, 14 Aug 2022 22:53:40 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id n4so7872072wrp.10;
-        Sun, 14 Aug 2022 22:53:40 -0700 (PDT)
+        with ESMTP id S229912AbiHOGCR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Aug 2022 02:02:17 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085D0167ED;
+        Sun, 14 Aug 2022 23:02:16 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id c28so5314373lfh.3;
+        Sun, 14 Aug 2022 23:02:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=4k3XjB+4LYnFTHTQc06HeHgf83PeLYusgDwA++J3410=;
-        b=dfmCVs778K80OWQFcn8EB4/k84u6gHEUIaP4gJ7dLnudhJwfdQo6Obe/7dPL/5RktJ
-         6JM0Thox2k6H9omxHW9YJ0NeevockYiQk5NzaDyH+gxnJhj+nbd9rMMYxCjwchMRhj10
-         vfysOHHWh7YsgcGixO3Vu8qM48HACXe7M4mOfvL2aBLF8zWM6Hb363CBfL9hgOBs0T7w
-         FNGqiy55HaFLr/OvNRDq5n/gI4jDPA2P+rU/1lZkAVFNE80SYlX35zXbbWFRv8ysyGR3
-         AOjB/Yb0F+yfDnL9Ej+uhxz7X29wUhzoVr0IrLO6vsNzb6m6mZF2LzCxLK1P+uwCe7ND
-         PhYg==
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc;
+        bh=TUs92hFJ6oAIJwA9LsbBF3pLnj/tNNQ0KC/PJkq1Csc=;
+        b=AjWZediW3o3RxM/n9qb1ll95DeK79BVs3OHyvt2BiAIGO08Vq/iabkpR8UzFWQvDSf
+         K8V264bpAqyvad9WEEs1KoaC02B5GD9Inrf02bfpPG285eyN6+qhd6gIG3ExO5cKnxWm
+         tHM/LKsIl1UPQSdVcXmkB6PgZLXbAoaBe5AlTh3CxMLQAbMKgkJS1luxeo8aLsE1zsB7
+         tuqddLYtAh0gugbbgJ6n24Glcmcv0mcuT3NvYim71XQ1RlvZbcADxG7Fa2oZbhD0B0gX
+         LySPLXo7fIktEa8qjAKOtIwW4GrqenF2dLLlpuwzD0asYdEVOApB960xL50CWvWNZHvN
+         GfJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=4k3XjB+4LYnFTHTQc06HeHgf83PeLYusgDwA++J3410=;
-        b=rOnczuntHIgMgXzAQoJnOVGtckLkK31h1aKz4pMJ1F1/p2OaBBlPsMzJNvAWG9WExE
-         ckxp81s2nyeJ6eZimO4qGzQLNO97wJzEiYSd556z19qZvnMgj5r5CAacquCkFmbiL/SA
-         IMEIkgigDbXMBXLAZybxlGoDSybYSCTv1ZGe0RU36gUKkqgz3Dk31Y2BrXPii1NW63Ea
-         2ruy9T/3iigw0eRygl9M75ixjpSloKLS1wzE7Ny9MudvD9mUtQnWKygIM7asRPPrBzm4
-         LYn73OJ4C/leOcVTS8QCvgjM1atH8spJmQnxXWTg2BfYz3PYfEwfOMEng21RUqShrxdb
-         FOMw==
-X-Gm-Message-State: ACgBeo2O1hDOJlsievaXCaf9k2/7lflQcLoKQSLpB2ceZ/fgfZ2e2g5k
-        mtz8Q/7dTP/Ry4BvqmOMIZv26MfK4jYeNlBeCNg=
-X-Google-Smtp-Source: AA6agR6W8AuZ6BQ/MgIIWbpAGIu6f2OF3gwtK46K3zEnBleB6myTFzgvziQMXVw0wKPFb2023msjXmbODxXNGngOc9g=
-X-Received: by 2002:a5d:64e2:0:b0:220:7dc6:1353 with SMTP id
- g2-20020a5d64e2000000b002207dc61353mr7902778wri.411.1660542819332; Sun, 14
- Aug 2022 22:53:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <1660225318-4063-1-git-send-email-u0084500@gmail.com> <1660225318-4063-3-git-send-email-u0084500@gmail.com>
-In-Reply-To: <1660225318-4063-3-git-send-email-u0084500@gmail.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-Date:   Mon, 15 Aug 2022 08:53:28 +0300
-Message-ID: <CANhJrGMnjSu3MMQ2PgvSWztNgG1r-PdyLBdsT3JVqZZSfqky-w@mail.gmail.com>
-Subject: Re: [PATCH 2/2] power: supply: rt9471: Add Richtek RT9471 charger driver
-To:     cy_huang <u0084500@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Sebastian Reichel <sre@kernel.org>, alina_yu@richtek.com,
-        ChiYuan Huang <cy_huang@richtek.com>, alinayu829@gmail.com,
-        Linux PM list <linux-pm@vger.kernel.org>,
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc;
+        bh=TUs92hFJ6oAIJwA9LsbBF3pLnj/tNNQ0KC/PJkq1Csc=;
+        b=VLSYEwMcd+N1IdYnllDeWOuCc4u7YzPVW4uwl/0eB6o2BsQRoROp4rqzcbFe4l9E7E
+         nYNv7y67FbM3LSlo47CFt3wmTzm0hYVe5ayFIsxotJztegPl9ZBmsDSyjsDvQLsGUrr8
+         3tmYz6rrA7Cpt6YtL5ftkyP/KhGFjao12Z7aDNohiuKGAXfldqT+NTTOOmCTDMrz542I
+         028xc6WA9o9MMSsQDST8L0vXdpPZM/jMue2W4AarXDsPt/ARK9kRx1UaukWIKhbXeg9r
+         HhQdt6kRkpqDQXFTDQUF41MI7GWt7OvxLQk+4HKb3Y8UgG3L6aqewpdgWGn3UAIh16g7
+         LPcg==
+X-Gm-Message-State: ACgBeo06zGB26lkRwWgeRHQzF8mZ9846O4h8Pq6IlBOfOkNN4askEu3u
+        9g+AjAO9+JxOSJlIhmhE6jTw/IGIIEVMZA==
+X-Google-Smtp-Source: AA6agR6FLbcub2PeWAS/l3ApEYE1qJp/ftj/roMFtswOsiTvKcdSpH1hbD/01OFAacY98YREjXUFjw==
+X-Received: by 2002:a05:6512:b28:b0:48d:b55:c061 with SMTP id w40-20020a0565120b2800b0048d0b55c061mr4767950lfu.302.1660543334226;
+        Sun, 14 Aug 2022 23:02:14 -0700 (PDT)
+Received: from gmail.com (82-209-154-112.cust.bredband2.com. [82.209.154.112])
+        by smtp.gmail.com with ESMTPSA id f11-20020a05651c03cb00b0025e0c352465sm1303773ljp.82.2022.08.14.23.02.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Aug 2022 23:02:13 -0700 (PDT)
+Date:   Mon, 15 Aug 2022 08:07:01 +0200
+From:   Marcus Folkesson <marcus.folkesson@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Kent Gustavsson <kent@minoris.se>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLY,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 7/9] dt-bindings: iio: adc: mcp3911: add
+ microchip,data-ready-hiz entry
+Message-ID: <Yvnihf6y1qGEOWq7@gmail.com>
+References: <20220809073648.167821-1-marcus.folkesson@gmail.com>
+ <20220809073648.167821-8-marcus.folkesson@gmail.com>
+ <CAHp75VerfFgNKRbE=f0LnpRBr1o=qNwSnUkzq69BeECJFY9Vvw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="swltbkbSHetuPsfS"
+Content-Disposition: inline
+In-Reply-To: <CAHp75VerfFgNKRbE=f0LnpRBr1o=qNwSnUkzq69BeECJFY9Vvw@mail.gmail.com>
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi ChiYuan,
 
-Thanks for the patch :)
+--swltbkbSHetuPsfS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-to 11. elok. 2022 klo 16.43 cy_huang (u0084500@gmail.com) kirjoitti:
->
-> From: ChiYuan Huang <cy_huang@richtek.com>
->
-> Add support for the RT9471 3A 1-Cell Li+ battery charger.
->
-> The RT9471 is a highly-integrated 3A switch mode battery charger with
-> low impedance power path to better optimize the charging efficiency.
->
-> Co-developed-by: Alina Yu <alina_yu@richtek.com>
-> Signed-off-by: Alina Yu <alina_yu@richtek.com>
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
+On Tue, Aug 09, 2022 at 11:57:19AM +0200, Andy Shevchenko wrote:
+> On Tue, Aug 9, 2022 at 9:32 AM Marcus Folkesson
+> <marcus.folkesson@gmail.com> wrote:
+> >
+> > The Data Ready Output Pin is either hard wired to work as high
+> > impedance or push-pull. Make it configurable.
+>=20
+> ...
+>=20
+> > +    description:
+> > +      Data Ready Pin Inactive State Control
+> > +      true =3D The DR pin state is high-impedance when data are NOT re=
+ady
+> > +      false =3D The DR pin state is a logic high when data are NOT rea=
+dy
+>=20
+> Wouldn't be better to move " when data are NOT ready" to the main
+> description text:
+>=20
+>       Data Ready Pin Inactive State Control when data are NOT ready
+>=20
+> In this case it unloads the list and moves focus from the part of "NOT
+> ready" to the real part of what you pointed out here --
+> "high-impedance" or "high".
 
-> +
-> +static const struct linear_range rt9471_chg_ranges[RT9471_MAX_RANGES] = {
-> +       [RT9471_RANGE_AICR] = { 50000, 1, 63, 50000 },
-> +       [RT9471_RANGE_MIVR] = { 3900000, 0, 15, 100000 },
-> +       [RT9471_RANGE_IPRE] = { 50000, 0, 15, 50000 },
-> +       [RT9471_RANGE_VCHG] = { 3900000, 0, 80, 10000 },
-> +       [RT9471_RANGE_ICHG] = { 0, 0, 63, 50000 },
-> +       [RT9471_RANGE_IEOC] = { 50000, 0, 15, 50000 },
-> +};
+I think I will put it as
 
-I just jumped in to ask if that could you please use the field names? Eg.
- { .min = 50000, .min_sel = 1, .max_sel = 63, .step = 50000 },
+Data Ready Pin Inactive State Control
+true =3D The DR pin state is high-impedance
+false =3D The DR pin state is logic high
 
-This would make it less error prone in case someone changes the
-members in struct linear_range.
+As "NOT ready" is redundant is it is a "Inactive state control".
 
-> +
-> +static int rt9471_set_value_by_field_range(struct rt9471_chip *chip,
-> +                                          enum rt9471_fields field,
-> +                                          enum rt9471_ranges range, int val)
-> +{
-> +       unsigned int sel;
-> +
-> +       if (val < 0)
-> +               return -EINVAL;
-> +
-> +       linear_range_get_selector_within(rt9471_chg_ranges + range, val, &sel);
-> +
-> +       return regmap_field_write(chip->rm_fields[field], sel);
-> +}
-> +
-> +
-> +static int rt9471_get_value_by_field_range(struct rt9471_chip *chip,
-> +                                          enum rt9471_fields field,
-> +                                          enum rt9471_ranges range, int *val)
-> +{
-> +       unsigned int sel, rvalue;
-> +       int ret;
-> +
-> +       ret = regmap_field_read(chip->rm_fields[field], &sel);
-> +       if (ret)
-> +               return ret;
-> +
-> +       ret = linear_range_get_value(rt9471_chg_ranges + range, sel, &rvalue);
-> +       if (ret)
-> +               return ret;
-> +
-> +       *val = rvalue;
-> +       return 0;
-> +}
-> +
-> +static inline int rt9471_set_hiz(struct rt9471_chip *chip, int enable)
-> +{
-> +       return regmap_field_write(chip->rm_fields[F_HZ], enable);
-> +}
-> +
-> +static inline int rt9471_set_ichg(struct rt9471_chip *chip, int microamp)
-> +{
-> +       return rt9471_set_value_by_field_range(chip, F_ICHG_REG,
-> +                                              RT9471_RANGE_ICHG, microamp);
-> +}
-> +
-> +static inline int rt9471_get_ichg(struct rt9471_chip *chip, int *microamp)
-> +{
-> +       return rt9471_get_value_by_field_range(chip, F_ICHG_REG,
-> +                                              RT9471_RANGE_ICHG, microamp);
-> +}
-> +
-> +static inline int rt9471_set_cv(struct rt9471_chip *chip, int microvolt)
-> +{
-> +       return rt9471_set_value_by_field_range(chip, F_VBAT_REG,
-> +                                              RT9471_RANGE_VCHG, microvolt);
-> +}
-> +
-> +static inline int rt9471_get_cv(struct rt9471_chip *chip, int *microamp)
-> +{
-> +       return rt9471_get_value_by_field_range(chip, F_VBAT_REG,
-> +                                              RT9471_RANGE_VCHG, microamp);
-> +}
-> +
-> +static inline int rt9471_set_mivr(struct rt9471_chip *chip, int microvolt)
-> +{
-> +       return rt9471_set_value_by_field_range(chip, F_MIVR,
-> +                                              RT9471_RANGE_MIVR, microvolt);
-> +}
-> +
-> +static inline int rt9471_get_mivr(struct rt9471_chip *chip, int *microvolt)
-> +{
-> +       return rt9471_get_value_by_field_range(chip, F_MIVR,
-> +                                              RT9471_RANGE_MIVR, microvolt);
-> +}
-> +
-> +static inline int rt9471_set_aicr(struct rt9471_chip *chip, int microamp)
-> +{
-> +       return rt9471_set_value_by_field_range(chip, F_AICR, RT9471_RANGE_AICR,
-> +                                              microamp);
-> +}
-> +
-> +static inline int rt9471_get_aicr(struct rt9471_chip *chip, int *microamp)
-> +{
-> +       return rt9471_get_value_by_field_range(chip, F_AICR, RT9471_RANGE_AICR,
-> +                                              microamp);
-> +}
-> +
-> +static inline int rt9471_set_iprechg(struct rt9471_chip *chip, int microamp)
-> +{
-> +       return rt9471_set_value_by_field_range(chip, F_IPRE_CHG,
-> +                                              RT9471_RANGE_IPRE, microamp);
-> +}
-> +
-> +static inline int rt9471_get_iprechg(struct rt9471_chip *chip, int *microamp)
-> +{
-> +       return rt9471_get_value_by_field_range(chip, F_IPRE_CHG,
-> +                                              RT9471_RANGE_IPRE, microamp);
-> +}
-> +
-> +static inline int rt9471_set_ieoc(struct rt9471_chip *chip, int microamp)
-> +{
-> +       return rt9471_set_value_by_field_range(chip, F_IEOC_CHG,
-> +                                              RT9471_RANGE_IEOC, microamp);
-> +}
-> +
-> +static inline int rt9471_get_ieoc(struct rt9471_chip *chip, int *microamp)
-> +{
-> +       return rt9471_get_value_by_field_range(chip, F_IEOC_CHG,
-> +                                              RT9471_RANGE_IEOC, microamp);
-> +}
-> +
-> +static inline int rt9471_set_chg_enable(struct rt9471_chip *chip, int enable)
-> +{
-> +       return regmap_field_write(chip->rm_fields[F_CHG_EN], !!enable);
-> +}
-> +
+>=20
+>=20
+> --=20
+> With Best Regards,
+> Andy Shevchenko
 
-//snip
+--swltbkbSHetuPsfS
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
-> +static inline struct rt9471_chip * psy_device_to_chip(struct device *dev)
-> +{
-> +       return power_supply_get_drvdata(to_power_supply(dev));
-> +}
+-----BEGIN PGP SIGNATURE-----
 
-While skimming through the rest of the patch... This may just be my
-personal preference but wrapper functions with just one line are
-rarely beneficial. In the worst case they just add more lines AND hide
-the details of what actually is done without any clear benefits. Well,
-this is just my view so please ignore this comment if wrappers like
-this are a "subsystem standard"
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmL54oAACgkQiIBOb1ld
+UjK5/xAAjXlhTbU0FzS0A7Zdh2V2zprGvzUFGqzLCI0u4n9lC8beI/o9b/uRWR/9
+Bz8J5MWTGLS1s09nYsk1A3VseA+M1HSABjd5QPaHf/+tjPqrzO5TJyVQ5nRTXy12
+haS8YDOCLoytgNVqq0S5ZRVKjogsJCfJ8Zwf8PM4PmyJJGXVYBPJs66aTWvnuxvH
+LuvXsODDE1YtVoOn441oigVQfY5MvrrTx77KmD7ekb1A8/qyZV8NHZ05hAiKsYWn
+JYFt4hdHeVec3UxzMaJsgVekrizYwb1CKp+hlDuMMb92CJq1JD5hLmrmAFY/JtGC
+IeyZWmPL8QLiHwqTd2xAuWdqsCJxlQbWo9l0lujPxpFADpqVKcpvCQfPfYFJAuba
+oAjNpR8ypnApsAoz5RoyKcXMPAEGE9xw7euqu1BDbKGUEUL+X7Zm/9acv4V7uaMv
+1fBcqolDncboQqYmW/Dp+fRpU1ZVVezsBQE5+Vy7jwowMWL6XE78PW2fXBUqvLqL
+TPut1yjGhDAfSloP2on8yb9geRLqbWKdpIo2ovCN0ebUFdM5JZdKBZYM94yJwveE
+KTpZIBGpyS57MKCVI3wbPSDB8qzHNuDCZ2OdNcbL8OvFP72TV75P9tDkr5LMdF+J
+rSsF88ds8qOzAz7lU7bmBIS2WuKU+dpLThw+/kgcvb40j12hGA4=
+=MRCF
+-----END PGP SIGNATURE-----
 
-Other than that the patch looks good to me.
-
---
-
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
-Discuss - Estimate - Plan - Report and finally accomplish this:
-void do_work(int time) __attribute__ ((const));
+--swltbkbSHetuPsfS--
